@@ -130,6 +130,8 @@ A("")
 A("## 9. Traceability — every source sentence the cases quote (PRD v3 unless marked Jira)")
 used = sorted({x for c in L.CASES for x in L.codes_of(c)}, key=lambda s: (s[0] != "S", s))
 for k in used:
+    if k in L.CODE5 and L.CODE5[k] != L.CODE.get(k): A(f"- **{k}** (PRD v5, quoted by the 28 Oct 2026 named set and new cases): \"{L.CODE5[k]}\"")
+    if k in L.NAMED5 and k in L.NAMED5_CHANGED: A(f"- **{k}** ({L.NAMED5[k][0]}, PRD v5, quoted by the 28 Oct 2026 named set and new cases): \"{L.NAMED5[k][1]}\"")
     if k in L.CODE: A(f"- **{k}**: \"{L.CODE[k]}\"")
     elif k in L.NAMED: A(f"- **{k}** ({L.NAMED[k][0]}): \"{L.NAMED[k][1]}\"")
     elif k in L.SUB: A(f"- **{k}** ({L.SUB[k][0]}): \"{L.SUB[k][1]}\"")

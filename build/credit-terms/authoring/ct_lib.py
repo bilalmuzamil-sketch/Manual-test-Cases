@@ -36,6 +36,26 @@ JIRAW = ws(open(JIRA_FILE).read())
 
 PRD_NAME = 'PRD "Credit terms", Confluence 963346440, version 3 (22 Oct 2026, "Renamed to Credit terms", Chris Ward)'
 PRD_READ = "read 23 Oct 2026"
+
+# ---- PRD v5 (28 Oct 2026, QA lead: "Named set", Rule 122 amendment). Only the cases in NAMED_SET and the new cases quote v5 and say
+# "version 5" on their From line; every other case keeps its live text, whose v3 quotes are word for word the same in v5 (checked by
+# verify_v5_named_set.py), so its From line keeps version 3. Pattern: build/founder-mode/what-why/authoring/wwlib.py (NAMED_SET / on_v16).
+# The Change Log (section 9) is never a source of a quote: it is cut off before matching.
+PRD5_FILE = f"{P}/sources/CONFLUENCE-963346440-v5-2026-10-28.md"
+PRD5_MD = open(PRD5_FILE).read().split("## 9. Change Log")[0]
+PRD5_TXT = md_to_text(PRD5_MD)
+PRD5W = ws(PRD5_TXT)
+PRD5_RAWW = ws(re.sub(r"<[^>]+>", "", re.sub(r"\[([^\]]*)\]\(([^)]*)\)", r"\1", PRD5_MD)))
+PRD5_NAME = 'PRD "Credit terms", Confluence 963346440, version 5 (26 Oct 2026, Chris Ward)'
+PRD5_READ = "read 28 Oct 2026"
+NAMED_SET = {"S2-30", "S2-31", "S2-32", "S2-33", "S2-34", "S10-12", "S10-16",   # A: their v3 quote is no longer word for word in v5
+             "S10-08",                                                          # B: checked against v5 S10-E3 and S10-R8
+             "S2-36"}                                                           # C: released, v5 S2 Error Handling settles question 3
+import csv as _csv
+MAPPED = {r["key"] for r in _csv.DictReader(open(f"{P}/testrail-id-map.csv"))}
+def on_v5(c):
+    """A case in the named set, or a new case (no C-id yet), quotes PRD v5."""
+    return c["key"] in NAMED_SET or c["key"] not in MAPPED
 EPIC = "SV-11638"
 DESIGN_URL = "https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf"
 SETUP_URL = ("https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/"
@@ -55,6 +75,12 @@ CODE = {}
 for line in PRD_TXT.split("\n"):
     m = re.match(r"^\s*-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
     if m and m.group(1) not in CODE: CODE[m.group(1)] = m.group(2).strip()
+
+CODE5 = {}
+for line in PRD5_TXT.split("\n"):
+    m = re.match(r"^\s*-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
+    if m and m.group(1) not in CODE5: CODE5[m.group(1)] = m.group(2).strip()
+if len(CODE5) != 212 or set(CODE) - set(CODE5): raise SystemExit(f"PRD v5 has {len(CODE5)} codes; this library expects 212 (v3's 211 plus S1-R17)")
 
 def prd_line(start):
     for line in PRD_TXT.split("\n"):
@@ -224,6 +250,26 @@ SUB = {
  "S12-R3 MOVED": ("S12-R3 table, customers moved", raw_row("Customers are moved")),
 }
 
+# ---- the same named items and sub-items as PRD v5 has them: an item still word for word in v5 is kept; an item v5 changed (Story 2
+# Error Handling gained two texts on 26 Oct 2026) is re-copied from the v5 line that starts the same way. Nothing else differs.
+def _v5_line(text):
+    head = ws(text)[:60]
+    hits = [ws(re.sub(r"^\s*-\s*", "", l)) for l in PRD5_TXT.split("\n") if ws(re.sub(r"^\s*-\s*", "", l)).startswith(head)]
+    if len(hits) != 1: raise SystemExit(f"PRD v5: {len(hits)} lines start like {head!r}")
+    return hits[0]
+def _in_v5(t): return ws(t) in PRD5W or ws(t) in PRD5_RAWW
+NAMED5 = {k: (lab, t if _in_v5(t) else _v5_line(t)) for k, (lab, t) in NAMED.items()}
+NAMED5_CHANGED = sorted(k for k in NAMED if NAMED5[k][1] != NAMED[k][1])
+if NAMED5_CHANGED != ["EH-S2"]: raise SystemExit(f"named items that differ in v5: {NAMED5_CHANGED} (expected only EH-S2)")
+for _k, (_l, _t) in SUB.items():
+    if not _in_v5(_t): raise SystemExit(f"sub-item {_k} is not word for word in PRD v5")
+# v5 codes with no manual case, with the reason (coverage gate in build.py; REPORT.md)
+NO_MANUAL_REASON = {
+ "S1-R17": ("No manual case: the under-1-second page-load target needs the test organization's size (section 6: more than 1,500 "
+            "customers on one term) and a timer, which a manual tester does not have; left to the developers' performance check "
+            "(engineering plan NFR-1)"),
+}
+
 # Items that cannot be turned into a check a tester can run, with the reason (Rule 64: stated, never silently dropped)
 NOT_TESTABLE = {
  "EH-S7": "States that due-date calculation has no failure path; there is nothing to trigger. The due-date cases (S7, DATA) cover the behaviour.",
@@ -329,10 +375,12 @@ def fold_reads(steps, res):
 
 def quotes(c):
     out = []
+    v5 = on_v5(c)
+    codes, named = (CODE5, NAMED5) if v5 else (CODE, NAMED)
     for x in c["q"]:
         if isinstance(x, tuple): out.append(x)
-        elif x in CODE: out.append((x, CODE[x]))
-        elif x in NAMED: out.append(NAMED[x])
+        elif x in codes: out.append((x, codes[x]))
+        elif x in named: out.append(named[x])
         elif x in SUB: out.append(SUB[x])
         else: raise KeyError(f"{c['key']}: unknown quote key {x}")
     return out
@@ -395,7 +443,9 @@ def quotes_block(c):
     first = True
     for name, group in ((PRD_NAME, prd), ("Jira stories under epic SV-11638 (saved 23 Oct 2026, sources/JIRA-SV-11638-stories-2026-10-23.md)", jira)):
         if not group: continue
-        h += f"<p>From: {e(name)}, {PRD_READ}" + (f" &middot; Epic {EPIC}, {e(sto)}" if first else "") + "</p>"
+        read = PRD_READ
+        if name == PRD_NAME and on_v5(c): name, read = PRD5_NAME, PRD5_READ
+        h += f"<p>From: {e(name)}, {read}" + (f" &middot; Epic {EPIC}, {e(sto)}" if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in group) + "</ul>"
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"
@@ -472,6 +522,8 @@ def check(c):
     for l, t in quotes(c):
         if l.startswith("Jira SV-"):
             if ws(t) not in JIRAW: p.append(f"{k}: quote {l} not verbatim in the saved Jira stories")
+        elif on_v5(c):
+            if ws(t) not in PRD5W and ws(t) not in PRD5_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v5")
         elif ws(t) not in PRDW and ws(t) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v3")
     if not c["q"]: p.append(f"{k}: no source quote (Rule 64)")
     if not c["marker"].startswith("AUTOMATION: "): p.append(f"{k}: marker")

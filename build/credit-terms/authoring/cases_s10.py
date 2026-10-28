@@ -52,8 +52,8 @@ im("S10-07", "An import update onto COD saves a $0 limit and the row is not refu
 im("S10-08", "An import update of an old COD customer clears its stored limit",
    [("Customer {Customer-A} holds COD and keeps a credit limit of $1,000.00 stored from before the release.", "For example: {Customer-A} is ZZAUTOTEST S10-08 Customer."),
     ("A contacts import file that updates {Customer-A} with a new phone number, the credit term \"COD\" and an empty credit limit cell.", None)],
-   [IMP, ("Open Edit Customer for {Customer-A}.", "Credit Limit shows $0.00, disabled; the stored $1,000.00 is gone because the import updated the customer.")],
-   ["KD-ZERO2", "S10-E2", "S10-R8"])
+   [IMP, ("Open Edit Customer for {Customer-A}.", "Credit Terms reads COD; Credit Limit shows $0.00, disabled; the stored $1,000.00 is gone: the file names COD, so the import saved $0 although the credit limit cell was empty.")],
+   ["KD-ZERO2", "S10-E2", "S10-R8", "S10-E3"])   # 28 Oct 2026 named set: v5 S10-E3 (an empty limit cell keeps the limit, but S10-R8 still applies on COD)
 
 im("S10-09", "Vendors imported with a blank term start on COD, not the default",
    [("Net 30 is the shop's default for new customers.", None), ("The shop's own term {Term-A} is named \"Net 10\".", "For example: {Term-A} is Net 10."),
@@ -69,9 +69,12 @@ im("S10-10", "A vendor import update with a blank term cell keeps the stored ter
 # ---- Public API (the tester sends a request; Rule 4) -------------------------------------------------------------------------
 APIHOLD = None  # 26 Oct 2026 (QA lead): the API documentation is the tester's precondition (KEY), not a hold
 KEY = ("You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool.", "For example: the request tool is Postman.")
-def api(key, title, pre, pairs, q):
-    im(key, title, [KEY] + pre, pairs, q, marker=APIHOLD, api=True,
-       note="The tester sends a Public API request in this case. The exact request is added once the API documentation or tech plan is shared; until then the case is held.")
+API_NOTE = "The tester sends a Public API request in this case. The exact request is added once the API documentation or tech plan is shared; until then the case is held."
+# 28 Oct 2026 (named set, PRD v5 and the engineering plan): the plan names the requests, so a rewritten or new API case says which to send
+API_NOTE5 = ("The tester sends Public API requests in this case, using the Public API documentation: the engineering plan (26 Oct 2026) names "
+             "the request that creates a customer POST /api/v1/customers; reading a customer back uses the read request the documentation gives.")
+def api(key, title, pre, pairs, q, note=API_NOTE):
+    im(key, title, [KEY] + pre, pairs, q, marker=APIHOLD, api=True, note=note)
 
 api("S10-11", "A customer created through the API without a term gets the default",
     [("The shop's own term {Term-A} is the default for new customers.", "For example: {Term-A} is ZZAUTOTEST S10-11 Fourteen."),
@@ -84,7 +87,7 @@ api("S10-12", "An API term in other capitals saves and reads back in the term's 
     [("The shop's own term {Term-A} is named \"Net 10\".", "For example: {Term-A} is Net 10."), ("A name for a new customer, {Customer-A}.", "For example: {Customer-A} is ZZAUTOTEST S10-12 Customer.")],
     [("Send a Public API request that creates {Customer-A} with the credit term \"net 10\".", "the customer is created."),
      ("Send a Public API request that reads {Customer-A}.", 'the credit term comes back as "Net 10" (the saved spelling).'), ("Open {Customer-A}'s customer page.", 'the "Credit term" reads "Net 10".')],
-    ["S10-R3", "S10-R7"])
+    ["S10-R3", "S10-R7"], note=API_NOTE5)   # 28 Oct 2026 named set: S10-R7 re-quoted from v5
 api("S10-13", "Updating a term through the API matches spelling, or saves unknown text",
     [("The shop's own term {Term-A} is named \"Net 10\".", "For example: {Term-A} is Net 10."), ("Customer {Customer-A} exists on Net 30.", "For example: {Customer-A} is ZZAUTOTEST S10-13 Customer.")],
     [("Send a Public API request that updates {Customer-A}'s credit term to \"NET10\".", "the request succeeds."), ("Open {Customer-A}'s customer page.", 'the "Credit term" reads "Net 10".'),
@@ -107,5 +110,34 @@ api("S10-15", "An API update with neither term nor limit keeps the stored limit"
 api("S10-16", "The Public API has no way to list terms or the default",
     [("The Public API documentation for the test organization is open.", None)],
     [("Look for a request that lists the shop's credit terms or its default.", "there is none: an integrator sends a term name and reads back the saved spelling."),
-     ("Look at the vendor requests.", "they are unchanged from before the release (no new credit term fields or rules).")],
-    ["S10-R7"])
+     ("Open the documentation's request that creates a vendor.", 'it says a vendor created with no credit term starts on COD (no longer "net_30"); the vendor requests have no other new credit term field or rule.')],
+    ["S10-R7", "S6-R2"])   # 28 Oct 2026 named set: v5 S10-R7 (the vendor API changes one default)
+
+# ---- 28 Oct 2026, PRD v5 named set: new cases (S10-E3 credit limit sentence, S10-R7 vendor default) --------------------------------
+im("S10-17", "An import update with an empty credit limit cell keeps the stored limit",
+   [("Create customer {Customer-A} for this test, on Net 30 with a credit limit of $800.00.", "For example: {Customer-A} is ZZAUTOTEST S10-17 Customer."),
+    ('A contacts import file that updates {Customer-A} with a new phone number, the credit term "Net 30" and an empty credit limit cell.', None)],
+   [IMP, ("Open Edit Customer for {Customer-A}.", "the phone number is the new one from the file, so the update ran; Credit Terms still reads Net 30; "
+                                                 "Credit Limit still shows $800.00: the empty cell kept the stored limit (before the release it set the limit to $0).")],
+   ["S10-E3", "S10-N1"])
+im("S10-18", "An import update with no credit limit column keeps the stored limit",
+   [("Create customer {Customer-A} for this test, on Net 30 with a credit limit of $800.00.", "For example: {Customer-A} is ZZAUTOTEST S10-18 Customer."),
+    ('A contacts import file that updates {Customer-A} with a new phone number and the credit term "Net 30", and has no credit limit column at all.', None)],
+   [IMP, ("Open Edit Customer for {Customer-A}.", "the phone number is the new one from the file, so the update ran; Credit Terms still reads Net 30; "
+                                                 "Credit Limit still shows $800.00: the missing cell kept the stored limit (before the release it set the limit to $0).")],
+   ["S10-E3", "S10-N1"])
+im("S10-19", "An import update onto Credit Hold with an empty limit cell saves $0",
+   [("Create customer {Customer-A} for this test, on Net 30 with a credit limit of $800.00.", "For example: {Customer-A} is ZZAUTOTEST S10-19 Customer."),
+    ('A contacts import file that updates {Customer-A} with the credit term "Credit Hold" and an empty credit limit cell.', None)],
+   [IMP, ("Open Edit Customer for {Customer-A}.", "Credit Terms reads Credit Hold; Credit Limit shows $0.00, disabled: a customer the import moves onto Credit Hold gets $0, "
+                                                 "although the empty cell would otherwise keep the stored $800.00.")],
+   ["S10-E3", "S10-R8", "S10-N1"])
+KEY_V = ("You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create a vendor), and a request tool.",
+         "For example: the request tool is Postman.")
+im("S10-20", "A vendor created through the API with no term starts on COD",
+   [KEY_V, ("Net 30 is the shop's default for new customers.", None), ("A name for a new vendor, {Vendor-A}.", "For example: {Vendor-A} is ZZAUTOTEST S10-20 Vendor.")],
+   [("Send a Public API request that creates {Vendor-A} with no credit term.", "the request is accepted and {Vendor-A} is created."),
+    ("Open {Vendor-A}'s vendor page.", 'the "Credit term" reads COD: not "net_30" (what the vendor API gave before the release) and not Net 30 (the default for new customers).')],
+   ["S10-R7", "S6-R2"], api=True,
+   note=("The tester sends a Public API request in this case, using the Public API documentation: the engineering plan (26 Oct 2026) names "
+         "the request that creates a vendor POST /api/v1/vendors."))

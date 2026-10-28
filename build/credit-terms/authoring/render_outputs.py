@@ -24,8 +24,11 @@ for n, (key, name) in L.STORY.items():
     ledger[key] = {"updated": TODAY, "outcome": "NEW-CASES", "cases": ks,
                    "note": f"{name}. Read in full 23 Oct 2026: its requirement lines are word for word PRD v3's; Context, Acceptance Criteria and UI/UX add nothing the PRD lacks "
                            + ("(the acceptance criterion gives the old limit's format, \"Credit limit $500.00 → $0.\", quoted in S4-13)." if n == 4 else "(acceptance criteria examples quoted where a case uses them).")}
-json.dump(ledger, open(f"{P}/TICKET-LEDGER.json", "w"), indent=1, ensure_ascii=False)
-json.dump({"project": "Credit terms", "epic": "SV-11638", "stories": [v[0] for v in L.STORY.values()], "prd_page": "963346440", "prd_version_handled": 3,
+# 28 Oct 2026: the ledger, sweep and question draft are first-draft records (23 Oct). Later passes keep them by hand (the 28 Oct ledger has
+# the verification tickets; the sweep has PRD v5), so they are rewritten only with --write-records (L-19: a check must never rewrite a record)
+WRITE = "--write-records" in sys.argv
+if WRITE: json.dump(ledger, open(f"{P}/TICKET-LEDGER.json", "w"), indent=1, ensure_ascii=False)
+if WRITE: json.dump({"project": "Credit terms", "epic": "SV-11638", "stories": [v[0] for v in L.STORY.values()], "prd_page": "963346440", "prd_version_handled": 3,
            "_query": "key = SV-11638 OR parent = SV-11638 OR parent in (SV-11670..SV-11681), one page, 13 tickets (sources/SWEEP-2026-10-23.md).",
            "prd_handled_note": "23 Oct 2026: first draft of the whole suite from PRD v3 (22 Oct 2026); nothing earlier to diff."},
           open(f"{P}/TICKET-SWEEP.json", "w"), indent=1, ensure_ascii=False)
@@ -49,7 +52,7 @@ for i, (slug, q, basis, opts, holds) in enumerate(QUESTIONS, 1):
     Q.append(f"| {i} | {', '.join(held.get(i, [])) or 'none'} | {holds} |")
 Q += ["", "## Dropped before the sheet (skill 07 §6: our own sources answer them)", ""]
 for k, v in DROPPED.items(): Q.append(f"- **{k}**: {v}")
-open(f"{P}/PO-QUESTIONS-DRAFT.md", "w").write("\n".join(Q) + "\n")
+if WRITE: open(f"{P}/PO-QUESTIONS-DRAFT.md", "w").write("\n".join(Q) + "\n")
 
 # ---------------- report ----------------
 R = []; A = R.append
@@ -68,8 +71,9 @@ def _cov(k):
     cs = quoting(k)
     if k in L.NO_MANUAL:
         return (", ".join(cs) + "; " if cs else "") + f"{L.DELETED_MSG} (was {L.NO_MANUAL[k]}, {L.DELETED_CASES[L.NO_MANUAL[k]]})"
+    if k in L.NO_MANUAL_REASON: return L.NO_MANUAL_REASON[k]   # 28 Oct 2026: a v5 code with no manual case
     return ", ".join(cs)
-for k in L.CODE: A(f"| {k} | {_cov(k)} |")
+for k in L.CODE5: A(f"| {k} | {_cov(k)} |")   # 28 Oct 2026: PRD v5's 212 codes (v3's 211 plus S1-R17)
 A(""); A("No code is listed as not testable. 26 Oct 2026: " + str(len(L.DELETED_CASES)) + " cases were deleted on the QA lead's order because a manual tester cannot set them up (" + ", ".join(f"{k} {c}" for k, c in L.DELETED_CASES.items()) + "); each requirement only they covered reads \"" + L.DELETED_MSG + "\"; every other requirement they quoted is still covered by the remaining cases named in its row. Story 11 has no S11-R15 (question 1).")
 A(""); A("### Named PRD items (no code): Error Handling, User Feedback Summary, Key Decisions, Permissions, Terminology, Assumptions, Goals, Out of Scope")
 A("| Item | Where | Cases or reason |"); A("|---|---|---|")

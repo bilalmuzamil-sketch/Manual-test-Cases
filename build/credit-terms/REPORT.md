@@ -1,27 +1,27 @@
 # Credit terms — draft suite report (23 Oct 2026)
 
-Drafted from PRD v3 (Confluence 963346440, 22 Oct 2026) and the 12 stories of epic SV-11638. 332 cases, not written to TestRail. No tech plan yet; no build; the design is driven in parallel by another worker and its pass fills "References from Design" and the DESIGN section.
+Drafted from PRD v3 (Confluence 963346440, 22 Oct 2026) and the 12 stories of epic SV-11638. 340 cases, not written to TestRail. No tech plan yet; no build; the design is driven in parallel by another worker and its pass fills "References from Design" and the DESIGN section.
 
 ## 1. Counts per section
 | Key | TestRail section | Name | Cases |
 |---|---|---|---|
 | S1 | 91455 | Story 1 — Credit Terms page and list | 34 |
-| S2 | 91456 | Story 2 — Row menu actions | 35 |
+| S2 | 91456 | Story 2 — Row menu actions | 37 |
 | S3 | 91457 | Story 3 — Create or edit a credit term | 26 |
 | S4 | 91458 | Story 4 — Move Customers | 34 |
 | S5 | 91459 | Story 5 — New Customer and Edit Customer | 24 |
 | S6 | 91460 | Story 6 — Vendors | 8 |
-| S7 | 91461 | Story 7 — Due dates | 12 |
+| S7 | 91461 | Story 7 — Due dates | 14 |
 | S8 | 91462 | Story 8 — QuickBooks sync | 13 |
 | S9 | 91463 | Story 9 — Over Credit warning | 10 |
-| S10 | 91464 | Story 10 — Imports and Public API | 16 |
+| S10 | 91464 | Story 10 — Imports and Public API | 20 |
 | S11 | 91465 | Release day and what must not change | 20 |
 | S12 | 91466 | Story 12 — Credit Terms audit log | 19 |
 | DATA | 91467 | Counts and due dates — exact numbers | 29 |
 | DESIGN | 91468 | Design — how it looks (written by the design worker, cases_design.py) | 52 |
-| | | **Total** | **332** |
+| | | **Total** | **340** |
 
-Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 318; `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` × 3; `AUTOMATION: HOLD - waiting on the PO (question 3)` × 1; `AUTOMATION: HOLD - waiting on the PO (question 5)` × 1; `AUTOMATION: HOLD - waiting on the PO (question 6)` × 1; `AUTOMATION: HOLD - needs the before due date taken on production shortly before the release reaches production; run on production after the release` × 1; `AUTOMATION: HOLD - waiting on the PO (question 7)` × 1; `AUTOMATION: HOLD - a tester cannot make or recognise an organization with no settings record` × 1; `AUTOMATION: HOLD - waiting on the PO (question 4)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 8)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 9)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 10)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 11)` × 1
+Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 327; `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` × 3; `AUTOMATION: HOLD - waiting on the PO (question 5)` × 1; `AUTOMATION: HOLD - waiting on the PO (question 6)` × 1; `AUTOMATION: HOLD - needs the before due date taken on production shortly before the release reaches production; run on production after the release` × 1; `AUTOMATION: HOLD - waiting on the PO (question 7)` × 1; `AUTOMATION: HOLD - a tester cannot make or recognise an organization with no settings record` × 1; `AUTOMATION: HOLD - waiting on the PO (question 4)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 8)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 9)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 10)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 11)` × 1
 
 ## 2. Coverage of the 211 requirement codes
 | Code | Cases |
@@ -42,6 +42,7 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 318; `AUT
 | S1-R14 | S1-02, S1-03, S1-04, D-09 |
 | S1-R15 | S1-20, D-05 |
 | S1-R16 | S1-21 |
+| S1-R17 | No manual case: the under-1-second page-load target needs the test organization's size (section 6: more than 1,500 customers on one term) and a timer, which a manual tester does not have; left to the developers' performance check (engineering plan NFR-1) |
 | S1-N1 | S1-22 |
 | S1-N2 | S1-23, D-10, D-51 |
 | S1-N3 | S1-24, D-01, D-45 |
@@ -67,7 +68,7 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 318; `AUT
 | S2-N5 | S2-10, S2-11, S2-13, S2-23, D-46 |
 | S2-N6 | S2-19 |
 | S2-E1 | S2-29 |
-| S2-E2 | S2-30, S2-31, S2-32, S2-36 |
+| S2-E2 | S2-30, S2-31, S2-32, S2-36, S2-37, S2-38 |
 | S2-E3 | S2-23 |
 | S3-R1 | S3-01, S3-19, D-13, D-16 |
 | S3-R2 | S3-01, S3-12, D-05, D-13 |
@@ -76,7 +77,7 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 318; `AUT
 | S3-R5 | S3-03, S3-04, S3-05, S3-06, DATA-19, D-13, D-14, D-52 |
 | S3-R6 | S3-01, S3-07, D-15 |
 | S3-R7 | S3-08, S3-09, DATA-24 |
-| S3-R8 | S3-20 |
+| S3-R8 | S2-38, S3-20 |
 | S3-R9 | S3-10, S3-12, S3-13, S3-14, S3-15, S3-16, D-15 |
 | S3-R10 | S3-05, S3-10, S3-11, D-53 |
 | S3-R11 | S3-17 |
@@ -144,7 +145,7 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 318; `AUT
 | S5-E2 | S5-22, S10-03 |
 | S5-E3 | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S5-23, C724023) |
 | S6-R1 | S6-01, D-29, D-30 |
-| S6-R2 | S6-01, S6-02, D-29, D-30 |
+| S6-R2 | S6-01, S6-02, S10-16, S10-20, D-29, D-30 |
 | S6-R3 | S6-03, D-31, D-42 |
 | S6-R4 | S6-04, D-29 |
 | S6-R5 | S6-05, S6-06 |
@@ -153,7 +154,7 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 318; `AUT
 | S6-N2 | S6-01, S6-03 |
 | S6-E1 | S10-09 |
 | S6-E2 | S2-11, DATA-22 |
-| S7-R1 | S7-02, DATA-01, DATA-02, DATA-09, DATA-10, D-43 |
+| S7-R1 | S7-02, S7-11, S7-12, DATA-01, DATA-02, DATA-09, DATA-10, D-43 |
 | S7-R2 | DATA-03, DATA-08, D-32, D-33, D-44 |
 | S7-R3 | DATA-04, DATA-05, DATA-06, DATA-06b, DATA-19 |
 | S7-R4 | DATA-07 |
@@ -163,7 +164,7 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 318; `AUT
 | S7-R6b | DATA-14 |
 | S7-R7 | S7-01, S7-01b, S7-01c, S7-10 |
 | S7-R8 | S7-10, DATA-15 |
-| S7-R9 | S7-02, DATA-17, D-32, D-43 |
+| S7-R9 | S7-02, S7-11, S7-12, DATA-17, D-32, D-43 |
 | S7-R10 | DATA-11, DATA-12 |
 | S7-R11 | S7-03 |
 | S7-N1 | S7-05 |
@@ -196,13 +197,13 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 318; `AUT
 | S10-R4 | S7-05, S10-03, S10-13 |
 | S10-R5 | S10-13 |
 | S10-R6 | S10-05 |
-| S10-R7 | S10-12, S10-16 |
-| S10-R8 | S10-07, S10-08, S10-14, S10-15 |
-| S10-N1 | S10-03, S10-07, S10-13, S10-14 |
+| S10-R7 | S10-12, S10-16, S10-20 |
+| S10-R8 | S10-07, S10-08, S10-14, S10-15, S10-19 |
+| S10-N1 | S10-03, S10-07, S10-13, S10-14, S10-17, S10-18, S10-19 |
 | S10-N2 | S10-09 |
 | S10-E1 | S10-04 |
 | S10-E2 | S10-05, S10-08, S10-15 |
-| S10-E3 | S10-06, S10-10 |
+| S10-E3 | S10-06, S10-08, S10-10, S10-17, S10-18, S10-19 |
 | S11-R1 | S11-01 |
 | S11-R2 | S11-02, S11-03 |
 | S11-R3 | S11-04 |
@@ -244,8 +245,8 @@ No code is listed as not testable. 26 Oct 2026: 12 cases were deleted on the QA 
 | Item | Where | Cases or reason |
 |---|---|---|
 | EH-S1 | Story 1, Error Handling | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S1-28, C723892) |
-| EH-S2 | Story 2, Error Handling | S2-30, S2-31, S2-32, S2-33, S2-34 |
-| EH-S3a | Story 3, Error Handling | S3-25, S3-26 |
+| EH-S2 | Story 2, Error Handling | S2-30, S2-31, S2-32, S2-33, S2-34, S2-36, S2-37, S2-38 |
+| EH-S3a | Story 3, Error Handling | S2-37, S2-38, S3-25, S3-26 |
 | EH-S3b | Story 3, Error Handling | S3-08, S3-20 |
 | EH-S4a | Story 4, Error Handling | S4-32 |
 | EH-S4b | Story 4, Error Handling | S4-33 |
@@ -389,7 +390,7 @@ Project type: V2 / upgrade, confirmed by the QA lead on 23 Oct 2026 ("It is an u
 | S3-R13: "Editing a term keeps its own name valid (saving "Net 10" unchanged on the term "Net 10" is not a duplicate)." | S3-19 |
 | S4-R6: "Customers hidden by the search keep their ticks." | S4-05, DATA-25 |
 | S5-N3: "Credit Hold is offered in the dropdown (as today) but never carries the "Default" tag, because it can never be the default." | S5-02 |
-| S6-R2: "New Vendor starts on COD, as today." | S6-01, S6-02, D-29, D-30 |
+| S6-R2: "New Vendor starts on COD, as today." | S6-01, S6-02, S10-16, S10-20, D-29, D-30 |
 | S6-R4: "Vendor credit limits behave exactly as today on every term, COD and Credit Hold included: no lock, no $0 rule." | S6-04, D-29 |
 | S6-N1: "If the user does not have the 'View and Manage AP/AR Data' setting, the vendor Credit Terms field stays hidden, as today." | S6-08 |
 | S6-E1: "A vendor imported with a blank term starts on COD, as today;" | S10-09 |
@@ -408,7 +409,7 @@ Project type: V2 / upgrade, confirmed by the QA lead on 23 Oct 2026 ("It is an u
 | S9-R4: "Opening a part sale shows no over-credit confirmation, as today;" | S9-02, S9-03 |
 | S9-E2: "A customer on Credit Hold is still blocked from invoicing as today;" | S4-14, S9-07 |
 | S10-R4: "Any other text is saved exactly as sent and dates invoices as it does today (lenient, as today)." | S7-05, S10-03, S10-13 |
-| S10-R7: "The vendor API is unchanged." | S10-12, S10-16 |
+| S10-R7: "The vendor API is unchanged." | S10-12, S10-16, S10-20 |
 | S10-E2: "Credit limits sent with an import or API customer are handled as today, except as S10-R6 and S10-R8 state." | S10-05, S10-08, S10-15 |
 | S11-R5: "Users without it see New Customer as before." | S5-01, S5-16, S11-01 |
 | S11-R10: "COD behaves as today at invoicing: Create Invoice still opens the payment window, Charge Account is still hidden for COD customers, and closing the window without paying still removes the new invoice." | S7-09, S11-05, S11-06 |
@@ -433,7 +434,6 @@ Honest limit (skill 17 §7): undocumented, untested, code-invisible behaviours c
 ## 4. Held cases and why
 | Case | Title | Marker |
 |---|---|---|
-| S2-36 | Acting on a term another user renamed after the page loaded | `AUTOMATION: HOLD - waiting on the PO (question 3)` |
 | S4-35 | Moving off a deactivated term: how the note names the old term | `AUTOMATION: HOLD - waiting on the PO (question 5)` |
 | S4-36 | Moving a customer stored as "NET 30": how the note names the old term | `AUTOMATION: HOLD - waiting on the PO (question 6)` |
 | S7-05 | A term the app does not recognise is dated exactly as before the release | `AUTOMATION: HOLD - needs the before due date taken on production shortly before the release reaches production; run on production after the release` |
@@ -455,7 +455,7 @@ Every other case carries `AUTOMATION: HOLD - not yet build-verified (no build ye
 - Context and Acceptance Criteria add nothing the PRD lacks; the S4 acceptance criterion gives the note's limit format "$500.00" (used in S4-13, quoted). The stories' PRD link points at the draft (resumedraft.action?draftId=963346440) and calls it "Default Credit Terms PRD"; the live page is "Credit terms" v3. Noted, nothing held.
 
 ## 6. Rule 4 (API placement)
-The 6 Public API cases (S10-11, S10-12, S10-13, S10-14, S10-15, S10-16) are in S10. TestRail section 91464 is titled "S10 — Imports and Public API" (coordinator, 23 Oct 2026), so Rule 4 is satisfied and they stay there.
+The 7 Public API cases (S10-11, S10-12, S10-13, S10-14, S10-15, S10-16, S10-20) are in S10. TestRail section 91464 is titled "S10 — Imports and Public API" (coordinator, 23 Oct 2026), so Rule 4 is satisfied and they stay there.
 
 ## 7. Gates (`python3 authoring/build.py`)
 The QA lead's case pattern (Rule 117 fourteenth amendment, 26 Oct 2026): plain precondition bullets only (no Scenario line, no {placeholder}, no "For example", no setup-file link), no "mark this test Blocked" line (fifteenth amendment, 26 Oct 2026); "Expected Result" with a "Step N:" heading and a bullet list per step, a blank paragraph, then the quotes, From lines, References from Design and AUTOMATION line identical to before the pattern. Title ≤ 80 and no semicolon; steps = results, each "Step N:"; no step with two UI actions (heuristic, plus each step read by hand); placeholders defined and named name-hyphen-letter/number; every quote verbatim in PRD v3 or the saved stories; every code and named item covered or not testable with a reason; every User Feedback Summary message used word for word in a step or result; one AUTOMATION line, last; From: line per document, build line, References from Design block. Result: 0 PROBLEM lines. Over the ~10-step target: DATA-24 (14 steps; kept whole: each count depends on the action before it, Rule 136).
@@ -494,4 +494,4 @@ Every touched case was rewritten top to bottom (title, preconditions, steps, res
 | A QA branch for SV-11638 | developers | every case's build check | 23 Oct 2026 |
 | Which organization the clean-organization cases run on (only this suite's records) | QA lead |  | 23 Oct 2026 |
 
-**Waiting on the PO:** Chris Ward's Credit terms questions 1 to 7 are drafted in `PO-QUESTIONS-DRAFT.md` and NOT sent yet; question 3 holds S2-36; question 4 holds S11-20; question 5 holds S4-35; question 6 holds S4-36; question 7 holds S7-10; question 8 holds D-50; question 9 holds D-51; question 10 holds D-52; question 11 holds D-53.
+**Waiting on the PO:** Chris Ward's Credit terms questions 1 to 7 are drafted in `PO-QUESTIONS-DRAFT.md` and NOT sent yet; question 4 holds S11-20; question 5 holds S4-35; question 6 holds S4-36; question 7 holds S7-10; question 8 holds D-50; question 9 holds D-51; question 10 holds D-52; question 11 holds D-53.

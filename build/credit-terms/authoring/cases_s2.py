@@ -236,13 +236,42 @@ st, rs = seq(mine('In your browser, click the "⋯" at the right of the {Term-A}
 C("S2-34", "S2", "Deleting a term another user already deleted says it was not found",
   [ADMIN()] + TWO + [DEFAULT_COD, own("{Term-A}", "net 14", ", held by no customer, vendor or invoice", "ZZAUTOTEST S2-34 Fourteen"), BOTH], st, rs, ["EH-S2", "UFS-33"])
 
+# 28 Oct 2026, PRD v5 named set: released. v5 Story 2 Error Handling gives the refusal for a term another user changed after the page
+# loaded (question 3 on Chris Ward's sheet asked for it): "Someone else changed this credit term. Reload the page and try again."
 st, rs = seq(([f'In {{User-B}}\'s browser, click the "⋯" at the right of the {{Term-A}} row.', 'In {User-B}\'s browser, click "Edit".', "In {User-B}'s browser, replace the Name with {Term-B}.", 'In {User-B}\'s browser, click "Save Changes".'],
                ["{User-B}'s menu opens.", '{User-B}\'s "Edit Credit Term" window opens.', "the Name reads {Term-B}.", '{User-B} sees the toast "{Term-B} saved".']),
-             mine('In your browser, without reloading, click the "⋯" at the right of the {Term-A} row.', "your menu opens."),
+             mine('In your browser, without reloading, click the "⋯" at the right of the {Term-A} row.', "your menu opens; your page still shows the old name, {Term-A}."),
              mine('Click "Make Default for New Customers".', "the confirmation opens."),
-             mine('Click "Make Default".', "the save is refused with the reason the PO gives (see the note); the page keeps its state."))
-C("S2-36", "S2", "Acting on a term another user renamed after the page loaded",
+             mine('Click "Make Default".', 'the app\'s error alert shows "Someone else changed this credit term. Reload the page and try again." The Default tag stays on COD.'),
+             mine("Reload the page.", "the row now reads {Term-B}, without the Default tag; COD still carries the Default tag."))
+C("S2-36", "S2", "Making a term the default after another user renamed it is refused",
   [ADMIN()] + TWO + [DEFAULT_COD, own("{Term-A}", "net 14", ", held by no customer, vendor or invoice", "ZZAUTOTEST S2-36 Fourteen"),
    ("A new name, {Term-B}, that no term has.", "For example: {Term-B} is ZZAUTOTEST S2-36 Renamed."), BOTH],
-  st, rs, ["S2-E2"], marker=PO_HOLD(QN["changed-meanwhile-msg"]),
-  note=f"The PRD says a change by another user is refused \"with the reason in S2 Error Handling\", but none of those texts covers a rename. Question {QN['changed-meanwhile-msg']} on Chris Ward's sheet (shared with him 23 Oct 2026) asks; this case is held until he answers.")
+  st, rs, ["S2-E2", "EH-S2"])
+
+# ---- 28 Oct 2026, PRD v5 named set: the two refusals v5 added to Story 2 Error Handling, each made by hand with two browsers --------
+st, rs = seq(mine('In your browser, click the "⋯" at the right of the {Term-A} row.', "your menu opens."),
+             mine('Click "Edit".', 'your "Edit Credit Term" window opens with {Term-A}\'s name and 14 in the Days box.'),
+             mine("Replace the number in the Days box with 21.", "the blue information line now says payment is due 21 days after the invoice date."),
+             B_DEACT("{Term-A}"),
+             mine('In your browser, click "Save Changes".', 'the app\'s error alert shows "Reactivate this term to edit it." The Edit Credit Term window stays open with 21 in the Days box.'),
+             mine('Click "Cancel".', "the window closes."),
+             mine("Reload the page.", "the Active tab no longer lists {Term-A}."),
+             mine('Click the "Inactive" tab.', '{Term-A} is listed with the Due "14 days after the invoice date": your change was not saved.'))
+C("S2-37", "S2", "Saving an edit after another user deactivated the term is refused",
+  [ADMIN()] + TWO + [DEFAULT_COD, own("{Term-A}", "net 14", ", held by no customer, vendor or invoice", "ZZAUTOTEST S2-37 Fourteen"), BOTH],
+  st, rs, ["EH-S2", "S2-E2", "EH-S3a"])
+
+st, rs = seq(mine('In your browser, click the "⋯" at the right of the {Term-A} row.', "your menu opens."),
+             mine('Click "Edit".', 'your "Edit Credit Term" window opens with {Term-A}\'s name and 14 in the Days box.'),
+             mine('In {User-B}\'s browser, click the "⋯" at the right of the {Term-A} row.', "{User-B}'s menu opens."),
+             mine('In {User-B}\'s browser, click "Edit".', '{User-B}\'s "Edit Credit Term" window opens.'),
+             mine("In {User-B}'s browser, replace the number in the Days box with 21.", "{User-B}'s blue information line says payment is due 21 days after the invoice date."),
+             mine('In {User-B}\'s browser, click "Save Changes".', '{User-B} sees the toast "{Term-A} saved"; in {User-B}\'s browser the {Term-A} row\'s Due reads "21 days after the invoice date".'),
+             mine("In your browser, replace the number in the Days box with 28.", "your blue information line says payment is due 28 days after the invoice date."),
+             mine('In your browser, click "Save Changes".', 'the app\'s error alert shows "Someone else changed this credit term. Reload the page and try again." The Edit Credit Term window stays open with 28 in the Days box.'),
+             mine('Click "Cancel".', "the window closes."),
+             mine("Reload the page.", 'the {Term-A} row\'s Due reads "21 days after the invoice date": the other user\'s change stands and yours was not saved.'))
+C("S2-38", "S2", "Saving an edit after another user saved the same term is refused",
+  [ADMIN()] + TWO + [DEFAULT_COD, own("{Term-A}", "net 14", ", held by no customer, vendor or invoice", "ZZAUTOTEST S2-38 Fourteen"), BOTH],
+  st, rs, ["EH-S2", "S2-E2", "EH-S3a", "S3-R8"])

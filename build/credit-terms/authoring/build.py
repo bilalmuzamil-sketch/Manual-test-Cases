@@ -37,8 +37,11 @@ for c in L.CASES:
 print("cases", len(L.CASES), dict(Counter(c["sec"] for c in L.CASES)))
 # ---- coverage of PRD codes and named items
 used = Counter(x for c in L.CASES for x in L.codes_of(c))
-allitems = set(L.CODE) | set(L.NAMED)
-missing = sorted(allitems - set(used) - set(L.NOT_TESTABLE) - set(L.NO_MANUAL), key=str)
+allitems = set(L.CODE) | set(L.CODE5) | set(L.NAMED)   # 28 Oct 2026: v5 adds S1-R17
+missing = sorted(allitems - set(used) - set(L.NOT_TESTABLE) - set(L.NO_MANUAL) - set(L.NO_MANUAL_REASON), key=str)
+for k in sorted(set(L.NO_MANUAL_REASON) & set(used)): probs.append(f"PRD item {k} is marked No manual case (v5) but a case quotes it")
+for k in L.NO_MANUAL_REASON:
+    if k not in allitems: probs.append(f"NO_MANUAL_REASON names {k}, which is not a PRD item")
 for k in sorted(set(L.NO_MANUAL) & set(used)): probs.append(f"PRD item {k} is marked No manual case (deleted 26 Oct 2026) but a case quotes it")
 for k, dk in L.NO_MANUAL.items():
     if k not in allitems: probs.append(f"NO_MANUAL names {k}, which is not a PRD item")
@@ -46,6 +49,7 @@ for k, dk in L.NO_MANUAL.items():
 for dk in L.DELETED_CASES:
     if dk in keys: probs.append(f"deleted case {dk} is back in the library")
 nt_used = sorted(set(L.NOT_TESTABLE) & set(used))
+print("PRD v5 codes", len(L.CODE5), "covered", len(set(L.CODE5) & set(used)), "| no manual case (v5)", sorted(L.NO_MANUAL_REASON), "| named set", sorted(L.NAMED_SET, key=str))
 print("PRD codes", len(L.CODE), "covered", len(set(L.CODE) & set(used)), "| named items", len(L.NAMED), "covered",
       len(set(L.NAMED) & set(used)), "| not testable", len(L.NOT_TESTABLE), sorted(L.NOT_TESTABLE), "| no manual case (deleted 26 Oct)", len(L.NO_MANUAL), sorted(L.NO_MANUAL))
 for m in missing: probs.append(f"PRD item {m} covered by no case and not listed as not testable")
@@ -71,7 +75,9 @@ for c in L.CASES:
     q = h.split("Exact quotes from the source")[1].split("References from Design")[0]
     if not q.split("</strong></p>", 1)[1].startswith("<p>From: "): probs.append(f"{c['key']}: quotes do not start with a From line")
     if q.count("<p>From: ") != q.count("<ul>"): probs.append(f"{c['key']}: a quote group without its own From line")
-    if f"Epic {L.EPIC}" not in q or L.NOBUILD not in q or "version 3" not in q: probs.append(f"{c['key']}: epic, version or build line missing")
+    _ver = "version 5" if L.on_v5(c) else "version 3"   # 28 Oct 2026 named set: set and new cases quote v5, every other case keeps v3
+    if f"Epic {L.EPIC}" not in q or L.NOBUILD not in q or _ver not in q: probs.append(f"{c['key']}: epic, version or build line missing")
+    if L.on_v5(c) and "version 3" in q: probs.append(f"{c['key']}: a named-set or new case still names PRD version 3")
     if "claude.ai/artifact" in h.split("References from Design")[0]: probs.append(f"{c['key']}: design reference above the References from Design block")
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")
     if any(BLOCKED_RX.search(a) for a, _ in c["pre"]): probs.append(f"{c['key']}: a 'mark this test Blocked' line in the authoring data (it feeds the setup file; fifteenth amendment)")
@@ -148,7 +154,10 @@ for c in L.CASES:
             if re.search(r"[{}]", x): probs.append(f"{k}: a placeholder brace in a result: {x[:80]!r}")
             if "ZZAUTOTEST" in x: probs.append(f"{k}: an example record name in a result")
             if not x or not (x[0].isupper() or x[0] in '"“$(0123456789⋯'): probs.append(f"{k}: a result bullet does not start a sentence: {x[:60]!r}")
-    if BEFORE:
+    if BEFORE and L.on_v5(c):
+        pass   # 28 Oct 2026 named set: a set case is rewritten top to bottom and a new case has no read-back; verify_v5_named_set.py
+               # proves every case outside the set still renders exactly like its read-back
+    elif BEFORE:
         b = BEFORE.get(k)
         if not b: probs.append(f"{k}: not in before/proposals.json")
         elif _drop_added(k, _tail(b["fields"]["custom_expected"]), quiet=True) != _drop_added(k, _tail(ex)): probs.append(f"{k}: quotes / From lines / References from Design / AUTOMATION line changed")

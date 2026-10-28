@@ -226,6 +226,15 @@ SCEN = {
 "S10-14": "You create a COD customer and update a Net 30 customer to Credit Hold through the Public API, both with credit limits.",
 "S10-15": "A COD customer still has a $1,000 limit from before the release, and you update it through the Public API.",
 "S10-16": "You look in the Public API documentation for a way to read the shop's credit terms.",
+# 28 Oct 2026, PRD v5 named set: S10-16 also reads the vendor create request (v5 S10-R7); the new cases below
+"S10-17": "You re-import an existing customer with an empty credit limit cell, and its limit must stay.",
+"S10-18": "You re-import an existing customer from a file with no credit limit column, and its limit must stay.",
+"S10-19": "You re-import an existing customer onto Credit Hold with an empty credit limit cell.",
+"S10-20": "An integrator creates a vendor through the Public API without sending a credit term.",
+"S2-37": "Two Admins work at once; one edits an unused term while the other switches it off.",
+"S2-38": "Two Admins edit the same unused term at once, and the second save comes after the first.",
+"S7-11": "A vendor invoice's date is changed after it was saved, and A/P aging must show its new due date.",
+"S7-12": "A vendor invoice is moved to another vendor after it was saved, and A/P aging must show its new due date.",
 # ---- Release day and what must not change
 "S11-01": "Your shop existed before the release and has never changed its default term, and you add a new customer.",
 "S11-02": "On production, you compare a customer, vendor, invoice and vendor bill written down before the release with how they look now.",

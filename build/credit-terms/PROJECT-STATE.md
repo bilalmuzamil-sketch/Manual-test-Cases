@@ -1,5 +1,21 @@
 # Credit terms — PROJECT STATE
 
+## 🟢 CURRENT STATE — 28 Oct 2026 (PRD v5 + engineering plan, named set WRITTEN) — read this first
+- Sources: PRD **v5** (26 Oct; `sources/CONFLUENCE-963346440-v5-2026-10-28.md`; v3 -> v5: new S1-R17; S7-R9, S10-R7, S10-E3 extended; two Story 2
+  messages), the engineering plan (26 Oct, approved 27 Oct; `sources/tech-plan-Credit-Terms-2026-10-28.md`, read in full, 1,026 lines), and the
+  Jira tickets read 28 Oct (`sources/JIRA-SV-11638-tickets-2026-10-28.md`): the 12 stories are unchanged, plus 8 new verification tasks
+  SV-11840..SV-11847 and follow-ups SV-11848, SV-11849, all in TICKET-LEDGER.json. Ticket sweep: 0 unhandled; PRD v5 handled.
+- QA lead 28 Oct: "Named set"; add the plan-vs-page questions to Chris's sheet.
+- **Written 28 Oct:** 9 rewritten (S2-30..S2-34, S2-36 released from question 3, S10-08, S10-12, S10-16); 8 new C847735-C847742 (S2-37, S2-38,
+  S7-11, S7-12, S10-17, S10-18, S10-19, S10-20). S1-R17 = no manual case (performance). Live 340 = map 340; readiness 0. Run 551 = 332 (the 8
+  still-held cases stay out: questions 4-7 and the design questions 8-11).
+- **Sheet:** questions 13-18 added at the bottom (light green, Chris tagged; 18 added after the worker's review: Make Default / Delete after a
+  rename, page vs plan). Question 3 is settled by PRD v5. Open: 1, 2, 4-18.
+- Tool fix: `authoring/render_outputs.py` rewrote TICKET-LEDGER.json, TICKET-SWEEP.json and PO-QUESTIONS-DRAFT.md from its 23 Oct data on every
+  run (it dropped the 28 Oct ledger rows); those writes now need `--write-records` (L-19 class). Before-copies of 28 Oct: `applied/before-update-2026-10-28/`.
+- No build: the plan's status is "Not started" (no QA environment yet).
+
+
 ## 23 Oct 2026 — intake
 - QA lead, 23 Oct 2026: new testing suite "Credit terms". "NO Technical Plan as yet which I will share with you once I get it."
 - PRD: Confluence 963346440 (https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/963346440/Credit+terms).

@@ -100,3 +100,34 @@ dd("S7-10", "Changing the invoice date after the customer changed term",
    [("Open {Invoice-A}.", "it shows Terms Net 30, due Nov 4, 2026."), ("Change its invoice date to Oct 10, 2026.", "the due date becomes Nov 9, 2026 (Net 30) or Dec 9, 2026 (Net 60), as the PO answers.")],
    ["S7-R8", "S7-R7"], marker=PO_HOLD(QN["date-change-term"]),
    note=f"S7-R7 says the invoice keeps its term; S7-R8 says a changed date is recalculated from the customer's term. Question {QN['date-change-term']} on Chris Ward's sheet (shared with him 23 Oct 2026) asks which wins; held until he answers.")
+
+# ---- 28 Oct 2026, PRD v5 named set: S7-R9 now says A/P aging shows the stored due date, so after a recalculation it matches the vendor
+# invoice. One case per change that recalculates (Rule 136: each runs on its own): the invoice date, and the vendor.
+AGING = 'Open the A/P Aging Detail report (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE).'
+OWN14 = ("Create a new term of the shop's own for this test, {Term-A}, due 14 days after the invoice date, so a vendor on it has vendor invoices due 14 days after their date.",
+         None)
+dd("S7-11", "A/P aging shows a vendor invoice's new due date after its date changes",
+   [(OWN14[0], "For example: {Term-A} is ZZAUTOTEST S7-11 Fourteen."),
+    ("Create vendor {Vendor-A} for this test, on {Term-A}, so vendor invoice {Vendor-invoice-A} below is due 14 days after its date.", "For example: {Vendor-A} is ZZAUTOTEST S7-11 Vendor."),
+    ("Create vendor invoice {Vendor-invoice-A} for {Vendor-A} for this test, with the invoice date Oct 5, 2026, and leave it unpaid.",
+     "For example: a vendor invoice for one part, saved in Parts, Vendors, Vendor Invoices.")],
+   [(AGING, "{Vendor-invoice-A}'s row, under {Vendor-A}, shows the Due Date Oct 19, 2026 (Oct 5 + 14 days)."),
+    ("Open {Vendor-invoice-A} in Parts, Vendors, Vendor Invoices.", "the vendor invoice shows the due date Oct 19, 2026."),
+    ("Change the invoice date to Oct 20, 2026.", "the due date is recalculated to Nov 3, 2026 (Oct 20 + 14 days)."),
+    ("Save the vendor invoice.", "the vendor invoice is saved with the due date Nov 3, 2026."),
+    ('Open the A/P Aging Detail report again (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE).',
+     "{Vendor-invoice-A}'s row now shows the Due Date Nov 3, 2026, the same as the vendor invoice (no longer Oct 19, 2026).")],
+   ["S7-R9", "S7-R1"])
+dd("S7-12", "A/P aging shows a vendor invoice's new due date after its vendor changes",
+   [(OWN14[0], "For example: {Term-A} is ZZAUTOTEST S7-12 Fourteen."),
+    ("Create vendor {Vendor-A} for this test, on {Term-A}, so vendor invoice {Vendor-invoice-A} below is due 14 days after its date.", "For example: {Vendor-A} is ZZAUTOTEST S7-12 Vendor A."),
+    ("Create vendor {Vendor-B} for this test, on Net 30.", "For example: {Vendor-B} is ZZAUTOTEST S7-12 Vendor B."),
+    ("Create vendor invoice {Vendor-invoice-A} for {Vendor-A} for this test, with the invoice date Oct 5, 2026, and leave it unpaid.",
+     "For example: a vendor invoice for one part, saved in Parts, Vendors, Vendor Invoices.")],
+   [(AGING, "{Vendor-invoice-A}'s row, under {Vendor-A}, shows the Due Date Oct 19, 2026 (Oct 5 + 14 days)."),
+    ("Open {Vendor-invoice-A} in Parts, Vendors, Vendor Invoices.", "the vendor invoice shows the due date Oct 19, 2026."),
+    ("Change the vendor to {Vendor-B}.", "the due date is recalculated to Nov 4, 2026 (Oct 5 + 30 days, Net 30)."),
+    ("Save the vendor invoice.", "the vendor invoice is saved with the due date Nov 4, 2026."),
+    ('Open the A/P Aging Detail report again (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE).',
+     "{Vendor-invoice-A}'s row now shows {Vendor-B} and the Due Date Nov 4, 2026, the same as the vendor invoice (no longer Oct 19, 2026).")],
+   ["S7-R9", "S7-R1"])
