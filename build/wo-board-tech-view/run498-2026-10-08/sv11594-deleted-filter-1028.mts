@@ -23,8 +23,9 @@ o.version = await p.evaluate(`(document.querySelector('meta[name="app-version"]'
 const chip = () => p.locator('[data-test-id^="filter_chip_"]').filter({ hasText: /Technician/ }).first();
 const menu = () => p.locator('.q-menu').last();
 const openList = async () => { if (!(await p.locator('.q-menu').count())) { await chip().click(); await W(1500); } };
-const items = async () => (await menu().locator('.q-item').allInnerTexts()).map((x) => x.replace(/\s+/g, ' ').trim()).filter(Boolean);
-const typeIn = async (s: string) => { const box = menu().locator('input').last(); await box.waitFor({ timeout: 8000 }); await box.fill(s); await W(1500); return items(); };
+// 28 Oct: the list rows are checkbox rows, not .q-item (first run read nothing); read each checkbox's row text
+const items = async () => (await menu().evaluate((m) => [...m.querySelectorAll('.q-checkbox')].map((c) => ((c.closest('.q-item, label') || c.parentElement) as HTMLElement)?.innerText || ''.replace(/\s+/g, ' ').trim()))).filter(Boolean);
+const typeIn = async (s: string) => { const box = menu().locator('input:not([type=checkbox])').first(); await box.waitFor({ timeout: 8000 }); await box.fill(s); await W(1500); return items(); };
 const listEnd = async () => { await menu().evaluate((m) => { const s = [...m.querySelectorAll('*')].find((e) => e.scrollHeight > e.clientHeight + 4) || m; s.scrollTop = s.scrollHeight; }); await W(1200);
   await menu().evaluate((m) => { const s = [...m.querySelectorAll('*')].find((e) => e.scrollHeight > e.clientHeight + 4) || m; s.scrollTop = s.scrollHeight; }); await W(1200); return (await items()).slice(-5); };
 const close = async () => { await p.keyboard.press('Escape'); await W(800); };
@@ -46,7 +47,7 @@ try {
   o.tv_typedDeleted = await typeIn('Deleted'); await shot('tv-typed-deleted');
   o.tv_typedEli_control = await typeIn('SV11594 Eli'); await typeIn('');
   // ---- tick it: only the Deleted technician group shows, WO-1 in it
-  await typeIn('Deleted'); const opt = menu().locator('.q-item').filter({ hasText: /Deleted technician/ }).first(); o.tv_optionFound = await opt.count();
+  await typeIn('Deleted'); const opt = menu().getByText('Deleted technician', { exact: false }).first(); o.tv_optionFound = await opt.count();
   if (o.tv_optionFound) { await opt.click(); await W(1500); } await close(); await W(2000);
   o.tv_groupsShown = (await groups(p)).map((g: any) => g.name ?? g); await shot('tv-ticked-deleted');
   await search(p, CUST); await W(2500); o.tv_withSearch = (await groups(p)).map((g: any) => ({ name: g.name ?? g, rows: g.rows ?? g.cards ?? null })); await shot('tv-ticked-plus-search');
@@ -56,6 +57,7 @@ try {
   // ---- clear the choice and search
   await openList(); const clr = menu().getByText(/Clear selection/i).first(); o.clearFound = await clr.count(); if (o.clearFound) { await clr.click(); await W(1000); } await close();
   await search(p, ''); await W(1500);
+  await display(p, 'Tech View'); await W(2500); o.s6_groupsAfterClear = (await groups(p)).length; o.s6_first = (await groups(p)).slice(0, 4).map((g: any) => g.name ?? g); await shot('tv-after-clear');
   // ---- location 2: not listed where no such work orders exist
   if (LOC2) {
     o.loc2_change = (await a.post('/api/iam/change-location', { workplace_id: LOC2, workplace_timezone: process.env.WOB_LOC_TZ || 'Asia/Karachi' })).status;

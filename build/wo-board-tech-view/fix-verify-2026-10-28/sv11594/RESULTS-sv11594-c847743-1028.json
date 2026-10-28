@@ -1,0 +1,21 @@
+{
+ "pass_meta": {"env": "QA branch sv11594", "build": "v26.43.2-539491f", "date": "28 October 2026", "note": "SV-11594 (Deleted technician in the Technician filter) verified on its QA branch; new test C847743 added to the run on passing (QA lead, 28 Oct)"},
+ "results": {
+  "C847743": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11594 (fix for SV-11594), every step as written, Staging Heavy Duty - 9919.",
+    "Set-up: a new technician led a work order and was then deleted; that work order sits in the Deleted technician group.",
+    "Step 1: the Technician list ends with Deleted technician, after every inactive technician, with the grey Inactive label (picture 1, left).",
+    "Step 2: typing Deleted in Search technician offers Deleted technician, with Inactive.",
+    "Step 3: ticking it shows only the Deleted technician group.",
+    "Step 4: with the customer in Search, the group shows only that work order; the other work order (led by an active technician) is not shown.",
+    "Step 5: Board View shows only the Deleted technician column, holding that work order (picture 1, right).",
+    "Step 6: Clear selection empties the choice and the Unassigned group comes back.",
+    "Step 7: at the second location, typing Deleted gives No results (picture 2).",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11594 (TESTING QA) - passed on its QA branch; QA Passed comment posted on the ticket."
+   ],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11594/SV-11594-fixed.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11594/SV-11594-other-location.png"]
+  }
+ }
+}
