@@ -72,3 +72,6 @@ Dusan's list is the checklist now (it adds manufacturer fields, ShopCoach, two R
 | Slow 3G on earlier screens (branch) | Parts tab, part sale grid, timesheet: 0 IDs | (production Slow 4G results above) |
 Set-up (left in place): branch PO I-1392 item CS-RB-268 manufacturer Magnum; production PO I2-37 item ZZFIELDPN-7781 and catalog part 1122 given a manufacturer — all via Edit dialogs on screen.
 Lesson: running two production scripts at once logs the earlier one out (one session per user) — run production one at a time.
+| Lines → + Add Part → More options → pick an inventory part whose vendor was created in a 2nd tab after tab 1 loaded its vendor list (no reload) | Vendor field blank for ~0.6 s, then "ZZAUTOTEST V10928 Branch P145943"; 0 IDs | **Vendor field shows `805039eb-Ebeb-4b91-85ca-Be93c24ef7d6` for the whole 9 s watched** |
+| New Work Order opened from an asset page for a customer with no contacts | not buildable on screen: deleting a contact that still has assets is refused ("Please remove all of customer vehicles first."), so a no-contact customer can't own an asset | — |
+Set-up for the pick check: vendor created on screen in tab 2; catalog part + inventory part (5 in stock) with that vendor via the back end (ZZPV590814 branch, ZZPV737915 production).
