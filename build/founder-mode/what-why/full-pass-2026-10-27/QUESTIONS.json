@@ -53,7 +53,7 @@
  "questions": [
   {
    "id": "Q9",
-   "status": "OPEN",
+   "status": "ANSWERED",
    "topic": "What/Why: the Title length message",
    "question": "The developer's note of 19 Oct (SV-10130) says a Title over 255 characters now shows \"Title cannot be longer than 255 characters\" from the 256th character, and saving is blocked while it shows. Your page says the dialog's validation is unchanged (S1-R7) and names only \"Title is a required field\" (S1-R6). (a) Is \"Title cannot be longer than 255 characters\" the message testers should expect? (b) Did the dialog show a length message before this change (for example \"Line Name cannot be longer than 255 characters\"), so this is only the rename?",
    "sources": [
@@ -68,11 +68,18 @@
     "doc_number": 9,
     "colour": "green headings",
     "tagged": "Chris Ward (person chip, chris.w@shopview.com)"
+   },
+   "answered": {
+    "date": "2026-10-27",
+    "by": "Chris Ward",
+    "read": "2026-10-28",
+    "in_prd": "v16",
+    "summary": "(a) Yes, \"Title cannot be longer than 255 characters\" from the 256th character, save blocked; (b) before: \"Line name cannot be longer than 255 characters long\" (S1-R6, PRD v16)"
    }
   },
   {
    "id": "Q10",
-   "status": "OPEN",
+   "status": "ANSWERED",
    "topic": "What/Why: Invoices import row messages still use the old words",
    "question": "The developer's note of 8 Oct (SV-10133) says the Invoices import's row messages keep the old wording: an empty *Line Title still says \"Line name cannot be empty.\", and the length message mentions \"line description\". Your page says the two fields are named Title and Description \"everywhere a person reads them\". (a) Should those import messages say \"Line Title\" / \"Line Description\" (or Title / Description) after this change? (b) Or are they out of this release, so testers should expect the old wording?",
    "sources": [
@@ -87,11 +94,18 @@
     "doc_number": 10,
     "colour": "green headings",
     "tagged": "Chris Ward (person chip, chris.w@shopview.com)"
+   },
+   "answered": {
+    "date": "2026-10-27",
+    "by": "Chris Ward",
+    "read": "2026-10-28",
+    "in_prd": "v16",
+    "summary": "Should say \"Line Title cannot be empty.\"; build still says \"Line name cannot be empty.\": log a bug against new S4-R8; other import messages unchanged"
    }
   },
   {
    "id": "Q11",
-   "status": "OPEN",
+   "status": "ANSWERED",
    "topic": "What/Why: a title that starts with =, +, - or @ in the downloaded report",
    "question": "The developer's note of 8 Oct (SV-10132) says the downloaded Customer Invoice report never protected spreadsheet formulas, and now that a line no longer starts with \"What are you doing?: \", a title starting with =, +, - or @ opens as a formula in Excel. Your page says values are carried as written (S3-R8, S3-R9). Is that acceptable for this release, or should testers expect such a title to open as plain text?",
    "sources": [
@@ -106,12 +120,19 @@
     "doc_number": 11,
     "colour": "green headings",
     "tagged": "Chris Ward (person chip, chris.w@shopview.com)"
+   },
+   "answered": {
+    "date": "2026-10-27",
+    "by": "Chris Ward",
+    "read": "2026-10-28",
+    "in_prd": "v16",
+    "summary": "Plain text: report puts one apostrophe before a line starting with =, +, -, @, tab or CR; QuickBooks never; build has no guard: log a bug against new S3-R8a"
    }
   },
   {
    "id": "Q12",
    "was": "DQ-01",
-   "status": "OPEN",
+   "status": "ANSWERED",
    "phase": "D",
    "divergence": "DV-04",
    "question": "The design's 'Awkward inputs' board lists a line 'Imported from a previous system' among the texts that reach the books, reading \"Replace tie rod - excessive play\". Your page says an imported invoice never reaches the live QuickBooks sync and its text is unaffected whatever the import wrote (S3-R12). (a) Does an imported invoice appear in the downloaded Customer Invoice report? (b) If it does, should its line read \"Title - Description\" like any other line, as the board shows? (c) If not, what should the report show for it?",
@@ -127,12 +148,19 @@
     "doc_number": 12,
     "colour": "green headings",
     "tagged": "Chris Ward (person chip, chris.w@shopview.com)"
+   },
+   "answered": {
+    "date": "2026-10-27",
+    "by": "Chris Ward",
+    "read": "2026-10-28",
+    "in_prd": "v16",
+    "summary": "No: the report lists ShopView invoices only; imported invoices never appear (S3-R12). Board example illustrative; the page wins"
    }
   },
   {
    "id": "Q13",
    "was": "DQ-02",
-   "status": "OPEN",
+   "status": "ANSWERED",
    "phase": "D",
    "divergence": null,
    "question": "In the ShopCoach line builder, an emptied title or description cell shows \"What are you doing?\" / \"Why are you doing it?\". The developer's note on SV-10131 says the prompt shows in grey italic; your page and the design say nothing about its look. Should testers expect grey italic text there, or is the look of the empty cell not part of this change?",
@@ -150,12 +178,19 @@
     "doc_number": 13,
     "colour": "green headings",
     "tagged": "Chris Ward (person chip, chris.w@shopview.com)"
+   },
+   "answered": {
+    "date": "2026-10-27",
+    "by": "Chris Ward",
+    "read": "2026-10-28",
+    "in_prd": "v16",
+    "summary": "Yes, grey italic in both empty cells; before, the empty Title cell showed \"What Are You Doing?\" in normal text (new S2-R2a)"
    }
   },
   {
    "id": "Q14",
    "was": "DQ-03",
-   "status": "OPEN",
+   "status": "ANSWERED",
    "phase": "D",
    "divergence": null,
    "question": "On the modern invoice, the tech story prints under a \"Scope of work\" heading (your page, section 3). When a line has no tech story, or it reads \"Tech story missing.\", the page says the narrative is dropped. Is the \"Scope of work\" heading dropped as well, so nothing under the description is printed?",
@@ -166,6 +201,13 @@
     "doc_number": 14,
     "colour": "green headings",
     "tagged": "Chris Ward (person chip, chris.w@shopview.com)"
+   },
+   "answered": {
+    "date": "2026-10-27",
+    "by": "Chris Ward",
+    "read": "2026-10-28",
+    "in_prd": "v16",
+    "summary": "Yes, the Scope of work heading is left out with the tech story. Invoice not part of this change. A spaces-only tech story printing the heading over a blank block is an existing invoice bug: own ticket, keep out of What/Why cases"
    }
   }
  ]

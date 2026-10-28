@@ -11,7 +11,7 @@ Answered and closed: A/R and A/P Report Sorting questions 1-16 (Chris Ward, by 2
 
 Stopped by the QA lead, 22 Oct 2026 ("Forget the wo board and tech view now and dont remind about it again we are releasing it today"): WO Board question 35 (sheet 1gBGmNB4…, row 42) is no longer reminded.
 
-## Parts Lifecycle (Chris Ward) — 15 open, SENT 27 Oct 2026 as questions 13-27 of the question Doc (Chris tagged)
+## Parts Lifecycle (Chris Ward) — ALL 15 ANSWERED 27 Oct 2026 (read 28 Oct; page now v35); NOT YET ACTED ON — waiting on the QA lead's scope decision (Rule 122)
 - File for the questions: the 13 Oct Google Doc https://docs.google.com/document/d/1pkAPGqWVTdtYorNN4SVNl9HkHxuuB9czro_y2DbUeEM/edit
   (Rule 131: new rows at the bottom, blue headings) — added 27 Oct on the QA lead's "Yes and tag chris ward in the sheet".
 - Doc number = our id: 13=Q1, 14=Q2, 15=Q3, 16=Q4, 17=Q6, 18=Q7, 19=Q8, 20=Q9, 21=Q10, 22=Q11, 23=Q12, 24=Q13, 25=Q14, 26=Q15, 27=Q16.
@@ -19,7 +19,7 @@ Stopped by the QA lead, 22 Oct 2026 ("Forget the wo board and tech view now and 
 - Held on them: S5-18 C573677, S10-22 C425769, S10-29 C425777, S13-03b C839442 (Q1); S5-01 C154770 (Q2); S12-06 C425620 (Q3);
   S7-25 C573682 (Q4); D-49 C839502 (Q8); D-33 C839486 (Q10); S7-17 C425681 (Q12).
 
-## What/Why — Title and Description (Chris Ward) — 6 open, SENT 27 Oct 2026 as questions 9-14 of the question Doc (Chris tagged)
+## What/Why — Title and Description (Chris Ward) — ALL 6 ANSWERED 27 Oct 2026 (read 28 Oct; page now v16); NOT YET ACTED ON — waiting on the QA lead's scope decision (Rule 122)
 - File for the questions: the 14 Oct Google Doc https://docs.google.com/document/d/1QcT7FRZci6AhYcI33HUac-Oob03-gCnCOKn2NFHMLjA/edit
   (Rule 131: new rows at the bottom, green headings); questions 1-8 there were all answered by Chris on 14 Oct and are used (PRD v14/v15).
 - Doc number = our id: 9=Q9, 10=Q10, 11=Q11, 12=Q12, 13=Q13, 14=Q14 (`build/founder-mode/what-why/full-pass-2026-10-27/QUESTIONS.json`).
