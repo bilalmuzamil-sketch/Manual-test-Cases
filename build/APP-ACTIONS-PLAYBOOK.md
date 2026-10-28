@@ -6316,3 +6316,9 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
   QuickBooks item when QuickBooks is off for the organisation (with QuickBooks on but no fee item mapped it is refused).
 - Remove: scroll to the Fees & Discounts column, click the fee (`cell_part_adjustments_<partId>`) → "Fees & Discounts" window →
   bin `button_remove_part_adjustment_<adjId>` → `button_confirm_remove_adjustment` "Remove" (one confirmation only).
+
+### Annotating a screenshot that has no saved element geometry (proven 2026-10-28, SV-10928)
+When the capture script didn't record `getBoundingClientRect()`, place boxes from the pixels instead of guessing:
+- text: `tesseract shot.png - --psm 11 tsv` gives each word's left/top/width/height (1× CSS px for a dpr:1 capture) — `build/sv10928-raw-ids-2026-10-28/scripts/ocrfind.py`. OCR can split or mis-read a long ID (`78ee…` read as `7Bee…`), so match on a middle fragment and widen the box by hand if the value is truncated with "…".
+- ShopView's red warning pop-up: mask `r>170, g<60, b<70`, take rows with >150 red pixels, split into runs, the first run is the top pop-up (`build_exhibits.py` `red_box`).
+- Check the screenshot actually holds the pop-up before relying on it — a capture taken after the toast faded has none (the tax two-tab shots).

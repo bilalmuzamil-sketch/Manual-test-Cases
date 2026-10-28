@@ -141,3 +141,10 @@ or paid." vs "(`b2b35b74-…`)"; tax rate "Tax rate [ZZ Rate Two] not found." vs
 Observations on BOTH builds (not IDs, pre-existing — to ask the QA lead, Rule 97(d)):
 (a) Request IBS Approval dialog shows only "Request failed with status code 400" when the customer lookup fails; the real message appears only in the pop-up after Request Approval.
 (b) Opening a catalog part deleted in another tab also shows "There was an error fetching data. Please try again." and "Not found".
+
+## Posted — 28 Oct (comment 79695)
+Pre-post gate: branch build re-read v26.43.2-b517d96 (unchanged); ticket TESTING QA, still 5 comments, newest Dusan 79648; wording scan clean; no technical
+section; every embed has width+height. Posted with 7 real attachments; read back: first panel PASSED, media 7 in order (900×796, 820×793, 820×796, 700×759,
+700×736 ×3), tables 21 + 11 rows, notes list 2. Two both-build observations (IBS dialog generic "Request failed with status code 400"; extra "There was an
+error fetching data"/"Not found" pop-ups on a deleted catalog part) are NOT in the comment — left for the QA lead to decide (Rule 97d), in the register.
+Learning check: OCR (`tesseract … tsv`) + red-pixel detection place exhibit boxes on existing screenshots when no element geometry was saved — added to playbook.
