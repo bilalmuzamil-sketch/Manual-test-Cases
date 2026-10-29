@@ -64,13 +64,17 @@ export async function finish(c, out) {
 }
 function dedupe(r) { const s = new Set(); return r.filter(x => { const k = x.phase + x.url; if (s.has(k)) return false; s.add(k); return true; }); }
 // Report filter chip date presets (data-test-id filter_chip_range / filter_preset_range_<v>)
-export async function reportPreset(c, v, chip = 'filter_chip_range', presetPrefix = 'filter_preset_range_') {
-  const { page } = c; await page.locator(`[data-test-id="${chip}"]`).first().click(); await page.waitForTimeout(1500);
-  const presets = await page.locator(`[data-test-id^="${presetPrefix}"]`).evaluateAll((es, p) => es.map(e => e.getAttribute('data-test-id').replace(p, '') + '=' + e.innerText.trim()), presetPrefix);
-  if (v) { await page.locator(`[data-test-id="${presetPrefix}${v}"]`).first().click(); await page.waitForTimeout(1000); }
+export async function reportPreset(c, v) {
+  // auto-detects the date chip (filter_chip_range / filter_chip_dateRange) and its preset ids (filter_preset_<chip>_<v>)
+  const { page } = c; const chip = page.locator('[data-test-id="filter_chip_range"], [data-test-id="filter_chip_dateRange"]').first();
+  const chipId = await chip.getAttribute('data-test-id'); const prefix = 'filter_preset_' + chipId.replace('filter_chip_', '') + '_';
+  await chip.click(); await page.waitForTimeout(1500);
+  const presets = await page.locator(`[data-test-id^="${prefix}"]`).evaluateAll((es, p) => es.map(e => e.getAttribute('data-test-id').replace(p, '') + '=' + e.innerText.trim()), prefix);
+  if (v) { const want = presets.find(x => x.split('=')[0] === v) ? v : (presets.find(x => x.split('=')[0].replace(/-/g, '_') === v) || '').split('=')[0];
+    await page.locator(`[data-test-id="${prefix}${want}"]`).first().click({ timeout: 8000 }); await page.waitForTimeout(1000); }
   const ap = page.locator('.q-menu button').filter({ hasText: /^\s*Apply\s*$/ }); if (await ap.count()) await ap.first().click().catch(() => {});
   await page.keyboard.press('Escape').catch(() => {}); await page.waitForTimeout(8000);
-  return presets;
+  return { chipId, presets, chip_after: (await chip.innerText().catch(() => '')).replace(/\s+/g, ' ').trim() };
 }
 // Dashboard tile date range (preset or custom days in the calendar's month after `back` arrow clicks)
 export async function tileRange(c, key, { preset, days, back = 0 }) {
@@ -81,7 +85,11 @@ export async function tileRange(c, key, { preset, days, back = 0 }) {
   if (preset) await m.locator(`[data-test-id="date-range-selector_hero_range_${key}_preset_${preset}"]`).click();
   if (days) { const cal = m.locator(`[data-test-id="date-range-selector_hero_range_${key}_calendar"]`);
     for (let i = 0; i < back; i++) { await cal.locator('.q-date__arrow button, .q-date__navigation button').first().click(); await page.waitForTimeout(600); }
-    for (const d of days) { await cal.locator('.q-date__calendar-item--in button').filter({ hasText: new RegExp(`^${d}$`) }).first().click(); await page.waitForTimeout(500); } }
+    // The calendar swallows the first click (it only takes focus): click the start day until a range edit begins.
+    const day = d => cal.locator('.q-date__calendar-item--in button').filter({ hasText: new RegExp(`^${d}$`) }).first();
+    for (let k = 0; k < 3; k++) { await day(days[0]).click(); await page.waitForTimeout(700);
+      if (/edit-range/.test(await day(days[0]).evaluate(e => e.closest('.q-date__calendar-item').className))) break; }
+    await day(days[1]).click(); await page.waitForTimeout(800); }
   await page.waitForTimeout(800);
   const indicator = await txt(m.locator(`[data-test-id="date-range-selector_hero_range_${key}_range_indicator"]`));
   const ap = m.locator(`[data-test-id="button_hero_range_${key}_apply"]`); if (await ap.count()) await ap.click().catch(() => {});

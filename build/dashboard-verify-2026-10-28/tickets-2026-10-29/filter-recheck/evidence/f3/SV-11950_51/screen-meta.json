@@ -108,6 +108,47 @@
     "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&statuses[0]=partially_paid&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=S1-38221",
     "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&statuses[0]=partially_paid&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search="
    ]
+  },
+  "i-today-now": {
+   "spec": {
+    "name": "i-today-now",
+    "range": [
+     "today"
+    ]
+   },
+   "chips": [
+    "calendar_today Date Range: Today keyboard_arrow_down",
+    "Invoice Status keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=today",
+   "rows_page1": [
+    "",
+    ""
+   ],
+   "bottom": "search No record matches these filters Try changing filters to widen your results.",
+   "search": {
+    "S1-38218": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches the search \"S1-38218\"."
+    },
+    "S1-38221": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches the search \"S1-38221\"."
+    }
+   },
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=today&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=today&search=S1-38218",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=today&search=S1-38221",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=today&search="
+   ]
   }
  },
  "browser_zone": "America/Toronto",

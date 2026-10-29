@@ -14,7 +14,7 @@ if (process.env.TZ !== M.tz) { console.error(`run with TZ=${M.tz}`); process.exi
 const EV = '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f2';
 const OUT = `/tmp/cln/f2/shots/${mode}${arg ? '_' + arg : ''}`; fs.mkdirSync(OUT, { recursive: true });
 const { browser, page } = await boot2('admin', { workplaceId: M.wp, timezone: M.tz,
-  contextOptions: { viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 2, timezoneId: M.tz, acceptDownloads: true } });
+  contextOptions: { viewport: { width: Number(process.env.VW || 1600), height: Number(process.env.VH || 1000) }, deviceScaleFactor: 2, timezoneId: M.tz, acceptDownloads: true } });
 await page.evaluate(w => localStorage.setItem('location', JSON.stringify(w.wp)), M);   // the active location, as the switcher writes it
 const meta = { mode, arg, location: M.loc, workplace_id: M.wp, location_tz: M.tz, process_TZ: process.env.TZ || null,
   process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone, observed_at_utc: new Date().toISOString(), steps: {}, api: [], writes: [] };
@@ -51,8 +51,8 @@ const pickPreset = async label => { await chips().filter({ hasText: /Date:/ }).f
   await page.keyboard.press('Escape').catch(() => {}); await page.waitForTimeout(8000); };
 const allLocations = async () => { await chips().filter({ hasText: /Location/ }).first().click(); await page.waitForTimeout(1500);
   meta.locMenu = (await menu().innerText().catch(() => '')).split('\n').map(T).filter(Boolean);
-  const it = menu().getByText(/^All locations$/).first(); meta.allLocItem = await it.count(); if (await it.count()) await it.click();
-  await page.waitForTimeout(800); await page.keyboard.press('Escape').catch(() => {}); await page.mouse.click(5, 700); await page.waitForTimeout(9000); };
+  const it = menu().getByText(/^(Select all|All locations)$/).first(); meta.allLocItem = await it.count(); if (await it.count()) await it.click();
+  await page.waitForTimeout(800); meta.locMenuAfter = (await menu().innerText().catch(() => '')).split('\n').map(T).filter(Boolean); await page.keyboard.press('Escape').catch(() => {}); await page.mouse.click(5, 700); await page.waitForTimeout(9000); };
 const colMenu = async (toggle = []) => { const btn = page.locator('[data-test-id*="column"], button[aria-label*="olumn"]').first(); await btn.click().catch(e => meta.colErr = e.message.split('\n')[0]); await page.waitForTimeout(1500);
   const items = menu().locator('.q-item'); const n = await items.count(); const st = [];
   for (let i = 0; i < n; i++) { const it = items.nth(i); const sw = it.locator('[role="switch"], [role="checkbox"]').first(); st.push([T(await it.innerText()), (await sw.count()) ? await sw.getAttribute('aria-checked') : null]); }
@@ -139,6 +139,10 @@ if (mode === 'RET_PV') { // Units Returned switched on (SV-11941 steps 10-13), t
   await guard('ii', async () => { await page.evaluate(() => { for (const k of Object.keys(localStorage)) if (/^report_(range|table):parts-velocity/.test(k)) localStorage.removeItem(k); });
     await page.goto(APP + '/reports', { waitUntil: 'domcontentloaded' }); await page.waitForTimeout(3000); await openPV(); await colMenu(['Units Returned']); await step('ii_defaults_no_search_units_returned_on', PV, ['ZZAUTOTEST-PV1-10282011']); });
 }
+if (/^RET_/.test(mode)) { meta.console = []; page.on('console', m => { if (m.type() === 'error' || m.type() === 'warning') meta.console.push(m.type() + ': ' + m.text().slice(0, 400)); });
+  page.on('pageerror', e => meta.console.push('pageerror: ' + (e.message || '').slice(0, 400)));
+  meta.returnLists = []; page.on('response', async r => { if (r.request().method() === 'GET' && /\/api\/.*return/i.test(r.url())) { const b = await r.text().catch(() => '');
+    const ids = [...b.matchAll(/"id":"([0-9a-f-]{36})"[^{}]{0,1500}?ZZAUTOTEST cancel check/g)].map(x => x[1]); meta.returnLists.push([r.url().replace(/^.*?\/api\//, '').slice(0, 200), r.status(), b.length, ids]); } }); }
 if (mode === 'RET_CANCEL') { // SV-11941 step 14: Parts -> Returns -> (row) more_vert -> Cancel Return -> Yes ; then reload and look again
   const slip = arg ? arg.replace(/_/g, ' ') : 'ZZAUTOTEST cancel check';
   await page.goto(APP + '/parts/returns', { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(10000); await ver();
@@ -162,6 +166,52 @@ if (mode === 'RET_CANCEL') { // SV-11941 step 14: Parts -> Returns -> (row) more
   await page.reload({ waitUntil: 'domcontentloaded' }); await page.waitForTimeout(12000);
   meta.rowsAfterReload = (await row().allInnerTexts()).map(T); meta.rowBoxReload = await box(row());
   await page.screenshot({ path: `${OUT}/4-after-reload.png` });
+}
+// AMENDMENT 1 (QA lead 29 Oct): every filter that is not the subject is deselected (All locations, widest date preset,
+// no search). The row is then found by sorting Part # (a sort hides nothing), never by the search box.
+const firstPart = async sel => T(await page.locator(`${sel} tbody tr`).first().locator('td').nth(1).innerText().catch(() => ''));
+const sortPartDesc = async sel => { const th = page.locator(`${sel} thead th`).filter({ hasText: /Part #/ }).first();
+  for (let k = 0; k < 3; k++) { await th.click().catch(e => meta.sortErr = e.message.split('\n')[0]); await page.waitForTimeout(9000);
+    const last = meta.api.filter(a => /reports\/parts-velocity\?/.test(a)).pop() || ''; meta['sortTry' + k] = (last.match(/sortBy\]=[^&]+&pagination\[descending\]=\w+/) || [''])[0];
+    if (/sortBy\]=part_number&pagination\[descending\]=true/.test(last)) return true; } return false; };
+// bring a row on screen WITHOUT the search box: keep scrolling the (infinite-scroll) table until the row is loaded
+const scrollToRow = async (sel, text) => { for (let k = 0; k < 25; k++) { const r = page.locator(`${sel} tbody tr`).filter({ hasText: text });
+    if (await r.count()) { await r.first().scrollIntoViewIfNeeded(); await page.waitForTimeout(1500); meta['scrollRounds_' + text] = k; return true; }
+    await page.locator(`${sel} tbody tr`).filter({ hasText: /Inventory|Special Order/ }).last().scrollIntoViewIfNeeded().catch(() => {}); await page.mouse.wheel(0, 3000); await page.waitForTimeout(3500); } return false; };
+if (mode === 'PV_DVI_DESEL') {
+  await openPV();
+  await step('d0_fresh', PV, [], false);
+  // B1: the date option IS the subject (stays Last 90 days); Location is not -> All locations
+  await guard('b1', async () => { await allLocations(); await step('b1_all_locations_last90', PV, [], true);
+    meta.b1_csv = await download('CSV', 'b1-all-locations-last90'); meta.b1_pdf = await download('PDF', 'b1-all-locations-last90'); });
+  // B6 / B7 (and B2 base): date widest preset, all locations, no search, Part # sorted descending
+  await guard('b67', async () => { await pickPreset('Last 12 months'); meta.sortFound = await sortPartDesc(PV); await step('b67_all_locations_last12m_sorted_no_search', PV, ZZ, true); });
+}
+if (mode === 'PV_DVI_B3') { // B3: the one-location pick IS the subject; the date is not -> widest preset
+  await openPV();
+  await guard('b3', async () => { await pickPreset('Last 12 months'); await step('b3_dvi_only_last12m', PV, [], true); meta.colMenuB3 = await colMenu(); });
+  await guard('b3w', async () => { await allLocations(); await step('b3_all_locations_last12m', PV, [], true); meta.colMenuB3all = await colMenu(); });
+}
+if (mode === 'RET_PV_DESEL') { // B2 deselected: Units Returned on, all locations, Last 12 months, no search, Part # desc
+  await openPV();
+  await guard('cols', async () => { meta.colMenuToggle = await colMenu(['Units Returned']); });
+  await guard('d', async () => { await allLocations(); await pickPreset('Last 12 months'); meta.sortFound = await sortPartDesc(PV); meta.rowFound = await scrollToRow(PV, 'ZZAUTOTEST-PV1-10282011'); await step('b2_deselected_' + (arg || 'x'), PV, ['ZZAUTOTEST-PV1-10282011'], true); });
+  await guard('i', async () => { await page.evaluate(() => { for (const k of Object.keys(localStorage)) if (/^report_(range|table):parts-velocity/.test(k)) localStorage.removeItem(k); });
+    await page.goto(APP + '/reports', { waitUntil: 'domcontentloaded' }); await page.waitForTimeout(3000); await openPV(); await colMenu(['Units Returned']); await search('ZZAUTOTEST-PV1'); await step('b2_ticket_filters_' + (arg || 'x'), PV, ['ZZAUTOTEST-PV1-10282011'], true); });
+}
+if (mode === 'IV_DVI_DESEL') { // B5 / B8 with every non-subject filter deselected: all locations, As of = today (its default)
+  await openIV();
+  await guard('d', async () => { await allLocations(); await step('iv_all_locations_asof_today', 'table', ['ZZAUTOTEST-PV1-10282011'], true);
+    meta.colMenuAll = await colMenu(); meta.dl_all_csv = await download('CSV', 'iv-all-locations'); meta.dl_all_pdf = await download('PDF', 'iv-all-locations'); });
+}
+if (mode === 'PV_HD_DESEL') { // B4: all locations, widest preset; the search box is used ONLY to bring the one row on screen
+  await openPV();
+  await guard('d', async () => { await allLocations(); await pickPreset('Last 12 months'); await step('b4_all_locations_last12m_no_search', PV, ['N000000001069'], false);
+    await search('N000000001069'); await step('b4_all_locations_last12m_search_finder', PV, ['N000000001069'], true); });
+}
+if (mode === 'PV_DVI_B67') { // B6 / B7 deselected only (wide viewport for the picture): all locations, Last 12 months, no search, Part # descending
+  await openPV();
+  await guard('b67', async () => { await allLocations(); await pickPreset('Last 12 months'); meta.sortFound = await sortPartDesc(PV); meta.rowFound = await scrollToRow(PV, 'ZZAUTOTEST-SO1-10282011'); await page.evaluate(() => window.scrollBy(0, 200)); await step('b67_all_locations_last12m_sorted_no_search', PV, ZZ, true); });
 }
 save(); await browser.close();
 fs.mkdirSync(`${EV}/screen`, { recursive: true });

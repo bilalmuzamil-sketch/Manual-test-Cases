@@ -13,9 +13,12 @@ const OUT = `/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tick
 const { browser, page } = await boot2('admin', { workplaceId: WP, timezone: TZ, contextOptions: { viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 2, timezoneId: TZ, acceptDownloads: true } });
 const meta = { mode, location: LOCN, location_tz: TZ, process_TZ: process.env.TZ, process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone, observed_at_utc: new Date().toISOString(), shots: {}, notes: {}, requests: [], replies: [] };
 meta.browser_zone = await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
+// The app's own location key (what the header location picker writes = the ticket's step 2). Without it a fresh context falls back to the
+// USER's last-used location, which other workers' sessions keep changing (seen 29 Oct: qb-hd opened on DVI Test).
+await page.evaluate(w => localStorage.setItem('location', JSON.stringify(w)), WP); meta.location_key_set = WP;
 const API = /api\.staging\.shopview\.com\/api\/(notes|customers\/ibs|bookkeeping\/unexported|reporting\/export|users\/me\/preferences)/;
 page.on('request', r => { const u = decodeURIComponent(r.url()); if (API.test(u)) meta.requests.push({ t: new Date().toISOString(), m: r.method(), u: u.replace(/^https:\/\/api\.staging\.shopview\.com/, '').slice(0, 500), loc: r.headers()['x-location-id'] || null }); });
-page.on('response', async r => { const u = decodeURIComponent(r.url()); if (!API.test(u) || r.request().method() !== 'GET' || /export/.test(u)) return; try { const j = await r.json(); const d = j?.data;
+page.on('response', async r => { const u = decodeURIComponent(r.url()); if (!API.test(u) || r.request().method() !== 'GET' || /reporting\/export/.test(u)) return; try { const j = await r.json(); const d = j?.data;
   const rec = { u: u.replace(/^https:\/\/api\.staging\.shopview\.com/, '').slice(0, 300), status: r.status() };
   if (d?.notes) { rec.n = d.notes.length; rec.pag = d.pagination; }
   if (d?.collection && Array.isArray(d.collection)) { rec.n = d.collection.length; rec.pag = d.pagination; const c = d.collection; if (c[0]?.typeLabel !== undefined) { rec.blank_by_type = {}; for (const i of c) if (!i.number) rec.blank_by_type[i.type] = (rec.blank_by_type[i.type] || 0) + 1; rec.types = {}; for (const i of c) rec.types[i.type] = (rec.types[i.type] || 0) + 1;
@@ -70,6 +73,8 @@ if (mode.startsWith('ibs')) {
 }
 if (mode.startsWith('qb')) {
   await go('/reports/unexported-items', 16000);
+  await page.locator('header').getByText(/Staging|DVI Test|QB Location/).last().click().catch(() => {}); await page.waitForTimeout(2000);
+  meta.notes.location_switcher = (await page.locator('.q-menu').last().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 600); await page.keyboard.press('Escape').catch(() => {}); await page.waitForTimeout(1000);
   meta.notes.tabs = await txt(page.locator('.q-tabs')); meta.notes.active_tab = await txt(page.locator('.q-tab--active'));
   meta.notes.toolbar = (await txt(page.locator('main'))).slice(0, 300); meta.notes.heads = await page.locator('thead th').allInnerTexts().catch(() => []);
   await page.mouse.move(1000, 600);
@@ -108,4 +113,4 @@ if (mode === 'd7') {
   await page.getByText('Finance', { exact: true }).first().click(); await page.waitForTimeout(9000);
   meta.notes.finance = (await txt(page.locator('main'))).slice(0, 1500);
 }
-} finally { save(); console.log(JSON.stringify({ mode, v: meta.appVersion, browser_zone: meta.browser_zone, process_zone: meta.process_zone, app_tz: meta.app_timezone_key, header: meta.notes.header }).slice(0, 600)); await browser.close(); }
+} finally { meta.header_end = (await txt(page.locator('header'))).slice(-60); meta.header_ok = (meta.notes.header || '').includes(LOCN) && meta.header_end.includes(LOCN); save(); console.log(JSON.stringify({ mode, v: meta.appVersion, browser_zone: meta.browser_zone, process_zone: meta.process_zone, app_tz: meta.app_timezone_key, header_ok: meta.header_ok, header_end: meta.header_end }).slice(0, 600)); await browser.close(); }
