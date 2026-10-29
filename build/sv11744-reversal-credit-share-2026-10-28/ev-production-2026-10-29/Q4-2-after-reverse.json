@@ -1,0 +1,32 @@
+{
+ "label": "2-after-reverse",
+ "invoicesAll": [
+  "Oct 29, 2026 Invoice S2-1786 - $118.00 $0.00 Paid",
+  "Oct 29, 2026 Invoice S2-1785 - $118.00 $118.00 Unpaid",
+  "Oct 29, 2026 Invoice S2-1784 - $149.95 $149.95 Unpaid"
+ ],
+ "balance": "Balance: $267.95",
+ "invoicesOpen": [
+  "Oct 29, 2026 Invoice S2-1785 - $118.00 $118.00 Unpaid",
+  "Oct 29, 2026 Invoice S2-1784 - $149.95 $149.95 Unpaid"
+ ],
+ "payments": [
+  "expand_less Today Payment - - $0.00 Paid delete",
+  "Deposit DEP2-5036 - -$300.00 Applied delete"
+ ],
+ "wos": [
+  {
+   "no": "S2-1784",
+   "status": "Invoiced"
+  },
+  {
+   "no": "S2-1785",
+   "status": "Invoiced"
+  }
+ ],
+ "api": [
+  "invoice S2-1785 amount 118 balance 118 unpaid",
+  "invoice S2-1784 amount 149.95 balance 149.95 unpaid",
+  "deposit null amount -182 balance null unapplied"
+ ]
+}

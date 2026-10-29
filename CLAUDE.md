@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **A PAYMENT OVER SEVERAL INVOICES: OPEN EACH INVOICE ITSELF (payment lines + Balance must equal Total), COVER EVERY PAYMENT SOURCE incl. leftover deposits, READ THE PRIOR FIXES OF THE SAME BUG FAMILY, AND WALK THE HANDOFF'S "REGRESSION HOTSPOTS" (Standing Rule 118).**
 > - **BEFORE SAYING "NOT FOUND", RUN `build/testing-tools/recall.sh <noun>` — it searches the playbook, lessons, rules AND every findings folder; and promote every navigation fact to the playbook the same turn (Standing Rule 117).**
 > - **NOTHING HALTS THE WORK (Standing Rule 116): never idle on a wait — background long runs and start the next independent check; one blocked item never stops the rest; fail small; no rediscovery; ask for access the moment it is needed.**
 > - **NOT A FULL PASS? TWO COMMENTS: PASSED FIRST, then WHAT IS STILL TO BE FIXED as the LAST comment (opening "everything that passed has been posted separately in the previous comment; what is still to be fixed is below"), written for a first-time reader (Standing Rule 115).**
@@ -5674,6 +5675,28 @@ deliver the 7-tab management report.
     the recall search that was run and that it came back empty.
     Ties to Standing Rules 12, 27 (reuse recorded recipes), 29, 82 (learning is automatic and retrievable — this rule is its
     retrieval half), 93 (search Jira first — this is the same duty for our own notes), 116 (no rediscovery). Recipe: playbook §AW.
+
+118. **A PAYMENT THAT TOUCHES SEVERAL INVOICES IS CHECKED ON EACH INVOICE ITSELF, FOR EVERY KIND OF PAYMENT SOURCE —
+    and the "regression hotspots" in a handoff are named checks (all projects).**
+    USER DIRECTIVE (2026-10-29, verbatim): *"Check this ticket again and the comments from Nemanja in the ticket he found
+    something. See if you missed what he found and why you missed it and how you are going to patch that you do not miss the
+    similar things as what you miss always put my job in danger and it bites me badly."*
+    **(a) OPEN EACH INVOICE ITSELF** (work order → Finance tab, and the printed/PDF copy where it matters) **while the payment
+    stands AND after any reversal** — not only the customer's Invoices/Payments tabs or the server balances.
+    **(b) THE ADD-UP CHECK ON EVERY INVOICE: payment lines + Balance = Total.** If they don't add up, something prints a wrong
+    amount. `scripts/invview.mjs` (SV-11744 folder) prints `SUM CHECK OK/MISMATCH` per invoice.
+    **(c) THE PAYMENT-SOURCE MATRIX, every time money is split across invoices:** cash · credit memo (full / part used) ·
+    deposit tied to a work order · **leftover (overflow) deposit not tied to a work order** · mixed sources in one payment ·
+    one invoice part-paid first · each invoice order. Every cell is observed (Rule 96).
+    **(d) READ THE BUG FAMILY.** When the area has been fixed before (here SV-9778 and SV-9647), read those tickets and put
+    every variant they did NOT cover into the matrix.
+    **(e) THE HANDOFF'S "REGRESSION HOTSPOTS" LIST IS PART OF THE CHECKLIST** — the pre-post gate walks it item by item, like
+    the numbered checklist (Rule 91).
+    **RATIONALE (2026-10-29, SV-11744 → SV-11960, our miss):** on 28 Oct our checklist 3b paid two invoices with one leftover
+    deposit + cash — the exact shape of SV-11960 — and we never opened either invoice, so we missed that each one prints the
+    deposit's full amount. Nemanja found it the next day on a real customer. The handoff's hotspot 3 said *"and on the invoice
+    itself"*; we checked only the list. We had tested the same bug family on SV-9647 without the leftover-deposit case.
+    Ties to Rules 40, 50, 74, 88, 89, 91, 96 and 117.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

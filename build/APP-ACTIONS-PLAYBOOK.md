@@ -6346,3 +6346,19 @@ Never commit the token.
 - **Production rejects the NEW template headers** ("Invalid file headers provided!") until the What/Why rename ships —
   use the old headers (`*Line Title - What are you doing`, `Line Description - Why are you doing it`) there.
 - **A leftover "Status: Imported" filter persists per user** (SV-11576) — clear it with "Clear all filters" before other list work.
+
+## AX. PAYMENTS SPLIT OVER SEVERAL INVOICES — what to read, and production session limits (proven 2026-10-29, SV-11744 / SV-11960)
+- **Read each invoice itself:** work order → `/workorders/{woId}/finance` shows the invoice with a **Payments** section
+  (`Oct 29, 2026 - Cash $85.95`, `(Credit) … - CM-4405 $29.95`, `(Deposit) … - CASH $182.00`) and **Balance**. Read it while
+  the payment stands and after a reversal. **Payment lines + Balance must equal Total** — `scripts/invview.mjs` in
+  `build/sv11744-reversal-credit-share-2026-10-28/` prints `SUM CHECK` per invoice.
+- **Known printing bug (SV-11960, Open):** a leftover deposit (not tied to a work order) split by one payment prints its
+  FULL amount on every invoice it touched. Expect it until fixed.
+- **Make a leftover deposit:** open WO → `POST /api/deposits {work_order_id, amount, payment_method:'CASH', deposit_date}`
+  bigger than the WO total → invoice the WO → the rest becomes `DEP2-nnnn` (type deposit, unapplied). New Payment then
+  offers it automatically as a row "Deposit DEP2-nnnn … Fully consumed -$x"; the dialog's Payment amount becomes the cash part.
+- **New Payment dialog:** `input_payment_amount` is the FIRST INVOICE ROW's amount field, not the cash box. For cash + credit,
+  leave the rows alone and let the dialog compute the cash.
+- **Production allows ONE session per login.** A second sign-in with the same user expires the first (`session_expired`).
+  For parallel work use the second admin login `bilal.muzamil+serviceadvisornoreports@shopview.com` (password in
+  `/tmp/sv-prod-pw2.txt`, never committed); `qa-session.mjs` `open({user, pw})`.
