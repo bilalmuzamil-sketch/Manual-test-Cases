@@ -269,11 +269,22 @@ let db = null, user = null, me = null, canWriteDb = false, canApprove = false;
 const verif = {}, approvals = {}, requests = [];
 const names = {};
 // ── is this page up to date? ─────────────────────────────────────────────────────────────────
-// The scheduled update (every hour, and when someone presses Update) checks which release is live,
+// The scheduled update (on release days, and when the owner presses Update) checks which release is live,
 // checks any new release, republishes this page if anything changed, and writes what it found into
 // status/freshness. The page compares that with the data it was built with.
 const UPDATE_TRIGGER = 'trig_014eqbzZ82V6XRd2vZguAREC';
 const STATUS = {};
+// release days: Mon, Tue, Thu, Fri at 18:41 Pakistan time (13:41 UTC; Pakistan has no daylight saving)
+const SCHEDULE = { days: [1, 2, 4, 5], h: 13, m: 41 };
+function scheduledRun(dir) {
+  const now = new Date();
+  for (let i = 0; i < 8; i++) {
+    const c = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + dir * i, SCHEDULE.h, SCHEDULE.m));
+    if (SCHEDULE.days.includes(c.getUTCDay()) && (dir < 0 ? c <= now : c > now)) return c;
+  }
+  return null;
+}
+function when(d) { return d ? d.toLocaleString(undefined, { weekday: 'long', hour: '2-digit', minute: '2-digit' }) : ''; }
 let isOwner = false, gateShown = false;
 function ago(iso) {
   const m = Math.round((Date.now() - Date.parse(iso)) / 60000);
@@ -292,21 +303,31 @@ function freshness() {
   const s = STATUS.freshness;
   if (!db) return { kind: 'none' };
   if (!s) return { kind: 'unknown' };
-  const mins = (Date.now() - Date.parse(s.checked_at)) / 60000;
   if (s.page_built_at && D.built_at < s.page_built_at) return { kind: 'reload', s };
   if (s.problem) return { kind: 'problem', s };
   if ((s.live_marker && s.live_marker !== D.deployed.build_marker) || s.live_state === 'not_checked') return { kind: 'behind', s };
-  if (mins > 150) return { kind: 'stale', s };
+  // out of date only when a scheduled check should have run (with an hour's grace) and has not
+  const prev = scheduledRun(-1);
+  if (prev && Date.now() - prev > 60 * 60000 && Date.parse(s.checked_at) < prev.getTime()) return { kind: 'stale', s, due: prev };
   return { kind: 'ok', s };
 }
 function updateControl() {
   const r = openRequest();
-  if (r) {
-    const late = (Date.now() - Date.parse(r.at)) / 60000 > 90;
-    return `<span>${chip(late ? 'c-warn' : 'c-info', late ? 'Update still waiting' : 'Update requested')} by ${esc(names[r.by] || 'a teammate')} at ${esc(clock(r.at))}.
-      ${late ? 'It should have finished by now. Please tell Bilal.' : 'It runs automatically within the hour. This page will then show the new data.'}</span>`;
+  const next = scheduledRun(1);
+  // the owner can start the update at once
+  if (isOwner) {
+    const asked = r && r.status === 'requested' ? `<span class="muted">${esc(names[r.by] || 'A teammate')} asked for an update at ${esc(clock(r.at))}.</span>` : '';
+    const started = r && r.status === 'started' && (Date.now() - Date.parse(r.at)) / 60000 < 30;
+    return started ? `<span>${chip('c-info', 'Update started')} at ${esc(clock(r.at))}. It usually takes a few minutes; this page will then ask you to reload.</span>`
+      : `${asked}<button class="btn" data-update="1">Update now</button>`;
   }
-  return canWriteDb ? '<button class="btn" data-update="1">Update now</button>' : '';
+  if (r) {
+    const late = next && r.status === 'requested' && Date.parse(r.at) < scheduledRun(-1) - 0 && Date.now() - scheduledRun(-1) > 90 * 60000;
+    return `<span>${chip(late ? 'c-warn' : 'c-info', r.status === 'started' ? 'Update started' : 'Update requested')} by ${esc(names[r.by] || 'a teammate')} at ${esc(clock(r.at))}.
+      ${r.status === 'started' ? 'It usually takes a few minutes; this page will then ask you to reload.'
+        : late ? 'It should have run by now. Please tell Bilal.' : `Bilal can start it at once from this page. Otherwise it runs at the next automatic check, ${esc(when(next))}.`}</span>`;
+  }
+  return canWriteDb ? '<button class="btn" data-update="1">Ask for an update</button>' : '';
 }
 function renderFresh() {
   const el = $('#fresh'); if (!el || !D) return;
@@ -314,12 +335,12 @@ function renderFresh() {
   if (f.kind === 'none') { el.hidden = true; return; }
   const live = f.s ? f.s.live_release : release(D.deployed.build_marker);
   const msg = {
-    ok: `<b>Up to date.</b> The live app is on release ${esc(live)}, checked ${esc(ago(f.s && f.s.checked_at))}.${f.s && f.s.live_state === 'waiting' ? ' Its retest checklist is ready and waiting for approval.' : ''}`,
+    ok: `<b>Up to date.</b> The live app is on release ${esc(live)}, checked ${esc(ago(f.s && f.s.checked_at))}.${f.s && f.s.live_state === 'waiting' ? ' Its retest checklist is ready and waiting for approval.' : ''} Next automatic check: ${esc(when(scheduledRun(1)))}.`,
     reload: '<b>A newer version of this page is ready.</b> Reload to see the latest data. If nothing changes, close this page and open the link again.',
     behind: `<b>This page is behind.</b> The live app is on release ${esc(live)}, but this page shows ${esc(release(D.deployed.build_marker))}. Press Update before you start testing.`,
-    stale: `<b>This page may be out of date.</b> It was last checked for new releases ${esc(ago(f.s && f.s.checked_at))}. Press Update before you start testing.`,
+    stale: `<b>This page may be out of date.</b> The automatic check due ${esc(when(f.due))} did not run; the page was last checked ${esc(ago(f.s && f.s.checked_at))}. Please update before you start testing.`,
     problem: `<b>The last update could not finish.</b> ${esc(f.s && f.s.problem)} Please tell Bilal.`,
-    unknown: '<b>Not checked automatically yet.</b> Press Update to check for new releases.',
+    unknown: `<b>Not checked automatically yet.</b> The first automatic check is ${esc(when(scheduledRun(1)))}.`,
   }[f.kind];
   const cls = { ok: 'ok', reload: 'warn', behind: 'warn', stale: 'warn', problem: 'bad', unknown: '' }[f.kind];
   el.className = 'fresh ' + cls;
@@ -351,8 +372,8 @@ async function requestUpdate(btn) {
   if (!db || !me) return;
   btn.disabled = true;
   let started = false;
-  // the page's owner can start the update at once; everyone else's request is picked up by the
-  // next hourly run
+  // the page's owner can start the update at once; anyone else's request waits for the owner or
+  // the next release-day run
   if (isOwner && UPDATE_TRIGGER.startsWith('trig_')) {
     try {
       const mcp = await window.claude.use('mcp');
@@ -956,7 +977,7 @@ function viewTrack() {
       <li><div><h4>Read what changed</h4><p><a href="#retest" data-reltag="${esc(relName(p.release) || p.snapshot_id)}">Open the retest checklist for this release →</a></p>${rep.changes.length ? `<p style="margin:6px 0"><b>${rep.changes.length} changes</b>: ${esc(countLine(rep.changes))}.</p>` + changeList(rep.changes, 'scan-' + p.snapshot_id)
         : '<div class="empty">No Custom Roles &amp; Permissions changes detected in this release.</div>'}</div></li>
       <li><div><h4>${rep.changes.length ? 'Approve it so it is saved' : 'Save it as “no change” (optional)'}</h4>
-        ${rv ? `<p>Approved by ${esc(names[rv.by] || 'a teammate')} on ${esc(fmtDate(rv.at))}. It will be saved permanently by the next update (within the hour), and it will get its own tab.</p>`
+        ${rv ? `<p>Approved by ${esc(names[rv.by] || 'a teammate')} on ${esc(fmtDate(rv.at))}. It will be saved permanently by the next update, and it will get its own tab.</p>`
           : canApprove ? `<button class="btn" data-review="${esc(p.snapshot_id)}">${rep.changes.length ? 'Approve and save this release' : 'Save as “no change”'}</button>`
           : '<p class="muted">Someone with edit rights on this page approves it. You can still read the changes and set test results.</p>'}
         ${tech('For the person running the check', `<pre class="cmd">python3 tools/track_changes.py confirm ${esc(p.snapshot_id)} --by "&lt;name&gt;"${rep.changes.length ? '' : ' --checkpoint'}</pre>`)}</div></li></ol>`;
@@ -964,7 +985,7 @@ function viewTrack() {
     const tag = T.pick.slice(4);
     const req = requests.find((r) => r.release === tag);
     body = `<ol class="steps">
-      <li><div><h4>Ask for a check</h4><p>The live app is checked automatically every hour. To check a different release, ask for it here; the next update picks it up.</p>
+      <li><div><h4>Ask for a check</h4><p>The live app is checked automatically on release days. To check a different release, ask for it here; the next update picks it up.</p>
         ${req ? `<p>${chip('c-good', 'Requested')} by ${esc(names[req.by] || 'a teammate')} on ${esc(fmtDate(req.at))}.</p>` : canWriteDb ? `<p><button class="btn" data-request="${esc(tag)}">Ask for ${esc(tag)} to be checked</button></p>` : ''}
         ${tech('For the person running the check', `<pre class="cmd">python3 tools/track_changes.py scan --ref ${esc(tag)}</pre>`)}</div></li>
       <li><div><h4>Read what changed</h4><p>When the check is done, every change appears on this page in plain words, with how to test it.</p></div></li>
@@ -984,7 +1005,7 @@ function viewTrack() {
       ${updateControl()}</div>
     ${body}
     <details class="tech"><summary>How the check works</summary><div class="inner">
-      <p>It runs by itself every hour, and whenever someone presses Update. If anything changed, this page is updated for everyone.</p>
+      <p>It runs by itself on release days (Monday, Tuesday, Thursday and Friday at 18:41 Pakistan time), and whenever Bilal presses Update now. Anyone else can press Ask for an update. If anything changed, this page is updated for everyone.</p>
       <p>1. The check finds out exactly which release is live, or uses the release you choose.</p>
       <p>2. It reads that release of the app: every role, every permission, which permissions are linked, and every behind-the-scenes check.</p>
       <p>3. It compares that with the last saved release, by meaning. Tidying, re-ordering or comments in the code are ignored.</p>

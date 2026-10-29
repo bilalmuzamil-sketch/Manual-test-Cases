@@ -1,8 +1,10 @@
 # Custom Roles tracker — the scheduled update (runbook)
 
 The tracker page must always show the data for the release that is live. A scheduled task runs
-this runbook **every hour** in a fresh session, and the portal's **Update now** button starts it
-early (for the page's owner) or leaves a request that the next hourly run picks up (for everyone else).
+this runbook in a fresh session **on release days only: Monday, Tuesday, Thursday and Friday at 18:41
+Pakistan time** (releases are usually tagged between 13:20 and 15:20 PKT). The QA lead chose release days
+over hourly runs on 29 Oct 2026 to save tokens. The portal's **Update now** button starts it at once (for
+the page's owner); anyone else's **Ask for an update** is picked up by the owner or the next scheduled run.
 
 - Page: https://claude.ai/artifact/N7gowXrbJyzoBe94z6dL1E
 - Branch: `claude/global-search-v1-baseline-6ax9ul` of `bilalmuzamil-sketch/Manual-test-Cases`

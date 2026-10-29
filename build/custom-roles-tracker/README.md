@@ -48,7 +48,7 @@ tools/engine/compare.js   THE comparison engine (browser and command line share 
 tools/snapshot_store.py   append-only store: write-once, read-only, SHA-256 registry
 tools/track_changes.py    scan → review → confirm
 tools/validate.py      validation suite (29 checks, incl. plain-language, retest and auto-update checks)
-tools/auto_update.py   the one-command update the hourly scheduled task runs (UPDATE-RUNBOOK.md)
+tools/auto_update.py   the one-command update the release-day scheduled task runs (UPDATE-RUNBOOK.md)
 tools/build_history.py reconstructed release history before the baseline
 snapshots/             recorded snapshots + registry.json   (never edit by hand)
 reports/               change reports, history, VALIDATION.md
@@ -120,18 +120,20 @@ spreadsheet, and every scan also writes `reports/<previous>__to__<release>-RETES
 
 ## Always up to date (the scheduled update)
 
-A scheduled task (**"Custom Roles tracker — hourly update"**, `trig_014eqbzZ82V6XRd2vZguAREC`) runs
-`UPDATE-RUNBOOK.md` every hour in a fresh session. One command, `tools/auto_update.py`, does the work:
+A scheduled task (**"Custom Roles tracker — release-day update"**, `trig_014eqbzZ82V6XRd2vZguAREC`) runs
+`UPDATE-RUNBOOK.md` in a fresh session on release days only (Mon, Tue, Thu, Fri at 18:41 Pakistan time;
+releases are usually tagged 13:20–15:20 PKT). One command, `tools/auto_update.py`, does the work:
 it reads the live release, checks it if it is new (shown at once with its retest checklist, marked
 "waiting for approval"), saves releases approved in the portal, rebuilds the page, and says whether it
 must be republished. The run then republishes the page if needed and writes `status/freshness` into the
 page's database on every run.
 
 The page reads that record and shows a bar on every tab: **Up to date**, **This page is behind**,
-**out of date** (not checked for over 2½ hours), **A newer version is ready** (reload), or **could not
+**out of date** (a scheduled release-day check did not run), **A newer version is ready** (reload), or **could not
 be updated**. In any of the last four cases it asks the viewer to update or reload before going on,
 with "Continue with the data on this page" as the way past. **Update now** starts the scheduled task
-at once for the page's owner, and for everyone else leaves a request that the next hourly run picks up.
+at once for the page's owner. Everyone else gets **Ask for an update**, which the owner can start from
+the page or the next scheduled run picks up.
 
 ## Storage, integrity, sharing
 

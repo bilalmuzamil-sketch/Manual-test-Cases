@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""ONE COMMAND that brings the tracker up to date after a release. The scheduled update runs it
-every hour, and so does the portal's Update button.
+"""ONE COMMAND that brings the tracker up to date after a release. The scheduled update runs it on
+release days (Mon, Tue, Thu, Fri at 18:41 Pakistan time), and so does the portal's Update now button.
 
   python3 auto_update.py [--repo /home/user/shopview] [--approved ID[,ID]] [--approved-by NAME]
                          [--requested TAG[,TAG]]
