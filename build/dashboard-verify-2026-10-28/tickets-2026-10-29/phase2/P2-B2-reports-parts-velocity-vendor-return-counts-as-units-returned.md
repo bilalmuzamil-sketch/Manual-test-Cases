@@ -1,12 +1,13 @@
 <!-- FILED 29 Oct 2026 as SV-11941 (https://shopview.atlassian.net/browse/SV-11941), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B2-SV-11941.html
+EDITED 29 Oct 2026 after the filter recheck: Last 90 days, one location and the search removed (Last 12 months, All locations, Part # sort); Cancel Return step now names the second click "Are You Sure?"; picture 2 replaced.
 SUMMARY: Reports - Parts Velocity counts a return to the vendor in Units Returned
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8645 (Velocity - Story 5 - Metric Calculations)
-PICTURES: pictures/P2-B2-1-vendor-return-on-parts-returns.png · pictures/P2-B2-2-parts-velocity-units-returned.png
+PICTURES: P2-B2-1-vendor-return-on-parts-returns.png · ../filter-recheck/evidence/f2/pictures/SV-11941-B2-units-returned-no-filters.png
 BASIS: Chris Ward's answer to question 15 (28 Oct 2026): "No. Only customer returns count: work order part returns and part sale credits. Defect."
 RE-CHECKED: 29 Oct 2026, 12:18 AM–12:27 AM UTC (= 28 Oct, 8:18–8:27 PM in Toronto), staging v26.43.2-f8698cb, DVI Test; session, browser and test computer all on America/Toronto. The return was made through the screen.
 DUPLICATE CHECK: none open (JQL in SUMMARY-p2b.md).
-NOTE FOR THE QA LEAD: the test return was cancelled afterwards, so the part is back to 4 in stock and Units Returned is back to 0.00. On the screen, Parts > Returns > ⋮ > Cancel Return > Yes did nothing for this return on 29 Oct (the row stayed); it was cancelled from the server instead. Not checked further; not part of this ticket.
+NOTE FOR THE QA LEAD: the test return was cancelled afterwards, so the part is back to 4 in stock and Units Returned is back to 0.00. Cancel Return needs two clicks: Yes, then Are You Sure? (re-checked 29 Oct, it works). Not checked further; not part of this ticket.
 -->
 
 ## What is wrong
@@ -37,11 +38,11 @@ Not affected — this report does not feed any Dashboard tile.
 7. In **Part Number**, type **ZZAUTOTEST-PV1-10282011** and choose the option that reads **Inventory Qty: …** (4 EA on 28 Oct).
 8. In **Qty To Return**, type **1**.
 9. Click **Save Return**. The return is listed on **Returns** with the status **Manual**.
-10. Click **Reports**, then in the left menu under **Parts**, click **Parts Velocity**. Leave **Date: Last 90 days** and **Location: DVI Test**.
+10. Click **Reports**, then in the left menu under **Parts**, click **Parts Velocity**. Click the **Date** filter and choose **Last 12 months**. Click the **Location** filter and click **Select all**, so it reads **Location: All locations**.
 11. Click the columns button at the top right of the table (the last icon, right of **⋯**) and switch on **Units Returned**.
-12. Click **Search** and type **ZZAUTOTEST-PV1**.
+12. Click the **Part #** column heading twice, so the arrow points down (Z to A). Scroll down to the row **ZZAUTOTEST-PV1-10282011** (about 100 rows down). You can instead type it in **Search**; the figures are the same.
 13. Read **Units Returned** on the row **Inventory · ZZAUTOTEST-PV1-10282011**.
-14. Afterwards, go back to **Parts → Returns** and cancel the return (**⋮ → Cancel Return → Yes**).
+14. Afterwards, go back to **Parts → Returns** and cancel the return: **⋮ → Cancel Return → Yes**. The button then changes to **Are You Sure?**; click it. The message "Manual return cancelled successfully" appears and the row goes.
 
 **Actual:** Units Returned reads **1.00** (and On Hand drops from 4.00 to 3.00).
 
@@ -59,7 +60,7 @@ Parts Velocity Report PRD (version 12), S5-R3: "Units Returned is sourced from p
 
 **1.** Parts → Returns at DVI Test: the return of 1 ZZAUTOTEST-PV1-10282011 to the vendor 123 Cannabis Forestlawn.
 
-**2.** Parts Velocity, Last 90 days, Units Returned switched on: the part reads 1.00.
+**2.** Parts Velocity, Last 12 months, all locations, nothing in Search, Units Returned switched on: the part reads 1.00.
 
 ## Where it was seen
 

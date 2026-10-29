@@ -1,8 +1,9 @@
 <!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+EDITED 29 Oct 2026 after the filter recheck: Date Range: Today (and the one-day Custom note) replaced by This Month (Last Month from 1 November); Actual gives the Net 30 due-date arithmetic; picture 2 replaced.
 SUMMARY: Reports - Export Reports: Customer Invoice shows the customer's current Terms, not the invoice's own
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-1878 ("Customer Invoice" Export Report (export-step 4)) · relates to SV-11676 (Credit terms - Story 7 - Due dates; Open — S7-R7 states the same rule for invoices)
-PICTURES: pictures/P2-D7-1-invoice-s1-38216-terms-cod.png · pictures/P2-D7-2-customer-invoice-export-terms-net-30.png
+PICTURES: pictures/P2-D7-1-invoice-s1-38216-terms-cod.png · ../filter-recheck/evidence/f4/d7/P2-D7-2-v2-customer-invoice-export-this-month-terms-net-30.png (replaces P2-D7-2)
 BASIS: Chris Ward's answer to question 38 (28 Oct 2026): "Yes, the invoice's own term. Defect."
 RE-CHECKED: 29 Oct 2026, 12:43–12:46 AM UTC (= 28 Oct, 8:43–8:46 PM in Toronto; export and invoice screen re-taken with the app's time-zone setting; data made at 12:05–12:08 AM UTC), staging v26.43.2-f8698cb, DVI Test, on new test data; session, browser, app time-zone setting and test computer all on America/Toronto. The 7 September invoices from question 38 were re-read at Staging Heavy Duty - 9919 (Asia/Karachi) the same hour and still show it.
 NOTE FOR THE QA LEAD: question 38 said the customers "both say COD". Re-checked today, those customers' cards now say Net 30 / 50 / 60 — the export follows the CUSTOMER's current term. Re-created on fresh data to prove it.
@@ -27,12 +28,12 @@ Not affected — this report does not feed any Dashboard tile.
 5. On the work order, click **Finance**. The invoice shows **Terms COD** and a due date equal to the invoice date.
 6. Open the customer (Customers → the customer), click the edit icon next to the name, change **Credit Terms** to **Net 30**, and click **Save**.
 7. Click **Reports**, then **Export Reports** (under Accounting).
-8. Pick **Report Name: Customer Invoice** and **Date range: Today**, then click **Export**.
+8. Pick **Report Name: Customer Invoice** and **Date Range: This Month**, then click **Export**. (From 1 November 2026, pick **Last Month**.)
 9. Open the downloaded file and find the new invoice.
 
-(Ready-made data: work order **S1-38216**, customer **ZZAUTOTEST P2D Terms**, made this way on 28 Oct 2026. From 29 Oct pick **Custom** Oct 28, 2026 – Oct 28, 2026 in step 8.)
+(Ready-made data: work order **S1-38216**, customer **ZZAUTOTEST P2D Terms**, made this way on 28 Oct 2026.)
 
-**Actual:** the file shows **Terms: Net 30** for the invoice (DueDate = InvoiceDate = 10-28-2026).
+**Actual:** the file shows **Terms: Net 30** for S1-38216, with InvoiceDate 10-28-2026 and DueDate 10-28-2026. A Net 30 invoice from Oct 28 would be due Nov 27, 2026; a due date on the same day only fits COD.
 
 **Expected:** the file shows **Terms: COD**, the invoice's own term, as on the invoice.
 
@@ -50,7 +51,7 @@ The new Credit Terms story SV-11676 (S7-R7) says the same: *"An invoice keeps th
 
 **1.** Work order S1-38216 → Finance: the invoice's Terms is COD, due Oct 28, 2026.
 
-**2.** The downloaded Customer Invoice file (Today) for the same invoice: Terms Net 30.
+**2.** The downloaded Customer Invoice file (Date Range: This Month) for the same invoice: Terms Net 30.
 
 ## Where it was seen
 

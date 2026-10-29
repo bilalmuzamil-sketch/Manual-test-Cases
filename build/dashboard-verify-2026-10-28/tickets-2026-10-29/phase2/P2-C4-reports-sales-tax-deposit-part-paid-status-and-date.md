@@ -1,8 +1,9 @@
 <!-- FILED 29 Oct 2026 as SV-11951 (https://shopview.atlassian.net/browse/SV-11951), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-C4-SV-11951.html
+EDITED 29 Oct 2026 after the filter recheck: Date Range: Today replaced by the default This month (Partially Paid kept, it is part of the test); pictures 2 and 3 replaced.
 SUMMARY: Reports - Sales Tax Collected shows an invoice part paid by a deposit as Paid, with the invoice date as its paid date
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-4573 (BE/FE Sales Tax report view)
-PICTURES: pictures/P2-C4-1-add-deposit-oct26.png · pictures/P2-C4-2-sales-tax-paid-and-date.png · pictures/P2-C4-3-partially-paid-filter-empty.png
+PICTURES: P2-C4-1-add-deposit-oct26.png · ../filter-recheck/evidence/f3/SV-11950_51/F3-SV11951-1-deposit-invoice-this-month.png · ../filter-recheck/evidence/f3/SV-11950_51/F3-SV11951-2-partially-paid-this-month.png
 BASIS: Chris Ward's answer to question 31(b) (28 Oct 2026): "Yes, use the latest payment date, deposits included, per SV-4573. Both are defects." · SV-4573: "Invoice Status (, Partially Paid, Paid)" and "for partially paid invoices, show the date of the latest payment".
 REPRODUCED: 29 Oct 2026, 12:45 AM–12:48 AM UTC (28 Oct, 8:45–8:48 PM in Toronto), staging v26.43.2-f8698cb, DVI Test. The deposit and the invoice were both made through the screen. Session, browser, test computer and the app's own time-zone setting all on America/Toronto.
 MERGE NOTE: this ticket joins two findings with one cause: the report does not count a deposit as a payment. (1) the earlier finding TAX1 (draft TICKET-W2-6, 28 Oct: status "Paid" instead of "Partially Paid") and (2) Chris's question 31(b) (paid date). Both show on the same invoice row, so they are one ticket.
@@ -31,11 +32,11 @@ Not affected — this report does not feed any Dashboard tile.
 6. Mark the line **Complete**.
 7. On the **Finance** tab, click **Create Invoice**. Close the **New Customer Payment** window without paying. **Balance** reads **$105.00**.
 8. Open **Reports → Sales Tax Collected**.
-9. Click **Date Range** and pick **Today**. Find your invoice.
+9. Leave **Date Range** on **This month** and do not pick an Invoice Status yet. Find your invoice.
 10. Click **Invoice Status** and pick **Partially Paid**.
 
 **Actual:**
-- At step 9 the invoice reads **Paid**, and Invoice Paid Date reads **Today** (28 Oct, the day the invoice was made).
+- At step 9 the invoice reads **Paid**, and Invoice Paid Date is the day the invoice was made (Oct 28, 2026 in our example).
 - At step 10 the table says **"No record matches these filters"**.
 
 **Expected:**
@@ -63,9 +64,9 @@ and
 
 **1.** Work order S1-38221, Finance tab, Add Deposit: Deposit Date 10/26/2026, Cash, 30.00.
 
-**2.** Sales Tax Collected, DVI Test, Today: S1-38221 reads Paid with Invoice Paid Date Today (should be Partially Paid, paid Oct 26, 2026).
+**2.** Sales Tax Collected, DVI Test, This month, no Invoice Status picked: S1-38221 reads Paid, with the day it was invoiced as its Invoice Paid Date (should be Partially Paid, paid Oct 26, 2026).
 
-**3.** The same report with Invoice Status: Partially Paid: "No record matches these filters".
+**3.** The same report, This month, with Invoice Status: Partially Paid: "No record matches these filters".
 
 ## Where it was seen
 

@@ -1,0 +1,18 @@
+<h2>What is wrong</h2>
+<p>On the <strong>Work In Progress</strong> report, the <strong>Days Open</strong> column reads <strong>"1 days"</strong> for a work order that has been open one day.</p>
+<p>It should read <strong>"1 day"</strong>. Every other number reads correctly ("0 days", "13 days").</p>
+<p>How Days Open is counted is correct: it counts calendar dates, so a work order opened yesterday shows 1, even if it was opened only a few hours ago. Only the word is wrong.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>Staging Heavy Duty - 9919</strong>.</p></li><li><p>You need a work order that was opened <strong>yesterday</strong>. On 29 Oct 2026 work order <strong>S2-38105</strong> (customer 4 Star Truck Repair, opened 28 Oct 2026) is one.</p><ul><li><p>On any later date, make your own: click <strong>Work Orders</strong>, create a work order today, and do the rest of these steps tomorrow.</p></li></ul></li><li><p>Click <strong>Reports</strong>, then <strong>Work In Progress</strong> in the left menu.</p></li><li><p>Leave <strong>As of</strong> on today's date.</p></li><li><p>Stay on the <strong>Approved - Partially Completed</strong> tab (or the tab your work order is on).</p></li><li><p>Click the <strong>Days Open</strong> heading so the smallest numbers come first.</p></li><li><p>Look at the <strong>Days Open</strong> cell of the work order.</p></li></ol>
+<p><strong>Actual:</strong> Days Open reads <strong>"1 days"</strong>.</p>
+<p><strong>Expected:</strong> Days Open reads <strong>"1 day"</strong>.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 4 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>Calendar dates, as the screen does. That was a deliberate change in <a href="https://shopview.atlassian.net/browse/SV-9403">SV-9403</a>, so S4-R12 gets updated. One defect: it should read "1 day", not "1 days".</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Work In Progress, as of 10/29/2026, all customers, all locations, sorted by Days Open: S2-38105 reads "1 days"; the next row reads "2 days".</p>
+{{NEW:build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f1/SV-11937-replacement.png}}
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).</p></li><li><p>Not checked on Production or on a QA branch. The PDF and CSV downloads were not checked.</p></li></ul>

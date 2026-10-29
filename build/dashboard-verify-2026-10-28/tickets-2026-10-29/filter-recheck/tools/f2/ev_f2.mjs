@@ -39,7 +39,7 @@ const step = async (name, sel, find = [], shotIt = true) => { const s = { chips:
   for (const f of find) s.rows[f] = sel ? await rowsOf(sel, f) : [];
   s.notifications = (await page.locator('.q-notification').allInnerTexts().catch(() => [])).map(T);
   s.api_count = meta.api.length; meta.steps[name] = s; if (shotIt) await page.screenshot({ path: `${OUT}/${name}.png` }); save(); return s; };
-const hdr = async () => { await page.keyboard.press('Escape').catch(() => {}); const a = T(await page.locator('header').first().innerText({ timeout: 8000 }).catch(() => '')); return a || T(await page.locator('header').first().textContent({ timeout: 8000 }).catch(() => '')); };
+const hdr = async () => { await page.keyboard.press('Escape').catch(() => {}); const a = T(await page.locator('header').first().innerText({ timeout: 8000 }).catch(() => '')); if (a) return a; const b = T(await page.evaluate(() => { const h = document.querySelector('header, .q-header'); return h ? (h.innerText || h.textContent || '') : ''; }).catch(e => 'ERR ' + e.message)); return b; };
 // Location trap (F4, 29 Oct): assert the header shows the intended location at the start AND the end of every run.
 const ver = async () => { meta.appVersion = await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null);
   if (meta.header_start === undefined) { meta.header_start = (await hdr()).slice(0, 300); meta.location_ok_start = meta.header_start.includes(M.loc); } };
@@ -226,15 +226,13 @@ if (mode === 'PV_DVI_B67') { // B6 / B7 deselected only (wide viewport for the p
   await openPV();
   await guard('b67', async () => { await allLocations(); await pickPreset('Last 12 months'); meta.sortFound = await sortPartDesc(PV); meta.rowFound = await scrollToRow(PV, 'ZZAUTOTEST-SO1-10282011'); await page.evaluate(() => window.scrollBy(0, 200)); await step('b67_all_locations_last12m_sorted_no_search', PV, ZZ, true); });
 }
-meta.header_end = (await hdr()).slice(0, 300); meta.location_ok_end = meta.header_end.includes(M.loc);
-meta.VALID = !!(meta.location_ok_start && meta.location_ok_end);
 if (mode === 'IV_DVI_PIC') { // B5 / B8 picture only: first visit (fresh browser), Location -> Select all, As of = today (default); wide viewport
   await openIV();
   await guard('d', async () => { await allLocations(); await step('iv_first_visit_all_locations', 'table', [], true); });
 }
 if (mode === 'OBSA_IV_PDF') { // OBS A: fresh first visit; Location -> Select all (arg 'all') or keep the active location (arg 'one'); Download (PDF)
   meta.exportResp = []; page.on('response', async r => { if (/inventory-value\/export/.test(r.url())) meta.exportResp.push({ status: r.status(), url: decodeURIComponent(r.url().replace(/^.*?\/api\//, '')).slice(0, 400), at: new Date().toISOString(), body: r.status() >= 400 ? (await r.text().catch(() => '')).slice(0, 300) : '' }); });
-  meta.notes = []; const pollNotes = async ms => { const t0 = Date.now(); while (Date.now() - t0 < ms) { for (const n of (await page.locator('.q-notification').allInnerTexts().catch(() => [])).map(T)) if (!meta.notes.includes(n)) meta.notes.push(n); if (meta.exportResp.length && meta.notes.length) break; await page.waitForTimeout(1000); } };
+  meta.notes = []; const pollNotes = async ms => { const t0 = Date.now(); while (Date.now() - t0 < ms) { for (const n of (await page.locator('.q-notification').allInnerTexts().catch(() => [])).map(T)) if (!meta.notes.includes(n)) { meta.notes.push(n); meta.noteAt = new Date().toISOString(); await page.screenshot({ path: `${OUT}/toast.png` }); meta.toastBox = await box(page.locator('.q-notification')); } if (meta.exportResp.length && meta.notes.length) break; await page.waitForTimeout(1000); } };
   await openIV();
   if (arg !== 'one') await allLocations();
   await step('before_download', 'table', [], true);
@@ -252,6 +250,8 @@ if (mode === 'OBSB_PV_FIND') { // OBS B: Last Sale for one part; Last 12 months,
   await openPV();
   await guard('d', async () => { await allLocations(); await pickPreset('Last 12 months'); await search(arg); meta.readAt = new Date().toISOString(); await step('lastsale_' + arg.replace(/[^A-Za-z0-9-]/g, ''), PV, [arg], true); });
 }
+meta.header_end = (await hdr()).slice(0, 300); meta.location_ok_end = meta.header_end.includes(M.loc);
+meta.VALID = !!(meta.location_ok_start && meta.location_ok_end);
 save(); await browser.close();
 fs.mkdirSync(`${EV}/screen`, { recursive: true });
 fs.writeFileSync(`${EV}/screen/${mode}${arg ? '_' + arg : ''}_${meta.observed_at_utc.replace(/[:.]/g, '')}.json`, JSON.stringify(meta, null, 1));

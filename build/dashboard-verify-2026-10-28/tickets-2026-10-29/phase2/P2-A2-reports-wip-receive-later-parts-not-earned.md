@@ -1,8 +1,9 @@
 <!-- FILED 29 Oct 2026 as SV-11938 (https://shopview.atlassian.net/browse/SV-11938), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-A2-SV-11938.html
+EDITED 29 Oct 2026 after the filter recheck: customer pick removed (Customer left on All customers, list sorted by Customer instead); picture 1 replaced.
 SUMMARY: Reports - Work In Progress counts parts marked "Receive Later" as Parts Remaining instead of Parts Earned
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8660 (WIP - Story 4 - Columns and Calculations)
-PICTURES: pictures/P2-A2-1-wip-parts-columns.png · pictures/P2-A2-2-work-order-receive-later.png
+PICTURES: ../filter-recheck/evidence/f1/SV-11938-replacement.png · P2-A2-2-work-order-receive-later.png
 BASIS: Chris Ward's answer to question 6 (28 Oct 2026): "No, it belongs in Parts Earned. "Received later" means the part is already on the job and only the receiving paperwork waits. Defect. S4-R18 gets updated."
 RE-CHECKED: 29 Oct 2026, 00:48 UTC (= 29 Oct, 5:48 AM in Karachi), staging v26.43.2-f8698cb, Staging Heavy Duty - 9919; session, browser (and the app's own time-zone setting) and test computer all on Asia/Karachi.
 DUPLICATE CHECK: none found (searched "received later", "receive later", Work In Progress, last 365 days).
@@ -35,10 +36,11 @@ Not affected — this report does not feed any Dashboard tile.
 3. Click **Work Orders** and open **S2-33740** (customer 4 Star Truck Repair).
 4. On the **Lines** tab, under line **11**, look at **Parts**: the part "(11) 11" ($36.67) and "(11) Core for 11" ($1.00) both show **Receive Later**.
 5. Click **Reports**, then **Work In Progress** in the left menu. Leave **As of** on today.
-6. Click **Customer: All customers**, pick **4 Star Truck Repair**, and close the list.
+6. Leave **Customer** on **All customers**.
 7. Click the **Approved - Not Started** tab.
 8. Click the columns button (top right of the report) and switch on **Parts Earned** and **Parts Remaining**.
-9. Find the row **S2-33740**.
+9. Click the **Customer** heading so the list is sorted by customer name; 4 Star Truck Repair comes first.
+10. Find the row **S2-33740**.
 
 **Actual:** Parts Earned **$0.00**, Parts Remaining **$37.67**.
 
@@ -52,7 +54,7 @@ Not affected — this report does not feed any Dashboard tile.
 
 ## Screenshots
 
-**1.** Work In Progress, Heavy Duty, Approved - Not Started, customer 4 Star Truck Repair, with Parts Earned and Parts Remaining switched on: S2-33740 shows $0.00 earned and $37.67 remaining.
+**1.** Work In Progress, Approved - Not Started, all customers, all locations, with Parts Earned and Parts Remaining switched on: S2-33740 shows $0.00 earned and $37.67 remaining.
 
 **2.** Work order S2-33740, Lines tab: both parts are marked Receive Later ($36.67 + $1.00).
 

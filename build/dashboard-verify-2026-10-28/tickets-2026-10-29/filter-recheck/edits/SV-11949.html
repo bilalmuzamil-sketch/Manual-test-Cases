@@ -1,0 +1,22 @@
+<h2>What is wrong</h2>
+<p><strong>Sales Tax Collected</strong> tells the shop how much sales tax it collected in the chosen dates, so it knows what to pay to the government.</p>
+<p>When the shop gives a customer a <strong>credit memo</strong> (for example, for a returned part), the tax on that credit goes back to the customer. Sales Tax Collected does not show credit memos at all, and its tax totals do not go down. So the report says the shop collected more tax than it kept.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>Staging Heavy Duty - 9919</strong>.</p></li><li><p>Open <strong>Customers</strong> and find <strong>Testing Company Milos</strong>. Click the <strong>Invoices</strong> tab.</p></li><li><p>Find credit memo <strong>CM2-4520</strong>, dated <strong>Oct 20, 2026</strong>. Its Total is <strong>-$131.25</strong>: -$125.00 for the returned part and <strong>-$6.25</strong> GST (5 %).</p></li><li><p>Open <strong>Reports → Sales Tax Collected</strong>.</p></li><li><p>Leave <strong>Date Range</strong> on <strong>This month</strong> (from 1 November pick <strong>Last month</strong>, so the range is October 2026). Do not pick an <strong>Invoice Status</strong>.</p></li><li><p>Click <strong>Search</strong> and type <strong>CM2-4520</strong>. The table says "No record matches the search "CM2-4520"."</p></li><li><p>Clear the search and click <strong>See All Tax Rates</strong>. The date range stays This month.</p></li></ol>
+<p><strong>Actual:</strong></p>
+<ul><li><p>CM2-4520 is not listed on the Invoices tab of the report.</p></li><li><p><strong>See All Tax Rates</strong> shows <strong>GST 5 % $987.05</strong> on its first row. No credit-memo tax is taken off.</p></li></ul>
+<p><strong>Expected:</strong></p>
+<ul><li><p>CM2-4520 is listed on Oct 20, 2026 as a <strong>negative row</strong>: Subtotal <strong>-$125.00</strong>, Taxes GST <strong>-$6.25</strong>, Total <strong>-$131.25</strong>.</p></li><li><p>Its tax is taken off the totals, and so is the other October credit-memo tax: $6.25 on CM2-4520 + $1.25 on Oct 21 = $7.50, so GST = $987.05 − $7.50 = <strong>$979.55</strong>.</p></li></ul>
+<p>The same happens for every credit memo with tax in any date range. For example, for Oct 20, 2026 alone (Custom date range) GST shows $57.44 and should be $57.44 − $6.25 = $51.19.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 30 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>Yes. Show credit memos as negative rows on their date, and take their tax off the totals. Defect.</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Sales Tax Collected, Staging Heavy Duty - 9919, See All Tax Rates, This month, no Invoice Status picked: GST 5 % $987.05 (should be $987.05 − $7.50 = $979.55).</p>
+{{NEW:build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/SV-11949/F3-SV11949-1-all-tax-rates-this-month.png}}
+<p><strong>2.</strong> Customer Testing Company Milos, Invoices tab: credit memo CM2-4520, Oct 20, 2026, -$131.25.</p>
+{{KEEP:6d666122-8304-4d35-bd3c-868f80cb4d9a|P2-C2-3-customer-credit-memo.png}}
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

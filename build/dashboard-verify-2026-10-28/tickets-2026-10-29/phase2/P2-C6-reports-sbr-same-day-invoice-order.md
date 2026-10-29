@@ -1,8 +1,9 @@
 <!-- FILED 29 Oct 2026 as SV-11952 (https://shopview.atlassian.net/browse/SV-11952), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-C6-SV-11952.html
+EDITED 29 Oct 2026 after the filter recheck: example moved to Viktoria Videnovic, Oct 07 2026, with All locations and Show Unassigned off; the Unassigned Oct 28 list kept as a short second example; picture replaced.
 SUMMARY: Reports - Sales By Representative lists invoices on the same day newest first instead of by invoice number
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8624 (SBR - Story 6 - Expand a rep to view their invoices)
-PICTURES: pictures/P2-C6-1-sbr-same-day-order.png
+PICTURES: ../filter-recheck/evidence/f3/SV-11952/F3-SV11952-1-viktoria-oct07-all-locations.png
 BASIS: Sales By Representative report specification (Confluence, version 30, 21 Oct 2026), requirement S6-R9 (quoted below).
 RE-CHECKED: 29 Oct 2026, 12:40 AM UTC (28 Oct, 8:40 PM in Toronto), staging v26.43.2-f8698cb, DVI Test; session, browser, test computer and the app's own time-zone setting all on America/Toronto. Earlier sightings: 28 Oct 2026 at 20:28, 21:07 and 23:05 UTC.
 HISTORY: first reported as SV-8974 (created 6 Aug 2026, closed OBSOLETE on 9 Aug 2026 in a bulk sweep, never fixed). This is a fresh ticket in the new format, as the QA lead asked ("re-created SV-8974").
@@ -23,22 +24,21 @@ Not affected — this report does not feed any Dashboard tile.
 1. Log in to staging as an Admin.
 2. At the top right, switch the location to **DVI Test**.
 3. Open **Reports → Sales By Representative**.
-4. Leave **Date: This month** (from 1 November pick **Last month**, so the range is October 2026).
-5. Click **Show Unassigned**.
-6. Click the arrow at the left of the **Unassigned** row to open it.
-7. Read the invoice numbers on the rows dated **Oct 28 2026**.
-8. Read the two rows dated **Oct 13 2026**.
+4. Leave **Date: This month** (from 1 November pick **Last month**, so the range is October 2026). Click **Location** and pick **Select all**, so it reads **Location: All locations**.
+5. Do not click **Show Unassigned**.
+6. Click the arrow at the left of **Viktoria Videnovic** to open her invoices.
+7. Read the invoice numbers on the six rows dated **Oct 07 2026**.
 
 **Actual:**
-- Oct 28 2026: S1-38218, S1-38219, S1-38216, S1-38215, S1-38214, S1-38212, S1-38211, S1-38206, S1-38204, S1-38203, S1-38200, S1-38199, S1-38198, S1-38196, S1-38195 (newest invoice first; S1-38218 sits above S1-38219 because it was made a few minutes later).
-- Oct 13 2026: S1-35010 is listed above S1-35003.
+- Oct 07 2026: S2-34681, S2-34864, S2-33689, S2-33735, S2-34873, S2-34874 (newest invoice first).
 
 **Expected:**
-- Oct 28 2026: S1-38195, S1-38196, S1-38198, S1-38199, S1-38200, S1-38203, S1-38204, S1-38206, S1-38211, S1-38212, S1-38214, S1-38215, S1-38216, S1-38218, S1-38219 (lowest number first).
-- Oct 13 2026: S1-35003 above S1-35010.
+- Oct 07 2026: S2-33689, S2-33735, S2-34681, S2-34864, S2-34873, S2-34874 (lowest number first).
 - Days stay newest first.
 
-The invoices above are test data at DVI Test and stay in place. Invoices made at DVI Test later on 28 Oct (for example S1-38221) also appear at the top of that day. Any day with more than one invoice shows the same thing, at every location and under every representative.
+These are existing invoices at Staging Heavy Duty - 9919.
+
+The same shows on the **Unassigned** row (click **Show Unassigned**). Its invoices are test data at DVI Test and stay in place: on Oct 28 2026 they run S1-38221, S1-38218, S1-38219 … S1-38195 (newest first) instead of S1-38195, S1-38196 … S1-38221 (lowest number first). Any day with more than one invoice shows the same thing, at every location and under every representative.
 
 ---
 
@@ -48,7 +48,7 @@ The invoices above are test data at DVI Test and stay in place. Invoices made at
 
 ## Screenshots
 
-**1.** Sales By Representative, DVI Test, This month, Show Unassigned, Unassigned opened: the Oct 28 2026 invoices run newest first (S1-38218, S1-38219, S1-38216 … S1-38196).
+**1.** Sales By Representative, This month, All locations, Show Unassigned off, Viktoria Videnovic opened: the six Oct 07 2026 invoices run newest first (S2-34681, S2-34864, S2-33689, S2-33735, S2-34873, S2-34874).
 
 ## Where it was seen
 

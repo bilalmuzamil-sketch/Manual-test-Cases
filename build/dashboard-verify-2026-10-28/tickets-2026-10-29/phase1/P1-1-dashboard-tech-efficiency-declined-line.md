@@ -1,8 +1,9 @@
 <!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+EDITED 29 Oct 2026 after the filter recheck: date on the tile changed from a custom Oct 25 – Oct 28 range to Last 12 Months; picture 1 replaced.
 SUMMARY: Dashboard - Technician Efficiency counts a line the customer declined
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-9575 (Dashboard v1 - Story 3 - Measure Formulas & Report Parity)
-PICTURES (in this order): pictures/P1-1-1-dashboard-technician-efficiency.png · pictures/P1-1-2-work-order-S1-38198-lines.png · pictures/P1-1-3-invoice-S1-38198.png
+PICTURES: ../filter-recheck/evidence/f1/SV-11931-replacement.png · P1-1-2-work-order-S1-38198-lines.png · P1-1-3-invoice-S1-38198.png
 BASIS: Chris Ward's answer to question 1 (28 Oct 2026): "(b) Only billed lines count. A declined line wasn't invoiced, so its tech time shouldn't count either. Defect."
 RE-CHECKED: 28 Oct 2026 23:25 UTC (API) and 29 Oct 2026 00:39 UTC = 28 Oct 8:39 PM Toronto (screen, pictures), staging v26.43.2-f8698cb, DVI Test; session, browser, the app's own time-zone setting and the test computer all on America/Toronto (Rule 99).
 -->
@@ -26,7 +27,7 @@ The **Billing Efficiency** tile already leaves declined lines out.
 1. Log in to staging as an Admin.
 2. At the top right, switch the location to **DVI Test**.
 3. Click **Dashboard**.
-4. On the **Technician Efficiency** tile, click the date button. Pick **Oct 25, 2026** to **Oct 28, 2026**, then click **Apply**. (This was "This Week" when we checked.)
+4. On the **Technician Efficiency** tile, click the date button, pick **Last 12 Months**, then click **Apply**.
 5. Click **View details** under the tile.
 6. In the table, find **Fabian Bonjean**.
 7. Open work order **S1-38198** (customer ZZAUTOTEST Dash F2). On the **Lines** tab:
@@ -38,7 +39,7 @@ The **Billing Efficiency** tile already leaves declined lines out.
 
 **Expected:** Fabian Bonjean shows **1.00** Invoiced Tech Hrs, **1.00** Clocked, **100.00 %**. Only line 1 was billed: 1.00 ÷ 1.00 = 100 %.
 
-The tile headline is high for the same reason. When we took the picture it read **158.10 %** (8.00 Invoiced Tech Hrs / 5.06 Clocked). Three lines were declined at DVI Test that week, with 1.02 hours clocked on them. Those hours are inside the 5.06 Clocked. The **Billing Efficiency** tile already leaves them out: it shows 4.04 Clocked, which is 5.06 − 1.02.
+The tile headline is high for the same reason. With Last 12 Months it reads **158.10 %** (8.00 Invoiced Tech Hrs / 5.06 Clocked). The declined lines at DVI Test have 1.02 hours clocked on them. Those hours are inside the 5.06 Clocked. The **Billing Efficiency** tile already leaves them out: it shows 4.04 Clocked, which is 5.06 − 1.02.
 
 ---
 
@@ -52,7 +53,7 @@ Dashboard PRD, version 53 (22 Oct 2026), Story 3, S3-R2, Technician Efficiency:
 
 ## Screenshots
 
-**1.** Dashboard, Technician Efficiency, This Week (Oct 25 – Oct 28): Fabian Bonjean 2.00 / 1.50 / 133.33 % (should be 1.00 / 1.00 / 100.00 %). Billing Efficiency already leaves the declined lines out (4.04 Clocked against 5.06).
+**1.** Dashboard, Technician Efficiency, Last 12 Months, all technicians: Fabian Bonjean 1.50 Clocked / 2.00 Invoiced Tech Hrs / 133.33 % (should be 1.00 / 1.00 / 100.00 %). Billing Efficiency already leaves the declined lines out (4.04 Clocked against 5.06).
 
 **2.** Work order S1-38198: line 1 Complete, line 2 Declined.
 

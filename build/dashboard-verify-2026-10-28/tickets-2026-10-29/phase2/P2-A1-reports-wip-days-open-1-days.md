@@ -1,8 +1,9 @@
 <!-- FILED 29 Oct 2026 as SV-11937 (https://shopview.atlassian.net/browse/SV-11937), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-A1-SV-11937.html
+EDITED 29 Oct 2026 after the filter recheck: customer pick removed from the steps; picture 1 replaced (all customers, all locations).
 SUMMARY: Reports - Work In Progress shows "1 days" in Days Open instead of "1 day"
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8660 (WIP - Story 4 - Columns and Calculations)
-PICTURES: pictures/P2-A1-1-wip-days-open.png
+PICTURES: ../filter-recheck/evidence/f1/SV-11937-replacement.png
 BASIS: Chris Ward's answer to question 4 (28 Oct 2026): "Calendar dates, as the screen does. That was a deliberate change in SV-9403, so S4-R12 gets updated. One defect: it should read "1 day", not "1 days"."
 RE-CHECKED: 29 Oct 2026, 00:47 UTC (= 29 Oct, 5:47 AM in Karachi), staging v26.43.2-f8698cb, Staging Heavy Duty - 9919; session, browser (and the app's own time-zone setting) and test computer all on Asia/Karachi.
 DUPLICATE CHECK: none found. Nearest: SV-11821 (In Progress) — the same kind of wording slip on the Dashboard ("1 Invoices", "Range: 1 days"); it does not cover this report.
@@ -28,10 +29,9 @@ Not affected — this report does not feed any Dashboard tile.
    - On any later date, make your own: click **Work Orders**, create a work order today, and do the rest of these steps tomorrow.
 4. Click **Reports**, then **Work In Progress** in the left menu.
 5. Leave **As of** on today's date.
-6. Click **Customer: All customers**, pick the work order's customer (for S2-38105: **4 Star Truck Repair**), and close the list.
-7. Stay on the **Approved - Partially Completed** tab (or the tab your work order is on).
-8. Click the **Days Open** heading so the smallest numbers come first.
-9. Look at the **Days Open** cell of the work order.
+6. Stay on the **Approved - Partially Completed** tab (or the tab your work order is on).
+7. Click the **Days Open** heading so the smallest numbers come first.
+8. Look at the **Days Open** cell of the work order.
 
 **Actual:** Days Open reads **"1 days"**.
 
@@ -45,7 +45,7 @@ Not affected — this report does not feed any Dashboard tile.
 
 ## Screenshots
 
-**1.** Work In Progress, Heavy Duty, as of 10/29/2026, customer 4 Star Truck Repair, sorted by Days Open: S2-38105 reads "1 days"; the next row reads "13 days".
+**1.** Work In Progress, as of 10/29/2026, all customers, all locations, sorted by Days Open: S2-38105 reads "1 days"; the next row reads "2 days".
 
 ## Where it was seen
 

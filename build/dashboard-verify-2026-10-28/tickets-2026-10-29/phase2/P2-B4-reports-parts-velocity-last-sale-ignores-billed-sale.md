@@ -1,8 +1,9 @@
 <!-- FILED 29 Oct 2026 as SV-11943 (https://shopview.atlassian.net/browse/SV-11943), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B4-SV-11943.html
+EDITED 29 Oct 2026 after the filter recheck: Last quarter and one location removed from the steps (Last 12 months, All locations; search kept only to bring the part on screen); Last quarter kept only as a supporting fact; picture 1 replaced.
 SUMMARY: Reports - Parts Velocity Last Sale ignores a billed sale that moved no stock
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8645 (Velocity - Story 5 - Metric Calculations) · relates to SV-11516 (Parts Velocity: store each part's last sale date — Open; the stored date should follow the same rule)
-PICTURES: pictures/P2-B4-1-parts-velocity-last-sale.png · pictures/P2-B4-2-invoice-S2-16621.png
+PICTURES: ../filter-recheck/evidence/f2/pictures/SV-11943-B4-last-sale-no-filters.png · P2-B4-2-invoice-S2-16621.png
 BASIS: Chris Ward's answer to question 18 (28 Oct 2026): "Yes, any billed sale counts, with or without stock movement. Defect."
 RE-CHECKED: 29 Oct 2026, 12:03 AM–12:15 AM UTC (= 29 Oct, 5:03–5:15 AM in Karachi), staging v26.43.2-f8698cb, Staging Heavy Duty - 9919; session, browser and test computer all on Asia/Karachi.
 DUPLICATE CHECK: none open. SV-11516 (Open) only changes where the last-sale date is stored, not which sales count.
@@ -19,7 +20,7 @@ For example, part **N000000001069** (Aluminum Seal Ring, M14) was billed on work
 - Actual: Last Sale reads **161 days** on 29 Oct 2026, which points back to 21 May 2026.
 - Expected: **91 days** on 29 Oct 2026 (30 Jul → 29 Oct = 1 + 31 + 30 + 29 = 91).
 
-The same row even shows **Revenue $1.38** for Jul–Sep, so the report knows about the sale but leaves it out of Last Sale.
+The report knows about this sale: with **Date: Last quarter** (1 Jul – 30 Sep 2026) the same row shows **Revenue $1.38**, the S2-16621 sale, and nothing else. But it leaves the sale out of Last Sale.
 
 ## Where this shows on the Dashboard
 
@@ -30,14 +31,13 @@ Not affected — this report does not feed any Dashboard tile.
 1. Log in to staging as an Admin.
 2. At the top right, switch the location to **Staging Heavy Duty - 9919**.
 3. Click **Reports**, then in the left menu under **Parts**, click **Parts Velocity**.
-4. Click the **Date** filter and choose **Last quarter** (1 Jul – 30 Sep 2026).
-   - From 1 January 2027, choose **Custom** and pick **Jul 1, 2026** to **Sep 30, 2026** instead.
-5. Click **Search** and type **N000000001069**.
+4. Click the **Date** filter and choose **Last 12 months**. Click the **Location** filter and click **Select all**, so it reads **Location: All locations**.
+5. Click **Search** and type **N000000001069**. This only brings the part on screen; it does not change its figures.
 6. Find the row **Inventory · N000000001069 · Aluminum Seal Ring, M14**, vendor **Willoughby Mechanical Services**.
-7. Read **Revenue** and **Last Sale** on that row.
+7. Read **Last Sale** on that row.
 8. Click **Work Orders**, open **S2-16621** and click the **Finance** tab. Read **Invoice Date**, and find the line **DDE-N000000001069 - SEAL RING**, 1 at $1.38.
 
-**Actual:** Revenue **$1.38** (the sale on S2-16621), but Last Sale **161 days** (21 May 2026). It goes up by 1 each day.
+**Actual:** Last Sale **161 days** on 29 Oct 2026, which points back to 21 May 2026, although the part was billed on S2-16621 on 30 Jul 2026. It goes up by 1 each day.
 
 **Expected:** Last Sale **91 days** on 29 Oct 2026 (the sale on 30 Jul 2026), also going up by 1 each day.
 
@@ -51,7 +51,7 @@ Parts Velocity Report PRD (version 12), S5-R4: Last Sale is "Whole days from tod
 
 ## Screenshots
 
-**1.** Parts Velocity at Staging Heavy Duty - 9919, Last quarter, N000000001069: Revenue $1.38, Last Sale 161 days.
+**1.** Parts Velocity, Last 12 months, all locations, N000000001069: Last Sale 161 days.
 
 **2.** Work order S2-16621, Finance tab: Invoice Date Jul 30, 2026, with DDE-N000000001069 - SEAL RING billed at $1.38.
 

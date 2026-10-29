@@ -1,0 +1,27 @@
+<h2>What is wrong</h2>
+<p>When a technician's clock on a line adds up to <strong>less than 36 seconds</strong> (it shows as 0.01 hours), Technician Efficiency gives that technician <strong>no tech time at all</strong> for the line.</p>
+<p>For example, line 4 of work order S3-17383 has 30 minutes of tech time. Joseph Nelson is the only one who clocked on it, for 30 seconds. He gets 0 Invoiced Tech Hrs for the line instead of 0.50.</p>
+<h2>Where this shows on the Dashboard</h2>
+<ul><li><p><strong>Technician Efficiency tile:</strong> the headline % and "… Invoiced Tech Hrs / … Clocked" are too low.</p></li><li><p><strong>View details</strong> on that tile: the technician's row is too low.</p></li><li><p>The <strong>Technician Efficiency</strong> report shows the same: Invoiced Tech Hrs <strong>0</strong> on the line, and lower totals.</p></li></ul>
+<p>On 29 Oct 2026 (Lethbridge, Last 12 Months) the tile read 8,135.67 ÷ 7,345.65 = <strong>110.75 %</strong>; with the 4.40 lost hours added back it should be about (8,135.67 + 4.40) ÷ 7,345.65 = <strong>110.82 %</strong>.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>Staging Lethbridge - 4310</strong>.</p></li><li><p>Click <strong>Dashboard</strong>.</p></li><li><p>On the <strong>Technician Efficiency</strong> tile, click the date button. Pick <strong>Last 12 Months</strong>, then click <strong>Apply</strong>.</p></li><li><p>Read the line under the headline, then click <strong>View details</strong> and find <strong>Joseph Nelson</strong>.</p></li><li><p>Open work order <strong>S3-17383</strong> (Monroe Truck Service &amp; Repair). On the <strong>Lines</strong> tab, line 4 <strong>Replace cabin air filter</strong> reads <strong>0.01 / 0.50</strong>: 30 seconds clocked by Joseph Nelson, 0.50 hour of tech time.</p></li><li><p>Open <strong>Reports → Technician Efficiency</strong>, set the date to <strong>Last 12 months</strong>, and expand <strong>Joseph Nelson</strong>. The row for S3-17383 line 4 shows <strong>Clocked Hrs 0.01</strong> and <strong>Invoiced Tech Hrs 0</strong>.</p></li></ol>
+<p><strong>Actual:</strong> the row for S3-17383 line 4 shows <strong>Invoiced Tech Hrs 0</strong> for Joseph Nelson (Clocked Hrs 0.01, which is his 30 seconds).</p>
+<p><strong>Expected:</strong> the row shows <strong>Invoiced Tech Hrs 0.50</strong>. Joseph Nelson is the only technician who clocked on the line, so all of its tech time is his: 0.50 × 100 % = <strong>0.50</strong>.</p>
+<p>The same thing happens on every line where a technician clocked less than 36 seconds, at every location.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 28 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>Yes. Split on the real time clocked and round only for display, so that tech gets the full 0.50. Defect.</p></blockquote>
+<p>SV-5450:</p>
+<blockquote><p>Each technician receives a proportional share of the Completed Tech Time Hours for that labor line</p></blockquote>
+<p>Dashboard PRD, version 53, Story 3, S3-R2:</p>
+<blockquote><p>Each work order line's technician time is split across the technicians who worked it, in proportion to each technician's share of the clocked time on that line.</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Dashboard, Lethbridge, Technician Efficiency, Last 12 Months, 29 Oct 2026: 8,135.67 / 7,345.65 = 110.75 % (should be about 8,140.07 / 110.82 %).</p>
+{{NEW:build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f1/SV-11932-replacement.png}}
+<p><strong>2.</strong> Work order S3-17383, line 4: 0.50 hour of tech time, 0.01 hour (30 seconds) clocked by Joseph Nelson.</p>
+{{KEEP:750374da-601a-49f5-b8d1-931625d1e5cb|P1-2-2-work-order-S3-17383-line-4.png}}
+<p><strong>3.</strong> Technician Efficiency report, the same line: Invoiced Tech Hrs 0.</p>
+{{KEEP:6e019e58-9a13-4716-a519-448c94a74143|P1-2-3-technician-efficiency-report-line.png}}
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 28 Oct 2026, Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Edmonton).</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

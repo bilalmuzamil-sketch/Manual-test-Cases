@@ -1,8 +1,9 @@
 <!-- FILED 29 Oct 2026 as SV-11945 (https://shopview.atlassian.net/browse/SV-11945), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B6-SV-11945.html
+EDITED 29 Oct 2026 after the filter recheck: Last 90 days, one location and the search removed (Last 12 months, All locations, Part # sort); date note moved to 1 October 2027; picture 2 replaced.
 SUMMARY: Reports - Parts Velocity shows a "Receive later" special-order part as never sold after it is invoiced
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8645 (Velocity - Story 5 - Metric Calculations)
-PICTURES: pictures/P2-B6-1-invoice-bills-the-part.png · pictures/P2-B6-2-parts-velocity-shows-zero.png
+PICTURES: P2-B6-1-invoice-bills-the-part.png · ../filter-recheck/evidence/f2/pictures/SV-11945-B6-receive-later-no-filters.png
 BASIS: Parts Velocity Report PRD (Confluence 620888066, version 12, 14 Sep 2026, Chris Ward), S5-R2 and S5-R4 (quoted below). Earlier finding PV-D1 (reports/W3-parts/defects/TICKET-D1-…wiki), redrafted.
 RE-CHECKED: 29 Oct 2026, 12:03 AM–12:17 AM UTC (= 28 Oct, 8:03–8:17 PM in Toronto), staging v26.43.2-f8698cb, DVI Test; session, browser and test computer all on America/Toronto. Screen and server data both still show it.
 DUPLICATE CHECK: none open (JQL in SUMMARY-p2b.md).
@@ -41,10 +42,10 @@ Not affected — this report does not feed any Dashboard tile.
 11. Click the arrow next to **Receive** and choose **Receive later**. The part reads **Receive Later**.
 12. On the line, click **Complete**. If the **Missing Details** window asks for a **VIN**, type **ZZTESTVINPV300001** and click **Finish Work Order**.
 13. Open the **Finance** tab and click **Create Invoice**. Close the **New Customer Payment** window without paying. The invoice lists **ZZAUTOTEST-SO1-10282011**, 1, **$68.96**.
-14. Click **Reports**, then in the left menu under **Parts**, click **Parts Velocity**. Leave **Date: Last 90 days** and **Location: DVI Test**.
-15. Click **Search** and type **ZZAUTOTEST**.
+14. Click **Reports**, then in the left menu under **Parts**, click **Parts Velocity**. Click the **Date** filter and choose **Last 12 months**. Click the **Location** filter and click **Select all**, so it reads **Location: All locations**.
+15. Click the **Part #** column heading twice, so the arrow points down (Z to A), and scroll down to the ZZAUTOTEST rows (about 95 rows down). You can instead type **ZZAUTOTEST-SO1** in **Search**; the figures are the same.
 16. Find the row **Special Order · ZZAUTOTEST-SO1-10282011**.
-    - Already on staging: S1-38203 and S1-38206 billed this part on 28 Oct 2026. From 20 January 2027, pick **Custom** and choose a range that includes **Oct 28, 2026** instead.
+    - Already on staging: S1-38203 and S1-38206 billed this part on 28 Oct 2026. From 1 October 2027, pick **Custom** and choose a range that includes **Oct 28, 2026** instead.
 
 **Actual:** Units Sold **0.00**, Avg Cost **—**, Avg Sell **—**, Revenue **$0.00**, Margin **$0.00**, Margin % **—**, Demand **0**, Last Sale **—**.
 
@@ -62,7 +63,7 @@ Not affected — this report does not feed any Dashboard tile.
 
 **1.** Work order S1-38206, Finance: invoice INV-S1-38206 bills ZZAUTOTEST-SO1-10282011, 1 at $68.96.
 
-**2.** Parts Velocity at DVI Test, Last 90 days: the same part reads 0.00 sold, $0.00, Demand 0, Last Sale "—".
+**2.** Parts Velocity, Last 12 months, all locations, nothing in Search: the same part reads 0.00 sold, $0.00, Demand 0, Last Sale "—".
 
 ## Where it was seen
 

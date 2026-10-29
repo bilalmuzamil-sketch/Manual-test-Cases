@@ -1,0 +1,21 @@
+<h2>What is wrong</h2>
+<p>On <strong>Sales By Representative</strong>, when you open a representative (or the <strong>Unassigned</strong> row), invoices made on the <strong>same day</strong> are listed <strong>newest first, by the minute they were made</strong>. The written rule is that invoices on the same day are listed by <strong>invoice number, lowest first</strong>.</p>
+<p>Across different days the order is right (newest day first). Every figure is correct; only the order within a day is wrong. On a busy day this makes it hard to find one invoice by its number.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>DVI Test</strong>.</p></li><li><p>Open <strong>Reports → Sales By Representative</strong>.</p></li><li><p>Leave <strong>Date: This month</strong> (from 1 November pick <strong>Last month</strong>, so the range is October 2026). Click <strong>Location</strong> and pick <strong>Select all</strong>, so it reads <strong>Location: All locations</strong>.</p></li><li><p>Do not click <strong>Show Unassigned</strong>.</p></li><li><p>Click the arrow at the left of <strong>Viktoria Videnovic</strong> to open her invoices.</p></li><li><p>Read the invoice numbers on the six rows dated <strong>Oct 07 2026</strong>.</p></li></ol>
+<p><strong>Actual:</strong></p>
+<ul><li><p>Oct 07 2026: S2-34681, S2-34864, S2-33689, S2-33735, S2-34873, S2-34874 (newest invoice first).</p></li></ul>
+<p><strong>Expected:</strong></p>
+<ul><li><p>Oct 07 2026: S2-33689, S2-33735, S2-34681, S2-34864, S2-34873, S2-34874 (lowest number first).</p></li><li><p>Days stay newest first.</p></li></ul>
+<p>These are existing invoices at Staging Heavy Duty - 9919.</p>
+<p>The same shows on the <strong>Unassigned</strong> row (click <strong>Show Unassigned</strong>). Its invoices are test data at DVI Test and stay in place: on Oct 28 2026 they run S1-38221, S1-38218, S1-38219 … S1-38195 (newest first) instead of S1-38195, S1-38196 … S1-38221 (lowest number first). Any day with more than one invoice shows the same thing, at every location and under every representative.</p>
+<hr>
+<p><strong>Source:</strong> Sales By Representative report specification, Confluence, version 30 (21 Oct 2026), requirement S6-R9:</p>
+<blockquote><p>Within an expanded rep (and within the Unassigned row), invoice detail rows are ordered by invoice date descending (newest first), tie-broken by invoice number ascending by the numeric portion after the P/S prefix (numeric, not lexical — so S999 precedes S1000); if both the date and the numeric portion tie (e.g., P100 and S100 on the same day), P (Parts) sorts before S (Service).</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Sales By Representative, This month, All locations, Show Unassigned off, Viktoria Videnovic opened: the six Oct 07 2026 invoices run newest first (S2-34681, S2-34864, S2-33689, S2-33735, S2-34873, S2-34874).</p>
+{{NEW:build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/SV-11952/F3-SV11952-1-viktoria-oct07-all-locations.png}}
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

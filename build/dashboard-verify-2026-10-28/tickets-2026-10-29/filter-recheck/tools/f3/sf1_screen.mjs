@@ -72,6 +72,20 @@ if (mode === 'dvi-read') {
 }
 if (mode === 'cust-dvi') { await custTabs('a63836b3-ae77-4bb9-8f13-3784e0e22212', 'customer-ZZAUTOTEST-P2C-DEP', ['DEP-4818', 'DEP-4817', ...(SEED.deps || [])]); await pdf('1cf29c7d-295e-4919-be7e-12e90806e534', 'invoice-pdf-S1-38221'); }
 if (mode === 'cust-hd') { await custTabs('329d4f63-ce36-444a-893f-0a63e56b0038', 'customer-Bravo', ['DEP-4718']); await pdf('c9f68154-3f3c-4fd8-95c7-cdb1a7063f8e', 'invoice-pdf-S2-32989'); }
+const depAll = async (cid, name, want) => {   // Deposits tab with the "Open only" toggle switched OFF (Amendment 1: widest view)
+  await go(`/customers/${cid}/deposits`, 10000);
+  const t = page.locator('[data-test-id="toggle_filter_open_deposits"]'); meta.reads[name + '_toggle_before'] = await t.getAttribute('aria-checked').catch(() => null);
+  await t.click(); await page.waitForTimeout(8000); meta.reads[name + '_toggle_after'] = await t.getAttribute('aria-checked').catch(() => null);
+  const rows = await page.locator('main tbody tr').evaluateAll(trs => trs.map(x => x.innerText.replace(/\s+/g, ' ').trim()));
+  meta.reads[name] = { url: page.url(), hits: rows.filter(r => want.some(w => r.includes(w))), n: rows.length };
+  const boxes = []; for (const w of want) { const r = page.locator('main tbody tr').filter({ hasText: w }).first(); boxes.push({ w, box: B(await r.boundingBox().catch(() => null)), title: await r.locator('td').nth(1).getAttribute('title').catch(() => null) }); }
+  // hover the first date cell to read any full-date tooltip
+  const first = page.locator('main tbody tr').filter({ hasText: want[0] }).first().locator('td').nth(1); await first.hover().catch(() => {}); await page.waitForTimeout(1500);
+  meta.reads[name + '_tooltip'] = await txt(page.locator('.q-tooltip'));
+  await shot(name, { rows: boxes, toggle: B(await t.boundingBox().catch(() => null)) });
+};
+if (mode === 'dep-dvi') await depAll('a63836b3-ae77-4bb9-8f13-3784e0e22212', 'deposits-all-ZZAUTOTEST', ['DEP-4818', 'DEP-4817', 'DEP-4819', 'DEP-4820']);
+if (mode === 'dep-hd') await depAll('329d4f63-ce36-444a-893f-0a63e56b0038', 'deposits-all-Bravo', ['DEP-4718']);
 if (mode === 'hd-read') {          // read-only: DEP-4718 on S2-32989 (Bravo Mechanical Services), stored 2026-09-16T19:20:15Z = 17 Sep 00:20 Karachi
   await finance('c9f68154-3f3c-4fd8-95c7-cdb1a7063f8e', 'finance-S2-32989');
   await custTabs('329d4f63-ce36-444a-893f-0a63e56b0038', 'customer-Bravo', ['DEP-4718']);

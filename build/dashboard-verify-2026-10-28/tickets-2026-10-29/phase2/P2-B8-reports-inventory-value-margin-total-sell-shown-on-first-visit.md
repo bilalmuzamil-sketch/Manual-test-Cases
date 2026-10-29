@@ -1,8 +1,9 @@
 <!-- FILED 29 Oct 2026 as SV-11947 (https://shopview.atlassian.net/browse/SV-11947), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B8-SV-11947.html
+EDITED 29 Oct 2026 after the filter recheck: location switch dropped; Location set to All locations (columns unchanged); picture 1 replaced.
 SUMMARY: Reports - Inventory Value shows Margin and Total Sell on the first visit; they should start hidden
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8670 (Inv Value - Story 3 - Columns and Calculations) · relates to SV-8675 (Inv Value - Story 8 - Column Selection and Persistence) · relates to SV-8927 (first report of this, closed OBSOLETE 9 Aug 2026; QA lead: re-create, not reopen)
-PICTURES: pictures/P2-B8-1-inventory-value-first-visit.png
+PICTURES: ../filter-recheck/evidence/f2/pictures/SV-11947-B8-first-visit-columns-no-filters.png
 BASIS: Inventory Value Report PRD (Confluence 720142338, version 10, last change 13 Aug 2026), S3-R12, S3-R13 and S8-R3 (quoted below). Converted from the 28 Oct draft filed-2026-10-28/drafts/IV-COLUMNS.html.
 RE-CHECKED: 29 Oct 2026, 12:14 AM UTC (= 28 Oct, 8:14 PM in Toronto), staging v26.43.2-f8698cb, DVI Test, fresh browser with no saved report settings; session, browser and test computer all on America/Toronto.
 DUPLICATE CHECK: none open; SV-8927 is closed (OBSOLETE).
@@ -15,7 +16,7 @@ When **Inventory Value** is opened for the **first time** in a browser (no saved
 
 Both should **start hidden**. A user who wants them turns them on from the columns button.
 
-For example, at DVI Test the first visit shows:
+For example, the first visit shows:
 
 - Actual: **12 columns**: Part #, Description, Category, Vendor, Location, Qty, Unit Cost, Unit Sell, **Margin**, Margin %, **Total Sell**, Total Cost.
 - Expected: **10 columns**: the same without **Margin** and **Total Sell** (12 − 2 = 10).
@@ -32,8 +33,8 @@ Not affected — this report does not feed any Dashboard tile.
 
 1. Open a browser window that has never opened Inventory Value before (a private / incognito window works).
 2. Log in to staging as an Admin.
-3. At the top right, switch the location to **DVI Test**.
-4. Click **Reports**, then in the left menu under **Parts**, click **Inventory Value**.
+3. Click **Reports** (any location), then in the left menu under **Parts**, click **Inventory Value**.
+4. Click the **Location** filter and click **Select all**. This does not change which columns are shown.
 5. Read the column headings across the top of the table.
 
 **Actual:** **Margin** and **Total Sell** are shown on the first visit.
@@ -52,7 +53,7 @@ Not affected — this report does not feed any Dashboard tile.
 
 ## Screenshots
 
-**1.** Inventory Value opened for the first time in a fresh browser at DVI Test: Margin and Total Sell are shown.
+**1.** Inventory Value opened for the first time in a fresh browser, all locations: Margin and Total Sell are shown.
 
 ## Where it was seen
 
