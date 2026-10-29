@@ -3337,6 +3337,9 @@ whereas an application-level JSON `{"error":"sso_required", …}` means the requ
   Fix: `localStorage.setItem('timezone', JSON.stringify(zone))` next to `location`, then read it back into the evidence JSON
   (`app_timezone_key`). Check: the request's `start_date` must carry the zone's offset (Toronto `T04:00:00.000Z`). Recipe:
   `dashboard-verify-2026-10-28/tickets-2026-10-29/phase2/tools/p2b/ev_p2b.mjs`. Search key: `start_date=` `T00:00:00.000Z`.
+- **Screen recipes found 2026-10-29 (Phase 2 Worker C, DVI Test):** **Add Deposit** shows on a work order's Finance tab only while the
+  work order is *Approved* (set the line back to authorized to bring it back). A **$0.00 invoice** through the screen: New Line with a
+  Title and General Labor, no times → Line Approved → Complete → Create Invoice. Records: S1-38218 ($0), S1-38221 ($30 deposit).
 - **Jira through the Atlassian MCP (proven 2026-10-28, SV-11922):** `createJiraIssue` with `contentFormat: "html"`; no `<blockquote>`
   inside `<li>` (ADF rejects it); Bugs need `Product Area` (SV-11839 → "Reports & Dashboards"). Pictures: `uploadAttachmentToJiraIssue`
   phase 1 → run the returned curl (token is short-lived, never save it) → put `<figure data-type="media-single" data-width="100"
