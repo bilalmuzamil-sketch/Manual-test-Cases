@@ -134,12 +134,13 @@ export async function runDvi(c) {
   }
   if (mode === 'A4b') {    // read-only: Shop Efficiency and Technician Utilization, Today
     await go('/reports/shop-billing-efficiency', 12000);
+    try { await preset('today'); } catch (e) { meta.se_preset_err = String(e).slice(0, 150); }
     meta.se_text = (await txt(page.locator('main'))).slice(0, 1500);
     const tc = page.getByText('Total Clocked Hours', { exact: false }).first();
     await shot('3-shop-efficiency-today', { label: await box(tc), chip: await txt(page.locator('[data-test-id="filter_chip_range"]')) });
     await go('/reports/technician-utilization', 12000);
     try { await preset('today'); } catch (e) { meta.tu_preset_err = String(e).slice(0, 150); }
     const row = page.locator('tbody tr').filter({ hasText: 'Admin Shopview' }).first();
-    await shot('4-tu-today', { row: await box(row), text: await txt(row), heads: await heads(), chip: await txt(page.locator('[data-test-id="filter_chip_range"]')) });
+    await shot('4-tu-today', { row: await box(row), text: await txt(row), heads: await heads(), chip: await txt(page.locator('[data-test-id="filter_chip_range"]')), dateBtn: await txt(page.locator('button, .q-btn').filter({ hasText: 'Date' })), dateBox: await box(page.locator('button, .q-btn').filter({ hasText: 'Date' })) });
   }
 }
