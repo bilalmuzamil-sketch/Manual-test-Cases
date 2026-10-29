@@ -2360,6 +2360,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     is never filed, and an already-filed ticket resting on it is re-verified before anything else (Rule 12);
     **(f)** if a result changes when the zones are matched, it was a test artefact, not a defect — unless a
     written source says the viewer's own zone applies, in which case it is a PO question (Rule 58).
+    **AMENDMENT 29 Oct 2026 — the FOURTH place (found by Phase 2 Worker B; covered by the QA lead's 28 Oct instruction to save the time-zone learning permanently):** the app itself keeps a zone in `localStorage['timezone']` (set by the location switcher) and builds report/dashboard date windows and date display from it, **falling back to UTC when it is missing** — a browser on the right zone is NOT enough. Set it too (`staging-boot2.mjs` now does so from `opts.timezone`), read it back into the evidence as `app_timezone_key`, and check that a report request's `start_date` carries the zone's offset. Proof of harm: question 39's 40.70 h / 32.34 h (sent to the PO on 28 Oct) came from unmatched zones; with all four on the location's zone the day reads 7.70 h / 12.10 h.
     **Staging location zones (fact, 28 Oct 2026):** Staging Heavy Duty - 9919 = Asia/Karachi · Staging
     Lethbridge - 4310 = America/Edmonton · QB Location = America/Vancouver · DVI Test = America/Toronto.
     **WHY (the evidence for the rule).** SV-11922 (A/P "Past Due" one day short) was filed on 28 Oct 2026 from

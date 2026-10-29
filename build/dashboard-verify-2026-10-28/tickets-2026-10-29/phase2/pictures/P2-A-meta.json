@@ -1,0 +1,128 @@
+{
+ "worker": "p2a",
+ "note": "Rule 99: browser_zone read inside the page (Intl), process_zone = node process zone (TZ env), location_tz = the location; session change-location to the same zone by boot2. app_timezone_key = localStorage \"timezone\" (the app reads report windows from it). A4/A4b were captured before that key was set: their pages ask the server for range=today (no browser-side window), and the pictures show 28 Oct (Toronto) rows at 00:30 UTC on 29 Oct, so the window was the Toronto day.",
+ "pictures": {
+  "P2-A1-1-wip-days-open.png": {
+   "source": "/tmp/cln/p2a/ev/A1/1-wip-days-open.png",
+   "location": "Staging Heavy Duty - 9919",
+   "location_tz": "Asia/Karachi",
+   "browser_zone": "Asia/Karachi",
+   "process_zone": "Asia/Karachi",
+   "process_TZ": "Asia/Karachi",
+   "app_timezone_key": "\"Asia/Karachi\"",
+   "app_version": "v26.43.2-f8698cb",
+   "captured_at_utc": "2026-10-29T00:47:15.715Z",
+   "report_requests": [
+    "/reporting/individual-punch-clock/today range=today",
+    "/reporting/reports/work-in-progress/filters from=2026-10-28T19:00:00.000Z",
+    "/reporting/reports/work-in-progress from=2026-10-28T19:00:00.000Z"
+   ]
+  },
+  "P2-A2-1-wip-parts-columns.png": {
+   "source": "/tmp/cln/p2a/ev/A2/1-wip-row.png",
+   "location": "Staging Heavy Duty - 9919",
+   "location_tz": "Asia/Karachi",
+   "browser_zone": "Asia/Karachi",
+   "process_zone": "Asia/Karachi",
+   "process_TZ": "Asia/Karachi",
+   "app_timezone_key": "\"Asia/Karachi\"",
+   "app_version": "v26.43.2-f8698cb",
+   "captured_at_utc": "2026-10-29T00:48:13.253Z",
+   "report_requests": [
+    "/reporting/reports/work-in-progress/filters from=2026-10-28T19:00:00.000Z",
+    "/reporting/individual-punch-clock/today range=today",
+    "/reporting/reports/work-in-progress from=2026-10-28T19:00:00.000Z"
+   ]
+  },
+  "P2-A2-2-work-order-receive-later.png": {
+   "source": "/tmp/cln/p2a/ev/A2/2-work-order-parts.png",
+   "location": "Staging Heavy Duty - 9919",
+   "location_tz": "Asia/Karachi",
+   "browser_zone": "Asia/Karachi",
+   "process_zone": "Asia/Karachi",
+   "process_TZ": "Asia/Karachi",
+   "app_timezone_key": "\"Asia/Karachi\"",
+   "app_version": "v26.43.2-f8698cb",
+   "captured_at_utc": "2026-10-29T00:48:27.049Z",
+   "report_requests": [
+    "/reporting/reports/work-in-progress/filters from=2026-10-28T19:00:00.000Z",
+    "/reporting/individual-punch-clock/today range=today",
+    "/reporting/reports/work-in-progress from=2026-10-28T19:00:00.000Z"
+   ]
+  },
+  "P2-A4-1-timesheet-today-running.png": {
+   "source": "/tmp/cln/p2a/ev/A4/2-ta-running.png",
+   "location": "DVI Test",
+   "location_tz": "America/Toronto",
+   "browser_zone": "America/Toronto",
+   "process_zone": "America/Toronto",
+   "process_TZ": "America/Toronto",
+   "app_timezone_key": null,
+   "app_version": "v26.43.2-f8698cb",
+   "captured_at_utc": "2026-10-29T00:30:18.675Z",
+   "report_requests": null
+  },
+  "P2-A4-2-shop-efficiency-today.png": {
+   "source": "/tmp/cln/p2a/ev/A4b/3-shop-efficiency-today.png",
+   "location": "DVI Test",
+   "location_tz": "America/Toronto",
+   "browser_zone": "America/Toronto",
+   "process_zone": "America/Toronto",
+   "process_TZ": "America/Toronto",
+   "app_timezone_key": null,
+   "app_version": "v26.43.2-f8698cb",
+   "captured_at_utc": "2026-10-29T00:33:34.366Z",
+   "report_requests": null
+  },
+  "P2-A5-1-timesheet-two-overlapping.png": {
+   "source": "/tmp/cln/p2a/ev/A5b/3-ta-two-rows.png",
+   "location": "DVI Test",
+   "location_tz": "America/Toronto",
+   "browser_zone": "America/Toronto",
+   "process_zone": "America/Toronto",
+   "process_TZ": "America/Toronto",
+   "app_timezone_key": "\"America/Toronto\"",
+   "app_version": "v26.43.2-f8698cb",
+   "captured_at_utc": "2026-10-29T00:45:34.832Z",
+   "report_requests": [
+    "/reporting/punch-clock-activities/this_month range=this_month",
+    "/reporting/individual-punch-clock/today range=today",
+    "/reporting/punch-clock-activities/today range=today",
+    "/reporting/export/payroll_timesheet range=today"
+   ]
+  },
+  "P2-A5-2-payroll-export-today.png": {
+   "source": "/tmp/cln/p2a/ev/A5b/5-export-file.png",
+   "location": "DVI Test",
+   "location_tz": "America/Toronto",
+   "browser_zone": "America/Toronto",
+   "process_zone": "America/Toronto",
+   "process_TZ": "America/Toronto",
+   "app_timezone_key": "\"America/Toronto\"",
+   "app_version": "v26.43.2-f8698cb",
+   "captured_at_utc": "2026-10-29T00:45:46.927Z",
+   "report_requests": [
+    "/reporting/punch-clock-activities/this_month range=this_month",
+    "/reporting/individual-punch-clock/today range=today",
+    "/reporting/punch-clock-activities/today range=today",
+    "/reporting/export/payroll_timesheet range=today"
+   ]
+  },
+  "P2-A5-3-payroll-export-heavy-duty-september.png": {
+   "source": "/tmp/cln/p2a/ev/A5HD/2-export-file-haley.png",
+   "location": "Staging Heavy Duty - 9919",
+   "location_tz": "Asia/Karachi",
+   "browser_zone": "Asia/Karachi",
+   "process_zone": "Asia/Karachi",
+   "process_TZ": "Asia/Karachi",
+   "app_timezone_key": "\"Asia/Karachi\"",
+   "app_version": "v26.43.2-f8698cb",
+   "captured_at_utc": "2026-10-29T00:46:33.039Z",
+   "report_requests": [
+    "/reporting/punch-clock-activities/this_month range=this_month",
+    "/reporting/individual-punch-clock/today range=today",
+    "/reporting/export/payroll_timesheet range=last_month"
+   ]
+  }
+ }
+}

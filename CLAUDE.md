@@ -45,8 +45,8 @@ These are stated here **in full** because a session that gets only this far must
   session's branch**.
 - **🔴 TEST IN THE LOCATION'S OWN TIME ZONE (99).** QA lead, 2026-10-28: *"make sure you test those tickets ensuring that the
   Location timezone and your machine timezone is the SAME."* Before any check, reproduction, screenshot or ticket: session
-  `change-location` with the location's zone, browser `timezoneId` = that zone, process `TZ=<zone>`, and all three RECORDED in
-  the evidence and the ticket. A result seen with the zones unmatched or unrecorded is NOT VERIFIED and is never filed.
+  `change-location` with the location's zone, browser `timezoneId` = that zone, process `TZ=<zone>`, **and the app's own
+  `localStorage['timezone']` key (it falls back to UTC — amendment 29 Oct)**, all RECORDED in the evidence and the ticket. A result seen with the zones unmatched or unrecorded is NOT VERIFIED and is never filed.
 - **🔴 TICKETS ARE WRITTEN FOR A FIRST-TIME, NON-TECHNICAL READER (100).** QA lead, 2026-10-28: *"keep the issue clear ... so that it
   can be understood by a lay man ... or by a person who is look at the ticket for the first time."* What the screen shows and what it
   means · one example with the arithmetic · where on screen to look · plain steps · source quote · few pictures · developer note last.

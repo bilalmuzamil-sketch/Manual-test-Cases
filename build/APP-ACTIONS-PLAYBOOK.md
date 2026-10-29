@@ -3340,6 +3340,11 @@ whereas an application-level JSON `{"error":"sso_required", …}` means the requ
 - **Screen recipes found 2026-10-29 (Phase 2 Worker C, DVI Test):** **Add Deposit** shows on a work order's Finance tab only while the
   work order is *Approved* (set the line back to authorized to bring it back). A **$0.00 invoice** through the screen: New Line with a
   Title and General Labor, no times → Line Approved → Complete → Create Invoice. Records: S1-38218 ($0), S1-38221 ($30 deposit).
+- **Labor screen recipes found 2026-10-29 (Phase 2 Worker A):**
+  - **Work In Progress:** there is no search box. Narrow it with the Customer filter. The parts columns come from `button_column_selection` → `toggle_column_parts_earned` / `toggle_column_parts_remaining`.
+  - **Report menus:** pick options with `getByRole('option', {name, exact: true})`.
+  - **Running clock on screen:** Timesheet Activities → **New** with no End makes a running clock. The line's Stop → Clock Out stops it.
+  - **Deleting a work order:** Delete Work Order is blocked on screen when time is clocked on it ("Cannot delete a work order that has labor clocked into it").
 - **Jira through the Atlassian MCP (proven 2026-10-28, SV-11922):** `createJiraIssue` with `contentFormat: "html"`; no `<blockquote>`
   inside `<li>` (ADF rejects it); Bugs need `Product Area` (SV-11839 → "Reports & Dashboards"). Pictures: `uploadAttachmentToJiraIssue`
   phase 1 → run the returned curl (token is short-lived, never save it) → put `<figure data-type="media-single" data-width="100"
