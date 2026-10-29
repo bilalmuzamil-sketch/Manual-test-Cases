@@ -232,6 +232,26 @@ if (mode === 'IV_DVI_PIC') { // B5 / B8 picture only: first visit (fresh browser
   await openIV();
   await guard('d', async () => { await allLocations(); await step('iv_first_visit_all_locations', 'table', [], true); });
 }
+if (mode === 'OBSA_IV_PDF') { // OBS A: fresh first visit; Location -> Select all (arg 'all') or keep the active location (arg 'one'); Download (PDF)
+  meta.exportResp = []; page.on('response', async r => { if (/inventory-value\/export/.test(r.url())) meta.exportResp.push({ status: r.status(), url: decodeURIComponent(r.url().replace(/^.*?\/api\//, '')).slice(0, 400), at: new Date().toISOString(), body: r.status() >= 400 ? (await r.text().catch(() => '')).slice(0, 300) : '' }); });
+  meta.notes = []; const pollNotes = async ms => { const t0 = Date.now(); while (Date.now() - t0 < ms) { for (const n of (await page.locator('.q-notification').allInnerTexts().catch(() => [])).map(T)) if (!meta.notes.includes(n)) meta.notes.push(n); if (meta.exportResp.length && meta.notes.length) break; await page.waitForTimeout(1000); } };
+  await openIV();
+  if (arg !== 'one') await allLocations();
+  await step('before_download', 'table', [], true);
+  const more = page.locator('.q-page button').filter({ hasText: 'more_horiz' }).first();
+  await more.click(); await page.waitForTimeout(1500);
+  const it = menu().getByText(/Download \(PDF\)/).first(); meta.clickAt = new Date().toISOString();
+  const dlP = page.waitForEvent('download', { timeout: 240000 }).catch(e => { meta.dlErr = e.message.split('\n')[0]; return null; });
+  await it.click(); await page.waitForTimeout(800); await page.screenshot({ path: `${OUT}/during.png` });
+  const pn = pollNotes(240000); const dl = await Promise.race([dlP, (async () => { await pn; return 'notes'; })()]);
+  if (dl && dl !== 'notes') { meta.download = { name: dl.suggestedFilename() }; await dl.saveAs(`${OUT}/iv.pdf`); }
+  await pollNotes(4000); meta.doneAt = new Date().toISOString();
+  await page.screenshot({ path: `${OUT}/after.png` }); await step('after_download', 'table', [], false);
+}
+if (mode === 'OBSB_PV_FIND') { // OBS B: Last Sale for one part; Last 12 months, all locations, search only as a finder. arg = part number
+  await openPV();
+  await guard('d', async () => { await allLocations(); await pickPreset('Last 12 months'); await search(arg); meta.readAt = new Date().toISOString(); await step('lastsale_' + arg.replace(/[^A-Za-z0-9-]/g, ''), PV, [arg], true); });
+}
 save(); await browser.close();
 fs.mkdirSync(`${EV}/screen`, { recursive: true });
 fs.writeFileSync(`${EV}/screen/${mode}${arg ? '_' + arg : ''}_${meta.observed_at_utc.replace(/[:.]/g, '')}.json`, JSON.stringify(meta, null, 1));

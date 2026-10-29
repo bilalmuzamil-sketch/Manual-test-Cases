@@ -1,0 +1,43 @@
+{
+ "loc": {
+  "key": "LETH",
+  "wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+  "tz": "America/Edmonton",
+  "name": "Staging Lethbridge - 4310",
+  "change_location": 200,
+  "process_zone": "America/Edmonton",
+  "location_tz": "America/Edmonton",
+  "local_now": "2026-10-29T05:21:32-06:00"
+ },
+ "window": [
+  "2026-08-25T06:00:00.000Z",
+  "2026-08-26T05:59:59.999Z"
+ ],
+ "symptom_rows": [
+  [
+   "Joseph Nelson",
+   "S3-17383",
+   4,
+   "Replace cabin air filter",
+   0.01
+  ]
+ ],
+ "server_requests": [
+  {
+   "GET": "/api/reporting/technician-efficiency/custom?range=custom&start_date=2026-08-25T06%3A00%3A00.000Z&end_date=2026-08-26T05%3A59%3A59.999Z",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/expanded/custom?range=custom&start_date=2026-08-25T06%3A00%3A00.000Z&end_date=2026-08-26T05%3A59%3A59.999Z&staffIds%5B0%5D=d800d871-c113-4654-a0a5-3b3fc03655a3",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/expanded/custom?range=custom&start_date=2026-08-25T06%3A00%3A00.000Z&end_date=2026-08-26T05%3A59%3A59.999Z&staffIds%5B0%5D=9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/expanded/custom?range=custom&start_date=2026-08-25T06%3A00%3A00.000Z&end_date=2026-08-26T05%3A59%3A59.999Z&staffIds%5B0%5D=fc1fd838-5727-4f39-b641-721d22e196b3",
+   "status": 200
+  }
+ ]
+}

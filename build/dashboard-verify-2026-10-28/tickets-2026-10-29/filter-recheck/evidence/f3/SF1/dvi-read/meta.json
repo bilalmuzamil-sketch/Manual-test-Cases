@@ -1,0 +1,131 @@
+{
+ "mode": "dvi-read",
+ "location": "DVI Test",
+ "location_tz": "America/Toronto",
+ "process_TZ": "America/Toronto",
+ "process_zone": "America/Toronto",
+ "observed_at_utc": "2026-10-29T11:21:42.830Z",
+ "shots": {
+  "finance-S1-38221": {
+   "at_utc": "2026-10-29T11:22:01.157Z",
+   "deposit_lines": [
+    {
+     "t": "(Deposit) Oct 27, 2026 - Cash",
+     "box": {
+      "x": 1183,
+      "y": 1753,
+      "w": 1224,
+      "h": 38
+     }
+    }
+   ]
+  },
+  "finance-control": {
+   "at_utc": "2026-10-29T11:22:13.037Z",
+   "deposit_lines": [
+    {
+     "t": "(Deposit) Oct 27, 2026 - Cash",
+     "box": {
+      "x": 1183,
+      "y": 1833,
+      "w": 1224,
+      "h": 38
+     }
+    },
+    {
+     "t": "(Deposit) Oct 29, 2026 - Cash",
+     "box": {
+      "x": 1183,
+      "y": 1871,
+      "w": 1224,
+      "h": 38
+     }
+    }
+   ]
+  },
+  "customer-ZZAUTOTEST-P2C-DEP-Deposits": {
+   "at_utc": "2026-10-29T11:23:30.956Z",
+   "rows": [
+    {
+     "w": "DEP-4818",
+     "box": null
+    },
+    {
+     "w": "DEP-4817",
+     "box": null
+    },
+    {
+     "w": "DEP-4819",
+     "box": {
+      "x": 669,
+      "y": 498,
+      "w": 2471,
+      "h": 96
+     }
+    },
+    {
+     "w": "DEP-4820",
+     "box": {
+      "x": 669,
+      "y": 594,
+      "w": 2471,
+      "h": 96
+     }
+    }
+   ]
+  }
+ },
+ "reads": {
+  "finance-S1-38221": {
+   "lines": [
+    "(Deposit) Oct 27, 2026 - Cash"
+   ]
+  },
+  "finance-control": {
+   "lines": [
+    "(Deposit) Oct 27, 2026 - Cash",
+    "(Deposit) Oct 29, 2026 - Cash"
+   ]
+  },
+  "customer-ZZAUTOTEST-P2C-DEP_tabs": [
+   "Work Orders (3)",
+   "Part Sales",
+   "Contacts (1)",
+   "Assets (1)",
+   "Notes",
+   "Invoices (2)",
+   "Payments (4)",
+   "Deposits (2)",
+   "Fees & Discounts (0)"
+  ],
+  "customer-ZZAUTOTEST-P2C-DEP_Deposits": {
+   "url": "https://app.staging.shopview.com/customers/a63836b3-ae77-4bb9-8f13-3784e0e22212/deposits",
+   "heads": [
+    "Datearrow_drop_up",
+    "No.arrow_drop_up",
+    "Work Order / Part Sale",
+    "arrow_drop_upAmount",
+    "Applied",
+    "Open Balance",
+    "Method",
+    "Status",
+    "Memo",
+    ""
+   ],
+   "hits": [
+    "Today DEP-4819 S1-38222 $10.00 $0.00 $10.00 CASH Held Deposit for Work Order S1-3822.. delete",
+    "2 days ago DEP-4820 S1-38222 $5.00 $0.00 $5.00 CASH Held Deposit for Work Order S1-3822.. delete"
+   ]
+  }
+ },
+ "browser_zone": "America/Toronto",
+ "app_timezone_key": "\"America/Toronto\"",
+ "browser_now": "Thu Oct 29 2026 07:21:42 GMT-0400 (Eastern Daylight Time)",
+ "appVersion": "v26.43.3-8ad4001",
+ "loc_start": {
+  "ok": true,
+  "shown_has_name": true,
+  "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+  "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+ }
+}
