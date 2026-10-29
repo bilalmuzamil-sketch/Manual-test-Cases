@@ -9,7 +9,7 @@ import { boot2 } from '/home/user/Manual-test-Cases/build/testing-tools/staging-
 const APP = 'https://app.staging.shopview.com';
 const DVI = { wp: '39522bc6-abca-4f67-bd12-2840043c2d68', tz: 'America/Toronto', loc: 'DVI Test' };
 const HD = { wp: 'b3c8c820-f815-4cf1-8938-10956c5ee71a', tz: 'Asia/Karachi', loc: 'Staging Heavy Duty - 9919' };
-const mode = process.argv[2]; const arg = process.argv[3] || ''; const M = /HD/.test(mode) ? HD : DVI;
+const mode = process.argv[2]; const arg = process.argv[3] || ''; const M = (/HD/.test(mode) || process.env.LOC === 'HD') ? HD : DVI;
 if (process.env.TZ !== M.tz) { console.error(`run with TZ=${M.tz}`); process.exit(3); }
 const EV = '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f2';
 const OUT = `/tmp/cln/f2/shots/${mode}${arg ? '_' + arg : ''}`; fs.mkdirSync(OUT, { recursive: true });
@@ -39,7 +39,7 @@ const step = async (name, sel, find = [], shotIt = true) => { const s = { chips:
   for (const f of find) s.rows[f] = sel ? await rowsOf(sel, f) : [];
   s.notifications = (await page.locator('.q-notification').allInnerTexts().catch(() => [])).map(T);
   s.api_count = meta.api.length; meta.steps[name] = s; if (shotIt) await page.screenshot({ path: `${OUT}/${name}.png` }); save(); return s; };
-const hdr = async () => T(await page.locator('header').first().innerText({ timeout: 8000 }).catch(() => ''));
+const hdr = async () => { await page.keyboard.press('Escape').catch(() => {}); const a = T(await page.locator('header').first().innerText({ timeout: 8000 }).catch(() => '')); return a || T(await page.locator('header').first().textContent({ timeout: 8000 }).catch(() => '')); };
 // Location trap (F4, 29 Oct): assert the header shows the intended location at the start AND the end of every run.
 const ver = async () => { meta.appVersion = await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null);
   if (meta.header_start === undefined) { meta.header_start = (await hdr()).slice(0, 300); meta.location_ok_start = meta.header_start.includes(M.loc); } };
