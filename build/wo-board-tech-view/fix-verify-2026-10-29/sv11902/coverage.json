@@ -1,0 +1,337 @@
+{
+ "ticket": "SV-11902",
+ "build": "v26.43.3-74314c9 (sv11902, 29 Oct 2026; PRD v82)",
+ "surfaces": [
+  "Board View",
+  "Tech View"
+ ],
+ "lines": [
+  {
+   "id": "L1",
+   "quote": "Key Decision / S4-N2: \"Lead technician cannot be changed once a work order is Declined, Invoiced or Paid.\" — dragging to another technician",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02BV-D1-to-other-over-target.png",
+      "X02BV-after-refresh.png",
+      "run-main.log"
+     ],
+     "setup_readback": "statuses read back: D1 Declined, D2 Declined (no lead), D3 Approved, D4 Complete, D5 Approved with one declined line, D6 Declined, D7 Approved",
+     "observed": "drop on Ben refused; stays with Ana, lead unchanged, also after refresh"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02TV-D1-to-other-over-target.png",
+      "X02TV-after-refresh.png",
+      "run-main.log"
+     ],
+     "setup_readback": "statuses read back: D1 Declined, D2 Declined (no lead), D3 Approved, D4 Complete, D5 Approved with one declined line, D6 Declined, D7 Approved",
+     "observed": "same in Tech View"
+    }
+   }
+  },
+  {
+   "id": "L2",
+   "quote": "S4-N2: \"it cannot be moved … to Unassigned\"",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02BV-D1-to-unassigned-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "statuses read back: D1 Declined, D2 Declined (no lead), D3 Approved, D4 Complete, D5 Approved with one declined line, D6 Declined, D7 Approved",
+     "observed": "drop on Unassigned refused; lead unchanged"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02TV-D1-to-unassigned-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "statuses read back: D1 Declined, D2 Declined (no lead), D3 Approved, D4 Complete, D5 Approved with one declined line, D6 Declined, D7 Approved",
+     "observed": "same"
+    }
+   }
+  },
+  {
+   "id": "L3",
+   "quote": "S4-N2: \"or out of Unassigned\"",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02BV-D2-out-of-unassigned-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "statuses read back: D1 Declined, D2 Declined (no lead), D3 Approved, D4 Complete, D5 Approved with one declined line, D6 Declined, D7 Approved",
+     "observed": "Declined unassigned D2 dropped on Ben refused; stays Unassigned, lead none"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02TV-D2-out-of-unassigned-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "statuses read back: D1 Declined, D2 Declined (no lead), D3 Approved, D4 Complete, D5 Approved with one declined line, D6 Declined, D7 Approved",
+     "observed": "same"
+    }
+   }
+  },
+  {
+   "id": "L4",
+   "quote": "S4-N2: \"A Declined, Invoiced or Paid work order can still be dragged to reorder it within its current technician\"",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "probe2/XQBV-reorder-control.png",
+      "probe2/XQBV-reorder-declined.png",
+      "probe2/sv11902-declined-1029.json"
+     ],
+     "setup_readback": "order read P1(Declined),P2,P3,P4; control: Approved P3 reordered first",
+     "observed": "Declined P1 moved from 1st to 2nd inside Ana's column, kept after refresh"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "probe2/XQTV-reorder-control.png",
+      "probe2/XQTV-reorder-declined.png",
+      "probe2/sv11902-declined-1029.json"
+     ],
+     "setup_readback": "same",
+     "observed": "same in Ana's group"
+    }
+   }
+  },
+  {
+   "id": "L5",
+   "quote": "S4-N2: \"Complete work orders can be moved freely, as today.\"",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02BV-D4-complete-control-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "statuses read back: D1 Declined, D2 Declined (no lead), D3 Approved, D4 Complete, D5 Approved with one declined line, D6 Declined, D7 Approved",
+     "observed": "Complete D4 moved to Ben (also the control that the drag itself works)"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02TV-D4-complete-control-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "statuses read back: D1 Declined, D2 Declined (no lead), D3 Approved, D4 Complete, D5 Approved with one declined line, D6 Declined, D7 Approved",
+     "observed": "same"
+    }
+   }
+  },
+  {
+   "id": "L6",
+   "quote": "S4-N2: \"when a line is re-approved or a new line is added and the work order becomes Estimate or Approved, its lead can change again\"",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "XREBV-D6-after-new-line-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "D6 read Declined, then Approved after a new line was added",
+     "observed": "moved to Ben"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "XRETV-D6-after-new-line-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "same",
+     "observed": "moved to Ben"
+    }
+   }
+  },
+  {
+   "id": "L7",
+   "quote": "S4-N2: \"a declined line on a work order in any other status does not lock it\"",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02BV-D5-declined-line-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "D5 read Approved with one declined line",
+     "observed": "moved to Ben"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02TV-D5-declined-line-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "same",
+     "observed": "moved to Ben"
+    }
+   }
+  },
+  {
+   "id": "L8",
+   "quote": "S4-N6: \"the Assign lead technician or Reassign lead technician action and the Unassign action are disabled, and their tooltip reads “Declined · can’t be reassigned”\"",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "X06BV-menu-lead-hover.png",
+      "X06BV-menu-unassign-hover.png",
+      "run-main.log"
+     ],
+     "setup_readback": "D1 Declined; control D3 Approved has both actions enabled",
+     "observed": "both actions greyed out, tooltip Declined · can't be reassigned on each; clicking opens nothing, lead unchanged"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "X06TV-menu-lead-hover.png",
+      "X06TV-menu-unassign-hover.png",
+      "run-main.log"
+     ],
+     "setup_readback": "same",
+     "observed": "same"
+    }
+   }
+  },
+  {
+   "id": "L9",
+   "quote": "S4-N6: \"The same words are the tooltip on the card’s or row’s lock icon\"",
+   "cells": {
+    "Board View": {
+     "verdict": "not-on-build",
+     "evidence": [
+      "probe2/XQBV-lock-P1.png",
+      "probe2/XQBV-lock-P4.png",
+      "probe2/sv11902-declined-1029.json"
+     ],
+     "setup_readback": "lock read: label \"Declined · can't be reassigned\" (Invoiced lock: \"Invoiced · can't be reassigned\")",
+     "observed": "the lock carries the words, but no tooltip pops up on hover — for the Invoiced lock either",
+     "reason": "the hover tooltip on locks is SV-11754 (Ready for Production, its own branch); on 28 Oct the same check showed it on sv11754, here even the Invoiced control shows none"
+    },
+    "Tech View": {
+     "verdict": "not-on-build",
+     "evidence": [
+      "probe2/XQTV-lock-P1.png",
+      "probe2/XQTV-lock-P4.png",
+      "probe2/sv11902-declined-1029.json"
+     ],
+     "setup_readback": "same",
+     "observed": "same",
+     "reason": "same as Board View"
+    }
+   }
+  },
+  {
+   "id": "L10",
+   "quote": "S4-N6: \"and the note shown at the top of another technician’s column or group while the work order is dragged over it, where the drop is refused\"",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02BV-D1-to-other-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "statuses read back: D1 Declined, D2 Declined (no lead), D3 Approved, D4 Complete, D5 Approved with one declined line, D6 Declined, D7 Approved",
+     "observed": "while held over Ben's column the note Declined · can't be reassigned shows at its top; drop refused"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "X02TV-D1-to-other-over-target.png",
+      "run-main.log"
+     ],
+     "setup_readback": "statuses read back: D1 Declined, D2 Declined (no lead), D3 Approved, D4 Complete, D5 Approved with one declined line, D6 Declined, D7 Approved",
+     "observed": "same over Ben's group"
+    }
+   }
+  },
+  {
+   "id": "L11",
+   "quote": "S4-N7 / S1-R9a: lock icon marks a Declined work order (only reorder within its technician)",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "probe/XPBV-lock-declined.png",
+      "probe2/sv11902-declined-1029.json"
+     ],
+     "setup_readback": "P1 Declined, P2 Approved",
+     "observed": "lock icon on the Declined card, none on the Approved card"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "probe/XPTV-lock-declined.png",
+      "probe2/sv11902-declined-1029.json"
+     ],
+     "setup_readback": "same",
+     "observed": "lock icon on the Declined row, none on the Approved row"
+    }
+   }
+  },
+  {
+   "id": "L12",
+   "quote": "Key Decision: \"it must hold on every path … and the work order detail page\" + \"the server\"",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "probe2/XPG-G1-clicked.png",
+      "probe2/XPG-G2-clicked.png",
+      "server/XSV-page-D1.png",
+      "server/sv11902-declined-1029.json",
+      "probe2/sv11902-declined-1029.json"
+     ],
+     "setup_readback": "G1 read Declined, G2 Approved (control)",
+     "observed": "work order page: Lead technician on the Declined one is plain text, clicking opens nothing (Approved control opens a list of 30); server refuses change, unassign and assign-from-Unassigned with 409 \"The lead technician can't be changed once a work order is Invoiced, Paid or Declined.\" (Approved control 201)"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "server/XSV-page-D1.png",
+      "server/sv11902-declined-1029.json"
+     ],
+     "setup_readback": "same work orders",
+     "observed": "same page and server — they do not depend on the view"
+    }
+   }
+  },
+  {
+   "id": "L13",
+   "quote": "S4-R32: Undo \"follows the Declined, Invoiced or Paid rule\"",
+   "cells": {
+    "Board View": {
+     "verdict": "not-on-build",
+     "evidence": [
+      "XUNDOBV-after-undo.png",
+      "run-main.log"
+     ],
+     "setup_readback": "change message read: \"… assigned to …\" with only Dismiss",
+     "observed": "no Undo button on this build",
+     "reason": "Undo is SV-11567 (its own branch sv11567); not on sv11902 — check once both are joined"
+    },
+    "Tech View": {
+     "verdict": "not-on-build",
+     "evidence": [
+      "XUNDOTV-after-undo.png",
+      "run-main.log"
+     ],
+     "setup_readback": "same",
+     "observed": "no Undo button on this build",
+     "reason": "same"
+    }
+   }
+  }
+ ]
+}

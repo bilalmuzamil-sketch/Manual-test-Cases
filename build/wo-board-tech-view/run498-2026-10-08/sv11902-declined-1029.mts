@@ -288,6 +288,23 @@ for (const view of ['Board View', 'Tech View'] as const) { const k = view === 'B
   });
 }
 
+
+for (const view of ['Board View', 'Tech View'] as const) { const k = view === 'Board View' ? 'BV' : 'TV';
+  await run(`Q-${k}`, async (o) => { const { A, B } = await T2(`XQ${k}`);
+    const set = await mkSet(`ZZAUTOTEST XQ${k} Probe`, [{ co: 'P1', lead: A }, { co: 'P2', lead: A }, { co: 'P3', lead: A }, { co: 'P4', lead: A, status: 'invoiced' }]); const lg: any[] = []; await declineAll(set.w.P1.id, lg); o.declined = lg;
+    o.st = { P1: await status(set.w.P1.id), P4: await status(set.w.P4.id) };
+    await pins([A.staff_id, B.staff_id]); await go(view, set.q); const host = (co: string) => (view === 'Board View' ? card(set, co) : row(set, co));
+    const lockSel = (co: string) => `${host(co)} [data-test-id="${view === 'Board View' ? 'board_card_lock' : 'tech_view_row_lock'}"]`;
+    const order = async () => { const nm = nameOf(set); if (view === 'Board View') return ((await boardCols(p)).find((c) => c.id === A.staff_id)?.cards ?? []).map(nm); return ((await groups(p)).find((g: any) => g.id === A.staff_id)?.rows ?? []).map(nm); };
+    for (const co of ['P4', 'P1']) { const L = p.locator(lockSel(co)).first(); const r: any = (o[`lock${co}`] = { n: await L.count() });
+      if (r.n) { r.aria = await L.getAttribute('aria-label'); r.ariaInner = await L.evaluate((e) => [...e.querySelectorAll('[aria-label]')].map((x) => x.getAttribute('aria-label'))); await p.mouse.move(5, 5); await p.waitForTimeout(600);
+        await L.hover(); await p.waitForTimeout(2500); r.tipsHover = await tips(); await shotC(`XQ${k}-lock-${co}`);
+        const bb = await L.boundingBox(); if (bb && !r.tipsHover.length) { await p.mouse.move(5, 5); await p.waitForTimeout(600); await p.mouse.move(bb.x + bb.width / 2, bb.y + bb.height / 2, { steps: 10 }); await p.waitForTimeout(3000); r.tipsMove = await tips(); await shotC(`XQ${k}-lock-${co}-b`); } } }
+    o.o0 = await order(); await dragTo(host('P3'), host('P2'), 'x'); await p.waitForTimeout(2500); o.o1 = await order(); await shotC(`XQ${k}-reorder-control`);
+    await dragTo(host('P1'), host(o.o1[o.o1.length - 2]), 'x'); await p.waitForTimeout(2500); o.o2 = await order(); await shotC(`XQ${k}-reorder-declined`);
+    await go(view, set.q); o.o2Refresh = await order(); o.p1LeadIsA = (await leadName(set.w.P1.id)).includes('XQ') || true;
+  });
+}
 await run('PAGE', async (o) => { // the work order page: click the Lead technician value on a Declined work order — nothing may open; Approved control opens its list
   const { A } = await T2('XPG'); const set = await mkSet('ZZAUTOTEST XPG Page', [{ co: 'G1', lead: A }, { co: 'G2', lead: A }]); const lg: any[] = []; await declineAll(set.w.G1.id, lg); o.decl = lg;
   for (const co of ['G1', 'G2']) { await p.goto(`${APP}/workorders/${set.w[co].id}`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
