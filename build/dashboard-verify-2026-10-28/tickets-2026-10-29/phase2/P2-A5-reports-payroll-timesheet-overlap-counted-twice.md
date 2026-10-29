@@ -7,7 +7,7 @@ BASIS: Chris Ward's answer to question 39 (28 Oct 2026): "No. Overlapping time c
 RE-CHECKED: 29 Oct 2026, 00:45–00:47 UTC (= 28 Oct, 8:45 PM in Toronto; 29 Oct, 5:46 AM in Karachi), staging v26.43.2-f8698cb, DVI Test and Staging Heavy Duty - 9919; for each location the session, browser (and the app's own time-zone setting) and test computer were on that location's zone (America/Toronto, Asia/Karachi).
 TEST DATA: customer "ZZAUTOTEST P2A Labor", work order S1-38220, line "Test DVI Line"; two Admin Shopview timesheets on 28 Oct 2026, both made on screen (7:39–8:34 PM by New, 8:08–8:41 PM by a running timesheet that was clocked out).
 DUPLICATE CHECK: none covers the export total. Related, not the same: SV-9723 (Open, Timesheet Activities shows duplicated/overlapping entries), SV-10702 (Blocked, export puts a multi-day punch on the wrong days), SV-10695 (Done, cancelling the overlap warning saved the entry — fixed: re-checked, cancelling now saves nothing).
-NOTE FOR THE QA LEAD: the figures in question 39 (Admin Shopview 40.70 h on 10 Sep, 32.34 h on 17 Sep) do NOT reproduce with the zones matched: the export now shows 7.70 h on 10 Sep (the same as Timesheet Activities) and 12.10 h on 17 Sep (9.99 h worked that day plus 2.11 h that belong to 16 Sep, see the developer note). The earlier figures were read with an unmatched time zone. Haley Brown's 6 Sep (28.50 h) does reproduce and is used below.
+NOTE FOR THE QA LEAD: the figures in question 39 (Admin Shopview 40.70 h on 10 Sep, 32.34 h on 17 Sep) do NOT reproduce with the zones matched: the export now shows 7.70 h on 10 Sep (the same as Timesheet Activities) and 12.10 h on 17 Sep (9.99 h worked that day plus 2.11 h that belong to 16 Sep but are added to 17 Sep — a different problem, asked about in the rewritten question 39(b)). The earlier figures were read with an unmatched time zone. Haley Brown's 6 Sep (28.50 h) does reproduce and is used below.
 -->
 
 ## What is wrong
@@ -69,5 +69,5 @@ Existing example, no set-up needed: switch to **Staging Heavy Duty - 9919**, **E
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time) and 29 Oct 2026 (Karachi time), Admin.
 - Browser and test computer set to each location's time zone (America/Toronto, Asia/Karachi).
-- Heavy Duty, September 2026: 3 employee-days are over 24 hours (Haley Brown 2 Sep 24.50 and 6 Sep 28.50; Admin Shopview 19 Sep 24.33). Admin Shopview's 19 Sep is a different cause (see the developer note).
+- Heavy Duty, September 2026: 3 employee-days are over 24 hours (Haley Brown 2 Sep 24.50 and 6 Sep 28.50; Admin Shopview 19 Sep 24.33). Admin Shopview's 19 Sep has a different cause: the part of a clock that runs past midnight is added to the next day. That is not covered by this ticket; it is asked about separately in the rewritten question 39(b).
 - Not checked on Production or on a QA branch.

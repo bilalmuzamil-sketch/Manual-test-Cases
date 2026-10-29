@@ -1,3 +1,5 @@
+> **Correction, 29 Oct 2026:** RQ-7 and RQ-8 (sent to Chris as questions 38 and 39) contained mistakes. RQ-7: the customers' cards now say Net 30/50/60, not COD. RQ-8: the Admin Shopview figures (40.70 h, 32.34 h) were read with the time zones unmatched; with them matched they are 7.70 h and 12.10 h. Haley Brown's 28.50 h on 6 Sep is correct. Rewritten questions: `../../chris-answers-2026-10-29/REWRITTEN-Q38-Q39.md`.
+
 # Questions for the product owner — Reports: A/R, A/P, IBS Batches, QB Unexported, Export Reports, Notes, Reminders (28 Oct 2026)
 
 Each question can be answered with one word. Tickets behind RQ-1, RQ-3 and RQ-4 are already written and will be filed only after your answer and the QA lead's go-ahead.
