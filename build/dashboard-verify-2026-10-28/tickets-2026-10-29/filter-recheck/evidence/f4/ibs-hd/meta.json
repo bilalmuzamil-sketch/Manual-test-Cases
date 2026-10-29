@@ -1,0 +1,125 @@
+{
+ "mode": "ibs-hd",
+ "location": "Staging Heavy Duty - 9919",
+ "location_tz": "Asia/Karachi",
+ "process_TZ": "Asia/Karachi",
+ "process_zone": "Asia/Karachi",
+ "observed_at_utc": "2026-10-29T09:12:48.835Z",
+ "shots": {},
+ "notes": {
+  "storage_before_open": {
+   "local": {
+    "timezone": "\"Asia/Karachi\"",
+    "user": "(login data, not printed)",
+    "fe_permissions_wrapper": "(login data, not printed)"
+   },
+   "session": {},
+   "url": "https://app.staging.shopview.com/login"
+  },
+  "storage_after_open": {
+   "local": {
+    "timezone": "\"Asia/Karachi\"",
+    "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId",
+    "mode": "\"light\"",
+    "user": "(login data, not printed)",
+    "fe_permissions_wrapper": "(login data, not printed)",
+    "organization_features_timestamp": "1793265170512"
+   },
+   "session": {
+    "sentryReplaySession": "{\"id\":\"71b9c14e1b7141fd966d94c4788110f3\",\"started\":1793265169257,\"lastActivity\":1793265169557,\"segmentId\":0,\"sampled\":\"buffer\",\"dirty\":false}"
+   },
+   "url": "https://app.staging.shopview.com/reports/batch-transactions"
+  },
+  "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Lethbridge - 4310 AS",
+  "tabs": "LABOR schedule Timesheet Activities PERFORMANCE description Sales percent Technician Efficiency query_stats Advisor Analysis engineering Shop Efficiency loop Work In Progress groups Technician Utilization groups_2 Sales By Customer badge Sales By Representative PARTS inventory_2 Parts Velocity sell Inventory Value FINANCE payments Sales Tax Collected ACCOUNTS RECEIVABLE article A/R Aging Summary list_alt A/R Aging Detail library_books A/R Aging Collection ACCOUNTS PAYABLE article A/P Aging Summary list_alt A/P Aging Detail library_books A/P Unpaid Invoices ACCOUNTING paid IBS Batches warning QB Unexported download Export Reports COMMUNICATIONS chat Notes alarm Reminders",
+  "active_tab": "paid IBS Batches",
+  "search_value": "on",
+  "ready_rows": [
+   "",
+   " Aug 28, 2026 Invoice INV-S2-16654 Andrews' Truck & Trailer Repair LLC $8,600.85 $8,600.85 Unpaid",
+   " Aug 27, 2026 Invoice INV-S2-17228 Lamkin Diesel Services Inc $1,874.40 $1,874.40 Unpaid",
+   " Jul 31, 2026 Invoice INV-S2-16924 Fort Mohave Diesel Repair $0.00 $0.00 Unpaid",
+   " Jun 30, 2026 Invoice INV-S2-16146 Dorr Truck Center $1,270.34 $1,270.34 Unpaid",
+   " Jun 30, 2026 Invoice INV-S2-16140 Glendale Diesel & Fleet Repair $592.17 $592.17 Unpaid",
+   " Jun 30, 2026 Invoice INV-S2-15996 Honest Diesel Performance $2,188.75 $2,188.75 Unpaid",
+   " Jun 5, 2025 Credit INV-CM-552 Bancescu & Sons Truck & Trailer Repair -$1,880.00 $0.00 Unapplied",
+   " Apr 28, 2025 Credit INV-CM-395 North Kensington Truck and Trailer Repair -$2,062.66 $0.00 Unapplied",
+   ""
+  ],
+  "table_bottom": "",
+  "heads": [
+   "more_vert",
+   "Datearrow_drop_up",
+   "Typearrow_drop_up",
+   "No.arrow_drop_up",
+   "Customerarrow_drop_up",
+   "Totalarrow_drop_up",
+   "Balancearrow_drop_up",
+   "Statusarrow_drop_up"
+  ]
+ },
+ "requests": [
+  {
+   "t": "2026-10-29T09:12:50.389Z",
+   "m": "GET",
+   "u": "/api/customers/ibs/list-payments?",
+   "loc": null
+  },
+  {
+   "t": "2026-10-29T09:12:50.402Z",
+   "m": "GET",
+   "u": "/api/customers/ibs/list-transactions?pagination[sortBy]=date&pagination[descending]=true&pagination[page]=1&pagination[rowsPerPage]=1000&search=",
+   "loc": null
+  },
+  {
+   "t": "2026-10-29T09:12:50.402Z",
+   "m": "GET",
+   "u": "/api/customers/ibs/list-batches?pagination[sortBy]=date&pagination[descending]=true&pagination[page]=1&pagination[rowsPerPage]=1000&search=",
+   "loc": null
+  }
+ ],
+ "replies": [
+  {
+   "u": "/api/customers/ibs/list-transactions?pagination[sortBy]=date&pagination[descending]=true&pagination[page]=1&pagination[rowsPerPage]=1000&search=",
+   "status": 200,
+   "n": 8,
+   "zero": [
+    "S2-16924"
+   ]
+  },
+  {
+   "u": "/api/customers/ibs/list-batches?pagination[sortBy]=date&pagination[descending]=true&pagination[page]=1&pagination[rowsPerPage]=1000&search=",
+   "status": 200,
+   "n": 2,
+   "batches": [
+    {
+     "date": "2026-09-24 20:57:42",
+     "amount": 11219.63,
+     "balance": 11219.63,
+     "n": 3,
+     "sum": 11219.63
+    },
+    {
+     "date": "2026-09-17 19:34:18",
+     "amount": 9465.17,
+     "balance": 0,
+     "n": 3,
+     "sum": 9465.17
+    }
+   ]
+  },
+  {
+   "u": "/api/customers/ibs/list-payments?",
+   "status": 200,
+   "n": 1,
+   "pag": {
+    "sortBy": null,
+    "descending": false,
+    "page": 1,
+    "rowsPerPage": 100
+   }
+  }
+ ],
+ "browser_zone": "Asia/Karachi",
+ "appVersion": "v26.43.2-f8698cb"
+}
