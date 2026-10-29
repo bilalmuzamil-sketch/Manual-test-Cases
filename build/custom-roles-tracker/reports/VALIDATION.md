@@ -1,4 +1,4 @@
-# Track Changes validation — 22/22 checks passed
+# Track Changes validation — 26/26 checks passed
 
 Throw-away store and a shared clone of the product repo; nothing real was modified.
 
@@ -26,3 +26,7 @@ Throw-away store and a shared clone of the product repo; nothing real was modifi
 | ✅ | No technical terms in the plain words of any change |
 | ✅ | The written release reports (11) are in plain words above the technical appendix |
 | ✅ | Every app-vs-plan verdict (63) is explained in plain words |
+| ✅ | Every release that changed permissions (20) gets a retest checklist with change checks and 3 quick checks |
+| ✅ | Retest checklists are in plain words |
+| ✅ | Every role suggested as "should be refused" holds none of the permissions that allow the action |
+| ✅ | A scan writes a retest checklist: "no retest needed" for a no-change release, a checklist otherwise |

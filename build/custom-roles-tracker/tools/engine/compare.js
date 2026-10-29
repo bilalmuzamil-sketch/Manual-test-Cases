@@ -493,7 +493,7 @@
     const counts = {};
     changes.forEach((c) => { counts[c.category] = (counts[c.category] || 0) + 1; });
     return {
-      engine_version: '1.1.0',
+      engine_version: '1.2.0',
       from: describe(snapA), to: describe(snapB),
       permission_related_change: changes.length > 0,
       counts, changes,
@@ -618,5 +618,115 @@
     });
   }
 
-  return { compare, prdVsImpl, normalise, version: '1.1.0' };
+  // ── what to retest after a release ───────────────────────────────────────────────────────────
+  /** Turns one release's changes into a manual-QA retest checklist, in plain words:
+   *   1. each change to who can do what, on its own, with the roles to log in as;
+   *   2. one re-check per app area for screen and behind-the-scenes changes (a release can carry
+   *      dozens of these, so they are grouped by area rather than listed one by one);
+   *   3. a few quick checks that apply after ANY permission change.
+   * `impl` is an implementation snapshot used only to suggest which roles to log in as. */
+  function retestPlan(report, impl) {
+    const changes = (report && report.changes) || [];
+    const perms = {}; ((impl && impl.permissions) || []).forEach((p) => { perms[p.key] = p; });
+    const roles = (impl && impl.roles) || [];
+    const defaults = (impl && impl.role_defaults) || {};
+    const size = (r) => (defaults[r.key] || []).length;
+    const lab = (k) => String((perms[k] || {}).label || k).replace(/\s*\(derived[^)]*\)/, '');
+    /** Roles to log in as: the SMALLEST role that has it, and the LARGEST role that does not, so
+     * the test sits right on the boundary. Based on the built-in roles of `impl`. */
+    function rolesFor(k) {
+      if (!k || !perms[k]) return null;
+      const has = roles.filter((r) => (defaults[r.key] || []).includes(k)).sort((a, b) => size(a) - size(b));
+      const not = roles.filter((r) => !(defaults[r.key] || []).includes(k)).sort((a, b) => size(b) - size(a));
+      return { with: has[0] ? has[0].name : null, without: not[0] ? not[0].name : null };
+    }
+    const rank = { High: 0, Medium: 1, Low: 2 };
+    const worst = (xs) => xs.map((c) => c.risk).sort((a, b) => rank[a] - rank[b])[0] || 'Low';
+    const pr = (r) => ({ High: 'High priority', Medium: 'Medium priority', Low: 'Low priority' }[r] || r);
+    const items = [];
+
+    changes.filter((c) => (c.plain || {}).group === 'access').forEach((c) => {
+      const R = c.category === 'default_changed' ? null : rolesFor(c.permission);
+      const steps = (c.plain.check || []).slice();
+      if (R && R.with && R.without && c.category !== 'removed_permission') {
+        steps.unshift(`Suggested logins: ${R.with} (has ${qt(lab(c.permission))}) and ${R.without} (does not have it).`);
+      }
+      items.push({ id: ['change', c.category, c.permission || '', c.role || '', c.endpoint || ''].join(':'), kind: 'change',
+        priority: pr(c.risk), risk: c.risk, area: c.plain.area || 'Roles', title: c.plain.headline, what: c.plain.what, why: c.plain.why,
+        steps, roles: R });
+    });
+
+    // Which app area a change belongs to: its own permission's area; else the area its address
+    // names (work-orders → Work Orders); else the area most of its permissions belong to.
+    const norm = (x) => String(x).toLowerCase().replace(/[^a-z]/g, '').replace(/s$/, '');
+    const groupsByNorm = {}; Object.values(perms).forEach((p) => { if (p.group) groupsByNorm[norm(p.group)] = p.group; });
+    const ALIAS = { invoice: 'Invoicing & Payments', payment: 'Invoicing & Payments', customerpayment: 'Invoicing & Payments',
+      vendororder: 'Vendor Order Management', purchaseorder: 'Vendor Order Management', vendor: 'Vendor Order Management',
+      partscatalogue: 'Catalog & Inventory', inventory: 'Catalog & Inventory', catalog: 'Catalog & Inventory',
+      appointment: 'Schedule', timesheet: 'Timesheets', reporting: 'Reports', report: 'Reports', partsale: 'Part Sales',
+      contact: 'Customers', vehicle: 'Customers', organization: 'Settings', setting: 'Settings', accounting: 'Accounting' };
+    function areaOf(c) {
+      // an address-level change: the address names its area better than the first of the many
+      // permissions that happen to allow it
+      if (c.endpoint) {
+        const seg = norm(((String(c.endpoint).split(' ')[1] || '').replace(/^\/api\//, '').split('/')[0]) || '');
+        if (groupsByNorm[seg]) return groupsByNorm[seg];
+        if (ALIAS[seg] && Object.values(groupsByNorm).includes(ALIAS[seg])) return ALIAS[seg];
+      } else if (c.plain.area) return c.plain.area;
+      const n = {};
+      (c.affected_permissions || []).forEach((k) => { const g = (perms[k] || {}).group; if (g) n[g] = (n[g] || 0) + 1; });
+      return Object.keys(n).sort((a, b) => n[b] - n[a])[0] || 'Other parts of the app';
+    }
+    const byArea = {};
+    changes.filter((c) => ['screens', 'behind'].includes((c.plain || {}).group)).forEach((c) => {
+      const area = areaOf(c);
+      (byArea[area] = byArea[area] || []).push(c);
+    });
+    Object.entries(byArea).forEach(([area, cs]) => {
+      const count = {};
+      cs.forEach((c) => [c.permission].concat(c.affected_permissions || []).filter(Boolean)
+        .forEach((k) => { count[k] = (count[k] || 0) + 1; }));
+      const ranked = Object.keys(count).sort((a, b) => count[b] - count[a] || a.localeCompare(b));
+      // the permission to test with: the most-involved one that belongs to this area
+      const main = ranked.find((k) => (perms[k] || {}).group === area) || ranked[0];
+      const permsInvolved = [main].concat(ranked.filter((k) => k !== main)).filter(Boolean).map(lab);
+      // "with" = the smallest role holding the main permission; "without" = the largest role holding
+      // NONE of the permissions that allow these actions (holding any one of them lets you through)
+      const allKeys = Object.keys(count);
+      const R = main ? (() => {
+        const r0 = rolesFor(main) || {};
+        const none = roles.filter((r) => !allKeys.some((k) => (defaults[r.key] || []).includes(k))).sort((a, b) => size(b) - size(a));
+        return { with: r0.with || null, without: none[0] ? none[0].name : null };
+      })() : null;
+      const nS = cs.filter((c) => c.plain.group === 'screens').length, nB = cs.length - nS;
+      const actions = uniq(cs.filter((c) => c.endpoint).map((c) => plainAction(c.endpoint)));
+      const screens = uniq(cs.filter((c) => c.plain.group === 'screens').map((c) => c.plain.headline));
+      const what = [nS && `${nS} change${nS > 1 ? 's' : ''} to which screens show or hide things`,
+        nB && `${nB} change${nB > 1 ? 's' : ''} to behind-the-scenes checks`].filter(Boolean).join(' and ');
+      const steps = [];
+      if (!main) cs.forEach((c) => (c.plain.check || []).forEach((x) => { if (!steps.includes(x)) steps.push(x); }));
+      else if (R && R.with) steps.push(`Log in as ${R.with}, who has ${qt(lab(main))}. Go to ${area} and use the features listed below. Everything should work as before.`);
+      else if (main) steps.push(`Log in as someone who has ${qt(lab(main))}. Go to ${area} and use the features listed below. Everything should work as before.`);
+      const allowedBy = permsInvolved.length > 1 ? `at least one of the ${permsInvolved.length} permissions listed below` : qt(lab(main));
+      if (R && R.without) steps.push(`Log in as ${R.without}, who ${permsInvolved.length > 1 ? 'has none of the permissions listed below' : 'does not have ' + qt(lab(main))}. The same buttons, menus and pages should be hidden, and the actions should be refused.`);
+      else if (main) steps.push(`Every built-in role has ${allowedBy}, so make a test role with ${permsInvolved.length > 1 ? 'all of them' : 'it'} switched off. Log in with it: the same buttons, menus and pages should be hidden, and the actions should be refused.`);
+      if (permsInvolved.length > 1) steps.push(`Any one of these permissions is enough to allow the actions. If time allows, check a role that has only one of them, for example ${permsInvolved.slice(1, 3).map(qt).join(' or ')}.`);
+      items.push({ id: 'area:' + area, kind: 'area', priority: pr(worst(cs)), risk: worst(cs), area,
+        title: `${area}: re-check who can use it`, what: `This release made ${what} in ${area}.`,
+        why: 'These are easy to miss on screen. If one is wrong, someone could see or do something they should not, or lose something they need.',
+        steps, roles: R, permissions: permsInvolved, actions, screens, change_count: cs.length });
+    });
+    items.sort((a, b) => (a.kind === b.kind ? 0 : a.kind === 'change' ? -1 : 1) || rank[a.risk] - rank[b.risk] || a.title.localeCompare(b.title));
+
+    const spot = changes.length ? [
+      { id: 'spot:open-save', title: 'Built-in roles still open and save', steps: [`Open ${EDITOR}. Open each built-in role and press save without changing anything.`, 'No error should appear, and no permission should change.'] },
+      { id: 'spot:old-custom-role', title: 'Custom roles made before this release are unchanged', steps: [`Open a custom role that was made before this release. Check its permissions are exactly as they were.`, 'Log in as a user with that role and check they can still do their normal work.'] },
+      { id: 'spot:role-change-logout', title: 'Changing someone’s role still logs them out', quote: 'Changing a user’s role triggers a forced logout for the affected user. The new role takes effect when they log back in.',
+        steps: ['Give a test user a different role while they are logged in.', 'They should be logged out. When they log back in, they should have only what the new role allows.'] },
+    ] : [];
+    return { release: (report && report.to) || null, compared_with: (report && report.from) || null,
+      needs_retest: changes.length > 0, change_count: changes.length, items, spot_checks: spot };
+  }
+
+  return { compare, prdVsImpl, retestPlan, normalise, version: '1.2.0' };
 });

@@ -198,6 +198,15 @@ details.group-behind > .inner { padding: 0 12px 12px; display: flex; flex-direct
 ol.check { margin: 0; padding-left: 20px; }
 ol.check li + li { margin-top: 4px; }
 .pr-High { background: var(--bad); color: #fff; }
+.rel-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.rel-chips button { cursor: pointer; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 10px; font-size: .84rem; color: var(--ink); }
+.rel-chips button[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.rel-chips .b { font-size: .74rem; margin-left: 4px; }
+.progress { height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; max-width: 360px; }
+.progress span { display: block; height: 100%; background: var(--good); }
+.logins { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: .9rem; }
+.logins dt { color: var(--muted); }
+.logins dd { margin: 0; }
 .pr-Medium { background: var(--warn-soft); color: var(--warn); border-color: var(--warn); }
 .pr-Low { background: var(--surface-2); color: var(--muted); }
 </style>
@@ -210,6 +219,7 @@ ol.check li + li { margin-top: 4px; }
 <nav class="strip" aria-label="Saved versions"><div class="wrap"><ol id="strip"></ol></div></nav>
 <nav class="wrap tools" aria-label="Pages" id="tools">
   <a href="#home" data-r="home">Start here</a>
+  <a href="#retest" data-r="retest" class="primary">What to retest</a>
   <a href="#matrix" data-r="matrix">Who can do what</a>
   <a href="#prd-vs-impl" data-r="prd-vs-impl">App vs the plan</a>
   <a href="#compare" data-r="compare">Compare two versions</a>
@@ -290,6 +300,7 @@ function render() {
     else if (r === 'compare') main.innerHTML = viewCompare();
     else if (r === 'history') main.innerHTML = viewHistory();
     else if (r === 'track') main.innerHTML = viewTrack();
+    else if (r === 'retest') main.innerHTML = viewRetest();
     else main.innerHTML = viewHome();
   } catch (e) {
     main.innerHTML = `<section class="panel"><div class="notice bad">Sorry, this page could not be shown. Please reload. (${esc(e.message)})</div></section>`;
@@ -330,6 +341,11 @@ function viewHome() {
       Nothing counts as confirmed until a tester has tried it and set its test result to <b>Passed</b>.</div>
   </section>
   <div class="cards">
+    ${(() => { const L = releaseList()[0]; if (!L) return ''; const pl = planFor(L); const done = doneCount(L, pl);
+      return `<div class="card"><span class="eyebrow">Newest release: what to retest</span>
+        <span class="big">${esc(L.tag)}</span>
+        <p>${L.state === 'unchecked' ? 'Not checked yet.' : pl.needs_retest ? `${pl.items.length + pl.spot_checks.length} checks to do · ${done} done` : 'Nothing in roles and permissions changed. No retest needed.'}</p>
+        <a href="#retest" data-reltag="${esc(L.tag)}">Open the checklist →</a></div>`; })()}
     <div class="card"><span class="eyebrow">Does the app match the original plan?</span>
       <div class="tally">${Object.keys(VERDICT).filter((k) => counts[k]).map((k) => `<button data-verdict="${esc(k)}"><span class="big">${counts[k]}</span><span>${esc(VERDICT[k][0])}</span></button>`).join('')}</div>
       <a href="#prd-vs-impl">See every permission →</a></div>
@@ -347,6 +363,7 @@ function viewHome() {
   </div>
   <section class="panel"><h3>What would you like to do?</h3>
     <ul class="todo">
+      <li><a href="#retest"><b>See what to retest after a release</b><span>A step-by-step checklist for each release, for manual testers.</span></a></li>
       <li><a href="#matrix"><b>See who can do what</b><span>A table of every role and every permission, with ticks.</span></a></li>
       <li><a href="#prd-vs-impl"><b>Find where the app differs from the plan</b><span>Each permission, with what the plan says and what the app does.</span></a></li>
       <li><a href="#history"><b>See what a release changed</b><span>Every release that changed permissions, in date order.</span></a></li>
@@ -698,7 +715,7 @@ function viewHistory() {
         <div class="muted" style="font-size:.86rem">${esc(rep ? countLine(rep.changes) : '')}</div>
         ${(h.headline || []).length ? `<div style="font-size:.88rem;margin-top:4px">${h.headline.map((x) => esc(x)).join('<br>')}</div>` : ''}</div>
         <span class="muted" style="font-size:.82rem">${esc((h.tickets || []).join(', '))}</span></summary>
-        <div class="body">${rep ? changeList(rep.changes, 'hist-' + h.to) : ''}
+        <div class="body"><p><a href="#retest" data-reltag="${esc(h.to)}">Open the retest checklist for ${esc(h.to)} →</a></p>${rep ? changeList(rep.changes, 'hist-' + h.to) : ''}
           ${tech('Technical details (for developers)', `${rep && rep.commits && rep.commits.length ? `<div class="mono" style="font-size:.76rem">${rep.commits.map((c) => esc(c.commit + ' ' + c.date + ' ' + c.subject)).join('<br>')}</div>` : ''}
             ${(h.pull_requests || []).length ? `<p>Pull requests: ${h.pull_requests.map((n) => `<a href="https://github.com/ShopView/shopview/pull/${esc(n)}" target="_blank" rel="noopener">#${esc(n)}</a>`).join(' ')}</p>` : ''}
             <p>Compared ${esc(h.from)} with ${esc(h.to)}.</p>`)}</div></details>`;
@@ -714,6 +731,92 @@ function viewHistory() {
     </tbody></table></div>
     ${tech('Technical details (for developers)', `<p>Each file is written once, made read-only and pinned by its SHA-256 in <code>snapshots/registry.json</code>.</p>
       ${reg().map((e) => `<div><code>${esc(e.id)}</code> · <code>${esc(e.sha256)}</code></div>`).join('')}`)}</section>`;
+}
+
+// ── what to retest ───────────────────────────────────────────────────────────────────────────
+const RT = { tag: null };
+/** Every release we know about, newest first: saved on this page, waiting for approval,
+ * rebuilt from past releases, or not checked yet. */
+function releaseList() {
+  const out = [], seen = new Set();
+  const add = (x) => { if (!x.tag || seen.has(x.tag)) return; seen.add(x.tag); out.push(x); };
+  implEntries().filter((e) => e.previous).forEach((e) => add({ tag: (e.release.tags || [])[0] || e.release.commit.slice(0, 7), date: e.release.commit_date,
+    state: 'saved', report: D.reports[e.change_report] || { changes: [] }, snap: S[e.id] }));
+  (D.pending || []).forEach((p) => add({ tag: (p.release.tags || [])[0] || p.snapshot_id, date: p.release.commit_date, state: 'waiting',
+    report: E.compare(S[latestImpl().id], p), snap: p }));
+  D.history.releases.slice().reverse().forEach((h) => add({ tag: h.to, date: h.date, state: 'history',
+    report: h.report ? D.history_reports[h.report] : { changes: [] } }));
+  (D.known_releases || []).forEach((t) => add({ tag: t.tag, date: t.date, state: 'unchecked', report: null }));
+  return out.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+}
+const PLANS = {};
+function planFor(L) {
+  if (!L.report) return { needs_retest: false, items: [], spot_checks: [], change_count: 0 };
+  return PLANS[L.tag] || (PLANS[L.tag] = E.retestPlan(L.report, L.snap || S[latestImpl().id]));
+}
+function rtKey(L, it) { return 'rt:' + L.tag + ':' + hid(it.id); }
+function doneCount(L, pl) { return pl.items.concat(pl.spot_checks).filter((it) => { const v = verif[rtKey(L, it)]; return v && v.status !== 'Not Tested'; }).length; }
+function relBadge(L) {
+  if (L.state === 'unchecked') return chip('c-warn', 'not checked yet');
+  const pl = planFor(L);
+  return pl.needs_retest ? chip('c-info', `${pl.items.length + pl.spot_checks.length} checks`) : chip('c-good', 'nothing to retest');
+}
+function retestCard(L, it, n) {
+  const key = rtKey(L, it), v = verif[key];
+  const more = (xs, max) => xs.slice(0, max).map((x) => '<li>' + esc(x) + '</li>').join('') + (xs.length > max ? `<li class="muted">and ${xs.length - max} more</li>` : '');
+  return `<details class="change"><summary>${it.priority ? chip('pr-' + it.risk, it.priority) : chip('c-neutral', 'Quick check')}<div><b>${n}. ${esc(it.title)}</b>
+      ${it.roles && (it.roles.with || it.roles.without) ? `<div class="muted" style="font-size:.84rem;margin-top:2px">Log in as ${esc([it.roles.with, it.roles.without].filter(Boolean).join(' and '))}</div>` : ''}</div>
+      ${testChip(v)}</summary>
+    <div class="body">
+      ${it.what ? `<div><h4>What changed</h4><p>${esc(it.what)}</p></div>` : ''}
+      ${it.quote ? `<div><h4>What the plan says</h4><blockquote class="q">${esc(it.quote)}</blockquote></div>` : ''}
+      ${it.why ? `<div><h4>Why it needs retesting</h4><p>${esc(it.why)}</p></div>` : ''}
+      ${it.roles && (it.roles.with || it.roles.without) ? `<dl class="logins">${it.roles.with ? `<dt>Should work for</dt><dd>${esc(it.roles.with)}</dd>` : ''}${it.roles.without ? `<dt>Should be refused for</dt><dd>${esc(it.roles.without)}</dd>` : ''}</dl>` : ''}
+      <div><h4>Steps</h4><ol class="check">${it.steps.map((x) => '<li>' + esc(x) + '</li>').join('')}</ol></div>
+      ${(it.actions || []).length ? `<div><h4>Features to try</h4><ul>${more(it.actions, 12)}</ul></div>` : ''}
+      ${(it.screens || []).length ? `<div><h4>Screens that changed</h4><ul>${more(it.screens, 8)}</ul></div>` : ''}
+      ${(it.permissions || []).length > 1 ? `<div><h4>Permissions that allow it</h4><p>${esc(it.permissions.join(' · '))}</p></div>` : ''}
+      <div class="verify"><label class="ctl">Test result<select data-verify="${esc(key)}" ${canWriteDb ? '' : 'disabled'}>${STATUSES.map((st) => `<option ${((v && v.status) || 'Not Tested') === st ? 'selected' : ''}>${st}</option>`).join('')}</select></label>
+        ${v ? `<span class="muted">set by ${esc(names[v.by] || 'a teammate')} on ${esc(fmtDate(v.at))}</span>` : ''}</div>
+    </div></details>`;
+}
+function viewRetest() {
+  const all = releaseList();
+  if (!RT.tag || !all.some((x) => x.tag === RT.tag)) RT.tag = all.length ? all[0].tag : null;
+  const L = all.find((x) => x.tag === RT.tag);
+  const head = `<section class="panel">
+    <div><div class="eyebrow">What to retest</div><h2>What to retest after each release</h2></div>
+    <p>After every release, pick it below and work through its checklist. It covers only Custom Roles &amp; Permissions: what changed in that release, and how to make sure nothing broke for other roles.</p>
+    <div class="controls"><label class="ctl">Release<select id="rPick">${all.map((x) => `<option value="${esc(x.tag)}" ${x.tag === RT.tag ? 'selected' : ''}>${esc(x.tag)} · ${esc(fmtDate(x.date))}${x.state === 'unchecked' ? ' · not checked yet' : planFor(x).needs_retest ? ' · retest needed' : ' · nothing to retest'}</option>`).join('')}</select></label></div>
+    <div class="rel-chips">${all.slice(0, 8).map((x) => `<button data-pick="${esc(x.tag)}" aria-pressed="${x.tag === RT.tag}">${esc(x.tag)}<span class="b">${planFor(x).needs_retest ? '●' : x.state === 'unchecked' ? '?' : '✓'}</span></button>`).join('')}</div>
+    <p class="muted" style="font-size:.84rem">● retest needed · ✓ nothing changed in roles and permissions · ? not checked yet</p>
+  </section>`;
+  if (!L) return head + '<section class="panel"><div class="empty">No releases yet.</div></section>';
+  const pl = planFor(L);
+  const total = pl.items.length + pl.spot_checks.length, done = doneCount(L, pl);
+  let body;
+  if (L.state === 'unchecked') {
+    body = `<div class="notice warn">Release ${esc(L.tag)} has not been checked yet, so its checklist is not ready. Go to <a href="#track">Check a new release</a> and ask for it to be checked.</div>`;
+  } else if (!pl.needs_retest) {
+    body = `<div class="notice">Nothing in Custom Roles &amp; Permissions changed in release ${esc(L.tag)}. No Custom Roles retest is needed for this release. Your normal regression testing still applies.</div>`;
+  } else {
+    const changes = pl.items.filter((i) => i.kind === 'change'), areas = pl.items.filter((i) => i.kind === 'area');
+    let n = 0;
+    body = `<div class="head"><div>
+        <p><b>Release ${esc(L.tag)} changed ${pl.change_count} thing${pl.change_count > 1 ? 's' : ''} in roles and permissions.</b> Work through the ${total} checks below and set each test result.</p>
+        ${L.state === 'waiting' ? '<p class="muted">This release has been checked but not approved yet. The checklist is ready to use.</p>' : ''}</div>
+        <button class="btn ghost" data-export="retest:${esc(L.tag)}">Download the checklist as a spreadsheet</button></div>
+      <div class="row"><div class="progress" style="flex:1 1 200px"><span style="width:${total ? Math.round(100 * done / total) : 0}%"></span></div><span>${done} of ${total} done</span></div>
+      <p class="muted" style="font-size:.86rem">The suggested logins are built-in roles. Use test users whose roles have not been edited. Steps are suggestions to plan with: a check counts as done only when a tester has tried it.</p>
+      ${changes.length ? `<div class="changes"><div class="group-title"><h3>Part 1 · Check what changed</h3><span class="muted">${changes.length}</span></div>
+        <p class="muted">Each change to who can do what, one by one. Start with the high-priority ones.</p>${changes.map((it) => retestCard(L, it, ++n)).join('')}</div>` : ''}
+      ${areas.length ? `<div class="changes"><div class="group-title"><h3>Part ${changes.length ? 2 : 1} · Re-check these areas</h3><span class="muted">${areas.length}</span></div>
+        <p class="muted">Changes people don’t see directly: which screens show or hide things, and the checks behind the scenes. Grouped by area so each area is one test.</p>${areas.map((it) => retestCard(L, it, ++n)).join('')}</div>` : ''}
+      <div class="changes"><div class="group-title"><h3>Part ${(changes.length ? 1 : 0) + (areas.length ? 1 : 0) + 1} · Quick checks after any permission change</h3><span class="muted">${pl.spot_checks.length}</span></div>
+        <p class="muted">Short regression checks that apply to every release that touched roles and permissions.</p>${pl.spot_checks.map((it) => retestCard(L, it, ++n)).join('')}</div>
+      <p><a href="#history" data-histq="${esc(L.tag)}">See the full details of every change in ${esc(L.tag)} →</a></p>`;
+  }
+  return head + `<section class="panel"><div><div class="eyebrow">Release ${esc(L.tag)} · ${esc(fmtDate(L.date))}</div><h2>Checklist for release ${esc(L.tag)}</h2></div>${body}</section>`;
 }
 
 // ── check a new release ──────────────────────────────────────────────────────────────────────
@@ -740,7 +843,7 @@ function viewTrack() {
     const rv = approvals['review:' + p.snapshot_id];
     body = `<ol class="steps">
       <li><div><h4>The release was checked</h4><p>Release ${esc((p.release.tags || [])[0] || p.release.ref)} was compared with ${esc(nice(latest))}.</p></div></li>
-      <li><div><h4>Read what changed</h4>${rep.changes.length ? `<p style="margin:6px 0"><b>${rep.changes.length} changes</b>: ${esc(countLine(rep.changes))}.</p>` + changeList(rep.changes, 'scan-' + p.snapshot_id)
+      <li><div><h4>Read what changed</h4><p><a href="#retest" data-reltag="${esc((p.release.tags || [])[0] || p.snapshot_id)}">Open the retest checklist for this release →</a></p>${rep.changes.length ? `<p style="margin:6px 0"><b>${rep.changes.length} changes</b>: ${esc(countLine(rep.changes))}.</p>` + changeList(rep.changes, 'scan-' + p.snapshot_id)
         : '<div class="empty">No Custom Roles &amp; Permissions changes detected in this release.</div>'}</div></li>
       <li><div><h4>${rep.changes.length ? 'Approve it so it is saved' : 'Save it as “no change” (optional)'}</h4>
         ${rv ? `<p>Approved by ${esc(names[rv.by] || 'a teammate')} on ${esc(fmtDate(rv.at))}. It will be saved permanently the next time the check is run, and it will get its own tab.</p>`
@@ -755,7 +858,8 @@ function viewTrack() {
         ${req ? `<p>${chip('c-good', 'Requested')} by ${esc(names[req.by] || 'a teammate')} on ${esc(fmtDate(req.at))}.</p>` : canWriteDb ? `<p><button class="btn" data-request="${esc(tag)}">Ask for ${esc(tag)} to be checked</button></p>` : ''}
         ${tech('For the person running the check', `<pre class="cmd">python3 tools/track_changes.py scan --ref ${esc(tag)}</pre>`)}</div></li>
       <li><div><h4>Read what changed</h4><p>When the check is done, every change appears on this page in plain words, with how to test it.</p></div></li>
-      <li><div><h4>Approve it</h4><p>Someone with edit rights approves it, and the release is saved permanently with its own tab.</p></div></li></ol>`;
+      <li><div><h4>Approve it</h4><p>Someone with edit rights approves it, and the release is saved permanently with its own tab.</p></div></li>
+      <li><div><h4>Retest</h4><p>The release then appears in <a href="#retest">What to retest</a>, with a checklist for the team.</p></div></li></ol>`;
   } else {
     body = '<div class="empty">Nothing new to check. Every known release is already saved.</div>';
   }
@@ -807,6 +911,12 @@ function wire(r) {
   }
   if (r === 'history') on('#hQ', 'input', debounce((e) => { Hs.q = e.target.value; render(); $('#hQ').focus(); }, 250));
   if (r === 'track') on('#tPick', 'change', (e) => { T.pick = e.target.value; render(); });
+  if (r === 'retest') {
+    on('#rPick', 'change', (e) => { RT.tag = e.target.value; render(); });
+    document.querySelectorAll('[data-pick]').forEach((b) => b.addEventListener('click', () => { RT.tag = b.dataset.pick; render(); }));
+  }
+  document.querySelectorAll('a[data-reltag]').forEach((a) => a.addEventListener('click', () => { RT.tag = a.dataset.reltag; if (route() === 'retest') render(); }));
+  document.querySelectorAll('a[data-histq]').forEach((a) => a.addEventListener('click', () => { Hs.q = a.dataset.histq; }));
   document.querySelectorAll('a[data-matrix]').forEach((a) => a.addEventListener('click', () => { M.a = a.dataset.matrix; M.b = ''; }));
   document.querySelectorAll('select[data-verify]').forEach((sel) => sel.addEventListener('change', () => saveVerification(sel.dataset.verify, sel.value, sel)));
   document.querySelectorAll('[data-approve]').forEach((b) => b.addEventListener('click', () => openApprovalForm(b)));
@@ -862,7 +972,17 @@ function changesCsv(changes, scope) {
 async function exportReport(which, btn) {
   const dl = await window.claude?.use?.('downloads');
   let name, body;
-  if (which === 'prd_vs_impl') {
+  if (which.startsWith('retest:')) {
+    const L = releaseList().find((x) => x.tag === which.slice(7)), pl = planFor(L);
+    name = `What to retest after ${L.tag}.csv`;
+    const row = (part, it) => { const v = verif[rtKey(L, it)];
+      return [part, it.priority || '', it.title, it.what || it.quote || '', (it.roles || {}).with || '', (it.roles || {}).without || '',
+        it.steps.map((x, i) => `${i + 1}. ${x}`).join('\n'), (it.actions || []).join('\n'), v ? v.status : 'Not Tested']; };
+    body = csv([['Part', 'Priority', 'Check', 'What changed', 'Log in as (should work)', 'Log in as (should be refused)', 'Steps', 'Features to try', 'Test result']]
+      .concat(pl.items.filter((i) => i.kind === 'change').map((i) => row('1. What changed', i)))
+      .concat(pl.items.filter((i) => i.kind === 'area').map((i) => row('2. Areas to re-check', i)))
+      .concat(pl.spot_checks.map((i) => row('3. Quick checks', i))));
+  } else if (which === 'prd_vs_impl') {
     const impl = S[D.prd_vs_impl.implementation], scope = 'pvi-' + D.prd_vs_impl.implementation;
     name = 'App vs the original plan.csv';
     body = csv([['Permission', 'Result', 'Explanation', 'The original plan says', 'The app: switched on for', 'Test result']]

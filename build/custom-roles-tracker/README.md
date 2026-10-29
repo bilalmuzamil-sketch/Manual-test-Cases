@@ -47,7 +47,7 @@ tools/extract_impl.py  implementation snapshot of a commit (never the working tr
 tools/engine/compare.js   THE comparison engine (browser and command line share it)
 tools/snapshot_store.py   append-only store: write-once, read-only, SHA-256 registry
 tools/track_changes.py    scan → review → confirm
-tools/validate.py      validation suite (22 checks, incl. plain-language checks)
+tools/validate.py      validation suite (26 checks, incl. plain-language and retest checks)
 tools/build_history.py reconstructed release history before the baseline
 snapshots/             recorded snapshots + registry.json   (never edit by hand)
 reports/               change reports, history, VALIDATION.md
@@ -100,6 +100,23 @@ recorded and pending scans, reviews them with the same engine, lets QA **request
 Editor **approve** one. A tracker run (this command, run by a person or by Claude) does the scan and
 the recording.
 
+## What to retest (the manual-QA checklist per release)
+
+The portal's **What to retest** tab lists every release, newest first, marked *retest needed*,
+*nothing to retest* or *not checked yet*. For a release that changed anything it gives a checklist in
+three parts, built by `retestPlan()` in the engine (the same code the command line uses):
+
+1. **Check what changed**: each change to who can do what, one by one, highest priority first.
+2. **Re-check these areas**: screen and behind-the-scenes changes grouped by app area (one release
+   can carry dozens), with the features to try.
+3. **Quick checks after any permission change**: roles still open and save, custom roles made
+   before the release are unchanged, and changing someone's role still logs them out (quoted from the plan).
+
+Each check names the built-in roles to log in as: the smallest role that should be allowed, and the
+largest role that holds **none** of the permissions that allow it (`validate.py` proves that last
+part). Testers set a result on each check, and the tab shows progress. The checklist downloads as a
+spreadsheet, and every scan also writes `reports/<previous>__to__<release>-RETEST.md`.
+
 ## Storage, integrity, sharing
 
 - `snapshots/<id>.json` is written once and made read-only. `registry.json` is append-only and pins each
@@ -148,4 +165,4 @@ the recording.
 | Permissions with server enforcement found in this repo | 46 / 61 | The 15 accounting area permissions are enforced by the accounting service (one is also checked directly here). `timesheetsView` has **no** server check anywhere (front end only) |
 | Original PRD settings with verbatim description | 44 / 44 | ✅ |
 | Original PRD matrix rows / quotes verified verbatim | 39 / 39 · 58 / 58 | ✅ |
-| Track Changes validation | 22 / 22 checks (incl. plain-language) | ✅ (`reports/VALIDATION.md`) |
+| Track Changes validation | 26 / 26 checks (incl. plain-language and retest checklists) | ✅ (`reports/VALIDATION.md`) |

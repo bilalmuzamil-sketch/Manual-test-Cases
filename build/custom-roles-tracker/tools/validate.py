@@ -10,6 +10,9 @@ repo - so the real snapshots and the real product repo are never touched.
                       duplicate-scan guard
   C. Plain language   every plain-words field people read is free of code names, route paths and
                       technical terms (the technical fields beside it may keep them)
+  D. Retest lists     every release gets a manual-QA retest checklist; a release with no change
+                      says no retest is needed; a role suggested as "should be refused" really
+                      holds none of the permissions that allow the action
 
   python3 validate.py            exit 0 only if every check passes; writes ../reports/VALIDATION.md
 """
@@ -54,6 +57,8 @@ def scan(env, repo, ref):
         md = reports[-1][:-5] + '.md'
         if os.path.exists(md):
             REPORT_MD.append(open(md).read())
+        rt = reports[-1][:-5] + '-RETEST.md'
+        RETEST_MD.append(open(rt).read() if os.path.exists(rt) else None)
     return rc, out, rep
 
 
@@ -218,7 +223,7 @@ def controlled():
     shutil.rmtree(work, ignore_errors=True)
 
 
-CONTROLLED, REPORT_MD = [], []
+CONTROLLED, REPORT_MD, RETEST_MD = [], [], []
 JARGON = re.compile(r'/api/|ROLE_|PermissionEnum|\batoms?\b|endpoint|\b2xx\b|\b403\b|\bcommit\b|repositor|back[- ]?end|'
                     r'front[- ]?end|\bPRD\b|snapshot|enforce|derived|\bAPI\b|\b[a-z]+[A-Z][A-Za-z]+\b')
 
@@ -249,10 +254,48 @@ def plain_language():
     check(f'Every app-vs-plan verdict ({len(rows)}) is explained in plain words', rows and not bad, str(bad[:3]))
 
 
+def retest_lists():
+    snap_dir = os.path.join(HERE, '..', 'snapshots')
+    impl_path = os.path.join(snap_dir, 'impl-v26.43.3.json')
+    impl = json.load(open(impl_path))
+    defaults = impl['role_defaults']
+    name_to_key = {r['name']: r['key'] for r in impl['roles']}
+    label_to_key = {p['label']: p['key'] for p in impl['permissions']}
+    hist = os.path.join(HERE, '..', 'reports', 'history')
+    plans, empty, bad_refuse, bad_words = [], 0, [], []
+    for f in sorted(os.listdir(hist)):
+        if f == 'index.json':
+            continue
+        rc, out = run(['node', os.path.join(HERE, 'engine', 'cli.js'), '--retest', os.path.join(hist, f), impl_path])
+        plan = json.loads(out) if rc == 0 else None
+        plans.append(plan)
+        if not plan or not plan['needs_retest'] or not plan['items'] or len(plan['spot_checks']) != 3:
+            empty += 1
+            continue
+        for it in plan['items'] + plan['spot_checks']:
+            for t in [it.get('title'), it.get('what'), it.get('why')] + list(it.get('steps') or []):
+                if t and JARGON.search(t):
+                    bad_words.append(t)
+            r = it.get('roles') or {}
+            if it.get('kind') == 'area' and r.get('without'):
+                keys = [label_to_key.get(l) for l in it.get('permissions') or []]
+                if any(k in defaults.get(name_to_key.get(r['without'], ''), []) for k in keys if k):
+                    bad_refuse.append(f"{f}: {it['title']} -> {r['without']}")
+    check(f'Every release that changed permissions ({len(plans)}) gets a retest checklist with change checks and 3 quick checks',
+          plans and not empty, f'{empty} without')
+    check('Retest checklists are in plain words', not bad_words, str(sorted(set(bad_words))[:3]))
+    check('Every role suggested as "should be refused" holds none of the permissions that allow the action', not bad_refuse, str(bad_refuse[:3]))
+    nochange = [m for m in RETEST_MD if m and 'No Custom Roles retest is needed' in m]
+    changed = [m for m in RETEST_MD if m and 'checks to do' in m]
+    check('A scan writes a retest checklist: "no retest needed" for a no-change release, a checklist otherwise',
+          len(nochange) >= 1 and len(changed) >= 5 and None not in RETEST_MD, f'{len(nochange)} no-change, {len(changed)} with checks, {RETEST_MD.count(None)} missing')
+
+
 if __name__ == '__main__':
     real_history()
     controlled()
     plain_language()
+    retest_lists()
     passed = sum(1 for _, ok, _ in RESULTS if ok)
     out = os.path.join(os.path.dirname(HERE), 'reports', 'VALIDATION.md')
     os.makedirs(os.path.dirname(out), exist_ok=True)

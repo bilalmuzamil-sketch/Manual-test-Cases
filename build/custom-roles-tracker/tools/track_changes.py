@@ -115,6 +115,41 @@ def report_md(rep, prev, new):
     return '\n'.join(L)
 
 
+def retest_md(plan, tag):
+    """The manual-QA retest checklist for one release, in plain words."""
+    L = [f'# What to retest after release {tag}', '',
+         'Custom Roles & Permissions only. Read from the app itself; the steps are suggestions to plan with.', '']
+    if not plan['needs_retest']:
+        return '\n'.join(L + [f'Nothing in Custom Roles & Permissions changed in release {tag}. '
+                               'No Custom Roles retest is needed for this release. Normal regression testing still applies.'])
+    total = len(plan['items']) + len(plan['spot_checks'])
+    L += [f"Release {tag} changed {plan['change_count']} things in roles and permissions. {total} checks to do.", '']
+    parts = [('Check what changed', [i for i in plan['items'] if i['kind'] == 'change']),
+             ('Re-check these areas', [i for i in plan['items'] if i['kind'] == 'area']),
+             ('Quick checks after any permission change', plan['spot_checks'])]
+    n, part = 0, 0
+    for title, xs in parts:
+        if not xs:
+            continue
+        part += 1
+        L += [f'## Part {part} · {title}', '']
+        for it in xs:
+            n += 1
+            L += [f"### {n}. {it['title']}" + (f" ({it['priority']})" if it.get('priority') else ''), '']
+            if it.get('what'):
+                L += [it['what'], '']
+            if it.get('quote'):
+                L += [f"The plan says: \"{it['quote']}\"", '']
+            r = it.get('roles') or {}
+            if r.get('with') or r.get('without'):
+                L += [f"Should work for: {r.get('with') or '-'} · Should be refused for: {r.get('without') or 'a test role with the permission switched off'}", '']
+            L += [f'{i}. {x}' for i, x in enumerate(it['steps'], 1)] + ['']
+            if it.get('actions'):
+                L += ['Features to try: ' + '; '.join(it['actions'][:15]) + (f' and {len(it["actions"]) - 15} more' if len(it['actions']) > 15 else ''), '']
+            L += ['Test result: Not Tested', '']
+    return '\n'.join(L)
+
+
 def scan(a):
     repo = a.repo
     marker = a.build_marker
@@ -147,6 +182,9 @@ def scan(a):
     base = f"{prev['id']}__to__{sid}"
     json.dump(rep, open(os.path.join(REPORTS, base + '.json'), 'w'), indent=1, ensure_ascii=False)
     open(os.path.join(REPORTS, base + '.md'), 'w').write(report_md(rep, prev, sid))
+    rt = subprocess.run(['node', ENGINE, '--retest', os.path.join(REPORTS, base + '.json'), pend], capture_output=True, text=True)
+    if rt.returncode == 0:
+        open(os.path.join(REPORTS, base + '-RETEST.md'), 'w').write(retest_md(json.loads(rt.stdout), tags[0] if tags else commit[:7]))
     if not rep['changes']:
         print(f'\nNo Custom Roles & Permissions changes detected in this release ({ref}, {commit[:7]}) '
               f'compared with {prev["label"]}.')
@@ -155,6 +193,7 @@ def scan(a):
         print(f'\n{len(rep["changes"])} permission-related change(s) in {ref} ({commit[:7]}) vs {prev["label"]}: {rep["counts"]}')
         for c in rep['changes'][:15]:
             print(f"  {c['risk']:6} {c['title'][:110]}")
+        print(f'Retest checklist for the QA team: reports/{base}-RETEST.md')
         print(f'\nReview: reports/{base}.md   then: python3 track_changes.py confirm {sid} --by "<name>"')
     return 0
 
