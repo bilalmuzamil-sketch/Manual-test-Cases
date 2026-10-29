@@ -39,7 +39,10 @@ const step = async (name, sel, find = [], shotIt = true) => { const s = { chips:
   for (const f of find) s.rows[f] = sel ? await rowsOf(sel, f) : [];
   s.notifications = (await page.locator('.q-notification').allInnerTexts().catch(() => [])).map(T);
   s.api_count = meta.api.length; meta.steps[name] = s; if (shotIt) await page.screenshot({ path: `${OUT}/${name}.png` }); save(); return s; };
-const ver = async () => { meta.appVersion = await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null); };
+const hdr = async () => T(await page.locator('header').first().innerText({ timeout: 8000 }).catch(() => ''));
+// Location trap (F4, 29 Oct): assert the header shows the intended location at the start AND the end of every run.
+const ver = async () => { meta.appVersion = await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null);
+  if (meta.header_start === undefined) { meta.header_start = (await hdr()).slice(0, 300); meta.location_ok_start = meta.header_start.includes(M.loc); } };
 const search = async term => { const inp = page.locator('.q-page input[placeholder*="Search" i]').filter({ visible: true });
   if (!(await inp.count())) { await page.locator('.q-page button').filter({ hasText: 'Search' }).first().click().catch(e => meta.searchErr = e.message.split('\n')[0]); await page.waitForTimeout(1200); }
   const i2 = page.locator('.q-page input').filter({ visible: true }); const foc = await page.evaluate(() => document.activeElement && document.activeElement.tagName);
@@ -163,6 +166,16 @@ if (mode === 'RET_CANCEL') { // SV-11941 step 14: Parts -> Returns -> (row) more
   meta.writesAfterYes = meta.writes.slice(nw);
   meta.rowsAfterYes = (await row().allInnerTexts()).map(T); meta.rowBoxAfter = await box(row());
   await page.screenshot({ path: `${OUT}/3-after-yes.png` });
+  // The Yes button turns into a second confirm, "Are You Sure?" (seen 29 Oct 09:30 UTC). Record its state, then click it.
+  const sure = page.locator('.q-dialog').last().getByRole('button', { name: /Are You Sure/i });
+  meta.sureCount = await sure.count();
+  if (meta.sureCount) { meta.sureDisabled = await sure.first().isDisabled().catch(() => null); meta.sureBox = await box(sure);
+    const nw2 = meta.writes.length; const t0 = Date.now();
+    await sure.first().click({ timeout: 15000 }).catch(e => meta.sureErr = e.message.split('\n')[0]); meta.sureClickMs = Date.now() - t0;
+    await page.waitForTimeout(1500); meta.notifyAfterSure = (await page.locator('.q-notification').allInnerTexts().catch(() => [])).map(T);
+    await page.screenshot({ path: `${OUT}/3b-after-are-you-sure.png` });
+    await page.waitForTimeout(5000); meta.writesAfterSure = meta.writes.slice(nw2); meta.dialogsAfterSure = (await page.locator('.q-dialog').allInnerTexts().catch(() => [])).map(s => T(s).slice(0, 200));
+    meta.rowsAfterSure = (await row().allInnerTexts()).map(T); }
   await page.reload({ waitUntil: 'domcontentloaded' }); await page.waitForTimeout(12000);
   meta.rowsAfterReload = (await row().allInnerTexts()).map(T); meta.rowBoxReload = await box(row());
   await page.screenshot({ path: `${OUT}/4-after-reload.png` });
@@ -213,7 +226,9 @@ if (mode === 'PV_DVI_B67') { // B6 / B7 deselected only (wide viewport for the p
   await openPV();
   await guard('b67', async () => { await allLocations(); await pickPreset('Last 12 months'); meta.sortFound = await sortPartDesc(PV); meta.rowFound = await scrollToRow(PV, 'ZZAUTOTEST-SO1-10282011'); await page.evaluate(() => window.scrollBy(0, 200)); await step('b67_all_locations_last12m_sorted_no_search', PV, ZZ, true); });
 }
+meta.header_end = (await hdr()).slice(0, 300); meta.location_ok_end = meta.header_end.includes(M.loc);
+meta.VALID = !!(meta.location_ok_start && meta.location_ok_end);
 save(); await browser.close();
 fs.mkdirSync(`${EV}/screen`, { recursive: true });
 fs.writeFileSync(`${EV}/screen/${mode}${arg ? '_' + arg : ''}_${meta.observed_at_utc.replace(/[:.]/g, '')}.json`, JSON.stringify(meta, null, 1));
-console.log(JSON.stringify({ mode, appVersion: meta.appVersion, zones: [meta.browser_zone, meta.process_zone, meta.app_timezone_key, meta.location_tz], errs: Object.keys(meta).filter(k => k.startsWith('err_')) }));
+console.log(JSON.stringify({ mode, appVersion: meta.appVersion, zones: [meta.browser_zone, meta.process_zone, meta.app_timezone_key, meta.location_tz], errs: Object.keys(meta).filter(k => k.startsWith('err_')), VALID: meta.VALID, hs: meta.header_start && meta.header_start.slice(-60), he: meta.header_end && meta.header_end.slice(-60) }));

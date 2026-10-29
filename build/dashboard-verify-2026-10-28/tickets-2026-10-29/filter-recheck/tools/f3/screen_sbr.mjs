@@ -1,11 +1,11 @@
 // F3 Sales By Representative (C6, SV-11952): same-day order inside an opened rep / Unassigned, under several filter sets.
 // Usage: TZ=America/Toronto node screen_sbr.mjs '<runs json>'  run = {name, preset?, unassigned?, expand: 'unassigned'|'all', shot?}
 import fs from 'fs';
-import { boot2 } from '/home/user/Manual-test-Cases/build/testing-tools/staging-boot2.mjs';
-const APP = 'https://app.staging.shopview.com'; const WP = '39522bc6-abca-4f67-bd12-2840043c2d68', TZ = 'America/Toronto';
+import { f3boot, assertLoc } from './f3boot.mjs';
+const APP = 'https://app.staging.shopview.com'; const WP = '39522bc6-abca-4f67-bd12-2840043c2d68', TZ = 'America/Toronto', LNAME = 'DVI Test', L3 = 'dvi';
 const runs = JSON.parse(process.argv[2]);
 const OUT = `/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/SV-11952`; fs.mkdirSync(OUT, { recursive: true });
-const { browser, page } = await boot2('admin', { workplaceId: WP, timezone: TZ, contextOptions: { viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 2, timezoneId: TZ } });
+const { browser, page } = await f3boot(L3); // sets localStorage location + timezone (F4 trap, Rule 99)
 let reqs = []; page.on('request', r => { const u = decodeURIComponent(r.url()); if (u.includes('sales-by-representative')) reqs.push(u.replace(/^.*?\/api/, '/api').slice(0, 500)); });
 const meta = { ticket: 'SV-11952', location: 'DVI Test', location_tz: TZ, process_TZ: process.env.TZ || null, process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone, observed_at_utc: new Date().toISOString(), runs: {} };
 meta.browser_zone = await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
@@ -14,6 +14,7 @@ const num = s => { const m = s.match(/\b([PS])\d*-(\d+)\b/); return m ? [Number(
 for (const run of runs) {
   reqs = []; const R = { spec: run };
   await page.goto(APP + '/reports/sales-by-representative', { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(10000);
+  R.loc_start = await assertLoc(page, LNAME, WP);
   meta.appVersion = meta.appVersion || await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null);
   if (run.preset) { await page.locator('[data-test-id="filter_chip_dateRange"]').click(); await page.waitForTimeout(1500);
     R.preset_ids = await page.locator('.q-menu [data-test-id]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id')));
@@ -36,8 +37,9 @@ for (const run of runs) {
   if (run.shot) { const day = run.shotDay; const rb = await page.locator('tr').filter({ hasText: day }).evaluateAll(trs => trs.map(t => { const b = t.getBoundingClientRect(); return [t.innerText.replace(/\s+/g, ' ').slice(0, 40), Math.round(b.x * 2), Math.round(b.y * 2), Math.round(b.width * 2), Math.round(b.height * 2)]; }));
     R.rowboxes = rb; R.chipboxes = await page.locator('[data-test-id^="filter_chip_"]').evaluateAll(es => es.map(e => { const b = e.getBoundingClientRect(); return [e.getAttribute('data-test-id'), Math.round(b.x * 2), Math.round(b.y * 2), Math.round(b.width * 2), Math.round(b.height * 2)]; }));
     await page.screenshot({ path: `${OUT}/${run.name}.png` }); }
+  R.loc_end = await assertLoc(page, LNAME, WP); R.VALID = R.loc_start.ok && R.loc_end.ok;
   R.reqs = reqs; meta.runs[run.name] = R; fs.writeFileSync(`${OUT}/screen-meta.json`, JSON.stringify(meta, null, 1));
-  console.log(run.name, JSON.stringify({ chips: R.chips, summary: R.summary, bad: Object.entries(R.same_day).filter(([k, v]) => !v.ok).slice(0, 6).map(([k, v]) => k + ': ' + v.list.join(',')) }).slice(0, 1800));
+  console.log(run.name, 'VALID=' + R.VALID, JSON.stringify({ chips: R.chips, summary: R.summary, bad: Object.entries(R.same_day).filter(([k, v]) => !v.ok).slice(0, 6).map(([k, v]) => k + ': ' + v.list.join(',')) }).slice(0, 1800));
 }
 console.log(JSON.stringify({ v: meta.appVersion, bz: meta.browser_zone, pz: meta.process_zone, tz: meta.location_tz, key: meta.app_timezone_key }));
 await browser.close();
