@@ -1,7 +1,7 @@
 <!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
 SUMMARY: Reports - Technician Efficiency drops a line's tech time when the clock is under 36 seconds (Dashboard tile too)
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
-LINKS: relates to SV-5450 (Technician Efficiency, Completed tab: proportional allocation) · relates to SV-9575 (Dashboard v1 - Story 3)
+LINKS: relates to SV-2115 (Create Technician Efficiency (invoiced) report) · relates to SV-5450 (BE 'Completed' Technician Efficiency Report) · relates to SV-9575 (Dashboard v1 - Story 3)
 PICTURES: pictures/P1-2-1-dashboard-technician-efficiency.png · pictures/P1-2-2-work-order-S3-17383-line-4.png · pictures/P1-2-3-technician-efficiency-report-line.png
 BASIS: Chris Ward's answer to question 28 (28 Oct 2026): "Yes. Split on the real time clocked and round only for display, so that tech gets the full 0.50. Defect."
 RE-CHECKED: 28 Oct 2026, 11:23 PM–11:40 PM UTC, staging v26.43.2-f8698cb, Staging Lethbridge - 4310; session, browser and test computer all on America/Edmonton.
