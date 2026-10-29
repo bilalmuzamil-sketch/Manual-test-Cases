@@ -1,0 +1,12 @@
+* After a lead change, the message shows an Undo button and stays 5 seconds, held open while hovered.
+* Undo puts the work order back exactly as it was: the previous lead technician (or Unassigned), its previous place in that technician's order, and any shifts the change cleared.
+* Removed shifts come back as they were; a shift ended at the moment of the change gets its original end time back.
+* Each labor line goes back to the technician it had before the change, and a line that had none goes back to none (Undo does not apply the normal lead-change line rules).
+* Undo is itself a lead change: it records its own audit entry.
+* Undo follows the Invoiced or Paid rule (an invoiced or paid work order can't be moved back).
+* Undo shows no shift-clearing prompt.
+* After Undo, the message reads "Assignment undone", with no Undo button on it.
+* If Undo can't be saved, nothing changes and the alert "Couldn’t undo the change. Move the work order back by hand." shows.
+* TestRail C682426: Undo puts the work order back with its old lead and in its old place.
+* TestRail C682427: Undo brings back the shifts that a lead change cleared.
+* TestRail C682428: Undo cannot move back a work order that was invoiced in the meantime.

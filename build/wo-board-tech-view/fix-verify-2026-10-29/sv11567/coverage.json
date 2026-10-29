@@ -1,0 +1,226 @@
+{
+ "ticket": "SV-11567",
+ "build": "",
+ "surfaces": [
+  "Board View",
+  "Tech View"
+ ],
+ "lines": [
+  {
+   "id": "D1",
+   "quote": "After a lead change, the message shows an Undo button and stays 5 seconds, held open while hovered.",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  },
+  {
+   "id": "D2",
+   "quote": "Undo puts the work order back exactly as it was: the previous lead technician (or Unassigned), its previous place in that technician's order, and any shifts the change cleared.",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  },
+  {
+   "id": "D3",
+   "quote": "Removed shifts come back as they were; a shift ended at the moment of the change gets its original end time back.",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  },
+  {
+   "id": "D4",
+   "quote": "Each labor line goes back to the technician it had before the change, and a line that had none goes back to none (Undo does not apply the normal lead-change line rules).",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  },
+  {
+   "id": "D5",
+   "quote": "Undo is itself a lead change: it records its own audit entry.",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  },
+  {
+   "id": "D6",
+   "quote": "Undo follows the Invoiced or Paid rule (an invoiced or paid work order can't be moved back).",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  },
+  {
+   "id": "D7",
+   "quote": "Undo shows no shift-clearing prompt.",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  },
+  {
+   "id": "D8",
+   "quote": "After Undo, the message reads \"Assignment undone\", with no Undo button on it.",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  },
+  {
+   "id": "D9",
+   "quote": "If Undo can't be saved, nothing changes and the alert \"Couldn’t undo the change. Move the work order back by hand.\" shows.",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  },
+  {
+   "id": "D10",
+   "quote": "TestRail C682426: Undo puts the work order back with its old lead and in its old place.",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  },
+  {
+   "id": "D11",
+   "quote": "TestRail C682427: Undo brings back the shifts that a lead change cleared.",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  },
+  {
+   "id": "D12",
+   "quote": "TestRail C682428: Undo cannot move back a work order that was invoiced in the meantime.",
+   "cells": {
+    "Board View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    },
+    "Tech View": {
+     "verdict": "",
+     "evidence": [],
+     "setup_readback": "",
+     "observed": ""
+    }
+   }
+  }
+ ]
+}
