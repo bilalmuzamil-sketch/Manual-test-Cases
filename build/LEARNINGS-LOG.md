@@ -437,3 +437,9 @@
 - QA Passed comment 79737 (side-by-side picture); C847744 Passed (Failed result superseded, prefix removed) and C847745 Passed in run 498 → run 498: 297 passed, 0 failed, 1 blocked (C682419 chat bubble). Both cases cleaned (Known problem, EXPECT FAIL, stamp).
 - Rule 136/137 topic tests: C698884 ("Column Selection sits centred" → Card size beside Column Selection; title changed), C96955 (step 3 and steps 8–9 reworded, the "Card size not expected yet" line removed), C96992 (Automated), C96987, C590110, C590128 — every pre-v79 S3-R11 / S6-R1 / S6-R3 / S6-E1 sentence replaced by the v81 one (regex over the HTML allowing ’ / &rsquo; / ') with a note naming version 81. Still to do: C96954 (density loop removed "until Card size ships" — add Compact/Detailed and run) and C96955 (parked in Fast-follow — run, then join the run).
 #sv11581 #card-size #positive-control #rule136 → L0599, L0603
+
+## L0605 — 2026-10-29 — C96954 / C96955 (card-size follow-ups) run on sv11581 and back in run 498; a fresh branch also lacks Esther Howard and Ralph Edwards
+- `cardsize-followup-1029.mts` (copy of s3-batchA): C96954 now reads the last card in Detailed and Compact (S3-E4), C96955 counts `button_card_size` and checks it sits next to `button_board_fields_selection`. s3-batchA's set-up only made Jenny/Theresa/Kristin, so on a fresh branch `ES` was undefined ("reading 'staff_id'") — Esther Howard and Ralph Edwards are now created in the same loop (zz.wob.* emails).
+- Both Passed (C96954: last card 12 px inside the column at the end in both sizes; C96955: no density button, Card size at x 1285–1340 beside Column Selection at 1350, card 262×160 unchanged after Tech View Comfortable/Compact) → run 498: 299 passed, 0 failed, 1 blocked. C96954 gained the Compact step + line, v81 note and stamp.
+- A built-in safety check refuses `rm -f $VAR/*` — write a new evidence folder instead of clearing one.
+#sv11581 #card-size #fresh-branch → L0604, L0583
