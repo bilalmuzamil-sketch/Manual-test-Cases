@@ -30,8 +30,19 @@ s = S('A2PIC', 'iii'); J.append(('SV-11938', 'ui-A2PIC-iii.png', 'Work In Progre
   (cell(s, 'Parts Remaining'), 'bad', 'Parts Remaining $37.67: should be $0.00')]))
 s = S('A4', 'iii-default'); J.append(('SV-11939', 'ui-A4-iii-default.png', 'Shop Efficiency, DVI Test, Date Range: This month (the default), one timesheet running', [
   (s['chip'], 'good', 'Date Range left on its default, This month'),
-  ({'x': 2592, 'y': 12, 'w': 560, 'h': 84}, 'good', 'A timesheet is running on S1-38220: 0.73 hours so far today (the timer at the top)'),
-  (s['totals'], 'bad', 'Total Clocked Hours 8.52 leaves out the running timesheet: should be 8.52 + 0.73 = about 9.25 (Timesheet Activities, same range, includes it)')]))
+  ({'x': 2592, 'y': 12, 'w': 560, 'h': 84}, 'good', 'A timesheet is running on S1-38220: 0.56 hours so far today (the timer at the top)'),
+  (s['totals'], 'bad', 'Total Clocked Hours 8.52 leaves out the running timesheet: should be 8.52 + 0.56 = about 9.08 (Timesheet Activities, same range, shows 9.09)')]))
+J.append(('SV-11939-pic1', 'ui-A4-iii-ta-default.png', 'Timesheet Activities, DVI Test, Date Range: This month (the default), one timesheet running', [
+  ({'x': 2000, 'y': 168, 'w': 445, 'h': 61}, 'good', 'Date Range left on its default, This month'),
+  ({'x': 557, 'y': 368, 'w': 2582, 'h': 96}, 'good', "Admin Shopview's timesheet on S1-38220 is Active: 0.56 hours so far"),
+  ({'x': 557, 'y': 1800, 'w': 2582, 'h': 80}, 'good', 'Totals 9.09 Total Hours: the 8.53 finished hours plus the 0.56 running hours')]))
+s = S('P12R', 'iii'); J.append(('SV-11932-pic3', 'ui-P12R-iii.png', 'Technician Efficiency report, Staging Lethbridge - 4310, Date: Last 12 months, Joseph Nelson expanded', [
+  (chip(s, 'filter_chip_range'), 'good', 'Date is the widest choice, Last 12 months'),
+  (s['row'], 'bad', 'S3-17383 line 4 (Replace cabin air filter): Clocked Hrs 0.01, Invoiced Tech Hrs 0. Joseph Nelson is the only clocker, so it should be 0.50')]))
+s = S('P13R', 'iii'); J.append(('SV-11933-pic2', 'ui-P13R-iii.png', 'Technician Utilization report, Date: Last 12 months, Technician: All, Location: All locations, sorted by Total Hours', [
+  (chip(s, 'filter_chip_dateRange'), 'good', 'Date is the widest choice, Last 12 months'),
+  (chip(s, 'filter_chip_locationIds'), 'good', 'Location: All locations; Technician: All technicians'),
+  (s['row'], 'bad', 'Nebojsa Custom-Admin is listed with 0.00 hours and "—": his only clocks were a few seconds each, so he should not be listed')]))
 s = S('A5HD', 'iii-csv'); J.append(('A5-held', 'ui-A5HD-iii-csv.png', 'payroll_timesheet.csv, Staging Heavy Duty - 9919, Custom 01/01/2026 - 10/29/2026 (widest)', [
   (s['marked'][0]['box'], 'bad', 'Haley Brown 6 Sep 2026: 28.50 Total Hours. Her 15 timesheets that day all fall between 7:00 and 9:00 PM, so it should be 2.00')]))
 for key, src, title, marks in J:
