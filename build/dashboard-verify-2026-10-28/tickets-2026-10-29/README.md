@@ -1,4 +1,6 @@
-# Ticket drafts for review, 29 Oct 2026 (epic SV-11839). Nothing is filed yet.
+# Ticket drafts for review, 29 Oct 2026 (epic SV-11839).
+
+**Filed 29 Oct 2026 (QA lead's go-ahead):** P1-1 → SV-11931 · P1-2 → SV-11932 · P1-3 → SV-11933 · P1-4 → SV-11934 · D1 → SV-11935. Comments: SV-11931 (79711, tags Chris), SV-11823 (79712, P1-5), SV-11441 (79713, Q32). Record: `filed/FILED-2026-10-29.json`. **Every other draft is still unfiled.**
 
 **Every draft waits for the QA lead's go-ahead, one ticket at a time (Rules 62 and 73).** When a draft is
 approved it is filed as:
@@ -58,10 +60,10 @@ times, the searches run and the test data it made: `phase2/SUMMARY-p2a.md` (labo
 | C3 | `phase2/P2-C3-reports-sales-tax-zero-invoices-listed-as-paid.md` | Reports - Sales Tax Collected lists $0.00 invoices as Paid, with a paid date | SV-4573 |
 | C4 | `phase2/P2-C4-reports-sales-tax-deposit-part-paid-status-and-date.md` | Reports - Sales Tax Collected shows an invoice part paid by a deposit as Paid, with the invoice date as its paid date | SV-4573 |
 | C6 | `phase2/P2-C6-reports-sbr-same-day-invoice-order.md` | Reports - Sales By Representative lists invoices on the same day newest first instead of by invoice number | SV-8624 |
-| D1 | `phase2/P2-D1-reports-ar-aging-part-sale-deposit-not-taken-off.md` | Reports - A/R Aging shows an invoiced part sale at full amount; its deposit is not taken off | SV-5026, SV-11690 |
+| D1 **(FILED SV-11935)** | `phase2/P2-D1-reports-ar-aging-part-sale-deposit-not-taken-off.md` | Reports - A/R Aging shows an invoiced part sale at full amount; its deposit is not taken off | SV-5026, SV-11690 |
 | D2 | `phase2/P2-D2-reports-ibs-sent-batch-total-not-sum-of-invoices.md` | Reports - IBS Batches: a sent batch's Total is $290.06 more than the invoices in it | SV-2144 |
 | D3 | `phase2/P2-D3-reports-ibs-ready-to-send-lists-zero-invoice.md` | Reports - IBS Batches: a $0.00 invoice is listed in Ready To Send | SV-2144 |
-| D4 | `phase2/P2-D4-reports-notes-shows-only-100-notes.md` | Reports - Notes shows only the first 100 notes, with no way to see the rest | none found |
+| D4 | `phase2/P2-D4-reports-notes-shows-only-100-notes.md` | Reports - Notes shows only the first 100 notes, with no way to see the rest | parent epic SV-10193 (QA lead, 29 Oct) |
 | D5 | `phase2/P2-D5-reports-qb-unexported-credit-memo-rows-blank-number.md` | Reports - QB Unexported: credit memo rows (and other credit and deposit rows) have a blank No. | SV-2871, SV-4929 |
 | D6 | `phase2/P2-D6-reports-qb-unexported-credit-memo-listed-twice.md` | Reports - QB Unexported: one credit memo is listed twice, each time with a different error | SV-2871 |
 | D7 | `phase2/P2-D7-reports-export-customer-invoice-terms-from-customer.md` | Reports - Export Reports: Customer Invoice shows the customer's current Terms, not the invoice's own | SV-1878, SV-11676 |
