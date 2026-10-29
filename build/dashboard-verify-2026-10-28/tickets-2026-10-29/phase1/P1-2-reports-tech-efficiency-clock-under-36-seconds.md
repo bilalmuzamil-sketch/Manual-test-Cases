@@ -1,9 +1,9 @@
 <!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
-EDITED 29 Oct 2026 after the filter recheck: single-day Aug 25 and Last quarter replaced by Last 12 Months; the S3-17383 line 4 row (0 should be 0.50) is the Actual/Expected; the tile effect is one dated sentence (29 Oct 2026) in "Where this shows on the Dashboard"; picture 1 replaced.
+EDITED 29 Oct 2026 after the filter recheck: single-day Aug 25 and Last quarter replaced by Last 12 Months; the S3-17383 line 4 row (0 should be 0.50) is the Actual/Expected; the tile effect is one dated sentence (29 Oct 2026) in "Where this shows on the Dashboard"; pictures 1 and 3 replaced; Where it was seen = v26.43.3-8ad4001.
 SUMMARY: Reports - Technician Efficiency drops a line's tech time when the clock is under 36 seconds (Dashboard tile too)
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-2115 (Create Technician Efficiency (invoiced) report) · relates to SV-5450 (BE 'Completed' Technician Efficiency Report) · relates to SV-9575 (Dashboard v1 - Story 3)
-PICTURES: ../filter-recheck/evidence/f1/SV-11932-replacement.png · P1-2-2-work-order-S3-17383-line-4.png · P1-2-3-technician-efficiency-report-line.png
+PICTURES: ../filter-recheck/evidence/f1/SV-11932-replacement.png · P1-2-2-work-order-S3-17383-line-4.png · ../filter-recheck/evidence/f1/SV-11932-pic3-replacement.png
 BASIS: Chris Ward's answer to question 28 (28 Oct 2026): "Yes. Split on the real time clocked and round only for display, so that tech gets the full 0.50. Defect."
 RE-CHECKED: 28 Oct 2026 23:23 UTC (API) and 29 Oct 2026 00:37–00:38 UTC (screen, pictures re-taken), staging v26.43.2-f8698cb, Staging Lethbridge - 4310; session, browser, the app's own time-zone setting and the test computer all on America/Edmonton. Same figures both times.
 -->
@@ -58,10 +58,10 @@ Dashboard PRD, version 53, Story 3, S3-R2:
 
 **2.** Work order S3-17383, line 4: 0.50 hour of tech time, 0.01 hour (30 seconds) clocked by Joseph Nelson.
 
-**3.** Technician Efficiency report, the same line: Invoiced Tech Hrs 0.
+**3.** Technician Efficiency report, Lethbridge, Last 12 months, Joseph Nelson opened: line 4 of S3-17383 (Replace cabin air filter) shows Invoiced Tech Hrs 0 (should be 0.50).
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026, Admin.
+- Staging (https://app.staging.shopview.com), build v26.43.3-8ad4001, 29 Oct 2026 (Edmonton time), Admin.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Edmonton).
 - Not checked on Production or on a QA branch.

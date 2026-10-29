@@ -1,5 +1,5 @@
 <!-- FILED 29 Oct 2026 as SV-11946 (https://shopview.atlassian.net/browse/SV-11946), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B7-SV-11946.html
-EDITED 29 Oct 2026 after the filter recheck: Last 90 days, one location and the search removed (Last 12 months, All locations, Part # sort); date note moved to 1 October 2027; picture 1 replaced.
+EDITED 29 Oct 2026 after the filter recheck: Last 90 days, one location and the search removed (Last 12 months, All locations, Part # sort); date note moved to 1 October 2027; picture 1 replaced; "Where it was seen" updated to the follow-up runs.
 SUMMARY: Reports - Parts Velocity Demand counts a work order twice when its invoice is reversed and created again
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8645 (Velocity - Story 5 - Metric Calculations)
@@ -64,7 +64,7 @@ Same PRD, change log of 20 Aug 2026: "Demand counts distinct transactions, not i
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
+- Staging (https://app.staging.shopview.com), build v26.43.2-9272076, 29 Oct 2026, 5:40 AM Toronto time, Admin. Re-read on v26.43.3-8ad4001 the same morning: Demand still 5.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - A reversed invoice that is not created again correctly keeps Demand 1 with Units Sold 0.00, and two different work orders correctly add 1 each (seen 28 Oct 2026).
 - Not checked on Production or on a QA branch.

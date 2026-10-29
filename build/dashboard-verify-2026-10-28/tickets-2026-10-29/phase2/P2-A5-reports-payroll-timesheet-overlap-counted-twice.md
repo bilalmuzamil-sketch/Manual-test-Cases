@@ -1,5 +1,5 @@
 <!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
-EDITED 29 Oct 2026 after the filter recheck: export date range widened to Custom 01/01 of this year to today (Today / September dropped); overlap example re-figured to about 1.08 (65 minutes); picture 3 replaced.
+EDITED 29 Oct 2026 after the filter recheck: export date range widened to Custom 01/01 of this year to today (Today / September dropped); overlap example re-figured to about 1.08 (65 minutes); picture 3 replaced; "Where it was seen" = v26.43.3-8ad4001, 29 Oct 2026.
 SUMMARY: Reports - Payroll Timesheet export counts overlapping timesheets twice, so a day can show more than 24 hours
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-2071 ("Payroll Timesheet" Export Report (export-step 10))
@@ -68,7 +68,7 @@ Existing example, no set-up needed: switch to **Staging Heavy Duty - 9919**, **E
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time) and 29 Oct 2026 (Karachi time), Admin.
-- Browser and test computer set to each location's time zone (America/Toronto, Asia/Karachi).
+- Staging (https://app.staging.shopview.com), build v26.43.3-8ad4001, 29 Oct 2026 (Karachi time for Staging Heavy Duty - 9919; Toronto time for DVI Test), Admin.
+- Browser, the app's own time-zone setting and the test computer set to each location's time zone (Asia/Karachi, America/Toronto).
 - Heavy Duty, September 2026: 3 employee-days are over 24 hours (Haley Brown 2 Sep 24.50 and 6 Sep 28.50; Admin Shopview 19 Sep 24.33). Admin Shopview's 19 Sep has a different cause: the part of a clock that runs past midnight is added to the next day. That is not covered by this ticket; it is asked about separately in the rewritten question 39(b).
 - Not checked on Production or on a QA branch.

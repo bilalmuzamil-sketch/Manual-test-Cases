@@ -1,0 +1,23 @@
+<h2>What is wrong</h2>
+<p>When <strong>Inventory Value</strong> is opened for the <strong>first time</strong> in a browser (no saved settings), the <strong>Margin</strong> and <strong>Total Sell</strong> columns are already shown.</p>
+<p>Both should <strong>start hidden</strong>. A user who wants them turns them on from the columns button.</p>
+<p>For example, the first visit shows:</p>
+<ul><li><p>Actual: <strong>12 columns</strong>: Part #, Description, Category, Vendor, Location, Qty, Unit Cost, Unit Sell, <strong>Margin</strong>, Margin %, <strong>Total Sell</strong>, Total Cost.</p></li><li><p>Expected: <strong>10 columns</strong>: the same without <strong>Margin</strong> and <strong>Total Sell</strong> (12 − 2 = 10).</p></li></ul>
+<p>So every new user, and every user on a new browser or device, sees two extra money columns by default.</p>
+<p>The figures in the columns are correct, and the columns button works (switching Margin or Total Sell off hides it).</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Open a browser window that has never opened Inventory Value before (a private / incognito window works).</p></li><li><p>Log in to staging as an Admin.</p></li><li><p>Click <strong>Reports</strong> (any location), then in the left menu under <strong>Parts</strong>, click <strong>Inventory Value</strong>.</p></li><li><p>Click the <strong>Location</strong> filter and click <strong>Select all</strong>. This does not change which columns are shown.</p></li><li><p>Read the column headings across the top of the table.</p></li></ol>
+<p><strong>Actual:</strong> <strong>Margin</strong> and <strong>Total Sell</strong> are shown on the first visit.</p>
+<p><strong>Expected:</strong> <strong>Margin</strong> and <strong>Total Sell</strong> are hidden on the first visit. The visible columns are Part #, Description, Category, Vendor, Location (for a user with more than one location), On Hand, Unit Cost, Unit Sell, Margin % and Total Cost.</p>
+<hr>
+<p><strong>Source:</strong> Inventory Value Report PRD (Confluence 720142338, version 10, last change 13 Aug 2026):</p>
+<blockquote><p>S3-R12: On first visit, the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.</p></blockquote>
+<blockquote><p>S3-R13: The Margin and Total Sell columns are hidden by default and can be turned on from the column-selection control (Story 8).</p></blockquote>
+<blockquote><p>S8-R3: Every other column is available in the control; Margin and Total Sell are off by default, the rest on by default (S3-R12).</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Inventory Value opened for the first time in a fresh browser, all locations: Margin and Total Sell are shown.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="f361ab19-0fc9-43f8-abd8-ceb2347ce117" data-collection="upload-user-collection-1343233018" data-alt="SV-11947-B8-first-visit-columns-no-filters.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-9272076, 29 Oct 2026, 5:49 AM Toronto time, Admin, desktop browser opened fresh (no saved report settings).</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).</p></li><li><p>Also seen on 28 Oct 2026 during the reports check, and first reported as <a href="https://shopview.atlassian.net/browse/SV-8927">SV-8927</a> (closed 9 Aug 2026).</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

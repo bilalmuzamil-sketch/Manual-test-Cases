@@ -1,5 +1,5 @@
 <!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
-EDITED 29 Oct 2026 after the filter recheck: Sales by Customer tile left on its default Last 12 Months instead of the current week; picture 3 replaced.
+EDITED 29 Oct 2026 after the filter recheck: Sales by Customer tile left on its default Last 12 Months instead of the current week; picture 3 replaced; "Where it was seen" updated to the follow-up runs.
 SUMMARY: Reports - Sales By Customer keeps the old Labor Delta after a timesheet is corrected (Dashboard table too)
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8610 (SBC - Story 12 - Inv. Hrs (Labor Delta) display) · relates to SV-9577 (Dashboard v1 - Story 5 - Count Tiles)
@@ -63,6 +63,6 @@ and hours worked are
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
+- Staging (https://app.staging.shopview.com): reproduced 28 Oct 2026 (Toronto time) on build v26.43.2-f8698cb (the timesheet correction was made then); re-checked 29 Oct 2026 (Toronto time) on build v26.43.3-8ad4001 with the same figures, Admin.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - Not checked on Production or on a QA branch.

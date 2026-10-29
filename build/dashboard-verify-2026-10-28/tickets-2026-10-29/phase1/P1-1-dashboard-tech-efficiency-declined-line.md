@@ -1,5 +1,5 @@
 <!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
-EDITED 29 Oct 2026 after the filter recheck: date on the tile changed from a custom Oct 25 – Oct 28 range to Last 12 Months; picture 1 replaced.
+EDITED 29 Oct 2026 after the filter recheck: date on the tile changed from a custom Oct 25 – Oct 28 range to Last 12 Months; picture 1 replaced; "Where it was seen" updated to the follow-up runs.
 SUMMARY: Dashboard - Technician Efficiency counts a line the customer declined
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-9575 (Dashboard v1 - Story 3 - Measure Formulas & Report Parity)
@@ -61,7 +61,7 @@ Dashboard PRD, version 53 (22 Oct 2026), Story 3, S3-R2, Technician Efficiency:
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
+- Staging (https://app.staging.shopview.com), build v26.43.3-8ad4001, 29 Oct 2026 (Toronto time), Admin.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - Other test data at DVI Test changes the tile total from day to day. Fabian Bonjean's row on S1-38198 is the stable example.
 - The work orders S1-38198, S1-38199 and S1-38195 are test data at DVI Test and stay in place.

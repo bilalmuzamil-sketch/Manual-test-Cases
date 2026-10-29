@@ -1,5 +1,5 @@
 <!-- FILED 29 Oct 2026 as SV-11938 (https://shopview.atlassian.net/browse/SV-11938), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-A2-SV-11938.html
-EDITED 29 Oct 2026 after the filter recheck: customer pick removed (Customer left on All customers, list sorted by Customer instead); picture 1 replaced.
+EDITED 29 Oct 2026 after the filter recheck: customer pick removed, Location → Select all added, list sorted by Customer (S2-33740 in the first ten rows); picture 1 replaced; Where it was seen = v26.43.3-8ad4001.
 SUMMARY: Reports - Work In Progress counts parts marked "Receive Later" as Parts Remaining instead of Parts Earned
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8660 (WIP - Story 4 - Columns and Calculations)
@@ -37,10 +37,11 @@ Not affected — this report does not feed any Dashboard tile.
 4. On the **Lines** tab, under line **11**, look at **Parts**: the part "(11) 11" ($36.67) and "(11) Core for 11" ($1.00) both show **Receive Later**.
 5. Click **Reports**, then **Work In Progress** in the left menu. Leave **As of** on today.
 6. Leave **Customer** on **All customers**.
-7. Click the **Approved - Not Started** tab.
-8. Click the columns button (top right of the report) and switch on **Parts Earned** and **Parts Remaining**.
-9. Click the **Customer** heading so the list is sorted by customer name; 4 Star Truck Repair comes first.
-10. Find the row **S2-33740**.
+7. Click **Location: Staging Heavy Duty - 9919** and click **Select all**, so it reads **Location: All locations**. Close the list.
+8. Click the **Approved - Not Started** tab.
+9. Click the columns button (top right of the report) and switch on **Parts Earned** and **Parts Remaining**.
+10. Click the **Customer** heading once. The list is sorted by customer name: after a few test customers, the **4 Star Truck Repair** rows come next, and **S2-33740** is in the first ten rows.
+11. Find the row **S2-33740**. If Parts Earned and Parts Remaining are off the right edge, scroll the table to the right.
 
 **Actual:** Parts Earned **$0.00**, Parts Remaining **$37.67**.
 
@@ -54,13 +55,13 @@ Not affected — this report does not feed any Dashboard tile.
 
 ## Screenshots
 
-**1.** Work In Progress, Approved - Not Started, all customers, all locations, with Parts Earned and Parts Remaining switched on: S2-33740 shows $0.00 earned and $37.67 remaining.
+**1.** Work In Progress, Approved - Not Started, all customers, all locations, with Parts Earned and Parts Remaining switched on: S2-33740 shows $0.00 earned and $37.67 remaining. The list is sorted by Customer, then the wide Customer column is switched off so the parts columns fit in the picture (this does not change the rows).
 
 **2.** Work order S2-33740, Lines tab: both parts are marked Receive Later ($36.67 + $1.00).
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
+- Staging (https://app.staging.shopview.com), build v26.43.3-8ad4001, 29 Oct 2026 (Karachi time), Admin.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).
 - Other work orders at Heavy Duty show the same, for example S2-33465 and S2-33376 (each has a Receive Later part and shows $37.67 in Parts Remaining on the same tab).
 - Not checked on Production or on a QA branch. The PDF and CSV downloads were not checked.

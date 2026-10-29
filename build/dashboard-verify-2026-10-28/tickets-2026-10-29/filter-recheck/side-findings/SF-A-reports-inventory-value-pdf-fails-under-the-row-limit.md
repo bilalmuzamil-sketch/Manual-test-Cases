@@ -40,9 +40,8 @@ Not affected. The Dashboard has no Inventory Value tile: the Dashboard PRD, last
 2. Click **Reports**, then in the left menu under **Parts**, click **Inventory Value**.
 3. Leave **As of** on today's date (it opens on today).
 4. Click the **Location** filter and click **Select all**, so it reads **Location: All locations**. Leave **Category: All categories** and **Vendor: All vendors**. Type nothing in **Search**.
-5. (Optional) To see how many rows the view holds, do step 7 first and count the lines between the column names and the **Totals** line in the CSV. On 29 Oct 2026 there were 9,667.
-6. At the top right of the report, click **⋯** and choose **Download (PDF)**. Wait about a minute.
-7. Click **⋯** again and choose **Download (CSV)**.
+5. At the top right of the report, click **⋯** and choose **Download (PDF)**. Wait about a minute.
+6. Click **⋯** again and choose **Download (CSV)**.
 
 **Actual:** after about 30 seconds the red message "This report is too large to export. Narrow the date range or filters, then try again." appears, and no PDF arrives. The CSV of the same view arrives in about 2 seconds.
 

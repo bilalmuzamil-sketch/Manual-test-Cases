@@ -1,5 +1,5 @@
 <!-- FILED 29 Oct 2026 as SV-11951 (https://shopview.atlassian.net/browse/SV-11951), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-C4-SV-11951.html
-EDITED 29 Oct 2026 after the filter recheck: Date Range: Today replaced by the default This month (Partially Paid kept, it is part of the test); pictures 2 and 3 replaced.
+EDITED 29 Oct 2026 after the filter recheck: Date Range: Today replaced by the default This month (Partially Paid kept, it is part of the test); pictures 2 and 3 replaced; "Where it was seen" updated to the follow-up runs.
 SUMMARY: Reports - Sales Tax Collected shows an invoice part paid by a deposit as Paid, with the invoice date as its paid date
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-4573 (BE/FE Sales Tax report view)
@@ -32,7 +32,7 @@ Not affected — this report does not feed any Dashboard tile.
 6. Mark the line **Complete**.
 7. On the **Finance** tab, click **Create Invoice**. Close the **New Customer Payment** window without paying. **Balance** reads **$105.00**.
 8. Open **Reports → Sales Tax Collected**.
-9. Leave **Date Range** on **This month** and do not pick an Invoice Status yet. Find your invoice.
+9. Leave **Date Range** on **This month** (from 1 November pick **Last month**, so the range is October 2026) and do not pick an Invoice Status yet. Find your invoice.
 10. Click **Invoice Status** and pick **Partially Paid**.
 
 **Actual:**
@@ -70,7 +70,7 @@ and
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
+- Staging (https://app.staging.shopview.com), build v26.43.3-8ad4001 (the pictures are from v26.43.2-9272076, same result), 29 Oct 2026 (5:42–6:34 AM Toronto time), Admin, DVI Test.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - Older invoices with the same problem (28 Oct data check): P2-2441, P2-2442, P2-2445, P2-2416, P2-2417, P2-2315, S2-37799, S2-32138 (Staging Heavy Duty - 9919) and S3-16408 (Staging Lethbridge - 4310).
 - When part of the money is an ordinary payment (not a deposit), the report correctly shows Partially Paid.

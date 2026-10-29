@@ -1,0 +1,22 @@
+<h2>What is wrong</h2>
+<p><strong>Shop Efficiency</strong> leaves out a timesheet that is still running (clocked in, not yet clocked out). Its <strong>Total Clocked Hours</strong> only counts finished timesheets.</p>
+<p>A running shift under 24 hours should count, up to now. <strong>Timesheet Activities</strong> already counts it, so the two reports disagree.</p>
+<p>Example (DVI Test, This month, 29 Oct 2026):</p>
+<ul><li><p>Finished timesheets this month: <strong>8.52</strong> hours.</p></li><li><p>Admin Shopview's running timesheet on S1-38220, started 7:12 AM: <strong>0.56</strong> hours at the moment of the pictures.</p></li><li><p><strong>Actual</strong> Total Clocked Hours: <strong>8.52</strong>.</p></li><li><p><strong>Expected:</strong> 8.52 + 0.56 = about <strong>9.08</strong> (it grows while the timesheet runs). Timesheet Activities, same range, shows 9.09 (the 0.01 difference is only rounding).</p></li></ul>
+<p>Because Total Clocked Hours is too low, <strong>Difference</strong> and <strong>Efficiency</strong> on the same row are wrong too.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>DVI Test</strong>.</p></li><li><p>Use a work order with an approved line, for example a new work order for a <strong>ZZAUTOTEST</strong> customer with one labor line.</p></li><li><p>Click <strong>Reports</strong>, then <strong>Timesheet Activities</strong>, then <strong>New</strong>.</p></li><li><p><strong>Select Staff:</strong> Admin Shopview (any billable technician works).</p></li><li><p><strong>Work Order:</strong> your work order. <strong>Line:</strong> its line.</p></li><li><p><strong>Start:</strong> today, about 30 minutes ago. Leave <strong>End</strong> empty.</p></li><li><p>Click <strong>Create</strong>. The row shows <strong>Active</strong>, and the timer at the top of the screen starts.</p></li><li><p>Leave <strong>Date Range</strong> on <strong>This month</strong>. Note <strong>Totals → Total Hours</strong> (it includes the running time).</p></li><li><p>Click <strong>Shop Efficiency</strong> in the left menu and leave <strong>Date Range</strong> on <strong>This month</strong>.</p></li><li><p>Look at <strong>Total Clocked Hours</strong>.</p></li><li><p>Afterwards, stop the timesheet (the timer at the top → <strong>Stop</strong> → <strong>Clock Out</strong>) or delete it.</p></li></ol>
+<p><strong>Actual:</strong> Total Clocked Hours leaves out the running timesheet (8.52 in our example).</p>
+<p><strong>Expected:</strong> Total Clocked Hours includes the running timesheet up to now (about 9.08 in our example), the same as Timesheet Activities.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 12 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>Yes, same rule as <a href="https://shopview.atlassian.net/browse/SV-11688">SV-11688</a>: a running shift under 24 hours counts. Defect.</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Timesheet Activities, DVI Test, This month: Admin Shopview's timesheet on S1-38220 is Active (0.56 hours so far); Totals 9.09 = 8.53 finished + 0.56 running.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="f1686aa9-6920-4750-9668-c0180db7b53a" data-collection="upload-user-collection-1343233018" data-alt="SV-11939-pic1-replacement.png"></div></figure>
+<p><strong>2.</strong> Shop Efficiency, DVI Test, This month, while the same timesheet runs (timer at the top, 0.56 hours so far): Total Clocked Hours 8.52; the running time is missing.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="e7fb02a8-ea87-4d0e-9f38-0b287f20b324" data-collection="upload-user-collection-1343233018" data-alt="SV-11939-replacement.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.3-8ad4001, 29 Oct 2026, about 7:45 AM (Toronto time), Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

@@ -1,0 +1,20 @@
+<h2>What is wrong</h2>
+<p>On <strong>A/P Aging Detail</strong> and <strong>A/P Unpaid Invoices</strong>, the <strong>Past Due</strong> column shows how many days a bill is overdue (a positive number) or how many days are left until it is due (a negative number).</p>
+<p>For bills that are <strong>not due yet</strong>, the number is one day too small. A bill due in 2 days shows <strong>-1</strong> instead of <strong>-2</strong>, and a bill due tomorrow shows <strong>0</strong>, the same as a bill due today.</p>
+<p>These bills are in the <strong>Current</strong> section (not yet due), not in "1-30 days past due". Bills that are already overdue show the right number.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>Staging Lethbridge - 4310</strong>.</p></li><li><p>Click <strong>Reports</strong>. In the left menu, under <strong>Accounts Payable</strong>, click <strong>A/P Aging Detail</strong>.</p></li><li><p>Leave the <strong>Date</strong> button on today's date.</p></li><li><p>Open the <strong>Current</strong> section.</p></li><li><p>Find a bill that is due two days after today. On 29 Oct 2026 that is bill <strong>976974</strong> (vendor 4Refuel, Due Date <strong>Oct 31, 2026</strong>).</p></li><li><p>Look at its <strong>Past Due</strong> number.</p></li></ol>
+<p><strong>Actual:</strong> Past Due shows <strong>-1</strong>.</p>
+<p><strong>Expected:</strong> Past Due shows <strong>-2</strong> (29 Oct minus 31 Oct = -2 days).</p>
+<p>The same happens on <strong>A/P Unpaid Invoices</strong> (picture 2) and at the other locations.</p>
+<hr>
+<p><strong>Source:</strong> Confluence <a href="https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/265093124/AP+reports">AP reports</a>, version 13 (18 Mar 2026):</p>
+<blockquote><p>Vendor Invoices — Days past due = Selected Date – Invoice Due Date</p></blockquote>
+<blockquote><p>Past Due — days past (positive number) or before due date (positive or negative number)</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> A/P Aging Detail, Current section, Date left on today (29 Oct 2026): a bill due 30 Oct shows 0 (should be -1); a bill due 31 Oct shows -1 (should be -2).</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="4e2301c6-df48-4c8e-a196-488681036a05" data-collection="upload-user-collection-1343233018" data-alt="F3-SV11922-1-ap-aging-detail-today.png"></div></figure>
+<p><strong>2.</strong> A/P Unpaid Invoices, Date left on today, no vendor picked: bill 976974, due in 2 days, shows -1 (should be -2).</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="8f8c3803-9366-4f56-b2f1-001ecd9992e4" data-collection="upload-user-collection-1343233018" data-alt="F3-SV11922-2-ap-unpaid-today-no-vendor.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.3-8ad4001, 29 Oct 2026 (3:57–4:36 AM Edmonton time), Admin, Staging Lethbridge - 4310, Date left on today (2026-10-29).</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Edmonton). Also seen at Staging Heavy Duty - 9919 with everything on Asia/Karachi (server data, same build).</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

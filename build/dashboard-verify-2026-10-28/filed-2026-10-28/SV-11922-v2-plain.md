@@ -1,6 +1,6 @@
 # SV-11922 — rewritten 28 Oct 2026 for a first-time, non-technical reader (Rule 100)
 
-EDITED 29 Oct 2026 after the filter recheck: as-of date left on today (29 Oct) instead of a past date; example bill 976974 (due Oct 31): -1 should be -2; both pictures replaced (no vendor, no past date).
+EDITED 29 Oct 2026 after the filter recheck: as-of date left on today (29 Oct) instead of a past date; example bill 976974 (due Oct 31): -1 should be -2; both pictures replaced (no vendor, no past date); "Where it was seen" updated to the follow-up runs.
 Pictures after the edit: f3/SV-11922/F3-SV11922-1-ap-aging-detail-today.png · f3/SV-11922/F3-SV11922-2-ap-unpaid-today-no-vendor.png (filter-recheck/evidence); 63185 and 63184 leave the description.
 
 Summary: A/P reports – "Past Due" is one day off for bills that are not due yet
@@ -56,6 +56,6 @@ The same happens on **A/P Unpaid Invoices** (picture 2) and at the other locatio
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026, Admin.
-- Browser and test computer set to the location's time zone (America/Edmonton). Also seen at Staging Heavy Duty - 9919 with everything on its time zone (Asia/Karachi).
+- Staging (https://app.staging.shopview.com), build v26.43.3-8ad4001, 29 Oct 2026 (3:57–4:36 AM Edmonton time), Admin, Staging Lethbridge - 4310, Date left on today (2026-10-29).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Edmonton). Also seen at Staging Heavy Duty - 9919 with everything on Asia/Karachi (server data, same build).
 - Not checked on Production or on a QA branch.

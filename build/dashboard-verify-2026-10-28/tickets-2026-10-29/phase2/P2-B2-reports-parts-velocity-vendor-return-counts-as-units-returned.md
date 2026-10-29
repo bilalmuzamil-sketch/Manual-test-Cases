@@ -1,5 +1,5 @@
 <!-- FILED 29 Oct 2026 as SV-11941 (https://shopview.atlassian.net/browse/SV-11941), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B2-SV-11941.html
-EDITED 29 Oct 2026 after the filter recheck: Last 90 days, one location and the search removed (Last 12 months, All locations, Part # sort); Cancel Return step now names the second click "Are You Sure?"; picture 2 replaced.
+EDITED 29 Oct 2026 after the filter recheck: Last 90 days, one location and the search removed (Last 12 months, All locations, Part # sort); Cancel Return step now names the second click "Are You Sure?"; picture 2 replaced; "Where it was seen" updated to the follow-up runs.
 SUMMARY: Reports - Parts Velocity counts a return to the vendor in Units Returned
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8645 (Velocity - Story 5 - Metric Calculations)
@@ -64,7 +64,7 @@ Parts Velocity Report PRD (version 12), S5-R3: "Units Returned is sourced from p
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
+- Staging (https://app.staging.shopview.com), build v26.43.2-9272076, 29 Oct 2026, 5:28 AM Toronto time, Admin. The return was made and cancelled through the screen the same morning.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - First seen the same way on 28 Oct 2026 (a different return of the same part, also cancelled afterwards).
 - Not checked on Production or on a QA branch.

@@ -1,5 +1,5 @@
 <!-- FILED 29 Oct 2026 as SV-11945 (https://shopview.atlassian.net/browse/SV-11945), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B6-SV-11945.html
-EDITED 29 Oct 2026 after the filter recheck: Last 90 days, one location and the search removed (Last 12 months, All locations, Part # sort); date note moved to 1 October 2027; picture 2 replaced.
+EDITED 29 Oct 2026 after the filter recheck: Last 90 days, one location and the search removed (Last 12 months, All locations, Part # sort); date note moved to 1 October 2027; picture 2 replaced; "Where it was seen" updated to the follow-up runs.
 SUMMARY: Reports - Parts Velocity shows a "Receive later" special-order part as never sold after it is invoiced
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8645 (Velocity - Story 5 - Metric Calculations)
@@ -19,7 +19,7 @@ A special-order part that is received before invoicing is counted correctly.
 For example, **ZZAUTOTEST-SO1-10282011** was billed twice on 28 Oct 2026:
 
 - Actual: Units Sold **0.00**, Revenue **$0.00**, Demand **0**, Last Sale **—**.
-- Expected: Units Sold **2.00**, Revenue **$128.96** ($60.00 on S1-38203 + $68.96 on S1-38206), Demand **2**, Last Sale **0 days** (the day of the sale).
+- Expected: Units Sold **2.00**, Revenue **$128.96** ($60.00 on S1-38203 + $68.96 on S1-38206), Demand **2**, Last Sale counted from 28 Oct 2026 (**0 days** within the first 24 hours after the sale, then one more each day).
 
 So shops that bill before the vendor delivers see these parts as not moving, and their revenue and margin as lower than they are.
 
@@ -49,7 +49,7 @@ Not affected — this report does not feed any Dashboard tile.
 
 **Actual:** Units Sold **0.00**, Avg Cost **—**, Avg Sell **—**, Revenue **$0.00**, Margin **$0.00**, Margin % **—**, Demand **0**, Last Sale **—**.
 
-**Expected:** the part counts as sold. With the two sales already on staging: Units Sold **2.00**, Revenue **$128.96**, Demand **2**, Last Sale **0 days** on the day of the sale. A work order made with the steps above adds 1.00 sold, $68.96 and 1 Demand.
+**Expected:** the part counts as sold. With the two sales already on staging: Units Sold **2.00**, Revenue **$128.96**, Demand **2**, Last Sale counted from 28 Oct 2026 (**0 days** within the first 24 hours after the sale, then one more each day). A work order made with the steps above adds 1.00 sold, $68.96 and 1 Demand.
 
 ---
 
@@ -67,7 +67,7 @@ Not affected — this report does not feed any Dashboard tile.
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
+- Staging (https://app.staging.shopview.com), build v26.43.2-9272076, 29 Oct 2026, 5:40 AM Toronto time, Admin. Figures re-read on v26.43.3-8ad4001 the same morning: unchanged.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - Counted correctly for comparison: **ZZAUTOTEST-SO2-10282011**, received before invoicing on S1-38203: 1.00 sold, $80.00, Demand 1.
 - Not checked on Production or on a QA branch.

@@ -1,5 +1,5 @@
 <!-- FILED 29 Oct 2026 as SV-11950 (https://shopview.atlassian.net/browse/SV-11950), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-C3-SV-11950.html
-EDITED 29 Oct 2026 after the filter recheck: Date Range: Today replaced by the default This month; picture 1 replaced.
+EDITED 29 Oct 2026 after the filter recheck: Date Range: Today replaced by the default This month; picture 1 replaced; "Where it was seen" updated to the follow-up runs.
 SUMMARY: Reports - Sales Tax Collected lists $0.00 invoices as Paid, with a paid date
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-4573 (BE/FE Sales Tax report view)
@@ -27,7 +27,7 @@ Not affected — this report does not feed any Dashboard tile.
 5. Mark the line **Complete**.
 6. On the **Finance** tab, click **Create Invoice**. Close the **New Customer Payment** window without paying. The invoice shows **Total $0.00** and no payments.
 7. Open **Reports → Sales Tax Collected**.
-8. Leave **Date Range** on **This month** and do not pick an **Invoice Status**.
+8. Leave **Date Range** on **This month** (from 1 November pick **Last month**, so the range is October 2026) and do not pick an **Invoice Status**.
 9. Find your invoice.
 
 **Actual:** the $0.00 invoice is listed with Invoice Status **Paid**, an Invoice Paid Date on the day it was made, and $0.00 in every money column.
@@ -50,7 +50,7 @@ Our example is work order **S1-38218** (customer ZZAUTOTEST P2C ZERO, Total $0.0
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
+- Staging (https://app.staging.shopview.com), build v26.43.3-8ad4001 (the picture is from v26.43.2-9272076, same result), 29 Oct 2026 (5:42–6:20 AM Toronto time), Admin, DVI Test.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - Also seen on older $0.00 invoices at Staging Heavy Duty - 9919 (for example S2-38213, S2-38102, S2-36365, This month).
 - Not checked on Production or on a QA branch.

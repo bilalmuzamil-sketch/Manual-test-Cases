@@ -1,5 +1,5 @@
 <!-- FILED 29 Oct 2026 as SV-11952 (https://shopview.atlassian.net/browse/SV-11952), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-C6-SV-11952.html
-EDITED 29 Oct 2026 after the filter recheck: example moved to Viktoria Videnovic, Oct 07 2026, with All locations and Show Unassigned off; the Unassigned Oct 28 list kept as a short second example; picture replaced.
+EDITED 29 Oct 2026 after the filter recheck: example moved to Viktoria Videnovic, Oct 07 2026, with All locations and Show Unassigned off; the Unassigned Oct 28 list kept as a short second example; picture replaced; "Where it was seen" updated to the follow-up runs.
 SUMMARY: Reports - Sales By Representative lists invoices on the same day newest first instead of by invoice number
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8624 (SBR - Story 6 - Expand a rep to view their invoices)
@@ -52,6 +52,6 @@ The same shows on the **Unassigned** row (click **Show Unassigned**). Its invoic
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
+- Staging (https://app.staging.shopview.com), build v26.43.3-8ad4001 (the picture is from v26.43.2-9272076, same result), 29 Oct 2026 (6:04–6:40 AM Toronto time), Admin, DVI Test, Location: All locations.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - Not checked on Production or on a QA branch.

@@ -1,5 +1,5 @@
 <!-- FILED 29 Oct 2026 as SV-11944 (https://shopview.atlassian.net/browse/SV-11944), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B5-SV-11944.html
-EDITED 29 Oct 2026 after the filter recheck: location switch dropped; Location set to All locations for screen and CSV; PDF step keeps DVI Test only (the all-locations PDF did not download); picture 1 replaced.
+EDITED 29 Oct 2026 after the filter recheck: location switch dropped; Location set to All locations for screen and CSV; PDF step keeps DVI Test only (the all-locations PDF did not download); picture 1 replaced; "Where it was seen" updated to the follow-up runs.
 SUMMARY: Reports - Inventory Value quantity column is headed "Qty" instead of "On Hand" (screen and downloads)
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8670 (Inv Value - Story 3 - Columns and Calculations) · relates to SV-8677 (Inv Value - Story 10 - Export to PDF and CSV)
@@ -16,7 +16,7 @@ On **Inventory Value**, the column that shows how many of each part are in stock
 
 The standard heading is now **"On Hand"**, the same as on Parts Velocity, both on the screen and in the downloads.
 
-For example, part ZZAUTOTEST-PV1-10282011 (location DVI Test) shows **4.00** in stock:
+For example, part ZZAUTOTEST-PV1-10282011 (location DVI Test) shows **4.00** in stock (on 29 Oct 2026):
 
 - Actual: the 4.00 sits under the heading **Qty** (screen, PDF and CSV).
 - Expected: the 4.00 sits under the heading **On Hand**.
@@ -54,7 +54,7 @@ Not affected — this report does not feed any Dashboard tile.
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
+- Staging (https://app.staging.shopview.com), build v26.43.2-9272076, 29 Oct 2026, 5:49 AM Toronto time, Admin. The PDF of all locations did not download that day, so the PDF step uses DVI Test only.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - The CSV header row reads: `"Part #",Description,Category,Vendor,Location,Qty,"Unit Cost",…`.
 - Not checked on Production or on a QA branch.

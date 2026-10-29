@@ -1,0 +1,26 @@
+<h2>What is wrong</h2>
+<p><strong>Labor Delta</strong> is hours invoiced minus hours worked. It tells the shop whether a customer was billed for more time than was worked.</p>
+<p>If a manager corrects a technician's timesheet <strong>after</strong> the invoice is made, Sales By Customer keeps the <strong>old</strong> Labor Delta. The work order's <strong>Stats</strong> tab shows the new hours, but the report and the Dashboard do not.</p>
+<h2>Where this shows on the Dashboard</h2>
+<ul><li><p><strong>Sales by Customer tile → View details:</strong> the <strong>Labor Delta</strong> column for that customer keeps the old figure.</p></li><li><p>The other tiles <strong>do</strong> take the corrected time. <strong>Technician Efficiency</strong> and <strong>Billing Efficiency</strong> change straight away. So after a correction the Dashboard disagrees with itself.</p></li><li><p>The <strong>Sales By Customer</strong> report shows the same old figure.</p></li></ul>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>DVI Test</strong>.</p></li><li><p>Make a work order for any customer with one labor line of <strong>1 hour</strong> of tech time. For example, use <strong>New Line</strong> and pick the canned line <strong>3x inspection</strong>.</p></li><li><p>Clock a technician on that line for about <strong>30 minutes</strong>. Mark the line <strong>Complete</strong>. On the <strong>Finance</strong> tab, click <strong>Create Invoice</strong>.</p></li><li><p>Click <strong>Dashboard</strong>. On the <strong>Sales by Customer</strong> tile, leave the date on <strong>Last 12 Months</strong> (its default) and click <strong>View details</strong>. Find your customer: Labor Delta reads <strong>+0.50</strong> (1.00 invoiced − 0.50 worked).</p></li><li><p>Open <strong>Reports → Timesheet Activities</strong>. Find the technician's clock on your work order and click the pencil (<strong>Edit timesheet</strong>).</p></li><li><p>Move <strong>Start</strong> 30 minutes earlier so the clock is <strong>1 hour</strong> long. Click <strong>Save</strong>.</p></li><li><p>Open the work order's <strong>Stats</strong> tab. Tech hours <strong>1.00</strong>, Clocked hours <strong>1.00</strong>, so Labor Delta is now 1.00 − 1.00 = <strong>0.00</strong>.</p></li><li><p>Go back to <strong>Dashboard → Sales by Customer → View details</strong> and find your customer again.</p></li></ol>
+<p><strong>Actual:</strong> Labor Delta still reads <strong>+0.50</strong>.</p>
+<p><strong>Expected:</strong> Labor Delta reads <strong>0.00</strong>, the same as the work order's Stats tab today.</p>
+<p>Our example is work order <strong>S1-38215</strong> (customer ZZAUTOTEST Dash Q27). Its clock was changed from 7:07–7:37 PM to 6:37–7:37 PM. The Stats tab shows 1.00 / 1.00, and the Dashboard still shows +0.50.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 27 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>Use the figures as they are now, so the reports agree with the work order's Stats tab. Defect.</p></blockquote>
+<p>Sales By Customer PRD (as quoted in the question): Labor Delta is</p>
+<blockquote><p>hours invoiced minus hours worked</p></blockquote>
+<p>and hours worked are</p>
+<blockquote><p>the technician clocked (timesheet) hours recorded against that work order</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Timesheet Activities → Edit timesheet: Start corrected from 07:07 PM to 06:37 PM (the clock becomes 1.00 hour).</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="3d5a2bdc-075f-48b9-ad23-6e2849f77b01" data-collection="upload-user-collection-1343233018" data-alt="P1-4-1-edit-timesheet.png"></div></figure>
+<p><strong>2.</strong> Work order S1-38215, Stats tab, after the correction: 1.00 Tech hours and 1.00 Clocked hours.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="b714f09a-7e91-410e-90f3-8accd4d3be66" data-collection="upload-user-collection-1343233018" data-alt="P1-4-2-stats-tab-after.png"></div></figure>
+<p><strong>3.</strong> Dashboard, Sales by Customer, Last 12 Months, after the correction: Labor Delta still +0.50 (should be 0.00).</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="f22053a6-1769-428a-ba47-38bc19931ac5" data-collection="upload-user-collection-1343233018" data-alt="SV-11934-replacement.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>): reproduced 28 Oct 2026 (Toronto time) on build v26.43.2-f8698cb (the timesheet correction was made then); re-checked 29 Oct 2026 (Toronto time) on build v26.43.3-8ad4001 with the same figures, Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

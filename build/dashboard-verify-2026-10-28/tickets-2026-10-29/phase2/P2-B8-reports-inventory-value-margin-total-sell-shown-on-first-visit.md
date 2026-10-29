@@ -1,5 +1,5 @@
 <!-- FILED 29 Oct 2026 as SV-11947 (https://shopview.atlassian.net/browse/SV-11947), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B8-SV-11947.html
-EDITED 29 Oct 2026 after the filter recheck: location switch dropped; Location set to All locations (columns unchanged); picture 1 replaced.
+EDITED 29 Oct 2026 after the filter recheck: location switch dropped; Location set to All locations (columns unchanged); picture 1 replaced; "Where it was seen" updated to the follow-up runs.
 SUMMARY: Reports - Inventory Value shows Margin and Total Sell on the first visit; they should start hidden
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8670 (Inv Value - Story 3 - Columns and Calculations) · relates to SV-8675 (Inv Value - Story 8 - Column Selection and Persistence) · relates to SV-8927 (first report of this, closed OBSOLETE 9 Aug 2026; QA lead: re-create, not reopen)
@@ -57,7 +57,7 @@ Not affected — this report does not feed any Dashboard tile.
 
 ## Where it was seen
 
-- Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin, desktop browser.
+- Staging (https://app.staging.shopview.com), build v26.43.2-9272076, 29 Oct 2026, 5:49 AM Toronto time, Admin, desktop browser opened fresh (no saved report settings).
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - Also seen on 28 Oct 2026 during the reports check, and first reported as SV-8927 (closed 9 Aug 2026).
 - Not checked on Production or on a QA branch.
