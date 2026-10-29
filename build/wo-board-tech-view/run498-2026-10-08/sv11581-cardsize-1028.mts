@@ -80,7 +80,10 @@ try {
   if (off) { await p.locator(`[data-test-id="${off.tid}"]`).click(); await W(1500); o.turnedOn = off; } await p.keyboard.press('Escape'); await W(800);
   o.cardCompactAfterField = await readCard(wo, 'card-compact-field-on');
   { const vin = (o.fieldsCompact as any[]).find((x) => x.label === 'VIN/serial'); if (vin) { await p.locator('[data-test-id="button_board_fields_selection"]').click(); await W(800); await p.locator(`[data-test-id="${vin.tid}"]`).click(); await W(1500); await p.keyboard.press('Escape'); await W(800);
-      o.cardCompactVinOn = await readCard(wo, 'card-compact-vin-on'); await p.locator('[data-test-id="button_board_fields_selection"]').click(); await W(800); await p.locator(`[data-test-id="${vin.tid}"]`).click(); await W(1200); await p.keyboard.press('Escape'); await W(600); } }
+      o.cardCompactVinOn = await readCard(wo, 'card-compact-vin-on');
+      // 29 Oct positive control: the VIN toggle really is on, and the VIN line shows once the card is Detailed (S3-R11a "A field picked while Compact is on shows on the card once the user switches to Detailed")
+      o.vinPref = ((await a.get(PREF)).body?.data?.value ?? {}).boardFields?.vin ?? null; o.s_detailedVin = await chooseSize('Detailed'); o.cardDetailedVinOn = await readCard(wo, 'card-detailed-vin-on'); o.s_compactVin = await chooseSize('Compact');
+      await p.locator('[data-test-id="button_board_fields_selection"]').click(); await W(800); await p.locator(`[data-test-id="${vin.tid}"]`).click(); await W(1200); await p.keyboard.press('Escape'); await W(600); } }
   // ---- step 5: Detailed again
   o.s_detailed1 = await chooseSize('Detailed'); o.cardDetailed1 = await readCard(wo, 'card-detailed-field-on');
   if (off) { await p.locator('[data-test-id="button_board_fields_selection"]').click(); await W(800); await p.locator(`[data-test-id="${off.tid}"]`).click(); await W(1200); await p.keyboard.press('Escape'); await W(600); o.turnedBackOff = true; }
