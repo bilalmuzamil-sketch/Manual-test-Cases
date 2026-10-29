@@ -40,12 +40,14 @@ for (const run of runs) {
   R.search = {};
   for (const t of targets) {
     await page.locator('main button').filter({ hasText: 'Search' }).first().click().catch(() => {}); await page.waitForTimeout(800);
-    const si = page.locator('main input:visible').first(); await si.fill(t); await page.waitForTimeout(6000);
+    const si = page.locator('main input:visible').first(); await si.fill(t, { timeout: 15000 }).catch(e => { R.search_err = String(e).slice(0, 120); }); await page.waitForTimeout(6000);
     R.search[t] = { rows: await rows(), empty: await txt(page.locator('main').getByText('No record', { exact: false })) };
-    await si.fill(''); await page.waitForTimeout(4000);
+    await si.fill('', { timeout: 15000 }).catch(() => {}); await page.waitForTimeout(4000);
   }
   if (run.rates) { await page.locator('button, a').filter({ hasText: 'See All Tax Rates' }).first().click(); await page.waitForTimeout(8000);
-    R.rates_url = page.url(); R.rates = await page.locator('main tbody tr').evaluateAll(trs => trs.map(t => t.innerText.replace(/\s+/g, ' ').trim())); }
+    R.rates_url = page.url(); R.rates = await page.locator('main tbody tr').evaluateAll(trs => trs.map(t => t.innerText.replace(/\s+/g, ' ').trim()));
+    if (run.shotRates) { R.rates_boxes = await page.locator('main tbody tr').evaluateAll(trs => trs.map(t => { const b = t.getBoundingClientRect(); return [t.innerText.replace(/\s+/g, ' ').slice(0, 40), Math.round(b.x * 2), Math.round(b.y * 2), Math.round(b.width * 2), Math.round(b.height * 2)]; }));
+      R.rates_chipbox = { range: await box(page.locator('[data-test-id="filter_chip_range"]')), status: await box(page.locator('[data-test-id="filter_chip_statuses"]')) }; await page.screenshot({ path: `${OUT}/${run.name}-rates.png` }); } }
   R.loc_end = await assertLoc(page, LNAME, WP); R.VALID = R.loc_start.ok && R.loc_end.ok;
   R.reqs = reqs; meta.runs[run.name] = R; fs.writeFileSync(`${OUT}/screen-meta.json`, JSON.stringify(meta, null, 1));
   console.log(run.name, 'VALID=' + R.VALID, JSON.stringify({ chips: R.chips, n: R.rows_page1.length, bottom: R.bottom, search: Object.fromEntries(Object.entries(R.search).map(([k, v]) => [k, v.rows.filter(x => x.includes(k)).join(' || ') || ('NONE ' + v.empty)])), rates: R.rates }).slice(0, 1500));

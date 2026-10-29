@@ -31,7 +31,7 @@ for (const run of runs) {
     R.heads = await page.locator('thead th').evaluateAll(es => es.map(e => { const b = e.getBoundingClientRect(); return [e.innerText.trim(), Math.round(b.x * 2), Math.round(b.y * 2), Math.round(b.width * 2), Math.round(b.height * 2)]; }));
     await page.screenshot({ path: `${OUT}/${run.name}.png` }); }
   R.loc_end = await assertLoc(page, LNAME, WP); R.VALID = R.loc_start.ok && R.loc_end.ok;
-  R.reqs = reqs; meta.runs[run.name] = R; fs.writeFileSync(`${OUT}/screen-meta.json`, JSON.stringify(meta, null, 1));
+  R.reqs = reqs; meta.runs[run.name] = R; fs.writeFileSync(`${OUT}/screen-meta-${l}.json`, JSON.stringify(meta, null, 1));
   console.log(run.name, 'VALID=' + R.VALID, JSON.stringify({ chips: R.chips, url: R.url.replace(APP, ''), rows: Object.fromEntries(Object.entries(R.rows).map(([k, v]) => [k, v.text.slice(0, 150)])), reqs: reqs.slice(0, 3) }).slice(0, 1600));
 }
 console.log(JSON.stringify({ v: meta.appVersion, bz: meta.browser_zone, pz: meta.process_zone, tz: meta.location_tz, key: meta.app_timezone_key }));

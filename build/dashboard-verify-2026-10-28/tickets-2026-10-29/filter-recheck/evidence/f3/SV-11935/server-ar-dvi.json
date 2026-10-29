@@ -1,0 +1,162 @@
+{
+ "part": "ar-dvi",
+ "at_utc": "2026-10-29T09:37:05.421979+00:00",
+ "zones": {
+  "location": "DVI Test",
+  "location_tz": "America/Toronto",
+  "process_TZ": "America/Toronto",
+  "process_zone": "EDT",
+  "process_now": "2026-10-29T05:37:05.422036",
+  "utc_now": "2026-10-29T09:37:05.422038+00:00"
+ },
+ "change_location": 200,
+ "today_default": {
+  "asOfDate": "2026-10-30T03:59:59.999Z",
+  "status": 200,
+  "rows": {
+   "P2-2352": {
+    "bucket": "current",
+    "amount": 543.43,
+    "balance": 543.43,
+    "customer": "TestVT1"
+   },
+   "P2-2439": {
+    "bucket": "current",
+    "amount": 21,
+    "balance": 21,
+    "customer": "Bravo Mechanical Services"
+   }
+  },
+  "totalBalance": 700883.41
+ },
+ "invoice_day_oct15": {
+  "asOfDate": "2026-10-16T03:59:59.999Z",
+  "status": 200,
+  "rows": {
+   "P2-2352": {
+    "bucket": "current",
+    "amount": 543.43,
+    "balance": 543.43,
+    "customer": "TestVT1"
+   }
+  },
+  "totalBalance": 679732.61
+ },
+ "far_future_2027_12_31": {
+  "asOfDate": "2028-01-01T04:59:59.999Z",
+  "status": 200,
+  "rows": {
+   "P2-2352": {
+    "bucket": "days91Plus",
+    "amount": 543.43,
+    "balance": 543.43,
+    "customer": "TestVT1"
+   },
+   "P2-2439": {
+    "bucket": "days91Plus",
+    "amount": 21,
+    "balance": 21,
+    "customer": "Bravo Mechanical Services"
+   }
+  },
+  "totalBalance": 700883.41
+ },
+ "wo_P2-2352": {
+  "status": 200,
+  "display_number": "P2-2352",
+  "invoice_status": "pending",
+  "open_balance": 543.43,
+  "sub_total_with_tax": null,
+  "total": null,
+  "deposits_total": null,
+  "payments": []
+ },
+ "wo_P2-2439": {
+  "status": 200,
+  "display_number": "P2-2439",
+  "invoice_status": "pending",
+  "open_balance": 21,
+  "sub_total_with_tax": null,
+  "total": null,
+  "deposits_total": null,
+  "payments": []
+ },
+ "invoices_tab_P2-2352": {
+  "status": 200,
+  "rows": [
+   {
+    "id": "aa3c787a-031a-4df2-b6d7-424fe19d4653",
+    "customer_account_id": "17641732-f8c5-4315-895e-a3384b856b3c",
+    "date": "2026-10-15 11:55:10",
+    "due_date": "2026-11-14 11:55:10",
+    "description": null,
+    "amount": 543.43,
+    "balance": 543.43,
+    "type": "invoice",
+    "type_label": "Invoice",
+    "status": "unpaid",
+    "status_label": "Unpaid",
+    "invoice_number": "P-2352",
+    "invoice_display_number": "P2-2352",
+    "credit_display_number": null,
+    "reference_id": "1c5b99a4-5c4b-4ab7-8c04-49532bdb3b59",
+    "payment_method": null,
+    "payment_method_label": null,
+    "work_order_id": "b9e03515-6e0f-4d1f-b45e-788c2bb44be1",
+    "ibs_batch_id": null,
+    "memo": null,
+    "customer_name": null,
+    "work_place_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "invoice_shop_id": "2",
+    "raw_number": null,
+    "work_order_type": "parts",
+    "origin_payment_id": null,
+    "workplace_name": null,
+    "amount_paid": 0,
+    "credit_term": "Net 30",
+    "customer_po": null,
+    "formatted_invoice_number": "P2-2352"
+   }
+  ]
+ },
+ "deposits_P2-2352": [],
+ "invoices_tab_P2-2439": {
+  "status": 200,
+  "rows": [
+   {
+    "id": "dd15cdc8-5912-425c-9c15-5dc027f09b23",
+    "customer_account_id": "ebb314e7-0db5-495d-8d45-06f78bfd070e",
+    "date": "2026-10-22 07:20:44",
+    "due_date": "2026-12-21 07:20:44",
+    "description": null,
+    "amount": 21,
+    "balance": 21,
+    "type": "invoice",
+    "type_label": "Invoice",
+    "status": "unpaid",
+    "status_label": "Unpaid",
+    "invoice_number": "P-2439",
+    "invoice_display_number": "P2-2439",
+    "credit_display_number": null,
+    "reference_id": "88ec2d00-8930-4dde-86e4-e2d14b045845",
+    "payment_method": null,
+    "payment_method_label": null,
+    "work_order_id": "0464207f-fda5-4663-a39a-8337310dbb72",
+    "ibs_batch_id": null,
+    "memo": null,
+    "customer_name": null,
+    "work_place_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "invoice_shop_id": "2",
+    "raw_number": null,
+    "work_order_type": "parts",
+    "origin_payment_id": null,
+    "workplace_name": null,
+    "amount_paid": 0,
+    "credit_term": "Net 60",
+    "customer_po": null,
+    "formatted_invoice_number": "P2-2439"
+   }
+  ]
+ },
+ "deposits_P2-2439": []
+}

@@ -14,6 +14,18 @@ const clearChips = async (except = /range|dateRange|asOf/i) => { const done = []
     const id = ids.find(i => !except.test(i) && !done.includes(i)); if (!id) break; done.push(id);
     await page.locator(`[data-test-id="${id}"]`).first().click().catch(() => {}); await page.waitForTimeout(5000); }
   return done; };
+// Widen a Location chip to EVERY location (clearing it only resets it to the active location).
+const allLocations = async () => { const chip = page.locator('[data-test-id="filter_chip_locationIds"], [data-test-id="filter_chip_locations"], [data-test-id="filter_chip_location"]').first();
+  if (!(await chip.count())) return 'no location chip';
+  await chip.click(); await page.waitForTimeout(2500); const m = page.locator('.q-menu').last();
+  const before = (await m.innerText().catch(() => '')).replace(/\n+/g, ' | ').slice(0, 300);
+  const all = m.getByText(/^\s*(Select all|All locations)\s*$/i);
+  if (await all.count()) { await all.first().click(); await page.waitForTimeout(1500); } else {
+    const items = m.locator('.q-item'); const n = await items.count();
+    for (let i = 0; i < n; i++) { const it = items.nth(i); const cb = it.locator('[role="checkbox"], .q-checkbox').first();
+      const on = await cb.getAttribute('aria-checked').catch(() => null); if (on !== 'true') { await it.click().catch(() => {}); await page.waitForTimeout(1500); } } }
+  await page.keyboard.press('Escape').catch(() => {}); await page.waitForTimeout(8000);
+  return { menu_before: before, chip_after: (await chip.innerText().catch(() => '')).replace(/\s+/g, ' ').trim() }; };
 async function dash(key, target, phases) {
   c.setPhase('ii-fresh-default'); await c.go('/dashboard', 4000);
   await page.waitForSelector('[data-test-id="hero_value_revenueKpi"]', { timeout: 90000 }).catch(() => {}); await page.waitForTimeout(8000);
@@ -44,7 +56,7 @@ async function report(route, { i, iii, parent, child, chipName = 'filter_chip_ra
   await read('ii');
   c.setPhase('i-ticket-filters'); await c.go(route, 14000); out.runs.i_presets = await reportPreset(c, i); await read('i');
   c.setPhase('iii-deselected'); await c.go(route, 14000); out.runs.iii_cleared = await clearChips(); out.runs.iii_presets = await reportPreset(c, iii);
-  out.runs.iii_cleared2 = await clearChips(); await read('iii');
+  out.runs.iii_cleared2 = await clearChips(); out.runs.iii_locations = await allLocations(); await read('iii');
   const row = page.locator('tbody tr').filter({ hasText: shotRe || child }).first(); await row.scrollIntoViewIfNeeded().catch(() => {}); await page.evaluate(() => window.scrollBy(0, -200)); await page.waitForTimeout(1200);
   await c.shot('iii', { row: await box(row), row_text: await txt(row), chips: await page.locator('[data-test-id^="filter_chip_"]').evaluateAll(es => es.filter(e => e.getBoundingClientRect().width > 0 && !/clear/.test(e.getAttribute('data-test-id'))).map(e => { const b = e.getBoundingClientRect(); return { id: e.getAttribute('data-test-id'), text: e.innerText.replace(/\s+/g, ' ').trim(), box: { x: Math.round(b.x * 2), y: Math.round(b.y * 2), w: Math.round(b.width * 2), h: Math.round(b.height * 2) } }; })) });
 }
@@ -70,7 +82,7 @@ async function wip({ customer, tab, wo, days, columns }) {
   c.setPhase('ii-fresh-default'); await c.go('/reports/work-in-progress', 15000);
   out.runs.ii_active_tab = (await page.locator('[data-test-id="page_work_in_progress_report"] .q-tab--active').allInnerTexts()).join('|');
   out.runs.ii_columns_default = await cols(); await perTab('ii', null);
-  c.setPhase('i-ticket-filters'); await c.go('/reports/work-in-progress', 15000); await pick(customer); if (columns) await cols(); await perTab('i', tab);
+  c.setPhase('i-ticket-filters'); await c.go('/reports/work-in-progress', 15000); await pick(customer); if (columns) await cols(); await perTab('i', new RegExp(tab, 'i'));
   c.setPhase('iii-deselected'); await c.go('/reports/work-in-progress', 15000); out.runs.iii_cleared = await clearChips(/asOf|as_of|date/i); if (columns) await cols(); await perTab('iii', null);
   // replacement picture: no customer, the tab that holds the example, sorted
   const tt = tabs().filter({ hasText: tab }).first(); await tt.click(); await page.waitForTimeout(8000); await sortDays(); await find();
@@ -91,5 +103,53 @@ if (mode === 'P14R') await report('/reports/sales-by-customer', { i: 'this_week'
 if (mode === 'C1') await report('/reports/sales-by-representative', { i: 'this_month', iii: 'last_12_months', parent: /Viktoria Videnovic/, child: /S1-38217/, chipName: 'filter_chip_dateRange', presetPrefix: 'filter_preset_dateRange_' });
 if (mode === 'A1') await wip({ customer: '4 Star Truck Repair', tab: 'Partially', days: true });
 if (mode === 'A2') await wip({ customer: '4 Star Truck Repair', tab: 'Not Started', wo: 'S2-33740', columns: ['parts_earned', 'parts_remaining'] });
+
+// ---- A4: a running timesheet made ON SCREEN (ticket's own steps, ZZAUTOTEST work order S1-38220), then Shop Efficiency ----
+const P2A = '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/phase2/tools/p2a/modes.mjs';
+async function seRead(name, preset) {
+  c.setPhase(name + '-shop-efficiency'); await c.go('/reports/shop-billing-efficiency', 12000); out.runs[name + '_se_preset'] = preset ? await reportPreset(c, preset) : 'default (untouched)';
+  out.runs[name + '_se'] = { controls: (await c.controls()).chips.filter(x => /filter_chip_/.test(x.id)).map(x => x.id + '=' + x.text), heads: (await c.controls()).heads, rows: (await c.rows('tbody tr', 60)).map(r => r.join(' | ')).filter(x => x.trim()) };
+  c.setPhase(name + '-timesheets'); await c.go('/reports/punch-clock-activities', 12000); if (preset) await reportPreset(c, preset);
+  out.runs[name + '_ta'] = { chip: await txt(page.locator('[data-test-id="filter_chip_range"]')), running: (await c.rows('tbody tr', 200)).map(r => r.join(' | ')).filter(x => /S1-38220/.test(x) && /Active|--|^$/.test(x) || /ZZAUTOTEST F1 running/.test(x)),
+    totals: (await c.rows('tbody tr', 400)).map(r => r.join(' | ')).filter(x => /Total/.test(x)), footer: await txt(page.locator('tfoot').first()), bottom: await txt(page.locator('.q-table__bottom').first()) };
+}
+if (mode === 'A4') {
+  const M = await import(P2A);
+  const fmt = d => d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }).replace(/,(?= \d{2}:)/, '');
+  c.setPhase('create'); await c.go('/reports/punch-clock-activities', 10000);
+  const st = new Date(Date.now() - 40 * 60000); st.setSeconds(0, 0); out.start_wanted = fmt(st);
+  await M.newTimesheet({ ...c, shot: async () => {} }, { staff: 'Admin Shopview', wo: 'S1-38220', line: 'Test DVI Line', start: out.start_wanted, end: '', shotName: null });
+  out.created_posts = c.meta.posts; out.created_at_utc = new Date().toISOString();
+  await seRead('ii', null);           // fresh default (This month)
+  await seRead('i', 'today');         // the ticket's Today
+  await seRead('iii', 'this_year');   // widest the report offers (no Last 12 months on this report)
+  c.setPhase('picture'); await c.go('/reports/shop-billing-efficiency', 12000);
+  const tot = page.locator('tbody tr').filter({ hasText: 'Totals' }).first();
+  await c.shot('iii-default', { totals: await box(tot), totals_text: await txt(tot), chip: await box(page.locator('[data-test-id="filter_chip_range"]')), chip_text: await txt(page.locator('[data-test-id="filter_chip_range"]')),
+    clocked_head: await box(page.locator('thead th').filter({ hasText: 'Clocked' }).first()) });
+  c.setPhase('picture-ta'); await c.go('/reports/punch-clock-activities', 12000);
+  const rr = page.locator('tbody tr').filter({ hasText: 'S1-38220' }).first();
+  await c.shot('iii-ta-default', { running: await box(rr), running_text: await txt(rr), chip: await box(page.locator('[data-test-id="filter_chip_range"]')), chip_text: await txt(page.locator('[data-test-id="filter_chip_range"]')) });
+}
+// ---- A5 (held draft): Export Reports -> Payroll Timesheet, three ways ----
+async function payroll(name, opts, who, day) {
+  const M = await import('./f1export.mjs'); c.setPhase(name); await c.go('/reports/punch-clock-activities', 10000);
+  const cc = { ...c, OUT: '/tmp/cln/f1/dl', shot: async () => {} };
+  let f; try { f = await M.exportPayroll(cc, opts); } catch (e) { out.runs[name] = { error: String(e).slice(0, 300), dialog: c.meta.export_dialog }; return; }
+  const fs = await import('fs'); const txtf = fs.readFileSync(f, 'utf8'); const lines = txtf.trim().split('\n');
+  let cur = null; const mine = []; let over = 0;
+  for (const l of lines.slice(1)) { const r = l.split(','); if (r[0] && !r[0].startsWith('Total for')) cur = r[0]; if (r[1] && parseFloat(r[2]) > 24) over++; if (cur === who && (r[1] === day || r[0] === 'Total for ' + who)) mine.push(l); }
+  out.runs[name] = { opts, dialog: c.meta.export_dialog, file: f.split('/').pop(), header: lines[0], rows: lines.length - 1, days_over_24_all_staff: over, target: mine };
+}
+if (mode === 'A5HD') {
+  await payroll('ii-default', { range: null }, 'Haley Brown', '2026-09-06');
+  await payroll('i-ticket', { range: 'Custom', from: '09/01/2026', to: '09/30/2026' }, 'Haley Brown', '2026-09-06');
+  await payroll('iii-widest', { range: 'Custom', from: '01/01/2026', to: '10/29/2026' }, 'Haley Brown', '2026-09-06');
+}
+if (mode === 'A5DVI') {
+  await payroll('ii-default', { range: null }, 'Admin Shopview', '2026-10-28');
+  await payroll('i-ticket', { range: 'Custom', from: '10/28/2026', to: '10/28/2026' }, 'Admin Shopview', '2026-10-28');
+  await payroll('iii-widest', { range: 'Custom', from: '01/01/2026', to: '10/29/2026' }, 'Admin Shopview', '2026-10-28');
+}
 const r = await finish(c, out);
 console.log(JSON.stringify({ mode, v: r.meta.appVersion, zones: [r.meta.browser_zone, r.meta.process_zone, r.meta.app_timezone_key, r.meta.location_tz] }));

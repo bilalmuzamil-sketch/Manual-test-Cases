@@ -2807,6 +2807,7 @@ with `POST /api/switch-user {user_id}` (the staff record's `id`), optionally
 - `POST /api/technician-tasks/department-clock-out {task_id, description}` → **201**.
 - `GET /api/technician-tasks/my-current-task` shows the open record (with a live `seconds`).
 - **`DELETE /api/technician-tasks/{id}` → 204** — full clean-up, so seeding costs nothing.
+  - **⚠️ 29 Oct 2026, build v26.43.2-9272076 (worker F1):** deleting a **RUNNING** timesheet (no clock-out) answered **HTTP 500** but the row WAS removed (gone from Timesheet Activities Today and This month; `my-current-task` empty). On a 500 here, read back before retrying — do not assume it failed.
 Clock the SAME technician at BOTH workplaces to produce the per-row Location value **`Multiple`**, and
 leave one clock OPEN to exercise the load-instant snapshot (Total Hours read 0.06 → 0.13 → 0.76 across
 successive loads). Day grouping uses the **active workplace's** time zone: a record created
@@ -3344,6 +3345,10 @@ whereas an application-level JSON `{"error":"sso_required", …}` means the requ
   (next to the `timezone` key), then assert that the header shows the intended location at the START and END of every run; mark a run
   that fails INVALID. The profile menu's "Change Location:" line shows the user-level value, which can differ from the page's.
   Search key: `wrong location` `setItem('location'`.
+- **Parts → Returns → ⋮ → Cancel Return is a TWO-CLICK confirm (found 2026-10-29, filter recheck worker F2).** "Yes" turns into a
+  second button "Are You Sure?"; only the second click sends `POST part/manual-return-request/{id}/cancel` (204) and shows "Manual
+  return cancelled successfully". A Phase 2 worker stopped after the first click and reported it as broken. Search key:
+  `Cancel Return → Yes did nothing`.
 - **Screen recipes found 2026-10-29 (Phase 2 Worker C, DVI Test):** **Add Deposit** shows on a work order's Finance tab only while the
   work order is *Approved* (set the line back to authorized to bring it back). A **$0.00 invoice** through the screen: New Line with a
   Title and General Labor, no times → Line Approved → Complete → Create Invoice. Records: S1-38218 ($0), S1-38221 ($30 deposit).

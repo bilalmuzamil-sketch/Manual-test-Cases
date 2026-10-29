@@ -10,7 +10,7 @@
    "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "workplace_timezone": "America/Toronto"
   },
-  "started_utc": "2026-10-29T09:28:10.835Z",
+  "started_utc": "2026-10-29T09:50:15.513Z",
   "browser_zone": "America/Toronto",
   "app_timezone_key": "\"America/Toronto\"",
   "storage_at_start": {
@@ -19,18 +19,14 @@
    "timezone": "\"America/Toronto\"",
    "user": "(identity, not a filter)"
   },
-  "appVersion": "v26.43.2-f8698cb",
+  "header_at_start": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+  "appVersion": "v26.43.2-9272076",
   "shots": {
    "iii": {
     "file": "ui-P14R-iii.png",
-    "at_utc": "2026-10-29T09:32:10.912Z",
-    "row": {
-     "x": 556,
-     "y": 897,
-     "w": 2847,
-     "h": 96
-    },
-    "row_text": "keyboard_arrow_down ZZAUTOTEST Dash Q27(1) +0.50 $135.00 $135.00 $0.00 $0.00 $0.00 $0.00 $135.00 100.00% $135.00",
+    "at_utc": "2026-10-29T09:54:55.366Z",
+    "row": null,
+    "row_text": "",
     "chips": [
      {
       "id": "filter_chip_dateRange",
@@ -64,11 +60,11 @@
      },
      {
       "id": "filter_chip_locationIds",
-      "text": "place Location: DVI Test keyboard_arrow_down cancel",
+      "text": "place Location: All locations keyboard_arrow_down cancel",
       "box": {
        "x": 1997,
        "y": 239,
-       "w": 370,
+       "w": 422,
        "h": 56
       }
      }
@@ -80,13 +76,24 @@
    "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
    "mode": "\"light\"",
    "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId\":\"05f4c649-a4b9-458d-bf15-be051c8e149d\"},{\"id\":\"3e44ab71-f97c-4c32-b48f-9293d41c6044\",\"name\":\"ShopP",
-   "organization_features_timestamp": "1793266153566",
+   "organization_features_timestamp": "1793267477880",
    "report_table:sales-by-customer": "{\"version\":\"1\",\"view\":{\"sortBy\":\"customer\",\"descending\":false,\"columns\":[\"date\",\"inv_hrs\",\"labor_invoiced\",\"labor_margin\",\"parts_invoiced\",\"parts_margin\",\"shop_supplies\",\"adjustments\",\"margin\",\"margin_pct\"]}}",
    "timezone": "\"America/Toronto\"",
    "user": "(identity, not a filter)"
   },
-  "url_at_end": "/reports/sales-by-customer?dateRange=last-12-months",
-  "finished_utc": "2026-10-29T09:32:10.916Z"
+  "url_at_end": "/reports/sales-by-customer?dateRange=last-12-months&locationIds=25a0d576-b371-4b82-bef4-41ba977f31c2&locationIds=b3c8c820-f815-4cf1-8938-10956c5ee71a&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2&locationIds=39522bc6-abca-4f67-bd12-2840043c2d68",
+  "header_at_end": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+  "location_guard": {
+   "header_start_ok": true,
+   "header_end_ok": true,
+   "x_location_ids_seen": [
+    "39522bc6-abca-4f67-bd12-2840043c2d68"
+   ],
+   "x_location_ok": true,
+   "storage_location_ok": true,
+   "VALID": true
+  },
+  "finished_utc": "2026-10-29T09:54:55.374Z"
  },
  "runs": {
   "ii": {
@@ -167,23 +174,23 @@
    "filter_chip_clear_productTypes",
    "filter_chip_clear_locationIds"
   ],
+  "iii_locations": {
+   "menu_before": "Select all | 1 selected | DVI Test | QB Location | Staging Heavy Duty - 9919 | Staging Lethbridge - 4310 | Clear selection",
+   "chip_after": "place Location: All locations keyboard_arrow_down cancel"
+  },
   "iii": {
    "controls": [
     "filter_chip_dateRange=calendar_today Date: Last 12 months keyboard_arrow_down",
     "filter_chip_productTypes=category Product Type: All products keyboard_arrow_down cancel",
     "filter_chip_clear_productTypes=cancel",
     "filter_chip_customerIds=person Customer: All customers keyboard_arrow_down",
-    "filter_chip_locationIds=place Location: DVI Test keyboard_arrow_down cancel",
+    "filter_chip_locationIds=place Location: All locations keyboard_arrow_down cancel",
     "filter_chip_clear_locationIds=cancel"
    ],
-   "expand": "expanded",
-   "target": [
-    "keyboard_arrow_down | ZZAUTOTEST Dash Q27(1) |  | +0.50 | $135.00 | $135.00 | $0.00 | $0.00 | $0.00 | $0.00 | $135.00 | 100.00% | $135.00"
-   ],
-   "parent_row": [
-    "keyboard_arrow_down | ZZAUTOTEST Dash Q27(1) |  | +0.50 | $135.00 | $135.00 | $0.00 | $0.00 | $0.00 | $0.00 | $135.00 | 100.00% | $135.00"
-   ],
-   "n_rows": 15,
+   "expand": "parent row not found",
+   "target": [],
+   "parent_row": [],
+   "n_rows": 33,
    "footer": ""
   }
  },
@@ -191,57 +198,68 @@
   {
    "phase": "ii-fresh-default",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/users/me/release-notes/unread"
   },
   {
    "phase": "ii-fresh-default",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false"
   },
   {
    "phase": "ii-fresh-default",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/reports/sales-by-customer/b541975f-7799-46d3-ba72-36f5d16fd88d/assets?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/users/me/release-notes/unread"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-25T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/reports/sales-by-customer/b541975f-7799-46d3-ba72-36f5d16fd88d/assets?range=custom&start_date=2026-10-25T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68"
   },
   {
    "phase": "iii-deselected",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/users/me/release-notes/unread"
   },
   {
    "phase": "iii-deselected",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false"
   },
   {
    "phase": "iii-deselected",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false"
   },
   {
    "phase": "iii-deselected",
    "status": 200,
-   "url": "/api/reporting/reports/sales-by-customer/b541975f-7799-46d3-ba72-36f5d16fd88d/assets?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68"
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false"
   }
  ]
 }

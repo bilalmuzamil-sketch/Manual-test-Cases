@@ -10,7 +10,7 @@
    "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "workplace_timezone": "America/Toronto"
   },
-  "started_utc": "2026-10-29T09:26:27.193Z",
+  "started_utc": "2026-10-29T09:48:27.062Z",
   "browser_zone": "America/Toronto",
   "app_timezone_key": "\"America/Toronto\"",
   "storage_at_start": {
@@ -19,11 +19,12 @@
    "timezone": "\"America/Toronto\"",
    "user": "(identity, not a filter)"
   },
-  "appVersion": "v26.43.2-f8698cb",
+  "header_at_start": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+  "appVersion": "v26.43.2-9272076",
   "shots": {
    "iii": {
     "file": "ui-P11R-iii.png",
-    "at_utc": "2026-10-29T09:28:06.755Z",
+    "at_utc": "2026-10-29T09:50:06.600Z",
     "row": {
      "x": 496,
      "y": 1540,
@@ -50,12 +51,23 @@
    "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
    "mode": "\"light\"",
    "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId\":\"05f4c649-a4b9-458d-bf15-be051c8e149d\"},{\"id\":\"3e44ab71-f97c-4c32-b48f-9293d41c6044\",\"name\":\"ShopP",
-   "organization_features_timestamp": "1793266049679",
+   "organization_features_timestamp": "1793267369567",
    "timezone": "\"America/Toronto\"",
    "user": "(identity, not a filter)"
   },
   "url_at_end": "/reports/technician-efficiency?range=last_12_months",
-  "finished_utc": "2026-10-29T09:28:06.758Z"
+  "header_at_end": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+  "location_guard": {
+   "header_start_ok": true,
+   "header_end_ok": true,
+   "x_location_ids_seen": [
+    "39522bc6-abca-4f67-bd12-2840043c2d68"
+   ],
+   "x_location_ok": true,
+   "storage_location_ok": true,
+   "VALID": true
+  },
+  "finished_utc": "2026-10-29T09:50:06.608Z"
  },
  "runs": {
   "ii": {
@@ -130,6 +142,7 @@
    "chip_after": "calendar_today Date: Last 12 months keyboard_arrow_down"
   },
   "iii_cleared2": [],
+  "iii_locations": "no location chip",
   "iii": {
    "controls": [
     "filter_chip_range=calendar_today Date: Last 12 months keyboard_arrow_down",
@@ -151,87 +164,98 @@
  "requests": [
   {
    "phase": "ii-fresh-default",
-   "status": 404,
-   "url": "/api/api/sso/check"
-  },
-  {
-   "phase": "ii-fresh-default",
    "status": 200,
-   "url": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day"
-  },
-  {
-   "phase": "ii-fresh-default",
-   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/users/me/release-notes/unread"
   },
   {
    "phase": "ii-fresh-default",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day"
+  },
+  {
+   "phase": "ii-fresh-default",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/technician-efficiency/this_month?range=this_month"
   },
   {
    "phase": "ii-fresh-default",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/technician-efficiency/expanded/this_month?range=this_month&staffIds[0]=6f6e02d6-d9c9-4650-917a-3478e4b12873"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/users/me/release-notes/unread"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
-   "url": "/api/reporting/technician-efficiency/this_month?range=this_month"
-  },
-  {
-   "phase": "i-ticket-filters",
-   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/reporting/technician-efficiency/this_month?range=this_month"
+  },
+  {
+   "phase": "i-ticket-filters",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-25&to=2026-10-29&group=day"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/technician-efficiency/this_week?range=this_week"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/technician-efficiency/expanded/this_week?range=this_week&staffIds[0]=6f6e02d6-d9c9-4650-917a-3478e4b12873"
   },
   {
    "phase": "iii-deselected",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/users/me/release-notes/unread"
   },
   {
    "phase": "iii-deselected",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day"
   },
   {
    "phase": "iii-deselected",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/technician-efficiency/this_month?range=this_month"
   },
   {
    "phase": "iii-deselected",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/technician-efficiency/last_12_months?range=last_12_months"
   },
   {
    "phase": "iii-deselected",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2025-11-01&to=2026-10-29&group=month"
   },
   {
    "phase": "iii-deselected",
    "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "url": "/api/reporting/technician-efficiency/expanded/last_12_months?range=last_12_months&staffIds[0]=6f6e02d6-d9c9-4650-917a-3478e4b12873"
   }
  ]

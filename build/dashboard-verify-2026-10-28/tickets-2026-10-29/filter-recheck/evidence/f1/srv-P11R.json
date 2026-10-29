@@ -1,0 +1,289 @@
+{
+ "loc": {
+  "key": "DVI",
+  "wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "tz": "America/Toronto",
+  "name": "DVI Test",
+  "change_location": 200,
+  "process_zone": "America/Toronto",
+  "location_tz": "America/Toronto",
+  "local_now": "2026-10-29T05:50:07-04:00"
+ },
+ "mode": "P11R",
+ "replays": [
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-0.json",
+   "hits": []
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-1.json",
+   "hits": []
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/reporting/technician-efficiency/expanded/this_month?range=this_month&staffIds[0]=6f6e02d6-d9c9-4650-917a-3478e4b12873",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-2.json",
+   "hits": [
+    [
+     ".data.collection[0].lines[0]",
+     {
+      "lineId": "a7075514-3835-410e-81af-d9d57f4520b8",
+      "workOrderId": "e70ab963-f6cd-4d43-9558-7fad3da94a1a",
+      "technicianId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "invoiceDate": "2026-10-28 19:09:16",
+      "invoiceNumber": "S-38198",
+      "invoiceDisplayNumber": "S1-38198",
+      "invoiceShopId": "1",
+      "customerName": "ZZAUTOTEST Dash F2",
+      "companyId": "ea9a8b69-4d31-47cf-97f3-10732cf09bfe",
+      "lineName": "Test DVI Line",
+      "lineOrder": 1,
+      "clockedTime": 1,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": 0,
+      "techEfficiency": 100,
+      "workPlaceId": "39522bc6-abca-4f67-bd12-2840043c2d68"
+     }
+    ],
+    [
+     ".data.collection[0].lines[1]",
+     {
+      "lineId": "4175207d-7b46-4a7e-bbbc-77d43fb71fc7",
+      "workOrderId": "e70ab963-f6cd-4d43-9558-7fad3da94a1a",
+      "technicianId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "invoiceDate": "2026-10-28 19:09:16",
+      "invoiceNumber": "S-38198",
+      "invoiceDisplayNumber": "S1-38198",
+      "invoiceShopId": "1",
+      "customerName": "ZZAUTOTEST Dash F2",
+      "companyId": "ea9a8b69-4d31-47cf-97f3-10732cf09bfe",
+      "lineName": "Test DVI Line",
+      "lineOrder": 2,
+      "clockedTime": 0.5,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": 0.5,
+      "techEfficiency": 200,
+      "workPlaceId": "39522bc6-abca-4f67-bd12-2840043c2d68"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-3.json",
+   "hits": []
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-4.json",
+   "hits": []
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-25&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-5.json",
+   "hits": []
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/technician-efficiency/this_week?range=this_week",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-6.json",
+   "hits": []
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/technician-efficiency/expanded/this_week?range=this_week&staffIds[0]=6f6e02d6-d9c9-4650-917a-3478e4b12873",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-7.json",
+   "hits": [
+    [
+     ".data.collection[0].lines[0]",
+     {
+      "lineId": "a7075514-3835-410e-81af-d9d57f4520b8",
+      "workOrderId": "e70ab963-f6cd-4d43-9558-7fad3da94a1a",
+      "technicianId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "invoiceDate": "2026-10-28 19:09:16",
+      "invoiceNumber": "S-38198",
+      "invoiceDisplayNumber": "S1-38198",
+      "invoiceShopId": "1",
+      "customerName": "ZZAUTOTEST Dash F2",
+      "companyId": "ea9a8b69-4d31-47cf-97f3-10732cf09bfe",
+      "lineName": "Test DVI Line",
+      "lineOrder": 1,
+      "clockedTime": 1,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": 0,
+      "techEfficiency": 100,
+      "workPlaceId": "39522bc6-abca-4f67-bd12-2840043c2d68"
+     }
+    ],
+    [
+     ".data.collection[0].lines[1]",
+     {
+      "lineId": "4175207d-7b46-4a7e-bbbc-77d43fb71fc7",
+      "workOrderId": "e70ab963-f6cd-4d43-9558-7fad3da94a1a",
+      "technicianId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "invoiceDate": "2026-10-28 19:09:16",
+      "invoiceNumber": "S-38198",
+      "invoiceDisplayNumber": "S1-38198",
+      "invoiceShopId": "1",
+      "customerName": "ZZAUTOTEST Dash F2",
+      "companyId": "ea9a8b69-4d31-47cf-97f3-10732cf09bfe",
+      "lineName": "Test DVI Line",
+      "lineOrder": 2,
+      "clockedTime": 0.5,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": 0.5,
+      "techEfficiency": 200,
+      "workPlaceId": "39522bc6-abca-4f67-bd12-2840043c2d68"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-8.json",
+   "hits": []
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-9.json",
+   "hits": []
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/technician-efficiency/last_12_months?range=last_12_months",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-10.json",
+   "hits": []
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-11.json",
+   "hits": []
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/technician-efficiency/expanded/last_12_months?range=last_12_months&staffIds[0]=6f6e02d6-d9c9-4650-917a-3478e4b12873",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11R-12.json",
+   "hits": [
+    [
+     ".data.collection[0].lines[0]",
+     {
+      "lineId": "a7075514-3835-410e-81af-d9d57f4520b8",
+      "workOrderId": "e70ab963-f6cd-4d43-9558-7fad3da94a1a",
+      "technicianId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "invoiceDate": "2026-10-28 19:09:16",
+      "invoiceNumber": "S-38198",
+      "invoiceDisplayNumber": "S1-38198",
+      "invoiceShopId": "1",
+      "customerName": "ZZAUTOTEST Dash F2",
+      "companyId": "ea9a8b69-4d31-47cf-97f3-10732cf09bfe",
+      "lineName": "Test DVI Line",
+      "lineOrder": 1,
+      "clockedTime": 1,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": 0,
+      "techEfficiency": 100,
+      "workPlaceId": "39522bc6-abca-4f67-bd12-2840043c2d68"
+     }
+    ],
+    [
+     ".data.collection[0].lines[1]",
+     {
+      "lineId": "4175207d-7b46-4a7e-bbbc-77d43fb71fc7",
+      "workOrderId": "e70ab963-f6cd-4d43-9558-7fad3da94a1a",
+      "technicianId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "invoiceDate": "2026-10-28 19:09:16",
+      "invoiceNumber": "S-38198",
+      "invoiceDisplayNumber": "S1-38198",
+      "invoiceShopId": "1",
+      "customerName": "ZZAUTOTEST Dash F2",
+      "companyId": "ea9a8b69-4d31-47cf-97f3-10732cf09bfe",
+      "lineName": "Test DVI Line",
+      "lineOrder": 2,
+      "clockedTime": 0.5,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": 0.5,
+      "techEfficiency": 200,
+      "workPlaceId": "39522bc6-abca-4f67-bd12-2840043c2d68"
+     }
+    ]
+   ]
+  }
+ ],
+ "server_requests": [
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/expanded/this_month?range=this_month&staffIds%5B0%5D=6f6e02d6-d9c9-4650-917a-3478e4b12873",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2026-10-25&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/this_week?range=this_week",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/expanded/this_week?range=this_week&staffIds%5B0%5D=6f6e02d6-d9c9-4650-917a-3478e4b12873",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/last_12_months?range=last_12_months",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/expanded/last_12_months?range=last_12_months&staffIds%5B0%5D=6f6e02d6-d9c9-4650-917a-3478e4b12873",
+   "status": 200
+  }
+ ]
+}

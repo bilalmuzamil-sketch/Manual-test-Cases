@@ -1,0 +1,279 @@
+{
+ "loc": {
+  "key": "DVI",
+  "wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "tz": "America/Toronto",
+  "name": "DVI Test",
+  "change_location": 200,
+  "process_zone": "America/Toronto",
+  "location_tz": "America/Toronto",
+  "local_now": "2026-10-29T05:47:23-04:00"
+ },
+ "mode": "P11",
+ "replays": [
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/dashboard/reports?reports[]=topCustomers&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11-0.json",
+   "hits": []
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=invoicesKpi&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11-1.json",
+   "hits": [],
+   "kpi": {
+    "value": 158.1,
+    "hoursBilled": 8,
+    "hoursLogged": 5.06,
+    "sparkline": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     158.1,
+     null
+    ]
+   }
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=invoicesKpi&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11-2.json",
+   "hits": [
+    [
+     ".data.techPerformance[2]",
+     {
+      "staffId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "staffName": "Fabian Bonjean",
+      "hoursLogged": 1.5,
+      "hoursBilled": 2,
+      "efficiency": 133.33
+     }
+    ],
+    [
+     ".data.techEfficiencyByTechSeries.series[2]",
+     {
+      "technicianId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "technicianName": "Fabian Bonjean",
+      "values": [
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       133.33,
+       null
+      ]
+     }
+    ]
+   ],
+   "kpi": {
+    "value": 158.1,
+    "hoursBilled": 8,
+    "hoursLogged": 5.06,
+    "sparkline": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     158.1,
+     null
+    ]
+   }
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencyKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=techEfficiencyByTechSeries&from=2026-10-25&to=2026-10-28&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11-3.json",
+   "hits": [
+    [
+     ".data.techPerformance[2]",
+     {
+      "staffId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "staffName": "Fabian Bonjean",
+      "hoursLogged": 1.5,
+      "hoursBilled": 2,
+      "efficiency": 133.33
+     }
+    ],
+    [
+     ".data.techEfficiencyByTechSeries.series[2]",
+     {
+      "technicianId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "technicianName": "Fabian Bonjean",
+      "values": [
+       null,
+       null,
+       null,
+       133.33
+      ]
+     }
+    ]
+   ],
+   "kpi": {
+    "value": 158.1,
+    "hoursBilled": 8,
+    "hoursLogged": 5.06,
+    "sparkline": [
+     null,
+     null,
+     null,
+     158.1
+    ]
+   }
+  },
+  {
+   "phase": "iii-widest",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencyKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=topCustomers&reports[]=techEfficiencyByTechSeries&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P11-4.json",
+   "hits": [
+    [
+     ".data.techPerformance[2]",
+     {
+      "staffId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "staffName": "Fabian Bonjean",
+      "hoursLogged": 1.5,
+      "hoursBilled": 2,
+      "efficiency": 133.33
+     }
+    ],
+    [
+     ".data.techEfficiencyByTechSeries.series[2]",
+     {
+      "technicianId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+      "technicianName": "Fabian Bonjean",
+      "values": [
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       133.33
+      ]
+     }
+    ]
+   ],
+   "kpi": {
+    "value": 158.1,
+    "hoursBilled": 8,
+    "hoursLogged": 5.06,
+    "sparkline": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     158.1
+    ]
+   }
+  }
+ ],
+ "server_requests": [
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=topCustomers&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=revenueKpi&reports%5B%5D=billingEfficiencyKpi&reports%5B%5D=techEfficiencyKpi&reports%5B%5D=techUtilizationKpi&reports%5B%5D=invoicesKpi&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=revenueKpi&reports%5B%5D=billingEfficiencyKpi&reports%5B%5D=techEfficiencyKpi&reports%5B%5D=techUtilizationKpi&reports%5B%5D=techEfficiencySeries&reports%5B%5D=techPerformance&reports%5B%5D=invoicesKpi&reports%5B%5D=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencyKpi&reports%5B%5D=techEfficiencySeries&reports%5B%5D=techPerformance&reports%5B%5D=techEfficiencyByTechSeries&from=2026-10-25&to=2026-10-28&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencyKpi&reports%5B%5D=techEfficiencySeries&reports%5B%5D=techPerformance&reports%5B%5D=topCustomers&reports%5B%5D=techEfficiencyByTechSeries&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200
+  }
+ ]
+}

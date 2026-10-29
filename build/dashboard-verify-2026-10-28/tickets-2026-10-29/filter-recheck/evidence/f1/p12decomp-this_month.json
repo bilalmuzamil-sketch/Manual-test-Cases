@@ -1,0 +1,42 @@
+{
+ "loc": {
+  "key": "LETH",
+  "wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+  "tz": "America/Edmonton",
+  "name": "Staging Lethbridge - 4310",
+  "change_location": 200,
+  "process_zone": "America/Edmonton",
+  "location_tz": "America/Edmonton",
+  "local_now": "2026-10-29T03:41:17-06:00"
+ },
+ "range": "this_month",
+ "tech_summary": [
+  {
+   "technicianId": "c99a76f9-c888-4872-8891-00c2083aa7ac",
+   "technician": "Nebojsa Custom Tech",
+   "technicianClockedHours": 30,
+   "technicianTechHours": 30,
+   "technicianTechEfficiency": 100,
+   "techHoursProfit": 0,
+   "startDate": "2026-10-01 06:00:00",
+   "endDate": "2026-11-01 05:59:59",
+   "technicianHoursProfit": 0
+  }
+ ],
+ "suspect_lines": [],
+ "dropped_totals": {
+  "sole": 0.0,
+  "shared_upper_bound": 0.0
+ },
+ "dropped_sole_by_tech": {},
+ "server_requests": [
+  {
+   "GET": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/expanded/this_month?range=this_month&staffIds%5B0%5D=c99a76f9-c888-4872-8891-00c2083aa7ac",
+   "status": 200
+  }
+ ]
+}

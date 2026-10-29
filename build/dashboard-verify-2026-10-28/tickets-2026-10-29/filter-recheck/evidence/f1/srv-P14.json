@@ -1,0 +1,188 @@
+{
+ "loc": {
+  "key": "DVI",
+  "wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "tz": "America/Toronto",
+  "name": "DVI Test",
+  "change_location": 200,
+  "process_zone": "America/Toronto",
+  "location_tz": "America/Toronto",
+  "local_now": "2026-10-29T05:48:21-04:00"
+ },
+ "mode": "P14",
+ "replays": [
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=invoicesKpi&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14-0.json",
+   "hits": []
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/dashboard/reports?reports[]=topCustomers&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14-1.json",
+   "hits": [
+    [
+     ".data.topCustomers.customers[7]",
+     {
+      "companyId": "b541975f-7799-46d3-ba72-36f5d16fd88d",
+      "companyName": "ZZAUTOTEST Dash Q27",
+      "invoiceCount": 1,
+      "revenue": 135,
+      "laborDelta": 0.5
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/dashboard/reports?reports[]=topCustomers&from=2026-10-25&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14-2.json",
+   "hits": [
+    [
+     ".data.topCustomers.customers[4]",
+     {
+      "companyId": "b541975f-7799-46d3-ba72-36f5d16fd88d",
+      "companyName": "ZZAUTOTEST Dash Q27",
+      "invoiceCount": 1,
+      "revenue": 135,
+      "laborDelta": 0.5
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-widest",
+   "request": "/api/dashboard/reports?reports[]=topCustomers&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14-3.json",
+   "hits": [
+    [
+     ".data.topCustomers.customers[7]",
+     {
+      "companyId": "b541975f-7799-46d3-ba72-36f5d16fd88d",
+      "companyName": "ZZAUTOTEST Dash Q27",
+      "invoiceCount": 1,
+      "revenue": 135,
+      "laborDelta": 0.5
+     }
+    ]
+   ]
+  }
+ ],
+ "wo_statistics": {
+  "status": 200,
+  "data": {
+   "collection": {
+    "hours_data": [
+     {
+      "line_id": "c507651f-ca72-4d8c-b21a-51bc8e14b117",
+      "name": "Test DVI Line",
+      "tech_hours": 1,
+      "estimated_hours": 1,
+      "clocked_hours": 1,
+      "tech_efficiency": 100,
+      "efficiency": 100,
+      "description": ""
+     },
+     {
+      "line_id": "",
+      "name": "Total",
+      "tech_hours": 1,
+      "estimated_hours": 1,
+      "clocked_hours": 1,
+      "tech_efficiency": 100,
+      "efficiency": 100,
+      "description": ""
+     }
+    ],
+    "labor_data": [
+     {
+      "line_id": "c507651f-ca72-4d8c-b21a-51bc8e14b117",
+      "name": "Test DVI Line",
+      "sell_price": 135,
+      "cost": 0,
+      "margin": 135,
+      "efficiency": 100,
+      "description": ""
+     },
+     {
+      "line_id": "",
+      "name": "Total",
+      "sell_price": 135,
+      "cost": 0,
+      "margin": 135,
+      "efficiency": 100,
+      "description": ""
+     }
+    ],
+    "parts_data": [
+     {
+      "line_id": "c507651f-ca72-4d8c-b21a-51bc8e14b117",
+      "name": "Test DVI Line",
+      "sell_price": 0,
+      "cost": 0,
+      "margin": 0,
+      "efficiency": null,
+      "description": ""
+     },
+     {
+      "line_id": "",
+      "name": "Total",
+      "sell_price": 0,
+      "cost": 0,
+      "margin": 0,
+      "efficiency": null,
+      "description": ""
+     }
+    ],
+    "total_data": [
+     {
+      "line_id": "c507651f-ca72-4d8c-b21a-51bc8e14b117",
+      "name": "Test DVI Line",
+      "sell_price": 135,
+      "cost": 0,
+      "margin": 135,
+      "efficiency": 100,
+      "description": ""
+     },
+     {
+      "line_id": "",
+      "name": "Total",
+      "sell_price": 135,
+      "cost": 0,
+      "margin": 135,
+      "efficiency": 100,
+      "description": ""
+     }
+    ],
+    "adjustments": []
+   }
+  }
+ },
+ "server_requests": [
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=revenueKpi&reports%5B%5D=billingEfficiencyKpi&reports%5B%5D=techEfficiencyKpi&reports%5B%5D=techUtilizationKpi&reports%5B%5D=invoicesKpi&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=topCustomers&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=topCustomers&from=2026-10-25&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=topCustomers&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200
+  },
+  {
+   "GET": "/api/work-orders/statistics/64037a28-0778-49a4-abda-47ea472eab17",
+   "status": 200
+  }
+ ]
+}

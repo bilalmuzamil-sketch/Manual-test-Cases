@@ -67,7 +67,7 @@ if part.startswith('ap-'):
     ap('unpaid_today_default_no_vendor', U, today)
     if part == 'ap-leth':
         ap('detail_oct28_ticket', D, dt.date(2026, 10, 28))
-        ap('unpaid_oct20_vendor_picture2', U, dt.date(2026, 10, 20), [('vendorId', VENDOR)])
+        ap('unpaid_oct20_vendor_picture2', U, dt.date(2026, 10, 20), [('filters[0][field]', 'vendor_id'), ('filters[0][value]', VENDOR)])
         ap('unpaid_oct20_no_vendor', U, dt.date(2026, 10, 20))
     tk = 'SV-11922'
 if part.startswith('ar-'):
@@ -87,6 +87,13 @@ if part.startswith('ar-'):
         x = (b.get('data') or {}).get('work_order') or {}
         out['wo_' + n] = {'status': c, **{k: x.get(k) for k in ('display_number', 'invoice_status', 'open_balance', 'sub_total_with_tax', 'total', 'deposits_total')},
                           'payments': [(p.get('payment_date'), p.get('applied_amount'), p.get('is_deposit'), p.get('status')) for p in ((b.get('data') or {}).get('customer_payments') or [])]}
+    for cid, acc, nos in (('1c385fee-d4cc-46f4-b20a-b8e01987e0ff', '17641732-f8c5-4315-895e-a3384b856b3c', ('P2-2352', 'P-2352', '4763')),
+                          ('329d4f63-ce36-444a-893f-0a63e56b0038', 'ebb314e7-0db5-495d-8d45-06f78bfd070e', ('P2-2439', 'P-2439', '4801'))):
+        c, j = get('/api/customer-account/list-unpaid-transaction', [('accountId', acc), ('pagination[page]', 1), ('pagination[rowsPerPage]', 500)], w)
+        rows = (j.get('data') or {}).get('response', {}).get('collection', [])
+        out['invoices_tab_' + nos[0]] = {'status': c, 'rows': [{k: v for k, v in r.items() if not isinstance(v, (list, dict))} for r in rows if any(n in json.dumps(r) for n in nos[:2])]}
+        c, dep = get('/api/customer-deposits/list', [('accountId', acc)], w); dl = dep.get('data'); dl = dl.get('collection', dl) if isinstance(dl, dict) else dl
+        out['deposits_' + nos[0]] = [{k: v for k, v in x.items() if k in ('creditNumber', 'amount', 'appliedAmount', 'openBalance', 'status', 'workOrderNumber', 'createdAt', 'depositDate')} for x in (dl or []) if nos[2] in json.dumps(x)]
     tk = 'SV-11935'
 os.makedirs(f'{EV}/{tk}', exist_ok=True)
 json.dump(out, open(f'{EV}/{tk}/server-{part}.json', 'w'), indent=1, default=str)

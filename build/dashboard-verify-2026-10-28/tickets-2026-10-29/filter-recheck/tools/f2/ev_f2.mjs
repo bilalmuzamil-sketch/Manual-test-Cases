@@ -228,6 +228,10 @@ if (mode === 'PV_DVI_B67') { // B6 / B7 deselected only (wide viewport for the p
 }
 meta.header_end = (await hdr()).slice(0, 300); meta.location_ok_end = meta.header_end.includes(M.loc);
 meta.VALID = !!(meta.location_ok_start && meta.location_ok_end);
+if (mode === 'IV_DVI_PIC') { // B5 / B8 picture only: first visit (fresh browser), Location -> Select all, As of = today (default); wide viewport
+  await openIV();
+  await guard('d', async () => { await allLocations(); await step('iv_first_visit_all_locations', 'table', [], true); });
+}
 save(); await browser.close();
 fs.mkdirSync(`${EV}/screen`, { recursive: true });
 fs.writeFileSync(`${EV}/screen/${mode}${arg ? '_' + arg : ''}_${meta.observed_at_utc.replace(/[:.]/g, '')}.json`, JSON.stringify(meta, null, 1));

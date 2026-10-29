@@ -24,7 +24,7 @@ export async function fresh(locKey, label, { downloads = false } = {}) {
   meta.storage_at_start = await lsDump(page);
   const reqs = []; let phase = 'load';
   page.on('response', r => { const u = r.url(); if (u.startsWith('https://api.staging.shopview.com/api/') && r.request().method() === 'GET' && !/individual-punch-clock|notifications|fe-permissions|organization|view-profile|my-workplaces|my-current-task|feature/.test(u))
-    reqs.push({ phase, status: r.status(), url: decodeURIComponent(u.replace('https://api.staging.shopview.com', '')) }); });
+    reqs.push({ phase, status: r.status(), xloc: r.request().headers()['x-location-id'] || null, url: decodeURIComponent(u.replace('https://api.staging.shopview.com', '')) }); });
   const B = b => b && { x: Math.round(b.x * 2), y: Math.round(b.y * 2), w: Math.round(b.width * 2), h: Math.round(b.height * 2) };
   const c = {
     page, browser, meta, reqs, TZ, WP, LOC,
@@ -32,6 +32,7 @@ export async function fresh(locKey, label, { downloads = false } = {}) {
     box: async loc => B(await loc.first().boundingBox({ timeout: 3000 }).catch(() => null)),
     txt: async loc => (await loc.first().innerText({ timeout: 3000 }).catch(() => '')).replace(/\s+/g, ' ').trim(),
     go: async (path, wait = 12000) => { await page.goto(APP + path, { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(wait);
+      if (!meta.header_at_start) meta.header_at_start = (await page.locator('header').first().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300);
       meta.appVersion = meta.appVersion || await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null); },
     controls: async (scope = 'body') => page.locator(scope).first().evaluate(root => {
       const vis = e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
@@ -56,6 +57,13 @@ async function lsDump(page) {
 export async function finish(c, out) {
   c.meta.storage_at_end = await c.ls().catch(() => null);
   c.meta.url_at_end = c.page.url().replace(APP, '');
+  // Location guard (coordinator, 29 Oct): header names the intended location at start AND end, every API request carried
+  // X-Location-ID = the intended workplace, and localStorage['location'] is still the intended workplace. Else INVALID.
+  c.meta.header_at_end = (await c.page.locator('header').first().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300);
+  const xl = [...new Set(c.reqs.map(r => r.xloc).filter(Boolean))];
+  c.meta.location_guard = { header_start_ok: (c.meta.header_at_start || '').includes(c.LOC), header_end_ok: c.meta.header_at_end.includes(c.LOC) || c.page.url().startsWith('data:') || c.page.url() === 'about:blank',
+    x_location_ids_seen: xl, x_location_ok: xl.length > 0 && xl.every(x => x === c.WP), storage_location_ok: (c.meta.storage_at_end || {}).location === JSON.stringify(c.WP) };
+  c.meta.location_guard.VALID = Object.entries(c.meta.location_guard).filter(([k]) => k.endsWith('_ok')).every(([, v]) => v);
   c.meta.finished_utc = new Date().toISOString();
   const res = { meta: c.meta, ...out, requests: dedupe(c.reqs) };
   fs.writeFileSync(`${EV}/${c.meta.label}.ui.json`, JSON.stringify(res, null, 1));

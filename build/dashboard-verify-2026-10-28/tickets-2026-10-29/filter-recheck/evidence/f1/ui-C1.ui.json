@@ -1,0 +1,265 @@
+{
+ "meta": {
+  "label": "ui-C1",
+  "location": "DVI Test",
+  "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "location_tz": "America/Toronto",
+  "process_TZ": "America/Toronto",
+  "process_zone": "America/Toronto",
+  "session_change_location": {
+   "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "workplace_timezone": "America/Toronto"
+  },
+  "started_utc": "2026-10-29T09:32:14.723Z",
+  "browser_zone": "America/Toronto",
+  "app_timezone_key": "\"America/Toronto\"",
+  "storage_at_start": {
+   "fe_permissions_wrapper": "(identity, not a filter)",
+   "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+   "timezone": "\"America/Toronto\"",
+   "user": "(identity, not a filter)"
+  },
+  "appVersion": "v26.43.2-9272076",
+  "shots": {
+   "iii": {
+    "file": "ui-C1-iii.png",
+    "at_utc": "2026-10-29T09:37:24.442Z",
+    "row": {
+     "x": 556,
+     "y": 513,
+     "w": 3100,
+     "h": 96
+    },
+    "row_text": "Oct 28 2026 S1-38217 ZZAUTOTEST P2C REP Unpaid +0.50 $135.00 $135.00 $0.00 $0.00 $0.00 $0.00 $135.00 100.00% $135.00",
+    "chips": [
+     {
+      "id": "filter_chip_dateRange",
+      "text": "calendar_today Date: Last 12 months keyboard_arrow_down",
+      "box": {
+       "x": 566,
+       "y": 239,
+       "w": 414,
+       "h": 56
+      }
+     },
+     {
+      "id": "filter_chip_showUnassigned",
+      "text": "person_off Show Unassigned",
+      "box": {
+       "x": 1008,
+       "y": 239,
+       "w": 318,
+       "h": 56
+      }
+     },
+     {
+      "id": "filter_chip_productTypes",
+      "text": "category Product Type: All products keyboard_arrow_down cancel",
+      "box": {
+       "x": 1354,
+       "y": 239,
+       "w": 480,
+       "h": 56
+      }
+     },
+     {
+      "id": "filter_chip_invoiceStatus",
+      "text": "receipt_long Invoice Status: All statuses keyboard_arrow_down cancel",
+      "box": {
+       "x": 1861,
+       "y": 239,
+       "w": 484,
+       "h": 56
+      }
+     },
+     {
+      "id": "filter_chip_locationIds",
+      "text": "place Location: DVI Test keyboard_arrow_down cancel",
+      "box": {
+       "x": 2373,
+       "y": 239,
+       "w": 370,
+       "h": 56
+      }
+     }
+    ]
+   }
+  },
+  "storage_at_end": {
+   "fe_permissions_wrapper": "(identity, not a filter)",
+   "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+   "mode": "\"light\"",
+   "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId\":\"05f4c649-a4b9-458d-bf15-be051c8e149d\"},{\"id\":\"3e44ab71-f97c-4c32-b48f-9293d41c6044\",\"name\":\"ShopP",
+   "organization_features_timestamp": "1793266397300",
+   "report_table:sales-by-representative": "{\"version\":\"2\",\"view\":{\"sortBy\":\"rep_name\",\"descending\":false,\"columns\":[\"inv_hrs\",\"labor_invoiced\",\"labor_margin\",\"parts_invoiced\",\"parts_margin\",\"shop_supplies\",\"adjustments\",\"margin\",\"margin_pct\"]}}",
+   "timezone": "\"America/Toronto\"",
+   "user": "(identity, not a filter)"
+  },
+  "url_at_end": "/reports/sales-by-representative?dateRange=last-12-months",
+  "finished_utc": "2026-10-29T09:37:24.445Z"
+ },
+ "runs": {
+  "ii": {
+   "controls": [
+    "filter_chip_dateRange=calendar_today Date: This month keyboard_arrow_down",
+    "filter_chip_showUnassigned=person_off Show Unassigned",
+    "filter_chip_productTypes=category Product Type: All products keyboard_arrow_down cancel",
+    "filter_chip_clear_productTypes=cancel",
+    "filter_chip_invoiceStatus=receipt_long Invoice Status: All statuses keyboard_arrow_down cancel",
+    "filter_chip_clear_invoiceStatus=cancel",
+    "filter_chip_locationIds=place Location: DVI Test keyboard_arrow_down cancel",
+    "filter_chip_clear_locationIds=cancel"
+   ],
+   "expand": "expanded",
+   "target": [
+    " | Oct 28 2026 | S1-38217 | ZZAUTOTEST P2C REP | Unpaid | +0.50 | $135.00 | $135.00 | $0.00 | $0.00 | $0.00 | $0.00 | $135.00 | 100.00% | $135.00"
+   ],
+   "parent_row": [
+    "keyboard_arrow_down | Viktoria Videnovic(3) | +4.50 | $675.00 | $675.00 | $0.00 | $0.00 | $0.00 | $0.00 | $675.00 | 100.00% | $675.00"
+   ],
+   "n_rows": 7,
+   "footer": ""
+  },
+  "i_presets": {
+   "chipId": "filter_chip_dateRange",
+   "presets": [
+    "this-week=This week",
+    "last-week=Last week",
+    "this-month=This month",
+    "last-month=Last month",
+    "this-quarter=This quarter",
+    "last-quarter=Last quarter",
+    "this-year=This year",
+    "last-year=Last year",
+    "last-12-months=Last 12 months",
+    "custom=Custom"
+   ],
+   "chip_after": "calendar_today Date: This month keyboard_arrow_down"
+  },
+  "i": {
+   "controls": [
+    "filter_chip_dateRange=calendar_today Date: This month keyboard_arrow_down",
+    "filter_chip_showUnassigned=person_off Show Unassigned",
+    "filter_chip_productTypes=category Product Type: All products keyboard_arrow_down cancel",
+    "filter_chip_clear_productTypes=cancel",
+    "filter_chip_invoiceStatus=receipt_long Invoice Status: All statuses keyboard_arrow_down cancel",
+    "filter_chip_clear_invoiceStatus=cancel",
+    "filter_chip_locationIds=place Location: DVI Test keyboard_arrow_down cancel",
+    "filter_chip_clear_locationIds=cancel"
+   ],
+   "expand": "expanded",
+   "target": [
+    " | Oct 28 2026 | S1-38217 | ZZAUTOTEST P2C REP | Unpaid | +0.50 | $135.00 | $135.00 | $0.00 | $0.00 | $0.00 | $0.00 | $135.00 | 100.00% | $135.00"
+   ],
+   "parent_row": [
+    "keyboard_arrow_down | Viktoria Videnovic(3) | +4.50 | $675.00 | $675.00 | $0.00 | $0.00 | $0.00 | $0.00 | $675.00 | 100.00% | $675.00"
+   ],
+   "n_rows": 7,
+   "footer": ""
+  },
+  "iii_cleared": [
+   "filter_chip_clear_productTypes",
+   "filter_chip_clear_invoiceStatus",
+   "filter_chip_clear_locationIds"
+  ],
+  "iii_presets": {
+   "chipId": "filter_chip_dateRange",
+   "presets": [
+    "this-week=This week",
+    "last-week=Last week",
+    "this-month=This month",
+    "last-month=Last month",
+    "this-quarter=This quarter",
+    "last-quarter=Last quarter",
+    "this-year=This year",
+    "last-year=Last year",
+    "last-12-months=Last 12 months",
+    "custom=Custom"
+   ],
+   "chip_after": "calendar_today Date: Last 12 months keyboard_arrow_down"
+  },
+  "iii_cleared2": [
+   "filter_chip_clear_productTypes",
+   "filter_chip_clear_invoiceStatus",
+   "filter_chip_clear_locationIds"
+  ],
+  "iii": {
+   "controls": [
+    "filter_chip_dateRange=calendar_today Date: Last 12 months keyboard_arrow_down",
+    "filter_chip_showUnassigned=person_off Show Unassigned",
+    "filter_chip_productTypes=category Product Type: All products keyboard_arrow_down cancel",
+    "filter_chip_clear_productTypes=cancel",
+    "filter_chip_invoiceStatus=receipt_long Invoice Status: All statuses keyboard_arrow_down cancel",
+    "filter_chip_clear_invoiceStatus=cancel",
+    "filter_chip_locationIds=place Location: DVI Test keyboard_arrow_down cancel",
+    "filter_chip_clear_locationIds=cancel"
+   ],
+   "expand": "expanded",
+   "target": [
+    " | Oct 28 2026 | S1-38217 | ZZAUTOTEST P2C REP | Unpaid | +0.50 | $135.00 | $135.00 | $0.00 | $0.00 | $0.00 | $0.00 | $135.00 | 100.00% | $135.00"
+   ],
+   "parent_row": [
+    "keyboard_arrow_down | Viktoria Videnovic(3) | +4.50 | $675.00 | $675.00 | $0.00 | $0.00 | $0.00 | $0.00 | $675.00 | 100.00% | $675.00"
+   ],
+   "n_rows": 7,
+   "footer": ""
+  }
+ },
+ "requests": [
+  {
+   "phase": "ii-fresh-default",
+   "status": 404,
+   "url": "/api/api/sso/check"
+  },
+  {
+   "phase": "ii-fresh-default",
+   "status": 200,
+   "url": "/api/users/me/release-notes/unread"
+  },
+  {
+   "phase": "ii-fresh-default",
+   "status": 200,
+   "url": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false"
+  },
+  {
+   "phase": "ii-fresh-default",
+   "status": 200,
+   "url": "/api/reporting/reports/sales-by-representative/04fc7976-76b8-4b3e-97a5-6cfdb2f96f3c/invoices?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68"
+  },
+  {
+   "phase": "i-ticket-filters",
+   "status": 200,
+   "url": "/api/users/me/release-notes/unread"
+  },
+  {
+   "phase": "i-ticket-filters",
+   "status": 200,
+   "url": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false"
+  },
+  {
+   "phase": "i-ticket-filters",
+   "status": 200,
+   "url": "/api/reporting/reports/sales-by-representative/04fc7976-76b8-4b3e-97a5-6cfdb2f96f3c/invoices?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68"
+  },
+  {
+   "phase": "iii-deselected",
+   "status": 200,
+   "url": "/api/users/me/release-notes/unread"
+  },
+  {
+   "phase": "iii-deselected",
+   "status": 200,
+   "url": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false"
+  },
+  {
+   "phase": "iii-deselected",
+   "status": 200,
+   "url": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false"
+  },
+  {
+   "phase": "iii-deselected",
+   "status": 200,
+   "url": "/api/reporting/reports/sales-by-representative/04fc7976-76b8-4b3e-97a5-6cfdb2f96f3c/invoices?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68"
+  }
+ ]
+}

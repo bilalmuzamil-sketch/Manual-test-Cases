@@ -1,0 +1,304 @@
+{
+ "loc": {
+  "key": "DVI",
+  "wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "tz": "America/Toronto",
+  "name": "DVI Test",
+  "change_location": 200,
+  "process_zone": "America/Toronto",
+  "location_tz": "America/Toronto",
+  "local_now": "2026-10-29T05:54:56-04:00"
+ },
+ "mode": "P14R",
+ "replays": [
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14R-0.json",
+   "hits": [
+    [
+     ".data.collection[5]",
+     {
+      "key": "b541975f-7799-46d3-ba72-36f5d16fd88d",
+      "customer_name": "ZZAUTOTEST Dash Q27",
+      "location": "DVI Test",
+      "inv_hrs": 0.5,
+      "labor_invoiced": 13500,
+      "labor_margin": 13500,
+      "parts_invoiced": 0,
+      "parts_margin": 0,
+      "shop_supplies": 0,
+      "adjustments": 0,
+      "margin": 13500,
+      "subtotal": 13500,
+      "margin_pct": 100,
+      "invoice_count": 1,
+      "last_invoice_date": "2026-10-28T23:47:39Z"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/reporting/reports/sales-by-customer/b541975f-7799-46d3-ba72-36f5d16fd88d/assets?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14R-1.json",
+   "hits": []
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14R-2.json",
+   "hits": [
+    [
+     ".data.collection[5]",
+     {
+      "key": "b541975f-7799-46d3-ba72-36f5d16fd88d",
+      "customer_name": "ZZAUTOTEST Dash Q27",
+      "location": "DVI Test",
+      "inv_hrs": 0.5,
+      "labor_invoiced": 13500,
+      "labor_margin": 13500,
+      "parts_invoiced": 0,
+      "parts_margin": 0,
+      "shop_supplies": 0,
+      "adjustments": 0,
+      "margin": 13500,
+      "subtotal": 13500,
+      "margin_pct": 100,
+      "invoice_count": 1,
+      "last_invoice_date": "2026-10-28T23:47:39Z"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-25T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14R-3.json",
+   "hits": [
+    [
+     ".data.collection[2]",
+     {
+      "key": "b541975f-7799-46d3-ba72-36f5d16fd88d",
+      "customer_name": "ZZAUTOTEST Dash Q27",
+      "location": "DVI Test",
+      "inv_hrs": 0.5,
+      "labor_invoiced": 13500,
+      "labor_margin": 13500,
+      "parts_invoiced": 0,
+      "parts_margin": 0,
+      "shop_supplies": 0,
+      "adjustments": 0,
+      "margin": 13500,
+      "subtotal": 13500,
+      "margin_pct": 100,
+      "invoice_count": 1,
+      "last_invoice_date": "2026-10-28T23:47:39Z"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/reports/sales-by-customer/b541975f-7799-46d3-ba72-36f5d16fd88d/assets?range=custom&start_date=2026-10-25T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14R-4.json",
+   "hits": []
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14R-5.json",
+   "hits": [
+    [
+     ".data.collection[5]",
+     {
+      "key": "b541975f-7799-46d3-ba72-36f5d16fd88d",
+      "customer_name": "ZZAUTOTEST Dash Q27",
+      "location": "DVI Test",
+      "inv_hrs": 0.5,
+      "labor_invoiced": 13500,
+      "labor_margin": 13500,
+      "parts_invoiced": 0,
+      "parts_margin": 0,
+      "shop_supplies": 0,
+      "adjustments": 0,
+      "margin": 13500,
+      "subtotal": 13500,
+      "margin_pct": 100,
+      "invoice_count": 1,
+      "last_invoice_date": "2026-10-28T23:47:39Z"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14R-6.json",
+   "hits": [
+    [
+     ".data.collection[5]",
+     {
+      "key": "b541975f-7799-46d3-ba72-36f5d16fd88d",
+      "customer_name": "ZZAUTOTEST Dash Q27",
+      "location": "DVI Test",
+      "inv_hrs": 0.5,
+      "labor_invoiced": 13500,
+      "labor_margin": 13500,
+      "parts_invoiced": 0,
+      "parts_margin": 0,
+      "shop_supplies": 0,
+      "adjustments": 0,
+      "margin": 13500,
+      "subtotal": 13500,
+      "margin_pct": 100,
+      "invoice_count": 1,
+      "last_invoice_date": "2026-10-28T23:47:39Z"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P14R-7.json",
+   "hits": []
+  }
+ ],
+ "wo_statistics": {
+  "status": 200,
+  "data": {
+   "collection": {
+    "hours_data": [
+     {
+      "line_id": "c507651f-ca72-4d8c-b21a-51bc8e14b117",
+      "name": "Test DVI Line",
+      "tech_hours": 1,
+      "estimated_hours": 1,
+      "clocked_hours": 1,
+      "tech_efficiency": 100,
+      "efficiency": 100,
+      "description": ""
+     },
+     {
+      "line_id": "",
+      "name": "Total",
+      "tech_hours": 1,
+      "estimated_hours": 1,
+      "clocked_hours": 1,
+      "tech_efficiency": 100,
+      "efficiency": 100,
+      "description": ""
+     }
+    ],
+    "labor_data": [
+     {
+      "line_id": "c507651f-ca72-4d8c-b21a-51bc8e14b117",
+      "name": "Test DVI Line",
+      "sell_price": 135,
+      "cost": 0,
+      "margin": 135,
+      "efficiency": 100,
+      "description": ""
+     },
+     {
+      "line_id": "",
+      "name": "Total",
+      "sell_price": 135,
+      "cost": 0,
+      "margin": 135,
+      "efficiency": 100,
+      "description": ""
+     }
+    ],
+    "parts_data": [
+     {
+      "line_id": "c507651f-ca72-4d8c-b21a-51bc8e14b117",
+      "name": "Test DVI Line",
+      "sell_price": 0,
+      "cost": 0,
+      "margin": 0,
+      "efficiency": null,
+      "description": ""
+     },
+     {
+      "line_id": "",
+      "name": "Total",
+      "sell_price": 0,
+      "cost": 0,
+      "margin": 0,
+      "efficiency": null,
+      "description": ""
+     }
+    ],
+    "total_data": [
+     {
+      "line_id": "c507651f-ca72-4d8c-b21a-51bc8e14b117",
+      "name": "Test DVI Line",
+      "sell_price": 135,
+      "cost": 0,
+      "margin": 135,
+      "efficiency": 100,
+      "description": ""
+     },
+     {
+      "line_id": "",
+      "name": "Total",
+      "sell_price": 135,
+      "cost": 0,
+      "margin": 135,
+      "efficiency": 100,
+      "description": ""
+     }
+    ],
+    "adjustments": []
+   }
+  }
+ },
+ "server_requests": [
+  {
+   "GET": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/sales-by-customer/b541975f-7799-46d3-ba72-36f5d16fd88d/assets?range=custom&start_date=2026-10-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-25T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/sales-by-customer/b541975f-7799-46d3-ba72-36f5d16fd88d/assets?range=custom&start_date=2026-10-25T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-10-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2025-11-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2025-11-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&locations=25a0d576-b371-4b82-bef4-41ba977f31c2%2Cb3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/work-orders/statistics/64037a28-0778-49a4-abda-47ea472eab17",
+   "status": 200
+  }
+ ]
+}

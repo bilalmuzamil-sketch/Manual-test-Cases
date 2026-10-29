@@ -21,6 +21,8 @@ for (const run of runs) {
     await page.locator('.q-menu').last().getByText(run.preset, { exact: true }).first().click(); await page.waitForTimeout(1000); await page.keyboard.press('Escape').catch(() => {}); await page.waitForTimeout(8000); }
   if (run.unassigned) { await page.locator('[data-test-id="filter_chip_showUnassigned"]').click(); await page.waitForTimeout(6000); }
   if (run.expand === 'unassigned') { await page.locator('[data-test-id="button_sbr_expand_rep_00000000-0000-0000-0000-000000000000"]').click(); await page.waitForTimeout(9000); }
+  if (run.expand && run.expand.startsWith('rep:')) { await page.locator(`[data-test-id="button_sbr_expand_rep_${run.expand.slice(4)}"]`).click(); await page.waitForTimeout(9000); }
+  if (run.shotDay) { await page.locator('tr').filter({ hasText: run.shotDay }).first().evaluate(el => el.scrollIntoView({ block: 'center' })).catch(() => {}); await page.waitForTimeout(1200); }
   if (run.expand === 'all') { await page.locator('[data-test-id="button_sbr_expand_all"]').click(); await page.waitForTimeout(20000); }
   R.chips = await page.locator('[data-test-id^="filter_chip_"]').evaluateAll(es => es.map(e => e.innerText.replace(/\s+/g, ' ').trim()).filter(x => x !== 'cancel'));
   R.url = page.url();
@@ -38,7 +40,7 @@ for (const run of runs) {
     R.rowboxes = rb; R.chipboxes = await page.locator('[data-test-id^="filter_chip_"]').evaluateAll(es => es.map(e => { const b = e.getBoundingClientRect(); return [e.getAttribute('data-test-id'), Math.round(b.x * 2), Math.round(b.y * 2), Math.round(b.width * 2), Math.round(b.height * 2)]; }));
     await page.screenshot({ path: `${OUT}/${run.name}.png` }); }
   R.loc_end = await assertLoc(page, LNAME, WP); R.VALID = R.loc_start.ok && R.loc_end.ok;
-  R.reqs = reqs; meta.runs[run.name] = R; fs.writeFileSync(`${OUT}/screen-meta.json`, JSON.stringify(meta, null, 1));
+  R.reqs = reqs; meta.runs[run.name] = R; fs.writeFileSync(`${OUT}/screen-meta-${process.env.SBR_TAG || 'main'}.json`, JSON.stringify(meta, null, 1));
   console.log(run.name, 'VALID=' + R.VALID, JSON.stringify({ chips: R.chips, summary: R.summary, bad: Object.entries(R.same_day).filter(([k, v]) => !v.ok).slice(0, 6).map(([k, v]) => k + ': ' + v.list.join(',')) }).slice(0, 1800));
 }
 console.log(JSON.stringify({ v: meta.appVersion, bz: meta.browser_zone, pz: meta.process_zone, tz: meta.location_tz, key: meta.app_timezone_key }));

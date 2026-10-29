@@ -12,7 +12,9 @@ LOCOF = {'P11': 'DVI', 'P14': 'DVI', 'C1': 'DVI', 'P12': 'LETH', 'P13': 'HD', 'A
 loc = use(LOCOF[mode]); wid = loc['wid']
 ui = json.load(open(f'{EV}/ui-{mode}.ui.json'))
 RAW = '/tmp/cln/f1/raw'; os.makedirs(RAW, exist_ok=True)
-NEEDLE = {'P11': 'Fabian Bonjean', 'P12': 'Joseph Nelson', 'P13': 'QA Technician', 'P14': 'ZZAUTOTEST Dash Q27'}
+NEEDLE = {'P11': 'Fabian Bonjean', 'P12': 'Joseph Nelson', 'P13': 'QA Technician', 'P14': 'ZZAUTOTEST Dash Q27',
+          'P11R': 'S1-38198', 'P12R': 'S3-17383', 'P13R': 'QA Technician', 'P14R': 'ZZAUTOTEST Dash Q27', 'C1': 'S1-38217', 'A1': 'S2-38105', 'A2': 'S2-33740'}
+WO_STATS = {'P14': '64037a28-0778-49a4-abda-47ea472eab17', 'P14R': '64037a28-0778-49a4-abda-47ea472eab17', 'C1': '949e3a4b-abff-4b98-9e4f-373512b179af'}
 
 
 def find(o, needle, path=''):
@@ -49,7 +51,10 @@ for r in ui['requests']:
         rows = tu if isinstance(tu, list) else (tu or {}).get('rows') or (tu or {}).get('data') or tu
         item['techUtilization_rows'] = rows if isinstance(rows, list) else json.dumps(rows)[:3000]
     res['replays'].append(item)
+if mode in WO_STATS:
+    c, b = get(f'/api/work-orders/statistics/{WO_STATS[mode]}', [], wid); res['wo_statistics'] = {'status': c, 'data': (b or {}).get('data')}
 dump(f'srv-{mode}', res)
+if 'wo_statistics' in res: print('WO statistics', json.dumps(res['wo_statistics'])[:700])
 for it in res['replays']:
     print(it['phase'], it['status'], it['request'][:170])
     for k in ('hits', 'kpi', 'techUtilization_rows'):

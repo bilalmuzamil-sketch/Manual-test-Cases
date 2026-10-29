@@ -1,0 +1,248 @@
+{
+ "part": "ar-hd",
+ "at_utc": "2026-10-29T09:36:56.793271+00:00",
+ "zones": {
+  "location": "Staging Heavy Duty - 9919",
+  "location_tz": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "process_zone": "PKT",
+  "process_now": "2026-10-29T14:36:56.793331",
+  "utc_now": "2026-10-29T09:36:56.793332+00:00"
+ },
+ "change_location": 200,
+ "today_default": {
+  "asOfDate": "2026-10-29T18:59:59.999Z",
+  "status": 200,
+  "rows": {
+   "P2-2352": {
+    "bucket": "current",
+    "amount": 543.43,
+    "balance": 543.43,
+    "customer": "TestVT1"
+   },
+   "P2-2439": {
+    "bucket": "current",
+    "amount": 21,
+    "balance": 21,
+    "customer": "Bravo Mechanical Services"
+   }
+  },
+  "totalBalance": 700883.41
+ },
+ "invoice_day_oct15": {
+  "asOfDate": "2026-10-15T18:59:59.999Z",
+  "status": 200,
+  "rows": {
+   "P2-2352": {
+    "bucket": "current",
+    "amount": 543.43,
+    "balance": 543.43,
+    "customer": "TestVT1"
+   }
+  },
+  "totalBalance": 679756.65
+ },
+ "far_future_2027_12_31": {
+  "asOfDate": "2027-12-31T18:59:59.999Z",
+  "status": 200,
+  "rows": {
+   "P2-2352": {
+    "bucket": "days91Plus",
+    "amount": 543.43,
+    "balance": 543.43,
+    "customer": "TestVT1"
+   },
+   "P2-2439": {
+    "bucket": "days91Plus",
+    "amount": 21,
+    "balance": 21,
+    "customer": "Bravo Mechanical Services"
+   }
+  },
+  "totalBalance": 700883.41
+ },
+ "wo_P2-2352": {
+  "status": 200,
+  "display_number": "P2-2352",
+  "invoice_status": "pending",
+  "open_balance": 543.43,
+  "sub_total_with_tax": null,
+  "total": null,
+  "deposits_total": null,
+  "payments": []
+ },
+ "wo_P2-2439": {
+  "status": 200,
+  "display_number": "P2-2439",
+  "invoice_status": "pending",
+  "open_balance": 21,
+  "sub_total_with_tax": null,
+  "total": null,
+  "deposits_total": null,
+  "payments": []
+ },
+ "invoices_tab_P2-2352": {
+  "status": 200,
+  "rows": [
+   {
+    "id": "aa3c787a-031a-4df2-b6d7-424fe19d4653",
+    "customer_account_id": "17641732-f8c5-4315-895e-a3384b856b3c",
+    "date": "2026-10-15 11:55:10",
+    "due_date": "2026-11-14 11:55:10",
+    "description": null,
+    "amount": 543.43,
+    "balance": 443.43,
+    "type": "invoice",
+    "type_label": "Invoice",
+    "status": "partially_paid",
+    "status_label": "Partially paid",
+    "invoice_number": "P-2352",
+    "invoice_display_number": "P2-2352",
+    "credit_display_number": null,
+    "reference_id": "1c5b99a4-5c4b-4ab7-8c04-49532bdb3b59",
+    "payment_method": null,
+    "payment_method_label": null,
+    "work_order_id": "b9e03515-6e0f-4d1f-b45e-788c2bb44be1",
+    "ibs_batch_id": null,
+    "memo": null,
+    "customer_name": null,
+    "work_place_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "invoice_shop_id": "2",
+    "raw_number": null,
+    "work_order_type": "parts",
+    "origin_payment_id": null,
+    "workplace_name": null,
+    "amount_paid": 0,
+    "credit_term": "Net 30",
+    "customer_po": null,
+    "formatted_invoice_number": "P2-2352"
+   },
+   {
+    "id": "dbad631d-6d5e-426a-acb3-7178ccac4786",
+    "customer_account_id": "17641732-f8c5-4315-895e-a3384b856b3c",
+    "date": "2026-10-14 11:54:48",
+    "due_date": null,
+    "description": null,
+    "amount": -100,
+    "balance": null,
+    "type": "deposit",
+    "type_label": "Deposit",
+    "status": "unapplied",
+    "status_label": "Held",
+    "invoice_number": "DEP-4763",
+    "invoice_display_number": null,
+    "credit_display_number": null,
+    "reference_id": null,
+    "payment_method": null,
+    "payment_method_label": null,
+    "work_order_id": "b9e03515-6e0f-4d1f-b45e-788c2bb44be1",
+    "ibs_batch_id": null,
+    "memo": "Deposit for Part Sale P2-2352",
+    "customer_name": null,
+    "work_place_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "invoice_shop_id": null,
+    "raw_number": 4763,
+    "work_order_type": null,
+    "origin_payment_id": null,
+    "workplace_name": null,
+    "amount_paid": null,
+    "credit_term": null,
+    "customer_po": null,
+    "formatted_invoice_number": "DEP-4763"
+   }
+  ]
+ },
+ "deposits_P2-2352": [
+  {
+   "creditNumber": "DEP-4763",
+   "amount": 100,
+   "appliedAmount": 0,
+   "openBalance": 100,
+   "status": "held",
+   "workOrderNumber": "P-2352",
+   "depositDate": "2026-10-14T11:54:48Z"
+  }
+ ],
+ "invoices_tab_P2-2439": {
+  "status": 200,
+  "rows": [
+   {
+    "id": "dd15cdc8-5912-425c-9c15-5dc027f09b23",
+    "customer_account_id": "ebb314e7-0db5-495d-8d45-06f78bfd070e",
+    "date": "2026-10-22 07:20:44",
+    "due_date": "2026-12-21 07:20:44",
+    "description": null,
+    "amount": 21,
+    "balance": 16,
+    "type": "invoice",
+    "type_label": "Invoice",
+    "status": "partially_paid",
+    "status_label": "Partially paid",
+    "invoice_number": "P-2439",
+    "invoice_display_number": "P2-2439",
+    "credit_display_number": null,
+    "reference_id": "88ec2d00-8930-4dde-86e4-e2d14b045845",
+    "payment_method": null,
+    "payment_method_label": null,
+    "work_order_id": "0464207f-fda5-4663-a39a-8337310dbb72",
+    "ibs_batch_id": null,
+    "memo": null,
+    "customer_name": null,
+    "work_place_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "invoice_shop_id": "2",
+    "raw_number": null,
+    "work_order_type": "parts",
+    "origin_payment_id": null,
+    "workplace_name": null,
+    "amount_paid": 0,
+    "credit_term": "Net 60",
+    "customer_po": null,
+    "formatted_invoice_number": "P2-2439"
+   },
+   {
+    "id": "7a54a392-1549-49e6-9d86-87d5ddbb8eb9",
+    "customer_account_id": "ebb314e7-0db5-495d-8d45-06f78bfd070e",
+    "date": "2026-10-21 07:20:00",
+    "due_date": null,
+    "description": null,
+    "amount": -5,
+    "balance": null,
+    "type": "deposit",
+    "type_label": "Deposit",
+    "status": "unapplied",
+    "status_label": "Held",
+    "invoice_number": "DEP-4801",
+    "invoice_display_number": null,
+    "credit_display_number": null,
+    "reference_id": null,
+    "payment_method": null,
+    "payment_method_label": null,
+    "work_order_id": "0464207f-fda5-4663-a39a-8337310dbb72",
+    "ibs_batch_id": null,
+    "memo": "Deposit for Part Sale P2-2439",
+    "customer_name": null,
+    "work_place_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "invoice_shop_id": null,
+    "raw_number": 4801,
+    "work_order_type": null,
+    "origin_payment_id": null,
+    "workplace_name": null,
+    "amount_paid": null,
+    "credit_term": null,
+    "customer_po": null,
+    "formatted_invoice_number": "DEP-4801"
+   }
+  ]
+ },
+ "deposits_P2-2439": [
+  {
+   "creditNumber": "DEP-4801",
+   "amount": 5,
+   "appliedAmount": 0,
+   "openBalance": 5,
+   "status": "held",
+   "workOrderNumber": "P-2439",
+   "depositDate": "2026-10-21T07:20:00Z"
+  }
+ ]
+}
