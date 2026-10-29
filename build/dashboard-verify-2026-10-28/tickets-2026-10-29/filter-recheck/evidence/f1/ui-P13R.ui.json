@@ -10,7 +10,7 @@
    "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
    "workplace_timezone": "Asia/Karachi"
   },
-  "started_utc": "2026-10-29T10:06:30.689Z",
+  "started_utc": "2026-10-29T10:47:56.518Z",
   "browser_zone": "Asia/Karachi",
   "app_timezone_key": "\"Asia/Karachi\"",
   "storage_at_start": {
@@ -20,11 +20,11 @@
    "user": "(identity, not a filter)"
   },
   "header_at_start": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
-  "appVersion": "v26.43.2-9272076",
+  "appVersion": "v26.43.3-8ad4001",
   "shots": {
    "iii": {
     "file": "ui-P13R-iii.png",
-    "at_utc": "2026-10-29T10:10:34.029Z",
+    "at_utc": "2026-10-29T10:51:59.539Z",
     "row": {
      "x": 556,
      "y": 1163,
@@ -71,7 +71,7 @@
    "location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
    "mode": "\"light\"",
    "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId\":\"05f4c649-a4b9-458d-bf15-be051c8e149d\"},{\"id\":\"3e44ab71-f97c-4c32-b48f-9293d41c6044\",\"name\":\"ShopP",
-   "organization_features_timestamp": "1793268447469",
+   "organization_features_timestamp": "1793270932972",
    "timezone": "\"Asia/Karachi\"",
    "user": "(identity, not a filter)"
   },
@@ -87,7 +87,7 @@
    "storage_location_ok": true,
    "VALID": true
   },
-  "finished_utc": "2026-10-29T10:10:34.043Z"
+  "finished_utc": "2026-10-29T10:51:59.546Z"
  },
  "runs": {
   "ii": {
@@ -237,13 +237,13 @@
    "phase": "i-ticket-filters",
    "status": 200,
    "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
-   "url": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-09-30T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a"
+   "url": "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2026-10-01&to=2026-10-29&group=day&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
    "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
-   "url": "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2026-10-01&to=2026-10-29&group=day&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a"
+   "url": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-09-30T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a"
   },
   {
    "phase": "i-ticket-filters",
@@ -285,6 +285,12 @@
    "phase": "iii-deselected",
    "status": 200,
    "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2025-11-01&to=2026-10-29&group=month&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a"
+  },
+  {
+   "phase": "iii-deselected",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
    "url": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-10-31T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false"
   },
   {
@@ -297,18 +303,6 @@
    "phase": "iii-deselected",
    "status": 200,
    "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
-   "url": "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2025-11-01&to=2026-10-29&group=month&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a"
-  },
-  {
-   "phase": "iii-deselected",
-   "status": 200,
-   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
-   "url": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-10-31T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false"
-  },
-  {
-   "phase": "iii-deselected",
-   "status": 200,
-   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
    "url": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2025-10-31T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68"
   },
   {
@@ -316,6 +310,12 @@
    "status": 200,
    "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
    "url": "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2025-11-01&to=2026-10-29&group=month&location[]=25a0d576-b371-4b82-bef4-41ba977f31c2&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a&location[]=f8a8b802-7780-4b16-bf10-343caeb616b2&location[]=39522bc6-abca-4f67-bd12-2840043c2d68"
+  },
+  {
+   "phase": "iii-deselected",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-10-31T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false"
   },
   {
    "phase": "iii-deselected",

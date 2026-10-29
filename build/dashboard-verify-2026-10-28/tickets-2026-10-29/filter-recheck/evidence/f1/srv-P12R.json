@@ -7,7 +7,7 @@
   "change_location": 200,
   "process_zone": "America/Edmonton",
   "location_tz": "America/Edmonton",
-  "local_now": "2026-10-29T04:05:18-06:00"
+  "local_now": "2026-10-29T04:46:45-06:00"
  },
  "mode": "P12R",
  "replays": [
@@ -27,28 +27,28 @@
   },
   {
    "phase": "i-ticket-filters",
-   "request": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
    "status": 200,
    "raw": "/tmp/cln/f1/raw/P12R-2.json",
    "hits": []
   },
   {
    "phase": "i-ticket-filters",
-   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "request": "/api/reporting/technician-efficiency/this_month?range=this_month",
    "status": 200,
    "raw": "/tmp/cln/f1/raw/P12R-3.json",
    "hits": []
   },
   {
    "phase": "i-ticket-filters",
-   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-07-01&to=2026-09-30&group=week",
+   "request": "/api/reporting/technician-efficiency/last_quarter?range=last_quarter",
    "status": 200,
    "raw": "/tmp/cln/f1/raw/P12R-4.json",
    "hits": []
   },
   {
    "phase": "i-ticket-filters",
-   "request": "/api/reporting/technician-efficiency/last_quarter?range=last_quarter",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-07-01&to=2026-09-30&group=week",
    "status": 200,
    "raw": "/tmp/cln/f1/raw/P12R-5.json",
    "hits": []
@@ -360,19 +360,19 @@
    "status": 200
   },
   {
-   "GET": "/api/reporting/technician-efficiency/this_month?range=this_month",
-   "status": 200
-  },
-  {
    "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
    "status": 200
   },
   {
-   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2026-07-01&to=2026-09-30&group=week",
+   "GET": "/api/reporting/technician-efficiency/this_month?range=this_month",
    "status": 200
   },
   {
    "GET": "/api/reporting/technician-efficiency/last_quarter?range=last_quarter",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2026-07-01&to=2026-09-30&group=week",
    "status": 200
   },
   {

@@ -10,7 +10,7 @@
    "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
    "workplace_timezone": "America/Toronto"
   },
-  "started_utc": "2026-10-29T10:00:36.254Z",
+  "started_utc": "2026-10-29T10:42:03.475Z",
   "browser_zone": "America/Toronto",
   "app_timezone_key": "\"America/Toronto\"",
   "storage_at_start": {
@@ -20,7 +20,7 @@
    "user": "(identity, not a filter)"
   },
   "header_at_start": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
-  "appVersion": "v26.43.2-9272076",
+  "appVersion": "v26.43.3-8ad4001",
   "export_dialog_default": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | arrow_drop_down | Export",
   "export_dialog": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | Custom | arrow_drop_down | event | Start | event | End | Export",
   "export_range_options": [
@@ -41,7 +41,7 @@
    "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
    "mode": "\"light\"",
    "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId\":\"05f4c649-a4b9-458d-bf15-be051c8e149d\"},{\"id\":\"3e44ab71-f97c-4c32-b48f-9293d41c6044\",\"name\":\"ShopP",
-   "organization_features_timestamp": "1793268139978",
+   "organization_features_timestamp": "1793270627467",
    "timezone": "\"America/Toronto\"",
    "user": "(identity, not a filter)"
   },
@@ -57,7 +57,7 @@
    "storage_location_ok": true,
    "VALID": true
   },
-  "finished_utc": "2026-10-29T10:02:44.314Z"
+  "finished_utc": "2026-10-29T10:44:11.329Z"
  },
  "runs": {
   "ii-default": {
@@ -71,11 +71,14 @@
     "to": "10/28/2026"
    },
    "dialog": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | Custom | arrow_drop_down | event | Start | event | End | Export",
-   "file": "payroll_timesheet.csv",
+   "file": "/tmp/cln/f1/dl/A5DVI-i-ticket.csv",
    "header": "\"Employee Name\",Date,\"Total Hours\",\"WO Hours\",\"Internal Hours\"",
    "rows": 7,
    "days_over_24_all_staff": 0,
-   "target": []
+   "target": [
+    ",2026-10-28,1.53,1.53,0.00",
+    "\"Total for Admin Shopview\",,1.53,1.53,0.00"
+   ]
   },
   "iii-widest": {
    "opts": {
@@ -84,11 +87,14 @@
     "to": "10/29/2026"
    },
    "dialog": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | Custom | arrow_drop_down | event | Start | event | End | Export",
-   "file": "payroll_timesheet.csv",
+   "file": "/tmp/cln/f1/dl/A5DVI-iii-widest.csv",
    "header": "\"Employee Name\",Date,\"Total Hours\",\"WO Hours\",\"Internal Hours\"",
    "rows": 11,
    "days_over_24_all_staff": 0,
-   "target": []
+   "target": [
+    ",2026-10-28,1.53,1.53,0.00",
+    "\"Total for Admin Shopview\",,1.53,1.53,0.00"
+   ]
   }
  },
  "requests": [
@@ -96,13 +102,13 @@
    "phase": "ii-default",
    "status": 200,
    "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
-   "url": "/api/users/me/release-notes/unread"
+   "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
   },
   {
    "phase": "ii-default",
    "status": 200,
    "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
-   "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
+   "url": "/api/users/me/release-notes/unread"
   },
   {
    "phase": "ii-default",
@@ -162,13 +168,13 @@
    "phase": "iii-widest",
    "status": 200,
    "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
-   "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
+   "url": "/api/staff/clocked?range=this_month"
   },
   {
    "phase": "iii-widest",
    "status": 200,
    "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
-   "url": "/api/staff/clocked?range=this_month"
+   "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
   },
   {
    "phase": "iii-widest",

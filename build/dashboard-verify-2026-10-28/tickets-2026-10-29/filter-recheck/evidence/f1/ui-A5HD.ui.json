@@ -10,7 +10,7 @@
    "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
    "workplace_timezone": "Asia/Karachi"
   },
-  "started_utc": "2026-10-29T10:21:30.566Z",
+  "started_utc": "2026-10-29T11:09:11.559Z",
   "browser_zone": "Asia/Karachi",
   "app_timezone_key": "\"Asia/Karachi\"",
   "storage_at_start": {
@@ -36,12 +36,30 @@
    "file": "/tmp/cln/f1/dl/payroll_timesheet.csv",
    "name": "payroll_timesheet.csv"
   },
+  "header_before_render": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+  "shots": {
+   "iii-csv": {
+    "file": "A5HD-iii-widest.csv",
+    "at_utc": "2026-10-29T11:11:21.761Z",
+    "marked": [
+     {
+      "box": {
+       "x": 49,
+       "y": 545,
+       "w": 1307,
+       "h": 62
+      },
+      "text": " 2026-09-06 28.50 28.50 0.00"
+     }
+    ]
+   }
+  },
   "storage_at_end": {
    "fe_permissions_wrapper": "(identity, not a filter)",
    "location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
    "mode": "\"light\"",
    "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId\":\"05f4c649-a4b9-458d-bf15-be051c8e149d\"},{\"id\":\"3e44ab71-f97c-4c32-b48f-9293d41c6044\",\"name\":\"ShopP",
-   "organization_features_timestamp": "1793269394478",
+   "organization_features_timestamp": "1793272255957",
    "timezone": "\"Asia/Karachi\"",
    "user": "(identity, not a filter)"
   },
@@ -57,7 +75,7 @@
    "storage_location_ok": true,
    "VALID": true
   },
-  "finished_utc": "2026-10-29T10:23:39.366Z"
+  "finished_utc": "2026-10-29T11:11:21.765Z"
  },
  "runs": {
   "ii-default": {
@@ -100,21 +118,21 @@
  "requests": [
   {
    "phase": "ii-default",
-   "status": 404,
-   "xloc": null,
-   "url": "/api/api/sso/check"
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/staff/clocked?range=this_month"
+  },
+  {
+   "phase": "ii-default",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/technicians"
   },
   {
    "phase": "ii-default",
    "status": 200,
    "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
    "url": "/api/users/me/release-notes/unread"
-  },
-  {
-   "phase": "ii-default",
-   "status": 200,
-   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
-   "url": "/api/staff/clocked?range=this_month"
   },
   {
    "phase": "ii-default",
@@ -123,7 +141,7 @@
    "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
   },
   {
-   "phase": "ii-default",
+   "phase": "i-ticket",
    "status": 200,
    "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
    "url": "/api/technicians"
@@ -139,12 +157,6 @@
    "status": 200,
    "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
    "url": "/api/staff/clocked?range=this_month"
-  },
-  {
-   "phase": "i-ticket",
-   "status": 200,
-   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
-   "url": "/api/technicians"
   },
   {
    "phase": "i-ticket",
@@ -162,25 +174,25 @@
    "phase": "iii-widest",
    "status": 200,
    "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
-   "url": "/api/users/me/release-notes/unread"
-  },
-  {
-   "phase": "iii-widest",
-   "status": 200,
-   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
    "url": "/api/technicians"
   },
   {
    "phase": "iii-widest",
    "status": 200,
    "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
-   "url": "/api/staff/clocked?range=this_month"
+   "url": "/api/users/me/release-notes/unread"
   },
   {
    "phase": "iii-widest",
    "status": 200,
    "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
    "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
+  },
+  {
+   "phase": "iii-widest",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/staff/clocked?range=this_month"
   },
   {
    "phase": "iii-widest",

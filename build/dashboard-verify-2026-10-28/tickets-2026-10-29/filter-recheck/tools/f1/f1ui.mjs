@@ -4,7 +4,7 @@
 // Usage: TZ=<zone> node f1ui.mjs <MODE>
 import { fresh, finish, details, tile, tileRange, reportPreset } from './f1lib.mjs';
 const mode = process.argv[2];
-const LOCOF = { P11: 'DVI', P14: 'DVI', C1: 'DVI', A4: 'DVI', A5DVI: 'DVI', P12: 'LETH', P13: 'HD', A1: 'HD', A2: 'HD', A5HD: 'HD', P11R: 'DVI', P12R: 'LETH', P13R: 'HD', P14R: 'DVI' };
+const LOCOF = { P11: 'DVI', P14: 'DVI', C1: 'DVI', A4: 'DVI', A5DVI: 'DVI', P12: 'LETH', P13: 'HD', A1: 'HD', A2: 'HD', A5HD: 'HD', P11R: 'DVI', P12R: 'LETH', P13R: 'HD', A1PIC: 'HD', A2PIC: 'HD', P14R: 'DVI' };
 const c = await fresh(LOCOF[mode], 'ui-' + mode, { downloads: /^A5/.test(mode) });
 const { page, txt, box } = c; const out = { runs: {} };
 const rowOf = (rows, re) => rows.filter(r => re.test(r.join(' | '))).map(r => r.join(' | '));
@@ -151,14 +151,57 @@ if (mode === 'A5HD') {
   await payroll('ii-default', { range: null }, 'Haley Brown', '2026-09-06');
   await payroll('i-ticket', { range: 'Custom', from: '09/01/2026', to: '09/30/2026' }, 'Haley Brown', '2026-09-06');
   await payroll('iii-widest', { range: 'Custom', from: '01/01/2026', to: '10/29/2026' }, 'Haley Brown', '2026-09-06');
+  c.meta.header_before_render = (await page.locator('header').first().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 2000);
   const P = await import(P2A); let who = null;
   await P.renderCsv(c, '/tmp/cln/f1/dl/A5HD-iii-widest.csv', { title: 'payroll_timesheet.csv (Reports > Export Reports, Staging Heavy Duty - 9919, Payroll Timesheet, Custom 01/01/2026 - 10/29/2026), Haley Brown, September rows',
-    keep: r => { if (r[0] && !r[0].startsWith('Total for')) who = r[0]; return who === 'Haley Brown' && (!r[1] || r[1].startsWith('2026-09')); }, mark: r => r[1] === '2026-09-06', shotName: 'iii-csv' });
+    keep: r => { if (r[0] && !r[0].startsWith('Total for')) who = r[0]; return who === 'Haley Brown' && !r[0].startsWith('Total for') && (!r[1] || r[1].startsWith('2026-09')); }, mark: r => r[1] === '2026-09-06', shotName: 'iii-csv' });
 }
 if (mode === 'A5DVI') {
   await payroll('ii-default', { range: null }, 'Admin Shopview', '2026-10-28');
   await payroll('i-ticket', { range: 'Custom', from: '10/28/2026', to: '10/28/2026' }, 'Admin Shopview', '2026-10-28');
   await payroll('iii-widest', { range: 'Custom', from: '01/01/2026', to: '10/29/2026' }, 'Admin Shopview', '2026-10-28');
+}
+
+// A1 replacement picture: Customer All customers, Location All locations, tab Approved - Partially Completed, sorted by Days Open ascending
+if (mode === 'A1PIC') {
+  c.setPhase('picture'); await c.go('/reports/work-in-progress', 15000); out.loc = await allLocations();
+  const tab = page.locator('[data-test-id="page_work_in_progress_report"] .q-tab').filter({ hasText: 'Partially' }).first(); await tab.click(); await page.waitForTimeout(8000);
+  const th = page.locator('[data-test-id="table_work_in_progress_report"] thead th').filter({ hasText: 'Days Open' }).first();
+  const row = () => page.locator('[data-test-id="table_work_in_progress_report"] tbody tr').filter({ hasText: 'S2-38105' }).first();
+  for (let k = 0; k < 3 && !(await row().count()); k++) { await th.click(); await page.waitForTimeout(7000); out['sort_' + k] = (await c.rows('[data-test-id="table_work_in_progress_report"] tbody tr', 4)).map(r => r.join(' | ')); }
+  { const b2 = page.locator('[data-test-id="button_column_selection"]').first(); await b2.click(); await page.waitForTimeout(2000); const m2 = page.locator('.q-menu').last();   // hide the wide view-only columns (the sort stays)
+    for (const k of ['customer', 'asset', 'advisor']) { const t = m2.locator(`[data-test-id="toggle_column_${k}"]`); if (await t.count() && (await t.getAttribute('aria-checked')) === 'true') { await t.click(); await page.waitForTimeout(1500); } }
+    await page.keyboard.press('Escape'); await page.waitForTimeout(4000); }
+  await row().scrollIntoViewIfNeeded().catch(() => {}); await page.waitForTimeout(1500);
+  const heads = (await page.locator('[data-test-id="table_work_in_progress_report"] thead th').allInnerTexts()).map(h => h.replace(/\s+/g, ' ').replace(/arrow_\w+/g, '').trim());
+  const cells = []; const r = row(); for (let i = 0; i < await r.locator('td').count(); i++) cells.push({ h: heads[i], t: (await r.locator('td').nth(i).innerText()).trim(), box: await box(r.locator('td').nth(i)) });
+  out.controls = (await c.controls()).chips.filter(x => /filter_chip_/.test(x.id) && !/clear/.test(x.id)).map(x => x.id + '=' + x.text);
+  await c.shot('iii', { row: await box(r), cells, tab: await box(tab), th: await box(th), chips: await page.locator('[data-test-id^="filter_chip_"]').evaluateAll(es => es.filter(e => e.getBoundingClientRect().width > 0 && !/clear/.test(e.getAttribute('data-test-id'))).map(e => { const b = e.getBoundingClientRect(); return { id: e.getAttribute('data-test-id'), text: e.innerText.replace(/\s+/g, ' ').trim(), box: { x: Math.round(b.x * 2), y: Math.round(b.y * 2), w: Math.round(b.width * 2), h: Math.round(b.height * 2) } }; })) });
+}
+
+// A2 replacement picture: Customer All customers, Location All locations, tab Approved - Not Started, Parts Earned + Parts
+// Remaining switched on, wide view-only columns switched off so the parts columns fit, sorted by Customer (4 Star sorts first)
+if (mode === 'A2PIC') {
+  c.setPhase('picture'); await c.go('/reports/work-in-progress', 15000); out.loc = await allLocations();
+  const b = page.locator('[data-test-id="button_column_selection"]').first(); await b.click(); await page.waitForTimeout(2000); const m = page.locator('.q-menu').last();
+  for (const [k, want] of [['parts_earned', 'true'], ['parts_remaining', 'true'], ['asset', 'false'], ['advisor', 'false'], ['status', 'false'], ['earned', 'false'], ['remaining', 'false'], ['adjustments', 'false']]) {
+    const t = m.locator(`[data-test-id="toggle_column_${k}"]`); if (await t.count() && (await t.getAttribute('aria-checked')) !== want) { await t.click(); await page.waitForTimeout(1200); } }
+  out.columns = await m.locator('[data-test-id^="toggle_column_"]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id').replace('toggle_column_', '') + '=' + e.getAttribute('aria-checked')));
+  await page.keyboard.press('Escape'); await page.waitForTimeout(3000);
+  const tab = page.locator('[data-test-id="page_work_in_progress_report"] .q-tab').filter({ hasText: 'Not Started' }).first(); await tab.click(); await page.waitForTimeout(8000);
+  const th = page.locator('[data-test-id="table_work_in_progress_report"] thead th').filter({ hasText: 'Customer' }).first();
+  const row = () => page.locator('[data-test-id="table_work_in_progress_report"] tbody tr').filter({ hasText: 'S2-33740' }).first();
+  for (let k = 0; k < 3 && !(await row().count()); k++) { await th.click(); await page.waitForTimeout(7000); }
+  await row().scrollIntoViewIfNeeded().catch(() => {}); await page.waitForTimeout(1500);
+  // the long test customer names widen the Customer column: scroll the table sideways so the two parts columns are on screen
+  { const b2 = page.locator('[data-test-id="button_column_selection"]').first(); await b2.click(); await page.waitForTimeout(2000); const m2 = page.locator('.q-menu').last();   // sort stays; hide the wide Customer column
+    const t = m2.locator('[data-test-id="toggle_column_customer"]'); if (await t.count() && (await t.getAttribute('aria-checked')) === 'true') { await t.click(); await page.waitForTimeout(1500); }
+    await page.keyboard.press('Escape'); await page.waitForTimeout(4000); out.sorted_by_customer_then_hidden = true; }
+  await row().scrollIntoViewIfNeeded().catch(() => {}); await page.waitForTimeout(1500);
+  const heads = (await page.locator('[data-test-id="table_work_in_progress_report"] thead th').allInnerTexts()).map(h => h.replace(/\s+/g, ' ').replace(/arrow_\w+/g, '').trim());
+  const cells = []; const r = row(); for (let i = 0; i < await r.locator('td').count(); i++) cells.push({ h: heads[i], t: (await r.locator('td').nth(i).innerText()).trim(), box: await box(r.locator('td').nth(i)) });
+  out.controls = (await c.controls()).chips.filter(x => /filter_chip_/.test(x.id) && !/clear/.test(x.id)).map(x => x.id + '=' + x.text);
+  await c.shot('iii', { row: await box(r), cells, tab: await box(tab), chips: await page.locator('[data-test-id^="filter_chip_"]').evaluateAll(es => es.filter(e => e.getBoundingClientRect().width > 0 && !/clear/.test(e.getAttribute('data-test-id'))).map(e => { const b = e.getBoundingClientRect(); return { id: e.getAttribute('data-test-id'), text: e.innerText.replace(/\s+/g, ' ').trim(), box: { x: Math.round(b.x * 2), y: Math.round(b.y * 2), w: Math.round(b.width * 2), h: Math.round(b.height * 2) } }; })) });
 }
 const r = await finish(c, out);
 console.log(JSON.stringify({ mode, v: r.meta.appVersion, zones: [r.meta.browser_zone, r.meta.process_zone, r.meta.app_timezone_key, r.meta.location_tz] }));

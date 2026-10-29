@@ -10,29 +10,28 @@
    "workplace_id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
    "workplace_timezone": "America/Edmonton"
   },
-  "started_utc": "2026-10-29T10:03:45.569Z",
+  "started_utc": "2026-10-29T10:45:12.555Z",
   "browser_zone": "America/Edmonton",
   "app_timezone_key": "\"America/Edmonton\"",
   "storage_at_start": {
    "fe_permissions_wrapper": "(identity, not a filter)",
    "location": "\"f8a8b802-7780-4b16-bf10-343caeb616b2\"",
-   "mode": "\"light\"",
    "timezone": "\"America/Edmonton\"",
    "user": "(identity, not a filter)"
   },
   "header_at_start": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Lethbridge - 4310 AS",
-  "appVersion": "v26.43.2-9272076",
+  "appVersion": "v26.43.3-8ad4001",
   "shots": {
    "iii": {
     "file": "ui-P12R-iii.png",
-    "at_utc": "2026-10-29T10:05:17.865Z",
+    "at_utc": "2026-10-29T10:46:44.618Z",
     "row": {
      "x": 496,
      "y": 1530,
      "w": 2704,
      "h": 96
     },
-    "row_text": "Aug 25, 2026 S3-17383 Monroe Truck Service & Repair 1. - Oil change, grease and check over 1.35 1.5 0.15 111.11%",
+    "row_text": "Aug 25, 2026 S3-17383 Monroe Truck Service & Repair 4. - Replace cabin air filter 0.01 0 -0.01 0%",
     "chips": [
      {
       "id": "filter_chip_range",
@@ -52,7 +51,7 @@
    "location": "\"f8a8b802-7780-4b16-bf10-343caeb616b2\"",
    "mode": "\"light\"",
    "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId\":\"05f4c649-a4b9-458d-bf15-be051c8e149d\"},{\"id\":\"3e44ab71-f97c-4c32-b48f-9293d41c6044\",\"name\":\"ShopP",
-   "organization_features_timestamp": "1793268280442",
+   "organization_features_timestamp": "1793270767350",
    "timezone": "\"America/Edmonton\"",
    "user": "(identity, not a filter)"
   },
@@ -68,7 +67,7 @@
    "storage_location_ok": true,
    "VALID": true
   },
-  "finished_utc": "2026-10-29T10:05:17.886Z"
+  "finished_utc": "2026-10-29T10:46:44.640Z"
  },
  "runs": {
   "ii": {
@@ -172,13 +171,13 @@
    "phase": "ii-fresh-default",
    "status": 200,
    "xloc": "f8a8b802-7780-4b16-bf10-343caeb616b2",
-   "url": "/api/users/me/release-notes/unread"
+   "url": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day"
   },
   {
    "phase": "ii-fresh-default",
    "status": 200,
    "xloc": "f8a8b802-7780-4b16-bf10-343caeb616b2",
-   "url": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day"
+   "url": "/api/users/me/release-notes/unread"
   },
   {
    "phase": "ii-fresh-default",
@@ -196,25 +195,25 @@
    "phase": "i-ticket-filters",
    "status": 200,
    "xloc": "f8a8b802-7780-4b16-bf10-343caeb616b2",
-   "url": "/api/reporting/technician-efficiency/this_month?range=this_month"
-  },
-  {
-   "phase": "i-ticket-filters",
-   "status": 200,
-   "xloc": "f8a8b802-7780-4b16-bf10-343caeb616b2",
    "url": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
    "xloc": "f8a8b802-7780-4b16-bf10-343caeb616b2",
-   "url": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-07-01&to=2026-09-30&group=week"
+   "url": "/api/reporting/technician-efficiency/this_month?range=this_month"
   },
   {
    "phase": "i-ticket-filters",
    "status": 200,
    "xloc": "f8a8b802-7780-4b16-bf10-343caeb616b2",
    "url": "/api/reporting/technician-efficiency/last_quarter?range=last_quarter"
+  },
+  {
+   "phase": "i-ticket-filters",
+   "status": 200,
+   "xloc": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "url": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-07-01&to=2026-09-30&group=week"
   },
   {
    "phase": "i-ticket-filters",
