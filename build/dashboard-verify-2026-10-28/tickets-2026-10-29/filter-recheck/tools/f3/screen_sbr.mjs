@@ -4,7 +4,7 @@ import fs from 'fs';
 import { f3boot, assertLoc } from './f3boot.mjs';
 const APP = 'https://app.staging.shopview.com'; const WP = '39522bc6-abca-4f67-bd12-2840043c2d68', TZ = 'America/Toronto', LNAME = 'DVI Test', L3 = 'dvi';
 const runs = JSON.parse(process.argv[2]);
-const OUT = `/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/SV-11952`; fs.mkdirSync(OUT, { recursive: true });
+const OUT = `/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/${process.env.TICKET_DIR || "SV-11952"}`; fs.mkdirSync(OUT, { recursive: true });
 const { browser, page } = await f3boot(L3); // sets localStorage location + timezone (F4 trap, Rule 99)
 let reqs = []; page.on('request', r => { const u = decodeURIComponent(r.url()); if (u.includes('sales-by-representative')) reqs.push(u.replace(/^.*?\/api/, '/api').slice(0, 500)); });
 const meta = { ticket: 'SV-11952', location: 'DVI Test', location_tz: TZ, process_TZ: process.env.TZ || null, process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone, observed_at_utc: new Date().toISOString(), runs: {} };
@@ -19,6 +19,7 @@ for (const run of runs) {
   if (run.preset) { await page.locator('[data-test-id="filter_chip_dateRange"]').click(); await page.waitForTimeout(1500);
     R.preset_ids = await page.locator('.q-menu [data-test-id]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id')));
     await page.locator('.q-menu').last().getByText(run.preset, { exact: true }).first().click(); await page.waitForTimeout(1000); await page.keyboard.press('Escape').catch(() => {}); await page.waitForTimeout(8000); }
+  if (run.clearLoc) { await page.locator('[data-test-id="filter_chip_locationIds"]').click(); await page.waitForTimeout(1500); await page.locator('[data-test-id="filter_select_all_locationIds"]').click(); await page.waitForTimeout(800); await page.keyboard.press('Escape').catch(() => {}); await page.waitForTimeout(9000); }
   if (run.unassigned) { await page.locator('[data-test-id="filter_chip_showUnassigned"]').click(); await page.waitForTimeout(6000); }
   if (run.expand === 'unassigned') { await page.locator('[data-test-id="button_sbr_expand_rep_00000000-0000-0000-0000-000000000000"]').click(); await page.waitForTimeout(9000); }
   if (run.expand && run.expand.startsWith('rep:')) { await page.locator(`[data-test-id="button_sbr_expand_rep_${run.expand.slice(4)}"]`).click(); await page.waitForTimeout(9000); }

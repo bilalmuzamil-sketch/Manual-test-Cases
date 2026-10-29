@@ -1,0 +1,224 @@
+{
+ "loc": {
+  "key": "LETH",
+  "wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+  "tz": "America/Edmonton",
+  "name": "Staging Lethbridge - 4310",
+  "change_location": 200,
+  "process_zone": "America/Edmonton",
+  "location_tz": "America/Edmonton",
+  "local_now": "2026-10-29T04:03:38-06:00"
+ },
+ "mode": "P12",
+ "replays": [
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/dashboard/reports?reports[]=topCustomers&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12-0.json",
+   "hits": []
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=invoicesKpi&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12-1.json",
+   "hits": [],
+   "kpi": {
+    "value": 100,
+    "hoursBilled": 30,
+    "hoursLogged": 30,
+    "sparkline": [
+     100,
+     null,
+     null,
+     null,
+     100,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     100,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=invoicesKpi&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12-2.json",
+   "hits": [],
+   "kpi": {
+    "value": 100,
+    "hoursBilled": 30,
+    "hoursLogged": 30,
+    "sparkline": [
+     100,
+     null,
+     null,
+     null,
+     100,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     100,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencyKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=techEfficiencyByTechSeries&from=2026-08-25&to=2026-08-25&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12-3.json",
+   "hits": [
+    [
+     ".data.techPerformance[1]",
+     {
+      "staffId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "staffName": "Joseph Nelson",
+      "hoursLogged": 7.43,
+      "hoursBilled": 9.75,
+      "efficiency": 131.22
+     }
+    ],
+    [
+     ".data.techEfficiencyByTechSeries.series[1]",
+     {
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "technicianName": "Joseph Nelson",
+      "values": [
+       131.22
+      ]
+     }
+    ]
+   ],
+   "kpi": {
+    "value": 114.1,
+    "hoursBilled": 33.5,
+    "hoursLogged": 29.36,
+    "sparkline": [
+     114.1
+    ]
+   }
+  },
+  {
+   "phase": "iii-widest",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencyKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=topCustomers&reports[]=techEfficiencyByTechSeries&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12-4.json",
+   "hits": [
+    [
+     ".data.techPerformance[9]",
+     {
+      "staffId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "staffName": "Joseph Nelson",
+      "hoursLogged": 1131.63,
+      "hoursBilled": 1313.09,
+      "efficiency": 116.04
+     }
+    ],
+    [
+     ".data.techEfficiencyByTechSeries.series[9]",
+     {
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "technicianName": "Joseph Nelson",
+      "values": [
+       114.32,
+       116.85,
+       124.52,
+       119.94,
+       115.46,
+       114.28,
+       123.87,
+       108.9,
+       105.83,
+       118.83,
+       null,
+       null
+      ]
+     }
+    ]
+   ],
+   "kpi": {
+    "value": 110.75,
+    "hoursBilled": 8135.67,
+    "hoursLogged": 7345.65,
+    "sparkline": [
+     106.75,
+     109.55,
+     120.17,
+     122.69,
+     108.23,
+     112.16,
+     110.9,
+     108.51,
+     108.51,
+     111.31,
+     97.17,
+     100
+    ]
+   }
+  }
+ ],
+ "server_requests": [
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=topCustomers&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=revenueKpi&reports%5B%5D=billingEfficiencyKpi&reports%5B%5D=techEfficiencyKpi&reports%5B%5D=techUtilizationKpi&reports%5B%5D=invoicesKpi&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=revenueKpi&reports%5B%5D=billingEfficiencyKpi&reports%5B%5D=techEfficiencyKpi&reports%5B%5D=techUtilizationKpi&reports%5B%5D=techEfficiencySeries&reports%5B%5D=techPerformance&reports%5B%5D=invoicesKpi&reports%5B%5D=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencyKpi&reports%5B%5D=techEfficiencySeries&reports%5B%5D=techPerformance&reports%5B%5D=techEfficiencyByTechSeries&from=2026-08-25&to=2026-08-25&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencyKpi&reports%5B%5D=techEfficiencySeries&reports%5B%5D=techPerformance&reports%5B%5D=topCustomers&reports%5B%5D=techEfficiencyByTechSeries&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200
+  }
+ ]
+}

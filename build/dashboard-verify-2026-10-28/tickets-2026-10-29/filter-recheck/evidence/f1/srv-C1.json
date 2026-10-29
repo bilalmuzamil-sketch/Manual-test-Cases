@@ -7,14 +7,14 @@
   "change_location": 200,
   "process_zone": "America/Toronto",
   "location_tz": "America/Toronto",
-  "local_now": "2026-10-29T05:39:22-04:00"
+  "local_now": "2026-10-29T06:41:54-04:00"
  },
  "mode": "C1",
  "replays": [
   {
    "phase": "ii-fresh-default",
    "request": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false",
-   "status": 0,
+   "status": 200,
    "raw": "/tmp/cln/f1/raw/C1-0.json",
    "hits": []
   },
@@ -57,7 +57,7 @@
   {
    "phase": "i-ticket-filters",
    "request": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false",
-   "status": 0,
+   "status": 200,
    "raw": "/tmp/cln/f1/raw/C1-2.json",
    "hits": []
   },
@@ -100,22 +100,29 @@
   {
    "phase": "iii-deselected",
    "request": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false",
-   "status": 0,
+   "status": 200,
    "raw": "/tmp/cln/f1/raw/C1-4.json",
    "hits": []
   },
   {
    "phase": "iii-deselected",
    "request": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false",
-   "status": 0,
+   "status": 200,
    "raw": "/tmp/cln/f1/raw/C1-5.json",
    "hits": []
   },
   {
    "phase": "iii-deselected",
-   "request": "/api/reporting/reports/sales-by-representative/04fc7976-76b8-4b3e-97a5-6cfdb2f96f3c/invoices?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "request": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false",
    "status": 200,
    "raw": "/tmp/cln/f1/raw/C1-6.json",
+   "hits": []
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/reports/sales-by-representative/04fc7976-76b8-4b3e-97a5-6cfdb2f96f3c/invoices?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/C1-7.json",
    "hits": [
     [
      ".data.collection[0]",
@@ -240,31 +247,35 @@
  },
  "server_requests": [
   {
-   "GET": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false",
-   "status": 0
-  },
-  {
-   "GET": "/api/reporting/reports/sales-by-representative/04fc7976-76b8-4b3e-97a5-6cfdb2f96f3c/invoices?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "GET": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=rep_name&pagination%5Bdescending%5D=false",
    "status": 200
   },
   {
-   "GET": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false",
-   "status": 0
-  },
-  {
-   "GET": "/api/reporting/reports/sales-by-representative/04fc7976-76b8-4b3e-97a5-6cfdb2f96f3c/invoices?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "GET": "/api/reporting/reports/sales-by-representative/04fc7976-76b8-4b3e-97a5-6cfdb2f96f3c/invoices?range=custom&start_date=2026-10-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68",
    "status": 200
   },
   {
-   "GET": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false",
-   "status": 0
+   "GET": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=rep_name&pagination%5Bdescending%5D=false",
+   "status": 200
   },
   {
-   "GET": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=rep_name&pagination[descending]=false",
-   "status": 0
+   "GET": "/api/reporting/reports/sales-by-representative/04fc7976-76b8-4b3e-97a5-6cfdb2f96f3c/invoices?range=custom&start_date=2026-10-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "status": 200
   },
   {
-   "GET": "/api/reporting/reports/sales-by-representative/04fc7976-76b8-4b3e-97a5-6cfdb2f96f3c/invoices?range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "GET": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2026-10-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=rep_name&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2025-11-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&invoiceStatus=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=rep_name&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/sales-by-representative?range=custom&start_date=2025-11-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&invoiceStatus=all&locations=25a0d576-b371-4b82-bef4-41ba977f31c2%2Cb3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=rep_name&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/sales-by-representative/04fc7976-76b8-4b3e-97a5-6cfdb2f96f3c/invoices?range=custom&start_date=2025-11-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&invoiceStatus=all&locations=25a0d576-b371-4b82-bef4-41ba977f31c2%2Cb3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C39522bc6-abca-4f67-bd12-2840043c2d68",
    "status": 200
   },
   {

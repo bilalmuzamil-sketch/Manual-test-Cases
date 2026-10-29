@@ -71,8 +71,10 @@ async function wip({ customer, tab, wo, days, columns }) {
     await page.keyboard.press('Escape'); await page.waitForTimeout(3000); return before; };
   const find = async () => { const tbl = page.locator('[data-test-id="table_work_in_progress_report"]'); let rows = await c.rows('[data-test-id="table_work_in_progress_report"] tbody tr', 200);
     const re = wo ? new RegExp(wo) : /\b1 days\b/; let pages = 0;
-    for (; pages < 40 && !rows.some(r => re.test(r.join(' '))); pages++) { const nx = page.locator('.q-table__bottom button').filter({ hasText: /chevron_right|navigate_next/ }).first();
-      if (!(await nx.count()) || await nx.isDisabled()) break; await nx.click(); await page.waitForTimeout(4000); rows = await c.rows('[data-test-id="table_work_in_progress_report"] tbody tr', 200); }
+    // the table is VIRTUAL-SCROLLED (more rows load as it scrolls): scroll its container until the row shows or nothing new loads
+    for (let n = rows.length; pages < 60 && !rows.some(r => re.test(r.join(' '))); pages++) {
+      await tbl.locator('.q-table__middle, .q-virtual-scroll').first().evaluate(el => { el.scrollTop = el.scrollHeight; }).catch(() => {}); await page.mouse.wheel(0, 4000).catch(() => {}); await page.waitForTimeout(2500);
+      rows = await c.rows('[data-test-id="table_work_in_progress_report"] tbody tr', 3000); if (rows.length === n) break; n = rows.length; }
     const heads = (await page.locator('[data-test-id="table_work_in_progress_report"] thead th').allInnerTexts()).map(h => h.replace(/\s+/g, ' ').replace(/arrow_\w+|info_outline/g, '').trim());
     return { heads, pages_walked: pages, hits: rowOf(rows, re), days_values: [...new Set(rows.map(r => r[heads.findIndex(h => /Days Open/.test(h))]))].slice(0, 12), bottom: await txt(page.locator('.q-table__bottom')) }; };
   const sortDays = async () => { if (!days) return; const th = page.locator('[data-test-id="table_work_in_progress_report"] thead th').filter({ hasText: 'Days Open' }).first(); await th.click(); await page.waitForTimeout(6000); };
@@ -83,9 +85,13 @@ async function wip({ customer, tab, wo, days, columns }) {
   out.runs.ii_active_tab = (await page.locator('[data-test-id="page_work_in_progress_report"] .q-tab--active').allInnerTexts()).join('|');
   out.runs.ii_columns_default = await cols(); await perTab('ii', null);
   c.setPhase('i-ticket-filters'); await c.go('/reports/work-in-progress', 15000); await pick(customer); if (columns) await cols(); await perTab('i', new RegExp(tab, 'i'));
-  c.setPhase('iii-deselected'); await c.go('/reports/work-in-progress', 15000); out.runs.iii_cleared = await clearChips(/asOf|as_of|date/i); if (columns) await cols(); await perTab('iii', null);
+  c.setPhase('iii-deselected'); await c.go('/reports/work-in-progress', 15000); out.runs.iii_cleared = await clearChips(/asOf|as_of|date/i); out.runs.iii_locations = await allLocations(); if (columns) await cols(); await perTab('iii', null);
   // replacement picture: no customer, the tab that holds the example, sorted
-  const tt = tabs().filter({ hasText: tab }).first(); await tt.click(); await page.waitForTimeout(8000); await sortDays(); await find();
+  const tt = tabs().filter({ hasText: tab }).first(); await tt.click(); await page.waitForTimeout(8000);
+  // picture: bring the example row up by SORTING (never by a filter): Days Open ascending (A1) / Customer ascending (A2, '4 Star...' sorts first)
+  const target = wo ? new RegExp(wo) : /\b1 days\b/; const sortHead = days ? 'Days Open' : 'Customer';
+  for (let k = 0; k < 3; k++) { const th = page.locator('[data-test-id="table_work_in_progress_report"] thead th').filter({ hasText: sortHead }).first(); await th.click(); await page.waitForTimeout(6000);
+    const f = await find(); out.runs['picture_sort_' + k] = { sortHead, hits: f.hits.slice(0, 2), first: (await c.rows('[data-test-id="table_work_in_progress_report"] tbody tr', 3)).map(r => r.join(' | ')).find(x => x.trim()) }; if (f.hits.length) break; }
   const row = page.locator('[data-test-id="table_work_in_progress_report"] tbody tr').filter({ hasText: wo ? new RegExp(wo) : /\b1 days\b/ }).first(); await row.scrollIntoViewIfNeeded().catch(() => {}); await page.evaluate(() => window.scrollBy(0, -150)); await page.waitForTimeout(1200);
   const heads = (await page.locator('[data-test-id="table_work_in_progress_report"] thead th').allInnerTexts()).map(h => h.replace(/\s+/g, ' ').trim());
   const cells = []; for (let i = 0; i < await row.locator('td').count(); i++) cells.push({ h: heads[i], t: (await row.locator('td').nth(i).innerText()).trim(), box: await box(row.locator('td').nth(i)) });
@@ -94,10 +100,10 @@ async function wip({ customer, tab, wo, days, columns }) {
 
 if (mode === 'P11') await dash('techEfficiencyKpi', /Fabian Bonjean/, { name: 'Fabian Bonjean', i: { days: [25, 28] } });
 if (mode === 'P12') await dash('techEfficiencyKpi', /Joseph Nelson/, { name: 'Joseph Nelson', i: { days: [25, 25], back: 2 } });
-if (mode === 'P13') await dash('techUtilizationKpi', /QA Technician|0\.00 \| 0\.00 \| 0\.00/, { name: 'QA Technician', sort: 'Total Hours', i: { preset: 'this-month' } });
+if (mode === 'P13') await dash('techUtilizationKpi', /QA Technician|Nebojsa Custom-Admin/, { name: 'Nebojsa Custom-Admin', sort: 'Total Hours', i: { preset: 'this-month' } });
 if (mode === 'P14') await dash('salesByCustomer', /ZZAUTOTEST Dash Q27/, { name: 'ZZAUTOTEST Dash Q27', i: { preset: 'this-week' } });
 if (mode === 'P11R') await report('/reports/technician-efficiency', { i: 'this_week', iii: 'last_12_months', parent: /Fabian Bonjean/, child: /S1-38198/ });
-if (mode === 'P12R') await report('/reports/technician-efficiency', { i: 'last_quarter', iii: 'last_12_months', parent: /Joseph Nelson/, child: /S3-17383/ });
+if (mode === 'P12R') await report('/reports/technician-efficiency', { i: 'last_quarter', iii: 'last_12_months', parent: /Joseph Nelson/, child: /S3-17383/, shotRe: /Replace cabin air filter/ });
 if (mode === 'P13R') await report('/reports/technician-utilization', { i: 'this_month', iii: 'last_12_months', child: /QA Technician|Nebojsa/, sortHead: 'Total Hours', chipName: 'filter_chip_dateRange', presetPrefix: 'filter_preset_dateRange_' });
 if (mode === 'P14R') await report('/reports/sales-by-customer', { i: 'this_week', iii: 'last_12_months', parent: /ZZAUTOTEST Dash Q27/, child: /ZZAUTOTEST Dash Q27|S1-38215/, chipName: 'filter_chip_dateRange', presetPrefix: 'filter_preset_dateRange_' });
 if (mode === 'C1') await report('/reports/sales-by-representative', { i: 'this_month', iii: 'last_12_months', parent: /Viktoria Videnovic/, child: /S1-38217/, chipName: 'filter_chip_dateRange', presetPrefix: 'filter_preset_dateRange_' });
@@ -136,15 +142,18 @@ async function payroll(name, opts, who, day) {
   const M = await import('./f1export.mjs'); c.setPhase(name); await c.go('/reports/punch-clock-activities', 10000);
   const cc = { ...c, OUT: '/tmp/cln/f1/dl', shot: async () => {} };
   let f; try { f = await M.exportPayroll(cc, opts); } catch (e) { out.runs[name] = { error: String(e).slice(0, 300), dialog: c.meta.export_dialog }; return; }
-  const fs = await import('fs'); const txtf = fs.readFileSync(f, 'utf8'); const lines = txtf.trim().split('\n');
+  const fs = await import('fs'); const keep = `/tmp/cln/f1/dl/${mode}-${name}.csv`; fs.copyFileSync(f, keep); const txtf = fs.readFileSync(keep, 'utf8'); const lines = txtf.trim().split('\n');
   let cur = null; const mine = []; let over = 0;
-  for (const l of lines.slice(1)) { const r = l.split(','); if (r[0] && !r[0].startsWith('Total for')) cur = r[0]; if (r[1] && parseFloat(r[2]) > 24) over++; if (cur === who && (r[1] === day || r[0] === 'Total for ' + who)) mine.push(l); }
-  out.runs[name] = { opts, dialog: c.meta.export_dialog, file: f.split('/').pop(), header: lines[0], rows: lines.length - 1, days_over_24_all_staff: over, target: mine };
+  for (const l of lines.slice(1)) { const r = l.split(',').map(x => x.replace(/^"|"$/g, '')); if (r[0] && !r[0].startsWith('Total for')) cur = r[0]; if (r[1] && parseFloat(r[2]) > 24) over++; if (cur === who && (r[1] === day || r[0] === 'Total for ' + who)) mine.push(l); }
+  out.runs[name] = { opts, dialog: c.meta.export_dialog, file: keep, header: lines[0], rows: lines.length - 1, days_over_24_all_staff: over, target: mine };
 }
 if (mode === 'A5HD') {
   await payroll('ii-default', { range: null }, 'Haley Brown', '2026-09-06');
   await payroll('i-ticket', { range: 'Custom', from: '09/01/2026', to: '09/30/2026' }, 'Haley Brown', '2026-09-06');
   await payroll('iii-widest', { range: 'Custom', from: '01/01/2026', to: '10/29/2026' }, 'Haley Brown', '2026-09-06');
+  const P = await import(P2A); let who = null;
+  await P.renderCsv(c, '/tmp/cln/f1/dl/A5HD-iii-widest.csv', { title: 'payroll_timesheet.csv (Reports > Export Reports, Staging Heavy Duty - 9919, Payroll Timesheet, Custom 01/01/2026 - 10/29/2026), Haley Brown, September rows',
+    keep: r => { if (r[0] && !r[0].startsWith('Total for')) who = r[0]; return who === 'Haley Brown' && (!r[1] || r[1].startsWith('2026-09')); }, mark: r => r[1] === '2026-09-06', shotName: 'iii-csv' });
 }
 if (mode === 'A5DVI') {
   await payroll('ii-default', { range: null }, 'Admin Shopview', '2026-10-28');

@@ -1,0 +1,93 @@
+{
+ "loc": {
+  "key": "DVI",
+  "wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "tz": "America/Toronto",
+  "name": "DVI Test",
+  "change_location": 200,
+  "process_zone": "America/Toronto",
+  "location_tz": "America/Toronto",
+  "local_now": "2026-10-29T06:26:38-04:00"
+ },
+ "who": "Admin Shopview",
+ "day": "2026-10-28",
+ "exports": {
+  "i-draft-window": {
+   "window": [
+    "2026-10-28",
+    "2026-10-28"
+   ],
+   "status": 200,
+   "target_day": [
+    {
+     "Employee Name": "",
+     "Date": "2026-10-28",
+     "Total Hours": "1.53",
+     "WO Hours": "1.53",
+     "Internal Hours": "0.00"
+    }
+   ],
+   "days_over_24_all_staff": 0
+  },
+  "iii-widest": {
+   "window": [
+    "2026-01-01",
+    "2026-10-29"
+   ],
+   "status": 200,
+   "target_day": [
+    {
+     "Employee Name": "",
+     "Date": "2026-10-28",
+     "Total Hours": "1.53",
+     "WO Hours": "1.53",
+     "Internal Hours": "0.00"
+    }
+   ],
+   "days_over_24_all_staff": 0
+  }
+ },
+ "clocks": [
+  [
+   "2026-10-28T15:19:00",
+   "2026-10-28T15:20:00",
+   0.02
+  ],
+  [
+   "2026-10-28T15:21:00",
+   "2026-10-28T15:22:00",
+   0.02
+  ],
+  [
+   "2026-10-28T15:23:00",
+   "2026-10-28T15:24:00",
+   0.02
+  ],
+  [
+   "2026-10-28T19:39:00",
+   "2026-10-28T20:34:00",
+   0.92
+  ],
+  [
+   "2026-10-28T20:08:00",
+   "2026-10-28T20:41:00",
+   0.55
+  ]
+ ],
+ "sum_hours": 1.53,
+ "union_hours_minute_precision": 1.08,
+ "server_requests": [
+  {
+   "GET": "/api/reporting/export/payroll_timesheet?range=custom&start_date=2026-10-28T04%3A00%3A00.000Z&end_date=2026-10-29T03%3A59%3A59.999Z",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/export/payroll_timesheet?range=custom&start_date=2026-01-01T05%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/punch-clock-activities/custom?range=custom&start_date=2026-10-28T04%3A00%3A00.000Z&end_date=2026-10-29T03%3A59%3A59.999Z&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=1000",
+   "status": 200
+  }
+ ]
+}

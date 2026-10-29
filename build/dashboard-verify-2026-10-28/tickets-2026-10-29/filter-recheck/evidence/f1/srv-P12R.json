@@ -1,0 +1,403 @@
+{
+ "loc": {
+  "key": "LETH",
+  "wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+  "tz": "America/Edmonton",
+  "name": "Staging Lethbridge - 4310",
+  "change_location": 200,
+  "process_zone": "America/Edmonton",
+  "location_tz": "America/Edmonton",
+  "local_now": "2026-10-29T04:05:18-06:00"
+ },
+ "mode": "P12R",
+ "replays": [
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-0.json",
+   "hits": []
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-1.json",
+   "hits": []
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-2.json",
+   "hits": []
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-3.json",
+   "hits": []
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-07-01&to=2026-09-30&group=week",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-4.json",
+   "hits": []
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/technician-efficiency/last_quarter?range=last_quarter",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-5.json",
+   "hits": []
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/technician-efficiency/expanded/last_quarter?range=last_quarter&staffIds[0]=9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-6.json",
+   "hits": [
+    [
+     ".data.collection[0].lines[18]",
+     {
+      "lineId": "8e6b4a79-2a2d-4b6e-8c63-5fe1c3075f19",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Oil change, grease and check over",
+      "lineOrder": 1,
+      "clockedTime": 1.35,
+      "invoicedTechTime": 1.5,
+      "lineHoursProfit": 0.15,
+      "techEfficiency": 111.11,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ],
+    [
+     ".data.collection[0].lines[19]",
+     {
+      "lineId": "704afe01-a7f3-4975-b6ec-c55846fd7d56",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Diag A/C not working",
+      "lineOrder": 2,
+      "clockedTime": 0.81,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": 0.19,
+      "techEfficiency": 123.46,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ],
+    [
+     ".data.collection[0].lines[20]",
+     {
+      "lineId": "0288c42d-9f95-491f-976a-da92dd6051c8",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Inspect door hinges on service body",
+      "lineOrder": 3,
+      "clockedTime": 1.05,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": -0.05,
+      "techEfficiency": 95.24,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ],
+    [
+     ".data.collection[0].lines[21]",
+     {
+      "lineId": "7ae4e6f4-4321-4b98-8692-1ef3f5e1b730",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Replace cabin air filter",
+      "lineOrder": 4,
+      "clockedTime": 0.01,
+      "invoicedTechTime": 0,
+      "lineHoursProfit": -0.01,
+      "techEfficiency": 0,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ],
+    [
+     ".data.collection[0].lines[22]",
+     {
+      "lineId": "d6fe854b-de9f-480b-b5a4-8430a44d4e6b",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Perform AC recharge ",
+      "lineOrder": 5,
+      "clockedTime": 0.51,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": 0.49,
+      "techEfficiency": 196.08,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ],
+    [
+     ".data.collection[0].lines[23]",
+     {
+      "lineId": "830040a7-ce85-4d61-9552-1f15e9e9e7bc",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Replace engine air filter",
+      "lineOrder": 6,
+      "clockedTime": 0.28,
+      "invoicedTechTime": 0.35,
+      "lineHoursProfit": 0.07,
+      "techEfficiency": 125,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-7.json",
+   "hits": []
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-8.json",
+   "hits": []
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/technician-efficiency/last_12_months?range=last_12_months",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-9.json",
+   "hits": []
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-10.json",
+   "hits": []
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/technician-efficiency/expanded/last_12_months?range=last_12_months&staffIds[0]=9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P12R-11.json",
+   "hits": [
+    [
+     ".data.collection[0].lines[18]",
+     {
+      "lineId": "8e6b4a79-2a2d-4b6e-8c63-5fe1c3075f19",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Oil change, grease and check over",
+      "lineOrder": 1,
+      "clockedTime": 1.35,
+      "invoicedTechTime": 1.5,
+      "lineHoursProfit": 0.15,
+      "techEfficiency": 111.11,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ],
+    [
+     ".data.collection[0].lines[19]",
+     {
+      "lineId": "704afe01-a7f3-4975-b6ec-c55846fd7d56",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Diag A/C not working",
+      "lineOrder": 2,
+      "clockedTime": 0.81,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": 0.19,
+      "techEfficiency": 123.46,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ],
+    [
+     ".data.collection[0].lines[20]",
+     {
+      "lineId": "0288c42d-9f95-491f-976a-da92dd6051c8",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Inspect door hinges on service body",
+      "lineOrder": 3,
+      "clockedTime": 1.05,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": -0.05,
+      "techEfficiency": 95.24,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ],
+    [
+     ".data.collection[0].lines[21]",
+     {
+      "lineId": "7ae4e6f4-4321-4b98-8692-1ef3f5e1b730",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Replace cabin air filter",
+      "lineOrder": 4,
+      "clockedTime": 0.01,
+      "invoicedTechTime": 0,
+      "lineHoursProfit": -0.01,
+      "techEfficiency": 0,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ],
+    [
+     ".data.collection[0].lines[22]",
+     {
+      "lineId": "d6fe854b-de9f-480b-b5a4-8430a44d4e6b",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Perform AC recharge ",
+      "lineOrder": 5,
+      "clockedTime": 0.51,
+      "invoicedTechTime": 1,
+      "lineHoursProfit": 0.49,
+      "techEfficiency": 196.08,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ],
+    [
+     ".data.collection[0].lines[23]",
+     {
+      "lineId": "830040a7-ce85-4d61-9552-1f15e9e9e7bc",
+      "workOrderId": "b7f8cd68-3fba-4e21-a1de-c09a4127b193",
+      "technicianId": "9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+      "invoiceDate": "2026-08-25 15:40:39",
+      "invoiceNumber": "S-17383",
+      "invoiceDisplayNumber": "S3-17383",
+      "invoiceShopId": "3",
+      "customerName": "Monroe Truck Service & Repair",
+      "companyId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "lineName": "Replace engine air filter",
+      "lineOrder": 6,
+      "clockedTime": 0.28,
+      "invoicedTechTime": 0.35,
+      "lineHoursProfit": 0.07,
+      "techEfficiency": 125,
+      "workPlaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+     }
+    ]
+   ]
+  }
+ ],
+ "server_requests": [
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2026-07-01&to=2026-09-30&group=week",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/last_quarter?range=last_quarter",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/expanded/last_quarter?range=last_quarter&staffIds%5B0%5D=9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/this_month?range=this_month",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/last_12_months?range=last_12_months",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencySeries&reports%5B%5D=techEfficiencyByTechSeries&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/expanded/last_12_months?range=last_12_months&staffIds%5B0%5D=9da3c8b9-0939-4586-a9f6-42f36cbb9ebe",
+   "status": 200
+  }
+ ]
+}

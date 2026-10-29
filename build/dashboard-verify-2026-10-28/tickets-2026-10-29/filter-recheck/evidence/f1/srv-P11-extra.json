@@ -1,0 +1,196 @@
+{
+ "loc": {
+  "key": "DVI",
+  "wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "tz": "America/Toronto",
+  "name": "DVI Test",
+  "change_location": 200,
+  "process_zone": "America/Toronto",
+  "location_tz": "America/Toronto",
+  "local_now": "2026-10-29T06:26:34-04:00"
+ },
+ "windows": {
+  "i-ticket Oct 25-28": {
+   "status": 200,
+   "techEfficiencyKpi": {
+    "value": 158.1,
+    "hoursBilled": 8,
+    "hoursLogged": 5.06,
+    "sparkline": [
+     null,
+     null,
+     null,
+     158.1
+    ]
+   },
+   "billingEfficiencyKpi": {
+    "ratio": 4.703,
+    "invoicedHours": 19,
+    "clockedHours": 4.04,
+    "sparkline": [
+     null,
+     null,
+     null,
+     470.3
+    ]
+   },
+   "fabian": [
+    {
+     "staffId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+     "staffName": "Fabian Bonjean",
+     "hoursLogged": 1.5,
+     "hoursBilled": 2,
+     "efficiency": 133.33
+    }
+   ]
+  },
+  "ii-default This Month": {
+   "status": 200,
+   "techEfficiencyKpi": {
+    "value": 158.1,
+    "hoursBilled": 8,
+    "hoursLogged": 5.06,
+    "sparkline": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     158.1,
+     null
+    ]
+   },
+   "billingEfficiencyKpi": {
+    "ratio": 6.435599999999999,
+    "invoicedHours": 26,
+    "clockedHours": 4.04,
+    "sparkline": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     470.3,
+     null
+    ]
+   },
+   "fabian": [
+    {
+     "staffId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+     "staffName": "Fabian Bonjean",
+     "hoursLogged": 1.5,
+     "hoursBilled": 2,
+     "efficiency": 133.33
+    }
+   ]
+  },
+  "iii-widest Last 12 Months": {
+   "status": 200,
+   "techEfficiencyKpi": {
+    "value": 158.1,
+    "hoursBilled": 8,
+    "hoursLogged": 5.06,
+    "sparkline": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     158.1
+    ]
+   },
+   "billingEfficiencyKpi": {
+    "ratio": 6.435599999999999,
+    "invoicedHours": 26,
+    "clockedHours": 4.04,
+    "sparkline": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     643.56
+    ]
+   },
+   "fabian": [
+    {
+     "staffId": "6f6e02d6-d9c9-4650-917a-3478e4b12873",
+     "staffName": "Fabian Bonjean",
+     "hoursLogged": 1.5,
+     "hoursBilled": 2,
+     "efficiency": 133.33
+    }
+   ]
+  }
+ },
+ "server_requests": [
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencyKpi&reports%5B%5D=billingEfficiencyKpi&reports%5B%5D=techPerformance&from=2026-10-25&to=2026-10-28&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencyKpi&reports%5B%5D=billingEfficiencyKpi&reports%5B%5D=techPerformance&from=2026-10-01&to=2026-10-29&group=day",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencyKpi&reports%5B%5D=billingEfficiencyKpi&reports%5B%5D=techPerformance&from=2025-11-01&to=2026-10-29&group=month",
+   "status": 200
+  }
+ ]
+}

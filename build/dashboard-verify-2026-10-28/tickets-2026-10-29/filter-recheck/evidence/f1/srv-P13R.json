@@ -1,0 +1,507 @@
+{
+ "loc": {
+  "key": "HD",
+  "wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "tz": "Asia/Karachi",
+  "name": "Staging Heavy Duty - 9919",
+  "change_location": 200,
+  "process_zone": "Asia/Karachi",
+  "location_tz": "Asia/Karachi",
+  "local_now": "2026-10-29T15:10:34+05:00"
+ },
+ "mode": "P13R",
+ "replays": [
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2026-10-01&to=2026-10-29&group=day&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-0.json",
+   "hits": [
+    [
+     ".data.techUtilizationByTechSeries.series[17]",
+     {
+      "technicianId": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technicianName": "QA Technician",
+      "values": [
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-09-30T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-1.json",
+   "hits": [
+    [
+     ".data.collection[17]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-09-30T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-2.json",
+   "hits": [
+    [
+     ".data.collection[17]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician",
+      "total_seconds": 0,
+      "wo_seconds": 0,
+      "internal_seconds": 0,
+      "est_lost_labor_cents": 0,
+      "location": "Staging Heavy Duty - 9919"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "ii-fresh-default",
+   "request": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-09-30T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=total_hours&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-3.json",
+   "hits": [
+    [
+     ".data.collection[0]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician",
+      "total_seconds": 0,
+      "wo_seconds": 0,
+      "internal_seconds": 0,
+      "est_lost_labor_cents": 0,
+      "location": "Staging Heavy Duty - 9919"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-09-30T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-4.json",
+   "hits": [
+    [
+     ".data.collection[17]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2026-10-01&to=2026-10-29&group=day&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-5.json",
+   "hits": [
+    [
+     ".data.techUtilizationByTechSeries.series[17]",
+     {
+      "technicianId": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technicianName": "QA Technician",
+      "values": [
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-09-30T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-6.json",
+   "hits": [
+    [
+     ".data.collection[17]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician",
+      "total_seconds": 0,
+      "wo_seconds": 0,
+      "internal_seconds": 0,
+      "est_lost_labor_cents": 0,
+      "location": "Staging Heavy Duty - 9919"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "i-ticket-filters",
+   "request": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-09-30T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=total_hours&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-7.json",
+   "hits": [
+    [
+     ".data.collection[0]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician",
+      "total_seconds": 0,
+      "wo_seconds": 0,
+      "internal_seconds": 0,
+      "est_lost_labor_cents": 0,
+      "location": "Staging Heavy Duty - 9919"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-09-30T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-8.json",
+   "hits": [
+    [
+     ".data.collection[17]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2026-10-01&to=2026-10-29&group=day&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-9.json",
+   "hits": [
+    [
+     ".data.techUtilizationByTechSeries.series[17]",
+     {
+      "technicianId": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technicianName": "QA Technician",
+      "values": [
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-09-30T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-10.json",
+   "hits": [
+    [
+     ".data.collection[17]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician",
+      "total_seconds": 0,
+      "wo_seconds": 0,
+      "internal_seconds": 0,
+      "est_lost_labor_cents": 0,
+      "location": "Staging Heavy Duty - 9919"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-10-31T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-11.json",
+   "hits": [
+    [
+     ".data.collection[25]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician",
+      "total_seconds": 0,
+      "wo_seconds": 0,
+      "internal_seconds": 0,
+      "est_lost_labor_cents": 0,
+      "location": "Staging Heavy Duty - 9919"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2025-10-31T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-12.json",
+   "hits": [
+    [
+     ".data.collection[25]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2025-11-01&to=2026-10-29&group=month&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-13.json",
+   "hits": [
+    [
+     ".data.techUtilizationByTechSeries.series[25]",
+     {
+      "technicianId": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technicianName": "QA Technician",
+      "values": [
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-10-31T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-14.json",
+   "hits": []
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2025-10-31T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-15.json",
+   "hits": [
+    [
+     ".data.collection[38]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician"
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2025-11-01&to=2026-10-29&group=month&location[]=25a0d576-b371-4b82-bef4-41ba977f31c2&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a&location[]=f8a8b802-7780-4b16-bf10-343caeb616b2&location[]=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-16.json",
+   "hits": [
+    [
+     ".data.techUtilizationByTechSeries.series[38]",
+     {
+      "technicianId": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technicianName": "QA Technician",
+      "values": [
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       100
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "phase": "iii-deselected",
+   "request": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-10-31T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=total_hours&pagination[descending]=false",
+   "status": 200,
+   "raw": "/tmp/cln/f1/raw/P13R-17.json",
+   "hits": [
+    [
+     ".data.collection[2]",
+     {
+      "staff_id": "ca899083-7c3c-4e97-bec7-536e9c1ef155",
+      "technician_name": "QA Technician",
+      "total_seconds": 36,
+      "wo_seconds": 36,
+      "internal_seconds": 0,
+      "est_lost_labor_cents": 0,
+      "location": "Multiple"
+     }
+    ]
+   ]
+  }
+ ],
+ "server_requests": [
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techUtilizationSeries&reports%5B%5D=techUtilizationByTechSeries&from=2026-10-01&to=2026-10-29&group=day&location%5B%5D=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-09-30T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-09-30T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=technician&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-09-30T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=total_hours&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-09-30T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techUtilizationSeries&reports%5B%5D=techUtilizationByTechSeries&from=2026-10-01&to=2026-10-29&group=day&location%5B%5D=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-09-30T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=technician&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-09-30T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=total_hours&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-09-30T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techUtilizationSeries&reports%5B%5D=techUtilizationByTechSeries&from=2026-10-01&to=2026-10-29&group=day&location%5B%5D=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-09-30T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=technician&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-10-31T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=technician&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2025-10-31T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techUtilizationSeries&reports%5B%5D=techUtilizationByTechSeries&from=2025-11-01&to=2026-10-29&group=month&location%5B%5D=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-10-31T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2%2Cb3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=technician&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2025-10-31T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2%2Cb3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C39522bc6-abca-4f67-bd12-2840043c2d68",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techUtilizationSeries&reports%5B%5D=techUtilizationByTechSeries&from=2025-11-01&to=2026-10-29&group=month&location%5B%5D=25a0d576-b371-4b82-bef4-41ba977f31c2&location%5B%5D=b3c8c820-f815-4cf1-8938-10956c5ee71a&location%5B%5D=f8a8b802-7780-4b16-bf10-343caeb616b2&location%5B%5D=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-10-31T19%3A00%3A00.000Z&end_date=2026-10-29T18%3A59%3A59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2%2Cb3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=total_hours&pagination%5Bdescending%5D=false",
+   "status": 200
+  }
+ ]
+}

@@ -1,0 +1,447 @@
+{
+ "ticket": "RECHECK-b8ad4001/SV-11949",
+ "location": "Staging Heavy Duty - 9919",
+ "location_tz": "Asia/Karachi",
+ "process_TZ": "Asia/Karachi",
+ "process_zone": "Asia/Karachi",
+ "observed_at_utc": "2026-10-29T10:14:51.154Z",
+ "runs": {
+  "i-custom-oct20": {
+   "spec": {
+    "name": "i-custom-oct20",
+    "range": [
+     "custom",
+     "10/20/2026",
+     "10/20/2026"
+    ],
+    "rates": 1
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""
+   },
+   "chips": [
+    "calendar_today Date Range: Custom keyboard_arrow_down",
+    "Invoice Status keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=custom&range=2026-10-20&range=2026-10-20",
+   "rows_page1": [
+    "",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-37627 ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co $350.00 $0.00 $36.75 $386.75 GST 5% $19.34 $406.09",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-37621 Testing Company Milos $154.95 $5.88 $16.27 $177.10 GST 5% $8.85 $185.95",
+    "Paid Oct 20, 2026 Oct 20, 2026 P2-2409 Testing Company Milos $0.00 $323.88 $0.00 $336.38 GST 5% $16.82 $353.20",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-33605 A & J Truck & Trailer Repair $224.93 $0.00 $23.62 $248.55 GST 5% $12.43 $260.98",
+    "",
+    "Total $1,206.22"
+   ],
+   "bottom": "",
+   "search": {
+    "CM2-4520": {
+     "rows": [
+      "",
+      "",
+      "Total $1,206.22"
+     ],
+     "empty": "No record matches the search \"CM2-4520\"."
+    }
+   },
+   "rates_url": "https://app.staging.shopview.com/reports/sales-tax/all-tax-rates?range=custom&range=2026-10-20&range=2026-10-20",
+   "rates": [
+    "",
+    "GST 5% $57.44",
+    ""
+   ],
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-19T19:00:00.000Z&endDate=2026-10-20T18:59:59.999Z&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-19T19:00:00.000Z&endDate=2026-10-20T18:59:59.999Z&search=CM2-4520",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-19T19:00:00.000Z&endDate=2026-10-20T18:59:59.999Z&search="
+   ]
+  },
+  "ii-default-this-month": {
+   "spec": {
+    "name": "ii-default-this-month",
+    "rates": 1,
+    "shotRates": 1
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""
+   },
+   "chips": [
+    "calendar_today Date Range: This month keyboard_arrow_down",
+    "Invoice Status keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices",
+   "rows_page1": [
+    "",
+    "Paid Today Today S2-38213 4 Star Truck Repair $0.00 $0.00 $0.00 $0.00 GST 5% $0.00 $0.00",
+    "Paid Today Today S2-38197 4 Star Truck Repair $0.00 $25.00 $0.00 $22.50 GST 5% $1.25 $23.75",
+    "Paid Yesterday Yesterday S2-38102 4 Star Truck Repair $0.00 $0.00 $0.00 $0.00 GST 5% $0.00 $0.00",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2449 TestVT1 $0.00 $75.00 $0.00 $75.00 GST 5% $3.75 $78.75",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2445 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 22, 2026 Oct 22, 2026 S2-38022 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 22, 2026 Oct 22, 2026 S2-38046 SV-9087 Credit Term 1792672496992-997672 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2442 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2441 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37940 TestVT1 $100.00 $0.00 $10.50 $110.50 GST 5% $5.53 $116.03",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37939 TestVT1 $100.00 $0.00 $10.50 $110.50 GST 5% $5.53 $116.03",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37803 TestVT1 $50.00 $0.00 $5.25 $55.25 GST 5% $2.76 $58.01",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37802 TestVT1 $50.00 $0.00 $5.25 $55.25 GST 5% $2.76 $58.01",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37799 TestVT1 $50.00 $0.00 $5.25 $55.25 GST 5% $2.76 $58.01",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37788 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37787 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Partially Paid Oct 21, 2026 Oct 21, 2026 S2-37786 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37785 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 21, 2026 Oct 21, 2026 P2-2421 TestVT1 $0.00 $75.00 $0.00 $75.00 GST 5% $3.75 $78.75",
+    "Paid Oct 21, 2026 Oct 21, 2026 P2-2417 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 21, 2026 Oct 21, 2026 P2-2416 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 20, 2026 Oct 21, 2026 S2-37656 ZZAUTOTEST F3 Keyboard Limits 86258 Bravo Co $44.99 $0.00 $4.72 $49.71 GST 5% $2.49 $52.20",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-37627 ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co $350.00 $0.00 $36.75 $386.75 GST 5% $19.34 $406.09",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-37621 Testing Company Milos $154.95 $5.88 $16.27 $177.10 GST 5% $8.85 $185.95",
+    "Paid Oct 20, 2026 Oct 20, 2026 P2-2409 Testing Company Milos $0.00 $323.88 $0.00 $336.38 GST 5% $16.82 $353.20",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-33605 A & J Truck & Trailer Repair $224.93 $0.00 $23.62 $248.55 GST 5% $12.43 $260.98",
+    "Paid Oct 17, 2026 Oct 17, 2026 S2-36772 4 Star Truck Repair $374.88 $4.00 $39.36 $418.24 GST 5% $20.91 $439.15",
+    "Paid Oct 16, 2026 Oct 16, 2026 S2-36364 ZZAUTOTEST F1 Scroll Back H $164.95 $0.00 $17.32 $182.27 GST 5% $9.12 $191.39",
+    "Paid Oct 16, 2026 Oct 16, 2026 S2-36365 ZZAUTOTEST F1 Scroll Back H $0.00 $0.00 $0.00 $0.00 GST 5% $0.00 $0.00",
+    "Paid Oct 16, 2026 Oct 19, 2026 P2-2404 Testing Company Milos $0.00 $5.88 $0.00 $5.88 GST 5% $0.29 $6.17",
+    "",
+    "Total $22,681.53"
+   ],
+   "bottom": "",
+   "search": {
+    "CM2-4520": {
+     "rows": [
+      "",
+      "",
+      "Total $22,681.53"
+     ],
+     "empty": "No record matches the search \"CM2-4520\"."
+    }
+   },
+   "rates_url": "https://app.staging.shopview.com/reports/sales-tax/all-tax-rates",
+   "rates": [
+    "",
+    "GST 5% $987.05",
+    "HST 13% $162.50",
+    "GST 5% $25.88",
+    ""
+   ],
+   "rates_boxes": [
+    [
+     "",
+     556,
+     418,
+     2584,
+     0
+    ],
+    [
+     "GST 5% $987.05",
+     556,
+     418,
+     2584,
+     96
+    ],
+    [
+     "HST 13% $162.50",
+     556,
+     514,
+     2584,
+     96
+    ],
+    [
+     "GST 5% $25.88",
+     556,
+     610,
+     2584,
+     96
+    ],
+    [
+     "",
+     556,
+     706,
+     2584,
+     0
+    ]
+   ],
+   "rates_chipbox": {
+    "range": {
+     "x": 2341,
+     "y": 219,
+     "w": 447,
+     "h": 56
+    },
+    "status": {
+     "x": 2816,
+     "y": 219,
+     "w": 314,
+     "h": 56
+    }
+   },
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=CM2-4520",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search="
+   ]
+  },
+  "iii-this-year": {
+   "spec": {
+    "name": "iii-this-year",
+    "range": [
+     "this_year"
+    ],
+    "rates": 1
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""
+   },
+   "chips": [
+    "calendar_today Date Range: This year keyboard_arrow_down",
+    "Invoice Status keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=this_year",
+   "rows_page1": [
+    "",
+    "Paid Today Today S2-38213 4 Star Truck Repair $0.00 $0.00 $0.00 $0.00 GST 5% $0.00 $0.00",
+    "Paid Today Today S2-38197 4 Star Truck Repair $0.00 $25.00 $0.00 $22.50 GST 5% $1.25 $23.75",
+    "Paid Yesterday Yesterday S2-38102 4 Star Truck Repair $0.00 $0.00 $0.00 $0.00 GST 5% $0.00 $0.00",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2449 TestVT1 $0.00 $75.00 $0.00 $75.00 GST 5% $3.75 $78.75",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2445 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 22, 2026 Oct 22, 2026 S2-38022 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 22, 2026 Oct 22, 2026 S2-38046 SV-9087 Credit Term 1792672496992-997672 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2442 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2441 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37940 TestVT1 $100.00 $0.00 $10.50 $110.50 GST 5% $5.53 $116.03",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37939 TestVT1 $100.00 $0.00 $10.50 $110.50 GST 5% $5.53 $116.03",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37803 TestVT1 $50.00 $0.00 $5.25 $55.25 GST 5% $2.76 $58.01",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37802 TestVT1 $50.00 $0.00 $5.25 $55.25 GST 5% $2.76 $58.01",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37799 TestVT1 $50.00 $0.00 $5.25 $55.25 GST 5% $2.76 $58.01",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37788 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37787 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Partially Paid Oct 21, 2026 Oct 21, 2026 S2-37786 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37785 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 21, 2026 Oct 21, 2026 P2-2421 TestVT1 $0.00 $75.00 $0.00 $75.00 GST 5% $3.75 $78.75",
+    "Paid Oct 21, 2026 Oct 21, 2026 P2-2417 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 21, 2026 Oct 21, 2026 P2-2416 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 20, 2026 Oct 21, 2026 S2-37656 ZZAUTOTEST F3 Keyboard Limits 86258 Bravo Co $44.99 $0.00 $4.72 $49.71 GST 5% $2.49 $52.20",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-37627 ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co $350.00 $0.00 $36.75 $386.75 GST 5% $19.34 $406.09",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-37621 Testing Company Milos $154.95 $5.88 $16.27 $177.10 GST 5% $8.85 $185.95",
+    "Paid Oct 20, 2026 Oct 20, 2026 P2-2409 Testing Company Milos $0.00 $323.88 $0.00 $336.38 GST 5% $16.82 $353.20",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-33605 A & J Truck & Trailer Repair $224.93 $0.00 $23.62 $248.55 GST 5% $12.43 $260.98",
+    "Paid Oct 17, 2026 Oct 17, 2026 S2-36772 4 Star Truck Repair $374.88 $4.00 $39.36 $418.24 GST 5% $20.91 $439.15",
+    "Paid Oct 16, 2026 Oct 16, 2026 S2-36364 ZZAUTOTEST F1 Scroll Back H $164.95 $0.00 $17.32 $182.27 GST 5% $9.12 $191.39",
+    "Paid Oct 16, 2026 Oct 16, 2026 S2-36365 ZZAUTOTEST F1 Scroll Back H $0.00 $0.00 $0.00 $0.00 GST 5% $0.00 $0.00",
+    "Paid Oct 16, 2026 Oct 19, 2026 P2-2404 Testing Company Milos $0.00 $5.88 $0.00 $5.88 GST 5% $0.29 $6.17",
+    "",
+    "Total $3,924,806.94"
+   ],
+   "bottom": "",
+   "search": {
+    "CM2-4520": {
+     "rows": [
+      "",
+      "",
+      "Total $3,924,806.94"
+     ],
+     "empty": "No record matches the search \"CM2-4520\"."
+    }
+   },
+   "rates_url": "https://app.staging.shopview.com/reports/sales-tax/all-tax-rates?range=this_year",
+   "rates": [
+    "",
+    "GST 5% $186,407.72",
+    "Exempt 0% $0.00",
+    "arizona 5.6% $47.57",
+    "HST 13% $331.67",
+    "GST 5% $25.88",
+    ""
+   ],
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&search=CM2-4520",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&search="
+   ]
+  },
+  "iii-this-year-paid": {
+   "spec": {
+    "name": "iii-this-year-paid",
+    "range": [
+     "this_year"
+    ],
+    "status": "Paid"
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""
+   },
+   "chips": [
+    "calendar_today Date Range: This year keyboard_arrow_down",
+    "Invoice Status: Paid keyboard_arrow_down cancel",
+    "cancel"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=this_year&statuses=paid",
+   "rows_page1": [
+    "",
+    "Paid Today Today S2-38213 4 Star Truck Repair $0.00 $0.00 $0.00 $0.00 GST 5% $0.00 $0.00",
+    "Paid Today Today S2-38197 4 Star Truck Repair $0.00 $25.00 $0.00 $22.50 GST 5% $1.25 $23.75",
+    "Paid Yesterday Yesterday S2-38102 4 Star Truck Repair $0.00 $0.00 $0.00 $0.00 GST 5% $0.00 $0.00",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2449 TestVT1 $0.00 $75.00 $0.00 $75.00 GST 5% $3.75 $78.75",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2445 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 22, 2026 Oct 22, 2026 S2-38022 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 22, 2026 Oct 22, 2026 S2-38046 SV-9087 Credit Term 1792672496992-997672 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2442 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 22, 2026 Oct 22, 2026 P2-2441 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37940 TestVT1 $100.00 $0.00 $10.50 $110.50 GST 5% $5.53 $116.03",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37939 TestVT1 $100.00 $0.00 $10.50 $110.50 GST 5% $5.53 $116.03",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37803 TestVT1 $50.00 $0.00 $5.25 $55.25 GST 5% $2.76 $58.01",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37802 TestVT1 $50.00 $0.00 $5.25 $55.25 GST 5% $2.76 $58.01",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37799 TestVT1 $50.00 $0.00 $5.25 $55.25 GST 5% $2.76 $58.01",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37788 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37787 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 21, 2026 Oct 21, 2026 S2-37785 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Paid Oct 21, 2026 Oct 21, 2026 P2-2421 TestVT1 $0.00 $75.00 $0.00 $75.00 GST 5% $3.75 $78.75",
+    "Paid Oct 21, 2026 Oct 21, 2026 P2-2417 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 21, 2026 Oct 21, 2026 P2-2416 TestVT1 $0.00 $250.00 $0.00 $250.00 HST 13% $32.50 $282.50",
+    "Paid Oct 20, 2026 Oct 21, 2026 S2-37656 ZZAUTOTEST F3 Keyboard Limits 86258 Bravo Co $44.99 $0.00 $4.72 $49.71 GST 5% $2.49 $52.20",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-37627 ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co $350.00 $0.00 $36.75 $386.75 GST 5% $19.34 $406.09",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-37621 Testing Company Milos $154.95 $5.88 $16.27 $177.10 GST 5% $8.85 $185.95",
+    "Paid Oct 20, 2026 Oct 20, 2026 P2-2409 Testing Company Milos $0.00 $323.88 $0.00 $336.38 GST 5% $16.82 $353.20",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-33605 A & J Truck & Trailer Repair $224.93 $0.00 $23.62 $248.55 GST 5% $12.43 $260.98",
+    "Paid Oct 17, 2026 Oct 17, 2026 S2-36772 4 Star Truck Repair $374.88 $4.00 $39.36 $418.24 GST 5% $20.91 $439.15",
+    "Paid Oct 16, 2026 Oct 16, 2026 S2-36364 ZZAUTOTEST F1 Scroll Back H $164.95 $0.00 $17.32 $182.27 GST 5% $9.12 $191.39",
+    "Paid Oct 16, 2026 Oct 16, 2026 S2-36365 ZZAUTOTEST F1 Scroll Back H $0.00 $0.00 $0.00 $0.00 GST 5% $0.00 $0.00",
+    "Paid Oct 16, 2026 Oct 19, 2026 P2-2404 Testing Company Milos $0.00 $5.88 $0.00 $5.88 GST 5% $0.29 $6.17",
+    "Paid Oct 15, 2026 Oct 15, 2026 P2-2363 TestVT1 $0.00 $517.55 $0.00 $517.55 GST 5% $25.88 $543.43",
+    "",
+    "Total $3,868,525.33"
+   ],
+   "bottom": "",
+   "search": {
+    "CM2-4520": {
+     "rows": [
+      "",
+      "",
+      "Total $3,868,525.33"
+     ],
+     "empty": "No record matches these filters"
+    }
+   },
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&statuses[0]=paid&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&statuses[0]=paid&search=CM2-4520",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&statuses[0]=paid&search="
+   ]
+  },
+  "iii-this-year-partially": {
+   "spec": {
+    "name": "iii-this-year-partially",
+    "range": [
+     "this_year"
+    ],
+    "status": "Partially Paid"
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""
+   },
+   "chips": [
+    "calendar_today Date Range: This year keyboard_arrow_down",
+    "Invoice Status: Partially Paid keyboard_arrow_down cancel",
+    "cancel"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=this_year&statuses=partially_paid",
+   "rows_page1": [
+    "",
+    "Partially Paid Oct 21, 2026 Oct 21, 2026 S2-37786 TestVT1 $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Partially Paid Oct 11, 2026 Oct 11, 2026 S2-34986 TEST Claude SV checks $0.00 $400.00 $0.00 $400.00 GST 5% $20.00 $420.00",
+    "Partially Paid Oct 9, 2026 Oct 9, 2026 S2-33676 ZZAUTOTEST SV10322 1790177195465 $449.85 $0.00 $47.23 $497.08 GST 5% $24.85 $521.93",
+    "Partially Paid Oct 9, 2026 Oct 10, 2026 S2-34975 Bravo Mechanical Services $232.42 $8.31 $24.40 $265.13 GST 5% $13.26 $278.39",
+    "Partially Paid Oct 8, 2026 Oct 14, 2026 S2-34972 4 Star Truck Repair $0.00 $15.98 $0.00 $15.98 GST 5% $0.80 $16.78",
+    "Partially Paid Oct 7, 2026 Oct 14, 2026 S2-34918 A & J Truck & Trailer Repair $449.86 $0.00 $47.24 $497.10 GST 5% $24.86 $521.96",
+    "Partially Paid Oct 1, 2026 Oct 1, 2026 S2-34514 Aberdeen Diesel Services LLC $464.86 $0.00 $48.81 $513.67 GST 5% $25.68 $539.35",
+    "Partially Paid Sep 22, 2026 Sep 22, 2026 S2-33456 test1 $400.00 $0.00 $42.00 $442.00 GST 5% $22.10 $464.10",
+    "Partially Paid Sep 21, 2026 Sep 21, 2026 S2-33358 TestVT1 $419.86 $0.00 $44.09 $463.95 GST 5% $23.19 $487.14",
+    "Partially Paid Sep 15, 2026 Sep 15, 2026 S2-33018 TestVT1 $200.00 $0.00 $21.00 $221.00 GST 5% $11.05 $232.05",
+    "Partially Paid Sep 15, 2026 Sep 15, 2026 S2-33017 TestVT1 $200.00 $0.00 $21.00 $221.00 GST 5% $11.05 $232.05",
+    "Partially Paid Sep 9, 2026 Sep 10, 2026 S2-32491 E2E Credits Customer $149.95 $0.00 $15.74 $165.69 GST 5% $8.29 $173.98",
+    "Partially Paid Sep 7, 2026 Sep 7, 2026 S2-32052 Aberdeen Diesel Services LLC $0.00 $16.62 $0.00 $16.62 GST 5% $0.83 $17.45",
+    "Partially Paid Sep 7, 2026 Sep 7, 2026 S2-32137 Andreasen Truck & Equipment Repair $824.73 $12,364.17 $86.60 $12,650.19 GST 5% $632.53 $13,282.72",
+    "Partially Paid Aug 24, 2026 Aug 24, 2026 S2-15803 Spaulding Truck Center $11,757.64 $14,039.38 $350.00 $26,147.02 GST 5% $1,307.35 $27,454.37",
+    "Partially Paid Feb 27, 2026 Feb 27, 2026 S2-12942 Braddock Trucking & Repair $3,040.03 $7,560.17 $319.20 $10,919.40 GST 5% $545.96 $11,465.36",
+    "",
+    "Total $56,281.61"
+   ],
+   "bottom": "",
+   "search": {
+    "CM2-4520": {
+     "rows": [
+      "",
+      "",
+      "Total $56,281.61"
+     ],
+     "empty": "No record matches these filters"
+    }
+   },
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&statuses[0]=partially_paid&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&statuses[0]=partially_paid&search=CM2-4520",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&statuses[0]=partially_paid&search="
+   ]
+  }
+ },
+ "browser_zone": "Asia/Karachi",
+ "app_timezone_key": "\"Asia/Karachi\"",
+ "browser_now": "Thu Oct 29 2026 15:14:51 GMT+0500 (Pakistan Standard Time)",
+ "appVersion": "v26.43.3-8ad4001"
+}

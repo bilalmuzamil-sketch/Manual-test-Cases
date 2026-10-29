@@ -1,0 +1,56 @@
+{
+ "ticket": "SV-11935",
+ "location": "DVI Test",
+ "location_tz": "America/Toronto",
+ "process_TZ": "America/Toronto",
+ "process_zone": "America/Toronto",
+ "observed_at_utc": "2026-10-29T10:01:31.347Z",
+ "runs": {
+  "iii-ar-detail-from-dvi": {
+   "spec": {
+    "name": "iii-ar-detail-from-dvi",
+    "path": "/reports/ar-aging-detail",
+    "open": "Current",
+    "rows": [
+     "P2-2352",
+     "P2-2439"
+    ]
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "chips": [
+    "filter_chip_asOfDate = calendar_today Date: 2026-10-29 keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/ar-aging-detail",
+   "rows": {
+    "P2-2352": {
+     "text": "Oct 15, 2026 Invoice P2-2352 TestVT1 Staging Heavy Duty - 9919 Nov 14, 2026 $543.43 $543.43"
+    },
+    "P2-2439": {
+     "text": "Oct 22, 2026 Invoice P2-2439 Bravo Mechanical Services Staging Heavy Duty - 9919 Dec 21, 2026 $21.00 $21.00"
+    }
+   },
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "VALID": true,
+   "reqs": [
+    "https://app.staging.shopview.com/js/vendor.CQEl03k0.js",
+    "https://app.staging.shopview.com/js/vue-vendor.DC9DRZx3.js",
+    "https://app.staging.shopview.com/css/vendor.rmqV9LRu.css",
+    "/api.staging.shopview.com/api/reporting/account-receivable/aging-detail-report?asOfDate=2026-10-30T03:59:59.999Z"
+   ]
+  }
+ },
+ "browser_zone": "America/Toronto",
+ "app_timezone_key": "\"America/Toronto\"",
+ "browser_now": "Thu Oct 29 2026 06:01:31 GMT-0400 (Eastern Daylight Time)",
+ "appVersion": "v26.43.2-9272076"
+}

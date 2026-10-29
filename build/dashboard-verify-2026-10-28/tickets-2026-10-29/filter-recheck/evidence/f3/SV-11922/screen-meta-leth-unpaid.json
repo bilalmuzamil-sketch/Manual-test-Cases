@@ -1,0 +1,152 @@
+{
+ "ticket": "SV-11922",
+ "location": "Staging Lethbridge - 4310",
+ "location_tz": "America/Edmonton",
+ "process_TZ": "America/Edmonton",
+ "process_zone": "America/Edmonton",
+ "observed_at_utc": "2026-10-29T10:13:00.170Z",
+ "runs": {
+  "ii-unpaid-default-no-vendor-shot": {
+   "spec": {
+    "name": "ii-unpaid-default-no-vendor-shot",
+    "path": "/reports/ap-unpaid-invoices",
+    "expandVendors": 1,
+    "rows": [
+     "976974",
+     "5363"
+    ],
+    "shot": 1
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Lethbridge - 4310 AS",
+    "ls_location": "\"f8a8b802-7780-4b16-bf10-343caeb616b2\""
+   },
+   "chips": [
+    "filter_chip_vendorId = person Vendor keyboard_arrow_down",
+    "filter_chip_asOfDate = calendar_today Date: 2026-10-29 keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/ap-unpaid-invoices",
+   "rows": {
+    "5363": {
+     "text": "Sep 23, 2026 Invoice 5363 123 Cannabis Forestlawn Staging Heavy Duty - 9919 Oct 23, 2026 6 $19.21 $19.21",
+     "box": {
+      "x": 556,
+      "y": -44089,
+      "w": 2866,
+      "h": 96
+     }
+    },
+    "976974": {
+     "text": "Oct 1, 2026 Invoice 976974 4Refuel Staging Lethbridge - 4310 Oct 31, 2026 -1 $56.50 $56.50",
+     "box": {
+      "x": 556,
+      "y": 1034,
+      "w": 2866,
+      "h": 96
+     }
+    }
+   },
+   "chipboxes": [
+    [
+     "filter_chip_vendorId",
+     2504,
+     171,
+     228,
+     56
+    ],
+    [
+     "filter_chip_asOfDate",
+     2760,
+     171,
+     370,
+     56
+    ]
+   ],
+   "heads": [
+    [
+     "Date",
+     556,
+     274,
+     751,
+     96
+    ],
+    [
+     "Transaction Type",
+     1307,
+     274,
+     225,
+     96
+    ],
+    [
+     "No.",
+     1532,
+     274,
+     333,
+     96
+    ],
+    [
+     "Vendor Name",
+     1865,
+     274,
+     487,
+     96
+    ],
+    [
+     "Location Name",
+     2352,
+     274,
+     369,
+     96
+    ],
+    [
+     "Due Date",
+     2720,
+     274,
+     182,
+     96
+    ],
+    [
+     "Past Due",
+     2903,
+     274,
+     129,
+     96
+    ],
+    [
+     "Amount",
+     3032,
+     274,
+     195,
+     96
+    ],
+    [
+     "Open Balance",
+     3227,
+     274,
+     195,
+     96
+    ]
+   ],
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Lethbridge - 4310 AS",
+    "ls_location": "\"f8a8b802-7780-4b16-bf10-343caeb616b2\""
+   },
+   "VALID": true,
+   "reqs": [
+    "https://app.staging.shopview.com/js/vendor.ErP6PROw.js",
+    "https://app.staging.shopview.com/js/vue-vendor.D8x4CfcX.js",
+    "https://app.staging.shopview.com/css/vendor.rmqV9LRu.css",
+    "/api.staging.shopview.com/api/reporting/account-payable/unpaid-invoices-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&asOfDate=2026-10-30T05:59:59.999Z",
+    "/api.staging.shopview.com/api/reporting/account-payable/unpaid-invoices-report?pagination[page]=2&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&asOfDate=2026-10-30T05:59:59.999Z"
+   ]
+  }
+ },
+ "browser_zone": "America/Edmonton",
+ "app_timezone_key": "\"America/Edmonton\"",
+ "browser_now": "Thu Oct 29 2026 04:13:00 GMT-0600 (Mountain Daylight Time)",
+ "appVersion": "v26.43.3-8ad4001"
+}

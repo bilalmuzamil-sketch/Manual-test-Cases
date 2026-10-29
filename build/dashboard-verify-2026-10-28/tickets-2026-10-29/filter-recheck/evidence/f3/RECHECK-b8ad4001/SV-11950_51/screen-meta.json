@@ -1,0 +1,573 @@
+{
+ "ticket": "RECHECK-b8ad4001/SV-11950_51",
+ "location": "DVI Test",
+ "location_tz": "America/Toronto",
+ "process_TZ": "America/Toronto",
+ "process_zone": "America/Toronto",
+ "observed_at_utc": "2026-10-29T10:20:36.773Z",
+ "runs": {
+  "i-custom-oct28-as-ticket-today": {
+   "spec": {
+    "name": "i-custom-oct28-as-ticket-today",
+    "range": [
+     "custom",
+     "10/28/2026",
+     "10/28/2026"
+    ]
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "chips": [
+    "calendar_today Date Range: Custom keyboard_arrow_down",
+    "Invoice Status keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=custom&range=2026-10-28&range=2026-10-28",
+   "rows_page1": [
+    "",
+    "Paid Yesterday Yesterday S1-38221 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38218 ZZAUTOTEST P2C ZERO $0.00 $0.00 $0.00 $0.00 Zero Rated 0% $0.00 $0.00",
+    "Paid Yesterday Yesterday S1-38219 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38214 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38212 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38211 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38210 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38195 ZZAUTOTEST Dash A1 $270.00 $0.00 $0.00 $270.00 Zero Rated 0% $0.00 $270.00",
+    "",
+    "Total $1,080.00"
+   ],
+   "bottom": "",
+   "search": {
+    "S1-38218": {
+     "rows": [
+      "",
+      "Paid Yesterday Yesterday S1-38218 ZZAUTOTEST P2C ZERO $0.00 $0.00 $0.00 $0.00 Zero Rated 0% $0.00 $0.00",
+      "",
+      "Total $1,080.00"
+     ],
+     "empty": ""
+    },
+    "S1-38221": {
+     "rows": [
+      "",
+      "Paid Yesterday Yesterday S1-38221 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+      "",
+      "Total $1,080.00"
+     ],
+     "empty": ""
+    }
+   },
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=S1-38218",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=S1-38221",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search="
+   ]
+  },
+  "i-custom-oct28-partially": {
+   "spec": {
+    "name": "i-custom-oct28-partially",
+    "range": [
+     "custom",
+     "10/28/2026",
+     "10/28/2026"
+    ],
+    "status": "Partially Paid"
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "chips": [
+    "calendar_today Date Range: Custom keyboard_arrow_down",
+    "Invoice Status: Partially Paid keyboard_arrow_down cancel",
+    "cancel"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=custom&range=2026-10-28&range=2026-10-28&statuses=partially_paid",
+   "rows_page1": [
+    "",
+    ""
+   ],
+   "bottom": "search No record matches these filters Try changing filters to widen your results. Clear all filters",
+   "search": {
+    "S1-38218": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches these filters"
+    },
+    "S1-38221": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches these filters"
+    }
+   },
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&statuses[0]=partially_paid&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&statuses[0]=partially_paid&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=S1-38218",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&statuses[0]=partially_paid&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=S1-38221",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&statuses[0]=partially_paid&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search="
+   ]
+  },
+  "i-today-now": {
+   "spec": {
+    "name": "i-today-now",
+    "range": [
+     "today"
+    ]
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "chips": [
+    "calendar_today Date Range: Today keyboard_arrow_down",
+    "Invoice Status keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=today",
+   "rows_page1": [
+    "",
+    ""
+   ],
+   "bottom": "search No record matches these filters Try changing filters to widen your results.",
+   "search": {
+    "S1-38218": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches the search \"S1-38218\"."
+    },
+    "S1-38221": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches the search \"S1-38221\"."
+    }
+   },
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=today&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=today&search=S1-38218",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=today&search=S1-38221",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=today&search="
+   ]
+  },
+  "ii-default-this-month": {
+   "spec": {
+    "name": "ii-default-this-month",
+    "shot": 1
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "chips": [
+    "calendar_today Date Range: This month keyboard_arrow_down",
+    "Invoice Status keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices",
+   "rows_page1": [
+    "",
+    "Paid Yesterday Yesterday S1-38221 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38218 ZZAUTOTEST P2C ZERO $0.00 $0.00 $0.00 $0.00 Zero Rated 0% $0.00 $0.00",
+    "Paid Yesterday Yesterday S1-38219 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38214 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38212 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38211 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38210 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38195 ZZAUTOTEST Dash A1 $270.00 $0.00 $0.00 $270.00 Zero Rated 0% $0.00 $270.00",
+    "Paid Oct 20, 2026 Oct 20, 2026 S1-37614 DVI Test Customer $405.00 $0.00 $0.00 $405.00 Zero Rated 0% $0.00 $405.00",
+    "",
+    "Total $1,485.00"
+   ],
+   "bottom": "",
+   "rowboxes": [
+    [
+     "",
+     556,
+     370,
+     2681,
+     0
+    ],
+    [
+     "Paid Yesterday Yesterday S1-38221 ZZAUTO",
+     556,
+     370,
+     2681,
+     96
+    ],
+    [
+     "Paid Yesterday Yesterday S1-38218 ZZAUTO",
+     556,
+     466,
+     2681,
+     96
+    ],
+    [
+     "Paid Yesterday Yesterday S1-38219 ZZAUTO",
+     556,
+     562,
+     2681,
+     96
+    ],
+    [
+     "Paid Yesterday Yesterday S1-38214 ZZAUTO",
+     556,
+     658,
+     2681,
+     96
+    ],
+    [
+     "Paid Yesterday Yesterday S1-38212 ZZAUTO",
+     556,
+     754,
+     2681,
+     96
+    ],
+    [
+     "Paid Yesterday Yesterday S1-38211 ZZAUTO",
+     556,
+     850,
+     2681,
+     96
+    ],
+    [
+     "Paid Yesterday Yesterday S1-38210 ZZAUTO",
+     556,
+     946,
+     2681,
+     96
+    ],
+    [
+     "Paid Yesterday Yesterday S1-38195 ZZAUTO",
+     556,
+     1042,
+     2681,
+     96
+    ],
+    [
+     "Paid Oct 20, 2026 Oct 20, 2026 S1-37614 ",
+     556,
+     1138,
+     2681,
+     96
+    ],
+    [
+     "",
+     556,
+     1234,
+     2681,
+     0
+    ],
+    [
+     " Total $1,485.00",
+     556,
+     1234,
+     2681,
+     96
+    ]
+   ],
+   "chipbox": {
+    "range": {
+     "x": 1713,
+     "y": 171,
+     "w": 447,
+     "h": 56
+    },
+    "status": {
+     "x": 2188,
+     "y": 171,
+     "w": 314,
+     "h": 56
+    }
+   },
+   "search": {
+    "S1-38218": {
+     "rows": [
+      "",
+      "Paid Yesterday Yesterday S1-38218 ZZAUTOTEST P2C ZERO $0.00 $0.00 $0.00 $0.00 Zero Rated 0% $0.00 $0.00",
+      "",
+      "Total $1,485.00"
+     ],
+     "empty": ""
+    },
+    "S1-38221": {
+     "rows": [
+      "",
+      "Paid Yesterday Yesterday S1-38221 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+      "",
+      "Total $1,485.00"
+     ],
+     "empty": ""
+    }
+   },
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=S1-38218",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=S1-38221",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search="
+   ]
+  },
+  "ii-default-partially": {
+   "spec": {
+    "name": "ii-default-partially",
+    "status": "Partially Paid",
+    "shot": 1
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "chips": [
+    "calendar_today Date Range: This month keyboard_arrow_down",
+    "Invoice Status: Partially Paid keyboard_arrow_down cancel",
+    "cancel"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?statuses=partially_paid",
+   "rows_page1": [
+    "",
+    ""
+   ],
+   "bottom": "search No record matches these filters Try changing filters to widen your results. Clear all filters",
+   "rowboxes": [
+    [
+     "",
+     556,
+     370,
+     2584,
+     0
+    ],
+    [
+     "",
+     556,
+     370,
+     2584,
+     0
+    ]
+   ],
+   "chipbox": {
+    "range": {
+     "x": 1524,
+     "y": 171,
+     "w": 447,
+     "h": 56
+    },
+    "status": {
+     "x": 1999,
+     "y": 171,
+     "w": 503,
+     "h": 56
+    }
+   },
+   "search": {
+    "S1-38218": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches these filters"
+    },
+    "S1-38221": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches these filters"
+    }
+   },
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&statuses[0]=partially_paid&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&statuses[0]=partially_paid&search=S1-38218",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&statuses[0]=partially_paid&search=S1-38221",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&statuses[0]=partially_paid&search="
+   ]
+  },
+  "iii-this-year": {
+   "spec": {
+    "name": "iii-this-year",
+    "range": [
+     "this_year"
+    ]
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "chips": [
+    "calendar_today Date Range: This year keyboard_arrow_down",
+    "Invoice Status keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=this_year",
+   "rows_page1": [
+    "",
+    "Paid Yesterday Yesterday S1-38221 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38218 ZZAUTOTEST P2C ZERO $0.00 $0.00 $0.00 $0.00 Zero Rated 0% $0.00 $0.00",
+    "Paid Yesterday Yesterday S1-38219 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38214 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38212 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38211 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38210 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38195 ZZAUTOTEST Dash A1 $270.00 $0.00 $0.00 $270.00 Zero Rated 0% $0.00 $270.00",
+    "Paid Oct 20, 2026 Oct 20, 2026 S1-37614 DVI Test Customer $405.00 $0.00 $0.00 $405.00 Zero Rated 0% $0.00 $405.00",
+    "",
+    "Total $1,485.00"
+   ],
+   "bottom": "",
+   "search": {
+    "S1-38218": {
+     "rows": [
+      "",
+      "Paid Yesterday Yesterday S1-38218 ZZAUTOTEST P2C ZERO $0.00 $0.00 $0.00 $0.00 Zero Rated 0% $0.00 $0.00",
+      "",
+      "Total $1,485.00"
+     ],
+     "empty": ""
+    },
+    "S1-38221": {
+     "rows": [
+      "",
+      "Paid Yesterday Yesterday S1-38221 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+      "",
+      "Total $1,485.00"
+     ],
+     "empty": ""
+    }
+   },
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&search=S1-38218",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&search=S1-38221",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&search="
+   ]
+  },
+  "iii-this-year-partially": {
+   "spec": {
+    "name": "iii-this-year-partially",
+    "range": [
+     "this_year"
+    ],
+    "status": "Partially Paid"
+   },
+   "loc_start": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "chips": [
+    "calendar_today Date Range: This year keyboard_arrow_down",
+    "Invoice Status: Partially Paid keyboard_arrow_down cancel",
+    "cancel"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=this_year&statuses=partially_paid",
+   "rows_page1": [
+    "",
+    ""
+   ],
+   "bottom": "search No record matches these filters Try changing filters to widen your results. Clear all filters",
+   "search": {
+    "S1-38218": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches these filters"
+    },
+    "S1-38221": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches these filters"
+    }
+   },
+   "loc_end": {
+    "ok": true,
+    "shown_has_name": true,
+    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+    "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+   },
+   "VALID": true,
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&statuses[0]=partially_paid&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&statuses[0]=partially_paid&search=S1-38218",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&statuses[0]=partially_paid&search=S1-38221",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_year&statuses[0]=partially_paid&search="
+   ]
+  }
+ },
+ "browser_zone": "America/Toronto",
+ "app_timezone_key": "\"America/Toronto\"",
+ "browser_now": "Thu Oct 29 2026 06:20:36 GMT-0400 (Eastern Daylight Time)",
+ "appVersion": "v26.43.3-8ad4001"
+}

@@ -1,13 +1,13 @@
 {
  "part": "ap-leth",
- "at_utc": "2026-10-29T09:16:36.490455+00:00",
+ "at_utc": "2026-10-29T10:15:05.053068+00:00",
  "zones": {
   "location": "Staging Lethbridge - 4310",
   "location_tz": "America/Edmonton",
   "process_TZ": "America/Edmonton",
   "process_zone": "MDT",
-  "process_now": "2026-10-29T03:16:36.490560",
-  "utc_now": "2026-10-29T09:16:36.490563+00:00"
+  "process_now": "2026-10-29T04:15:05.053134",
+  "utc_now": "2026-10-29T10:15:05.053136+00:00"
  },
  "change_location": 200,
  "detail_today_default": {
@@ -285,16 +285,20 @@
     "2026-10-21T05:59:59.999Z"
    ],
    [
-    "vendorId",
+    "filters[0][field]",
+    "vendor_id"
+   ],
+   [
+    "filters[0][value]",
     "68c72fe7-8fbe-4795-85aa-7e91fbb54c7e"
    ]
   ],
   "status": 200,
-  "n": 14454,
-  "not_due_wrong": 560,
-  "not_due_ok": 42,
-  "due_or_overdue_wrong": 784,
-  "due_or_overdue_ok": 11762,
+  "n": 37,
+  "not_due_wrong": 23,
+  "not_due_ok": 0,
+  "due_or_overdue_wrong": 0,
+  "due_or_overdue_ok": 14,
   "examples": {
    "65@Staging Heavy Duty -": {
     "due_local": "2026-10-22",
@@ -332,12 +336,6 @@
     "shown": -7,
     "expected": -8
    },
-   "SV10190-R3@Staging Heavy Duty -": {
-    "due_local": "2026-10-30",
-    "dueDate_raw": "2026-10-30 06:00:00",
-    "shown": -9,
-    "expected": -10
-   },
    "SV10190-ST2@Staging Lethbridge -": {
     "due_local": "2026-10-30",
     "dueDate_raw": "2026-10-30 06:00:00",
@@ -350,25 +348,22 @@
     "shown": -9,
     "expected": -10
    },
-   "E2E-INV-1790684747987@Staging Heavy Duty -": {
-    "due_local": "2026-10-29",
-    "dueDate_raw": "2026-10-29 12:25:47",
-    "shown": -8,
-    "expected": -9
+   "SV10190-R3@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": -9,
+    "expected": -10
    }
   },
   "raw_tally": {
-   "due_or_overdue_wrong": 64,
-   "due_or_overdue_ok": 12482,
-   "not_due_wrong": 602
+   "due_or_overdue_wrong": 2,
+   "due_or_overdue_ok": 12,
+   "not_due_wrong": 23
   },
   "diff_hist": {
-   "shown-expected=0 (due/overdue)": 11762,
-   "shown-expected=1 (not due)": 560,
-   "shown-expected=0 (not due)": 42,
-   "shown-expected=-1 (due/overdue)": 784
-  },
-  "no_due_date": 1306
+   "shown-expected=0 (due/overdue)": 14,
+   "shown-expected=1 (not due)": 23
+  }
  },
  "unpaid_oct20_no_vendor": {
   "request": [

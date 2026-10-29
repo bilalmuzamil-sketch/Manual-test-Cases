@@ -4,7 +4,7 @@
 import fs from 'fs';
 import { f3boot, assertLoc } from './f3boot.mjs';
 const APP = 'https://app.staging.shopview.com';
-const OUT = '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/SIDE1'; fs.mkdirSync(OUT, { recursive: true });
+const OUT = '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/' + (process.env.TICKET_DIR || 'SIDE1'); fs.mkdirSync(OUT, { recursive: true });
 const { browser, page, WP, LNAME, TZ } = await f3boot('dvi');
 const meta = { location: LNAME, location_tz: TZ, process_TZ: process.env.TZ || null, process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone, observed_at_utc: new Date().toISOString(), passes: {} };
 meta.browser_zone = await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone);

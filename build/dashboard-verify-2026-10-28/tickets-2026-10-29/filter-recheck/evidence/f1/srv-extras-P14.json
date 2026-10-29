@@ -1,0 +1,69 @@
+{
+ "item": "P14",
+ "loc": {
+  "key": "DVI",
+  "wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "tz": "America/Toronto",
+  "name": "DVI Test",
+  "change_location": 200,
+  "process_zone": "America/Toronto",
+  "location_tz": "America/Toronto",
+  "local_now": "2026-10-29T06:25:10-04:00"
+ },
+ "DVI only": {
+  "status": 200,
+  "n": 11,
+  "row": [
+   {
+    "key": "b541975f-7799-46d3-ba72-36f5d16fd88d",
+    "customer_name": "ZZAUTOTEST Dash Q27",
+    "location": "DVI Test",
+    "inv_hrs": 0.5,
+    "labor_invoiced": 13500,
+    "labor_margin": 13500,
+    "parts_invoiced": 0,
+    "parts_margin": 0,
+    "shop_supplies": 0,
+    "adjustments": 0,
+    "margin": 13500,
+    "subtotal": 13500,
+    "margin_pct": 100,
+    "invoice_count": 1,
+    "last_invoice_date": "2026-10-28T23:47:39Z"
+   }
+  ]
+ },
+ "all locations": {
+  "status": 200,
+  "n": 740,
+  "row": [
+   {
+    "key": "b541975f-7799-46d3-ba72-36f5d16fd88d",
+    "customer_name": "ZZAUTOTEST Dash Q27",
+    "location": "DVI Test",
+    "inv_hrs": 0.5,
+    "labor_invoiced": 13500,
+    "labor_margin": 13500,
+    "parts_invoiced": 0,
+    "parts_margin": 0,
+    "shop_supplies": 0,
+    "adjustments": 0,
+    "margin": 13500,
+    "subtotal": 13500,
+    "margin_pct": 100,
+    "invoice_count": 1,
+    "last_invoice_date": "2026-10-28T23:47:39Z"
+   }
+  ]
+ },
+ "server_requests": [
+  {
+   "GET": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2025-11-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=5000&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/sales-by-customer?range=custom&start_date=2025-11-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C25a0d576-b371-4b82-bef4-41ba977f31c2%2C39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=5000&pagination%5BsortBy%5D=customer&pagination%5Bdescending%5D=false",
+   "status": 200
+  }
+ ]
+}

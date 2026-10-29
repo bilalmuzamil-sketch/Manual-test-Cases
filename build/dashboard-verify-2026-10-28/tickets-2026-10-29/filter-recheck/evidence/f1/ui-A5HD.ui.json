@@ -1,0 +1,192 @@
+{
+ "meta": {
+  "label": "ui-A5HD",
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "process_zone": "Asia/Karachi",
+  "session_change_location": {
+   "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "workplace_timezone": "Asia/Karachi"
+  },
+  "started_utc": "2026-10-29T10:21:30.566Z",
+  "browser_zone": "Asia/Karachi",
+  "app_timezone_key": "\"Asia/Karachi\"",
+  "storage_at_start": {
+   "fe_permissions_wrapper": "(identity, not a filter)",
+   "location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+   "timezone": "\"Asia/Karachi\"",
+   "user": "(identity, not a filter)"
+  },
+  "header_at_start": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+  "appVersion": "v26.43.3-8ad4001",
+  "export_dialog_default": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | arrow_drop_down | Export",
+  "export_dialog": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | Custom | arrow_drop_down | event | Start | event | End | Export",
+  "export_range_options": [
+   "check Custom",
+   "check Today",
+   "check Yesterday",
+   "check This Week",
+   "check Last Week",
+   "check This Month",
+   "check Last Month"
+  ],
+  "download": {
+   "file": "/tmp/cln/f1/dl/payroll_timesheet.csv",
+   "name": "payroll_timesheet.csv"
+  },
+  "storage_at_end": {
+   "fe_permissions_wrapper": "(identity, not a filter)",
+   "location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+   "mode": "\"light\"",
+   "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId\":\"05f4c649-a4b9-458d-bf15-be051c8e149d\"},{\"id\":\"3e44ab71-f97c-4c32-b48f-9293d41c6044\",\"name\":\"ShopP",
+   "organization_features_timestamp": "1793269394478",
+   "timezone": "\"Asia/Karachi\"",
+   "user": "(identity, not a filter)"
+  },
+  "url_at_end": "/reports/punch-clock-activities",
+  "header_at_end": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+  "location_guard": {
+   "header_start_ok": true,
+   "header_end_ok": true,
+   "x_location_ids_seen": [
+    "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+   ],
+   "x_location_ok": true,
+   "storage_location_ok": true,
+   "VALID": true
+  },
+  "finished_utc": "2026-10-29T10:23:39.366Z"
+ },
+ "runs": {
+  "ii-default": {
+   "error": "TimeoutError: page.waitForEvent: Timeout 60000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================",
+   "dialog": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | arrow_drop_down | Export"
+  },
+  "i-ticket": {
+   "opts": {
+    "range": "Custom",
+    "from": "09/01/2026",
+    "to": "09/30/2026"
+   },
+   "dialog": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | Custom | arrow_drop_down | event | Start | event | End | Export",
+   "file": "/tmp/cln/f1/dl/A5HD-i-ticket.csv",
+   "header": "\"Employee Name\",Date,\"Total Hours\",\"WO Hours\",\"Internal Hours\"",
+   "rows": 119,
+   "days_over_24_all_staff": 3,
+   "target": [
+    ",2026-09-06,28.50,28.50,0.00",
+    "\"Total for Haley Brown\",,158.50,158.50,0.00"
+   ]
+  },
+  "iii-widest": {
+   "opts": {
+    "range": "Custom",
+    "from": "01/01/2026",
+    "to": "10/29/2026"
+   },
+   "dialog": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | Custom | arrow_drop_down | event | Start | event | End | Export",
+   "file": "/tmp/cln/f1/dl/A5HD-iii-widest.csv",
+   "header": "\"Employee Name\",Date,\"Total Hours\",\"WO Hours\",\"Internal Hours\"",
+   "rows": 2375,
+   "days_over_24_all_staff": 6,
+   "target": [
+    ",2026-09-06,28.50,28.50,0.00",
+    "\"Total for Haley Brown\",,280.00,280.00,0.00"
+   ]
+  }
+ },
+ "requests": [
+  {
+   "phase": "ii-default",
+   "status": 404,
+   "xloc": null,
+   "url": "/api/api/sso/check"
+  },
+  {
+   "phase": "ii-default",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/users/me/release-notes/unread"
+  },
+  {
+   "phase": "ii-default",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/staff/clocked?range=this_month"
+  },
+  {
+   "phase": "ii-default",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
+  },
+  {
+   "phase": "ii-default",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/technicians"
+  },
+  {
+   "phase": "i-ticket",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/users/me/release-notes/unread"
+  },
+  {
+   "phase": "i-ticket",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/staff/clocked?range=this_month"
+  },
+  {
+   "phase": "i-ticket",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/technicians"
+  },
+  {
+   "phase": "i-ticket",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
+  },
+  {
+   "phase": "i-ticket",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/reporting/export/payroll_timesheet?report=payroll_timesheet&start_date=2026-08-31T19:00:00.000Z&end_date=2026-09-30T18:59:59.999Z&range=custom"
+  },
+  {
+   "phase": "iii-widest",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/users/me/release-notes/unread"
+  },
+  {
+   "phase": "iii-widest",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/technicians"
+  },
+  {
+   "phase": "iii-widest",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/staff/clocked?range=this_month"
+  },
+  {
+   "phase": "iii-widest",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
+  },
+  {
+   "phase": "iii-widest",
+   "status": 200,
+   "xloc": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "url": "/api/reporting/export/payroll_timesheet?report=payroll_timesheet&start_date=2025-12-31T19:00:00.000Z&end_date=2026-10-29T18:59:59.999Z&range=custom"
+  }
+ ]
+}

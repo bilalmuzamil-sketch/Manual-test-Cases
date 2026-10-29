@@ -1,0 +1,180 @@
+{
+ "meta": {
+  "label": "ui-A5DVI",
+  "location": "DVI Test",
+  "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "location_tz": "America/Toronto",
+  "process_TZ": "America/Toronto",
+  "process_zone": "America/Toronto",
+  "session_change_location": {
+   "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "workplace_timezone": "America/Toronto"
+  },
+  "started_utc": "2026-10-29T10:00:36.254Z",
+  "browser_zone": "America/Toronto",
+  "app_timezone_key": "\"America/Toronto\"",
+  "storage_at_start": {
+   "fe_permissions_wrapper": "(identity, not a filter)",
+   "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+   "timezone": "\"America/Toronto\"",
+   "user": "(identity, not a filter)"
+  },
+  "header_at_start": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+  "appVersion": "v26.43.2-9272076",
+  "export_dialog_default": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | arrow_drop_down | Export",
+  "export_dialog": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | Custom | arrow_drop_down | event | Start | event | End | Export",
+  "export_range_options": [
+   "check Custom",
+   "check Today",
+   "check Yesterday",
+   "check This Week",
+   "check Last Week",
+   "check This Month",
+   "check Last Month"
+  ],
+  "download": {
+   "file": "/tmp/cln/f1/dl/payroll_timesheet.csv",
+   "name": "payroll_timesheet.csv"
+  },
+  "storage_at_end": {
+   "fe_permissions_wrapper": "(identity, not a filter)",
+   "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+   "mode": "\"light\"",
+   "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId\":\"05f4c649-a4b9-458d-bf15-be051c8e149d\"},{\"id\":\"3e44ab71-f97c-4c32-b48f-9293d41c6044\",\"name\":\"ShopP",
+   "organization_features_timestamp": "1793268139978",
+   "timezone": "\"America/Toronto\"",
+   "user": "(identity, not a filter)"
+  },
+  "url_at_end": "/reports/punch-clock-activities",
+  "header_at_end": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+  "location_guard": {
+   "header_start_ok": true,
+   "header_end_ok": true,
+   "x_location_ids_seen": [
+    "39522bc6-abca-4f67-bd12-2840043c2d68"
+   ],
+   "x_location_ok": true,
+   "storage_location_ok": true,
+   "VALID": true
+  },
+  "finished_utc": "2026-10-29T10:02:44.314Z"
+ },
+ "runs": {
+  "ii-default": {
+   "error": "TimeoutError: page.waitForEvent: Timeout 60000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================",
+   "dialog": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | arrow_drop_down | Export"
+  },
+  "i-ticket": {
+   "opts": {
+    "range": "Custom",
+    "from": "10/28/2026",
+    "to": "10/28/2026"
+   },
+   "dialog": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | Custom | arrow_drop_down | event | Start | event | End | Export",
+   "file": "payroll_timesheet.csv",
+   "header": "\"Employee Name\",Date,\"Total Hours\",\"WO Hours\",\"Internal Hours\"",
+   "rows": 7,
+   "days_over_24_all_staff": 0,
+   "target": []
+  },
+  "iii-widest": {
+   "opts": {
+    "range": "Custom",
+    "from": "01/01/2026",
+    "to": "10/29/2026"
+   },
+   "dialog": "Export Report | close | Report Name | Payroll Timesheet | arrow_drop_down | Date Range | Custom | arrow_drop_down | event | Start | event | End | Export",
+   "file": "payroll_timesheet.csv",
+   "header": "\"Employee Name\",Date,\"Total Hours\",\"WO Hours\",\"Internal Hours\"",
+   "rows": 11,
+   "days_over_24_all_staff": 0,
+   "target": []
+  }
+ },
+ "requests": [
+  {
+   "phase": "ii-default",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/users/me/release-notes/unread"
+  },
+  {
+   "phase": "ii-default",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
+  },
+  {
+   "phase": "ii-default",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/technicians"
+  },
+  {
+   "phase": "ii-default",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/staff/clocked?range=this_month"
+  },
+  {
+   "phase": "i-ticket",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/users/me/release-notes/unread"
+  },
+  {
+   "phase": "i-ticket",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/technicians"
+  },
+  {
+   "phase": "i-ticket",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
+  },
+  {
+   "phase": "i-ticket",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/staff/clocked?range=this_month"
+  },
+  {
+   "phase": "i-ticket",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/reporting/export/payroll_timesheet?report=payroll_timesheet&start_date=2026-10-28T04:00:00.000Z&end_date=2026-10-29T03:59:59.999Z&range=custom"
+  },
+  {
+   "phase": "iii-widest",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/users/me/release-notes/unread"
+  },
+  {
+   "phase": "iii-widest",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/technicians"
+  },
+  {
+   "phase": "iii-widest",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
+  },
+  {
+   "phase": "iii-widest",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/staff/clocked?range=this_month"
+  },
+  {
+   "phase": "iii-widest",
+   "status": 200,
+   "xloc": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "url": "/api/reporting/export/payroll_timesheet?report=payroll_timesheet&start_date=2026-01-01T05:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&range=custom"
+  }
+ ]
+}
