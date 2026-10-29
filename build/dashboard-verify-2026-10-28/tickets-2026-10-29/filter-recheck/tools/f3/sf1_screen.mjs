@@ -5,7 +5,7 @@ import fs from 'fs';
 import { execFileSync } from 'child_process';
 import { f3boot, assertLoc } from './f3boot.mjs';
 const APP = 'https://app.staging.shopview.com'; const mode = process.argv[2];
-const L = mode === 'hd-read' ? 'hd' : 'dvi';
+const L = /hd/.test(mode) ? 'hd' : 'dvi';
 const OUT = `/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/SF1/${mode}`; fs.mkdirSync(OUT, { recursive: true });
 const SEED = JSON.parse(fs.readFileSync('/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/SF1/seed.json'));
 const { browser, ctx, page, WP, TZ, LNAME } = await f3boot(L);
@@ -28,8 +28,9 @@ const finance = async (wo, name) => { await go(`/workorders/${wo}/finance`);
 const custTabs = async (cid, name, want) => {
   await go(`/customers/${cid}`, 9000);
   meta.reads[name + '_tabs'] = await page.locator('main .q-tab, main [role="tab"]').allInnerTexts().catch(() => []);
-  for (const tab of ['Deposits', 'Invoices']) {
+  for (const tab of ['Deposits', 'Payments', 'Invoices']) {
     await page.locator('main .q-tab, main [role="tab"]').filter({ hasText: new RegExp(`^\\s*${tab}`) }).first().click().catch(() => {}); await page.waitForTimeout(8000);
+    meta.reads[`${name}_${tab}_controls`] = { ids: await page.locator('main [data-test-id]').evaluateAll(es => [...new Set(es.map(e => e.getAttribute('data-test-id')))].filter(x => /filter|toggle|status|search|tab|chip|show/i.test(x)).slice(0, 40)), toolbar: (await page.locator('main').innerText().catch(() => '')).replace(/\n+/g, ' | ').slice(0, 600) };
     const rows = await page.locator('main tbody tr').evaluateAll(trs => trs.map(t => t.innerText.replace(/\s+/g, ' ').trim()));
     const hits = rows.filter(r => want.some(w => r.includes(w)));
     meta.reads[`${name}_${tab}`] = { url: page.url(), heads: await page.locator('main thead th').allInnerTexts().catch(() => []), hits };
@@ -40,7 +41,7 @@ const custTabs = async (cid, name, want) => {
 const pdf = async (wo, name) => {
   await go(`/workorders/${wo}/finance`);
   meta.reads[name + '_toolbar_ids'] = await page.locator('main button, main a').evaluateAll(es => es.map(e => (e.getAttribute('data-test-id') || '') + '|' + e.innerText.replace(/\s+/g, ' ').trim()).filter(x => x !== '|').slice(0, 30));
-  const btn = page.locator('main button, main a').filter({ hasText: /^download$/ }).first();
+  const btn = page.locator('[data-test-id="button_download_invoice"]').first();
   try { const [dl] = await Promise.all([page.waitForEvent('download', { timeout: 30000 }), btn.click()]); const f = `${OUT}/${name}.pdf`; await dl.saveAs(f);
     const t = execFileSync('python3', ['-I', '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/tools/f3/pdftext.py', f]).toString(); meta.reads[name] = { deposit_lines: t.split('\n').filter(s => /Deposit/i.test(s)).map(s => s.trim()) };
   } catch (e) { meta.reads[name] = { error: String(e).slice(0, 200) }; }
@@ -69,6 +70,8 @@ if (mode === 'dvi-read') {
   await custTabs('a63836b3-ae77-4bb9-8f13-3784e0e22212', 'customer-ZZAUTOTEST-P2C-DEP', ['DEP-4818', 'DEP-4817', ...(SEED.deps || [])]);
   await pdf('1cf29c7d-295e-4919-be7e-12e90806e534', 'invoice-pdf-S1-38221');
 }
+if (mode === 'cust-dvi') { await custTabs('a63836b3-ae77-4bb9-8f13-3784e0e22212', 'customer-ZZAUTOTEST-P2C-DEP', ['DEP-4818', 'DEP-4817', ...(SEED.deps || [])]); await pdf('1cf29c7d-295e-4919-be7e-12e90806e534', 'invoice-pdf-S1-38221'); }
+if (mode === 'cust-hd') { await custTabs('329d4f63-ce36-444a-893f-0a63e56b0038', 'customer-Bravo', ['DEP-4718']); await pdf('c9f68154-3f3c-4fd8-95c7-cdb1a7063f8e', 'invoice-pdf-S2-32989'); }
 if (mode === 'hd-read') {          // read-only: DEP-4718 on S2-32989 (Bravo Mechanical Services), stored 2026-09-16T19:20:15Z = 17 Sep 00:20 Karachi
   await finance('c9f68154-3f3c-4fd8-95c7-cdb1a7063f8e', 'finance-S2-32989');
   await custTabs('329d4f63-ce36-444a-893f-0a63e56b0038', 'customer-Bravo', ['DEP-4718']);

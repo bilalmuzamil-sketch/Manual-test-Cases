@@ -1,0 +1,159 @@
+{
+ "mode": "cust-dvi",
+ "location": "DVI Test",
+ "location_tz": "America/Toronto",
+ "process_TZ": "America/Toronto",
+ "process_zone": "America/Toronto",
+ "observed_at_utc": "2026-10-29T11:28:33.414Z",
+ "shots": {
+  "customer-ZZAUTOTEST-P2C-DEP-Deposits": {
+   "at_utc": "2026-10-29T11:29:57.710Z",
+   "rows": [
+    {
+     "w": "DEP-4818",
+     "box": null
+    },
+    {
+     "w": "DEP-4817",
+     "box": null
+    },
+    {
+     "w": "DEP-4819",
+     "box": {
+      "x": 669,
+      "y": 498,
+      "w": 2471,
+      "h": 96
+     }
+    },
+    {
+     "w": "DEP-4820",
+     "box": {
+      "x": 669,
+      "y": 594,
+      "w": 2471,
+      "h": 96
+     }
+    }
+   ]
+  },
+  "customer-ZZAUTOTEST-P2C-DEP-Payments": {
+   "at_utc": "2026-10-29T11:32:06.057Z",
+   "rows": [
+    {
+     "w": "DEP-4818",
+     "box": null
+    },
+    {
+     "w": "DEP-4817",
+     "box": null
+    },
+    {
+     "w": "DEP-4819",
+     "box": null
+    },
+    {
+     "w": "DEP-4820",
+     "box": null
+    }
+   ]
+  }
+ },
+ "reads": {
+  "customer-ZZAUTOTEST-P2C-DEP_tabs": [
+   "Work Orders (3)",
+   "Part Sales",
+   "Contacts (1)",
+   "Assets (1)",
+   "Notes",
+   "Invoices (2)",
+   "Payments (4)",
+   "Deposits (2)",
+   "Fees & Discounts (0)"
+  ],
+  "customer-ZZAUTOTEST-P2C-DEP_Deposits_controls": {
+   "ids": [
+    "tabs_customer_navigation",
+    "tab_work-orders",
+    "tab_part-sales",
+    "tab_contacts",
+    "tab_vehicles",
+    "tab_notes",
+    "tab_invoices",
+    "tab_payments",
+    "tab_deposits",
+    "tab_default-adjustments",
+    "table_customer_deposits",
+    "toggle_filter_open_deposits",
+    "deposit_status_a7524882-87d1-48ce-a7a7-4b0b549678fe",
+    "deposit_status_7b2a6136-bbba-466e-b4e2-6dec51bea83d"
+   ],
+   "toolbar": "ZZAUTOTEST P2C DEP | edit_note | Contacts | 1 | Assets | 1 | Work Orders (3) | Part Sales | Contacts (1) | Assets (1) | Notes | Invoices (2) | Payments (4) | Deposits (2) | Fees & Discounts (0) | Deposits held: $15.00 | Open only | Datearrow_drop_up\tNo.arrow_drop_up\tWork Order / Part Sale\tarrow_drop_upAmount\tApplied\tOpen Balance\tMethod\tStatus\tMemo\t | Today\tDEP-4819\t | S1-38222 | \t$10.00\t$0.00\t$10.00\tCASH\tHeld\t | Deposit for Work Order S1-3822.. | \t | delete | 2 days ago\tDEP-4820\t | S1-38222 | \t$5.00\t$0.00\t$5.00\tCASH\tHeld\t | Deposit for Work Order S1-3822.. | \t | delete | "
+  },
+  "customer-ZZAUTOTEST-P2C-DEP_Deposits": {
+   "url": "https://app.staging.shopview.com/customers/a63836b3-ae77-4bb9-8f13-3784e0e22212/deposits",
+   "heads": [
+    "Datearrow_drop_up",
+    "No.arrow_drop_up",
+    "Work Order / Part Sale",
+    "arrow_drop_upAmount",
+    "Applied",
+    "Open Balance",
+    "Method",
+    "Status",
+    "Memo",
+    ""
+   ],
+   "hits": [
+    "Today DEP-4819 S1-38222 $10.00 $0.00 $10.00 CASH Held Deposit for Work Order S1-3822.. delete",
+    "2 days ago DEP-4820 S1-38222 $5.00 $0.00 $5.00 CASH Held Deposit for Work Order S1-3822.. delete"
+   ]
+  },
+  "customer-ZZAUTOTEST-P2C-DEP_Payments_controls": {
+   "ids": [
+    "tabs_customer_navigation",
+    "tab_work-orders",
+    "tab_part-sales",
+    "tab_contacts",
+    "tab_vehicles",
+    "tab_notes",
+    "tab_invoices",
+    "tab_payments",
+    "tab_deposits",
+    "tab_default-adjustments",
+    "table_transactions_payment",
+    "button_toggle_payment_expansion_a7524882-87d1-48ce-a7a7-4b0b549678fe",
+    "button_toggle_payment_expansion_546c76b7-3bef-4e35-9acb-68630fa4d24a",
+    "badge_payment_status_546c76b7-3bef-4e35-9acb-68630fa4d24a",
+    "button_toggle_payment_expansion_ed038c3d-ca6e-4fe0-baf5-f39b311c42a1",
+    "badge_payment_status_ed038c3d-ca6e-4fe0-baf5-f39b311c42a1",
+    "button_toggle_payment_expansion_7b2a6136-bbba-466e-b4e2-6dec51bea83d"
+   ],
+   "toolbar": "ZZAUTOTEST P2C DEP | edit_note | Contacts | 1 | Assets | 1 | Work Orders (3) | Part Sales | Contacts (1) | Assets (1) | Notes | Invoices (2) | Payments (4) | Deposits (2) | Fees & Discounts (0) | \tDatearrow_drop_up\tTypearrow_drop_up\tNo.arrow_drop_up\tMemoarrow_drop_up\tarrow_drop_upAmount\tarrow_drop_upStatus\tAction | expand_more | \tToday\tDeposit\t | - | \t | Deposit for Work Order S1-3822.. | \t$10.00\t\t | delete | expand_more | \tYesterday\tPayment\t | - | \t | - | \t$0.00\tPaid\t | delete | expand_more | \tYesterday\tPayment\t | - | \t | - | \t$0.00\tPaid\t | delete | expand_more | \t2 days ago\tDeposit\t | - | \t "
+  },
+  "customer-ZZAUTOTEST-P2C-DEP_Payments": {
+   "url": "https://app.staging.shopview.com/customers/a63836b3-ae77-4bb9-8f13-3784e0e22212/payments",
+   "heads": [
+    "",
+    "Datearrow_drop_up",
+    "Typearrow_drop_up",
+    "No.arrow_drop_up",
+    "Memoarrow_drop_up",
+    "arrow_drop_upAmount",
+    "arrow_drop_upStatus",
+    "Action"
+   ],
+   "hits": []
+  }
+ },
+ "browser_zone": "America/Toronto",
+ "app_timezone_key": "\"America/Toronto\"",
+ "browser_now": "Thu Oct 29 2026 07:28:33 GMT-0400 (Eastern Daylight Time)",
+ "appVersion": "v26.43.3-8ad4001",
+ "loc_start": {
+  "ok": true,
+  "shown_has_name": true,
+  "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+  "ls_location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+ }
+}
