@@ -286,6 +286,9 @@ function scheduledRun(dir) {
 }
 function when(d) { return d ? d.toLocaleString(undefined, { weekday: 'long', hour: '2-digit', minute: '2-digit' }) : ''; }
 let isOwner = false, gateShown = false;
+// teammates start an update by sending a request to the helper session that watches this page
+// (comments "Send to Claude", which the platform allows for editors of the page)
+let commentsApi = null, canSend = 'off';
 function ago(iso) {
   const m = Math.round((Date.now() - Date.parse(iso)) / 60000);
   if (!isFinite(m)) return '';
@@ -314,20 +317,24 @@ function freshness() {
 function updateControl() {
   const r = openRequest();
   const next = scheduledRun(1);
-  // the owner can start the update at once
-  if (isOwner) {
-    const asked = r && r.status === 'requested' ? `<span class="muted">${esc(names[r.by] || 'A teammate')} asked for an update at ${esc(clock(r.at))}.</span>` : '';
-    const started = r && r.status === 'started' && (Date.now() - Date.parse(r.at)) / 60000 < 30;
-    return started ? `<span>${chip('c-info', 'Update started')} at ${esc(clock(r.at))}. It usually takes a few minutes; this page will then ask you to reload.</span>`
-      : `${asked}<button class="btn" data-update="1">Update now</button>`;
+  // an update started in the last 20 minutes: say so instead of offering a second one
+  if (r && r.status === 'started' && (Date.now() - Date.parse(r.at)) / 60000 < 20) {
+    return `<span>${chip('c-info', 'Update started')} by ${esc(names[r.by] || 'a teammate')} at ${esc(clock(r.at))}. It usually takes a few minutes; this page will then ask you to reload.</span>`;
   }
+  if (isOwner || canSend === 'available') {
+    const asked = isOwner && r && r.status === 'requested' ? `<span class="muted">${esc(names[r.by] || 'A teammate')} asked for an update at ${esc(clock(r.at))}.</span>` : '';
+    return `${asked}<button class="btn" data-update="1">Update now</button>`;
+  }
+  if (r && r.status === 'started') r.status = 'requested';
   if (r) {
     const late = next && r.status === 'requested' && Date.parse(r.at) < scheduledRun(-1) - 0 && Date.now() - scheduledRun(-1) > 90 * 60000;
     return `<span>${chip(late ? 'c-warn' : 'c-info', r.status === 'started' ? 'Update started' : 'Update requested')} by ${esc(names[r.by] || 'a teammate')} at ${esc(clock(r.at))}.
       ${r.status === 'started' ? 'It usually takes a few minutes; this page will then ask you to reload.'
         : late ? 'It should have run by now. Please tell Bilal.' : `Bilal can start it at once from this page. Otherwise it runs at the next automatic check, ${esc(when(next))}.`}</span>`;
   }
-  return canWriteDb ? '<button class="btn" data-update="1">Ask for an update</button>' : '';
+  const why = canSend === 'writers_only' ? 'To start updates yourself, ask Bilal to give you edit access to this page (Share menu).'
+    : canSend === 'no_session' ? 'The update helper is not answering right now. Please tell Bilal.' : '';
+  return canWriteDb ? `<button class="btn" data-update="1">Ask for an update</button>${why ? `<span class="muted" style="font-size:.85rem">${esc(why)}</span>` : ''}` : '';
 }
 function renderFresh() {
   const el = $('#fresh'); if (!el || !D) return;
@@ -371,18 +378,37 @@ function wireFresh(el) {
 async function requestUpdate(btn) {
   if (!db || !me) return;
   btn.disabled = true;
-  let started = false;
-  // the page's owner can start the update at once; anyone else's request waits for the owner or
-  // the next release-day run
+  let started = false, code = null;
+  // 1. the page's owner starts the scheduled update directly
   if (isOwner && UPDATE_TRIGGER.startsWith('trig_')) {
     try {
       const mcp = await window.claude.use('mcp');
       if (mcp) { await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: UPDATE_TRIGGER, text: 'Update requested from the portal.' }); started = true; }
     } catch (e) { started = false; }
   }
+  // 2. anyone else with edit access sends the request to the helper session, which starts it
+  if (!started && commentsApi) {
+    try {
+      canSend = await commentsApi.canSendToClaude();
+      if (canSend === 'available') {
+        const anchor = await commentsApi.anchorFor($('#fresh'));
+        await commentsApi.sendToClaude({ anchor, text: 'UPDATE REQUEST: please update this page now.' });
+        started = true;
+      }
+    } catch (e) { code = (e && e.code) || 'upstream_error'; }
+  }
+  // nothing was sent and the viewer can simply try again: leave no request behind
+  if (code === 'consent_required' || code === 'rate_limited') {
+    btn.disabled = false;
+    btn.insertAdjacentHTML('afterend', `<span class="chip c-warn">${code === 'rate_limited' ? 'Too many requests just now. Please wait a minute and try again.'
+      : 'Not sent: the page needs your permission to send it. Press Update now again and choose Allow.'}</span>`);
+    return;
+  }
+  // 3. otherwise record the request, so the owner and the next scheduled check see it
   try {
     await db.collection('scan_requests').doc(hid('update' + Date.now())).set({ release: 'production', kind: 'update', by: me, at: new Date().toISOString(), status: started ? 'started' : 'requested' });
     const g = $('#gate'); if (g && !g.hidden) g.hidden = true;
+    if (code) btn.insertAdjacentHTML('afterend', '<span class="chip c-warn">The update helper could not be reached. Your request is saved; please tell Bilal.</span>');
   } catch (e) { btn.disabled = false; btn.insertAdjacentHTML('afterend', `<span class="chip c-bad">Not sent: ${esc(e.message || e.code)}</span>`); }
 }
 
@@ -1138,9 +1164,12 @@ async function connect() {
   user = await window.claude.use('user');
   if (user) {
     try { me = await user.id(); } catch (e) { me = null; }
-    try { canApprove = !!(await user.canEdit()); } catch (e) { canApprove = false; }
     try { isOwner = !!(await user.isOwner()); } catch (e) { isOwner = false; }
+    // saving a release and recording approvals stay with the page's owner, even when the team
+    // has edit access (which they need for Update now)
+    canApprove = isOwner;
   }
+  try { commentsApi = await window.claude.use('comments'); if (commentsApi) canSend = await commentsApi.canSendToClaude(); } catch (e) { canSend = 'off'; }
   db = await window.claude.use('db');
   if (!db) return;
   try { const c = await user?.can?.('data.write'); canWriteDb = !!me && c !== false; } catch (e) { canWriteDb = !!me; }

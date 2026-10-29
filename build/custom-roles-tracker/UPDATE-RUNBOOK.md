@@ -1,5 +1,10 @@
 # Custom Roles tracker — the scheduled update (runbook)
 
+**Update now** on the page: the page's owner starts this task directly. Anyone else with edit access
+sends the request to the **"Custom Roles tracker — Update now helper"** session
+(`session_01LirJvBZEdKWdGSBQcYebEF`), which watches the page and starts this task. Nobody else watches
+the page.
+
 The tracker page must always show the data for the release that is live. A scheduled task runs
 this runbook in a fresh session **on release days only: Monday, Tuesday, Thursday and Friday at 18:41
 Pakistan time** (releases are usually tagged between 13:20 and 15:20 PKT). The QA lead chose release days
@@ -31,7 +36,10 @@ the page's owner); anyone else's **Ask for an update** is picked up by the owner
    `Artifact` publish with `url` = the page URL, `file_path` = `build/custom-roles-tracker/portal/dist/index.html`,
    `files` = `{"data.json": "build/custom-roles-tracker/portal/dist/data.json"}` (absolute paths). Leave out
    `capabilities` and `icon` so the page keeps them. When the publish succeeds, run
-   `python3 build/custom-roles-tracker/tools/auto_update.py --mark-published`. If it fails, set
+   `python3 build/custom-roles-tracker/tools/auto_update.py --mark-published`. Then STOP WATCHING the page
+   (publishing starts a watch): load `ArtifactComments` and call action `watch` with the page `url` and
+   `on: false`. Only the "Update now helper" session may watch the page; otherwise every update session
+   would wake up, and cost tokens, each time someone presses Update now. If the publish fails, set
    `status.page_built_at` to `previous_page_built_at` and `status.problem` to
    `"The page could not be republished. Please tell Bilal."`
 5. **Tell the page what was found.** `ArtifactData` `set` collection `status`, doc `freshness`, data = `status`.

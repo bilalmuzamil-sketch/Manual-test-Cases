@@ -132,8 +132,16 @@ The page reads that record and shows a bar on every tab: **Up to date**, **This 
 **out of date** (a scheduled release-day check did not run), **A newer version is ready** (reload), or **could not
 be updated**. In any of the last four cases it asks the viewer to update or reload before going on,
 with "Continue with the data on this page" as the way past. **Update now** starts the scheduled task
-at once for the page's owner. Everyone else gets **Ask for an update**, which the owner can start from
+at once for the page's owner and for teammates with edit access (see below). View-only viewers get **Ask for an update**, which the owner can start from
 the page or the next scheduled run picks up.
+
+**Update now works for anyone with edit access.** The page's owner starts the scheduled task directly.
+For a teammate, the page sends a "Send to Claude" note on the page, which wakes the
+**"Custom Roles tracker — Update now helper"** session (`session_01LirJvBZEdKWdGSBQcYebEF`, a small
+session whose only job is to start the scheduled task, at most once every 10 minutes). The platform
+only lets editors of a page send to Claude, so the QA team needs **edit access** to the page (Share
+menu). View-only teammates get **Ask for an update** instead. Saving a release and recording approvals
+stay with the owner, even when the team has edit access.
 
 ## Storage, integrity, sharing
 
