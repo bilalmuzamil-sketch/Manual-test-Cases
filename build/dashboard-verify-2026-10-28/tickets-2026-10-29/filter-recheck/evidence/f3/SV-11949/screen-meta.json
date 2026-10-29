@@ -1,0 +1,128 @@
+{
+ "ticket": "SV-11949",
+ "location": "Staging Heavy Duty - 9919",
+ "location_tz": "Asia/Karachi",
+ "process_TZ": "Asia/Karachi",
+ "process_zone": "Asia/Karachi",
+ "observed_at_utc": "2026-10-29T09:11:27.016Z",
+ "runs": {
+  "i-custom-oct20": {
+   "spec": {
+    "name": "i-custom-oct20",
+    "range": [
+     "custom",
+     "10/20/2026",
+     "10/20/2026"
+    ],
+    "rates": 1,
+    "shot": 1
+   },
+   "chips": [
+    "calendar_today Date Range: Custom keyboard_arrow_down",
+    "Invoice Status keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=custom&range=2026-10-20&range=2026-10-20",
+   "rows_page1": [
+    "",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-37627 ZZAUTOTEST F3 Keyboard Limits 47469 Bravo Co $350.00 $0.00 $36.75 $386.75 GST 5% $19.34 $406.09",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-37621 Testing Company Milos $154.95 $5.88 $16.27 $177.10 GST 5% $8.85 $185.95",
+    "Paid Oct 20, 2026 Oct 20, 2026 P2-2409 Testing Company Milos $0.00 $323.88 $0.00 $336.38 GST 5% $16.82 $353.20",
+    "Paid Oct 20, 2026 Oct 20, 2026 S2-33605 A & J Truck & Trailer Repair $224.93 $0.00 $23.62 $248.55 GST 5% $12.43 $260.98",
+    "",
+    "Total $1,206.22"
+   ],
+   "bottom": "",
+   "rowboxes": [
+    [
+     "",
+     556,
+     370,
+     2978,
+     0
+    ],
+    [
+     "Paid Oct 20, 2026 Oct 20, 2026 S2-37627 ",
+     556,
+     370,
+     2978,
+     96
+    ],
+    [
+     "Paid Oct 20, 2026 Oct 20, 2026 S2-37621 ",
+     556,
+     466,
+     2978,
+     96
+    ],
+    [
+     "Paid Oct 20, 2026 Oct 20, 2026 P2-2409 T",
+     556,
+     562,
+     2978,
+     96
+    ],
+    [
+     "Paid Oct 20, 2026 Oct 20, 2026 S2-33605 ",
+     556,
+     658,
+     2978,
+     96
+    ],
+    [
+     "",
+     556,
+     754,
+     2978,
+     0
+    ],
+    [
+     " Total $1,206.22",
+     556,
+     754,
+     2978,
+     96
+    ]
+   ],
+   "chipbox": {
+    "range": {
+     "x": 1759,
+     "y": 171,
+     "w": 400,
+     "h": 56
+    },
+    "status": {
+     "x": 2188,
+     "y": 171,
+     "w": 314,
+     "h": 56
+    }
+   },
+   "search": {
+    "CM2-4520": {
+     "rows": [
+      "",
+      "",
+      "Total $1,206.22"
+     ],
+     "empty": "No record matches the search \"CM2-4520\"."
+    }
+   },
+   "rates_url": "https://app.staging.shopview.com/reports/sales-tax/all-tax-rates?range=custom&range=2026-10-20&range=2026-10-20",
+   "rates": [
+    "",
+    "GST 5% $57.44",
+    ""
+   ],
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-19T19:00:00.000Z&endDate=2026-10-20T18:59:59.999Z&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-19T19:00:00.000Z&endDate=2026-10-20T18:59:59.999Z&search=CM2-4520",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-19T19:00:00.000Z&endDate=2026-10-20T18:59:59.999Z&search="
+   ]
+  }
+ },
+ "browser_zone": "Asia/Karachi",
+ "app_timezone_key": "\"Asia/Karachi\"",
+ "browser_now": "Thu Oct 29 2026 14:11:27 GMT+0500 (Pakistan Standard Time)",
+ "appVersion": "v26.43.2-f8698cb"
+}

@@ -275,3 +275,27 @@ shared quota (Rule 90). This is Rule 93's learning loop at the scale of one obst
 ---
 
 
+
+## AMENDMENT 1: the QA lead's ruling on filters (29 Oct 2026, verbatim). This overrides the verdict wording above where they differ.
+
+> "ALL the tickets which you have filed under the Temporary epic and under the dashboard EPIC, i have a doubt that few or ALL might have given the wrong expected results because the filters are by default being applied there, you need to make sure that you delelect ALL the filters and keep/edit the ticket as per the findings then and any ticket which appears to show expected results after removing all the filters should be moved to obsolete and removed from the epic, however keep the filters applied if the filter is the requirement to test something which is related to the filter, but if a use case or the ticket is not related to the filter and we are testing the behavior of the report where the filter is not needed then REMOVE the filter and then see the behavior if that is correct or not."
+
+What this means for every ticket:
+
+1. **Is the filter the thing being tested?** Answer YES or NO for every filter the ticket uses, with a one-line reason. Some examples:
+   - "Last 90 days" covering 91 days: the date option IS the subject.
+   - Location column hidden when one location is picked: the location pick IS the subject.
+   - Invoice Status "Partially Paid" missing an invoice: the status filter IS part of the subject.
+   - A/R or A/P "as of" date: the report cannot run without one. It stays at its default (today) unless a past date is the point of the test.
+2. **Deselect every filter that is NOT the subject.** Clear it, or set it to "All" or to the widest choice. A control that cannot be cleared (a date the report cannot run without) goes to its widest or default value. Then run the reproduction again and record what the screen shows.
+3. **New verdict, exactly one of:**
+   - **KEEP AS IS**: the defect shows with all non-subject filters deselected, and the ticket's steps and pictures already use no unneeded filter.
+   - **KEEP, EDIT**: the defect still shows with the non-subject filters deselected, but the ticket's steps, example or pictures used an unneeded filter. Give:
+     - the replacement steps with those filters removed;
+     - the new Actual and Expected figures, with the arithmetic;
+     - ONE replacement picture taken with the filters deselected, annotated and looked at;
+     - the exact sentences to change.
+   - **OBSOLETE**: with the non-subject filters deselected, the screen shows the expected behaviour. The ticket came from a filter. Give the figures.
+   - **NOT REPRODUCED NOW**: same as before.
+4. SV-11955 (Notes) has been moved to Obsolete and out of the epic by the QA lead. Do no further work on it.
+5. Still no Jira writes by workers. The coordinator applies the edits and Obsolete moves after reviewing your results.
