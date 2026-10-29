@@ -146,7 +146,7 @@
  },
  "api": [
   "GET organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f",
-  "GET js?libraries=places&key=AIzaSyCPN5W8yDviHWCRbLHfGys421NDST6Jsno&callback=Function.prototype&loading=async",
+  "GET js?libraries=places&key=<REDACTED-CLIENT-KEY>&callback=Function.prototype&loading=async",
   "GET organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f",
   "GET js/66/12d/places_impl.js",
   "GET js/66/12d/places.js",
@@ -171,7 +171,7 @@
   "GET reporting/reports/inventory-value/export?format=pdf&range=custom&start_date=2026-10-29T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&locations=39522bc6-abca-4f67-bd12-2840043c2d68&columns=part_number,description,category,vendor,location,qty,unit_cost,unit_sell,margin,margin_pct,total_sell,total_cost&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=total_cost&pagination[descending]=true",
   "GET reporting/reports/inventory-value?range=custom&start_date=2026-10-29T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=total_cost&pagination[descending]=true",
   "GET reporting/reports/inventory-value/export?format=csv&range=custom&start_date=2026-10-29T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&columns=part_number,description,category,vendor,location,qty,unit_cost,unit_sell,margin,margin_pct,total_sell,total_cost&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=total_cost&pagination[descending]=true",
-  "GET js?libraries=places&key=AIzaSyCPN5W8yDviHWCRbLHfGys421NDST6Jsno&callback=Function.prototype&loading=async",
+  "GET js?libraries=places&key=<REDACTED-CLIENT-KEY>&callback=Function.prototype&loading=async",
   "GET staff/my-workplaces",
   "GET organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f",
   "GET users/me/release-notes/unread",
@@ -191,7 +191,7 @@
   "GET js/66/12d/main.js",
   "GET mapsjs/gen_204?csp_test=true",
   "GET reporting/individual-punch-clock/today?range=today",
-  "GET js?libraries=places&key=AIzaSyCPN5W8yDviHWCRbLHfGys421NDST6Jsno&callback=Function.prototype&loading=async",
+  "GET js?libraries=places&key=<REDACTED-CLIENT-KEY>&callback=Function.prototype&loading=async",
   "GET staff/my-workplaces",
   "GET organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f",
   "GET users/me/release-notes/unread",
@@ -215,56 +215,56 @@
  "writes": [
   [
    "POST",
-   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "6364962/envelope/?sentry_version=7&sentry_key=<REDACTED>&sentry_client=sentry.javascript.vue%2F10.72.0",
    200,
    "{\"sent_at\":\"2026-10-29T09:39:38.402Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"299f69cc6ff44dee9566a095fda67298\",\"init\":true,\"started\":\"2026-10-29T09:39:38.234Z\",\"timestamp\":\"2026-10-29T09:39:38.402Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"6d71382d-4ddb-470",
    "{}"
   ],
   [
    "POST",
-   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "6364962/envelope/?sentry_version=7&sentry_key=<REDACTED>&sentry_client=sentry.javascript.vue%2F10.72.0",
    200,
    "{\"sent_at\":\"2026-10-29T09:39:38.403Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"cf0d5329fbea45f6a03f951958b2d11d\",\"init\":true,\"started\":\"2026-10-29T09:39:38.402Z\",\"timestamp\":\"2026-10-29T09:39:38.402Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"6d71382d-4ddb-4707-a0",
    "{}"
   ],
   [
    "POST",
-   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "6364962/envelope/?sentry_version=7&sentry_key=<REDACTED>&sentry_client=sentry.javascript.vue%2F10.72.0",
    200,
    "{\"sent_at\":\"2026-10-29T09:40:07.468Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"cf0d5329fbea45f6a03f951958b2d11d\",\"init\":false,\"started\":\"2026-10-29T09:39:38.402Z\",\"timestamp\":\"2026-10-29T09:40:07.469Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"6d71382d-4ddb-47",
    "{}"
   ],
   [
    "POST",
-   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "6364962/envelope/?sentry_version=7&sentry_key=<REDACTED>&sentry_client=sentry.javascript.vue%2F10.72.0",
    200,
    "{\"sent_at\":\"2026-10-29T09:40:07.469Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"cbb57b01264b4775b9e357c7c7464209\",\"init\":true,\"started\":\"2026-10-29T09:40:07.468Z\",\"timestamp\":\"2026-10-29T09:40:07.469Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"6d71382d-4ddb-4707-a0",
    "{}"
   ],
   [
    "POST",
-   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "6364962/envelope/?sentry_version=7&sentry_key=<REDACTED>&sentry_client=sentry.javascript.vue%2F10.72.0",
    200,
    "{\"sent_at\":\"2026-10-29T09:40:31.239Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"7e16b45d9c0847c0aa4059760797a485\",\"init\":true,\"started\":\"2026-10-29T09:40:31.181Z\",\"timestamp\":\"2026-10-29T09:40:31.239Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"6d71382d-4ddb-470",
    "{}"
   ],
   [
    "POST",
-   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "6364962/envelope/?sentry_version=7&sentry_key=<REDACTED>&sentry_client=sentry.javascript.vue%2F10.72.0",
    200,
    "{\"sent_at\":\"2026-10-29T09:40:31.240Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"813069ad0ba5430583a04640031dbee1\",\"init\":true,\"started\":\"2026-10-29T09:40:31.239Z\",\"timestamp\":\"2026-10-29T09:40:31.239Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"6d71382d-4ddb-4707-a0",
    "{}"
   ],
   [
    "POST",
-   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "6364962/envelope/?sentry_version=7&sentry_key=<REDACTED>&sentry_client=sentry.javascript.vue%2F10.72.0",
    200,
    "{\"sent_at\":\"2026-10-29T09:40:35.578Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"3a3656ad3b994b84b07e7382a038a236\",\"init\":true,\"started\":\"2026-10-29T09:40:35.514Z\",\"timestamp\":\"2026-10-29T09:40:35.578Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"6d71382d-4ddb-470",
    "{}"
   ],
   [
    "POST",
-   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "6364962/envelope/?sentry_version=7&sentry_key=<REDACTED>&sentry_client=sentry.javascript.vue%2F10.72.0",
    200,
    "{\"sent_at\":\"2026-10-29T09:40:35.578Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"7eec514a29e14f45bf4aaa3fb1e8b307\",\"init\":true,\"started\":\"2026-10-29T09:40:35.578Z\",\"timestamp\":\"2026-10-29T09:40:35.578Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"6d71382d-4ddb-4707-a0",
    "{}"

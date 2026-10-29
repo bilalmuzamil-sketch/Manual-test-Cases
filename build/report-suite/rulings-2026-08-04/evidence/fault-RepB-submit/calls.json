@@ -8,7 +8,7 @@
  {
   "status": 200,
   "method": "GET",
-  "url": "/maps/api/js?libraries=places&key=AIzaSyCPN5W8yDviHWCRbLHfGys421NDST6Jsno&callback=Function.prototype&loading=async",
+  "url": "/maps/api/js?libraries=places&key=<REDACTED-CLIENT-KEY>&callback=Function.prototype&loading=async",
   "body": "\n\nwindow.google = window.google || {};\ngoogle.maps = google.maps || {};\n(function() {\n  var rules = {\n    createHTML: function(src) {\n      return src;\n    },\n    createScriptURL: function(src) {\n      return src;\n    }\n  };\n  var ttPolicy;\n  \n  try {\n   ttPolicy = window.trustedTypes.createPolicy('"
  },
  {
@@ -62,7 +62,7 @@
  {
   "status": 200,
   "method": "POST",
-  "url": "/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F8.55.2",
+  "url": "/api/6364962/envelope/?sentry_version=7&sentry_key=<REDACTED>&sentry_client=sentry.javascript.vue%2F8.55.2",
   "body": "{}"
  },
  {
