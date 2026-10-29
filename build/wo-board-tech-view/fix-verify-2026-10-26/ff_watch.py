@@ -38,13 +38,21 @@ for r in rows:
         mine = [c for c in cs if 'QA Status: Passed' in (c.get('body') or '') and c['author'].get('displayName') == 'Bilal Muzamil']
         r['our_passed_comment'] = [c['id'] for c in mine if ts(c['created']) > ts(r['entered_qa'])]
         r['old_passed_comment'] = [c['id'] for c in mine if ts(c['created']) <= ts(r['entered_qa'])]
-    r['testable_new'] = bool(r.get('qa_status') and r.get('branch') and not r.get('our_passed_comment'))
-    r['no_branch'] = bool(r.get('qa_status') and not r.get('branch') and not r.get('our_passed_comment'))
+        # 29 Oct 2026 (SV-11837): a ticket we FAILED in this QA stint is not "new" every round — only when it re-enters QA (entered_qa
+        # moves past our comment) or someone else comments after our Failed (e.g. the developer says a fix is up)
+        failed = [c for c in cs if 'QA Status: Failed' in (c.get('body') or '') and c['author'].get('displayName') == 'Bilal Muzamil' and ts(c['created']) > ts(r['entered_qa'])]
+        r['our_failed_comment'] = [c['id'] for c in failed]
+        last_f = max((ts(c['created']) for c in failed), default=None)
+        r['reply_after_fail'] = bool(last_f is not None and any(c['author'].get('displayName') != 'Bilal Muzamil' and ts(c['created']) > last_f for c in cs))
+    waiting = bool(r.get('our_failed_comment')) and not r.get('reply_after_fail')
+    r['testable_new'] = bool(r.get('qa_status') and r.get('branch') and not r.get('our_passed_comment') and not waiting)
+    r['failed_waiting'] = bool(r.get('qa_status') and waiting and not r.get('our_passed_comment'))
+    r['no_branch'] = bool(r.get('qa_status') and not r.get('branch') and not r.get('our_passed_comment') and not waiting)
 stamp = datetime.datetime.utcnow().strftime('%Y%m%d-%H%M')
 json.dump(rows, open(os.path.join(HERE, f'ff-watch-{stamp}.json'), 'w'), indent=1)
 print(f'{len(rows)} children of SV-11593 | testable and not yet verified by us: {sum(r["testable_new"] for r in rows)} | in QA with no QA Branch: {sum(r["no_branch"] for r in rows)}')
 for r in rows:
     if r.get('qa_status'):
-        tag = 'NEW ' if r['testable_new'] else 'NO-BRANCH' if r['no_branch'] else 'done'
+        tag = ('RECHECK' if r.get('reply_after_fail') else 'NEW ') if r['testable_new'] else 'FAILED-WAIT' if r.get('failed_waiting') else 'NO-BRANCH' if r['no_branch'] else 'done'
         print(tag, r['key'], r['status'], r['branch'], r['summary'][:70], r.get('our_passed_comment'), ('back in QA since ' + r['entered_qa'][:16] + ', older pass ' + str(r['old_passed_comment'])) if r.get('old_passed_comment') else '')
 from collections import Counter; print(Counter(r['status'] for r in rows))

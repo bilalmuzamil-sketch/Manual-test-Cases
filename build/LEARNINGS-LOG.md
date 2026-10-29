@@ -480,3 +480,10 @@
 - The PRD (v82 S4-N6) only says "in the design's format" — no timing; the 300 ms comes from the ticket.
 - Fact: on 29 Oct staging quick-login (`POST https://api.staging.shopview.com/api/quick-login {"key":"admin"}`) answered 200 with the same sv_sso_session that signs in to the QA branches (59 permissions) — the 21 Oct staging cookie file was expired (401 sso_required).
 #sv11837 #tooltip #no-qa-branch #staging-signin → L0594, L0609
+
+## L0611 — 2026-10-29 — SV-11837 FAILED on sv11754: the tooltip is still the app's grey one; the watch now waits after a Failed
+- SV-11837's QA branch is https://sv11754.qa.shopview.com (Slavcho: "ships in the same PR as SV-11754 (#3970) … same QA env"); the QA Branch field was filled at 11:03 local. QA lead gave a fresh sign-in (SSO + PHPSESSID + cf_clearance) — saved to /tmp/shopview/sv11754.env only.
+- Measured with `sv11837-tooltip-1029.mts` (Board View and Tech View): lock tooltip shows after 0.33–0.34 s (300 ms ✓; the switcher's own tooltip shows in ~0.05 s, so the delay is the lock's own); the greyed-out Reassign lead technician / Unassign tooltip shows in ~0.04–0.05 s (✗); both are rgb(117,117,117) with 4 px corners and no arrow (✗ vs the Design picture's rgb(19,25,37) box with an arrow). Comment 79772 (QA Status: Failed, side-by-side design/build picture + Tech View menu picture). No TestRail test covers SV-11837 (C96964 checks the words only).
+- Pictures: `annotate_v2.py` boxes are given in the SOURCE pixels — for a side-by-side made with PIL, compute each box from the scale used when composing.
+- `ff_watch.py` used to call a ticket we FAILED "NEW" every round while it stayed in Testing QA; now it is FAILED-WAIT until it re-enters QA or someone comments after our Failed (then RECHECK). The 2-hour watch prompt was updated for SV-11837.
+#sv11837 #tooltip #ff-watch #failed-wait → L0610, L0594

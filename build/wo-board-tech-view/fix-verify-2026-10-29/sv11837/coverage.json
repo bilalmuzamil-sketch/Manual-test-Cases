@@ -1,0 +1,108 @@
+{
+ "ticket": "SV-11837",
+ "build": "v26.43.2-539491f (sv11754, 29 Oct 2026)",
+ "surfaces": [
+  "Board View",
+  "Tech View"
+ ],
+ "lines": [
+  {
+   "id": "L1",
+   "quote": "\"set time to show up after 300ms\" — the lock icon tooltip",
+   "cells": {
+    "Board View": {
+     "verdict": "pass",
+     "evidence": [
+      "sv11754/XTIPBV-lock-I.png",
+      "sv11754/sv11837-tooltip-1029.json"
+     ],
+     "setup_readback": "work orders read back: Invoiced (locked) and Declined; Declined shows no lock on this branch (that is SV-11902). Control: the view switcher tooltip shows in ~0.05 s with the same timer",
+     "observed": "shows 0.33 s after the pointer arrives (timer polls every ~16 ms); hides in ~0.31 s"
+    },
+    "Tech View": {
+     "verdict": "pass",
+     "evidence": [
+      "sv11754/XTIPTV-lock-I.png",
+      "sv11754/sv11837-tooltip-1029.json"
+     ],
+     "setup_readback": "work orders read back: Invoiced (locked) and Declined; Declined shows no lock on this branch (that is SV-11902). Control: the view switcher tooltip shows in ~0.05 s with the same timer",
+     "observed": "shows after 0.34 s"
+    }
+   }
+  },
+  {
+   "id": "L2",
+   "quote": "\"set time to show up after 300ms\" — the greyed-out Reassign lead technician / Unassign tooltip on the same work order",
+   "cells": {
+    "Board View": {
+     "verdict": "fail",
+     "evidence": [
+      "sv11754/XTIPBV-menu-I-leadtechni.png",
+      "sv11754/sv11837-tooltip-1029.json"
+     ],
+     "setup_readback": "work orders read back: Invoiced (locked) and Declined; Declined shows no lock on this branch (that is SV-11902). Control: the view switcher tooltip shows in ~0.05 s with the same timer; menu read: both actions disabled",
+     "observed": "shows after about 0.04 s — at once, not after 300 ms"
+    },
+    "Tech View": {
+     "verdict": "fail",
+     "evidence": [
+      "SV-11837-2-menu-tooltip.png",
+      "sv11754/XTIPTV-menu-I-leadtechni.png",
+      "sv11754/sv11837-tooltip-1029.json"
+     ],
+     "setup_readback": "work orders read back: Invoiced (locked) and Declined; Declined shows no lock on this branch (that is SV-11902). Control: the view switcher tooltip shows in ~0.05 s with the same timer",
+     "observed": "shows after about 0.05 s"
+    }
+   }
+  },
+  {
+   "id": "L3",
+   "quote": "\"they also do not look as in the design. Lets update the look\" — lock icon tooltip vs the ticket's Design picture (near-black rgb(19,25,37) box, white text, arrow pointing down at the lock)",
+   "cells": {
+    "Board View": {
+     "verdict": "fail",
+     "evidence": [
+      "SV-11837-1-look-vs-design.png",
+      "ticket-63074.png",
+      "sv11754/sv11837-tooltip-1029.json"
+     ],
+     "setup_readback": "work orders read back: Invoiced (locked) and Declined; Declined shows no lock on this branch (that is SV-11902). Control: the view switcher tooltip shows in ~0.05 s with the same timer",
+     "observed": "background rgb(117,117,117) grey, corners 4 px, no arrow (no pseudo-element or child arrow) — the app's standard tooltip, unchanged from 28 Oct"
+    },
+    "Tech View": {
+     "verdict": "fail",
+     "evidence": [
+      "sv11754/XTIPTV-lock-I.png",
+      "sv11754/sv11837-tooltip-1029.json"
+     ],
+     "setup_readback": "work orders read back: Invoiced (locked) and Declined; Declined shows no lock on this branch (that is SV-11902). Control: the view switcher tooltip shows in ~0.05 s with the same timer",
+     "observed": "same grey box, no arrow"
+    }
+   }
+  },
+  {
+   "id": "L4",
+   "quote": "same look for the greyed-out actions' tooltip",
+   "cells": {
+    "Board View": {
+     "verdict": "fail",
+     "evidence": [
+      "sv11754/XTIPBV-menu-I-leadtechni.png",
+      "sv11754/sv11837-tooltip-1029.json"
+     ],
+     "setup_readback": "work orders read back: Invoiced (locked) and Declined; Declined shows no lock on this branch (that is SV-11902). Control: the view switcher tooltip shows in ~0.05 s with the same timer",
+     "observed": "same grey box, no arrow"
+    },
+    "Tech View": {
+     "verdict": "fail",
+     "evidence": [
+      "SV-11837-2-menu-tooltip.png",
+      "sv11754/sv11837-tooltip-1029.json"
+     ],
+     "setup_readback": "work orders read back: Invoiced (locked) and Declined; Declined shows no lock on this branch (that is SV-11902). Control: the view switcher tooltip shows in ~0.05 s with the same timer",
+     "observed": "same grey box, no arrow"
+    }
+   }
+  }
+ ]
+}
