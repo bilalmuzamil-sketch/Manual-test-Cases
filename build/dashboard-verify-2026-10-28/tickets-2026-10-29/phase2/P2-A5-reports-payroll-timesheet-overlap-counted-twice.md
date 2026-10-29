@@ -71,7 +71,3 @@ Existing example, no set-up needed: switch to **Staging Heavy Duty - 9919**, **E
 - Browser and test computer set to each location's time zone (America/Toronto, Asia/Karachi).
 - Heavy Duty, September 2026: 3 employee-days are over 24 hours (Haley Brown 2 Sep 24.50 and 6 Sep 28.50; Admin Shopview 19 Sep 24.33). Admin Shopview's 19 Sep is a different cause (see the developer note).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The export sums each record's hours per day. Merge one employee's records for the day into a single span first (count overlapping minutes once), then total. Separate, possibly linked to SV-10702: when a clock runs past midnight, its evening part (for example 18 Sep 11:40 PM–11:59 PM at Heavy Duty) is added to the next day, which is how Admin Shopview's 19 Sep reaches 24.33, and a timesheet that starts after midnight UTC (after 8:00 PM in Toronto) also gets an empty 0.00 row dated the next day (DVI Test, 2026-10-29).

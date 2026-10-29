@@ -45,7 +45,3 @@ Not affected — this report does not feed any Dashboard tile.
 - Browser, app time-zone setting and test computer set to the location's time zone (Asia/Karachi).
 - It is the only $0.00 invoice in Ready To Send at Heavy Duty; Staging Lethbridge - 4310 has none waiting.
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The invoice record S2-16924 has total 0.00, status pending, paid 0. The Ready To Send list includes it because it is unpaid. Leave out invoices whose total is $0.00 (the two $0.00-balance credits on the list are credits, not invoices, and are not part of this ticket).

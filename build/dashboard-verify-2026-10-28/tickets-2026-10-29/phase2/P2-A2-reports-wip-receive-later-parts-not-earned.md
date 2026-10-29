@@ -62,7 +62,3 @@ Not affected — this report does not feed any Dashboard tile.
 - Browser and test computer set to the location's time zone (Asia/Karachi).
 - Other work orders at Heavy Duty show the same, for example S2-33465 and S2-33376 (each has a Receive Later part and shows $37.67 in Parts Remaining on the same tab).
 - Not checked on Production or on a QA branch. The PDF and CSV downloads were not checked.
-
-## For developers
-
-A part request whose status is "received later" is valued as not yet received. Count it with the received parts (Parts Earned, including its core charge), the same as a received part.

@@ -60,7 +60,3 @@ Not affected — this report does not feed any Dashboard tile.
 - Browser and test computer set to the location's time zone (America/Toronto).
 - Also seen on 28 Oct 2026 during the reports check, and first reported as SV-8927 (closed 9 Aug 2026).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The browser stores the column choice under `report_table:inventory-value`; with nothing stored, every selectable column is visible (`IV_DEFAULT_VISIBLE_COLUMNS` in `app/src/components/ts/reporting/inventory-value/Model.ts`). Leave Margin and Total Sell out of the default set.

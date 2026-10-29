@@ -58,7 +58,3 @@ The new Credit Terms story SV-11676 (S7-R7) says the same: *"An invoice keeps th
 - Browser, app time-zone setting and test computer set to the location's time zone (America/Toronto).
 - The export covers every location in the organisation.
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The Customer Invoice export's Terms column reads the company's current `credit_term`; the invoice record has its own `credit_terms` (COD on S1-38216 and on all 7 September examples, whose customer cards are now Net 30/50/60). Use the invoice's stored term. The DueDate column is already the invoice's own due date.

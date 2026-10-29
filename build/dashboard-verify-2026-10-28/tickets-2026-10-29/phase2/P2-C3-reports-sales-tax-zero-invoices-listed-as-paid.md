@@ -53,7 +53,3 @@ Our example is work order **S1-38218** (customer ZZAUTOTEST P2C ZERO, Total $0.0
 - Browser and test computer set to the location's time zone (America/Toronto).
 - Also seen on older $0.00 invoices at Staging Heavy Duty - 9919 (for example S2-38213, S2-38102, S2-36365, This month).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-`/api/reporting/sales-tax-report` returns S1-38218 with `status: paid`, `subTotalWithTax: 0`, and `paidDate` equal to the invoice's creation time, although the work order has no customer payments. Leave out invoices whose total with tax is $0.00. Sales By Representative showing such an invoice as "Paid" is correct and stays (SV-9217; Chris's answer to question 24); this ticket is only about Sales Tax Collected.

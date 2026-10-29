@@ -55,7 +55,3 @@ The invoices above are test data at DVI Test and stay in place. Invoices made at
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
 - Browser and test computer set to the location's time zone (America/Toronto).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-Rows come from `GET /api/reporting/reports/sales-by-representative/{repKey}/invoices` and appear to be ordered by the full invoice time stamp (`created_on`), newest first. Order by the invoice's local date descending, then by the numeric part of the invoice number ascending, then P before S.

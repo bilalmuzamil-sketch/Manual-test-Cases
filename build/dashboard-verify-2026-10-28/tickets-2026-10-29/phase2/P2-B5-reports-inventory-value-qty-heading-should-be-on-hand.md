@@ -57,7 +57,3 @@ Not affected — this report does not feed any Dashboard tile.
 - Browser and test computer set to the location's time zone (America/Toronto).
 - The CSV header row reads: `"Part #",Description,Category,Vendor,Location,Qty,"Unit Cost",…`.
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-Rename the quantity column's label from "Qty" to "On Hand" in the Inventory Value table, the column selector and both exports (PDF and CSV). Parts Velocity already uses "On Hand".

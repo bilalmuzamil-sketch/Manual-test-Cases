@@ -57,7 +57,3 @@ Not affected — this report does not feed any Dashboard tile.
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
 - Browser, app time-zone setting and test computer set to the location's time zone (Asia/Karachi).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-Each failed export attempt adds a new unexported-items row for the same credit memo instead of updating the existing one. At Heavy Duty, 60 credit memos have 2+ `credit_memo_create` rows with the same `referenceId` (here 87891177-…, CM2-4533). Keep one row per document and overwrite its error with the latest. Please also check credit_memo_apply (43 records) and deposit_application (8 records) with several rows: decide whether those are one row per applied item or true repeats.

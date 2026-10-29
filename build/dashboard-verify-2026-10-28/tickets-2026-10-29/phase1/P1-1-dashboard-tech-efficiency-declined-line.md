@@ -65,7 +65,3 @@ Dashboard PRD, version 53 (22 Oct 2026), Story 3, S3-R2, Technician Efficiency:
 - Other test data at DVI Test changes the tile total from day to day. Fabian Bonjean's row on S1-38198 is the stable example.
 - The work orders S1-38198, S1-38199 and S1-38195 are test data at DVI Test and stay in place.
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The Technician Efficiency calculation (tile and report) takes every clocked line of an invoiced work order, including lines with status Declined. Billing Efficiency (Service Advisor Analysis) already leaves a declined line out. A related earlier decision for the work order's Stats tab is SV-2529, "Tech hours to report as 0, if line is declined" (Done, 2024).

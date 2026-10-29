@@ -53,7 +53,3 @@ Under 0.01 hours (36 seconds) counts as no time, so the technician should not be
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).
 - Also seen for Nebojsa Custom-Admin (four clocks of a few seconds each on 16–17 Sep 2026) with This Year selected.
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The technician's total in the selected range rounds to 0.00 hours, but the row is still returned. The Dashboard table shows the same rows as the report. Leave out any technician whose total clocked time in the range is under 0.01 hours.

@@ -59,7 +59,3 @@ The same happens for every credit memo with tax in any date range. For example, 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
 - Browser and test computer set to the location's time zone (Asia/Karachi).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-For Oct 20 (Karachi day, `startDate=2026-10-19T19:00:00.000Z`), `/api/reporting/sales-tax-report` returns the four invoice rows and `totals.taxRatesTotal` GST 57.44, which is what the screen shows. The same response's `totals.totalTax` is **51.19**: `SalesTaxReportFetcher::fetchCreditMemoTaxSum()` already takes off the credit memo line-item tax (6.25 for CM2-4520), but only from that one total, which no screen shows. The rows, the per-rate totals (See All Tax Rates) and the export need the credit memos as well. The credit memo's own PDF (`/api/credit-memos/{id}/pdf`) shows Tax -$6.25, Total -$131.25.

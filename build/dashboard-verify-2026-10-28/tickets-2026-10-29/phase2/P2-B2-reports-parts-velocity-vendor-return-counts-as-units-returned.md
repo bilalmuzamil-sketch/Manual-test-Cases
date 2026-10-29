@@ -67,7 +67,3 @@ Parts Velocity Report PRD (version 12), S5-R3: "Units Returned is sourced from p
 - Browser and test computer set to the location's time zone (America/Toronto).
 - First seen the same way on 28 Oct 2026 (a different return of the same part, also cancelled afterwards).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-Units Returned reads part-return records, and a manual return to the vendor (Parts → Returns → Create Return) writes the same kind of record (status "returned", no work order, no line). Only count returns that come from a work-order part return or a parts-sale credit. Test record of 29 Oct: return 7a98ea67-06fa-450a-a2e9-6cad94a0dfb0 (packaging slip "ZZAUTOTEST P2B vendor return", now cancelled).

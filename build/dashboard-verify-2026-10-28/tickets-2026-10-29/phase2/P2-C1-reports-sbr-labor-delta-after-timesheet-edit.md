@@ -65,7 +65,3 @@ and hours worked are
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
 - Browser and test computer set to the location's time zone (America/Toronto).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-Sales By Representative seems to use the hours stored when the invoice was made. After the edit, the rep's invoice list still returned `hours_worked: 0.5` / `inv_hrs: 0.5` for S1-38217, while the work order statistics returned `clocked_hours: 1`. Sales By Customer behaves the same way (P1-4). The data check of 28 Oct found the same pattern for Labor Margin and Parts Margin where a part was credited after invoicing.

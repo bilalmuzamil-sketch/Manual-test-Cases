@@ -65,7 +65,3 @@ and hours worked are
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-Sales By Customer (and the Dashboard's Sales by Customer table, which reads it) seems to use hours stored when the invoice was made. The work order's Stats tab and the Technician Efficiency and Billing Efficiency figures read the current timesheets. The report endpoint returned 0.5 for this customer after the edit. Our data check found the same pattern for Labor Margin and Parts Margin on invoices where a part was credited after invoicing (for example P2-2436). Sales By Representative behaves the same way.

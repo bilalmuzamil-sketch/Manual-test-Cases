@@ -60,7 +60,3 @@ SV-11690 (Expected): *"one rule for deposits in A/R (aging = Invoices tab / stat
 - Browser, app time-zone setting and test computer set to the location's time zone (Asia/Karachi).
 - The A/R reports cover every location in the organisation, so this shows from any location.
 - Not checked on Production or on a QA branch. Not re-created on new test data; the two part sales above are existing staging records.
-
-## For developers
-
-After the SV-11690 change, A/R Aging leaves held deposits out. On a part sale the deposit stays "Held" after invoicing (applied amount 0, not linked to the invoice), but the customer account already lowers the invoice balance by it. So A/R shows the invoice at full and no credit. Once a part sale is invoiced, its deposit should reduce that invoice's open balance on A/R Aging (Summary, Detail and Collection), as the Invoices tab does.

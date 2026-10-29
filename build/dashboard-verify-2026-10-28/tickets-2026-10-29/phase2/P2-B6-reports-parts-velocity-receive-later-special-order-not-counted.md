@@ -70,7 +70,3 @@ Not affected — this report does not feed any Dashboard tile.
 - Browser and test computer set to the location's time zone (America/Toronto).
 - Counted correctly for comparison: **ZZAUTOTEST-SO2-10282011**, received before invoicing on S1-38203: 1.00 sold, $80.00, Demand 1.
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The Special Order row is built from the vendor part requests on invoiced/paid work orders, but its figures come from billed work-order parts linked to those requests. A request that is "Receive later" (or still "Awaiting") has no work-order part yet although the invoice bills it, so the row gets zeros. Test records (DVI Test): request 95b7fa59-080d-4e90-9a88-7658c9d86c76 on S1-38206, request 4ca59349-1813-4b01-868e-7e0953472e65 on S1-38203; catalogue part b537f81c-f6e0-4d6e-a76b-236261fdd0ec.

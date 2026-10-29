@@ -53,7 +53,3 @@ Not affected — this report does not feed any Dashboard tile.
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
 - Browser, app time-zone setting and test computer set to the location's time zone (Asia/Karachi). Lethbridge was read with the session on America/Edmonton.
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-Unexported-items rows with an empty `number`: Heavy Duty — credit_memo_create 255 of 255, credit_memo_apply 88/88, credit_memo_refund 40/40, deposit_application 23/31, customer_payment_create 143/208; Lethbridge — credit_memo_create 28/28, customer_payment_create 5/9. Fill `number` from the referenced document (credit memo display number, deposit number). Payments have no own number until SV-10588; show the reference number when there is one. SV-4929 (Done) already asked for numbers on payment rows.

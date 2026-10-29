@@ -809,5 +809,5 @@ QA lead: *"keep the issue clear ... so that it can be understood by a lay man or
 the ticket for the first time."* Shape: **What is wrong** (what the screen shows, what it means, what is NOT affected, which section to
 look in) → **Steps** (one action per line, exact labels) → **Actual / Expected** (one line each, sum spelled out) → line break →
 **Source** (verbatim quote, version, date) → **Screenshot(s)** (as few as prove it) → **Where it was seen** (build, environment, user,
-location time zone per Rule 99) → **For developers** (one or two lines, optional). No row counts, check names or internal vocabulary.
+location time zone per Rule 99) → **no developer section** (QA lead, 29 Oct 2026: "no technical or developer section is needed in the tickets"). No row counts, check names or internal vocabulary.
 Read it as a stranger before filing. Example: SV-11922 as rewritten 28 Oct 2026. Lessons: `build/LESSONS-2026-10-28.md`.

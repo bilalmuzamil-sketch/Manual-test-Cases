@@ -67,7 +67,3 @@ Dashboard PRD, version 53, Story 3, S3-R2:
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026, Admin.
 - Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Edmonton).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The technician's clocked time on the line appears to be rounded to 0.01 hours, and the line is dropped before the split. A line where every clock is under 36 seconds then gets no share. Chris's answer: split on the real (unrounded) clocked time, and round only the number that is shown. This affects both the Invoiced and the Completed tabs.

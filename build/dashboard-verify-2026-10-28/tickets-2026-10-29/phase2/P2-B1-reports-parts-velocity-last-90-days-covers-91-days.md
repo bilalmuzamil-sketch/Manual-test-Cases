@@ -59,7 +59,3 @@ SV-11514: "The default range is Last 90 Days."
 - Browser and test computer set to the location's time zone (America/Toronto).
 - The other date options (This week, Last week, This month, Last month, This quarter, Last quarter, This year, Last year, Last 12 months) cover the right dates (checked 28 Oct 2026).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The Last 90 days preset resolves to (today − 90 days) … today, inclusive, and the request carries that window (on 28 Oct: start 2026-07-30T04:00:00.000Z, end 2026-10-29T03:59:59.999Z for America/Toronto). It should be (today − 89 days) … today.

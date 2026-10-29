@@ -49,7 +49,7 @@ These are stated here **in full** because a session that gets only this far must
   `localStorage['timezone']` key (it falls back to UTC — amendment 29 Oct)**, all RECORDED in the evidence and the ticket. A result seen with the zones unmatched or unrecorded is NOT VERIFIED and is never filed.
 - **🔴 TICKETS ARE WRITTEN FOR A FIRST-TIME, NON-TECHNICAL READER (100).** QA lead, 2026-10-28: *"keep the issue clear ... so that it
   can be understood by a lay man ... or by a person who is look at the ticket for the first time."* What the screen shows and what it
-  means · one example with the arithmetic · where on screen to look · plain steps · source quote · few pictures · developer note last.
+  means · one example with the arithmetic · where on screen to look · plain steps · source quote · few pictures · **no technical/developer section (29 Oct)**.
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act

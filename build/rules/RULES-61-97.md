@@ -2389,7 +2389,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **(4) Steps: one action per line, the exact on-screen labels, no API, no jargon.** Then Actual and Expected in one line each.
     **(5) The source quote stays** (Rule 73 [5]/[6]): after a line break, verbatim, with version and date.
     **(6) Screenshots: as few as prove it** (usually one per screen), annotated in plain sentences.
-    **(7) Technical detail is one short "For developers" note at the very end**, or nothing — never in the body.
+    **(7) NO technical or developer section at all (amended 29 Oct 2026 — QA lead, verbatim: *"also please note that no technical or developer section is needed in the tickets."*).** The 28 Oct wording allowed one short "For developers" note at the end; that is withdrawn — the ticket carries what the screen shows, the example, steps, expected, source, pictures and where it was seen, nothing else.
     **(8) No counts of thousands of rows, no internal check names, no session or worker vocabulary** in the ticket; those live in
     the evidence files.
     **(9) Before filing, read it as a stranger:** could someone who has never opened this report follow it and see the fault in

@@ -67,7 +67,3 @@ Same PRD, change log of 20 Aug 2026: "Demand counts distinct transactions, not i
 - Browser and test computer set to the location's time zone (America/Toronto).
 - A reversed invoice that is not created again correctly keeps Demand 1 with Units Sold 0.00, and two different work orders correctly add 1 each (seen 28 Oct 2026).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-Demand counts distinct invoices among the in-window invoicing stock movements. A reversal removes the invoice and the re-invoice creates a new invoice id, so one work order gives two distinct invoices. Count distinct work orders (or parts sales) instead. Test records (DVI Test): inventory part 5871f791-e4b0-4fdb-a6d1-26d3600b2844; work orders b1b353e7-90e9-4c31-ad96-d7bef9609ad7 (S1-38203), 19504c20-8617-48ef-ace7-5f68a58c9c5e (S1-38204), 25b08188-f428-41fc-be61-ee6e7f2753ae (S1-38206).

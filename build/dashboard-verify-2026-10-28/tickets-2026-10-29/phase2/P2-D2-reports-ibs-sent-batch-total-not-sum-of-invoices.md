@@ -52,7 +52,3 @@ Not affected — this report does not feed any Dashboard tile.
 - Browser, app time-zone setting and test computer set to the location's time zone (America/Edmonton).
 - The other sent batch at Lethbridge (Sep 16, 2026, $7,859.73) and both at Staging Heavy Duty - 9919 add up correctly.
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The batch's stored amount and balance (9,473.35) differ from the sum of its batch transactions (9,183.29); the batch export reads the transactions and is right (Invoices $9183.29, S/C $174.48, Net $9008.81). The $290.06 gap matches no single invoice or the service charge, so a stored total was probably not updated when the batch's contents changed. Please find the cause and derive the batch Total/Balance from its transactions.

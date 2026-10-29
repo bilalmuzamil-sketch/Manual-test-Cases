@@ -61,7 +61,3 @@ Parts Velocity Report PRD (version 12), S5-R4: Last Sale is "Whole days from tod
 - Browser and test computer set to the location's time zone (Asia/Karachi).
 - Also seen on 28 Oct 2026 (it read 160 days that day).
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-Last Sale for an inventory row appears to come from the latest invoicing stock movement (the earlier code read, 28 Oct). On S2-16621 the inventory part request (inventory part ada07bc4-45f8-4f37-9b05-4ba62ecc22fa, part line afc161d0-3aa7-475a-ba03-7ae496acae27) was billed but wrote no stock movement, so it is skipped. Use the latest billed sale (invoiced/paid part line), with or without a stock movement; SV-11516's stored last-sale date should follow the same rule. Units Sold and Demand on this row (0.00 / 0) are not part of this ticket.

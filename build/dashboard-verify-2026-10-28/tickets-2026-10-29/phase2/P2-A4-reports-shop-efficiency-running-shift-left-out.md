@@ -65,7 +65,3 @@ Not affected — this report does not feed any Dashboard tile.
 - Browser and test computer set to the location's time zone (America/Toronto).
 - Technician Utilization (This month) counted the same running time: Admin Shopview 0.78 hours, of which 0.72 was the running timesheet.
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-Shop Efficiency reads only clocked-out records. Count an open record from its start up to now (or to the end of the selected range), with the same rule as SV-11688: an open record older than 24 hours is left out.

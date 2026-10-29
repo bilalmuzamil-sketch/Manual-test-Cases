@@ -52,7 +52,3 @@ Not affected — this report does not feed any Dashboard tile.
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
 - Browser and test computer set to the location's time zone (Asia/Karachi).
 - Not checked on Production or on a QA branch. The PDF and CSV downloads were not checked.
-
-## For developers
-
-Use the singular when the number is exactly 1: "1 day". Keep "0 days" and "2 days" and up as they are. The downloads should use the same wording as the screen.

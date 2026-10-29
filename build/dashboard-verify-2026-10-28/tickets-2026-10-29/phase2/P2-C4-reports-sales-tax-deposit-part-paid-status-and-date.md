@@ -74,7 +74,3 @@ and
 - Older invoices with the same problem (28 Oct data check): P2-2441, P2-2442, P2-2445, P2-2416, P2-2417, P2-2315, S2-37799, S2-32138 (Staging Heavy Duty - 9919) and S3-16408 (Staging Lethbridge - 4310).
 - When part of the money is an ordinary payment (not a deposit), the report correctly shows Partially Paid.
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The invoice record reads `partially_paid` with an open balance of 105.00, and its only payment is a deposit (`is_deposit: true`, `payment_date 2026-10-27T00:46Z` = Oct 26, 8:46 PM Toronto). `/api/reporting/sales-tax-report?dateRange=today` returns the row with `status: paid` and `paidDate` = the invoice's creation time; `statuses[0]=partially_paid` returns no rows. The report seems to ignore deposits when it works out status and paid date. Side note: the invoice on the Finance tab prints this deposit as "Oct 27, 2026", one day later than the Deposit Date picked; that is passed on separately.

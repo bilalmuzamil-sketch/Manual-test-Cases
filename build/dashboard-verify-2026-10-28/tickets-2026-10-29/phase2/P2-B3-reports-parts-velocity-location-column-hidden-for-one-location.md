@@ -58,7 +58,3 @@ Parts Velocity Report PRD (version 12), Key Decisions: "A per-row Location colum
 - Browser and test computer set to the location's time zone (America/Toronto).
 - Only the one-location case was checked on screen; the two-location view was not re-checked this time.
 - Not checked on Production or on a QA branch.
-
-## For developers
-
-The column is shown only when the Location filter resolves to more than one location (the S2-R12 rule) and is left out of the column picker otherwise. Show it by default, and offer it in the picker, whenever the user has access to more than one location, whatever is picked (S3-R10, Key Decisions). Users with one location keep never seeing it.
