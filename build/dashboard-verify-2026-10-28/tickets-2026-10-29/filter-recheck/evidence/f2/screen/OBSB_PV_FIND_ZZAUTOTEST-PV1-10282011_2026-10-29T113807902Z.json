@@ -1,0 +1,220 @@
+{
+ "mode": "OBSB_PV_FIND",
+ "arg": "ZZAUTOTEST-PV1-10282011",
+ "location": "DVI Test",
+ "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+ "location_tz": "America/Toronto",
+ "process_TZ": "America/Toronto",
+ "process_zone": "America/Toronto",
+ "observed_at_utc": "2026-10-29T11:38:07.902Z",
+ "steps": {
+  "lastsale_ZZAUTOTEST-PV1-10282011": {
+   "chips": [
+    "Date: Last 12 months",
+    "Type: All types",
+    "Category: All categories",
+    "Vendor: All vendors",
+    "Bin: All bins",
+    "Location: All locations"
+   ],
+   "headers": [
+    "Typearrow_drop_up",
+    "Part #arrow_drop_up",
+    "Descriptionarrow_drop_up",
+    "Categoryarrow_drop_up",
+    "Vendorarrow_drop_up",
+    "Location",
+    "Units Sold info_outlinearrow_drop_up",
+    "Avg Costarrow_drop_up",
+    "Avg Sellarrow_drop_up",
+    "Revenuearrow_drop_up",
+    "Marginarrow_drop_up",
+    "Margin %arrow_drop_up",
+    "Demand info_outlinearrow_drop_up",
+    "Last Salearrow_drop_up",
+    "On Handarrow_drop_up"
+   ],
+   "storage": {
+    "local": {
+     "mode": "\"light\"",
+     "organization_features_timestamp": "1793273888843",
+     "timezone": "\"America/Toronto\"",
+     "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId\":\"05f4c649-a4b9-458d-bf15-be051c8e149d\"},{\"id\":\"3e44ab71-f97c-4c32-b48f-9293d41c6044\",\"name\":\"ShopP",
+     "report_table:parts-velocity": "{\"version\":\"1\",\"view\":{\"sortBy\":\"demand\",\"descending\":true,\"columns\":[\"type\",\"part_number\",\"description\",\"category\",\"vendor\",\"units_sold\",\"unit_cost\",\"sell_price\",\"revenue\",\"margin\",\"margin_pct\",\"demand\",\"last_sale\",\"on_hand\"]}}",
+     "report_range:parts-velocity": "{\"version\":\"1\",\"range\":[\"last-12-months\"]}",
+     "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\""
+    },
+    "session": {
+     "page-search:report-parts-velocity:2": "ZZAUTOTEST-PV1-10282011",
+     "sentryReplaySession": "{\"id\":\"24f10ada8c0547b49c927b82b03850f9\",\"started\":1793273888316,\"lastActivity\":1793273924800,\"segmentId\":0,\"sampled\":\"buffer\",\"dirty\":false}"
+    },
+    "url": "https://app.staging.shopview.com/reports/parts-velocity?dateRange=last-12-months&locationIds=25a0d576-b371-4b82-bef4-41ba977f31c2&locationIds=b3c8c820-f815-4cf1-8938-10956c5ee71a&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2&locationIds=39522bc6-abca-4f67-bd12-2840043c2d68&search=ZZAUTOTEST-PV1-10282011"
+   },
+   "rows": {
+    "ZZAUTOTEST-PV1-10282011": [
+     {
+      "Typearrow_drop_up": "Inventory",
+      "Part #arrow_drop_up": "ZZAUTOTEST-PV1-10282011",
+      "Descriptionarrow_drop_up": "ZZAUTOTEST PV stocked part",
+      "Categoryarrow_drop_up": "HD-Filters",
+      "Vendorarrow_drop_up": "—",
+      "Location": "DVI Test",
+      "Units Sold info_outlinearrow_drop_up": "6.00",
+      "Avg Costarrow_drop_up": "$20.00",
+      "Avg Sellarrow_drop_up": "$30.00",
+      "Revenuearrow_drop_up": "$180.00",
+      "Marginarrow_drop_up": "$60.00",
+      "Margin %arrow_drop_up": "33.3%",
+      "Demand info_outlinearrow_drop_up": "5",
+      "Last Salearrow_drop_up": "0 days",
+      "On Handarrow_drop_up": "4.00"
+     }
+    ]
+   },
+   "notifications": [],
+   "api_count": 26
+  }
+ },
+ "api": [
+  "GET organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+  "GET js?libraries=places&key=AIzaSyCPN5W8yDviHWCRbLHfGys421NDST6Jsno&callback=Function.prototype&loading=async",
+  "GET organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+  "GET staff/my-workplaces",
+  "GET organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+  "GET users/me/release-notes/unread",
+  "GET technician-tasks/my-current-task",
+  "GET parts-catalogue/categories-list?",
+  "GET parts-catalogue/options",
+  "GET inventory/bin-locations?pagination[rowsPerPage]=500",
+  "GET iam/view-profile/",
+  "GET notifications/unread-count",
+  "GET notifications/subscribe-token",
+  "GET reporting/individual-punch-clock/today?range=today",
+  "GET js/66/12d/util.js",
+  "GET js/66/12d/places_impl.js",
+  "GET js/66/12d/places.js",
+  "GET js/66/12d/controls.js",
+  "GET js/66/12d/common.js",
+  "GET js/66/12d/main.js",
+  "GET mapsjs/gen_204?csp_test=true",
+  "GET reporting/individual-punch-clock/today?range=today",
+  "GET reporting/reports/parts-velocity?type=both&range=custom&start_date=2026-07-31T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=demand&pagination[descending]=true",
+  "GET reporting/reports/parts-velocity?type=both&range=custom&start_date=2026-07-31T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=demand&pagination[descending]=true",
+  "GET reporting/reports/parts-velocity?type=both&range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=demand&pagination[descending]=true",
+  "GET reporting/reports/parts-velocity?type=both&range=custom&start_date=2025-11-01T04:00:00.000Z&end_date=2026-10-30T03:59:59.999Z&locations=25a0d576-b371-4b82-bef4-41ba977f31c2,b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2,39522bc6-abca-4f67-bd12-2840043c2d68&search=ZZAUTOTEST-PV1-10282011&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=demand&pagination[descending]=true"
+ ],
+ "writes": [
+  [
+   "POST",
+   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   200,
+   "{\"sent_at\":\"2026-10-29T11:38:08.428Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"ba5d2649628546849a9cb4e5dfc4ac88\",\"init\":true,\"started\":\"2026-10-29T11:38:08.314Z\",\"timestamp\":\"2026-10-29T11:38:08.428Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"6d71382d-4ddb-470",
+   "{}"
+  ],
+  [
+   "POST",
+   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   200,
+   "{\"sent_at\":\"2026-10-29T11:38:08.429Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"97d78951c82045688d50b2a3166a32a1\",\"init\":true,\"started\":\"2026-10-29T11:38:08.428Z\",\"timestamp\":\"2026-10-29T11:38:08.428Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"6d71382d-4ddb-4707-a0",
+   "{}"
+  ],
+  [
+   "POST",
+   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   200,
+   "{\"sent_at\":\"2026-10-29T11:38:22.734Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"97d78951c82045688d50b2a3166a32a1\",\"init\":false,\"started\":\"2026-10-29T11:38:08.428Z\",\"timestamp\":\"2026-10-29T11:38:22.734Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"6d71382d-4ddb-47",
+   "{}"
+  ],
+  [
+   "POST",
+   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   200,
+   "{\"sent_at\":\"2026-10-29T11:38:22.735Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"c53a8e2b065e4d65b94cf52dfaf850af\",\"init\":true,\"started\":\"2026-10-29T11:38:22.734Z\",\"timestamp\":\"2026-10-29T11:38:22.734Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"6d71382d-4ddb-4707-a0",
+   "{}"
+  ],
+  [
+   "POST",
+   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   200,
+   "{\"sent_at\":\"2026-10-29T11:38:34.228Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"0931832fef3d488a8ef6ef6b59ba5110\",\"init\":true,\"started\":\"2026-10-29T11:38:34.227Z\",\"timestamp\":\"2026-10-29T11:38:34.227Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"6d71382d-4ddb-4707-a0",
+   "{}"
+  ],
+  [
+   "POST",
+   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   200,
+   "{\"sent_at\":\"2026-10-29T11:38:34.227Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"c53a8e2b065e4d65b94cf52dfaf850af\",\"init\":false,\"started\":\"2026-10-29T11:38:22.734Z\",\"timestamp\":\"2026-10-29T11:38:34.227Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"6d71382d-4ddb-47",
+   "{}"
+  ],
+  [
+   "POST",
+   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   200,
+   "{\"sent_at\":\"2026-10-29T11:38:44.799Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"0931832fef3d488a8ef6ef6b59ba5110\",\"init\":false,\"started\":\"2026-10-29T11:38:34.227Z\",\"timestamp\":\"2026-10-29T11:38:44.799Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"6d71382d-4ddb-47",
+   "{}"
+  ],
+  [
+   "POST",
+   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   200,
+   "{\"sent_at\":\"2026-10-29T11:38:44.800Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"1ce18b8743aa4a299794b1cb6f188313\",\"init\":true,\"started\":\"2026-10-29T11:38:44.799Z\",\"timestamp\":\"2026-10-29T11:38:44.799Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"6d71382d-4ddb-4707-a0",
+   "{}"
+  ],
+  [
+   "POST",
+   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   200,
+   "{\"sent_at\":\"2026-10-29T11:38:53.003Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"1ce18b8743aa4a299794b1cb6f188313\",\"init\":false,\"started\":\"2026-10-29T11:38:44.799Z\",\"timestamp\":\"2026-10-29T11:38:53.003Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"6d71382d-4ddb-47",
+   ""
+  ],
+  [
+   "POST",
+   "6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   200,
+   "{\"sent_at\":\"2026-10-29T11:38:53.004Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"3a12ef054d13440d9b74b8c21de4e857\",\"init\":true,\"started\":\"2026-10-29T11:38:53.003Z\",\"timestamp\":\"2026-10-29T11:38:53.003Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"6d71382d-4ddb-4707-a0",
+   ""
+  ]
+ ],
+ "browser_zone": "America/Toronto",
+ "browser_now": "Thu Oct 29 2026 07:38:07 GMT-0400 (Eastern Daylight Time)",
+ "app_timezone_key": "\"America/Toronto\"",
+ "appVersion": "v26.43.3-8ad4001",
+ "header_start": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+ "location_ok_start": true,
+ "locMenu": [
+  "Select all",
+  "1 selected",
+  "DVI Test",
+  "QB Location",
+  "Staging Heavy Duty - 9919",
+  "Staging Lethbridge - 4310",
+  "Clear selection"
+ ],
+ "allLocItem": 1,
+ "locMenuAfter": [
+  "Select all",
+  "4 selected",
+  "DVI Test",
+  "QB Location",
+  "Staging Heavy Duty - 9919",
+  "Staging Lethbridge - 4310",
+  "Clear selection"
+ ],
+ "dateMenu": [
+  "This week",
+  "Last week",
+  "This month",
+  "Last month",
+  "This quarter",
+  "Last quarter",
+  "This year",
+  "Last year",
+  "Last 90 days",
+  "Last 12 months",
+  "Custom"
+ ],
+ "readAt": "2026-10-29T11:38:52.472Z",
+ "header_end": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+ "location_ok_end": true,
+ "VALID": true
+}

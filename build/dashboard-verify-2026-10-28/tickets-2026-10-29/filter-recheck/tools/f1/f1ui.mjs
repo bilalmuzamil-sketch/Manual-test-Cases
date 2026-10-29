@@ -4,7 +4,7 @@
 // Usage: TZ=<zone> node f1ui.mjs <MODE>
 import { fresh, finish, details, tile, tileRange, reportPreset } from './f1lib.mjs';
 const mode = process.argv[2];
-const LOCOF = { P11: 'DVI', P14: 'DVI', C1: 'DVI', A4: 'DVI', A5DVI: 'DVI', P12: 'LETH', P13: 'HD', A1: 'HD', A2: 'HD', A5HD: 'HD', P11R: 'DVI', P12R: 'LETH', P13R: 'HD', A1PIC: 'HD', A2PIC: 'HD', P14R: 'DVI' };
+const LOCOF = { P11: 'DVI', P14: 'DVI', C1: 'DVI', A4: 'DVI', A5DVI: 'DVI', P12: 'LETH', P13: 'HD', A1: 'HD', A2: 'HD', A5HD: 'HD', P11R: 'DVI', P12R: 'LETH', P13R: 'HD', A1PIC: 'HD', A2PIC: 'HD', WIP11937: 'HD', WIP11938: 'HD', P14R: 'DVI' };
 const c = await fresh(LOCOF[mode], 'ui-' + mode, { downloads: /^A5/.test(mode) });
 const { page, txt, box } = c; const out = { runs: {} };
 const rowOf = (rows, re) => rows.filter(r => re.test(r.join(' | '))).map(r => r.join(' | '));
@@ -123,7 +123,7 @@ if (mode === 'A4') {
   const M = await import(P2A);
   const fmt = d => d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }).replace(/,(?= \d{2}:)/, '');
   c.setPhase('create'); await c.go('/reports/punch-clock-activities', 10000);
-  const st = new Date(Date.now() - 40 * 60000); st.setSeconds(0, 0); out.start_wanted = fmt(st);
+  const st = new Date(Date.now() - 30 * 60000); st.setSeconds(0, 0); out.start_wanted = fmt(st);   // ticket: 'Start: today, about 30 minutes ago'
   await M.newTimesheet({ ...c, shot: async () => {} }, { staff: 'Admin Shopview', wo: 'S1-38220', line: 'Test DVI Line', start: out.start_wanted, end: '', shotName: null });
   out.created_posts = c.meta.posts; out.created_at_utc = new Date().toISOString();
   await seRead('ii', null);           // fresh default (This month)
@@ -202,6 +202,28 @@ if (mode === 'A2PIC') {
   const cells = []; const r = row(); for (let i = 0; i < await r.locator('td').count(); i++) cells.push({ h: heads[i], t: (await r.locator('td').nth(i).innerText()).trim(), box: await box(r.locator('td').nth(i)) });
   out.controls = (await c.controls()).chips.filter(x => /filter_chip_/.test(x.id) && !/clear/.test(x.id)).map(x => x.id + '=' + x.text);
   await c.shot('iii', { row: await box(r), cells, tab: await box(tab), chips: await page.locator('[data-test-id^="filter_chip_"]').evaluateAll(es => es.filter(e => e.getBoundingClientRect().width > 0 && !/clear/.test(e.getAttribute('data-test-id'))).map(e => { const b = e.getBoundingClientRect(); return { id: e.getAttribute('data-test-id'), text: e.innerText.replace(/\s+/g, ' ').trim(), box: { x: Math.round(b.x * 2), y: Math.round(b.y * 2), w: Math.round(b.width * 2), h: Math.round(b.height * 2) } }; })) });
+}
+
+// Follow-up: walk the edited WIP steps EXACTLY as written, fresh context, recording the screen after every step
+if (mode === 'WIP11937' || mode === 'WIP11938') {
+  const tbl = '[data-test-id="table_work_in_progress_report"]';
+  const first = async n => (await c.rows(`${tbl} tbody tr`, n)).map(r => r.join(' | ')).filter(x => x.trim());
+  const locChip = page.locator('[data-test-id="filter_chip_locationIds"]').first();
+  const arrow = async h => page.locator(`${tbl} thead th`).filter({ hasText: h }).first().evaluate(th => th.className + ' | aria-sort=' + th.getAttribute('aria-sort'));
+  c.setPhase('steps'); await c.go('/reports/work-in-progress', 15000);
+  out.step_open = { location_chip: await txt(locChip), asof: await txt(page.locator('[data-test-id="filter_chip_asOfDate"]')), customer: await txt(page.locator('[data-test-id="filter_chip_customers"]')), active_tab: (await page.locator('[data-test-id="page_work_in_progress_report"] .q-tab--active').allInnerTexts()).join('|') };
+  await locChip.click(); await page.waitForTimeout(2500); out.step_location_menu = (await page.locator('.q-menu').last().innerText()).replace(/\n+/g, ' | ');
+  await page.locator('.q-menu').last().getByText('Select all', { exact: true }).first().click(); await page.waitForTimeout(1500); await page.keyboard.press('Escape'); await page.waitForTimeout(8000);
+  out.step_location_after = await txt(locChip);
+  const want = mode === 'WIP11937' ? { tab: 'Partially', head: 'Days Open', wo: 'S2-38105' } : { tab: 'Not Started', head: 'Customer', wo: 'S2-33740' };
+  await page.locator('[data-test-id="page_work_in_progress_report"] .q-tab').filter({ hasText: want.tab }).first().click(); await page.waitForTimeout(8000);
+  if (mode === 'WIP11938') { await page.locator('[data-test-id="button_column_selection"]').first().click(); await page.waitForTimeout(2000); const m = page.locator('.q-menu').last();
+    for (const k of ['parts_earned', 'parts_remaining']) { const t = m.locator(`[data-test-id="toggle_column_${k}"]`); if ((await t.getAttribute('aria-checked')) !== 'true') { await t.click(); await page.waitForTimeout(1200); } }
+    await page.keyboard.press('Escape'); await page.waitForTimeout(4000); }
+  out.before_sort = { first: (await first(3)).map(x => x.slice(0, 90)), arrow: await arrow(want.head) };
+  for (let k = 1; k <= 2; k++) { await page.locator(`${tbl} thead th`).filter({ hasText: want.head }).first().click(); await page.waitForTimeout(7000);
+    const rows = await first(30); const pos = rows.findIndex(r => r.includes(want.wo)) + 1;
+    out['after_click_' + k] = { arrow: await arrow(want.head), first5: rows.slice(0, 5).map(x => x.slice(0, 110)), position_of_example_in_first_30: pos || null, example_row: rows.find(r => r.includes(want.wo)) || null }; }
 }
 const r = await finish(c, out);
 console.log(JSON.stringify({ mode, v: r.meta.appVersion, zones: [r.meta.browser_zone, r.meta.process_zone, r.meta.app_timezone_key, r.meta.location_tz] }));
