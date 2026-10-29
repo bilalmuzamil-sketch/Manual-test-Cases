@@ -4,6 +4,8 @@
 what we wrote, so we are asking again with the facts corrected. The text below is ready to paste. Nothing has
 been sent yet; it waits for the QA lead.
 
+**Sent 29 Oct 2026:** added to the end of the Google Doc as "Section 3: Questions 38 and 39 again, with the facts corrected" (Chris's first answers left as they were), on the QA lead's go-ahead ("Your suggestion is good").
+
 - **Q38's mistake:** we wrote that the invoices "and their customers" were COD. The invoices are COD. The
   customers' cards now say Net 30, 50 or 60, which is the same term the file shows. So the file is not inventing
   a term; it takes the customer's term as it is today instead of the invoice's own term.

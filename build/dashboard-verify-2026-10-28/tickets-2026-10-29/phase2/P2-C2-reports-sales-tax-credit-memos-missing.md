@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11949 (https://shopview.atlassian.net/browse/SV-11949), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-C2-SV-11949.html
 SUMMARY: Reports - Sales Tax Collected leaves out credit memos, so their tax is not taken off the totals
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-4573 (BE/FE Sales Tax report view)
@@ -57,5 +57,5 @@ The same happens for every credit memo with tax in any date range. For example, 
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
-- Browser and test computer set to the location's time zone (Asia/Karachi).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).
 - Not checked on Production or on a QA branch.

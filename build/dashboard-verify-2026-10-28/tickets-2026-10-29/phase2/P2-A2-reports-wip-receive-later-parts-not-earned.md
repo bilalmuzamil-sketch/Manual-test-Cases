@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11938 (https://shopview.atlassian.net/browse/SV-11938), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-A2-SV-11938.html
 SUMMARY: Reports - Work In Progress counts parts marked "Receive Later" as Parts Remaining instead of Parts Earned
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8660 (WIP - Story 4 - Columns and Calculations)
@@ -59,6 +59,6 @@ Not affected — this report does not feed any Dashboard tile.
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
-- Browser and test computer set to the location's time zone (Asia/Karachi).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).
 - Other work orders at Heavy Duty show the same, for example S2-33465 and S2-33376 (each has a Receive Later part and shows $37.67 in Parts Remaining on the same tab).
 - Not checked on Production or on a QA branch. The PDF and CSV downloads were not checked.

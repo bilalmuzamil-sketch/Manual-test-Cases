@@ -1,0 +1,22 @@
+<h2>What is wrong</h2>
+<p>On the <strong>Work In Progress</strong> report, a part that is marked <strong>Receive Later</strong> on the work order is counted in <strong>Parts Remaining</strong> (work still to do).</p>
+<p>"Receive Later" means the part is already on the job and only the receiving paperwork is waiting. So it should be counted in <strong>Parts Earned</strong> (work done).</p>
+<p>Example: work order <strong>S2-33740</strong> has one part at <strong>$36.67</strong> and its core charge at <strong>$1.00</strong>, both marked Receive Later.</p>
+<table><thead><tr><th><p></p></th><th><p>Actual</p></th><th><p>Expected</p></th></tr></thead><tbody><tr><td><p>Parts Earned</p></td><td><p>$0.00</p></td><td><p>$36.67 + $1.00 = <strong>$37.67</strong></p></td></tr><tr><td><p>Parts Remaining</p></td><td><p><strong>$37.67</strong></p></td><td><p>$0.00</p></td></tr></tbody></table>
+<p>The <strong>Earned</strong> and <strong>Remaining</strong> totals on the row (and the summary figures at the top) are off by the same $37.67.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>Staging Heavy Duty - 9919</strong>.</p></li><li><p>Click <strong>Work Orders</strong> and open <strong>S2-33740</strong> (customer 4 Star Truck Repair).</p></li><li><p>On the <strong>Lines</strong> tab, under line <strong>11</strong>, look at <strong>Parts</strong>: the part "(11) 11" ($36.67) and "(11) Core for 11" ($1.00) both show <strong>Receive Later</strong>.</p></li><li><p>Click <strong>Reports</strong>, then <strong>Work In Progress</strong> in the left menu. Leave <strong>As of</strong> on today.</p></li><li><p>Click <strong>Customer: All customers</strong>, pick <strong>4 Star Truck Repair</strong>, and close the list.</p></li><li><p>Click the <strong>Approved - Not Started</strong> tab.</p></li><li><p>Click the columns button (top right of the report) and switch on <strong>Parts Earned</strong> and <strong>Parts Remaining</strong>.</p></li><li><p>Find the row <strong>S2-33740</strong>.</p></li></ol>
+<p><strong>Actual:</strong> Parts Earned <strong>$0.00</strong>, Parts Remaining <strong>$37.67</strong>.</p>
+<p><strong>Expected:</strong> Parts Earned <strong>$37.67</strong>, Parts Remaining <strong>$0.00</strong>.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 6 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>No, it belongs in Parts Earned. "Received later" means the part is already on the job and only the receiving paperwork waits. Defect. S4-R18 gets updated.</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Work In Progress, Heavy Duty, Approved - Not Started, customer 4 Star Truck Repair, with Parts Earned and Parts Remaining switched on: S2-33740 shows $0.00 earned and $37.67 remaining.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="53b1cb65-fc55-403a-94ea-0a630e1334b8" data-collection="upload-user-collection-1343233018" data-alt="P2-A2-1-wip-parts-columns.png"></div></figure>
+<p><strong>2.</strong> Work order S2-33740, Lines tab: both parts are marked Receive Later ($36.67 + $1.00).</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="67332ecc-efbe-42f3-9aba-96afa06d825e" data-collection="upload-user-collection-1343233018" data-alt="P2-A2-2-work-order-receive-later.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).</p></li><li><p>Other work orders at Heavy Duty show the same, for example S2-33465 and S2-33376 (each has a Receive Later part and shows $37.67 in Parts Remaining on the same tab).</p></li><li><p>Not checked on Production or on a QA branch. The PDF and CSV downloads were not checked.</p></li></ul>

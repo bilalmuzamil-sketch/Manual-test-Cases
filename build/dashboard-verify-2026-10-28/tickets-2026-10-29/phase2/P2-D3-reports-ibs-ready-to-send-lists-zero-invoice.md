@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11954 (https://shopview.atlassian.net/browse/SV-11954), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-D3-SV-11954.html
 SUMMARY: Reports - IBS Batches: a $0.00 invoice is listed in Ready To Send
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-2144 (Create "Batch Transactions" in "IBS Management" (IBS-six))

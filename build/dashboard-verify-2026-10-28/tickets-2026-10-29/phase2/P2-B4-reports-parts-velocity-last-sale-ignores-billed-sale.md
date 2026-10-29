@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11943 (https://shopview.atlassian.net/browse/SV-11943), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B4-SV-11943.html
 SUMMARY: Reports - Parts Velocity Last Sale ignores a billed sale that moved no stock
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8645 (Velocity - Story 5 - Metric Calculations) · relates to SV-11516 (Parts Velocity: store each part's last sale date — Open; the stored date should follow the same rule)
@@ -58,6 +58,6 @@ Parts Velocity Report PRD (version 12), S5-R4: Last Sale is "Whole days from tod
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
-- Browser and test computer set to the location's time zone (Asia/Karachi).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).
 - Also seen on 28 Oct 2026 (it read 160 days that day).
 - Not checked on Production or on a QA branch.

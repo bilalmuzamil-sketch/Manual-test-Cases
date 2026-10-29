@@ -1,0 +1,19 @@
+<h2>What is wrong</h2>
+<p>On <strong>IBS Batches → Sent</strong>, the batch of <strong>Oct 2, 2026</strong> at Staging Lethbridge - 4310 shows a <strong>Total of $9,473.35</strong>. When you open it, the 9 invoices inside add up to <strong>$9,183.29</strong>.</p>
+<p>The batch Total is <strong>$290.06 too high</strong>. It must always equal the sum of the invoices (and credits) in the batch.</p>
+<p><strong>Example (the arithmetic):</strong> 45.94 + 123.11 + 659.76 + 356.48 + 503.39 + 733.51 + 1,231.39 + 1,298.23 + 4,231.48 = <strong>$9,183.29</strong>. The batch row says $9,473.35 (and the Balance also says $9,473.35). The batch has no credits.</p>
+<p>The batch's own IBS file (the download for this batch) also says Invoices <strong>$9,183.29</strong>, so only the batch row on screen is wrong.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>Staging Lethbridge - 4310</strong>.</p></li><li><p>Click <strong>Reports</strong>, then <strong>IBS Batches</strong> (under Accounting).</p></li><li><p>Click the <strong>Sent</strong> tab.</p></li><li><p>Find the batch dated <strong>Oct 2, 2026</strong>. Note its <strong>Total</strong>.</p></li><li><p>Click the arrow at the left of that row to open it.</p></li><li><p>Add up the <strong>Total</strong> of the 9 invoices listed under it (INV-S3-17282 … INV-S3-16914).</p></li></ol>
+<p><strong>Actual:</strong> the batch row shows Total <strong>$9,473.35</strong> and Balance <strong>$9,473.35</strong>; the invoices in it add up to <strong>$9,183.29</strong>.</p>
+<p><strong>Expected:</strong> the batch row shows Total <strong>$9,183.29</strong> — always the sum of the invoices and credits in the batch (and its Balance the sum of their balances).</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 34 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026). Question: "should a sent batch's Total always equal the sum of the invoices and credits in it?"</p>
+<blockquote><p>Yes, always. Defect.</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> IBS Batches → Sent, batch of Oct 2, 2026 opened: batch Total $9,473.35; its 9 invoices add up to $9,183.29.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="a3f980b3-ac60-425d-b2b0-714632a14bdf" data-collection="upload-user-collection-1343233018" data-alt="P2-D2-1-ibs-sent-batch-total-not-sum.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 28 Oct 2026 (Lethbridge time), Admin.</p></li><li><p>Browser, app time-zone setting and test computer set to the location's time zone (America/Edmonton).</p></li><li><p>The other sent batch at Lethbridge (Sep 16, 2026, $7,859.73) and both at Staging Heavy Duty - 9919 add up correctly.</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

@@ -1,0 +1,17 @@
+<h2>What is wrong</h2>
+<p><strong>IBS Batches → Ready To Send</strong> lists an invoice for <strong>$0.00</strong>: <strong>INV-S2-16924</strong> (Fort Mohave Diesel Repair, Jul 31, 2026), Total <strong>$0.00</strong>, Balance <strong>$0.00</strong>, status Unpaid.</p>
+<p>Ready To Send is the list of invoices waiting to be sent to IBS for payment. A $0.00 invoice has nothing to collect, so it should not be listed, and it should not be put into a batch.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>Staging Heavy Duty - 9919</strong>.</p></li><li><p>Click <strong>Reports</strong>, then <strong>IBS Batches</strong> (under Accounting).</p></li><li><p>Stay on the <strong>Ready To Send</strong> tab.</p></li><li><p>Find <strong>INV-S2-16924</strong> (Fort Mohave Diesel Repair).</p></li></ol>
+<p><strong>Actual:</strong> INV-S2-16924 is listed with Total <strong>$0.00</strong> and Balance <strong>$0.00</strong>.</p>
+<p><strong>Expected:</strong> INV-S2-16924 is <strong>not listed</strong>. $0.00 invoices are left out of Ready To Send.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 35 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>No, leave $0.00 invoices out of Ready to Send. Defect.</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> IBS Batches → Ready To Send at Staging Heavy Duty - 9919: INV-S2-16924 listed at $0.00 / $0.00.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="b92b0cf1-d007-48cf-bef1-7c654a734cc6" data-collection="upload-user-collection-1343233018" data-alt="P2-D3-1-ibs-ready-to-send-zero-invoice.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.</p></li><li><p>Browser, app time-zone setting and test computer set to the location's time zone (Asia/Karachi).</p></li><li><p>It is the only $0.00 invoice in Ready To Send at Heavy Duty; Staging Lethbridge - 4310 has none waiting.</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

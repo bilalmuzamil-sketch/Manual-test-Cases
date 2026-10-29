@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11955 (https://shopview.atlassian.net/browse/SV-11955), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-D4-SV-11955.html
 SUMMARY: Reports - Notes shows only the first 100 notes, with no way to see the rest
 TYPE Bug · PARENT SV-10193 (QA lead, 29 Oct: "This should be the Epic") · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: parent epic SV-10193 (QA lead, 29 Oct); no Notes report story found by JQL

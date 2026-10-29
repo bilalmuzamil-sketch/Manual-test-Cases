@@ -1,0 +1,23 @@
+<h2>What is wrong</h2>
+<p>On <strong>Parts Velocity</strong>, the date option <strong>Last 90 days</strong> covers <strong>91 days</strong>: it starts one day too early.</p>
+<p>For example, on 28 October 2026 it runs from <strong>30 July</strong> to <strong>28 October</strong>:</p>
+<ul><li><p>Actual: 30 Jul to 28 Oct = 2 days of July + 31 + 30 + 28 = <strong>91 days</strong>.</p></li><li><p>Expected: 31 Jul to 28 Oct = 1 day of July + 31 + 30 + 28 = <strong>90 days</strong> (today and the 89 days before it).</p></li></ul>
+<p>So every figure on the report under Last 90 days (the report's default) includes one extra day of sales.</p>
+<p>The report screen itself only says "Last 90 days". The dates it used are printed at the top of the downloads, on the <strong>Date Range</strong> line.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>DVI Test</strong>.</p></li><li><p>Click <strong>Reports</strong>, then in the left menu under <strong>Parts</strong>, click <strong>Parts Velocity</strong>.</p></li><li><p>Leave the date as it opens: <strong>Date: Last 90 days</strong>. Leave <strong>Location: DVI Test</strong>.</p></li><li><p>At the top right of the report, click <strong>⋯</strong> and choose <strong>Download (PDF)</strong>. (Download (CSV) shows the same line.)</p></li><li><p>Open the downloaded file and read the <strong>Date Range</strong> line at the top.</p><ul><li><p>Work out the expected first day as today's date minus 89 days. For example, on 1 November 2026 it should be 4 August 2026.</p></li></ul></li></ol>
+<p><strong>Actual:</strong> on 28 Oct 2026 the download says <strong>Date Range: Jul 30, 2026 - Oct 28, 2026</strong>, which is 91 days.</p>
+<p><strong>Expected:</strong> <strong>Date Range: Jul 31, 2026 - Oct 28, 2026</strong>, which is 90 days: today and the 89 days before it.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 13 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>13. Yes, exactly 90 days: today and the 89 before it. Defect.</p></blockquote>
+<p>SV-11514: "The default range is Last 90 Days."</p>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Parts Velocity at DVI Test, opened with its default date, "Last 90 days".</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="e333cfbb-22f4-4da7-ac66-3ecaaca0fe64" data-collection="upload-user-collection-1343233018" data-alt="P2-B1-1-parts-velocity-last-90-days.png"></div></figure>
+<p><strong>2.</strong> The PDF download of the same view: "Date Range: Jul 30, 2026 - Oct 28, 2026", 91 days.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="81b61416-d5ee-4692-9cb3-5cddec4f235b" data-collection="upload-user-collection-1343233018" data-alt="P2-B1-2-download-shows-91-days.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).</p></li><li><p>The other date options (This week, Last week, This month, Last month, This quarter, Last quarter, This year, Last year, Last 12 months) cover the right dates (checked 28 Oct 2026).</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

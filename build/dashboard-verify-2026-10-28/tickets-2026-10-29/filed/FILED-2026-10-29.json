@@ -32,7 +32,7 @@
   "go_ahead": "QA lead, 29 Oct 2026: \"File a new ticket with complete reference, also please note that no technical or developer section is needed in the tickets.\"",
   "summary": "Reports - A/R Aging shows an invoiced part sale at full amount; its deposit is not taken off",
   "type": "Bug",
-  "parent": "SV-11839",
+  "parent": "SV-11936 (moved from SV-11839 on 29 Oct)",
   "priority": "Medium",
   "product_area": "Reports & Dashboards",
   "attachments": [
@@ -74,5 +74,503 @@
    "id": "79713",
    "what": "Q32: links our A/R finding, as Chris asked"
   }
+ },
+ "parking_epic": {
+  "key": "SV-11936",
+  "url": "https://shopview.atlassian.net/browse/SV-11936",
+  "summary": "PARKED (temporary) - Report defects awaiting a decision: Bug Squad or Dashboard epic",
+  "go_ahead": "QA lead, 29 Oct 2026: \"For reports I would suggest temporary reports Epic and in that epic tag Chris ... and attach the reports related tickets to this epic.\"",
+  "comment_tagging_chris": "79719",
+  "also_moved_in": [
+   "SV-11935 (moved from SV-11839 by us)",
+   "SV-11922 (reopened and moved in by the QA lead at 03:42-03:43 CDT, not by us)"
+  ]
+ },
+ "P2-A1": {
+  "key": "SV-11937",
+  "url": "https://shopview.atlassian.net/browse/SV-11937",
+  "summary": "Reports - Work In Progress shows \"1 days\" in Days Open instead of \"1 day\"",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-A1-1-wip-days-open.png",
+    "media_id": "7836141f-320c-4907-9387-b07b21f527f5",
+    "bytes": 547714
+   }
+  ],
+  "links_relates": [
+   "SV-8660"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-A2": {
+  "key": "SV-11938",
+  "url": "https://shopview.atlassian.net/browse/SV-11938",
+  "summary": "Reports - Work In Progress counts parts marked \"Receive Later\" as Parts Remaining instead of Parts Earned",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-A2-1-wip-parts-columns.png",
+    "media_id": "53b1cb65-fc55-403a-94ea-0a630e1334b8",
+    "bytes": 542333
+   },
+   {
+    "file": "P2-A2-2-work-order-receive-later.png",
+    "media_id": "67332ecc-efbe-42f3-9aba-96afa06d825e",
+    "bytes": 221419
+   }
+  ],
+  "links_relates": [
+   "SV-8660"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-A4": {
+  "key": "SV-11939",
+  "url": "https://shopview.atlassian.net/browse/SV-11939",
+  "summary": "Reports - Shop Efficiency leaves a running timesheet out of Total Clocked Hours",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-A4-1-timesheet-today-running.png",
+    "media_id": "084c8f75-bed2-411d-aa7a-573b619ff44d",
+    "bytes": 394476
+   },
+   {
+    "file": "P2-A4-2-shop-efficiency-today.png",
+    "media_id": "ed6e8a81-ebe1-41e0-a254-1c5c9d98a9af",
+    "bytes": 187983
+   }
+  ],
+  "links_relates": [
+   "SV-11688",
+   "SV-2116"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-B1": {
+  "key": "SV-11940",
+  "url": "https://shopview.atlassian.net/browse/SV-11940",
+  "summary": "Reports - Parts Velocity \"Last 90 days\" covers 91 days",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-B1-1-parts-velocity-last-90-days.png",
+    "media_id": "e333cfbb-22f4-4da7-ac66-3ecaaca0fe64",
+    "bytes": 363680
+   },
+   {
+    "file": "P2-B1-2-download-shows-91-days.png",
+    "media_id": "81b61416-d5ee-4692-9cb3-5cddec4f235b",
+    "bytes": 49898
+   }
+  ],
+  "links_relates": [
+   "SV-11514",
+   "SV-8642"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-B2": {
+  "key": "SV-11941",
+  "url": "https://shopview.atlassian.net/browse/SV-11941",
+  "summary": "Reports - Parts Velocity counts a return to the vendor in Units Returned",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-B2-1-vendor-return-on-parts-returns.png",
+    "media_id": "deb75c44-a4e2-4973-8ab3-046b99015b95",
+    "bytes": 147827
+   },
+   {
+    "file": "P2-B2-2-parts-velocity-units-returned.png",
+    "media_id": "eed7230c-dbd1-49bc-8b28-7249417f6ff8",
+    "bytes": 241757
+   }
+  ],
+  "links_relates": [
+   "SV-8645"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-B3": {
+  "key": "SV-11942",
+  "url": "https://shopview.atlassian.net/browse/SV-11942",
+  "summary": "Reports - Parts Velocity hides the Location column when one location is picked",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-B3-1-parts-velocity-no-location-column.png",
+    "media_id": "d110df19-b900-41ee-8f98-481d33de63b8",
+    "bytes": 368335
+   },
+   {
+    "file": "P2-B3-2-inventory-value-shows-location.png",
+    "media_id": "679f0062-13da-4af9-8cd4-d2542cb5502b",
+    "bytes": 263464
+   }
+  ],
+  "links_relates": [
+   "SV-8642",
+   "SV-8643"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-B4": {
+  "key": "SV-11943",
+  "url": "https://shopview.atlassian.net/browse/SV-11943",
+  "summary": "Reports - Parts Velocity Last Sale ignores a billed sale that moved no stock",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-B4-1-parts-velocity-last-sale.png",
+    "media_id": "53b8e75d-1951-4185-8bfa-ef2572914162",
+    "bytes": 279864
+   },
+   {
+    "file": "P2-B4-2-invoice-S2-16621.png",
+    "media_id": "8e18c313-b761-4a2d-8aee-440ed8f7301b",
+    "bytes": 574839
+   }
+  ],
+  "links_relates": [
+   "SV-11516",
+   "SV-8645"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-B5": {
+  "key": "SV-11944",
+  "url": "https://shopview.atlassian.net/browse/SV-11944",
+  "summary": "Reports - Inventory Value quantity column is headed \"Qty\" instead of \"On Hand\" (screen and downloads)",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-B5-1-inventory-value-qty-heading.png",
+    "media_id": "f82e7ee2-2d5a-4de0-a844-c930f3f5353c",
+    "bytes": 261377
+   },
+   {
+    "file": "P2-B5-2-download-qty-heading.png",
+    "media_id": "992e46c0-9cad-4b15-8cda-3250456e35b3",
+    "bytes": 55793
+   }
+  ],
+  "links_relates": [
+   "SV-8670",
+   "SV-8677"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-B6": {
+  "key": "SV-11945",
+  "url": "https://shopview.atlassian.net/browse/SV-11945",
+  "summary": "Reports - Parts Velocity shows a \"Receive later\" special-order part as never sold after it is invoiced",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-B6-1-invoice-bills-the-part.png",
+    "media_id": "4e01bc83-4e92-4da1-9fe8-250785412363",
+    "bytes": 592106
+   },
+   {
+    "file": "P2-B6-2-parts-velocity-shows-zero.png",
+    "media_id": "6d100a87-fea8-4c04-b2d8-563f80f7decf",
+    "bytes": 289797
+   }
+  ],
+  "links_relates": [
+   "SV-8645"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-B7": {
+  "key": "SV-11946",
+  "url": "https://shopview.atlassian.net/browse/SV-11946",
+  "summary": "Reports - Parts Velocity Demand counts a work order twice when its invoice is reversed and created again",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-B7-1-parts-velocity-demand.png",
+    "media_id": "65034eb4-1f03-4410-9cb7-549eb14f672f",
+    "bytes": 291342
+   }
+  ],
+  "links_relates": [
+   "SV-8645"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-B8": {
+  "key": "SV-11947",
+  "url": "https://shopview.atlassian.net/browse/SV-11947",
+  "summary": "Reports - Inventory Value shows Margin and Total Sell on the first visit; they should start hidden",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-B8-1-inventory-value-first-visit.png",
+    "media_id": "3a7ed59f-dda5-4486-8327-108f81f83831",
+    "bytes": 266574
+   }
+  ],
+  "links_relates": [
+   "SV-8670",
+   "SV-8675",
+   "SV-8927"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-C1": {
+  "key": "SV-11948",
+  "url": "https://shopview.atlassian.net/browse/SV-11948",
+  "summary": "Reports - Sales By Representative keeps the old Labor Delta after a timesheet is corrected",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-C1-1-edit-timesheet.png",
+    "media_id": "81a1d398-585c-4f59-8925-356f5fcf84d6",
+    "bytes": 473233
+   },
+   {
+    "file": "P2-C1-2-stats-tab-after.png",
+    "media_id": "47352957-8983-46b5-8705-c3b42a3e0ce6",
+    "bytes": 219889
+   },
+   {
+    "file": "P2-C1-3-sbr-after.png",
+    "media_id": "cdc609ef-f199-4474-82de-49eb417f6533",
+    "bytes": 312763
+   }
+  ],
+  "links_relates": [
+   "SV-11934",
+   "SV-8626"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-C2": {
+  "key": "SV-11949",
+  "url": "https://shopview.atlassian.net/browse/SV-11949",
+  "summary": "Reports - Sales Tax Collected leaves out credit memos, so their tax is not taken off the totals",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-C2-1-sales-tax-oct20.png",
+    "media_id": "6eafa508-2b4a-48da-96cc-87e825ba7360",
+    "bytes": 300530
+   },
+   {
+    "file": "P2-C2-2-all-tax-rates-oct20.png",
+    "media_id": "8b3fee49-b2f2-4d45-9a41-d43ab191282a",
+    "bytes": 186817
+   },
+   {
+    "file": "P2-C2-3-customer-credit-memo.png",
+    "media_id": "6d666122-8304-4d35-bd3c-868f80cb4d9a",
+    "bytes": 174716
+   }
+  ],
+  "links_relates": [
+   "SV-4573"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-C3": {
+  "key": "SV-11950",
+  "url": "https://shopview.atlassian.net/browse/SV-11950",
+  "summary": "Reports - Sales Tax Collected lists $0.00 invoices as Paid, with a paid date",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-C3-1-sales-tax-zero-invoice.png",
+    "media_id": "07f64b2d-25c4-4613-9864-fbcf12299cba",
+    "bytes": 342544
+   },
+   {
+    "file": "P2-C3-2-zero-invoice-finance.png",
+    "media_id": "7217405a-873f-4c4e-8c11-473b01c139d6",
+    "bytes": 348974
+   }
+  ],
+  "links_relates": [
+   "SV-4573"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-C4": {
+  "key": "SV-11951",
+  "url": "https://shopview.atlassian.net/browse/SV-11951",
+  "summary": "Reports - Sales Tax Collected shows an invoice part paid by a deposit as Paid, with the invoice date as its paid date",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-C4-1-add-deposit-oct26.png",
+    "media_id": "bafc5005-031e-4a0f-a2af-ac0c4916554b",
+    "bytes": 310246
+   },
+   {
+    "file": "P2-C4-2-sales-tax-paid-and-date.png",
+    "media_id": "aee10032-2d09-4456-80a8-c51cc92edfc0",
+    "bytes": 359328
+   },
+   {
+    "file": "P2-C4-3-partially-paid-filter-empty.png",
+    "media_id": "097fa9b4-0520-479c-8b0a-9d0afe9679e1",
+    "bytes": 220584
+   }
+  ],
+  "links_relates": [
+   "SV-4573"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-C6": {
+  "key": "SV-11952",
+  "url": "https://shopview.atlassian.net/browse/SV-11952",
+  "summary": "Reports - Sales By Representative lists invoices on the same day newest first instead of by invoice number",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-C6-1-sbr-same-day-order.png",
+    "media_id": "7b8326d7-cf8e-47ce-9b76-4e03afc60410",
+    "bytes": 587700
+   }
+  ],
+  "links_relates": [
+   "SV-8624"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-D2": {
+  "key": "SV-11953",
+  "url": "https://shopview.atlassian.net/browse/SV-11953",
+  "summary": "Reports - IBS Batches: a sent batch's Total is $290.06 more than the invoices in it",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-D2-1-ibs-sent-batch-total-not-sum.png",
+    "media_id": "a3f980b3-ac60-425d-b2b0-714632a14bdf",
+    "bytes": 354977
+   }
+  ],
+  "links_relates": [
+   "SV-2144"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-D3": {
+  "key": "SV-11954",
+  "url": "https://shopview.atlassian.net/browse/SV-11954",
+  "summary": "Reports - IBS Batches: a $0.00 invoice is listed in Ready To Send",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-D3-1-ibs-ready-to-send-zero-invoice.png",
+    "media_id": "b92b0cf1-d007-48cf-bef1-7c654a734cc6",
+    "bytes": 327275
+   }
+  ],
+  "links_relates": [
+   "SV-2144"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-D4": {
+  "key": "SV-11955",
+  "url": "https://shopview.atlassian.net/browse/SV-11955",
+  "summary": "Reports - Notes shows only the first 100 notes, with no way to see the rest",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-D4-1-notes-last-week-ends-at-100.png",
+    "media_id": "f89490eb-afe6-42c0-a67d-4d64bcc62884",
+    "bytes": 330694
+   }
+  ],
+  "links_relates": [],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-D5": {
+  "key": "SV-11956",
+  "url": "https://shopview.atlassian.net/browse/SV-11956",
+  "summary": "Reports - QB Unexported: credit memo rows (and other credit and deposit rows) have a blank No.",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-D5-1-qb-unexported-credit-memo-blank-no.png",
+    "media_id": "3c83f2db-ad20-495f-9a53-6212c4707781",
+    "bytes": 627537
+   }
+  ],
+  "links_relates": [
+   "SV-11957",
+   "SV-2871",
+   "SV-4929"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "P2-D6": {
+  "key": "SV-11957",
+  "url": "https://shopview.atlassian.net/browse/SV-11957",
+  "summary": "Reports - QB Unexported: one credit memo is listed twice, each time with a different error",
+  "parent": "SV-11936",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "pictures": [
+   {
+    "file": "P2-D6-1-qb-unexported-credit-memo-listed-twice.png",
+    "media_id": "05f900cc-1b50-49c4-affb-70639a55118c",
+    "bytes": 634400
+   }
+  ],
+  "links_relates": [
+   "SV-11956",
+   "SV-2871"
+  ],
+  "verified": "read back 29 Oct 2026: parent, priority, Product Area, attachment sizes = local, links"
+ },
+ "held": {
+  "P2-A5": "held until Chris answers corrected question 39",
+  "P2-D7": "held until Chris answers corrected question 38"
  }
 }

@@ -1,6 +1,8 @@
 # Ticket drafts for review, 29 Oct 2026 (epic SV-11839).
 
-**Filed 29 Oct 2026 (QA lead's go-ahead):** P1-1 → SV-11931 · P1-2 → SV-11932 · P1-3 → SV-11933 · P1-4 → SV-11934 · D1 → SV-11935. Comments: SV-11931 (79711, tags Chris), SV-11823 (79712, P1-5), SV-11441 (79713, Q32). Record: `filed/FILED-2026-10-29.json`. **Every other draft is still unfiled.**
+**Filed 29 Oct 2026 (QA lead's go-ahead):** P1-1 → SV-11931 · P1-2 → SV-11932 · P1-3 → SV-11933 · P1-4 → SV-11934 · D1 → SV-11935. Comments: SV-11931 (79711, tags Chris), SV-11823 (79712, P1-5), SV-11441 (79713, Q32). Record: `filed/FILED-2026-10-29.json`.
+
+**Phase 2 filed 29 Oct 2026** into the temporary parking epic **SV-11936** ("PARKED (temporary) - Report defects awaiting a decision: Bug Squad or Dashboard epic"; comment 79719 tags Chris): 21 tickets SV-11937…SV-11957, plus SV-11935 moved in. Exact filed text: `filed/html/`. **Held:** A5 (Q39) and D7 (Q38), until Chris answers the corrected questions in the doc.
 
 **Every draft waits for the QA lead's go-ahead, one ticket at a time (Rules 62 and 73).** When a draft is
 approved it is filed as:
@@ -43,29 +45,29 @@ times, the searches run and the test data it made: `phase2/SUMMARY-p2a.md` (labo
 
 | # | Draft | Title | Relates to |
 |---|---|---|---|
-| A1 | `phase2/P2-A1-reports-wip-days-open-1-days.md` | Reports - Work In Progress shows "1 days" in Days Open instead of "1 day" | SV-8660 |
-| A2 | `phase2/P2-A2-reports-wip-receive-later-parts-not-earned.md` | Reports - Work In Progress counts parts marked "Receive Later" as Parts Remaining instead of Parts Earned | SV-8660 |
-| A4 | `phase2/P2-A4-reports-shop-efficiency-running-shift-left-out.md` | Reports - Shop Efficiency leaves a running timesheet out of Total Clocked Hours | SV-2116, SV-11688 |
+| A1 **(FILED SV-11937)** | `phase2/P2-A1-reports-wip-days-open-1-days.md` | Reports - Work In Progress shows "1 days" in Days Open instead of "1 day" | SV-8660 |
+| A2 **(FILED SV-11938)** | `phase2/P2-A2-reports-wip-receive-later-parts-not-earned.md` | Reports - Work In Progress counts parts marked "Receive Later" as Parts Remaining instead of Parts Earned | SV-8660 |
+| A4 **(FILED SV-11939)** | `phase2/P2-A4-reports-shop-efficiency-running-shift-left-out.md` | Reports - Shop Efficiency leaves a running timesheet out of Total Clocked Hours | SV-2116, SV-11688 |
 | A5 | `phase2/P2-A5-reports-payroll-timesheet-overlap-counted-twice.md` | Reports - Payroll Timesheet export counts overlapping timesheets twice, so a day can show more than 24 hours | SV-2071 |
-| B1 | `phase2/P2-B1-reports-parts-velocity-last-90-days-covers-91-days.md` | Reports - Parts Velocity "Last 90 days" covers 91 days | SV-11514, SV-8642 |
-| B2 | `phase2/P2-B2-reports-parts-velocity-vendor-return-counts-as-units-returned.md` | Reports - Parts Velocity counts a return to the vendor in Units Returned | SV-8645 |
-| B3 | `phase2/P2-B3-reports-parts-velocity-location-column-hidden-for-one-location.md` | Reports - Parts Velocity hides the Location column when one location is picked | SV-8642, SV-8643 |
-| B4 | `phase2/P2-B4-reports-parts-velocity-last-sale-ignores-billed-sale.md` | Reports - Parts Velocity Last Sale ignores a billed sale that moved no stock | SV-8645, SV-11516 |
-| B5 | `phase2/P2-B5-reports-inventory-value-qty-heading-should-be-on-hand.md` | Reports - Inventory Value quantity column is headed "Qty" instead of "On Hand" (screen and downloads) | SV-8670, SV-8677 |
-| B6 | `phase2/P2-B6-reports-parts-velocity-receive-later-special-order-not-counted.md` | Reports - Parts Velocity shows a "Receive later" special-order part as never sold after it is invoiced | SV-8645 |
-| B7 | `phase2/P2-B7-reports-parts-velocity-demand-counts-reinvoice-twice.md` | Reports - Parts Velocity Demand counts a work order twice when its invoice is reversed and created again | SV-8645 |
-| B8 | `phase2/P2-B8-reports-inventory-value-margin-total-sell-shown-on-first-visit.md` | Reports - Inventory Value shows Margin and Total Sell on the first visit; they should start hidden | SV-8670, SV-8675, SV-8927 |
-| C1 | `phase2/P2-C1-reports-sbr-labor-delta-after-timesheet-edit.md` | Reports - Sales By Representative keeps the old Labor Delta after a timesheet is corrected | SV-8626 |
-| C2 | `phase2/P2-C2-reports-sales-tax-credit-memos-missing.md` | Reports - Sales Tax Collected leaves out credit memos, so their tax is not taken off the totals | SV-4573 |
-| C3 | `phase2/P2-C3-reports-sales-tax-zero-invoices-listed-as-paid.md` | Reports - Sales Tax Collected lists $0.00 invoices as Paid, with a paid date | SV-4573 |
-| C4 | `phase2/P2-C4-reports-sales-tax-deposit-part-paid-status-and-date.md` | Reports - Sales Tax Collected shows an invoice part paid by a deposit as Paid, with the invoice date as its paid date | SV-4573 |
-| C6 | `phase2/P2-C6-reports-sbr-same-day-invoice-order.md` | Reports - Sales By Representative lists invoices on the same day newest first instead of by invoice number | SV-8624 |
-| D1 **(FILED SV-11935)** | `phase2/P2-D1-reports-ar-aging-part-sale-deposit-not-taken-off.md` | Reports - A/R Aging shows an invoiced part sale at full amount; its deposit is not taken off | SV-5026, SV-11690 |
-| D2 | `phase2/P2-D2-reports-ibs-sent-batch-total-not-sum-of-invoices.md` | Reports - IBS Batches: a sent batch's Total is $290.06 more than the invoices in it | SV-2144 |
-| D3 | `phase2/P2-D3-reports-ibs-ready-to-send-lists-zero-invoice.md` | Reports - IBS Batches: a $0.00 invoice is listed in Ready To Send | SV-2144 |
-| D4 | `phase2/P2-D4-reports-notes-shows-only-100-notes.md` | Reports - Notes shows only the first 100 notes, with no way to see the rest | parent epic SV-10193 (QA lead, 29 Oct) |
-| D5 | `phase2/P2-D5-reports-qb-unexported-credit-memo-rows-blank-number.md` | Reports - QB Unexported: credit memo rows (and other credit and deposit rows) have a blank No. | SV-2871, SV-4929 |
-| D6 | `phase2/P2-D6-reports-qb-unexported-credit-memo-listed-twice.md` | Reports - QB Unexported: one credit memo is listed twice, each time with a different error | SV-2871 |
+| B1 **(FILED SV-11940)** | `phase2/P2-B1-reports-parts-velocity-last-90-days-covers-91-days.md` | Reports - Parts Velocity "Last 90 days" covers 91 days | SV-11514, SV-8642 |
+| B2 **(FILED SV-11941)** | `phase2/P2-B2-reports-parts-velocity-vendor-return-counts-as-units-returned.md` | Reports - Parts Velocity counts a return to the vendor in Units Returned | SV-8645 |
+| B3 **(FILED SV-11942)** | `phase2/P2-B3-reports-parts-velocity-location-column-hidden-for-one-location.md` | Reports - Parts Velocity hides the Location column when one location is picked | SV-8642, SV-8643 |
+| B4 **(FILED SV-11943)** | `phase2/P2-B4-reports-parts-velocity-last-sale-ignores-billed-sale.md` | Reports - Parts Velocity Last Sale ignores a billed sale that moved no stock | SV-8645, SV-11516 |
+| B5 **(FILED SV-11944)** | `phase2/P2-B5-reports-inventory-value-qty-heading-should-be-on-hand.md` | Reports - Inventory Value quantity column is headed "Qty" instead of "On Hand" (screen and downloads) | SV-8670, SV-8677 |
+| B6 **(FILED SV-11945)** | `phase2/P2-B6-reports-parts-velocity-receive-later-special-order-not-counted.md` | Reports - Parts Velocity shows a "Receive later" special-order part as never sold after it is invoiced | SV-8645 |
+| B7 **(FILED SV-11946)** | `phase2/P2-B7-reports-parts-velocity-demand-counts-reinvoice-twice.md` | Reports - Parts Velocity Demand counts a work order twice when its invoice is reversed and created again | SV-8645 |
+| B8 **(FILED SV-11947)** | `phase2/P2-B8-reports-inventory-value-margin-total-sell-shown-on-first-visit.md` | Reports - Inventory Value shows Margin and Total Sell on the first visit; they should start hidden | SV-8670, SV-8675, SV-8927 |
+| C1 **(FILED SV-11948)** | `phase2/P2-C1-reports-sbr-labor-delta-after-timesheet-edit.md` | Reports - Sales By Representative keeps the old Labor Delta after a timesheet is corrected | SV-8626 |
+| C2 **(FILED SV-11949)** | `phase2/P2-C2-reports-sales-tax-credit-memos-missing.md` | Reports - Sales Tax Collected leaves out credit memos, so their tax is not taken off the totals | SV-4573 |
+| C3 **(FILED SV-11950)** | `phase2/P2-C3-reports-sales-tax-zero-invoices-listed-as-paid.md` | Reports - Sales Tax Collected lists $0.00 invoices as Paid, with a paid date | SV-4573 |
+| C4 **(FILED SV-11951)** | `phase2/P2-C4-reports-sales-tax-deposit-part-paid-status-and-date.md` | Reports - Sales Tax Collected shows an invoice part paid by a deposit as Paid, with the invoice date as its paid date | SV-4573 |
+| C6 **(FILED SV-11952)** | `phase2/P2-C6-reports-sbr-same-day-invoice-order.md` | Reports - Sales By Representative lists invoices on the same day newest first instead of by invoice number | SV-8624 |
+| D1 **(FILED SV-11935, moved to SV-11936)** | `phase2/P2-D1-reports-ar-aging-part-sale-deposit-not-taken-off.md` | Reports - A/R Aging shows an invoiced part sale at full amount; its deposit is not taken off | SV-5026, SV-11690 |
+| D2 **(FILED SV-11953)** | `phase2/P2-D2-reports-ibs-sent-batch-total-not-sum-of-invoices.md` | Reports - IBS Batches: a sent batch's Total is $290.06 more than the invoices in it | SV-2144 |
+| D3 **(FILED SV-11954)** | `phase2/P2-D3-reports-ibs-ready-to-send-lists-zero-invoice.md` | Reports - IBS Batches: a $0.00 invoice is listed in Ready To Send | SV-2144 |
+| D4 **(FILED SV-11955)** | `phase2/P2-D4-reports-notes-shows-only-100-notes.md` | Reports - Notes shows only the first 100 notes, with no way to see the rest | none (SV-10193 is a Bug, not an epic; filed in SV-11936) |
+| D5 **(FILED SV-11956)** | `phase2/P2-D5-reports-qb-unexported-credit-memo-rows-blank-number.md` | Reports - QB Unexported: credit memo rows (and other credit and deposit rows) have a blank No. | SV-2871, SV-4929 |
+| D6 **(FILED SV-11957)** | `phase2/P2-D6-reports-qb-unexported-credit-memo-listed-twice.md` | Reports - QB Unexported: one credit memo is listed twice, each time with a different error | SV-2871 |
 | D7 | `phase2/P2-D7-reports-export-customer-invoice-terms-from-customer.md` | Reports - Export Reports: Customer Invoice shows the customer's current Terms, not the invoice's own | SV-1878, SV-11676 |
 
 **Not drafted:**

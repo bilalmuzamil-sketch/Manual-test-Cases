@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11956 (https://shopview.atlassian.net/browse/SV-11956), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-D5-SV-11956.html
 SUMMARY: Reports - QB Unexported: credit memo rows (and other credit and deposit rows) have a blank No.
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-2871 (Create a report for unexported items to QuickBooks) · relates to SV-4929 (Unexported Listing - missing data; Done)

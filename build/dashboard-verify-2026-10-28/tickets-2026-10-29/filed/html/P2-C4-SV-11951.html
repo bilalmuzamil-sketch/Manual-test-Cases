@@ -1,0 +1,29 @@
+<h2>What is wrong</h2>
+<p>When a customer pays a <strong>deposit</strong> before the work is invoiced, and the deposit covers only part of the invoice, the invoice is <strong>partly paid</strong>. The work order's Finance tab and Sales By Representative both say <strong>Partially Paid</strong>.</p>
+<p>Sales Tax Collected gets this invoice wrong in two ways:</p>
+<ul><li><p><strong>Invoice Status</strong> reads <strong>Paid</strong>, so the invoice is missing when you filter on <strong>Partially Paid</strong>.</p></li><li><p><strong>Invoice Paid Date</strong> is the day the invoice was made, not the day the money came in (the deposit's date).</p></li></ul>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>DVI Test</strong>.</p></li><li><p>Make a work order for any customer with one labor line of <strong>$135.00</strong> (for example the canned line <strong>3x inspection</strong>). Leave the line <strong>approved</strong>, not yet Complete.</p></li><li><p>Open the <strong>Finance</strong> tab and click <strong>Add Deposit</strong>.</p></li><li><p>Set <strong>Deposit Date</strong> to <strong>two days ago</strong> (we used <strong>10/26/2026</strong>), <strong>Payment Method: Cash</strong>, <strong>Deposit Amount: 30.00</strong>. Click <strong>Record Deposit</strong>.</p></li><li><p>Mark the line <strong>Complete</strong>.</p></li><li><p>On the <strong>Finance</strong> tab, click <strong>Create Invoice</strong>. Close the <strong>New Customer Payment</strong> window without paying. <strong>Balance</strong> reads <strong>$105.00</strong>.</p></li><li><p>Open <strong>Reports → Sales Tax Collected</strong>.</p></li><li><p>Click <strong>Date Range</strong> and pick <strong>Today</strong>. Find your invoice.</p></li><li><p>Click <strong>Invoice Status</strong> and pick <strong>Partially Paid</strong>.</p></li></ol>
+<p><strong>Actual:</strong></p>
+<ul><li><p>At step 9 the invoice reads <strong>Paid</strong>, and Invoice Paid Date reads <strong>Today</strong> (28 Oct, the day the invoice was made).</p></li><li><p>At step 10 the table says <strong>"No record matches these filters"</strong>.</p></li></ul>
+<p><strong>Expected:</strong></p>
+<ul><li><p>At step 9 the invoice reads <strong>Partially Paid</strong>, because $135.00 − $30.00 = <strong>$105.00</strong> is still owed.</p></li><li><p>Invoice Paid Date is <strong>Oct 26, 2026</strong>, the date of the deposit (the latest and only payment).</p></li><li><p>At step 10 the invoice is listed.</p></li></ul>
+<p>Our example is work order <strong>S1-38221</strong> (customer ZZAUTOTEST P2C DEP): $30.00 deposit dated Oct 26, 2026, invoice made Oct 28, 2026, $105.00 still owed. An earlier test invoice, S1-38219 (same customer), shows the same thing.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 31 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>(b) Yes, use the latest payment date, deposits included, per <a href="https://shopview.atlassian.net/browse/SV-4573">SV-4573</a>. Both are defects.</p></blockquote>
+<p>SV-4573 (BE/FE Sales Tax report view), the report's columns:</p>
+<blockquote><p>Invoice Status (, Partially Paid, Paid)</p></blockquote>
+<p>and</p>
+<blockquote><p>for partially paid invoices, show the date of the latest payment</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Work order S1-38221, Finance tab, Add Deposit: Deposit Date 10/26/2026, Cash, 30.00.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="bafc5005-031e-4a0f-a2af-ac0c4916554b" data-collection="upload-user-collection-1343233018" data-alt="P2-C4-1-add-deposit-oct26.png"></div></figure>
+<p><strong>2.</strong> Sales Tax Collected, DVI Test, Today: S1-38221 reads Paid with Invoice Paid Date Today (should be Partially Paid, paid Oct 26, 2026).</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="aee10032-2d09-4456-80a8-c51cc92edfc0" data-collection="upload-user-collection-1343233018" data-alt="P2-C4-2-sales-tax-paid-and-date.png"></div></figure>
+<p><strong>3.</strong> The same report with Invoice Status: Partially Paid: "No record matches these filters".</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="097fa9b4-0520-479c-8b0a-9d0afe9679e1" data-collection="upload-user-collection-1343233018" data-alt="P2-C4-3-partially-paid-filter-empty.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).</p></li><li><p>Older invoices with the same problem (28 Oct data check): P2-2441, P2-2442, P2-2445, P2-2416, P2-2417, P2-2315, S2-37799, S2-32138 (Staging Heavy Duty - 9919) and S3-16408 (Staging Lethbridge - 4310).</p></li><li><p>When part of the money is an ordinary payment (not a deposit), the report correctly shows Partially Paid.</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

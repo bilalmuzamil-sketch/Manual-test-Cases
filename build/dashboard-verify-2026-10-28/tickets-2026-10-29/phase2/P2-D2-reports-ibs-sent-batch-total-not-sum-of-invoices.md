@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11953 (https://shopview.atlassian.net/browse/SV-11953), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-D2-SV-11953.html
 SUMMARY: Reports - IBS Batches: a sent batch's Total is $290.06 more than the invoices in it
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-2144 (Create "Batch Transactions" in "IBS Management" (IBS-six))

@@ -1,0 +1,24 @@
+<h2>What is wrong</h2>
+<p><strong>Sales Tax Collected</strong> tells the shop how much sales tax it collected in the chosen dates, so it knows what to pay to the government.</p>
+<p>When the shop gives a customer a <strong>credit memo</strong> (for example, for a returned part), the tax on that credit goes back to the customer. Sales Tax Collected does not show credit memos at all, and its tax totals do not go down. So the report says the shop collected more tax than it kept.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>Staging Heavy Duty - 9919</strong>.</p></li><li><p>Open <strong>Customers</strong> and find <strong>Testing Company Milos</strong>. Click the <strong>Invoices</strong> tab.</p></li><li><p>Find credit memo <strong>CM2-4520</strong>, dated <strong>Oct 20, 2026</strong>. Its Total is <strong>-$131.25</strong>: -$125.00 for the returned part and <strong>-$6.25</strong> GST (5 %).</p></li><li><p>Open <strong>Reports → Sales Tax Collected</strong>.</p></li><li><p>Click <strong>Date Range</strong>, pick <strong>Custom</strong>, and set both <strong>From</strong> and <strong>To</strong> to <strong>Oct 20, 2026</strong>.</p></li><li><p>Look at the list: only four invoices are shown, and CM2-4520 is not there.</p></li><li><p>Click <strong>See All Tax Rates</strong>. The date range stays Oct 20, 2026.</p></li></ol>
+<p><strong>Actual:</strong></p>
+<ul><li><p>CM2-4520 is not listed on the Invoices tab of the report.</p></li><li><p><strong>See All Tax Rates</strong> shows <strong>GST 5 % $57.44</strong>, the tax on the four invoices only.</p></li></ul>
+<p><strong>Expected:</strong></p>
+<ul><li><p>CM2-4520 is listed on Oct 20, 2026 as a <strong>negative row</strong>: Subtotal <strong>-$125.00</strong>, Taxes GST <strong>-$6.25</strong>, Total <strong>-$131.25</strong>.</p></li><li><p>Its tax is taken off the totals: GST = $57.44 − $6.25 = <strong>$51.19</strong>.</p></li></ul>
+<p>The same happens for every credit memo with tax in any date range. For example, at the same location in <strong>This month</strong> (October) the GST totals leave out $7.50 of credit-memo tax.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 30 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>Yes. Show credit memos as negative rows on their date, and take their tax off the totals. Defect.</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Sales Tax Collected, Staging Heavy Duty - 9919, Custom Oct 20, 2026: four invoices listed, no row for credit memo CM2-4520.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="6eafa508-2b4a-48da-96cc-87e825ba7360" data-collection="upload-user-collection-1343233018" data-alt="P2-C2-1-sales-tax-oct20.png"></div></figure>
+<p><strong>2.</strong> See All Tax Rates for the same day: GST 5 % $57.44 (should be $51.19).</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="8b3fee49-b2f2-4d45-9a41-d43ab191282a" data-collection="upload-user-collection-1343233018" data-alt="P2-C2-2-all-tax-rates-oct20.png"></div></figure>
+<p><strong>3.</strong> Customer Testing Company Milos, Invoices tab: credit memo CM2-4520, Oct 20, 2026, -$131.25.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="6d666122-8304-4d35-bd3c-868f80cb4d9a" data-collection="upload-user-collection-1343233018" data-alt="P2-C2-3-customer-credit-memo.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11940 (https://shopview.atlassian.net/browse/SV-11940), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B1-SV-11940.html
 SUMMARY: Reports - Parts Velocity "Last 90 days" covers 91 days
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-11514 (Parts Velocity: Last 90 Days default and remembered range) · relates to SV-8642 (Velocity - Story 2 - Filters & Search)
@@ -56,6 +56,6 @@ SV-11514: "The default range is Last 90 Days."
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
-- Browser and test computer set to the location's time zone (America/Toronto).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - The other date options (This week, Last week, This month, Last month, This quarter, Last quarter, This year, Last year, Last 12 months) cover the right dates (checked 28 Oct 2026).
 - Not checked on Production or on a QA branch.

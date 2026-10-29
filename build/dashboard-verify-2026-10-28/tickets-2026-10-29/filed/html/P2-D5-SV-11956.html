@@ -1,0 +1,20 @@
+<h2>What is wrong</h2>
+<p>On <strong>QB Unexported → Customers</strong>, every <strong>Credit Memo Create</strong> row has an empty <strong>No.</strong> column, so you cannot tell which credit memo failed to reach QuickBooks without opening the customer's account.</p>
+<p>Invoice rows show their number (for example <strong>S2-38098</strong>), and deposit rows show theirs (for example <strong>DEP-4813</strong>). Credit memos have a number too (for example <strong>CM2-4533</strong>), but it is not shown.</p>
+<p>The same blank No. is on <strong>Credit Memo Apply</strong> and <strong>Credit Memo Refund</strong> rows, and on most <strong>Deposit Application</strong> rows.</p>
+<p><strong>Example:</strong> at Staging Heavy Duty - 9919 the row "Credit Memo Create · DashFresh Alpha MQ · Oct 27, 2026" shows nothing under No. It should show the credit memo's number (CM2-…).</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>Staging Heavy Duty - 9919</strong>.</p></li><li><p>Click <strong>Reports</strong>, then <strong>QB Unexported</strong> (under Accounting).</p></li><li><p>Stay on the <strong>Customers</strong> tab.</p></li><li><p>Find any row whose Type is <strong>Credit Memo Create</strong> — for example <strong>DashFresh Alpha MQ</strong>, dated Oct 27, 2026 (shown as "2 days ago" on 29 Oct).</p></li><li><p>Look at the <strong>No.</strong> column of that row.</p></li><li><p>Optional: switch to <strong>Staging Lethbridge - 4310</strong> and repeat; every Credit Memo Create row there is blank too.</p></li></ol>
+<p><strong>Actual:</strong> the No. column is blank on every Credit Memo Create row (and on Credit Memo Apply, Credit Memo Refund and most Deposit Application rows).</p>
+<p><strong>Expected:</strong> every row shows its document's number in No. — the credit memo number (for example <strong>CM2-4533</strong>) on credit memo rows, the deposit number on deposit rows, as invoice rows already do.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 37 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026). Question (a): "Should every credit memo row show its number, for example CM2-4476?"</p>
+<blockquote><p>37. (a) Yes, every row shows its number. (b) Yes, one row per document, showing its latest error. Both are defects.</p></blockquote>
+<p>(Part (b) is a separate ticket: P2-D6.)</p>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> QB Unexported → Customers at Staging Heavy Duty - 9919: a Credit Memo Create row with a blank No., next to an invoice row that shows S2-38098.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="3c83f2db-ad20-495f-9a53-6212c4707781" data-collection="upload-user-collection-1343233018" data-alt="P2-D5-1-qb-unexported-credit-memo-blank-no.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.</p></li><li><p>Browser, app time-zone setting and test computer set to the location's time zone (Asia/Karachi). Lethbridge was read with the session on America/Edmonton.</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

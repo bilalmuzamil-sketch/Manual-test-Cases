@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11944 (https://shopview.atlassian.net/browse/SV-11944), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B5-SV-11944.html
 SUMMARY: Reports - Inventory Value quantity column is headed "Qty" instead of "On Hand" (screen and downloads)
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8670 (Inv Value - Story 3 - Columns and Calculations) · relates to SV-8677 (Inv Value - Story 10 - Export to PDF and CSV)
@@ -54,6 +54,6 @@ Not affected — this report does not feed any Dashboard tile.
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
-- Browser and test computer set to the location's time zone (America/Toronto).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - The CSV header row reads: `"Part #",Description,Category,Vendor,Location,Qty,"Unit Cost",…`.
 - Not checked on Production or on a QA branch.

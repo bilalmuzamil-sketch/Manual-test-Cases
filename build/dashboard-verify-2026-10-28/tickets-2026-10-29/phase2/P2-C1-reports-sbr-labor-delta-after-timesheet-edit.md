@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11948 (https://shopview.atlassian.net/browse/SV-11948), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-C1-SV-11948.html
 SUMMARY: Reports - Sales By Representative keeps the old Labor Delta after a timesheet is corrected
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8626 (SBR - Story 9 - Inv. Hrs (Labor Delta) column display)
@@ -63,5 +63,5 @@ and hours worked are
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
-- Browser and test computer set to the location's time zone (America/Toronto).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - Not checked on Production or on a QA branch.

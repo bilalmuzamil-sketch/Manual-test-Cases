@@ -1,0 +1,18 @@
+<h2>What is wrong</h2>
+<p>The <strong>Notes</strong> report never shows more than <strong>100 notes</strong>. When more than 100 notes fall in the chosen dates, the list simply stops after the 100th, and there is no next page, "load more" or message.</p>
+<p><strong>Example:</strong> with <strong>Date Range: Last Week</strong> (18–24 Oct 2026) there are <strong>255</strong> notes. The list shows the newest 100 (from 23 Oct, 11:02 PM down to 20 Oct, 6:33 PM) and stops. The other <strong>155</strong> notes (19 Oct, 11:51 AM to 20 Oct, 6:30 PM) cannot be seen: 255 − 100 = 155.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>Staging Heavy Duty - 9919</strong>.</p></li><li><p>Click <strong>Reports</strong>, then <strong>Notes</strong> (under Communications).</p></li><li><p>Click <strong>Date Range</strong> and pick <strong>Last Week</strong>.</p><ul><li><p>From 1 November 2026, pick <strong>Custom</strong> and choose <strong>Oct 18, 2026</strong> to <strong>Oct 24, 2026</strong> instead.</p></li></ul></li><li><p>Leave <strong>Sort By: Newest First</strong>.</p></li><li><p>Scroll to the bottom of the list.</p></li></ol>
+<p><strong>Actual:</strong> the list ends at the 100th note (Viktoria Videnovic, Work Order S1-37618, 06:33 PM, Oct 20, 2026). There is no next page and no way to see the older notes of that week.</p>
+<p><strong>Expected:</strong> every note in the chosen dates can be seen, with paging — here all 255, down to the oldest on 19 Oct 2026.</p>
+<p>On 28 Oct 2026 the same was seen with <strong>All</strong> (100 of 2,545), <strong>This Month</strong>, <strong>Filter by Author</strong> and <strong>Filter by Mention</strong> whenever more than 100 notes matched (re-checked today with Last Week only).</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 36 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>Yes, show every note in the chosen dates, with paging. Defect.</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Notes, Date Range: Last Week, scrolled to the bottom: the list stops at note 100 of 255 (times shown in Karachi time).</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="f89490eb-afe6-42c0-a67d-4d64bcc62884" data-collection="upload-user-collection-1343233018" data-alt="P2-D4-1-notes-last-week-ends-at-100.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.</p></li><li><p>Browser, app time-zone setting and test computer set to the location's time zone (Asia/Karachi).</p></li><li><p>Notes are shown for the whole organisation, so the same happens from any location.</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

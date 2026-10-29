@@ -1,0 +1,26 @@
+<h2>What is wrong</h2>
+<p><strong>Labor Delta</strong> is hours invoiced minus hours worked. It tells the shop whether a customer was billed for more time than was worked.</p>
+<p>If a manager corrects a technician's timesheet <strong>after</strong> the invoice is made, Sales By Representative keeps the <strong>old</strong> Labor Delta. The work order's <strong>Stats</strong> tab shows the new hours, but the report does not.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>DVI Test</strong>.</p></li><li><p>Make a work order for any customer with one labor line of <strong>1 hour</strong> of tech time. For example, use <strong>New Line</strong> and pick the canned line <strong>3x inspection</strong>.</p></li><li><p>On the work order card, set <strong>Sales Representative</strong> to <strong>Viktoria Videnovic</strong>.</p></li><li><p>Clock a technician on that line for about <strong>30 minutes</strong>. Mark the line <strong>Complete</strong>. On the <strong>Finance</strong> tab, click <strong>Create Invoice</strong>.</p></li><li><p>Open <strong>Reports → Sales By Representative</strong>. Leave <strong>Date: This month</strong> (from 1 November pick <strong>Last month</strong>).</p></li><li><p>Click the arrow next to <strong>Viktoria Videnovic</strong> to open her invoices. Find your invoice: Labor Delta reads <strong>+0.50</strong> (1.00 invoiced − 0.50 worked).</p></li><li><p>Open <strong>Reports → Timesheet Activities</strong>. Find the technician's clock on your work order and click the pencil (<strong>Edit timesheet</strong>).</p></li><li><p>Move <strong>Start</strong> 30 minutes earlier so the clock is <strong>1 hour</strong> long. Click <strong>Save</strong>.</p></li><li><p>Open the work order's <strong>Stats</strong> tab. Tech hours <strong>1.00</strong>, Clocked hours <strong>1.00</strong>, so Labor Delta is now 1.00 − 1.00 = <strong>0.00</strong>.</p></li><li><p>Go back to <strong>Reports → Sales By Representative</strong>, open <strong>Viktoria Videnovic</strong> again and find your invoice.</p></li></ol>
+<p><strong>Actual:</strong> Labor Delta still reads <strong>+0.50</strong>.</p>
+<p><strong>Expected:</strong> Labor Delta reads <strong>0.00</strong>, the same as the work order's Stats tab today.</p>
+<p>Our example is work order <strong>S1-38217</strong> (customer ZZAUTOTEST P2C REP, sales representative Viktoria Videnovic). Its clock was changed from 7:28–7:58 PM to 6:58–7:58 PM. The Stats tab shows 1.00 / 1.00, and Sales By Representative still shows +0.50.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 27 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>Use the figures as they are now, so the reports agree with the work order's Stats tab. Defect.</p></blockquote>
+<p>Sales By Representative PRD (as quoted in the question): Labor Delta is</p>
+<blockquote><p>hours invoiced minus hours worked</p></blockquote>
+<p>and hours worked are</p>
+<blockquote><p>the technician clocked (timesheet) hours recorded against that work order</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Timesheet Activities → Edit Timesheet on S1-38217 after the correction: Start 06:58 PM, End 07:58 PM (the clock is now 1.00 hour).</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="81a1d398-585c-4f59-8925-356f5fcf84d6" data-collection="upload-user-collection-1343233018" data-alt="P2-C1-1-edit-timesheet.png"></div></figure>
+<p><strong>2.</strong> Work order S1-38217, Stats tab, after the correction: 1.00 Tech hours and 1.00 Clocked hours.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="47352957-8983-46b5-8705-c3b42a3e0ce6" data-collection="upload-user-collection-1343233018" data-alt="P2-C1-2-stats-tab-after.png"></div></figure>
+<p><strong>3.</strong> Sales By Representative, This month, Viktoria Videnovic opened, after the correction: Labor Delta for S1-38217 still +0.50 (should be 0.00).</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="cdc609ef-f199-4474-82de-49eb417f6533" data-collection="upload-user-collection-1343233018" data-alt="P2-C1-3-sbr-after.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

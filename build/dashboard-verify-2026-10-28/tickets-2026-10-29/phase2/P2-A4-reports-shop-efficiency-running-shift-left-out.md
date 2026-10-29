@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11939 (https://shopview.atlassian.net/browse/SV-11939), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-A4-SV-11939.html
 SUMMARY: Reports - Shop Efficiency leaves a running timesheet out of Total Clocked Hours
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-2116 (Create 'Shop Billing Efficiency' report (report-four)) · relates to SV-11688 (Technician Utilization counts open (never clocked-out) timesheets as 24 h/day — the ruling that a running shift under 24 hours counts)

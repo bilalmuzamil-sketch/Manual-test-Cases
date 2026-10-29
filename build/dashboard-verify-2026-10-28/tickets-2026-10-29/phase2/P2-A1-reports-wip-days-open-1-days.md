@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11937 (https://shopview.atlassian.net/browse/SV-11937), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-A1-SV-11937.html
 SUMMARY: Reports - Work In Progress shows "1 days" in Days Open instead of "1 day"
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8660 (WIP - Story 4 - Columns and Calculations)
@@ -50,5 +50,5 @@ Not affected — this report does not feed any Dashboard tile.
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
-- Browser and test computer set to the location's time zone (Asia/Karachi).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).
 - Not checked on Production or on a QA branch. The PDF and CSV downloads were not checked.

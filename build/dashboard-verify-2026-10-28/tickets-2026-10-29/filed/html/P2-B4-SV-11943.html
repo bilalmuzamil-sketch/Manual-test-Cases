@@ -1,0 +1,23 @@
+<h2>What is wrong</h2>
+<p>On <strong>Parts Velocity</strong>, <strong>Last Sale</strong> ("how many days since this part was last sold") skips a sale when the part was <strong>billed on an invoice but no stock movement was recorded</strong> for it. It shows the sale before that instead, so the part looks as if it has not sold for much longer than it has.</p>
+<p>Any billed sale should count for Last Sale, with or without stock movement.</p>
+<p>For example, part <strong>N000000001069</strong> (Aluminum Seal Ring, M14) was billed on work order <strong>S2-16621</strong>, invoice date <strong>30 Jul 2026</strong>, for $1.38:</p>
+<ul><li><p>Actual: Last Sale reads <strong>161 days</strong> on 29 Oct 2026, which points back to 21 May 2026.</p></li><li><p>Expected: <strong>91 days</strong> on 29 Oct 2026 (30 Jul → 29 Oct = 1 + 31 + 30 + 29 = 91).</p></li></ul>
+<p>The same row even shows <strong>Revenue $1.38</strong> for Jul–Sep, so the report knows about the sale but leaves it out of Last Sale.</p>
+<h2>Where this shows on the Dashboard</h2>
+<p>Not affected — this report does not feed any Dashboard tile.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>Staging Heavy Duty - 9919</strong>.</p></li><li><p>Click <strong>Reports</strong>, then in the left menu under <strong>Parts</strong>, click <strong>Parts Velocity</strong>.</p></li><li><p>Click the <strong>Date</strong> filter and choose <strong>Last quarter</strong> (1 Jul – 30 Sep 2026).</p><ul><li><p>From 1 January 2027, choose <strong>Custom</strong> and pick <strong>Jul 1, 2026</strong> to <strong>Sep 30, 2026</strong> instead.</p></li></ul></li><li><p>Click <strong>Search</strong> and type <strong>N000000001069</strong>.</p></li><li><p>Find the row <strong>Inventory · N000000001069 · Aluminum Seal Ring, M14</strong>, vendor <strong>Willoughby Mechanical Services</strong>.</p></li><li><p>Read <strong>Revenue</strong> and <strong>Last Sale</strong> on that row.</p></li><li><p>Click <strong>Work Orders</strong>, open <strong>S2-16621</strong> and click the <strong>Finance</strong> tab. Read <strong>Invoice Date</strong>, and find the line <strong>DDE-N000000001069 - SEAL RING</strong>, 1 at $1.38.</p></li></ol>
+<p><strong>Actual:</strong> Revenue <strong>$1.38</strong> (the sale on S2-16621), but Last Sale <strong>161 days</strong> (21 May 2026). It goes up by 1 each day.</p>
+<p><strong>Expected:</strong> Last Sale <strong>91 days</strong> on 29 Oct 2026 (the sale on 30 Jul 2026), also going up by 1 each day.</p>
+<hr>
+<p><strong>Source:</strong> Chris Ward, answer to question 18 in "Dashboard and Reports – questions for Chris Ward" (28 Oct 2026):</p>
+<blockquote><p>18. Yes, any billed sale counts, with or without stock movement. Defect.</p></blockquote>
+<p>Parts Velocity Report PRD (version 12), S5-R4: Last Sale is "Whole days from today to the part's most recent sale at the selected location(s), over all-time history — not limited to the window."</p>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Parts Velocity at Staging Heavy Duty - 9919, Last quarter, N000000001069: Revenue $1.38, Last Sale 161 days.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="53b8e75d-1951-4185-8bfa-ef2572914162" data-collection="upload-user-collection-1343233018" data-alt="P2-B4-1-parts-velocity-last-sale.png"></div></figure>
+<p><strong>2.</strong> Work order S2-16621, Finance tab: Invoice Date Jul 30, 2026, with DDE-N000000001069 - SEAL RING billed at $1.38.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="8e18c313-b761-4a2d-8aee-440ed8f7301b" data-collection="upload-user-collection-1343233018" data-alt="P2-B4-2-invoice-S2-16621.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).</p></li><li><p>Also seen on 28 Oct 2026 (it read 160 days that day).</p></li><li><p>Not checked on Production or on a QA branch.</p></li></ul>

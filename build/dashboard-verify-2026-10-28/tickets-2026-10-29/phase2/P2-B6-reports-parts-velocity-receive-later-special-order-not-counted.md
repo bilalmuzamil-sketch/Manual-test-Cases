@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
+<!-- FILED 29 Oct 2026 as SV-11945 (https://shopview.atlassian.net/browse/SV-11945), parent SV-11936 (temporary parking epic), on the QA lead's go-ahead. Exact filed text: ../filed/html/P2-B6-SV-11945.html
 SUMMARY: Reports - Parts Velocity shows a "Receive later" special-order part as never sold after it is invoiced
 TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboards
 LINKS: relates to SV-8645 (Velocity - Story 5 - Metric Calculations)
@@ -67,6 +67,6 @@ Not affected — this report does not feed any Dashboard tile.
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
-- Browser and test computer set to the location's time zone (America/Toronto).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - Counted correctly for comparison: **ZZAUTOTEST-SO2-10282011**, received before invoicing on S1-38203: 1.00 sold, $80.00, Demand 1.
 - Not checked on Production or on a QA branch.
