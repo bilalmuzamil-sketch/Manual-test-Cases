@@ -427,3 +427,7 @@
 - `sv11555-empty-1028.mts` (copy of new6-1020 C682436 + Chris Ward's open-tab check): "Add Technician" is not in main's `<button>` list — find it by text on any button/a/[role=button]; the runner's UI switch back to Heavy Duty failed — change the RUNNER's location with `RUN.a` (the runner's own session), not the admin's `a`.
 - Results: all 10 steps + Estimates tab "Nothing here yet" (PRD v81 S1-N1d "judged on the open tab"); viewer without Settings → App sees no Add Technician. QA comment 79688 (3 pictures), C682436 Passed in run 498 (prefix removed), step 11 + v81 quote added (Rule 136). Topic test C368130 said "the PRD does not fix the wording … not a fail" — LOOSER than v81 S1-N1d → Expected now states the PRD's wording and the Add Technician button (Rule 137).
 #sv11555 #empty-state #locations #rule137 → L0601
+
+## L0603 — 2026-10-29 — The QA SSO session lasts about a day: 28 Oct 10:41 → expired by 29 Oct 10:21 UTC
+- SV-11581 returned to TESTING QA (watch run 10:21 UTC). quick-login on sv11581 answered 401 `{"error":"sso_required"}` with the session the QA lead sent 28 Oct ~10:40 UTC; sv11555 and sv11835 answered 302 (asleep) — the session is dead everywhere. Asked him for a fresh sign-in with the full URL (Rule 138). Expect to need a new SV_SSO_SESSION roughly daily; ask at the first 401 sso_required, never retry the old one.
+#sso #qa-branch #sign-in → L0596
