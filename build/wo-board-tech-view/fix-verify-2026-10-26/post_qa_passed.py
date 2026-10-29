@@ -20,7 +20,9 @@ if STATUS == 'Passed':
     COV = os.environ.get('COVERAGE', '')
     if not COV or not os.path.isfile(COV): sys.exit('REFUSED: set COVERAGE=<coverage.json> (ticket_coverage_gate.py --skeleton … drafts it); Passed needs every line × every view')
     g = subprocess.run([sys.executable, f'{REPO}/build/testing-tools/ticket_coverage_gate.py', COV], capture_output=True, text=True)
-    if g.returncode != 0: sys.exit('REFUSED by ticket_coverage_gate.py:\n' + g.stdout)
+    if g.returncode == 3:  # complete except parts genuinely absent from this build: the note must say "Not checked yet" and name each one
+        if 'Not checked yet' not in NOTE: sys.exit('REFUSED: some lines are not on this build — the note must say "Not checked yet: …" naming them:\n' + g.stdout)
+    elif g.returncode != 0: sys.exit('REFUSED by ticket_coverage_gate.py:\n' + g.stdout)
 log = {'key': KEY, 'attach': []}
 s, t = jira('GET', f'/rest/api/2/issue/{KEY}?fields=status,attachment,comment')
 f = json.loads(t)['fields']; log['status_before'] = f['status']['name']

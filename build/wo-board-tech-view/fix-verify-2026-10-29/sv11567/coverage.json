@@ -1,6 +1,6 @@
 {
  "ticket": "SV-11567",
- "build": "",
+ "build": "v26.43.3-74314c9 (sv11567, 29 Oct 2026)",
  "surfaces": [
   "Board View",
   "Tech View"
@@ -11,16 +11,22 @@
    "quote": "After a lead change, the message shows an Undo button and stays 5 seconds, held open while hovered.",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "C682425-v-s4-hovered-15s.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "toast read back with an Undo button 10 ms after the drop",
+     "observed": "message \"… assigned to … Undo\" with Undo + Dismiss; gone 5.04 s after it showed; still there after 15 s hovered, gone 8.8 s after the pointer left"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "XTVTIME-hovered-15s.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "toast read back after the More actions > Reassign lead technician change",
+     "observed": "message with Undo + Dismiss; closed between 4.6 s and 5.5 s after the change (bracketing 5 s); still there after 15 s hovered"
     }
    }
   },
@@ -29,16 +35,25 @@
    "quote": "Undo puts the work order back exactly as it was: the previous lead technician (or Unassigned), its previous place in that technician's order, and any shifts the change cleared.",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "C682426-v-s2-undone.png",
+      "C682426-v-s4-after-reload.png",
+      "C847734-v-s4-undone.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "column order read before (W1,W2,W3) and after refresh; lead read from the work order",
+     "observed": "W2 back between W1 and W3 with its old lead after Undo and after refresh; a work order that was Unassigned goes back to Unassigned (C847734)"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "XTVORD-after-undo.png",
+      "C682426-v-s7-after-reload.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "group order read before/after and after refresh; lead read from the work order",
+     "observed": "W2 back between W1 and W3 in Ana's group, also after refresh; a work order that was Unassigned goes back to Unassigned (lead \"none\")"
     }
    }
   },
@@ -47,16 +62,24 @@
    "quote": "Removed shifts come back as they were; a shift ended at the moment of the change gets its original end time back.",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun/XBVSHIFT-question.png",
+      "rerun/XBVSHIFT-after-undo.png",
+      "rerun/sv11567-retest-1029.json"
+     ],
+     "setup_readback": "shifts read from the Schedule: today 08:45-11:45 (under way, location time 09:16) and tomorrow 08:00-12:00",
+     "observed": "Clear shifts ended today's shift at 09:16 and removed tomorrow's; Undo gave back 08:45-11:45 and tomorrow 08:00-12:00 exactly"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun/XTVSHIFT-question.png",
+      "rerun/XTVSHIFT-after-undo.png",
+      "rerun/sv11567-retest-1029.json"
+     ],
+     "setup_readback": "same read-back, location time 09:17",
+     "observed": "Clear shifts ended it at 09:17 and removed tomorrow's; Undo gave both back exactly"
     }
    }
   },
@@ -65,16 +88,22 @@
    "quote": "Each labor line goes back to the technician it had before the change, and a line that had none goes back to none (Undo does not apply the normal lead-change line rules).",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "C847734-v-s5-lines-after-undo.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "line technicians read before: line 1 none, line 2 Ben, line 3 (complete) none",
+     "observed": "after the change line 1 followed the new lead; after Undo line 1 none, line 2 Ben, line 3 none — as before"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun2/XTVL-lines-after-undo.png",
+      "rerun2/run.log"
+     ],
+     "setup_readback": "same three lines read before/after",
+     "observed": "after Undo exactly as before (line with none back to none)"
     }
    }
   },
@@ -83,16 +112,22 @@
    "quote": "Undo is itself a lead change: it records its own audit entry.",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "C682426-v-s8-audit-log.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "work order Audit Log opened after the Undo",
+     "observed": "entries: lead Ana → Ben (change) and Ben → Ana (Undo)"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun2/XTVL-audit-log.png",
+      "rerun2/run.log"
+     ],
+     "setup_readback": "Audit Log of the Tech View work order",
+     "observed": "entries: lead none → Ana (change) and Ana → none (Undo)"
     }
    }
   },
@@ -101,16 +136,23 @@
    "quote": "Undo follows the Invoiced or Paid rule (an invoiced or paid work order can't be moved back).",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "C682428-v-s3-after-undo-1s.png",
+      "C682428-v-s5-after-refresh.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "work order status read back Invoiced before Undo",
+     "observed": "Undo refused: alert \"Couldn’t undo the change. Move the work order back by hand.\" (plus the Invoiced reason); stays with the new lead after refresh"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "XTVINV-after-undo-1s.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "status read back Invoiced",
+     "observed": "same alert; stays in the new lead's group after refresh"
     }
    }
   },
@@ -119,16 +161,22 @@
    "quote": "Undo shows no shift-clearing prompt.",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun/XBVSHIFT-after-undo.png",
+      "rerun/sv11567-retest-1029.json"
+     ],
+     "setup_readback": "the shift question was shown on the change (read back), so shifts existed",
+     "observed": "no shift question after Undo"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun/XTVSHIFT-after-undo.png",
+      "rerun/sv11567-retest-1029.json"
+     ],
+     "setup_readback": "same",
+     "observed": "no shift question after Undo"
     }
    }
   },
@@ -137,16 +185,23 @@
    "quote": "After Undo, the message reads \"Assignment undone\", with no Undo button on it.",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun2/XUDBV-assignment-undone.png",
+      "rerun2/run.log"
+     ],
+     "setup_readback": "messages read every 100 ms for 4 s after Undo",
+     "observed": "\"Assignment undone\" at 0.23 s with only Dismiss (no Undo); work order back with Ana"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun2/XUDTV-assignment-undone.png",
+      "rerun2/XTVL-assignment-undone.png",
+      "rerun2/run.log"
+     ],
+     "setup_readback": "same 100 ms watch",
+     "observed": "\"Assignment undone\" at 0.35 s with only Dismiss"
     }
    }
   },
@@ -155,16 +210,22 @@
    "quote": "If Undo can't be saved, nothing changes and the alert \"Couldn’t undo the change. Move the work order back by hand.\" shows.",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun/XNFBV-alert.png",
+      "rerun/sv11567-retest-1029.json"
+     ],
+     "setup_readback": "the Undo save (POST …/lead-change-undo) was made to fail with a server error",
+     "observed": "alert \"Couldn’t undo the change. Move the work order back by hand.\"; lead and column unchanged after refresh"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun/XNFTV-alert.png",
+      "rerun/sv11567-retest-1029.json"
+     ],
+     "setup_readback": "same forced failure",
+     "observed": "same alert; group unchanged after refresh"
     }
    }
   },
@@ -173,16 +234,25 @@
    "quote": "TestRail C682426: Undo puts the work order back with its old lead and in its old place.",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "C682426-v-s2-undone.png",
+      "C682426-v-s4-after-reload.png",
+      "C847734-v-s4-undone.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "column order read before (W1,W2,W3) and after refresh; lead read from the work order",
+     "observed": "W2 back between W1 and W3 with its old lead after Undo and after refresh; a work order that was Unassigned goes back to Unassigned (C847734)"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "XTVORD-after-undo.png",
+      "C682426-v-s7-after-reload.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "group order read before/after and after refresh; lead read from the work order",
+     "observed": "W2 back between W1 and W3 in Ana's group, also after refresh; a work order that was Unassigned goes back to Unassigned (lead \"none\")"
     }
    }
   },
@@ -191,16 +261,24 @@
    "quote": "TestRail C682427: Undo brings back the shifts that a lead change cleared.",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun/XBVSHIFT-question.png",
+      "rerun/XBVSHIFT-after-undo.png",
+      "rerun/sv11567-retest-1029.json"
+     ],
+     "setup_readback": "shifts read from the Schedule: today 08:45-11:45 (under way, location time 09:16) and tomorrow 08:00-12:00",
+     "observed": "Clear shifts ended today's shift at 09:16 and removed tomorrow's; Undo gave back 08:45-11:45 and tomorrow 08:00-12:00 exactly"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "rerun/XTVSHIFT-question.png",
+      "rerun/XTVSHIFT-after-undo.png",
+      "rerun/sv11567-retest-1029.json"
+     ],
+     "setup_readback": "same read-back, location time 09:17",
+     "observed": "Clear shifts ended it at 09:17 and removed tomorrow's; Undo gave both back exactly"
     }
    }
   },
@@ -209,16 +287,23 @@
    "quote": "TestRail C682428: Undo cannot move back a work order that was invoiced in the meantime.",
    "cells": {
     "Board View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "C682428-v-s3-after-undo-1s.png",
+      "C682428-v-s5-after-refresh.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "work order status read back Invoiced before Undo",
+     "observed": "Undo refused: alert \"Couldn’t undo the change. Move the work order back by hand.\" (plus the Invoiced reason); stays with the new lead after refresh"
     },
     "Tech View": {
-     "verdict": "",
-     "evidence": [],
-     "setup_readback": "",
-     "observed": ""
+     "verdict": "pass",
+     "evidence": [
+      "XTVINV-after-undo-1s.png",
+      "sv11567-retest-1029-main.json"
+     ],
+     "setup_readback": "status read back Invoiced",
+     "observed": "same alert; stays in the new lead's group after refresh"
     }
    }
   }

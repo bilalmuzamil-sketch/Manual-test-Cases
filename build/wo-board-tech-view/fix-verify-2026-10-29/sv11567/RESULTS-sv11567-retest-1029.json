@@ -1,0 +1,47 @@
+{
+ "pass_meta": {
+  "ticket": "SV-11567",
+  "build": "v26.43.3-74314c9"
+ },
+ "results": {
+  "C682426": {
+   "verdict": "Passed",
+   "observed": [
+    "Retested on the QA branch sv11567, build v26.43.3-74314c9, in Board View and Tech View.",
+    "Undo puts the work order back with its old lead technician and in its old place among that technician's work orders (W2 back between W1 and W3), also after a refresh.",
+    "A work order that had no lead goes back to Unassigned.",
+    "Undo is written in the work order's Audit Log, in both views.",
+    "After Undo the message reads Assignment undone, with no Undo button (picture 1).",
+    "If Undo cannot be saved, nothing changes and the alert reads: Couldn’t undo the change. Move the work order back by hand. (picture 2).",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11567 (TESTING QA) - retested against its description on 29 Oct; QA Passed comment posted on the ticket."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-29/sv11567/SV-11567-retest-1-undone.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-29/sv11567/SV-11567-retest-2-save-fails.png"
+   ]
+  },
+  "C682427": {
+   "verdict": "Passed",
+   "observed": [
+    "Retested on the QA branch sv11567, build v26.43.3-74314c9, in Board View and Tech View.",
+    "A shift under way at the change (08:45-11:45, changed at 09:17) was ended by Clear Shifts and got its 11:45 end back on Undo; tomorrow's removed shift came back as it was (picture 1).",
+    "No shift question shows on Undo.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11567 (TESTING QA) - retested against its description on 29 Oct; QA Passed comment posted on the ticket."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-29/sv11567/SV-11567-retest-3-shift-under-way.png"
+   ]
+  },
+  "C682428": {
+   "verdict": "Passed",
+   "observed": [
+    "Retested on the QA branch sv11567, build v26.43.3-74314c9, in Board View and Tech View.",
+    "Invoiced after the change: Undo is refused with the alert Couldn’t undo the change. Move the work order back by hand. and the work order stays with the new lead, also after a refresh (picture 1 shows the same alert).",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11567 (TESTING QA) - retested against its description on 29 Oct; QA Passed comment posted on the ticket."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-29/sv11567/SV-11567-retest-2-save-fails.png"
+   ]
+  }
+ }
+}

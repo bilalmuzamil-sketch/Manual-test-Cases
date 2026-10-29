@@ -264,6 +264,38 @@ for (const view of ['Board View', 'Tech View'] as const) {
     await go(view, set.q); o.move = await dragHold(host(set, 'D6'), target(TT.B.staff_id), `XRE${k}-D6-after-new-line`); o.prompt = await shiftPrompt(p, 'Keep shifts'); o.toast = await waitToast(); o.where = await where(set, 'D6'); o.lead = await leadName(set.w.D6.id);
   });
 }
+
+/** 29 Oct re-probe: the lock icon's own element (not [class*=lock], which also hits "clock"), hovered, tooltip read; Invoiced lock as the control */
+const lockEl = (hostSel: string) => p.evaluate(`(() => { const h = document.querySelector('${hostSel}'); if (!h) return null; h.scrollIntoView({ block: 'center' });
+  const c = [...h.querySelectorAll('svg, i, span')].filter(e => { const cls = (e.getAttribute('class') || '') + ' ' + (e.getAttribute('data-test-id') || '') + ' ' + (e.getAttribute('aria-label') || ''); const txt = e.tagName === 'I' ? e.textContent.trim() : '';
+    return (/(^|[ -])lock\\b|lucide-lock|padlock|_lock/i.test(cls) && !/clock/i.test(cls)) || txt === 'lock'; }).filter(e => e.getBoundingClientRect().width > 0);
+  return c.slice(0, 3).map(e => { const r = e.getBoundingClientRect(); return { tag: e.tagName, cls: (e.getAttribute('class') || '').slice(0, 80), tid: e.getAttribute('data-test-id'), x: r.x + r.width / 2, y: r.y + r.height / 2 }; }); })()`) as Promise<any[] | null>;
+const hoverAt = async (pt: any, tag: string) => { await p.mouse.move(5, 5); await p.waitForTimeout(500); await p.mouse.move(pt.x, pt.y, { steps: 8 }); await p.waitForTimeout(2000); const t = await tips(); await shotC(tag); return t; };
+for (const view of ['Board View', 'Tech View'] as const) { const k = view === 'Board View' ? 'BV' : 'TV';
+  await run(`P-${k}`, async (o) => { const { A, B } = await T2(`XP${k}`);
+    const set = await mkSet(`ZZAUTOTEST XP${k} Probe`, [{ co: 'P1', lead: A }, { co: 'P2', lead: A }, { co: 'P3', lead: A, status: 'invoiced' }]); o.log = set.log; const lg: any[] = []; await declineAll(set.w.P1.id, lg); o.declined = lg;
+    o.st = { P1: await status(set.w.P1.id), P2: await status(set.w.P2.id), P3: await status(set.w.P3.id) };
+    await pins([A.staff_id, B.staff_id]); await go(view, set.q); const host = (co: string) => (view === 'Board View' ? card(set, co) : row(set, co));
+    const order = async () => { const nm = nameOf(set); if (view === 'Board View') return ((await boardCols(p)).find((c) => c.id === A.staff_id)?.cards ?? []).map(nm); return ((await groups(p)).find((g: any) => g.id === A.staff_id)?.rows ?? []).map(nm); };
+    // lock tooltip: Invoiced P3 (control, worked on SV-11754) then Declined P1
+    o.lockP3 = await lockEl(host('P3')); if (o.lockP3?.[0]) o.tipP3 = await hoverAt(o.lockP3[0], `XP${k}-lock-invoiced`);
+    o.lockP1 = await lockEl(host('P1')); if (o.lockP1?.[0]) o.tipP1 = await hoverAt(o.lockP1[0], `XP${k}-lock-declined`);
+    o.lockP2 = await lockEl(host('P2'));
+    // reorder: control first (Approved P2 dropped on P1), then Declined P1 dropped on P3 — targets in view, read back after a refresh too
+    o.o0 = await order(); await dragTo(host('P2'), host(o.o0[0] === 'P2' ? o.o0[1] : o.o0[0]), 'x'); await p.waitForTimeout(2500); o.o1 = await order(); await shotC(`XP${k}-reorder-control`);
+    const tgt = o.o1.filter((x: string) => x !== 'P1'); await dragTo(host('P1'), host(tgt[tgt.length - 1]), 'x'); await p.waitForTimeout(2500); o.o2 = await order(); o.toast = await toastRead(); await shotC(`XP${k}-reorder-declined`);
+    await go(view, set.q); o.o2Refresh = await order(); o.p1Lead = await leadName(set.w.P1.id);
+  });
+}
+
+await run('PAGE', async (o) => { // the work order page: click the Lead technician value on a Declined work order — nothing may open; Approved control opens its list
+  const { A } = await T2('XPG'); const set = await mkSet('ZZAUTOTEST XPG Page', [{ co: 'G1', lead: A }, { co: 'G2', lead: A }]); const lg: any[] = []; await declineAll(set.w.G1.id, lg); o.decl = lg;
+  for (const co of ['G1', 'G2']) { await p.goto(`${APP}/workorders/${set.w[co].id}`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
+    if (await p.locator('.q-dialog').filter({ hasText: 'New Line' }).count()) await p.keyboard.press('Escape');
+    const lab = p.getByText(/^Lead tech/i).first(); const bb = await lab.boundingBox(); o[co] = { status: await status(set.w[co].id), label: bb ? await lab.innerText() : null };
+    if (bb) { await p.mouse.click(bb.x + 40, bb.y + bb.height + 14); await p.waitForTimeout(1800); o[co].menuItems = await p.locator('.q-menu .q-item, .q-dialog .q-item').count(); o[co].cursor = await p.evaluate(`(() => { const e = document.elementFromPoint(${bb.x + 40}, ${bb.y + bb.height + 14}); return e ? getComputedStyle(e).cursor + ' ' + e.tagName : null; })()`); await shotC(`XPG-${co}-clicked`); await p.keyboard.press('Escape'); }
+    o[co].lead = await leadName(set.w[co].id); }
+});
 await run('SERVER', async (o) => { // the server refuses too (Key Decision: "a product rule, not only a screen rule")
   const { A, B } = await T2('X02SV'); const s = await mk1902('X02SV', A); o.statuses = s.st; o.log = s.log;
   o.change = say(await a.post('/api/work-orders/change-lead-technician', { work_order_id: s.set.w.D1.id, tech_assigned_id: B.staff_id }));

@@ -12,7 +12,9 @@ coverage.json: {"ticket": "SV-1", "build": "...", "surfaces": [...], "lines": [{
   "surfaces": [optional subset — only where the ticket itself limits it, with "limit_reason"],
   "cells": {"<surface>": {"verdict": "pass|fail", "evidence": ["file.png", "run.json"], "setup_readback": "what was read back to prove
   the precondition held", "observed": "what was seen"}}}]}
-Exit 0 = every cell pass (Passed may be posted) · 2 = complete but something failed (post Failed) · 1 = GAPS (nothing may be posted)."""
+Exit 0 = every cell pass (Passed may be posted) · 2 = complete but something failed (post Failed) · 1 = GAPS (nothing may be posted)
+· 3 = every cell pass except cells marked verdict "not-on-build" (the feature is genuinely absent from this build, e.g. it ships on another
+branch) — each needs a "reason" and an "observed" + evidence proving the absence; the QA comment must then NAME each one as not checked yet."""
 import json, os, re, sys
 
 def skeleton(desc_path, ticket, surfaces):
@@ -24,6 +26,7 @@ def skeleton(desc_path, ticket, surfaces):
 
 def judge(cov, base):
     gaps, fails, ok = [], [], 0
+    global deferred; deferred = []
     surfaces = cov.get('surfaces') or []
     if not surfaces: gaps.append('no surfaces named — list every view/screen the ticket names (one surface is still a list)')
     if not cov.get('build'): gaps.append('no build marker recorded')
@@ -38,6 +41,10 @@ def judge(cov, base):
             c = (ln.get('cells') or {}).get(s)
             if not c: gaps.append(f'{lid} × {s}: never checked'); continue
             v = (c.get('verdict') or '').lower()
+            if v == 'not-on-build':
+                if not (c.get('reason') or '').strip(): gaps.append(f'{lid} × {s}: not-on-build with no reason')
+                if not c.get('evidence') or not (c.get('observed') or '').strip(): gaps.append(f'{lid} × {s}: not-on-build needs evidence + what was seen proving the absence')
+                deferred.append(f'{lid} × {s}: {c.get("reason", "")[:140]}'); continue
             if v not in ('pass', 'fail'): gaps.append(f'{lid} × {s}: no verdict'); continue
             ev = c.get('evidence') or []
             missing = [e for e in ev if not os.path.isfile(os.path.join(base, e.split('#')[0]))]
@@ -56,7 +63,8 @@ if __name__ == '__main__':
         print(json.dumps(skeleton(desc, ticket, surf), indent=1, ensure_ascii=False)); sys.exit(0)
     if not a: sys.exit(__doc__)
     p = a[0]; cov = json.load(open(p, encoding='utf-8')); gaps, fails, ok = judge(cov, os.path.dirname(os.path.abspath(p)))
-    print(f'{cov.get("ticket")} on {cov.get("build")}: {ok} cell(s) passed with evidence, {len(fails)} failed, {len(gaps)} gap(s)')
+    print(f'{cov.get("ticket")} on {cov.get("build")}: {ok} cell(s) passed with evidence, {len(fails)} failed, {len(deferred)} not on this build, {len(gaps)} gap(s)')
+    for d in deferred: print('  NOT ON BUILD ', d)
     for g in gaps: print('  GAP  ', g)
     for f in fails: print('  FAIL ', f)
-    sys.exit(1 if gaps else 2 if fails else 0)
+    sys.exit(1 if gaps else 2 if fails else 3 if deferred else 0)
