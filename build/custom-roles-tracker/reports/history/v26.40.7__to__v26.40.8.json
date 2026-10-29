@@ -1,0 +1,58 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.40.7",
+  "ref": "v26.40.7",
+  "commit": "e1021b143e1f196bae2f09189f24d2346e126d16",
+  "build_marker": null,
+  "label": "v26.40.7 (e1021b1)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.40.8",
+  "ref": "v26.40.8",
+  "commit": "1e8e914d0d424c3e8eaecb63712e641e53df4ef4",
+  "build_marker": null,
+  "label": "v26.40.8 (1e8e914)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 1
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "GET /api/accounting/invoices/{invoiceId}/pdf",
+   "title": "New API endpoint guarded by a permission: GET /api/accounting/invoices/{invoiceId}/pdf",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/External/Accounting/UI/HTTP/Proxy/AccountingInvoicePdfProxyController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/accounting/invoices/{invoiceId}/pdf as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::0"
+  }
+ ],
+ "commits": [],
+ "tickets": [],
+ "pull_requests": []
+}

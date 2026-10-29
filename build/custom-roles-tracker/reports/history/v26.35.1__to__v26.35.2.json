@@ -1,0 +1,76 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.35.1",
+  "ref": "v26.35.1",
+  "commit": "2660d9f4f5689aae1a47e96c6c781867487e07e4",
+  "build_marker": null,
+  "label": "v26.35.1 (2660d9f)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.35.2",
+  "ref": "v26.35.2",
+  "commit": "7da6279257ee18cccc51090a9a82e39d9c7b1a69",
+  "build_marker": null,
+  "label": "v26.35.2 (7da6279)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 1
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsDelete",
+   "endpoint": "POST /api/customers/ibs/reverse-payment",
+   "title": "New API endpoint guarded by a permission: POST /api/customers/ibs/reverse-payment",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_CUSTOMER_TRANSACTION_DELETE",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsDelete"
+   ],
+   "evidence": {
+    "controller": "api/src/Customer/Customers/Application/IbsBatch/ReversePayment/ReversePaymentController.php::reverseIbsBatchPayment"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/credit-memos, /api/customer-account, /api/customer-credits, /api/customer-deposits, /api/customer-payment, /api/customers, /api/deposits, /api/external (+13 more)",
+    "Screens/code: services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/customers/ibs/reverse-payment as a role WITH and a role WITHOUT \"Invoicing & Payments — Delete / Reverse\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsDelete::0"
+  }
+ ],
+ "commits": [
+  {
+   "commit": "05f86b12e7",
+   "date": "2026-08-24",
+   "subject": "Merge branch 'main' into SV-8802-slow-staff-save-session-scan"
+  },
+  {
+   "commit": "3cd31740ec",
+   "date": "2026-08-19",
+   "subject": "Merge branch 'main' into SV-8802-slow-staff-save-session-scan"
+  },
+  {
+   "commit": "fc69dfa5b8",
+   "date": "2026-08-11",
+   "subject": "SV-8802 Stop scanning the Redis keyspace to invalidate sessions on staff change"
+  }
+ ],
+ "tickets": [
+  "SV-8802"
+ ],
+ "pull_requests": []
+}

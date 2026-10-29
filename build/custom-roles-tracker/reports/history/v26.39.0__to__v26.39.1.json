@@ -1,0 +1,206 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.39.0",
+  "ref": "v26.39.0",
+  "commit": "07c719be861954e889d157ad4eacf293aa15ab59",
+  "build_marker": null,
+  "label": "v26.39.0 (07c719b)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.39.1",
+  "ref": "v26.39.1",
+  "commit": "3ef6aded08feb76e63e25994c79a0866a8cfd232",
+  "build_marker": null,
+  "label": "v26.39.1 (3ef6ade)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 1,
+  "frontend_behavior_changed": 4
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/note/update-attachment",
+   "title": "New API endpoint guarded by a permission: POST /api/note/update-attachment",
+   "before": "— (endpoint did not exist)",
+   "after": "in-method: NoteVoter::EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersDelete",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/Communication/Notes/UI/HTTP/UpdateAttachment/UpdateController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+28 more)",
+    "Screens/code: config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/note/update-attachment as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::0"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "customersView",
+   "title": "Screens that use \"Customers — View\" changed",
+   "before": "4 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal, /api/customers, /api/deposits (+16 more)",
+    "Screens/code: components/ts/reporting/sales-by-representative, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Customers — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:customersView::1"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "workOrdersCreateAndEdit",
+   "title": "Screens that use \"Work Orders — Create & Edit\" changed",
+   "before": "4 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+11 more)",
+    "Screens/code: components/ts/shared/customer-info, components/ts/work-orders/work-order-lines, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:workOrdersCreateAndEdit::2"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "woFullViewMode",
+   "title": "Screens that use \"Work Orders — Full View Mode\" changed",
+   "before": "15 file(s)",
+   "after": "16 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+9 more)",
+    "Screens/code: components/ts/billing/InvoiceActionBar.vue, components/ts/note/NoteAttachments.vue, components/ts/work-orders/CannedLineSelect.vue, components/ts/work-orders/LineDialog.vue, components/ts/work-orders/Statistics.vue, components/ts/work-orders/WorkOrderNavBar.vue (+5 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — Full View Mode\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:woFullViewMode::3"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "woReviewWorkOrders",
+   "title": "Screens that use \"Work Orders — Review Work Orders\" changed",
+   "before": "4 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+9 more)",
+    "Screens/code: components/ts/billing/InvoiceActionBar.vue, components/ts/work-orders/WorkOrder.vue, components/ts/work-orders/WorkOrderNavBar.vue, components/ts/work-orders/complete, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — Review Work Orders\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:woReviewWorkOrders::4"
+  }
+ ],
+ "commits": [
+  {
+   "commit": "07f50d9821",
+   "date": "2026-09-24",
+   "subject": "Merge remote-tracking branch 'origin/main' into SV-10254-notes-permission-checkbox"
+  },
+  {
+   "commit": "d4a77898b2",
+   "date": "2026-09-23",
+   "subject": "SV-10254: address review — drop the obsolete tenant pin, stop leaking the note id"
+  },
+  {
+   "commit": "234ccc94c2",
+   "date": "2026-09-18",
+   "subject": "SV-10254: gate the \"For Customer\" attachment toggle by the note EDIT rule"
+  }
+ ],
+ "tickets": [
+  "SV-10254"
+ ],
+ "pull_requests": []
+}

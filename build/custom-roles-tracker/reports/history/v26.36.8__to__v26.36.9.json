@@ -1,0 +1,462 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.36.8",
+  "ref": "v26.36.8",
+  "commit": "961aeb21472baf0ee14622ac3fc5f28f1455a3e2",
+  "build_marker": null,
+  "label": "v26.36.8 (961aeb2)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.36.9",
+  "ref": "v26.36.9",
+  "commit": "8d1613f57cfc7d65d0cafe9addbf62dcb87a7292",
+  "build_marker": null,
+  "label": "v26.36.9 (8d1613f)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 12
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "DELETE /api/open-api/credentials/{id}",
+   "title": "New API endpoint guarded by a permission: DELETE /api/open-api/credentials/{id}",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/ApiKey/UI/HTTP/Revoke/RevokeCredentialController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call DELETE /api/open-api/credentials/{id} as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::0"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "DELETE /api/open-api/webhooks/{id}",
+   "title": "New API endpoint guarded by a permission: DELETE /api/open-api/webhooks/{id}",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/Webhook/UI/HTTP/Delete/DeleteController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call DELETE /api/open-api/webhooks/{id} as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::1"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "GET /api/open-api/activity",
+   "title": "New API endpoint guarded by a permission: GET /api/open-api/activity",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsIntegrations"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/AuditLog/UI/HTTP/Listing/ListActivityController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/open-api/activity as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::2"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "GET /api/open-api/credentials",
+   "title": "New API endpoint guarded by a permission: GET /api/open-api/credentials",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsIntegrations"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/ApiKey/UI/HTTP/Listing/ListCredentialsController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/open-api/credentials as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::3"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "GET /api/open-api/usage",
+   "title": "New API endpoint guarded by a permission: GET /api/open-api/usage",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsIntegrations"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/AuditLog/UI/HTTP/Usage/UsageController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/open-api/usage as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::4"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "GET /api/open-api/webhooks",
+   "title": "New API endpoint guarded by a permission: GET /api/open-api/webhooks",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsIntegrations"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/Webhook/UI/HTTP/Listing/ListController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/open-api/webhooks as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::5"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "GET /api/open-api/webhooks/{id}/deliveries",
+   "title": "New API endpoint guarded by a permission: GET /api/open-api/webhooks/{id}/deliveries",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsIntegrations"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/Webhook/UI/HTTP/Deliveries/ListDeliveriesController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/open-api/webhooks/{id}/deliveries as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::6"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "PATCH /api/open-api/credentials/{id}",
+   "title": "New API endpoint guarded by a permission: PATCH /api/open-api/credentials/{id}",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/ApiKey/UI/HTTP/Change/ChangeCredentialController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call PATCH /api/open-api/credentials/{id} as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::7"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "PATCH /api/open-api/webhooks/{id}",
+   "title": "New API endpoint guarded by a permission: PATCH /api/open-api/webhooks/{id}",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/Webhook/UI/HTTP/Change/ChangeController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call PATCH /api/open-api/webhooks/{id} as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::8"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "POST /api/open-api/credentials",
+   "title": "New API endpoint guarded by a permission: POST /api/open-api/credentials",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/ApiKey/UI/HTTP/Create/CreateCredentialController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/open-api/credentials as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::9"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "POST /api/open-api/credentials/{id}/rotate",
+   "title": "New API endpoint guarded by a permission: POST /api/open-api/credentials/{id}/rotate",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/ApiKey/UI/HTTP/Rotate/RotateCredentialController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/open-api/credentials/{id}/rotate as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::10"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "POST /api/open-api/webhooks",
+   "title": "New API endpoint guarded by a permission: POST /api/open-api/webhooks",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/OpenApi/Webhook/UI/HTTP/Create/CreateController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+19 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/open-api/webhooks as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::11"
+  }
+ ],
+ "commits": [
+  {
+   "commit": "ff257559c9",
+   "date": "2026-09-14",
+   "subject": "Merge branch 'main' into SV-9297-unauthenticated-401-main"
+  },
+  {
+   "commit": "f369d4682b",
+   "date": "2026-08-28",
+   "subject": "Merge branch 'main' into SV-9297-unauthenticated-401-main"
+  },
+  {
+   "commit": "345ea676a2",
+   "date": "2026-08-21",
+   "subject": "SV-9296 Mirror the live session cookie's secure/samesite on deletion cookies"
+  },
+  {
+   "commit": "568b8cfa4b",
+   "date": "2026-08-18",
+   "subject": "SV-9296 Expire legacy parent-domain session cookies on successful login"
+  },
+  {
+   "commit": "cead6b2113",
+   "date": "2026-08-18",
+   "subject": "SV-9297 Answer unauthenticated requests with 401 + machine-readable code instead of 409"
+  }
+ ],
+ "tickets": [
+  "SV-9296",
+  "SV-9297"
+ ],
+ "pull_requests": []
+}

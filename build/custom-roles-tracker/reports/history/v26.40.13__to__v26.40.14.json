@@ -1,0 +1,83 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.40.13",
+  "ref": "v26.40.13",
+  "commit": "013e5439c673a3ea662665827c4b4c2e35714a82",
+  "build_marker": null,
+  "label": "v26.40.13 (013e543)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.40.14",
+  "ref": "v26.40.14",
+  "commit": "7a55f9c41b540fda7a5a7ea5ea32c6ad024cdf60",
+  "build_marker": null,
+  "label": "v26.40.14 (7a55f9c)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "frontend_behavior_changed": 2
+ },
+ "changes": [
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingView",
+   "title": "Screens that use \"Accounting — Page Access\" changed",
+   "before": "16 file(s)",
+   "after": "15 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [],
+    "files_removed": [
+     "app/src/components/ts/navigation/mobile/MobileMenu.vue"
+    ]
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+9 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting — Page Access\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingView::0"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingSettingsAccess",
+   "title": "Screens that use \"Accounting — Settings\" changed",
+   "before": "6 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [],
+    "files_removed": [
+     "app/src/components/ts/navigation/mobile/MobileMenu.vue"
+    ]
+   },
+   "workflows": [
+    "Accounting",
+    "Screens/code: api/accounting/shared/queries.ts, boot/axios.ts, components/ts/navigation/ProfileMenu.vue, router/accounting/index.ts, router/accounting/reports.routes.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting — Settings\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingSettingsAccess::1"
+  }
+ ],
+ "commits": [],
+ "tickets": [],
+ "pull_requests": []
+}

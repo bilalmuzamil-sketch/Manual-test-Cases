@@ -1,0 +1,360 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.39.2",
+  "ref": "v26.39.2",
+  "commit": "1aeb22db506a15c8d381d40a8ebde36c96e586d5",
+  "build_marker": null,
+  "label": "v26.39.2 (1aeb22d)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.40.0",
+  "ref": "v26.40.0",
+  "commit": "515e0922521081804cb24ba938591cf60360ec81",
+  "build_marker": null,
+  "label": "v26.40.0 (515e092)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 5,
+  "frontend_behavior_changed": 5
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "catalogInventoryView",
+   "title": "Server code that checks \"Catalog & Inventory — View\" directly changed",
+   "before": "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php",
+   "after": "api/src/Search/Application/Permission/SearchSectionAccess.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Search/Application/Permission/SearchSectionAccess.php"
+    ],
+    "files_removed": [
+     "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php"
+    ]
+   },
+   "workflows": [
+    "Catalog & Inventory",
+    "API areas: /api/catalog-parts, /api/inventory, /api/orders, /api/parts, /api/parts-catalogue, /api/pricing-rules",
+    "Screens/code: config/navLinks.ts, services/permissionService.ts, services/routingService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Catalog & Inventory — View\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:catalogInventoryView::0"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersView",
+   "title": "Server code that checks \"Customers — View\" directly changed",
+   "before": "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php",
+   "after": "api/src/Search/Application/Permission/SearchSectionAccess.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Search/Application/Permission/SearchSectionAccess.php"
+    ],
+    "files_removed": [
+     "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php"
+    ]
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal, /api/customers, /api/deposits (+17 more)",
+    "Screens/code: components/ts/reporting/sales-by-representative, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts, services/routingService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Customers — View\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersView::1"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "partSalesView",
+   "title": "Server code that checks \"Part Sales — View\" directly changed",
+   "before": "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php",
+   "after": "api/src/Search/Application/Permission/SearchSectionAccess.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Search/Application/Permission/SearchSectionAccess.php"
+    ],
+    "files_removed": [
+     "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php"
+    ]
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/parts, /api/vehicle, /api/vehicles, /api/work-orders",
+    "Screens/code: components/ts/navigation/search, components/ts/reporting/Sales.vue, components/ts/reporting/sales-by-customer, components/ts/reporting/sales-by-representative, components/ts/shared/customer-info, config/navLinks.ts (+2 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Part Sales — View\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:partSalesView::2"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "vendorOrderManagementView",
+   "title": "Server code that checks \"Vendor Order Management — View\" directly changed",
+   "before": "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php",
+   "after": "api/src/Search/Application/Permission/SearchSectionAccess.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Search/Application/Permission/SearchSectionAccess.php"
+    ],
+    "files_removed": [
+     "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php"
+    ]
+   },
+   "workflows": [
+    "Vendor Order Management",
+    "API areas: /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customers, /api/imported-work-orders, /api/inventory, /api/invoices (+8 more)",
+    "Screens/code: components/ts/parts/catalogue, config/navLinks.ts, services/permissionService.ts, services/routingService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Vendor Order Management — View\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:vendorOrderManagementView::3"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "workOrdersView",
+   "title": "Server code that checks \"Work Orders — View\" directly changed",
+   "before": "api/src/Auth/Application/Handler/ListMyFEPermissionsQueryHandler.php, api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php",
+   "after": "api/src/Auth/Application/Handler/ListMyFEPermissionsQueryHandler.php, api/src/Search/Application/Permission/SearchSectionAccess.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Search/Application/Permission/SearchSectionAccess.php"
+    ],
+    "files_removed": [
+     "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php"
+    ]
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-portal, /api/customers, /api/deposits (+18 more)",
+    "Screens/code: components/shared/vehicle-info/VehicleCard.vue, components/ts/reporting/PunchClockActivities.vue, components/ts/reporting/Sales.vue, components/ts/reporting/ServiceAdvisorAnalysis.vue, components/ts/shared/customer-info, components/ts/work-orders/WorkOrderNotesTab.vue (+6 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Orders — View\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:workOrdersView::4"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "catalogInventoryView",
+   "title": "Screens that use \"Catalog & Inventory — View\" changed",
+   "before": "2 file(s)",
+   "after": "3 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/routingService.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Catalog & Inventory",
+    "API areas: /api/catalog-parts, /api/inventory, /api/orders, /api/parts, /api/parts-catalogue, /api/pricing-rules",
+    "Screens/code: config/navLinks.ts, services/permissionService.ts, services/routingService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Catalog & Inventory — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:catalogInventoryView::5"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "customersView",
+   "title": "Screens that use \"Customers — View\" changed",
+   "before": "5 file(s)",
+   "after": "6 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/routingService.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal, /api/customers, /api/deposits (+17 more)",
+    "Screens/code: components/ts/reporting/sales-by-representative, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts, services/routingService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Customers — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:customersView::6"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "partSalesView",
+   "title": "Screens that use \"Part Sales — View\" changed",
+   "before": "6 file(s)",
+   "after": "8 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/navigation/search/useSearchModal.ts",
+     "app/src/services/routingService.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/parts, /api/vehicle, /api/vehicles, /api/work-orders",
+    "Screens/code: components/ts/navigation/search, components/ts/reporting/Sales.vue, components/ts/reporting/sales-by-customer, components/ts/reporting/sales-by-representative, components/ts/shared/customer-info, config/navLinks.ts (+2 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Part Sales — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:partSalesView::7"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "vendorOrderManagementView",
+   "title": "Screens that use \"Vendor Order Management — View\" changed",
+   "before": "3 file(s)",
+   "after": "4 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/routingService.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Vendor Order Management",
+    "API areas: /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customers, /api/imported-work-orders, /api/inventory, /api/invoices (+8 more)",
+    "Screens/code: components/ts/parts/catalogue, config/navLinks.ts, services/permissionService.ts, services/routingService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Vendor Order Management — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:vendorOrderManagementView::8"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "workOrdersView",
+   "title": "Screens that use \"Work Orders — View\" changed",
+   "before": "14 file(s)",
+   "after": "15 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/routingService.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-portal, /api/customers, /api/deposits (+18 more)",
+    "Screens/code: components/shared/vehicle-info/VehicleCard.vue, components/ts/reporting/PunchClockActivities.vue, components/ts/reporting/Sales.vue, components/ts/reporting/ServiceAdvisorAnalysis.vue, components/ts/shared/customer-info, components/ts/work-orders/WorkOrderNotesTab.vue (+6 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:workOrdersView::9"
+  }
+ ],
+ "commits": [
+  {
+   "commit": "f10fb3f59f",
+   "date": "2026-09-29",
+   "subject": "Merge remote-tracking branch 'origin/main' into HEAD"
+  },
+  {
+   "commit": "0df8ef0220",
+   "date": "2026-09-25",
+   "subject": "Merge remote-tracking branch 'origin/develop' into SV-9160-global-search-v2"
+  },
+  {
+   "commit": "44c4d5697e",
+   "date": "2026-09-25",
+   "subject": "Merge pull request #3278 from ShopView/main"
+  },
+  {
+   "commit": "f836e31839",
+   "date": "2026-09-23",
+   "subject": "Merge branch 'develop' into SV-9160-global-search-v2"
+  },
+  {
+   "commit": "2f193bc279",
+   "date": "2026-09-18",
+   "subject": "Merge remote-tracking branch 'origin/develop' into SV-9160-global-search-v2"
+  },
+  {
+   "commit": "14015eae3b",
+   "date": "2026-09-15",
+   "subject": "fix(SV-9160): five things the second review found, and none of them showed in a test"
+  }
+ ],
+ "tickets": [
+  "SV-9160"
+ ],
+ "pull_requests": [
+  "3278"
+ ]
+}

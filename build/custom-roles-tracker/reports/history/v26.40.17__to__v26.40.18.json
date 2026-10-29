@@ -1,0 +1,100 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.40.17",
+  "ref": "v26.40.17",
+  "commit": "f5bf8f4f2d8073bc32d15a83fdd8953441502ccd",
+  "build_marker": null,
+  "label": "v26.40.17 (f5bf8f4)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.40.18",
+  "ref": "v26.40.18",
+  "commit": "163ddfab3ff734dde6f12ed723cf59a97b2859de",
+  "build_marker": null,
+  "label": "v26.40.18 (163ddfa)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 2
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "GET /api/invoices/{invoiceId}/pdf",
+   "title": "New API endpoint guarded by a permission: GET /api/invoices/{invoiceId}/pdf",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_INVOICE_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsCreateAndEdit",
+    "invoicingPaymentsDelete",
+    "invoicingPaymentsView",
+    "reportsPageAccess",
+    "vendorOrderManagementView"
+   ],
+   "evidence": {
+    "controller": "api/src/Invoicing/Invoice/UI/HTTP/InvoicePdf/InvoicePdfController.php::__invoke"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/invoices/{invoiceId}/pdf as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::0"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/invoices/merged-pdf",
+   "title": "New API endpoint guarded by a permission: POST /api/invoices/merged-pdf",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_INVOICE_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsCreateAndEdit",
+    "invoicingPaymentsDelete",
+    "invoicingPaymentsView",
+    "reportsPageAccess",
+    "vendorOrderManagementView"
+   ],
+   "evidence": {
+    "controller": "api/src/Invoicing/Invoice/UI/HTTP/InvoicesPdf/InvoicesPdfController.php::__invoke"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/invoices/merged-pdf as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::1"
+  }
+ ],
+ "commits": [],
+ "tickets": [],
+ "pull_requests": []
+}

@@ -1,0 +1,1914 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.40.20.1",
+  "ref": "v26.40.20.1",
+  "commit": "6ac42c03fe779661159a41130a51be35dcd0750d",
+  "build_marker": null,
+  "label": "v26.40.20.1 (6ac42c0)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.43.0",
+  "ref": "v26.43.0",
+  "commit": "ffea43cf52ad806ea0c8b243a9d8b55e298bfe27",
+  "build_marker": null,
+  "label": "v26.43.0 (ffea43c)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 41,
+  "frontend_behavior_changed": 12
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "partSalesCreateAndEdit",
+   "title": "What \"Part Sales — Create & Edit\" grants on the server changed",
+   "before": "ROLE_CATALOG_INVENTORY::VIEW, ROLE_CUSTOMER::VIEW, ROLE_PART::CREATE_AND_EDIT, ROLE_WORK_ORDER::CREATE_AND_EDIT, ROLE_WORK_ORDER::VIEW, ROLE_WORK_ORDER_PART::CHANGE, ROLE_WORK_ORDER_PART::CREATE, ROLE_WORK_ORDER_PART::DELETE",
+   "after": "ROLE_CATALOG_INVENTORY::VIEW, ROLE_CUSTOMER::VIEW, ROLE_PART::CREATE_AND_EDIT, ROLE_PART_SALE_HISTORY::VIEW, ROLE_WORK_ORDER::CREATE_AND_EDIT, ROLE_WORK_ORDER::VIEW, ROLE_WORK_ORDER_PART::CHANGE, ROLE_WORK_ORDER_PART::CREATE, ROLE_WORK_ORDER_PART::DELETE",
+   "risk": "High",
+   "risk_reason": "Every role holding it now also passes ROLE_PART_SALE_HISTORY::VIEW. ",
+   "affected_roles": [
+    "administrator",
+    "service_manager",
+    "senior_service_advisor",
+    "service_advisor",
+    "parts_manager",
+    "parts_technician"
+   ],
+   "evidence": {
+    "atoms_added": [
+     "ROLE_PART_SALE_HISTORY::VIEW"
+    ],
+    "atoms_removed": []
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
+    "Screens/code: components/ts/shared/customer-info, components/ts/work-orders/dialogs, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Part Sales — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:partSalesCreateAndEdit::0"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "reportsPageAccess",
+   "endpoint": "GET /api/dashboard/reports",
+   "title": "API guard changed: GET /api/dashboard/reports",
+   "before": "(unguarded)",
+   "after": "attribute: PermissionEnum::ROLE_REPORT_VIEW",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "reportsPageAccess"
+   ],
+   "evidence": {
+    "controller": "api/src/Dashboard/Tiles/UI/HTTP/Reports/DashboardReportsController.php::__invoke"
+   },
+   "workflows": [
+    "Reports",
+    "API areas: /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal, /api/customers, /api/dashboard (+23 more)",
+    "Screens/code: composables/useDashboardAccess.ts, config/navLinks.ts, services/routingService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/dashboard/reports as a role WITH and a role WITHOUT \"Reports — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:reportsPageAccess::1"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/note/add-attachments",
+   "title": "API guard changed: POST /api/note/add-attachments",
+   "before": "in-method: NoteVoter::EDIT",
+   "after": "in-method: NoteVoter::EDIT AND in-method: NoteVoter::TOGGLE_ATTACHMENT_FOR_CUSTOMER",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersDelete",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "partSalesView",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woMoveLabor",
+    "woOrderParts",
+    "woPickParts",
+    "woReceivedLater",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/Communication/Notes/UI/HTTP/AddAttachment/AddAttachmentController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/note/add-attachments as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::2"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/note/create",
+   "title": "API guard changed: POST /api/note/create",
+   "before": "in-method: NoteVoter::CREATE",
+   "after": "in-method: NoteVoter::CREATE",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersDelete",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "partSalesView",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woMoveLabor",
+    "woOrderParts",
+    "woPickParts",
+    "woReceivedLater",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/Communication/Notes/UI/HTTP/Create/CreateController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/note/create as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::3"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/note/delete",
+   "title": "API guard changed: POST /api/note/delete",
+   "before": "in-method: NoteVoter::DELETE",
+   "after": "in-method: NoteVoter::DELETE",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersDelete",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "partSalesView",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woMoveLabor",
+    "woOrderParts",
+    "woPickParts",
+    "woReceivedLater",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/Communication/Notes/UI/HTTP/Delete/DeleteController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/note/delete as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::4"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/note/delete-attachment",
+   "title": "API guard changed: POST /api/note/delete-attachment",
+   "before": "in-method: NoteVoter::EDIT",
+   "after": "in-method: NoteVoter::EDIT",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersDelete",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "partSalesView",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woMoveLabor",
+    "woOrderParts",
+    "woPickParts",
+    "woReceivedLater",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/Communication/Notes/UI/HTTP/DeleteAttachment/DeleteAttachmentController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/note/delete-attachment as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::5"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/note/update",
+   "title": "API guard changed: POST /api/note/update",
+   "before": "in-method: NoteVoter::EDIT",
+   "after": "in-method: NoteVoter::EDIT",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersDelete",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "partSalesView",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woMoveLabor",
+    "woOrderParts",
+    "woPickParts",
+    "woReceivedLater",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/Communication/Notes/UI/HTTP/Update/UpdateController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/note/update as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::6"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/note/update-attachment",
+   "title": "API guard changed: POST /api/note/update-attachment",
+   "before": "in-method: NoteVoter::EDIT",
+   "after": "in-method: NoteVoter::TOGGLE_ATTACHMENT_FOR_CUSTOMER",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersDelete",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "partSalesView",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woMoveLabor",
+    "woOrderParts",
+    "woPickParts",
+    "woReceivedLater",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/Communication/Notes/UI/HTTP/UpdateAttachment/UpdateController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/note/update-attachment as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::7"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/work-orders/change-contact",
+   "title": "API guard changed: POST /api/work-orders/change-contact",
+   "before": "attribute: PermissionEnum::ROLE_VEHICLE_CREATE_AND_EDIT",
+   "after": "attribute: new Expression( 'is_granted(\\''.PermissionEnum::ROLE_VEHICLE_CREATE_AND_EDIT.'\\') or is_granted(\\''.PartSaleEditVoter::EDIT_PART_SALE.'\\')', ) AND in-method: PermissionEnum::ROLE_VEHICLE_CREATE_AND_EDIT AND in-method: PartSaleEditVoter::EDIT_PART_SALE",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/Application/ChangeContact/ChangeContactController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/change-contact as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::8"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/work-orders/change-customer",
+   "title": "API guard changed: POST /api/work-orders/change-customer",
+   "before": "attribute: PermissionEnum::ROLE_VEHICLE_CREATE_AND_EDIT",
+   "after": "attribute: new Expression( 'is_granted(\\''.PermissionEnum::ROLE_VEHICLE_CREATE_AND_EDIT.'\\') or is_granted(\\''.PartSaleEditVoter::EDIT_PART_SALE.'\\')', ) AND in-method: PermissionEnum::ROLE_VEHICLE_CREATE_AND_EDIT AND in-method: PartSaleEditVoter::EDIT_PART_SALE",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/Application/ChangeCustomer/ChangeController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/change-customer as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::9"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "POST /api/work-orders/part/make-return-request",
+   "title": "API guard changed: POST /api/work-orders/part/make-return-request",
+   "before": "attribute: new Expression( 'is_granted(\\''.PermissionEnum::ROLE_VENDOR_CREATE_AND_EDIT.'\\') or is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_PART_CREATE.'\\') or is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT.'\\')', )",
+   "after": "attribute: new Expression( 'is_granted(\\''.PermissionEnum::ROLE_VENDOR_CREATE_AND_EDIT.'\\') or is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_PART_CREATE.'\\') or is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT.'\\')', ) AND in-method: PartSaleReturnVoter::RETURN_ON_PART_SALE",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "vendorOrderManagementDelete",
+    "vendorOrderManagementView",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Part/ReturnRequest/MakePartReturnRequestController.php::handle"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/part/make-return-request as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::10"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "POST /api/work-orders/parts/delete",
+   "title": "API guard changed: POST /api/work-orders/parts/delete",
+   "before": "attribute: new Expression( 'is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_PART_DELETE.'\\') or is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT.'\\')', )",
+   "after": "attribute: new Expression( 'is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_PART_DELETE.'\\') or is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT.'\\')', ) AND in-method: PartSaleReturnVoter::RETURN_ON_PART_SALE",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "vendorOrderManagementDelete",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Part/DeletePartController.php::__invoke"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/parts/delete as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::11"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "title": "Server code that checks \"Customers — Create & Edit\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::12"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersDelete",
+   "title": "Server code that checks \"Customers — Delete\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/customers, /api/note, /api/vehicle-makers, /api/vehicle-models, /api/vehicles",
+    "Screens/code: components/customers/ts/ContactDialog.vue, components/customers/ts/VehicleDialog.vue, components/ts/customers/CustomerDialog.vue, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Customers — Delete\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersDelete::13"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersView",
+   "title": "Server code that checks \"Customers — View\" directly changed",
+   "before": "api/src/Search/Application/Permission/SearchSectionAccess.php",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php, api/src/Search/Application/Permission/SearchSectionAccess.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal, /api/customers, /api/deposits (+17 more)",
+    "Screens/code: components/ts/reporting/sales-by-representative, config/navLinks.ts, services/permissionService.ts, services/routingService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Customers — View\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersView::14"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "partSalesCreateAndEdit",
+   "title": "Server code that checks \"Part Sales — Create & Edit\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php, api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php, api/src/VehicleService/WorkOrders/Infrastructure/Security/PartSale/PartSaleEditVoter.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+     "api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php",
+     "api/src/VehicleService/WorkOrders/Infrastructure/Security/PartSale/PartSaleEditVoter.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
+    "Screens/code: components/ts/shared/customer-info, components/ts/work-orders/dialogs, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Part Sales — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:partSalesCreateAndEdit::15"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "partSalesDelete",
+   "title": "Server code that checks \"Part Sales — Delete\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php, api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php, api/src/VehicleService/WorkOrders/Infrastructure/Security/PartSale/PartSaleEditVoter.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+     "api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php",
+     "api/src/VehicleService/WorkOrders/Infrastructure/Security/PartSale/PartSaleEditVoter.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/inventory, /api/invoices, /api/note, /api/part-sales, /api/parts-catalogue, /api/pricing-rules, /api/work-orders",
+    "Screens/code: services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Part Sales — Delete\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:partSalesDelete::16"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "partSalesView",
+   "title": "Server code that checks \"Part Sales — View\" directly changed",
+   "before": "api/src/Search/Application/Permission/SearchSectionAccess.php",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php, api/src/Search/Application/Permission/SearchSectionAccess.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/note, /api/parts, /api/vehicle, /api/vehicles, /api/work-orders",
+    "Screens/code: components/ts/navigation/search, components/ts/reporting/Sales.vue, components/ts/reporting/sales-by-customer, components/ts/reporting/sales-by-representative, config/navLinks.ts, services/permissionService.ts (+2 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Part Sales — View\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:partSalesView::17"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "vendorOrderManagementCreateAndEdit",
+   "title": "Server code that checks \"Vendor Order Management — Create & Edit\" directly changed",
+   "before": "(none)",
+   "after": "api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Vendor Order Management",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/orders (+16 more)",
+    "Screens/code: components/ts/work-orders/receive, config/navLinks.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Vendor Order Management — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:vendorOrderManagementCreateAndEdit::18"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "vendorOrderManagementDelete",
+   "title": "Server code that checks \"Vendor Order Management — Delete\" directly changed",
+   "before": "(none)",
+   "after": "api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Vendor Order Management",
+    "API areas: /api/inventory, /api/part, /api/part-sales, /api/parts-catalogue, /api/portal, /api/vendor-payments, /api/work-orders, /api/workplaces",
+    "Screens/code: services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Vendor Order Management — Delete\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:vendorOrderManagementDelete::19"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "workOrderLinesCreateAndEdit",
+   "title": "Server code that checks \"Work Order Lines — Create & Edit\" directly changed",
+   "before": "api/src/Auth/Domain/Model/Role.php",
+   "after": "api/src/Auth/Domain/Model/Role.php, api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php, api/src/VehicleService/Inspections/UI/HTTP/Instance/InspectionInstanceAccessGate.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+     "api/src/VehicleService/Inspections/UI/HTTP/Instance/InspectionInstanceAccessGate.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Order Lines",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
+    "Screens/code: components/shared/vehicle-info/VehicleCard.vue, components/ts/billing/InvoiceActionBar.vue, components/ts/customers/VehicleInvoices.vue, components/ts/inspections/InspectionLineRow.vue, components/ts/inspections/composables, components/ts/schedule-next/dialogs (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Order Lines — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:workOrderLinesCreateAndEdit::20"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "workOrderLinesDelete",
+   "title": "Server code that checks \"Work Order Lines — Delete\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Order Lines",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
+    "Screens/code: components/ts/inspections/InspectionLineRow.vue, components/ts/inspections/completion, components/ts/work-orders/LineDialog.vue, components/work-orders/ts/WorkOrderLineContextMenuList.vue"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Order Lines — Delete\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:workOrderLinesDelete::21"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "workOrdersCreateAndEdit",
+   "title": "Server code that checks \"Work Orders — Create & Edit\" directly changed",
+   "before": "api/src/Auth/Domain/Model/Role.php",
+   "after": "api/src/Auth/Domain/Model/Role.php, api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php, api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+     "api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+12 more)",
+    "Screens/code: components/ts/shared/customer-info, components/ts/work-orders/work-order-lines, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Orders — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:workOrdersCreateAndEdit::22"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "workOrdersDelete",
+   "title": "Server code that checks \"Work Orders — Delete\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php, api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+     "api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/invoices, /api/note, /api/part-sales, /api/sales-reps, /api/schedule, /api/service-advisors, /api/work-orders, /api/work-orders-imported (+1 more)",
+    "Screens/code: services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Orders — Delete\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:workOrdersDelete::23"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "woMoveLabor",
+   "title": "Server code that checks \"Work Orders — Move Labor\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/note, /api/work-orders",
+    "Screens/code: components/work-orders/ts/WorkOrderLineContextMenuList.vue"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Orders — Move Labor\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:woMoveLabor::24"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "woOrderParts",
+   "title": "Server code that checks \"Work Orders — Order Parts\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
+    "Screens/code: components/ts/parts/receive, components/ts/work-orders/PartRequestActionButton.vue, components/ts/work-orders/WorkOrderTabs.vue, components/ts/work-orders/work-order-lines, components/work-orders/ts/WorkOrderLineContextMenuList.vue, composables/useCompletionSession.ts (+2 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Orders — Order Parts\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:woOrderParts::25"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "woPickParts",
+   "title": "Server code that checks \"Work Orders — Pick Parts\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+14 more)",
+    "Screens/code: components/ts/work-orders/PartRequestActionButton.vue, components/ts/work-orders/WorkOrder.vue, components/ts/work-orders/work-order-lines, composables/useCompletionSession.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Orders — Pick Parts\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:woPickParts::26"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "woReceivedLater",
+   "title": "Server code that checks \"Work Orders — Receive Later\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/note, /api/work-orders",
+    "Screens/code: components/ts/work-orders/PartRequestActionButton.vue, components/ts/work-orders/complete, components/ts/work-orders/receive, components/ts/work-orders/work-order-lines"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Orders — Receive Later\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:woReceivedLater::27"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "woReviewWorkOrders",
+   "title": "Server code that checks \"Work Orders — Review Work Orders\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
+    "Screens/code: components/ts/billing/InvoiceActionBar.vue, components/ts/work-orders/WorkOrder.vue, components/ts/work-orders/WorkOrderNavBar.vue, components/ts/work-orders/complete"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Orders — Review Work Orders\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:woReviewWorkOrders::28"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "workOrdersView",
+   "title": "Server code that checks \"Work Orders — View\" directly changed",
+   "before": "api/src/Auth/Application/Handler/ListMyFEPermissionsQueryHandler.php, api/src/Search/Application/Permission/SearchSectionAccess.php",
+   "after": "api/src/Auth/Application/Handler/ListMyFEPermissionsQueryHandler.php, api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php, api/src/Search/Application/Permission/SearchSectionAccess.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-portal, /api/customers, /api/deposits (+18 more)",
+    "Screens/code: components/shared/vehicle-info/VehicleCard.vue, components/ts/reporting/PunchClockActivities.vue, components/ts/reporting/Sales.vue, components/ts/reporting/ServiceAdvisorAnalysis.vue, components/ts/shared/customer-info, components/ts/work-orders/WorkOrderNotesTab.vue (+7 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Orders — View\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:workOrdersView::29"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "partSalesCreateAndEdit",
+   "endpoint": "DELETE /api/part-sales/{workOrderId}/cores/{partId}/return",
+   "title": "New API endpoint guarded by a permission: DELETE /api/part-sales/{workOrderId}/cores/{partId}/return",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PartSaleReturnVoter::RETURN_ON_PART_SALE",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "vendorOrderManagementCreateAndEdit",
+    "vendorOrderManagementDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/PartSale/CancelPartSaleCoreReturnController.php::__invoke"
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
+    "Screens/code: components/ts/shared/customer-info, components/ts/work-orders/dialogs, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call DELETE /api/part-sales/{workOrderId}/cores/{partId}/return as a role WITH and a role WITHOUT \"Part Sales — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:partSalesCreateAndEdit::30"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "partSalesCreateAndEdit",
+   "endpoint": "DELETE /api/work-orders/{workOrderId}/vehicle",
+   "title": "New API endpoint guarded by a permission: DELETE /api/work-orders/{workOrderId}/vehicle",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PartSaleEditVoter::EDIT_PART_SALE",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "partSalesCreateAndEdit",
+    "partSalesDelete"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/PartSale/RemovePartSaleVehicleController.php::__invoke"
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
+    "Screens/code: components/ts/shared/customer-info, components/ts/work-orders/dialogs, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call DELETE /api/work-orders/{workOrderId}/vehicle as a role WITH and a role WITHOUT \"Part Sales — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:partSalesCreateAndEdit::31"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "partSalesCreateAndEdit",
+   "endpoint": "GET /api/part-sales/{workOrderId}/history",
+   "title": "New API endpoint guarded by a permission: GET /api/part-sales/{workOrderId}/history",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_PART_SALE_HISTORY_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "partSalesCreateAndEdit"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/PartSale/PartSaleHistoryViewController.php::__invoke"
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
+    "Screens/code: components/ts/shared/customer-info, components/ts/work-orders/dialogs, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/part-sales/{workOrderId}/history as a role WITH and a role WITHOUT \"Part Sales — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:partSalesCreateAndEdit::32"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "timesheetsCreateAndEdit",
+   "endpoint": "GET /api/technician-tasks/list-overlapping",
+   "title": "New API endpoint guarded by a permission: GET /api/technician-tasks/list-overlapping",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_TIMESHEET_ALL",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "timesheetsCreateAndEdit"
+   ],
+   "evidence": {
+    "controller": "api/src/LabourBilling/TechnicianTaskRecords/UI/HTTP/ListOverlapping/ListOverlappingForStaffController.php::__invoke"
+   },
+   "workflows": [
+    "Timesheets",
+    "API areas: /api/contacts, /api/departments, /api/reporting, /api/staff, /api/technician-tasks",
+    "Screens/code: components/ts/reporting/PunchClockActivities.vue, components/ts/work-orders/TimeSheets.vue, composables/useReportsTable.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/technician-tasks/list-overlapping as a role WITH and a role WITHOUT \"Timesheets — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:timesheetsCreateAndEdit::33"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "timesheetsCreateAndEdit",
+   "endpoint": "GET /api/technician-tasks/list-overlapping/{id}",
+   "title": "New API endpoint guarded by a permission: GET /api/technician-tasks/list-overlapping/{id}",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_TIMESHEET_ALL",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "timesheetsCreateAndEdit"
+   ],
+   "evidence": {
+    "controller": "api/src/LabourBilling/TechnicianTaskRecords/Application/HTTP/ListOverlapping/ListingController.php::handle"
+   },
+   "workflows": [
+    "Timesheets",
+    "API areas: /api/contacts, /api/departments, /api/reporting, /api/staff, /api/technician-tasks",
+    "Screens/code: components/ts/reporting/PunchClockActivities.vue, components/ts/work-orders/TimeSheets.vue, composables/useReportsTable.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/technician-tasks/list-overlapping/{id} as a role WITH and a role WITHOUT \"Timesheets — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:timesheetsCreateAndEdit::34"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "GET /api/work-orders/board",
+   "title": "New API endpoint guarded by a permission: GET /api/work-orders/board",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Board/ViewWorkOrderBoardController.php::__invoke"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/work-orders/board as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::35"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "GET /api/work-orders/board/items",
+   "title": "New API endpoint guarded by a permission: GET /api/work-orders/board/items",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Board/ListWorkOrderBoardItemsController.php::__invoke"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/work-orders/board/items as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::36"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "GET /api/work-orders/lead-technician-candidates",
+   "title": "New API endpoint guarded by a permission: GET /api/work-orders/lead-technician-candidates",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/LeadTechnician/ListLeadTechnicianCandidatesController.php::__invoke"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/work-orders/lead-technician-candidates as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::37"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "partSalesCreateAndEdit",
+   "endpoint": "POST /api/part-sales/{workOrderId}/cores/{partId}/return",
+   "title": "New API endpoint guarded by a permission: POST /api/part-sales/{workOrderId}/cores/{partId}/return",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PartSaleReturnVoter::RETURN_ON_PART_SALE",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "partSalesCreateAndEdit",
+    "partSalesDelete",
+    "vendorOrderManagementCreateAndEdit",
+    "vendorOrderManagementDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/PartSale/ReturnPartSaleCoreController.php::__invoke"
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
+    "Screens/code: components/ts/shared/customer-info, components/ts/work-orders/dialogs, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/part-sales/{workOrderId}/cores/{partId}/return as a role WITH and a role WITHOUT \"Part Sales — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:partSalesCreateAndEdit::38"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "POST /api/work-orders/{workOrderId}/board-move",
+   "title": "New API endpoint guarded by a permission: POST /api/work-orders/{workOrderId}/board-move",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Board/MoveWorkOrderOnBoardController.php::__invoke"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/{workOrderId}/board-move as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::39"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "POST /api/work-orders/lines/assign-technician",
+   "title": "New API endpoint guarded by a permission: POST /api/work-orders/lines/assign-technician",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/Application/Line/AssignTechnician/AssignTechnicianController.php::handle"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/lines/assign-technician as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::40"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "customersCreateAndEdit",
+   "title": "Screens that use \"Customers — Create & Edit\" changed",
+   "before": "3 file(s)",
+   "after": "4 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/work-orders/dialogs/ChangeWorkOrderAssetDialog.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Customers — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:customersCreateAndEdit::41"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "customersDelete",
+   "title": "Screens that use \"Customers — Delete\" changed",
+   "before": "5 file(s)",
+   "after": "4 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [],
+    "files_removed": [
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ]
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/customers, /api/note, /api/vehicle-makers, /api/vehicle-models, /api/vehicles",
+    "Screens/code: components/customers/ts/ContactDialog.vue, components/customers/ts/VehicleDialog.vue, components/ts/customers/CustomerDialog.vue, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Customers — Delete\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:customersDelete::42"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "customersView",
+   "title": "Screens that use \"Customers — View\" changed",
+   "before": "6 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [],
+    "files_removed": [
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ]
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal, /api/customers, /api/deposits (+17 more)",
+    "Screens/code: components/ts/reporting/sales-by-representative, config/navLinks.ts, services/permissionService.ts, services/routingService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Customers — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:customersView::43"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "partSalesCreateAndEdit",
+   "title": "Screens that use \"Part Sales — Create & Edit\" changed",
+   "before": "3 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/work-orders/dialogs/ChangeWorkOrderAssetDialog.vue",
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
+    "Screens/code: components/ts/shared/customer-info, components/ts/work-orders/dialogs, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Part Sales — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:partSalesCreateAndEdit::44"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "partSalesDelete",
+   "title": "Screens that use \"Part Sales — Delete\" changed",
+   "before": "1 file(s)",
+   "after": "2 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/inventory, /api/invoices, /api/note, /api/part-sales, /api/parts-catalogue, /api/pricing-rules, /api/work-orders",
+    "Screens/code: services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Part Sales — Delete\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:partSalesDelete::45"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "partSalesView",
+   "title": "Screens that use \"Part Sales — View\" changed",
+   "before": "8 file(s)",
+   "after": "8 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ],
+    "files_removed": [
+     "app/src/components/ts/shared/customer-info/CustomerCard.vue"
+    ]
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/note, /api/parts, /api/vehicle, /api/vehicles, /api/work-orders",
+    "Screens/code: components/ts/navigation/search, components/ts/reporting/Sales.vue, components/ts/reporting/sales-by-customer, components/ts/reporting/sales-by-representative, config/navLinks.ts, services/permissionService.ts (+2 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Part Sales — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:partSalesView::46"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "reportsPageAccess",
+   "title": "Screens that use \"Reports — Page Access\" changed",
+   "before": "4 file(s)",
+   "after": "3 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/composables/useDashboardAccess.ts"
+    ],
+    "files_removed": [
+     "app/src/components/ts/navigation/desktop/DesktopMenu.vue",
+     "app/src/router/routes.ts"
+    ]
+   },
+   "workflows": [
+    "Reports",
+    "API areas: /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal, /api/customers, /api/dashboard (+23 more)",
+    "Screens/code: composables/useDashboardAccess.ts, config/navLinks.ts, services/routingService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Reports — Page Access\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:reportsPageAccess::47"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "workOrderLinesCreateAndEdit",
+   "title": "Screens that use \"Work Order Lines — Create & Edit\" changed",
+   "before": "22 file(s)",
+   "after": "24 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/inspections/composables/useInspectionLineBuild.ts",
+     "app/src/components/ts/work-orders/dialogs/ChangeWorkOrderAssetDialog.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Order Lines",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
+    "Screens/code: components/shared/vehicle-info/VehicleCard.vue, components/ts/billing/InvoiceActionBar.vue, components/ts/customers/VehicleInvoices.vue, components/ts/inspections/InspectionLineRow.vue, components/ts/inspections/composables, components/ts/schedule-next/dialogs (+10 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Order Lines — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:workOrderLinesCreateAndEdit::48"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "woFullViewMode",
+   "title": "Screens that use \"Work Orders — Full View Mode\" changed",
+   "before": "16 file(s)",
+   "after": "15 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/work-orders/displays/shared/WorkOrderTableRow.vue"
+    ],
+    "files_removed": [
+     "app/src/components/ts/note/NoteAttachments.vue",
+     "app/src/pages/WorkOrders.vue"
+    ]
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/orders, /api/part-sales (+9 more)",
+    "Screens/code: components/ts/billing/InvoiceActionBar.vue, components/ts/work-orders/CannedLineSelect.vue, components/ts/work-orders/LineDialog.vue, components/ts/work-orders/Statistics.vue, components/ts/work-orders/WorkOrderNavBar.vue, components/ts/work-orders/displays (+4 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — Full View Mode\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:woFullViewMode::49"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "woReviewWorkOrders",
+   "title": "Screens that use \"Work Orders — Review Work Orders\" changed",
+   "before": "5 file(s)",
+   "after": "4 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [],
+    "files_removed": [
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ]
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
+    "Screens/code: components/ts/billing/InvoiceActionBar.vue, components/ts/work-orders/WorkOrder.vue, components/ts/work-orders/WorkOrderNavBar.vue, components/ts/work-orders/complete"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — Review Work Orders\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:woReviewWorkOrders::50"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "woTechViewMode",
+   "title": "Screens that use \"Work Orders — Technician View Mode\" changed",
+   "before": "7 file(s)",
+   "after": "8 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/orders, /api/part-sales (+9 more)",
+    "Screens/code: components/shared/OrderStatusCard.vue, components/ts/work-orders/Statistics.vue, components/ts/work-orders/work-order-lines, services/permissions/draftHelpers.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — Technician View Mode\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:woTechViewMode::51"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "workOrdersView",
+   "title": "Screens that use \"Work Orders — View\" changed",
+   "before": "15 file(s)",
+   "after": "16 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/services/permissions/noteReferencePermissions.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-portal, /api/customers, /api/deposits (+18 more)",
+    "Screens/code: components/shared/vehicle-info/VehicleCard.vue, components/ts/reporting/PunchClockActivities.vue, components/ts/reporting/Sales.vue, components/ts/reporting/ServiceAdvisorAnalysis.vue, components/ts/shared/customer-info, components/ts/work-orders/WorkOrderNotesTab.vue (+7 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:workOrdersView::52"
+  }
+ ],
+ "commits": [
+  {
+   "commit": "72f4f3bc38",
+   "date": "2026-10-16",
+   "subject": "Merge remote-tracking branch 'origin/main' into HEAD"
+  },
+  {
+   "commit": "a4240cd582",
+   "date": "2026-10-15",
+   "subject": "Merge main into develop"
+  },
+  {
+   "commit": "33db88ad5a",
+   "date": "2026-10-13",
+   "subject": "[SV-9667] self-review: address SR-52, SR-53, SR-54, SR-55 (round 7)"
+  },
+  {
+   "commit": "ac31ae75c2",
+   "date": "2026-10-13",
+   "subject": "Merge remote-tracking branch 'origin/develop' into SV-9667-part-sales-update-v1"
+  },
+  {
+   "commit": "7f781d533f",
+   "date": "2026-10-13",
+   "subject": "Merge pull request #3621 from ShopView/main"
+  },
+  {
+   "commit": "129d22fecb",
+   "date": "2026-10-07",
+   "subject": "fix(SV-10323): show For Customer on customer, asset and part sale notes for Tech View roles"
+  },
+  {
+   "commit": "b23b6ce5f9",
+   "date": "2026-10-05",
+   "subject": "Merge origin/develop into SV-9667-part-sales-update-v1"
+  },
+  {
+   "commit": "baf1aec833",
+   "date": "2026-10-01",
+   "subject": "fix(SV-9667): Notifications V1 - review fixes and Chris's follow-up rulings"
+  },
+  {
+   "commit": "f20b2cb96e",
+   "date": "2026-10-01",
+   "subject": "feat(SV-9667): Notifications V1 Phase 6 - compose, delete, Part Sale Notes tab (FE); PRD v25/v26 alignment"
+  },
+  {
+   "commit": "7c97976671",
+   "date": "2026-10-01",
+   "subject": "feat(SV-9667): Notifications V1 Phase 1 - note rules and permissions (BE)"
+  },
+  {
+   "commit": "a86b9fdf2b",
+   "date": "2026-09-29",
+   "subject": "Merge origin/develop into SV-9667-part-sales-update-v1"
+  },
+  {
+   "commit": "77c82d681a",
+   "date": "2026-09-28",
+   "subject": "feat(SV-10265): part sale log, menu reorder and deleting a Complete part sale"
+  }
+ ],
+ "tickets": [
+  "SV-10265",
+  "SV-10323",
+  "SV-9667"
+ ],
+ "pull_requests": [
+  "3621"
+ ]
+}

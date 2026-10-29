@@ -1,0 +1,2306 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.36.9",
+  "ref": "v26.36.9",
+  "commit": "8d1613f57cfc7d65d0cafe9addbf62dcb87a7292",
+  "build_marker": null,
+  "label": "v26.36.9 (8d1613f)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.39.0",
+  "ref": "v26.39.0",
+  "commit": "07c719be861954e889d157ad4eacf293aa15ab59",
+  "build_marker": null,
+  "label": "v26.39.0 (07c719b)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "added_permission": 17,
+  "backend_enforcement_changed": 27,
+  "dependency_changed": 8,
+  "frontend_behavior_changed": 10
+ },
+ "changes": [
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingView",
+   "title": "Permission added: Accounting — Page Access",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingView",
+     "label": "Accounting — Page Access",
+     "group": "Accounting",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": {
+      "tickets": [],
+      "comment": "Accounting-split F1 — the 44th bundle; gates the standalone accounting module (`/accounting` FE route group + `ANY /api/accounting/{path}` BFF proxy). Cross-repo contract: the FE `Permission` union carries this exact string, so renaming it silently shuts the route gate."
+     },
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting — Page Access\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting — Page Access\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting — Page Access\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingView::0"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingSettingsAccess",
+   "title": "Permission added: Accounting — Settings",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingSettingsAccess",
+     "label": "Accounting — Settings",
+     "group": "Accounting",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting",
+    "Screens/code: api/accounting/shared/queries.ts, boot/axios.ts, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/mobile, router/accounting/index.ts, router/accounting/reports.routes.ts"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting — Settings\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting — Settings\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting — Settings\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingSettingsAccess::1"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingBankReconciliation",
+   "title": "Permission added: Accounting Banking — Bank Reconciliation",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingBankReconciliation",
+     "label": "Accounting Banking — Bank Reconciliation",
+     "group": "Accounting Banking",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Banking"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Banking — Bank Reconciliation\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Banking — Bank Reconciliation\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Banking — Bank Reconciliation\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingBankReconciliation::2"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingBankingCreateAndEdit",
+   "title": "Permission added: Accounting Banking — Create & Edit",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingBankingCreateAndEdit",
+     "label": "Accounting Banking — Create & Edit",
+     "group": "Accounting Banking",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Banking"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Banking — Create & Edit\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Banking — Create & Edit\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Banking — Create & Edit\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingBankingCreateAndEdit::3"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingBankingView",
+   "title": "Permission added: Accounting Banking — View",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingBankingView",
+     "label": "Accounting Banking — View",
+     "group": "Accounting Banking",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Banking",
+    "Screens/code: components/ts/accounting/shared, router/accounting/index.ts"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Banking — View\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Banking — View\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Banking — View\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingBankingView::4"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingFixedAssetsCreateAndEdit",
+   "title": "Permission added: Accounting Fixed Assets — Create & Edit",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingFixedAssetsCreateAndEdit",
+     "label": "Accounting Fixed Assets — Create & Edit",
+     "group": "Accounting Fixed Assets",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Fixed Assets"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Fixed Assets — Create & Edit\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Fixed Assets — Create & Edit\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Fixed Assets — Create & Edit\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingFixedAssetsCreateAndEdit::5"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingRunDepreciation",
+   "title": "Permission added: Accounting Fixed Assets — Run Depreciation",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingRunDepreciation",
+     "label": "Accounting Fixed Assets — Run Depreciation",
+     "group": "Accounting Fixed Assets",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Fixed Assets"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Fixed Assets — Run Depreciation\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Fixed Assets — Run Depreciation\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Fixed Assets — Run Depreciation\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingRunDepreciation::6"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingFixedAssetsView",
+   "title": "Permission added: Accounting Fixed Assets — View",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingFixedAssetsView",
+     "label": "Accounting Fixed Assets — View",
+     "group": "Accounting Fixed Assets",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Fixed Assets",
+    "Screens/code: components/ts/accounting/shared, router/accounting/index.ts"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Fixed Assets — View\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Fixed Assets — View\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Fixed Assets — View\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingFixedAssetsView::7"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingPurchasesCreateAndEdit",
+   "title": "Permission added: Accounting Purchases — Create & Edit",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingPurchasesCreateAndEdit",
+     "label": "Accounting Purchases — Create & Edit",
+     "group": "Accounting Purchases",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Purchases"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Purchases — Create & Edit\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Purchases — Create & Edit\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Purchases — Create & Edit\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingPurchasesCreateAndEdit::8"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingPurchasesView",
+   "title": "Permission added: Accounting Purchases — View",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingPurchasesView",
+     "label": "Accounting Purchases — View",
+     "group": "Accounting Purchases",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Purchases",
+    "Screens/code: components/ts/accounting/shared, router/accounting/index.ts"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Purchases — View\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Purchases — View\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Purchases — View\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingPurchasesView::9"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingReportsView",
+   "title": "Permission added: Accounting Reports — View",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingReportsView",
+     "label": "Accounting Reports — View",
+     "group": "Accounting Reports",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Reports",
+    "Screens/code: components/ts/accounting/shared, router/accounting/index.ts"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Reports — View\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Reports — View\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Reports — View\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingReportsView::10"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingSalesCreateAndEdit",
+   "title": "Permission added: Accounting Sales — Create & Edit",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingSalesCreateAndEdit",
+     "label": "Accounting Sales — Create & Edit",
+     "group": "Accounting Sales",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Sales"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Sales — Create & Edit\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Sales — Create & Edit\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Sales — Create & Edit\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingSalesCreateAndEdit::11"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingSalesView",
+   "title": "Permission added: Accounting Sales — View",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingSalesView",
+     "label": "Accounting Sales — View",
+     "group": "Accounting Sales",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Sales",
+    "Screens/code: components/ts/accounting/shared, router/accounting/index.ts"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Sales — View\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Sales — View\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Sales — View\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingSalesView::12"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingSetupCreateAndEdit",
+   "title": "Permission added: Accounting Setup — Create & Edit",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingSetupCreateAndEdit",
+     "label": "Accounting Setup — Create & Edit",
+     "group": "Accounting Setup",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Setup"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Setup — Create & Edit\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Setup — Create & Edit\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Setup — Create & Edit\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingSetupCreateAndEdit::13"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "accountingSetupView",
+   "title": "Permission added: Accounting Setup — View",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "accountingSetupView",
+     "label": "Accounting Setup — View",
+     "group": "Accounting Setup",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Accounting Setup",
+    "Screens/code: components/ts/accounting/shared, router/accounting/index.ts, router/accounting/reports.routes.ts"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Accounting Setup — View\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Accounting Setup — View\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Accounting Setup — View\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:accountingSetupView::14"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "hrPageAccess",
+   "title": "Permission added: HR — Page Access",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for no system role",
+   "risk": "Medium",
+   "risk_reason": "New permission, OFF for every system role — no one gains access until a shop grants it.",
+   "affected_roles": [],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "hrPageAccess",
+     "label": "HR — Page Access",
+     "group": "HR",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": null,
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "HR",
+    "Screens/code: boot/axios.ts, components/ts/accounting/dashboard, components/ts/accounting/hr, router/accounting/index.ts"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"HR — Page Access\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"HR — Page Access\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"HR — Page Access\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:hrPageAccess::15"
+  },
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "woReceivedLater",
+   "title": "Permission added: Work Orders — Receive Later",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for no system role",
+   "risk": "Medium",
+   "risk_reason": "New permission, OFF for every system role — no one gains access until a shop grants it.",
+   "affected_roles": [],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "woReceivedLater",
+     "label": "Work Orders — Receive Later",
+     "group": "Work Orders",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": {
+      "tickets": [
+       "SV-8683"
+      ],
+      "comment": "SV-8683 Phase 5 / FR-050 — the \"Received later\" role-editor checkbox. The 44th bundle. OFF by default in EVERY role: no entry in RoleFePermissionMappings carries it, so no default role's resolved atom set changes and IntentionalAtomChanges needs no ADDED_BY_DESIGN whitelist entry. It is the only thing standing between a user and bypassing the vendor-bill requirement (plan §9), so it must be granted deliberately."
+     },
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/work-orders",
+    "Screens/code: components/ts/work-orders/PartRequestActionButton.vue, components/ts/work-orders/complete, components/ts/work-orders/receive, components/ts/work-orders/work-order-lines"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Work Orders — Receive Later\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Work Orders — Receive Later\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Work Orders — Receive Later\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:woReceivedLater::16"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "POST /api/technician-tasks/check-out",
+   "title": "API guard changed: POST /api/technician-tasks/check-out",
+   "before": "attribute: new Expression('null !== user.getStaff() and user.getStaff().isClockable()')",
+   "after": "attribute: new Expression('null !== user.getStaff() and user.getStaff().isClockable()') AND in-method: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/LabourBilling/TechnicianTaskRecords/Application/HTTP/CheckOut/CheckOutController.php::handle"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/technician-tasks/check-out as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::17"
+  },
+  {
+   "type": "dependency_changed",
+   "category": "dependency_changed",
+   "permission": "accountingBankReconciliation",
+   "title": "Dependency added: Accounting Banking — Bank Reconciliation ⇒ Accounting Banking — View",
+   "before": "no such dependency",
+   "after": "implies Accounting Banking — View",
+   "risk": "Medium",
+   "risk_reason": "Granting the child now also grants (or requires) the parent.",
+   "affected_roles": [],
+   "afterBool": true,
+   "childLabel": "Accounting Banking — Bank Reconciliation",
+   "parentLabel": "Accounting Banking — View",
+   "evidence": {
+    "b": {
+     "child": "accountingBankReconciliation",
+     "parent": "accountingBankingView",
+     "kind": "implies",
+     "quote": null,
+     "enforcedBy": "server cascade (FEPermissionCascade)"
+    }
+   },
+   "workflows": [
+    "Accounting Banking"
+   ],
+   "qa_scenarios": [
+    "Role editor: ticking \"Accounting Banking — Bank Reconciliation\" now auto-ticks \"Accounting Banking — View\".",
+    "API (bypassing the editor): create a role with only the child permission via the role API and confirm what the server stores.",
+    "Negative: unticking the parent clears the child."
+   ],
+   "verification_status": "Not Tested",
+   "id": "dependency_changed:accountingBankReconciliation::18"
+  },
+  {
+   "type": "dependency_changed",
+   "category": "dependency_changed",
+   "permission": "accountingBankingCreateAndEdit",
+   "title": "Dependency added: Accounting Banking — Create & Edit ⇒ Accounting Banking — View",
+   "before": "no such dependency",
+   "after": "implies Accounting Banking — View",
+   "risk": "Medium",
+   "risk_reason": "Granting the child now also grants (or requires) the parent.",
+   "affected_roles": [],
+   "afterBool": true,
+   "childLabel": "Accounting Banking — Create & Edit",
+   "parentLabel": "Accounting Banking — View",
+   "evidence": {
+    "b": {
+     "child": "accountingBankingCreateAndEdit",
+     "parent": "accountingBankingView",
+     "kind": "implies",
+     "quote": null,
+     "enforcedBy": "server cascade (FEPermissionCascade)"
+    }
+   },
+   "workflows": [
+    "Accounting Banking"
+   ],
+   "qa_scenarios": [
+    "Role editor: ticking \"Accounting Banking — Create & Edit\" now auto-ticks \"Accounting Banking — View\".",
+    "API (bypassing the editor): create a role with only the child permission via the role API and confirm what the server stores.",
+    "Negative: unticking the parent clears the child."
+   ],
+   "verification_status": "Not Tested",
+   "id": "dependency_changed:accountingBankingCreateAndEdit::19"
+  },
+  {
+   "type": "dependency_changed",
+   "category": "dependency_changed",
+   "permission": "accountingFixedAssetsCreateAndEdit",
+   "title": "Dependency added: Accounting Fixed Assets — Create & Edit ⇒ Accounting Fixed Assets — View",
+   "before": "no such dependency",
+   "after": "implies Accounting Fixed Assets — View",
+   "risk": "Medium",
+   "risk_reason": "Granting the child now also grants (or requires) the parent.",
+   "affected_roles": [],
+   "afterBool": true,
+   "childLabel": "Accounting Fixed Assets — Create & Edit",
+   "parentLabel": "Accounting Fixed Assets — View",
+   "evidence": {
+    "b": {
+     "child": "accountingFixedAssetsCreateAndEdit",
+     "parent": "accountingFixedAssetsView",
+     "kind": "implies",
+     "quote": null,
+     "enforcedBy": "server cascade (FEPermissionCascade)"
+    }
+   },
+   "workflows": [
+    "Accounting Fixed Assets"
+   ],
+   "qa_scenarios": [
+    "Role editor: ticking \"Accounting Fixed Assets — Create & Edit\" now auto-ticks \"Accounting Fixed Assets — View\".",
+    "API (bypassing the editor): create a role with only the child permission via the role API and confirm what the server stores.",
+    "Negative: unticking the parent clears the child."
+   ],
+   "verification_status": "Not Tested",
+   "id": "dependency_changed:accountingFixedAssetsCreateAndEdit::20"
+  },
+  {
+   "type": "dependency_changed",
+   "category": "dependency_changed",
+   "permission": "accountingRunDepreciation",
+   "title": "Dependency added: Accounting Fixed Assets — Run Depreciation ⇒ Accounting Fixed Assets — View",
+   "before": "no such dependency",
+   "after": "implies Accounting Fixed Assets — View",
+   "risk": "Medium",
+   "risk_reason": "Granting the child now also grants (or requires) the parent.",
+   "affected_roles": [],
+   "afterBool": true,
+   "childLabel": "Accounting Fixed Assets — Run Depreciation",
+   "parentLabel": "Accounting Fixed Assets — View",
+   "evidence": {
+    "b": {
+     "child": "accountingRunDepreciation",
+     "parent": "accountingFixedAssetsView",
+     "kind": "implies",
+     "quote": null,
+     "enforcedBy": "server cascade (FEPermissionCascade)"
+    }
+   },
+   "workflows": [
+    "Accounting Fixed Assets"
+   ],
+   "qa_scenarios": [
+    "Role editor: ticking \"Accounting Fixed Assets — Run Depreciation\" now auto-ticks \"Accounting Fixed Assets — View\".",
+    "API (bypassing the editor): create a role with only the child permission via the role API and confirm what the server stores.",
+    "Negative: unticking the parent clears the child."
+   ],
+   "verification_status": "Not Tested",
+   "id": "dependency_changed:accountingRunDepreciation::21"
+  },
+  {
+   "type": "dependency_changed",
+   "category": "dependency_changed",
+   "permission": "accountingPurchasesCreateAndEdit",
+   "title": "Dependency added: Accounting Purchases — Create & Edit ⇒ Accounting Purchases — View",
+   "before": "no such dependency",
+   "after": "implies Accounting Purchases — View",
+   "risk": "Medium",
+   "risk_reason": "Granting the child now also grants (or requires) the parent.",
+   "affected_roles": [],
+   "afterBool": true,
+   "childLabel": "Accounting Purchases — Create & Edit",
+   "parentLabel": "Accounting Purchases — View",
+   "evidence": {
+    "b": {
+     "child": "accountingPurchasesCreateAndEdit",
+     "parent": "accountingPurchasesView",
+     "kind": "implies",
+     "quote": null,
+     "enforcedBy": "server cascade (FEPermissionCascade)"
+    }
+   },
+   "workflows": [
+    "Accounting Purchases"
+   ],
+   "qa_scenarios": [
+    "Role editor: ticking \"Accounting Purchases — Create & Edit\" now auto-ticks \"Accounting Purchases — View\".",
+    "API (bypassing the editor): create a role with only the child permission via the role API and confirm what the server stores.",
+    "Negative: unticking the parent clears the child."
+   ],
+   "verification_status": "Not Tested",
+   "id": "dependency_changed:accountingPurchasesCreateAndEdit::22"
+  },
+  {
+   "type": "dependency_changed",
+   "category": "dependency_changed",
+   "permission": "accountingSalesCreateAndEdit",
+   "title": "Dependency added: Accounting Sales — Create & Edit ⇒ Accounting Sales — View",
+   "before": "no such dependency",
+   "after": "implies Accounting Sales — View",
+   "risk": "Medium",
+   "risk_reason": "Granting the child now also grants (or requires) the parent.",
+   "affected_roles": [],
+   "afterBool": true,
+   "childLabel": "Accounting Sales — Create & Edit",
+   "parentLabel": "Accounting Sales — View",
+   "evidence": {
+    "b": {
+     "child": "accountingSalesCreateAndEdit",
+     "parent": "accountingSalesView",
+     "kind": "implies",
+     "quote": null,
+     "enforcedBy": "server cascade (FEPermissionCascade)"
+    }
+   },
+   "workflows": [
+    "Accounting Sales"
+   ],
+   "qa_scenarios": [
+    "Role editor: ticking \"Accounting Sales — Create & Edit\" now auto-ticks \"Accounting Sales — View\".",
+    "API (bypassing the editor): create a role with only the child permission via the role API and confirm what the server stores.",
+    "Negative: unticking the parent clears the child."
+   ],
+   "verification_status": "Not Tested",
+   "id": "dependency_changed:accountingSalesCreateAndEdit::23"
+  },
+  {
+   "type": "dependency_changed",
+   "category": "dependency_changed",
+   "permission": "accountingSetupCreateAndEdit",
+   "title": "Dependency added: Accounting Setup — Create & Edit ⇒ Accounting Setup — View",
+   "before": "no such dependency",
+   "after": "implies Accounting Setup — View",
+   "risk": "Medium",
+   "risk_reason": "Granting the child now also grants (or requires) the parent.",
+   "affected_roles": [],
+   "afterBool": true,
+   "childLabel": "Accounting Setup — Create & Edit",
+   "parentLabel": "Accounting Setup — View",
+   "evidence": {
+    "b": {
+     "child": "accountingSetupCreateAndEdit",
+     "parent": "accountingSetupView",
+     "kind": "implies",
+     "quote": null,
+     "enforcedBy": "server cascade (FEPermissionCascade)"
+    }
+   },
+   "workflows": [
+    "Accounting Setup"
+   ],
+   "qa_scenarios": [
+    "Role editor: ticking \"Accounting Setup — Create & Edit\" now auto-ticks \"Accounting Setup — View\".",
+    "API (bypassing the editor): create a role with only the child permission via the role API and confirm what the server stores.",
+    "Negative: unticking the parent clears the child."
+   ],
+   "verification_status": "Not Tested",
+   "id": "dependency_changed:accountingSetupCreateAndEdit::24"
+  },
+  {
+   "type": "dependency_changed",
+   "category": "dependency_changed",
+   "permission": "woReceivedLater",
+   "title": "Dependency added: Work Orders — Receive Later ⇒ Work Orders — View",
+   "before": "no such dependency",
+   "after": "implies Work Orders — View",
+   "risk": "Medium",
+   "risk_reason": "Granting the child now also grants (or requires) the parent.",
+   "affected_roles": [],
+   "afterBool": true,
+   "childLabel": "Work Orders — Receive Later",
+   "parentLabel": "Work Orders — View",
+   "evidence": {
+    "b": {
+     "child": "woReceivedLater",
+     "parent": "workOrdersView",
+     "kind": "implies",
+     "quote": null,
+     "enforcedBy": "server cascade (FEPermissionCascade)"
+    }
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/work-orders",
+    "Screens/code: components/ts/work-orders/PartRequestActionButton.vue, components/ts/work-orders/complete, components/ts/work-orders/receive, components/ts/work-orders/work-order-lines"
+   ],
+   "qa_scenarios": [
+    "Role editor: ticking \"Work Orders — Receive Later\" now auto-ticks \"Work Orders — View\".",
+    "API (bypassing the editor): create a role with only the child permission via the role API and confirm what the server stores.",
+    "Negative: unticking the parent clears the child."
+   ],
+   "verification_status": "Not Tested",
+   "id": "dependency_changed:woReceivedLater::25"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "title": "Role editor dependency logic changed (front end)",
+   "before": "941003ef8cee",
+   "after": "990d4a48f2c4",
+   "risk": "Medium",
+   "risk_reason": "The editor's auto-tick / confirm-dialog code changed (comments ignored). Re-test the editor cascades and confirmation dialogs.",
+   "affected_roles": [],
+   "label": "Role editor",
+   "workflows": [
+    "Administration › Roles and Permissions › Create / Edit role"
+   ],
+   "evidence": {
+    "file": "app/src/services/permissions/cascade.ts",
+    "functions_added": [
+     "applyAccountingArea",
+     "applyAccountingToggle",
+     "applyBankReconciliation",
+     "applyRunDepreciation",
+     "requiresAccountingSensitiveConfirm",
+     "requiresBankingViewConfirm"
+    ],
+    "functions_removed": []
+   },
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Role editor\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:x::26"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "DELETE /api/accounting-onboarding/status/seed",
+   "title": "New API endpoint guarded by a permission: DELETE /api/accounting-onboarding/status/seed",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/Accounting/Outbox/UI/HTTP/Status/ClearBackfillProgressController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call DELETE /api/accounting-onboarding/status/seed as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::27"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "DELETE|GET|PATCH|POST|PUT /api/accounting/{path}",
+   "title": "New API endpoint guarded by a permission: DELETE|GET|PATCH|POST|PUT /api/accounting/{path}",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/External/Accounting/UI/HTTP/Proxy/AccountingProxyController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call DELETE|GET|PATCH|POST|PUT /api/accounting/{path} as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::28"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "GET /api/accounting-onboarding/status",
+   "title": "New API endpoint guarded by a permission: GET /api/accounting-onboarding/status",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/Accounting/Outbox/UI/HTTP/Status/AccountingBackfillStatusController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/accounting-onboarding/status as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::29"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "GET /api/accounting/download/{path}",
+   "title": "New API endpoint guarded by a permission: GET /api/accounting/download/{path}",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/External/Accounting/UI/HTTP/Proxy/AccountingDownloadProxyController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/accounting/download/{path} as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::30"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "GET /api/customer-portal/deposit-collection-status/{workOrderId}",
+   "title": "New API endpoint guarded by a permission: GET /api/customer-portal/deposit-collection-status/{workOrderId}",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_INVOICE_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsCreateAndEdit",
+    "invoicingPaymentsDelete",
+    "invoicingPaymentsView",
+    "reportsPageAccess",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/External/CustomerPortal/UI/HTTP/DepositCollection/GetDepositCollectionStatusController.php::__invoke"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+28 more)",
+    "Screens/code: config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/customer-portal/deposit-collection-status/{workOrderId} as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::31"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "GET /api/work-orders/{workOrderId}/receive-modal",
+   "title": "New API endpoint guarded by a permission: GET /api/work-orders/{workOrderId}/receive-modal",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: new Expression( 'is_granted(\\''.PermissionEnum::ROLE_DELIVERY_CREATE_AND_EDIT.'\\')' .' or is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_PART_CREATE.'\\')' .' or is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT.'\\')', )",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/PartRequest/ReceiveModalController.php::__invoke"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/work-orders/{workOrderId}/receive-modal as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::32"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "POST /api/accounting-onboarding/go-live",
+   "title": "New API endpoint guarded by a permission: POST /api/accounting-onboarding/go-live",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/Accounting/Outbox/UI/HTTP/GoLiveController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/accounting-onboarding/go-live as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::33"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "POST /api/accounting-onboarding/preview",
+   "title": "New API endpoint guarded by a permission: POST /api/accounting-onboarding/preview",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/Accounting/Outbox/UI/HTTP/OnboardingPreviewController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/accounting-onboarding/preview as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::34"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "POST /api/accounting-onboarding/remove-fixtures",
+   "title": "New API endpoint guarded by a permission: POST /api/accounting-onboarding/remove-fixtures",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/Accounting/Outbox/UI/HTTP/RemoveOnboardingFixturesController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/accounting-onboarding/remove-fixtures as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::35"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "POST /api/accounting-onboarding/replay",
+   "title": "New API endpoint guarded by a permission: POST /api/accounting-onboarding/replay",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/Accounting/Outbox/UI/HTTP/ReplayAccountingEventsController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/accounting-onboarding/replay as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::36"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "POST /api/accounting-onboarding/reset",
+   "title": "New API endpoint guarded by a permission: POST /api/accounting-onboarding/reset",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/Accounting/Outbox/UI/HTTP/ResetAccountingBooksController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/accounting-onboarding/reset as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::37"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "POST /api/accounting-onboarding/seed-fixtures",
+   "title": "New API endpoint guarded by a permission: POST /api/accounting-onboarding/seed-fixtures",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/Accounting/Outbox/UI/HTTP/SeedOnboardingFixturesController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/accounting-onboarding/seed-fixtures as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::38"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "POST /api/accounting-onboarding/status/seed",
+   "title": "New API endpoint guarded by a permission: POST /api/accounting-onboarding/status/seed",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/Accounting/Outbox/UI/HTTP/Status/SeedBackfillProgressController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/accounting-onboarding/status/seed as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::39"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "POST /api/accounting-onboarding/sync-catalogs",
+   "title": "New API endpoint guarded by a permission: POST /api/accounting-onboarding/sync-catalogs",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/Accounting/Outbox/UI/HTTP/SyncCatalogsController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/accounting-onboarding/sync-catalogs as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::40"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "POST /api/accounting-onboarding/verify",
+   "title": "New API endpoint guarded by a permission: POST /api/accounting-onboarding/verify",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/Accounting/Outbox/UI/HTTP/OnboardingVerify/OnboardingVerifyController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/accounting-onboarding/verify as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::41"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "accountingView",
+   "endpoint": "POST /api/accounting/upload/{path}",
+   "title": "New API endpoint guarded by a permission: POST /api/accounting/upload/{path}",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: AccountingAccessVoter::ACCOUNTING_ACCESS",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "accountingView"
+   ],
+   "evidence": {
+    "controller": "api/src/External/Accounting/UI/HTTP/Proxy/AccountingUploadProxyController.php::__invoke"
+   },
+   "workflows": [
+    "Accounting",
+    "API areas: /api/accounting, /api/accounting-onboarding",
+    "Screens/code: components/ts/accounting/ledger, components/ts/accounting/purchases, components/ts/accounting/shared, components/ts/administration/EditRole.vue, components/ts/navigation/ProfileMenu.vue, components/ts/navigation/desktop (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/accounting/upload/{path} as a role WITH and a role WITHOUT \"Accounting — Page Access\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:accountingView::42"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/customer-account/send-document-package",
+   "title": "New API endpoint guarded by a permission: POST /api/customer-account/send-document-package",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_INVOICE_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsCreateAndEdit",
+    "invoicingPaymentsDelete",
+    "invoicingPaymentsView",
+    "reportsPageAccess",
+    "vendorOrderManagementView"
+   ],
+   "evidence": {
+    "controller": "api/src/Customer/Customers/Application/CustomerTransaction/SendMail/SendDocumentPackageController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+28 more)",
+    "Screens/code: config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/customer-account/send-document-package as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::43"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/customer-account/send-transactions-mail",
+   "title": "New API endpoint guarded by a permission: POST /api/customer-account/send-transactions-mail",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_INVOICE_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsCreateAndEdit",
+    "invoicingPaymentsDelete",
+    "invoicingPaymentsView",
+    "reportsPageAccess",
+    "vendorOrderManagementView"
+   ],
+   "evidence": {
+    "controller": "api/src/Customer/Customers/Application/CustomerTransaction/SendMail/MailTransactionsController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+28 more)",
+    "Screens/code: config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/customer-account/send-transactions-mail as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::44"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/external/customer-portal/deposits",
+   "title": "New API endpoint guarded by a permission: POST /api/external/customer-portal/deposits",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_INVOICE_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsCreateAndEdit",
+    "invoicingPaymentsDelete",
+    "invoicingPaymentsView",
+    "reportsPageAccess",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/External/Payment/Application/CreateDeposit/CreateDepositController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+28 more)",
+    "Screens/code: config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/external/customer-portal/deposits as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::45"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/external/customer-portal/deposits/{id}/reverse",
+   "title": "New API endpoint guarded by a permission: POST /api/external/customer-portal/deposits/{id}/reverse",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_INVOICE_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsCreateAndEdit",
+    "invoicingPaymentsDelete",
+    "invoicingPaymentsView",
+    "reportsPageAccess",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/External/Payment/Application/ReverseDeposit/ReverseDepositController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+28 more)",
+    "Screens/code: config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/external/customer-portal/deposits/{id}/reverse as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::46"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/work-orders/{id}/print-event",
+   "title": "New API endpoint guarded by a permission: POST /api/work-orders/{id}/print-event",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/WorkOrder/RecordWorkOrderPrintedController.php::__invoke"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+28 more)",
+    "Screens/code: config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/{id}/print-event as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::47"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "POST /api/work-orders/{workOrderId}/lines/bulk-status",
+   "title": "New API endpoint guarded by a permission: POST /api/work-orders/{workOrderId}/lines/bulk-status",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Line/BulkLineStatusController.php::__invoke"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/{workOrderId}/lines/bulk-status as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::48"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "POST /api/work-orders/{workOrderId}/lines/bulk-undo",
+   "title": "New API endpoint guarded by a permission: POST /api/work-orders/{workOrderId}/lines/bulk-undo",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Line/BulkUndoLineStatusController.php::__invoke"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/{workOrderId}/lines/bulk-undo as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::49"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "woReceivedLater",
+   "endpoint": "POST /api/work-orders/parts/received-later",
+   "title": "New API endpoint guarded by a permission: POST /api/work-orders/parts/received-later",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_PART_RECEIVE_LATER",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "woReceivedLater"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/PartRequest/ReceivedLaterController.php::__invoke"
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/work-orders",
+    "Screens/code: components/ts/work-orders/PartRequestActionButton.vue, components/ts/work-orders/complete, components/ts/work-orders/receive, components/ts/work-orders/work-order-lines"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/parts/received-later as a role WITH and a role WITHOUT \"Work Orders — Receive Later\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:woReceivedLater::50"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "POST /api/work-orders/settings/preview-change",
+   "title": "New API endpoint guarded by a permission: POST /api/work-orders/settings/preview-change",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/Organization/Setting/UI/HTTP/Sweep/PreviewChangeController.php::handle"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+20 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/settings/preview-change as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::51"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "PUT /api/work-orders/lines/{lineId}/part-order",
+   "title": "New API endpoint guarded by a permission: PUT /api/work-orders/lines/{lineId}/part-order",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/PartRequest/ChangePartOrderController.php::__invoke"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call PUT /api/work-orders/lines/{lineId}/part-order as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::52"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "catalogInventoryCreateAndEdit",
+   "title": "Screens that use \"Catalog & Inventory — Create & Edit\" changed",
+   "before": "2 file(s)",
+   "after": "3 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/work-orders/receive/ReceivePartsModal.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Catalog & Inventory",
+    "API areas: /api/catalog-parts, /api/inventory, /api/orders, /api/parts, /api/parts-catalogue, /api/pricing-rules",
+    "Screens/code: components/ts/work-orders/receive, config/navLinks.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Catalog & Inventory — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:catalogInventoryCreateAndEdit::53"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "seeFinancialData",
+   "title": "Screens that use \"See Financial Data\" changed",
+   "before": "8 file(s)",
+   "after": "10 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/work-orders/work-order-lines/InlinePartRow.vue",
+     "app/src/components/ts/work-orders/work-order-lines/helpers.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Cross-cutting",
+    "API areas: /api/catalog-parts, /api/inventory, /api/orders, /api/parts, /api/parts-catalogue, /api/pricing-rules, /api/work-orders",
+    "Screens/code: components/ts/administration/permissions, components/ts/orders/receive-order, components/ts/shared/FinancialInfoCard.vue, components/ts/work-orders/work-order-lines, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"See Financial Data\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:seeFinancialData::54"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "vendorOrderManagementCreateAndEdit",
+   "title": "Screens that use \"Vendor Order Management — Create & Edit\" changed",
+   "before": "2 file(s)",
+   "after": "3 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/work-orders/receive/ReceivePartsModal.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Vendor Order Management",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+16 more)",
+    "Screens/code: components/ts/work-orders/receive, config/navLinks.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Vendor Order Management — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:vendorOrderManagementCreateAndEdit::55"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "workOrderLinesCreateAndEdit",
+   "title": "Screens that use \"Work Order Lines — Create & Edit\" changed",
+   "before": "19 file(s)",
+   "after": "22 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/work-orders/WorkOrder.vue",
+     "app/src/components/ts/work-orders/work-order-lines/Model.ts",
+     "app/src/components/ts/work-orders/work-order-lines/useBulkActions.ts",
+     "app/src/composables/useCompletionSession.ts"
+    ],
+    "files_removed": [
+     "app/src/components/ts/work-orders/work-order-lines/LineActionsMenu.vue"
+    ]
+   },
+   "workflows": [
+    "Work Order Lines",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+9 more)",
+    "Screens/code: components/shared/vehicle-info/VehicleCard.vue, components/ts/billing/InvoiceActionBar.vue, components/ts/customers/VehicleInvoices.vue, components/ts/inspections/InspectionLineRow.vue, components/ts/inspections/composables, components/ts/schedule-next/dialogs (+10 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Order Lines — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:workOrderLinesCreateAndEdit::56"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "workOrderLinesDelete",
+   "title": "Screens that use \"Work Order Lines — Delete\" changed",
+   "before": "5 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/work-orders/ts/WorkOrderLineContextMenuList.vue"
+    ],
+    "files_removed": [
+     "app/src/components/ts/work-orders/work-order-lines/WorkOrderLines.vue"
+    ]
+   },
+   "workflows": [
+    "Work Order Lines",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+9 more)",
+    "Screens/code: components/ts/inspections/InspectionLineRow.vue, components/ts/inspections/completion, components/ts/work-orders/LineDialog.vue, components/work-orders/ts/WorkOrderLineContextMenuList.vue"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Order Lines — Delete\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:workOrderLinesDelete::57"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "woFullViewMode",
+   "title": "Screens that use \"Work Orders — Full View Mode\" changed",
+   "before": "12 file(s)",
+   "after": "15 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/work-orders/work-order-lines/BulkActionBar.vue",
+     "app/src/components/ts/work-orders/work-order-lines/Model.ts",
+     "app/src/components/work-orders/ts/WorkOrderLineContextMenuList.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+9 more)",
+    "Screens/code: components/ts/billing/InvoiceActionBar.vue, components/ts/note/NoteAttachments.vue, components/ts/work-orders/CannedLineSelect.vue, components/ts/work-orders/LineDialog.vue, components/ts/work-orders/Statistics.vue, components/ts/work-orders/WorkOrderNavBar.vue (+4 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — Full View Mode\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:woFullViewMode::58"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "woOrderParts",
+   "title": "Screens that use \"Work Orders — Order Parts\" changed",
+   "before": "5 file(s)",
+   "after": "10 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/parts/receive/MultiVendorReceive.vue",
+     "app/src/components/ts/work-orders/work-order-lines/BulkActionBar.vue",
+     "app/src/components/ts/work-orders/work-order-lines/Model.ts",
+     "app/src/components/ts/work-orders/work-order-lines/WorkOrderLineParts.vue",
+     "app/src/components/work-orders/ts/WorkOrderLineContextMenuList.vue",
+     "app/src/composables/useCompletionSession.ts"
+    ],
+    "files_removed": [
+     "app/src/components/ts/work-orders/complete/CompletionWizard.vue"
+    ]
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+9 more)",
+    "Screens/code: components/ts/parts/receive, components/ts/work-orders/PartRequestActionButton.vue, components/ts/work-orders/WorkOrderTabs.vue, components/ts/work-orders/work-order-lines, components/work-orders/ts/WorkOrderLineContextMenuList.vue, composables/useCompletionSession.ts (+2 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — Order Parts\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:woOrderParts::59"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "woPickParts",
+   "title": "Screens that use \"Work Orders — Pick Parts\" changed",
+   "before": "2 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/work-orders/WorkOrder.vue",
+     "app/src/components/ts/work-orders/work-order-lines/BulkActionBar.vue",
+     "app/src/components/ts/work-orders/work-order-lines/Model.ts",
+     "app/src/composables/useCompletionSession.ts"
+    ],
+    "files_removed": [
+     "app/src/components/ts/work-orders/complete/CompletionWizard.vue"
+    ]
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+13 more)",
+    "Screens/code: components/ts/work-orders/PartRequestActionButton.vue, components/ts/work-orders/WorkOrder.vue, components/ts/work-orders/work-order-lines, composables/useCompletionSession.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — Pick Parts\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:woPickParts::60"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "woReviewWorkOrders",
+   "title": "Screens that use \"Work Orders — Review Work Orders\" changed",
+   "before": "3 file(s)",
+   "after": "4 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/work-orders/WorkOrder.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+9 more)",
+    "Screens/code: components/ts/billing/InvoiceActionBar.vue, components/ts/work-orders/WorkOrder.vue, components/ts/work-orders/WorkOrderNavBar.vue, components/ts/work-orders/complete"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — Review Work Orders\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:woReviewWorkOrders::61"
+  }
+ ],
+ "commits": [
+  {
+   "commit": "7131056e0e",
+   "date": "2026-09-23",
+   "subject": "fix(SV-10124): address review — events report what happened, in one taxonomy"
+  },
+  {
+   "commit": "a9342820ec",
+   "date": "2026-09-23",
+   "subject": "Merge develop into SV-10124-ga4-accounting"
+  },
+  {
+   "commit": "4cd56a54be",
+   "date": "2026-09-21",
+   "subject": "Merge branch 'develop' into SV-8683-core-defer-and-po-counter-polish"
+  },
+  {
+   "commit": "8e7e5de15c",
+   "date": "2026-09-18",
+   "subject": "style(SS-1): drop AI-style em dashes from user-facing copy"
+  },
+  {
+   "commit": "365d620154",
+   "date": "2026-09-18",
+   "subject": "fix(SS-1): the parts-deferral permission reads \"Receive later\", not \"Received later\""
+  },
+  {
+   "commit": "448ff35bfd",
+   "date": "2026-09-17",
+   "subject": "Merge main into develop (2026-09-17)"
+  },
+  {
+   "commit": "1a284502fa",
+   "date": "2026-09-16",
+   "subject": "feat(SV-10124): GA4 tracking for accounting HR, settings, dashboard and the gaps outside accounting"
+  },
+  {
+   "commit": "9bcd328bec",
+   "date": "2026-09-15",
+   "subject": "Pin the accounting sidebar's reactivity so a revert cannot pass silently"
+  },
+  {
+   "commit": "1e28974dea",
+   "date": "2026-09-15",
+   "subject": "Restore the guard tests SV-9967 deleted from a migration it never touched"
+  },
+  {
+   "commit": "f1ed98183b",
+   "date": "2026-09-15",
+   "subject": "Name the ticket, fix the stale docs and drop the findings-register edit"
+  },
+  {
+   "commit": "7515a97bce",
+   "date": "2026-09-15",
+   "subject": "Keep flag-off role editing byte-identical for the accounting bundles"
+  },
+  {
+   "commit": "59fa96bf64",
+   "date": "2026-09-15",
+   "subject": "Turn the accounting door off and the area bundles go with it"
+  },
+  {
+   "commit": "6f250bd1e8",
+   "date": "2026-09-15",
+   "subject": "Move the accounting bundle seeding into a service with a per-tenant option"
+  },
+  {
+   "commit": "e6248ee43d",
+   "date": "2026-09-11",
+   "subject": "Nest the accounting sub-toggles under their areas and drop the HR switch"
+  },
+  {
+   "commit": "21bc7a247b",
+   "date": "2026-09-10",
+   "subject": "Add the accounting permission bundles, role-editor section and JWT claim"
+  },
+  {
+   "commit": "a7ea9131d8",
+   "date": "2026-09-11",
+   "subject": "Merge branch 'develop' into SV-8683-simple-flow-v2"
+  },
+  {
+   "commit": "ccc32c6662",
+   "date": "2026-09-09",
+   "subject": "Merge develop into SV-1122-accounting-split"
+  },
+  {
+   "commit": "8e5c61a165",
+   "date": "2026-09-09",
+   "subject": "Merge branch 'develop' into SV-8683-simple-flow-v2"
+  },
+  {
+   "commit": "f37949da47",
+   "date": "2026-09-08",
+   "subject": "SV-9758 Merge develop into SV-1122-accounting-split"
+  },
+  {
+   "commit": "479de5b824",
+   "date": "2026-09-07",
+   "subject": "Merge remote-tracking branch 'origin/develop' into SV-8683-simple-flow-v2"
+  },
+  {
+   "commit": "ec58257ee9",
+   "date": "2026-08-28",
+   "subject": "Merge origin/develop into SV-8683-simple-flow-v2"
+  },
+  {
+   "commit": "ccb3ac7932",
+   "date": "2026-08-27",
+   "subject": "feat(SV-8683): Simple Flow V2 — phases 1-9 (part reorder FE deferred)"
+  },
+  {
+   "commit": "3683020a40",
+   "date": "2026-08-19",
+   "subject": "Stop three files citing a DBAL trap that no longer exists"
+  },
+  {
+   "commit": "ee8711f7b3",
+   "date": "2026-08-15",
+   "subject": "SV-ACCT F1-BE: accountingView FE permission bundle (Admin + Office only)"
+  },
+  {
+   "commit": "7f69365d80",
+   "date": "2026-08-15",
+   "subject": "SV-ACCT B8-core: BFF proxy /api/accounting/{path} with allowlist, voter, per-request RS256 JWT"
+  }
+ ],
+ "tickets": [
+  "SV-10124",
+  "SV-1122",
+  "SV-8683",
+  "SV-9758",
+  "SV-9967"
+ ],
+ "pull_requests": []
+}

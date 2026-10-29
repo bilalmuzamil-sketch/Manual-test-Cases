@@ -1,0 +1,70 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.40.16",
+  "ref": "v26.40.16",
+  "commit": "2f213f3ffceef77857143093b9da4d39c540562e",
+  "build_marker": null,
+  "label": "v26.40.16 (2f213f3)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.40.17",
+  "ref": "v26.40.17",
+  "commit": "f5bf8f4f2d8073bc32d15a83fdd8953441502ccd",
+  "build_marker": null,
+  "label": "v26.40.17 (f5bf8f4)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 1
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "workOrderLinesCreateAndEdit",
+   "title": "Server code that checks \"Work Order Lines — Create & Edit\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Auth/Domain/Model/Role.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Auth/Domain/Model/Role.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Order Lines",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
+    "Screens/code: components/shared/vehicle-info/VehicleCard.vue, components/ts/billing/InvoiceActionBar.vue, components/ts/customers/VehicleInvoices.vue, components/ts/inspections/InspectionLineRow.vue, components/ts/inspections/composables, components/ts/schedule-next/dialogs (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Order Lines — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:workOrderLinesCreateAndEdit::0"
+  }
+ ],
+ "commits": [
+  {
+   "commit": "35dbcd4607",
+   "date": "2026-10-08",
+   "subject": "SV-8511 require Full View with Work Order Lines Create & Edit to change lines on completed work orders"
+  },
+  {
+   "commit": "e4269cebf8",
+   "date": "2026-10-06",
+   "subject": "SV-8511 allow line changes on completed work orders by Work Order Lines Create & Edit permission, not role name"
+  }
+ ],
+ "tickets": [
+  "SV-8511"
+ ],
+ "pull_requests": []
+}

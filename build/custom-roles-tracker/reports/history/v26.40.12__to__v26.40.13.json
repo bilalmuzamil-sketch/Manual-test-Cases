@@ -1,0 +1,192 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.40.12",
+  "ref": "v26.40.12",
+  "commit": "106a0f10dca26446d478310786dbc964efe7aec2",
+  "build_marker": null,
+  "label": "v26.40.12 (106a0f1)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.40.13",
+  "ref": "v26.40.13",
+  "commit": "013e5439c673a3ea662665827c4b4c2e35714a82",
+  "build_marker": null,
+  "label": "v26.40.13 (013e543)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 5
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": null,
+   "endpoint": "POST /api/organization/bays/change",
+   "title": "Guarded API endpoint removed: POST /api/organization/bays/change",
+   "before": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "after": "— (endpoint gone)",
+   "risk": "Medium",
+   "risk_reason": "A permission-guarded capability disappeared or moved — confirm where it went.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/Organization/Bays/Application/Change/ChangeController.php::handle"
+   },
+   "workflows": [],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/organization/bays/change as a role WITH and a role WITHOUT \"\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:POST /api/organization/bays/change::0"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": null,
+   "endpoint": "POST /api/organization/bays/create",
+   "title": "Guarded API endpoint removed: POST /api/organization/bays/create",
+   "before": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "after": "— (endpoint gone)",
+   "risk": "Medium",
+   "risk_reason": "A permission-guarded capability disappeared or moved — confirm where it went.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/Organization/Bays/Application/Create/CreateController.php::handle"
+   },
+   "workflows": [],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/organization/bays/create as a role WITH and a role WITHOUT \"\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:POST /api/organization/bays/create::1"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": null,
+   "endpoint": "POST /api/organization/bays/delete",
+   "title": "Guarded API endpoint removed: POST /api/organization/bays/delete",
+   "before": "attribute: PermissionEnum::ROLE_ORGANIZATION_DELETE",
+   "after": "— (endpoint gone)",
+   "risk": "Medium",
+   "risk_reason": "A permission-guarded capability disappeared or moved — confirm where it went.",
+   "affected_roles": [],
+   "affected_permissions": [],
+   "evidence": {
+    "controller": "api/src/Organization/Bays/Application/Delete/DeleteController.php::handle"
+   },
+   "workflows": [],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/organization/bays/delete as a role WITH and a role WITHOUT \"\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:POST /api/organization/bays/delete::2"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": null,
+   "endpoint": "POST /api/work-orders/change-bay",
+   "title": "Guarded API endpoint removed: POST /api/work-orders/change-bay",
+   "before": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "after": "— (endpoint gone)",
+   "risk": "Medium",
+   "risk_reason": "A permission-guarded capability disappeared or moved — confirm where it went.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/Application/ChangeBay/ChangeBayController.php::handle"
+   },
+   "workflows": [],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/change-bay as a role WITH and a role WITHOUT \"\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:POST /api/work-orders/change-bay::3"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": null,
+   "endpoint": "POST /api/work-orders/change-location",
+   "title": "Guarded API endpoint removed: POST /api/work-orders/change-location",
+   "before": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "after": "— (endpoint gone)",
+   "risk": "Medium",
+   "risk_reason": "A permission-guarded capability disappeared or moved — confirm where it went.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/Application/ChangeLocation/ChangeLocationController.php::handle"
+   },
+   "workflows": [],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/change-location as a role WITH and a role WITHOUT \"\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:POST /api/work-orders/change-location::4"
+  }
+ ],
+ "commits": [],
+ "tickets": [],
+ "pull_requests": []
+}

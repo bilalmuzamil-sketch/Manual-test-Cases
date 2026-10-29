@@ -1,0 +1,63 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.36.3",
+  "ref": "v26.36.3",
+  "commit": "b425f5ca78e8c393b014ea72509839d168c89c5c",
+  "build_marker": null,
+  "label": "v26.36.3 (b425f5c)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.36.4",
+  "ref": "v26.36.4",
+  "commit": "3e1c64389471713b05cbae01fdcc1c383f49661c",
+  "build_marker": null,
+  "label": "v26.36.4 (3e1c643)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 1
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "POST /api/organizations/invoice-settings/change-design",
+   "title": "New API endpoint guarded by a permission: POST /api/organizations/invoice-settings/change-design",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/Organization/Invoice/UI/HTTP/InvoiceSetting/ChangeDesignController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+18 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/organizations/invoice-settings/change-design as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::0"
+  }
+ ],
+ "commits": [],
+ "tickets": [],
+ "pull_requests": []
+}

@@ -1,0 +1,355 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.43.1",
+  "ref": "v26.43.1",
+  "commit": "9af7270fa973bc15f32424f9862c9a4eba37883c",
+  "build_marker": null,
+  "label": "v26.43.1 (9af7270)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.43.2",
+  "ref": "v26.43.2",
+  "commit": "537378f6a600b1e58675317f9c043d02d1124c73",
+  "build_marker": null,
+  "label": "v26.43.2 (537378f)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 1,
+  "frontend_behavior_changed": 10
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "GET /api/customers/{customerId}/credit-limit-status",
+   "title": "New API endpoint guarded by a permission: GET /api/customers/{customerId}/credit-limit-status",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: new Expression( 'is_granted(\\''.PermissionEnum::ROLE_CUSTOMER_VIEW.'\\')' .' or is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_VIEW.'\\')' .' or is_granted(\\''.PermissionEnum::ROLE_PART_VIEW.'\\')', )",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "partSalesView",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/Customer/Customers/UI/HTTP/CreditLimitStatus/CreditLimitStatusController.php::__invoke"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/customers/{customerId}/credit-limit-status as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::0"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingBankingCreateAndEdit",
+   "title": "Screens that use \"Accounting Banking — Create & Edit\" changed",
+   "before": "0 file(s)",
+   "after": "1 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/router/accounting/banking.routes.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Accounting Banking",
+    "Screens/code: router/accounting/banking.routes.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting Banking — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingBankingCreateAndEdit::1"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingBankingView",
+   "title": "Screens that use \"Accounting Banking — View\" changed",
+   "before": "3 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/accounting/shared/AccountingBankConnectionBanner.vue",
+     "app/src/router/accounting/banking.routes.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Accounting Banking",
+    "Screens/code: components/ts/accounting/shared, router/accounting/banking.routes.ts, router/accounting/index.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting Banking — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingBankingView::2"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingFixedAssetsCreateAndEdit",
+   "title": "Screens that use \"Accounting Fixed Assets — Create & Edit\" changed",
+   "before": "1 file(s)",
+   "after": "2 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/router/accounting/fixedAssets.routes.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Accounting Fixed Assets",
+    "Screens/code: components/ts/accounting/fixedAssets, router/accounting/fixedAssets.routes.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting Fixed Assets — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingFixedAssetsCreateAndEdit::3"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingFixedAssetsView",
+   "title": "Screens that use \"Accounting Fixed Assets — View\" changed",
+   "before": "5 file(s)",
+   "after": "6 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/router/accounting/fixedAssets.routes.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Accounting Fixed Assets",
+    "Screens/code: components/ts/accounting/fixedAssets, components/ts/accounting/shared, router/accounting/fixedAssets.routes.ts, router/accounting/index.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting Fixed Assets — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingFixedAssetsView::4"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingPurchasesCreateAndEdit",
+   "title": "Screens that use \"Accounting Purchases — Create & Edit\" changed",
+   "before": "3 file(s)",
+   "after": "4 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/router/accounting/purchases.routes.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Accounting Purchases",
+    "Screens/code: components/ts/accounting/purchases, components/ts/accounting/shared, router/accounting/imports.routes.ts, router/accounting/purchases.routes.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting Purchases — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingPurchasesCreateAndEdit::5"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingPurchasesView",
+   "title": "Screens that use \"Accounting Purchases — View\" changed",
+   "before": "4 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/router/accounting/purchases.routes.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Accounting Purchases",
+    "Screens/code: components/ts/accounting/shared, router/accounting/imports.routes.ts, router/accounting/index.ts, router/accounting/purchases.routes.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting Purchases — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingPurchasesView::6"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingSalesCreateAndEdit",
+   "title": "Screens that use \"Accounting Sales — Create & Edit\" changed",
+   "before": "3 file(s)",
+   "after": "4 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/router/accounting/sales.routes.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Accounting Sales",
+    "Screens/code: components/ts/accounting/sales, components/ts/accounting/shared, router/accounting/imports.routes.ts, router/accounting/sales.routes.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting Sales — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingSalesCreateAndEdit::7"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingSalesView",
+   "title": "Screens that use \"Accounting Sales — View\" changed",
+   "before": "4 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/router/accounting/sales.routes.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Accounting Sales",
+    "Screens/code: components/ts/accounting/shared, router/accounting/imports.routes.ts, router/accounting/index.ts, router/accounting/sales.routes.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting Sales — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingSalesView::8"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingSetupCreateAndEdit",
+   "title": "Screens that use \"Accounting Setup — Create & Edit\" changed",
+   "before": "2 file(s)",
+   "after": "3 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/router/accounting/ledger.routes.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Accounting Setup",
+    "Screens/code: components/ts/accounting/ledger, router/accounting/imports.routes.ts, router/accounting/ledger.routes.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting Setup — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingSetupCreateAndEdit::9"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "accountingSetupView",
+   "title": "Screens that use \"Accounting Setup — View\" changed",
+   "before": "4 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/router/accounting/ledger.routes.ts"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Accounting Setup",
+    "Screens/code: components/ts/accounting/shared, router/accounting/imports.routes.ts, router/accounting/index.ts, router/accounting/ledger.routes.ts, router/accounting/reports.routes.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Accounting Setup — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:accountingSetupView::10"
+  }
+ ],
+ "commits": [
+  {
+   "commit": "8113e90b53",
+   "date": "2026-10-23",
+   "subject": "[SV-11562] Keep Create Role alive when the permission search is cleared"
+  }
+ ],
+ "tickets": [
+  "SV-11562"
+ ],
+ "pull_requests": []
+}

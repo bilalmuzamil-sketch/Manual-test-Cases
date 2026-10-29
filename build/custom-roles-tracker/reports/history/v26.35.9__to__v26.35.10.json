@@ -1,0 +1,237 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.35.9",
+  "ref": "v26.35.9",
+  "commit": "20b5728e06a3ad5a5ef9c977176aa0f7c8d7524e",
+  "build_marker": null,
+  "label": "v26.35.9 (20b5728)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.35.10",
+  "ref": "v26.35.10",
+  "commit": "a568ff466bbd6e561181f43d84f78f947fb39f7c",
+  "build_marker": null,
+  "label": "v26.35.10 (a568ff4)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "added_permission": 1,
+  "backend_enforcement_changed": 2,
+  "dependency_changed": 1,
+  "frontend_behavior_changed": 1
+ },
+ "changes": [
+  {
+   "type": "permission_added",
+   "category": "added_permission",
+   "permission": "woMoveLabor",
+   "title": "Permission added: Work Orders — Move Labor",
+   "before": "— (does not exist)",
+   "after": "exists; default ON for Admin, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Parts Manager",
+   "risk": "High",
+   "risk_reason": "New permission granted by default to existing system roles — users gain access on upgrade.",
+   "affected_roles": [
+    "administrator",
+    "service_manager",
+    "senior_service_advisor",
+    "service_advisor",
+    "foreman",
+    "parts_manager"
+   ],
+   "afterBool": true,
+   "evidence": {
+    "b": {
+     "key": "woMoveLabor",
+     "label": "Work Orders — Move Labor",
+     "group": "Work Orders",
+     "prdOnly": false,
+     "controls": null,
+     "section": null,
+     "codeComment": {
+      "tickets": [
+       "SV-8911"
+      ],
+      "comment": "SV-8911 — gates moving labor between WO lines. A WO sub-setting rather than a Work Order Lines CRUD level, because a shop must be able to grant line/labor editing without move-labor (the two were fused before)."
+     },
+     "keyEvidence": null
+    }
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/work-orders",
+    "Screens/code: components/work-orders/ts/WorkOrderLineContextMenuList.vue"
+   ],
+   "qa_scenarios": [
+    "Role editor: \"Work Orders — Move Labor\" appears in the right section with the right label, OFF for custom roles unless the template grants it.",
+    "Positive: a role WITH \"Work Orders — Move Labor\" can perform the action; negative: a role WITHOUT it cannot (UI hidden AND API 403).",
+    "Dependency: ticking \"Work Orders — Move Labor\" auto-ticks its required parents; unticking a parent clears it.",
+    "Defaults: check every system role holds or lacks it exactly as the change report lists."
+   ],
+   "verification_status": "Not Tested",
+   "id": "added_permission:woMoveLabor::0"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "POST /api/work-orders/tasks/move",
+   "title": "API guard changed: POST /api/work-orders/tasks/move",
+   "before": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_LINE_TASK_MOVE_LABOR",
+   "risk": "Medium",
+   "risk_reason": "The endpoint now checks something different.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woMoveLabor",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/Application/Task/Move/MoveController.php::moveTask"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+14 more)",
+    "Screens/code: services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/tasks/move as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::1"
+  },
+  {
+   "type": "dependency_changed",
+   "category": "dependency_changed",
+   "permission": "woMoveLabor",
+   "title": "Dependency added: Work Orders — Move Labor ⇒ Work Order Lines — Create & Edit",
+   "before": "no such dependency",
+   "after": "implies Work Order Lines — Create & Edit",
+   "risk": "Medium",
+   "risk_reason": "Granting the child now also grants (or requires) the parent.",
+   "affected_roles": [],
+   "afterBool": true,
+   "childLabel": "Work Orders — Move Labor",
+   "parentLabel": "Work Order Lines — Create & Edit",
+   "evidence": {
+    "b": {
+     "child": "woMoveLabor",
+     "parent": "workOrderLinesCreateAndEdit",
+     "kind": "implies",
+     "quote": null,
+     "enforcedBy": "server cascade (FEPermissionCascade)"
+    }
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/work-orders",
+    "Screens/code: components/work-orders/ts/WorkOrderLineContextMenuList.vue"
+   ],
+   "qa_scenarios": [
+    "Role editor: ticking \"Work Orders — Move Labor\" now auto-ticks \"Work Order Lines — Create & Edit\".",
+    "API (bypassing the editor): create a role with only the child permission via the role API and confirm what the server stores.",
+    "Negative: unticking the parent clears the child."
+   ],
+   "verification_status": "Not Tested",
+   "id": "dependency_changed:woMoveLabor::2"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "title": "Role editor dependency logic changed (front end)",
+   "before": "e2e524c6007c",
+   "after": "941003ef8cee",
+   "risk": "Medium",
+   "risk_reason": "The editor's auto-tick / confirm-dialog code changed (comments ignored). Re-test the editor cascades and confirmation dialogs.",
+   "affected_roles": [],
+   "label": "Role editor",
+   "workflows": [
+    "Administration › Roles and Permissions › Create / Edit role"
+   ],
+   "evidence": {
+    "file": "app/src/services/permissions/cascade.ts",
+    "functions_added": [],
+    "functions_removed": []
+   },
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Role editor\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:x::3"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "timesheetsCreateAndEdit",
+   "endpoint": "POST /api/technician-tasks/move",
+   "title": "New API endpoint guarded by a permission: POST /api/technician-tasks/move",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_TIMESHEET_ALL",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "timesheetsCreateAndEdit"
+   ],
+   "evidence": {
+    "controller": "api/src/LabourBilling/TechnicianTaskRecords/Application/HTTP/Move/MoveController.php::moveTechnicianTask"
+   },
+   "workflows": [
+    "Timesheets",
+    "API areas: /api/contacts, /api/departments, /api/reporting, /api/staff, /api/technician-tasks",
+    "Screens/code: components/ts/reporting/PunchClockActivities.vue, components/ts/work-orders/TimeSheets.vue, composables/useReportsTable.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/technician-tasks/move as a role WITH and a role WITHOUT \"Timesheets — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:timesheetsCreateAndEdit::4"
+  }
+ ],
+ "commits": [
+  {
+   "commit": "be5136e966",
+   "date": "2026-09-07",
+   "subject": "Merge branch 'main' into SV-8911-move-labor-permission"
+  },
+  {
+   "commit": "816e543bd3",
+   "date": "2026-09-04",
+   "subject": "fix(auth): stop scanning every Redis session on role permission edits"
+  },
+  {
+   "commit": "dea5ece6f5",
+   "date": "2026-09-04",
+   "subject": "[SV-8911] Review fixes: unblock CI lint, narrow backfill exclusion, fail E2E loudly"
+  },
+  {
+   "commit": "47bd75f754",
+   "date": "2026-08-25",
+   "subject": "[SV-8911] Gate Move labor behind its own permission"
+  }
+ ],
+ "tickets": [
+  "SV-8911"
+ ],
+ "pull_requests": []
+}

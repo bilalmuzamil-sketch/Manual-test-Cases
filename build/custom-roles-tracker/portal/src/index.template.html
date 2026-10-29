@@ -1,0 +1,752 @@
+<title>Custom Roles &amp; Permissions Evolution Tracker</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: a release ledger — a version strip across the top (one stop per snapshot, oldest left),
+   the selected version's record below, and tool views (matrix, comparison, Track Changes) beside. */
+:root {
+  --bg: #f3f6f6; --surface: #ffffff; --surface-2: #eaf0f0; --ink: #11221f; --muted: #556866; --line: #d3dedd;
+  --accent: #0a6b67; --accent-ink: #ffffff; --accent-soft: #dcefed;
+  --good: #276a2c; --good-soft: #e1f1df; --warn: #8a5a00; --warn-soft: #fbefd6; --bad: #a8261d; --bad-soft: #fbe3e0;
+  --info: #24539c; --info-soft: #e1eaf8; --plum: #6b3a8a; --plum-soft: #efe5f5;
+  --quote: #f6f3e8; --quote-line: #c9b98a;
+  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d1716; --surface: #13201f; --surface-2: #1a2a29; --ink: #dfeae8; --muted: #93a8a5; --line: #26393a;
+  --accent: #4cb6ae; --accent-ink: #062320; --accent-soft: #143a37;
+  --good: #7cc683; --good-soft: #17301a; --warn: #e2b25a; --warn-soft: #33270d; --bad: #f0857b; --bad-soft: #3a1714;
+  --info: #8ab4f2; --info-soft: #172840; --plum: #c8a0e2; --plum-soft: #2c1d38;
+  --quote: #1d2a22; --quote-line: #6e6a46; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0d1716; --surface: #13201f; --surface-2: #1a2a29; --ink: #dfeae8; --muted: #93a8a5; --line: #26393a;
+  --accent: #4cb6ae; --accent-ink: #062320; --accent-soft: #143a37;
+  --good: #7cc683; --good-soft: #17301a; --warn: #e2b25a; --warn-soft: #33270d; --bad: #f0857b; --bad-soft: #3a1714;
+  --info: #8ab4f2; --info-soft: #172840; --plum: #c8a0e2; --plum-soft: #2c1d38;
+  --quote: #1d2a22; --quote-line: #6e6a46; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font-body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); max-width: 1320px; margin: 0 auto; }
+h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: 1.55rem; font-weight: 700; letter-spacing: .005em; }
+h2 { font-size: 1.3rem; font-weight: 600; }
+h3 { font-size: 1.08rem; font-weight: 600; }
+h4 { font-size: .95rem; font-weight: 600; }
+p { margin: 0; max-width: 72ch; }
+a { color: var(--accent); }
+code, .mono { font-family: var(--font-mono); font-size: .86em; }
+.muted { color: var(--muted); }
+.eyebrow { font: 600 .72rem/1 var(--font-body); letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+button, select, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* header */
+.top { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; padding-block: 12px; }
+.brand { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.brand small { color: var(--muted); font-size: .8rem; }
+.prod { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--muted); }
+.prod b { font-family: var(--font-mono); font-weight: 500; color: var(--ink); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); flex: none; }
+
+/* version strip */
+.strip { overflow-x: auto; border-bottom: 1px solid var(--line); background: var(--surface); }
+.strip ol { list-style: none; margin: 0; display: flex; gap: 0; padding-block: 0; min-width: max-content; }
+.stop { position: relative; }
+.stop a { display: flex; flex-direction: column; gap: 2px; padding: 10px 18px 11px; text-decoration: none; color: var(--ink); border-bottom: 3px solid transparent; }
+.stop a:hover { background: var(--surface-2); }
+.stop a[aria-current="page"] { border-bottom-color: var(--accent); }
+.stop .k { font: 600 .68rem/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.stop .n { font-family: var(--font-display); font-weight: 600; font-size: .98rem; white-space: nowrap; }
+.stop + .stop::before { content: "→"; position: absolute; left: -5px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: .8rem; }
+.tools { display: flex; flex-wrap: wrap; gap: 6px; padding-block: 10px; }
+.tools a { text-decoration: none; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); font-size: .88rem; background: var(--surface); }
+.tools a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.tools a.primary { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.tools a.primary[aria-current="page"] { color: var(--accent-ink); }
+
+main.wrap { padding-block: 22px 60px; display: flex; flex-direction: column; gap: 22px; }
+section.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.head { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: flex-end; justify-content: space-between; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px 22px; }
+.fact { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.fact span:last-child { overflow-wrap: anywhere; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.grid2 > * { min-width: 0; }
+
+/* chips */
+.chip { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 999px; font-size: .78rem; font-weight: 500; white-space: nowrap; border: 1px solid transparent; }
+.c-added_permission, .c-good { background: var(--good-soft); color: var(--good); }
+.c-removed_permission, .c-bad { background: var(--bad-soft); color: var(--bad); }
+.c-modified_permission, .c-warn { background: var(--warn-soft); color: var(--warn); }
+.c-default_changed, .c-info { background: var(--info-soft); color: var(--info); }
+.c-dependency_changed { background: var(--plum-soft); color: var(--plum); }
+.c-backend_enforcement_changed { background: var(--surface-2); color: var(--ink); border-color: var(--line); }
+.c-frontend_behavior_changed { background: var(--accent-soft); color: var(--accent); }
+.c-role_assignment_changed { background: var(--warn-soft); color: var(--warn); }
+.c-neutral { background: var(--surface-2); color: var(--muted); }
+.risk-High { background: var(--bad); color: #fff; }
+.risk-Medium { background: var(--warn-soft); color: var(--warn); border-color: var(--warn); }
+.risk-Low { background: var(--surface-2); color: var(--muted); }
+.st-Matches { background: var(--good-soft); color: var(--good); }
+.st-Different { background: var(--info-soft); color: var(--info); }
+.st-Approved { background: var(--good-soft); color: var(--good); border-color: var(--good); }
+.st-Possible { background: var(--warn-soft); color: var(--warn); }
+.st-Needs { background: var(--plum-soft); color: var(--plum); }
+.evidence-level { display: inline-flex; gap: 6px; align-items: center; font-size: .8rem; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--radius); padding: 4px 10px; }
+
+/* tables */
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--surface-2); font-weight: 600; position: sticky; top: 0; z-index: 1; }
+tbody tr:last-child td { border-bottom: 0; }
+tr.group td { background: var(--surface-2); font-family: var(--font-display); font-weight: 600; font-size: .86rem; letter-spacing: .02em; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* matrix */
+.matrix th.role { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; padding: 8px 4px; font-size: .78rem; text-align: left; height: 150px; vertical-align: bottom; }
+.matrix td.cell { text-align: center; padding: 4px; min-width: 36px; font-variant-numeric: tabular-nums; }
+.matrix td.cell span { display: inline-block; width: 22px; height: 22px; line-height: 22px; border-radius: 4px; font-size: .78rem; font-weight: 600; }
+.on { background: var(--accent); color: var(--accent-ink); }
+.off { background: transparent; color: var(--line); border: 1px solid var(--line); }
+.unstated { color: var(--muted); }
+.chg-on { background: var(--good); color: #fff; }
+.chg-off { background: var(--bad); color: #fff; }
+.matrix tr.sel td { background: var(--accent-soft); }
+.matrix td.pname { min-width: 220px; cursor: pointer; }
+.matrix td.pname:hover { text-decoration: underline; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: .8rem; color: var(--muted); align-items: center; }
+.legend span.sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: middle; margin-right: 5px; }
+
+/* quotes */
+blockquote.q { margin: 0; padding: 8px 12px; background: var(--quote); border-left: 3px solid var(--quote-line); font-size: .9rem; max-width: 80ch; }
+blockquote.q cite { display: block; font-style: normal; font-size: .76rem; color: var(--muted); margin-top: 4px; }
+
+/* controls */
+.controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: flex-end; }
+.ctl { display: flex; flex-direction: column; gap: 4px; font-size: .8rem; color: var(--muted); min-width: 0; }
+.ctl select, .ctl input[type="search"], .ctl input[type="text"], textarea { border: 1px solid var(--line); background: var(--surface); border-radius: 5px; padding: 6px 8px; color: var(--ink); font-size: .9rem; max-width: 100%; }
+.ctl input[type="search"] { width: 240px; }
+label.check { display: inline-flex; gap: 6px; align-items: center; font-size: .86rem; color: var(--ink); }
+.btn { border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); padding: 7px 14px; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: .88rem; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* change cards */
+.changes { display: flex; flex-direction: column; gap: 10px; }
+details.change { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details.change > summary { list-style: none; cursor: pointer; padding: 10px 12px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: start; }
+details.change > summary::-webkit-details-marker { display: none; }
+details.change[open] > summary { border-bottom: 1px solid var(--line); }
+.ba { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: start; font-size: .86rem; }
+.ba > div { background: var(--surface-2); border-radius: 5px; padding: 6px 8px; min-width: 0; overflow-wrap: anywhere; }
+.change .body { padding: 12px; display: flex; flex-direction: column; gap: 12px; }
+.change ul { margin: 0; padding-left: 18px; }
+.change li + li { margin-top: 3px; }
+.verify { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: .85rem; border-top: 1px dashed var(--line); padding-top: 10px; }
+.notice { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 10px 12px; border-radius: 0 var(--radius) var(--radius) 0; font-size: .9rem; }
+.notice.warn { border-color: var(--warn); background: var(--warn-soft); }
+.notice.bad { border-color: var(--bad); background: var(--bad-soft); }
+.empty { padding: 26px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--radius); }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; font-size: .88rem; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.steps { counter-reset: s; display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.steps > li { counter-increment: s; display: grid; grid-template-columns: 28px 1fr; gap: 10px; }
+.steps > li::before { content: counter(s); width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 600; font-size: .85rem; }
+pre.cmd { margin: 0; background: var(--surface-2); border: 1px solid var(--line); border-radius: 5px; padding: 8px 10px; font: .82rem/1.5 var(--font-mono); overflow-x: auto; white-space: pre; }
+.atoms { display: flex; flex-wrap: wrap; gap: 4px; }
+.atoms code { background: var(--surface-2); border-radius: 3px; padding: 1px 5px; font-size: .76rem; }
+@media (max-width: 640px) {
+  .ba { grid-template-columns: 1fr; } .ba .arrow { display: none; }
+  details.change > summary { grid-template-columns: 1fr; }
+  .ctl input[type="search"] { width: 100%; }
+  .prod { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><h1>Custom Roles &amp; Permissions Evolution Tracker</h1>
+    <small>ShopView QA · what the PRD said, what the code does, what each release changed</small></div>
+  <div class="prod" id="prod"><span class="dot"></span><span>Production</span><b id="prodMarker">—</b><span id="prodWhen"></span></div>
+</div></header>
+<nav class="strip" aria-label="Versions"><div class="wrap"><ol id="strip"></ol></div></nav>
+<nav class="wrap tools" aria-label="Tools" id="tools">
+  <a href="#matrix" data-r="matrix">Permission matrix</a>
+  <a href="#prd-vs-impl" data-r="prd-vs-impl">Original PRD vs implementation</a>
+  <a href="#compare" data-r="compare">Compare any two versions</a>
+  <a href="#history" data-r="history">History &amp; approvals</a>
+  <a href="#track" data-r="track" class="primary">Track Changes</a>
+</nav>
+<main class="wrap" id="main"><section class="panel"><p class="muted">Loading the recorded snapshots…</p></section></main>
+
+<script>
+/*__ENGINE__*/
+</script>
+<script>
+(function () {
+'use strict';
+const E = window.CRPEngine;
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (v) => String(v == null ? '' : v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const CAT = { added_permission: 'Added permission', removed_permission: 'Removed permission', modified_permission: 'Modified permission',
+  default_changed: 'Default changed', dependency_changed: 'Dependency changed', backend_enforcement_changed: 'Backend enforcement changed',
+  frontend_behavior_changed: 'Frontend behavior changed', role_assignment_changed: 'Role assignment changed' };
+const STATUSES = ['Not Tested', 'Passed', 'Failed', 'Blocked', 'Needs Clarification'];
+let D = null;                       // the data bundle
+const S = {};                       // snapshots by id
+let db = null, user = null, me = null, canWriteDb = false, canApprove = false;
+const verif = {}, approvals = {}, requests = [];
+const names = {};
+
+// stable, store-safe ids
+function hid(s) { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(36); }
+function itemKey(scope, c) { return scope + ':' + hid([c.category, c.permission || '', c.endpoint || '', c.role || '', c.title].join('|')); }
+
+function reg() { return D.registry.snapshots; }
+function implEntries() { return reg().filter((s) => s.kind === 'implementation'); }
+function latestImpl() { const xs = implEntries(); return xs[xs.length - 1]; }
+function entry(id) { return reg().find((s) => s.id === id); }
+function fmtDate(iso) { if (!iso) return '—'; const d = new Date(iso); return isNaN(d) ? iso : d.toISOString().slice(0, 10); }
+function chip(cls, text) { return `<span class="chip ${cls}">${esc(text)}</span>`; }
+function statusChip(st) { return chip('st-' + st.split(' ')[0], st); }
+function roleNameIn(snap, key) {
+  const r = (snap.roles || []).find((x) => x.key === key || x.impl_role === key);
+  return r ? r.name : key;
+}
+
+// ── routing ──────────────────────────────────────────────────────────────────────────────────
+function route() {
+  const h = (location.hash || '').replace(/^#/, '');
+  const fallback = 'snap-' + latestImpl().id;
+  return h || fallback;
+}
+function render() {
+  const r = route();
+  document.querySelectorAll('#strip a, #tools a').forEach((a) => a.toggleAttribute('aria-current', a.getAttribute('href') === '#' + r));
+  document.querySelectorAll('#strip a[aria-current], #tools a[aria-current]').forEach((a) => a.setAttribute('aria-current', 'page'));
+  const main = $('#main');
+  try {
+    if (r.startsWith('snap-')) main.innerHTML = viewSnapshot(r.slice(5));
+    else if (r === 'matrix') main.innerHTML = viewMatrix();
+    else if (r === 'prd-vs-impl') main.innerHTML = viewPrdVsImpl();
+    else if (r === 'compare') main.innerHTML = viewCompare();
+    else if (r === 'history') main.innerHTML = viewHistory();
+    else if (r === 'track') main.innerHTML = viewTrack();
+    else main.innerHTML = viewSnapshot(latestImpl().id);
+  } catch (e) {
+    main.innerHTML = `<section class="panel"><div class="notice bad">This view failed to render: ${esc(e.message)}</div></section>`;
+    console.error(e);
+  }
+  wire(r);
+}
+window.addEventListener('hashchange', render);
+
+function buildStrip() {
+  const items = reg().map((s, i) => {
+    const kind = s.kind === 'prd' ? (s.id === 'prd-v7' ? 'Original PRD' : 'PRD reference')
+      : (s.previous ? (s.checkpoint_only ? 'Checkpoint' : 'Release') : 'Baseline');
+    const name = s.kind === 'prd' ? `v${(s.source || {}).version}` + (s.id === 'prd-v7' ? ' · Jun 2026' : ' · Jul 2026')
+      : (s.previous ? (s.release.tags[0] || s.release.commit.slice(0, 7)) : 'October 2026');
+    return `<li class="stop"><a href="#snap-${esc(s.id)}"><span class="k">${esc(kind)}</span><span class="n">${esc(name)}</span></a></li>`;
+  });
+  $('#strip').innerHTML = items.join('');
+  $('#prodMarker').textContent = D.deployed.build_marker;
+  $('#prodWhen').textContent = 'measured ' + D.deployed.measured_at;
+}
+
+// ── snapshot views ───────────────────────────────────────────────────────────────────────────
+function viewSnapshot(id) {
+  const s = S[id], e = entry(id);
+  if (!s || !e) return `<section class="panel"><div class="notice bad">No recorded snapshot named “${esc(id)}”.</div></section>`;
+  return s.kind === 'prd' ? viewPrd(s, e) : viewImpl(s, e);
+}
+
+function viewPrd(s, e) {
+  const src = s.source;
+  const isOriginal = e.id === 'prd-v7';
+  const v = s.verbatim_check;
+  const head = `<section class="panel">
+    <div class="head"><div><div class="eyebrow">${isOriginal ? 'Original PRD baseline' : 'Latest PRD version (reference)'}</div>
+      <h2>${esc(src.title)} — version ${esc(src.version)}</h2></div>
+      <span class="evidence-level">Documented intent · not implementation · not verified behaviour</span></div>
+    <div class="facts">
+      <div class="fact"><span class="eyebrow">Confluence page</span><span><a href="${esc(src.url)}" target="_blank" rel="noopener">${esc(src.page_id)}</a> · owner ${esc(src.owner)}</span></div>
+      <div class="fact"><span class="eyebrow">This version</span><span>${esc(fmtDate(src.published_at || src.created_at))}${src.status_in_page ? ' · page reads “Status: ' + esc(src.status_in_page) + '”' : ''}</span></div>
+      <div class="fact"><span class="eyebrow">Roles · settings</span><span>${s.roles.length} system roles · ${s.permissions.length} settings described</span></div>
+      <div class="fact"><span class="eyebrow">Recorded</span><span>${esc(fmtDate(e.recorded_at))} · sha256 <code>${esc(e.sha256.slice(0, 12))}</code></span></div>
+    </div>
+    ${isOriginal ? `<div class="notice">Why this is the original approved baseline: version 6 reads “Status: Draft”; version 7 (1 June 2026) is the first that reads “Status: Published”, and versions 7–10 differ only in the Change Log. Engineering’s locked spec in the product repo reads “Locked 2026-06-02 after iterative sign-off”. Confluence approvals are switched off on this page, so there is no formal approval record; “Published” is the strongest evidence that exists.</div>
+      ${v ? `<p class="muted">Verbatim check, re-run on every build against the saved v7 source: ${v.table_rows_checked} table rows and ${v.quotes_checked} quotes — ${v.ok ? 'all found word for word' : '<b>' + (v.table_rows_not_found.length + v.quotes_not_found.length) + ' not found</b>'}.</p>` : ''}`
+      : `<div class="notice warn">The latest PRD is shown for reference. It never replaces the original baseline: differences between the two are classified on the “Original PRD vs implementation” page.</div>`}
+  </section>`;
+  const roles = `<section class="panel"><h3>System roles</h3><div class="tbl"><table><thead><tr><th>Role</th><th>ID</th><th>Description (verbatim)</th><th>Editable as a system role</th><th>In the implementation as</th></tr></thead><tbody>
+    ${s.roles.map((r) => `<tr><td>${esc(r.name)}</td><td><code>${esc(r.key)}</code></td><td>${esc(r.description_verbatim)}</td>
+      <td>${r.editable_when_system === undefined ? '<span class="muted">not stated in the role table</span>' : r.editable_when_system ? 'Yes' : 'No'}</td>
+      <td>${r.impl_role ? '<code>' + esc(r.impl_role) + '</code>' : '<span class="muted">no template — see change log</span>'}</td></tr>`).join('')}
+    </tbody></table></div></section>`;
+  const bySec = {};
+  s.permissions.forEach((p) => { (bySec[p.prd_section] = bySec[p.prd_section] || []).push(p); });
+  const deps = (k) => s.dependencies.filter((d) => d.child === k);
+  const settings = `<section class="panel"><h3>Every setting and what it controls</h3>
+    <p class="muted">Quoted word for word from the PRD. Each line under a setting is a rule the PRD states about it.</p>
+    <div class="tbl"><table><thead><tr><th>Setting</th><th>Key</th><th>Controls (verbatim)</th><th>Default holders</th></tr></thead><tbody>
+    ${Object.entries(bySec).map(([sec, ps]) => `<tr class="group"><td colspan="4">${esc(sec)}</td></tr>` + ps.map((p) => {
+      const holders = Object.entries(s.role_defaults).filter(([, ks]) => ks.includes(p.key)).map(([r]) => roleNameIn(s, r));
+      const covered = (s.matrix_coverage || {})[p.key];
+      return `<tr><td>${esc(p.label)}${p.prd_only ? ' ' + chip('c-neutral', 'parent gate') : ''}${p.prd_key_missing ? ' ' + chip('c-warn', 'no key in PRD') : ''}</td>
+        <td><code>${esc(p.key)}</code></td>
+        <td><blockquote class="q">${esc(p.controls_verbatim)}<cite>${esc(p.prd_section)}</cite></blockquote>
+          ${deps(p.key).map((d) => `<div class="muted" style="font-size:.82rem;margin-top:4px">${d.kind === 'implies' ? 'Turns on' : d.kind === 'requires' ? 'Requires' : 'Gated by'} <code>${esc(d.parent)}</code></div>`).join('')}
+          ${p.key_mapping_evidence ? `<blockquote class="q" style="margin-top:6px">${esc(p.key_mapping_evidence.verbatim)}<cite>Why this maps to ${esc(p.key)} — ${esc(p.key_mapping_evidence.section)}</cite></blockquote>` : ''}</td>
+        <td>${covered === undefined ? '<span class="muted">not in the matrix</span>' : holders.length ? esc(holders.join(', ')) : '<span class="muted">none</span>'}</td></tr>`;
+    }).join('')).join('')}
+    </tbody></table></div></section>`;
+  const rules = `<section class="panel"><h3>Rules about roles</h3>${(s.rules || []).map((r) => `<blockquote class="q">${esc(r.verbatim)}<cite>${esc(r.section)}</cite></blockquote>`).join('')}
+    <p><a href="#matrix" data-matrix="${esc(e.id)}">Open this version in the permission matrix →</a></p></section>`;
+  const log = (s.change_log || []).length ? `<section class="panel"><h3>The PRD’s own change log</h3>
+    <p class="muted">Verbatim. Use it as the documented reason for post-PRD changes; it is not an approval record.</p>
+    <div class="tbl"><table><thead><tr><th>Date</th><th>Reporter</th><th>Change</th></tr></thead><tbody>
+    ${s.change_log.map((c) => `<tr><td>${esc(c.date || '—')}</td><td>${esc(c.reporter || '—')}</td><td>${esc(c.change_verbatim)}</td></tr>`).join('')}</tbody></table></div></section>` : '';
+  return head + roles + settings + rules + log;
+}
+
+function viewImpl(s, e) {
+  const r = s.release;
+  const prev = e.previous ? entry(e.previous) : null;
+  const report = e.change_report ? D.reports[e.change_report] : null;
+  const head = `<section class="panel">
+    <div class="head"><div><div class="eyebrow">${prev ? (e.checkpoint_only ? 'No-change checkpoint' : 'Release snapshot') : 'Current implementation — baseline'}</div>
+      <h2>${esc(e.label)}</h2></div>
+      <span class="evidence-level">Repository analysis at the named commit · not verified behaviour</span></div>
+    <div class="facts">
+      <div class="fact"><span class="eyebrow">Release</span><span><code>${esc((r.tags || [])[0] || r.ref)}</code></span></div>
+      <div class="fact"><span class="eyebrow">Commit</span><span><code>${esc(r.commit.slice(0, 10))}</code> · ${esc(fmtDate(r.commit_date))}</span></div>
+      <div class="fact"><span class="eyebrow">Deployed build</span><span>${r.deployed ? `<code>${esc(r.deployed.build_marker)}</code> on ${esc(r.deployed.environment)}, measured ${esc(r.deployed.measured_at)}` : (r.build_marker ? '<code>' + esc(r.build_marker) + '</code>' : '<span class="muted">not measured</span>')}</span></div>
+      <div class="fact"><span class="eyebrow">Compared with</span><span>${prev ? `<a href="#snap-${esc(prev.id)}">${esc(prev.label)}</a>` : '<span class="muted">first implementation snapshot</span>'}</span></div>
+      <div class="fact"><span class="eyebrow">Contents</span><span>${s.permissions.length} permissions · ${s.roles.length} system roles · ${s.endpoints.length} API routes</span></div>
+      <div class="fact"><span class="eyebrow">Recorded</span><span>${esc(fmtDate(e.recorded_at))} by ${esc(e.recorded_by)} · sha256 <code>${esc(e.sha256.slice(0, 12))}</code></span></div>
+    </div>
+    ${Object.keys(s.unavailable || {}).length ? `<div class="notice warn">Could not be read at this commit, so shown as Needs Verification: ${esc(Object.keys(s.unavailable).join(', '))}</div>` : ''}
+  </section>`;
+  const changes = prev ? `<section class="panel"><div class="head"><h3>Changes introduced in this release</h3>
+      ${report ? `<div class="row">${countChips(report.counts)}<button class="btn ghost" data-export="${esc(e.change_report)}">Export report</button></div>` : ''}</div>
+      ${report ? (report.changes.length ? changeCards(report.changes, e.id) : '<div class="empty">No Custom Roles &amp; Permissions changes detected in this release.</div>')
+      : '<div class="notice warn">The change report for this snapshot is missing.</div>'}</section>` : '';
+  const holders = (k) => Object.entries(s.role_defaults).filter(([, ks]) => ks.includes(k)).map(([rk]) => roleNameIn(s, rk));
+  const roles = `<section class="panel"><h3>System roles</h3><div class="tbl"><table><thead><tr><th>Role</th><th>Template</th><th class="num">Default permissions</th><th>Editable as a system role</th><th>Deletable</th><th>Can clock in</th></tr></thead><tbody>
+    ${s.roles.map((x) => `<tr><td>${esc(x.name)}</td><td><code>${esc(x.key)}</code></td><td class="num">${(s.role_defaults[x.key] || []).length}</td>
+      <td>${x.editable_when_system === null ? '<span class="muted">Needs Verification</span>' : x.editable_when_system ? 'Yes' : 'No' + (x.key === 'office' ? ' — except ' + s.permissions.filter((p) => p.office_editable).length + ' settings' : '')}</td>
+      <td>No</td><td>${x.clock_capable ? 'Yes' : 'No'}</td></tr>`).join('')}</tbody></table></div>
+    <p class="muted">Source: <code>Role::isEditable()</code>, <code>Role::getUneditableTemplates()</code>, <code>Role::getOfficeEditableFEPermissions()</code>, <code>RoleFePermissionMappings::getMappings()</code> at this commit.</p></section>`;
+  const groups = {};
+  s.permissions.forEach((p) => { (groups[p.group] = groups[p.group] || []).push(p); });
+  const perms = `<section class="panel"><h3>Permissions as implemented</h3>
+    <p class="muted">Server atoms are what the permission grants on the back end. API routes are the endpoints guarded by one of those atoms, or by a check on the permission itself. Screens are front-end files that read the permission code.</p>
+    <div class="tbl"><table><thead><tr><th>Permission</th><th>Key</th><th>Default holders</th><th>Server atoms</th><th class="num">API routes</th><th class="num">Screens</th></tr></thead><tbody>
+    ${Object.entries(groups).map(([g, ps]) => `<tr class="group"><td colspan="6">${esc(g)}</td></tr>` + ps.map((p) => {
+      const h = holders(p.key);
+      const be = p.enforced_outside_repo ? `<span class="muted">enforced by ${esc(p.enforced_outside_repo.by)}</span>`
+        : (!p.backend_endpoints.length && !p.backend_bundle_checks.length ? chip('c-warn', 'none found — front end only') : String(p.backend_endpoints.length));
+      return `<tr><td>${esc(p.label || p.key)}${p.code_comment && p.code_comment.tickets.length ? ' ' + p.code_comment.tickets.map((t) => chip('c-neutral', t)).join(' ') : ''}</td>
+        <td><code>${esc(p.key)}</code></td><td>${h.length ? esc(h.join(', ')) : '<span class="muted">none — off by default</span>'}</td>
+        <td><div class="atoms">${p.atoms.map((a) => '<code>' + esc(a) + '</code>').join('') || '<span class="muted">none</span>'}</div></td>
+        <td class="num">${be}</td><td class="num">${p.fe_references.length}</td></tr>`;
+    }).join('')).join('')}</tbody></table></div></section>`;
+  const deps = `<section class="panel"><h3>Dependencies the server enforces</h3>
+    <p class="muted">When a role is saved, the server silently adds each permission’s implied parent. It never removes and never rejects. The role editor shows the same rules plus confirmation dialogs.</p>
+    <div class="tbl"><table><thead><tr><th>Turning on</th><th>also turns on</th></tr></thead><tbody>
+    ${s.dependencies.map((d) => `<tr><td><code>${esc(d.child)}</code></td><td><code>${esc(d.parent)}</code></td></tr>`).join('')}</tbody></table></div>
+    <p class="muted">Role-editor dependency logic fingerprint <code>${esc((s.fe_dependency_logic.fingerprint || '').slice(0, 12))}</code> (${esc(s.fe_dependency_logic.file)}); a change to it is reported by Track Changes.</p></section>`;
+  return head + changes + roles + perms + deps;
+}
+
+function countChips(counts) {
+  return Object.entries(counts || {}).map(([k, n]) => chip('c-' + k, `${CAT[k] || k} · ${n}`)).join(' ');
+}
+
+function changeCards(changes, scope) {
+  return `<div class="changes">${changes.map((c) => {
+    const key = itemKey(scope, c);
+    const v = verif[key], ap = approvals[key];
+    return `<details class="change"><summary>${chip('risk-' + c.risk, c.risk)}<div><div><b>${esc(c.title)}</b></div><div class="row" style="margin-top:4px">${chip('c-' + c.category, CAT[c.category] || c.category)}
+      ${(c.affected_roles || []).length ? '<span class="muted" style="font-size:.82rem">Roles: ' + esc(c.affected_roles.join(', ')) + '</span>' : ''}</div></div>
+      ${chip(v ? 'c-' + ({ Passed: 'good', Failed: 'bad', Blocked: 'warn', 'Needs Clarification': 'warn' }[v.status] || 'neutral') : 'c-neutral', v ? v.status : 'Not Tested')}</summary>
+      <div class="body">
+        <div class="ba"><div><div class="eyebrow">Previous</div>${esc(c.before)}</div><div class="arrow muted">→</div><div><div class="eyebrow">Now</div>${esc(c.after)}</div></div>
+        <p><b>Regression risk — ${esc(c.risk)}.</b> ${esc(c.risk_reason)}</p>
+        ${(c.workflows || []).length ? `<div><h4>Affected workflows</h4><ul>${c.workflows.map((w) => '<li>' + esc(w) + '</li>').join('')}</ul></div>` : ''}
+        ${(c.affected_permissions || []).length ? `<p class="muted">Permissions involved: ${c.affected_permissions.map((p) => '<code>' + esc(p) + '</code>').join(' ')}</p>` : ''}
+        <div><h4>Suggested QA scenarios</h4><p class="muted" style="font-size:.82rem">Suggestions to plan with — not proof that the behaviour is correct.</p><ul>${c.qa_scenarios.map((x) => '<li>' + esc(x) + '</li>').join('')}</ul></div>
+        <details><summary class="muted" style="cursor:pointer">Evidence</summary><pre class="cmd">${esc(JSON.stringify(c.evidence, null, 1))}</pre></details>
+        <div class="verify" data-key="${esc(key)}">
+          <label class="ctl">Verification status<select data-verify="${esc(key)}" ${canWriteDb ? '' : 'disabled'}>${STATUSES.map((st) => `<option ${((v && v.status) || 'Not Tested') === st ? 'selected' : ''}>${st}</option>`).join('')}</select></label>
+          ${v ? `<span class="muted">set by ${esc(names[v.by] || 'a teammate')} on ${esc(fmtDate(v.at))}</span>` : ''}
+          ${approvalBlock(key, ap)}
+        </div>
+      </div></details>`;
+  }).join('')}</div>`;
+}
+
+function approvalBlock(key, ap) {
+  const f = (v) => (v ? esc(v) : '<span class="muted">Not Documented</span>');
+  return `<dl class="kv" style="flex-basis:100%">
+    <dt>Reason</dt><dd>${f(ap && ap.reason)}</dd><dt>Jira</dt><dd>${f(ap && ap.jira)}</dd><dt>Pull request</dt><dd>${f(ap && ap.pr)}</dd>
+    <dt>Requested by</dt><dd>${f(ap && ap.requested_by)}</dd><dt>Approved by</dt><dd>${f(ap && ap.approved_by)}</dd><dt>Approval date</dt><dd>${f(ap && ap.approval_date)}</dd>
+    <dt>Evidence</dt><dd>${ap && ap.evidence ? `<a href="${esc(ap.evidence)}" target="_blank" rel="noopener">${esc(ap.evidence)}</a>` : '<span class="muted">Not Documented</span>'}</dd></dl>
+    ${canApprove ? `<button class="btn ghost" data-approve="${esc(key)}">${ap ? 'Edit approval record' : 'Record approval evidence'}</button>` : ''}`;
+}
+
+// ── matrix ───────────────────────────────────────────────────────────────────────────────────
+const M = { a: null, b: '', q: '', role: '', changedOnly: false, sel: null };
+function viewMatrix() {
+  if (!M.a) M.a = latestImpl().id;
+  const opts = (sel, withNone) => (withNone ? '<option value="">— none —</option>' : '') + reg().map((s) => `<option value="${esc(s.id)}" ${sel === s.id ? 'selected' : ''}>${esc(s.label)}</option>`).join('');
+  const A = E.normalise(S[M.a]), B = M.b ? E.normalise(S[M.b]) : null;
+  const roles = Object.keys(A.roles).concat(B ? Object.keys(B.roles).filter((r) => !A.roles[r]) : []);
+  const rolesShown = M.role ? roles.filter((r) => r === M.role) : roles;
+  const keys = Array.from(new Set(Object.keys(A.perms).concat(B ? Object.keys(B.perms) : [])));
+  const lab = (k) => ((B && B.perms[k]) || A.perms[k] || {}).label || k;
+  const grp = (k) => ((B && B.perms[k]) || A.perms[k] || {}).group || ((A.perms[k] || {}).section) || 'Settings';
+  const stated = (Mx, k, r) => !Mx.coverage || (Mx.coverage[k] && Mx.coverage[k].has(r));
+  const val = (Mx, k, r) => (!Mx.roles[r] || !Mx.perms[k]) ? null : (!stated(Mx, k, r) ? undefined : !!(Mx.defaults[r] && Mx.defaults[r].has(k)));
+  const q = M.q.toLowerCase();
+  let rows = keys.filter((k) => !q || k.toLowerCase().includes(q) || String(lab(k)).toLowerCase().includes(q));
+  const changed = (k) => B && rolesShown.some((r) => { const a = val(A, k, r), b = val(B, k, r); return a !== b && a !== undefined && b !== undefined; });
+  if (M.changedOnly && B) rows = rows.filter(changed);
+  const byG = {};
+  rows.forEach((k) => { (byG[grp(k)] = byG[grp(k)] || []).push(k); });
+  const cell = (k, r) => {
+    const a = val(A, k, r);
+    if (!B) return a === null ? '<span class="unstated">—</span>' : a === undefined ? '<span class="unstated" title="Not stated in this version">·</span>' : a ? '<span class="on" title="On by default">✓</span>' : '<span class="off" title="Off by default"></span>';
+    const b = val(B, k, r);
+    if (a === b || a === undefined || b === undefined || a === null || b === null) {
+      const v = b === null ? a : b;
+      return v === null ? '<span class="unstated">—</span>' : v === undefined ? '<span class="unstated" title="Not stated">·</span>' : v ? '<span class="on">✓</span>' : '<span class="off"></span>';
+    }
+    return b ? '<span class="chg-on" title="OFF → ON">+</span>' : '<span class="chg-off" title="ON → OFF">−</span>';
+  };
+  const detail = M.sel ? matrixDetail(M.sel, A, B) : '<p class="muted">Select a permission name to see its dependencies, enforcement and affected workflows.</p>';
+  return `<section class="panel">
+    <div class="head"><div><div class="eyebrow">Interactive matrix</div><h2>Permissions × system roles</h2></div>
+      <div class="legend"><span><span class="sw on"></span>on by default</span><span><span class="sw off"></span>off</span><span>· not stated in this version</span>${B ? '<span><span class="sw chg-on"></span>turned on</span><span><span class="sw chg-off"></span>turned off</span>' : ''}</div></div>
+    <div class="controls">
+      <label class="ctl">Version<select id="mA">${opts(M.a)}</select></label>
+      <label class="ctl">Compare with<select id="mB">${opts(M.b, true)}</select></label>
+      <label class="ctl">Search permissions<input type="search" id="mQ" value="${esc(M.q)}" placeholder="e.g. invoic, workOrdersView"></label>
+      <label class="ctl">Role<select id="mR"><option value="">All roles</option>${roles.map((r) => `<option value="${esc(r)}" ${M.role === r ? 'selected' : ''}>${esc(((B && B.roles[r]) || A.roles[r]).name)}</option>`).join('')}</select></label>
+      <label class="check"><input type="checkbox" id="mC" ${M.changedOnly ? 'checked' : ''} ${B ? '' : 'disabled'}> Changed cells only</label>
+    </div>
+    <div class="grid2" style="grid-template-columns:minmax(0,2.2fr) minmax(260px,1fr)">
+      <div class="tbl matrix"><table><thead><tr><th>Permission</th>${rolesShown.map((r) => `<th class="role">${esc(((B && B.roles[r]) || A.roles[r]).name)}</th>`).join('')}</tr></thead><tbody>
+      ${Object.entries(byG).map(([g, ks]) => `<tr class="group"><td colspan="${rolesShown.length + 1}">${esc(g)}</td></tr>` + ks.map((k) =>
+        `<tr class="${M.sel === k ? 'sel' : ''}"><td class="pname" data-perm="${esc(k)}">${esc(lab(k))}<br><code class="muted">${esc(k)}</code></td>${rolesShown.map((r) => `<td class="cell">${cell(k, r)}</td>`).join('')}</tr>`).join('')).join('') || `<tr><td colspan="${rolesShown.length + 1}" class="muted">No permission matches.</td></tr>`}
+      </tbody></table></div>
+      <aside class="panel" style="padding:14px;align-self:start">${detail}</aside>
+    </div></section>`;
+}
+function matrixDetail(k, A, B) {
+  const X = B || A, snap = X.meta;
+  const p = X.perms[k] || A.perms[k] || {};
+  const parents = Object.values(X.deps).filter((d) => d.child === k);
+  const children = Object.values(X.deps).filter((d) => d.parent === k);
+  const ip = (snap.permissions || []).find((x) => x.key === k);
+  return `<h3>${esc(p.label || k)}</h3><p><code>${esc(k)}</code></p>
+    ${p.controls ? `<blockquote class="q">${esc(p.controls)}<cite>${esc(p.section || '')}</cite></blockquote>` : ''}
+    <div><h4>Depends on</h4>${parents.length ? parents.map((d) => `<div><code>${esc(d.parent)}</code> <span class="muted">(${esc(d.kind)})</span></div>`).join('') : '<span class="muted">nothing</span>'}</div>
+    <div><h4>Turned on by</h4>${children.length ? children.map((d) => `<div><code>${esc(d.child)}</code></div>`).join('') : '<span class="muted">nothing</span>'}</div>
+    ${ip ? `<div><h4>Enforcement in ${esc(snap.release.ref)}</h4>
+      <div class="atoms">${ip.atoms.map((a) => '<code>' + esc(a) + '</code>').join('') || '<span class="muted">no server atoms</span>'}</div>
+      <p class="muted" style="margin-top:6px">${ip.enforced_outside_repo ? 'Enforced by ' + esc(ip.enforced_outside_repo.by) + '.' : ip.backend_endpoints.length + ' API routes · ' + ip.backend_bundle_checks.length + ' direct server checks · ' + ip.fe_references.length + ' front-end files'}</p>
+      ${ip.backend_endpoints.length ? `<details><summary class="muted" style="cursor:pointer">API routes</summary><div class="mono" style="font-size:.76rem">${ip.backend_endpoints.map(esc).join('<br>')}</div></details>` : ''}
+      ${ip.fe_references.length ? `<details><summary class="muted" style="cursor:pointer">Front-end files</summary><div class="mono" style="font-size:.76rem">${ip.fe_references.map(esc).join('<br>')}</div></details>` : ''}</div>` : ''}`;
+}
+
+// ── PRD vs implementation ────────────────────────────────────────────────────────────────────
+const P = { status: '', q: '' };
+function viewPrdVsImpl() {
+  const rows = D.prd_vs_impl.rows;
+  const counts = {};
+  rows.forEach((r) => { counts[r.status] = (counts[r.status] || 0) + 1; });
+  const q = P.q.toLowerCase();
+  const shown = rows.filter((r) => (!P.status || r.status === P.status) && (!q || r.key.toLowerCase().includes(q) || String(r.label).toLowerCase().includes(q)));
+  const scope = 'pvi-' + D.prd_vs_impl.implementation;
+  return `<section class="panel">
+    <div class="head"><div><div class="eyebrow">Original PRD (v7) vs ${esc(entry(D.prd_vs_impl.implementation).label)}</div><h2>Does the implementation match the original PRD?</h2></div>
+      <button class="btn ghost" data-export="prd_vs_impl">Export</button></div>
+    <p class="muted">A difference is not automatically a bug. Each row is classified from the evidence: the original PRD, the latest PRD (v54) and its change log, ticket references in the code, and approval evidence recorded here. Approval is never inferred from a merge.</p>
+    <div class="row">${Object.entries(counts).map(([st, n]) => `<button class="chip ${'st-' + st.split(' ')[0]}" data-pstatus="${esc(st)}" style="cursor:pointer;${P.status === st ? 'outline:2px solid var(--accent)' : ''}">${esc(st)} · ${n}</button>`).join('')}
+      ${P.status ? '<button class="chip c-neutral" data-pstatus="" style="cursor:pointer">Show all</button>' : ''}</div>
+    <div class="controls"><label class="ctl">Search<input type="search" id="pQ" value="${esc(P.q)}" placeholder="permission name or key"></label></div>
+    <div class="changes">${shown.map((r) => {
+      const key = scope + ':' + r.key, v = verif[key];
+      return `<details class="change"><summary>${statusChip(r.status)}<div><b>${esc(r.label || r.key)}</b> <code class="muted">${esc(r.key)}</code><div class="muted" style="font-size:.85rem">${esc(r.detail)}</div></div>
+        ${chip(v ? 'c-' + ({ Passed: 'good', Failed: 'bad', Blocked: 'warn', 'Needs Clarification': 'warn' }[v.status] || 'neutral') : 'c-neutral', v ? v.status : 'Not Tested')}</summary>
+        <div class="body">
+          <div class="grid2">
+            <div><h4>Original PRD (v7) expects</h4>${r.prd_expectation ? `<blockquote class="q">${esc(r.prd_expectation.controls_verbatim)}<cite>${esc(r.prd_expectation.section)}</cite></blockquote>` : '<p class="muted">Not in the original PRD.</p>'}
+              ${r.latest_prd && (!r.prd_expectation || r.latest_prd.controls_verbatim !== r.prd_expectation.controls_verbatim) ? `<h4 style="margin-top:10px">Latest PRD (v54) says</h4><blockquote class="q">${esc(r.latest_prd.controls_verbatim)}<cite>${esc(r.latest_prd.section)}</cite></blockquote>` : ''}</div>
+            <div><h4>Implementation does</h4>${r.implementation ? `<p>${r.implementation.derived ? 'No stored permission; derived from the child permissions a role holds.' : 'Default ON for: ' + esc(r.implementation.holders.map((h) => roleNameIn(S[D.prd_vs_impl.implementation], h)).join(', ') || 'no system role')}</p>
+              ${r.implementation.atoms.length ? `<div class="atoms" style="margin-top:6px">${r.implementation.atoms.map((a) => '<code>' + esc(a) + '</code>').join('')}</div>` : ''}
+              ${r.implementation.outside ? `<p class="muted">Enforced by ${esc(r.implementation.outside.by)} (${esc(r.implementation.outside.evidence)}).</p>` : ''}` : '<p class="muted">No permission with this key in the implementation.</p>'}</div>
+          </div>
+          ${r.default_differences.length ? `<div><h4>Default differences, role by role</h4><div class="tbl"><table><thead><tr><th>Role</th><th>Original PRD</th><th>Implementation</th><th>Latest PRD</th><th>PRD evidence</th></tr></thead><tbody>
+            ${r.default_differences.map((d) => `<tr><td>${esc(d.role_name)}</td><td>${d.prd ? 'ON' : 'OFF'}</td><td>${d.impl ? 'ON' : 'OFF'}</td><td>${d.latest_prd === null ? '<span class="muted">not stated</span>' : d.latest_prd ? 'ON' : 'OFF'}</td>
+              <td class="muted" style="font-size:.8rem">${esc((d.evidence_prd || {}).table || '')} · row “${esc((d.evidence_prd || {}).row || '')}” · cell “${esc((d.evidence_prd || {}).cell || '—')}”</td></tr>`).join('')}</tbody></table></div></div>` : ''}
+          ${(r.dependency_differences.prd_only.length || r.dependency_differences.impl_only.length) ? `<p>Dependency rules differ — PRD only: ${esc(r.dependency_differences.prd_only.join(', ') || 'none')}; implementation only: ${esc(r.dependency_differences.impl_only.join(', ') || 'none')}.</p>` : ''}
+          ${(r.editor_rules_to_verify_on_screen || []).length ? `<div><h4>Role-editor rules to check on screen</h4><ul>${r.editor_rules_to_verify_on_screen.map((x) => `<li>${x.kind === 'requires' ? 'Requires' : 'Gated by'} <code>${esc(x.parent)}</code>${x.quote && x.quote.verbatim ? ` — <span class="muted">“${esc(x.quote.verbatim)}”</span>` : ''}</li>`).join('')}</ul></div>` : ''}
+          <div class="verify"><label class="ctl">Verification status<select data-verify="${esc(key)}" ${canWriteDb ? '' : 'disabled'}>${STATUSES.map((st) => `<option ${((v && v.status) || 'Not Tested') === st ? 'selected' : ''}>${st}</option>`).join('')}</select></label>
+            ${v ? `<span class="muted">set by ${esc(names[v.by] || 'a teammate')} on ${esc(fmtDate(v.at))}</span>` : ''}
+            ${approvalBlock(key, approvals[key])}</div>
+        </div></details>`;
+    }).join('') || '<div class="empty">No permission matches.</div>'}</div></section>`;
+}
+
+// ── compare any two ──────────────────────────────────────────────────────────────────────────
+const C = { a: 'prd-v7', b: null, risk: '', cat: '' };
+function viewCompare() {
+  if (!C.b) C.b = latestImpl().id;
+  const opts = (sel) => reg().map((s) => `<option value="${esc(s.id)}" ${sel === s.id ? 'selected' : ''}>${esc(s.label)}</option>`).join('');
+  const rep = E.compare(S[C.a], S[C.b]);
+  let ch = rep.changes;
+  if (C.risk) ch = ch.filter((c) => c.risk === C.risk);
+  if (C.cat) ch = ch.filter((c) => c.category === C.cat);
+  const kinds = S[C.a].kind + '→' + S[C.b].kind;
+  return `<section class="panel">
+    <div class="head"><div><div class="eyebrow">Cumulative comparison</div><h2>Compare any two versions</h2></div>
+      <button class="btn ghost" data-export="compare">Export</button></div>
+    <div class="controls"><label class="ctl">From<select id="cA">${opts(C.a)}</select></label><label class="ctl">To<select id="cB">${opts(C.b)}</select></label>
+      <label class="ctl">Risk<select id="cR"><option value="">All</option>${['High', 'Medium', 'Low'].map((r) => `<option ${C.risk === r ? 'selected' : ''}>${r}</option>`).join('')}</select></label>
+      <label class="ctl">Change type<select id="cT"><option value="">All</option>${Object.entries(CAT).map(([k, v]) => `<option value="${k}" ${C.cat === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></label></div>
+    ${kinds !== 'implementation→implementation' ? '<div class="notice">One side is a PRD, so only roles, permissions, defaults and dependencies are compared. Server enforcement exists only between implementation snapshots.</div>' : ''}
+    <div class="row">${countChips(rep.counts) || ''}</div>
+    ${rep.changes.length ? changeCards(ch, 'cmp-' + C.a + '-' + C.b) : '<div class="empty">No Custom Roles &amp; Permissions differences between these two versions.</div>'}
+  </section>`;
+}
+
+// ── history & approvals ──────────────────────────────────────────────────────────────────────
+const Hs = { q: '' };
+function viewHistory() {
+  const q = Hs.q.toLowerCase();
+  const rows = reg().map((e) => {
+    const rep = e.change_report ? D.reports[e.change_report] : null;
+    return { e, rep, text: (e.label + ' ' + (rep ? rep.changes.map((c) => c.title).join(' ') : '')).toLowerCase() };
+  }).filter((x) => !q || x.text.includes(q));
+  const hist = D.history.releases.filter((h) => h.changes && (!q || (h.to + ' ' + (h.headline || []).join(' ') + ' ' + (h.tickets || []).join(' ')).toLowerCase().includes(q)));
+  return `<section class="panel">
+    <div class="head"><div><div class="eyebrow">Permanent record</div><h2>Change history &amp; approvals</h2></div>
+      <label class="ctl">Search history<input type="search" id="hQ" value="${esc(Hs.q)}" placeholder="permission, release, SV-…"></label></div>
+    <p class="muted">Snapshots are append-only: each file is written once, made read-only and pinned by its SHA-256 in the registry. Custom Permissions changes need Product leadership approval (Chris Amani and Mathieu Lachapelle). The tracker records that evidence here and never infers it from a merge.</p>
+    <div class="tbl"><table><thead><tr><th>Version</th><th>Date</th><th>Commit / source</th><th>Compared with</th><th class="num">Changes</th><th>Recorded by</th><th>Integrity</th></tr></thead><tbody>
+      ${rows.map(({ e, rep }) => `<tr><td><a href="#snap-${esc(e.id)}">${esc(e.label)}</a></td>
+        <td>${esc(fmtDate((e.release && e.release.commit_date) || (e.source && (e.source.published_at || e.source.created_at)) || e.recorded_at))}</td>
+        <td>${e.release ? '<code>' + esc(e.release.commit.slice(0, 10)) + '</code>' : 'Confluence v' + esc((e.source || {}).version)}</td>
+        <td>${e.previous ? esc((entry(e.previous) || {}).label || e.previous) : '<span class="muted">—</span>'}</td>
+        <td class="num">${rep ? rep.changes.length : '—'}</td><td>${esc(e.recorded_by)}</td><td><code>${esc(e.sha256.slice(0, 10))}</code></td></tr>`).join('')}
+    </tbody></table></div></section>
+  <section class="panel"><div class="head"><div><div class="eyebrow">Before the baseline · reconstructed from release tags</div><h3>When each permission change shipped</h3></div></div>
+    <p class="muted">Every v26 release tag up to the baseline, compared with the release before it by the same engine. Repository evidence only. These are not confirmed snapshots, and the Jira and PR numbers are leads taken from the commits.</p>
+    <div class="changes">${hist.map((h) => {
+      const rep = D.history_reports[h.report];
+      return `<details class="change"><summary>${chip('c-neutral', h.date)}<div><b>${esc(h.to)}</b> <span class="muted">vs ${esc(h.from)}</span><div class="row" style="margin-top:4px">${countChips(h.counts)}</div>
+        ${(h.headline || []).length ? `<div class="muted" style="font-size:.84rem;margin-top:4px">${esc(h.headline.join(' · '))}</div>` : ''}</div>
+        <span class="muted" style="font-size:.82rem">${esc((h.tickets || []).join(', '))}</span></summary>
+        <div class="body">${rep ? changeCards(rep.changes, 'hist-' + h.to) : ''}
+          ${rep && rep.commits && rep.commits.length ? `<details><summary class="muted" style="cursor:pointer">Commits touching permission code (${rep.commits.length})</summary><div class="mono" style="font-size:.76rem">${rep.commits.map((c) => esc(c.commit + ' ' + c.date + ' ' + c.subject)).join('<br>')}</div></details>` : ''}
+          ${(h.pull_requests || []).length ? `<p class="muted">Pull requests mentioned: ${h.pull_requests.map((n) => `<a href="https://github.com/ShopView/shopview/pull/${esc(n)}" target="_blank" rel="noopener">#${esc(n)}</a>`).join(' ')}</p>` : ''}</div></details>`;
+    }).join('') || '<div class="empty">No release matches the search.</div>'}</div></section>`;
+}
+
+// ── Track Changes ────────────────────────────────────────────────────────────────────────────
+const T = { pick: null };
+function viewTrack() {
+  const latest = latestImpl();
+  const recordedTags = new Set(implEntries().flatMap((e) => (e.release.tags || []).concat([e.release.commit])));
+  const pending = D.pending || [];
+  const unscanned = (D.known_releases || []).filter((t) => !recordedTags.has(t.tag) && !pending.some((p) => (p.release.tags || []).includes(t.tag)));
+  const prodRecorded = implEntries().find((e) => e.release.commit && D.deployed.commit && e.release.commit.startsWith(D.deployed.commit));
+  const options = [
+    ...pending.map((p) => ({ v: 'pending:' + p.snapshot_id, l: `${(p.release.tags || [])[0] || p.release.commit.slice(0, 7)} — scanned, awaiting review` })),
+    ...unscanned.map((t) => ({ v: 'tag:' + t.tag, l: `${t.tag} — not scanned yet (${t.date})` })),
+    ...implEntries().slice().reverse().map((e) => ({ v: 'rec:' + e.id, l: `${e.label} — already recorded` })),
+  ];
+  if (!T.pick) T.pick = options.length ? options[0].v : '';
+  let body = '';
+  if (T.pick.startsWith('rec:')) {
+    const e = entry(T.pick.slice(4));
+    body = `<div class="notice">Already recorded as <a href="#snap-${esc(e.id)}">${esc(e.label)}</a> on ${esc(fmtDate(e.recorded_at))}. Scanning the same release again never creates a second snapshot.</div>`;
+  } else if (T.pick.startsWith('pending:')) {
+    const p = pending.find((x) => 'pending:' + x.snapshot_id === T.pick);
+    const rep = E.compare(S[latest.id], p);
+    const rv = approvals['review:' + p.snapshot_id];
+    body = `<ol class="steps">
+      <li><div><h4>Release identified</h4><p><code>${esc((p.release.tags || [])[0] || p.release.ref)}</code> at commit <code>${esc(p.release.commit.slice(0, 10))}</code>${p.release.build_marker ? ', build <code>' + esc(p.release.build_marker) + '</code>' : ''}. Compared with <b>${esc(latest.label)}</b>.</p></div></li>
+      <li><div><h4>Review the detected changes</h4>${rep.changes.length ? `<div class="row" style="margin:6px 0">${countChips(rep.counts)}</div>` + changeCards(rep.changes, 'scan-' + p.snapshot_id)
+        : '<div class="empty">No Custom Roles &amp; Permissions changes detected in this release.</div>'}</div></li>
+      <li><div><h4>${rep.changes.length ? 'Approve the snapshot' : 'Record a no-change checkpoint (optional)'}</h4>
+        ${rv ? `<p>Approved for recording by ${esc(names[rv.by] || 'a teammate')} on ${esc(fmtDate(rv.at))}. The next tracker run records it permanently and adds its tab.</p>`
+          : canApprove ? `<button class="btn" data-review="${esc(p.snapshot_id)}">${rep.changes.length ? 'Approve this snapshot for recording' : 'Approve a no-change checkpoint'}</button>`
+          : '<p class="muted">An Editor of this page approves the snapshot. You can review and set verification statuses.</p>'}
+        <pre class="cmd" style="margin-top:8px">python3 tools/track_changes.py confirm ${esc(p.snapshot_id)} --by "&lt;name&gt;"${rep.changes.length ? '' : ' --checkpoint'}</pre></div></li></ol>`;
+  } else if (T.pick.startsWith('tag:')) {
+    const tag = T.pick.slice(4);
+    const req = requests.find((r) => r.release === tag);
+    body = `<ol class="steps"><li><div><h4>Release identified</h4><p><code>${esc(tag)}</code> is a release tag in the product repository that has not been scanned yet.</p></div></li>
+      <li><div><h4>Scan it</h4><p>Scanning reads the product repository at that commit, which a browser cannot do. A tracker run does it and republishes this page with the result for review.</p>
+        ${req ? `<p>Scan requested by ${esc(names[req.by] || 'a teammate')} on ${esc(fmtDate(req.at))}.</p>` : canWriteDb ? `<button class="btn" data-request="${esc(tag)}">Request a scan of ${esc(tag)}</button>` : ''}
+        <pre class="cmd" style="margin-top:8px">python3 tools/track_changes.py scan --ref ${esc(tag)}</pre></div></li></ol>`;
+  } else {
+    body = '<div class="empty">Nothing new to scan. Every known release is recorded.</div>';
+  }
+  return `<section class="panel">
+    <div class="head"><div><div class="eyebrow">Track Changes</div><h2>What did a release change?</h2></div></div>
+    <div class="facts">
+      <div class="fact"><span class="eyebrow">Production runs</span><span><code>${esc(D.deployed.build_marker)}</code>, measured ${esc(D.deployed.measured_at)}</span></div>
+      <div class="fact"><span class="eyebrow">Latest recorded snapshot</span><span><a href="#snap-${esc(latest.id)}">${esc(latest.label)}</a></span></div>
+      <div class="fact"><span class="eyebrow">Production status</span><span>${prodRecorded ? 'Recorded — <a href="#snap-' + esc(prodRecorded.id) + '">' + esc(prodRecorded.label) + '</a>' : chip('c-warn', 'Not recorded yet') + ' scan it below'}</span></div>
+    </div>
+    <div class="controls"><label class="ctl">Release or build to inspect<select id="tPick">${options.map((o) => `<option value="${esc(o.v)}" ${T.pick === o.v ? 'selected' : ''}>${esc(o.l)}</option>`).join('')}</select></label>
+      ${canWriteDb ? '<button class="btn ghost" data-request="production">Request a scan of production now</button>' : ''}</div>
+    ${body}
+    <details><summary class="muted" style="cursor:pointer">How Track Changes works</summary><div class="body" style="padding:10px 0;display:flex;flex-direction:column;gap:8px">
+      <p>1. The release is identified from production’s build marker (<code>vYY.WW.P-&lt;commit&gt;</code>) or a tag QA picks, and pinned to its exact commit. A marker whose commit is not in the repository stops the scan and asks.</p>
+      <p>2. The repository is read at that commit, never the working tree: permissions, role defaults, dependencies, every API guard, and front-end use.</p>
+      <p>3. It is compared with the latest recorded snapshot by meaning. Comments, reordering and formatting produce no change.</p>
+      <p>4. QA reviews the report here. Only after approval is it recorded, as a new permanent tab. A release with no permission-related change is recorded only as a no-change checkpoint, and a release already recorded is refused.</p>
+      <pre class="cmd">python3 tools/track_changes.py scan --production
+python3 tools/track_changes.py confirm &lt;id&gt; --by "&lt;name&gt;"</pre></div></details>
+  </section>`;
+}
+
+// ── interaction wiring ───────────────────────────────────────────────────────────────────────
+function wire(r) {
+  const on = (sel, ev, fn) => { const el = $(sel); if (el) el.addEventListener(ev, fn); };
+  if (r === 'matrix') {
+    on('#mA', 'change', (e) => { M.a = e.target.value; render(); });
+    on('#mB', 'change', (e) => { M.b = e.target.value; render(); });
+    on('#mR', 'change', (e) => { M.role = e.target.value; render(); });
+    on('#mC', 'change', (e) => { M.changedOnly = e.target.checked; render(); });
+    on('#mQ', 'input', debounce((e) => { M.q = e.target.value; render(); $('#mQ').focus(); }, 250));
+    document.querySelectorAll('td.pname').forEach((td) => td.addEventListener('click', () => { M.sel = td.dataset.perm; render(); }));
+  }
+  if (r === 'prd-vs-impl') {
+    document.querySelectorAll('[data-pstatus]').forEach((b) => b.addEventListener('click', () => { P.status = b.dataset.pstatus; render(); }));
+    on('#pQ', 'input', debounce((e) => { P.q = e.target.value; render(); $('#pQ').focus(); }, 250));
+  }
+  if (r === 'compare') {
+    on('#cA', 'change', (e) => { C.a = e.target.value; render(); });
+    on('#cB', 'change', (e) => { C.b = e.target.value; render(); });
+    on('#cR', 'change', (e) => { C.risk = e.target.value; render(); });
+    on('#cT', 'change', (e) => { C.cat = e.target.value; render(); });
+  }
+  if (r === 'history') on('#hQ', 'input', debounce((e) => { Hs.q = e.target.value; render(); $('#hQ').focus(); }, 250));
+  if (r === 'track') on('#tPick', 'change', (e) => { T.pick = e.target.value; render(); });
+  document.querySelectorAll('a[data-matrix]').forEach((a) => a.addEventListener('click', () => { M.a = a.dataset.matrix; M.b = ''; }));
+  document.querySelectorAll('select[data-verify]').forEach((sel) => sel.addEventListener('change', () => saveVerification(sel.dataset.verify, sel.value, sel)));
+  document.querySelectorAll('[data-approve]').forEach((b) => b.addEventListener('click', () => openApprovalForm(b)));
+  document.querySelectorAll('[data-request]').forEach((b) => b.addEventListener('click', () => requestScan(b.dataset.request, b)));
+  document.querySelectorAll('[data-review]').forEach((b) => b.addEventListener('click', () => approveScan(b.dataset.review, b)));
+  document.querySelectorAll('[data-export]').forEach((b) => b.addEventListener('click', () => exportReport(b.dataset.export, b)));
+}
+function debounce(fn, ms) { let t; return (e) => { clearTimeout(t); t = setTimeout(() => fn(e), ms); }; }
+
+// ── shared state (db) ────────────────────────────────────────────────────────────────────────
+async function saveVerification(key, status, el) {
+  if (!db || !me) return;
+  el.disabled = true;
+  try { await db.collection('verification').doc(key).set({ status, by: me, at: new Date().toISOString() }); }
+  catch (e) { el.insertAdjacentHTML('afterend', `<span class="chip c-bad">Not saved: ${esc(e.message || e.code)}</span>`); }
+  finally { el.disabled = false; }
+}
+async function requestScan(release, btn) {
+  if (!db || !me) return;
+  btn.disabled = true;
+  try { await db.collection('scan_requests').doc(hid(release + Date.now())).set({ release, by: me, at: new Date().toISOString(), status: 'requested' });
+    btn.outerHTML = `<span class="chip c-good">Scan of ${esc(release)} requested</span>`; }
+  catch (e) { btn.disabled = false; btn.insertAdjacentHTML('afterend', `<span class="chip c-bad">Not sent: ${esc(e.message || e.code)}</span>`); }
+}
+async function approveScan(id, btn) {
+  if (!db || !me) return;
+  btn.disabled = true;
+  try { await db.collection('approvals').doc('review:' + id).set({ kind: 'snapshot_review', snapshot: id, by: me, at: new Date().toISOString() }); }
+  catch (e) { btn.disabled = false; btn.insertAdjacentHTML('afterend', `<span class="chip c-bad">Not saved: ${esc(e.message || e.code)}</span>`); }
+}
+function openApprovalForm(btn) {
+  const key = btn.dataset.approve, ap = approvals[key] || {};
+  const fields = [['reason', 'Reason for the change'], ['jira', 'Jira ticket'], ['pr', 'Pull request'], ['requested_by', 'Requested by'],
+    ['approved_by', 'Approved by (e.g. Chris Amani, Mathieu Lachapelle)'], ['approval_date', 'Approval date (YYYY-MM-DD)'], ['evidence', 'Evidence link (approval message, ticket comment)']];
+  const fid = 'ap-' + hid(key);
+  btn.outerHTML = `<form class="grid2" id="${fid}" style="flex-basis:100%">${fields.map(([f, l]) => `<label class="ctl">${esc(l)}<input type="text" id="${fid}-${f}" name="${f}" value="${esc(ap[f] || '')}"></label>`).join('')}
+    <div class="row"><button class="btn" type="submit">Save approval record</button><span class="muted" style="font-size:.8rem">Leave a field empty when it is not documented. Never fill one from a guess.</span></div></form>`;
+  $('#' + fid).addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const data = { by: me, at: new Date().toISOString() };
+    fields.forEach(([f]) => { const v = ev.target.elements[f].value.trim(); data[f] = v || null; });
+    try { await db.collection('approvals').doc(key).set(data); }
+    catch (e) { ev.target.insertAdjacentHTML('beforeend', `<span class="chip c-bad">Not saved: ${esc(e.message || e.code)}</span>`); }
+  });
+}
+async function exportReport(which, btn) {
+  const dl = await window.claude?.use?.('downloads');
+  let name, body;
+  if (which === 'prd_vs_impl') { name = 'original-prd-vs-implementation.json'; body = D.prd_vs_impl; }
+  else if (which === 'compare') { name = `compare-${C.a}-to-${C.b}.json`; body = E.compare(S[C.a], S[C.b]); }
+  else { name = which.split('/').pop(); body = D.reports[which]; }
+  const text = JSON.stringify(body, null, 1);
+  if (dl) {
+    try { await dl.save({ filename: name, data: text }); }
+    catch (e) { if (e && e.code !== 'cancelled' && e.code !== 'declined') btn.insertAdjacentHTML('afterend', `<span class="chip c-warn">Not saved: ${esc(e.message || e.code)}</span>`); }
+  } else {
+    btn.insertAdjacentHTML('afterend', '<span class="chip c-warn">Downloads are not available in this view</span>');
+  }
+}
+
+async function connect() {
+  if (!window.claude || !window.claude.use) return;
+  user = await window.claude.use('user');
+  if (user) {
+    try { me = await user.id(); } catch (e) { me = null; }
+    try { canApprove = !!(await user.canEdit()); } catch (e) { canApprove = false; }
+  }
+  db = await window.claude.use('db');
+  if (!db) return;
+  try { const c = await user?.can?.('data.write'); canWriteDb = !!me && c !== false; } catch (e) { canWriteDb = !!me; }
+  const resolveNames = async (ids) => {
+    const need = ids.filter((i) => i && !names[i]);
+    if (!need.length || !user) return;
+    try { const ps = await user.profiles(need); Object.entries(ps || {}).forEach(([id, p]) => { names[id] = (p && p.name) || 'Someone'; }); } catch (e) { /* names stay generic */ }
+  };
+  const sub = (coll, target, isList) => db.collection(coll).onSnapshot(async (snap) => {
+    if (isList) { target.length = 0; snap.docs.forEach((d) => target.push(Object.assign({ id: d.id }, d.data()))); }
+    else { Object.keys(target).forEach((k) => delete target[k]); snap.docs.forEach((d) => { target[d.id] = d.data(); }); }
+    await resolveNames(snap.docs.map((d) => (d.data() || {}).by));
+    if (!document.activeElement || !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) render();
+  }, () => {});
+  sub('verification', verif, false);
+  sub('approvals', approvals, false);
+  sub('scan_requests', requests, true);
+  render();
+}
+
+// ── boot ─────────────────────────────────────────────────────────────────────────────────────
+fetch('data.json').then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then((data) => {
+  D = data;
+  Object.entries(D.snapshots).forEach(([id, s]) => { S[id] = s; });
+  (D.pending || []).forEach((p) => { S[p.snapshot_id] = p; });
+  buildStrip();
+  render();
+  connect();
+}).catch((e) => {
+  $('#main').innerHTML = `<section class="panel"><div class="notice bad">The recorded snapshots could not be loaded (${esc(e.message)}). Reload the page; if it persists, the published data file is missing.</div></section>`;
+});
+})();
+</script>

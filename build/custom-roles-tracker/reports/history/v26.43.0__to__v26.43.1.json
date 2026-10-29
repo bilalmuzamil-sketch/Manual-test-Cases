@@ -1,0 +1,166 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.43.0",
+  "ref": "v26.43.0",
+  "commit": "ffea43cf52ad806ea0c8b243a9d8b55e298bfe27",
+  "build_marker": null,
+  "label": "v26.43.0 (ffea43c)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.43.1",
+  "ref": "v26.43.1",
+  "commit": "9af7270fa973bc15f32424f9862c9a4eba37883c",
+  "build_marker": null,
+  "label": "v26.43.1 (9af7270)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 4
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "GET /api/customers/ibs/batch-export/{id}",
+   "title": "New API endpoint guarded by a permission: GET /api/customers/ibs/batch-export/{id}",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_INVOICE_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsCreateAndEdit",
+    "invoicingPaymentsDelete",
+    "invoicingPaymentsView",
+    "reportsPageAccess",
+    "vendorOrderManagementView"
+   ],
+   "evidence": {
+    "controller": "api/src/Customer/Customers/Application/IbsBatch/BatchExport/BatchExportController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: components/ts/work-orders/dialogs, config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/customers/ibs/batch-export/{id} as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::0"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "GET /api/ibs/settings/service-charge-rate",
+   "title": "New API endpoint guarded by a permission: GET /api/ibs/settings/service-charge-rate",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_VIEW",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsIntegrations"
+   ],
+   "evidence": {
+    "controller": "api/src/Invoicing/Invoice/UI/HTTP/IBS/Settings/ViewIBSServiceChargeRateController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+20 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/ibs/settings/service-charge-rate as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::1"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "POST /api/ibs/settings/service-charge-rate",
+   "title": "New API endpoint guarded by a permission: POST /api/ibs/settings/service-charge-rate",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/Invoicing/Invoice/UI/HTTP/IBS/Settings/ChangeIBSServiceChargeRateController.php::__invoke"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+20 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/ibs/settings/service-charge-rate as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::2"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "settingsApp",
+   "endpoint": "PUT /api/bookkeeping/settings",
+   "title": "New API endpoint guarded by a permission: PUT /api/bookkeeping/settings",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: new Expression( 'is_granted(\\''.PermissionEnum::ROLE_ORGANIZATION_VIEW.'\\') and is_granted(\\''.PermissionEnum::ROLE_ORGANIZATION_CREATE_AND_EDIT.'\\')', )",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "settingsApp",
+    "settingsDataImport",
+    "settingsFinance",
+    "settingsIntegrations",
+    "settingsParts",
+    "settingsService"
+   ],
+   "evidence": {
+    "controller": "api/src/Bookkeeping/UI/Http/UpdateSettings/UpdateSettingsController.php::handle"
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+20 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+10 more)"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call PUT /api/bookkeeping/settings as a role WITH and a role WITHOUT \"Settings — App\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:settingsApp::3"
+  }
+ ],
+ "commits": [],
+ "tickets": [],
+ "pull_requests": []
+}

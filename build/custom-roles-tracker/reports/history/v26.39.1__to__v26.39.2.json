@@ -1,0 +1,137 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.39.1",
+  "ref": "v26.39.1",
+  "commit": "3ef6aded08feb76e63e25994c79a0866a8cfd232",
+  "build_marker": null,
+  "label": "v26.39.1 (3ef6ade)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.39.2",
+  "ref": "v26.39.2",
+  "commit": "1aeb22db506a15c8d381d40a8ebde36c96e586d5",
+  "build_marker": null,
+  "label": "v26.39.2 (1aeb22d)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 2
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "workOrdersCreateAndEdit",
+   "title": "Server code that checks \"Work Orders — Create & Edit\" directly changed",
+   "before": "(none)",
+   "after": "api/src/Auth/Domain/Model/Role.php",
+   "risk": "Medium",
+   "risk_reason": "A handler/voter reads this permission directly; its enforcement moved.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "api/src/Auth/Domain/Model/Role.php"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+12 more)",
+    "Screens/code: components/ts/shared/customer-info, components/ts/work-orders/work-order-lines, config/navLinks.ts, services/permissionService.ts, services/permissions/noteReferencePermissions.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call the affected endpoint(s) as a role WITH and a role WITHOUT \"Work Orders — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:workOrdersCreateAndEdit::0"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "GET /api/service-advisors",
+   "title": "New API endpoint guarded by a permission: GET /api/service-advisors",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: new Expression( 'is_granted(\\''.PermissionEnum::ROLE_WORK_ORDER_VIEW.'\\') or is_granted(\\''.PermissionEnum::ROLE_REPORT_VIEW.'\\')', )",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsDelete",
+    "partSalesCreateAndEdit",
+    "reportsPageAccess",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersDelete",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/Staff/Staff/Application/ServiceAdvisors/ListingController.php::handle"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
+    "Screens/code: config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/service-advisors as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::1"
+  }
+ ],
+ "commits": [
+  {
+   "commit": "fc0a607b24",
+   "date": "2026-09-25",
+   "subject": "Merge branch 'main' into SV-10242-service-advisor-custom-role"
+  },
+  {
+   "commit": "c73513854a",
+   "date": "2026-09-17",
+   "subject": "Merge branch 'main' into SV-8842-service-advisor-dropdown-main"
+  },
+  {
+   "commit": "698f182659",
+   "date": "2026-09-14",
+   "subject": "Merge branch 'main' into SV-8842-service-advisor-dropdown-main"
+  },
+  {
+   "commit": "0f4627af01",
+   "date": "2026-08-28",
+   "subject": "Merge branch 'main' into SV-8842-service-advisor-dropdown-main"
+  },
+  {
+   "commit": "19bc29691f",
+   "date": "2026-08-19",
+   "subject": "Merge branch 'main' into SV-8842-service-advisor-dropdown-main"
+  },
+  {
+   "commit": "9ee05ec6a8",
+   "date": "2026-08-06",
+   "subject": "fix(staff): key Service Advisor eligibility on the work-order bundle (SV-8842)"
+  }
+ ],
+ "tickets": [
+  "SV-10242",
+  "SV-8842"
+ ],
+ "pull_requests": []
+}

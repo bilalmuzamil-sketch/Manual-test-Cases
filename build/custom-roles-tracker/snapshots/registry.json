@@ -1,0 +1,66 @@
+{
+ "_README": "Append-only. Every entry pins a snapshot file by SHA-256. Never edit by hand; use tools/snapshot_store.py / tools/track_changes.py.",
+ "snapshots": [
+  {
+   "id": "prd-v7",
+   "kind": "prd",
+   "label": "Original PRD — v7, first published 2026-06-01",
+   "file": "prd-v7.json",
+   "sha256": "1add62a454a4f1bba39e706cfd72fda249fb35dc72d9788251614310b54ad613",
+   "recorded_at": "2026-10-29T16:39:42+00:00",
+   "recorded_by": "Claude (tracker build, 2026-10-29)",
+   "previous": null,
+   "checkpoint_only": false,
+   "change_report": null,
+   "notes": "First version marked \"Status: Published\" (v6 = Draft). Requirement text identical to v10. Verbatim check ok: True",
+   "approvals": [],
+   "source": {
+    "page_id": "565116952",
+    "version": 7,
+    "published_at": "2026-06-01T13:15:42.706Z"
+   }
+  },
+  {
+   "id": "prd-v54",
+   "kind": "prd",
+   "label": "Latest PRD — v54, last edited 2026-07-16",
+   "file": "prd-v54.json",
+   "sha256": "cceb702975be52c78f27db3d2c803943e8008fc2122a4214a10a12c34332b458",
+   "recorded_at": "2026-10-29T16:39:42+00:00",
+   "recorded_by": "Claude (tracker build, 2026-10-29)",
+   "previous": "prd-v7",
+   "checkpoint_only": false,
+   "change_report": null,
+   "notes": "Current Confluence version on 2026-10-29. Reference for post-PRD changes; never replaces the original.",
+   "approvals": [],
+   "source": {
+    "page_id": "565116952",
+    "version": 54,
+    "created_at": "2026-07-16T23:08:22.309Z"
+   }
+  },
+  {
+   "id": "impl-v26.43.3",
+   "kind": "implementation",
+   "label": "Baseline — October 2026 (v26.43.3, production)",
+   "file": "impl-v26.43.3.json",
+   "sha256": "9df58890a11ab36cf591624bc7c5788545ea14854cd6257c360f76947cf9e8b8",
+   "recorded_at": "2026-10-29T16:43:02+00:00",
+   "recorded_by": "Claude (tracker build, 2026-10-29)",
+   "previous": null,
+   "checkpoint_only": false,
+   "change_report": null,
+   "notes": "Production measured on 2026-10-29: app-version v26.43.3-439ddb6 = tag v26.43.3. Repository analysis, not verified behaviour.",
+   "approvals": [],
+   "release": {
+    "ref": "v26.43.3",
+    "tags": [
+     "v26.43.3"
+    ],
+    "commit": "439ddb60ccac7a344974c453161171917eebbdb8",
+    "commit_date": "2026-10-29T10:32:15+01:00",
+    "build_marker": "v26.43.3-439ddb6"
+   }
+  }
+ ]
+}

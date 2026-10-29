@@ -1,0 +1,71 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.43.2",
+  "ref": "v26.43.2",
+  "commit": "537378f6a600b1e58675317f9c043d02d1124c73",
+  "build_marker": null,
+  "label": "v26.43.2 (537378f)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.43.3",
+  "ref": "v26.43.3",
+  "commit": "439ddb60ccac7a344974c453161171917eebbdb8",
+  "build_marker": null,
+  "label": "v26.43.3 (439ddb6)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 1
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "POST /api/work-orders/lines/change-story",
+   "title": "New API endpoint guarded by a permission: POST /api/work-orders/lines/change-story",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/Application/Line/ChangeTechStory/ChangeController.php::handle"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/lines/change-story as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::0"
+  }
+ ],
+ "commits": [],
+ "tickets": [],
+ "pull_requests": []
+}

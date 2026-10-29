@@ -1,0 +1,276 @@
+{
+ "engine_version": "1.0.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.35.10",
+  "ref": "v26.35.10",
+  "commit": "a568ff466bbd6e561181f43d84f78f947fb39f7c",
+  "build_marker": null,
+  "label": "v26.35.10 (a568ff4)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.36.0",
+  "ref": "v26.36.0",
+  "commit": "2a0663b6860d80213d677d440d521d66372e7cd3",
+  "build_marker": null,
+  "label": "v26.36.0 (2a0663b)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 2,
+  "frontend_behavior_changed": 6
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "customersCreateAndEdit",
+   "endpoint": "POST /api/customers/ibs/remove-from-batch",
+   "title": "New API endpoint guarded by a permission: POST /api/customers/ibs/remove-from-batch",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_INVOICE_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "customersCreateAndEdit",
+    "customersView",
+    "invoicingPaymentsCreateAndEdit",
+    "invoicingPaymentsDelete",
+    "invoicingPaymentsView",
+    "reportsPageAccess",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/Customer/Customers/UI/HTTP/IbsBatch/RemoveFromBatch/RemoveFromBatchController.php::__invoke"
+   },
+   "workflows": [
+    "Customers",
+    "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customers (+27 more)",
+    "Screens/code: config/navLinks.ts, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/customers/ibs/remove-from-batch as a role WITH and a role WITHOUT \"Customers — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:customersCreateAndEdit::0"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "POST /api/work-orders/change-authorizer",
+   "title": "New API endpoint guarded by a permission: POST /api/work-orders/change-authorizer",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/ChangeAuthorizer/ChangeAuthorizerController.php::__invoke"
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+14 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/change-authorizer as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::1"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "title": "Screens that use \"Invoicing & Payments — Create & Edit\" changed",
+   "before": "1 file(s)",
+   "after": "2 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/reporting/batch-transactions/BatchTransactions.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+14 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Invoicing & Payments — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:invoicingPaymentsCreateAndEdit::2"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "partSalesCreateAndEdit",
+   "title": "Screens that use \"Part Sales — Create & Edit\" changed",
+   "before": "2 file(s)",
+   "after": "3 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/shared/customer-info/CustomerCard.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+13 more)",
+    "Screens/code: components/ts/shared/customer-info, config/navLinks.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Part Sales — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:partSalesCreateAndEdit::3"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "partSalesView",
+   "title": "Screens that use \"Part Sales — View\" changed",
+   "before": "5 file(s)",
+   "after": "6 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/shared/customer-info/CustomerCard.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Part Sales",
+    "API areas: /api/parts, /api/vehicle, /api/vehicles, /api/work-orders",
+    "Screens/code: components/ts/reporting/Sales.vue, components/ts/reporting/sales-by-customer, components/ts/reporting/sales-by-representative, components/ts/shared/customer-info, config/navLinks.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Part Sales — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:partSalesView::4"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "seeApArData",
+   "title": "Screens that use \"See AP / AR Data\" changed",
+   "before": "4 file(s)",
+   "after": "5 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/reporting/batch-transactions/BatchTransactions.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Cross-cutting",
+    "API areas: /api/customers",
+    "Screens/code: components/ts/administration/permissions, components/ts/reporting/batch-transactions, router/routes.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"See AP / AR Data\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:seeApArData::5"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "workOrdersCreateAndEdit",
+   "title": "Screens that use \"Work Orders — Create & Edit\" changed",
+   "before": "3 file(s)",
+   "after": "4 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/shared/customer-info/CustomerCard.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
+    "Screens/code: components/ts/shared/customer-info, components/ts/work-orders/work-order-lines, config/navLinks.ts, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — Create & Edit\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:workOrdersCreateAndEdit::6"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "workOrdersView",
+   "title": "Screens that use \"Work Orders — View\" changed",
+   "before": "13 file(s)",
+   "after": "14 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/shared/customer-info/CustomerCard.vue"
+    ],
+    "files_removed": []
+   },
+   "workflows": [
+    "Work Orders",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-portal, /api/customers, /api/deposits (+16 more)",
+    "Screens/code: components/shared/vehicle-info/VehicleCard.vue, components/ts/reporting/PunchClockActivities.vue, components/ts/reporting/Sales.vue, components/ts/reporting/ServiceAdvisorAnalysis.vue, components/ts/shared/customer-info, components/ts/work-orders/WorkOrderNotesTab.vue (+5 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Work Orders — View\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:workOrdersView::7"
+  }
+ ],
+ "commits": [],
+ "tickets": [],
+ "pull_requests": []
+}

@@ -1,0 +1,3308 @@
+{
+ "schema_version": 1,
+ "kind": "prd",
+ "source": {
+  "page_id": "565116952",
+  "title": "Custom Roles and Permissions",
+  "space": "PM",
+  "url": "https://shopview.atlassian.net/wiki/spaces/PM/pages/565116952/Custom+Roles+and+Permissions",
+  "owner": "Sasha Grosman",
+  "version": 7,
+  "published_at": "2026-06-01T13:15:42.706Z",
+  "status_in_page": "Published",
+  "read_from_version": 10,
+  "read_from_version_created": "2026-06-01T13:50:01.225Z",
+  "why_read_from_v10": "diff v7->v10 touches only the Change Log (2 additions, 1 deletion); the requirement text is identical"
+ },
+ "evidence_level": "Documented intent (PRD). Not implementation, not verified behaviour.",
+ "roles": [
+  {
+   "key": "system-owner",
+   "name": "Owner",
+   "description_verbatim": "Full system access, cannot be demoted",
+   "impl_role": null,
+   "editable_when_system": true,
+   "deletable_when_system": false
+  },
+  {
+   "key": "system-admin",
+   "name": "Admin",
+   "description_verbatim": "Full system access",
+   "impl_role": "administrator",
+   "editable_when_system": true,
+   "deletable_when_system": false
+  },
+  {
+   "key": "system-sm",
+   "name": "Service Manager",
+   "description_verbatim": "Full operational access, limited admin (App Settings + Wages only)",
+   "impl_role": "service_manager",
+   "editable_when_system": true,
+   "deletable_when_system": false
+  },
+  {
+   "key": "system-ssa",
+   "name": "Senior Service Advisor",
+   "description_verbatim": "Work order and customer management with expanded access",
+   "impl_role": "senior_service_advisor",
+   "editable_when_system": true,
+   "deletable_when_system": false
+  },
+  {
+   "key": "system-jsa",
+   "name": "Service Advisor",
+   "description_verbatim": "Work order and customer management with invoicing access",
+   "impl_role": "service_advisor",
+   "editable_when_system": true,
+   "deletable_when_system": false
+  },
+  {
+   "key": "system-foreman",
+   "name": "Foreman",
+   "description_verbatim": "Oversees technicians and work orders",
+   "impl_role": "foreman",
+   "editable_when_system": true,
+   "deletable_when_system": false
+  },
+  {
+   "key": "system-tech",
+   "name": "Technician",
+   "description_verbatim": "Assigned work orders and time tracking (Tech View)",
+   "impl_role": "technician",
+   "editable_when_system": true,
+   "deletable_when_system": false
+  },
+  {
+   "key": "system-pm",
+   "name": "Parts Manager",
+   "description_verbatim": "Full parts and inventory control",
+   "impl_role": "parts_manager",
+   "editable_when_system": true,
+   "deletable_when_system": false
+  },
+  {
+   "key": "system-pt",
+   "name": "Parts Tech",
+   "description_verbatim": "Parts operations and vendor management",
+   "impl_role": "parts_technician",
+   "editable_when_system": true,
+   "deletable_when_system": false
+  },
+  {
+   "key": "system-office",
+   "name": "Office",
+   "description_verbatim": "Office administration, reporting, and back-office operations",
+   "impl_role": "office",
+   "editable_when_system": false,
+   "deletable_when_system": false
+  },
+  {
+   "key": "system-salesrep",
+   "name": "Sales Representative",
+   "description_verbatim": "Reports and financial data access only",
+   "impl_role": "sales_representative",
+   "editable_when_system": true,
+   "deletable_when_system": false
+  },
+  {
+   "key": "system-timeclock",
+   "name": "Time Clock",
+   "description_verbatim": "Clock in/out only",
+   "impl_role": "time_clock_user",
+   "editable_when_system": false,
+   "deletable_when_system": false
+  }
+ ],
+ "permissions": [
+  {
+   "key": "workOrdersView",
+   "label": "Work Orders — View",
+   "prd_section": "1a. Work Orders",
+   "controls_verbatim": "See work orders in the work order list and open work order detail pages. If OFF, the Work Orders top level nav item is hidden.",
+   "prd_only": false
+  },
+  {
+   "key": "workOrdersCreateAndEdit",
+   "label": "Work Orders — Create and Edit",
+   "prd_section": "1a. Work Orders",
+   "controls_verbatim": "Create new work orders. Edit work order fields (customer, asset, service advisor, lead technician, status).",
+   "prd_only": false
+  },
+  {
+   "key": "workOrdersDelete",
+   "label": "Work Orders — Delete",
+   "prd_section": "1a. Work Orders",
+   "controls_verbatim": "Delete work orders.",
+   "prd_only": false
+  },
+  {
+   "key": "woReviewWorkOrders",
+   "label": "Review Work Orders",
+   "prd_section": "4. Work Order Sub-Settings",
+   "controls_verbatim": "Gives the user the ability to see and review the work order. Without this setting, users will not see the Review option on work orders.",
+   "prd_only": false
+  },
+  {
+   "key": "woPickParts",
+   "label": "Pick Parts",
+   "prd_section": "4. Work Order Sub-Settings",
+   "controls_verbatim": "Pick parts from inventory onto a work order line. Move parts between work orders. These are physical floor actions — grabbing a part from the shelf or moving a part from one WO to another.",
+   "prd_only": false
+  },
+  {
+   "key": "woOrderParts",
+   "label": "Order Parts",
+   "prd_section": "4. Work Order Sub-Settings",
+   "controls_verbatim": "Place a purchase order for parts needed on a work order. Creates a PO linked to the work order. Also controls receiving parts deliveries onto a work order.",
+   "prd_only": false
+  },
+  {
+   "key": "workOrderLinesCreateAndEdit",
+   "label": "Work Order Lines — Create and Edit",
+   "prd_section": "1b. Work Order Lines",
+   "controls_verbatim": "Add new lines, edit line details, move parts between lines, authorize lines, manage part requests on lines.",
+   "prd_only": false
+  },
+  {
+   "key": "workOrderLinesDelete",
+   "label": "Work Order Lines — Delete",
+   "prd_section": "1b. Work Order Lines",
+   "controls_verbatim": "Remove lines from work orders.",
+   "prd_only": false
+  },
+  {
+   "key": "scheduleView",
+   "label": "Schedule — View",
+   "prd_section": "1c. Schedule",
+   "controls_verbatim": "See the schedule/calendar page. View appointments and technician assignments. If OFF, the Schedule top level nav item is hidden. The schedule shows all technicians' appointments — there is no \"own only\" schedule filtering. The schedule is a shared resource that SAs/managers use to coordinate work across all techs.",
+   "prd_only": false
+  },
+  {
+   "key": "scheduleCreateAndEdit",
+   "label": "Schedule — Create and Edit",
+   "prd_section": "1c. Schedule",
+   "controls_verbatim": "Create and modify appointments, assign technicians to time slots, drag-and-drop scheduling.",
+   "prd_only": false
+  },
+  {
+   "key": "scheduleDelete",
+   "label": "Schedule — Delete",
+   "prd_section": "1c. Schedule",
+   "controls_verbatim": "Remove appointments from the schedule.",
+   "prd_only": false
+  },
+  {
+   "key": "customersView",
+   "label": "Customer Management — View",
+   "prd_section": "1d. Customer Management",
+   "controls_verbatim": "See customer records, contacts, vehicles, and vehicle history. If OFF, the Customers top level nav item is hidden.",
+   "prd_only": false
+  },
+  {
+   "key": "customersCreateAndEdit",
+   "label": "Customer Management — Create and Edit",
+   "prd_section": "1d. Customer Management",
+   "controls_verbatim": "Create new customers, edit customer information, manage contacts, manage vehicles. Note: sensitive fields on the Edit Customer modal are hidden unless \"View and Manage AP/AR Data\" is enabled (see below).",
+   "prd_only": false
+  },
+  {
+   "key": "customersDelete",
+   "label": "Customer Management — Delete",
+   "prd_section": "1d. Customer Management",
+   "controls_verbatim": "Delete customer records. Does NOT control deleting customer payments — that requires Invoicing: Delete.",
+   "prd_only": false
+  },
+  {
+   "key": "partSalesView",
+   "label": "Part Sales — View",
+   "prd_section": "1e. Part Sales",
+   "controls_verbatim": "View part sales records, part returns, and part-related transactions.",
+   "prd_only": false
+  },
+  {
+   "key": "partSalesCreateAndEdit",
+   "label": "Part Sales — Create and Edit",
+   "prd_section": "1e. Part Sales",
+   "controls_verbatim": "Create part sales, create part returns, process part transactions.",
+   "prd_only": false
+  },
+  {
+   "key": "partSalesDelete",
+   "label": "Part Sales — Delete",
+   "prd_section": "1e. Part Sales",
+   "controls_verbatim": "Delete part sales and reverse part sales invoices.",
+   "prd_only": false
+  },
+  {
+   "key": "catalogInventoryView",
+   "label": "Catalog and Inventory — View",
+   "prd_section": "1f. Catalog and Inventory",
+   "controls_verbatim": "Browse the parts catalog, view inventory levels and stock information, view parts history.",
+   "prd_only": false
+  },
+  {
+   "key": "catalogInventoryCreateAndEdit",
+   "label": "Catalog and Inventory — Create and Edit",
+   "prd_section": "1f. Catalog and Inventory",
+   "controls_verbatim": "Create and edit catalog entries, make inventory adjustments, manage stock levels.",
+   "prd_only": false
+  },
+  {
+   "key": "catalogInventoryDelete",
+   "label": "Catalog and Inventory — Delete",
+   "prd_section": "1f. Catalog and Inventory",
+   "controls_verbatim": "Delete parts from the catalog.",
+   "prd_only": false
+  },
+  {
+   "key": "vendorOrderManagementView",
+   "label": "Vendor and Order Management — View",
+   "prd_section": "1g. Vendor and Order Management",
+   "controls_verbatim": "View vendor records, purchase orders, deliveries, vendor transaction history, and part return requests.",
+   "prd_only": false
+  },
+  {
+   "key": "vendorOrderManagementCreateAndEdit",
+   "label": "Vendor and Order Management — Create and Edit",
+   "prd_section": "1g. Vendor and Order Management",
+   "controls_verbatim": "Create and edit vendors, create and manage purchase orders, manage deliveries, create vendor invoices. Includes returning parts to vendors or inventory.",
+   "prd_only": false
+  },
+  {
+   "key": "vendorOrderManagementDelete",
+   "label": "Vendor and Order Management — Delete",
+   "prd_section": "1g. Vendor and Order Management",
+   "controls_verbatim": "Delete vendors, delete purchase orders, reverse vendor transactions.",
+   "prd_only": false
+  },
+  {
+   "key": "invoicingPaymentsView",
+   "label": "Invoicing — View",
+   "prd_section": "1h. Invoicing",
+   "controls_verbatim": "View invoices directly from work orders and part sales. Access the Finance tab on work orders. If OFF (but See Financial Data is ON), users can still see pricing data on work orders but cannot access invoices directly from work orders or part sales.",
+   "prd_only": false
+  },
+  {
+   "key": "invoicingPaymentsCreateAndEdit",
+   "label": "Invoicing — Create and Edit",
+   "prd_section": "1h. Invoicing",
+   "controls_verbatim": "Create invoices, process payments directly from work orders and part sales, manage invoice fields.",
+   "prd_only": false
+  },
+  {
+   "key": "invoicingPaymentsDelete",
+   "label": "Invoicing — Delete / Reverse",
+   "prd_section": "1h. Invoicing",
+   "controls_verbatim": "Reverse invoices, delete payments (including customer payments), void transactions.",
+   "prd_only": false
+  },
+  {
+   "key": "timesheetsView",
+   "label": "Timesheets — View",
+   "prd_section": "1i. Timesheets",
+   "controls_verbatim": "View timesheets from work orders. If OFF, the Timesheets top level nav item is hidden. However, if the user has Reports ON they will still see the timesheet activities report. (Note: all users can always clock in/out regardless of this setting.)",
+   "prd_only": false
+  },
+  {
+   "key": "timesheetsCreateAndEdit",
+   "label": "Timesheets — Create and Edit",
+   "prd_section": "1i. Timesheets",
+   "controls_verbatim": "Edit timesheet entries, adjust hours, manage attendance records for all staff. This includes editing from the work order and the timesheet activities report.",
+   "prd_only": false
+  },
+  {
+   "key": "reportsPageAccess",
+   "label": "Reports",
+   "prd_section": "2a. Reports",
+   "controls_verbatim": "User can access the Reports page and view all available reports (tech efficiency, service advisor analysis, requested parts, vendor expenses, WO statuses, inventory, work-in-progress, etc.).",
+   "prd_only": false
+  },
+  {
+   "key": "customerPortalPageAccess",
+   "label": "Customer Portal",
+   "prd_section": "2b. Customer Portal",
+   "controls_verbatim": "User can access and manage the customer-facing portal configuration.",
+   "prd_only": false
+  },
+  {
+   "key": "billingPortalPageAccess",
+   "label": "Billing Portal",
+   "prd_section": "2c. Billing Portal",
+   "controls_verbatim": "User can access and manage the billing portal.",
+   "prd_only": false
+  },
+  {
+   "key": "partsDepartment",
+   "label": "Parts Department",
+   "prd_section": "2d. Parts Department (Parent Gate)",
+   "controls_verbatim": "The three Parts child areas become available and are controlled by their individual CRUD permissions. Parts Department top level nav section is visible.",
+   "prd_only": true
+  },
+  {
+   "key": "settings",
+   "label": "Settings",
+   "prd_section": "3. Settings Access",
+   "controls_verbatim": "User can access the Administration/Settings area. Which sub-sections they see depends on the sub-settings below.",
+   "prd_only": true
+  },
+  {
+   "key": "settingsApp",
+   "label": "App Settings",
+   "prd_section": "3. Settings Access",
+   "controls_verbatim": "General application configuration — organization name, business info, locale, branding. Also covers Roles and Permissions management (creating/editing/deleting custom roles), Integrations management, and Staff/Workplaces management.",
+   "prd_only": false
+  },
+  {
+   "key": "settingsService",
+   "label": "Service",
+   "prd_section": "3. Settings Access",
+   "controls_verbatim": "Service-related configuration — labor types, canned lines, asset types, departments, bays.",
+   "prd_only": false
+  },
+  {
+   "key": "settingsParts",
+   "label": "Parts",
+   "prd_section": "3. Settings Access",
+   "controls_verbatim": "Parts settings — pricing matrices, categories, parts-specific configuration.",
+   "prd_only": false
+  },
+  {
+   "key": "settingsFinance",
+   "label": "Finance",
+   "prd_section": "3. Settings Access",
+   "controls_verbatim": "Financial settings — tax configuration, payment settings, accounting integrations (including QuickBooks), payment methods.",
+   "prd_only": false
+  },
+  {
+   "key": "settingsDataImport",
+   "label": "Data Import",
+   "prd_section": "3. Settings Access",
+   "controls_verbatim": "Data import tools — bulk import of customers, vehicles, parts, and other records.",
+   "prd_only": false
+  },
+  {
+   "key": "settingsWages",
+   "label": "View/Manage Wages",
+   "prd_section": "3. Settings Access",
+   "controls_verbatim": "View and manage employee wage rates. This is sensitive data — typically limited to Owner, Admin, SM, or Office roles.",
+   "prd_only": false
+  },
+  {
+   "key": "woFullViewMode",
+   "label": "View Mode — Full View",
+   "prd_section": "5. View Mode",
+   "controls_verbatim": "Complete work order interface with all fields visible and editable (subject to CRUD permissions). Full parts request form with all fields. All workflow actions available (approve, review, split, etc.). The Estimate column on work order lines shows the actual estimate value.",
+   "prd_only": false
+  },
+  {
+   "key": "woTechViewMode",
+   "label": "View Mode — Tech View",
+   "prd_section": "5. View Mode",
+   "controls_verbatim": "Simplified work order interface designed for technicians. See restriction table below.",
+   "prd_only": false
+  },
+  {
+   "key": "seeFinancialData",
+   "label": "See Financial Data",
+   "prd_section": "6a. See Financial Data",
+   "controls_verbatim": "User can see pricing, costs, margins, and financial columns throughout the app. This includes: labor rates on work order lines, parts pricing, total/labor/parts columns on work orders, cost and margin data on parts, and financial summaries.",
+   "prd_only": false
+  },
+  {
+   "key": "seeApArData",
+   "label": "View and Manage AP/AR Data",
+   "prd_section": "6b. View and Manage AP/AR Data",
+   "controls_verbatim": "User can see accounts payable/receivable data: Unpaid Invoices tabs, Payments tabs, and Credits tabs on Customer and Vendor detail pages, AP/AR aging reports (AR Aging Summary, AR Aging Detail, AR Aging Collection, AP Aging Summary, AP Aging Detail, AP Unpaid Invoices), and can make bulk payments from the Unpaid Invoices tab. Also controls visibility of sensitive customer fields on the Edit Customer modal (Credit Terms, Credit Limit, Default Labor Rate, Default Shop Supplies, Min and Max, Taxes, PO is Required).",
+   "prd_only": false
+  },
+  {
+   "key": "viewHistoryLogs",
+   "label": "View History Logs",
+   "prd_section": "6c. View History Logs",
+   "controls_verbatim": "User can view history/audit logs wherever they appear in the app — work order history, part sales history, parts order history, and similar change logs.",
+   "prd_only": false
+  }
+ ],
+ "role_defaults": {
+  "system-owner": [
+   "billingPortalPageAccess",
+   "catalogInventoryCreateAndEdit",
+   "catalogInventoryDelete",
+   "catalogInventoryView",
+   "customerPortalPageAccess",
+   "customersCreateAndEdit",
+   "customersDelete",
+   "customersView",
+   "invoicingPaymentsCreateAndEdit",
+   "invoicingPaymentsDelete",
+   "invoicingPaymentsView",
+   "partSalesCreateAndEdit",
+   "partSalesDelete",
+   "partSalesView",
+   "partsDepartment",
+   "reportsPageAccess",
+   "scheduleCreateAndEdit",
+   "scheduleDelete",
+   "scheduleView",
+   "seeApArData",
+   "seeFinancialData",
+   "settings",
+   "settingsApp",
+   "settingsDataImport",
+   "settingsFinance",
+   "settingsParts",
+   "settingsService",
+   "settingsWages",
+   "timesheetsCreateAndEdit",
+   "timesheetsView",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementDelete",
+   "vendorOrderManagementView",
+   "viewHistoryLogs",
+   "woFullViewMode",
+   "woOrderParts",
+   "woPickParts",
+   "woReviewWorkOrders",
+   "workOrderLinesCreateAndEdit",
+   "workOrderLinesDelete",
+   "workOrdersCreateAndEdit",
+   "workOrdersDelete",
+   "workOrdersView"
+  ],
+  "system-admin": [
+   "billingPortalPageAccess",
+   "catalogInventoryCreateAndEdit",
+   "catalogInventoryDelete",
+   "catalogInventoryView",
+   "customerPortalPageAccess",
+   "customersCreateAndEdit",
+   "customersDelete",
+   "customersView",
+   "invoicingPaymentsCreateAndEdit",
+   "invoicingPaymentsDelete",
+   "invoicingPaymentsView",
+   "partSalesCreateAndEdit",
+   "partSalesDelete",
+   "partSalesView",
+   "partsDepartment",
+   "reportsPageAccess",
+   "scheduleCreateAndEdit",
+   "scheduleDelete",
+   "scheduleView",
+   "seeApArData",
+   "seeFinancialData",
+   "settings",
+   "settingsApp",
+   "settingsDataImport",
+   "settingsFinance",
+   "settingsParts",
+   "settingsService",
+   "settingsWages",
+   "timesheetsCreateAndEdit",
+   "timesheetsView",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementDelete",
+   "vendorOrderManagementView",
+   "viewHistoryLogs",
+   "woFullViewMode",
+   "woOrderParts",
+   "woPickParts",
+   "woReviewWorkOrders",
+   "workOrderLinesCreateAndEdit",
+   "workOrderLinesDelete",
+   "workOrdersCreateAndEdit",
+   "workOrdersDelete",
+   "workOrdersView"
+  ],
+  "system-sm": [
+   "billingPortalPageAccess",
+   "catalogInventoryCreateAndEdit",
+   "catalogInventoryDelete",
+   "catalogInventoryView",
+   "customersCreateAndEdit",
+   "customersDelete",
+   "customersView",
+   "invoicingPaymentsCreateAndEdit",
+   "invoicingPaymentsView",
+   "partSalesCreateAndEdit",
+   "partSalesDelete",
+   "partSalesView",
+   "partsDepartment",
+   "reportsPageAccess",
+   "scheduleCreateAndEdit",
+   "scheduleDelete",
+   "scheduleView",
+   "seeApArData",
+   "seeFinancialData",
+   "settings",
+   "settingsApp",
+   "settingsWages",
+   "timesheetsCreateAndEdit",
+   "timesheetsView",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementDelete",
+   "vendorOrderManagementView",
+   "viewHistoryLogs",
+   "woFullViewMode",
+   "woOrderParts",
+   "woPickParts",
+   "woReviewWorkOrders",
+   "workOrderLinesCreateAndEdit",
+   "workOrderLinesDelete",
+   "workOrdersCreateAndEdit",
+   "workOrdersDelete",
+   "workOrdersView"
+  ],
+  "system-ssa": [
+   "catalogInventoryCreateAndEdit",
+   "catalogInventoryView",
+   "customerPortalPageAccess",
+   "customersCreateAndEdit",
+   "customersView",
+   "invoicingPaymentsCreateAndEdit",
+   "invoicingPaymentsDelete",
+   "invoicingPaymentsView",
+   "partSalesCreateAndEdit",
+   "partSalesDelete",
+   "partSalesView",
+   "partsDepartment",
+   "reportsPageAccess",
+   "scheduleCreateAndEdit",
+   "scheduleDelete",
+   "scheduleView",
+   "seeApArData",
+   "seeFinancialData",
+   "timesheetsCreateAndEdit",
+   "timesheetsView",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementDelete",
+   "vendorOrderManagementView",
+   "viewHistoryLogs",
+   "woFullViewMode",
+   "woOrderParts",
+   "woPickParts",
+   "woReviewWorkOrders",
+   "workOrderLinesCreateAndEdit",
+   "workOrderLinesDelete",
+   "workOrdersCreateAndEdit",
+   "workOrdersDelete",
+   "workOrdersView"
+  ],
+  "system-jsa": [
+   "catalogInventoryCreateAndEdit",
+   "catalogInventoryView",
+   "customerPortalPageAccess",
+   "customersCreateAndEdit",
+   "customersView",
+   "invoicingPaymentsCreateAndEdit",
+   "invoicingPaymentsDelete",
+   "invoicingPaymentsView",
+   "partSalesCreateAndEdit",
+   "partSalesView",
+   "partsDepartment",
+   "scheduleCreateAndEdit",
+   "scheduleDelete",
+   "scheduleView",
+   "seeFinancialData",
+   "timesheetsView",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementView",
+   "viewHistoryLogs",
+   "woFullViewMode",
+   "woOrderParts",
+   "woPickParts",
+   "woReviewWorkOrders",
+   "workOrderLinesCreateAndEdit",
+   "workOrderLinesDelete",
+   "workOrdersCreateAndEdit",
+   "workOrdersView"
+  ],
+  "system-foreman": [
+   "catalogInventoryCreateAndEdit",
+   "catalogInventoryView",
+   "customersCreateAndEdit",
+   "customersView",
+   "invoicingPaymentsCreateAndEdit",
+   "invoicingPaymentsView",
+   "partSalesView",
+   "partsDepartment",
+   "scheduleCreateAndEdit",
+   "scheduleDelete",
+   "scheduleView",
+   "seeFinancialData",
+   "timesheetsView",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementView",
+   "viewHistoryLogs",
+   "woFullViewMode",
+   "woOrderParts",
+   "woPickParts",
+   "woReviewWorkOrders",
+   "workOrderLinesCreateAndEdit",
+   "workOrderLinesDelete",
+   "workOrdersCreateAndEdit",
+   "workOrdersView"
+  ],
+  "system-tech": [
+   "customersView",
+   "scheduleView",
+   "woPickParts",
+   "woTechViewMode",
+   "workOrderLinesCreateAndEdit",
+   "workOrdersView"
+  ],
+  "system-pm": [
+   "catalogInventoryCreateAndEdit",
+   "catalogInventoryDelete",
+   "catalogInventoryView",
+   "customerPortalPageAccess",
+   "customersCreateAndEdit",
+   "customersDelete",
+   "customersView",
+   "invoicingPaymentsCreateAndEdit",
+   "invoicingPaymentsDelete",
+   "invoicingPaymentsView",
+   "partSalesCreateAndEdit",
+   "partSalesDelete",
+   "partSalesView",
+   "partsDepartment",
+   "reportsPageAccess",
+   "scheduleView",
+   "seeApArData",
+   "seeFinancialData",
+   "settings",
+   "settingsDataImport",
+   "settingsFinance",
+   "settingsParts",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementDelete",
+   "vendorOrderManagementView",
+   "viewHistoryLogs",
+   "woFullViewMode",
+   "woOrderParts",
+   "woPickParts",
+   "woReviewWorkOrders",
+   "workOrderLinesCreateAndEdit",
+   "workOrdersCreateAndEdit",
+   "workOrdersView"
+  ],
+  "system-pt": [
+   "catalogInventoryCreateAndEdit",
+   "catalogInventoryView",
+   "customersCreateAndEdit",
+   "customersView",
+   "invoicingPaymentsCreateAndEdit",
+   "invoicingPaymentsView",
+   "partSalesCreateAndEdit",
+   "partSalesView",
+   "partsDepartment",
+   "scheduleView",
+   "seeFinancialData",
+   "timesheetsView",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementDelete",
+   "vendorOrderManagementView",
+   "viewHistoryLogs",
+   "woFullViewMode",
+   "woOrderParts",
+   "woPickParts",
+   "workOrdersView"
+  ],
+  "system-office": [
+   "billingPortalPageAccess",
+   "catalogInventoryView",
+   "customersCreateAndEdit",
+   "customersDelete",
+   "customersView",
+   "invoicingPaymentsView",
+   "partSalesView",
+   "partsDepartment",
+   "reportsPageAccess",
+   "scheduleView",
+   "seeApArData",
+   "seeFinancialData",
+   "settings",
+   "settingsApp",
+   "settingsDataImport",
+   "settingsFinance",
+   "settingsService",
+   "settingsWages",
+   "timesheetsCreateAndEdit",
+   "timesheetsView",
+   "vendorOrderManagementView",
+   "viewHistoryLogs",
+   "woFullViewMode",
+   "workOrdersView"
+  ],
+  "system-salesrep": [
+   "reportsPageAccess",
+   "seeApArData",
+   "seeFinancialData",
+   "woFullViewMode"
+  ],
+  "system-timeclock": [
+   "woFullViewMode"
+  ]
+ },
+ "cell_evidence": {
+  "system-owner": {
+   "workOrdersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrdersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrdersDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrderLinesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "workOrderLinesDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "scheduleView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "customersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "customersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "customersDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "partSalesView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "partSalesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "partSalesDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "timesheetsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V/E"
+   },
+   "timesheetsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V/E"
+   },
+   "reportsPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Reports",
+    "cell": "ON"
+   },
+   "customerPortalPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Customer Portal",
+    "cell": "ON"
+   },
+   "partsDepartment": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Parts Dept",
+    "cell": "ON"
+   },
+   "billingPortalPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Billing Portal",
+    "cell": "ON"
+   },
+   "settings": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Settings",
+    "cell": "ON"
+   },
+   "settingsApp": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "App Settings",
+    "cell": "ON"
+   },
+   "settingsService": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Service",
+    "cell": "ON"
+   },
+   "settingsParts": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Parts",
+    "cell": "ON"
+   },
+   "settingsFinance": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Finance",
+    "cell": "ON"
+   },
+   "settingsDataImport": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Data Import",
+    "cell": "ON"
+   },
+   "settingsWages": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Wages",
+    "cell": "ON"
+   },
+   "woReviewWorkOrders": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Review WOs",
+    "cell": "ON"
+   },
+   "woPickParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Pick Parts",
+    "cell": "ON"
+   },
+   "woOrderParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Order Parts",
+    "cell": "ON"
+   },
+   "woFullViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Full"
+   },
+   "seeFinancialData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See Financial",
+    "cell": "ON"
+   },
+   "seeApArData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See AP/AR",
+    "cell": "ON"
+   },
+   "viewHistoryLogs": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "History Logs",
+    "cell": "ON"
+   }
+  },
+  "system-admin": {
+   "workOrdersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrdersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrdersDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrderLinesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "workOrderLinesDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "scheduleView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "customersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "customersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "customersDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "partSalesView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "partSalesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "partSalesDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "timesheetsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V/E"
+   },
+   "timesheetsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V/E"
+   },
+   "reportsPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Reports",
+    "cell": "ON"
+   },
+   "customerPortalPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Customer Portal",
+    "cell": "ON"
+   },
+   "partsDepartment": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Parts Dept",
+    "cell": "ON"
+   },
+   "billingPortalPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Billing Portal",
+    "cell": "ON"
+   },
+   "settings": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Settings",
+    "cell": "ON"
+   },
+   "settingsApp": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "App Settings",
+    "cell": "ON"
+   },
+   "settingsService": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Service",
+    "cell": "ON"
+   },
+   "settingsParts": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Parts",
+    "cell": "ON"
+   },
+   "settingsFinance": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Finance",
+    "cell": "ON"
+   },
+   "settingsDataImport": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Data Import",
+    "cell": "ON"
+   },
+   "settingsWages": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Wages",
+    "cell": "ON"
+   },
+   "woReviewWorkOrders": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Review WOs",
+    "cell": "ON"
+   },
+   "woPickParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Pick Parts",
+    "cell": "ON"
+   },
+   "woOrderParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Order Parts",
+    "cell": "ON"
+   },
+   "woFullViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Full"
+   },
+   "seeFinancialData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See Financial",
+    "cell": "ON"
+   },
+   "seeApArData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See AP/AR",
+    "cell": "ON"
+   },
+   "viewHistoryLogs": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "History Logs",
+    "cell": "ON"
+   }
+  },
+  "system-sm": {
+   "workOrdersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrdersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrdersDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrderLinesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "workOrderLinesDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "scheduleView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "customersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "customersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "customersDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "partSalesView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "partSalesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "partSalesDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E"
+   },
+   "invoicingPaymentsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E"
+   },
+   "timesheetsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V/E"
+   },
+   "timesheetsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V/E"
+   },
+   "reportsPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Reports",
+    "cell": "ON"
+   },
+   "partsDepartment": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Parts Dept",
+    "cell": "ON"
+   },
+   "billingPortalPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Billing Portal",
+    "cell": "ON"
+   },
+   "settings": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Settings",
+    "cell": "ON"
+   },
+   "settingsApp": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "App Settings",
+    "cell": "ON"
+   },
+   "settingsWages": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Wages",
+    "cell": "ON"
+   },
+   "woReviewWorkOrders": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Review WOs",
+    "cell": "ON"
+   },
+   "woPickParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Pick Parts",
+    "cell": "ON"
+   },
+   "woOrderParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Order Parts",
+    "cell": "ON"
+   },
+   "woFullViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Full"
+   },
+   "seeFinancialData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See Financial",
+    "cell": "ON"
+   },
+   "seeApArData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See AP/AR",
+    "cell": "ON"
+   },
+   "viewHistoryLogs": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "History Logs",
+    "cell": "ON"
+   }
+  },
+  "system-ssa": {
+   "workOrdersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrdersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrdersDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E/D"
+   },
+   "workOrderLinesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "workOrderLinesDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "scheduleView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "customersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E"
+   },
+   "customersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E"
+   },
+   "partSalesView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "partSalesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "partSalesDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E"
+   },
+   "catalogInventoryCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E"
+   },
+   "vendorOrderManagementView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "timesheetsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V/E"
+   },
+   "timesheetsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V/E"
+   },
+   "reportsPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Reports",
+    "cell": "ON"
+   },
+   "customerPortalPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Customer Portal",
+    "cell": "ON"
+   },
+   "partsDepartment": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Parts Dept",
+    "cell": "ON"
+   },
+   "woReviewWorkOrders": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Review WOs",
+    "cell": "ON"
+   },
+   "woPickParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Pick Parts",
+    "cell": "ON"
+   },
+   "woOrderParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Order Parts",
+    "cell": "ON"
+   },
+   "woFullViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Full"
+   },
+   "seeFinancialData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See Financial",
+    "cell": "ON"
+   },
+   "seeApArData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See AP/AR",
+    "cell": "ON"
+   },
+   "viewHistoryLogs": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "History Logs",
+    "cell": "ON"
+   }
+  },
+  "system-jsa": {
+   "workOrdersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E"
+   },
+   "workOrdersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E"
+   },
+   "workOrderLinesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "workOrderLinesDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "scheduleView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "customersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E"
+   },
+   "customersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E"
+   },
+   "partSalesView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E"
+   },
+   "partSalesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E"
+   },
+   "catalogInventoryView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E"
+   },
+   "catalogInventoryCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E"
+   },
+   "vendorOrderManagementView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E"
+   },
+   "vendorOrderManagementCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E"
+   },
+   "invoicingPaymentsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "timesheetsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V"
+   },
+   "customerPortalPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Customer Portal",
+    "cell": "ON"
+   },
+   "partsDepartment": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Parts Dept",
+    "cell": "ON"
+   },
+   "woReviewWorkOrders": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Review WOs",
+    "cell": "ON"
+   },
+   "woPickParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Pick Parts",
+    "cell": "ON"
+   },
+   "woOrderParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Order Parts",
+    "cell": "ON"
+   },
+   "woFullViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Full"
+   },
+   "seeFinancialData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See Financial",
+    "cell": "ON"
+   },
+   "viewHistoryLogs": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "History Logs",
+    "cell": "ON"
+   }
+  },
+  "system-foreman": {
+   "workOrdersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E"
+   },
+   "workOrdersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E"
+   },
+   "workOrderLinesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "workOrderLinesDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E/D"
+   },
+   "scheduleView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "scheduleDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V/E/D"
+   },
+   "customersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E"
+   },
+   "customersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E"
+   },
+   "partSalesView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V"
+   },
+   "catalogInventoryView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E"
+   },
+   "catalogInventoryCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E"
+   },
+   "vendorOrderManagementView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E"
+   },
+   "vendorOrderManagementCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E"
+   },
+   "invoicingPaymentsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E"
+   },
+   "invoicingPaymentsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E"
+   },
+   "timesheetsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V"
+   },
+   "partsDepartment": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Parts Dept",
+    "cell": "ON"
+   },
+   "woReviewWorkOrders": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Review WOs",
+    "cell": "ON"
+   },
+   "woPickParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Pick Parts",
+    "cell": "ON"
+   },
+   "woOrderParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Order Parts",
+    "cell": "ON"
+   },
+   "woFullViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Full"
+   },
+   "seeFinancialData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See Financial",
+    "cell": "ON"
+   },
+   "viewHistoryLogs": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "History Logs",
+    "cell": "ON"
+   }
+  },
+  "system-tech": {
+   "workOrdersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V"
+   },
+   "workOrderLinesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E"
+   },
+   "scheduleView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V"
+   },
+   "customersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V"
+   },
+   "woPickParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Pick Parts",
+    "cell": "ON"
+   },
+   "woTechViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Tech"
+   }
+  },
+  "system-pm": {
+   "workOrdersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E"
+   },
+   "workOrdersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V/E"
+   },
+   "workOrderLinesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "WO Lines",
+    "cell": "V/E"
+   },
+   "scheduleView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V"
+   },
+   "customersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "customersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "customersDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "partSalesView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "partSalesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "partSalesDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "catalogInventoryDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E/D"
+   },
+   "reportsPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Reports",
+    "cell": "ON"
+   },
+   "customerPortalPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Customer Portal",
+    "cell": "ON"
+   },
+   "partsDepartment": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Parts Dept",
+    "cell": "ON"
+   },
+   "settings": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Settings",
+    "cell": "ON"
+   },
+   "settingsParts": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Parts",
+    "cell": "ON"
+   },
+   "settingsFinance": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Finance",
+    "cell": "ON"
+   },
+   "settingsDataImport": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Data Import",
+    "cell": "ON"
+   },
+   "woReviewWorkOrders": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Review WOs",
+    "cell": "ON"
+   },
+   "woPickParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Pick Parts",
+    "cell": "ON"
+   },
+   "woOrderParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Order Parts",
+    "cell": "ON"
+   },
+   "woFullViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Full"
+   },
+   "seeFinancialData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See Financial",
+    "cell": "ON"
+   },
+   "seeApArData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See AP/AR",
+    "cell": "ON"
+   },
+   "viewHistoryLogs": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "History Logs",
+    "cell": "ON"
+   }
+  },
+  "system-pt": {
+   "workOrdersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V"
+   },
+   "scheduleView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V"
+   },
+   "customersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E"
+   },
+   "customersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E"
+   },
+   "partSalesView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E"
+   },
+   "partSalesCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V/E"
+   },
+   "catalogInventoryView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E"
+   },
+   "catalogInventoryCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V/E"
+   },
+   "vendorOrderManagementView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "vendorOrderManagementDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V/E/D"
+   },
+   "invoicingPaymentsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E"
+   },
+   "invoicingPaymentsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V/E"
+   },
+   "timesheetsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V"
+   },
+   "partsDepartment": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Parts Dept",
+    "cell": "ON"
+   },
+   "woPickParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Pick Parts",
+    "cell": "ON"
+   },
+   "woOrderParts": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "Order Parts",
+    "cell": "ON"
+   },
+   "woFullViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Full"
+   },
+   "seeFinancialData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See Financial",
+    "cell": "ON"
+   },
+   "viewHistoryLogs": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "History Logs",
+    "cell": "ON"
+   }
+  },
+  "system-office": {
+   "workOrdersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Work Orders",
+    "cell": "V"
+   },
+   "scheduleView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Schedule",
+    "cell": "V"
+   },
+   "customersView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "customersCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "customersDelete": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Customers",
+    "cell": "V/E/D"
+   },
+   "partSalesView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Part Sales",
+    "cell": "V"
+   },
+   "catalogInventoryView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Catalog and Inv",
+    "cell": "V"
+   },
+   "vendorOrderManagementView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Vendor and Order",
+    "cell": "V"
+   },
+   "invoicingPaymentsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Invoicing",
+    "cell": "V"
+   },
+   "timesheetsView": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V/E"
+   },
+   "timesheetsCreateAndEdit": {
+    "table": "Permission Matrix — CRUD Areas",
+    "row": "Timesheets",
+    "cell": "V/E"
+   },
+   "reportsPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Reports",
+    "cell": "ON"
+   },
+   "partsDepartment": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Parts Dept",
+    "cell": "ON"
+   },
+   "billingPortalPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Billing Portal",
+    "cell": "ON"
+   },
+   "settings": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Settings",
+    "cell": "ON"
+   },
+   "settingsApp": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "App Settings",
+    "cell": "ON"
+   },
+   "settingsService": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Service",
+    "cell": "ON"
+   },
+   "settingsFinance": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Finance",
+    "cell": "ON"
+   },
+   "settingsDataImport": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Data Import",
+    "cell": "ON"
+   },
+   "settingsWages": {
+    "table": "Permission Matrix — Settings Sub-Toggles",
+    "row": "Wages",
+    "cell": "ON"
+   },
+   "woFullViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Full"
+   },
+   "seeFinancialData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See Financial",
+    "cell": "ON"
+   },
+   "seeApArData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See AP/AR",
+    "cell": "ON"
+   },
+   "viewHistoryLogs": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "History Logs",
+    "cell": "ON"
+   }
+  },
+  "system-salesrep": {
+   "reportsPageAccess": {
+    "table": "Permission Matrix — Toggles",
+    "row": "Reports",
+    "cell": "ON"
+   },
+   "woFullViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Full"
+   },
+   "seeFinancialData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See Financial",
+    "cell": "ON"
+   },
+   "seeApArData": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "See AP/AR",
+    "cell": "ON"
+   }
+  },
+  "system-timeclock": {
+   "woFullViewMode": {
+    "table": "Permission Matrix — WO Sub-Settings, View Mode, Cross-Cutting Toggles",
+    "row": "View Mode",
+    "cell": "Full"
+   }
+  }
+ },
+ "dependencies": [
+  {
+   "child": "workOrdersDelete",
+   "parent": "workOrdersCreateAndEdit",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "workOrdersCreateAndEdit",
+   "parent": "workOrdersView",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "scheduleDelete",
+   "parent": "scheduleCreateAndEdit",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "scheduleCreateAndEdit",
+   "parent": "scheduleView",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "customersDelete",
+   "parent": "customersCreateAndEdit",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "customersCreateAndEdit",
+   "parent": "customersView",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "partSalesDelete",
+   "parent": "partSalesCreateAndEdit",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "partSalesCreateAndEdit",
+   "parent": "partSalesView",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "catalogInventoryDelete",
+   "parent": "catalogInventoryCreateAndEdit",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "catalogInventoryCreateAndEdit",
+   "parent": "catalogInventoryView",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "vendorOrderManagementDelete",
+   "parent": "vendorOrderManagementCreateAndEdit",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "vendorOrderManagementCreateAndEdit",
+   "parent": "vendorOrderManagementView",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "invoicingPaymentsDelete",
+   "parent": "invoicingPaymentsCreateAndEdit",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "invoicingPaymentsCreateAndEdit",
+   "parent": "invoicingPaymentsView",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "timesheetsCreateAndEdit",
+   "parent": "timesheetsView",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "workOrderLinesDelete",
+   "parent": "workOrderLinesCreateAndEdit",
+   "kind": "implies",
+   "quote": {
+    "section": "1. CRUD Areas",
+    "verbatim": "Enabling a higher level auto-enables the levels below it. For example, enabling Edit auto-enables View. Enabling Delete auto-enables both Edit and View."
+   }
+  },
+  {
+   "child": "workOrderLinesCreateAndEdit",
+   "parent": "workOrdersView",
+   "kind": "implies",
+   "quote": {
+    "section": "1b. Work Order Lines",
+    "verbatim": "Work Order Lines is a child of Work Orders. There is no independent View toggle — Work Order Lines are visible whenever Work Orders View is ON."
+   }
+  },
+  {
+   "child": "woReviewWorkOrders",
+   "parent": "workOrdersView",
+   "kind": "implies",
+   "quote": {
+    "section": "4. Work Order Sub-Settings",
+    "verbatim": "These sub-settings only require Work Orders: **View** to be enabled. Users do NOT need Work Orders: Create and Edit to pick parts, order parts, or review work orders."
+   }
+  },
+  {
+   "child": "woPickParts",
+   "parent": "workOrdersView",
+   "kind": "implies",
+   "quote": {
+    "section": "4. Work Order Sub-Settings",
+    "verbatim": "These sub-settings only require Work Orders: **View** to be enabled. Users do NOT need Work Orders: Create and Edit to pick parts, order parts, or review work orders."
+   }
+  },
+  {
+   "child": "woOrderParts",
+   "parent": "workOrdersView",
+   "kind": "implies",
+   "quote": {
+    "section": "4. Work Order Sub-Settings",
+    "verbatim": "These sub-settings only require Work Orders: **View** to be enabled. Users do NOT need Work Orders: Create and Edit to pick parts, order parts, or review work orders."
+   }
+  },
+  {
+   "child": "partSalesView",
+   "parent": "partsDepartment",
+   "kind": "gated_by",
+   "quote": {
+    "section": "2d. Parts Department (Parent Gate)",
+    "verbatim": "All three Parts child areas are inaccessible regardless of their individual CRUD settings. Parts Department top level nav section is hidden."
+   }
+  },
+  {
+   "child": "partSalesCreateAndEdit",
+   "parent": "partsDepartment",
+   "kind": "gated_by",
+   "quote": {
+    "section": "2d. Parts Department (Parent Gate)",
+    "verbatim": "All three Parts child areas are inaccessible regardless of their individual CRUD settings. Parts Department top level nav section is hidden."
+   }
+  },
+  {
+   "child": "partSalesDelete",
+   "parent": "partsDepartment",
+   "kind": "gated_by",
+   "quote": {
+    "section": "2d. Parts Department (Parent Gate)",
+    "verbatim": "All three Parts child areas are inaccessible regardless of their individual CRUD settings. Parts Department top level nav section is hidden."
+   }
+  },
+  {
+   "child": "catalogInventoryView",
+   "parent": "partsDepartment",
+   "kind": "gated_by",
+   "quote": {
+    "section": "2d. Parts Department (Parent Gate)",
+    "verbatim": "All three Parts child areas are inaccessible regardless of their individual CRUD settings. Parts Department top level nav section is hidden."
+   }
+  },
+  {
+   "child": "catalogInventoryCreateAndEdit",
+   "parent": "partsDepartment",
+   "kind": "gated_by",
+   "quote": {
+    "section": "2d. Parts Department (Parent Gate)",
+    "verbatim": "All three Parts child areas are inaccessible regardless of their individual CRUD settings. Parts Department top level nav section is hidden."
+   }
+  },
+  {
+   "child": "catalogInventoryDelete",
+   "parent": "partsDepartment",
+   "kind": "gated_by",
+   "quote": {
+    "section": "2d. Parts Department (Parent Gate)",
+    "verbatim": "All three Parts child areas are inaccessible regardless of their individual CRUD settings. Parts Department top level nav section is hidden."
+   }
+  },
+  {
+   "child": "vendorOrderManagementView",
+   "parent": "partsDepartment",
+   "kind": "gated_by",
+   "quote": {
+    "section": "2d. Parts Department (Parent Gate)",
+    "verbatim": "All three Parts child areas are inaccessible regardless of their individual CRUD settings. Parts Department top level nav section is hidden."
+   }
+  },
+  {
+   "child": "vendorOrderManagementCreateAndEdit",
+   "parent": "partsDepartment",
+   "kind": "gated_by",
+   "quote": {
+    "section": "2d. Parts Department (Parent Gate)",
+    "verbatim": "All three Parts child areas are inaccessible regardless of their individual CRUD settings. Parts Department top level nav section is hidden."
+   }
+  },
+  {
+   "child": "vendorOrderManagementDelete",
+   "parent": "partsDepartment",
+   "kind": "gated_by",
+   "quote": {
+    "section": "2d. Parts Department (Parent Gate)",
+    "verbatim": "All three Parts child areas are inaccessible regardless of their individual CRUD settings. Parts Department top level nav section is hidden."
+   }
+  },
+  {
+   "child": "partSalesView",
+   "parent": "seeFinancialData",
+   "kind": "requires",
+   "quote": {
+    "section": "6a. See Financial Data",
+    "verbatim": "Part Sales and Invoicing CRUD areas require this toggle to be ON. If See Financial Data is turned OFF, those areas become inaccessible regardless of their CRUD settings."
+   }
+  },
+  {
+   "child": "partSalesCreateAndEdit",
+   "parent": "seeFinancialData",
+   "kind": "requires",
+   "quote": {
+    "section": "6a. See Financial Data",
+    "verbatim": "Part Sales and Invoicing CRUD areas require this toggle to be ON. If See Financial Data is turned OFF, those areas become inaccessible regardless of their CRUD settings."
+   }
+  },
+  {
+   "child": "partSalesDelete",
+   "parent": "seeFinancialData",
+   "kind": "requires",
+   "quote": {
+    "section": "6a. See Financial Data",
+    "verbatim": "Part Sales and Invoicing CRUD areas require this toggle to be ON. If See Financial Data is turned OFF, those areas become inaccessible regardless of their CRUD settings."
+   }
+  },
+  {
+   "child": "invoicingPaymentsView",
+   "parent": "seeFinancialData",
+   "kind": "requires",
+   "quote": {
+    "section": "6a. See Financial Data",
+    "verbatim": "Part Sales and Invoicing CRUD areas require this toggle to be ON. If See Financial Data is turned OFF, those areas become inaccessible regardless of their CRUD settings."
+   }
+  },
+  {
+   "child": "invoicingPaymentsCreateAndEdit",
+   "parent": "seeFinancialData",
+   "kind": "requires",
+   "quote": {
+    "section": "6a. See Financial Data",
+    "verbatim": "Part Sales and Invoicing CRUD areas require this toggle to be ON. If See Financial Data is turned OFF, those areas become inaccessible regardless of their CRUD settings."
+   }
+  },
+  {
+   "child": "invoicingPaymentsDelete",
+   "parent": "seeFinancialData",
+   "kind": "requires",
+   "quote": {
+    "section": "6a. See Financial Data",
+    "verbatim": "Part Sales and Invoicing CRUD areas require this toggle to be ON. If See Financial Data is turned OFF, those areas become inaccessible regardless of their CRUD settings."
+   }
+  },
+  {
+   "child": "settingsApp",
+   "parent": "settings",
+   "kind": "gated_by",
+   "quote": {
+    "section": "3. Settings Access",
+    "verbatim": "Administration top level nav item is hidden. All sub-settings are inaccessible."
+   }
+  },
+  {
+   "child": "settingsService",
+   "parent": "settings",
+   "kind": "gated_by",
+   "quote": {
+    "section": "3. Settings Access",
+    "verbatim": "Administration top level nav item is hidden. All sub-settings are inaccessible."
+   }
+  },
+  {
+   "child": "settingsParts",
+   "parent": "settings",
+   "kind": "gated_by",
+   "quote": {
+    "section": "3. Settings Access",
+    "verbatim": "Administration top level nav item is hidden. All sub-settings are inaccessible."
+   }
+  },
+  {
+   "child": "settingsFinance",
+   "parent": "settings",
+   "kind": "gated_by",
+   "quote": {
+    "section": "3. Settings Access",
+    "verbatim": "Administration top level nav item is hidden. All sub-settings are inaccessible."
+   }
+  },
+  {
+   "child": "settingsDataImport",
+   "parent": "settings",
+   "kind": "gated_by",
+   "quote": {
+    "section": "3. Settings Access",
+    "verbatim": "Administration top level nav item is hidden. All sub-settings are inaccessible."
+   }
+  },
+  {
+   "child": "settingsWages",
+   "parent": "settings",
+   "kind": "gated_by",
+   "quote": {
+    "section": "3. Settings Access",
+    "verbatim": "Administration top level nav item is hidden. All sub-settings are inaccessible."
+   }
+  }
+ ],
+ "rules": [
+  {
+   "key": "role_editability",
+   "section": "Concepts — Roles",
+   "verbatim": "System roles can be edited, with exceptions: **Office** and **Time Clock** roles cannot be edited. System roles cannot be deleted."
+  },
+  {
+   "key": "role_delete",
+   "section": "Admin Pages — Delete Role",
+   "verbatim": "If **1+ users** are assigned: a **\"Cannot Delete\"** modal appears with the message: \"This role is assigned to N user(s). Reassign them to another role before deleting.\" The delete/confirm button is **disabled** — the admin cannot proceed until all users are reassigned to a different role."
+  },
+  {
+   "key": "financial_modal",
+   "section": "Admin Pages — Financial Data Confirmation Modal",
+   "verbatim": "**Trigger:** User enables any Invoicing or Part Sales CRUD checkbox (View, Edit, or Delete) while See Financial Data is OFF."
+  },
+  {
+   "key": "forced_logout",
+   "section": "Staff Page Updates",
+   "verbatim": "Changing a user's role triggers a forced logout for the affected user. The new role takes effect when they log back in."
+  },
+  {
+   "key": "view_mode_not_security",
+   "section": "5. View Mode",
+   "verbatim": "View Mode is a **UX simplification, not a security boundary**. A user in Tech View with Edit permissions still has edit access — they just see a simpler interface."
+  },
+  {
+   "key": "clock_always",
+   "section": "Key Decisions",
+   "verbatim": "Every user can clock in and out regardless of Timesheets permissions."
+  },
+  {
+   "key": "owner_admin",
+   "section": "Concepts — Owner vs Administrator",
+   "verbatim": "Owner and Administrator are separate system roles."
+  }
+ ],
+ "matrix_roles": [
+  "system-owner",
+  "system-admin",
+  "system-sm",
+  "system-ssa",
+  "system-jsa",
+  "system-foreman",
+  "system-tech",
+  "system-pm",
+  "system-pt",
+  "system-office",
+  "system-salesrep",
+  "system-timeclock"
+ ],
+ "matrix_coverage": {
+  "workOrdersView": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "workOrdersCreateAndEdit": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "workOrdersDelete": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "workOrderLinesCreateAndEdit": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "workOrderLinesDelete": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "scheduleView": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "scheduleCreateAndEdit": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "scheduleDelete": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "customersView": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "customersCreateAndEdit": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "customersDelete": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "partSalesView": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "partSalesCreateAndEdit": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "partSalesDelete": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "catalogInventoryView": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "catalogInventoryCreateAndEdit": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "catalogInventoryDelete": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "vendorOrderManagementView": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "vendorOrderManagementCreateAndEdit": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "vendorOrderManagementDelete": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "invoicingPaymentsView": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "invoicingPaymentsCreateAndEdit": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "invoicingPaymentsDelete": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "timesheetsView": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "timesheetsCreateAndEdit": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "reportsPageAccess": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "customerPortalPageAccess": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "partsDepartment": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "billingPortalPageAccess": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "settings": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "settingsApp": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "settingsService": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "settingsParts": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "settingsFinance": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "settingsDataImport": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "settingsWages": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "woReviewWorkOrders": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "woPickParts": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "woOrderParts": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "seeFinancialData": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "seeApArData": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "viewHistoryLogs": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "woFullViewMode": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ],
+  "woTechViewMode": [
+   "system-owner",
+   "system-admin",
+   "system-sm",
+   "system-ssa",
+   "system-jsa",
+   "system-foreman",
+   "system-tech",
+   "system-pm",
+   "system-pt",
+   "system-office",
+   "system-salesrep",
+   "system-timeclock"
+  ]
+ },
+ "verbatim_check": {
+  "ok": true,
+  "source_file": "source/prd-v7.html",
+  "table_rows_checked": 39,
+  "table_rows_not_found": [],
+  "quotes_checked": 58,
+  "quotes_not_found": []
+ },
+ "change_log": [
+  {
+   "date": null,
+   "reporter": "@Sasha Grosman",
+   "change_verbatim": "- Removed “Data model” table. This was an AI hallucination. There was no intent to suggest technical implementation. - RE data access vs feature access. Clarified in feature over and key decisions that these permissions control feature access, not data access. Core requirements did not need updatingl. - Removed AP/AR metrics settings per discussions offline"
+  }
+ ],
+ "notes": [
+  "PRD-only parent gates: \"partsDepartment\" and \"settings\" are role-editor parent toggles in the PRD. The implementation stores no permission for them; the comparison derives them from the child permissions a role holds.",
+  "View Mode is listed as \"Full\" for Sales Representative and Time Clock, roles with no Work Orders access; recorded exactly as the PRD states it."
+ ],
+ "snapshot_id": "prd-v7"
+}

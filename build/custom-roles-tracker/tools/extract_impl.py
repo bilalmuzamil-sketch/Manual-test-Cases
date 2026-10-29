@@ -34,7 +34,7 @@ Nothing here is inferred. A layer that cannot be read at that commit is listed u
 import argparse, datetime, hashlib, json, os, re, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-EXTRACTOR_VERSION = '1.0.0'
+EXTRACTOR_VERSION = '1.0.1'
 
 LABELS_TS = 'app/src/components/ts/administration/permissions/labels.ts'
 CASCADE_TS = 'app/src/services/permissions/cascade.ts'
@@ -250,6 +250,7 @@ def extract_backend_enforcement(repo, commit, atom_consts):
                                    'atoms': atoms, 'bundles': bundles, 'via': via})
             all_guards = class_guards + guards
             def add(full, meths):
+                full = '/' + full.lstrip('/')   # some routes are written without the leading slash
                 eid = f"{'|'.join(meths)} {full}"
                 endpoints[eid] = {'id': eid, 'path': full, 'methods': meths,
                                   'controller': f'{path}::{name}', 'guards': all_guards,
@@ -342,6 +343,49 @@ def group_of(code, label):
     return 'Other'
 
 
+# ── ticket references written next to the code (leads, never proof of approval) ───────────────────
+ENUM_PHP = 'api/src/Auth/Domain/Model/FEPermissionEnum.php'
+ROLE_MAP_PHP = 'api/src/Auth/UI/Cli/Command/RoleFePermissionMappings.php'
+
+
+def code_ticket_refs(enum_src, rolemap_src, name_to_slug):
+    """Jira keys written in the comment block directly above each permission's enum case, and above
+    each FEPermissionEnum::x line inside each role's default list."""
+    perm, role = {}, {}
+    if enum_src:
+        lines = enum_src.splitlines()
+        for i, ln in enumerate(lines):
+            m = re.match(r'\s*case (\w+) = ', ln)
+            if not m:
+                continue
+            j, block = i - 1, []
+            while j >= 0 and re.match(r'\s*//', lines[j]) and not re.match(r'\s*//\s*===', lines[j]):
+                block.insert(0, lines[j].strip()[2:].strip()); j -= 1
+            if block:
+                perm[m.group(1)] = {'tickets': sorted(set(re.findall(r'\bSV-\d+', ' '.join(block)))),
+                                    'comment': ' '.join(block)}
+    if rolemap_src:
+        cur, block, started = None, [], False
+        for ln in rolemap_src.splitlines():
+            rm = re.match(r"\s*DefaultRoleNameEnum::(\w+)->value\s*=>\s*\[", ln)
+            if rm:
+                cur, block, started = rm.group(1), [], False
+                continue
+            if re.match(r'\s*//', ln):
+                block.append(ln.strip()[2:].strip()); continue
+            pm = re.match(r'\s*FEPermissionEnum::(\w+)->value', ln)
+            if pm and cur and block:
+                t = sorted(set(re.findall(r'\bSV-\d+', ' '.join(block))))
+                # the comment that OPENS a role's list describes the role, not its first permission
+                key = '_role' if not started else pm.group(1)
+                role.setdefault(cur, {})[key] = {'tickets': t, 'comment': ' '.join(block)}
+            if pm:
+                started = True
+            if pm or ln.strip().startswith('],'):
+                block = []
+    return perm, role
+
+
 # ── main ─────────────────────────────────────────────────────────────────────────────────────────
 def extract(repo, ref, build_marker=None):
     commit = git(repo, 'rev-parse', f'{ref}^{{commit}}').strip()
@@ -387,6 +431,9 @@ def extract(repo, ref, build_marker=None):
         for a in e['atoms']:
             atom_endpoints.setdefault(a, []).append(e['id'])
     cascade_src = git_show(repo, commit, CASCADE_TS)
+    perm_refs, role_refs_by_case = code_ticket_refs(git_show(repo, commit, ENUM_PHP),
+                                                    git_show(repo, commit, ROLE_MAP_PHP), name_to_slug)
+    role_refs = {rt.get(case, case): v for case, v in role_refs_by_case.items()}
     bundle_atoms = dump.get('bundle_atoms') or {}
     hub = set(dump.get('accounting_hub_bundles') or [])
     fe_refs = extract_fe_references(repo, commit, bundles)
@@ -411,6 +458,7 @@ def extract(repo, ref, build_marker=None):
                                                        'how': 'core puts the code in the proxy JWT claim accounting_permissions',
                                                        'evidence': jwt_file} if code in hub and code != 'accountingView' and jwt_file else None),
                             'office_editable': code in office_editable if 'office_editable_permissions' in dump else None,
+                            'code_comment': perm_refs.get(code),
                             'fe_references': fe_refs.get(code, [])})
     snap = {
         'schema_version': 1,
@@ -424,6 +472,7 @@ def extract(repo, ref, build_marker=None):
         'permissions': permissions,
         'role_defaults': role_defaults,
         'dependencies': dependencies,
+        'default_code_comments': role_refs,
         'endpoints': sorted(endpoints.values(), key=lambda e: e['id']),
         'atom_endpoints': {a: sorted(v) for a, v in sorted(atom_endpoints.items())},
         'voters': dict(sorted(voters.items())),
