@@ -1,0 +1,32 @@
+// Explore (no writes): deposit dialog fields on S1-38219, SBR date presets + rep rows, Sales Tax presets. Rule 99 zones recorded. SECRET-FREE.
+import fs from 'fs';
+import { boot2 } from '/home/user/Manual-test-Cases/build/testing-tools/staging-boot2.mjs';
+const APP = 'https://app.staging.shopview.com', WP = '39522bc6-abca-4f67-bd12-2840043c2d68', TZ = 'America/Toronto';
+const S = JSON.parse(fs.readFileSync('/tmp/cln/p2c/seed.json'));
+const { browser, page } = await boot2('admin', { workplaceId: WP, timezone: TZ, contextOptions: { viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 2, timezoneId: TZ } });
+await page.evaluate(w => localStorage.setItem('location', JSON.stringify(w)), WP);
+const o = { browser_zone: await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone), process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone };
+await page.goto(`${APP}/workorders/${S.DEP.wo}/finance`, { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(9000);
+o.appVersion = await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null);
+o.buttons = (await page.locator('button').allInnerTexts()).map(t => t.trim()).filter(Boolean).slice(0, 40);
+o.btn_ids = await page.locator('main [data-test-id^="button_"]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id')));
+const pb = page.locator('button').filter({ hasText: /Add Deposit/i }).first();
+if (await pb.count()) { await pb.click(); await page.waitForTimeout(3000); const dlg = page.locator('.q-dialog').last();
+  o.dialog = (await dlg.innerText().catch(() => '')).replace(/\n+/g, ' / ').slice(0, 700);
+  o.dialog_ids = await dlg.locator('[data-test-id]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id') + '=' + (e.value ?? '')));
+  await page.keyboard.press('Escape'); await page.waitForTimeout(1000); }
+await page.goto(APP + '/reports/sales-by-representative', { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(9000);
+o.sbr_chips = (await page.locator('[data-test-id^="filter_chip_"]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id') + '=' + e.innerText.replace(/\s+/g, ' '))));
+await page.locator('[data-test-id="filter_chip_dateRange"]').click(); await page.waitForTimeout(1500);
+o.sbr_presets = await page.locator('.q-menu [data-test-id]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id') + '=' + e.innerText.replace(/\s+/g, ' ').slice(0, 30)));
+await page.keyboard.press('Escape'); await page.waitForTimeout(800);
+o.sbr_heads = await page.locator('thead th').allInnerTexts();
+o.sbr_expand = await page.locator('[data-test-id^="button_sbr_expand_rep_"]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id') + '|' + e.closest('tr').innerText.replace(/\s+/g, ' ').slice(0, 120)));
+await page.goto(APP + '/reports/sales-tax/invoices', { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(8000);
+o.tax_chips = (await page.locator('[data-test-id^="filter_chip_"]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id') + '=' + e.innerText.replace(/\s+/g, ' '))));
+o.tax_heads = await page.locator('thead th').allInnerTexts();
+await page.locator('[data-test-id="filter_chip_range"]').click(); await page.waitForTimeout(1500);
+o.tax_presets = await page.locator('.q-menu [data-test-id]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id')));
+fs.mkdirSync('/tmp/cln/p2c/ev', { recursive: true }); fs.writeFileSync('/tmp/cln/p2c/ev/explore.json', JSON.stringify(o, null, 1));
+console.log(JSON.stringify(o, null, 0).slice(0, 6000));
+await browser.close();
