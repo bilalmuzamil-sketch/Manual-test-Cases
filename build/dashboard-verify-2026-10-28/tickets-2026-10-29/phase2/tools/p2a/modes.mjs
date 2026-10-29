@@ -1,6 +1,7 @@
 // p2a screen modes, driven by ev_p2a.mjs (which handles Rule 99 zones and meta.json). SECRET-FREE.
 export async function run(c) {
-  if (/^A[45]/.test(c.mode) && c.mode !== 'A5HD') return runDvi(c);
+  if (/^A5/.test(c.mode) && c.mode !== 'A5HD') return runA5(c);
+  if (/^A4/.test(c.mode)) return runDvi(c);
   const { mode, page, meta, shot, go, box, txt, rowsOf, heads, search, preset } = c;
   const custFilter = async name => { await page.getByText('Customer: All customers').first().click(); await page.waitForTimeout(2500);
     const menu = page.locator('.q-menu').last(); const inp = menu.locator('input').first(); if (await inp.count()) { await inp.fill(name); await page.waitForTimeout(4000); }
@@ -117,7 +118,7 @@ export async function newTimesheet(c, { staff, wo, line, start, end, shotName, o
   const ow = page.locator('.q-dialog').filter({ hasText: 'Confirm Overwrite' });
   if (await ow.count()) { meta.overwrite_text = (await ow.last().innerText()).replace(/\n+/g, ' | ').slice(0, 800);
     await shot((shotName || 'ts') + '-overwrite', { dlg: await box(ow.last()) });
-    if (onOverlap === 'close') { const x = ow.last().locator('button').filter({ hasText: /close|Cancel/i }).first(); meta.closeBtn = await txt(x); await x.click().catch(() => page.keyboard.press('Escape')); await page.waitForTimeout(4000); } }
+    if (onOverlap === 'cancel' || onOverlap === 'close') { const x = ow.last().locator('[data-test-id="button_cancel_overwrite_confirmation"], button').filter({ hasText: /Cancel/i }).first(); meta.closeBtn = await txt(x); await x.click().catch(() => page.keyboard.press('Escape')); await page.waitForTimeout(4000); } }
   meta.after_dialogs = (await page.locator('.q-dialog').allInnerTexts().catch(() => [])).map(x => x.replace(/\n+/g, ' | ').slice(0, 200));
   page.off('response', h); meta.posts = (meta.posts || []).concat(posts);
 }
@@ -139,8 +140,66 @@ export async function runDvi(c) {
     const tc = page.getByText('Total Clocked Hours', { exact: false }).first();
     await shot('3-shop-efficiency-today', { label: await box(tc), chip: await txt(page.locator('[data-test-id="filter_chip_range"]')) });
     await go('/reports/technician-utilization', 12000);
-    try { await preset('today'); } catch (e) { meta.tu_preset_err = String(e).slice(0, 150); }
+    try { await page.locator('button, .q-btn').filter({ hasText: 'Date:' }).first().click(); await page.waitForTimeout(1500);
+      const m = page.locator('.q-menu').last(); meta.tu_menu = (await m.innerText()).replace(/\n+/g, ' | ').slice(0, 300);
+      await m.getByText('Today', { exact: true }).first().click(); await page.waitForTimeout(1200);
+      const ap = m.getByText(/^Apply$/).first(); if (await ap.count()) await ap.click().catch(() => {});
+      await page.keyboard.press('Escape').catch(() => {}); await page.waitForTimeout(8000); } catch (e) { meta.tu_preset_err = String(e).slice(0, 150); }
     const row = page.locator('tbody tr').filter({ hasText: 'Admin Shopview' }).first();
     await shot('4-tu-today', { row: await box(row), text: await txt(row), heads: await heads(), chip: await txt(page.locator('[data-test-id="filter_chip_range"]')), dateBtn: await txt(page.locator('button, .q-btn').filter({ hasText: 'Date' })), dateBox: await box(page.locator('button, .q-btn').filter({ hasText: 'Date' })) });
+  }
+}
+
+// Export Reports -> Payroll Timesheet, downloaded through the screen. range = 'Last Month' | 'Custom' (+ MM/DD/YYYY dates)
+export async function exportPayroll(c, { range, from, to, shotName }) {
+  const { page, meta, shot, box, OUT } = c;
+  await page.locator('a, .q-item').filter({ hasText: /^\s*Export Reports\s*$/ }).first().click(); await page.waitForTimeout(3000);
+  const dlg = page.locator('.q-dialog').last();
+  const pick = async (tid, label) => { await dlg.locator(`[data-test-id="${tid}"]`).first().click(); await page.waitForTimeout(1200);
+    await page.locator('.q-menu .q-item').filter({ hasText: new RegExp('^\\s*' + label + '\\s*$') }).first().click(); await page.waitForTimeout(1200); };
+  await pick('select_report_name', 'Payroll Timesheet');
+  await pick('select_date_range', range);
+  if (range === 'Custom') { for (const [n, v] of [['export_startDate', from], ['export_endDate', to]]) { const i = dlg.locator(`input[name="${n}"]`).first(); await i.click(); await i.fill(v); await page.keyboard.press('Tab'); await page.waitForTimeout(800); } }
+  await page.keyboard.press('Escape').catch(() => {}); await page.waitForTimeout(300);
+  const d2 = page.locator('.q-dialog').last(); meta.export_dialog = (await d2.innerText().catch(() => '')).replace(/\n+/g, ' | ').slice(0, 400);
+  if (shotName) await shot(shotName + '-dialog', { dlg: await box(d2) });
+  const btn = d2.locator('button').filter({ hasText: /^\s*Export\s*$/ }).first();
+  const [dl] = await Promise.all([page.waitForEvent('download', { timeout: 60000 }), btn.click()]);
+  const f = `${OUT}/${dl.suggestedFilename()}`; await dl.saveAs(f); meta.download = { file: f, name: dl.suggestedFilename() };
+  await page.waitForTimeout(2000); return f;
+}
+// render a downloaded CSV as a plain spreadsheet-like table (so the file's own rows can be pictured), highlight rows
+export async function renderCsv(c, file, { title, keep, mark, shotName }) {
+  const { page, shot, box, meta } = c; const fs = await import('fs');
+  const lines = fs.readFileSync(file, 'utf8').trim().split('\n');
+  const parse = l => { const o = []; let cur = '', q = false; for (const ch of l) { if (ch === '"') q = !q; else if (ch === ',' && !q) { o.push(cur); cur = ''; } else cur += ch; } o.push(cur); return o; };
+  const rows = lines.map(parse); const head = rows[0]; let body = rows.slice(1);
+  if (keep) body = body.filter(keep);
+  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const html = `<html><body style="font-family:Calibri,Arial,sans-serif;margin:24px;background:#fff"><div style="font-size:18px;margin-bottom:10px">${esc(title)}</div>
+  <table style="border-collapse:collapse;font-size:16px">${'<tr>' + head.map(h => `<th style="border:1px solid #bbb;background:#e8eef7;padding:6px 14px;text-align:left">${esc(h)}</th>`).join('') + '</tr>'}
+  ${body.map((r, i) => `<tr data-i="${i}" ${mark && mark(r) ? 'data-mark="1"' : ''}>${r.map(x => `<td style="border:1px solid #ccc;padding:6px 14px">${esc(x)}</td>`).join('')}</tr>`).join('')}</table></body></html>`;
+  await page.setContent(html); await page.waitForTimeout(800);
+  const marked = []; for (const r of await page.locator('tr[data-mark="1"]').all()) marked.push({ box: await box(r), text: (await r.innerText()).replace(/\s+/g, ' ') });
+  await shot(shotName, { marked, file: file.split('/').pop() });
+}
+export async function runA5(c) {
+  const { mode, page, meta, shot, go, box, txt, preset } = c;
+  if (mode === 'A5') {   // two overlapping 13-hour timesheets for Admin Shopview on 5 Oct 2026, made on screen; overwrite cancelled
+    await go('/reports/punch-clock-activities', 10000);
+    await newTimesheet(c, { staff: 'Admin Shopview', wo: 'S1-38220', line: 'Test DVI Line', start: 'Oct 5, 2026 08:00 AM', end: 'Oct 5, 2026 09:00 PM', shotName: '1-first-timesheet' });
+    await page.waitForTimeout(3000);
+    await newTimesheet(c, { staff: 'Admin Shopview', wo: 'S1-38220', line: 'Test DVI Line', start: 'Oct 5, 2026 08:00 AM', end: 'Oct 5, 2026 09:00 PM', shotName: '2-second-timesheet', onOverlap: 'cancel' });
+  }
+  if (mode === 'A5b') {  // read: the two rows on Timesheet Activities, This month, Admin Shopview; then the export for 5 Oct
+    await go('/reports/punch-clock-activities', 10000);
+    await preset('this_month');
+    const rows = page.locator('tbody tr').filter({ hasText: 'S1-38220' }).filter({ hasText: 'Oct 05' });
+    meta.ts_rows = await rows.allInnerTexts().then(a => a.map(x => x.replace(/\s+/g, ' ')));
+    await rows.first().scrollIntoViewIfNeeded().catch(() => {}); await page.waitForTimeout(800);
+    const bx = []; for (let i = 0; i < await rows.count(); i++) bx.push(await box(rows.nth(i)));
+    await shot('3-ta-two-rows', { rows: bx });
+    const f = await exportPayroll(c, { range: 'Custom', from: '10/05/2026', to: '10/05/2026', shotName: '4-export' });
+    await renderCsv(c, f, { title: `${f.split('/').pop()} (downloaded from Export Reports, DVI Test, Custom 10/05/2026 to 10/05/2026)`, keep: null, mark: r => r[1] === '2026-10-05', shotName: '5-export-file' });
   }
 }

@@ -6,7 +6,7 @@ import fs from 'fs';
 import { boot2 } from '/home/user/Manual-test-Cases/build/testing-tools/staging-boot2.mjs';
 const APP = 'https://app.staging.shopview.com';
 const LOC = { dvi: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto', 'DVI Test'], hd: ['b3c8c820-f815-4cf1-8938-10956c5ee71a', 'Asia/Karachi', 'Staging Heavy Duty - 9919'] };
-const mode = process.argv[2]; const [WP, TZ, LNAME] = LOC[/^(tax-cm|cm-customer)$/.test(mode) ? 'hd' : 'dvi'];
+const mode = process.argv[2]; const [WP, TZ, LNAME] = LOC[/^(tax-cm|cm-customer|cm2)$/.test(mode) ? 'hd' : 'dvi'];
 const S = JSON.parse(fs.readFileSync('/tmp/cln/p2c/seed.json'));
 const OUT = `/tmp/cln/p2c/ev/${mode}`; fs.mkdirSync(OUT, { recursive: true });
 const { browser, page } = await boot2('admin', { workplaceId: WP, timezone: TZ, contextOptions: { viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 2, timezoneId: TZ } });
@@ -113,7 +113,6 @@ if (mode === 'tax-cm') {       // C2: Heavy Duty, Sales Tax Collected, custom 20
   await go('/reports/sales-tax/invoices', 9000);
   await taxRange('custom', async () => {
     for (const [id, v] of [['date_input_range_start', '10/20/2026'], ['date_input_range_end', '10/20/2026']]) { const f = page.locator(`[data-test-id="${id}"]`); await f.click({ clickCount: 3 }); await f.fill(v); await page.keyboard.press('Tab'); await page.waitForTimeout(800); }
-    meta.custom_inputs = [await page.locator('[data-test-id="date_input_range_start"]').inputValue(), await page.locator('[data-test-id="date_input_range_end"]').inputValue()];
     const ap = page.locator('.q-menu button').filter({ hasText: /Apply/i }); if (await ap.count()) await ap.first().click();
   });
   meta.chip = await txt(page.locator('[data-test-id="filter_chip_range"]'));
@@ -130,6 +129,26 @@ if (mode === 'cm-customer') {  // C2: the credit memo as the customer's account 
   await go('/customers', 8000);
   meta.cust_ids = await page.locator('[data-test-id]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id')).filter(x => /search/i.test(x)).slice(0, 10));
   save();
+}
+if (mode === 'cm2') {          // C2 (Heavy Duty, This month): search CM2-4520 on Sales Tax; All Tax Rates totals; the credit memo on the customer's Invoices tab
+  const gets = []; page.on('request', r => { if (r.url().includes('sales-tax')) gets.push(decodeURIComponent(r.url().replace(/^.*\/api/, ''))); });
+  await go('/reports/sales-tax/invoices', 9000);
+  meta.chip = await txt(page.locator('[data-test-id="filter_chip_range"]'));
+  const se = page.locator('main input').first(); meta.search_ids = await page.locator('main input').evaluateAll(es => es.map(e => (e.getAttribute('data-test-id') || '') + '|' + (e.placeholder || '')));
+  await page.locator('main').getByText('Search', { exact: true }).first().click().catch(() => {}); await page.waitForTimeout(800);
+  const si = page.locator('main input:visible').first(); await si.fill('CM2-4520'); await page.waitForTimeout(6000);
+  meta.search_result = (await txt(page.locator('main'))).slice(0, 700);
+  await shot('1-tax-search-cm', { search: await box(si), chip: await box(page.locator('[data-test-id="filter_chip_range"]')), empty: await box(page.locator('main').getByText('No record', { exact: false })) });
+  await go('/reports/sales-tax/invoices', 9000);
+  await page.locator('button, a').filter({ hasText: 'See All Tax Rates' }).first().click(); await page.waitForTimeout(8000);
+  meta.rates_url = page.url(); meta.rates = (await txt(page.locator('main'))).slice(0, 900);
+  const gst = page.locator('tr').filter({ hasText: 'GST' }); const rb = []; for (let i = 0; i < await gst.count(); i++) rb.push({ text: await txt(gst.nth(i)), box: await box(gst.nth(i)) });
+  await shot('2-all-tax-rates', { rows: rb, chip: await box(page.locator('[data-test-id="filter_chip_range"]')), chip_text: await txt(page.locator('[data-test-id="filter_chip_range"]')) });
+  await go('/customers/3bffe815-a953-450d-9674-bca2e905bb42/invoices', 10000);
+  const cm = page.locator('tr').filter({ hasText: 'CM2-4520' }).first(); await cm.scrollIntoViewIfNeeded().catch(() => {}); await page.waitForTimeout(800);
+  meta.cust_heads = await page.locator('thead th').allInnerTexts(); meta.cust_filters = (await txt(page.locator('main'))).slice(0, 500);
+  await shot('3-customer-invoices-cm', { row: { box: await box(cm), text: await txt(cm), cells: await cells(cm) } });
+  meta.gets = gets; save();
 }
 meta.posts = posts; save();
 console.log(JSON.stringify({ mode, v: meta.appVersion, browser_zone: meta.browser_zone, process_zone: meta.process_zone, location_tz: meta.location_tz, shots: Object.keys(meta.shots) }));

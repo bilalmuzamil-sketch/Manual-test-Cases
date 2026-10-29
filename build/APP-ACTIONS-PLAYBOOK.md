@@ -3330,6 +3330,13 @@ whereas an application-level JSON `{"error":"sso_required", …}` means the requ
   `testing-tools/staging-boot2.mjs` sets it from `opts.timezone`), and the process (`TZ=<zone> node …`). Read the browser's zone
   back with `Intl.DateTimeFormat().resolvedOptions().timeZone` and keep it in the evidence JSON. Staging zones: Heavy Duty
   Asia/Karachi · Lethbridge America/Edmonton · QB Location America/Vancouver · DVI Test America/Toronto. Origin: SV-11922.
+  **🔴 FOURTH PLACE — the app's own zone key (found 2026-10-29, Phase 2 Worker B).** The SPA does NOT use the browser zone for report
+  date windows: it reads `localStorage['timezone']` (`locationService.getTimezone()`, set by the location switcher) and **falls back to
+  UTC** when the key is missing. `boot2` + `localStorage.location` alone leave it missing, so on 29 Oct 00:06 UTC Parts Velocity at
+  DVI Test sent `start_date=…T00:00:00.000Z&end_date=2026-10-29T23:59:59.999Z` (UTC days, tomorrow's date) with the browser on Toronto.
+  Fix: `localStorage.setItem('timezone', JSON.stringify(zone))` next to `location`, then read it back into the evidence JSON
+  (`app_timezone_key`). Check: the request's `start_date` must carry the zone's offset (Toronto `T04:00:00.000Z`). Recipe:
+  `dashboard-verify-2026-10-28/tickets-2026-10-29/phase2/tools/p2b/ev_p2b.mjs`. Search key: `start_date=` `T00:00:00.000Z`.
 - **Jira through the Atlassian MCP (proven 2026-10-28, SV-11922):** `createJiraIssue` with `contentFormat: "html"`; no `<blockquote>`
   inside `<li>` (ADF rejects it); Bugs need `Product Area` (SV-11839 → "Reports & Dashboards"). Pictures: `uploadAttachmentToJiraIssue`
   phase 1 → run the returned curl (token is short-lived, never save it) → put `<figure data-type="media-single" data-width="100"

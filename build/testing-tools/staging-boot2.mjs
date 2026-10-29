@@ -38,11 +38,15 @@ export async function boot2(roleKey = 'tech', opts = {}) {
   const page = await ctx.newPage();
   // land on app origin (a lightweight route) to be able to set localStorage
   await page.goto(APP + '/login', { waitUntil: 'domcontentloaded', timeout: 60000 });
-  await page.evaluate(({ u, f }) => {
+  // The SPA builds report/dashboard date windows from localStorage 'timezone' (set by the location switcher) and
+  // falls back to UTC when it is missing — the browser zone alone is NOT enough (found 2026-10-29, Phase 2 Worker B).
+  const tz = opts.timezone || process.env.SV_TZ;
+  await page.evaluate(({ u, f, tz }) => {
     localStorage.setItem('user', JSON.stringify(u));
     localStorage.setItem('fe_permissions_wrapper', JSON.stringify(f));
     if (u.data && u.data.token) localStorage.setItem('token', JSON.stringify(u.data.token));
-  }, { u: userObj, f: feData });
+    if (tz) localStorage.setItem('timezone', JSON.stringify(tz));
+  }, { u: userObj, f: feData, tz });
   await page.waitForTimeout(500);
   return { browser, ctx, page, feData, user: t.data };
 }
