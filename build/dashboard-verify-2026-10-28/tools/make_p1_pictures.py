@@ -14,8 +14,8 @@ def run(src, out, title, marks):
 F = m('/tmp/cln/dv/p1/F2/meta.json')['shots']; F1 = F['1-dashboard-tiles']; F2t = F['2-dashboard-te-table']
 run('/tmp/cln/dv/p1/F2/2-dashboard-te-table.png', 'P1-1-1-dashboard-technician-efficiency.png',
     'Dashboard, DVI Test, Technician Efficiency, This Week (Oct 25 - Oct 28, 2026)',
-    [(F1['te']['meta'], 'bad', 'Counts the hours of lines the customer declined. Without them it reads 3.00 Invoiced Tech Hrs / 2.04 Clocked'),
-     (F1['be']['meta'], 'good', 'Billing Efficiency already leaves declined lines out: 2.04 Clocked'),
+    [(F1['te']['meta'], 'bad', 'Includes the declined lines: their 1.02 clocked hours are in these 5.06 Clocked hours (and their tech time in Invoiced Tech Hrs)'),
+     (F1['be']['meta'], 'good', 'Billing Efficiency already leaves declined lines out: 4.04 Clocked, which is 5.06 minus the 1.02 declined hours'),
      (F2t['row_Fabian Bonjean']['box'], 'bad', 'Fabian Bonjean: 2.00 / 1.50 / 133.33%. On S1-38198 only line 1 (1 hour) was billed. Should read 1.00 / 1.00 / 100.00%')])
 G = m('/tmp/cln/dv/p1/F2b/meta.json')['shots']; L = G['3-work-order-lines']
 run('/tmp/cln/dv/p1/F2b/3-work-order-lines.png', 'P1-1-2-work-order-S1-38198-lines.png', 'Work order S1-38198, Lines tab',

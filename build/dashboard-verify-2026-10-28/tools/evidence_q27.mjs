@@ -16,6 +16,7 @@ const metaF = `${OUT}/meta.json`;
 const meta = fs.existsSync(metaF) ? JSON.parse(fs.readFileSync(metaF)) : { shots: {} };
 Object.assign(meta, { location: 'DVI Test', location_tz: TZ, process_TZ: process.env.TZ || null, process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone });
 meta.browser_zone = await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
+meta.app_timezone_key = await page.evaluate(() => localStorage.getItem('timezone'));
 const box = async loc => { const b = await loc.first().boundingBox().catch(() => null); return b && { x: Math.round(b.x * 2), y: Math.round(b.y * 2), w: Math.round(b.width * 2), h: Math.round(b.height * 2) }; };
 const txt = async loc => (await loc.first().innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
 const save = () => fs.writeFileSync(metaF, JSON.stringify(meta, null, 1));

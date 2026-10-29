@@ -21,6 +21,8 @@ const meta = { mode, location: M.loc, location_tz: M.tz, process_TZ: process.env
   process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone, observed_at_utc: new Date().toISOString(), shots: {} };
 meta.browser_zone = await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
 meta.browser_now = await page.evaluate(() => new Date().toString());
+meta.app_timezone_key = await page.evaluate(() => localStorage.getItem('timezone'));
+meta.requests = []; page.on('request', r => { const u = r.url(); if (/\/api\/(dashboard\/reports|reporting)/.test(u)) meta.requests.push(decodeURIComponent(u.replace(/^.*\/api/, '')).replace(/reports\[\]=[a-zA-Z]+&?/g, '').slice(0, 220)); });
 const box = async loc => { const b = await loc.first().boundingBox().catch(() => null); return b && { x: Math.round(b.x * 2), y: Math.round(b.y * 2), w: Math.round(b.width * 2), h: Math.round(b.height * 2) }; };
 const txt = async loc => (await loc.first().innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
 const shot = async (name, extra = {}) => { await page.screenshot({ path: `${OUT}/${name}.png` }); meta.shots[name] = { ...extra, header: await txt(page.locator('header')) }; fs.writeFileSync(`${OUT}/meta.json`, JSON.stringify(meta, null, 1)); };

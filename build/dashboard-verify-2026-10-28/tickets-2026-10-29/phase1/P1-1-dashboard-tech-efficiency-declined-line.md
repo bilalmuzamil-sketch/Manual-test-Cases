@@ -4,7 +4,7 @@ TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboa
 LINKS: relates to SV-9575 (Dashboard v1 - Story 3 - Measure Formulas & Report Parity)
 PICTURES (in this order): pictures/P1-1-1-dashboard-technician-efficiency.png · pictures/P1-1-2-work-order-S1-38198-lines.png · pictures/P1-1-3-invoice-S1-38198.png
 BASIS: Chris Ward's answer to question 1 (28 Oct 2026): "(b) Only billed lines count. A declined line wasn't invoiced, so its tech time shouldn't count either. Defect."
-RE-CHECKED: 29 Oct 2026 ~23:25 UTC (= 28 Oct, 7:25 PM in Toronto), staging v26.43.2-f8698cb, DVI Test; session, browser and test computer all on America/Toronto.
+RE-CHECKED: 28 Oct 2026 23:25 UTC (API) and 29 Oct 2026 00:39 UTC = 28 Oct 8:39 PM Toronto (screen, pictures), staging v26.43.2-f8698cb, DVI Test; session, browser, the app's own time-zone setting and the test computer all on America/Toronto (Rule 99).
 -->
 
 ## What is wrong
@@ -38,7 +38,7 @@ The **Billing Efficiency** tile already leaves declined lines out.
 
 **Expected:** Fabian Bonjean shows **1.00** Invoiced Tech Hrs, **1.00** Clocked, **100.00 %**. Only line 1 was billed: 1.00 ÷ 1.00 = 100 %.
 
-The tile headline is high for the same reason. When we checked, it read **196.08 %** (6.00 / 3.06). Three lines were declined that week at DVI Test. Without them it would read **147.06 %** (3.00 ÷ 2.04).
+The tile headline is high for the same reason. When we took the picture it read **158.10 %** (8.00 Invoiced Tech Hrs / 5.06 Clocked). Three lines were declined at DVI Test that week, with 1.02 hours clocked on them. Those hours are inside the 5.06 Clocked. The **Billing Efficiency** tile already leaves them out: it shows 4.04 Clocked, which is 5.06 − 1.02.
 
 ---
 
@@ -52,7 +52,7 @@ Dashboard PRD, version 53 (22 Oct 2026), Story 3, S3-R2, Technician Efficiency:
 
 ## Screenshots
 
-**1.** Dashboard, Technician Efficiency, Oct 25 – Oct 28: Fabian Bonjean 2.00 / 1.50 / 133.33 % (should be 1.00 / 1.00 / 100.00 %). Billing Efficiency already leaves the declined lines out.
+**1.** Dashboard, Technician Efficiency, This Week (Oct 25 – Oct 28): Fabian Bonjean 2.00 / 1.50 / 133.33 % (should be 1.00 / 1.00 / 100.00 %). Billing Efficiency already leaves the declined lines out (4.04 Clocked against 5.06).
 
 **2.** Work order S1-38198: line 1 Complete, line 2 Declined.
 
@@ -61,7 +61,8 @@ Dashboard PRD, version 53 (22 Oct 2026), Story 3, S3-R2, Technician Efficiency:
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
-- Browser and test computer set to the location's time zone (America/Toronto).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
+- Other test data at DVI Test changes the tile total from day to day. Fabian Bonjean's row on S1-38198 is the stable example.
 - The work orders S1-38198, S1-38199 and S1-38195 are test data at DVI Test and stay in place.
 - Not checked on Production or on a QA branch.
 

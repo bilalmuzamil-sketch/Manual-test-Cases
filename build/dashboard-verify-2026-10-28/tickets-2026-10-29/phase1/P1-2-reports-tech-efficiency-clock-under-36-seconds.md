@@ -4,7 +4,7 @@ TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboa
 LINKS: relates to SV-2115 (Create Technician Efficiency (invoiced) report) · relates to SV-5450 (BE 'Completed' Technician Efficiency Report) · relates to SV-9575 (Dashboard v1 - Story 3)
 PICTURES: pictures/P1-2-1-dashboard-technician-efficiency.png · pictures/P1-2-2-work-order-S3-17383-line-4.png · pictures/P1-2-3-technician-efficiency-report-line.png
 BASIS: Chris Ward's answer to question 28 (28 Oct 2026): "Yes. Split on the real time clocked and round only for display, so that tech gets the full 0.50. Defect."
-RE-CHECKED: 28 Oct 2026, 11:23 PM–11:40 PM UTC, staging v26.43.2-f8698cb, Staging Lethbridge - 4310; session, browser and test computer all on America/Edmonton.
+RE-CHECKED: 28 Oct 2026 23:23 UTC (API) and 29 Oct 2026 00:37–00:38 UTC (screen, pictures re-taken), staging v26.43.2-f8698cb, Staging Lethbridge - 4310; session, browser, the app's own time-zone setting and the test computer all on America/Edmonton. Same figures both times.
 -->
 
 ## What is wrong
@@ -65,7 +65,7 @@ Dashboard PRD, version 53, Story 3, S3-R2:
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026, Admin.
-- Browser and test computer set to the location's time zone (America/Edmonton).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Edmonton).
 - Not checked on Production or on a QA branch.
 
 ## For developers

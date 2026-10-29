@@ -14,12 +14,15 @@ const { browser, page } = await boot2('admin', { workplaceId: WP, timezone: TZ, 
 await page.evaluate(w => localStorage.setItem('location', JSON.stringify(w)), WP);
 const meta = { mode, location: LOCN, location_tz: TZ, process_TZ: process.env.TZ, process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone, observed_at_utc: new Date().toISOString(), shots: {}, notes: {} };
 meta.browser_zone = await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
+meta.date_requests = [];
+page.on('request', r => { const u = decodeURIComponent(r.url()); if (/api\.staging/.test(u) && /(start_date|end_date|asOfDate|created_after|created_before|range=)/.test(u)) meta.date_requests.push(u.replace(/^https:\/\/api\.staging\.shopview\.com/, '').slice(0, 400)); });
 meta.browser_now = await page.evaluate(() => new Date().toString());
 const B = b => b && { x: Math.round(b.x * 2), y: Math.round(b.y * 2), w: Math.round(b.width * 2), h: Math.round(b.height * 2) };
 const box = async loc => B(await loc.first().boundingBox().catch(() => null));
 const txt = async loc => (await loc.first().innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
+const appKey = async () => { meta.app_timezone_key = await page.evaluate(() => localStorage.getItem('timezone')).catch(() => null); };
 const save = () => fs.writeFileSync(`${OUT}/meta.json`, JSON.stringify(meta, null, 1));
-const shot = async (name, extra = {}) => { await page.screenshot({ path: `${OUT}/${name}.png` }); meta.shots[name] = { ...extra, header: (await txt(page.locator('header'))).slice(0, 200) }; save(); };
+const shot = async (name, extra = {}) => { await appKey(); await page.screenshot({ path: `${OUT}/${name}.png` }); meta.shots[name] = { ...extra, header: (await txt(page.locator('header'))).slice(0, 200) }; save(); };
 const go = async (p, wait = 12000) => { await page.goto(APP + p, { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(wait);
   meta.appVersion = await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null); };
 const rowBox = async (t, scope = page) => { const r = scope.locator('tr').filter({ hasText: t }).first(); await r.evaluate(e => e.scrollIntoView({ block: 'center' })).catch(() => {}); await page.waitForTimeout(800); return { box: await box(r), text: await txt(r) }; };

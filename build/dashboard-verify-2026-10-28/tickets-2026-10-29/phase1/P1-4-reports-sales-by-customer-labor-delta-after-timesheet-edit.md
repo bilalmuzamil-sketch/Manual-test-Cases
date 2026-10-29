@@ -4,7 +4,7 @@ TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboa
 LINKS: relates to SV-8610 (SBC - Story 12 - Inv. Hrs (Labor Delta) display) · relates to SV-9577 (Dashboard v1 - Story 5 - Count Tiles)
 PICTURES: pictures/P1-4-1-edit-timesheet.png · pictures/P1-4-2-stats-tab-after.png · pictures/P1-4-3-dashboard-sales-by-customer-after.png
 BASIS: Chris Ward's answer to question 27 (28 Oct 2026): "Use the figures as they are now, so the reports agree with the work order's Stats tab. Defect."
-REPRODUCED: 28 Oct 2026, 11:47 PM–11:52 PM UTC (7:47–7:52 PM in Toronto), staging v26.43.2-f8698cb, DVI Test. The work order was set up for the test; the correction was made on the screen (Timesheet Activities → Edit timesheet). Session, browser and test computer all on America/Toronto.
+REPRODUCED: 28 Oct 2026, 11:47 PM–11:52 PM UTC (7:47–7:52 PM in Toronto), staging v26.43.2-f8698cb, DVI Test. The work order was set up for the test; the correction was made on the screen (Timesheet Activities → Edit timesheet). Session, browser and test computer all on America/Toronto. Stats tab and Dashboard re-taken 29 Oct 2026 00:41 UTC (8:41 PM Toronto) with the app's own time-zone setting also on America/Toronto: same figures (+0.50). The edit dialog showed the clock in Toronto time (07:07 PM), so that picture stands.
 SCOPE NOTE: Sales By Representative has the same behaviour (Chris's answer covers both). That report is not on the Dashboard, so it goes in the Phase-2 batch as its own ticket.
 -->
 
@@ -63,7 +63,7 @@ and hours worked are
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
-- Browser and test computer set to the location's time zone (America/Toronto).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).
 - Not checked on Production or on a QA branch.
 
 ## For developers

@@ -4,7 +4,7 @@ TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboa
 LINKS: relates to SV-8595 ([Reports Suite][B2] Technician Utilization (TU) report) · relates to SV-9575 (Dashboard v1 - Story 3)
 PICTURES: pictures/P1-3-1-dashboard-technician-utilization.png · pictures/P1-3-2-technician-utilization-report.png
 BASIS: Chris Ward's answer to question 10 (28 Oct 2026): "Leave them off the report. Under 0.01 hours counts as no time. S2-R7 gets updated."
-RE-CHECKED: 28 Oct 2026, 11:30 PM UTC (= 29 Oct, 4:30 AM in Karachi), staging v26.43.2-f8698cb, Staging Heavy Duty - 9919; session, browser and test computer all on Asia/Karachi.
+RE-CHECKED: 29 Oct 2026 00:38 UTC (= 29 Oct, 5:38 AM in Karachi), staging v26.43.2-f8698cb, Staging Heavy Duty - 9919; session, browser, the app's own time-zone setting and the test computer all on Asia/Karachi (the Dashboard asked for Oct 1 – Oct 29, Karachi's This Month).
 NOTE FOR THE QA LEAD: this changes a ROW on the Dashboard table, not a figure — the headline % and the hours are unaffected.
 -->
 
@@ -50,7 +50,7 @@ Under 0.01 hours (36 seconds) counts as no time, so the technician should not be
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
-- Browser and test computer set to the location's time zone (Asia/Karachi).
+- Browser, the app's own time-zone setting and the test computer all set to the location's time zone (Asia/Karachi).
 - Also seen for Nebojsa Custom-Admin (four clocks of a few seconds each on 16–17 Sep 2026) with This Year selected.
 - Not checked on Production or on a QA branch.
 

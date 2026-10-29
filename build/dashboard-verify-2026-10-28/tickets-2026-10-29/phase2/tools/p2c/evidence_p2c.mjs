@@ -9,10 +9,13 @@ const LOC = { dvi: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto', '
 const mode = process.argv[2]; const [WP, TZ, LNAME] = LOC[/^(tax-cm|cm-customer|cm2)$/.test(mode) ? 'hd' : 'dvi'];
 const S = JSON.parse(fs.readFileSync('/tmp/cln/p2c/seed.json'));
 const OUT = `/tmp/cln/p2c/ev/${mode}`; fs.mkdirSync(OUT, { recursive: true });
-const { browser, page } = await boot2('admin', { workplaceId: WP, timezone: TZ, contextOptions: { viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 2, timezoneId: TZ } });
-await page.evaluate(w => localStorage.setItem('location', JSON.stringify(w)), WP);
+const { browser, page } = await boot2('admin', { workplaceId: WP, timezone: TZ, contextOptions: { viewport: { width: Number(process.env.VW || 1600), height: Number(process.env.VH || 1000) }, deviceScaleFactor: 2, timezoneId: TZ } });
+await page.evaluate(([w, z]) => { localStorage.setItem('location', JSON.stringify(w)); localStorage.setItem('timezone', JSON.stringify(z)); }, [WP, TZ]);
+// Rule 99 (29 Oct, Worker B): the app takes its zone from localStorage 'timezone' and falls back to UTC without it.
 const meta = { mode, location: LNAME, location_tz: TZ, process_TZ: process.env.TZ || null, process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone, observed_at_utc: new Date().toISOString(), shots: {} };
 meta.browser_zone = await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
+meta.app_timezone_key = await page.evaluate(() => localStorage.getItem('timezone'));
+meta.reqs = []; page.on('request', r => { const u = r.url(); if (u.includes('/api/reporting') || u.includes('statistics')) meta.reqs.push(decodeURIComponent(u.replace(/^.*\/api/, '')).slice(0, 260)); });
 meta.browser_now = await page.evaluate(() => new Date().toString());
 const box = async loc => { const b = await loc.first().boundingBox().catch(() => null); return b && { x: Math.round(b.x * 2), y: Math.round(b.y * 2), w: Math.round(b.width * 2), h: Math.round(b.height * 2) }; };
 const txt = async loc => (await loc.first().innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
@@ -149,6 +152,23 @@ if (mode === 'cm2') {          // C2 (Heavy Duty, This month): search CM2-4520 o
   meta.cust_heads = await page.locator('thead th').allInnerTexts(); meta.cust_filters = (await txt(page.locator('main'))).slice(0, 500);
   await shot('3-customer-invoices-cm', { row: { box: await box(cm), text: await txt(cm), cells: await cells(cm) } });
   meta.gets = gets; save();
+}
+if (mode === 'fin') {          // the work order's Finance tab (argv[3] = DEP | ZERO | REP), no changes
+  const W = S[process.argv[3]].wo; await go(`/workorders/${W}/finance`, 10000); const main = page.locator('main');
+  const marks = {}; for (const t of ['Invoice Date:', 'Payments', 'Balance', '(Deposit)', 'Total']) marks[t] = await box(main.getByText(t, { exact: false }));
+  await shot('1-finance-' + process.argv[3], { marks, text: (await txt(main)).slice(0, 1800) });
+}
+if (mode === 'editview') {     // C1: open Edit timesheet on S1-38217's clock and read it back (no save)
+  await go('/reports/punch-clock-activities', 10000);
+  const row = page.locator('tr').filter({ hasText: S.REP.display }).first(); await row.scrollIntoViewIfNeeded().catch(() => {}); await page.waitForTimeout(800); await row.hover().catch(() => {});
+  meta.row = await txt(row); meta.rowBox = await box(row); meta.chip = await txt(page.locator('button, .q-btn').filter({ hasText: 'Date:' }));
+  await shot('1-timesheet-row', { row: meta.rowBox, text: meta.row });
+  await row.locator('[data-test-id*="edit_timesheet"]').first().click(); await page.waitForTimeout(4000);
+  const dlg = page.locator('.q-dialog').last();
+  const start = dlg.locator('[data-test-id*="input_timesheet_start_date"] input, input[data-test-id*="input_timesheet_start_date"]').first();
+  const end = dlg.locator('[data-test-id*="input_timesheet_end_date"] input, input[data-test-id*="input_timesheet_end_date"]').first();
+  await shot('2-edit-timesheet', { dialog: await box(dlg), startBox: await box(start), endBox: await box(end), start: await start.inputValue().catch(() => null), end: await end.inputValue().catch(() => null), text: (await dlg.innerText()).replace(/\n+/g, ' | ').slice(0, 600) });
+  await dlg.locator('[data-test-id="button_close_dialog"], button').filter({ hasText: /close|Cancel/i }).first().click().catch(() => {});
 }
 meta.posts = posts; save();
 console.log(JSON.stringify({ mode, v: meta.appVersion, browser_zone: meta.browser_zone, process_zone: meta.process_zone, location_tz: meta.location_tz, shots: Object.keys(meta.shots) }));
