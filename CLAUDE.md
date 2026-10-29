@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **TEST THE STATE, NOT ONLY THE SCREEN (Standing Rule 119): OPEN EVERY SURFACE THAT SHOWS WHAT THE TEST CREATED, RUN THE SUMS THAT MUST HOLD, WALK EVERY LIST IN THE HANDOFF, AND TEST THE VARIANTS EARLIER FIXES OF THE SAME BUG FAMILY MISSED — every ticket, every area.**
 > - **A PAYMENT OVER SEVERAL INVOICES: OPEN EACH INVOICE ITSELF (payment lines + Balance must equal Total), COVER EVERY PAYMENT SOURCE incl. leftover deposits, READ THE PRIOR FIXES OF THE SAME BUG FAMILY, AND WALK THE HANDOFF'S "REGRESSION HOTSPOTS" (Standing Rule 118).**
 > - **BEFORE SAYING "NOT FOUND", RUN `build/testing-tools/recall.sh <noun>` — it searches the playbook, lessons, rules AND every findings folder; and promote every navigation fact to the playbook the same turn (Standing Rule 117).**
 > - **NOTHING HALTS THE WORK (Standing Rule 116): never idle on a wait — background long runs and start the next independent check; one blocked item never stops the rest; fail small; no rediscovery; ask for access the moment it is needed.**
@@ -4108,6 +4109,7 @@ deliver the 7-tab management report.
     ticket (Rule 84 — check the section is absent)**; priority Medium on any ticket created/edited
     (the priority rule).
     **(7b) THE VERDICT RESTS ON A FINISHED MATRIX (Rule 106)** — every point's cells observed, and every failing example was built using screens only (how it was built is written in the findings doc).
+    **(7c) THE STATE WAS CHECKED EVERYWHERE IT SHOWS (Rule 119)** — the findings doc lists the surfaces opened, the sums run, every handoff list walked (hotspots included) and the bug-family tickets read.
     **(8) READ IT BACK AFTER POSTING** — re-fetch the posted comment/ticket and verify the first line,
     the media count AND order, and the row counts against what was sent (the write response only echoes
     the request). A wrong post is corrected **in place** via `commentId`, never stacked (the one-complete-
@@ -5697,6 +5699,40 @@ deliver the 7-tab management report.
     deposit's full amount. Nemanja found it the next day on a real customer. The handoff's hotspot 3 said *"and on the invoice
     itself"*; we checked only the list. We had tested the same bug family on SV-9647 without the leftover-deposit case.
     Ties to Rules 40, 50, 74, 88, 89, 91, 96 and 117.
+
+119. **TEST THE STATE THE TICKET CREATES, NOT ONLY THE SCREEN THE TICKET IS ABOUT — every surface that shows it, the
+    sums that must hold, every list in the handoff, and the variants earlier fixes missed (all projects, every ticket).**
+    USER DIRECTIVE (2026-10-29, verbatim): *"SO when I ask you to learn from the mistake I mean to learn how to not make
+    similar mistakes in other tickets to test too. What have you learned from this ticket which you have saved for the other
+    ticket testing ?"*
+    **WHY THIS RULE EXISTS:** Rule 118 saved the SV-11744 lesson in payment words (invoices, deposits). The mistake itself had
+    nothing to do with payments, so it would have repeated on the next ticket in another area. This is the general form.
+    **(a) LIST EVERY PLACE THE STATE SHOWS, AND OPEN EACH ONE WHILE IT STANDS.** Whatever the test creates or changes (a
+    payment, a status, a quantity, a price, a note, a role), write down every screen and document that displays it: the list
+    row, the detail page, the printed/PDF copy, totals and badges, other tabs, the customer's or the vendor's view, an
+    export. Open each one while the state exists, not only after it is undone. The screen named in the ticket is one of
+    these, never the only one (Rule 40, applied to every ticket, not only spec deltas).
+    **(b) RUN THE SUMS THAT MUST HOLD ON EVERY DOCUMENT YOU OPEN.** Parts add up to the total · a list figure equals the
+    detail figure · stock before ± the change = stock after · a count equals the rows shown. Write the check down and
+    let a script print OK/MISMATCH where it can. One wrong line in a document is often visible ONLY as a sum that fails.
+    **(c) WALK EVERY LIST IN THE HANDOFF, NOT ONLY THE NUMBERED CHECKLIST.** "Regression hotspots", "not impacted", "known
+    mismatches", "edge cases", "also check" are named checks (Rule 91). The pre-post gate ticks each item.
+    **(d) BEFORE TESTING, FIND THE BUG FAMILY.** Search Jira for earlier fixes in the same area (same screen, same words in
+    the title, same developer's linked tickets). Read what each one tested, and put into the matrix every variant none of
+    them covered. A family that broke twice will break again in the case nobody tried.
+    **(e) THE VARIANT MATRIX COVERS EVERY KIND OF INPUT THE STATE CAN COME FROM** — every source, type, origin and order
+    (Rule 96). For money that is cash / credit / deposit tied to a job / leftover deposit / mixed; for parts it is inventory /
+    vendor / core / special order; for a user it is every role. Name the dimensions before testing.
+    **(f) IN API MODE, THE SCRIPTED READS INCLUDE THE DOCUMENTS THE USER SEES** — not only balances and fields. Reading data
+    faster must never mean reading fewer surfaces (Rule 113's "nothing skipped").
+    **(g) WHEN SOMEONE ELSE LATER FINDS A BUG WE MISSED, FIND THE MOMENT WE COULD HAVE SEEN IT** in our own evidence, name
+    which of (a)–(f) would have caught it, and save the general form here, not only the ticket's own words (Rule 82).
+    **THE PRE-POST GATE (Rule 72) CHECKS IT:** the findings doc lists the surfaces opened, the sums run, every handoff list
+    walked and the bug-family tickets read. A missing entry means the gate has not run.
+    **RATIONALE (2026-10-29, SV-11744 → SV-11960):** the state was right there on 28 Oct (one payment split over two invoices
+    with a leftover deposit). We checked the screen the ticket named and the balances, never opened the invoices, never
+    added up their lines, skipped the handoff's hotspot list, and had not carried forward SV-9647's gaps. Nemanja found the
+    bug the next day. None of those five gaps is about payments. Ties to Rules 40, 50, 72, 74, 82, 89, 91, 93, 96, 113 and 118.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

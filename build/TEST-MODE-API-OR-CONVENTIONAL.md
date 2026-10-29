@@ -25,6 +25,8 @@ What changes is **how** each check is observed, never **which** checks run.
   a picture. Set-up data is created through the API.
 - **The screen still decides the verdict (Rule 89).** Anything the user does on a screen is still driven on the screen — the script
   clicks, drags and types through the real UI where the ticket is about the UI; only the reading is automated.
+- **The reads cover every surface that shows the state, not just the fields the ticket names (Rule 119)** — the documents the
+  user opens (invoice, print/PDF, detail page, other tabs) are read too, with the add-up checks run on each.
 - **Production before, in one read** of the same values (Rule 86), diffed against the branch for **every** element (Rule 74).
 - **Evidence, cut down to what proves it:** one annotated before/after picture per point that has a visible result, plus the full
   table of readings in the comment. No step-by-step picture sets.
