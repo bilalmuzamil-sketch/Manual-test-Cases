@@ -1,0 +1,469 @@
+[
+ {
+  "id": 96965,
+  "title": "Clear shifts removes only the old lead's whole-work-order shifts",
+  "section": "S4 \u2014 Reassign or unassign the lead technician",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "at the moment the lead changes; this is what the Schedule's Entire work order drop creates. Lines not yet approved, and declined lines, are ignored. On a work order with one line, a shift on that line counts, and so does a Choose lines shift that ticks every approved line. A shift on o"
+  ]
+ },
+ {
+  "id": 96972,
+  "title": "A reassign is refused if the work order was just invoiced elsewhere",
+  "section": "S4 \u2014 Reassign or unassign the lead technician",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " Finance tab &gt; Create Invoice (the work order needs a contact person). Paid = record a full payment on that invoice. Declined = decline the estimate.  Create these work orders for \"ZZAUTOTEST F1 Invoiced Elsewhere\": Work Orders &gt; Create Work Order &gt; in the New Work Order windo"
+  ]
+ },
+ {
+  "id": 96974,
+  "title": "The dialog's open count is the technician's Approved to Complete work",
+  "section": "S4 \u2014 Reassign or unassign the lead technician",
+  "by": 3,
+  "auto": 2,
+  "atm": 3,
+  "snips": [
+   "d eight work orders led by [Tech-B]: 1 Estimate, 1 Approved, 1 In Progress, 1 Review, 1 Complete, 1 Invoiced, 1 Paid, 1 Declined; plus 1 Approved work order led by [Tech-A] where [Tech-B] is only the technician on a line.  Optional: if [Tech-B] is also enrolled at a second location, 1 ",
+   " Finance tab &gt; Create Invoice (the work order needs a contact person). Paid = record a full payment on that invoice. Declined = decline the estimate.  Create these work orders for \"ZZAUTOTEST F1 Open Count\" with Lead Technician [Tech-B] (set the lead while they are open; while a wor",
+   " pick the technician &gt; Reassign): 1 Estimate, 1 Approved, 1 In Progress, 1 Review, 1 Complete, 1 Invoiced, 1 Paid, 1 Declined.  Create 1 more Approved work order for \"ZZAUTOTEST F1 Open Count\" led by [Tech-A] where [Tech-B] is only the technician on a line (Edit Line &gt; Technician",
+   "ina Newtech's count reads 4 open: Approved 1 + In Progress 1 + Review 1 + Complete 1 = 4.  Estimate, Invoiced, Paid and Declined are not counted (8 work orders led, 4 counted), her line-only work order on Esther Howard's work order is not counted, any work at another location is not co"
+  ]
+ },
+ {
+  "id": 690650,
+  "title": "Clear-shifts question opens only for the old lead's unfinished shifts (release)",
+  "section": "S4 \u2014 Reassign or unassign the lead technician",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "at the moment the lead changes; this is what the Schedule's Entire work order drop creates. Lines not yet approved, and declined lines, are ignored. On a work order with one line, a shift on that line counts, and so does a Choose lines shift that ticks every approved line. A shift on o"
+  ]
+ },
+ {
+  "id": 690655,
+  "title": "Line with only a Schedule shift technician follows the new lead (release)",
+  "section": "S4 \u2014 Reassign or unassign the lead technician",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "at the moment the lead changes; this is what the Schedule's Entire work order drop creates. Lines not yet approved, and declined lines, are ignored. On a work order with one line, a shift on that line counts, and so does a Choose lines shift that ticks every approved line. A shift on o"
+  ]
+ },
+ {
+  "id": 690656,
+  "title": "The Clear shifts question ignores lines not approved or declined (release)",
+  "section": "S4 \u2014 Reassign or unassign the lead technician",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "The Clear shifts question ignores lines not approved or declined (release)    Setup (manual QA tester and Claude session)       Preconditions    You are signed in as an Owner or Admin user whose role has Work orders &gt; V",
+   "tomer-A} is led by {Technician-A} and has an approved line {Line-3} (for example \"Service - Full grease service\") and a declined line {Line-4} (for example \"Service - Adjust clutch\").  Work order {Work-order-3} (for example S10043-17643) for {Customer-A} is led by {Technician-A} and ha",
+   "tled \"Clear {Technician-A}'s scheduled shifts?\" (with the example name: \"Clear Esther Howard's scheduled shifts?\"). The declined line ({Line-4}) is ignored.  Step 8: after Keep shifts {Work-order-2} moves to {Technician-B}'s column.  Step 9: a question opens.  Step 10: the question is ",
+   "at the moment the lead changes; this is what the Schedule's Entire work order drop creates. Lines not yet approved, and declined lines, are ignored. On a work order with one line, a shift on that line counts, and so does a Choose lines shift that ticks every approved line. A shift on o"
+  ]
+ },
+ {
+  "id": 690657,
+  "title": "An Entire work order shift stops counting after a new line is approved (release)",
+  "section": "S4 \u2014 Reassign or unassign the lead technician",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "at the moment the lead changes; this is what the Schedule's Entire work order drop creates. Lines not yet approved, and declined lines, are ignored. On a work order with one line, a shift on that line counts, and so does a Choose lines shift that ticks every approved line. A shift on o"
+  ]
+ },
+ {
+  "id": 581894,
+  "title": "A card's estimated hours match Total Hours on the work order page",
+  "section": "S5 \u2014 Choose what is shown (fields and columns)",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "lines {Line-1} (for example 0.30 hours), {Line-2} (for example 1.50 hours) and {Line-3} (for example 0.40 hours), and a declined line {Line-4} (for example 2.00 hours).  On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, cli",
+   "ard.     Expected results    Step 4: Total Hours reads 2.2 hrs with the example values (0.30 + 1.50 + 0.40 = 2.20). The declined line's 2.00 hours are left out.  Step 10: the card shows the same estimated hours as Total Hours (2.2 with the example values). A difference of up to 0.1 hou",
+   "rs is accepted, so 2.1 to 2.3 passes. 4.2 (2.20 + 2.00, the declined line counted) fails. The List's Estimated Hours is not part of this check.    Source &mdash; where this behaviour comes from  Epic SV-10043; story SV-10048 (",
+   "source (for reproducibility)     S5-R11a:  &ldquo;Estimated hours on a card is the total of the work order's lines with declined lines left out, the same figure as the work order page's Total Hours. It can differ from that page by up to 0.1 hours, because the page rounds each line to w"
+  ]
+ },
+ {
+  "id": 97001,
+  "title": "Work orders can be dragged within a technician and to another technician",
+  "section": "S9 \u2014 Drag to reorder work and technician groups/columns",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 97003,
+  "title": "A view-only user can reorder technician columns and Unassigned stays first",
+  "section": "S9 \u2014 Drag to reorder work and technician groups/columns",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "click Mark Reviewed; in the Mark as reviewed window fill Mileage or Engine Hours if asked and click Confirm review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 97004,
+  "title": "Pinned technicians can only be reordered among the pinned technicians",
+  "section": "S9 \u2014 Drag to reorder work and technician groups/columns",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 97005,
+  "title": "The order of work orders is shared by everyone at the location",
+  "section": "S9 \u2014 Drag to reorder work and technician groups/columns",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 97006,
+  "title": "Dragging in Tech View or Board View does not change the List sort",
+  "section": "S9 \u2014 Drag to reorder work and technician groups/columns",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 97010,
+  "title": "Nothing can be dropped on an inactive technician, and a failed drop goes back",
+  "section": "S9 \u2014 Drag to reorder work and technician groups/columns",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "t technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.&rdquo;   S4-R10:  &ldquo;Enforce the prohibited-status rule in S4-N2 on every lead-change path, inclu"
+  ]
+ },
+ {
+  "id": 97012,
+  "title": "A drop is refused if the status or permission changed after the board loaded",
+  "section": "S9 \u2014 Drag to reorder work and technician groups/columns",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 97013,
+  "title": "Reordering while filtered keeps the order right when the filter is cleared",
+  "section": "S9 \u2014 Drag to reorder work and technician groups/columns",
+  "by": 3,
+  "auto": 2,
+  "atm": 3,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 368148,
+  "title": "Reordering technicians while some are hidden keeps the hidden ones in place",
+  "section": "S9 \u2014 Drag to reorder work and technician groups/columns",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 690644,
+  "title": "Dragging a card changes its lead, dragging to Unassigned clears it (release)",
+  "section": "S9 \u2014 Drag to reorder work and technician groups/columns",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 690646,
+  "title": "Moving a card updates the counts, reordering shows no message (release)",
+  "section": "S9 \u2014 Drag to reorder work and technician groups/columns",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 690648,
+  "title": "Blocked analytics never stops the page, settings or a lead change (release)",
+  "section": "S12 \u2014 Google Analytics for display and field usage",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 97030,
+  "title": "Header counts match the rows and cards listed, in every display",
+  "section": "Counts and data accuracy (Rule 116)",
+  "by": 3,
+  "auto": 2,
+  "atm": 3,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 97031,
+  "title": "Header counts change by exactly one after a move, with nothing counted twice",
+  "section": "Counts and data accuracy (Rule 116)",
+  "by": 3,
+  "auto": 2,
+  "atm": 3,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 97032,
+  "title": "The open count in the Reassign dialog counts exactly four statuses",
+  "section": "Counts and data accuracy (Rule 116)",
+  "by": 3,
+  "auto": 2,
+  "atm": 3,
+  "snips": [
+   "unt Estimate Co\", \"ZZAUTOTEST F3 Open Count Invoiced Co\", \"ZZAUTOTEST F3 Open Count Paid Co\", \"ZZAUTOTEST F3 Open Count Declined Co\", \"ZZAUTOTEST F3 Open Count Line Only Co\", \"ZZAUTOTEST F3 Open Count Loc2 Co\", \"ZZAUTOTEST F3 Open Count Spare Co\". The steps and expected results call th",
+   "he end of the name (\"Approved Co\", \"Progress Co\", \"Review Co\", \"Complete Co\", \"Estimate Co\", \"Invoiced Co\", \"Paid Co\", \"Declined Co\", \"Line Only Co\", \"Loc2 Co\", \"Spare Co\").  Work orders at this location, lead [Tech-B] unless stated:  Counted: Approved (1), In Progress (1), Review / Re",
+   "ady for Review (1), Complete (1) = 4.  Not counted: Estimate (1), Invoiced (1), Paid (1), Declined (1).  Not counted: an Approved work order (Line Only Co) with lead Ana where [Tech-B] is only the technician on one line.  One spare Approved work order with",
+   "unt Estimate Co\", \"ZZAUTOTEST F3 Open Count Invoiced Co\", \"ZZAUTOTEST F3 Open Count Paid Co\", \"ZZAUTOTEST F3 Open Count Declined Co\", \"ZZAUTOTEST F3 Open Count Line Only Co\", \"ZZAUTOTEST F3 Open Count Loc2 Co\", \"ZZAUTOTEST F3 Open Count Spare Co\". For each: top menu Customers &gt; New "
+  ]
+ },
+ {
+  "id": 368158,
+  "title": "The On Site toggle still saves on an Invoiced work order",
+  "section": "TP - Tech-plan coverage (Imported, mobile breakpoint, tenancy)",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "t technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.&rdquo;   Tech plan 5 change endpoint:  &ldquo;Re-sending the *current* lead stays a no-op so the asse"
+  ]
+ },
+ {
+  "id": 590123,
+  "title": "Design: Dragging shows a blue line where it will drop, a dark message if refused",
+  "section": "Design \u2014 how it looks",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "t technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.&rdquo;   S4-N7:  &ldquo;Visually indicate that an Invoiced or Paid work order can only be reordered w"
+  ]
+ },
+ {
+  "id": 368147,
+  "title": "A user without Work Orders create and edit cannot drag work orders",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 3,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 96964,
+  "title": "Invoiced and Paid work orders show why the lead can't be changed",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " Finance tab &gt; Create Invoice (the work order needs a contact person). Paid = record a full payment on that invoice. Declined = decline the estimate.  Create these work orders for \"ZZAUTOTEST F1 Locked Lead Tooltip\": Work Orders &gt; Create Work Order &gt; in the New Work Order wind",
+   "t technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.&rdquo;   Not yet checked against a build in this wording.  AUTOMATION: READY "
+  ]
+ },
+ {
+  "id": 690642,
+  "title": "SV-11545 - Lead of an Invoiced or Paid work order cannot be changed (release)",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "nician-A}; {Work-order-3} Paid, led by {Technician-A}; {Work-order-4} Invoiced, with no lead technician; {Work-order-5} Declined, led by {Technician-A}; {Work-order-6} Complete, led by {Technician-A}.  {Technician-B} is not the technician on any line of these work orders.  No technicia",
+   " {Work-order-4} cannot be moved out of Unassigned, but it can be reordered inside it.  Steps 11 and 12: {Work-order-5} (Declined) and {Work-order-6} (Complete) move to {Technician-B} normally: each card now sits in {Technician-B}'s column.  Step 13: the work order page of {Work-order-2",
+   " Invoiced and Paid rules this case checks are unchanged, so the expected results are unchanged. Review Decisions DR-37 (Declined and Complete move freely). PO answer to engineering, Sasha Grosman 24 Sep 2026 (Invoiced/Paid reorder within their technician or within Unassigned). In versi",
+   "t technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.&rdquo;   S4-N6:  &ldquo;On an Invoiced or Paid work order the Assign lead technician or Reassign lead"
+  ]
+ },
+ {
+  "id": 690647,
+  "title": "SV-11545 - Invoiced and Paid work orders can be reordered but not reassigned (release)",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "le S10043-17811 to S10043-17816): {Work-order-1} Approved, {Work-order-2} Invoiced, {Work-order-3} Paid, {Work-order-4} Declined and {Work-order-5} Complete, all led by {Technician-A}, and {Work-order-6} Invoiced with no lead technician.  {Technician-B} is not the technician on any lin",
+   "count is unchanged.  Step 8: {Work-order-6} cannot be moved out of Unassigned. It stays there.  Step 9: {Work-order-4} (Declined) and {Work-order-5} (Complete) move to {Technician-B}'s column.  Step 10: Tech View shows {Work-order-3}'s row in {Technician-A}'s group.  Step 11: the same ",
+   "Technician-A}'s group.   Release copy of C97009 (in the Fast-follow folder). It leaves out the messages shown after the Declined and Complete work orders move, which waits on SV-11522 / SV-11524: Chris Ward (product owner) made these fast-follows for after the release (Slack, 20 Oct 20",
+   "t technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.&rdquo;   S4-N7:  &ldquo;Visually indicate that an Invoiced or Paid work order can only be reordered w"
+  ]
+ },
+ {
+  "id": 590114,
+  "title": "Design: Tech View rows show a blue number, a thin progress bar and an avatar",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "rds; Chris Ward confirmed on 15 Oct 2026, answer 31, that the names show as the List shows them). The design also locks Declined and Imported work orders; this case checks the padlock on an Invoiced one only.  PRD version 55 (S2-R20; Chris Ward ruling on Slavcho Mitrov's questions, 15 "
+  ]
+ },
+ {
+  "id": 96963,
+  "title": "The lead of an Invoiced or Paid work order cannot be changed in any way",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "nician-A}; {Work-order-3} Paid, led by {Technician-A}; {Work-order-4} Invoiced, with no lead technician; {Work-order-5} Declined, led by {Technician-A}; {Work-order-6} Complete, led by {Technician-A}.  {Technician-B} is not the technician on any line of these work orders.  No technicia",
+   "7: {Work-order-4} cannot be moved out of Unassigned, but it can be reordered inside it.  Steps 8 and 9: {Work-order-5} (Declined) and {Work-order-6} (Complete) move to {Technician-B} normally, with the messages \"{Work-order-5} assigned to {Technician-B}\" and \"{Work-order-6} assigned to",
+   " Invoiced and Paid rules this case checks are unchanged, so the expected results are unchanged. Review Decisions DR-37 (Declined and Complete move freely). PO answer to engineering, Sasha Grosman 24 Sep 2026 (Invoiced/Paid reorder within their technician or within Unassigned). In versi",
+   "t technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.&rdquo;   S4-N6:  &ldquo;On an Invoiced or Paid work order the Assign lead technician or Reassign lead"
+  ]
+ },
+ {
+  "id": 368133,
+  "title": "The clear-shifts question appears only for the old lead's unfinished shifts",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 3,
+  "snips": [
+   "at the moment the lead changes; this is what the Schedule's Entire work order drop creates. Lines not yet approved, and declined lines, are ignored. On a work order with one line, a shift on that line counts, and so does a Choose lines shift that ticks every approved line. A shift on o"
+  ]
+ },
+ {
+  "id": 581891,
+  "title": "A line with only a Schedule shift technician follows the new lead technician",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "at the moment the lead changes; this is what the Schedule's Entire work order drop creates. Lines not yet approved, and declined lines, are ignored. On a work order with one line, a shift on that line counts, and so does a Choose lines shift that ticks every approved line. A shift on o"
+  ]
+ },
+ {
+  "id": 581892,
+  "title": "The Clear shifts question ignores lines that are not approved or are declined",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "The Clear shifts question ignores lines that are not approved or are declined    Setup (manual QA tester and Claude session)       Preconditions    You are signed in as an Owner or Admin user whose role has Work orders &gt; View and Wo",
+   "tomer-A} is led by {Technician-A} and has an approved line {Line-3} (for example \"Service - Full grease service\") and a declined line {Line-4} (for example \"Service - Adjust clutch\").  Work order {Work-order-3} (for example S10043-17643) for {Customer-A} is led by {Technician-A} and ha",
+   "?\" (with the example name: \"Clear Esther Howard's scheduled shifts?\"). The line that is not approved ({Line-2}) and the declined line ({Line-4}) are ignored, and a Choose lines shift that ticks every approved line counts.  Steps 5, 8 and 11: after Keep shifts each work order moves to {",
+   "at the moment the lead changes; this is what the Schedule's Entire work order drop creates. Lines not yet approved, and declined lines, are ignored. On a work order with one line, a shift on that line counts, and so does a Choose lines shift that ticks every approved line. A shift on o"
+  ]
+ },
+ {
+  "id": 581893,
+  "title": "An Entire work order shift stops counting once a new line is approved",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "at the moment the lead changes; this is what the Schedule's Entire work order drop creates. Lines not yet approved, and declined lines, are ignored. On a work order with one line, a shift on that line counts, and so does a Choose lines shift that ticks every approved line. A shift on o"
+  ]
+ },
+ {
+  "id": 682428,
+  "title": "Undo cannot move back a work order that was invoiced in the meantime",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "t technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.&rdquo;   Last checked against build v26.43.2-539491f on 10/28/2026.  AUTOMATION: READY "
+  ]
+ },
+ {
+  "id": 97002,
+  "title": "Dragging to another technician changes the lead, Unassigned clears it",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 97008,
+  "title": "Moving to another technician shows the message, reordering shows none",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 3,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ },
+ {
+  "id": 97009,
+  "title": "Invoiced and Paid work orders can only be reordered within their technician",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   "le S10043-17811 to S10043-17816): {Work-order-1} Approved, {Work-order-2} Invoiced, {Work-order-3} Paid, {Work-order-4} Declined and {Work-order-5} Complete, all led by {Technician-A}, and {Work-order-6} Invoiced with no lead technician.  {Technician-B} is not the technician on any lin",
+   "count is unchanged.  Step 8: {Work-order-6} cannot be moved out of Unassigned. It stays there.  Step 9: {Work-order-4} (Declined) and {Work-order-5} (Complete) move to {Technician-B}'s column, with the messages \"{Work-order-4} assigned to {Technician-B}\" and \"{Work-order-5} assigned to",
+   "t technician (or within Unassigned), but it cannot be moved to another technician, to Unassigned, or out of Unassigned. Declined and Complete work orders can be moved freely, as today.&rdquo;   S4-N7:  &ldquo;Visually indicate that an Invoiced or Paid work order can only be reordered w"
+  ]
+ },
+ {
+  "id": 97028,
+  "title": "Blocked analytics never stops the page, settings or reassignment",
+  "section": "Fast-follow",
+  "by": 3,
+  "auto": 2,
+  "atm": 1,
+  "snips": [
+   " shows \"Ready For Review\"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance"
+  ]
+ }
+]

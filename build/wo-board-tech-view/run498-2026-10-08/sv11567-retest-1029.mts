@@ -305,7 +305,7 @@ const shifts2 = async (wo: string, names: Record<string, string>) => { const fro
   return out.map((s) => `${names[s.staffId] ?? String(s.staffId).slice(0, 6)} ${new Intl.DateTimeFormat('en-CA', { timeZone: LTZ }).format(new Date(s.startsAt))} ${lTime(new Date(s.startsAt))}-${lTime(new Date(s.endsAt))}`).sort(); };
 const shiftCase = async (o: any, key: string, view: 'Board View' | 'Tech View') => {
   const A1 = await T(key, 'Ana'), B1 = await T(key, 'Ben'); const set = await mkSet(`ZZAUTOTEST ${key} Undo Shifts`, [{ co: 'W1', lead: A1 }]); o.data = set.w; o.ltz = LTZ;
-  const now = new Date(); const st = lTime(new Date(now.getTime() - 30 * 60000)); // under way: started 30 minutes ago, 3 hours long
+  const now = new Date(); const st = lTime(new Date(Math.floor((now.getTime() - 30 * 60000) / 900000) * 900000)); // under way: started 30–45 minutes ago on a quarter hour (the server refuses any other start), 3 hours long
   o.shiftNow = await mkShift2(set.w.W1.id, A1.staff_id, 0, st, 180); o.shiftTomorrow = await mkShift2(set.w.W1.id, A1.staff_id, 1, '08:00', 240);
   const names = { [A1.staff_id]: 'Ana', [B1.staff_id]: 'Ben' }; o.before = await shifts2(set.w.W1.id, names); o.nowLocal = `${lDate(0)} ${lTime(new Date())}`;
   await pins([A1.staff_id, B1.staff_id]); await go(view, set.q);
