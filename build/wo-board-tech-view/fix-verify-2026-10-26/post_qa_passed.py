@@ -14,6 +14,13 @@ KEY, TESTED, NOTE, PICS = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4:]
 # 28 Oct: QA_STATUS=Failed posts the same short comment as "→ QA Status: Failed" (default Passed, unchanged)
 STATUS = os.environ.get('QA_STATUS', 'Passed')
 assert PICS and all(os.path.isfile(p) for p in PICS), 'pictures missing'
+# 29 Oct (L0606, QA lead "never leave such gaps behind"): a Passed comment needs COVERAGE=<coverage.json> that ticket_coverage_gate.py passes —
+# every description / How-to-check line observed on every surface the ticket names, with evidence and a set-up read-back.
+if STATUS == 'Passed':
+    COV = os.environ.get('COVERAGE', '')
+    if not COV or not os.path.isfile(COV): sys.exit('REFUSED: set COVERAGE=<coverage.json> (ticket_coverage_gate.py --skeleton … drafts it); Passed needs every line × every view')
+    g = subprocess.run([sys.executable, f'{REPO}/build/testing-tools/ticket_coverage_gate.py', COV], capture_output=True, text=True)
+    if g.returncode != 0: sys.exit('REFUSED by ticket_coverage_gate.py:\n' + g.stdout)
 log = {'key': KEY, 'attach': []}
 s, t = jira('GET', f'/rest/api/2/issue/{KEY}?fields=status,attachment,comment')
 f = json.loads(t)['fields']; log['status_before'] = f['status']['name']

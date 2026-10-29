@@ -29,6 +29,7 @@ How the stores divide (each fact lives in ONE place; this map and `recall.py` fi
 | I am about to … | Look here first |
 |---|---|
 | sign in to a QA branch | `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`; playbook §A; WO Board harness `run498-2026-10-08/session.mts` (one sign-in reused) |
+| pass a ticket on its QA branch ("→ QA Status: Passed") | grid every description + How-to-check line × every named view with `build/testing-tools/ticket_coverage_gate.py`; `post_qa_passed.py` refuses without `COVERAGE=` (L0606, skill 09) |
 | find the Dashboard (section 12166) tests for given tickets | `build/dashboard-lookup-2026-10-23/RELATED-CASES.md` + `find_related.py` (L0571); runs 525 "Dashboards", 500 |
 | list Automated tests changed after automation, and WHY (ticket / PRD version / decision) | `build/wo-board-tech-view/automated-changed-why-2026-10-26/` (`pull_history.py`, `build_rows.py`, PRD version notes via `/wiki/rest/api/content/<id>/version`) (L0574); net-change list `build/wo-board-tech-view/AUTOMATED-TESTS-CHANGED-2026-10-23.md` (L0566) |
 | sign in to staging | `build/wo-board-tech-view/run498-2026-10-08/STAGING-READY.md` (THREE cookies: SV_SSO_SESSION, PHPSESSID, CF_CLEARANCE in `/tmp/shopview/app.env`); `build/BLOCKED-shopview-app-session.md`; L0064 |

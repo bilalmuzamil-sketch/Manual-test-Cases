@@ -674,6 +674,13 @@ attached). Then the ticket line and "what to do next". `push_results_to_run.py` 
 version, rule id) — pass it as `source` in the RESULTS json (the push tool refuses a Failed result without it). The ticket's
 Description opens "What the PRD (or design …) requires:" with the quote, then "What happens instead:".
 
+## 🛑 A TICKET PASSES ONLY WHEN EVERY LINE OF ITS DESCRIPTION IS SEEN IN EVERY VIEW IT NAMES (QA lead 29 Oct 2026, L0606)
+*"never leave such gaps behind, make sure you do th proper thorough testing, your work should never bite me"*.
+1. Before the first probe, draft the grid: `python3 build/testing-tools/ticket_coverage_gate.py --skeleton desc.txt --ticket KEY --surfaces "<every view/screen the ticket names>" > coverage.json` — one row per sentence of the description AND of "How to check".
+2. Build each state for real (Rule 107) and READ IT BACK (time against the location's own zone, status, lead, line technicians) — a 200 is not proof. Every different way a sentence can happen is its own check (refused by a rule AND a save that fails).
+3. Fill each cell: verdict, evidence file, what was seen, the read-back. A row on fewer views than the ticket names needs a `limit_reason` quoting the ticket.
+4. `ticket_coverage_gate.py coverage.json` must exit 0 before "→ QA Status: Passed"; `post_qa_passed.py` refuses without `COVERAGE=`. Exit 2 = post Failed; exit 1 = keep testing.
+
 ## Fast-follow tickets (QA lead 21 Oct, restated 23 Oct 2026) — the test leaves the run
 A Failed / Blocked / Retest test whose ticket carries the Jira label `fast-follow` is not kept in the run: correct its comment
 (Rule 135(8) shape), then move the case to its suite's "Fast-follow" folder (create it if missing) and take it out of the run.

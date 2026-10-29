@@ -126,6 +126,19 @@ def main(quick=False):
         check('results: a non-Passed result opens with its failing step(s) in bold and is refused without them (Rule 132)', ok and 'no "failed_steps"' in src132)
     except Exception as e:
         check('results: Rule 132 bold failing steps', False, repr(e)[:160])
+    # 7c2a · L0606 (2026-10-29): a ticket is Passed only when every description line × every named view has evidence + a set-up read-back
+    try:
+        d = tempfile.mkdtemp(); open(f'{d}/a.png', 'w').close()
+        cell = {'verdict': 'pass', 'evidence': ['a.png'], 'setup_readback': 'read back', 'observed': 'seen'}
+        full = {'ticket': 'X', 'build': 'b', 'surfaces': ['Board View', 'Tech View'], 'lines': [{'id': 'D1', 'quote': 'q', 'cells': {'Board View': cell, 'Tech View': cell}}]}
+        gap = json.loads(json.dumps(full)); del gap['lines'][0]['cells']['Tech View']
+        rcs = []
+        for c in (full, gap):
+            json.dump(c, open(f'{d}/c.json', 'w')); rcs.append(run([sys.executable, f'{T}/ticket_coverage_gate.py', f'{d}/c.json'])[0])
+        poster = open(f'{ROOT}/build/wo-board-tech-view/fix-verify-2026-10-26/post_qa_passed.py').read()
+        check('results: a ticket Passed needs every line in every view it names (ticket_coverage_gate.py), and the QA comment tool refuses without it', rcs == [0, 1] and 'ticket_coverage_gate.py' in poster, str(rcs))
+    except Exception as e:
+        check('results: ticket coverage gate', False, repr(e)[:160])
     # 7c2b · Rule 135 (2026-10-23): a Failed comment says only what failed — a "Step N" bullet outside bold_steps is refused
     try:
         base = {'verdict': 'Failed', 'failed_steps': 'Failed at step 7: x', 'bold_steps': [7], 'ticket': 'with the QA lead', 'ticket_held': True, 'todo': 'What needs to be done: wait.', 'pictures': [], 'source': 'PRD v1 S1: "x"'}
