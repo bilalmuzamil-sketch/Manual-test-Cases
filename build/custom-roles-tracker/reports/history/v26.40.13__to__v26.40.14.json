@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.40.13",
@@ -37,6 +37,21 @@
      "app/src/components/ts/navigation/mobile/MobileMenu.vue"
     ]
    },
+   "plain": {
+    "headline": "Screens that depend on “Accounting — Page Access” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 16, now: 15).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting — Page Access”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "16 places",
+    "after": "15 places",
+    "priority": "Low priority",
+    "area": "Accounting",
+    "roles": []
+   },
    "workflows": [
     "Accounting",
     "API areas: /api/accounting, /api/accounting-onboarding",
@@ -64,6 +79,21 @@
     "files_removed": [
      "app/src/components/ts/navigation/mobile/MobileMenu.vue"
     ]
+   },
+   "plain": {
+    "headline": "Screens that depend on “Accounting — Settings” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 6, now: 5).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting — Settings”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "6 places",
+    "after": "5 places",
+    "priority": "Low priority",
+    "area": "Accounting",
+    "roles": []
    },
    "workflows": [
     "Accounting",

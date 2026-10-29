@@ -21,7 +21,7 @@ for t in tags:
         rep = json.loads(r.stdout)
         cdate = json.load(open(path))['release']['commit_date'][:10]
         entry = {'from': prev[0], 'to': t, 'date': cdate, 'changes': len(rep['changes']), 'counts': rep['counts'],
-                 'headline': [c['title'] for c in rep['changes'] if c['risk'] == 'High'][:6]}
+                 'headline': [c['plain']['headline'] for c in rep['changes'] if c['risk'] == 'High'][:6]}
         if rep['changes']:
             # the commits between the two tags that touched permission code: PR / Jira leads
             log = subprocess.run(['git', '-C', REPO, 'log', '--format=%h\t%ad\t%s', '--date=short', f'{prev[0]}..{t}', '--',

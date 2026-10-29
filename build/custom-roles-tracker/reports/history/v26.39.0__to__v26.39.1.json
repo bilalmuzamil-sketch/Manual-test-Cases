@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.39.0",
@@ -56,6 +56,41 @@
    "evidence": {
     "controller": "api/src/Communication/Notes/UI/HTTP/UpdateAttachment/UpdateController.php::handle"
    },
+   "plain": {
+    "headline": "New protected action: Creating or running note › update attachment",
+    "what": "There is a new action in the app (creating or running note › update attachment). Only people with one of 18 permissions (for example “Customers — Create & Edit” or “Customers — Delete”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — Delete",
+     "Customers — View",
+     "Invoicing & Payments — Delete / Reverse",
+     "Part Sales — Create & Edit",
+     "Reports — Page Access",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+28 more)",
@@ -85,6 +120,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Customers — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 4, now: 5).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Customers — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "4 places",
+    "after": "5 places",
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal, /api/customers, /api/deposits (+16 more)",
@@ -112,6 +162,21 @@
      "app/src/services/permissions/noteReferencePermissions.ts"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Work Orders — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 4, now: 5).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Work Orders — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "4 places",
+    "after": "5 places",
+    "priority": "Low priority",
+    "area": "Work Orders",
+    "roles": []
    },
    "workflows": [
     "Work Orders",
@@ -141,6 +206,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Work Orders — Full View Mode” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 15, now: 16).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Work Orders — Full View Mode”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "15 places",
+    "after": "16 places",
+    "priority": "Low priority",
+    "area": "Work Orders",
+    "roles": []
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+9 more)",
@@ -168,6 +248,21 @@
      "app/src/services/permissions/noteReferencePermissions.ts"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Work Orders — Review Work Orders” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 4, now: 5).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Work Orders — Review Work Orders”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "4 places",
+    "after": "5 places",
+    "priority": "Low priority",
+    "area": "Work Orders",
+    "roles": []
    },
    "workflows": [
     "Work Orders",

@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.40.16",
@@ -36,6 +36,21 @@
      "api/src/Auth/Domain/Model/Role.php"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Where the app checks “Work Order Lines — Create & Edit” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Order Lines — Create & Edit” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Order Lines",
+    "roles": []
    },
    "workflows": [
     "Work Order Lines",

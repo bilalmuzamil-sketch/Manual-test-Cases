@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.35.9",
@@ -59,6 +59,30 @@
      "keyEvidence": null
     }
    },
+   "plain": {
+    "headline": "New permission: Work Orders — Move Labor",
+    "what": "A new permission called “Work Orders — Move Labor” was added. It is switched on automatically for: Admin, Service Manager, Senior Service Advisor, Service Advisor, Foreman and Parts Manager.",
+    "why": "People with these roles get new access as soon as they move to this release.",
+    "check": [
+     "Open a role in Administration › Roles and Permissions and check “Work Orders — Move Labor” is listed, in the right section, with the right name.",
+     "Log in as someone whose role has “Work Orders — Move Labor” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown.",
+     "Check it is switched on for Admin, Service Manager, Senior Service Advisor, Service Advisor, Foreman and Parts Manager, and off for every other role."
+    ],
+    "group": "access",
+    "before": "Did not exist",
+    "after": "On for 6 roles",
+    "priority": "High priority",
+    "area": "Work Orders",
+    "roles": [
+     "Admin",
+     "Service Manager",
+     "Senior Service Advisor",
+     "Service Advisor",
+     "Foreman",
+     "Parts Manager"
+    ]
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/work-orders",
@@ -104,6 +128,38 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/Application/Task/Move/MoveController.php::moveTask"
    },
+   "plain": {
+    "headline": "Creating or running work orders › tasks › move: the permission check changed",
+    "what": "Creating or running work orders › tasks › move is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Invoicing & Payments — Create & Edit",
+     "Part Sales — Create & Edit",
+     "Schedule — Create & Edit",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Move Labor",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — View"
+    ],
+    "priority": "Medium priority",
+    "area": "Invoicing & Payments",
+    "roles": []
+   },
    "workflows": [
     "Invoicing & Payments",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+14 more)",
@@ -139,6 +195,21 @@
      "enforcedBy": "server cascade (FEPermissionCascade)"
     }
    },
+   "plain": {
+    "headline": "Turning on “Work Orders — Move Labor” now also turns on “Work Order Lines — Create & Edit”",
+    "what": "When a role gets “Work Orders — Move Labor”, it also turns on “Work Order Lines — Create & Edit”. This happens automatically.",
+    "why": "Giving someone one permission now gives them another one as well.",
+    "check": [
+     "Edit a role, tick “Work Orders — Move Labor”, and check “Work Order Lines — Create & Edit” is ticked too.",
+     "Untick “Work Order Lines — Create & Edit” and check “Work Orders — Move Labor” is unticked as well."
+    ],
+    "group": "access",
+    "before": "Not linked",
+    "after": "Linked",
+    "priority": "Medium priority",
+    "area": "Work Orders",
+    "roles": []
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/work-orders",
@@ -170,6 +241,21 @@
     "functions_added": [],
     "functions_removed": []
    },
+   "plain": {
+    "headline": "The role editor’s automatic ticking changed",
+    "what": "The part of the role editor that ticks and unticks related permissions for you was changed.",
+    "why": "Editing a role could now tick, untick or warn differently.",
+    "check": [
+     "Open Administration › Roles and Permissions, edit a role, and tick permissions that depend on others. Check the related ones tick and untick as expected.",
+     "Turn off a permission that others depend on and check the warning message still appears."
+    ],
+    "group": "screens",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": null,
+    "roles": []
+   },
    "qa_scenarios": [
     "Screens: open the screens listed and confirm controls tied to \"Role editor\" show/hide/disable correctly for a role with and without it.",
     "Nav: top-level navigation items for the area appear only for roles holding the permission."
@@ -193,6 +279,24 @@
    ],
    "evidence": {
     "controller": "api/src/LabourBilling/TechnicianTaskRecords/Application/HTTP/Move/MoveController.php::moveTechnicianTask"
+   },
+   "plain": {
+    "headline": "New protected action: Creating or running technician tasks › move",
+    "what": "There is a new action in the app (creating or running technician tasks › move). Only people with “Timesheets — Create & Edit” can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has “Timesheets — Create & Edit” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Timesheets — Create & Edit"
+    ],
+    "priority": "Low priority",
+    "area": "Timesheets",
+    "roles": []
    },
    "workflows": [
     "Timesheets",

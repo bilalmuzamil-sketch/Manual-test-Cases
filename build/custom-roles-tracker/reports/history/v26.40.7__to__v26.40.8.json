@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.40.7",
@@ -37,6 +37,24 @@
    ],
    "evidence": {
     "controller": "api/src/External/Accounting/UI/HTTP/Proxy/AccountingInvoicePdfProxyController.php::__invoke"
+   },
+   "plain": {
+    "headline": "New protected action: Viewing accounting › invoices › pdf",
+    "what": "There is a new action in the app (viewing accounting › invoices › pdf). Only people with “Accounting — Page Access” can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has “Accounting — Page Access” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Accounting — Page Access"
+    ],
+    "priority": "Low priority",
+    "area": "Accounting",
+    "roles": []
    },
    "workflows": [
     "Accounting",

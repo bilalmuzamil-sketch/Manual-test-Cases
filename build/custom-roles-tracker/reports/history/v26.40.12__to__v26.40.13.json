@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.40.12",
@@ -43,6 +43,21 @@
    "evidence": {
     "controller": "api/src/Organization/Bays/Application/Change/ChangeController.php::handle"
    },
+   "plain": {
+    "headline": "Protected action removed: Creating or running organization › bays › change",
+    "what": "Creating or running organization › bays › change is no longer in the app, or has moved.",
+    "why": "A feature disappeared or moved. Check it still works for the right people wherever it went.",
+    "check": [
+     "Find the feature on screen and check it still works for people who should have it.",
+     "Check people who should not have it are still blocked."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": null,
+    "roles": []
+   },
    "workflows": [],
    "qa_scenarios": [
     "API authorisation: call POST /api/organization/bays/change as a role WITH and a role WITHOUT \"\" — expect 2xx and 403.",
@@ -74,6 +89,21 @@
    "evidence": {
     "controller": "api/src/Organization/Bays/Application/Create/CreateController.php::handle"
    },
+   "plain": {
+    "headline": "Protected action removed: Creating or running organization › bays › create",
+    "what": "Creating or running organization › bays › create is no longer in the app, or has moved.",
+    "why": "A feature disappeared or moved. Check it still works for the right people wherever it went.",
+    "check": [
+     "Find the feature on screen and check it still works for people who should have it.",
+     "Check people who should not have it are still blocked."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": null,
+    "roles": []
+   },
    "workflows": [],
    "qa_scenarios": [
     "API authorisation: call POST /api/organization/bays/create as a role WITH and a role WITHOUT \"\" — expect 2xx and 403.",
@@ -97,6 +127,21 @@
    "affected_permissions": [],
    "evidence": {
     "controller": "api/src/Organization/Bays/Application/Delete/DeleteController.php::handle"
+   },
+   "plain": {
+    "headline": "Protected action removed: Creating or running organization › bays › delete",
+    "what": "Creating or running organization › bays › delete is no longer in the app, or has moved.",
+    "why": "A feature disappeared or moved. Check it still works for the right people wherever it went.",
+    "check": [
+     "Find the feature on screen and check it still works for people who should have it.",
+     "Check people who should not have it are still blocked."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": null,
+    "roles": []
    },
    "workflows": [],
    "qa_scenarios": [
@@ -137,6 +182,21 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/Application/ChangeBay/ChangeBayController.php::handle"
    },
+   "plain": {
+    "headline": "Protected action removed: Creating or running work orders › change bay",
+    "what": "Creating or running work orders › change bay is no longer in the app, or has moved.",
+    "why": "A feature disappeared or moved. Check it still works for the right people wherever it went.",
+    "check": [
+     "Find the feature on screen and check it still works for people who should have it.",
+     "Check people who should not have it are still blocked."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": null,
+    "roles": []
+   },
    "workflows": [],
    "qa_scenarios": [
     "API authorisation: call POST /api/work-orders/change-bay as a role WITH and a role WITHOUT \"\" — expect 2xx and 403.",
@@ -175,6 +235,21 @@
    ],
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/Application/ChangeLocation/ChangeLocationController.php::handle"
+   },
+   "plain": {
+    "headline": "Protected action removed: Creating or running work orders › change location",
+    "what": "Creating or running work orders › change location is no longer in the app, or has moved.",
+    "why": "A feature disappeared or moved. Check it still works for the right people wherever it went.",
+    "check": [
+     "Find the feature on screen and check it still works for people who should have it.",
+     "Check people who should not have it are still blocked."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": null,
+    "roles": []
    },
    "workflows": [],
    "qa_scenarios": [

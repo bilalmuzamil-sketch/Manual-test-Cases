@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.35.10",
@@ -45,6 +45,30 @@
    "evidence": {
     "controller": "api/src/Customer/Customers/UI/HTTP/IbsBatch/RemoveFromBatch/RemoveFromBatchController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Creating or running customers › ibs › remove from batch",
+    "what": "There is a new action in the app (creating or running customers › ibs › remove from batch). Only people with one of 7 permissions (for example “Customers — Create & Edit” or “Customers — View”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — View",
+     "Invoicing & Payments — Create & Edit",
+     "Invoicing & Payments — Delete / Reverse",
+     "Invoicing & Payments — View",
+     "Reports — Page Access",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customers (+27 more)",
@@ -88,6 +112,37 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/ChangeAuthorizer/ChangeAuthorizerController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Creating or running work orders › change authorizer",
+    "what": "There is a new action in the app (creating or running work orders › change authorizer). Only people with one of 14 permissions (for example “Invoicing & Payments — Create & Edit” or “Part Sales — Create & Edit”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Invoicing & Payments — Create & Edit",
+     "Part Sales — Create & Edit",
+     "Schedule — Create & Edit",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Invoicing & Payments",
+    "roles": []
+   },
    "workflows": [
     "Invoicing & Payments",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+14 more)",
@@ -117,6 +172,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Invoicing & Payments — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 1, now: 2).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Invoicing & Payments — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "1 places",
+    "after": "2 places",
+    "priority": "Low priority",
+    "area": "Invoicing & Payments",
+    "roles": []
+   },
    "workflows": [
     "Invoicing & Payments",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+14 more)",
@@ -144,6 +214,21 @@
      "app/src/components/ts/shared/customer-info/CustomerCard.vue"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Part Sales — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 2, now: 3).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Part Sales — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "2 places",
+    "after": "3 places",
+    "priority": "Low priority",
+    "area": "Part Sales",
+    "roles": []
    },
    "workflows": [
     "Part Sales",
@@ -173,6 +258,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Part Sales — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 5, now: 6).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Part Sales — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "5 places",
+    "after": "6 places",
+    "priority": "Low priority",
+    "area": "Part Sales",
+    "roles": []
+   },
    "workflows": [
     "Part Sales",
     "API areas: /api/parts, /api/vehicle, /api/vehicles, /api/work-orders",
@@ -200,6 +300,21 @@
      "app/src/components/ts/reporting/batch-transactions/BatchTransactions.vue"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “See AP / AR Data” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 4, now: 5).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “See AP / AR Data”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "4 places",
+    "after": "5 places",
+    "priority": "Low priority",
+    "area": "Cross-cutting",
+    "roles": []
    },
    "workflows": [
     "Cross-cutting",
@@ -229,6 +344,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Work Orders — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 3, now: 4).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Work Orders — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "3 places",
+    "after": "4 places",
+    "priority": "Low priority",
+    "area": "Work Orders",
+    "roles": []
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
@@ -256,6 +386,21 @@
      "app/src/components/ts/shared/customer-info/CustomerCard.vue"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Work Orders — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 13, now: 14).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Work Orders — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "13 places",
+    "after": "14 places",
+    "priority": "Low priority",
+    "area": "Work Orders",
+    "roles": []
    },
    "workflows": [
     "Work Orders",

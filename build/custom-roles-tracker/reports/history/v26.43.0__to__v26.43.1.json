@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.43.0",
@@ -44,6 +44,30 @@
    "evidence": {
     "controller": "api/src/Customer/Customers/Application/IbsBatch/BatchExport/BatchExportController.php::handle"
    },
+   "plain": {
+    "headline": "New protected action: Viewing customers › ibs › batch export",
+    "what": "There is a new action in the app (viewing customers › ibs › batch export). Only people with one of 7 permissions (for example “Customers — Create & Edit” or “Customers — View”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — View",
+     "Invoicing & Payments — Create & Edit",
+     "Invoicing & Payments — Delete / Reverse",
+     "Invoicing & Payments — View",
+     "Reports — Page Access",
+     "Vendor Order Management — View"
+    ],
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
@@ -75,6 +99,26 @@
    ],
    "evidence": {
     "controller": "api/src/Invoicing/Invoice/UI/HTTP/IBS/Settings/ViewIBSServiceChargeRateController.php::__invoke"
+   },
+   "plain": {
+    "headline": "New protected action: Viewing ibs › settings › service charge rate",
+    "what": "There is a new action in the app (viewing ibs › settings › service charge rate). Only people with “Settings — App”, “Settings — Data Import” and “Settings — Integrations” can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has “Settings — App”, “Settings — Data Import” and “Settings — Integrations” and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Settings — App",
+     "Settings — Data Import",
+     "Settings — Integrations"
+    ],
+    "priority": "Low priority",
+    "area": "Settings",
+    "roles": []
    },
    "workflows": [
     "Settings",
@@ -111,6 +155,29 @@
    "evidence": {
     "controller": "api/src/Invoicing/Invoice/UI/HTTP/IBS/Settings/ChangeIBSServiceChargeRateController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Creating or running ibs › settings › service charge rate",
+    "what": "There is a new action in the app (creating or running ibs › settings › service charge rate). Only people with one of 6 permissions (for example “Settings — App” or “Settings — Data Import”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Settings — App",
+     "Settings — Data Import",
+     "Settings — Finance",
+     "Settings — Integrations",
+     "Settings — Parts",
+     "Settings — Service"
+    ],
+    "priority": "Low priority",
+    "area": "Settings",
+    "roles": []
+   },
    "workflows": [
     "Settings",
     "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+20 more)",
@@ -145,6 +212,29 @@
    ],
    "evidence": {
     "controller": "api/src/Bookkeeping/UI/Http/UpdateSettings/UpdateSettingsController.php::handle"
+   },
+   "plain": {
+    "headline": "New protected action: Changing bookkeeping › settings",
+    "what": "There is a new action in the app (changing bookkeeping › settings). Only people with one of 6 permissions (for example “Settings — App” or “Settings — Data Import”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Settings — App",
+     "Settings — Data Import",
+     "Settings — Finance",
+     "Settings — Integrations",
+     "Settings — Parts",
+     "Settings — Service"
+    ],
+    "priority": "Low priority",
+    "area": "Settings",
+    "roles": []
    },
    "workflows": [
     "Settings",

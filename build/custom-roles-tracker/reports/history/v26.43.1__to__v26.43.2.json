@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.43.1",
@@ -56,6 +56,41 @@
    "evidence": {
     "controller": "api/src/Customer/Customers/UI/HTTP/CreditLimitStatus/CreditLimitStatusController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Viewing customers › credit limit status",
+    "what": "There is a new action in the app (viewing customers › credit limit status). Only people with one of 18 permissions (for example “Customers — Create & Edit” or “Customers — View”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — View",
+     "Invoicing & Payments — Delete / Reverse",
+     "Part Sales — Create & Edit",
+     "Part Sales — View",
+     "Reports — Page Access",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
@@ -85,6 +120,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Accounting Banking — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 0, now: 1).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting Banking — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "0 places",
+    "after": "1 places",
+    "priority": "Low priority",
+    "area": "Accounting Banking",
+    "roles": []
+   },
    "workflows": [
     "Accounting Banking",
     "Screens/code: router/accounting/banking.routes.ts"
@@ -113,6 +163,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Accounting Banking — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 3, now: 5).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting Banking — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "3 places",
+    "after": "5 places",
+    "priority": "Low priority",
+    "area": "Accounting Banking",
+    "roles": []
+   },
    "workflows": [
     "Accounting Banking",
     "Screens/code: components/ts/accounting/shared, router/accounting/banking.routes.ts, router/accounting/index.ts"
@@ -139,6 +204,21 @@
      "app/src/router/accounting/fixedAssets.routes.ts"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Accounting Fixed Assets — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 1, now: 2).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting Fixed Assets — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "1 places",
+    "after": "2 places",
+    "priority": "Low priority",
+    "area": "Accounting Fixed Assets",
+    "roles": []
    },
    "workflows": [
     "Accounting Fixed Assets",
@@ -167,6 +247,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Accounting Fixed Assets — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 5, now: 6).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting Fixed Assets — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "5 places",
+    "after": "6 places",
+    "priority": "Low priority",
+    "area": "Accounting Fixed Assets",
+    "roles": []
+   },
    "workflows": [
     "Accounting Fixed Assets",
     "Screens/code: components/ts/accounting/fixedAssets, components/ts/accounting/shared, router/accounting/fixedAssets.routes.ts, router/accounting/index.ts"
@@ -193,6 +288,21 @@
      "app/src/router/accounting/purchases.routes.ts"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Accounting Purchases — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 3, now: 4).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting Purchases — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "3 places",
+    "after": "4 places",
+    "priority": "Low priority",
+    "area": "Accounting Purchases",
+    "roles": []
    },
    "workflows": [
     "Accounting Purchases",
@@ -221,6 +331,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Accounting Purchases — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 4, now: 5).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting Purchases — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "4 places",
+    "after": "5 places",
+    "priority": "Low priority",
+    "area": "Accounting Purchases",
+    "roles": []
+   },
    "workflows": [
     "Accounting Purchases",
     "Screens/code: components/ts/accounting/shared, router/accounting/imports.routes.ts, router/accounting/index.ts, router/accounting/purchases.routes.ts"
@@ -247,6 +372,21 @@
      "app/src/router/accounting/sales.routes.ts"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Accounting Sales — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 3, now: 4).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting Sales — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "3 places",
+    "after": "4 places",
+    "priority": "Low priority",
+    "area": "Accounting Sales",
+    "roles": []
    },
    "workflows": [
     "Accounting Sales",
@@ -275,6 +415,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Accounting Sales — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 4, now: 5).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting Sales — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "4 places",
+    "after": "5 places",
+    "priority": "Low priority",
+    "area": "Accounting Sales",
+    "roles": []
+   },
    "workflows": [
     "Accounting Sales",
     "Screens/code: components/ts/accounting/shared, router/accounting/imports.routes.ts, router/accounting/index.ts, router/accounting/sales.routes.ts"
@@ -302,6 +457,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Accounting Setup — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 2, now: 3).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting Setup — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "2 places",
+    "after": "3 places",
+    "priority": "Low priority",
+    "area": "Accounting Setup",
+    "roles": []
+   },
    "workflows": [
     "Accounting Setup",
     "Screens/code: components/ts/accounting/ledger, router/accounting/imports.routes.ts, router/accounting/ledger.routes.ts"
@@ -328,6 +498,21 @@
      "app/src/router/accounting/ledger.routes.ts"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Accounting Setup — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 4, now: 5).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Accounting Setup — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "4 places",
+    "after": "5 places",
+    "priority": "Low priority",
+    "area": "Accounting Setup",
+    "roles": []
    },
    "workflows": [
     "Accounting Setup",

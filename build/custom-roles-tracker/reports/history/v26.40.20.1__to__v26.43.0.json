@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.40.20.1",
@@ -45,6 +45,28 @@
     ],
     "atoms_removed": []
    },
+   "plain": {
+    "headline": "“Part Sales — Create & Edit” now allows more",
+    "what": "What this permission lets people do inside the app changed. It now also covers: part sale history view.",
+    "why": "Everyone whose role has this permission can now do more than before, without anyone changing their role.",
+    "check": [
+     "Log in as someone with “Part Sales — Create & Edit” and check they can do the newly covered things.",
+     "Log in as someone without “Part Sales — Create & Edit” and check those things are blocked."
+    ],
+    "group": "access",
+    "before": null,
+    "after": null,
+    "priority": "High priority",
+    "area": "Part Sales",
+    "roles": [
+     "Admin",
+     "Service Manager",
+     "Senior Service Advisor",
+     "Service Advisor",
+     "Parts Manager",
+     "Parts Technician"
+    ]
+   },
    "workflows": [
     "Part Sales",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
@@ -74,6 +96,24 @@
    ],
    "evidence": {
     "controller": "api/src/Dashboard/Tiles/UI/HTTP/Reports/DashboardReportsController.php::__invoke"
+   },
+   "plain": {
+    "headline": "Viewing dashboard › reports: the permission check changed",
+    "what": "Viewing dashboard › reports is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has “Reports — Page Access” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Reports — Page Access"
+    ],
+    "priority": "Medium priority",
+    "area": "Reports",
+    "roles": []
    },
    "workflows": [
     "Reports",
@@ -126,6 +166,45 @@
    "evidence": {
     "controller": "api/src/Communication/Notes/UI/HTTP/AddAttachment/AddAttachmentController.php::handle"
    },
+   "plain": {
+    "headline": "Creating or running note › add attachments: the permission check changed",
+    "what": "Creating or running note › add attachments is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — Delete",
+     "Customers — View",
+     "Invoicing & Payments — Delete / Reverse",
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Part Sales — View",
+     "Reports — Page Access",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Move Labor",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Receive Later",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
@@ -176,6 +255,45 @@
    ],
    "evidence": {
     "controller": "api/src/Communication/Notes/UI/HTTP/Create/CreateController.php::handle"
+   },
+   "plain": {
+    "headline": "Creating or running note › create: the permission check changed",
+    "what": "Creating or running note › create is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — Delete",
+     "Customers — View",
+     "Invoicing & Payments — Delete / Reverse",
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Part Sales — View",
+     "Reports — Page Access",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Move Labor",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Receive Later",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
    },
    "workflows": [
     "Customers",
@@ -228,6 +346,45 @@
    "evidence": {
     "controller": "api/src/Communication/Notes/UI/HTTP/Delete/DeleteController.php::handle"
    },
+   "plain": {
+    "headline": "Creating or running note › delete: the permission check changed",
+    "what": "Creating or running note › delete is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — Delete",
+     "Customers — View",
+     "Invoicing & Payments — Delete / Reverse",
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Part Sales — View",
+     "Reports — Page Access",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Move Labor",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Receive Later",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
@@ -278,6 +435,45 @@
    ],
    "evidence": {
     "controller": "api/src/Communication/Notes/UI/HTTP/DeleteAttachment/DeleteAttachmentController.php::handle"
+   },
+   "plain": {
+    "headline": "Creating or running note › delete attachment: the permission check changed",
+    "what": "Creating or running note › delete attachment is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — Delete",
+     "Customers — View",
+     "Invoicing & Payments — Delete / Reverse",
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Part Sales — View",
+     "Reports — Page Access",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Move Labor",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Receive Later",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
    },
    "workflows": [
     "Customers",
@@ -330,6 +526,45 @@
    "evidence": {
     "controller": "api/src/Communication/Notes/UI/HTTP/Update/UpdateController.php::handle"
    },
+   "plain": {
+    "headline": "Creating or running note › update: the permission check changed",
+    "what": "Creating or running note › update is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — Delete",
+     "Customers — View",
+     "Invoicing & Payments — Delete / Reverse",
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Part Sales — View",
+     "Reports — Page Access",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Move Labor",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Receive Later",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
@@ -381,6 +616,45 @@
    "evidence": {
     "controller": "api/src/Communication/Notes/UI/HTTP/UpdateAttachment/UpdateController.php::handle"
    },
+   "plain": {
+    "headline": "Creating or running note › update attachment: the permission check changed",
+    "what": "Creating or running note › update attachment is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — Delete",
+     "Customers — View",
+     "Invoicing & Payments — Delete / Reverse",
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Part Sales — View",
+     "Reports — Page Access",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Move Labor",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Receive Later",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
@@ -414,6 +688,27 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/Application/ChangeContact/ChangeContactController.php::handle"
    },
+   "plain": {
+    "headline": "Creating or running work orders › change contact: the permission check changed",
+    "what": "Creating or running work orders › change contact is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
@@ -446,6 +741,27 @@
    ],
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/Application/ChangeCustomer/ChangeController.php::handle"
+   },
+   "plain": {
+    "headline": "Creating or running work orders › change customer: the permission check changed",
+    "what": "Creating or running work orders › change customer is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
    },
    "workflows": [
     "Customers",
@@ -494,6 +810,41 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Part/ReturnRequest/MakePartReturnRequestController.php::handle"
    },
+   "plain": {
+    "headline": "Creating or running work orders › part › make return request: the permission check changed",
+    "what": "Creating or running work orders › part › make return request is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Invoicing & Payments — Create & Edit",
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Schedule — Create & Edit",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Vendor Order Management — Delete",
+     "Vendor Order Management — View",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Medium priority",
+    "area": "Invoicing & Payments",
+    "roles": []
+   },
    "workflows": [
     "Invoicing & Payments",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
@@ -540,6 +891,40 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Part/DeletePartController.php::__invoke"
    },
+   "plain": {
+    "headline": "Creating or running work orders › parts › delete: the permission check changed",
+    "what": "Creating or running work orders › parts › delete is now protected by a different permission check.",
+    "why": "The wrong people could be allowed in, or the right people blocked.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Invoicing & Payments — Create & Edit",
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Schedule — Create & Edit",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Vendor Order Management — Delete",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Medium priority",
+    "area": "Invoicing & Payments",
+    "roles": []
+   },
    "workflows": [
     "Invoicing & Payments",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
@@ -568,6 +953,21 @@
      "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Where the app checks “Customers — Create & Edit” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Customers — Create & Edit” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
    },
    "workflows": [
     "Customers",
@@ -598,6 +998,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Where the app checks “Customers — Delete” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Customers — Delete” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/customers, /api/note, /api/vehicle-makers, /api/vehicle-models, /api/vehicles",
@@ -626,6 +1041,21 @@
      "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Where the app checks “Customers — View” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Customers — View” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
    },
    "workflows": [
     "Customers",
@@ -658,6 +1088,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Where the app checks “Part Sales — Create & Edit” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Part Sales — Create & Edit” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Part Sales",
+    "roles": []
+   },
    "workflows": [
     "Part Sales",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
@@ -689,6 +1134,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Where the app checks “Part Sales — Delete” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Part Sales — Delete” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Part Sales",
+    "roles": []
+   },
    "workflows": [
     "Part Sales",
     "API areas: /api/inventory, /api/invoices, /api/note, /api/part-sales, /api/parts-catalogue, /api/pricing-rules, /api/work-orders",
@@ -717,6 +1177,21 @@
      "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Where the app checks “Part Sales — View” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Part Sales — View” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Part Sales",
+    "roles": []
    },
    "workflows": [
     "Part Sales",
@@ -747,6 +1222,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Where the app checks “Vendor Order Management — Create & Edit” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Vendor Order Management — Create & Edit” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Vendor Order Management",
+    "roles": []
+   },
    "workflows": [
     "Vendor Order Management",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/orders (+16 more)",
@@ -775,6 +1265,21 @@
      "api/src/VehicleService/WorkOrders/Infrastructure/Security/Part/PartSaleReturnVoter.php"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Where the app checks “Vendor Order Management — Delete” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Vendor Order Management — Delete” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Vendor Order Management",
+    "roles": []
    },
    "workflows": [
     "Vendor Order Management",
@@ -806,6 +1311,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Where the app checks “Work Order Lines — Create & Edit” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Order Lines — Create & Edit” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Order Lines",
+    "roles": []
+   },
    "workflows": [
     "Work Order Lines",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
@@ -834,6 +1354,21 @@
      "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Where the app checks “Work Order Lines — Delete” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Order Lines — Delete” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Order Lines",
+    "roles": []
    },
    "workflows": [
     "Work Order Lines",
@@ -865,6 +1400,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Where the app checks “Work Orders — Create & Edit” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Orders — Create & Edit” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Orders",
+    "roles": []
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+12 more)",
@@ -895,6 +1445,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Where the app checks “Work Orders — Delete” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Orders — Delete” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Orders",
+    "roles": []
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/invoices, /api/note, /api/part-sales, /api/sales-reps, /api/schedule, /api/service-advisors, /api/work-orders, /api/work-orders-imported (+1 more)",
@@ -923,6 +1488,21 @@
      "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Where the app checks “Work Orders — Move Labor” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Orders — Move Labor” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Orders",
+    "roles": []
    },
    "workflows": [
     "Work Orders",
@@ -953,6 +1533,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Where the app checks “Work Orders — Order Parts” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Orders — Order Parts” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Orders",
+    "roles": []
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
@@ -981,6 +1576,21 @@
      "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Where the app checks “Work Orders — Pick Parts” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Orders — Pick Parts” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Orders",
+    "roles": []
    },
    "workflows": [
     "Work Orders",
@@ -1011,6 +1621,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Where the app checks “Work Orders — Receive Later” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Orders — Receive Later” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Orders",
+    "roles": []
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/note, /api/work-orders",
@@ -1040,6 +1665,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Where the app checks “Work Orders — Review Work Orders” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Orders — Review Work Orders” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Orders",
+    "roles": []
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note, /api/orders (+10 more)",
@@ -1068,6 +1708,21 @@
      "api/src/Communication/Notes/Infrastructure/Security/NotePermissionResolver.php"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Where the app checks “Work Orders — View” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Orders — View” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Orders",
+    "roles": []
    },
    "workflows": [
     "Work Orders",
@@ -1104,6 +1759,29 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/PartSale/CancelPartSaleCoreReturnController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Deleting part sales › cores › return",
+    "what": "There is a new action in the app (deleting part sales › cores › return). Only people with one of 6 permissions (for example “Part Sales — Create & Edit” or “Part Sales — Delete”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Vendor Order Management — Create & Edit",
+     "Vendor Order Management — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete"
+    ],
+    "priority": "Low priority",
+    "area": "Part Sales",
+    "roles": []
+   },
    "workflows": [
     "Part Sales",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
@@ -1135,6 +1813,25 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/PartSale/RemovePartSaleVehicleController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Deleting work orders › vehicle",
+    "what": "There is a new action in the app (deleting work orders › vehicle). Only people with “Part Sales — Create & Edit” and “Part Sales — Delete” can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has “Part Sales — Create & Edit” and “Part Sales — Delete” and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete"
+    ],
+    "priority": "Low priority",
+    "area": "Part Sales",
+    "roles": []
+   },
    "workflows": [
     "Part Sales",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
@@ -1164,6 +1861,24 @@
    ],
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/PartSale/PartSaleHistoryViewController.php::__invoke"
+   },
+   "plain": {
+    "headline": "New protected action: Viewing part sales › history",
+    "what": "There is a new action in the app (viewing part sales › history). Only people with “Part Sales — Create & Edit” can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has “Part Sales — Create & Edit” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Part Sales — Create & Edit"
+    ],
+    "priority": "Low priority",
+    "area": "Part Sales",
+    "roles": []
    },
    "workflows": [
     "Part Sales",
@@ -1195,6 +1910,24 @@
    "evidence": {
     "controller": "api/src/LabourBilling/TechnicianTaskRecords/UI/HTTP/ListOverlapping/ListOverlappingForStaffController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Viewing technician tasks › list overlapping",
+    "what": "There is a new action in the app (viewing technician tasks › list overlapping). Only people with “Timesheets — Create & Edit” can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has “Timesheets — Create & Edit” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Timesheets — Create & Edit"
+    ],
+    "priority": "Low priority",
+    "area": "Timesheets",
+    "roles": []
+   },
    "workflows": [
     "Timesheets",
     "API areas: /api/contacts, /api/departments, /api/reporting, /api/staff, /api/technician-tasks",
@@ -1224,6 +1957,24 @@
    ],
    "evidence": {
     "controller": "api/src/LabourBilling/TechnicianTaskRecords/Application/HTTP/ListOverlapping/ListingController.php::handle"
+   },
+   "plain": {
+    "headline": "New protected action: Viewing technician tasks › list overlapping",
+    "what": "There is a new action in the app (viewing technician tasks › list overlapping). Only people with “Timesheets — Create & Edit” can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has “Timesheets — Create & Edit” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Timesheets — Create & Edit"
+    ],
+    "priority": "Low priority",
+    "area": "Timesheets",
+    "roles": []
    },
    "workflows": [
     "Timesheets",
@@ -1271,6 +2022,40 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Board/ViewWorkOrderBoardController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Viewing work orders › board",
+    "what": "There is a new action in the app (viewing work orders › board). Only people with one of 17 permissions (for example “Customers — Create & Edit” or “Customers — View”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — View",
+     "Invoicing & Payments — Delete / Reverse",
+     "Part Sales — Create & Edit",
+     "Reports — Page Access",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
@@ -1317,6 +2102,40 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Board/ListWorkOrderBoardItemsController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Viewing work orders › board › items",
+    "what": "There is a new action in the app (viewing work orders › board › items). Only people with one of 17 permissions (for example “Customers — Create & Edit” or “Customers — View”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — View",
+     "Invoicing & Payments — Delete / Reverse",
+     "Part Sales — Create & Edit",
+     "Reports — Page Access",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
@@ -1360,6 +2179,37 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/LeadTechnician/ListLeadTechnicianCandidatesController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Viewing work orders › lead technician candidates",
+    "what": "There is a new action in the app (viewing work orders › lead technician candidates). Only people with one of 14 permissions (for example “Invoicing & Payments — Create & Edit” or “Part Sales — Create & Edit”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Invoicing & Payments — Create & Edit",
+     "Part Sales — Create & Edit",
+     "Schedule — Create & Edit",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Invoicing & Payments",
+    "roles": []
+   },
    "workflows": [
     "Invoicing & Payments",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
@@ -1394,6 +2244,29 @@
    ],
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/PartSale/ReturnPartSaleCoreController.php::__invoke"
+   },
+   "plain": {
+    "headline": "New protected action: Creating or running part sales › cores › return",
+    "what": "There is a new action in the app (creating or running part sales › cores › return). Only people with one of 6 permissions (for example “Part Sales — Create & Edit” or “Part Sales — Delete”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Part Sales — Create & Edit",
+     "Part Sales — Delete",
+     "Vendor Order Management — Create & Edit",
+     "Vendor Order Management — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete"
+    ],
+    "priority": "Low priority",
+    "area": "Part Sales",
+    "roles": []
    },
    "workflows": [
     "Part Sales",
@@ -1438,6 +2311,37 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Board/MoveWorkOrderOnBoardController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Creating or running work orders › board move",
+    "what": "There is a new action in the app (creating or running work orders › board move). Only people with one of 14 permissions (for example “Invoicing & Payments — Create & Edit” or “Part Sales — Create & Edit”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Invoicing & Payments — Create & Edit",
+     "Part Sales — Create & Edit",
+     "Schedule — Create & Edit",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Invoicing & Payments",
+    "roles": []
+   },
    "workflows": [
     "Invoicing & Payments",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
@@ -1481,6 +2385,37 @@
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/Application/Line/AssignTechnician/AssignTechnicianController.php::handle"
    },
+   "plain": {
+    "headline": "New protected action: Creating or running work orders › lines › assign technician",
+    "what": "There is a new action in the app (creating or running work orders › lines › assign technician). Only people with one of 14 permissions (for example “Invoicing & Payments — Create & Edit” or “Part Sales — Create & Edit”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Invoicing & Payments — Create & Edit",
+     "Part Sales — Create & Edit",
+     "Schedule — Create & Edit",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Invoicing & Payments",
+    "roles": []
+   },
    "workflows": [
     "Invoicing & Payments",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
@@ -1510,6 +2445,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Customers — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 3, now: 4).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Customers — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "3 places",
+    "after": "4 places",
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
@@ -1538,6 +2488,21 @@
      "app/src/services/permissions/noteReferencePermissions.ts"
     ]
    },
+   "plain": {
+    "headline": "Screens that depend on “Customers — Delete” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 5, now: 4).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Customers — Delete”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "5 places",
+    "after": "4 places",
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/customers, /api/note, /api/vehicle-makers, /api/vehicle-models, /api/vehicles",
@@ -1565,6 +2530,21 @@
     "files_removed": [
      "app/src/services/permissions/noteReferencePermissions.ts"
     ]
+   },
+   "plain": {
+    "headline": "Screens that depend on “Customers — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 6, now: 5).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Customers — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "6 places",
+    "after": "5 places",
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
    },
    "workflows": [
     "Customers",
@@ -1595,6 +2575,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Part Sales — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 3, now: 5).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Part Sales — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "3 places",
+    "after": "5 places",
+    "priority": "Low priority",
+    "area": "Part Sales",
+    "roles": []
+   },
    "workflows": [
     "Part Sales",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/catalog-parts, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/note (+15 more)",
@@ -1622,6 +2617,21 @@
      "app/src/services/permissions/noteReferencePermissions.ts"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Part Sales — Delete” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 1, now: 2).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Part Sales — Delete”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "1 places",
+    "after": "2 places",
+    "priority": "Low priority",
+    "area": "Part Sales",
+    "roles": []
    },
    "workflows": [
     "Part Sales",
@@ -1652,6 +2662,21 @@
     "files_removed": [
      "app/src/components/ts/shared/customer-info/CustomerCard.vue"
     ]
+   },
+   "plain": {
+    "headline": "Screens that depend on “Part Sales — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 8, now: 8).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Part Sales — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "8 places",
+    "after": "8 places",
+    "priority": "Low priority",
+    "area": "Part Sales",
+    "roles": []
    },
    "workflows": [
     "Part Sales",
@@ -1684,6 +2709,21 @@
      "app/src/router/routes.ts"
     ]
    },
+   "plain": {
+    "headline": "Screens that depend on “Reports — Page Access” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 4, now: 3).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Reports — Page Access”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "4 places",
+    "after": "3 places",
+    "priority": "Low priority",
+    "area": "Reports",
+    "roles": []
+   },
    "workflows": [
     "Reports",
     "API areas: /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal, /api/customers, /api/dashboard (+23 more)",
@@ -1712,6 +2752,21 @@
      "app/src/components/ts/work-orders/dialogs/ChangeWorkOrderAssetDialog.vue"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Work Order Lines — Create & Edit” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 22, now: 24).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Work Order Lines — Create & Edit”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "22 places",
+    "after": "24 places",
+    "priority": "Low priority",
+    "area": "Work Order Lines",
+    "roles": []
    },
    "workflows": [
     "Work Order Lines",
@@ -1744,6 +2799,21 @@
      "app/src/pages/WorkOrders.vue"
     ]
    },
+   "plain": {
+    "headline": "Screens that depend on “Work Orders — Full View Mode” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 16, now: 15).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Work Orders — Full View Mode”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "16 places",
+    "after": "15 places",
+    "priority": "Low priority",
+    "area": "Work Orders",
+    "roles": []
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/orders, /api/part-sales (+9 more)",
@@ -1771,6 +2841,21 @@
     "files_removed": [
      "app/src/services/permissions/noteReferencePermissions.ts"
     ]
+   },
+   "plain": {
+    "headline": "Screens that depend on “Work Orders — Review Work Orders” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 5, now: 4).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Work Orders — Review Work Orders”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "5 places",
+    "after": "4 places",
+    "priority": "Low priority",
+    "area": "Work Orders",
+    "roles": []
    },
    "workflows": [
     "Work Orders",
@@ -1800,6 +2885,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Work Orders — Technician View Mode” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 7, now: 8).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Work Orders — Technician View Mode”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "7 places",
+    "after": "8 places",
+    "priority": "Low priority",
+    "area": "Work Orders",
+    "roles": []
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/customer-portal, /api/customers, /api/inventory, /api/orders, /api/part-sales (+9 more)",
@@ -1827,6 +2927,21 @@
      "app/src/services/permissions/noteReferencePermissions.ts"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Work Orders — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 15, now: 16).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Work Orders — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "15 places",
+    "after": "16 places",
+    "priority": "Low priority",
+    "area": "Work Orders",
+    "roles": []
    },
    "workflows": [
     "Work Orders",

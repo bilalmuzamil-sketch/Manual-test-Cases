@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.43.2",
@@ -50,6 +50,37 @@
    ],
    "evidence": {
     "controller": "api/src/VehicleService/WorkOrders/Application/Line/ChangeTechStory/ChangeController.php::handle"
+   },
+   "plain": {
+    "headline": "New protected action: Creating or running work orders › lines › change story",
+    "what": "There is a new action in the app (creating or running work orders › lines › change story). Only people with one of 14 permissions (for example “Invoicing & Payments — Create & Edit” or “Part Sales — Create & Edit”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Invoicing & Payments — Create & Edit",
+     "Part Sales — Create & Edit",
+     "Schedule — Create & Edit",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Invoicing & Payments",
+    "roles": []
    },
    "workflows": [
     "Invoicing & Payments",

@@ -1,4 +1,4 @@
-# Track Changes validation — 18/18 checks passed
+# Track Changes validation — 22/22 checks passed
 
 Throw-away store and a shared clone of the product repo; nothing real was modified.
 
@@ -22,3 +22,7 @@ Throw-away store and a shared clone of the product repo; nothing real was modifi
 | ✅ | A label change is reported as a modified permission, Low risk, and nothing else |
 | ✅ | A removed permission is reported, with its former holder, High risk |
 | ✅ | Every reported change carries risk + reason, before/after, roles, workflows, scenarios, evidence, status |
+| ✅ | Every change (308) has a plain headline, explanation and how-to-check steps |
+| ✅ | No technical terms in the plain words of any change |
+| ✅ | The written release reports (11) are in plain words above the technical appendix |
+| ✅ | Every app-vs-plan verdict (63) is explained in plain words |

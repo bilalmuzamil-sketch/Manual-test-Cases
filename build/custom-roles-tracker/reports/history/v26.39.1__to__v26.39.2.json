@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.39.1",
@@ -36,6 +36,21 @@
      "api/src/Auth/Domain/Model/Role.php"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Where the app checks “Work Orders — Create & Edit” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Orders — Create & Edit” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Orders",
+    "roles": []
    },
    "workflows": [
     "Work Orders",
@@ -82,6 +97,40 @@
    ],
    "evidence": {
     "controller": "api/src/Staff/Staff/Application/ServiceAdvisors/ListingController.php::handle"
+   },
+   "plain": {
+    "headline": "New protected action: Viewing service advisors",
+    "what": "There is a new action in the app (viewing service advisors). Only people with one of 17 permissions (for example “Customers — Create & Edit” or “Customers — View”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — View",
+     "Invoicing & Payments — Delete / Reverse",
+     "Part Sales — Create & Edit",
+     "Reports — Page Access",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — Delete",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
    },
    "workflows": [
     "Customers",

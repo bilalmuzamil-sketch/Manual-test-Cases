@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.36.3",
@@ -42,6 +42,29 @@
    ],
    "evidence": {
     "controller": "api/src/Organization/Invoice/UI/HTTP/InvoiceSetting/ChangeDesignController.php::__invoke"
+   },
+   "plain": {
+    "headline": "New protected action: Creating or running organizations › invoice settings › change design",
+    "what": "There is a new action in the app (creating or running organizations › invoice settings › change design). Only people with one of 6 permissions (for example “Settings — App” or “Settings — Data Import”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Settings — App",
+     "Settings — Data Import",
+     "Settings — Finance",
+     "Settings — Integrations",
+     "Settings — Parts",
+     "Settings — Service"
+    ],
+    "priority": "Low priority",
+    "area": "Settings",
+    "roles": []
    },
    "workflows": [
     "Settings",

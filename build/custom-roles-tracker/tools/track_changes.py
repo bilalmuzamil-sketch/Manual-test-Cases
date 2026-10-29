@@ -82,26 +82,36 @@ def node(*args):
 
 
 def report_md(rep, prev, new):
-    L = [f"# Custom Roles & Permissions — changes in {rep['to']['label']}",
-         '', f"Compared with: **{rep['from']['label']}** (recorded snapshot `{prev['id']}`)",
-         f"Scanned: {datetime.date.today().isoformat()} · engine {rep['engine_version']} · "
-         f"evidence level: repository analysis at the named commit — NOT verified behaviour.", '']
+    """The review report, in plain words first; the technical detail follows for developers."""
+    to, frm = rep['to']['label'], rep['from']['label']
+    L = [f"# What release {to} changed in Custom Roles & Permissions", '',
+         f"Compared with: **{frm}**. Checked on {datetime.date.today().isoformat()}.", '',
+         'This was read from the app itself. It shows how the app is built; nothing here has been tested by a person yet.', '']
     if not rep['changes']:
         L += ['**No Custom Roles & Permissions changes detected in this release.**', '',
-              'Record it only as a no-change checkpoint (`confirm … --checkpoint`), never as a changed-behaviour snapshot.']
+              'It can be saved only as a "no change" release (`confirm ... --checkpoint`).']
         return '\n'.join(L)
-    L += ['| Risk | Change | Previous | Now |', '|---|---|---|---|']
+    groups = [('access', 'Changes to who can do what'), ('screens', 'Changes to what people see on screen'),
+              ('behind', 'Behind-the-scenes checks')]
+    L += ['| Priority | Change |', '|---|---|'] + [f"| {c['plain']['priority']} | {c['plain']['headline']} |" for c in rep['changes']]
+    for g, title in groups:
+        xs = [c for c in rep['changes'] if c['plain']['group'] == g]
+        if not xs:
+            continue
+        L += ['', f'## {title} ({len(xs)})', '']
+        for c in xs:
+            p = c['plain']
+            L += [f"### {p['headline']}", f"**{p['priority']}.** {p['what']}".rstrip(), '', f"Why it matters: {p['why']}", '']
+            if p.get('before') or p.get('after'):
+                L += [f"Before: {p.get('before') or '-'} → Now: {p.get('after') or '-'}", '']
+            if p.get('roles'):
+                L += [f"Who is affected: {', '.join(p['roles'])}", '']
+            L += ['How to check it (suggestions, not proof):'] + [f'{i}. {x}' for i, x in enumerate(p['check'], 1)] + \
+                 ['', 'Test result: Not Tested · Approval: Not documented', '']
+    L += ['---', '', '## Technical details (for developers)', '', f"Compared snapshot `{prev['id']}` with `{new}`, engine {rep['engine_version']}.", '']
     for c in rep['changes']:
-        L.append(f"| {c['risk']} | {c['title']} | {str(c['before'])[:80]} | {str(c['after'])[:80]} |")
-    L += ['', '## QA impact, change by change', '']
-    for c in rep['changes']:
-        L += [f"### {c['title']}", f"- **Risk:** {c['risk']} — {c['risk_reason']}",
-              f"- **Previous → now:** {c['before']} → {c['after']}",
-              f"- **Affected roles:** {', '.join(c.get('affected_roles') or []) or '—'}",
-              f"- **Affected workflows:** {'; '.join(c.get('workflows') or []) or '—'}",
-              '- **Suggested QA scenarios** (suggestions, not proof):'] + [f'  - {s}' for s in c['qa_scenarios']] + \
-             [f"- **Evidence:** `{json.dumps(c.get('evidence'), ensure_ascii=False)[:300]}`",
-              f"- **Verification status:** {c['verification_status']}", '']
+        L += [f"- **{c['title']}** — {c['risk']}: {c['risk_reason']} Before `{str(c['before'])[:120]}` → now `{str(c['after'])[:120]}`. "
+              f"Evidence `{json.dumps(c.get('evidence'), ensure_ascii=False)[:240]}`"]
     return '\n'.join(L)
 
 

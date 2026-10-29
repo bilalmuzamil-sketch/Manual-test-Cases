@@ -12,6 +12,11 @@ The original PRD is never edited; this tracker sits beside it.
 | Release snapshots | One per future release, added by Track Changes after review | Repository analysis |
 | Verification | Statuses QA records in the portal | Observed by QA |
 
+**Written for people who have never seen the code.** Every page, change and report leads with plain
+words: what changed, why it matters, and how to check it, using the app's own on-screen names. Code
+names, route paths and file names are kept only in a closed "Technical details (for developers)"
+section under each item. `validate.py` fails if any technical term leaks into the plain words.
+
 **Repository analysis is never presented as verified behaviour.** Verification statuses in the
 portal are the only "observed" layer, and they start at *Not Tested*.
 
@@ -42,7 +47,7 @@ tools/extract_impl.py  implementation snapshot of a commit (never the working tr
 tools/engine/compare.js   THE comparison engine (browser and command line share it)
 tools/snapshot_store.py   append-only store: write-once, read-only, SHA-256 registry
 tools/track_changes.py    scan → review → confirm
-tools/validate.py      validation suite (18 checks)
+tools/validate.py      validation suite (22 checks, incl. plain-language checks)
 tools/build_history.py reconstructed release history before the baseline
 snapshots/             recorded snapshots + registry.json   (never edit by hand)
 reports/               change reports, history, VALIDATION.md
@@ -84,6 +89,7 @@ What it guarantees:
 - The release is pinned to its **exact commit**. A build marker whose commit is not in the repository
   **stops** the scan and asks; it never guesses.
 - It compares by **meaning**. Comments, reordering and formatting produce no change (proven by `validate.py`).
+- Every change carries a `plain` block (headline, what, why, how to check), and the written report puts that first.
 - A release **already recorded is refused**, so there is no duplicate tab.
 - A release with **no permission-related change** cannot be recorded as a changed-behaviour snapshot.
   It can be recorded only as a no-change checkpoint.
@@ -142,4 +148,4 @@ the recording.
 | Permissions with server enforcement found in this repo | 46 / 61 | The 15 accounting area permissions are enforced by the accounting service (one is also checked directly here). `timesheetsView` has **no** server check anywhere (front end only) |
 | Original PRD settings with verbatim description | 44 / 44 | ✅ |
 | Original PRD matrix rows / quotes verified verbatim | 39 / 39 · 58 / 58 | ✅ |
-| Track Changes validation | 18 / 18 checks | ✅ (`reports/VALIDATION.md`) |
+| Track Changes validation | 22 / 22 checks (incl. plain-language) | ✅ (`reports/VALIDATION.md`) |

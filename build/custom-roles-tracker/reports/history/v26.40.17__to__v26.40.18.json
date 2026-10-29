@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.40.17",
@@ -44,6 +44,30 @@
    "evidence": {
     "controller": "api/src/Invoicing/Invoice/UI/HTTP/InvoicePdf/InvoicePdfController.php::__invoke"
    },
+   "plain": {
+    "headline": "New protected action: Viewing invoices › pdf",
+    "what": "There is a new action in the app (viewing invoices › pdf). Only people with one of 7 permissions (for example “Customers — Create & Edit” or “Customers — View”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — View",
+     "Invoicing & Payments — Create & Edit",
+     "Invoicing & Payments — Delete / Reverse",
+     "Invoicing & Payments — View",
+     "Reports — Page Access",
+     "Vendor Order Management — View"
+    ],
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
+   },
    "workflows": [
     "Customers",
     "API areas: /api/be-permissions, /api/check-existing-roles, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+29 more)",
@@ -79,6 +103,30 @@
    ],
    "evidence": {
     "controller": "api/src/Invoicing/Invoice/UI/HTTP/InvoicesPdf/InvoicesPdfController.php::__invoke"
+   },
+   "plain": {
+    "headline": "New protected action: Creating or running invoices › merged pdf",
+    "what": "There is a new action in the app (creating or running invoices › merged pdf). Only people with one of 7 permissions (for example “Customers — Create & Edit” or “Customers — View”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Customers — Create & Edit",
+     "Customers — View",
+     "Invoicing & Payments — Create & Edit",
+     "Invoicing & Payments — Delete / Reverse",
+     "Invoicing & Payments — View",
+     "Reports — Page Access",
+     "Vendor Order Management — View"
+    ],
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
    },
    "workflows": [
     "Customers",

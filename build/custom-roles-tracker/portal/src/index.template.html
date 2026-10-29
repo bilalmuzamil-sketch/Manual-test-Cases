@@ -78,7 +78,7 @@ section.panel { background: var(--surface); border: 1px solid var(--line); borde
 .fact { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .fact span:last-child { overflow-wrap: anywhere; }
 .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 16px; }
 .grid2 > * { min-width: 0; }
 
 /* chips */
@@ -127,7 +127,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .legend span.sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: middle; margin-right: 5px; }
 
 /* quotes */
-blockquote.q { margin: 0; padding: 8px 12px; background: var(--quote); border-left: 3px solid var(--quote-line); font-size: .9rem; max-width: 80ch; }
+blockquote.q { margin: 0; overflow-wrap: anywhere; padding: 8px 12px; background: var(--quote); border-left: 3px solid var(--quote-line); font-size: .9rem; max-width: 80ch; }
 blockquote.q cite { display: block; font-style: normal; font-size: .76rem; color: var(--muted); margin-top: 4px; }
 
 /* controls */
@@ -172,22 +172,51 @@ pre.cmd { margin: 0; background: var(--surface-2); border: 1px solid var(--line)
   .prod { margin-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.big { font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; line-height: 1; }
+.tally { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; align-items: center; }
+.tally button { all: unset; cursor: pointer; display: contents; }
+.tally .big { font-size: 1.4rem; text-align: right; }
+.tally button:hover span:last-child, .tally button:focus-visible span:last-child { text-decoration: underline; }
+.lead { font-size: 1.02rem; max-width: 70ch; }
+.todo { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.todo a { display: flex; flex-direction: column; gap: 3px; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); background: var(--surface); height: 100%; box-sizing: border-box; }
+.todo a:hover { border-color: var(--accent); }
+.todo b { color: var(--accent); }
+dl.glossary { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 8px 18px; margin: 0; }
+dl.glossary dt { font-weight: 600; }
+dl.glossary dd { margin: 0; max-width: 70ch; }
+details.tech { border: 1px dashed var(--line); border-radius: var(--radius); padding: 6px 10px; font-size: .84rem; }
+details.tech > summary { cursor: pointer; color: var(--muted); }
+details.tech[open] > summary { margin-bottom: 8px; }
+details.tech .inner { display: flex; flex-direction: column; gap: 8px; }
+details.group-behind { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface-2); }
+details.group-behind > summary { cursor: pointer; padding: 10px 12px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; }
+details.group-behind > .inner { padding: 0 12px 12px; display: flex; flex-direction: column; gap: 10px; }
+.group-title { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; }
+ol.check { margin: 0; padding-left: 20px; }
+ol.check li + li { margin-top: 4px; }
+.pr-High { background: var(--bad); color: #fff; }
+.pr-Medium { background: var(--warn-soft); color: var(--warn); border-color: var(--warn); }
+.pr-Low { background: var(--surface-2); color: var(--muted); }
 </style>
 
 <header class="top"><div class="wrap">
   <div class="brand"><h1>Custom Roles &amp; Permissions Evolution Tracker</h1>
-    <small>ShopView QA · what the PRD said, what the code does, what each release changed</small></div>
-  <div class="prod" id="prod"><span class="dot"></span><span>Production</span><b id="prodMarker">—</b><span id="prodWhen"></span></div>
+    <small>Who can do what in ShopView: what was planned, what the app does today, and what each release changed</small></div>
+  <div class="prod" id="prod"><span class="dot"></span><span>Live app is on release</span><b id="prodMarker">—</b><span id="prodWhen"></span></div>
 </div></header>
-<nav class="strip" aria-label="Versions"><div class="wrap"><ol id="strip"></ol></div></nav>
-<nav class="wrap tools" aria-label="Tools" id="tools">
-  <a href="#matrix" data-r="matrix">Permission matrix</a>
-  <a href="#prd-vs-impl" data-r="prd-vs-impl">Original PRD vs implementation</a>
-  <a href="#compare" data-r="compare">Compare any two versions</a>
-  <a href="#history" data-r="history">History &amp; approvals</a>
-  <a href="#track" data-r="track" class="primary">Track Changes</a>
+<nav class="strip" aria-label="Saved versions"><div class="wrap"><ol id="strip"></ol></div></nav>
+<nav class="wrap tools" aria-label="Pages" id="tools">
+  <a href="#home" data-r="home">Start here</a>
+  <a href="#matrix" data-r="matrix">Who can do what</a>
+  <a href="#prd-vs-impl" data-r="prd-vs-impl">App vs the plan</a>
+  <a href="#compare" data-r="compare">Compare two versions</a>
+  <a href="#history" data-r="history">Release history</a>
+  <a href="#track" data-r="track" class="primary">Check a new release</a>
 </nav>
-<main class="wrap" id="main"><section class="panel"><p class="muted">Loading the recorded snapshots…</p></section></main>
+<main class="wrap" id="main"><section class="panel"><p class="muted">Loading…</p></section></main>
 
 <script>
 /*__ENGINE__*/
@@ -198,17 +227,27 @@ pre.cmd { margin: 0; background: var(--surface-2); border: 1px solid var(--line)
 const E = window.CRPEngine;
 const $ = (s, el = document) => el.querySelector(s);
 const esc = (v) => String(v == null ? '' : v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const CAT = { added_permission: 'Added permission', removed_permission: 'Removed permission', modified_permission: 'Modified permission',
-  default_changed: 'Default changed', dependency_changed: 'Dependency changed', backend_enforcement_changed: 'Backend enforcement changed',
-  frontend_behavior_changed: 'Frontend behavior changed', role_assignment_changed: 'Role assignment changed' };
+const qt = (x) => '“' + x + '”';
+const andList = (xs) => (xs.length <= 1 ? (xs[0] || '') : xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1]);
+// plain names for the kinds of change and for the comparison verdicts
+const KIND = { added_permission: 'New permission', removed_permission: 'Permission removed', modified_permission: 'Permission renamed',
+  default_changed: 'Who has it changed', dependency_changed: 'Linked permissions changed', backend_enforcement_changed: 'Behind-the-scenes check',
+  frontend_behavior_changed: 'Screens changed', role_assignment_changed: 'Role changed' };
+const GROUPS = { access: 'Changes to who can do what', screens: 'Changes to what people see on screen', behind: 'Behind-the-scenes checks' };
+const VERDICT = { 'Matches original PRD': ['Matches the plan', 'st-Matches', 'The app does what the original plan says.'],
+  'Different from original PRD': ['Changed since the plan', 'st-Different', 'Different from the original plan, but a later version of the plan describes it.'],
+  'Approved post-PRD change': ['Changed, with approval', 'st-Approved', 'Different from the original plan, and an approval is recorded.'],
+  'Possible undocumented behavior': ['Not in the plan', 'st-Possible', 'The app does something no version of the plan describes.'],
+  'Needs clarification': ['Question for the product owner', 'st-Needs', 'The documents disagree or are silent, so someone has to decide.'] };
 const STATUSES = ['Not Tested', 'Passed', 'Failed', 'Blocked', 'Needs Clarification'];
-let D = null;                       // the data bundle
-const S = {};                       // snapshots by id
+const ST_CLS = { Passed: 'c-good', Failed: 'c-bad', Blocked: 'c-warn', 'Needs Clarification': 'c-warn' };
+const EDITOR = 'Administration › Roles and Permissions';
+let D = null;
+const S = {};
 let db = null, user = null, me = null, canWriteDb = false, canApprove = false;
 const verif = {}, approvals = {}, requests = [];
 const names = {};
 
-// stable, store-safe ids
 function hid(s) { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(36); }
 function itemKey(scope, c) { return scope + ':' + hid([c.category, c.permission || '', c.endpoint || '', c.role || '', c.title].join('|')); }
 
@@ -216,24 +255,33 @@ function reg() { return D.registry.snapshots; }
 function implEntries() { return reg().filter((s) => s.kind === 'implementation'); }
 function latestImpl() { const xs = implEntries(); return xs[xs.length - 1]; }
 function entry(id) { return reg().find((s) => s.id === id); }
-function fmtDate(iso) { if (!iso) return '—'; const d = new Date(iso); return isNaN(d) ? iso : d.toISOString().slice(0, 10); }
-function chip(cls, text) { return `<span class="chip ${cls}">${esc(text)}</span>`; }
-function statusChip(st) { return chip('st-' + st.split(' ')[0], st); }
-function roleNameIn(snap, key) {
-  const r = (snap.roles || []).find((x) => x.key === key || x.impl_role === key);
-  return r ? r.name : key;
+function fmtDate(iso) {
+  if (!iso) return '—';
+  const d = new Date(String(iso).length === 10 ? iso + 'T12:00:00Z' : iso);
+  return isNaN(d) ? iso : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
 }
+function release(marker) { return String(marker || '').replace(/-[0-9a-f]{6,}$/, ''); }
+function chip(cls, text) { return `<span class="chip ${cls}">${esc(text)}</span>`; }
+function plainLabel(l) { return String(l || '').replace(/\s*\(derived[^)]*\)/, ''); }
+function roleNameIn(snap, key) { const r = (snap.roles || []).find((x) => x.key === key || x.impl_role === key); return r ? r.name : key; }
+function permLabelIn(snap, key) { const p = (snap.permissions || []).find((x) => x.key === key); return plainLabel(p ? p.label : key); }
+/** The name people see for a saved version. */
+function nice(e) {
+  if (!e) return '—';
+  if (e.kind === 'prd') return e.id === 'prd-v7' ? 'Original plan (version 7, June 2026)' : `Newer plan (version ${(e.source || {}).version}, July 2026)`;
+  const tag = (e.release.tags || [])[0] || e.release.commit.slice(0, 7);
+  return `The app, release ${tag}`;
+}
+function tech(summary, inner) { return `<details class="tech"><summary>${esc(summary)}</summary><div class="inner">${inner}</div></details>`; }
+function testChip(v) { return chip(v ? (ST_CLS[v.status] || 'c-neutral') : 'c-neutral', 'Test result: ' + (v ? v.status : 'Not Tested')); }
 
 // ── routing ──────────────────────────────────────────────────────────────────────────────────
-function route() {
-  const h = (location.hash || '').replace(/^#/, '');
-  const fallback = 'snap-' + latestImpl().id;
-  return h || fallback;
-}
+function route() { return (location.hash || '').replace(/^#/, '') || 'home'; }
 function render() {
   const r = route();
-  document.querySelectorAll('#strip a, #tools a').forEach((a) => a.toggleAttribute('aria-current', a.getAttribute('href') === '#' + r));
-  document.querySelectorAll('#strip a[aria-current], #tools a[aria-current]').forEach((a) => a.setAttribute('aria-current', 'page'));
+  document.querySelectorAll('#strip a, #tools a').forEach((a) => {
+    if (a.getAttribute('href') === '#' + r) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+  });
   const main = $('#main');
   try {
     if (r.startsWith('snap-')) main.innerHTML = viewSnapshot(r.slice(5));
@@ -242,32 +290,87 @@ function render() {
     else if (r === 'compare') main.innerHTML = viewCompare();
     else if (r === 'history') main.innerHTML = viewHistory();
     else if (r === 'track') main.innerHTML = viewTrack();
-    else main.innerHTML = viewSnapshot(latestImpl().id);
+    else main.innerHTML = viewHome();
   } catch (e) {
-    main.innerHTML = `<section class="panel"><div class="notice bad">This view failed to render: ${esc(e.message)}</div></section>`;
+    main.innerHTML = `<section class="panel"><div class="notice bad">Sorry, this page could not be shown. Please reload. (${esc(e.message)})</div></section>`;
     console.error(e);
   }
   wire(r);
 }
-window.addEventListener('hashchange', render);
+window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
 
 function buildStrip() {
-  const items = reg().map((s, i) => {
-    const kind = s.kind === 'prd' ? (s.id === 'prd-v7' ? 'Original PRD' : 'PRD reference')
-      : (s.previous ? (s.checkpoint_only ? 'Checkpoint' : 'Release') : 'Baseline');
-    const name = s.kind === 'prd' ? `v${(s.source || {}).version}` + (s.id === 'prd-v7' ? ' · Jun 2026' : ' · Jul 2026')
-      : (s.previous ? (s.release.tags[0] || s.release.commit.slice(0, 7)) : 'October 2026');
+  const items = reg().map((s) => {
+    const kind = s.kind === 'prd' ? (s.id === 'prd-v7' ? 'Original plan' : 'Newer plan')
+      : (s.previous ? (s.checkpoint_only ? 'Release (no change)' : 'Release') : 'The app today');
+    const name = s.kind === 'prd' ? (s.id === 'prd-v7' ? 'June 2026' : 'July 2026') : ((s.release.tags || [])[0] || s.release.commit.slice(0, 7));
     return `<li class="stop"><a href="#snap-${esc(s.id)}"><span class="k">${esc(kind)}</span><span class="n">${esc(name)}</span></a></li>`;
   });
   $('#strip').innerHTML = items.join('');
-  $('#prodMarker').textContent = D.deployed.build_marker;
-  $('#prodWhen').textContent = 'measured ' + D.deployed.measured_at;
+  $('#prodMarker').textContent = release(D.deployed.build_marker);
+  $('#prodWhen').textContent = '· checked ' + fmtDate(D.deployed.measured_at);
 }
 
-// ── snapshot views ───────────────────────────────────────────────────────────────────────────
+// ── start here ───────────────────────────────────────────────────────────────────────────────
+function viewHome() {
+  const rows = D.prd_vs_impl.rows;
+  const counts = {};
+  rows.forEach((r) => { counts[r.status] = (counts[r.status] || 0) + 1; });
+  const latest = latestImpl();
+  const prodRecorded = implEntries().some((e) => D.deployed.commit && e.release.commit.startsWith(D.deployed.commit));
+  const recent = D.history.releases.filter((h) => h.changes).slice(-4).reverse();
+  const tested = {};
+  Object.values(verif).forEach((v) => { tested[v.status] = (tested[v.status] || 0) + 1; });
+  return `<section class="panel">
+    <h2>Who can do what in ShopView, and how it has changed</h2>
+    <p class="lead">Every staff member in ShopView has a <b>role</b>, such as Admin, Service Advisor or Technician. Each role has a set of
+      <b>permissions</b>: on/off switches that decide what people with that role can see and do. This page keeps a permanent record of
+      those switches: what the product team planned, what the app does today, and what each new release changed.</p>
+    <div class="notice">Everything here was read from the app itself, release by release. It shows what the app is <i>built</i> to do.
+      Nothing counts as confirmed until a tester has tried it and set its test result to <b>Passed</b>.</div>
+  </section>
+  <div class="cards">
+    <div class="card"><span class="eyebrow">Does the app match the original plan?</span>
+      <div class="tally">${Object.keys(VERDICT).filter((k) => counts[k]).map((k) => `<button data-verdict="${esc(k)}"><span class="big">${counts[k]}</span><span>${esc(VERDICT[k][0])}</span></button>`).join('')}</div>
+      <a href="#prd-vs-impl">See every permission →</a></div>
+    <div class="card"><span class="eyebrow">The live app</span>
+      <span class="big">${esc(release(D.deployed.build_marker))}</span>
+      <p>This is the release people are using now. Checked on ${esc(fmtDate(D.deployed.measured_at))}.</p>
+      <p>${prodRecorded ? chip('c-good', 'Recorded on this page') : chip('c-warn', 'Not checked yet')}</p>
+      <a href="#track">Check a new release →</a></div>
+    <div class="card"><span class="eyebrow">Recent releases that changed permissions</span>
+      <ul style="margin:0;padding-left:18px">${recent.map((h) => `<li><b>${esc(h.to)}</b> · ${esc(fmtDate(h.date))} · ${h.changes} change${h.changes > 1 ? 's' : ''}</li>`).join('')}</ul>
+      <a href="#history">See the full history →</a></div>
+    <div class="card"><span class="eyebrow">Testing progress</span>
+      ${Object.keys(tested).length ? `<div class="tally">${STATUSES.filter((s) => tested[s]).map((s) => `<span class="big">${tested[s]}</span><span>${esc(s)}</span>`).join('')}</div>`
+        : '<p>No test results recorded yet. Open any change or permission and choose its test result.</p>'}</div>
+  </div>
+  <section class="panel"><h3>What would you like to do?</h3>
+    <ul class="todo">
+      <li><a href="#matrix"><b>See who can do what</b><span>A table of every role and every permission, with ticks.</span></a></li>
+      <li><a href="#prd-vs-impl"><b>Find where the app differs from the plan</b><span>Each permission, with what the plan says and what the app does.</span></a></li>
+      <li><a href="#history"><b>See what a release changed</b><span>Every release that changed permissions, in date order.</span></a></li>
+      <li><a href="#track"><b>Check a new release</b><span>Find out whether the latest release changed anything.</span></a></li>
+      <li><a href="#compare"><b>Compare any two versions</b><span>Pick two versions and see every difference between them.</span></a></li>
+    </ul></section>
+  <section class="panel"><h3>Words used on this page</h3>
+    <dl class="glossary">
+      <dt>Role</dt><dd>A job type given to a staff member, for example Admin, Service Advisor or Technician. Shops can also make their own roles.</dd>
+      <dt>Permission</dt><dd>One on/off switch inside a role, for example “Customers — Delete”. You find them in ${esc(EDITOR)}.</dd>
+      <dt>Switched on</dt><dd>The role starts with this permission turned on. A shop can still change its own roles.</dd>
+      <dt>The plan</dt><dd>The product requirements document written by the product team in Confluence. The <b>original plan</b> is version 7, first published on 1 June 2026. The <b>newer plan</b> is version 54, last changed in July 2026.</dd>
+      <dt>Release</dt><dd>A new version of the app put live, named like v26.43.3.</dd>
+      <dt>Linked permissions</dt><dd>Some permissions turn others on with them. For example, turning on an “edit” permission also turns on the matching “view” permission.</dd>
+      <dt>Behind-the-scenes check</dt><dd>A protection inside the app that people do not see directly. It stops someone without the permission even if they find a way around the screen.</dd>
+      <dt>Priority</dt><dd>How soon a change should be tested. High means people gained or lost access.</dd>
+      <dt>Test result</dt><dd>What a tester found: Not Tested, Passed, Failed, Blocked or Needs Clarification. Anyone on the QA team can set it.</dd>
+    </dl></section>`;
+}
+
+// ── a saved version ──────────────────────────────────────────────────────────────────────────
 function viewSnapshot(id) {
   const s = S[id], e = entry(id);
-  if (!s || !e) return `<section class="panel"><div class="notice bad">No recorded snapshot named “${esc(id)}”.</div></section>`;
+  if (!s || !e) return `<section class="panel"><div class="notice bad">There is no saved version called “${esc(id)}”.</div></section>`;
   return s.kind === 'prd' ? viewPrd(s, e) : viewImpl(s, e);
 }
 
@@ -276,180 +379,212 @@ function viewPrd(s, e) {
   const isOriginal = e.id === 'prd-v7';
   const v = s.verbatim_check;
   const head = `<section class="panel">
-    <div class="head"><div><div class="eyebrow">${isOriginal ? 'Original PRD baseline' : 'Latest PRD version (reference)'}</div>
-      <h2>${esc(src.title)} — version ${esc(src.version)}</h2></div>
-      <span class="evidence-level">Documented intent · not implementation · not verified behaviour</span></div>
+    <div><div class="eyebrow">${isOriginal ? 'The original plan' : 'The newer plan (for reference)'}</div>
+      <h2>What the product team planned — version ${esc(src.version)}</h2></div>
     <div class="facts">
-      <div class="fact"><span class="eyebrow">Confluence page</span><span><a href="${esc(src.url)}" target="_blank" rel="noopener">${esc(src.page_id)}</a> · owner ${esc(src.owner)}</span></div>
-      <div class="fact"><span class="eyebrow">This version</span><span>${esc(fmtDate(src.published_at || src.created_at))}${src.status_in_page ? ' · page reads “Status: ' + esc(src.status_in_page) + '”' : ''}</span></div>
-      <div class="fact"><span class="eyebrow">Roles · settings</span><span>${s.roles.length} system roles · ${s.permissions.length} settings described</span></div>
-      <div class="fact"><span class="eyebrow">Recorded</span><span>${esc(fmtDate(e.recorded_at))} · sha256 <code>${esc(e.sha256.slice(0, 12))}</code></span></div>
+      <div class="fact"><span class="eyebrow">Document</span><span><a href="${esc(src.url)}" target="_blank" rel="noopener">${esc(src.title)}</a></span></div>
+      <div class="fact"><span class="eyebrow">Date of this version</span><span>${esc(fmtDate(src.published_at || src.created_at))}</span></div>
+      <div class="fact"><span class="eyebrow">Written by</span><span>${esc(src.owner)}</span></div>
+      <div class="fact"><span class="eyebrow">Covers</span><span>${s.roles.length} roles · ${s.permissions.length} permissions</span></div>
     </div>
-    ${isOriginal ? `<div class="notice">Why this is the original approved baseline: version 6 reads “Status: Draft”; version 7 (1 June 2026) is the first that reads “Status: Published”, and versions 7–10 differ only in the Change Log. Engineering’s locked spec in the product repo reads “Locked 2026-06-02 after iterative sign-off”. Confluence approvals are switched off on this page, so there is no formal approval record; “Published” is the strongest evidence that exists.</div>
-      ${v ? `<p class="muted">Verbatim check, re-run on every build against the saved v7 source: ${v.table_rows_checked} table rows and ${v.quotes_checked} quotes — ${v.ok ? 'all found word for word' : '<b>' + (v.table_rows_not_found.length + v.quotes_not_found.length) + ' not found</b>'}.</p>` : ''}`
-      : `<div class="notice warn">The latest PRD is shown for reference. It never replaces the original baseline: differences between the two are classified on the “Original PRD vs implementation” page.</div>`}
+    ${isOriginal ? `<div class="notice">This is the starting point for every comparison on this page. It is the first version of the plan marked
+        “Published” (earlier versions were drafts). It is kept exactly as written and can never be changed here.</div>
+      ${v ? `<p class="muted">Every time this page is rebuilt, each line below is checked word for word against the document. Last result: ${v.ok ? `all ${v.table_rows_checked + v.quotes_checked} lines match` : `<b>${v.table_rows_not_found.length + v.quotes_not_found.length} lines do not match</b>`}.</p>` : ''}`
+      : '<div class="notice warn">The newer plan is shown for reference only. Comparisons start from the original plan; the newer plan helps explain later changes.</div>'}
   </section>`;
-  const roles = `<section class="panel"><h3>System roles</h3><div class="tbl"><table><thead><tr><th>Role</th><th>ID</th><th>Description (verbatim)</th><th>Editable as a system role</th><th>In the implementation as</th></tr></thead><tbody>
-    ${s.roles.map((r) => `<tr><td>${esc(r.name)}</td><td><code>${esc(r.key)}</code></td><td>${esc(r.description_verbatim)}</td>
-      <td>${r.editable_when_system === undefined ? '<span class="muted">not stated in the role table</span>' : r.editable_when_system ? 'Yes' : 'No'}</td>
-      <td>${r.impl_role ? '<code>' + esc(r.impl_role) + '</code>' : '<span class="muted">no template — see change log</span>'}</td></tr>`).join('')}
+  const roles = `<section class="panel"><h3>Roles in the plan</h3><div class="tbl"><table><thead><tr><th>Role</th><th>What the plan says about it</th><th>Can a shop change it?</th></tr></thead><tbody>
+    ${s.roles.map((r) => `<tr><td>${esc(r.name)}${r.impl_role ? '' : '<br><span class="muted">Not a separate role in the app</span>'}</td><td>${esc(r.description_verbatim)}</td>
+      <td>${r.editable_when_system === undefined ? '<span class="muted">The plan does not say</span>' : r.editable_when_system ? 'Yes' : 'No'}</td></tr>`).join('')}
     </tbody></table></div></section>`;
   const bySec = {};
   s.permissions.forEach((p) => { (bySec[p.prd_section] = bySec[p.prd_section] || []).push(p); });
   const deps = (k) => s.dependencies.filter((d) => d.child === k);
-  const settings = `<section class="panel"><h3>Every setting and what it controls</h3>
-    <p class="muted">Quoted word for word from the PRD. Each line under a setting is a rule the PRD states about it.</p>
-    <div class="tbl"><table><thead><tr><th>Setting</th><th>Key</th><th>Controls (verbatim)</th><th>Default holders</th></tr></thead><tbody>
-    ${Object.entries(bySec).map(([sec, ps]) => `<tr class="group"><td colspan="4">${esc(sec)}</td></tr>` + ps.map((p) => {
+  const perms = `<section class="panel"><h3>Every permission in the plan</h3>
+    <p class="muted">The middle column is the plan’s own words.</p>
+    <div class="tbl"><table><thead><tr><th>Permission</th><th>What it controls</th><th>Switched on for</th></tr></thead><tbody>
+    ${Object.entries(bySec).map(([sec, ps]) => `<tr class="group"><td colspan="3">${esc(sec)}</td></tr>` + ps.map((p) => {
       const holders = Object.entries(s.role_defaults).filter(([, ks]) => ks.includes(p.key)).map(([r]) => roleNameIn(s, r));
       const covered = (s.matrix_coverage || {})[p.key];
-      return `<tr><td>${esc(p.label)}${p.prd_only ? ' ' + chip('c-neutral', 'parent gate') : ''}${p.prd_key_missing ? ' ' + chip('c-warn', 'no key in PRD') : ''}</td>
-        <td><code>${esc(p.key)}</code></td>
-        <td><blockquote class="q">${esc(p.controls_verbatim)}<cite>${esc(p.prd_section)}</cite></blockquote>
-          ${deps(p.key).map((d) => `<div class="muted" style="font-size:.82rem;margin-top:4px">${d.kind === 'implies' ? 'Turns on' : d.kind === 'requires' ? 'Requires' : 'Gated by'} <code>${esc(d.parent)}</code></div>`).join('')}
-          ${p.key_mapping_evidence ? `<blockquote class="q" style="margin-top:6px">${esc(p.key_mapping_evidence.verbatim)}<cite>Why this maps to ${esc(p.key)} — ${esc(p.key_mapping_evidence.section)}</cite></blockquote>` : ''}</td>
-        <td>${covered === undefined ? '<span class="muted">not in the matrix</span>' : holders.length ? esc(holders.join(', ')) : '<span class="muted">none</span>'}</td></tr>`;
+      return `<tr><td>${esc(plainLabel(p.label))}</td>
+        <td><blockquote class="q">${esc(p.controls_verbatim)}</blockquote>
+          ${deps(p.key).map((d) => `<div class="muted" style="font-size:.84rem;margin-top:4px">${d.kind === 'implies' ? 'Turning this on also turns on' : 'Needs this to be on first:'} ${esc(qt(permLabelIn(s, d.parent)))}</div>`).join('')}</td>
+        <td>${covered === undefined ? '<span class="muted">The plan’s table does not say</span>' : holders.length ? esc(holders.join(', ')) : '<span class="muted">No role</span>'}</td></tr>`;
     }).join('')).join('')}
     </tbody></table></div></section>`;
-  const rules = `<section class="panel"><h3>Rules about roles</h3>${(s.rules || []).map((r) => `<blockquote class="q">${esc(r.verbatim)}<cite>${esc(r.section)}</cite></blockquote>`).join('')}
-    <p><a href="#matrix" data-matrix="${esc(e.id)}">Open this version in the permission matrix →</a></p></section>`;
-  const log = (s.change_log || []).length ? `<section class="panel"><h3>The PRD’s own change log</h3>
-    <p class="muted">Verbatim. Use it as the documented reason for post-PRD changes; it is not an approval record.</p>
-    <div class="tbl"><table><thead><tr><th>Date</th><th>Reporter</th><th>Change</th></tr></thead><tbody>
+  const rules = `<section class="panel"><h3>Rules the plan sets about roles</h3>${(s.rules || []).map((r) => `<blockquote class="q">${esc(r.verbatim)}</blockquote>`).join('')}
+    <p><a href="#matrix" data-matrix="${esc(e.id)}">See this version as a table of ticks →</a></p></section>`;
+  const log = (s.change_log || []).length ? `<section class="panel"><h3>The plan’s own list of changes</h3>
+    <p class="muted">Copied word for word from the document. It explains why things changed; it is not an approval.</p>
+    <div class="tbl"><table><thead><tr><th>Date</th><th>By</th><th>What changed</th></tr></thead><tbody>
     ${s.change_log.map((c) => `<tr><td>${esc(c.date || '—')}</td><td>${esc(c.reporter || '—')}</td><td>${esc(c.change_verbatim)}</td></tr>`).join('')}</tbody></table></div></section>` : '';
-  return head + roles + settings + rules + log;
+  const techBits = `<section class="panel">${tech('Technical details (for developers)', `
+    <p>Confluence page ${esc(src.page_id)}, version ${esc(src.version)}. Saved ${esc(fmtDate(e.recorded_at))}, fingerprint <code>${esc(e.sha256.slice(0, 12))}</code>.</p>
+    <div class="tbl"><table><thead><tr><th>Permission</th><th>Key</th><th>Section</th></tr></thead><tbody>${s.permissions.map((p) => `<tr><td>${esc(p.label)}</td><td><code>${esc(p.key)}</code></td><td>${esc(p.prd_section)}</td></tr>`).join('')}</tbody></table></div>`)}</section>`;
+  return head + roles + perms + rules + log + techBits;
+}
+
+function enforcementPlain(p) {
+  if (p.enforced_outside_repo) return '<span class="muted">Checked by the accounting system</span>';
+  if (!p.backend_endpoints.length && !p.backend_bundle_checks.length) return chip('c-warn', 'No — only hidden on screen');
+  return 'Yes';
 }
 
 function viewImpl(s, e) {
   const r = s.release;
   const prev = e.previous ? entry(e.previous) : null;
   const report = e.change_report ? D.reports[e.change_report] : null;
+  const tag = (r.tags || [])[0] || r.ref;
   const head = `<section class="panel">
-    <div class="head"><div><div class="eyebrow">${prev ? (e.checkpoint_only ? 'No-change checkpoint' : 'Release snapshot') : 'Current implementation — baseline'}</div>
-      <h2>${esc(e.label)}</h2></div>
-      <span class="evidence-level">Repository analysis at the named commit · not verified behaviour</span></div>
+    <div><div class="eyebrow">${prev ? 'A release' : 'The app today'}</div><h2>What the app does in release ${esc(tag)}</h2></div>
     <div class="facts">
-      <div class="fact"><span class="eyebrow">Release</span><span><code>${esc((r.tags || [])[0] || r.ref)}</code></span></div>
-      <div class="fact"><span class="eyebrow">Commit</span><span><code>${esc(r.commit.slice(0, 10))}</code> · ${esc(fmtDate(r.commit_date))}</span></div>
-      <div class="fact"><span class="eyebrow">Deployed build</span><span>${r.deployed ? `<code>${esc(r.deployed.build_marker)}</code> on ${esc(r.deployed.environment)}, measured ${esc(r.deployed.measured_at)}` : (r.build_marker ? '<code>' + esc(r.build_marker) + '</code>' : '<span class="muted">not measured</span>')}</span></div>
-      <div class="fact"><span class="eyebrow">Compared with</span><span>${prev ? `<a href="#snap-${esc(prev.id)}">${esc(prev.label)}</a>` : '<span class="muted">first implementation snapshot</span>'}</span></div>
-      <div class="fact"><span class="eyebrow">Contents</span><span>${s.permissions.length} permissions · ${s.roles.length} system roles · ${s.endpoints.length} API routes</span></div>
-      <div class="fact"><span class="eyebrow">Recorded</span><span>${esc(fmtDate(e.recorded_at))} by ${esc(e.recorded_by)} · sha256 <code>${esc(e.sha256.slice(0, 12))}</code></span></div>
+      <div class="fact"><span class="eyebrow">Release</span><span>${esc(tag)}</span></div>
+      <div class="fact"><span class="eyebrow">Released on</span><span>${esc(fmtDate(r.commit_date))}</span></div>
+      <div class="fact"><span class="eyebrow">Live app</span><span>${r.deployed ? `Running this release on ${esc(fmtDate(r.deployed.measured_at))}` : '<span class="muted">Not checked</span>'}</span></div>
+      <div class="fact"><span class="eyebrow">Compared with</span><span>${prev ? `<a href="#snap-${esc(prev.id)}">${esc(nice(prev))}</a>` : '<span class="muted">This is the first record of the app</span>'}</span></div>
     </div>
-    ${Object.keys(s.unavailable || {}).length ? `<div class="notice warn">Could not be read at this commit, so shown as Needs Verification: ${esc(Object.keys(s.unavailable).join(', '))}</div>` : ''}
+    <div class="notice">Read from the app itself for this exact release. It shows how the app is built. It has not been tested by a person.</div>
+    ${Object.keys(s.unavailable || {}).length ? `<div class="notice warn">Some parts could not be read for this release, so they need checking by hand: ${esc(Object.keys(s.unavailable).join(', '))}</div>` : ''}
   </section>`;
-  const changes = prev ? `<section class="panel"><div class="head"><h3>Changes introduced in this release</h3>
-      ${report ? `<div class="row">${countChips(report.counts)}<button class="btn ghost" data-export="${esc(e.change_report)}">Export report</button></div>` : ''}</div>
-      ${report ? (report.changes.length ? changeCards(report.changes, e.id) : '<div class="empty">No Custom Roles &amp; Permissions changes detected in this release.</div>')
-      : '<div class="notice warn">The change report for this snapshot is missing.</div>'}</section>` : '';
+  const changes = prev ? `<section class="panel"><div class="head"><h3>What this release changed</h3>
+      ${report && report.changes.length ? `<button class="btn ghost" data-export="${esc(e.change_report)}">Download as a spreadsheet</button>` : ''}</div>
+      ${report ? (report.changes.length ? changeList(report.changes, e.id) : '<div class="empty">No Custom Roles &amp; Permissions changes detected in this release.</div>')
+      : '<div class="notice warn">The list of changes for this release is missing.</div>'}</section>` : '';
   const holders = (k) => Object.entries(s.role_defaults).filter(([, ks]) => ks.includes(k)).map(([rk]) => roleNameIn(s, rk));
-  const roles = `<section class="panel"><h3>System roles</h3><div class="tbl"><table><thead><tr><th>Role</th><th>Template</th><th class="num">Default permissions</th><th>Editable as a system role</th><th>Deletable</th><th>Can clock in</th></tr></thead><tbody>
-    ${s.roles.map((x) => `<tr><td>${esc(x.name)}</td><td><code>${esc(x.key)}</code></td><td class="num">${(s.role_defaults[x.key] || []).length}</td>
-      <td>${x.editable_when_system === null ? '<span class="muted">Needs Verification</span>' : x.editable_when_system ? 'Yes' : 'No' + (x.key === 'office' ? ' — except ' + s.permissions.filter((p) => p.office_editable).length + ' settings' : '')}</td>
-      <td>No</td><td>${x.clock_capable ? 'Yes' : 'No'}</td></tr>`).join('')}</tbody></table></div>
-    <p class="muted">Source: <code>Role::isEditable()</code>, <code>Role::getUneditableTemplates()</code>, <code>Role::getOfficeEditableFEPermissions()</code>, <code>RoleFePermissionMappings::getMappings()</code> at this commit.</p></section>`;
+  const officeCount = s.permissions.filter((p) => p.office_editable).length;
+  const roles = `<section class="panel"><h3>Roles</h3><div class="tbl"><table><thead><tr><th>Role</th><th class="num">Permissions switched on</th><th>Can a shop change it?</th><th>Can clock in</th></tr></thead><tbody>
+    ${s.roles.map((x) => `<tr><td>${esc(x.name)}</td><td class="num">${(s.role_defaults[x.key] || []).length} of ${s.permissions.length}</td>
+      <td>${x.editable_when_system === null ? '<span class="muted">Needs checking</span>' : x.editable_when_system ? 'Yes' : 'No' + (x.key === 'office' ? `, except ${officeCount} permissions` : '')}</td>
+      <td>${x.clock_capable ? 'Yes' : 'No'}</td></tr>`).join('')}</tbody></table></div></section>`;
   const groups = {};
   s.permissions.forEach((p) => { (groups[p.group] = groups[p.group] || []).push(p); });
-  const perms = `<section class="panel"><h3>Permissions as implemented</h3>
-    <p class="muted">Server atoms are what the permission grants on the back end. API routes are the endpoints guarded by one of those atoms, or by a check on the permission itself. Screens are front-end files that read the permission code.</p>
-    <div class="tbl"><table><thead><tr><th>Permission</th><th>Key</th><th>Default holders</th><th>Server atoms</th><th class="num">API routes</th><th class="num">Screens</th></tr></thead><tbody>
-    ${Object.entries(groups).map(([g, ps]) => `<tr class="group"><td colspan="6">${esc(g)}</td></tr>` + ps.map((p) => {
+  const perms = `<section class="panel"><h3>Permissions</h3>
+    <p class="muted">“Also checked behind the scenes” means the app blocks people without the permission even if they get around the screen. “Only hidden on screen” means the screen hides it, but nothing behind the scenes stops someone who finds a way in.</p>
+    <div class="tbl"><table><thead><tr><th>Permission</th><th>Switched on for</th><th>Also checked behind the scenes?</th></tr></thead><tbody>
+    ${Object.entries(groups).map(([g, ps]) => `<tr class="group"><td colspan="3">${esc(g)}</td></tr>` + ps.map((p) => {
       const h = holders(p.key);
-      const be = p.enforced_outside_repo ? `<span class="muted">enforced by ${esc(p.enforced_outside_repo.by)}</span>`
-        : (!p.backend_endpoints.length && !p.backend_bundle_checks.length ? chip('c-warn', 'none found — front end only') : String(p.backend_endpoints.length));
-      return `<tr><td>${esc(p.label || p.key)}${p.code_comment && p.code_comment.tickets.length ? ' ' + p.code_comment.tickets.map((t) => chip('c-neutral', t)).join(' ') : ''}</td>
-        <td><code>${esc(p.key)}</code></td><td>${h.length ? esc(h.join(', ')) : '<span class="muted">none — off by default</span>'}</td>
-        <td><div class="atoms">${p.atoms.map((a) => '<code>' + esc(a) + '</code>').join('') || '<span class="muted">none</span>'}</div></td>
-        <td class="num">${be}</td><td class="num">${p.fe_references.length}</td></tr>`;
+      return `<tr><td>${esc(plainLabel(p.label || p.key))}</td><td>${h.length ? esc(h.join(', ')) : '<span class="muted">No role — off unless a shop turns it on</span>'}</td><td>${enforcementPlain(p)}</td></tr>`;
     }).join('')).join('')}</tbody></table></div></section>`;
-  const deps = `<section class="panel"><h3>Dependencies the server enforces</h3>
-    <p class="muted">When a role is saved, the server silently adds each permission’s implied parent. It never removes and never rejects. The role editor shows the same rules plus confirmation dialogs.</p>
+  const deps = `<section class="panel"><h3>Linked permissions</h3>
+    <p class="muted">When a role is saved with the first permission, the app turns on the second one too.</p>
     <div class="tbl"><table><thead><tr><th>Turning on</th><th>also turns on</th></tr></thead><tbody>
-    ${s.dependencies.map((d) => `<tr><td><code>${esc(d.child)}</code></td><td><code>${esc(d.parent)}</code></td></tr>`).join('')}</tbody></table></div>
-    <p class="muted">Role-editor dependency logic fingerprint <code>${esc((s.fe_dependency_logic.fingerprint || '').slice(0, 12))}</code> (${esc(s.fe_dependency_logic.file)}); a change to it is reported by Track Changes.</p></section>`;
-  return head + changes + roles + perms + deps;
+    ${s.dependencies.map((d) => `<tr><td>${esc(permLabelIn(s, d.child))}</td><td>${esc(permLabelIn(s, d.parent))}</td></tr>`).join('')}</tbody></table></div></section>`;
+  const techBits = `<section class="panel">${tech('Technical details (for developers)', `
+    <p>Commit <code>${esc(r.commit.slice(0, 10))}</code>${r.deployed ? `, build marker <code>${esc(r.deployed.build_marker)}</code>` : ''}. ${s.endpoints.length} API routes read. Saved ${esc(fmtDate(e.recorded_at))} by ${esc(e.recorded_by)}, fingerprint <code>${esc(e.sha256.slice(0, 12))}</code>.</p>
+    <p>Sources: <code>FEPermissionEnum</code>, <code>RoleFePermissionMappings::getMappings()</code>, <code>FEPermissionMappings::getMappings()</code>, <code>FEPermissionCascade::IMPLIED_PARENTS</code>, <code>Role</code>. Role-editor logic fingerprint <code>${esc((s.fe_dependency_logic.fingerprint || '').slice(0, 12))}</code>.</p>
+    <div class="tbl"><table><thead><tr><th>Permission</th><th>Key</th><th>Server atoms</th><th class="num">API routes</th><th class="num">Front-end files</th><th>Tickets in code</th></tr></thead><tbody>
+    ${s.permissions.map((p) => `<tr><td>${esc(p.label)}</td><td><code>${esc(p.key)}</code></td><td><div class="atoms">${p.atoms.map((a) => '<code>' + esc(a) + '</code>').join('') || '—'}</div></td>
+      <td class="num">${p.enforced_outside_repo ? esc(p.enforced_outside_repo.by) : p.backend_endpoints.length}</td><td class="num">${p.fe_references.length}</td><td>${esc(((p.code_comment || {}).tickets || []).join(', '))}</td></tr>`).join('')}</tbody></table></div>`)}</section>`;
+  return head + changes + roles + perms + deps + techBits;
 }
 
-function countChips(counts) {
-  return Object.entries(counts || {}).map(([k, n]) => chip('c-' + k, `${CAT[k] || k} · ${n}`)).join(' ');
+// ── a list of changes, in plain words ────────────────────────────────────────────────────────
+function plainOf(c) {
+  return c.plain || { headline: c.title, what: '', why: c.risk_reason, check: c.qa_scenarios || [], group: c.category === 'backend_enforcement_changed' ? 'behind' : 'access',
+    priority: c.risk + ' priority', roles: [] };
 }
-
-function changeCards(changes, scope) {
-  return `<div class="changes">${changes.map((c) => {
-    const key = itemKey(scope, c);
-    const v = verif[key], ap = approvals[key];
-    return `<details class="change"><summary>${chip('risk-' + c.risk, c.risk)}<div><div><b>${esc(c.title)}</b></div><div class="row" style="margin-top:4px">${chip('c-' + c.category, CAT[c.category] || c.category)}
-      ${(c.affected_roles || []).length ? '<span class="muted" style="font-size:.82rem">Roles: ' + esc(c.affected_roles.join(', ')) + '</span>' : ''}</div></div>
-      ${chip(v ? 'c-' + ({ Passed: 'good', Failed: 'bad', Blocked: 'warn', 'Needs Clarification': 'warn' }[v.status] || 'neutral') : 'c-neutral', v ? v.status : 'Not Tested')}</summary>
-      <div class="body">
-        <div class="ba"><div><div class="eyebrow">Previous</div>${esc(c.before)}</div><div class="arrow muted">→</div><div><div class="eyebrow">Now</div>${esc(c.after)}</div></div>
-        <p><b>Regression risk — ${esc(c.risk)}.</b> ${esc(c.risk_reason)}</p>
-        ${(c.workflows || []).length ? `<div><h4>Affected workflows</h4><ul>${c.workflows.map((w) => '<li>' + esc(w) + '</li>').join('')}</ul></div>` : ''}
-        ${(c.affected_permissions || []).length ? `<p class="muted">Permissions involved: ${c.affected_permissions.map((p) => '<code>' + esc(p) + '</code>').join(' ')}</p>` : ''}
-        <div><h4>Suggested QA scenarios</h4><p class="muted" style="font-size:.82rem">Suggestions to plan with — not proof that the behaviour is correct.</p><ul>${c.qa_scenarios.map((x) => '<li>' + esc(x) + '</li>').join('')}</ul></div>
-        <details><summary class="muted" style="cursor:pointer">Evidence</summary><pre class="cmd">${esc(JSON.stringify(c.evidence, null, 1))}</pre></details>
-        <div class="verify" data-key="${esc(key)}">
-          <label class="ctl">Verification status<select data-verify="${esc(key)}" ${canWriteDb ? '' : 'disabled'}>${STATUSES.map((st) => `<option ${((v && v.status) || 'Not Tested') === st ? 'selected' : ''}>${st}</option>`).join('')}</select></label>
-          ${v ? `<span class="muted">set by ${esc(names[v.by] || 'a teammate')} on ${esc(fmtDate(v.at))}</span>` : ''}
-          ${approvalBlock(key, ap)}
-        </div>
-      </div></details>`;
-  }).join('')}</div>`;
+function groupCounts(changes) {
+  const n = { access: 0, screens: 0, behind: 0 };
+  changes.forEach((c) => { n[plainOf(c).group] = (n[plainOf(c).group] || 0) + 1; });
+  return n;
+}
+function countLine(changes) {
+  const n = groupCounts(changes);
+  return [n.access && `${n.access} to who can do what`, n.screens && `${n.screens} to screens`, n.behind && `${n.behind} behind the scenes`].filter(Boolean).join(' · ');
+}
+function changeCard(c, scope) {
+  const p = plainOf(c);
+  const key = itemKey(scope, c);
+  const v = verif[key], ap = approvals[key];
+  return `<details class="change"><summary>${chip('pr-' + c.risk, p.priority)}<div><div><b>${esc(p.headline)}</b></div>
+      <div class="muted" style="font-size:.84rem;margin-top:2px">${esc([KIND[c.category], p.area, (p.roles || []).length ? 'Roles: ' + p.roles.join(', ') : ''].filter(Boolean).join(' · '))}</div></div>
+      ${testChip(v)}</summary>
+    <div class="body">
+      ${p.what ? `<div><h4>What changed</h4><p>${esc(p.what)}</p></div>` : ''}
+      ${p.before || p.after ? `<div class="ba"><div><div class="eyebrow">Before</div>${esc(p.before || '—')}</div><div class="arrow muted">→</div><div><div class="eyebrow">Now</div>${esc(p.after || '—')}</div></div>` : ''}
+      <div><h4>Why it matters</h4><p>${esc(p.why)}</p></div>
+      ${(p.permissions || []).length > 3 ? `<div><h4>Permissions that allow it</h4><p>${esc(p.permissions.join(' · '))}</p></div>` : ''}
+      <div><h4>How to check it</h4><ol class="check">${p.check.map((x) => '<li>' + esc(x) + '</li>').join('')}</ol>
+        <p class="muted" style="font-size:.82rem;margin-top:4px">These are suggestions to help you plan. A change counts as confirmed only when a tester marks it Passed.</p></div>
+      <div class="verify">
+        <label class="ctl">Test result<select data-verify="${esc(key)}" ${canWriteDb ? '' : 'disabled'}>${STATUSES.map((st) => `<option ${((v && v.status) || 'Not Tested') === st ? 'selected' : ''}>${st}</option>`).join('')}</select></label>
+        ${v ? `<span class="muted">set by ${esc(names[v.by] || 'a teammate')} on ${esc(fmtDate(v.at))}</span>` : ''}
+        ${approvalBlock(key, ap)}
+      </div>
+      ${tech('Technical details (for developers)', `<p><b>${esc(c.title)}</b></p><p>Before: <code>${esc(c.before)}</code><br>Now: <code>${esc(c.after)}</code></p>
+        <p>${esc(c.risk)} risk: ${esc(c.risk_reason)}</p>
+        ${(c.workflows || []).length ? `<ul>${c.workflows.map((w) => '<li>' + esc(w) + '</li>').join('')}</ul>` : ''}
+        <ul>${(c.qa_scenarios || []).map((x) => '<li>' + esc(x) + '</li>').join('')}</ul>
+        <pre class="cmd">${esc(JSON.stringify(c.evidence, null, 1))}</pre>`)}
+    </div></details>`;
+}
+function changeList(changes, scope) {
+  const by = { access: [], screens: [], behind: [] };
+  changes.forEach((c) => { (by[plainOf(c).group] = by[plainOf(c).group] || []).push(c); });
+  const block = (g, xs) => `<div class="changes"><div class="group-title"><h4>${esc(GROUPS[g])}</h4><span class="muted">${xs.length}</span></div>${xs.map((c) => changeCard(c, scope)).join('')}</div>`;
+  return `<div class="changes">
+    ${by.access.length ? block('access', by.access) : ''}
+    ${by.screens.length ? block('screens', by.screens) : ''}
+    ${by.behind.length ? `<details class="group-behind"><summary><h4>${esc(GROUPS.behind)}</h4><span class="muted">${by.behind.length} · click to open</span>
+        <span class="muted" style="flex-basis:100%;font-size:.86rem">Protections inside the app that people don’t see directly. Each one is tested by trying the action as someone with the permission and as someone without it.</span></summary>
+      <div class="inner">${by.behind.map((c) => changeCard(c, scope)).join('')}</div></details>` : ''}
+  </div>`;
 }
 
 function approvalBlock(key, ap) {
-  const f = (v) => (v ? esc(v) : '<span class="muted">Not Documented</span>');
-  return `<dl class="kv" style="flex-basis:100%">
-    <dt>Reason</dt><dd>${f(ap && ap.reason)}</dd><dt>Jira</dt><dd>${f(ap && ap.jira)}</dd><dt>Pull request</dt><dd>${f(ap && ap.pr)}</dd>
-    <dt>Requested by</dt><dd>${f(ap && ap.requested_by)}</dd><dt>Approved by</dt><dd>${f(ap && ap.approved_by)}</dd><dt>Approval date</dt><dd>${f(ap && ap.approval_date)}</dd>
-    <dt>Evidence</dt><dd>${ap && ap.evidence ? `<a href="${esc(ap.evidence)}" target="_blank" rel="noopener">${esc(ap.evidence)}</a>` : '<span class="muted">Not Documented</span>'}</dd></dl>
-    ${canApprove ? `<button class="btn ghost" data-approve="${esc(key)}">${ap ? 'Edit approval record' : 'Record approval evidence'}</button>` : ''}`;
+  const f = (v) => (v ? esc(v) : '<span class="muted">Not documented</span>');
+  return `<div style="flex-basis:100%;display:flex;flex-direction:column;gap:6px">
+    <h4>Approval</h4>
+    <p class="muted" style="font-size:.84rem">Changes to roles and permissions need approval from Chris Amani and Mathieu Lachapelle. This page shows an approval only when someone records proof of it. It is never assumed.</p>
+    <dl class="kv">
+    <dt>Why it changed</dt><dd>${f(ap && ap.reason)}</dd><dt>Jira ticket</dt><dd>${f(ap && ap.jira)}</dd><dt>Developer change</dt><dd>${f(ap && ap.pr)}</dd>
+    <dt>Asked for by</dt><dd>${f(ap && ap.requested_by)}</dd><dt>Approved by</dt><dd>${f(ap && ap.approved_by)}</dd><dt>Date approved</dt><dd>${f(ap && ap.approval_date)}</dd>
+    <dt>Proof</dt><dd>${ap && ap.evidence ? `<a href="${esc(ap.evidence)}" target="_blank" rel="noopener">${esc(ap.evidence)}</a>` : '<span class="muted">Not documented</span>'}</dd></dl>
+    ${canApprove ? `<div><button class="btn ghost" data-approve="${esc(key)}">${ap ? 'Edit the approval record' : 'Record an approval'}</button></div>` : ''}</div>`;
 }
 
-// ── matrix ───────────────────────────────────────────────────────────────────────────────────
+// ── who can do what ──────────────────────────────────────────────────────────────────────────
 const M = { a: null, b: '', q: '', role: '', changedOnly: false, sel: null };
 function viewMatrix() {
   if (!M.a) M.a = latestImpl().id;
-  const opts = (sel, withNone) => (withNone ? '<option value="">— none —</option>' : '') + reg().map((s) => `<option value="${esc(s.id)}" ${sel === s.id ? 'selected' : ''}>${esc(s.label)}</option>`).join('');
+  const opts = (sel, withNone) => (withNone ? '<option value="">Nothing — just show one version</option>' : '') + reg().map((s) => `<option value="${esc(s.id)}" ${sel === s.id ? 'selected' : ''}>${esc(nice(s))}</option>`).join('');
   const A = E.normalise(S[M.a]), B = M.b ? E.normalise(S[M.b]) : null;
   const roles = Object.keys(A.roles).concat(B ? Object.keys(B.roles).filter((r) => !A.roles[r]) : []);
   const rolesShown = M.role ? roles.filter((r) => r === M.role) : roles;
   const keys = Array.from(new Set(Object.keys(A.perms).concat(B ? Object.keys(B.perms) : [])));
-  const lab = (k) => ((B && B.perms[k]) || A.perms[k] || {}).label || k;
+  const lab = (k) => plainLabel(((B && B.perms[k]) || A.perms[k] || {}).label || k);
   const grp = (k) => ((B && B.perms[k]) || A.perms[k] || {}).group || ((A.perms[k] || {}).section) || 'Settings';
   const stated = (Mx, k, r) => !Mx.coverage || (Mx.coverage[k] && Mx.coverage[k].has(r));
   const val = (Mx, k, r) => (!Mx.roles[r] || !Mx.perms[k]) ? null : (!stated(Mx, k, r) ? undefined : !!(Mx.defaults[r] && Mx.defaults[r].has(k)));
   const q = M.q.toLowerCase();
-  let rows = keys.filter((k) => !q || k.toLowerCase().includes(q) || String(lab(k)).toLowerCase().includes(q));
+  let rows = keys.filter((k) => !q || String(lab(k)).toLowerCase().includes(q));
   const changed = (k) => B && rolesShown.some((r) => { const a = val(A, k, r), b = val(B, k, r); return a !== b && a !== undefined && b !== undefined; });
   if (M.changedOnly && B) rows = rows.filter(changed);
   const byG = {};
   rows.forEach((k) => { (byG[grp(k)] = byG[grp(k)] || []).push(k); });
+  const one = (v) => (v === null ? '<span class="unstated" title="Not in this version">—</span>' : v === undefined ? '<span class="unstated" title="This version does not say">·</span>' : v ? '<span class="on" title="Switched on">✓</span>' : '<span class="off" title="Switched off"></span>');
   const cell = (k, r) => {
     const a = val(A, k, r);
-    if (!B) return a === null ? '<span class="unstated">—</span>' : a === undefined ? '<span class="unstated" title="Not stated in this version">·</span>' : a ? '<span class="on" title="On by default">✓</span>' : '<span class="off" title="Off by default"></span>';
+    if (!B) return one(a);
     const b = val(B, k, r);
-    if (a === b || a === undefined || b === undefined || a === null || b === null) {
-      const v = b === null ? a : b;
-      return v === null ? '<span class="unstated">—</span>' : v === undefined ? '<span class="unstated" title="Not stated">·</span>' : v ? '<span class="on">✓</span>' : '<span class="off"></span>';
-    }
-    return b ? '<span class="chg-on" title="OFF → ON">+</span>' : '<span class="chg-off" title="ON → OFF">−</span>';
+    if (a === b || a === undefined || b === undefined || a === null || b === null) return one(b === null ? a : b);
+    return b ? '<span class="chg-on" title="Was off, now on">+</span>' : '<span class="chg-off" title="Was on, now off">−</span>';
   };
-  const detail = M.sel ? matrixDetail(M.sel, A, B) : '<p class="muted">Select a permission name to see its dependencies, enforcement and affected workflows.</p>';
+  const detail = M.sel ? matrixDetail(M.sel, A, B) : '<p class="muted">Click a permission name to see what it controls and what it is linked to.</p>';
   return `<section class="panel">
-    <div class="head"><div><div class="eyebrow">Interactive matrix</div><h2>Permissions × system roles</h2></div>
-      <div class="legend"><span><span class="sw on"></span>on by default</span><span><span class="sw off"></span>off</span><span>· not stated in this version</span>${B ? '<span><span class="sw chg-on"></span>turned on</span><span><span class="sw chg-off"></span>turned off</span>' : ''}</div></div>
+    <div class="head"><div><div class="eyebrow">Who can do what</div><h2>Every role and every permission</h2></div>
+      <div class="legend"><span><span class="sw on"></span>switched on</span><span><span class="sw off"></span>switched off</span><span>· this version doesn’t say</span>${B ? '<span><span class="sw chg-on"></span>newly switched on</span><span><span class="sw chg-off"></span>newly switched off</span>' : ''}</div></div>
+    <p class="muted">A tick means the role starts with this permission switched on. Shops can change their own roles, so a real shop’s roles may differ.</p>
     <div class="controls">
-      <label class="ctl">Version<select id="mA">${opts(M.a)}</select></label>
+      <label class="ctl">Show<select id="mA">${opts(M.a)}</select></label>
       <label class="ctl">Compare with<select id="mB">${opts(M.b, true)}</select></label>
-      <label class="ctl">Search permissions<input type="search" id="mQ" value="${esc(M.q)}" placeholder="e.g. invoic, workOrdersView"></label>
+      <label class="ctl">Search<input type="search" id="mQ" value="${esc(M.q)}" placeholder="for example: invoice"></label>
       <label class="ctl">Role<select id="mR"><option value="">All roles</option>${roles.map((r) => `<option value="${esc(r)}" ${M.role === r ? 'selected' : ''}>${esc(((B && B.roles[r]) || A.roles[r]).name)}</option>`).join('')}</select></label>
-      <label class="check"><input type="checkbox" id="mC" ${M.changedOnly ? 'checked' : ''} ${B ? '' : 'disabled'}> Changed cells only</label>
+      <label class="check"><input type="checkbox" id="mC" ${M.changedOnly ? 'checked' : ''} ${B ? '' : 'disabled'}> Only show differences</label>
     </div>
     <div class="grid2" style="grid-template-columns:minmax(0,2.2fr) minmax(260px,1fr)">
       <div class="tbl matrix"><table><thead><tr><th>Permission</th>${rolesShown.map((r) => `<th class="role">${esc(((B && B.roles[r]) || A.roles[r]).name)}</th>`).join('')}</tr></thead><tbody>
       ${Object.entries(byG).map(([g, ks]) => `<tr class="group"><td colspan="${rolesShown.length + 1}">${esc(g)}</td></tr>` + ks.map((k) =>
-        `<tr class="${M.sel === k ? 'sel' : ''}"><td class="pname" data-perm="${esc(k)}">${esc(lab(k))}<br><code class="muted">${esc(k)}</code></td>${rolesShown.map((r) => `<td class="cell">${cell(k, r)}</td>`).join('')}</tr>`).join('')).join('') || `<tr><td colspan="${rolesShown.length + 1}" class="muted">No permission matches.</td></tr>`}
+        `<tr class="${M.sel === k ? 'sel' : ''}"><td class="pname" data-perm="${esc(k)}" tabindex="0">${esc(lab(k))}</td>${rolesShown.map((r) => `<td class="cell">${cell(k, r)}</td>`).join('')}</tr>`).join('')).join('') || `<tr><td colspan="${rolesShown.length + 1}" class="muted">No permission matches.</td></tr>`}
       </tbody></table></div>
       <aside class="panel" style="padding:14px;align-self:start">${detail}</aside>
     </div></section>`;
@@ -457,116 +592,131 @@ function viewMatrix() {
 function matrixDetail(k, A, B) {
   const X = B || A, snap = X.meta;
   const p = X.perms[k] || A.perms[k] || {};
+  const L = (x) => plainLabel((X.perms[x] || A.perms[x] || {}).label || x);
   const parents = Object.values(X.deps).filter((d) => d.child === k);
   const children = Object.values(X.deps).filter((d) => d.parent === k);
   const ip = (snap.permissions || []).find((x) => x.key === k);
-  return `<h3>${esc(p.label || k)}</h3><p><code>${esc(k)}</code></p>
-    ${p.controls ? `<blockquote class="q">${esc(p.controls)}<cite>${esc(p.section || '')}</cite></blockquote>` : ''}
-    <div><h4>Depends on</h4>${parents.length ? parents.map((d) => `<div><code>${esc(d.parent)}</code> <span class="muted">(${esc(d.kind)})</span></div>`).join('') : '<span class="muted">nothing</span>'}</div>
-    <div><h4>Turned on by</h4>${children.length ? children.map((d) => `<div><code>${esc(d.child)}</code></div>`).join('') : '<span class="muted">nothing</span>'}</div>
-    ${ip ? `<div><h4>Enforcement in ${esc(snap.release.ref)}</h4>
-      <div class="atoms">${ip.atoms.map((a) => '<code>' + esc(a) + '</code>').join('') || '<span class="muted">no server atoms</span>'}</div>
-      <p class="muted" style="margin-top:6px">${ip.enforced_outside_repo ? 'Enforced by ' + esc(ip.enforced_outside_repo.by) + '.' : ip.backend_endpoints.length + ' API routes · ' + ip.backend_bundle_checks.length + ' direct server checks · ' + ip.fe_references.length + ' front-end files'}</p>
-      ${ip.backend_endpoints.length ? `<details><summary class="muted" style="cursor:pointer">API routes</summary><div class="mono" style="font-size:.76rem">${ip.backend_endpoints.map(esc).join('<br>')}</div></details>` : ''}
-      ${ip.fe_references.length ? `<details><summary class="muted" style="cursor:pointer">Front-end files</summary><div class="mono" style="font-size:.76rem">${ip.fe_references.map(esc).join('<br>')}</div></details>` : ''}</div>` : ''}`;
+  return `<h3>${esc(plainLabel(p.label || k))}</h3>
+    ${p.controls ? `<div><h4>What the plan says it controls</h4><blockquote class="q">${esc(p.controls)}</blockquote></div>` : ''}
+    ${p.derived ? '<p>This is not a separate switch in the app. It counts as on whenever a role has any permission inside it.</p>' : ''}
+    <div><h4>Turning this on also turns on</h4>${parents.length ? parents.map((d) => `<div>${esc(L(d.parent))}${d.kind !== 'implies' ? ' <span class="muted">(must be on first)</span>' : ''}</div>`).join('') : '<span class="muted">Nothing</span>'}</div>
+    <div><h4>Turned on automatically by</h4>${children.length ? children.map((d) => `<div>${esc(L(d.child))}</div>`).join('') : '<span class="muted">Nothing</span>'}</div>
+    ${ip ? `<div><h4>Also checked behind the scenes?</h4><p>${enforcementPlain(ip)}</p></div>
+      ${tech('Technical details (for developers)', `<p><code>${esc(k)}</code></p><div class="atoms">${ip.atoms.map((a) => '<code>' + esc(a) + '</code>').join('') || '—'}</div>
+        <p>${ip.backend_endpoints.length} API routes · ${ip.backend_bundle_checks.length} direct server checks · ${ip.fe_references.length} front-end files</p>
+        ${ip.backend_endpoints.length ? `<div class="mono" style="font-size:.76rem">${ip.backend_endpoints.map(esc).join('<br>')}</div>` : ''}`)}` : ''}`;
 }
 
-// ── PRD vs implementation ────────────────────────────────────────────────────────────────────
+// ── the app vs the plan ──────────────────────────────────────────────────────────────────────
 const P = { status: '', q: '' };
+function onOff(v) { return v === null || v === undefined ? '<span class="muted">Doesn’t say</span>' : v ? 'On' : 'Off'; }
 function viewPrdVsImpl() {
   const rows = D.prd_vs_impl.rows;
+  const impl = S[D.prd_vs_impl.implementation];
   const counts = {};
   rows.forEach((r) => { counts[r.status] = (counts[r.status] || 0) + 1; });
   const q = P.q.toLowerCase();
-  const shown = rows.filter((r) => (!P.status || r.status === P.status) && (!q || r.key.toLowerCase().includes(q) || String(r.label).toLowerCase().includes(q)));
+  const shown = rows.filter((r) => (!P.status || r.status === P.status) && (!q || String(r.plain_label || r.label).toLowerCase().includes(q)));
   const scope = 'pvi-' + D.prd_vs_impl.implementation;
   return `<section class="panel">
-    <div class="head"><div><div class="eyebrow">Original PRD (v7) vs ${esc(entry(D.prd_vs_impl.implementation).label)}</div><h2>Does the implementation match the original PRD?</h2></div>
-      <button class="btn ghost" data-export="prd_vs_impl">Export</button></div>
-    <p class="muted">A difference is not automatically a bug. Each row is classified from the evidence: the original PRD, the latest PRD (v54) and its change log, ticket references in the code, and approval evidence recorded here. Approval is never inferred from a merge.</p>
-    <div class="row">${Object.entries(counts).map(([st, n]) => `<button class="chip ${'st-' + st.split(' ')[0]}" data-pstatus="${esc(st)}" style="cursor:pointer;${P.status === st ? 'outline:2px solid var(--accent)' : ''}">${esc(st)} · ${n}</button>`).join('')}
+    <div class="head"><div><div class="eyebrow">The app vs the plan</div><h2>Does the app do what the original plan says?</h2></div>
+      <button class="btn ghost" data-export="prd_vs_impl">Download as a spreadsheet</button></div>
+    <p>Each permission in ${esc(nice(entry(D.prd_vs_impl.implementation)))} is compared with the original plan (June 2026). A difference is not automatically a mistake: the plan was updated later, and some changes were decided after it was written.</p>
+    <dl class="glossary">${Object.entries(VERDICT).map(([k, [n, cls, m]]) => `<dt>${chip(cls, n)}</dt><dd>${esc(m)}</dd>`).join('')}</dl>
+    <div class="row">${Object.keys(VERDICT).filter((k) => counts[k]).map((k) => `<button class="chip ${VERDICT[k][1]}" data-pstatus="${esc(k)}" style="cursor:pointer;${P.status === k ? 'outline:2px solid var(--accent)' : ''}">${esc(VERDICT[k][0])} · ${counts[k]}</button>`).join('')}
       ${P.status ? '<button class="chip c-neutral" data-pstatus="" style="cursor:pointer">Show all</button>' : ''}</div>
-    <div class="controls"><label class="ctl">Search<input type="search" id="pQ" value="${esc(P.q)}" placeholder="permission name or key"></label></div>
+    <div class="controls"><label class="ctl">Search<input type="search" id="pQ" value="${esc(P.q)}" placeholder="permission name"></label></div>
     <div class="changes">${shown.map((r) => {
       const key = scope + ':' + r.key, v = verif[key];
-      return `<details class="change"><summary>${statusChip(r.status)}<div><b>${esc(r.label || r.key)}</b> <code class="muted">${esc(r.key)}</code><div class="muted" style="font-size:.85rem">${esc(r.detail)}</div></div>
-        ${chip(v ? 'c-' + ({ Passed: 'good', Failed: 'bad', Blocked: 'warn', 'Needs Clarification': 'warn' }[v.status] || 'neutral') : 'c-neutral', v ? v.status : 'Not Tested')}</summary>
+      const V = VERDICT[r.status] || [r.status, 'c-neutral'];
+      const holders = r.implementation ? r.implementation.holders.map((h) => roleNameIn(impl, h)) : [];
+      return `<details class="change"><summary>${chip(V[1], V[0])}<div><b>${esc(r.plain_label || r.label)}</b><div class="muted" style="font-size:.86rem">${esc(r.plain_detail || r.detail)}</div></div>
+        ${testChip(v)}</summary>
         <div class="body">
           <div class="grid2">
-            <div><h4>Original PRD (v7) expects</h4>${r.prd_expectation ? `<blockquote class="q">${esc(r.prd_expectation.controls_verbatim)}<cite>${esc(r.prd_expectation.section)}</cite></blockquote>` : '<p class="muted">Not in the original PRD.</p>'}
-              ${r.latest_prd && (!r.prd_expectation || r.latest_prd.controls_verbatim !== r.prd_expectation.controls_verbatim) ? `<h4 style="margin-top:10px">Latest PRD (v54) says</h4><blockquote class="q">${esc(r.latest_prd.controls_verbatim)}<cite>${esc(r.latest_prd.section)}</cite></blockquote>` : ''}</div>
-            <div><h4>Implementation does</h4>${r.implementation ? `<p>${r.implementation.derived ? 'No stored permission; derived from the child permissions a role holds.' : 'Default ON for: ' + esc(r.implementation.holders.map((h) => roleNameIn(S[D.prd_vs_impl.implementation], h)).join(', ') || 'no system role')}</p>
-              ${r.implementation.atoms.length ? `<div class="atoms" style="margin-top:6px">${r.implementation.atoms.map((a) => '<code>' + esc(a) + '</code>').join('')}</div>` : ''}
-              ${r.implementation.outside ? `<p class="muted">Enforced by ${esc(r.implementation.outside.by)} (${esc(r.implementation.outside.evidence)}).</p>` : ''}` : '<p class="muted">No permission with this key in the implementation.</p>'}</div>
+            <div><h4>The original plan says</h4>${r.prd_expectation ? `<blockquote class="q">${esc(r.prd_expectation.controls_verbatim)}</blockquote>` : '<p class="muted">Not in the original plan.</p>'}
+              ${r.latest_prd && (!r.prd_expectation || r.latest_prd.controls_verbatim !== r.prd_expectation.controls_verbatim) ? `<h4 style="margin-top:10px">The newer plan says</h4><blockquote class="q">${esc(r.latest_prd.controls_verbatim)}</blockquote>` : ''}</div>
+            <div><h4>The app does</h4>${r.implementation ? (r.implementation.derived ? '<p>This is not a separate switch in the app. It counts as on whenever a role has any permission inside it.</p>'
+                : `<p>Switched on for: ${holders.length ? esc(andList(holders)) : 'no role'}.</p>`)
+              + (r.implementation.outside ? '<p class="muted">It is checked by the accounting system, which is a separate part of ShopView.</p>' : '')
+              : '<p class="muted">The app has no permission like this.</p>'}</div>
           </div>
-          ${r.default_differences.length ? `<div><h4>Default differences, role by role</h4><div class="tbl"><table><thead><tr><th>Role</th><th>Original PRD</th><th>Implementation</th><th>Latest PRD</th><th>PRD evidence</th></tr></thead><tbody>
-            ${r.default_differences.map((d) => `<tr><td>${esc(d.role_name)}</td><td>${d.prd ? 'ON' : 'OFF'}</td><td>${d.impl ? 'ON' : 'OFF'}</td><td>${d.latest_prd === null ? '<span class="muted">not stated</span>' : d.latest_prd ? 'ON' : 'OFF'}</td>
-              <td class="muted" style="font-size:.8rem">${esc((d.evidence_prd || {}).table || '')} · row “${esc((d.evidence_prd || {}).row || '')}” · cell “${esc((d.evidence_prd || {}).cell || '—')}”</td></tr>`).join('')}</tbody></table></div></div>` : ''}
-          ${(r.dependency_differences.prd_only.length || r.dependency_differences.impl_only.length) ? `<p>Dependency rules differ — PRD only: ${esc(r.dependency_differences.prd_only.join(', ') || 'none')}; implementation only: ${esc(r.dependency_differences.impl_only.join(', ') || 'none')}.</p>` : ''}
-          ${(r.editor_rules_to_verify_on_screen || []).length ? `<div><h4>Role-editor rules to check on screen</h4><ul>${r.editor_rules_to_verify_on_screen.map((x) => `<li>${x.kind === 'requires' ? 'Requires' : 'Gated by'} <code>${esc(x.parent)}</code>${x.quote && x.quote.verbatim ? ` — <span class="muted">“${esc(x.quote.verbatim)}”</span>` : ''}</li>`).join('')}</ul></div>` : ''}
-          <div class="verify"><label class="ctl">Verification status<select data-verify="${esc(key)}" ${canWriteDb ? '' : 'disabled'}>${STATUSES.map((st) => `<option ${((v && v.status) || 'Not Tested') === st ? 'selected' : ''}>${st}</option>`).join('')}</select></label>
+          ${r.default_differences.length ? `<div><h4>Where they differ, role by role</h4><div class="tbl"><table><thead><tr><th>Role</th><th>Original plan</th><th>App today</th><th>Newer plan</th></tr></thead><tbody>
+            ${r.default_differences.map((d) => `<tr><td>${esc(d.role_name)}</td><td>${onOff(d.prd)}</td><td><b>${onOff(d.impl)}</b></td><td>${onOff(d.latest_prd)}</td></tr>`).join('')}</tbody></table></div></div>` : ''}
+          ${(r.dependency_differences.prd_only.length || r.dependency_differences.impl_only.length) ? `<p>The linked permissions are different. ${r.dependency_differences.prd_only.length ? 'Only the plan links it to: ' + esc(r.dependency_differences.prd_only.map((x) => permLabelIn(impl, x)).join(', ')) + '. ' : ''}${r.dependency_differences.impl_only.length ? 'Only the app links it to: ' + esc(r.dependency_differences.impl_only.map((x) => permLabelIn(impl, x)).join(', ')) + '.' : ''}</p>` : ''}
+          ${(r.editor_rules_to_verify_on_screen || []).length ? `<div><h4>Also check on screen when editing a role</h4><ul>${r.editor_rules_to_verify_on_screen.map((x) => `<li>It needs ${esc(qt(permLabelIn(S['prd-v7'], x.parent)))} to be switched on first.</li>`).join('')}</ul></div>` : ''}
+          <div class="verify"><label class="ctl">Test result<select data-verify="${esc(key)}" ${canWriteDb ? '' : 'disabled'}>${STATUSES.map((st) => `<option ${((v && v.status) || 'Not Tested') === st ? 'selected' : ''}>${st}</option>`).join('')}</select></label>
             ${v ? `<span class="muted">set by ${esc(names[v.by] || 'a teammate')} on ${esc(fmtDate(v.at))}</span>` : ''}
             ${approvalBlock(key, approvals[key])}</div>
+          ${tech('Technical details (for developers)', `<p>Key <code>${esc(r.key)}</code> · ${esc(r.status)} · ${esc(r.detail)}</p>
+            ${r.prd_expectation ? `<p>Original plan section: ${esc(r.prd_expectation.section)}</p>` : ''}
+            ${r.implementation && r.implementation.atoms.length ? `<div class="atoms">${r.implementation.atoms.map((a) => '<code>' + esc(a) + '</code>').join('')}</div>` : ''}
+            ${r.implementation && r.implementation.outside ? `<p>${esc(r.implementation.outside.by)}: ${esc(r.implementation.outside.evidence)}</p>` : ''}
+            ${r.default_differences.length ? `<pre class="cmd">${esc(JSON.stringify(r.default_differences.map((d) => ({ role: d.role, prd_cell: d.evidence_prd, latest_cell: d.evidence_latest })), null, 1))}</pre>` : ''}`)}
         </div></details>`;
     }).join('') || '<div class="empty">No permission matches.</div>'}</div></section>`;
 }
 
-// ── compare any two ──────────────────────────────────────────────────────────────────────────
-const C = { a: 'prd-v7', b: null, risk: '', cat: '' };
+// ── compare two versions ─────────────────────────────────────────────────────────────────────
+const C = { a: 'prd-v7', b: null, risk: '', group: '' };
 function viewCompare() {
   if (!C.b) C.b = latestImpl().id;
-  const opts = (sel) => reg().map((s) => `<option value="${esc(s.id)}" ${sel === s.id ? 'selected' : ''}>${esc(s.label)}</option>`).join('');
+  const opts = (sel) => reg().map((s) => `<option value="${esc(s.id)}" ${sel === s.id ? 'selected' : ''}>${esc(nice(s))}</option>`).join('');
   const rep = E.compare(S[C.a], S[C.b]);
   let ch = rep.changes;
   if (C.risk) ch = ch.filter((c) => c.risk === C.risk);
-  if (C.cat) ch = ch.filter((c) => c.category === C.cat);
+  if (C.group) ch = ch.filter((c) => plainOf(c).group === C.group);
   const kinds = S[C.a].kind + '→' + S[C.b].kind;
   return `<section class="panel">
-    <div class="head"><div><div class="eyebrow">Cumulative comparison</div><h2>Compare any two versions</h2></div>
-      <button class="btn ghost" data-export="compare">Export</button></div>
+    <div class="head"><div><div class="eyebrow">Compare two versions</div><h2>What is different between two versions?</h2></div>
+      ${rep.changes.length ? '<button class="btn ghost" data-export="compare">Download as a spreadsheet</button>' : ''}</div>
     <div class="controls"><label class="ctl">From<select id="cA">${opts(C.a)}</select></label><label class="ctl">To<select id="cB">${opts(C.b)}</select></label>
-      <label class="ctl">Risk<select id="cR"><option value="">All</option>${['High', 'Medium', 'Low'].map((r) => `<option ${C.risk === r ? 'selected' : ''}>${r}</option>`).join('')}</select></label>
-      <label class="ctl">Change type<select id="cT"><option value="">All</option>${Object.entries(CAT).map(([k, v]) => `<option value="${k}" ${C.cat === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></label></div>
-    ${kinds !== 'implementation→implementation' ? '<div class="notice">One side is a PRD, so only roles, permissions, defaults and dependencies are compared. Server enforcement exists only between implementation snapshots.</div>' : ''}
-    <div class="row">${countChips(rep.counts) || ''}</div>
-    ${rep.changes.length ? changeCards(ch, 'cmp-' + C.a + '-' + C.b) : '<div class="empty">No Custom Roles &amp; Permissions differences between these two versions.</div>'}
+      <label class="ctl">Priority<select id="cR"><option value="">All</option>${['High', 'Medium', 'Low'].map((r) => `<option value="${r}" ${C.risk === r ? 'selected' : ''}>${r}</option>`).join('')}</select></label>
+      <label class="ctl">Kind of change<select id="cT"><option value="">All</option>${Object.entries(GROUPS).map(([k, v]) => `<option value="${k}" ${C.group === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></label></div>
+    ${kinds !== 'implementation→implementation' ? '<div class="notice">One side is a plan document, so only roles, permissions, who has them and linked permissions are compared. Plans do not describe behind-the-scenes checks.</div>' : ''}
+    ${rep.changes.length ? `<p><b>${rep.changes.length} differences</b>: ${esc(countLine(rep.changes))}.</p>` : ''}
+    ${rep.changes.length ? (ch.length ? changeList(ch, 'cmp-' + C.a + '-' + C.b) : '<div class="empty">Nothing matches these filters.</div>') : '<div class="empty">No Custom Roles &amp; Permissions differences between these two versions.</div>'}
   </section>`;
 }
 
-// ── history & approvals ──────────────────────────────────────────────────────────────────────
+// ── release history ──────────────────────────────────────────────────────────────────────────
 const Hs = { q: '' };
 function viewHistory() {
   const q = Hs.q.toLowerCase();
-  const rows = reg().map((e) => {
-    const rep = e.change_report ? D.reports[e.change_report] : null;
-    return { e, rep, text: (e.label + ' ' + (rep ? rep.changes.map((c) => c.title).join(' ') : '')).toLowerCase() };
-  }).filter((x) => !q || x.text.includes(q));
-  const hist = D.history.releases.filter((h) => h.changes && (!q || (h.to + ' ' + (h.headline || []).join(' ') + ' ' + (h.tickets || []).join(' ')).toLowerCase().includes(q)));
+  const hist = D.history.releases.filter((h) => h.changes).filter((h) => {
+    if (!q) return true;
+    const rep = D.history_reports[h.report];
+    return (h.to + ' ' + (h.tickets || []).join(' ') + ' ' + (rep ? rep.changes.map((c) => plainOf(c).headline).join(' ') : '')).toLowerCase().includes(q);
+  }).reverse();
   return `<section class="panel">
-    <div class="head"><div><div class="eyebrow">Permanent record</div><h2>Change history &amp; approvals</h2></div>
-      <label class="ctl">Search history<input type="search" id="hQ" value="${esc(Hs.q)}" placeholder="permission, release, SV-…"></label></div>
-    <p class="muted">Snapshots are append-only: each file is written once, made read-only and pinned by its SHA-256 in the registry. Custom Permissions changes need Product leadership approval (Chris Amani and Mathieu Lachapelle). The tracker records that evidence here and never infers it from a merge.</p>
-    <div class="tbl"><table><thead><tr><th>Version</th><th>Date</th><th>Commit / source</th><th>Compared with</th><th class="num">Changes</th><th>Recorded by</th><th>Integrity</th></tr></thead><tbody>
-      ${rows.map(({ e, rep }) => `<tr><td><a href="#snap-${esc(e.id)}">${esc(e.label)}</a></td>
-        <td>${esc(fmtDate((e.release && e.release.commit_date) || (e.source && (e.source.published_at || e.source.created_at)) || e.recorded_at))}</td>
-        <td>${e.release ? '<code>' + esc(e.release.commit.slice(0, 10)) + '</code>' : 'Confluence v' + esc((e.source || {}).version)}</td>
-        <td>${e.previous ? esc((entry(e.previous) || {}).label || e.previous) : '<span class="muted">—</span>'}</td>
-        <td class="num">${rep ? rep.changes.length : '—'}</td><td>${esc(e.recorded_by)}</td><td><code>${esc(e.sha256.slice(0, 10))}</code></td></tr>`).join('')}
-    </tbody></table></div></section>
-  <section class="panel"><div class="head"><div><div class="eyebrow">Before the baseline · reconstructed from release tags</div><h3>When each permission change shipped</h3></div></div>
-    <p class="muted">Every v26 release tag up to the baseline, compared with the release before it by the same engine. Repository evidence only. These are not confirmed snapshots, and the Jira and PR numbers are leads taken from the commits.</p>
+    <div class="head"><div><div class="eyebrow">Release history</div><h2>When each permission change went live</h2></div>
+      <label class="ctl">Search<input type="search" id="hQ" value="${esc(Hs.q)}" placeholder="permission, release or ticket"></label></div>
+    <p>Every release that changed roles or permissions, newest first. Rebuilt from the app’s past releases. Ticket numbers come from the developers’ notes, so treat them as pointers, not approvals.</p>
     <div class="changes">${hist.map((h) => {
       const rep = D.history_reports[h.report];
-      return `<details class="change"><summary>${chip('c-neutral', h.date)}<div><b>${esc(h.to)}</b> <span class="muted">vs ${esc(h.from)}</span><div class="row" style="margin-top:4px">${countChips(h.counts)}</div>
-        ${(h.headline || []).length ? `<div class="muted" style="font-size:.84rem;margin-top:4px">${esc(h.headline.join(' · '))}</div>` : ''}</div>
+      return `<details class="change"><summary>${chip('c-neutral', fmtDate(h.date))}<div><b>Release ${esc(h.to)}</b> · ${h.changes} change${h.changes > 1 ? 's' : ''}
+        <div class="muted" style="font-size:.86rem">${esc(rep ? countLine(rep.changes) : '')}</div>
+        ${(h.headline || []).length ? `<div style="font-size:.88rem;margin-top:4px">${h.headline.map((x) => esc(x)).join('<br>')}</div>` : ''}</div>
         <span class="muted" style="font-size:.82rem">${esc((h.tickets || []).join(', '))}</span></summary>
-        <div class="body">${rep ? changeCards(rep.changes, 'hist-' + h.to) : ''}
-          ${rep && rep.commits && rep.commits.length ? `<details><summary class="muted" style="cursor:pointer">Commits touching permission code (${rep.commits.length})</summary><div class="mono" style="font-size:.76rem">${rep.commits.map((c) => esc(c.commit + ' ' + c.date + ' ' + c.subject)).join('<br>')}</div></details>` : ''}
-          ${(h.pull_requests || []).length ? `<p class="muted">Pull requests mentioned: ${h.pull_requests.map((n) => `<a href="https://github.com/ShopView/shopview/pull/${esc(n)}" target="_blank" rel="noopener">#${esc(n)}</a>`).join(' ')}</p>` : ''}</div></details>`;
-    }).join('') || '<div class="empty">No release matches the search.</div>'}</div></section>`;
+        <div class="body">${rep ? changeList(rep.changes, 'hist-' + h.to) : ''}
+          ${tech('Technical details (for developers)', `${rep && rep.commits && rep.commits.length ? `<div class="mono" style="font-size:.76rem">${rep.commits.map((c) => esc(c.commit + ' ' + c.date + ' ' + c.subject)).join('<br>')}</div>` : ''}
+            ${(h.pull_requests || []).length ? `<p>Pull requests: ${h.pull_requests.map((n) => `<a href="https://github.com/ShopView/shopview/pull/${esc(n)}" target="_blank" rel="noopener">#${esc(n)}</a>`).join(' ')}</p>` : ''}
+            <p>Compared ${esc(h.from)} with ${esc(h.to)}.</p>`)}</div></details>`;
+    }).join('') || '<div class="empty">No release matches the search.</div>'}</div></section>
+  <section class="panel"><h3>Versions saved on this page</h3>
+    <p class="muted">Each saved version is locked. It can never be edited, only added to.</p>
+    <div class="tbl"><table><thead><tr><th>Version</th><th>Date</th><th>Compared with</th><th class="num">Changes</th><th>Saved by</th></tr></thead><tbody>
+      ${reg().map((e) => { const rep = e.change_report ? D.reports[e.change_report] : null;
+        return `<tr><td><a href="#snap-${esc(e.id)}">${esc(nice(e))}</a></td>
+        <td>${esc(fmtDate((e.release && e.release.commit_date) || (e.source && (e.source.published_at || e.source.created_at)) || e.recorded_at))}</td>
+        <td>${e.previous ? esc(nice(entry(e.previous))) : '<span class="muted">—</span>'}</td>
+        <td class="num">${rep ? rep.changes.length : '—'}</td><td>${esc(e.recorded_by)}</td></tr>`; }).join('')}
+    </tbody></table></div>
+    ${tech('Technical details (for developers)', `<p>Each file is written once, made read-only and pinned by its SHA-256 in <code>snapshots/registry.json</code>.</p>
+      ${reg().map((e) => `<div><code>${esc(e.id)}</code> · <code>${esc(e.sha256)}</code></div>`).join('')}`)}</section>`;
 }
 
-// ── Track Changes ────────────────────────────────────────────────────────────────────────────
+// ── check a new release ──────────────────────────────────────────────────────────────────────
 const T = { pick: null };
 function viewTrack() {
   const latest = latestImpl();
@@ -575,53 +725,55 @@ function viewTrack() {
   const unscanned = (D.known_releases || []).filter((t) => !recordedTags.has(t.tag) && !pending.some((p) => (p.release.tags || []).includes(t.tag)));
   const prodRecorded = implEntries().find((e) => e.release.commit && D.deployed.commit && e.release.commit.startsWith(D.deployed.commit));
   const options = [
-    ...pending.map((p) => ({ v: 'pending:' + p.snapshot_id, l: `${(p.release.tags || [])[0] || p.release.commit.slice(0, 7)} — scanned, awaiting review` })),
-    ...unscanned.map((t) => ({ v: 'tag:' + t.tag, l: `${t.tag} — not scanned yet (${t.date})` })),
-    ...implEntries().slice().reverse().map((e) => ({ v: 'rec:' + e.id, l: `${e.label} — already recorded` })),
+    ...pending.map((p) => ({ v: 'pending:' + p.snapshot_id, l: `${(p.release.tags || [])[0] || p.release.commit.slice(0, 7)} — checked, waiting for your review` })),
+    ...unscanned.map((t) => ({ v: 'tag:' + t.tag, l: `${t.tag} — not checked yet (${fmtDate(t.date)})` })),
+    ...implEntries().slice().reverse().map((e) => ({ v: 'rec:' + e.id, l: `${(e.release.tags || [])[0] || e.id} — already checked and saved` })),
   ];
   if (!T.pick) T.pick = options.length ? options[0].v : '';
   let body = '';
   if (T.pick.startsWith('rec:')) {
     const e = entry(T.pick.slice(4));
-    body = `<div class="notice">Already recorded as <a href="#snap-${esc(e.id)}">${esc(e.label)}</a> on ${esc(fmtDate(e.recorded_at))}. Scanning the same release again never creates a second snapshot.</div>`;
+    body = `<div class="notice">This release was checked and saved on ${esc(fmtDate(e.recorded_at))}: <a href="#snap-${esc(e.id)}">${esc(nice(e))}</a>. A release is never saved twice.</div>`;
   } else if (T.pick.startsWith('pending:')) {
     const p = pending.find((x) => 'pending:' + x.snapshot_id === T.pick);
     const rep = E.compare(S[latest.id], p);
     const rv = approvals['review:' + p.snapshot_id];
     body = `<ol class="steps">
-      <li><div><h4>Release identified</h4><p><code>${esc((p.release.tags || [])[0] || p.release.ref)}</code> at commit <code>${esc(p.release.commit.slice(0, 10))}</code>${p.release.build_marker ? ', build <code>' + esc(p.release.build_marker) + '</code>' : ''}. Compared with <b>${esc(latest.label)}</b>.</p></div></li>
-      <li><div><h4>Review the detected changes</h4>${rep.changes.length ? `<div class="row" style="margin:6px 0">${countChips(rep.counts)}</div>` + changeCards(rep.changes, 'scan-' + p.snapshot_id)
+      <li><div><h4>The release was checked</h4><p>Release ${esc((p.release.tags || [])[0] || p.release.ref)} was compared with ${esc(nice(latest))}.</p></div></li>
+      <li><div><h4>Read what changed</h4>${rep.changes.length ? `<p style="margin:6px 0"><b>${rep.changes.length} changes</b>: ${esc(countLine(rep.changes))}.</p>` + changeList(rep.changes, 'scan-' + p.snapshot_id)
         : '<div class="empty">No Custom Roles &amp; Permissions changes detected in this release.</div>'}</div></li>
-      <li><div><h4>${rep.changes.length ? 'Approve the snapshot' : 'Record a no-change checkpoint (optional)'}</h4>
-        ${rv ? `<p>Approved for recording by ${esc(names[rv.by] || 'a teammate')} on ${esc(fmtDate(rv.at))}. The next tracker run records it permanently and adds its tab.</p>`
-          : canApprove ? `<button class="btn" data-review="${esc(p.snapshot_id)}">${rep.changes.length ? 'Approve this snapshot for recording' : 'Approve a no-change checkpoint'}</button>`
-          : '<p class="muted">An Editor of this page approves the snapshot. You can review and set verification statuses.</p>'}
-        <pre class="cmd" style="margin-top:8px">python3 tools/track_changes.py confirm ${esc(p.snapshot_id)} --by "&lt;name&gt;"${rep.changes.length ? '' : ' --checkpoint'}</pre></div></li></ol>`;
+      <li><div><h4>${rep.changes.length ? 'Approve it so it is saved' : 'Save it as “no change” (optional)'}</h4>
+        ${rv ? `<p>Approved by ${esc(names[rv.by] || 'a teammate')} on ${esc(fmtDate(rv.at))}. It will be saved permanently the next time the check is run, and it will get its own tab.</p>`
+          : canApprove ? `<button class="btn" data-review="${esc(p.snapshot_id)}">${rep.changes.length ? 'Approve and save this release' : 'Save as “no change”'}</button>`
+          : '<p class="muted">Someone with edit rights on this page approves it. You can still read the changes and set test results.</p>'}
+        ${tech('For the person running the check', `<pre class="cmd">python3 tools/track_changes.py confirm ${esc(p.snapshot_id)} --by "&lt;name&gt;"${rep.changes.length ? '' : ' --checkpoint'}</pre>`)}</div></li></ol>`;
   } else if (T.pick.startsWith('tag:')) {
     const tag = T.pick.slice(4);
     const req = requests.find((r) => r.release === tag);
-    body = `<ol class="steps"><li><div><h4>Release identified</h4><p><code>${esc(tag)}</code> is a release tag in the product repository that has not been scanned yet.</p></div></li>
-      <li><div><h4>Scan it</h4><p>Scanning reads the product repository at that commit, which a browser cannot do. A tracker run does it and republishes this page with the result for review.</p>
-        ${req ? `<p>Scan requested by ${esc(names[req.by] || 'a teammate')} on ${esc(fmtDate(req.at))}.</p>` : canWriteDb ? `<button class="btn" data-request="${esc(tag)}">Request a scan of ${esc(tag)}</button>` : ''}
-        <pre class="cmd" style="margin-top:8px">python3 tools/track_changes.py scan --ref ${esc(tag)}</pre></div></li></ol>`;
+    body = `<ol class="steps">
+      <li><div><h4>Ask for a check</h4><p>This page cannot read the app’s code by itself, so Claude or a developer runs the check. Your request is shown here so they know it is waiting.</p>
+        ${req ? `<p>${chip('c-good', 'Requested')} by ${esc(names[req.by] || 'a teammate')} on ${esc(fmtDate(req.at))}.</p>` : canWriteDb ? `<p><button class="btn" data-request="${esc(tag)}">Ask for ${esc(tag)} to be checked</button></p>` : ''}
+        ${tech('For the person running the check', `<pre class="cmd">python3 tools/track_changes.py scan --ref ${esc(tag)}</pre>`)}</div></li>
+      <li><div><h4>Read what changed</h4><p>When the check is done, every change appears on this page in plain words, with how to test it.</p></div></li>
+      <li><div><h4>Approve it</h4><p>Someone with edit rights approves it, and the release is saved permanently with its own tab.</p></div></li></ol>`;
   } else {
-    body = '<div class="empty">Nothing new to scan. Every known release is recorded.</div>';
+    body = '<div class="empty">Nothing new to check. Every known release is already saved.</div>';
   }
   return `<section class="panel">
-    <div class="head"><div><div class="eyebrow">Track Changes</div><h2>What did a release change?</h2></div></div>
+    <div><div class="eyebrow">Check a new release</div><h2>Has a new release changed who can do what?</h2></div>
     <div class="facts">
-      <div class="fact"><span class="eyebrow">Production runs</span><span><code>${esc(D.deployed.build_marker)}</code>, measured ${esc(D.deployed.measured_at)}</span></div>
-      <div class="fact"><span class="eyebrow">Latest recorded snapshot</span><span><a href="#snap-${esc(latest.id)}">${esc(latest.label)}</a></span></div>
-      <div class="fact"><span class="eyebrow">Production status</span><span>${prodRecorded ? 'Recorded — <a href="#snap-' + esc(prodRecorded.id) + '">' + esc(prodRecorded.label) + '</a>' : chip('c-warn', 'Not recorded yet') + ' scan it below'}</span></div>
+      <div class="fact"><span class="eyebrow">The live app is on</span><span>Release ${esc(release(D.deployed.build_marker))}, checked ${esc(fmtDate(D.deployed.measured_at))}</span></div>
+      <div class="fact"><span class="eyebrow">Last release saved here</span><span><a href="#snap-${esc(latest.id)}">${esc(nice(latest))}</a></span></div>
+      <div class="fact"><span class="eyebrow">Is the live app saved here?</span><span>${prodRecorded ? chip('c-good', 'Yes, up to date') : chip('c-warn', 'No, a new release needs checking')}</span></div>
     </div>
-    <div class="controls"><label class="ctl">Release or build to inspect<select id="tPick">${options.map((o) => `<option value="${esc(o.v)}" ${T.pick === o.v ? 'selected' : ''}>${esc(o.l)}</option>`).join('')}</select></label>
-      ${canWriteDb ? '<button class="btn ghost" data-request="production">Request a scan of production now</button>' : ''}</div>
+    <div class="controls"><label class="ctl">Choose a release<select id="tPick">${options.map((o) => `<option value="${esc(o.v)}" ${T.pick === o.v ? 'selected' : ''}>${esc(o.l)}</option>`).join('')}</select></label>
+      ${canWriteDb ? '<button class="btn ghost" data-request="production">Ask for the live app to be checked now</button>' : ''}</div>
     ${body}
-    <details><summary class="muted" style="cursor:pointer">How Track Changes works</summary><div class="body" style="padding:10px 0;display:flex;flex-direction:column;gap:8px">
-      <p>1. The release is identified from production’s build marker (<code>vYY.WW.P-&lt;commit&gt;</code>) or a tag QA picks, and pinned to its exact commit. A marker whose commit is not in the repository stops the scan and asks.</p>
-      <p>2. The repository is read at that commit, never the working tree: permissions, role defaults, dependencies, every API guard, and front-end use.</p>
-      <p>3. It is compared with the latest recorded snapshot by meaning. Comments, reordering and formatting produce no change.</p>
-      <p>4. QA reviews the report here. Only after approval is it recorded, as a new permanent tab. A release with no permission-related change is recorded only as a no-change checkpoint, and a release already recorded is refused.</p>
+    <details class="tech"><summary>How the check works</summary><div class="inner">
+      <p>1. The check finds out exactly which release is live, or uses the release you choose.</p>
+      <p>2. It reads that release of the app: every role, every permission, which permissions are linked, and every behind-the-scenes check.</p>
+      <p>3. It compares that with the last saved release, by meaning. Tidying, re-ordering or comments in the code are ignored.</p>
+      <p>4. You read the changes here. Nothing is saved until someone approves it. A release with no changes is saved only as “no change”, and a release already saved is refused.</p>
       <pre class="cmd">python3 tools/track_changes.py scan --production
 python3 tools/track_changes.py confirm &lt;id&gt; --by "&lt;name&gt;"</pre></div></details>
   </section>`;
@@ -630,13 +782,18 @@ python3 tools/track_changes.py confirm &lt;id&gt; --by "&lt;name&gt;"</pre></div
 // ── interaction wiring ───────────────────────────────────────────────────────────────────────
 function wire(r) {
   const on = (sel, ev, fn) => { const el = $(sel); if (el) el.addEventListener(ev, fn); };
+  if (r === 'home') document.querySelectorAll('[data-verdict]').forEach((b) => b.addEventListener('click', () => { P.status = b.dataset.verdict; location.hash = 'prd-vs-impl'; }));
   if (r === 'matrix') {
     on('#mA', 'change', (e) => { M.a = e.target.value; render(); });
     on('#mB', 'change', (e) => { M.b = e.target.value; render(); });
     on('#mR', 'change', (e) => { M.role = e.target.value; render(); });
     on('#mC', 'change', (e) => { M.changedOnly = e.target.checked; render(); });
     on('#mQ', 'input', debounce((e) => { M.q = e.target.value; render(); $('#mQ').focus(); }, 250));
-    document.querySelectorAll('td.pname').forEach((td) => td.addEventListener('click', () => { M.sel = td.dataset.perm; render(); }));
+    document.querySelectorAll('td.pname').forEach((td) => {
+      const pick = () => { M.sel = td.dataset.perm; render(); };
+      td.addEventListener('click', pick);
+      td.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+    });
   }
   if (r === 'prd-vs-impl') {
     document.querySelectorAll('[data-pstatus]').forEach((b) => b.addEventListener('click', () => { P.status = b.dataset.pstatus; render(); }));
@@ -646,7 +803,7 @@ function wire(r) {
     on('#cA', 'change', (e) => { C.a = e.target.value; render(); });
     on('#cB', 'change', (e) => { C.b = e.target.value; render(); });
     on('#cR', 'change', (e) => { C.risk = e.target.value; render(); });
-    on('#cT', 'change', (e) => { C.cat = e.target.value; render(); });
+    on('#cT', 'change', (e) => { C.group = e.target.value; render(); });
   }
   if (r === 'history') on('#hQ', 'input', debounce((e) => { Hs.q = e.target.value; render(); $('#hQ').focus(); }, 250));
   if (r === 'track') on('#tPick', 'change', (e) => { T.pick = e.target.value; render(); });
@@ -667,11 +824,11 @@ async function saveVerification(key, status, el) {
   catch (e) { el.insertAdjacentHTML('afterend', `<span class="chip c-bad">Not saved: ${esc(e.message || e.code)}</span>`); }
   finally { el.disabled = false; }
 }
-async function requestScan(release, btn) {
+async function requestScan(rel, btn) {
   if (!db || !me) return;
   btn.disabled = true;
-  try { await db.collection('scan_requests').doc(hid(release + Date.now())).set({ release, by: me, at: new Date().toISOString(), status: 'requested' });
-    btn.outerHTML = `<span class="chip c-good">Scan of ${esc(release)} requested</span>`; }
+  try { await db.collection('scan_requests').doc(hid(rel + Date.now())).set({ release: rel, by: me, at: new Date().toISOString(), status: 'requested' });
+    btn.outerHTML = `<span class="chip c-good">Request sent for ${esc(rel === 'production' ? 'the live app' : rel)}</span>`; }
   catch (e) { btn.disabled = false; btn.insertAdjacentHTML('afterend', `<span class="chip c-bad">Not sent: ${esc(e.message || e.code)}</span>`); }
 }
 async function approveScan(id, btn) {
@@ -682,11 +839,11 @@ async function approveScan(id, btn) {
 }
 function openApprovalForm(btn) {
   const key = btn.dataset.approve, ap = approvals[key] || {};
-  const fields = [['reason', 'Reason for the change'], ['jira', 'Jira ticket'], ['pr', 'Pull request'], ['requested_by', 'Requested by'],
-    ['approved_by', 'Approved by (e.g. Chris Amani, Mathieu Lachapelle)'], ['approval_date', 'Approval date (YYYY-MM-DD)'], ['evidence', 'Evidence link (approval message, ticket comment)']];
+  const fields = [['reason', 'Why it changed'], ['jira', 'Jira ticket'], ['pr', 'Developer change (pull request link)'], ['requested_by', 'Asked for by'],
+    ['approved_by', 'Approved by (for example Chris Amani, Mathieu Lachapelle)'], ['approval_date', 'Date approved (for example 2026-10-29)'], ['evidence', 'Proof (a link to the approval message or ticket comment)']];
   const fid = 'ap-' + hid(key);
   btn.outerHTML = `<form class="grid2" id="${fid}" style="flex-basis:100%">${fields.map(([f, l]) => `<label class="ctl">${esc(l)}<input type="text" id="${fid}-${f}" name="${f}" value="${esc(ap[f] || '')}"></label>`).join('')}
-    <div class="row"><button class="btn" type="submit">Save approval record</button><span class="muted" style="font-size:.8rem">Leave a field empty when it is not documented. Never fill one from a guess.</span></div></form>`;
+    <div class="row"><button class="btn" type="submit">Save the approval record</button><span class="muted" style="font-size:.8rem">Leave a box empty if you don’t have proof for it. Never fill one in from a guess.</span></div></form>`;
   $('#' + fid).addEventListener('submit', async (ev) => {
     ev.preventDefault();
     const data = { by: me, at: new Date().toISOString() };
@@ -695,18 +852,31 @@ function openApprovalForm(btn) {
     catch (e) { ev.target.insertAdjacentHTML('beforeend', `<span class="chip c-bad">Not saved: ${esc(e.message || e.code)}</span>`); }
   });
 }
+// spreadsheets (CSV) in plain words, so anyone can open them in Excel
+function csv(rows) { return '﻿' + rows.map((r) => r.map((x) => '"' + String(x == null ? '' : x).replace(/"/g, '""') + '"').join(',')).join('\r\n'); }
+function changesCsv(changes, scope) {
+  return csv([['Priority', 'Change', 'Kind', 'What changed', 'Why it matters', 'Who is affected', 'How to check it', 'Test result']]
+    .concat(changes.map((c) => { const p = plainOf(c), v = verif[itemKey(scope, c)];
+      return [p.priority, p.headline, GROUPS[p.group] || '', p.what, p.why, (p.roles || []).join(', '), p.check.map((x, i) => `${i + 1}. ${x}`).join('\n'), v ? v.status : 'Not Tested']; })));
+}
 async function exportReport(which, btn) {
   const dl = await window.claude?.use?.('downloads');
   let name, body;
-  if (which === 'prd_vs_impl') { name = 'original-prd-vs-implementation.json'; body = D.prd_vs_impl; }
-  else if (which === 'compare') { name = `compare-${C.a}-to-${C.b}.json`; body = E.compare(S[C.a], S[C.b]); }
-  else { name = which.split('/').pop(); body = D.reports[which]; }
-  const text = JSON.stringify(body, null, 1);
+  if (which === 'prd_vs_impl') {
+    const impl = S[D.prd_vs_impl.implementation], scope = 'pvi-' + D.prd_vs_impl.implementation;
+    name = 'App vs the original plan.csv';
+    body = csv([['Permission', 'Result', 'Explanation', 'The original plan says', 'The app: switched on for', 'Test result']]
+      .concat(D.prd_vs_impl.rows.map((r) => [r.plain_label || r.label, (VERDICT[r.status] || [r.status])[0], r.plain_detail || r.detail,
+        r.prd_expectation ? r.prd_expectation.controls_verbatim : 'Not in the original plan',
+        r.implementation ? r.implementation.holders.map((h) => roleNameIn(impl, h)).join(', ') : 'Not in the app',
+        (verif[scope + ':' + r.key] || {}).status || 'Not Tested'])));
+  } else if (which === 'compare') { name = `Differences - ${nice(entry(C.a))} to ${nice(entry(C.b))}.csv`; body = changesCsv(E.compare(S[C.a], S[C.b]).changes, 'cmp-' + C.a + '-' + C.b); }
+  else { const e = reg().find((x) => x.change_report === which); name = `Changes in ${nice(e)}.csv`; body = changesCsv(D.reports[which].changes, e.id); }
   if (dl) {
-    try { await dl.save({ filename: name, data: text }); }
+    try { await dl.save({ filename: name, data: body }); }
     catch (e) { if (e && e.code !== 'cancelled' && e.code !== 'declined') btn.insertAdjacentHTML('afterend', `<span class="chip c-warn">Not saved: ${esc(e.message || e.code)}</span>`); }
   } else {
-    btn.insertAdjacentHTML('afterend', '<span class="chip c-warn">Downloads are not available in this view</span>');
+    btn.insertAdjacentHTML('afterend', '<span class="chip c-warn">Downloads are not available here</span>');
   }
 }
 
@@ -746,7 +916,7 @@ fetch('data.json').then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status);
   render();
   connect();
 }).catch((e) => {
-  $('#main').innerHTML = `<section class="panel"><div class="notice bad">The recorded snapshots could not be loaded (${esc(e.message)}). Reload the page; if it persists, the published data file is missing.</div></section>`;
+  $('#main').innerHTML = `<section class="panel"><div class="notice bad">The page’s data could not be loaded. Please reload. (${esc(e.message)})</div></section>`;
 });
 })();
 </script>

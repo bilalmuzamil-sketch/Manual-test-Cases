@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.39.2",
@@ -40,6 +40,21 @@
      "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php"
     ]
    },
+   "plain": {
+    "headline": "Where the app checks “Catalog & Inventory — View” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Catalog & Inventory — View” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Catalog & Inventory",
+    "roles": []
+   },
    "workflows": [
     "Catalog & Inventory",
     "API areas: /api/catalog-parts, /api/inventory, /api/orders, /api/parts, /api/parts-catalogue, /api/pricing-rules",
@@ -70,6 +85,21 @@
     "files_removed": [
      "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php"
     ]
+   },
+   "plain": {
+    "headline": "Where the app checks “Customers — View” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Customers — View” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Customers",
+    "roles": []
    },
    "workflows": [
     "Customers",
@@ -102,6 +132,21 @@
      "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php"
     ]
    },
+   "plain": {
+    "headline": "Where the app checks “Part Sales — View” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Part Sales — View” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Part Sales",
+    "roles": []
+   },
    "workflows": [
     "Part Sales",
     "API areas: /api/parts, /api/vehicle, /api/vehicles, /api/work-orders",
@@ -132,6 +177,21 @@
     "files_removed": [
      "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php"
     ]
+   },
+   "plain": {
+    "headline": "Where the app checks “Vendor Order Management — View” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Vendor Order Management — View” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Vendor Order Management",
+    "roles": []
    },
    "workflows": [
     "Vendor Order Management",
@@ -164,6 +224,21 @@
      "api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php"
     ]
    },
+   "plain": {
+    "headline": "Where the app checks “Work Orders — View” moved",
+    "what": "The app now checks this permission in different places behind the scenes. Usually nothing changes for users.",
+    "why": "A check that moved can stop working without anyone noticing on screen.",
+    "check": [
+     "Log in as someone whose role has “Work Orders — View” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": "Work Orders",
+    "roles": []
+   },
    "workflows": [
     "Work Orders",
     "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-portal, /api/customers, /api/deposits (+18 more)",
@@ -193,6 +268,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Catalog & Inventory — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 2, now: 3).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Catalog & Inventory — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "2 places",
+    "after": "3 places",
+    "priority": "Low priority",
+    "area": "Catalog & Inventory",
+    "roles": []
+   },
    "workflows": [
     "Catalog & Inventory",
     "API areas: /api/catalog-parts, /api/inventory, /api/orders, /api/parts, /api/parts-catalogue, /api/pricing-rules",
@@ -220,6 +310,21 @@
      "app/src/services/routingService.ts"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Customers — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 5, now: 6).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Customers — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "5 places",
+    "after": "6 places",
+    "priority": "Low priority",
+    "area": "Customers",
+    "roles": []
    },
    "workflows": [
     "Customers",
@@ -250,6 +355,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Part Sales — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 6, now: 8).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Part Sales — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "6 places",
+    "after": "8 places",
+    "priority": "Low priority",
+    "area": "Part Sales",
+    "roles": []
+   },
    "workflows": [
     "Part Sales",
     "API areas: /api/parts, /api/vehicle, /api/vehicles, /api/work-orders",
@@ -278,6 +398,21 @@
     ],
     "files_removed": []
    },
+   "plain": {
+    "headline": "Screens that depend on “Vendor Order Management — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 3, now: 4).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Vendor Order Management — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "3 places",
+    "after": "4 places",
+    "priority": "Low priority",
+    "area": "Vendor Order Management",
+    "roles": []
+   },
    "workflows": [
     "Vendor Order Management",
     "API areas: /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customers, /api/imported-work-orders, /api/inventory, /api/invoices (+8 more)",
@@ -305,6 +440,21 @@
      "app/src/services/routingService.ts"
     ],
     "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Work Orders — View” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 14, now: 15).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Work Orders — View”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "14 places",
+    "after": "15 places",
+    "priority": "Low priority",
+    "area": "Work Orders",
+    "roles": []
    },
    "workflows": [
     "Work Orders",

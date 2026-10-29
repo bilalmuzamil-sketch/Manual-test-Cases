@@ -8,6 +8,8 @@ repo - so the real snapshots and the real product repo are never touched.
   B. Controlled       one deliberate change per commit, each checked for what MUST and MUST NOT
                       be reported; plus the no-change release, the checkpoint refusal and the
                       duplicate-scan guard
+  C. Plain language   every plain-words field people read is free of code names, route paths and
+                      technical terms (the technical fields beside it may keep them)
 
   python3 validate.py            exit 0 only if every check passes; writes ../reports/VALIDATION.md
 """
@@ -47,6 +49,11 @@ def scan(env, repo, ref):
     reports = sorted((os.path.join(env['CRP_ROOT'], 'reports', f) for f in os.listdir(os.path.join(env['CRP_ROOT'], 'reports'))
                       if f.endswith('.json')), key=os.path.getmtime) if os.path.isdir(os.path.join(env['CRP_ROOT'], 'reports')) else []
     rep = json.load(open(reports[-1])) if reports else None
+    if rep:
+        CONTROLLED.extend(rep['changes'])
+        md = reports[-1][:-5] + '.md'
+        if os.path.exists(md):
+            REPORT_MD.append(open(md).read())
     return rc, out, rep
 
 
@@ -211,9 +218,41 @@ def controlled():
     shutil.rmtree(work, ignore_errors=True)
 
 
+CONTROLLED, REPORT_MD = [], []
+JARGON = re.compile(r'/api/|ROLE_|PermissionEnum|\batoms?\b|endpoint|\b2xx\b|\b403\b|\bcommit\b|repositor|back[- ]?end|'
+                    r'front[- ]?end|\bPRD\b|snapshot|enforce|derived|\bAPI\b|\b[a-z]+[A-Z][A-Za-z]+\b')
+
+
+def plain_language():
+    hist = os.path.join(HERE, '..', 'reports', 'history')
+    changes = list(CONTROLLED)
+    for f in sorted(os.listdir(hist)):
+        if f != 'index.json':
+            changes += json.load(open(os.path.join(hist, f)))['changes']
+    missing = [c['title'] for c in changes if not (c.get('plain') or {}).get('headline') or not c['plain'].get('check')]
+    check(f'Every change ({len(changes)}) has a plain headline, explanation and how-to-check steps', not missing, str(missing[:3]))
+    bad = []
+    for c in changes:
+        p = c.get('plain') or {}
+        for t in [p.get('headline'), p.get('what'), p.get('why'), p.get('before'), p.get('after')] + list(p.get('check') or []):
+            if t and JARGON.search(t):
+                bad.append(t)
+    check('No technical terms in the plain words of any change', not bad, str(sorted(set(bad))[:3]))
+    snap = os.path.join(HERE, '..', 'snapshots')
+    rc, out = run(['node', os.path.join(HERE, 'engine', 'cli.js'), '--prd-vs-impl', os.path.join(snap, 'prd-v7.json'),
+                   os.path.join(snap, 'prd-v54.json'), os.path.join(snap, 'impl-v26.43.3.json')])
+    rows = json.loads(out) if rc == 0 else []
+    bad = [r['plain_detail'] for r in rows if not r.get('plain_detail') or JARGON.search(r['plain_detail'] + ' ' + r['plain_status'])]
+    bad = [ln for md in REPORT_MD for ln in md.split('## Technical details')[0].splitlines()
+           if JARGON.search(ln) and '--checkpoint' not in ln]
+    check(f'The written release reports ({len(REPORT_MD)}) are in plain words above the technical appendix', REPORT_MD and not bad, str(bad[:3]))
+    check(f'Every app-vs-plan verdict ({len(rows)}) is explained in plain words', rows and not bad, str(bad[:3]))
+
+
 if __name__ == '__main__':
     real_history()
     controlled()
+    plain_language()
     passed = sum(1 for _, ok, _ in RESULTS if ok)
     out = os.path.join(os.path.dirname(HERE), 'reports', 'VALIDATION.md')
     os.makedirs(os.path.dirname(out), exist_ok=True)

@@ -1,5 +1,5 @@
 {
- "engine_version": "1.0.0",
+ "engine_version": "1.1.0",
  "from": {
   "kind": "implementation",
   "id": "impl-v26.35.1",
@@ -37,6 +37,24 @@
    ],
    "evidence": {
     "controller": "api/src/Customer/Customers/Application/IbsBatch/ReversePayment/ReversePaymentController.php::reverseIbsBatchPayment"
+   },
+   "plain": {
+    "headline": "New protected action: Creating or running customers › ibs › reverse payment",
+    "what": "There is a new action in the app (creating or running customers › ibs › reverse payment). Only people with “Invoicing & Payments — Delete / Reverse” can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has “Invoicing & Payments — Delete / Reverse” and try it: it should work.",
+     "Log in as someone whose role does not have it and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Invoicing & Payments — Delete / Reverse"
+    ],
+    "priority": "Low priority",
+    "area": "Invoicing & Payments",
+    "roles": []
    },
    "workflows": [
     "Invoicing & Payments",
