@@ -112,8 +112,8 @@ if (mode === 'sbr-order') {    // C6: Unassigned expanded, This month
 if (mode === 'tax-cm') {       // C2: Heavy Duty, Sales Tax Collected, custom 20 Oct 2026 (CM2-4520 day) + Sales report the same day
   await go('/reports/sales-tax/invoices', 9000);
   await taxRange('custom', async () => {
-    const ins = page.locator('.q-menu input'); meta.custom_inputs = await ins.evaluateAll(es => es.map(e => (e.getAttribute('data-test-id') || '') + '=' + e.value));
-    if (await ins.count() >= 2) { for (const [i, v] of [[0, '10/20/2026'], [1, '10/20/2026']]) { const f = ins.nth(i); await f.click({ clickCount: 3 }); await f.fill(v); await page.keyboard.press('Tab'); await page.waitForTimeout(600); } }
+    for (const [id, v] of [['date_input_range_start', '10/20/2026'], ['date_input_range_end', '10/20/2026']]) { const f = page.locator(`[data-test-id="${id}"]`); await f.click({ clickCount: 3 }); await f.fill(v); await page.keyboard.press('Tab'); await page.waitForTimeout(800); }
+    meta.custom_inputs = [await page.locator('[data-test-id="date_input_range_start"]').inputValue(), await page.locator('[data-test-id="date_input_range_end"]').inputValue()];
     const ap = page.locator('.q-menu button').filter({ hasText: /Apply/i }); if (await ap.count()) await ap.first().click();
   });
   meta.chip = await txt(page.locator('[data-test-id="filter_chip_range"]'));

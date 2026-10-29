@@ -196,6 +196,21 @@ if (mode === 'RET_CREATE') { // Parts -> Returns -> Create Return, ZZAUTOTEST-PV
     }
   }
 }
+if (mode === 'RET_CANCEL') { // cancel the ZZAUTOTEST P2B manual vendor return (restores stock)
+  meta.posts = []; page.on('response', async r => { if (r.request().method() !== 'GET' && /\/api\//.test(r.url())) meta.posts.push([r.request().method(), r.url().replace(/^.*\/api\//, ''), r.status(), (await r.text().catch(() => '')).slice(0, 300)]); });
+  await page.goto(APP + '/parts/returns', { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(10000); await ver();
+  const row = page.locator('tbody tr').filter({ hasText: 'ZZAUTOTEST P2B vendor return' }).first();
+  meta.rowBefore = await txt(row);
+  await row.locator('button').last().click(); await page.waitForTimeout(1500);
+  meta.rowMenu = (await menu().innerText().catch(() => '')).split('\n').filter(Boolean);
+  await menu().getByText(/Cancel Return|Delete Return/).first().click(); await page.waitForTimeout(2000);
+  meta.dialog = (await page.locator('.q-dialog').last().innerText().catch(() => '')).split('\n').filter(Boolean);
+  await shot('1-cancel-dialog');
+  await page.locator('.q-dialog').last().getByRole('button', { name: 'Yes', exact: true }).click().catch(e => meta.confErr = e.message.split('\n')[0]);
+  await page.waitForTimeout(6000);
+  meta.after = (await txt(page.locator('main'))).slice(0, 1200);
+  await shot('2-after-cancel');
+}
 if (mode === 'PV_HD') {
   await openPV();
   if (process.argv[3]) await pickPreset(process.argv[3]);

@@ -6,7 +6,7 @@ import { boot2 } from '/home/user/Manual-test-Cases/build/testing-tools/staging-
 const APP = 'https://app.staging.shopview.com';
 const L = { hd: ['b3c8c820-f815-4cf1-8938-10956c5ee71a', 'Asia/Karachi', 'Staging Heavy Duty - 9919'], leth: ['f8a8b802-7780-4b16-bf10-343caeb616b2', 'America/Edmonton', 'Staging Lethbridge - 4310'],
   dvi: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto', 'DVI Test'] };
-const MODES = { D4b: 'hd', D7c: 'dvi', D7d: 'hd', D1: 'hd', D2: 'leth', D3: 'hd', D4: 'hd', D5: 'hd', D6: 'hd', D7: 'dvi', D7b: 'hd' };
+const MODES = { D6b: 'hd', D4b: 'hd', D7c: 'dvi', D7d: 'hd', D1: 'hd', D2: 'leth', D3: 'hd', D4: 'hd', D5: 'hd', D6: 'hd', D7: 'dvi', D7b: 'hd' };
 const mode = process.argv[2]; const [WP, TZ, LOCN] = L[MODES[mode]];
 if (process.env.TZ !== TZ) { console.log('process TZ must be', TZ); process.exit(3); }
 const OUT = `/tmp/cln/p2d/ev/${mode}`; fs.mkdirSync(OUT, { recursive: true });
@@ -83,8 +83,9 @@ if (mode === 'D5' || mode === 'D6') {
     await shot('1-qb-unexported-customers', { cm: { box: await box(cm), text: await txt(cm) }, visible: vis.map(v => ({ box: { x: Math.round(v.x * 2), y: Math.round(v.y * 2), w: Math.round(v.w * 2), h: Math.round(v.h * 2) }, cells: v.cells })), heads, headBoxes: await page.locator('thead th').evaluateAll(ths => ths.map(t => { const r = t.getBoundingClientRect(); return { t: t.innerText.trim(), x: Math.round(r.x * 2), y: Math.round(r.y * 2), w: Math.round(r.width * 2), h: Math.round(r.height * 2) }; })) });
   } else {
     const target = process.argv[3] || 'DEP-4798';
-    for (let i = 0; i < 40 && !(await page.locator('tbody tr').filter({ hasText: target }).count()); i++) { await page.mouse.wheel(0, 3000); await page.waitForTimeout(1200);
-      const nx = page.locator('.q-table__bottom button, .q-pagination button').filter({ hasText: /chevron_right|keyboard_arrow_right/ }); if (i % 5 === 4 && await nx.count()) { await nx.last().click().catch(() => {}); await page.waitForTimeout(4000); } }
+    await page.mouse.move(1000, 600);
+    for (let i = 0; i < 60 && !(await page.locator('tbody tr').filter({ hasText: target }).count()); i++) { await page.mouse.wheel(0, 700); await page.waitForTimeout(700); }
+    meta.notes.found = await page.locator('tbody tr').filter({ hasText: target }).count();
     meta.notes.bottom = (await txt(page.locator('.q-table__bottom'))).slice(0, 300);
     const r = page.locator('tbody tr').filter({ hasText: target }).first();
     await r.evaluate(e => e.scrollIntoView({ block: 'center' })).catch(() => {}); await page.waitForTimeout(1000);
@@ -161,5 +162,21 @@ if (mode === 'D4b') {
   meta.notes.loadMore = await page.locator('button:has-text("Load more"), button:has-text("Show more"), .q-pagination').count();
   meta.notes.chip_visible_at_bottom = await page.getByText('Date Range', { exact: false }).first().isVisible().catch(() => null);
   await shot('1-bottom-' + rng, { last: await box(last), chip: await box(page.getByText('Date Range', { exact: false })) });
+}
+if (mode === 'D6b') {
+  await go('/customers/1c385fee-d4cc-46f4-b20a-b8e01987e0ff/invoices', 14000);
+  const tog = page.getByText('Open only', { exact: true }); meta.notes.toggle = await tog.count();
+  await tog.first().click().catch(() => {}); await page.waitForTimeout(6000);   // show all (open and closed)
+  await page.mouse.move(1000, 600);
+  const seen = new Map();
+  for (let i = 0; i < 80; i++) {
+    const rows = await page.locator('tbody tr').evaluateAll(trs => trs.map(tr => tr.innerText.replace(/\s+/g, ' ').trim()));
+    for (const r of rows) if (/Oct 2[12], 2026/.test(r)) seen.set(r, 1);
+    if (rows.some(r => /Oct 1\d, 2026|Sep \d+, 2026/.test(r))) break;
+    await page.mouse.wheel(0, 700); await page.waitForTimeout(600);
+  }
+  meta.notes.oct22_rows = [...seen.keys()].filter(r => /Oct 22, 2026/.test(r));
+  const cm = page.locator('tr').filter({ hasText: 'CM2-4533' }).first(); await cm.evaluate(e => e.scrollIntoView({ block: 'center' })).catch(() => {}); await page.waitForTimeout(1000);
+  await shot('2-testvt1-invoices-cm2-4533', { cm: await box(cm), text: await txt(cm) });
 }
 } finally { save(); console.log(JSON.stringify({ mode, v: meta.appVersion, browser_zone: meta.browser_zone, process_zone: meta.process_zone, notes: meta.notes }, null, 1).slice(0, 5000)); await browser.close(); }
