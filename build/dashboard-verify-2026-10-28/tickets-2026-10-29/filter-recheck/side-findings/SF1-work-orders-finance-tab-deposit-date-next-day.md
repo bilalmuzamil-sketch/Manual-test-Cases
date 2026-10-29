@@ -1,4 +1,4 @@
-<!-- DRAFT — NOT FILED. The coordinator files it after the QA lead's go-ahead ("Just create it as a BUG if it is a real bug and I will manually move it to the relevant Squad/Epic", 29 Oct 2026).
+<!-- FILED 29 Oct 2026 as SV-11970 (https://shopview.atlassian.net/browse/SV-11970), no parent. Filed on the QA lead's go-ahead ("Just create it as a BUG if it is a real bug and I will manually move it to the relevant Squad/Epic", 29 Oct 2026).
 SUMMARY: Work Orders - Finance tab and invoice show a deposit taken late in the evening on the next day
 TYPE Bug · PARENT none (QA lead will move it manually) · PRIORITY Medium
 LINKS: relates to SV-11573 (Deposit date saved one day early; Done, the saving fix) · relates to SV-5968 (Time Zone issue with rendering dates across the SV app; Open, covers Part History and Notes only) · relates to SV-11660 (AccountingHub posts customer deposits on the UTC date; Merged to Staging, covers the accounting ledger only)
