@@ -100,3 +100,16 @@ One write failed: `customers/change` returned HTTP 500 and changed nothing. The 
 - **D1:** file it as a new ticket, or post it as a comment on SV-11690 instead?
 - **D4:** which story should it "relate to"? None was found.
 - **SV-11441:** go-ahead to post the comment above.
+
+## Re-take with the app's time-zone key (29 Oct, UTC)
+
+- Capture times: D1 00:37 · D2 00:40 · D3 00:40 · D4 00:47–00:48 · D5 00:42 · D6 00:42–00:43 · D7 00:43–00:46.
+- Every capture read back `localStorage.timezone` as the location's zone. These are stored as `app_timezone_key` in `pictures/P2-D-meta.json`.
+- Request offsets were checked:
+  - A/R `asOfDate`: 2026-10-29T18:59:59.999Z, which is the end of 29 Oct in Karachi.
+  - Notes Last Week: 2026-10-17T19:00Z → 2026-10-24T19:00Z.
+  - IBS, QB Unexported and Export Today send no date window.
+- The defect figures are unchanged.
+- **D4 times changed**, because the screen had shown UTC before. They now read: 100th note 20 Oct 6:33 PM; hidden notes 19 Oct 11:51 AM – 20 Oct 6:30 PM; newest 23 Oct 11:02 PM.
+- **D6 timestamps** are now in Karachi time (5:29:45 / 5:29:46 PM).
+- The earlier re-check times above are superseded by these.

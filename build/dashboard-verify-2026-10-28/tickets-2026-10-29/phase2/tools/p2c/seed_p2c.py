@@ -27,7 +27,7 @@ elif step == 'wo':
     now = dt.datetime.now(ZoneInfo(ZONE))
     c, b = call('POST', '/api/work-orders/create', {'company_id': R['company_id'], 'vehicle_id': R['vehicle_id'], 'customer_id': R['contact_id'],
                 'workplace_id': W, 'start_date': now.strftime('%Y-%m-%d %H:%M:%S'), 'is_vehicle_here': True}); R['wo'] = did(b); save()
-    if tag in ('REP', 'DEP'):
+    if tag in ('REP', 'DEP', 'DEP2'):
         call('POST', f'/api/work-orders/{R["wo"]}/lines/create-from-canned-line', {'canned_line_id': CANNED, 'status': 'authorized'})
         c, b = curl('GET', f'/api/work-orders/lines/{R["wo"]}', extra_headers=H); R['line1'] = b['data']['collection'][0]['line_id']; save()
     if tag == 'REP':

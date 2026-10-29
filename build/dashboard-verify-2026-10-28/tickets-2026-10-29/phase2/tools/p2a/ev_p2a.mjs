@@ -5,7 +5,7 @@ import fs from 'fs';
 import { boot2 } from '/home/user/Manual-test-Cases/build/testing-tools/staging-boot2.mjs';
 const APP = 'https://app.staging.shopview.com';
 const L = { HD: ['b3c8c820-f815-4cf1-8938-10956c5ee71a', 'Asia/Karachi', 'Staging Heavy Duty - 9919'], DVI: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto', 'DVI Test'] };
-const MODELOC = { A1: 'HD', A2: 'HD', A3: 'HD', A5HD: 'HD', A4: 'DVI', A4b: 'DVI', A5: 'DVI', A5b: 'DVI', A5c: 'DVI', A5x: 'DVI', A5y: 'DVI', A5z: 'DVI' };
+const MODELOC = { A1: 'HD', A2: 'HD', A3: 'HD', A5HD: 'HD', A4: 'DVI', A4b: 'DVI', A5: 'DVI', A5b: 'DVI', A5c: 'DVI', A5x: 'DVI', A5y: 'DVI', A5z: 'DVI', A5d: 'DVI' };
 const mode = process.argv[2]; const [WP, TZ, LOC] = L[MODELOC[mode]];
 if (process.env.TZ !== TZ) { console.error('run with TZ=' + TZ); process.exit(2); }
 const OUT = `/tmp/cln/p2a/ev/${mode}`; fs.mkdirSync(OUT, { recursive: true });
@@ -14,7 +14,7 @@ const { browser, page } = await boot2('admin', { workplaceId: WP, timezone: TZ,
   contextOptions: { viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 2, timezoneId: TZ, acceptDownloads: true } });
 await page.evaluate(([w, z]) => { localStorage.setItem('location', JSON.stringify(w)); localStorage.setItem('timezone', JSON.stringify(z)); }, [WP, TZ]);
 // Rule 99 (Worker B, 29 Oct): report/dashboard date windows use localStorage 'timezone' (UTC when missing), not the browser zone.
-const reqStarts = []; page.on('request', r => { const m = r.url().match(/start_date=([^&]+)/); if (m && /\/api\/reporting/.test(r.url())) reqStarts.push(decodeURIComponent(m[1])); });
+const reqStarts = []; page.on('request', r => { const u = r.url(); if (/\/api\/reporting/.test(u)) { const q = decodeURIComponent((u.split('?')[1] || '')); const m = q.match(/(range=[^&]*)|(start_date=[^&]*)|(end_date=[^&]*)|(from=[^&]*)/g); reqStarts.push(u.replace(/^.*\/api/, '').split('?')[0] + ' ' + (m || []).join('&')); } });
 const meta = { mode, location: LOC, location_tz: TZ, process_TZ: process.env.TZ || null, process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone, observed_at_utc: new Date().toISOString(), shots: {} };
 meta.browser_zone = await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
 meta.browser_now = await page.evaluate(() => new Date().toString());

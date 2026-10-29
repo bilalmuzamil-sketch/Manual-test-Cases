@@ -4,7 +4,7 @@ TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboa
 LINKS: relates to SV-2871 (Create a report for unexported items to QuickBooks) · relates to SV-4929 (Unexported Listing - missing data; Done)
 PICTURES: pictures/P2-D5-1-qb-unexported-credit-memo-blank-no.png
 BASIS: Chris Ward's answer to question 37(a) (28 Oct 2026): "(a) Yes, every row shows its number. … Both are defects."
-RE-CHECKED: 29 Oct 2026, 12:04–12:20 AM UTC (= 29 Oct, 5:04–5:20 AM in Karachi; 28 Oct, 6:04 PM in Lethbridge), staging v26.43.2-f8698cb, Staging Heavy Duty - 9919 (screen + server) and Staging Lethbridge - 4310 (server); session, browser and test computer on each location's own zone.
+RE-CHECKED: 29 Oct 2026, 12:42 AM UTC (= 29 Oct, 5:42 AM in Karachi; screen, re-taken with the app's time-zone setting); server 12:04 AM UTC at both locations (28 Oct, 6:04 PM in Lethbridge), staging v26.43.2-f8698cb, Staging Heavy Duty - 9919 (screen + server) and Staging Lethbridge - 4310 (server); session, browser, app time-zone setting and test computer on each location's own zone.
 NOTE FOR THE QA LEAD: payment rows are blank too, but a payment has no number of its own yet (SV-10588, "Give every received payment its own payment number", Board Backlog); a payment row shows the reference number only when one was typed. The ticket asks for the number on every row that has one, and names payments in the developer note.
 -->
 
@@ -51,7 +51,7 @@ Not affected — this report does not feed any Dashboard tile.
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
-- Browser and test computer set to the location's time zone (Asia/Karachi). Lethbridge was read with the session on America/Edmonton.
+- Browser, app time-zone setting and test computer set to the location's time zone (Asia/Karachi). Lethbridge was read with the session on America/Edmonton.
 - Not checked on Production or on a QA branch.
 
 ## For developers

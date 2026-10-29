@@ -4,7 +4,7 @@ TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboa
 LINKS: relates to SV-2144 (Create "Batch Transactions" in "IBS Management" (IBS-six))
 PICTURES: pictures/P2-D3-1-ibs-ready-to-send-zero-invoice.png
 BASIS: Chris Ward's answer to question 35 (28 Oct 2026): "No, leave $0.00 invoices out of Ready to Send. Defect."
-RE-CHECKED: 29 Oct 2026, 12:04–12:19 AM UTC (= 29 Oct, 5:04–5:19 AM in Karachi), staging v26.43.2-f8698cb, Staging Heavy Duty - 9919; session, browser and test computer all on Asia/Karachi.
+RE-CHECKED: 29 Oct 2026, 12:40 AM UTC (= 29 Oct, 5:40 AM in Karachi; screen, re-taken with the app's time-zone setting); server 12:04–12:19 AM UTC, staging v26.43.2-f8698cb, Staging Heavy Duty - 9919; session, browser, app time-zone setting and test computer all on Asia/Karachi.
 -->
 
 ## What is wrong
@@ -42,7 +42,7 @@ Not affected — this report does not feed any Dashboard tile.
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
-- Browser and test computer set to the location's time zone (Asia/Karachi).
+- Browser, app time-zone setting and test computer set to the location's time zone (Asia/Karachi).
 - It is the only $0.00 invoice in Ready To Send at Heavy Duty; Staging Lethbridge - 4310 has none waiting.
 - Not checked on Production or on a QA branch.
 

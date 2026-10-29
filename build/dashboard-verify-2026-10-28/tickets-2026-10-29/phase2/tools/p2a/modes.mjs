@@ -150,10 +150,10 @@ export async function runDvi(c) {
 // Export Reports -> Payroll Timesheet, downloaded through the screen. range = 'Last Month' | 'Custom' (+ MM/DD/YYYY dates)
 export async function exportPayroll(c, { range, from, to, shotName }) {
   const { page, meta, shot, box, OUT } = c;
-  await page.locator('a, .q-item').filter({ hasText: /^\s*Export Reports\s*$/ }).first().click(); await page.waitForTimeout(3000);
+  await page.getByText('Export Reports', { exact: true }).first().click(); await page.waitForTimeout(3000);
   const dlg = page.locator('.q-dialog').last();
   const pick = async (tid, label) => { await dlg.locator(`[data-test-id="${tid}"]`).first().click(); await page.waitForTimeout(1200);
-    await page.locator('.q-menu .q-item').filter({ hasText: new RegExp('^\\s*' + label + '\\s*$') }).first().click(); await page.waitForTimeout(1200); };
+    await page.getByRole('option', { name: label, exact: true }).first().click(); await page.waitForTimeout(1200); };
   await pick('select_report_name', 'Payroll Timesheet');
   await pick('select_date_range', range);
   if (range === 'Custom') { for (const [n, v] of [['export_startDate', from], ['export_endDate', to]]) { const i = dlg.locator(`input[name="${n}"]`).first(); await i.click(); await i.fill(v); await page.keyboard.press('Tab'); await page.waitForTimeout(800); } }
@@ -233,10 +233,21 @@ export async function runA5(c) {
     meta.after_click = (await page.locator('.q-dialog, .q-menu').allInnerTexts().catch(() => [])).map(x => x.replace(/\n+/g, ' | ').slice(0, 500));
     await shot('1-after-stop-click', {});
   }
+  if (mode === 'A5d') {  // A3 reachability: try to delete S1-38220 (it has clocked labor) from its own page
+    await go('/workorders/a941b1ad-a5ed-4126-95c7-514861ca1bc0/lines', 12000);
+    const kebabs = page.locator('main button, main .q-btn').filter({ hasText: /^\s*more_vert\s*$/ }); meta.kebabs = await kebabs.count();
+    await kebabs.first().click(); await page.waitForTimeout(1500);
+    meta.menu = (await page.locator('.q-menu').last().innerText().catch(() => '')).replace(/\n+/g, ' | ');
+    const del = page.locator('.q-menu').last().getByText(/Delete/i).first(); meta.delCount = await del.count();
+    if (await del.count()) { await del.click(); await page.waitForTimeout(3000); }
+    const d = page.locator('.q-dialog').last(); meta.dlg = (await d.innerText().catch(() => '')).replace(/\n+/g, ' | ').slice(0, 500);
+    const conf = d.locator('button').filter({ hasText: /Delete|Confirm/i }).last(); meta.confirmDisabled = await conf.isDisabled().catch(() => null);
+    await shot('1-delete-blocked', { dlg: await box(d) });
+  }
   if (mode === 'A5b') {  // read: the two overlapping rows on Timesheet Activities (Today, Admin Shopview), then the export for Today
     await go('/reports/punch-clock-activities', 10000);
     await preset('today');
-    const rows = page.locator('tbody tr').filter({ hasText: 'Admin Shopview' });
+    const rows = page.locator('tbody tr').filter({ hasText: 'S1-38220' });
     meta.ts_rows = (await rows.allInnerTexts()).map(x => x.replace(/\s+/g, ' '));
     const bx = []; for (let i = 0; i < await rows.count(); i++) bx.push({ box: await box(rows.nth(i)), text: (await rows.nth(i).innerText()).replace(/\s+/g, ' ') });
     await shot('3-ta-two-rows', { rows: bx });

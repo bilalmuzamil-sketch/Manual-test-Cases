@@ -4,7 +4,7 @@ TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboa
 LINKS: relates to SV-5026 (FE A/R aging detail report) · relates to SV-11690 (A/R Aging counts held deposits as negative receivables — aging ≠ customer Invoices-tab Balance; Ready for Production)
 PICTURES: pictures/P2-D1-1-customer-invoices-tab-p2-2352.png · pictures/P2-D1-2-ar-aging-detail-p2-2352.png
 BASIS: Chris Ward's answer to question 33 (28 Oct 2026): "Yes. Once the part sale is invoiced, its deposit lowers the A/R balance to match the Invoices tab. That's the same rule as SV-11690. Defect."
-RE-CHECKED: 29 Oct 2026, 12:04–12:12 AM UTC (= 29 Oct, 5:04–5:12 AM in Karachi), staging v26.43.2-f8698cb, Staging Heavy Duty - 9919; session, browser and test computer all on Asia/Karachi.
+RE-CHECKED: 29 Oct 2026, 12:37 AM UTC (= 29 Oct, 5:37 AM in Karachi; screen, re-taken with the app's time-zone setting; A/R request asOfDate 2026-10-29T18:59:59.999Z = end of 29 Oct in Karachi); server 12:04 AM UTC, staging v26.43.2-f8698cb, Staging Heavy Duty - 9919; session, browser, app time-zone setting and test computer all on Asia/Karachi.
 DUPLICATE CHECK: no open ticket covers part-sale deposits on A/R Aging (JQL in SUMMARY-p2d.md). SV-11690 is the rule this breaks, not this case; the QA lead may prefer a comment on SV-11690 instead (draft in SUMMARY-p2d.md).
 -->
 
@@ -57,7 +57,7 @@ SV-11690 (Expected): *"one rule for deposits in A/R (aging = Invoices tab / stat
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
-- Browser and test computer set to the location's time zone (Asia/Karachi).
+- Browser, app time-zone setting and test computer set to the location's time zone (Asia/Karachi).
 - The A/R reports cover every location in the organisation, so this shows from any location.
 - Not checked on Production or on a QA branch. Not re-created on new test data; the two part sales above are existing staging records.
 

@@ -33,7 +33,7 @@ const taxRange = async (preset, custom) => {
   await page.keyboard.press('Escape').catch(() => {}); await page.waitForTimeout(8000); };
 
 if (mode === 'dep') {          // C4/C5: deposit dated 26 Oct through the screen, then invoice through the screen (28 Oct)
-  const W = S.DEP.wo; await go(`/workorders/${W}/finance`, 10000);
+  const W = S[process.argv[3] || 'DEP'].wo; await go(`/workorders/${W}/finance`, 10000);
   await page.locator('button').filter({ hasText: 'Add Deposit' }).first().click(); await page.waitForTimeout(3000);
   const dlg = page.locator('.q-dialog').last();
   const d = dlg.locator('[data-test-id="date_input_create_deposit_date"]'); meta.date_default = await d.inputValue();
@@ -59,7 +59,7 @@ if (mode === 'invoice') {      // Create Invoice through the screen on the work 
 if (mode === 'tax') {          // Sales Tax Collected, Today: rows of S1-38218 ($0) and S1-38219 (deposit)
   await go('/reports/sales-tax/invoices', 9000); await taxRange('today');
   meta.heads = await page.locator('thead th').allInnerTexts(); meta.chip = await txt(page.locator('[data-test-id="filter_chip_range"]'));
-  for (const n of [S.ZERO.display, S.DEP.display]) { const row = page.locator('tr').filter({ hasText: n }).first(); meta['row_' + n] = { box: await box(row), text: await txt(row), cells: await cells(row) }; }
+  for (const n of [S.ZERO.display, S.DEP.display, S.DEP2.display].filter(Boolean)) { const row = page.locator('tr').filter({ hasText: n }).first(); meta['row_' + n] = { box: await box(row), text: await txt(row), cells: await cells(row) }; }
   meta.footer = await txt(page.locator('tfoot, .q-table__bottom').first());
   await shot('1-tax-today', { chip: await box(page.locator('[data-test-id="filter_chip_range"]')) });
   await page.locator('[data-test-id="filter_chip_statuses"]').click(); await page.waitForTimeout(1200);
@@ -124,6 +124,9 @@ if (mode === 'tax-cm') {       // C2: Heavy Duty, Sales Tax Collected, custom 20
   const tbl = page.locator('main table').first();
   await shot('1-tax-oct20', { chip: await box(page.locator('[data-test-id="filter_chip_range"]')), table: await box(tbl), foot: await box(page.locator('tfoot').first()),
     taxcol: await box(page.locator('thead th').filter({ hasText: 'Taxes' })), rowboxes: await page.locator('tbody tr').evaluateAll(trs => trs.map(t => { const b = t.getBoundingClientRect(); return [Math.round(b.x * 2), Math.round(b.y * 2), Math.round(b.width * 2), Math.round(b.height * 2)]; })) });
+  await page.locator('button, a').filter({ hasText: 'See All Tax Rates' }).first().click(); await page.waitForTimeout(8000);
+  meta.rates = (await txt(page.locator('main'))).slice(0, 700); const g = page.locator('tr').filter({ hasText: 'GST' }).first();
+  await shot('2-all-tax-rates-oct20', { gst: { box: await box(g), text: await txt(g) }, chip: await box(page.locator('[data-test-id="filter_chip_range"]')), chip_text: await txt(page.locator('[data-test-id="filter_chip_range"]')) });
   await go('/reports/sales', 9000);
   meta.sales_chips = await page.locator('[data-test-id^="filter_chip_"]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id') + '=' + e.innerText.replace(/\s+/g, ' ')));
   save();

@@ -4,7 +4,7 @@ TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboa
 LINKS: relates to SV-2144 (Create "Batch Transactions" in "IBS Management" (IBS-six))
 PICTURES: pictures/P2-D2-1-ibs-sent-batch-total-not-sum.png
 BASIS: Chris Ward's answer to question 34 (28 Oct 2026): "Yes, always. Defect."
-RE-CHECKED: 29 Oct 2026, 12:04–12:19 AM UTC (= 28 Oct, 6:04–6:19 PM in Lethbridge), staging v26.43.2-f8698cb, Staging Lethbridge - 4310; session, browser and test computer all on America/Edmonton.
+RE-CHECKED: 29 Oct 2026, 12:40 AM UTC (= 28 Oct, 6:40 PM in Lethbridge; screen, re-taken with the app's time-zone setting); server 12:04–12:19 AM UTC, staging v26.43.2-f8698cb, Staging Lethbridge - 4310; session, browser, app time-zone setting and test computer all on America/Edmonton.
 NOTE FOR THE QA LEAD: the cause is not known and was not re-created on new data ("Remove from batch" was tested on 28 Oct and keeps the total right). The ticket reports the batch as it is.
 -->
 
@@ -49,7 +49,7 @@ Not affected — this report does not feed any Dashboard tile.
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Lethbridge time), Admin.
-- Browser and test computer set to the location's time zone (America/Edmonton).
+- Browser, app time-zone setting and test computer set to the location's time zone (America/Edmonton).
 - The other sent batch at Lethbridge (Sep 16, 2026, $7,859.73) and both at Staging Heavy Duty - 9919 add up correctly.
 - Not checked on Production or on a QA branch.
 

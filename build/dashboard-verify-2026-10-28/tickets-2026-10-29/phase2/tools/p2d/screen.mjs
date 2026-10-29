@@ -6,7 +6,7 @@ import { boot2 } from '/home/user/Manual-test-Cases/build/testing-tools/staging-
 const APP = 'https://app.staging.shopview.com';
 const L = { hd: ['b3c8c820-f815-4cf1-8938-10956c5ee71a', 'Asia/Karachi', 'Staging Heavy Duty - 9919'], leth: ['f8a8b802-7780-4b16-bf10-343caeb616b2', 'America/Edmonton', 'Staging Lethbridge - 4310'],
   dvi: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto', 'DVI Test'] };
-const MODES = { D6b: 'hd', D4b: 'hd', D7c: 'dvi', D7d: 'hd', D1: 'hd', D2: 'leth', D3: 'hd', D4: 'hd', D5: 'hd', D6: 'hd', D7: 'dvi', D7b: 'hd' };
+const MODES = { D4c: 'hd', D6b: 'hd', D4b: 'hd', D7c: 'dvi', D7d: 'hd', D1: 'hd', D2: 'leth', D3: 'hd', D4: 'hd', D5: 'hd', D6: 'hd', D7: 'dvi', D7b: 'hd' };
 const mode = process.argv[2]; const [WP, TZ, LOCN] = L[MODES[mode]];
 if (process.env.TZ !== TZ) { console.log('process TZ must be', TZ); process.exit(3); }
 const OUT = `/tmp/cln/p2d/ev/${mode}`; fs.mkdirSync(OUT, { recursive: true });
@@ -181,5 +181,15 @@ if (mode === 'D6b') {
   meta.notes.oct22_rows = [...seen.keys()].filter(r => /Oct 22, 2026/.test(r));
   const cm = page.locator('tr').filter({ hasText: 'CM2-4533' }).first(); await cm.evaluate(e => e.scrollIntoView({ block: 'center' })).catch(() => {}); await page.waitForTimeout(1000);
   await shot('2-testvt1-invoices-cm2-4533', { cm: await box(cm), text: await txt(cm) });
+}
+if (mode === 'D4c') {
+  const resp = []; page.on('response', async r => { if (r.url().includes('/api/notes?')) { try { const j = await r.json(); resp.push({ url: decodeURIComponent(r.url()).slice(0, 400), n: j?.data?.notes?.length, pag: j?.data?.pagination }); } catch {} } });
+  await go('/reports/notes-report', 15000);
+  await page.getByText('Date Range', { exact: false }).first().click(); await page.waitForTimeout(1500);
+  meta.notes.menu = (await page.locator('.q-menu').last().innerText().catch(() => '')).slice(0, 300);
+  await page.locator('.q-menu').last().getByText('Last Week', { exact: true }).first().click(); await page.waitForTimeout(8000);
+  await page.keyboard.press('Escape').catch(() => {});
+  meta.notes.requests = resp; meta.notes.chip = await txt(page.getByText('Date Range', { exact: false }));
+  await shot('0-after-pick');
 }
 } finally { save(); console.log(JSON.stringify({ mode, v: meta.appVersion, browser_zone: meta.browser_zone, process_zone: meta.process_zone, notes: meta.notes }, null, 1).slice(0, 5000)); await browser.close(); }

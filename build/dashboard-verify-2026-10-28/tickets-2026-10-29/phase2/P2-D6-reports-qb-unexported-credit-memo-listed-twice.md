@@ -4,7 +4,7 @@ TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboa
 LINKS: relates to SV-2871 (Create a report for unexported items to QuickBooks)
 PICTURES: pictures/P2-D6-1-qb-unexported-credit-memo-listed-twice.png
 BASIS: Chris Ward's answer to question 37(b) (28 Oct 2026): "(b) Yes, one row per document, showing its latest error. Both are defects."
-RE-CHECKED: 29 Oct 2026, 12:04–12:27 AM UTC (= 29 Oct, 5:04–5:27 AM in Karachi), staging v26.43.2-f8698cb, Staging Heavy Duty - 9919; session, browser and test computer all on Asia/Karachi.
+RE-CHECKED: 29 Oct 2026, 12:42–12:43 AM UTC (= 29 Oct, 5:42–5:43 AM in Karachi; screen, re-taken with the app's time-zone setting); server 12:04 AM UTC, staging v26.43.2-f8698cb, Staging Heavy Duty - 9919; session, browser, app time-zone setting and test computer all on Asia/Karachi.
 NOTE FOR THE QA LEAD: scoped to Credit Memo Create rows (60 credit memos listed twice at Heavy Duty). Credit Memo Apply and Deposit Application also show several rows for one record, but each of those rows names a different invoice or credit, so they may be one row per thing applied — left to the developer to confirm, not claimed here. Lethbridge has none.
 -->
 
@@ -14,8 +14,8 @@ On **QB Unexported → Customers**, the same credit memo can appear **twice**, a
 
 **Example:** customer **TestVT1** made **one** credit memo on Oct 22, 2026: **CM2-4533** ($150.00, for invoice P2-2447). QB Unexported shows **two** Credit Memo Create rows for TestVT1 that day, one second apart:
 
-- "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks…" (the later one, 12:29:46)
-- "Originating Invoice … has not yet synced to QuickBooks…" (the earlier one, 12:29:45)
+- "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks…" (the later one, 5:29:46 PM Karachi time)
+- "Originating Invoice … has not yet synced to QuickBooks…" (the earlier one, 5:29:45 PM)
 
 1 credit memo, 2 rows. Only the first error above (the latest) should be shown, in one row.
 
@@ -55,7 +55,7 @@ Not affected — this report does not feed any Dashboard tile.
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 29 Oct 2026 (Karachi time), Admin.
-- Browser and test computer set to the location's time zone (Asia/Karachi).
+- Browser, app time-zone setting and test computer set to the location's time zone (Asia/Karachi).
 - Not checked on Production or on a QA branch.
 
 ## For developers

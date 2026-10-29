@@ -4,7 +4,7 @@ TYPE Bug · PARENT SV-11839 · PRIORITY Medium · PRODUCT AREA Reports & Dashboa
 LINKS: relates to SV-1878 ("Customer Invoice" Export Report (export-step 4)) · relates to SV-11676 (Credit terms - Story 7 - Due dates; Open — S7-R7 states the same rule for invoices)
 PICTURES: pictures/P2-D7-1-invoice-s1-38216-terms-cod.png · pictures/P2-D7-2-customer-invoice-export-terms-net-30.png
 BASIS: Chris Ward's answer to question 38 (28 Oct 2026): "Yes, the invoice's own term. Defect."
-RE-CHECKED: 29 Oct 2026, 12:05–12:14 AM UTC (= 28 Oct, 8:05–8:14 PM in Toronto), staging v26.43.2-f8698cb, DVI Test, on new test data; session, browser and test computer all on America/Toronto. The 7 September invoices from question 38 were re-read at Staging Heavy Duty - 9919 (Asia/Karachi) the same hour and still show it.
+RE-CHECKED: 29 Oct 2026, 12:43–12:46 AM UTC (= 28 Oct, 8:43–8:46 PM in Toronto; export and invoice screen re-taken with the app's time-zone setting; data made at 12:05–12:08 AM UTC), staging v26.43.2-f8698cb, DVI Test, on new test data; session, browser, app time-zone setting and test computer all on America/Toronto. The 7 September invoices from question 38 were re-read at Staging Heavy Duty - 9919 (Asia/Karachi) the same hour and still show it.
 NOTE FOR THE QA LEAD: question 38 said the customers "both say COD". Re-checked today, those customers' cards now say Net 30 / 50 / 60 — the export follows the CUSTOMER's current term. Re-created on fresh data to prove it.
 -->
 
@@ -55,7 +55,7 @@ The new Credit Terms story SV-11676 (S7-R7) says the same: *"An invoice keeps th
 ## Where it was seen
 
 - Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, 28 Oct 2026 (Toronto time), Admin.
-- Browser and test computer set to the location's time zone (America/Toronto).
+- Browser, app time-zone setting and test computer set to the location's time zone (America/Toronto).
 - The export covers every location in the organisation.
 - Not checked on Production or on a QA branch.
 
