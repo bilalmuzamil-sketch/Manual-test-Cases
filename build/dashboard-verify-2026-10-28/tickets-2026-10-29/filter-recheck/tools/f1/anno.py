@@ -30,7 +30,8 @@ s = S('A2PIC', 'iii'); J.append(('SV-11938', 'ui-A2PIC-iii.png', 'Work In Progre
   (cell(s, 'Parts Remaining'), 'bad', 'Parts Remaining $37.67: should be $0.00')]))
 s = S('A4', 'iii-default'); J.append(('SV-11939', 'ui-A4-iii-default.png', 'Shop Efficiency, DVI Test, Date Range: This month (the default), one timesheet running', [
   (s['chip'], 'good', 'Date Range left on its default, This month'),
-  (s['totals'], 'bad', 'Total Clocked Hours 8.52 leaves out the running timesheet (0.69 h at this moment): Timesheet Activities, same range, shows 9.22')]))
+  ({'x': 2592, 'y': 12, 'w': 560, 'h': 84}, 'good', 'A timesheet is running on S1-38220: 0.73 hours so far today (the timer at the top)'),
+  (s['totals'], 'bad', 'Total Clocked Hours 8.52 leaves out the running timesheet: should be 8.52 + 0.73 = about 9.25 (Timesheet Activities, same range, includes it)')]))
 s = S('A5HD', 'iii-csv'); J.append(('A5-held', 'ui-A5HD-iii-csv.png', 'payroll_timesheet.csv, Staging Heavy Duty - 9919, Custom 01/01/2026 - 10/29/2026 (widest)', [
   (s['marked'][0]['box'], 'bad', 'Haley Brown 6 Sep 2026: 28.50 Total Hours. Her 15 timesheets that day all fall between 7:00 and 9:00 PM, so it should be 2.00')]))
 for key, src, title, marks in J:
