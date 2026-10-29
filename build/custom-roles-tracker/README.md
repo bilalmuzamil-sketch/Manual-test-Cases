@@ -102,8 +102,12 @@ the recording.
 - The portal's shared database holds only what people add: verification statuses (Contributors and
   up), approval evidence (Editors), and scan requests. Snapshots never live there, so nothing in the
   database can rewrite history.
-- **Where the tracker lives is still to be decided** (see the hand-over note): this repository is
-  public, so the PRD text and the API map must not be committed here.
+- **Where it lives:** this repository, which is **public**. The QA lead chose this on 2026-10-29 after
+  being told it publishes the PRD text and the API map. The portal is a **private** claude.ai
+  artifact (https://claude.ai/artifact/N7gowXrbJyzoBe94z6dL1E). The owner shares it with QA from its
+  Share menu.
+- Access checked 2026-10-29: a Contributor can write a verification status (a probe was written and
+  deleted). A Contributor's attempt to write an approval was refused.
 
 ---
 
