@@ -1,0 +1,1278 @@
+{
+ "zones": {
+  "location": "DVI Test",
+  "location_tz": "America/Toronto",
+  "process_TZ": "America/Toronto",
+  "process_zone": "EDT",
+  "process_now": "2026-10-29T05:23:59.388137",
+  "utc_now": "2026-10-29T09:23:59.388146+00:00"
+ },
+ "change_location": 200,
+ "runs": {
+  "custom_oct20": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-20T04:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-21T03:59:59.999Z"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 1,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 405,
+     "taxRatesTotal": [
+      {
+       "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+       "name": "Zero Rated",
+       "percentage": 0,
+       "amount": 0
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0.0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": []
+  },
+  "custom_oct20__paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-20T04:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-21T03:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 1,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 405,
+     "taxRatesTotal": [
+      {
+       "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+       "name": "Zero Rated",
+       "percentage": 0,
+       "amount": 0
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0.0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": []
+  },
+  "custom_oct20__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-20T04:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-21T03:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 0,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 0,
+     "taxRatesTotal": []
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": []
+  },
+  "custom_oct28": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-28T04:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-29T03:59:59.999Z"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 8,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 1080,
+     "taxRatesTotal": [
+      {
+       "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+       "name": "Zero Rated",
+       "percentage": 0,
+       "amount": 0
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0.0,
+   "targets": {
+    "S1-38218": [
+     {
+      "workOrderId": "652bd535-ae94-4ad5-8e81-7e2db6f6902c",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:19:52",
+      "paidDate": "2026-10-29 00:20:00",
+      "invoiceNumber": "S1-38218",
+      "customer": "ZZAUTOTEST P2C ZERO",
+      "shopSupplyTotal": 0,
+      "subtotal": 0,
+      "tax": 0,
+      "subTotalWithTax": 0,
+      "laborTotal": 0,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38221": [
+     {
+      "workOrderId": "1cf29c7d-295e-4919-be7e-12e90806e534",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:46:32",
+      "paidDate": "2026-10-29 00:46:41",
+      "invoiceNumber": "S1-38221",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38219": [
+     {
+      "workOrderId": "420b6744-19e3-482e-aa9c-a682484065cd",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:14:58",
+      "paidDate": "2026-10-29 00:15:06",
+      "invoiceNumber": "S1-38219",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ]
+   },
+   "n_zero_total": 1,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": [
+    {
+     "credit_number": "CM1-4535",
+     "customer_service": "ZZAUTOTEST Dash A1",
+     "total_invoiced": -400
+    }
+   ]
+  },
+  "custom_oct28__paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-28T04:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-29T03:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 8,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 1080,
+     "taxRatesTotal": [
+      {
+       "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+       "name": "Zero Rated",
+       "percentage": 0,
+       "amount": 0
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0.0,
+   "targets": {
+    "S1-38218": [
+     {
+      "workOrderId": "652bd535-ae94-4ad5-8e81-7e2db6f6902c",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:19:52",
+      "paidDate": "2026-10-29 00:20:00",
+      "invoiceNumber": "S1-38218",
+      "customer": "ZZAUTOTEST P2C ZERO",
+      "shopSupplyTotal": 0,
+      "subtotal": 0,
+      "tax": 0,
+      "subTotalWithTax": 0,
+      "laborTotal": 0,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38221": [
+     {
+      "workOrderId": "1cf29c7d-295e-4919-be7e-12e90806e534",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:46:32",
+      "paidDate": "2026-10-29 00:46:41",
+      "invoiceNumber": "S1-38221",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38219": [
+     {
+      "workOrderId": "420b6744-19e3-482e-aa9c-a682484065cd",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:14:58",
+      "paidDate": "2026-10-29 00:15:06",
+      "invoiceNumber": "S1-38219",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ]
+   },
+   "n_zero_total": 1,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": [
+    {
+     "credit_number": "CM1-4535",
+     "customer_service": "ZZAUTOTEST Dash A1",
+     "total_invoiced": -400
+    }
+   ]
+  },
+  "custom_oct28__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-28T04:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-29T03:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 0,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 0,
+     "taxRatesTotal": []
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": [
+    {
+     "credit_number": "CM1-4535",
+     "customer_service": "ZZAUTOTEST Dash A1",
+     "total_invoiced": -400
+    }
+   ]
+  },
+  "this_month_default": {
+   "request": [
+    [
+     "dateRange",
+     "this_month"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 9,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 1485,
+     "taxRatesTotal": [
+      {
+       "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+       "name": "Zero Rated",
+       "percentage": 0,
+       "amount": 0
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0.0,
+   "targets": {
+    "S1-38218": [
+     {
+      "workOrderId": "652bd535-ae94-4ad5-8e81-7e2db6f6902c",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:19:52",
+      "paidDate": "2026-10-29 00:20:00",
+      "invoiceNumber": "S1-38218",
+      "customer": "ZZAUTOTEST P2C ZERO",
+      "shopSupplyTotal": 0,
+      "subtotal": 0,
+      "tax": 0,
+      "subTotalWithTax": 0,
+      "laborTotal": 0,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38221": [
+     {
+      "workOrderId": "1cf29c7d-295e-4919-be7e-12e90806e534",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:46:32",
+      "paidDate": "2026-10-29 00:46:41",
+      "invoiceNumber": "S1-38221",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38219": [
+     {
+      "workOrderId": "420b6744-19e3-482e-aa9c-a682484065cd",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:14:58",
+      "paidDate": "2026-10-29 00:15:06",
+      "invoiceNumber": "S1-38219",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ]
+   },
+   "n_zero_total": 1,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "this_month_default__paid": {
+   "request": [
+    [
+     "dateRange",
+     "this_month"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 9,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 1485,
+     "taxRatesTotal": [
+      {
+       "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+       "name": "Zero Rated",
+       "percentage": 0,
+       "amount": 0
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0.0,
+   "targets": {
+    "S1-38218": [
+     {
+      "workOrderId": "652bd535-ae94-4ad5-8e81-7e2db6f6902c",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:19:52",
+      "paidDate": "2026-10-29 00:20:00",
+      "invoiceNumber": "S1-38218",
+      "customer": "ZZAUTOTEST P2C ZERO",
+      "shopSupplyTotal": 0,
+      "subtotal": 0,
+      "tax": 0,
+      "subTotalWithTax": 0,
+      "laborTotal": 0,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38221": [
+     {
+      "workOrderId": "1cf29c7d-295e-4919-be7e-12e90806e534",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:46:32",
+      "paidDate": "2026-10-29 00:46:41",
+      "invoiceNumber": "S1-38221",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38219": [
+     {
+      "workOrderId": "420b6744-19e3-482e-aa9c-a682484065cd",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:14:58",
+      "paidDate": "2026-10-29 00:15:06",
+      "invoiceNumber": "S1-38219",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ]
+   },
+   "n_zero_total": 1,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "this_month_default__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "this_month"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 0,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 0,
+     "taxRatesTotal": []
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "this_year_widest": {
+   "request": [
+    [
+     "dateRange",
+     "this_year"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 9,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 1485,
+     "taxRatesTotal": [
+      {
+       "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+       "name": "Zero Rated",
+       "percentage": 0,
+       "amount": 0
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0.0,
+   "targets": {
+    "S1-38218": [
+     {
+      "workOrderId": "652bd535-ae94-4ad5-8e81-7e2db6f6902c",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:19:52",
+      "paidDate": "2026-10-29 00:20:00",
+      "invoiceNumber": "S1-38218",
+      "customer": "ZZAUTOTEST P2C ZERO",
+      "shopSupplyTotal": 0,
+      "subtotal": 0,
+      "tax": 0,
+      "subTotalWithTax": 0,
+      "laborTotal": 0,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38221": [
+     {
+      "workOrderId": "1cf29c7d-295e-4919-be7e-12e90806e534",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:46:32",
+      "paidDate": "2026-10-29 00:46:41",
+      "invoiceNumber": "S1-38221",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38219": [
+     {
+      "workOrderId": "420b6744-19e3-482e-aa9c-a682484065cd",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:14:58",
+      "paidDate": "2026-10-29 00:15:06",
+      "invoiceNumber": "S1-38219",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ]
+   },
+   "n_zero_total": 1,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "this_year_widest__paid": {
+   "request": [
+    [
+     "dateRange",
+     "this_year"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 9,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 1485,
+     "taxRatesTotal": [
+      {
+       "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+       "name": "Zero Rated",
+       "percentage": 0,
+       "amount": 0
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0.0,
+   "targets": {
+    "S1-38218": [
+     {
+      "workOrderId": "652bd535-ae94-4ad5-8e81-7e2db6f6902c",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:19:52",
+      "paidDate": "2026-10-29 00:20:00",
+      "invoiceNumber": "S1-38218",
+      "customer": "ZZAUTOTEST P2C ZERO",
+      "shopSupplyTotal": 0,
+      "subtotal": 0,
+      "tax": 0,
+      "subTotalWithTax": 0,
+      "laborTotal": 0,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38221": [
+     {
+      "workOrderId": "1cf29c7d-295e-4919-be7e-12e90806e534",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:46:32",
+      "paidDate": "2026-10-29 00:46:41",
+      "invoiceNumber": "S1-38221",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ],
+    "S1-38219": [
+     {
+      "workOrderId": "420b6744-19e3-482e-aa9c-a682484065cd",
+      "status": "paid",
+      "createdOn": "2026-10-29 00:14:58",
+      "paidDate": "2026-10-29 00:15:06",
+      "invoiceNumber": "S1-38219",
+      "customer": "ZZAUTOTEST P2C DEP",
+      "shopSupplyTotal": 0,
+      "subtotal": 135,
+      "tax": 0,
+      "subTotalWithTax": 135,
+      "laborTotal": 135,
+      "partsTotal": 0,
+      "taxRates": [
+       {
+        "id": "9404cf7d-2fcc-438a-b034-59a7ca220409",
+        "name": "Zero Rated",
+        "percentage": 0,
+        "amount": 0
+       }
+      ],
+      "workOrderType": "service"
+     }
+    ]
+   },
+   "n_zero_total": 1,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "this_year_widest__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "this_year"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 0,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 0,
+     "taxRatesTotal": []
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "last_month": {
+   "request": [
+    [
+     "dateRange",
+     "last_month"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 0,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 0,
+     "taxRatesTotal": []
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "last_month__paid": {
+   "request": [
+    [
+     "dateRange",
+     "last_month"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 0,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 0,
+     "taxRatesTotal": []
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "last_month__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "last_month"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 0,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 0,
+     "taxRatesTotal": []
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "custom_2020_to_today": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2020-01-01T05:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-30T03:59:59.999Z"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 400,
+   "n": 0,
+   "meta": {
+    "error": "{'errors': [{'error': 'Date range cannot exceed 366 days.'}]}"
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "custom_2020_to_today__paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2020-01-01T05:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-30T03:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 400,
+   "n": 0,
+   "meta": {
+    "error": "{'errors': [{'error': 'Date range cannot exceed 366 days.'}]}"
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "custom_2020_to_today__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2020-01-01T05:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-30T03:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 400,
+   "n": 0,
+   "meta": {
+    "error": "{'errors': [{'error': 'Date range cannot exceed 366 days.'}]}"
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "S1-38218": [],
+    "S1-38221": [],
+    "S1-38219": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  }
+ }
+}

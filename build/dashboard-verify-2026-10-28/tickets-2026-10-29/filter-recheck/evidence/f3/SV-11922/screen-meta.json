@@ -1,0 +1,268 @@
+{
+ "ticket": "SV-11922",
+ "location": "Staging Lethbridge - 4310",
+ "location_tz": "America/Edmonton",
+ "process_TZ": "America/Edmonton",
+ "process_zone": "America/Edmonton",
+ "observed_at_utc": "2026-10-29T09:18:02.574Z",
+ "runs": {
+  "i-detail-oct28-ticket": {
+   "spec": {
+    "name": "i-detail-oct28-ticket",
+    "path": "/reports/ap-aging-detail",
+    "day": 28,
+    "open": "Current",
+    "rows": [
+     "SV10190-ST1",
+     "976974"
+    ]
+   },
+   "chips": [
+    "filter_chip_asOfDate = calendar_today Date: 2026-10-28 keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/ap-aging-detail?asOfDate=2026-10-28",
+   "rows": {
+    "976974": {
+     "text": "Oct 1, 2026 Invoice 976974 4Refuel Staging Lethbridge - 4310 Oct 31, 2026 -2 $56.50 $56.50"
+    },
+    "SV10190-ST1": {
+     "text": "Sep 30, 2026 Invoice SV10190-ST1 123 Cannabis Forestlawn Staging Lethbridge - 4310 Oct 30, 2026 -1 $5.65 $5.65"
+    }
+   },
+   "reqs": [
+    "https://app.staging.shopview.com/js/vendor.CQEl03k0.js",
+    "https://app.staging.shopview.com/js/vue-vendor.DC9DRZx3.js",
+    "https://app.staging.shopview.com/css/vendor.rmqV9LRu.css",
+    "/api.staging.shopview.com/api/reporting/account-payable/aging-detail-report?asOfDate=2026-10-30T05:59:59.999Z",
+    "/api.staging.shopview.com/api/reporting/account-payable/aging-detail-report?asOfDate=2026-10-29T05:59:59.999Z"
+   ]
+  },
+  "ii-detail-default-today": {
+   "spec": {
+    "name": "ii-detail-default-today",
+    "path": "/reports/ap-aging-detail",
+    "open": "Current",
+    "rows": [
+     "SV10190-ST1",
+     "976974",
+     "INV-duka-34-asdf-45-f"
+    ],
+    "shot": 1
+   },
+   "chips": [
+    "filter_chip_asOfDate = calendar_today Date: 2026-10-29 keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/ap-aging-detail",
+   "rows": {
+    "976974": {
+     "text": "Oct 1, 2026 Invoice 976974 4Refuel Staging Lethbridge - 4310 Oct 31, 2026 -1 $56.50 $56.50",
+     "box": {
+      "x": 556,
+      "y": 1417,
+      "w": 2647,
+      "h": 96
+     }
+    },
+    "SV10190-ST1": {
+     "text": "Sep 30, 2026 Invoice SV10190-ST1 123 Cannabis Forestlawn Staging Lethbridge - 4310 Oct 30, 2026 0 $5.65 $5.65",
+     "box": {
+      "x": 556,
+      "y": 1033,
+      "w": 2647,
+      "h": 96
+     }
+    },
+    "INV-duka-34-asdf-45-f": {
+     "text": "",
+     "box": null
+    }
+   },
+   "chipboxes": [
+    [
+     "filter_chip_asOfDate",
+     2760,
+     171,
+     370,
+     56
+    ]
+   ],
+   "heads": [
+    [
+     "Date",
+     556,
+     274,
+     623,
+     96
+    ],
+    [
+     "Transaction Type",
+     1179,
+     274,
+     225,
+     96
+    ],
+    [
+     "No.",
+     1403,
+     274,
+     333,
+     96
+    ],
+    [
+     "Vendor Name",
+     1737,
+     274,
+     431,
+     96
+    ],
+    [
+     "Location Name",
+     2168,
+     274,
+     341,
+     96
+    ],
+    [
+     "Due Date",
+     2509,
+     274,
+     174,
+     96
+    ],
+    [
+     "Past Due",
+     2683,
+     274,
+     129,
+     96
+    ],
+    [
+     "Amount",
+     2812,
+     274,
+     195,
+     96
+    ],
+    [
+     "Open Balance",
+     3008,
+     274,
+     195,
+     96
+    ]
+   ],
+   "reqs": [
+    "https://app.staging.shopview.com/js/vendor.CQEl03k0.js",
+    "https://app.staging.shopview.com/js/vue-vendor.DC9DRZx3.js",
+    "https://app.staging.shopview.com/css/vendor.rmqV9LRu.css",
+    "/api.staging.shopview.com/api/reporting/account-payable/aging-detail-report?asOfDate=2026-10-30T05:59:59.999Z"
+   ]
+  },
+  "ii-unpaid-default-no-vendor": {
+   "spec": {
+    "name": "ii-unpaid-default-no-vendor",
+    "path": "/reports/ap-unpaid-invoices",
+    "expandVendors": 1,
+    "rows": [
+     "SV10190-ST1",
+     "976974",
+     "5363"
+    ]
+   },
+   "chips": [
+    "filter_chip_vendorId = person Vendor keyboard_arrow_down",
+    "filter_chip_asOfDate = calendar_today Date: 2026-10-29 keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/ap-unpaid-invoices",
+   "rows": {
+    "5363": {
+     "text": "Sep 23, 2026 Invoice 5363 123 Cannabis Forestlawn Staging Heavy Duty - 9919 Oct 23, 2026 6 $19.21 $19.21"
+    },
+    "976974": {
+     "text": "Oct 1, 2026 Invoice 976974 4Refuel Staging Lethbridge - 4310 Oct 31, 2026 -1 $56.50 $56.50"
+    },
+    "SV10190-ST1": {
+     "text": "Sep 30, 2026 Invoice SV10190-ST1 123 Cannabis Forestlawn Staging Lethbridge - 4310 Oct 30, 2026 0 $5.65 $5.65"
+    }
+   },
+   "reqs": [
+    "https://app.staging.shopview.com/js/vendor.CQEl03k0.js",
+    "https://app.staging.shopview.com/js/vue-vendor.DC9DRZx3.js",
+    "https://app.staging.shopview.com/css/vendor.rmqV9LRu.css",
+    "/api.staging.shopview.com/api/reporting/account-payable/unpaid-invoices-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&asOfDate=2026-10-30T05:59:59.999Z",
+    "/api.staging.shopview.com/api/reporting/account-payable/unpaid-invoices-report?pagination[page]=2&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&asOfDate=2026-10-30T05:59:59.999Z"
+   ]
+  },
+  "i-unpaid-picture2-vendor-oct20": {
+   "spec": {
+    "name": "i-unpaid-picture2-vendor-oct20",
+    "path": "/reports/ap-unpaid-invoices",
+    "query": "?asOfDate=2026-10-20&vendorId=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e",
+    "expandVendors": 1,
+    "rows": [
+     "SV10190-ST1",
+     "5363"
+    ]
+   },
+   "chips": [
+    "filter_chip_vendorId = person Vendor: 123 Cannabis Fo... keyboard_arrow_down cancel",
+    "filter_chip_clear_vendorId = cancel",
+    "filter_chip_asOfDate = calendar_today Date: 2026-10-20 keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-10-20&vendorId=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e",
+   "rows": {
+    "5363": {
+     "text": "Sep 23, 2026 Invoice 5363 123 Cannabis Forestlawn Staging Heavy Duty - 9919 Oct 23, 2026 -2 $19.21 $19.21"
+    },
+    "SV10190-ST1": {
+     "text": "Sep 30, 2026 Invoice SV10190-ST1 123 Cannabis Forestlawn Staging Lethbridge - 4310 Oct 30, 2026 -9 $5.65 $5.65"
+    }
+   },
+   "reqs": [
+    "https://app.staging.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-10-20&vendorId=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e",
+    "https://app.staging.shopview.com/js/vendor.CQEl03k0.js",
+    "https://app.staging.shopview.com/js/vue-vendor.DC9DRZx3.js",
+    "https://app.staging.shopview.com/css/vendor.rmqV9LRu.css",
+    "/api.staging.shopview.com/api/reporting/account-payable/unpaid-invoices-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&asOfDate=2026-10-21T05:59:59.999Z&filters[0][field]=vendor_id&filters[0][value]=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e",
+    "/api.staging.shopview.com/api/parts-catalogue/vendors?"
+   ]
+  },
+  "iii-unpaid-oct20-no-vendor": {
+   "spec": {
+    "name": "iii-unpaid-oct20-no-vendor",
+    "path": "/reports/ap-unpaid-invoices",
+    "day": 20,
+    "expandVendors": 1,
+    "rows": [
+     "SV10190-ST1",
+     "5363"
+    ]
+   },
+   "chips": [
+    "filter_chip_vendorId = person Vendor keyboard_arrow_down",
+    "filter_chip_asOfDate = calendar_today Date: 2026-10-20 keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-10-20",
+   "rows": {
+    "5363": {
+     "text": "Sep 23, 2026 Invoice 5363 123 Cannabis Forestlawn Staging Heavy Duty - 9919 Oct 23, 2026 -2 $19.21 $19.21"
+    },
+    "SV10190-ST1": {
+     "text": "Sep 30, 2026 Invoice SV10190-ST1 123 Cannabis Forestlawn Staging Lethbridge - 4310 Oct 30, 2026 -9 $5.65 $5.65"
+    }
+   },
+   "reqs": [
+    "https://app.staging.shopview.com/js/vendor.CQEl03k0.js",
+    "https://app.staging.shopview.com/js/vue-vendor.DC9DRZx3.js",
+    "https://app.staging.shopview.com/css/vendor.rmqV9LRu.css",
+    "/api.staging.shopview.com/api/reporting/account-payable/unpaid-invoices-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&asOfDate=2026-10-30T05:59:59.999Z",
+    "/api.staging.shopview.com/api/reporting/account-payable/unpaid-invoices-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&asOfDate=2026-10-21T05:59:59.999Z",
+    "/api.staging.shopview.com/api/reporting/account-payable/unpaid-invoices-report?pagination[page]=2&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&asOfDate=2026-10-21T05:59:59.999Z"
+   ]
+  }
+ },
+ "browser_zone": "America/Edmonton",
+ "app_timezone_key": "\"America/Edmonton\"",
+ "browser_now": "Thu Oct 29 2026 03:18:02 GMT-0600 (Mountain Daylight Time)",
+ "appVersion": "v26.43.2-f8698cb"
+}

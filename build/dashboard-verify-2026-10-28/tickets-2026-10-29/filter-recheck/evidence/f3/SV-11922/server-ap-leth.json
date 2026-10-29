@@ -1,0 +1,461 @@
+{
+ "part": "ap-leth",
+ "at_utc": "2026-10-29T09:16:36.490455+00:00",
+ "zones": {
+  "location": "Staging Lethbridge - 4310",
+  "location_tz": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_zone": "MDT",
+  "process_now": "2026-10-29T03:16:36.490560",
+  "utc_now": "2026-10-29T09:16:36.490563+00:00"
+ },
+ "change_location": 200,
+ "detail_today_default": {
+  "request": [
+   [
+    "asOfDate",
+    "2026-10-30T05:59:59.999Z"
+   ]
+  ],
+  "status": 200,
+  "n": 14528,
+  "not_due_wrong": 440,
+  "not_due_ok": 42,
+  "due_or_overdue_wrong": 784,
+  "due_or_overdue_ok": 13262,
+  "examples": {
+   "E2E-INV-1790765134561@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 10:45:34",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790764940724@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 10:42:20",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-Pnz9zk4@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 10:44:15",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790766057710@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 11:00:57",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790764915353@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 10:41:55",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790765203970@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 10:46:43",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790684747987@Staging Heavy Duty -": {
+    "due_local": "2026-10-29",
+    "dueDate_raw": "2026-10-29 12:25:47",
+    "shown": 0,
+    "expected": 0
+   },
+   "SV10190-R3@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": 0,
+    "expected": -1
+   },
+   "SV10190-ST2@Staging Lethbridge -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": 0,
+    "expected": -1
+   },
+   "SV10190-ST1@Staging Lethbridge -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": 0,
+    "expected": -1
+   },
+   "5363@Staging Heavy Duty -": {
+    "due_local": "2026-10-23",
+    "dueDate_raw": "2026-10-23 06:00:00",
+    "shown": 6,
+    "expected": 6
+   }
+  },
+  "raw_tally": {
+   "not_due_wrong": 482,
+   "due_or_overdue_ok": 13960,
+   "due_or_overdue_wrong": 86
+  },
+  "diff_hist": {
+   "shown-expected=1 (not due)": 440,
+   "shown-expected=0 (due/overdue)": 13262,
+   "shown-expected=0 (not due)": 42,
+   "shown-expected=-1 (due/overdue)": 784
+  }
+ },
+ "unpaid_today_default_no_vendor": {
+  "request": [
+   [
+    "asOfDate",
+    "2026-10-30T05:59:59.999Z"
+   ]
+  ],
+  "status": 200,
+  "n": 14528,
+  "not_due_wrong": 440,
+  "not_due_ok": 42,
+  "due_or_overdue_wrong": 784,
+  "due_or_overdue_ok": 11954,
+  "examples": {
+   "5363@Staging Heavy Duty -": {
+    "due_local": "2026-10-23",
+    "dueDate_raw": "2026-10-23 06:00:00",
+    "shown": 6,
+    "expected": 6
+   },
+   "SV10190-R3@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": 0,
+    "expected": -1
+   },
+   "SV10190-Y3@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": 0,
+    "expected": -1
+   },
+   "SV10190-CLK@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": 0,
+    "expected": -1
+   },
+   "SV10190-R1@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": 0,
+    "expected": -1
+   },
+   "SV10190-Y2@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": 0,
+    "expected": -1
+   },
+   "SV10190-ST2@Staging Lethbridge -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": 0,
+    "expected": -1
+   },
+   "SV10190-ST1@Staging Lethbridge -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790684747987@Staging Heavy Duty -": {
+    "due_local": "2026-10-29",
+    "dueDate_raw": "2026-10-29 12:25:47",
+    "shown": 0,
+    "expected": 0
+   }
+  },
+  "raw_tally": {
+   "due_or_overdue_wrong": 68,
+   "due_or_overdue_ok": 12670,
+   "not_due_wrong": 482
+  },
+  "diff_hist": {
+   "shown-expected=0 (due/overdue)": 11954,
+   "shown-expected=1 (not due)": 440,
+   "shown-expected=0 (not due)": 42,
+   "shown-expected=-1 (due/overdue)": 784
+  },
+  "no_due_date": 1308
+ },
+ "detail_oct28_ticket": {
+  "request": [
+   [
+    "asOfDate",
+    "2026-10-29T05:59:59.999Z"
+   ]
+  ],
+  "status": 200,
+  "n": 14528,
+  "not_due_wrong": 450,
+  "not_due_ok": 42,
+  "due_or_overdue_wrong": 784,
+  "due_or_overdue_ok": 13252,
+  "examples": {
+   "ZZTINV-RISOFT-9001@Staging Heavy Duty -": {
+    "due_local": "2026-10-29",
+    "dueDate_raw": "2026-10-29 08:55:06",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790684878745@Staging Heavy Duty -": {
+    "due_local": "2026-10-29",
+    "dueDate_raw": "2026-10-29 12:27:58",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790684882029@Staging Heavy Duty -": {
+    "due_local": "2026-10-29",
+    "dueDate_raw": "2026-10-29 12:28:02",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790684756851@Staging Heavy Duty -": {
+    "due_local": "2026-10-29",
+    "dueDate_raw": "2026-10-29 12:25:56",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790684767682@Staging Heavy Duty -": {
+    "due_local": "2026-10-29",
+    "dueDate_raw": "2026-10-29 12:26:07",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790684758288@Staging Heavy Duty -": {
+    "due_local": "2026-10-29",
+    "dueDate_raw": "2026-10-29 12:25:58",
+    "shown": 0,
+    "expected": -1
+   },
+   "E2E-INV-1790684747987@Staging Heavy Duty -": {
+    "due_local": "2026-10-29",
+    "dueDate_raw": "2026-10-29 12:25:47",
+    "shown": 0,
+    "expected": -1
+   },
+   "SV10190-ST2@Staging Lethbridge -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": -1,
+    "expected": -2
+   },
+   "SV10190-ST1@Staging Lethbridge -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": -1,
+    "expected": -2
+   },
+   "SV10190-R3@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": -1,
+    "expected": -2
+   },
+   "5363@Staging Heavy Duty -": {
+    "due_local": "2026-10-23",
+    "dueDate_raw": "2026-10-23 06:00:00",
+    "shown": 5,
+    "expected": 5
+   }
+  },
+  "raw_tally": {
+   "not_due_wrong": 492,
+   "due_or_overdue_ok": 13950,
+   "due_or_overdue_wrong": 86
+  },
+  "diff_hist": {
+   "shown-expected=1 (not due)": 450,
+   "shown-expected=0 (due/overdue)": 13252,
+   "shown-expected=0 (not due)": 42,
+   "shown-expected=-1 (due/overdue)": 784
+  }
+ },
+ "unpaid_oct20_vendor_picture2": {
+  "request": [
+   [
+    "asOfDate",
+    "2026-10-21T05:59:59.999Z"
+   ],
+   [
+    "vendorId",
+    "68c72fe7-8fbe-4795-85aa-7e91fbb54c7e"
+   ]
+  ],
+  "status": 200,
+  "n": 14454,
+  "not_due_wrong": 560,
+  "not_due_ok": 42,
+  "due_or_overdue_wrong": 784,
+  "due_or_overdue_ok": 11762,
+  "examples": {
+   "65@Staging Heavy Duty -": {
+    "due_local": "2026-10-22",
+    "dueDate_raw": "2026-10-22 06:00:00",
+    "shown": -1,
+    "expected": -2
+   },
+   "5363@Staging Heavy Duty -": {
+    "due_local": "2026-10-23",
+    "dueDate_raw": "2026-10-23 06:00:00",
+    "shown": -2,
+    "expected": -3
+   },
+   "31d1@Staging Heavy Duty -": {
+    "due_local": "2026-10-23",
+    "dueDate_raw": "2026-10-23 06:00:00",
+    "shown": -2,
+    "expected": -3
+   },
+   "131d1@Staging Heavy Duty -": {
+    "due_local": "2026-10-24",
+    "dueDate_raw": "2026-10-24 06:00:00",
+    "shown": -3,
+    "expected": -4
+   },
+   "c232@Staging Heavy Duty -": {
+    "due_local": "2026-10-28",
+    "dueDate_raw": "2026-10-28 06:00:00",
+    "shown": -7,
+    "expected": -8
+   },
+   "456456456@Staging Heavy Duty -": {
+    "due_local": "2026-10-28",
+    "dueDate_raw": "2026-10-28 06:00:00",
+    "shown": -7,
+    "expected": -8
+   },
+   "SV10190-R3@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": -9,
+    "expected": -10
+   },
+   "SV10190-ST2@Staging Lethbridge -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": -9,
+    "expected": -10
+   },
+   "SV10190-ST1@Staging Lethbridge -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": -9,
+    "expected": -10
+   },
+   "E2E-INV-1790684747987@Staging Heavy Duty -": {
+    "due_local": "2026-10-29",
+    "dueDate_raw": "2026-10-29 12:25:47",
+    "shown": -8,
+    "expected": -9
+   }
+  },
+  "raw_tally": {
+   "due_or_overdue_wrong": 64,
+   "due_or_overdue_ok": 12482,
+   "not_due_wrong": 602
+  },
+  "diff_hist": {
+   "shown-expected=0 (due/overdue)": 11762,
+   "shown-expected=1 (not due)": 560,
+   "shown-expected=0 (not due)": 42,
+   "shown-expected=-1 (due/overdue)": 784
+  },
+  "no_due_date": 1306
+ },
+ "unpaid_oct20_no_vendor": {
+  "request": [
+   [
+    "asOfDate",
+    "2026-10-21T05:59:59.999Z"
+   ]
+  ],
+  "status": 200,
+  "n": 14454,
+  "not_due_wrong": 560,
+  "not_due_ok": 42,
+  "due_or_overdue_wrong": 784,
+  "due_or_overdue_ok": 11762,
+  "examples": {
+   "65@Staging Heavy Duty -": {
+    "due_local": "2026-10-22",
+    "dueDate_raw": "2026-10-22 06:00:00",
+    "shown": -1,
+    "expected": -2
+   },
+   "5363@Staging Heavy Duty -": {
+    "due_local": "2026-10-23",
+    "dueDate_raw": "2026-10-23 06:00:00",
+    "shown": -2,
+    "expected": -3
+   },
+   "31d1@Staging Heavy Duty -": {
+    "due_local": "2026-10-23",
+    "dueDate_raw": "2026-10-23 06:00:00",
+    "shown": -2,
+    "expected": -3
+   },
+   "131d1@Staging Heavy Duty -": {
+    "due_local": "2026-10-24",
+    "dueDate_raw": "2026-10-24 06:00:00",
+    "shown": -3,
+    "expected": -4
+   },
+   "c232@Staging Heavy Duty -": {
+    "due_local": "2026-10-28",
+    "dueDate_raw": "2026-10-28 06:00:00",
+    "shown": -7,
+    "expected": -8
+   },
+   "456456456@Staging Heavy Duty -": {
+    "due_local": "2026-10-28",
+    "dueDate_raw": "2026-10-28 06:00:00",
+    "shown": -7,
+    "expected": -8
+   },
+   "SV10190-R3@Staging Heavy Duty -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": -9,
+    "expected": -10
+   },
+   "SV10190-ST2@Staging Lethbridge -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": -9,
+    "expected": -10
+   },
+   "SV10190-ST1@Staging Lethbridge -": {
+    "due_local": "2026-10-30",
+    "dueDate_raw": "2026-10-30 06:00:00",
+    "shown": -9,
+    "expected": -10
+   },
+   "E2E-INV-1790684747987@Staging Heavy Duty -": {
+    "due_local": "2026-10-29",
+    "dueDate_raw": "2026-10-29 12:25:47",
+    "shown": -8,
+    "expected": -9
+   }
+  },
+  "raw_tally": {
+   "due_or_overdue_wrong": 64,
+   "due_or_overdue_ok": 12482,
+   "not_due_wrong": 602
+  },
+  "diff_hist": {
+   "shown-expected=0 (due/overdue)": 11762,
+   "shown-expected=1 (not due)": 560,
+   "shown-expected=0 (not due)": 42,
+   "shown-expected=-1 (due/overdue)": 784
+  },
+  "no_due_date": 1306
+ }
+}

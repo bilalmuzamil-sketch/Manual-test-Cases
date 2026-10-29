@@ -15,6 +15,23 @@
    },
    "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
    "at_utc": "2026-10-29T09:13:18.957Z"
+  },
+  "1-all-bottom": {
+   "last": {
+    "x": 564,
+    "y": 1371,
+    "w": 2568,
+    "h": 581
+   },
+   "chip": {
+    "x": 2114,
+    "y": 170,
+    "w": 150,
+    "h": 38
+   },
+   "lastText": "AS Admin ShopView check_circle Auto-PostedWork Order: S2-35105 09:21 AM, Oct 20, 2026 Completed inspection: Milos test — v1 PDF Milos test.pdf 83.67 kB · 2 sect",
+   "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
+   "at_utc": "2026-10-29T09:13:45.069Z"
   }
  },
  "notes": {
@@ -80,6 +97,42 @@
     "w": 150,
     "h": 38
    }
+  },
+  "range_menu": "All Today This Week Last Week This Month Last Month Custom",
+  "all": {
+   "tag": "All",
+   "url": "https://app.staging.shopview.com/reports/notes-report?range=all",
+   "toolbar": "Notes search Search sort Sort By: Newest First keyboard_arrow_down calendar_today Date Range: All keyboard_arrow_down person Filter by Author keyboard_arrow_down alternate_email Filter by Mention keyboard_arrow_down VV Viktoria Videnovic check_circle Auto-Post",
+   "cards": 100,
+   "lastText": "AS Admin ShopView check_circle Auto-PostedWork Order: S2-35105 09:21 AM, Oct 20, 2026 Completed inspection: Milos test — v1 PDF Milos test.pdf 83.67 kB · 2 sect",
+   "pager_or_load_more": 0,
+   "end_message": 0,
+   "replies": [
+    {
+     "u": "/api/notes?pagination[sortBy]=created_at&pagination[descending]=true",
+     "status": 200,
+     "n": 100,
+     "pag": {
+      "sortBy": "created_at",
+      "descending": true,
+      "page": 1,
+      "rowsPerPage": 100,
+      "hasMore": true
+     }
+    }
+   ],
+   "lastBox": {
+    "x": 564,
+    "y": 1371,
+    "w": 2568,
+    "h": 581
+   },
+   "chipBox": {
+    "x": 2114,
+    "y": 170,
+    "w": 150,
+    "h": 38
+   }
   }
  },
  "requests": [
@@ -87,6 +140,12 @@
    "t": "2026-10-29T09:12:49.896Z",
    "m": "GET",
    "u": "/api/notes?filters[0][field]=created_after&filters[0][operator]=gte&filters[0][value]=2026-10-25T06:00:00.000Z&filters[1][field]=created_before&filters[1][operator]=lte&filters[1][value]=2026-11-01T06:00:00.000Z&pagination[sortBy]=created_at&pagination[descending]=true",
+   "loc": null
+  },
+  {
+   "t": "2026-10-29T09:13:21.416Z",
+   "m": "GET",
+   "u": "/api/notes?pagination[sortBy]=created_at&pagination[descending]=true",
    "loc": null
   }
  ],
@@ -101,6 +160,18 @@
     "page": 1,
     "rowsPerPage": 100,
     "hasMore": false
+   }
+  },
+  {
+   "u": "/api/notes?pagination[sortBy]=created_at&pagination[descending]=true",
+   "status": 200,
+   "n": 100,
+   "pag": {
+    "sortBy": "created_at",
+    "descending": true,
+    "page": 1,
+    "rowsPerPage": 100,
+    "hasMore": true
    }
   }
  ],

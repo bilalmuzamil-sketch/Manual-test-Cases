@@ -4,7 +4,7 @@
  "location_tz": "Asia/Karachi",
  "process_TZ": "Asia/Karachi",
  "process_zone": "Asia/Karachi",
- "observed_at_utc": "2026-10-29T09:12:48.835Z",
+ "observed_at_utc": "2026-10-29T09:14:39.423Z",
  "shots": {},
  "notes": {
   "storage_before_open": {
@@ -23,14 +23,14 @@
     "mode": "\"light\"",
     "user": "(login data, not printed)",
     "fe_permissions_wrapper": "(login data, not printed)",
-    "organization_features_timestamp": "1793265170512"
+    "organization_features_timestamp": "1793265282301"
    },
    "session": {
-    "sentryReplaySession": "{\"id\":\"71b9c14e1b7141fd966d94c4788110f3\",\"started\":1793265169257,\"lastActivity\":1793265169557,\"segmentId\":0,\"sampled\":\"buffer\",\"dirty\":false}"
+    "sentryReplaySession": "{\"id\":\"74172fc613d84c3d8fff9d854ec29b54\",\"started\":1793265280553,\"lastActivity\":1793265281210,\"segmentId\":0,\"sampled\":\"buffer\",\"dirty\":false}"
    },
    "url": "https://app.staging.shopview.com/reports/batch-transactions"
   },
-  "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Lethbridge - 4310 AS",
+  "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications 1 Staging Heavy Duty - 9919 AS",
   "tabs": "LABOR schedule Timesheet Activities PERFORMANCE description Sales percent Technician Efficiency query_stats Advisor Analysis engineering Shop Efficiency loop Work In Progress groups Technician Utilization groups_2 Sales By Customer badge Sales By Representative PARTS inventory_2 Parts Velocity sell Inventory Value FINANCE payments Sales Tax Collected ACCOUNTS RECEIVABLE article A/R Aging Summary list_alt A/R Aging Detail library_books A/R Aging Collection ACCOUNTS PAYABLE article A/P Aging Summary list_alt A/P Aging Detail library_books A/P Unpaid Invoices ACCOUNTING paid IBS Batches warning QB Unexported download Export Reports COMMUNICATIONS chat Notes alarm Reminders",
   "active_tab": "paid IBS Batches",
   "search_value": "on",
@@ -60,19 +60,19 @@
  },
  "requests": [
   {
-   "t": "2026-10-29T09:12:50.389Z",
+   "t": "2026-10-29T09:14:42.076Z",
    "m": "GET",
    "u": "/api/customers/ibs/list-payments?",
    "loc": null
   },
   {
-   "t": "2026-10-29T09:12:50.402Z",
+   "t": "2026-10-29T09:14:42.079Z",
    "m": "GET",
    "u": "/api/customers/ibs/list-transactions?pagination[sortBy]=date&pagination[descending]=true&pagination[page]=1&pagination[rowsPerPage]=1000&search=",
    "loc": null
   },
   {
-   "t": "2026-10-29T09:12:50.402Z",
+   "t": "2026-10-29T09:14:42.079Z",
    "m": "GET",
    "u": "/api/customers/ibs/list-batches?pagination[sortBy]=date&pagination[descending]=true&pagination[page]=1&pagination[rowsPerPage]=1000&search=",
    "loc": null
@@ -86,6 +86,17 @@
    "zero": [
     "S2-16924"
    ]
+  },
+  {
+   "u": "/api/customers/ibs/list-payments?",
+   "status": 200,
+   "n": 1,
+   "pag": {
+    "sortBy": null,
+    "descending": false,
+    "page": 1,
+    "rowsPerPage": 100
+   }
   },
   {
    "u": "/api/customers/ibs/list-batches?pagination[sortBy]=date&pagination[descending]=true&pagination[page]=1&pagination[rowsPerPage]=1000&search=",
@@ -107,17 +118,6 @@
      "sum": 9465.17
     }
    ]
-  },
-  {
-   "u": "/api/customers/ibs/list-payments?",
-   "status": 200,
-   "n": 1,
-   "pag": {
-    "sortBy": null,
-    "descending": false,
-    "page": 1,
-    "rowsPerPage": 100
-   }
   }
  ],
  "browser_zone": "Asia/Karachi",

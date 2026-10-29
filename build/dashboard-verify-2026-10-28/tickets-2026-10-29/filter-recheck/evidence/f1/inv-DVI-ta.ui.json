@@ -1,0 +1,172 @@
+{
+ "meta": {
+  "label": "inv-DVI-ta",
+  "location": "DVI Test",
+  "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "location_tz": "America/Toronto",
+  "process_TZ": "America/Toronto",
+  "process_zone": "America/Toronto",
+  "session_change_location": {
+   "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "workplace_timezone": "America/Toronto"
+  },
+  "started_utc": "2026-10-29T09:13:39.798Z",
+  "browser_zone": "America/Toronto",
+  "app_timezone_key": "\"America/Toronto\"",
+  "storage_at_start": {
+   "fe_permissions_wrapper": "(identity, not a filter)",
+   "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+   "timezone": "\"America/Toronto\"",
+   "user": "(identity, not a filter)"
+  },
+  "appVersion": "v26.43.2-f8698cb",
+  "storage_at_end": {
+   "fe_permissions_wrapper": "(identity, not a filter)",
+   "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+   "mode": "\"light\"",
+   "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId\":\"05f4c649-a4b9-458d-bf15-be051c8e149d\"},{\"id\":\"3e44ab71-f97c-4c32-b48f-9293d41c6044\",\"name\":\"ShopP",
+   "organization_features_timestamp": "1793265220820",
+   "timezone": "\"America/Toronto\"",
+   "user": "(identity, not a filter)"
+  },
+  "url_at_end": "/reports/punch-clock-activities",
+  "finished_utc": "2026-10-29T09:13:56.868Z"
+ },
+ "controls": {
+  "chips": [
+   {
+    "id": "module_selector_trigger",
+    "text": "ShopHub expand_more",
+    "checked": null,
+    "selected": null,
+    "value": ""
+   },
+   {
+    "id": "global_search_trigger",
+    "text": "search Search customers, work orders, parts... Ctrl K",
+    "checked": null,
+    "selected": null,
+    "value": ""
+   },
+   {
+    "id": "table_punch_clock_activities",
+    "text": "Timesheet Activities calendar_today Date Range: This month keyboard_arrow_down p",
+    "checked": null,
+    "selected": null,
+    "value": null
+   },
+   {
+    "id": "filter_chip_range",
+    "text": "calendar_today Date Range: This month keyboard_arrow_down",
+    "checked": null,
+    "selected": null,
+    "value": ""
+   },
+   {
+    "id": "filter_chip_staffId",
+    "text": "person Filter by Staff keyboard_arrow_down",
+    "checked": null,
+    "selected": null,
+    "value": ""
+   }
+  ],
+  "tabs": [
+   "*schedule Timesheet Activities",
+   "description Sales",
+   "percent Technician Efficiency",
+   "query_stats Advisor Analysis",
+   "engineering Shop Efficiency",
+   "loop Work In Progress",
+   "groups Technician Utilization",
+   "groups_2 Sales By Customer",
+   "badge Sales By Representative",
+   "inventory_2 Parts Velocity",
+   "sell Inventory Value",
+   "payments Sales Tax Collected",
+   "article A/R Aging Summary",
+   "list_alt A/R Aging Detail",
+   "library_books A/R Aging Collection",
+   "article A/P Aging Summary",
+   "list_alt A/P Aging Detail",
+   "library_books A/P Unpaid Invoices",
+   "paid IBS Batches",
+   "warning QB Unexported",
+   "download Export Reports",
+   "chat Notes",
+   "alarm Reminders"
+  ],
+  "inputs": [],
+  "heads": [
+   "Date",
+   "Employee",
+   "Work Order",
+   "Clock In Activity",
+   "Clock In",
+   "Clock Out",
+   "Total Hours",
+   "WO Hours",
+   "Internal Hours",
+   "Modified By",
+   "Modified Date/Time",
+   "Comment"
+  ]
+ },
+ "range_menu": "Today | Yesterday | This week | Last week | This month | Last month | This quarter | Last quarter | This year | Last year | Custom",
+ "first_rows": [
+  [
+   ""
+  ],
+  [
+   "Oct 28 2026",
+   "Admin Shopview",
+   "S1-38220",
+   "Test DVI Line",
+   "08:08 PM",
+   "08:41 PM",
+   "0.55",
+   "0.55",
+   "0.00",
+   "",
+   "N/A",
+   "ZZAUTOTEST P2a Clock Out",
+   ""
+  ],
+  [
+   "Oct 28 2026",
+   "Admin Shopview",
+   "S1-38220",
+   "Test DVI Line",
+   "07:39 PM",
+   "08:34 PM",
+   "0.92",
+   "0.92",
+   "0.00",
+   "",
+   "N/A",
+   "Manual Entry By Admin Shopview",
+   ""
+  ]
+ ],
+ "requests": [
+  {
+   "phase": "fresh-default",
+   "status": 200,
+   "url": "/api/users/me/release-notes/unread"
+  },
+  {
+   "phase": "fresh-default",
+   "status": 200,
+   "url": "/api/staff/clocked?range=this_month"
+  },
+  {
+   "phase": "fresh-default",
+   "status": 200,
+   "url": "/api/technicians"
+  },
+  {
+   "phase": "fresh-default",
+   "status": 200,
+   "url": "/api/reporting/punch-clock-activities/this_month?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&search=&range=this_month"
+  }
+ ]
+}

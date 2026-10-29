@@ -1,0 +1,25 @@
+{
+ "process_TZ": "America/Toronto",
+ "local_today": "2026-10-29",
+ "runs": {
+  "dvi_only": {
+   "request": "/api/reporting/reports/parts-velocity/export?format=csv&type=both&range=custom&start_date=2026-07-31T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&locations=39522bc6-abca-4f67-bd12-2840043c2d68",
+   "http": "200",
+   "bytes": 1129,
+   "head": [
+    "\"Date Range: Jul 31, 2026 - Oct 29, 2026\"",
+    "\"Type: Both\"",
+    "\"Locations: DVI Test\"",
+    "Type,\"Part #\",Description,Category,Vendor,\"Units Sold\",\"Avg Cost\",\"Avg Sell\",Revenue,Margin,\"Margin %\",Demand,\"Last Sale\",\"On Hand\""
+   ]
+  },
+  "all_locations": {
+   "request": "/api/reporting/reports/parts-velocity/export?format=csv&type=both&range=custom&start_date=2026-07-31T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C25a0d576-b371-4b82-bef4-41ba977f31c2%2C39522bc6-abca-4f67-bd12-2840043c2d68",
+   "http": "400",
+   "bytes": 110,
+   "head": [
+    "{\"errors\":[{\"error\":\"This report is too large to export. Narrow the date range or filters, then try again.\"}]}"
+   ]
+  }
+ }
+}

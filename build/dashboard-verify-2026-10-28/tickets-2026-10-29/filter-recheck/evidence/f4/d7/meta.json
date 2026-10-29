@@ -1,0 +1,109 @@
+{
+ "mode": "d7",
+ "location": "DVI Test",
+ "location_tz": "America/Toronto",
+ "process_TZ": "America/Toronto",
+ "process_zone": "America/Toronto",
+ "observed_at_utc": "2026-10-29T09:25:14.238Z",
+ "shots": {},
+ "notes": {
+  "storage_before_open": {
+   "local": {
+    "timezone": "\"America/Toronto\"",
+    "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId",
+    "mode": "\"light\"",
+    "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+    "user": "(login data, not printed)",
+    "fe_permissions_wrapper": "(login data, not printed)",
+    "organization_features_timestamp": "1793265915258"
+   },
+   "session": {
+    "sentryReplaySession": "{\"id\":\"72d4a557262641d987d026b5f2591bca\",\"started\":1793265914640,\"lastActivity\":1793265944909,\"segmentId\":0,\"sampled\":\"buffer\",\"dirty\":false}"
+   },
+   "url": "https://app.staging.shopview.com/reports/sales"
+  },
+  "storage_after_open": {
+   "local": {
+    "timezone": "\"America/Toronto\"",
+    "organization_features": "[{\"id\":\"1e052901-a32c-4cd2-8693-452172db9c19\",\"name\":\"Accounting\",\"featureFlagId\":\"0389ca6a-d628-4ce2-8d2a-faa80ad8e4fb\"},{\"id\":\"32b0eefd-9099-42f5-be60-f563874de074\",\"name\":\"PartSales\",\"featureFlagId",
+    "mode": "\"light\"",
+    "location": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+    "user": "(login data, not printed)",
+    "fe_permissions_wrapper": "(login data, not printed)",
+    "organization_features_timestamp": "1793265949064"
+   },
+   "session": {
+    "sentryReplaySession": "{\"id\":\"72d4a557262641d987d026b5f2591bca\",\"started\":1793265948159,\"lastActivity\":1793265948342,\"segmentId\":0,\"sampled\":\"buffer\",\"dirty\":false}"
+   },
+   "url": "https://app.staging.shopview.com/workorders/37fa09a3-7317-4097-bef4-7ab894c40156/lines"
+  },
+  "header": "ShopHub expand_more Dashboard New Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications DVI Test AS",
+  "dialog_fresh": "Export Report close Report Name Customer Contact arrow_drop_down Date Range arrow_drop_down Export",
+  "dialog_after_report": "Export Report close Report Name Customer Invoice arrow_drop_down Date Range arrow_drop_down Export",
+  "range_options": [
+   "check Custom",
+   "check Today",
+   "check Yesterday",
+   "check This Week",
+   "check Last Week",
+   "check This Month",
+   "check Last Month"
+  ],
+  "dialog_Yesterday": "Export Report close Report Name Customer Invoice arrow_drop_down Date Range Yesterday arrow_drop_down Export",
+  "dialog_This Week": "Export Report close Report Name Customer Invoice arrow_drop_down Date Range This Week arrow_drop_down Export",
+  "dialog_This Month": "Export Report close Report Name Customer Invoice arrow_drop_down Date Range This Month arrow_drop_down Export",
+  "finance": "Lines (1) Parts Notes Stats Finance more_vert Customer PO get_app email print settings more_vert New Payment DVI Test 111 Granton Drive Richmond Hill, Ontario, L4B 1L5 (467) 484 - 4563 Invoice: INV-S1-38216 Invoice Date: Oct 28, 2026 Due date: Oct 28, 2026 Bill To ZZAUTOTEST P2D Terms Remit payment to DVI Test 111 Granton Drive Richmond Hill, Ontario, L4B 1L5 (467) 484 - 4563 Unit VIN/Serial # Asset Mileage Eng Hrs ZZ-P2D-TERMS 0 0 Service Order Terms Due date Customer PO Authorizer S1-38216 COD Oct 28, 2026 Description Quantity Rate Amount Labor Test DVI Line Parts Total $0.00 Labor Total $135.00 Line Total $135.00 Labor $135.00 Parts $0.00 Subtotal $135.00 Total $135.00 Payments Balance $135.00 By authorizing repairs or services, the customer acknowledges that estimates are based on the information available at the time of inspection and may change if additional issues are discovered. No additional work will be performed without customer authorization where required. The shop is not responsible for loss or damage to personal items left in the vehicle. Completion dates are estimates and may be affected by parts availability or unforeseen circumstances. Replaced parts may be disposed of unless otherwise requested. The customer is responsible for payment upon completion of authorized work. Warranty coverage, if applicable, is limited to the specific parts and services provided. By authorizing repairs or services, the customer acknowledges that estimates are based on the inform"
+ },
+ "requests": [
+  {
+   "t": "2026-10-29T09:25:35.357Z",
+   "m": "GET",
+   "u": "/api/reporting/export/customer_invoice?report=customer_invoice&range=yesterday",
+   "loc": "39522bc6-abca-4f67-bd12-2840043c2d68"
+  },
+  {
+   "t": "2026-10-29T09:25:40.169Z",
+   "m": "GET",
+   "u": "/api/reporting/export/customer_invoice?report=customer_invoice&range=this_week",
+   "loc": "39522bc6-abca-4f67-bd12-2840043c2d68"
+  },
+  {
+   "t": "2026-10-29T09:25:44.920Z",
+   "m": "GET",
+   "u": "/api/reporting/export/customer_invoice?report=customer_invoice&range=this_month",
+   "loc": "39522bc6-abca-4f67-bd12-2840043c2d68"
+  }
+ ],
+ "replies": [],
+ "browser_zone": "America/Toronto",
+ "location_key_set": "39522bc6-abca-4f67-bd12-2840043c2d68",
+ "appVersion": "v26.43.2-f8698cb",
+ "exports": {
+  "Yesterday": {
+   "file": "Yesterday-customer_invoice.csv",
+   "lines": 42,
+   "header": "InvoiceNo,Customer,InvoiceDate,DueDate,Terms,Location,Memo,Item(Product/Service),ItemDescription,ItemQuantity,ItemRate,ItemAmount,ItemTaxCode,ItemTaxAmount,\"ShopView Products and Services\"",
+   "s1_38216": [
+    "S1-38216,\"ZZAUTOTEST P2D Terms\",10-28-2026,10-28-2026,\"Net 30\",\"DVI Test\",\"WO S1-38216; Unit: ZZ-P2D-TERMS;Unit Type: ; VIN:  Year/Make/Model:   ; 0 miles; 0 Hours;\",Labour,\"Test DVI Line\",1.00,135.00,135.00,Exempt,0,Labor"
+   ]
+  },
+  "This Week": {
+   "file": "This_Week-customer_invoice.csv",
+   "lines": 44,
+   "header": "InvoiceNo,Customer,InvoiceDate,DueDate,Terms,Location,Memo,Item(Product/Service),ItemDescription,ItemQuantity,ItemRate,ItemAmount,ItemTaxCode,ItemTaxAmount,\"ShopView Products and Services\"",
+   "s1_38216": [
+    "S1-38216,\"ZZAUTOTEST P2D Terms\",10-28-2026,10-28-2026,\"Net 30\",\"DVI Test\",\"WO S1-38216; Unit: ZZ-P2D-TERMS;Unit Type: ; VIN:  Year/Make/Model:   ; 0 miles; 0 Hours;\",Labour,\"Test DVI Line\",1.00,135.00,135.00,Exempt,0,Labor"
+   ]
+  },
+  "This Month": {
+   "file": "This_Month-customer_invoice.csv",
+   "lines": 975,
+   "header": "InvoiceNo,Customer,InvoiceDate,DueDate,Terms,Location,Memo,Item(Product/Service),ItemDescription,ItemQuantity,ItemRate,ItemAmount,ItemTaxCode,ItemTaxAmount,\"ShopView Products and Services\"",
+   "s1_38216": [
+    "S1-38216,\"ZZAUTOTEST P2D Terms\",10-28-2026,10-28-2026,\"Net 30\",\"DVI Test\",\"WO S1-38216; Unit: ZZ-P2D-TERMS;Unit Type: ; VIN:  Year/Make/Model:   ; 0 miles; 0 Hours;\",Labour,\"Test DVI Line\",1.00,135.00,135.00,Exempt,0,Labor"
+   ]
+  }
+ },
+ "header_end": "rs, parts... Ctrl K timer Clock In notifications DVI Test AS",
+ "header_ok": true
+}

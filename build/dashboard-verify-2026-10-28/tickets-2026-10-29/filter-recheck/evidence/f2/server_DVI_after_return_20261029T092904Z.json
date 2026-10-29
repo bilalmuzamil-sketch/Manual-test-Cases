@@ -1,0 +1,446 @@
+{
+ "meta": {
+  "location": "DVI Test",
+  "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "location_tz": "America/Toronto",
+  "process_TZ": "America/Toronto",
+  "process_zone": [
+   "EST",
+   "EDT"
+  ],
+  "change_location_status": 200,
+  "observed_at_utc": "2026-10-29T09:28:33.737146+00:00",
+  "local_now": "2026-10-29T05:28:33.737099-04:00",
+  "local_today": "2026-10-29",
+  "mode": "full"
+ },
+ "runs": {
+  "i_ticket_filters_search_ZZAUTOTEST": {
+   "locations": [
+    "DVI Test"
+   ],
+   "from": "2026-07-31",
+   "to": "2026-10-29",
+   "days_inclusive": 91,
+   "search": "ZZAUTOTEST",
+   "type": "both",
+   "status": 200,
+   "rowsNumber": 3,
+   "request_first_page": "/api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2026-07-31T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&locations=39522bc6-abca-4f67-bd12-2840043c2d68&search=ZZAUTOTEST&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=demand&pagination%5Bdescending%5D=true",
+   "secs": 0.7,
+   "rows": [
+    {
+     "type": "inventory",
+     "part_number": "ZZAUTOTEST-PV1-10282011",
+     "description": "ZZAUTOTEST PV stocked part",
+     "category": "HD-Filters",
+     "vendor": null,
+     "units_sold": 6,
+     "units_returned": 1,
+     "unit_cost": 2000,
+     "sell_price": 3000,
+     "revenue": 18000,
+     "margin": 6000,
+     "margin_pct": 33.33,
+     "demand": 5,
+     "last_sale": 0,
+     "on_hand": 3,
+     "workplace_id": null,
+     "location": "DVI Test"
+    },
+    {
+     "type": "special_order",
+     "part_number": "ZZAUTOTEST-SO2-10282011",
+     "description": "ZZAUTOTEST PV special order received",
+     "category": "HD-Filters",
+     "vendor": "123 Cannabis Forestlawn",
+     "units_sold": 1,
+     "units_returned": 0,
+     "unit_cost": 5000,
+     "sell_price": 8000,
+     "revenue": 8000,
+     "margin": 3000,
+     "margin_pct": 37.5,
+     "demand": 1,
+     "last_sale": 0,
+     "on_hand": null,
+     "workplace_id": null,
+     "location": "DVI Test"
+    },
+    {
+     "type": "special_order",
+     "part_number": "ZZAUTOTEST-SO1-10282011",
+     "description": "ZZAUTOTEST PV special order receive later",
+     "category": "HD-Filters",
+     "vendor": "123 Cannabis Forestlawn",
+     "units_sold": 0,
+     "units_returned": 0,
+     "unit_cost": null,
+     "sell_price": null,
+     "revenue": 0,
+     "margin": 0,
+     "margin_pct": null,
+     "demand": 0,
+     "last_sale": null,
+     "on_hand": null,
+     "workplace_id": null,
+     "location": "DVI Test"
+    }
+   ]
+  },
+  "i_ticket_filters_search_ZZAUTOTEST-PV1": {
+   "locations": [
+    "DVI Test"
+   ],
+   "from": "2026-07-31",
+   "to": "2026-10-29",
+   "days_inclusive": 91,
+   "search": "ZZAUTOTEST-PV1",
+   "type": "both",
+   "status": 200,
+   "rowsNumber": 1,
+   "request_first_page": "/api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2026-07-31T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&locations=39522bc6-abca-4f67-bd12-2840043c2d68&search=ZZAUTOTEST-PV1&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=demand&pagination%5Bdescending%5D=true",
+   "secs": 0.3,
+   "rows": [
+    {
+     "type": "inventory",
+     "part_number": "ZZAUTOTEST-PV1-10282011",
+     "description": "ZZAUTOTEST PV stocked part",
+     "category": "HD-Filters",
+     "vendor": null,
+     "units_sold": 6,
+     "units_returned": 1,
+     "unit_cost": 2000,
+     "sell_price": 3000,
+     "revenue": 18000,
+     "margin": 6000,
+     "margin_pct": 33.33,
+     "demand": 5,
+     "last_sale": 0,
+     "on_hand": 3,
+     "workplace_id": null,
+     "location": "DVI Test"
+    }
+   ]
+  },
+  "ii_fresh_defaults_no_search": {
+   "locations": [
+    "DVI Test"
+   ],
+   "from": "2026-07-31",
+   "to": "2026-10-29",
+   "days_inclusive": 91,
+   "search": null,
+   "type": "both",
+   "status": 200,
+   "rowsNumber": 7,
+   "request_first_page": "/api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2026-07-31T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&locations=39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=demand&pagination%5Bdescending%5D=true",
+   "secs": 0.5,
+   "rows": [
+    {
+     "type": "inventory",
+     "part_number": "ZZAUTOTEST-PV1-10282011",
+     "description": "ZZAUTOTEST PV stocked part",
+     "category": "HD-Filters",
+     "vendor": null,
+     "units_sold": 6,
+     "units_returned": 1,
+     "unit_cost": 2000,
+     "sell_price": 3000,
+     "revenue": 18000,
+     "margin": 6000,
+     "margin_pct": 33.33,
+     "demand": 5,
+     "last_sale": 0,
+     "on_hand": 3,
+     "workplace_id": null,
+     "location": "DVI Test"
+    },
+    {
+     "type": "special_order",
+     "part_number": "ZZAUTOTEST-SO2-10282011",
+     "description": "ZZAUTOTEST PV special order received",
+     "category": "HD-Filters",
+     "vendor": "123 Cannabis Forestlawn",
+     "units_sold": 1,
+     "units_returned": 0,
+     "unit_cost": 5000,
+     "sell_price": 8000,
+     "revenue": 8000,
+     "margin": 3000,
+     "margin_pct": 37.5,
+     "demand": 1,
+     "last_sale": 0,
+     "on_hand": null,
+     "workplace_id": null,
+     "location": "DVI Test"
+    },
+    {
+     "type": "special_order",
+     "part_number": "ZZAUTOTEST-SO1-10282011",
+     "description": "ZZAUTOTEST PV special order receive later",
+     "category": "HD-Filters",
+     "vendor": "123 Cannabis Forestlawn",
+     "units_sold": 0,
+     "units_returned": 0,
+     "unit_cost": null,
+     "sell_price": null,
+     "revenue": 0,
+     "margin": 0,
+     "margin_pct": null,
+     "demand": 0,
+     "last_sale": null,
+     "on_hand": null,
+     "workplace_id": null,
+     "location": "DVI Test"
+    }
+   ]
+  },
+  "iii_widened_all_locations_366d_no_search": {
+   "locations": [
+    "Staging Heavy Duty - 9919",
+    "Staging Lethbridge - 4310",
+    "QB Location",
+    "DVI Test"
+   ],
+   "from": "2025-10-29",
+   "to": "2026-10-29",
+   "days_inclusive": 366,
+   "search": null,
+   "type": "both",
+   "status": 200,
+   "rowsNumber": 12997,
+   "request_first_page": "/api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2025-10-29T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C25a0d576-b371-4b82-bef4-41ba977f31c2%2C39522bc6-abca-4f67-bd12-2840043c2d68&pagination%5Bpage%5D=13&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=demand&pagination%5Bdescending%5D=true",
+   "secs": 27.3,
+   "rows": [
+    {
+     "type": "inventory",
+     "part_number": "ZZAUTOTEST-PV1-10282011",
+     "description": "ZZAUTOTEST PV stocked part",
+     "category": "HD-Filters",
+     "vendor": null,
+     "units_sold": 6,
+     "units_returned": 1,
+     "unit_cost": 2000,
+     "sell_price": 3000,
+     "revenue": 18000,
+     "margin": 6000,
+     "margin_pct": 33.33,
+     "demand": 5,
+     "last_sale": 0,
+     "on_hand": 3,
+     "workplace_id": null,
+     "location": "DVI Test"
+    },
+    {
+     "type": "special_order",
+     "part_number": "ZZAUTOTEST-SO2-10282011",
+     "description": "ZZAUTOTEST PV special order received",
+     "category": "HD-Filters",
+     "vendor": "123 Cannabis Forestlawn",
+     "units_sold": 1,
+     "units_returned": 0,
+     "unit_cost": 5000,
+     "sell_price": 8000,
+     "revenue": 8000,
+     "margin": 3000,
+     "margin_pct": 37.5,
+     "demand": 1,
+     "last_sale": 0,
+     "on_hand": null,
+     "workplace_id": null,
+     "location": "DVI Test"
+    },
+    {
+     "type": "special_order",
+     "part_number": "ZZAUTOTEST-SO1-10282011",
+     "description": "ZZAUTOTEST PV special order receive later",
+     "category": "HD-Filters",
+     "vendor": "123 Cannabis Forestlawn",
+     "units_sold": 0,
+     "units_returned": 0,
+     "unit_cost": null,
+     "sell_price": null,
+     "revenue": 0,
+     "margin": 0,
+     "margin_pct": null,
+     "demand": 0,
+     "last_sale": null,
+     "on_hand": null,
+     "workplace_id": null,
+     "location": "DVI Test"
+    }
+   ]
+  },
+  "x_L90_expected_window_today_minus_89": {
+   "locations": [
+    "DVI Test"
+   ],
+   "from": "2026-08-01",
+   "to": "2026-10-29",
+   "days_inclusive": 90,
+   "search": "ZZAUTOTEST",
+   "type": "both",
+   "status": 200,
+   "rowsNumber": 3,
+   "request_first_page": "/api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2026-08-01T04%3A00%3A00.000Z&end_date=2026-10-30T03%3A59%3A59.999Z&locations=39522bc6-abca-4f67-bd12-2840043c2d68&search=ZZAUTOTEST&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=demand&pagination%5Bdescending%5D=true",
+   "secs": 0.4,
+   "rows": [
+    {
+     "type": "inventory",
+     "part_number": "ZZAUTOTEST-PV1-10282011",
+     "description": "ZZAUTOTEST PV stocked part",
+     "category": "HD-Filters",
+     "vendor": null,
+     "units_sold": 6,
+     "units_returned": 1,
+     "unit_cost": 2000,
+     "sell_price": 3000,
+     "revenue": 18000,
+     "margin": 6000,
+     "margin_pct": 33.33,
+     "demand": 5,
+     "last_sale": 0,
+     "on_hand": 3,
+     "workplace_id": null,
+     "location": "DVI Test"
+    },
+    {
+     "type": "special_order",
+     "part_number": "ZZAUTOTEST-SO2-10282011",
+     "description": "ZZAUTOTEST PV special order received",
+     "category": "HD-Filters",
+     "vendor": "123 Cannabis Forestlawn",
+     "units_sold": 1,
+     "units_returned": 0,
+     "unit_cost": 5000,
+     "sell_price": 8000,
+     "revenue": 8000,
+     "margin": 3000,
+     "margin_pct": 37.5,
+     "demand": 1,
+     "last_sale": 0,
+     "on_hand": null,
+     "workplace_id": null,
+     "location": "DVI Test"
+    },
+    {
+     "type": "special_order",
+     "part_number": "ZZAUTOTEST-SO1-10282011",
+     "description": "ZZAUTOTEST PV special order receive later",
+     "category": "HD-Filters",
+     "vendor": "123 Cannabis Forestlawn",
+     "units_sold": 0,
+     "units_returned": 0,
+     "unit_cost": null,
+     "sell_price": null,
+     "revenue": 0,
+     "margin": 0,
+     "margin_pct": null,
+     "demand": 0,
+     "last_sale": null,
+     "on_hand": null,
+     "workplace_id": null,
+     "location": "DVI Test"
+    }
+   ]
+  },
+  "iv_i_DVI_asof_today": {
+   "locations": [
+    "DVI Test"
+   ],
+   "as_of": "2026-10-29",
+   "status": 200,
+   "rowsNumber": 1,
+   "row_keys": [
+    "category",
+    "description",
+    "key",
+    "location",
+    "margin",
+    "margin_pct",
+    "part_number",
+    "qty",
+    "total_cost",
+    "total_sell",
+    "unit_cost",
+    "unit_sell",
+    "vendor",
+    "workplace_id"
+   ],
+   "rows": [
+    {
+     "key": "5871f791-e4b0-4fdb-a6d1-26d3600b2844",
+     "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+     "location": "DVI Test",
+     "part_number": "ZZAUTOTEST-PV1-10282011",
+     "description": "ZZAUTOTEST PV stocked part",
+     "category": "HD-Filters",
+     "vendor": null,
+     "qty": 3,
+     "unit_cost": 2000,
+     "unit_sell": 3704,
+     "total_cost": 6000,
+     "total_sell": 11112,
+     "margin": 5112,
+     "margin_pct": 46
+    }
+   ]
+  },
+  "iv_iii_all_locations_asof_today": {
+   "locations": [
+    "Staging Heavy Duty - 9919",
+    "Staging Lethbridge - 4310",
+    "QB Location",
+    "DVI Test"
+   ],
+   "as_of": "2026-10-29",
+   "status": 200,
+   "rowsNumber": 22,
+   "row_keys": [
+    "category",
+    "description",
+    "key",
+    "location",
+    "margin",
+    "margin_pct",
+    "part_number",
+    "qty",
+    "total_cost",
+    "total_sell",
+    "unit_cost",
+    "unit_sell",
+    "vendor",
+    "workplace_id"
+   ],
+   "rows": [
+    {
+     "key": "5871f791-e4b0-4fdb-a6d1-26d3600b2844",
+     "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+     "location": "DVI Test",
+     "part_number": "ZZAUTOTEST-PV1-10282011",
+     "description": "ZZAUTOTEST PV stocked part",
+     "category": "HD-Filters",
+     "vendor": null,
+     "qty": 3,
+     "unit_cost": 2000,
+     "unit_sell": 3704,
+     "total_cost": 6000,
+     "total_sell": 11112,
+     "margin": 5112,
+     "margin_pct": 46
+    }
+   ]
+  },
+  "iv_x_DVI_asof_2026-09-30": {
+   "locations": [
+    "DVI Test"
+   ],
+   "as_of": "2026-09-30",
+   "status": 200,
+   "rowsNumber": 0,
+   "row_keys": [],
+   "rows": []
+  }
+ }
+}

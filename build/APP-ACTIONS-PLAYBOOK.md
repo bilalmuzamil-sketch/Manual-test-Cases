@@ -3337,6 +3337,13 @@ whereas an application-level JSON `{"error":"sso_required", …}` means the requ
   Fix: `localStorage.setItem('timezone', JSON.stringify(zone))` next to `location`, then read it back into the evidence JSON
   (`app_timezone_key`). Check: the request's `start_date` must carry the zone's offset (Toronto `T04:00:00.000Z`). Recipe:
   `dashboard-verify-2026-10-28/tickets-2026-10-29/phase2/tools/p2b/ev_p2b.mjs`. Search key: `start_date=` `T00:00:00.000Z`.
+- **🔴 WRONG-LOCATION TRAP — a fresh boot2 context MUST set `localStorage['location']` (found 2026-10-29, filter recheck worker F4).**
+  Without the key the app falls back to the USER's last-used location. That value is shared by every session of the same admin, so
+  any other worker's `change-location` moves it: QB Unexported opened on "DVI Test" for a Heavy Duty run, and two boot2 runs started
+  together swapped locations. Fix: right after boot2, `await page.evaluate(w=>localStorage.setItem('location',JSON.stringify(w)),workplaceId)`
+  (next to the `timezone` key), then assert that the header shows the intended location at the START and END of every run; mark a run
+  that fails INVALID. The profile menu's "Change Location:" line shows the user-level value, which can differ from the page's.
+  Search key: `wrong location` `setItem('location'`.
 - **Screen recipes found 2026-10-29 (Phase 2 Worker C, DVI Test):** **Add Deposit** shows on a work order's Finance tab only while the
   work order is *Approved* (set the line back to authorized to bring it back). A **$0.00 invoice** through the screen: New Line with a
   Title and General Labor, no times → Line Approved → Complete → Create Invoice. Records: S1-38218 ($0), S1-38221 ($30 deposit).

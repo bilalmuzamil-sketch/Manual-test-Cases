@@ -1,0 +1,117 @@
+{
+ "ticket": "SV-11950_51",
+ "location": "DVI Test",
+ "location_tz": "America/Toronto",
+ "process_TZ": "America/Toronto",
+ "process_zone": "America/Toronto",
+ "observed_at_utc": "2026-10-29T09:24:34.512Z",
+ "runs": {
+  "i-custom-oct28-as-ticket-today": {
+   "spec": {
+    "name": "i-custom-oct28-as-ticket-today",
+    "range": [
+     "custom",
+     "10/28/2026",
+     "10/28/2026"
+    ]
+   },
+   "chips": [
+    "calendar_today Date Range: Custom keyboard_arrow_down",
+    "Invoice Status keyboard_arrow_down"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=custom&range=2026-10-28&range=2026-10-28",
+   "rows_page1": [
+    "",
+    "Paid Yesterday Yesterday S1-38221 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38218 ZZAUTOTEST P2C ZERO $0.00 $0.00 $0.00 $0.00 Zero Rated 0% $0.00 $0.00",
+    "Paid Yesterday Yesterday S1-38219 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38214 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38212 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38211 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38210 ZZAUTOTEST Dash A1 $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Yesterday Yesterday S1-38195 ZZAUTOTEST Dash A1 $270.00 $0.00 $0.00 $270.00 Zero Rated 0% $0.00 $270.00",
+    "",
+    "Total $1,080.00"
+   ],
+   "bottom": "",
+   "search": {
+    "S1-38218": {
+     "rows": [
+      "",
+      "Paid Yesterday Yesterday S1-38218 ZZAUTOTEST P2C ZERO $0.00 $0.00 $0.00 $0.00 Zero Rated 0% $0.00 $0.00",
+      "",
+      "Total $1,080.00"
+     ],
+     "empty": ""
+    },
+    "S1-38221": {
+     "rows": [
+      "",
+      "Paid Yesterday Yesterday S1-38221 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+      "",
+      "Total $1,080.00"
+     ],
+     "empty": ""
+    }
+   },
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=S1-38218",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=S1-38221",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search="
+   ]
+  },
+  "i-custom-oct28-partially": {
+   "spec": {
+    "name": "i-custom-oct28-partially",
+    "range": [
+     "custom",
+     "10/28/2026",
+     "10/28/2026"
+    ],
+    "status": "Partially Paid"
+   },
+   "chips": [
+    "calendar_today Date Range: Custom keyboard_arrow_down",
+    "Invoice Status: Partially Paid keyboard_arrow_down cancel",
+    "cancel"
+   ],
+   "url": "https://app.staging.shopview.com/reports/sales-tax/invoices?range=custom&range=2026-10-28&range=2026-10-28&statuses=partially_paid",
+   "rows_page1": [
+    "",
+    ""
+   ],
+   "bottom": "search No record matches these filters Try changing filters to widen your results. Clear all filters",
+   "search": {
+    "S1-38218": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches these filters"
+    },
+    "S1-38221": {
+     "rows": [
+      "",
+      ""
+     ],
+     "empty": "No record matches these filters"
+    }
+   },
+   "reqs": [
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&statuses[0]=partially_paid&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&statuses[0]=partially_paid&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=S1-38218",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&statuses[0]=partially_paid&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search=S1-38221",
+    "/api.staging.shopview.com/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=custom&statuses[0]=partially_paid&startDate=2026-10-28T04:00:00.000Z&endDate=2026-10-29T03:59:59.999Z&search="
+   ]
+  }
+ },
+ "browser_zone": "America/Toronto",
+ "app_timezone_key": "\"America/Toronto\"",
+ "browser_now": "Thu Oct 29 2026 05:24:34 GMT-0400 (Eastern Daylight Time)",
+ "appVersion": "v26.43.2-f8698cb"
+}

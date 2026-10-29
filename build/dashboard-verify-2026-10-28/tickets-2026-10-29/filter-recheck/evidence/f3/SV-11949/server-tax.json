@@ -1,0 +1,953 @@
+{
+ "zones": {
+  "location": "Staging Heavy Duty - 9919",
+  "location_tz": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "process_zone": "PKT",
+  "process_now": "2026-10-29T14:22:28.696074",
+  "utc_now": "2026-10-29T09:22:28.696081+00:00"
+ },
+ "change_location": 200,
+ "runs": {
+  "custom_oct20": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-19T19:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-20T18:59:59.999Z"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 4,
+   "meta": {
+    "totals": {
+     "totalTax": 51.19,
+     "totalShopSupplies": 76.64,
+     "totalSubTotalWithTax": 1206.22,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 57.44
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 57.44,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": [
+    {
+     "credit_number": "CM2-4520",
+     "customer_service": "Testing Company Milos",
+     "total_invoiced": -125
+    }
+   ]
+  },
+  "custom_oct20__paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-19T19:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-20T18:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 4,
+   "meta": {
+    "totals": {
+     "totalTax": 51.19,
+     "totalShopSupplies": 76.64,
+     "totalSubTotalWithTax": 1206.22,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 57.44
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 57.44,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": [
+    {
+     "credit_number": "CM2-4520",
+     "customer_service": "Testing Company Milos",
+     "total_invoiced": -125
+    }
+   ]
+  },
+  "custom_oct20__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-19T19:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-20T18:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 0,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 0,
+     "taxRatesTotal": []
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": [
+    {
+     "credit_number": "CM2-4520",
+     "customer_service": "Testing Company Milos",
+     "total_invoiced": -125
+    }
+   ]
+  },
+  "custom_oct28": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-27T19:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-28T18:59:59.999Z"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 1,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 0,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 0
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0.0,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 1,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": []
+  },
+  "custom_oct28__paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-27T19:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-28T18:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 1,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 0,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 0
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0.0,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 1,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": []
+  },
+  "custom_oct28__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2026-10-27T19:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-28T18:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 0,
+   "meta": {
+    "totals": {
+     "totalTax": 0,
+     "totalShopSupplies": 0,
+     "totalSubTotalWithTax": 0,
+     "taxRatesTotal": []
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0,
+   "credit_memos_in_range": []
+  },
+  "this_month_default": {
+   "request": [
+    [
+     "dateRange",
+     "this_month"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 65,
+   "meta": {
+    "totals": {
+     "totalTax": 1167.93,
+     "totalShopSupplies": 1611.98,
+     "totalSubTotalWithTax": 22681.53,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 987.05
+      },
+      {
+       "id": "aca824b2-30a9-43a8-84e0-d02f0a98db5f",
+       "name": "HST",
+       "percentage": 13,
+       "amount": 162.5
+      },
+      {
+       "id": "f34357c3-0133-4cea-a25c-6e72c7ff2834",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 25.88
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 1175.43,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 4,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "this_month_default__paid": {
+   "request": [
+    [
+     "dateRange",
+     "this_month"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 58,
+   "meta": {
+    "totals": {
+     "totalTax": 1050.19,
+     "totalShopSupplies": 1428.56,
+     "totalSubTotalWithTax": 20209.14,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 869.31
+      },
+      {
+       "id": "aca824b2-30a9-43a8-84e0-d02f0a98db5f",
+       "name": "HST",
+       "percentage": 13,
+       "amount": 162.5
+      },
+      {
+       "id": "f34357c3-0133-4cea-a25c-6e72c7ff2834",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 25.88
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 1057.69,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 4,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "this_month_default__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "this_month"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 7,
+   "meta": {
+    "totals": {
+     "totalTax": 116.49,
+     "totalShopSupplies": 183.42,
+     "totalSubTotalWithTax": 2472.39,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 117.74
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 117.74,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "this_year_widest": {
+   "request": [
+    [
+     "dateRange",
+     "this_year"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 1365,
+   "meta": {
+    "totals": {
+     "totalTax": 186598.08,
+     "totalShopSupplies": 135166.48,
+     "totalSubTotalWithTax": 3924806.94,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 186407.72
+      },
+      {
+       "id": "55411fe5-4f75-41fb-bd65-255df8dfba0a",
+       "name": "Exempt",
+       "percentage": 0,
+       "amount": 0
+      },
+      {
+       "id": "ec1cec73-0ba6-4ac8-9978-1eada87c5e6d",
+       "name": "arizona",
+       "percentage": 5.6,
+       "amount": 47.57
+      },
+      {
+       "id": "aca824b2-30a9-43a8-84e0-d02f0a98db5f",
+       "name": "HST",
+       "percentage": 13,
+       "amount": 331.67
+      },
+      {
+       "id": "f34357c3-0133-4cea-a25c-6e72c7ff2834",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 25.88
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 3,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 186812.84,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 134,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "this_year_widest__paid": {
+   "request": [
+    [
+     "dateRange",
+     "this_year"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 1349,
+   "meta": {
+    "totals": {
+     "totalTax": 183917.99,
+     "totalShopSupplies": 134083.43,
+     "totalSubTotalWithTax": 3868525.33,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 183727.63
+      },
+      {
+       "id": "55411fe5-4f75-41fb-bd65-255df8dfba0a",
+       "name": "Exempt",
+       "percentage": 0,
+       "amount": 0
+      },
+      {
+       "id": "ec1cec73-0ba6-4ac8-9978-1eada87c5e6d",
+       "name": "arizona",
+       "percentage": 5.6,
+       "amount": 47.57
+      },
+      {
+       "id": "aca824b2-30a9-43a8-84e0-d02f0a98db5f",
+       "name": "HST",
+       "percentage": 13,
+       "amount": 331.67
+      },
+      {
+       "id": "f34357c3-0133-4cea-a25c-6e72c7ff2834",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 25.88
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 3,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 184132.75,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 134,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "this_year_widest__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "this_year"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 16,
+   "meta": {
+    "totals": {
+     "totalTax": 2666.34,
+     "totalShopSupplies": 1083.05,
+     "totalSubTotalWithTax": 56281.61,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 2680.09
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 2680.09,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "last_month": {
+   "request": [
+    [
+     "dateRange",
+     "last_month"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 100,
+   "meta": {
+    "totals": {
+     "totalTax": 6599.030000000001,
+     "totalShopSupplies": 3737.24,
+     "totalSubTotalWithTax": 139118.94,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 6492.53
+      },
+      {
+       "id": "ec1cec73-0ba6-4ac8-9978-1eada87c5e6d",
+       "name": "arizona",
+       "percentage": 5.6,
+       "amount": 47.57
+      },
+      {
+       "id": "55411fe5-4f75-41fb-bd65-255df8dfba0a",
+       "name": "Exempt",
+       "percentage": 0,
+       "amount": 0
+      },
+      {
+       "id": "aca824b2-30a9-43a8-84e0-d02f0a98db5f",
+       "name": "HST",
+       "percentage": 13,
+       "amount": 169.17
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 6709.27,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 3,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "last_month__paid": {
+   "request": [
+    [
+     "dateRange",
+     "last_month"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 93,
+   "meta": {
+    "totals": {
+     "totalTax": 5889.99,
+     "totalShopSupplies": 3506.81,
+     "totalSubTotalWithTax": 124229.45,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 5783.49
+      },
+      {
+       "id": "ec1cec73-0ba6-4ac8-9978-1eada87c5e6d",
+       "name": "arizona",
+       "percentage": 5.6,
+       "amount": 47.57
+      },
+      {
+       "id": "55411fe5-4f75-41fb-bd65-255df8dfba0a",
+       "name": "Exempt",
+       "percentage": 0,
+       "amount": 0
+      },
+      {
+       "id": "aca824b2-30a9-43a8-84e0-d02f0a98db5f",
+       "name": "HST",
+       "percentage": 13,
+       "amount": 169.17
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 6000.23,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 3,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "last_month__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "last_month"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 200,
+   "n": 7,
+   "meta": {
+    "totals": {
+     "totalTax": 696.54,
+     "totalShopSupplies": 230.43,
+     "totalSubTotalWithTax": 14889.49,
+     "taxRatesTotal": [
+      {
+       "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+       "name": "GST",
+       "percentage": 5,
+       "amount": 709.04
+      }
+     ]
+    },
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 500
+    }
+   },
+   "sum_row_tax": 709.04,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "custom_2020_to_today": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2019-12-31T19:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-29T18:59:59.999Z"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 400,
+   "n": 0,
+   "meta": {
+    "error": "{'errors': [{'error': 'Date range cannot exceed 366 days.'}]}"
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "custom_2020_to_today__paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2019-12-31T19:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-29T18:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 400,
+   "n": 0,
+   "meta": {
+    "error": "{'errors': [{'error': 'Date range cannot exceed 366 days.'}]}"
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  },
+  "custom_2020_to_today__partially_paid": {
+   "request": [
+    [
+     "dateRange",
+     "custom"
+    ],
+    [
+     "startDate",
+     "2019-12-31T19:00:00.000Z"
+    ],
+    [
+     "endDate",
+     "2026-10-29T18:59:59.999Z"
+    ],
+    [
+     "statuses[0]",
+     "partially_paid"
+    ],
+    [
+     "search",
+     ""
+    ]
+   ],
+   "status": 400,
+   "n": 0,
+   "meta": {
+    "error": "{'errors': [{'error': 'Date range cannot exceed 366 days.'}]}"
+   },
+   "sum_row_tax": 0,
+   "targets": {
+    "CM2-4520": []
+   },
+   "n_zero_total": 0,
+   "n_negative": 0,
+   "n_credit_like": 0
+  }
+ }
+}
