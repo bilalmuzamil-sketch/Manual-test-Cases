@@ -351,6 +351,37 @@ await run('X-TV-ORDER', async (o) => {
   await go('Tech View', set.q); o.afterRefresh = await order();
 });
 
+
+/** after Undo: every message on screen, read every 100 ms for 4 s, with its buttons — the "Assignment undone" line (S4-R32) */
+const watchAfterUndo = async (tag: string) => { const t0 = Date.now(); const seen: any[] = []; let shot = false;
+  while (Date.now() - t0 < 4000) { for (const x of await toastRead(p)) { const key = `${x.text}|${x.buttons.join('/')}`; if (!seen.find((s) => s.key === key)) seen.push({ key, text: x.text, buttons: x.buttons, at: Date.now() - t0 }); if (/Assignment undone/i.test(x.text) && !shot) { shot = true; await shotC(`${tag}-assignment-undone`); } }
+    await p.waitForTimeout(100); } return seen; };
+const auditOf = async (woId: string, tag: string) => { await p.goto(APP + `/workorders/${woId}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
+  if (await p.locator('.q-dialog').filter({ hasText: 'New Line' }).count()) await p.keyboard.press('Escape');
+  const mv = await p.evaluate(`(() => { const b = [...document.querySelectorAll('button')].filter(x => /more_vert/.test(x.innerText) || x.querySelector('i')?.textContent?.trim() === 'more_vert').map(x => x.getBoundingClientRect()).filter(r => r.width > 0 && r.top < 200).sort((a, b) => b.right - a.right); return b[0] ? { x: b[0].x + b[0].width / 2, y: b[0].y + b[0].height / 2 } : null; })()`) as any;
+  if (mv) await p.mouse.click(mv.x, mv.y); await p.waitForTimeout(1000);
+  await p.locator('.q-menu .q-item').filter({ hasText: /Audit Log/i }).first().click().catch(() => {}); await p.waitForTimeout(3000);
+  const txt = await p.evaluate(`(() => { const d = [...document.querySelectorAll('.q-dialog')].filter(e => e.getBoundingClientRect().width > 0).pop(); return d ? d.innerText.replace(/\\s+/g, ' ').slice(0, 900) : null; })()`); await shotC(tag); await p.keyboard.press('Escape'); return txt; };
+await run('X-UNDONE', async (o) => { for (const view of ['Board View', 'Tech View'] as const) { const k = view === 'Board View' ? 'BV' : 'TV'; const r: any = (o[k] = {});
+  const A1 = await T(`XUD${k}`, 'Ana'), B1 = await T(`XUD${k}`, 'Ben'); const set = await mkSet(`ZZAUTOTEST XUD${k} Undone`, [{ co: 'W1', lead: A1 }]); r.data = set.w;
+  await pins([A1.staff_id, B1.staff_id]); await go(view, set.q);
+  if (view === 'Board View') await dragTo(card(set, 'W1'), `[data-test-id="board_column_${B1.staff_id}"]`, 'x'); else { await openLeadAction(row(set, 'W1')); await pickInDialog(new RegExp(`XUD${k} Ben`)); }
+  await shiftPrompt(p, 'Keep shifts'); r.s1 = await waitToast(); r.undo = await clickUndo(); r.after = await watchAfterUndo(`XUD${k}`); await p.waitForTimeout(1000);
+  r.where = view === 'Board View' ? await colOf(set, 'W1') : await grpOf(set, 'W1'); } });
+await run('X-TV-LINES', async (o) => { // C847734 in Tech View + the audit entry of a Tech View Undo
+  const A1 = await T('XTVL', 'Ana'), B1 = await T('XTVL', 'Ben');
+  const n = `ZZAUTOTEST XTVL Undo Lines ${RUNNO}`; const c = await customer(a, n, 'ZZUNDL'); const wo = await workOrder(a, c, 'approved', null);
+  const L: Record<string, string> = {};
+  const l1 = await mkLine(wo, 1); L[l1] = 'Line 1 Unassigned';
+  const l2 = await mkLine(wo, 2); L[l2] = 'Line 2 Explicit'; o.l2set = (await a.put(`/api/work-orders/lines/${l2}/technicians`, { staffIds: [B1.staff_id] })).status;
+  const l3 = await mkLine(wo, 3); L[l3] = 'Line 3 Complete'; o.l3complete = await completeLine(wo, l3);
+  const num = (await workOrders(a, n))[0].number; o.wo = num; o.before = await lineTechs(wo, L);
+  await pins([A1.staff_id, B1.staff_id]); await go('Tech View', n);
+  o.menu = await openLeadAction(`[data-test-id="tech_view_row_${wo}"]`); await pickInDialog(/XTVL Ana/); o.prompt = await shiftPrompt(p, 'Keep shifts'); o.toast = await waitToast();
+  o.afterChange = await lineTechs(wo, L); o.undo = await clickUndo(); o.afterUndoMsgs = await watchAfterUndo('XTVL'); await p.waitForTimeout(1500);
+  o.group = (await groups(p)).find((g: any) => (g.rows ?? []).includes(num))?.name ?? null; o.afterUndo = await lineTechs(wo, L); o.page = await pageLabor(wo, 'XTVL-lines-after-undo');
+  o.restored = JSON.stringify(o.before) === JSON.stringify(o.afterUndo); o.audit = await auditOf(wo, 'XTVL-audit-log');
+});
 await run('X-NETFAIL', async (o) => { // "If Undo can't be saved, nothing changes and the alert … shows" — the save itself refused (server error), not the invoiced rule
   for (const view of ['Board View', 'Tech View'] as const) { const k = view === 'Board View' ? 'BV' : 'TV'; const r: any = (o[k] = {});
     const A1 = await T(`XNF${k}`, 'Ana'), B1 = await T(`XNF${k}`, 'Ben'); const set = await mkSet(`ZZAUTOTEST XNF${k} Undo Fail`, [{ co: 'W1', lead: A1 }]); r.data = set.w;
