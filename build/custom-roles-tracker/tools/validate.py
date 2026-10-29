@@ -10,6 +10,8 @@ repo - so the real snapshots and the real product repo are never touched.
                       duplicate-scan guard
   C. Plain language   every plain-words field people read is free of code names, route paths and
                       technical terms (the technical fields beside it may keep them)
+  E. Auto-update      a new live release is checked and shown at once (waiting for approval), a
+                      repeat run does nothing new, and an approval saves it
   D. Retest lists     every release gets a manual-QA retest checklist; a release with no change
                       says no retest is needed; a role suggested as "should be refused" really
                       holds none of the permissions that allow the action
@@ -291,11 +293,39 @@ def retest_lists():
           len(nochange) >= 1 and len(changed) >= 5 and None not in RETEST_MD, f'{len(nochange)} no-change, {len(changed)} with checks, {RETEST_MD.count(None)} missing')
 
 
+def auto_update():
+    tmp = tempfile.mkdtemp(prefix='crp-au-')
+    root = os.path.join(HERE, '..')
+    for d in ('snapshots', 'reports'):
+        shutil.copytree(os.path.join(root, d), os.path.join(tmp, d))
+    run(['chmod', '-R', 'u+w', tmp])
+    rc, head = run(['git', '-C', PRODUCT, 'rev-parse', '--short=10', 'origin/develop'])
+    env = dict(os.environ, CRP_ROOT=tmp, CRP_PRODUCTION_MARKER=f'v99.0.0-{head.strip()}')
+    last = lambda out: json.loads(out.strip().splitlines()[-1])  # noqa: E731
+    rc, out = run([sys.executable, 'auto_update.py'], env=env)
+    s1 = last(out) if rc == 0 else {}
+    check('Auto-update: a new live release is checked at once, shown as waiting for approval, with a retest checklist',
+          s1.get('scanned') and s1['status']['live_state'] == 'waiting' and s1['publish_needed']
+          and os.path.exists(os.path.join(tmp, 'snapshots', 'pending', 'impl-v99.0.0.json'))
+          and any(f.endswith('-RETEST.md') for f in os.listdir(os.path.join(tmp, 'reports'))), out[-300:])
+    run([sys.executable, 'auto_update.py', '--mark-published'], env=env)
+    rc, out = run([sys.executable, 'auto_update.py'], env=env)
+    s2 = last(out) if rc == 0 else {}
+    check('Auto-update: running it again finds nothing new and asks for no republish',
+          rc == 0 and not s2.get('scanned') and not s2.get('publish_needed'), out[-300:])
+    rc, out = run([sys.executable, 'auto_update.py', '--approved', 'impl-v99.0.0', '--approved-by', 'Validation'], env=env)
+    s3 = last(out) if rc == 0 else {}
+    check('Auto-update: an approval saves the release permanently and the page is republished',
+          s3.get('confirmed') == ['impl-v99.0.0'] and s3['status']['live_state'] == 'saved' and s3['publish_needed'], out[-300:])
+    shutil.rmtree(tmp, ignore_errors=True)
+
+
 if __name__ == '__main__':
     real_history()
     controlled()
     plain_language()
     retest_lists()
+    auto_update()
     passed = sum(1 for _, ok, _ in RESULTS if ok)
     out = os.path.join(os.path.dirname(HERE), 'reports', 'VALIDATION.md')
     os.makedirs(os.path.dirname(out), exist_ok=True)

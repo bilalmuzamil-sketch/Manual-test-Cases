@@ -43,6 +43,9 @@ def git(repo, *a):
 
 
 def measure_production():
+    # test-only override (validate.py): pretend production runs this build marker
+    if os.environ.get('CRP_PRODUCTION_MARKER'):
+        return os.environ['CRP_PRODUCTION_MARKER']
     html = urllib.request.urlopen(urllib.request.Request(PROD_URL, headers={'User-Agent': 'crp-tracker'}), timeout=30).read().decode('utf-8', 'replace')
     m = re.search(r'app-version" content="([^"]+)"', html)
     if not m:
@@ -123,7 +126,8 @@ def retest_md(plan, tag):
         return '\n'.join(L + [f'Nothing in Custom Roles & Permissions changed in release {tag}. '
                                'No Custom Roles retest is needed for this release. Normal regression testing still applies.'])
     total = len(plan['items']) + len(plan['spot_checks'])
-    L += [f"Release {tag} changed {plan['change_count']} things in roles and permissions. {total} checks to do.", '']
+    n_ch = plan['change_count']
+    L += [f"Release {tag} changed {n_ch} thing{'s' if n_ch != 1 else ''} in roles and permissions. {total} checks to do.", '']
     parts = [('Check what changed', [i for i in plan['items'] if i['kind'] == 'change']),
              ('Re-check these areas', [i for i in plan['items'] if i['kind'] == 'area']),
              ('Quick checks after any permission change', plan['spot_checks'])]
@@ -173,7 +177,10 @@ def scan(a):
         snap['release']['deployed'] = {'environment': 'production (app.shopview.com)', 'build_marker': marker,
                                        'measured_at': datetime.date.today().isoformat(),
                                        'how': 'app-version meta tag read from https://app.shopview.com/'}
-    sid = 'impl-' + (tags[0] if tags else commit[:10])
+    # a live release whose version tag is not in the repository yet is named by its build marker's version
+    name = tags[0] if tags else (marker.rsplit('-', 1)[0] if marker and re.fullmatch(r'v[\d.]+-[0-9a-f]+', marker) else commit[:10])
+    snap['release']['name'] = name
+    sid = 'impl-' + name
     os.makedirs(PENDING, exist_ok=True); os.makedirs(REPORTS, exist_ok=True)
     pend = os.path.join(PENDING, f'{sid}.json')
     json.dump(dict(snap, snapshot_id=sid), open(pend, 'w'), indent=1, ensure_ascii=False)
@@ -184,7 +191,7 @@ def scan(a):
     open(os.path.join(REPORTS, base + '.md'), 'w').write(report_md(rep, prev, sid))
     rt = subprocess.run(['node', ENGINE, '--retest', os.path.join(REPORTS, base + '.json'), pend], capture_output=True, text=True)
     if rt.returncode == 0:
-        open(os.path.join(REPORTS, base + '-RETEST.md'), 'w').write(retest_md(json.loads(rt.stdout), tags[0] if tags else commit[:7]))
+        open(os.path.join(REPORTS, base + '-RETEST.md'), 'w').write(retest_md(json.loads(rt.stdout), name))
     if not rep['changes']:
         print(f'\nNo Custom Roles & Permissions changes detected in this release ({ref}, {commit[:7]}) '
               f'compared with {prev["label"]}.')

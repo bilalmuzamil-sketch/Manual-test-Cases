@@ -1,4 +1,4 @@
-# Track Changes validation — 26/26 checks passed
+# Track Changes validation — 29/29 checks passed
 
 Throw-away store and a shared clone of the product repo; nothing real was modified.
 
@@ -30,3 +30,6 @@ Throw-away store and a shared clone of the product repo; nothing real was modifi
 | ✅ | Retest checklists are in plain words |
 | ✅ | Every role suggested as "should be refused" holds none of the permissions that allow the action |
 | ✅ | A scan writes a retest checklist: "no retest needed" for a no-change release, a checklist otherwise |
+| ✅ | Auto-update: a new live release is checked at once, shown as waiting for approval, with a retest checklist |
+| ✅ | Auto-update: running it again finds nothing new and asks for no republish |
+| ✅ | Auto-update: an approval saves the release permanently and the page is republished |

@@ -10,10 +10,11 @@ Re-run after every Track Changes scan or confirm, then republish the artifact.
 import datetime, json, os, re, subprocess, sys, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.normpath(os.path.join(HERE, '..'))
-TOOLS = os.path.join(ROOT, 'tools')
+CODE = os.path.normpath(os.path.join(HERE, '..'))
+ROOT = os.environ.get('CRP_ROOT') or CODE          # the store; CRP_ROOT points at a test copy
+TOOLS = os.path.join(CODE, 'tools')
 SNAP = os.path.join(ROOT, 'snapshots')
-DIST = os.path.join(HERE, 'dist')
+DIST = os.path.join(ROOT, 'portal', 'dist')
 REPO = '/home/user/shopview'
 sys.path.insert(0, TOOLS)
 import snapshot_store  # noqa: E402
@@ -47,7 +48,8 @@ def main():
     # deployed release: measured now when asked, else the latest measurement recorded in a snapshot
     deployed = None
     if '--measure-production' in sys.argv:
-        html = urllib.request.urlopen('https://app.shopview.com/', timeout=30).read().decode('utf-8', 'replace')
+        html = os.environ.get('CRP_PRODUCTION_MARKER') and f'app-version" content="{os.environ["CRP_PRODUCTION_MARKER"]}"' or \
+            urllib.request.urlopen('https://app.shopview.com/', timeout=30).read().decode('utf-8', 'replace')
         m = re.search(r'app-version" content="([^"]+)"', html)
         if m:
             deployed = {'build_marker': m.group(1), 'commit': m.group(1).rsplit('-', 1)[-1],

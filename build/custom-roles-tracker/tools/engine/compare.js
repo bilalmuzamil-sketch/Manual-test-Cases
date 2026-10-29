@@ -503,7 +503,7 @@
   function describe(s) {
     if (s.kind === 'prd') return { kind: 'prd', id: s.snapshot_id, version: s.source.version, label: `PRD v${s.source.version}` };
     return { kind: 'implementation', id: s.snapshot_id, ref: s.release.ref, commit: s.release.commit,
-      build_marker: s.release.build_marker, label: `${s.release.ref} (${(s.release.commit || '').slice(0, 7)})` };
+      build_marker: s.release.build_marker, label: `${s.release.name || s.release.ref} (${(s.release.commit || '').slice(0, 7)})` };
   }
 
   // ── PRD vs implementation, per permission ────────────────────────────────────────────────────

@@ -198,6 +198,15 @@ details.group-behind > .inner { padding: 0 12px 12px; display: flex; flex-direct
 ol.check { margin: 0; padding-left: 20px; }
 ol.check li + li { margin-top: 4px; }
 .pr-High { background: var(--bad); color: #fff; }
+.fresh { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); font-size: .92rem; }
+.fresh.ok { border-color: var(--good); background: var(--good-soft); }
+.fresh.warn { border-color: var(--warn); background: var(--warn-soft); }
+.fresh.bad { border-color: var(--bad); background: var(--bad-soft); }
+.fresh .msg { flex: 1 1 260px; min-width: 0; }
+.gate { position: fixed; inset: 0; z-index: 50; background: rgba(8, 20, 19, .55); display: grid; place-items: center; padding: 16px; }
+.gate .box { background: var(--surface); color: var(--ink); border-radius: 10px; max-width: 520px; width: 100%; padding: 22px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 10px 40px rgba(0,0,0,.3); }
+.gate .row { justify-content: flex-start; }
+.linkbtn { all: unset; cursor: pointer; color: var(--accent); text-decoration: underline; font-size: .9rem; }
 .rel-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .rel-chips button { cursor: pointer; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 10px; font-size: .84rem; color: var(--ink); }
 .rel-chips button[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
@@ -214,7 +223,7 @@ ol.check li + li { margin-top: 4px; }
 <header class="top"><div class="wrap">
   <div class="brand"><h1>Custom Roles &amp; Permissions Evolution Tracker</h1>
     <small>Who can do what in ShopView: what was planned, what the app does today, and what each release changed</small></div>
-  <div class="prod" id="prod"><span class="dot"></span><span>Live app is on release</span><b id="prodMarker">—</b><span id="prodWhen"></span></div>
+  <div class="prod" id="prod"><span class="dot"></span><span>This page shows release</span><b id="prodMarker">—</b><span id="prodWhen"></span></div>
 </div></header>
 <nav class="strip" aria-label="Saved versions"><div class="wrap"><ol id="strip"></ol></div></nav>
 <nav class="wrap tools" aria-label="Pages" id="tools">
@@ -226,6 +235,8 @@ ol.check li + li { margin-top: 4px; }
   <a href="#history" data-r="history">Release history</a>
   <a href="#track" data-r="track" class="primary">Check a new release</a>
 </nav>
+<div class="wrap" id="freshWrap" style="padding-block:0"><div id="fresh" hidden></div></div>
+<div id="gate" hidden></div>
 <main class="wrap" id="main"><section class="panel"><p class="muted">Loading…</p></section></main>
 
 <script>
@@ -257,6 +268,102 @@ const S = {};
 let db = null, user = null, me = null, canWriteDb = false, canApprove = false;
 const verif = {}, approvals = {}, requests = [];
 const names = {};
+// ── is this page up to date? ─────────────────────────────────────────────────────────────────
+// The scheduled update (every hour, and when someone presses Update) checks which release is live,
+// checks any new release, republishes this page if anything changed, and writes what it found into
+// status/freshness. The page compares that with the data it was built with.
+const UPDATE_TRIGGER = 'trig_014eqbzZ82V6XRd2vZguAREC';
+const STATUS = {};
+let isOwner = false, gateShown = false;
+function ago(iso) {
+  const m = Math.round((Date.now() - Date.parse(iso)) / 60000);
+  if (!isFinite(m)) return '';
+  if (m < 2) return 'just now';
+  if (m < 90) return `${m} minutes ago`;
+  const h = Math.round(m / 60);
+  return h < 36 ? `${h} hours ago` : `${Math.round(h / 24)} days ago`;
+}
+function clock(iso) { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleString(undefined, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); }
+function openRequest() {
+  return requests.filter((r) => r.kind === 'update' && (r.status === 'requested' || r.status === 'started'))
+    .sort((a, b) => String(b.at).localeCompare(String(a.at)))[0] || null;
+}
+function freshness() {
+  const s = STATUS.freshness;
+  if (!db) return { kind: 'none' };
+  if (!s) return { kind: 'unknown' };
+  const mins = (Date.now() - Date.parse(s.checked_at)) / 60000;
+  if (s.page_built_at && D.built_at < s.page_built_at) return { kind: 'reload', s };
+  if (s.problem) return { kind: 'problem', s };
+  if ((s.live_marker && s.live_marker !== D.deployed.build_marker) || s.live_state === 'not_checked') return { kind: 'behind', s };
+  if (mins > 150) return { kind: 'stale', s };
+  return { kind: 'ok', s };
+}
+function updateControl() {
+  const r = openRequest();
+  if (r) {
+    const late = (Date.now() - Date.parse(r.at)) / 60000 > 90;
+    return `<span>${chip(late ? 'c-warn' : 'c-info', late ? 'Update still waiting' : 'Update requested')} by ${esc(names[r.by] || 'a teammate')} at ${esc(clock(r.at))}.
+      ${late ? 'It should have finished by now. Please tell Bilal.' : 'It runs automatically within the hour. This page will then show the new data.'}</span>`;
+  }
+  return canWriteDb ? '<button class="btn" data-update="1">Update now</button>' : '';
+}
+function renderFresh() {
+  const el = $('#fresh'); if (!el || !D) return;
+  const f = freshness();
+  if (f.kind === 'none') { el.hidden = true; return; }
+  const live = f.s ? f.s.live_release : release(D.deployed.build_marker);
+  const msg = {
+    ok: `<b>Up to date.</b> The live app is on release ${esc(live)}, checked ${esc(ago(f.s && f.s.checked_at))}.${f.s && f.s.live_state === 'waiting' ? ' Its retest checklist is ready and waiting for approval.' : ''}`,
+    reload: '<b>A newer version of this page is ready.</b> Reload to see the latest data. If nothing changes, close this page and open the link again.',
+    behind: `<b>This page is behind.</b> The live app is on release ${esc(live)}, but this page shows ${esc(release(D.deployed.build_marker))}. Press Update before you start testing.`,
+    stale: `<b>This page may be out of date.</b> It was last checked for new releases ${esc(ago(f.s && f.s.checked_at))}. Press Update before you start testing.`,
+    problem: `<b>The last update could not finish.</b> ${esc(f.s && f.s.problem)} Please tell Bilal.`,
+    unknown: '<b>Not checked automatically yet.</b> Press Update to check for new releases.',
+  }[f.kind];
+  const cls = { ok: 'ok', reload: 'warn', behind: 'warn', stale: 'warn', problem: 'bad', unknown: '' }[f.kind];
+  el.className = 'fresh ' + cls;
+  el.innerHTML = `<span class="msg">${msg}</span>${f.kind === 'reload' ? '<button class="btn" data-reload="1">Reload the page</button>' : updateControl()}`;
+  el.hidden = false;
+  wireFresh(el);
+  if (!gateShown && ['reload', 'behind', 'stale', 'problem'].includes(f.kind)) showGate(f, msg);
+}
+function showGate(f, msg) {
+  gateShown = true;
+  const g = $('#gate');
+  g.className = 'gate';
+  g.innerHTML = `<div class="box" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+    <h2 id="gateTitle">${f.kind === 'reload' ? 'Please reload this page' : f.kind === 'problem' ? 'This page could not be updated' : 'Please update this page first'}</h2>
+    <p>${msg}</p>
+    <p class="muted">Testing against old data could mean retesting the wrong things.</p>
+    <div class="row">${f.kind === 'reload' ? '<button class="btn" data-reload="1">Reload the page</button>' : updateControl()}</div>
+    <button class="linkbtn" data-gate-close="1">Continue with the data on this page</button></div>`;
+  g.hidden = false;
+  wireFresh(g);
+  g.querySelector('[data-gate-close]').addEventListener('click', () => { g.hidden = true; });
+  const first = g.querySelector('button'); if (first) first.focus();
+}
+function wireFresh(el) {
+  el.querySelectorAll('[data-reload]').forEach((b) => b.addEventListener('click', () => location.reload()));
+  el.querySelectorAll('[data-update]').forEach((b) => b.addEventListener('click', () => requestUpdate(b)));
+}
+async function requestUpdate(btn) {
+  if (!db || !me) return;
+  btn.disabled = true;
+  let started = false;
+  // the page's owner can start the update at once; everyone else's request is picked up by the
+  // next hourly run
+  if (isOwner && UPDATE_TRIGGER.startsWith('trig_')) {
+    try {
+      const mcp = await window.claude.use('mcp');
+      if (mcp) { await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: UPDATE_TRIGGER, text: 'Update requested from the portal.' }); started = true; }
+    } catch (e) { started = false; }
+  }
+  try {
+    await db.collection('scan_requests').doc(hid('update' + Date.now())).set({ release: 'production', kind: 'update', by: me, at: new Date().toISOString(), status: started ? 'started' : 'requested' });
+    const g = $('#gate'); if (g && !g.hidden) g.hidden = true;
+  } catch (e) { btn.disabled = false; btn.insertAdjacentHTML('afterend', `<span class="chip c-bad">Not sent: ${esc(e.message || e.code)}</span>`); }
+}
 
 function hid(s) { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(36); }
 function itemKey(scope, c) { return scope + ':' + hid([c.category, c.permission || '', c.endpoint || '', c.role || '', c.title].join('|')); }
@@ -271,6 +378,8 @@ function fmtDate(iso) {
   return isNaN(d) ? iso : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
 }
 function release(marker) { return String(marker || '').replace(/-[0-9a-f]{6,}$/, ''); }
+/** A release's name: its version tag, else the version from the live build marker. */
+function relName(r) { return (r && ((r.tags || [])[0] || r.name)) || ''; }
 function chip(cls, text) { return `<span class="chip ${cls}">${esc(text)}</span>`; }
 function plainLabel(l) { return String(l || '').replace(/\s*\(derived[^)]*\)/, ''); }
 function roleNameIn(snap, key) { const r = (snap.roles || []).find((x) => x.key === key || x.impl_role === key); return r ? r.name : key; }
@@ -279,7 +388,7 @@ function permLabelIn(snap, key) { const p = (snap.permissions || []).find((x) =>
 function nice(e) {
   if (!e) return '—';
   if (e.kind === 'prd') return e.id === 'prd-v7' ? 'Original plan (version 7, June 2026)' : `Newer plan (version ${(e.source || {}).version}, July 2026)`;
-  const tag = (e.release.tags || [])[0] || e.release.commit.slice(0, 7);
+  const tag = relName(e.release) || e.release.commit.slice(0, 7);
   return `The app, release ${tag}`;
 }
 function tech(summary, inner) { return `<details class="tech"><summary>${esc(summary)}</summary><div class="inner">${inner}</div></details>`; }
@@ -307,6 +416,7 @@ function render() {
     console.error(e);
   }
   wire(r);
+  renderFresh();
 }
 window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
 
@@ -314,7 +424,7 @@ function buildStrip() {
   const items = reg().map((s) => {
     const kind = s.kind === 'prd' ? (s.id === 'prd-v7' ? 'Original plan' : 'Newer plan')
       : (s.previous ? (s.checkpoint_only ? 'Release (no change)' : 'Release') : 'The app today');
-    const name = s.kind === 'prd' ? (s.id === 'prd-v7' ? 'June 2026' : 'July 2026') : ((s.release.tags || [])[0] || s.release.commit.slice(0, 7));
+    const name = s.kind === 'prd' ? (s.id === 'prd-v7' ? 'June 2026' : 'July 2026') : (relName(s.release) || s.release.commit.slice(0, 7));
     return `<li class="stop"><a href="#snap-${esc(s.id)}"><span class="k">${esc(kind)}</span><span class="n">${esc(name)}</span></a></li>`;
   });
   $('#strip').innerHTML = items.join('');
@@ -450,7 +560,7 @@ function viewImpl(s, e) {
   const r = s.release;
   const prev = e.previous ? entry(e.previous) : null;
   const report = e.change_report ? D.reports[e.change_report] : null;
-  const tag = (r.tags || [])[0] || r.ref;
+  const tag = relName(r) || r.ref;
   const head = `<section class="panel">
     <div><div class="eyebrow">${prev ? 'A release' : 'The app today'}</div><h2>What the app does in release ${esc(tag)}</h2></div>
     <div class="facts">
@@ -740,9 +850,9 @@ const RT = { tag: null };
 function releaseList() {
   const out = [], seen = new Set();
   const add = (x) => { if (!x.tag || seen.has(x.tag)) return; seen.add(x.tag); out.push(x); };
-  implEntries().filter((e) => e.previous).forEach((e) => add({ tag: (e.release.tags || [])[0] || e.release.commit.slice(0, 7), date: e.release.commit_date,
+  implEntries().filter((e) => e.previous).forEach((e) => add({ tag: relName(e.release) || e.release.commit.slice(0, 7), date: e.release.commit_date,
     state: 'saved', report: D.reports[e.change_report] || { changes: [] }, snap: S[e.id] }));
-  (D.pending || []).forEach((p) => add({ tag: (p.release.tags || [])[0] || p.snapshot_id, date: p.release.commit_date, state: 'waiting',
+  (D.pending || []).forEach((p) => add({ tag: relName(p.release) || p.snapshot_id, date: p.release.commit_date, state: 'waiting',
     report: E.compare(S[latestImpl().id], p), snap: p }));
   D.history.releases.slice().reverse().forEach((h) => add({ tag: h.to, date: h.date, state: 'history',
     report: h.report ? D.history_reports[h.report] : { changes: [] } }));
@@ -828,9 +938,9 @@ function viewTrack() {
   const unscanned = (D.known_releases || []).filter((t) => !recordedTags.has(t.tag) && !pending.some((p) => (p.release.tags || []).includes(t.tag)));
   const prodRecorded = implEntries().find((e) => e.release.commit && D.deployed.commit && e.release.commit.startsWith(D.deployed.commit));
   const options = [
-    ...pending.map((p) => ({ v: 'pending:' + p.snapshot_id, l: `${(p.release.tags || [])[0] || p.release.commit.slice(0, 7)} — checked, waiting for your review` })),
+    ...pending.map((p) => ({ v: 'pending:' + p.snapshot_id, l: `${relName(p.release) || p.release.commit.slice(0, 7)} — checked, waiting for your review` })),
     ...unscanned.map((t) => ({ v: 'tag:' + t.tag, l: `${t.tag} — not checked yet (${fmtDate(t.date)})` })),
-    ...implEntries().slice().reverse().map((e) => ({ v: 'rec:' + e.id, l: `${(e.release.tags || [])[0] || e.id} — already checked and saved` })),
+    ...implEntries().slice().reverse().map((e) => ({ v: 'rec:' + e.id, l: `${relName(e.release) || e.id} — already checked and saved` })),
   ];
   if (!T.pick) T.pick = options.length ? options[0].v : '';
   let body = '';
@@ -842,11 +952,11 @@ function viewTrack() {
     const rep = E.compare(S[latest.id], p);
     const rv = approvals['review:' + p.snapshot_id];
     body = `<ol class="steps">
-      <li><div><h4>The release was checked</h4><p>Release ${esc((p.release.tags || [])[0] || p.release.ref)} was compared with ${esc(nice(latest))}.</p></div></li>
-      <li><div><h4>Read what changed</h4><p><a href="#retest" data-reltag="${esc((p.release.tags || [])[0] || p.snapshot_id)}">Open the retest checklist for this release →</a></p>${rep.changes.length ? `<p style="margin:6px 0"><b>${rep.changes.length} changes</b>: ${esc(countLine(rep.changes))}.</p>` + changeList(rep.changes, 'scan-' + p.snapshot_id)
+      <li><div><h4>The release was checked</h4><p>Release ${esc(relName(p.release) || p.release.ref)} was compared with ${esc(nice(latest))}.</p></div></li>
+      <li><div><h4>Read what changed</h4><p><a href="#retest" data-reltag="${esc(relName(p.release) || p.snapshot_id)}">Open the retest checklist for this release →</a></p>${rep.changes.length ? `<p style="margin:6px 0"><b>${rep.changes.length} changes</b>: ${esc(countLine(rep.changes))}.</p>` + changeList(rep.changes, 'scan-' + p.snapshot_id)
         : '<div class="empty">No Custom Roles &amp; Permissions changes detected in this release.</div>'}</div></li>
       <li><div><h4>${rep.changes.length ? 'Approve it so it is saved' : 'Save it as “no change” (optional)'}</h4>
-        ${rv ? `<p>Approved by ${esc(names[rv.by] || 'a teammate')} on ${esc(fmtDate(rv.at))}. It will be saved permanently the next time the check is run, and it will get its own tab.</p>`
+        ${rv ? `<p>Approved by ${esc(names[rv.by] || 'a teammate')} on ${esc(fmtDate(rv.at))}. It will be saved permanently by the next update (within the hour), and it will get its own tab.</p>`
           : canApprove ? `<button class="btn" data-review="${esc(p.snapshot_id)}">${rep.changes.length ? 'Approve and save this release' : 'Save as “no change”'}</button>`
           : '<p class="muted">Someone with edit rights on this page approves it. You can still read the changes and set test results.</p>'}
         ${tech('For the person running the check', `<pre class="cmd">python3 tools/track_changes.py confirm ${esc(p.snapshot_id)} --by "&lt;name&gt;"${rep.changes.length ? '' : ' --checkpoint'}</pre>`)}</div></li></ol>`;
@@ -854,7 +964,7 @@ function viewTrack() {
     const tag = T.pick.slice(4);
     const req = requests.find((r) => r.release === tag);
     body = `<ol class="steps">
-      <li><div><h4>Ask for a check</h4><p>This page cannot read the app’s code by itself, so Claude or a developer runs the check. Your request is shown here so they know it is waiting.</p>
+      <li><div><h4>Ask for a check</h4><p>The live app is checked automatically every hour. To check a different release, ask for it here; the next update picks it up.</p>
         ${req ? `<p>${chip('c-good', 'Requested')} by ${esc(names[req.by] || 'a teammate')} on ${esc(fmtDate(req.at))}.</p>` : canWriteDb ? `<p><button class="btn" data-request="${esc(tag)}">Ask for ${esc(tag)} to be checked</button></p>` : ''}
         ${tech('For the person running the check', `<pre class="cmd">python3 tools/track_changes.py scan --ref ${esc(tag)}</pre>`)}</div></li>
       <li><div><h4>Read what changed</h4><p>When the check is done, every change appears on this page in plain words, with how to test it.</p></div></li>
@@ -871,15 +981,17 @@ function viewTrack() {
       <div class="fact"><span class="eyebrow">Is the live app saved here?</span><span>${prodRecorded ? chip('c-good', 'Yes, up to date') : chip('c-warn', 'No, a new release needs checking')}</span></div>
     </div>
     <div class="controls"><label class="ctl">Choose a release<select id="tPick">${options.map((o) => `<option value="${esc(o.v)}" ${T.pick === o.v ? 'selected' : ''}>${esc(o.l)}</option>`).join('')}</select></label>
-      ${canWriteDb ? '<button class="btn ghost" data-request="production">Ask for the live app to be checked now</button>' : ''}</div>
+      ${updateControl()}</div>
     ${body}
     <details class="tech"><summary>How the check works</summary><div class="inner">
+      <p>It runs by itself every hour, and whenever someone presses Update. If anything changed, this page is updated for everyone.</p>
       <p>1. The check finds out exactly which release is live, or uses the release you choose.</p>
       <p>2. It reads that release of the app: every role, every permission, which permissions are linked, and every behind-the-scenes check.</p>
       <p>3. It compares that with the last saved release, by meaning. Tidying, re-ordering or comments in the code are ignored.</p>
       <p>4. You read the changes here. Nothing is saved until someone approves it. A release with no changes is saved only as “no change”, and a release already saved is refused.</p>
       <pre class="cmd">python3 tools/track_changes.py scan --production
-python3 tools/track_changes.py confirm &lt;id&gt; --by "&lt;name&gt;"</pre></div></details>
+python3 tools/track_changes.py confirm &lt;id&gt; --by "&lt;name&gt;"
+python3 tools/auto_update.py      # everything above in one command</pre></div></details>
   </section>`;
 }
 
@@ -1006,6 +1118,7 @@ async function connect() {
   if (user) {
     try { me = await user.id(); } catch (e) { me = null; }
     try { canApprove = !!(await user.canEdit()); } catch (e) { canApprove = false; }
+    try { isOwner = !!(await user.isOwner()); } catch (e) { isOwner = false; }
   }
   db = await window.claude.use('db');
   if (!db) return;
@@ -1024,6 +1137,7 @@ async function connect() {
   sub('verification', verif, false);
   sub('approvals', approvals, false);
   sub('scan_requests', requests, true);
+  sub('status', STATUS, false);
   render();
 }
 

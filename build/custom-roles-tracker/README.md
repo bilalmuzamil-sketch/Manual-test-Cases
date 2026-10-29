@@ -47,7 +47,8 @@ tools/extract_impl.py  implementation snapshot of a commit (never the working tr
 tools/engine/compare.js   THE comparison engine (browser and command line share it)
 tools/snapshot_store.py   append-only store: write-once, read-only, SHA-256 registry
 tools/track_changes.py    scan → review → confirm
-tools/validate.py      validation suite (26 checks, incl. plain-language and retest checks)
+tools/validate.py      validation suite (29 checks, incl. plain-language, retest and auto-update checks)
+tools/auto_update.py   the one-command update the hourly scheduled task runs (UPDATE-RUNBOOK.md)
 tools/build_history.py reconstructed release history before the baseline
 snapshots/             recorded snapshots + registry.json   (never edit by hand)
 reports/               change reports, history, VALIDATION.md
@@ -117,6 +118,21 @@ largest role that holds **none** of the permissions that allow it (`validate.py`
 part). Testers set a result on each check, and the tab shows progress. The checklist downloads as a
 spreadsheet, and every scan also writes `reports/<previous>__to__<release>-RETEST.md`.
 
+## Always up to date (the scheduled update)
+
+A scheduled task (**"Custom Roles tracker — hourly update"**, `trig_014eqbzZ82V6XRd2vZguAREC`) runs
+`UPDATE-RUNBOOK.md` every hour in a fresh session. One command, `tools/auto_update.py`, does the work:
+it reads the live release, checks it if it is new (shown at once with its retest checklist, marked
+"waiting for approval"), saves releases approved in the portal, rebuilds the page, and says whether it
+must be republished. The run then republishes the page if needed and writes `status/freshness` into the
+page's database on every run.
+
+The page reads that record and shows a bar on every tab: **Up to date**, **This page is behind**,
+**out of date** (not checked for over 2½ hours), **A newer version is ready** (reload), or **could not
+be updated**. In any of the last four cases it asks the viewer to update or reload before going on,
+with "Continue with the data on this page" as the way past. **Update now** starts the scheduled task
+at once for the page's owner, and for everyone else leaves a request that the next hourly run picks up.
+
 ## Storage, integrity, sharing
 
 - `snapshots/<id>.json` is written once and made read-only. `registry.json` is append-only and pins each
@@ -165,4 +181,4 @@ spreadsheet, and every scan also writes `reports/<previous>__to__<release>-RETES
 | Permissions with server enforcement found in this repo | 46 / 61 | The 15 accounting area permissions are enforced by the accounting service (one is also checked directly here). `timesheetsView` has **no** server check anywhere (front end only) |
 | Original PRD settings with verbatim description | 44 / 44 | ✅ |
 | Original PRD matrix rows / quotes verified verbatim | 39 / 39 · 58 / 58 | ✅ |
-| Track Changes validation | 26 / 26 checks (incl. plain-language and retest checklists) | ✅ (`reports/VALIDATION.md`) |
+| Track Changes validation | 29 / 29 checks (incl. plain-language, retest checklists and auto-update) | ✅ (`reports/VALIDATION.md`) |
