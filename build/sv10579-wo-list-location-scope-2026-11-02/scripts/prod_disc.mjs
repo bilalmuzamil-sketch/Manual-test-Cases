@@ -1,0 +1,10 @@
+import fs from 'fs'; const require_pw=()=>fs.readFileSync('/tmp/sv-prod-pw2.txt','utf8').trim();
+import {open} from '../../testing-tools/qa-session.mjs';
+const s=await open({env:'prod',dir:'/tmp/qa2',quiet:false,user:'bilal.muzamil+serviceadvisornoreports@shopview.com',pw:require_pw()});
+console.log('marker',JSON.stringify(await s.marker()));
+const w=await s.api('/api/staff/my-workplaces'); console.log('wp raw',w.status,JSON.stringify(w.json||w.text).slice(0,300)); const W=(w.json?.data?.collection||[]); console.log('workplaces', W.map(x=>x.name+'='+x.id+(x.is_default?' (default)':'')).join(' | '));
+const v=await s.api('/api/work-orders/view/4b2e1143-122d-471f-a045-7fdf89e6a404'); const d=v.json.data||v.json;
+console.log('wo view',v.status, JSON.stringify(Object.fromEntries(Object.entries(d).filter(([k])=>/company|vehicle|workplace|number/i.test(k)))).slice(0,500));
+const c=await s.api('/api/work-orders/canned-lines?limit=5'); console.log('canned',c.status,JSON.stringify(c.json).slice(0,300));
+const st=await s.api('/api/staff?limit=200'); const col=(st.json.data?.collection||st.json.data||[]); console.log('staff', col.length, col.slice(0,40).map(x=>[x.first_name,x.last_name,x.role_label,x.id].join('/')).join(' ; ').slice(0,900));
+process.exit(0);

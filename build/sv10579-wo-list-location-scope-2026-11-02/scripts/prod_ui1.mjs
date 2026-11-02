@@ -1,0 +1,11 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const S=JSON.parse(fs.readFileSync('/tmp/sv10579/prod-seed.json','utf8'));
+const s=await open({env:'prod',dir:'/tmp/qa2',user:'bilal.muzamil+serviceadvisornoreports@shopview.com',pw:fs.readFileSync('/tmp/sv-prod-pw2.txt','utf8').trim()});
+const p=s.page; const ids=async re=>[...new Set(await p.evaluate(r=>[...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).filter(t=>new RegExp(r,'i').test(t)),re))];
+await s.go(`/workorders/${S.woId}/part-requests`); await p.waitForTimeout(4000);
+console.log('url',p.url()); console.log('part ids',(await ids('part|order|request|kebab|menu|action')).slice(0,40).join(' '));
+await p.click('[data-test-id="profile_menu_button"]'); await p.waitForTimeout(1500);
+console.log('menu ids',(await ids('location|workplace|profile|switch')).join(' '));
+console.log('menu text',(await p.evaluate(()=>document.querySelector('.q-menu')?.innerText||'')).slice(0,400).replace(/\n/g,' | '));
+await s.shot('prod-ui1-menu','/tmp/sv10579'); process.exit(0);

@@ -1,0 +1,16 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const s=await open({env:'prod',dir:'/tmp/qa2',user:'bilal.muzamil+serviceadvisornoreports@shopview.com',pw:fs.readFileSync('/tmp/sv-prod-pw2.txt','utf8').trim()});
+const woId='cf137c46-0b4d-4d61-8b14-99d7e7541f83', aId='b617914c-16e9-4485-8e8b-193cd86aa416';
+const post=(u,b)=>s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+const wps=(await s.api('/api/staff/my-workplaces')).json.data.collection; const a=wps.find(w=>w.id===aId);
+await post('/api/iam/change-location',{workplace_id:a.id,workplace_timezone:a.timezone});
+const lr=(await s.api('/api/work-orders/lines/'+woId)).json; const arr=Array.isArray(lr.data)?lr.data:(lr.data?.collection||lr.data?.lines||Object.values(lr.data||{}).find(Array.isArray)||[]);
+console.log('lines keys',Object.keys(lr.data||{}).slice(0,8), arr.length); const line=arr[0]; const lineId=line.line_id||line.id; console.log('lineId',lineId, line.status);
+const cats=(await s.api('/api/inventory/categories?limit=500')).json.data.collection; const vend=(await s.api('/api/parts-catalogue/vendors?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=5')).json; console.log('vend raw',JSON.stringify(vend).slice(0,250)); const vl=(vend.data?.collection||vend.data?.vendors||vend.data?.items||Object.values(vend.data||{}).find(Array.isArray)||[]); const vid=vl[0].id; console.log('vendor',vl[0].name||vl[0].company_name);
+const pn='ZZ10579-'+(Date.now()%100000);
+const pr=await post('/api/work-orders/part/make-request',{line:lineId,work_order:woId,description:'ZZAUTOTEST SV-10579 cross-location part',quantity:1,part_source_type:'vendor',part_number:pn,price:10,part_category_id:cats[0].value,vendor_id:vid});
+console.log('part',pr.status,JSON.stringify(pr.json).slice(0,200));
+const view=(await s.api('/api/work-orders/view/'+woId)).json.data; const W=view.work_order||view; console.log('WO number',W.number, W.workplace_id||W.workplace?.id);
+fs.writeFileSync('/tmp/sv10579/prod-seed.json',JSON.stringify({woId,lineId,number:W.number,pn,part:pr.json.data,A:aId}));
+process.exit(0);

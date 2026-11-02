@@ -1,0 +1,10 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim();
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const p=s.page; const seen=[];
+p.on('response',async r=>{const u=r.url(); if(!u.includes('/api/')) return; seen.push(r.request().method()+' '+r.status()+' '+u.replace(/^https:\/\/[^/]+/,'').slice(0,160));
+  if(/work-orders(\/list|\?|$)|work-orders\/listing|list-items/.test(u)){ try{ const j=await r.json(); fs.writeFileSync('/tmp/sv10579/list-'+seen.length+'.json',JSON.stringify(j)); }catch(e){} }});
+await s.go('/workorders'); await p.waitForTimeout(6000);
+console.log(seen.join('\n'));
+await s.shot('branch-list-initial','/tmp/sv10579'); process.exit(0);
