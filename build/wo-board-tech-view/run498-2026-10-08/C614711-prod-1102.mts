@@ -86,8 +86,8 @@ try {
     await shot(`${tag}-before`);
     await p.mouse.move(fb.x + fb.width * 0.45, fb.y + fb.height / 2); await p.mouse.down(); await p.mouse.move(fb.x + fb.width * 0.45, fb.y + fb.height / 2 + 8, { steps: 4 });
     let tb = await boxIn(toSel); d.walk = 0;
-    for (let i = 0; i < 80 && !tb; i++) { d.walk = i + 1; await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); if (h) h.scrollLeft += ${dir >= 0 ? 400 : -400}; })()`).catch(() => {}); await p.mouse.move(fb.x + fb.width * 0.45 + (i % 2 ? 6 : -6), fb.y + fb.height / 2 + 8, { steps: 2 }); await W(350); tb = await boxIn(toSel);
-      if (!tb && i === 40) { await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); if (h) h.scrollLeft = 0; })()`).catch(() => {}); await W(400); tb = await boxIn(toSel); } }
+    for (let i = 0; i < 400 && !tb; i++) { // 2 Nov: Truck Hill 1 has 150+ columns (~60 000 px); 80 steps of 400 px never reached the far end d.walk = i + 1; await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); if (h) h.scrollLeft += ${dir >= 0 ? 400 : -400}; })()`).catch(() => {}); await p.mouse.move(fb.x + fb.width * 0.45 + (i % 2 ? 6 : -6), fb.y + fb.height / 2 + 8, { steps: 2 }); await W(350); tb = await boxIn(toSel);
+      if (!tb && i === 399) { await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); if (h) h.scrollLeft = 0; })()`).catch(() => {}); await W(400); tb = await boxIn(toSel); } }
     d.targetFound = !!tb; d.held = { scrollLeft: await scrollerLeft(), inView: await colsInView() };
     if (tb) { await p.mouse.move(tb.x + tb.width / 2, tb.y + Math.min(160, tb.height / 2), { steps: 20 }); await W(500); await shot(`${tag}-holding`); }
     await p.mouse.up(); await W(3000); d.result = tb ? 'dropped on the target' : 'released without finding the target'; await shot(`${tag}-after`); return d; }
