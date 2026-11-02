@@ -12,7 +12,7 @@ _MODS = sorted(os.path.basename(f)[:-3] for f in glob.glob(f"{D}/cases_*.py"))
 for m in [x for x in _ORDER if x in _MODS] + [x for x in _MODS if x not in _ORDER]: importlib.import_module(m)
 SECS = json.load(open(f"{L.P}/sections.json"))["sections"]
 SD = json.load(open(f"{D}/story_diff.json"))
-J = json.load(open(f"{L.P}/sources/jira-sweep-2026-11-02.json"))["issues"]
+J = json.load(open(f"{L.P}/sources/jira-sweep-2026-11-02-pm.json"))["issues"]   # round 3: pm re-read times
 CASES = L.CASES
 by_code = defaultdict(list)
 for c in CASES:
@@ -57,7 +57,7 @@ for i in J:
     row = {"updated": f["updated"], "summary": f["summary"], "type": f["issuetype"]["name"]}
     if k in story_keys:
         row.update(outcome="NEW-CASES", cases=keys_for_story(k),
-                   note=f"Every requirement line of the story matches PRD v17 word for word ({sum(1 for c, v in SD['codes'].items() if v['story'] == k)} lines, story_diff.json).")
+                   note=f"Re-read 2 Nov 2026 (pm) after Chris synced it to PRD v18. Every requirement line of the story matches PRD v18 word for word ({sum(1 for c, v in SD['codes'].items() if v['story'] == k)} lines, story_diff.json).")
     elif k == "SV-11788":
         row.update(outcome="NEW-CASES", cases=[c["key"] for c in CASES],
                    note=("Epic: the whole suite. Its description says \"New staff start with it off\"; PRD v17 S1-R3 (and story SV-11879, updated later "
@@ -76,13 +76,17 @@ for i in J:
     ledger[k] = row
 json.dump(ledger, open(f"{L.P}/TICKET-LEDGER.json", "w"), indent=1, ensure_ascii=False)
 json.dump({"project": "Technician Toggle", "epic": "SV-11788", "stories": [v[0] for v in L.STORY.values()], "prd_page": "977371146",
-           "prd_version_handled": 17, "jira_saved": "sources/jira-sweep-2026-11-02.json", "checked": "2026-11-02"},
+           "prd_version_handled": 18, "jira_saved": "sources/jira-sweep-2026-11-02-pm.json", "checked": "2026-11-02 (pm, after PRD v18)"},
           open(f"{L.P}/TICKET-SWEEP.json", "w"), indent=1)
 
 # ---------------------------------------------------------------- PO-QUESTIONS-DRAFT.md
 P = []
 w = P.append
 w("# Technician Toggle — questions for Chris Ward (DRAFT, not sent)")
+w("")
+w("**ALL 8 ANSWERED by Chris Ward on 2 Nov 2026** (sheet https://docs.google.com/spreadsheets/d/1nLKkgSgmtqCYu4eu15_9xN38ml32tDnJls42PPq_A4M, "
+  "column E; copied word for word in po-answers-2026-11-02/ANSWERS-Chris-Ward-2026-11-02.md). He published PRD v18 and design version "
+  "1793640819-ff4d with the answers. Nothing is waiting on the PO.")
 w("")
 w("Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 17, 2 Nov 2026). For: Chris Ward (PO and design authority). "
   "Drafted 2 Nov 2026 by the case-library worker; the coordinator sends it as the colour-coded question sheet (Rule 125 format) once everything "
@@ -99,7 +103,12 @@ for i, (slug, q, basis, opts, holds) in enumerate(QUESTIONS, 1):
     w(f"- **What the PRD says now:** {basis}")
     w(f"- **The question:** {q.split(': ', 1)[1] if ': ' in q else q}")
     for o in opts: w(f"- {o}")
-    w(f"- **Your answer:** ")
+    w(f"- **Chris's answer (2 Nov 2026, column E):** {L.ANS[i]}")
+    w(f"- **Status:** answered; " + {1: "API-09 to API-11 rewritten to accepted and ignored; the refusals are tested from an old staff window in a second tab (S1-38 to S1-41)",
+         2: "INV-13 released (PRD v18 S1-R8 names the role)", 3: "S3-36 rewritten to the Unassigned choice; S3-49 and S3-50 added (PRD v18 S3-R10)",
+         4: "S3-48 rewritten to the answer (PRD v18 S3-N1)", 5: "S1-16 released; D-33 deleted (DELETE.json)",
+         6: "S3-24 to S3-26 and D-27 released; D-34 deleted (DELETE.json)", 7: "S3-29, S3-30 and D-29 released, both sentences kept",
+         8: "S1-37 rewritten to the answer and released (PRD v18 S1-R3)"}[i] + ".")
     w("")
 w("## QA-only: what each question holds")
 w("")
@@ -208,7 +217,36 @@ w("")
 EDITS = json.load(open(f"{D}/design_edits.json"))
 prd_cases = [c for c in CASES if c["sec"] != "DESIGN"]
 with_ref = [c["key"] for c in prd_cases if c["key"] in L.DREFS]
-w("## 5a. Round 2 — design cases and References from Design (2 Nov 2026)")
+REC = json.load(open(f"{D}/v18-named-set-record.json"))
+_vf = subprocess.run([sys.executable, f"{D}/verify_v18_named_set.py"], capture_output=True, text=True).stdout.strip().splitlines()
+w("## 5b. Round 3 — PRD v18, Chris's answers 1 to 8, design version 1793640819-ff4d (named set, 2 Nov 2026)")
+w("")
+w("QA lead: \"Named set (Recommended)\". The set is 56 cases: the 50 in `po-answers-2026-11-02/named-50-from-codes.json` (every case tagged "
+  "S1-R3, S1-R8, S3-R10, S3-N1 or Story 1 Error Handling, and the 17 held on questions 1 to 8), plus D-26, S1-25, S3-09, S3-10, S3-21 and "
+  "S3-23, which quote a changed design caption. Nothing outside the set changes, not even version stamps.")
+w("")
+w(f"- **Updated ({len(REC['named_set'])}), each rewritten top to bottom (Rule 134):** " + ", ".join(f"{k} {v['case']}" for k, v in sorted(REC["named_set"].items())) + ".")
+w("- **Parts changed per case (against its read-back):** " + "; ".join(
+    f"{k}: " + ", ".join(x.replace('custom_', '') for x in ('title', 'custom_preconds', 'custom_steps', 'custom_expected', 'refs') if v[x] == 'CHANGED')
+    for k, v in sorted(REC["named_set"].items())) + ". Every other part was re-checked against PRD v18, the answers and design version 1793640819-ff4d and CONFIRMED (`authoring/v18-named-set-record.json`).")
+w("- **What changed in them:** quotes re-copied from PRD v18 (From line \"version 18 (2 Nov 2026, Chris Ward), read 2 Nov 2026\"); a From line "
+  "for Chris's answer (sheet link and question number) where a case relies on it; References from Design name design version "
+  "1793640819-ff4d and quote its new words, and the difference notes are replaced by the rulings. The 15 cases held on questions 1 to 8 are "
+  "released (Rule 69 marker). Rewritten to the answers: API-09, API-10 and API-11 (accepted, value ignored: S5-N1 and answer 1); S1-37 "
+  "(Save & Add Next starts fresh: answer 8); S3-36 (the filter's Unassigned choice: answer 3); S3-48 (a picked person who is turned off "
+  "drops out of the filter and their work does not move: answer 4).")
+w("- **New (6):** S1-38, S1-39, S1-40, S1-41 (the two refusal messages, and the role message when both reasons apply, from an old staff "
+  "window in a second browser tab: PRD v18 Story 1 Error Handling, answer 1); S3-49 (the filter's Deleted technician choice); S3-50 (people "
+  "picked at another location are dropped on switching, so \"No technicians yet\" shows: answer 3). INV-13 already covers answer 2, and "
+  "S1-37 covers answer 8, so no duplicates were added.")
+w("- **Deleted (2), for the coordinator with the QA lead's go-ahead:** D-33 C897374 and D-34 C897375, the held design-version cases "
+  "(Chris ruled for the PRD on questions 5 and 6); listed in `po-answers-2026-11-02/DELETE.json`.")
+w("- **Register:** TT-D01, TT-D02, TT-D04 and TT-D06 are PO-RULED, each with its answer word for word (DESIGN-DIVERGENCE-REGISTER.json).")
+w(f"- **Named-set proof** (`authoring/verify_v18_named_set.py`): {_vf[0]} {_vf[-1]}. It failed on a planted title change outside the set, as it should.")
+w("- **Stories re-read (pm):** SV-11879 and SV-11881 changed to match v18 word for word (68 of 68 requirement lines and the Story 1 Error "
+  "Handling line match v18). SV-11880 and SV-11884 show the same text and update time as in the morning sweep.")
+w("")
+w("## 5a. Round 2 — design cases and References from Design (2 Nov 2026; the held statements here are superseded by 5b)")
 w("")
 w(f"- **Design cases:** the 34 drafts of `design-2026-11-02/DESIGN-CASE-PLAN.md` are `authoring/cases_design.py` (generated by "
   "`make_cases_design.py`): DC-01 to DC-32 are D-01 to D-32, DV-01 is D-33 and DV-02 is D-34, in \"Design — how it looks\". Each carries its "
@@ -267,14 +305,16 @@ w("- `python3 build/testing-tools/tester_readiness_check.py build/technician-tog
 w(f"- Round 2 readiness check: {_trc}. The round 2 sample (5 cases, seed 21) and every new \"does not / never\" line from the design cases, S1-14 and "
   "S1-37 (22 lines) were read in full; each has a visible control (the neighbouring names, the message shown, the unchanged buttons, the "
   "layout compared with a named picture). One fault found and fixed: S3-31's garbled location precondition.")
-w("- `python3 build/testing-tools/ticket_sweep.py`: 0 unhandled tickets, PRD v17 handled.")
+w("- `python3 build/testing-tools/ticket_sweep.py` (pm sweep, `--prd-version 18`): 0 unhandled tickets, PRD v18 handled.")
 w("")
 w("## 8. OUTSTANDING — what I need from you")
 w("")
 w("- The coordinator: review, create the subsections in 113017 (`sections.json`), run `create.py --apply` with the QA lead's go-ahead, then read back the cases and commit.")
-w("- Upload the design pictures with the cases (`create.py --apply` attaches them by name and reads them back).")
+w("- Round 3 (coordinator, with the QA lead's go-ahead): `update_changed.py --apply` (54 named-set cases; 15 released cases join run 555, union "
+  "only), `create.py --apply` (6 new cases, then add them to run 555), delete D-33 and D-34 (DELETE.json).")
 w("- Facts to confirm on the build (not PO questions): how the screen sets a line's own technician; which Public API requests change a staff member's role or a work order's lead (API-12, API-13).")
-w("- **Waiting on the PO** (draft, not sent: `PO-QUESTIONS-DRAFT.md`): " + "; ".join(
-    f"question {i} holds {', '.join(c['key'] for c in CASES if c['marker'] == L.PO_HOLD(i))}" for i in range(1, len(QUESTIONS) + 1)) + ".")
+_po = [c["key"] for c in CASES if "waiting on the PO" in c["marker"]]
+w("- **Waiting on the PO:** " + ("nothing: Chris answered questions 1 to 8 on 2 Nov 2026 (sheet https://docs.google.com/spreadsheets/d/"
+  "1nLKkgSgmtqCYu4eu15_9xN38ml32tDnJls42PPq_A4M) and no case is held on the PO." if not _po else "cases still held on the PO: " + ", ".join(_po)))
 open(f"{L.P}/REPORT.md", "w").write("\n".join(R) + "\n")
 print("REPORT.md, PO-QUESTIONS-DRAFT.md, TICKET-LEDGER.json, TICKET-SWEEP.json written;", len(CASES), "cases,", len(held), "held")

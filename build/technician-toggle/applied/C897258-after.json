@@ -1,6 +1,6 @@
 {
  "id": 897258,
- "title": "\"No technicians yet\" does not show with a Technician filter on",
+ "title": "The Technician filter's Unassigned choice keeps \"No technicians yet\" away",
  "section_id": 113020,
  "template_id": 1,
  "type_id": 7,
@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1793635172,
  "updated_by": 3,
- "updated_on": 1793635172,
+ "updated_on": 1793643080,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a new location for this test, location C, in the same organization, where no enrolled staff member is a technician (every staff member enrolled there has Technician off), so the filter can be carried there from the test location.</li><li>Have a new staff member for this test, staff member B, on the built-in Technician role, with Time Clock on and Technician on, enrolled at the test location only, so the list has a technician to compare with.</li><li>Have a new service work order for this test, work order 1, at location C, in Approved, led by nobody (no lead), so the open tab has a work order.</li><li>Start on Work Orders, Board View, at the test location.</li></ul>",
- "custom_steps": "<ol><li>Open the Technician filter.</li><li>Pick staff member B in the Technician filter.</li><li>Switch to location C.</li></ol>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a new location for this test, location C, in the same organization, where no enrolled staff member is a technician (every staff member enrolled there has Technician off), so the board there has no technician.</li><li>Have a new service work order for this test, work order 1, at location C, in Approved, led by nobody (no lead), so the open tab has a work order.</li><li>Make sure neither Assigned to me nor a Technician filter is on.</li><li>Switch to location C.</li></ul>",
+ "custom_steps": "<ol><li>Open Work Orders, Board View.</li><li>Open the Technician filter.</li><li>Pick \"Unassigned\" in the Technician filter.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Technician filter offers staff member B.</li></ul><p>Step 2:</p><ul><li>The Technician filter is on, set to staff member B.</li></ul><p>Step 3:</p><ul><li>The board loads for location C.</li><li>If the Technician filter is still on there, \"No technicians yet\" does not show.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Technician Toggle\", Confluence 977371146, version 17 (2 Nov 2026, Chris Ward), read 2 Nov 2026 &middot; Epic SV-11788, story SV-11881 (Story 3, Who appears on the technician lists)</p><ul><li><strong>S3-R10:</strong> &ldquo;When Board View or Tech View has no technician column or group at all (no technician at the location, no column kept for a non-technician lead under S3-E1 and no pinned column under S3-E2), and neither Assigned to me nor a Technician filter is on, it shows the title \"No technicians yet\" with the text \"Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned.\" When the open tab has no work orders either, the \"Nothing here yet\" state keeps its title, and its text reads \"Turn Technician on for your technicians and create your first work order to track work by tech.\" The button the Board View and Tech View PRD (S1-N1d, SV-11555) calls Add Technician reads \"Set Up Technicians\" and opens the staff list (Settings, Staff), for the same users who see it today. This replaces S1-N1d's text and button target once this feature ships.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p>AUTOMATION: HOLD - waiting on the PO (question 3)</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The board shows \"No technicians yet\".</li></ul><p>Step 2:</p><ul><li>The filter offers \"Unassigned\" and \"Deleted technician\", and no person.</li></ul><p>Step 3:</p><ul><li>The Technician filter is on, set to Unassigned.</li><li>\"No technicians yet\" no longer shows.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Technician Toggle\", Confluence 977371146, version 18 (2 Nov 2026, Chris Ward), read 2 Nov 2026 &middot; Epic SV-11788, story SV-11881 (Story 3, Who appears on the technician lists)</p><ul><li><strong>S3-R10:</strong> &ldquo;When Board View or Tech View has no technician column or group at all (no technician at the location, no column kept for a non-technician lead under S3-E1 and no pinned column under S3-E2), and neither Assigned to me nor a Technician filter is on, it shows the title \"No technicians yet\" with the text \"Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned.\" A Technician filter can be on at such a location only through its Unassigned or Deleted technician choices: people picked at another location are dropped from the filter when the location changes (S3-N1). When the open tab has no work orders either, the \"Nothing here yet\" state keeps its title, and its text reads \"Turn Technician on for your technicians and create your first work order to track work by tech.\" The button the Board View and Tech View PRD (S1-N1d, SV-11555) calls Add Technician reads \"Set Up Technicians\" and opens the staff list (Settings, Staff), for the same users who see it today. This replaces S1-N1d's text and button target once this feature ships.&rdquo;</li></ul><p>From: Chris Ward's answers, Google Sheet \"Technician Toggle – questions for Chris Ward (2 Nov 2026)\", https://docs.google.com/spreadsheets/d/1nLKkgSgmtqCYu4eu15_9xN38ml32tDnJls42PPq_A4M, column E, answered 2 Nov 2026 (po-answers-2026-11-02/ANSWERS-Chris-Ward-2026-11-02.md), read 2 Nov 2026</p><ul><li><strong>Answer 3 (question 3):</strong> &ldquo;3. Something else. The Technician filter also offers \"Unassigned\" and \"Deleted technician\". If either one is picked, the filter is on, so \"No technicians yet\" doesn't show. People picked at another location are dropped from the filter when the user switches locations, so they can't cause it. I'll add this to S3-R10.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/2/2026</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

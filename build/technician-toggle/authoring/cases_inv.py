@@ -1,7 +1,7 @@
 """Section "What must not change" (Rule 96, skill 17): every "as today" / "exactly as today" / "unchanged" sentence of PRD v17 and every
 Out of Scope item a tester can see. Each case uses a person who is NOT a technician (Technician off, Time Clock on), so the case proves the
 non-technician lists and behaviours did not narrow, with a technician as the control where a list is checked."""
-from tt_lib import C, HOLD
+from tt_lib import C, HOLD, A
 from common import *
 
 S = "INV"
@@ -83,7 +83,7 @@ C("INV-13", S, "A save that changes Technician and the role logs out as a role c
   [EDIT_A, "Switch Technician off.", 'In Role, pick "Service Advisor".', SAVE, "In the second browser, click Work Orders in the menu."],
   [["The window shows Technician on."], ["Technician is off."], ["Role shows Service Advisor and Technician stays off."], ["The window closes."],
    ["Staff member A is signed out, as a role change does today."]],
-  ["S1-R8", "KD-LOGOUT"], marker="PO:mixed-save-logout")
+  ["S1-R8", "KD-LOGOUT", A(2)])   # round 3: released, Chris answered question 2 (a); PRD v18 S1-R8 names the role
 C("INV-14", S, 'The role setting "View mode: Tech view" still works as before',
   [ADMIN, "Have a custom role made for this test, role A, with \"View mode: Tech view\" set in Roles & Permissions, so staff member A gets the simplified interface.",
    staff(tech=False, role="role A", extra=", who can sign in")],

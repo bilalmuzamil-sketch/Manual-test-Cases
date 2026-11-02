@@ -1,5 +1,7 @@
 # Technician Toggle — questions for Chris Ward (DRAFT, not sent)
 
+**ALL 8 ANSWERED by Chris Ward on 2 Nov 2026** (sheet https://docs.google.com/spreadsheets/d/1nLKkgSgmtqCYu4eu15_9xN38ml32tDnJls42PPq_A4M, column E; copied word for word in po-answers-2026-11-02/ANSWERS-Chris-Ward-2026-11-02.md). He published PRD v18 and design version 1793640819-ff4d with the answers. Nothing is waiting on the PO.
+
 Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 17, 2 Nov 2026). For: Chris Ward (PO and design authority). Drafted 2 Nov 2026 by the case-library worker; the coordinator sends it as the colour-coded question sheet (Rule 125 format) once everything else is done (skill 07 §1). Nothing here has been sent.
 
 # Questions from reading the PRD, stories and tech plan (2 Nov 2026)
@@ -12,7 +14,8 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 - (a) Accepted and ignored, as S5-N1 says; the two refusal messages show only for requests sent by ShopView's own screens (please say which)
 - (b) Refused with the message, as Story 1 says; S5-N1 applies only when the value would not be refused
 - (c) Something else (please say)
-- **Your answer:** 
+- **Chris's answer (2 Nov 2026, column E):** 1. (a) Accepted, and the Technician value is ignored. Outside tools can read Technician through the Public API but can't set it in this release (S5-N1). The two refusal messages only come from ShopView's own staff window, for example a second tab with old data. I'll fix the "outside tool" example in Story 1 Error Handling so it says that.
+- **Status:** answered; API-09 to API-11 rewritten to accepted and ignored; the refusals are tested from an old staff window in a second tab (S1-38 to S1-41).
 
 ## Question 2
 
@@ -22,7 +25,8 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 - (a) Logged out, as a role change does today; only a save that changes nothing but Technician keeps them signed in
 - (b) Kept signed in, because the save changes Technician
 - (c) Something else (please say)
-- **Your answer:** 
+- **Chris's answer (2 Nov 2026, column E):** 2. (a) Logged out. The role change logs them out, the same as today. A save that changes only Technician keeps them signed in. I'll add the role to S1-R8.
+- **Status:** answered; INV-13 released (PRD v18 S1-R8 names the role).
 
 ## Question 3
 
@@ -32,7 +36,8 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 - (a) Yes: a filter picked at another location stays on, and then "No technicians yet" does not show
 - (b) No: the filter is cleared when the location changes, so this cannot happen (the words are only a safeguard)
 - (c) Something else (please say)
-- **Your answer:** 
+- **Chris's answer (2 Nov 2026, column E):** 3. Something else. The Technician filter also offers "Unassigned" and "Deleted technician". If either one is picked, the filter is on, so "No technicians yet" doesn't show. People picked at another location are dropped from the filter when the user switches locations, so they can't cause it. I'll add this to S3-R10.
+- **Status:** answered; S3-36 rewritten to the Unassigned choice; S3-49 and S3-50 added (PRD v18 S3-R10).
 
 ## Question 4
 
@@ -42,7 +47,8 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 - (a) The filter stays set to them and keeps showing their work
 - (b) The filter drops them, as if they had never been picked
 - (c) Something else (please say)
-- **Your answer:** 
+- **Chris's answer (2 Nov 2026, column E):** 4. (b) The filter drops them, as if they had never been picked. This is the same as what happens today to someone from another location or a deleted staff member. Their work orders don't move. I'll add this to S3-N1.
+- **Status:** answered; S3-48 rewritten to the answer (PRD v18 S3-N1).
 
 # Questions from reading the design (2 Nov 2026; design-2026-11-02/NEW-QUESTIONS.py rows 1 to 4, register TT-D01, TT-D02, TT-D04, TT-D06; merged into this one sheet, Rule 131)
 
@@ -54,7 +60,8 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 - (a) As the spec: it switches on again by itself from the role, unless the user had already switched Technician by hand
 - (b) As the design's page 3 note: it stays off and the user turns it on
 - (c) Something else (please say)
-- **Your answer:** 
+- **Chris's answer (2 Nov 2026, column E):** 5. (a) As the PRD says: in New Staff Member it switches back on from the role, unless the user already switched Technician by hand. The page 3 note in the design was written before the pre-fill existed, and I'll fix it. In Edit Staff Member, turning Time Clock back on still leaves Technician off.
+- **Status:** answered; S1-16 released; D-33 deleted (DELETE.json).
 
 ## Question 6
 
@@ -64,7 +71,8 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 - (a) As the spec: an ordinary chip, not grayed out, removable with its X (with the lock if they have logged time)
 - (b) As the design's note: grayed out, the same as a deactivated technician today
 - (c) Something else (please say)
-- **Your answer:** 
+- **Chris's answer (2 Nov 2026, column E):** 6. (a) As the PRD says: an ordinary chip, not grayed out, removable with its X, with the lock if they have logged time on the line. Grayed out means deactivated, and this person isn't deactivated. I'll fix the page 6 note in the design.
+- **Status:** answered; S3-24 to S3-26 and D-27 released; D-34 deleted (DELETE.json).
 
 ## Question 7
 
@@ -74,7 +82,8 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 - (a) As the spec, both sentences
 - (b) One sentence only (please give the words)
 - (c) The design system's rule does not apply here; keep (a)
-- **Your answer:** 
+- **Chris's answer (2 Nov 2026, column E):** 7. (c) Keep both sentences. They follow Branko's Work Orders design for this state, which already shipped with two sentences in SV-11555 and passed QA. Technician Toggle only changes the first sentence.
+- **Status:** answered; S3-29, S3-30 and D-29 released, both sentences kept.
 
 ## Question 8
 
@@ -84,20 +93,21 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 - (a) As if the window had just opened: set from the role again, and any earlier switch by hand is forgotten
 - (b) It keeps the previous person's hand choice until the user changes it
 - (c) Something else (please say)
-- **Your answer:** 
+- **Chris's answer (2 Nov 2026, column E):** 8. (a) As if the window had just opened. Save & Add Next clears the form the same way it does today: no role, Time Clock off, Technician off. Any earlier switch by hand is forgotten, and the next person's Technician is set from their own role. I'll add Save & Add Next to S1-R3.
+- **Status:** answered; S1-37 rewritten to the answer and released (PRD v18 S1-R3).
 
 ## QA-only: what each question holds
 
 | Question | Cases held (keys; C-ids once written) |
 |---|---|
-| 1 (refusal-route) | API-09, API-10, API-11 |
-| 2 (mixed-save-logout) | INV-13 |
-| 3 (filter-on-empty) | S3-36 |
-| 4 (filter-set-to-former) | S3-48 |
-| 5 (tt-d01) | S1-16, D-33 |
-| 6 (tt-d02) | S3-24, S3-25, S3-26, D-27, D-34 |
-| 7 (tt-d04) | S3-29, S3-30, D-29 |
-| 8 (tt-d06) | S1-37 |
+| 1 (refusal-route) |  |
+| 2 (mixed-save-logout) |  |
+| 3 (filter-on-empty) |  |
+| 4 (filter-set-to-former) |  |
+| 5 (tt-d01) |  |
+| 6 (tt-d02) |  |
+| 7 (tt-d04) |  |
+| 8 (tt-d06) |  |
 
 ## Skill 07 §6 check: points not asked, and the source that answers each
 

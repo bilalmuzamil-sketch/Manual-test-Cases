@@ -1,6 +1,6 @@
 """Story 3 — Who appears on the technician lists (SV-11881): each of the seven lists, each S3-R1 condition, non-technician leads, pinned
 columns, people already on a line, empty states, refresh timing (S1-E3), screens opened before the change (S3-N3)."""
-from tt_lib import C, HOLD
+from tt_lib import C, HOLD, A
 from common import *
 
 S = "S3"
@@ -154,20 +154,20 @@ C("S3-24", S, "In Edit Line, a former technician is a removable chip and stays w
   ["Open work order 1.", "Open Edit Line for line 1.", "Replace the line description with the new description.", "Save the Edit Line window.", "Open Edit Line for line 1."],
   [["Work order 1 opens."], ["Staff member A shows as an ordinary chip with an X, not grayed out and with no lock."], ["The description field shows the new description."],
    ["The window closes and the new description shows."], ["Staff member A's chip is still there: saving kept them on the line."]],
-  ["S3-R8"], marker="PO:tt-d02")
+  ["S3-R8", A(6)])
 C("S3-25", S, "In Edit Line, a former technician with logged time shows the lock",
   [ADMIN, B, wo(1, "In Progress", "staff member B", extra=", with one approved line, line 1", why=", so the line belongs to someone else's work order"),
    on_line("with time logged on line 1 (they pressed Start on it and later stopped)")],
   ["Open work order 1.", "Open Edit Line for line 1.", "Hover staff member A's chip."],
   [["Work order 1 opens."], ["Staff member A's chip shows the existing lock and no X."],
    ['The text "This technician has logged time on the line and cannot be removed." shows, as today.']],
-  ["S3-R8"], marker="PO:tt-d02")
+  ["S3-R8", A(6)])
 C("S3-26", S, "Removing a former technician's chip in Edit Line takes them off the line",
   [ADMIN, B, wo(1, "Approved", "staff member B", extra=", with one approved line, line 1", why=", so the line belongs to someone else's work order"), on_line("added with Add Technician, with no time logged on the line")],
   ["Open work order 1.", "Open Edit Line for line 1.", "Click the X on staff member A's chip.", "Save the Edit Line window.", "Open Edit Line for line 1."],
   [["Work order 1 opens."], ["Staff member A shows as a chip with an X."], ["Staff member A's chip is gone."], ["The window closes."],
    ["Staff member A is no longer on line 1."]],
-  ["S3-R8"], marker="PO:tt-d02")
+  ["S3-R8", A(6)])
 C("S3-27", S, "Saving Edit Line drops a labor-only person outside the Time Clock list, as today",
   [ADMIN, B, wo(1, "Approved", "staff member B", extra=", with two approved lines, line 1 and line 2", why=", so the work order has a second line for a labor entry"),
    "Have a new staff member for this test, staff member C, who has a labor entry on line 2 of work order 1, is also on line 1 with no time logged on line 1, and then has Time Clock switched off, so they are outside the location's Time Clock list.",
@@ -199,12 +199,12 @@ C("S3-29", S, 'Board View with no technicians shows "No technicians yet" with th
   [ADMIN, LOCC, WO_C, "Make sure neither Assigned to me nor a Technician filter is on."],
   ["Open Work Orders, Board View."],
   [[f'The board shows the title "{NT_TITLE}" with the text "{NT_TEXT}"', "No technician column shows."]],
-  ["S3-R10"], marker="PO:tt-d04")
+  ["S3-R10", A(7)])
 C("S3-30", S, 'Tech View with no technicians shows "No technicians yet" with the new text',
   [ADMIN, LOCC, WO_C, "Make sure neither Assigned to me nor a Technician filter is on."],
   ["Open Work Orders, Tech View."],
   [[f'Tech View shows the title "{NT_TITLE}" with the text "{NT_TEXT}"', "No technician group shows."]],
-  ["S3-R10"], marker="PO:tt-d04")
+  ["S3-R10", A(7)])
 C("S3-31", S, 'With no technicians and no work orders, "Nothing here yet" has the new text',
   [ADMIN, "Have a new location for this test, location C, in the same organization, with no work order on the open tab, where no enrolled staff member is a technician (every staff member enrolled there has Technician off), so the board there has no technician and no work.",
    "Make sure neither Assigned to me nor a Technician filter is on."],
@@ -235,12 +235,26 @@ C("S3-35", S, '"No technicians yet" does not show with Assigned to me on',
   ["Switch Assigned to me on."],
   [["Assigned to me is on.", f'"{NT_TITLE}" no longer shows.']],
   ["S3-R10"])
-C("S3-36", S, '"No technicians yet" does not show with a Technician filter on',
-  [ADMIN, LOCC.replace(", so the board there has no technician.", ", so the filter can be carried there from the test location."), B, WO_C, BOARD],
+C("S3-36", S, 'The Technician filter\'s Unassigned choice keeps "No technicians yet" away',
+  [ADMIN, LOCC, WO_C, "Make sure neither Assigned to me nor a Technician filter is on.", SW_C],
+  ["Open Work Orders, Board View.", "Open the Technician filter.", 'Pick "Unassigned" in the Technician filter.'],
+  [[f'The board shows "{NT_TITLE}".'], ['The filter offers "Unassigned" and "Deleted technician", and no person.'],
+   ["The Technician filter is on, set to Unassigned.", f'"{NT_TITLE}" no longer shows.']],
+  ["S3-R10", A(3)])
+C("S3-49", S, 'The filter\'s Deleted technician choice keeps "No technicians yet" away',
+  [ADMIN, LOCC, WO_C, "Make sure neither Assigned to me nor a Technician filter is on.", SW_C],
+  ["Open Work Orders, Board View.", "Open the Technician filter.", 'Pick "Deleted technician" in the Technician filter.'],
+  [[f'The board shows "{NT_TITLE}".'], ['The filter offers "Deleted technician".'],
+   ["The Technician filter is on, set to Deleted technician.", f'"{NT_TITLE}" no longer shows.']],
+  ["S3-R10", A(3)])
+C("S3-50", S, "People picked in the filter at another location are dropped on switching",
+  [ADMIN, LOCC, B, WO_C,
+   "Make sure neither Assigned to me nor a Technician filter is on.", BOARD],
   ["Open the Technician filter.", "Pick staff member B in the Technician filter.", "Switch to location C."],
-  [["The Technician filter offers staff member B."], ["The Technician filter is on, set to staff member B."],
-   ["The board loads for location C.", "If the Technician filter is still on there, \"No technicians yet\" does not show."]],
-  ["S3-R10"], marker="PO:filter-on-empty")
+  [["The filter offers staff member B."], ["The Technician filter is on, set to staff member B."],
+   ["The board loads for location C.", "Staff member B is no longer picked in the Technician filter: no Technician filter is on.",
+    f'The board shows "{NT_TITLE}" with the text "{NT_TEXT}"']],
+  ["S3-R10", "S3-N1", A(3)])
 
 # ---- refresh timing (S1-E3) ------------------------------------------------------------------------------------------------------
 TAB2 = "Have Settings, Staff open in a second browser tab."
@@ -307,16 +321,24 @@ C("S3-47", S, "If only the technician list fails, the work order still loads",
     "The rest of work order 1 loads.", "Staff member B shows grayed out as the lead and on line 1."],
    ["The dropdown offers nobody (it is empty on a first load)."]],
   ["EH-S3"], marker=HOLD("a manual tester cannot make only the list of technicians fail while the rest of the work order loads"))
-C("S3-48", S, "A Technician filter set to someone who is then turned off",
-  [ADMIN, A_ON, B, TAB2, BOARD],
-  ["Open the Technician filter.", "Pick staff member A in the Technician filter."] + OFF_ELSEWHERE + ["Switch to the Board View tab.", "Reload the Board View page."],
-  [["The filter offers staff member A."], ["The board shows only staff member A's work."]] + OFF_ELSEWHERE_RES +
-  [["Board View shows, not reloaded."], ["The Technician filter no longer offers staff member A.", "What the filter shows now follows the PO's answer."]],
-  ["S3-R3", "S3-N1"], marker="PO:filter-set-to-former")
+C("S3-48", S, "A person picked in the filter who is then turned off drops out of the filter",
+  [ADMIN, staff(role="the built-in Parts Manager role", extra=", leading no work order"), B,
+   wo(1, "Approved", "staff member B", extra=", with one approved line, line 1, holding a labor entry for staff member A",
+      why=", so staff member A has work that must not move"), TAB2, BOARD],
+  ["Open the Technician filter.", "Pick staff member A in the Technician filter.", "Switch to the Settings, Staff tab.", EDIT_A, "Switch Technician off.", SAVE,
+   "Click Save in the warning.", "Switch to the Board View tab.", "Reload the Board View page.", "Open work order 1."],
+  [["The filter offers staff member A."], ["The Technician filter is on, set to staff member A."], ["The staff list shows."],
+   ["The window shows Technician on."], ["Technician is off."],
+   ['The "Turn Off Technician" warning shows, because staff member A is on line 1.'],
+   ["The warning and the window close.", 'Staff member A\'s row shows "No" in the Technician column.'], ["Board View shows, not reloaded."],
+   ["Staff member A is no longer picked in the Technician filter, as if never picked, and is no longer offered there.",
+    "Work order 1's card is still in staff member B's column: it did not move."],
+   ["Staff member B is still the lead and line 1 still shows staff member A's labor entry."]],
+  ["S3-N1", "S3-R3", "S2-R5", A(4)])
 
 # Location C cases: the switch to location C is the last precondition, after every record is set up there.
 import tt_lib as _L
 for _c in _L.CASES:
     if _c["sec"] == "S3" and _c["key"] != "S3-36" and any(_p.startswith("Have a new location for this test, location C") for _p in _c["pre"]) \
-            and not any(_p.startswith("Start on") for _p in _c["pre"]):
+            and not any(_p.startswith("Start on") for _p in _c["pre"]) and SW_C not in _c["pre"]:
         _c["pre"].append(SW_C)

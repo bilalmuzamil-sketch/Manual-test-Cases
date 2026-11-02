@@ -58,11 +58,13 @@ for c in L.CASES:
     q = h.split("Exact quotes from the source")[1].split("References from Design")[0]
     if not q.split("</strong></p>", 1)[1].startswith("<p>From: "): probs.append(f"{k}: quotes do not start with a From line")
     if q.count("<p>From: ") != q.count("<ul>"): probs.append(f"{k}: a quote group without its own From line")
-    if f"Epic {L.EPIC}" not in q or L.NOBUILD not in q or "version 17" not in q: probs.append(f"{k}: epic, PRD version or build line missing")
+    _ver = "version 18" if L.on_v18(c) else "version 17"   # named set: the set and new cases quote v18, every other case keeps v17
+    if f"Epic {L.EPIC}" not in q or L.NOBUILD not in q or _ver not in q: probs.append(f"{k}: epic, PRD version or build line missing")
+    if L.on_v18(c) and re.search(r"version 17\b", q): probs.append(f"{k}: a named-set or new case still names PRD version 17")
     if "claude.ai/artifact" in h.split("References from Design")[0]: probs.append(f"{k}: a design reference above the References from Design block")
     has = "<p></p><p><strong>References from Design</strong></p>" in h
-    if c["key"] in L.DREFS and not has: probs.append(f"{k}: no References from Design block although a board applies")
-    if c["key"] not in L.DREFS and "References from Design" in h: probs.append(f"{k}: a References from Design heading with no board behind it")
+    if L.design_for(c) and not has: probs.append(f"{k}: no References from Design block although a board applies")
+    if not L.design_for(c) and "References from Design" in h: probs.append(f"{k}: a References from Design heading with no board behind it")
     pre = f["custom_preconds"]
     if not (pre.startswith("<p><strong>Preconditions</strong></p><ul><li>") and pre.endswith("</li></ul>")): probs.append(f"{k}: Preconditions not one heading and one bullet list")
     if c["api"] and not re.search(r"\b(GET|PATCH|POST|PUT)\b|Public API", " ".join(c["steps"])): probs.append(f"{k}: an API case whose steps name no request")

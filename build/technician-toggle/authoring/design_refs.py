@@ -81,3 +81,41 @@ ref(["S4-07"], ["p1-02"], notes=["The list's load error is not drawn (register T
 ref(["S4-08", "S4-09", "S4-10"], ["p1-02"], notes=["The after-the-end-date state is not drawn (register TT-N17)."])
 # ---- What must not change (page 6 board note) ------------------------------------------------------------------------------------
 ref(["INV-01", "INV-02", "INV-07", "INV-10"], [], page_only='page "6 Technician dropdowns on a work order" (board note; no picture)', words=[P6_NOTE])
+
+# ---- Design version 1793640819-ff4d (2 Nov 2026, after Chris's answers 5, 6 and 8): only NotATech (page 3), TurnOn (page 2) and
+# WorkOrder (page 6) changed their words; every screenshot is unchanged. A named-set or new case names the new version and quotes its
+# new words; every other case keeps the version and words it was written with (named set: nothing outside it changes).
+V_OLD, V_NEW = "version 1793629882-06f7", "version 1793640819-ff4d"
+WORDS18 = {
+ "Turning Time Clock off turns Technician off. Turning Time Clock back on leaves Technician off; the user turns it on.":
+ "Turning Time Clock off turns Technician off. Turning Time Clock back on: in New Staff Member, Technician is set from the role again (on "
+ "for the built-in Technician or Foreman role), unless the user already switched it by hand (page 2); in Edit Staff Member it stays off and the user turns it on.",
+ "Anyone already on a line who is not a technician any more stays on it and shows grayed out, the same as a deactivated technician today.":
+ "Anyone already on a line who is not a technician any more stays on it. In Edit Line they show as an ordinary chip, not grayed out, "
+ "removable with its X; the lock shows instead if they logged time on the line. Grayed out still means a deactivated technician, as today.",
+ "Shown in the New Staff Member window; Edit behaves the same.":
+ "Shown in the New Staff Member window; the grayed-out toggle and both tooltips are the same in Edit Staff Member.",
+}
+SAN = "Save & Add Next starts the next person fresh: no role, Time Clock off, Technician off, and any earlier switch by hand is forgotten."
+RULED = {
+ "S1-16": ["Ruled: Chris answered question 5 (a), as the PRD: New Staff Member sets Technician again from the role; the design's page 3 "
+           "note now says the same (register TT-D01, PO-RULED)."],
+ "S3-24": ["Ruled: Chris answered question 6 (a), as the PRD: an ordinary chip, not grayed out; the design's page 6 note now says the "
+           "same (register TT-D02, PO-RULED)."],
+ "S3-29": ["Ruled: Chris answered question 7 (c): keep both sentences (register TT-D04, PO-RULED); the design system's one-sentence rule does not apply here."],
+ "S1-37": ["Ruled: Chris answered question 8 (a): Save & Add Next starts the next person as if the window had just opened (register "
+           "TT-D06, PO-RULED); the design's page 2 note now says the same."],
+ "D-27": ["Ruled: Chris answered question 6 (a), as the PRD; the design's page 6 note now matches it (register TT-D02, PO-RULED). The "
+          "design-version case D-34 is deleted."],
+ "D-29": ["Ruled: Chris answered question 7 (c): keep both sentences; the design system's one-sentence rule does not apply to this state "
+          "(register TT-D04, PO-RULED)."],
+}
+RULED["S3-25"] = RULED["S3-26"] = RULED["S3-24"]; RULED["S3-30"] = RULED["S3-29"]
+EXTRA18 = {"S1-37": [SAN]}
+
+def for_case(key, v18):
+    d = DREFS.get(key)
+    if not d or not v18: return d
+    d = {**d, "pages": d["pages"].replace(V_OLD, V_NEW), "words": [WORDS18.get(w, w) for w in d.get("words") or []] + EXTRA18.get(key, []),
+         "notes": RULED.get(key) or [n.replace(o, w) for n in d.get("notes") or [] for o, w in [next(((a, b) for a, b in WORDS18.items() if a in n), ("", ""))]]}
+    return d

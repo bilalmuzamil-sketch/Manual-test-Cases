@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1793635166,
  "updated_by": 3,
- "updated_on": 1793635166,
+ "updated_on": 1793643073,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -25,11 +25,11 @@
  "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a new location for this test, location C, in the same organization, with no work order on the open tab, where no enrolled staff member is a technician (every staff member enrolled there has Technician off), so the board there has no technician and no work.</li><li>Make sure neither Assigned to me nor a Technician filter is on.</li><li>Switch to location C.</li></ul>",
  "custom_steps": "<ol><li>Open Work Orders, Board View.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The \"Nothing here yet\" state shows with its title unchanged.</li><li>Its text reads \"Turn Technician on for your technicians and create your first work order to track work by tech.\"</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Technician Toggle\", Confluence 977371146, version 17 (2 Nov 2026, Chris Ward), read 2 Nov 2026 &middot; Epic SV-11788, story SV-11881 (Story 3, Who appears on the technician lists)</p><ul><li><strong>S3-R10:</strong> &ldquo;When Board View or Tech View has no technician column or group at all (no technician at the location, no column kept for a non-technician lead under S3-E1 and no pinned column under S3-E2), and neither Assigned to me nor a Technician filter is on, it shows the title \"No technicians yet\" with the text \"Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned.\" When the open tab has no work orders either, the \"Nothing here yet\" state keeps its title, and its text reads \"Turn Technician on for your technicians and create your first work order to track work by tech.\" The button the Board View and Tech View PRD (S1-N1d, SV-11555) calls Add Technician reads \"Set Up Technicians\" and opens the staff list (Settings, Staff), for the same users who see it today. This replaces S1-N1d's text and button target once this feature ships.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/2/2026</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The \"Nothing here yet\" state shows with its title unchanged.</li><li>Its text reads \"Turn Technician on for your technicians and create your first work order to track work by tech.\"</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Technician Toggle\", Confluence 977371146, version 18 (2 Nov 2026, Chris Ward), read 2 Nov 2026 &middot; Epic SV-11788, story SV-11881 (Story 3, Who appears on the technician lists)</p><ul><li><strong>S3-R10:</strong> &ldquo;When Board View or Tech View has no technician column or group at all (no technician at the location, no column kept for a non-technician lead under S3-E1 and no pinned column under S3-E2), and neither Assigned to me nor a Technician filter is on, it shows the title \"No technicians yet\" with the text \"Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned.\" A Technician filter can be on at such a location only through its Unassigned or Deleted technician choices: people picked at another location are dropped from the filter when the location changes (S3-N1). When the open tab has no work orders either, the \"Nothing here yet\" state keeps its title, and its text reads \"Turn Technician on for your technicians and create your first work order to track work by tech.\" The button the Board View and Tech View PRD (S1-N1d, SV-11555) calls Add Technician reads \"Set Up Technicians\" and opens the staff list (Settings, Staff), for the same users who see it today. This replaces S1-N1d's text and button target once this feature ships.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/2/2026</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

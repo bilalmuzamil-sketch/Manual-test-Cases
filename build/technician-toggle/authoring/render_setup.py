@@ -86,11 +86,11 @@ REC = [
 ]
 for t, r in REC: w(f"- **{t}:** {r}")
 w("")
-w("## 3. Open questions and held cases")
+w("## 3. Questions (all 8 answered, 2 Nov 2026) and held cases")
 w("")
 for i, (slug, q, basis, opts, holds) in enumerate(QUESTIONS, 1):
     keys = [c["key"] for c in L.CASES if c["marker"] == L.PO_HOLD(i)]
-    w(f"- **Question {i}** ({slug}): {q} Held: {', '.join(keys) or 'none'}.")
+    w(f"- **Question {i}** ({slug}): {q} **Answered by Chris Ward, 2 Nov 2026:** {L.ANS[i]} Held now: {', '.join(keys) or 'none'}.")
 w("- Other held cases and why: " + "; ".join(f"{c['key']} ({c['marker'][len('AUTOMATION: HOLD - '):]})" for c in L.CASES
                                              if c["held"] and "waiting on the PO" not in c["marker"] and c["marker"] != L.PRE_REL) + ".")
 w(f"- Release-day cases held with the production marker: {', '.join(c['key'] for c in L.CASES if c['marker'] == L.PRE_REL)}.")

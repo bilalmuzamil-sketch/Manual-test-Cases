@@ -159,6 +159,53 @@ NOT_TESTABLE = {
                "setting switched on."),
 }
 
+# ---- PRD v18 (2 Nov 2026, Chris's answers 1-8) and the QA lead's "Named set" (Rule 122 amendment). Only the named set and new cases
+# quote v18 and say "version 18" on their From line; every other case keeps its live text (v17 quotes, which are word for word in v18:
+# checked by verify_v18_named_set.py). Pattern: build/credit-terms/authoring/ct_lib.py (NAMED_SET / on_v5). The Change Log is cut off.
+PRD18_FILE = f"{P}/sources/CONFLUENCE-977371146-v18-2026-11-02.md"
+PRD18_MD = open(PRD18_FILE).read().split("## 9. Change Log")[0]
+PRD18_TXT = md_to_text(PRD18_MD)
+PRD18W = ws(PRD18_TXT)
+PRD18_RAWW = ws(re.sub(r"<[^>]+>", "", re.sub(r"\[([^\]]*)\]\(([^)]*)\)", r"\1", PRD18_MD)))
+PRD18_NAME = 'PRD "Technician Toggle", Confluence 977371146, version 18 (2 Nov 2026, Chris Ward)'
+CODE18 = {}
+for line in PRD18_TXT.split("\n"):
+    m = re.match(r"^\s*-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
+    if m and m.group(1) not in CODE18: CODE18[m.group(1)] = m.group(2).strip()
+CHANGED18 = sorted(k for k in CODE if CODE18.get(k) != CODE[k])
+if set(CODE18) != set(CODE) or CHANGED18 != ["S1-R3", "S1-R8", "S3-N1", "S3-R10"]: raise SystemExit(f"PRD v18 codes changed: {CHANGED18}")
+def _v18_line(text):
+    head = ws(text)[:60]
+    hits = [ws(re.sub(r"^\s*-\s*", "", l)) for l in PRD18_TXT.split("\n") if ws(re.sub(r"^\s*-\s*", "", l)).startswith(head)]
+    if len(hits) != 1: raise SystemExit(f"PRD v18: {len(hits)} lines start like {head!r}")
+    return hits[0]
+def _in18(t): return ws(t) in PRD18W or ws(t) in PRD18_RAWW
+NAMED18 = {k: (lab, t if _in18(t) else _v18_line(t)) for k, (lab, t) in NAMED.items()}
+NAMED18_CHANGED = sorted(k for k in NAMED if NAMED18[k][1] != NAMED[k][1])
+if NAMED18_CHANGED != ["EH-S1"]: raise SystemExit(f"named items that differ in v18: {NAMED18_CHANGED} (expected only EH-S1)")
+for _k, (_l, _t) in SUB.items():
+    if not _in18(_t): raise SystemExit(f"sub-item {_k} is not word for word in PRD v18")
+import csv as _csv, json as _json
+_MAPF = f"{P}/testrail-id-map.csv"
+MAPPED = {r["key"]: r["case_id"] for r in _csv.DictReader(open(_MAPF))} if os.path.exists(_MAPF) else {}
+NAMED_SET = (set(_json.load(open(f"{P}/po-answers-2026-11-02/named-50-from-codes.json")))
+             | {"D-26", "S1-25", "S3-09", "S3-10", "S3-21", "S3-23"}) - {"D-33", "D-34"}   # D-33, D-34 deleted (answers 5, 6)
+DELETED = {"D-33": "C897374", "D-34": "C897375"}
+NO_MANUAL = {"S2-34", "S2-35", "S2-36", "S3-47", "S4-07"}   # QA lead 2 Nov 2026: "Leave them out" (NO-MANUAL-CASES.md); library only, outside the set
+def on_v18(c):
+    """A case in the named set, or a new case (no C-id yet, not one of the library-only no-manual cases), quotes PRD v18."""
+    return c["key"] in NAMED_SET or (c["key"] not in MAPPED and c["key"] not in NO_MANUAL)
+ANS_FILE = f"{P}/po-answers-2026-11-02/ANSWERS-Chris-Ward-2026-11-02.md"
+ANSW = ws(open(ANS_FILE).read())
+ANS = {int(m.group(1)): m.group(0) for m in re.finditer(r"(\d)\. .*", re.sub(r"\*\*Answer: ", "", open(ANS_FILE).read().replace("**", "")))
+       if m.group(0)[:2] in {f"{i}." for i in range(1, 9)}}
+if sorted(ANS) != list(range(1, 9)): raise SystemExit(f"answers file: {sorted(ANS)}")
+ANS = {k: ws(v) for k, v in ANS.items()}
+ANS_NAME = ('Chris Ward\'s answers, Google Sheet "Technician Toggle – questions for Chris Ward (2 Nov 2026)", '
+            "https://docs.google.com/spreadsheets/d/1nLKkgSgmtqCYu4eu15_9xN38ml32tDnJls42PPq_A4M, column E, answered 2 Nov 2026 "
+            "(po-answers-2026-11-02/ANSWERS-Chris-Ward-2026-11-02.md)")
+def A(n): return (f"Answer {n} (question {n})", ANS[n])
+
 STORY = {1: ("SV-11879", "Story 1, Technician toggle on a staff member"), 2: ("SV-11880", "Story 2, Warning before turning Technician off"),
          3: ("SV-11881", "Story 3, Who appears on the technician lists"), 4: ("SV-11882", "Story 4, Technician column and notice on the staff list"),
          5: ("SV-11883", "Story 5, Public API - technician value on staff"), 6: ("SV-11884", "Story 6, Release day")}
@@ -183,10 +230,12 @@ def C(key, sec, title, pre, steps, res, q, marker=None, note="", stories=None, a
 
 def quotes(c):
     out = []
+    v18 = on_v18(c)
+    codes, named = (CODE18, NAMED18) if v18 else (CODE, NAMED)
     for x in c["q"]:
         if isinstance(x, tuple): out.append(x)
-        elif x in CODE: out.append((x, CODE[x]))
-        elif x in NAMED: out.append(NAMED[x])
+        elif x in codes: out.append((x, codes[x]))
+        elif x in named: out.append(named[x])
         elif x in SUB: out.append(SUB[x])
         else: raise KeyError(f"{c['key']}: unknown quote key {x}")
     return out
@@ -213,17 +262,15 @@ def story_nums(c):
 
 e = lambda s: html.escape(s, quote=False)
 
-try:
-    from design_refs import DREFS            # round 2 (design cases): key -> {"pages": [...], "pictures": [...], "words": [...]}
-except ImportError:
-    DREFS = {}
+from design_refs import DREFS, for_case as _for_case   # key -> {"pages", "pictures", "words", "notes"}; for_case applies design v1793640819-ff4d
+def design_for(c): return _for_case(c["key"], on_v18(c))
 
 
 def design_block(c):
     """Rule 117 tenth amendment: design references in their own block below the quotes (round 2, 2 Nov 2026): the board/page and picture
     names, the pictures attached to the case, the design's own words quoted, and any difference with its register id. A case whose
     screen no board draws has no entry in DREFS and gets no References from Design heading at all (coordinator, round 2)."""
-    d = DREFS.get(c["key"])
+    d = design_for(c)
     if not d: return ""
     h = "<p></p><p><strong>References from Design</strong></p>"
     if d.get("pages"): h += "<p>" + e(d["pages"]) + "</p>"
@@ -235,8 +282,9 @@ def design_block(c):
 
 # every word quoted from the design must be in the design package (board files, the design system's files, or the figure captions)
 _DESIGN_DIR = f"{P}/design-2026-11-02/files/project"
+_DESIGN_DIR18 = f"{P}/design-2026-11-02/files-v1793640819/project"      # design version 1793640819-ff4d (2 Nov 2026, after answers 5, 6, 8)
 _dtext = []
-for _root, _dirs, _files in os.walk(_DESIGN_DIR):
+for _root, _dirs, _files in list(os.walk(_DESIGN_DIR)) + list(os.walk(_DESIGN_DIR18)):
     for _f in _files:
         if _f.endswith((".html", ".css", ".json", ".md")): _dtext.append(open(os.path.join(_root, _f), errors="replace").read())
 DESIGNW = ws(re.sub(r"\s*\*\s+", " ", re.sub(r"<[^>]+>", " ", " ".join(_dtext))))
@@ -245,13 +293,15 @@ DESIGN_IMAGES = f"{P}/design-2026-11-02/images"
 
 
 def quotes_block(c):
-    groups = {"prd": [], "jira": [], "plan": []}
+    groups = {"prd": [], "jira": [], "plan": [], "ans": []}
     for l, t in quotes(c):
-        groups["jira" if l.startswith("Jira SV-") else "plan" if l.startswith("Tech plan") else "prd"].append((l, t))
+        groups["jira" if l.startswith("Jira SV-") else "plan" if l.startswith("Tech plan") else "ans" if l.startswith("Answer ") else "prd"].append((l, t))
     sto = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in story_nums(c))
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
-    for name, read, g in ((PRD_NAME, PRD_READ, groups["prd"]), (JIRA_NAME, PRD_READ, groups["jira"]), (PLAN_NAME, PRD_READ, groups["plan"])):
+    prd_name = PRD18_NAME if on_v18(c) else PRD_NAME
+    for name, read, g in ((prd_name, PRD_READ, groups["prd"]), (ANS_NAME, PRD_READ, groups["ans"]), (JIRA_NAME, PRD_READ, groups["jira"]),
+                          (PLAN_NAME, PRD_READ, groups["plan"])):
         if not g: continue
         h += f"<p>From: {e(name)}, {read}" + (f" &middot; Epic {EPIC}, {e(sto)}" if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in g) + "</ul>"
@@ -347,11 +397,15 @@ def check(c):
             if ws(tq) not in JIRAW: p.append(f"{k}: quote {l} not verbatim in the saved Jira tickets")
         elif l.startswith("Tech plan"):
             if ws(tq) not in PLANW: p.append(f"{k}: quote {l} not verbatim in the saved tech plan")
+        elif l.startswith("Answer "):
+            if ws(tq) not in ANSW: p.append(f"{k}: quote {l} not word for word in Chris's answers")
+        elif on_v18(c):
+            if not _in18(tq): p.append(f"{k}: quote {l} not verbatim in PRD v18")
         elif ws(tq) not in PRDW and ws(tq) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v17")
-    if not any(isinstance(x, str) or not x[0].startswith(("Jira", "Tech plan")) for x in c["q"]):
+    if not any(isinstance(x, str) or not x[0].startswith(("Jira", "Tech plan", "Answer ")) for x in c["q"]):
         p.append(f"{k}: no PRD quote (Rule 57: the PRD is the source of every expected result)")
     if not c["marker"].startswith("AUTOMATION: "): p.append(f"{k}: marker")
-    d = DREFS.get(k)
+    d = design_for(c)
     if c["sec"] == "DESIGN" and not d: p.append(f"{k}: a design case without References from Design")
     if d:
         for x in d.get("pictures") or []:
@@ -359,4 +413,7 @@ def check(c):
         for w in d.get("words") or []:
             if ws(w) not in DESIGNW and ws(w) not in DESIGNW_RAW: p.append(f"{k}: design words not found in the design package: {w[:70]!r}")
         if not (d.get("pages") or "").startswith('Design canvas "Technician Toggle"'): p.append(f"{k}: References from Design does not name the canvas")
+        if on_v18(c) and "1793629882-06f7" in d["pages"]: p.append(f"{k}: a named-set or new case still names the old design version")
+        if on_v18(c) and any(o in w for o in ("leaves Technician off; the user turns it on", "shows grayed out, the same as a deactivated", "Edit behaves the same") for w in d.get("words", []) + d.get("notes", [])):
+            p.append(f"{k}: a named-set or new case still quotes the design's superseded words")
     return p

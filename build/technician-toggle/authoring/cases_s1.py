@@ -1,6 +1,6 @@
 """Story 1 — Technician toggle on a staff member (SV-11879): layout, "New" pill, New Staff Member pre-fill from the role, Time Clock and
 role rules, Edit Staff Member, save rules, Billable and Sales Representative, deactivation, permissions."""
-from tt_lib import C, HOLD
+from tt_lib import C, HOLD, A
 from common import *
 
 S = "S1"
@@ -133,7 +133,7 @@ C("S1-16", S, "New Staff Member sets Technician again when Time Clock changes",
   [NEWWIN, 'In Role, pick "Technician".', TC_ON, "Switch Time Clock off.", "Switch Time Clock on."],
   [["The New Staff Member window opens."], ["Role shows Technician."], [TC_ON_RES, "Technician is on."],
    ["Technician switches off and is grayed out."], ["Technician switches on again by itself."]],
-  ["S1-R3", "S1-R4", "S1-R5"], marker="PO:tt-d01")   # round 2: the design's page 3 note says it stays off (TT-D01)
+  ["S1-R3", "S1-R4", "S1-R5", A(5)])   # round 3: released, Chris answered question 5 (a), as the PRD
 
 C("S1-17", S, "After a hand switch off, role and Time Clock no longer turn Technician on",
   [ADMIN, LIST],
@@ -298,12 +298,42 @@ C("S1-36", S, "Deactivate Account shows no Turn Off Technician warning and keeps
    ["Staff member A is listed last, grayed out, with the check mark, and cannot be picked.", "Staff member B is offered and can be picked."]],
   ["S1-E4", "S1-E2", "S3-R7"])
 
-# round 2 (2 Nov 2026): Save & Add Next (design shows it; the PRD names only "the window's existing Save"; register TT-D06, PO question 8)
-C("S1-37", S, "After Save & Add Next, the empty form sets Technician from the role again",
+# round 3 (2 Nov 2026, PRD v18 S1-R3 and Chris's answer 8): Save & Add Next starts the next person fresh. Rewritten top to bottom.
+C("S1-37", S, "Save & Add Next starts the next person fresh and forgets a hand switch",
   [ADMIN, "Choose names and email addresses for two new staff members made by this test.", LIST],
-  [NEWWIN] + NEW_FIELDS + [TC_ON, 'In Role, pick "Parts Manager".', "Switch Technician on.", "Click Save & Add Next.", TC_ON, 'In Role, pick "Service Advisor".'],
+  [NEWWIN] + NEW_FIELDS + [TC_ON, 'In Role, pick "Technician".', "Switch Technician off.", "Click Save & Add Next.", "Switch Time Clock on.", 'In Role, pick "Technician".'],
   [["The New Staff Member window opens."]] + NEW_FIELDS_RES +
-  [[TC_ON_RES], ["Technician is off."], ["Technician is on."],
-   ["The first staff member is saved and the window stays open with an empty form for the next person."],
-   [TC_ON_RES], ["Role shows Service Advisor.", "Technician is off, set from the role: the first person's switch by hand is not carried over."]],
-  ["S1-R3"], marker="PO:tt-d06")
+  [[TC_ON_RES], ["Technician switches on by itself."], ["Technician is off (switched by hand)."],
+   ["The first staff member is saved and the window stays open with an empty form.", "The empty form shows no role, Time Clock off and Technician off."],
+   ["Time Clock is on.", "Technician is still off (no role is picked yet)."],
+   ["Role shows Technician.", "Technician switches on by itself: the first person's switch by hand was forgotten."]],
+  ["S1-R3", "KD-NEW", A(8)])
+
+# round 3 (PRD v18 Story 1 Error Handling, Chris's answer 1): the refusal messages come from ShopView's own staff window with old data,
+# reached by hand with two browser tabs on the same staff member.
+def stale(key, title, pre_a, change_steps, change_res, msg, q):
+    C(key, S, title, [ADMIN, pre_a, LIST],
+      [EDIT_A, "Open staff member A's Edit Staff Member window in a second browser tab."] + change_steps + [SAVE, "Switch to the first browser tab.",
+       "Switch Technician on.", SAVE, "Reload the page.", EDIT_A],
+      [["The window shows Time Clock on and Technician off."], ["The second tab shows the same window."]] + change_res +
+      [["The second tab's window closes and the change is saved."], ["The first tab still shows the old window: Time Clock on and Technician off."],
+       ["Technician is on in this old window."],
+       [f'The save is refused with "{msg}", shown the way the app shows a refused save today.', "The window does not close."],
+       ["The staff list loads again."], ["Technician is off: nothing from the refused save was kept.", "The change saved in the second tab is still there."]],
+      q)
+stale("S1-38", "An old staff window that turns Technician on without Time Clock is refused",
+      staff(tech=False, role="the built-in Parts Manager role", extra=", leading no work"),
+      ["Switch Time Clock off."], [["Time Clock is off in the second tab."]], "A technician must have Time Clock on.",
+      ["EH-S1", "UFS-5", A(1)])
+stale("S1-39", "An old staff window that turns Technician on for an Office User is refused",
+      staff(tech=False, role="the built-in Parts Manager role", extra=", leading no work"),
+      ['In Role, pick "Office User".'], [["Role shows Office User in the second tab."]], "This role can't be a technician.",
+      ["EH-S1", "UFS-6", A(1)])
+stale("S1-40", "An old staff window that turns Technician on for a Time Clock User is refused",
+      staff(tech=False, role="the built-in Parts Manager role", extra=", leading no work"),
+      ['In Role, pick "Time Clock User".'], [["Role shows Time Clock User in the second tab."]], "This role can't be a technician.",
+      ["EH-S1", "UFS-6"])
+stale("S1-41", "With Time Clock off and Office User, an old window gets the role message",
+      staff(tech=False, role="the built-in Parts Manager role", extra=", leading no work"),
+      ["Switch Time Clock off.", 'In Role, pick "Office User".'], [["Time Clock is off in the second tab."], ["Role shows Office User in the second tab."]],
+      "This role can't be a technician.", ["EH-S1", "UFS-6"])

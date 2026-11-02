@@ -2,7 +2,7 @@
 outside the staff window can reach (S1-R4 "any other way", S1 Error Handling) and S3-N3's outside tool. The requests named here are
 the Public API's staff requests as the tech plan lists them (GET /api/v1/staff, GET /api/v1/staff/<id>, GET /api/v1/locations/<id>/staff,
 PATCH /api/v1/staff/<id>); the tester checks them against the Public API documentation."""
-from tt_lib import C, HOLD, PRE_REL
+from tt_lib import C, HOLD, PRE_REL, A
 from common import *
 
 S = "API"
@@ -66,22 +66,21 @@ api("API-08", "Turning Time Clock off through the API turns Technician off",
     [["The update succeeds: it is not refused."], ['The record shows Time Clock off and "technician": false.'],
      ["Time Clock is off.", "Technician is off and grayed out."]],
     ["S1-R4", "EH-S1"])
-api("API-09", "A request switching Technician on with Time Clock off is refused",
-    [ADMIN, staff(tc=False, tech=False, role="the built-in Parts Manager role"), A_ID],
-    ['Send PATCH /api/v1/staff/<staff member A\'s id> with the API key, with "technician": true.', GET_A],
-    [['The request is refused with "A technician must have Time Clock on."', "Nothing is saved."], ['The record still has "technician": false.']],
-    ["EH-S1", "UFS-5", "S5-N1"], marker="PO:refusal-route")
-api("API-10", "A request switching Technician on for an Office User is refused",
-    [ADMIN, staff(tech=False, role="the built-in Office User role"), A_ID],
-    ['Send PATCH /api/v1/staff/<staff member A\'s id> with the API key, with "technician": true.', GET_A],
-    [['The request is refused with "This role can\'t be a technician."', "Nothing is saved."], ['The record still has "technician": false.']],
-    ["EH-S1", "UFS-6", "S5-N1"], marker="PO:refusal-route")
-api("API-11", "With Office User and Time Clock off, the refusal gives the role message",
-    [ADMIN, staff(tc=False, tech=False, role="the built-in Time Clock User role"), A_ID],
-    ['Send PATCH /api/v1/staff/<staff member A\'s id> with the API key, with "technician": true.', GET_A],
-    [['The request is refused with "This role can\'t be a technician."', 'It is not refused with "A technician must have Time Clock on."'],
-     ['The record still has "technician": false.']],
-    ["EH-S1", "UFS-6"], marker="PO:refusal-route")
+# round 3 (PRD v18 Story 1 Error Handling, S5-N1, Chris's answer 1): the Public API cannot set Technician, so it never gets the refusal
+# messages; a staff update carrying the value is accepted and the value is ignored. Rewritten top to bottom; released.
+def ignored(key, title, a, note_res):
+    api(key, title, [ADMIN, a, A_ID, "Choose a new phone number for staff member A."],
+        ['Send PATCH /api/v1/staff/<staff member A\'s id> with the API key, with the new phone number and "technician": true.', GET_A, "Open Settings, Staff in the app."],
+        [["The update is accepted, as today: no refusal message comes back.", "The value sent for technician is ignored."],
+         ["The record shows the new phone number and \"technician\": false."] + note_res,
+         ['Staff member A\'s row shows "No" in the Technician column.']],
+        ["S5-N1", "EH-S1", A(1)])
+ignored("API-09", "A Public API update with technician true and Time Clock off is ignored",
+        staff(tc=False, tech=False, role="the built-in Parts Manager role"), ["Time Clock is still off."])
+ignored("API-10", "A Public API update with technician true for an Office User is ignored",
+        staff(tech=False, role="the built-in Office User role"), ["The role is still Office User."])
+ignored("API-11", "A Public API update with technician true for a Time Clock User is ignored",
+        staff(tc=False, tech=False, role="the built-in Time Clock User role"), ["Time Clock is still off and the role is still Time Clock User."])
 api("API-12", "Moving a technician to Office User through a request saves and turns it off",
     [ADMIN, staff(role="the built-in Parts Manager role", extra=", leading no work"), A_ID],
     ["Send a staff update request with the API key that moves staff member A to the built-in Office User role.", GET_A],
