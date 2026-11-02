@@ -502,18 +502,20 @@ await run('C97002', async (o) => { const K = 'P2C97002'; const A = await T(K, 'A
 save();
 
 // ═════ C97007 — a work order given a new lead from Reassign or its page goes to the bottom ═════
-await run('C97007', async (o) => { const K = 'P2C97007'; const A = await T(K, 'Ana'), B = await T(K, 'Ben'), C = await T(K, 'Cal');
+await run('C97007', async (o) => { const K = 'P2C97007'; const A = await T(K, 'Ana'), C = await T(K, 'Cal');
+  // 2 Nov: the work order page's Lead Technician list shows the first 30 names only, so Technician-B gets a name that sorts near the top
+  const B = (await person(a, 'AAZZ P2C97007', 'Ben', { role: TECH_ROLE, email: `zz.wob.p2c97007.aazzben${D}`, clockable: true })).row; o.techB = nmT(B);
   const s = await mkSet(`ZZAUTOTEST ${K} Reassign Bottom`, [{ co: 'Aardvark Co', lead: C }, { co: 'Abbey Co', lead: C }, { co: 'Bravo Co', lead: B }, { co: 'Delta Co', lead: B }, { co: 'Echo Co', lead: C }]);
   const W: Record<string, string> = { W1: 'Aardvark Co', W2: 'Abbey Co', W3: 'Bravo Co', W4: 'Delta Co', W5: 'Echo Co' }; const nmW = (xs: string[]) => xs.map((x) => Object.keys(W).find((k) => W[k] === x) ?? x);
   await pinIds([B, C]); await go('Board View', s.q); o.start = nmW(await orderBV(s, B.staff_id));
-  await openLeadAction(card(s, W.W1)); await pickInDialog(new RegExp(`${K} Ben`)); o.s6 = await after('C97007-s6'); await p.waitForTimeout(1500); o.s7 = nmW(await orderBV(s, B.staff_id)); await shotC('C97007-s7-order');
+  await openLeadAction(card(s, W.W1)); await pickInDialog(/AAZZ P2C97007 Ben/); o.s6 = await after('C97007-s6'); await p.waitForTimeout(1500); o.s7 = nmW(await orderBV(s, B.staff_id)); await shotC('C97007-s7-order');
   const pg = await p.context().newPage(); try { await pg.goto(`${APP}/workorders/${s.w[W.W2].id}`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(7000); if (await pg.locator('.q-dialog').filter({ hasText: 'New Line' }).count()) await pg.keyboard.press('Escape');
-    o.s8 = await pickLeadTyped(pg, [nmT(B), `${K} Ben`], nmT(B)); o.s8.lead = await leadName(s.w[W.W2].id); } finally { await pg.close().catch(() => {}); }
+    o.s8 = await pickLeadTyped(pg, [nmT(B), 'AAZZ'], nmT(B)); o.s8.lead = await leadName(s.w[W.W2].id); } finally { await pg.close().catch(() => {}); }
   await go('Board View', s.q); o.s9 = nmW(await orderBV(s, B.staff_id)); await shotC('C97007-s9-order');
   await drag(p, card(s, W.W5), card(s, W.W4), 4); o.s10_message = await after('C97007-s10'); await p.waitForTimeout(1500); o.s10 = nmW(await orderBV(s, B.staff_id)); await shotC('C97007-s10-order');
   await display(p, 'Tech View'); await expandSmallGroups(p); await findRow(p, s.w[W.W1].id); o.s11 = nmW(await orderTV(s, B.staff_id)); await shotC('C97007-s11-tech');
   const d2 = (await person(a, 'ZZ WOB', 'Dispatcher Two P2', { role: ROLES['Admin'] ?? Object.entries(ROLES).find(([l]) => /^admin/i.test(l))?.[1], email: `zz.wob.dispatcher2.p2${D}`, clockable: false })).row;
-  const v = await viewAs(browser, p, a, d2.id, '', RUN.toRunner); try { const q = v.page; await go('Tech View', s.q, q); await findRow(q, s.w[W.W1].id);
+  const v = await viewAs(browser, p, a, d2.id, '', RUN.toRunner); try { const q = v.page; o.userBPins = (await a.put(PREF, { value: { ...((await a.get(PREF)).body?.data?.value ?? {}), pinnedTechnicianIds: [B.staff_id, C.staff_id] } })).status; // 2 Nov: User-B's own pins, so Technician-B's column is drawn await go('Tech View', s.q, q); await findRow(q, s.w[W.W1].id);
     o.s12_tech = nmW(((await groups(q)).find((g: any) => g.id === B.staff_id)?.rows ?? []).map(nameOf(s))); await q.screenshot({ path: path.join(EV, 'C97007-s12-userB-tech.png') }).catch(() => {});
     await display(q, 'Board View'); o.s12_board = nmW(((await boardCols(q)).find((c) => c.id === B.staff_id)?.cards ?? []).map(nameOf(s))); await q.screenshot({ path: path.join(EV, 'C97007-s12-userB-board.png') }).catch(() => {}); o.userB = nmT(d2);
   } finally { await v.close(); }
