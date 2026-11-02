@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>2. Turn Technician on for a staff member</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopview/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopview/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.tt-shot{width:1440px;height:900px;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}
+.tt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}
+.tt-cap li{margin:0 0 6px}
+</style>
+</helmet>
+<div data-theme="light" style="width: 6000px; min-height: 2460px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 32px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 8px; max-width: 2400px;">
+    <h2 class="sv-h2" style="margin: 0;">2. Turn Technician on for a staff member</h2>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--sv-text-secondary);">Settings, Staff. Top row: New Staff Member, in production, then this build as it opens and with the Technician role picked. Bottom row, left to right: Edit Staff Member for Olivia Garrett (a Parts Manager with Time Clock on, the SV-11719 case) in production, then this build off, switched on, and the staff list after Save. In both windows the toggles share one row below Billable: Time Clock, Sales Representative, Technician. Before: production code (release v26.43.1). After: this build.</p>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 96px;">
+    <div style="display: flex; gap: 48px; align-items: flex-start;">
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production today (before)</span><span style="font-size: 18px; font-weight: 600;">New Staff Member</span></div>
+        <img class="tt-shot" src="shots/before-new-staff.png" alt="New Staff Member window in production">
+        <figcaption><ul class="tt-cap"><li>Time Clock and Sales Representative sit beside Billable. No Technician toggle.</li></ul></figcaption>
+      </figure>
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">New Staff Member</span></div>
+        <img class="tt-shot" src="shots/after-new-staff.png" alt="New Staff Member window with the Technician toggle off">
+        <figcaption><ul class="tt-cap">
+          <li>The three toggles move to one row of their own below Billable, the same row as Edit: Time Clock, Sales Representative, Technician. Nothing else moves.</li>
+          <li>Technician is last, with the "New" pill (same end date as the staff list pill). The window opens with no role and Time Clock off, so Technician starts off and grayed out.</li>
+        </ul></figcaption>
+      </figure>
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Technician role picked</span></div>
+        <img class="tt-shot" src="shots/after-new-staff-prefill.png" alt="New Staff Member with Time Clock on and the Technician role picked, Technician switched on">
+        <figcaption><ul class="tt-cap">
+          <li>Time Clock on and the built-in Technician role picked: Technician switches on by itself. The built-in Foreman role does the same; every other role, including Parts Technician and custom roles, leaves it off.</li>
+          <li>Changing the role or Time Clock sets it again from the role, until the user switches Technician by hand: from then on their choice wins. Edit Staff Member never does this.</li>
+          <li>Save &amp; Add Next starts the next person fresh: no role, Time Clock off, Technician off, and any earlier switch by hand is forgotten.</li>
+        </ul></figcaption>
+      </figure>
+    </div>
+    <div style="display: flex; gap: 48px; align-items: flex-start;">
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production today (before)</span><span style="font-size: 18px; font-weight: 600;">Edit Staff Member</span></div>
+        <img class="tt-shot" src="shots/before-edit-olivia.png" alt="Edit Staff Member for Olivia Garrett in production">
+        <figcaption><ul class="tt-cap"><li>Time Clock on, so today she is offered as a technician everywhere (pages 5 and 6), with no way to say otherwise.</li></ul></figcaption>
+      </figure>
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Technician off</span></div>
+        <img class="tt-shot" src="shots/after-edit-olivia-off.png" alt="Edit Staff Member with Technician off">
+        <figcaption><ul class="tt-cap"><li>Technician is off: on release day it was turned on only for people who, in the last 90 days, had time on a work order, lead or are on a line of an open work order, or are billable. She was none of those.</li></ul></figcaption>
+      </figure>
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Switched on</span></div>
+        <img class="tt-shot" src="shots/after-edit-olivia-on.png" alt="Technician switched on, not saved yet">
+        <figcaption><ul class="tt-cap"><li>Switched on, not saved yet. Nothing changes until Save &amp; Close. Turning it on never shows a warning and never logs her out.</li></ul></figcaption>
+      </figure>
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Saved</span></div>
+        <img class="tt-shot" src="shots/after-staff-list-olivia-yes.png" alt="Staff list filtered to Parts Manager, Technician Yes">
+        <figcaption><ul class="tt-cap"><li>The staff list, filtered to Parts Manager, now shows Technician Yes. Billable stays No: Technician never changes Billable.</li></ul></figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":6000,"height":2460}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>6. Technician dropdowns on a work order</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopview/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopview/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.tt-shot{width:1440px;height:900px;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}
+.tt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}
+.tt-cap li{margin:0 0 6px}
+</style>
+</helmet>
+<div data-theme="light" style="width: 3024px; min-height: 2460px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 32px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 8px; max-width: 2400px;">
+    <h2 class="sv-h2" style="margin: 0;">6. Technician dropdowns on a work order</h2>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--sv-text-secondary);">Work order S2-17528. Top row: the Lead Technician dropdown. Bottom row: Add Technician on a line. Before: production code (release v26.43.1), where Olivia Garrett led this work order. After: this build, where it has no lead. Time sheets keep every Time Clock user: a Parts Manager can still clock in and record time. Part sales have no technician dropdown on screen, so nothing there looks different.</p>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 96px;">
+    <div style="display: flex; gap: 48px; align-items: flex-start;">
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production today (before)</span><span style="font-size: 18px; font-weight: 600;">Lead Technician</span></div>
+        <img class="tt-shot" src="shots/before-wo-lead-open.png" alt="Lead Technician dropdown offering Olivia Garrett as a normal option">
+        <figcaption><ul class="tt-cap"><li>Olivia Garrett is a normal, selectable option.</li></ul></figcaption>
+      </figure>
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Lead Technician</span></div>
+        <img class="tt-shot" src="shots/after-wo-lead-open.png" alt="Lead Technician dropdown without Olivia Garrett">
+        <figcaption><ul class="tt-cap">
+          <li>Not offered: Parth Fadadu follows Nikola Milosevic. The list holds only staff whose Technician toggle is on and whose Time Clock is on.</li>
+          <li>A current lead who is not a technician any more stays the lead, listed last, grayed out with the check, so the current lead never reads as blank (PRD S3-R7).</li>
+        </ul></figcaption>
+      </figure>
+    </div>
+    <div style="display: flex; gap: 48px; align-items: flex-start;">
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production today (before)</span><span style="font-size: 18px; font-weight: 600;">Add Technician on a line</span></div>
+        <img class="tt-shot" src="shots/before-wo-line-add-oli.png" alt="Add Technician list with Olivia Garrett">
+        <figcaption><ul class="tt-cap"><li>Add Technician open and scrolled to the O's: Olivia Garrett is offered.</li></ul></figcaption>
+      </figure>
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Add Technician on a line</span></div>
+        <img class="tt-shot" src="shots/after-wo-line-add-olivia.png" alt="Add Technician list without Olivia Garrett">
+        <figcaption><ul class="tt-cap">
+          <li>Not offered: Parth Fadadu follows Nikola Milosevic. Add Labor uses the same list.</li>
+          <li>Anyone already on a line who is not a technician any more stays on it. In Edit Line they show as an ordinary chip, not grayed out, removable with its X; the lock shows instead if they logged time on the line. Grayed out still means a deactivated technician, as today.</li>
+        </ul></figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3024,"height":2460}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
