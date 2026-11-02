@@ -1,0 +1,15 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim(); const S=JSON.parse(rd('br-seed.json')); const [X,Y]=S.wos;
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const post=(u,b)=>s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+const wps=(await s.api('/api/staff/my-workplaces')).json.data.collection; const A=wps.find(w=>w.id===S.A), B=wps.find(w=>w.id===S.B);
+await post('/api/iam/change-location',{workplace_id:B.id,workplace_timezone:B.timezone});
+const o=(await s.api('/api/inventory/orders/208e4be0-7a05-42b1-8ec1-ee9726376916')).json.data?.order; 
+console.log('order keys',Object.keys(o||{}).join(','));
+console.log('order',JSON.stringify(Object.fromEntries(Object.entries(o||{}).filter(([k])=>/work|place|number|status/i.test(k)))));
+console.log('item0',JSON.stringify((o?.items||[])[0]).slice(0,500));
+await post('/api/iam/change-location',{workplace_id:A.id,workplace_timezone:A.timezone});
+const lr=(await s.api('/api/work-orders/lines/'+X.woId)).json.data; const ln=(Array.isArray(lr)?lr:lr.collection)[0];
+console.log('X line techs',JSON.stringify({assigned:ln.assigned_techs,tech_times:ln.tech_times,total:ln.total_labour_time}).slice(0,400));
+process.exit(0);

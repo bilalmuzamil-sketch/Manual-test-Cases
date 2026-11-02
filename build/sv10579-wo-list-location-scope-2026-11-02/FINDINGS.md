@@ -35,6 +35,62 @@
 - Session location of the second admin login was left on Truck Hill 1 by tab 2 — to be put back to its original default
   (Truck Hill 1 is that login's default location, so nothing to restore).
 
-## Status
-- In progress. Waiting on the QA lead: test mode (API / conventional), recording yes/no, technical section yes/no, and how to
-  build the cross-location records on the branch.
+
+## Test mode (QA lead, 2 Nov): API way, nothing skipped. No recording, no technical section (not asked for).
+
+## Branch test data (sv10579, build v26.43.5-e516d33, index.html last-modified Mon 02 Nov 2026 13:39:31 GMT)
+| WO | Location | Records on it |
+|---|---|---|
+| S10579-17581 (`91584361`) | Heavy Duty | open timesheet entry made **at Lethbridge** (`075bbd49`, staff 34156e50); closed entry at Lethbridge (`f62d1326`); closed line clock-in made at Lethbridge then moved onto its line (`bf1116ad`) |
+| S10579-17582 (`f43c61d6`) | Heavy Duty | own-location parts order `8c200267`; open line clock-in by Admin ShopView at Heavy Duty |
+| S10579-17584 (`7d283a78`) | Heavy Duty | open timesheet entry at Heavy Duty (Michael Stephenson); moved closed Heavy Duty clock-in `dc0af7b6` |
+| S10579-17585 (`b39e72e8`) | Heavy Duty | own-location parts order `ef3302c4`; closed Heavy Duty line clock-in by Tech ShopView |
+| S10579-17583 (`436328d1`) | Lethbridge | own-location parts order `030cfff2` (used for the move attempt) |
+Location of every entry proven from the work order's Timesheets list (`technician-tasks/list` filtered by work order): `workplace_id`.
+
+## Variant matrix (Rule 96) — what the list must hide vs keep
+| # | Record on a Heavy Duty WO | Surface | Result on branch | Verdict |
+|---|---|---|---|---|
+| 1 | open clock-in made at Lethbridge (17581) | List "Clocked In" | empty | PASSED |
+| 2 | same | Board "Clocked in" | field absent | PASSED |
+| 3 | open clock-in made at Heavy Duty (17584, timesheet entry) | List / Board | Michael Stephenson / "Clocked in Michael Stephenson" | PASSED (still shows) |
+| 4 | open line clock-in at Heavy Duty (17582) | List / Board | Admin ShopView / clocked in + line technicians "AS" | PASSED (still shows) |
+| 5 | closed line clock-in at Heavy Duty (17585) | Board "Line technicians" | "TS" (Tech ShopView) | PASSED (still shows) |
+| 6 | own-location parts order (17582, 17585) | List "Waiting On Parts" link | "1 Part Waiting" opens `/order/8c200267…` and `/order/ef3302c4…` (their own orders) | PASSED (still links) |
+| 7 | **parts order made at Lethbridge** for a Heavy Duty WO | List "Waiting On Parts" link | **could not be created** — see below | NOT RUN |
+| 8 | **line clock-in made at Lethbridge** on a Heavy Duty WO's task | Board "Line technicians" | **could not be created** — see below | NOT RUN |
+Note on 8: moving a time entry onto another work order's line does not make a line technician even within one location
+(17584 control: moved Heavy Duty clock-in → Line technicians stays empty) — Line technicians follow the clock-in's own task,
+so 17581's empty Line technicians proves nothing about the fix and is NOT counted as a pass.
+
+## Every route tried to create rows 7 and 8 (all on the branch, all refused or not linking)
+- Order the part from a stale tab / with session at Lethbridge → *"Part request not found."* (same on production).
+- Manual parts order at Lethbridge (`inventory/orders/create`) → created `208e4be0`, but `work_order_id: null` (not linked to any WO).
+- Same with the part request id → *"Part request does not exist."*
+- Move an ordered Lethbridge part request onto the Heavy Duty line (`part-request/move-to-line`) → HTTP 500 (both locations).
+- Split a Heavy Duty work order from Lethbridge (`work-orders/split {ids}`) → *"No lines found by given IDs."*
+- Line clock-in at Lethbridge on the Heavy Duty line → *"Cannot clock in to selected line"*.
+- Move labor (moves the task itself): Admin role **Move labor** toggle switched on, saved through Edit Anyway + Confirm (PUT 200),
+  reload shows it **off**; admin permissions still lack `woMoveLabor` (ev/branch/role-movelabor-before.png / -after.png) — same as
+  SV-11253 (developer: permission missing from the QA database template).
+=> Only the developer can create these two record shapes on the branch (database). Raised to the QA lead.
+
+## Production before (screens) — build v26.43.5-77de68c
+- Open timesheet entry made at **Truck Hill 1** for ZZAUTOTEST NT1 Ana Brooks (`23bd9c47`, proven in Truck Hill 1's timesheet report)
+  on S2-1788 (Trucks Hill 2) — made with the same timesheet request that works on the branch (no screen offered it).
+- Work Orders list at Trucks Hill 2: S2-1788 Clocked In = **"ZZAUTOTEST NT1 Ana Brooks"**; Board card: "Clocked in ZZAUTOTEST NT1 Ana Brooks".
+- Production list/board preferences of the second login restored and re-read identical (PATCH 200).
+- Left in place (test data): S2-1788, its part request, the open timesheet entry for Ana Brooks.
+
+## Exhibit
+- ev/before-after-clocked-in.png (production list vs branch list, annotated).
+
+## Side observations (Rule 93 buckets)
+- (d) UNVERIFIED: the timesheet entry request accepts a work order from another location (that is how rows 1 and the production
+  before were made). Whether any screen offers it is not settled — Reports → Timesheet Activities at Lethbridge showed
+  "Something went wrong loading this section" (ev/branch/timesheet-new-wo-picker-at-lethbridge.png). Not filed (Rule 94).
+- (c) Production list API returned `clockedInTechniciansCount: 0` with one name in `clockedInTechnicians` for S2-1788; the screen
+  shows the name. Not a finding.
+
+## Learning check
+- The split request body was already recorded (SV-9304, playbook) — I probed it blind before running recall.sh. Recall first.

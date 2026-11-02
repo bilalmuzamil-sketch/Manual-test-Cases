@@ -1,0 +1,16 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim(); const S=JSON.parse(rd('br-seed.json'));
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const p=s.page; let boardResp=null;
+p.on('response',async r=>{ if(/\/api\/work-orders\?/.test(r.url())&&/board|display/.test(r.url())){ try{ boardResp={u:r.url(),j:await r.json()}; }catch(e){} } });
+await s.go('/workorders'); await p.waitForTimeout(3000);
+await p.click('[data-test-id="tab_all"]'); await p.waitForTimeout(2500);
+await p.click('[data-test-id="display_option_board_view"]'); await p.waitForTimeout(4000);
+const ids=[...new Set(await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).filter(t=>/field|toggle|column|setting|board_/i.test(t))))];
+console.log('board ids',ids.slice(0,40).join(' '));
+await p.click('[data-test-id="button_board_fields_selection"]').catch(e=>console.log('no col btn')); await p.waitForTimeout(1500);
+console.log('panel',(await p.evaluate(()=>[...document.querySelectorAll('.q-menu, .q-dialog')].map(e=>e.innerText.replace(/\n/g,' | ')).join(' ## '))).slice(0,600));
+console.log('panel ids',[...new Set(await p.evaluate(()=>[...document.querySelectorAll('.q-menu [data-test-id], .q-dialog [data-test-id]')].map(e=>e.getAttribute('data-test-id'))))].join(' '));
+const L=(await s.api('/api/users/me/preferences/work-orders-list')).json; console.log('pref board',JSON.stringify(L.data.value.boardFields));
+process.exit(0);

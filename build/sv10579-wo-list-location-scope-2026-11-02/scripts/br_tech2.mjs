@@ -1,0 +1,16 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim(); const S=JSON.parse(rd('br-seed.json')); const V=JSON.parse(rd('br-v.json'));
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa3',quick:'tech',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}); console.log('  POST',u.replace('/api/',''),r.status,JSON.stringify(r.json||r.text).slice(0,170)); return r;};
+const wps=(await s.api('/api/staff/my-workplaces')).json.data.collection; const A=wps.find(w=>w.id===S.A), B=wps.find(w=>w.id===S.B); const TS=rd('techstaff');
+await post('/api/iam/change-location',{workplace_id:B.id,workplace_timezone:B.timezone});
+await post('/api/technician-tasks/check-out',{task_id:'bf1116ad-08ff-4a01-9073-f489f7b5b213',tech_story:'ZZAUTOTEST SV-10579 Lethbridge clock-in',complete_line:false});
+await post('/api/iam/change-location',{workplace_id:A.id,workplace_timezone:A.timezone});
+const lr=(await s.api('/api/work-orders/lines/'+V.vId)).json.data; const vLine0=(Array.isArray(lr)?lr:lr.collection)[0].line_id;
+const t=await post('/api/work-orders/tasks/create',{staff_id:TS,line_id:vLine0,work_order_id:V.vId});
+const ci=await post('/api/technician-tasks/check-in',{task_id:t.json.data.task.id,line_id:vLine0,work_order_id:V.vId,refresh_lines:true});
+await new Promise(r=>setTimeout(r,65000));
+await post('/api/technician-tasks/check-out',{task_id:ci.json.data.id,tech_story:'ZZAUTOTEST SV-10579 Heavy Duty clock-in',complete_line:false});
+fs.writeFileSync('/tmp/sv10579/br-tech.json',JSON.stringify({techStaff:TS,lethTtr:'bf1116ad-08ff-4a01-9073-f489f7b5b213',hdTtr:ci.json.data.id,vLine0}));
+process.exit(0);

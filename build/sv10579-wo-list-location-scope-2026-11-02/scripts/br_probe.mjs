@@ -1,0 +1,10 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim(); const S=JSON.parse(rd('br-seed.json'));
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}); console.log('  POST',u,r.status,JSON.stringify(r.json||r.text).slice(0,1200)); return r;};
+const staff=(await s.api('/api/staff?limit=200')).json.data; const col=staff.collection||staff; const t=col.find(x=>x.first_name==='Amanda'&&x.last_name==='Williams');
+console.log('staff keys',Object.keys(t).join(','), JSON.stringify(Object.fromEntries(Object.entries(t).filter(([k])=>/id/i.test(k)))));
+const vl=(await s.api('/api/parts-catalogue/vendors?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=5')).json.data.collection;
+await post('/api/inventory/orders/create',{vendor_id:vl[0].id,items:[{}]});
+process.exit(0);

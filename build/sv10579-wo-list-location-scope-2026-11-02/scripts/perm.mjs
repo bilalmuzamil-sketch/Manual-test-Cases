@@ -1,0 +1,10 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim();
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const fe=(await s.api('/api/auth/me/fe-permissions')).json.data.fe_permissions; console.log('admin perms',fe.length,'woMoveLabor?',fe.includes('woMoveLabor'));
+const p=s.page; await s.go('/administration/roles'); await p.waitForTimeout(4000);
+const txt=await p.evaluate(()=>document.body.innerText); console.log('roles page has Admin?',/Admin/.test(txt));
+const edit=await p.$$('[data-test-id^="button_edit_role"], [data-test-id*="edit"]'); console.log('edit buttons',edit.length);
+const rows=await p.evaluate(()=>[...document.querySelectorAll('tr')].map(t=>t.innerText.split('\n')[0]).slice(0,15)); console.log(JSON.stringify(rows));
+process.exit(0);
