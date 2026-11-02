@@ -153,8 +153,18 @@ export async function shiftPrompt(p: Page, answer: 'Keep shifts' | 'Clear shifts
 }
 /** pick a person in the open Reassign dialog and confirm (or cancel); answers a shift prompt with Keep shifts */
 export async function pickLead(p: Page, targetId: string, action: 'confirm' | 'cancel' = 'confirm') {
+  // 2 Nov 2026 (SV-11524 shipped, PRD v68+ S4-R4/S4-R12): the dialog has no "Reassign" confirm button any more — clicking a technician
+  // applies the change. Old builds keep the button. So: confirm = pick, then click the button only if it is there; cancel on the new
+  // dialog = close it WITHOUT picking (picking would already apply), with its Cancel button or Escape.
+  const confirmBtn = p.locator('[data-test-id="button_confirm_reassign_lead_technician"]');
+  const oldDialog = (await confirmBtn.count()) > 0;
+  if (action === 'cancel' && !oldDialog) {
+    const c = p.locator('.q-dialog').last().locator('button').filter({ hasText: /^\s*Cancel\s*$/i }).first();
+    if (await c.count()) await c.click(); else await p.keyboard.press('Escape');
+    await p.waitForTimeout(800); return null;
+  }
   await p.locator(`[data-test-id="option_lead_technician_${targetId}"]`).click(); await p.waitForTimeout(500);
-  await p.locator(action === 'confirm' ? '[data-test-id="button_confirm_reassign_lead_technician"]' : '[data-test-id="button_cancel_reassign_lead_technician"]').click();
+  if (oldDialog || (await confirmBtn.count()) > 0) await p.locator(action === 'confirm' ? '[data-test-id="button_confirm_reassign_lead_technician"]' : '[data-test-id="button_cancel_reassign_lead_technician"]').click();
   return action === 'confirm' ? await shiftPrompt(p) : null;
 }
 /** 14 Oct 2026 (staging, L0333): switch location ON SCREEN — profile menu -> select_location -> the location's item; read the

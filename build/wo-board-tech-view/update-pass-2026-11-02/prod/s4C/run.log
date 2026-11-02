@@ -1,0 +1,13 @@
+16:43:53 logged in as bilal.muzamil+serviceadvisornoreports@shopview.com - PHPSESSID minted by POST /api/login
+16:44:07 prod https://app.shopview.com/workorders?tab=all | app-version=v26.43.5-77de68c | fe_permissions=46
+16:44:08 START STATE found s4-batchC {"saved":{"status":200,"display":"board_view","collapsedGroups":[],"pinned":[],"filters":{"status":[],"assigned_to_me":["1"]},"density":"comfortable","tab":"all"},"screen":{"switcher":3,"active":"Board View"}}
+16:44:15 START STATE set s4-batchC {"clearCollapsedPut":200,"collapsedSavedAfter":[],"savedAfter":{"status":200,"display":"board_view","collapsedGroups":[],"pinned":[],"filters":{"status":[],"assigned_to_me":["1"]},"density":"comfortable","tab":"all"}}
+16:44:25 DISPLAY bv ZZAUTOTEST F1 Prompt Cancel {"want":"Board View","tries":[{"before":"Board View","switcherFound":3,"screen":"Board View","saved":"board_view"}],"ok":true}
+16:45:29 C368135 {"error":"locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"button_confirm_reassign_lead_technician\"]')\n"}
+16:45:30 START STATE found C368136 {"lead":"Esther Howard","shifts":[]}
+16:45:31 START STATE set C368136 {"lead":"Esther Howard","shifts":["Esther 2026-11-03 08:00-12:00 whole"]}
+16:45:40 DISPLAY bv ZZAUTOTEST F1 Prompt Where {"want":"Board View","tries":[{"before":"Board View","switcherFound":3,"screen":"Board View","saved":"board_view"}],"ok":true}
+16:46:31 C368136 {"startFound":{"lead":"Esther Howard","shifts":[]},"startSet":{"lead":"Esther Howard","shifts":["Esther 2026-11-03 08:00-12:00 whole"]},"error":"locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"button_confirm_reassign_lead_technician\"]')\n"}
+16:46:42 DISPLAY bv ZZAUTOTEST F1 Remove Lead Prompt {"want":"Board View","tries":[{"before":"Board View","switcherFound":3,"screen":"Board View","saved":"board_view"}],"ok":true}
+16:47:29 C154889 {"error":"locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('[data-test-id=\"option_lead_technician_unassigned\"]')\n"}
+16:47:47 DISPLAY bv ZZAUTOTEST F1 Prompt Only Unfinished {"want":"Board View","tries":[{"before":"Board View","switcherFound":3,"screen":"Board View","saved":"board_view"}],"ok":true}

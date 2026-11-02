@@ -1,0 +1,701 @@
+##### C96956 | The lead technician dialog lists only eligible technicians, no Unassigned
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technicians {Technician-A} (for example Esther Howard), {Technician-B} (for example Ralph Edwards) and {Technician-C} (for example Dana Ortiz) are active staff members at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Staff member {User-B} (for example Owen Office) is active at {Location-A} with the Office User role.
+Technician {Technician-D} (for example Ivan Inactive) has a Technician role at {Location-A} and is deactivated.
+Technician {Technician-E} (for example Lena Otherloc) is active with Time Clock on but works only at another location, {Location-B} (for example Staging Lethbridge - 4310).
+Customer {Customer-A} (for example "ZZAUTOTEST F1 Reassign List") has one Approved w
+STEPS:
+Open Work Orders, click the All tab and click Board View in the display switcher.
+Type the name of {Customer-A} in Search.
+Hover {Work-order-1}'s card in {Technician-A}'s column and click its More actions (…) button.
+Click Reassign lead technician.
+Read every row in the dialog, from the top.
+Click {Technician-B}'s row.
+If a "Clear … scheduled shifts?" question opens, click Keep shifts.
+Hover the card, now in {Technician-B}'s column, and click its More actions (…) button.
+Click Unassign.
+If a "Clear … scheduled shifts?" question opens, click Keep shifts.
+Hover the card, now in the Unassigned column, click its More actions (…) button and click Assign lead technician.
+Type the first letters of {Technician-C}'s name in the dialog's search box, then click Cancel.
+Click the card to open the work order and read Lead Technician.
+Press the browser Back button and click Tech View in the display switcher.
+Hover {Work-order-1}'s row in the Unassigned group, click its More actions (…) button and click Assign lead technician.
+Read every row in the dialog, from the top.
+Click {Technician-A}'s row.
+If a "Clear … scheduled shifts?" question opens, click Keep shifts.
+EXP:
+Expected results
+Step 4: the dialog opens with the title "Reassign lead technician".
+Step 5: the dialog has a Search technicians box, then one list with no grouping of the eligible technicians of {Location-A}, {Technician-A}, {Technician-B} and {Technician-C}, each with an avatar and an "N open" count. There is no Unassigned row. {User-B}, {Technician-D} and {Technician-E} are not listed. The only button is Cancel.
+Step 6: the dialog closes at once, with no other click, and the card moves to {Technician-B}'s column. The message "{Work-order-1} assigned to {Technician-B}" shows, with an Undo button.
+Step 9: the card moves to the Unassigned column and the message "{Work-order-1} moved to Unassigned" shows, with an Undo button.
+Step 11: the menu offers "Assign lead technician" (not "Reassign lead technician"), and the dialog opens with the title "Assign lead technician".
+Step 12: the dialog closes and nothing changes: the card stays in the Unassigned column.
+Step 13: the work order page shows no lead technician.
+Step 16: the Tech View dialog, titled "Assign lead technician", shows the same technicians as at step 5, with no Unassigned row.
+Step 17: the dialog closes at once and the row moves to {Technician-A}'s group. The message "{Work-order-1} assigned to {Technician-A}" shows, with an Undo button.
+
+
+##### C96957 | Lead change messages name the work order and close on their own
+PRE: Dev-layer test — fe-unit. Existing coverage: useReassignLeadTechnician.spec.ts:450,472 (auto-close check lives in E2E C96959)
+Preconditions
+Needs: 1 user · 1 browser · about 10 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+Two eligible technicians at this location: [Tech-A] (e.g. "Esther Howard") and [Tech-B] "Ralph Edwards". A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customer "ZZAUTOTEST F1 Lead Messages" (used by this case only) with one Approved wo
+STEPS:
+Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+Type "ZZAUTOTEST F1 Lead Messages" in Search.
+Drag [WO-1]'s card from [Tech-A]'s column into [Tech-B]'s column and release it.
+If a "Clear …'s scheduled shifts?" prompt opens, click Keep shifts.
+Read the message that appears and do not click it.
+Wait 10 seconds without clicking the message or pointing at it.
+Drag the same card from [Tech-B]'s column into the Unassigned column and release it.
+If a "Clear …'s scheduled shifts?" prompt opens, click Keep shifts.
+Read the message that appears and wait 10 seconds without clicking it or pointing at it.
+EXP:
+Expected results
+After the move to Ralph Edwards a message reads exactly "[WO-1] assigned to Ralph Edwards", with [WO-1]'s number (e.g. "S1-702 assigned to Ralph Edwards"), and has an Undo button.
+After the move to Unassigned a message reads exactly "[WO-1] moved to Unassigned" (e.g. "S1-702 moved to Unassigned") and has an Undo button.
+Each message goes away by itself within the 10 seconds (it closes after 5 seconds), without being clicked.
+
+
+##### C96969 | Choosing the current lead again changes nothing and shows no message
+PRE: Preconditions
+Needs: 1 user · 1 browser · about 15 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+Two eligible technicians at this location: [Tech-A] "Esther Howard" and [Tech-B] (e.g. "Ralph Edwards"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customer "ZZAUTOTEST F1 Same Lead Again" (used by this case only) with one Approved work order [WO-1] led by [Tech-A], with a second line "Line 2" whose Labor row reads Unassigned.
+Esther Howard is named in the
+STEPS:
+Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+Type "ZZAUTOTEST F1 Same Lead Again" in Search.
+Hover the card in [Tech-A]'s column, click More actions and choose Reassign lead technician.
+Click [Tech-A] (the current lead) in the list.
+Watch the bottom of the screen for 10 seconds.
+Open the work order, read Lead Technician and Line 2's Labor row, and open its change history.
+EXP:
+Expected results
+The dialog closes, and no reassignment message appears (no "[WO-1] assigned to Esther Howard", "[WO-1] lead technician set to Esther Howard" or any other lead-change message).
+Nothing changes: Lead Technician is still Esther Howard, Line 2 still reads Unassigned (it is not given to Esther Howard), and no new history entry is added.
+
+
+##### C96973 | Reassign can pick a technician outside the filter and the card then leaves
+PRE: Preconditions
+Needs: 1 user · 1 browser · about 15 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit. Your own staff record is also an eligible technician (Time Clock on, Role not Office User or Time Clock User, this location in Location), e.g. "Aaron Keating".
+Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+Two other eligible technicians at this location: [Tech-A] "Ralph Edwards" and [Tech-B] "Dana Ortiz". A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customer "ZZAUTOTEST F1 Outside Filter" (used by this 
+STEPS:
+Open Work Orders, click the All tab, pick Board View and turn on Assigned to me.
+Click Search and type "ZZAUTOTEST F1 Outside Filter".
+Write down which technician columns are shown.
+Hover the card, click More actions and choose Reassign lead technician.
+Read the technicians listed in the Reassign lead technician dialog.
+Click [Tech-A] in the dialog (if a window asks about scheduled shifts, click Keep shifts).
+Read the board and its header count.
+EXP:
+Expected results
+The dialog offers Ralph Edwards and Dana Ortiz although their columns are not on screen under Assigned to me.
+Clicking Ralph Edwards assigns him at once: the dialog has no confirm button, only Cancel.
+After the change the work order no longer matches Assigned to me and disappears from the board without a reload. With none of your work orders left, your column is hidden and the board shows “No work orders match these filters”, then “Try removing a filter to widen your results.”, with a Clear all filters button.
+
+
+##### C154889 | Removing the lead asks the same clear-shifts question as changing it
+PRE: Preconditions
+Needs: 1 user · 1 browser · Schedule access · about 20 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+[Tech-A] "Esther Howard": one eligible technician at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customer "ZZAUTOTEST F1 Remove Lead Prompt" (used by this case only) with two Approved work orders led by [Tech-A]: [WO-1] and [WO-2].
+A shift for [Tech-A] on each of them tomorrow 8:00–12:00 (entire work order).
+Esther Howard is
+STEPS:
+Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+Type "ZZAUTOTEST F1 Remove Lead Prompt" in Search.
+Drag [WO-1] from [Tech-A]'s column into the Unassigned column.
+Read the prompt's title, text and buttons, then click Keep shifts.
+Hover [WO-2], click More actions > Unassign.
+Read the prompt, then click Keep shifts.
+EXP:
+Expected results
+Both removals open the same shift-clearing prompt as a change of lead: title "Clear Esther Howard's scheduled shifts?" with the buttons Keep shifts, Clear shifts and Cancel.
+After Keep shifts both work orders are in Unassigned and Esther Howard's shifts are still on the Schedule.
+What you should see today (build v26.40.8-7a95011, 10/8/2026): changing the lead (by dragging the card or with Reassign lead technician) shows no question about scheduled shifts, even when the outgoing lead has a shift booked for the entire work order. The lead changes at once with the "Lead technician updated" (or "Lead technician removed") message, and the outgoing lead's shift stays on the Schedule. (1) If you see exactly that, mark the case Failed and raise nothing new. (2) If it fails in a different way, that is a new problem: report it. (3) If it behaves as the expected results above say, the change has shipped: mark it Passed and tell the QA lead.
+
+
+##### C368133 | The clear-shifts question appears only for the old lead's unfinished shifts
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-C} (for example Dana Ortiz) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST F1 Prompt Only Unfinished") is used by this case only.
+Six Approved work orders for 
+STEPS:
+Open Work Orders, click the All tab and click Board View in the display switcher.
+Type the name of {Customer-A} in Search.
+Drag {Work-order-1} from {Technician-A}'s column into {Technician-B}'s column.
+Read the title of the question that opens.
+Click Keep shifts.
+Drag {Work-order-2} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).
+Drag {Work-order-3} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).
+Drag {Work-order-4} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).
+Drag {Work-order-5} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).
+Drag {Work-order-6} from {Technician-A}'s column into {Technician-B}'s column and note whether a question opens (if one does, click Keep shifts).
+EXP:
+Expected results
+Step 4: dragging {Work-order-1} opens the question "Clear {Technician-A}'s scheduled shifts?" (with the example name: "Clear Esther Howard's scheduled shifts?").
+Steps 6 to 10: {Work-order-2} (no shift), {Work-order-3} (a shift on {Line-1} only, not on every line), {Work-order-4} (only an ended shift), {Work-order-5} (only {Technician-C}'s shift) and {Work-order-6} ({Technician-A}'s shift is on another work order) each move to {Technician-B}'s column straight away with no question, and each time the message names that work order, "… assigned to {Technician-B}" (for example "S10043-17582 assigned to Ralph Edwards"), with an Undo button.
+Steps 3 to 10: the question opened for 1 of the 6 work orders ({Work-order-1}) and for none of the other 5.
+
+
+##### C368135 | Cancel or closing the clear-shifts question calls the change off
+PRE: Preconditions
+Needs: 1 user · 1 browser · Schedule access · about 15 minutes.
+Sign in as an Admin (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). Desktop browser window at least 1024 px wide; narrower windows show only the List.
+Work in one location throughout, shown next to the bell in the top bar (e.g. "Staging Heavy Duty - 9919"); to change it click your initials (top right) > Change Location. Create everything in that location.
+Two technicians named exactly "Esther Howard" ([Tech-A]) and "Ralph Edwards" ([Tech-B]); the expected results quote these names.
+Customer "ZZAUTOTEST F1 Prompt Cancel" (this case only) with one Approved work order [WO-1] led by Esther Howard, and a shift for her on it tomorrow 8:00–12:00.
+Setup
+Technicians: your initials (top right) > Settings > Staff. A person counts as a technician only if Active, Time Clock on, Role not Office User or Time Clock User, and this location in Location. To add one: New Staff Member > First Name, Last Name, Email, Role "Technician", one Department (required), Location = this
+STEPS:
+Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+Type "ZZAUTOTEST F1 Prompt Cancel" in Search.
+Drag the card from [Tech-A]'s column into [Tech-B]'s column. A question about [Tech-A]'s scheduled shifts appears.
+In the question click Cancel.
+Drag the card into [Tech-B]'s column again and close the question with its close (X) button.
+Drag the card into [Tech-B]'s column again and press Escape on the keyboard.
+Hover the card, click More actions > Reassign lead technician and click [Tech-B] in the list.
+In the question click Cancel and read the screen.
+Click Cancel in the Reassign lead technician dialog.
+Open the work order and read Lead Technician, then open the Schedule for tomorrow.
+Repeat steps 3 to 9 in Tech View.
+EXP:
+Expected results
+After Cancel, after X and after Escape, the dragged card goes back to its place in Esther Howard's column, and no lead-change message (such as "[WO-1] assigned to Ralph Edwards") appears.
+After Cancel from the dialog path you are back in the Reassign lead technician dialog, and nothing has changed.
+In the end nothing changed: Lead Technician is Esther Howard and her 8:00–12:00 shift is still on the Schedule.
+Note: clicking an empty part of the page outside the question does not close it; the question simply stays open. That is expected and is not a fault (QA lead's decision below).
+
+
+##### C368136 | The clear-shifts question shows on Board and Tech View only
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+Needs: 1 user · 1 browser · Schedule access · about 15 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+User: [User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+Browser: desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+People: two eligible technicians at this location: [Tech-A] "Esther Howard" and [Tech-B] (e.g. "Ralph Edwards"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Data: customer "ZZAUTOTEST F1 Prompt Where" (used by this case only) with one Approved work order [WO-1] led by [Te
+STEPS:
+Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+Type "ZZAUTOTEST F1 Prompt Where" in Search.
+Drag the card from [Tech-A]'s column into [Tech-B]'s column. Note whether the prompt opens, click Keep shifts.
+Drag the card back into [Tech-A]'s column.
+Use More actions > Reassign lead technician and click [Tech-B] in the list. Note the prompt, click Keep shifts.
+Move it back to [Tech-A] the same way.
+Use More actions > Unassign. Note the prompt, click Keep shifts.
+Drag the card from the Unassigned column back into [Tech-A]'s column.
+Pick Tech View and repeat steps 3 to 8 with the row (drag between groups, then the row's More actions).
+Open the work order page and change Lead Technician from [Tech-A] to [Tech-B] there.
+Pick List in the display switcher and look for any way to change the lead from a List row.
+Open the Schedule for tomorrow.
+EXP:
+Expected results
+Steps 3, 5, 7 and 9: The prompt opens 6 times: Board View drag, Board View dialog, Board View Unassign, Tech View drag, Tech View dialog and Tech View Unassign.
+Steps 10 and 11: Changing the lead on the work order page does not show the prompt, and the List offers no lead change at all, so no prompt appears there either (as today).
+Step 12: Esther Howard's 8:00–12:00 shift is still on the Schedule (every choice was Keep shifts or no prompt).
+What you should see today (build v26.40.8-7a95011, 10/8/2026): changing the lead (by dragging the card or with Reassign lead technician) shows no question about scheduled shifts, even when the outgoing lead has a shift booked for the entire work order. The lead changes at once with the "Lead technician updated" (or "Lead technician removed") message, and the outgoing lead's shift stays on the Schedule. (1) If you see exactly that, mark the case Failed and raise nothing new. (2) If it fails in a different way, that is a new problem: report it. (3) If it behaves as the expected results above say, the change has shipped: mark it Passed and tell the QA lead.
+
+
+##### C368140 | Assigning a lead to unassigned work moves only open unassigned lines
+PRE: Preconditions
+Needs: 1 user · 1 browser · about 20 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+Two eligible technicians at this location: [Tech-A] "Ralph Edwards" and [Tech-B] "Dana Ortiz". A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customer "ZZAUTOTEST F1 Assign Unassigned Lines" (used by this case only) with one work order [WO-1], created on this build, Approved, no lead technician, with three lines: Line 1 Unassigned (no technician) · Line 2 Expl
+STEPS:
+Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip "Board View").
+Type "ZZAUTOTEST F1 Assign Unassigned Lines" in Search.
+Hover the card in the Unassigned column, click More actions > Assign lead technician.
+Click [Tech-A] in the list.
+Open the work order's Lines tab and read each line's Labor row.
+EXP:
+Expected results
+The card's More actions menu offers "Assign lead technician" (it has no lead).
+The card moves to Ralph Edwards' column and the message "[WO-1] assigned to Ralph Edwards" shows (e.g. "S1-710 assigned to Ralph Edwards"), with an Undo button.
+Line 1 now shows Ralph Edwards. Line 2 still shows Dana Ortiz. Line 3 (Complete) still reads Unassigned. So 1 of 3 lines moved.
+
+
+##### C581891 | A line with only a Schedule shift technician follows the new lead technician
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-C} (for example Dana Ortiz) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-D} (for example Jenny Wilson) is an active staff member at {Location-A} with Time Clock on, the Service depa
+STEPS:
+Open Work Orders, click the All tab and click Board View in the display switcher.
+Type the name of {Customer-A} in Search.
+On {Work-order-1}'s card in {Technician-A}'s column, open More actions (…) and click Reassign lead technician.
+Click {Technician-D} in the list.
+Click {Work-order-1}'s card to open the work order.
+Go to its Lines tab.
+Read the Labor row of {Line-1} and of {Line-2}.
+Click {Line-1}'s name to open Edit Line.
+Read the names in its Technicians field.
+Close Edit Line without saving.
+Click {Line-2}'s name to open Edit Line.
+Read the names in its Technicians field.
+Close Edit Line without saving.
+EXP:
+Expected results
+Step 4: the lead changes at once with the message "{Work-order-1} assigned to {Technician-D}", with an Undo button, and no "Clear … scheduled shifts?" question ({Technician-A} has no shift on this work order); the card moves to {Technician-D}'s column.
+Steps 7 and 9: {Line-1} now follows {Technician-D}, and {Technician-B} is still listed among {Line-1}'s technicians.
+Steps 7 and 12: {Line-2} still has {Technician-C} as its technician; it did not move to {Technician-D}.
+
+
+##### C581892 | The Clear shifts question ignores lines that are not approved or are declined
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST S4R28 Approved Lines") is used by this case only.
+Work order {Work-order-1} (for example S10043-17641) for {Customer-A} is led by {Technician-A} and has an approved line {Line-1} (for example "Service - Full grease service") and a line that is not approved, {Line-2} (for 
+STEPS:
+Open Work Orders, click the All tab and click Board View in the display switcher.
+Type the name of {Customer-A} in Search.
+Drag {Work-order-1} from {Technician-A}'s column into {Technician-B}'s column.
+Read the title of the question that opens.
+Click Keep shifts.
+Drag {Work-order-2} from {Technician-A}'s column into {Technician-B}'s column.
+Read the title of the question that opens.
+Click Keep shifts.
+Drag {Work-order-3} from {Technician-A}'s column into {Technician-B}'s column.
+Read the title of the question that opens.
+Click Keep shifts.
+Click Schedule in the top menu.
+Use the arrow next to Today to go to tomorrow.
+Read {Technician-A}'s shifts on {Work-order-1}, {Work-order-2} and {Work-order-3}.
+EXP:
+Expected results
+Steps 4, 7 and 10: each drag opens the question "Clear {Technician-A}'s scheduled shifts?" (with the example name: "Clear Esther Howard's scheduled shifts?"). The line that is not approved ({Line-2}) and the declined line ({Line-4}) are ignored, and a Choose lines shift that ticks every approved line counts.
+Steps 5, 8 and 11: after Keep shifts each work order moves to {Technician-B}'s column and the message names it: "{Work-order-1} assigned to {Technician-B}", then "{Work-order-2} assigned to {Technician-B}" and "{Work-order-3} assigned to {Technician-B}", each with an Undo button.
+Step 14: all three of {Technician-A}'s shifts are still on the Schedule tomorrow, at the same times.
+
+
+##### C581893 | An Entire work order shift stops counting once a new line is approved
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST S4R28 Line Added") is used by this case only.
+Work order {Work-order-1} (for example S10043-17651) for {Customer-A} is led by {Technician-A} and had two approved lines, {Line-1} (for example "Service - Full grease service") and {Line-2} (for example "Service - Adjust clut
+STEPS:
+Open Work Orders, click the All tab and click Board View in the display switcher.
+Type the name of {Customer-A} in Search.
+Drag {Work-order-1} from {Technician-A}'s column into {Technician-B}'s column.
+Note whether a question opens and read the message that appears.
+Drag {Work-order-2} from {Technician-A}'s column into {Technician-B}'s column.
+Read the title of the question that opens.
+Click Keep shifts.
+EXP:
+Expected results
+Step 4: no question opens. {Work-order-1} moves to {Technician-B}'s column at once with the message "{Work-order-1} assigned to {Technician-B}" and an Undo button, because the shift no longer covers every approved line once {Line-5} was approved after it was made.
+Step 6: the question "Clear {Technician-A}'s scheduled shifts?" opens (with the example name: "Clear Esther Howard's scheduled shifts?"), because {Line-6} is not approved and is ignored.
+Step 7: {Work-order-2} moves to {Technician-B}'s column with the message "{Work-order-2} assigned to {Technician-B}" and an Undo button.
+
+
+##### C96963 | The lead of a Declined, Invoiced or Paid work order cannot be changed
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST F1 Invoiced Paid Locked") is used by this case only and has six work orders whose Lead Technician was set while they were still open (for example S10043-17801 to S10043-17806): {Work-order-1} Approved, led by {Technician-A}; {Work-order-2} Invoiced, led by {Technician-A}; {Work-order-3} Paid, led by {Technician-A}; {Work-order-4} Invoiced, 
+STEPS:
+Open Work Orders, click the All tab and click Board View in the display switcher.
+Type the name of {Customer-A} in Search.
+Drag {Work-order-2}'s card from {Technician-A}'s column into {Technician-B}'s column.
+Drag {Work-order-2}'s card into the Unassigned column.
+Drag {Work-order-2}'s card within {Technician-A}'s column to above {Work-order-1}.
+Drag {Work-order-3}'s card into {Technician-B}'s column, then into the Unassigned column, then within {Technician-A}'s column to above {Work-order-1}.
+Drag {Work-order-4}'s card into {Technician-A}'s column, then drag it to a new place within the Unassigned column.
+Drag {Work-order-5}'s card into {Technician-B}'s column (click Keep shifts if asked).
+Drag {Work-order-6}'s card into {Technician-B}'s column (click Keep shifts if asked).
+Open {Work-order-2} and try to change Lead Technician on the work order page.
+Go back, click Tech View in the display switcher and do steps 3 to 7 again with the rows, then drag {Work-order-5}'s row into {Technician-B}'s group and drag {Work-order-6}'s row from {Technician-B}'s group back into {Technician-A}'s group.
+EXP:
+Expected results
+Steps 3, 4 and 6: {Work-order-2} and {Work-order-3} cannot be moved to {Technician-B} or to Unassigned: the card goes back to {Technician-A}'s column and the lead stays {Technician-A}. While {Work-order-2}'s card is over {Technician-B}'s column, the note "Invoiced · can’t be reassigned" shows at the top of that column; for {Work-order-3} it reads "Paid · can’t be reassigned".
+Steps 5 and 6: {Work-order-2} and {Work-order-3} can be moved within {Technician-A}'s column and keep their new place.
+Step 7: {Work-order-4} cannot be moved out of Unassigned, but it can be reordered inside it.
+Step 8: {Work-order-5} (Declined) cannot be moved to {Technician-B}: while its card is over {Technician-B}'s column the note “Declined · can’t be reassigned” shows at the top of that column, the card goes back to {Technician-A}'s column and the lead stays {Technician-A}.
+Step 9: {Work-order-6} (Complete) moves to {Technician-B} normally, with the message "{Work-order-6} assigned to {Technician-B}", with an "Undo" button.
+Step 10: on the work order page the Lead Technician of {Work-order-2} cannot be changed either.
+Step 11: Tech View follows the same rules for every move (the note shows at the top of {Technician-B}'s group). A change sent outside the screens is also refused by the server; this part cannot be checked by hand, so write "server refusal not checked by hand" in the result comment and pass or fail on what you can see. Imported work orders are checked in their own case.
+
+
+##### C690642 | SV-11545 - Declined, Invoiced or Paid lead can't be changed (release)
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST F1 Invoiced Paid Locked") is used by this case only and has six work orders whose Lead Technician was set while they were still open (for example S10043-17801 to S10043-17806): {Work-order-1} Approved, led by {Technician-A}; {Work-order-2} Invoiced, led by {Technician-A}; {Work-order-3} Paid, led by {Technician-A}; {Work-order-4} Invoiced, 
+STEPS:
+Open Work Orders, click the All tab and click Board View in the display switcher.
+Type the name of {Customer-A} in Search.
+Drag {Work-order-2}'s card from {Technician-A}'s column into {Technician-B}'s column.
+Drag {Work-order-2}'s card into the Unassigned column.
+Drag {Work-order-2}'s card within {Technician-A}'s column to above {Work-order-1}.
+Drag {Work-order-3}'s card into {Technician-B}'s column.
+Drag {Work-order-3}'s card into the Unassigned column.
+Drag {Work-order-3}'s card within {Technician-A}'s column to above {Work-order-1}.
+Drag {Work-order-4}'s card into {Technician-A}'s column.
+Drag {Work-order-4}'s card to a new place within the Unassigned column.
+Drag {Work-order-5}'s card into {Technician-B}'s column (click Keep shifts if asked).
+Drag {Work-order-6}'s card into {Technician-B}'s column (click Keep shifts if asked).
+Open {Work-order-2}.
+Try to change Lead Technician on the work order page.
+Go back to the Work Orders page.
+Click Tech View in the display switcher.
+Do steps 3 to 10 again with the rows.
+Drag {Work-order-5}'s row from {Technician-A}'s group into {Technician-B}'s group.
+Drag {Work-order-6}'s row from {Technician-B}'s group back into {Technician-A}'s group.
+EXP:
+Expected results
+Step 1: the All tab opens in Board View.
+Step 2: only {Customer-A}'s six work orders show: {Work-order-1}, {Work-order-2}, {Work-order-3}, {Work-order-5} and {Work-order-6} in {Technician-A}'s column, and {Work-order-4} in the Unassigned column.
+Steps 3, 4, 6 and 7: {Work-order-2} and {Work-order-3} cannot be moved to {Technician-B} or to Unassigned: the card goes back to {Technician-A}'s column and the lead stays {Technician-A}. While {Work-order-2}'s card is over {Technician-B}'s column, the note "Invoiced · can’t be reassigned" shows at the top of that column; for {Work-order-3} it reads "Paid · can’t be reassigned".
+Steps 5 and 8: {Work-order-2} and {Work-order-3} can be moved within {Technician-A}'s column and keep their new place.
+Steps 9 and 10: {Work-order-4} cannot be moved out of Unassigned, but it can be reordered inside it.
+Step 11: {Work-order-5} (Declined) cannot be moved to {Technician-B}: while its card is over {Technician-B}'s column the note “Declined · can’t be reassigned” shows at the top of that column, and the card goes back to {Technician-A}'s column.
+Step 12: {Work-order-6} (Complete) moves to {Technician-B} normally: its card now sits in {Technician-B}'s column.
+Step 13: the work order page of {Work-order-2} opens.
+Step 14: on the work order page the Lead Technician of {Work-order-2} cannot be changed either.
+Step 15: the Work Orders page shows again.
+Step 16: Tech View opens.
+Steps 17 to 19: Tech View follows the same rules for every move (the note shows at the top of {Technician-B}'s group). A change sent outside the screens is also refused by the server; this part cannot be checked by hand, so write "server refusal not checked by hand" in the result comment and pass or fail on what you can see. Imported work orders are checke
+
+##### C97002 | Dragging to another technician changes the lead, Unassigned clears it
+PRE: Preconditions
+Needs: 1 user · 1 browser · about 20 minutes
+Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+Technicians (examples, the expected results call them by first name or full name): "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo", "ZZAUTOTEST Cal Charlie". A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is o
+STEPS:
+Open Work Orders from the top menu and click the All tab.
+Type "ZZAUTOTEST F3 Drag Lead Change" in Search so only this case's work orders show.
+Click Board View in the display switcher (tooltip "Board View").
+Drag the Alpha Co card from Ana's column into Ben's column and release.
+Click the Alpha Co card to open the work order and read its Lead Technician, then go back with the browser Back button.
+Drag the Alpha Co card from Ben's column into the Unassigned column and release.
+Open the Alpha Co work order again, read Lead Technician, then go back.
+Drag the Golf Co card from the Unassigned column into Cal's column and release.
+Open the Golf Co work order, read Lead Technician, then go back.
+Click Tech View in the display switcher at the right of the toolbar (tooltip "Tech View").
+Drag the Golf Co row from Cal's group into Ana's group and release, then open it and read Lead Technician.
+EXP:
+Expected results
+After step 4 the card sits in Ben's column and a message naming the work order and Ben appears, with an Undo button (e.g. "S1-801 assigned to ZZAUTOTEST Ben Bravo", with Alpha Co's own number). It closes by itself after about 5 seconds while the pointer is not over it.
+Step 5: the work order page shows Lead Technician Ben Bravo.
+After step 6 the card sits in Unassigned and the message "<Alpha Co's number> moved to Unassigned" appears (e.g. "S1-801 moved to Unassigned"), with an Undo button.
+Step 7: the work order page shows no lead technician.
+Steps 8 and 9: the Golf Co card moved into Cal's column and its work order page shows Lead Technician Cal Charlie.
+Step 11: in Tech View the row moves to Ana's group and the work order page shows Lead Technician Ana Alpha.
+
+
+##### C97007 | A work order given a new lead from Reassign or its page goes to the bottom
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+User {User-B} (for example ZZAUTOTEST Dispatcher Two) has Work orders > View and Create & Edit at {Location-A} and is signed in in a second browser.
+Technicians {Technician-A} (for example ZZAUTOTEST Ana Alpha), {Technician-B} (for example ZZAUTOTEST Ben Bravo) and {Technician-C} (for example ZZAUTOTEST Cal Charlie) are active staff members at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customers {Customer-A} to {Customer-E} are used by this case only, their names start with the same words (for example "ZZAUTOTEST F3 Reassign Bottom") and end, in name order, with Aardvark Co, Abbey Co, Bravo Co, Delta Co and Echo Co.
+Approved work orders: {Work-order-3} (for {Customer-C}) and 
+STEPS:
+Open Work Orders from the top menu and click the All tab.
+Type the shared start of the customer names (for example ZZAUTOTEST F3 Reassign Bottom) in Search.
+Click Board View in the display switcher.
+Hover {Work-order-1}'s card in {Technician-C}'s column and click its More actions (…) button.
+Click Reassign lead technician.
+Click {Technician-B} in the Reassign lead technician dialog.
+Read the order of {Technician-B}'s column.
+Open {Work-order-2}, pick {Technician-B} in Lead Technician on the work order page, then go back to Work Orders > All > Board View with the same search.
+Read the order of {Technician-B}'s column.
+Drag {Work-order-5}'s card from {Technician-C}'s column and drop it between {Work-order-3} and {Work-order-4} in {Technician-B}'s column.
+Click Tech View in the display switcher and read {Technician-B}'s group.
+In the second browser, as {User-B}, open Work Orders > All, type the same search, and read {Technician-B}'s work in Tech View and in Board View.
+EXP:
+Expected results
+Step 7: {Technician-B}'s column reads {Work-order-3}, {Work-order-4}, {Work-order-1}. {Work-order-1} goes to the bottom, even though by customer name it would come first.
+Step 9: {Technician-B}'s column reads {Work-order-3}, {Work-order-4}, {Work-order-1}, {Work-order-2}. A lead set on the work order page also goes to the bottom.
+Step 10: {Work-order-5} lands where it was dropped. {Technician-B}'s column reads {Work-order-3}, {Work-order-5}, {Work-order-4}, {Work-order-1}, {Work-order-2}.
+Steps 11 and 12: Tech View shows the same order in {Technician-B}'s group, and {User-B} sees the same order in both views.
+
+
+##### C97008 | Moving to another technician shows the message, reordering shows none
+PRE: Preconditions
+Needs: 1 user · 1 browser · about 10 minutes
+Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+Technicians (examples, the expected results call them by first name or full name): "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo". A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is on, the Role is neither Off
+STEPS:
+Open Work Orders from the top menu and click the All tab.
+Type "ZZAUTOTEST F3 Move Message" in Search so only this case's work orders show.
+Click Board View in the display switcher (tooltip "Board View").
+Write down the header counts (Ana 3, Ben 1).
+Drag the Alpha Co card from Ana's column into Ben's column and release. Do not reload.
+Read the message that appears and both header counts, then wait about 10 seconds without clicking or pointing at the message.
+Drag the Alpha Co card above the Delta Co card inside Ben's column and release.
+Read the screen for any message, read both header counts, then open Alpha Co and read Lead Technician.
+EXP:
+Expected results
+Step 6: a message naming the work order and Ben appears, with an Undo button (e.g. "S1-801 assigned to ZZAUTOTEST Ben Bravo", with Alpha Co's own number), and the counts change at once to Ana 2, Ben 2 (3 − 1 = 2 and 1 + 1 = 2), with no page reload. The message closes by itself within the 10 seconds (after about 5 seconds).
+Step 8: Alpha Co moves above Delta Co. No message appears, the counts stay Ana 2, Ben 2, and Alpha Co still has Lead Technician Ben Bravo.
+
+
+##### C97009 | Declined, Invoiced and Paid work orders only reorder within their technician
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example ZZAUTOTEST Ana Alpha) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example ZZAUTOTEST Ben Bravo) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST F3 Invoiced Lock") is used by this case only and has six work orders (for example S10043-17811 to S10043-17816): {Work-order-1} Approved, {Work-order-2} Invoiced, {Work-order-3} Paid, {Work-order-4} Declined and {Work-order-5} Complete, all led by {Technician-A}, and {Work-order-6} Invoiced with no lead technician.
+{Technician
+STEPS:
+Open Work Orders from the top menu and click the All tab.
+Type the name of {Customer-A} in Search.
+Click Board View in the display switcher.
+Look at the {Work-order-2}, {Work-order-3} and {Work-order-4} cards and hover the lock or any marker on them.
+Drag {Work-order-2}'s card above {Work-order-1}'s card inside {Technician-A}'s column and release it.
+Drag {Work-order-2}'s card into {Technician-B}'s column and release it.
+Drag {Work-order-3}'s card into the Unassigned column and release it.
+Drag {Work-order-6}'s card from Unassigned into {Technician-A}'s column and release it.
+Drag {Work-order-4}'s card into {Technician-B}'s column and release it, then drag {Work-order-5}'s card into {Technician-B}'s column and release it.
+Click Tech View in the display switcher.
+Drag {Work-order-3}'s row into {Technician-B}'s group and release it.
+EXP:
+Expected results
+Step 4: {Work-order-2} and {Work-order-3} each show a lock icon, which marks that they can only be reordered within {Technician-A}'s work, not moved to another technician. Hovering the lock shows "Invoiced · can’t be reassigned" on {Work-order-2} and "Paid · can’t be reassigned" on {Work-order-3}. {Work-order-4} (Declined) also shows a lock icon, and hovering it shows "Declined · can’t be reassigned".
+Step 5: {Work-order-2} moves above {Work-order-1}. Reordering within the same technician is allowed.
+Steps 6 and 7: {Work-order-2} cannot be dropped on {Technician-B} and {Work-order-3} cannot be dropped on Unassigned. While {Work-order-2} is over {Technician-B}'s column, the note "Invoiced · can’t be reassigned" shows at the top of that column. Both stay in {Technician-A}'s column, no lead-change message appears and {Technician-A}'s count is unchanged.
+Step 8: {Work-order-6} cannot be moved out of Unassigned. It stays there.
+Step 9: {Work-order-4} (Declined) cannot be dropped on {Technician-B}: while its card is over {Technician-B}'s column the note “Declined · can’t be reassigned” shows at the top of that column, and it stays in {Technician-A}'s column. {Work-order-5} (Complete) moves to {Technician-B}'s column, with the message "{Work-order-5} assigned to {Technician-B}", with an "Undo" button.
+Step 11: the same rule holds in Tech View. While {Work-order-3}'s row is over {Technician-B}'s group, the note "Paid · can’t be reassigned" shows at the top of that group, and {Work-order-3} stays in {Technician-A}'s group.
+
+
+##### C690647 | SV-11545 - Declined, Invoiced, Paid reorder but can't be reassigned (release)
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example ZZAUTOTEST Ana Alpha) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example ZZAUTOTEST Ben Bravo) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST F3 Invoiced Lock") is used by this case only and has six work orders (for example S10043-17811 to S10043-17816): {Work-order-1} Approved, {Work-order-2} Invoiced, {Work-order-3} Paid, {Work-order-4} Declined and {Work-order-5} Complete, all led by {Technician-A}, and {Work-order-6} Invoiced with no lead technician.
+{Technician
+STEPS:
+Open Work Orders from the top menu and click the All tab.
+Type the name of {Customer-A} in Search.
+Click Board View in the display switcher.
+Look at the {Work-order-2}, {Work-order-3} and {Work-order-4} cards and hover the lock or any marker on them.
+Drag {Work-order-2}'s card above {Work-order-1}'s card inside {Technician-A}'s column and release it.
+Drag {Work-order-2}'s card into {Technician-B}'s column and release it.
+Drag {Work-order-3}'s card into the Unassigned column and release it.
+Drag {Work-order-6}'s card from Unassigned into {Technician-A}'s column and release it.
+Drag {Work-order-4}'s card into {Technician-B}'s column and release it, then drag {Work-order-5}'s card into {Technician-B}'s column and release it.
+Click Tech View in the display switcher.
+Drag {Work-order-3}'s row into {Technician-B}'s group and release it.
+EXP:
+Expected results
+Step 1: the Work Orders page shows the All tab.
+Step 2: only {Customer-A}'s work orders show.
+Step 3: Board View shows {Work-order-1}, {Work-order-2}, {Work-order-3}, {Work-order-4} and {Work-order-5} in {Technician-A}'s column and {Work-order-6} in the Unassigned column.
+Step 4: {Work-order-2} and {Work-order-3} each show a lock icon, which marks that they can only be reordered within {Technician-A}'s work, not moved to another technician. Hovering the lock shows "Invoiced · can’t be reassigned" on {Work-order-2} and "Paid · can’t be reassigned" on {Work-order-3}. {Work-order-4} (Declined) also shows a lock icon, and hovering it shows "Declined · can’t be reassigned".
+Step 5: {Work-order-2} moves above {Work-order-1}. Reordering within the same technician is allowed.
+Step 6: {Work-order-2} cannot be dropped on {Technician-B}. While {Work-order-2} is over {Technician-B}'s column, the note "Invoiced · can’t be reassigned" shows at the top of that column. It stays in {Technician-A}'s column, no lead-change message appears and {Technician-A}'s count is unchanged.
+Step 7: {Work-order-3} cannot be dropped on Unassigned. It stays in {Technician-A}'s column, no lead-change message appears and {Technician-A}'s count is unchanged.
+Step 8: {Work-order-6} cannot be moved out of Unassigned. It stays there.
+Step 9: {Work-order-4} (Declined) cannot be dropped on {Technician-B}: while its card is over {Technician-B}'s column the note “Declined · can’t be reassigned” shows at the top of that column, and it stays in {Technician-A}'s column. {Work-order-5} (Complete) moves to {Technician-B}'s column.
+Step 10: Tech View shows {Work-order-3}'s row in {Technician-A}'s group.
+Step 11: the same rule holds in Tech View. While {Work-order-3}'s row is over {Technician-B}'s group
+
+##### C368144 | Removing the lead puts the work order in its normal place in Unassigned
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example ZZAUTOTEST Ana Alpha) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customers {Customer-A} to {Customer-D} are used by this case only, their names start with the same words (for example "ZZAUTOTEST F3 Unassigned Place") and end, in name order, with Alpha Co, Bravo Co, Charlie Co and Delta Co.
+Approved work orders (for example S10043-17731 to S10043-17734): {Work-order-1} (for {Customer-A}) and {Work-order-3} (for {Customer-C}) are led by {Technician-A}; {Work-order-2} (for {Customer-B}) and {Work-order-4} (for {Customer-D}) have no lead technician.
+Nobody has reordered work in Unassigned at {Location-A}.
+No tech
+STEPS:
+Open Work Orders from the top menu and click the All tab.
+Type the shared start of the customer names (for example ZZAUTOTEST F3 Unassigned Place) in Search.
+Click Board View in the display switcher.
+Read the order of the Unassigned column.
+Hover {Work-order-3}'s card in {Technician-A}'s column and click its More actions (…) button.
+Click Unassign.
+Read the order of the Unassigned column.
+Open {Work-order-1}, clear its Lead Technician on the work order page, then go back to Work Orders > All > Board View with the same search.
+Read the order of the Unassigned column.
+Click Tech View in the display switcher and read the Unassigned group.
+EXP:
+Expected results
+Step 4: Unassigned reads {Work-order-2}, {Work-order-4}.
+Step 6: the message "{Work-order-3} moved to Unassigned" shows, with an "Undo" button.
+Step 7: Unassigned reads {Work-order-2}, {Work-order-3}, {Work-order-4}. {Work-order-3} takes its normal customer-name place, not the bottom.
+Step 9: Unassigned reads {Work-order-1}, {Work-order-2}, {Work-order-3}, {Work-order-4}. {Work-order-1} is first by customer name, not at the bottom.
+Step 10: Tech View's Unassigned group shows the same order.
+
+
+##### C97028 | Blocked analytics never stops the page, settings or reassignment
+PRE: Preconditions
+Needs: 1 user · 1 browser with a tracker blocker · about 15 minutes
+Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+Technicians (examples, the expected results call them by first name or full name): "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo". A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is on, 
+STEPS:
+Open Work Orders, search "ZZAUTOTEST F3 Blocked Analytics" and click Board View.
+Open Fields to display and turn VIN/Serial on, then pick Compact density.
+Drag the Alpha Co card from Ana's column into Ben's column.
+Refresh the page.
+EXP:
+Expected results
+Step 1: the page loads normally.
+Step 2: the field and density changes apply at once.
+Step 3: the card moves to Ben's column and the message "{work order number} assigned to ZZAUTOTEST Ben Bravo" appears, with an "Undo" button, showing Alpha Co's work order number (for example "S1-801 assigned to ZZAUTOTEST Ben Bravo").
+Step 4: after the refresh, Board View, VIN/Serial, Compact and Ben as lead are all still there. Analytics being blocked made no difference.
+
+
+##### C590130 | Design: The lead change message is the design's white message with Undo
+PRE: Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is 1440 px wide, with the browser zoom at 100%.
+Technician {Technician-A} (for example ZZAUTOTEST DC21 Dee Toast) is an active technician at {Location-A}.
+Customer {Customer-A} (for example "ZZAUTOTEST DC21 Toast") is used by this case only.
+Estimate {Work-order-1} (for example S10043-17856) for {Customer-A} has no lead technician and no approved line, so it sits in Unassigned. None of its lines has a technician.
+On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).
+STEPS:
+Open Work Orders, click the All tab and click Board View in the display switcher.
+Drag {Work-order-1}'s card from Unassigned into {Technician-A}'s column and release it.
+Look at the message that appears.
+Wait ten seconds without moving the mouse over the message.
+EXP:
+Expected results
+Step 3: a white message with a check icon reads “{Work-order-1} assigned to {Technician-A}” and has an “Undo” button. It is the design’s message for a lead change, not the app’s standard success message.
+Step 4: the message closes by itself, about 5 seconds after it appeared.
+[KNOWN-PROBLEM BLOCK]
+
+
+##### C368152 | SV-11524 - Reassign and Unassign work from the keyboard through the More actions menu
+PRE: Setup file (for Claude sessions; a tester does not need it)
+Preconditions
+You are signed in with the "Admin" role at {Location-A}.For example: {Location-A} is Staging Heavy Duty - 9919.
+Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} and {Technician-B}.For example: {Technician-A} is ZZAUTOTEST C368152 Ana and {Technician-B} is ZZAUTOTEST C368152 Ben.
+Customer {Customer-A} has three Approved work orders: {Work-order-1} led by {Technician-A}, {Work-order-2} led by {Technician-B}, and {Work-order-3} with no lead technician. None has a shift on the Schedule. {Technician-B} is not the technician on any line of {Work-order-1}.For example: {Customer-A} is ZZAUTOTEST C368152 Reassign, and {Work-order-1} to {Work-order-3} are S10043-17721 to S10043-17723.
+{Technician-A} and {Technician-B} are pinned in your Board View, and no other technician is pinned.
+Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
+If
+STEPS:
+Click once in the "Search" box.
+Press Tab until a card shows a focus ring.
+Use the arrow keys to move the focus ring to the card for {Work-order-1}.
+Press Tab.
+Press Enter.
+Choose "Reassign lead technician" with the arrow keys and press Enter.
+Type the first letters of {Technician-B}'s name in the dialog's search box.
+Choose {Technician-B} with the arrow keys and press Enter.
+Use the arrow keys to move the focus ring to the card for {Work-order-2}.
+Press Tab.
+Press Enter.
+Choose "Unassign" with the arrow keys and press Enter.
+EXP:
+Expected results
+Step 1: the cursor is in the "Search" box.
+Step 2: a card shows the focus ring: the card you focused last or, if no card has been focused yet, the first card in "Unassigned" ({Work-order-3}).
+Step 3: the card for {Work-order-1} shows the focus ring.
+Step 4: the card's "More actions" (…) button shows and has the focus.
+Step 5: the menu opens and offers "Reassign lead technician" and "Unassign".
+Step 6: the "Reassign lead technician" dialog opens.
+Step 7: the dialog's list narrows to {Technician-B}.
+Step 8: the dialog closes, {Work-order-1} moves to {Technician-B}'s column and the message "{Work-order-1} assigned to {Technician-B}" shows, with an "Undo" button.
+Step 9: the card for {Work-order-2} shows the focus ring.
+Step 10: the card's "More actions" (…) button has the focus.
+Step 11: the menu opens.
+Step 12: {Work-order-2} moves to the "Unassigned" column and the message "{Work-order-2} moved to Unassigned" shows, with an "Undo" button.
+
+
+##### C614711 | SV-11524 - Work orders of a deleted lead sit under Deleted technician, which takes no drops
+PRE: Setup file (for Claude sessions; a tester does not need it)
+Preconditions
+You are signed in as an Admin user (the "Admin" role, which has Work orders > View and Create & Edit) at {Location-A}.For example: {Location-A} is Staging Heavy Duty - 9919.
+Two technicians are active at {Location-A} with the "Technician" role: {Technician-A} and {Technician-B}. {Technician-A} was made for this case only and has no labor on any work order, because this test deletes that staff record.For example: {Technician-A} is ZZAUTOTEST C614711 Dana and {Technician-B} is ZZAUTOTEST C614711 Eli.
+Customer {Customer-A} has two Approved work orders: {Work-order-1} led by {Technician-A}, and {Work-order-2} with no lead technician. {Technician-B} is not the technician on any line of {Work-order-1}.For example: {Customer-A} is ZZAUTOTEST C614711 Deleted Lead, and {Work-order-1} and {Work-order-2} are S10043-17901 and S10043-17902.
+Starting screen: your initials (top right) > "Settings" > "Staff", in a browser window at least 1024 px wide.
+If any record above is missing, mark this test Blocked: "setup not done".
+STEPS:
+Click the pencil icon on {Technician-A}.
+Click "Delete" and confirm.
+Go to "Work Orders" > "All" > "Board View".
+Type the name of {Customer-A} in "Search".
+Read the header of the column that holds the card for {Work-order-1}.
+Drag the card for {Work-order-2} from "Unassigned" onto that column and let go.
+Click "Tech View" in the display switcher.
+Click "List" in the display switcher.
+Click "Board View" in the display switcher.
+Drag the card for {Work-order-1} onto {Technician-B}'s column and let go.
+EXP:
+Expected results
+Step 1: the staff record of {Technician-A} opens.
+Step 2: {Technician-A} is no longer in the "Staff" list.
+Step 3: Board View shows.
+Step 4: the cards for {Work-order-1} and {Work-order-2} show.
+Step 5: the header reads "Deleted technician", shows the inactive marker and has no drag grip.
+Step 6: the drop is refused: the card for {Work-order-2} stays in "Unassigned".
+Step 7: {Work-order-1} sits in a group headed "Deleted technician" with the inactive marker.
+Step 8: in the row for {Work-order-1} the "Lead Technician" cell reads "Unassigned", as List shows today.
+Step 9: Board View shows again.
+Step 10: {Work-order-1} moves to {Technician-B}'s column and the message "{Work-order-1} assigned to {Technician-B}" shows, with an "Undo" button.
+Step 8 expects "Unassigned": PRD version 68 (19 Oct 2026, Chris Ward ruling) changed S3-R20e to say so (it said "blank, as today"), as the QA lead decided on 19 Oct 2026.
+[KNOWN-PROBLEM BLOCK]
+
+
