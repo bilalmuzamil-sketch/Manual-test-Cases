@@ -1,0 +1,445 @@
+{
+ "design": "https://claude.ai/artifact/1fuPz8Y4xTg7Syq1mfmJ9R (canvas \"Technician Toggle\", version 1793629882-06f7)",
+ "prd": "Confluence 977371146 \"Technician Toggle\" v17 (2 Nov 2026, Chris Ward)",
+ "made": "2026-11-02",
+ "count": 25,
+ "figures": [
+  {
+   "page": 1,
+   "board": "Main.dc.html",
+   "page_name": "1 Staff list",
+   "figure": 1,
+   "file_line": 26,
+   "badge": "Production today (before)",
+   "heading": "Staff list",
+   "picture_in_design": "shots/before-staff.png",
+   "alt": "Staff list in production, scrolled to the last columns",
+   "image": "images/tt-p1-01-before-staff-list.png",
+   "captions": [
+    "Billable is the last column. There is no Technician column and no notice."
+   ],
+   "state": "Staff list, Active tab, scrolled sideways (First Name out of view). Last column Billable with green Yes / red No pills, then a row edit icon. No notice, no Technician column.",
+   "before": true
+  },
+  {
+   "page": 1,
+   "board": "Main.dc.html",
+   "page_name": "1 Staff list",
+   "figure": 2,
+   "file_line": 31,
+   "badge": "This build",
+   "heading": "Notice and Technician column",
+   "picture_in_design": "shots/after-staff-list.png",
+   "alt": "Staff list with the notice and the Technician column",
+   "image": "images/tt-p1-02-after-notice-and-technician-column.png",
+   "captions": [
+    "Notice, verbatim: \"New: Decide who appears on Board View, Tech View and the technician dropdowns. Turn Technician on or off for each person in their staff settings, next to Sales Representative. To start, it is on for everyone who worked on a work order in the last 90 days, is on open work, or is billable.\"",
+    "No close button: it disappears for everyone on the \"New\" pill's end date.",
+    "Technician column, read-only and sortable, just left of Billable: Yes when the person's Technician toggle is on and their Time Clock is on, otherwise No. A deactivated person always shows No. It changes only through the staff window (page 2).",
+    "\"New\" pill at the top right of the Technician header. It goes away at 07:00 UTC on the seventh day after the release that ships this; the exact date is set when the release is scheduled."
+   ],
+   "state": "Staff list with the blue info notice (i icon, two lines, no close button) between the toolbar and the Active/Deactivated tabs; table scrolled further sideways (Last Name out of view, emails cut on the left); Technician column with a 'New' pill at the top right of its header, directly left of Billable; green Yes / red No pills in both columns (same style); every visible row's Technician value equals its Billable value.",
+   "before": false
+  },
+  {
+   "page": 2,
+   "board": "TurnOn.dc.html",
+   "page_name": "2 Turn Technician on for a staff member",
+   "figure": 1,
+   "file_line": 27,
+   "badge": "Production today (before)",
+   "heading": "New Staff Member",
+   "picture_in_design": "shots/before-new-staff.png",
+   "alt": "New Staff Member window in production",
+   "image": "images/tt-p2-01-before-new-staff-member.png",
+   "captions": [
+    "Time Clock and Sales Representative sit beside Billable. No Technician toggle."
+   ],
+   "state": "New Staff Member window over the staff list: First Name focused (blue border), Billable dropdown 'No' with Time Clock (off) and Sales Representative (off) toggles beside it on the same row; orange billing notice; Save & Add Next (outlined) and Save & Close (blue). No Technician toggle.",
+   "before": true
+  },
+  {
+   "page": 2,
+   "board": "TurnOn.dc.html",
+   "page_name": "2 Turn Technician on for a staff member",
+   "figure": 2,
+   "file_line": 32,
+   "badge": "This build",
+   "heading": "New Staff Member",
+   "picture_in_design": "shots/after-new-staff.png",
+   "alt": "New Staff Member window with the Technician toggle off",
+   "image": "images/tt-p2-02-after-new-staff-member.png",
+   "captions": [
+    "The three toggles move to one row of their own below Billable, the same row as Edit: Time Clock, Sales Representative, Technician. Nothing else moves.",
+    "Technician is last, with the \"New\" pill (same end date as the staff list pill). The window opens with no role and Time Clock off, so Technician starts off and grayed out."
+   ],
+   "state": "New Staff Member window as it opens: no role, Time Clock off; Billable alone on its row; one row of its own below it: Time Clock (off), Sales Representative (off), Technician (off and grayed out: lighter track, grey label) with the 'New' pill at the top right of the word Technician, touching its end. The notice shows behind the window ('New ...' / 'start ...' at the left edge, '... settings, next to Sales Representative. To' at the right).",
+   "before": false
+  },
+  {
+   "page": 2,
+   "board": "TurnOn.dc.html",
+   "page_name": "2 Turn Technician on for a staff member",
+   "figure": 3,
+   "file_line": 40,
+   "badge": "This build",
+   "heading": "Technician role picked",
+   "picture_in_design": "shots/after-new-staff-prefill.png",
+   "alt": "New Staff Member with Time Clock on and the Technician role picked, Technician switched on",
+   "image": "images/tt-p2-03-after-technician-role-picked.png",
+   "captions": [
+    "Time Clock on and the built-in Technician role picked: Technician switches on by itself. The built-in Foreman role does the same; every other role, including Parts Technician and custom roles, leaves it off.",
+    "Changing the role or Time Clock sets it again from the role, until the user switches Technician by hand: from then on their choice wins. Edit Staff Member never does this."
+   ],
+   "state": "New Staff Member with First Name Jordan, Last Name Lee, Role Technician (focused, blue border), Time Clock on (blue), Sales Representative off, Technician on (blue) with the 'New' pill. Header has no 'New' pill above Dashboard in this picture only.",
+   "before": false
+  },
+  {
+   "page": 2,
+   "board": "TurnOn.dc.html",
+   "page_name": "2 Turn Technician on for a staff member",
+   "figure": 4,
+   "file_line": 50,
+   "badge": "Production today (before)",
+   "heading": "Edit Staff Member",
+   "picture_in_design": "shots/before-edit-olivia.png",
+   "alt": "Edit Staff Member for Olivia Garrett in production",
+   "image": "images/tt-p2-04-before-edit-staff-member.png",
+   "captions": [
+    "Time Clock on, so today she is offered as a technician everywhere (pages 5 and 6), with no way to say otherwise."
+   ],
+   "state": "Edit Staff Member for Olivia Garrett (Parts Manager, Salary, Location Staging Lethbridge - 4310, Billable No): Time Clock on, Sales Representative off, on one row below Location/Billable; TECHNICIAN HOURS section with the 'Set working hours for this technician' toggle (off); orange 'Role changes may impact billing.'; buttons Resend Invitation (green), Deactivate Account (orange), Delete (red), Save & Close (blue).",
+   "before": true
+  },
+  {
+   "page": 2,
+   "board": "TurnOn.dc.html",
+   "page_name": "2 Turn Technician on for a staff member",
+   "figure": 5,
+   "file_line": 55,
+   "badge": "This build",
+   "heading": "Technician off",
+   "picture_in_design": "shots/after-edit-olivia-off.png",
+   "alt": "Edit Staff Member with Technician off",
+   "image": "images/tt-p2-05-after-technician-off.png",
+   "captions": [
+    "Technician is off: on release day it was turned on only for people who, in the last 90 days, had time on a work order, lead or are on a line of an open work order, or are billable. She was none of those."
+   ],
+   "state": "Same window in this build: toggle row Time Clock (on), Sales Representative (off), Technician (off, not grayed) with the 'New' pill; staff list behind shows Technician No and Billable No for her.",
+   "before": false
+  },
+  {
+   "page": 2,
+   "board": "TurnOn.dc.html",
+   "page_name": "2 Turn Technician on for a staff member",
+   "figure": 6,
+   "file_line": 60,
+   "badge": "This build",
+   "heading": "Switched on",
+   "picture_in_design": "shots/after-edit-olivia-on.png",
+   "alt": "Technician switched on, not saved yet",
+   "image": "images/tt-p2-06-after-switched-on.png",
+   "captions": [
+    "Switched on, not saved yet. Nothing changes until Save & Close. Turning it on never shows a warning and never logs her out."
+   ],
+   "state": "Technician switched on (blue) and not saved: the list behind still shows Technician No.",
+   "before": false
+  },
+  {
+   "page": 2,
+   "board": "TurnOn.dc.html",
+   "page_name": "2 Turn Technician on for a staff member",
+   "figure": 7,
+   "file_line": 65,
+   "badge": "This build",
+   "heading": "Saved",
+   "picture_in_design": "shots/after-staff-list-olivia-yes.png",
+   "alt": "Staff list filtered to Parts Manager, Technician Yes",
+   "image": "images/tt-p2-07-after-saved.png",
+   "captions": [
+    "The staff list, filtered to Parts Manager, now shows Technician Yes. Billable stays No: Technician never changes Billable."
+   ],
+   "state": "Staff list filtered to Parts Manager after Save & Close: one row, Olivia Garrett, Technician Yes (green), Billable No (red); sort arrow on the first (scrolled) column.",
+   "before": false
+  },
+  {
+   "page": 3,
+   "board": "NotATech.dc.html",
+   "page_name": "3 When Technician can't be turned on",
+   "figure": 1,
+   "file_line": 26,
+   "badge": "This build",
+   "heading": "Time Clock off",
+   "picture_in_design": "shots/after-greyed-timeclock.png",
+   "alt": "Technician grayed out with the Time Clock tooltip",
+   "image": "images/tt-p3-01-after-time-clock-off.png",
+   "captions": [
+    "Technician needs Time Clock. While Time Clock is off, Technician is off and grayed out. Tooltip, verbatim: \"Turn on Time Clock first. Only staff who clock in can be technicians.\"",
+    "Turning Time Clock off turns Technician off. Turning Time Clock back on leaves Technician off; the user turns it on."
+   ],
+   "state": "New Staff Member, no role, Time Clock off; pointer on the grayed-out Technician toggle; dark grey tooltip with white text, one line, no arrow, opening BELOW the toggle row and centred under Technician, covering part of the orange billing line.",
+   "before": false
+  },
+  {
+   "page": 3,
+   "board": "NotATech.dc.html",
+   "page_name": "3 When Technician can't be turned on",
+   "figure": 2,
+   "file_line": 34,
+   "badge": "This build",
+   "heading": "Built-in Office User role",
+   "picture_in_design": "shots/after-greyed-role.png",
+   "alt": "Technician grayed out with the role tooltip",
+   "image": "images/tt-p3-02-after-built-in-office-user-role.png",
+   "captions": [
+    "On the built-in Office User or Time Clock User role, Technician is off and grayed out. Tooltip, verbatim: \"This role can't be a technician.\" Picking one of those roles turns Technician off.",
+    "Any other role, including a custom role copied from either one, never grays it out."
+   ],
+   "state": "New Staff Member, First Name Sam, Last Name Ortiz, Role Office User (focused), Time Clock on, Technician off and grayed out; tooltip 'This role can't be a technician.' below the toggle, same style.",
+   "before": false
+  },
+  {
+   "page": 4,
+   "board": "TurnOff.dc.html",
+   "page_name": "4 Turn Technician off with open work",
+   "figure": 1,
+   "file_line": 26,
+   "badge": "This build",
+   "heading": "Switched off",
+   "picture_in_design": "shots/after-turnoff-edit.png",
+   "alt": "Edit Staff Member with Technician switched off",
+   "image": "images/tt-p4-01-after-switched-off.png",
+   "captions": [
+    "Technician switched off, not saved yet. Switching Time Clock off has the same effect, because it turns Technician off."
+   ],
+   "state": "Edit Staff Member for Emily Madden (Technician role, Hourly, Billable Yes): Time Clock on, Sales Representative off, Technician switched off (not grayed); buttons Deactivate Account (orange), Delete (pale red: looks disabled), Save & Close (blue); no Resend Invitation. Staff list behind filtered to Technician, Active(26).",
+   "before": false
+  },
+  {
+   "page": 4,
+   "board": "TurnOff.dc.html",
+   "page_name": "4 Turn Technician off with open work",
+   "figure": 2,
+   "file_line": 31,
+   "badge": "This build",
+   "heading": "Turn Off Technician warning",
+   "picture_in_design": "shots/after-turnoff-warning.png",
+   "alt": "Turn Off Technician warning with the person's name and counts",
+   "image": "images/tt-p4-02-after-turn-off-technician-warning.png",
+   "captions": [
+    "Save shows this first, only when the person still leads an open work order or is on a line of one (with labor, added with Add Technician, or as the line's technician), at any location. Otherwise Save goes straight on.",
+    "Text, verbatim with this demo's counts: \"Emily Madden leads 15 open work orders and is on 141 labor lines. They'll stay on them, but won't be offered as a technician on anything new.\"",
+    "Cancel, the X or Escape leave the staff member unsaved. Save continues the save. Nothing is unassigned either way."
+   ],
+   "state": "Turn Off Technician warning over the Edit Staff Member window: yellow header band with the title in large bold dark text and a blue × at the right; white body with the text in three lines ('... anything' / 'new.'); buttons at the bottom right: Cancel (grey fill, white text) then Save (blue fill, white text). The Edit window behind is dimmed.",
+   "before": false
+  },
+  {
+   "page": 5,
+   "board": "BoardTech.dc.html",
+   "page_name": "5 Board View and Tech View",
+   "figure": 1,
+   "file_line": 27,
+   "badge": "Production today (before)",
+   "heading": "Board View",
+   "picture_in_design": "shots/before-board-columns.png",
+   "alt": "Board View with an Olivia Garrett column",
+   "image": "images/tt-p5-01-before-board-view.png",
+   "captions": [
+    "Olivia Garrett has an empty column between Nikola Milosevic and Parth Fadadu."
+   ],
+   "state": "Board View: Unassigned column (1097) then technician columns, each header with grip, initials avatar, name, pin icon and a count with a clipboard icon; Nikola Milosevic, Olivia Garrett, Parth Fadadu empty columns with the dashed 'Drag a work order here to assign it' box; tooltip 'Board View' under the display switcher, which carries a 'New' pill (partly hidden by the tooltip).",
+   "before": true
+  },
+  {
+   "page": 5,
+   "board": "BoardTech.dc.html",
+   "page_name": "5 Board View and Tech View",
+   "figure": 2,
+   "file_line": 32,
+   "badge": "This build",
+   "heading": "Board View",
+   "picture_in_design": "shots/after-board-columns.png",
+   "alt": "Board View without the Olivia Garrett column",
+   "image": "images/tt-p5-02-after-board-view.png",
+   "captions": [
+    "No column for her: Parth Fadadu follows Nikola Milosevic. A column only appears for staff whose Technician toggle is on and whose Time Clock is on.",
+    "Someone whose Technician is turned off but who still leads open work keeps a column for that work, so nothing they lead disappears from the board."
+   ],
+   "state": "Board View in this build: no Olivia Garrett column; Nemanja Djuric, Nikola Milosevic, Parth Fadadu in name order; same column look.",
+   "before": false
+  },
+  {
+   "page": 5,
+   "board": "BoardTech.dc.html",
+   "page_name": "5 Board View and Tech View",
+   "figure": 3,
+   "file_line": 42,
+   "badge": "Production today (before)",
+   "heading": "Tech View",
+   "picture_in_design": "shots/before-techview.png",
+   "alt": "Tech View with an Olivia Garrett group",
+   "image": "images/tt-p5-03-before-tech-view.png",
+   "captions": [
+    "Groups collapsed. Olivia Garrett has a group with 0 work orders."
+   ],
+   "state": "Tech View, groups collapsed, page scrolled (tabs and toolbar cut at the top): one group row per person with grip, chevron, initials avatar, name, pin icon, count; Olivia Garrett group with 0 between Nikola Milosevic and Parth Fadadu; Rebecca Mitchell with a grey 'Inactive' pill.",
+   "before": true
+  },
+  {
+   "page": 5,
+   "board": "BoardTech.dc.html",
+   "page_name": "5 Board View and Tech View",
+   "figure": 4,
+   "file_line": 47,
+   "badge": "This build",
+   "heading": "Tech View",
+   "picture_in_design": "shots/after-techview.png",
+   "alt": "Tech View without the Olivia Garrett group",
+   "image": "images/tt-p5-04-after-tech-view.png",
+   "captions": [
+    "No group for her. Same rule as Board View."
+   ],
+   "state": "Tech View in this build: no Olivia Garrett group; Parth Fadadu follows Nikola Milosevic; the display switcher shows the 'New' pill (light blue fill, blue border, blue text) above it.",
+   "before": false
+  },
+  {
+   "page": 5,
+   "board": "BoardTech.dc.html",
+   "page_name": "5 Board View and Tech View",
+   "figure": 5,
+   "file_line": 54,
+   "badge": "Production today (before)",
+   "heading": "Technician filter, searching \"Oli\"",
+   "picture_in_design": "shots/before-board-filter-oli.png",
+   "alt": "Technician filter listing Olivia Garrett",
+   "image": "images/tt-p5-05-before-technician-filter-searching-oli.png",
+   "captions": [
+    "The Technician filter offers Olivia Garrett."
+   ],
+   "state": "Technician filter open below its button: search box (blue border, magnifier, clear ⊗) holding 'Oli'; one row with a checkbox, Olivia Garrett; divider; 'Clear selection'.",
+   "before": true
+  },
+  {
+   "page": 5,
+   "board": "BoardTech.dc.html",
+   "page_name": "5 Board View and Tech View",
+   "figure": 6,
+   "file_line": 59,
+   "badge": "This build",
+   "heading": "Technician filter, searching \"Oli\"",
+   "picture_in_design": "shots/after-board-filter-olivia.png",
+   "alt": "Technician filter with no results",
+   "image": "images/tt-p5-06-after-technician-filter-searching-oli.png",
+   "captions": [
+    "\"No results\". The filter offers the same people as the columns."
+   ],
+   "state": "Same filter in this build: 'No results' in grey, centred, where the rows were; 'Clear selection' stays below the divider.",
+   "before": false
+  },
+  {
+   "page": 5,
+   "board": "BoardTech.dc.html",
+   "page_name": "5 Board View and Tech View",
+   "figure": 7,
+   "file_line": 66,
+   "badge": "Production today (before)",
+   "heading": "Reassign lead technician, searching \"Oli\"",
+   "picture_in_design": "shots/before-board-assign-oli.png",
+   "alt": "Reassign lead technician offering Olivia Garrett",
+   "image": "images/tt-p5-07-before-reassign-lead-technician-searching-oli.png",
+   "captions": [
+    "Opened from a card's more-actions menu on Board View. Olivia Garrett is offered as a lead."
+   ],
+   "state": "Reassign lead technician window over Board View: title, subtitle 'S2-15934 · Buda Truck Repair', blue × right; search box (blue border, magnifier) holding 'Oli'; rows: Unassigned (person icon) and Olivia Garrett (OG avatar, '0 open' under the name); buttons Cancel (grey) then Reassign (blue).",
+   "before": true
+  },
+  {
+   "page": 5,
+   "board": "BoardTech.dc.html",
+   "page_name": "5 Board View and Tech View",
+   "figure": 8,
+   "file_line": 71,
+   "badge": "This build",
+   "heading": "Reassign lead technician, searching \"Oli\"",
+   "picture_in_design": "shots/after-board-assign-olivia.png",
+   "alt": "Reassign lead technician with no match",
+   "image": "images/tt-p5-08-after-reassign-lead-technician-searching-oli.png",
+   "captions": [
+    "No match: \"No technicians match \"Oli\"\". Only staff whose Technician toggle is on and whose Time Clock is on are offered."
+   ],
+   "state": "Same window in this build: Unassigned row still shown; below it, centred grey text No technicians match “Oli” (curly quotes on screen); buttons unchanged.",
+   "before": false
+  },
+  {
+   "page": 6,
+   "board": "WorkOrder.dc.html",
+   "page_name": "6 Technician dropdowns on a work order",
+   "figure": 1,
+   "file_line": 27,
+   "badge": "Production today (before)",
+   "heading": "Lead Technician",
+   "picture_in_design": "shots/before-wo-lead-open.png",
+   "alt": "Lead Technician dropdown offering Olivia Garrett as a normal option",
+   "image": "images/tt-p6-01-before-lead-technician.png",
+   "captions": [
+    "Olivia Garrett is a normal, selectable option."
+   ],
+   "state": "Work order S2-17528 (In Progress): Lead Technician dropdown open in the left card, field shows Olivia Garrett; list: ✓ Olivia Garrett (blue text, highlighted first row), Parth Fadadu, Ryan Fyfe, Sasha Grosman, Sava Vukosavljev, Sinisa Nogic, Stacey Pratt, Stefan Vukovic, Stefan Mitrovic (scrolls).",
+   "before": true
+  },
+  {
+   "page": 6,
+   "board": "WorkOrder.dc.html",
+   "page_name": "6 Technician dropdowns on a work order",
+   "figure": 2,
+   "file_line": 32,
+   "badge": "This build",
+   "heading": "Lead Technician",
+   "picture_in_design": "shots/after-wo-lead-open.png",
+   "alt": "Lead Technician dropdown without Olivia Garrett",
+   "image": "images/tt-p6-02-after-lead-technician.png",
+   "captions": [
+    "Not offered: Parth Fadadu follows Nikola Milosevic. The list holds only staff whose Technician toggle is on and whose Time Clock is on.",
+    "A current lead who is not a technician any more stays the lead, listed last, grayed out with the check, so the current lead never reads as blank (PRD S3-R7)."
+   ],
+   "state": "Same work order in this build with no lead: field shows Unassigned; list Monique Turner, Nebojsa Glavinic, Nebojsa Miskovic, Nemanja Djuric, Nikola Milosevic, Parth Fadadu, Ryan Fyfe, Sasha Grosman, Sava Vukosavljev (alphabetical; no Olivia Garrett; no grayed entry; no check mark visible).",
+   "before": false
+  },
+  {
+   "page": 6,
+   "board": "WorkOrder.dc.html",
+   "page_name": "6 Technician dropdowns on a work order",
+   "figure": 3,
+   "file_line": 42,
+   "badge": "Production today (before)",
+   "heading": "Add Technician on a line",
+   "picture_in_design": "shots/before-wo-line-add-oli.png",
+   "alt": "Add Technician list with Olivia Garrett",
+   "image": "images/tt-p6-03-before-add-technician-on-a-line.png",
+   "captions": [
+    "Add Technician open and scrolled to the O's: Olivia Garrett is offered."
+   ],
+   "state": "Edit Line window (title hidden under the open list): Add Technician dropdown open upwards (blue border, label 'Add Technician'), list scrolled to the O's: Nebojsa Glavinic, Nebojsa Miskovic, Nemanja Djuric, Nikola Milosevic, Olivia Garrett, Parth Fadadu, Ryan Fyfe, Sasha Grosman, Sava Vukosavljev; Labor Rate HD Fleet Rate, Estimated Time 1.00, Tech Time 1.00, SHOPCOACH LABOR GUIDE; Delete (red) and Save & Close (blue). Left card: Lead Technician Olivia Garrett, Service Advisor Becky Gonzales, Sales Representative Unassigned.",
+   "before": true
+  },
+  {
+   "page": 6,
+   "board": "WorkOrder.dc.html",
+   "page_name": "6 Technician dropdowns on a work order",
+   "figure": 4,
+   "file_line": 47,
+   "badge": "This build",
+   "heading": "Add Technician on a line",
+   "picture_in_design": "shots/after-wo-line-add-olivia.png",
+   "alt": "Add Technician list without Olivia Garrett",
+   "image": "images/tt-p6-04-after-add-technician-on-a-line.png",
+   "captions": [
+    "Not offered: Parth Fadadu follows Nikola Milosevic. Add Labor uses the same list.",
+    "Anyone already on a line who is not a technician any more stays on it and shows grayed out, the same as a deactivated technician today."
+   ],
+   "state": "Same Edit Line window in this build: list Monique Turner ... Nikola Milosevic, Parth Fadadu ... (no Olivia Garrett); no chip or grayed entry is drawn; left card Lead Technician Unassigned.",
+   "before": false
+  }
+ ]
+}

@@ -1,0 +1,385 @@
+{
+ "project": "Technician Toggle (epic SV-11788)",
+ "design": "https://claude.ai/artifact/1fuPz8Y4xTg7Syq1mfmJ9R (canvas \"Technician Toggle\", version 1793629882-06f7, published 2026-11-02 14:31 UTC if the id is a time stamp)",
+ "prd": "PRD v17, Confluence 977371146 \"Technician Toggle\" (edited 2 Nov 2026, Chris Ward; time of day not recorded)",
+ "made": "2026-11-02",
+ "how": "Both ways (Rule 130): spec_to_design_check.py over the 6 boards plus the hand transcription of the 25 screenshots (extract/shots-transcription.txt), and every window, list, tooltip, notice, message, label (letter case, L-04) and look compared by hand, design -> PRD and PRD -> design (SPEC-TO-DESIGN-2026-11-02.json). Outcomes: QUESTION-READY (drafted, not sent: does not close a row) · SETTLED-BY-PRD (a named PRD v17 sentence decides it; no question) · DESIGN-SILENT (no board draws that state) · SHOWN-WHEN-DRIVEN · PO-RULED. 'Latest wins' cannot be applied: both are dated 2 Nov 2026 and PRD v17's time of day is not recorded.",
+ "unsent_questions": [
+  "TT-D01 -> NEW-QUESTIONS.py question 1 (drafted 2 Nov 2026, not sent: the QA lead sends it)",
+  "TT-D02 -> NEW-QUESTIONS.py question 2 (drafted 2 Nov 2026, not sent: the QA lead sends it)",
+  "TT-D04 -> NEW-QUESTIONS.py question 3 (drafted 2 Nov 2026, not sent: the QA lead sends it)",
+  "TT-D06 -> NEW-QUESTIONS.py question 4 (drafted 2 Nov 2026, not sent: the QA lead sends it)"
+ ],
+ "differences": [
+  {
+   "id": "TT-D01",
+   "kind": "behaviour",
+   "board": "NotATech.dc.html (page 3 \"When Technician can't be turned on\"), figure 1 \"Time Clock off\"",
+   "picture": "images/tt-p3-01-after-time-clock-off.png (a New Staff Member window); the board note says \"Edit behaves the same\"",
+   "design_words": "Turning Time Clock back on leaves Technician off; the user turns it on.",
+   "prd_words": "In Edit Staff Member, turning Time Clock back on leaves Technician off; the user turns it on. In New Staff Member, turning Time Clock on pre-fills Technician from the role (S1-R3), unless the user has already switched Technician by hand.",
+   "prd_code": "S1-R5 (v17), S1-R3",
+   "outcome": "QUESTION-READY",
+   "question": "NEW-QUESTIONS.py question 1 (drafted 2 Nov 2026, not sent: the QA lead sends it)",
+   "held_case": "DV-01 in DESIGN-CASE-PLAN.md (AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO)",
+   "note": "Page 2's own caption agrees with the PRD (\"Changing the role or Time Clock sets it again from the role, until the user switches Technician by hand\"), so the design contradicts itself; the PRD-following cases quote S1-R5 and name this caption under References from Design. In the state drawn (no role) both readings give Technician off."
+  },
+  {
+   "id": "TT-D02",
+   "kind": "look",
+   "board": "WorkOrder.dc.html (page 6), figure 4 \"Add Technician on a line\" (This build)",
+   "picture": "images/tt-p6-04-after-add-technician-on-a-line.png (the Edit Line window with Add Technician open); the state is described, not drawn",
+   "design_words": "Anyone already on a line who is not a technician any more stays on it and shows grayed out, the same as a deactivated technician today.",
+   "prd_words": "In the Edit Labor technician list they show grayed out, the same as a deactivated technician today ... In Edit Line they show as an ordinary chip that can be removed with its X, unless they have logged time on the line, in which case the chip shows the existing lock and \"This technician has logged time on the line and cannot be removed.\", as today.",
+   "prd_code": "S3-R8; story SV-11881 acceptance criterion \"they show as an ordinary chip (not grayed out)\"",
+   "outcome": "QUESTION-READY",
+   "question": "NEW-QUESTIONS.py question 2 (drafted 2 Nov 2026, not sent: the QA lead sends it)",
+   "held_case": "DV-02 in DESIGN-CASE-PLAN.md (AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO)",
+   "note": "The caption repeats the PRD Feature Overview's general sentence (\"grayed out in the dropdown\") but sits on the Add Technician / Edit Line picture, where S3-R8 and the story say an ordinary chip. The PRD case (Edit Line chip) names this difference."
+  },
+  {
+   "id": "TT-D03",
+   "kind": "wording",
+   "board": "WorkOrder.dc.html (page 6), figure 4 caption",
+   "picture": "images/tt-p6-04-after-add-technician-on-a-line.png",
+   "design_words": "Add Labor uses the same list.",
+   "prd_words": "Add Technician on a line (in the New Line and Edit Line windows) and the Technician dropdown in the Edit Labor window offer only people per S3-R1.",
+   "prd_code": "S3-R6; §5 Terminology (\"the Technician dropdown in the Edit Labor window\")",
+   "outcome": "SETTLED-BY-PRD",
+   "settled_by": "S3-R6 names the window \"Edit Labor\"; the uploaded tech plan (2026-10-28, line 168) maps the code's AddLabourDialog to \"(Edit Labor)\", so \"Add Labor\" is the same window under its code name. The window's on-screen title is taken from the build at verification (Rule 57: labels come from the build).",
+   "question": "dropped (skill 07 §6: answered by S3-R6 and the tech plan; self-serviceable at build verification)",
+   "held_case": "none (no different behaviour)"
+  },
+  {
+   "id": "TT-D04",
+   "kind": "look/wording (design library rule)",
+   "board": "ds/shopview/components.css line 878, EMPTY STATE comment (the design system the canvas installs); no board draws the state",
+   "picture": "none (DESIGN-SILENT for the state itself)",
+   "design_words": "One rule for every empty state in the product: ONE icon from the set, a title, at most one sentence, and the action that fills it. ... panel  a dashed box inside a layout (no technicians yet, an empty column)",
+   "prd_words": "it shows the title \"No technicians yet\" with the text \"Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned.\"",
+   "prd_code": "S3-R10",
+   "outcome": "QUESTION-READY",
+   "question": "NEW-QUESTIONS.py question 3 (drafted 2 Nov 2026, not sent: the QA lead sends it)",
+   "held_case": "none: the library gives a rule, not words, so no design version can be written; the case quotes S3-R10 and names the rule under References from Design",
+   "note": "Rule 126 point 4: library always/never sentences are in scope. The second empty state (\"Turn Technician on for your technicians and create your first work order to track work by tech.\") is one sentence and agrees."
+  },
+  {
+   "id": "TT-D05",
+   "kind": "wording",
+   "board": "TurnOn.dc.html fig 6 caption, TurnOff.dc.html note; every staff window picture",
+   "picture": "images/tt-p2-06-after-switched-on.png, images/tt-p4-01-after-switched-off.png",
+   "design_words": "Nothing changes until Save & Close. / Left to right: switched off, then Save & Close.",
+   "prd_words": "Switching Technician on or off changes nothing until the user saves the staff member with the window's existing Save.",
+   "prd_code": "S1-R6; S2-R1 (\"When the user saves\")",
+   "outcome": "SETTLED-BY-PRD",
+   "settled_by": "S1-R6 refers to the window's EXISTING save button without its label; the production pictures (before) show that button as \"Save & Close\" in both windows, so the design names the same button. Cases say \"Save & Close\" (the screen's label) for the staff window and \"Save\" for the warning's button (S2-R4).",
+   "question": "dropped (no difference in meaning)",
+   "held_case": "none"
+  },
+  {
+   "id": "TT-D06",
+   "kind": "behaviour (PRD silent on a control the design shows)",
+   "board": "TurnOn.dc.html figs 1-3, NotATech.dc.html figs 1-2 (New Staff Member)",
+   "picture": "images/tt-p2-02-after-new-staff-member.png",
+   "design_words": "Save & Add Next (button, left of Save & Close)",
+   "prd_words": "The pre-fill runs when the window opens and again each time the role or Time Clock is changed, until the user switches Technician by hand. ... The toggle as shown is what is saved.",
+   "prd_code": "S1-R3, S1-R6",
+   "outcome": "QUESTION-READY",
+   "question": "NEW-QUESTIONS.py question 4 (drafted 2 Nov 2026, not sent: the QA lead sends it)",
+   "held_case": "none (the design draws no behaviour for it)",
+   "note": "After Save & Add Next the window stays open for the next person: the PRD does not say whether that counts as the window opening (pre-fill runs again, the earlier hand switch is forgotten). Checked the PRD, the 17 tickets and the tech plan: no mention of \"Add Next\"."
+  },
+  {
+   "id": "TT-D07",
+   "kind": "wording (letter case, L-04)",
+   "board": "WorkOrder.dc.html figs 1-4 (work order S2-17528 left card)",
+   "picture": "images/tt-p6-04-after-add-technician-on-a-line.png (read-only field \"Lead Technician\" / \"Unassigned\"), images/tt-p6-02-after-lead-technician.png",
+   "design_words": "Lead Technician",
+   "prd_words": "the Lead Technician field shows as read-only text, the label \"Lead technician\" with \"Unassigned\" under it, as it does today whenever that list is empty.",
+   "prd_code": "S3-R7a (S3-R5 writes \"The Lead Technician dropdown\")",
+   "outcome": "SETTLED-BY-PRD",
+   "settled_by": "S3-R7a says \"as it does today\"; today's label is \"Lead Technician\" (capital T) in every production picture, and S3-R5 uses the same capital T. Cases name the label as the screen shows it, \"Lead Technician\".",
+   "question": "dropped (the PRD sentence itself points to today's label)",
+   "held_case": "none"
+  },
+  {
+   "id": "TT-D08",
+   "kind": "demo data (could mislead a reader about release day)",
+   "board": "TurnOn.dc.html fig 5 caption, BoardTech.dc.html note, WorkOrder.dc.html note",
+   "picture": "images/tt-p6-01-before-lead-technician.png (Olivia Garrett leads S2-17528, In Progress), images/tt-p6-02-after-lead-technician.png (no lead), images/tt-p2-05-after-technician-off.png",
+   "design_words": "She was none of those. / Olivia Garrett ... leading no work. / Before: production code (release v26.43.1), where Olivia Garrett led this work order. After: this build, where it has no lead.",
+   "prd_words": "(b) leads, has labor on, or is on a line that is not declined ... of, a service work order that is Approved, In Progress or Ready for Review ... S6-R5: Open work is untouched: every lead and labor line stays as it was",
+   "prd_code": "S6-R1 (b), S6-R5, S3-R7",
+   "outcome": "SETTLED-BY-PRD",
+   "settled_by": "S6-R1 (b) and S6-R5 decide release day: a person who leads an In Progress work order is turned on and keeps the lead. The pictures were taken on demo data changed between the shots (the work order lost its lead before the after shots); the boards say so. Cases never use the pictures as release-day expectations.",
+   "question": "dropped (PRD explicit; demo data)",
+   "held_case": "none"
+  },
+  {
+   "id": "TT-D09",
+   "kind": "wording (shorter)",
+   "board": "Main.dc.html fig 2 caption",
+   "picture": "images/tt-p1-02-after-notice-and-technician-column.png",
+   "design_words": "It changes only through the staff window (page 2).",
+   "prd_words": "The column is not editable on the list; the value changes only through the staff window (Story 1) or the person's Time Clock.",
+   "prd_code": "S4-E1, S1-R4",
+   "outcome": "SETTLED-BY-PRD",
+   "settled_by": "S4-E1 names both routes; the caption leaves out the Time Clock route. Cases follow S4-E1.",
+   "question": "dropped (omission, no contrary statement of a drawn state)",
+   "held_case": "none"
+  },
+  {
+   "id": "TT-D10",
+   "kind": "wording (shorter)",
+   "board": "TurnOff.dc.html fig 2 caption",
+   "picture": "images/tt-p4-02-after-turn-off-technician-warning.png",
+   "design_words": "only when the person still leads an open work order or is on a line of one (with labor, added with Add Technician, or as the line's technician), at any location",
+   "prd_words": "A person added to a line through a schedule shift is on the line, the same as one added with Add Technician. (with the statuses Estimate, Approved, In Progress or Ready for Review, and lines not declined)",
+   "prd_code": "S2-R1 (v17), S2-E1",
+   "outcome": "SETTLED-BY-PRD",
+   "settled_by": "S2-R1 v17 is the full rule; the caption is a summary.",
+   "question": "dropped",
+   "held_case": "none"
+  },
+  {
+   "id": "TT-D11",
+   "kind": "wording (shorter)",
+   "board": "BoardTech.dc.html fig 2, fig 8; WorkOrder.dc.html fig 2; Main.dc.html fig 2",
+   "picture": "images/tt-p5-02-after-board-view.png, images/tt-p6-02-after-lead-technician.png",
+   "design_words": "A column only appears for staff whose Technician toggle is on and whose Time Clock is on.",
+   "prd_words": "A person is offered on a technician list at a location when all of these hold: their Technician toggle is on, their Time Clock is on, their user is active, they are enrolled at that location, and their role is not the built-in Office User or Time Clock User role.",
+   "prd_code": "S3-R1, S3-R2, S3-E1, S3-E2, S4-R1",
+   "outcome": "SETTLED-BY-PRD",
+   "settled_by": "S3-R1 (five conditions) and S3-E1/S3-E2; the captions name two of them.",
+   "question": "dropped",
+   "held_case": "none"
+  },
+  {
+   "id": "TT-D12",
+   "kind": "typography (caption only)",
+   "board": "BoardTech.dc.html fig 8 caption",
+   "picture": "images/tt-p5-08-after-reassign-lead-technician-searching-oli.png",
+   "design_words": "No match: \"No technicians match \"Oli\"\".",
+   "prd_words": "Searching for anyone else shows the existing No technicians match “[search]” message.",
+   "prd_code": "S3-R4",
+   "outcome": "SETTLED-BY-PRD",
+   "settled_by": "The screenshot shows curly quotes (No technicians match “Oli”), as the PRD; only the caption types straight quotes (crops/no-tech-match-quotes.png).",
+   "question": "dropped",
+   "held_case": "none"
+  },
+  {
+   "id": "TT-D13",
+   "kind": "wording (ambiguous scope)",
+   "board": "TurnOn.dc.html fig 5 caption",
+   "picture": "images/tt-p2-05-after-technician-off.png",
+   "design_words": "on release day it was turned on only for people who, in the last 90 days, had time on a work order, lead or are on a line of an open work order, or are billable.",
+   "prd_words": "(a) has a time entry on a work order ... no more than 90 days ... (b) leads, has labor on, or is on a line ... of, a service work order that is Approved, In Progress or Ready for Review; (c) has Billable on.",
+   "prd_code": "S6-R1",
+   "outcome": "SETTLED-BY-PRD",
+   "settled_by": "S6-R1 limits only (a) to 90 days; the notice text (S4-R4) says the same. Cases follow S6-R1.",
+   "question": "dropped",
+   "held_case": "none"
+  },
+  {
+   "id": "TT-D14",
+   "kind": "wording (same meaning)",
+   "board": "NotATech.dc.html fig 2 caption",
+   "picture": "images/tt-p3-02-after-built-in-office-user-role.png",
+   "design_words": "Any other role, including a custom role copied from either one, never grays it out.",
+   "prd_words": "Any other role, including a custom role made from either built-in role, never grays it out.",
+   "prd_code": "S1-N1",
+   "outcome": "SETTLED-BY-PRD",
+   "settled_by": "\"copied from\" and \"made from\" name the same custom role; cases quote S1-N1.",
+   "question": "dropped",
+   "held_case": "none"
+  },
+  {
+   "id": "TT-D15",
+   "kind": "wording (shorter)",
+   "board": "WorkOrder.dc.html note",
+   "picture": "none (no time sheet picture)",
+   "design_words": "Time sheets keep every Time Clock user: a Parts Manager can still clock in and record time.",
+   "prd_words": "Lists that are not technician lists keep everyone with Time Clock on except the Office User and Time Clock User roles, as today: time sheets and the time sheet dialogs, Punch Clock Activities ...",
+   "prd_code": "S3-R9, §2 Out of Scope, S3-E3",
+   "outcome": "SETTLED-BY-PRD",
+   "settled_by": "S3-R9 (\"as today\", with the two role exceptions).",
+   "question": "dropped",
+   "held_case": "none"
+  }
+ ],
+ "not_shown": [
+  {
+   "id": "TT-N01",
+   "prd_code": "S1 Error Handling",
+   "prd_words": "A technician must have Time Clock on. / This role can't be a technician. (refusal of a request from elsewhere)",
+   "outcome": "DESIGN-SILENT",
+   "where": "No board: the refusal comes from an outside tool (Public API), not a screen."
+  },
+  {
+   "id": "TT-N02",
+   "prd_code": "S1 Error Handling / S1-N1",
+   "prd_words": "This role can't be a technician. (hover when Time Clock is off AND the role is Office User or Time Clock User)",
+   "outcome": "DESIGN-SILENT",
+   "where": "Page 3 draws Office User with Time Clock ON only."
+  },
+  {
+   "id": "TT-N03",
+   "prd_code": "S1-N1",
+   "prd_words": "Time Clock User role grayed with the tooltip",
+   "outcome": "DESIGN-SILENT",
+   "where": "Page 3 draws only the Office User role; its caption names both roles."
+  },
+  {
+   "id": "TT-N04",
+   "prd_code": "S2-R3",
+   "prd_words": "the four single-count forms of the warning text",
+   "outcome": "DESIGN-SILENT",
+   "where": "Only the plural/plural form is drawn (Emily Madden, 15 and 141)."
+  },
+  {
+   "id": "TT-N05",
+   "prd_code": "S2-R4",
+   "prd_words": "Save's loading state while the counts load; clicking outside the warning does nothing; closing the staff window while counts load",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn."
+  },
+  {
+   "id": "TT-N06",
+   "prd_code": "S2-E3",
+   "prd_words": "the Sales Representative removal warning in the same save",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn."
+  },
+  {
+   "id": "TT-N07",
+   "prd_code": "S3-R7",
+   "prd_words": "a former lead who is not a technician: listed last, grayed out, with the check mark, cannot be picked",
+   "outcome": "DESIGN-SILENT",
+   "where": "Described in the page 6 caption; the after picture has no lead, so the state is not drawn."
+  },
+  {
+   "id": "TT-N08",
+   "prd_code": "S3-R4",
+   "prd_words": "Current · no longer assignable (a former lead in the Assign / Reassign window)",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn; only the no-match message is."
+  },
+  {
+   "id": "TT-N09",
+   "prd_code": "S3-R7a",
+   "prd_words": "read-only Lead Technician / Unassigned at a location with no technicians; the dropdown with Unassigned and a non-technician lead",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn (the read-only look in tt-p6-04 is the field behind an open window)."
+  },
+  {
+   "id": "TT-N10",
+   "prd_code": "S3-R8",
+   "prd_words": "Edit Labor list with a grayed non-technician; Edit Line chip with X; the lock and \"This technician has logged time on the line and cannot be removed.\"",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn (page 6 draws Add Technician only)."
+  },
+  {
+   "id": "TT-N11",
+   "prd_code": "S3-R6",
+   "prd_words": "New Line window's Add Technician; the Edit Labor window's Technician dropdown",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn."
+  },
+  {
+   "id": "TT-N12",
+   "prd_code": "S3-R10",
+   "prd_words": "No technicians yet / Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned. / Nothing here yet text / Set Up Technicians button",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn (see TT-D04 for the library rule)."
+  },
+  {
+   "id": "TT-N13",
+   "prd_code": "S3-E2",
+   "prd_words": "a pinned non-technician column; drop refused with \"This technician can't be assigned work orders.\"",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn."
+  },
+  {
+   "id": "TT-N14",
+   "prd_code": "S3-R4 (Tech View)",
+   "prd_words": "the Assign lead technician window (work order with no lead) and the window opened from Tech View",
+   "outcome": "DESIGN-SILENT",
+   "where": "Only Reassign from Board View is drawn."
+  },
+  {
+   "id": "TT-N15",
+   "prd_code": "S4-R1",
+   "prd_words": "the Technician column on the Deactivated tab",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn (the tab is never opened)."
+  },
+  {
+   "id": "TT-N16",
+   "prd_code": "S4-R4",
+   "prd_words": "the notice with \"Something went wrong loading the staff list. Please try again.\" between the toolbar and the notice",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn."
+  },
+  {
+   "id": "TT-N17",
+   "prd_code": "S1-R2, S4-R5, S4-N2",
+   "prd_words": "after the end date: no pills, no notice, including in an open window or page",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn."
+  },
+  {
+   "id": "TT-N18",
+   "prd_code": "S1-E4",
+   "prd_words": "Deactivate Account with no Turn Off Technician warning",
+   "outcome": "DESIGN-SILENT",
+   "where": "Not drawn (the button is shown)."
+  },
+  {
+   "id": "TT-N19",
+   "prd_code": "S5, S6",
+   "prd_words": "Public API technician value; release-day step",
+   "outcome": "DESIGN-SILENT",
+   "where": "No screens (\"Design: no new screens\" for Story 5)."
+  }
+ ],
+ "S3-R4|[search]": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "Not PRD words but the placeholder of No technicians match “[search]”; drawn as No technicians match “Oli” (tt-p5-08, checked by hand, curly quotes)."
+ },
+ "S3-R4|Current · no longer assignable": {
+  "outcome": "DESIGN-SILENT",
+  "where": "TT-N08: no board draws a former lead in the Reassign window."
+ },
+ "S3-R7a|Lead technician": {
+  "outcome": "PO-RULED",
+  "where": "TT-D07: PRD v17 S3-R7a (Chris Ward, 2 Nov 2026) itself says \"as it does today\"; today's label is \"Lead Technician\" (all page 6 pictures)."
+ },
+ "S3-R8|This technician has logged time on the line and cannot be removed.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "TT-N10: no Edit Line chip is drawn."
+ },
+ "S3-R10|No technicians yet": {
+  "outcome": "DESIGN-SILENT",
+  "where": "TT-N12; the library's empty-state rule is TT-D04 (question 3)."
+ },
+ "S3-R10| When the open tab has no work orders either, the ": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "Not PRD words: the checker took the text between two quoted items of S3-R10 (quote marks of two kinds). The quoted items are TT-N12 (DESIGN-SILENT)."
+ },
+ "S3-R10| state keeps its title, and its text reads ": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "As above: text between two quoted items, not PRD words."
+ },
+ "S3-R10|Set Up Technicians": {
+  "outcome": "DESIGN-SILENT",
+  "where": "TT-N12: no empty state is drawn."
+ },
+ "S3-E2|This technician can't be assigned work orders.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "TT-N13: no pinned column or refused drop is drawn."
+ },
+ "S4-R4|Something went wrong loading the staff list. Please try again.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "TT-N16: no list load error is drawn."
+ }
+}

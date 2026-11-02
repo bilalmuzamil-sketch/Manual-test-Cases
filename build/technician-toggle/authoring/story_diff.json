@@ -1,0 +1,413 @@
+{
+ "codes": {
+  "S1-R1": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "The New Staff Member and Edit Staff Member windows (Settings, Staff) show a toggle labeled \"Technician\" directly to the right of the Sales Representative toggle, as the last toggle in that row (Time Clock, Sales Representative, Technician). In both windows the three toggles share one row of their own, below the Billable field, so New and Edit look the same, in the same style as the window's other toggles.",
+   "prd_text": "The New Staff Member and Edit Staff Member windows (Settings, Staff) show a toggle labeled \"Technician\" directly to the right of the Sales Representative toggle, as the last toggle in that row (Time Clock, Sales Representative, Technician). In both windows the three toggles share one row of their own, below the Billable field, so New and Edit look the same, in the same style as the window's other toggles."
+  },
+  "S1-R2": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "A \"New\" pill sits at the top right of the \"Technician\" label, touching the end of the word. It looks the same as the pill on the Work Orders display switcher. It shows until 07:00 UTC on the seventh day after the release that ships this feature, then disappears for everyone, including in a window that is already open. The moment is fixed in UTC and read from the viewer's own clock: the pill shows while that clock is before it and is gone from that moment on. The exact date is set when the release is scheduled.",
+   "prd_text": "A \"New\" pill sits at the top right of the \"Technician\" label, touching the end of the word. It looks the same as the pill on the Work Orders display switcher. It shows until 07:00 UTC on the seventh day after the release that ships this feature, then disappears for everyone, including in a window that is already open. The moment is fixed in UTC and read from the viewer's own clock: the pill shows while that clock is before it and is gone from that moment on. The exact date is set when the release is scheduled."
+  },
+  "S1-R3": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "In the New Staff Member window, Technician is pre-filled from the role shown: on when the role is the built-in Technician or the built-in Foreman role and Time Clock is on, otherwise off. Every other role pre-fills off, including Parts Technician and every custom role, even one made from Technician or Foreman. The pre-fill runs when the window opens and again each time the role or Time Clock is changed, until the user switches Technician by hand. From then on the user's choice wins: changing the role or Time Clock no longer pre-fills it, though S1-R4 and S1-N1 still turn it off, and only the user turns it back on. The toggle as shown is what is saved. Edit Staff Member never pre-fills (S1-E1).",
+   "prd_text": "In the New Staff Member window, Technician is pre-filled from the role shown: on when the role is the built-in Technician or the built-in Foreman role and Time Clock is on, otherwise off. Every other role pre-fills off, including Parts Technician and every custom role, even one made from Technician or Foreman. The pre-fill runs when the window opens and again each time the role or Time Clock is changed, until the user switches Technician by hand. From then on the user's choice wins: changing the role or Time Clock no longer pre-fills it, though S1-R4 and S1-N1 still turn it off, and only the user turns it back on. The toggle as shown is what is saved. Edit Staff Member never pre-fills (S1-E1)."
+  },
+  "S1-R4": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "Technician can only be on while Time Clock is on. While Time Clock is off, the Technician toggle is off and grayed out, and hovering it shows \"Turn on Time Clock first. Only staff who clock in can be technicians.\" Turning Time Clock off, in the window or any other way (for example through the Public API), turns Technician off.",
+   "prd_text": "Technician can only be on while Time Clock is on. While Time Clock is off, the Technician toggle is off and grayed out, and hovering it shows \"Turn on Time Clock first. Only staff who clock in can be technicians.\" Turning Time Clock off, in the window or any other way (for example through the Public API), turns Technician off."
+  },
+  "S1-R5": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "In Edit Staff Member, turning Time Clock back on leaves Technician off; the user turns it on. In New Staff Member, turning Time Clock on pre-fills Technician from the role (S1-R3), unless the user has already switched Technician by hand.",
+   "prd_text": "In Edit Staff Member, turning Time Clock back on leaves Technician off; the user turns it on. In New Staff Member, turning Time Clock on pre-fills Technician from the role (S1-R3), unless the user has already switched Technician by hand."
+  },
+  "S1-R6": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "Switching Technician on or off changes nothing until the user saves the staff member with the window's existing Save. Once saved, the change applies to every technician list (Story 3) the next time each list loads (S1-E3).",
+   "prd_text": "Switching Technician on or off changes nothing until the user saves the staff member with the window's existing Save. Once saved, the change applies to every technician list (Story 3) the next time each list loads (S1-E3)."
+  },
+  "S1-R7": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "A save that turns Technician on never shows a warning. A save that turns it off may show the Turn Off Technician warning first (Story 2).",
+   "prd_text": "A save that turns Technician on never shows a warning. A save that turns it off may show the Turn Off Technician warning first (Story 2)."
+  },
+  "S1-R8": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "Saving a change to Technician never logs the staff member out. A save that also changes Time Clock logs them out, as a Time Clock change does today.",
+   "prd_text": "Saving a change to Technician never logs the staff member out. A save that also changes Time Clock logs them out, as a Time Clock change does today."
+  },
+  "S1-R9": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "Billable and Sales Representative work exactly as today. Technician does not change, gray out or require either of them, and neither of them changes Technician.",
+   "prd_text": "Billable and Sales Representative work exactly as today. Technician does not change, gray out or require either of them, and neither of them changes Technician."
+  },
+  "S1-N1": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "When the role picked in the window is the built-in Office User or Time Clock User role, the Technician toggle is off and grayed out, and hovering it shows \"This role can't be a technician.\" Picking one of those roles turns Technician off. In Edit Staff Member, saving a staff member who was saved with Technician on and now has one of those roles shows the Turn Off Technician warning first (Story 2). Any other role, including a custom role made from either built-in role, never grays it out.",
+   "prd_text": "When the role picked in the window is the built-in Office User or Time Clock User role, the Technician toggle is off and grayed out, and hovering it shows \"This role can't be a technician.\" Picking one of those roles turns Technician off. In Edit Staff Member, saving a staff member who was saved with Technician on and now has one of those roles shows the Turn Off Technician warning first (Story 2). Any other role, including a custom role made from either built-in role, never grays it out."
+  },
+  "S1-N2": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "If the user does not have the 'Settings → App Settings' setting, they cannot open the staff list or the staff window, as today.",
+   "prd_text": "If the user does not have the 'Settings → App Settings' setting, they cannot open the staff list or the staff window, as today."
+  },
+  "S1-N3": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "This feature adds no history of who changed Technician or when.",
+   "prd_text": "This feature adds no history of who changed Technician or when."
+  },
+  "S1-E1": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "In Edit Staff Member, changing the staff member's role to any role other than the built-in Office User or Time Clock User role leaves Technician as it is. Picking the built-in Technician or Foreman role does not turn it on; the pre-fill (S1-R3) is for new staff only.",
+   "prd_text": "In Edit Staff Member, changing the staff member's role to any role other than the built-in Office User or Time Clock User role leaves Technician as it is. Picking the built-in Technician or Foreman role does not turn it on; the pre-fill (S1-R3) is for new staff only."
+  },
+  "S1-E2": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "A deactivated staff member keeps their Technician toggle as it was, but is not a technician while deactivated (Story 3). Reactivating them brings it back as it was.",
+   "prd_text": "A deactivated staff member keeps their Technician toggle as it was, but is not a technician while deactivated (Story 3). Reactivating them brings it back as it was."
+  },
+  "S1-E3": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "A screen that is already open when a staff member's Technician toggle is saved keeps its lists until it loads them again; nothing is pushed to open screens. A work order's technician dropdowns show the change once the work order is opened again or the page is reloaded; reopening a dropdown on the same page does not. Board View and Tech View show it when opened from the menu, a link or the display switcher, when the filter or location changes, or on reload; coming back with the browser's Back within 30 seconds shows the board as it was. The Assign / Reassign lead technician window shows it every time it opens.",
+   "prd_text": "A screen that is already open when a staff member's Technician toggle is saved keeps its lists until it loads them again; nothing is pushed to open screens. A work order's technician dropdowns show the change once the work order is opened again or the page is reloaded; reopening a dropdown on the same page does not. Board View and Tech View show it when opened from the menu, a link or the display switcher, when the filter or location changes, or on reload; coming back with the browser's Back within 30 seconds shows the board as it was. The Assign / Reassign lead technician window shows it every time it opens."
+  },
+  "S1-E4": {
+   "story": "SV-11879",
+   "same": true,
+   "story_text": "Deactivate Account shows no Turn Off Technician warning. The person keeps their Technician toggle as it was (S1-E2), is not offered as a technician while deactivated, and keeps every work order and line they hold.",
+   "prd_text": "Deactivate Account shows no Turn Off Technician warning. The person keeps their Technician toggle as it was (S1-E2), is not offered as a technician while deactivated, and keeps every work order and line they hold."
+  },
+  "S2-R1": {
+   "story": "SV-11880",
+   "same": true,
+   "story_text": "When the user saves, before anything else, the system counts the staff member's open work across every location of the organization: the work orders they lead and the lines they are on, whether they have labor on the line, were added to it with Add Technician, or are the line's own technician, where the work order is a service work order in Estimate, Approved, In Progress or Ready for Review and the line is not declined. Each work order and each line is counted once. A line on a work order the person also leads still counts, so that job shows as one work order they lead and one line they are on. A person added to a line through a schedule shift is on the line, the same as one added with Add Technician.",
+   "prd_text": "When the user saves, before anything else, the system counts the staff member's open work across every location of the organization: the work orders they lead and the lines they are on, whether they have labor on the line, were added to it with Add Technician, or are the line's own technician, where the work order is a service work order in Estimate, Approved, In Progress or Ready for Review and the line is not declined. Each work order and each line is counted once. A line on a work order the person also leads still counts, so that job shows as one work order they lead and one line they are on. A person added to a line through a schedule shift is on the line, the same as one added with Add Technician."
+  },
+  "S2-R2": {
+   "story": "SV-11880",
+   "same": true,
+   "story_text": "When at least one work order or line is counted, a warning window titled \"Turn Off Technician\" shows. The text names the staff member as last saved (a new name typed in the same save is not used) and what they hold, for example: \"Jordan Lee leads 8 open work orders and is on 50 labor lines. They'll stay on them, but won't be offered as a technician on anything new.\"",
+   "prd_text": "When at least one work order or line is counted, a warning window titled \"Turn Off Technician\" shows. The text names the staff member as last saved (a new name typed in the same save is not used) and what they hold, for example: \"Jordan Lee leads 8 open work orders and is on 50 labor lines. They'll stay on them, but won't be offered as a technician on anything new.\""
+  },
+  "S2-R3": {
+   "story": "SV-11880",
+   "same": true,
+   "story_text": "The text adapts to the counts. A count of zero leaves its part out, and \"it\" is used only when the work orders and lines add up to 1. Exact text for each case ([Name] is the staff member's name):",
+   "prd_text": "The text adapts to the counts. A count of zero leaves its part out, and \"it\" is used only when the work orders and lines add up to 1. Exact text for each case ([Name] is the staff member's name):"
+  },
+  "S2-R4": {
+   "story": "SV-11880",
+   "same": true,
+   "story_text": "The window has Cancel and Save. Save continues the staff save as in S1-R6. Cancel, the X or Escape close the warning and leave the staff member unsaved, with the staff window still open and the toggle as the user left it; clicking outside the warning does nothing. While the counts load after Save, the Save button shows its loading state and cannot be clicked again. Closing the staff window while the counts load cancels the save: nothing is saved and no warning shows. Save in the warning saves the staff member exactly as the window showed when the warning opened.",
+   "prd_text": "The window has Cancel and Save. Save continues the staff save as in S1-R6. Cancel, the X or Escape close the warning and leave the staff member unsaved, with the staff window still open and the toggle as the user left it; clicking outside the warning does nothing. While the counts load after Save, the Save button shows its loading state and cannot be clicked again. Closing the staff window while the counts load cancels the save: nothing is saved and no warning shows. Save in the warning saves the staff member exactly as the window showed when the warning opened."
+  },
+  "S2-R5": {
+   "story": "SV-11880",
+   "same": true,
+   "story_text": "Saving with Technician off unassigns nothing. Every lead and labor line stays as it was (Story 3, S3-R7 and S3-R8).",
+   "prd_text": "Saving with Technician off unassigns nothing. Every lead and labor line stays as it was (Story 3, S3-R7 and S3-R8)."
+  },
+  "S2-N1": {
+   "story": "SV-11880",
+   "same": true,
+   "story_text": "If no open work order or line is counted, no warning shows and the save goes straight on.",
+   "prd_text": "If no open work order or line is counted, no warning shows and the save goes straight on."
+  },
+  "S2-N2": {
+   "story": "SV-11880",
+   "same": true,
+   "story_text": "If the save does not turn Technician off (it was already off, or stays on), no warning shows.",
+   "prd_text": "If the save does not turn Technician off (it was already off, or stays on), no warning shows."
+  },
+  "S2-E1": {
+   "story": "SV-11880",
+   "same": true,
+   "story_text": "Declined, Complete, Invoiced and Paid work orders, part sales, and declined lines on any work order are never counted.",
+   "prd_text": "Declined, Complete, Invoiced and Paid work orders, part sales, and declined lines on any work order are never counted."
+  },
+  "S2-E2": {
+   "story": "SV-11880",
+   "same": true,
+   "story_text": "A save that turns Technician off in more than one way at once (for example Technician and Time Clock both switched off, or Time Clock off and the Office User role picked) shows the warning once.",
+   "prd_text": "A save that turns Technician off in more than one way at once (for example Technician and Time Clock both switched off, or Time Clock off and the Office User role picked) shows the warning once."
+  },
+  "S2-E3": {
+   "story": "SV-11880",
+   "same": true,
+   "story_text": "Turning off Sales Representative still shows its existing removal warning at the moment that toggle is switched off, as today; the Turn Off Technician warning shows only on Save. Cancelling the Turn Off Technician warning cancels the whole save, including a Sales Representative removal already confirmed, and the window stays open as the user left it.",
+   "prd_text": "Turning off Sales Representative still shows its existing removal warning at the moment that toggle is switched off, as today; the Turn Off Technician warning shows only on Save. Cancelling the Turn Off Technician warning cancels the whole save, including a Sales Representative removal already confirmed, and the window stays open as the user left it."
+  },
+  "S3-R1": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "A person is offered on a technician list at a location when all of these hold: their Technician toggle is on, their Time Clock is on, their user is active, they are enrolled at that location, and their role is not the built-in Office User or Time Clock User role.",
+   "prd_text": "A person is offered on a technician list at a location when all of these hold: their Technician toggle is on, their Time Clock is on, their user is active, they are enrolled at that location, and their role is not the built-in Office User or Time Clock User role."
+  },
+  "S3-R2": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "Board View gives a column, and Tech View a group, to each person offered by S3-R1, plus everyone who leads work shown on the board (S3-E1, S3-E2).",
+   "prd_text": "Board View gives a column, and Tech View a group, to each person offered by S3-R1, plus everyone who leads work shown on the board (S3-E1, S3-E2)."
+  },
+  "S3-R3": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "The Technician filter on Work Orders offers the same people the board gives a column or group to.",
+   "prd_text": "The Technician filter on Work Orders offers the same people the board gives a column or group to."
+  },
+  "S3-R4": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "The Assign lead technician and Reassign lead technician window (from a card's more-actions menu on Board View or Tech View) offers only people per S3-R1. Searching for anyone else shows the existing No technicians match “[search]” message. A current lead who is not offered per S3-R1 is listed last, cannot be picked, and is labeled \"Current · no longer assignable\"; searching for their name finds that entry.",
+   "prd_text": "The Assign lead technician and Reassign lead technician window (from a card's more-actions menu on Board View or Tech View) offers only people per S3-R1. Searching for anyone else shows the existing No technicians match “[search]” message. A current lead who is not offered per S3-R1 is listed last, cannot be picked, and is labeled \"Current · no longer assignable\"; searching for their name finds that entry."
+  },
+  "S3-R5": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "The Lead Technician dropdown on a work order offers only people per S3-R1.",
+   "prd_text": "The Lead Technician dropdown on a work order offers only people per S3-R1."
+  },
+  "S3-R6": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "Add Technician on a line (in the New Line and Edit Line windows) and the Technician dropdown in the Edit Labor window offer only people per S3-R1.",
+   "prd_text": "Add Technician on a line (in the New Line and Edit Line windows) and the Technician dropdown in the Edit Labor window offer only people per S3-R1."
+  },
+  "S3-R6a": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "Part sales show no technician dropdown, so nothing on screen changes for them.",
+   "prd_text": "Part sales show no technician dropdown, so nothing on screen changes for them."
+  },
+  "S3-R7": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "A work order's current lead who is not offered per S3-R1 still shows as the lead on the work order and in Board View and Tech View. In the Lead Technician dropdown they are listed last, grayed out, with the check mark, and cannot be picked. Picking someone else saves at once, as today, and the former lead then leaves the dropdown.",
+   "prd_text": "A work order's current lead who is not offered per S3-R1 still shows as the lead on the work order and in Board View and Tech View. In the Lead Technician dropdown they are listed last, grayed out, with the check mark, and cannot be picked. Picking someone else saves at once, as today, and the former lead then leaves the dropdown."
+  },
+  "S3-R7a": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "If a location has no technicians and the work order has no lead, the Lead Technician field shows as read-only text, the label \"Lead technician\" with \"Unassigned\" under it, as it does today whenever that list is empty. If the work order's lead is not a technician, the dropdown still shows (S3-R7), listing \"Unassigned\" and that lead, grayed out, even when the location has no technicians.",
+   "prd_text": "If a location has no technicians and the work order has no lead, the Lead Technician field shows as read-only text, the label \"Lead technician\" with \"Unassigned\" under it, as it does today whenever that list is empty. If the work order's lead is not a technician, the dropdown still shows (S3-R7), listing \"Unassigned\" and that lead, grayed out, even when the location has no technicians."
+  },
+  "S3-R8": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "Someone already on a line who is not offered per S3-R1 stays on the line. In the Edit Labor technician list they show grayed out, the same as a deactivated technician today; that list is in name order, so they appear among the others alphabetically, and they cannot be unticked there. In Edit Line they show as an ordinary chip that can be removed with its X, unless they have logged time on the line, in which case the chip shows the existing lock and \"This technician has logged time on the line and cannot be removed.\", as today. Saving a line's technicians in Edit Line keeps a person who is no longer a technician on the line unless the user removed them. As today, saving also drops a person from the line who has a labor entry on the work order but is not in the location's Time Clock list (deactivated, Time Clock off, on the built-in Office User or Time Clock User role, or not enrolled at the location) and has no time logged on that line; such a person who is on the line only through Add Technician, with no labor entry, stays.",
+   "prd_text": "Someone already on a line who is not offered per S3-R1 stays on the line. In the Edit Labor technician list they show grayed out, the same as a deactivated technician today; that list is in name order, so they appear among the others alphabetically, and they cannot be unticked there. In Edit Line they show as an ordinary chip that can be removed with its X, unless they have logged time on the line, in which case the chip shows the existing lock and \"This technician has logged time on the line and cannot be removed.\", as today. Saving a line's technicians in Edit Line keeps a person who is no longer a technician on the line unless the user removed them. As today, saving also drops a person from the line who has a labor entry on the work order but is not in the location's Time Clock list (deactivated, Time Clock off, on the built-in Office User or Time Clock User role, or not enrolled at the location) and has no time logged on that line; such a person who is on the line only through Add Technician, with no labor entry, stays."
+  },
+  "S3-R9": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "Lists that are not technician lists keep everyone with Time Clock on except the Office User and Time Clock User roles, as today: time sheets and the time sheet dialogs, Punch Clock Activities, the Technician Efficiency and Technician Utilization reports, and the schedule (which follows departments).",
+   "prd_text": "Lists that are not technician lists keep everyone with Time Clock on except the Office User and Time Clock User roles, as today: time sheets and the time sheet dialogs, Punch Clock Activities, the Technician Efficiency and Technician Utilization reports, and the schedule (which follows departments)."
+  },
+  "S3-R10": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "When Board View or Tech View has no technician column or group at all (no technician at the location, no column kept for a non-technician lead under S3-E1 and no pinned column under S3-E2), and neither Assigned to me nor a Technician filter is on, it shows the title \"No technicians yet\" with the text \"Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned.\" When the open tab has no work orders either, the \"Nothing here yet\" state keeps its title, and its text reads \"Turn Technician on for your technicians and create your first work order to track work by tech.\" The button the Board View and Tech View PRD (S1-N1d, SV-11555) calls Add Technician reads \"Set Up Technicians\" and opens the staff list (Settings, Staff), for the same users who see it today. This replaces S1-N1d's text and button target once this feature ships.",
+   "prd_text": "When Board View or Tech View has no technician column or group at all (no technician at the location, no column kept for a non-technician lead under S3-E1 and no pinned column under S3-E2), and neither Assigned to me nor a Technician filter is on, it shows the title \"No technicians yet\" with the text \"Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned.\" When the open tab has no work orders either, the \"Nothing here yet\" state keeps its title, and its text reads \"Turn Technician on for your technicians and create your first work order to track work by tech.\" The button the Board View and Tech View PRD (S1-N1d, SV-11555) calls Add Technician reads \"Set Up Technicians\" and opens the staff list (Settings, Staff), for the same users who see it today. This replaces S1-N1d's text and button target once this feature ships."
+  },
+  "S3-N1": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "A person with Technician off, or with Time Clock off, gets no Board View column, no Tech View group, and is not offered in the Technician filter or any technician dropdown, unless S3-E1 or S3-E2 applies.",
+   "prd_text": "A person with Technician off, or with Time Clock off, gets no Board View column, no Tech View group, and is not offered in the Technician filter or any technician dropdown, unless S3-E1 or S3-E2 applies."
+  },
+  "S3-N2": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "A person on the built-in Office User or Time Clock User role is never offered, as today.",
+   "prd_text": "A person on the built-in Office User or Time Clock User role is never offered, as today."
+  },
+  "S3-N3": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "Technician narrows only what is offered. A non-technician who is made lead or added to a labor line another way (an outside tool through the Public API, or a screen opened before the change) is accepted as today, and so is job time they record (S3-E3).",
+   "prd_text": "Technician narrows only what is offered. A non-technician who is made lead or added to a labor line another way (an outside tool through the Public API, or a screen opened before the change) is accepted as today, and so is job time they record (S3-E3)."
+  },
+  "S3-E1": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "Someone who is not a technician but still leads a work order shown on the board keeps a column (Board View) or group (Tech View) for that work until it is reassigned or closed.",
+   "prd_text": "Someone who is not a technician but still leads a work order shown on the board keeps a column (Board View) or group (Tech View) for that work until it is reassigned or closed."
+  },
+  "S3-E2": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "Someone who is not a technician but whose column the user pinned on Board View keeps the pinned column at the locations they are enrolled at, until the user unpins it. Dropping a work order on that column is refused with \"This technician can't be assigned work orders.\"",
+   "prd_text": "Someone who is not a technician but whose column the user pinned on Board View keeps the pinned column at the locations they are enrolled at, until the user unpins it. Dropping a work order on that column is refused with \"This technician can't be assigned work orders.\""
+  },
+  "S3-E3": {
+   "story": "SV-11881",
+   "same": true,
+   "story_text": "A person who is not a technician can still press Start on an approved line and record time, as today; doing so adds them to the line's labor as today.",
+   "prd_text": "A person who is not a technician can still press Start on an approved line and record time, as today; doing so adds them to the line's labor as today."
+  },
+  "S4-R1": {
+   "story": "SV-11882",
+   "same": true,
+   "story_text": "The staff list (Settings, Staff) gains a read-only \"Technician\" column directly left of Billable, on the Active and Deactivated tabs. Each row shows \"Yes\" (green) when the person is active, their Technician toggle is on and their Time Clock is on, otherwise \"No\" (red), in the same style as the Billable column. A deactivated person always shows \"No\", whatever their toggles.",
+   "prd_text": "The staff list (Settings, Staff) gains a read-only \"Technician\" column directly left of Billable, on the Active and Deactivated tabs. Each row shows \"Yes\" (green) when the person is active, their Technician toggle is on and their Time Clock is on, otherwise \"No\" (red), in the same style as the Billable column. A deactivated person always shows \"No\", whatever their toggles."
+  },
+  "S4-R1a": {
+   "story": "SV-11882",
+   "same": true,
+   "story_text": "The column does not depend on location: a person can show \"Yes\" without being enrolled at the location the user is viewing.",
+   "prd_text": "The column does not depend on location: a person can show \"Yes\" without being enrolled at the location the user is viewing."
+  },
+  "S4-R2": {
+   "story": "SV-11882",
+   "same": true,
+   "story_text": "The Technician column sorts like the other columns.",
+   "prd_text": "The Technician column sorts like the other columns."
+  },
+  "S4-R3": {
+   "story": "SV-11882",
+   "same": true,
+   "story_text": "A \"New\" pill sits at the top right of the \"Technician\" column header, touching the end of the word and inside the column, clear of the Billable header. It follows the same end date as S1-R2.",
+   "prd_text": "A \"New\" pill sits at the top right of the \"Technician\" column header, touching the end of the word and inside the column, clear of the Billable header. It follows the same end date as S1-R2."
+  },
+  "S4-R4": {
+   "story": "SV-11882",
+   "same": true,
+   "story_text": "A notice shows on the staff list, below the page toolbar and above the Active and Deactivated tabs, including when the list fails to load (the existing \"Something went wrong loading the staff list. Please try again.\" line then sits between the toolbar and the notice), with this text: \"New: Decide who appears on Board View, Tech View and the technician dropdowns. Turn Technician on or off for each person in their staff settings, next to Sales Representative. To start, it is on for everyone who worked on a work order in the last 90 days, is on open work, or is billable.\"",
+   "prd_text": "A notice shows on the staff list, below the page toolbar and above the Active and Deactivated tabs, including when the list fails to load (the existing \"Something went wrong loading the staff list. Please try again.\" line then sits between the toolbar and the notice), with this text: \"New: Decide who appears on Board View, Tech View and the technician dropdowns. Turn Technician on or off for each person in their staff settings, next to Sales Representative. To start, it is on for everyone who worked on a work order in the last 90 days, is on open work, or is billable.\""
+  },
+  "S4-R5": {
+   "story": "SV-11882",
+   "same": true,
+   "story_text": "The notice cannot be closed. It disappears for everyone at the same moment as the \"New\" pill (S1-R2), including in a page that is already open.",
+   "prd_text": "The notice cannot be closed. It disappears for everyone at the same moment as the \"New\" pill (S1-R2), including in a page that is already open."
+  },
+  "S4-N1": {
+   "story": "SV-11882",
+   "same": true,
+   "story_text": "If the user does not have the 'Settings → App Settings' setting, they cannot open the staff list, as today, and never see the notice.",
+   "prd_text": "If the user does not have the 'Settings → App Settings' setting, they cannot open the staff list, as today, and never see the notice."
+  },
+  "S4-N2": {
+   "story": "SV-11882",
+   "same": true,
+   "story_text": "After the end date, neither the notice nor the pills show anywhere.",
+   "prd_text": "After the end date, neither the notice nor the pills show anywhere."
+  },
+  "S4-E1": {
+   "story": "SV-11882",
+   "same": true,
+   "story_text": "The column is not editable on the list; the value changes only through the staff window (Story 1) or the person's Time Clock.",
+   "prd_text": "The column is not editable on the list; the value changes only through the staff window (Story 1) or the person's Time Clock."
+  },
+  "S5-R1": {
+   "story": "SV-11883",
+   "same": true,
+   "story_text": "Each staff record the Public API returns includes a read-only technician value: true when the person is active, their Technician toggle is on and their Time Clock is on (the same rule as the staff list column, S4-R1), otherwise false. A deactivated person is always false.",
+   "prd_text": "Each staff record the Public API returns includes a read-only technician value: true when the person is active, their Technician toggle is on and their Time Clock is on (the same rule as the staff list column, S4-R1), otherwise false. A deactivated person is always false."
+  },
+  "S5-R2": {
+   "story": "SV-11883",
+   "same": true,
+   "story_text": "The Public API changelog announces the new value.",
+   "prd_text": "The Public API changelog announces the new value."
+  },
+  "S5-N1": {
+   "story": "SV-11883",
+   "same": true,
+   "story_text": "The technician value cannot be set through the Public API. A staff update that includes it succeeds as today and ignores that value; the record returned carries the value worked out by S5-R1.",
+   "prd_text": "The technician value cannot be set through the Public API. A staff update that includes it succeeds as today and ignores that value; the record returned carries the value worked out by S5-R1."
+  },
+  "S5-E1": {
+   "story": "SV-11883",
+   "same": true,
+   "story_text": "The value is the result of S5-R1, not the toggle alone: a deactivated person whose toggle is on reads false.",
+   "prd_text": "The value is the result of S5-R1, not the toggle alone: a deactivated person whose toggle is on reads false."
+  },
+  "S6-R1": {
+   "story": "SV-11884",
+   "same": true,
+   "story_text": "Technician is turned on for each staff member whose user is active, whose Time Clock is on and who has a role other than the built-in Office User or Time Clock User role, when they meet any of these, at any location of their organization:",
+   "prd_text": "Technician is turned on for each staff member whose user is active, whose Time Clock is on and who has a role other than the built-in Office User or Time Clock User role, when they meet any of these, at any location of their organization:"
+  },
+  "S6-R2": {
+   "story": "SV-11884",
+   "same": true,
+   "story_text": "Every other staff member starts with Technician off.",
+   "prd_text": "Every other staff member starts with Technician off."
+  },
+  "S6-R3": {
+   "story": "SV-11884",
+   "same": true,
+   "story_text": "Nothing else on any staff record changes: Time Clock, Billable, Sales Representative and roles stay as they are. A staff member turned on by the step is marked as updated at that moment, so software connected through the Public API that asks which staff changed picks up the new technician value on its next check (S5-R1). Staff left off are not marked.",
+   "prd_text": "Nothing else on any staff record changes: Time Clock, Billable, Sales Representative and roles stay as they are. A staff member turned on by the step is marked as updated at that moment, so software connected through the Public API that asks which staff changed picks up the new technician value on its next check (S5-R1). Staff left off are not marked."
+  },
+  "S6-R4": {
+   "story": "SV-11884",
+   "same": true,
+   "story_text": "Nobody is logged out by the release step (S1-R8).",
+   "prd_text": "Nobody is logged out by the release step (S1-R8)."
+  },
+  "S6-R5": {
+   "story": "SV-11884",
+   "same": true,
+   "story_text": "Open work is untouched: every lead and labor line stays as it was, so S3-R7 and S3-R8 cover anyone who is no longer offered.",
+   "prd_text": "Open work is untouched: every lead and labor line stays as it was, so S3-R7 and S3-R8 cover anyone who is no longer offered."
+  },
+  "S6-N1": {
+   "story": "SV-11884",
+   "same": true,
+   "story_text": "A staff member who meets none of S6-R1 (for example a Parts Manager who never works on work orders and is not billable) starts with Technician off and leaves the technician lists.",
+   "prd_text": "A staff member who meets none of S6-R1 (for example a Parts Manager who never works on work orders and is not billable) starts with Technician off and leaves the technician lists."
+  },
+  "S6-N2": {
+   "story": "SV-11884",
+   "same": true,
+   "story_text": "A staff member with no role is never turned on, whatever they meet, matching who the board offers today. In practice this only affects Public API sandbox staff.",
+   "prd_text": "A staff member with no role is never turned on, whatever they meet, matching who the board offers today. In practice this only affects Public API sandbox staff."
+  },
+  "S6-E1": {
+   "story": "SV-11884",
+   "same": true,
+   "story_text": "A person who appeared as a technician before release but starts with Technician off keeps every work order and line they hold (S3-E1, S3-R7, S3-R8).",
+   "prd_text": "A person who appeared as a technician before release but starts with Technician off keeps every work order and line they hold (S3-E1, S3-R7, S3-R8)."
+  },
+  "S6-E2": {
+   "story": "SV-11884",
+   "same": true,
+   "story_text": "Estimates, declined work orders, declined lines and part sales do not count toward S6-R1 (b).",
+   "prd_text": "Estimates, declined work orders, declined lines and part sales do not count toward S6-R1 (b)."
+  },
+  "S6-E3": {
+   "story": "SV-11884",
+   "same": true,
+   "story_text": "A staff member who is deactivated, or has Time Clock off, at the moment the step runs starts with Technician off. Turning Time Clock on later does not turn Technician on (S1-R5). A seasonal technician who is deactivated on release day and reactivated later is not offered on any technician list until the shop turns Technician on for them.",
+   "prd_text": "A staff member who is deactivated, or has Time Clock off, at the moment the step runs starts with Technician off. Turning Time Clock on later does not turn Technician on (S1-R5). A seasonal technician who is deactivated on release day and reactivated later is not offered on any technician list until the shop turns Technician on for them."
+  },
+  "S6-E4": {
+   "story": "SV-11884",
+   "same": true,
+   "story_text": "The step runs once. A shop that turns Technician off for someone after release keeps it off.",
+   "prd_text": "The step runs once. A shop that turns Technician off for someone after release keeps it off."
+  }
+ },
+ "missing_in_story": []
+}

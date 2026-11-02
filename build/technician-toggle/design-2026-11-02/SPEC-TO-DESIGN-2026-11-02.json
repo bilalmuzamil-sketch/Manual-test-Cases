@@ -1,0 +1,470 @@
+{
+ "made": "2026-11-02",
+ "prd": "PRD v17 (Confluence 977371146)",
+ "design": "canvas Technician Toggle 1793629882-06f7",
+ "tool": "spec_to_design_check.py: 10 PRD quoted words not literally in the design files or the transcription; all 10 closed in the register (exit 0)",
+ "counts": {
+  "SHOWN": 27,
+  "DIFFERENT": 2,
+  "NO SCREEN": 21,
+  "NOT SHOWN": 14,
+  "DIFFERENT (letter case) / NOT SHOWN": 1
+ },
+ "rows": [
+  {
+   "code": "S1-R1",
+   "verdict": "SHOWN",
+   "pictures": "tt-p2-02, tt-p2-03, tt-p2-05, tt-p2-06, tt-p3-01, tt-p3-02, tt-p4-01",
+   "note": "Toggle labeled Technician, last in one row of its own below Billable (New: Billable alone on its row; Edit: below the Location/Billable row), order Time Clock, Sales Representative, Technician, same toggle style in both windows.",
+   "prd_text": "The New Staff Member and Edit Staff Member windows (Settings, Staff) show a toggle labeled \"Technician\" directly to the right of the Sales Representative toggle, as the last toggle in that row (Time Clock, Sales Representative, Technician). In both windows the three toggles share one row of their own, below the Billable field, so New and Edit look the same, in the same style as the window's other "
+  },
+  {
+   "code": "S1-R2",
+   "verdict": "SHOWN",
+   "pictures": "tt-p2-02 (crops/after-new-staff-toggles.png), tt-p5-04 (crops/switcher-new-pill-techview.png)",
+   "note": "New pill at the top right of the word, touching its end; looks like the Work Orders display switcher's New pill (light blue fill, blue border, blue text). End moment: caption only (NOT SHOWN as a state, TT-N17).",
+   "prd_text": "A \"New\" pill sits at the top right of the \"Technician\" label, touching the end of the word. It looks the same as the pill on the Work Orders display switcher. It shows until 07:00 UTC on the seventh day after the release that ships this feature, then disappears for everyone, including in a window that is already open. The moment is fixed in UTC and read from the viewer's own clock: the pill shows "
+  },
+  {
+   "code": "S1-R3",
+   "verdict": "SHOWN",
+   "pictures": "tt-p2-02 (no role, off), tt-p2-03 (Technician role + Time Clock on: on)",
+   "note": "Pre-fill on with the Technician role and Time Clock on; Foreman, other roles and the hand-switch rule are caption only.",
+   "prd_text": "In the New Staff Member window, Technician is pre-filled from the role shown: on when the role is the built-in Technician or the built-in Foreman role and Time Clock is on, otherwise off. Every other role pre-fills off, including Parts Technician and every custom role, even one made from Technician or Foreman. The pre-fill runs when the window opens and again each time the role or Time Clock is ch"
+  },
+  {
+   "code": "S1-R4",
+   "verdict": "SHOWN",
+   "pictures": "tt-p3-01, tt-p2-02",
+   "note": "Off and grayed out with Time Clock off; tooltip verbatim; Time Clock off through the Public API: NO SCREEN.",
+   "prd_text": "Technician can only be on while Time Clock is on. While Time Clock is off, the Technician toggle is off and grayed out, and hovering it shows \"Turn on Time Clock first. Only staff who clock in can be technicians.\" Turning Time Clock off, in the window or any other way (for example through the Public API), turns Technician off."
+  },
+  {
+   "code": "S1-R5",
+   "verdict": "DIFFERENT",
+   "pictures": "tt-p3-01 caption",
+   "note": "TT-D01: page 3 says turning Time Clock back on leaves Technician off (shown on New Staff Member, 'Edit behaves the same'); S1-R5 v17 pre-fills from the role in New Staff Member. Question 1.",
+   "prd_text": "In Edit Staff Member, turning Time Clock back on leaves Technician off; the user turns it on. In New Staff Member, turning Time Clock on pre-fills Technician from the role (S1-R3), unless the user has already switched Technician by hand."
+  },
+  {
+   "code": "S1-R6",
+   "verdict": "SHOWN",
+   "pictures": "tt-p2-06 (on, not saved; list behind still No), tt-p2-07 (after save: Yes)",
+   "note": "The window's existing save is labelled 'Save & Close' (TT-D05, settled).",
+   "prd_text": "Switching Technician on or off changes nothing until the user saves the staff member with the window's existing Save. Once saved, the change applies to every technician list (Story 3) the next time each list loads (S1-E3)."
+  },
+  {
+   "code": "S1-R7",
+   "verdict": "SHOWN",
+   "pictures": "tt-p2-06 caption, tt-p2-07",
+   "note": "No warning on turning on (no warning is drawn between the two pictures).",
+   "prd_text": "A save that turns Technician on never shows a warning. A save that turns it off may show the Turn Off Technician warning first (Story 2)."
+  },
+  {
+   "code": "S1-R8",
+   "verdict": "NO SCREEN",
+   "pictures": "tt-p2-06 caption",
+   "note": "Never logs out: caption only.",
+   "prd_text": "Saving a change to Technician never logs the staff member out. A save that also changes Time Clock logs them out, as a Time Clock change does today."
+  },
+  {
+   "code": "S1-R9",
+   "verdict": "SHOWN",
+   "pictures": "tt-p2-07",
+   "note": "Billable stays No while Technician becomes Yes.",
+   "prd_text": "Billable and Sales Representative work exactly as today. Technician does not change, gray out or require either of them, and neither of them changes Technician."
+  },
+  {
+   "code": "S1-N1",
+   "verdict": "SHOWN",
+   "pictures": "tt-p3-02",
+   "note": "Office User role: off, grayed, tooltip verbatim. Time Clock User role: NOT SHOWN (TT-N03).",
+   "prd_text": "When the role picked in the window is the built-in Office User or Time Clock User role, the Technician toggle is off and grayed out, and hovering it shows \"This role can't be a technician.\" Picking one of those roles turns Technician off. In Edit Staff Member, saving a staff member who was saved with Technician on and now has one of those roles shows the Turn Off Technician warning first (Story 2)"
+  },
+  {
+   "code": "S1-N2",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "Permission as today.",
+   "prd_text": "If the user does not have the 'Settings → App Settings' setting, they cannot open the staff list or the staff window, as today."
+  },
+  {
+   "code": "S1-N3",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "No history.",
+   "prd_text": "This feature adds no history of who changed Technician or when."
+  },
+  {
+   "code": "S1-E1",
+   "verdict": "NO SCREEN",
+   "pictures": "tt-p2-03 caption 'Edit Staff Member never does this.'",
+   "note": "Role change in Edit leaves Technician as it is: caption only.",
+   "prd_text": "In Edit Staff Member, changing the staff member's role to any role other than the built-in Office User or Time Clock User role leaves Technician as it is. Picking the built-in Technician or Foreman role does not turn it on; the pre-fill (S1-R3) is for new staff only."
+  },
+  {
+   "code": "S1-E2",
+   "verdict": "NOT SHOWN",
+   "pictures": "-",
+   "note": "Deactivated staff member: not drawn.",
+   "prd_text": "A deactivated staff member keeps their Technician toggle as it was, but is not a technician while deactivated (Story 3). Reactivating them brings it back as it was."
+  },
+  {
+   "code": "S1-E3",
+   "verdict": "NOT SHOWN",
+   "pictures": "-",
+   "note": "Open screens keep their lists: not drawn.",
+   "prd_text": "A screen that is already open when a staff member's Technician toggle is saved keeps its lists until it loads them again; nothing is pushed to open screens. A work order's technician dropdowns show the change once the work order is opened again or the page is reloaded; reopening a dropdown on the same page does not. Board View and Tech View show it when opened from the menu, a link or the display "
+  },
+  {
+   "code": "S1-E4",
+   "verdict": "NOT SHOWN",
+   "pictures": "tt-p2-04, tt-p4-01 (button only)",
+   "note": "Deactivate Account with no warning (TT-N18).",
+   "prd_text": "Deactivate Account shows no Turn Off Technician warning. The person keeps their Technician toggle as it was (S1-E2), is not offered as a technician while deactivated, and keeps every work order and line they hold."
+  },
+  {
+   "code": "S1 Error Handling",
+   "verdict": "NOT SHOWN",
+   "pictures": "-",
+   "note": "Refusal messages and the both-apply hover (TT-N01, TT-N02).",
+   "prd_text": null
+  },
+  {
+   "code": "S2-R1",
+   "verdict": "SHOWN",
+   "pictures": "tt-p4-02",
+   "note": "Counts across locations (caption); schedule shift not mentioned (TT-D10, settled).",
+   "prd_text": "When the user saves, before anything else, the system counts the staff member's open work across every location of the organization: the work orders they lead and the lines they are on, whether they have labor on the line, were added to it with Add Technician, or are the line's own technician, where the work order is a service work order in Estimate, Approved, In Progress or Ready for Review and t"
+  },
+  {
+   "code": "S2-R2",
+   "verdict": "SHOWN",
+   "pictures": "tt-p4-02",
+   "note": "Title 'Turn Off Technician'; text 'Emily Madden leads 15 open work orders and is on 141 labor lines. They'll stay on them, but won't be offered as a technician on anything new.' (S2-R2 pattern, verbatim).",
+   "prd_text": "When at least one work order or line is counted, a warning window titled \"Turn Off Technician\" shows. The text names the staff member as last saved (a new name typed in the same save is not used) and what they hold, for example: \"Jordan Lee leads 8 open work orders and is on 50 labor lines. They'll stay on them, but won't be offered as a technician on anything new.\""
+  },
+  {
+   "code": "S2-R3",
+   "verdict": "NOT SHOWN",
+   "pictures": "-",
+   "note": "Single-count forms (TT-N04).",
+   "prd_text": "The text adapts to the counts. A count of zero leaves its part out, and \"it\" is used only when the work orders and lines add up to 1. Exact text for each case ([Name] is the staff member's name):"
+  },
+  {
+   "code": "S2-R4",
+   "verdict": "SHOWN",
+   "pictures": "tt-p4-02",
+   "note": "Buttons Cancel then Save (in that order, Save blue), X in the header; loading, outside click and window close during loading NOT SHOWN (TT-N05).",
+   "prd_text": "The window has Cancel and Save. Save continues the staff save as in S1-R6. Cancel, the X or Escape close the warning and leave the staff member unsaved, with the staff window still open and the toggle as the user left it; clicking outside the warning does nothing. While the counts load after Save, the Save button shows its loading state and cannot be clicked again. Closing the staff window while t"
+  },
+  {
+   "code": "S2-R5",
+   "verdict": "NO SCREEN",
+   "pictures": "tt-p4-02 caption",
+   "note": "Nothing unassigned: caption only.",
+   "prd_text": "Saving with Technician off unassigns nothing. Every lead and labor line stays as it was (Story 3, S3-R7 and S3-R8)."
+  },
+  {
+   "code": "S2-N1",
+   "verdict": "NO SCREEN",
+   "pictures": "tt-p4-02 caption",
+   "note": "No warning without open work: caption only.",
+   "prd_text": "If no open work order or line is counted, no warning shows and the save goes straight on."
+  },
+  {
+   "code": "S2-N2",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "-",
+   "prd_text": "If the save does not turn Technician off (it was already off, or stays on), no warning shows."
+  },
+  {
+   "code": "S2-E1",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "-",
+   "prd_text": "Declined, Complete, Invoiced and Paid work orders, part sales, and declined lines on any work order are never counted."
+  },
+  {
+   "code": "S2-E2",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "-",
+   "prd_text": "A save that turns Technician off in more than one way at once (for example Technician and Time Clock both switched off, or Time Clock off and the Office User role picked) shows the warning once."
+  },
+  {
+   "code": "S2-E3",
+   "verdict": "NOT SHOWN",
+   "pictures": "-",
+   "note": "TT-N06.",
+   "prd_text": "Turning off Sales Representative still shows its existing removal warning at the moment that toggle is switched off, as today; the Turn Off Technician warning shows only on Save. Cancelling the Turn Off Technician warning cancels the whole save, including a Sales Representative removal already confirmed, and the window stays open as the user left it."
+  },
+  {
+   "code": "S2 Error Handling",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "-",
+   "prd_text": null
+  },
+  {
+   "code": "S3-R1",
+   "verdict": "SHOWN",
+   "pictures": "tt-p5-02, tt-p5-04, tt-p5-06, tt-p5-08, tt-p6-02, tt-p6-04",
+   "note": "Olivia Garrett (toggle off) is offered nowhere; the other four conditions are not drawn (TT-D11, settled).",
+   "prd_text": "A person is offered on a technician list at a location when all of these hold: their Technician toggle is on, their Time Clock is on, their user is active, they are enrolled at that location, and their role is not the built-in Office User or Time Clock User role."
+  },
+  {
+   "code": "S3-R2",
+   "verdict": "SHOWN",
+   "pictures": "tt-p5-02, tt-p5-04",
+   "note": "No column / group for her; names in order; column and group look unchanged.",
+   "prd_text": "Board View gives a column, and Tech View a group, to each person offered by S3-R1, plus everyone who leads work shown on the board (S3-E1, S3-E2)."
+  },
+  {
+   "code": "S3-R3",
+   "verdict": "SHOWN",
+   "pictures": "tt-p5-06",
+   "note": "Technician filter search 'Oli' shows 'No results' (design's words, PRD silent).",
+   "prd_text": "The Technician filter on Work Orders offers the same people the board gives a column or group to."
+  },
+  {
+   "code": "S3-R4",
+   "verdict": "SHOWN",
+   "pictures": "tt-p5-08",
+   "note": "Reassign lead technician, search 'Oli': No technicians match “Oli” (curly quotes); a former lead's entry 'Current · no longer assignable' NOT SHOWN (TT-N08); Assign window and Tech View NOT SHOWN (TT-N14).",
+   "prd_text": "The Assign lead technician and Reassign lead technician window (from a card's more-actions menu on Board View or Tech View) offers only people per S3-R1. Searching for anyone else shows the existing No technicians match “[search]” message. A current lead who is not offered per S3-R1 is listed last, cannot be picked, and is labeled \"Current · no longer assignable\"; searching for their name finds th"
+  },
+  {
+   "code": "S3-R5",
+   "verdict": "SHOWN",
+   "pictures": "tt-p6-02",
+   "note": "Lead Technician list without her, alphabetical.",
+   "prd_text": "The Lead Technician dropdown on a work order offers only people per S3-R1."
+  },
+  {
+   "code": "S3-R6",
+   "verdict": "SHOWN",
+   "pictures": "tt-p6-04",
+   "note": "Add Technician (Edit Line) without her; New Line and Edit Labor NOT SHOWN (TT-N11); 'Add Labor' wording TT-D03 (settled).",
+   "prd_text": "Add Technician on a line (in the New Line and Edit Line windows) and the Technician dropdown in the Edit Labor window offer only people per S3-R1."
+  },
+  {
+   "code": "S3-R6a",
+   "verdict": "NO SCREEN",
+   "pictures": "WorkOrder note",
+   "note": "Part sales: nothing changes (note).",
+   "prd_text": "Part sales show no technician dropdown, so nothing on screen changes for them."
+  },
+  {
+   "code": "S3-R7",
+   "verdict": "NOT SHOWN",
+   "pictures": "tt-p6-02 caption",
+   "note": "TT-N07: described, not drawn (the after picture has no lead).",
+   "prd_text": "A work order's current lead who is not offered per S3-R1 still shows as the lead on the work order and in Board View and Tech View. In the Lead Technician dropdown they are listed last, grayed out, with the check mark, and cannot be picked. Picking someone else saves at once, as today, and the former lead then leaves the dropdown."
+  },
+  {
+   "code": "S3-R7a",
+   "verdict": "DIFFERENT (letter case) / NOT SHOWN",
+   "pictures": "tt-p6-04 left card",
+   "note": "Label drawn 'Lead Technician' vs PRD 'Lead technician' (TT-D07, settled by 'as it does today'); the no-technician state NOT SHOWN (TT-N09).",
+   "prd_text": "If a location has no technicians and the work order has no lead, the Lead Technician field shows as read-only text, the label \"Lead technician\" with \"Unassigned\" under it, as it does today whenever that list is empty. If the work order's lead is not a technician, the dropdown still shows (S3-R7), listing \"Unassigned\" and that lead, grayed out, even when the location has no technicians."
+  },
+  {
+   "code": "S3-R8",
+   "verdict": "DIFFERENT",
+   "pictures": "tt-p6-04 caption",
+   "note": "TT-D02: caption 'shows grayed out' on the Add Technician picture vs S3-R8 ordinary chip in Edit Line. Question 2. Edit Labor list and lock text NOT SHOWN (TT-N10).",
+   "prd_text": "Someone already on a line who is not offered per S3-R1 stays on the line. In the Edit Labor technician list they show grayed out, the same as a deactivated technician today; that list is in name order, so they appear among the others alphabetically, and they cannot be unticked there. In Edit Line they show as an ordinary chip that can be removed with its X, unless they have logged time on the line"
+  },
+  {
+   "code": "S3-R9",
+   "verdict": "NO SCREEN",
+   "pictures": "WorkOrder note",
+   "note": "TT-D15 (settled).",
+   "prd_text": "Lists that are not technician lists keep everyone with Time Clock on except the Office User and Time Clock User roles, as today: time sheets and the time sheet dialogs, Punch Clock Activities, the Technician Efficiency and Technician Utilization reports, and the schedule (which follows departments)."
+  },
+  {
+   "code": "S3-R10",
+   "verdict": "NOT SHOWN",
+   "pictures": "-",
+   "note": "TT-N12; library rule TT-D04 (question 3).",
+   "prd_text": "When Board View or Tech View has no technician column or group at all (no technician at the location, no column kept for a non-technician lead under S3-E1 and no pinned column under S3-E2), and neither Assigned to me nor a Technician filter is on, it shows the title \"No technicians yet\" with the text \"Turn Technician on for your technicians in Staff to assign work orders. Until then, every work or"
+  },
+  {
+   "code": "S3-N1",
+   "verdict": "SHOWN",
+   "pictures": "tt-p5-02, tt-p5-04",
+   "note": "-",
+   "prd_text": "A person with Technician off, or with Time Clock off, gets no Board View column, no Tech View group, and is not offered in the Technician filter or any technician dropdown, unless S3-E1 or S3-E2 applies."
+  },
+  {
+   "code": "S3-N2",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "As today.",
+   "prd_text": "A person on the built-in Office User or Time Clock User role is never offered, as today."
+  },
+  {
+   "code": "S3-N3",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "-",
+   "prd_text": "Technician narrows only what is offered. A non-technician who is made lead or added to a labor line another way (an outside tool through the Public API, or a screen opened before the change) is accepted as today, and so is job time they record (S3-E3)."
+  },
+  {
+   "code": "S3-E1",
+   "verdict": "NOT SHOWN",
+   "pictures": "tt-p5-02 caption",
+   "note": "Described, not drawn.",
+   "prd_text": "Someone who is not a technician but still leads a work order shown on the board keeps a column (Board View) or group (Tech View) for that work until it is reassigned or closed."
+  },
+  {
+   "code": "S3-E2",
+   "verdict": "NOT SHOWN",
+   "pictures": "-",
+   "note": "TT-N13.",
+   "prd_text": "Someone who is not a technician but whose column the user pinned on Board View keeps the pinned column at the locations they are enrolled at, until the user unpins it. Dropping a work order on that column is refused with \"This technician can't be assigned work orders.\""
+  },
+  {
+   "code": "S3-E3",
+   "verdict": "NO SCREEN",
+   "pictures": "WorkOrder note",
+   "note": "-",
+   "prd_text": "A person who is not a technician can still press Start on an approved line and record time, as today; doing so adds them to the line's labor as today."
+  },
+  {
+   "code": "S3 Error Handling",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "-",
+   "prd_text": null
+  },
+  {
+   "code": "S4-R1",
+   "verdict": "SHOWN",
+   "pictures": "tt-p1-02, tt-p2-07",
+   "note": "Read-only Technician column directly left of Billable, green Yes / red No pills in the Billable style (Active tab). Deactivated tab NOT SHOWN (TT-N15).",
+   "prd_text": "The staff list (Settings, Staff) gains a read-only \"Technician\" column directly left of Billable, on the Active and Deactivated tabs. Each row shows \"Yes\" (green) when the person is active, their Technician toggle is on and their Time Clock is on, otherwise \"No\" (red), in the same style as the Billable column. A deactivated person always shows \"No\", whatever their toggles."
+  },
+  {
+   "code": "S4-R1a",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "Location independence: not drawn.",
+   "prd_text": "The column does not depend on location: a person can show \"Yes\" without being enrolled at the location the user is viewing."
+  },
+  {
+   "code": "S4-R2",
+   "verdict": "NOT SHOWN",
+   "pictures": "tt-p1-02 caption ('sortable')",
+   "note": "No sorted-by-Technician picture.",
+   "prd_text": "The Technician column sorts like the other columns."
+  },
+  {
+   "code": "S4-R3",
+   "verdict": "SHOWN",
+   "pictures": "tt-p1-02 (crops/staff-header-pill.png)",
+   "note": "New pill at the top right of the Technician header, touching the word, inside the column, clear of Billable.",
+   "prd_text": "A \"New\" pill sits at the top right of the \"Technician\" column header, touching the end of the word and inside the column, clear of the Billable header. It follows the same end date as S1-R2."
+  },
+  {
+   "code": "S4-R4",
+   "verdict": "SHOWN",
+   "pictures": "tt-p1-02, tt-p2-07",
+   "note": "Notice below the toolbar and above the Active/Deactivated tabs; text verbatim; blue info style with (i) icon. Error-line version NOT SHOWN (TT-N16).",
+   "prd_text": "A notice shows on the staff list, below the page toolbar and above the Active and Deactivated tabs, including when the list fails to load (the existing \"Something went wrong loading the staff list. Please try again.\" line then sits between the toolbar and the notice), with this text: \"New: Decide who appears on Board View, Tech View and the technician dropdowns. Turn Technician on or off for each "
+  },
+  {
+   "code": "S4-R5",
+   "verdict": "SHOWN",
+   "pictures": "tt-p1-02",
+   "note": "No close button; disappearing at the end date NOT SHOWN (TT-N17).",
+   "prd_text": "The notice cannot be closed. It disappears for everyone at the same moment as the \"New\" pill (S1-R2), including in a page that is already open."
+  },
+  {
+   "code": "S4-N1",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "-",
+   "prd_text": "If the user does not have the 'Settings → App Settings' setting, they cannot open the staff list, as today, and never see the notice."
+  },
+  {
+   "code": "S4-N2",
+   "verdict": "NOT SHOWN",
+   "pictures": "-",
+   "note": "TT-N17.",
+   "prd_text": "After the end date, neither the notice nor the pills show anywhere."
+  },
+  {
+   "code": "S4-E1",
+   "verdict": "SHOWN",
+   "pictures": "tt-p1-02",
+   "note": "No control in the cells; caption TT-D09 (settled).",
+   "prd_text": "The column is not editable on the list; the value changes only through the staff window (Story 1) or the person's Time Clock."
+  },
+  {
+   "code": "S4 Error Handling",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "-",
+   "prd_text": null
+  },
+  {
+   "code": "S5 (all)",
+   "verdict": "NO SCREEN",
+   "pictures": "-",
+   "note": "'Design: no new screens'.",
+   "prd_text": null
+  },
+  {
+   "code": "S6 (all)",
+   "verdict": "NO SCREEN",
+   "pictures": "page 1 note, tt-p2-05 caption",
+   "note": "Release day; demo data note TT-D08 (settled).",
+   "prd_text": null
+  },
+  {
+   "code": "§8 row 1 (notice)",
+   "verdict": "SHOWN",
+   "pictures": "tt-p1-02",
+   "note": "Verbatim; info notice; cannot be closed.",
+   "prd_text": null
+  },
+  {
+   "code": "§8 row 2 (Time Clock tooltip)",
+   "verdict": "SHOWN",
+   "pictures": "tt-p3-01",
+   "note": "Verbatim; tooltip while hovering.",
+   "prd_text": null
+  },
+  {
+   "code": "§8 row 3 (role tooltip)",
+   "verdict": "SHOWN",
+   "pictures": "tt-p3-02",
+   "note": "Verbatim; Office User only drawn.",
+   "prd_text": null
+  },
+  {
+   "code": "§8 row 4 (warning)",
+   "verdict": "SHOWN",
+   "pictures": "tt-p4-02",
+   "note": "Title and text verbatim; 'Warning window, Cancel or Save'.",
+   "prd_text": null
+  },
+  {
+   "code": "§8 row 5 (Time Clock refusal)",
+   "verdict": "NOT SHOWN",
+   "pictures": "-",
+   "note": "TT-N01.",
+   "prd_text": null
+  },
+  {
+   "code": "§8 row 6 (role refusal)",
+   "verdict": "NOT SHOWN",
+   "pictures": "-",
+   "note": "TT-N01.",
+   "prd_text": null
+  }
+ ]
+}
