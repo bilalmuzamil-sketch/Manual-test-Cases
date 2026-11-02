@@ -1,0 +1,138 @@
+{
+ "pass_meta": {
+  "note": "2 Nov 2026 update pass: parked WO Board tests whose tickets are Done, retested on production"
+ },
+ "results": {
+  "C96957": {
+   "verdict": "Passed",
+   "observed": [
+    "The drag to another technician shows \"<number> assigned to <technician>\" with an Undo button.",
+    "The drag to Unassigned shows \"<number> moved to Unassigned\" with an Undo button.",
+    "Each message closes by itself about 5 seconds after it appears, without being clicked."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C96957-1-assigned.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C96957-2-unassigned.png"
+   ]
+  },
+  "C96969": {
+   "verdict": "Passed",
+   "observed": [
+    "Clicking the current lead in the dialog closes the dialog.",
+    "No lead-change message appears in the 10 seconds after.",
+    "The lead stays the same, Line 2 still reads Unassigned and the work order history gains no entry."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C96969-1-nothing-changed.png"
+   ]
+  },
+  "C96973": {
+   "verdict": "Passed",
+   "observed": [
+    "With Assigned to me on, the dialog still offers the technicians whose columns are not on screen.",
+    "The dialog has only Cancel, no confirm button; clicking a technician assigns them at once.",
+    "The work order leaves the board without a reload, and the board shows \"No work orders match these filters\", \"Try removing a filter to widen your results.\" and a Clear all filters button."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C96973-0-dialog.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C96973-1-left-the-board.png"
+   ]
+  },
+  "C368152": {
+   "verdict": "Passed",
+   "observed": [
+    "Tab from Search reaches the first card in Unassigned; the arrow keys move the focus ring card to card.",
+    "Tab reaches the card's More actions button; Enter opens the menu with Reassign lead technician and Unassign.",
+    "Typing in the dialog narrows the list; arrow keys and Enter assign the technician, with the message and Undo.",
+    "Unassign chosen with the keyboard moves the work order to Unassigned, with \"<number> moved to Unassigned\" and Undo."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C368152-1-keyboard-reassign.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C368152-2-keyboard-unassign.png"
+   ]
+  },
+  "C368135": {
+   "verdict": "Passed",
+   "observed": [
+    "The drag to another technician opens \"Clear <technician>'s scheduled shifts?\" with Cancel, Keep Shifts, Clear Shifts and a close X.",
+    "Cancel, the X and Escape each call the change off: the card goes back to its lead, no message appears.",
+    "From the dialog route, Cancel takes you back to the Reassign lead technician dialog with nothing changed.",
+    "The same in Tech View. At the end the lead is unchanged and the 8:00-12:00 shift is still on the Schedule."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C368135-1-question.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C368135-2-tech-view.png"
+   ]
+  },
+  "C368140": {
+   "verdict": "Passed",
+   "observed": [
+    "The card's menu offers Assign lead technician (the work order has no lead).",
+    "Clicking the technician assigns at once, with \"<number> assigned to <technician>\" and Undo.",
+    "Line 1 (no technician) now follows the new lead; Line 2 keeps its own technician; Line 3 (Complete) stays Unassigned."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C368140-1-assigned.png"
+   ]
+  },
+  "C581892": {
+   "verdict": "Passed",
+   "observed": [
+    "Each of the three drags opens \"Clear <technician>'s scheduled shifts?\": the line not approved and the declined line are ignored, and a Choose lines shift ticking every approved line counts.",
+    "After Keep shifts each work order moves, each with its own \"<number> assigned to <technician>\" message and Undo.",
+    "All three shifts are still on the Schedule tomorrow at the same times."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C581892-1-question.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C581892-2-moved.png"
+   ]
+  },
+  "C97002": {
+   "verdict": "Passed",
+   "observed": [
+    "The drag to another technician shows the message with Undo, closing by itself after about 5 seconds; the work order page then shows that technician as lead.",
+    "The drag to Unassigned shows \"<number> moved to Unassigned\"; the page then shows no lead technician.",
+    "The drag out of Unassigned assigns the new column's technician; in Tech View the row moves to the new group and the page shows that lead."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C97002-1-dragged.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C97002-2-unassigned.png"
+   ]
+  },
+  "C97009": {
+   "verdict": "Passed",
+   "observed": [
+    "Invoiced, Paid and Declined cards show a lock; hovering it reads \"Invoiced · can't be reassigned\", \"Paid · can't be reassigned\" and \"Declined · can't be reassigned\". The Approved card has none.",
+    "The Invoiced card can be reordered within its technician's column.",
+    "Dropping Invoiced, Paid or Declined cards on another technician or on Unassigned is refused: the note shows at the top of that column, the card stays, no message, the count is unchanged.",
+    "The Invoiced card with no lead cannot leave Unassigned; the Complete card moves with its message and Undo; Tech View follows the same rule."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C97009-1-locks.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C97009-2-invoiced-held.png"
+   ]
+  },
+  "C690647": {
+   "verdict": "Passed",
+   "observed": [
+    "Same run as C97009 (this is its release copy): every lock, tooltip, refused drop with its note, the reorder within the technician and the Tech View rule behave as written.",
+    "The Complete card moves to the other technician."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C97009-1-locks.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C97009-2-invoiced-held.png"
+   ]
+  },
+  "C590130": {
+   "verdict": "Passed",
+   "observed": [
+    "After the drag from Unassigned the message is the design's white message with the green check icon, rounded with a soft shadow, reading \"<number> assigned to <technician>\" with an Undo button.",
+    "It is not the app's standard success message.",
+    "It closes by itself about 5 seconds after it appears."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C590130-1-design-message.png"
+   ]
+  }
+ }
+}
