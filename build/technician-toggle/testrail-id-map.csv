@@ -112,3 +112,118 @@ S3-35,897257,S3,"""No technicians yet"" does not show with Assigned to me on",ht
 S3-36,897258,S3,"""No technicians yet"" does not show with a Technician filter on",https://shopview.testrail.io/index.php?/cases/view/897258
 S3-37,897259,S3,An open board picks up a Technician change when opened from the menu,https://shopview.testrail.io/index.php?/cases/view/897259
 S3-38,897260,S3,An open board picks up a Technician change on reload,https://shopview.testrail.io/index.php?/cases/view/897260
+S3-39,897261,S3,An open board picks up a Technician change from the display switcher,https://shopview.testrail.io/index.php?/cases/view/897261
+S3-40,897262,S3,An open board picks up a Technician change when a filter changes,https://shopview.testrail.io/index.php?/cases/view/897262
+S3-41,897263,S3,An open board picks up a Technician change when the location changes,https://shopview.testrail.io/index.php?/cases/view/897263
+S3-42,897264,S3,An open board picks up a Technician change when opened from a link,https://shopview.testrail.io/index.php?/cases/view/897264
+S3-43,897265,S3,Coming back with Back within 30 seconds shows the board as it was,https://shopview.testrail.io/index.php?/cases/view/897265
+S3-44,897266,S3,The Reassign lead technician window shows a Technician change each time it opens,https://shopview.testrail.io/index.php?/cases/view/897266
+S3-45,897267,S3,An open work order keeps its dropdown list until it is opened again,https://shopview.testrail.io/index.php?/cases/view/897267
+S3-46,897268,S3,A screen opened before the change still accepts the non-technician,https://shopview.testrail.io/index.php?/cases/view/897268
+S3-48,897269,S3,A Technician filter set to someone who is then turned off,https://shopview.testrail.io/index.php?/cases/view/897269
+S4-01,897270,S4,"The staff list has a read-only ""Technician"" column directly left of Billable",https://shopview.testrail.io/index.php?/cases/view/897270
+S4-02,897271,S4,"A deactivated person always shows ""No"" on the Deactivated tab",https://shopview.testrail.io/index.php?/cases/view/897271
+S4-03,897272,S4,The Technician column does not depend on the location being viewed,https://shopview.testrail.io/index.php?/cases/view/897272
+S4-04,897273,S4,The Technician column sorts like the other columns,https://shopview.testrail.io/index.php?/cases/view/897273
+S4-05,897274,S4,"A ""New"" pill sits on the Technician column header",https://shopview.testrail.io/index.php?/cases/view/897274
+S4-06,897275,S4,The notice shows above the tabs with its exact text and cannot be closed,https://shopview.testrail.io/index.php?/cases/view/897275
+S4-08,897276,S4,The notice and the column pill disappear together at the end date,https://shopview.testrail.io/index.php?/cases/view/897276
+S4-09,897277,S4,After the end date no notice and no pill show anywhere,https://shopview.testrail.io/index.php?/cases/view/897277
+S4-10,897278,S4,On the release build the notice and column pill end on the seventh day,https://shopview.testrail.io/index.php?/cases/view/897278
+S4-11,897279,S4,The Technician value cannot be edited on the list and follows the staff window,https://shopview.testrail.io/index.php?/cases/view/897279
+API-01,897280,API,A technician's staff record carries technician true,https://shopview.testrail.io/index.php?/cases/view/897280
+API-02,897281,API,Technician off or Time Clock off reads technician false,https://shopview.testrail.io/index.php?/cases/view/897281
+API-03,897282,API,A deactivated person whose toggle is on reads technician false,https://shopview.testrail.io/index.php?/cases/view/897282
+API-04,897283,API,The value follows a change made in the staff window,https://shopview.testrail.io/index.php?/cases/view/897283
+API-05,897284,API,Location staff records carry the same technician value,https://shopview.testrail.io/index.php?/cases/view/897284
+API-06,897285,API,A staff update carrying technician false is accepted and ignores it,https://shopview.testrail.io/index.php?/cases/view/897285
+API-07,897286,API,A staff update carrying technician true for a non-technician is ignored,https://shopview.testrail.io/index.php?/cases/view/897286
+API-08,897287,API,Turning Time Clock off through the API turns Technician off,https://shopview.testrail.io/index.php?/cases/view/897287
+API-09,897288,API,A request switching Technician on with Time Clock off is refused,https://shopview.testrail.io/index.php?/cases/view/897288
+API-10,897289,API,A request switching Technician on for an Office User is refused,https://shopview.testrail.io/index.php?/cases/view/897289
+API-11,897290,API,"With Office User and Time Clock off, the refusal gives the role message",https://shopview.testrail.io/index.php?/cases/view/897290
+API-12,897291,API,Moving a technician to Office User through a request saves and turns it off,https://shopview.testrail.io/index.php?/cases/view/897291
+API-13,897292,API,A non-technician made lead through the Public API is accepted,https://shopview.testrail.io/index.php?/cases/view/897292
+API-14,897293,API,The Public API changelog announces the technician value,https://shopview.testrail.io/index.php?/cases/view/897293
+API-15,897294,API,Staff turned on at release are picked up as changed by the Public API,https://shopview.testrail.io/index.php?/cases/view/897294
+S6-01,897295,S6,Time on a work order in the last 90 days turns Technician on,https://shopview.testrail.io/index.php?/cases/view/897295
+S6-02,897296,S6,Time on a work order older than 90 days does not turn Technician on,https://shopview.testrail.io/index.php?/cases/view/897296
+S6-03,897297,S6,Time on a part sale in the last 90 days turns Technician on,https://shopview.testrail.io/index.php?/cases/view/897297
+S6-04,897298,S6,A manual time entry made by someone else turns Technician on,https://shopview.testrail.io/index.php?/cases/view/897298
+S6-05,897299,S6,Time on a department only does not turn Technician on,https://shopview.testrail.io/index.php?/cases/view/897299
+S6-06,897300,S6,A time entry dated after the release moment also counts,https://shopview.testrail.io/index.php?/cases/view/897300
+S6-07,897301,S6,Leading a service work order in Approved turns Technician on,https://shopview.testrail.io/index.php?/cases/view/897301
+S6-08,897302,S6,Leading a service work order in In Progress turns Technician on,https://shopview.testrail.io/index.php?/cases/view/897302
+S6-09,897303,S6,Leading a service work order in Ready for Review turns Technician on,https://shopview.testrail.io/index.php?/cases/view/897303
+S6-10,897304,S6,Labor on an open line of someone else's work order turns Technician on,https://shopview.testrail.io/index.php?/cases/view/897304
+S6-11,897305,S6,Being added with Add Technician to an open line turns Technician on,https://shopview.testrail.io/index.php?/cases/view/897305
+S6-12,897306,S6,Being a line's own technician on an open line turns Technician on,https://shopview.testrail.io/index.php?/cases/view/897306
+S6-13,897307,S6,Being on an open line through a schedule shift turns Technician on,https://shopview.testrail.io/index.php?/cases/view/897307
+S6-14,897308,S6,Leading only an Estimate does not turn Technician on,https://shopview.testrail.io/index.php?/cases/view/897308
+S6-15,897309,S6,Leading only a declined work order does not turn Technician on,https://shopview.testrail.io/index.php?/cases/view/897309
+S6-16,897310,S6,Being only on a declined line does not turn Technician on,https://shopview.testrail.io/index.php?/cases/view/897310
+S6-17,897311,S6,Being only on a part sale does not turn Technician on,https://shopview.testrail.io/index.php?/cases/view/897311
+S6-18,897312,S6,Leading only a Complete work order does not turn Technician on,https://shopview.testrail.io/index.php?/cases/view/897312
+S6-19,897313,S6,Billable on turns Technician on even with no work,https://shopview.testrail.io/index.php?/cases/view/897313
+S6-20,897314,S6,"Someone on the Office User role is never turned on, even if billable",https://shopview.testrail.io/index.php?/cases/view/897314
+S6-21,897315,S6,A staff member with no role is never turned on,https://shopview.testrail.io/index.php?/cases/view/897315
+S6-22,897316,S6,Someone deactivated on release day stays off after reactivation,https://shopview.testrail.io/index.php?/cases/view/897316
+S6-23,897317,S6,Time Clock off on release day stays off when Time Clock is turned on later,https://shopview.testrail.io/index.php?/cases/view/897317
+S6-24,897318,S6,A Parts Manager with no evidence starts off and leaves the board,https://shopview.testrail.io/index.php?/cases/view/897318
+S6-25,897319,S6,Nothing else on a staff record changes at release,https://shopview.testrail.io/index.php?/cases/view/897319
+S6-26,897320,S6,Nobody is logged out by the release and no message shows,https://shopview.testrail.io/index.php?/cases/view/897320
+S6-27,897321,S6,Open work is untouched for someone who starts off,https://shopview.testrail.io/index.php?/cases/view/897321
+S6-28,897322,S6,The release step runs once: a later choice to turn off sticks,https://shopview.testrail.io/index.php?/cases/view/897322
+INV-01,897323,INV,Time sheets still list a non-technician with Time Clock on,https://shopview.testrail.io/index.php?/cases/view/897323
+INV-02,897324,INV,The time sheet dialog still offers a non-technician,https://shopview.testrail.io/index.php?/cases/view/897324
+INV-03,897325,INV,Punch Clock Activities still lists a non-technician,https://shopview.testrail.io/index.php?/cases/view/897325
+INV-04,897326,INV,The Technician Efficiency report still lists a non-technician,https://shopview.testrail.io/index.php?/cases/view/897326
+INV-05,897327,INV,The Technician Utilization report still lists a non-technician,https://shopview.testrail.io/index.php?/cases/view/897327
+INV-06,897328,INV,"Schedule lanes still follow departments, not the Technician toggle",https://shopview.testrail.io/index.php?/cases/view/897328
+INV-07,897329,INV,A non-technician can still press Start on an approved line and record time,https://shopview.testrail.io/index.php?/cases/view/897329
+INV-08,897330,INV,A non-technician can still be a sales representative,https://shopview.testrail.io/index.php?/cases/view/897330
+INV-09,897331,INV,A non-technician can still be billable,https://shopview.testrail.io/index.php?/cases/view/897331
+INV-10,897332,INV,Part sales show no technician dropdown,https://shopview.testrail.io/index.php?/cases/view/897332
+INV-11,897333,INV,A Technician-only change does not log the staff member out,https://shopview.testrail.io/index.php?/cases/view/897333
+INV-12,897334,INV,A save that also changes Time Clock still logs the staff member out,https://shopview.testrail.io/index.php?/cases/view/897334
+INV-13,897335,INV,A save that changes Technician and the role logs out as a role change does,https://shopview.testrail.io/index.php?/cases/view/897335
+INV-14,897336,INV,"The role setting ""View mode: Tech view"" still works as before",https://shopview.testrail.io/index.php?/cases/view/897336
+INV-15,897337,INV,Roles & Permissions has no new Technician permission,https://shopview.testrail.io/index.php?/cases/view/897337
+INV-16,897338,INV,Turning Technician on grants no access,https://shopview.testrail.io/index.php?/cases/view/897338
+INV-17,897339,INV,The staff list has no bulk edit or filter by Technician,https://shopview.testrail.io/index.php?/cases/view/897339
+INV-18,897340,INV,The Sales Representative removal warning still shows when switched off,https://shopview.testrail.io/index.php?/cases/view/897340
+INV-19,897341,INV,Reports list the same people whatever the Technician toggle,https://shopview.testrail.io/index.php?/cases/view/897341
+D-01,897342,DESIGN,Design: Staff list shows the New notice between the toolbar and the tabs,https://shopview.testrail.io/index.php?/cases/view/897342
+D-02,897343,DESIGN,Design: Technician column sits just left of Billable on the staff list,https://shopview.testrail.io/index.php?/cases/view/897343
+D-03,897344,DESIGN,Design: New pill sits at the top right of the Technician column header,https://shopview.testrail.io/index.php?/cases/view/897344
+D-04,897345,DESIGN,Design: Technician Yes and No pills look like the Billable pills,https://shopview.testrail.io/index.php?/cases/view/897345
+D-05,897346,DESIGN,Design: Staff list header fits without overlap at 1440 and 1536 px,https://shopview.testrail.io/index.php?/cases/view/897346
+D-06,897347,DESIGN,Design: Deactivated tab shows the Technician column with No,https://shopview.testrail.io/index.php?/cases/view/897347
+D-07,897348,DESIGN,Design: New Staff Member shows the three toggles in one row below Billable,https://shopview.testrail.io/index.php?/cases/view/897348
+D-08,897349,DESIGN,Design: Technician is grayed out when New Staff Member opens,https://shopview.testrail.io/index.php?/cases/view/897349
+D-09,897350,DESIGN,Design: Technician switches on with the Technician role and Time Clock,https://shopview.testrail.io/index.php?/cases/view/897350
+D-10,897351,DESIGN,Design: Time Clock tooltip on the grayed Technician toggle matches the picture,https://shopview.testrail.io/index.php?/cases/view/897351
+D-11,897352,DESIGN,Design: Office User role tooltip on the Technician toggle matches the picture,https://shopview.testrail.io/index.php?/cases/view/897352
+D-12,897353,DESIGN,Design: Time Clock User role grays out Technician with the same tooltip,https://shopview.testrail.io/index.php?/cases/view/897353
+D-13,897354,DESIGN,Design: Edit Staff Member shows the same toggle row as New Staff Member,https://shopview.testrail.io/index.php?/cases/view/897354
+D-14,897355,DESIGN,Design: Technician switched on in Edit Staff Member before saving,https://shopview.testrail.io/index.php?/cases/view/897355
+D-15,897356,DESIGN,Design: Staff list shows Technician Yes and Billable No after the save,https://shopview.testrail.io/index.php?/cases/view/897356
+D-16,897357,DESIGN,Design: Staff window toggle row does not wrap at 1440 and 1536 px,https://shopview.testrail.io/index.php?/cases/view/897357
+D-17,897358,DESIGN,Design: New pill on the Technician toggle looks like the switcher pill,https://shopview.testrail.io/index.php?/cases/view/897358
+D-18,897359,DESIGN,Design: Turn Off Technician warning matches the picture,https://shopview.testrail.io/index.php?/cases/view/897359
+D-19,897360,DESIGN,Design: Board View shows no column for a staff member who is not a technician,https://shopview.testrail.io/index.php?/cases/view/897360
+D-20,897361,DESIGN,Design: Tech View shows no group for a staff member who is not a technician,https://shopview.testrail.io/index.php?/cases/view/897361
+D-21,897362,DESIGN,Design: Technician filter shows No results for a staff member who is not one,https://shopview.testrail.io/index.php?/cases/view/897362
+D-22,897363,DESIGN,Design: Reassign lead technician shows the no-match message,https://shopview.testrail.io/index.php?/cases/view/897363
+D-23,897364,DESIGN,Design: Lead Technician list leaves out a staff member who is not a technician,https://shopview.testrail.io/index.php?/cases/view/897364
+D-24,897365,DESIGN,Design: A lead who is no longer a technician shows last and grayed out,https://shopview.testrail.io/index.php?/cases/view/897365
+D-25,897366,DESIGN,Design: Add Technician list on a line leaves out a staff member not a technician,https://shopview.testrail.io/index.php?/cases/view/897366
+D-26,897367,DESIGN,Design: Edit Labor list shows a former technician grayed out in name order,https://shopview.testrail.io/index.php?/cases/view/897367
+D-27,897368,DESIGN,Design: Edit Line shows a former technician as an ordinary chip with its X,https://shopview.testrail.io/index.php?/cases/view/897368
+D-28,897369,DESIGN,Design: Lead Technician shows Unassigned as text when there are no technicians,https://shopview.testrail.io/index.php?/cases/view/897369
+D-29,897370,DESIGN,Design: Board View shows No technicians yet when there are no technicians,https://shopview.testrail.io/index.php?/cases/view/897370
+D-30,897371,DESIGN,Design: Nothing here yet text names Technician when there are no technicians,https://shopview.testrail.io/index.php?/cases/view/897371
+D-31,897372,DESIGN,Design: Reassign window lists a former lead as Current · no longer assignable,https://shopview.testrail.io/index.php?/cases/view/897372
+D-32,897373,DESIGN,Design: New pills and the notice are gone after the end date,https://shopview.testrail.io/index.php?/cases/view/897373
+D-33,897374,DESIGN,Design: Time Clock back on in New Staff Member leaves Technician off,https://shopview.testrail.io/index.php?/cases/view/897374
+D-34,897375,DESIGN,Design: A former technician on a line shows grayed out in Edit Line,https://shopview.testrail.io/index.php?/cases/view/897375

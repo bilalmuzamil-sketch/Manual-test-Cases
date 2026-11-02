@@ -11,3 +11,5 @@
 - QA lead answers, 2 Nov 2026: project type "Upgrade (Recommended)" (V2, skill 17); tech plan "No newer plan; go ahead".
 - Design package saved (`design-2026-11-02/files/`, version 1793629882-06f7: 6 boards of captioned screenshots, 25 shots). 17 tickets saved in full (`sources/JIRA-SV-11788-tickets-2026-11-02.md`).
 - Two workers started 2 Nov: PRD cases (`WORKER-BRIEF.md`, library in `authoring/`) and the design drive (`design-2026-11-02/WORKER-BRIEF.md`). Round 2: design cases from `design-2026-11-02/DESIGN-CASE-PLAN.md` into `authoring/cases_design.py`.
+- 2 Nov 2026, QA lead: "Yes, write it all"; the 5 cases a tester cannot force: "Leave them out" (`NO-MANUAL-CASES.md`); question sheet: "Yes, make the sheet". Subsections 113018-113025 created; 228 cases written (map `testrail-id-map.csv`, read-backs in `applied/`), design pictures attached; run "Technician Toggle - Execution" with the 177 unheld cases.
+- Question sheet https://docs.google.com/spreadsheets/d/1nLKkgSgmtqCYu4eu15_9xN38ml32tDnJls42PPq_A4M (8 questions) shared with Chris Ward by the QA lead on 2 Nov 2026; he will say when it is answered. 17 cases held on it (`../PO-QUESTIONS-OPEN.md`).
