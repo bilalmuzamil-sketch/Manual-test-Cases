@@ -22,7 +22,7 @@ import { candidates } from './data.mts';
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
 const { browser, page: p0 } = await open('/workorders?tab=all');
-const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p;
+const RUN = await asRunner(browser, p0, api(p0)); let p = RUN.p; // 2 Nov: `let` so C96973 can look through another person's page
 p.setDefaultTimeout(30_000);
 const a = api(p);
 const R: Record<string, any> = { runner: RUN.id.slice(0, 8) };
@@ -209,6 +209,8 @@ import { findRow, woPageLead, pickLeadTyped } from './wob.mts';
 import { LETH, ensureEligible } from './staff.mts';
 import { RUNNER_EMAIL } from './runner.mts';
 const ROLES = await roleIds(a);
+{ const { ORG } = await import('./profile.mts'); const orgRoles = ((d: any) => (Array.isArray(d) ? d : d?.collection ?? []))((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) as any[];
+  for (const r of orgRoles) { const l = r.label ?? r.name; if (l && !ROLES[l]) ROLES[l] = r.id; } R.roleLabels = Object.keys(ROLES); }
 const WPS = ((d: any) => (Array.isArray(d) ? d : d?.collection ?? []))((await a.get('/api/workplaces')).body?.data) as any[];
 const LTZ = (WPS.find((w: any) => w.id === HEAVY) ?? {}).timezone ?? process.env.WOB_LOC_TZ ?? 'Asia/Karachi'; R.locationTimezone = LTZ;
 const lDate = (off = 0) => new Intl.DateTimeFormat('en-CA', { timeZone: LTZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(Date.now() + off * 86400000));
@@ -234,7 +236,7 @@ const answer = async (how: 'Keep shifts' | 'Clear shifts' | 'Cancel' | 'X' | 'Es
 async function after(tag: string, how: 'Keep shifts' | 'Clear shifts' | 'Cancel' | 'X' | 'Escape' = 'Keep shifts', timing = false) {
   const t0 = Date.now(); await p.mouse.move(3, 3); const q = await promptRead(); let answered = null; if (q) { await shotC(`${tag}-question`); answered = await answer(how); }
   const w = await waitToast(p, 4000); if (w.toasts.length) await shotC(`${tag}-message`);
-  const o: any = { question: q, answered, message: w.toasts.map((x: any) => ({ text: x.text, buttons: x.buttons, bg: x.bg })), messageAfterMs: w.afterMs === null ? null : Date.now() - t0 };
+  const o: any = { question: q, answered, message: w.toasts.map((x: any) => ({ text: x.text, buttons: x.buttons, bg: x.bg, box: x.box })), messageAfterMs: w.afterMs === null ? null : Date.now() - t0 };
   if (timing && w.toasts.length) { const g = await watchGone(p, 12000); o.messageGoneAfterMs = g === null ? 'still open after 12 s' : Date.now() - t0; }
   return o; }
 /** watch the bottom of the page for any lead-change message for ms (positive control: the same reader sees the real ones) */
@@ -254,10 +256,10 @@ R.start = new Date().toISOString(); console.log(t(), 'START', JSON.stringify({ b
 // ═════ C96956 — the dialog lists only eligible technicians, no Unassigned ═════
 await run('C96956', async (o) => { const K = 'P2C96956';
   const A = await T(K, 'Ana'), B = await T(K, 'Ben'), C = await T(K, 'Cal'); const DI = await T(K, 'Ivan');
-  const OFF = (await person(a, `ZZAUTOTEST ${K} Owen`, 'Office', { role: ROLES['Office User'] ?? TECH_ROLE, email: `zz.wob.p2c96956.owen${D}`, clockable: true })).row;
+  const OFF = (await person(a, `ZZAUTOTEST ${K} Owen`, 'Office', { role: ROLES['Office User'] ?? Object.entries(ROLES).find(([l]) => /office user/i.test(l))?.[1] ?? TECH_ROLE, email: `zz.wob.p2c96956.owen2${D}`, clockable: true })).row;
   const LE = (await person(a, `ZZAUTOTEST ${K} Lena`, 'Otherloc', { role: TECH_ROLE, email: `zz.wob.p2c96956.lena${D}`, clockable: true, workplace: LETH })).row;
   if (DI?.is_active) o.deactivateIvan = (await a.post('/api/iam/change-status', { id: DI.id })).status;
-  o.setup = { officeRole: !!ROLES['Office User'], owenRole: OFF?.role_label, lenaWorkplace: LE?.workplace_id === LETH ? 'other location only' : LE?.workplace_id, ivanActive: (await staffRows(a, `zz.wob.${K.toLowerCase()}.ivan${D}`))[0]?.is_active };
+  o.setup = { officeRole: Object.keys(ROLES).filter((l) => /office/i.test(l)), owenRole: OFF?.role_label, lenaWorkplace: LE?.workplace_id === LETH ? 'other location only' : LE?.workplace_id, ivanActive: (await staffRows(a, `zz.wob.${K.toLowerCase()}.ivan${D}`))[0]?.is_active };
   const s = await mkSet(`ZZAUTOTEST ${K} List`, [{ co: 'W1', lead: A }]); o.wo = s.w.W1.number; await pinIds([A, B, C]); await go('Board View', s.q);
   const m = await openLeadAction(card(s, 'W1')); o.s3_menu = m.menu.map((x: any) => x.text); o.s4_clicked = m.clicked; const full = await leadDialog(); o.s4_title = full?.title; o.s5_full = { search: full?.search, nItems: full?.nItems, hasUnassignedRow: full?.hasUnassignedRow, buttons: full?.buttons, first5: full?.items.slice(0, 5) }; await shotC('C96956-s5-dialog');
   const f = await dlgType(K); o.s5_filtered = f?.items; await shotC('C96956-s5-dialog-filtered'); await dlgType('');
@@ -287,27 +289,30 @@ await run('C96969', async (o) => { const K = 'P2C96969'; const A = await T(K, 'A
   L[await mkLine(w, 2)] = 'Line 2'; o.wo = s.w.W1.number; o.names = { A: nmT(A) };
   o.before = { lead: await leadName(w), lines: await lineTechs(w, L), history: await hist(w) }; await pinIds([A, B]); await go('Board View', s.q);
   const m = await openLeadAction(card(s, 'W1')); o.s3_menu = m.menu.map((x: any) => x.text); const d = await leadDialog(); o.s3_currentRow = (d?.items ?? []).filter((x: string) => x.includes(`${K} Ana`)); await shotC('C96969-s3-dialog');
-  await pickInDialog(new RegExp(`${K} Ana`)); await p.mouse.move(3, 3); o.s4_dialogsLeft = await dialogsOpen(); o.s4_question = await promptRead(); o.s5_messages = await noMessage(10000); await shotC('C96969-s5-no-message');
+  await pickInDialog(new RegExp(`${K} Ana`)); await p.mouse.move(3, 3); o.s4_dialogsLeft = await dialogsOpen(); await p.waitForTimeout(1500); o.s4_dialogsAfter1500 = await dialogsOpen(); o.s4_question = await promptRead(); o.s5_messages = await noMessage(10000); await shotC('C96969-s5-no-message');
   o.after = { lead: await leadName(w), lines: await lineTechs(w, L), history: await hist(w), page: await pageLabor(w, 'C96969-s6-lines') };
 });
 save();
 
 // ═════ C96973 — Reassign can pick a technician outside the filter, the card then leaves ═════
+// 2 Nov: changing the SIGNED-IN runner's own staff record ends the whole session (401 session_expired for every later call, first run 17:03).
+// So "you" here is a separate Admin who is also an eligible technician, looked through with viewAs; the runner is never edited.
 await run('C96973', async (o) => { const K = 'P2C96973'; const A = await T(K, 'Ana'), B = await T(K, 'Ben');
-  const me = (await staffRows(a, RUNNER_EMAIL)).find((x: any) => x.id === RUN.id || x.staff_id === RUN.staffId);
-  o.meBefore = { clockable: me?.clockable }; o.eligibleMe = await ensureEligible(a, me, 'runner');
-  const s = await mkSet(`ZZAUTOTEST ${K} Outside Filter`, [{ co: 'W1', lead: { staff_id: RUN.staffId } }]); const w = s.w.W1.id; o.wo = s.w.W1.number;
-  o.setup = { advisor: say(await a.post('/api/work-orders/change-service-advisor', { work_order_id: w, service_advisor_id: A.staff_id })), lead: await leadName(w) }; await pins([]);
-  await go('Board View', ''); const chip = p.locator('[data-test-id="filter_chip_assigned_to_me"]').first(); const on = () => chip.evaluate((e) => e.getAttribute('aria-pressed') ?? (/(selected|active|bg-primary|text-primary)/.test(e.className) ? 'true' : 'false')).catch(() => null);
-  if ((await on()) !== 'true') { await chip.click(); await p.waitForTimeout(2500); } o.s1 = await on(); await search(p, s.q); await p.evaluate('window.__zzNoReload = 1');
-  o.s3 = (await boardCols(p)).map((c) => `${c.name}(${c.count})`); await shotC('C96973-s3-columns');
-  await openLeadAction(card(s, 'W1')); const d = await leadDialog(); o.s4_title = d?.title; o.s5 = { buttons: d?.buttons, filtered: (await dlgType(K))?.items }; await shotC('C96973-s5-dialog');
-  await pickInDialog(new RegExp(`${K} Ana`)); o.s6 = await after('C96973-s6'); o.s6.dialogsLeft = await dialogsOpen(); await p.waitForTimeout(2500);
-  const txt = await p.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText.replace(/\\s+/g, ' ')`) as string;
-  o.s7 = { noReload: await p.evaluate('window.__zzNoReload === 1'), columns: (await boardCols(p)).map((c) => `${c.name}(${c.count})`), cardOnBoard: await p.locator(card(s, 'W1')).count(), noMatch: /No work orders match these filters/.test(txt), hint: /Try removing a filter to widen your results\./.test(txt),
-    clearAll: await p.locator('button, .q-btn').filter({ hasText: /Clear all filters/i }).count(), lead: await leadName(w) }; await shotC('C96973-s7-empty-state');
-  if ((await on()) === 'true') { await chip.click(); await p.waitForTimeout(1500); }
-  o.restoreMe = me ? say(await a.post(`/api/staff/${me.staff_id}/change`, { first_name: me.first_name, last_name: me.last_name, email: me.email, role_id: me.role_id, workplace_id: me.workplace_id ?? HEAVY, job_title: me.job_title, salary_type: me.salary_type, salary: me.salary, billable: me.billable, clockable: !!o.meBefore.clockable })) : 'no row';
+  const ADMIN = ROLES['Admin'] ?? Object.entries(ROLES).find(([l]) => /^admin(istrator)?$/i.test(l))?.[1];
+  const me = (await person(a, `ZZAUTOTEST ${K} Me`, 'Admintech', { role: ADMIN, email: `zz.wob.p2c96973.me${D}`, clockable: true })).row; o.eligibleMe = await ensureEligible(a, me, 'you');
+  const s = await mkSet(`ZZAUTOTEST ${K} Outside Filter`, [{ co: 'W1', lead: me }]); const w = s.w.W1.id; o.wo = s.w.W1.number; o.you = nmT(me);
+  o.setup = { advisor: say(await a.post('/api/work-orders/change-service-advisor', { work_order_id: w, service_advisor_id: A.staff_id })), lead: await leadName(w) };
+  const keep = p; const v = await viewAs(browser, p, a, me.id, '', RUN.toRunner); p = v.page; p.setDefaultTimeout(30_000);
+  try { await pins([]); await go('Board View', ''); const chip = p.locator('[data-test-id="filter_chip_assigned_to_me"]').first(); const on = () => chip.evaluate((e) => e.getAttribute('aria-pressed') ?? (/(selected|active|bg-primary|text-primary)/.test(e.className) ? 'true' : 'false')).catch(() => null);
+    if ((await on()) !== 'true') { await chip.click(); await p.waitForTimeout(2500); } o.s1 = await on(); await search(p, s.q); await p.evaluate('window.__zzNoReload = 1');
+    o.s3 = (await boardCols(p)).map((c) => `${c.name}(${c.count})`); await shotC('C96973-s3-columns');
+    await openLeadAction(card(s, 'W1')); const d = await leadDialog(); o.s4_title = d?.title; o.s5 = { buttons: d?.buttons, filtered: (await dlgType(K))?.items }; await shotC('C96973-s5-dialog');
+    await pickInDialog(new RegExp(`${K} Ana`)); o.s6 = await after('C96973-s6'); await p.waitForTimeout(1500); o.s6.dialogsLeft = await dialogsOpen(); await p.waitForTimeout(1000);
+    const txt = await p.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText.replace(/\\s+/g, ' ')`) as string;
+    o.s7 = { noReload: await p.evaluate('window.__zzNoReload === 1'), columns: (await boardCols(p)).map((c) => `${c.name}(${c.count})`), cardOnBoard: await p.locator(card(s, 'W1')).count(), noMatch: /No work orders match these filters/.test(txt), hint: /Try removing a filter to widen your results\./.test(txt),
+      clearAll: await p.locator('button, .q-btn').filter({ hasText: /Clear all filters/i }).count(), lead: await leadName(w) }; await shotC('C96973-s7-empty-state');
+    if ((await on()) === 'true') { await chip.click(); await p.waitForTimeout(1500); }
+  } finally { p = keep; await v.close(); }
 });
 save();
 

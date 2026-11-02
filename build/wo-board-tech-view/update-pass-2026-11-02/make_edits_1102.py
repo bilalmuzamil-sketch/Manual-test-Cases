@@ -25,6 +25,7 @@ for cid in sys.argv[1:]:
         m = re.match(r'<p>AUTOMATION: READY - EXPECT FAIL \((SV-\d+)\)</p>', x)
         if m:
             out += [f'<p>{STAMP}</p>', '<p>AUTOMATION: READY</p>']; why.append(f'marker EXPECT FAIL ({m.group(1)}) -> READY; stamp production 11/2/2026'); continue
+        if re.match(r'<p>AUTOMATION: HOLD - not yet build-verified', x): out += [f'<p>{STAMP}</p>', '<p>AUTOMATION: READY</p>']; why.append('marker HOLD (not yet build-verified) -> READY; stamp production 11/2/2026'); continue
         if x == '<p>AUTOMATION: READY</p>': out += [f'<p>{STAMP}</p>', x]; why.append('stamp production 11/2/2026'); continue
         y = x
         for k in set(re.findall(r'(SV-\d+)\)? ?\(open\)|Defect (SV-\d+) \(open\)', x)):
