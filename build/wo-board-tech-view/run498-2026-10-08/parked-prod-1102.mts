@@ -434,7 +434,10 @@ save();
 await run('C581893', async (o) => { const K = 'P2C581893'; const A = await T(K, 'Ana'), B = await T(K, 'Ben');
   const s = await mkSet(`ZZAUTOTEST ${K} Line Added`, [{ co: 'W1', lead: A }, { co: 'W2', lead: A }]); const nm = { [A.staff_id]: 'A', [B.staff_id]: 'B' };
   await mkLine(s.w.W1.id, 2); await mkLine(s.w.W2.id, 2);
-  o.shifts = [await mkShift2(s.w.W1.id, A.staff_id, 1, '08:00', 240), await mkShift2(s.w.W2.id, A.staff_id, 1, '13:00', 240)];
+  // 2 Nov (L0346): the Schedule's "Entire work order" drop records every line approved AT THAT MOMENT; `lineIds: []` is a different shift
+  const approvedIds = async (wo: string) => ((await linesRaw(wo)) as any[]).filter((l) => (l.status ?? l.line_status) === 'authorized').map((l) => l.line_id);
+  o.shiftLines = { W1: (await approvedIds(s.w.W1.id)).length, W2: (await approvedIds(s.w.W2.id)).length };
+  o.shifts = [await mkShift2(s.w.W1.id, A.staff_id, 1, '08:00', 240, await approvedIds(s.w.W1.id)), await mkShift2(s.w.W2.id, A.staff_id, 1, '13:00', 240, await approvedIds(s.w.W2.id))];
   await p.waitForTimeout(Number(process.env.L5_GAP_MS || 1500)); o.L5gapMs = Number(process.env.L5_GAP_MS || 1500); o.L5 = await mkLineS(s.w.W1.id, 3, 'authorized') ? 'added approved' : 'failed'; o.L6 = await mkLineS(s.w.W2.id, 3, 'authorization_required') ? 'added not approved' : 'failed';
   o.lines = { W1: (await linesRaw(s.w.W1.id)).map((x: any) => x.status ?? x.line_status), W2: (await linesRaw(s.w.W2.id)).map((x: any) => x.status ?? x.line_status) }; o.before = { W1: await shifts2(s.w.W1.id, nm), W2: await shifts2(s.w.W2.id, nm) };
   await pinIds([A, B]); await go('Board View', s.q);
