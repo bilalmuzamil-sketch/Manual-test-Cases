@@ -571,7 +571,9 @@ await run('C368144', async (o) => { const K = 'P2C368144'; const A = await T(K, 
   const pg = await p.context().newPage(); try { await pg.goto(`${APP}/workorders/${s.w[W.W1].id}`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(7000); if (await pg.locator('.q-dialog').filter({ hasText: 'New Line' }).count()) await pg.keyboard.press('Escape');
     // 2 Nov: open the Lead Technician list (its test id) and pick "Unassigned" — the first run's label-based locator timed out
     const sel = pg.locator('[data-test-id="select_lead_technician"]'); o.s8 = { field: await sel.count() }; await sel.click().catch(() => {}); await pg.waitForTimeout(1500);
-    const un = pg.locator('.q-menu .q-item').filter({ hasText: /^\s*(check\s*)?Unassigned\s*$/ }).first(); o.s8.unassignedOption = await un.count();
+    /* 2 Nov: the list opens scrolled to the current lead and draws only nearby rows — scroll it to the top so "Unassigned" (its first row) is drawn */
+    for (let i = 0; i < 6; i++) { await pg.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); if (!m) return; [m, ...m.querySelectorAll('*')].filter(e => e.scrollHeight > e.clientHeight + 4).forEach(e => { e.scrollTop = 0; }); })()`); await pg.waitForTimeout(500); }
+    const un = pg.locator('.q-menu').last().locator('.q-item').filter({ hasText: /^\s*(check\s*)?Unassigned\s*$/ }).first(); o.s8.unassignedOption = await un.count(); await pg.screenshot({ path: path.join(EV, 'C368144-s8-list-top.png') }).catch(() => {});
     o.s8.firstOptions = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).slice(0, 4).map((x) => x.replace(/\s+/g, ' ').trim());
     if (o.s8.unassignedOption) { await un.click(); o.s8.how = 'picked Unassigned in the Lead Technician list'; } else { await pg.keyboard.press('Escape'); o.s8.how = 'no Unassigned option'; }
     await pg.waitForTimeout(2500); await pg.screenshot({ path: path.join(EV, 'C368144-s8-page.png') }).catch(() => {}); o.s8.lead = await leadName(s.w[W.W1].id); } finally { await pg.close().catch(() => {}); }
