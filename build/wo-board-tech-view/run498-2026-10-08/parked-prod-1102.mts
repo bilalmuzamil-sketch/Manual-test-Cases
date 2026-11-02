@@ -225,8 +225,10 @@ const firstLine = async (wo: string) => (await linesRaw(wo))[0]?.line_id as stri
 const BV = (id: string) => `[data-test-id="board_column_${id}"]`, TV = (id: string) => `[data-test-id="tech_view_group_${id}"]`;
 const nmT = (x: any) => `${x.first_name} ${x.last_name}`;
 /** the "Clear …'s scheduled shifts?" question: wait up to 1.6 s for it, read title/text/buttons */
-const promptRead = async () => { for (let i = 0; i < 8; i++) { const r = await p.evaluate(`(() => { const d = [...document.querySelectorAll('.q-dialog')].filter(e => /scheduled shifts/i.test(e.innerText) && e.getBoundingClientRect().width > 0).pop(); if (!d) return null;
-    const t = d.querySelector('.text-h6, [class*=title], h1, h2, h3'); return { title: t ? t.innerText.replace(/\\s+/g, ' ').trim() : null, text: d.innerText.replace(/\\s+/g, ' ').trim().slice(0, 300), buttons: [...d.querySelectorAll('button')].filter(b => b.getBoundingClientRect().width > 0).map(b => (b.innerText || b.getAttribute('aria-label') || '').replace(/\\s+/g, ' ').trim()) }; })()`); if (r) return r; await p.waitForTimeout(200); } return null; };
+const PROMPT_SRC = `(() => { const d = [...document.querySelectorAll('.q-dialog')].filter(e => /scheduled shifts/i.test(e.innerText) && e.getBoundingClientRect().width > 0).pop(); if (!d) return null;
+    const t = d.querySelector('.text-h6, [class*=title], h1, h2, h3'); return { title: t ? t.innerText.replace(/\\s+/g, ' ').trim() : null, text: d.innerText.replace(/\\s+/g, ' ').trim().slice(0, 600), buttons: [...d.querySelectorAll('button')].filter(b => b.getBoundingClientRect().width > 0).map(b => (b.innerText || b.getAttribute('aria-label') || '').replace(/\\s+/g, ' ').trim()) }; })()`;
+// 2 Nov: the first read caught the question mid fade-in (no buttons drawn yet, C154889) — once seen, wait 900 ms and read again
+const promptRead = async () => { for (let i = 0; i < 8; i++) { const r = await p.evaluate(PROMPT_SRC); if (r) { await p.waitForTimeout(900); return ((await p.evaluate(PROMPT_SRC)) ?? r) as any; } await p.waitForTimeout(200); } return null; };
 const answer = async (how: 'Keep shifts' | 'Clear shifts' | 'Cancel' | 'X' | 'Escape') => { const d = p.locator('.q-dialog').filter({ hasText: /scheduled shifts/i }).last(); if (!(await d.count())) return 'no question';
   if (how === 'Escape') await p.keyboard.press('Escape');
   else if (how === 'X') { const x = d.locator('button[aria-label*="lose" i], button:has(i:text-is("close")), .q-btn:has-text("close")').first(); if (await x.count()) await x.click(); else return 'no X button'; }
