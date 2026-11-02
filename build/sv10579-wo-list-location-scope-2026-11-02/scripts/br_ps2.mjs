@@ -1,0 +1,21 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim(); const S=JSON.parse(rd('br-seed.json')); const [X]=S.wos;
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}); console.log(' ',u.replace('/api/',''),r.status,JSON.stringify(r.json||r.text).slice(0,220)); return r;};
+const wps=(await s.api('/api/staff/my-workplaces')).json.data.collection; const B=wps.find(w=>w.id===S.B), A=wps.find(w=>w.id===S.A);
+await post('/api/iam/change-location',{workplace_id:A.id,workplace_timezone:A.timezone});
+const xv=(await s.api('/api/work-orders/view/'+X.woId)).json.data; const company=(xv.work_order||xv).company_id||(xv.work_order||xv).company?.id;
+await post('/api/iam/change-location',{workplace_id:B.id,workplace_timezone:B.timezone});
+const psId='187c0353-2429-46a2-919e-80114a7f5b8b'; console.log('part sale',psId);
+const lr=(await s.api('/api/work-orders/lines/'+psId)).json.data; const psLine=(Array.isArray(lr)?lr:lr.collection)[0].line_id;
+const cats=(await s.api('/api/inventory/categories?limit=500')).json.data.collection; const vl=(await s.api('/api/parts-catalogue/vendors?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=5')).json.data.collection;
+const pr=await post('/api/work-orders/part/make-request',{line:psLine,work_order:psId,description:'ZZAUTOTEST SV-10579 Lethbridge part sale part',quantity:1,part_source_type:'vendor',part_number:'ZZ10579PS-'+(Date.now()%100000),price:10,part_category_id:cats[0].value,vendor_id:vl[0].id});
+const prId=pr.json.data.id; const od=await post('/api/work-orders/part/perform-request-status-action',{part_request_id:prId,workOrderId:psId,sellPrice:0}); const orderId=od.json?.data?.orderId;
+for(const L of [B,A]){ await post('/api/iam/change-location',{workplace_id:L.id,workplace_timezone:L.timezone}); const m=await post('/api/part-sales/move',{part_request_ids:[prId],work_order_id:psId,target_work_order_id:X.woId}); if(m.status<300){ console.log('moved with session at',L.name); break; } }
+await post('/api/iam/change-location',{workplace_id:B.id,workplace_timezone:B.timezone});
+const o=orderId&&(await s.api('/api/inventory/orders/'+orderId)).json.data?.order; console.log('order',JSON.stringify(o&&{wo:o.work_order_id===X.woId?'X':o.work_order_id===psId?'part sale':o.work_order_id,wp:o.workplace_id===B.id?'Lethbridge':'HD',n:o.order_number}));
+fs.writeFileSync('/tmp/sv10579/br-ps.json',JSON.stringify({psId,prId,orderId}));
+await post('/api/iam/change-location',{workplace_id:A.id,workplace_timezone:A.timezone});
+const L=(await s.api('/api/work-orders?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=60&pagination%5BsortBy%5D=startDate&pagination%5Bdescending%5D=true')).json.data.work_orders; const r=L.find(x=>x.id===X.woId); console.log('X row',JSON.stringify({orderId:r.orderId,unreceived:r.unreceivedPartRequestsCount,parts:r.partRequestsCount}));
+process.exit(0);

@@ -1,0 +1,25 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim(); const S=JSON.parse(rd('br-seed.json')); const [X]=S.wos; const TS=rd('techstaff');
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}); if(!/change-location/.test(u)) console.log('  ',u.replace('/api/',''),r.status,JSON.stringify(r.json||r.text).slice(0,160)); return r;};
+const wps=(await s.api('/api/staff/my-workplaces')).json.data.collection; const A=wps.find(w=>w.id===S.A), B=wps.find(w=>w.id===S.B);
+const at=L=>post('/api/iam/change-location',{workplace_id:L.id,workplace_timezone:L.timezone});
+const f=(x,tz)=>{const p=new Intl.DateTimeFormat('en-GB',{timeZone:tz,day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(x).reduce((a,q)=>(a[q.type]=q.value,a),{}); return `${p.day}/${p.month}/${p.year} ${p.hour}:${p.minute}`;};
+const d=(await s.api('/api/work-orders/view/'+X.woId)).json.data; const w0=d.work_order||d; const company=w0.company_id||w0.company?.id, vehicle=w0.vehicle_id||w0.vehicle?.id;
+await at(A); const cl=(await s.api('/api/work-orders/canned-lines?limit=100')).json.data.collection.filter(x=>x.workplace_id===A.id);
+const mk=async()=>{ const c=await post('/api/work-orders/create',{company_id:company,vehicle_id:vehicle,workplace_id:A.id,start_date:new Date().toISOString().slice(0,10),is_vehicle_here:true}); const id=c.json.data.work_order_id;
+  await post(`/api/work-orders/${id}/lines/create-from-canned-line`,{canned_line_id:cl[0].id,status:'authorized'}); const lr=(await s.api('/api/work-orders/lines/'+id)).json.data; const line=(Array.isArray(lr)?lr:lr.collection)[0].line_id;
+  const n=(await s.api('/api/work-orders/view/'+id)).json.data; return {id,line,number:(n.work_order||n).number}; };
+const C=await mk(), K=await mk(); console.log('control',C.number,'cross',K.number);
+const t0=new Date(Date.now()-6*3600e3);
+await at(A); const e1=await post('/api/technician-tasks/create',{start_date:f(t0,A.timezone),end_date:f(new Date(t0.getTime()+20*60e3),A.timezone),tech_assigned_id:TS,work_order_id:C.id,line_id:C.line,description:'ZZAUTOTEST SV-10579 control HD entry',resolve_overlaps:true});
+const t1=new Date(Date.now()-5*3600e3);
+await at(B); const e2=await post('/api/technician-tasks/create',{start_date:f(t1,B.timezone),end_date:f(new Date(t1.getTime()+20*60e3),B.timezone),tech_assigned_id:TS,work_order_id:K.id,line_id:K.line,description:'ZZAUTOTEST SV-10579 cross Lethbridge entry',resolve_overlaps:true});
+await at(A);
+const find=(o,id)=>{ if(!o||typeof o!=='object') return null; if(o.id===id) return o; for(const v of Object.values(o)){const r=find(v,id); if(r) return r;} return null; };
+for(const W of [C,K]){ const b=(await s.api('/api/work-orders/board?search='+W.number.split('-').pop()+'&showMyWorkOrders=0&fill=12&perGroup=25')).json; const c=find(b,W.id);
+  const recs=(await s.api(`/api/technician-tasks/list?pagination[rowsPerPage]=100&pagination[page]=1&filters[0][field]=work_order&filters[0][value]=${W.id}&search=`)).json.data.collection.map(r=>({id:r.id.slice(0,8),wp:r.workplace_id===S.A?'HD':r.workplace_id===S.B?'Leth':r.workplace_id,line:r.line_id===W.line,staff:r.technician_first_name,task:r.task_id?.slice(0,8)}));
+  console.log(W.number,'lineTech=',JSON.stringify(c?.lineTechnicians),'recs=',JSON.stringify(recs)); }
+fs.writeFileSync('/tmp/sv10579/br-ck.json',JSON.stringify({C,K,e1:e1.json?.data?.id,e2:e2.json?.data?.id}));
+process.exit(0);

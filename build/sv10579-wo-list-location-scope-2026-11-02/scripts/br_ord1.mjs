@@ -1,0 +1,13 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim(); const S=JSON.parse(rd('br-seed.json'));
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}); if(!/change-location/.test(u)) console.log('  ',u.replace('/api/',''),JSON.stringify(b).slice(0,90),r.status,JSON.stringify(r.json||r.text).slice(0,220)); return r;};
+const wps=(await s.api('/api/staff/my-workplaces')).json.data.collection; const B=wps.find(w=>w.id===S.B);
+await post('/api/iam/change-location',{workplace_id:B.id,workplace_timezone:B.timezone});
+const list=(await s.api('/api/inventory/orders?pagination[rowsPerPage]=20&pagination[page]=1&search=')).json.data; const c=list.collection||list;
+console.log('orders at Leth',JSON.stringify(c.slice(0,6).map(o=>({id:o.id.slice(0,8),n:o.order_number,wo:o.work_order_id&&o.work_order_id.slice(0,8),st:o.status}))));
+await post('/api/inventory/orders/add-item',{});
+await post('/api/inventory/orders/change-item',{});
+await post('/api/inventory/orders/change',{});
+process.exit(0);

@@ -1,0 +1,14 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim(); const S=JSON.parse(rd('br-seed.json')); const Y=JSON.parse(rd('br-y.json'));
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}); console.log('  ',u.replace('/api/',''),r.status,JSON.stringify(r.json||r.text).slice(0,220)); return r;};
+const wps=(await s.api('/api/staff/my-workplaces')).json.data.collection; const A=wps.find(w=>w.id===S.A), B=wps.find(w=>w.id===S.B);
+const at=L=>post('/api/iam/change-location',{workplace_id:L.id,workplace_timezone:L.timezone});
+const recs=async()=>{ const j=(await s.api(`/api/technician-tasks/list?pagination[rowsPerPage]=100&pagination[page]=1&filters[0][field]=work_order&filters[0][value]=${Y.Y}&search=`)).json.data; const c=j.collection||j; return c.map(r=>({id:r.id.slice(0,8),wp:r.workplace_id===S.A?'HD':r.workplace_id===S.B?'Leth':r.workplace_id,staff:r.staff_name||r.tech_assigned_name||r.staff_id?.slice(0,8),task:r.task_id?.slice(0,8),line:r.line_id?.slice(0,8),sd:r.start_date,ed:r.end_date})); };
+await at(A); const before=await recs(); console.log('recs HD view',JSON.stringify(before));
+const full=((await s.api(`/api/technician-tasks/list?pagination[rowsPerPage]=100&pagination[page]=1&filters[0][field]=work_order&filters[0][value]=${Y.Y}&search=`)).json.data.collection||[]).find(r=>r.id.startsWith('7d529604'));
+console.log('rec keys',full&&Object.keys(full).join(','));
+console.log('rec',JSON.stringify(full).slice(0,700));
+fs.writeFileSync('/tmp/sv10579/rec7d.json',JSON.stringify(full));
+process.exit(0);

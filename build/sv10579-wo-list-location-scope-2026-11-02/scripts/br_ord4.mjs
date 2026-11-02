@@ -1,0 +1,22 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim(); const S=JSON.parse(rd('br-seed.json')); const [X]=S.wos;
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}); if(!/change-location/.test(u)) console.log('  ',u.replace('/api/',''),JSON.stringify(b).slice(0,100),r.status,JSON.stringify(r.json||r.text).slice(0,200)); return r;};
+const wps=(await s.api('/api/staff/my-workplaces')).json.data.collection; const A=wps.find(w=>w.id===S.A), B=wps.find(w=>w.id===S.B);
+await post('/api/iam/change-location',{workplace_id:A.id,workplace_timezone:A.timezone});
+const d=(await s.api('/api/work-orders/view/'+X.woId)).json.data; const w0=d.work_order||d; const company=w0.company_id||w0.company?.id, vehicle=w0.vehicle_id||w0.vehicle?.id;
+const cl=(await s.api('/api/work-orders/canned-lines?limit=100')).json.data.collection.filter(x=>x.workplace_id===A.id);
+const cats=(await s.api('/api/inventory/categories?limit=500')).json.data.collection;
+const vl=(await s.api('/api/parts-catalogue/vendors?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=5')).json.data.collection;
+const c=await post('/api/work-orders/create',{company_id:company,vehicle_id:vehicle,workplace_id:A.id,start_date:new Date().toISOString().slice(0,10),is_vehicle_here:true}); const P=c.json.data.work_order_id;
+await post(`/api/work-orders/${P}/lines/create-from-canned-line`,{canned_line_id:cl[0].id,status:'authorized'});
+const lr=(await s.api('/api/work-orders/lines/'+P)).json.data; const line=(Array.isArray(lr)?lr:lr.collection)[0].line_id;
+const pn='ZZ10579MOVEWO-'+Date.now()%100000;
+const pr=await post('/api/work-orders/part/make-request',{line,work_order:P,description:'ZZAUTOTEST SV-10579 move-WO part',quantity:1,part_source_type:'vendor',part_number:pn,price:10,part_category_id:cats[0].value,vendor_id:vl[0].id});
+const prId=pr.json.data?.id; const od=await post('/api/work-orders/part/perform-request-status-action',{part_request_id:prId,workOrderId:P,sellPrice:0}); const orderId=od.json?.data?.orderId;
+const view=async()=>{const v=(await s.api('/api/work-orders/view/'+P)).json.data; const w=v.work_order||v; return {n:w.number,wp:w.workplace_id===S.A?'HD':w.workplace_id===S.B?'Leth':w.workplace_id};};
+console.log('P before',JSON.stringify(await view()),'order',orderId);
+for(const b of [{work_order_id:P,workplace_id:B.id},{work_order_id:P,company_id:company,vehicle_id:vehicle,workplace_id:B.id},{id:P,workplace_id:B.id}]){ const r=await post('/api/work-orders/change-required-data',b); console.log('   P now',JSON.stringify(await view())); if(r.status<300) break; }
+fs.writeFileSync('/tmp/sv10579/br-p.json',JSON.stringify({P,line,prId,orderId,pn}));
+process.exit(0);

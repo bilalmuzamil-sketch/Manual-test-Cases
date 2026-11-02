@@ -6362,3 +6362,26 @@ Never commit the token.
 - **Production allows ONE session per login.** A second sign-in with the same user expires the first (`session_expired`).
   For parallel work use the second admin login `bilal.muzamil+serviceadvisornoreports@shopview.com` (password in
   `/tmp/sv-prod-pw2.txt`, never committed); `qa-session.mjs` `open({user, pw})`.
+
+## §AX Locations: what can and cannot cross a location (proven 2 Nov 2026, SV-10579, branch v26.43.5-e516d33)
+- **Screen location vs API location are separate.** Pick it on screen: `profile_menu_button` → `select_location` → option whose
+  last text line contains the name (e.g. "Staging Lethbridge - 4310"). `POST /api/iam/change-location` moves only the server session.
+- **Work order view, order detail and the list are location-scoped** (`work-orders/view/{id}` / `inventory/orders/{id}` → 400
+  "not found" from another location). Use that 200/400 to tell which location a record belongs to (production order detail has no
+  `workplace_id` field).
+- **Move a requested part to another line/work order (screen):** Lines tab → the part's ⋮ `button_requested_part_context_menu_<prId>_line_<lineId>`
+  → `menu_item_move_requested_part` → dialog "Move part to line:" (`select_work_order_select`, `select_move_part_target_line`,
+  `button_move_part_action` "Move To Line"). **The target list offers only work orders at the current location.**
+- **Line technicians** (board field) = the line's assigned list: `GET /api/work-orders/{id}/line-technicians` (source, derivedFromLeadTech,
+  hasLoggedLabor); set with `PUT /api/work-orders/lines/{lineId}/technicians {staffIds}`; lead technician
+  `POST /api/work-orders/change-lead-technician {work_order_id, tech_assigned_id}`. A clock-in adds the technician; a timesheet
+  entry never does; a technician with logged labor cannot be removed.
+- **Cannot be made cross-location (every route refused or kept the location):** clock-in on another location's line ("Cannot clock in
+  to selected line", task made at either location) · clock-out or record edit (`technician-tasks/change`) from another location ·
+  `part-sales/move` ("Part request not found.") · `part-request/move-to-line` (500) · `work-orders/split` from another location ·
+  `work-orders/change-required-data {workplace_id}` (201 but the work order keeps its location) · `inventory/orders/create` naming
+  another location's work order (unlinked order).
+- **Can be made cross-location:** a timesheet entry — `POST /api/technician-tasks/create {start_date:'DD/MM/YYYY HH:mm', end_date,
+  tech_assigned_id, work_order_id, line_id, resolve_overlaps:true}` made at location B for a location-A work order (record workplace = B;
+  no end date = open = "Clocked In"). Admin only (technician 403). Times are in the location's time zone; list dates are UTC.
+- Time entries cannot be deleted; move one with `technician-tasks/move {id, line_id, work_order_id}`.
