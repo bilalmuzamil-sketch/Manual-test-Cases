@@ -64,7 +64,14 @@
  "comments": {
   "SV-11931": {
    "id": "79711",
-   "what": "tags Chris Ward: what happens now vs expected; asks stay or Obsolete"
+   "what": "tags Chris Ward: what happens now vs expected; asks stay or Obsolete",
+   "chris_reply": {
+    "id": "79842",
+    "created": "2026-10-29T15:52:52-05:00",
+    "found": "2026-11-02 (missed in the 29-30 Oct reports, which wrongly listed it as waiting)",
+    "verbatim": "a declined line isn't billed, so it shouldn't count toward technician efficiency at all, neither its tech time nor its clocked time. That holds even when the work order is invoiced and even when the invoice lists the declined line, since it's still not billed. So in the Invoiced view, on each invoiced work order, count only the lines that are not declined. For Fabian on S1-38198 that's what the ticket expects: 1.00 Invoiced Tech Hrs / 1.00 Clocked = 100.00%. The Completed view already only counts lines marked Complete, so nothing changes there. ... Please keep the ticket open as a defect.",
+    "effect": "SV-11931 stays open as a defect; its expected result (100.00 %) already matches. No ticket change made."
+   }
   },
   "SV-11823": {
    "id": "79712",
@@ -792,5 +799,17 @@
  },
  "scheduled": {
   "SV-11970 evening fresh-deposit check": "send_later trig_01NNBn6cKtbc7KNkG6uqDchs at 2026-10-30T00:25:00Z"
+ },
+ "waiting_check_2026_11_02": {
+  "doc": "Dashboard and Reports – questions for Chris Ward (28 Oct 2026) — https://docs.google.com/document/d/1mEcB4cpsOqZXeim0vzmlbam2xSB02YshnyYRY0dk9s8/edit (last changed 29 Oct 2026 11:54 UTC)",
+  "unanswered_in_doc": [
+   "38 (corrected)",
+   "39 (corrected) (a)",
+   "39 (corrected) (b)",
+   "40 NEW"
+  ],
+  "doc_comments": 0,
+  "SV-11936 comment 79719 (parked tickets)": "no reply",
+  "SV-11931 comment 79711": "answered by Chris, comment 79842"
  }
 }
