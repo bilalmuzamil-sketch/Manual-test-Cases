@@ -1,0 +1,30 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim(); const Z=JSON.parse(rd('br-z.json'));
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const p=s.page; const D='/tmp/sv10579/ui'; fs.mkdirSync(D,{recursive:true});
+p.on('request',r=>{if(r.method()!=='GET'&&r.url().includes('/api/')) console.log('REQ',r.method(),r.url().replace(/.*\/api\//,''),(r.postData()||'').slice(0,250));});
+p.on('response',async r=>{if(r.request().method()!=='GET'&&r.url().includes('/api/')) console.log('RES',r.status(),(await r.text().catch(()=>'' )).slice(0,200));});
+await s.go('/workorders'); await p.waitForTimeout(3000);
+const hdr=()=>p.evaluate(()=>document.querySelector('[data-test-id="profile_menu_button"]').innerText.split('\n')[0]);
+if(!(await hdr()).includes('Lethbridge')){ await p.click('[data-test-id="profile_menu_button"]'); await p.waitForTimeout(1000); await p.click('[data-test-id="select_location"]'); await p.waitForTimeout(1200);
+  for(const e of await p.$$('.q-menu .q-item, [role=option]')){ const t=(await e.innerText()).trim(); if(t.split('\n').pop().includes('Lethbridge')){ await e.click(); await p.waitForTimeout(4000); break; } } }
+console.log('loc',await hdr());
+await s.go('/workorders/'+Z.zId+'/lines'); await p.waitForTimeout(4000);
+await p.waitForTimeout(1500);
+const all=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).filter(x=>/menu|kebab|more|action|expand|toggle/i.test(x)));
+console.log('LINES-IDS',[...new Set(all)].join(' ').slice(0,1500));
+await p.click('[data-test-id="button_requested_part_context_menu_2a0b705e-2a28-494e-b15d-40104d5dc0ed_line_d40421ca-3a99-44f2-a4b7-77d2d1b81e92"]'); await p.waitForTimeout(1500);
+const items=await p.$$('.q-menu .q-item'); for(const e of items) console.log('MENU',(await e.innerText()).replace(/\n/g,' | '), await e.getAttribute('data-test-id'));
+await p.screenshot({path:D+'/z-partmenu.png'});
+let hit=false; for(const e of items){ if(/move/i.test(await e.innerText())){ await e.click(); hit=true; await p.waitForTimeout(3500); break; } }
+console.log('clicked move',hit);
+await p.screenshot({path:D+'/z-move-dialog.png'});
+const dids=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].map(e=>e.getAttribute('data-test-id')+':'+(e.innerText||e.value||'').slice(0,50).replace(/\n/g,' ')));
+console.log('DIALOG',dids.join(' || ').slice(0,1200));
+const sel='[data-test-id="select_work_order_select"]';
+const inp=await p.$(sel+' input')||await p.$('.q-dialog input');
+const search=async q=>{ await inp.click(); await p.keyboard.press('Control+A'); await p.keyboard.press('Backspace'); await p.waitForTimeout(800); await inp.type(q,{delay:60}); await p.waitForTimeout(4500);
+  const opts=await p.$$eval('.q-menu .q-item',es=>es.map(e=>e.innerText.replace(/\n/g,' ').trim())); const val=await inp.inputValue(); console.log('SEARCH',JSON.stringify(q),'input=',JSON.stringify(val),'opts=',JSON.stringify(opts)); await p.screenshot({path:D+'/move-search-'+q+'.png'}); return opts; };
+await search('17570'); await search('S3'); await search('17581');
+process.exit(0);

@@ -131,3 +131,16 @@ Test data left (per-ticket branch, no cleanup): S-17586…S-17589, part sale P-2
 - Line technicians on the board come from the line's assigned list, not time records — check the data source of a column before
   building records to drive it.
 - The split request body was already recorded (SV-9304, playbook) — I probed it blind before running recall.sh. Recall first.
+
+## Posted 2 Nov 2026 (QA lead: "Post passed … tag Slavcho … QA complete … label QAcomplete")
+- Pre-post gate: branch marker re-read v26.43.5-e516d33 (last-modified 13:39:31 GMT, unchanged); list re-read right before posting
+  (17581 Clocked In empty with an open Lethbridge entry; 17584 Michael Stephenson; 17582 Admin ShopView; own orders on 17580/82/85/89);
+  ticket re-read (TESTING QA, newest comment Slavcho 79954); text scanned for AI fingerprints and technical-section words: none.
+- Comment **79972**: PASSED panel, 7-row table, 4 annotated images in order (ev/before-after-clocked-in.png, ev/before-after-board.png,
+  ev/waiting-link-own-order.png, ev/move-dialog-same-location-only.png), disclosure that the cross-location timesheet entries were
+  made through the back end (Rule 108), steps to see it, then @Slavcho Mitrov note on the two record types that can't be created
+  from the screens. Echo read back: first block = panel, 7 rows, 4 media in order, mention present. Source: jira/comment.html.
+- Move-dialog search verified cleanly: 17570 (Lethbridge) found; 17581 (Heavy Duty) returns only the current work order.
+- Label `QAcomplete` (existing) applied. **Status NOT changed:** this workflow has no "QA Complete" status (transitions: Next Focus,
+  Board Backlog, Code Review, Ready for Production, Rejected from testing, Blocked, Obsolete, Testing Stage, Ready, In Progress, Done,
+  Testing QA). Other `QAcomplete` tickets sit in Ready for Production. Asked the QA lead which status he wants.

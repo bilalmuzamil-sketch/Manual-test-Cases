@@ -1,0 +1,11 @@
+import fs from 'fs';
+import {open} from '../../testing-tools/qa-session.mjs';
+const rd=f=>fs.readFileSync('/tmp/sv10579/'+f,'utf8').trim(); const S=JSON.parse(rd('br-seed.json'));
+const s=await open({env:'branch',ticket:'10579',dir:'/tmp/qa1',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')}});
+const wps=(await s.api('/api/staff/my-workplaces')).json.data.collection; const A=wps.find(w=>w.id===S.A);
+await s.api('/api/iam/change-location',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({workplace_id:A.id,workplace_timezone:A.timezone})});
+const L=(await s.api('/api/work-orders?pagination[rowsPerPage]=50&pagination[page]=1&search=S10579-1758')).json.data; const rows=L.work_orders||L.collection||[];
+for(const r of rows) console.log(r.number,'clocked=',JSON.stringify((r.clockedInTechnicians||[]).map(x=>x.firstName+' '+x.lastName)),'orderId=',r.orderId&&r.orderId.slice(0,8),'unrec=',r.unreceivedPartRequestsCount);
+const recs=(await s.api(`/api/technician-tasks/list?pagination[rowsPerPage]=100&pagination[page]=1&filters[0][field]=work_order&filters[0][value]=${S.wos[0].woId}&search=`)).json.data.collection;
+console.log('17581 records',JSON.stringify(recs.map(r=>({wp:r.workplace_id===S.A?'HD':'Leth',end:r.end_date,who:r.technician_first_name}))));
+process.exit(0);
