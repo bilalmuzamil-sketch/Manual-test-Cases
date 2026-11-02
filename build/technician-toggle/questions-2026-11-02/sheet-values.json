@@ -1,0 +1,106 @@
+[
+ [
+  "Technician Toggle – questions for Chris Ward (2 Nov 2026)",
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],
+ [
+  "Hi Chris, we are writing the Technician Toggle test cases from the feature spec (version 17, 2 Nov), its Jira stories (SV-11879 to SV-11884) and the design canvas \"Technician Toggle\", and found the points below that only you can decide. Please write your answer in the yellow column (a letter such as (a) is enough).",
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],
+ [
+  "Colour guide:",
+  "Yellow = please write your answer here",
+  "Blue = the topic",
+  "Grey = where we found it",
+  "",
+  ""
+ ],
+ [
+  "",
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],
+ [
+  "#",
+  "Topic",
+  "Question for you",
+  "What we know today",
+  "Your answer",
+  "Where we found it"
+ ],
+ [
+  "1",
+  "Technician Toggle: the Public API",
+  "If an outside tool sends a staff update that switches Technician on for someone whose Time Clock is off (or who is on the Office User or Time Clock User role), should the request be refused with the message, or accepted with the technician value ignored?\n(a) Accepted and ignored, as S5-N1 says; the two refusal messages show only for requests sent by ShopView's own screens (please say which)\n(b) Refused with the message, as Story 1 says; S5-N1 applies only when the value would not be refused\n(c) Something else (please say)",
+  "Story 1 Error Handling: \"A request from elsewhere (for example an outside tool) that would switch Technician from off to on in either case is refused with \"A technician must have Time Clock on.\" or \"This role can't be a technician.\" respectively\". Story 5 S5-N1: \"The technician value cannot be set through the Public API. A staff update that includes it succeeds as today and ignores that value\". An outside tool reaches ShopView through the Public API, so the two sentences give opposite answers for the same request.",
+  "",
+  "PRD v17 Story 1 Error Handling and S5-N1; Jira SV-11879 (Story 1), SV-11883 (Story 5)"
+ ],
+ [
+  "2",
+  "Technician Toggle: Edit Staff Member",
+  "When one save changes Technician and also the role, is the staff member logged out (as a role change does today) or kept signed in?\n(a) Logged out, as a role change does today; only a save that changes nothing but Technician keeps them signed in\n(b) Kept signed in, because the save changes Technician\n(c) Something else (please say)",
+  "S1-R8: \"Saving a change to Technician never logs the staff member out. A save that also changes Time Clock logs them out, as a Time Clock change does today.\" Key Decisions: \"Changing Technician never logs anyone out.\" The PRD names only Time Clock; today a role change on a staff record also logs the person out.",
+  "",
+  "PRD v17 S1-R8 and Key Decisions; Jira SV-11879 (Story 1)"
+ ],
+ [
+  "3",
+  "Technician Toggle: Board View and Tech View",
+  "How can a Technician filter be on at a location that has no technicians? Does a filter picked at one location stay on when the user switches to a location with no technicians?\n(a) Yes: a filter picked at another location stays on, and then \"No technicians yet\" does not show\n(b) No: the filter is cleared when the location changes, so this cannot happen (the words are only a safeguard)\n(c) Something else (please say)",
+  "S3-R10: the \"No technicians yet\" state shows \"When Board View or Tech View has no technician column or group at all ... and neither Assigned to me nor a Technician filter is on\". S3-R3: \"The Technician filter on Work Orders offers the same people the board gives a column or group to\", so at a location with no technicians the filter offers nobody to pick.",
+  "",
+  "PRD v17 S3-R10 and S3-R3; Jira SV-11881 (Story 3)"
+ ],
+ [
+  "4",
+  "Technician Toggle: the Technician filter on Work Orders",
+  "If the filter is already set to a person and that person's Technician is then turned off, what happens to the filter the next time the board loads?\n(a) The filter stays set to them and keeps showing their work\n(b) The filter drops them, as if they had never been picked\n(c) Something else (please say)",
+  "S3-R3: \"The Technician filter on Work Orders offers the same people the board gives a column or group to.\" S3-N1: a person with Technician off \"is not offered in the Technician filter\". Nothing says what happens to a filter that is already set to that person.",
+  "",
+  "PRD v17 S3-R3 and S3-N1; Jira SV-11881 (Story 3)"
+ ],
+ [
+  "5",
+  "Technician Toggle: New Staff Member window",
+  "Pick the Technician role and switch Time Clock on, and Technician switches on by itself. If Time Clock is then switched off and on again, what should Technician do?\n(a) As the spec: it switches on again by itself from the role, unless the user had already switched Technician by hand\n(b) As the design's page 3 note: it stays off and the user turns it on\n(c) Something else (please say)",
+  "S1-R5: \"In New Staff Member, turning Time Clock on pre-fills Technician from the role (S1-R3), unless the user has already switched Technician by hand.\" The design's page 2 note agrees (\"Changing the role or Time Clock sets it again from the role\"), but its page 3 note, under a New Staff Member picture, says \"Turning Time Clock back on leaves Technician off; the user turns it on.\" and \"Edit behaves the same.\"",
+  "",
+  "PRD v17 S1-R5; design page 3 \"When Technician can't be turned on\", picture \"Time Clock off\"; design page 2; Jira SV-11879"
+ ],
+ [
+  "6",
+  "Technician Toggle: Edit Line window",
+  "A person was added to a line with Add Technician and later their Technician toggle is turned off. In Edit Line, how should that person's chip look?\n(a) As the spec: an ordinary chip, not grayed out, removable with its X (with the lock if they have logged time)\n(b) As the design's note: grayed out, the same as a deactivated technician today\n(c) Something else (please say)",
+  "S3-R8: \"In Edit Line they show as an ordinary chip that can be removed with its X, unless they have logged time on the line, in which case the chip shows the existing lock\". Story SV-11881 agrees (\"an ordinary chip (not grayed out)\"). The design does not draw the chip; its note under the Add Technician picture says \"Anyone already on a line who is not a technician any more stays on it and shows grayed out, the same as a deactivated technician today.\"",
+  "",
+  "PRD v17 S3-R8; Jira SV-11881; design page 6 \"Technician dropdowns on a work order\", picture \"Add Technician on a line\""
+ ],
+ [
+  "7",
+  "Technician Toggle: Board View and Tech View empty state",
+  "The spec gives \"No technicians yet\" two sentences, and the ShopView design system the design uses allows at most one sentence in an empty state. Which should it show?\n(a) As the spec, both sentences\n(b) One sentence only (please give the words)\n(c) The design system's rule does not apply here; keep (a)",
+  "S3-R10: the text \"Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned.\" The design system (ds/shopview/components.css, EMPTY STATE): \"One rule for every empty state in the product: ONE icon from the set, a title, at most one sentence, and the action that fills it.\" The design draws no empty state for this feature.",
+  "",
+  "PRD v17 S3-R10; the ShopView design system's empty-state rule (components.css) used by the design canvas; Jira SV-11881"
+ ],
+ [
+  "8",
+  "Technician Toggle: New Staff Member window",
+  "After Save & Add Next the window stays open, empty, for the next person. In that next, empty form, how is Technician set?\n(a) As if the window had just opened: set from the role again, and any earlier switch by hand is forgotten\n(b) It keeps the previous person's hand choice until the user changes it\n(c) Something else (please say)",
+  "S1-R3: Technician is pre-filled \"when the window opens and again each time the role or Time Clock is changed, until the user switches Technician by hand\", and \"The toggle as shown is what is saved.\" The PRD names only \"the window's existing Save\"; the design shows Save & Add Next and Save & Close in every New Staff Member picture. The stories and the tech plan do not mention Save & Add Next.",
+  "",
+  "PRD v17 S1-R3; design page 2 \"Turn Technician on for a staff member\", New Staff Member pictures (Save & Add Next button)"
+ ]
+]

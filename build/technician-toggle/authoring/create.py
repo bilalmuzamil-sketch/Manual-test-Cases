@@ -13,7 +13,9 @@ MAP = f"{P}/testrail-id-map.csv"; IMG = f"{P}/design-2026-11-02/images"
 PICRE = re.compile(r"tt-p\d-\d\d-[\w-]+\.png")
 def pics(f): return sorted(set(PICRE.findall(f["custom_expected"])))
 ids = {r["key"]: int(r["case_id"]) for r in csv.DictReader(open(MAP))} if os.path.exists(MAP) else {}
-todo = [k for k in PROP if k not in ids]
+# QA lead, 2 Nov 2026, on the 5 cases a manual tester cannot force: "Leave them out" (kept in the library only; NO-MANUAL-CASES.md)
+NO_MANUAL = {"S2-34", "S2-35", "S2-36", "S3-47", "S4-07"}
+todo = [k for k in PROP if k not in ids and k not in NO_MANUAL]
 missing = sorted({p for v in PROP.values() for p in pics(v["fields"]) if not os.path.exists(f"{IMG}/{p}")})
 print("PLAN (dry run unless --apply)")
 print(f"{'key':7} {'subsection of 113017':52} {'cases':>5} {'held':>5} {'to run':>6} {'pictures':>8}")
@@ -71,7 +73,7 @@ for k in todo:
     ids[k] = cid
 for k, v in PROP.items():  # pictures, idempotent
     want = pics(v["fields"])
-    if not want or k not in ids: continue
+    if not want or k not in ids or k in NO_MANUAL: continue
     cid = ids[k]; have = attached(cid)
     for name in want:
         if name in have: continue

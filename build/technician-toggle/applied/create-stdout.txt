@@ -1,0 +1,14 @@
+PLAN (dry run unless --apply)
+key     subsection of 113017                                 cases  held to run pictures
+S1      Technician toggle on a staff member                     37     3     34       44   id 113018
+S2      Turn Off Technician warning                             38     0     38       59   id 113019
+S3      Who appears on the technician lists                     47     7     40       49   id 113020
+S4      Technician column and notice on the staff list          10     1      9       11   id 113021
+API     API - Public API technician value on staff              15     7      8        0   id 113022
+S6      Release day                                             28    28      0        0   id 113023
+INV     What must not change                                    19     1     18        2   id 113024
+DESIGN  Design — how it looks                                   34     4     30       49   id 113025
+total to add 228 | already 0 | held (not for a run) 51 | for the run 177 | picture uploads 214 (25 distinct files) | missing picture files []
+held by reason: {'AUTOMATION: HOLD - the end date is set only when the release is scheduled; run on the release build before release day': 2, 'AUTOMATION: HOLD - waiting on the PO (question n)': 17, "AUTOMATION: HOLD - needs a Public API request that changes a staff member's role; the saved sources name none": 1, "AUTOMATION: HOLD - needs the Public API request that sets a work order's lead; the saved sources name none": 1, 'AUTOMATION: HOLD - the changelog entry is published with the release; run once the release notes for the Public API are out': 1, 'AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release': 29}
+subsections still to create (no id in sections.json): []
+tester-readiness check (Rule 138): cases 233 | hard problems 0 | 'does not / never' results to read for a control 96
