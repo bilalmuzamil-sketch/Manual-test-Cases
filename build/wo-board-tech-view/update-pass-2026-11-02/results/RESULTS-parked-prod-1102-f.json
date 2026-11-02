@@ -1,0 +1,38 @@
+{
+ "pass_meta": {
+  "note": "2 Nov 2026 update pass, batch f"
+ },
+ "results": {
+  "C96963": {
+   "verdict": "Passed",
+   "observed": [
+    "Invoiced, Paid and Declined work orders cannot be moved to another technician or to Unassigned: while the card is held over the other column the note \"Invoiced · can't be reassigned\" (or Paid / Declined) shows at the top; on release the card stays with its lead and the lead is unchanged.",
+    "Invoiced and Paid work orders can be reordered within their technician's column and keep the new place.",
+    "The Invoiced work order with no lead cannot leave Unassigned, but it can be reordered inside it (checked with a second unassigned card; it kept its new place after a reload).",
+    "The Complete work order moves to the other technician normally, with \"<number> assigned to <technician>\" and Undo.",
+    "On the Invoiced work order's page the Lead technician is plain text and cannot be changed. Tech View follows the same rules for every move. Server refusal not checked by hand (it was also checked by the run: the server refuses the change)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C690642-1-declined-held.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C690642-2-page-locked.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C690642-3-reorder-in-unassigned.png"
+   ]
+  },
+  "C690642": {
+   "verdict": "Passed",
+   "observed": [
+    "Invoiced, Paid and Declined work orders cannot be moved to another technician or to Unassigned: while the card is held over the other column the note \"Invoiced · can't be reassigned\" (or Paid / Declined) shows at the top; on release the card stays with its lead and the lead is unchanged.",
+    "Invoiced and Paid work orders can be reordered within their technician's column and keep the new place.",
+    "The Invoiced work order with no lead cannot leave Unassigned, but it can be reordered inside it (checked with a second unassigned card; it kept its new place after a reload).",
+    "The Complete work order moves to the other technician normally, with \"<number> assigned to <technician>\" and Undo.",
+    "On the Invoiced work order's page the Lead technician is plain text and cannot be changed. Tech View follows the same rules for every move. Server refusal not checked by hand (it was also checked by the run: the server refuses the change).",
+    "For step 10 a second card is needed in Unassigned: with only {Work-order-4} there, it has nothing to be reordered against."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C690642-1-declined-held.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C690642-2-page-locked.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C690642-3-reorder-in-unassigned.png"
+   ]
+  }
+ }
+}

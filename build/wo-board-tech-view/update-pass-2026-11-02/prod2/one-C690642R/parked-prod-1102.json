@@ -37,5 +37,52 @@
   "Foreman"
  ],
  "locationTimezone": "Asia/Karachi",
- "start": "2026-11-02T18:29:15.010Z"
+ "start": "2026-11-02T18:29:15.010Z",
+ "C690642R": {
+  "statuses": {
+   "W4": "Invoiced",
+   "W8": "Approved",
+   "W9": "Approved"
+  },
+  "start": [
+   "W4",
+   "W8",
+   "W9"
+  ],
+  "control": {
+   "moved": "W9",
+   "above": "W4",
+   "before": [
+    "W4",
+    "W8",
+    "W9"
+   ],
+   "after": [
+    "W9",
+    "W4",
+    "W8"
+   ]
+  },
+  "check": {
+   "before": [
+    "W9",
+    "W4",
+    "W8"
+   ],
+   "after": [
+    "W9",
+    "W8",
+    "W4"
+   ],
+   "messages": [],
+   "afterReload": [
+    "W9",
+    "W8",
+    "W4"
+   ],
+   "lead": "none"
+  }
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "end": "2026-11-02T18:30:13.625Z"
 }
