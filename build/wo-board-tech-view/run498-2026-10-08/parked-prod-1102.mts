@@ -559,8 +559,11 @@ await run('C368144', async (o) => { const K = 'P2C368144'; const A = await T(K, 
   await pinIds([A]); await go('Board View', s.q); o.s4 = nmW(await orderBV(s, 'unassigned'));
   await unassignVia(card(s, W.W3)); o.s6 = await after('C368144-s6'); await p.waitForTimeout(1500); o.s7 = nmW(await orderBV(s, 'unassigned')); await shotC('C368144-s7-order');
   const pg = await p.context().newPage(); try { await pg.goto(`${APP}/workorders/${s.w[W.W1].id}`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(7000); if (await pg.locator('.q-dialog').filter({ hasText: 'New Line' }).count()) await pg.keyboard.press('Escape');
-    const f = pg.locator('.q-field').filter({ has: pg.locator('.q-field__label', { hasText: /Lead Tech/i }) }).first(); const clr = f.locator('.q-field__focusable-action, i:text-is("cancel"), i:text-is("close")').first();
-    if (await clr.count()) { await clr.click(); o.s8 = { how: 'the clear (x) on the field' }; } else { o.s8 = await pickLeadTyped(pg, ['Unassigned'], 'Unassigned'); o.s8.how = 'picked Unassigned in the list'; }
+    // 2 Nov: open the Lead Technician list (its test id) and pick "Unassigned" — the first run's label-based locator timed out
+    const sel = pg.locator('[data-test-id="select_lead_technician"]'); o.s8 = { field: await sel.count() }; await sel.click().catch(() => {}); await pg.waitForTimeout(1500);
+    const un = pg.locator('.q-menu .q-item').filter({ hasText: /^\s*(check\s*)?Unassigned\s*$/ }).first(); o.s8.unassignedOption = await un.count();
+    o.s8.firstOptions = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).slice(0, 4).map((x) => x.replace(/\s+/g, ' ').trim());
+    if (o.s8.unassignedOption) { await un.click(); o.s8.how = 'picked Unassigned in the Lead Technician list'; } else { await pg.keyboard.press('Escape'); o.s8.how = 'no Unassigned option'; }
     await pg.waitForTimeout(2500); await pg.screenshot({ path: path.join(EV, 'C368144-s8-page.png') }).catch(() => {}); o.s8.lead = await leadName(s.w[W.W1].id); } finally { await pg.close().catch(() => {}); }
   await go('Board View', s.q); o.s9 = nmW(await orderBV(s, 'unassigned')); await shotC('C368144-s9-order');
   await display(p, 'Tech View'); await expandSmallGroups(p); await findRow(p, s.w[W.W1].id, 'unassigned'); o.s10 = nmW(await orderTV(s, 'unassigned')); await shotC('C368144-s10-tech');
