@@ -475,6 +475,21 @@ await run('C690642', async (o) => { const K = 'P2C690642'; const A = await T(K, 
 });
 save();
 
+// ═════ C690642R — only "an Invoiced work order with no lead can be reordered inside Unassigned" (2 Nov: the first drop landed on the place it already had)
+await run('C690642R', async (o) => { const K = 'P2C690642R';
+  const s = await mkSet(`ZZAUTOTEST ${K} Unassigned Reorder`, [{ co: 'W4', lead: null, status: 'invoiced' }, { co: 'W8', lead: null }, { co: 'W9', lead: null }]); o.statuses = { W4: await status(s.w.W4.id), W8: await status(s.w.W8.id), W9: await status(s.w.W9.id) };
+  await go('Board View', s.q); o.start = await orderBV(s, 'unassigned'); await shotC('C690642R-0-start');
+  const below = async (mover: string, target: string, tag: string) => { const b = await p.locator(card(s, target)).boundingBox(); await drag(p, card(s, mover), card(s, target), b ? Math.round(b.height - 6) : 150); await p.mouse.move(3, 3); await p.waitForTimeout(1500); await shotC(tag); return orderBV(s, 'unassigned'); };
+  const above = async (mover: string, target: string, tag: string) => { await drag(p, card(s, mover), card(s, target), 4); await p.mouse.move(3, 3); await p.waitForTimeout(1500); await shotC(tag); return orderBV(s, 'unassigned'); };
+  // positive control: an Approved card (W9) is moved to the top of Unassigned
+  const top0 = o.start[0]; o.control = { moved: 'W9', above: top0, before: o.start, after: top0 === 'W9' ? o.start : await above('W9', top0, 'C690642R-1-control') };
+  // the check: the Invoiced card W4 is moved to a NEW place inside Unassigned (to the bottom if it is not last, else to the top)
+  const cur = await orderBV(s, 'unassigned'); const last = cur[cur.length - 1]; o.check = { before: cur };
+  o.check.after = last !== 'W4' ? await below('W4', last, 'C690642R-2-invoiced-moved') : await above('W4', cur[0], 'C690642R-2-invoiced-moved');
+  o.check.messages = await noMessage(2000); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); await search(p, s.q); o.check.afterReload = await orderBV(s, 'unassigned'); o.check.lead = await leadName(s.w.W4.id);
+});
+save();
+
 // ═════ C97002 — dragging to another technician changes the lead, Unassigned clears it ═════
 await run('C97002', async (o) => { const K = 'P2C97002'; const A = await T(K, 'Ana'), B = await T(K, 'Ben'), C = await T(K, 'Cal');
   const s = await mkSet(`ZZAUTOTEST ${K} Drag Lead Change`, [{ co: 'Alpha Co', lead: A }, { co: 'Golf Co', lead: null }]); o.names = { A: nmT(A), B: nmT(B), C: nmT(C) }; o.wo = { alpha: s.w['Alpha Co'].number, golf: s.w['Golf Co'].number };
