@@ -400,6 +400,19 @@ await run('C581891', async (o) => { const K = 'P2C581891'; const A = await T(K, 
   o.before = await lineTechs(w, L); o.names = { A: nmT(A), B: nmT(B), C: nmT(C), D: nmT(Dd) }; await pinIds([A, Dd]); await go('Board View', s.q);
   await openLeadAction(card(s, 'W1')); await pickInDialog(new RegExp(`${K} Dan`)); o.s4 = await after('C581891-s4'); o.s4.column = await colOf(s, 'W1');
   o.s7_12 = await lineTechs(w, L); o.page = await pageLabor(w, 'C581891-s7-lines');
+  // steps 8-13: Edit Line on each line, read its Technicians field (the roster chips), close without saving (2 Nov: the first run read only the Labor row)
+  const ln = ((await linesRaw(w)) as any[]).map((x) => ({ id: x.line_id, name: x.title ?? x.name ?? x.description ?? '' }));
+  const pg = await p.context().newPage(); try { for (const [i, l] of ln.entries()) { await pg.goto(`${APP}/workorders/${w}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(6500);
+      if (await pg.locator('.q-dialog').filter({ hasText: 'New Line' }).count()) await pg.keyboard.press('Escape');
+      const nm = (await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="line_name"], .line-name, td, div')].filter(e => e.children.length === 0 && e.getBoundingClientRect().width > 0 && /\\S/.test(e.innerText || '')).map(e => e.innerText.trim())`) as string[]);
+      const lineNames = (await pg.locator('text=/^Line 1$|^New York State Inspection$|^Service - /').allInnerTexts().catch(() => [])) as string[];
+      const target = pg.getByText(lineNames[i] ?? (i === 0 ? 'Line 1' : 'New York State Inspection'), { exact: true }).first(); await target.click().catch(() => {}); await pg.waitForTimeout(2500);
+      const d = pg.locator('.q-dialog').filter({ hasText: 'Edit Line' }).last();
+      o[`s${9 + i * 3}_editLine${i + 1}`] = { name: lineNames[i] ?? null, dialog: await d.count(), technicians: await d.evaluate((e: any) => [...e.querySelectorAll('[data-test-id^="line_roster_technician_"]')].map((x: any) => x.innerText.replace(/\s+/g, ' ').trim())).catch(() => null),
+        field: await d.evaluate((e: any) => { const f = [...e.querySelectorAll('.q-field')].find((x: any) => /Technician/i.test(x.innerText)); return f ? f.innerText.replace(/\s+/g, ' ').trim().slice(0, 200) : null; }).catch(() => null) };
+      await pg.screenshot({ path: path.join(EV, `C581891-s${9 + i * 3}-edit-line-${i + 1}.png`) }).catch(() => {});
+      const c = d.locator('button').filter({ hasText: /^\s*Cancel\s*$/ }).first(); if (await c.count()) await c.click(); else await pg.keyboard.press('Escape'); await pg.waitForTimeout(1200); }
+  } finally { await pg.close().catch(() => {}); }
 });
 save();
 
