@@ -526,7 +526,10 @@ save();
 await run('C97008', async (o) => { const K = 'P2C97008'; const A = await T(K, 'Ana'), B = await T(K, 'Ben');
   const s = await mkSet(`ZZAUTOTEST ${K} Move Message`, [{ co: 'Alpha Co', lead: A }, { co: 'Bravo Co', lead: A }, { co: 'Charlie Co', lead: A }, { co: 'Delta Co', lead: B }]); o.names = { A: nmT(A), B: nmT(B) }; o.wo = s.w['Alpha Co'].number;
   await pinIds([A, B]); await go('Board View', s.q); o.s4 = { A: await cnt(A.staff_id), B: await cnt(B.staff_id) };
-  await dragTo(card(s, 'Alpha Co'), BV(B.staff_id), 'x'); o.s6 = await after('C97008-s6', 'Keep shifts', true); o.s6.counts = { A: await cnt(A.staff_id), B: await cnt(B.staff_id) }; o.s6.orderB = await orderBV(s, B.staff_id);
+  // 2 Nov: drop BELOW Delta Co (empty space under the last card, as a tester does), so the step-7 reorder is a real move
+  { await p.locator(card(s, 'Alpha Co')).scrollIntoViewIfNeeded().catch(() => {}); const f1 = await p.locator(card(s, 'Alpha Co')).boundingBox(), t1 = await p.locator(card(s, 'Delta Co')).boundingBox();
+    if (f1 && t1) { const gx = f1.x + f1.width * 0.45; await p.mouse.move(gx, f1.y + f1.height / 2); await p.mouse.down(); await p.mouse.move(gx, f1.y + f1.height / 2 + 8, { steps: 4 }); await p.mouse.move(t1.x + t1.width / 2, t1.y + t1.height + 30, { steps: 20 }); await p.waitForTimeout(600); await p.mouse.up(); } }
+  o.s6 = await after('C97008-s6', 'Keep shifts', true); o.s6.counts = { A: await cnt(A.staff_id), B: await cnt(B.staff_id) }; o.s6.orderB = await orderBV(s, B.staff_id);
   await drag(p, card(s, 'Alpha Co'), card(s, 'Delta Co'), 4); await p.mouse.move(3, 3); o.s8 = { messages: await noMessage(4000), orderB: await orderBV(s, B.staff_id), counts: { A: await cnt(A.staff_id), B: await cnt(B.staff_id) }, lead: await leadName(s.w['Alpha Co'].id) }; await shotC('C97008-s8-reorder');
 });
 save();
