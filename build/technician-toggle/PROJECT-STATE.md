@@ -8,3 +8,6 @@
 - PRD v17, Jira sweep (17 tickets) and the uploaded tech plan saved under `sources/`.
 - The uploaded tech plan is for PRD v9 (role version) and does not describe the staff-member toggle. Asked the QA lead for the current plan and the project type.
 - No cases yet. Next: read PRD, design (driven in full), tickets and the current plan in full; draft cases in the QA lead's pattern; gates; write to 113017 only with his go-ahead.
+- QA lead answers, 2 Nov 2026: project type "Upgrade (Recommended)" (V2, skill 17); tech plan "No newer plan; go ahead".
+- Design package saved (`design-2026-11-02/files/`, version 1793629882-06f7: 6 boards of captioned screenshots, 25 shots). 17 tickets saved in full (`sources/JIRA-SV-11788-tickets-2026-11-02.md`).
+- Two workers started 2 Nov: PRD cases (`WORKER-BRIEF.md`, library in `authoring/`) and the design drive (`design-2026-11-02/WORKER-BRIEF.md`). Round 2: design cases from `design-2026-11-02/DESIGN-CASE-PLAN.md` into `authoring/cases_design.py`.
