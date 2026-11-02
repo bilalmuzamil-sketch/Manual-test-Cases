@@ -1,0 +1,3 @@
+# C368133 again (it loaded the script mid-edit, 17:30)
+until ! pgrep -f "prod-queue-1102[defg]" >/dev/null; do sleep 20; done
+cd build/wo-board-tech-view/run498-2026-10-08 && source ../../testing-tools/ensure_bridge.sh >/dev/null 2>&1; source prod-env.sh; export WOB_EV=/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/one-C368133b WOB_SCALE=2 QA_DPR=2 ONLY=C368133; mkdir -p $WOB_EV; timeout 1500 ./wob-run.sh parked-prod-1102.mts > $WOB_EV/run.log 2>&1
