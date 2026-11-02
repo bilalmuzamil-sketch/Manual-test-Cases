@@ -574,14 +574,16 @@ save();
 await run('C97028', async (o) => { const K = 'P2C97028'; const A = await T(K, 'Ana'), B = await T(K, 'Ben');
   const s = await mkSet(`ZZAUTOTEST ${K} Blocked Analytics`, [{ co: 'Alpha Co', lead: A }]); o.names = { B: nmT(B) }; o.wo = s.w['Alpha Co'].number;
   const failed: string[] = []; p.on('requestfailed', (r) => { if (/google-analytics|googletagmanager|gtag|analytics|segment|mixpanel|posthog/i.test(r.url())) failed.push(r.url().replace(/\?.*$/, '').slice(0, 90)); });
-  const pv = await prefGet(); await a.put(PREF, { value: { ...pv, density: 'comfortable' } });
+  const pv = await prefGet(); await a.put(PREF, { value: { ...pv, boardCardSize: 'detailed' } });
   await pinIds([A, B]); await go('Board View', s.q); o.s1 = { cardShown: await p.locator(card(s, 'Alpha Co')).count() };
   await p.locator('[data-test-id="button_board_fields_selection"]').click(); await p.waitForTimeout(900); const tv = p.locator('[data-test-id="toggle_board_field_vin"]'); const st = await tv.locator('[role=switch]').getAttribute('aria-checked').catch(() => tv.getAttribute('aria-checked')); o.s2_vinBefore = st; if (st !== 'true') await tv.click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape');
-  await p.locator('[data-test-id="button_density"]').click(); await p.waitForTimeout(700); await p.locator('[data-test-id="option_density_compact"]').click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape');
-  o.s2 = { vinOnCard: await p.locator(`${card(s, 'Alpha Co')} [data-test-id="board_card_field_vin"]`).count(), density: (await prefGet()).density }; await shotC('C97028-s2-fields');
+  // 2 Nov: Board View has no density control since SV-11581 — "Card size" (Compact / Detailed) took its place; the toolbar names are read for the case edit
+  o.toolbarNames = {}; for (const tid of ['button_board_fields_selection', 'button_card_size']) { const l = p.locator(`[data-test-id="${tid}"]`).first(); o.toolbarNames[tid] = { aria: await l.getAttribute('aria-label').catch(() => null) }; await l.hover().catch(() => {}); await p.waitForTimeout(900); o.toolbarNames[tid].tooltip = await tips(); }
+  await p.locator('[data-test-id="button_card_size"]').click(); await p.waitForTimeout(800); o.cardSizeOptions = await menuItems(p); await p.locator('.q-menu .q-item').filter({ hasText: /^\s*Compact\s*$/ }).first().click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape');
+  o.s2 = { vinOnCard: await p.locator(`${card(s, 'Alpha Co')} [data-test-id="board_card_field_vin"]`).count(), cardSize: (await prefGet()).boardCardSize }; await shotC('C97028-s2-fields');
   await dragTo(card(s, 'Alpha Co'), BV(B.staff_id), 'x'); o.s3 = await after('C97028-s3'); o.s3.where = await colOf(s, 'Alpha Co');
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await search(p, s.q); const pf = await prefGet();
-  o.s4 = { display: pf.display, density: pf.density, vinOnCard: await p.locator(`${card(s, 'Alpha Co')} [data-test-id="board_card_field_vin"]`).count(), where: await colOf(s, 'Alpha Co'), lead: await leadName(s.w['Alpha Co'].id) }; await shotC('C97028-s4-after-refresh');
+  o.s4 = { display: pf.display, cardSize: pf.boardCardSize, vinOnCard: await p.locator(`${card(s, 'Alpha Co')} [data-test-id="board_card_field_vin"]`).count(), where: await colOf(s, 'Alpha Co'), lead: await leadName(s.w['Alpha Co'].id) }; await shotC('C97028-s4-after-refresh');
   o.analyticsRefused = [...new Set(failed)].slice(0, 6); o.blockerNote = process.env.WOB_GA ? 'WOB_GA set: analytics NOT blocked by the harness' : 'the harness refuses googletagmanager / google-analytics requests in this browser (viewas.mts route), as a tracker blocker does';
 });
 save();
