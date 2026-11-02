@@ -16,7 +16,7 @@
  *  Output: EV/C614711-p2.json, pictures EV/C614711-p2-*.png. */
 import fs from 'node:fs'; import path from 'node:path';
 import { open, done, APP, API } from './session.mts'; import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, display, tab, search, groups, drag, toColumn, allBoardCols } from './wob.mts'; import { toastTexts as toasts } from './toast-read.mts'; // 2 Nov 2026: design toast reader
+import { EV, t, display, tab, search, groups, drag, toColumn, allBoardCols } from './wob.mts'; import { toastTexts as toasts } from './toast-read.mts'; import { findRow } from './wob.mts'; // 2 Nov 2026: design toast reader
 import { person, roleIds, ensureEligible, staffRows, HEAVY } from './staff.mts';
 const { browser, page: p } = await open('/workorders?tab=all'); p.setDefaultTimeout(30_000); const a = api(p);
 const o: any = { exitSwitch: (await a.post('/api/exit-switch-user', {})).status };
@@ -100,6 +100,7 @@ try {
     console.log(t(), 'C614711 step 6', JSON.stringify({ drag: o.s6, wo2Column: o.s6_wo2ColumnAfter, lead: o.s6_wo2LeadApi })); }
   // ---- step 7: Tech View — the group headed "Deleted technician"
   await display(p, 'Tech View'); await W(2000); await search(p, CUST); await W(2000);
+  o.s7_rowGroup = await findRow(p, w1, 'deleted'); // 2 Nov: Tech View draws only rows near the screen; bring WO-1's row (and its group) into view first
   const gAll = await groups(p); o.s7_groupsFound = gAll.map((x) => `${x.name}(${x.count})${x.collapsed ? ' collapsed' : ''}: ${x.rows.join(' ')}`);
   let gd = gAll.find((x) => /Deleted technician/i.test(String(x.name))) ?? gAll.find((x) => x.rows.includes(o.data.wo1));
   if (gd?.collapsed) { await p.locator(`[data-test-id="button_tech_view_group_toggle_${gd.id}"]`).click().catch(() => {}); await W(1500); gd = (await groups(p)).find((x) => x.id === gd!.id) ?? gd; o.s7_expandedByScript = true; }
