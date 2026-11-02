@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "note": "2 Nov 2026 update pass, batch h"
+ },
+ "results": {
+  "C614711": {
+   "verdict": "Passed",
+   "observed": [
+    "Deleting the lead technician through Settings > Staff (pencil, Delete, confirm) removes them from the Staff list.",
+    "On Board View the work order's column reads \"Deleted technician\" with the Inactive marker and no drag grip; dropping the unassigned work order on it is refused (it stays in Unassigned).",
+    "Tech View shows the work order in a group headed \"Deleted technician\" with the Inactive marker; List shows its Lead Technician as \"Unassigned\".",
+    "Dragging the work order to another technician's column moves it, with \"<number> assigned to <technician>\" and Undo."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C614711-1-deleted-column.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C614711-2-tech-view.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C614711-3-reassigned.png"
+   ]
+  }
+ }
+}
