@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>4. Turn Technician off with open work</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopview/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopview/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.tt-shot{width:1440px;height:900px;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}
+.tt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}
+.tt-cap li{margin:0 0 6px}
+</style>
+</helmet>
+<div data-theme="light" style="width: 3024px; min-height: 1300px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 32px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 8px; max-width: 2400px;">
+    <h2 class="sv-h2" style="margin: 0;">4. Turn Technician off with open work</h2>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--sv-text-secondary);">Edit Staff Member for Emily Madden, a technician who leads open work. New, no before exists: production has no Technician toggle and no warning. Left to right: switched off, then Save &amp; Close.</p>
+  </div>
+  <div style="display: flex; gap: 48px; align-items: flex-start;">
+    <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Switched off</span></div>
+      <img class="tt-shot" src="shots/after-turnoff-edit.png" alt="Edit Staff Member with Technician switched off">
+      <figcaption><ul class="tt-cap"><li>Technician switched off, not saved yet. Switching Time Clock off has the same effect, because it turns Technician off.</li></ul></figcaption>
+    </figure>
+    <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Turn Off Technician warning</span></div>
+      <img class="tt-shot" src="shots/after-turnoff-warning.png" alt="Turn Off Technician warning with the person's name and counts">
+      <figcaption><ul class="tt-cap">
+        <li>Save shows this first, only when the person still leads an open work order or is on a line of one (with labor, added with Add Technician, or as the line's technician), at any location. Otherwise Save goes straight on.</li>
+        <li>Text, verbatim with this demo's counts: "Emily Madden leads 15 open work orders and is on 141 labor lines. They'll stay on them, but won't be offered as a technician on anything new."</li>
+        <li>Cancel, the X or Escape leave the staff member unsaved. Save continues the save. Nothing is unassigned either way.</li>
+      </ul></figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3024,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

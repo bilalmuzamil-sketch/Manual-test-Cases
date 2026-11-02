@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>1. Staff list</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopview/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopview/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.tt-shot{width:1440px;height:900px;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}
+.tt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}
+.tt-cap li{margin:0 0 6px}
+</style>
+</helmet>
+<div data-theme="light" style="width: 3024px; min-height: 1300px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 32px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 8px; max-width: 2400px;">
+    <h2 class="sv-h2" style="margin: 0;">1. Staff list</h2>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--sv-text-secondary);">Settings, Staff, scrolled to the last columns. Every picture is a real screenshot at 1440 x 900. Before: production code (release v26.43.1). After: this build, after the release-day step has run on the demo data.</p>
+  </div>
+  <div style="display: flex; gap: 48px; align-items: flex-start;">
+    <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production today (before)</span><span style="font-size: 18px; font-weight: 600;">Staff list</span></div>
+      <img class="tt-shot" src="shots/before-staff.png" alt="Staff list in production, scrolled to the last columns">
+      <figcaption><ul class="tt-cap"><li>Billable is the last column. There is no Technician column and no notice.</li></ul></figcaption>
+    </figure>
+    <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Notice and Technician column</span></div>
+      <img class="tt-shot" src="shots/after-staff-list.png" alt="Staff list with the notice and the Technician column">
+      <figcaption><ul class="tt-cap">
+        <li>Notice, verbatim: "New: Decide who appears on Board View, Tech View and the technician dropdowns. Turn Technician on or off for each person in their staff settings, next to Sales Representative. To start, it is on for everyone who worked on a work order in the last 90 days, is on open work, or is billable."</li>
+        <li>No close button: it disappears for everyone on the "New" pill's end date.</li>
+        <li>Technician column, read-only and sortable, just left of Billable: Yes when the person's Technician toggle is on and their Time Clock is on, otherwise No. A deactivated person always shows No. It changes only through the staff window (page 2).</li>
+        <li>"New" pill at the top right of the Technician header. It goes away at 07:00 UTC on the seventh day after the release that ships this; the exact date is set when the release is scheduled.</li>
+      </ul></figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3024,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+/* Shopview Design System — generated from tokens.json */
+:root, [data-theme="light"] {
+  --sv-white: #ffffff;
+  --sv-black: #121212;
+  --sv-brand-blue: #257cff;
+  --sv-brand-blue-dark: #175cd3;
+  --sv-brand-dark: #202939;
+  --sv-primary-25: #f4faff;
+  --sv-primary-50: #e9f5ff;
+  --sv-primary-100: #d8ecff;
+  --sv-primary-200: #bedfff;
+  --sv-primary-300: #82c1fb;
+  --sv-primary-400: #4b96ff;
+  --sv-primary-500: #257cff;
+  --sv-primary-600: #2170e6;
+  --sv-primary-700: #175cd3;
+  --sv-primary-800: #0b254d;
+  --sv-primary-900: #040c19;
+  --sv-grey-25: #fcfcfd;
+  --sv-grey-50: #f8fafc;
+  --sv-grey-100: #eef2f6;
+  --sv-grey-200: #e3e8ef;
+  --sv-grey-300: #cdd5df;
+  --sv-grey-400: #9aa4b2;
+  --sv-grey-500: #697586;
+  --sv-grey-600: #4b5565;
+  --sv-grey-700: #364152;
+  --sv-grey-800: #202939;
+  --sv-grey-900: #121926;
+  --sv-success-25: #f6fef9;
+  --sv-success-50: #edfcf2;
+  --sv-success-100: #d3f8df;
+  --sv-success-200: #aaf0c4;
+  --sv-success-300: #73e2a3;
+  --sv-success-400: #3ccb7f;
+  --sv-success-500: #16b364;
+  --sv-success-600: #099250;
+  --sv-success-700: #087443;
+  --sv-success-800: #095c37;
+  --sv-success-900: #084c2e;
+  --sv-error-25: #fffbfa;
+  --sv-error-50: #fef3f2;
+  --sv-error-100: #fee4e2;
+  --sv-error-200: #fecdca;
+  --sv-error-300: #fda29b;
+  --sv-error-400: #f97066;
+  --sv-error-500: #f04438;
+  --sv-error-600: #d92d20;
+  --sv-error-700: #b42318;
+  --sv-error-800: #912018;
+  --sv-error-900: #7a271a;
+  --sv-warning-25: #fffcf5;
+  --sv-warning-50: #fffaeb;
+  --sv-warning-100: #fef0c7;
+  --sv-warning-200: #fedf89;
+  --sv-warning-300: #fec84b;
+  --sv-warning-400: #fdb022;
+  --sv-warning-500: #f79009;
+  --sv-warning-600: #dc6803;
+  --sv-warning-700: #b54708;
+  --sv-warning-800: #93370d;
+  --sv-warning-900: #7a2e0e;
+  --sv-success: var(--sv-success-500);
+  --sv-success-fill: var(--sv-success-50);
+  --sv-success-text: var(--sv-success-700);
+  --sv-warning: var(--sv-warning-500);
+  --sv-warning-fill: var(--sv-warning-50);
+  --sv-warning-text: var(--sv-warning-700);
+  --sv-error: var(--sv-error-500);
+  --sv-error-fill: var(--sv-error-50);
+  --sv-error-text: var(--sv-error-700);
+  --sv-info: var(--sv-primary-500);
+  --sv-info-fill: var(--sv-primary-50);
+  --sv-info-text: var(--sv-primary-700);
+  --sv-teal-25: #f6fefc;
+  --sv-teal-50: #f0fdf9;
+  --sv-teal-100: #ccfbef;
+  --sv-teal-200: #99f6e0;
+  --sv-teal-300: #5fe9d0;
+  --sv-teal-400: #2ed3b7;
+  --sv-teal-500: #15b79e;
+  --sv-teal-600: #0e9384;
+  --sv-teal-700: #107569;
+  --sv-teal-800: #125d56;
+  --sv-teal-900: #134e48;
+  --sv-cyan-25: #f5feff;
+  --sv-cyan-50: #ecfdff;
+  --sv-cyan-100: #cff9fe;
+  --sv-cyan-200: #a5f0fc;
+  --sv-cyan-300: #67e3f9;
+  --sv-cyan-400: #22ccee;
+  --sv-cyan-500: #06aed4;
+  --sv-cyan-600: #088ab2;
+  --sv-cyan-700: #0e7090;
+  --sv-cyan-800: #155b75;
+  --sv-cyan-900: #164c63;
+  --sv-violet-25: #fbfaff;
+  --sv-violet-50: #f5f3ff;
+  --sv-violet-100: #ece9fe;
+  --sv-violet-200: #ddd6fe;
+  --sv-violet-300: #c3b5fd;
+  --sv-violet-400: #a48afb;
+  --sv-violet-500: #875bf7;
+  --sv-violet-600: #7839ee;
+  --sv-violet-700: #6927da;
+  --sv-violet-800: #5720b7;
+  --sv-violet-900: #491c96;
+  --sv-purple-25: #fafaff;
+  --sv-purple-50: #f4f3ff;
+  --sv-purple-100: #ebe9fe;
+  --sv-purple-200: #d9d6fe;
+  --sv-purple-300: #bdb4fe;
+  --sv-purple-400: #9b8afb;
+  --sv-purple-500: #7a5af8;
+  --sv-purple-600: #6938ef;
+  --sv-purple-700: #5925dc;
+  --sv-purple-800: #4a1fb8;
+  --sv-purple-900: #3e1c96;
+  --sv-pink-25: #fef6fb;
+  --sv-pink-50: #fdf2fa;
+  --sv-pink-100: #fce7f6;
+  --sv-pink-200: #fcceee;
+  --sv-pink-300: #faa7e0;
+  --sv-pink-400: #f670c7;
+  --sv-pink-500: #ee46bc;
+  --sv-pink-600: #dd2590;
+  --sv-pink-700: #c11574;
+  --sv-pink-800: #9e165f;
+  --sv-pink-900: #851651;
+  --sv-bg-app: var(--sv-surface-canvas);
+  --sv-bg-surface: var(--sv-surface);
+  --sv-bg-tint-warm: #fffaeb;
+  --sv-bg-tint-cool: #e9f5ff;
+  --sv-overlay: var(--sv-scrim);
+  --sv-fg-primary: var(--sv-text-primary);
+  --sv-fg-secondary: var(--sv-text-secondary);
+  --sv-fg-tertiary: var(--sv-text-muted);
+  --sv-fg-disabled: var(--sv-text-disabled);
+  --sv-fg-inverse: var(--sv-text-inverse);
+  --sv-fg-link: var(--sv-accent-text);
+  --sv-border: var(--sv-border-default);
+  --sv-border-strong: var(--sv-grey-300);
+  --sv-border-focus: var(--sv-primary-500);
+  --sv-dgrey-950: #0f1114;
+  --sv-dgrey-900: #16181d;
+  --sv-dgrey-850: #1b1e24;
+  --sv-dgrey-800: #22262e;
+  --sv-dgrey-750: #292e37;
+  --sv-dgrey-700: #2c313a;
+  --sv-dgrey-650: #333944;
+  --sv-dgrey-600: #3a404b;
+  --sv-dgrey-500: #565d68;
+  --sv-dgrey-400: #7a828f;
+  --sv-dgrey-300: #a9b1be;
+  --sv-dgrey-200: #c6ccd5;
+  --sv-dgrey-100: #e6e9ef;
+  --sv-surface-canvas: var(--sv-grey-50);
+  --sv-surface: #ffffff;
+  --sv-surface-raised: #ffffff;
+  --sv-surface-overlay: #ffffff;
+  --sv-surface-sunken: var(--sv-grey-100);
+  --sv-surface-hover: var(--sv-grey-100);
+  --sv-surface-selected: var(--sv-primary-50);
+  --sv-surface-nav-selected: var(--sv-grey-100);
+  --sv-surface-inverse: var(--sv-grey-900);
+  --sv-text-on-inverse: #ffffff;
+  --sv-text-primary: var(--sv-grey-700);
+  --sv-text-secondary: var(--sv-grey-500);
+  --sv-text-muted: #828a98;
+  --sv-text-disabled: var(--sv-grey-300);
+  --sv-text-inverse: #ffffff;
+  --sv-text-on-accent: #ffffff;
+  --sv-border-subtle: var(--sv-grey-100);
+  --sv-border-default: var(--sv-grey-200);
+  --sv-accent: var(--sv-primary-500);
+  --sv-accent-hover: var(--sv-primary-700);
+  --sv-accent-active: var(--sv-primary-800);
+  --sv-accent-text: var(--sv-primary-700);
+  --sv-accent-subtle: var(--sv-primary-50);
+  --sv-accent-subtle-text: var(--sv-primary-700);
+  --sv-accent-on-solid: #ffffff;
+  --sv-success-border: var(--sv-success-200);
+  --sv-warning-border: var(--sv-warning-200);
+  --sv-danger: var(--sv-error-500);
+  --sv-danger-fill: var(--sv-error-50);
+  --sv-danger-text: var(--sv-error-700);
+  --sv-danger-border: var(--sv-error-200);
+  --sv-danger-hover: var(--sv-error-600);
+  --sv-error-border: var(--sv-error-200);
+  --sv-info-border: var(--sv-primary-200);
+  --sv-elev-0-bg: var(--sv-surface);
+  --sv-elev-0-border: var(--sv-border-subtle);
+  --sv-elev-1-bg: var(--sv-surface-raised);
+  --sv-elev-1-border: var(--sv-border-default);
+  --sv-elev-2-bg: var(--sv-surface-overlay);
+  --sv-elev-2-border: var(--sv-border-default);
+  --sv-elev-3-bg: var(--sv-surface-overlay);
+  --sv-elev-3-border: var(--sv-border-subtle);
+  --sv-cat-blue-fill: var(--sv-primary-50);
+  --sv-cat-blue-text: #175cd3;
+  --sv-cat-blue-accent: var(--sv-primary-500);
+  --sv-cat-teal-fill: var(--sv-teal-50);
+  --sv-cat-teal-text: var(--sv-teal-700);
+  --sv-cat-teal-accent: var(--sv-teal-500);
+  --sv-cat-violet-fill: var(--sv-violet-50);
+  --sv-cat-violet-text: var(--sv-violet-700);
+  --sv-cat-violet-accent: var(--sv-violet-500);
+  --sv-cat-pink-fill: var(--sv-pink-50);
+  --sv-cat-pink-text: var(--sv-pink-700);
+  --sv-cat-pink-accent: var(--sv-pink-500);
+  --sv-cat-cyan-fill: var(--sv-cyan-50);
+  --sv-cat-cyan-text: var(--sv-cyan-700);
+  --sv-cat-cyan-accent: var(--sv-cyan-500);
+  --sv-cat-amber-fill: var(--sv-warning-50);
+  --sv-cat-amber-text: #92610a;
+  --sv-cat-amber-accent: #e5a400;
+  --sv-cat-grey-fill: var(--sv-grey-100);
+  --sv-cat-grey-text: var(--sv-grey-600);
+  --sv-cat-grey-accent: var(--sv-grey-500);
+  --sv-scrim: rgba(15,17,26,0.5);
+  --sv-shadow-xs: 0 1px 2px rgba(16,24,40,0.05);
+  --sv-shadow-sm: 0 1px 2px rgba(11,23,51,0.05), 0 1px 3px rgba(11,23,51,0.05);
+  --sv-shadow-md: 0 4px 8px rgba(11,23,51,0.08), 0 1px 2px rgba(11,23,51,0.05);
+  --sv-shadow-lg: 0 12px 24px rgba(11,23,51,0.10), 0 4px 8px rgba(11,23,51,0.05);
+  --sv-focus-ring: 0 0 0 4px rgba(37,124,255,0.24);
+}
+[data-theme="dark"] {
+  --sv-success: #3ccb7f;
+  --sv-success-fill: #112a1d;
+  --sv-success-text: #6fe0a0;
+  --sv-warning: #fb9a3e;
+  --sv-warning-fill: #33240f;
+  --sv-warning-text: #f7c088;
+  --sv-error: #f97066;
+  --sv-error-fill: #3a1715;
+  --sv-error-text: #fda29b;
+  --sv-info: #5e9dff;
+  --sv-info-fill: #16233c;
+  --sv-info-text: #9bc2ff;
+  --sv-bg-app: var(--sv-surface-canvas);
+  --sv-bg-surface: var(--sv-surface);
+  --sv-overlay: var(--sv-scrim);
+  --sv-fg-primary: var(--sv-text-primary);
+  --sv-fg-secondary: var(--sv-text-secondary);
+  --sv-fg-tertiary: var(--sv-text-muted);
+  --sv-fg-disabled: var(--sv-text-disabled);
+  --sv-fg-inverse: var(--sv-text-inverse);
+  --sv-fg-link: var(--sv-accent-text);
+  --sv-border: var(--sv-border-default);
+  --sv-border-strong: var(--sv-dgrey-600);
+  --sv-border-focus: #6ba6ff;
+  --sv-surface-canvas: var(--sv-dgrey-900);
+  --sv-surface: var(--sv-dgrey-850);
+  --sv-surface-raised: var(--sv-dgrey-800);
+  --sv-surface-overlay: var(--sv-dgrey-750);
+  --sv-surface-sunken: var(--sv-dgrey-950);
+  --sv-surface-hover: var(--sv-dgrey-650);
+  --sv-surface-selected: #1c2a44;
+  --sv-surface-nav-selected: var(--sv-dgrey-750);
+  --sv-surface-inverse: var(--sv-dgrey-750);
+  --sv-text-on-inverse: var(--sv-dgrey-100);
+  --sv-text-primary: var(--sv-dgrey-100);
+  --sv-text-secondary: var(--sv-dgrey-300);
+  --sv-text-muted: var(--sv-dgrey-400);
+  --sv-text-disabled: var(--sv-dgrey-500);
+  --sv-text-inverse: var(--sv-dgrey-900);
+  --sv-text-on-accent: #0a1b33;
+  --sv-border-subtle: var(--sv-dgrey-700);
+  --sv-border-default: var(--sv-dgrey-700);
+  --sv-accent: #4b96ff;
+  --sv-accent-hover: #6ba6ff;
+  --sv-accent-active: #82baff;
+  --sv-accent-text: #8fbeff;
+  --sv-accent-subtle: #1c2a44;
+  --sv-accent-subtle-text: #b9d4ff;
+  --sv-accent-on-solid: #0a1b33;
+  --sv-success-border: #1f5b3c;
+  --sv-warning-border: #6b4a18;
+  --sv-danger: #f97066;
+  --sv-danger-fill: #3a1715;
+  --sv-danger-text: #fda29b;
+  --sv-danger-border: #7a2e28;
+  --sv-danger-hover: #fda29b;
+  --sv-error-border: #7a2e28;
+  --sv-info-border: #2a4576;
+  --sv-elev-0-bg: var(--sv-surface);
+  --sv-elev-0-border: var(--sv-border-subtle);
+  --sv-elev-1-bg: var(--sv-surface-raised);
+  --sv-elev-1-border: var(--sv-border-default);
+  --sv-elev-2-bg: var(--sv-surface-overlay);
+  --sv-elev-2-border: var(--sv-border-strong);
+  --sv-elev-3-bg: var(--sv-dgrey-750);
+  --sv-elev-3-border: var(--sv-border-strong);
+  --sv-cat-blue-fill: #1e2a44;
+  --sv-cat-blue-text: #a9ccff;
+  --sv-cat-blue-accent: #5e9dff;
+  --sv-cat-teal-fill: #123430;
+  --sv-cat-teal-text: #79e3cf;
+  --sv-cat-teal-accent: #34c7ad;
+  --sv-cat-violet-fill: #281c46;
+  --sv-cat-violet-text: #c4b3fb;
+  --sv-cat-violet-accent: #9b7df5;
+  --sv-cat-pink-fill: #3a1a30;
+  --sv-cat-pink-text: #f3a6d6;
+  --sv-cat-pink-accent: #e86fbf;
+  --sv-cat-cyan-fill: #0f3242;
+  --sv-cat-cyan-text: #7cdbf2;
+  --sv-cat-cyan-accent: #38c4e0;
+  --sv-cat-amber-fill: #33290f;
+  --sv-cat-amber-text: #f0d48a;
+  --sv-cat-amber-accent: #e5c158;
+  --sv-cat-grey-fill: #262a31;
+  --sv-cat-grey-text: #c2c8d2;
+  --sv-cat-grey-accent: #9aa4b2;
+  --sv-scrim: rgba(0,0,0,0.66);
+  --sv-focus-ring: 0 0 0 4px rgba(107,166,255,0.40);
+}
+:root {
+  --sv-space-1: 4px;
+  --sv-space-2: 8px;
+  --sv-space-3: 12px;
+  --sv-space-4: 16px;
+  --sv-space-5: 20px;
+  --sv-space-6: 24px;
+  --sv-space-8: 32px;
+  --sv-space-10: 40px;
+  --sv-space-12: 48px;
+  --sv-space-16: 64px;
+  --sv-space-20: 80px;
+  --sv-space-24: 96px;
+  --sv-space-32: 128px;
+  --sv-radius-xs: 4px;
+  --sv-radius-sm: 6px;
+  --sv-radius-md: 8px;
+  --sv-radius-lg: 12px;
+  --sv-radius-xl: 16px;
+  --sv-radius-pill: 9999px;
+  --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+.sv-h1 { font-family: var(--font-ui); font-size: 30px; line-height: 38px; font-weight: 600; letter-spacing: -0.01em; }
+.sv-h2 { font-family: var(--font-ui); font-size: 24px; line-height: 32px; font-weight: 600; }
+.sv-h3 { font-family: var(--font-ui); font-size: 20px; line-height: 28px; font-weight: 500; }
+.sv-h4 { font-family: var(--font-ui); font-size: 16px; line-height: 24px; font-weight: 600; }
+.sv-body { font-family: var(--font-ui); font-size: 14px; line-height: 20px; font-weight: 400; }
+.sv-body2 { font-family: var(--font-ui); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0.01em; }
+.sv-caption { font-family: var(--font-ui); font-size: 10px; line-height: 14px; font-weight: 600; letter-spacing: 0.015em; }
+.sv-dense { font-family: var(--font-ui); font-size: 13px; line-height: 18px; }
+.sv-micro { font-family: var(--font-ui); font-size: 11px; line-height: 14px; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100; font-display: swap; src: url('fonts/Inter_18pt-Thin.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 100; font-display: swap; src: url('fonts/Inter_18pt-ThinItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 200; font-display: swap; src: url('fonts/Inter_18pt-ExtraLight.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 200; font-display: swap; src: url('fonts/Inter_18pt-ExtraLightItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 300; font-display: swap; src: url('fonts/Inter_18pt-Light.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 300; font-display: swap; src: url('fonts/Inter_18pt-LightItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/Inter_18pt-Regular.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 400; font-display: swap; src: url('fonts/Inter_18pt-Italic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/Inter_18pt-Medium.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 500; font-display: swap; src: url('fonts/Inter_18pt-MediumItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/Inter_18pt-SemiBold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 600; font-display: swap; src: url('fonts/Inter_18pt-SemiBoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/Inter_18pt-Bold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 700; font-display: swap; src: url('fonts/Inter_18pt-BoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 800; font-display: swap; src: url('fonts/Inter_18pt-ExtraBold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 800; font-display: swap; src: url('fonts/Inter_18pt-ExtraBoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 900; font-display: swap; src: url('fonts/Inter_18pt-Black.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 900; font-display: swap; src: url('fonts/Inter_18pt-BlackItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 100; font-display: swap; src: url('fonts/Inter_28pt-Thin.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: italic; font-weight: 100; font-display: swap; src: url('fonts/Inter_28pt-ThinItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 200; font-display: swap; src: url('fonts/Inter_28pt-ExtraLight.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: italic; font-weight: 200; font-display: swap; src: url('fonts/Inter_28pt-ExtraLightItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 300; font-display: swap; src: url('fonts/Inter_28pt-Light.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: italic; font-weight: 300; font-display: swap; src: url('fonts/Inter_28pt-LightItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/Inter_28pt-Regular.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: italic; font-weight: 400; font-display: swap; src: url('fonts/Inter_28pt-Italic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/Inter_28pt-Medium.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: italic; font-weight: 500; font-display: swap; src: url('fonts/Inter_28pt-MediumItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/Inter_28pt-SemiBold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: italic; font-weight: 600; font-display: swap; src: url('fonts/Inter_28pt-SemiBoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/Inter_28pt-Bold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: italic; font-weight: 700; font-display: swap; src: url('fonts/Inter_28pt-BoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 800; font-display: swap; src: url('fonts/Inter_28pt-ExtraBold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: italic; font-weight: 800; font-display: swap; src: url('fonts/Inter_28pt-ExtraBoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 900; font-display: swap; src: url('fonts/Inter_28pt-Black.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: italic; font-weight: 900; font-display: swap; src: url('fonts/Inter_28pt-BlackItalic.ttf') format('truetype'); }

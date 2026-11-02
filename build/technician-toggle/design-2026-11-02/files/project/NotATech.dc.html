@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>3. When Technician can't be turned on</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopview/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopview/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.tt-shot{width:1440px;height:900px;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}
+.tt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}
+.tt-cap li{margin:0 0 6px}
+</style>
+</helmet>
+<div data-theme="light" style="width: 3024px; min-height: 1300px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 32px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 8px; max-width: 2400px;">
+    <h2 class="sv-h2" style="margin: 0;">3. When Technician can't be turned on</h2>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--sv-text-secondary);">New, no before exists: production has no Technician toggle. Shown in the New Staff Member window; Edit behaves the same. The tooltip shows while hovering the grayed-out toggle.</p>
+  </div>
+  <div style="display: flex; gap: 48px; align-items: flex-start;">
+    <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Time Clock off</span></div>
+      <img class="tt-shot" src="shots/after-greyed-timeclock.png" alt="Technician grayed out with the Time Clock tooltip">
+      <figcaption><ul class="tt-cap">
+        <li>Technician needs Time Clock. While Time Clock is off, Technician is off and grayed out. Tooltip, verbatim: "Turn on Time Clock first. Only staff who clock in can be technicians."</li>
+        <li>Turning Time Clock off turns Technician off. Turning Time Clock back on leaves Technician off; the user turns it on.</li>
+      </ul></figcaption>
+    </figure>
+    <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Built-in Office User role</span></div>
+      <img class="tt-shot" src="shots/after-greyed-role.png" alt="Technician grayed out with the role tooltip">
+      <figcaption><ul class="tt-cap">
+        <li>On the built-in Office User or Time Clock User role, Technician is off and grayed out. Tooltip, verbatim: "This role can't be a technician." Picking one of those roles turns Technician off.</li>
+        <li>Any other role, including a custom role copied from either one, never grays it out.</li>
+      </ul></figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3024,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

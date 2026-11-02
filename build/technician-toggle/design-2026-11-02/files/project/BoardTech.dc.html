@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>5. Board View and Tech View</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopview/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopview/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.tt-shot{width:1440px;height:900px;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}
+.tt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}
+.tt-cap li{margin:0 0 6px}
+</style>
+</helmet>
+<div data-theme="light" style="width: 3024px; min-height: 4800px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 32px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 8px; max-width: 2400px;">
+    <h2 class="sv-h2" style="margin: 0;">5. Board View and Tech View</h2>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--sv-text-secondary);">Work Orders. The problem from SV-11719: everyone with Time Clock on gets a column, so a Parts Manager shows up as a technician. Same demo person as page 2: Olivia Garrett, Parts Manager, Time Clock on, Technician off, leading no work. Columns sort by name, so she sits between Nikola Milosevic and Parth Fadadu. Before: production code (release v26.43.1). After: this build. Other columns can differ slightly between the two because the release-day step ran on the demo data before the after shots.</p>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 96px;">
+    <div style="display: flex; gap: 48px; align-items: flex-start;">
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production today (before)</span><span style="font-size: 18px; font-weight: 600;">Board View</span></div>
+        <img class="tt-shot" src="shots/before-board-columns.png" alt="Board View with an Olivia Garrett column">
+        <figcaption><ul class="tt-cap"><li>Olivia Garrett has an empty column between Nikola Milosevic and Parth Fadadu.</li></ul></figcaption>
+      </figure>
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Board View</span></div>
+        <img class="tt-shot" src="shots/after-board-columns.png" alt="Board View without the Olivia Garrett column">
+        <figcaption><ul class="tt-cap">
+          <li>No column for her: Parth Fadadu follows Nikola Milosevic. A column only appears for staff whose Technician toggle is on and whose Time Clock is on.</li>
+          <li>Someone whose Technician is turned off but who still leads open work keeps a column for that work, so nothing they lead disappears from the board.</li>
+        </ul></figcaption>
+      </figure>
+    </div>
+    <div style="display: flex; gap: 48px; align-items: flex-start;">
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production today (before)</span><span style="font-size: 18px; font-weight: 600;">Tech View</span></div>
+        <img class="tt-shot" src="shots/before-techview.png" alt="Tech View with an Olivia Garrett group">
+        <figcaption><ul class="tt-cap"><li>Groups collapsed. Olivia Garrett has a group with 0 work orders.</li></ul></figcaption>
+      </figure>
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Tech View</span></div>
+        <img class="tt-shot" src="shots/after-techview.png" alt="Tech View without the Olivia Garrett group">
+        <figcaption><ul class="tt-cap"><li>No group for her. Same rule as Board View.</li></ul></figcaption>
+      </figure>
+    </div>
+    <div style="display: flex; gap: 48px; align-items: flex-start;">
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production today (before)</span><span style="font-size: 18px; font-weight: 600;">Technician filter, searching "Oli"</span></div>
+        <img class="tt-shot" src="shots/before-board-filter-oli.png" alt="Technician filter listing Olivia Garrett">
+        <figcaption><ul class="tt-cap"><li>The Technician filter offers Olivia Garrett.</li></ul></figcaption>
+      </figure>
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Technician filter, searching "Oli"</span></div>
+        <img class="tt-shot" src="shots/after-board-filter-olivia.png" alt="Technician filter with no results">
+        <figcaption><ul class="tt-cap"><li>"No results". The filter offers the same people as the columns.</li></ul></figcaption>
+      </figure>
+    </div>
+    <div style="display: flex; gap: 48px; align-items: flex-start;">
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production today (before)</span><span style="font-size: 18px; font-weight: 600;">Reassign lead technician, searching "Oli"</span></div>
+        <img class="tt-shot" src="shots/before-board-assign-oli.png" alt="Reassign lead technician offering Olivia Garrett">
+        <figcaption><ul class="tt-cap"><li>Opened from a card's more-actions menu on Board View. Olivia Garrett is offered as a lead.</li></ul></figcaption>
+      </figure>
+      <figure style="margin: 0; width: 1440px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build</span><span style="font-size: 18px; font-weight: 600;">Reassign lead technician, searching "Oli"</span></div>
+        <img class="tt-shot" src="shots/after-board-assign-olivia.png" alt="Reassign lead technician with no match">
+        <figcaption><ul class="tt-cap"><li>No match: "No technicians match "Oli"". Only staff whose Technician toggle is on and whose Time Clock is on are offered.</li></ul></figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3024,"height":4800}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
