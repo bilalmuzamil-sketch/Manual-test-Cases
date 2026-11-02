@@ -1,0 +1,365 @@
+##### C96956 | The lead technician dialog lists only eligible technicians, no Unassigned | by 3 atm 1
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technicians {Technician-A} (for example Esther Howard), {Technician-B} (for example Ralph Edwards) and {Technician-C} (for example Dana Ortiz) are active staff members at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Staff member {User-B} (for example Owen Office) is active at {Location-A} with the Office User role.
+Technician {Technician-D} (for example Ivan Inactive) has a Technician role at {Location-A} and is deactivated.
+Technician {Technician-E} (for example Lena Otherloc) is active with Time Clock on but works only at another location, {Location-B} (for example Staging Lethbridge - 4310).
+Customer {Customer-A} (for example "ZZAUTOTEST F1 Reassign List") has one Approved work order, {Work-order-1} (for example S10043-17641), led by {Technician-A}.
+No technician has a shift on the Schedule for {Work-order-1}.
+On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+Developer note kept from the automation engineer (nothing for the tester to do): Dev-layer test — fe-unit + be-functional. Existing coverage: ReassignLeadTechnicianDialog.spec.ts:279,463; BE ListLeadTechnicianCandidatesTest.php:59,65
+
+##### C96957 | Lead change messages name the work order and close on their own | by 3 atm 1
+Dev-layer test — fe-unit. Existing coverage: useReassignLeadTechnician.spec.ts:450,472 (auto-close check lives in E2E C96959)
+Preconditions
+Needs: 1 user · 1 browser · about 10 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+Two eligible technicians at this location: [Tech-A] (e.g. "Esther Howard") and [Tech-B] "Ralph Edwards". A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customer "ZZAUTOTEST F1 Lead Messages" (used by this case only) with one Approved work order [WO-1] led by [Tech-A].
+Ralph Edwards is named in the expected results and stays as written; the other names and the number are examples.
+Setup
+Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+Use one location for the whole case: it is shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+Settings (your initials at the top right > Settings) > Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as [Tech-A] (e.g. Esther Howard), [Tech-B] = "Ralph Edwards" (use exactly this name: the expected results name it).
+Create the customer used only by this case: top menu Customers > New Customer > Name "ZZAUTOTEST F1 Lead Messages" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+Create these work orders for "ZZAUTOTEST F1 Lead Messages": Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close. Write down the number the build gives the work order (on a QA branch they look like "S10043-17581"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.[WO-1] (e.g. S1-702): Lead Technician = [Tech-A].
+Check the setup worked: Work Orders > All tab > Search "ZZAUTOTEST F1 Lead Messages" shows [WO-1] with Lead Technician [Tech-A]. If not, fix it on the work order page before starting; then clear the search.
+
+##### C96969 | Choosing the current lead again changes nothing and shows no message | by 3 atm 3
+Preconditions
+Needs: 1 user · 1 browser · about 15 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+Two eligible technicians at this location: [Tech-A] "Esther Howard" and [Tech-B] (e.g. "Ralph Edwards"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customer "ZZAUTOTEST F1 Same Lead Again" (used by this case only) with one Approved work order [WO-1] led by [Tech-A], with a second line "Line 2" whose Labor row reads Unassigned.
+Esther Howard is named in the expected results and stays as written; the other name, the number and the line name are examples.
+Setup
+Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+Use one location for the whole case: it is shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+Settings (your initials at the top right > Settings) > Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as [Tech-A] = "Esther Howard" (use exactly this name: the expected results name it), [Tech-B] (e.g. Ralph Edwards).
+Create the customer used only by this case: top menu Customers > New Customer > Name "ZZAUTOTEST F1 Same Lead Again" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+Create these work orders for "ZZAUTOTEST F1 Same Lead Again": Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close. Write down the number the build gives the work order (on a QA branch they look like "S10043-17581"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.[WO-1] (e.g. S1-702): Lead Technician = [Tech-A]; then add a second line "Line 2" after the lead is set and clear its technician (Labor row > More actions > Edit labor) so its Labor row reads Unassigned.
+Line names in this case (such as "Line 1") are only labels for you: the New Line form's "What Are You Doing?" box only offers ready-made lines (typed text finds no results), so pick any ready-made line for each one (e.g. "Replace - Brake pot") and write down which is which.
+Check the setup worked: Work Orders > All tab > Search "ZZAUTOTEST F1 Same Lead Again" shows [WO-1] with Lead Technician [Tech-A]; on its Lines tab Line 2's Labor row reads Unassigned. If not, fix it on the work order page before starting; then clear the search.
+
+##### C96973 | Reassign can pick a technician outside the filter and the card then leaves | by 3 atm 3
+Preconditions
+Needs: 1 user · 1 browser · about 15 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit. Your own staff record is also an eligible technician (Time Clock on, Role not Office User or Time Clock User, this location in Location), e.g. "Aaron Keating".
+Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+Two other eligible technicians at this location: [Tech-A] "Ralph Edwards" and [Tech-B] "Dana Ortiz". A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customer "ZZAUTOTEST F1 Outside Filter" (used by this case only) with one Approved work order [WO-1] with Lead Technician = you ([User-A]); you are not its service advisor and no line is assigned to anyone but you.
+Ralph Edwards and Dana Ortiz are named in the expected results and stay as written; the number is an example. What must hold: with the search below, Assigned to me shows only your column with 1 work order.
+Setup
+Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). Your own staff record must also be an eligible technician (Settings > Staff > your own row's edit icon > Time Clock on, Role not Office User or Time Clock User, with this location picked in Location), e.g. "Aaron Keating".
+Use one location for the whole case: it is shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+Settings (your initials at the top right > Settings) > Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as [Tech-A] = "Ralph Edwards" (use exactly this name: the expected results name it), [Tech-B] = "Dana Ortiz" (use exactly this name: the expected results name it).
+Create the customer used only by this case: top menu Customers > New Customer > Name "ZZAUTOTEST F1 Outside Filter" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+Create these work orders for "ZZAUTOTEST F1 Outside Filter": Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close. Write down the number the build gives the work order (on a QA branch they look like "S10043-17581"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Assign lead technician > click the technician; it is assigned at once.) Leave Lead Technician empty on the ones that should sit in Unassigned.[WO-1] (e.g. S1-702): on the work order page set Lead Technician to yourself ([User-A]). Make sure you are not this work order's service advisor and no line is assigned to anyone but you.
+Check the setup worked: Work Orders > All tab > Search "ZZAUTOTEST F1 Outside Filter" shows [WO-1] with Lead Technician = you. If not, fix it on the work order page before starting; then clear the search.
+
+##### C154889 | Removing the lead asks the same clear-shifts question as changing it | by 3 atm 1
+Preconditions
+Needs: 1 user · 1 browser · Schedule access · about 20 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+[Tech-A] "Esther Howard": one eligible technician at this location. A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customer "ZZAUTOTEST F1 Remove Lead Prompt" (used by this case only) with two Approved work orders led by [Tech-A]: [WO-1] and [WO-2].
+A shift for [Tech-A] on each of them tomorrow 8:00–12:00 (entire work order).
+Esther Howard is named in the expected results (the prompt title) and stays as written; the numbers are examples.
+Setup
+Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+Use one location for the whole case: it is shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+Settings (your initials at the top right > Settings) > Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as [Tech-A] = "Esther Howard" (use exactly this name: the expected results name it).
+Create the customer used only by this case: top menu Customers > New Customer > Name "ZZAUTOTEST F1 Remove Lead Prompt" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+Create these work orders for "ZZAUTOTEST F1 Remove Lead Prompt": Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. The new work order opens with the New Line form (otherwise click New Line on the Lines tab): in "What Are You Doing?" pick a ready-made line (e.g. "Replace - Brake pot"; typed free text finds no results), turn on Line Approved so the work order status reads Approved, and click Save & Close. Write down the number the build gives the work order (on a QA branch they look like "S10043-17581"). Then pick the lead in the Lead Technician dropdown on the work order page; it saves at once. (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Leave Lead Technician empty on the ones that should sit in Unassigned.[WO-1] (e.g. S1-702): Lead Technician = [Tech-A].
+[WO-2] (e.g. S1-698): Lead Technician = [Tech-A].
+On the Schedule, give [Tech-A] a shift on each of them tomorrow 8:00–12:00: Schedule > go to that day > drag the work order from the work order list onto [Tech-A]'s row at the start time > in the picker choose Entire work order > set the end time > save.
+Check the setup worked: on the Schedule for tomorrow, [Tech-A]'s row has an 8:00–12:00 shift on [WO-1] and one on [WO-2]; both work orders show Lead Technician [Tech-A]. If not, fix it before starting.
+
+##### C368133 | The clear-shifts question appears only for the old lead's unfinished shifts | by 3 atm 3
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-C} (for example Dana Ortiz) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST F1 Prompt Only Unfinished") is used by this case only.
+Six Approved work orders for {Customer-A}, {Work-order-1} to {Work-order-6} (for example S10043-17581 to S10043-17586), are led by {Technician-A}, and each has two approved lines (for example "Service - Full grease service" and "Service - Adjust clutch").
+On {Work-order-3} the two lines are {Line-1} (for example "Service - Full grease service") and {Line-2} (for example "Service - Adjust clutch").
+Approved work order {Work-order-7} (for example S10043-17587) for {Customer-A} is led by {Technician-B}.
+Work order {Work-order-1} has a shift for {Technician-A} tomorrow 8:00–12:00 covering the entire work order.
+Work order {Work-order-2} has no shifts at all.
+Work order {Work-order-3} has a shift for {Technician-A} tomorrow 8:00–12:00 on {Line-1} only, not on {Line-2}.
+Work order {Work-order-4} has a shift for {Technician-A} covering the entire work order that has already ended (for example yesterday 8:00–12:00).
+Work order {Work-order-5} has a shift for {Technician-C} tomorrow 8:00–12:00 covering the entire work order, and none for {Technician-A}.
+Work order {Work-order-6} has no shifts, while {Technician-A} has a shift tomorrow 13:00–15:00 covering the entire work order {Work-order-7}.
+No other shift is booked on {Work-order-1} to {Work-order-6}.
+On the Work Orders page, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip).
+
+##### C368135 | Cancel or closing the clear-shifts question calls the change off | by 3 atm 3
+Preconditions
+Needs: 1 user · 1 browser · Schedule access · about 15 minutes.
+Sign in as an Admin (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). Desktop browser window at least 1024 px wide; narrower windows show only the List.
+Work in one location throughout, shown next to the bell in the top bar (e.g. "Staging Heavy Duty - 9919"); to change it click your initials (top right) > Change Location. Create everything in that location.
+Two technicians named exactly "Esther Howard" ([Tech-A]) and "Ralph Edwards" ([Tech-B]); the expected results quote these names.
+Customer "ZZAUTOTEST F1 Prompt Cancel" (this case only) with one Approved work order [WO-1] led by Esther Howard, and a shift for her on it tomorrow 8:00–12:00.
+Setup
+Technicians: your initials (top right) > Settings > Staff. A person counts as a technician only if Active, Time Clock on, Role not Office User or Time Clock User, and this location in Location. To add one: New Staff Member > First Name, Last Name, Email, Role "Technician", one Department (required), Location = this location, Time Clock on > Save & Close. You need: "Esther Howard" and "Ralph Edwards".
+Customer: Customers > New Customer > Name "ZZAUTOTEST F1 Prompt Cancel" > Save. On its Contacts tab > New Contact > First and Last Name > Save. On its Assets tab > New Asset > pick the contact, Year, Make (required), Model, Unit "TRK-118" > Save.
+Work orders for "ZZAUTOTEST F1 Prompt Cancel": Work Orders > Create Work Order > pick the Customer and its Asset > Save (if a credit-limit Confirmation appears, click Create). In the New Line form that opens, type in "What Are You Doing?" and pick a ready-made line (e.g. "Replace - Brake pot"), turn Line Approved on > Save & Close: the status reads Approved. Write down the work order number (top left). Then pick the lead in Lead Technician on the card at the left of the work order page; it saves at once.[WO-1]: lead = Esther Howard.
+Schedule > go to tomorrow > drag [WO-1] from the work order list onto Esther Howard's row at 8:00 > choose Entire work order > set the end time to 12:00 > save.
+Check: tomorrow's Schedule shows Esther Howard's 8:00–12:00 shift on [WO-1], and [WO-1] shows Lead Technician Esther Howard.
+
+##### C368136 | The clear-shifts question shows on Board and Tech View only | by 3 atm 3
+Setup (manual QA tester and Claude session)
+Preconditions
+Needs: 1 user · 1 browser · Schedule access · about 15 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+User: [User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+Browser: desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+People: two eligible technicians at this location: [Tech-A] "Esther Howard" and [Tech-B] (e.g. "Ralph Edwards"). A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Data: customer "ZZAUTOTEST F1 Prompt Where" (used by this case only) with one Approved work order [WO-1] led by [Tech-A].
+Data: a shift for [Tech-A] on [WO-1] tomorrow 8:00–12:00 (entire work order).
+Note: Esther Howard is named in the expected results and stays as written; the other name and the number are examples.
+
+##### C368140 | Assigning a lead to unassigned work moves only open unassigned lines | by 3 atm 3
+Preconditions
+Needs: 1 user · 1 browser · about 20 minutes.
+Build: the Work Orders QA build (sv10043, v26.40.8-7a95011).
+[User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit.
+Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.
+One location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); everything below is created in this location.
+Two eligible technicians at this location: [Tech-A] "Ralph Edwards" and [Tech-B] "Dana Ortiz". A person only counts as a technician here when the staff member is active (not deactivated), Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customer "ZZAUTOTEST F1 Assign Unassigned Lines" (used by this case only) with one work order [WO-1], created on this build, Approved, no lead technician, with three lines: Line 1 Unassigned (no technician) · Line 2 Explicit (its own technician [Tech-B]) · Line 3 Complete (no technician, status Complete).
+The technician names are used in the expected results and stay as written; the line names are only labels and the number is an example.
+Setup
+Sign in as an Owner/Admin user (on a QA branch: the Admin quick-login button on the sign-in page; you appear as "Admin ShopView"). The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders).
+Use one location for the whole case: it is shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location.
+Settings (your initials at the top right > Settings) > Staff: reuse a technician only after checking it is active, has Time Clock on, a Role other than Office User or Time Clock User and this location in Location; otherwise add one: New Staff Member > First Name and Last Name, an Email, Role "Technician", at least one Department (required), Location = this location, Time Clock on > Save & Close. Record them as [Tech-A] = "Ralph Edwards" (use exactly this name: the expected results name it), [Tech-B] = "Dana Ortiz" (use exactly this name: the expected results name it).
+Create the customer used only by this case: top menu Customers > New Customer > Name "ZZAUTOTEST F1 Assign Unassigned Lines" > Save. On the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact). Then click the Assets tab > New Asset > pick the Contact, then Year, Make, Model and Unit (e.g. 2022, Freightliner, M2, unit "TRK-118") > Save. Make is required; Unit can be left empty.
+Line names in this case (such as "Line 1") are only labels for you: the New Line form's "What Are You Doing?" box only offers ready-made lines (typed text finds no results), so pick any ready-made line for each one (e.g. "Replace - Brake pot") and write down which is which.
+Create a new work order on this build for "ZZAUTOTEST F1 Assign Unassigned Lines" with no lead technician: Work Orders > Create Work Order > pick the Customer and its Asset > Save. Record its number as [WO-1] (e.g. "S1-710").Add "Line 1 Unassigned" with no technician.
+Add "Line 2 Explicit" and in Edit Line set Technicians = [Tech-B].
+Add "Line 3 Complete" with no technician, approve it, enter a tech story and complete it.
+Approve the other lines (the work order reads Approved).
+Write down each line's Labor row: Line 1 Unassigned, Line 2 [Tech-B], Line 3 Unassigned (Complete).
+Check the setup worked: Work Orders > All tab > Search "ZZAUTOTEST F1 Assign Unassigned Lines" shows [WO-1] in the Unassigned column (Board View) with status Approved; its Lines tab matches what you wrote down. If not, fix the line or create a fresh work order before starting; then clear the search.
+
+##### C581891 | A line with only a Schedule shift technician follows the new lead technician | by 3 atm 1
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-C} (for example Dana Ortiz) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-D} (for example Jenny Wilson) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST NT3 Shift Line Follows") is used by this case only.
+Approved work order {Work-order-1} (for example S10043-17595) for {Customer-A} is led by {Technician-A} and has two approved lines, {Line-1} (for example "Service - Full grease service") and {Line-2} (for example "Service - Adjust clutch"). It has no recorded time and nobody is clocked in to it.
+{Line-1} has no technician set through Edit Line; its labor follows the lead {Technician-A}.
+{Line-2} has {Technician-C} as its technician, set through Edit Line.
+{Technician-B} has a shift tomorrow 9:00–11:00 on {Line-1} only, made on the Schedule.
+{Technician-A} has no shift on {Work-order-1}.
+On the Work Orders page, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip).
+
+##### C581892 | The Clear shifts question ignores lines that are not approved or are declined | by 3 atm 1
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST S4R28 Approved Lines") is used by this case only.
+Work order {Work-order-1} (for example S10043-17641) for {Customer-A} is led by {Technician-A} and has an approved line {Line-1} (for example "Service - Full grease service") and a line that is not approved, {Line-2} (for example "Service - Adjust clutch"), saved with Line Approved off.
+Work order {Work-order-2} (for example S10043-17642) for {Customer-A} is led by {Technician-A} and has an approved line {Line-3} (for example "Service - Full grease service") and a declined line {Line-4} (for example "Service - Adjust clutch").
+Work order {Work-order-3} (for example S10043-17643) for {Customer-A} is led by {Technician-A} and has two approved lines, {Line-5} (for example "Service - Full grease service") and {Line-6} (for example "Service - Adjust clutch").
+{Technician-A} has a shift tomorrow 8:00–10:00 on {Work-order-1} that covers {Line-1} and not {Line-2}.
+{Technician-A} has a shift tomorrow 10:00–12:00 on {Work-order-2} that covers {Line-3} and not {Line-4}.
+{Technician-A} has a shift tomorrow 13:00–15:00 on {Work-order-3} made with Choose lines, with both {Line-5} and {Line-6} ticked.
+No other shift is booked on {Work-order-1}, {Work-order-2} or {Work-order-3}.
+On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+##### C581893 | An Entire work order shift stops counting once a new line is approved | by 3 atm 1
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit and Schedule access, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on, the Service department, and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST S4R28 Line Added") is used by this case only.
+Work order {Work-order-1} (for example S10043-17651) for {Customer-A} is led by {Technician-A} and had two approved lines, {Line-1} (for example "Service - Full grease service") and {Line-2} (for example "Service - Adjust clutch"), when its shift was made.
+Work order {Work-order-2} (for example S10043-17652) for {Customer-A} is led by {Technician-A} and had two approved lines, {Line-3} (for example "Service - Full grease service") and {Line-4} (for example "Service - Adjust clutch"), when its shift was made.
+{Technician-A} has a shift tomorrow 8:00–12:00 on {Work-order-1} and a shift tomorrow 13:00–17:00 on {Work-order-2}, both made with Entire work order.
+After the shifts were made, a third line {Line-5} (for example "Replace - Brake pot") was added to {Work-order-1} with Line Approved on.
+After the shifts were made, a third line {Line-6} (for example "Replace - Brake pot") was added to {Work-order-2} with Line Approved off.
+No other shift is booked on {Work-order-1} or {Work-order-2}.
+On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+##### C96963 | The lead of a Declined, Invoiced or Paid work order cannot be changed | by 3 atm 1
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST F1 Invoiced Paid Locked") is used by this case only and has six work orders whose Lead Technician was set while they were still open (for example S10043-17801 to S10043-17806): {Work-order-1} Approved, led by {Technician-A}; {Work-order-2} Invoiced, led by {Technician-A}; {Work-order-3} Paid, led by {Technician-A}; {Work-order-4} Invoiced, with no lead technician; {Work-order-5} Declined, led by {Technician-A}; {Work-order-6} Complete, led by {Technician-A}.
+{Technician-B} is not the technician on any line of these work orders.
+No technician has a shift on the Schedule for these work orders.
+On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+##### C690642 | SV-11545 - Declined, Invoiced or Paid lead can't be changed (release) | by 3 atm 1
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example Esther Howard) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example Ralph Edwards) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST F1 Invoiced Paid Locked") is used by this case only and has six work orders whose Lead Technician was set while they were still open (for example S10043-17801 to S10043-17806): {Work-order-1} Approved, led by {Technician-A}; {Work-order-2} Invoiced, led by {Technician-A}; {Work-order-3} Paid, led by {Technician-A}; {Work-order-4} Invoiced, with no lead technician; {Work-order-5} Declined, led by {Technician-A}; {Work-order-6} Complete, led by {Technician-A}.
+{Technician-B} is not the technician on any line of these work orders.
+No technician has a shift on the Schedule for these work orders.
+On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+##### C97002 | Dragging to another technician changes the lead, Unassigned clears it | by 3 atm 1
+Preconditions
+Needs: 1 user · 1 browser · about 20 minutes
+Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+Technicians (examples, the expected results call them by first name or full name): "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo", "ZZAUTOTEST Cal Charlie". A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customers (used by this case only, each with one contact and one asset): "ZZAUTOTEST F3 Drag Lead Change Alpha Co", "ZZAUTOTEST F3 Drag Lead Change Golf Co". The steps and expected results call them by the end of the name ("Alpha Co", "Golf Co").
+Work orders (all Approved): lead Ana — Alpha Co; no lead — Golf Co.
+None of these technicians has a shift on the Schedule for these work orders (check the Schedule page). If a window titled "Clear … scheduled shifts?" still appears during a move, click "Keep shifts".
+Setup
+Settings (your initials at the top right > Settings) > Staff: confirm "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo", "ZZAUTOTEST Cal Charlie" exist and count as technicians at this location (edit icon > Edit Staff Member). To add one: New Staff Member with those settings (at least one Department is required) (e.g. first name "ZZAUTOTEST Ana", last name "Alpha") > Save & Close.
+Create this case's customers: "ZZAUTOTEST F3 Drag Lead Change Alpha Co", "ZZAUTOTEST F3 Drag Lead Change Golf Co". For each: top menu Customers > New Customer, Name > Save; on the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact); then the Assets tab > New Asset > pick the Contact, then Year, Make, Model (e.g. 2022, Freightliner, M2) > Save. Make is required; Unit can be left empty.
+Create each work order listed in the Preconditions: Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. Move it to the status named: a new work order starts as Estimate (it opens with the New Line form: pick a ready-made line and Save & Close); for Approved turn on Line Approved on its line; for In Progress click Start on the line's Labor row (stop the clock afterwards with Stop > Clock Out); for Review click the line's Complete button, type a Tech Story (fill any missing detail it asks for, e.g. Mileage) and click Complete Line (the List shows "Ready For Review"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance tab > Create Invoice; for Paid, after invoicing, Finance tab > New Payment for the full amount > Make Payment. Set the lead technician before invoicing. Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (leave it as Unassigned for an unassigned one). (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Write down each work order number as you create it (e.g. S1-801); the steps call each work order by the end of its customer name (e.g. "Alpha Co").
+Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Drag Lead Change" in Search — exactly 2 work orders show, both Approved: Alpha Co led by Ana, Golf Co with no lead (Unassigned). On the Schedule neither has a shift. If anything differs, correct that work order (status or Lead Technician) before starting.
+
+##### C97007 | A work order given a new lead from Reassign or its page goes to the bottom | by 3 atm 3
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+User {User-B} (for example ZZAUTOTEST Dispatcher Two) has Work orders > View and Create & Edit at {Location-A} and is signed in in a second browser.
+Technicians {Technician-A} (for example ZZAUTOTEST Ana Alpha), {Technician-B} (for example ZZAUTOTEST Ben Bravo) and {Technician-C} (for example ZZAUTOTEST Cal Charlie) are active staff members at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customers {Customer-A} to {Customer-E} are used by this case only, their names start with the same words (for example "ZZAUTOTEST F3 Reassign Bottom") and end, in name order, with Aardvark Co, Abbey Co, Bravo Co, Delta Co and Echo Co.
+Approved work orders: {Work-order-3} (for {Customer-C}) and {Work-order-4} (for {Customer-D}) are led by {Technician-B}; {Work-order-1} (for {Customer-A}), {Work-order-2} (for {Customer-B}) and {Work-order-5} (for {Customer-E}) are led by {Technician-C} (for example S10043-17721 to S10043-17725).
+Nobody has reordered {Technician-B}'s work at {Location-A}, so {Technician-B}'s column starts in customer-name order: {Work-order-3}, {Work-order-4}.
+No technician has a shift on the Schedule for these work orders.
+On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+##### C97008 | Moving to another technician shows the message, reordering shows none | by 3 atm 3
+Preconditions
+Needs: 1 user · 1 browser · about 10 minutes
+Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+Technicians (examples, the expected results call them by first name or full name): "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo". A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customers (used by this case only, each with one contact and one asset): "ZZAUTOTEST F3 Move Message Alpha Co", "ZZAUTOTEST F3 Move Message Bravo Co", "ZZAUTOTEST F3 Move Message Charlie Co", "ZZAUTOTEST F3 Move Message Delta Co". The steps and expected results call them by the end of the name ("Alpha Co", "Bravo Co", "Charlie Co", "Delta Co").
+Work orders (Approved): lead Ana — Alpha Co, Bravo Co, Charlie Co; lead Ben — Delta Co (header counts Ana 3, Ben 1).
+None of these technicians has a shift on the Schedule for these work orders (check the Schedule page). If a window titled "Clear … scheduled shifts?" still appears during a move, click "Keep shifts".
+Setup
+Settings (your initials at the top right > Settings) > Staff: confirm "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo" exist and count as technicians at this location (edit icon > Edit Staff Member). To add one: New Staff Member with those settings (at least one Department is required) (e.g. first name "ZZAUTOTEST Ana", last name "Alpha") > Save & Close.
+Create this case's customers: "ZZAUTOTEST F3 Move Message Alpha Co", "ZZAUTOTEST F3 Move Message Bravo Co", "ZZAUTOTEST F3 Move Message Charlie Co", "ZZAUTOTEST F3 Move Message Delta Co". For each: top menu Customers > New Customer, Name > Save; on the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact); then the Assets tab > New Asset > pick the Contact, then Year, Make, Model (e.g. 2022, Freightliner, M2) > Save. Make is required; Unit can be left empty.
+Create each work order listed in the Preconditions: Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. Move it to the status named: a new work order starts as Estimate (it opens with the New Line form: pick a ready-made line and Save & Close); for Approved turn on Line Approved on its line; for In Progress click Start on the line's Labor row (stop the clock afterwards with Stop > Clock Out); for Review click the line's Complete button, type a Tech Story (fill any missing detail it asks for, e.g. Mileage) and click Complete Line (the List shows "Ready For Review"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance tab > Create Invoice; for Paid, after invoicing, Finance tab > New Payment for the full amount > Make Payment. Set the lead technician before invoicing. Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (leave it as Unassigned for an unassigned one). (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Write down each work order number as you create it (e.g. S1-801); the steps call each work order by the end of its customer name (e.g. "Alpha Co").
+Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Move Message" in Search — exactly 4 work orders show, all Approved: 3 led by Ana, Delta Co led by Ben. If anything differs, correct that work order (status or Lead Technician) before starting.
+
+##### C97009 | Declined, Invoiced and Paid work orders only reorder within their technician | by 3 atm 1
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example ZZAUTOTEST Ana Alpha) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example ZZAUTOTEST Ben Bravo) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST F3 Invoiced Lock") is used by this case only and has six work orders (for example S10043-17811 to S10043-17816): {Work-order-1} Approved, {Work-order-2} Invoiced, {Work-order-3} Paid, {Work-order-4} Declined and {Work-order-5} Complete, all led by {Technician-A}, and {Work-order-6} Invoiced with no lead technician.
+{Technician-B} is not the technician on any line of these work orders.
+No technician has a shift on the Schedule for these work orders.
+On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+##### C690647 | SV-11545 - Declined, Invoiced, Paid reorder but can't be reassigned (release) | by 3 atm 1
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example ZZAUTOTEST Ana Alpha) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Technician {Technician-B} (for example ZZAUTOTEST Ben Bravo) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customer {Customer-A} (for example "ZZAUTOTEST F3 Invoiced Lock") is used by this case only and has six work orders (for example S10043-17811 to S10043-17816): {Work-order-1} Approved, {Work-order-2} Invoiced, {Work-order-3} Paid, {Work-order-4} Declined and {Work-order-5} Complete, all led by {Technician-A}, and {Work-order-6} Invoiced with no lead technician.
+{Technician-B} is not the technician on any line of these work orders.
+No technician has a shift on the Schedule for these work orders.
+On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+##### C368144 | Removing the lead puts the work order in its normal place in Unassigned | by 3 atm 3
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as an Owner or Admin user whose role has Work orders > View and Work orders > Create & Edit, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar.
+Technician {Technician-A} (for example ZZAUTOTEST Ana Alpha) is an active staff member at {Location-A} with Time Clock on and a Role other than Office User or Time Clock User.
+Customers {Customer-A} to {Customer-D} are used by this case only, their names start with the same words (for example "ZZAUTOTEST F3 Unassigned Place") and end, in name order, with Alpha Co, Bravo Co, Charlie Co and Delta Co.
+Approved work orders (for example S10043-17731 to S10043-17734): {Work-order-1} (for {Customer-A}) and {Work-order-3} (for {Customer-C}) are led by {Technician-A}; {Work-order-2} (for {Customer-B}) and {Work-order-4} (for {Customer-D}) have no lead technician.
+Nobody has reordered work in Unassigned at {Location-A}.
+No technician has a shift on the Schedule for these work orders.
+On the Work Orders page nothing is ticked in Status, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip), Assigned to me is off and Search is empty.
+
+##### C97028 | Blocked analytics never stops the page, settings or reassignment | by 3 atm 1
+Preconditions
+Needs: 1 user · 1 browser with a tracker blocker · about 15 minutes
+Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, without the display switcher).
+Role: Owner/Admin. On a QA branch sign in with the Admin quick-login button on the sign-in page; you appear as "Admin ShopView". The Admin role holds Work orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher.
+Location: one location for the whole case, shown in the top bar next to the bell (e.g. "Staging Heavy Duty - 9919"); to change it click your initials at the top right > Change Location. Every technician and work order below belongs to this location.
+Technicians (examples, the expected results call them by first name or full name): "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo". A staff member counts as a technician when, in Settings > Staff > the staff member's edit icon > Edit Staff Member, they are Active, Time Clock is on, the Role is neither Office User nor Time Clock User, and this location is picked in their Location field.
+Customers (used by this case only, each with one contact and one asset): "ZZAUTOTEST F3 Blocked Analytics Alpha Co". The steps and expected results call them by the end of the name ("Alpha Co").
+Work order Alpha Co: Approved, lead Ana; Ben is not the technician on its line.
+Board View starting values: VIN/Serial off in Fields to display, Density not Compact.
+None of these technicians has a shift on the Schedule for these work orders (check the Schedule page). If a window titled "Clear … scheduled shifts?" still appears during a move, click "Keep shifts".
+Analytics blocked in your browser: a common tracker blocker extension (e.g. uBlock Origin) turned on for the QA site, or your browser's setting that blocks trackers.
+Setup
+Settings (your initials at the top right > Settings) > Staff: confirm "ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo" exist and count as technicians at this location (edit icon > Edit Staff Member). To add one: New Staff Member with those settings (at least one Department is required) (e.g. first name "ZZAUTOTEST Ana", last name "Alpha") > Save & Close.
+Create this case's customers: "ZZAUTOTEST F3 Blocked Analytics Alpha Co". For each: top menu Customers > New Customer, Name > Save; on the customer page click the Contacts tab > New Contact > First Name and Last Name > Save (a new asset needs a contact); then the Assets tab > New Asset > pick the Contact, then Year, Make, Model (e.g. 2022, Freightliner, M2) > Save. Make is required; Unit can be left empty.
+Create each work order listed in the Preconditions: Work Orders > Create Work Order > in the New Work Order window pick the Customer and its Asset > Save. Move it to the status named: a new work order starts as Estimate (it opens with the New Line form: pick a ready-made line and Save & Close); for Approved turn on Line Approved on its line; for In Progress click Start on the line's Labor row (stop the clock afterwards with Stop > Clock Out); for Review click the line's Complete button, type a Tech Story (fill any missing detail it asks for, e.g. Mileage) and click Complete Line (the List shows "Ready For Review"); for Complete then click Mark Reviewed, enter the VIN if asked and click Confirm Review; for Declined save the line with Line Approved off and click Decline on it (it must be the work order's only line); for Invoiced complete and review it first, then Finance tab > Create Invoice; for Paid, after invoicing, Finance tab > New Payment for the full amount > Make Payment. Set the lead technician before invoicing. Once the work order is Approved, pick the technician in the Lead Technician dropdown on the work order page (leave it as Unassigned for an unassigned one). (While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.) Write down each work order number as you create it (e.g. S1-801); the steps call each work order by the end of its customer name (e.g. "Alpha Co").
+Block analytics in your browser: install a common tracker blocker extension (e.g. uBlock Origin) and turn it on for the QA site, or use your browser's setting that blocks trackers.
+Check the setup worked: Work Orders > All tab > List > type "ZZAUTOTEST F3 Blocked Analytics" in Search — exactly 1 work order shows: Alpha Co, Approved, lead Ana. In Board View, VIN/Serial is off and Density is not Compact (change them back if not). The blocker shows it is on for the QA site. If anything differs, correct that work order (status or Lead Technician) before starting.
+
+##### C590130 | Design: The lead change message is the design's white message with Undo | by 3 atm 1
+Setup (manual QA tester and Claude session)
+Preconditions
+You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders > View, Work orders > Create & Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).
+Your browser window is 1440 px wide, with the browser zoom at 100%.
+Technician {Technician-A} (for example ZZAUTOTEST DC21 Dee Toast) is an active technician at {Location-A}.
+Customer {Customer-A} (for example "ZZAUTOTEST DC21 Toast") is used by this case only.
+Estimate {Work-order-1} (for example S10043-17856) for {Customer-A} has no lead technician and no approved line, so it sits in Unassigned. None of its lines has a technician.
+On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).
+
+##### C368152 | SV-11524 - Reassign and Unassign work from the keyboard through the More actions menu | by 3 atm 1
+Setup file (for Claude sessions; a tester does not need it)
+Preconditions
+You are signed in with the "Admin" role at {Location-A}.For example: {Location-A} is Staging Heavy Duty - 9919.
+Two technicians are active at {Location-A} with the "Technician" role and Time Clock on: {Technician-A} and {Technician-B}.For example: {Technician-A} is ZZAUTOTEST C368152 Ana and {Technician-B} is ZZAUTOTEST C368152 Ben.
+Customer {Customer-A} has three Approved work orders: {Work-order-1} led by {Technician-A}, {Work-order-2} led by {Technician-B}, and {Work-order-3} with no lead technician. None has a shift on the Schedule. {Technician-B} is not the technician on any line of {Work-order-1}.For example: {Customer-A} is ZZAUTOTEST C368152 Reassign, and {Work-order-1} to {Work-order-3} are S10043-17721 to S10043-17723.
+{Technician-A} and {Technician-B} are pinned in your Board View, and no other technician is pinned.
+Starting screen: "Work Orders" > "All" tab, "Board View" shown, the name of {Customer-A} in "Search", no filter chosen, "Assigned to me" off, in a browser window at least 1024 px wide.
+If any record above is missing, mark this test Blocked: "setup not done".
+
+##### C614711 | SV-11524 - Work orders of a deleted lead sit under Deleted technician, which takes no drops | by 3 atm 1
+Setup file (for Claude sessions; a tester does not need it)
+Preconditions
+You are signed in as an Admin user (the "Admin" role, which has Work orders > View and Create & Edit) at {Location-A}.For example: {Location-A} is Staging Heavy Duty - 9919.
+Two technicians are active at {Location-A} with the "Technician" role: {Technician-A} and {Technician-B}. {Technician-A} was made for this case only and has no labor on any work order, because this test deletes that staff record.For example: {Technician-A} is ZZAUTOTEST C614711 Dana and {Technician-B} is ZZAUTOTEST C614711 Eli.
+Customer {Customer-A} has two Approved work orders: {Work-order-1} led by {Technician-A}, and {Work-order-2} with no lead technician. {Technician-B} is not the technician on any line of {Work-order-1}.For example: {Customer-A} is ZZAUTOTEST C614711 Deleted Lead, and {Work-order-1} and {Work-order-2} are S10043-17901 and S10043-17902.
+Starting screen: your initials (top right) > "Settings" > "Staff", in a browser window at least 1024 px wide.
+If any record above is missing, mark this test Blocked: "setup not done".
+

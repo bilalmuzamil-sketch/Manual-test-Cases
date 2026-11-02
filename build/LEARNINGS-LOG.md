@@ -487,3 +487,11 @@
 - Pictures: `annotate_v2.py` boxes are given in the SOURCE pixels — for a side-by-side made with PIL, compute each box from the scale used when composing.
 - `ff_watch.py` used to call a ticket we FAILED "NEW" every round while it stayed in Testing QA; now it is FAILED-WAIT until it re-enters QA or someone comments after our Failed (then RECHECK). The 2-hour watch prompt was updated for SV-11837.
 #sv11837 #tooltip #ff-watch #failed-wait → L0610, L0594
+
+## L0612 — 2026-11-02 — Production v26.43.5: SV-11524 shipped, so every older WO Board script that reassigns is broken; use parked-prod-1102.mts
+- The lead technician dialog has NO "Reassign" confirm button and NO "Unassigned" row any more: clicking a technician applies the change at once; removing the lead is the More actions > Unassign item. Old scripts time out waiting for `button_confirm_reassign_lead_technician` (C96969, C96973 on 2 Nov). `wob.mts pickLead` now copes with both dialogs.
+- The lead-change message is the design's own toast, NOT a `.q-notification`: readers that look only at `.q-notification` (wob.mts `toasts()`, c97022 `toastsOn`) report "no message" (old prod run, C96957 `"message":[]`). Use `toastRead`/`waitToast` (sv11902 prefix) or the new `run498-2026-10-08/toast-read.mts` (`toastTexts`).
+- `run498-2026-10-08/parked-prod-1102.mts` walks the 24 parked tests by their CURRENT steps with fresh ZZAUTOTEST data (helpers: `after()` reads/answers the shifts question + message + its life time, `noMessage()`, `lockInfo()`, `dragHold()`); copies `c368152-prod-1102.mts` and `C614711-prod-1102.mts` swap only the message reader. Queue: `update-pass-2026-11-02/prod-queue-1102.txt`.
+- Runnability trap found: C96963 / C690642 ask to "drag {Work-order-4} to a new place within the Unassigned column" but their setup puts ONE card in Unassigned — nothing to reorder against. The run judges it on a separate pair; the case needs a second Unassigned work order in its setup (C690642's Expected names exactly six work orders, so there it is reported, not edited).
+- `update-pass-2026-11-02/make_edits_1102.py <Cids>` drafts the Rule 136 edits for passed parked tests (known-problem/three-outcome paragraphs out, EXPECT FAIL → READY, production stamp, PRD v82 re-read line, stale sv10043 build line, title prefix).
+#sv11524 #toast #dialog #parked #production #runnability → L0608, L0609
