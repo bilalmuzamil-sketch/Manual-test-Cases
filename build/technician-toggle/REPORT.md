@@ -1,22 +1,22 @@
 # Technician Toggle — case library report (2 Nov 2026)
 
-PRD "Technician Toggle", Confluence 977371146, **version 17** (2 Nov 2026, Chris Ward). Project type (ii) V2 / upgrade. Epic SV-11788. Library: `build/technician-toggle/authoring/` (`tt_lib.py`, `cases_*.py`, `build.py`). Nothing was written to TestRail, Jira, Slack or Google; nothing was committed.
+PRD "Technician Toggle", Confluence 977371146, **version 17** (2 Nov 2026, Chris Ward). Project type (ii) V2 / upgrade. Epic SV-11788. Round 2 (same day) added the 34 design cases and References from Design. Library: `build/technician-toggle/authoring/` (`tt_lib.py`, `cases_*.py`, `build.py`). Nothing was written to TestRail, Jira, Slack or Google; nothing was committed.
 
 ## 1. Counts per section
 
 | Key | Proposed subsection of 113017 | Cases | Held |
 |---|---|---|---|
-| S1 | Technician toggle on a staff member | 36 | 1 |
+| S1 | Technician toggle on a staff member | 37 | 3 |
 | S2 | Turn Off Technician warning | 41 | 3 |
-| S3 | Who appears on the technician lists | 48 | 3 |
+| S3 | Who appears on the technician lists | 48 | 8 |
 | S4 | Technician column and notice on the staff list | 11 | 2 |
 | API | API - Public API technician value on staff | 15 | 7 |
 | S6 | Release day | 28 | 28 |
 | INV | What must not change | 19 | 1 |
-| DESIGN | Design — how it looks | 0 | 0 |
-| | **Total** | **198** | **45** |
+| DESIGN | Design — how it looks | 34 | 4 |
+| | **Total** | **233** | **56** |
 
-Markers: `AUTOMATION: Not available on Build to test Yet - Last checked 11/2/2026` × 153; `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` × 29; `AUTOMATION: HOLD - waiting on the PO (question n)` × 6; `AUTOMATION: HOLD - the end date is set only when the release is scheduled; run on the release build before release day` × 2; `AUTOMATION: HOLD - the counts usually load faster than a person can see or click the loading Save button` × 2; `AUTOMATION: HOLD - a manual tester cannot make only the open-work count request fail while the save still works` × 1; `AUTOMATION: HOLD - a manual tester cannot make only the list of technicians fail while the rest of the work order loads` × 1; `AUTOMATION: HOLD - a manual tester cannot make the staff list fail while the page itself still loads` × 1; `AUTOMATION: HOLD - needs a Public API request that changes a staff member's role; the saved sources name none` × 1; `AUTOMATION: HOLD - needs the Public API request that sets a work order's lead; the saved sources name none` × 1; `AUTOMATION: HOLD - the changelog entry is published with the release; run once the release notes for the Public API are out` × 1.
+Markers: `AUTOMATION: Not available on Build to test Yet - Last checked 11/2/2026` × 177; `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` × 29; `AUTOMATION: HOLD - waiting on the PO (question n)` × 17; `AUTOMATION: HOLD - the end date is set only when the release is scheduled; run on the release build before release day` × 2; `AUTOMATION: HOLD - the counts usually load faster than a person can see or click the loading Save button` × 2; `AUTOMATION: HOLD - a manual tester cannot make only the open-work count request fail while the save still works` × 1; `AUTOMATION: HOLD - a manual tester cannot make only the list of technicians fail while the rest of the work order loads` × 1; `AUTOMATION: HOLD - a manual tester cannot make the staff list fail while the page itself still loads` × 1; `AUTOMATION: HOLD - needs a Public API request that changes a staff member's role; the saved sources name none` × 1; `AUTOMATION: HOLD - needs the Public API request that sets a work order's lead; the saved sources name none` × 1; `AUTOMATION: HOLD - the changelog entry is published with the release; run once the release notes for the Public API are out` × 1.
 
 The default marker is Rule 69's `AUTOMATION: Not available on Build to test Yet - Last checked 11/2/2026`, because no build exists yet. The brief says API cases get `AUTOMATION: READY` when their steps are fully given. Under Rule 69, READY waits for a build check, so the fully given API cases carry the Rule 69 marker like every other case. Changing that is one constant (`tt_lib.MARKER`) if the coordinator rules otherwise.
 
@@ -26,9 +26,9 @@ The default marker is Rule 69's `AUTOMATION: Not available on Build to test Yet 
 |---|---|
 | S1-R1 | S1-01, S1-02 |
 | S1-R2 | S1-02, S1-03, S1-04, S1-05, S4-08 |
-| S1-R3 | S1-06, S1-07, S1-08, S1-09, S1-10, S1-11, S1-14, S1-15, S1-16, S1-17, S1-18, S1-19, S1-20, S1-21, S1-22, S1-23, S1-28 |
+| S1-R3 | S1-06, S1-07, S1-08, S1-09, S1-10, S1-11, S1-15, S1-16, S1-17, S1-18, S1-19, S1-20, S1-21, S1-22, S1-23, S1-28, S1-37 |
 | S1-R4 | S1-14, S1-16, S1-19, S1-25, S1-27, S2-23, API-08 |
-| S1-R5 | S1-14, S1-16, S1-17, S1-25, S6-23 |
+| S1-R5 | S1-16, S1-17, S1-25, S6-23 |
 | S1-R6 | S1-30, S2-32, S3-37, API-04 |
 | S1-R7 | S1-21, S1-22, S1-31, S2-38 |
 | S1-R8 | INV-11, INV-12, INV-13 |
@@ -44,10 +44,10 @@ The default marker is Rule 69's `AUTOMATION: Not available on Build to test Yet 
 | S2-R2 | S2-01, S2-02, S2-06, S2-22, S2-39 |
 | S2-R3 3/0 | S2-05 |
 | S2-R3 1/1 | S2-03, S2-32 |
-| S2-R3 1/0 | S2-01, S2-22 |
-| S2-R3 | S2-01, S2-02, S2-03, S2-04, S2-05, S2-22, S2-32 |
-| S2-R3 0/1 | S2-02 |
 | S2-R3 0/5 | S2-04 |
+| S2-R3 | S2-01, S2-02, S2-03, S2-04, S2-05, S2-22, S2-32 |
+| S2-R3 1/0 | S2-01, S2-22 |
+| S2-R3 0/1 | S2-02 |
 | S2-R4 | S2-28, S2-29, S2-30, S2-31, S2-32, S2-33, S2-34, S2-35, S2-40 |
 | S2-R5 | S2-32, S3-17 |
 | S2-N1 | S2-15, S2-16, S2-17, S2-18, S2-19, S2-20, S2-21 |
@@ -86,10 +86,10 @@ The default marker is Rule 69's `AUTOMATION: Not available on Build to test Yet 
 | S5-R2 | API-14 |
 | S5-N1 | API-06, API-07, API-09, API-10 |
 | S5-E1 | API-03 |
-| S6-R1 c | S6-19, S6-25 |
 | S6-R1 a | S6-01, S6-02, S6-03, S6-04, S6-05, S6-06 |
-| S6-R1 b | S6-07, S6-08, S6-09, S6-10, S6-11, S6-12, S6-13, S6-14, S6-18 |
 | S6-R1 | S6-01, S6-02, S6-03, S6-04, S6-05, S6-06, S6-07, S6-08, S6-09, S6-10, S6-11, S6-12, S6-13, S6-14, S6-18, S6-19, S6-20, S6-22, S6-25 |
+| S6-R1 c | S6-19, S6-25 |
+| S6-R1 b | S6-07, S6-08, S6-09, S6-10, S6-11, S6-12, S6-13, S6-14, S6-18 |
 | S6-R2 | S6-02, S6-05, S6-18, S6-24 |
 | S6-R3 | API-15, S6-25 |
 | S6-R4 | S6-26 |
@@ -146,12 +146,32 @@ Every §8 (User Feedback Summary) message is used word for word in a step or res
 
 ## 3. Held cases and why
 
+| Reason | Cases |
+|---|---|
+| needs the before values taken on production shortly before the release reaches production; run on production after the release | 29 |
+| waiting on the PO (question n) | 17 |
+| the end date is set only when the release is scheduled; run on the release build before release day | 2 |
+| the counts usually load faster than a person can see or click the loading Save button | 2 |
+| a manual tester cannot make only the open-work count request fail while the save still works | 1 |
+| a manual tester cannot make only the list of technicians fail while the rest of the work order loads | 1 |
+| a manual tester cannot make the staff list fail while the page itself still loads | 1 |
+| needs a Public API request that changes a staff member's role; the saved sources name none | 1 |
+| needs the Public API request that sets a work order's lead; the saved sources name none | 1 |
+| the changelog entry is published with the release; run once the release notes for the Public API are out | 1 |
+
 | Case | Title | Why held |
 |---|---|---|
 | S1-05 | On the release build the "New" pill ends on the seventh day after release | the end date is set only when the release is scheduled; run on the release build before release day |
+| S1-16 | New Staff Member sets Technician again when Time Clock changes | waiting on the PO (question 5) |
+| S1-37 | After Save & Add Next, the empty form sets Technician from the role again | waiting on the PO (question 8) |
 | S2-34 | Save & Close shows its loading state while the counts load | the counts usually load faster than a person can see or click the loading Save button |
 | S2-35 | Closing the staff window while the counts load cancels the save | the counts usually load faster than a person can see or click the loading Save button |
 | S2-36 | When the counts fail, the save goes ahead without the warning | a manual tester cannot make only the open-work count request fail while the save still works |
+| S3-24 | In Edit Line, a former technician is a removable chip and stays when saved | waiting on the PO (question 6) |
+| S3-25 | In Edit Line, a former technician with logged time shows the lock | waiting on the PO (question 6) |
+| S3-26 | Removing a former technician's chip in Edit Line takes them off the line | waiting on the PO (question 6) |
+| S3-29 | Board View with no technicians shows "No technicians yet" with the new text | waiting on the PO (question 7) |
+| S3-30 | Tech View with no technicians shows "No technicians yet" with the new text | waiting on the PO (question 7) |
 | S3-36 | "No technicians yet" does not show with a Technician filter on | waiting on the PO (question 3) |
 | S3-47 | If only the technician list fails, the work order still loads | a manual tester cannot make only the list of technicians fail while the rest of the work order loads |
 | S3-48 | A Technician filter set to someone who is then turned off | waiting on the PO (question 4) |
@@ -193,8 +213,12 @@ Every §8 (User Feedback Summary) message is used word for word in a step or res
 | S6-27 | Open work is untouched for someone who starts off | needs the before values taken on production shortly before the release reaches production; run on production after the release |
 | S6-28 | The release step runs once: a later choice to turn off sticks | needs the before values taken on production shortly before the release reaches production; run on production after the release |
 | INV-13 | A save that changes Technician and the role logs out as a role change does | waiting on the PO (question 2) |
+| D-27 | Design: Edit Line shows a former technician as an ordinary chip with its X | waiting on the PO (question 6) |
+| D-29 | Design: Board View shows No technicians yet when there are no technicians | waiting on the PO (question 7) |
+| D-33 | Design: Time Clock back on in New Staff Member leaves Technician off | waiting on the PO (question 5) |
+| D-34 | Design: A former technician on a line shows grayed out in Edit Line | waiting on the PO (question 6) |
 
-Lesson L-14 says a behaviour a manual tester cannot set up is not written as a manual case. The brief (point 10) says to keep such cases with the exact expected text and a HOLD marker. These cases are kept as HELD (not for a manual run): S2-34, S2-35, S2-36, S3-47 and S4-07. The coordinator decides whether they go to TestRail or to the developers' own checks.
+Lesson L-14 says a behaviour a manual tester cannot set up is not written as a manual case. The brief (point 10) says to keep such cases with the exact expected text and a HOLD marker. These cases are kept as HELD in the library (not for a manual run): S2-34, S2-35, S2-36, S3-47 and S4-07 (coordinator, round 2: kept; the QA lead decides whether they go to TestRail).
 
 ## 4. Stories and tickets against PRD v17
 
@@ -226,6 +250,52 @@ Statements that contradict v17's staff-toggle model are not used as expectations
 - S5-E1 "Roles are not exposed". v17 S5-E1: a deactivated person whose toggle is on reads false.
 - Evidence D19 counts a time row that carries both a department and a work order. v17 S6-R1 (a) says only "time on a department does not count"; there is no conflict for a row a tester can make, so no case or question.
 
+## 5a. Round 2 — design cases and References from Design (2 Nov 2026)
+
+- **Design cases:** the 34 drafts of `design-2026-11-02/DESIGN-CASE-PLAN.md` are `authoring/cases_design.py` (generated by `make_cases_design.py`): DC-01 to DC-32 are D-01 to D-32, DV-01 is D-33 and DV-02 is D-34, in "Design — how it looks". Each carries its References from Design block (board and page, the pictures to attach, the design's own words, the difference with its register id). The draft marker READY is replaced by Rule 69's marker (no build yet; coordinator, round 2). D-27, D-29, D-33 and D-34 are held on PO questions 6, 7, 5 and 6.
+- **Wording changes from the drafts (38), each needed by a gate, the pattern or a rule:**
+  - DC-10: title: "looks as designed" -> "matches the picture" (vague look word, L-16)
+  - DC-11: title: "looks as designed" -> "matches the picture" (vague look word, L-16)
+  - DC-18: title: "looks as designed" -> "matches the picture" (vague look word, L-16)
+  - DC-13: precondition example in brackets reworded (no examples in the preconditions)
+  - DC-19: precondition example in brackets reworded (no examples in the preconditions)
+  - DC-19: precondition example in brackets reworded (no examples in the preconditions)
+  - DC-20: precondition example in brackets reworded (no examples in the preconditions)
+  - DC-20: precondition example in brackets reworded (no examples in the preconditions)
+  - DC-21: precondition example in brackets reworded (no examples in the preconditions)
+  - DC-22: precondition example in brackets reworded (no examples in the preconditions)
+  - DC-23: precondition example in brackets reworded (no examples in the preconditions)
+  - DC-23: precondition example in brackets reworded (no examples in the preconditions)
+  - DC-25: precondition example in brackets reworded (no examples in the preconditions)
+  - DC-25: precondition example in brackets reworded (no examples in the preconditions)
+  - DC-24: staff member C is made new for this test (its setup switches Technician off, Rule 137)
+  - DC-26: staff member C is made new for this test (its setup switches Technician off, Rule 137)
+  - DC-27: staff member C is made new for this test (its setup switches Technician off, Rule 137)
+  - DC-31: staff member C is made new for this test (its setup switches Technician off, Rule 137)
+  - DV-02: staff member C is made new for this test (its setup switches Technician off, Rule 137)
+  - DC-15: staff member A is made new for this test (the case saves it, Rule 137)
+  - DC-04: a record only read (or switched without saving) is 'any' (Rule 137 gate)
+  - DC-04: a record only read (or switched without saving) is 'any' (Rule 137 gate)
+  - DC-13: a record only read (or switched without saving) is 'any' (Rule 137 gate)
+  - DC-14: a record only read (or switched without saving) is 'any' (Rule 137 gate)
+  - DC-16: a record only read (or switched without saving) is 'any' (Rule 137 gate)
+  - DC-24: the new work order is said to be made for this test (Rule 137 gate)
+  - DC-26: the new work order is said to be made for this test (Rule 137 gate)
+  - DC-27: the new work order is said to be made for this test (Rule 137 gate)
+  - DC-31: the new work order is said to be made for this test (Rule 137 gate)
+  - DV-02: the new work order is said to be made for this test (Rule 137 gate)
+  - DC-06: quote S4-R1 joined PRD sentences that are not next to each other; split into 2 verbatim quotes (Rule 113)
+  - DC-29: quote S3-R10 joined PRD sentences that are not next to each other; split into 2 verbatim quotes (Rule 113)
+  - DC-24: the result 'Clicking staff member C's row does not pick it.' became step 3 with its own result (Rule 135)
+  - DC-29: the result '...clicking it opens Settings, Staff.' became step 3 with its own result (Rule 135)
+  - DC-27: note renumbered to the merged question sheet (question 6; design version D-34, held)
+  - DC-29: note renumbered to the merged question sheet (register TT-D04, question 7)
+  - DV-01: note renumbered to the merged question sheet (question 5 for Chris Ward)
+  - DV-02: note renumbered to the merged question sheet (question 6 for Chris Ward)
+- **References from Design on the PRD cases:** 117 of 199 PRD cases name the board and pictures that show their screen (`authoring/design_refs.py`, from DESIGN-FIGURES-2026-11-02.json and SPEC-TO-DESIGN-2026-11-02.json). The other 82 have no board for their screen or state and carry no References from Design heading: S1-34, S1-35, S1-36, S2-37, S2-38, S2-39, S2-40, S2-41, S3-16, S3-27, S3-28, S3-31, S3-32, S3-33, S3-34, S3-35, S3-36, S3-37, S3-38, S3-39, S3-40, S3-41, S3-42, S3-43, S3-46, S3-47, API-01, API-02, API-03, API-04, API-05, API-06, API-07, API-08, API-09, API-10, API-11, API-12, API-13, API-14, API-15, S6-01, S6-02, S6-03, S6-04, S6-05, S6-06, S6-07, S6-08, S6-09, S6-10, S6-11, S6-12, S6-13, S6-14, S6-15, S6-16, S6-17, S6-18, S6-19, S6-20, S6-21, S6-22, S6-23, S6-24, S6-25, S6-26, S6-27, S6-28, INV-03, INV-04, INV-05, INV-06, INV-08, INV-12, INV-13, INV-14, INV-15, INV-16, INV-17, INV-18, INV-19.
+- **Differences named in the PRD-following cases (Rule 130), and the PRD cases now held:** TT-D01 in S1-16 (held, question 5); TT-D02 in S3-24, S3-25, S3-26 (held, question 6); TT-D04 in S3-29, S3-30 (held, question 7); TT-D06 in the new case S1-37, Save & Add Next (held, question 8). Settled differences are named where they touch a case (TT-D03, TT-D05, TT-D07, TT-D11 and the not-drawn rows).
+- **Cases changed in round 2 (Rule 134, cases not yet in TestRail):** S1-14 lost its last step, Time Clock back on, and its S1-R3 and S1-R5 quotes, because that step depends on question 5; S1-16 still covers it, held. S1-16, S3-24, S3-25, S3-26, S3-29 and S3-30 changed only their AUTOMATION line (now held). S3-31's location precondition was rewritten (an earlier string edit had garbled it; found in the round 2 sample read). S1-37 is new. Every PRD case with a board gained a References from Design block. Title, preconditions, steps, results, quotes, From lines, refs and setup recipe were re-checked against PRD v17 and the design files by build.py and found unchanged for every other case.
+
 ## 6. Reading coverage (Rule 119: every source read in full)
 
 | Source | Size | Lines read | Coverage |
@@ -234,7 +304,15 @@ Statements that contradict v17's staff-toggle model are not used as expectations
 | sources/JIRA-SV-11788-tickets-2026-11-02.md | 76,982 bytes, 727 lines | 1-728 (all 17 tickets) | 100% |
 | sources/tech-plan-Technician-Toggle-2026-11-02.md | 84,614 bytes, 908 lines | 1-907 (whole plan) | 100% |
 | sources/jira-sweep-2026-11-02.json | 77,826 bytes (one JSON line) | parsed by script for keys, types and updated times; its ticket text is the same text as the .md above, which was read in full | 100% of fields used |
-| design-2026-11-02/files/project/*.dc.html (6 boards) | captions only | every caption, for the screen's own labels; the design drive belongs to the other worker | labels only, by the brief |
+| design-2026-11-02/files/project/*.dc.html (6 boards) | 6 boards | every caption (round 1, for labels); every quoted design word is checked against the package by build.py | 100% of captions |
+| design-2026-11-02/DESIGN-CASE-PLAN.md | 85,722 bytes | 1-1395 (all 34 drafts) | 100% of what the cases use |
+| design-2026-11-02/NEW-QUESTIONS.py | 8,634 bytes | whole file | 100% of what the cases use |
+| design-2026-11-02/NOTES.md | 4,991 bytes | whole file | 100% of what the cases use |
+| design-2026-11-02/DESIGN-CASE-CHECKLIST-2026-11-02.md | 8,467 bytes | whole file | 100% of what the cases use |
+| design-2026-11-02/DESIGN-FIGURES-2026-11-02.json | 23,187 bytes | every figure (page, badge, heading, image, captions) by script | 100% of what the cases use |
+| design-2026-11-02/SPEC-TO-DESIGN-2026-11-02.json | 24,706 bytes | every row (code, verdict, pictures, note) by script | 100% of what the cases use |
+| DESIGN-DIVERGENCE-REGISTER.json | 22,372 bytes | every difference and not-shown row id and outcome by script | 100% of what the cases use |
+| design-2026-11-02/DESIGN-TEXT-INVENTORY.*, DESIGN-VISUAL-INVENTORY.md, DESIGN-READING-RECORD.md, images/ | the design worker's proof files | not re-read: they are the design drive's own coverage proof, which the plan and checklist summarise; the 25 pictures are referenced by name, and every name is checked to exist | NOT read in full (stated, Rule 119) |
 
 Rules and skills read before writing: LESSONS-REGISTER.md (L-01 to L-19), Rule 4, Rules 96, 113, 114, 116, 117 (fourteenth and fifteenth amendments in full), 122, 129, 130, 132, 134 to 138, Rule 69, IDEAL-TEST-CASE-STANDARD (superseded parts noted), skill 17 (Rule 96 text), skill 07 §2 to §6.
 
@@ -242,11 +320,12 @@ Rules and skills read before writing: LESSONS-REGISTER.md (L-01 to L-19), Rule 4
 
 - `python3 build/technician-toggle/authoring/build.py`: 0 PROBLEM lines. Each gate was proved to fail on a planted fault (a semicolon title, steps not equal to results, two actions in one step, a placeholder, a For example line, a case id, an unused precondition record, a record not made for the test, a quote not in the PRD).
 - `python3 build/testing-tools/tester_readiness_check.py build/technician-toggle --sample 5`: 0 hard problems. Two random samples of five cases were read in full, and so was every "does not / never" result (76). Fixes made from that reading: S3-40's filter change ('Assigned to me' hides every column, so it proved nothing; it is now a Technician filter change); S3-05's staff member B reason; location C's switch moved last; a visible technician control added to S3-37 to S3-42 and S6-24; S1-34's Settings-menu result made conditional on the menu showing.
-- `python3 build/testing-tools/ticket_sweep.py`: see section 8.
+- Round 2 readiness check: cases 233 | hard problems 0 | 'does not / never' results to read for a control 96. The round 2 sample (5 cases, seed 21) and every new "does not / never" line from the design cases, S1-14 and S1-37 (22 lines) were read in full; each has a visible control (the neighbouring names, the message shown, the unchanged buttons, the layout compared with a named picture). One fault found and fixed: S3-31's garbled location precondition.
+- `python3 build/testing-tools/ticket_sweep.py`: 0 unhandled tickets, PRD v17 handled.
 
 ## 8. OUTSTANDING — what I need from you
 
 - The coordinator: review, create the subsections in 113017 (`sections.json`), run `create.py --apply` with the QA lead's go-ahead, then read back the cases and commit.
-- The design round: `cases_design.py` and `design_refs.py` fill the empty "References from Design" hook and the "Design — how it looks" section.
+- Upload the design pictures with the cases (`create.py --apply` attaches them by name and reads them back).
 - Facts to confirm on the build (not PO questions): how the screen sets a line's own technician; which Public API requests change a staff member's role or a work order's lead (API-12, API-13).
-- **Waiting on the PO** (draft, not sent: `PO-QUESTIONS-DRAFT.md`): question 1 holds API-09, API-10, API-11; question 2 holds INV-13; question 3 holds S3-36; question 4 holds S3-48.
+- **Waiting on the PO** (draft, not sent: `PO-QUESTIONS-DRAFT.md`): question 1 holds API-09, API-10, API-11; question 2 holds INV-13; question 3 holds S3-36; question 4 holds S3-48; question 5 holds S1-16, D-33; question 6 holds S3-24, S3-25, S3-26, D-27, D-34; question 7 holds S3-29, S3-30, D-29; question 8 holds S1-37.

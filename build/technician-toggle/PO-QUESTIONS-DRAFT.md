@@ -2,6 +2,8 @@
 
 Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 17, 2 Nov 2026). For: Chris Ward (PO and design authority). Drafted 2 Nov 2026 by the case-library worker; the coordinator sends it as the colour-coded question sheet (Rule 125 format) once everything else is done (skill 07 §1). Nothing here has been sent.
 
+# Questions from reading the PRD, stories and tech plan (2 Nov 2026)
+
 ## Question 1
 
 - **Project / feature:** Technician Toggle — the Public API
@@ -42,6 +44,48 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 - (c) Something else (please say)
 - **Your answer:** 
 
+# Questions from reading the design (2 Nov 2026; design-2026-11-02/NEW-QUESTIONS.py rows 1 to 4, register TT-D01, TT-D02, TT-D04, TT-D06; merged into this one sheet, Rule 131)
+
+## Question 5
+
+- **Project / feature:** Technician Toggle — New Staff Member window
+- **What the PRD says now:** S1-R5: "In New Staff Member, turning Time Clock on pre-fills Technician from the role (S1-R3), unless the user has already switched Technician by hand." The design's page 2 note agrees ("Changing the role or Time Clock sets it again from the role"), but its page 3 note, under a New Staff Member picture, says "Turning Time Clock back on leaves Technician off; the user turns it on." and "Edit behaves the same."
+- **The question:** pick the Technician role and switch Time Clock on, and Technician switches on by itself. If Time Clock is then switched off and on again, what should Technician do?
+- (a) As the spec: it switches on again by itself from the role, unless the user had already switched Technician by hand
+- (b) As the design's page 3 note: it stays off and the user turns it on
+- (c) Something else (please say)
+- **Your answer:** 
+
+## Question 6
+
+- **Project / feature:** Technician Toggle — Edit Line window
+- **What the PRD says now:** S3-R8: "In Edit Line they show as an ordinary chip that can be removed with its X, unless they have logged time on the line, in which case the chip shows the existing lock". Story SV-11881 agrees ("an ordinary chip (not grayed out)"). The design does not draw the chip; its note under the Add Technician picture says "Anyone already on a line who is not a technician any more stays on it and shows grayed out, the same as a deactivated technician today."
+- **The question:** a person was added to a line with Add Technician and later their Technician toggle is turned off. In Edit Line, how should that person's chip look?
+- (a) As the spec: an ordinary chip, not grayed out, removable with its X (with the lock if they have logged time)
+- (b) As the design's note: grayed out, the same as a deactivated technician today
+- (c) Something else (please say)
+- **Your answer:** 
+
+## Question 7
+
+- **Project / feature:** Technician Toggle — Board View and Tech View empty state
+- **What the PRD says now:** S3-R10: the text "Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned." The design system (ds/shopview/components.css, EMPTY STATE): "One rule for every empty state in the product: ONE icon from the set, a title, at most one sentence, and the action that fills it." The design draws no empty state for this feature.
+- **The question:** the spec gives "No technicians yet" two sentences, and the ShopView design system the design uses allows at most one sentence in an empty state. Which should it show?
+- (a) As the spec, both sentences
+- (b) One sentence only (please give the words)
+- (c) The design system's rule does not apply here; keep (a)
+- **Your answer:** 
+
+## Question 8
+
+- **Project / feature:** Technician Toggle — New Staff Member window
+- **What the PRD says now:** S1-R3: Technician is pre-filled "when the window opens and again each time the role or Time Clock is changed, until the user switches Technician by hand", and "The toggle as shown is what is saved." The PRD names only "the window's existing Save"; the design shows Save & Add Next and Save & Close in every New Staff Member picture. The stories and the tech plan do not mention Save & Add Next.
+- **The question:** after Save & Add Next the window stays open, empty, for the next person. In that next, empty form, how is Technician set?
+- (a) As if the window had just opened: set from the role again, and any earlier switch by hand is forgotten
+- (b) It keeps the previous person's hand choice until the user changes it
+- (c) Something else (please say)
+- **Your answer:** 
+
 ## QA-only: what each question holds
 
 | Question | Cases held (keys; C-ids once written) |
@@ -50,6 +94,10 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 | 2 (mixed-save-logout) | INV-13 |
 | 3 (filter-on-empty) | S3-36 |
 | 4 (filter-set-to-former) | S3-48 |
+| 5 (tt-d01) | S1-16, D-33 |
+| 6 (tt-d02) | S3-24, S3-25, S3-26, D-27, D-34 |
+| 7 (tt-d04) | S3-29, S3-30, D-29 |
+| 8 (tt-d06) | S1-37 |
 
 ## Skill 07 §6 check: points not asked, and the source that answers each
 
@@ -60,3 +108,12 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 - **labor-lines-wording:** Why the warning says "labor lines" while counting Add Technician lines: the tech plan records the PRD review answer "Keep \"labor lines\"" (Accepted #2). Answered.
 - **assigned-to-me-non-tech:** Whether "Assigned to me" still shows a non-technician's own work: it is not a technician list (Terminology, "Nothing else"), and S3-E1 keeps a non-technician lead's column. Silence on an unchanged screen defaults to "must not change" (Rule 96), and nothing in the PRD touches that filter. Not asked.
 - **both-reasons-message:** Which tooltip shows when Time Clock is off and the role is Office User: Story 1 Error Handling (v17) "the message is \"This role can't be a technician.\", both on hover in the window and in the refusal." Answered.
+
+## Skill 07 §6 re-run on the four design questions: why each is kept
+
+- **tt-d01 (question 5):** PRD S1-R5 is explicit, but the design (the other authority) says the opposite in its page 3 note, and the canvas has no date, so latest-wins cannot decide it (register TT-D01). A document-vs-design conflict is the PO's (skill 07 §5).
+- **tt-d02 (question 6):** The PRD, story SV-11881 and the tech plan (D1: former technicians are not disabled) agree on an ordinary chip, but the design's own note says grayed out; Rule 130 closes a design difference only with a sent question or a ruling.
+- **tt-d04 (question 7):** The PRD text is explicit, but the design system's always-rule is in scope (L-01) and contradicts it; no source rules on which wins.
+- **tt-d06 (question 8):** No source mentions Save & Add Next; S1-R3 says the pre-fill runs "when the window opens", and after Save & Add Next the window does not open again, so the PRD does not settle it.
+
+The design worker's own skill 07 §6 drops (TT-D03, TT-D05, TT-D07 to TT-D15 and the 19 not-drawn states) are listed, with the source that settles each, in design-2026-11-02/NEW-QUESTIONS.py and DESIGN-DIVERGENCE-REGISTER.json.

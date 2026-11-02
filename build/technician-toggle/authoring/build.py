@@ -60,7 +60,9 @@ for c in L.CASES:
     if q.count("<p>From: ") != q.count("<ul>"): probs.append(f"{k}: a quote group without its own From line")
     if f"Epic {L.EPIC}" not in q or L.NOBUILD not in q or "version 17" not in q: probs.append(f"{k}: epic, PRD version or build line missing")
     if "claude.ai/artifact" in h.split("References from Design")[0]: probs.append(f"{k}: a design reference above the References from Design block")
-    if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{k}: no References from Design block")
+    has = "<p></p><p><strong>References from Design</strong></p>" in h
+    if c["key"] in L.DREFS and not has: probs.append(f"{k}: no References from Design block although a board applies")
+    if c["key"] not in L.DREFS and "References from Design" in h: probs.append(f"{k}: a References from Design heading with no board behind it")
     pre = f["custom_preconds"]
     if not (pre.startswith("<p><strong>Preconditions</strong></p><ul><li>") and pre.endswith("</li></ul>")): probs.append(f"{k}: Preconditions not one heading and one bullet list")
     if c["api"] and not re.search(r"\b(GET|PATCH|POST|PUT)\b|Public API", " ".join(c["steps"])): probs.append(f"{k}: an API case whose steps name no request")

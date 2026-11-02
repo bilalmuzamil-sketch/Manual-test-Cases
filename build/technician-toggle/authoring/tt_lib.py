@@ -220,14 +220,28 @@ except ImportError:
 
 
 def design_block(c):
-    """Rule 117 tenth amendment: design references in their own block below the quotes. Empty hook until the design round fills DREFS."""
-    h = "<p></p><p><strong>References from Design</strong></p>"
+    """Rule 117 tenth amendment: design references in their own block below the quotes (round 2, 2 Nov 2026): the board/page and picture
+    names, the pictures attached to the case, the design's own words quoted, and any difference with its register id. A case whose
+    screen no board draws has no entry in DREFS and gets no References from Design heading at all (coordinator, round 2)."""
     d = DREFS.get(c["key"])
-    if not d: return h
-    if d.get("pages"): h += "<p>" + e(f"Design {DESIGN_URL}: " + ", ".join(d["pages"])) + "</p>"
+    if not d: return ""
+    h = "<p></p><p><strong>References from Design</strong></p>"
+    if d.get("pages"): h += "<p>" + e(d["pages"]) + "</p>"
     if d.get("pictures"): h += "<p>Design pictures attached to this case:</p><ul>" + "".join(f"<li>{e(x)}</li>" for x in d["pictures"]) + "</ul>"
     if d.get("words"): h += "<p>The design's own words:</p><ul>" + "".join(f"<li>&ldquo;{e(w)}&rdquo;</li>" for w in d["words"]) + "</ul>"
+    for n in d.get("notes") or []: h += "<p>" + e(n) + "</p>"
     return h
+
+
+# every word quoted from the design must be in the design package (board files, the design system's files, or the figure captions)
+_DESIGN_DIR = f"{P}/design-2026-11-02/files/project"
+_dtext = []
+for _root, _dirs, _files in os.walk(_DESIGN_DIR):
+    for _f in _files:
+        if _f.endswith((".html", ".css", ".json", ".md")): _dtext.append(open(os.path.join(_root, _f), errors="replace").read())
+DESIGNW = ws(re.sub(r"\s*\*\s+", " ", re.sub(r"<[^>]+>", " ", " ".join(_dtext))))
+DESIGNW_RAW = ws(" ".join(_dtext))
+DESIGN_IMAGES = f"{P}/design-2026-11-02/images"
 
 
 def quotes_block(c):
@@ -337,4 +351,12 @@ def check(c):
     if not any(isinstance(x, str) or not x[0].startswith(("Jira", "Tech plan")) for x in c["q"]):
         p.append(f"{k}: no PRD quote (Rule 57: the PRD is the source of every expected result)")
     if not c["marker"].startswith("AUTOMATION: "): p.append(f"{k}: marker")
+    d = DREFS.get(k)
+    if c["sec"] == "DESIGN" and not d: p.append(f"{k}: a design case without References from Design")
+    if d:
+        for x in d.get("pictures") or []:
+            if not os.path.exists(f"{DESIGN_IMAGES}/{x}"): p.append(f"{k}: design picture {x} not in design-2026-11-02/images/")
+        for w in d.get("words") or []:
+            if ws(w) not in DESIGNW and ws(w) not in DESIGNW_RAW: p.append(f"{k}: design words not found in the design package: {w[:70]!r}")
+        if not (d.get("pages") or "").startswith('Design canvas "Technician Toggle"'): p.append(f"{k}: References from Design does not name the canvas")
     return p

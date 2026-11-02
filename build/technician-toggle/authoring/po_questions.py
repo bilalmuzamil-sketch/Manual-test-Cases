@@ -41,6 +41,45 @@ QUESTIONS = [
   ["(a) The filter stays set to them and keeps showing their work", "(b) The filter drops them, as if they had never been picked",
    "(c) Something else (please say)"],
   "Held: one case waits on this answer."),
+ # ---- 5 to 8: questions from reading the design (design-2026-11-02/NEW-QUESTIONS.py, rows 1, 2, 3 and 4; register TT-D01, TT-D02,
+ # TT-D04, TT-D06), merged into this one sheet on 2 Nov 2026 (Rule 131: one sheet per suite; no sheet existed yet). Skill 07 §6 was
+ # re-run on each against our own sources (PRD v17, stories, tech plan): none is settled by them, so all four are kept (see KEPT).
+ ("tt-d01",
+  "Technician Toggle, New Staff Member window: pick the Technician role and switch Time Clock on, and Technician switches on by itself. "
+  "If Time Clock is then switched off and on again, what should Technician do?",
+  'S1-R5: "In New Staff Member, turning Time Clock on pre-fills Technician from the role (S1-R3), unless the user has already switched '
+  'Technician by hand." The design\'s page 2 note agrees ("Changing the role or Time Clock sets it again from the role"), but its page 3 '
+  'note, under a New Staff Member picture, says "Turning Time Clock back on leaves Technician off; the user turns it on." and "Edit behaves the same."',
+  ["(a) As the spec: it switches on again by itself from the role, unless the user had already switched Technician by hand",
+   "(b) As the design's page 3 note: it stays off and the user turns it on", "(c) Something else (please say)"],
+  "Held: the spec case for switching Time Clock back on in New Staff Member and the design-version case."),
+ ("tt-d02",
+  "Technician Toggle, Edit Line window: a person was added to a line with Add Technician and later their Technician toggle is turned off. "
+  "In Edit Line, how should that person's chip look?",
+  'S3-R8: "In Edit Line they show as an ordinary chip that can be removed with its X, unless they have logged time on the line, in which '
+  'case the chip shows the existing lock". Story SV-11881 agrees ("an ordinary chip (not grayed out)"). The design does not draw the chip; '
+  'its note under the Add Technician picture says "Anyone already on a line who is not a technician any more stays on it and shows grayed '
+  'out, the same as a deactivated technician today."',
+  ["(a) As the spec: an ordinary chip, not grayed out, removable with its X (with the lock if they have logged time)",
+   "(b) As the design's note: grayed out, the same as a deactivated technician today", "(c) Something else (please say)"],
+  "Held: the spec cases for the Edit Line chip (ordinary, locked, removed), the design case for the ordinary chip and the design-version case."),
+ ("tt-d04",
+  "Technician Toggle, Board View and Tech View empty state: the spec gives \"No technicians yet\" two sentences, and the ShopView design "
+  "system the design uses allows at most one sentence in an empty state. Which should it show?",
+  'S3-R10: the text "Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in '
+  'Unassigned." The design system (ds/shopview/components.css, EMPTY STATE): "One rule for every empty state in the product: ONE icon from '
+  'the set, a title, at most one sentence, and the action that fills it." The design draws no empty state for this feature.',
+  ["(a) As the spec, both sentences", "(b) One sentence only (please give the words)", "(c) The design system's rule does not apply here; keep (a)"],
+  "Held: the spec cases for \"No technicians yet\" on Board View and Tech View and the design case for the same state."),
+ ("tt-d06",
+  "Technician Toggle, New Staff Member window: after Save & Add Next the window stays open, empty, for the next person. In that next, "
+  "empty form, how is Technician set?",
+  'S1-R3: Technician is pre-filled "when the window opens and again each time the role or Time Clock is changed, until the user switches '
+  'Technician by hand", and "The toggle as shown is what is saved." The PRD names only "the window\'s existing Save"; the design shows '
+  "Save & Add Next and Save & Close in every New Staff Member picture. The stories and the tech plan do not mention Save & Add Next.",
+  ["(a) As if the window had just opened: set from the role again, and any earlier switch by hand is forgotten",
+   "(b) It keeps the previous person's hand choice until the user changes it", "(c) Something else (please say)"],
+  "Held: one spec case for the form after Save & Add Next."),
 ]
 # Skill 07 §6: points that looked like questions but our own sources answer them, so they are not asked (2 Nov 2026).
 DROPPED = {
@@ -63,4 +102,16 @@ DROPPED = {
  "both-reasons-message": ('Which tooltip shows when Time Clock is off and the role is Office User: Story 1 Error Handling (v17) "the message is '
                         '\\"This role can\'t be a technician.\\", both on hover in the window and in the refusal." Answered.'),
 }
+# Skill 07 §6 re-run on the four design questions (2 Nov 2026): why each is KEPT, not dropped
+KEPT = {
+ "tt-d01": "PRD S1-R5 is explicit, but the design (the other authority) says the opposite in its page 3 note, and the canvas has no date, so "
+           "latest-wins cannot decide it (register TT-D01). A document-vs-design conflict is the PO's (skill 07 §5).",
+ "tt-d02": "The PRD, story SV-11881 and the tech plan (D1: former technicians are not disabled) agree on an ordinary chip, but the design's "
+           "own note says grayed out; Rule 130 closes a design difference only with a sent question or a ruling.",
+ "tt-d04": "The PRD text is explicit, but the design system's always-rule is in scope (L-01) and contradicts it; no source rules on which wins.",
+ "tt-d06": "No source mentions Save & Add Next; S1-R3 says the pre-fill runs \"when the window opens\", and after Save & Add Next the window "
+           "does not open again, so the PRD does not settle it.",
+}
+DESIGN_DROPPED_SEE = ("The design worker's own skill 07 §6 drops (TT-D03, TT-D05, TT-D07 to TT-D15 and the 19 not-drawn states) are listed, "
+                      "with the source that settles each, in design-2026-11-02/NEW-QUESTIONS.py and DESIGN-DIVERGENCE-REGISTER.json.")
 QN = {s: i for i, (s, *_) in enumerate(QUESTIONS, 1)}

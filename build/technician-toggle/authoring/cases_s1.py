@@ -115,12 +115,11 @@ role_gray("S1-13", "Time Clock User")
 
 C("S1-14", S, "With Time Clock off, Technician is grayed out with the Time Clock tooltip",
   [ADMIN, LIST],
-  [NEWWIN, 'In Role, pick "Technician".', TC_OFF, "Hover the Technician toggle.", "Switch Time Clock on."],
+  [NEWWIN, 'In Role, pick "Technician".', TC_OFF, "Hover the Technician toggle."],
   [["The New Staff Member window opens."], ["Role shows Technician."],
    ["Time Clock is off.", "Technician is off and grayed out.", "Clicking the Technician toggle does not switch it on."],
-   [f'A tooltip shows "{TIP_TC}"'],
-   ["Time Clock is on.", "Technician switches on by itself and is no longer grayed out."]],
-  ["S1-R4", "UFS-2", "S1-R3", "S1-R5", "KD-TWO", "EH-S1"])
+   [f'A tooltip shows "{TIP_TC}"']],
+  ["S1-R4", "UFS-2", "KD-TWO", "EH-S1"])   # round 2: the Time-Clock-back-on step moved out (it depends on PO question 5; S1-16 holds it)
 
 C("S1-15", S, "New Staff Member sets Technician again each time the role changes",
   [ADMIN, LIST],
@@ -134,7 +133,7 @@ C("S1-16", S, "New Staff Member sets Technician again when Time Clock changes",
   [NEWWIN, 'In Role, pick "Technician".', TC_ON, "Switch Time Clock off.", "Switch Time Clock on."],
   [["The New Staff Member window opens."], ["Role shows Technician."], [TC_ON_RES, "Technician is on."],
    ["Technician switches off and is grayed out."], ["Technician switches on again by itself."]],
-  ["S1-R3", "S1-R4", "S1-R5"])
+  ["S1-R3", "S1-R4", "S1-R5"], marker="PO:tt-d01")   # round 2: the design's page 3 note says it stays off (TT-D01)
 
 C("S1-17", S, "After a hand switch off, role and Time Clock no longer turn Technician on",
   [ADMIN, LIST],
@@ -298,3 +297,13 @@ C("S1-36", S, "Deactivate Account shows no Turn Off Technician warning and keeps
    ["Work order 1 still shows staff member A as its lead."],
    ["Staff member A is listed last, grayed out, with the check mark, and cannot be picked.", "Staff member B is offered and can be picked."]],
   ["S1-E4", "S1-E2", "S3-R7"])
+
+# round 2 (2 Nov 2026): Save & Add Next (design shows it; the PRD names only "the window's existing Save"; register TT-D06, PO question 8)
+C("S1-37", S, "After Save & Add Next, the empty form sets Technician from the role again",
+  [ADMIN, "Choose names and email addresses for two new staff members made by this test.", LIST],
+  [NEWWIN] + NEW_FIELDS + [TC_ON, 'In Role, pick "Parts Manager".', "Switch Technician on.", "Click Save & Add Next.", TC_ON, 'In Role, pick "Service Advisor".'],
+  [["The New Staff Member window opens."]] + NEW_FIELDS_RES +
+  [[TC_ON_RES], ["Technician is off."], ["Technician is on."],
+   ["The first staff member is saved and the window stays open with an empty form for the next person."],
+   [TC_ON_RES], ["Role shows Service Advisor.", "Technician is off, set from the role: the first person's switch by hand is not carried over."]],
+  ["S1-R3"], marker="PO:tt-d06")

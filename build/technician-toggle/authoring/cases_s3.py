@@ -154,20 +154,20 @@ C("S3-24", S, "In Edit Line, a former technician is a removable chip and stays w
   ["Open work order 1.", "Open Edit Line for line 1.", "Replace the line description with the new description.", "Save the Edit Line window.", "Open Edit Line for line 1."],
   [["Work order 1 opens."], ["Staff member A shows as an ordinary chip with an X, not grayed out and with no lock."], ["The description field shows the new description."],
    ["The window closes and the new description shows."], ["Staff member A's chip is still there: saving kept them on the line."]],
-  ["S3-R8"])
+  ["S3-R8"], marker="PO:tt-d02")
 C("S3-25", S, "In Edit Line, a former technician with logged time shows the lock",
   [ADMIN, B, wo(1, "In Progress", "staff member B", extra=", with one approved line, line 1", why=", so the line belongs to someone else's work order"),
    on_line("with time logged on line 1 (they pressed Start on it and later stopped)")],
   ["Open work order 1.", "Open Edit Line for line 1.", "Hover staff member A's chip."],
   [["Work order 1 opens."], ["Staff member A's chip shows the existing lock and no X."],
    ['The text "This technician has logged time on the line and cannot be removed." shows, as today.']],
-  ["S3-R8"])
+  ["S3-R8"], marker="PO:tt-d02")
 C("S3-26", S, "Removing a former technician's chip in Edit Line takes them off the line",
   [ADMIN, B, wo(1, "Approved", "staff member B", extra=", with one approved line, line 1", why=", so the line belongs to someone else's work order"), on_line("added with Add Technician, with no time logged on the line")],
   ["Open work order 1.", "Open Edit Line for line 1.", "Click the X on staff member A's chip.", "Save the Edit Line window.", "Open Edit Line for line 1."],
   [["Work order 1 opens."], ["Staff member A shows as a chip with an X."], ["Staff member A's chip is gone."], ["The window closes."],
    ["Staff member A is no longer on line 1."]],
-  ["S3-R8"])
+  ["S3-R8"], marker="PO:tt-d02")
 C("S3-27", S, "Saving Edit Line drops a labor-only person outside the Time Clock list, as today",
   [ADMIN, B, wo(1, "Approved", "staff member B", extra=", with two approved lines, line 1 and line 2", why=", so the work order has a second line for a labor entry"),
    "Have a new staff member for this test, staff member C, who has a labor entry on line 2 of work order 1, is also on line 1 with no time logged on line 1, and then has Time Clock switched off, so they are outside the location's Time Clock list.",
@@ -199,14 +199,14 @@ C("S3-29", S, 'Board View with no technicians shows "No technicians yet" with th
   [ADMIN, LOCC, WO_C, "Make sure neither Assigned to me nor a Technician filter is on."],
   ["Open Work Orders, Board View."],
   [[f'The board shows the title "{NT_TITLE}" with the text "{NT_TEXT}"', "No technician column shows."]],
-  ["S3-R10"])
+  ["S3-R10"], marker="PO:tt-d04")
 C("S3-30", S, 'Tech View with no technicians shows "No technicians yet" with the new text',
   [ADMIN, LOCC, WO_C, "Make sure neither Assigned to me nor a Technician filter is on."],
   ["Open Work Orders, Tech View."],
   [[f'Tech View shows the title "{NT_TITLE}" with the text "{NT_TEXT}"', "No technician group shows."]],
-  ["S3-R10"])
+  ["S3-R10"], marker="PO:tt-d04")
 C("S3-31", S, 'With no technicians and no work orders, "Nothing here yet" has the new text',
-  [ADMIN, LOCC.replace(" (every staff member", ", with no work order on the open tab, and (every staff member"),
+  [ADMIN, "Have a new location for this test, location C, in the same organization, with no work order on the open tab, where no enrolled staff member is a technician (every staff member enrolled there has Technician off), so the board there has no technician and no work.",
    "Make sure neither Assigned to me nor a Technician filter is on."],
   ["Open Work Orders, Board View."],
   [['The "Nothing here yet" state shows with its title unchanged.', f'Its text reads "{NH_TEXT}"']],
