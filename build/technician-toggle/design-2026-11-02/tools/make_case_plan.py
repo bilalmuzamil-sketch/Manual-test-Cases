@@ -1,0 +1,502 @@
+#!/usr/bin/env python3
+"""Writes DESIGN-CASE-PLAN.md: every "looks as in the design" case the skill 21 §6d checklist needs for Technician Toggle, written in
+full in the QA lead's pattern (Rule 117 fourteenth and fifteenth amendments; titles "Design: ", at most 80 characters, no semicolons),
+plus the held design-version cases (Rule 130.5). Every PRD quote is asserted to be in PRD v17 word for word, and every design quote to
+be in the board files, so nothing is paraphrased or invented (Rules 113, 57). Run: python3 -I tools/make_case_plan.py"""
+import html, os, re, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PRD = open(os.path.join(ROOT, "..", "sources", "CONFLUENCE-977371146-v17-2026-11-02.md"), encoding="utf-8").read()
+BOARDS = " ".join(html.unescape(open(os.path.join(ROOT, "files", "project", f), encoding="utf-8").read())
+                  for f in os.listdir(os.path.join(ROOT, "files", "project")) if f.endswith(".dc.html"))
+BOARDS = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", BOARDS))
+CANVAS = 'Design canvas "Technician Toggle" (https://claude.ai/artifact/1fuPz8Y4xTg7Syq1mfmJ9R), version 1793629882-06f7, read 2 Nov 2026'
+STORY = {1: ("SV-11879", "Story 1, Technician toggle on a staff member"), 2: ("SV-11880", "Story 2, Warning before turning Technician off"),
+         3: ("SV-11881", "Story 3, Who appears on the technician lists"), 4: ("SV-11882", "Story 4, Technician column and notice on the staff list")}
+def FROM(*stories):
+    s = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in stories)
+    return f'From: PRD "Technician Toggle", Confluence 977371146, version 17 (2 Nov 2026, Chris Ward), read 2 Nov 2026 · Epic SV-11788, {s}'
+def Q(code, *sents):
+    for s in sents:
+        if s not in PRD: sys.exit(f"QUOTE NOT IN PRD v17 ({code}): {s}")
+    return f"- {code}: “{' '.join(sents)}”"
+def DW(s):
+    if s not in BOARDS: sys.exit(f"DESIGN WORDS NOT IN THE BOARDS: {s}")
+    return f"- “{s}”"
+BUILD = "Not yet checked against a build."
+DESKTOP = "Use a desktop browser window 1440 pixels wide, at 100% zoom."
+ADMIN = "Sign in as an Admin at the test location."
+NOTDATE = "Use the build before the \"New\" pill end date (07:00 UTC on the seventh day after the release that ships Technician Toggle), by your computer's clock."
+READY = "AUTOMATION: READY"
+HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO"
+C = []
+def case(id, title, pics, pre, steps, results, quotes, design, words, auto=READY, note=None):
+    assert title.startswith("Design: ") and len(title) <= 80 and ";" not in title, title
+    assert len(steps) == len(results), id
+    if "In the Settings menu, click Staff." in steps: pre = pre + ["Start on the Settings page."]
+    C.append(dict(id=id, title=title, pics=pics, pre=pre, steps=steps, results=results, quotes=quotes, design=design, words=words, auto=auto, note=note))
+
+# ============ A. Staff list (page 1, Story 4) ============
+case("DC-01", "Design: Staff list shows the New notice between the toolbar and the tabs",
+ ["tt-p1-02-after-notice-and-technician-column.png", "tt-p1-01-before-staff-list.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Open the attached picture tt-p1-02-after-notice-and-technician-column.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff."],
+ [["A light blue box with a blue (i) icon at its left sits below the toolbar (Staff, Search, Permissions, Locations, Departments, New Staff Member) and above the Active and Deactivated tabs, as in the picture.",
+   "Its text reads exactly: New: Decide who appears on Board View, Tech View and the technician dropdowns. Turn Technician on or off for each person in their staff settings, next to Sales Representative. To start, it is on for everyone who worked on a work order in the last 90 days, is on open work, or is billable.",
+   "At 1440 px the text runs on two lines and nothing in the box is cut off.",
+   "The box has no close button (no X), and the tabs still show below it."]],
+ [(FROM(4), [Q("S4-R4", "A notice shows on the staff list, below the page toolbar and above the Active and Deactivated tabs, including when the list fails to load (the existing \"Something went wrong loading the staff list. Please try again.\" line then sits between the toolbar and the notice), with this text: \"New: Decide who appears on Board View, Tech View and the technician dropdowns. Turn Technician on or off for each person in their staff settings, next to Sales Representative. To start, it is on for everyone who worked on a work order in the last 90 days, is on open work, or is billable.\""),
+             Q("S4-R5", "The notice cannot be closed."),
+             Q("§8 row 1", "Info notice at the top of the staff list, cannot be closed, disappears for everyone at the end date")])],
+ 'page "1 Staff list", pictures "Notice and Technician column" (This build) and "Staff list" (Production today (before), no notice)',
+ [DW("No close button: it disappears for everyone on the \"New\" pill's end date."), DW("Billable is the last column. There is no Technician column and no notice.")])
+
+case("DC-02", "Design: Technician column sits just left of Billable on the staff list",
+ ["tt-p1-02-after-notice-and-technician-column.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Have at least one active staff member with Time Clock on and Technician on, and one with Technician off, so the column shows both values.",
+  "Open the attached picture tt-p1-02-after-notice-and-technician-column.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Scroll the staff table to its last columns."],
+ [["The staff list opens on the Active tab."],
+  ["The column order at the right end is: Created, Confirmed Invitation, Technician, Billable, then the row edit icon, as in the picture.",
+   "The Technician header is in bold dark text, like the Billable header.",
+   "Each Technician cell shows only a Yes or a No pill: there is no switch, dropdown or link in the cell."]],
+ [(FROM(4), [Q("S4-R1", "The staff list (Settings, Staff) gains a read-only \"Technician\" column directly left of Billable, on the Active and Deactivated tabs."),
+             Q("S4-E1", "The column is not editable on the list; the value changes only through the staff window (Story 1) or the person's Time Clock.")])],
+ 'page "1 Staff list", picture "Notice and Technician column" (This build)',
+ [DW("Technician column, read-only and sortable, just left of Billable: Yes when the person's Technician toggle is on and their Time Clock is on, otherwise No."), DW("Settings, Staff, scrolled to the last columns.")],
+ note="Difference named for the case worker: the caption says \"It changes only through the staff window (page 2).\"; S4-E1 also names the person's Time Clock (register TT-D09, settled by S4-E1).")
+
+case("DC-03", "Design: New pill sits at the top right of the Technician column header",
+ ["tt-p1-02-after-notice-and-technician-column.png", "tt-p5-04-after-tech-view.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Open the attached pictures tt-p1-02-after-notice-and-technician-column.png and tt-p5-04-after-tech-view.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Scroll the staff table to its last columns.", "Open Work Orders in a second browser tab and look at the display switcher at the top right."],
+ [["The staff list opens on the Active tab."],
+  ["A small rounded \"New\" pill sits at the top right of the word Technician in the column header, its left edge touching the end of the word, as in the picture.",
+   "The pill stays inside the Technician column and does not touch or cover the Billable header.",
+   "The pill has a light blue fill, a thin blue border and blue text."],
+  ["The \"New\" pill above the Work Orders display switcher has the same size, shape and colours as the pill in the Technician header."]],
+ [(FROM(4, 1), [Q("S4-R3", "A \"New\" pill sits at the top right of the \"Technician\" column header, touching the end of the word and inside the column, clear of the Billable header.", "It follows the same end date as S1-R2."),
+                Q("S1-R2", "It looks the same as the pill on the Work Orders display switcher.")])],
+ 'page "1 Staff list", picture "Notice and Technician column" (This build); page "5 Board View and Tech View", picture "Tech View" (This build) for the switcher pill',
+ [DW("\"New\" pill at the top right of the Technician header.")])
+
+case("DC-04", "Design: Technician Yes and No pills look like the Billable pills",
+ ["tt-p1-02-after-notice-and-technician-column.png", "tt-p2-07-after-saved.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Have an active staff member with Time Clock on, Technician on and Billable No (staff member A).",
+  "Have an active staff member with Time Clock on, Technician off and Billable Yes (staff member B).",
+  "Open the attached pictures tt-p1-02-after-notice-and-technician-column.png and tt-p2-07-after-saved.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Scroll the staff table to its last columns."],
+ [["The staff list opens on the Active tab."],
+  ["Staff member A shows a green Yes pill under Technician and a red No pill under Billable.",
+   "Staff member B shows a red No pill under Technician and a green Yes pill under Billable.",
+   "The green pills in both columns have the same size, shape, colour and white text, and so do the red pills, as in the pictures."]],
+ [(FROM(4), [Q("S4-R1", "Each row shows \"Yes\" (green) when the person is active, their Technician toggle is on and their Time Clock is on, otherwise \"No\" (red), in the same style as the Billable column.")])],
+ 'page "1 Staff list", picture "Notice and Technician column"; page "2 Turn Technician on for a staff member", picture "Saved" (both This build)',
+ [DW("The staff list, filtered to Parts Manager, now shows Technician Yes. Billable stays No: Technician never changes Billable.")])
+
+case("DC-05", "Design: Staff list header fits without overlap at 1440 and 1536 px",
+ ["tt-p1-02-after-notice-and-technician-column.png"],
+ [ADMIN, NOTDATE, "Use a desktop browser at 100% zoom on a screen at least 1536 pixels wide.", "Open the attached picture tt-p1-02-after-notice-and-technician-column.png at 100% zoom beside the screen."],
+ ["Set the browser window to 1440 pixels wide.", "In the Settings menu, click Staff.", "Scroll the staff table to its last columns.", "Set the browser window to 1536 pixels wide."],
+ [["The window is 1440 pixels wide."],
+  ["The notice, the tabs and the table show as in the picture."],
+  ["The Technician header, its \"New\" pill and the Billable header do not overlap and none is cut off.",
+   "The notice text is whole, with nothing cut off or hidden behind another element."],
+  ["The notice, the Technician header with its pill and the Billable header still do not overlap and nothing is cut off.",
+   "The notice may now take fewer lines; its text is unchanged."]],
+ [(FROM(4), [Q("S4-R3", "A \"New\" pill sits at the top right of the \"Technician\" column header, touching the end of the word and inside the column, clear of the Billable header.")])],
+ 'page "1 Staff list", picture "Notice and Technician column" (This build, 1440 x 900)',
+ [DW("Every picture is a real screenshot at 1440 x 900.")])
+
+case("DC-06", "Design: Deactivated tab shows the Technician column with No",
+ ["tt-p1-02-after-notice-and-technician-column.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Have a deactivated staff member whose Technician toggle was on and Time Clock on before they were deactivated."],
+ ["In the Settings menu, click Staff.", "Click the Deactivated tab.", "Scroll the staff table to its last columns."],
+ [["The staff list opens on the Active tab."], ["The Deactivated tab opens."],
+  ["The Technician column sits directly left of Billable, with the same header and \"New\" pill as on the Active tab.",
+   "The deactivated staff member shows a red No pill under Technician."]],
+ [(FROM(4), [Q("S4-R1", "The staff list (Settings, Staff) gains a read-only \"Technician\" column directly left of Billable, on the Active and Deactivated tabs.", "A deactivated person always shows \"No\", whatever their toggles.")])],
+ 'page "1 Staff list" (the design draws the Active tab only; no picture of the Deactivated tab, register TT-N15)',
+ [DW("A deactivated person always shows No.")])
+
+# ============ B. Staff windows (pages 2 and 3, Story 1) ============
+case("DC-07", "Design: New Staff Member shows the three toggles in one row below Billable",
+ ["tt-p2-02-after-new-staff-member.png", "tt-p2-01-before-new-staff-member.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Open the attached pictures tt-p2-02-after-new-staff-member.png and tt-p2-01-before-new-staff-member.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click New Staff Member."],
+ [["The staff list opens."],
+  ["The New Staff Member window opens with the fields in the same places as in the picture: First Name and Last Name, Email, Salary Type and Salary, Job Title and Role, All Departments and Location, then Billable alone on its row.",
+   "Below Billable is one row of its own with three toggles, left to right: Time Clock, Sales Representative, Technician.",
+   "The Technician toggle has the same shape and size as the other two, and the \"New\" pill sits at the top right of the word Technician.",
+   "Below the toggle row are the orange \"Adding new staff members will impact billing.\" line and the buttons Save & Add Next and Save & Close, as in the picture."]],
+ [(FROM(1), [Q("S1-R1", "The New Staff Member and Edit Staff Member windows (Settings, Staff) show a toggle labeled \"Technician\" directly to the right of the Sales Representative toggle, as the last toggle in that row (Time Clock, Sales Representative, Technician).", "In both windows the three toggles share one row of their own, below the Billable field, so New and Edit look the same, in the same style as the window's other toggles.")])],
+ 'page "2 Turn Technician on for a staff member", pictures "New Staff Member" (This build) and "New Staff Member" (Production today (before))',
+ [DW("The three toggles move to one row of their own below Billable, the same row as Edit: Time Clock, Sales Representative, Technician. Nothing else moves."), DW("Time Clock and Sales Representative sit beside Billable. No Technician toggle.")])
+
+case("DC-08", "Design: Technician is grayed out when New Staff Member opens",
+ ["tt-p2-02-after-new-staff-member.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Open the attached picture tt-p2-02-after-new-staff-member.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click New Staff Member."],
+ [["The staff list opens."],
+  ["The window opens with no role picked and the Time Clock toggle off.",
+   "The Technician toggle is off and grayed out: its track is a lighter grey than the Sales Representative toggle's and the word Technician is grey, as in the picture.",
+   "Time Clock and Sales Representative are off and not grayed out."]],
+ [(FROM(1), [Q("S1-R4", "Technician can only be on while Time Clock is on.", "While Time Clock is off, the Technician toggle is off and grayed out, and hovering it shows \"Turn on Time Clock first. Only staff who clock in can be technicians.\"")])],
+ 'page "2 Turn Technician on for a staff member", picture "New Staff Member" (This build)',
+ [DW("The window opens with no role and Time Clock off, so Technician starts off and grayed out.")])
+
+case("DC-09", "Design: Technician switches on with the Technician role and Time Clock",
+ ["tt-p2-03-after-technician-role-picked.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Open the attached picture tt-p2-03-after-technician-role-picked.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click New Staff Member.", "In Role, pick the built-in Technician role.", "Switch Time Clock on."],
+ [["The staff list opens."], ["The New Staff Member window opens with Technician off and grayed out."], ["Role shows Technician. Technician is still off and grayed out, because Time Clock is off."],
+  ["Time Clock is on (blue) and Technician switches on by itself.",
+   "The Technician toggle is no longer grayed out: it is blue with the knob at the right, the same blue as Time Clock, and the word Technician is dark, as in the picture.",
+   "Sales Representative stays off."]],
+ [(FROM(1), [Q("S1-R3", "In the New Staff Member window, Technician is pre-filled from the role shown: on when the role is the built-in Technician or the built-in Foreman role and Time Clock is on, otherwise off.")])],
+ 'page "2 Turn Technician on for a staff member", picture "Technician role picked" (This build)',
+ [DW("Time Clock on and the built-in Technician role picked: Technician switches on by itself.")])
+
+case("DC-10", "Design: Time Clock tooltip on the grayed Technician toggle looks as designed",
+ ["tt-p3-01-after-time-clock-off.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Open the attached picture tt-p3-01-after-time-clock-off.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click New Staff Member.", "Point at the grayed-out Technician toggle without clicking."],
+ [["The staff list opens."], ["The New Staff Member window opens with Time Clock off and Technician grayed out."],
+  ["A dark grey tooltip with white text opens below the toggle row, centred under Technician, as in the picture.",
+   "It reads exactly: Turn on Time Clock first. Only staff who clock in can be technicians.",
+   "The text is on one line, nothing is cut off, and the tooltip closes when the pointer moves away."]],
+ [(FROM(1), [Q("S1-R4", "While Time Clock is off, the Technician toggle is off and grayed out, and hovering it shows \"Turn on Time Clock first. Only staff who clock in can be technicians.\""),
+             Q("§8 row 2", "Hover the grayed-out Technician toggle while Time Clock is off (S1-R4)")])],
+ 'page "3 When Technician can\'t be turned on", picture "Time Clock off" (This build)',
+ [DW("Tooltip, verbatim: \"Turn on Time Clock first. Only staff who clock in can be technicians.\""), DW("The tooltip shows while hovering the grayed-out toggle.")])
+
+case("DC-11", "Design: Office User role tooltip on the Technician toggle looks as designed",
+ ["tt-p3-02-after-built-in-office-user-role.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Open the attached picture tt-p3-02-after-built-in-office-user-role.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click New Staff Member.", "Switch Time Clock on.", "In Role, pick the built-in Office User role.", "Point at the grayed-out Technician toggle without clicking."],
+ [["The staff list opens."], ["The New Staff Member window opens."], ["Time Clock is on and Technician is not grayed out."],
+  ["Role shows Office User. Technician is off and grayed out, as in the picture."],
+  ["A dark grey tooltip with white text opens below the toggle row, under Technician, as in the picture.",
+   "It reads exactly: This role can't be a technician."]],
+ [(FROM(1), [Q("S1-N1", "When the role picked in the window is the built-in Office User or Time Clock User role, the Technician toggle is off and grayed out, and hovering it shows \"This role can't be a technician.\"", "Picking one of those roles turns Technician off."),
+             Q("§8 row 3", "Hover the grayed-out Technician toggle on the built-in Office User or Time Clock User role (S1-N1)")])],
+ 'page "3 When Technician can\'t be turned on", picture "Built-in Office User role" (This build)',
+ [DW("On the built-in Office User or Time Clock User role, Technician is off and grayed out.")])
+
+case("DC-12", "Design: Time Clock User role grays out Technician with the same tooltip",
+ ["tt-p3-02-after-built-in-office-user-role.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Open the attached picture tt-p3-02-after-built-in-office-user-role.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click New Staff Member.", "Switch Time Clock on.", "In Role, pick the built-in Time Clock User role.", "Point at the grayed-out Technician toggle without clicking."],
+ [["The staff list opens."], ["The New Staff Member window opens."], ["Time Clock is on and Technician is not grayed out."],
+  ["Role shows Time Clock User. Technician is off and grayed out, the same as for Office User in the picture."],
+  ["The same dark grey tooltip opens below the toggle row and reads exactly: This role can't be a technician."]],
+ [(FROM(1), [Q("S1-N1", "When the role picked in the window is the built-in Office User or Time Clock User role, the Technician toggle is off and grayed out, and hovering it shows \"This role can't be a technician.\"")])],
+ 'page "3 When Technician can\'t be turned on", picture "Built-in Office User role" (This build); the design draws Office User only (register TT-N03)',
+ [DW("On the built-in Office User or Time Clock User role, Technician is off and grayed out.")])
+
+case("DC-13", "Design: Edit Staff Member shows the same toggle row as New Staff Member",
+ ["tt-p2-05-after-technician-off.png", "tt-p2-04-before-edit-staff-member.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Have an active staff member with Time Clock on and Technician off (for example a Parts Manager), staff member A.",
+  "Open the attached pictures tt-p2-05-after-technician-off.png and tt-p2-04-before-edit-staff-member.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click the edit icon on staff member A's row."],
+ [["The staff list opens."],
+  ["The Edit Staff Member window opens with Location and Billable side by side, then one row of its own with Time Clock, Sales Representative, Technician, left to right, as in the picture.",
+   "Technician is off and not grayed out (Time Clock is on), and the \"New\" pill sits at the top right of the word Technician.",
+   "The TECHNICIAN HOURS section with \"Set working hours for this technician\", the orange \"Role changes may impact billing.\" line and the buttons are below the toggle row, as in the picture; nothing else has moved compared with the production picture."]],
+ [(FROM(1), [Q("S1-R1", "In both windows the three toggles share one row of their own, below the Billable field, so New and Edit look the same, in the same style as the window's other toggles.")])],
+ 'page "2 Turn Technician on for a staff member", pictures "Technician off" (This build) and "Edit Staff Member" (Production today (before))',
+ [DW("In both windows the toggles share one row below Billable: Time Clock, Sales Representative, Technician.")])
+
+case("DC-14", "Design: Technician switched on in Edit Staff Member before saving",
+ ["tt-p2-06-after-switched-on.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Have an active staff member with Time Clock on and Technician off, staff member A.", "Open the attached picture tt-p2-06-after-switched-on.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click the edit icon on staff member A's row.", "Switch Technician on."],
+ [["The staff list shows staff member A with No under Technician."], ["The Edit Staff Member window opens with Technician off."],
+  ["Technician is on: blue with the knob at the right, the same look as Time Clock, as in the picture.",
+   "No warning or message opens.",
+   "The staff list behind the window still shows No under Technician for staff member A."]],
+ [(FROM(1), [Q("S1-R6", "Switching Technician on or off changes nothing until the user saves the staff member with the window's existing Save."),
+             Q("S1-R7", "A save that turns Technician on never shows a warning.")])],
+ 'page "2 Turn Technician on for a staff member", picture "Switched on" (This build)',
+ [DW("Switched on, not saved yet. Nothing changes until Save & Close."), DW("Turning it on never shows a warning and never logs her out.")],
+ note="The window's existing save button is labelled Save & Close (register TT-D05, settled by S1-R6).")
+
+case("DC-15", "Design: Staff list shows Technician Yes and Billable No after the save",
+ ["tt-p2-07-after-saved.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Have an active staff member with Time Clock on, Technician off and Billable No, staff member A.", "Open the attached picture tt-p2-07-after-saved.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click the edit icon on staff member A's row.", "Switch Technician on.", "Click Save & Close."],
+ [["The staff list shows staff member A with No under Technician and No under Billable."], ["The Edit Staff Member window opens."], ["Technician is on."],
+  ["The window closes without a warning and the staff list shows staff member A with a green Yes under Technician and a red No under Billable, as in the picture."]],
+ [(FROM(1, 4), [Q("S1-R9", "Billable and Sales Representative work exactly as today.", "Technician does not change, gray out or require either of them, and neither of them changes Technician."),
+                Q("S4-R1", "Each row shows \"Yes\" (green) when the person is active, their Technician toggle is on and their Time Clock is on, otherwise \"No\" (red), in the same style as the Billable column.")])],
+ 'page "2 Turn Technician on for a staff member", picture "Saved" (This build)',
+ [DW("The staff list, filtered to Parts Manager, now shows Technician Yes. Billable stays No: Technician never changes Billable.")])
+
+case("DC-16", "Design: Staff window toggle row does not wrap at 1440 and 1536 px",
+ ["tt-p2-02-after-new-staff-member.png", "tt-p2-05-after-technician-off.png"],
+ [ADMIN, NOTDATE, "Use a desktop browser at 100% zoom on a screen at least 1536 pixels wide.", "Have an active staff member with Time Clock on, staff member A.",
+  "Open the attached pictures tt-p2-02-after-new-staff-member.png and tt-p2-05-after-technician-off.png at 100% zoom beside the screen."],
+ ["Set the browser window to 1440 pixels wide.", "In the Settings menu, click Staff.", "Click New Staff Member.", "Set the browser window to 1536 pixels wide.", "Close the window with its X.", "Click the edit icon on staff member A's row."],
+ [["The window is 1440 pixels wide."], ["The staff list opens."],
+  ["Time Clock, Sales Representative and Technician with its \"New\" pill sit on one line; the pill does not overlap anything and nothing is cut off."],
+  ["The toggle row still sits on one line with nothing overlapping or cut off."], ["The New Staff Member window closes."],
+  ["In Edit Staff Member the toggle row sits on one line, the \"New\" pill does not overlap the TECHNICIAN HOURS heading, and nothing is cut off."]],
+ [(FROM(1), [Q("S1-R1", "In both windows the three toggles share one row of their own, below the Billable field, so New and Edit look the same, in the same style as the window's other toggles.")])],
+ 'page "2 Turn Technician on for a staff member", pictures "New Staff Member" and "Technician off" (This build, 1440 x 900)',
+ [DW("Every picture is a real screenshot at 1440 x 900.")])
+
+case("DC-17", "Design: New pill on the Technician toggle looks like the switcher pill",
+ ["tt-p2-02-after-new-staff-member.png", "tt-p5-04-after-tech-view.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Open the attached pictures tt-p2-02-after-new-staff-member.png and tt-p5-04-after-tech-view.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click New Staff Member.", "Open Work Orders in a second browser tab."],
+ [["The staff list opens."],
+  ["A small rounded \"New\" pill sits at the top right of the word Technician, its left edge touching the end of the word, as in the picture."],
+  ["The \"New\" pill above the Work Orders display switcher has the same size, shape, light blue fill, thin blue border and blue text as the pill on the Technician toggle."]],
+ [(FROM(1), [Q("S1-R2", "A \"New\" pill sits at the top right of the \"Technician\" label, touching the end of the word.", "It looks the same as the pill on the Work Orders display switcher.")])],
+ 'page "2 Turn Technician on for a staff member", picture "New Staff Member"; page "5 Board View and Tech View", picture "Tech View" (both This build)',
+ [DW("Technician is last, with the \"New\" pill (same end date as the staff list pill).")])
+
+# ============ C. Warning (page 4, Story 2) ============
+case("DC-18", "Design: Turn Off Technician warning looks as designed",
+ ["tt-p4-02-after-turn-off-technician-warning.png", "tt-p4-01-after-switched-off.png"],
+ [ADMIN, DESKTOP, "Have staff member A with Time Clock on and Technician on, who leads at least two open service work orders (In Progress) and is on at least two labor lines of open work orders. Note how many of each.",
+  "Open the attached pictures tt-p4-02-after-turn-off-technician-warning.png and tt-p4-01-after-switched-off.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click the edit icon on staff member A's row.", "Switch Technician off.", "Click Save & Close."],
+ [["The staff list opens."], ["The Edit Staff Member window opens with Technician on."], ["Technician is off, as in the picture \"Switched off\"; nothing is saved yet."],
+  ["A warning window opens over the dimmed Edit Staff Member window, as in the picture.",
+   "Its header is a yellow band with the title Turn Off Technician in large bold dark text and a blue X at the right.",
+   "Its text starts with staff member A's full name and the two numbers you noted, in this form: (name) leads (work orders) open work orders and is on (lines) labor lines. They'll stay on them, but won't be offered as a technician on anything new.",
+   "At the bottom right are Cancel (grey) then Save (blue), in that order."]],
+ [(FROM(2), [Q("S2-R2", "When at least one work order or line is counted, a warning window titled \"Turn Off Technician\" shows."),
+             Q("S2-R4", "The window has Cancel and Save."),
+             Q("§8 row 4", "Title \"Turn Off Technician\"; text \"[Name] leads [n] open work orders and is on [n] labor lines. They'll stay on them, but won't be offered as a technician on anything new.\" (other forms per S2-R3)")])],
+ 'page "4 Turn Technician off with open work", pictures "Switched off" and "Turn Off Technician warning" (This build)',
+ [DW("Text, verbatim with this demo's counts: \"Emily Madden leads 15 open work orders and is on 141 labor lines. They'll stay on them, but won't be offered as a technician on anything new.\""), DW("Cancel, the X or Escape leave the staff member unsaved.")])
+
+# ============ D. Board View and Tech View (page 5, Story 3) ============
+NONTECH = "Have staff member C at the test location with Time Clock on and Technician off, who leads no work order (for example a Parts Manager)."
+AROUND = "Have staff members A and B at the test location with Time Clock on and Technician on, whose names sort just before and just after staff member C's name (for example Nikola, Olivia and Parth)."
+case("DC-19", "Design: Board View shows no column for a staff member who is not a technician",
+ ["tt-p5-02-after-board-view.png", "tt-p5-01-before-board-view.png"],
+ [ADMIN, DESKTOP, NONTECH, AROUND, "Open the attached pictures tt-p5-02-after-board-view.png and tt-p5-01-before-board-view.png at 100% zoom beside the screen."],
+ ["Open Work Orders.", "Click the Board View icon in the display switcher.", "Scroll the board sideways to staff members A and B."],
+ [["Work Orders opens."], ["Board View opens with the Unassigned column first."],
+  ["Staff member A's column is followed directly by staff member B's column: there is no column for staff member C, as in the picture.",
+   "Each column header looks as in the picture: a grip, a round avatar with initials, the name, a pin icon and a count with a clipboard icon, and the empty column shows the dashed box \"Drag a work order here to assign it\"."]],
+ [(FROM(3), [Q("S3-R2", "Board View gives a column, and Tech View a group, to each person offered by S3-R1, plus everyone who leads work shown on the board (S3-E1, S3-E2)."),
+             Q("S3-N1", "A person with Technician off, or with Time Clock off, gets no Board View column, no Tech View group, and is not offered in the Technician filter or any technician dropdown, unless S3-E1 or S3-E2 applies.")])],
+ 'page "5 Board View and Tech View", pictures "Board View" (This build) and "Board View" (Production today (before))',
+ [DW("No column for her: Parth Fadadu follows Nikola Milosevic."), DW("Columns sort by name, so she sits between Nikola Milosevic and Parth Fadadu.")])
+
+case("DC-20", "Design: Tech View shows no group for a staff member who is not a technician",
+ ["tt-p5-04-after-tech-view.png", "tt-p5-03-before-tech-view.png"],
+ [ADMIN, DESKTOP, NONTECH, AROUND, "Open the attached pictures tt-p5-04-after-tech-view.png and tt-p5-03-before-tech-view.png at 100% zoom beside the screen."],
+ ["Open Work Orders.", "Click the Tech View icon in the display switcher.", "Scroll the list to staff members A and B."],
+ [["Work Orders opens."], ["Tech View opens with one group row per technician."],
+  ["Staff member A's group is followed directly by staff member B's group: there is no group for staff member C, as in the picture.",
+   "Each group row looks as in the picture: a grip, a chevron, a round avatar with initials, the name, a pin icon and a count."]],
+ [(FROM(3), [Q("S3-R2", "Board View gives a column, and Tech View a group, to each person offered by S3-R1, plus everyone who leads work shown on the board (S3-E1, S3-E2).")])],
+ 'page "5 Board View and Tech View", pictures "Tech View" (This build) and "Tech View" (Production today (before))',
+ [DW("No group for her. Same rule as Board View.")])
+
+case("DC-21", "Design: Technician filter shows No results for a staff member who is not one",
+ ["tt-p5-06-after-technician-filter-searching-oli.png", "tt-p5-05-before-technician-filter-searching-oli.png"],
+ [ADMIN, DESKTOP, NONTECH, "Have staff member A at the test location with Time Clock on and Technician on.",
+  "Open the attached picture tt-p5-06-after-technician-filter-searching-oli.png at 100% zoom beside the screen."],
+ ["Open Work Orders.", "Click the Technician filter.", "Type the first three letters of staff member A's first name.", "Clear the search box with its clear icon.", "Type the first three letters of staff member C's first name."],
+ [["Work Orders opens."], ["The Technician filter opens below its button with a search box at the top and Clear selection at the bottom."],
+  ["Staff member A is listed with a checkbox."], ["The search box is empty."],
+  ["Where the names were, the filter shows \"No results\" in grey, centred, as in the picture.", "Clear selection still shows below the divider."]],
+ [(FROM(3), [Q("S3-R3", "The Technician filter on Work Orders offers the same people the board gives a column or group to.")])],
+ 'page "5 Board View and Tech View", pictures "Technician filter, searching \\"Oli\\"" (This build and Production today (before))',
+ [DW("\"No results\". The filter offers the same people as the columns.")])
+
+case("DC-22", "Design: Reassign lead technician shows the no-match message",
+ ["tt-p5-08-after-reassign-lead-technician-searching-oli.png", "tt-p5-07-before-reassign-lead-technician-searching-oli.png"],
+ [ADMIN, DESKTOP, NONTECH, "Have an open service work order at the test location whose lead is a technician, shown on Board View.",
+  "Open the attached picture tt-p5-08-after-reassign-lead-technician-searching-oli.png at 100% zoom beside the screen."],
+ ["Open Work Orders.", "Click the Board View icon in the display switcher.", "Open the more-actions menu on the work order's card.", "Click Reassign lead technician.", "Type the first three letters of staff member C's first name."],
+ [["Work Orders opens."], ["Board View opens."], ["The card's menu opens."],
+  ["The Reassign lead technician window opens with the work order number and customer under the title, a search box, the list and the buttons Cancel and Reassign."],
+  ["The Unassigned row stays at the top of the list.",
+   "Below it, centred grey text reads No technicians match, then the three letters you typed inside curly quotes (“ ”), as in the picture.",
+   "Staff member C is not listed and the Cancel and Reassign buttons are unchanged."]],
+ [(FROM(3), [Q("S3-R4", "The Assign lead technician and Reassign lead technician window (from a card's more-actions menu on Board View or Tech View) offers only people per S3-R1.", "Searching for anyone else shows the existing No technicians match “[search]” message.")])],
+ 'page "5 Board View and Tech View", pictures "Reassign lead technician, searching \\"Oli\\"" (This build and Production today (before))',
+ [DW("Opened from a card's more-actions menu on Board View."), DW("Only staff whose Technician toggle is on and whose Time Clock is on are offered.")],
+ note="The caption types the message with straight quotes; the screen and the PRD use curly quotes (register TT-D12, settled).")
+
+# ============ E. Work order (page 6, Story 3) ============
+case("DC-23", "Design: Lead Technician list leaves out a staff member who is not a technician",
+ ["tt-p6-02-after-lead-technician.png", "tt-p6-01-before-lead-technician.png"],
+ [ADMIN, DESKTOP, NONTECH, AROUND, "Have an open service work order at the test location with no lead technician.",
+  "Open the attached picture tt-p6-02-after-lead-technician.png at 100% zoom beside the screen."],
+ ["Open the work order.", "Click the Lead Technician field in the card at the left."],
+ [["The work order opens with Lead Technician showing Unassigned."],
+  ["The dropdown opens below the field with the names in alphabetical order, as in the picture.",
+   "Staff member A is followed directly by staff member B: staff member C is not in the list."]],
+ [(FROM(3), [Q("S3-R5", "The Lead Technician dropdown on a work order offers only people per S3-R1.")])],
+ 'page "6 Technician dropdowns on a work order", pictures "Lead Technician" (This build and Production today (before))',
+ [DW("Not offered: Parth Fadadu follows Nikola Milosevic. The list holds only staff whose Technician toggle is on and whose Time Clock is on.")])
+
+case("DC-24", "Design: A lead who is no longer a technician shows last and grayed out",
+ ["tt-p6-02-after-lead-technician.png"],
+ [ADMIN, DESKTOP, "Have staff member C at the test location with Time Clock on and Technician on.", "Have a new open service work order at the test location with staff member C as its lead technician.",
+  "Then switch Technician off for staff member C in Edit Staff Member, click Save & Close and click Save in the Turn Off Technician warning."],
+ ["Open the work order.", "Click the Lead Technician field in the card at the left."],
+ [["The work order opens with staff member C still shown as the Lead Technician."],
+  ["Staff member C is the last name in the list, grayed out, with the check mark.", "The other names above are in their usual style.", "Clicking staff member C's row does not pick it."]],
+ [(FROM(3), [Q("S3-R7", "A work order's current lead who is not offered per S3-R1 still shows as the lead on the work order and in Board View and Tech View.", "In the Lead Technician dropdown they are listed last, grayed out, with the check mark, and cannot be picked.")])],
+ 'page "6 Technician dropdowns on a work order", picture "Lead Technician" (This build). The design describes this state but draws a work order with no lead (register TT-N07)',
+ [DW("A current lead who is not a technician any more stays the lead, listed last, grayed out with the check, so the current lead never reads as blank (PRD S3-R7).")],
+ note="The last step of the preconditions is setup, done before the test starts.")
+
+case("DC-25", "Design: Add Technician list on a line leaves out a staff member not a technician",
+ ["tt-p6-04-after-add-technician-on-a-line.png", "tt-p6-03-before-add-technician-on-a-line.png"],
+ [ADMIN, DESKTOP, NONTECH, AROUND, "Have an open service work order at the test location with an approved labor line.",
+  "Open the attached picture tt-p6-04-after-add-technician-on-a-line.png at 100% zoom beside the screen."],
+ ["Open the work order.", "Open the labor line in the Edit Line window.", "Click the Add Technician field.", "Scroll the list to staff members A and B."],
+ [["The work order opens on its Lines tab."], ["The Edit Line window opens with Add Technician, Labor Rate, Estimated Time and Tech Time."], ["The list opens above the field, in alphabetical order, as in the picture."],
+  ["Staff member A is followed directly by staff member B: staff member C is not in the list."]],
+ [(FROM(3), [Q("S3-R6", "Add Technician on a line (in the New Line and Edit Line windows) and the Technician dropdown in the Edit Labor window offer only people per S3-R1.")])],
+ 'page "6 Technician dropdowns on a work order", pictures "Add Technician on a line" (This build and Production today (before))',
+ [DW("Not offered: Parth Fadadu follows Nikola Milosevic. Add Labor uses the same list.")],
+ note="Difference named for the case worker: the caption says \"Add Labor\"; the PRD says \"the Technician dropdown in the Edit Labor window\" (register TT-D03, settled by S3-R6).")
+
+case("DC-26", "Design: Edit Labor list shows a former technician grayed out in name order",
+ ["tt-p6-04-after-add-technician-on-a-line.png"],
+ [ADMIN, DESKTOP, "Have staff member C at the test location with Time Clock on and Technician on.", "Have a new open service work order at the test location with an approved labor line that has a labor entry for staff member C.",
+  "Then switch Technician off for staff member C in Edit Staff Member, click Save & Close and click Save in the Turn Off Technician warning."],
+ ["Open the work order.", "Open the Edit Labor window for the labor line.", "Open the Technician list."],
+ [["The work order opens on its Lines tab with staff member C on the labor line."], ["The Edit Labor window opens."],
+  ["Staff member C is in the list in name order among the others, grayed out the same way a deactivated technician shows, and cannot be unticked."]],
+ [(FROM(3), [Q("S3-R8", "Someone already on a line who is not offered per S3-R1 stays on the line.", "In the Edit Labor technician list they show grayed out, the same as a deactivated technician today; that list is in name order, so they appear among the others alphabetically, and they cannot be unticked there.")])],
+ 'page "6 Technician dropdowns on a work order" (the design draws no Edit Labor window, register TT-N10)',
+ [DW("Anyone already on a line who is not a technician any more stays on it and shows grayed out, the same as a deactivated technician today.")])
+
+case("DC-27", "Design: Edit Line shows a former technician as an ordinary chip with its X",
+ ["tt-p6-04-after-add-technician-on-a-line.png"],
+ [ADMIN, DESKTOP, "Have staff member C at the test location with Time Clock on and Technician on.", "Have a new open service work order at the test location with an approved labor line, with staff member C added to it with Add Technician and no time logged on it.",
+  "Then switch Technician off for staff member C in Edit Staff Member, click Save & Close and click Save in the Turn Off Technician warning."],
+ ["Open the work order.", "Open the labor line in the Edit Line window."],
+ [["The work order opens on its Lines tab."],
+  ["Staff member C shows in Add Technician as an ordinary chip, not grayed out, with its X to remove it, the same as the other technicians' chips."]],
+ [(FROM(3), [Q("S3-R8", "In Edit Line they show as an ordinary chip that can be removed with its X, unless they have logged time on the line, in which case the chip shows the existing lock and \"This technician has logged time on the line and cannot be removed.\", as today.")])],
+ 'page "6 Technician dropdowns on a work order", picture "Add Technician on a line" (This build); the chip is not drawn (register TT-N10)',
+ [DW("Anyone already on a line who is not a technician any more stays on it and shows grayed out, the same as a deactivated technician today.")],
+ note="Difference: the design's caption on this picture says such a person \"shows grayed out\"; S3-R8 says an ordinary chip in Edit Line (register TT-D02, question 2; design version DV-02, held).")
+
+case("DC-28", "Design: Lead Technician shows Unassigned as text when there are no technicians",
+ ["tt-p6-04-after-add-technician-on-a-line.png"],
+ [ADMIN, DESKTOP, "Use a test location where no staff member has both Time Clock and Technician on.", "Have an open service work order at that location with no lead technician."],
+ ["Open the work order."],
+ [["In the card at the left, the Lead Technician field shows as plain text: the label Lead Technician with Unassigned under it, with no dropdown arrow and no border, the same way the field reads in the picture behind the open Edit Line window."]],
+ [(FROM(3), [Q("S3-R7a", "If a location has no technicians and the work order has no lead, the Lead Technician field shows as read-only text, the label \"Lead technician\" with \"Unassigned\" under it, as it does today whenever that list is empty.")])],
+ 'page "6 Technician dropdowns on a work order", picture "Add Technician on a line" (This build, left card); the no-technician state is not drawn (register TT-N09)',
+ [DW("Work order S2-17528.")],
+ note="The PRD writes the label \"Lead technician\"; the screen shows \"Lead Technician\" today (register TT-D07, settled by \"as it does today\").")
+
+case("DC-29", "Design: Board View shows No technicians yet when there are no technicians",
+ ["tt-p5-02-after-board-view.png"],
+ [ADMIN, DESKTOP, "Use a test location where no staff member has both Time Clock and Technician on, with at least one open work order, no pinned column and no lead on any work order shown.",
+  "Make sure Assigned to me and the Technician filter are off on Work Orders."],
+ ["Open Work Orders.", "Click the Board View icon in the display switcher."],
+ [["Work Orders opens."],
+  ["The board shows the title \"No technicians yet\" with the text \"Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned.\"",
+   "A button reads \"Set Up Technicians\"; clicking it opens Settings, Staff.",
+   "The Unassigned column is still shown with the work orders."]],
+ [(FROM(3), [Q("S3-R10", "When Board View or Tech View has no technician column or group at all (no technician at the location, no column kept for a non-technician lead under S3-E1 and no pinned column under S3-E2), and neither Assigned to me nor a Technician filter is on, it shows the title \"No technicians yet\" with the text \"Turn Technician on for your technicians in Staff to assign work orders. Until then, every work order stays in Unassigned.\"", "The button the Board View and Tech View PRD (S1-N1d, SV-11555) calls Add Technician reads \"Set Up Technicians\" and opens the staff list (Settings, Staff), for the same users who see it today.")])],
+ 'page "5 Board View and Tech View" (no picture of this state, register TT-N12); design system library ds/shopview/components.css, EMPTY STATE rule',
+ [],
+ note="Difference: the design system library the canvas installs says an empty state has \"at most one sentence\"; the PRD text has two (register TT-D04, question 3).")
+
+case("DC-30", "Design: Nothing here yet text names Technician when there are no technicians",
+ ["tt-p5-02-after-board-view.png"],
+ [ADMIN, DESKTOP, "Use a test location where no staff member has both Time Clock and Technician on and no work order is open on the All tab of Work Orders.",
+  "Make sure Assigned to me and the Technician filter are off on Work Orders."],
+ ["Open Work Orders.", "Click the Board View icon in the display switcher."],
+ [["Work Orders opens."],
+  ["The board shows the title \"Nothing here yet\" with the text \"Turn Technician on for your technicians and create your first work order to track work by tech.\"", "A button reads \"Set Up Technicians\"."]],
+ [(FROM(3), [Q("S3-R10", "When the open tab has no work orders either, the \"Nothing here yet\" state keeps its title, and its text reads \"Turn Technician on for your technicians and create your first work order to track work by tech.\"")])],
+ 'page "5 Board View and Tech View" (no picture of this state, register TT-N12)', [])
+
+case("DC-31", "Design: Reassign window lists a former lead as Current · no longer assignable",
+ ["tt-p5-08-after-reassign-lead-technician-searching-oli.png"],
+ [ADMIN, DESKTOP, "Have staff member C at the test location with Time Clock on and Technician on.", "Have a new open service work order at the test location with staff member C as its lead, shown on Board View.",
+  "Then switch Technician off for staff member C in Edit Staff Member, click Save & Close and click Save in the Turn Off Technician warning."],
+ ["Open Work Orders.", "Click the Board View icon in the display switcher.", "Open the more-actions menu on the work order's card.", "Click Reassign lead technician.", "Type the first three letters of staff member C's first name."],
+ [["Work Orders opens."], ["Board View opens with a column for staff member C holding the work order."], ["The card's menu opens."],
+  ["The Reassign lead technician window opens; staff member C is the last entry, labelled \"Current · no longer assignable\", and cannot be picked."],
+  ["The search finds staff member C's entry, still labelled \"Current · no longer assignable\"."]],
+ [(FROM(3), [Q("S3-R4", "A current lead who is not offered per S3-R1 is listed last, cannot be picked, and is labeled \"Current · no longer assignable\"; searching for their name finds that entry.")])],
+ 'page "5 Board View and Tech View", picture "Reassign lead technician, searching \\"Oli\\"" (This build); the former-lead entry is not drawn (register TT-N08)', [])
+
+case("DC-32", "Design: New pills and the notice are gone after the end date",
+ ["tt-p1-02-after-notice-and-technician-column.png", "tt-p1-01-before-staff-list.png"],
+ [ADMIN, DESKTOP, "Know the \"New\" pill end date of the build under test (07:00 UTC on the seventh day after the release that ships Technician Toggle).",
+  "Be able to change your computer's date and time."],
+ ["Set your computer's clock to one hour after the end date.", "In the Settings menu, click Staff.", "Scroll the staff table to its last columns.", "Click New Staff Member."],
+ [["The computer shows the new date and time."],
+  ["The staff list shows no notice: the Active and Deactivated tabs sit right below the toolbar, as in the production picture."],
+  ["The Technician column header shows the word Technician with no \"New\" pill."],
+  ["The Technician toggle shows the word Technician with no \"New\" pill."]],
+ [(FROM(4, 1), [Q("S4-N2", "After the end date, neither the notice nor the pills show anywhere."),
+                Q("S1-R2", "The moment is fixed in UTC and read from the viewer's own clock: the pill shows while that clock is before it and is gone from that moment on.")])],
+ 'page "1 Staff list", pictures "Notice and Technician column" (This build) and "Staff list" (Production today (before)); the after-date state is not drawn (register TT-N17)',
+ [DW("\"New\" pill at the top right of the Technician header. It goes away at 07:00 UTC on the seventh day after the release that ships this; the exact date is set when the release is scheduled.")],
+ note="Set the computer's clock back afterwards.")
+
+# ============ F. Held design-version cases (Rule 130.5) ============
+case("DV-01", "Design: Time Clock back on in New Staff Member leaves Technician off",
+ ["tt-p3-01-after-time-clock-off.png"],
+ [ADMIN, NOTDATE, DESKTOP, "Open the attached picture tt-p3-01-after-time-clock-off.png at 100% zoom beside the screen."],
+ ["In the Settings menu, click Staff.", "Click New Staff Member.", "In Role, pick the built-in Technician role.", "Switch Time Clock on.", "Switch Time Clock off.", "Switch Time Clock on."],
+ [["The staff list opens."], ["The New Staff Member window opens."], ["Role shows Technician."], ["Technician switches on."], ["Technician turns off and is grayed out."],
+  ["Design version: Technician stays off and the user turns it on (the PRD instead pre-fills it on again from the role)."]],
+ [(FROM(1), [Q("S1-R5", "In Edit Staff Member, turning Time Clock back on leaves Technician off; the user turns it on.", "In New Staff Member, turning Time Clock on pre-fills Technician from the role (S1-R3), unless the user has already switched Technician by hand.")])],
+ 'page "3 When Technician can\'t be turned on", picture "Time Clock off" (This build), board note "Shown in the New Staff Member window; Edit behaves the same."',
+ [DW("Turning Time Clock off turns Technician off. Turning Time Clock back on leaves Technician off; the user turns it on."), DW("Shown in the New Staff Member window; Edit behaves the same.")],
+ auto=HOLD, note="Held: the design differs from the PRD (register TT-D01, question 1 for Chris Ward). Not run and not added to the run until he answers; released (and the PRD case changed) if the design wins, deleted with the QA lead's go-ahead if the PRD wins.")
+
+case("DV-02", "Design: A former technician on a line shows grayed out in Edit Line",
+ ["tt-p6-04-after-add-technician-on-a-line.png"],
+ [ADMIN, DESKTOP, "Have staff member C at the test location with Time Clock on and Technician on.", "Have a new open service work order at the test location with an approved labor line, with staff member C added to it with Add Technician and no time logged on it.",
+  "Then switch Technician off for staff member C in Edit Staff Member, click Save & Close and click Save in the Turn Off Technician warning."],
+ ["Open the work order.", "Open the labor line in the Edit Line window."],
+ [["The work order opens on its Lines tab."],
+  ["Design version: staff member C stays on the line and their chip in Add Technician shows grayed out, the same as a deactivated technician (the PRD instead shows an ordinary chip with its X)."]],
+ [(FROM(3), [Q("S3-R8", "In Edit Line they show as an ordinary chip that can be removed with its X, unless they have logged time on the line, in which case the chip shows the existing lock and \"This technician has logged time on the line and cannot be removed.\", as today.")])],
+ 'page "6 Technician dropdowns on a work order", picture "Add Technician on a line" (This build)',
+ [DW("Anyone already on a line who is not a technician any more stays on it and shows grayed out, the same as a deactivated technician today.")],
+ auto=HOLD, note="Held: the design differs from the PRD (register TT-D02, question 2 for Chris Ward). Not run and not added to the run until he answers.")
+
+# ---------- write ----------
+L = ["# Design-case plan — Technician Toggle (2 Nov 2026, round 1 drafts for the case worker)", "",
+     "For the TestRail section **\"Design — how it looks\"** under 113017 \"Technician Toggle\" (Rule 126), local sources "
+     "`build/technician-toggle/cases/design/`. Written in full in the QA lead's pattern (Rule 117 fourteenth and fifteenth amendments, "
+     "example C665915): title starting \"Design: \" (at most 80 characters, no semicolons), plain \"Sign in as … / Use a … / Have a …\" "
+     "preconditions, numbered steps with one action each, \"Step N:\" results with bullets, a blank line, then the exact PRD quotes under "
+     "their \"From:\" line and the build sentence, then **References from Design** (tenth amendment), the AUTOMATION line last. Expected "
+     "behaviour comes from PRD v17; the design gives the look (Rule 126.5) and is named, with its own words, under References from Design. "
+     "Every quote below was checked by `tools/make_case_plan.py` against PRD v17 and the board files, word for word.",
+     "", "Notes for the case worker: the pictures to attach are in `design-2026-11-02/images/` (figure pictures with the design's caption) "
+     "and `files/project/shots/` (the bare screenshots). Light theme only (no board draws dark). Widths: the pictures are 1440 x 900; DC-05 "
+     "and DC-16 add 1536 px. Each case that changes a record creates its own staff member or work order (Rule 137). A line marked "
+     "\"Difference\" is for the case worker and goes under References from Design in the case.", "",
+     f"**Count: {sum(1 for c in C if c['id'].startswith('DC'))} look cases (DC-01 … DC-32) + {sum(1 for c in C if c['id'].startswith('DV'))} held design-version cases (DV-01, DV-02) = {len(C)}.**", ""]
+L += ["| Id | Title | Pictures | Marker |", "|---|---|---|---|"]
+for c in C: L.append(f"| {c['id']} | {c['title']} | {', '.join(c['pics'])} | {c['auto']} |")
+L.append("")
+for c in C:
+    L += [f"## {c['id']} · {c['title']}", "", "**Title:** " + c["title"], "", "**Preconditions**"]
+    L += [f"- {p}" for p in c["pre"]] + ["", "**Steps**"]
+    L += [f"{i+1}. {s}" for i, s in enumerate(c["steps"])] + ["", "**Expected Result**"]
+    for i, r in enumerate(c["results"]):
+        L.append(f"Step {i+1}:"); L += [f"- {b}" for b in r]
+    L += ["", "Exact quotes from the source (for reproducibility)"]
+    for frm, qs in c["quotes"]: L += [frm] + qs
+    L += [BUILD, "", "References from Design", f"- {CANVAS}: {c['design']}.", f"- Pictures to attach: {', '.join(c['pics'])}."]
+    if c["words"]: L += ["- The design's own words:"] + ["  " + w for w in c["words"]]
+    if c["note"]: L.append(f"- {c['note']}")
+    L += ["", c["auto"], ""]
+open(os.path.join(ROOT, "DESIGN-CASE-PLAN.md"), "w", encoding="utf-8").write("\n".join(L))
+print("cases", len(C), "max title", max(len(c["title"]) for c in C))
