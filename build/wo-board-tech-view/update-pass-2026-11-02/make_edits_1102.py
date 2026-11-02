@@ -11,7 +11,8 @@ import json, re, sys, os
 D = json.load(open('parked-live-2026-11-02.json')); T = json.load(open('inventory.json')).get('tickets', {})
 STAMP = 'Last checked against build v26.43.5-77de68c (production) on 11/2/2026.'
 PRD82 = 'Re-read against PRD version 82 (29 Oct 2026) on 2 Nov 2026: the quoted rules are unchanged.'
-os.makedirs('edits-parked', exist_ok=True); summary = {}
+os.makedirs('edits-parked', exist_ok=True)
+summary = json.load(open('edits-parked/summary.json')) if os.path.exists('edits-parked/summary.json') else {}  # merged, never overwritten
 for cid in sys.argv[1:]:
     c = D[cid.lstrip('C')]; send = {}; why = []
     e = c['exp'] or ''; e2 = e.replace('</strong><br>', '</strong></p><p>')

@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "2 Nov 2026 update pass, batch b"
+ },
+ "results": {
+  "C96956": {
+   "verdict": "Passed",
+   "observed": [
+    "The dialog is titled \"Reassign lead technician\", has a Search technicians box and one list of the location's technicians with avatars and \"N open\"; there is no Unassigned row and the only button is Cancel.",
+    "The Office User, the deactivated technician and the technician of another location are not offered.",
+    "Clicking a technician closes the dialog at once and moves the card, with \"<number> assigned to <technician>\" and Undo; Unassign shows \"<number> moved to Unassigned\" with Undo.",
+    "On a work order with no lead the menu says \"Assign lead technician\" and the dialog has that title; Cancel changes nothing and the page shows no lead.",
+    "In Tech View the \"Assign lead technician\" dialog offers the same technicians and assigns at once."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C96956-1-dialog.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C96956-2-assigned.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C96956-3-tech-view.png"
+   ]
+  }
+ }
+}
