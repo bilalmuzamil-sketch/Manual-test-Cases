@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "2 Nov 2026 update pass, batch k"
+ },
+ "results": {
+  "C368144": {
+   "verdict": "Passed",
+   "observed": [
+    "Unassigned first reads Bravo Co, Delta Co.",
+    "More actions > Unassign on Charlie Co shows \"<number> moved to Unassigned\" with Undo; Unassigned then reads Bravo, Charlie, Delta - Charlie Co takes its customer-name place, not the bottom.",
+    "Clearing Alpha Co's Lead Technician on its work order page (Unassigned picked in the list) puts it first: Alpha, Bravo, Charlie, Delta.",
+    "Tech View's Unassigned group shows the same order."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C368144-1-unassign.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/update-pass-2026-11-02/prod2/pics/C368144-2-page-cleared.png"
+   ]
+  }
+ }
+}
