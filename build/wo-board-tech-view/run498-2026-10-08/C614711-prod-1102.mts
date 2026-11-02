@@ -19,7 +19,11 @@ import { open, done, APP, API } from './session.mts'; import { api, customer, wo
 import { EV, t, display, tab, search, groups, drag, toColumn, allBoardCols } from './wob.mts'; import { toastTexts as toasts } from './toast-read.mts'; // 2 Nov 2026: design toast reader
 import { person, roleIds, ensureEligible, staffRows, HEAVY } from './staff.mts';
 const { browser, page: p } = await open('/workorders?tab=all'); p.setDefaultTimeout(30_000); const a = api(p);
-const o: any = { exitSwitch: (await a.post('/api/exit-switch-user', {})).status }; const W = (ms: number) => p.waitForTimeout(ms);
+const o: any = { exitSwitch: (await a.post('/api/exit-switch-user', {})).status };
+// 2 Nov 2026: the signed-in admin had been left at the OTHER location (Trucks Hill 2), so Technician-B (Truck Hill 1) had no column and step 10
+// could not be done (first production run, 17:11). Put the admin at Truck Hill 1 first and read the header back.
+o.location = (await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: process.env.WOB_LOC_TZ || 'Asia/Karachi' })).status; await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
+o.locationHeader = await p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => null); console.log(t(), 'LOCATION', o.location, o.locationHeader); const W = (ms: number) => p.waitForTimeout(ms);
 const shot = (n: string) => p.screenshot({ path: path.join(EV, `C614711-p2-${n}.png`) }).catch(() => {});
 const RUNNO = String(Date.now() % 100000); const D = '@staging.shopview.local'; const TECH = (await roleIds(a))['Technician'];
 const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body).slice(0, 140) : ''}`;
