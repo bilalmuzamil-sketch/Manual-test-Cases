@@ -25,3 +25,24 @@ QA lead choices (3 Nov): API mode (or quicker, nothing skipped) · no recording 
 - Reverse = work order -> Finance tab -> invoice menu (⋮ beside the settings cog) -> Reverse -> "This action will re-open and
   undo the invoice." -> Reverse.
 - Production customer ZZAUTOTEST Aabridge Freight carries a $50 default fee on new work orders; removed during setup.
+
+## Results (3 Nov 2026). Branch build v26.45.0-279650f (last-mod 03 Nov 11:06:14 GMT) on every run; production v26.45.0-8e138e1.
+Every step on screen (Reverse menu + dialogs, Payments bin + dialog); set-up of WOs/lines by API; statuses read on screen
+(Finance badge, Customer > Invoices / Payments rows, Work Orders list) and by the work-order record.
+
+| # | Case | Environment / record | Result |
+|---|---|---|---|
+| P | $0 invoice (New Line dialog, General Labor 0 h) -> Paid with $0 payment -> Reverse refused -> delete the $0 payment -> Reverse | production S1-1910 | BUG REPRODUCED: after the delete the WO + invoice stay Paid, Payments row gone, Reverse still shows "This invoice has been paid, please delete payment before reversing." |
+| 1 | Reverse while the $0 payment exists | branch S11986-17581, -17584 | Refused with the same warning (correct: a payment exists; Chris 79969) |
+| 2 | Delete the $0 payment (Customer > Payments bin > Reverse) | branch S11986-17581, -17584 | Invoice pending (Customer > Invoices "Unpaid" $0.00), WO badge Invoiced, payment row gone |
+| 3 | Reverse after the delete | branch S11986-17581, -17584 | Dialog "This action will re-open and undo the invoice." -> Reverse -> WO Complete, invoice removed, invoice row gone from Customer > Invoices, Work Orders list shows Complete |
+| 4 | Invoice again unchanged | branch S11986-17581 | $0 invoice again, Paid with a new $0 payment (expected) |
+| 5 | Customer's goal: correct the WO (add priced line HD CVIP electric brake trailer) and invoice | branch S11986-17584 | Invoice $406.09, WO Invoiced / invoice pending |
+| 6 | Regression: normal invoice paid on screen (New Payment, EFT $406.09) -> delete payment -> Reverse | branch S11986-17583 | Paid -> Invoiced/pending -> Reverse -> Complete (unchanged behaviour) |
+
+Not run, and why: a $0 invoice made by a 100% whole-order discount — the branch refuses the discount ("Connect a QuickBooks item
+for discounts before adding a discount."); asked the QA lead whether to set that up. The 12 already-stuck production invoices
+are a one-time data fix (Slavcho 79998 / Chris 80010), not part of this branch.
+Note: on COD customers, Create Invoice on screen opens the New Customer Payment dialog; closing it leaves no invoice. That is the
+COD payment-at-invoicing flow, unrelated to this ticket; step 5's invoice was created without a payment for that reason.
+Evidence: ev/before-after-reverse.png, ev/branch-steps.png (scripts/exhibits.py with /usr/bin/python3); per-run result.json files.
