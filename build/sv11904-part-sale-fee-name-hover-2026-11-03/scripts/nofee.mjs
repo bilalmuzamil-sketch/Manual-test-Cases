@@ -1,0 +1,13 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const rd=f=>fs.readFileSync('/tmp/sv11904/'+f,'utf8').trim(); const PS='90a95f29-f405-4763-834d-6e3a237f8c33';
+const s=await open({env:'branch',ticket:'11904',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')},quick:'admin',dir:'/tmp/qa41',vp:{width:1440,height:900}});
+const post=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}); console.log(' ',u.replace('/api/',''),r.status,JSON.stringify(r.json||r.text).slice(0,160)); return r;};
+const v=(await s.api('/api/work-orders/view/'+PS)).json.data; const w=v.work_order||v; const company=w.company_id||w.company?.id; console.log('company',company);
+const c=await post('/api/part-sales',{company_id:company}); const id=c.json?.data?.[0]?.id||c.json?.data?.id;
+const lr=(await s.api('/api/work-orders/lines/'+id)).json.data; const line=(Array.isArray(lr)?lr:lr.collection)[0].line_id;
+await post('/api/work-orders/lines/change-status',{line_id:line,work_order_id:id,status:'authorized'});
+const cats=(await s.api('/api/inventory/categories?limit=500')).json.data.collection; const vl=(await s.api('/api/parts-catalogue/vendors?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=5')).json.data.collection;
+for(const n of [1,2]) await post('/api/work-orders/part/make-request',{line,work_order:id,description:'ZZAUTOTEST SV-11904 part '+n,quantity:1,part_source_type:'vendor',part_number:'ZZ11904-'+n,price:20,part_category_id:cats[0].value,vendor_id:vl[0].id});
+const n=(await s.api('/api/work-orders/view/'+id)).json.data; console.log('NEW',id,(n.work_order||n).number);
+fs.writeFileSync('/tmp/sv11904/nofee.json',JSON.stringify({id,number:(n.work_order||n).number}));
+await s.close(); process.exit(0);

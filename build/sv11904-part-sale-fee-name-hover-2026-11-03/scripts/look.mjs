@@ -1,0 +1,12 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const rd=f=>fs.readFileSync('/tmp/sv11904/'+f,'utf8').trim();
+const W=+(process.argv[2]||1440);
+const s=await open({env:'branch',ticket:'11904',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')},quick:'admin',dir:'/tmp/qa41',vp:{width:W,height:900},dpr:2,scrollbars:true}); const p=s.page;
+console.log('marker',JSON.stringify(await s.marker()));
+await s.go('/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests'); await p.waitForTimeout(7000);
+const info=await p.evaluate(()=>{const th=[...document.querySelectorAll('thead th')].filter(t=>t.getBoundingClientRect().width>0).map(t=>{const r=t.getBoundingClientRect(); return {t:t.innerText.trim().replace(/\n/g,'⏎'),w:Math.round(r.width),h:Math.round(r.height)};});
+ const cells=[...document.querySelectorAll('td.fees-cell')].map(td=>({t:td.innerText.replace(/\n/g,' | '),ids:[...td.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).join(',')}));
+ const title=document.querySelector('h1,.page-title')?.innerText; return {th,cells,title,url:location.href};});
+console.log(JSON.stringify(info,null,0).slice(0,2500));
+await p.screenshot({path:'/tmp/sv11904/look-'+W+'.png'});
+await s.close(); process.exit(0);
