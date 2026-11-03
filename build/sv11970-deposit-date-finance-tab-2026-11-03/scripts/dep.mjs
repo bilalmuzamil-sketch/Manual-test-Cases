@@ -11,7 +11,9 @@ let WOID=WO; if(WO==='new'){ const post=(u,b)=>s.api(u,{method:'POST',headers:{'
   const veh=(await s.api('/api/vehicles?company_id='+process.env.COMPANY)).json.data; const vs=veh.collection||veh.vehicles||veh; const vid=(Array.isArray(vs)?vs:[])[0]?.id;
   const today=await p.evaluate(()=>{const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');});
   const c=await post('/api/work-orders/create',{company_id:process.env.COMPANY,vehicle_id:vid,workplace_id:WP,start_date:today,is_vehicle_here:true}); R.create={st:c.status,body:JSON.stringify(c.json||c.text).slice(0,300)};
-  WOID=c.json?.data?.id||c.json?.data?.work_order_id||c.json?.data?.workOrder?.id; R.wo=WOID; }
+  WOID=c.json?.data?.id||c.json?.data?.work_order_id||c.json?.data?.workOrder?.id; R.wo=WOID;
+  const ct=await post('/api/contacts/create',{company_id:process.env.COMPANY,first_name:'ZZAUTOTEST',last_name:'SV11970 '+TAG}); const cid=ct.json?.data?.contact_id;
+  const cc=await post('/api/work-orders/change-contact',{work_order_id:WOID,vehicle_id:vid,contact_id:cid,update_vehicle:true}); R.contact={create:ct.status,id:cid,set:cc.status}; }
 R.browserNow=await p.evaluate(()=>new Date().toString());
 const caps=[]; p.on('response',async r=>{const u=r.url(); if(r.request().method()!=='GET'&&/deposit/i.test(u)){let b='';try{b=(await r.text()).slice(0,600)}catch{} caps.push({m:r.request().method(),u:u.replace(/^https:\/\/[^/]+/,''),st:r.status(),req:r.request().postData(),res:b});}});
 const pay=()=>p.evaluate(()=>{const t=document.body.innerText; return (t.match(/\(Deposit\)[^\n]*/g)||[]);});
