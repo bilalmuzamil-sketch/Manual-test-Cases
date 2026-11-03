@@ -40,6 +40,7 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
   // then see different behaviour. Always name the preset in a failure report.
   // scrollbars: true -> launch WITHOUT Playwright's default --hide-scrollbars, so scrollbars take space and show in
   // screenshots as a user sees them (needed to check "a visible scrollbar" requirements). Added 2026-10-26 (SV-11631).
+  // touch: 'laptop' -> hasTouch only (desktop browser identity + touchscreen, e.g. a touchscreen laptop). Added 2026-11-03 (SV-11904).
   // touch: true -> hasTouch + isMobile context, for tap-instead-of-hover checks on phones. Added 2026-10-26 (SV-11631).
   // tz: browser timezone (IANA name, e.g. 'America/New_York') -> Playwright timezoneId. Added 2026-10-15 (SV-10795:
   // date bugs that only show when the browser is behind/ahead of UTC).
@@ -52,7 +53,7 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
     '--proxy-server=http://127.0.0.1:'+port(dir),'--ignore-certificate-errors','--no-sandbox','--ssl-version-max=tls1.2'],
     ...(scrollbars ? {ignoreDefaultArgs:['--hide-scrollbars']} : {})});
   const ctx = await b.newContext(Object.assign({viewport:vp, deviceScaleFactor:dpr, ignoreHTTPSErrors:true}, tz ? {timezoneId:tz} : {},
-    touch ? {hasTouch:true, isMobile:true} : {},
+    touch==='laptop' ? {hasTouch:true} : touch ? {hasTouch:true, isMobile:true} : {},
     device ? (()=>{ const d=devices[device]; if(!d) throw new Error('unknown device preset: '+device); const {defaultBrowserType,...rest}=d; return rest; })() : {},
     record ? {recordVideo:{dir:record, size:(device&&devices[device]?devices[device].viewport:vp)}} : {}));
   // Recordings do not show the mouse: draw a pointer, a click ripple and a caption bar into every page.

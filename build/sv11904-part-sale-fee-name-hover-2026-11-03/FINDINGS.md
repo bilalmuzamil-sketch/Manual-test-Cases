@@ -62,3 +62,25 @@ phone-tooltip-over-viewer.png (for the open question).
 - Learning check: (1) the production screen location must match the record's location or the page bounces to the list —
   scripts/loc.mjs; (2) at 768 the table is below the fold — scroll each cell into view before hovering (my first 768 run
   hovered empty space); (3) production has no test id on the fee name — screenshot by position, not by id.
+
+## 3 Nov — Dipesh 79993: "couldn't reproduce … Which device preset did you use, and was it a quick tap or a press-and-hold?"
+Our 79985 named neither, and our "phone" set-up was 375/390 wide + touch with the DESKTOP browser identity (body class
+`desktop touch`), which is not what a DevTools device preset gives. Re-run live on the same build v26.43.5-2999cf9
+(fix not deployed yet), P2-162 row 1, gestures sent with exact durations (scripts/devtap.mjs), tap target confirmed by
+elementFromPoint = text_part_adjustment_name_c6a8c0ad…:
+
+| Set-up (body class) | Quick tap (~160 ms) | Press-and-hold (~900 ms) |
+|---|---|---|
+| iPhone 12 Pro preset 390×664 dpr 3 (mobile touch platform-ios) | viewer opens, no tooltip at 0.5/3/6 s — NOT REPRODUCED | tooltip during hold; viewer on release; tooltip gone — NOT REPRODUCED |
+| Pixel 7 preset 412×839 dpr 2.625 (platform-android) | same — NOT REPRODUCED | same — NOT REPRODUCED |
+| iPhone SE preset 320×568 dpr 2 (platform-ios) | same — NOT REPRODUCED | same — NOT REPRODUCED |
+| Desktop Chrome + touchscreen 1440×900 (desktop touch) | tooltip stays with viewer open, 0.5/3/6 s — REPRODUCED (beside the viewer) | REPRODUCED |
+| Desktop Chrome + touchscreen 1024×768 (desktop touch) | REPRODUCED (over the viewer) | REPRODUCED |
+| Our original 390×844 + touch, desktop identity (desktop touch) | REPRODUCED | REPRODUCED |
+| Desktop with mouse (earlier run) | not reproduced (tooltip gone at 0.4 s) | — |
+
+=> Our remaining item was mis-described: it does NOT happen on phones; it happens on a desktop browser with a touchscreen
+(touchscreen laptop). 79984 row 12 ("tooltip and viewer" on a phone tap) is also wrong for real phone presets: a quick tap
+shows the viewer only. Honest limit: Chrome device emulation, not a real phone or a real touchscreen laptop.
+Exhibit: ev/phone-vs-touch-laptop.png; raw frames + json: ev/dev/. Lesson saved: Standing Rule 120, LESSONS-INDEX, playbook §AY.
+Nothing posted yet — taken to the QA lead first (Rule 106(d)).
