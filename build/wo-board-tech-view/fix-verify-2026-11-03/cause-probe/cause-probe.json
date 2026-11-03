@@ -1,0 +1,54 @@
+{
+ "checks": [
+  {
+   "tag": "start",
+   "s": 15,
+   "login": 0,
+   "url": "https://app.shopview.com/workorders",
+   "bad": 0
+  },
+  {
+   "tag": "A pref PUT",
+   "s": 28,
+   "login": 0,
+   "url": "https://app.shopview.com/workorders",
+   "bad": 0
+  },
+  {
+   "tag": "B reload + Board View",
+   "s": 52,
+   "login": 0,
+   "url": "https://app.shopview.com/workorders",
+   "bad": 0
+  },
+  {
+   "tag": "C full computed-style scan",
+   "s": 64,
+   "login": 0,
+   "url": "https://app.shopview.com/workorders",
+   "bad": 0
+  },
+  {
+   "tag": "D +60 s",
+   "s": 124,
+   "login": 0,
+   "url": "https://app.shopview.com/workorders",
+   "bad": 0
+  }
+ ],
+ "bad": [
+  {
+   "s": 124,
+   "st": 401,
+   "m": "PUT",
+   "u": "https://api.shopview.com/api/users/me/preferences/work-orders-list"
+  }
+ ],
+ "prefGet": 200,
+ "pinOff": 200,
+ "scanMs": [
+  5,
+  14
+ ],
+ "restore": 401
+}
