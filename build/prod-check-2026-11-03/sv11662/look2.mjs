@@ -1,0 +1,5 @@
+import {prod1} from '../common.mjs'; const WO=process.argv[2]; const s=await prod1('/tmp/qa75'); const p=s.page;
+await s.go(`/workorders/${WO}/lines`); await p.waitForTimeout(6000); for(let i=0;i<2;i++){ const x=p.locator('.q-dialog [data-test-id="button_close_dialog"]').first(); if(await x.count()){await x.click(); await p.waitForTimeout(700);} }
+console.log('BTNS',(await p.evaluate(()=>[...document.querySelectorAll('button')].filter(b=>b.offsetParent).map(b=>(b.getAttribute('data-test-id')||'')+':'+b.innerText.trim().slice(0,22).replace(/\n/g,' ')))).join(' | ').slice(0,1500));
+for(const m of ['button_work_order_nav_bar_menu']){ const b=p.locator(`[data-test-id="${m}"]`).first(); if(await b.count()){ await b.click(); await p.waitForTimeout(1000); console.log('MENU',(await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(i=>(i.getAttribute('data-test-id')||'')+':'+i.innerText.trim()))).join(' | ')); await p.keyboard.press('Escape'); } }
+await s.close(); process.exit(0);

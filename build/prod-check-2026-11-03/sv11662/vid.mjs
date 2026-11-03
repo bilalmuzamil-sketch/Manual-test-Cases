@@ -1,0 +1,1 @@
+import {prod1} from '../common.mjs'; const s=await prod1('/tmp/qa75'); const v=(await s.api('/api/work-orders/view/'+process.argv[2])).json?.data?.work_order||{}; console.log(Object.entries(v).filter(([k])=>/vehicle|asset|contact|customer/i.test(k)).map(([k,x])=>k+'='+JSON.stringify(x).slice(0,60)).join('\n')); await s.close(); process.exit(0);

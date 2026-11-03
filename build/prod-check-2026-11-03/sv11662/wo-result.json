@@ -1,0 +1,76 @@
+{
+ "marker": {
+  "version": "v26.45.0-8e138e1",
+  "lastModified": "Tue, 03 Nov 2026 09:59:25 GMT",
+  "etag": "W/\"0698e16fd1dcc13c9d66fd667ca15f4a\""
+ },
+ "utc": "2026-11-03T15:19:13.576Z",
+ "wo": "451ced1e-b118-4a19-9e66-cf0ded4d0e2b",
+ "d1": {
+  "text": "Request Customer Approval | close | Request customer approval for the following lines: | Office User | Office User | Total: $239.95 | Cancel | Send To Portal",
+  "btns": [
+   "close[button_close_dialog]",
+   "Cancel[button_cancel_dialog]",
+   "Send To Portal[button_confirm_dialog]"
+  ]
+ },
+ "send1": {
+  "clicked": "Send To Portal[button_confirm_dialog]",
+  "toasts": [
+   "warning This work order has no contact assigned; assign a contact before creating an invoice. Please try to resolve this. Close",
+   "warning There was an error while requesting customer approval. Close"
+  ],
+  "dialogAfter": null
+ },
+ "d2": {
+  "text": "Request Customer Approval | close | Request customer approval for the following lines: | Office User | Office User | Total: $239.95 | Cancel | Send To Portal",
+  "btns": [
+   "close[button_close_dialog]",
+   "Cancel[button_cancel_dialog]",
+   "Send To Portal[button_confirm_dialog]"
+  ]
+ },
+ "audit1": {
+  "sentToPortal": 0,
+  "sample": "Work Order Log search Search close Event User Line Details Datearrow_drop_up Time Line created Bilal Muzammil Office User - Nov 3, 2026 02:54 PM Created Bilal Muzammil - - Nov 3, 2026 02:54 PM "
+ },
+ "vid": "00279fda-8db8-4592-9ef7-0483e2f0f945",
+ "assign": "{\"data\":{\"customer_id\":\"176fd89d-920d-412c-8abc-632f1ef16934\"}}",
+ "d3": {
+  "text": "Request Customer Approval | close | Request customer approval for the following lines: | Office User | Office User | Total: $239.95 | Cancel | Send To Portal",
+  "btns": [
+   "close[button_close_dialog]",
+   "Cancel[button_cancel_dialog]",
+   "Send To Portal[button_confirm_dialog]"
+  ]
+ },
+ "send2": {
+  "clicked": "Send To Portal[button_confirm_dialog]",
+  "toasts": [
+   "check_circle Successfully sent to Customer Portal Close"
+  ],
+  "dialogAfter": null
+ },
+ "d4": {
+  "text": "Request Customer Approval | close | Request customer approval for the following lines: | info | Already sent to Customer Portal. | Office User | Office User | Total: $239.95 | Cancel | Send To Portal",
+  "btns": [
+   "close[button_close_dialog]",
+   "Cancel[button_cancel_dialog]",
+   "Send To Portal[button_confirm_dialog](disabled)"
+  ]
+ },
+ "audit2": {
+  "sentToPortal": 1,
+  "sample": "Work Order Log search Search close Event User Line Details Datearrow_drop_up Time Sent to Portal history Bilal Muzammil - Total: $239.95 Nov 3, 2026 03:20 PM Line created Bilal Muzammil Office User - Nov 3, 2026 02:54 PM Created Bilal Muzammil - - Nov 3, 2026 02:54 PM "
+ },
+ "resp": [
+  "200 POST /api/work-orders/approvals/check-approval-request-exists {\"data\":{\"exists\":false}}",
+  "400 POST /api/work-orders/approvals/create-approval-request {\"errors\":[{\"error\":\"This work order has no contact assigned; assign a contact before creating an invoice.\"}]}",
+  "204 POST /g/collect?v=2&tid=G-Q8V1RLY7LK&gtm=45je6au1v9217041122za200zd9217041122xf1&_p=1793719153796&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=1080838216.1793719087&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=4&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121246026~121246034~123691370&sid=1793719086&sct=1&seg=1&dl=https%3A%2F%2Fapp.shopview.com%2Fworkorders%2F451ced1e-b118-4a19-9e66-cf0ded4d0e2b%2Flines&dt=S2-1914%20-%20ZZAUTOTEST%20Aabridge%20Freight%20%7C%20Work%20Order%20%7C%20ShopView&uid=1d610634-2618-4c70-9ce4-791f8d201642&en=work_order_send_to_portal&_ee=1&ep.page_type=work_orders&ep.element_type=button&ep.element_location=sub_nav&ep.element_label=send_to_portal&_et=8896&tfd=14351 ",
+  "200 POST /api/work-orders/approvals/check-approval-request-exists {\"data\":{\"exists\":false}}",
+  "200 POST /api/work-orders/approvals/check-approval-request-exists {\"data\":{\"exists\":false}}",
+  "200 POST /api/work-orders/approvals/create-approval-request {\"data\":[]}",
+  "204 POST /g/collect?v=2&tid=G-Q8V1RLY7LK&gtm=45je6au1v9217041122za200zd9217041122xf1&_p=1793719196308&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=1080838216.1793719087&frm=0&ngs=1&pscdl=noapi&rcb=5&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=4&tag_exp=115938466~115938469~118897920~118897930~120213116~120385423~120420416~120469145~120469153~121246026~121246034~123691370~123814183~123814946&sid=1793719086&sct=1&seg=1&dl=https%3A%2F%2Fapp.shopview.com%2Fworkorders%2F451ced1e-b118-4a19-9e66-cf0ded4d0e2b%2Flines&dt=S2-1914%20-%20ZZAUTOTEST%20Aabridge%20Freight%20%7C%20Work%20Order%20%7C%20ShopView&uid=1d610634-2618-4c70-9ce4-791f8d201642&en=work_order_send_to_portal&_ee=1&ep.page_type=work_orders&ep.element_type=button&ep.element_location=sub_nav&ep.element_label=send_to_portal&_et=7921&tfd=14070 ",
+  "200 POST /api/work-orders/approvals/check-approval-request-exists {\"data\":{\"exists\":true}}"
+ ]
+}

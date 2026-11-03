@@ -1,0 +1,49 @@
+== new
+SELECTED Invoices Import Preview cloud_upload New.Csv cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is used
+TOASTS1 []
+import enabled true
+TOASTS2 ["check_circle All invoices have been imported successfully. Close"]
+AFTER Invoices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is
+REQ 200 /api/imports/work-order-historical => {"duplicatedInvoices":[]}
+== old
+SELECTED Invoices Import Preview cloud_upload Old.Csv cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is used
+TOASTS1 []
+import enabled true
+TOASTS2 ["check_circle All invoices have been imported successfully. Close"]
+AFTER Invoices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is
+REQ 200 /api/imports/work-order-historical => {"duplicatedInvoices":[]}
+== mixA
+SELECTED Invoices Import Preview cloud_upload MixA.Csv cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is use
+TOASTS1 []
+import enabled true
+TOASTS2 ["check_circle All invoices have been imported successfully. Close"]
+AFTER Invoices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is
+REQ 200 /api/imports/work-order-historical => {"duplicatedInvoices":[]}
+== mixB
+SELECTED Invoices Import Preview cloud_upload MixB.Csv cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is use
+TOASTS1 []
+import enabled true
+TOASTS2 ["check_circle All invoices have been imported successfully. Close"]
+AFTER Invoices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is
+REQ 200 /api/imports/work-order-historical => {"duplicatedInvoices":[]}
+== case
+SELECTED Invoices Import Preview cloud_upload Case.Csv cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is use
+TOASTS1 []
+import enabled true
+TOASTS2 ["check_circle All invoices have been imported successfully. Close"]
+AFTER Invoices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is
+REQ 200 /api/imports/work-order-historical => {"duplicatedInvoices":[]}
+== unknown
+SELECTED Invoices Import Preview cloud_upload Unknown.Csv cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is 
+TOASTS1 []
+import enabled true
+TOASTS2 ["warning Failed to import all invoices. Please try again or contact support if the issue persists. Close"]
+AFTER Invoices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is
+REQ 400 /api/imports/work-order-historical => {"errors":[{"error":"Invalid file headers provided!"}]}
+== emptytitle
+SELECTED Invoices Import Preview cloud_upload Emptytitle.Csv cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator 
+TOASTS1 []
+import enabled true
+TOASTS2 []
+AFTER Invoices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices Failed Rows Failed Row Number Failure Reason 2 Line Title cannot be empty. Invoices Created: 0Invoices Failed: 1
+REQ 200 /api/imports/work-order-historical => {"errors":[{"rowNumber":2,"message":"Line Title cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1,"duplicatedInvoices":[]}

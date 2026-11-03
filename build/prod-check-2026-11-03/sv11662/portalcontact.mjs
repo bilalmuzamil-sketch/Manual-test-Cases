@@ -1,0 +1,10 @@
+import {prod1} from '../common.mjs'; const WO=process.argv[2]; const s=await prod1('/tmp/qa75'); const p=s.page; const C='bd77eaa6-963f-43fc-9a91-b950810ebf67'; const CID='176fd89d-920d-412c-8abc-632f1ef16934';
+await s.go(`/customers/${C}/contacts`); await p.waitForTimeout(5000); await p.click(`[data-test-id="button_edit_contact_${CID}"]`); await p.waitForTimeout(1500);
+const em=p.locator('.q-dialog [data-test-id="input_email"]'); const tag=await em.evaluate(e=>e.tagName); const ein=tag==='INPUT'?em:em.locator('input'); await ein.fill('bilal.muzamil+sv11662@shopview.com');
+const ck=p.locator('.q-dialog [data-test-id="input_checkbox_has_portal_access"]'); const on=await ck.getAttribute('aria-checked'); if(on!=='true') await ck.click(); await p.waitForTimeout(500);
+await p.screenshot({path:'sv11662/01-contact-portal-access.png'}); await p.click('.q-dialog [data-test-id="button_confirm_dialog"]'); await p.waitForTimeout(2500);
+console.log('after save dlg',await p.evaluate(()=>document.querySelector('.q-dialog')?.innerText?.replace(/\n+/g,' | ').slice(0,300)),'toasts',await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(x=>x.innerText.replace(/\s+/g,' '))));
+await s.go(`/customers/${C}/contacts`); await p.waitForTimeout(5000); console.log('ROW',await p.evaluate(()=>[...document.querySelectorAll('tbody tr')].map(t=>t.innerText.replace(/\s+/g,' ').trim()).find(t=>/SV10130/.test(t))));
+await s.go(`/workorders/${WO}/lines`); await p.waitForTimeout(6000); for(let i=0;i<2;i++){ const x=p.locator('.q-dialog [data-test-id="button_close_dialog"]').first(); if(await x.count()){await x.click(); await p.waitForTimeout(700);} }
+console.log('LINES portal ids',(await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].filter(e=>e.offsetParent).map(e=>e.getAttribute('data-test-id')+':'+e.innerText.trim().slice(0,22)).filter(x=>/portal|send/i.test(x)))).join(' | '));
+await p.screenshot({path:'sv11662/02-lines-after-portal-contact.png'}); await s.close(); process.exit(0);

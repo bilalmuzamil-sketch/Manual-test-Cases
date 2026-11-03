@@ -1,0 +1,88 @@
+{
+ "marker": {
+  "version": "v26.45.0-8e138e1",
+  "lastModified": "Tue, 03 Nov 2026 09:59:25 GMT",
+  "etag": "W/\"0698e16fd1dcc13c9d66fd667ca15f4a\""
+ },
+ "utc": "2026-11-03T14:52:29.206Z",
+ "pn": "1237944",
+ "id": "ce149a26-7135-4e40-87c1-e3179d004b46",
+ "authBtn": 0,
+ "pickBtn": 1,
+ "t0": {
+  "status": "Complete",
+  "total": "602.00",
+  "parts": 602,
+  "tax": "0.00",
+  "num": "P2-90"
+ },
+ "rows": [
+  "BM A158 arrow_drop_down $ $ $ % Lighting arrow_drop_down Inventory Received reply more_vert",
+  "BM Core for A158 arrow_drop_down $ $ $ % Lighting arrow_drop_down Inventory Received Return Core"
+ ],
+ "returnCoreBtns": [
+  "button_return_core_bf8937d4-77fb-4a2c-907a-3608923b8f13"
+ ],
+ "d1": {
+  "text": "Return Core | close | Return all 2 of Core for A158? The customer is credited $2.00 for the core, plus any tax charged on it. | Cancel | Return Core",
+  "btns": [
+   "close[button_close_dialog]",
+   "Cancel[button_cancel_dialog]",
+   "Return Core[button_confirm_dialog]"
+  ]
+ },
+ "cancelReqs": [],
+ "t1": {
+  "status": "Complete",
+  "total": "602.00",
+  "parts": 602,
+  "tax": "0.00",
+  "num": "P2-90"
+ },
+ "d2": {
+  "text": "Return Core | close | Return all 2 of Core for A158? The customer is credited $2.00 for the core, plus any tax charged on it. | Cancel | Return Core",
+  "btns": [
+   "close[button_close_dialog]",
+   "Cancel[button_cancel_dialog]",
+   "Return Core[button_confirm_dialog]"
+  ]
+ },
+ "confirmBtn": "Return Core[button_confirm_dialog]",
+ "toast1": [],
+ "t2": {
+  "status": "Complete",
+  "total": "600.00",
+  "parts": 600,
+  "tax": "0.00",
+  "num": "P2-90"
+ },
+ "confirmReqs": [
+  "POST /api/part-sales/ce149a26-7135-4e40-87c1-e3179d004b46/cores/bf8937d4-77fb-4a2c-907a-3608923b8f13/return"
+ ],
+ "rowsAfter": [
+  "BM A158 arrow_drop_down $ $ $ % Lighting arrow_drop_down Inventory Received reply Cancel Return on the core first, then return the part. more_vert",
+  "BM Core for A158 arrow_drop_down $ $ $ % Lighting arrow_drop_down Inventory Returned more_vert"
+ ],
+ "d3": {
+  "text": "Return Core | close | Return all 2 of Core for A158? The customer is credited $2.00 for the core, plus any tax charged on it. | Cancel | Return Core",
+  "btns": [
+   "close[button_close_dialog]",
+   "Cancel[button_cancel_dialog]",
+   "Return Core[button_confirm_dialog]"
+  ]
+ },
+ "staleToast": [
+  "warning Core has already been actioned. Please refresh and try again. Please try to resolve this. Close"
+ ],
+ "staleResp": [
+  "409 {\"errors\":[{\"error\":\"Core has already been actioned. Please refresh and try again.\"}]}"
+ ],
+ "staleDlgOpen": false,
+ "t3": {
+  "status": "Complete",
+  "total": "600.00",
+  "parts": 600,
+  "tax": "0.00",
+  "num": "P2-90"
+ }
+}

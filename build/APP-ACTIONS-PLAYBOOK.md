@@ -6420,3 +6420,16 @@ Never commit the token.
   closing it leaves NO invoice. Pay on screen: `button_new_payment` → `select_payment_method` → Make Payment.
 - **A discount needs a mapped QuickBooks discount item** ("Connect a QuickBooks item for discounts before adding a discount.");
   per-ticket branches have no QuickBooks company, so a 100%-discount $0 invoice cannot be built there (see the three-signal check above).
+
+## §BA Production checks of released tickets — navigation facts (proven 3 Nov 2026, prod v26.45.0-8e138e1)
+- **Send to Portal** (`button_send_to_portal`, icon how_to_reg) shows on the WO **Lines** tab, part sale **Finance** tab, ONLY when the customer has a
+  contact with **Customer Portal Access** (Customer → Contacts → `button_edit_contact_<id>` → `input_email` + `input_checkbox_has_portal_access` → Save).
+  Dialog "Request Customer Approval" → `button_confirm_dialog` "Send To Portal". API: `POST /api/work-orders/approvals/check-approval-request-exists`,
+  `.../create-approval-request`. A WO created by API has NO contact (Finance tab bounces to Lines); assign with `work-orders/change-contact`
+  (`vehicle_id` = `work_order.vehicle.id`, not `vehicle_id`).
+- **Error toasts fade in ~3 s** — read them with a MutationObserver armed before the click, not by reading `.q-notification` afterwards.
+- **Part sale Return Core**: `button_return_core_<id>` appears on the "Core for …" row only after the part is **Picked** (row button "Pick").
+  Dialog `button_confirm_dialog` "Return Core" → `POST /api/part-sales/{id}/cores/{coreId}/return`; a stale second confirm → 409.
+- **Edit Line** opens from the line's `line_title` cell (not `line_labor_name_*`); the WO kebab has Audit Log (`menu_item_audit_log`).
+- **Invoices import** on production: `/administration/invoices-import`, `button_download_template` triggers a real download (`invoices_template.csv`).
+- Roles page route is `/administration/roles-permissions`.

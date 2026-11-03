@@ -113,6 +113,8 @@ if you need it.
 
 | 2026-11-03 | SV-11970: a work order created by API went to the SESSION's location, not the `workplace_id` I sent, so a time-zone test ran on the wrong location's clock and proved nothing | Read the new WO's `workplace_id` back before relying on it; change the time zone of the location the session is actually on | SV-11970 FINDINGS.md; playbook §AZ area |
 
+| 2026-11-03 | SV-11662 prod check: I first read only the LAST toast and nearly reported one error instead of two; Send to Portal looked 'missing' until a portal-access contact existed | Arm a MutationObserver before any click whose result is a toast; before calling a button missing, check the data the button depends on (here a portal-access contact) and the role (Rule 114) | prod-check-2026-11-03/FINDINGS.md; playbook §BA |
+
 ## The shape of the mistakes, in five lines
 
 Read these before trusting any verdict you are about to give:
