@@ -1,0 +1,99 @@
+{
+ "env": "branch",
+ "wo": "f5f1e52a-4ac0-4d95-920f-5bf81f39472b",
+ "marker": {
+  "version": "v26.43.3-551fa20",
+  "lastModified": "Fri, 30 Oct 2026 13:13:42 GMT",
+  "etag": "W/\"c2846d145adb07ca3eee876f42619a34\""
+ },
+ "browserNow": "Tue Nov 03 2026 06:16:56 GMT-0700 (Mountain Standard Time)",
+ "utcNow": "2026-11-03T13:16:43.817Z",
+ "screenLocation": "Staging Heavy Duty - 9919",
+ "create": {
+  "st": 201,
+  "body": "{\"data\":{\"work_order_id\":\"f5f1e52a-4ac0-4d95-920f-5bf81f39472b\"}}"
+ },
+ "contact": {
+  "create": 200,
+  "id": "c4bddf80-7671-418a-8aa8-da8fc9c486bf",
+  "set": 200
+ },
+ "url": "https://sv11970.qa.shopview.com/workorders/f5f1e52a-4ac0-4d95-920f-5bf81f39472b/finance",
+ "woLocation": {
+  "number": "S-17585",
+  "display_number": "S11970-17585",
+  "status_value": "estimate",
+  "status": "Estimate",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "invoice_status": "null"
+ },
+ "payBefore": [],
+ "modal": {
+  "text": "Create Deposit | close | event | Deposit Date | Payment Method | arrow_drop_down | $ | Deposit Amount | Reference Number | Memo | Cancel | Record Deposit",
+  "inputs": [
+   "date_input_create_deposit_date=11/03/2026",
+   "select_create_deposit_payment_method=",
+   "input_create_deposit_amount=",
+   "input_create_deposit_reference="
+  ]
+ },
+ "modalFilled": [
+  "date_input_create_deposit_date=10/30/2026",
+  "select_create_deposit_payment_method=EFT",
+  "input_create_deposit_amount=4.00",
+  "input_create_deposit_reference="
+ ],
+ "submitBtn": {
+  "t": "Record Deposit",
+  "x": 937.2421875,
+  "y": 626.4921875
+ },
+ "caps": [
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6au1v9250300735za200zd9250300735xf1&_p=1793711816263&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=1682845204.1793711797&frm=0&ngs=1&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=3&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412527~120420414~120469145~120469153~121246026~121246034~121284208~123691370~123814183&sid=1793711797&sct=1&seg=1&dl=https%3A%2F%2Fsv11970.qa.shopview.com%2Fworkorders%2Ff5f1e52a-4ac0-4d95-920f-5bf81f39472b%2Ffinance&dt=S11970-17585%20-%204%20Star%20Truck%20Repair%20%7C%20Work%20Order%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=deposit_create&_ee=1&ep.debug_mode=true&ep.page_type=work_orders&ep.element_type=button&ep.element_location=dialog&ep.element_label=add_deposit&_et=15568&tfd=20852",
+   "st": 204,
+   "req": null,
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/deposits",
+   "st": 201,
+   "req": "{\"workOrderId\":\"f5f1e52a-4ac0-4d95-920f-5bf81f39472b\",\"amount\":4,\"paymentMethod\":\"EFT\",\"depositDate\":\"2026-10-30T06:00:00.000Z\",\"memo\":\"Deposit for Work Order S11970-17585\"}",
+   "res": "{\"data\":{\"id\":\"3859cf86-59b8-4844-8428-83464c6d0e96\",\"creditNumber\":\"DEP-4708\",\"amount\":4,\"paymentMethod\":\"EFT\",\"depositDate\":\"2026-10-30T13:17:17Z\",\"referenceNumber\":null,\"memo\":\"Deposit for Work Order S11970-17585\",\"status\":\"held\",\"workOrderId\":\"f5f1e52a-4ac0-4d95-920f-5bf81f39472b\",\"replayed\":false}}"
+  },
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6au1v9250300735za208zd9250300735xf1&_p=1793711859003&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=1682845204.1793711797&frm=0&ngs=1&pscdl=noapi&rcb=8&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412527~120469145~120469153~121246026~121246034~121284208~123691370~123814944&sid=1793711797&sct=1&seg=1&dl=https%3A%2F%2Fsv11970.qa.shopview.com%2Fcustomers%2F6a7b6afc-084d-4584-aacb-773bcd71cbcd%2Fdeposits&dt=ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=305",
+   "st": 204,
+   "req": null,
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6au1v9250300735za200zd9250300735xf1&_p=1793711859003&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=1682845204.1793711797&frm=0&ngs=1&pscdl=noapi&rcb=8&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=2&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412527~120469145~120469153~121246026~121246034~121284208~123691370~123814944&dp=%2Fcustomers%2F6a7b6afc-084d-4584-aacb-773bcd71cbcd%2Fdeposits&dt=CustomerDepositsTab&dl=https%3A%2F%2Fsv11970.qa.shopview.com%2Fcustomers%2F6a7b6afc-084d-4584-aacb-773bcd71cbcd%2Fdeposits&sid=1793711797&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&tfd=5307",
+   "st": 204,
+   "req": null,
+   "res": ""
+  }
+ ],
+ "toasts": [
+  "check_circle A deposit was created Close"
+ ],
+ "payAfter": [
+  "(Deposit) Oct 30, 2026 - EFT"
+ ],
+ "pdf": "/home/user/Manual-test-Cases/build/sv11970-deposit-date-finance-tab-2026-11-03/ev/branch-E2/4-downloaded.pdf",
+ "pdfDeposit": [
+  "(Deposit) Oct 30, 2026 - EFT               $4.00"
+ ],
+ "pdfDates": [],
+ "cid": "6a7b6afc-084d-4584-aacb-773bcd71cbcd",
+ "woNumber": "S-17585",
+ "depRows": [
+  "Today DEP-4704 S11970-17581 $7.00 $0.00 $7.00 EFT Held Deposit for Work Order S11970-.. delete",
+  "Today DEP-4703 S11970-17580 $7.00 $0.00 $7.00 EFT Held Deposit for Work Order S11970-.. delete",
+  "Oct 30, 2026 DEP-4708 S11970-17585 $4.00 $0.00 $4.00 EFT Held Deposit for Work Order S11970-.. delete"
+ ]
+}

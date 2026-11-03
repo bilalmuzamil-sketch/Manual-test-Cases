@@ -48,11 +48,13 @@ ev/branch-K1-wrong-location-edmonton, Lethbridge restored, Heavy Duty moved to K
 | K1  S11970-17581 DEP-4704 | Kiritimati UTC+14 (local 4 Nov, UTC 3 Nov) | default 11/04/2026 | 2026-11-03T10:00Z / 2026-11-03T13:03Z | Nov 4 | Nov 4 | Today | (estimate only — line has vendor parts) | PASS |
 | K2  S11970-17582 DEP-4705 | Kiritimati | typed 11/01/2026 | 2026-10-31T10:00Z / 2026-10-31T13:05Z | Nov 1 | Nov 1 | Nov 1, 2026 | INV-S11970-17582: Nov 1 / Nov 1; deposit $8 applied (Partially Paid) | PASS |
 | K1b S11970-17583 DEP-4706 | Kiritimati | default 11/04/2026 | (same shape as K1) | Nov 4 | Nov 4 | Today | INV-S11970-17583: Nov 4 / Nov 4; Invoices tab Nov 4 | PASS |
+| E1  S11970-17584 DEP-4707 | Edmonton (local 3 Nov 06:14, UTC 3 Nov) | default 11/03/2026 | 2026-11-03T07:00Z / 2026-11-03T13:14Z | Nov 3 | Nov 3 | Today | INV-S11970-17584: Nov 3 / Nov 3; Invoices tab Nov 3 | PASS |
+| E2  S11970-17585 DEP-4708 | Edmonton | typed 10/30/2026 | 2026-10-30T06:00Z / 2026-10-30T13:17Z | Oct 30 | Oct 30 | Oct 30, 2026 | (estimate only) | PASS |
 Production before for the K1 shape: Nov 3 on Finance tab and PDF (see above). Before/after picture:
 ev/before-after-finance-deposit-date.png (scripts/ex_before_after.py, /usr/bin/python3).
 
 Observation, explained (not a defect): DEP-4703 was recorded at Edmonton time dated 3 Nov; after the location was moved to
 Kiritimati it lists as "Today" (4 Nov). That is our own time-zone change after the fact, not a user flow.
 
-Still to run: Edmonton (local date = UTC date) today + earlier day [running]; the behind-UTC EVENING case (the ticket's own
+Still to run: the behind-UTC EVENING case (the ticket's own
 report) — not producible before 00:00 UTC 4 Nov; scheduled check-in trig_01T7aKNRRJQntLkCuqJAxLHW at 00:25 UTC.
