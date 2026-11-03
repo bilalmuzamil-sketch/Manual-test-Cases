@@ -1,0 +1,4 @@
+import {prod} from '../common.mjs'; import fs from 'fs'; const s=await prod('/tmp/qa70'); const p=s.page; const out=[`marker ${JSON.stringify(await s.marker())}`, new Date().toISOString()];
+for(const u of ['/admin/fe-be-permissions','/admin/fe-permission-mappings-generator','/admin/','/admin/anything']){ const r=await p.evaluate(async u=>{const r=await fetch('https://api.shopview.com'+u,{credentials:'include'}); return r.status+' '+(await r.text()).slice(0,80);},u); out.push('logged-in GET api'+u+' -> '+r); }
+await s.go('/administration/roles-permissions'); await p.waitForTimeout(6000); out.push('roles page url '+p.url()); out.push('roles text '+(await p.evaluate(()=>document.body.innerText.replace(/\s+/g,' ').slice(0,400))));
+await p.screenshot({path:'sv9550/roles-page.png'}); fs.writeFileSync('sv9550/loggedin.txt',out.join('\n')); console.log(out.join('\n')); await s.close(); process.exit(0);

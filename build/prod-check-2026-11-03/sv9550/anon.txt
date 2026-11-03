@@ -1,0 +1,12 @@
+Tue Nov  3 14:18:59 UTC 2026
+== anonymous (no cookies) ==
+GET  https://api.shopview.com/admin/fe-be-permissions -> 404
+GET  https://app.shopview.com/admin/fe-be-permissions -> 200
+GET  https://api.shopview.com/admin/fe-permission-mappings-generator -> 404
+GET  https://app.shopview.com/admin/fe-permission-mappings-generator -> 200
+GET  https://api.shopview.com/admin/ -> 404
+GET  https://app.shopview.com/admin/ -> 200
+GET  https://api.shopview.com/admin/anything -> 404
+GET  https://app.shopview.com/admin/anything -> 200
+POST https://api.shopview.com/api/fe-be-permission-relations -> {"errors":[{"error":"not_authenticated"}]} [401]
+DELETE https://api.shopview.com/api/fe-be-permission-relations -> {"errors":[{"error":"not_authenticated"}]} [401]

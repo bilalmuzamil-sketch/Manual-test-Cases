@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+  <head>
+    <title>ShopView</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="ShopView Application" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"
+    />
+    <meta name="app-version" content="v26.45.0-8e138e1" />
+    
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Q8V1RLY7LK"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      // GA4 gets origin + path only: the query string can carry typed search
+      // text and ids (SV-11722). `set` before `config` so its page_view uses
+      // it; a value in `config` itself would outrank the router's later `set`s.
+      gtag('set', { page_location: location.origin + location.pathname });
+      if (document.referrer) {
+        gtag('set', { page_referrer: document.referrer.split(/[?#]/)[0] });
+      }
+      gtag('config', 'G-Q8V1RLY7LK');
+    </script>
+    <script>
+      // SV-12089: Google calls this once, on the first Maps call, when it
+      // rejects the key. From then on every Maps call hangs without answering,
+      // so src/utils/autocomplete.ts reads this flag and skips Maps entirely.
+      window.gm_authFailure = function () {
+        window.googleMapsAuthFailed = true;
+      };
+    </script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCXplWqirXhPPGV8qGRfEHuPgPpQT3wUrY&callback=Function.prototype&loading=async"
+      async
+      defer
+    ></script>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="128x128"
+      href="/icons/favicon-128x128.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/icons/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/icons/favicon-16x16.png"
+    />
+    <link rel="icon" type="image/ico" href="/favicon.ico" />
+
+    <script>
+      (function () {
+        var w = window;
+        var ic = w.Intercom;
+        if (typeof ic === 'function') {
+          ic('reattach_activator');
+          ic('update', w.intercomSettings);
+        } else {
+          var d = document;
+          var i = function () {
+            i.c(arguments);
+          };
+          i.q = [];
+          i.c = function (args) {
+            i.q.push(args);
+          };
+          w.Intercom = i;
+          var l = function () {
+            var s = d.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'https://widget.intercom.io/widget/u6fon4u9';
+            var x = d.getElementsByTagName('script')[0];
+            if (x && x.parentNode) {
+              x.parentNode.insertBefore(s, x);
+            } else {
+              (d.head || d.body || d.documentElement).appendChild(s);
+            }
+          };
+          if (document.readyState === 'complete') {
+            l();
+          } else if (w.attachEvent) {
+            w.attachEvent('onload', l);
+          } else {
+            w.addEventListener('load', l, false);
+          }
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/js/index.O9IHx4Gb.js"></script>
+    <link rel="modulepreload" crossorigin href="/js/vendor.Xtg8Z0qa.js">
+    <link rel="modulepreload" crossorigin href="/js/vue-vendor.CTvosfzX.js">
+    <link rel="modulepreload" crossorigin href="/js/quasar.DcubHvut.js">
+    <link rel="modulepreload" crossorigin href="/js/date.BHTojK8F.js">
+    <link rel="modulepreload" crossorigin href="/js/sentry.CwpCC_nz.js">
+    <link rel="stylesheet" crossorigin href="/css/vendor.rmqV9LRu.css">
+    <link rel="stylesheet" crossorigin href="/css/quasar.a1jQacfE.css">
+    <link rel="stylesheet" crossorigin href="/css/index.DyLd8TK_.css">
+  </head>
+
+  <body>
+    <div id="q-app"></div>
+  </body>
+</html>
