@@ -1,0 +1,342 @@
+cases checked : 360
+RUNNABLE      : 278
+NOT RUNNABLE  : 82
+
+Failures:
+
+  C154763  A part on an open work order can still be deactivated
+    https://shopview.testrail.io/index.php?/cases/view/154763
+      - R4 step has nothing to aim at: 'Open work order 1.'
+
+  C154768  An untracked part shows Not Tracked with its bins, Min and Max in the 
+    https://shopview.testrail.io/index.php?/cases/view/154768
+      - R2 no navigation instruction (click / open / go to)
+
+  C154771  Turning tracking off and back on keeps Min and Max
+    https://shopview.testrail.io/index.php?/cases/view/154771
+      - R1 no entry point: no top-menu screen is named
+
+  C154772  Turning tracking off on a part with stock asks for no confirmation
+    https://shopview.testrail.io/index.php?/cases/view/154772
+      - R1 no entry point: no top-menu screen is named
+
+  C154773  Turning tracking off keeps every bin quantity
+    https://shopview.testrail.io/index.php?/cases/view/154773
+      - R1 no entry point: no top-menu screen is named
+
+  C154789  Saving a different Part Status asks to confirm first
+    https://shopview.testrail.io/index.php?/cases/view/154789
+      - R1 no entry point: no top-menu screen is named
+
+  C154791  A status change records who made it and when
+    https://shopview.testrail.io/index.php?/cases/view/154791
+      - R1 no entry point: no top-menu screen is named
+
+  C154792  Deactivating then reactivating keeps two Part History entries
+    https://shopview.testrail.io/index.php?/cases/view/154792
+      - R1 no entry point: no top-menu screen is named
+
+  C154797  The confirmation note field is labelled Note (Optional) and stops at 2
+    https://shopview.testrail.io/index.php?/cases/view/154797
+      - R1 no entry point: no top-menu screen is named
+
+  C154833  Deleting an unused Part Library entry asks and confirms in Part Librar
+    https://shopview.testrail.io/index.php?/cases/view/154833
+      - R4 step has nothing to aim at: 'Confirm the deletion.'
+
+  C154835  An old bookmark to the Catalog page opens the Part Library
+    https://shopview.testrail.io/index.php?/cases/view/154835
+      - R3 nothing to aim at: no tab, panel, menu, icon, button, column or row
+      - R4 the FIRST step does not say where to go: 'Open the bookmark.'
+
+  C425588  Export from each tab holds only that tab's parts
+    https://shopview.testrail.io/index.php?/cases/view/425588
+      - R4 step has nothing to aim at: 'Open the downloaded file.'
+
+  C425589  Export shows Not Tracked for an untracked part and has no status colum
+    https://shopview.testrail.io/index.php?/cases/view/425589
+      - R4 step has nothing to aim at: 'Open the downloaded file.'
+
+  C425600  Bulk mode cannot be turned on while a cycle count is running
+    https://shopview.testrail.io/index.php?/cases/view/425600
+      - R1 no entry point: no top-menu screen is named
+
+  C425613  A number changed on the Part Library page reaches an open part request
+    https://shopview.testrail.io/index.php?/cases/view/425613
+      - R4 step has nothing to aim at: 'Open work order 1.'
+
+  C425614  A Part Library number over 50 characters is refused on an open part re
+    https://shopview.testrail.io/index.php?/cases/view/425614
+      - R4 step has nothing to aim at: 'Open work order 1.'
+
+  C425616  A part requested from a vendor reaches the Part Library when it is rec
+    https://shopview.testrail.io/index.php?/cases/view/425616
+      - R4 step has nothing to aim at: 'Open work order 1.'
+
+  C425630  The Inventory Value report leaves out an untracked part
+    https://shopview.testrail.io/index.php?/cases/view/425630
+      - R2 no navigation instruction (click / open / go to)
+
+  C425631  Turning tracking on marks the first bin as default when none is
+    https://shopview.testrail.io/index.php?/cases/view/425631
+      - R1 no entry point: no top-menu screen is named
+
+  C425632  The list shows Not Tracked right after Save, without a page reload
+    https://shopview.testrail.io/index.php?/cases/view/425632
+      - R1 no entry point: no top-menu screen is named
+
+  C425633  Turning tracking back on shows the count as it stands now
+    https://shopview.testrail.io/index.php?/cases/view/425633
+      - R1 no entry point: no top-menu screen is named
+
+  C425638  Part History records Tracking turned off and Tracking turned on
+    https://shopview.testrail.io/index.php?/cases/view/425638
+      - R1 no entry point: no top-menu screen is named
+
+  C425642  With no untracked parts, searching not tracked lists nothing
+    https://shopview.testrail.io/index.php?/cases/view/425642
+      - R2 no navigation instruction (click / open / go to)
+
+  C425644  With no sort chosen, tracked parts come before untracked parts
+    https://shopview.testrail.io/index.php?/cases/view/425644
+      - R2 no navigation instruction (click / open / go to)
+
+  C425645  The Supply filter shows an untracked part only under All
+    https://shopview.testrail.io/index.php?/cases/view/425645
+      - R2 no navigation instruction (click / open / go to)
+
+  C425656  Global search shows Not Tracked in place of an untracked part's badge
+    https://shopview.testrail.io/index.php?/cases/view/425656
+      - R3 nothing to aim at: no tab, panel, menu, icon, button, column or row
+
+  C425660  Bins of +5 and -2 show quantity 3 and $30 in Inventory Value
+    https://shopview.testrail.io/index.php?/cases/view/425660
+      - R2 no navigation instruction (click / open / go to)
+
+  C425661  A part with only a -2 bin shows -2 and -$20 and lowers the totals
+    https://shopview.testrail.io/index.php?/cases/view/425661
+      - R2 no navigation instruction (click / open / go to)
+
+  C425663  Bins of +5 and +3 still show quantity 8 and $80 in Inventory Value
+    https://shopview.testrail.io/index.php?/cases/view/425663
+      - R2 no navigation instruction (click / open / go to)
+
+  C425665  The Supply filter still uses the positive bins for a part with a negat
+    https://shopview.testrail.io/index.php?/cases/view/425665
+      - R2 no navigation instruction (click / open / go to)
+
+  C425666  Fractional bins of +2.5 and -1.25 show quantity 1.25 and $12.50
+    https://shopview.testrail.io/index.php?/cases/view/425666
+      - R2 no navigation instruction (click / open / go to)
+
+  C425668  Inventory Value location and category filters still scope the net figu
+    https://shopview.testrail.io/index.php?/cases/view/425668
+      - R2 no navigation instruction (click / open / go to)
+
+  C425686  Cost and price fields show only to a user who can see financial data
+    https://shopview.testrail.io/index.php?/cases/view/425686
+      - R1 no entry point: no top-menu screen is named
+
+  C425689  Delete Part shows only on an existing part, to a user with Delete
+    https://shopview.testrail.io/index.php?/cases/view/425689
+      - R1 no entry point: no top-menu screen is named
+
+  C425694  Saving with the part number unchanged leaves the number and open work 
+    https://shopview.testrail.io/index.php?/cases/view/425694
+      - R4 step has nothing to aim at: 'Open purchase order 1.'
+
+  C425696  A rename carries over to open purchase order lines at every location
+    https://shopview.testrail.io/index.php?/cases/view/425696
+      - R4 step has nothing to aim at: 'Open purchase order 1.'
+      - R4 step has nothing to aim at: 'Open purchase order 2.'
+      - R4 step has nothing to aim at: 'Open purchase order 1.'
+
+  C425697  A rename carries over to open part requests but not to received ones
+    https://shopview.testrail.io/index.php?/cases/view/425697
+      - R4 step has nothing to aim at: 'Open work order 1.'
+
+  C425698  A rename carries over to canned jobs that hold the part
+    https://shopview.testrail.io/index.php?/cases/view/425698
+      - R4 step has nothing to aim at: 'Open work order 1.'
+
+  C425699  A rename carries over to vendor returns that are not completed
+    https://shopview.testrail.io/index.php?/cases/view/425699
+      - R4 step has nothing to aim at: 'Open return A.'
+      - R4 step has nothing to aim at: 'Open return B.'
+
+  C425703  Part Status is disabled for a user without Delete
+    https://shopview.testrail.io/index.php?/cases/view/425703
+      - R1 no entry point: no top-menu screen is named
+
+  C425704  Picking a different status changes nothing until Save
+    https://shopview.testrail.io/index.php?/cases/view/425704
+      - R1 no entry point: no top-menu screen is named
+
+  C425706  Save with a different status asks for confirmation first
+    https://shopview.testrail.io/index.php?/cases/view/425706
+      - R1 no entry point: no top-menu screen is named
+
+  C425707  Confirming Deactivate saves the edits and shows Part deactivated.
+    https://shopview.testrail.io/index.php?/cases/view/425707
+      - R1 no entry point: no top-menu screen is named
+
+  C425709  Cancelling the confirmation saves nothing and keeps the picked status
+    https://shopview.testrail.io/index.php?/cases/view/425709
+      - R1 no entry point: no top-menu screen is named
+
+  C425710  Saving with the saved status picked asks no confirmation
+    https://shopview.testrail.io/index.php?/cases/view/425710
+      - R1 no entry point: no top-menu screen is named
+
+  C425712  A refused save closes the confirmation and saves nothing
+    https://shopview.testrail.io/index.php?/cases/view/425712
+      - R1 no entry point: no top-menu screen is named
+
+  C425715  Delete Part on a part with an open return shows why and does nothing
+    https://shopview.testrail.io/index.php?/cases/view/425715
+      - R1 no entry point: no top-menu screen is named
+
+  C425742  Global search lists an inactive part with a grey Inactive tag
+    https://shopview.testrail.io/index.php?/cases/view/425742
+      - R3 nothing to aim at: no tab, panel, menu, icon, button, column or row
+
+  C425743  Selecting an inactive part in global search opens the Inactive tab
+    https://shopview.testrail.io/index.php?/cases/view/425743
+      - R3 nothing to aim at: no tab, panel, menu, icon, button, column or row
+
+  C425744  Global search shows Not Tracked for an untracked part
+    https://shopview.testrail.io/index.php?/cases/view/425744
+      - R3 nothing to aim at: no tab, panel, menu, icon, button, column or row
+
+  C425751  A part retired while on order can still be ordered, received and picke
+    https://shopview.testrail.io/index.php?/cases/view/425751
+      - R4 step has nothing to aim at: 'Open purchase order A.'
+
+  C425756  The Inventory Value report still lists a part after it is set inactive
+    https://shopview.testrail.io/index.php?/cases/view/425756
+      - R2 no navigation instruction (click / open / go to)
+      - R3 nothing to aim at: no tab, panel, menu, icon, button, column or row
+
+  C425757  The Parts Velocity report still lists an inactive part's sales
+    https://shopview.testrail.io/index.php?/cases/view/425757
+      - R3 nothing to aim at: no tab, panel, menu, icon, button, column or row
+
+  C425761  The part window's deactivation confirmation shows its three lines in o
+    https://shopview.testrail.io/index.php?/cases/view/425761
+      - R1 no entry point: no top-menu screen is named
+
+  C425767  A note of only spaces records no note
+    https://shopview.testrail.io/index.php?/cases/view/425767
+      - R1 no entry point: no top-menu screen is named
+
+  C425770  A status entry has Staff, Date and Time and can be searched
+    https://shopview.testrail.io/index.php?/cases/view/425770
+      - R1 no entry point: no top-menu screen is named
+
+  C425771  Turning tracking off and on writes two Part History entries
+    https://shopview.testrail.io/index.php?/cases/view/425771
+      - R1 no entry point: no top-menu screen is named
+
+  C425772  Changing Min and Max in the part window writes one entry with both
+    https://shopview.testrail.io/index.php?/cases/view/425772
+      - R1 no entry point: no top-menu screen is named
+
+  C425778  Part History search finds entries by their text or staff name, in any 
+    https://shopview.testrail.io/index.php?/cases/view/425778
+      - R1 no entry point: no top-menu screen is named
+      - R2 no navigation instruction (click / open / go to)
+
+  C425779  Part History search shows only the bin rows that match
+    https://shopview.testrail.io/index.php?/cases/view/425779
+      - R1 no entry point: no top-menu screen is named
+      - R2 no navigation instruction (click / open / go to)
+
+  C425780  Prices in Part History can be searched only by users who see prices
+    https://shopview.testrail.io/index.php?/cases/view/425780
+      - R1 no entry point: no top-menu screen is named
+
+  C540880  Changing only the case or punctuation of a part's own number saves
+    https://shopview.testrail.io/index.php?/cases/view/540880
+      - R1 no entry point: no top-menu screen is named
+
+  C540881  Vendor always shows in the part window, for every user
+    https://shopview.testrail.io/index.php?/cases/view/540881
+      - R1 no entry point: no top-menu screen is named
+
+  C573668  Export holds every part the search matches, even rows not yet loaded
+    https://shopview.testrail.io/index.php?/cases/view/573668
+      - R4 step has nothing to aim at: 'Open the downloaded file.'
+
+  C573669  Export follows the Category filter
+    https://shopview.testrail.io/index.php?/cases/view/573669
+      - R4 step has nothing to aim at: 'Open the downloaded file.'
+
+  C573673  A special order received only at another location is not offered with 
+    https://shopview.testrail.io/index.php?/cases/view/573673
+      - R4 step has nothing to aim at: 'Open work order 2.'
+
+  C573676  A part's core has no row of its own on the Inventory list or in Export
+    https://shopview.testrail.io/index.php?/cases/view/573676
+      - R4 step has nothing to aim at: 'Open the downloaded file.'
+
+  C839414  Export follows the Supply filter and leaves out an untracked part
+    https://shopview.testrail.io/index.php?/cases/view/839414
+      - R4 step has nothing to aim at: 'Open the downloaded file.'
+
+  C839415  Switching tabs during a cycle count drops the counts typed so far
+    https://shopview.testrail.io/index.php?/cases/view/839415
+      - R1 no entry point: no top-menu screen is named
+
+  C839423  A part's core has no row of its own on the Part Library list
+    https://shopview.testrail.io/index.php?/cases/view/839423
+      - R2 no navigation instruction (click / open / go to)
+
+  C839436  Changing only Max writes only the Max pair, and no change writes nothi
+    https://shopview.testrail.io/index.php?/cases/view/839436
+      - R1 no entry point: no top-menu screen is named
+
+  C839445  Received purchase order lines and accepted vendor bills keep the old n
+    https://shopview.testrail.io/index.php?/cases/view/839445
+      - R4 step has nothing to aim at: 'Open purchase order 1.'
+
+  C839446  A purchase order line typed by hand with the old number keeps its numb
+    https://shopview.testrail.io/index.php?/cases/view/839446
+      - R4 step has nothing to aim at: 'Open purchase order 1.'
+
+  C839447  A hand-typed purchase order line is received under its own number
+    https://shopview.testrail.io/index.php?/cases/view/839447
+      - R4 step has nothing to aim at: 'Open purchase order 1.'
+
+  C839452  The Totals row's Margin % stays the true total and can go above 100%
+    https://shopview.testrail.io/index.php?/cases/view/839452
+      - R2 no navigation instruction (click / open / go to)
+
+  C839453  The Totals row's Margin % stays the true total and can go below zero
+    https://shopview.testrail.io/index.php?/cases/view/839453
+      - R2 no navigation instruction (click / open / go to)
+
+  C839494  Design: Part Library page looks as in the design
+    https://shopview.testrail.io/index.php?/cases/view/839494
+      - R1 no entry point: no top-menu screen is named
+
+  C839495  Design: Part Library entry page looks as in the design
+    https://shopview.testrail.io/index.php?/cases/view/839495
+      - R1 no entry point: no top-menu screen is named
+
+  C839500  Design: Inactive tag on the Part Library entry page sits before the qu
+    https://shopview.testrail.io/index.php?/cases/view/839500
+      - R1 no entry point: no top-menu screen is named
+
+  C847728  Global search never lists a part's core
+    https://shopview.testrail.io/index.php?/cases/view/847728
+      - R3 nothing to aim at: no tab, panel, menu, icon, button, column or row
+
+  C847731  Opening the address of a deleted Part Library entry says it is not fou
+    https://shopview.testrail.io/index.php?/cases/view/847731
+      - R4 step has nothing to aim at: 'Confirm the deletion.'
+
+  C847732  A rename leaves the old number on part sale lines that hold the part
+    https://shopview.testrail.io/index.php?/cases/view/847732
+      - R4 step has nothing to aim at: 'Open part sale A.'
+      - R4 step has nothing to aim at: 'Open part sale B.'
+exit=1
