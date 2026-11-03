@@ -1,0 +1,95 @@
+{
+ "marker": {
+  "version": "v26.45.0-279650f",
+  "lastModified": "Tue, 03 Nov 2026 11:06:14 GMT",
+  "etag": "W/\"0d066d3afc32826f247e71edf4d9d5c9\""
+ },
+ "utc": "2026-11-03T13:39:27.521Z",
+ "me": "{}",
+ "nCust": 1,
+ "customer": [
+  "6a7b6afc-084d-4584-aacb-773bcd71cbcd",
+  "4 Star Truck Repair"
+ ],
+ "wps": "{\"collection\":[{\"id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"name\":\"Staging Heavy Duty - 9919\",\"color\":\"#d66c00\",\"timezone\":\"America/Edmonton\",\"country_code\":\"CA\",\"telephone\":\"(403) 523 - 0488\",\"shop_id\":\"11986\",\"remit_to\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"shop_supplies_charge\":10.5,\"max_shop_",
+ "create": "{\"data\":{\"work_order_id\":\"de25aeea-29f7-41cb-b06c-3048fe11b962\"}}",
+ "wo": "de25aeea-29f7-41cb-b06c-3048fe11b962",
+ "contact": "{\"data\":{\"contact_id\":\"486e3ac2-eae1-47a8-a64c-0e7c43552b6f\"}}",
+ "cc": "{\"data\":{\"customer_id\":\"486e3ac2-eae1-47a8-a64c-0e7c43552b6f\"}}",
+ "mileage": "{\"data\":{\"work_order_id\":\"de25aeea-29f7-41cb-b06c-3048fe11b962\"}}",
+ "line": "{\"data\":{\"line_id\":\"5ba4231d-37d3-499e-8a1d-ee71e6175ccd\"}}",
+ "story": 201,
+ "lineDone": "{\"data\":[]}",
+ "disc": "{\"errors\":[{\"error\":\"Connect a QuickBooks item for discounts before adding a discount.\"}]}",
+ "totalAfterDisc": [
+  "260.98",
+  "248.55",
+  0
+ ],
+ "complete": "{\"errors\":[{\"error\":\"All vendor parts must be received before completing the work order.\"}]}",
+ "invoice": "{\"errors\":[{\"error\":\"Work order is not complete.\"}]}",
+ "wo_after": {
+  "number": "S-17582",
+  "display_number": "S11986-17582",
+  "status_value": "ready_for_review",
+  "status": "Review",
+  "invoice_status": "null",
+  "invoice_id": "",
+  "is_invoice_created": false,
+  "paid_balance": "null",
+  "amount_paid": 0,
+  "total_parts_cost": 0,
+  "total_labour_cost": 224.93,
+  "total_tech_time": 60,
+  "total_time": 90,
+  "total_labour_cost_amount": 224.93,
+  "total_tax_cost_amount": 12.43,
+  "total_tax_cost": "12.43",
+  "total_cost": "260.98",
+  "total_clocked_time": 0,
+  "total_received_quantity": 0,
+  "total_returned_quantity": 0,
+  "balance": 0,
+  "sub_total": "248.55",
+  "deposit_total": 0,
+  "totalAdjustments": 0,
+  "invoice_balance": 260.98,
+  "open_balance": 260.98,
+  "invoiceCredits": "[]",
+  "invoice_shop_supplies_charge": "null",
+  "invoice_tax": "null",
+  "invoice_shop_id": "null"
+ },
+ "tab_payments": [
+  "",
+  "expand_more Today Payment Payment for invoice .. - $0.00 Paid delete",
+  "expand_more Oct 7, 2025 Payment 068269 - $905.63 Paid delete",
+  "expand_more Apr 12, 2024 Payment 010254 - $1,233.86 Paid delete",
+  ""
+ ],
+ "tab_invoices": [
+  "",
+  ""
+ ],
+ "financeButtons": [
+  "button_download_invoice:get_app",
+  "button_print_invoice:print",
+  "button_invoice_settings:settings",
+  "section_create_invoice_action:Mark Reviewed",
+  "toggle_estimate_invoice:Estimate/Invoice",
+  "invoice-ref-work-order:Work Order S11986-17582",
+  "invoice-ref-terms:Terms COD",
+  "invoice-summary-labor:Labor\n$224.93",
+  "invoice-summary-parts:Parts\n$0.00",
+  "invoice-summary-shop-supplies:Shop supplies\n$23.62",
+  "invoice-summary-subtotal:Subtotal\n$248.55",
+  "invoice-summary-tax-row:GST (5%)\n$12.43",
+  "invoice-summary-total:Total\n$260.98"
+ ],
+ "calls": [
+  "/api/customer-deposits/list?accountId=64b71259-e376-4208-93c8-9b815b65fb98",
+  "/api/customer-payment/list?accountId=64b71259-e376-4208-93c8-9b815b65fb98&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=true",
+  "/api/invoices/de25aeea-29f7-41cb-b06c-3048fe11b962/settings/view",
+  "/api/invoices/de25aeea-29f7-41cb-b06c-3048fe11b962/details?includeDeclined=0"
+ ]
+}

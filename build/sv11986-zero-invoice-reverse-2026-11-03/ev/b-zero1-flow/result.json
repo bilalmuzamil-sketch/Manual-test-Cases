@@ -1,0 +1,339 @@
+{
+ "marker": {
+  "version": "v26.45.0-279650f",
+  "lastModified": "Tue, 03 Nov 2026 11:06:14 GMT",
+  "etag": "W/\"0d066d3afc32826f247e71edf4d9d5c9\""
+ },
+ "utc": "2026-11-03T13:34:27.739Z",
+ "wo": "7257c1e0-c0dd-47e2-ba34-ad9f4a365115",
+ "steps": [
+  {
+   "label": "start",
+   "wo_status": "Paid",
+   "invoice_status": "paid",
+   "invoice_id": "c9789d78-bd23-494e-a045-ee3b281fc2e8",
+   "is_invoice_created": true,
+   "amount_paid": 0,
+   "balance": 0,
+   "total": "0.00",
+   "payments": [
+    {
+     "id": "416d43c7-3170-4fa9-98ed-880bd79bf35b",
+     "amt": 0,
+     "status": "paid"
+    }
+   ]
+  },
+  {
+   "label": "after A",
+   "wo_status": "Paid",
+   "invoice_status": "paid",
+   "invoice_id": "c9789d78-bd23-494e-a045-ee3b281fc2e8",
+   "is_invoice_created": true,
+   "amount_paid": 0,
+   "balance": 0,
+   "total": "0.00",
+   "payments": [
+    {
+     "id": "416d43c7-3170-4fa9-98ed-880bd79bf35b",
+     "amt": 0,
+     "status": "paid"
+    }
+   ]
+  },
+  {
+   "label": "after B delete payment",
+   "wo_status": "Invoiced",
+   "invoice_status": "pending",
+   "invoice_id": "c9789d78-bd23-494e-a045-ee3b281fc2e8",
+   "is_invoice_created": true,
+   "amount_paid": 0,
+   "balance": 0,
+   "total": "0.00",
+   "payments": []
+  },
+  {
+   "label": "after D reverse",
+   "wo_status": "Complete",
+   "invoice_status": null,
+   "invoice_id": "",
+   "is_invoice_created": false,
+   "amount_paid": 0,
+   "balance": 0,
+   "total": "0.00",
+   "payments": []
+  },
+  {
+   "label": "after E re-invoice",
+   "wo_status": "Paid",
+   "invoice_status": "paid",
+   "invoice_id": "6890ee5b-ee30-4dd2-83f1-22fc69f02056",
+   "is_invoice_created": true,
+   "amount_paid": 0,
+   "balance": 0,
+   "total": "0.00",
+   "payments": [
+    {
+     "id": "e7912ceb-1efc-4610-89bd-f82da70f89cf",
+     "amt": 0,
+     "status": "paid"
+    }
+   ]
+  }
+ ],
+ "A_reverseWhilePaid": {
+  "badge": "Paid",
+  "menu": [
+   {
+    "id": "menu_item_reverse",
+    "t": "Reverse",
+    "dis": false
+   },
+   {
+    "id": "menu_item_issue_credit",
+    "t": "Issue Credit",
+    "dis": false
+   }
+  ],
+  "afterClick": {
+   "dialog": {
+    "text": "Warning close This invoice has been paid, please delete payment before reversing. Close",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Close",
+      "id": "button_close_invoice_warning"
+     }
+    ]
+   },
+   "toasts": []
+  },
+  "confirm": [
+   {
+    "text": "Warning close This invoice has been paid, please delete payment before reversing. Close",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Close",
+      "id": "button_close_invoice_warning"
+     }
+    ]
+   },
+   {
+    "toasts": []
+   }
+  ]
+ },
+ "paymentId": "416d43c7-3170-4fa9-98ed-880bd79bf35b",
+ "B_delete": {
+  "dialog": {
+   "text": "Confirmation close This action will reverse the payment for all invoices associated with it. The payment record is preserved for audit history. Are you sure you want to proceed? Cancel Reverse",
+   "btns": [
+    {
+     "t": "close",
+     "id": "button_close_dialog"
+    },
+    {
+     "t": "Cancel",
+     "id": "button_cancel_dialog"
+    },
+    {
+     "t": "Reverse",
+     "id": "button_confirm_dialog"
+    }
+   ]
+  },
+  "confirm": [
+   {
+    "text": "Confirmation close This action will reverse the payment for all invoices associated with it. The payment record is preserved for audit history. Are you sure you want to proceed? Cancel Reverse",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Cancel",
+      "id": "button_cancel_dialog"
+     },
+     {
+      "t": "Reverse",
+      "id": "button_confirm_dialog"
+     }
+    ]
+   },
+   {
+    "toasts": []
+   }
+  ]
+ },
+ "B_rows": [
+  "expand_more Oct 7, 2025 Payment 068269 - $905.63 Paid delete",
+  "expand_more Apr 12, 2024 Payment 010254 - $1,233.86 Paid delete"
+ ],
+ "C_invoiceRows": [
+  "Nov 3, 2026 Invoice S11986-17581 - $0.00 $0.00 Unpaid"
+ ],
+ "D_reverse": {
+  "badge": "Invoiced",
+  "menu": [
+   {
+    "id": "menu_item_reverse",
+    "t": "Reverse",
+    "dis": false
+   },
+   {
+    "id": "menu_item_issue_credit",
+    "t": "Issue Credit",
+    "dis": false
+   }
+  ],
+  "afterClick": {
+   "dialog": {
+    "text": "Warning close This action will re-open and undo the invoice. Are you sure you want to proceed? Reverse Cancel",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Reverse",
+      "id": "button_confirm_reverse_invoice"
+     },
+     {
+      "t": "Cancel",
+      "id": "button_cancel_invoice_warning"
+     }
+    ]
+   },
+   "toasts": []
+  },
+  "confirm": [
+   {
+    "text": "Warning close This action will re-open and undo the invoice. Are you sure you want to proceed? Reverse Cancel",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Reverse",
+      "id": "button_confirm_reverse_invoice"
+     },
+     {
+      "t": "Cancel",
+      "id": "button_cancel_invoice_warning"
+     }
+    ]
+   },
+   {
+    "toasts": []
+   }
+  ]
+ },
+ "E": {
+  "createBtn": 1,
+  "confirm": [
+   {
+    "text": "New Customer Payment close event Payment Date Payment Method arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment Amount to credit: $ Payment amount: $0.00 Make Payment",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_payment_dialog"
+     },
+     {
+      "t": "Make Payment",
+      "id": "button_make_payment"
+     }
+    ]
+   },
+   {
+    "toasts": []
+   }
+  ]
+ },
+ "caps": [
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"7257c1e0-c0dd-47e2-ba34-ad9f4a365115\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"customers\",\"id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/customer-account/reverse-customer-payment",
+   "st": 201,
+   "req": "{\"id\":\"416d43c7-3170-4fa9-98ed-880bd79bf35b\"}",
+   "res": "{\"data\":[]}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"customers\",\"id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"customers\",\"id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"7257c1e0-c0dd-47e2-ba34-ad9f4a365115\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/invoices/reverse-invoice",
+   "st": 200,
+   "req": "{\"id\":\"c9789d78-bd23-494e-a045-ee3b281fc2e8\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"7257c1e0-c0dd-47e2-ba34-ad9f4a365115\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"7257c1e0-c0dd-47e2-ba34-ad9f4a365115\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/invoices/estimate",
+   "st": 200,
+   "req": "{\"work_order_id\":\"7257c1e0-c0dd-47e2-ba34-ad9f4a365115\",\"type\":\"html\",\"isEstimate\":0,\"includeDeclined\":0,\"issueDate\":\"2026-11-03T13:36:00+00:00\",\"dueDate\":\"2026-11-03T13:36:00+00:00\",\"historyEvent\":null}",
+   "res": "<style>\n    * {\n        box-sizing: border-box;\n    }\n\n    @page {\n        size: A4 portrait;\n        font-size: 0.8rem;\n        font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;\n        margin: 30px;\n        margin-bottom: 15mm;\n\n        /* SV-9870 (change 9): no running header after page one, and the page's\n           own top margin drops from the 50pt that reserved room for i"
+  },
+  {
+   "m": "POST",
+   "u": "/api/invoices/create",
+   "st": 201,
+   "req": "{\"invoice_number\":\"S11986-17581\",\"due_date\":\"2026-11-03T13:36:00+00:00\",\"discount\":0,\"cost\":\"0.00\",\"customer_id\":\"563a4bc2-b784-4921-b66b-10496b0e40d3\",\"company_id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\",\"work_order_id\":\"7257c1e0-c0dd-47e2-ba34-ad9f4a365115\",\"work_place_id\":\"b3c8c820-f815-4cf1-8938-",
+   "res": "{\"data\":{\"invoice_id\":\"6890ee5b-ee30-4dd2-83f1-22fc69f02056\",\"customer_account_id\":\"64b71259-e376-4208-93c8-9b815b65fb98\",\"auto_paid\":false,\"auto_paid_credit_id\":null,\"auto_paid_credit_amount\":0,\"auto_paid_deposit_amount\":0,\"auto_apply_status\":null,\"remaining_balance\":0}}"
+  }
+ ]
+}

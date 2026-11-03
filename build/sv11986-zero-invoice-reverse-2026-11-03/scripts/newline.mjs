@@ -1,0 +1,27 @@
+// usage: ENV node newline.mjs <tag> [CUST env] -> new WO (no line), open Lines tab, dump the New Line dialog; if FILL=1 fill a name, save on screen, complete line+WO, invoice
+import {sess,post,arr} from './common.mjs'; import fs from 'fs';
+const TAG=process.argv[2]; const OUT=`ev/${TAG}`; fs.mkdirSync(OUT,{recursive:true}); const s=await sess(); const p=s.page; const R={marker:await s.marker(),utc:new Date().toISOString()};
+const caps=[]; p.on('response',async r=>{const q=r.request(); if(q.method()!=='GET'&&r.url().includes('/api/')&&!/touch|collect/.test(r.url())){let b='';try{b=(await r.text()).slice(0,300)}catch{} caps.push(q.method()+' '+r.url().replace(/^https:\/\/[^/]+/,'')+' '+r.status()+' '+(q.postData()||'').slice(0,250)+' -> '+b);}});
+const cust={id:process.env.CUST}; const veh=arr((await s.api('/api/vehicles?company_id='+cust.id)).json?.data)[0];
+const today=new Date().toISOString().slice(0,10); const c=await post(s,'/api/work-orders/create',{company_id:cust.id,vehicle_id:veh.id,start_date:today,is_vehicle_here:true}); const WO=c.j?.data?.work_order_id; R.wo=WO; R.create=c.t;
+const ct=await post(s,'/api/contacts/create',{company_id:cust.id,first_name:'ZZAUTOTEST',last_name:'SV11986 '+TAG}); R.cc=(await post(s,'/api/work-orders/change-contact',{work_order_id:WO,vehicle_id:veh.id,contact_id:ct.j?.data?.contact_id,update_vehicle:true})).st;
+R.mileage=(await post(s,'/api/work-orders/change-mileage',{work_order_id:WO,mileage:'123456'})).st;
+{ const v=(await s.api('/api/work-orders/view/'+WO)).json?.data; const w=v?.work_order||v||{}; R.removedAdj=[]; for(const a of (w.adjustments||[])){ R.removedAdj.push(a.name+' '+(await post(s,'/api/work-orders/adjustments/remove',{adjustmentId:a.id,workOrderId:WO})).st); } }
+await s.go(`/workorders/${WO}/lines`); await p.waitForTimeout(6000);
+let d=await p.evaluate(()=>{const d=[...document.querySelectorAll('.q-dialog')].pop(); return d?{text:d.innerText.replace(/\s+/g,' ').slice(0,600),ids:[...d.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')+(e.tagName==='INPUT'?'(input)':''))}:null;});
+if(!d){ const nb=p.locator('[data-test-id*="new_line"], button:has-text("New Line")').first(); if(await nb.count()){ await nb.click(); await p.waitForTimeout(1500); d=await p.evaluate(()=>{const d=[...document.querySelectorAll('.q-dialog')].pop(); return d?{text:d.innerText.replace(/\s+/g,' ').slice(0,600),ids:[...d.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id'))}:null;}); } }
+R.dialog=d; await p.screenshot({path:`${OUT}/newline-dialog.png`});
+if(process.env.FILL){ const t=p.locator('[data-test-id="select_line_canned_line"]').first(); await t.click(); await p.keyboard.type('ZZAUTOTEST no-charge line',{delay:30}); await p.waitForTimeout(800); await p.keyboard.press('Enter'); await p.waitForTimeout(800); await p.keyboard.press('Escape').catch(()=>{});
+  const ds=p.locator('[data-test-id="input_line_description"] textarea, [data-test-id="input_line_description"] input, textarea[data-test-id="input_line_description"]').first(); if(await ds.count()){ await ds.click(); await ds.fill('ZZAUTOTEST SV-11986 line with no labour and no parts'); }
+  await p.click('[data-test-id="select_labour_type"]'); await p.waitForTimeout(900); R.labourOptions=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(i=>i.innerText.trim()).slice(0,8)); await p.locator('.q-menu .q-item').first().click(); await p.waitForTimeout(700);
+  const ap=p.locator('[data-test-id="checkbox_line_approved"]').first(); if(await ap.getAttribute('aria-checked')!=='true') await ap.click();
+  await p.waitForTimeout(500); await p.screenshot({path:`${OUT}/newline-filled.png`}); R.filled=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog input,.q-dialog textarea')].map(i=>(i.closest('[data-test-id]')?.getAttribute('data-test-id')||'')+'='+i.value));
+  await p.click('[data-test-id="button_save_close"]'); await p.waitForTimeout(3000); R.afterSave=await p.evaluate(()=>({dlg:[...document.querySelectorAll('.q-dialog')].map(d=>d.innerText.replace(/\s+/g,' ').slice(0,200)),toast:[...document.querySelectorAll('.q-notification')].map(x=>x.innerText.replace(/\s+/g,' '))}));
+  const ls=(await s.api('/api/work-orders/view/'+WO)).json?.data; const w=ls?.work_order||ls; const lines=w?.lines||w?.work_order_lines||[]; R.lines=(Array.isArray(lines)?lines:[]).map(l=>({id:l.id,status:l.status,total:l.total||l.line_total}));
+  let lid=R.lines[0]?.id; if(!lid){ const cap=caps.find(c=>/lines\/create/.test(c)); const m=cap&&cap.match(/line_id\":\"([0-9a-f-]+)/); lid=m&&m[1]; } R.lineId=lid;
+  R.story=(await post(s,'/api/work-orders/lines/change-story',{line_id:lid,tech_story:'ZZAUTOTEST SV-11986',work_order_id:WO})).st;
+  R.lineDone=(await post(s,'/api/work-orders/lines/change-status',{line_id:lid,status:'complete'})).t;
+  R.complete=(await post(s,'/api/work-orders/change-status',{id:WO,status:'complete'})).t;
+  R.invoice=(await post(s,'/api/invoices/create',{work_order_id:WO})).t;
+  const v=(await s.api('/api/work-orders/view/'+WO)).json?.data; const w2=v?.work_order||v; R.after=[w2?.status,w2?.invoice_status,w2?.total_cost,w2?.display_number]; }
+fs.writeFileSync(`${OUT}/result.json`,JSON.stringify({...R,caps},null,1)); console.log(JSON.stringify({...R,caps},null,1).slice(0,3000)); await s.close(); process.exit(0);

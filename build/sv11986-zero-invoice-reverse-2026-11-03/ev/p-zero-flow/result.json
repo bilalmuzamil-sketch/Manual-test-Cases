@@ -1,0 +1,325 @@
+{
+ "marker": {
+  "version": "v26.45.0-8e138e1",
+  "lastModified": "Tue, 03 Nov 2026 09:59:25 GMT",
+  "etag": "W/\"0698e16fd1dcc13c9d66fd667ca15f4a\""
+ },
+ "utc": "2026-11-03T13:47:59.028Z",
+ "wo": "0bee4c9b-d969-4ae0-951b-231b62cf13e3",
+ "steps": [
+  {
+   "label": "start",
+   "wo_status": "Paid",
+   "invoice_status": "paid",
+   "invoice_id": "384f5075-3f9c-4bb5-a00b-d5d9376440a5",
+   "is_invoice_created": true,
+   "amount_paid": 0,
+   "balance": -500,
+   "total": "0.00",
+   "payments": [
+    {
+     "id": "9f74e009-6ee7-445b-8a3c-99121f0848f2",
+     "amt": 0,
+     "status": "paid"
+    }
+   ]
+  },
+  {
+   "label": "after A",
+   "wo_status": "Paid",
+   "invoice_status": "paid",
+   "invoice_id": "384f5075-3f9c-4bb5-a00b-d5d9376440a5",
+   "is_invoice_created": true,
+   "amount_paid": 0,
+   "balance": -500,
+   "total": "0.00",
+   "payments": [
+    {
+     "id": "9f74e009-6ee7-445b-8a3c-99121f0848f2",
+     "amt": 0,
+     "status": "paid"
+    }
+   ]
+  },
+  {
+   "label": "after B delete payment",
+   "wo_status": "Paid",
+   "invoice_status": "paid",
+   "invoice_id": "384f5075-3f9c-4bb5-a00b-d5d9376440a5",
+   "is_invoice_created": true,
+   "amount_paid": 0,
+   "balance": -500,
+   "total": "0.00",
+   "payments": []
+  },
+  {
+   "label": "after D reverse",
+   "wo_status": "Paid",
+   "invoice_status": "paid",
+   "invoice_id": "384f5075-3f9c-4bb5-a00b-d5d9376440a5",
+   "is_invoice_created": true,
+   "amount_paid": 0,
+   "balance": -500,
+   "total": "0.00",
+   "payments": []
+  }
+ ],
+ "A_reverseWhilePaid": {
+  "badge": "Paid",
+  "menu": [
+   {
+    "id": "menu_item_reverse",
+    "t": "Reverse",
+    "dis": false
+   },
+   {
+    "id": "menu_item_issue_credit",
+    "t": "Issue Credit",
+    "dis": false
+   }
+  ],
+  "afterClick": {
+   "dialog": {
+    "text": "Warning close This invoice has been paid, please delete payment before reversing. Close",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Close",
+      "id": "button_close_invoice_warning"
+     }
+    ]
+   },
+   "toasts": []
+  },
+  "confirm": [
+   {
+    "text": "Warning close This invoice has been paid, please delete payment before reversing. Close",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Close",
+      "id": "button_close_invoice_warning"
+     }
+    ]
+   },
+   {
+    "toasts": []
+   }
+  ]
+ },
+ "paymentId": "9f74e009-6ee7-445b-8a3c-99121f0848f2",
+ "B_delete": {
+  "dialog": {
+   "text": "Confirmation close This action will reverse the payment for all invoices associated with it. The payment record is preserved for audit history. Are you sure you want to proceed? Cancel Reverse",
+   "btns": [
+    {
+     "t": "close",
+     "id": "button_close_dialog"
+    },
+    {
+     "t": "Cancel",
+     "id": "button_cancel_dialog"
+    },
+    {
+     "t": "Reverse",
+     "id": "button_confirm_dialog"
+    }
+   ]
+  },
+  "confirm": [
+   {
+    "text": "Confirmation close This action will reverse the payment for all invoices associated with it. The payment record is preserved for audit history. Are you sure you want to proceed? Cancel Reverse",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Cancel",
+      "id": "button_cancel_dialog"
+     },
+     {
+      "t": "Reverse",
+      "id": "button_confirm_dialog"
+     }
+    ]
+   },
+   {
+    "toasts": []
+   }
+  ]
+ },
+ "B_rows": [
+  "expand_more Today Deposit - Deposit for Work Order S-1907 $5.00 delete"
+ ],
+ "C_invoiceRows": [],
+ "D_reverse": {
+  "badge": "Paid",
+  "menu": [
+   {
+    "id": "menu_item_reverse",
+    "t": "Reverse",
+    "dis": false
+   },
+   {
+    "id": "menu_item_issue_credit",
+    "t": "Issue Credit",
+    "dis": false
+   }
+  ],
+  "afterClick": {
+   "dialog": {
+    "text": "Warning close This invoice has been paid, please delete payment before reversing. Close",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Close",
+      "id": "button_close_invoice_warning"
+     }
+    ]
+   },
+   "toasts": []
+  },
+  "confirm": [
+   {
+    "text": "Warning close This invoice has been paid, please delete payment before reversing. Close",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Close",
+      "id": "button_close_invoice_warning"
+     }
+    ]
+   },
+   {
+    "toasts": []
+   }
+  ]
+ },
+ "caps": [
+  {
+   "m": "POST",
+   "u": "/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "st": 200,
+   "req": "{\"sent_at\":\"2026-11-03T13:48:00.003Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"fcfff78e18d441fd8e5332726cadd192\",\"init\":true,\"started\":\"2026-11-03T13:47:59.793Z\",\"timestamp\":\"2026-11-03T13:48:00.003Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"e8dfe967-4dae-478",
+   "res": "{}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "st": 200,
+   "req": "{\"sent_at\":\"2026-11-03T13:48:00.004Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"2f87d9534c17428b9a0c8faa1425dcc7\",\"init\":true,\"started\":\"2026-11-03T13:48:00.003Z\",\"timestamp\":\"2026-11-03T13:48:00.003Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"e8dfe967-4dae-4782-a9",
+   "res": "{}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"0bee4c9b-d969-4ae0-951b-231b62cf13e3\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "st": 200,
+   "req": "{\"sent_at\":\"2026-11-03T13:48:16.571Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"246cf9fbd2254de3b1ee455c2df24085\",\"init\":true,\"started\":\"2026-11-03T13:48:16.571Z\",\"timestamp\":\"2026-11-03T13:48:16.571Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"e8dfe967-4dae-4782-a9",
+   "res": "{}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "st": 200,
+   "req": "{\"sent_at\":\"2026-11-03T13:48:16.571Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"b46d09bc7a1347109365973d77c3645c\",\"init\":true,\"started\":\"2026-11-03T13:48:16.419Z\",\"timestamp\":\"2026-11-03T13:48:16.571Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"e8dfe967-4dae-478",
+   "res": "{}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"customers\",\"id\":\"bd77eaa6-963f-43fc-9a91-b950810ebf67\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/customer-account/reverse-customer-payment",
+   "st": 201,
+   "req": "{\"id\":\"9f74e009-6ee7-445b-8a3c-99121f0848f2\"}",
+   "res": "{\"data\":[]}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "st": 200,
+   "req": "{\"sent_at\":\"2026-11-03T13:48:29.211Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"2506b2ae27c04cda8511529191a90036\",\"init\":true,\"started\":\"2026-11-03T13:48:29.210Z\",\"timestamp\":\"2026-11-03T13:48:29.210Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"e8dfe967-4dae-4782-a9",
+   "res": "{}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "st": 200,
+   "req": "{\"sent_at\":\"2026-11-03T13:48:29.210Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"8de21b90a9a748f7ab422af17beeba2f\",\"init\":true,\"started\":\"2026-11-03T13:48:29.142Z\",\"timestamp\":\"2026-11-03T13:48:29.210Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"e8dfe967-4dae-478",
+   "res": "{}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"customers\",\"id\":\"bd77eaa6-963f-43fc-9a91-b950810ebf67\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"customers\",\"id\":\"bd77eaa6-963f-43fc-9a91-b950810ebf67\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "st": 200,
+   "req": "{\"sent_at\":\"2026-11-03T13:48:38.368Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"b5dc134a0f7640c0b5d7bc72682c4dd1\",\"init\":true,\"started\":\"2026-11-03T13:48:38.367Z\",\"timestamp\":\"2026-11-03T13:48:38.367Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"e8dfe967-4dae-4782-a9",
+   "res": "{}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "st": 200,
+   "req": "{\"sent_at\":\"2026-11-03T13:48:38.367Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"06a36a6d5e324b578c32f21d2fad63d9\",\"init\":true,\"started\":\"2026-11-03T13:48:38.297Z\",\"timestamp\":\"2026-11-03T13:48:38.367Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"e8dfe967-4dae-478",
+   "res": "{}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"0bee4c9b-d969-4ae0-951b-231b62cf13e3\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "st": 200,
+   "req": "{\"sent_at\":\"2026-11-03T13:48:47.661Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"34af5c04180e438dbe1d7aaf7d4fc129\",\"init\":true,\"started\":\"2026-11-03T13:48:47.584Z\",\"timestamp\":\"2026-11-03T13:48:47.661Z\",\"status\":\"exited\",\"errors\":0,\"did\":\"e8dfe967-4dae-478",
+   "res": "{}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "st": 200,
+   "req": "{\"sent_at\":\"2026-11-03T13:48:47.661Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"189df621439a4ffb942bdf11a6e72e4b\",\"init\":true,\"started\":\"2026-11-03T13:48:47.661Z\",\"timestamp\":\"2026-11-03T13:48:47.661Z\",\"status\":\"ok\",\"errors\":0,\"did\":\"e8dfe967-4dae-4782-a9",
+   "res": "{}"
+  }
+ ]
+}

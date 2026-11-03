@@ -1,0 +1,76 @@
+{
+ "marker": {
+  "version": "v26.45.0-279650f",
+  "lastModified": "Tue, 03 Nov 2026 11:06:14 GMT",
+  "etag": "W/\"0d066d3afc32826f247e71edf4d9d5c9\""
+ },
+ "wo": "53e6380f-51ec-4147-93b8-ce2de6196e7e",
+ "complete": "{\"data\":{\"work_order_id\":\"53e6380f-51ec-4147-93b8-ce2de6196e7e\",\"message\":\"Status changed.\"}}",
+ "invoice": "{\"data\":{\"invoice_id\":\"542ccb9a-8247-45a4-bb68-e2dae8824c75\",\"customer_account_id\":\"64b71259-e376-4208-93c8-9b815b65fb98\",\"auto_paid\":false,\"auto_paid_credit_id\":null,\"auto_paid_credit_amount\":0,\"auto_paid_deposit_amount\":0,\"auto_apply_status\":null,\"remaining_balance\":406.09}}",
+ "payBtns": [
+  "finance_toolbar_target:Customer PO\nget_app\nemail\nprin",
+  "button_new_payment:New Payment"
+ ],
+ "btnCount": 1,
+ "dialog": {
+  "t": "New Customer Payment close event Payment Date Payment Method arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment S11986-17583 Today Today $406.09 $ Amount to credit: $ Payment amount: $406.09 Make Payment Send to Terminal",
+  "ids": [
+   "title_new_payment",
+   "button_close_payment_dialog",
+   "section_new_payment_form",
+   "date_icon_",
+   "date_input_",
+   "select_payment_method",
+   "input_reference_number",
+   "input_memo",
+   "table_transactions",
+   "checkbox_select_transaction_41690b21-69e9-4d1d-a105-d1cdb17a58e7",
+   "button_invoice_link_41690b21-69e9-4d1d-a105-d1cdb17a58e7",
+   "input_payment_amount",
+   "input_manually_entered_credit",
+   "text_payment_amount",
+   "button_make_payment",
+   "button_send_to_terminal"
+  ]
+ },
+ "methods": [
+  "EFT",
+  "Visa",
+  "Cash",
+  "E-transfer",
+  "Check",
+  "Gift card"
+ ],
+ "filled": [
+  "date_input_=Nov 03, 2026",
+  "select_payment_method=EFT",
+  "input_reference_number=",
+  "table_transactions=on",
+  "checkbox_select_transaction_41690b21-69e9-4d1d-a105-d1cdb17a58e7=on",
+  "input_payment_amount=406.09",
+  "input_manually_entered_credit=0.00"
+ ],
+ "after": {
+  "dlg": [],
+  "toast": []
+ },
+ "state": [
+  "Paid",
+  "paid",
+  "406.09",
+  40609,
+  "S11986-17583"
+ ],
+ "caps": [
+  "POST /api/work-orders/create 201 {\"company_id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\",\"vehicle_id\":\"00052898-8ce9-4bf4-b0be-c3644db57f29\",\"start_date\":\"2026-11-03\",\"is_vehicle_here\":true} -> {\"data\":{\"work_order_id\":\"53e6380f-51ec-4147-93b8-ce2de6196e7e\"}}",
+  "POST /api/contacts/create 200 {\"company_id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\",\"first_name\":\"ZZAUTOTEST\",\"last_name\":\"SV11986 b-paid\"} -> {\"data\":{\"contact_id\":\"4ee84ef0-5545-4aeb-8e0a-2b5bc0125eab\"}}",
+  "POST /api/work-orders/change-contact 200 {\"work_order_id\":\"53e6380f-51ec-4147-93b8-ce2de6196e7e\",\"vehicle_id\":\"00052898-8ce9-4bf4-b0be-c3644db57f29\",\"contact_id\":\"4ee84ef0-5545-4aeb-8e0a-2b5bc0125eab\",\"update_vehicle\":true} -> {\"data\":{\"customer_id\":\"4ee84ef0-5545-4aeb-8e0a-2b5bc0125eab\"}}",
+  "POST /api/work-orders/change-mileage 201 {\"work_order_id\":\"53e6380f-51ec-4147-93b8-ce2de6196e7e\",\"mileage\":\"123456\"} -> {\"data\":{\"work_order_id\":\"53e6380f-51ec-4147-93b8-ce2de6196e7e\"}}",
+  "POST /api/work-orders/53e6380f-51ec-4147-93b8-ce2de6196e7e/lines/create-from-canned-line 201 {\"canned_line_id\":\"350abe94-ae17-4531-bbd3-7c31d2a9dfd2\",\"status\":\"authorized\"} -> {\"data\":{\"line_id\":\"0d4bae9e-7b3b-42f0-801a-f4c65c9494e9\"}}",
+  "POST /api/work-orders/lines/change-story 201 {\"line_id\":\"0d4bae9e-7b3b-42f0-801a-f4c65c9494e9\",\"tech_story\":\"ZZAUTOTEST SV-11986\",\"work_order_id\":\"53e6380f-51ec-4147-93b8-ce2de6196e7e\"} -> {\"data\":{\"line_id\":\"0d4bae9e-7b3b-42f0-801a-f4c65c9494e9\"}}",
+  "POST /api/work-orders/lines/change-status 200 {\"line_id\":\"0d4bae9e-7b3b-42f0-801a-f4c65c9494e9\",\"status\":\"complete\"} -> {\"data\":[]}",
+  "POST /api/work-orders/change-status 201 {\"id\":\"53e6380f-51ec-4147-93b8-ce2de6196e7e\",\"status\":\"complete\"} -> {\"data\":{\"work_order_id\":\"53e6380f-51ec-4147-93b8-ce2de6196e7e\",\"message\":\"Status changed.\"}}",
+  "POST /api/invoices/create 201 {\"work_order_id\":\"53e6380f-51ec-4147-93b8-ce2de6196e7e\"} -> {\"data\":{\"invoice_id\":\"542ccb9a-8247-45a4-bb68-e2dae8824c75\",\"customer_account_id\":\"64b71259-e376-4208-93c8-9b815b65fb98\",\"auto_paid\":false,\"auto_paid_credit_id\":null,\"auto_paid_credit_amount\":0,\"auto_paid_deposit_amount\":0,\"auto_apply_status\":null,\"remaining_balance\":406.09}}",
+  "POST /api/customer-account/create-customer-payment 201 {\"account_id\":\"64b71259-e376-4208-93c8-9b815b65fb98\",\"payment_date\":\"2026-11-03T13:50:49.088Z\",\"payment_method\":\"EFT\",\"reference_number\":null,\"description\":null,\"transactions\":[{\"id\":\"41690b21-69e9-4d1d-a105-d1cdb17a58e7\",\"customer_account_id\":\"64b71259-e376-4208-93c8-9b815b65fb98\",\"date\":\"2026-11-0 -> {\"data\":{\"id\":\"78106f01-1328-4cac-87a1-25187b74c83c\",\"bookkeepingSyncDeferred\":true}}"
+ ]
+}

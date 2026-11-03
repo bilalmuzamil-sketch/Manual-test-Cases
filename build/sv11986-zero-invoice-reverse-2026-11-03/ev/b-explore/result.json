@@ -1,0 +1,88 @@
+{
+ "marker": {
+  "version": "v26.45.0-279650f",
+  "lastModified": "Tue, 03 Nov 2026 11:06:14 GMT",
+  "etag": "W/\"0d066d3afc32826f247e71edf4d9d5c9\""
+ },
+ "utc": "2026-11-03T13:30:40.666Z",
+ "me": "{}",
+ "nCust": 0,
+ "customer": [
+  "6a7b6afc-084d-4584-aacb-773bcd71cbcd",
+  "4 Star Truck Repair"
+ ],
+ "wps": "{\"collection\":[{\"id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"name\":\"Staging Heavy Duty - 9919\",\"color\":\"#d66c00\",\"timezone\":\"America/Edmonton\",\"country_code\":\"CA\",\"telephone\":\"(403) 523 - 0488\",\"shop_id\":\"11986\",\"remit_to\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"shop_supplies_charge\":10.5,\"max_shop_",
+ "create": "{\"data\":{\"work_order_id\":\"b5a74a36-d266-45f2-af40-1bfbce1b47b7\"}}",
+ "wo": "b5a74a36-d266-45f2-af40-1bfbce1b47b7",
+ "contact": "{\"data\":{\"contact_id\":\"bb3799de-b7d3-4e36-8485-82555a424a54\"}}",
+ "cc": "{\"data\":{\"customer_id\":\"bb3799de-b7d3-4e36-8485-82555a424a54\"}}",
+ "mileage": "{\"data\":{\"work_order_id\":\"b5a74a36-d266-45f2-af40-1bfbce1b47b7\"}}",
+ "complete": "{\"data\":{\"work_order_id\":\"b5a74a36-d266-45f2-af40-1bfbce1b47b7\",\"message\":\"Status changed.\"}}",
+ "invoice": "{\"errors\":[{\"error\":\"A work order must have at least one completed line in order for it to be eligible for invoicing.\"}]}",
+ "wo_after": {
+  "number": "S-17580",
+  "display_number": "S11986-17580",
+  "status_value": "complete",
+  "status": "Complete",
+  "invoice_status": "null",
+  "invoice_id": "",
+  "is_invoice_created": false,
+  "paid_balance": "null",
+  "amount_paid": 0,
+  "total_parts_cost": 0,
+  "total_labour_cost": 0,
+  "total_tech_time": 0,
+  "total_time": 0,
+  "total_labour_cost_amount": 0,
+  "total_tax_cost_amount": 0,
+  "total_tax_cost": "0.00",
+  "total_cost": "0.00",
+  "total_clocked_time": 0,
+  "total_received_quantity": 0,
+  "total_returned_quantity": 0,
+  "balance": 0,
+  "sub_total": "0.00",
+  "deposit_total": 0,
+  "totalAdjustments": 0,
+  "invoice_balance": 0,
+  "open_balance": 0,
+  "invoiceCredits": "[]",
+  "invoice_shop_supplies_charge": "null",
+  "invoice_tax": "null",
+  "invoice_shop_id": "null"
+ },
+ "tab_payments": [
+  "",
+  "expand_more Oct 7, 2025 Payment 068269 - $905.63 Paid delete",
+  "expand_more Apr 12, 2024 Payment 010254 - $1,233.86 Paid delete",
+  ""
+ ],
+ "tab_invoices": [
+  "",
+  ""
+ ],
+ "financeButtons": [
+  "finance_toolbar_target:Customer PO\nevent\nInvoice Date",
+  "date_icon_invoice_date:event",
+  "date_input_invoice_date:",
+  "button_download_invoice:get_app",
+  "button_print_invoice:print",
+  "button_invoice_settings:settings",
+  "section_create_invoice_action:Create Invoice",
+  "button_create_invoice:Create Invoice",
+  "toggle_estimate_invoice:Estimate/Invoice",
+  "invoice-ref-work-order:Work Order S11986-17580",
+  "invoice-ref-terms:Terms COD",
+  "invoice-summary-labor:Labor\n$0.00",
+  "invoice-summary-parts:Parts\n$0.00",
+  "invoice-summary-subtotal:Subtotal\n$0.00",
+  "invoice-summary-tax-row:GST (5%)\n$0.00",
+  "invoice-summary-total:Total\n$0.00"
+ ],
+ "calls": [
+  "/api/customer-deposits/list?accountId=64b71259-e376-4208-93c8-9b815b65fb98",
+  "/api/customer-payment/list?accountId=64b71259-e376-4208-93c8-9b815b65fb98&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=true",
+  "/api/invoices/b5a74a36-d266-45f2-af40-1bfbce1b47b7/settings/view",
+  "/api/invoices/b5a74a36-d266-45f2-af40-1bfbce1b47b7/details?includeDeclined=0"
+ ]
+}

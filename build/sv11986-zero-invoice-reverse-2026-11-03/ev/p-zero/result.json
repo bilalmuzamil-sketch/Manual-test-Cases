@@ -1,0 +1,81 @@
+{
+ "marker": {
+  "version": "v26.45.0-8e138e1",
+  "lastModified": "Tue, 03 Nov 2026 09:59:25 GMT",
+  "etag": "W/\"0698e16fd1dcc13c9d66fd667ca15f4a\""
+ },
+ "utc": "2026-11-03T13:46:14.611Z",
+ "wo": "0bee4c9b-d969-4ae0-951b-231b62cf13e3",
+ "create": "{\"data\":{\"work_order_id\":\"0bee4c9b-d969-4ae0-951b-231b62cf13e3\"}}",
+ "cc": 200,
+ "mileage": 201,
+ "removedAdj": [
+  "Flat fee` 204"
+ ],
+ "dialog": {
+  "text": "New Line AI SHOPCOACH LINE BUILDER close Title arrow_drop_down Description Technicians Add Technician arrow_drop_down Labor Rate arrow_drop_down Estimated Time Tech Time Line Approved Save & Add Part Save & Add Line Save & Close",
+  "ids": [
+   "dialog_title",
+   "button_shop_coach_line_builder",
+   "button_close_dialog",
+   "select_line_canned_line(input)",
+   "input_line_description",
+   "select_line_roster_add_technician",
+   "text_labour_type_selected",
+   "select_labour_type(input)",
+   "input_time_estimate(input)",
+   "input_tech_time(input)",
+   "checkbox_line_approved",
+   "checkbox_parts_authorized",
+   "button_save_add_part",
+   "button_save_add_line",
+   "button_save_close"
+  ]
+ },
+ "labourOptions": [
+  "check General Labor\n$135",
+  "check Fixed Labor Total",
+  "check Fixed Line Total",
+  "check"
+ ],
+ "filled": [
+  "select_line_canned_line=",
+  "input_line_description=ZZAUTOTEST SV-11986 line with no labour and no parts",
+  "select_line_roster_add_technician=",
+  "select_labour_type=",
+  "input_time_estimate=0",
+  "input_tech_time=0",
+  "checkbox_line_approved=on",
+  "checkbox_parts_authorized=on"
+ ],
+ "afterSave": {
+  "dlg": [],
+  "toast": []
+ },
+ "lines": [],
+ "lineId": "9139628d-a3fa-42ad-83a2-80a0f65556bc",
+ "story": 201,
+ "lineDone": "{\"data\":[]}",
+ "complete": "{\"errors\":[{\"error\":\"Complete work order cannot change its status again.\"}]}",
+ "invoice": "{\"data\":{\"invoice_id\":\"384f5075-3f9c-4bb5-a00b-d5d9376440a5\",\"customer_account_id\":\"a03297af-94ca-4f38-b23e-65c528864189\",\"auto_paid\":false,\"auto_paid_credit_id\":null,\"auto_paid_credit_amount\":0,\"auto_paid_deposit_amount\":0,\"auto_apply_status\":null,\"remaining_balance\":0}}",
+ "after": [
+  "Paid",
+  "paid",
+  "0.00",
+  "S1-1910"
+ ],
+ "caps": [
+  "POST /api/work-orders/create 201 {\"company_id\":\"bd77eaa6-963f-43fc-9a91-b950810ebf67\",\"vehicle_id\":\"00279fda-8db8-4592-9ef7-0483e2f0f945\",\"start_date\":\"2026-11-03\",\"is_vehicle_here\":true} -> {\"data\":{\"work_order_id\":\"0bee4c9b-d969-4ae0-951b-231b62cf13e3\"}}",
+  "POST /api/contacts/create 200 {\"company_id\":\"bd77eaa6-963f-43fc-9a91-b950810ebf67\",\"first_name\":\"ZZAUTOTEST\",\"last_name\":\"SV11986 p-zero\"} -> {\"data\":{\"contact_id\":\"be1cc6e8-2f46-4aff-a0a5-0d8d75a06cb4\"}}",
+  "POST /api/work-orders/change-contact 200 {\"work_order_id\":\"0bee4c9b-d969-4ae0-951b-231b62cf13e3\",\"vehicle_id\":\"00279fda-8db8-4592-9ef7-0483e2f0f945\",\"contact_id\":\"be1cc6e8-2f46-4aff-a0a5-0d8d75a06cb4\",\"update_vehicle\":true} -> {\"data\":{\"customer_id\":\"be1cc6e8-2f46-4aff-a0a5-0d8d75a06cb4\"}}",
+  "POST /api/work-orders/change-mileage 201 {\"work_order_id\":\"0bee4c9b-d969-4ae0-951b-231b62cf13e3\",\"mileage\":\"123456\"} -> {\"data\":{\"work_order_id\":\"0bee4c9b-d969-4ae0-951b-231b62cf13e3\"}}",
+  "POST /api/work-orders/adjustments/remove 204 {\"adjustmentId\":\"e18fa8a0-f35b-402a-acd0-e3a97856ae6f\",\"workOrderId\":\"0bee4c9b-d969-4ae0-951b-231b62cf13e3\"} -> ",
+  "POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0 200 {\"sent_at\":\"2026-11-03T13:46:18.544Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"1eff679829ef40f9947d961ed37e11fa\",\"init\":true,\"started\":\"2026-11-03T13:46:18.339Z\",\"timestamp\":\"2026-11-03T13:46:18.544Z\",\"st -> {}",
+  "POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0 200 {\"sent_at\":\"2026-11-03T13:46:18.545Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"10.72.0\"}}\n{\"type\":\"session\"}\n{\"sid\":\"9897ec9c2c04447f98e2f69cbb93c418\",\"init\":true,\"started\":\"2026-11-03T13:46:18.544Z\",\"timestamp\":\"2026-11-03T13:46:18.544Z\",\"st -> {}",
+  "POST /api/work-orders/lines/create 201 {\"assigned_techs\":[],\"description\":\"ZZAUTOTEST SV-11986 line with no labour and no parts\",\"line_name\":\"ZZAUTOTEST no-charge line\",\"tech_assigned_id\":null,\"is_diagnosis\":false,\"is_warranty\":false,\"is_authorized_to_repair\":true,\"is_parts_required_are_a -> {\"data\":{\"line_id\":\"9139628d-a3fa-42ad-83a2-80a0f65556bc\"}}",
+  "POST /api/work-orders/lines/change-story 201 {\"line_id\":\"9139628d-a3fa-42ad-83a2-80a0f65556bc\",\"tech_story\":\"ZZAUTOTEST SV-11986\",\"work_order_id\":\"0bee4c9b-d969-4ae0-951b-231b62cf13e3\"} -> {\"data\":{\"line_id\":\"9139628d-a3fa-42ad-83a2-80a0f65556bc\"}}",
+  "POST /api/work-orders/lines/change-status 200 {\"line_id\":\"9139628d-a3fa-42ad-83a2-80a0f65556bc\",\"status\":\"complete\"} -> {\"data\":[]}",
+  "POST /api/work-orders/change-status 400 {\"id\":\"0bee4c9b-d969-4ae0-951b-231b62cf13e3\",\"status\":\"complete\"} -> {\"errors\":[{\"error\":\"Complete work order cannot change its status again.\"}]}",
+  "POST /api/invoices/create 201 {\"work_order_id\":\"0bee4c9b-d969-4ae0-951b-231b62cf13e3\"} -> {\"data\":{\"invoice_id\":\"384f5075-3f9c-4bb5-a00b-d5d9376440a5\",\"customer_account_id\":\"a03297af-94ca-4f38-b23e-65c528864189\",\"auto_paid\":false,\"auto_paid_credit_id\":null,\"auto_paid_credit_amount\":0,\"auto_paid_deposit_amount\":0,\"auto_apply_status\":null,\"remaining_balance\":0}}"
+ ]
+}
