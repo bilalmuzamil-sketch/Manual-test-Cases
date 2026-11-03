@@ -1,0 +1,107 @@
+{
+ "env": "prod",
+ "wo": "9cc8d0e1-0a22-4cad-97c5-cde8f72928df",
+ "marker": {
+  "version": "v26.45.0-8e138e1",
+  "lastModified": "Tue, 03 Nov 2026 09:59:25 GMT",
+  "etag": "W/\"0698e16fd1dcc13c9d66fd667ca15f4a\""
+ },
+ "browserNow": "Wed Nov 04 2026 02:35:06 GMT+1400 (Line Islands Time)",
+ "utcNow": "2026-11-03T12:34:59.627Z",
+ "screenLocation": "ZZAUTOTEST C614715 Empty ..",
+ "create": {
+  "st": 201,
+  "body": "{\"data\":{\"work_order_id\":\"9cc8d0e1-0a22-4cad-97c5-cde8f72928df\"}}"
+ },
+ "contact": {
+  "create": 200,
+  "id": "800d7163-af22-4a6f-9ae5-b99e7db32af1",
+  "set": 200
+ },
+ "url": "https://app.shopview.com/workorders/9cc8d0e1-0a22-4cad-97c5-cde8f72928df/finance",
+ "woLocation": {
+  "number": "S-1907",
+  "display_number": "S-1907",
+  "status_value": "estimate",
+  "status": "Estimate",
+  "workplace_id": "c43fe73d-74e4-408c-83d7-92994b3fb2fe",
+  "invoice_status": "null"
+ },
+ "payBefore": [],
+ "modal": {
+  "text": "Create Deposit | close | event | Deposit Date | Payment Method | arrow_drop_down | $ | Deposit Amount | Reference Number | Memo | Cancel | Record Deposit",
+  "inputs": [
+   "date_input_create_deposit_date=11/04/2026",
+   "select_create_deposit_payment_method=",
+   "input_create_deposit_amount=",
+   "input_create_deposit_reference="
+  ]
+ },
+ "modalFilled": [
+  "date_input_create_deposit_date=11/04/2026",
+  "select_create_deposit_payment_method=Direct Payment (Bilal)",
+  "input_create_deposit_amount=5.00",
+  "input_create_deposit_reference="
+ ],
+ "submitBtn": {
+  "t": "Record Deposit",
+  "x": 937.2421875,
+  "y": 626.4921875
+ },
+ "caps": [
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-Q8V1RLY7LK&gtm=45je6au1v9217041122za200zd9217041122xf1&_p=1793709307228&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=322767764.1793709233&frm=0&ngs=1&pscdl=noapi&rcb=11&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=4&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153~121246026~121246034~123691370~123692835~123814183~123814945&sid=1793709233&sct=1&seg=1&dl=https%3A%2F%2Fapp.shopview.com%2Fworkorders%2F9cc8d0e1-0a22-4cad-97c5-cde8f72928df%2Ffinance&dt=S-1907%20-%20ZZAUTOTEST%20Aabridge%20Freight%20%7C%20Work%20Order%20%7C%20ShopView&uid=e8dfe967-4dae-4782-a9b9-625d1b5d7365&en=deposit_create&_ee=1&ep.page_type=work_orders&ep.element_type=button&ep.element_location=dialog&ep.element_label=add_deposit&_et=10464&tfd=14878",
+   "st": 204,
+   "req": null,
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/deposits",
+   "st": 201,
+   "req": "{\"workOrderId\":\"9cc8d0e1-0a22-4cad-97c5-cde8f72928df\",\"amount\":5,\"paymentMethod\":\"DIRECT_PAYMENT_(BILAL)\",\"depositDate\":\"2026-11-03T10:00:00.000Z\",\"memo\":\"Deposit for Work Order S-1907\"}",
+   "res": "{\"data\":{\"id\":\"5e001fff-2c80-43bc-9904-aff7b10a81f6\",\"creditNumber\":\"DEP-5038\",\"amount\":5,\"paymentMethod\":\"DIRECT_PAYMENT_(BILAL)\",\"depositDate\":\"2026-11-03T12:35:22Z\",\"referenceNumber\":null,\"memo\":\"Deposit for Work Order S-1907\",\"status\":\"held\",\"workOrderId\":\"9cc8d0e1-0a22-4cad-97c5-cde8f72928df\",\"replayed\":false}}"
+  },
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-Q8V1RLY7LK&gtm=45je6au1v9217041122za208zd9217041122xf1&_p=1793709337293&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=322767764.1793709233&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121246026~121246034~123691370~123814184&sid=1793709233&sct=1&seg=1&dl=https%3A%2F%2Fapp.shopview.com%2Fcustomers%2Fbd77eaa6-963f-43fc-9a91-b950810ebf67%2Fdeposits&dt=ShopView&en=page_view&_ee=1&tfd=466",
+   "st": 204,
+   "req": null,
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-Q8V1RLY7LK&gtm=45je6au1v9217041122za200zd9217041122xf1&_p=1793709337293&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=322767764.1793709233&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=2&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121246026~121246034~123691370~123814184&dp=%2Fcustomers%2Fbd77eaa6-963f-43fc-9a91-b950810ebf67%2Fdeposits&dt=CustomerDepositsTab&dl=https%3A%2F%2Fapp.shopview.com%2Fcustomers%2Fbd77eaa6-963f-43fc-9a91-b950810ebf67%2Fdeposits&sid=1793709233&sct=1&seg=1&uid=e8dfe967-4dae-4782-a9b9-625d1b5d7365&en=page_view&_ee=1&_et=1&up.user_role=admin&tfd=476",
+   "st": 204,
+   "req": null,
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-Q8V1RLY7LK&gtm=45je6au1v9217041122za200zd9217041122xf1&_p=1793709337293&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AEAAAAQ&ae=a&cid=322767764.1793709233&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=3&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121246026~121246034~123691370~123814184&sid=1793709233&sct=1&seg=1&dl=https%3A%2F%2Fapp.shopview.com%2Fcustomers%2Fbd77eaa6-963f-43fc-9a91-b950810ebf67%2Fdeposits&dt=ShopView&uid=e8dfe967-4dae-4782-a9b9-625d1b5d7365&en=scroll&epn.percent_scrolled=90&_et=6&tfd=5477",
+   "st": 204,
+   "req": null,
+   "res": ""
+  }
+ ],
+ "toasts": [
+  "check_circle A deposit was created Close"
+ ],
+ "payAfter": [
+  "(Deposit) Nov 3, 2026 - DIRECT PAYMENT (BILAL)"
+ ],
+ "pdf": "/home/user/Manual-test-Cases/build/sv11970-deposit-date-finance-tab-2026-11-03/ev/prod-before/4-downloaded.pdf",
+ "pdfDeposit": [
+  "(Deposit) Nov 3, 2026 - DIRECT PAYMENT (BILAL)                                                 $5.00"
+ ],
+ "pdfDates": [
+  "Invoice Date: Nov 4, 2026",
+  "Date:"
+ ],
+ "cid": "bd77eaa6-963f-43fc-9a91-b950810ebf67",
+ "woNumber": "S-1907",
+ "depRows": [
+  "Today DEP-5038 S-1907 $5.00 $0.00 $5.00 DIRECT PAYMENT (BILAL) Held Deposit for Work Order S-1907 delete"
+ ]
+}
