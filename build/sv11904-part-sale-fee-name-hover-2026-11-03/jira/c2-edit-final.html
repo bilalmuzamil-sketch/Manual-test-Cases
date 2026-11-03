@@ -1,0 +1,16 @@
+<div data-type="panel-warning"><p><strong>OVERALL QA STATUS: PARTIALLY PASSED</strong></p></div>
+<p>Everything that passed has been posted separately in the previous comment. What is still to be fixed is below:</p>
+<p><strong>On a desktop browser with a touchscreen (touchscreen laptop), the full-name tooltip stays on top of the Fees &amp; Discounts viewer</strong></p><p><em>Updated on 3 Nov 2026, 05:48 (UTC-5): this heading and the steps below said &quot;on a phone&quot;. That was wrong. It does not happen with the iPhone 12 Pro, Pixel 7 or iPhone SE presets in Chrome. It happens in a desktop Chrome window with touch turned on (a touchscreen laptop), 1440 and 1024 wide, after a quick tap or a press-and-hold. The full set-up is in the reply below.</em></p>
+<p>Tapping a cut-off fee name opens the viewer, but the grey tooltip with the full name stays on top of the viewer and covers part of it (the <code>Disc</code> row) until you tap somewhere else. It was still there after 6 seconds.</p>
+<figure data-type="media-single" data-layout="center" data-width="45" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="0cd4289c-026a-4e21-8480-c02b3ccaad8e" data-collection="upload-user-collection-1343233018" data-alt="phone-tooltip-over-viewer.png"></div></figure>
+<p><strong>Steps to reproduce</strong></p>
+<ol><li><p>In Chrome on a desktop computer with touch turned on but the desktop browser kept (this is how a touchscreen laptop behaves), window about 390 wide, open <a href="https://sv11904.qa.shopview.com/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests">part sale P2-162</a> on sv11904 as Admin.</p></li>
+<li><p>Scroll down to the parts table, then swipe it sideways until you see the <code>Fees &amp; Discounts</code> column.</p></li>
+<li><p>Tap <code>Such A Lo...</code> on the first row (Ignition Switch).</p></li>
+<li><p>The Fees &amp; Discounts viewer opens. Look at the middle of it: a grey box saying "Such a Long name testing" sits over the <code>Disc</code> row and the <code>Net adjustment</code> row.</p></li>
+<li><p>Wait a few seconds: the grey box stays. It goes away only when you tap again.</p></li></ol>
+<p><strong>Current:</strong> the tooltip stays over the open viewer and hides part of it.</p>
+<p><strong>Expected:</strong> it should not stay over the viewer. The QA handoff for this ticket says:</p>
+<blockquote><p>Expected: it does not stay visible over the dialog (or disappears as soon as you move the mouse).</p></blockquote>
+<p>Environment: QA branch sv11904, build v26.43.5-2999cf9, 3 Nov 2026, Admin, Chrome phone view 375 and 390 wide with touch (two ways of tapping, same result). On a desktop with a mouse this does not happen: the tooltip goes away as the viewer opens. <em>Updated on 3 Nov 2026, 05:48 (UTC-5): the &quot;phone view&quot; used here kept the desktop browser, so it behaved as a touchscreen laptop, not a phone.</em></p>
+<p><span data-type="mention" data-user-id="712020:ae9c04d8-74e7-48c4-91fc-370caedf9615">@Dipesh Changawala</span> could you take a look at this one?</p>
