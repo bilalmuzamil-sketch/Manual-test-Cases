@@ -26,3 +26,9 @@
 ## QA lead, 3 Nov 2026 (same message)
 - Chris's questions 38, 39 (a)/(b), 40 in "Dashboard and Reports – questions for Chris Ward (28 Oct 2026)": *"I will let you know once he replies."* → stop re-checking the document; wait for the QA lead.
 - Parked-ticket approval (SV-11936, comment 79719): *"Leave it for a week now."* → not listed or chased until **10 Nov 2026**.
+
+## SV-11922 old pictures — DELETED 3 Nov 2026
+- QA lead sent his Jira browser login cookie (kept in /tmp only, chmod 600, deleted straight after use; never in the repo).
+- Checked each target first (name + size), then `DELETE /rest/api/3/attachment/{id}`: 63183 (AP1-3-hd-detail-browser-karachi.png, 403,845 B) → 204;
+  63182 (AP1-4-lethbridge-detail-browser-edmonton.png, 389,548 B) → 204.
+- Read-back: 3 attachments left (63271, 63272, 63483) = the 3 pictures shown in the description. Done.

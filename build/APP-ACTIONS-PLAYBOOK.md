@@ -3367,6 +3367,8 @@ whereas an application-level JSON `{"error":"sso_required", …}` means the requ
   A picture is removed by Jira itself only when it was embedded in the description and a later edit drops it. A file that was
   only attached (never embedded) stays until someone deletes it in Jira (attachment ⋯ → Delete). **Proven 3 Nov on SV-11922:**
   embedding such a file (media id from `downloadJiraIssueAttachment`'s URL) and then removing it again does NOT delete it.
+  **What works (3 Nov):** the QA lead's Jira browser cookie (`tenant.session.token`, kept in /tmp only and deleted after) +
+  `DELETE https://shopview.atlassian.net/rest/api/3/attachment/<id>` with header `X-Atlassian-Token: no-check` → 204. Check name + size first.
 - **Jira through the Atlassian MCP (proven 2026-10-28, SV-11922):** `createJiraIssue` with `contentFormat: "html"`; no `<blockquote>`
   inside `<li>` (ADF rejects it); Bugs need `Product Area` (SV-11839 → "Reports & Dashboards"). Pictures: `uploadAttachmentToJiraIssue`
   phase 1 → run the returned curl (token is short-lived, never save it) → put `<figure data-type="media-single" data-width="100"
