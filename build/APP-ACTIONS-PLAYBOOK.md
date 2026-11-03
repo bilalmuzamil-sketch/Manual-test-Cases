@@ -3357,6 +3357,10 @@ whereas an application-level JSON `{"error":"sso_required", …}` means the requ
   - **Report menus:** pick options with `getByRole('option', {name, exact: true})`.
   - **Running clock on screen:** Timesheet Activities → **New** with no End makes a running clock. The line's Stop → Clock Out stops it.
   - **Deleting a work order:** Delete Work Order is blocked on screen when time is clocked on it ("Cannot delete a work order that has labor clocked into it").
+- **After a container restart (/tmp wiped — seen 3 Nov 2026):** every session file is gone (`/tmp/cln/cookies.json`, `sess-admin.txt`,
+  `f3/sess.txt`). Ask the QA lead for fresh staging cookies (only he can mint them — Google SSO), save them as
+  `/tmp/cln/cookies.json` (chmod 600), then run `node build/testing-tools/mint-staging-session.mjs` — it rebuilds both session files.
+  A probe of `GET /api/dashboard/reports` answering **400** means logged in (no parameters); **401** means the session is gone.
 - **Jira through the Atlassian MCP (proven 2026-10-28, SV-11922):** `createJiraIssue` with `contentFormat: "html"`; no `<blockquote>`
   inside `<li>` (ADF rejects it); Bugs need `Product Area` (SV-11839 → "Reports & Dashboards"). Pictures: `uploadAttachmentToJiraIssue`
   phase 1 → run the returned curl (token is short-lived, never save it) → put `<figure data-type="media-single" data-width="100"

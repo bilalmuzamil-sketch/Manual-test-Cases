@@ -1,0 +1,20 @@
+// SV-11922 replacement picture: Staging Heavy Duty - 9919, A/P Aging Detail, Date left on today, Current section open. Rule 99 (Asia/Karachi). SECRET-FREE.
+import fs from 'fs';
+import { f3boot, assertLoc } from './f3boot.mjs';
+const APP = 'https://app.staging.shopview.com';
+const OUT = '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/SV-11922/hd-2026-11-03'; fs.mkdirSync(OUT, { recursive: true });
+const { browser, page, WP, TZ, LNAME } = await f3boot('hd');
+const meta = { location: LNAME, location_tz: TZ, process_TZ: process.env.TZ || null, process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone, observed_at_utc: new Date().toISOString() };
+meta.browser_zone = await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
+meta.app_timezone_key = await page.evaluate(() => localStorage.getItem('timezone')); meta.browser_now = await page.evaluate(() => new Date().toString());
+await page.goto(APP + '/reports/ap-aging-detail', { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(12000);
+meta.loc_start = await assertLoc(page, LNAME, WP); meta.appVersion = await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null);
+await page.locator('tr').filter({ hasText: 'Current (' }).first().getByText('arrow_drop_down').click().catch(() => {}); await page.waitForTimeout(5000);
+meta.chips = await page.locator('[data-test-id^="filter_chip_"]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id') + ' = ' + e.innerText.replace(/\s+/g, ' ').trim()));
+meta.heads = await page.locator('thead th').allInnerTexts();
+meta.rows = await page.locator('tbody tr').evaluateAll(trs => trs.map(t => t.innerText.replace(/\s+/g, ' ').trim()).slice(0, 60));
+fs.writeFileSync(`${OUT}/meta.json`, JSON.stringify(meta, null, 1));
+await page.screenshot({ path: `${OUT}/full.png` });
+meta.loc_end = await assertLoc(page, LNAME, WP); meta.VALID = meta.loc_start.ok && meta.loc_end.ok; fs.writeFileSync(`${OUT}/meta.json`, JSON.stringify(meta, null, 1));
+console.log(JSON.stringify({ VALID: meta.VALID, v: meta.appVersion, bz: meta.browser_zone, pz: meta.process_zone, key: meta.app_timezone_key, now: meta.browser_now, chips: meta.chips, heads: meta.heads, rows: meta.rows.slice(0, 25) }));
+await browser.close();
