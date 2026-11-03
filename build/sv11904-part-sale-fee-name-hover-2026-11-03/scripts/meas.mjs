@@ -21,12 +21,13 @@ R.cells=await p.evaluate(()=>[...document.querySelectorAll('td.fees-cell')].map(
   const kids=[...td.querySelectorAll('*')].filter(e=>e.children.length===0&&e.innerText&&e.innerText.trim()).map(e=>({t:e.innerText.trim(),id:e.getAttribute('data-test-id'),cls:e.className,b:(r=>[r.x,r.y,r.width,r.height].map(Math.round))(e.getBoundingClientRect())}));
   const r=td.getBoundingClientRect(); return {row:i,desc:row?.querySelector('input')?.value||row?.innerText.split('\n')[0],cell:td.innerText.replace(/\n/g,' | '),tdB:[r.x,r.y,r.width,r.height].map(Math.round),name:nm&&{t:nm.innerText,full:nm.textContent,cut:nm.scrollWidth>nm.clientWidth+1,sw:nm.scrollWidth,cw:nm.clientWidth,id:nm.getAttribute('data-test-id'),b:(q=>[q.x,q.y,q.width,q.height].map(Math.round))(nm.getBoundingClientRect())},kids};}));
 const tips=()=>p.evaluate(()=>[...document.querySelectorAll('.q-tooltip')].filter(t=>t.getBoundingClientRect().height>0).map(t=>t.innerText.trim()));
+const tipBoxes=()=>p.evaluate(()=>[...document.querySelectorAll('.q-tooltip')].filter(t=>t.getBoundingClientRect().height>0).map(t=>{const r=t.getBoundingClientRect(); return [r.x,r.y,r.width,r.height].map(Math.round);}));
 await p.screenshot({path:`${OUT}/${tag}-scrolled.png`});
 R.hover=[];
 for(const c of R.cells){ const kb=await p.evaluate(i=>{const td=document.querySelectorAll('td.fees-cell')[i]; td.scrollIntoView({block:'center',inline:'nearest'}); return [...td.querySelectorAll('*')].filter(e=>e.children.length===0&&e.innerText&&e.innerText.trim()).map(e=>{const r=e.getBoundingClientRect(); return [r.x,r.y,r.width,r.height];});},c.row); await p.waitForTimeout(500);
   const kb2=await p.evaluate(i=>{const td=document.querySelectorAll('td.fees-cell')[i]; return [...td.querySelectorAll('*')].filter(e=>e.children.length===0&&e.innerText&&e.innerText.trim()).map(e=>{const r=e.getBoundingClientRect(); return [r.x,r.y,r.width,r.height];});},c.row);
   for(const [ki,k] of c.kids.entries()){ const [x,y,w,h]=kb2[ki]; if(w<=0) continue; await p.mouse.move(5,5); await p.waitForTimeout(400); await p.mouse.move(x+Math.min(w/2,30),y+h/2,{steps:6}); await p.waitForTimeout(1100);
-    const t=await tips(); R.hover.push({row:c.row,el:k.t,id:k.id,tips:t}); if(k.id&&k.id.startsWith('text_part_adjustment_name_')) await p.screenshot({path:`${OUT}/${tag}-hover-row${c.row}.png`}); } }
+    const t=await tips(); R.hover.push({row:c.row,el:k.t,id:k.id,tips:t,tipB:await tipBoxes(),elB:[x,y,w,h].map(Math.round)}); if(ki===0) await p.screenshot({path:`${OUT}/${tag}-hover-row${c.row}.png`}); } }
 await p.mouse.move(5,5); await p.waitForTimeout(800); R.tipsAfterLeave=await tips();
 fs.writeFileSync(`${OUT}/${tag}.json`,JSON.stringify(R,null,1));
 console.log(tag,'marker',R.marker.version,'dark',R.isDark,'menu',JSON.stringify(R.menu||'').slice(0,300));
