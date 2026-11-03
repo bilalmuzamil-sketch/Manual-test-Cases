@@ -50,3 +50,15 @@ phone-tooltip-over-viewer.png (for the open question).
 
 ## Still to do
 - Pre-post gate + comment, after the QA lead answers the phone-tooltip question (asked 3 Nov).
+
+## Posted 3 Nov 2026 — QA lead ruling: "Partially passed" (two comments, Rule 115)
+- Gate: branch marker re-read v26.43.5-2999cf9 (unchanged); P2-162 test data re-read live (4 fee cells as named);
+  ticket re-read (no comment after Dipesh 79977, status TESTING QA); text scanned: no AI fingerprints, no technical section.
+- **79984** WHAT PASSED (green): Chris's 3 points quoted, 14-row table (13 PASSED + production REPRODUCED), 4 images in order
+  (before-after-1440, every-kind-of-name-1440, other-widths-and-dark, viewer-full-names), steps. Echo: 4 media, 14 rows.
+- **79985** OVERALL QA STATUS: PARTIALLY PASSED (warning panel) — last comment: phone tooltip stays over the viewer, picture,
+  5 steps, current/expected with the handoff quote, environment, @Dipesh Changawala. Echo: 1 media, mention present.
+- Status left in TESTING QA (not fully passed). No label added.
+- Learning check: (1) the production screen location must match the record's location or the page bounces to the list —
+  scripts/loc.mjs; (2) at 768 the table is below the fold — scroll each cell into view before hovering (my first 768 run
+  hovered empty space); (3) production has no test id on the fee name — screenshot by position, not by id.
