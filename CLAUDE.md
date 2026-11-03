@@ -166,7 +166,8 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   HTTP codes, ms, requirement ids — provenance only, 54/110); (ii) nothing not doable by hand marked READY —
   keep the manual part, else `AUTOMATION: HOLD - not manually testable (developer/automated check only)`;
   (iii) preconditions reach the start state by hand: the exact role + permissions, every gating setting
-  (verified on the build) and concrete UI-buildable data. Expected substance stays the source's (57/114).
+  (verified on the build) and concrete UI-buildable data. Expected substance stays the source's (57/114). (iv) Before adding setup clicks ASK if he owns testing the
+  suite: YES ⇒ add them; NO ⇒ state only (2026-11-03).
   `check_tester_runnable.py --cases <ids>` must exit 0 before a suite is called build-verified. Bar
   (2026-10-08): 100% authentic — every label/route/setting/data step seen on the build this pass; walk a
   helper's draft before writing it. **LANE LIMIT (2026-10-08/09):** only confirm that labels, routes, settings

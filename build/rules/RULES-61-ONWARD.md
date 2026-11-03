@@ -4198,6 +4198,27 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     is missing, what you would do, and how long it would take — and proceed ONLY on his YES. No answer or NO ⇒ stay in the lane: keep the
     case's wording and report that item plainly as not seen on the build. (A refine pass he asked for is different — skill 21.)
 
+    **115-AMENDMENT 3 — ASK WHO OWNS THE TESTING BEFORE ADDING SETUP CLICKS (QA lead, 2026-11-03, PERMANENT).** Verbatim, his typing
+    preserved: *"This ruling against your rule book was for this Testing suite only. But you MUST Keep the rule as it is for other
+    testing suites for which you do the build verification. (If by clicks you mean the steps to setup the state in the environment)
+    correct me if I am wrong. So to set up the state and to add the clicks in the setup, I would suggest YOU asking if BILAL/me is going
+    to own the testing for those test cases and tell me if I say yes you will add setup in the testcases, and if I say NO you will exclude
+    the Steps/clicks from the test cases. Because we have received a complaint from the manual QA testers telling me that unrelated steps
+    were added for a test case, so I have stopped adding the steps/clicks for the test cases which I do not own to test."* Context: on
+    the Parts Lifecycle suite (TestRail group 20439, QA site sv10647) he ruled the same day: *"the preconditions should simply tell the
+    state needed to test this particular test case, its the responsibility of the tester to create that state. But that state should be
+    related to that ONE test case."* and *"Keep the automation as READY"*.
+    **THE RULE:** (a) Clause (iii) of this rule (preconditions reach the start state by hand, with the clicks) STANDS for every suite.
+    (b) Before adding any setup clicks (the steps that build the starting state in the environment) to a suite's preconditions, ASK him:
+    *"Will you (Bilal) own the testing of <suite>?"* — YES ⇒ add the setup clicks; NO ⇒ the preconditions state only the state that one
+    test needs, the tester builds it, and no setup clicks are added. (c) Either way, a setup line is about THAT ONE test only — never a
+    shared recipe list that does not belong to the test (the testers' complaint). (d) Navigation in the steps (where to click to reach
+    the screen) is not setup and is still made build-accurate (102). (e) Parts Lifecycle (group 20439) is a NO, recorded 2026-11-03;
+    `check_tester_runnable.py` flags its state-only preconditions (C154763, C540882) and those flags are expected for that suite.
+    (f) A test whose starting state is hard to make on a QA site is not built there (he: *"You are not supposed to create a state in the
+    QA branch because later this branch will be destroyed"*); for Parts Lifecycle such tests sit in the section "Setup needed before
+    testing" (S114049), still marked READY.
+
 116. **A DISCREPANCY FOUND DURING BUILD VERIFICATION GOES INTO THE FEATURE'S PRODUCT OWNER QUESTION SHEET — ASK FOR THE
     SHEET FIRST, PUT DESIGN-vs-BUILD IN ITS OWN TAB, AND WRITE EVERY QUESTION SHORT AND PLAIN (build-verification lane,
     all projects, permanent; QA lead 2026-10-23).**

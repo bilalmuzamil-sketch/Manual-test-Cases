@@ -33,3 +33,18 @@
 
 ## Left on sv10647 (ZZAUTOTEST)
 Parts ZZAUTOTEST-PLBV-A (inactive) and ZZAUTOTEST-PLBV-B (active), General Storage. No work order or role was saved.
+
+## Follow-up, 3 Nov 2026 afternoon (fresh sign-in; QA lead's answers)
+- Rulings: the state-only setup is for this suite only, and Rule 115 amendment 3 is recorded (ask who owns the testing before adding setup
+  clicks); Mudassir's tests are left as they are; throwaway data on this dummy branch is not a concern; the What/Why question is to be asked
+  again after one week (a scheduled reminder fires on 10 Nov); the 70 hard tests go in their own folder.
+- Probes 14-16 (read-only): Part History page (Part details, Part History, Search, Staff/Date/Time/Event); purchase order page and Receive
+  screen (Vendor Invoice #, Invoice Date, Qty received, button "Receive Parts (1)"); New Line window (Title, Description, Save & Close) with
+  the canned-line list; invoice three-dot menu (Reverse, Issue Credit) and the Issue Credit window (Parts are being returned, Parts to
+  return, Cancel); Credits tab with Create Credit (Part Number, Add Part, Post Credit).
+- apply8.py: full build line restored on 48 of the 52 partly-checked tests; Receive step reworded to the Receive Parts button. Still partly
+  checked: C154833, C847731 (delete confirmation: no Part Library entry allows Delete, and making one is a state) and C425727, C425741 (the
+  button that adds a line to a purchase order is not on the purchase order page).
+- C425778, C425779: Part History search step now says to click Search first; runnable check 2/2.
+- New section S114049 "Setup needed before testing" under Part Lifecycle; the 70 hard tests moved there (70/70 read back); their original
+  story sections are in hard-move-origin.json.
