@@ -1,19 +1,20 @@
-# Custom Roles tracker — the scheduled update (runbook)
+# Custom Roles tracker — updating it by hand (runbook)
 
-**Where it runs (since 3 Nov 2026):** in ONE permanent session, **"Custom Roles tracker — update worker"**
-(`session_01LirJvBZqqsyVxsRXTmoCHB`), which has both repositories attached (ShopView/shopview and
-Manual-test-Cases). Fresh scheduled sessions could not be used: they start with no repositories, and
-attaching the private product code needs a person's approval that nobody is there to give (this broke the
-2 Nov update). The worker is woken (a) on release days by its scheduled task, (b) when the page's owner
-presses **Update now** (the page starts that same task), and (c) when a teammate with edit access presses
-**Update now** (the page sends an "UPDATE REQUEST" comment to Claude; the worker watches the page). The
-worker is the ONLY session that watches the page.
+**The tracker is updated BY HAND after each release.** The QA lead chose this on 3 Nov 2026 and asked for
+all automation to stop. The keyword is:
 
-The tracker page must always show the data for the release that is live. A scheduled task runs
-this runbook in a fresh session **on release days only: Monday, Tuesday, Thursday and Friday at 18:41
-Pakistan time** (releases are usually tagged between 13:20 and 15:20 PKT). The QA lead chose release days
-over hourly runs on 29 Oct 2026 to save tokens. The portal's **Update now** button starts it at once (for
-the page's owner); anyone else's **Ask for an update** is picked up by the owner or the next scheduled run.
+> **UPDATE THE CUSTOM ROLES TRACKER**
+
+When the QA lead says it (any wording of it), run this runbook in a Claude session that has BOTH
+repositories attached: `ShopView/shopview` (the app's code) and `bilalmuzamil-sketch/Manual-test-Cases`
+(the tracker). A session without them cannot do it: attaching the private app code needs a person's
+approval, so ask the QA lead to attach it rather than reporting a missing release (that mistake is what
+the 2 Nov 2026 failure looked like).
+
+What was tried and removed (for the record): a release-day scheduled task in fresh sessions (failed
+because those sessions could not attach the app's code without approval), and a permanent worker session
+woken by a scheduled task (the scheduled messages never reached it). Both were removed on 3 Nov 2026, with
+the page's Update now button.
 
 - Page: https://claude.ai/artifact/N7gowXrbJyzoBe94z6dL1E
 - Branch: `claude/global-search-v1-baseline-6ax9ul` of `bilalmuzamil-sketch/Manual-test-Cases`
@@ -42,9 +43,8 @@ the page's owner); anyone else's **Ask for an update** is picked up by the owner
    `Artifact` publish with `url` = the page URL, `file_path` = `build/custom-roles-tracker/portal/dist/index.html`,
    `files` = `{"data.json": "build/custom-roles-tracker/portal/dist/data.json"}` (absolute paths). Leave out
    `capabilities` and `icon` so the page keeps them. When the publish succeeds, run
-   `python3 build/custom-roles-tracker/tools/auto_update.py --mark-published`. The update worker KEEPS
-   watching the page (it is how teammates' Update now presses reach it). Any OTHER session that publishes
-   the page must stop watching it afterwards (`ArtifactComments` `watch`, page `url`, `on: false`). If the publish fails, set
+   `python3 build/custom-roles-tracker/tools/auto_update.py --mark-published`. Then stop watching the page
+   (publishing starts a watch, and nothing needs it): `ArtifactComments` `watch`, page `url`, `on: false`. If the publish fails, set
    `status.page_built_at` to `previous_page_built_at` and `status.problem` to
    `"The page could not be republished. Please tell Bilal."`
 5. **Tell the page what was found.** `ArtifactData` `set` collection `status`, doc `freshness`, data = `status`.

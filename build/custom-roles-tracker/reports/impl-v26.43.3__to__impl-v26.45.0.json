@@ -1,0 +1,225 @@
+{
+ "engine_version": "1.2.0",
+ "from": {
+  "kind": "implementation",
+  "id": "impl-v26.43.3",
+  "ref": "v26.43.3",
+  "commit": "439ddb60ccac7a344974c453161171917eebbdb8",
+  "build_marker": "v26.43.3-439ddb6",
+  "label": "v26.43.3 (439ddb6)"
+ },
+ "to": {
+  "kind": "implementation",
+  "id": "impl-v26.45.0",
+  "ref": "v26.45.0",
+  "commit": "8e138e1026fe4741996fc985fd8f390588d770b6",
+  "build_marker": "v26.45.0-8e138e1",
+  "label": "v26.45.0 (8e138e1)"
+ },
+ "permission_related_change": true,
+ "counts": {
+  "backend_enforcement_changed": 3,
+  "frontend_behavior_changed": 1
+ },
+ "changes": [
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": null,
+   "endpoint": "GET /api/reporting/sales-follow-up/{dateRange}",
+   "title": "Guarded API endpoint removed: GET /api/reporting/sales-follow-up/{dateRange}",
+   "before": "attribute: PermissionEnum::ROLE_REPORT_VIEW",
+   "after": "— (endpoint gone)",
+   "risk": "Medium",
+   "risk_reason": "A permission-guarded capability disappeared or moved — confirm where it went.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "reportsPageAccess"
+   ],
+   "evidence": {
+    "controller": "api/src/Reporting/Reports/Application/SalesFollowUpReport/SalesFollowUpReportController.php::handle"
+   },
+   "plain": {
+    "headline": "Protected action removed: Viewing reporting › sales follow up",
+    "what": "Viewing reporting › sales follow up is no longer in the app, or has moved.",
+    "why": "A feature disappeared or moved. Check it still works for the right people wherever it went.",
+    "check": [
+     "Find the feature on screen and check it still works for people who should have it.",
+     "Check people who should not have it are still blocked."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": null,
+    "roles": []
+   },
+   "workflows": [],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/reporting/sales-follow-up/{dateRange} as a role WITH and a role WITHOUT \"\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:GET /api/reporting/sales-follow-up/{dateRange}::0"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": null,
+   "endpoint": "GET /api/reporting/vendors-expenses/{dateRange}",
+   "title": "Guarded API endpoint removed: GET /api/reporting/vendors-expenses/{dateRange}",
+   "before": "attribute: PermissionEnum::ROLE_REPORT_VIEW",
+   "after": "— (endpoint gone)",
+   "risk": "Medium",
+   "risk_reason": "A permission-guarded capability disappeared or moved — confirm where it went.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "reportsPageAccess"
+   ],
+   "evidence": {
+    "controller": "api/src/Reporting/Dashboard/Application/VendorsExpenses/VendorsExpensesController.php::handle"
+   },
+   "plain": {
+    "headline": "Protected action removed: Viewing reporting › vendors expenses",
+    "what": "Viewing reporting › vendors expenses is no longer in the app, or has moved.",
+    "why": "A feature disappeared or moved. Check it still works for the right people wherever it went.",
+    "check": [
+     "Find the feature on screen and check it still works for people who should have it.",
+     "Check people who should not have it are still blocked."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "priority": "Medium priority",
+    "area": null,
+    "roles": []
+   },
+   "workflows": [],
+   "qa_scenarios": [
+    "API authorisation: call GET /api/reporting/vendors-expenses/{dateRange} as a role WITH and a role WITHOUT \"\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:GET /api/reporting/vendors-expenses/{dateRange}::1"
+  },
+  {
+   "type": "backend_enforcement_changed",
+   "category": "backend_enforcement_changed",
+   "permission": "invoicingPaymentsCreateAndEdit",
+   "endpoint": "POST /api/work-orders/{workOrderId}/lead-change-undo",
+   "title": "New API endpoint guarded by a permission: POST /api/work-orders/{workOrderId}/lead-change-undo",
+   "before": "— (endpoint did not exist)",
+   "after": "attribute: PermissionEnum::ROLE_WORK_ORDER_CREATE_AND_EDIT",
+   "risk": "Low",
+   "risk_reason": "New capability; confirm the guard matches the permission the PRD/story names.",
+   "affected_roles": [],
+   "affected_permissions": [
+    "invoicingPaymentsCreateAndEdit",
+    "partSalesCreateAndEdit",
+    "scheduleCreateAndEdit",
+    "settingsService",
+    "vendorOrderManagementCreateAndEdit",
+    "woFullViewMode",
+    "woOrderParts",
+    "woPickParts",
+    "woReviewWorkOrders",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrderLinesDelete",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ],
+   "evidence": {
+    "controller": "api/src/VehicleService/WorkOrders/UI/HTTP/Board/UndoLeadChangeController.php::__invoke"
+   },
+   "plain": {
+    "headline": "New protected action: Creating or running work orders › lead change undo",
+    "what": "There is a new action in the app (creating or running work orders › lead change undo). Only people with one of 14 permissions (for example “Invoicing & Payments — Create & Edit” or “Part Sales — Create & Edit”) can use it.",
+    "why": "A new feature: make sure the right people can use it and nobody else can.",
+    "check": [
+     "Log in as someone whose role has one of the permissions listed and try it: it should work.",
+     "Log in as someone whose role has none of them and try it: it should be blocked, and the button or page should not be shown."
+    ],
+    "group": "behind",
+    "before": null,
+    "after": null,
+    "permissions": [
+     "Invoicing & Payments — Create & Edit",
+     "Part Sales — Create & Edit",
+     "Schedule — Create & Edit",
+     "Settings — Service",
+     "Vendor Order Management — Create & Edit",
+     "Work Orders — Full View Mode",
+     "Work Orders — Order Parts",
+     "Work Orders — Pick Parts",
+     "Work Orders — Review Work Orders",
+     "Work Orders — Technician View Mode",
+     "Work Order Lines — Create & Edit",
+     "Work Order Lines — Delete",
+     "Work Orders — Create & Edit",
+     "Work Orders — View"
+    ],
+    "priority": "Low priority",
+    "area": "Invoicing & Payments",
+    "roles": []
+   },
+   "workflows": [
+    "Invoicing & Payments",
+    "API areas: /api/adjustment-templates, /api/bookkeeping, /api/contacts, /api/credit-memos, /api/customer-account, /api/customer-deposits, /api/customer-payment, /api/customer-portal (+15 more)",
+    "Screens/code: components/ts/reporting/batch-transactions, services/permissionService.ts"
+   ],
+   "qa_scenarios": [
+    "API authorisation: call POST /api/work-orders/{workOrderId}/lead-change-undo as a role WITH and a role WITHOUT \"Invoicing & Payments — Create & Edit\" — expect 2xx and 403.",
+    "Front end: the matching screen action is shown only to roles the API allows (front end blocks + back end allows = pass; the reverse is a defect).",
+    "Cross-role: try the same call as each system role whose defaults include or exclude the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "backend_enforcement_changed:invoicingPaymentsCreateAndEdit::2"
+  },
+  {
+   "type": "frontend_behavior_changed",
+   "category": "frontend_behavior_changed",
+   "permission": "settingsApp",
+   "title": "Screens that use \"Settings — App\" changed",
+   "before": "16 file(s)",
+   "after": "17 file(s)",
+   "risk": "Low",
+   "risk_reason": "Front end now reads this permission in different places — a screen may show/hide differently.",
+   "affected_roles": [],
+   "evidence": {
+    "files_added": [
+     "app/src/components/ts/work-orders/displays/composables/useAddTechnician.ts"
+    ],
+    "files_removed": []
+   },
+   "plain": {
+    "headline": "Screens that depend on “Settings — App” changed",
+    "what": "The app now shows or hides things based on this permission in a different set of places (before: 16, now: 17).",
+    "why": "A button, menu item or page may now appear or disappear for some people.",
+    "check": [
+     "Log in as someone with “Settings — App”: the related buttons, menus and pages are shown and work.",
+     "Log in as someone without it: they are hidden."
+    ],
+    "group": "screens",
+    "before": "16 places",
+    "after": "17 places",
+    "priority": "Low priority",
+    "area": "Settings",
+    "roles": []
+   },
+   "workflows": [
+    "Settings",
+    "API areas: /api/adjustment-templates, /api/be-permissions, /api/bookkeeping, /api/check-existing-roles, /api/contacts, /api/customer-portal, /api/data-import, /api/departments (+20 more)",
+    "Screens/code: api/auth/AuthModel.ts, boot/axios.ts, components/office/ts/StaffDialog.vue, components/ts/administration/AdminLeftMenuNav.vue, components/ts/administration/WorkplaceDialog.vue, components/ts/navigation/ProfileMenu.vue (+11 more)"
+   ],
+   "qa_scenarios": [
+    "Screens: open the screens listed and confirm controls tied to \"Settings — App\" show/hide/disable correctly for a role with and without it.",
+    "Nav: top-level navigation items for the area appear only for roles holding the permission."
+   ],
+   "verification_status": "Not Tested",
+   "id": "frontend_behavior_changed:settingsApp::3"
+  }
+ ]
+}

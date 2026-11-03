@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""ONE COMMAND that brings the tracker up to date after a release. The scheduled update runs it on
-release days (Mon, Tue, Thu, Fri at 18:41 Pakistan time), and so does the portal's Update now button.
+"""ONE COMMAND that brings the tracker up to date after a release. It is run by hand after each release
+(UPDATE-RUNBOOK.md: the QA lead says "Update the Custom Roles tracker").
 
   python3 auto_update.py [--repo /home/user/shopview] [--approved ID[,ID]] [--approved-by NAME]
                          [--requested TAG[,TAG]]

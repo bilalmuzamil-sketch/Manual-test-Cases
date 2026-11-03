@@ -48,7 +48,7 @@ tools/engine/compare.js   THE comparison engine (browser and command line share 
 tools/snapshot_store.py   append-only store: write-once, read-only, SHA-256 registry
 tools/track_changes.py    scan → review → confirm
 tools/validate.py      validation suite (29 checks, incl. plain-language, retest and auto-update checks)
-tools/auto_update.py   the one-command update the release-day scheduled task runs (UPDATE-RUNBOOK.md)
+tools/auto_update.py   the one-command update, run by hand after each release (UPDATE-RUNBOOK.md)
 tools/build_history.py reconstructed release history before the baseline
 snapshots/             recorded snapshots + registry.json   (never edit by hand)
 reports/               change reports, history, VALIDATION.md
@@ -118,34 +118,18 @@ largest role that holds **none** of the permissions that allow it (`validate.py`
 part). Testers set a result on each check, and the tab shows progress. The checklist downloads as a
 spreadsheet, and every scan also writes `reports/<previous>__to__<release>-RETEST.md`.
 
-## Always up to date (the scheduled update)
+## Updating it after a release (by hand)
 
-Everything runs in ONE permanent session, **"Custom Roles tracker — update worker"**
-(`session_01LirJvBZqqsyVxsRXTmoCHB`), which has both repositories attached (ShopView/shopview and
-Manual-test-Cases). It follows `UPDATE-RUNBOOK.md`. One command, `tools/auto_update.py`, does the work:
-it reads the live release, checks it if it is new (shown at once with its retest checklist, marked
-"waiting for approval"), saves releases approved in the portal, rebuilds the page, and says whether it
-must be republished. The worker then republishes the page if needed and writes `status/freshness` into
-the page's database on every run.
+The QA lead updates the tracker **by hand** after each release (his choice, 3 Nov 2026; all automation
+stopped). He tells a Claude session that has both repositories attached: **"Update the Custom Roles
+tracker"**, and that session follows `UPDATE-RUNBOOK.md`. One command, `tools/auto_update.py`, does the
+work: it reads the live release, checks it if it is new (shown at once with its retest checklist, marked
+"waiting for approval"), saves releases approved in the portal, rebuilds the page and says whether it
+must be republished. The session then republishes the page and writes `status/freshness`.
 
-The worker is woken three ways:
-- **Release days:** the scheduled task **"Custom Roles tracker — release-day update (worker)"**
-  (`trig_01GVcuKyPdDtT3p3Qr2kDwau`), Mon, Tue, Thu and Fri at 18:41 Pakistan time (releases are usually
-  tagged 13:20–15:20 PKT).
-- **The owner presses Update now:** the page starts that same scheduled task.
-- **A teammate with edit access presses Update now:** the page sends an "UPDATE REQUEST" comment to
-  Claude, and the worker (the only session watching the page) runs the update and replies in the thread.
-  The platform only lets editors send to Claude, so the QA team needs **edit access** (Share menu).
-  View-only viewers get **Ask for an update**. Saving a release and recording approvals stay with the owner.
-
-Why not a fresh session per run (the first design): a fresh scheduled session starts with no
-repositories, and attaching the private product code needs a person's approval that nobody is there to
-give. That made the 2 Nov 2026 update fail; the worker was approved once by the QA lead on 3 Nov.
-
-The page reads `status/freshness` and shows a bar on every tab: **Up to date**, **This page is behind**,
-**out of date** (a scheduled release-day check did not run), **A newer version is ready** (reload), or
-**could not be updated**. In the last four cases it asks the viewer to update or reload before going on,
-with "Continue with the data on this page" as the way past.
+The page shows a bar on every tab: when it was last updated and which release was live then, with
+"This page is updated by hand after each release. If a new release has gone out and this page does not
+show it yet, please tell Bilal." It asks the viewer to reload when a newer version of the page exists.
 
 ## Storage, integrity, sharing
 
