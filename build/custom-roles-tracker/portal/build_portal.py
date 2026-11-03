@@ -3,7 +3,7 @@
 browser runs the SAME engine as the command-line tool) and portal/dist/data.json (everything the
 page shows, read from the append-only store - nothing in it is typed by hand).
 
-  python3 build_portal.py [--measure-production]
+  python3 build_portal.py          (the live release is always measured; --measure-production is accepted)
 
 Re-run after every Track Changes scan or confirm, then republish the artifact.
 """
@@ -47,9 +47,14 @@ def main():
 
     # deployed release: measured now when asked, else the latest measurement recorded in a snapshot
     deployed = None
-    if '--measure-production' in sys.argv:
+    # always measured (a page that names an old live release would wrongly tell everyone it is
+    # behind); the recorded measurement is only the fallback when production cannot be reached
+    try:
         html = os.environ.get('CRP_PRODUCTION_MARKER') and f'app-version" content="{os.environ["CRP_PRODUCTION_MARKER"]}"' or \
             urllib.request.urlopen('https://app.shopview.com/', timeout=30).read().decode('utf-8', 'replace')
+    except Exception:
+        html = ''
+    if html:
         m = re.search(r'app-version" content="([^"]+)"', html)
         if m:
             deployed = {'build_marker': m.group(1), 'commit': m.group(1).rsplit('-', 1)[-1],
