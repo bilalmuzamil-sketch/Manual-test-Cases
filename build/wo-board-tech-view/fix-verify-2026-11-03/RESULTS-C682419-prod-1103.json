@@ -1,0 +1,12 @@
+{"pass_meta": {"note": "3 Nov 2026: SV-11835 moved to Done; C682419 run on production (L0614)"},
+ "results": {"C682419": {"verdict": "Blocked",
+  "failed_steps": "Blocked at step 8: no chat bubble shows for the test account on the live site, so it cannot be compared with the minimap",
+  "bold_steps": [8],
+  "observed": [
+   "Ticket SV-11835 (https://shopview.atlassian.net/browse/SV-11835) is Done, so this test was run on the live site.",
+   "Steps 1 to 7 pass: there is no sideways scroll bar under the board; the minimap shows at the bottom right with one tile for each of the 143 technicians and none for Unassigned; the thumb, the tiles, the arrow keys, End, Home and sideways scrolling all move the board as the test says; the column's own scroll bar is unchanged.",
+   "Step 9 passes: at a location with only 4 columns every column fits, and there is no minimap and no sideways scroll bar. At a location with 14 columns the minimap does show.",
+   "Step 8: no chat bubble shows for this account on the live site, on Board View or on a work order page, even after signing in through the sign-in screen, so there is nothing to compare with the minimap."
+  ],
+  "todo": "What needs to be done: sign in to the live site with an account that shows the chat bubble (bottom right of a work order page), open Work Orders > All > Board View at a location with many technicians and check that the chat bubble sits above the minimap and does not cover it. If it does, mark this test Passed.",
+  "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-11-03/pics/C682419-1-minimap.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-11-03/pics/C682419-2-last-tile.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-11-03/pics/C682419-3-location-b.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-11-03/pics/C682419-4-no-chat-board.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-11-03/pics/C682419-5-no-chat-wo-page.png"]}}}
