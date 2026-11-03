@@ -48,3 +48,23 @@ Parts ZZAUTOTEST-PLBV-A (inactive) and ZZAUTOTEST-PLBV-B (active), General Stora
 - C425778, C425779: Part History search step now says to click Search first; runnable check 2/2.
 - New section S114049 "Setup needed before testing" under Part Lifecycle; the 70 hard tests moved there (70/70 read back); their original
   story sections are in hard-move-origin.json.
+
+## Setup clicks for the "Setup needed before testing" folder, 3 Nov 2026 evening
+- QA lead: "Do the build verification and correct them and recheck other test cases in the same folder setup needed before testing and add
+  the clicks/steps for those tests but make sure each click/step should be related to that particular test case only."
+- Walked with throwaway data on the dummy branch (probes 17-27): New PO and Add Order Item windows (shown only on a purchase order with no work
+  order); Delete Part (deletes at once, no confirmation, as the code notes for S13-R26) and the Part Library delete Confirmation ("Are you sure
+  you want to delete this library part?", Cancel / Delete); New Work Order (Customer and Asset needed) and the New Line window (Title, Labor
+  Rate, Line Approved, Save & Close); a part added from stock; the line menu (Request part, Save as canned line → New Canned Line: Line Title,
+  Save As Canned Line); New Part Request with "Add new special order part"; Create Return → Save Return → Receive Credit → Process Return →
+  Post Credit; New Vendor; New Location.
+- setup-pass/clicks.py + apply_setup.py: 72 tests (the 70 + C154833, C847731) get "How to do it:" clicks under each setup line they build,
+  with that test's own names (ZZAUTOTEST-PL-C<id>-<letter>), quantities, prices, bins and vendors. 72/72 verify=OK.
+- C425727, C425741: step now "Click Add Order Item."; build line full. C154833, C847731: build line full.
+- Still partly checked (named in each test's build line): special-order ordering/receiving (C425624, C573672, C573673, C573674), ordering a
+  part request (C425751), a part-row fee (C425732), which bin a work order line takes from (C425660, C425664, C425665, C425666), a record
+  from before this release of the kind needed (C154778, C425625, C425626, C425679, C425680, C540879, C573683, C839426), the vendor-bill line
+  part control (C425728).
+- Checks on the 72: runnable 72/72; display 72/72 fr-view; tester-runnable flagged C425730, C425731, C573684 only because the checker knew
+  "top menu" but not "top bar" → `check_tester_runnable.py` HAS_ROUTE now also accepts "top bar" (one alternative added; rerun on all 360).
+- Tester-runnable on all 360 after the change: 359/360; only C540882 (outside the folder, state-only by the QA lead's ruling).
