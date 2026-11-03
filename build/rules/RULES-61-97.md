@@ -2396,3 +2396,18 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     under two minutes? If not, cut and rewrite.
     **TIES:** Rules 7/9 (plain wording), 52 (evidence bar), 73 [3]/[7] (runnable, concise), 99 (time zone stated in the ticket).
     **RECORDED 2026-10-28 on the QA lead's instruction in the same message**, which satisfies Rule 72 for this rule.
+
+101. **EVERY "WAITING FOR AN ANSWER" NAMES WHERE THE QUESTION WAS ASKED — THE DOCUMENT OR THE TICKET COMMENT (all projects, permanent).**
+    **THE QA LEAD'S WORDS (2026-11-02, verbatim):** *"When you say waiting for the answer also confirm the document name too."*
+    Confirmed as a standing rule 2026-11-03 (*"YES"*), which satisfies Rule 72.
+    **THE RULE.** Whenever a report, OUTSTANDING section or status line says something is waiting for someone's answer
+    (PO, developer, QA lead), it names **exactly where that question sits**:
+    **(1)** a document by its **full title as it reads in Drive/Confluence** (e.g. *"Dashboard and Reports – questions for Chris
+    Ward (28 Oct 2026)"*), plus the section or question number and a link; or
+    **(2)** a ticket comment by **ticket key + comment id + date** (e.g. *"SV-11936, comment 79719, 29 Oct"*).
+    **(3) Before repeating "still waiting", re-check that place** (read the document's answer lines and comments; list the
+    ticket's comments). A question that was answered is never reported as waiting — lesson of 2 Nov 2026: Chris had answered
+    on SV-11931 (comment 79842, 29 Oct) and two reports still listed it as waiting.
+    **(4)** Each waiting item states the date of that re-check.
+    **TIES:** Rules 36 (OUTSTANDING section), 48 (never "waiting on you" without context), 70 (plain, table-form), 86 (verify
+    from the record, not from memory).

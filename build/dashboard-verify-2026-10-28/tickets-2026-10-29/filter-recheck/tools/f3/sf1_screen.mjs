@@ -100,7 +100,7 @@ const depAll = async (cid, name, want) => {   // Deposits tab with the "Open onl
   meta.reads[name + '_tooltip'] = await txt(page.locator('.q-tooltip'));
   await shot(name, { rows: boxes, toggle: B(await t.boundingBox().catch(() => null)) });
 };
-if (mode === 'dep-dvi') await depAll('a63836b3-ae77-4bb9-8f13-3784e0e22212', 'deposits-all-ZZAUTOTEST', ['DEP-4818', 'DEP-4817', 'DEP-4819', 'DEP-4820', 'DEP-4821', 'DEP-4822']);
+if (mode === 'dep-dvi') await depAll('a63836b3-ae77-4bb9-8f13-3784e0e22212', 'deposits-all-ZZAUTOTEST', ['DEP-4818', 'DEP-4817', 'DEP-4819', 'DEP-4820', 'DEP-4821', 'DEP-4822', 'DEP-4823', 'DEP-4824', 'DEP-4825', 'DEP-4826']);
 if (mode === 'dep-hd') await depAll('329d4f63-ce36-444a-893f-0a63e56b0038', 'deposits-all-Bravo', ['DEP-4718']);
 if (mode === 'hd-read') {          // read-only: DEP-4718 on S2-32989 (Bravo Mechanical Services), stored 2026-09-16T19:20:15Z = 17 Sep 00:20 Karachi
   await finance('c9f68154-3f3c-4fd8-95c7-cdb1a7063f8e', 'finance-S2-32989');
