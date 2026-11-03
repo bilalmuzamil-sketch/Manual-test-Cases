@@ -531,3 +531,12 @@
 - So: ticket **Done** → verify on **production** (only if needed). Ticket **below Done** (anything up to and including **QA Complete** or **Ready for Production**) **with a QA environment linked** → test on **that QA environment only** (never production, never staging).
 - Check the ticket's status LIVE before choosing the environment (`jira.sh GET /rest/api/2/issue/<KEY>?fields=status` — the reply ends "\n__HTTP:<code>", split it off before parsing JSON). 2 Nov check: every ticket linked to the 24 parked WO Board tests verified on production was Done or OBSOLETE (`update-pass-2026-11-02/ticket-status-1102.json`); SV-11835 (Ready for Production) keeps C682419 on sv11835.
 #ruling #environment #production #qa-branch #ticket-status → L0612, L0613
+
+## L0615 — 2026-11-03 — QA lead allowed two Expected changes ONCE (Rule 114(c)); next time ask him first
+- QA lead, 3 Nov 2026 (verbatim, on my two asks): C690642 — "We need to correct that too." C97028 density word — "Yes bypass this rule for this time, and next time if you have to do that please ask for my permission."
+- So Rule 114 stands unchanged: an Expected is changed only when he names the case in that conversation. This permission covered C690642 and C97028 only; it is not a precedent.
+- C690642 (Declined, Invoiced or Paid lead can't be changed (release)): set-up gained {Work-order-7} (Approved, no lead) exactly as C96963 did on 2 Nov; step 10 now drops {Work-order-4} on the other side of {Work-order-7}; Expected step 2 names seven work orders (with a dated decision line). Evidence for the step: C96963 (identical set-up) and C690642R passed on production v26.43.5 on 2 Nov.
+- C97028 (Blocked analytics …): Expected step 2 "field and density changes" → "Column Selection and Card size changes", with PRD v82 S3-R11 / S3-R11a quoted verbatim (PRD read live 3 Nov: still v82).
+- Gates: safe_case_edit read-back equal; served_page_scan clean (fr-view; needs `source build/testing-tools/ensure_bridge.sh` first — the saved bridge port had gone stale overnight); check_runnable_cases 2/2. check_case_render flags the old `<strong>` headings both cases already had; they render on the served page, so left as they were.
+- Files: `build/wo-board-tech-view/update-pass-2026-11-03/`.
+#ruling #rule-114c #expected #runnability #C690642 #C97028 → L0613, L0614
