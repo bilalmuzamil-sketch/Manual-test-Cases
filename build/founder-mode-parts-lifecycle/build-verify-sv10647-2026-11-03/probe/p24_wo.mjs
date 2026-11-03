@@ -1,0 +1,40 @@
+// Probe 24 (canned-line menu and special order only) (rerun of 21 without the return): throwaway data on the dummy branch, work order from probe 18. Line menu + "Save as canned line" window (closed unsaved);
+// stocked part W3030 added from stock with Qty 5 (more than its bin holds); special order ZZAUTOTEST-PLBV-SO2 saved, Order clicked;
+// vendor return for W3030 saved; Receive Credit window opened and cancelled.
+import { start } from './lib.mjs';
+import fs from 'fs';
+const OUT = process.env.OUT; const WO = JSON.parse(fs.readFileSync('probe/18/wo-url.json', 'utf8'));
+const { r, page, step, go, dlg } = await start(OUT);
+const save = (n, o) => fs.writeFileSync(`${OUT}/${n}.json`, JSON.stringify(o, null, 1));
+let k = 0; const body = async n => { await page.waitForTimeout(1500); n = String(++k).padStart(2, '0') + '-' + n; const d = page.locator('.q-dialog:visible, .q-menu:visible'); const t = (await d.count()) ? (await d.allInnerTexts()).join('\n----\n') : await page.locator('main').innerText().catch(() => '');
+  fs.writeFileSync(`${OUT}/${n}.txt`, page.url() + '\n' + t); await page.screenshot({ path: `${OUT}/${n}.png` }); console.log(n, t.length); };
+const openWO = async () => { for (let t = 0; t < 3 && !page.url().includes('/lines'); t++) { await page.goto(WO); await page.waitForTimeout(5000); } if (!page.url().includes('/lines')) { await page.goto(WO); await page.waitForTimeout(5000); } if (!page.url().includes('/lines')) { await go('/workorders?tab=all'); await page.locator('main').getByText('Search', { exact: true }).first().click(); await page.locator('main input:visible').first().fill('4 Star Truck Repair'); await page.waitForTimeout(3000);
+  const rows = page.locator('main tbody tr').filter({ hasText: '4 Star Truck Repair' }); await rows.last().locator('td').nth(2).click(); await page.waitForTimeout(4500); save('wo-opened', page.url()); } };
+if (!process.env.SKIPCANNED) await step('canned', async () => { await page.waitForTimeout(3000); await openWO(); const icons = page.locator('main *:visible').filter({ hasText: /^more_vert$/ }).filter({ hasNot: page.locator('*') }); const n = await icons.count(); save('icons', n);
+  for (let j = 0; j < n; j++) { await icons.nth(j).click().catch(() => {}); await page.waitForTimeout(900); const t = (await page.locator('.q-menu:visible').allInnerTexts()).join(' | '); save(`icon-menu-${j}`, t);
+    if (t.includes('Save as canned line')) { await page.locator('.q-menu:visible').getByText('Save as canned line', { exact: true }).click(); await page.waitForTimeout(2000); await body('save-canned-window'); await page.keyboard.press('Escape'); break; }
+    await page.keyboard.press('Escape'); await page.waitForTimeout(300); } });
+if (!process.env.SKIPSTOCK) await step('stock', async () => { await openWO(); await page.locator('main button:visible, main a:visible', { hasText: 'Add Part' }).first().click(); await page.waitForTimeout(1500);
+  await page.locator('main input:visible').first().click(); await page.keyboard.type('W3030', { delay: 60 }); await page.waitForTimeout(3000);
+  await page.locator('.q-menu:visible .q-item').filter({ hasText: 'Inventory Qty' }).first().click(); await page.waitForTimeout(1500);
+  save('row-inputs', await page.locator('main input:visible').evaluateAll(x => x.map(e => (e.getAttribute('aria-label') || '') + '|' + (e.closest('label')?.innerText || '').replace(/\n/g, ' ') + '|' + e.value)));
+  const q = page.locator('main label').filter({ hasText: /Qty/ }).locator('input').first(); await q.fill('5'); await page.waitForTimeout(800); await body('stock-qty5');
+  await page.locator('main button:visible', { hasText: /^Save$/ }).first().click(); await page.waitForTimeout(4000); await body('stock-saved'); });
+await step('special', async () => { await openWO(); await page.keyboard.press('Escape'); await page.keyboard.press('Escape'); await page.waitForTimeout(800); if (!(await page.locator('main button:visible', { hasText: 'More options' }).count())) { await page.locator('main button:visible, main a:visible', { hasText: 'Add Part' }).first().click(); await page.waitForTimeout(1200); }
+  await page.locator('main button:visible', { hasText: 'More options' }).first().click(); await page.waitForTimeout(2000); const d = dlg();
+  await d.getByLabel('Part Number').first().click(); await page.keyboard.type('ZZAUTOTEST-PLBV-SO2', { delay: 40 }); await page.waitForTimeout(2500);
+  await page.locator('.q-menu:visible .q-item').filter({ hasText: 'Add new special order part' }).first().click(); await page.waitForTimeout(1200);
+  await d.getByLabel('Description').first().fill('ZZAUTOTEST PLBV SPECIAL ORDER 2'); await d.getByLabel('Quantity').first().fill('1');
+  const vend = d.getByLabel('Vendor').last(); await vend.click(); await page.waitForTimeout(2500); fs.writeFileSync(`${OUT}/vendor-menu.json`, JSON.stringify((await page.locator('.q-menu:visible').allInnerTexts()).map(x => x.slice(0, 300)))); await page.locator('.q-menu:visible .q-item').filter({ hasNotText: 'No results' }).first().click(); await page.waitForTimeout(800);
+  await d.getByLabel('Cost').first().fill('12'); await d.getByLabel('Sell Price').first().fill('20'); await body('special-filled');
+  await d.locator('button:visible', { hasText: 'Save Part' }).first().click(); await page.waitForTimeout(4000); await body('special-saved');
+  save('wo-buttons', await page.locator('main button:visible').allInnerTexts());
+  const o = page.locator('main button:visible', { hasText: /^Order$/ }); save('order-count', await o.count()); if (await o.count()) { await o.first().click(); await page.waitForTimeout(3000); await body('after-order'); } });
+if (!process.env.SKIPRETURN) await step('return', async () => { await go('/parts/create-return'); await page.waitForTimeout(2500); const v = page.locator('main').getByLabel('Vendor').first(); await v.click(); await page.keyboard.type('Adams', { delay: 60 }); await page.waitForTimeout(2000);
+  await page.locator('.q-menu:visible .q-item').first().click(); await page.waitForTimeout(800);
+  await page.locator('main').getByLabel('Part Number').first().click(); await page.keyboard.type('W3030', { delay: 60 }); await page.waitForTimeout(2500); save('return-lookup', await page.locator('.q-menu:visible').allInnerTexts());
+  await page.locator('.q-menu:visible .q-item').first().click(); await page.waitForTimeout(1000); await body('return-filled');
+  await page.locator('main button:visible', { hasText: 'Save Return' }).first().click(); await page.waitForTimeout(4000); await body('return-saved');
+  await go('/parts/returns'); await page.waitForTimeout(3000); const row = page.locator('main tbody tr').filter({ hasText: 'W3030' }).first(); await row.locator('[role=checkbox]').first().click(); await page.waitForTimeout(800);
+  await page.locator('main button:visible', { hasText: 'Receive Credit' }).first().click(); await page.waitForTimeout(2500); await body('receive-credit-window'); await page.keyboard.press('Escape'); });
+await r.browser.close();

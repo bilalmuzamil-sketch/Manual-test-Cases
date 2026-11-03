@@ -1,0 +1,36 @@
+// Probe 20: throwaway data on the dummy branch. Work order from probe 18: line saved with a Labor Rate; part B from stock Qty 7;
+// part request through More options (Source Vendor) saved, Order clicked if offered; line menu read. Vendor return for part B saved,
+// its row menu read. New Vendor and New Location windows read and closed unsaved.
+import { start } from './lib.mjs';
+import fs from 'fs';
+const OUT = process.env.OUT; const WO = JSON.parse(fs.readFileSync('probe/18/wo-url.json', 'utf8'));
+const { r, page, step, go, dlg } = await start(OUT);
+const save = (n, o) => fs.writeFileSync(`${OUT}/${n}.json`, JSON.stringify(o, null, 1));
+let k = 0; const body = async n => { await page.waitForTimeout(1500); n = String(++k).padStart(2, '0') + '-' + n; const d = page.locator('.q-dialog:visible, .q-menu:visible'); const t = (await d.count()) ? (await d.allInnerTexts()).join('\n----\n') : await page.locator('main').innerText().catch(() => '');
+  fs.writeFileSync(`${OUT}/${n}.txt`, page.url() + '\n' + t); await page.screenshot({ path: `${OUT}/${n}.png` }); console.log(n, t.length); };
+const menuPick = async (re) => { await page.waitForTimeout(1200); const it = page.locator('.q-menu:visible .q-item'); if (re) await it.filter({ hasText: re }).first().click(); else await it.first().click(); await page.waitForTimeout(700); };
+await step('line', async () => { await page.goto(WO); await page.waitForTimeout(4000); await page.locator('button:visible', { hasText: /^New Line$/ }).first().click(); await page.waitForTimeout(2000);
+  await dlg().getByLabel('Title').first().click(); await page.keyboard.type('ZZAUTOTEST PL line', { delay: 30 }); await page.keyboard.press('Tab'); await page.waitForTimeout(800);
+  await dlg().getByLabel('Labor Rate').first().click(); await menuPick(); await dlg().getByText('Line Approved', { exact: true }).click(); await body('line-filled');
+  await dlg().locator('button:visible', { hasText: 'Save & Close' }).first().click(); await page.waitForTimeout(4000); await body('line-saved'); });
+await step('stock', async () => { await page.locator('main button:visible, main a:visible', { hasText: 'Add Part' }).first().click(); await page.waitForTimeout(1500);
+  await page.locator('main input:visible').first().click(); await page.keyboard.type('ZZAUTOTEST-PLBV-B', { delay: 50 }); await page.waitForTimeout(3000); await body('stock-lookup');
+  await page.locator('.q-menu:visible .q-item').filter({ hasText: 'Inventory Qty' }).first().click(); await page.waitForTimeout(1500);
+  save('row-inputs', await page.locator('main input:visible').evaluateAll(x => x.map(e => (e.getAttribute('aria-label') || '') + '|' + (e.closest('label')?.innerText || '').replace(/\n/g, ' ') + '|' + e.value)));
+  const q = page.locator('main label').filter({ hasText: /Qty/ }).locator('input').first(); await q.fill('7'); await page.waitForTimeout(800); await body('stock-qty7');
+  await page.locator('main button:visible', { hasText: /^Save$/ }).first().click(); await page.waitForTimeout(4000); await body('stock-saved'); });
+await step('request', async () => { await page.goto(WO); await page.waitForTimeout(4000); await page.locator('main button:visible, main a:visible', { hasText: 'Add Part' }).first().click(); await page.waitForTimeout(1200);
+  await page.locator('main button:visible', { hasText: 'More options' }).first().click(); await page.waitForTimeout(2000); const d = dlg();
+  await d.getByLabel('Part Number').first().click(); await page.keyboard.type('ZZAUTOTEST-PLBV-SO1', { delay: 40 }); await page.waitForTimeout(2500); save('npr-menu', await page.locator('.q-menu:visible').allInnerTexts());
+  await page.locator('.q-menu:visible .q-item').first().click(); await page.waitForTimeout(1200); await body('npr-after-pick');
+  save('npr-labels', await d.locator('label:visible, button:visible, .q-btn-toggle:visible, [role=radio]:visible').allInnerTexts()); });
+await step('linemenu', async () => { await page.goto(WO); await page.waitForTimeout(4000); const mv = page.locator('main button:visible').filter({ has: page.locator('i:text-is("more_vert")') });
+  const n = await mv.count(); save('mv-count', n); for (let j = 0; j < n; j++) { await mv.nth(j).click().catch(() => {}); await page.waitForTimeout(900); save(`menu-${j}`, await page.locator('.q-menu:visible').allInnerTexts()); await page.keyboard.press('Escape'); await page.waitForTimeout(400); } await body('wo-lines-now'); });
+await step('vendor', async () => { await go('/parts/vendors'); await page.locator('main button:visible', { hasText: 'New Vendor' }).first().click(); await page.waitForTimeout(2000); await body('new-vendor'); await page.keyboard.press('Escape'); });
+await step('location', async () => { await go('/administration/locations'); await page.locator('main button:visible', { hasText: 'New Location' }).first().click(); await page.waitForTimeout(2000); await body('new-location'); await page.keyboard.press('Escape'); });
+await step('return', async () => { await go('/parts/create-return'); await page.waitForTimeout(2500); await page.locator('main').getByLabel('Vendor').first().click(); await menuPick();
+  await page.locator('main').getByLabel('Part Number').first().click(); await page.keyboard.type('ZZAUTOTEST-PLBV-B', { delay: 50 }); await page.waitForTimeout(2500); save('return-lookup', await page.locator('.q-menu:visible').allInnerTexts());
+  await menuPick(); await body('return-filled'); await page.locator('main button:visible', { hasText: 'Save Return' }).first().click(); await page.waitForTimeout(4000); await body('return-saved'); save('return-url', page.url());
+  await go('/parts/returns'); await page.waitForTimeout(2500); const row = page.locator('main tbody tr').filter({ hasText: 'ZZAUTOTEST-PLBV-B' }).first(); await body('returns-list');
+  await row.locator('button:visible').filter({ has: page.locator('i:text-is("more_vert")') }).first().click(); await page.waitForTimeout(900); save('return-row-menu', await page.locator('.q-menu:visible').allInnerTexts()); await page.keyboard.press('Escape'); });
+await r.browser.close();

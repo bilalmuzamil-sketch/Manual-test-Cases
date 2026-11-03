@@ -1,0 +1,418 @@
+C154753 | Parts from before the release are active and tracked
+   - Sign in as an Admin at the test location.
+   - Use three parts, part A, part B and part C, that were at the test location before this release was installed and that nobody has changed since.
+   - Use a part B that has stock on hand and a saved Min and Max, so its tracking can be seen in its window.
+   - Have an inactive part, part D, at the test location, so the Inactive tab has a part it must list.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C154775 | Total Qty sort puts untracked parts below tracked parts both ways
+   - Sign in as an Admin at the test location.
+   - Have five parts, part A, part B, part C, part D and part E, each with one bin location that holds a quantity above 0 (no bin below zero), so the sort and the Total Qty cells agree.
+   - Set parts A, B and C as tracked parts, with 5, 5 and 2 on hand.
+   - Set parts D and E as untracked parts, with 1 and 9 on their shelf.
+   - Give parts A, B, C, D and E descriptions that start with the same text and end, in turn, with ALPHA, BRAVO, CHARLIE, XRAY and YANKEE.
+   - Give parts A, B, C, D and E part numbers that start with the same text, so one search lists all five.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C154778 | A number held by two Part Library entries gets a new entry of its own
+   - Sign in as an Admin at the test location.
+   - Use two Part Library entries from before this release that have exactly the same part number, with the same upper and lower case, and different descriptions (such pairs come only from data saved before this release); call that part number number 1.
+   - Make sure no part at the test location has a part number that matches number 1, ignoring upper and lower case, hyphens, asterisks, periods and spaces.
+   - Use a description for the new part, description 3, that neither entry has.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C154791 | A status change records who made it and when
+   - Sign in as an Admin at the test location.
+   - Create an active part, part A, for this test.
+   - Write down the date and time on your computer clock just before step 1.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab, with part A's part number typed in the Search box.
+C154831 | Part Library entries from before the release stay listed
+   - Sign in as an Admin at the test location.
+   - Have a Part Library entry from before this release, entry A, that no part uses ("Total parts" 0).
+   - Have a second Part Library entry from before this release, entry B, that a part uses.
+   - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
+C154833 | Deleting an unused Part Library entry asks and confirms in Part Library words
+   - Sign in as an Admin at the test location.
+   - Create a Part Library entry with no part behind it for this test, entry A: create a part at the test location, then delete it, so the entry stays with "Total parts" 0.
+   - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
+C154835 | An old bookmark to the Catalog page opens the Part Library
+   - Sign in as an Admin at the test location.
+   - Have a bookmark, saved before this release, to the Catalog page (your ShopView address followed by /parts/parts-catalogue).
+   - Start on any page of the app in the same browser.
+C154839 | Changing the part number warns how many other locations it changes
+   - Sign in as an Admin who can switch between three locations: the test location, location B and location C.
+   - Have a part, part A, at the test location, at location B (active there) and at location C (inactive there), under the same part number.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425591 | An empty Inactive tab says No inactive parts at this location.
+   - Sign in as an Admin at a location that has no inactive parts at all, such as a newly created location.
+   - Create an active part, part A, at that location for this test.
+   - Start on that location's Inventory page, on the Active tab, with the Search box empty and Bin Location and Category set to All.
+C425596 | More than 200 ticked parts disables Deactivate
+   - Sign in as an Admin at the test location.
+   - Create 201 active parts for this test whose part numbers start with the same text, so one search lists all 201.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425597 | Search, filters, sorting and scrolling keep working in bulk mode
+   - Sign in as an Admin at the test location.
+   - Have three active parts: part A and part C in category A, and part B in category B, so the category A filter leaves part B out.
+   - Give parts A, B and C part numbers that start with the same text, so one search lists them, and descriptions that run A to Z in the order part A, part B, part C.
+   - Make sure the test location has more than 30 active parts, so the list loads more rows as you scroll.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425613 | A number changed on the Part Library page reaches an open part request
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test at the test location.
+   - Create a work order for this test, work order 1, with a line holding a part request for part A, quantity 1, not yet received.
+   - Use a new part number that no part and no Part Library entry has yet.
+   - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
+C425614 | A Part Library number over 50 characters is refused on an open part request
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test at the test location.
+   - Create a work order for this test, work order 1, with a line holding a part request for part A, not yet received, so part A sits on an open part request.
+   - Use two new part numbers that no Part Library entry has, one exactly 51 characters long and one exactly 50 characters long.
+   - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
+C425616 | A part requested from a vendor reaches the Part Library when it is received
+   - Sign in as an Admin at the test location.
+   - Use a new part number that no Part Library entry has and no inventory part uses.
+   - Have a vendor, vendor A.
+   - Create a work order for this test, work order 1, with an approved line.
+   - Start on work order 1 (Work Orders in the top bar, then open work order 1).
+C425624 | A special-order lookup result shows Part Library and its vendor
+   - Sign in as an Admin at the test location.
+   - Have a vendor, vendor A.
+   - Have a special-order number that the test location received from vendor A on a special-order line of a work order within the last 12 months, and that is not an inventory part here.
+   - Create a work order for this test, work order 1, with a line.
+   - Start on work order 1 (Work Orders in the top bar, then open work order 1).
+C425625 | Release day leaves every role's permissions as they were
+   - Sign in as an Admin at the test location.
+   - Have a custom role from before this release, role A, with View and Create & Edit ticked and Delete unticked in the parts inventory group.
+   - Have a screenshot of role A's permissions taken before this release, so they can be compared.
+   - Use a second browser, or a private window, signed in as user B, who has had role A since before this release.
+   - Start on Roles & Permissions (click the box at the top right, then Settings, then Roles & Permissions in the left menu).
+C425626 | Release day keeps saved names that contain the word Catalog
+   - Sign in as an Admin at the test location.
+   - Have a custom role from before this release, role A, whose name contains the word Catalog.
+   - Have a part from before this release, part A, whose description contains the word Catalog.
+   - Start on Roles & Permissions (click the box at the top right, then Settings, then Roles & Permissions in the left menu).
+C425642 | With no untracked parts, searching not tracked lists nothing
+   - Sign in as an Admin at a location that has no untracked part.
+   - Have a tracked part, part A, at that location whose part number, description and tags contain neither the word not nor the word tracked.
+   - Start on that location's Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425657 | Inventory Value for an earlier date still counts a part untracked today
+   - Sign in as an Admin at the test location.
+   - Create an active tracked part, part A, for this test on an earlier day, with 4 in its bin at a cost of $10.00, so the Inventory Value report saved a figure for it on that earlier date (date A).
+   - Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
+C425658 | Inventory Value before the release counts every part as tracked
+   - Sign in as an Admin at the test location.
+   - Use an active tracked part, part A, that was at the test location before this release was installed and that no other test needs.
+   - Use a date before the release, date A, on which the Inventory Value report lists part A.
+   - Write down part A's Qty and Total Cost on the Inventory Value report for date A.
+   - Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
+C425660 | Bins of +5 and -2 show quantity 3 and $30 in Inventory Value
+   - Sign in as an Admin at the test location.
+   - Create a tracked part, part A, for this test at a cost of $10.00 and a Sell Price of $20.00, with 5 in bin location A and 0 in bin location B, so the report has two bins to add up.
+   - Add 2 of part A to a work order line from bin location B while it holds 0, so bin location B goes to -2 and part A's net is 3 (5 + (-2)).
+   - Start on the Inventory Value report (Reports in the top bar, then Inventory Value under PARTS in the left menu), with the as-of date on today.
+C425661 | A part with only a -2 bin shows -2 and -$20 and lowers the totals
+   - Sign in as an Admin at the test location.
+   - Create two tracked parts for this test at a cost of $10.00 and a Sell Price of $20.00: part A with 0 in its only bin and part B with 4 in its only bin.
+   - Add 2 of part A to a work order line while its bin holds 0, so part A's bin goes to -2.
+   - Give parts A and B part numbers that start with the same text, so one search lists both.
+   - Start on the Inventory Value report (Reports in the top bar, then Inventory Value under PARTS in the left menu), with the as-of date on today.
+C425664 | The Inventory list's available quantity still leaves out a negative bin
+   - Sign in as an Admin at the test location.
+   - Create a tracked part, part A, for this test at a cost of $10.00, with 5 in bin location A and 0 in bin location B, so the report has two bins to add up.
+   - Add 2 of part A to a work order line from bin location B while it holds 0, so bin location B goes to -2.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425665 | The Supply filter still uses the positive bins for a part with a negative bin
+   - Sign in as an Admin at the test location.
+   - Create a tracked part, part A, for this test with Min 4 and Max 10, 5 in bin location A and 0 in bin location B, so it has a positive and a second bin.
+   - Add 2 of part A to a work order line from bin location B while it holds 0, so bin location B goes to -2: on its positive bin (5) part A sits between Min and Max, on the net (3) it would be below Min.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab, with part A's part number typed in the Search box.
+C425666 | Fractional bins of +2.5 and -1.25 show quantity 1.25 and $12.50
+   - Sign in as an Admin at the test location.
+   - Create a tracked part, part A, for this test whose quantities allow fractions, at a cost of $10.00, with 2.5 in bin location A and 0 in bin location B, so the report has two bins to add up.
+   - Add 1.25 of part A to a work order line from bin location B while it holds 0, so bin location B goes to -1.25 and part A's net is 1.25.
+   - Start on the Inventory Value report (Reports in the top bar, then Inventory Value under PARTS in the left menu), with the as-of date on today.
+C425679 | With active and inactive matches, the active part's number is named
+   - Sign in as an Admin at the test location.
+   - Have at the test location an active part, part A, and an inactive part, part B, on two different Part Library entries, whose part numbers differ only in hyphens or periods (such a pair comes from data saved before this release, or from the parts import, which can add one when the number matches a Part Library entry stocked only at another location).
+   - Use a number to type, number 1: part A's number in lower case with spaces in place of its hyphens, so it matches both parts.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425680 | Saving a part with its number unchanged is never refused as a duplicate
+   - Sign in as an Admin at the test location.
+   - Have at the test location two active parts, part A and part B, on two different Part Library entries, whose part numbers differ only in hyphens or periods (such a pair comes from data saved before this release, or from the parts import).
+   - Keep parts A and B as they are: this test changes only their Sell Price.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425683 | A part from before the release keeps its Part Library entry
+   - Sign in as an Admin at the test location.
+   - Use a part, part A, that was stocked at the test location before this release was installed and whose number and description nobody has changed since.
+   - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
+C425690 | Changing the description warns how many other locations it changes
+   - Sign in as an Admin who can switch between three locations: the test location, location B and location C.
+   - Have a part, part A, at the test location, at location B (active there) and at location C (inactive there), under the same part number.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425694 | Saving with the part number unchanged leaves the number and open work alone
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test.
+   - Create an open purchase order for this test, purchase order 1, from any vendor, with a line for part A picked from the lookup, 2 ordered and none received.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425696 | A rename carries over to open purchase order lines at every location
+   - Sign in as an Admin who can switch between two locations: the test location and location B.
+   - Create a part, part A, for this test at the test location, with 4 on hand, and at location B under the same part number.
+   - Create an open purchase order for this test at the test location, purchase order 1, from any vendor, with a line for part A picked from the lookup, 2 ordered and none received.
+   - Create an open purchase order for this test at location B, purchase order 2, from any vendor, with a line for part A picked from the lookup, 4 ordered and none received.
+   - Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425697 | A rename carries over to open part requests but not to received ones
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test with 5 on hand.
+   - Create a work order for this test, work order 1, with a line holding two part requests for part A: one requested from the Part Library result and not yet received, and one picked from stock, so it is received.
+   - Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425698 | A rename carries over to canned jobs that hold the part
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test with 5 on hand.
+   - Create a work order for this test, work order 1, with a line holding part A picked from stock.
+   - Create a canned job for this test, canned job A, saved from that line, so it holds part A.
+   - Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425699 | A rename carries over to vendor returns that are not completed
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test with 5 on hand.
+   - Create a vendor return for this test, return A, for part A to any vendor, saved and not completed.
+   - Create a vendor return for this test, return B, for part A to any vendor, completed (accepted by the vendor).
+   - Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425700 | A delivery opened before a rename is received under the new number
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test with 3 on hand.
+   - Create an open purchase order for this test, purchase order 1, from any vendor, with a line for part A picked from the lookup, 2 ordered and none received.
+   - Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
+   - Use a desktop browser that can open a second tab on the same ShopView address, signed in as the same user.
+   - Start in browser tab 1 on purchase order 1 (Parts, then Purchase Orders, then open purchase order 1).
+C425715 | Delete Part on a part with an open return shows why and does nothing
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test with 3 on hand.
+   - Have a vendor, vendor A.
+   - Create a vendor return for this test, return A, for part A and vendor A, saved and not completed.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab, with part A's part number typed in the Search box.
+C425717 | Deleting a part that got an open return meanwhile is refused
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test with 3 on hand, on no return.
+   - Have a vendor, vendor A.
+   - Use a desktop browser that can open a second tab on the same ShopView address, signed in as the same user.
+   - Start in browser tab 1 on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
+C425718 | A number over 50 characters is refused while on an open part request
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test.
+   - Create a work order for this test, work order 1, with a line holding an open part request for part A, requested and not received.
+   - Create a part, part B, for this test, on no part request.
+   - Use two new part numbers that no part uses, one exactly 51 characters long and one exactly 60 characters long.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C425727 | Purchase order line lookup does not offer an inactive part
+   - Sign in as an Admin at the test location.
+   - Have an inactive part, part A, with 4 on hand and a hyphen in its part number.
+   - Have an active part, part B, with 4 on hand, so the lookup has a part it must still offer.
+   - Give parts A and B part numbers that start with the same text, and descriptions that start with the same text, so one search finds both.
+   - Create an open purchase order for this test, purchase order A, with one line for another part, not yet received.
+   - Start on purchase order A (Parts in the top bar, Purchase Orders in the left menu, then purchase order A).
+C425728 | Changing the part a received vendor bill line points to skips inactive parts
+   - Sign in as an Admin at the test location.
+   - Have an inactive part, part A, with 4 on hand and a hyphen in its part number.
+   - Have an active part, part B, with 4 on hand, so the lookup has a part it must still offer.
+   - Give parts A and B part numbers that start with the same text, and descriptions that start with the same text, so one search finds both.
+   - Have a received vendor bill, bill A, with one line for a vendor part.
+   - Start on bill A (Parts in the top bar, Vendor Invoices in the left menu, then bill A).
+C425730 | A canned job is added without its inactive parts and one warning names them
+   - Sign in as an Admin at the test location.
+   - Create three active parts for this test, part A, part B and part C, with part A's number coming before part B's from A to Z.
+   - Create a canned job for this test, canned job A, holding parts A, B and C, one of each.
+   - Set parts A and B inactive after canned job A is saved.
+   - Create an open work order, work order 1, for this test, with no lines.
+   - Start on work order 1, on its Lines tab.
+C425731 | The canned job warning names a typed vendor part by the inactive part's number
+   - Sign in as an Admin at the test location.
+   - Create an active part, part A, for this test, with a hyphen in its part number, and an active part, part C.
+   - Create a canned job for this test, canned job A, holding part C and a vendor part typed in by hand whose number is part A's number in lower case with periods in place of its hyphens.
+   - Set part A inactive after canned job A is saved.
+   - Create an open work order, work order 1, for this test, with no lines.
+   - Start on work order 1, on its Lines tab.
+C425732 | A canned job leaves out the fee that belongs to an inactive part
+   - Sign in as an Admin at the test location.
+   - Create two active parts for this test, part A and part C.
+   - Create a canned job for this test, canned job A, holding part A with a part fee, fee 1, and part C with a part fee, fee 2.
+   - Set part A inactive after canned job A is saved.
+   - Create an open work order, work order 1, for this test, with no lines.
+   - Start on work order 1, on its Lines tab.
+C425733 | Vendor return lookup offers an inactive part with a grey Inactive tag
+   - Sign in as an Admin at the test location.
+   - Have a vendor, vendor A.
+   - Create a part, part A, for this test, with vendor A and 4 on hand, and set it inactive.
+   - Create an active part, part B, for this test, with vendor A.
+   - Give parts A and B part numbers that start with the same text, so one search lists both.
+   - Start on the Create Return page (Parts in the top bar, Returns in the left menu, then the button that starts a new return).
+C425741 | Saving a purchase order line is refused once the part was retired meanwhile
+   - Sign in as an Admin at the test location.
+   - Create an active part, part A, for this test, with 4 on hand.
+   - Create an open purchase order for this test, purchase order A, with one line for another part, line 1, not yet received.
+   - Use a desktop browser that can open a second tab on the same ShopView address, signed in as the same user.
+   - Start in tab 1 on purchase order A.
+C425746 | With Vendor Order Management Create & Edit, a return's part search works
+   - Sign in as an Admin at the test location.
+   - Create a custom role for this test, role B, with Vendor Order Management — View and Vendor Order Management — Create & Edit ticked and every Part Library & Inventory box unticked, so user B reaches parts only through Vendor Order Management.
+   - Create a staff member for this test, user B, at the test location with role B, so the steps run with role B's permissions.
+   - Use a second browser window (a private window) signed in as user B.
+   - Have a vendor, vendor A, and an inactive part, part A, with vendor A.
+C425751 | A part retired while on order can still be ordered, received and picked
+   - Sign in as an Admin at the test location.
+   - Have a vendor, vendor A.
+   - Create an active part, part A, for this test, with vendor A and 0 on hand.
+   - Create an open work order, work order 1, for this test, whose approved line, line 1, has two Part Requests for part A from vendor A: Part Request 1 ordered on purchase order A, and Part Request 2 not yet ordered.
+   - Set part A inactive after that.
+   - Start on work order 1's Parts tab.
+C425768 | A bulk change of forty parts writes forty Part History entries
+   - Sign in as an Admin at the test location.
+   - Create forty active parts for this test whose part numbers start with the same text, so one search lists all forty and no other part.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C540877 | Receiving a typed purchase order line adds its number to the Part Library
+   - Sign in as an Admin at the test location.
+   - Use a new part number that no Part Library entry has and no inventory part uses.
+   - Have a vendor, vendor A.
+   - Start on the Purchase Orders page (Parts in the top bar, then Purchase Orders in the left menu).
+C540878 | Inventory Value for a day after release counts a bin below zero
+   - Sign in as an Admin at the test location.
+   - Create a tracked part, part A, for this test on an earlier day after this release, date A, at a cost of $10.00, with 0 in its only bin.
+   - Add 2 of part A to a work order line on date A while its bin holds 0, so part A ended date A at -2 and the report saved that figure for date A.
+   - Start on the Inventory Value report (Reports in the top bar, then Inventory Value), with the as-of date on today.
+C540879 | Inventory Value for a date before release keeps its saved figures
+   - Sign in as an Admin at the test location.
+   - Use a tracked part from before this release, part A, at the test location, that has held 5 in bin location A and -2 in bin location B at a cost of $10.00 since before date A, with no change since, so the net of its bins is 3.
+   - Use date A, a date before this release that the Inventory Value report has saved figures for.
+   - Start on the Inventory Value report (Reports in the top bar, then Inventory Value), with the as-of date on today.
+C573672 | A special order not yet received is not offered with its vendor
+   - Sign in as an Admin at the test location.
+   - Have a vendor, vendor A.
+   - Have a special-order number that the test location received from vendor A within the last 12 months, the received number, so the lookup has a result it must show with vendor A.
+   - Create a special order for this test from vendor A on a work order line, with a new part number, the ordered number, and order it, but receive it nowhere.
+   - Create a work order for this test, work order 1, with a line.
+   - Start on work order 1 (Work Orders in the top bar, then open work order 1).
+C573673 | A special order received only at another location is not offered with its vendor
+   - Sign in as an Admin who can switch between two locations: the test location and location B.
+   - Have a vendor, vendor A.
+   - Have a special-order number that location B received from vendor A on a special-order line within the last 12 months; the test location never received it and does not stock it.
+   - Create a work order for this test at the test location, work order 1, with a line.
+   - Create a work order for this test at location B, work order 2, with a line.
+   - Start on work order 1 (Work Orders in the top bar, then open work order 1).
+C573674 | The special-order result uses the vendor and cost of the latest delivery
+   - Sign in as an Admin at the test location.
+   - Have two vendors, vendor A and vendor B.
+   - Create a special-order part number for this test that the test location ordered from vendor A first and from vendor B second, but received from vendor B first at a cost of $12.00 and from vendor A last at a cost of $15.00, all within the last 12 months, so vendor A made the most recent delivery.
+   - Create a work order for this test, work order 1, with a line.
+   - Start on work order 1 (Work Orders in the top bar, then open work order 1).
+C573682 | An imported part with no bin location goes to an Unassigned bin
+   - Sign in as an Admin at a location that has no bin location named Unassigned.
+   - Use part numbers for two new parts, part A and part B, that no part or Part Library entry uses yet.
+   - Have a parts import file with two rows that add part A and part B, each with quantity 0 and an empty bin location cell.
+   - Start on that location's Inventory data import page (click the box at the top right, then Settings, then Inventory under IMPORTS in the left menu; the page is titled Inventory Import Preview).
+C573683 | A linked entry whose manufacturer no longer exists takes the one picked
+   - Sign in as an Admin at the test location.
+   - Use a Part Library entry from data saved before this release that still points to a manufacturer that no longer exists in this organization (its Manufacturer shows empty), and that no part at the test location uses; call its part number number 1.
+   - Make sure no other Part Library entry has exactly number 1, with the same upper and lower case.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C573684 | The canned job warning lists inactive parts A to Z, separated by commas
+   - Sign in as an Admin at the test location.
+   - Create four active parts for this test, part A, part B, part C and part D, whose part numbers run A to Z in that order.
+   - Create a canned job for this test, canned job A, holding, in this order, part C, part B, part A and part D, one of each.
+   - Set parts A, B and C inactive after canned job A is saved.
+   - Create an open work order, work order 1, for this test, with no lines.
+   - Start on work order 1, on its Lines tab.
+C573686 | With Vendor Order Management View only, a return's part search is refused
+   - Sign in as an Admin at the test location.
+   - Create a custom role for this test, role B, with Vendor Order Management — View only: no Vendor Order Management — Create & Edit, no Part Library & Inventory box, no Part Sales — Create & Edit, no work order permission to pick parts, no Settings permission and no See Financial Data, so no setting gives user B part search access.
+   - Create a staff member for this test, user B, at the test location with role B, so the steps run with role B's permissions.
+   - Use a second browser window (a private window) signed in as user B.
+   - Have a vendor, vendor A, and an active part, part A, with vendor A.
+   - Write down the address of the Create Return page: as the Admin, open Parts, then Returns, click Create Return, and copy the address from the browser's address bar.
+C839418 | More than 200 ticked parts disables Activate on the Inactive tab
+   - Sign in as an Admin at the test location.
+   - Create 201 parts for this test whose part numbers start with the same text, so one search lists all 201, and set all 201 inactive.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Inactive tab.
+C839424 | On a vendor return, searching not tracked also lists untracked parts
+   - Sign in as an Admin at the test location.
+   - Have a vendor, vendor A.
+   - Have an untracked part, part A, with vendor A, whose part number, description and tags contain neither the word not nor the word tracked.
+   - Have a tracked part, part B, with vendor A, whose description contains the word NOTCHED, so the word not also matches it on its description.
+   - Have a tracked part, part C, with vendor A, whose part number, description and tags contain neither word, so the search has a part it must leave out.
+   - Start on the Create Return page (Parts in the top bar, Returns in the left menu, then the button that starts a new return).
+C839426 | A linked entry with no category takes the category picked
+   - Sign in as an Admin at the test location.
+   - Use a Part Library entry that has no category and that no part at the test location uses (such entries come from data saved before this release); call its part number number 1.
+   - Use any category, category A, from the Category list.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C839433 | The purchase order part lookup shows Not Tracked for an untracked part
+   - Sign in as an Admin at the test location.
+   - Have an untracked part, part A, with 3 in one bin location, bin location A.
+   - Have a tracked part, part B, with 4 on hand, so the lookup rows can be compared.
+   - Give parts A and B part numbers that start with the same text, so one search lists both.
+   - Create an open purchase order for this test, purchase order A.
+   - Start on purchase order A.
+C839445 | Received purchase order lines and accepted vendor bills keep the old number
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test.
+   - Create a purchase order for this test, purchase order 1, from any vendor, with a line for part A picked from the lookup, 1 ordered and fully received on a vendor invoice.
+   - Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C839446 | A purchase order line typed by hand with the old number keeps its number
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test.
+   - Create an open purchase order for this test, purchase order 1, from any vendor, with two lines, neither received: one for part A picked from the lookup, and one where part A's number was typed by hand and added as typed, with no link to the part.
+   - Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C839447 | A hand-typed purchase order line is received under its own number
+   - Sign in as an Admin at the test location.
+   - Create a part, part A, for this test.
+   - Create an open purchase order for this test, purchase order 1, from any vendor, with one line where part A's number was typed by hand and added as typed, 1 ordered and none received.
+   - Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C839450 | Inventory Value for a date before a rename shows the old part number
+   - Sign in as an Admin at the test location.
+   - Create a tracked part, part A, for this test on an earlier day, date A, with 4 in its bin at a cost of $10.00, so the Inventory Value report saved a figure for it on date A.
+   - Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
+   - Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
+C839452 | The Totals row's Margin % stays the true total and can go above 100%
+   - Sign in as an Admin at the test location.
+   - Create two tracked parts for this test: part A at a cost of $10.00 and a Sell Price of $100.00 with 1 in its bin, and part B at a cost of $50.00 and a Sell Price of $60.00 with 0 in its bin.
+   - Add 1 of part B to a work order line while its bin holds 0, so part B's bin goes to -1.
+   - Give parts A and B part numbers that start with the same text, so one search lists both.
+   - Start on the Inventory Value report (Reports in the top bar, then Inventory Value under PARTS in the left menu), with the as-of date on today.
+C839453 | The Totals row's Margin % stays the true total and can go below zero
+   - Sign in as an Admin at the test location.
+   - Create two tracked parts for this test: part A at a cost of $10.00 and a Sell Price of $20.00 with 3 in its bin, and part B at a cost of $5.00 and a Sell Price of $40.00 with 0 in its bin.
+   - Add 1 of part B to a work order line while its bin holds 0, so part B's bin goes to -1.
+   - Give parts A and B part numbers that start with the same text, so one search lists both.
+   - Start on the Inventory Value report (Reports in the top bar, then Inventory Value under PARTS in the left menu), with the as-of date on today.
+C839463 | Design: Over 200 ticked shows its hover text below Deactivate
+   - Sign in as an Admin at the test location.
+   - Have 201 active parts whose part numbers start with the same text, so one search lists all 201.
+   - Make sure no Cycle count is running on the Inventory list.
+   - Make sure the app is in the Light theme.
+   - Use a desktop browser window at least 1600 pixels wide with the page zoom at 100%, so the screen is as wide as the design boards.
+   - Open the attached design picture of board 4.9 at 100% zoom, so you can compare the screen with it.
+   - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+C839491 | Design: Canned job warning looks as in the design
+   - Sign in as an Admin at the test location.
+   - Create an inactive part for this test, part A, and an active part for this test, part B.
+   - Have a canned job, canned job 1, that holds part A and part B.
+   - Create an open work order for this test, work order 1, with one line.
+   - Make sure the app is in the Light theme.
+   - Use a desktop browser window at least 1600 pixels wide with the page zoom at 100%, so the screen is as wide as the design boards.
+   - Open the attached design pictures of boards 6.4 and 6.5 at 100% zoom, so you can compare the screen with them.
+   - Start on the Work Orders page.
+C839492 | Design: Inactive tag in the vendor return lookup looks as drawn
+   - Sign in as an Admin at the test location.
+   - Have an inactive part, part A, and an active part, part B, both with stock.
+   - Give parts A and B part numbers that start with the same text, so one search lists both.
+   - Make sure the app is in the Light theme.
+   - Use a desktop browser window at least 1600 pixels wide with the page zoom at 100%, so the screen is as wide as the design boards.
+   - Open the attached design picture of board 6.6 at 100% zoom, so you can compare the screen with it.
+   - Start on the Create Return page (Parts in the top bar, Returns in the left menu, then start a new return).
+C847731 | Opening the address of a deleted Part Library entry says it is not found
+   - Sign in as an Admin at the test location.
+   - Create a Part Library entry with no part behind it for this test, entry A: create a part at the test location, then delete it, so the entry stays with "Total parts" 0.
+   - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
