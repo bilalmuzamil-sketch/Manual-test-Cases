@@ -1,0 +1,21 @@
+// Probe 30 (read-only): the same census with full paging (pagination[page], pagination[rowsPerPage]).
+import { start } from '../probe/lib.mjs';
+import fs from 'fs';
+const OUT = process.env.OUT; const { r, page } = await start(OUT);
+const get = async u => page.evaluate(async u => { const x = await fetch('https://sv10647api.qa.shopview.com/api/' + u, { credentials: 'include', headers: { accept: 'application/json' } }); return { s: x.status, j: await x.json().catch(() => null) }; }, u);
+const all = async (base, extra = '') => { let out = [], p = 1; for (; p < 200; p++) { const v = await get(`${base}?pagination%5Bpage%5D=${p}&pagination%5BrowsPerPage%5D=100${extra}`); const c = v.j?.data?.collection || []; out = out.concat(c); if (c.length < 100) break; } return { rows: out, pages: p }; };
+const res = {};
+const cat = await all('parts-catalogue/catalogue-parts'); const C = cat.rows; res.catalogue = { n: C.length, pages: cat.pages };
+const by = {}; for (const e of C) (by[e.part_number] ||= []).push(e);
+res.exactDupes = Object.entries(by).filter(([k, v]) => v.length > 1 && new Set(v.map(x => x.name.trim().toLowerCase())).size > 1).map(([k, v]) => ({ number: k, names: v.map(x => x.name), deletable: v.map(x => x.deletable) }));
+const st = {}; for (const e of C) (st[e.part_number_stripped] ||= []).push(e);
+res.strippedPairs = Object.values(st).filter(v => v.length > 1 && new Set(v.map(x => x.part_number)).size > 1).map(v => v.map(x => x.part_number + ' | ' + x.name + ' | deletable=' + x.deletable));
+res.manufacturerMissing = C.filter(e => e.manufacturer_id && !e.manufacturer_name).map(e => e.part_number + ' | ' + e.name + ' | deletable=' + e.deletable);
+res.noCategory = C.filter(e => !e.category || !e.category_label).map(e => e.part_number + ' | ' + e.name + ' | deletable=' + e.deletable + ' | ' + e.category_label);
+res.uncategorizedDeletable = C.filter(e => /uncategori/i.test(e.category_label || '') && e.deletable && !e.part_number.startsWith('ZZ') && !e.part_number.startsWith('QA')).slice(0, 8).map(e => e.part_number + ' | ' + e.name);
+res.deletablePreRelease = C.filter(e => e.deletable && e.created_at < '2026-10-28').length;
+res.catalogWord = C.filter(e => /catalog/i.test(e.name)).map(e => e.part_number + ' | ' + e.name);
+const iv = await all('reporting/reports/inventory-value', '&asOfDate=2026-10-20'); res.ivr_2026_10_20 = { n: iv.rows.length, pages: iv.pages, negative: iv.rows.filter(x => x.qty < 0).slice(0, 10).map(x => x.part_number + ' qty ' + x.qty + ' cost ' + x.unit_cost), w3030t: iv.rows.filter(x => x.part_number === 'W3030T').map(x => x.qty + ' / ' + x.total_cost) };
+fs.writeFileSync(`${OUT}/census.json`, JSON.stringify(res, null, 1));
+console.log(JSON.stringify({ ...res, manufacturerMissing: res.manufacturerMissing.length + ' e.g. ' + res.manufacturerMissing.filter(x => x.includes('deletable=true')).slice(0, 3).join(' ; ') }).slice(0, 4000));
+await r.browser.close();

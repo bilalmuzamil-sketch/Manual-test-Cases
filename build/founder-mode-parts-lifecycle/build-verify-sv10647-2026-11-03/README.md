@@ -75,3 +75,16 @@ Parts ZZAUTOTEST-PLBV-A (inactive) and ZZAUTOTEST-PLBV-B (active), General Stora
   the preconditions before the clicks pass, live-before.json) and a separate "Setup" section added after them: a numbered list in the order
   the tester works (vendors and locations first), one item per thing to make, "<what it makes>: <clicks>", part fields as "Field: value".
   72/72 verify=OK. Checks: tester-runnable PASS, runnable 72/72, display 72/72 fr-view.
+
+## Runnable-only, 3 Nov 2026 late (QA lead: "any test which is not runnable/executable should not be the part of this testing suite")
+- Read-only census of this site's data (runnable-pass/p29, p30; on-screen confirmation p31) for the tests that need records from before this
+  release. Found and confirmed on screen: two Part Library entries numbered 615144 (RF axle nut, LF axle nut); TK52-67-5Y0H BCM Rear (empty
+  Manufacturer, Total parts 0); 68157291AA Fuel filter (no Category); 21-361 Reverse Switch (Total parts 0); W3030T in Inventory Value on
+  10/20/2026 (Qty 24.00, Total Cost $688.08). → C154778, C154831, C573683, C839426, C425658: Setup names the record; C154778, C573683,
+  C839426 build line full (apply_runnable.py).
+- Not runnable by hand on this site → marker "AUTOMATION: HOLD - not manually testable on the QA site: <reason>" and moved to new section
+  S114050 "Parts Lifecycle – not runnable by a manual tester" under Founder Mode (S20434): C425625 (needs a role screenshot taken before
+  the release; no custom role from before it), C425626 (no role or part from before the release named with Catalog), C540879 (no part from
+  before the release with bins of 5 and -2 at $10.00). Origins: runnable-pass/moved-out-origin.json.
+- Checks on the 8: runnable 8/8, tester-runnable PASS, display 8/8 fr-view. The checker's "top bar" wording stays (QA lead: keep what makes
+  the test runnable).
