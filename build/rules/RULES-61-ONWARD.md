@@ -4300,3 +4300,23 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     or a blocker that passed the gate (104) and has no workaround. Never overrides 6 · 38 · 62 · 71 · 82 or the lane limit
     (115); production is never a workaround. Ties to 68, 97, 104, 105, 107.
 
+119. **EVERY LINE OF A TEST CASE SERVES THAT ONE TEST — PRECONDITIONS, STEPS AND EXPECTED RESULT; AND A TEST THAT NEEDS SETUP
+    KEEPS ITS PRECONDITIONS AND ITS SETUP AS TWO SEPARATE SECTIONS, THE SETUP WRITTEN FOR THE MANUAL TESTER (all projects,
+    permanent; QA lead 2026-11-03).**
+    USER DIRECTIVE (2026-11-03, verbatim, his typing preserved): *"Save it as a rule that the preconditions and steps and expected
+    results should always be related to that ONE test case. For the tests under setups needed... YOU should have and always keep the
+    preconditions and setup section separate, and the setup should also be easiest to understand for the manual QA tester"* — given
+    after the manual testers complained that unrelated steps had been added to a test (see 115 amendment 3).
+    **THE RULE:**
+    **(a) ONE TEST, ONE SUBJECT.** Every precondition, every step and every expected result in a case is about that case only. Never a
+    shared recipe list, a "how to set up the site" block, or a step that belongs to another test. Records the setup makes are named for
+    the test (for example ZZAUTOTEST-PL-C<case id>-A) and carry only the values that test needs.
+    **(b) PRECONDITIONS AND SETUP ARE SEPARATE.** In a case that needs setup (for example the Parts Lifecycle section "Setup needed
+    before testing", S114049), the Preconditions say only WHAT must be true; a separate **Setup** section, after them, says HOW to make
+    it true. The two are never mixed (no "how to" text inside a precondition line).
+    **(c) THE SETUP IS EASY FOR A MANUAL TESTER.** A numbered list in the order the tester does it, one item per thing to make; each
+    item starts with what it makes, then the clicks in the build's own labels and the values to type, in short plain sentences; no
+    jargon (110, 115). Every label in it is seen on the build in the pass that writes it (115).
+    **(d) WHEN SETUP IS ADDED AT ALL** still follows 115 amendment 3 (ask whether he owns the testing). Expected results stay the
+    source's words (57/114) — (a) never licenses rewording them.
+

@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **118 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **119 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -65,7 +65,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   source, 100) · the build observed (12, 104). Case agrees, build differs ⇒ ask to file, with the quote;
   case disagrees with the source ⇒ ask to CORRECT the case, never to file; source silent or ambiguous ⇒
   hold and ask (58). Always the latest version; write it to `build/<project>/source-verify-<date>/`.
-  Full text and worked examples: rule 62 (2026-09-01 amendment), rule 106, `build/skills/06-DEFECT-PREP.md` §A10-b.
+  Full text and worked examples: rule 62 (its amendments), rule 106, `build/skills/06-DEFECT-PREP.md` §A10-b.
 - **SECRETS: `/tmp` ONLY, `chmod 600`, NEVER COMMITTED — THIS REPO IS PUBLIC (82).** Cookies, tokens,
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
@@ -141,7 +141,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   neighbouring feature, write tooling — tag `ZZAUTOTEST`, restore what is not the point (6). Try and NAME
   seven routes (search · read the refusal · other surface · seed · neighbouring feature · change the
   role/data · prove the instrument) before "blocked"; a shared account (e.g. Tech's role) is used and restored. Never overrides 62 · 6 · 38 · 71 · 82; production is
-  not a test environment. Full text: rules 97, 104, 107; learning L0036.
+  not a test environment. Full text: rules 97, 104, 107.
 - **STRATEGY FIRST; NOTHING HALTS OR WASTES TIME (79 · 105 · 118).** Plan the quota-efficient route,
   then queue every remaining step in `build/testing-tools/run_queue.sh <queue> <tag>` (`--status <tag>` says
   what is running). The last action before any report is to START the next work and confirm it runs; every
@@ -166,8 +166,8 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   HTTP codes, ms, requirement ids — provenance only, 54/110); (ii) nothing not doable by hand marked READY —
   keep the manual part, else `AUTOMATION: HOLD - not manually testable (developer/automated check only)`;
   (iii) preconditions reach the start state by hand: the exact role + permissions, every gating setting
-  (verified on the build) and concrete UI-buildable data. Expected substance stays the source's (57/114). (iv) Before adding setup clicks ASK if he owns testing the
-  suite: YES ⇒ add them; NO ⇒ state only (2026-11-03).
+  (verified on the build) and concrete UI-buildable data. Expected substance stays the source's (57/114). (iv) ASK if he owns testing first: YES ⇒ add setup clicks, NO ⇒ state only;
+  (v) every line serves that ONE test; Setup separate from Preconditions, plain (119).
   `check_tester_runnable.py --cases <ids>` must exit 0 before a suite is called build-verified. Bar
   (2026-10-08): 100% authentic — every label/route/setting/data step seen on the build this pass; walk a
   helper's draft before writing it. **LANE LIMIT (2026-10-08/09):** only confirm that labels, routes, settings
@@ -223,7 +223,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   changed** — check `created_by == 1` before the write; no general go-ahead reaches them and we do not re-ask.
   Automated cases still need his go-ahead (71). Full text: `build/rules/RULES-21-40.md` rule 38.
 
-## 2 · THE RULE INDEX — all 118 rules, and where each one lives
+## 2 · THE RULE INDEX — all 119 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -366,6 +366,7 @@ rule. Generated from the split files' own headers.
 | **116** | A DESIGN-vs-BUILD (or BUILD-vs-SOURCE) DISCREPANCY FOUND IN BUILD VERIFICATION → ASK whether a Product Owner question sheet exists for the feature and ask for it · design-vs-build questions in their own tab "Design vs Build discrepancy", each saying whether the PRD/sources are SILENT or SAY SOMETHING ELSE · build-vs-source questions in the sheet's existing tab (or a separate one) · every question short, plain and answerable by a layman or manual tester (QA lead, 2026-10-23) |
 | **117** | EVERY BUILD VERIFICATION CLONES THE PRODUCT CODE OF THE BUILD UNDER TEST — staging = `develop` at the build marker's commit, a QA site = that feature's branch at its marker's commit; never learn from any other/production branch (unavailable ⇒ screen only); code is a FINDING AID for labels/routes/conditions, labels still confirmed on screen, and NEVER the Expected (57/114) (QA lead, 2026-10-23) |
 | **118** | NOTHING HALTS, STOPS OR WASTES TIME — work around every blocker the same turn (107, incl. shared-account workarounds), ask in parallel never instead, fix failing tools at once; only an empty queue, a decision already put to him with nothing else left, or a gated blocker with no workaround may stop the work (QA lead, 2026-10-28) |
+| **119** | EVERY LINE OF A TEST CASE SERVES THAT ONE TEST — preconditions, steps and expected result; a test that needs setup keeps PRECONDITIONS (what must be true) and a separate, plain numbered SETUP (how, in the build's labels, one item per thing to make) (QA lead, 2026-11-03) |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
