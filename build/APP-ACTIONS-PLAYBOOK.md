@@ -3361,6 +3361,11 @@ whereas an application-level JSON `{"error":"sso_required", …}` means the requ
   `f3/sess.txt`). Ask the QA lead for fresh staging cookies (only he can mint them — Google SSO), save them as
   `/tmp/cln/cookies.json` (chmod 600), then run `node build/testing-tools/mint-staging-session.mjs` — it rebuilds both session files.
   A probe of `GET /api/dashboard/reports` answering **400** means logged in (no parameters); **401** means the session is gone.
+- **Browser path (3 Nov 2026):** the pinned `/opt/pw-browsers/chromium-1194/...` no longer exists after a machine change;
+  `build/testing-tools/staging-boot2.mjs` now launches `process.env.SV_CHROME || '/opt/pw-browsers/chromium'`.
+- **Jira attachments the MCP cannot delete (3 Nov 2026, searched `discover` twice):** there is no delete-attachment operation.
+  A picture is removed by Jira itself only when it was embedded in the description and a later edit drops it. A file that was
+  only attached (never embedded) stays until someone deletes it in Jira (attachment ⋯ → Delete). Say so; don't work around it.
 - **Jira through the Atlassian MCP (proven 2026-10-28, SV-11922):** `createJiraIssue` with `contentFormat: "html"`; no `<blockquote>`
   inside `<li>` (ADF rejects it); Bugs need `Product Area` (SV-11839 → "Reports & Dashboards"). Pictures: `uploadAttachmentToJiraIssue`
   phase 1 → run the returned curl (token is short-lived, never save it) → put `<figure data-type="media-single" data-width="100"

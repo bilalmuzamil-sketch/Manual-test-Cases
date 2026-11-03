@@ -29,7 +29,7 @@ export async function boot2(roleKey = 'tech', opts = {}) {
   const userObj = { data: t.data };
   // parse sessCookie into browser cookies
   const cookies = t.sessCookie.split('; ').map(p => { const i = p.indexOf('='); const name = p.slice(0, i); const value = p.slice(i + 1); return { name, value, domain: '.staging.shopview.com', path: '/' }; });
-  const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', headless: true, proxy: { server: process.env.HTTPS_PROXY }, args: ['--no-sandbox', '--ignore-certificate-errors', '--ssl-version-max=tls1.2'] });
+  const browser = await chromium.launch({ executablePath: process.env.SV_CHROME || '/opt/pw-browsers/chromium', headless: true, proxy: { server: process.env.HTTPS_PROXY }, args: ['--no-sandbox', '--ignore-certificate-errors', '--ssl-version-max=tls1.2'] });
   // The browser runs in the LOCATION's own time zone (QA lead, 2026-10-28: "make sure that the Location timezone and
   // your machine timezone is the SAME"). opts.timezone is the location's zone; opts.contextOptions overrides anything.
   const ctx = await browser.newContext({ viewport: { width: 1600, height: 1000 }, ignoreHTTPSErrors: true,
