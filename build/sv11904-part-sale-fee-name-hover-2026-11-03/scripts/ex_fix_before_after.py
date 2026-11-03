@@ -6,8 +6,10 @@ F='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'; FB='/usr/share/fonts/truety
 f=lambda n,b=False: ImageFont.truetype(FB if b else F,n)
 RED=(200,40,40); GRN=(30,130,60); GRY=(90,90,90)
 TAG=sys.argv[1] if len(sys.argv)>1 else 'touch-laptop-1024-quick'
+NEWDLG=json.load(open(f'ev/dev2/{TAG}.json'))['states'][-1]['dlgB']  # old run did not record the viewer box; same viewport, same viewer position
 def load(folder):
-    d=json.load(open(f'{folder}/{TAG}.json')); s=d['states'][-1]; im=Image.open(f'{folder}/{TAG}-6000ms.png').convert('RGB'); k=d['env']['dpr']; dr=ImageDraw.Draw(im)
+    d=json.load(open(f'{folder}/{TAG}.json')); s=d['states'][-1]; s.setdefault('dlgB',NEWDLG); s.setdefault('tipB',[[718,219,172,33]]);  # old 1024 run: tooltip box measured from the frame's pixels (grey 117,117,117, rows 440-501, cols 1436-1779 at dpr 2)
+    im=Image.open(f'{folder}/{TAG}-6000ms.png').convert('RGB'); k=d['env']['dpr']; dr=ImageDraw.Draw(im)
     for b in s['dlgB']: x,y,w,h=b; dr.rectangle((x*k-6,y*k-6,(x+w)*k+6,(y+h)*k+6),outline=GRN,width=int(3*k))
     for b in s['tipB']: x,y,w,h=b; dr.rectangle((x*k-8,y*k-8,(x+w)*k+8,(y+h)*k+8),outline=RED,width=int(4*k))
     return d,s,im
