@@ -540,3 +540,9 @@
 - Gates: safe_case_edit read-back equal; served_page_scan clean (fr-view; needs `source build/testing-tools/ensure_bridge.sh` first — the saved bridge port had gone stale overnight); check_runnable_cases 2/2. check_case_render flags the old `<strong>` headings both cases already had; they render on the served page, so left as they were.
 - Files: `build/wo-board-tech-view/update-pass-2026-11-03/`.
 #ruling #rule-114c #expected #runnability #C690642 #C97028 → L0613, L0614
+
+## L0616 — 2026-11-03 — SV-11835 (minimap) is Done and live on production v26.45.0; C682419 re-run there; a run can be signed out mid-way
+- 3 Nov 14:49 UTC watch: SV-11835, SV-11872, SV-11982 moved Ready for Production → Done. Per L0614 a Done ticket's waiting test is verified on production: C682419 (Blocked at step 8 since 28 Oct — no chat bubble on the QA branch) re-run with `run498-2026-10-08/sv11835-minimap-1028.mts`, `WOB_NOBLOCK=1` (so the chat widget loads), `source prod-env.sh`.
+- Production is now **v26.45.0-8e138e1** (was v26.43.5 on 2 Nov). Truck Hill 1 board: scrollWidth 43472 vs 1280 wide, board scroller `scrollbar-width: none` (bar height 0), minimap `[data-test-id="board_minimap"]` fixed bottom right 360×50, **143 tiles**, "Columns 1 to 5 of 143" — tiles 2 px wide (PRD S3-E2a: "the tiles shrink so every column still has one").
+- First run was signed out ~1 minute in (login page in the s8 reading, restore 401): another sign-in to the shared test account (L0511). The script then cannot find the Technician filter chip — read `s8.fixed` for `login-container` before believing any later reading. Re-run whole (`fix-verify-2026-11-03/sv11835-prod-b`).
+#sv11835 #minimap #production #session-lost → L0598, L0600, L0614
