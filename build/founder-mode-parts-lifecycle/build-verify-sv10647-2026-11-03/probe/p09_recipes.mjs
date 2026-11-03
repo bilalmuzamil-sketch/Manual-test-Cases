@@ -1,0 +1,25 @@
+// Probe 09: saves throwaway role "ZZAUTOTEST PL Role B" (Part Library and Inventory View only). Everything else opened and cancelled.
+import { start } from './lib.mjs';
+import fs from 'fs';
+const OUT = process.env.OUT;
+const { r, page, dump, step, go, search, dots, btn, dlg } = await start(OUT);
+const save = (n, o) => fs.writeFileSync(`${OUT}/${n}.json`, JSON.stringify(o, null, 1));
+await step('role', async () => { await go('/administration/roles-permissions'); await btn('Create Custom Role').click(); await page.waitForTimeout(1500); await dlg().locator('button:visible', { hasText: 'Skip' }).click(); await page.waitForTimeout(2500);
+  await page.locator('main').getByLabel(/Role Name/).first().fill('ZZAUTOTEST PL Role B');
+  const card = page.locator('.permission-card').filter({ hasText: 'Parts Department' }).first(); await card.scrollIntoViewIfNeeded(); await card.locator('.q-toggle:visible, [role=switch]:visible').first().click(); await page.waitForTimeout(1000);
+  const row = card.locator('*').filter({ hasText: /^Part Library and Inventory/ }).last(); await card.screenshot({ path: `${OUT}/role-card-before.png` });
+  const boxes = card.locator('[role=checkbox]:visible'); save('role-boxes', { n: await boxes.count(), labels: await boxes.evaluateAll(b => b.map(x => x.getAttribute('aria-label') + '=' + x.getAttribute('aria-checked'))) });
+  await btn('Create').click(); await page.waitForTimeout(2500); await dump('role-created', true); });
+await step('staff', async () => { await go('/administration/staff'); await page.locator('main').getByText('Search', { exact: true }).first().click(); await page.locator('main input:visible').first().fill('tech@shopview.com'); await page.waitForTimeout(2500);
+  await dump('staff-search', true); const row = page.locator('main tbody tr').filter({ has: page.locator('td', { hasText: /^tech@shopview\.com$/ }) }).first();
+  await row.locator('button:visible, i:visible').filter({ hasText: /edit/ }).last().click(); await page.waitForTimeout(2000); await dump('staff-edit');
+  await dlg().getByLabel(/^Role/).first().click(); await page.waitForTimeout(1000); save('role-options', await page.locator('.q-menu:visible').allInnerTexts()); await page.keyboard.press('Escape'); await page.keyboard.press('Escape'); });
+await step('npr', async () => { await go('/workorders'); await page.locator('main td').filter({ hasText: 'S2-6761' }).first().click(); await page.waitForTimeout(3500);
+  await btn('Add Part').click(); await page.waitForTimeout(1200); await btn('More options').click(); await page.waitForTimeout(2000);
+  await dlg().getByLabel('Part Number').first().click(); await page.keyboard.type('W3030', { delay: 60 }); await page.waitForTimeout(3000); await dump('npr-lookup'); save('npr-lookup', await page.locator('.q-menu:visible').allInnerTexts());
+  await page.keyboard.press('Escape'); await page.waitForTimeout(500); await dlg().locator('button:visible', { hasText: 'close' }).first().click(); await page.waitForTimeout(1200); await dump('npr-closed', true);
+  await page.locator('main button:visible', { hasText: 'New Line' }).first().click(); await page.waitForTimeout(1800); await dump('new-line-window'); await dlg().locator('button:visible', { hasText: 'close' }).first().click().catch(() => {}); });
+await step('libdel', async () => { await go('/parts/parts-catalogue'); await search('ZZAUTOTEST-PLBV-A'); await page.locator('main tbody tr.cursor-pointer').first().locator('td').nth(1).click(); await page.waitForTimeout(2500);
+  await page.locator('main i:visible', { hasText: 'edit_note' }).first().click(); await page.waitForTimeout(1500); await dlg().getByRole('button', { name: 'Delete', exact: true }).click(); await page.waitForTimeout(1500); await dump('lib-delete');
+  await page.locator('.q-dialog:visible').last().getByRole('button', { name: /Cancel|No/ }).first().click(); });
+await r.browser.close();

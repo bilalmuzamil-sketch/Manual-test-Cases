@@ -1,0 +1,27 @@
+// Probe 06: Part Library edit window, Inactive-tab menu, cycle count, export, reports, import page, role grid, change location. Opens and cancels; nothing saved.
+import { start } from './lib.mjs';
+import fs from 'fs';
+const { r, page, dump, step, go, search, dots, btn, dlg } = await start(process.env.OUT);
+await step('lib-edit', async () => { await go('/parts/parts-catalogue'); await search('ZZAUTOTEST-PLBV-A'); await page.locator('main tbody tr.cursor-pointer').first().locator('td').nth(1).click(); await page.waitForTimeout(2500);
+  await page.locator('main i:visible', { hasText: 'edit_note' }).first().click(); await page.waitForTimeout(1800); await dump('lib-edit-window');
+  fs.writeFileSync(process.env.OUT + '/lib-edit-buttons.json', JSON.stringify(await dlg().locator('button:visible').allInnerTexts()));
+  await dlg().locator('button:visible', { hasText: 'Delete' }).first().click(); await page.waitForTimeout(1500); await dump('lib-delete-confirm');
+  await page.locator('.q-dialog:visible').last().locator('button:visible', { hasText: 'Cancel' }).first().click(); await page.waitForTimeout(800); await page.keyboard.press('Escape'); });
+await step('lib-dots', async () => { await go('/parts/parts-catalogue'); await dots().click(); await page.waitForTimeout(800); await dump('lib-dots-menu'); await page.keyboard.press('Escape'); });
+await step('inactive-dots', async () => { await go('/parts/inventory'); await page.getByRole('tab', { name: 'Inactive' }).click(); await page.waitForTimeout(1500); await dots().click(); await page.waitForTimeout(800); await dump('inactive-dots-menu');
+  await page.locator('.q-menu:visible').getByText('Activate parts', { exact: true }).click(); await page.waitForTimeout(1500); await dump('activate-mode', true);
+  await page.locator('main tbody tr').filter({ hasText: 'ZZAUTOTEST PLBV PART A' }).locator('[role=checkbox]').first().click().catch(async () => { await search('ZZAUTOTEST-PLBV-A'); await page.locator('main [role=checkbox]').nth(1).click(); });
+  await page.waitForTimeout(800); await dump('activate-one-ticked', true); await btn('Activate').click(); await page.waitForTimeout(1500); await dump('activate-bulk-confirm');
+  await dlg().locator('button:visible', { hasText: 'Cancel' }).first().click(); });
+await step('cycle', async () => { await go('/parts/inventory'); await dots().click(); await page.waitForTimeout(600); await page.locator('.q-menu:visible').getByText('Cycle count', { exact: true }).click(); await page.waitForTimeout(2000); await dump('cycle-count', true);
+  fs.writeFileSync(process.env.OUT + '/cycle-buttons.json', JSON.stringify(await page.locator('main button:visible').allInnerTexts())); await btn('Cancel').click().catch(() => {}); });
+await step('export', async () => { await go('/parts/inventory'); await dots().click(); await page.waitForTimeout(600); await page.locator('.q-menu:visible').getByText('Export', { exact: true }).click(); await page.waitForTimeout(1500); await dump('export-click'); await page.keyboard.press('Escape'); });
+await step('reports', async () => { await go('/reports/inventory-value'); await page.locator('aside, nav, .q-drawer').first().innerText().then(t => fs.writeFileSync(process.env.OUT + '/reports-menu.txt', t)).catch(() => {});
+  await page.locator('main button:visible').filter({ has: page.locator('i:text-is("more_horiz")') }).first().click(); await page.waitForTimeout(800); await dump('ivr-dots');
+  await page.keyboard.press('Escape'); await page.locator('main').getByText('Location:', { exact: false }).first().click(); await page.waitForTimeout(800); await dump('ivr-location'); await page.keyboard.press('Escape');
+  await page.locator('main').getByText('As of:', { exact: false }).first().click(); await page.waitForTimeout(800); await dump('ivr-asof'); await page.keyboard.press('Escape'); });
+await step('velocity', async () => { await go('/reports/parts-velocity'); await dump('parts-velocity', true); });
+await step('import', async () => { await go('/administration/inventory-import'); fs.writeFileSync(process.env.OUT + '/import-buttons.json', JSON.stringify(await page.locator('main button:visible').allInnerTexts())); await dump('import', true); });
+await step('role', async () => { await go('/administration/roles-permissions'); await btn('Create Custom Role').click(); await page.waitForTimeout(1500); await dlg().locator('button:visible', { hasText: 'Skip' }).click(); await page.waitForTimeout(2500); await dump('role-editor', true); });
+await step('location', async () => { await go('/parts/inventory'); await page.locator('[data-test-id=profile_menu_button]:visible').first().click(); await page.waitForTimeout(800); await page.locator('.q-menu:visible').getByText('Staging Heavy Duty - 9919').first().click(); await page.waitForTimeout(1200); await dump('change-location'); await page.keyboard.press('Escape'); });
+await r.browser.close();

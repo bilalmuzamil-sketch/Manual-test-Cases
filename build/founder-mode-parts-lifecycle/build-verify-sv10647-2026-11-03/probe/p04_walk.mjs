@@ -1,0 +1,40 @@
+// Probe 04: walk the remaining setup/step screens on sv10647. Saves only: part ZZAUTOTEST-PLBV-A set inactive (test data).
+// Everything else is opened and cancelled.
+import { boot } from '/home/user/Manual-test-Cases/build/testing-tools/qa-branch-boot.mjs';
+import fs from 'fs';
+const OUT = process.env.OUT; fs.mkdirSync(OUT, { recursive: true });
+const PN = 'ZZAUTOTEST-PLBV-A', DESC = 'ZZAUTOTEST PLBV PART A', A = 'https://sv10647.qa.shopview.com';
+const r = await boot('sv10647', '/parts/inventory', 'admin'); const page = r.page; page.setDefaultTimeout(12000);
+let k = 0;
+async function dump(name, whole) { await page.waitForTimeout(1800); const n = String(++k).padStart(2, '0') + '-' + name;
+  const dlg = page.locator('.q-dialog:visible, .q-menu:visible');
+  const t = (!whole && await dlg.count()) ? (await dlg.allInnerTexts()).join('\n----\n') : (await page.locator('main').innerText().catch(() => ''));
+  fs.writeFileSync(`${OUT}/${n}.txt`, page.url() + '\n' + t); await page.screenshot({ path: `${OUT}/${n}.png` }); console.log(n, page.url(), t.length); }
+const step = async (n, f) => { try { await f(); } catch (e) { console.log('FAIL', n, e.message.split('\n')[0].slice(0, 150)); await dump('FAIL-' + n).catch(() => {}); await page.keyboard.press('Escape').catch(() => {}); } };
+const go = async p => { await page.goto(A + p, { waitUntil: 'domcontentloaded' }); await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await page.waitForTimeout(1500); };
+const search = async v => { await page.locator('main').getByText('Search', { exact: true }).first().click(); await page.waitForTimeout(500); await page.locator('main input:visible').first().fill(v); await page.waitForTimeout(2500); };
+const dlg = () => page.locator('.q-dialog:visible').last();
+await step('deactivate', async () => { await go('/parts/inventory'); await search(PN); await page.locator('main td').filter({ hasText: DESC }).first().click(); await page.waitForTimeout(2000);
+  await dlg().getByRole('radio', { name: 'Inactive', exact: true }).click(); await dump('status-inactive-picked');
+  await dlg().getByRole('button', { name: 'Save', exact: true }).click(); await dump('deactivate-confirm');
+  await dlg().getByRole('button', { name: /^Deactivate$/ }).click(); await page.waitForTimeout(2500); await dump('after-deactivate', true); });
+await step('inactive', async () => { await go('/parts/inventory'); await page.getByRole('tab', { name: 'Inactive' }).click(); await page.waitForTimeout(1500); await search(PN); await dump('inactive-tab', true);
+  await page.locator('main td').filter({ hasText: DESC }).first().click(); await page.waitForTimeout(2000); await dump('inactive-part-window');
+  await dlg().getByRole('radio', { name: 'Active', exact: true }).click(); await dlg().getByRole('button', { name: 'Save', exact: true }).click(); await dump('activate-confirm');
+  await dlg().getByRole('button', { name: 'Cancel', exact: true }).last().click(); await page.waitForTimeout(800); await page.keyboard.press('Escape'); await page.waitForTimeout(800);
+  const h = page.locator('main tr').filter({ hasText: DESC }).locator('i').filter({ hasText: 'history' }).first(); await h.click(); await page.waitForTimeout(3000); await dump('part-history', true); });
+await step('bulk', async () => { await go('/parts/inventory'); await page.locator('main button:visible').filter({ has: page.locator('i:text-is("more_vert")') }).last().click(); await page.waitForTimeout(600);
+  await page.locator('.q-menu:visible').getByText('Deactivate parts', { exact: true }).click(); await page.waitForTimeout(2000); await dump('bulk-mode', true);
+  const btns = await page.locator('main button:visible').allInnerTexts(); fs.writeFileSync(`${OUT}/bulk-buttons.json`, JSON.stringify(btns)); });
+await step('library', async () => { await go('/parts/parts-catalogue'); await page.locator('main tbody tr.cursor-pointer').first().locator('td').nth(1).click(); await page.waitForTimeout(2500); await dump('library-entry'); await page.keyboard.press('Escape');
+  await page.locator('main button:visible').filter({ has: page.locator('i:text-is("more_vert")') }).last().click().catch(() => {}); await page.waitForTimeout(600); await dump('library-dots'); await page.keyboard.press('Escape'); });
+await step('partsale', async () => { await go('/parts/part-sales'); await page.locator('main button:visible', { hasText: 'New Part Sale' }).first().click(); await page.waitForTimeout(2500); await dump('new-part-sale'); await page.keyboard.press('Escape'); });
+await step('reports', async () => { await go('/reports'); await dump('reports', true); });
+await step('ivr', async () => { await go('/reports/inventory-value'); await dump('inventory-value', true); });
+await step('roles', async () => { await go('/administration/roles-permissions'); await page.locator('main button:visible, main a:visible', { hasText: 'Create Custom Role' }).first().click(); await page.waitForTimeout(2500); await dump('create-role', true); await dump('create-role-dlg'); });
+await step('avatar', async () => { await go('/parts/inventory'); await page.locator('[data-test-id=profile_menu_button]:visible').first().click(); await page.waitForTimeout(800); await dump('avatar-menu'); await page.keyboard.press('Escape'); });
+await step('wo', async () => { await go('/workorders'); await dump('wo-list', true);
+  await page.locator('main tbody tr.cursor-pointer, main tbody tr').filter({ hasText: /S\d-\d+/ }).first().click(); await page.waitForTimeout(3000); await dump('wo-open', true);
+  const ap = page.locator('main button:visible', { hasText: 'Add Part' }).first(); await ap.click(); await page.waitForTimeout(2000); await dump('wo-add-part');
+  await page.keyboard.press('Escape'); });
+await r.browser.close();

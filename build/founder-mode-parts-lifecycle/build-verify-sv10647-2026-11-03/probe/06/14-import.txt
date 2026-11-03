@@ -1,0 +1,22 @@
+https://sv10647.qa.shopview.com/administration/inventory-import
+Inventory Import Preview
+cloud_upload
+Select CSV File
+cloud_download
+Download Template
+Submit File
+
+To do a inventory import, you should first do the vendor import. You can still import inventory without vendors. And then you need to have a csv file with following columns: name, part_number, uom, quantity, min_qty, max_qty, grid_location, purchase_price, core_price, vendor, manufacturer, category, tags.
+
+The tags column is optional. Multiple tags should be separated by commas within the same cell (e.g. "TAG1, TAG2"). Tags will be automatically converted to uppercase.
+
+Your file's first row must contain these columns. Also, new line separator is used for new row, comma for columns.
+
+To assign multiple bin locations to a single part, add multiple rows with the same part number. Each row's grid_location specifies the bin location name, and quantity specifies the amount in that bin. If grid_location is left empty, the part will be assigned to the Unassigned bin.
+
+Don't worry if your csv file doesn't contain all the values in a row, your data will be imported anyway.
+
+
+
+
+Empty bays, endless possibilities. Get Going!

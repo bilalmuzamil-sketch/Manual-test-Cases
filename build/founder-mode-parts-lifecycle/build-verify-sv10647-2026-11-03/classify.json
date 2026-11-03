@@ -1,0 +1,4013 @@
+[
+{
+"id": 154752,
+"title": "Inventory opens on the Active tab, with the Inactive tab beside it",
+"sec": 20468,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 154753,
+"title": "Parts from before the release are active and tracked",
+"sec": 20468,
+"trig": [
+"inactive",
+"locB",
+"part",
+"prerelease"
+],
+"hard": [
+"prerelease"
+]
+},
+{
+"id": 154754,
+"title": "The actions menu offers Deactivate parts between Cycle count and Export",
+"sec": 20469,
+"trig": [
+"inactive",
+"theme"
+],
+"hard": []
+},
+{
+"id": 154755,
+"title": "Outside bulk mode the list has no checkboxes and a row click opens the part",
+"sec": 20469,
+"trig": [
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 154756,
+"title": "In bulk mode a click anywhere on a row ticks it instead of opening it",
+"sec": 20469,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 154757,
+"title": "The bulk bar sits under the tabs and counts the ticked rows",
+"sec": 20469,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 154758,
+"title": "Hovering the bulk bar's X shows Clear selection, also read aloud",
+"sec": 20469,
+"trig": [
+"screenreader",
+"theme"
+],
+"hard": []
+},
+{
+"id": 154759,
+"title": "Confirming Deactivate moves the ticked parts to the Inactive tab",
+"sec": 20469,
+"trig": [
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 154760,
+"title": "When some parts fail, only the failed parts stay ticked",
+"sec": 20469,
+"trig": [
+"inactive",
+"part",
+"theme",
+"twotabs"
+],
+"hard": []
+},
+{
+"id": 154762,
+"title": "With nothing ticked Deactivate is disabled and its hover text says why",
+"sec": 20469,
+"trig": [
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 154763,
+"title": "A part on an open work order can still be deactivated",
+"sec": 20469,
+"trig": [
+"inactive",
+"part",
+"theme",
+"wo"
+],
+"hard": []
+},
+{
+"id": 154764,
+"title": "Activate parts on the Inactive tab opens the same bulk mode with Activate",
+"sec": 20470,
+"trig": [
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 154765,
+"title": "Confirming Activate moves the ticked parts back to the Active tab",
+"sec": 20470,
+"trig": [
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 154766,
+"title": "New Inventory Part opens with tracking on in its own Inventory Tracking section",
+"sec": 20471,
+"trig": [],
+"hard": []
+},
+{
+"id": 154767,
+"title": "Switching tracking off hides Min and Max but keeps the bin section",
+"sec": 20471,
+"trig": [],
+"hard": []
+},
+{
+"id": 154768,
+"title": "An untracked part shows Not Tracked with its bins, Min and Max in the list",
+"sec": 20471,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 154769,
+"title": "A tracked new part always keeps a default bin in the window",
+"sec": 20471,
+"trig": [],
+"hard": []
+},
+{
+"id": 154771,
+"title": "Turning tracking off and back on keeps Min and Max",
+"sec": 20472,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 154772,
+"title": "Turning tracking off on a part with stock asks for no confirmation",
+"sec": 20472,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 154773,
+"title": "Turning tracking off keeps every bin quantity",
+"sec": 20472,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 154774,
+"title": "Searching not tracked lists untracked parts and normal matches",
+"sec": 20473,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 154775,
+"title": "Total Qty sort puts untracked parts below tracked parts both ways",
+"sec": 20473,
+"trig": [
+"negbin",
+"part"
+],
+"hard": [
+"negbin"
+]
+},
+{
+"id": 154776,
+"title": "New Inventory Part has Description then Part Number, with no library pick",
+"sec": 20474,
+"trig": [],
+"hard": []
+},
+{
+"id": 154777,
+"title": "A number that exactly matches one Part Library entry links to it",
+"sec": 20474,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 154778,
+"title": "A number held by two Part Library entries gets a new entry of its own",
+"sec": 20474,
+"trig": [
+"part",
+"prerelease"
+],
+"hard": [
+"prerelease"
+]
+},
+{
+"id": 154779,
+"title": "Description and Part Number must be filled before a new part saves",
+"sec": 20474,
+"trig": [],
+"hard": []
+},
+{
+"id": 154780,
+"title": "Without Delete, the actions menu has no Deactivate parts or Activate parts",
+"sec": 20475,
+"trig": [
+"cycle",
+"inactive",
+"part",
+"role",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 154781,
+"title": "Without Delete, the tracking switch shows but cannot be changed",
+"sec": 20475,
+"trig": [
+"part",
+"role",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 154782,
+"title": "The Service Manager role sees the status, tracking and delete controls",
+"sec": 20475,
+"trig": [
+"part",
+"role",
+"userB"
+],
+"hard": []
+},
+{
+"id": 154783,
+"title": "A role change signs the user out before a status change goes through",
+"sec": 20475,
+"trig": [
+"part",
+"partsale",
+"role",
+"theme",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 154784,
+"title": "Work order part lookup no longer offers a part once it is inactive",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 154785,
+"title": "An inactive part's window shows a grey Inactive pill in the title row",
+"sec": 20476,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 154786,
+"title": "A user with only the View permission can open the Inactive tab",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"role",
+"userB"
+],
+"hard": []
+},
+{
+"id": 154787,
+"title": "A work order line keeps its inactive part and can still be edited",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 154788,
+"title": "An invoiced work order with an inactive part can be viewed, printed and reported",
+"sec": 20476,
+"trig": [
+"inactive",
+"invoice",
+"part",
+"velocity",
+"wo"
+],
+"hard": []
+},
+{
+"id": 154789,
+"title": "Saving a different Part Status asks to confirm first",
+"sec": 20477,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 154790,
+"title": "A bulk change that partly fails lists the failed part and its reason",
+"sec": 20477,
+"trig": [
+"inactive",
+"part",
+"theme",
+"twotabs"
+],
+"hard": []
+},
+{
+"id": 154791,
+"title": "A status change records who made it and when",
+"sec": 20477,
+"trig": [
+"earlierday",
+"inactive",
+"part"
+],
+"hard": [
+"earlierday"
+]
+},
+{
+"id": 154792,
+"title": "Deactivating then reactivating keeps two Part History entries",
+"sec": 20477,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 154793,
+"title": "A Part History status entry reads with or without a note",
+"sec": 20477,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 154794,
+"title": "The bulk confirmation title and first line give the count",
+"sec": 20477,
+"trig": [
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 154795,
+"title": "The bulk deactivation confirmation shows its three lines in order",
+"sec": 20477,
+"trig": [
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 154796,
+"title": "The reactivation confirmation from the part window has one line",
+"sec": 20477,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 154797,
+"title": "The confirmation note field is labelled Note (Optional) and stops at 255",
+"sec": 20477,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 154798,
+"title": "Part History columns keep their width for a short entry",
+"sec": 20477,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 154799,
+"title": "The confirm button is red to deactivate and blue to activate",
+"sec": 20477,
+"trig": [
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 154800,
+"title": "Cancelling the confirmation changes nothing",
+"sec": 20477,
+"trig": [
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 154828,
+"title": "The Part Library page has no button that creates an entry",
+"sec": 20478,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 154829,
+"title": "Clicking a Part Library row opens the entry's detail page",
+"sec": 20478,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 154830,
+"title": "Creating a part with a new number adds one Part Library entry",
+"sec": 20478,
+"trig": [],
+"hard": []
+},
+{
+"id": 154831,
+"title": "Part Library entries from before the release stay listed",
+"sec": 20478,
+"trig": [
+"part",
+"prerelease"
+],
+"hard": [
+"prerelease"
+]
+},
+{
+"id": 154832,
+"title": "The Parts menu, page title and browser tab read Part Library",
+"sec": 20479,
+"trig": [
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 154833,
+"title": "Deleting an unused Part Library entry asks and confirms in Part Library words",
+"sec": 20479,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 154834,
+"title": "Roles & Permissions shows the Part Library and Inventory permission group",
+"sec": 20479,
+"trig": [
+"role"
+],
+"hard": []
+},
+{
+"id": 154835,
+"title": "An old bookmark to the Catalog page opens the Part Library",
+"sec": 20479,
+"trig": [
+"bookmark",
+"part",
+"prerelease"
+],
+"hard": [
+"bookmark",
+"prerelease"
+]
+},
+{
+"id": 154836,
+"title": "The part window title row shows Active or Inactive beside the close X",
+"sec": 20480,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 154837,
+"title": "Editing shows Description and Part Number as plain text fields",
+"sec": 20480,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 154838,
+"title": "Saving a new part number renames the part in place",
+"sec": 20480,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 154839,
+"title": "Changing the part number warns how many other locations it changes",
+"sec": 20480,
+"trig": [
+"inactive",
+"locB",
+"manyloc",
+"part"
+],
+"hard": []
+},
+{
+"id": 154840,
+"title": "A number that another Part Library entry has exactly is refused",
+"sec": 20480,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425585,
+"title": "Each tab lists only the parts with that status at its location",
+"sec": 20468,
+"trig": [
+"inactive",
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425586,
+"title": "Switching tabs ends bulk mode and clears the ticked rows",
+"sec": 20468,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425587,
+"title": "Search, filters and sort work the same way on the Inactive tab",
+"sec": 20468,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425588,
+"title": "Export from each tab holds only that tab's parts",
+"sec": 20468,
+"trig": [
+"export",
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425589,
+"title": "Export shows Not Tracked for an untracked part and has no status column",
+"sec": 20468,
+"trig": [
+"export",
+"part"
+],
+"hard": []
+},
+{
+"id": 425590,
+"title": "Cycle count on the Inactive tab counts only the inactive parts",
+"sec": 20468,
+"trig": [
+"cycle",
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425591,
+"title": "An empty Inactive tab says No inactive parts at this location.",
+"sec": 20468,
+"trig": [
+"inactive",
+"newloc",
+"part"
+],
+"hard": [
+"newloc"
+]
+},
+{
+"id": 425592,
+"title": "An Inactive tab emptied by a search shows the usual no-match result",
+"sec": 20468,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425593,
+"title": "Turning on Deactivate parts adds a checkbox column at the left edge",
+"sec": 20469,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425594,
+"title": "The header checkbox ticks only the rows loaded so far",
+"sec": 20469,
+"trig": [
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 425595,
+"title": "The bulk bar is near-black in the light theme and white in the dark theme",
+"sec": 20469,
+"trig": [
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 425596,
+"title": "More than 200 ticked parts disables Deactivate",
+"sec": 20469,
+"trig": [
+"fortyplus",
+"part",
+"theme"
+],
+"hard": [
+"fortyplus"
+]
+},
+{
+"id": 425597,
+"title": "Search, filters, sorting and scrolling keep working in bulk mode",
+"sec": 20469,
+"trig": [
+"fortyplus",
+"part",
+"theme"
+],
+"hard": [
+"fortyplus"
+]
+},
+{
+"id": 425598,
+"title": "Changing the search or a filter clears the ticks but sorting keeps them",
+"sec": 20469,
+"trig": [
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 425599,
+"title": "In bulk mode the actions menu offers only Export",
+"sec": 20469,
+"trig": [
+"export",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 425600,
+"title": "Bulk mode cannot be turned on while a cycle count is running",
+"sec": 20469,
+"trig": [
+"cycle",
+"part"
+],
+"hard": []
+},
+{
+"id": 425601,
+"title": "When every ticked part fails, nothing changes and the ticks stay",
+"sec": 20469,
+"trig": [
+"part",
+"theme",
+"twotabs"
+],
+"hard": []
+},
+{
+"id": 425604,
+"title": "The work order lines bulk bar is unchanged and its X shows Clear selection",
+"sec": 20469,
+"trig": [
+"theme",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425605,
+"title": "With nothing ticked Activate is disabled and its hover text says why",
+"sec": 20470,
+"trig": [
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 425606,
+"title": "On the Inactive tab a row click ticks the row in bulk mode only",
+"sec": 20470,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425607,
+"title": "Users with and without Create & Edit see the same Part Library toolbar",
+"sec": 20478,
+"trig": [
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425608,
+"title": "Part Library rows can still be ticked and given a category with Set category",
+"sec": 20478,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425609,
+"title": "Part Library search, filters, sorting and columns still work",
+"sec": 20478,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425610,
+"title": "Changing an entry's number on the Part Library page renames the part",
+"sec": 20478,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425611,
+"title": "Changing an entry's description on the Part Library page reaches every location",
+"sec": 20478,
+"trig": [
+"inactive",
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425612,
+"title": "The Part Library page refuses a number another entry has exactly",
+"sec": 20478,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425613,
+"title": "A number changed on the Part Library page reaches an open part request",
+"sec": 20478,
+"trig": [
+"part",
+"partrequest",
+"wo"
+],
+"hard": [
+"partrequest"
+]
+},
+{
+"id": 425614,
+"title": "A Part Library number over 50 characters is refused on an open part request",
+"sec": 20478,
+"trig": [
+"part",
+"partrequest",
+"wo"
+],
+"hard": [
+"partrequest"
+]
+},
+{
+"id": 425615,
+"title": "The Part Library page keeps upper and lower case in a typed part number",
+"sec": 20478,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425616,
+"title": "A part requested from a vendor reaches the Part Library when it is received",
+"sec": 20478,
+"trig": [
+"invoice",
+"partrequest",
+"po",
+"wo"
+],
+"hard": [
+"partrequest",
+"po"
+]
+},
+{
+"id": 425617,
+"title": "Spaces around a typed part number do not create a second Part Library entry",
+"sec": 20478,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425618,
+"title": "An entry with no part behind it can be edited and a new part links to it",
+"sec": 20478,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425619,
+"title": "The edit window for a Part Library entry is titled Edit Library Part",
+"sec": 20479,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425620,
+"title": "Deleting a Part Library entry that a part now uses is refused",
+"sec": 20479,
+"trig": [
+"part",
+"twotabs"
+],
+"hard": []
+},
+{
+"id": 425621,
+"title": "Saving a Part Library entry deleted in another tab is refused",
+"sec": 20479,
+"trig": [
+"part",
+"twotabs"
+],
+"hard": []
+},
+{
+"id": 425623,
+"title": "A part lookup result from the shared list shows Part Library as its source",
+"sec": 20479,
+"trig": [
+"part",
+"partrequest",
+"wo"
+],
+"hard": [
+"partrequest"
+]
+},
+{
+"id": 425624,
+"title": "A special-order lookup result shows Part Library and its vendor",
+"sec": 20479,
+"trig": [
+"part",
+"partrequest",
+"special",
+"wo"
+],
+"hard": [
+"partrequest",
+"special"
+]
+},
+{
+"id": 425625,
+"title": "Release day leaves every role's permissions as they were",
+"sec": 20479,
+"trig": [
+"part",
+"prerelease",
+"role",
+"twotabs",
+"userB"
+],
+"hard": [
+"prerelease"
+]
+},
+{
+"id": 425626,
+"title": "Release day keeps saved names that contain the word Catalog",
+"sec": 20479,
+"trig": [
+"part",
+"prerelease",
+"role"
+],
+"hard": [
+"prerelease"
+]
+},
+{
+"id": 425627,
+"title": "The Inventory Tracking info icon shows the tracking help text",
+"sec": 20471,
+"trig": [],
+"hard": []
+},
+{
+"id": 425628,
+"title": "An untracked part saves with its bin and quantity as a shelf reference",
+"sec": 20471,
+"trig": [],
+"hard": []
+},
+{
+"id": 425630,
+"title": "The Inventory Value report leaves out an untracked part",
+"sec": 20471,
+"trig": [
+"ivr",
+"part"
+],
+"hard": []
+},
+{
+"id": 425631,
+"title": "Turning tracking on marks the first bin as default when none is",
+"sec": 20472,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425632,
+"title": "The list shows Not Tracked right after Save, without a page reload",
+"sec": 20472,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425633,
+"title": "Turning tracking back on shows the count as it stands now",
+"sec": 20472,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425636,
+"title": "Cycle count shows Not Tracked for an untracked part and never counts it",
+"sec": 20472,
+"trig": [
+"cycle",
+"part"
+],
+"hard": []
+},
+{
+"id": 425637,
+"title": "The printed count sheet leaves out an untracked part",
+"sec": 20472,
+"trig": [
+"cycle",
+"part"
+],
+"hard": []
+},
+{
+"id": 425638,
+"title": "Part History records Tracking turned off and Tracking turned on",
+"sec": 20472,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425640,
+"title": "Importing Min, Max and a bin quantity for an untracked part saves them",
+"sec": 20472,
+"trig": [
+"import",
+"part"
+],
+"hard": []
+},
+{
+"id": 425641,
+"title": "Searching track, no or t never finds a part by its tracking",
+"sec": 20473,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425642,
+"title": "With no untracked parts, searching not tracked lists nothing",
+"sec": 20473,
+"trig": [
+"newloc",
+"part"
+],
+"hard": [
+"newloc"
+]
+},
+{
+"id": 425643,
+"title": "Sorting by Avg Cost sorts by cost, whatever the tracking",
+"sec": 20473,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425644,
+"title": "With no sort chosen, tracked parts come before untracked parts",
+"sec": 20473,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425645,
+"title": "The Supply filter shows an untracked part only under All",
+"sec": 20473,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425646,
+"title": "A user with only View sees no Inventory actions menu",
+"sec": 20475,
+"trig": [
+"inactive",
+"part",
+"role",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425647,
+"title": "A custom role can change part status only once Delete is granted",
+"sec": 20475,
+"trig": [
+"inactive",
+"part",
+"role",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425648,
+"title": "Without Delete, New Inventory Part creates only tracked parts",
+"sec": 20475,
+"trig": [
+"part",
+"role",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425649,
+"title": "Without Delete, Part Status in the part window is greyed out",
+"sec": 20475,
+"trig": [
+"inactive",
+"part",
+"role",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425650,
+"title": "Without Delete, the part window shows no Delete Part button",
+"sec": 20475,
+"trig": [
+"part",
+"role",
+"twotabs",
+"userB",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425651,
+"title": "Without Delete, a user can still rename a part stocked at two locations",
+"sec": 20475,
+"trig": [
+"locB",
+"part",
+"role",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425652,
+"title": "Without Delete, a user can still edit pricing and bin quantities",
+"sec": 20475,
+"trig": [
+"part",
+"role",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425653,
+"title": "Without Delete, an untracked part's price, bins and description can be edited",
+"sec": 20475,
+"trig": [
+"part",
+"role",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425654,
+"title": "A role change signs the user out before a tracking change is saved",
+"sec": 20475,
+"trig": [
+"part",
+"partsale",
+"role",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425655,
+"title": "A role change signs the user out before an untracked part is created",
+"sec": 20475,
+"trig": [
+"inactive",
+"part",
+"partsale",
+"role",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425656,
+"title": "Global search shows Not Tracked in place of an untracked part's badge",
+"sec": 20473,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425657,
+"title": "Inventory Value for an earlier date still counts a part untracked today",
+"sec": 20472,
+"trig": [
+"earlierday",
+"ivr",
+"part"
+],
+"hard": [
+"earlierday"
+]
+},
+{
+"id": 425658,
+"title": "Inventory Value before the release counts every part as tracked",
+"sec": 20472,
+"trig": [
+"earlierday",
+"ivr",
+"locB",
+"prerelease"
+],
+"hard": [
+"earlierday",
+"prerelease"
+]
+},
+{
+"id": 425660,
+"title": "Bins of +5 and -2 show quantity 3 and $30 in Inventory Value",
+"sec": 54274,
+"trig": [
+"ivr",
+"locB",
+"negbin",
+"part",
+"wo"
+],
+"hard": [
+"negbin"
+]
+},
+{
+"id": 425661,
+"title": "A part with only a -2 bin shows -2 and -$20 and lowers the totals",
+"sec": 54274,
+"trig": [
+"ivr",
+"negbin",
+"part",
+"wo"
+],
+"hard": [
+"negbin"
+]
+},
+{
+"id": 425663,
+"title": "Bins of +5 and +3 still show quantity 8 and $80 in Inventory Value",
+"sec": 54274,
+"trig": [
+"ivr",
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425664,
+"title": "The Inventory list's available quantity still leaves out a negative bin",
+"sec": 54274,
+"trig": [
+"ivr",
+"locB",
+"negbin",
+"part",
+"wo"
+],
+"hard": [
+"negbin"
+]
+},
+{
+"id": 425665,
+"title": "The Supply filter still uses the positive bins for a part with a negative bin",
+"sec": 54274,
+"trig": [
+"locB",
+"negbin",
+"part",
+"wo"
+],
+"hard": [
+"negbin"
+]
+},
+{
+"id": 425666,
+"title": "Fractional bins of +2.5 and -1.25 show quantity 1.25 and $12.50",
+"sec": 54274,
+"trig": [
+"ivr",
+"locB",
+"negbin",
+"part",
+"wo"
+],
+"hard": [
+"negbin"
+]
+},
+{
+"id": 425667,
+"title": "The Inventory Value CSV download shows the same net figures as the screen",
+"sec": 54274,
+"trig": [
+"export",
+"ivr",
+"locB",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425668,
+"title": "Inventory Value location and category filters still scope the net figures",
+"sec": 54274,
+"trig": [
+"ivr",
+"locB",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425669,
+"title": "Spaces before and after the number and description are removed on save",
+"sec": 20474,
+"trig": [],
+"hard": []
+},
+{
+"id": 425670,
+"title": "A linked Part Library entry keeps its tags and gains the new one",
+"sec": 20474,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425671,
+"title": "A linked entry with no manufacturer takes the one picked",
+"sec": 20474,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425672,
+"title": "A linked entry keeps the manufacturer it already has",
+"sec": 20474,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425673,
+"title": "A linked entry that has a category keeps its own category",
+"sec": 20474,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425674,
+"title": "No Part Library message when the typed description differs only in case",
+"sec": 20474,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425675,
+"title": "A new number creates its own Part Library entry, with no message",
+"sec": 20474,
+"trig": [],
+"hard": []
+},
+{
+"id": 425676,
+"title": "A number that differs only in upper or lower case is not linked",
+"sec": 20474,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425677,
+"title": "A part number already stocked here and active is refused",
+"sec": 20474,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425678,
+"title": "A part number already stocked here but inactive is refused",
+"sec": 20474,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425679,
+"title": "With active and inactive matches, the active part's number is named",
+"sec": 20474,
+"trig": [
+"import",
+"inactive",
+"part",
+"prerelease"
+],
+"hard": [
+"prerelease"
+]
+},
+{
+"id": 425680,
+"title": "Saving a part with its number unchanged is never refused as a duplicate",
+"sec": 20474,
+"trig": [
+"import",
+"part",
+"prerelease"
+],
+"hard": [
+"prerelease"
+]
+},
+{
+"id": 425681,
+"title": "Changing a part's number to a look-alike of one stocked here is refused",
+"sec": 20474,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425682,
+"title": "A description or part number of only spaces is refused on its own",
+"sec": 20474,
+"trig": [],
+"hard": []
+},
+{
+"id": 425683,
+"title": "A part from before the release keeps its Part Library entry",
+"sec": 20474,
+"trig": [
+"locB",
+"prerelease"
+],
+"hard": [
+"prerelease"
+]
+},
+{
+"id": 425684,
+"title": "Edit Inventory Part lists its fields in the set order",
+"sec": 20480,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425685,
+"title": "New Inventory Part lists its fields in the set order",
+"sec": 20480,
+"trig": [],
+"hard": []
+},
+{
+"id": 425686,
+"title": "Cost and price fields show only to a user who can see financial data",
+"sec": 20480,
+"trig": [
+"part",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425687,
+"title": "The part window footer shows Delete Part, Cancel and Save",
+"sec": 20480,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425688,
+"title": "Cancel closes the part window without saving",
+"sec": 20480,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425689,
+"title": "Delete Part shows only on an existing part, to a user with Delete",
+"sec": 20480,
+"trig": [
+"part",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425690,
+"title": "Changing the description warns how many other locations it changes",
+"sec": 20480,
+"trig": [
+"inactive",
+"locB",
+"manyloc",
+"part"
+],
+"hard": []
+},
+{
+"id": 425691,
+"title": "Saving a new description changes it at every location",
+"sec": 20480,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425692,
+"title": "A number that differs from another entry only in letter case is accepted",
+"sec": 20480,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425693,
+"title": "Description and Part Number cannot be left empty when editing",
+"sec": 20480,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425694,
+"title": "Saving with the part number unchanged leaves the number and open work alone",
+"sec": 20480,
+"trig": [
+"part",
+"po"
+],
+"hard": [
+"po"
+]
+},
+{
+"id": 425695,
+"title": "Adding spaces around the part number is not a change",
+"sec": 20480,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425696,
+"title": "A rename carries over to open purchase order lines at every location",
+"sec": 20480,
+"trig": [
+"invoice",
+"locB",
+"part",
+"po"
+],
+"hard": [
+"po"
+]
+},
+{
+"id": 425697,
+"title": "A rename carries over to open part requests but not to received ones",
+"sec": 20480,
+"trig": [
+"part",
+"partrequest",
+"po",
+"wo"
+],
+"hard": [
+"partrequest",
+"po"
+]
+},
+{
+"id": 425698,
+"title": "A rename carries over to canned jobs that hold the part",
+"sec": 20480,
+"trig": [
+"canned",
+"part",
+"wo"
+],
+"hard": [
+"canned"
+]
+},
+{
+"id": 425699,
+"title": "A rename carries over to vendor returns that are not completed",
+"sec": 20480,
+"trig": [
+"part",
+"return"
+],
+"hard": [
+"return"
+]
+},
+{
+"id": 425700,
+"title": "A delivery opened before a rename is received under the new number",
+"sec": 20480,
+"trig": [
+"invoice",
+"part",
+"po",
+"twotabs",
+"vbill"
+],
+"hard": [
+"po",
+"vbill"
+]
+},
+{
+"id": 425702,
+"title": "Part Status offers Active and Inactive, set to the saved status",
+"sec": 20480,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425703,
+"title": "Part Status is disabled for a user without Delete",
+"sec": 20480,
+"trig": [
+"inactive",
+"part",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425704,
+"title": "Picking a different status changes nothing until Save",
+"sec": 20480,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425705,
+"title": "The status pill keeps the saved status while another is picked",
+"sec": 20480,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425706,
+"title": "Save with a different status asks for confirmation first",
+"sec": 20480,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425707,
+"title": "Confirming Deactivate saves the edits and shows Part deactivated.",
+"sec": 20480,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425708,
+"title": "Confirming Activate saves the edits and shows Part activated.",
+"sec": 20480,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425709,
+"title": "Cancelling the confirmation saves nothing and keeps the picked status",
+"sec": 20480,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425710,
+"title": "Saving with the saved status picked asks no confirmation",
+"sec": 20480,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425711,
+"title": "A deactivation refused after the save keeps the confirmation open",
+"sec": 20480,
+"trig": [
+"inactive",
+"part",
+"twotabs"
+],
+"hard": []
+},
+{
+"id": 425712,
+"title": "A refused save closes the confirmation and saves nothing",
+"sec": 20480,
+"trig": [
+"inactive",
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425713,
+"title": "Delete Part deletes the part at once with no confirmation",
+"sec": 20480,
+"trig": [
+"inactive",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425714,
+"title": "Delete Part on a part on a work order shows why and does nothing",
+"sec": 20480,
+"trig": [
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425715,
+"title": "Delete Part on a part with an open return shows why and does nothing",
+"sec": 20480,
+"trig": [
+"part",
+"return"
+],
+"hard": [
+"return"
+]
+},
+{
+"id": 425716,
+"title": "Deleting a part that reached a work order meanwhile is refused",
+"sec": 20480,
+"trig": [
+"part",
+"twotabs",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425717,
+"title": "Deleting a part that got an open return meanwhile is refused",
+"sec": 20480,
+"trig": [
+"part",
+"return",
+"twotabs"
+],
+"hard": [
+"return"
+]
+},
+{
+"id": 425718,
+"title": "A number over 50 characters is refused while on an open part request",
+"sec": 20480,
+"trig": [
+"part",
+"partrequest",
+"wo"
+],
+"hard": [
+"partrequest"
+]
+},
+{
+"id": 425719,
+"title": "The part window offers no way to move a part to another library entry",
+"sec": 20480,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425720,
+"title": "The parts import never changes an entry's part number",
+"sec": 20480,
+"trig": [
+"import",
+"part"
+],
+"hard": []
+},
+{
+"id": 425721,
+"title": "Re-importing the old number of a case-only rename updates that part",
+"sec": 20480,
+"trig": [
+"import",
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425722,
+"title": "Re-importing a fully different old number creates a separate part",
+"sec": 20480,
+"trig": [
+"import",
+"part"
+],
+"hard": []
+},
+{
+"id": 425724,
+"title": "Estimate part lookup no longer offers a part once it is inactive",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425727,
+"title": "Purchase order line lookup does not offer an inactive part",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"po"
+],
+"hard": [
+"po"
+]
+},
+{
+"id": 425728,
+"title": "Changing the part a received vendor bill line points to skips inactive parts",
+"sec": 20476,
+"trig": [
+"inactive",
+"invoice",
+"part",
+"vbill"
+],
+"hard": [
+"vbill"
+]
+},
+{
+"id": 425729,
+"title": "Part sale line lookup does not offer an inactive part",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"partsale"
+],
+"hard": []
+},
+{
+"id": 425730,
+"title": "A canned job is added without its inactive parts and one warning names them",
+"sec": 20476,
+"trig": [
+"canned",
+"inactive",
+"part",
+"wo"
+],
+"hard": [
+"canned"
+]
+},
+{
+"id": 425731,
+"title": "The canned job warning names a typed vendor part by the inactive part's number",
+"sec": 20476,
+"trig": [
+"canned",
+"inactive",
+"part",
+"wo"
+],
+"hard": [
+"canned"
+]
+},
+{
+"id": 425732,
+"title": "A canned job leaves out the fee that belongs to an inactive part",
+"sec": 20476,
+"trig": [
+"canned",
+"inactive",
+"part",
+"wo"
+],
+"hard": [
+"canned"
+]
+},
+{
+"id": 425733,
+"title": "Vendor return lookup offers an inactive part with a grey Inactive tag",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"return"
+],
+"hard": [
+"return"
+]
+},
+{
+"id": 425734,
+"title": "Vendor credit lookup offers an inactive part with a grey Inactive tag",
+"sec": 20476,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425735,
+"title": "A credit on a part sale invoice lists an inactive part with its tag",
+"sec": 20476,
+"trig": [
+"inactive",
+"invoice",
+"part",
+"partsale"
+],
+"hard": []
+},
+{
+"id": 425736,
+"title": "A credit on a work order invoice lists an inactive part with its tag",
+"sec": 20476,
+"trig": [
+"inactive",
+"invoice",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425737,
+"title": "A library entry stocked elsewhere is hidden when it matches an inactive part",
+"sec": 20476,
+"trig": [
+"inactive",
+"locB",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425738,
+"title": "Typing an inactive part number in full shows the inactive message",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425739,
+"title": "Saving a Part Request is refused once the part was retired meanwhile",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"twotabs",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425740,
+"title": "Saving a part sale line is refused once the part was retired meanwhile",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"partsale",
+"twotabs"
+],
+"hard": []
+},
+{
+"id": 425741,
+"title": "Saving a purchase order line is refused once the part was retired meanwhile",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"po",
+"twotabs"
+],
+"hard": [
+"po"
+]
+},
+{
+"id": 425742,
+"title": "Global search lists an inactive part with a grey Inactive tag",
+"sec": 20476,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425743,
+"title": "Selecting an inactive part in global search opens the Inactive tab",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425744,
+"title": "Global search shows Not Tracked for an untracked part",
+"sec": 20476,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425745,
+"title": "A user who cannot view the Inventory list sees neither tab",
+"sec": 20476,
+"trig": [
+"part",
+"partsale",
+"role",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425746,
+"title": "With Vendor Order Management Create & Edit, a return's part search works",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"return",
+"role",
+"userB"
+],
+"hard": [
+"return"
+]
+},
+{
+"id": 425747,
+"title": "A completed part sale with an inactive part keeps its totals",
+"sec": 20476,
+"trig": [
+"inactive",
+"invoice",
+"part",
+"partsale"
+],
+"hard": []
+},
+{
+"id": 425748,
+"title": "Changing a line to another inactive part is refused",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425749,
+"title": "A work order holding an inactive part can still be invoiced",
+"sec": 20476,
+"trig": [
+"inactive",
+"invoice",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425750,
+"title": "Reopening a completed work order leaves its inactive part inactive",
+"sec": 20476,
+"trig": [
+"inactive",
+"invoice",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425751,
+"title": "A part retired while on order can still be ordered, received and picked",
+"sec": 20476,
+"trig": [
+"inactive",
+"invoice",
+"part",
+"partrequest",
+"po",
+"wo"
+],
+"hard": [
+"partrequest",
+"po"
+]
+},
+{
+"id": 425752,
+"title": "Splitting a work order moves a line that holds an inactive part",
+"sec": 20476,
+"trig": [
+"inactive",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425753,
+"title": "The parts import updates an inactive part in place and keeps it inactive",
+"sec": 20476,
+"trig": [
+"import",
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425754,
+"title": "A parts import row with a blank Manufacturer keeps the part's manufacturer",
+"sec": 20476,
+"trig": [
+"import",
+"part"
+],
+"hard": []
+},
+{
+"id": 425756,
+"title": "The Inventory Value report still lists a part after it is set inactive",
+"sec": 20476,
+"trig": [
+"inactive",
+"ivr",
+"part"
+],
+"hard": []
+},
+{
+"id": 425757,
+"title": "The Parts Velocity report still lists an inactive part's sales",
+"sec": 20476,
+"trig": [
+"inactive",
+"invoice",
+"part",
+"partsale",
+"velocity"
+],
+"hard": []
+},
+{
+"id": 425760,
+"title": "The part window's confirmation names the part as typed in the form",
+"sec": 20477,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425761,
+"title": "The part window's deactivation confirmation shows its three lines in order",
+"sec": 20477,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425762,
+"title": "The bulk reactivation confirmation shows its two lines",
+"sec": 20477,
+"trig": [
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 425763,
+"title": "Confirmation lines use medium weight and grey as specified",
+"sec": 20477,
+"trig": [
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 425764,
+"title": "A bulk change that succeeds says how many parts were updated",
+"sec": 20477,
+"trig": [
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 425765,
+"title": "A bulk change lists a part deleted meanwhile as Part not found",
+"sec": 20477,
+"trig": [
+"part",
+"theme",
+"twotabs",
+"wo"
+],
+"hard": []
+},
+{
+"id": 425766,
+"title": "A core has no row of its own to tick in Deactivate parts",
+"sec": 20477,
+"trig": [
+"core",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 425767,
+"title": "A note of only spaces records no note",
+"sec": 20477,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425768,
+"title": "A bulk change of forty parts writes forty Part History entries",
+"sec": 20477,
+"trig": [
+"fortyplus",
+"inactive",
+"part",
+"theme"
+],
+"hard": [
+"fortyplus"
+]
+},
+{
+"id": 425770,
+"title": "A status entry has Staff, Date and Time and can be searched",
+"sec": 20477,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 425771,
+"title": "Turning tracking off and on writes two Part History entries",
+"sec": 20477,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425772,
+"title": "Changing Min and Max in the part window writes one entry with both",
+"sec": 20477,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425773,
+"title": "Changing only Min through the parts import writes an Import entry",
+"sec": 20477,
+"trig": [
+"import",
+"part"
+],
+"hard": []
+},
+{
+"id": 425774,
+"title": "Changing a part number is recorded at both locations with Changed at",
+"sec": 20477,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425775,
+"title": "Changing a description is recorded at both locations with Changed at",
+"sec": 20477,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425778,
+"title": "Part History search finds entries by their text or staff name, in any case",
+"sec": 20477,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 425779,
+"title": "Part History search shows only the bin rows that match",
+"sec": 20477,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 425780,
+"title": "Prices in Part History can be searched only by users who see prices",
+"sec": 20477,
+"trig": [
+"part",
+"role",
+"userB"
+],
+"hard": []
+},
+{
+"id": 425781,
+"title": "A bulk change where every part fails keeps the selection",
+"sec": 20477,
+"trig": [
+"part",
+"theme",
+"twotabs"
+],
+"hard": []
+},
+{
+"id": 425782,
+"title": "With nothing ticked, the bulk button cannot open a confirmation",
+"sec": 20477,
+"trig": [
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 540877,
+"title": "Receiving a typed purchase order line adds its number to the Part Library",
+"sec": 20478,
+"trig": [
+"invoice",
+"po"
+],
+"hard": [
+"po"
+]
+},
+{
+"id": 540878,
+"title": "Inventory Value for a day after release counts a bin below zero",
+"sec": 54274,
+"trig": [
+"earlierday",
+"ivr",
+"part",
+"wo"
+],
+"hard": [
+"earlierday"
+]
+},
+{
+"id": 540879,
+"title": "Inventory Value for a date before release keeps its saved figures",
+"sec": 54274,
+"trig": [
+"earlierday",
+"ivr",
+"locB",
+"prerelease"
+],
+"hard": [
+"earlierday",
+"prerelease"
+]
+},
+{
+"id": 540880,
+"title": "Changing only the case or punctuation of a part's own number saves",
+"sec": 20474,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 540881,
+"title": "Vendor always shows in the part window, for every user",
+"sec": 20480,
+"trig": [
+"part",
+"twotabs",
+"userB"
+],
+"hard": []
+},
+{
+"id": 540882,
+"title": "No invoice line or scan lookup exists that could offer an inactive part",
+"sec": 20476,
+"trig": [
+"inactive",
+"invoice",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 540883,
+"title": "The bulk change count does not count the cores that change with their parts",
+"sec": 20477,
+"trig": [
+"core",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 573668,
+"title": "Export holds every part the search matches, even rows not yet loaded",
+"sec": 20468,
+"trig": [
+"export",
+"part"
+],
+"hard": []
+},
+{
+"id": 573669,
+"title": "Export follows the Category filter",
+"sec": 20468,
+"trig": [
+"export",
+"part"
+],
+"hard": []
+},
+{
+"id": 573670,
+"title": "Export with nothing matching shows Empty export and saves no file",
+"sec": 20468,
+"trig": [
+"export",
+"inactive"
+],
+"hard": []
+},
+{
+"id": 573671,
+"title": "Delete is disabled while a part still uses the Part Library entry",
+"sec": 20478,
+"trig": [
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 573672,
+"title": "A special order not yet received is not offered with its vendor",
+"sec": 20479,
+"trig": [
+"part",
+"partrequest",
+"special",
+"wo"
+],
+"hard": [
+"partrequest",
+"special"
+]
+},
+{
+"id": 573673,
+"title": "A special order received only at another location is not offered with its vendor",
+"sec": 20479,
+"trig": [
+"locB",
+"partrequest",
+"special",
+"wo"
+],
+"hard": [
+"partrequest",
+"special"
+]
+},
+{
+"id": 573674,
+"title": "The special-order result uses the vendor and cost of the latest delivery",
+"sec": 20479,
+"trig": [
+"part",
+"partrequest",
+"special",
+"wo"
+],
+"hard": [
+"partrequest",
+"special"
+]
+},
+{
+"id": 573675,
+"title": "After its default bin is deleted, turning tracking on marks the remaining bin",
+"sec": 20472,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 573676,
+"title": "A part's core has no row of its own on the Inventory list or in Export",
+"sec": 20472,
+"trig": [
+"core",
+"export",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 573678,
+"title": "An import row with the number of a part stocked here updates that part",
+"sec": 20474,
+"trig": [
+"import",
+"part"
+],
+"hard": []
+},
+{
+"id": 573679,
+"title": "A parts import row with no part number is skipped with no message",
+"sec": 20474,
+"trig": [
+"import",
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 573680,
+"title": "An import row with no description keeps the part's description",
+"sec": 20474,
+"trig": [
+"import",
+"part"
+],
+"hard": []
+},
+{
+"id": 573681,
+"title": "A new part imported with no description takes its part number",
+"sec": 20474,
+"trig": [
+"import",
+"part"
+],
+"hard": []
+},
+{
+"id": 573682,
+"title": "An imported part with no bin location goes to an Unassigned bin",
+"sec": 20474,
+"trig": [
+"import",
+"locB",
+"manyloc",
+"part"
+],
+"hard": []
+},
+{
+"id": 573683,
+"title": "A linked entry whose manufacturer no longer exists takes the one picked",
+"sec": 20474,
+"trig": [
+"prerelease"
+],
+"hard": [
+"prerelease"
+]
+},
+{
+"id": 573684,
+"title": "The canned job warning lists inactive parts A to Z, separated by commas",
+"sec": 20476,
+"trig": [
+"canned",
+"inactive",
+"part",
+"wo"
+],
+"hard": [
+"canned"
+]
+},
+{
+"id": 573685,
+"title": "Without Vendor Order Management, Returns is hidden and cannot be opened",
+"sec": 20476,
+"trig": [
+"part",
+"role",
+"userB"
+],
+"hard": []
+},
+{
+"id": 573686,
+"title": "With Vendor Order Management View only, a return's part search is refused",
+"sec": 20476,
+"trig": [
+"part",
+"partsale",
+"return",
+"role",
+"userB",
+"wo"
+],
+"hard": [
+"return"
+]
+},
+{
+"id": 839413,
+"title": "No setting turns part status or tracking on or off",
+"sec": 20468,
+"trig": [
+"locB"
+],
+"hard": []
+},
+{
+"id": 839414,
+"title": "Export follows the Supply filter and leaves out an untracked part",
+"sec": 20468,
+"trig": [
+"export",
+"part"
+],
+"hard": []
+},
+{
+"id": 839415,
+"title": "Switching tabs during a cycle count drops the counts typed so far",
+"sec": 20468,
+"trig": [
+"cycle",
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 839416,
+"title": "The X on the bulk bar leaves bulk mode and clears the ticks",
+"sec": 20469,
+"trig": [
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839417,
+"title": "Deactivating one part says 1 part selected and 1 part updated",
+"sec": 20469,
+"trig": [
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839418,
+"title": "More than 200 ticked parts disables Activate on the Inactive tab",
+"sec": 20469,
+"trig": [
+"fortyplus",
+"inactive",
+"part",
+"theme"
+],
+"hard": [
+"fortyplus"
+]
+},
+{
+"id": 839420,
+"title": "On the Inactive tab a new search or filter clears the ticks, sorting keeps them",
+"sec": 20470,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 839421,
+"title": "On the Inactive tab the bulk bar's X shows Clear selection and leaves the mode",
+"sec": 20470,
+"trig": [
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839422,
+"title": "On the Inactive tab only the parts that failed to activate stay ticked",
+"sec": 20470,
+"trig": [
+"inactive",
+"part",
+"theme",
+"twotabs"
+],
+"hard": []
+},
+{
+"id": 839423,
+"title": "A part's core has no row of its own on the Part Library list",
+"sec": 20472,
+"trig": [
+"core",
+"part"
+],
+"hard": []
+},
+{
+"id": 839424,
+"title": "On a vendor return, searching not tracked also lists untracked parts",
+"sec": 20473,
+"trig": [
+"part",
+"return"
+],
+"hard": [
+"return"
+]
+},
+{
+"id": 839425,
+"title": "On a vendor credit, searching tracked also lists untracked parts",
+"sec": 20473,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 839426,
+"title": "A linked entry with no category takes the category picked",
+"sec": 20474,
+"trig": [
+"prerelease"
+],
+"hard": [
+"prerelease"
+]
+},
+{
+"id": 839427,
+"title": "An import row whose number differs only in case and punctuation updates the part",
+"sec": 20474,
+"trig": [
+"import",
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 839428,
+"title": "The Parts Manager role sees the status, tracking and delete controls",
+"sec": 20475,
+"trig": [
+"part",
+"userB"
+],
+"hard": []
+},
+{
+"id": 839429,
+"title": "The Service Advisor role has no status, tracking or delete controls",
+"sec": 20475,
+"trig": [
+"part",
+"userB"
+],
+"hard": []
+},
+{
+"id": 839430,
+"title": "The work order part lookup shows Not Tracked for an untracked part",
+"sec": 20476,
+"trig": [
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 839431,
+"title": "The estimate part lookup shows Not Tracked for an untracked part",
+"sec": 20476,
+"trig": [
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 839432,
+"title": "The part sale part lookup shows Not Tracked for an untracked part",
+"sec": 20476,
+"trig": [
+"part",
+"partsale"
+],
+"hard": []
+},
+{
+"id": 839433,
+"title": "The purchase order part lookup shows Not Tracked for an untracked part",
+"sec": 20476,
+"trig": [
+"part",
+"po"
+],
+"hard": [
+"po"
+]
+},
+{
+"id": 839434,
+"title": "On a work order, an untracked part with nothing on hand shows In Stock",
+"sec": 20476,
+"trig": [
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 839435,
+"title": "On a part sale, an untracked part with nothing on hand shows In Stock",
+"sec": 20476,
+"trig": [
+"part",
+"partsale"
+],
+"hard": []
+},
+{
+"id": 839436,
+"title": "Changing only Max writes only the Max pair, and no change writes nothing",
+"sec": 20477,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 839437,
+"title": "The parts import adds a Part Library entry for a new part number",
+"sec": 20478,
+"trig": [
+"import",
+"part"
+],
+"hard": []
+},
+{
+"id": 839438,
+"title": "The Part Library window warns while a new number differs from the saved one",
+"sec": 20478,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 839439,
+"title": "The description warning counts a location where the part is inactive",
+"sec": 20478,
+"trig": [
+"inactive",
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 839440,
+"title": "The entry's Parts table shows Not Tracked for a location that does not count it",
+"sec": 20478,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 839441,
+"title": "The entry's Parts table tags a location where the part is inactive",
+"sec": 20478,
+"trig": [
+"inactive",
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 839443,
+"title": "The part number warning says 1 other location, or nothing for one location",
+"sec": 20480,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 839444,
+"title": "The description warning says 1 other location, or nothing for one location",
+"sec": 20480,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 839445,
+"title": "Received purchase order lines and accepted vendor bills keep the old number",
+"sec": 20480,
+"trig": [
+"invoice",
+"part",
+"po",
+"vbill"
+],
+"hard": [
+"po",
+"vbill"
+]
+},
+{
+"id": 839446,
+"title": "A purchase order line typed by hand with the old number keeps its number",
+"sec": 20480,
+"trig": [
+"part",
+"po"
+],
+"hard": [
+"po"
+]
+},
+{
+"id": 839447,
+"title": "A hand-typed purchase order line is received under its own number",
+"sec": 20480,
+"trig": [
+"invoice",
+"part",
+"po",
+"vbill"
+],
+"hard": [
+"po",
+"vbill"
+]
+},
+{
+"id": 839448,
+"title": "A new number that looks like a part at another location is refused",
+"sec": 20480,
+"trig": [
+"locB",
+"part"
+],
+"hard": []
+},
+{
+"id": 839449,
+"title": "An activation refused after the save keeps the confirmation open",
+"sec": 20480,
+"trig": [
+"inactive",
+"part",
+"twotabs"
+],
+"hard": []
+},
+{
+"id": 839450,
+"title": "Inventory Value for a date before a rename shows the old part number",
+"sec": 20480,
+"trig": [
+"earlierday",
+"ivr",
+"part"
+],
+"hard": [
+"earlierday"
+]
+},
+{
+"id": 839451,
+"title": "The Inventory Value PDF download shows the same net figures as the screen",
+"sec": 54274,
+"trig": [
+"ivr",
+"locB",
+"part",
+"wo"
+],
+"hard": []
+},
+{
+"id": 839452,
+"title": "The Totals row's Margin % stays the true total and can go above 100%",
+"sec": 54274,
+"trig": [
+"ivr",
+"negbin",
+"part",
+"wo"
+],
+"hard": [
+"negbin"
+]
+},
+{
+"id": 839453,
+"title": "The Totals row's Margin % stays the true total and can go below zero",
+"sec": 54274,
+"trig": [
+"ivr",
+"negbin",
+"part",
+"wo"
+],
+"hard": [
+"negbin"
+]
+},
+{
+"id": 839454,
+"title": "Design: Inventory list page looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839455,
+"title": "Design: Inactive tab selected looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839456,
+"title": "Design: Empty Inactive tab message looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839457,
+"title": "Design: Search with no matching part looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839458,
+"title": "Design: Actions menu with Deactivate parts looks as in the design",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839459,
+"title": "Design: Actions menu in bulk mode shows only Export",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839460,
+"title": "Design: Bulk bar with nothing ticked looks as in the design",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839461,
+"title": "Design: Two ticked rows in bulk mode look as in the design",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839462,
+"title": "Design: Every row ticked on the Inactive tab looks as in the design",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839463,
+"title": "Design: Over 200 ticked shows its hover text below Deactivate",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"fortyplus",
+"part",
+"theme"
+],
+"hard": [
+"fortyplus"
+]
+},
+{
+"id": 839464,
+"title": "Design: Bulk deactivation confirmation looks as in the design",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839465,
+"title": "Design: Bulk reactivation confirmation looks as in the design",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839466,
+"title": "Design: Bulk change success message looks as in the design",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839467,
+"title": "Design: New Inventory Part window looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839468,
+"title": "Design: Typed values in New Inventory Part look as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839469,
+"title": "Design: Required-field errors in the part window look as drawn",
+"sec": 105854,
+"trig": [
+"design",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839470,
+"title": "Design: New part with tracking off looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839471,
+"title": "Design: Part created and linked message looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"locB",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839472,
+"title": "Design: Duplicate part number error looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839473,
+"title": "Design: Edit Inventory Part window looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839474,
+"title": "Design: Inactive part's window shows a grey Inactive pill",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839475,
+"title": "Design: Picked status leaves the green Active pill in place",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839476,
+"title": "Design: Other-locations warnings look as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839477,
+"title": "Design: Deactivate part confirmation looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839478,
+"title": "Design: Activate part confirmation looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839479,
+"title": "Design: Part deactivated message looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839480,
+"title": "Design: Inventory Tracking hover text opens below its info icon",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839481,
+"title": "Design: Tracking switched off on a part looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839482,
+"title": "Design: Tracking switched back on shows Min and Max again",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839483,
+"title": "Design: Not Tracked in the Inventory list looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839484,
+"title": "Design: Cycle count with an untracked part looks as in the design",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839485,
+"title": "Design: Part History page looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839486,
+"title": "Design: Part History keeps column widths when events are long",
+"sec": 105854,
+"trig": [
+"design",
+"locB",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839487,
+"title": "Design: Part History search with a term looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839488,
+"title": "Design: Part lookup results look as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"partrequest",
+"theme",
+"wo"
+],
+"hard": [
+"partrequest"
+]
+},
+{
+"id": 839489,
+"title": "Design: Lookup with no match shows No results",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"partrequest",
+"theme",
+"wo"
+],
+"hard": [
+"partrequest"
+]
+},
+{
+"id": 839490,
+"title": "Design: Retired number typed in a lookup shows the inactive line",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"partrequest",
+"theme",
+"wo"
+],
+"hard": [
+"partrequest"
+]
+},
+{
+"id": 839491,
+"title": "Design: Canned job warning looks as in the design",
+"sec": 105854,
+"trig": [
+"canned",
+"design",
+"inactive",
+"part",
+"theme",
+"wo"
+],
+"hard": [
+"canned"
+]
+},
+{
+"id": 839492,
+"title": "Design: Inactive tag in the vendor return lookup looks as drawn",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"return",
+"theme"
+],
+"hard": [
+"return"
+]
+},
+{
+"id": 839493,
+"title": "Design: Inactive tag in the Issue Credit list looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"invoice",
+"part",
+"partsale",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839494,
+"title": "Design: Part Library page looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839495,
+"title": "Design: Part Library entry page looks as in the design",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839496,
+"title": "Design: Inventory list and bulk bar fit a 1440 px wide window",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839497,
+"title": "Design: Inventory list and bulk bar fit a 1536 px wide window",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839498,
+"title": "Design: Part window and confirmation fit a 1440 px wide window",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839499,
+"title": "Design: Part window and confirmation fit a 1536 px wide window",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839500,
+"title": "Design: Inactive tag on the Part Library entry page sits before the quantity",
+"sec": 105854,
+"trig": [
+"design",
+"inactive",
+"locB",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 839501,
+"title": "Design: Not Tracked replaces the stock line in a part lookup",
+"sec": 105854,
+"trig": [
+"design",
+"part",
+"partrequest",
+"theme",
+"wo"
+],
+"hard": [
+"partrequest"
+]
+},
+{
+"id": 839502,
+"title": "Design: Status confirmation has a close X in its title row",
+"sec": 105854,
+"trig": [
+"cycle",
+"design",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 847726,
+"title": "Changing a number to a look-alike of an inactive part here is refused",
+"sec": 20474,
+"trig": [
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 847727,
+"title": "An imported part is tracked and takes its description from the name column",
+"sec": 20474,
+"trig": [
+"import",
+"part"
+],
+"hard": []
+},
+{
+"id": 847728,
+"title": "Global search never lists a part's core",
+"sec": 20476,
+"trig": [
+"core",
+"inactive",
+"part"
+],
+"hard": []
+},
+{
+"id": 847729,
+"title": "Pressing Esc or clicking outside does not close a status confirmation",
+"sec": 20477,
+"trig": [
+"cycle",
+"inactive",
+"part",
+"theme"
+],
+"hard": []
+},
+{
+"id": 847730,
+"title": "Delete in Edit Library Part is enabled only after the page is reloaded",
+"sec": 20478,
+"trig": [
+"part",
+"partrequest",
+"twotabs",
+"wo"
+],
+"hard": [
+"partrequest"
+]
+},
+{
+"id": 847731,
+"title": "Opening the address of a deleted Part Library entry says it is not found",
+"sec": 20479,
+"trig": [
+"part"
+],
+"hard": []
+},
+{
+"id": 847732,
+"title": "A rename leaves the old number on part sale lines that hold the part",
+"sec": 20480,
+"trig": [
+"invoice",
+"part",
+"partsale"
+],
+"hard": []
+},
+{
+"id": 847733,
+"title": "A look-alike rename on the Part Library page names the location it clashes with",
+"sec": 20480,
+"trig": [
+"part"
+],
+"hard": []
+}
+]
