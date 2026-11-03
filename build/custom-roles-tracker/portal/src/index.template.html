@@ -354,10 +354,17 @@ function renderFresh() {
   el.innerHTML = `<span class="msg">${msg}</span>${f.kind === 'reload' ? '<button class="btn" data-reload="1">Reload the page</button>' : updateControl()}`;
   el.hidden = false;
   wireFresh(el);
-  if (!gateShown && ['reload', 'behind', 'stale', 'problem'].includes(f.kind)) showGate(f, msg);
+  const gating = ['reload', 'behind', 'stale', 'problem'].includes(f.kind);
+  const g = $('#gate');
+  if (!gateShown && gating) showGate(f, msg);
+  // keep an open window in step with the bar, and close it once the page is up to date
+  else if (g && !g.hidden) { if (gating) fillGate(f, msg, false); else g.hidden = true; }
 }
 function showGate(f, msg) {
   gateShown = true;
+  fillGate(f, msg, true);
+}
+function fillGate(f, msg, focus) {
   const g = $('#gate');
   g.className = 'gate';
   g.innerHTML = `<div class="box" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
@@ -369,7 +376,7 @@ function showGate(f, msg) {
   g.hidden = false;
   wireFresh(g);
   g.querySelector('[data-gate-close]').addEventListener('click', () => { g.hidden = true; });
-  const first = g.querySelector('button'); if (first) first.focus();
+  if (focus) { const first = g.querySelector('button'); if (first) first.focus(); }
 }
 function wireFresh(el) {
   el.querySelectorAll('[data-reload]').forEach((b) => b.addEventListener('click', () => location.reload()));
