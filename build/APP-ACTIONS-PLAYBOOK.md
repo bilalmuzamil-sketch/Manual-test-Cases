@@ -6393,3 +6393,10 @@ Never commit the token.
 - Gestures through CDP so the duration is exact: `cdp=await page.context().newCDPSession(page)`;
   quick tap = `Input.dispatchTouchEvent {type:'touchStart',touchPoints:[{x,y}]}`, wait ~80 ms, `{type:'touchEnd',touchPoints:[]}`;
   press-and-hold = same with ~800 ms between. Script: `build/sv11904-part-sale-fee-name-hover-2026-11-03/scripts/devtap.mjs`.
+- **Evidence folders (2026-11-03, SV-11904):** write each run's output into a folder named after the build it ran on
+  (e.g. `ev/dev-<build>/`, or set `OUT=` — `devtap.mjs`, `meas.mjs`, `viewer.mjs` take it), and record the **positions
+  and text** of what you check (tooltip box, dialog box, values, timings), not only pass/fail. A later before/after
+  picture needs the old positions; without them they must be measured back out of the pixels.
+- **After a fix lands:** re-run the whole earlier checklist on the new build (all set-ups × gestures plus every row of
+  the passed comment) before a green PASSED.
+
