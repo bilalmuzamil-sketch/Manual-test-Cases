@@ -1,0 +1,26 @@
+<div data-type="panel-success"><p><strong>OVERALL QA STATUS: PASSED</strong></p></div>
+<p>Tested on the QA branch <a href="https://sv11986.qa.shopview.com">sv11986</a> (build v26.45.0-279650f) on 3 Nov 2026, and compared with production (build v26.45.0-8e138e1). Once the $0.00 payment of a $0.00 invoice is deleted, the invoice now goes back to unpaid and the work order back to Invoiced, so the invoice can be reversed and the work order corrected and invoiced again. On production the same steps still leave the invoice Paid and Reverse refused.</p>
+<p><strong>Before and after the fix</strong></p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="7110f2f7-a2a9-4a3c-a21d-5292ac3e174d" data-collection="upload-user-collection-1343233018" data-alt="before-after-reverse.png"></div></figure>
+<p><strong>What I checked</strong></p>
+<table><thead><tr><th><p>#</p></th><th><p>Check</p></th><th><p>Result on the branch</p></th><th><p>Status</p></th></tr></thead><tbody>
+<tr><td><p>1</p></td><td><p>A $0.00 invoice is marked Paid and its $0.00 payment shows on Customer &gt; Payments (the payment exists and has a delete bin)</p></td><td><p>Yes: "Payment for invoice .." $0.00, Paid</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>2</p></td><td><p>Reverse while that $0.00 payment still exists</p></td><td><p>Refused with "This invoice has been paid, please delete payment before reversing." (correct, a payment exists)</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>3</p></td><td><p>Delete the $0.00 payment (red bin, then Reverse in the dialog)</p></td><td><p>Payment row gone; invoice shows Unpaid $0.00 on Customer &gt; Invoices; work order badge shows Invoiced</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>4</p></td><td><p>Reverse the invoice from the Finance tab</p></td><td><p>"This action will re-open and undo the invoice." then Reverse: work order back to Complete, invoice removed from Customer &gt; Invoices, Work Orders list shows Complete</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>5</p></td><td><p>The customer's goal: correct the work order and invoice it again</p></td><td><p>Added a priced line, invoiced again: $406.09, work order Invoiced, invoice unpaid</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>6</p></td><td><p>Invoice it again without changing anything</p></td><td><p>New $0.00 invoice, marked Paid with a new $0.00 payment (as before)</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>7</p></td><td><p>Two ways of getting a $0.00 invoice: a line with no labour and no parts (S11986-17581, S11986-17584) and a line with a Fixed Line Total of $0.00 made in the New Line dialog (S11986-17585)</p></td><td><p>Checks 1 to 4 pass on all three</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>8</p></td><td><p>Regression: a normal invoice paid on screen (New Payment, EFT, $406.09), payment deleted, then reversed (S11986-17583)</p></td><td><p>Paid, then Invoiced after the delete, then Complete after Reverse: same as before</p></td><td><p><strong>PASSED</strong></p></td></tr>
+</tbody></table>
+<p><strong>The steps on the branch</strong></p>
+<figure data-type="media-single" data-layout="center" data-width="90" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="b107ed60-54cf-40af-9804-a09c011b76fd" data-collection="upload-user-collection-1343233018" data-alt="branch-steps.png"></div></figure>
+<p><strong>How to see it on the branch</strong></p>
+<ol><li><p>Open <a href="https://sv11986.qa.shopview.com">sv11986</a> as Admin, location Staging Heavy Duty - 9919.</p></li>
+<li><p>Create a work order for any customer, add a line in the New Line dialog with Labor Rate <code>Fixed Line Total</code> and <code>Fixed Line Total</code> 0.00, tick <code>Line Approved</code>, Save &amp; Close. Complete the line and the work order, then invoice it. The badge reads <code>Paid</code>.</p></li>
+<li><p>In the top menu click <code>Customers</code>, open the customer, open the <code>Payments</code> tab. Click the red bin on the $0.00 "Payment for invoice .." row, then <code>Reverse</code> in the dialog.</p></li>
+<li><p>Open the work order again. The badge now reads <code>Invoiced</code>.</p></li>
+<li><p>On the <code>Finance</code> tab click the three dots beside the settings cog, then <code>Reverse</code>, then <code>Reverse</code> in the dialog. The badge reads <code>Complete</code> and <code>Create Invoice</code> is available again.</p></li></ol>
+<p><strong>What I could not test</strong></p>
+<ul><li><p>A $0.00 invoice made by a 100% discount: the branch will not add a discount until a QuickBooks discount item is mapped, and this branch has no QuickBooks company connected, so the mapping cannot be set. The Fixed Line Total $0.00 line in check 7 is the nearest case and passes.</p></li>
+<li><p>The 12 invoices already stuck on production: they need the one-time data fix agreed in the comments above, which is not part of this branch.</p></li></ul>

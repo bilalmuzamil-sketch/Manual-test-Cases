@@ -1,0 +1,308 @@
+{
+ "marker": {
+  "version": "v26.45.0-279650f",
+  "lastModified": "Tue, 03 Nov 2026 11:06:14 GMT",
+  "etag": "W/\"0d066d3afc32826f247e71edf4d9d5c9\""
+ },
+ "utc": "2026-11-03T14:12:08.981Z",
+ "wo": "3ed01293-1bd1-4949-bac3-b9c8877ff16c",
+ "steps": [
+  {
+   "label": "start",
+   "wo_status": "Paid",
+   "invoice_status": "paid",
+   "invoice_id": "e3a260df-f149-4b76-a5de-09e0d3eb8b6e",
+   "is_invoice_created": true,
+   "amount_paid": 0,
+   "balance": 40609,
+   "total": "0.00",
+   "payments": [
+    {
+     "id": "5bccb089-4919-4abc-9f70-934889980065",
+     "amt": 0,
+     "status": "paid"
+    }
+   ]
+  },
+  {
+   "label": "after A",
+   "wo_status": "Paid",
+   "invoice_status": "paid",
+   "invoice_id": "e3a260df-f149-4b76-a5de-09e0d3eb8b6e",
+   "is_invoice_created": true,
+   "amount_paid": 0,
+   "balance": 40609,
+   "total": "0.00",
+   "payments": [
+    {
+     "id": "5bccb089-4919-4abc-9f70-934889980065",
+     "amt": 0,
+     "status": "paid"
+    }
+   ]
+  },
+  {
+   "label": "after B delete payment",
+   "wo_status": "Invoiced",
+   "invoice_status": "pending",
+   "invoice_id": "e3a260df-f149-4b76-a5de-09e0d3eb8b6e",
+   "is_invoice_created": true,
+   "amount_paid": 0,
+   "balance": 40609,
+   "total": "0.00",
+   "payments": []
+  },
+  {
+   "label": "after D reverse",
+   "wo_status": "Complete",
+   "invoice_status": null,
+   "invoice_id": "",
+   "is_invoice_created": false,
+   "amount_paid": 0,
+   "balance": 40609,
+   "total": "0.00",
+   "payments": []
+  }
+ ],
+ "A_reverseWhilePaid": {
+  "badge": "Paid",
+  "menu": [
+   {
+    "id": "menu_item_reverse",
+    "t": "Reverse",
+    "dis": false
+   },
+   {
+    "id": "menu_item_issue_credit",
+    "t": "Issue Credit",
+    "dis": false
+   }
+  ],
+  "afterClick": {
+   "dialog": {
+    "text": "Warning close This invoice has been paid, please delete payment before reversing. Close",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Close",
+      "id": "button_close_invoice_warning"
+     }
+    ]
+   },
+   "toasts": []
+  },
+  "confirm": [
+   {
+    "text": "Warning close This invoice has been paid, please delete payment before reversing. Close",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Close",
+      "id": "button_close_invoice_warning"
+     }
+    ]
+   },
+   {
+    "toasts": []
+   }
+  ]
+ },
+ "paymentId": "5bccb089-4919-4abc-9f70-934889980065",
+ "B_delete": {
+  "dialog": {
+   "text": "Confirmation close This action will reverse the payment for all invoices associated with it. The payment record is preserved for audit history. Are you sure you want to proceed? Cancel Reverse",
+   "btns": [
+    {
+     "t": "close",
+     "id": "button_close_dialog"
+    },
+    {
+     "t": "Cancel",
+     "id": "button_cancel_dialog"
+    },
+    {
+     "t": "Reverse",
+     "id": "button_confirm_dialog"
+    }
+   ]
+  },
+  "confirm": [
+   {
+    "text": "Confirmation close This action will reverse the payment for all invoices associated with it. The payment record is preserved for audit history. Are you sure you want to proceed? Cancel Reverse",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Cancel",
+      "id": "button_cancel_dialog"
+     },
+     {
+      "t": "Reverse",
+      "id": "button_confirm_dialog"
+     }
+    ]
+   },
+   {
+    "toasts": []
+   }
+  ]
+ },
+ "B_rows": [
+  "expand_more Today Payment Payment for invoice .. - $0.00 Paid delete",
+  "expand_more Oct 7, 2025 Payment 068269 - $905.63 Paid delete",
+  "expand_more Apr 12, 2024 Payment 010254 - $1,233.86 Paid delete"
+ ],
+ "C_badge": "Invoiced",
+ "C_invoiceRows": [
+  "Nov 3, 2026 Invoice S11986-17585 - $0.00 $0.00 Unpaid",
+  "Nov 3, 2026 Invoice S11986-17584 - $406.09 $406.09 Unpaid"
+ ],
+ "D_reverse": {
+  "badge": "Invoiced",
+  "menu": [
+   {
+    "id": "menu_item_reverse",
+    "t": "Reverse",
+    "dis": false
+   },
+   {
+    "id": "menu_item_issue_credit",
+    "t": "Issue Credit",
+    "dis": false
+   }
+  ],
+  "afterClick": {
+   "dialog": {
+    "text": "Warning close This action will re-open and undo the invoice. Are you sure you want to proceed? Reverse Cancel",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Reverse",
+      "id": "button_confirm_reverse_invoice"
+     },
+     {
+      "t": "Cancel",
+      "id": "button_cancel_invoice_warning"
+     }
+    ]
+   },
+   "toasts": []
+  },
+  "confirm": [
+   {
+    "text": "Warning close This action will re-open and undo the invoice. Are you sure you want to proceed? Reverse Cancel",
+    "btns": [
+     {
+      "t": "close",
+      "id": "button_close_dialog"
+     },
+     {
+      "t": "Reverse",
+      "id": "button_confirm_reverse_invoice"
+     },
+     {
+      "t": "Cancel",
+      "id": "button_cancel_invoice_warning"
+     }
+    ]
+   },
+   {
+    "toasts": []
+   }
+  ]
+ },
+ "D_invoiceRows": [],
+ "D_woList": [
+  "location_on Complete S11986-17585 4 Star Truck Repair 2020 Ford Transit - SVEWU82M5ETEJFWFA content_copy 0% Admin ShopView Unassigned 1 - Today"
+ ],
+ "caps": [
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"customers\",\"id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/customer-account/reverse-customer-payment",
+   "st": 201,
+   "req": "{\"id\":\"5bccb089-4919-4abc-9f70-934889980065\"}",
+   "res": "{\"data\":[]}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"customers\",\"id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"customers\",\"id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/invoices/reverse-invoice",
+   "st": 200,
+   "req": "{\"id\":\"e3a260df-f149-4b76-a5de-09e0d3eb8b6e\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/invoices/estimate",
+   "st": 200,
+   "req": "{\"work_order_id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\",\"type\":\"html\",\"isEstimate\":0,\"includeDeclined\":0,\"issueDate\":\"2026-11-03T14:13:51+00:00\",\"dueDate\":\"2026-11-03T14:13:51+00:00\",\"historyEvent\":null}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"customers\",\"id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\"}",
+   "res": ""
+  }
+ ]
+}

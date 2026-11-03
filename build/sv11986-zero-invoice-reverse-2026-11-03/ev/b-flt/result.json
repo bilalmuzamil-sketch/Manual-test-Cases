@@ -1,0 +1,99 @@
+{
+ "marker": {
+  "version": "v26.45.0-279650f",
+  "lastModified": "Tue, 03 Nov 2026 11:06:14 GMT",
+  "etag": "W/\"0d066d3afc32826f247e71edf4d9d5c9\""
+ },
+ "utc": "2026-11-03T14:11:18.213Z",
+ "wo": "3ed01293-1bd1-4949-bac3-b9c8877ff16c",
+ "create": "{\"data\":{\"work_order_id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\"}}",
+ "cc": 200,
+ "mileage": 201,
+ "removedAdj": [],
+ "dialog": {
+  "text": "New Line AI SHOPCOACH LINE BUILDER close Title arrow_drop_down Description Technicians Add Technician arrow_drop_down Labor Rate arrow_drop_down Estimated Time Tech Time Line Approved Save & Add Part Save & Add Line Save & Close",
+  "ids": [
+   "dialog_title",
+   "button_shop_coach_line_builder",
+   "button_close_dialog",
+   "select_line_canned_line(input)",
+   "input_line_description",
+   "select_line_roster_add_technician",
+   "text_labour_type_selected",
+   "select_labour_type(input)",
+   "input_time_estimate(input)",
+   "input_tech_time(input)",
+   "checkbox_line_approved",
+   "checkbox_parts_authorized",
+   "button_save_add_part",
+   "button_save_add_line",
+   "button_save_close"
+  ]
+ },
+ "labourOptions": [
+  "check CP MOBILE SERVICE\n$154.95",
+  "check CP RAIL FLEET RATE\n$145",
+  "check EVR Fuel Surcharge\n$34.5",
+  "check EVR HD Journeyman Technician Rate (2025 - 2026)\n$129.01",
+  "check EVR Journeyman HD Technician Rate (2024-2025)\n$126.48",
+  "check EVR LOA\n$175",
+  "check EVR Supply Type 3 Truck\n$345",
+  "check EVR Travel to EVO\n$100"
+ ],
+ "afterType": {
+  "t": "New Line AI SHOPCOACH LINE BUILDER close Title ZZAUTOTEST no-charge line arrow_drop_down Description Technicians Add Technician arrow_drop_down Labor Rate Fixed Line Total arrow_drop_down Estimated Time Tech Time AI SHOPCOACH LABOR GUIDE $ Fixed Line Total $ Labor Portion $ Parts Portion Line Approved Save & Add Part Save & Add Line Save & Close",
+  "inputs": [
+   "select_line_canned_line=",
+   "select_line_roster_add_technician=",
+   "select_labour_type=",
+   "input_time_estimate=0",
+   "input_tech_time=0",
+   "input_fixed_line_total=0.00",
+   "input_labor_portion=0.00",
+   "input_parts_portion=0.00",
+   "checkbox_line_approved=on",
+   "checkbox_parts_authorized=on"
+  ]
+ },
+ "fltSet": true,
+ "filled": [
+  "select_line_canned_line=",
+  "input_line_description=ZZAUTOTEST SV-11986 line with no labour and no parts",
+  "select_line_roster_add_technician=",
+  "select_labour_type=",
+  "input_time_estimate=0",
+  "input_tech_time=0",
+  "input_fixed_line_total=0.00",
+  "input_labor_portion=0.00",
+  "input_parts_portion=0.00",
+  "checkbox_line_approved=on",
+  "checkbox_parts_authorized=on"
+ ],
+ "afterSave": {
+  "dlg": [],
+  "toast": []
+ },
+ "lines": [],
+ "lineId": "74fd508f-200d-442b-ae66-20487fa64855",
+ "story": 201,
+ "lineDone": "{\"data\":[]}",
+ "complete": "{\"data\":{\"work_order_id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\",\"message\":\"Status changed.\"}}",
+ "invoice": "{\"data\":{\"invoice_id\":\"e3a260df-f149-4b76-a5de-09e0d3eb8b6e\",\"customer_account_id\":\"64b71259-e376-4208-93c8-9b815b65fb98\",\"auto_paid\":false,\"auto_paid_credit_id\":null,\"auto_paid_credit_amount\":0,\"auto_paid_deposit_amount\":0,\"auto_apply_status\":null,\"remaining_balance\":0}}",
+ "after": [
+  "Paid",
+  "paid",
+  "0.00",
+  "S11986-17585"
+ ],
+ "caps": [
+  "POST /api/work-orders/create 201 {\"company_id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\",\"vehicle_id\":\"00052898-8ce9-4bf4-b0be-c3644db57f29\",\"start_date\":\"2026-11-03\",\"is_vehicle_here\":true} -> {\"data\":{\"work_order_id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\"}}",
+  "POST /api/contacts/create 200 {\"company_id\":\"6a7b6afc-084d-4584-aacb-773bcd71cbcd\",\"first_name\":\"ZZAUTOTEST\",\"last_name\":\"SV11986 b-flt\"} -> {\"data\":{\"contact_id\":\"a110a707-c9eb-43fd-863c-262acfca7bc6\"}}",
+  "POST /api/work-orders/change-contact 200 {\"work_order_id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\",\"vehicle_id\":\"00052898-8ce9-4bf4-b0be-c3644db57f29\",\"contact_id\":\"a110a707-c9eb-43fd-863c-262acfca7bc6\",\"update_vehicle\":true} -> {\"data\":{\"customer_id\":\"a110a707-c9eb-43fd-863c-262acfca7bc6\"}}",
+  "POST /api/work-orders/change-mileage 201 {\"work_order_id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\",\"mileage\":\"123456\"} -> {\"data\":{\"work_order_id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\"}}",
+  "POST /api/work-orders/lines/create 201 {\"assigned_techs\":[],\"description\":\"ZZAUTOTEST SV-11986 line with no labour and no parts\",\"line_name\":\"ZZAUTOTEST no-charge line\",\"tech_assigned_id\":null,\"is_diagnosis\":false,\"is_warranty\":false,\"is_authorized_to_repair\":true,\"is_parts_required_are_a -> {\"data\":{\"line_id\":\"74fd508f-200d-442b-ae66-20487fa64855\"}}",
+  "POST /api/work-orders/lines/change-story 201 {\"line_id\":\"74fd508f-200d-442b-ae66-20487fa64855\",\"tech_story\":\"ZZAUTOTEST SV-11986\",\"work_order_id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\"} -> {\"data\":{\"line_id\":\"74fd508f-200d-442b-ae66-20487fa64855\"}}",
+  "POST /api/work-orders/lines/change-status 200 {\"line_id\":\"74fd508f-200d-442b-ae66-20487fa64855\",\"status\":\"complete\"} -> {\"data\":[]}",
+  "POST /api/work-orders/change-status 201 {\"id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\",\"status\":\"complete\"} -> {\"data\":{\"work_order_id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\",\"message\":\"Status changed.\"}}",
+  "POST /api/invoices/create 201 {\"work_order_id\":\"3ed01293-1bd1-4949-bac3-b9c8877ff16c\"} -> {\"data\":{\"invoice_id\":\"e3a260df-f149-4b76-a5de-09e0d3eb8b6e\",\"customer_account_id\":\"64b71259-e376-4208-93c8-9b815b65fb98\",\"auto_paid\":false,\"auto_paid_credit_id\":null,\"auto_paid_credit_amount\":0,\"auto_paid_deposit_amount\":0,\"auto_apply_status\":null,\"remaining_balance\":0}}"
+ ]
+}

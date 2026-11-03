@@ -6400,3 +6400,23 @@ Never commit the token.
 - **After a fix lands:** re-run the whole earlier checklist on the new build (all set-ups × gestures plus every row of
   the passed comment) before a green PASSED.
 
+
+## §AZ Invoices: $0 invoice, delete a payment, reverse an invoice (proven 3 Nov 2026, SV-11986 sv11986 + production)
+- **Reverse an invoice (screen):** WO → Finance tab → `button_wo_invoice_menu` (⋮ beside the settings cog) → `menu_item_reverse`
+  ("Reverse"; also `menu_item_issue_credit`). If paid: dialog "This invoice has been paid, please delete payment before reversing."
+  (`button_close_invoice_warning`). Otherwise: "This action will re-open and undo the invoice." → `button_confirm_reverse_invoice`
+  → `POST /api/invoices/reverse-invoice` 200 → WO back to Complete, `invoice_id` empty.
+- **Delete a payment (screen):** Customer → Payments tab → row bin `button_remove_payment_<paymentId>` → dialog "This action will
+  reverse the payment for all invoices associated with it. The payment record is preserved for audit history." → Reverse
+  (`button_confirm_dialog`) → `POST /api/customer-account/reverse-customer-payment` 201. Row disappears from the list.
+- **Read payments:** `GET /api/customer-payment/list?accountId=<customer_account_id>&pagination[rowsPerPage]=1000…` →
+  `collection[].payment_statements[].work_order_id` ties a payment to a WO. `customer_account_id` comes back from `invoices/create`.
+- **Make a $0 invoice:** a WO needs ≥1 completed line ("A work order must have at least one completed line…"). Use a 0-hour no-parts
+  canned line (branch "HD Misc Buffer" 68d59b05…), or New Line dialog with Labor Rate "General Labor" + 0 h, or Labor Rate
+  "Fixed Line Total" with `input_fixed_line_total` 0.00. Labor type is required in the dialog. A $0 invoice is created already Paid
+  with a $0.00 "Payment for invoice .." row. Watch for customer default fees (production ZZAUTOTEST Aabridge Freight adds $50) —
+  remove with `adjustments/remove` first.
+- **COD customers:** Finance → Create Invoice opens "New Customer Payment" (`button_make_payment`, `button_close_payment_dialog`);
+  closing it leaves NO invoice. Pay on screen: `button_new_payment` → `select_payment_method` → Make Payment.
+- **A discount needs a mapped QuickBooks discount item** ("Connect a QuickBooks item for discounts before adding a discount.");
+  per-ticket branches have no QuickBooks company, so a 100%-discount $0 invoice cannot be built there (see the three-signal check above).

@@ -1,4 +1,4 @@
-# SV-11986 — $0 invoice marked Paid cannot be reversed after its $0 payment is deleted (IN PROGRESS)
+# SV-11986 — $0 invoice marked Paid cannot be reversed after its $0 payment is deleted — QA PASSED 3 Nov 2026
 
 Ticket https://shopview.atlassian.net/browse/SV-11986 (Bug, TESTING QA, developer Slavcho Mitrov, reporter Mike Freeman via
 Intercom, customer SCA Fleet Services, WO S-13790). QA branch https://sv11986.qa.shopview.com.
@@ -40,9 +40,21 @@ Every step on screen (Reverse menu + dialogs, Payments bin + dialog); set-up of 
 | 5 | Customer's goal: correct the WO (add priced line HD CVIP electric brake trailer) and invoice | branch S11986-17584 | Invoice $406.09, WO Invoiced / invoice pending |
 | 6 | Regression: normal invoice paid on screen (New Payment, EFT $406.09) -> delete payment -> Reverse | branch S11986-17583 | Paid -> Invoiced/pending -> Reverse -> Complete (unchanged behaviour) |
 
-Not run, and why: a $0 invoice made by a 100% whole-order discount — the branch refuses the discount ("Connect a QuickBooks item
-for discounts before adding a discount."); asked the QA lead whether to set that up. The 12 already-stuck production invoices
+| 7b | $0 invoice from a New Line with Labor Rate "Fixed Line Total" = 0.00 (built in the dialog on screen) | branch S11986-17585 | Paid -> delete -> Invoiced/Unpaid -> Reverse -> Complete: PASS |
+
+100% discount: QA lead said test it first. Not possible on this branch: the discount needs a mapped QuickBooks discount item and
+the branch has NO QuickBooks company (mapping-status says connected:true but products-and-services 400 "Bookkeeping is not
+configured" and integration returns an Intuit authUrl) = external dependency (no Intuit account). Covered the nearest user-buildable
+shape (Fixed Line Total $0) instead; stated in the comment. The 12 already-stuck production invoices
 are a one-time data fix (Slavcho 79998 / Chris 80010), not part of this branch.
 Note: on COD customers, Create Invoice on screen opens the New Customer Payment dialog; closing it leaves no invoice. That is the
 COD payment-at-invoicing flow, unrelated to this ticket; step 5's invoice was created without a payment for that reason.
 Evidence: ev/before-after-reverse.png, ev/branch-steps.png (scripts/exhibits.py with /usr/bin/python3); per-run result.json files.
+
+## Posted
+Pre-post gate 14:14 UTC: branch marker v26.45.0-279650f / last-mod 03 Nov 11:06:14 GMT unchanged; ticket TESTING QA, last update 08:09
+(Chris 80010), nothing new; text scanned for AI fingerprints (0). Comment 80024 (green PASSED, 8 checks, 2 inline images) posted
+09:16 −0500; attachments 63494 before-after-reverse.png + 63495 branch-steps.png confirmed on the issue. Label QAcomplete added,
+transition 10 -> status QA Complete (read back). No recording, no technical section (QA lead's choice).
+Learning check: playbook §AZ added (reverse + payment-delete controls, $0 line recipes, COD Create Invoice opens payment dialog,
+discount needs QuickBooks); lessons row added (new WO goes to the SESSION location).

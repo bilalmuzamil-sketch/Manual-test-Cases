@@ -111,6 +111,8 @@ if you need it.
 | 2026-10-19 | 16 more posted comments (SV-11310, 11317, 11319–11325, 11337, 11338, 11402, 11404, 11406, 11408, 11409) had squashed films — the 17 Oct fix only covered the tickets I was looking at, not every comment from the same batch | When a defect is found in one posted artefact, sweep EVERY artefact from the same batch for it (all our comments on all tickets), not just the ones in front of you | build/board-tech-view-bugs-2026-10-16/height-fix-2026-10-19/ |
 | 2026-10-19 | SV-11405's comment had a "Before and after" heading over a picture that showed only the fixed build, with nothing saying which part was before or after; a sweep found the same on SV-11402, 11406, 11407, 11408, 11409 and 11422 | A "Before and after" section needs BEFORE and AFTER written ON the picture, each with environment, build and date. When no before picture exists (the view is not on Production and the ticket has no screenshot), title the section "What it looks like now (after the fix)", put an AFTER banner on the picture and say in one line why there is no before. Use the ticket's own screenshot as BEFORE when it has one | `build/JIRA-TICKET-STANDARD.md` (before/after rule); `build/board-tech-view-bugs-2026-10-16/before-after-fix-2026-10-19/relabel.py` |
 
+| 2026-11-03 | SV-11970: a work order created by API went to the SESSION's location, not the `workplace_id` I sent, so a time-zone test ran on the wrong location's clock and proved nothing | Read the new WO's `workplace_id` back before relying on it; change the time zone of the location the session is actually on | SV-11970 FINDINGS.md; playbook §AZ area |
+
 ## The shape of the mistakes, in five lines
 
 Read these before trusting any verdict you are about to give:
