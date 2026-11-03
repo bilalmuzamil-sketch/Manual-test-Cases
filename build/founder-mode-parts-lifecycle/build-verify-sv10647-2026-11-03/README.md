@@ -68,3 +68,10 @@ Parts ZZAUTOTEST-PLBV-A (inactive) and ZZAUTOTEST-PLBV-B (active), General Stora
 - Checks on the 72: runnable 72/72; display 72/72 fr-view; tester-runnable flagged C425730, C425731, C573684 only because the checker knew
   "top menu" but not "top bar" → `check_tester_runnable.py` HAS_ROUTE now also accepts "top bar" (one alternative added; rerun on all 360).
 - Tester-runnable on all 360 after the change: 359/360; only C540882 (outside the folder, state-only by the QA lead's ruling).
+
+## Rule 119 layout, 3 Nov 2026 late (QA lead: "always keep the preconditions and setup section separate, and the setup should also be easiest to understand")
+- Rule 119 recorded (every line of a case serves that one test; Preconditions and a separate, plain Setup).
+- setup-pass/clicks2.py + apply_setup2.py: in the 72 tests the "How to do it" text was taken out of the Preconditions (result checked equal to
+  the preconditions before the clicks pass, live-before.json) and a separate "Setup" section added after them: a numbered list in the order
+  the tester works (vendors and locations first), one item per thing to make, "<what it makes>: <clicks>", part fields as "Field: value".
+  72/72 verify=OK. Checks: tester-runnable PASS, runnable 72/72, display 72/72 fr-view.
