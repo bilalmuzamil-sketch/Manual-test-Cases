@@ -1,7 +1,7 @@
 // usage: node devtap.mjs "<preset or 'touch-desktop-ua'>" <quick|hold>
 import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
 const [DEV,G]=process.argv.slice(2); const rd=f=>fs.readFileSync('/tmp/sv11904/'+f,'utf8').trim(); const PS='90a95f29-f405-4763-834d-6e3a237f8c33';
-const OUT='/tmp/sv11904/dev'; fs.mkdirSync(OUT,{recursive:true}); const tag=(DEV+'-'+G).replace(/\s+/g,'_');
+const OUT=process.env.OUT||'/tmp/sv11904/dev'; fs.mkdirSync(OUT,{recursive:true}); const tag=(DEV+'-'+G).replace(/\s+/g,'_');
 const base={env:'branch',ticket:'11904',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')},quick:'admin',dir:'/tmp/qa41'};
 const s=await open(DEV==='touch-desktop-ua'?{...base,vp:{width:390,height:844},dpr:3,touch:true}:DEV==='touch-laptop-1440'?{...base,vp:{width:1440,height:900},dpr:2,touch:'laptop',scrollbars:true}:DEV==='touch-laptop-1024'?{...base,vp:{width:1024,height:768},dpr:2,touch:'laptop',scrollbars:true}:{...base,device:DEV}); const p=s.page;
 const env=await p.evaluate(()=>({ua:navigator.userAgent,w:innerWidth,h:innerHeight,dpr:devicePixelRatio,touch:navigator.maxTouchPoints}));

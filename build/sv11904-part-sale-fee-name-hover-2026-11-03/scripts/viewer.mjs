@@ -1,5 +1,5 @@
 import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
-const rd=f=>fs.readFileSync('/tmp/sv11904/'+f,'utf8').trim(); const PS='90a95f29-f405-4763-834d-6e3a237f8c33'; const OUT='/tmp/sv11904/m';
+const rd=f=>fs.readFileSync('/tmp/sv11904/'+f,'utf8').trim(); const PS='90a95f29-f405-4763-834d-6e3a237f8c33'; const OUT=process.env.OUT||'/tmp/sv11904/m';
 const s=await open({env:'branch',ticket:'11904',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')},quick:'admin',dir:'/tmp/qa41',vp:{width:1440,height:900},dpr:2,scrollbars:true}); const p=s.page;
 const tips=()=>p.evaluate(()=>[...document.querySelectorAll('.q-tooltip')].filter(t=>{const r=t.getBoundingClientRect(); return r.height>0&&getComputedStyle(t).opacity!=='0';}).map(t=>t.innerText.trim()));
 const dlg=()=>p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(d=>d.innerText.replace(/\n+/g,' | ').slice(0,400)));

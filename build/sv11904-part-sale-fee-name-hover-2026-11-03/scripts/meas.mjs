@@ -1,7 +1,7 @@
 // usage: node meas.mjs <width> [dark] [env=branch|prod] [psId]
 import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
 const [W0,mode,ENV0,PS0]=process.argv.slice(2); const W=+W0; const DARK=mode==='dark'; const ENV=ENV0||'branch';
-const PS=PS0||'90a95f29-f405-4763-834d-6e3a237f8c33'; const OUT='/tmp/sv11904/m'; fs.mkdirSync(OUT,{recursive:true}); const tag=`${ENV}-${W}${DARK?'-dark':''}`;
+const PS=PS0||'90a95f29-f405-4763-834d-6e3a237f8c33'; const OUT=process.env.OUT||'/tmp/sv11904/m'; fs.mkdirSync(OUT,{recursive:true}); const tag=`${ENV}-${W}${DARK?'-dark':''}`;
 const rd=f=>fs.readFileSync('/tmp/sv11904/'+f,'utf8').trim();
 const s=ENV==='prod'? await open({env:'prod',dir:'/tmp/qa42',user:'bilal.muzamil+serviceadvisornoreports@shopview.com',pw:fs.readFileSync('/tmp/sv-prod-pw2.txt','utf8').trim(),vp:{width:W,height:900},dpr:2,scrollbars:true})
   : await open({env:'branch',ticket:'11904',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')},quick:'admin',dir:'/tmp/qa41',vp:{width:W,height:900},dpr:2,scrollbars:true});
