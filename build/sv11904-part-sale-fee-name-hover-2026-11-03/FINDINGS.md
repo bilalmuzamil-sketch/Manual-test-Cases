@@ -33,7 +33,20 @@ Notes:
 - 768 first run hovered empty space (table below the fold) — my script, fixed by scrolling each cell into view (Rule 79c).
 - Phone: two tap methods (touchscreen.tap, locator.tap) at 390×844 agree; Chrome device emulation with touch, not a real phone.
 
+## Production before (build v26.43.5-77de68c, P-85 at Trucks Hill 2, 1440)
+- Added on screen: "ZZAUTOTEST Part Fee with a long name" 5% + "Disc" −2% on row 1 (201 + toasts). Test data left.
+- Heading "Fees & Discounts" on 2 lines, heading row 49 px; name cut to 41 px; hover on name / 5% / +1 → nothing.
+- Gotcha: production screen location was Truck Hill 1 → part sale page bounced to the list. Fixed by switching the
+  on-screen location first (scripts/loc.mjs).
+
+## Work order Parts tab (Chris: "stays as it is")
+- Branch S2-4219 vs production S2-1788 (different orders, no shared record): same 13 headings in the same order, no
+  Fees & Discounts column on either, heading row 47 px on both; fixed widths equal (Part Number 94, Quantity 70, Cost/Core/
+  Sell Price 82, Margin 86, Category 224, Requested At 98). Description/Vendor/Status/Actions widths follow each order's data.
+
+## Exhibits (ev/)
+before-after-1440.png · every-kind-of-name-1440.png · other-widths-and-dark.png · viewer-full-names.png ·
+phone-tooltip-over-viewer.png (for the open question).
+
 ## Still to do
-- Production before (P-85, long fee) at 1440: heading wraps / no hover — in progress (first add-fee attempt timed out on prod).
-- Work order Parts tab unchanged (Chris: "the work order Parts tab stays as it is") — compare branch vs production.
-- Exhibits, pre-post gate, comment (after QA lead answers the phone-tooltip question).
+- Pre-post gate + comment, after the QA lead answers the phone-tooltip question (asked 3 Nov).
