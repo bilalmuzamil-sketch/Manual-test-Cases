@@ -18,7 +18,9 @@ the page's owner); anyone else's **Ask for an update** is picked up by the owner
 
 ## Steps
 
-0. **Repositories.** If `/home/user/Manual-test-Cases` is missing, attach `bilalmuzamil-sketch/Manual-test-Cases`
+0. **Repositories.** (`auto_update.py` also looks for the product code in other folders and downloads it
+   itself when it is missing, so a skipped clone no longer looks like a missing release. A missing
+   product repository was the cause of the 2 Nov 2026 failure.) If `/home/user/Manual-test-Cases` is missing, attach `bilalmuzamil-sketch/Manual-test-Cases`
    with `add_repo` (access push) and clone it there. If `/home/user/shopview` is missing, attach
    `ShopView/shopview` (read) and clone it with `--shallow-since=2026-05-01`.
 1. **Branch.** `cd /home/user/Manual-test-Cases && git fetch origin claude/global-search-v1-baseline-6ax9ul &&

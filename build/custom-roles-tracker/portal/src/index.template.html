@@ -904,7 +904,18 @@ function releaseList() {
   D.history.releases.slice().reverse().forEach((h) => add({ tag: h.to, date: h.date, state: 'history',
     report: h.report ? D.history_reports[h.report] : { changes: [] } }));
   (D.known_releases || []).forEach((t) => add({ tag: t.tag, date: t.date, state: 'unchecked', report: null }));
-  return out.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  // newest first: by date, then by version number for releases on the same day
+  const ver = (t) => String(t).replace(/^v/, '').split('.').map((n) => parseInt(n, 10) || 0);
+  const byVer = (a, b) => { const x = ver(a), y = ver(b); for (let i = 0; i < Math.max(x.length, y.length); i++) { if ((x[i] || 0) !== (y[i] || 0)) return (y[i] || 0) - (x[i] || 0); } return 0; };
+  out.sort((a, b) => String(b.date).localeCompare(String(a.date)) || byVer(a.tag, b.tag));
+  // a release that went live between two checked releases is covered by the later one's checklist,
+  // which compares against the release before it
+  out.forEach((x) => {
+    if (x.state !== 'unchecked') return;
+    const later = out.filter((y) => (y.state === 'saved' || y.state === 'waiting') && String(y.date) > String(x.date));
+    if (later.length) { x.state = 'covered'; x.coveredBy = later[later.length - 1].tag; }
+  });
+  return out;
 }
 const PLANS = {};
 function planFor(L) {
@@ -915,6 +926,7 @@ function rtKey(L, it) { return 'rt:' + L.tag + ':' + hid(it.id); }
 function doneCount(L, pl) { return pl.items.concat(pl.spot_checks).filter((it) => { const v = verif[rtKey(L, it)]; return v && v.status !== 'Not Tested'; }).length; }
 function relBadge(L) {
   if (L.state === 'unchecked') return chip('c-warn', 'not checked yet');
+  if (L.state === 'covered') return chip('c-neutral', 'included in ' + L.coveredBy);
   const pl = planFor(L);
   return pl.needs_retest ? chip('c-info', `${pl.items.length + pl.spot_checks.length} checks`) : chip('c-good', 'nothing to retest');
 }
@@ -944,15 +956,17 @@ function viewRetest() {
   const head = `<section class="panel">
     <div><div class="eyebrow">What to retest</div><h2>What to retest after each release</h2></div>
     <p>After every release, pick it below and work through its checklist. It covers only Custom Roles &amp; Permissions: what changed in that release, and how to make sure nothing broke for other roles.</p>
-    <div class="controls"><label class="ctl">Release<select id="rPick">${all.map((x) => `<option value="${esc(x.tag)}" ${x.tag === RT.tag ? 'selected' : ''}>${esc(x.tag)} · ${esc(fmtDate(x.date))}${x.state === 'unchecked' ? ' · not checked yet' : planFor(x).needs_retest ? ' · retest needed' : ' · nothing to retest'}</option>`).join('')}</select></label></div>
-    <div class="rel-chips">${all.slice(0, 8).map((x) => `<button data-pick="${esc(x.tag)}" aria-pressed="${x.tag === RT.tag}">${esc(x.tag)}<span class="b">${planFor(x).needs_retest ? '●' : x.state === 'unchecked' ? '?' : '✓'}</span></button>`).join('')}</div>
-    <p class="muted" style="font-size:.84rem">● retest needed · ✓ nothing changed in roles and permissions · ? not checked yet</p>
+    <div class="controls"><label class="ctl">Release<select id="rPick">${all.map((x) => `<option value="${esc(x.tag)}" ${x.tag === RT.tag ? 'selected' : ''}>${esc(x.tag)} · ${esc(fmtDate(x.date))}${x.state === 'unchecked' ? ' · not checked yet' : x.state === 'covered' ? ' · included in ' + x.coveredBy : planFor(x).needs_retest ? ' · retest needed' : ' · nothing to retest'}</option>`).join('')}</select></label></div>
+    <div class="rel-chips">${all.slice(0, 8).map((x) => `<button data-pick="${esc(x.tag)}" aria-pressed="${x.tag === RT.tag}">${esc(x.tag)}<span class="b">${planFor(x).needs_retest ? '●' : x.state === 'unchecked' ? '?' : x.state === 'covered' ? '↗' : '✓'}</span></button>`).join('')}</div>
+    <p class="muted" style="font-size:.84rem">● retest needed · ✓ nothing changed in roles and permissions · ↗ included in a later release’s checklist · ? not checked yet</p>
   </section>`;
   if (!L) return head + '<section class="panel"><div class="empty">No releases yet.</div></section>';
   const pl = planFor(L);
   const total = pl.items.length + pl.spot_checks.length, done = doneCount(L, pl);
   let body;
-  if (L.state === 'unchecked') {
+  if (L.state === 'covered') {
+    body = `<div class="notice">Release ${esc(L.tag)} went live between two checked releases. Its changes are included in the checklist for <a href="#retest" data-pick="${esc(L.coveredBy)}">${esc(L.coveredBy)}</a>, which compares with the release before them.</div>`;
+  } else if (L.state === 'unchecked') {
     body = `<div class="notice warn">Release ${esc(L.tag)} has not been checked yet, so its checklist is not ready. Go to <a href="#track">Check a new release</a> and ask for it to be checked.</div>`;
   } else if (!pl.needs_retest) {
     body = `<div class="notice">Nothing in Custom Roles &amp; Permissions changed in release ${esc(L.tag)}. No Custom Roles retest is needed for this release. Your normal regression testing still applies.</div>`;
@@ -960,7 +974,7 @@ function viewRetest() {
     const changes = pl.items.filter((i) => i.kind === 'change'), areas = pl.items.filter((i) => i.kind === 'area');
     let n = 0;
     body = `<div class="head"><div>
-        <p><b>Release ${esc(L.tag)} changed ${pl.change_count} thing${pl.change_count > 1 ? 's' : ''} in roles and permissions.</b> Work through the ${total} checks below and set each test result.</p>
+        <p><b>Release ${esc(L.tag)} changed ${pl.change_count} thing${pl.change_count > 1 ? 's' : ''} in roles and permissions${L.report && L.report.from && L.report.from.ref ? ` since release ${esc(String(L.report.from.label || L.report.from.ref).split(' ')[0])}` : ''}.</b> Work through the ${total} checks below and set each test result.</p>
         ${L.state === 'waiting' ? '<p class="muted">This release has been checked but not approved yet. The checklist is ready to use.</p>' : ''}</div>
         <button class="btn ghost" data-export="retest:${esc(L.tag)}">Download the checklist as a spreadsheet</button></div>
       <div class="row"><div class="progress" style="flex:1 1 200px"><span style="width:${total ? Math.round(100 * done / total) : 0}%"></span></div><span>${done} of ${total} done</span></div>

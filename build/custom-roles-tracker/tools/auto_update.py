@@ -20,7 +20,7 @@ What it does, in order:
 Never guesses: a live release whose commit cannot be found stops with a reason in the summary
 (`problem`), and the portal says so instead of claiming to be up to date.
 """
-import argparse, datetime, glob, hashlib, json, os, subprocess, sys
+import argparse, datetime, glob, hashlib, json, os, re, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.environ.get('CRP_ROOT') or os.path.normpath(os.path.join(HERE, '..'))
@@ -33,6 +33,44 @@ STATE = os.path.join(ROOT, 'portal', 'published-state.json')
 def sh(*cmd, cwd=HERE):
     r = subprocess.run(list(cmd), capture_output=True, text=True, cwd=cwd)
     return r.returncode, (r.stdout + r.stderr).strip()
+
+
+PRODUCT_URL = 'https://github.com/ShopView/shopview'
+
+
+def find_or_get_product_repo(wanted):
+    """The product code is needed to check a release. A scheduled update starts in an empty session,
+    so the code may be missing or in another folder: look for it, download it if it is missing, and
+    say plainly when neither works. -> (path, None) or (None, plain problem, detail)"""
+    def is_product(path):
+        rc, url = sh('git', '-C', path, 'remote', 'get-url', 'origin')
+        return rc == 0 and bool(re.search(r'[/:]shopview/shopview(\.git)?/?$', url, re.I))
+    candidates = [wanted, '/home/user/shopview', '/home/user/ShopView', os.path.expanduser('~/shopview')]
+    candidates += sorted(glob.glob('/home/user/*/')) + sorted(glob.glob('/tmp/*/'))
+    for c in candidates:
+        c = c.rstrip('/')
+        if os.path.isdir(os.path.join(c, '.git')) and is_product(c):
+            return c, None, None
+    rc, out = sh('git', 'clone', '-q', '--shallow-since=2026-05-01', PRODUCT_URL, wanted)
+    if rc == 0:
+        return wanted, None, None
+    return None, ('The app\'s code could not be downloaded in this update, so the live release could not be checked. '
+                  'The next update will try again.'), f'git clone {PRODUCT_URL} failed: {out[-300:]}'
+
+
+def ensure_release_commit(repo, marker):
+    """Make sure the live release's commit is in the local copy: fetch the newest branches and tags,
+    then the release's own tag. -> None, or the git error text when it is still missing."""
+    shallow = sh('git', '-C', repo, 'rev-parse', '--is-shallow-repository')[1] == 'true'
+    depth = ['--shallow-since=2026-05-01'] if shallow else []
+    out1 = sh('git', '-C', repo, 'fetch', '-q', '--tags', *depth, 'origin', 'main', 'develop')[1]
+    tag, short = marker.rsplit('-', 1)
+    if sh('git', '-C', repo, 'cat-file', '-e', f'{short}^{{commit}}')[0] == 0:
+        return None
+    out2 = sh('git', '-C', repo, 'fetch', '-q', *(['--depth=50'] if shallow else []), 'origin', 'tag', tag)[1]
+    if sh('git', '-C', repo, 'cat-file', '-e', f'{short}^{{commit}}')[0] == 0:
+        return None
+    return f'fetch: {out1[-200:]} | tag {tag}: {out2[-200:]}'
 
 
 def pending():
@@ -69,15 +107,19 @@ def main():
         print(json.dumps({'marked_published': data['built_at']}))
         return
     now = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat()
-    did = {'confirmed': [], 'scanned': [], 'skipped': [], 'problem': None}
-
-    # make sure the product repository has the newest tags and production's commit
-    if sh('git', '-C', a.repo, 'rev-parse', '--is-shallow-repository')[1] == 'true':
-        sh('git', '-C', a.repo, 'fetch', '-q', '--tags', '--shallow-since=2026-05-01', 'origin', 'main', 'develop')
-    else:
-        sh('git', '-C', a.repo, 'fetch', '-q', '--tags', 'origin', 'main', 'develop')
+    did = {'confirmed': [], 'scanned': [], 'skipped': [], 'problem': None, 'problem_detail': None}
 
     marker = track_changes.measure_production()
+    # the product code, with the live release's commit in it
+    repo, did['problem'], did['problem_detail'] = find_or_get_product_repo(a.repo)
+    if repo:
+        a.repo = repo
+        if not os.environ.get('CRP_PRODUCTION_MARKER'):
+            missing = ensure_release_commit(repo, marker)
+            if missing:
+                did['problem'] = (f'The code for the live release {marker.rsplit("-", 1)[0]} could not be downloaded, '
+                                  'so it could not be checked. The next update will try again.')
+                did['problem_detail'] = missing
     live_commit = marker.rsplit('-', 1)[-1]
 
     # 2. approved checks become permanent
@@ -96,15 +138,17 @@ def main():
     reg = snapshot_store.load_registry()
     recorded = lambda c: any(s.get('release', {}).get('commit', '').startswith(c) for s in reg['snapshots'])  # noqa: E731
     waiting = lambda c: any(p['release']['commit'].startswith(c) for p in pending().values())  # noqa: E731
-    if not recorded(live_commit) and not waiting(live_commit):
+    if not recorded(live_commit) and not waiting(live_commit) and not did['problem']:
         rc, out = sh(sys.executable, 'track_changes.py', 'scan', '--production', '--repo', a.repo)
         if rc == 0:
             did['scanned'].append(marker)
         else:
-            did['problem'] = f'Could not check the live release {marker}: {out.splitlines()[-1] if out else rc}'
+            did['problem'] = (f'The live release {marker.rsplit("-", 1)[0]} could not be checked. '
+                              'The next update will try again.')
+            did['problem_detail'] = out.splitlines()[-1] if out else str(rc)
     latest = snapshot_store.latest(reg, 'implementation')
     latest_date = latest['release']['commit_date'] if latest else ''
-    for tag in [x for x in a.requested.split(',') if x and x != 'production']:
+    for tag in [x for x in a.requested.split(',') if x and x != 'production' and repo]:
         rc, commit = sh('git', '-C', a.repo, 'rev-parse', f'{tag}^{{commit}}')
         if rc != 0:
             did['skipped'].append(f'{tag}: no such release')
