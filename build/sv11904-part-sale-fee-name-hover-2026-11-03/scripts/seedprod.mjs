@@ -3,6 +3,7 @@ import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.
 const rd=f=>fs.readFileSync('/tmp/sv11904/'+f,'utf8').trim(); const PS=process.env.PS||'90a95f29-f405-4763-834d-6e3a237f8c33';
 const ADDS=JSON.parse(process.argv[2]); // [{row,name,kind,calc,val}]
 const s=await open({env:'prod',dir:'/tmp/qa42',user:'bilal.muzamil+serviceadvisornoreports@shopview.com',pw:fs.readFileSync('/tmp/sv-prod-pw2.txt','utf8').trim(),vp:{width:1440,height:900}}); const p=s.page;
+if(process.env.LOC) console.log('screen location',await import('./loc.mjs').then(m=>m.setLoc(s,process.env.LOC)));
 const caps=[]; p.on('response',async r=>{ if(r.request().method()==='POST'&&/adjust/.test(r.url())) caps.push(r.status()+' '+r.url().replace(/^https:\/\/[^/]+/,''));});
 for(const a of ADDS){
   await s.go(`/parts/part-sale/${PS}/part-requests`); await p.waitForTimeout(6000);

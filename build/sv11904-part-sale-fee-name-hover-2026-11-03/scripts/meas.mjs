@@ -6,6 +6,7 @@ const rd=f=>fs.readFileSync('/tmp/sv11904/'+f,'utf8').trim();
 const s=ENV==='prod'? await open({env:'prod',dir:'/tmp/qa42',user:'bilal.muzamil+serviceadvisornoreports@shopview.com',pw:fs.readFileSync('/tmp/sv-prod-pw2.txt','utf8').trim(),vp:{width:W,height:900},dpr:2,scrollbars:true})
   : await open({env:'branch',ticket:'11904',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')},quick:'admin',dir:'/tmp/qa41',vp:{width:W,height:900},dpr:2,scrollbars:true});
 const p=s.page; const R={tag,marker:await s.marker(),at:new Date().toISOString()};
+if(process.env.LOC) console.log('screen location',await import('./loc.mjs').then(m=>m.setLoc(s,process.env.LOC)));
 await s.go(`/parts/part-sale/${PS}/part-requests`); await p.waitForTimeout(7000);
 if(DARK){ await p.click('[data-test-id="profile_menu_button"]'); await p.waitForTimeout(1200);
   R.menu=await p.evaluate(()=>[...document.querySelectorAll('.q-menu [data-test-id], .q-menu .q-item')].map(e=>(e.getAttribute('data-test-id')||'')+'|'+e.innerText.replace(/\s+/g,' ').trim().slice(0,40)));
