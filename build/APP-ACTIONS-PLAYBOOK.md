@@ -6385,3 +6385,11 @@ Never commit the token.
   tech_assigned_id, work_order_id, line_id, resolve_overlaps:true}` made at location B for a location-A work order (record workplace = B;
   no end date = open = "Clocked In"). Admin only (technician 403). Times are in the location's time zone; list dates are UTC.
 - Time entries cannot be deleted; move one with `technician-tasks/move {id, line_id, work_order_id}`.
+
+## §AY Phone checks: use a named device preset, and say which gesture (2026-11-03, SV-11904)
+- `qa-session.mjs` `open({..., device:'iPhone 12 Pro'})` (or 'Pixel 7', 'iPhone SE', 'iPhone 14 Pro Max') applies Playwright's
+  preset = viewport, pixel ratio, touch, isMobile AND the phone userAgent — the same set-up a developer gets from a Chrome DevTools
+  device preset. `touch:true` alone keeps the desktop userAgent: say so if it is used.
+- Gestures through CDP so the duration is exact: `cdp=await page.context().newCDPSession(page)`;
+  quick tap = `Input.dispatchTouchEvent {type:'touchStart',touchPoints:[{x,y}]}`, wait ~80 ms, `{type:'touchEnd',touchPoints:[]}`;
+  press-and-hold = same with ~800 ms between. Script: `build/sv11904-part-sale-fee-name-hover-2026-11-03/scripts/devtap.mjs`.

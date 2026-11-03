@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **A FAILED ITEM NAMES THE EXACT DEVICE PRESET, BROWSER + VERSION, GESTURE (QUICK TAP / PRESS-AND-HOLD / HOVER + TIME), SPOT, TIMING, N-OF-N AND WHAT WASN'T TRIED — reproduce it on the developer's standard set-up first (Standing Rule 120).**
 > - **TEST THE STATE, NOT ONLY THE SCREEN (Standing Rule 119): OPEN EVERY SURFACE THAT SHOWS WHAT THE TEST CREATED, RUN THE SUMS THAT MUST HOLD, WALK EVERY LIST IN THE HANDOFF, AND TEST THE VARIANTS EARLIER FIXES OF THE SAME BUG FAMILY MISSED — every ticket, every area.**
 > - **A PAYMENT OVER SEVERAL INVOICES: OPEN EACH INVOICE ITSELF (payment lines + Balance must equal Total), COVER EVERY PAYMENT SOURCE incl. leftover deposits, READ THE PRIOR FIXES OF THE SAME BUG FAMILY, AND WALK THE HANDOFF'S "REGRESSION HOTSPOTS" (Standing Rule 118).**
 > - **BEFORE SAYING "NOT FOUND", RUN `build/testing-tools/recall.sh <noun>` — it searches the playbook, lessons, rules AND every findings folder; and promote every navigation fact to the playbook the same turn (Standing Rule 117).**
@@ -5733,6 +5734,32 @@ deliver the 7-tab management report.
     with a leftover deposit). We checked the screen the ticket named and the balances, never opened the invoices, never
     added up their lines, skipped the handoff's hotspot list, and had not carried forward SV-9647's gaps. Nemanja found the
     bug the next day. None of those five gaps is about payments. Ties to Rules 40, 50, 72, 74, 82, 89, 91, 93, 96, 113 and 118.
+
+120. **A FAILED ITEM CARRIES EVERY CONDITION NEEDED TO REPRODUCE IT ON THE FIRST TRY — write it for the developer who will say "I
+    couldn't reproduce it" (all projects).**
+    USER DIRECTIVE (2026-11-03, verbatim): *"SO here is the thing for us/you to learn a developer will always say things like that
+    in his defense so whenever we fail something we need to provide complete details."*
+    **THE RULE:** a failure report is only complete when someone who has never seen it can make it happen first time, on the same
+    set-up. Before posting any FAILED / PARTIALLY PASSED item, its environment line names, wherever they apply:
+    **(a) the exact device or emulation** — the Chrome DevTools preset by its name ("iPhone 12 Pro", "Pixel 7"), its size, pixel
+    ratio, touch on/off, and whether the phone browser identity was used; or the real device and its OS; or "desktop, window
+    1440 wide, 100% zoom" (Rule 80); **(b) the browser and its version**; **(c) the exact gesture** — quick tap vs press-and-hold
+    (with how long), hover (and how long the pointer rested), click without moving, swipe, keyboard; **(d) the exact spot** — record,
+    row, element by its on-screen text (Rule 101); **(e) timing** — what is seen at which moment ("still there after 6 s");
+    **(f) how often** — n of n tries, and every variant that did NOT reproduce it; **(g) what was not tried** — e.g. "not checked on
+    a real phone" — said plainly; **(h) a picture sequence** — before / during / after (and a recording only if the QA lead says yes,
+    Rule 104).
+    **REPRODUCE IT THE WAY THE DEVELOPER WILL, BEFORE POSTING:** a developer reaches for the standard tool (the named DevTools
+    preset, the default account, the default window), so run the failure on that standard set-up too. If it only happens on a
+    non-standard set-up, that is part of the finding and must be said.
+    **WHEN A DEVELOPER SAYS "COULDN'T REPRODUCE":** do not argue and do not repeat the old steps. Re-run it live on the current
+    build with the named set-ups, record the matrix (set-up × gesture → result), and reply with it. If it does NOT reproduce on
+    the standard set-up, say so plainly (Rule 75: a false failure costs more than a missed one).
+    **RATIONALE (2026-11-03, SV-11904):** comment 79985 failed the phone tooltip with "a phone, or Chrome's phone view (about 375
+    wide, with touch)" and "tap". Dipesh replied (79993): *"couldn't reproduce this on sv11904 yet. Which device preset did you use,
+    and was it a quick tap or a press-and-hold?"* — both questions our report should already have answered. Our set-up was 375/390
+    wide with touch but the DESKTOP browser identity, which is not what a DevTools device preset sends. Ties to Rules 12, 64, 75, 80,
+    83, 101, 104, 115 and 119; helper option `device:` in `build/testing-tools/qa-session.mjs`.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

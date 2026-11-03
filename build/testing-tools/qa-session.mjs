@@ -9,7 +9,7 @@ import {spawnSync} from 'child_process';
 //   await s.go('/workorders/'+wo+'/lines')                   // waits for network idle, not a clock
 //   const tip = await s.hoverTip('menu-item_delete_line_'+id)
 //   await s.shot('delete-tooltip'); await s.close()
-import pkg from '/opt/node22/lib/node_modules/playwright/index.js'; const {chromium}=pkg;
+import pkg from '/opt/node22/lib/node_modules/playwright/index.js'; const {chromium, devices}=pkg;
 import fs from 'fs';
 
 const CHROME=(()=>{ for(const c of ['/opt/pw-browsers/chromium','/opt/pw-browsers/chromium-1243/chrome-linux/chrome','/opt/pw-browsers/chromium-1194/chrome-linux/chrome']){ try{ if(fs.statSync(c).isFile()) return c; }catch(e){} } return undefined; })();
@@ -33,7 +33,11 @@ export function port(dir){
 
 export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw=(process.env.SV_PROD_PW||(()=>{try{return fs.readFileSync('/tmp/sv-prod-pw.txt','utf8').trim()}catch(e){return ''}})()),
                             cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null, quick='admin', tz=null,
-                            scrollbars=false, touch=false}={}){
+                            scrollbars=false, touch=false, device=null}={}){
+  // device: a Chrome DevTools / Playwright device preset name, e.g. 'iPhone 12 Pro', 'iPhone SE', 'Pixel 7'. Sets viewport,
+  // pixel ratio, touch, isMobile AND the phone userAgent. Added 2026-11-03 (SV-11904): touch:true alone keeps the DESKTOP
+  // userAgent, so the app can treat the page as a desktop with a touchscreen; a developer testing with a DevTools preset may
+  // then see different behaviour. Always name the preset in a failure report.
   // scrollbars: true -> launch WITHOUT Playwright's default --hide-scrollbars, so scrollbars take space and show in
   // screenshots as a user sees them (needed to check "a visible scrollbar" requirements). Added 2026-10-26 (SV-11631).
   // touch: true -> hasTouch + isMobile context, for tap-instead-of-hover checks on phones. Added 2026-10-26 (SV-11631).
@@ -49,7 +53,8 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
     ...(scrollbars ? {ignoreDefaultArgs:['--hide-scrollbars']} : {})});
   const ctx = await b.newContext(Object.assign({viewport:vp, deviceScaleFactor:dpr, ignoreHTTPSErrors:true}, tz ? {timezoneId:tz} : {},
     touch ? {hasTouch:true, isMobile:true} : {},
-    record ? {recordVideo:{dir:record, size:vp}} : {}));
+    device ? (()=>{ const d=devices[device]; if(!d) throw new Error('unknown device preset: '+device); const {defaultBrowserType,...rest}=d; return rest; })() : {},
+    record ? {recordVideo:{dir:record, size:(device&&devices[device]?devices[device].viewport:vp)}} : {}));
   // Recordings do not show the mouse: draw a pointer, a click ripple and a caption bar into every page.
   if (record) await ctx.addInitScript(RECORD_OVERLAY);
   if (cookies) await ctx.addCookies(Object.entries(cookies).map(([name,value])=>
