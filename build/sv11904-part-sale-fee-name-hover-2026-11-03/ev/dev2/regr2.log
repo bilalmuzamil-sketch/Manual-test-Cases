@@ -1,0 +1,29 @@
+== meas 1440
+HOVER row 2 "+$5.00" -> []
+HOVER row 7 "Fee" -> []
+HOVER row 7 "3%" -> []
+tips after leaving []
+== meas 1024
+HOVER row 2 "+$5.00" -> []
+HOVER row 7 "Fee" -> []
+HOVER row 7 "3%" -> []
+tips after leaving []
+== meas 768
+HOVER row 2 "+$5.00" -> []
+HOVER row 7 "Fee" -> []
+HOVER row 7 "3%" -> []
+tips after leaving []
+== meas 1440 dark
+HOVER row 2 "+$5.00" -> []
+HOVER row 7 "Fee" -> []
+HOVER row 7 "3%" -> []
+tips after leaving []
+== viewer
+A viewer ["Fees & Discounts | Ignition Switch · #8135 | close | Name\tType\tCalculation\tAmount\tMax Amount\t | Such a Long name testing\tFee\t% of Parts Total\t+$3.81\t—\t | delete | Disc\tDiscount\t% of Parts Total\t−$1.52\t—\t | delete | Net adjustment\t\t\t+$2.29\t\t | Close"]
+A after close dialogs [] tips []
+B tip before click ["ZZAUTOTEST Part Discount with a long name"]
+B +0.4s tips [] dialogs 1
+B +2s tips []
+B after small move tips []
+B viewer ["Fees & Discounts | Freight · #FREIGHT | close | Name\tType\tCalculation\tAmount\tMax Amount\t | ZZAUTOTEST Part Discount with a long name\tDiscount\t% of Parts Total\t−$0.50\t—\t | delete | Net adjustment\t\t\t−$0.50\t\t | Close"]
+REGR-DONE

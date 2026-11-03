@@ -84,3 +84,42 @@ elementFromPoint = text_part_adjustment_name_c6a8c0ad…:
 shows the viewer only. Honest limit: Chrome device emulation, not a real phone or a real touchscreen laptop.
 Exhibit: ev/phone-vs-touch-laptop.png; raw frames + json: ev/dev/. Lesson saved: Standing Rule 120, LESSONS-INDEX, playbook §AY.
 Nothing posted yet — taken to the QA lead first (Rule 106(d)).
+
+## 3 Nov — Dipesh 79996: fix deployed. Retest on build v26.43.5-51811b2 (last-mod Tue 03 Nov 2026 10:11:37 GMT)
+Marker read 10:37 UTC and again right before posting (unchanged). Same P2-162 row 1, gestures by CDP with exact
+durations (scripts/devtap.mjs, OUT=ev/dev2), states read at 0.5/3/6 s, Chrome 153.0.8010.12:
+
+| Set-up (body class) | Quick tap | Press-and-hold |
+|---|---|---|
+| iPhone 12 Pro 390×664 (mobile touch platform-ios) | viewer, no tooltip (197 ms) | name during hold; viewer, no tooltip (931 ms) |
+| Pixel 7 412×839 (platform-android) | viewer, no tooltip (195 ms) | same (895 ms) |
+| iPhone SE 320×568 (platform-ios) | viewer, no tooltip (179 ms) | same (905 ms) |
+| Desktop Chrome + touch 1440×900 (desktop touch) | viewer, no tooltip (182 ms) — was REPRODUCED | viewer, no tooltip (912 ms) — was REPRODUCED |
+| Desktop Chrome + touch 1024×768 | viewer, no tooltip (183 ms) — was REPRODUCED | viewer, no tooltip (927 ms) — was REPRODUCED |
+| Desktop Chrome + touch 390×844 | viewer, no tooltip (154 ms) — was REPRODUCED | viewer, no tooltip (901 ms) — was REPRODUCED |
+=> 12/12 not reproduced on the fix build. (On desktop+touch a hold now shows no tooltip during the hold either; the viewer
+lists every name in full — the handoff says a tap opening the viewer is the expected touch result.)
+
+Regression on the new build (ev/m2*): hover full name at 1440/1024/768/1440 dark on all 3 cut names, no tooltip on Fee/5%/+1/+$5.00,
+gone after leaving; heading one line 39 px everywhere (only 'more_vert' icon reports 3 "lines" — same on the old build);
+click -> viewer full names, close leaves nothing; hover-then-click -> tooltip gone at 0.4 s and 2 s;
+new part sale P-249 (6c214e00…) 39 px without fees -> fee "ZZAUTOTEST Part Fee with a long name" 5% added on screen (201,
+"Fee added") -> 39 px, Description 168 / Part Number 124 / Sell Price 82 / Actions 122 unchanged, Fees & Discounts 120, hover
+shows full name; WO Parts tab S2-4219: same 13 headings, 47 px, no Fees column, fixed widths as before.
+
+Exhibit: ev/fix-before-after-touch-laptop-1024-quick.png (old frame from ev/dev; it did not record boxes, so the viewer box
+was taken from the new run (same viewport) and the tooltip box measured from pixels: grey 117,117,117, rows 440-501,
+cols 1436-1779 at dpr 2). Uploaded as media f3483cea-6c88-4f08-ae4b-6e8f01621aed.
+
+Posted (gate: marker re-read unchanged, test data re-read, ticket re-read — last comment still 79996, status TESTING QA,
+text scan clean, no technical section):
+- 79984 edited 05:48 UTC-5: row 12 rewritten for phone presets + dated note. Echo: 4 media, 14 rows.
+- 79985 edited 05:48 UTC-5: heading/step 1/environment corrected to touchscreen laptop + dated notes. Echo: 1 media.
+- **79997** NEW (Rule 112): OVERALL QA STATUS: PASSED, answers Dipesh, before/after picture, 6-row set-up table (old vs new),
+  9-row re-check table, steps, honest limit (Chrome emulation, not a real device). Echo: 1 media, 6 + 9 rows, mention.
+- Label QAcomplete + status move: the label edit was refused by the tool permission check — NOT done. Available
+  transitions from TESTING QA: Blocked, Close (OBSOLETE), QA Complete, Rejected from Testing (no direct Ready for Production).
+  Waiting on the QA lead.
+Learning check: (1) after a "couldn't reproduce" the dev may deploy a fix before you reply — re-read the marker before
+replying and retest on the new build instead of answering about the old one (Rule 59/72); (2) devtap/meas/viewer now take
+OUT so old evidence is not overwritten.
