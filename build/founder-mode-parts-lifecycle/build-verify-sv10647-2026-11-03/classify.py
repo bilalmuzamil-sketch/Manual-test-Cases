@@ -11,7 +11,7 @@ TRIG = {  # recipe -> regex over preconds+steps
  'earlierday': r'earlier day|date A', 'invoice': r'invoiced|invoice', 'ivr': r'Inventory Value', 'velocity': r'Parts Velocity', 'design': r'design picture|board',
  'theme': r'Light theme|Dark|theme', 'twotabs': r'second (browser )?tab|tab 2|browser 2|window 2', 'screenreader': r'screen reader', 'export': r'Export|exported',
  'cycle': r'Cycle count', 'bookmark': r'bookmark', 'newloc': r'newly created location|no inactive parts at all|no untracked part', 'fortyplus': r'forty|more than \d+ active|201|35 parts',
- 'partrequest': r'part request|Part Request', 'core': r'Core Charge|core', 'manyloc': r'location C',
+ 'partrequest': r'(open|a|two) part requests?\b|Part Requests? (for|N)|Part Request [0-9]|on an open part request', 'core': r'Core Charge|core', 'manyloc': r'location C',
 }
 HARD = {'special', 'negbin', 'prerelease', 'earlierday', 'bookmark', 'newloc', 'vbill', 'canned', 'po', 'return', 'partrequest', 'fortyplus'}
 rows = []
