@@ -1,5 +1,11 @@
 # Custom Roles tracker — updating it by hand (runbook)
 
+**Update now button (since 3 Nov 2026):** the QA lead presses **Update now** on the page. It starts the
+routine **"Custom Roles tracker — Update now"** (`trig_011BoiAnrg1VTiMiEoY6WEWX`, no schedule), which runs
+this runbook in a fresh session. The routine has both repositories attached in its settings (set by the
+QA lead in claude.ai → Routines), so nothing needs approving at run time. Only the page's owner can start
+it; everyone else sees "please tell Bilal".
+
 **The tracker is updated BY HAND after each release.** The QA lead chose this on 3 Nov 2026 and asked for
 all automation to stop. The keyword is:
 

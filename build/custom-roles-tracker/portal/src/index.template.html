@@ -283,7 +283,34 @@ function ago(iso) {
 }
 function clock(iso) { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleString(undefined, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); }
 let gateShown = false, isOwner = false;
-const HOW_TO_UPDATE = 'This page is updated by hand after each release. If a new release has gone out and this page does not show it yet, please tell Bilal.';
+// Update now (owner only): starts the routine "Custom Roles tracker — Update now", which has both
+// repositories attached in its settings and runs UPDATE-RUNBOOK.md in a fresh session
+const UPDATE_TRIGGER = 'trig_011BoiAnrg1VTiMiEoY6WEWX';
+const HOW_TO_UPDATE = 'This page is updated after each release. If a new release has gone out and this page does not show it yet, please tell Bilal.';
+function lastStart() {
+  return requests.filter((r) => r.kind === 'update' && r.status === 'started').sort((a, b) => String(b.at).localeCompare(String(a.at)))[0] || null;
+}
+function updateControl() {
+  if (!isOwner || !canWriteDb) return '';
+  const r = lastStart();
+  if (r && (Date.now() - Date.parse(r.at)) / 60000 < 15 && !(STATUS.freshness && STATUS.freshness.checked_at > r.at)) {
+    return `<span>${chip('c-info', 'Update started')} at ${esc(clock(r.at))}. It takes a few minutes; this page will then ask you to reload.</span>`;
+  }
+  return '<button class="btn" data-update="1">Update now</button>';
+}
+async function updateNow(btn) {
+  btn.disabled = true;
+  try {
+    const mcp = await window.claude.use('mcp');
+    if (!mcp) throw { code: 'not_granted' };
+    await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: UPDATE_TRIGGER, text: 'Update now pressed on the page.' });
+    await db.collection('scan_requests').doc(hid('update' + Date.now())).set({ release: 'production', kind: 'update', by: me, at: new Date().toISOString(), status: 'started' });
+  } catch (e) {
+    btn.disabled = false;
+    const why = { not_granted: 'this view cannot start it', server_not_connected: 'the Claude Code Remote connector is not connected', approval_required: 'it needs your approval: press again and choose Allow', not_in_manifest: 'it is not allowed for this page' }[e && e.code] || (e && (e.message || e.code)) || 'unknown reason';
+    btn.insertAdjacentHTML('afterend', `<span class="chip c-bad">Could not start the update (${esc(why)})</span>`);
+  }
+}
 function freshness() {
   const s = STATUS.freshness;
   if (!db) return { kind: 'none' };
@@ -307,7 +334,7 @@ function renderFresh() {
   }[f.kind];
   const cls = { ok: '', reload: 'warn', behind: 'warn', problem: 'bad', unknown: '' }[f.kind];
   el.className = 'fresh ' + cls;
-  el.innerHTML = `<span class="msg">${msg} <span class="muted">${esc(HOW_TO_UPDATE)}</span></span>${f.kind === 'reload' ? '<button class="btn" data-reload="1">Reload the page</button>' : ''}`;
+  el.innerHTML = `<span class="msg">${msg}${isOwner ? '' : ` <span class="muted">${esc(HOW_TO_UPDATE)}</span>`}</span>${f.kind === 'reload' ? '<button class="btn" data-reload="1">Reload the page</button>' : updateControl()}`;
   el.hidden = false;
   wireFresh(el);
   // the one case that asks before going on: a newer version of this page exists
@@ -331,6 +358,7 @@ function showGate(msg) {
 }
 function wireFresh(el) {
   el.querySelectorAll('[data-reload]').forEach((b) => b.addEventListener('click', () => location.reload()));
+  el.querySelectorAll('[data-update]').forEach((b) => b.addEventListener('click', () => updateNow(b)));
 }
 
 function hid(s) { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(36); }
