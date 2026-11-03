@@ -120,28 +120,32 @@ spreadsheet, and every scan also writes `reports/<previous>__to__<release>-RETES
 
 ## Always up to date (the scheduled update)
 
-A scheduled task (**"Custom Roles tracker — release-day update"**, `trig_014eqbzZ82V6XRd2vZguAREC`) runs
-`UPDATE-RUNBOOK.md` in a fresh session on release days only (Mon, Tue, Thu, Fri at 18:41 Pakistan time;
-releases are usually tagged 13:20–15:20 PKT). One command, `tools/auto_update.py`, does the work:
+Everything runs in ONE permanent session, **"Custom Roles tracker — update worker"**
+(`session_01LirJvBZqqsyVxsRXTmoCHB`), which has both repositories attached (ShopView/shopview and
+Manual-test-Cases). It follows `UPDATE-RUNBOOK.md`. One command, `tools/auto_update.py`, does the work:
 it reads the live release, checks it if it is new (shown at once with its retest checklist, marked
 "waiting for approval"), saves releases approved in the portal, rebuilds the page, and says whether it
-must be republished. The run then republishes the page if needed and writes `status/freshness` into the
-page's database on every run.
+must be republished. The worker then republishes the page if needed and writes `status/freshness` into
+the page's database on every run.
 
-The page reads that record and shows a bar on every tab: **Up to date**, **This page is behind**,
-**out of date** (a scheduled release-day check did not run), **A newer version is ready** (reload), or **could not
-be updated**. In any of the last four cases it asks the viewer to update or reload before going on,
-with "Continue with the data on this page" as the way past. **Update now** starts the scheduled task
-at once for the page's owner and for teammates with edit access (see below). View-only viewers get **Ask for an update**, which the owner can start from
-the page or the next scheduled run picks up.
+The worker is woken three ways:
+- **Release days:** the scheduled task **"Custom Roles tracker — release-day update (worker)"**
+  (`trig_01GVcuKyPdDtT3p3Qr2kDwau`), Mon, Tue, Thu and Fri at 18:41 Pakistan time (releases are usually
+  tagged 13:20–15:20 PKT).
+- **The owner presses Update now:** the page starts that same scheduled task.
+- **A teammate with edit access presses Update now:** the page sends an "UPDATE REQUEST" comment to
+  Claude, and the worker (the only session watching the page) runs the update and replies in the thread.
+  The platform only lets editors send to Claude, so the QA team needs **edit access** (Share menu).
+  View-only viewers get **Ask for an update**. Saving a release and recording approvals stay with the owner.
 
-**Update now works for anyone with edit access.** The page's owner starts the scheduled task directly.
-For a teammate, the page sends a "Send to Claude" note on the page, which wakes the
-**"Custom Roles tracker — Update now helper"** session (`session_01LirJvBZEdKWdGSBQcYebEF`, a small
-session whose only job is to start the scheduled task, at most once every 10 minutes). The platform
-only lets editors of a page send to Claude, so the QA team needs **edit access** to the page (Share
-menu). View-only teammates get **Ask for an update** instead. Saving a release and recording approvals
-stay with the owner, even when the team has edit access.
+Why not a fresh session per run (the first design): a fresh scheduled session starts with no
+repositories, and attaching the private product code needs a person's approval that nobody is there to
+give. That made the 2 Nov 2026 update fail; the worker was approved once by the QA lead on 3 Nov.
+
+The page reads `status/freshness` and shows a bar on every tab: **Up to date**, **This page is behind**,
+**out of date** (a scheduled release-day check did not run), **A newer version is ready** (reload), or
+**could not be updated**. In the last four cases it asks the viewer to update or reload before going on,
+with "Continue with the data on this page" as the way past.
 
 ## Storage, integrity, sharing
 

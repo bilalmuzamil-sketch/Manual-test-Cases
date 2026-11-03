@@ -272,7 +272,7 @@ const names = {};
 // The scheduled update (on release days, and when the owner presses Update) checks which release is live,
 // checks any new release, republishes this page if anything changed, and writes what it found into
 // status/freshness. The page compares that with the data it was built with.
-const UPDATE_TRIGGER = 'trig_014eqbzZ82V6XRd2vZguAREC';
+const UPDATE_TRIGGER = 'trig_01GVcuKyPdDtT3p3Qr2kDwau';
 const STATUS = {};
 // release days: Mon, Tue, Thu, Fri at 18:41 Pakistan time (13:41 UTC; Pakistan has no daylight saving)
 const SCHEDULE = { days: [1, 2, 4, 5], h: 13, m: 41 };
@@ -286,7 +286,7 @@ function scheduledRun(dir) {
 }
 function when(d) { return d ? d.toLocaleString(undefined, { weekday: 'long', hour: '2-digit', minute: '2-digit' }) : ''; }
 let isOwner = false, gateShown = false;
-// teammates start an update by sending a request to the helper session that watches this page
+// teammates start an update by sending a request to the update worker session that watches this page
 // (comments "Send to Claude", which the platform allows for editors of the page)
 let commentsApi = null, canSend = 'off';
 function ago(iso) {
@@ -333,7 +333,7 @@ function updateControl() {
         : late ? 'It should have run by now. Please tell Bilal.' : `Bilal can start it at once from this page. Otherwise it runs at the next automatic check, ${esc(when(next))}.`}</span>`;
   }
   const why = canSend === 'writers_only' ? 'To start updates yourself, ask Bilal to give you edit access to this page (Share menu).'
-    : canSend === 'no_session' ? 'The update helper is not answering right now. Please tell Bilal.' : '';
+    : canSend === 'no_session' ? 'The update session is not answering right now. Please tell Bilal.' : '';
   return canWriteDb ? `<button class="btn" data-update="1">Ask for an update</button>${why ? `<span class="muted" style="font-size:.85rem">${esc(why)}</span>` : ''}` : '';
 }
 function renderFresh() {
@@ -393,7 +393,7 @@ async function requestUpdate(btn) {
       if (mcp) { await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: UPDATE_TRIGGER, text: 'Update requested from the portal.' }); started = true; }
     } catch (e) { started = false; }
   }
-  // 2. anyone else with edit access sends the request to the helper session, which starts it
+  // 2. anyone else with edit access sends the request to the update worker session, which runs it
   if (!started && commentsApi) {
     try {
       canSend = await commentsApi.canSendToClaude();
@@ -415,7 +415,7 @@ async function requestUpdate(btn) {
   try {
     await db.collection('scan_requests').doc(hid('update' + Date.now())).set({ release: 'production', kind: 'update', by: me, at: new Date().toISOString(), status: started ? 'started' : 'requested' });
     const g = $('#gate'); if (g && !g.hidden) g.hidden = true;
-    if (code) btn.insertAdjacentHTML('afterend', '<span class="chip c-warn">The update helper could not be reached. Your request is saved; please tell Bilal.</span>');
+    if (code) btn.insertAdjacentHTML('afterend', '<span class="chip c-warn">The update session could not be reached. Your request is saved; please tell Bilal.</span>');
   } catch (e) { btn.disabled = false; btn.insertAdjacentHTML('afterend', `<span class="chip c-bad">Not sent: ${esc(e.message || e.code)}</span>`); }
 }
 
