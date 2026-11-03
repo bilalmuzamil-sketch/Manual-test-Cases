@@ -32,3 +32,7 @@
 - Checked each target first (name + size), then `DELETE /rest/api/3/attachment/{id}`: 63183 (AP1-3-hd-detail-browser-karachi.png, 403,845 B) → 204;
   63182 (AP1-4-lethbridge-detail-browser-edmonton.png, 389,548 B) → 204.
 - Read-back: 3 attachments left (63271, 63272, 63483) = the 3 pictures shown in the description. Done.
+- **Mistake and fix (3 Nov):** the QA lead reported the pictures missing in comment 79708 (28 Oct re-test) — the two deleted files were
+  shown there; I had checked only the description. Restored: the repo copies (`filed-2026-10-28/pictures/`, same sizes 403,845 / 389,548)
+  re-uploaded and re-embedded in comment 79708 with its words unchanged. Read-back: the comment renders both (attachments 63500, 63501).
+  SV-11922 now has 5 attachments: 3 in the description, 2 in comment 79708 — every one in use.

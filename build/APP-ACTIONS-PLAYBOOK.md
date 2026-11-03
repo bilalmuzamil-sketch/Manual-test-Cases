@@ -3369,6 +3369,9 @@ whereas an application-level JSON `{"error":"sso_required", …}` means the requ
   embedding such a file (media id from `downloadJiraIssueAttachment`'s URL) and then removing it again does NOT delete it.
   **What works (3 Nov):** the QA lead's Jira browser cookie (`tenant.session.token`, kept in /tmp only and deleted after) +
   `DELETE https://shopview.atlassian.net/rest/api/3/attachment/<id>` with header `X-Atlassian-Token: no-check` → 204. Check name + size first.
+  🔴 **Before deleting, search EVERY comment body too, not only the description** (`listJiraIssueComments`, look for the file's
+  media id / name). Lesson 3 Nov: SV-11922's two "unused" pictures were shown in comment 79708; deleting them broke it, and the
+  comment had to be restored by re-uploading the repo copies and re-embedding them in the same places.
 - **Jira through the Atlassian MCP (proven 2026-10-28, SV-11922):** `createJiraIssue` with `contentFormat: "html"`; no `<blockquote>`
   inside `<li>` (ADF rejects it); Bugs need `Product Area` (SV-11839 → "Reports & Dashboards"). Pictures: `uploadAttachmentToJiraIssue`
   phase 1 → run the returned curl (token is short-lived, never save it) → put `<figure data-type="media-single" data-width="100"
