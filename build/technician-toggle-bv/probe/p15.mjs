@@ -1,0 +1,15 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./15/', import.meta.url).pathname;
+const { r, page, dump, step, go, dlg } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => s.replace(/\s+/g, ' ').trim();
+const menus = async () => JSON.stringify((await page.locator('.q-menu:visible').allInnerTexts()).map(T));
+const dlgs = async () => JSON.stringify((await page.locator('.q-dialog:visible').allInnerTexts()).map(s => T(s).slice(0, 700)));
+const switchTo = async (name) => { await page.locator('[data-test-id=profile_menu_button]').click(); await page.waitForTimeout(1000); const it = page.locator('.q-menu:visible .q-item', { hasText: /Change Location/ }).first(); await it.hover(); await page.waitForTimeout(800); await it.click(); await page.waitForTimeout(1500); log('LOC MENUS:', await menus(), '| dialogs', await dlgs()); await dump('locmenu');
+  const t = page.locator('.q-menu:visible .q-item, .q-dialog:visible .q-item').filter({ hasText: name }).last(); await t.click(); await page.waitForTimeout(4500); log('header now:', T(await page.locator('header').innerText()).slice(-45)); };
+await step('to-leth', async () => { await go('/'); await switchTo('Lethbridge'); });
+await step('leth-board', async () => { await page.locator('header').getByText('Work Orders', { exact: true }).first().click(); await page.waitForTimeout(2500); await page.locator('main [aria-label="Board View"]').first().click(); await page.waitForTimeout(3500); log('LETH BOARD:', T(await page.locator('main').innerText()).slice(0, 600)); await dump('leth-board', true);
+  await page.locator('main [aria-label="Tech View"]').first().click(); await page.waitForTimeout(3500); log('LETH TECH VIEW:', T(await page.locator('main').innerText()).slice(0, 400)); });
+await step('back', async () => { await switchTo('Heavy Duty'); });
+await step('partsale', async () => { await go('/parts/part-sales'); await page.locator('main button:visible', { hasText: 'New Part Sale' }).first().click(); await page.waitForTimeout(3000); log('PS URL', page.url()); log('NEW PART SALE:', await dlgs(), T(await page.locator('main').innerText()).slice(0, 500)); await dump('new-ps', true);
+  const sr = page.locator('.q-field', { hasText: 'Sales Representative' }).first(); log('SR field:', await sr.count()); });
+await r.browser?.close?.(); process.exit(0);

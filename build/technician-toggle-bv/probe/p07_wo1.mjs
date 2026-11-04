@@ -1,0 +1,27 @@
+// Seed for label checks: ZZAUTOTEST TT work order 1 at Staging Heavy Duty - 9919; walk New Line, Lead Technician, tabs.
+import { start } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./07/', import.meta.url).pathname;
+const { r, page, dump, step, go, dlg } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => s.replace(/\s+/g, ' ').trim();
+const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+await step('create', async () => { await go('/workorders'); await page.locator('main button:visible', { hasText: 'Create Work Order' }).first().click(); await page.waitForTimeout(2500);
+  log('CREATE WO DIALOG:', T(await dlg().innerText()).slice(0, 600)); await dump('create');
+  const f = l => dlg().locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: new RegExp('^' + l) }) }).first();
+  await f('Customer').click(); await page.waitForTimeout(800); await page.keyboard.type('Colesville'); await page.waitForTimeout(2500); await page.locator('.q-menu:visible .q-item').first().click(); await page.waitForTimeout(1500);
+  await f('Asset').click(); await page.waitForTimeout(2000); await page.locator('.q-menu:visible .q-item').first().click(); await page.waitForTimeout(1000);
+  await dlg().locator('button:visible', { hasText: /^Save$/ }).first().click(); await page.waitForTimeout(4000); log('URL after save', page.url()); fs.writeFileSync(OUT + 'wo-url.txt', page.url());
+  log('NEW LINE DIALOG:', T(await dlg().innerText()).slice(0, 900)); log('NEW LINE BUTTONS:', JSON.stringify((await dlg().locator('button:visible').allInnerTexts()).map(T))); await dump('newline'); });
+await step('newline-addtech', async () => { const t = dlg().locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: /^Title/ }) }).first(); await t.locator('input, textarea').first().fill('ZZAUTOTEST TT LINE 1'); await page.keyboard.press('Tab'); await page.waitForTimeout(800);
+  const add = dlg().locator('button:visible, .q-field:visible', { hasText: /Add Technician/i }).first(); log('Add Technician ctl:', await add.count()); await add.click(); await page.waitForTimeout(1500); log('ADD TECH MENU:', JSON.stringify(await menu()).slice(0, 1200)); await dump('addtech');
+  const a = page.locator('.q-menu:visible .q-item', { hasText: 'ZZAUTOTEST TT Staff A' }).first(); if (await a.count()) { await a.click(); await page.waitForTimeout(1000); } await page.keyboard.press('Escape').catch(() => {}); await page.waitForTimeout(600);
+  const lr = dlg().locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: /Labor Rate/ }) }).first(); await lr.click(); await page.waitForTimeout(1000); await page.locator('.q-menu:visible .q-item').first().click(); await page.waitForTimeout(800);
+  const ap = dlg().locator('.q-checkbox, .q-toggle', { hasText: /Line Approved/ }).first(); await ap.click(); await page.waitForTimeout(500);
+  log('NEW LINE FILLED:', T(await dlg().innerText()).slice(0, 700)); await dlg().locator('button:visible', { hasText: 'Save & Close' }).first().click(); await page.waitForTimeout(3500); log('dialogs left:', await page.locator('.q-dialog:visible').count()); });
+await step('wo-page', async () => { await dump('wo', true); log('WO TABS:', JSON.stringify((await page.locator('main .q-tab').allInnerTexts()).map(T)));
+  log('WO HEAD:', T(await page.locator('main').innerText()).slice(0, 1500));
+  const lt = page.locator('main .q-field, main button').filter({ hasText: /Lead Technician|Lead technician/ }).first(); log('lead ctl count', await lt.count(), T(await lt.innerText().catch(() => ''))); await lt.click(); await page.waitForTimeout(1500); log('LEAD MENU:', JSON.stringify(await menu()).slice(0, 1200)); await dump('leadmenu');
+  const a = page.locator('.q-menu:visible .q-item', { hasText: 'ZZAUTOTEST TT Staff A' }).first(); if (await a.count()) { await a.click(); await page.waitForTimeout(2500); log('after pick lead:', T(await page.locator('.q-dialog:visible').allInnerTexts().then(x => x.join(' || '))).slice(0, 500)); const ok = page.locator('.q-dialog:visible button', { hasText: /^(Save|Confirm|Yes|OK)$/ }).first(); if (await ok.count()) { await ok.click(); await page.waitForTimeout(2000); } } else await page.keyboard.press('Escape');
+  log('LEAD NOW:', T(await page.locator('main .q-field, main button').filter({ hasText: /Lead Technician|Lead technician/ }).first().innerText().catch(() => '')));
+  log('MAIN BUTTONS:', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))].slice(0, 50))); });
+await r.browser?.close?.(); process.exit(0);

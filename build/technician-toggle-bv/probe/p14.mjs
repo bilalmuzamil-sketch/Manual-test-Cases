@@ -1,0 +1,12 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./14/', import.meta.url).pathname;
+const { r, page, dump, step, go, dlg } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => s.replace(/\s+/g, ' ').trim();
+const dlgs = async () => JSON.stringify((await page.locator('.q-dialog:visible').allInnerTexts()).map(s => T(s).slice(0, 700)));
+await step('react', async () => { await go('/administration/staff'); await page.locator('.q-tab', { hasText: /deactivated/i }).first().click(); await page.waitForTimeout(2000); await page.locator('main').getByText('Search', { exact: true }).first().click(); await page.waitForTimeout(500); await page.locator('main input:visible').first().fill('ZZAUTOTEST'); await page.waitForTimeout(2500);
+  const row = page.locator('tr', { hasText: 'zzautotest.tt.a@example.com' }).first(); log('DEACT ROW:', T(await row.innerText())); await row.locator('button, i').filter({ hasText: 'edit_note' }).first().click(); await page.waitForTimeout(2500);
+  log('DEACT EDIT:', await dlgs()); await dump('deact-edit'); const b = dlg().locator('button:visible', { hasText: /Activate|Reactivate/ }).first(); log('activate btn:', T(await b.innerText())); await b.click(); await page.waitForTimeout(3000); log('after activate:', await dlgs()); await dump('after-activate');
+  const c = page.locator('.q-dialog:visible button', { hasText: /^(Yes|Confirm|Activate|OK)$/ }).first(); if (await c.count()) { await c.click(); await page.waitForTimeout(2500); } });
+await step('check', async () => { await go('/administration/staff'); await page.locator('main').getByText('Search', { exact: true }).first().click(); await page.waitForTimeout(500); await page.locator('main input:visible').first().fill('ZZAUTOTEST'); await page.waitForTimeout(2500); log('TABS:', JSON.stringify(await page.locator('.q-tab').filter({ hasText: /active/i }).allInnerTexts())); log('ACTIVE ROW:', T(await page.locator('tr', { hasText: 'zzautotest.tt.a@example.com' }).first().innerText().catch(() => 'none')));
+  await page.locator('tr', { hasText: 'zzautotest.tt.a@example.com' }).first().locator('button, i').filter({ hasText: 'edit_note' }).first().click(); await page.waitForTimeout(2500); log('A TOGGLES:', await page.locator('.q-dialog:visible .q-toggle').evaluateAll(els => els.map(e => e.innerText.replace(/\s+/g, ' ').trim() + '=' + e.getAttribute('aria-checked')).join(', '))); });
+await r.browser?.close?.(); process.exit(0);

@@ -1,0 +1,14 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./12/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => s.replace(/\s+/g, ' ').trim();
+const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+await step('reports-body', async () => { await go('/'); await page.locator('header').getByText('Reports', { exact: true }).first().click(); await page.waitForTimeout(3000);
+  const b = T(await page.locator('body').innerText()); const i = b.indexOf('Timesheet Activities'); log('BODY around:', b.slice(Math.max(0, i - 1500), i + 50));
+  const links = await page.locator('a:visible, .q-item:visible').evaluateAll(els => els.map(e => (e.innerText || '').replace(/\s+/g, ' ').trim()).filter(Boolean)); log('LINKS:', JSON.stringify(links.slice(0, 60))); await dump('rep-body', true); });
+for (const rep of [/Technician Utilization/i, /Technician Efficiency/i, /Timesheet Activities|Punch Clock/i]) await step('rep', async () => {
+  const l = page.locator('a:visible, .q-item:visible').filter({ hasText: rep }).first(); log(String(rep), 'count', await page.locator('a:visible, .q-item:visible').filter({ hasText: rep }).count()); await l.click(); await page.waitForTimeout(3500); log('URL', page.url(), '| HEAD', T(await page.locator('main').innerText()).slice(0, 300));
+  const f = page.locator('main .q-field:visible, main button:visible').filter({ hasText: /Technician|Staff|Employee/ }).first(); log('  filter ctl:', T(await f.innerText().catch(() => 'none'))); if (await f.count()) { await f.click(); await page.waitForTimeout(1500); const m = await menu(); log('  FILTER first 5:', JSON.stringify(m.slice(0, 5)), 'has A:', m.some(x => /ZZAUTOTEST/.test(x)), 'n', m.length); await page.keyboard.press('Escape'); await page.waitForTimeout(500); } });
+await step('role-tech', async () => { await go('/administration/roles-permissions'); await page.locator('main button:visible', { hasText: 'Create Custom Role' }).first().click(); await page.waitForTimeout(2000); await page.locator('.q-dialog:visible').getByText('Technician', { exact: true }).first().click(); await page.waitForTimeout(600); await page.locator('.q-dialog:visible button', { hasText: 'Apply' }).first().click(); await page.waitForTimeout(3500); log('ROLE FORM URL', page.url());
+  const b = T(await page.locator('main').innerText()); log('ROLE FORM HEAD:', b.slice(0, 700)); const i = b.search(/View mode/i); log('VIEW MODE ctx:', i >= 0 ? b.slice(i - 100, i + 200) : 'not found'); log('ROLE FORM BUTTONS:', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))].slice(0, 20))); log('FIELD LABELS:', JSON.stringify(await page.locator('main .q-field__label').allTextContents())); await dump('role-form', true); });
+await r.browser?.close?.(); process.exit(0);

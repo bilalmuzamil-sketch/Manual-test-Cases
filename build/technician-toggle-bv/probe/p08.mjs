@@ -1,0 +1,21 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./08/', import.meta.url).pathname;
+const { r, page, dump, step, go, dlg } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => s.replace(/\s+/g, ' ').trim();
+const WO = fs.readFileSync(new URL('./07/wo-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const dlgs = async () => JSON.stringify((await page.locator('.q-dialog:visible').allInnerTexts()).map(s => T(s).slice(0, 700)));
+const okNotes = async () => { for (let i = 0; i < 2; i++) { const ok = page.locator('.q-dialog:visible button', { hasText: /^Ok$/ }).first(); if (await ok.count()) { await ok.click(); await page.waitForTimeout(1000); } } };
+await step('lead', async () => { await go(WO); await page.waitForTimeout(2500); await okNotes();
+  const s = page.locator('[data-test-id=select_lead_technician]').first(); log('lead select:', await s.count(), T(await s.innerText().catch(() => ''))); await s.click(); await page.waitForTimeout(1500);
+  log('LEAD OPTIONS:', JSON.stringify(await menu()).slice(0, 700)); await page.keyboard.type('ZZAUTOTEST').catch(() => {}); await page.waitForTimeout(1200);
+  const a = page.locator('.q-menu:visible .q-item', { hasText: 'ZZAUTOTEST TT Staff A' }).first(); await a.click(); await page.waitForTimeout(2500); log('after pick, dialogs:', await dlgs()); await dump('after-lead');
+  const ok = page.locator('.q-dialog:visible button', { hasText: /^(Save|Confirm|Yes|OK|Ok|Change)$/ }).first(); if (await ok.count()) { log('confirm btn:', await ok.innerText()); await ok.click(); await page.waitForTimeout(2500); }
+  log('LEAD NOW:', T(await page.locator('[data-test-id=select_lead_technician]').first().innerText().catch(() => ''))); });
+await step('line-menus', async () => { const lm = page.locator('main tbody button:visible, main tr button:visible').filter({ has: page.locator('i:text-is("more_vert")') });
+  log('line more_vert count', await lm.count()); for (let i = 0; i < Math.min(await lm.count(), 3); i++) { await lm.nth(i).click(); await page.waitForTimeout(1200); log(`MENU ${i}:`, JSON.stringify(await menu())); await page.keyboard.press('Escape'); await page.waitForTimeout(500); } });
+await step('edit-line', async () => { const lm = page.locator('main tbody button:visible, main tr button:visible').filter({ has: page.locator('i:text-is("more_vert")') }).first(); await lm.click(); await page.waitForTimeout(1000); const it = page.locator('.q-menu:visible .q-item', { hasText: /Edit/ }).first(); log('edit item:', T(await it.innerText())); await it.click(); await page.waitForTimeout(2500); log('EDIT LINE DIALOG:', await dlgs()); await dump('edit-line'); await page.keyboard.press('Escape'); await page.waitForTimeout(1000); });
+await step('labor-menu', async () => { const row = page.locator('main').getByText('ZZAUTOTEST TT Staff A').first(); const box = row.locator('xpath=ancestor::*[.//i[text()="more_vert"]][1]'); const b = box.locator('button').filter({ has: page.locator('i:text-is("more_vert")') }).first(); await b.click(); await page.waitForTimeout(1200); log('LABOR MENU:', JSON.stringify(await menu())); const it = page.locator('.q-menu:visible .q-item', { hasText: /Edit/ }).first(); if (await it.count()) { log('labor edit item:', T(await it.innerText())); await it.click(); await page.waitForTimeout(2500); log('EDIT LABOR DIALOG:', await dlgs()); await dump('edit-labor'); const tl = page.locator('.q-dialog:visible .q-field').filter({ hasText: /Technician/ }).first(); if (await tl.count()) { await tl.click(); await page.waitForTimeout(1200); log('EDIT LABOR TECH LIST (first 8):', JSON.stringify((await menu()).slice(0, 8))); await page.keyboard.press('Escape'); } await page.keyboard.press('Escape'); await page.waitForTimeout(800); } else await page.keyboard.press('Escape'); });
+await step('timesheets', async () => { await page.locator('main .q-tab', { hasText: /Timesheets/ }).first().click(); await page.waitForTimeout(2500); log('TIMESHEETS:', T(await page.locator('main').innerText()).slice(0, 700)); log('TS BUTTONS:', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))])); await dump('timesheets', true); });
+await r.browser?.close?.(); process.exit(0);

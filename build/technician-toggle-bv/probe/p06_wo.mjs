@@ -1,0 +1,17 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./06/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a);
+const T = s => s.replace(/\s+/g, ' ').trim();
+await step('wo', async () => { await go('/workorders'); await page.waitForTimeout(3000); log('URL', page.url());
+  log('TABS:', JSON.stringify((await page.locator('main .q-tab').allInnerTexts()).map(T)));
+  log('MAIN BUTTONS:', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))].slice(0, 40)));
+  const sw = await page.locator('main [aria-label], main [title]').evaluateAll(els => els.map(e => (e.getAttribute('aria-label') || '') + '/' + (e.getAttribute('title') || '')).filter(s => /view|board|list|tech/i.test(s))); log('SWITCHER-ish:', JSON.stringify([...new Set(sw)])); await dump('wo', true); });
+await step('board', async () => { const b = page.locator('main [aria-label*="Board" i], main [title*="Board" i], main button:has-text("Board View")').first(); log('board ctl count', await b.count()); await b.click(); await page.waitForTimeout(3500); log('URL', page.url()); await dump('board', true);
+  const cols = await page.locator('main').innerText(); log('BOARD TEXT HEAD:', T(cols).slice(0, 900)); });
+await step('techfilter', async () => { const f = page.locator('main button:visible, main .q-field:visible').filter({ hasText: /^\s*Technician/ }).first(); log('filter ctl:', T(await f.innerText())); await f.click(); await page.waitForTimeout(1500);
+  log('FILTER MENU:', JSON.stringify((await page.locator('.q-menu:visible').allInnerTexts()).map(T)).slice(0, 1500)); await dump('techfilter'); await page.keyboard.press('Escape'); });
+await step('assigned', async () => { log('Assigned to me ctl:', await page.locator('main').getByText('Assigned to me').count()); });
+await step('card-menu', async () => { const mv = page.locator('main .q-card button:visible, main [class*=card] button:visible').filter({ has: page.locator('i:text-is("more_vert")') }).first(); log('card dots', await mv.count()); await mv.click(); await page.waitForTimeout(1200); log('CARD MENU:', JSON.stringify((await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T))); await dump('cardmenu'); await page.keyboard.press('Escape'); });
+await step('techview', async () => { const tv = page.locator('main [aria-label*="Tech" i], main [title*="Tech" i], main button:has-text("Tech View")').first(); log('tech ctl count', await tv.count()); await tv.click(); await page.waitForTimeout(3500); log('URL', page.url()); await dump('techview', true); log('TECH TEXT HEAD:', T(await page.locator('main').innerText()).slice(0, 700)); });
+await r.browser?.close?.(); process.exit(0);

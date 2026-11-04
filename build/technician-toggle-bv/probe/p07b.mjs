@@ -1,0 +1,24 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./07b/', import.meta.url).pathname;
+const { r, page, dump, step, go, dlg } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => s.replace(/\s+/g, ' ').trim();
+const WO = fs.readFileSync(new URL('./07/wo-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const okNotes = async () => { for (let i = 0; i < 2; i++) { const ok = page.locator('.q-dialog:visible button', { hasText: /^Ok$/ }).first(); if (await ok.count()) { await ok.click(); await page.waitForTimeout(1000); } } };
+await step('open', async () => { await go(WO); await page.waitForTimeout(2500); await okNotes(); log('dialogs:', JSON.stringify((await page.locator('.q-dialog:visible').allInnerTexts()).map(s => T(s).slice(0, 80))));
+  log('LINES TEXT:', T(await page.locator('main').innerText()).slice(0, 400)); });
+await step('newline', async () => { if (!(await page.locator('.q-dialog:visible', { hasText: 'New Line' }).count())) { await page.locator('main button:visible', { hasText: /^New Line$/ }).first().click(); await page.waitForTimeout(2000); }
+  const d = page.locator('.q-dialog:visible', { hasText: 'New Line' }).last();
+  await d.locator('.q-field', { hasText: 'Title' }).first().locator('input').first().fill('ZZAUTOTEST TT LINE 1'); await page.keyboard.press('Tab'); await page.waitForTimeout(800);
+  await d.locator('.q-field', { hasText: 'Add Technician' }).first().click(); await page.waitForTimeout(1000); await page.keyboard.type('ZZAUTOTEST'); await page.waitForTimeout(1500); log('ADD TECH filtered:', JSON.stringify(await menu())); await page.locator('.q-menu:visible .q-item', { hasText: 'ZZAUTOTEST TT Staff A' }).first().click(); await page.waitForTimeout(800); await page.keyboard.press('Escape'); await page.waitForTimeout(600);
+  if (!(await d.isVisible())) throw new Error('New Line closed');
+  await d.locator('.q-field', { hasText: 'Labor Rate' }).first().click(); await page.waitForTimeout(1200); log('LABOR RATES:', JSON.stringify((await menu()).slice(0, 5))); await page.locator('.q-menu:visible .q-item').first().click(); await page.waitForTimeout(800);
+  log('labor rate:', T(await d.locator('.q-field', { hasText: 'Labor Rate' }).first().innerText()));
+  await d.getByText('Line Approved', { exact: true }).click(); await page.waitForTimeout(600); await dump('newline-filled'); log('NEW LINE:', T(await d.innerText()).slice(0, 600));
+  await d.locator('button:visible', { hasText: 'Save & Close' }).first().click(); await page.waitForTimeout(3500); await okNotes(); log('dialogs left:', JSON.stringify((await page.locator('.q-dialog:visible').allInnerTexts()).map(s => T(s).slice(0, 200)))); });
+await step('lines', async () => { await dump('lines', true); log('LINES:', T(await page.locator('main').innerText()).slice(0, 900)); });
+await step('lead', async () => { const card = page.locator('text=Lead technician').first(); log('lead label count', await page.getByText('Lead technician', { exact: true }).count()); await card.click(); await page.waitForTimeout(1500); log('AFTER CLICK lead:', JSON.stringify(await menu()).slice(0, 900), '| dialogs', JSON.stringify((await page.locator('.q-dialog:visible').allInnerTexts()).map(s => T(s).slice(0, 300)))); await dump('lead-click');
+  const a = page.locator('.q-menu:visible .q-item', { hasText: 'ZZAUTOTEST TT Staff A' }).first(); if (await a.count()) { await a.click(); await page.waitForTimeout(2500); log('after pick:', JSON.stringify((await page.locator('.q-dialog:visible').allInnerTexts()).map(s => T(s).slice(0, 300)))); await dump('after-lead'); } else await page.keyboard.press('Escape'); });
+await step('left-card', async () => { const t = await page.locator('main').innerText().catch(() => ''); const all = T(await page.locator('body').innerText()); const i = all.indexOf('Lead technician'); log('LEFT CARD:', all.slice(Math.max(0, i - 150), i + 250)); });
+await r.browser?.close?.(); process.exit(0);
