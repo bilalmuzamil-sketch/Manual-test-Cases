@@ -369,3 +369,8 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **QA lead "Yes" — TestRail run 552 → Nebojsa:** the RUN's assignee was changed (TestRail user 2). Reassigning its 299
   TESTS was **blocked by the session's permission guard**: TestRail's API can only reassign a test by adding an
   assignment-only result entry to its history (299 entries). Asked the QA lead.
+- **TestRail run 552 "Maintenance reminder (Chunk1 and 2)" — tests to Nebojsa (QA lead, 2026-11-04):** checked before writing:
+  **all 299 tests were already assigned to Nebojsa (TestRail user 2)** — changing the RUN's assignee with `update_run`
+  evidently reassigned its tests too. **No write was needed or made**; all statuses unchanged.
+- FYI recorded: TestRail run 552 shows 38 P · 34 F · 2 B · 225 U, while **TMS run 4 "Mantenence Reminders"** shows
+  237 P · 1 B · 61 U (Nebojsa is testing in TMS). TMS → TestRail results are copied **only when the QA lead asks**.
