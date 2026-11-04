@@ -1,3 +1,9 @@
+<!-- COORDINATOR NOTE 4 Nov 2026 (Rule 86 check of the worker's evidence: rerun-2026-11-04/results/sec3/server-pay-HD-AdminShopview-2026-09-17-2026-09-22.json → 18 Sep 23.67, 19 Sep 24.33, 20 Sep 24.00; matches this draft).
+PROBABLE DUPLICATE OF SV-10702 (Blocked) — "Payroll Timesheet export dates each day of a multi-day punch one day early".
+- SV-10702's stated cause is a double time-zone conversion of the day slices of a MULTI-DAY punch (PayrollTimesheetExportQueryHandler.php :233).
+- The S2-15119 timesheet here is multi-day (Sep 18 11:40 PM to Sep 21 6:06 AM). At Karachi (UTC+5) the same double conversion moves a late-evening slice to the NEXT day. SV-10702 shows the "one day early" direction at a location behind UTC.
+- RECOMMENDATION TO THE QA LEAD: do not file this as a new ticket. Add one comment to SV-10702 with this Karachi example and Chris Ward's answer 39 (corrected)(b) as the confirmed expected behaviour (needs the QA lead's go-ahead: Jira write).
+- If he prefers a separate ticket, file this draft linked "relates to SV-10702". -->
 <!-- DRAFT — NOT FILED. File only after the QA lead's go-ahead for THIS ticket (Rule 62/73).
 RESULT: REPRODUCED — 4 Nov 2026, 17:24–17:34 UTC (= 10:24–10:34 PM in Karachi), staging v26.45.0-440aa25 (app meta "app-version"), Staging Heavy Duty - 9919. Timesheet Activities shows Admin Shopview's S2-15119 timesheet (Sep 18, 2026 11:40 PM to Sep 21, 2026 6:06 AM) as 0.33 h on Sep 18 and 24.00 h on Sep 19. The downloaded Payroll Timesheet file shows 2026-09-18 = 23.67 and 2026-09-19 = 24.33: the 20 minutes worked before midnight on 18 Sep are counted on 19 Sep. Server read the same minutes gives the same figures. Second example, same person: a timesheet from Sep 16 9:53 PM to Sep 17 1:19 AM: the file shows 0.01 on 16 Sep and 12.10 on 17 Sep, while Timesheet Activities shows 2.12 and 9.99.
 NEW DRAFT 4 Nov 2026, written after Chris Ward's answer to question 39 (corrected) (b).

@@ -11,3 +11,10 @@
   - 39(b): related, not the same → SV-10702 "Payroll Timesheet export dates each day of a multi-day punch one day early" (Blocked). 39(b) is a punch on one day that is counted on the NEXT day.
   - 40: no open ticket. But our own SV-11945 (Open) says Last Sale reads "0 days within the first 24 hours after the sale", which Chris's answer 40 now contradicts; it needs a correcting comment (ask the QA lead first).
   - 38 and 39(a): no ticket filed; drafts P2-D7 and P2-A5 are held.
+- 4 Nov, unattended (QA lead asleep: "Continue unattended"):
+  - **QA branch sv11839** (QA lead's message 4 Nov): full Dashboard check done → `rerun-sv11839-2026-11-04/SUMMARY-sv11839-2026-11-04.md`. **No new Dashboard bug beyond epic SV-11839.** SV-11931 and SV-11932 fixes are visible on the branch. Observations O1 (no comma at ≥1,000 %) and O2 (remembered technician filter shows a technician never chosen; PRD S8-R6 silent) are PO-question candidates, not tickets.
+  - **Worker re-checks, verified from committed evidence (Rule 86):**
+    - 38 (P2-D7): REPRODUCED.
+    - 39(a) (P2-A5): REPRODUCED.
+    - 39(b) (P2-A6): REPRODUCED, but it is a **probable duplicate of SV-10702** (multi-day punch slices, double time-zone conversion; the Karachi direction). Recommendation: comment on SV-10702, not a new ticket.
+    - 40: still running.
