@@ -45,17 +45,17 @@ C("S1-04", S, 'The "New" pill disappears at its end date in a window that is alr
    ['The "Technician" label shows no "New" pill.']],
   ["S1-R2", "S4-N2", ("Jira SV-12008", "Today the build carries a placeholder: 31 Dec 2026, 07:00 UTC.")])
 
-C("S1-05", S, 'On the release build the "New" pill ends on the seventh day after release',
-  [ADMIN, "Use the release build of the release that ships Technician Toggle, and know its scheduled release date.",
-   "Set your computer's clock to 06:58 UTC on the seventh day after that release date.", LIST],
-  [NEWWIN, "Set your computer's clock to 07:01 UTC on the same day.", "Close the New Staff Member window.", NEWWIN],
+C("S1-05", S, 'The "New" pill on the Technician toggle disappears at 07:00 UTC on 26 Nov 2026',
+  [ADMIN, "Use the build that ships Technician Toggle in the 19 Nov 2026 release, so the pill's end is 07:00 UTC on 26 Nov 2026.",
+   "Set your computer's clock to 06:58 UTC on 26 Nov 2026.", LIST],
+  [NEWWIN, "Set your computer's clock to 07:01 UTC on 26 Nov 2026.", "Close the New Staff Member window.", NEWWIN],
   [['The "Technician" label carries the "New" pill.'],
    ['The "New" pill is gone from the open window.'],
    ["The window closes."],
    ['The "Technician" label shows no "New" pill (if it still shows, the build still carries the 31 Dec 2026 placeholder date).']],
   ["S1-R2", ("Jira SV-12008", "When the release that ships Technician Toggle is scheduled, set the end date of its \"New\" pills (on the Technician toggle in the New and Edit Staff Member windows, and on the staff list's Technician column header) and of the staff list notice to 07:00 UTC on the seventh day after the release date."),
-   ("Jira SV-12008", "On the release build before that moment, the pills and the notice show; from that moment on they are gone, including in a page that is already open.")],
-  marker=HOLD("the end date is set only when the release is scheduled; run on the release build before release day"))
+   ("Jira SV-12008", "On the release build before that moment, the pills and the notice show; from that moment on they are gone, including in a page that is already open."),
+   ("Jira SV-11879", "The \"New\" pill disappears at 26 Nov 2026 07:00 UTC (one week after the 19 Nov release, SV-12008) on every environment — test it before then.")])
 
 # ---- New Staff Member pre-fill (S1-R3, S1-R5, S1-N1) ---------------------------------------------------------------------------
 def prefill_on(key, role, first_tc):

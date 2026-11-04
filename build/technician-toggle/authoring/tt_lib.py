@@ -36,7 +36,7 @@ PRD_TXT = md_to_text(PRD_MD)
 PRDW = ws(PRD_TXT)
 PRD_RAWW = ws(re.sub(r"<[^>]+>", "", re.sub(r"\[([^\]]*)\]\(([^)]*)\)", r"\1", PRD_MD)))   # keeps table rows "a | b | c"
 JIRA_FILE = f"{P}/sources/JIRA-SV-11788-tickets-2026-11-02.md"
-JIRAW = ws(open(JIRA_FILE).read())
+JIRAW = ws(open(JIRA_FILE).read() + " " + open(f"{P}/sources/JIRA-SV-11879-qa-handoff-2026-11-03.md").read())
 PLAN_FILE = f"{P}/sources/tech-plan-Technician-Toggle-2026-11-02.md"
 PLANW = ws(open(PLAN_FILE).read())
 
@@ -221,8 +221,9 @@ if any(NAMED20[k] != NAMED18[k] for k in NAMED18): raise SystemExit("a named ite
 SUB20 = {k: (lab, t if _in20(t) else _v20_line(t)) for k, (lab, t) in SUB.items()}
 if sorted(k for k in SUB if SUB20[k] != SUB[k]) != ["S6-R1 a"]: raise SystemExit("v20 sub-items changed other than S6-R1 (a)")
 NAMED_SET20 = {"S3-01", "S3-02", "S3-03", "S3-04", "S3-07", "S3-08", "S3-11", "S3-48", "S3-50",
-               "S6-01", "S6-02", "S6-03", "S6-04", "S6-05", "S6-06", "INV-06"}
-NEW20 = {"S3-51", "S3-52", "S3-53"}   # created 4 Nov 2026 (C913764-C913766); keep them on v20 once mapped
+               "S6-01", "S6-02", "S6-03", "S6-04", "S6-05", "S6-06", "INV-06",
+               "S1-05", "S4-10"}   # S1-05, S4-10 released 4 Nov 2026 (QA lead "Yes release them")
+NEW20 = {"S3-51", "S3-52", "S3-53"}   # created 4 Nov 2026 (C913764-C913766); keep them on v20 once mapped   # created 4 Nov 2026 (C913764-C913766); keep them on v20 once mapped
 def prd_version(c):
     k = c["key"]
     if k in NAMED_SET20 or k in NEW20 or (k not in MAPPED and k not in NO_MANUAL): return 20

@@ -221,3 +221,6 @@ Verify on https://app.staging.shopview.com/ with Require Approval for New Lines 
 C913767 (S6-R5 count sheet order), C913768 and C913769 (S11-R3c new Delete blockers), C913770 (S13-R19a) — in run 556.
 C913771, C913772 (SV-12010) — held, not in the run, until the ticket ships.
 The 9 existing cases to check against v36 are in build/handoffs/PART-LIFECYCLE-PRD-V36-FOR-BUILD-VERIFICATION-2026-11-04.md.
+
+## Technician Toggle — 4 Nov 2026, released "New" pill end-date cases (run 555, https://sv11788.qa.shopview.com/)
+C897152 (pill on the Technician toggle) and C897278 (staff list notice and column pill): set the computer clock to 06:58 then 07:01 UTC on 26 Nov 2026. Run before 26 Nov.
