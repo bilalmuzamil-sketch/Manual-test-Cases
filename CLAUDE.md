@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **119 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **120 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -176,14 +176,14 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   proceed only on YES, else report it as not seen. Don't edit a case the tester is editing (83/86). Full text: rule 115.
 - **🛑 QUICK-LOGIN IS THE ROUTE, AND ONE COOKIE ONLY.** `node build/testing-tools/qa-branch-boot.mjs <branch>
   <route> admin`; carry `sv_sso_session` only, HOST-ONLY (a domain-scoped cookie 409s right after a 200 login);
-  judge by `fe_permissions.length`, not `role.name`. Traps: `build/APP-ACTIONS-PLAYBOOK.md` §A.
+  judge by `fe_permissions.length`, not `role.name`. Traps: playbook §A.
 - **AUTOMATED CASES ARE READ-ASSESSED, THEN HELD FOR THE QA LEAD (71).** Never change or delete a case
   TestRail flags as Automated without his go-ahead; if a pass does change one, TELL VLAD (65).
 - **COMMIT AND PUSH AFTER EVERY STEP, PATH-SCOPED (29).** Git is the only durable store; the container
   and `/tmp` are ephemeral. `git add -- <paths>` only — **never `git add -A` / `git add .`**.
 - **ALWAYS PAIR AN INTERNAL ID WITH ITS C-ID AND LINK (8).** Never a bare `FLT-…`/`SCH-…`: give
   `C#####` and `https://shopview.testrail.io/index.php?/cases/view/<id>` — in files AND in chat.
-- **🛑 EVERY REPORT: FIVE TABLES, C-IDS, "OUTSTANDING — what I need from you", IN HIS LANGUAGE (98 · 99 · 36 · 103).**
+- **🛑 EVERY REPORT: FIVE TABLES, C-IDS, "OUTSTANDING — what I need from you", IN HIS LANGUAGE (98 · 99 · 36 · 103 · 120).**
   DONE · LEFT (how a different session finishes each item) · BLOCKED (and what it does NOT block, 68) ·
   HOW TO UNBLOCK · HANDOFF-READY (last row a bare YES/NO — NO unless every gate passed). Rows name C-ids, never
   only counts; completed-vs-left gives both numbers and the ids left. Every ask carries what it is · how it
@@ -191,7 +191,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   outstanding" if true; keep `build/OUTSTANDING-ITEMS-REGISTER.md` current. Everything he reads leads with
   what a user would see — no run numbers, case/test ids, ticket keys, API/HTTP/tool/DOM terms, "precondition/
   verdict/settled/not observed", no bare tallies; ids go after `---REFERENCE---` (8). Run
-  `python3 build/testing-tools/plain_check.py <draft>` before sending. Full text: rules 98, 99, 103.
+  `plain_check.py <draft>` before sending. Name each file by its path (120). Full text: rules 98, 99, 103, 120.
 - **🛑 PO QUESTIONS: A SPREADSHEET, PLAIN, SENT LAST — AND BUILD-VERIFICATION DISCREPANCIES GO INTO THE
   FEATURE'S SHEET (55 · 66 · 7/9 · 116).** **(a)** Deliver `.xlsx` or a Google Sheet, never a markdown table,
   in the established shape `# · Topic · What happens now · The question · Options · Your answer` (or an existing sheet's own shape) plus a final **QA internal** tab with the case ids and requirement anchors; options on every question, no case ids,
@@ -223,7 +223,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   changed** — check `created_by == 1` before the write; no general go-ahead reaches them and we do not re-ask.
   Automated cases still need his go-ahead (71). Full text: `build/rules/RULES-21-40.md` rule 38.
 
-## 2 · THE RULE INDEX — all 119 rules, and where each one lives
+## 2 · THE RULE INDEX — all 120 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -367,6 +367,7 @@ rule. Generated from the split files' own headers.
 | **117** | EVERY BUILD VERIFICATION CLONES THE PRODUCT CODE OF THE BUILD UNDER TEST — staging = `develop` at the build marker's commit, a QA site = that feature's branch at its marker's commit; never learn from any other/production branch (unavailable ⇒ screen only); code is a FINDING AID for labels/routes/conditions, labels still confirmed on screen, and NEVER the Expected (57/114) (QA lead, 2026-10-23) |
 | **118** | NOTHING HALTS, STOPS OR WASTES TIME — work around every blocker the same turn (107, incl. shared-account workarounds), ask in parallel never instead, fix failing tools at once; only an empty queue, a decision already put to him with nothing else left, or a gated blocker with no workaround may stop the work (QA lead, 2026-10-28) |
 | **119** | EVERY LINE OF A TEST CASE SERVES THAT ONE TEST — preconditions, steps and expected result; a test that needs setup keeps PRECONDITIONS (what must be true) and a separate, plain numbered SETUP (how, in the build's labels, one item per thing to make) (QA lead, 2026-11-03) |
+| **120** | EVERY REFERENCE TO RECORDED WORK NAMES ITS FILE — an open question, a past pass, a draft or a register entry is pointed at by its full repo path in backticks, the branch when it is not this session's, and the link of any Doc or Sheet, each with plain words of what it holds; check the path exists before naming it (100) (QA lead, 2026-11-04) |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`

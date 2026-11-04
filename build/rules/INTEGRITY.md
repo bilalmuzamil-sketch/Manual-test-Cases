@@ -513,3 +513,9 @@ Rule count 116 → **117**.
 - **2026-11-03 — Rule 115 amendment 3 (QA lead's explicit instruction):** ask whether he owns the testing of a suite before adding setup clicks (YES ⇒ add; NO ⇒ state only); clause (iii) stands for every suite; Parts Lifecycle recorded as NO. Text appended to rule 115 in `RULES-61-ONWARD.md`; §1 bullet for 115 gains clause (iv); §1 19,970 B (cap 20,000). Rule count unchanged (118).
 
 - **2026-11-03 — Rule 119 added (QA lead's explicit instruction):** every line of a case serves that one test; a test needing setup keeps Preconditions and a separate, plain Setup. Rule count 118 → **119**. §1 bullet for 115 gains clause (v). To stay under the §1 cap, evidence moved out of §1 (pointers kept): "learning L0036" (still in rule 107 / LEARNINGS-LOG) and "(2026-09-01 amendment)" in the 62 bullet → "(its amendments)" (the amendment and its date stay in rule 62).
+- **2026-11-04 — Rule 120 added (QA lead's explicit instruction, "Make it a rule to always mention the file name like this"):** every
+  reference to recorded work names its file by full repo path, the branch when not this session's, and any Doc/Sheet link, each with
+  plain words of what it holds; the path is checked before it is named. Rule count 119 → **120**. §1 "EVERY REPORT" bullet gains
+  "Name each file by its path (120)". To stay under the §1 cap two paths in §1 were shortened to names that still resolve (pointers
+  kept, full paths unchanged elsewhere): `python3 build/testing-tools/plain_check.py <draft>` → `plain_check.py <draft>` (full command
+  in rule 103) and `build/APP-ACTIONS-PLAYBOOK.md` §A → "playbook §A" (full path in §4 and §6 of CLAUDE.md). §1 = 19,992 bytes.

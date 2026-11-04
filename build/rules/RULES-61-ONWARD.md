@@ -4320,3 +4320,24 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **(d) WHEN SETUP IS ADDED AT ALL** still follows 115 amendment 3 (ask whether he owns the testing). Expected results stay the
     source's words (57/114) — (a) never licenses rewording them.
 
+
+120. **EVERY REFERENCE TO RECORDED WORK NAMES ITS FILE — WHEN A REPORT OR AN ASK POINTS AT AN OPEN QUESTION, A PAST PASS, A DRAFT OR
+    A REGISTER ENTRY, IT GIVES THE FILE'S FULL REPO PATH, THE BRANCH WHEN IT IS NOT THIS SESSION'S, AND THE LINK OF ANY DOC OR SHEET
+    (all projects, permanent; QA lead 2026-11-04).**
+    USER DIRECTIVE (2026-11-04, verbatim): *"Make it a rule to always mention the file name like this"* — given in reply to a report
+    that, asked to "Mention the file name" for the open What/Why item, listed:
+    - Record of the What/Why check: `build/founder-mode-what-why/build-verify-staging-2026-10-28/README.md`
+    - My draft of question 15: `build/founder-mode-what-why/build-verify-staging-2026-10-28/PO-QUESTION-DRAFT-15.md`
+    - Chris's question Doc: https://docs.google.com/document/d/1QcT7FRZci6AhYcI33HUac-Oob03-gCnCOKn2NFHMLjA/edit
+    - Another session's note that he answered: `build/PO-QUESTIONS-OPEN.md`, on branch `claude/slack-session-setup-7v5itm`.
+    **THE RULE:**
+    **(a) NAME WHERE IT IS.** Every mention of recorded work (an outstanding question, an earlier check, a draft, a held test's reason,
+    a register row) carries its file's full repo path in backticks; the branch, when the file is not on this session's branch; and the
+    link of any Google Doc, Sheet or Confluence page it lives in.
+    **(b) ONE LINE PER FILE, WITH WHAT IT HOLDS.** Each path is introduced in plain words ("Record of…", "My draft of…", "Chris's
+    question Doc…"), so he knows which one to open without opening them all.
+    **(c) WHERE IT GOES.** In the body of the item that needs it (OUTSTANDING included): a file path is how he finds the work, not
+    jargon. Case ids, run numbers and commit hashes still go after `---REFERENCE---` (8, 103).
+    **(d) MEASURED, NOT REMEMBERED.** Before naming a file, check it exists at that path on that branch (`ls`, or
+    `git show origin/<branch>:<path>`) in this session (100). A path from memory or another session's report is not named until checked.
+    Adds to 98 and 99 (every ask is self-contained).
