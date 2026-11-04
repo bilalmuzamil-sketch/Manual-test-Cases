@@ -1,0 +1,23 @@
+// usage: [ENV=prod] HOME_WP=<wo location prefix> OTHER_WP=<other location prefix> COMPANY=<id> node seed.mjs -> builds the Clocked In matrix
+import {sess,post,arr} from './common.mjs'; import fs from 'fs';
+const ENV=process.env.ENV||'branch'; const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(3000); const P=(u,b)=>post(s,u,b);
+const wps=arr((await s.api('/api/staff/my-workplaces')).json?.data); const H=wps.find(w=>w.id.startsWith(process.env.HOME_WP)), O=wps.find(w=>w.id.startsWith(process.env.OTHER_WP));
+const at=L=>P('/api/iam/change-location',{workplace_id:L.id,workplace_timezone:L.timezone});
+const f=(x,tz)=>{const p=new Intl.DateTimeFormat('en-GB',{timeZone:tz,day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(x).reduce((a,q)=>(a[q.type]=q.value,a),{}); return `${p.day}/${p.month}/${p.year} ${p.hour}:${p.minute}`;};
+await at(H);
+const staff=arr((await s.api('/api/staff?limit=300')).json?.data).filter(x=>x.is_active!==false&&x.staff_id&&/Technician|Foreman|Time Clock/i.test(x.role_label||'')&&x.email!=='admin@shopview.com');
+console.log('staff available',staff.length, staff.slice(0,12).map(x=>x.first_name+' '+x.last_name+' ('+x.role_label+')').join('; '));
+const veh=arr((await s.api('/api/vehicles?company_id='+process.env.COMPANY)).json?.data); const vid=veh[0]?.id;
+const cl=arr((await s.api('/api/work-orders/canned-lines?limit=200')).json?.data).filter(x=>x.workplace_id===H.id&&Number(x.total_parts)===0);
+const mk=async tag=>{ const c=await P('/api/work-orders/create',{company_id:process.env.COMPANY,vehicle_id:vid,workplace_id:H.id,start_date:new Date().toISOString().slice(0,10),is_vehicle_here:true}); const id=c.json.data.work_order_id;
+  await P(`/api/work-orders/${id}/lines/create-from-canned-line`,{canned_line_id:cl[0].id,status:'authorized'}); const lr=arr((await s.api('/api/work-orders/lines/'+id)).json?.data); const v=(await s.api('/api/work-orders/view/'+id)).json.data; return {tag,id,line:lr[0].line_id,number:(v.work_order||v).display_number||(v.work_order||v).number}; };
+let k=0; const entry=async(L,w,note)=>{ const st=staff[k++]; await at(L); const r=await P('/api/technician-tasks/create',{start_date:f(new Date(Date.now()-((k+1)*7)*60e3),L.timezone),tech_assigned_id:st.staff_id,work_order_id:w.id,line_id:w.line,description:'ZZAUTOTEST SV-12112 '+note,resolve_overlaps:true}); return {who:st.first_name+' '+st.last_name,staff:st.staff_id,at:L.name,st:r.status,res:JSON.stringify(r.json).slice(0,160)}; };
+const W={};
+W.A=await mk('A: 3 open clock-ins made at the OTHER location'); W.A.entries=[await entry(O,W.A,'other loc 1'),await entry(O,W.A,'other loc 2'),await entry(O,W.A,'other loc 3')];
+W.B=await mk('B: 2 open clock-ins at the work order location (by hand)'); W.B.entries=[await entry(H,W.B,'home 1'),await entry(H,W.B,'home 2')];
+W.D=await mk('D: 1 open at the work order location + 2 at the other location'); W.D.entries=[await entry(H,W.D,'home'),await entry(O,W.D,'other 1'),await entry(O,W.D,'other 2')];
+W.C=await mk('C: admin clocks in on the line (Start button path)'); await at(H); const t=await P('/api/work-orders/tasks/create',{staff_id:(await s.api('/api/auth/me')).json?.data?.staff_id,line_id:W.C.line,work_order_id:W.C.id}); const tid=t.json?.data?.id||t.json?.data?.task_id;
+ const ci=await P('/api/technician-tasks/check-in',{task_id:tid,line_id:W.C.line,work_order_id:W.C.id,refresh_lines:true}); W.C.entries=[{who:'admin (session user)',task:t.status+' '+JSON.stringify(t.json).slice(0,120),checkin:ci.status+' '+JSON.stringify(ci.json).slice(0,160)}];
+W.E=await mk('E: no clock-ins'); W.E.entries=[];
+await at(H); fs.writeFileSync(`/tmp/sv12112/seed-${ENV}.json`,JSON.stringify({H,O,W},null,1)); console.log(JSON.stringify(W,null,1).slice(0,4000));
+await s.close(); process.exit(0);

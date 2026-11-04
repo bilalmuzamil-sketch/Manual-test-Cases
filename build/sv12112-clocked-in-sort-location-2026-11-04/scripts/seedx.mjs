@@ -1,0 +1,20 @@
+// usage: [ENV=prod] HOME_WP= OTHER_WP= COMPANY= node seedx.mjs -> A (3 other-loc), D (1 home + 2 other), B2 (2 home by hand), E (none); session put at HOME before every work order
+import {sess,post,arr} from './common.mjs'; import fs from 'fs';
+const ENV=process.env.ENV||'branch'; const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(3000); const P=(u,b)=>post(s,u,b);
+const wps=arr((await s.api('/api/staff/my-workplaces')).json?.data); const H=wps.find(w=>w.id.startsWith(process.env.HOME_WP)), O=wps.find(w=>w.id.startsWith(process.env.OTHER_WP));
+const at=L=>P('/api/iam/change-location',{workplace_id:L.id,workplace_timezone:L.timezone});
+const f=(x,tz)=>{const q=new Intl.DateTimeFormat('en-GB',{timeZone:tz,day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(x).reduce((a,o)=>(a[o.type]=o.value,a),{}); return `${q.day}/${q.month}/${q.year} ${q.hour}:${q.minute}`;};
+await at(H); const COMPANY=process.env.COMPANY; const veh=arr((await s.api('/api/vehicles?company_id='+COMPANY)).json?.data); const vid=veh[0]?.id;
+const cl=arr((await s.api('/api/work-orders/canned-lines?limit=200')).json?.data).filter(x=>x.workplace_id===H.id&&Number(x.total_parts)===0); console.log('canned',cl.length,cl[0]?.canned_line_name);
+const mk=async tag=>{ await at(H); const c=await P('/api/work-orders/create',{company_id:COMPANY,vehicle_id:vid,workplace_id:H.id,start_date:new Date().toISOString().slice(0,10),is_vehicle_here:true}); const id=c.json.data.work_order_id;
+  const l=await P(`/api/work-orders/${id}/lines/create-from-canned-line`,{canned_line_id:cl[0].id,status:'authorized'}); const lr=arr((await s.api('/api/work-orders/lines/'+id)).json?.data); const v=(await s.api('/api/work-orders/view/'+id)).json.data; const w=v.work_order||v; return {tag,id,line:lr[0]?.line_id,number:w.display_number||w.number,wp:w.workplace_id,lineSt:l.status}; };
+const staff=arr((await s.api('/api/staff?limit=300')).json?.data).filter(x=>x.is_active!==false&&x.staff_id);
+let k=0; const entry=async(L,w,note)=>{ for(;k<staff.length;k++){ await at(L); const r=await P('/api/technician-tasks/create',{start_date:f(new Date(Date.now()-(30+k)*60e3),L.timezone),tech_assigned_id:staff[k].staff_id,work_order_id:w.id,line_id:w.line,description:'ZZAUTOTEST SV-12112 '+note,resolve_overlaps:true}); if(r.status<300){k++; return {id:r.json?.data?.id,at:L.name};} } return null; };
+const W={}; W.A=await mk('A: 3 open clock-ins made at the other location'); W.A.e=[await entry(O,W.A,'other'),await entry(O,W.A,'other'),await entry(O,W.A,'other')];
+W.D=await mk('D: 1 open here + 2 at the other location'); W.D.e=[await entry(H,W.D,'home'),await entry(O,W.D,'other'),await entry(O,W.D,'other')];
+W.B2=await mk('B2: 2 open clock-ins here, added by hand'); W.B2.e=[await entry(H,W.B2,'home'),await entry(H,W.B2,'home')];
+W.E=await mk('E: no clock-ins'); W.E.e=[];
+W.C2=await mk('C2: line Start by the signed-in user');
+await at(H); fs.writeFileSync(`/tmp/sv12112/seed-${ENV}.json`,JSON.stringify({H,O,W},null,1));
+for(const [t,w] of Object.entries(W)) console.log(t,w.number,'at home:',w.wp===H.id,'line',w.lineSt,JSON.stringify(w.e));
+await s.close(); process.exit(0);

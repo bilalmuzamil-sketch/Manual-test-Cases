@@ -1,0 +1,12 @@
+import {sess,post,arr} from './common.mjs'; import fs from 'fs';
+const S=JSON.parse(fs.readFileSync(`/tmp/sv12112/seed-branch.json`,'utf8')); const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(3000); const P=(u,b)=>post(s,u,b);
+await P('/api/iam/change-location',{workplace_id:S.O.id,workplace_timezone:S.O.timezone}); const w=S.W.B;
+const v=(await s.api('/api/work-orders/view/'+w.id)).json?.data; const wo=v?.work_order||v; console.log('B at',wo?.workplace_id===S.O.id?'Lethbridge':wo?.workplace_id, wo?.display_number);
+const lines=arr((await s.api('/api/work-orders/lines/'+w.id)).json?.data); const line=lines[0]?.line_id;
+const recs=arr((await s.api(`/api/technician-tasks/list?pagination[rowsPerPage]=100&pagination[page]=1&filters[0][field]=work_order&filters[0][value]=${w.id}&search=`)).json?.data); const wn={[S.H.id]:'Heavy Duty',[S.O.id]:'Lethbridge'};
+console.log('B records',JSON.stringify(recs.map(r=>r.technician_first_name+' '+r.technician_last_name+'@'+wn[r.workplace_id]+(r.end_date?' closed':' OPEN'))));
+const row=async()=>{ const l=arr((await s.api('/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=20&search='+encodeURIComponent(wo.display_number)+'&showMyWorkOrders=0')).json?.data).find(x=>x.id===w.id); return JSON.stringify({names:(l?.clockedInTechnicians||[]).map(n=>n.firstName+' '+n.lastName),count:l?.clockedInTechniciansCount}); };
+console.log('before',await row());
+const tk=await P('/api/work-orders/tasks/create',{line_id:line,work_order_id:w.id}); const tid=tk.json?.data?.id; const ci=await P('/api/technician-tasks/check-in',{task_id:tid,line_id:line,work_order_id:w.id,refresh_lines:true}); console.log('check-in',ci.status);
+console.log('admin in (recount)',await row()); const o=await P('/api/technician-tasks/check-out',{task_id:ci.json?.data?.id,tech_story:'ZZAUTOTEST SV-12112',complete_line:false,work_order_id:w.id}); console.log('check-out',o.status);
+console.log('admin out (recount)',await row()); await P('/api/iam/change-location',{workplace_id:S.H.id,workplace_timezone:S.H.timezone}); await s.close(); process.exit(0);

@@ -1,0 +1,12 @@
+import {sess,arr} from './common.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync(process.env.WOJ,'utf8')); const OUT='ev/'+process.env.TAG; fs.mkdirSync(OUT,{recursive:true});
+const s=await sess(); const p=s.page; const R={}; const caps=[]; p.on('response',async r=>{ if(r.request().method()==='POST'&&/part/.test(r.url())){ let b=''; try{b=(await r.text()).slice(0,200)}catch{} caps.push(r.status()+' '+r.url().replace(/^https:\/\/[^/]+/,'')+' -> '+b);} });
+const inv=async()=>{ const x=arr((await s.api('/api/inventory/parts?limit=10&search='+encodeURIComponent(process.env.SEARCH))).json?.data).find(z=>z.id===process.env.INV); return x?.quantity; };
+await s.go(`/workorders/${W.wo}/lines`); await p.waitForTimeout(6000); R.stockBefore=await inv();
+const b=await p.evaluate(t=>{ const rows=[...document.querySelectorAll('tr, .row, [class*=part]')].filter(r=>r.innerText.includes(t)&&r.querySelector('[data-test-id="button_part_request_action"]')); const r=rows.sort((a,b)=>a.innerText.length-b.innerText.length)[0]; const btn=r?.querySelector('[data-test-id="button_part_request_action"]'); const bb=btn?.getBoundingClientRect(); return bb?{x:bb.x+bb.width/2,y:bb.y+bb.height/2,t:btn.innerText.trim()}:null; }, process.env.ROWTEXT);
+R.button=b; await p.screenshot({path:OUT+'/1-before-pick.png'}); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3000);
+R.dialog=await p.evaluate(()=>{const d=document.querySelector('.q-dialog'); return d?d.innerText.replace(/\n+/g,' | ').slice(0,400):null;}); await p.screenshot({path:OUT+'/2-after-click.png'});
+if(R.dialog){ const c=p.locator('.q-dialog button',{hasText:/pick|confirm|yes|save/i}).last(); if(await c.count()){ await c.click(); await p.waitForTimeout(3000); R.dialog2=await p.evaluate(()=>{const d=document.querySelector('.q-dialog'); return d?d.innerText.replace(/\n+/g,' | ').slice(0,300):null;}); } }
+await s.go(`/workorders/${W.wo}/lines`); await p.waitForTimeout(6000); await p.screenshot({path:OUT+'/3-after-pick.png'}); R.stockAfter=await inv();
+const L=arr((await s.api('/api/work-orders/lines/'+W.wo)).json?.data); R.requests=L.flatMap(l=>(l.part_requests||[]).map(r=>({pn:r.part_number.slice(0,30),qty:r.quantity,status:r.status,source:r.part_source_type}))); R.caps=caps;
+console.log(JSON.stringify(R,null,1).slice(0,2000)); fs.writeFileSync(OUT+'/result.json',JSON.stringify(R,null,1)); await s.close(); process.exit(0);

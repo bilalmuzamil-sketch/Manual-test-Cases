@@ -1,0 +1,1079 @@
+{
+ "marker": {
+  "version": "v26.45.0-9b141c4",
+  "lastModified": "Tue, 03 Nov 2026 13:55:53 GMT",
+  "etag": "W/\"15a82d1e6aaeb9e8fa33c2b3d21df3be\""
+ },
+ "search": "ZZ12039-RH",
+ "inv": "2d988fc4-3245-4330-8f0a-a4e4ea7dd963",
+ "qty": "1",
+ "wo": "S12039-17581",
+ "steps": [
+  {
+   "label": "dialog open",
+   "partNumber": "",
+   "description": "",
+   "quantity": "",
+   "source": "Vendor",
+   "vendor": "",
+   "cost": "",
+   "sell": "0.00",
+   "inventoryTable": false,
+   "bins": []
+  },
+  {
+   "label": "picked Inventory option",
+   "partNumber": "ZZ12039-RH",
+   "description": "ZZ12039 LAMP - HEADLIGHT, HALOGEN, FOAM GROMMET, RIGHT HAND",
+   "source": "Inventory",
+   "vendor": "",
+   "cost": "285.44000",
+   "sell": "426.02",
+   "inventoryTable": true,
+   "bins": [
+    "12951dd8="
+   ]
+  },
+  {
+   "label": "clicked into Amount",
+   "partNumber": "ZZ12039-RH",
+   "description": "ZZ12039 LAMP - HEADLIGHT, HALOGEN, FOAM GROMMET, RIGHT HAND",
+   "source": "Inventory",
+   "vendor": "",
+   "cost": "285.44000",
+   "sell": "426.02",
+   "inventoryTable": true,
+   "bins": [
+    "12951dd8="
+   ]
+  },
+  {
+   "label": "typed Amount 1",
+   "partNumber": "ZZ12039-RH",
+   "description": "ZZ12039 LAMP - HEADLIGHT, HALOGEN, FOAM GROMMET, RIGHT HAND",
+   "source": "Inventory",
+   "vendor": "",
+   "cost": "285.44000",
+   "sell": "426.02",
+   "inventoryTable": true,
+   "bins": [
+    "12951dd8=1"
+   ]
+  },
+  {
+   "label": "left Amount (Tab)",
+   "partNumber": "ZZ12039-RH",
+   "description": "ZZ12039 LAMP - HEADLIGHT, HALOGEN, FOAM GROMMET, RIGHT HAND",
+   "source": "Inventory",
+   "vendor": "",
+   "cost": "285.44000",
+   "sell": "426.02",
+   "inventoryTable": true,
+   "bins": [
+    "12951dd8=1"
+   ]
+  }
+ ],
+ "caps": [
+  {
+   "m": "POST",
+   "u": "/api/work-orders/part/make-request",
+   "st": 201,
+   "req": "{\"value\":\"2d988fc4-3245-4330-8f0a-a4e4ea7dd963\",\"purchase_price\":285.44,\"fixed_sell_price\":null,\"environmental_charge\":null,\"quantity\":1,\"catalogue_part\":\"afb6e7a5-0860-4563-8e1e-3a9871462941\",\"name\":\"ZZ12039 LAMP - HEADLIGHT, HALOGEN, FOAM GROMMET, RIGHT HAND\",\"nameSortable\":\"zz12039 lamp - headlight, halogen, foam grommet, right hand\",\"part_number\":\"ZZ12039-RH\",\"measurement\":\"ea\",\"category\":\"0e446ce2-3793-498f-b969-9ecde2ea2888\",\"core_charge\":null,\"vendor_id\":null,\"vendor\":null,\"manufacturer\":null,\"tags\":[],\"sell_price\":426.02,\"cost\":285.44,\"is_fixed_price\":false,\"part_type\":\"inventory_part\",\"optionKey\":\"2d988fc4-3245-4330-8f0a-a4e4ea7dd963-inventory_part\",\"description\":\"ZZ12039 LAMP - HEADLIGHT, HALOGEN, FOAM GROMMET, RIGHT HAND\",\"inventory_part_id\":\"2d988fc4-3245-4330-8f0a-a4e4ea7dd963",
+   "res": "{\"data\":{\"id\":\"ab4d8407-27ae-4d25-bb46-a106b4395e0c\",\"part_request\":{\"id\":\"ab4d8407-27ae-4d25-bb46-a106b4395e0c\",\"work_order_id\":\"f6475634-af6f-4508-bc1b-81cba7a6d0b4\",\"description\":\"ZZ12039 LAMP - HEADLIGHT, HALOGEN, FOAM GROMMET, RIGHT HAND\",\"line_id\":\"d6caff65-5d75-43e9-a373-0be2d7474108\",\"part_category_id\":\"0e446ce2-3793-498f-b969-9ecde2ea2888\",\"sell_price\":\"426.02\",\"quantity\":1,\"status\":\"in_s"
+  }
+ ],
+ "gets": [
+  {
+   "t": 147,
+   "ev": "req",
+   "u": "/maps/api/js?libraries=places&key=AIzaSyCXplWqirXhPPGV8qGRfEHuPgPpQT3wUrY&callback=Function.prototype&loading=async"
+  },
+  {
+   "t": 147,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps/api/js?libraries=places&key=AIzaSyCXplWqirXhPPGV8qGRfEHuPgPpQT3wUrY&callback=Function.prototype&loading=async"
+  },
+  {
+   "t": 427,
+   "ev": "req",
+   "u": "/api/staff/my-workplaces"
+  },
+  {
+   "t": 427,
+   "ev": "req",
+   "u": "/api/organizations/settings"
+  },
+  {
+   "t": 427,
+   "ev": "req",
+   "u": "/api/work-orders/statuses"
+  },
+  {
+   "t": 427,
+   "ev": "req",
+   "u": "/api/service-advisors"
+  },
+  {
+   "t": 427,
+   "ev": "req",
+   "u": "/api/work-orders/view/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 427,
+   "ev": "req",
+   "u": "/api/work-orders/lines/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 497,
+   "ev": "req",
+   "u": "/api/organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f"
+  },
+  {
+   "t": 504,
+   "ev": "req",
+   "u": "/api/users/me/release-notes/unread"
+  },
+  {
+   "t": 504,
+   "ev": "req",
+   "u": "/api/technician-tasks/my-current-task"
+  },
+  {
+   "t": 601,
+   "ev": "req",
+   "u": "/api/iam/view-profile/"
+  },
+  {
+   "t": 671,
+   "ev": "req",
+   "u": "/api/notifications/unread-count"
+  },
+  {
+   "t": 671,
+   "ev": "req",
+   "u": "/api/notifications/subscribe-token"
+  },
+  {
+   "t": 672,
+   "ev": "req",
+   "u": "/api/reporting/individual-punch-clock/today?range=today"
+  },
+  {
+   "t": 699,
+   "ev": "req",
+   "u": "/api/technicians?clockableOnly=1"
+  },
+  {
+   "t": 731,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/statuses"
+  },
+  {
+   "t": 748,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/util.js"
+  },
+  {
+   "t": 748,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/util.js"
+  },
+  {
+   "t": 748,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/places_impl.js"
+  },
+  {
+   "t": 748,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/places_impl.js"
+  },
+  {
+   "t": 748,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/places.js"
+  },
+  {
+   "t": 748,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/places.js"
+  },
+  {
+   "t": 756,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/controls.js"
+  },
+  {
+   "t": 756,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/controls.js"
+  },
+  {
+   "t": 757,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/common.js"
+  },
+  {
+   "t": 757,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/common.js"
+  },
+  {
+   "t": 757,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/main.js"
+  },
+  {
+   "t": 757,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/main.js"
+  },
+  {
+   "t": 831,
+   "ev": "req",
+   "u": "/maps/api/mapsjs/gen_204?csp_test=true"
+  },
+  {
+   "t": 843,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/staff/my-workplaces"
+  },
+  {
+   "t": 873,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps/api/mapsjs/gen_204?csp_test=true"
+  },
+  {
+   "t": 1177,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/organizations/settings"
+  },
+  {
+   "t": 1274,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/service-advisors"
+  },
+  {
+   "t": 1912,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/view/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 1922,
+   "ev": "req",
+   "u": "/api/workplaces"
+  },
+  {
+   "t": 1922,
+   "ev": "req",
+   "u": "/api/customers/view/6a7b6afc-084d-4584-aacb-773bcd71cbcd?"
+  },
+  {
+   "t": 1922,
+   "ev": "req",
+   "u": "/api/technicians"
+  },
+  {
+   "t": 1989,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/technician-tasks/my-current-task"
+  },
+  {
+   "t": 1998,
+   "ev": "req",
+   "u": "/api/shopcoach/check-vin-support?vin=SVEWU82M5ETEJFWFA"
+  },
+  {
+   "t": 2045,
+   "ev": "req",
+   "u": "/api/parts-catalogue/categories-list?"
+  },
+  {
+   "t": 2045,
+   "ev": "req",
+   "u": "/api/work-orders/f6475634-af6f-4508-bc1b-81cba7a6d0b4/line-technicians"
+  },
+  {
+   "t": 2045,
+   "ev": "req",
+   "u": "/api/work-orders/line-statuses"
+  },
+  {
+   "t": 2045,
+   "ev": "req",
+   "u": "/api/parts-catalogue/options"
+  },
+  {
+   "t": 2086,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f"
+  },
+  {
+   "t": 2127,
+   "ev": "req",
+   "u": "/api/labour-type-options?pagination%5BrowsPerPage%5D=1000"
+  },
+  {
+   "t": 2183,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/users/me/release-notes/unread"
+  },
+  {
+   "t": 2206,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/lines/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 2768,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/iam/view-profile/"
+  },
+  {
+   "t": 2967,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/notifications/subscribe-token"
+  },
+  {
+   "t": 2990,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/technicians?clockableOnly=1"
+  },
+  {
+   "t": 2990,
+   "ev": "req",
+   "u": "/api/service-advisors"
+  },
+  {
+   "t": 3004,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/notifications/unread-count"
+  },
+  {
+   "t": 3007,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/reporting/individual-punch-clock/today?range=today"
+  },
+  {
+   "t": 3007,
+   "ev": "req",
+   "u": "/api/reporting/individual-punch-clock/today?range=today"
+  },
+  {
+   "t": 3694,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/technicians"
+  },
+  {
+   "t": 3700,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/workplaces"
+  },
+  {
+   "t": 3794,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/customers/view/6a7b6afc-084d-4584-aacb-773bcd71cbcd?"
+  },
+  {
+   "t": 3795,
+   "ev": "req",
+   "u": "/api/work-orders/f6475634-af6f-4508-bc1b-81cba7a6d0b4/inspections"
+  },
+  {
+   "t": 3964,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/f6475634-af6f-4508-bc1b-81cba7a6d0b4/line-technicians"
+  },
+  {
+   "t": 4284,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/line-statuses"
+  },
+  {
+   "t": 4310,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/parts-catalogue/options"
+  },
+  {
+   "t": 4369,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/shopcoach/check-vin-support?vin=SVEWU82M5ETEJFWFA"
+  },
+  {
+   "t": 4676,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/labour-type-options?pagination%5BrowsPerPage%5D=1000"
+  },
+  {
+   "t": 4778,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/parts-catalogue/categories-list?"
+  },
+  {
+   "t": 4872,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/service-advisors"
+  },
+  {
+   "t": 4872,
+   "ev": "req",
+   "u": "/api/sales-reps"
+  },
+  {
+   "t": 4894,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/f6475634-af6f-4508-bc1b-81cba7a6d0b4/inspections"
+  },
+  {
+   "t": 4895,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/reporting/individual-punch-clock/today?range=today"
+  },
+  {
+   "t": 5042,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/sales-reps"
+  },
+  {
+   "t": 14345,
+   "ev": "req",
+   "u": "/api/work-orders/part/request-statuses-list"
+  },
+  {
+   "t": 14345,
+   "ev": "req",
+   "u": "/api/parts-catalogue/categories-list?pagination%5BrowsPerPage%5D=300&pagination%5Bpage%5D=1&pagination%5Bdescending%5D=false"
+  },
+  {
+   "t": 14378,
+   "ev": "req",
+   "u": "/api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts?pagination%5BrowsPerPage%5D=200&search="
+  },
+  {
+   "t": 14398,
+   "ev": "req",
+   "u": "/api/work-orders/part/request-sources-list"
+  },
+  {
+   "t": 14679,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/part/request-statuses-list"
+  },
+  {
+   "t": 14961,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/part/request-sources-list"
+  },
+  {
+   "t": 15562,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/parts-catalogue/categories-list?pagination%5BrowsPerPage%5D=300&pagination%5Bpage%5D=1&pagination%5Bdescending%5D=false"
+  },
+  {
+   "t": 15892,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts?pagination%5BrowsPerPage%5D=200&search="
+  },
+  {
+   "t": 16884,
+   "ev": "MARK",
+   "u": "dialog open"
+  },
+  {
+   "t": 18250,
+   "ev": "req",
+   "u": "/api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts?pagination%5BrowsPerPage%5D=200&search=ZZ12039-RH"
+  },
+  {
+   "t": 18794,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts?pagination%5BrowsPerPage%5D=200&search=ZZ12039-RH"
+  },
+  {
+   "t": 24354,
+   "ev": "MARK",
+   "u": "picked Inventory option"
+  },
+  {
+   "t": 26244,
+   "ev": "MARK",
+   "u": "clicked into Amount"
+  },
+  {
+   "t": 28119,
+   "ev": "MARK",
+   "u": "typed Amount 1"
+  },
+  {
+   "t": 30048,
+   "ev": "MARK",
+   "u": "left Amount (Tab)"
+  },
+  {
+   "t": 30749,
+   "ev": "req",
+   "u": "/api/work-orders/view/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 30749,
+   "ev": "req",
+   "u": "/api/work-orders/lines/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 31365,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/view/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 31419,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/lines/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 34685,
+   "ev": "req",
+   "u": "/maps/api/js?libraries=places&key=AIzaSyCXplWqirXhPPGV8qGRfEHuPgPpQT3wUrY&callback=Function.prototype&loading=async"
+  },
+  {
+   "t": 34685,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps/api/js?libraries=places&key=AIzaSyCXplWqirXhPPGV8qGRfEHuPgPpQT3wUrY&callback=Function.prototype&loading=async"
+  },
+  {
+   "t": 34847,
+   "ev": "req",
+   "u": "/api/staff/my-workplaces"
+  },
+  {
+   "t": 34847,
+   "ev": "req",
+   "u": "/api/organizations/settings"
+  },
+  {
+   "t": 34847,
+   "ev": "req",
+   "u": "/api/work-orders/statuses"
+  },
+  {
+   "t": 34847,
+   "ev": "req",
+   "u": "/api/service-advisors"
+  },
+  {
+   "t": 34847,
+   "ev": "req",
+   "u": "/api/work-orders/view/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 34847,
+   "ev": "req",
+   "u": "/api/work-orders/lines/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 34875,
+   "ev": "req",
+   "u": "/api/organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f"
+  },
+  {
+   "t": 34875,
+   "ev": "req",
+   "u": "/api/users/me/release-notes/unread"
+  },
+  {
+   "t": 34875,
+   "ev": "req",
+   "u": "/api/technician-tasks/my-current-task"
+  },
+  {
+   "t": 34960,
+   "ev": "req",
+   "u": "/api/iam/view-profile/"
+  },
+  {
+   "t": 34973,
+   "ev": "req",
+   "u": "/api/technicians?clockableOnly=1"
+  },
+  {
+   "t": 35006,
+   "ev": "req",
+   "u": "/api/notifications/unread-count"
+  },
+  {
+   "t": 35006,
+   "ev": "req",
+   "u": "/api/notifications/subscribe-token"
+  },
+  {
+   "t": 35007,
+   "ev": "req",
+   "u": "/api/reporting/individual-punch-clock/today?range=today"
+  },
+  {
+   "t": 35060,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/util.js"
+  },
+  {
+   "t": 35061,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/util.js"
+  },
+  {
+   "t": 35061,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/places_impl.js"
+  },
+  {
+   "t": 35061,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/places_impl.js"
+  },
+  {
+   "t": 35061,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/places.js"
+  },
+  {
+   "t": 35062,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/places.js"
+  },
+  {
+   "t": 35062,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/controls.js"
+  },
+  {
+   "t": 35063,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/controls.js"
+  },
+  {
+   "t": 35063,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/common.js"
+  },
+  {
+   "t": 35063,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/common.js"
+  },
+  {
+   "t": 35063,
+   "ev": "req",
+   "u": "/maps-api-v3/api/js/66/12d/main.js"
+  },
+  {
+   "t": 35063,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps-api-v3/api/js/66/12d/main.js"
+  },
+  {
+   "t": 35139,
+   "ev": "req",
+   "u": "/maps/api/mapsjs/gen_204?csp_test=true"
+  },
+  {
+   "t": 35182,
+   "ev": "res",
+   "st": 200,
+   "u": "/maps/api/mapsjs/gen_204?csp_test=true"
+  },
+  {
+   "t": 35274,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/staff/my-workplaces"
+  },
+  {
+   "t": 35281,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/organizations/settings"
+  },
+  {
+   "t": 35775,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/statuses"
+  },
+  {
+   "t": 35784,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/service-advisors"
+  },
+  {
+   "t": 35986,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/lines/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 36301,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/view/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 36307,
+   "ev": "req",
+   "u": "/api/workplaces"
+  },
+  {
+   "t": 36307,
+   "ev": "req",
+   "u": "/api/customers/view/6a7b6afc-084d-4584-aacb-773bcd71cbcd?"
+  },
+  {
+   "t": 36307,
+   "ev": "req",
+   "u": "/api/technicians"
+  },
+  {
+   "t": 36320,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f"
+  },
+  {
+   "t": 36335,
+   "ev": "req",
+   "u": "/api/shopcoach/check-vin-support?vin=SVEWU82M5ETEJFWFA"
+  },
+  {
+   "t": 36415,
+   "ev": "req",
+   "u": "/api/parts-catalogue/categories-list?"
+  },
+  {
+   "t": 36416,
+   "ev": "req",
+   "u": "/api/work-orders/f6475634-af6f-4508-bc1b-81cba7a6d0b4/line-technicians"
+  },
+  {
+   "t": 36416,
+   "ev": "req",
+   "u": "/api/work-orders/line-statuses"
+  },
+  {
+   "t": 36416,
+   "ev": "req",
+   "u": "/api/work-orders/lines/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 36416,
+   "ev": "req",
+   "u": "/api/parts-catalogue/options"
+  },
+  {
+   "t": 36442,
+   "ev": "req",
+   "u": "/api/labour-type-options?pagination%5BrowsPerPage%5D=1000"
+  },
+  {
+   "t": 36566,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/users/me/release-notes/unread"
+  },
+  {
+   "t": 36777,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/technician-tasks/my-current-task"
+  },
+  {
+   "t": 36982,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/iam/view-profile/"
+  },
+  {
+   "t": 37086,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/technicians?clockableOnly=1"
+  },
+  {
+   "t": 37086,
+   "ev": "req",
+   "u": "/api/service-advisors"
+  },
+  {
+   "t": 37264,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/notifications/subscribe-token"
+  },
+  {
+   "t": 37272,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/notifications/unread-count"
+  },
+  {
+   "t": 37766,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/reporting/individual-punch-clock/today?range=today"
+  },
+  {
+   "t": 37766,
+   "ev": "req",
+   "u": "/api/reporting/individual-punch-clock/today?range=today"
+  },
+  {
+   "t": 37784,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/workplaces"
+  },
+  {
+   "t": 37878,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/customers/view/6a7b6afc-084d-4584-aacb-773bcd71cbcd?"
+  },
+  {
+   "t": 37988,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/technicians"
+  },
+  {
+   "t": 37988,
+   "ev": "req",
+   "u": "/api/work-orders/f6475634-af6f-4508-bc1b-81cba7a6d0b4/inspections"
+  },
+  {
+   "t": 38483,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/f6475634-af6f-4508-bc1b-81cba7a6d0b4/line-technicians"
+  },
+  {
+   "t": 38484,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/line-statuses"
+  },
+  {
+   "t": 38667,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/shopcoach/check-vin-support?vin=SVEWU82M5ETEJFWFA"
+  },
+  {
+   "t": 38866,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/lines/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 38903,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/parts-catalogue/categories-list?"
+  },
+  {
+   "t": 38975,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/labour-type-options?pagination%5BrowsPerPage%5D=1000"
+  },
+  {
+   "t": 39193,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/service-advisors"
+  },
+  {
+   "t": 39194,
+   "ev": "req",
+   "u": "/api/sales-reps"
+  },
+  {
+   "t": 39397,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/parts-catalogue/options"
+  },
+  {
+   "t": 39575,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/reporting/individual-punch-clock/today?range=today"
+  },
+  {
+   "t": 39582,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/sales-reps"
+  },
+  {
+   "t": 39621,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/f6475634-af6f-4508-bc1b-81cba7a6d0b4/inspections"
+  },
+  {
+   "t": 48358,
+   "ev": "req",
+   "u": "/api/work-orders/lines/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  },
+  {
+   "t": 48525,
+   "ev": "res",
+   "st": 200,
+   "u": "/api/work-orders/lines/f6475634-af6f-4508-bc1b-81cba7a6d0b4"
+  }
+ ],
+ "options": [
+  "ZZ12039 LAMP - HEADLIGHT, HALOGEN, FOAM GROMMET, RIGHT HAND / ZZ12039-RH / Inventory Qty: 1 ea / BCAB / 1 |der_part_2d988fc4-3245-4330-8f0a-a4e4ea7dd963-inventory_part",
+  "ZZ12039 LAMP - HEADLIGHT, HALOGEN, FOAM GROMMET, RIGHT HAND / ZZ12039-RH / Catalog / BCAB / 1 |der_part_2d988fc4-3245-4330-8f0a-a4e4ea7dd963-catalogue_part"
+ ],
+ "focusAfterPick": "select_part",
+ "toasts": [],
+ "dialogAfterSave": null,
+ "requests": [
+  {
+   "id": "ab4d8407-27ae-4d25-bb46-a106b4395e0c",
+   "pn": "ZZ12039-RH",
+   "qty": 1,
+   "status": "in_stock",
+   "source": "inventory",
+   "on_hand": 1
+  },
+  {
+   "id": "154dcb2a-46a9-4aa7-8fb0-f292f54ad7b1",
+   "pn": "ZZ12039 LAMP - HEADLIGHT, HALOGEN, FOAM GROMMET, R",
+   "qty": 1,
+   "status": "in_stock",
+   "source": "inventory",
+   "on_hand": 1
+  },
+  {
+   "id": "778595c6-8c68-4764-8741-63b6f12fbd7c",
+   "pn": "ZZ12039-NL-END\n",
+   "qty": 1,
+   "status": "in_stock",
+   "source": "inventory",
+   "on_hand": 1
+  },
+  {
+   "id": "8390c812-8678-47c1-bb98-dddeab295e01",
+   "pn": "ZZ12039 LAMP - HEADLIGHT,\r\nRIGHT HAND",
+   "qty": 2,
+   "status": "in_stock",
+   "source": "inventory",
+   "on_hand": 1
+  },
+  {
+   "id": "c5536be2-2084-438b-a7b5-4a74c278d986",
+   "pn": "ZZ12039 LAMP - HEADLIGHT,RIGHT HANDX",
+   "qty": 1,
+   "status": "authorized_to_order",
+   "source": "vendor",
+   "on_hand": null
+  },
+  {
+   "id": "9dc64237-a1c3-45e0-8e48-b46c863cfc83",
+   "pn": "ZZ12039 LAMP - HEADLIGHT,\r\nRIGHT HAND",
+   "qty": 1,
+   "status": "authorized_to_order",
+   "source": "vendor",
+   "on_hand": null
+  },
+  {
+   "id": "dc14a499-29da-43cd-811c-332f1a2b55c6",
+   "pn": "ZZ12039-RH",
+   "qty": 1,
+   "status": "in_stock",
+   "source": "inventory",
+   "on_hand": 1
+  },
+  {
+   "id": "e23f8695-a65e-4dab-9158-b94b3d1101b1",
+   "pn": "ZZ12039 LAMP - HEADLIGHT, HALOGEN, FOAM GROMMET, R",
+   "qty": 1,
+   "status": "in_stock",
+   "source": "inventory",
+   "on_hand": 1
+  },
+  {
+   "id": "4281ab3c-f613-4967-8aad-af35871ac712",
+   "pn": "ZZ12039-NL-END\n",
+   "qty": 1,
+   "status": "in_stock",
+   "source": "inventory",
+   "on_hand": 1
+  },
+  {
+   "id": "5f52121a-b32b-41ad-93e9-8022389b3469",
+   "pn": "ZZ12039 LAMP - HEADLIGHT,\r\nRIGHT HAND",
+   "qty": 1,
+   "status": "in_stock",
+   "source": "inventory",
+   "on_hand": 1
+  },
+  {
+   "id": "08481833-a275-4bad-8dcb-6b7001a2f9e9",
+   "pn": "571.H9006XS",
+   "qty": 2,
+   "status": "in_stock",
+   "source": "inventory",
+   "on_hand": 7
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+import {sess,post,arr} from './common.mjs'; import fs from 'fs';
+const ENV=process.env.ENV||'branch'; const S=JSON.parse(fs.readFileSync(`/tmp/sv12112/seed-${ENV}.json`,'utf8')); const s=await sess(); const p=s.page; await s.go('/workorders'); await p.waitForTimeout(3000); const P=(u,b)=>post(s,u,b);
+const at=async L=>{ const r=await P('/api/iam/change-location',{workplace_id:L.id,workplace_timezone:L.timezone}); return r.status; };
+const f=(x,tz)=>{const q=new Intl.DateTimeFormat('en-GB',{timeZone:tz,day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(x).reduce((a,o)=>(a[o.type]=o.value,a),{}); return `${q.day}/${q.month}/${q.year} ${q.hour}:${q.minute}`;};
+const {H,O}=S; const COMPANY=process.env.COMPANY;
+const veh=arr((await s.api('/api/vehicles?company_id='+COMPANY)).json?.data); const vid=veh[0]?.id;
+const cl=arr((await s.api('/api/work-orders/canned-lines?limit=200')).json?.data).filter(x=>x.workplace_id===H.id&&Number(x.total_parts)===0);
+const mk=async tag=>{ await at(H); const c=await P('/api/work-orders/create',{company_id:COMPANY,vehicle_id:vid,workplace_id:H.id,start_date:new Date().toISOString().slice(0,10),is_vehicle_here:true}); const id=c.json.data.work_order_id;
+  await P(`/api/work-orders/${id}/lines/create-from-canned-line`,{canned_line_id:cl[0].id,status:'authorized'}); const lr=arr((await s.api('/api/work-orders/lines/'+id)).json?.data); const v=(await s.api('/api/work-orders/view/'+id)).json.data; const w=v.work_order||v; return {tag,id,line:lr[0].line_id,number:w.display_number||w.number,wp:w.workplace_id}; };
+const staff=arr((await s.api('/api/staff?limit=300')).json?.data).filter(x=>x.is_active!==false&&x.staff_id&&x.email!=='admin@shopview.com');
+let k=0; const entry=async(L,w,note)=>{ for(;k<staff.length;k++){ await at(L); const r=await P('/api/technician-tasks/create',{start_date:f(new Date(Date.now()-(30+k)*60e3),L.timezone),tech_assigned_id:staff[k].staff_id,work_order_id:w.id,line_id:w.line,description:'ZZAUTOTEST SV-12112 '+note,resolve_overlaps:true}); if(r.status<300){k++; return r.json?.data?.id;} } return null; };
+const B2=await mk('B2: 2 open clock-ins at the work order location (by hand)'); B2.ids=[await entry(H,B2,'home 1'),await entry(H,B2,'home 2')];
+const C2=await mk('C2: admin clicks Start on the line'); await at(H);
+await s.go(`/workorders/${C2.id}/lines`); await p.waitForTimeout(6000); const caps=[]; p.on('response',async r=>{ if(/technician-tasks|tasks\/create/.test(r.url())&&r.request().method()==='POST'){ let b=''; try{b=(await r.text()).slice(0,160)}catch{} caps.push(r.url().replace(/^https:\/\/[^/]+/,'')+' '+r.status()+' -> '+b);} });
+const btn=p.locator(`[data-test-id="button_clock_toggle_task_${C2.line}"]`); console.log('start button',await btn.count(), await btn.innerText().catch(()=>''));
+await btn.click(); await p.waitForTimeout(4000); C2.dialog=await p.evaluate(()=>{const d=document.querySelector('.q-dialog'); return d?d.innerText.replace(/\n+/g,' | ').slice(0,300):null;});
+if(C2.dialog){ const b=p.locator('.q-dialog button',{hasText:/clock in|start|confirm|yes/i}).first(); if(await b.count()){ await b.click(); await p.waitForTimeout(4000);} }
+C2.caps=caps; await p.screenshot({path:'/tmp/sv12112/c2-start.png'}); console.log('C2',C2.number,C2.dialog,JSON.stringify(caps));
+S.W.B2=B2; S.W.C2=C2; S.note='B and C were created at Lethbridge by mistake (session location) and are kept as Lethbridge cells'; fs.writeFileSync(`/tmp/sv12112/seed-${ENV}.json`,JSON.stringify(S,null,1));
+console.log('B2',B2.number,B2.wp===H.id,JSON.stringify(B2.ids),'C2',C2.number,C2.wp===H.id);
+await s.close(); process.exit(0);

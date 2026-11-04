@@ -25,3 +25,25 @@ Production (Trucks Hill 2): WO S2-1917 (e4072e29…), line e3c567cd…; parts (1
  "ZZ12039 LAMP - HEADLIGHT,\r\nRIGHT HAND" 3c339691.
 Branch (Heavy Duty): WO S12039-17581 (f6475634…), line d6caff65…; same four parts 6074cef0 · 2d988fc4 · 38b4f487 · c1934d46 (bin BCAB).
 The line breaks were put into the part numbers through the back end (the parts screen's one-line box cannot hold one) — set-up only.
+
+## Result — PASSED (4 Nov 2026)
+Matrix (production v26.45.0-8e138e1 = before / branch v26.45.0-9b141c4 = after), each cell driven on screen, folders under ev/ (p-* prod, b-* branch):
+| Case | Production | Branch |
+|---|---|---|
+| Part number with a line break in the middle, Request part dialog, click into Amount | flips to Vendor, Save -> "Quantity is a required field" | stays Inventory, saves In Stock |
+| Line break at the end | flips to Vendor | stays Inventory |
+| Same part picked as the Catalog option | same as before on both | same |
+| Text in Part Number edited after picking | becomes a new part on both (expected) | same |
+| Qty above stock (normal + line-break part) | orders the shortfall on both | same |
+| Out-of-stock part | Vendor/order on both (legit ordering unaffected) | same |
+| Brand-new part number | vendor new part on both | same |
+| Normal long / short part numbers | Inventory on both | same |
+| Inline Add part row, line-break part | saved as vendor order | stays Inventory |
+| Part sale, line-break part | flips to Vendor | stays Inventory |
+| Pick after save (fresh WO S12039-17582) | n/a | Pick button shown, stock 1 -> 0 |
+Exhibit: ev/before-after-request-part.png.
+Surfaces opened: dialog, inline row, Parts tab row + status, inventory stock after pick, part sale. Bug family: none found in Jira for this cause.
+
+## Posting record
+Comment 80124 (green PASSED, picture attached, no tech section, no recording). Label QAcomplete added; moved to QA Complete. Pre-post gate: build markers re-read unchanged, ticket still TESTING QA with no new comments, comment read back (first line + 1 image).
+Learning check: playbook gets the Request part dialog test-ids and the line-break cause (see §BB).
