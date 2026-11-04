@@ -16,3 +16,48 @@
      "OK": true
     }
 [15:57:13] START A-collect-dashboard
+[15:58:11] END A-collect-dashboard rc=0
+    DVI Test last_month 2026-10-01 2026-10-31 200
+    DVI Test this_week 2026-11-01 2026-11-05 200
+    DVI Test last_week 2026-10-25 2026-10-31 200
+    DVI Test custom_1d 2026-11-05 2026-11-05 200
+    DVI Test custom_31d 2026-10-06 2026-11-05 200
+    DVI Test custom_32d 2026-10-05 2026-11-05 200
+    DVI Test custom_182d 2026-05-08 2026-11-05 200
+    DVI Test custom_183d 2026-05-07 2026-11-05 200
+    DVI Test custom_366d 2025-11-05 2026-11-05 200
+    DVI Test custom_367d 2025-11-04 2026-11-05 200
+    DVI Test atrisk 30 200
+    DVI Test atrisk 60 200
+    DVI Test atrisk 90 200
+    DVI Test atrisk 120 200
+    DVI Test atrisk 180 200
+[15:58:11] START B-collect-reports
+[16:02:54] END B-collect-reports rc=0
+    DVI Test custom_183d sales 200
+    DVI Test custom_183d saa 200
+    DVI Test custom_183d te 200
+    DVI Test custom_183d tu 200
+    DVI Test custom_183d sbc 200
+    DVI Test custom_366d sales 200
+    DVI Test custom_366d saa 200
+    DVI Test custom_366d te 200
+    DVI Test custom_366d tu 200
+    DVI Test custom_366d sbc 200
+    DVI Test custom_367d sales 200
+    DVI Test custom_367d saa 200
+    DVI Test custom_367d te 200
+    DVI Test custom_367d tu 200
+    DVI Test custom_367d sbc 200
+[16:02:54] START A-check-internal
+[16:02:54] END A-check-internal rc=0
+    TOTAL 1187 PASS 1183 FAIL 4
+    
+    FAIL x4: Range over 366 days is refused  [S7-R2a "a custom range of up to 366 days, the same limit the reports apply"]
+        Staging Heavy Duty - 9919 custom_367d | 367-day range answered HTTP 200
+        Staging Lethbridge - 4310 custom_367d | 367-day range answered HTTP 200
+        QB Location custom_367d | 367-day range answered HTTP 200
+        DVI Test custom_367d | 367-day range answered HTTP 200
+[16:02:54] START B-check-parity
+[16:02:54] END B-check-parity rc=0
+    TOTAL 2602 PASS 2602 FAIL 0
