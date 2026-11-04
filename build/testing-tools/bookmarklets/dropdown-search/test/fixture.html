@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/quasar@2.16.9/dist/quasar.prod.css" rel="stylesheet">
+</head><body>
+<div id="app" style="padding:20px;max-width:500px">
+  <label for="nat">Country</label>
+  <select id="nat" onchange="document.getElementById('natout').textContent=this.value">
+    <option value="">--</option>
+    <optgroup label="Europe"><option value="fr">France</option><option value="de">Germany</option></optgroup>
+    <optgroup label="Asia"><option value="pk">Pakistan</option><option value="jp">Japan</option></optgroup>
+  </select>
+  <span id="natout"></span>
+  <q-select v-model="tech" :options="opts" label="Technician" style="margin-top:20px" id="qs"></q-select>
+  <div id="qout">{{ tech }}</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@3.4.38/dist/vue.global.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quasar@2.16.9/dist/quasar.umd.prod.js"></script>
+<script>
+const names=['Alice Brown','Bob Stone','Carlos Diaz','Dana White','Evan Black','Fatima Khan','George Hill','Hana Sato','Ivan Petrov','Julia Roberts','Kamal Ahmed','Lena Fox'];
+const app=Vue.createApp({data:()=>({tech:null,opts:names})});app.use(Quasar);app.mount('#app');
+</script></body></html>

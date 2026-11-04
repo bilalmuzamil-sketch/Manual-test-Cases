@@ -112,3 +112,9 @@ Modes: `--staged` (what git will commit) · no flag (the whole working tree,
 tracked **and** untracked) · `--all` / `--tracked` (every tracked file) ·
 `--diff FILE` · `--selftest` (proves detection fires and that clean text passes).
 Genuine false positives are marked on the line with `scan-secrets:allow`.
+
+## Bookmarklets
+
+- [`bookmarklets/dropdown-search/`](bookmarklets/dropdown-search/README.md) — a search box for the
+  dropdowns on any page (native `<select>` and open Quasar / ARIA / Bootstrap-style pop-ups). Install
+  by opening `install.html` and dragging the button to the bookmarks bar.
