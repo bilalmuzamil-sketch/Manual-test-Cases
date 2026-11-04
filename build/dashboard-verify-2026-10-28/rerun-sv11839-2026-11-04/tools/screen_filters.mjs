@@ -19,10 +19,10 @@ const panelState = async () => {
 };
 await go();
 for (const [key, kind] of [['techEfficiencyKpi', 'Technician'], ['techUtilizationKpi', 'Technician'], ['billingEfficiencyKpi', 'Advisor']]) {
-  // 4 Nov 2026: November has almost no data at Heavy Duty yet, so the filter list is empty on This Month; use Last Month (October).
+  // 4 Nov 2026: November has almost no data at Heavy Duty yet, so the filter list is empty on This Month; use Last Quarter (QA-branch data ends ~31 Aug 2026).
   { const n0r = responses.length; const tile = page.locator(`[data-test-id="hero_tile_${key}"]`);
     await tile.locator('.date-range-label, [class*="date-label"], button').filter({ hasText: /Month|Year|Quarter|Week|Months|Custom|\d/ }).first().click(); await page.waitForTimeout(700);
-    await page.locator('.q-menu').last().getByText('Last Month', { exact: true }).first().click();
+    await page.locator('.q-menu').last().getByText('Last Quarter', { exact: true }).first().click();
     for (let i = 0; i < 40 && responses.length === n0r; i++) await page.waitForTimeout(250); await page.waitForTimeout(2500); }
   const tileBefore = await page.locator(`[data-test-id="hero_value_${key}"]`).innerText();
   await page.locator(`[data-test-id="btn_toggle_details_${key}"]`).click(); await page.waitForTimeout(5000);

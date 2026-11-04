@@ -1,0 +1,7 @@
+RULE99 {"loc":"Staging Heavy Duty - 9919","location_tz":"America/Edmonton","process_tz":"America/Edmonton","browser":["America/Edmonton","\"America/Edmonton\"","\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""]}
+techEfficiencyKpi | choice Cameron Johnston | tile 95.54% -> 95.54% | rows 10 -> 10 | label person Technician: 11 technicians keyboard_arrow_down cancel | req 11 | none: rows 0 charts 0 label person Technician: No technicians keyboard_arrow_down
+techUtilizationKpi | choice Cameron Johnston | tile 72.93% -> 72.93% | rows 10 -> 10 | label person Technician: 10 technicians keyboard_arrow_down cancel | req 10 | none: rows 0 charts 0 label person Technician: No technicians keyboard_arrow_down
+billingEfficiencyKpi | choice Aaron Barnett | tile 102.42% -> 102.42% | rows 6 -> 0 | label person Advisor: Aaron Barnett keyboard_arrow_down cancel | req 1 | none: null
+reload techEfficiencyKpi person Technician: All technicians keyboard_arrow_down rows 0 charts 0
+reload techUtilizationKpi person Technician: Tech ShopView keyboard_arrow_down cancel rows 1 charts 1
+reload billingEfficiencyKpi person Advisor: Aaron Barnett keyboard_arrow_down cancel rows 0 charts 0
