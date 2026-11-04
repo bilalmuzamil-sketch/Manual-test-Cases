@@ -1,0 +1,184 @@
+{
+ "mode": "pay",
+ "zones": {
+  "key": "DVI",
+  "wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "tz": "Pacific/Fiji",
+  "name": "DVI Test",
+  "change_location": 200,
+  "zone_source": "GET /api/staff/my-workplaces (live)",
+  "process_TZ": "Pacific/Fiji",
+  "local_now": "2026-11-05T05:19:14+12:00",
+  "utc_now": "2026-11-04T17:19:14+00:00"
+ },
+ "local_today": "2026-11-05",
+ "export": {
+  "status": 200,
+  "window": [
+   "2026-01-01",
+   "2026-11-05"
+  ],
+  "header": [
+   "Employee Name",
+   "Date",
+   "Total Hours",
+   "WO Hours",
+   "Internal Hours"
+  ],
+  "person_days": {
+   "2026-10-28": {
+    "Employee Name": "",
+    "Date": "2026-10-28",
+    "Total Hours": "0.00",
+    "WO Hours": "0.00",
+    "Internal Hours": "0.00"
+   },
+   "2026-10-29": {
+    "Employee Name": "",
+    "Date": "2026-10-29",
+    "Total Hours": "1.53",
+    "WO Hours": "1.53",
+    "Internal Hours": "0.00"
+   }
+  },
+  "days_over_24_all_staff": []
+ },
+ "ta_day_rows": [
+  {
+   "date": "Oct 29 2026",
+   "work_order": "S1-38220",
+   "clock_activity": "Test DVI Line",
+   "clock_in": "12:08 PM",
+   "clock_out": "12:41 PM",
+   "hours": 0.55,
+   "formatted_start_date_time": "Oct 29, 2026 12:08 PM",
+   "formatted_end_date_time": "Oct 29, 2026 12:41 PM"
+  },
+  {
+   "date": "Oct 29 2026",
+   "work_order": "S1-38220",
+   "clock_activity": "Test DVI Line",
+   "clock_in": "11:39 AM",
+   "clock_out": "12:34 PM",
+   "hours": 0.92,
+   "formatted_start_date_time": "Oct 29, 2026 11:39 AM",
+   "formatted_end_date_time": "Oct 29, 2026 12:34 PM"
+  },
+  {
+   "date": "Oct 29 2026",
+   "work_order": "S1-38199",
+   "clock_activity": "Test DVI Line",
+   "clock_in": "07:23 AM",
+   "clock_out": "07:24 AM",
+   "hours": 0.02,
+   "formatted_start_date_time": "Oct 29, 2026 07:23 AM",
+   "formatted_end_date_time": "Oct 29, 2026 07:24 AM"
+  },
+  {
+   "date": "Oct 29 2026",
+   "work_order": "S1-38199",
+   "clock_activity": "Test DVI Line",
+   "clock_in": "07:21 AM",
+   "clock_out": "07:22 AM",
+   "hours": 0.02,
+   "formatted_start_date_time": "Oct 29, 2026 07:21 AM",
+   "formatted_end_date_time": "Oct 29, 2026 07:22 AM"
+  },
+  {
+   "date": "Oct 29 2026",
+   "work_order": "S1-38199",
+   "clock_activity": "Test DVI Line",
+   "clock_in": "07:19 AM",
+   "clock_out": "07:20 AM",
+   "hours": 0.02,
+   "formatted_start_date_time": "Oct 29, 2026 07:19 AM",
+   "formatted_end_date_time": "Oct 29, 2026 07:20 AM"
+  }
+ ],
+ "clocks": {
+  "649c06cd-41c3-4191-9e46-38222275fa9a": [
+   "2026-10-29T12:08:00",
+   "2026-10-29T12:41:00",
+   "S1-38220",
+   "Test DVI Line"
+  ],
+  "0994f8d3-6dcb-43df-82d6-55a762bbac3c": [
+   "2026-10-29T11:39:00",
+   "2026-10-29T12:34:00",
+   "S1-38220",
+   "Test DVI Line"
+  ],
+  "1d7f3546-befb-47e4-9d4a-a59dd8d38de4": [
+   "2026-10-29T07:23:00",
+   "2026-10-29T07:24:00",
+   "S1-38199",
+   "Test DVI Line"
+  ],
+  "0109d661-49ae-429b-b80d-cce53297a764": [
+   "2026-10-29T07:21:00",
+   "2026-10-29T07:22:00",
+   "S1-38199",
+   "Test DVI Line"
+  ],
+  "5f1167f8-0271-4516-b05f-ae23207048cc": [
+   "2026-10-29T07:19:00",
+   "2026-10-29T07:20:00",
+   "S1-38199",
+   "Test DVI Line"
+  ]
+ },
+ "days": {
+  "2026-10-28": {
+   "clock_parts": [],
+   "sum_of_parts_h": 0.0,
+   "expected_union_h": 0.0,
+   "timesheet_activities_hours": 0,
+   "export_total_hours": "0.00"
+  },
+  "2026-10-29": {
+   "clock_parts": [
+    [
+     "07:19",
+     "07:20"
+    ],
+    [
+     "07:21",
+     "07:22"
+    ],
+    [
+     "07:23",
+     "07:24"
+    ],
+    [
+     "11:39",
+     "12:34"
+    ],
+    [
+     "12:08",
+     "12:41"
+    ]
+   ],
+   "sum_of_parts_h": 1.52,
+   "expected_union_h": 1.08,
+   "timesheet_activities_hours": 1.53,
+   "export_total_hours": "1.53"
+  },
+  "2026-10-30": {
+   "clock_parts": [],
+   "sum_of_parts_h": 0.0,
+   "expected_union_h": 0.0,
+   "timesheet_activities_hours": 0,
+   "export_total_hours": null
+  }
+ },
+ "server_requests": [
+  {
+   "GET": "/api/reporting/export/payroll_timesheet?range=custom&start_date=2025-12-31T12%3A00%3A00.000Z&end_date=2026-11-05T11%3A59%3A59.999Z",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/punch-clock-activities/custom?range=custom&start_date=2026-10-24T12%3A00%3A00.000Z&end_date=2026-11-02T11%3A59%3A59.999Z&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=2000",
+   "status": 200
+  }
+ ]
+}

@@ -4,7 +4,7 @@
 // Usage: TZ=<zone> node screen_sec3.mjs d7|payDVI|payHD|pv
 import fs from 'fs';
 import { assertLoc } from '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/tools/f3/f3boot.mjs';
-const mode = process.argv[2]; const where = { d7: 'dvi', payDVI: 'dvi', payHD: 'hd', pv: 'hd' }[mode];
+const mode = process.argv[2]; const where = { d7: 'dvi', payDVI: 'dvi', payHD: 'hd', pv: 'hd', taDVI: 'dvi', taHD: 'hd' }[mode];
 const APP = 'https://app.staging.shopview.com';
 const PIC = '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tickets-2026-10-29/phase2/pictures';
 const OUT = `/tmp/cln/s3/screen-${mode}`; fs.mkdirSync(OUT, { recursive: true });
@@ -84,6 +84,28 @@ try {
       await renderCsv(small, { title: `payroll_timesheet.csv (Staging Heavy Duty - 9919, Custom 01/01/${yr} to ${today}) - Haley Brown 6 Sep; Admin Shopview 16-20 Sep`, mark: r => r[0] === 'Haley Brown', name: 'P2-A5-3-v2-payroll-export-haley-brown-28-50-2026-11-04' });
       await renderCsv(small, { title: `payroll_timesheet.csv (Staging Heavy Duty - 9919, Custom 01/01/${yr} to ${today}) - Admin Shopview 16-20 Sep 2026`, keep: r => r[0] === 'Admin Shopview', mark: r => ['2026-09-18', '2026-09-19'].includes(r[1 + di]), name: 'P2-A6-2-payroll-export-18-sep-23-67-19-sep-24-33-2026-11-04' });
     }
+  }
+  if (mode === 'taDVI' || mode === 'taHD') {   // Timesheet Activities through the date chip (a URL range does not load rows on this build)
+    const reqs = []; p.on('request', r => { if (/punch-clock-activities/.test(r.url())) reqs.push(decodeURIComponent(r.url()).replace(/^.*\/api/, '')); });
+    await go('/reports/punch-clock-activities', 12000);
+    const chip = p.locator('[data-test-id="filter_chip_range"], [data-test-id="filter_chip_dateRange"]').first(); const chipId = await chip.getAttribute('data-test-id');
+    const prefix = 'filter_preset_' + chipId.replace('filter_chip_', '') + '_';
+    await chip.click(); await p.waitForTimeout(1500);
+    meta.notes.presets = await p.locator(`[data-test-id^="${prefix}"]`).evaluateAll((es, x) => es.map(e => e.getAttribute('data-test-id').replace(x, '') + '=' + e.innerText.trim()), prefix);
+    const want = mode === 'taDVI' ? /^last_month/ : /^custom/; const id = meta.notes.presets.map(x => x.split('=')[0]).find(x => want.test(x));
+    await p.locator(`[data-test-id="${prefix}${id}"]`).first().click(); await p.waitForTimeout(1000);
+    if (mode === 'taHD') { const m = p.locator('.q-menu').last(); meta.notes.custom_menu = (await m.innerText().catch(() => '')).replace(/\n+/g, ' | ').slice(0, 400);
+      meta.notes.custom_inputs = await m.locator('input').evaluateAll(es => es.map(e => ({ n: e.name, ph: e.placeholder, v: e.value, tid: e.closest('[data-test-id]')?.getAttribute('data-test-id') })));
+      for (const [n, v] of [['start_date', '09/18/2026'], ['end_date', '09/19/2026']]) { const i = m.locator(`input[name="${n}"]`).first(); await i.click(); await i.fill(v); await p.keyboard.press('Tab'); await p.waitForTimeout(700); } }
+    const ap = p.locator('.q-menu button').filter({ hasText: /^\s*Apply\s*$/ }); if (await ap.count()) await ap.first().click().catch(() => {});
+    await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(10000);
+    meta.notes.chip = await txt(chip);
+    const key = mode === 'taDVI' ? 'S1-38220' : 'S2-15119';
+    const rows = p.locator('tbody tr').filter({ hasText: key }); await rows.first().scrollIntoViewIfNeeded().catch(() => {}); await p.mouse.wheel(0, -250); await p.waitForTimeout(1500);
+    meta.notes.rows = await rows.evaluateAll(t => t.map(r => r.innerText.replace(/\s+/g, ' ')));
+    meta.notes.requests = [...new Set(reqs)].slice(0, 6);
+    if (mode === 'taDVI') await shot('P2-A5-1-v2-timesheet-two-overlapping-fiji-2026-11-04', { rows: await box(rows) });
+    else await shot('P2-A6-1-timesheet-activities-18-19-sep-2026-11-04', { rows: await box(rows) });
   }
   if (mode === 'pv') {
     const S = JSON.parse(fs.readFileSync('/tmp/cln/s3/seed.json'));

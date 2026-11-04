@@ -2840,6 +2840,8 @@ Activities. `POST /api/technician-tasks/create` needs `staff_id`+`start_date` (s
 and range only, **no location**. A day row narrows `startDate`=`endDate`. The landed page's Totals row
 is what you reconcile against.
 
+**⚠️ 4 Nov 2026, build v26.45.0-440aa25 — a Custom range in the ADDRESS no longer loads Timesheet Activities.** Opening `/reports/punch-clock-activities?range=custom&startDate=2026-10-29&endDate=2026-10-29` (ISO or MM/DD/YYYY) sets the chip to "Date Range: Custom" but sends **no** `punch-clock-activities` list request, so the page reads **"No record matches these filters"**. **Working fix:** set the range through the chip: click `filter_chip_range` → `filter_preset_range_custom` → in that same `.q-menu` fill `input[name="start_date"]` and `input[name="end_date"]` (MM/DD/YYYY, Tab after each) → Escape. The page then sends `/reporting/punch-clock-activities/custom?…&start_date=<local midnight as UTC>&end_date=…`. The page has **no search box**; with a preset such as Last quarter the rows are paged 30 at a time. Recipe: `build/dashboard-verify-2026-10-28/rerun-2026-11-04/tools/sec3/screen_sec3.mjs` mode `taHD`.
+
 **REPORT UI HANDLES (`data-test-id` — stop guessing selectors).** `input_report_search`
 (placeholder **"Search parts"** — the report's OWN search; `select_global_search` is the Ctrl+K bar and
 is the wrong element), `btn_dropdown_pv_export` / `btn_dropdown_tu_export` (aria `Export report`),
