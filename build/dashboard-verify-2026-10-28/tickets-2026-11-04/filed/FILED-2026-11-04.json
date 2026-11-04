@@ -42,5 +42,35 @@
   "readback": "type, parent, priority, Product Area, 3 pictures embedded under captions (sizes match), link - OK",
   "evidence": "rerun-2026-11-04/results/sec3/server-pay-DVI-*.json, server-pay-HD-HaleyBrown-*.json, screen-payDVI.json, screen-payHD.json",
   "chris_confirm_comment": "80135 (4 Nov 2026), @Chris Ward tagged: what happens / what should happen / please confirm fix or leave"
+ },
+ "SV-12202": {
+  "url": "https://shopview.atlassian.net/browse/SV-12202",
+  "filed_utc": "2026-11-04T19:31:31Z",
+  "draft": "tickets-2026-10-29/phase2/P2-B8-reports-parts-velocity-last-sale-counts-24-hour-periods.md",
+  "summary": "Reports - Parts Velocity Last Sale counts 24-hour periods instead of calendar days",
+  "type": "Bug",
+  "parent": "SV-11839",
+  "priority": "Medium",
+  "product_area": "Reports & Dashboards",
+  "go_ahead": "QA lead, 4 Nov 2026: \"1. If its a genuine bug and reporting it will not bite me, then report it and attach it to the correct epic, yes I wouod go with your recommendation\"",
+  "attachments": [
+   "63626 P2-B8-1 273456 B",
+   "63627 P2-B8-2 380573 B"
+  ],
+  "links": [
+   "relates to SV-8645",
+   "relates to SV-11945",
+   "relates to SV-11516"
+  ],
+  "chris_confirm_comment": "80136",
+  "readback": "parent, priority, Product Area, 2 pictures under captions (sizes match), 3 links - OK",
+  "evidence": "rerun-2026-11-04/results/sec3/screen-pv.json, seed-read-after-karachi-midnight.json"
+ },
+ "SV-11945-redraft": {
+  "url": "https://shopview.atlassian.net/browse/SV-11945",
+  "edited_utc": "2026-11-04T19:31:01Z",
+  "what": "Description re-drafted (QA lead 4 Nov: \"re draft the ticket description if it is still the Bug\"): still a bug on v26.45.0-440aa25 (server read 5 Nov 7:29 AM Fiji: SO1 0 sold/$0/Demand 0/Last Sale null; SO2 counted). Expected Last Sale now calendar days (Chris answer 40, quoted); dates now Oct 29 (DVI Test is Pacific/Fiji); both original pictures kept by media id.",
+  "evidence": "rerun-2026-11-04/results/sec3/recheck-sv11945.json",
+  "text": "tickets-2026-11-04/filed/SV-11945-redraft.html"
  }
 }

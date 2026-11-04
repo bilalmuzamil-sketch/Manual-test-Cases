@@ -48,3 +48,8 @@
   - **The 14 TESTING QA tickets on sv11839:**
     - PASS → transition to **QA Complete**, QA assignee = Bilal Muzamil, add the existing label QAcomplete.
     - FAIL → transition to **Rejected from testing**, with a plain comment and an annotated screenshot of why it failed.
+- **Done 4 Nov ~19:30 UTC:**
+  - **SV-12202** filed (Q40, Parts Velocity Last Sale), parent SV-11839, with Chris confirmation comment 80136.
+  - **SV-11945** description re-drafted (still a bug; expected Last Sale corrected to calendar days; pictures kept).
+  - The QA-branch ticket worker is still running. Pass/fail Jira updates follow its results.
+  - Transition ids (from TESTING QA): **QA Complete = 10**, **Rejected from Testing = 15**. QA Assignee = `customfield_10385` (multi-user). Label `QAcomplete` (existing).

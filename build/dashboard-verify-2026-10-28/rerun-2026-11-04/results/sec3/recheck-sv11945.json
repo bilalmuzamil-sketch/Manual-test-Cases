@@ -1,0 +1,88 @@
+{
+ "zones": {
+  "key": "DVI",
+  "wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "tz": "Pacific/Fiji",
+  "name": "DVI Test",
+  "change_location": 200,
+  "zone_source": "GET /api/staff/my-workplaces (live)",
+  "process_TZ": "Pacific/Fiji",
+  "local_now": "2026-11-05T07:29:20+12:00",
+  "utc_now": "2026-11-04T19:29:20+00:00"
+ },
+ "local_today": "2026-11-05",
+ "window": [
+  "2025-12-01",
+  "2026-11-05"
+ ],
+ "parts": {
+  "ZZAUTOTEST-SO1-10282011": {
+   "status": 200,
+   "rows": [
+    {
+     "key": "b537f81c-f6e0-4d6e-a76b-236261fdd0ec",
+     "type": "special_order",
+     "part_number": "ZZAUTOTEST-SO1-10282011",
+     "description": "ZZAUTOTEST PV special order receive later",
+     "category": "HD-Filters",
+     "vendor": "123 Cannabis Forestlawn",
+     "on_hand": null,
+     "min": null,
+     "max": null,
+     "units_sold": 0,
+     "demand": 0,
+     "units_returned": 0,
+     "revenue": 0,
+     "margin": 0,
+     "unit_cost": null,
+     "sell_price": null,
+     "margin_pct": null,
+     "sold_via_wo": 0,
+     "sold_via_parts_sale": 0,
+     "turns_per_year": null,
+     "last_sale": null,
+     "location": "DVI Test"
+    }
+   ]
+  },
+  "ZZAUTOTEST-SO2-10282011": {
+   "status": 200,
+   "rows": [
+    {
+     "key": "5417211b-6bd9-4a3e-a903-89bf4bcedb01",
+     "type": "special_order",
+     "part_number": "ZZAUTOTEST-SO2-10282011",
+     "description": "ZZAUTOTEST PV special order received",
+     "category": "HD-Filters",
+     "vendor": "123 Cannabis Forestlawn",
+     "on_hand": null,
+     "min": null,
+     "max": null,
+     "units_sold": 1,
+     "demand": 1,
+     "units_returned": 0,
+     "revenue": 8000,
+     "margin": 3000,
+     "unit_cost": 5000,
+     "sell_price": 8000,
+     "margin_pct": 37.5,
+     "sold_via_wo": 1,
+     "sold_via_parts_sale": 0,
+     "turns_per_year": null,
+     "last_sale": 6,
+     "location": "DVI Test"
+    }
+   ]
+  }
+ },
+ "server_requests": [
+  {
+   "GET": "/api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2025-11-30T12%3A00%3A00.000Z&end_date=2026-11-05T11%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C25a0d576-b371-4b82-bef4-41ba977f31c2%2C39522bc6-abca-4f67-bd12-2840043c2d68&search=ZZAUTOTEST-SO1-10282011&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=50&pagination%5BsortBy%5D=demand&pagination%5Bdescending%5D=true",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2025-11-30T12%3A00%3A00.000Z&end_date=2026-11-05T11%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C25a0d576-b371-4b82-bef4-41ba977f31c2%2C39522bc6-abca-4f67-bd12-2840043c2d68&search=ZZAUTOTEST-SO2-10282011&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=50&pagination%5BsortBy%5D=demand&pagination%5Bdescending%5D=true",
+   "status": 200
+  }
+ ]
+}
