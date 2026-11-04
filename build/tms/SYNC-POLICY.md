@@ -41,3 +41,8 @@
 Every question that leads to a write says **"Action in TMS"**, **"Action in TestRail"** or **"Action in both"**,
 and names folders by their **full path** (e.g. *Founder Mode (September 2026) > Part Lifecycle > S5 Edit tracking state*),
 never by a vague label.
+
+## Name runs, milestones and folders — number AND name (2026-11-04)
+
+**QA lead, verbatim:** *"Name the Test run instead of calling it for my by number make it a rule to mention the number and
+name both."* Rule 115 point 7. E.g. *TestRail run 552 Maintenance reminder (Chunk1 and 2)* / *TMS run 4 Mantenence Reminders*.

@@ -2574,3 +2574,13 @@ only extends the existing protection to TMS.**
 It does not edit, renumber or reinterpret any other rule. Where an older rule says "TestRail", it still
 means TestRail — and **this rule adds TMS alongside it**. If the two ever appear to conflict, **stop and ask
 (Rule 63)**.
+
+### Addition 2026-11-04 — name every run, milestone and folder; never a bare number
+
+**QA lead, verbatim (2026-11-04):** *"Name the Test run instead of calling it for my by number make it a rule to
+mention the number and name both."* Recorded under that express instruction (Rule 72).
+
+7. **Every test run, milestone and folder is named by its NUMBER and its NAME, and by its SYSTEM** — in every message,
+   question and report to the QA lead. Write *"TestRail run 552 Maintenance reminder (Chunk1 and 2)"* and *"TMS run 4
+   Mantenence Reminders"* (the name exactly as that system shows it), never *"run 552"* or *"TMS 4"* alone. Folders are
+   given by their full path (`build/tms/SYNC-POLICY.md`). A case keeps its existing form (C-number + link, Rule 8).
