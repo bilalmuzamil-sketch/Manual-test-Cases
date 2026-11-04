@@ -18,3 +18,10 @@
     - 39(a) (P2-A5): REPRODUCED.
     - 39(b) (P2-A6): REPRODUCED, but it is a **probable duplicate of SV-10702** (multi-day punch slices, double time-zone conversion; the Karachi direction). Recommendation: comment on SV-10702, not a new ticket.
     - 40: still running.
+- **QA lead, 4 Nov 2026 (answers to my questions 1–6, verbatim):** "1. Yes 2. Yes 3. If it's a big create ticket and attach to the same epic 4. Lets see this after everything else 5. Ok 6. Leave it"
+  1. QA-test the 14 TESTING QA tickets of epic SV-11839 on sv11839, each by its own steps; Jira status/comments only with his approval per ticket.
+  2. Comment on SV-11826 with the sv11839 evidence. Approved; posted after re-testing it by its own steps.
+  3. Chris answers 38 (P2-D7) and 39(a) (P2-A5) are bugs: **create the tickets with parent SV-11839** (the same epic), one at a time (Rule 73).
+  4. 39(b) / SV-10702 comment: later, after everything else.
+  5. Q40: OK, wait for the worker.
+  6. O1 (no comma at ≥1,000 %) and O2 (remembered technician filter): leave them.
