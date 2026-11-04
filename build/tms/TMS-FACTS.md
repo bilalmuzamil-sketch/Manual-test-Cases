@@ -274,3 +274,14 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **Decided 2026-10-28 (QA lead: "A" — leave as is):** the 3 cases' Automation type difference is recorded in
   `build/tms/accepted-differences.csv`; `tms_sync.py` reports them as `ACCEPTED` (per field only — any other change
   on them is still caught). No change list sent to Vlad for this suite (QA lead: *"No need to send list for this."*).
+
+## 15 · 2026-11-04 — Whole Founder Mode (20434) synced TestRail → TMS (QA lead: "All the test cases appearing under founder mode should be synced to TMS")
+
+- **11 folders created in TMS** (TMS 10000002–10000012): the new **Technician Toggle** suite + 8 sub-folders,
+  *Part Lifecycle > Setup needed before testing*, *Parts Lifecycle – not runnable by a manual tester*. In the section map.
+- **450 updates** (440 + 10 in a second pass), **70 of them folder moves**; **456 cases created** (453 + 3), each read back
+  identical; numbers in `tr-tms-case-map.csv`.
+- **Result: 1,961 SAME, 0 folder gaps.** Open: **C682441** (Automated in both, steps differ — held, Rules 65/71) and
+  **C154719** (What/Why > S3 What Reaches QuickBooks — deleted from TestRail during the run: 400 by number, no title match).
+- **🛑 TestRail was being edited WHILE the sync ran** (10 edits + 3 new cases at 04:16–04:21 UTC, our TestRail user,
+  likely another session). **A sync is a snapshot: always finish with a fresh dry run and report what moved meanwhile.**
