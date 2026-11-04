@@ -18,8 +18,10 @@ export const LOC = {
 };
 
 export async function headerCheck(page, loc) {
-  const text = await page.evaluate(() => (document.querySelector('header, .q-header')?.innerText || '').replace(/\s+/g, ' ').slice(0, 400));
-  return { header_text: text, shows_location: text.includes(loc.name), at_utc: new Date().toISOString() };
+  const text = await page.evaluate(() => (document.querySelector('header, .q-header')?.innerText || '').replace(/\s+/g, ' ').slice(0, 600));
+  // narrow screens collapse the header behind a menu button; the location selector's own text element is still in the page
+  const selector = await page.evaluate(() => [...document.querySelectorAll('header .short-text-content, .q-header .short-text-content, .q-drawer .short-text-content')].map(e => e.textContent.trim()));
+  return { header_text: text, location_selector_text: selector, shows_location: text.includes(loc.name) || selector.includes(loc.name), at_utc: new Date().toISOString() };
 }
 
 export async function boot(loc, { viewport = { width: 1600, height: 1000 }, deviceScaleFactor = 2, dest = '/dashboard' } = {}) {

@@ -1,0 +1,103 @@
+{
+ "ticket": "SV-11821",
+ "app_version": "v26.45.0-aacb66c",
+ "location": "Staging Heavy Duty - 9919",
+ "rule99_start": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "shows_location": true,
+   "at_utc": "2026-11-04T19:40:14.167Z"
+  },
+  "browser_local_time_start": "Wed Nov 04 2026 12:40:14 GMT-0700 (Mountain Standard Time)",
+  "all_match": true
+ },
+ "observed_at_utc": "2026-11-04T19:40:59.933Z",
+ "result": {
+  "as_written_oct10": {
+   "picker": {
+    "afterFirst": {
+     "header": "Oct 10, 2026",
+     "range": "Range: 1 day"
+    },
+    "afterSecond": {
+     "header": "Oct 10, 2026",
+     "range": "Range: 1 day"
+    }
+   },
+   "tile_value": "$0.00",
+   "tile_supporting_line": "0 Invoices",
+   "date_chip": "event\nOct 10, 2026\nexpand_more",
+   "server": [
+    {
+     "url": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=invoicesKpi&from=2026-10-10&to=2026-10-10&group=day",
+     "status": 200,
+     "revenueKpi": {
+      "value": 0,
+      "partsPct": null,
+      "laborPct": null,
+      "otherPct": null,
+      "sparkline": [
+       0
+      ]
+     },
+     "invoicesKpi": {
+      "value": 0
+     }
+    }
+   ],
+   "pictures": [
+    "SV-11821/as_written_oct10-picker-before-apply.png",
+    "SV-11821/as_written_oct10-tile-after-apply.png"
+   ]
+  },
+  "one_invoice_day_jun20": {
+   "picker": {
+    "afterFirst": {
+     "header": "Jun 20, 2026",
+     "range": "Range: 1 day"
+    },
+    "afterSecond": {
+     "header": "Jun 20, 2026",
+     "range": "Range: 1 day"
+    }
+   },
+   "tile_value": "$546.70",
+   "tile_supporting_line": "Parts 9% · Labor 82% · Other 9%",
+   "date_chip": "event\nJun 20, 2026\nexpand_more",
+   "server": [
+    {
+     "url": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=invoicesKpi&from=2026-06-20&to=2026-06-20&group=day",
+     "status": 200,
+     "revenueKpi": {
+      "value": 546.7,
+      "partsPct": 9,
+      "laborPct": 82,
+      "otherPct": 9,
+      "sparkline": [
+       546.7
+      ]
+     },
+     "invoicesKpi": {
+      "value": 1
+     }
+    }
+   ],
+   "pictures": [
+    "SV-11821/one_invoice_day_jun20-picker-before-apply.png",
+    "SV-11821/one_invoice_day_jun20-tile-after-apply.png"
+   ]
+  }
+ }
+}
