@@ -76,7 +76,7 @@ for i in J:
     ledger[k] = row
 json.dump(ledger, open(f"{L.P}/TICKET-LEDGER.json", "w"), indent=1, ensure_ascii=False)
 json.dump({"project": "Technician Toggle", "epic": "SV-11788", "stories": [v[0] for v in L.STORY.values()], "prd_page": "977371146",
-           "prd_version_handled": 18, "jira_saved": "sources/jira-sweep-2026-11-02-pm.json", "checked": "2026-11-02 (pm, after PRD v18)"},
+           "prd_version_handled": 20, "jira_saved": "sources/jira-sweep-2026-11-02-pm.json", "checked": "2026-11-04 (PRD v20; Jira as saved 2 Nov pm, no newer saved sweep)"},
           open(f"{L.P}/TICKET-SWEEP.json", "w"), indent=1)
 
 # ---------------------------------------------------------------- PO-QUESTIONS-DRAFT.md
@@ -110,6 +110,14 @@ for i, (slug, q, basis, opts, holds) in enumerate(QUESTIONS, 1):
          6: "S3-24 to S3-26 and D-27 released; D-34 deleted (DELETE.json)", 7: "S3-29, S3-30 and D-29 released, both sentences kept",
          8: "S1-37 rewritten to the answer and released (PRD v18 S1-R3)"}[i] + ".")
     w("")
+_a9 = re.search(r"\*\*Answer: 9\. (.*?)\*\*", open(L.ANS_FILE).read()).group(1)
+w("## Question 9 (added to Chris's sheet by the coordinator, 2 Nov 2026: tech plan D19 against S6-R1 (a), a time entry with both a department and a work order)")
+w("")
+w(f"- **Chris's answer (read 4 Nov 2026, column E, row 15):** 9. {_a9}")
+w("- **Status:** answered; PRD v20 (3 Nov 2026) S6-R1 (a) carries it. The release-day cases S6-01 to S6-06 re-quote v20. No manual case for the "
+  "combined entry: no ShopView screen creates a time entry with both a department and a work order (Chris's question 9 note), so it is listed "
+  "as not testable by hand in REPORT.md.")
+w("")
 w("## QA-only: what each question holds")
 w("")
 w("| Question | Cases held (keys; C-ids once written) |")
@@ -219,6 +227,29 @@ prd_cases = [c for c in CASES if c["sec"] != "DESIGN"]
 with_ref = [c["key"] for c in prd_cases if c["key"] in L.DREFS]
 REC = json.load(open(f"{D}/v18-named-set-record.json"))
 _vf = subprocess.run([sys.executable, f"{D}/verify_v18_named_set.py"], capture_output=True, text=True).stdout.strip().splitlines()
+REC20 = json.load(open(f"{D}/v20-named-set-record.json"))
+_vf20 = subprocess.run([sys.executable, f"{D}/verify_v20_named_set.py"], capture_output=True, text=True).stdout.strip().splitlines()
+w("## 5c. Round 4 — PRD v20 (named sets, 4 Nov 2026)")
+w("")
+w("QA lead: \"Yes, named sets (Recommended)\". PRD v20 (3 Nov 2026) changes S3-N1 (v19: a picked person whose Technician is turned off stays "
+  "picked while the board gives them a column or group; otherwise until Work Orders is opened again from the menu or the page is reloaded) and "
+  "S6-R1 (a) (v20: an entry with both a department and a work order counts as time on the work order; Chris's answer 9). Nothing else changed "
+  "(diff against v18). The set is 16 cases; nothing outside it changes.")
+w("")
+w(f"- **Updated ({len(REC20['named_set'])}):** " + ", ".join(f"{k} {v['case']}" for k, v in sorted(REC20["named_set"].items())) +
+  ". Each quotes PRD v20 (From line \"version 20 (3 Nov 2026, Chris Ward), read 4 Nov 2026\") and carries the Rule 69 marker dated 11/4/2026. "
+  "S3-48 is rewritten top to bottom: a turned-off person stays picked until the page is reloaded, then drops out, and their work does not "
+  "move. The others are re-quoted, and every other part is CONFIRMED (`authoring/v20-named-set-record.json`). INV-06 quotes S3-R9 and Out of "
+  "Scope, not S6-R1 (a), so only its version stamp and marker change. It is in the brief's set, which I kept as given.")
+w("- **New (3):** S3-51 (a turned-off person stays picked while Work Orders stays open; when they are the only person picked the board shows "
+  "\"No work orders match these filters\"; unticking clears the filter), S3-52 (a turned-off person who still leads shown work stays offered "
+  "and picked), S3-53 (they drop out when Work Orders is opened again from the menu). S3-48 covers the reload and S3-50 the location change.")
+w("- **No manual case:** S6-R1 (a)'s entry with both a department and a work order. No ShopView screen creates one (Chris's question 9 note), "
+  "so a manual tester cannot set it up. It is left to the developers' release-step checks.")
+w(f"- **Proof** (`authoring/verify_v20_named_set.py`): {_vf20[0]} {_vf20[-1]}. It fails on a planted title change outside the set, as it "
+  "should. `verify_v18_named_set.py` is historical (it now reports the v20 set as changes).")
+w("- **Jira:** not re-read in this pass. The ledger and sweep use the tickets saved on 2 Nov (pm), and TICKET-SWEEP.json now records PRD v20 as handled.")
+w("")
 w("## 5b. Round 3 — PRD v18, Chris's answers 1 to 8, design version 1793640819-ff4d (named set, 2 Nov 2026)")
 w("")
 w("QA lead: \"Named set (Recommended)\". The set is 56 cases: the 50 in `po-answers-2026-11-02/named-50-from-codes.json` (every case tagged "
@@ -310,7 +341,10 @@ w("")
 w("## 8. OUTSTANDING — what I need from you")
 w("")
 w("- The coordinator: review, create the subsections in 113017 (`sections.json`), run `create.py --apply` with the QA lead's go-ahead, then read back the cases and commit.")
-w("- Round 3 (coordinator, with the QA lead's go-ahead): `update_changed.py --apply` (54 named-set cases; 15 released cases join run 555, union "
+w("- Round 4 (coordinator, with the QA lead's go-ahead): run `create.py --apply` first (3 new cases: S3-51, S3-52, S3-53), then "
+  "`update_changed.py --apply` (16 named-set cases; it adds every unheld mapped case missing from run 555, union only, and assigns each "
+  "added test to Mudassir, user 6).")
+w("- Round 3 (done 2 Nov 2026): `update_changed.py --apply` (54 named-set cases; 15 released cases join run 555, union "
   "only), `create.py --apply` (6 new cases, then add them to run 555), delete D-33 and D-34 (DELETE.json).")
 w("- Facts to confirm on the build (not PO questions): how the screen sets a line's own technician; which Public API requests change a staff member's role or a work order's lead (API-12, API-13).")
 _po = [c["key"] for c in CASES if "waiting on the PO" in c["marker"]]

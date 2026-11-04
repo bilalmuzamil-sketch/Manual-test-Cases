@@ -96,6 +96,11 @@ Project: **Technician Toggle** (epic SV-11788, PRD Confluence 977371146 version 
 - **Chris's answer (2 Nov 2026, column E):** 8. (a) As if the window had just opened. Save & Add Next clears the form the same way it does today: no role, Time Clock off, Technician off. Any earlier switch by hand is forgotten, and the next person's Technician is set from their own role. I'll add Save & Add Next to S1-R3.
 - **Status:** answered; S1-37 rewritten to the answer and released (PRD v18 S1-R3).
 
+## Question 9 (added to Chris's sheet by the coordinator, 2 Nov 2026: tech plan D19 against S6-R1 (a), a time entry with both a department and a work order)
+
+- **Chris's answer (read 4 Nov 2026, column E, row 15):** 9. (a) Yes, it counts. It's time on a work order, so the person did technician work. Release day can only turn Technician on, never off, and the shop can switch it off in Staff. I've added this to S6-R1(a).
+- **Status:** answered; PRD v20 (3 Nov 2026) S6-R1 (a) carries it. The release-day cases S6-01 to S6-06 re-quote v20. No manual case for the combined entry: no ShopView screen creates a time entry with both a department and a work order (Chris's question 9 note), so it is listed as not testable by hand in REPORT.md.
+
 ## QA-only: what each question holds
 
 | Question | Cases held (keys; C-ids once written) |

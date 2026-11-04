@@ -86,11 +86,12 @@ REC = [
 ]
 for t, r in REC: w(f"- **{t}:** {r}")
 w("")
-w("## 3. Questions (all 8 answered, 2 Nov 2026) and held cases")
+w("## 3. Questions (all 9 answered, 2 to 4 Nov 2026) and held cases")
 w("")
 for i, (slug, q, basis, opts, holds) in enumerate(QUESTIONS, 1):
     keys = [c["key"] for c in L.CASES if c["marker"] == L.PO_HOLD(i)]
     w(f"- **Question {i}** ({slug}): {q} **Answered by Chris Ward, 2 Nov 2026:** {L.ANS[i]} Held now: {', '.join(keys) or 'none'}.")
+w("- **Question 9** (tech plan D19 against S6-R1 (a)): **Answered by Chris Ward, read 4 Nov 2026:** " + re.search(r"\*\*Answer: 9\. (.*?)\*\*", open(L.ANS_FILE).read()).group(1) + " PRD v20 carries it; the combined department and work order entry cannot be made on screen, so it has no manual case.")
 w("- Other held cases and why: " + "; ".join(f"{c['key']} ({c['marker'][len('AUTOMATION: HOLD - '):]})" for c in L.CASES
                                              if c["held"] and "waiting on the PO" not in c["marker"] and c["marker"] != L.PRE_REL) + ".")
 w(f"- Release-day cases held with the production marker: {', '.join(c['key'] for c in L.CASES if c['marker'] == L.PRE_REL)}.")

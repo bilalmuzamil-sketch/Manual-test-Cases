@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1793635218,
  "updated_by": 3,
- "updated_on": 1793635218,
+ "updated_on": 1793765951,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -25,11 +25,11 @@
  "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in to production (the live app, app.shopview.com) as an Admin of the production test account, at its test location, Trucks Hill 2.</li><li>Shortly before the release reached production, have a new staff member for this test on production, staff member A, active, on the built-in Parts Manager role, with Time Clock on, Billable set to No, enrolled at Trucks Hill 2, whose only work is one time entry on a part sale that started 30 days before the release (written down with a screenshot of the staff record).</li></ul>",
  "custom_steps": "<ol><li>Open Settings, Staff.</li><li>Open staff member A's Edit Staff Member window.</li><li>Open Work Orders, Board View, at Trucks Hill 2.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Staff member A's row shows \"Yes\" in the Technician column.</li></ul><p>Step 2:</p><ul><li>Technician is on.</li></ul><p>Step 3:</p><ul><li>Staff member A has a column.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Technician Toggle\", Confluence 977371146, version 17 (2 Nov 2026, Chris Ward), read 2 Nov 2026 &middot; Epic SV-11788, story SV-11884 (Story 6, Release day)</p><ul><li><strong>S6-R1 (a):</strong> &ldquo;(a) has a time entry on a work order, part sales included, whose start is no more than 90 days (to the second) before the moment the release step runs, or later, including manual entries made by someone else (time on a department does not count);&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p>AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Staff member A's row shows \"Yes\" in the Technician column.</li></ul><p>Step 2:</p><ul><li>Technician is on.</li></ul><p>Step 3:</p><ul><li>Staff member A has a column.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Technician Toggle\", Confluence 977371146, version 20 (3 Nov 2026, Chris Ward), read 4 Nov 2026 &middot; Epic SV-11788, story SV-11884 (Story 6, Release day)</p><ul><li><strong>S6-R1 (a):</strong> &ldquo;(a) has a time entry on a work order, part sales included, whose start is no more than 90 days (to the second) before the moment the release step runs, or later, including manual entries made by someone else (time on a department alone does not count; an entry that has both a department and a work order counts as time on the work order);&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p>AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

@@ -1,7 +1,7 @@
 # Cases updated or added since 28 Oct 2026 — list for build verification (4 Nov 2026)
 
 ## Technician Toggle — 2 Nov 2026, PRD v18 and Chris's answers 1-8 (54 rewritten, 6 new)
-Never build-verified (marked "Not available on Build to test Yet"). The PRD v20 set (16 cases + new filter cases) is being prepared and will be added below once written.
+Never build-verified (marked "Not available on Build to test Yet"). The PRD v20 set is listed in its own section below.
 
 | Key | Case | Title |
 |---|---|---|
@@ -158,3 +158,28 @@ The build-verification session edited these cases on 28 Oct after our write (mar
 | S3-26 | [C847723](https://shopview.testrail.io/index.php?/cases/view/847723) | QuickBooks Online gets no apostrophe before a line starting with = |
 | S4-09 | [C847724](https://shopview.testrail.io/index.php?/cases/view/847724) | An import row with an empty *Line Title says "Line Title cannot be empty." |
 | D-18 | [C847725](https://shopview.testrail.io/index.php?/cases/view/847725) | Design: Modern invoice prints no Scope of work heading without a tech story |
+
+## Technician Toggle — 4 Nov 2026, PRD v20 (16 rewritten, 3 new C913764-C913766)
+All in run 555 (Mudassir). S6 cases are release-day cases (run on production around the release).
+
+| Key | Case | Title |
+|---|---|---|
+| S3-01 | [C897223](https://shopview.testrail.io/index.php?/cases/view/897223) | Board View gives a column only to technicians |
+| S3-02 | [C897224](https://shopview.testrail.io/index.php?/cases/view/897224) | Tech View gives a group only to technicians |
+| S3-03 | [C897225](https://shopview.testrail.io/index.php?/cases/view/897225) | The Technician filter offers only the people the board gives a column to |
+| S3-04 | [C897226](https://shopview.testrail.io/index.php?/cases/view/897226) | Assign lead technician offers only technicians and says when none match |
+| S3-07 | [C897229](https://shopview.testrail.io/index.php?/cases/view/897229) | The Lead Technician dropdown offers only technicians |
+| S3-08 | [C897230](https://shopview.testrail.io/index.php?/cases/view/897230) | Add Technician in the New Line window offers only technicians |
+| S3-11 | [C897233](https://shopview.testrail.io/index.php?/cases/view/897233) | Someone with Time Clock off is not offered |
+| S3-48 | [C897269](https://shopview.testrail.io/index.php?/cases/view/897269) | A Technician filter set to someone who is then turned off |
+| S3-50 | [C897381](https://shopview.testrail.io/index.php?/cases/view/897381) | People picked in the filter at another location are dropped on switching |
+| S6-01 | [C897295](https://shopview.testrail.io/index.php?/cases/view/897295) | Time on a work order in the last 90 days turns Technician on |
+| S6-02 | [C897296](https://shopview.testrail.io/index.php?/cases/view/897296) | Time on a work order older than 90 days does not turn Technician on |
+| S6-03 | [C897297](https://shopview.testrail.io/index.php?/cases/view/897297) | Time on a part sale in the last 90 days turns Technician on |
+| S6-04 | [C897298](https://shopview.testrail.io/index.php?/cases/view/897298) | A manual time entry made by someone else turns Technician on |
+| S6-05 | [C897299](https://shopview.testrail.io/index.php?/cases/view/897299) | Time on a department only does not turn Technician on |
+| S6-06 | [C897300](https://shopview.testrail.io/index.php?/cases/view/897300) | A time entry dated after the release moment also counts |
+| INV-06 | [C897328](https://shopview.testrail.io/index.php?/cases/view/897328) | Schedule lanes still follow departments, not the Technician toggle |
+| S3-51 | [C913764](https://shopview.testrail.io/index.php?/cases/view/913764) | A turned-off person stays picked while Work Orders stays open |
+| S3-52 | [C913765](https://shopview.testrail.io/index.php?/cases/view/913765) | A picked person who still leads shown work stays picked after turning off |
+| S3-53 | [C913766](https://shopview.testrail.io/index.php?/cases/view/913766) | A turned-off person picked in the filter drops out when Work Orders is reopened |

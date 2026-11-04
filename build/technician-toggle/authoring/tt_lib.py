@@ -192,9 +192,45 @@ NAMED_SET = (set(_json.load(open(f"{P}/po-answers-2026-11-02/named-50-from-codes
              | {"D-26", "S1-25", "S3-09", "S3-10", "S3-21", "S3-23"}) - {"D-33", "D-34"}   # D-33, D-34 deleted (answers 5, 6)
 DELETED = {"D-33": "C897374", "D-34": "C897375"}
 NO_MANUAL = {"S2-34", "S2-35", "S2-36", "S3-47", "S4-07"}   # QA lead 2 Nov 2026: "Leave them out" (NO-MANUAL-CASES.md); library only, outside the set
+V18_NEW = {"S1-38", "S1-39", "S1-40", "S1-41", "S3-49", "S3-50"}   # round 3 new cases, live since 2 Nov 2026 (C897376-C897381)
+V18_KEYS = NAMED_SET | V18_NEW
+
+# ---- PRD v20 (3 Nov 2026; v19 S3-N1 filter rule, v20 S6-R1 (a) department + work order, Chris's answer 9) and the QA lead's
+# "Yes, named sets" (4 Nov 2026). Only the v20 named set and new cases quote v20; v18 cases keep v18; every other case keeps v17.
+PRD20_FILE = f"{P}/sources/CONFLUENCE-977371146-v20-2026-11-04.md"
+PRD20_MD = open(PRD20_FILE).read().split("## 9. Change Log")[0]
+PRD20_TXT = md_to_text(PRD20_MD)
+PRD20W = ws(PRD20_TXT)
+PRD20_RAWW = ws(re.sub(r"<[^>]+>", "", re.sub(r"\[([^\]]*)\]\(([^)]*)\)", r"\1", PRD20_MD)))
+PRD20_NAME = 'PRD "Technician Toggle", Confluence 977371146, version 20 (3 Nov 2026, Chris Ward)'
+PRD20_READ = "read 4 Nov 2026"
+CODE20 = {}
+for line in PRD20_TXT.split("\n"):
+    m = re.match(r"^\s*-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
+    if m and m.group(1) not in CODE20: CODE20[m.group(1)] = m.group(2).strip()
+CHANGED20 = sorted(k for k in CODE18 if CODE20.get(k) != CODE18[k])
+if set(CODE20) != set(CODE18) or CHANGED20 != ["S3-N1"]: raise SystemExit(f"PRD v20 codes changed vs v18: {CHANGED20}")
+def _in20(t): return ws(t) in PRD20W or ws(t) in PRD20_RAWW
+def _v20_line(text):
+    head = ws(text)[:40]
+    hits = [ws(re.sub(r"^\s*-\s*", "", l)) for l in PRD20_TXT.split("\n") if ws(re.sub(r"^\s*-\s*", "", l)).startswith(head)]
+    if len(hits) != 1: raise SystemExit(f"PRD v20: {len(hits)} lines start like {head!r}")
+    return hits[0]
+NAMED20 = {k: (lab, t if _in20(t) else _v20_line(t)) for k, (lab, t) in NAMED18.items()}
+if any(NAMED20[k] != NAMED18[k] for k in NAMED18): raise SystemExit("a named item changed in v20")
+SUB20 = {k: (lab, t if _in20(t) else _v20_line(t)) for k, (lab, t) in SUB.items()}
+if sorted(k for k in SUB if SUB20[k] != SUB[k]) != ["S6-R1 a"]: raise SystemExit("v20 sub-items changed other than S6-R1 (a)")
+NAMED_SET20 = {"S3-01", "S3-02", "S3-03", "S3-04", "S3-07", "S3-08", "S3-11", "S3-48", "S3-50",
+               "S6-01", "S6-02", "S6-03", "S6-04", "S6-05", "S6-06", "INV-06"}
+NEW20 = {"S3-51", "S3-52", "S3-53"}   # created 4 Nov 2026 (C913764-C913766); keep them on v20 once mapped
+def prd_version(c):
+    k = c["key"]
+    if k in NAMED_SET20 or k in NEW20 or (k not in MAPPED and k not in NO_MANUAL): return 20
+    if k in V18_KEYS: return 18
+    return 17
 def on_v18(c):
-    """A case in the named set, or a new case (no C-id yet, not one of the library-only no-manual cases), quotes PRD v18."""
-    return c["key"] in NAMED_SET or (c["key"] not in MAPPED and c["key"] not in NO_MANUAL)
+    """PRD v18 or later (the v18 named set, the round 3 cases, the v20 named set and new cases): answers, design version 1793640819-ff4d."""
+    return prd_version(c) >= 18
 ANS_FILE = f"{P}/po-answers-2026-11-02/ANSWERS-Chris-Ward-2026-11-02.md"
 ANSW = ws(open(ANS_FILE).read())
 ANS = {int(m.group(1)): m.group(0) for m in re.finditer(r"(\d)\. .*", re.sub(r"\*\*Answer: ", "", open(ANS_FILE).read().replace("**", "")))
@@ -219,6 +255,8 @@ CASES = []
 def C(key, sec, title, pre, steps, res, q, marker=None, note="", stories=None, api=False, held=None):
     """pre: list of plain precondition bullets. steps: list of one-action steps. res: one list of bullets per step.
     q: PRD codes, NAMED keys, SUB keys, or (label, verbatim text) where label starts 'Jira SV-' or 'Tech plan' for those sources."""
+    if not marker and (key in NAMED_SET20 or key in NEW20 or (key not in MAPPED and key not in NO_MANUAL)):
+        marker = MARKER.replace(TODAY, "11/4/2026")   # Rule 69: the v20 pass ran on 4 Nov 2026 without a build
     marker = marker or MARKER
     if marker.startswith("PO:"):                      # a case held on a PO question names it by slug (po_questions.py)
         from po_questions import QN
@@ -230,13 +268,13 @@ def C(key, sec, title, pre, steps, res, q, marker=None, note="", stories=None, a
 
 def quotes(c):
     out = []
-    v18 = on_v18(c)
-    codes, named = (CODE18, NAMED18) if v18 else (CODE, NAMED)
+    ver = prd_version(c)
+    codes, named, sub = {20: (CODE20, NAMED20, SUB20), 18: (CODE18, NAMED18, SUB), 17: (CODE, NAMED, SUB)}[ver]
     for x in c["q"]:
         if isinstance(x, tuple): out.append(x)
         elif x in codes: out.append((x, codes[x]))
         elif x in named: out.append(named[x])
-        elif x in SUB: out.append(SUB[x])
+        elif x in sub: out.append(sub[x])
         else: raise KeyError(f"{c['key']}: unknown quote key {x}")
     return out
 
@@ -299,8 +337,8 @@ def quotes_block(c):
     sto = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in story_nums(c))
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
-    prd_name = PRD18_NAME if on_v18(c) else PRD_NAME
-    for name, read, g in ((prd_name, PRD_READ, groups["prd"]), (ANS_NAME, PRD_READ, groups["ans"]), (JIRA_NAME, PRD_READ, groups["jira"]),
+    prd_name, prd_read = {20: (PRD20_NAME, PRD20_READ), 18: (PRD18_NAME, PRD_READ), 17: (PRD_NAME, PRD_READ)}[prd_version(c)]
+    for name, read, g in ((prd_name, prd_read, groups["prd"]), (ANS_NAME, PRD_READ, groups["ans"]), (JIRA_NAME, PRD_READ, groups["jira"]),
                           (PLAN_NAME, PRD_READ, groups["plan"])):
         if not g: continue
         h += f"<p>From: {e(name)}, {read}" + (f" &middot; Epic {EPIC}, {e(sto)}" if first else "") + "</p>"
@@ -399,6 +437,8 @@ def check(c):
             if ws(tq) not in PLANW: p.append(f"{k}: quote {l} not verbatim in the saved tech plan")
         elif l.startswith("Answer "):
             if ws(tq) not in ANSW: p.append(f"{k}: quote {l} not word for word in Chris's answers")
+        elif prd_version(c) == 20:
+            if not _in20(tq): p.append(f"{k}: quote {l} not verbatim in PRD v20")
         elif on_v18(c):
             if not _in18(tq): p.append(f"{k}: quote {l} not verbatim in PRD v18")
         elif ws(tq) not in PRDW and ws(tq) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v17")

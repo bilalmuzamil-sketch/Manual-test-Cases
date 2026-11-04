@@ -321,20 +321,47 @@ C("S3-47", S, "If only the technician list fails, the work order still loads",
     "The rest of work order 1 loads.", "Staff member B shows grayed out as the lead and on line 1."],
    ["The dropdown offers nobody (it is empty on a first load)."]],
   ["EH-S3"], marker=HOLD("a manual tester cannot make only the list of technicians fail while the rest of the work order loads"))
-C("S3-48", S, "A person picked in the filter who is then turned off drops out of the filter",
-  [ADMIN, staff(role="the built-in Parts Manager role", extra=", leading no work order"), B,
-   wo(1, "Approved", "staff member B", extra=", with one approved line, line 1, holding a labor entry for staff member A",
-      why=", so staff member A has work that must not move"), TAB2, BOARD],
-  ["Open the Technician filter.", "Pick staff member A in the Technician filter.", "Switch to the Settings, Staff tab.", EDIT_A, "Switch Technician off.", SAVE,
-   "Click Save in the warning.", "Switch to the Board View tab.", "Reload the Board View page.", "Open work order 1."],
-  [["The filter offers staff member A."], ["The Technician filter is on, set to staff member A."], ["The staff list shows."],
-   ["The window shows Technician on."], ["Technician is off."],
-   ['The "Turn Off Technician" warning shows, because staff member A is on line 1.'],
-   ["The warning and the window close.", 'Staff member A\'s row shows "No" in the Technician column.'], ["Board View shows, not reloaded."],
-   ["Staff member A is no longer picked in the Technician filter, as if never picked, and is no longer offered there.",
-    "Work order 1's card is still in staff member B's column: it did not move."],
-   ["Staff member B is still the lead and line 1 still shows staff member A's labor entry."]],
+# ---- v20 (3 Nov 2026) S3-N1: a picked person whose Technician is turned off (round 4, rewritten top to bottom and new cases) -------
+A_PM = staff(role="the built-in Parts Manager role", extra=", leading no work order")
+WO1_LINE_A = wo(1, "Approved", "staff member B", extra=", with one approved line, line 1, holding a labor entry for staff member A",
+                why=", so staff member A has work that must not move and the board gives them no column once turned off")
+PICK_OFF = ["Open the Technician filter.", "Pick staff member A in the Technician filter.", "Switch to the Settings, Staff tab.", EDIT_A, "Switch Technician off.", SAVE,
+   "Click Save in the warning.", "Switch to the Board View tab."]
+PICK_OFF_RES = [["The filter offers staff member A."], ["The Technician filter is on, set to staff member A."], ["The staff list shows."],
+   ["The window shows Technician on."], ["Technician is off."], ['The "Turn Off Technician" warning shows, because staff member A is on line 1.'],
+   ["The warning and the window close.", 'Staff member A\'s row shows "No" in the Technician column.'], ["Board View shows, not reloaded."]]
+C("S3-48", S, "A turned-off person picked in the filter drops out when the page is reloaded",
+  [ADMIN, A_PM, B, WO1_LINE_A, TAB2, BOARD],
+  PICK_OFF + ["Open the Technician filter.", "Reload the Board View page.", "Open the Technician filter.", "Open work order 1."],
+  PICK_OFF_RES + [["Staff member A is still picked in the Technician filter: the open page has not loaded again."],
+   ["Board View loads again."],
+   ["Staff member A is no longer picked, as if never picked, and is no longer offered in the filter."],
+   ["Staff member B is still the lead and line 1 still shows staff member A's labor entry: the work did not move."]],
   ["S3-N1", "S3-R3", "S2-R5", A(4)])
+C("S3-51", S, 'A turned-off person stays picked while Work Orders stays open',
+  [ADMIN, A_PM, B, WO1_LINE_A, TAB2, BOARD],
+  PICK_OFF + ['In the display switcher, pick "Tech View".', "Open the Technician filter.", "Untick staff member A in the Technician filter."],
+  PICK_OFF_RES + [["Tech View shows.", 'Staff member A is the only person picked and has no group, so the board shows "No work orders match these filters".'],
+   ["Staff member A is still picked and offered in the filter."],
+   ["The Technician filter is off.", "Staff member B's group shows with work order 1."]],
+  ["S3-N1", "S3-R3"])
+C("S3-52", S, "A picked person who still leads shown work stays picked after turning off",
+  [ADMIN, A_PM.replace(", leading no work order", ""), B,
+   wo(1, "In Progress", "staff member A", why=", so staff member A keeps a column for that work after Technician is turned off"), TAB2, BOARD],
+  ["Open the Technician filter.", "Pick staff member A in the Technician filter.", "Switch to the Settings, Staff tab.", EDIT_A, "Switch Technician off.", SAVE,
+   "Click Save in the warning.", "Switch to the Board View tab.", "Reload the Board View page.", "Open the Technician filter."],
+  [["The filter offers staff member A."], ["The Technician filter is on, set to staff member A."], ["The staff list shows."],
+   ["The window shows Technician on."], ["Technician is off."], ['The "Turn Off Technician" warning shows, because staff member A leads work order 1.'],
+   ["The warning and the window close."], ["Board View shows."],
+   ["Staff member A still has a column, holding work order 1's card."],
+   ["Staff member A is still offered and still picked in the filter."]],
+  ["S3-N1", "S3-E1", "S3-R3"])
+C("S3-53", S, "A turned-off person picked in the filter drops out when Work Orders is reopened",
+  [ADMIN, A_PM, B, WO1_LINE_A, TAB2, BOARD],
+  PICK_OFF + ["Click Work Orders in the menu.", "Open the Technician filter."],
+  PICK_OFF_RES + [["Work Orders opens again on Board View."],
+   ["Staff member A is no longer picked, as if never picked, and is no longer offered in the filter.", "Work order 1's card is still in staff member B's column."]],
+  ["S3-N1", "S3-R3"])
 
 # Location C cases: the switch to location C is the last precondition, after every record is set up there.
 import tt_lib as _L

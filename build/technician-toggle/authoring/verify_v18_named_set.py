@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Named-set proof for PRD v18 (QA lead 2 Nov 2026: "Named set"). Exit 1 on any failure.
+"""HISTORICAL (round 3, 2 Nov 2026): superseded by verify_v20_named_set.py once the v18 update was applied and read back; it now
+reports the v20 set as changes, as expected. Named-set proof for PRD v18 (QA lead 2 Nov 2026: "Named set"). Exit 1 on any failure.
  (a) every quote of every named-set and new case is word for word in PRD v18 (or Chris's answers / the saved tickets / tech plan),
      and no such case names PRD version 17 or the old design version;
  (b) every mapped case OUTSIDE the set renders exactly like its TestRail read-back (applied/C<id>-after.json): title, preconditions,

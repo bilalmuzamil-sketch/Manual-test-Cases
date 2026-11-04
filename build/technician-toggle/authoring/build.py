@@ -58,9 +58,10 @@ for c in L.CASES:
     q = h.split("Exact quotes from the source")[1].split("References from Design")[0]
     if not q.split("</strong></p>", 1)[1].startswith("<p>From: "): probs.append(f"{k}: quotes do not start with a From line")
     if q.count("<p>From: ") != q.count("<ul>"): probs.append(f"{k}: a quote group without its own From line")
-    _ver = "version 18" if L.on_v18(c) else "version 17"   # named set: the set and new cases quote v18, every other case keeps v17
+    _ver = f"version {L.prd_version(c)}"   # named sets: v20 set and new cases quote v20, the v18 set keeps v18, every other case v17
     if f"Epic {L.EPIC}" not in q or L.NOBUILD not in q or _ver not in q: probs.append(f"{k}: epic, PRD version or build line missing")
-    if L.on_v18(c) and re.search(r"version 17\b", q): probs.append(f"{k}: a named-set or new case still names PRD version 17")
+    for _o in (17, 18, 20):
+        if _o != L.prd_version(c) and re.search(rf"version {_o}\b", q): probs.append(f"{k}: names PRD version {_o}, expected {L.prd_version(c)}")
     if "claude.ai/artifact" in h.split("References from Design")[0]: probs.append(f"{k}: a design reference above the References from Design block")
     has = "<p></p><p><strong>References from Design</strong></p>" in h
     if L.design_for(c) and not has: probs.append(f"{k}: no References from Design block although a board applies")

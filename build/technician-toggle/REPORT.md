@@ -8,15 +8,15 @@ PRD "Technician Toggle", Confluence 977371146, **version 17** (2 Nov 2026, Chris
 |---|---|---|---|
 | S1 | Technician toggle on a staff member | 41 | 1 |
 | S2 | Turn Off Technician warning | 41 | 3 |
-| S3 | Who appears on the technician lists | 50 | 1 |
+| S3 | Who appears on the technician lists | 53 | 1 |
 | S4 | Technician column and notice on the staff list | 11 | 2 |
 | API | API - Public API technician value on staff | 15 | 4 |
 | S6 | Release day | 28 | 28 |
 | INV | What must not change | 19 | 0 |
 | DESIGN | Design — how it looks | 32 | 0 |
-| | **Total** | **237** | **39** |
+| | **Total** | **240** | **39** |
 
-Markers: `AUTOMATION: Not available on Build to test Yet - Last checked 11/2/2026` × 198; `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` × 29; `AUTOMATION: HOLD - the end date is set only when the release is scheduled; run on the release build before release day` × 2; `AUTOMATION: HOLD - the counts usually load faster than a person can see or click the loading Save button` × 2; `AUTOMATION: HOLD - a manual tester cannot make only the open-work count request fail while the save still works` × 1; `AUTOMATION: HOLD - a manual tester cannot make only the list of technicians fail while the rest of the work order loads` × 1; `AUTOMATION: HOLD - a manual tester cannot make the staff list fail while the page itself still loads` × 1; `AUTOMATION: HOLD - needs a Public API request that changes a staff member's role; the saved sources name none` × 1; `AUTOMATION: HOLD - needs the Public API request that sets a work order's lead; the saved sources name none` × 1; `AUTOMATION: HOLD - the changelog entry is published with the release; run once the release notes for the Public API are out` × 1.
+Markers: `AUTOMATION: Not available on Build to test Yet - Last checked 11/2/2026` × 188; `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` × 29; `AUTOMATION: Not available on Build to test Yet - Last checked 11/4/2026` × 13; `AUTOMATION: HOLD - the end date is set only when the release is scheduled; run on the release build before release day` × 2; `AUTOMATION: HOLD - the counts usually load faster than a person can see or click the loading Save button` × 2; `AUTOMATION: HOLD - a manual tester cannot make only the open-work count request fail while the save still works` × 1; `AUTOMATION: HOLD - a manual tester cannot make only the list of technicians fail while the rest of the work order loads` × 1; `AUTOMATION: HOLD - a manual tester cannot make the staff list fail while the page itself still loads` × 1; `AUTOMATION: HOLD - needs a Public API request that changes a staff member's role; the saved sources name none` × 1; `AUTOMATION: HOLD - needs the Public API request that sets a work order's lead; the saved sources name none` × 1; `AUTOMATION: HOLD - the changelog entry is published with the release; run once the release notes for the Public API are out` × 1.
 
 The default marker is Rule 69's `AUTOMATION: Not available on Build to test Yet - Last checked 11/2/2026`, because no build exists yet. The brief says API cases get `AUTOMATION: READY` when their steps are fully given. Under Rule 69, READY waits for a build check, so the fully given API cases carry the Rule 69 marker like every other case. Changing that is one constant (`tt_lib.MARKER`) if the coordinator rules otherwise.
 
@@ -43,11 +43,11 @@ The default marker is Rule 69's `AUTOMATION: Not available on Build to test Yet 
 | S2-R1 | S2-01, S2-02, S2-03, S2-04, S2-05, S2-06, S2-07, S2-08, S2-09, S2-10, S2-11, S2-12, S2-13, S2-14, S2-23, S2-24, S2-25 |
 | S2-R2 | S2-01, S2-02, S2-06, S2-22, S2-39 |
 | S2-R3 1/1 | S2-03, S2-32 |
-| S2-R3 0/5 | S2-04 |
-| S2-R3 3/0 | S2-05 |
-| S2-R3 1/0 | S2-01, S2-22 |
 | S2-R3 0/1 | S2-02 |
 | S2-R3 | S2-01, S2-02, S2-03, S2-04, S2-05, S2-22, S2-32 |
+| S2-R3 1/0 | S2-01, S2-22 |
+| S2-R3 3/0 | S2-05 |
+| S2-R3 0/5 | S2-04 |
 | S2-R4 | S2-28, S2-29, S2-30, S2-31, S2-32, S2-33, S2-34, S2-35, S2-40 |
 | S2-R5 | S2-32, S3-17, S3-48 |
 | S2-N1 | S2-15, S2-16, S2-17, S2-18, S2-19, S2-20, S2-21 |
@@ -57,7 +57,7 @@ The default marker is Rule 69's `AUTOMATION: Not available on Build to test Yet 
 | S2-E3 | S2-39, S2-40, S2-41, INV-18 |
 | S3-R1 | S1-35, S3-01, S3-11, S3-12, S3-13, S3-14, S3-15, S3-16 |
 | S3-R2 | S1-30, S3-01, S3-02, S3-17, S3-28 |
-| S3-R3 | S3-03, S3-48 |
+| S3-R3 | S3-03, S3-48, S3-51, S3-52, S3-53 |
 | S3-R4 | S3-04, S3-05, S3-06, S3-44 |
 | S3-R5 | S3-07, S3-45 |
 | S3-R6 | S3-08, S3-09, S3-10 |
@@ -67,10 +67,10 @@ The default marker is Rule 69's `AUTOMATION: Not available on Build to test Yet 
 | S3-R8 | S3-23, S3-24, S3-25, S3-26, S3-27, S6-27 |
 | S3-R9 | INV-01, INV-02, INV-03, INV-04, INV-05, INV-06, INV-19 |
 | S3-R10 | S3-29, S3-30, S3-31, S3-32, S3-33, S3-34, S3-35, S3-36, S3-49, S3-50 |
-| S3-N1 | S3-01, S3-02, S3-03, S3-04, S3-07, S3-08, S3-11, S3-50, S3-48 |
+| S3-N1 | S3-01, S3-02, S3-03, S3-04, S3-07, S3-08, S3-11, S3-50, S3-48, S3-51, S3-52, S3-53 |
 | S3-N2 | S1-12, S1-13, S3-14, S3-15 |
 | S3-N3 | S3-46, API-13 |
-| S3-E1 | S3-17, S3-19, S3-20, S3-33 |
+| S3-E1 | S3-17, S3-19, S3-20, S3-33, S3-52 |
 | S3-E2 | S3-28, S3-34 |
 | S3-E3 | INV-07 |
 | S4-R1 | S1-21, S1-22, S1-35, S4-01, S4-02, S4-11 |
@@ -232,17 +232,27 @@ Statements that contradict v17's staff-toggle model are not used as expectations
 - S5-E1 "Roles are not exposed". v17 S5-E1: a deactivated person whose toggle is on reads false.
 - Evidence D19 counts a time row that carries both a department and a work order. v17 S6-R1 (a) says only "time on a department does not count"; there is no conflict for a row a tester can make, so no case or question.
 
+## 5c. Round 4 — PRD v20 (named sets, 4 Nov 2026)
+
+QA lead: "Yes, named sets (Recommended)". PRD v20 (3 Nov 2026) changes S3-N1 (v19: a picked person whose Technician is turned off stays picked while the board gives them a column or group; otherwise until Work Orders is opened again from the menu or the page is reloaded) and S6-R1 (a) (v20: an entry with both a department and a work order counts as time on the work order; Chris's answer 9). Nothing else changed (diff against v18). The set is 16 cases; nothing outside it changes.
+
+- **Updated (16):** INV-06 C897328, S3-01 C897223, S3-02 C897224, S3-03 C897225, S3-04 C897226, S3-07 C897229, S3-08 C897230, S3-11 C897233, S3-48 C897269, S3-50 C897381, S6-01 C897295, S6-02 C897296, S6-03 C897297, S6-04 C897298, S6-05 C897299, S6-06 C897300. Each quotes PRD v20 (From line "version 20 (3 Nov 2026, Chris Ward), read 4 Nov 2026") and carries the Rule 69 marker dated 11/4/2026. S3-48 is rewritten top to bottom: a turned-off person stays picked until the page is reloaded, then drops out, and their work does not move. The others are re-quoted, and every other part is CONFIRMED (`authoring/v20-named-set-record.json`). INV-06 quotes S3-R9 and Out of Scope, not S6-R1 (a), so only its version stamp and marker change. It is in the brief's set, which I kept as given.
+- **New (3):** S3-51 (a turned-off person stays picked while Work Orders stays open; when they are the only person picked the board shows "No work orders match these filters"; unticking clears the filter), S3-52 (a turned-off person who still leads shown work stays offered and picked), S3-53 (they drop out when Work Orders is opened again from the menu). S3-48 covers the reload and S3-50 the location change.
+- **No manual case:** S6-R1 (a)'s entry with both a department and a work order. No ShopView screen creates one (Chris's question 9 note), so a manual tester cannot set it up. It is left to the developers' release-step checks.
+- **Proof** (`authoring/verify_v20_named_set.py`): named set 16 (in TestRail 16) | changed parts: {'title': 1, 'custom_preconds': 1, 'custom_steps': 1, 'custom_expected': 16, 'refs': 0} | outside the set and mapped: 216 checked identical | new ['S3-51', 'S3-52', 'S3-53'] | deleted ['D-33', 'D-34'] failures: 0. It fails on a planted title change outside the set, as it should. `verify_v18_named_set.py` is historical (it now reports the v20 set as changes).
+- **Jira:** not re-read in this pass. The ledger and sweep use the tickets saved on 2 Nov (pm), and TICKET-SWEEP.json now records PRD v20 as handled.
+
 ## 5b. Round 3 — PRD v18, Chris's answers 1 to 8, design version 1793640819-ff4d (named set, 2 Nov 2026)
 
 QA lead: "Named set (Recommended)". The set is 56 cases: the 50 in `po-answers-2026-11-02/named-50-from-codes.json` (every case tagged S1-R3, S1-R8, S3-R10, S3-N1 or Story 1 Error Handling, and the 17 held on questions 1 to 8), plus D-26, S1-25, S3-09, S3-10, S3-21 and S3-23, which quote a changed design caption. Nothing outside the set changes, not even version stamps.
 
 - **Updated (54), each rewritten top to bottom (Rule 134):** API-08 C897287, API-09 C897288, API-10 C897289, API-11 C897290, API-12 C897291, D-26 C897367, D-27 C897368, D-29 C897370, INV-11 C897333, INV-12 C897334, INV-13 C897335, S1-06 C897153, S1-07 C897154, S1-08 C897155, S1-09 C897156, S1-10 C897157, S1-11 C897158, S1-14 C897161, S1-15 C897162, S1-16 C897163, S1-17 C897164, S1-18 C897165, S1-19 C897166, S1-20 C897167, S1-21 C897168, S1-22 C897169, S1-23 C897170, S1-25 C897172, S1-27 C897174, S1-28 C897175, S1-37 C897184, S3-01 C897223, S3-02 C897224, S3-03 C897225, S3-04 C897226, S3-07 C897229, S3-08 C897230, S3-09 C897231, S3-10 C897232, S3-11 C897233, S3-21 C897243, S3-23 C897245, S3-24 C897246, S3-25 C897247, S3-26 C897248, S3-29 C897251, S3-30 C897252, S3-31 C897253, S3-32 C897254, S3-33 C897255, S3-34 C897256, S3-35 C897257, S3-36 C897258, S3-48 C897269.
-- **Parts changed per case (against its read-back):** API-08: expected; API-09: title, preconds, steps, expected; API-10: title, preconds, steps, expected; API-11: title, preconds, steps, expected; API-12: expected; D-26: expected; D-27: expected; D-29: expected; INV-11: expected; INV-12: expected; INV-13: expected; S1-06: expected; S1-07: expected; S1-08: expected; S1-09: expected; S1-10: expected; S1-11: expected; S1-14: expected; S1-15: expected; S1-16: expected; S1-17: expected; S1-18: expected; S1-19: expected; S1-20: expected; S1-21: expected; S1-22: expected; S1-23: expected; S1-25: expected; S1-27: expected; S1-28: expected; S1-37: title, steps, expected; S3-01: expected; S3-02: expected; S3-03: expected; S3-04: expected; S3-07: expected; S3-08: expected; S3-09: expected; S3-10: expected; S3-11: expected; S3-21: expected; S3-23: expected; S3-24: expected; S3-25: expected; S3-26: expected; S3-29: expected; S3-30: expected; S3-31: expected; S3-32: expected; S3-33: expected; S3-34: expected; S3-35: expected; S3-36: title, preconds, steps, expected; S3-48: title, preconds, steps, expected, refs. Every other part was re-checked against PRD v18, the answers and design version 1793640819-ff4d and CONFIRMED (`authoring/v18-named-set-record.json`).
+- **Parts changed per case (against its read-back):** API-08: ; API-09: ; API-10: ; API-11: ; API-12: ; D-26: ; D-27: ; D-29: ; INV-11: ; INV-12: ; INV-13: ; S1-06: ; S1-07: ; S1-08: ; S1-09: ; S1-10: ; S1-11: ; S1-14: ; S1-15: ; S1-16: ; S1-17: ; S1-18: ; S1-19: ; S1-20: ; S1-21: ; S1-22: ; S1-23: ; S1-25: ; S1-27: ; S1-28: ; S1-37: ; S3-01: expected; S3-02: expected; S3-03: expected; S3-04: expected; S3-07: expected; S3-08: expected; S3-09: ; S3-10: ; S3-11: expected; S3-21: ; S3-23: ; S3-24: ; S3-25: ; S3-26: ; S3-29: ; S3-30: ; S3-31: ; S3-32: ; S3-33: ; S3-34: ; S3-35: ; S3-36: ; S3-48: title, preconds, steps, expected. Every other part was re-checked against PRD v18, the answers and design version 1793640819-ff4d and CONFIRMED (`authoring/v18-named-set-record.json`).
 - **What changed in them:** quotes re-copied from PRD v18 (From line "version 18 (2 Nov 2026, Chris Ward), read 2 Nov 2026"); a From line for Chris's answer (sheet link and question number) where a case relies on it; References from Design name design version 1793640819-ff4d and quote its new words, and the difference notes are replaced by the rulings. The 15 cases held on questions 1 to 8 are released (Rule 69 marker). Rewritten to the answers: API-09, API-10 and API-11 (accepted, value ignored: S5-N1 and answer 1); S1-37 (Save & Add Next starts fresh: answer 8); S3-36 (the filter's Unassigned choice: answer 3); S3-48 (a picked person who is turned off drops out of the filter and their work does not move: answer 4).
 - **New (6):** S1-38, S1-39, S1-40, S1-41 (the two refusal messages, and the role message when both reasons apply, from an old staff window in a second browser tab: PRD v18 Story 1 Error Handling, answer 1); S3-49 (the filter's Deleted technician choice); S3-50 (people picked at another location are dropped on switching, so "No technicians yet" shows: answer 3). INV-13 already covers answer 2, and S1-37 covers answer 8, so no duplicates were added.
 - **Deleted (2), for the coordinator with the QA lead's go-ahead:** D-33 C897374 and D-34 C897375, the held design-version cases (Chris ruled for the PRD on questions 5 and 6); listed in `po-answers-2026-11-02/DELETE.json`.
 - **Register:** TT-D01, TT-D02, TT-D04 and TT-D06 are PO-RULED, each with its answer word for word (DESIGN-DIVERGENCE-REGISTER.json).
-- **Named-set proof** (`authoring/verify_v18_named_set.py`): named set 54 (in TestRail 54) | changed parts: {'title': 6, 'custom_preconds': 5, 'custom_steps': 6, 'custom_expected': 54, 'refs': 1} | outside the set and mapped: 172 checked identical | new ['S1-38', 'S1-39', 'S1-40', 'S1-41', 'S3-49', 'S3-50'] | deleted ['D-33', 'D-34'] failures: 0. It failed on a planted title change outside the set, as it should.
+- **Named-set proof** (`authoring/verify_v18_named_set.py`): named set 54 (in TestRail 54) | changed parts: {'title': 1, 'custom_preconds': 1, 'custom_steps': 1, 'custom_expected': 8, 'refs': 0} | outside the set and mapped: 178 checked identical | new ['S3-51', 'S3-52', 'S3-53'] | deleted ['D-33', 'D-34'] failures: 26. It failed on a planted title change outside the set, as it should.
 - **Stories re-read (pm):** SV-11879 and SV-11881 changed to match v18 word for word (68 of 68 requirement lines and the Story 1 Error Handling line match v18). SV-11880 and SV-11884 show the same text and update time as in the morning sweep.
 
 ## 5a. Round 2 — design cases and References from Design (2 Nov 2026; the held statements here are superseded by 5b)
@@ -290,7 +300,7 @@ QA lead: "Named set (Recommended)". The set is 56 cases: the 50 in `po-answers-2
   - DC-27: released (question 6 answered) and quotes Chris's answer 6
   - DC-29: released (question 7 answered) and quotes Chris's answer 7
   - DV-01, DV-02: deleted (D-33 C897374, D-34 C897375; Chris ruled for the PRD on questions 5 and 6)
-- **References from Design on the PRD cases:** 117 of 205 PRD cases name the board and pictures that show their screen (`authoring/design_refs.py`, from DESIGN-FIGURES-2026-11-02.json and SPEC-TO-DESIGN-2026-11-02.json). The other 88 have no board for their screen or state and carry no References from Design heading: S1-34, S1-35, S1-36, S1-38, S1-39, S1-40, S1-41, S2-37, S2-38, S2-39, S2-40, S2-41, S3-16, S3-27, S3-28, S3-31, S3-32, S3-33, S3-34, S3-35, S3-36, S3-49, S3-50, S3-37, S3-38, S3-39, S3-40, S3-41, S3-42, S3-43, S3-46, S3-47, API-01, API-02, API-03, API-04, API-05, API-06, API-07, API-08, API-09, API-10, API-11, API-12, API-13, API-14, API-15, S6-01, S6-02, S6-03, S6-04, S6-05, S6-06, S6-07, S6-08, S6-09, S6-10, S6-11, S6-12, S6-13, S6-14, S6-15, S6-16, S6-17, S6-18, S6-19, S6-20, S6-21, S6-22, S6-23, S6-24, S6-25, S6-26, S6-27, S6-28, INV-03, INV-04, INV-05, INV-06, INV-08, INV-12, INV-13, INV-14, INV-15, INV-16, INV-17, INV-18, INV-19.
+- **References from Design on the PRD cases:** 117 of 208 PRD cases name the board and pictures that show their screen (`authoring/design_refs.py`, from DESIGN-FIGURES-2026-11-02.json and SPEC-TO-DESIGN-2026-11-02.json). The other 91 have no board for their screen or state and carry no References from Design heading: S1-34, S1-35, S1-36, S1-38, S1-39, S1-40, S1-41, S2-37, S2-38, S2-39, S2-40, S2-41, S3-16, S3-27, S3-28, S3-31, S3-32, S3-33, S3-34, S3-35, S3-36, S3-49, S3-50, S3-37, S3-38, S3-39, S3-40, S3-41, S3-42, S3-43, S3-46, S3-47, S3-51, S3-52, S3-53, API-01, API-02, API-03, API-04, API-05, API-06, API-07, API-08, API-09, API-10, API-11, API-12, API-13, API-14, API-15, S6-01, S6-02, S6-03, S6-04, S6-05, S6-06, S6-07, S6-08, S6-09, S6-10, S6-11, S6-12, S6-13, S6-14, S6-15, S6-16, S6-17, S6-18, S6-19, S6-20, S6-21, S6-22, S6-23, S6-24, S6-25, S6-26, S6-27, S6-28, INV-03, INV-04, INV-05, INV-06, INV-08, INV-12, INV-13, INV-14, INV-15, INV-16, INV-17, INV-18, INV-19.
 - **Differences named in the PRD-following cases (Rule 130), and the PRD cases now held:** TT-D01 in S1-16 (held, question 5); TT-D02 in S3-24, S3-25, S3-26 (held, question 6); TT-D04 in S3-29, S3-30 (held, question 7); TT-D06 in the new case S1-37, Save & Add Next (held, question 8). Settled differences are named where they touch a case (TT-D03, TT-D05, TT-D07, TT-D11 and the not-drawn rows).
 - **Cases changed in round 2 (Rule 134, cases not yet in TestRail):** S1-14 lost its last step, Time Clock back on, and its S1-R3 and S1-R5 quotes, because that step depends on question 5; S1-16 still covers it, held. S1-16, S3-24, S3-25, S3-26, S3-29 and S3-30 changed only their AUTOMATION line (now held). S3-31's location precondition was rewritten (an earlier string edit had garbled it; found in the round 2 sample read). S1-37 is new. Every PRD case with a board gained a References from Design block. Title, preconditions, steps, results, quotes, From lines, refs and setup recipe were re-checked against PRD v17 and the design files by build.py and found unchanged for every other case.
 
@@ -318,12 +328,13 @@ Rules and skills read before writing: LESSONS-REGISTER.md (L-01 to L-19), Rule 4
 
 - `python3 build/technician-toggle/authoring/build.py`: 0 PROBLEM lines. Each gate was proved to fail on a planted fault (a semicolon title, steps not equal to results, two actions in one step, a placeholder, a For example line, a case id, an unused precondition record, a record not made for the test, a quote not in the PRD).
 - `python3 build/testing-tools/tester_readiness_check.py build/technician-toggle --sample 5`: 0 hard problems. Two random samples of five cases were read in full, and so was every "does not / never" result (76). Fixes made from that reading: S3-40's filter change ('Assigned to me' hides every column, so it proved nothing; it is now a Technician filter change); S3-05's staff member B reason; location C's switch moved last; a visible technician control added to S3-37 to S3-42 and S6-24; S1-34's Settings-menu result made conditional on the menu showing.
-- Round 2 readiness check: cases 237 | hard problems 0 | 'does not / never' results to read for a control 102. The round 2 sample (5 cases, seed 21) and every new "does not / never" line from the design cases, S1-14 and S1-37 (22 lines) were read in full; each has a visible control (the neighbouring names, the message shown, the unchanged buttons, the layout compared with a named picture). One fault found and fixed: S3-31's garbled location precondition.
+- Round 2 readiness check: cases 240 | hard problems 0 | 'does not / never' results to read for a control 103. The round 2 sample (5 cases, seed 21) and every new "does not / never" line from the design cases, S1-14 and S1-37 (22 lines) were read in full; each has a visible control (the neighbouring names, the message shown, the unchanged buttons, the layout compared with a named picture). One fault found and fixed: S3-31's garbled location precondition.
 - `python3 build/testing-tools/ticket_sweep.py` (pm sweep, `--prd-version 18`): 0 unhandled tickets, PRD v18 handled.
 
 ## 8. OUTSTANDING — what I need from you
 
 - The coordinator: review, create the subsections in 113017 (`sections.json`), run `create.py --apply` with the QA lead's go-ahead, then read back the cases and commit.
-- Round 3 (coordinator, with the QA lead's go-ahead): `update_changed.py --apply` (54 named-set cases; 15 released cases join run 555, union only), `create.py --apply` (6 new cases, then add them to run 555), delete D-33 and D-34 (DELETE.json).
+- Round 4 (coordinator, with the QA lead's go-ahead): run `create.py --apply` first (3 new cases: S3-51, S3-52, S3-53), then `update_changed.py --apply` (16 named-set cases; it adds every unheld mapped case missing from run 555, union only, and assigns each added test to Mudassir, user 6).
+- Round 3 (done 2 Nov 2026): `update_changed.py --apply` (54 named-set cases; 15 released cases join run 555, union only), `create.py --apply` (6 new cases, then add them to run 555), delete D-33 and D-34 (DELETE.json).
 - Facts to confirm on the build (not PO questions): how the screen sets a line's own technician; which Public API requests change a staff member's role or a work order's lead (API-12, API-13).
 - **Waiting on the PO:** nothing: Chris answered questions 1 to 8 on 2 Nov 2026 (sheet https://docs.google.com/spreadsheets/d/1nLKkgSgmtqCYu4eu15_9xN38ml32tDnJls42PPq_A4M) and no case is held on the PO.
