@@ -1,0 +1,10 @@
+import { qaBoot } from '/home/user/Manual-test-Cases/build/testing-tools/qa-branch-boot.mjs';
+const { browser, page } = await qaBoot({ branch: 'sv11839', cookieFile: '/tmp/cln/qa11839/cookies.json', workplaceId: 'b3c8c820-f815-4cf1-8938-10956c5ee71a', timezone: 'America/Edmonton' });
+console.log('url', page.url());
+console.log('ver', await page.locator('meta[name="app-version"]').getAttribute('content'));
+const h = await page.evaluate(() => [...document.querySelectorAll('header, .q-header, [class*="toolbar"]')].map(e => e.innerText.replace(/\s+/g,' ').slice(0,300)));
+console.log(JSON.stringify(h));
+const hits = await page.evaluate(() => [...document.querySelectorAll('*')].filter(e => e.children.length===0 && /Heavy Duty/.test(e.textContent)).map(e => (e.getAttribute('data-test-id')||'') + '|' + e.className + '|' + e.textContent.trim().slice(0,60)).slice(0,10));
+console.log(JSON.stringify(hits));
+await page.screenshot({ path: '/tmp/cln/qa11839/probe-header.png' });
+await browser.close();
