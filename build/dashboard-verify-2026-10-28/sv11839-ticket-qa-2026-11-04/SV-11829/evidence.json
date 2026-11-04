@@ -1,0 +1,125 @@
+{
+ "ticket": "SV-11829",
+ "app_version": "v26.45.0-aacb66c",
+ "location": "Staging Heavy Duty - 9919",
+ "rule99": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-04T20:07:06.482Z"
+  },
+  "browser_local_time_start": "Wed Nov 04 2026 13:07:06 GMT-0700 (Mountain Standard Time)",
+  "all_match": true,
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-04T20:09:14.032Z"
+  },
+  "localStorage_timezone_end": "\"America/Edmonton\""
+ },
+ "observed_at_utc": "2026-11-04T20:09:14.035Z",
+ "result": {
+  "before_block_this_month": {
+   "tile_chip": "event This Month expand_more",
+   "tile_value": "383.33%",
+   "tile_error": null,
+   "panel_text": "Billing Efficiency person Advisor keyboard_arrow_down Advisor Analysis Advisorarrow_drop_up arrow_drop_upWorked Hours arrow_drop_upInvoiced Hrs arrow_drop_upBilling Efficiency arrow_drop_upELR Admin ShopView 1.50 5.75 383.33% $594.80 ",
+   "panel_has_chart": 1,
+   "panel_table_rows": 3,
+   "panel_couldnt_load": null,
+   "panel_no_data": false,
+   "other_tiles_errors": [],
+   "toasts": []
+  },
+  "pic0": "SV-11829/0-expanded-this-month-loaded.png",
+  "blocking": "page.route: every /api/dashboard/reports request whose address contains billingEfficiencyKpi is answered with HTTP 500 (forced failure)",
+  "caseA_last_month": {
+   "tile_chip": "event Last Month expand_more",
+   "tile_value": null,
+   "tile_error": "error_outline\nCouldn't load",
+   "panel_text": "Billing Efficiency person Advisor keyboard_arrow_down warning Couldn't load Advisor Analysis warning Couldn't load",
+   "panel_has_chart": 0,
+   "panel_table_rows": 0,
+   "panel_couldnt_load": [
+    "Couldn't load",
+    "Couldn't load"
+   ],
+   "panel_no_data": false,
+   "other_tiles_errors": [
+    "hero_error_billingEfficiencyKpi"
+   ],
+   "toasts": [
+    "warning\nOoooops! An error occurred\nClose\n2"
+   ]
+  },
+  "picA": "SV-11829/A-last-month-request-blocked.png",
+  "caseB_back_to_this_month": {
+   "tile_chip": "event This Month expand_more",
+   "tile_value": null,
+   "tile_error": "error_outline\nCouldn't load",
+   "panel_text": "Billing Efficiency person Advisor keyboard_arrow_down warning Couldn't load Advisor Analysis warning Couldn't load",
+   "panel_has_chart": 0,
+   "panel_table_rows": 0,
+   "panel_couldnt_load": [
+    "Couldn't load",
+    "Couldn't load"
+   ],
+   "panel_no_data": false,
+   "other_tiles_errors": [
+    "hero_error_billingEfficiencyKpi"
+   ],
+   "toasts": [
+    "warning\nOoooops! An error occurred\nClose\n4"
+   ]
+  },
+  "picB": "SV-11829/B-this-month-request-blocked.png",
+  "request_log": [
+   {
+    "console_error": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+   },
+   {
+    "console_error": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+   },
+   {
+    "console_error": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+   },
+   {
+    "console_error": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+   }
+  ],
+  "blocked_count": 4,
+  "sleeping_page_seen": false,
+  "boxes": {
+   "panel": {
+    "x": 30,
+    "y": 297.1875,
+    "width": 1540,
+    "height": 910
+   },
+   "tile": {
+    "x": 419,
+    "y": 75,
+    "width": 373,
+    "height": 204.1875
+   }
+  }
+ }
+}

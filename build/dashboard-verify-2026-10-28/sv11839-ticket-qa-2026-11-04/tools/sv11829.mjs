@@ -18,16 +18,19 @@ const state = async () => ({
   panel_couldnt_load: (await panel().innerText().catch(() => '')).match(/Couldn.?t load[^\n]*/gi), panel_no_data: /No data for selected date range/i.test(await panel().innerText().catch(() => '')),
   other_tiles_errors: await page.locator('[data-test-id^="hero_error_"]').evaluateAll(es => es.map(e => e.getAttribute('data-test-id'))),
   toasts: await page.locator('.q-notification').allInnerTexts().catch(() => []) });
-const pick = async label => { await trig().click(); await sleep(900); await popup().locator('.preset-option').filter({ hasText: new RegExp(`^\\s*${label}\\s*$`, 'i') }).first().click(); await sleep(400); if (await popup().isVisible().catch(() => false)) await popup().getByRole('button', { name: 'Apply' }).click().catch(() => {}); await sleep(6000); };
+const pick = async label => { console.log('pick', label); await page.keyboard.press('Escape').catch(() => {}); await sleep(500); await trig().scrollIntoViewIfNeeded().catch(() => {}); try { await trig().click({ timeout: 15000 }); } catch (e) { await page.screenshot({ path: '/tmp/cln/qa11839/fail29.png' }); console.log('trigger click failed, forcing'); await trig().click({ force: true }); } await sleep(900); await popup().locator('.preset-option').filter({ hasText: new RegExp(`^\\s*${label}\\s*$`, 'i') }).first().click(); await sleep(400); if (await popup().isVisible().catch(() => false)) await popup().getByRole('button', { name: 'Apply' }).click().catch(() => {}); await sleep(6000); };
 const out = {};
 await page.locator(`[data-test-id="btn_toggle_details_${k}"]`).click(); await sleep(6000);
 out.before_block_this_month = await state(); out.pic0 = await shot(page, T, '0-expanded-this-month-loaded', { fullPage: true });
-await page.route(u => u.href.includes('/api/dashboard/reports') && u.href.includes(k), r => r.abort('failed'));
-out.blocking = 'page.route abort of /api/dashboard/reports requests whose address contains billingEfficiencyKpi';
+// NOT route.abort(): on this sandbox a transport abort makes the app re-request the document and the hibernation proxy answers
+// with its "Environment Sleeping" page (build/report-suite/rulings-2026-08-04/RULING-1-THE-15-CASES.md). A server error is used instead.
+let blocked = 0;
+await page.route(u => u.href.includes('/api/dashboard/reports') && u.href.includes(k), r => { blocked++; return r.fulfill({ status: 500, contentType: 'application/json', body: JSON.stringify({ errors: [{ error: 'ZZAUTOTEST forced failure (QA)' }] }) }); });
+out.blocking = 'page.route: every /api/dashboard/reports request whose address contains billingEfficiencyKpi is answered with HTTP 500 (forced failure)';
 await pick('Last Month'); out.caseA_last_month = await state(); out.picA = await shot(page, T, 'A-last-month-request-blocked', { fullPage: true });
 await pick('This Month'); out.caseB_back_to_this_month = await state(); out.picB = await shot(page, T, 'B-this-month-request-blocked', { fullPage: true });
 await page.unroute(u => true).catch(() => {}); await page.unrouteAll?.().catch(() => {});
-out.request_log = log;
+out.request_log = log; out.blocked_count = blocked; out.sleeping_page_seen = /Environment Sleeping/.test(await page.content());
 // element boxes for annotation (CSS px)
 out.boxes = { panel: await panel().boundingBox().catch(() => null), tile: await page.locator(`[data-test-id="hero_tile_${k}"]`).boundingBox().catch(() => null) };
 await page.goto(APP + '/dashboard', { waitUntil: 'domcontentloaded' }); await sleep(6000);
