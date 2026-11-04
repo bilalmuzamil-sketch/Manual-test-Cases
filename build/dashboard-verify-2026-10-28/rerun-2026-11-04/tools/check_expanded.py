@@ -40,7 +40,6 @@ for f in sorted(glob.glob('/tmp/cln/dv/out/expanded-*.json')):
                 rec(wp, k, 'Utilization row = server row', a is not None and r[:5] == exp, f'screen {r[:5]} vs {exp}', 'S6')
         elif k == 'salesByCustomer':
             src = latest(p, 'topCustomers') or fallback['topCustomers']
-            if wp == 'DVI Test': src = json.load(open('/tmp/cln/dv/snap/S8-after-discount-invoice.json'))  and src
             api = {(c['companyName'] or '').strip(): c for c in src['customers']}
             for r in R:
                 c = api.get(r[0]); exp = c and [c['companyName'].strip(), str(c['invoiceCount']), (('+' + h(c['laborDelta'])) if c['laborDelta'] > 0 else (f'({h(c["laborDelta"])})' if c['laborDelta'] < 0 else h(c['laborDelta']))), money(c['revenue'])]

@@ -1,5 +1,5 @@
 // Layer L1c — chart filters (PRD Story 8) on the Technician Efficiency, Technician Utilization and Billing Efficiency panels,
-// Heavy Duty, This Month. SECRET-FREE. Output /tmp/cln/dv/out/filters.json + screenshots.
+// Heavy Duty, Last Month (was This Month on 28 Oct). SECRET-FREE. Output /tmp/cln/dv/out/filters.json + screenshots.
 import fs from 'fs';
 import { boot2 } from '/home/user/Manual-test-Cases/build/testing-tools/staging-boot2.mjs';
 const WP = 'b3c8c820-f815-4cf1-8938-10956c5ee71a';
@@ -18,6 +18,11 @@ const panelState = async () => {
 };
 await go();
 for (const [key, kind] of [['techEfficiencyKpi', 'Technician'], ['techUtilizationKpi', 'Technician'], ['billingEfficiencyKpi', 'Advisor']]) {
+  // 4 Nov 2026: November has almost no data at Heavy Duty yet, so the filter list is empty on This Month; use Last Month (October).
+  { const n0r = responses.length; const tile = page.locator(`[data-test-id="hero_tile_${key}"]`);
+    await tile.locator('.date-range-label, [class*="date-label"], button').filter({ hasText: /Month|Year|Quarter|Week|Months|Custom|\d/ }).first().click(); await page.waitForTimeout(700);
+    await page.locator('.q-menu').last().getByText('Last Month', { exact: true }).first().click();
+    for (let i = 0; i < 40 && responses.length === n0r; i++) await page.waitForTimeout(250); await page.waitForTimeout(2500); }
   const tileBefore = await page.locator(`[data-test-id="hero_value_${key}"]`).innerText();
   await page.locator(`[data-test-id="btn_toggle_details_${key}"]`).click(); await page.waitForTimeout(5000);
   const s0 = await panelState();

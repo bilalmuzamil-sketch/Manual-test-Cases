@@ -1,0 +1,7 @@
+RULE99 {"loc":"Staging Heavy Duty - 9919","location_tz":"Asia/Karachi","process_tz":"Asia/Karachi","browser":["Asia/Karachi","\"Asia/Karachi\"","\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""]}
+techEfficiencyKpi | choice Admin Shopview | tile 102.02% -> 102.02% | rows 5 -> 4 | label person Technician: 4 technicians keyboard_arrow_down cancel | req 4 | none: rows 0 charts 0 label person Technician: No technicians keyboard_arrow_down
+techUtilizationKpi | choice Aaron Zed | tile 35.12% -> 35.12% | rows 10 -> 10 | label person Technician: 18 technicians keyboard_arrow_down cancel | req 18 | none: rows 0 charts 0 label person Technician: No technicians keyboard_arrow_down
+billingEfficiencyKpi | choice Admin Shopview | tile 461.60% -> 461.60% | rows 8 -> 1 | label person Advisor: Admin Shopview keyboard_arrow_down cancel | req 1 | none: null
+reload techEfficiencyKpi person Technician: All technicians keyboard_arrow_down rows 0 charts 0
+reload techUtilizationKpi person Technician: No technicians keyboard_arrow_down rows 0 charts 0
+reload billingEfficiencyKpi person Advisor: Admin Shopview keyboard_arrow_down cancel rows 1 charts 0
