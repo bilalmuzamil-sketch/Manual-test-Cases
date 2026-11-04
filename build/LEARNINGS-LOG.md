@@ -556,3 +556,8 @@
 - `ff_watch.py` now also reads comments for every non-QA, non-OBSOLETE child: if our LAST "QA Status:" comment is a Failed it prints RECHECK-OUTSIDE-QA (someone commented after it) or DONE-AFTER-FAIL (ticket Done, verify on production), and an "ACTION NEEDED outside QA status" line. Selftest 36/36 before and after.
 - Facts only from the other session's comment (Rule 119); our record of SV-11837 is: Failed 29 Oct by us, retested and passed 30 Oct (not by this session), Done 1 Nov.
 #ff-watch #sv11837 #missed-signal → L0611, L0614
+
+## L0618 — 2026-11-04 — QA lead ended the 2-hour Fast Follow watch
+- QA lead, 4 Nov 2026 13:36 UTC (verbatim): "Time to end this automated checker." The scheduled task "SV-11593 fast-follow watch (every 2 hours)" (trig_01ChheYVZpn4ngDQUctX7Fue) was switched off (disabled, not deleted — its run history and prompt are kept; it can be switched back on by updating it). At the end all 28 children of SV-11593 were Done (26) or OBSOLETE (2).
+- Still open from it: C682419 (minimap, SV-11835 Done) Blocked at step 8 in run 498, waiting on the QA lead's eye-check of the chat bubble vs the minimap on production.
+#ruling #ff-watch → L0617
