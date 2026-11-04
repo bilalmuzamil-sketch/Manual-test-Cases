@@ -408,4 +408,4 @@ SECTIONS = json.load(open(f"{P}/section-map.json"))
 # DESIGN: "Design — how it looks" under What/Why 20437. The coordinator creates it in TestRail and writes its id into ../section-map.json
 # as "DESIGN"; until then it is None and apply.py adds no design case (it never creates the section itself).
 SECTIONS["DESIGN"] = SECTIONS.get("DESIGN") or None
-DELETED = {"C839525": "D-15, held design version of DV-04; deleted 28 Oct 2026 with the QA lead's go-ahead after Product answer 12 (27 Oct)"}
+DELETED = {"C154719": "S3-07, masked-money report case (S3-R10); deleted 4 Nov 2026 with the QA lead's go-ahead after Chris's Doc answer 17 (cannot be set up from Settings; not testable by hand, PO said skip)", "C839525": "D-15, held design version of DV-04; deleted 28 Oct 2026 with the QA lead's go-ahead after Product answer 12 (27 Oct)"}
