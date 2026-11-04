@@ -1,0 +1,31 @@
+// Stamp check for C154710 and C839513 on staging (QA lead, 4 Nov 2026: "1. (a)"). Labels only; the throwaway work order is deleted at the end.
+import { boot2 } from '/home/user/Manual-test-Cases/build/testing-tools/staging-boot2.mjs';
+import fs from 'fs';
+const OUT = new URL('./01/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true });
+const r = await boot2('admin', { route: '/workorders' }); const page = r.page; page.setDefaultTimeout(15000);
+const log = (...a) => console.log(...a); const T = s => s.replace(/\s+/g, ' ').trim(); let k = 0;
+const dump = async n => { await page.waitForTimeout(1200); const f = `${OUT}${String(++k).padStart(2, '0')}-${n}`; await page.screenshot({ path: f + '.png' }); fs.writeFileSync(f + '.txt', page.url() + '\n' + (await page.locator('.q-dialog:visible').allInnerTexts().catch(() => [])).join('\n----\n') + '\n====\n' + await page.locator('main').innerText().catch(() => '')); };
+const step = async (n, f) => { try { await f(); } catch (e) { log('FAIL', n, e.message.split('\n')[0].slice(0, 160)); await dump('FAIL-' + n).catch(() => {}); } };
+log('perms', r.feData?.fe_permissions?.length ?? r.feData?.length, '| version', await page.evaluate(() => document.querySelector('meta[name=app-version]')?.content));
+await step('location', async () => { log('HEADER:', T(await page.locator('header').innerText()).slice(-60)); });
+await step('setting', async () => { await page.goto('https://app.staging.shopview.com/administration', { waitUntil: 'domcontentloaded' }); await page.waitForTimeout(3500);
+  const wt = page.locator('.q-tab', { hasText: /^\s*\S*\s*Work Orders\s*$/ }).first(); log('WO tab count', await page.locator('.q-tab', { hasText: 'Work Orders' }).count()); await wt.click(); await page.waitForTimeout(2500);
+  const t = T(await page.locator('main').innerText()); const i = t.indexOf('Require Approval for New Lines'); log('REQUIRE APPROVAL ctx:', i >= 0 ? t.slice(i - 60, i + 120) : 'not found');
+  const tg = page.locator('.q-toggle, .q-checkbox').filter({ hasText: 'Require Approval for New Lines' }).first(); log('its state:', await tg.getAttribute('aria-checked').catch(() => 'n/a')); log('Save Settings btn:', await page.locator('main button:visible', { hasText: 'Save Settings' }).count()); await dump('settings-wo');
+  const left = await page.locator('a:visible, .q-item:visible').evaluateAll(els => els.map(e => e.innerText.replace(/\s+/g, ' ').trim()).filter(s => /canned|SERVICE/i.test(s))); log('canned links:', JSON.stringify(left)); });
+await step('create', async () => { await page.goto('https://app.staging.shopview.com/workorders', { waitUntil: 'domcontentloaded' }); await page.waitForTimeout(3500);
+  await page.locator('main button:visible', { hasText: 'Create Work Order' }).first().click(); await page.waitForTimeout(2500);
+  const d = page.locator('.q-dialog:visible').last(); log('NEW WO:', T(await d.innerText()).slice(0, 200));
+  await d.locator('.q-field', { hasText: 'Customer' }).first().click(); await page.keyboard.type('4 Star'); await page.waitForTimeout(3000); await page.locator('.q-menu:visible .q-item').first().click(); await page.waitForTimeout(1500);
+  await d.locator('.q-field', { hasText: 'Asset' }).first().click(); await page.waitForTimeout(2000); await page.locator('.q-menu:visible .q-item').first().click(); await page.waitForTimeout(1000);
+  await d.locator('button:visible', { hasText: /^Save$/ }).first().click(); await page.waitForTimeout(3500);
+  const conf = page.locator('.q-dialog:visible button', { hasText: /^Create$/ }).first(); if (await conf.count()) { log('credit Confirmation:', T(await page.locator('.q-dialog:visible').last().innerText()).slice(0, 200)); await conf.click(); await page.waitForTimeout(3500); }
+  fs.writeFileSync(OUT + 'wo-url.txt', page.url()); log('WO URL', page.url());
+  for (let i = 0; i < 2; i++) { const ok = page.locator('.q-dialog:visible button', { hasText: /^Ok$/ }).first(); if (await ok.count()) { await ok.click(); await page.waitForTimeout(1000); } } });
+await step('newline', async () => { const d = page.locator('.q-dialog:visible', { hasText: 'New Line' }).last(); log('NEW LINE:', T(await d.innerText())); log('NL labels:', JSON.stringify(await d.locator('.q-field__label').allTextContents())); log('NL buttons:', JSON.stringify((await d.locator('button:visible').allInnerTexts()).map(T)));
+  const ph = await d.locator('input, textarea').evaluateAll(els => els.map(e => e.getAttribute('placeholder')).filter(Boolean)); log('placeholders:', JSON.stringify(ph)); await dump('new-line');
+  await d.locator('.q-field', { hasText: 'Title' }).first().locator('input').first().click(); await page.keyboard.type('Rep'); await page.waitForTimeout(2500); const m = (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T); log('canned list (first 5):', JSON.stringify(m.slice(0, 5)));
+  await page.locator('.q-menu:visible .q-item').first().click(); await page.waitForTimeout(2000); log('after pick:', T(await d.innerText()).slice(0, 400)); await dump('picked');
+  await d.locator('button', { hasText: 'close' }).first().click(); await page.waitForTimeout(1500); const disc = page.locator('.q-dialog:visible button', { hasText: /Discard|Yes|Leave/ }).first(); if (await disc.count()) await disc.click(); await page.waitForTimeout(1000); log('dialogs left:', await page.locator('.q-dialog:visible').count()); });
+await step('delete-wo', async () => { await page.locator('main button:visible').filter({ has: page.locator('i:text-is("more_vert")') }).first().click(); await page.waitForTimeout(1000); await page.locator('.q-menu:visible .q-item', { hasText: 'Delete Work Order' }).first().click(); await page.waitForTimeout(1500); log('delete dialog:', T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' | ')).slice(0, 200)); const y = page.locator('.q-dialog:visible button', { hasText: /^(Delete|Yes|Confirm)$/ }).last(); await y.click(); await page.waitForTimeout(3000); log('after delete url:', page.url()); });
+await r.browser?.close?.(); process.exit(0);
