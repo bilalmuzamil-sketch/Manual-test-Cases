@@ -1,0 +1,7170 @@
+[
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "339 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 4341612.12 vs headline 4341612.12",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 4341612.12 vs headline 4341612.12",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "46+50+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 1430 vs tile 1430",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.0228 vs 14849.9/14519.44=1.0228",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 14849.9/14519.44 vs tile 14849.9/14519.44",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "96.37 vs 14007.16/14534.35=96.37",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 14007.16/14534.35 vs tile 14007.16/14534.35",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "75.68 vs 17813.62/23539.52",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 75.68% vs PRD formula 17813.62/(17813.62+5725.9)=75.68%; clocked 23539.52 vs WO+Internal 23539.52",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 17813.62 / total 23539.52 vs tile 17813.62 / 23539.52",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Monroe Truck Service & Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_12_months",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 85 vs headline 244",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "308 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 3883242.27 vs headline 3883242.27",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 3883242.27 vs headline 3883242.27",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "46+50+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 1289 vs tile 1289",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.0290000000000001 vs 13413.01/13035.14=1.0290",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 13413.01/13035.14 vs tile 13413.01/13035.14",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "96.69 vs 12612.85/13044.87=96.69",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 12612.85/13044.87 vs tile 12612.85/13044.87",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "75.16 vs 16288.4/21672.91",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 75.16% vs PRD formula 16288.4/(16288.4+5384.51)=75.16%; clocked 21672.91 vs WO+Internal 21672.91",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 16288.4 / total 21672.91 vs tile 16288.4 / 21672.91",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Monroe Truck Service & Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_year",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 85 vs headline 231",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "365 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 5488361.00 vs headline 5488361.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 5488361.00 vs headline 5488361.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "43+53+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 1773 vs tile 1773",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 0.9868000000000001 vs 19582.58/19844.88=0.9868",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 19582.58/19844.88 vs tile 19582.58/19844.88",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "93.02 vs 18512.1/19901.7=93.02",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 18512.1/19901.7 vs tile 18512.1/19901.7",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "81.71 vs 20435.47/25009.99",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 81.71% vs PRD formula 20435.47/(20435.47+4574.52)=81.71%; clocked 25009.99 vs WO+Internal 25009.99",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 20435.47 / total 25009.99 vs tile 20435.47 / 25009.99",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Roseville Fleet Services",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_year",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 84 vs headline 281",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "35 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 1625.23 vs headline 1625.23",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 1625.23 vs headline 1625.23",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "62+34+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 4 vs tile 4",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 3.75/0.0 vs tile 3.75/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "50 vs 1654.56/3309.1",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 50% vs PRD formula 1654.56/(1654.56+1654.54)=50.0%; clocked 3309.1 vs WO+Internal 3309.1",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 1654.56 / total 3309.1 vs tile 1654.56 / 3309.1",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 7 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_quarter",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "92 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 993491.27 vs headline 993491.27",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 993491.27 vs headline 993491.27",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "50+47+3=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 315 vs tile 315",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.0242 vs 3085.24/3012.39=1.0242",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 3085.24/3012.39 vs tile 3085.24/3012.39",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "95.54 vs 2879.65/3014.18=95.54",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2879.65/3014.18 vs tile 2879.65/3014.18",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "72.93 vs 4729.4/6485.12",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 72.93% vs PRD formula 4729.4/(4729.4+1755.72)=72.93%; clocked 6485.12 vs WO+Internal 6485.12",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 4729.4 / total 6485.12 vs tile 4729.4 / 6485.12",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Monroe Truck Service & Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_quarter",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 27 vs headline 104",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "4 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 1625.23 vs headline 1625.23",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 1625.23 vs headline 1625.23",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "62+34+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 4 vs tile 4",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 3.75/0.0 vs tile 3.75/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "50 vs 166.56/333.1",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 50% vs PRD formula 166.56/(166.56+166.54)=50.0%; clocked 333.1 vs WO+Internal 333.1",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 166.56 / total 333.1 vs tile 166.56 / 333.1",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 7 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_month",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "31 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "50 vs 1488/2976",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 50% vs PRD formula 1488.0/(1488.0+1488.0)=50.0%; clocked 2976 vs WO+Internal 2976.0",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 1488.0 / total 2976.0 vs tile 1488 / 2976",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_month",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "4 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 1625.23 vs headline 1625.23",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 1625.23 vs headline 1625.23",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "62+34+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 4 vs tile 4",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 3.75/0.0 vs tile 3.75/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "50 vs 166.56/333.1",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 50% vs PRD formula 166.56/(166.56+166.54)=50.0%; clocked 333.1 vs WO+Internal 333.1",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 166.56 / total 333.1 vs tile 166.56 / 333.1",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 7 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "this_week",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "7 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "50 vs 336/672",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 50% vs PRD formula 336.0/(336.0+336.0)=50.0%; clocked 672 vs WO+Internal 672.0",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 336.0 / total 672.0 vs tile 336 / 672",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "last_week",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "1 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "50 vs 22.54/45.08",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 50% vs PRD formula 22.54/(22.54+22.54)=50.0%; clocked 45.08 vs WO+Internal 45.08",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 22.54 / total 45.08 vs tile 22.54 / 45.08",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_1d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "31 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 1625.23 vs headline 1625.23",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 1625.23 vs headline 1625.23",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "62+34+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 4 vs tile 4",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 3.75/0.0 vs tile 3.75/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "50 vs 1462.56/2925.1",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 50% vs PRD formula 1462.56/(1462.56+1462.54)=50.0%; clocked 2925.1 vs WO+Internal 2925.1",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 1462.56 / total 2925.1 vs tile 1462.56 / 2925.1",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 7 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_31d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "32 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 1625.23 vs headline 1625.23",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 1625.23 vs headline 1625.23",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "62+34+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 4 vs tile 4",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 3.75/0.0 vs tile 3.75/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "50 vs 1510.56/3021.1",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 50% vs PRD formula 1510.56/(1510.56+1510.54)=50.0%; clocked 3021.1 vs WO+Internal 3021.1",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 1510.56 / total 3021.1 vs tile 1510.56 / 3021.1",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 7 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_32d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "182 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 2014278.94 vs headline 2014278.94",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 2014278.94 vs headline 2014278.94",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "48+49+3=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 676 vs tile 676",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.0381 vs 6617.39/6374.67=1.0381",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 6617.39/6374.67 vs tile 6617.39/6374.67",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "97.73 vs 6233.49/6378.15=97.73",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 6233.49/6378.15 vs tile 6233.49/6378.15",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "70.76 vs 9387.58/13266.62",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 70.76% vs PRD formula 9387.58/(9387.58+3879.04)=70.76%; clocked 13266.62 vs WO+Internal 13266.62",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 9387.58 / total 13266.62 vs tile 9387.58 / 13266.62",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Monroe Truck Service & Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_182d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 34 vs headline 169",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "183 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 2031997.62 vs headline 2031997.62",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 2031997.62 vs headline 2031997.62",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "47+49+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 686 vs tile 686",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.0386 vs 6700.97/6452.03=1.0386",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 6700.97/6452.03 vs tile 6700.97/6452.03",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "97.83 vs 6315.37/6455.47=97.83",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 6315.37/6455.47 vs tile 6315.37/6455.47",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "70.85 vs 9462.58/13356.7",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 70.85% vs PRD formula 9462.58/(9462.58+3894.12)=70.85%; clocked 13356.7 vs WO+Internal 13356.7",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 9462.58 / total 13356.7 vs tile 9462.58 / 13356.7",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Monroe Truck Service & Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_183d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 85 vs headline 169",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "366 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 4719893.25 vs headline 4719893.25",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 4719893.25 vs headline 4719893.25",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "46+50+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 1572 vs tile 1572",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.0136 vs 16202.37/15985.14=1.0136",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 16202.37/15985.14 vs tile 16202.37/15985.14",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "95.99 vs 15358.53/16000.11=95.99",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 15358.53/16000.11 vs tile 15358.53/16000.11",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "76.1 vs 19232.44/25273.95",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 76.1% vs PRD formula 19232.44/(19232.44+6041.51)=76.1%; clocked 25273.95 vs WO+Internal 25273.95",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 19232.44 / total 25273.95 vs tile 19232.44 / 25273.95",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Monroe Truck Service & Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_366d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 85 vs headline 258",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "custom_367d",
+"check": "Range over 366 days is refused",
+"result": "FAIL",
+"detail": "367-day range answered HTTP 200",
+"prd": "S7-R2a \"a custom range of up to 366 days, the same limit the reports apply\""
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_30",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 295, headline 295",
+"prd": "S5-R13"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_30",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 4339986.89 vs 4339986.89",
+"prd": "S5-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_30",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_60",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 295, headline 295",
+"prd": "S5-R13"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_60",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 4339986.89 vs 4339986.89",
+"prd": "S5-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_60",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_60",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "295 vs previous 295",
+"prd": "S3-R2 definition"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_90",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 239, headline 239",
+"prd": "S5-R13"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_90",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 1749128.34 vs 1749128.34",
+"prd": "S5-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_90",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_90",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "239 vs previous 295",
+"prd": "S3-R2 definition"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_120",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 194, headline 194",
+"prd": "S5-R13"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_120",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 1212372.37 vs 1212372.37",
+"prd": "S5-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_120",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_120",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "194 vs previous 239",
+"prd": "S3-R2 definition"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_180",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 131, headline 131",
+"prd": "S5-R13"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_180",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 438732.65 vs 438732.65",
+"prd": "S5-R9"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_180",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Staging Heavy Duty - 9919",
+"range": "atrisk_180",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "131 vs previous 194",
+"prd": "S3-R2 definition"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "339 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 1986111.56 vs headline 1986111.56",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 1986111.56 vs headline 1986111.56",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "44+51+5=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 1839 vs tile 1839",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.1887999999999999 vs 7479.86/6291.95=1.1888",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 7479.86/6291.95 vs tile 7479.86/6291.95",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "111.81 vs 7103.55/6353.42=111.81",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 7103.55/6353.42 vs tile 7103.55/6353.42",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "93.81 vs 8064.81/8596.78",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 93.81% vs PRD formula 8064.81/(8064.81+531.97)=93.81%; clocked 8596.78 vs WO+Internal 8596.78",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 8064.81 / total 8596.78 vs tile 8064.81 / 8596.78",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Villa Park Diesel & Fleet Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_12_months",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 84 vs headline 309",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "308 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 1783282.43 vs headline 1783282.43",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 1783282.43 vs headline 1783282.43",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "45+50+5=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 1660 vs tile 1660",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.1984000000000001 vs 6606.39/5512.57=1.1984",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 6606.39/5512.57 vs tile 6606.39/5512.57",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "112.12 vs 6249.68/5574.03=112.12",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 6249.68/5574.03 vs tile 6249.68/5574.03",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "94.61 vs 7359.14/7778.39",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 94.61% vs PRD formula 7359.14/(7359.14+419.25)=94.61%; clocked 7778.39 vs WO+Internal 7778.39",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 7359.14 / total 7778.39 vs tile 7359.14 / 7778.39",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Tucson Truck Center",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_year",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 84 vs headline 289",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "365 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 2587481.91 vs headline 2587481.91",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 2587481.91 vs headline 2587481.91",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "41+54+5=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2002 vs tile 2002",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.0991 vs 10526.93/9577.88=1.0991",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 10526.93/9577.88 vs tile 10526.93/9577.88",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "107.02 vs 10300.8/9625.18=107.02",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 10300.8/9625.18 vs tile 10300.8/9625.18",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "86.31 vs 7516.39/8709.03",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 86.31% vs PRD formula 7516.39/(7516.39+1192.64)=86.31%; clocked 8709.03 vs WO+Internal 8709.03",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 7516.39 / total 8709.03 vs tile 7516.39 / 8709.03",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top BTA Truck & Trailer Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_year",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 94 vs headline 365",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "35 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 827.28/827.28",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 827.28/(827.28+0.0)=100.0%; clocked 827.28 vs WO+Internal 827.28",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 827.28 / total 827.28 vs tile 827.28 / 827.28",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_quarter",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "92 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 451064.44 vs headline 451064.44",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 451064.44 vs headline 451064.44",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "48+48+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 385 vs tile 385",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.1506 vs 1523.51/1324.14=1.1506",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 1523.51/1324.14 vs tile 1523.51/1324.14",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "109.78 vs 1480.27/1348.36=109.78",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 1480.27/1348.36 vs tile 1480.27/1348.36",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "94.89 vs 2205.98/2324.71",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 94.89% vs PRD formula 2205.98/(2205.98+118.73)=94.89%; clocked 2324.71 vs WO+Internal 2324.71",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 2205.98 / total 2324.71 vs tile 2205.98 / 2324.71",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Tucson Truck Center",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_quarter",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 30 vs headline 113",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "4 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 83.28/83.28",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 83.28/(83.28+0.0)=100.0%; clocked 83.28 vs WO+Internal 83.28",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 83.28 / total 83.28 vs tile 83.28 / 83.28",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_month",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "31 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 744/744",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 744.0/(744.0+0.0)=100.0%; clocked 744 vs WO+Internal 744.0",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 744.0 / total 744.0 vs tile 744 / 744",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_month",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "4 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 83.28/83.28",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 83.28/(83.28+0.0)=100.0%; clocked 83.28 vs WO+Internal 83.28",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 83.28 / total 83.28 vs tile 83.28 / 83.28",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "this_week",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "7 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 168/168",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 168.0/(168.0+0.0)=100.0%; clocked 168 vs WO+Internal 168.0",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 168.0 / total 168.0 vs tile 168 / 168",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "last_week",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "1 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 11.28/11.28",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 11.28/(11.28+0.0)=100.0%; clocked 11.28 vs WO+Internal 11.28",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 11.28 / total 11.28 vs tile 11.28 / 11.28",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_1d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "31 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 731.28/731.28",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 731.28/(731.28+0.0)=100.0%; clocked 731.28 vs WO+Internal 731.28",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 731.28 / total 731.28 vs tile 731.28 / 731.28",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_31d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "32 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 755.28/755.28",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 755.28/(755.28+0.0)=100.0%; clocked 755.28 vs WO+Internal 755.28",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 755.28 / total 755.28 vs tile 755.28 / 755.28",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_32d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "182 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 849001.44 vs headline 849001.44",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 849001.44 vs headline 849001.44",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "47+49+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 818 vs tile 818",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.1588 vs 3181.6/2745.56=1.1588",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 3181.6/2745.56 vs tile 3181.6/2745.56",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "109.91 vs 3079.75/2802.18=109.91",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 3079.75/2802.18 vs tile 3079.75/2802.18",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "94.98 vs 4512.1/4750.59",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 94.98% vs PRD formula 4512.1/(4512.1+238.49)=94.98%; clocked 4750.59 vs WO+Internal 4750.59",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 4512.1 / total 4750.59 vs tile 4512.1 / 4750.59",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Tucson Truck Center",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_182d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 46 vs headline 195",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "183 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 855450.84 vs headline 855450.84",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 855450.84 vs headline 855450.84",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "47+49+4=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 826 vs tile 826",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.1581000000000001 vs 3212.05/2773.57=1.1581",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 3212.05/2773.57 vs tile 3212.05/2773.57",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "109.85 vs 3108.96/2830.19=109.85",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 3108.96/2830.19 vs tile 3108.96/2830.19",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "94.94 vs 4559.07/4802.23",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 94.94% vs PRD formula 4559.07/(4559.07+243.16)=94.94%; clocked 4802.23 vs WO+Internal 4802.23",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 4559.07 / total 4802.23 vs tile 4559.07 / 4802.23",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Tucson Truck Center",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_183d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 84 vs headline 196",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "366 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 2162988.58 vs headline 2162988.58",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 2162988.58 vs headline 2162988.58",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "44+51+5=100",
+"prd": "S4-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2005 vs tile 2005",
+"prd": "S4-N2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 1.1775 vs 8248.09/7004.96=1.1775",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 8248.09/7004.96 vs tile 8248.09/7004.96",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "111.28 vs 7863.4/7066.34=111.28",
+"prd": "S3-R2"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 7863.4/7066.34 vs tile 7863.4/7066.34",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "92.86 vs 8874.82/9556.82",
+"prd": "S4-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 92.86% vs PRD formula 8874.82/(8874.82+682.0)=92.86%; clocked 9556.82 vs WO+Internal 9556.82",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 8874.82 / total 9556.82 vs tile 8874.82 / 9556.82",
+"prd": "S3-R1"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top Villa Park Diesel & Fleet Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_366d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 84 vs headline 319",
+"prd": "S5-R5"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "custom_367d",
+"check": "Range over 366 days is refused",
+"result": "FAIL",
+"detail": "367-day range answered HTTP 200",
+"prd": "S7-R2a \"a custom range of up to 366 days, the same limit the reports apply\""
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_30",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 369, headline 369",
+"prd": "S5-R13"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_30",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 1986111.56 vs 1986111.56",
+"prd": "S5-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_30",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_60",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 369, headline 369",
+"prd": "S5-R13"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_60",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 1986111.56 vs 1986111.56",
+"prd": "S5-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_60",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_60",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "369 vs previous 369",
+"prd": "S3-R2 definition"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_90",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 310, headline 310",
+"prd": "S5-R13"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_90",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 660152.61 vs 660152.61",
+"prd": "S5-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_90",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_90",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "310 vs previous 369",
+"prd": "S3-R2 definition"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_120",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 259, headline 259",
+"prd": "S5-R13"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_120",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 468012.57 vs 468012.57",
+"prd": "S5-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_120",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_120",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "259 vs previous 310",
+"prd": "S3-R2 definition"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_180",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 180, headline 180",
+"prd": "S5-R13"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_180",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 187764.11 vs 187764.11",
+"prd": "S5-R9"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_180",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Staging Lethbridge - 4310",
+"range": "atrisk_180",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "180 vs previous 259",
+"prd": "S3-R2 definition"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "339 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 270.00 vs headline 270.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 270.00 vs headline 270.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "0+100+0=100",
+"prd": "S4-R3"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2 vs tile 2",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 100 vs 2/0.02=100.0000",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "10000 vs 2/0.02=10000.0",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 0.02/0.02",
+"prd": "S4-R9"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 0.02/(0.02+0.0)=100.0%; clocked 0.02 vs WO+Internal 0.02",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.02 / total 0.02 vs tile 0.02 / 0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 4 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "last_12_months",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "308 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "11 points, 11 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 270.00 vs headline 270.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 270.00 vs headline 270.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "0+100+0=100",
+"prd": "S4-R3"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2 vs tile 2",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 100 vs 2/0.02=100.0000",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "10000 vs 2/0.02=10000.0",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 0.02/0.02",
+"prd": "S4-R9"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 0.02/(0.02+0.0)=100.0%; clocked 0.02 vs WO+Internal 0.02",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.02 / total 0.02 vs tile 0.02 / 0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 4 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "this_year",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "365 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "12 points, 12 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Utilization has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.0 / total 0.0 vs tile 0 / 0",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "last_year",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "35 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 270.00 vs headline 270.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 270.00 vs headline 270.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "0+100+0=100",
+"prd": "S4-R3"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2 vs tile 2",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 100 vs 2/0.02=100.0000",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "10000 vs 2/0.02=10000.0",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 0.02/0.02",
+"prd": "S4-R9"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 0.02/(0.02+0.0)=100.0%; clocked 0.02 vs WO+Internal 0.02",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.02 / total 0.02 vs tile 0.02 / 0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 4 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "this_quarter",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "92 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "14 points, 14 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Utilization has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.0 / total 0.0 vs tile 0 / 0",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "last_quarter",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "4 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 270.00 vs headline 270.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 270.00 vs headline 270.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "0+100+0=100",
+"prd": "S4-R3"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2 vs tile 2",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 100 vs 2/0.02=100.0000",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "10000 vs 2/0.02=10000.0",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 0.02/0.02",
+"prd": "S4-R9"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 0.02/(0.02+0.0)=100.0%; clocked 0.02 vs WO+Internal 0.02",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.02 / total 0.02 vs tile 0.02 / 0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 4 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "this_month",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "31 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Utilization has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.0 / total 0.0 vs tile 0 / 0",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "last_month",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "4 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "4 points, 4 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 270.00 vs headline 270.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 270.00 vs headline 270.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "0+100+0=100",
+"prd": "S4-R3"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2 vs tile 2",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 100 vs 2/0.02=100.0000",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "10000 vs 2/0.02=10000.0",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 0.02/0.02",
+"prd": "S4-R9"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 0.02/(0.02+0.0)=100.0%; clocked 0.02 vs WO+Internal 0.02",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.02 / total 0.02 vs tile 0.02 / 0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 4 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "this_week",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "7 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 0.00 vs headline 0.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 0.00 vs headline 0.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 0 vs tile 0",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Billing Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "ratio None with 0 clocked",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Technician Efficiency has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 0.0/0.0 vs tile 0/0",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Utilization has no value with no clocked hours",
+"result": "PASS",
+"detail": "value None",
+"prd": "S3-E3"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.0 / total 0.0 vs tile 0 / 0",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top None",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "last_week",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 0 vs headline 0",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "1 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "1 points, 1 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 270.00 vs headline 270.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 270.00 vs headline 270.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "0+100+0=100",
+"prd": "S4-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2 vs tile 2",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 100 vs 2/0.02=100.0000",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "10000 vs 2/0.02=10000.0",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 0.02/0.02",
+"prd": "S4-R9"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 0.02/(0.02+0.0)=100.0%; clocked 0.02 vs WO+Internal 0.02",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.02 / total 0.02 vs tile 0.02 / 0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 4 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_1d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "31 days -> got day, expected day",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "31 points, 31 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 270.00 vs headline 270.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 270.00 vs headline 270.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "0+100+0=100",
+"prd": "S4-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2 vs tile 2",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 100 vs 2/0.02=100.0000",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "10000 vs 2/0.02=10000.0",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 0.02/0.02",
+"prd": "S4-R9"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 0.02/(0.02+0.0)=100.0%; clocked 0.02 vs WO+Internal 0.02",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.02 / total 0.02 vs tile 0.02 / 0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 4 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_31d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "32 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "5 points, 5 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 270.00 vs headline 270.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 270.00 vs headline 270.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "0+100+0=100",
+"prd": "S4-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2 vs tile 2",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 100 vs 2/0.02=100.0000",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "10000 vs 2/0.02=10000.0",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 0.02/0.02",
+"prd": "S4-R9"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 0.02/(0.02+0.0)=100.0%; clocked 0.02 vs WO+Internal 0.02",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.02 / total 0.02 vs tile 0.02 / 0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 4 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_32d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "182 days -> got week, expected week",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "26 points, 26 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 270.00 vs headline 270.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 270.00 vs headline 270.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "0+100+0=100",
+"prd": "S4-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2 vs tile 2",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 100 vs 2/0.02=100.0000",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "10000 vs 2/0.02=10000.0",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 0.02/0.02",
+"prd": "S4-R9"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 0.02/(0.02+0.0)=100.0%; clocked 0.02 vs WO+Internal 0.02",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.02 / total 0.02 vs tile 0.02 / 0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 4 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_182d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "183 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "7 points, 7 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 270.00 vs headline 270.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 270.00 vs headline 270.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "0+100+0=100",
+"prd": "S4-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2 vs tile 2",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 100 vs 2/0.02=100.0000",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "10000 vs 2/0.02=10000.0",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 0.02/0.02",
+"prd": "S4-R9"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 0.02/(0.02+0.0)=100.0%; clocked 0.02 vs WO+Internal 0.02",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.02 / total 0.02 vs tile 0.02 / 0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 4 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_183d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Bucket size follows range length",
+"result": "PASS",
+"detail": "366 days -> got month, expected month",
+"prd": "S4-R11/S4-R11c"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "revenueKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "billingEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "techEfficiencyKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "techUtilizationKpi sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "topCustomers sparkline has one point per bucket",
+"result": "PASS",
+"detail": "13 points, 13 buckets",
+"prd": "S4-R11"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Revenue sparkline points add up to the headline",
+"result": "PASS",
+"detail": "sum 270.00 vs headline 270.00",
+"prd": "S4-R11 \"a point can never disagree with the tile\""
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Revenue chart bars add up to the headline",
+"result": "PASS",
+"detail": "bars 270.00 vs headline 270.00",
+"prd": "S6-R3a / S7-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Parts + Labor + Other = 100",
+"result": "PASS",
+"detail": "0+100+0=100",
+"prd": "S4-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Invoice count equals chart invoice counts",
+"result": "PASS",
+"detail": "chart 2 vs tile 2",
+"prd": "S4-N2"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Billing Efficiency = invoiced / clocked",
+"result": "PASS",
+"detail": "ratio 100 vs 2/0.02=100.0000",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Advisor table hours add up to the Billing Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S6 table + S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Technician Efficiency = tech hours / clocked",
+"result": "PASS",
+"detail": "10000 vs 2/0.02=10000.0",
+"prd": "S3-R2"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Technician table adds up to the Technician Efficiency tile",
+"result": "PASS",
+"detail": "table 2.0/0.02 vs tile 2/0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Utilization headline = WO hrs / clocked (as displayed)",
+"result": "PASS",
+"detail": "100 vs 0.02/0.02",
+"prd": "S4-R9"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Utilization = WO / (WO + Internal) per PRD",
+"result": "PASS",
+"detail": "tile 100% vs PRD formula 0.02/(0.02+0.0)=100.0%; clocked 0.02 vs WO+Internal 0.02",
+"prd": "S3-R2 \"Work-order hours divided by the sum of work-order hours and internal hours\""
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Utilization table adds up to the tile",
+"result": "PASS",
+"detail": "table WO 0.02 / total 0.02 vs tile 0.02 / 0.02",
+"prd": "S3-R1"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Sales by Customer top name = first row",
+"result": "PASS",
+"detail": "top 4 Star Truck Repair",
+"prd": "S5-R3"
+},
+{
+"location": "Test Location",
+"range": "custom_366d",
+"check": "Sales by Customer last point = never above headline",
+"result": "PASS",
+"detail": "max point 2 vs headline 2",
+"prd": "S5-R5"
+},
+{
+"location": "Test Location",
+"range": "custom_367d",
+"check": "Range over 366 days is refused",
+"result": "FAIL",
+"detail": "367-day range answered HTTP 200",
+"prd": "S7-R2a \"a custom range of up to 366 days, the same limit the reports apply\""
+},
+{
+"location": "Test Location",
+"range": "atrisk_30",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 0, headline 0",
+"prd": "S5-R13"
+},
+{
+"location": "Test Location",
+"range": "atrisk_30",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 0.00 vs 0",
+"prd": "S5-R9"
+},
+{
+"location": "Test Location",
+"range": "atrisk_30",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Test Location",
+"range": "atrisk_60",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 0, headline 0",
+"prd": "S5-R13"
+},
+{
+"location": "Test Location",
+"range": "atrisk_60",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 0.00 vs 0",
+"prd": "S5-R9"
+},
+{
+"location": "Test Location",
+"range": "atrisk_60",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Test Location",
+"range": "atrisk_60",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "0 vs previous 0",
+"prd": "S3-R2 definition"
+},
+{
+"location": "Test Location",
+"range": "atrisk_90",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 0, headline 0",
+"prd": "S5-R13"
+},
+{
+"location": "Test Location",
+"range": "atrisk_90",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 0.00 vs 0",
+"prd": "S5-R9"
+},
+{
+"location": "Test Location",
+"range": "atrisk_90",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Test Location",
+"range": "atrisk_90",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "0 vs previous 0",
+"prd": "S3-R2 definition"
+},
+{
+"location": "Test Location",
+"range": "atrisk_120",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 0, headline 0",
+"prd": "S5-R13"
+},
+{
+"location": "Test Location",
+"range": "atrisk_120",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 0.00 vs 0",
+"prd": "S5-R9"
+},
+{
+"location": "Test Location",
+"range": "atrisk_120",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Test Location",
+"range": "atrisk_120",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "0 vs previous 0",
+"prd": "S3-R2 definition"
+},
+{
+"location": "Test Location",
+"range": "atrisk_180",
+"check": "At Risk has 12 monthly points, last = headline",
+"result": "PASS",
+"detail": "12 points, last 0, headline 0",
+"prd": "S5-R13"
+},
+{
+"location": "Test Location",
+"range": "atrisk_180",
+"check": "At Risk revenue line = sum of customers",
+"result": "PASS",
+"detail": "sum 0.00 vs 0",
+"prd": "S5-R9"
+},
+{
+"location": "Test Location",
+"range": "atrisk_180",
+"check": "Every listed customer meets the at-risk test",
+"result": "PASS",
+"detail": "0 fail, e.g. []",
+"prd": "S3-R2 / S5-R15"
+},
+{
+"location": "Test Location",
+"range": "atrisk_180",
+"check": "A longer window never adds customers",
+"result": "PASS",
+"detail": "0 vs previous 0",
+"prd": "S3-R2 definition"
+}
+]

@@ -16,3 +16,53 @@
      "OK": true
     }
 [17:16:00] START A-collect-dashboard
+[17:16:59] END A-collect-dashboard rc=0
+    Test Location last_month 2026-10-01 2026-10-31 200
+    Test Location this_week 2026-11-01 2026-11-04 200
+    Test Location last_week 2026-10-25 2026-10-31 200
+    Test Location custom_1d 2026-11-04 2026-11-04 200
+    Test Location custom_31d 2026-10-05 2026-11-04 200
+    Test Location custom_32d 2026-10-04 2026-11-04 200
+    Test Location custom_182d 2026-05-07 2026-11-04 200
+    Test Location custom_183d 2026-05-06 2026-11-04 200
+    Test Location custom_366d 2025-11-04 2026-11-04 200
+    Test Location custom_367d 2025-11-03 2026-11-04 200
+    Test Location atrisk 30 200
+    Test Location atrisk 60 200
+    Test Location atrisk 90 200
+    Test Location atrisk 120 200
+    Test Location atrisk 180 200
+[17:16:59] START B-collect-reports
+[17:21:42] END B-collect-reports rc=0
+    Test Location custom_183d sales 200
+    Test Location custom_183d saa 200
+    Test Location custom_183d te 200
+    Test Location custom_183d tu 200
+    Test Location custom_183d sbc 200
+    Test Location custom_366d sales 200
+    Test Location custom_366d saa 200
+    Test Location custom_366d te 200
+    Test Location custom_366d tu 200
+    Test Location custom_366d sbc 200
+    Test Location custom_367d sales 200
+    Test Location custom_367d saa 200
+    Test Location custom_367d te 200
+    Test Location custom_367d tu 200
+    Test Location custom_367d sbc 200
+[17:21:42] START A-check-internal
+[17:21:42] END A-check-internal rc=0
+    TOTAL 896 PASS 893 FAIL 3
+    
+    FAIL x3: Range over 366 days is refused  [S7-R2a "a custom range of up to 366 days, the same limit the reports apply"]
+        Staging Heavy Duty - 9919 custom_367d | 367-day range answered HTTP 200
+        Staging Lethbridge - 4310 custom_367d | 367-day range answered HTTP 200
+        Test Location custom_367d | 367-day range answered HTTP 200
+[17:21:42] START B-check-parity
+[17:21:43] END B-check-parity rc=0
+    TOTAL 1658 PASS 1656 FAIL 2
+    
+    FAIL x1: Utilization WO hrs = TU WO Hours
+        Staging Heavy Duty - 9 last_12_months | dash 17813.64 | report 17813.66 | Utilization WO hrs = TU WO Hours
+    
+    FAIL x1: Utilization clocked = TU Total Hours
+        Staging Heavy Duty - 9 custom_366d | dash 25274.1 | report 25274.13 | Utilization clocked = TU Total Hours
