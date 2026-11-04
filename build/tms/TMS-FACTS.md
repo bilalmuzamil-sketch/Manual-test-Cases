@@ -285,3 +285,17 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   **C154719** (What/Why > S3 What Reaches QuickBooks — deleted from TestRail during the run: 400 by number, no title match).
 - **🛑 TestRail was being edited WHILE the sync ran** (10 edits + 3 new cases at 04:16–04:21 UTC, our TestRail user,
   likely another session). **A sync is a snapshot: always finish with a fresh dry run and report what moved meanwhile.**
+- **Closed the same day (QA lead: "1. Yes 2. Yes"):** C682441 (Automated) synced from TestRail; **C154719 deleted in TMS**
+  (no results in any run, incl. run 10). Two later TestRail edits (04:33 UTC) also synced. **Final: 1,962 SAME, nothing open.**
+- **🛑 TMS DESTROYS ANGLE-BRACKET PLACEHOLDERS — AND EVERYTHING AFTER THEM.** TestRail's step text
+  `"Removed: VIN: <seeded VIN>"` reached TMS as `"Removed: VIN:"` with the rest of the field gone (C682441, 510 → 411
+  chars), while the API answered 200. Same rule the repo already applies to TestRail imports
+  (`check_angle_brackets.py`: write `[placeholder]`, not `<placeholder>`). **Fix in `tms_sync.py`:** placeholders are
+  sent entity-escaped (`&lt;seeded VIN&gt;`), so TMS shows the exact TestRail text; and `norm()` now KEEPS placeholders
+  when comparing, because the old tag-stripping compare hid the loss. Founder Mode scan: 2 affected (C682441, C855990
+  → TMS C10000204), both repaired and read back. Evidence: `build/tms/sync-2026-11-04/angle-bracket-scan-20434.json`.
+- **Sync writes can look like "conflicts":** C855990's only TMS version was written by this sync at 04:19 (the op log
+  proves it), so its "edited in TMS after TestRail" flag was our own write, not a person's. Check the op log before
+  treating a CONFLICT as a human edit.
+- **Out of scope, reported only:** WO Board and Tech View (13204) re-check on 2026-11-04 shows drift since 28 Oct —
+  48 updates, 14 Automated, 5 TestRail-only, 2 accepted. Not synced (not part of the request).

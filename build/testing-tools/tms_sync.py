@@ -79,8 +79,22 @@ def id_map():
 TR_LINK = "https://shopview.testrail.io/index.php?/cases/view/%d"
 
 
+# A placeholder written in angle brackets (e.g. "<seeded VIN>") is TEXT, not markup. TMS's HTML handling
+# deletes it AND everything after it (proven 2026-11-04 on C682441), so: send it entity-escaped, and
+# compare with placeholders kept, so a loss can never be hidden by tag-stripping.
+_TAGS = (r"(?:p|br|ul|ol|li|strong|em|b|i|u|s|a|code|pre|table|thead|tbody|tr|td|th|span|div|h[1-6]|img|"
+         r"blockquote|hr|sup|sub)")
+PLACEHOLDER = re.compile(r"<(?!/?" + _TAGS + r"\b)[^<>\n]{1,60}>")
+
+
+def escape_placeholders(v):
+    return PLACEHOLDER.sub(lambda m: html.escape(m.group(0)), v) if isinstance(v, str) else v
+
+
 def norm(s):
-    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html.unescape(str(s or "")))).strip()
+    s = html.unescape(str(s or ""))
+    s = PLACEHOLDER.sub(lambda m: "[" + m.group(0)[1:-1] + "]", s)  # keep placeholders visible
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", s)).strip()
 
 
 def steps_norm(lst):
@@ -121,10 +135,12 @@ class TestRail:
 
 def desired(tr):
     """The TMS body that mirrors a TestRail case."""
-    body = {f2: tr.get(f1) for f1, f2 in SCALAR + TEXT}
+    body = {f2: tr.get(f1) for f1, f2 in SCALAR}
+    body.update({f2: escape_placeholders(tr.get(f1)) for f1, f2 in TEXT})
     body["refs"] = tr.get("refs")
     sep = tr.get("custom_steps_separated")
-    body["steps_separated"] = [{"content": x.get("content"), "expected": x.get("expected")} for x in sep] if sep else None
+    body["steps_separated"] = [{"content": escape_placeholders(x.get("content")),
+                                "expected": escape_placeholders(x.get("expected"))} for x in sep] if sep else None
     return body
 
 
