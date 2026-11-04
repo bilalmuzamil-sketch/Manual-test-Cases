@@ -308,3 +308,5 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   acceptance still stands.
 - **Resync of Founder Mode + WO Board scheduled for 2026-11-04 08:25 UTC** (QA lead: cases are being updated again;
   start the resync in 3 hours). Trigger `trig_017XRd8E8v8n7JoUJEnw1JCp` (a one-off message to this session).
+- **Scheduled resync ran 2026-11-04 08:25 UTC.** Founder Mode: 11 updated + 6 created (read back OK) → **1,968 SAME, nothing
+  open**. WO Board and Tech View: no TestRail changes since 05:23 → 332 SAME, 2 ACCEPTED, **14 Automated still held**.
