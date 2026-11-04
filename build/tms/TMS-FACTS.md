@@ -356,3 +356,16 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **Resolved:** Founder Mode resync created TMS folder **10000024** (= TestRail 115074 *Technician Toggle – not runnable by a
   manual tester*) and **moved + updated the 15** into it (20 updates in all). **Founder Mode: 1,968 SAME, 0 folder gaps.**
   TMS run 16 totals unchanged.
+
+## 19 · 2026-11-04 (late) — run progress copied TestRail → TMS; run 552 to Nebojsa
+
+- **QA lead: "the progress of the Test run excluding the test runs of nebojsa, should be recorded in TMS test run too".**
+  Tool: `build/testing-tools/tr_results_to_tms.py` (dry run default; ledger `build/tms/results-copied-tr-to-tms.csv`,
+  so a result is never copied twice; skips status-less/Untested TestRail entries; oldest first; comment names the
+  TestRail tester + time). **TestRail 556 → TMS run 17: 491 results copied; all 580 statuses equal** (461 P · 19 F ·
+  11 B · 89 U). 555 had only 5 status-less records; 557 none; 552 (Nebojsa's) excluded by instruction.
+- **Run membership:** TestRail removed 11 of the moved "not runnable" Technician Toggle cases from run 555, so they were
+  removed from **TMS run 16** too (no results) → **all four milestone 5 runs now hold exactly the same cases as TestRail.**
+- **QA lead "Yes" — TestRail run 552 → Nebojsa:** the RUN's assignee was changed (TestRail user 2). Reassigning its 299
+  TESTS was **blocked by the session's permission guard**: TestRail's API can only reassign a test by adding an
+  assignment-only result entry to its history (299 entries). Asked the QA lead.
