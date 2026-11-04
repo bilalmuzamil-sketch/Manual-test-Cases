@@ -74,3 +74,9 @@ Deposits tab were right: production 7:29 PM Toronto -> "Today"; branch 5:33 PM E
 Not posted on SV-12161 (not asked).
 
 ## Verdict: PASSED (all 7 branch cells + production before reproduced for both directions).
+
+## Posted (4 Nov 00:39 UTC = 3 Nov 7:39 PM CDT)
+Comment 80082 (green PASSED, 7-row table, 2 before/after pictures attached: before-after-evening.png 63569, before-after-finance-deposit-date.png 63568),
+label QAcomplete added, status TESTING QA -> QA Complete. Pre-post gate: both build markers re-read unchanged; ticket re-read (only change since
+yesterday: Relates link to SV-12161 at 19:26 CDT); voice scan clean; no technical section; no recording (QA lead's choice).
+Learning check: the branch API slept mid-run (302 to sleep.qa) — woken with the recorded toggleQaEnv recipe (playbook), nothing new.
