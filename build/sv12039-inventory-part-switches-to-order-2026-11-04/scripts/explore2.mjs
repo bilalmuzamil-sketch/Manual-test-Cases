@@ -1,0 +1,14 @@
+import {sess} from './common.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync('/tmp/sv12039/wo-explore.json','utf8')); const PN=process.env.PN||'571.H9006XS'; const OUT='ev/'+(process.env.TAG||'explore'); fs.mkdirSync(OUT,{recursive:true});
+const s=await sess(); const p=s.page; await s.go(`/workorders/${W.wo}/lines`); await p.waitForTimeout(6000);
+await p.click('[data-test-id="button_add_part"]'); await p.waitForTimeout(1500);
+const ids=()=>p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].filter(e=>e.offsetParent&&/part|qty|quant|source|bin|pick|order/i.test(e.getAttribute('data-test-id'))).map(e=>{const i=e.matches('input')?e:e.querySelector('input'); return e.getAttribute('data-test-id')+(i?'='+i.value:'')+'@'+Math.round(e.getBoundingClientRect().x)+','+Math.round(e.getBoundingClientRect().y)}));
+console.log('ROW',JSON.stringify(await ids()));
+await p.screenshot({path:OUT+'/2-inline-row.png'});
+const f=p.locator('input:focus'); console.log('focused', await f.count(), await p.evaluate(()=>document.activeElement?.closest('[data-test-id]')?.getAttribute('data-test-id')));
+await p.keyboard.type(PN,{delay:60}); await p.waitForTimeout(3500);
+const opts=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item, .q-menu [role=option]')].map(e=>e.innerText.replace(/\n+/g,' / ').slice(0,220)+' |'+(e.getAttribute('data-test-id')||'')));
+console.log('opts',JSON.stringify(opts,null,1)); await p.screenshot({path:OUT+'/3-options.png'});
+const menuText=await p.evaluate(()=>[...document.querySelectorAll('.q-menu')].map(m=>m.innerText.replace(/\n+/g,' / ').slice(0,800)));
+console.log('menus',JSON.stringify(menuText));
+await s.close(); process.exit(0);

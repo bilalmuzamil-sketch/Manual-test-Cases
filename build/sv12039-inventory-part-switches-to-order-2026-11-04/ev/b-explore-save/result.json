@@ -1,0 +1,68 @@
+{
+ "marker": {
+  "version": "v26.45.0-9b141c4",
+  "lastModified": "Tue, 03 Nov 2026 13:55:53 GMT",
+  "etag": "W/\"15a82d1e6aaeb9e8fa33c2b3d21df3be\""
+ },
+ "pn": "571.H9006XS",
+ "qty": "2",
+ "kind": "inventory_part",
+ "wo": "S12039-17581",
+ "caps": [
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"f6475634-af6f-4508-bc1b-81cba7a6d0b4\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/part/make-request",
+   "st": 201,
+   "req": "{\"work_order\":\"f6475634-af6f-4508-bc1b-81cba7a6d0b4\",\"line\":\"d6caff65-5d75-43e9-a373-0be2d7474108\",\"description\":\"HEADLIGHT BULB HALOGEN\",\"quantity\":2,\"part_source_type\":\"inventory\",\"part_number\":\"571.H9006XS\",\"inventory_part_id\":\"663b9401-bfca-4397-bfd5-afcacbbd131d\",\"bins\":[{\"id\":\"12951dd8-479b-11f1-9bed-020a144de1a3\",\"name\":\"BCAB\",\"quantity\":2}],\"part_category_id\":\"0e446ce2-3793-498f-b969-9ecde2ea2888\",\"sell_price\":6.52}",
+   "res": "{\"data\":{\"id\":\"08481833-a275-4bad-8dcb-6b7001a2f9e9\",\"part_request\":{\"id\":\"08481833-a275-4bad-8dcb-6b7001a2f9e9\",\"work_order_id\":\"f6475634-af6f-4508-bc1b-81cba7a6d0b4\",\"description\":\"HEADLIGHT BULB HALOGEN\",\"line_id\":\"d6caff65-5d75-43e9-a373-0be2d7474108\",\"part_category_id\":\"0e446ce2-3793-498f-b969-9ecde2ea2888\",\"sell_price\":\"6.52\",\"quantity\":2,\"status\":\"in_stock\",\"status_label\":\"In stock\",\"catalogue_part_id\":\"7d9e63d2-f660-448a-8f04-b4fb01a21aea\",\"cost\":\"3.26\",\"ordered_from_vendor\":false,\"disab"
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"f6475634-af6f-4508-bc1b-81cba7a6d0b4\"}",
+   "res": ""
+  }
+ ],
+ "before": [
+  "expand_less Name/Description Actual/Estimate Progress Status Action Rate Margin Total",
+  "1 more_vert Service - Electric brake trailer CVIP Annual inspection 0.00 / 3.50 0% Approved Complete $0 100% $350",
+  "Story Add tech story for this line",
+  "Labor Unassigned more_vert Start $350",
+  "Parts add Add Part"
+ ],
+ "options": [
+  "HEADLIGHT BULB HALOGEN / 571.H9006XS / Inventory Qty: 7 ea / BCAB / 7",
+  "HEADLIGHT BULB HALOGEN / 571.H9006XS / Catalog / BCAB / 7"
+ ],
+ "toasts": [
+  "check_circle Part added Close"
+ ],
+ "dialog": null,
+ "after": [
+  "expand_less Name/Description Actual/Estimate Progress Status Action Rate Margin Total",
+  "1 more_vert Service - Electric brake trailer CVIP Annual inspection 0.00 / 3.50 0% Approved Complete $0 100% $363.04",
+  "Story Add tech story for this line",
+  "Labor Unassigned more_vert Start $350",
+  "Parts add Add Part",
+  "(571.H9006XS) HEADLIGHT BULB HALOGEN edit more_vert 2 In Stock Pick $6.52 50% $13.04"
+ ],
+ "requests": [
+  {
+   "pn": "571.H9006XS",
+   "desc": "HEADLIGHT BULB HALOGEN",
+   "qty": 2,
+   "status": "in_stock",
+   "source": "inventory",
+   "on_hand": 7,
+   "inv": "663b9401-bfca-4397-bfd5-afcacbbd131d"
+  }
+ ]
+}

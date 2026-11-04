@@ -1,0 +1,69 @@
+{
+ "marker": {
+  "version": "v26.45.0-8e138e1",
+  "lastModified": "Tue, 03 Nov 2026 09:59:25 GMT",
+  "etag": "W/\"0698e16fd1dcc13c9d66fd667ca15f4a\""
+ },
+ "pn": "1237944",
+ "qty": "2",
+ "kind": "inventory_part",
+ "wo": "S2-1917",
+ "caps": [
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"e4072e29-df53-477b-9f34-c50755e099b9\"}",
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/part/make-request",
+   "st": 201,
+   "req": "{\"work_order\":\"e4072e29-df53-477b-9f34-c50755e099b9\",\"line\":\"e3c567cd-6f5f-4533-b54f-642dd5ee7288\",\"description\":\"A158\",\"quantity\":2,\"part_source_type\":\"inventory\",\"part_number\":\"1237944\",\"inventory_part_id\":\"0085fddf-7299-49aa-b2f4-c40c98fbce71\",\"bins\":[{\"id\":\"1421fddf-d0dd-4043-8e96-c77e87b9bbf8\",\"name\":\"BIN-ZZT-77\",\"quantity\":2}],\"part_category_id\":\"0aaeeedf-e4a0-433b-8a5e-48a06bedeb8d\",\"sell_price\":300}",
+   "res": "{\"data\":{\"id\":\"25e6756b-5279-4379-88e7-ce9712c7dcad\",\"part_request\":{\"id\":\"25e6756b-5279-4379-88e7-ce9712c7dcad\",\"work_order_id\":\"e4072e29-df53-477b-9f34-c50755e099b9\",\"description\":\"A158\",\"line_id\":\"e3c567cd-6f5f-4533-b54f-642dd5ee7288\",\"part_category_id\":\"0aaeeedf-e4a0-433b-8a5e-48a06bedeb8d\",\"sell_price\":\"300.00\",\"quantity\":2,\"status\":\"in_stock\",\"status_label\":\"In stock\",\"catalogue_part_id\":\"f1c0d059-ca50-4e06-95fd-1880cb9f718c\",\"cost\":\"10.00\",\"ordered_from_vendor\":false,\"disable_cost\":true,\""
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "st": 204,
+   "req": "{\"type\":\"work_orders\",\"id\":\"e4072e29-df53-477b-9f34-c50755e099b9\"}",
+   "res": ""
+  }
+ ],
+ "before": [
+  "expand_less Name/Description Actual/Estimate Progress Status Action Rate Margin Total",
+  "1 more_vert What are you doing: 2nd (General) Labor Rate Why are you doing this: (General) 2nd Labor Rate is $135X2=270 0.00 / 2.00 0% Approved Complete $149.95 100% $299.9",
+  "Story Add tech story for this line",
+  "Labor Unassigned more_vert Start $299.9",
+  "Parts add Add Part"
+ ],
+ "options": [
+  "A158 / 1237944 / Inventory Qty: 97 EA / Location57 / -3 / BIN-ZZT-77 / 97",
+  "A158 / 1237944 / Catalog · Delete Test",
+  "A158 / 1237944 / Catalog / Location57 / -3 / BIN-ZZT-77 / 97"
+ ],
+ "toasts": [
+  "check_circle Part added Close"
+ ],
+ "dialog": null,
+ "after": [
+  "expand_less Name/Description Actual/Estimate Progress Status Action Rate Margin Total",
+  "1 more_vert What are you doing: 2nd (General) Labor Rate Why are you doing this: (General) 2nd Labor Rate is $135X2=270 0.00 / 2.00 0% Approved Complete $149.95 100% $899.9",
+  "Story Add tech story for this line",
+  "Labor Unassigned more_vert Start $299.9",
+  "Parts add Add Part",
+  "(1237944) A158 edit more_vert 2 In Stock Pick $300.00 97% $600.00"
+ ],
+ "requests": [
+  {
+   "pn": "1237944",
+   "desc": "A158",
+   "qty": 2,
+   "status": "in_stock",
+   "source": "inventory",
+   "on_hand": 97,
+   "inv": "0085fddf-7299-49aa-b2f4-c40c98fbce71"
+  }
+ ]
+}
