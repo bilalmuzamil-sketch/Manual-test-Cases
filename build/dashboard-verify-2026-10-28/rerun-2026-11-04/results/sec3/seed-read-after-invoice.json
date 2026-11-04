@@ -1,0 +1,140 @@
+{
+ "zones": {
+  "key": "HD",
+  "wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "tz": "Asia/Karachi",
+  "name": "Staging Heavy Duty - 9919",
+  "change_location": 200,
+  "zone_source": "GET /api/staff/my-workplaces (live)",
+  "process_TZ": "Asia/Karachi",
+  "local_now": "2026-11-04T22:13:53+05:00",
+  "utc_now": "2026-11-04T17:13:53+00:00"
+ },
+ "local_today": "2026-11-04",
+ "seed": {
+  "tag": "11041710",
+  "cat": {
+   "id": "fb73f049-7204-42a4-9b63-bd3e7087c9f2",
+   "pn": "ZZAUTOTEST-PV8-11041710"
+  },
+  "inv": "650f18b6-1c25-443d-b327-eb0ff27dbdbe",
+  "customer": {
+   "company_id": "3c4eeba5-e944-4bf3-9cd9-93df7d95834d",
+   "contact_id": "c0d1dcb8-0bfb-4aec-b8f8-e1bd8b18b121",
+   "vehicle_id": "d75acc5f-2212-4a87-bcc7-37dd7c48ce63"
+  },
+  "wo": "42e642c8-51e0-4171-8bc0-cf2812796586",
+  "line": "751c7ec8-3bf6-4ed4-bf0d-a29715f700bc",
+  "display": "S2-38354"
+ },
+ "wo": {
+  "display_number": "S2-38354",
+  "status": "Invoiced",
+  "invoice_id": "457a1017-44d7-4f27-bd47-9fb1ae13b1c8",
+  "invoiced_date": null,
+  "invoice_date": null,
+  "completed_date": null,
+  "updated_at": null
+ },
+ "wo_keys_with_invoice": {
+  "invoice_status": "pending",
+  "invoice_id": "457a1017-44d7-4f27-bd47-9fb1ae13b1c8",
+  "is_invoice_created": true,
+  "invoice_balance": 222.89,
+  "invoice_shop_supplies_charge": 17.32,
+  "invoice_tax": null,
+  "invoice_shop_id": "2"
+ },
+ "clocks_today_on_wo": [
+  {
+   "id": "cbc79488-ef69-4ec6-aa35-3c551d5c8936",
+   "employee": "Admin Shopview",
+   "formatted_start_date_time": "Nov 04, 2026 09:51 PM",
+   "formatted_end_date_time": "Nov 04, 2026 10:06 PM",
+   "hours": 0.25,
+   "work_order_id": "42e642c8-51e0-4171-8bc0-cf2812796586",
+   "is_active": false
+  }
+ ],
+ "te_this_month": {
+  "status": 200,
+  "rows": [
+   {
+    "technicianId": "7f85bc58-9ff5-4b50-b3f3-d85821069066",
+    "technician": "Admin Shopview",
+    "technicianClockedHours": 0.25,
+    "technicianTechHours": 1,
+    "technicianTechEfficiency": 400,
+    "techHoursProfit": 0,
+    "startDate": "2026-10-31 19:00:00",
+    "endDate": "2026-11-04 18:59:59",
+    "technicianHoursProfit": 0.75
+   }
+  ]
+ },
+ "dash_te_this_month": {
+  "status": 200,
+  "kpi": {
+   "value": 400,
+   "hoursBilled": 1,
+   "hoursLogged": 0.25,
+   "sparkline": [
+    null,
+    null,
+    null,
+    400
+   ]
+  }
+ },
+ "pv": {
+  "status": 200,
+  "rows": [
+   {
+    "key": "650f18b6-1c25-443d-b327-eb0ff27dbdbe",
+    "type": "inventory",
+    "part_number": "ZZAUTOTEST-PV8-11041710",
+    "description": "ZZAUTOTEST Last Sale part",
+    "category": "HD-Fasteners",
+    "vendor": null,
+    "on_hand": 4,
+    "min": 1,
+    "max": 10,
+    "units_sold": 1,
+    "demand": 1,
+    "units_returned": 0,
+    "revenue": 3000,
+    "margin": 1000,
+    "unit_cost": 2000,
+    "sell_price": 3000,
+    "margin_pct": 33.33,
+    "sold_via_wo": 1,
+    "sold_via_parts_sale": 0,
+    "turns_per_year": 0.26917404125,
+    "last_sale": 0,
+    "location": "Staging Heavy Duty - 9919"
+   }
+  ]
+ },
+ "server_requests": [
+  {
+   "GET": "/api/work-orders/view/42e642c8-51e0-4171-8bc0-cf2812796586",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/punch-clock-activities/custom?range=custom&start_date=2026-11-03T19%3A00%3A00.000Z&end_date=2026-11-04T18%3A59%3A59.999Z&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=1000",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/technician-efficiency/custom?range=custom&start_date=2026-10-31T19%3A00%3A00.000Z&end_date=2026-11-04T18%3A59%3A59.999Z",
+   "status": 200
+  },
+  {
+   "GET": "/api/dashboard/reports?reports%5B%5D=techEfficiencyKpi&from=2026-11-01&to=2026-11-04",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2025-11-30T19%3A00%3A00.000Z&end_date=2026-11-04T18%3A59%3A59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2%2C25a0d576-b371-4b82-bef4-41ba977f31c2%2C39522bc6-abca-4f67-bd12-2840043c2d68&search=ZZAUTOTEST-PV8-11041710&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=50&pagination%5BsortBy%5D=demand&pagination%5Bdescending%5D=true",
+   "status": 200
+  }
+ ]
+}

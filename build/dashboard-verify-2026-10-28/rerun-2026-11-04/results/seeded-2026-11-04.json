@@ -1,0 +1,121 @@
+{
+ "purpose": "ZZAUTOTEST seed, staging (disposable), 4 Nov 2026: Technician Efficiency data this month at Heavy Duty (L1c reload check) and a sale shortly before local midnight (Q40 Last Sale re-check).",
+ "build": "v26.45.0-440aa25",
+ "location": "Staging Heavy Duty - 9919",
+ "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+ "zone": "Asia/Karachi (read live from /api/staff/my-workplaces)",
+ "rule99": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "browser_zone": "Asia/Karachi",
+  "app_timezone_key": "\"Asia/Karachi\"",
+  "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""
+ },
+ "records": {
+  "customer": {
+   "name": "ZZAUTOTEST S3 Heavy Duty",
+   "company_id": "3c4eeba5-e944-4bf3-9cd9-93df7d95834d"
+  },
+  "contact": {
+   "name": "ZZAUTOTEST S3 Contact",
+   "contact_id": "c0d1dcb8-0bfb-4aec-b8f8-e1bd8b18b121"
+  },
+  "asset": {
+   "unit": "ZZ-S3HD",
+   "vehicle_id": "d75acc5f-2212-4a87-bcc7-37dd7c48ce63"
+  },
+  "catalogue_part": {
+   "part_number": "ZZAUTOTEST-PV8-11041710",
+   "id": "fb73f049-7204-42a4-9b63-bd3e7087c9f2",
+   "category": "HD-Fasteners"
+  },
+  "inventory_part": {
+   "id": "650f18b6-1c25-443d-b327-eb0ff27dbdbe",
+   "qty_created": 5,
+   "cost": 20,
+   "sell": 30,
+   "bin": "General Storage"
+  },
+  "work_order": {
+   "id": "42e642c8-51e0-4171-8bc0-cf2812796586",
+   "display_number": "S2-38354",
+   "status_after": "Invoiced",
+   "line_id": "751c7ec8-3bf6-4ed4-bf0d-a29715f700bc",
+   "line": "Service - Battery service (canned 42effe86-6b35-4661-804f-e10f49af5c8b, 1.00 h)",
+   "part_on_line": "1 x ZZAUTOTEST-PV8-11041710 at $30.00 (picked)"
+  },
+  "clock": [
+   {
+    "id": "cbc79488-ef69-4ec6-aa35-3c551d5c8936",
+    "employee": "Admin Shopview",
+    "formatted_start_date_time": "Nov 04, 2026 09:51 PM",
+    "formatted_end_date_time": "Nov 04, 2026 10:06 PM",
+    "hours": 0.25,
+    "work_order_id": "42e642c8-51e0-4171-8bc0-cf2812796586",
+    "is_active": false
+   }
+  ],
+  "invoice": {
+   "invoice_id": "457a1017-44d7-4f27-bd47-9fb1ae13b1c8",
+   "created_utc": "2026-11-04T17:13:29.956Z",
+   "created_local": "4 Nov 2026 10:13 PM Asia/Karachi",
+   "balance": 222.89,
+   "status": "unpaid (pending)"
+  }
+ },
+ "server_readback": {
+  "te_this_month": [
+   {
+    "technicianId": "7f85bc58-9ff5-4b50-b3f3-d85821069066",
+    "technician": "Admin Shopview",
+    "technicianClockedHours": 0.25,
+    "technicianTechHours": 1,
+    "technicianTechEfficiency": 400,
+    "techHoursProfit": 0,
+    "startDate": "2026-10-31 19:00:00",
+    "endDate": "2026-11-04 18:59:59",
+    "technicianHoursProfit": 0.75
+   }
+  ],
+  "dashboard_techEfficiencyKpi_this_month": {
+   "value": 400,
+   "hoursBilled": 1,
+   "hoursLogged": 0.25,
+   "sparkline": [
+    null,
+    null,
+    null,
+    400
+   ]
+  },
+  "pv_row": [
+   {
+    "key": "650f18b6-1c25-443d-b327-eb0ff27dbdbe",
+    "type": "inventory",
+    "part_number": "ZZAUTOTEST-PV8-11041710",
+    "description": "ZZAUTOTEST Last Sale part",
+    "category": "HD-Fasteners",
+    "vendor": null,
+    "on_hand": 4,
+    "min": 1,
+    "max": 10,
+    "units_sold": 1,
+    "demand": 1,
+    "units_returned": 0,
+    "revenue": 3000,
+    "margin": 1000,
+    "unit_cost": 2000,
+    "sell_price": 3000,
+    "margin_pct": 33.33,
+    "sold_via_wo": 1,
+    "sold_via_parts_sale": 0,
+    "turns_per_year": 0.26917404125,
+    "last_sale": 0,
+    "location": "Staging Heavy Duty - 9919"
+   }
+  ]
+ },
+ "cleanup": "Not cleaned up: the invoice, clock and sale are the evidence for L1c and the Q40 re-check. Reverse the invoice and delete the clock (DELETE /api/technician-tasks/{id}) when no longer needed."
+}
