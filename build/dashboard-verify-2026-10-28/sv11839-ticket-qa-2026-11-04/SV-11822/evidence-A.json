@@ -1,0 +1,226 @@
+{
+ "ticket": "SV-11822",
+ "run": "A",
+ "app_version": "v26.45.0-aacb66c",
+ "rule99_start": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-04T20:49:24.289Z"
+  },
+  "browser_local_time_start": "Wed Nov 04 2026 13:49:24 GMT-0700 (Mountain Standard Time)",
+  "all_match": true,
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-04T20:51:04.755Z"
+  },
+  "localStorage_timezone_end": "\"America/Edmonton\""
+ },
+ "steps": [
+  {
+   "step": "2 open chip before switching",
+   "menu": {
+    "top": 203,
+    "left": 1358,
+    "width": 211,
+    "height": 144,
+    "visibility": "visible",
+    "inline_top": "202.906px",
+    "inline_left": "1357.83px"
+   },
+   "on_screen": true,
+   "viewport": [
+    1600,
+    1000
+   ],
+   "options": [
+    "check\nStaging Heavy Duty - 9919",
+    "check\nStaging Lethbridge - 4310",
+    "check\nTest Location"
+   ],
+   "chip": "Staging Heavy Duty - 9919",
+   "picture": "SV-11822/A-1-chip-before-switch.png"
+  },
+  {
+   "step": "2 switched to Lethbridge",
+   "header": "Staging Lethbridge - 4310 AS",
+   "ls": [
+    "\"f8a8b802-7780-4b16-bf10-343caeb616b2\"",
+    "\"America/Edmonton\""
+   ]
+  },
+  {
+   "step": "3-4 reload on dashboard then click chip",
+   "menu": {
+    "top": 203,
+    "left": 1338,
+    "width": 207,
+    "height": 144,
+    "visibility": "visible",
+    "inline_top": "202.906px",
+    "inline_left": "1338.19px"
+   },
+   "on_screen": true,
+   "viewport": [
+    1600,
+    1000
+   ],
+   "options": [
+    "check\nStaging Heavy Duty - 9919",
+    "check\nStaging Lethbridge - 4310",
+    "check\nTest Location"
+   ],
+   "chip": "Staging Lethbridge - 4310",
+   "picture": "SV-11822/A-2-after-reload-dashboard.png",
+   "header": "Staging Lethbridge - 4310 AS",
+   "page": "dashboard"
+  },
+  {
+   "step": "3-4 reload on reports-sales then click chip",
+   "menu": {
+    "top": 203,
+    "left": 1338,
+    "width": 207,
+    "height": 144,
+    "visibility": "visible",
+    "inline_top": "202.906px",
+    "inline_left": "1338.19px"
+   },
+   "on_screen": true,
+   "viewport": [
+    1600,
+    1000
+   ],
+   "options": [
+    "check\nStaging Heavy Duty - 9919",
+    "check\nStaging Lethbridge - 4310",
+    "check\nTest Location"
+   ],
+   "chip": "Staging Lethbridge - 4310",
+   "picture": "SV-11822/A-3-after-reload-reports-sales.png",
+   "header": "Staging Lethbridge - 4310 AS",
+   "page": "reports-sales"
+  },
+  {
+   "step": "3-4 reload on customers then click chip",
+   "menu": {
+    "top": 203,
+    "left": 1338,
+    "width": 207,
+    "height": 144,
+    "visibility": "visible",
+    "inline_top": "202.906px",
+    "inline_left": "1338.19px"
+   },
+   "on_screen": true,
+   "viewport": [
+    1600,
+    1000
+   ],
+   "options": [
+    "check\nStaging Heavy Duty - 9919",
+    "check\nStaging Lethbridge - 4310",
+    "check\nTest Location"
+   ],
+   "chip": "Staging Lethbridge - 4310",
+   "picture": "SV-11822/A-4-after-reload-customers.png",
+   "header": "Staging Lethbridge - 4310 AS",
+   "page": "customers"
+  },
+  {
+   "step": "3-4 reload on work-orders then click chip",
+   "menu": {
+    "top": 203,
+    "left": 1338,
+    "width": 207,
+    "height": 144,
+    "visibility": "visible",
+    "inline_top": "202.906px",
+    "inline_left": "1338.19px"
+   },
+   "on_screen": true,
+   "viewport": [
+    1600,
+    1000
+   ],
+   "options": [
+    "check\nStaging Heavy Duty - 9919",
+    "check\nStaging Lethbridge - 4310",
+    "check\nTest Location"
+   ],
+   "chip": "Staging Lethbridge - 4310",
+   "picture": "SV-11822/A-5-after-reload-work-orders.png",
+   "header": "Staging Lethbridge - 4310 AS",
+   "page": "work-orders"
+  },
+  {
+   "step": "switched back to Heavy Duty and reloaded",
+   "options_seen": [
+    "check\nStaging Heavy Duty - 9919",
+    "check\nStaging Lethbridge - 4310",
+    "check\nTest Location"
+   ],
+   "header": "Staging Heavy Duty - 9919 AS",
+   "ls": [
+    "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+    "\"America/Edmonton\""
+   ]
+  }
+ ],
+ "backspace": {
+  "chip_after": "Staging Lethbridge - 4310",
+  "ls_location": "\"f8a8b802-7780-4b16-bf10-343caeb616b2\""
+ },
+ "rule99_end": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-04T20:49:24.289Z"
+  },
+  "browser_local_time_start": "Wed Nov 04 2026 13:49:24 GMT-0700 (Mountain Standard Time)",
+  "all_match": true,
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-04T20:51:04.755Z"
+  },
+  "localStorage_timezone_end": "\"America/Edmonton\""
+ }
+}
