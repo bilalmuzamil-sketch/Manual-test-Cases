@@ -150,3 +150,4 @@
   before any TestRail write (Rules 6, 123).
 - 4 Nov 2026: QA lead ordered the project's execution run (in milestone 5) deleted: run deleted (record build/milestone-5-2026-11-03/). The cases are unchanged.
 - 4 Nov 2026 (QA lead "Yes, named sets"): applied from build/answers-2026-11-04/ (lock held, read back): 9 cases given AUTOMATION: READY - EXPECT FAIL (SV-12138..SV-12141) with the Rule 61 block.
+- 4 Nov 2026 (QA lead "Yes, create it"): run 557 "A/R and A/P Report Sorting, Export and Location Filter - Execution" created for build verification before the 19 Nov 2026 release: 356 tests = all mapped cases, milestone 5, assigned to Mudassir (user 6), description starts "Owner: Mudassir." (applied-run-2026-11-04.json). Tickets swept 4 Nov: SV-12136 (Mudassir, A/P Aging Open Balance a few cents above Amount; staging and sv10647) is a defect from execution, not a spec change.
