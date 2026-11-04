@@ -379,3 +379,6 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   16 / 17 / 7 with `tr_results_to_tms.py` (ledger-protected). Checked the same day: nothing new since the 491 already copied.
 - **TMS run 7 "A/R and A/P Report Sorting, Export and Location Filter - Execution" unassigned from Bilal** (QA lead: it
   will later go to Mudassir); totals unchanged. TMS runs 6 and 8 (outside milestone 5) are still assigned to Bilal.
+- **QA lead (2026-11-04): "1. (a) 2. yes".** Mudassir's TestRail → TMS result copies run **only when he asks** (no schedule).
+  **TMS runs 6 "Splitting Sales Representatives - Execution" and 8 "Credit terms - Execution" unassigned from Bilal**;
+  no TMS run is assigned to Bilal now. Mudassir may sign in within the hour; on the QA lead's word, assign TMS runs 7, 16, 17.
