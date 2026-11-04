@@ -33,3 +33,10 @@
 - **Worker side notes (not verified by me):**
   - Timesheet Activities opened from a link carrying a Custom range shows "No record matches these filters".
   - The S2-38354 invoice (Heavy Duty) shows "REMIT PAYMENT TO Staging Lethbridge - 4310".
+- **STANDING INSTRUCTION, QA lead, 4 Nov 2026 (verbatim):** "Note: The new tickets which you will create. Please Tag Chris ward in the comment explain in easiest to understand words what is happening vs what as per my understanding ahould be happening, asking him to confirm if this beuavior should be left as is or this needs to be fixed"
+  → Every NEW ticket I create gets one comment that:
+  - tags @Chris Ward (account 712020:aa00b8d6-a71f-4259-8919-82a304227c20; HTML mention `<span data-type="mention" data-user-id="…">@Chris Ward</span>`);
+  - says in the plainest words what happens today and what we understand should happen, with one example;
+  - asks him to confirm "fix it or leave it as is".
+  - Applied 4 Nov to SV-12199 (comment 80134) and SV-12201 (comment 80135).
+  - A matching rule proposal (Rule 72) is to be put to the QA lead before recording it in the rule book.
