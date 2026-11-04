@@ -2423,3 +2423,17 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **(3)** stays answerable in one word where possible (yes / no / a or b).
     **TIES:** Rules 36 (OUTSTANDING section), 48 (context with every ask), 70 (action-first, plain, table-form), 101 (name where a
     question was asked).
+
+103. **EVERY NEW TICKET GETS A COMMENT TAGGING CHRIS WARD: WHAT HAPPENS, WHAT SHOULD HAPPEN, FIX OR LEAVE? (all projects, permanent).**
+    **THE QA LEAD'S WORDS (2026-11-04, verbatim):** *"Note: The new tickets which you will create. Please Tag Chris ward in the comment
+    explain in easiest to understand words what is happening vs what as per my understanding ahould be happening, asking him to confirm
+    if this beuavior should be left as is or this needs to be fixed"*. Confirmed as a standing rule the same day (*"2. Yes"*), which
+    satisfies Rule 72.
+    **THE RULE.** Right after a new ticket is filed (and its read-back passes), add ONE comment that:
+    **(1)** tags **@Chris Ward** with a real mention (Jira HTML `<span data-type="mention" data-user-id="712020:aa00b8d6-a71f-4259-8919-82a304227c20">@Chris Ward</span>`);
+    **(2)** says in the plainest words **what happens today**, with one example and its numbers;
+    **(3)** says **what we understand should happen**, and where that understanding comes from (document title + question/section);
+    **(4)** asks him to confirm **"fix it, or leave it as it is?"**.
+    The PO for another project replaces Chris where the QA lead names a different PO. Record the comment id with the filing record.
+    **FIRST APPLIED:** SV-12199 (comment 80134) and SV-12201 (comment 80135), 4 Nov 2026.
+    **TIES:** Rules 7/9 and 100 (plain words for a first-time reader), 55 (PO questions), 101 (name where a question was asked).

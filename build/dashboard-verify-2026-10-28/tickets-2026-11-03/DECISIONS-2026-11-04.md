@@ -40,3 +40,11 @@
   - asks him to confirm "fix it or leave it as is".
   - Applied 4 Nov to SV-12199 (comment 80134) and SV-12201 (comment 80135).
   - A matching rule proposal (Rule 72) is to be put to the QA lead before recording it in the rule book.
+- **QA lead, 4 Nov 2026, before sleeping (verbatim):** "1. If its a genuine bug and reporting it will not bite me, then report it and attach it to the correct epic, yes I wouod go with your recommendation. Also if any ticjetvwas created because it was a separate issue foujd while testing the other ticket that new ticket should clearly tell at the top that tjisnissue was foujd whole testing this ticket {{Ticket number and link}}. And 11945 instead of posting the correction in the ticket comment, re draft the ticket description if it is still the Bug with the correct details and everything. 2. Yes 3. Ok 4. Ok. Now continue unattended as I am going to sleep. The tickets if they turn out to be QA passed, please move their starus to QA complete, assign Bilal Muzamil as a QA assignee and add the existing label to the ticket QAcomplete. Those whoch do not pass the QA move them to rejected from testing status and tye ricket comment should clearly state in clear comment for a layman to u derstand with the annotated screenshot why it failed."
+  - **Q40:** file it (genuine, documented by Chris's answer 40) under the correct epic, with the Chris confirmation comment (Rule 103).
+  - **SV-11945:** no correcting comment. Re-check that it is still a bug; if so, re-draft its DESCRIPTION with the corrected Last Sale wording (calendar days, Chris answer 40).
+  - **New standing instruction:** a ticket created for a separate issue found while testing another ticket starts with "This issue was found while testing <ticket key + link>".
+  - **Rule 103 approved** ("2. Yes").
+  - **The 14 TESTING QA tickets on sv11839:**
+    - PASS → transition to **QA Complete**, QA assignee = Bilal Muzamil, add the existing label QAcomplete.
+    - FAIL → transition to **Rejected from testing**, with a plain comment and an annotated screenshot of why it failed.
