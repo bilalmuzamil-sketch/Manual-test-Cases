@@ -1,0 +1,253 @@
+{
+ "ticket": "SV-11826",
+ "app_version": "v26.45.0-aacb66c",
+ "location": "Staging Heavy Duty - 9919",
+ "rule99": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "shows_location": true,
+   "at_utc": "2026-11-04T19:29:40.013Z"
+  },
+  "browser_local_time_start": "Wed Nov 04 2026 12:29:40 GMT-0700 (Mountain Standard Time)",
+  "all_match": true,
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "shows_location": true,
+   "at_utc": "2026-11-04T19:32:30.500Z"
+  },
+  "localStorage_timezone_end": "\"America/Edmonton\""
+ },
+ "observed_at_utc": "2026-11-04T19:32:30.503Z",
+ "result": {
+  "ranges": [
+   {
+    "range": "last-12-months",
+    "picker": {
+     "pending_header": null,
+     "range_indicator": null
+    },
+    "tile": {
+     "chip": "event Last 12 Months expand_more",
+     "value": "75.67%",
+     "meta": "17,820.08 WO Hrs / 23,550.44 Clocked",
+     "at_utc": "2026-11-04T19:30:55.342Z"
+    },
+    "tile_server": [
+     {
+      "url": "/api/dashboard/reports?reports[]=techUtilizationKpi&reports[]=topCustomers&from=2025-12-01&to=2026-11-04&group=month",
+      "techUtilizationKpi": {
+       "value": 75.67,
+       "hoursClocked": 23550.44,
+       "woHours": 17820.08,
+       "sparkline": [
+        81.71,
+        82.6,
+        80.51,
+        82.97,
+        81.78,
+        83.24,
+        89,
+        92.49,
+        89.87,
+        50,
+        50,
+        50.29
+       ]
+      }
+     }
+    ],
+    "report": {
+     "landed": "/reports/technician-utilization?dateRange=last-12-months",
+     "date_line": [
+      "Date: Last 12 months"
+     ],
+     "summary_row": [
+      "Summary 23550.52 17820.12 5730.40 75.67% $859,273.49"
+     ],
+     "at_utc": "2026-11-04T19:31:10.384Z",
+     "server": [
+      {
+       "url": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2025-12-01T07:00:00.000Z&end_date=2026-11-05T06:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+       "summary": null,
+       "top_keys": [
+        "collection"
+       ]
+      },
+      {
+       "url": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-12-01T07:00:00.000Z&end_date=2026-11-05T06:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false",
+       "summary": {
+        "total_seconds": 84781872,
+        "wo_seconds": 64152432,
+        "internal_seconds": 20629440,
+        "est_lost_labor_cents": 85927349
+       },
+       "top_keys": [
+        "collection",
+        "pagination",
+        "summary"
+       ]
+      }
+     ]
+    },
+    "pictures": [
+     "SV-11826/last-12-months-1-tile.png",
+     "SV-11826/last-12-months-2-report-summary.png"
+    ]
+   },
+   {
+    "range": "custom-32-days",
+    "picker": {
+     "pending_header": "Oct 4, 2026 — Nov 4, 2026",
+     "range_indicator": "Range: 32 days"
+    },
+    "tile": {
+     "chip": "event Oct 4, 2026 - Nov 4, 2026 expand_more",
+     "value": "50.03%",
+     "meta": "1,517.06 WO Hrs / 3,032.10 Clocked",
+     "at_utc": "2026-11-04T19:31:27.412Z"
+    },
+    "tile_server": [
+     {
+      "url": "/api/dashboard/reports?reports[]=techUtilizationKpi&from=2026-10-04&to=2026-11-04&group=week",
+      "techUtilizationKpi": {
+       "value": 50.03,
+       "hoursClocked": 3032.1,
+       "woHours": 1517.06,
+       "sparkline": [
+        50,
+        50,
+        50,
+        50,
+        50.29
+       ]
+      }
+     }
+    ],
+    "report": {
+     "landed": "/reports/technician-utilization?dateRange=custom&dateRange=2026-10-04&dateRange=2026-11-04",
+     "date_line": [
+      "Date: Custom"
+     ],
+     "summary_row": [
+      "Summary 3032.10 1517.06 1515.04 50.03% $227,180.24"
+     ],
+     "at_utc": "2026-11-04T19:31:42.357Z",
+     "server": [
+      {
+       "url": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-10-04T06:00:00.000Z&end_date=2026-11-05T06:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+       "summary": null,
+       "top_keys": [
+        "collection"
+       ]
+      },
+      {
+       "url": "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-10-04T06:00:00.000Z&end_date=2026-11-05T06:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false",
+       "summary": {
+        "total_seconds": 10915560,
+        "wo_seconds": 5461416,
+        "internal_seconds": 5454144,
+        "est_lost_labor_cents": 22718024
+       },
+       "top_keys": [
+        "collection",
+        "pagination",
+        "summary"
+       ]
+      }
+     ]
+    },
+    "pictures": [
+     "SV-11826/custom-32-days-1-tile.png",
+     "SV-11826/custom-32-days-2-report-summary.png"
+    ]
+   },
+   {
+    "range": "custom-366-days",
+    "picker": {
+     "pending_header": "Nov 4, 2025 — Nov 4, 2026",
+     "range_indicator": "Range: 366 days"
+    },
+    "tile": {
+     "chip": "event Nov 4, 2025 - Nov 4, 2026 expand_more",
+     "value": "76.09%",
+     "meta": "19,238.96 WO Hrs / 25,284.99 Clocked",
+     "at_utc": "2026-11-04T19:32:07.687Z"
+    },
+    "tile_server": [
+     {
+      "url": "/api/dashboard/reports?reports[]=techUtilizationKpi&from=2025-11-04&to=2026-11-04&group=month",
+      "techUtilizationKpi": {
+       "value": 76.09,
+       "hoursClocked": 25284.99,
+       "woHours": 19238.96,
+       "sparkline": [
+        81.8,
+        81.71,
+        82.6,
+        80.51,
+        82.97,
+        81.78,
+        83.24,
+        89,
+        92.49,
+        89.87,
+        50,
+        50,
+        50.29
+       ]
+      }
+     }
+    ],
+    "report": {
+     "landed": "/reports/technician-utilization?dateRange=custom&dateRange=2025-11-04&dateRange=2026-11-04",
+     "date_line": [
+      "Date: Custom"
+     ],
+     "summary_row": [
+      "Summary 25285.02 19238.98 6046.04 76.09% $906,603.70"
+     ],
+     "at_utc": "2026-11-04T19:32:22.757Z",
+     "server": [
+      {
+       "url": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2025-11-04T07:00:00.000Z&end_date=2026-11-05T06:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+       "summary": null,
+       "top_keys": [
+        "collection"
+       ]
+      },
+      {
+       "url": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-11-04T07:00:00.000Z&end_date=2026-11-05T06:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false",
+       "summary": {
+        "total_seconds": 91026072,
+        "wo_seconds": 69260328,
+        "internal_seconds": 21765744,
+        "est_lost_labor_cents": 90660370
+       },
+       "top_keys": [
+        "collection",
+        "pagination",
+        "summary"
+       ]
+      }
+     ]
+    },
+    "pictures": [
+     "SV-11826/custom-366-days-1-tile.png",
+     "SV-11826/custom-366-days-2-report-summary.png"
+    ]
+   }
+  ]
+ }
+}

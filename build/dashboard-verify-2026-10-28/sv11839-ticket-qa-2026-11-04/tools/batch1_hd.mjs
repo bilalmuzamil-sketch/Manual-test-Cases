@@ -13,9 +13,14 @@ const popup = () => page.locator('.date-range-popup').last();
 const popState = async () => ({ header: (await popup().locator('.selected-range').innerText().catch(() => null)), range: (await popup().locator('[data-test-id$="_range_indicator"]').innerText().catch(() => null)) });
 const monthLabel = async () => (await popup().locator('.q-date__navigation').innerText().catch(() => '')).replace(/\s+/g, ' ');
 async function gotoMonth(target /* 'October 2026' */) {
-  for (let i = 0; i < 24; i++) {
-    const m = await monthLabel(); if (m.includes(target.split(' ')[0]) && m.includes(target.split(' ')[1])) return m;
-    await popup().locator('.q-date__arrow button').first().click(); await sleep(350);
+  const M = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const [tm, ty] = target.split(' '); const want = (+ty) * 12 + M.indexOf(tm);
+  for (let i = 0; i < 48; i++) {
+    const m = await monthLabel(); const name = M.find(x => m.includes(x)); const yr = +(m.match(/\b(20\d\d)\b/) || [])[1];
+    const cur = yr * 12 + M.indexOf(name);
+    if (cur === want) return m;
+    const navs = popup().locator('.q-date__navigation .q-date__arrow button');
+    await (cur > want ? navs.nth(0) : navs.nth(1)).click(); await sleep(350);
   }
   throw new Error('month not reached ' + target + ' / ' + (await monthLabel()));
 }
@@ -28,6 +33,7 @@ async function setCustom(k, month, d1, d2) {
   return { afterFirst, afterSecond };
 }
 const E = { app_version, rule99, observed_start_utc: new Date().toISOString(), tickets: {} };
+const put = (t, obj) => { E.tickets[t] = obj; save(t, { ticket: t, app_version, location: loc.name, rule99_start: rule99, observed_at_utc: new Date().toISOString(), result: obj }); };
 await goDash();
 
 // ---------- SV-11825: accessible names of the five tile report links ----------
@@ -46,7 +52,7 @@ if (want('SV-11825')) {
   const snap = await page.locator('[data-test-id^="link_report_"]').evaluateAll(els => els.map(e => ({ id: e.getAttribute('data-test-id'), aria: e.getAttribute('aria-label'), role: e.getAttribute('role'), tag: e.tagName })));
   await page.locator('[data-test-id="link_report_revenueKpi"]').first().hover(); await sleep(800);
   const pic = await shot(page, 'SV-11825', 'revenue-link-hover-tooltip', { clip: { x: 0, y: 0, width: 1600, height: 520 } });
-  E.tickets['SV-11825'] = { rows, all_links: snap, pictures: [pic] };
+  put('SV-11825', { rows, all_links: snap, pictures: [pic] });
   console.log('SV-11825', JSON.stringify(rows.map(r => [r.key, r.aria_label, r.hover_tooltip])));
 }
 
@@ -67,7 +73,7 @@ if (want('SV-11821')) {
     out[tag] = { picker: st, tile_value: value, tile_supporting_line: meta, date_chip: chip, server: resp, pictures: [p1, p2] };
     console.log('SV-11821', tag, JSON.stringify({ st, value, meta, chip }));
   }
-  E.tickets['SV-11821'] = out;
+  put('SV-11821', out);
 }
 
 // ---------- SV-11824: first click selects the date (This Month open; and with a custom range set) ----------
@@ -96,14 +102,14 @@ if (want('SV-11824')) {
   out.custom_set_first_click_oct12 = await popState();
   out.pic3 = await shot(page, 'SV-11824', 'custom-range-set-first-click-oct12', { clip: { x: 0, y: 0, width: 1600, height: 700 } });
   await page.keyboard.press('Escape'); await sleep(600);
-  E.tickets['SV-11824'] = out;
+  put('SV-11824', out);
   console.log('SV-11824', JSON.stringify(out));
 }
 
 // ---------- SV-11827: custom Oct 9 – Oct 20 → report link → date control shows "Custom" ----------
 if (want('SV-11827')) {
   const out = {};
-  for (const k of ['techUtilizationKpi', 'salesByCustomer', 'revenueKpi', 'billingEfficiencyKpi', 'techEfficiencyKpi']) {
+  for (const k of (process.env.K11827 || 'techUtilizationKpi,salesByCustomer,revenueKpi,billingEfficiencyKpi,techEfficiencyKpi').split(',')) {
     await goDash();
     await setCustom(k, 'October 2026', 9, 20); await apply();
     const chip = await trig(k).innerText().catch(() => null);
@@ -118,7 +124,7 @@ if (want('SV-11827')) {
     console.log('SV-11827', k, JSON.stringify({ chip, landed: t.url().replace(APP, ''), dateCtl, lines }));
     if (p2) await p2.close();
   }
-  E.tickets['SV-11827'] = out;
+  put('SV-11827', out);
 }
 
 // ---------- SV-11826: Technician Utilization tile vs report Summary row, Last 12 Months ----------
@@ -126,7 +132,7 @@ if (want('SV-11826')) {
   await goDash();
   const k = 'techUtilizationKpi';
   await trig(k).click(); await sleep(900);
-  await popup().locator('[data-test-id$="_preset_last_12_months"], .preset-option').filter({ hasText: /^Last 12 Months$/ }).first().click(); await sleep(800);
+  await popup().locator('[data-test-id$="_preset_last_12_months"], .preset-option').filter({ hasText: /last 12 months/i }).first().click(); await sleep(800);
   if (await popup().count()) { await popup().getByRole('button', { name: 'Apply' }).click().catch(() => {}); }
   const n0 = api.length; await sleep(6000);
   const tile = { chip: await trig(k).innerText(), value: await page.locator(`[data-test-id="hero_value_${k}"]`).innerText(), meta: await page.locator(`[data-test-id="hero_meta_${k}"]`).innerText(), at_utc: new Date().toISOString() };
@@ -144,7 +150,7 @@ if (want('SV-11826')) {
   const { shot: s } = await import('./common.mjs');
   const repPic = await s(t, 'SV-11826', 'report-summary-row', { fullPage: true });
   const repData = repApi.length ? repApi : api.slice(n1).filter(a => !a.url.includes('/dashboard/'));
-  E.tickets['SV-11826'] = { tile, tile_server: tileApi, report: { landed: t.url(), date_lines: dateLines, summary_rows: summary, at_utc: new Date().toISOString(), server: repData.map(a => ({ url: a.url, status: a.status, summary: a.body?.data?.summary ?? a.body?.summary ?? a.body?.data?.totals ?? null, keys: a.body?.data ? Object.keys(a.body.data).slice(0, 15) : null })) }, pictures: [tilePic, repPic] };
+  put('SV-11826', { tile, tile_server: tileApi, report: { landed: t.url(), date_lines: dateLines, summary_rows: summary, at_utc: new Date().toISOString(), server: repData.map(a => ({ url: a.url, status: a.status, summary: a.body?.data?.summary ?? a.body?.summary ?? a.body?.data?.totals ?? null, keys: a.body?.data ? Object.keys(a.body.data).slice(0, 15) : null })) }, pictures: [tilePic, repPic] });
   console.log('SV-11826', JSON.stringify({ tile, summary, dateLines, landed: t.url().replace(APP, '') }));
   if (p2) await p2.close();
 }
@@ -152,6 +158,6 @@ if (want('SV-11826')) {
 await goDash();
 E.rule99 = await finish(page, loc, rule99);
 E.observed_end_utc = new Date().toISOString();
-save('_batch1_hd', E);
+save('_batch1_hd_' + (only || ['all']).join('_'), E);
 console.log('RULE99 all_match', E.rule99.all_match, E.rule99.header_start.shows_location, E.rule99.header_end.shows_location, app_version);
 await browser.close();

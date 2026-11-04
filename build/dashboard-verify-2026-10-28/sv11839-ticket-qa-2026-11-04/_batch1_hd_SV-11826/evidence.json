@@ -1,0 +1,118 @@
+{
+ "app_version": "v26.45.0-aacb66c",
+ "rule99": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "shows_location": true,
+   "at_utc": "2026-11-04T19:27:53.337Z"
+  },
+  "browser_local_time_start": "Wed Nov 04 2026 12:27:53 GMT-0700 (Mountain Standard Time)",
+  "all_match": true,
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "shows_location": true,
+   "at_utc": "2026-11-04T19:28:40.482Z"
+  },
+  "localStorage_timezone_end": "\"America/Edmonton\""
+ },
+ "observed_start_utc": "2026-11-04T19:27:53.350Z",
+ "tickets": {
+  "SV-11826": {
+   "tile": {
+    "chip": "event\nLast 12 Months\nexpand_more",
+    "value": "75.67%",
+    "meta": "17,820.02 WO Hrs / 23,550.32 Clocked",
+    "at_utc": "2026-11-04T19:28:17.143Z"
+   },
+   "tile_server": [
+    {
+     "url": "/api/dashboard/reports?reports[]=techUtilizationKpi&reports[]=topCustomers&from=2025-12-01&to=2026-11-04&group=month",
+     "kpi": {
+      "value": 75.67,
+      "hoursClocked": 23550.32,
+      "woHours": 17820.02,
+      "sparkline": [
+       81.71,
+       82.6,
+       80.51,
+       82.97,
+       81.78,
+       83.24,
+       89,
+       92.49,
+       89.87,
+       50,
+       50,
+       50.29
+      ]
+     }
+    }
+   ],
+   "report": {
+    "landed": "https://sv11839.qa.shopview.com/reports/technician-utilization?dateRange=last-12-months",
+    "date_lines": [
+     "Date: Last 12 months"
+    ],
+    "summary_rows": [
+     "keyboard_double_arrow_down Technician arrow_drop_up Total Hours arrow_drop_up WO Hours arrow_drop_up Internal Hours arrow_drop_up Utilization % arrow_drop_up Est. Lost Labor arrow_drop_up info_outline",
+     "Summary 23550.32 17820.02 5730.30 75.67% $859,258.49"
+    ],
+    "at_utc": "2026-11-04T19:28:32.695Z",
+    "server": [
+     {
+      "url": "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2025-12-01T07:00:00.000Z&end_date=2026-11-05T06:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "status": 200,
+      "summary": null,
+      "keys": [
+       "collection"
+      ]
+     },
+     {
+      "url": "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2025-12-01&to=2026-11-04&group=month&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "status": 200,
+      "summary": null,
+      "keys": [
+       "from",
+       "to",
+       "group",
+       "techUtilizationSeries",
+       "techUtilizationByTechSeries"
+      ]
+     },
+     {
+      "url": "/api/reporting/reports/technician-utilization?range=custom&start_date=2025-12-01T07:00:00.000Z&end_date=2026-11-05T06:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false",
+      "status": 200,
+      "summary": {
+       "total_seconds": 84781152,
+       "wo_seconds": 64152072,
+       "internal_seconds": 20629080,
+       "est_lost_labor_cents": 85925849
+      },
+      "keys": [
+       "collection",
+       "pagination",
+       "summary"
+      ]
+     }
+    ]
+   },
+   "pictures": [
+    "SV-11826/tile-last-12-months.png",
+    "SV-11826/report-summary-row.png"
+   ]
+  }
+ },
+ "observed_end_utc": "2026-11-04T19:28:40.486Z"
+}
