@@ -283,33 +283,16 @@ function ago(iso) {
 }
 function clock(iso) { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleString(undefined, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); }
 let gateShown = false, isOwner = false;
-// Update now (owner only): starts the task "Custom Roles tracker — Update now (manual)", which has both
-// repositories attached in its settings and runs UPDATE-RUNBOOK.md in a fresh session
+// Update now (owner only): opens the task "Custom Roles tracker — Update now (manual)" in claude.ai, which
+// has both repositories attached and runs UPDATE-RUNBOOK.md in a fresh session when he presses Run now
 const UPDATE_TRIGGER = 'trig_01AuzwtpLUeUTjsjUEUZStv9';
 const HOW_TO_UPDATE = 'This page is updated after each release. If a new release has gone out and this page does not show it yet, please tell Bilal.';
-function lastStart() {
-  return requests.filter((r) => r.kind === 'update' && r.status === 'started').sort((a, b) => String(b.at).localeCompare(String(a.at)))[0] || null;
-}
 function updateControl() {
-  if (!isOwner || !canWriteDb) return '';
-  const r = lastStart();
-  if (r && (Date.now() - Date.parse(r.at)) / 60000 < 15 && !(STATUS.freshness && STATUS.freshness.checked_at > r.at)) {
-    return `<span>${chip('c-info', 'Update started')} at ${esc(clock(r.at))}. It takes a few minutes; this page will then ask you to reload.</span>`;
-  }
-  return '<button class="btn" data-update="1">Update now</button>';
-}
-async function updateNow(btn) {
-  btn.disabled = true;
-  try {
-    const mcp = await window.claude.use('mcp');
-    if (!mcp) throw { code: 'not_granted' };
-    await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: UPDATE_TRIGGER, text: 'Update now pressed on the page.' });
-    await db.collection('scan_requests').doc(hid('update' + Date.now())).set({ release: 'production', kind: 'update', by: me, at: new Date().toISOString(), status: 'started' });
-  } catch (e) {
-    btn.disabled = false;
-    const why = { not_granted: 'this view cannot start it', server_not_connected: 'the Claude Code Remote connector is not connected', approval_required: 'it needs your approval: press again and choose Allow', not_in_manifest: 'it is not allowed for this page' }[e && e.code] || (e && (e.message || e.code)) || 'unknown reason';
-    btn.insertAdjacentHTML('afterend', `<span class="chip c-bad">Could not start the update here (${esc(why)})</span> <a href="https://claude.ai/code/routines/${UPDATE_TRIGGER}" target="_blank" rel="noopener">Start it in claude.ai instead (press Run now) →</a>`);
-  }
+  if (!isOwner) return '';
+  // the task was created by the QA lead in claude.ai, so only he can start it, from its own page:
+  // the button opens that page, where he presses Run now
+  return `<span class="row" style="gap:6px 10px"><a class="btn" href="https://claude.ai/code/routines/${UPDATE_TRIGGER}" target="_blank" rel="noopener" style="text-decoration:none">Update now</a>
+    <span class="muted" style="font-size:.84rem">Opens your update task in claude.ai. Press <b>Run now</b> there; after a few minutes, reload this page.</span></span>`;
 }
 function freshness() {
   const s = STATUS.freshness;
@@ -358,7 +341,6 @@ function showGate(msg) {
 }
 function wireFresh(el) {
   el.querySelectorAll('[data-reload]').forEach((b) => b.addEventListener('click', () => location.reload()));
-  el.querySelectorAll('[data-update]').forEach((b) => b.addEventListener('click', () => updateNow(b)));
 }
 
 function hid(s) { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(36); }
