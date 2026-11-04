@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **101 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **102 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -53,6 +53,9 @@ These are stated here **in full** because a session that gets only this far must
 - **🔴 EVERY "WAITING FOR AN ANSWER" NAMES WHERE IT WAS ASKED (101).** QA lead, 2026-11-02: *"When you say waiting for the answer
   also confirm the document name too."* Give the document's full title (+ section/question, link) or the ticket key + comment id + date,
   and **re-check that place first** — an answered question is never reported as waiting.
+- **🔴 EVERY QUESTION NAMES ITS TICKET AND MY RECOMMENDATION (102).** QA lead, 2026-11-04: *"Always mention the ticket number with
+  what you are asking me and what is your recoomendation for it"*. Ticket number + link (or "no ticket yet" + the related ticket), then
+  "My recommendation: …" in one plain line.
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
@@ -146,7 +149,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 101 rules, and where each one lives
+## 2 · THE RULE INDEX — all 102 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -227,7 +230,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-97.md` — rules 61–101 (Rules 98–101 are appended at the end of this file)
+### `build/rules/RULES-61-97.md` — rules 61–102 (Rules 98–102 are appended at the end of this file)
 
 | # | Rule (short title) |
 |---|---|
@@ -272,6 +275,7 @@ rule. Generated from the split files' own headers.
 | **99** | THE TEST MACHINE RUNS IN THE LOCATION'S OWN TIME ZONE — every check, reproduction, screenshot and defect |
 | **100** | EVERY TICKET IS WRITTEN FOR A FIRST-TIME, NON-TECHNICAL READER — short, clear, plain |
 | **101** | EVERY "WAITING FOR AN ANSWER" NAMES WHERE THE QUESTION WAS ASKED — the document's full title or the ticket comment, re-checked first |
+| **102** | EVERY QUESTION TO THE QA LEAD NAMES ITS TICKET (with link, or "no ticket yet" + the related one) AND CARRIES MY RECOMMENDATION |
 
 **Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-97.md`. Its
 canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses

@@ -2411,3 +2411,15 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **(4)** Each waiting item states the date of that re-check.
     **TIES:** Rules 36 (OUTSTANDING section), 48 (never "waiting on you" without context), 70 (plain, table-form), 86 (verify
     from the record, not from memory).
+
+102. **EVERY QUESTION TO THE QA LEAD NAMES ITS TICKET AND CARRIES MY RECOMMENDATION (all projects, permanent).**
+    **THE QA LEAD'S WORDS (2026-11-04, verbatim):** *"Always mention the ticket number with what you are asking me and what is your
+    recoomendation for it"*. Confirmed as a standing rule the same day (*"Yes"*), which satisfies Rule 72.
+    **THE RULE.** Every item in an OUTSTANDING section, and every question put to the QA lead anywhere:
+    **(1)** names the **ticket number with a link** it is about (e.g. *"[SV-12161](https://shopview.atlassian.net/browse/SV-12161)"*); if
+    there is no ticket yet it says so plainly (*"no ticket yet"*) and names the closest **related** ticket(s); if it is not about a ticket
+    at all (a rule, a login, a document) it says that;
+    **(2)** gives **my recommendation** in one plain line (*"My recommendation: …"*), with the one reason that decides it;
+    **(3)** stays answerable in one word where possible (yes / no / a or b).
+    **TIES:** Rules 36 (OUTSTANDING section), 48 (context with every ask), 70 (action-first, plain, table-form), 101 (name where a
+    question was asked).
