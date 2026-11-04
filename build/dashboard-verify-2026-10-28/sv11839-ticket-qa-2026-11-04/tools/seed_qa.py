@@ -14,7 +14,7 @@ sys.path.insert(0, '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-
 from collect_dashboard import curl
 HD = 'b3c8c820-f815-4cf1-8938-10956c5ee71a'; LB = 'f8a8b802-7780-4b16-bf10-343caeb616b2'; ZONE = 'America/Edmonton'
 CANNED = '42effe86-6b35-4661-804f-e10f49af5c8b'   # "Service - Battery service", 60 min tech time, labour rate, no parts (Heavy Duty)
-TECH = {'TE': '21bb7388-2e45-4025-bfd8-a4c2e306e9f6',   # staff_id of Stephen Grimes (Technician, active)
+TECH = {'ADV': '21bb7388-2e45-4025-bfd8-a4c2e306e9f6', 'ADV2': '21bb7388-2e45-4025-bfd8-a4c2e306e9f6', 'ADV3': '21bb7388-2e45-4025-bfd8-a4c2e306e9f6', 'TE': '21bb7388-2e45-4025-bfd8-a4c2e306e9f6',   # staff_id of Stephen Grimes (Technician, active)
         'SBC': '558264f7-7c13-4198-b331-5e95ab20c4f9'}  # staff_id of Craig Mckee (Technician, active)
 ST = '/tmp/cln/qa11839/seed.json'; S = json.load(open(ST)) if os.path.exists(ST) else {}
 LOG = '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/sv11839-ticket-qa-2026-11-04/seed-log.jsonl'
@@ -36,7 +36,7 @@ def did(b):
 c, _ = curl('POST', '/api/iam/change-location', {'workplace_id': W, 'workplace_timezone': ZONE}); print('change-location', c)
 now = dt.datetime.now(ZoneInfo(ZONE)).replace(second=0, microsecond=0)
 if step == 'customer':
-    name = {'TE': 'ZZAUTOTEST QA11839 TE Declined', 'SBC': 'ZZAUTOTEST QA11839 SBC Delta', 'CM': 'ZZAUTOTEST QA11839 Credit'}[tag]
+    name = {'ADV': 'ZZAUTOTEST QA11839 Advisor Deleted', 'TE': 'ZZAUTOTEST QA11839 TE Declined', 'SBC': 'ZZAUTOTEST QA11839 SBC Delta', 'CM': 'ZZAUTOTEST QA11839 Credit'}[tag]
     c, b = call('POST', '/api/customers/create', {'name': name}); R['company_id'] = did(b); R['name'] = name
     c, b = call('POST', '/api/contacts/create', {'company_id': R['company_id'], 'first_name': f'ZZAUTOTEST {tag}', 'last_name': 'Contact'}); R['contact_id'] = did(b)
     if tag != 'CM':
@@ -69,7 +69,31 @@ elif step == 'status':
         call('POST', '/api/work-orders/lines/change-status', {'line_id': R['lines'][1], 'status': 'authorization_declined', 'workOrderId': R['wo']})
     call('POST', '/api/work-orders/change-status', {'id': R['wo'], 'status': 'complete'})
 elif step == 'invoice':
+    if tag.startswith('ADV') and 'ZZAUTOTEST' not in ((R.get('advisor_set') or {}).get('service_advisor_name') or ''): raise SystemExit('refusing: ZZAUTOTEST advisor not set on ' + tag)
     c, b = call('POST', '/api/invoices/create', {'work_order_id': R['wo']}); R['invoice'] = did(b); save()
+elif step == 'staff':      # ADV (SV-11820): a throwaway advisor who will be deleted after the invoice exists
+    em = 'zzautotest.qa11839.advisor@example.invalid'
+    # proven 4 Nov 2026: snake_case keys + at least one department + workplace_id (the 400 names camelCase keys, which do NOT work)
+    if not R.get('user_id'):
+        c, b = call('POST', '/api/iam/create', {'email': em, 'first_name': 'ZZAUTOTEST', 'last_name': 'Advisor QA11839', 'role_id': 'ad1a793e-7cc7-48a5-8f93-507c03562b32',
+                    'departments': ['0653be2e-2816-4428-8dd2-db3526cccebb'], 'workplace_id': W})
+        R['user_id'] = ((b or {}).get('data') or b or {}).get('user_id') if isinstance(b, dict) else None
+    c, b = curl('GET', '/api/staff?search=ZZAUTOTEST&limit=50', extra_headers=H)   # the plain ?limit=200 list returns only 66 rows and misses it
+    st = [x for x in b['data']['collection'] if x.get('email') == em]
+    R['staff'] = {k: st[0].get(k) for k in ('id', 'staff_id', 'first_name', 'last_name', 'role_label', 'is_active')} if st else None; save(); print('staff', R['staff'])
+elif step == 'advisor':
+    if R.get('invoice'): raise SystemExit('refusing: invoice already exists for ' + tag)
+    for key in ('id', 'staff_id'):
+        c, b = call('POST', '/api/work-orders/change-service-advisor', {'work_order_id': R['wo'], 'service_advisor_id': R['staff'][key]})
+        c, v = curl('GET', f'/api/work-orders/view/{R["wo"]}', extra_headers=H); w = v['data']['work_order']
+        R['advisor_set'] = {k: w.get(k) for k in w if 'advisor' in k.lower()}; R['advisor_key_used'] = key; save(); print('advisor now', R['advisor_set'])
+        if 'ZZAUTOTEST' in (w.get('service_advisor_name') or ''): break   # a new WO defaults to its creator as advisor, so check the NAME
+elif step == 'delete-staff':
+    for key in ('staff_id', 'id'):
+        c, b = call('DELETE', f'/api/staff/{R["staff"][key]}')
+        if c in (200, 204): R['deleted_with'] = key; break
+    c, v = curl('GET', f'/api/work-orders/view/{R["wo"]}', extra_headers=H); w = v['data']['work_order']
+    R['advisor_after_delete'] = {k: w.get(k) for k in w if 'advisor' in k.lower()}; save(); print('after delete', R['advisor_after_delete'])
 elif step == 'vehicle':   # CM: the Lethbridge customer also needs an asset for its one small invoice
     c, b = call('POST', '/api/vehicles/create', {'company_id': R['company_id'], 'customer_id': R['contact_id'], 'unit': f'ZZ-QA11839-{tag}'}); R['vehicle_id'] = did(b); save()
 elif step == 'memo':

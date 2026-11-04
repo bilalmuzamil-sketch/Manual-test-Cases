@@ -1,0 +1,124 @@
+{
+ "ticket": "SV-11821",
+ "app_version": "v26.45.0-aacb66c",
+ "location": "Staging Lethbridge - 4310",
+ "rule99": {
+  "location": "Staging Lethbridge - 4310",
+  "workplace_id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"f8a8b802-7780-4b16-bf10-343caeb616b2\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Lethbridge - 4310 AS",
+   "location_selector_text": [
+    "Staging Lethbridge - 4310"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-04T20:31:26.168Z"
+  },
+  "browser_local_time_start": "Wed Nov 04 2026 13:31:26 GMT-0700 (Mountain Standard Time)",
+  "all_match": true,
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Lethbridge - 4310 AS",
+   "location_selector_text": [
+    "Staging Lethbridge - 4310"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-04T20:33:04.530Z"
+  },
+  "localStorage_timezone_end": "\"America/Edmonton\""
+ },
+ "observed_at_utc": "2026-11-04T20:33:04.532Z",
+ "seeded": {
+  "customer": "ZZAUTOTEST QA11839 Credit",
+  "work_order": "S11839-17591",
+  "invoice_id": "235e677f-beac-4c56-bd35-f4b25c40bd8e",
+  "credit_memo": {
+   "creditMemoId": "9c217a58-d503-46a1-8a7c-ad79bab37452",
+   "creditNumber": "CM-4190",
+   "totalAmount": 2500,
+   "openBalance": 2500,
+   "status": "open",
+   "refundPaymentId": null
+  }
+ },
+ "days": {
+  "2026-11-04": {
+   "picker": {
+    "header": "Nov 4, 2026",
+    "range": "Range: 1 day"
+   },
+   "tile": {
+    "chip": "event Nov 4, 2026 expand_more",
+    "value": "$151.74",
+    "supporting_line": "1 Invoice",
+    "meta_box": {
+     "x": 94,
+     "y": 326,
+     "w": 678,
+     "h": 40
+    },
+    "tile_box": {
+     "x": 60,
+     "y": 154,
+     "w": 746,
+     "h": 408
+    }
+   },
+   "server": [
+    {
+     "url": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=invoicesKpi&from=2026-11-04&to=2026-11-04&group=day",
+     "revenueKpi": {
+      "value": 151.74,
+      "partsPct": null,
+      "laborPct": null,
+      "otherPct": null,
+      "sparkline": [
+       151.74
+      ]
+     },
+     "invoicesKpi": {
+      "value": 1
+     }
+    }
+   ],
+   "sales_report": {
+    "url": "/reports/sales?range=custom&range=2026-11-04&range=2026-11-04",
+    "heads": [
+     "Invoice Datearrow_drop_up",
+     "Invoicearrow_drop_up",
+     "Customerarrow_drop_up",
+     "arrow_drop_upInv. Hrs",
+     "arrow_drop_upBilling Efficiency",
+     "arrow_drop_upLabor Invoiced",
+     "arrow_drop_upLabor Margin",
+     "arrow_drop_upParts Invoiced",
+     "arrow_drop_upParts Cost",
+     "arrow_drop_upParts Margin",
+     "arrow_drop_upProfit",
+     "arrow_drop_upMargin",
+     "arrow_drop_upSubtotal"
+    ],
+    "rows": [
+     "",
+     "Nov 04 2026 S11839-17591 ZZAUTOTEST QA11839 Cred... 1.00 N/A $159.95 100.00% $0.00 $0.00 N/A $159.95 100.00% $176.74",
+     "Nov 04 2026 CM11839-4190 ZZAUTOTEST QA11839 Cred... 0.00 N/A $0.00 N/A $-25.00 $0.00 -100.00% $-25.00 -100.00% $-25.00",
+     "",
+     "Totals 1.00 N/A $159.95 100.00% $-25.00 $0.00 -100.00% $134.95 100.00% $151.74"
+    ]
+   },
+   "pictures": [
+    "SV-11821/revenue-tile-lethbridge-2026-11-04.png",
+    "SV-11823/revenue-tile-lethbridge-2026-11-04.png",
+    "SV-11823/sales-report-lethbridge-2026-11-04.png"
+   ]
+  }
+ }
+}
