@@ -325,3 +325,8 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   any changed or lost result, status, comment, assignee or run total).
 - **`tms_client.py` retries dropped connections for READS only** (proxy reset seen 2026-11-04); writes are never retried
   after a dropped connection, because they may already have landed.
+- **Milestone 5 synced (Action in TMS):** TestRail 555 → **TMS run 16** (203 cases), TestRail 556 → **TMS run 17** (580),
+  both in milestone 5, **unassigned until Mudassir's TMS account is real**. **TMS run 4 + its 299 cases assigned to Bilal**
+  (as TestRail 552). Run map now: 552↔4 · 555↔16 · 556↔17 · 557↔7.
+- **Results proof:** snapshot before/after over 3,289 run items in 11 runs: the ONLY change is the 299 intended assignee
+  changes on run 4; **281 results, every status, comment and run total unchanged**.
