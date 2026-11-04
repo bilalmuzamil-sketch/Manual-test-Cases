@@ -299,3 +299,12 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   treating a CONFLICT as a human edit.
 - **Out of scope, reported only:** WO Board and Tech View (13204) re-check on 2026-11-04 shows drift since 28 Oct —
   48 updates, 14 Automated, 5 TestRail-only, 2 accepted. Not synced (not part of the request).
+
+## 16 · 2026-11-04 — WO Board and Tech View resynced; resync scheduled
+
+- QA lead "Yes": **48 updated, 5 TestRail-only created** (read back OK). Re-check: **332 SAME, 2 ACCEPTED, 14 HOLD_AUTO**
+  (all Automated in both systems; only text differs; edited in TestRail 28 Oct – 2 Nov) — waiting on the QA lead.
+- One of the 3 accepted cases (C682419) now also differs in title/text, so it shows as HOLD_AUTO; its Automation-type
+  acceptance still stands.
+- **Resync of Founder Mode + WO Board scheduled for 2026-11-04 08:25 UTC** (QA lead: cases are being updated again;
+  start the resync in 3 hours). Trigger `trig_017XRd8E8v8n7JoUJEnw1JCp` (a one-off message to this session).
