@@ -310,3 +310,18 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   start the resync in 3 hours). Trigger `trig_017XRd8E8v8n7JoUJEnw1JCp` (a one-off message to this session).
 - **Scheduled resync ran 2026-11-04 08:25 UTC.** Founder Mode: 11 updated + 6 created (read back OK) → **1,968 SAME, nothing
   open**. WO Board and Tech View: no TestRail changes since 05:23 → 332 SAME, 2 ACCEPTED, **14 Automated still held**.
+
+## 17 · 2026-11-04 (later) — WO Board closed; milestone 5 and Maintenance Reminder
+
+- **WO Board and Tech View:** 14 Automated cases synced on the QA lead's "Yes do for all" → **345 SAME + 3 ACCEPTED, nothing open.**
+- **TestRail milestone 5 changed:** TestRail **deleted runs 547, 549, 551, 553**; it now holds **552** Maintenance reminder
+  (assigned Bilal), **555** Technician Toggle, **556** Part Lifecycle, **557** A/R and A/P (all three assigned Mudassir).
+  TestRail 557 has the same 356 cases as **TMS run 7** (it is the old 549 mirror); 552 = **TMS run 4** (same 299 cases).
+  TMS runs **6, 8, 10** (Splitting Sales Reps, Credit Terms, What/Why) no longer have a TestRail counterpart → QA lead asked.
+- **Maintenance Reminder (TestRail 19397, incl. Chunk 2 = 26635):** dry run 222 SAME, **77 CONFLICT** — edited in TMS after
+  TestRail by **Nebojsa Glavinic (74) and Vladimir Tomovic (3)**, 14 Oct → 4 Nov 07:03 UTC, up to 8 versions; 64 of them
+  are "Pending" automation in TMS vs "Not Automated" in TestRail. **Not overwritten** — QA lead asked which side wins.
+- **Results protection tool:** `build/testing-tools/tms_results_snapshot.py` (snap before / snap after / compare; exit 1 on
+  any changed or lost result, status, comment, assignee or run total).
+- **`tms_client.py` retries dropped connections for READS only** (proxy reset seen 2026-11-04); writes are never retried
+  after a dropped connection, because they may already have landed.

@@ -85,8 +85,16 @@ class TMS:
         if self.dry and method != "GET":
             print("DRY-RUN", method, path, json.dumps(body)[:300])
             return 0, None
-        for _ in range(retries):
-            r = self.s.request(method, self.base + path, json=body, params=params, timeout=60)
+        for attempt in range(retries):
+            try:
+                r = self.s.request(method, self.base + path, json=body, params=params, timeout=60)
+            except requests.exceptions.ConnectionError:
+                # A dropped connection (seen 2026-11-04: proxy reset) is retried for READS only;
+                # a write may already have landed, so retrying it could create a duplicate.
+                if method != "GET" or attempt == retries - 1:
+                    raise
+                time.sleep(2 ** attempt)
+                continue
             if r.status_code in (429, 503):  # documented: honour Retry-After, then retry
                 time.sleep(float(r.headers.get("Retry-After", "1")))
                 continue
