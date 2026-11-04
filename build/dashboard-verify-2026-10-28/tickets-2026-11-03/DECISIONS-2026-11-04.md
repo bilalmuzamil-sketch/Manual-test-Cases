@@ -25,3 +25,11 @@
   4. 39(b) / SV-10702 comment: later, after everything else.
   5. Q40: OK, wait for the worker.
   6. O1 (no comma at ≥1,000 %) and O2 (remembered technician filter): leave them.
+- **Filed 4 Nov 2026 (decision 3):**
+  - **SV-12199** (Chris 38, Customer Invoice export Terms), parent SV-11839.
+  - **SV-12201** (Chris 39(a), Payroll Timesheet export overlap), parent SV-11839.
+  - Both are Bug · Medium · Reports & Dashboards, with pictures embedded and read back OK. Record: `tickets-2026-11-04/filed/FILED-2026-11-04.json`.
+- **Staging worker finished (Rule 86 verified for 38 / 39a / 39b).** Q40 REPRODUCED: part ZZAUTOTEST-PV8-11041710 sold 4 Nov 10:13 PM Karachi reads "0 days" at 12:07 AM on 5 Nov; it should read 1. Draft `P2-B8-reports-parts-velocity-last-sale-counts-24-hour-periods.md`, NOT FILED. Q40 was not in decision 3, so its go-ahead is still needed.
+- **Worker side notes (not verified by me):**
+  - Timesheet Activities opened from a link carrying a Custom range shows "No record matches these filters".
+  - The S2-38354 invoice (Heavy Duty) shows "REMIT PAYMENT TO Staging Lethbridge - 4310".
