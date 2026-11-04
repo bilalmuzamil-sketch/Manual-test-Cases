@@ -260,6 +260,23 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   JSON); typing a dollar amount live-recalculates Total = Subtotal + Tax (verified: 15.32 + 0.77
   → 16.09, SV-8721).
 
+- **🔑 QA-BRANCH BROWSER WITH THE QA LEAD'S OWN COOKIES — NO quick-login (proven 4 Nov 2026 on `sv11839`, epic SV-11839, build v26.43.5-c73a58b).**
+  - **Symptom:** cookies alone land on the **login page** ("Sign in to your account to continue"), although `GET https://sv11839api.qa.shopview.com/api/auth/me/fe-permissions` answers 200.
+  - **Fix (helper `build/testing-tools/qa-branch-boot.mjs`, `qaBoot({branch, cookieFile, workplaceId, timezone})`):**
+    1. Add the three cookies on `.qa.shopview.com`.
+    2. Open `/login`.
+    3. From the page, fetch `/api/iam/view-profile/` and `/api/auth/me/fe-permissions` with `credentials:'include'`.
+    4. Write `localStorage` `user` = `{data:{details:{…, default_workplace, workplace_timezone}, role:{…}}}`, `fe_permissions_wrapper`, `location` and `timezone`.
+    5. `POST /api/iam/change-location`.
+    6. Navigate to the route.
+  - No quick-login, so the shared `sv_sso_session` is not rotated (trap 5).
+  - `/api/auth/me` and `/api/me` are **404** on this build.
+  - **sv11839 locations (read live, 4 Nov 2026):**
+    - Staging Heavy Duty - 9919: **America/Edmonton** (Karachi on staging)
+    - Staging Lethbridge - 4310: America/Edmonton
+    - Test Location `f9da140e-f4eb-4e3b-adc8-028214ebaf4c`: Asia/Karachi (the default)
+  - ⚠️ change-location on the QA lead's own cookie set also moves **his** browser's location on that branch. Say so in the report.
+  - Search key: `Sign in to your account to continue` `qaBoot`.
 - **🛑 THE FIVE TRAPS THAT PRODUCE A FALSE "DEAD SESSION" ON `.qa.shopview.com` — read this BEFORE
   asking for new cookies (proven live 2026-08-06 on the Schedule branch `sv8685`; the first three each
   cost a whole pass).**
