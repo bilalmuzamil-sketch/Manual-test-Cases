@@ -19,3 +19,9 @@ Copied word for word.
 **Answer: 7. (c) Keep both sentences. They follow Branko's Work Orders design for this state, which already shipped with two sentences in SV-11555 and passed QA. Technician Toggle only changes the first sentence.**
 
 **Answer: 8. (a) As if the window had just opened. Save & Add Next clears the form the same way it does today: no role, Time Clock off, Technician off. Any earlier switch by hand is forgotten, and the next person's Technician is set from their own role. I'll add Save & Add Next to S1-R3.**
+
+## Question 9 (added 2 Nov 2026), read 4 Nov 2026 (sheet column E, row 15)
+
+**Answer: 9. (a) Yes, it counts. It's time on a work order, so the person did technician work. Release day can only turn Technician on, never off, and the shop can switch it off in Staff. I've added this to S6-R1(a).**
+
+PRD v20 (3 Nov 2026) carries it in S6-R1 (a). PRD v19 (3 Nov 2026) also changed S3-N1 (a picked person whose Technician is turned off: stays picked while they keep a column or group; otherwise until Work Orders is next opened from the menu or reloaded), from Nemanja's build check of answers 4 and 8.
