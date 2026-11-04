@@ -167,3 +167,89 @@
     Test Location 180 dash 0 mine 0 onlyDash 0 onlyMine 0 valueDiffs 0
 [18:14:46] committed: layer C (independent recompute)
 [18:14:46] START L1-screen-Staging-Heavy-Duty---9919
+[18:21:36] END L1-screen-Staging-Heavy-Duty---9919 rc=0
+    RULE99 {"loc":"Staging Heavy Duty - 9919","location_tz":"America/Edmonton","process_tz":"America/Edmonton","browser":["America/Edmonton","\"America/Edmonton\"","\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""]}
+    Staging Heavy Duty - 9919 steps 50 errors 5
+[18:21:36] START L1-expanded-Staging-Heavy-Duty---9919
+[18:23:47] END L1-expanded-Staging-Heavy-Duty---9919 rc=0
+    RULE99 {"loc":"Staging Heavy Duty - 9919","location_tz":"America/Edmonton","process_tz":"America/Edmonton","browser":["America/Edmonton","\"America/Edmonton\"","\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""]}
+    Staging Heavy Duty - 9919 revenueKpi:0rows/1open billingEfficiencyKpi:3rows/1open techEfficiencyKpi:2rows/1open techUtilizationKpi:7rows/1open salesByCustomer:12rows/1open atRiskHero:12rows/1open | revenueKpi->/reports/sales billingEfficiencyKpi->/reports/service-advisor-analysis techEfficiencyKpi->/reports/technician-efficiency techUtilizationKpi->/reports/technician-utilization salesByCustomer->/reports/sales-by-customer?dateRange=last-12-months
+[18:23:47] START L1-atrisk-Staging-Heavy-Duty---9919
+[18:24:35] END L1-atrisk-Staging-Heavy-Duty---9919 rc=0
+    RULE99 {"loc":"Staging Heavy Duty - 9919","location_tz":"America/Edmonton","process_tz":"America/Edmonton","browser":["America/Edmonton","\"America/Edmonton\"","\"b3c8c820-f815-4cf1-8938-10956c5ee71a\""]}
+    Staging Heavy Duty - 9919 30 Days:295 60 Days:295 90 Days:239 120 Days:194 180 Days:131
+[18:24:35] START L1-screen-Staging-Lethbridge---4310
+[18:31:20] END L1-screen-Staging-Lethbridge---4310 rc=0
+    RULE99 {"loc":"Staging Lethbridge - 4310","location_tz":"America/Edmonton","process_tz":"America/Edmonton","browser":["America/Edmonton","\"America/Edmonton\"","\"f8a8b802-7780-4b16-bf10-343caeb616b2\""]}
+    Staging Lethbridge - 4310 steps 50 errors 5
+[18:31:20] START L1-expanded-Staging-Lethbridge---4310
+[18:33:30] END L1-expanded-Staging-Lethbridge---4310 rc=0
+    RULE99 {"loc":"Staging Lethbridge - 4310","location_tz":"America/Edmonton","process_tz":"America/Edmonton","browser":["America/Edmonton","\"America/Edmonton\"","\"f8a8b802-7780-4b16-bf10-343caeb616b2\""]}
+    Staging Lethbridge - 4310 revenueKpi:0rows/1open billingEfficiencyKpi:2rows/1open techEfficiencyKpi:2rows/1open techUtilizationKpi:3rows/1open salesByCustomer:12rows/1open atRiskHero:12rows/1open | revenueKpi->/reports/sales billingEfficiencyKpi->/reports/service-advisor-analysis techEfficiencyKpi->/reports/technician-efficiency techUtilizationKpi->/reports/technician-utilization salesByCustomer->/reports/sales-by-customer?dateRange=last-12-months
+[18:33:30] START L1-atrisk-Staging-Lethbridge---4310
+[18:34:18] END L1-atrisk-Staging-Lethbridge---4310 rc=0
+    RULE99 {"loc":"Staging Lethbridge - 4310","location_tz":"America/Edmonton","process_tz":"America/Edmonton","browser":["America/Edmonton","\"America/Edmonton\"","\"f8a8b802-7780-4b16-bf10-343caeb616b2\""]}
+    Staging Lethbridge - 4310 30 Days:369 60 Days:369 90 Days:310 120 Days:259 180 Days:180
+[18:34:18] START L1-screen-Test-Location
+[18:40:51] END L1-screen-Test-Location rc=0
+    RULE99 {"loc":"Test Location","location_tz":"Asia/Karachi","process_tz":"Asia/Karachi","browser":["Asia/Karachi","\"Asia/Karachi\"","\"f9da140e-f4eb-4e3b-adc8-028214ebaf4c\""]}
+    Test Location steps 50 errors 5
+[18:40:51] START L1-expanded-Test-Location
+[18:43:02] END L1-expanded-Test-Location rc=0
+    RULE99 {"loc":"Test Location","location_tz":"Asia/Karachi","process_tz":"Asia/Karachi","browser":["Asia/Karachi","\"Asia/Karachi\"","\"f9da140e-f4eb-4e3b-adc8-028214ebaf4c\""]}
+    Test Location revenueKpi:0rows/1open billingEfficiencyKpi:3rows/1open techEfficiencyKpi:3rows/1open techUtilizationKpi:3rows/1open salesByCustomer:4rows/1open atRiskHero:2rows/1open | revenueKpi->/reports/sales billingEfficiencyKpi->/reports/service-advisor-analysis techEfficiencyKpi->/reports/technician-efficiency techUtilizationKpi->/reports/technician-utilization salesByCustomer->/reports/sales-by-customer?dateRange=last-12-months
+[18:43:02] START L1-atrisk-Test-Location
+[18:43:49] END L1-atrisk-Test-Location rc=0
+    RULE99 {"loc":"Test Location","location_tz":"Asia/Karachi","process_tz":"Asia/Karachi","browser":["Asia/Karachi","\"Asia/Karachi\"","\"f9da140e-f4eb-4e3b-adc8-028214ebaf4c\""]}
+    Test Location 30 Days:0 60 Days:0 90 Days:0 120 Days:0 180 Days:0
+[18:43:49] START L1-filters
+[18:44:58] END L1-filters rc=1
+        triggerUncaughtException(
+        ^
+    
+    locator.getAttribute: Timeout 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('.q-menu.filter-menu').last().locator('[role="checkbox"]:not([data-test-id^="filter_select_all"]), [role="radio"], [role="option"]').first()[22m
+    
+        at /home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/rerun-sv11839-2026-11-04/tools/screen_filters.mjs:37:35 {
+      log: [
+        `  - waiting for locator('.q-menu.filter-menu').last().locator('[role="checkbox"]:not([data-test-id^="filter_select_all"]), [role="radio"], [role="option"]').first()`
+      ],
+      name: 'TimeoutError'
+    }
+    
+    Node.js v22.23.4
+[18:44:58] START L1-check-screen
+[18:44:58] END L1-check-screen rc=0
+    TOTAL 888 Counter({'PASS': 878, 'FAIL': 10})
+    
+    FAIL x10: Headline on screen = server figure (PRD format)
+        Test Location billingEfficiencyKpi Last 12 Months | screen "10000.00%" vs expected "10,000.00%"
+        Test Location billingEfficiencyKpi This Year | screen "10000.00%" vs expected "10,000.00%"
+        Test Location billingEfficiencyKpi This Quarter | screen "10000.00%" vs expected "10,000.00%"
+        Test Location billingEfficiencyKpi This Month | screen "10000.00%" vs expected "10,000.00%"
+        Test Location billingEfficiencyKpi This Week | screen "10000.00%" vs expected "10,000.00%"
+        Test Location techEfficiencyKpi Last 12 Months | screen "10000.00%" vs expected "10,000.00%"
+        Test Location techEfficiencyKpi This Year | screen "10000.00%" vs expected "10,000.00%"
+        Test Location techEfficiencyKpi This Quarter | screen "10000.00%" vs expected "10,000.00%"
+[18:44:58] START L1-check-expanded
+[18:44:58] END L1-check-expanded rc=0
+    TOTAL 94 Counter({'PASS': 94})
+[18:44:58] START preflight-end
+[18:44:59] END preflight-end rc=0
+       "name": "Staging Lethbridge - 4310",
+       "tool_tz": "America/Edmonton",
+       "server_tz": "America/Edmonton",
+       "match": true
+      },
+      {
+       "id": "f9da140e-f4eb-4e3b-adc8-028214ebaf4c",
+       "name": "Test Location",
+       "tool_tz": "Asia/Karachi",
+       "server_tz": "Asia/Karachi",
+       "match": true
+      }
+     ],
+     "OK": true
+    }
+[18:44:59] ALL DONE
