@@ -1,7 +1,7 @@
 // F3 shared boot: boot2 + the app's own localStorage 'location' AND 'timezone' keys (Rule 99 + F4's location trap), and a header
 // assertion that the intended location is the one the app shows. SECRET-FREE.
 import { boot2 } from '/home/user/Manual-test-Cases/build/testing-tools/staging-boot2.mjs';
-export const LOC = { dvi: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto', 'DVI Test'], hd: ['b3c8c820-f815-4cf1-8938-10956c5ee71a', 'Asia/Karachi', 'Staging Heavy Duty - 9919'], leth: ['f8a8b802-7780-4b16-bf10-343caeb616b2', 'America/Edmonton', 'Staging Lethbridge - 4310'] };
+export const LOC = { dvi: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'Pacific/Fiji', 'DVI Test'] /* server zone Pacific/Fiji since ~3 Nov 2026 (was America/Toronto); read it live: GET /api/staff/my-workplaces */, hd: ['b3c8c820-f815-4cf1-8938-10956c5ee71a', 'Asia/Karachi', 'Staging Heavy Duty - 9919'], leth: ['f8a8b802-7780-4b16-bf10-343caeb616b2', 'America/Edmonton', 'Staging Lethbridge - 4310'] };
 export async function f3boot(l) {
   const [WP, TZ, LNAME] = LOC[l];
   const r = await boot2('admin', { workplaceId: WP, timezone: TZ, contextOptions: { viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 2, timezoneId: TZ } });

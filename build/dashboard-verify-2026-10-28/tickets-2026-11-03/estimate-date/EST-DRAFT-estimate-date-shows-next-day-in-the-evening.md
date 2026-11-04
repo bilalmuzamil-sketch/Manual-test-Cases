@@ -1,3 +1,10 @@
+<!-- WITHDRAWN 4 Nov 2026 — NOT A DEFECT. DO NOT FILE.
+The server has DVI Test on Pacific/Fiji (UTC+12), not America/Toronto (GET /api/staff/my-workplaces, 4 Nov 2026 15:48 UTC; also stated in SV-12161 comment 80084, 3 Nov 2026).
+At 10:45 AM Toronto on Nov 4 it is already Nov 5 in Fiji, so "Estimate date: Nov 5, 2026" is the location's own date — what the Invoice UI Refresh spec S10-R2 asks for.
+Control, build v26.45.0-440aa25, each run in the location's own zone (Rule 99): Lethbridge S3-34984 + S3-17369 (Edmonton 9:46 AM Nov 4) show Nov 4; Heavy Duty S2-33740 (Karachi 8:44 PM Nov 4) shows Nov 4; DVI Test S1-38222, S1-37677, S1-37679 show Nov 5 = Fiji's date.
+The earlier evening readings (Nov 4 shown at 7:16 PM / 11:04 PM Toronto on Nov 3) are also Fiji's date. My runs used Toronto for DVI Test, so the zones were unmatched (Rule 99): the finding was never valid.
+Evidence: estimate-date/board-leth-2026-11-04/, board-dvi-2026-11-04/, S2-33740-2026-11-04/, daytime2-2026-11-04/ -->
+
 <!-- DRAFT 4 Nov 2026 — NOT FILED. QA lead 4 Nov ("Yes" to: check it properly, then draft a new ticket for your approval).
 No ticket yet. Related: SV-12161 (evening deposit saved a day early), SV-11970 (Finance tab deposit date; QA passed — leave it).
 SUMMARY: Estimates - in the evening at a North American location the estimate shows tomorrow's date as its Estimate date

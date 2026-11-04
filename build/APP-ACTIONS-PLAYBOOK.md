@@ -3331,6 +3331,11 @@ whereas an application-level JSON `{"error":"sso_required", …}` means the requ
   `testing-tools/staging-boot2.mjs` sets it from `opts.timezone`), and the process (`TZ=<zone> node …`). Read the browser's zone
   back with `Intl.DateTimeFormat().resolvedOptions().timeZone` and keep it in the evidence JSON. Staging zones: Heavy Duty
   Asia/Karachi · Lethbridge America/Edmonton · QB Location America/Vancouver · DVI Test America/Toronto. Origin: SV-11922.
+  **🔴 THE LIST ABOVE CAN GO STALE — READ THE ZONE LIVE (found 4 Nov 2026).** Someone moved DVI Test to **Pacific/Fiji** (UTC+12) around
+  3 Nov 2026. A run that keeps using Toronto then has unmatched zones and reports false "one day ahead" dates; an estimate-date draft
+  was written that way and withdrawn. At the start of every run read the server's zone: `GET https://api.staging.shopview.com/api/staff/my-workplaces`
+  (session cookie) → `data…[].timezone` per location name, and use that value everywhere. Recipe: `est_date_board.mjs` and
+  `f3boot.mjs` in `dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/tools/f3/`. Search key: `Pacific/Fiji` `my-workplaces`.
   **🔴 FOURTH PLACE — the app's own zone key (found 2026-10-29, Phase 2 Worker B).** The SPA does NOT use the browser zone for report
   date windows: it reads `localStorage['timezone']` (`locationService.getTimezone()`, set by the location switcher) and **falls back to
   UTC** when the key is missing. `boot2` + `localStorage.location` alone leave it missing, so on 29 Oct 00:06 UTC Parts Velocity at

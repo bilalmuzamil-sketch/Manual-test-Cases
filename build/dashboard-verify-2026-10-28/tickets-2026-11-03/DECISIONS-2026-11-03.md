@@ -39,3 +39,10 @@
 
 ## Daytime control 4 Nov 2026 15:17 UTC (10:17 AM Toronto) — NOT RUN
 - Staging cookies from 3 Nov expired: quick-login 401, probe 401. Asked the QA lead for fresh cookies. Window for the daytime control: until 7 PM Toronto (00:00 UTC 5 Nov).
+
+## 4 Nov 2026 — estimate date check and SV-12161
+
+- **SV-12161 is OBSOLETE.** Another session, working under the QA lead's account, retested it on 3 Nov 2026 at 11:22 PM Toronto. It closed the ticket with comment 80084 (https://shopview.atlassian.net/browse/SV-12161?focusedCommentId=80084). Taken as delivered (Rule 98); nothing to do.
+- **DVI Test is on Pacific/Fiji on the server**, not Toronto. Source: `GET /api/staff/my-workplaces`, 4 Nov 15:48 UTC, and comment 80084.
+- **The estimate-date draft is WITHDRAWN.** It is not a defect, and nothing was filed. Every location shows its own date: Fiji, Edmonton and Karachi all checked on v26.45.0-440aa25. See the header of `estimate-date/EST-DRAFT-estimate-date-shows-next-day-in-the-evening.md`.
+- **Next:** the Dashboard calculation check, waiting for the QA lead's go-ahead. DVI Test runs on Pacific/Fiji, with the zone read live at the start of the run.
