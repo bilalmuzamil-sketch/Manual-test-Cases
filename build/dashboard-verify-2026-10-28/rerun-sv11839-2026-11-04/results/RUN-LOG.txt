@@ -68,3 +68,100 @@
         Staging Heavy Duty - 9 custom_366d | dash 25274.1 | report 25274.13 | Utilization clocked = TU Total Hours
 [17:21:45] committed: layers A (internal) and B (tile = report)
 [17:21:45] START C-fetch-wo-lines
+[17:50:37] END C-fetch-wo-lines rc=0
+    0 6726 200
+    500 6726 200
+    1000 6726 200
+    1500 6726 200
+    2000 6726 200
+    2500 6726 200
+    3000 6726 200
+    3500 6726 200
+    4000 6726 200
+    4500 6726 200
+    5000 6726 200
+    5500 6726 200
+    6000 6726 200
+    6500 6726 200
+    done 6726
+[17:50:37] START C-oracle-invoices
+[18:14:21] END C-oracle-invoices rc=0
+    Staging Heavy Duty - 9919 3062 invoices checked
+    Staging Lethbridge - 4310 3662 invoices checked
+    Test Location 2 invoices checked
+    TOTAL 33618 Counter({'PASS': 33611, 'FAIL': 7})
+    
+    Report Parts = invoice parts lines: 4
+        Staging Heavy Duty - 9 S2-14085 last_12_months | report 5105.6 vs lines 5105.61
+        Staging Heavy Duty - 9 S2-13807 last_12_months | report 3738.18 vs lines 3738.19
+        Staging Heavy Duty - 9 S2-9398 last_year | report 1397.81 vs lines 1397.82
+        Staging Heavy Duty - 9 S2-6653 last_year | report 1601.82 vs lines 1601.83
+    
+    Invoice record readable: 3
+        Staging Heavy Duty - 9 S2-10449 None | HTTP 0
+        Staging Heavy Duty - 9 S2-9374 None | HTTP 0
+        Staging Heavy Duty - 9 S2-5555 None | HTTP 0
+[18:14:21] START C-oracle-hours
+[18:14:23] END C-oracle-hours rc=0
+    Counter({'MATCH': 6718, 'no WO lines record': 5, 'EXTRA_LINE': 3})
+    extra line statuses Counter({'complete': 25})
+    
+    EXTRA_LINE: 3
+        Staging Heavy Duty - ['S2-10449'] ['Oct 22 2025'] | report 4.95 billed 0 | [(' Diagnose - Intermittent noise', 'complete', 1.92), (' Replace - Fan belt and tensio', 'complete', 3.03)]
+        Staging Heavy Duty - ['S2-9374'] ['Aug 21 2025'] | report 4.75 billed 0 | [(' Diagnose - Right rear signal ', 'complete', 3.5), (' Replace - Rear signal light', 'complete', 0.5), (' Replace - Replace rear signal', 'complete', 0.75)]
+        Staging Heavy Duty - ['S2-5555'] ['Apr 11 2025'] | report 72.1 billed 0 | [(' Service - CVIP inspection tri', 'complete', 4.75), ('Service - Wheels off tri-axle', 'complete', 1.75), (' Diagnose - Valve bank', 'complete', 1.25)]
+    
+    UNEXPLAINED: 0
+    
+    MISSING_LINE: 0
+[18:14:23] START C-oracle-te
+[18:14:25] END C-oracle-te rc=0
+    worked 3129 Counter({'PASS': 3126, 'FAIL': 3})
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'invoice': 'S2-13010', 'report': 86.42, 'oracle': 86.39}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'invoice': 'S2-12880', 'report': 74.36, 'oracle': 74.32}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'invoice': 'S2-10867', 'report': 70.38, 'oracle': 70.35}
+    te 53 Counter({'PASS': 33, 'FAIL': 20})
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_quarter', 'technician': 'Melanie Garner', 'report_tech': 374.82, 'oracle_tech': 372.12, 'report_clocked': 347.13, 'oracle_clocked': 347.12}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_quarter', 'technician': 'Monica Brady', 'report_tech': 217.87, 'oracle_tech': 217.07, 'report_clocked': 220.3, 'oracle_clocked': 220.26}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_quarter', 'technician': 'Kenneth Oconnor', 'report_tech': 143.83, 'oracle_tech': 143.73, 'report_clocked': 173.35, 'oracle_clocked': 173.35}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_quarter', 'technician': 'Stacey Pratt', 'report_tech': 257.43, 'oracle_tech': 255.53, 'report_clocked': 298.62, 'oracle_clocked': 298.58}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_quarter', 'technician': 'David Combs', 'report_tech': 457.45, 'oracle_tech': 455.55, 'report_clocked': 435.59, 'oracle_clocked': 435.58}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'technician': 'Melanie Garner', 'report_tech': 1759.9, 'oracle_tech': 1755.6, 'report_clocked': 1633.18, 'oracle_clocked': 1633.16}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'technician': 'Monica Brady', 'report_tech': 1286.2, 'oracle_tech': 1285.4, 'report_clocked': 1370.36, 'oracle_clocked': 1370.28}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'technician': 'Kenneth Oconnor', 'report_tech': 929.53, 'oracle_tech': 928.68, 'report_clocked': 1051.32, 'oracle_clocked': 1051.25}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'technician': 'Stacey Pratt', 'report_tech': 1310.29, 'oracle_tech': 1307.29, 'report_clocked': 1441.91, 'oracle_clocked': 1441.76}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'technician': 'Daniel Montoya', 'report_tech': 1509.29, 'oracle_tech': 1509.29, 'report_clocked': 1512.5, 'oracle_clocked': 1512.35}
+[18:14:25] START C-oracle-te-incl
+[18:14:26] END C-oracle-te-incl rc=0
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'invoice': 'S2-12880', 'report': 74.36, 'oracle': 74.32}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'invoice': 'S2-10867', 'report': 70.38, 'oracle': 70.44}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'invoice': 'S2-11883', 'report': 28.18, 'oracle': 28.75}
+        {'location': 'Staging Lethbridge - 4310', 'range': 'last_12_months', 'invoice': 'S3-14513', 'report': 11.52, 'oracle': 11.56}
+    te 53 Counter({'PASS': 32, 'FAIL': 21})
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_quarter', 'technician': 'Melanie Garner', 'report_tech': 374.82, 'oracle_tech': 374.12, 'report_clocked': 347.13, 'oracle_clocked': 347.39}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_quarter', 'technician': 'Monica Brady', 'report_tech': 217.87, 'oracle_tech': 217.07, 'report_clocked': 220.3, 'oracle_clocked': 220.26}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_quarter', 'technician': 'David Combs', 'report_tech': 457.45, 'oracle_tech': 455.55, 'report_clocked': 435.59, 'oracle_clocked': 435.58}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_quarter', 'technician': 'Kenneth Oconnor', 'report_tech': 143.83, 'oracle_tech': 143.73, 'report_clocked': 173.35, 'oracle_clocked': 173.35}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_quarter', 'technician': 'Stacey Pratt', 'report_tech': 257.43, 'oracle_tech': 255.53, 'report_clocked': 298.62, 'oracle_clocked': 298.58}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'technician': 'Melanie Garner', 'report_tech': 1759.9, 'oracle_tech': 1757.6, 'report_clocked': 1633.18, 'oracle_clocked': 1633.43}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'technician': 'Monica Brady', 'report_tech': 1286.2, 'oracle_tech': 1285.9, 'report_clocked': 1370.36, 'oracle_clocked': 1370.37}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'technician': 'Darrell Martinez', 'report_tech': 1395.98, 'oracle_tech': 1395.68, 'report_clocked': 1364.82, 'oracle_clocked': 1365.34}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'technician': 'David Combs', 'report_tech': 1924.53, 'oracle_tech': 1924.63, 'report_clocked': 1938.42, 'oracle_clocked': 1938.48}
+        {'location': 'Staging Heavy Duty - 9919', 'range': 'last_12_months', 'technician': 'Cameron Johnston', 'report_tech': 930.19, 'oracle_tech': 929.19, 'report_clocked': 1054.45, 'oracle_clocked': 1054.33}
+[18:14:26] START C-oracle-atrisk
+[18:14:38] END C-oracle-atrisk rc=0
+    Staging Heavy Duty - 9919 30 dash 295 mine 295 onlyDash 0 onlyMine 0 valueDiffs 0
+    Staging Heavy Duty - 9919 60 dash 295 mine 295 onlyDash 0 onlyMine 0 valueDiffs 0
+    Staging Heavy Duty - 9919 90 dash 239 mine 239 onlyDash 0 onlyMine 0 valueDiffs 0
+    Staging Heavy Duty - 9919 120 dash 194 mine 194 onlyDash 0 onlyMine 0 valueDiffs 0
+    Staging Heavy Duty - 9919 180 dash 131 mine 131 onlyDash 0 onlyMine 0 valueDiffs 0
+    Staging Lethbridge - 4310 30 dash 369 mine 369 onlyDash 0 onlyMine 0 valueDiffs 0
+    Staging Lethbridge - 4310 60 dash 369 mine 369 onlyDash 0 onlyMine 0 valueDiffs 0
+    Staging Lethbridge - 4310 90 dash 310 mine 310 onlyDash 0 onlyMine 0 valueDiffs 0
+    Staging Lethbridge - 4310 120 dash 259 mine 259 onlyDash 0 onlyMine 0 valueDiffs 0
+    Staging Lethbridge - 4310 180 dash 180 mine 180 onlyDash 0 onlyMine 0 valueDiffs 0
+    Test Location 30 dash 0 mine 0 onlyDash 0 onlyMine 0 valueDiffs 0
+    Test Location 60 dash 0 mine 0 onlyDash 0 onlyMine 0 valueDiffs 0
+    Test Location 90 dash 0 mine 0 onlyDash 0 onlyMine 0 valueDiffs 0
+    Test Location 120 dash 0 mine 0 onlyDash 0 onlyMine 0 valueDiffs 0
+    Test Location 180 dash 0 mine 0 onlyDash 0 onlyMine 0 valueDiffs 0
