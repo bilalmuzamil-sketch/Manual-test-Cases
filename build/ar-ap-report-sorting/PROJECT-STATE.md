@@ -149,3 +149,4 @@
   their new text was verified by script equal to the TestRail read-back (237/237), which was read in full. Needs the QA lead's go-ahead
   before any TestRail write (Rules 6, 123).
 - 4 Nov 2026: QA lead ordered the project's execution run (in milestone 5) deleted: run deleted (record build/milestone-5-2026-11-03/). The cases are unchanged.
+- 4 Nov 2026 (QA lead "Yes, named sets"): applied from build/answers-2026-11-04/ (lock held, read back): 9 cases given AUTOMATION: READY - EXPECT FAIL (SV-12138..SV-12141) with the Rule 61 block.

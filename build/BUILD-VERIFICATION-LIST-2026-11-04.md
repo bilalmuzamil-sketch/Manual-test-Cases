@@ -183,3 +183,19 @@ All in run 555 (Mudassir). S6 cases are release-day cases (run on production aro
 | S3-51 | [C913764](https://shopview.testrail.io/index.php?/cases/view/913764) | A turned-off person stays picked while Work Orders stays open |
 | S3-52 | [C913765](https://shopview.testrail.io/index.php?/cases/view/913765) | A picked person who still leads shown work stays picked after turning off |
 | S3-53 | [C913766](https://shopview.testrail.io/index.php?/cases/view/913766) | A turned-off person picked in the filter drops out when Work Orders is reopened |
+
+## A/R and A/P — 4 Nov 2026, expect-fail lines (Chris's answer 17)
+Only the expect-fail note and AUTOMATION line changed. A quick run confirms each still fails the way its ticket says.
+
+| Ticket | Cases |
+|---|---|
+| [SV-12138](https://shopview.atlassian.net/browse/SV-12138) | [C715282](https://shopview.testrail.io/index.php?/cases/view/715282), [C715283](https://shopview.testrail.io/index.php?/cases/view/715283) |
+| [SV-12139](https://shopview.atlassian.net/browse/SV-12139) | [C715416](https://shopview.testrail.io/index.php?/cases/view/715416), [C715417](https://shopview.testrail.io/index.php?/cases/view/715417), [C715519](https://shopview.testrail.io/index.php?/cases/view/715519), [C715520](https://shopview.testrail.io/index.php?/cases/view/715520), [C715546](https://shopview.testrail.io/index.php?/cases/view/715546) |
+| [SV-12140](https://shopview.atlassian.net/browse/SV-12140) | [C715573](https://shopview.testrail.io/index.php?/cases/view/715573) |
+| [SV-12141](https://shopview.atlassian.net/browse/SV-12141) | [C715343](https://shopview.testrail.io/index.php?/cases/view/715343) |
+
+## What/Why — 4 Nov 2026 (Chris's Doc answer 16)
+
+| Case | Change |
+|---|---|
+| [C154708](https://shopview.testrail.io/index.php?/cases/view/154708) | Released: deleting a picked canned line's text with Backspace empties the picker; no clear (x) button. Needs a build check. |
