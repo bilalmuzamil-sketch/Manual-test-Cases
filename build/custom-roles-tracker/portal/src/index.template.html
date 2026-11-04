@@ -283,9 +283,9 @@ function ago(iso) {
 }
 function clock(iso) { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleString(undefined, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); }
 let gateShown = false, isOwner = false;
-// Update now (owner only): starts the routine "Custom Roles tracker — Update now", which has both
+// Update now (owner only): starts the task "Custom Roles tracker — Update now (manual)", which has both
 // repositories attached in its settings and runs UPDATE-RUNBOOK.md in a fresh session
-const UPDATE_TRIGGER = 'trig_011BoiAnrg1VTiMiEoY6WEWX';
+const UPDATE_TRIGGER = 'trig_01AuzwtpLUeUTjsjUEUZStv9';
 const HOW_TO_UPDATE = 'This page is updated after each release. If a new release has gone out and this page does not show it yet, please tell Bilal.';
 function lastStart() {
   return requests.filter((r) => r.kind === 'update' && r.status === 'started').sort((a, b) => String(b.at).localeCompare(String(a.at)))[0] || null;

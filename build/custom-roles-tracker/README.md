@@ -127,9 +127,10 @@ work: it reads the live release, checks it if it is new (shown at once with its 
 "waiting for approval"), saves releases approved in the portal, rebuilds the page and says whether it
 must be republished. The session then republishes the page and writes `status/freshness`.
 
-**The Update now button** (owner only) starts the routine **"Custom Roles tracker — Update now"**
-(`trig_011BoiAnrg1VTiMiEoY6WEWX`, no schedule). It has both repositories attached in its claude.ai
-Routines settings, so each run starts with the app's code and the tracker already checked out.
+**The Update now button** (owner only) starts the task **"Custom Roles tracker — Update now (manual)"**
+(`trig_01AuzwtpLUeUTjsjUEUZStv9`, trigger: API only, no schedule). The QA lead created it in claude.ai →
+Scheduled tasks on 4 Nov 2026 with both repositories attached, so each run starts with the app's code and
+the tracker already checked out. Its API token is not used by the page and must never be stored here.
 
 The page shows a bar on every tab: when it was last updated and which release was live then, with
 "This page is updated by hand after each release. If a new release has gone out and this page does not
