@@ -1,0 +1,113 @@
+{
+ "mode": "d7",
+ "zones": {
+  "key": "DVI",
+  "wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "tz": "Pacific/Fiji",
+  "name": "DVI Test",
+  "change_location": 200,
+  "zone_source": "GET /api/staff/my-workplaces (live)",
+  "process_TZ": "Pacific/Fiji",
+  "local_now": "2026-11-05T05:19:24+12:00",
+  "utc_now": "2026-11-04T17:19:24+00:00"
+ },
+ "local_today": "2026-11-05",
+ "last_month": {
+  "status": 200,
+  "params": [
+   [
+    "range",
+    "last_month"
+   ]
+  ],
+  "rows": 994,
+  "header": [
+   "InvoiceNo",
+   "Customer",
+   "InvoiceDate",
+   "DueDate",
+   "Terms",
+   "Location",
+   "Memo",
+   "Item(Product/Service)",
+   "ItemDescription",
+   "ItemQuantity",
+   "ItemRate",
+   "ItemAmount",
+   "ItemTaxCode",
+   "ItemTaxAmount",
+   "ShopView Products and Services"
+  ],
+  "hit": [
+   {
+    "InvoiceNo": "S1-38216",
+    "Customer": "ZZAUTOTEST P2D Terms",
+    "InvoiceDate": "10-29-2026",
+    "DueDate": "10-29-2026",
+    "Terms": "Net 30"
+   }
+  ]
+ },
+ "custom": {
+  "status": 200,
+  "params": [
+   [
+    "range",
+    "custom"
+   ],
+   [
+    "start_date",
+    "2026-09-30T12:00:00.000Z"
+   ],
+   [
+    "end_date",
+    "2026-10-31T11:59:59.999Z"
+   ]
+  ],
+  "rows": 994,
+  "header": [
+   "InvoiceNo",
+   "Customer",
+   "InvoiceDate",
+   "DueDate",
+   "Terms",
+   "Location",
+   "Memo",
+   "Item(Product/Service)",
+   "ItemDescription",
+   "ItemQuantity",
+   "ItemRate",
+   "ItemAmount",
+   "ItemTaxCode",
+   "ItemTaxAmount",
+   "ShopView Products and Services"
+  ],
+  "hit": [
+   {
+    "InvoiceNo": "S1-38216",
+    "Customer": "ZZAUTOTEST P2D Terms",
+    "InvoiceDate": "10-29-2026",
+    "DueDate": "10-29-2026",
+    "Terms": "Net 30"
+   }
+  ]
+ },
+ "invoice_search": {
+  "status": 404,
+  "sample": "{'errors': [{'error': \"'resource' was not found.\"}]}"
+ },
+ "server_requests": [
+  {
+   "GET": "/api/reporting/export/customer_invoice?report=customer_invoice&range=last_month",
+   "status": 200
+  },
+  {
+   "GET": "/api/reporting/export/customer_invoice?report=customer_invoice&range=custom&start_date=2026-09-30T12%3A00%3A00.000Z&end_date=2026-10-31T11%3A59%3A59.999Z",
+   "status": 200
+  },
+  {
+   "GET": "/api/invoices?search=S1-38216&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=20",
+   "status": 404
+  }
+ ]
+}

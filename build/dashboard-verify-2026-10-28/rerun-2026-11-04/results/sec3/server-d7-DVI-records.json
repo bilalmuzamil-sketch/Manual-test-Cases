@@ -1,0 +1,36 @@
+{
+ "zones": {
+  "key": "DVI",
+  "wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "tz": "Pacific/Fiji",
+  "name": "DVI Test",
+  "change_location": 200,
+  "zone_source": "GET /api/staff/my-workplaces (live)",
+  "process_TZ": "Pacific/Fiji",
+  "local_now": "2026-11-05T05:19:40+12:00",
+  "utc_now": "2026-11-04T17:19:40+00:00"
+ },
+ "invoice": {
+  "status": "pending",
+  "display_number": "S1-38216",
+  "credit_terms": "COD",
+  "due_date": "2026-10-29T00:06:23+00:00",
+  "invoice_date": null,
+  "created_at": null
+ },
+ "customer_card": {
+  "status": 200,
+  "name": "ZZAUTOTEST P2D Terms",
+  "credit_term": "Net 30"
+ },
+ "server_requests": [
+  {
+   "GET": "/api/invoices/b0099f00-7006-4f6e-94b7-14e815983958/view",
+   "status": 200
+  },
+  {
+   "GET": "/api/customers/view/64b8444e-8f5b-48d6-9cfe-0c4fa1adb4b6",
+   "status": 200
+  }
+ ]
+}
