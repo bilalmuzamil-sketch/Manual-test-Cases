@@ -6433,3 +6433,8 @@ Never commit the token.
 - **Edit Line** opens from the line's `line_title` cell (not `line_labor_name_*`); the WO kebab has Audit Log (`menu_item_audit_log`).
 - **Invoices import** on production: `/administration/invoices-import`, `button_download_template` triggers a real download (`invoices_template.csv`).
 - Roles page route is `/administration/roles-permissions`.
+- **Add Deposit payment method (proven 4 Nov 2026, staging v26.45.0-f417d48):** open `select_create_deposit_payment_method`, then click
+  `[data-test-id="option_create_deposit_payment_method_<CODE>"]` (CASH, EFT, VISA, CHECK, DEBIT_CARD …). Matching the option by its text fails:
+  each item's text starts with a hidden "check" icon word ("check Cash").
+- **A staging location's time zone can be changed under you** (DVI Test was Toronto in SV-12161, Pacific/Fiji on 4 Nov). Read
+  `/api/workplaces` before a time-zone test and restore the snapshot after (`prodloc.mjs` with ENV=staging, LOCID).
