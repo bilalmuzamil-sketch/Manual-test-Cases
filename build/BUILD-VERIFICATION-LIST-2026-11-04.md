@@ -1,4 +1,13 @@
-# Cases updated or added since 28 Oct 2026 — list for build verification (4 Nov 2026)
+# Cases updated since 28 Oct 2026, and where to build-verify them (4 Nov 2026)
+
+| Suite | Cases to verify | QA branch / environment | Why |
+|---|---|---|---|
+| Technician Toggle | 79: the 60 changed or added on 2 Nov (PRD v18) + the 19 on 4 Nov (PRD v20). All in run 555 (Mudassir). | **https://sv11788.qa.shopview.com/** (API https://sv11788api.qa.shopview.com), from Nemanja's QA handoff on SV-11879 (3 Nov). Release-day cases (S6) run on production around the 19 Nov release. | Never build-verified; the stories are in TESTING QA. |
+| Part Lifecycle | 36 (28 Oct, PRD v35) | **https://sv10647.qa.shopview.com/** (where run 556 is being executed) | Already being run by Mudassir in run 556. |
+| What/Why | 22 (28 Oct, PRD v16) + C154708 (4 Nov) | **https://app.staging.shopview.com/** (sv10130 was merged to staging; QA lead, 28 Oct) | C154708 needs a check; the 22 only if the build-verification session has not run them. |
+| A/R and A/P | 9 (4 Nov, expect-fail lines) | Not named in SV-12138..SV-12141; staging unless you know its branch | Quick run: confirm each still fails as its ticket says. |
+| Credit terms | 17 (28 Oct) | No build yet (feature not developed) | Skip for now (QA lead, 4 Nov 2026). |
+
 
 ## Technician Toggle — 2 Nov 2026, PRD v18 and Chris's answers 1-8 (54 rewritten, 6 new)
 Never build-verified (marked "Not available on Build to test Yet"). The PRD v20 set is listed in its own section below.

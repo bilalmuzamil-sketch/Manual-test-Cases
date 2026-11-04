@@ -3292,3 +3292,5 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
   cases, for creating the story defects its the job of the other session, but for now you can creatr the ticket." So: this lane writes test
   cases only. A defect found or asked for (by Product or anyone) is written up as a hand-over for the "Create defects from testrail…" session
   and the QA lead is asked to forward it; this lane does not file it. One-time exception: the four What/Why tickets of 28 Oct 2026.
+
+- 4 Nov 2026, QA lead: "Credit Terms answers are not needed at the moment as this feature is not yet developed, I want you to focus on the answers for the remaining testing suites". Credit terms sheet questions stay open but are not reminded in reports until the feature is developed.
