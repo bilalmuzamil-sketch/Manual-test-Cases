@@ -353,3 +353,6 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **15 cases TestRail MOVED out of Technician Toggle** (2026-11-04 13:03 UTC) into a new sibling folder *Founder Mode (September 2026)
   > Technician Toggle – not runnable by a manual tester* (TestRail 115074) — they are NOT extras; a folder-scoped sync shows a
   moved-out case as TMS_EXTRA. **Before calling anything an extra, look it up in all of TestRail by number and title.**
+- **Resolved:** Founder Mode resync created TMS folder **10000024** (= TestRail 115074 *Technician Toggle – not runnable by a
+  manual tester*) and **moved + updated the 15** into it (20 updates in all). **Founder Mode: 1,968 SAME, 0 folder gaps.**
+  TMS run 16 totals unchanged.
