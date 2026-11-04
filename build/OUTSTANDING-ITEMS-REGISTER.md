@@ -2350,3 +2350,14 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **RSB-6 OPEN — QA lead.** **Confluence credentials.** None were supplied to the 2026-08-28 session, so no spec was re-fetched live and provenance stamps carry the **2026-08-26 capture date** of the held spec body plus a dated re-check sentence, not a same-day live read date.
 - **RSB-7 OPEN — QA lead.** `verify.py` counts coverage from `source-verify-2026-08-26/data/live-cases.json`, a **case snapshot taken 2026-08-26**. The 2026-08-28 `refs` backfill is **not** reflected in any coverage figure it prints. Decide whether it should read the cases live.
 - **CLOSED this pass** — the 38 held Automated re-pins (Vlad cleared); the WIP `refs` backfill (23 anchors / 14 cases); the three approved case extensions (C30457, C30528 written; C43838 already correct); the two SBR content fixes (C30235, C30236) and C43821 (**re-cite NOT needed — S4a-R2 is present and unchanged in live v28; the "deleted anchor" was a tool artefact**); run **359** synced to 513 tests with all 535 results intact; both tooling bugs; Rule 62's wording.
+
+### Dashboard & Reports — SV-11839 ticket QA (added 2026-11-04, 21:25 UTC)
+- **DR-1 DONE 2026-11-04.** 12 of the 14 SV-11839 TESTING QA tickets passed on sv11839 (build v26.45.0-aacb66c) and were moved to QA Complete, with the `QAcomplete` label and Bilal added as QA Assignee. Log: `build/dashboard-verify-2026-10-28/sv11839-ticket-qa-2026-11-04/JIRA-WRITES-2026-11-04.md`.
+- **DR-2 OPEN — QA lead.** [SV-11822](https://shopview.atlassian.net/browse/SV-11822) is still in TESTING QA. Its DVI Test condition does not exist on sv11839. Recommendation: re-test on staging's DVI Test once the branch is merged there.
+- **DR-3 OPEN — QA lead.** [SV-11885](https://shopview.atlassian.net/browse/SV-11885) is still in TESTING QA. 8 of 11 downloads passed; 3 downloads and the QuickBooks part were not verified. Recommendation: ask Nemanja on SV-11885 how vendor credit memos and sales-rep assignment rows are made, then finish and pass it.
+- **DR-4 OPEN — QA lead.** Two separate issues, not filed (no source checked yet):
+  - a same-day credit memo is aged "1-30 Days" in A/R Aging (found testing [SV-11691](https://shopview.atlassian.net/browse/SV-11691));
+  - an empty Export Reports download gives no message (found testing [SV-11885](https://shopview.atlassian.net/browse/SV-11885)).
+  
+  Recommendation: ask Chris Ward first.
+- **DR-5 OPEN — QA lead (deferred by him to "after everything else").** 39(b): probably a duplicate of SV-10702. Asked in "Dashboard and Reports – questions for Chris Ward (28 Oct 2026)", Section 3, question 39.
