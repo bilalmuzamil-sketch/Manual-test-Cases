@@ -6438,3 +6438,24 @@ Never commit the token.
   each item's text starts with a hidden "check" icon word ("check Cash").
 - **A staging location's time zone can be changed under you** (DVI Test was Toronto in SV-12161, Pacific/Fiji on 4 Nov). Read
   `/api/workplaces` before a time-zone test and restore the snapshot after (`prodloc.mjs` with ENV=staging, LOCID).
+
+## §BB Work-order part requests + Clocked In counter (proven 4 Nov 2026, SV-12039 / SV-12112)
+**Request part dialog:** right-click the line title `[data-test-id="line_title"]` -> `menu-item_request_part_<lineId>` (the line kebab is a different menu).
+Part box `select_part`; options `select_option_workorder_part_<invId>-inventory_part` / `-catalogue_part`; bin qty `input_bin_quantity_<binId>`;
+source `select_workorder_part_source`; Save & Close `button_workorder_part_save`. Inline row on the Parts tab: `button_add_part` ->
+`select_inline_part_number`, `input_inline_part_quantity`, `button_save_inline_part`. Pick: `button_part_request_action`
+(-> POST /api/work-orders/part/perform-request-status-action). Search: /api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts?search=.
+**Line-break gotcha (SV-12039):** a part number holding a hidden line break used to "detach" into a Vendor new part when focus left Part Number;
+the fix strips \r\n before comparing. To reproduce, seed the part number with a line break by API (the parts screen box is one-line).
+**Seed parts:** catalog POST /api/parts-catalogue/add-catalogue-part {name,part_number,size,category,measurement,manufacturer_id,tags,category_id};
+inventory POST /api/inventory/parts/create {catalog_part_id,category_id,quantity,cost,purchase_price,sell_price,tags,workplace_id,min,max,bins:[{id,quantity,isDefault}]}.
+Line from canned line: POST /api/work-orders/{id}/lines/create-from-canned-line {canned_line_id,status:'authorized'}.
+**Clocked In column (SV-12112):** list sorts by pagination[sortBy]=clockedInTechnicians; row fields clockedInTechnicians (names) + clockedInTechniciansCount.
+Count recomputes ONLY on line check-in/out: POST /api/work-orders/tasks/create {staff_id?,line_id,work_order_id} -> POST /api/technician-tasks/check-in
+{task_id,line_id,work_order_id,refresh_lines:true}; check-out POST /api/technician-tasks/check-out {task_id:<record id>,tech_story,complete_line:false,work_order_id}.
+Hand-added open entry: Reports > Timesheet Activities (/reports/punch-clock-activities) > `button_new_timesheet` -> `select_timesheet_staff`,
+`select_timesheet_work_order`, `select_timesheet_line`, `input_timesheet_start_date` ("Nov 4, 2026 07:45 AM"), `button_save_timesheet` (API: POST /api/technician-tasks/create
+{start_date:'DD/MM/YYYY HH:mm',tech_assigned_id,work_order_id,line_id,resolve_overlaps:true}) — does NOT refresh the counter. Records:
+/api/technician-tasks/list?filters[0][field]=work_order&filters[0][value]=<id>. List view controls: `tab_all`, `page_search_toggle`, `display_option_list`,
+`filter_chip_assigned_to_me`; saved view = GET/PATCH /api/users/me/preferences/work-orders-list (restore on production).
+**REPEATED MISTAKE:** a new WO is created at the SESSION's location — POST /api/iam/change-location to the intended location before work-orders/create.
