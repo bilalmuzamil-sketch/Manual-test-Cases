@@ -208,3 +208,11 @@ Only the expect-fail note and AUTOMATION line changed. A quick run confirms each
 | Case | Change |
 |---|---|
 | [C154708](https://shopview.testrail.io/index.php?/cases/view/154708) | Released: deleting a picked canned line's text with Backspace empties the picker; no clear (x) button. Needs a build check. |
+
+## What/Why — 4 Nov 2026 (Chris's Doc answer 15: keep the "Line Approved" tick box)
+Verify on https://app.staging.shopview.com/ with Require Approval for New Lines on (Settings, then the Work Orders tab).
+
+| Case | Change |
+|---|---|
+| [C154710](https://shopview.testrail.io/index.php?/cases/view/154710) | New Line field list now includes the Line Approved tick box just above the buttons; PRD quotes re-checked against version 17. |
+| [C839513](https://shopview.testrail.io/index.php?/cases/view/839513) | Design case: the Line Approved tick box shows above the buttons although the design picture does not draw it. |
