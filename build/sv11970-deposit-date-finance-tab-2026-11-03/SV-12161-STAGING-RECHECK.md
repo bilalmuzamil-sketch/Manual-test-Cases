@@ -17,3 +17,17 @@ SV-12161's own example, read tonight at DVI Test: DEP-4823 stored 2026-11-03T00:
 Result: SV-12161 does NOT reproduce now (3 runs at North American locations incl. exact Toronto, all saved on the right day). What changed
 since 7:16 PM Toronto is NOT established: DVI Test's time zone has been changed to Pacific/Fiji by someone, and a back-end-only deploy would
 not move the front-end marker. Shared settings: Lethbridge and C614715 restored byte-for-byte; DVI Test untouched. Test data left (ZZAUTOTEST customer).
+
+## Retest as a first-time tester, following SV-12161's own steps (QA lead, 4 Nov 04:16 UTC)
+Step 2 needs DVI Test on Toronto time; it is now Pacific/Fiji (changed by someone else). For the retest DVI Test was set to America/Toronto
+and restored to Pacific/Fiji after each run (0 fields different every time). Work order S1-38222 (the ticket's), customer ZZAUTOTEST P2C DEP,
+Finance tab > Add Deposit > Payment Method Cash (selected by option_create_deposit_payment_method_CASH) > 5.00 > Record Deposit, browser on Toronto.
+| Deposit | Recorded | Deposit Date | Request / stored | Deposits tab | Right? |
+|---|---|---|---|---|---|
+| DEP-4831 | 11:22 PM Toronto 3 Nov | default 11/03/2026 | 2026-11-03T05:00Z / 2026-11-04T04:23:03Z | Today | yes |
+| DEP-4832 | 11:23 PM Toronto 3 Nov | typed 11/01/2026 | 2026-11-01T04:00Z / 2026-11-02T04:24:02Z | 2 days ago | yes |
+(Earlier the same minute-range runs with EFT: DEP-4828 Today, DEP-4829 Today, DEP-4830 dated Nov 1 "2 days ago" — all right.)
+Annotated picture: ev/sv12161-retest-deposits-tab.png. Verdict: SV-12161 does NOT reproduce on staging v26.45.0-f417d48 at 11:22 PM Toronto.
+DEP-4823 (7:16 PM) still reads "Yesterday" — stored 2026-11-03T00:16:40Z, a day early at the time. Cause of the change between 7:16 PM and
+11 PM not established (DVI Test time-zone change by someone; possible back-end deploy that does not move the front-end marker).
+Scripts fixed: dep.mjs now picks the payment method by test-id (PM env, default CASH) — the list item text carries a hidden "check" icon word.

@@ -1,0 +1,103 @@
+{
+ "env": "staging",
+ "wo": "3a8e11b5-c8dd-4506-8ee4-9e970fd70154",
+ "marker": {
+  "version": "v26.45.0-f417d48",
+  "lastModified": "Tue, 03 Nov 2026 19:42:39 GMT",
+  "etag": "W/\"a0e7d9f2088afe87dfa7d3d0281c3470\""
+ },
+ "browserNow": "Tue Nov 03 2026 23:18:12 GMT-0500 (Eastern Standard Time)",
+ "utcNow": "2026-11-04T04:18:06.465Z",
+ "screenLocation": "DVI Test",
+ "url": "https://app.staging.shopview.com/workorders/3a8e11b5-c8dd-4506-8ee4-9e970fd70154/finance",
+ "woLocation": {
+  "number": "S-38222",
+  "display_number": "S1-38222",
+  "status_value": "approved",
+  "status": "Approved",
+  "workplace_id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+  "invoice_status": "null"
+ },
+ "payBefore": [
+  "(Deposit) Oct 27, 2026 - Cash",
+  "(Deposit) Oct 28, 2026 - Cash",
+  "(Deposit) Oct 29, 2026 - Cash",
+  "(Deposit) Oct 29, 2026 - Cash",
+  "(Deposit) Nov 3, 2026 - Cash"
+ ],
+ "modal": {
+  "text": "Create Deposit | close | event | Deposit Date | Payment Method | arrow_drop_down | $ | Deposit Amount | Reference Number | Memo | Cancel | Collect In Portal | Record Deposit",
+  "inputs": [
+   "date_input_create_deposit_date=11/03/2026",
+   "select_create_deposit_payment_method=",
+   "input_create_deposit_amount=",
+   "input_create_deposit_reference="
+  ]
+ },
+ "modalFilled": [
+  "date_input_create_deposit_date=11/03/2026",
+  "select_create_deposit_payment_method=EFT",
+  "input_create_deposit_amount=5.00",
+  "input_create_deposit_reference="
+ ],
+ "submitBtn": {
+  "t": "Record Deposit",
+  "x": 937.2421875,
+  "y": 626.4921875
+ },
+ "caps": [
+  {
+   "m": "POST",
+   "u": "/api/deposits",
+   "st": 201,
+   "req": "{\"workOrderId\":\"3a8e11b5-c8dd-4506-8ee4-9e970fd70154\",\"amount\":5,\"paymentMethod\":\"EFT\",\"depositDate\":\"2026-11-03T05:00:00.000Z\",\"memo\":\"Deposit for Work Order S1-38222\"}",
+   "res": "{\"data\":{\"id\":\"daea4f3e-9603-4e8b-9540-83e14cb88ca7\",\"creditNumber\":\"DEP-4828\",\"amount\":5,\"paymentMethod\":\"EFT\",\"depositDate\":\"2026-11-04T04:18:28Z\",\"referenceNumber\":null,\"memo\":\"Deposit for Work Order S1-38222\",\"status\":\"held\",\"workOrderId\":\"3a8e11b5-c8dd-4506-8ee4-9e970fd70154\",\"replayed\":false}}"
+  },
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b21v9250300735za208zd9250300735xf1&_p=1793765925373&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=1029076262.1793765879&frm=0&ngs=1&pscdl=noapi&rcb=9&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=1&tag_exp=115616986~115938465~115938468~118897920~118897930~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123691370~123814944&sid=1793765879&sct=1&seg=1&dl=https%3A%2F%2Fapp.staging.shopview.com%2Fcustomers%2Fa63836b3-ae77-4bb9-8f13-3784e0e22212%2Fdeposits&dt=ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=428",
+   "st": 204,
+   "req": null,
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b21v9250300735za200zd9250300735xf1&_p=1793765925373&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=1029076262.1793765879&frm=0&ngs=1&pscdl=noapi&rcb=9&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=2&tag_exp=115616986~115938465~115938468~118897920~118897930~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123691370~123814944&dp=%2Fcustomers%2Fa63836b3-ae77-4bb9-8f13-3784e0e22212%2Fdeposits&dt=CustomerDepositsTab&dl=https%3A%2F%2Fapp.staging.shopview.com%2Fcustomers%2Fa63836b3-ae77-4bb9-8f13-3784e0e22212%2Fdeposits&sid=1793765879&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&tfd=5430",
+   "st": 204,
+   "req": null,
+   "res": ""
+  }
+ ],
+ "toasts": [
+  "check_circle A deposit was created Close"
+ ],
+ "payAfter": [
+  "(Deposit) Oct 27, 2026 - Cash",
+  "(Deposit) Oct 28, 2026 - Cash",
+  "(Deposit) Oct 29, 2026 - Cash",
+  "(Deposit) Oct 29, 2026 - Cash",
+  "(Deposit) Nov 3, 2026 - Cash",
+  "(Deposit) Nov 4, 2026 - EFT"
+ ],
+ "pdf": "/home/user/Manual-test-Cases/build/sv11970-deposit-date-finance-tab-2026-11-03/ev/stg12161-retest-ticket-steps/4-downloaded.pdf",
+ "pdfDeposit": [
+  "(Deposit) Oct 27, 2026 - Cash                           $5.00",
+  "disposed of unless otherwise requested. The customer is responsible for payment upon         (Deposit) Oct 28, 2026 - Cash                           $5.00",
+  "specific parts and services provided.By authorizing repairs or services, the customer        (Deposit) Oct 29, 2026 - Cash                           $5.00",
+  "inspection and may change if additional issues are discovered. No additional work will       (Deposit) Oct 29, 2026 - Cash                         $10.00",
+  "responsible for loss or damage to personal items left in the vehicle. Completion dates       (Deposit) Nov 3, 2026 - Cash                            $5.00",
+  "Replaced parts may be disposed of unless otherwise requested. The customer is                (Deposit) Nov 4, 2026 - EFT                             $5.00"
+ ],
+ "pdfDates": [],
+ "cid": "a63836b3-ae77-4bb9-8f13-3784e0e22212",
+ "woNumber": "S-38222",
+ "depRows": [
+  "Today DEP-4828 S1-38222 $5.00 $0.00 $5.00 EFT Held Deposit for Work Order S1-3822.. delete",
+  "Today DEP-4826 S1-38350 $5.00 $0.00 $5.00 EFT Held Deposit for Work Order S1-3835.. delete",
+  "Yesterday DEP-4823 S1-38222 $5.00 $0.00 $5.00 CASH Held Deposit for Work Order S1-3822.. delete",
+  "Oct 29, 2026 DEP-4819 S1-38222 $10.00 $0.00 $10.00 CASH Held Deposit for Work Order S1-3822.. delete",
+  "Oct 28, 2026 DEP-4821 S1-38222 $5.00 $0.00 $5.00 CASH Held Deposit for Work Order S1-3822.. delete",
+  "Oct 27, 2026 DEP-4822 S1-38222 $5.00 $0.00 $5.00 CASH Held Deposit for Work Order S1-3822.. delete",
+  "Oct 27, 2026 DEP-4820 S1-38222 $5.00 $0.00 $5.00 CASH Held Deposit for Work Order S1-3822.. delete"
+ ]
+}

@@ -1,0 +1,11 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const rs=f=>fs.readFileSync('/tmp/staging/'+f,'utf8').trim();
+const s=await open({env:'staging',cookies:{sv_sso_session:rs('sso'),PHPSESSID:rs('phpsess'),cf_clearance:rs('cfc')},quick:'admin',dir:'/tmp/qa53',vp:{width:1440,height:900}});
+const p=s.page; const {setLoc}=await import('./loc.mjs'); await setLoc(s,'DVI Test');
+await s.go('/workorders/3a8e11b5-c8dd-4506-8ee4-9e970fd70154/finance'); await p.waitForTimeout(6000);
+await p.click('[data-test-id="button_new_deposit"]'); await p.waitForTimeout(1500);
+await p.click('[data-test-id="select_create_deposit_payment_method"]'); await p.waitForTimeout(1200);
+console.log(JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item, [role=option]')].map(e=>e.innerText.trim()+' | '+(e.getAttribute('data-test-id')||'')))));
+await p.keyboard.type('cash'); await p.waitForTimeout(1200);
+console.log('after typing',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item, [role=option]')].map(e=>e.innerText.trim()))));
+await s.close(); process.exit(0);
