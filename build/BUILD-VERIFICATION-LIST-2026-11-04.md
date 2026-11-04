@@ -216,3 +216,8 @@ Verify on https://app.staging.shopview.com/ with Require Approval for New Lines 
 |---|---|
 | [C154710](https://shopview.testrail.io/index.php?/cases/view/154710) | New Line field list now includes the Line Approved tick box just above the buttons; PRD quotes re-checked against version 17. |
 | [C839513](https://shopview.testrail.io/index.php?/cases/view/839513) | Design case: the Line Approved tick box shows above the buttons although the design picture does not draw it. |
+
+## Part Lifecycle — 4 Nov 2026, new cases for PRD v36 and SV-12010 (verify on https://sv10647.qa.shopview.com/)
+C913767 (S6-R5 count sheet order), C913768 and C913769 (S11-R3c new Delete blockers), C913770 (S13-R19a) — in run 556.
+C913771, C913772 (SV-12010) — held, not in the run, until the ticket ships.
+The 9 existing cases to check against v36 are in build/handoffs/PART-LIFECYCLE-PRD-V36-FOR-BUILD-VERIFICATION-2026-11-04.md.

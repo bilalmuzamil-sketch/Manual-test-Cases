@@ -25,12 +25,17 @@ SV-12105, SV-12110 and SV-12115). Only three requirement lines changed from vers
 | [C425700](https://shopview.testrail.io/index.php?/cases/view/425700) | A delivery opened before a rename is received under the new number | S13-R19a | Quote; a part request picked from the Part Library takes the new number |
 | [C839447](https://shopview.testrail.io/index.php?/cases/view/839447) | A hand-typed purchase order line is received under its own number | S13-R19a | Quote; contrast with a Part Library-picked part request |
 
-## New behaviour no existing case covers (drafts in build/founder-mode/part-lifecycle/authoring/, not in TestRail)
-- S6-R5: the printed count sheet follows the Total Qty order (draft S6-11).
-- S11-R3c: Delete disabled while a work order line that received the part uses the entry; while a credited part return uses it (drafts S11-22, S11-23).
-  An open part return as a blocker is not reachable by hand.
-- S13-R19a: a part request added by picking the part's Part Library result is linked and takes the new number (draft S13-50).
-- SV-12010 (Board Backlog): a received vendor-bill line changed to an inactive part's number is refused with "{part number} is inactive.
-  Activate it from the Inactive tab to use it." (drafts S9-50, S9-51, held until the ticket ships).
+## New test cases created 4 Nov 2026 (this lane) — please build-verify
+
+| Case | Title | PRD / ticket | In run 556 |
+|---|---|---|---|
+| [C913767](https://shopview.testrail.io/index.php?/cases/view/913767) | The printed count sheet follows the Total Qty sort order | S6-R5 | Yes |
+| [C913768](https://shopview.testrail.io/index.php?/cases/view/913768) | Delete stays disabled while a work order line received the entry's part | S11-R3c | Yes |
+| [C913769](https://shopview.testrail.io/index.php?/cases/view/913769) | Delete stays disabled while a credited return uses the entry | S11-R3c | Yes |
+| [C913770](https://shopview.testrail.io/index.php?/cases/view/913770) | A part request picked from the Part Library result takes the new number | S13-R19a | Yes |
+| [C913771](https://shopview.testrail.io/index.php?/cases/view/913771) | A received vendor bill line refuses an inactive part's typed number | SV-12010 | No — held until SV-12010 ships |
+| [C913772](https://shopview.testrail.io/index.php?/cases/view/913772) | A vendor bill line holding a part later set inactive still saves | SV-12010 | No — held until SV-12010 ships |
+
+An open part return as a Delete blocker (S11-R3c) is not reachable by hand, so it has no case.
 
 Run: 556 "Part Lifecycle - Execution" (Mudassir), QA branch https://sv10647.qa.shopview.com/.
