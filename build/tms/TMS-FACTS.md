@@ -382,3 +382,9 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **QA lead (2026-11-04): "1. (a) 2. yes".** Mudassir's TestRail → TMS result copies run **only when he asks** (no schedule).
   **TMS runs 6 "Splitting Sales Representatives - Execution" and 8 "Credit terms - Execution" unassigned from Bilal**;
   no TMS run is assigned to Bilal now. Mudassir may sign in within the hour; on the QA lead's word, assign TMS runs 7, 16, 17.
+- **Mudassir signed in (QA lead, 2026-11-04).** TMS **converted the placeholder itself** — user 6 is now active,
+  `is_placeholder: false` — so **no admin merge was needed** (fact: first Google sign-in by an imported person upgrades
+  their placeholder in place). **TMS runs 7 "A/R and A/P Report Sorting, Export and Location Filter - Execution",
+  16 "Technician Toggle - Execution", 17 "Part Lifecycle - Execution" + all their cases (356 / 192 / 580) → Mudassir**;
+  every status, result and total verified unchanged. **TMS milestone 5 now matches TestRail milestone 5 in runs, cases
+  and assignees.**
