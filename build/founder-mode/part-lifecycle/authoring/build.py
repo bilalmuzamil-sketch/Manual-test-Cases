@@ -140,6 +140,7 @@ print("User Feedback Summary messages checked", ufs_checked, "| no manual case",
 for c in L.CASES:
     k = c["key"]; f = L.render(c); pre, st, ex = f["custom_preconds"], f["custom_steps"], f["custom_expected"]
     H = "<p><strong>Preconditions</strong></p><ul>"
+    if c.get("banner"): pre = pre.replace(f"<p><strong>{L.e(c['banner'])}</strong></p>", "", 1) if hasattr(L, "e") else pre   # QA lead 4 Nov 2026: release-blocked banner at the top
     if not pre.startswith(H) or not pre.endswith("</ul>") or re.sub(r"<li>.*?</li>", "", pre[len(H):-5], flags=re.S): P(f"{k}: Preconditions are not a heading and one bullet list")
     if ex.count("AUTOMATION: ") != 1 or not ex.endswith(f"<p>{L.e(c['marker'])}</p>"): P(f"{k}: AUTOMATION line not single and last")
     if not ex.startswith("<p><strong>Expected Result</strong></p>"): P(f"{k}: no Expected Result heading")

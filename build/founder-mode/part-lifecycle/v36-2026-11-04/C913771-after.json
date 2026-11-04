@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1793769325,
  "updated_by": 3,
- "updated_on": 1793769325,
+ "updated_on": 1793769668,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create a part for this test, part A, with a hyphen in its part number, and set it inactive.</li><li>Create a received vendor bill for this test, bill A, with one special-order line, line 1, whose part number was typed by hand and matches no part at the test location.</li><li>Start on bill A (Parts in the top bar, Vendor Invoices in the left menu, then bill A).</li></ul>",
+ "custom_preconds": "<p><strong>BLOCKED ON RELEASE: this test checks SV-12010 (Vendor bill: refuse an inactive part's number on a received line), which is not released yet. Do not run it now. It can be tested once SV-12010 is released.</strong></p><p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create a part for this test, part A, with a hyphen in its part number, and set it inactive.</li><li>Create a received vendor bill for this test, bill A, with one special-order line, line 1, whose part number was typed by hand and matches no part at the test location.</li><li>Start on bill A (Parts in the top bar, Vendor Invoices in the left menu, then bill A).</li></ul>",
  "custom_steps": "<ol><li>Click line 1's part number to change it.</li><li>Replace line 1's part number with part A's part number in lower case.</li><li>Click Save.</li><li>Replace the text with part A's part number with periods in place of its hyphens.</li><li>Click Save.</li><li>Reload the page.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Line 1's part number can be changed.</li></ul><p>Step 2:</p><ul><li>The field holds part A's number in lower case.</li></ul><p>Step 3:</p><ul><li>The save is refused with a message: part A's part number, written as it was saved (capitals and hyphens), followed by \"is inactive. Activate it from the Inactive tab to use it.\"</li><li>Line 1 keeps its own typed number.</li></ul><p>Step 4:</p><ul><li>The field holds part A's number with periods.</li></ul><p>Step 5:</p><ul><li>The save is refused again with the same message, part A's part number followed by \"is inactive. Activate it from the Inactive tab to use it.\": upper and lower case and periods make no difference.</li></ul><p>Step 6:</p><ul><li>Bill A reloads and line 1 still shows its own typed number: neither change was saved.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 36 (3 Nov 2026, Chris Ward), read 4 Nov 2026 &middot; Epic SV-10647, story SV-10822 (Story 9, Inactive Parts Cannot Be Added to New Work)</p><ul><li><strong>S9-R17:</strong> &ldquo;The system refuses an inactive part on new work however it arrives: adding a part to a work order or estimate line, raising a part request or special order, adding a part sale line, and adding a purchase order line or changing its part or number. The refusal reads \"{part number} is inactive. Activate it from the Inactive tab to use it.\"&rdquo;</li></ul><p>From: Jira SV-12010 \"Vendor bill: refuse an inactive part's number on a received line\" (Task, Board Backlog, requested by Chris Ward in SV-10647 comment 79703; saved word for word in sources/jira-2026-11-04/SV-12010-2026-11-04.md), read 4 Nov 2026</p><ul><li><strong>SV-12010, Expected:</strong> &ldquo;The save is refused with \"{part number} is inactive. Activate it from the Inactive tab to use it.\", as S9-R17 does for purchase order lines.&rdquo;</li><li><strong>SV-12010, Expected:</strong> &ldquo;Same match as S9-R17: upper and lower case, hyphens, asterisks, periods and spaces are ignored; a number an active part at this location also has is not refused.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: no board draws a vendor bill; the expected results above come from the quotes above.</p><p></p><p>AUTOMATION: HOLD - SV-12010 is not built yet (Board Backlog, 4 Nov 2026); release when it ships</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

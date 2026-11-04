@@ -188,7 +188,7 @@ def board(no):
 
 # ---------------------------------------------------------------- the case model
 CASES = []
-def C(key, sec, title, pre, steps, res, q, note="", marker=None, design=None, stories=None, claude=None, part_of=None, prd=33):
+def C(key, sec, title, pre, steps, res, q, note="", marker=None, design=None, stories=None, claude=None, part_of=None, prd=33, banner=""):
     """key: library key (testrail-id-map.csv gives its C-id; a key with no row is a NEW case). sec: S1..S13, IV or DESIGN.
     pre: plain precondition bullets (tester text). steps: one UI action each. res: one entry per step, a list of bullets (or one str).
     q: quotes — a PRD code ("S1-R1"), a NAMED key ("UFS-40", "CN-S4-1", "FO-7"), or a tuple (doc, label, verbatim text) with doc in
@@ -200,7 +200,7 @@ def C(key, sec, title, pre, steps, res, q, note="", marker=None, design=None, st
     if prd not in PRDV: raise SystemExit(f"{key}: no PRD version {prd}")
     res = [[r] if isinstance(r, str) else list(r) for r in res]
     CASES.append(dict(key=key, sec=sec, title=title, pre=list(pre), steps=list(steps), res=res, q=list(q), note=note,
-                      marker=marker or MARKER, design=design or {}, stories=stories, claude=claude or [], part_of=part_of, prd=prd))
+                      marker=marker or MARKER, design=design or {}, stories=stories, claude=claude or [], part_of=part_of, prd=prd, banner=banner))
 
 def quotes(c):
     """[(doc, label, text)] for a case, each looked up or checked verbatim."""
@@ -297,6 +297,7 @@ def render(c):
     "Step N:" paragraph and bullets per step; <p></p>; the note; the quotes with their From lines; the build line; References from Design;
     the AUTOMATION line last."""
     pre = "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(x)}</li>" for x in c["pre"]) + "</ul>"
+    if c.get("banner"): pre = f"<p><strong>{e(c['banner'])}</strong></p>" + pre   # QA lead, 4 Nov 2026: a release-blocked case says so at the TOP
     exp = ("<p><strong>Expected Result</strong></p>"
            + "".join(f"<p>Step {i}:</p><ul>" + "".join(f"<li>{e(x)}</li>" for x in r) + "</ul>" for i, r in enumerate(c["res"], 1))
            + "<p></p>" + (f"<p>{e(c['note'])}</p>" if c["note"] else "")

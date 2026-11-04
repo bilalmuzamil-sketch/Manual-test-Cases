@@ -494,6 +494,9 @@ C("S9-49", "S9", "Global search never lists a part's core",
 
 # ---------------------------------------------------------------- 4 Nov 2026: Jira SV-12010 (not built yet; held, out of the run)
 H12010 = HOLD("SV-12010 is not built yet (Board Backlog, 4 Nov 2026); release when it ships")
+# QA lead, 4 Nov 2026: "Any test case that is blocked on the release on SV 12010 ... should have a clear statement at the TOP"
+B12010 = ("BLOCKED ON RELEASE: this test checks SV-12010 (Vendor bill: refuse an inactive part's number on a received line), which is not "
+          "released yet. Do not run it now. It can be tested once SV-12010 is released.")
 Q12010_R = J12010("The save is refused with \"{part number} is inactive. Activate it from the Inactive tab to use it.\", as S9-R17 does for purchase order lines.")
 Q12010_M = J12010("Same match as S9-R17: upper and lower case, hyphens, asterisks, periods and spaces are ignored; a number an active part at this location also has is not refused.")
 Q12010_E = J12010("A line that already holds an inactive part can still be saved with its own number (S9-E2).")
@@ -512,7 +515,7 @@ C("S9-50", "S9", "A received vendor bill line refuses an inactive part's typed n
    ["The field holds part A's number with periods."],
    [f"The save is refused again with the same message, part A's part number followed by \"{MSG}\": upper and lower case and periods make no difference."],
    ["Bill A reloads and line 1 still shows its own typed number: neither change was saved."]],
-  [Q12010_R, Q12010_M, "S9-R17"], stories=[9], prd=36, marker=H12010,
+  [Q12010_R, Q12010_M, "S9-R17"], stories=[9], prd=36, marker=H12010, banner=B12010,
   design=dict(note="no board draws a vendor bill; the expected results above come from the quotes above."),
   claude=["Bill A: an open purchase order with one line where ZZAUTOTEST-PL-S9-50-SO was typed by hand and added as typed, received on a vendor invoice; that invoice is bill A.",
           "SV-12010 also says \"a number an active part at this location also has is not refused\"; one location cannot hold two look-alike numbers through the screens (S7-N3, S13-N1), so no manual step checks it.",
@@ -526,7 +529,7 @@ C("S9-51", "S9", "A vendor bill line holding a part later set inactive still sav
   [["Line 1's part number can be changed and still holds part A."],
    [f"The save goes through with part A's own number: no \"{MSG}\" message shows."],
    ["Bill A reloads and line 1 still holds part A."]],
-  [Q12010_E, "S9-E2"], stories=[9], prd=36, marker=H12010,
+  [Q12010_E, "S9-E2"], stories=[9], prd=36, marker=H12010, banner=B12010,
   design=dict(note="no board draws a vendor bill; the expected results above come from the quotes above."),
   claude=["Bill A: a purchase order from any vendor with one line for it picked from the lookup, received on a vendor invoice (bill A); then Inventory, part, Inactive, Save, Deactivate.",
           "Held 4 Nov 2026 (QA lead: \"Yes, held\"); not in run 556 until SV-12010 ships."])
