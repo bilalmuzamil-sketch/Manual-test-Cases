@@ -1,4 +1,4 @@
-# SV-11970 — Finance tab and invoice show a deposit on the wrong day (IN PROGRESS)
+# SV-11970 — Finance tab and invoice show a deposit on the wrong day — PASSED
 
 Ticket: https://shopview.atlassian.net/browse/SV-11970 (ours; developer Dusan Radulovic; status TESTING QA).
 QA branch https://sv11970.qa.shopview.com — front end build v26.43.3-551fa20 (read 3 Nov 12:2x UTC).
@@ -56,5 +56,21 @@ ev/before-after-finance-deposit-date.png (scripts/ex_before_after.py, /usr/bin/p
 Observation, explained (not a defect): DEP-4703 was recorded at Edmonton time dated 3 Nov; after the location was moved to
 Kiritimati it lists as "Today" (4 Nov). That is our own time-zone change after the fact, not a user flow.
 
-Still to run: the behind-UTC EVENING case (the ticket's own
-report) — not producible before 00:00 UTC 4 Nov; scheduled check-in trig_01T7aKNRRJQntLkCuqJAxLHW at 00:25 UTC.
+## Evening case (the ticket's own report) — run 4 Nov 00:28–00:37 UTC (3 Nov evening in North America)
+Production BEFORE (v26.45.0-8e138e1): location ZZAUTOTEST C614715 Empty Location set to America/Toronto (restored to Asia/Karachi
+after, 0 fields different), browser on Toronto time, 7:29 PM 3 Nov. S-1916, DEP-5039, Deposit Date default 11/03/2026.
+Request depositDate "2026-11-03T05:00:00.000Z"; stored "2026-11-04T00:29:22Z". Finance tab "(Deposit) Nov 4, 2026" and PDF
+"(Deposit) Nov 4, 2026" while the same document reads "Invoice Date: Nov 3, 2026"; Deposits tab "Today" (3 Nov). REPRODUCED.
+Branch (v26.43.3-551fa20 — the branch API had gone to sleep at 00:30 UTC; woken with toggleQaEnv, same build after):
+| Cell | Time | Deposit Date | stored | Finance tab | PDF | Deposits/Payments tab | Invoice | Result |
+|---|---|---|---|---|---|---|---|---|
+| EV1 S11970-17586 DEP-4709 | Edmonton 5:33 PM 3 Nov (UTC 4 Nov) | default 11/03/2026 | 2026-11-04T00:33:36Z | Nov 3 | Nov 3 | Today | INV-S11970-17586 Finance + PDF: deposit Nov 3, invoice date Nov 3 | PASS |
+| EV2 S11970-17587 DEP-4710 | Edmonton 5:34 PM 3 Nov | typed 11/02/2026 | 2026-11-03T00:34:59Z | Nov 2 | Nov 2 | Yesterday | (estimate only) | PASS |
+Before/after picture: ev/before-after-evening.png (scripts/ex_evening.py). Close-up: ev/branch-EV1-invoiced/6-finance-deposit-line.png.
+
+Side note for the QA lead (bucket b, already tracked): SV-12161 (filed 3 Nov 19:25 CDT, staging v26.45.0-f417d48) says an
+evening North American deposit is SAVED a day early (Deposits tab "Yesterday"). In these runs the stored values and the
+Deposits tab were right: production 7:29 PM Toronto -> "Today"; branch 5:33 PM Edmonton -> "Today", dated-2-Nov -> "Yesterday".
+Not posted on SV-12161 (not asked).
+
+## Verdict: PASSED (all 7 branch cells + production before reproduced for both directions).
