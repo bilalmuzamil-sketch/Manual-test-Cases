@@ -11,6 +11,7 @@ const out = { app_version, range: RANGE, rule99_start: rule99, files: [] };
 await page.goto(APP + '/reports/sales', { waitUntil: 'domcontentloaded', timeout: 90000 }); await sleep(9000);
 for (const name of REPORTS) {
   try {
+    await page.goto(APP + '/reports/sales', { waitUntil: 'domcontentloaded', timeout: 90000 }); await sleep(7000);   // fresh page per download (the link is not clickable again after a download)
     await page.getByText('Export Reports', { exact: true }).first().click(); await sleep(2500);
     const dlg = page.locator('.q-dialog').last();
     await dlg.locator('[data-test-id="select_report_name"]').first().click(); await sleep(1000); await page.getByRole('option', { name, exact: true }).first().click(); await sleep(1000);

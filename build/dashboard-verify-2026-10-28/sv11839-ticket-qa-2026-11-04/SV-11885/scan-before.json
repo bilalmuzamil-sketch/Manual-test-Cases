@@ -1,0 +1,268 @@
+{
+ "Customer_Contact__customer_contact.csv": {
+  "rows": 5,
+  "columns": [
+   "Name",
+   "Company",
+   "Customer Type",
+   "Email",
+   "Phone",
+   "Mobile",
+   "Fax",
+   "Website",
+   "Street",
+   "City",
+   "Province",
+   "Postal Code",
+   "Country",
+   "Opening Balance",
+   "Date",
+   "Bus. No."
+  ],
+  "unguarded": [],
+  "guarded": [
+   [
+    6,
+    "Name",
+    "'@Contact Test"
+   ],
+   [
+    6,
+    "Company",
+    "'=1+1"
+   ]
+  ],
+  "double": [],
+  "guarded_number": [],
+  "numbers_signed": 0
+ },
+ "Customer_Credit_Memo__customer_credit_memo.csv": {
+  "rows": 2,
+  "columns": [
+   "Adjustment Note No",
+   "Customer",
+   "Adjustment Note Date",
+   "Memo",
+   "Mailing Address Line 1",
+   "Global Tax Calculation",
+   "Product/Service",
+   "Product/Service Description",
+   "Product/Service Amount",
+   "Product/Service Tax Code",
+   "Message displayed on credit memo"
+  ],
+  "unguarded": [],
+  "guarded": [
+   [
+    3,
+    "Customer",
+    "'=1+1"
+   ]
+  ],
+  "double": [],
+  "guarded_number": [],
+  "numbers_signed": 0
+ },
+ "Customer_Invoice__customer_invoice.csv": {
+  "rows": 32,
+  "columns": [
+   "InvoiceNo",
+   "Customer",
+   "InvoiceDate",
+   "DueDate",
+   "Terms",
+   "Location",
+   "Memo",
+   "Item(Product/Service)",
+   "ItemDescription",
+   "ItemQuantity",
+   "ItemRate",
+   "ItemAmount",
+   "ItemTaxCode",
+   "ItemTaxAmount",
+   "ShopView Products and Services"
+  ],
+  "unguarded": [],
+  "guarded": [
+   [
+    17,
+    "Customer",
+    "'=1+1"
+   ],
+   [
+    18,
+    "Customer",
+    "'=1+1"
+   ],
+   [
+    19,
+    "Customer",
+    "'=1+1"
+   ]
+  ],
+  "double": [],
+  "guarded_number": [],
+  "numbers_signed": 0
+ },
+ "Customer_Payment__customer_payment.csv": {
+  "rows": 6,
+  "columns": [
+   "Ref No",
+   "Payment Date",
+   "Customer",
+   "payment method",
+   "Invoice No",
+   "Journal No",
+   "Amount",
+   "Reference No",
+   "Memo",
+   "Currency Code",
+   "Exchange Rate",
+   "Deposit To Account Name"
+  ],
+  "unguarded": [],
+  "guarded": [
+   [
+    4,
+    "Customer",
+    "'=1+1"
+   ]
+  ],
+  "double": [],
+  "guarded_number": [],
+  "numbers_signed": 0
+ },
+ "Journal_Entry__journal_entry.csv": {
+  "rows": 8,
+  "columns": [
+   "Journal No",
+   "Journal Date",
+   "Account",
+   "Amount",
+   "Description",
+   "Location",
+   "Class",
+   "Is Adjustment"
+  ],
+  "unguarded": [],
+  "guarded": [],
+  "double": [],
+  "guarded_number": [],
+  "numbers_signed": 4
+ },
+ "Payroll_Timesheet__payroll_timesheet.csv": {
+  "rows": 9,
+  "columns": [
+   "Employee Name",
+   "Date",
+   "Total Hours",
+   "WO Hours",
+   "Internal Hours"
+  ],
+  "unguarded": [],
+  "guarded": [],
+  "double": [],
+  "guarded_number": [],
+  "numbers_signed": 0
+ },
+ "Sales_Representative_Assignments__sales-representative-assignments.csv": {
+  "rows": 1859,
+  "columns": [
+   "Customer Name",
+   "Sales Representative",
+   "Representative is active?"
+  ],
+  "unguarded": [],
+  "guarded": [],
+  "double": [],
+  "guarded_number": [],
+  "numbers_signed": 0
+ },
+ "Vendor_Bill_Payment__vendor_bill_payment.csv": {
+  "rows": 2,
+  "columns": [
+   "Ref No",
+   "Vendor",
+   "Payment Date",
+   "Bank or CC Account",
+   "Memo",
+   "Bill No",
+   "Amount"
+  ],
+  "unguarded": [],
+  "guarded": [
+   [
+    2,
+    "Vendor",
+    "'-Test Vendor"
+   ],
+   [
+    3,
+    "Vendor",
+    "'-Test Vendor"
+   ]
+  ],
+  "double": [],
+  "guarded_number": [],
+  "numbers_signed": 1
+ },
+ "Vendor_Bill__vendor_bill.csv": {
+  "rows": 7,
+  "columns": [
+   "*BillNo",
+   "*Supplier",
+   "*BillDate",
+   "*DueDate",
+   "Terms",
+   "Location",
+   "Memo",
+   "*LineAmount",
+   "LineTaxAmount",
+   "*Account",
+   "LineDescription",
+   "*LineTaxCode"
+  ],
+  "unguarded": [],
+  "guarded": [
+   [
+    8,
+    "*Supplier",
+    "'-Test Vendor"
+   ]
+  ],
+  "double": [],
+  "guarded_number": [],
+  "numbers_signed": 0
+ },
+ "Vendor_Contact__vendor_contact.csv": {
+  "rows": 1,
+  "columns": [
+   "City",
+   "Name",
+   "Company",
+   "Email",
+   "Phone",
+   "Mobile",
+   "Fax",
+   "Website",
+   "Street",
+   "Province",
+   "Postal Code",
+   "Country",
+   "Opening Balance",
+   "Date",
+   "Bus. No."
+  ],
+  "unguarded": [],
+  "guarded": [
+   [
+    2,
+    "Company",
+    "'-Test Vendor"
+   ]
+  ],
+  "double": [],
+  "guarded_number": [],
+  "numbers_signed": 0
+ }
+}
