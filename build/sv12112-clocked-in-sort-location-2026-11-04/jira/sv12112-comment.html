@@ -1,0 +1,23 @@
+<div data-type="panel-success"><p><strong>OVERALL QA STATUS: PASSED</strong></p></div>
+<p>Tested on the QA branch <a href="https://sv12112.qa.shopview.com">sv12112</a> (build v26.45.0-279650f) on 4 Nov 2026, and compared with production (build v26.45.0-8e138e1).</p>
+<p>Sorting the Work Orders list by <code>Clocked In</code> now follows the people the column shows. Clock-ins made at another location no longer push a work order up the list. On production they still do: a work order showing nobody sorts to the top.</p>
+<p><strong>Before and after: Work Orders &gt; All, sorted by Clocked In, most first</strong></p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="90966051-b145-41e8-a34b-564ea07fa22c" data-collection="upload-user-collection-1343233018" data-alt="before-after-clocked-in-sort.png"></div></figure>
+<p><strong>Steps I followed</strong></p>
+<ol>
+<li>Clock technicians in on work order lines, some at the work order's own location and some at another location.</li>
+<li>Go to <code>Work Orders</code>, open the <code>All</code> tab, search for the test work orders and click the <code>Clocked In</code> column heading (most first), then again (fewest first).</li>
+<li>Compare the order of the rows with the names shown in the <code>Clocked In</code> column.</li>
+</ol>
+<p><strong>What was checked</strong></p>
+<table><tbody>
+<tr><th><p>#</p></th><th><p>What was checked</p></th><th><p>Result on the branch</p></th><th><p>Status</p></th></tr>
+<tr><td><p>1</p></td><td><p>Work order with 3 people clocked in only at another location (S12112-17580)</p></td><td><p>Shows nobody and sorts with the empty rows. Production (S2-1918): shows nobody but sorts first.</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>2</p></td><td><p>Work order with 1 person here and 2 at another location (S12112-17582)</p></td><td><p>Shows 1 person and sorts after the work order with 2 people. Production (S2-1919): shows 1 person but sorts above S2-1920 (2 people).</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>3</p></td><td><p>Work order with 2 people clocked in here (S12112-17585)</p></td><td><p>Shows 2 people and sorts first</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>4</p></td><td><p>Sort fewest first</p></td><td><p>Empty rows first, then 1 person, then 2 people</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>5</p></td><td><p>Work order that belongs to the other location (S12112-17581), with 2 clock-ins made from this location, viewed from its own location</p></td><td><p>Counted as 0, so it sorts with the empty rows there</p></td><td><p><strong>PASSED</strong></p></td></tr>
+<tr><td><p>6</p></td><td><p>The count updates after a technician clocks in and out on the work order</p></td><td><p>The count goes up on clock-in and back down on clock-out, and only counts people at the work order's own location</p></td><td><p><strong>PASSED</strong></p></td></tr>
+</tbody></table>
+<p><strong>Separate issue raised:</strong> <a href="https://shopview.atlassian.net/browse/SV-12193">SV-12193</a> Work Orders List: a clock-in added by hand isn't counted by the Clocked In sort. A clock-in added through Reports &gt; Timesheet Activities &gt; New (with no End time) shows in the column, but the work order sorts as if nobody is clocked in until someone clocks in or out on it. Production behaves the same, so this is not caused by this change.</p>
+<p>Test data on the branch: S12112-17580 to S12112-17586. On production: S2-1918, S2-1919 and S2-1920.</p>

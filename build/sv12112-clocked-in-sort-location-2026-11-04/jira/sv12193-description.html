@@ -1,0 +1,36 @@
+<p>Found while testing <a href="https://shopview.atlassian.net/browse/SV-12112">SV-12112</a></p>
+<h2>Summary</h2>
+<p>When a clock-in is added by hand (Reports &gt; Timesheet Activities &gt; New, with no End time), the person's name shows in the <code>Clocked In</code> column of the Work Orders list. Sorting by <code>Clocked In</code>, though, treats that work order as if nobody is clocked in, so it lands below work orders that show nobody. It only moves into its right place after someone clocks in or out on that work order. Production does the same.</p>
+<h2>Steps to reproduce</h2>
+<p>Open the QA branch to reproduce the issue: <a href="https://sv12112.qa.shopview.com">https://sv12112.qa.shopview.com</a> (sign in as admin).</p>
+<ol>
+<li>In the top menu, click <code>Reports</code>. In the left menu under LABOR, click <code>Timesheet Activities</code>.</li>
+<li>At the top right of the page, click the blue <code>New</code> button. The <code>New Timesheet</code> window opens.</li>
+<li>Choose any staff member in <code>Select Staff</code>, choose work order <code>S12112-17584</code> in <code>Work Order</code>, and its line <code>1 Service - Electric Brake Trailer CVIP</code> in <code>Line</code>.</li>
+<li>Set a <code>Start</code> time earlier today. Leave <code>End</code> empty. Click <code>Create</code>. The new row shows a green <code>Active</code> label, which means that person is clocked in.</li>
+</ol>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="34c42dec-dd48-4e81-9061-9aeafd1a9092" data-collection="upload-user-collection-1343233018" data-alt="ticket-step-add-by-hand.png"></div></figure>
+<p><em>Picture 1: the New Timesheet window. 1 New, 2 Work Order, 3 Line, 4 Start, 5 End left empty, 6 Create.</em></p>
+<ol start="5">
+<li>In the top menu, click <code>Work Orders</code>, then the <code>All</code> tab at the top left of the list. If you see cards instead of a table, click the list icon (three lines) at the right of the same row, just left of <code>Create Work Order</code>. Make sure <code>Assigned to me</code> on that row is not switched on.</li>
+<li>On the same row, click the magnifying glass (just left of <code>Status</code>) and type <code>S12112</code>.</li>
+<li>Click the <code>Clocked In</code> column heading once. The small arrow next to it points down, so the most people clocked in come first.</li>
+<li>Look at row <code>S12112-17584</code>. Its <code>Clocked In</code> column shows the person you added, but the row is at the bottom, below <code>S12112-17586</code> and <code>S12112-17580</code>, which show nobody.</li>
+</ol>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="a68f43d2-3320-4c29-92e1-ef00f9163b60" data-collection="upload-user-collection-1343233018" data-alt="question-hand-added-clock-in.png"></div></figure>
+<p><em>Picture 2: the list sorted by Clocked In, most first. S12112-17584 (red) shows Admin ShopView but sorts last, below the two rows that show nobody (orange).</em></p>
+<p><strong>Fastest way to reproduce:</strong> open <a href="https://sv12112.qa.shopview.com/workorders">https://sv12112.qa.shopview.com/workorders</a>, click the <code>All</code> tab, search <code>S12112</code> and click the <code>Clocked In</code> heading once. S12112-17584 already has a hand-added clock-in for Admin ShopView, so it shows at the bottom straight away.</p>
+<h2>Expected behaviour</h2>
+<p>A work order with a hand-added clock-in sorts with the people the <code>Clocked In</code> column shows. S12112-17584 shows one person, so it should sort next to <code>S12112-17582</code> (also one person), above the rows that show nobody.</p>
+<p>From SV-12112, "Done when":</p>
+<blockquote><p>sorting by Clocked In orders rows by the same people the column shows.</p></blockquote>
+<p>SV-12112 also names this case:</p>
+<blockquote><p>The counter also isn't refreshed when an open time record is created by hand.</p></blockquote>
+<h2>Current behaviour</h2>
+<p>The row shows the person but is sorted as if nobody is clocked in. It moves into place only after someone clocks in or out on that work order.</p>
+<table><tbody>
+<tr><th>Where</th><th>Work order</th><th>Shows in Clocked In</th><th>Sorted as</th></tr>
+<tr><td>QA branch sv12112</td><td>S12112-17584</td><td>1 person (Admin ShopView)</td><td>nobody, last in the list</td></tr>
+<tr><td>Production</td><td>S2-1920</td><td>2 people</td><td>nobody, until a clock-in and clock-out on that work order</td></tr>
+</tbody></table>
+<p>Tested on 4 Nov 2026: QA branch sv12112 (build v26.45.0-279650f) and production (build v26.45.0-8e138e1).</p>
