@@ -36,3 +36,6 @@
   shown there; I had checked only the description. Restored: the repo copies (`filed-2026-10-28/pictures/`, same sizes 403,845 / 389,548)
   re-uploaded and re-embedded in comment 79708 with its words unchanged. Read-back: the comment renders both (attachments 63500, 63501).
   SV-11922 now has 5 attachments: 3 in the description, 2 in comment 79708 — every one in use.
+
+## Daytime control 4 Nov 2026 15:17 UTC (10:17 AM Toronto) — NOT RUN
+- Staging cookies from 3 Nov expired: quick-login 401, probe 401. Asked the QA lead for fresh cookies. Window for the daytime control: until 7 PM Toronto (00:00 UTC 5 Nov).
