@@ -130,3 +130,4 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
   quotes block onward byte-identical to applied/C<id>-after.json in 176 of 176 (check_byte_identity.py), no quote added.
 - Setup file regenerated (no Blocked line; 22 recipes carry the read-through precondition wording). Waiting on the QA lead: go-ahead to
   write the 175 updates (apply5.py --apply for 169 library cases, apply_dr_pattern.py --apply for the 6 DR cases).
+- 4 Nov 2026: QA lead ordered the project's execution run (in milestone 5) deleted: run deleted (record build/milestone-5-2026-11-03/). The cases are unchanged.

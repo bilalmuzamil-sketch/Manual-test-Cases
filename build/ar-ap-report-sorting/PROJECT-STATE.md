@@ -148,3 +148,4 @@
 - Not done in this pass: lines 3,359-9,356 of pattern-format-2026-10-26/PASS-REPORT.md were not read line by line (session context limit);
   their new text was verified by script equal to the TestRail read-back (237/237), which was read in full. Needs the QA lead's go-ahead
   before any TestRail write (Rules 6, 123).
+- 4 Nov 2026: QA lead ordered the project's execution run (in milestone 5) deleted: run deleted (record build/milestone-5-2026-11-03/). The cases are unchanged.

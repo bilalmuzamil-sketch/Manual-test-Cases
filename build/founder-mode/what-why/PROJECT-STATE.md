@@ -92,3 +92,4 @@ connection; both surfaces share one builder (S3-R4). All HOLD until a QA build e
 - Nothing else outstanding.
 
 - **Questions for Chris Ward (14 Oct, QA lead's "Yes" to sending them now, before build verification):** Google Doc https://docs.google.com/document/d/1QcT7FRZci6AhYcI33HUac-Oob03-gCnCOKn2NFHMLjA/edit — the 8 questions from `update-2026-10-13/FULL-UPDATE-2026-10-13.md` plus one FYI (the "Title *" star); source HTML `questions-2026-10-14/questions-for-chris-ward.html`. The QA lead shares it. When answered: copy the answers verbatim to `po-answers-<date>/` and run a full update (Rule 122).
+- 4 Nov 2026: QA lead ordered the project's execution run (in milestone 5) deleted: run deleted (record build/milestone-5-2026-11-03/). The cases are unchanged.

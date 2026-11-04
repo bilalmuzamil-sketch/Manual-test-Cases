@@ -135,3 +135,4 @@ P-OLD recipe updated; applied 26 Oct, read back clean. 7. QA branch: given when 
 - PRD 963346440 still version 5 (last modified 26 Oct 2026). Ticket sweep (21 tickets under SV-11638, `sources/jira-sweep-2026-11-03.json`): no new ticket; the epic's 27 Oct edit read (What/Why/Scope, "Ships after SV-11414"), no testable change; sweep 0 unhandled.
 - No case touched by the plan; no new plan-versus-page point beyond sheet questions 13-18. Asked the QA lead named set / full pass (recommended: no change).
 - QA lead, 3 Nov 2026: "No change (Recommended)". All 340 cases and the question sheet left as they are.
+- 4 Nov 2026: QA lead ordered the project's execution run (in milestone 5) deleted: run deleted (record build/milestone-5-2026-11-03/). The cases are unchanged.
