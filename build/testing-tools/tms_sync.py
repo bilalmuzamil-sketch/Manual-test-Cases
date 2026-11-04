@@ -184,7 +184,7 @@ def plan(section):
         for c in trapi.paged("get_cases/1&suite_id=1&section_id=%d" % sid, "cases"):
             trc[c["id"]] = c
     # Walk BOTH trees: a folder missing on either side is reported, never silently skipped.
-    tms_sections = tms_subtree(tms, section)
+    tms_sections = tms_subtree(tms, tsec(section))  # the TMS number of the root (it may have been created in TMS)
     mirrored = {tsec(x) for x in sections}
     folders = {"tr_only": sorted(x for x in sections if tsec(x) not in tms_sections),
                "tms_only": sorted(set(tms_sections) - mirrored)}

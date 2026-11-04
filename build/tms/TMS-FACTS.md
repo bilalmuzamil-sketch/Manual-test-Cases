@@ -338,3 +338,18 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
     **TMS milestone 5 now = TestRail milestone 5:** 4↔552 · 7↔557 · 16↔555 · 17↔556.
   - **Waiting on Mudassir's TMS sign-in + admin merge:** assign TMS runs **7, 16, 17** and their cases to Mudassir (as in
     TestRail). Run 10 no longer needs assigning — its TestRail run (553) was deleted and it left the milestone.
+
+## 18 · 2026-11-04 (evening) — Technician Toggle; run assignments; a mistake of mine, fixed
+
+- **QA lead: "All of the runs should be assigned to Mudassir and the maintenance reminder should be assigned to Nebojsa"** (TMS).
+  **TMS run 4 + its 299 cases → Nebojsa Glavinic (TMS user 3)**; results/statuses/totals verified unchanged.
+  Runs **7, 16, 17 → Mudassir** wait: still a placeholder (user 6). **Nebojsa is a TMS admin** — can do the placeholder merge.
+- **🛑 MY MISTAKE (fixed the same minute):** `tms_sync.py` looked up the ROOT folder in TMS by its TestRail number, so a root
+  that had been CREATED in TMS (Technician Toggle = TMS 10000002) looked missing, and the resync job created **10 duplicate
+  empty folders (TMS 10000013–10000022)**. No case was created or changed. All 10 verified empty, deleted (404), their 10
+  rows removed from `tr-tms-section-map.csv`, and `plan()` now uses `tsec(section)` for the TMS subtree.
+- **Technician Toggle (113017):** 220 updated → 220 SAME; new folder *Setup needed before testing* (TestRail 115075 → TMS 10000023,
+  parent 10000002). TMS run 16 totals unchanged.
+- **15 cases TestRail MOVED out of Technician Toggle** (2026-11-04 13:03 UTC) into a new sibling folder *Founder Mode (September 2026)
+  > Technician Toggle – not runnable by a manual tester* (TestRail 115074) — they are NOT extras; a folder-scoped sync shows a
+  moved-out case as TMS_EXTRA. **Before calling anything an extra, look it up in all of TestRail by number and title.**
