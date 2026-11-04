@@ -112,20 +112,25 @@ try {
     await go('/reports/parts-velocity', 14000);
     await p.evaluate(() => { for (const k of Object.keys(localStorage)) if (/parts-velocity/.test(k)) localStorage.removeItem(k); });
     await go('/reports/parts-velocity', 14000);
-    // Date: Last 12 months
-    await p.locator('.pv-filter-band button, button').filter({ hasText: /^\s*(event\s*)?Date/ }).first().click(); await p.waitForTimeout(1500);
-    await p.locator('.q-menu').last().getByText('Last 12 months', { exact: true }).first().click(); await p.waitForTimeout(1000);
-    const ap = p.locator('.q-menu button').filter({ hasText: /^\s*Apply\s*$/ }); if (await ap.count()) await ap.first().click().catch(() => {});
-    await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(6000);
-    // Location: Select all
-    await p.locator('button').filter({ hasText: /^\s*(\S+\s*)?Location/ }).first().click(); await p.waitForTimeout(1500);
-    const sa = p.locator('.q-menu').last().getByText(/Select all/i).first(); if (await sa.count()) await sa.click(); await p.waitForTimeout(800);
-    await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(6000);
-    await p.locator('[data-test-id="input_report_search"]').fill(S.cat.pn); await p.waitForTimeout(8000);
+    // proven helpers (filter-recheck/tools/f2/ev_f2.mjs): Date chip -> Last 12 months, Location -> Select all, report Search
+    const chips = () => p.locator('.q-page button, .q-page [role="button"]'); const menu = () => p.locator('.q-menu').last();
+    await chips().filter({ hasText: /Date:/ }).first().click(); await p.waitForTimeout(1500);
+    await menu().getByText('Last 12 months', { exact: true }).first().click(); await p.waitForTimeout(800);
+    { const ap = menu().getByText(/^Apply$/); if (await ap.count()) await ap.first().click().catch(() => {}); }
+    await p.keyboard.press('Escape').catch(() => {}); await p.mouse.click(5, 700); await p.waitForTimeout(8000);
+    await chips().filter({ hasText: /Location/ }).first().click(); await p.waitForTimeout(1500);
+    { const it = menu().getByText(/^(Select all|All locations)$/).first(); if (await it.count()) await it.click(); }
+    await p.waitForTimeout(800); await p.keyboard.press('Escape').catch(() => {}); await p.mouse.click(5, 700); await p.waitForTimeout(9000);
+    { const inp = p.locator('.q-page input[placeholder*="Search" i]').filter({ visible: true });
+      if (!(await inp.count())) { await p.locator('.q-page button').filter({ hasText: 'Search' }).first().click().catch(() => {}); await p.waitForTimeout(1200); }
+      const foc = await p.evaluate(() => document.activeElement && document.activeElement.tagName);
+      if (foc === 'INPUT') await p.keyboard.type(S.cat.pn); else await p.locator('.q-page input').filter({ visible: true }).first().fill(S.cat.pn); await p.waitForTimeout(8000); }
+    meta.notes.chips = (await chips().allInnerTexts()).map(x => x.replace(/\s+/g, ' ').trim()).filter(x => /Date:|Location/.test(x));
     meta.notes.filters = (await txt(p.locator('.pv-filter-band'))).slice(0, 300) || (await txt(p.locator('main'))).slice(0, 300);
     const row = p.locator('tbody tr').filter({ hasText: S.cat.pn }); meta.notes.pv_row = await txt(row);
     meta.notes.heads = await p.locator('thead th').evaluateAll(t => t.map(x => x.innerText.replace(/\s+/g, ' ').replace(/arrow_\w+|info_outline/g, '').trim()).filter(Boolean));
     meta.notes.local_time_on_screen = new Date().toLocaleString('en-US', { timeZone: TZ });
+    await p.locator('.q-table__middle, .q-table__container .scroll').first().evaluate(e => { e.scrollLeft = e.scrollWidth; }).catch(() => {}); await p.waitForTimeout(1000);
     await shot('P2-B8-1-parts-velocity-last-sale-0-days-2026-11-05', { row: await box(row), lastSaleHead: await box(p.locator('thead th').filter({ hasText: 'Last Sale' })) });
     await go(`/workorders/${S.wo}/lines`, 12000);
     await p.getByText('Finance', { exact: true }).first().click(); await p.waitForTimeout(9000);
