@@ -77,7 +77,10 @@ STATE_ASSERT = re.compile(r'\b(a work order with|a work order whose|an already-i
 BUILD = re.compile(r'\b(add(ed)? (a|one|two|three|four|another|the|more)|left as added|click (&ldquo;|")?order|'
                    r'order on (it|each|every|that|the)|you (approve|decline|complete|invoice)|approve and then|'
                    r'and then (complete|add|receive)|decline it|receive it|create (a|the|an)|invoice (it|from)|'
-                   r'typed in by hand|seed(ed)?|create custom role)\b', re.I)
+                   r'typed in by hand|seed(ed)?|create custom role|'
+                   # 2026-11-04 (Technician Toggle C897324): the build's own button "Create Work Order" followed by the
+                   # New Line window IS building the work order; the list lacked the build's label.
+                   r'then Create Work Order|click Create Work Order)\b', re.I)
 # a concrete UI setup route (creating/opening the record / navigating to it)
 # 'top bar' added 2026-11-03: the app's top navigation, as Founder Mode suites word it (equivalent to 'top menu').
 HAS_ROUTE = re.compile(r'top menu|top bar|>\s|&gt;|create a (work order|customer)|open a work order by|'

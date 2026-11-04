@@ -246,7 +246,10 @@ def main():
         e = flat(c.get('custom_expected'))
         # Founder Mode suites (2026-09/10) carry "Source — where this behaviour comes from … Epic SV-xxxx";
         # the old two-phrase test called all 104 Part Sales cases unsourced (instrument fault, 2026-10-05).
-        if not re.search(r'as per epic|Source:\s*\S|Source\s*[—-]+\s*where this behaviour comes from', e, re.I):
+        # Technician Toggle (113017, 2026-11-04) carries "Exact quotes from the source (for reproducibility)"
+        # followed by "From: PRD … / Design …"; the gate called all 220 unsourced (instrument fault again).
+        if not re.search(r'as per epic|Source:\s*\S|Source\s*[—-]+\s*where this behaviour comes from'
+                         r'|Exact quotes from the source[^\n]*\n(?:[^\n]*\n){0,3}?\s*From:\s*\S', e, re.I):
             no_source.append(c['id'])
         ms = [l.strip() for l in e.split('\n') if l.strip().upper().startswith('AUTOMATION:')]
         if len(ms) != 1:

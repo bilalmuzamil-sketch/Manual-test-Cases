@@ -1,0 +1,15 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./17/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => s.replace(/\s+/g, ' ').trim();
+const WO = fs.readFileSync(new URL('./07/wo-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+const dlgs = async () => JSON.stringify((await page.locator('.q-dialog:visible').allInnerTexts()).map(s => T(s).slice(0, 700)));
+const okNotes = async () => { for (let i = 0; i < 2; i++) { const ok = page.locator('.q-dialog:visible button', { hasText: /^Ok$/ }).first(); if (await ok.count()) { await ok.click(); await page.waitForTimeout(1000); } } };
+await step('reload', async () => { await go(WO); await page.waitForTimeout(3000); await okNotes(); const b = T(await page.locator('body').innerText()); const i = b.lastIndexOf('S11788-17580'); log('card:', b.slice(i, i + 160)); log('header:', T(await page.locator('header').innerText()).slice(-70)); });
+await step('stop', async () => { const sp = page.locator('main button:visible', { hasText: /^Stop$/ }).first(); log('Stop count', await page.locator('main button:visible', { hasText: /^Stop$/ }).count()); await sp.click(); await page.waitForTimeout(2500);
+  const d = page.locator('.q-dialog:visible').last(); log('STOP DIALOG buttons:', JSON.stringify((await d.locator('button:visible').allInnerTexts()).map(T))); log('STOP labels:', JSON.stringify(await d.locator('.q-field__label, .q-checkbox, .q-toggle').allInnerTexts()));
+  const ta = d.locator('textarea, input[type=text]').first(); if (await ta.count()) await ta.fill('ZZAUTOTEST TT label check'); await page.waitForTimeout(500); await dump('stop-dialog');
+  const go2 = d.locator('button:visible', { hasText: /^(Stop|Save|Stop Working|Submit)$/i }).first(); log('confirm btn:', T(await go2.innerText().catch(() => 'none'))); await go2.click(); await page.waitForTimeout(3500); log('after:', await dlgs()); });
+await step('after', async () => { await go(WO); await page.waitForTimeout(3000); await okNotes(); const b = T(await page.locator('body').innerText()); const i = b.lastIndexOf('S11788-17580'); log('card:', b.slice(i, i + 160)); log('header:', T(await page.locator('header').innerText()).slice(-70)); log('labor btns:', JSON.stringify([...new Set((await page.locator('main tr button:visible').allInnerTexts()).map(T))])); });
+await r.browser?.close?.(); process.exit(0);

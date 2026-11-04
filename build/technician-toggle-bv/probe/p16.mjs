@@ -1,0 +1,20 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./16/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => s.replace(/\s+/g, ' ').trim();
+const WO = fs.readFileSync(new URL('./07/wo-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const dlgs = async () => JSON.stringify((await page.locator('.q-dialog:visible').allInnerTexts()).map(s => T(s).slice(0, 700)));
+const okNotes = async () => { for (let i = 0; i < 2; i++) { const ok = page.locator('.q-dialog:visible button', { hasText: /^Ok$/ }).first(); if (await ok.count()) { await ok.click(); await page.waitForTimeout(1000); } } };
+const status = async () => T(await page.locator('main, body').first().innerText()).match(/S11788-17580 (\S+( \S+)?)/)?.[1];
+await step('status-ctl', async () => { await go(WO); await page.waitForTimeout(2500); await okNotes(); const b = T(await page.locator('body').innerText()); log('card head:', b.slice(b.indexOf('S11788-17580'), b.indexOf('S11788-17580') + 120));
+  const pill = page.getByText('Approved', { exact: true }).first(); await pill.click().catch(() => {}); await page.waitForTimeout(1200); log('status pill menu:', JSON.stringify(await menu()), await dlgs()); await page.keyboard.press('Escape'); });
+await step('start', async () => { const st = page.locator('main button:visible', { hasText: /^Start$/ }).first(); log('Start buttons:', await page.locator('main button:visible', { hasText: /^Start$/ }).count()); await st.click(); await page.waitForTimeout(3000); log('after Start dialogs:', await dlgs()); await dump('after-start');
+  const ok = page.locator('.q-dialog:visible button', { hasText: /^(Start|Yes|Confirm|Clock In|OK)$/ }).first(); if (await ok.count()) { log('confirm:', await ok.innerText()); await ok.click(); await page.waitForTimeout(3000); }
+  const b = T(await page.locator('body').innerText()); log('card after start:', b.slice(b.indexOf('S11788-17580'), b.indexOf('S11788-17580') + 100)); log('labor buttons:', JSON.stringify([...new Set((await page.locator('main tbody button:visible, main tr button:visible').allInnerTexts()).map(T))])); });
+await step('stop', async () => { const sp = page.locator('main button:visible', { hasText: /^(Stop|Pause)$/ }).first(); log('Stop count', await page.locator('main button:visible', { hasText: /^(Stop|Pause)$/ }).count()); if (await sp.count()) { await sp.click(); await page.waitForTimeout(3000); log('after Stop dialogs:', await dlgs()); await dump('after-stop'); const ok = page.locator('.q-dialog:visible button', { hasText: /^(Stop|Yes|Confirm|OK|Save)$/ }).first(); if (await ok.count()) { log('confirm:', await ok.innerText()); await ok.click(); await page.waitForTimeout(3000); } }
+  const b = T(await page.locator('body').innerText()); log('card after stop:', b.slice(b.indexOf('S11788-17580'), b.indexOf('S11788-17580') + 100)); });
+await step('new-location', async () => { await go('/administration/locations'); await page.locator('main button:visible', { hasText: 'New Location' }).first().click(); await page.waitForTimeout(2500); log('NEW LOCATION:', await dlgs(), page.url()); log('NL labels:', JSON.stringify(await page.locator('.q-dialog:visible .q-field__label, main .q-field__label').allTextContents())); await dump('new-location', true); await page.keyboard.press('Escape'); });
+await step('departments', async () => { await go('/administration/departments'); await page.waitForTimeout(2500); log('DEPT URL', page.url(), T(await page.locator('main').innerText()).slice(0, 300)); const b = page.locator('main button:visible', { hasText: /New|Add|Create/ }).first(); log('dept btn:', T(await b.innerText().catch(() => 'none'))); if (await b.count()) { await b.click(); await page.waitForTimeout(2000); log('NEW DEPT:', await dlgs()); await page.keyboard.press('Escape'); } });
+await r.browser?.close?.(); process.exit(0);
