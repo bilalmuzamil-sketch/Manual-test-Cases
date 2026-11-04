@@ -112,12 +112,16 @@ print("v29 -> v33 new codes:", {c: reqmap[c]["status"] for c in newcodes})
 print("v33 -> v35 new codes:", {c: reqmap[c]["status"] for c in L.NEW_V35}, "| changed:", L.CHANGED_V35)
 v35 = [c["key"] for c in L.CASES if c["prd"] == 35]
 print("cases quoting PRD v35 (the 28 Oct 2026 named set and its new cases):", len(v35), v35)
-# 28 Oct 2026: a case still on v33 must not quote a code whose text changed in v35 unless it is word for word in v35 too (else it
-# belongs in the named set); build.py lists any such case so it can never be missed
+print("v35 -> v36 new codes:", L.NEW_V36, "| changed:", L.CHANGED_V36)
+v36 = [c["key"] for c in L.CASES if c["prd"] == 36]
+print("cases quoting PRD v36 (the 4 Nov 2026 named set and its new cases):", len(v36), v36)
+# 28 Oct / 4 Nov 2026: a case on an older version must not quote a text that changed since unless it is word for word in the current
+# version too (else it belongs in a named set); build.py lists any such case so it can never be missed
 for c in L.CASES:
-    if c["prd"] == 33:
+    if c["prd"] != L.PRD_VERSION:
         for doc, label, text in L.quotes(c):
-            if doc == "PRD" and not L.prd_ok(text, 35): print(f"ON-V33 {c['key']}: quote {label} is no longer word for word in v35 (case kept unchanged on purpose)")
+            if doc == "PRD" and not L.prd_ok(text, L.PRD_VERSION):
+                print(f"ON-V{c['prd']} {c['key']}: quote {label} is no longer word for word in v{L.PRD_VERSION} (case kept unchanged on purpose)")
 # ---------------------------------------------------------------- User Feedback Summary messages of written stories, word for word
 tester_all = " ".join(" ".join(c["steps"] + [b for r in c["res"] for b in r]) for c in L.CASES)
 def msgs(row):

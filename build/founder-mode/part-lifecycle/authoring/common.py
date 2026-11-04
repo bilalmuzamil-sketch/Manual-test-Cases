@@ -42,6 +42,7 @@ A15 = PO27(15, "No. Delete stays disabled until the page is reloaded (S11-E5). N
 A16 = PO27(16, "(a) Tracked. The import has no tracking column, and it never changes an existing part's tracking. (b) Yes, the \"name\" column "
                "is the part's description (S7-N11).")
 A17 = PO27(17, "Settings. The path is Settings → Parts → Bin Locations (S5-E2). Roles & Permissions is also under Settings (S12-R6).")
+A18 = PO27(18, "\"5 Available.\" The Inventory list counts only bins above zero, the same as production today, and this feature doesn't change it.")
 A19 = PO27(19, "(a) Yes, the X stays. It's part of the standard dialog. (b) Yes, it does exactly what Cancel does: nothing changes, and from the "
                "part window you return with your picked status kept. Esc and clicking outside don't close it (S10-R11a).")
 A20 = PO27(20, "Yes, the board 7.2 note is out of date. Follow the page: the detail page has no Delete. Delete is in the \"Edit Library Part\" "

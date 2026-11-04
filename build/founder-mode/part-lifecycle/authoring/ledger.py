@@ -48,9 +48,31 @@ for i in J["issues"]:
     st = next((n for n, j in L.STORY_JIRA.items() if j == k), None)
     cases = (cases_for(st) if st and f"S{st}" in build_mods.WRITTEN else live_cases(f"S{st}") if st else (sec_cases("IV") if "IV" in build_mods.WRITTEN else live_cases("IV")) if k == "SV-10380" else [])
     led[k] = {"updated": f["updated"], "summary": f["summary"], "status": f["status"], "outcome": out, "cases": cases, "note": note}
+# ---- 4 Nov 2026: tickets read from Jira on 4 Nov 2026 (read only; ../sources/jira-2026-11-04/STORY-DEFECTS-2026-11-04.json): SV-12010 and
+# the Story Defects the build-verification session filed (facts only; their markers and results are that session's job)
+J4 = json.load(open(f"{P}/sources/jira-2026-11-04/STORY-DEFECTS-2026-11-04.json"))
+def ids(*keys): return [f"C{MAP[k]['case_id']}" if k in MAP else f"{k} (new)" for k in keys]
+BV = "Story Defect filed by the build-verification session (facts only; its markers and results are that session's job)."
+OUT4 = {
+ "SV-12010": ("NEW-CASES", ids("S9-50", "S9-51"), "QA lead 4 Nov 2026: \"Yes, held\". S9-50 (the refusal, with S9-R17's match: case and periods) and S9-51 (a line already holding an inactive part saves with its own number, S9-E2), both held with \"AUTOMATION: HOLD - SV-12010 is not built yet (Board Backlog, 4 Nov 2026); release when it ships\" and kept out of run 556. The ticket's \"a number an active part at this location also has is not refused\" needs two look-alike numbers at one location, which no screen can make: no manual step (setup-file note)."),
+ "SV-12105": ("COVERED", ids("S6-02", "S6-11"), BV + " PRD v36 S6-R5 (ruling, 3 Nov 2026): S6-02 rewritten (a part whose bins net 2 but whose cell shows 5 Available sorts by 5); new S6-11 (the printed count sheet follows the same order)."),
+ "SV-12110": ("COVERED", ids("S13-50", "S13-19"), BV + " PRD v36 S13-R19a (ruling, 3 Nov 2026): new S13-50 (a part request picked from the Part Library result takes the new number and orders under it; a hand-typed one keeps its own); S13-19 also has a Part Library part request taking the new number."),
+ "SV-12111": ("COVERED", ids("S13-37"), BV + " S13-37 deletes a part that reached a work order after Edit Inventory Part opened (S13-N6)."),
+ "SV-12115": ("NO-CASE", [], BV + " The S11-R3c clause \"an open part request\" (already in v35) has no case of its own: the v36 named set added S11-22 (a received work order line) and S11-23 (a credited return) only. Offered to the QA lead as a new case."),
+ "SV-12127": ("NO-CASE", [], BV + " Search by category or cost comes from the SV-10814 developer handoff, not the PRD; checked by that session's own case C856011."),
+ "SV-12128": ("NO-CASE", [], BV + " Public status-change request without a status: not something a manual tester does in the UI."),
+ "SV-12129": ("NO-CASE", [], BV + " Part History Event text in the dark theme; no case of ours checks Part History in the dark theme (that session's T4491203)."),
+ "SV-12130": ("NO-CASE", [], BV + " An untracked part with no bins added from the part dialog (S9-R22); found by that session's own run R554."),
+ "SV-12131": ("COVERED", ids("S9-23"), BV + " S9-23 (steps 13-16) is the refused purchase order line save; the page replaced by \"Something went wrong loading this section\" fails its step results as written."),
+ "SV-12132": ("NO-CASE", [], BV + " Inspection Build lines is checked by that session's own case C856028."),
+}
+for i in J4["issues"] + [J4["SV-12010"]]:
+    out, cs, note = OUT4[i["key"]]
+    led[i["key"]] = {"updated": i["updated"], "summary": i["summary"], "status": i["status"], "outcome": out, "cases": cs, "note": note,
+                     "read": "4 Nov 2026", "parent": i["parent"]}
 json.dump(led, open(f"{P}/TICKET-LEDGER.json", "w"), indent=1, ensure_ascii=False)
 json.dump({"project": "Founder Mode / Part Lifecycle", "epic": "SV-10647", "stories": list(L.STORY_JIRA.values()), "prd_page": "829227015",
-           "prd_version_handled": 33, "prd_version_note": "v29 -> v33 diffed 27 Oct 2026 (full-pass-2026-10-27/PRD-DIFF-v29-v33.md); handled when every phase is written"},
+           "prd_version_handled": 36, "prd_version_note": "v29 -> v33 diffed 27 Oct 2026 (full-pass-2026-10-27/PRD-DIFF-v29-v33.md); v33 -> v35 named set 28 Oct 2026; v35 -> v36 diffed 4 Nov 2026 by requirement code (S6-R5, S11-R3c, S13-R19a changed; no code added or removed; v36-2026-11-04/PRD-DIFF-v35-v36.md)"},
           open(f"{P}/TICKET-SWEEP.json", "w"), indent=1)
 from collections import Counter
 print("ledger rows", len(led), dict(Counter(r["outcome"] for r in led.values())))

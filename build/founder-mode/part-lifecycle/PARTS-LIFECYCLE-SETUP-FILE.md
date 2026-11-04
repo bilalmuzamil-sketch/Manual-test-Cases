@@ -1,6 +1,6 @@
 # Parts Lifecycle — setup file for Claude sessions (a tester does not need it)
 
-Built by `authoring/render_setup.py` from the case library (363 cases written so far). Sources: PRD "Parts Lifecycle Update", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026; tech plan of 7 Oct 2026; Jira epic SV-10647 read 27 Oct 2026; design canvas https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE (13 Oct copy, unchanged 27 Oct).
+Built by `authoring/render_setup.py` from the case library (369 cases written so far). Sources: PRD "Parts Lifecycle Update", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026; tech plan of 7 Oct 2026; Jira epic SV-10647 read 27 Oct 2026; design canvas https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE (13 Oct copy, unchanged 27 Oct).
 No environment address, credential, cookie or session data is written here.
 
 ## 1 · Accounts and places (slots)
@@ -642,17 +642,18 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S6-01-A; part B = ZZAUTOTEST-PL-S6-01-B; part C = ZZAUTOTEST-PL-S6-01-C.
 Quotes: S6-R1. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S6-02 · C154775 · Total Qty sort puts untracked parts below tracked parts both ways
+### S6-02 · C154775 · Total Qty sort follows the quantity shown and puts untracked parts last
 State the tester sets up:
 - Sign in as an Admin at the test location.
-- Have five parts, part A, part B, part C, part D and part E, each with one bin location that holds a quantity above 0 (no bin below zero), so the sort and the Total Qty cells agree.
-- Set parts A, B and C as tracked parts, with 5, 5 and 2 on hand.
-- Set parts D and E as untracked parts, with 1 and 9 on their shelf.
+- Create three tracked parts for this test: part A with one bin location holding 5, part C with one bin location holding 3, and part B with two bin locations, one holding 5 and one holding -3 (below zero), so part B's Total Qty cell shows 5 Available while its bins add up to 2.
+- Create two untracked parts for this test, part D with 1 on its shelf and part E with 9.
 - Give parts A, B, C, D and E descriptions that start with the same text and end, in turn, with ALPHA, BRAVO, CHARLIE, XRAY and YANKEE.
 - Give parts A, B, C, D and E part numbers that start with the same text, so one search lists all five.
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Example values: part A = ZZAUTOTEST-PL-S6-02-A; part B = ZZAUTOTEST-PL-S6-02-B; part C = ZZAUTOTEST-PL-S6-02-C; part D = ZZAUTOTEST-PL-S6-02-D; part E = ZZAUTOTEST-PL-S6-02-E.
-Quotes: S6-R3, S6-R4, S6-R5, S6-R6, S6-R7, §6 Phase 5, Key code changes. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+- Part B's bins: 5 in its default bin and -3 in a second bin (sell 8 from the second bin on a part sale, or adjust it with a cycle count to -3).
+- 4 Nov 2026 (PRD v36 S6-R5, ruling on SV-12105): the tech plan's known gap (the sort used the part's stored quantity, not the shown one) is closed by the PRD, so the case now tests it.
+Quotes: S6-R3, S6-R4, S6-R5, S6-R6, S6-R7, Chris Ward, 27 Oct 2026, answer 18. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S6-03 · C425641 · Searching track, no or t never finds a part by its tracking
 State the tester sets up:
@@ -737,6 +738,19 @@ State the tester sets up:
 - Start on vendor A's page (Parts in the top bar, Vendors in the left menu, then the vendor A row).
 Example values: part A = ZZAUTOTEST-PL-S6-10-A; part C = ZZAUTOTEST-PL-S6-10-C.
 Quotes: S6-R1a, S6-R1, SV-10819, Chris Ward, 23 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
+### S6-11 · new case · The printed count sheet follows the Total Qty sort order
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create three tracked parts for this test: part A with one bin location holding 5, part C with one bin location holding 3, and part B with two bin locations, one holding 5 and one holding -3 (below zero), so part B's Total Qty cell shows 5 Available while its bins add up to 2.
+- Give parts A, B and C descriptions that start with the same text and end, in turn, with ALPHA, BRAVO and CHARLIE.
+- Give parts A, B and C part numbers that start with the same text, so one search lists all three.
+- Make sure no Cycle count is running on the Inventory list.
+- Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+Example values: part A = ZZAUTOTEST-PL-S6-11-A; part B = ZZAUTOTEST-PL-S6-11-B; part C = ZZAUTOTEST-PL-S6-11-C.
+- Part B's bins: 5 in its default bin and -3 in a second bin.
+- New 4 Nov 2026 for PRD v36 S6-R5 (second sentence: "The printed count sheet follows the same order.").
+Quotes: S6-R5, S6-R3, S6-R6, S1-R10, Chris Ward, 27 Oct 2026, answer 18. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S7-01 · C154776 · New Inventory Part has Description then Part Number, with no library pick
 State the tester sets up:
@@ -1679,6 +1693,30 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S9-49-A; part B = ZZAUTOTEST-PL-S9-49-B.
 Quotes: S9-R18a, S9-R18, S9-R20, FO-10, Chris Ward, 27 Oct 2026, answer 13. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
+### S9-50 · new case · A received vendor bill line refuses an inactive part's typed number
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create a part for this test, part A, with a hyphen in its part number, and set it inactive.
+- Create a received vendor bill for this test, bill A, with one special-order line, line 1, whose part number was typed by hand and matches no part at the test location.
+- Start on bill A (Parts in the top bar, Vendor Invoices in the left menu, then bill A).
+Example values: part A = ZZAUTOTEST-PL-S9-50-A.
+- Bill A: an open purchase order with one line where ZZAUTOTEST-PL-S9-50-SO was typed by hand and added as typed, received on a vendor invoice; that invoice is bill A.
+- SV-12010 also says "a number an active part at this location also has is not refused"; one location cannot hold two look-alike numbers through the screens (S7-N3, S13-N1), so no manual step checks it.
+- Held 4 Nov 2026 (QA lead: "Yes, held"); not in run 556 until SV-12010 ships.
+Quotes: SV-12010, Expected, SV-12010, Expected, S9-R17. Marker: AUTOMATION: HOLD - SV-12010 is not built yet (Board Backlog, 4 Nov 2026); release when it ships.
+
+### S9-51 · new case · A vendor bill line holding a part later set inactive still saves
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create a part for this test, part A, with 4 on hand.
+- Create a received vendor bill for this test, bill A, with one stock line, line 1, for part A.
+- Set part A inactive after bill A was received.
+- Start on bill A (Parts in the top bar, Vendor Invoices in the left menu, then bill A).
+Example values: part A = ZZAUTOTEST-PL-S9-51-A.
+- Bill A: a purchase order from any vendor with one line for it picked from the lookup, received on a vendor invoice (bill A); then Inventory, part, Inactive, Save, Deactivate.
+- Held 4 Nov 2026 (QA lead: "Yes, held"); not in run 556 until SV-12010 ships.
+Quotes: SV-12010, Expected, S9-E2. Marker: AUTOMATION: HOLD - SV-12010 is not built yet (Board Backlog, 4 Nov 2026); release when it ships.
+
 ### S10-01 · C154789 · Saving a different Part Status asks to confirm first
 State the tester sets up:
 - Sign in as an Admin at the test location.
@@ -2164,7 +2202,7 @@ Quotes: S11-R6, S11-N1. Marker: AUTOMATION: HOLD - not yet build-verified (no bu
 ### S11-18 · C573671 · Delete is disabled while a part still uses the Part Library entry
 State the tester sets up:
 - Sign in as an Admin at the test location.
-- Create a part, part A, for this test at the test location only, on no work order and with no open return or credit, so it can be deleted later in the test.
+- Create a part, part A, for this test at the test location only, on no work order or part request and with no return or credit, open or completed, so it can be deleted later in the test and nothing else uses its Part Library entry.
 - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
 Example values: part A = ZZAUTOTEST-PL-S11-18-A.
 Quotes: S11-R3c, S11-R3, S12-R13, UFS-01, Chris Ward, 14 Oct 2026, answer 12, QA lead, 9 Oct 2026, set-up answer 4, Chris Ward, 27 Oct 2026, answer 20. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
@@ -2188,11 +2226,32 @@ Quotes: S11-R9. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet)
 ### S11-21 · C847730 · Delete in Edit Library Part is enabled only after the page is reloaded
 State the tester sets up:
 - Sign in as an Admin at the test location.
-- Create a part, part A, for this test at the test location only, on no work order and with no open return, credit or part request, so it can be deleted later in the test.
+- Create a part, part A, for this test at the test location only, on no work order or part request and with no return or credit, open or completed, so it can be deleted later in the test and nothing else uses its Part Library entry.
 - Use a desktop browser that can open a second tab on the same ShopView address, signed in as the same user.
 - Start in browser tab 1 on the Part Library page (Parts in the top bar, then Part Library in the left menu).
 Example values: part A = ZZAUTOTEST-PL-S11-21-A.
 Quotes: S11-E5, S11-R3c, UFS-01, Chris Ward, 27 Oct 2026, answer 15. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
+### S11-22 · new case · Delete stays disabled while a work order line received the entry's part
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create a Part Library entry for this test, entry A, with no part behind it: create a part at the test location, then delete it, so the entry stays with "Total parts" 0.
+- Create a work order for this test, work order 1, with a line, line 1, holding entry A's part added by picking its "Part Library" result, then ordered from any vendor and received onto line 1, so line 1 received it and no inventory part uses entry A.
+- Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
+- Entry A: create a part, then delete it from Inventory. On work order 1, line 1: + Add Part, type the number, pick the "Part Library" result, Qty 1, Save Part; Parts tab, Order; Parts, Purchase Orders, newest purchase order, Receive (invoice number, quantity 1).
+- New 4 Nov 2026 for PRD v36 S11-R3c ("a work order line that received it").
+Quotes: S11-R3c, S11-R3, UFS-01, Chris Ward, 14 Oct 2026, answer 12. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
+### S11-23 · new case · Delete stays disabled while a credited return uses the entry
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create a part, part A, for this test at the test location only, with 2 on hand, on no work order.
+- Create a vendor return for this test, return A, of 1 part A to any vendor, completed and credited by the vendor, so part A has a credited return and no return or credit still open.
+- Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+Example values: part A = ZZAUTOTEST-PL-S11-23-A.
+- Return A: Parts, Returns, Create Return, any vendor, 1 of the part, complete it and record the vendor's credit.
+- New 4 Nov 2026 for PRD v36 S11-R3c ("a part return (open or credited)"). S13-R28 blocks Delete Part only for a return or credit that is not completed, so a credited return can outlive its part.
+Quotes: S11-R3c, S13-R26, S13-R28, UFS-01. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S12-01 · C154832 · The Parts menu, page title and browser tab read Part Library
 State the tester sets up:
@@ -2205,9 +2264,9 @@ Quotes: S12-R1, S12-R2, S12-R12, CN-S12-1. Marker: AUTOMATION: HOLD - not yet bu
 ### S12-02 · C154833 · Deleting an unused Part Library entry asks and confirms in Part Library words
 State the tester sets up:
 - Sign in as an Admin at the test location.
-- Create a Part Library entry with no part behind it for this test, entry A: create a part at the test location, then delete it, so the entry stays with "Total parts" 0.
+- Create a Part Library entry for this test, entry A, that nothing uses: create a part at the test location, put it on no work order, part request, return or credit, then delete it, so the entry stays with "Total parts" 0.
 - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
-Quotes: S12-R13, S12-R5, S11-R3, Chris Ward, 14 Oct 2026, answer 12, QA lead, 9 Oct 2026, set-up answer 4. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+Quotes: S12-R13, S12-R5, S11-R3, S11-R3c, Chris Ward, 14 Oct 2026, answer 12, QA lead, 9 Oct 2026, set-up answer 4. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S12-03 · C154834 · Roles & Permissions shows the Part Library and Inventory permission group
 State the tester sets up:
@@ -2234,7 +2293,7 @@ Quotes: S12-R3, S11-R3. Marker: AUTOMATION: HOLD - not yet build-verified (no bu
 ### S12-06 · C425620 · Deleting a Part Library entry that a part now uses is refused
 State the tester sets up:
 - Sign in as an Admin at the test location.
-- Create a Part Library entry with no part behind it for this test, entry A: create a part at the test location, then delete it, so the entry stays with "Total parts" 0.
+- Create a Part Library entry for this test, entry A, that nothing uses: create a part at the test location, put it on no work order, part request, return or credit, then delete it, so the entry stays with "Total parts" 0.
 - Use a desktop browser that can open a second tab on the same ShopView address, signed in as the same user.
 - Start in browser tab 1 on the Part Library page (Parts in the top bar, then Part Library in the left menu).
 Quotes: S12-R11, S12-R11a, S12-R13, UFS-46, CN-S13-3, S11-R3c, S11-E5, §1 Clarifications, Q9 S12-R11 copy, Chris Ward, 27 Oct 2026, answer 15, Chris Ward, 27 Oct 2026, answer 24. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
@@ -2809,6 +2868,19 @@ State the tester sets up:
 - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
 Example values: part A = ZZAUTOTEST-PL-S13-49-A; part B = ZZAUTOTEST-PL-S13-49-B.
 Quotes: S13-N1a, S11-R3a, UFS-14, CN-S13-3, Chris Ward, 27 Oct 2026, answer 23. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
+### S13-50 · new case · A part request picked from the Part Library result takes the new number
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create a part, part A, for this test with 5 on hand.
+- Create a work order for this test, work order 1, with a line holding two part requests, neither ordered nor received: one added by picking part A's "Part Library" result, and one where part A's number was typed by hand and added as typed, with no link to the part.
+- Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
+- Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+Example values: part A = ZZAUTOTEST-PL-S13-50-A.
+- New number: ZZAUTOTEST-PL-NEW-1350 (it must not contain part A's number).
+- Setup on work order 1's line: + Add Part, type part A's number, pick the "Part Library" result, Qty 1, Save Part; then + Add Part, type part A's number, pick the offer to add the typed number as typed (not a result), Source Vendor, Save Part.
+- New 4 Nov 2026 for PRD v36 S13-R19a, second sentence (ruling on SV-12110).
+Quotes: S13-R19a, S13-R19, TERM-6. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### IV-01 · C425660 · Bins of +5 and -2 show quantity 3 and $30 in Inventory Value
 State the tester sets up:

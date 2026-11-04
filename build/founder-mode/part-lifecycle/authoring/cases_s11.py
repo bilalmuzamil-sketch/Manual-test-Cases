@@ -6,7 +6,12 @@ detail page's parts table) and S11-20 (S11-R9 grey "Inactive" tag there). S11-E3
 The detail page has no left menu (board 7.2), so every move off it goes through Parts in the top bar.
 28 Oct 2026 named set (PRD v35 S11-R3c widened, S11-E5 new; Chris Ward's answers 15 and 20 of 27 Oct 2026): S11-02 and S11-18 re-quoted,
 with the board 7.2 note marked out of date (answer 20); new S11-21 (S11-E5: Delete in an open Edit Library Part window updates only
-after the page is reloaded)."""
+after the page is reloaded).
+4 Nov 2026 named set (PRD v36 S11-R3c: a work order line that received the part, and a part return open or credited, also keep Delete
+disabled; ruling on SV-12115): S11-02, S11-18 and S11-21 re-quoted (S11-18 and S11-21 now rule out every one of those in their
+preconditions); new S11-22 (a work order line that received the entry's part) and S11-23 (a credited return, after its part is deleted).
+An OPEN return cannot be the entry's only user by hand: while it is open its inventory part cannot be deleted (S13-R28), so the inventory
+part always keeps Delete disabled as well; that clause is checked only together with the part (no separate case)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
 from pc_common import *
@@ -49,7 +54,7 @@ C("S11-02", "S11", "Clicking a Part Library row opens the entry's detail page",
     "A Delete button sits at the bottom left of the window. It is dimmed, because part A uses the entry."],
    ["The window closes and the entry is unchanged."]],
   ["S11-R3", "S11-R3c", "S12-R3", PO12, A20],
-  design=D72, prd=35)
+  design=D72, prd=36)
 
 C("S11-03", "S11", "Creating a part with a new number adds one Part Library entry",
   [ADMIN, "Use a new part number that no Part Library entry has yet, so saving the part must make a new entry.", START],
@@ -331,7 +336,7 @@ C("S11-17", "S11", "Receiving a typed purchase order line adds its number to the
   design=dict(boards=["7.1"]))
 
 C("S11-18", "S11", "Delete is disabled while a part still uses the Part Library entry",
-  [ADMIN, "Create a part, part A, for this test at the test location only, on no work order and with no open return or credit, so it can be deleted later in the test.",
+  [ADMIN, "Create a part, part A, for this test at the test location only, on no work order or part request and with no return or credit, open or completed, so it can be deleted later in the test and nothing else uses its Part Library entry.",
    START_PL],
   [TYPE_A, ROW_A, PENCIL, "Hover over the Delete button at the bottom left of the window.", "Click the Delete button.", CANCEL, PARTS, TO_INV, TYPE_A,
    ROW_A, "Click Delete Part.", TO_PL, TYPE_A, ROW_A, PENCIL, "Hover over the Delete button.", CANCEL],
@@ -346,7 +351,7 @@ C("S11-18", "S11", "Delete is disabled while a part still uses the Part Library 
    ["The \"Edit Library Part\" window opens and its Delete button is now enabled."],
    ["No hover text appears on the enabled Delete button."], ["The window closes."]],
   ["S11-R3c", "S11-R3", "S12-R13", "UFS-01", PO12, QA4, A20],
-  design=D72, prd=35)
+  design=D72, prd=36)
 
 C("S11-19", "S11", "The entry's Parts table shows Not Tracked for a location that does not count it",
   [ADMIN_TWO, "Have a part, part A, stocked at the test location and at location B under the same part number: tracked at the test location with 4 in its bin, "
@@ -371,7 +376,7 @@ C("S11-20", "S11", "The entry's Parts table tags a location where the part is in
   design=dict(boards=R72, note="Board 7.2 draws the Parts table with one tracked, active row (Remaining Quantity 4.00); it draws no \"Not Tracked\" value and no \"Inactive\" tag, which PRD v33 added on 19 Oct."))
 
 C("S11-21", "S11", "Delete in Edit Library Part is enabled only after the page is reloaded",
-  [ADMIN, "Create a part, part A, for this test at the test location only, on no work order and with no open return, credit or part request, so it can be deleted later in the test.",
+  [ADMIN, "Create a part, part A, for this test at the test location only, on no work order or part request and with no return or credit, open or completed, so it can be deleted later in the test and nothing else uses its Part Library entry.",
    TWO_TABS, "Start in browser tab 1 on the Part Library page (Parts in the top bar, then Part Library in the left menu)."],
   ["In tab 1, type part A's part number in the Search box.", "In tab 1, click the part A row.",
    "In tab 1, click the pencil icon beside the entry's name in the Part details panel.", "Open a second browser tab on the same ShopView address.",
@@ -392,4 +397,37 @@ C("S11-21", "S11", "Delete in Edit Library Part is enabled only after the page i
    ["The detail page reloads and now shows \"Total parts\" 0."],
    ["The \"Edit Library Part\" window opens and its Delete button is now enabled."]],
   ["S11-E5", "S11-R3c", "UFS-01", A15],
-  design=D72, prd=35)
+  design=D72, prd=36)
+
+C("S11-22", "S11", "Delete stays disabled while a work order line received the entry's part",
+  [ADMIN, "Create a Part Library entry for this test, entry A, with no part behind it: create a part at the test location, then delete it, so the entry stays with \"Total parts\" 0.",
+   "Create a work order for this test, work order 1, with a line, line 1, holding entry A's part added by picking its \"Part Library\" result, then ordered from any vendor and received onto line 1, so line 1 received it and no inventory part uses entry A.",
+   START_PL],
+  ["Type entry A's part number in the Search box.", "Click the entry A row.", PENCIL, "Hover over the Delete button at the bottom left of the window.",
+   "Click the Delete button.", CANCEL],
+  [["Entry A is listed."], ["The entry's detail page opens and shows \"Total parts\" 0: no inventory part uses it."],
+   ["The \"Edit Library Part\" window opens.", "A Delete button sits at the bottom left of the window, dimmed (disabled): line 1 of work order 1 received the entry's part."],
+   ["Hovering it shows \"Part cannot be deleted. Please delete related parts first.\""],
+   ["Nothing happens: no \"Are you sure you want to delete this library part?\" question opens and the window stays open."],
+   ["The window closes and entry A is still there."]],
+  ["S11-R3c", "S11-R3", "UFS-01", PO12], prd=36,
+  design=D72,
+  claude=["Entry A: create a part, then delete it from Inventory. On work order 1, line 1: + Add Part, type the number, pick the \"Part Library\" result, Qty 1, Save Part; Parts tab, Order; Parts, Purchase Orders, newest purchase order, Receive (invoice number, quantity 1).",
+          "New 4 Nov 2026 for PRD v36 S11-R3c (\"a work order line that received it\")."])
+
+C("S11-23", "S11", "Delete stays disabled while a credited return uses the entry",
+  [ADMIN, "Create a part, part A, for this test at the test location only, with 2 on hand, on no work order.",
+   "Create a vendor return for this test, return A, of 1 part A to any vendor, completed and credited by the vendor, so part A has a credited return and no return or credit still open.",
+   START],
+  [TYPE_A, ROW_A, "Click Delete Part.", TO_PL, TYPE_A, ROW_A, PENCIL, "Hover over the Delete button at the bottom left of the window.", CANCEL],
+  [["Part A is listed."], ["Edit Inventory Part opens for part A."],
+   ["The window closes and part A leaves the Inventory list: a completed return does not stop Delete Part."],
+   ["The Part Library page opens."], ["Part A's entry is still listed, although its part was deleted."],
+   ["The entry's detail page opens and shows \"Total parts\" 0: no inventory part uses it any more."],
+   ["The \"Edit Library Part\" window opens.", "A Delete button sits at the bottom left of the window, dimmed (disabled): the credited return A still uses the entry."],
+   ["Hovering it shows \"Part cannot be deleted. Please delete related parts first.\""],
+   ["The window closes and the entry is still there."]],
+  ["S11-R3c", "S13-R26", "S13-R28", "UFS-01"], stories=[11, 13], prd=36,
+  design=D72,
+  claude=["Return A: Parts, Returns, Create Return, any vendor, 1 of the part, complete it and record the vendor's credit.",
+          "New 4 Nov 2026 for PRD v36 S11-R3c (\"a part return (open or credited)\"). S13-R28 blocks Delete Part only for a return or credit that is not completed, so a credited return can outlive its part."])

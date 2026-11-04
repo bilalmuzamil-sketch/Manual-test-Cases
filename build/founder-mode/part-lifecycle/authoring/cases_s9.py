@@ -10,8 +10,12 @@ untracked part keeps its "In Stock" badge). No manual case: S9-E9 (the public AP
 access can come from other settings); S9-41 and S9-42 no longer compare with production, since answer 22 states today's access: no
 Vendor Order Management hides and refuses Parts → Returns (S9-41); Vendor Order Management → View only has no Create Return button, and
 the Create Return page opened by its address shows the S9-N3 access error in the part search (S9-42). New S9-49 (S9-R18a: global search
-never lists a core)."""
-from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
+never lists a core).
+4 Nov 2026 (QA lead: "Yes, held"): new S9-50 and S9-51 for Jira SV-12010 (Board Backlog: a received vendor bill line refuses an inactive
+part's number, S9-R17's match; a line already holding an inactive part still saves with its own number, S9-E2). Both held with the
+SV-12010 marker and kept out of the run until it ships. The ticket's "a number an active part at this location also has is not refused"
+needs two look-alike numbers at one location, which no screen can make (S13-N1, S7-N3), so it has no step here (setup-file note only)."""
+from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD, J12010
 from common import *
 from cases_s6 import TYPE_A, ROW_A, SAVE, DEACT_CONF, GS_OPEN
 
@@ -487,3 +491,42 @@ C("S9-49", "S9", "Global search never lists a part's core",
    ["Part B is listed once, with the grey \"Inactive\" tag and \"Not Tracked\": its core is not listed beside it."]],
   ["S9-R18a", "S9-R18", "S9-R20", "FO-10", A13B],
   design=dict(note="no board draws the global search; the expected results above come from the quotes above."), prd=35)
+
+# ---------------------------------------------------------------- 4 Nov 2026: Jira SV-12010 (not built yet; held, out of the run)
+H12010 = HOLD("SV-12010 is not built yet (Board Backlog, 4 Nov 2026); release when it ships")
+Q12010_R = J12010("The save is refused with \"{part number} is inactive. Activate it from the Inactive tab to use it.\", as S9-R17 does for purchase order lines.")
+Q12010_M = J12010("Same match as S9-R17: upper and lower case, hyphens, asterisks, periods and spaces are ignored; a number an active part at this location also has is not refused.")
+Q12010_E = J12010("A line that already holds an inactive part can still be saved with its own number (S9-E2).")
+BILL_A = "Start on bill A (Parts in the top bar, Vendor Invoices in the left menu, then bill A)."
+EDIT_L1 = "Click line 1's part number to change it."
+
+C("S9-50", "S9", "A received vendor bill line refuses an inactive part's typed number",
+  [ADMIN, "Create a part for this test, part A, with a hyphen in its part number, and set it inactive.",
+   "Create a received vendor bill for this test, bill A, with one special-order line, line 1, whose part number was typed by hand and matches no part at the test location.",
+   BILL_A],
+  [EDIT_L1, "Replace line 1's part number with part A's part number in lower case.", SAVE,
+   "Replace the text with part A's part number with periods in place of its hyphens.", SAVE, "Reload the page."],
+  [["Line 1's part number can be changed."], ["The field holds part A's number in lower case."],
+   [f"The save is refused with a message: part A's part number, written as it was saved (capitals and hyphens), followed by \"{MSG}\"",
+    "Line 1 keeps its own typed number."],
+   ["The field holds part A's number with periods."],
+   [f"The save is refused again with the same message, part A's part number followed by \"{MSG}\": upper and lower case and periods make no difference."],
+   ["Bill A reloads and line 1 still shows its own typed number: neither change was saved."]],
+  [Q12010_R, Q12010_M, "S9-R17"], stories=[9], prd=36, marker=H12010,
+  design=dict(note="no board draws a vendor bill; the expected results above come from the quotes above."),
+  claude=["Bill A: an open purchase order with one line where ZZAUTOTEST-PL-S9-50-SO was typed by hand and added as typed, received on a vendor invoice; that invoice is bill A.",
+          "SV-12010 also says \"a number an active part at this location also has is not refused\"; one location cannot hold two look-alike numbers through the screens (S7-N3, S13-N1), so no manual step checks it.",
+          "Held 4 Nov 2026 (QA lead: \"Yes, held\"); not in run 556 until SV-12010 ships."])
+
+C("S9-51", "S9", "A vendor bill line holding a part later set inactive still saves",
+  [ADMIN, "Create a part for this test, part A, with 4 on hand.",
+   "Create a received vendor bill for this test, bill A, with one stock line, line 1, for part A.",
+   "Set part A inactive after bill A was received.", BILL_A],
+  [EDIT_L1, SAVE, "Reload the page."],
+  [["Line 1's part number can be changed and still holds part A."],
+   [f"The save goes through with part A's own number: no \"{MSG}\" message shows."],
+   ["Bill A reloads and line 1 still holds part A."]],
+  [Q12010_E, "S9-E2"], stories=[9], prd=36, marker=H12010,
+  design=dict(note="no board draws a vendor bill; the expected results above come from the quotes above."),
+  claude=["Bill A: a purchase order from any vendor with one line for it picked from the lookup, received on a vendor invoice (bill A); then Inventory, part, Inactive, Save, Deactivate.",
+          "Held 4 Nov 2026 (QA lead: \"Yes, held\"); not in run 556 until SV-12010 ships."])

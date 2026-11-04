@@ -12,7 +12,11 @@ with the QA lead's explicit go-ahead (Rule 6). Without --apply it only prints th
        C-id is appended to ../testrail-id-map.csv;
     3. upload each case's design pictures (idempotent, read back).
   Held cases (marker other than the standard HOLD) are written like the others (they are in the suite) but are NOT added to a run.
-  Runs: the cases live in the automatic Nightly runs (QA lead, 13 Oct: no dedicated run); any run sync is union only (Rule 34)."""
+  Runs: the cases live in the automatic Nightly runs (QA lead, 13 Oct: no dedicated run); any run sync is union only (Rule 34).
+  4 Nov 2026 (v36 named set): 4. every NEW case that is not held is added to run 556 "Part Lifecycle - Execution", union only (Rule 34:
+    the run's current case ids plus the new ones, include_all stays off), and assigned to user 6 (an add_result_for_case carrying only
+    assignedto_id), then read back. The dry run also reads every mapped case live (get_cases per section) and locks on the live
+    updated_on: it lists which cases would be written, which are already current, and which changed since our read-back (skipped)."""
 import datetime, sys, os, json, csv, subprocess
 D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D)
 PROP = json.load(open(f"{D}/proposals.json")); MAP = {r["key"]: r for r in csv.DictReader(open(f"{P}/testrail-id-map.csv"))}
@@ -41,16 +45,55 @@ dup = [c for c, n in Counter(MAP[k]["case_id"] for k in upd).items() if n > 1]
 print("C-ids updated by more than one key:", len(dup))
 print("held cases (written, not added to any run):", len([k for k in PROP if PROP[k]["held"]]),
       sorted(k for k in PROP if PROP[k]["held"]))
-if "--apply" not in sys.argv: sys.exit(0)
+RUN, ASSIGN = 556, 6
+new_unheld = [k for k in new if not PROP[k]["held"]]
+print(f"run {RUN}: would add {len(new_unheld)} new unheld cases (union only, assigned to user {ASSIGN}):", new_unheld,
+      "| new held cases kept out:", [k for k in new if PROP[k]["held"]])
+sys.path.insert(0, f"{P}/../../dashboards/currency-2026-10-14/apply"); from trlib import api, LAST
+OUT = f"{P}/applied-2026-10-27"
+def diff(a, f): return [x for x, y in f.items() if ((a.get(x) or "").replace(" ", "") != y.replace(" ", "") if x == "refs" else a.get(x) != y)]
+def latest(cid):
+    f = f"{OUT}/C{cid}-after.json" if os.path.exists(f"{OUT}/C{cid}-after.json") else f"{P}/update-2026-10-14/applied/C{cid}-after.json"
+    return json.load(open(f))
+if "--apply" not in sys.argv:
+    # dry run (4 Nov 2026): read every mapped case live, section by section (read only), and lock on the live updated_on
+    LIVE = {}
+    for sid in sorted({int(PROP[k]["section_id"]) for k in upd}):
+        off = 0
+        while True:
+            r = api(f"get_cases/1&section_id={sid}&limit=250&offset={off}"); cs = r["cases"] if isinstance(r, dict) else r
+            for c in cs: LIVE[c["id"]] = c
+            if len(cs) < 250: break
+            off += 250
+    plan = {"write": [], "already": [], "locked": [], "missing": []}
+    for k in upd:
+        cid = int(MAP[k]["case_id"]); live = LIVE.get(cid)
+        if not live:                                   # moved to another section since our read-back: read it on its own
+            live = api(f"get_case/{cid}")
+            if not isinstance(live, dict) or "id" not in live: plan["missing"].append(k); continue
+            plan.setdefault("moved", []).append(f"{k} C{cid} -> section {live['section_id']}")
+        if not diff(live, PROP[k]["fields"]): plan["already"].append(k); continue
+        (plan["write"] if live["updated_on"] == latest(cid)["updated_on"] else plan["locked"]).append(f"{k} C{cid}")
+    print(f"live lock (updated_on vs our latest read-back): would WRITE {len(plan['write'])} {plan['write']} | already current "
+          f"{len(plan['already'])} | LOCKED (changed since our read-back, skipped; ask the QA lead, Rule 123) {len(plan['locked'])} {plan['locked']} "
+          f"| not found live {len(plan['missing'])} {plan['missing']} | moved to another section since our read-back {len(plan.get('moved', []))}")
+    run = api(f"get_run/{RUN}"); tests, off = [], 0
+    while True:
+        t = api(f"get_tests/{RUN}&limit=250&offset={off}"); t = t["tests"] if isinstance(t, dict) else t
+        tests += t
+        if len(t) < 250: break
+        off += 250
+    have = {t["case_id"] for t in tests}
+    print(f"run {RUN} \"{run['name']}\": include_all {run['include_all']}, {len(tests)} tests now; mapped cases in it "
+          f"{len({int(MAP[k]['case_id']) for k in upd} & have)}/{len(upd)}; after the ADD it would hold {len(tests) + len(new_unheld)} (union only)")
+    sys.exit(0)
 b = subprocess.run([sys.executable, f"{D}/build.py"], capture_output=True, text=True)
 if b.returncode != 0 or "PROBLEM lines: 0" not in b.stdout: sys.exit("REFUSED: build.py has PROBLEM lines")
 sys.path.insert(0, "/home/user/Manual-test-Cases/build/testing-tools"); import tester_readiness_check as T
 T.require(P)                                                          # Rule 138: exits on any hard problem
-sys.path.insert(0, f"{P}/../../dashboards/currency-2026-10-14/apply"); from trlib import api, LAST
-OUT = f"{P}/applied-2026-10-27"; os.makedirs(f"{OUT}/before", exist_ok=True)
+os.makedirs(f"{OUT}/before", exist_ok=True)
 log = open(f"{OUT}/apply-log.jsonl", "a")
 def L(r): log.write(json.dumps(r, ensure_ascii=False) + "\n"); log.flush()
-def diff(a, f): return [x for x, y in f.items() if ((a.get(x) or "").replace(" ", "") != y.replace(" ", "") if x == "refs" else a.get(x) != y)]
 for k in upd:
     cid = int(MAP[k]["case_id"])
     # 27 Oct 2026 (coordinator): lock against our LATEST read-back, so a re-run neither writes twice nor skips a case it wrote
@@ -106,4 +149,31 @@ for k, v in PROP.items():
         L({"op": "add_attachment", "key": k, "case": f"C{IDS[k]}", "name": n, "http": st})
     miss = [n for n in want if n not in _attached(IDS[k])]
     L({"op": "readback_attachments", "key": k, "case": f"C{IDS[k]}", "want": len(want), "missing": miss})
+# 4 Nov 2026: new unheld cases into run 556, union only (Rule 34), assigned to user 6, read back
+IDS = {r["key"]: int(r["case_id"]) for r in csv.DictReader(open(f"{P}/testrail-id-map.csv"))}
+add = [IDS[k] for k in new_unheld if k in IDS]
+if add:
+    run = api(f"get_run/{RUN}"); tests, off = [], 0
+    while True:
+        t = api(f"get_tests/{RUN}&limit=250&offset={off}"); t = t["tests"] if isinstance(t, dict) else t
+        tests += t
+        if len(t) < 250: break
+        off += 250
+    have = {t["case_id"] for t in tests}
+    if run["include_all"]: L({"op": "update_run", "run": RUN, "why": "include_all is on: not touched, ask the coordinator"})
+    else:
+        todo = [c for c in add if c not in have]
+        if todo:
+            api(f"update_run/{RUN}", {"include_all": False, "case_ids": sorted(have | set(todo))}); st = LAST["status"]
+            for c in todo: api(f"add_result_for_case/{RUN}/{c}", {"assignedto_id": ASSIGN})
+        else: st = "already"
+        tests2, off = [], 0
+        while True:
+            t = api(f"get_tests/{RUN}&limit=250&offset={off}"); t = t["tests"] if isinstance(t, dict) else t
+            tests2 += t
+            if len(t) < 250: break
+            off += 250
+        got = {t["case_id"]: t.get("assignedto_id") for t in tests2}
+        ok = have <= set(got) and all(got.get(c) == ASSIGN for c in add)
+        L({"op": "update_run", "run": RUN, "http": st, "added": todo, "assigned_to": ASSIGN, "tests_before": len(tests), "tests_after": len(tests2), "readback_ok": ok})
 print("written; see", f"{OUT}/apply-log.jsonl")

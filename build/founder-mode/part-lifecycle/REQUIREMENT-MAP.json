@@ -1,5 +1,5 @@
 {
- "prd": "Confluence 829227015 version 35",
+ "prd": "Confluence 829227015 version 36",
  "built": "by authoring/build.py",
  "counts": {
   "COVERED": 294,
@@ -240,11 +240,13 @@
    "status": "COVERED",
    "keys": [
     "S1-08",
-    "S1-14"
+    "S1-14",
+    "S6-11"
    ],
    "case_ids": [
     "425590",
-    "839415"
+    "839415",
+    null
    ]
   },
   "S1-N1": {
@@ -1311,10 +1313,12 @@
    "text": "The Total Qty column can be sorted.",
    "status": "COVERED",
    "keys": [
-    "S6-02"
+    "S6-02",
+    "S6-11"
    ],
    "case_ids": [
-    "154775"
+    "154775",
+    null
    ]
   },
   "S6-R4": {
@@ -1332,13 +1336,15 @@
   "S6-R5": {
    "story": 6,
    "jira": "SV-10819",
-   "text": "Tracked parts sort against each other by quantity.",
+   "text": "Tracked parts sort against each other by the quantity shown in the Total Qty column. The printed count sheet follows the same order.",
    "status": "COVERED",
    "keys": [
-    "S6-02"
+    "S6-02",
+    "S6-11"
    ],
    "case_ids": [
-    "154775"
+    "154775",
+    null
    ]
   },
   "S6-R6": {
@@ -1347,10 +1353,12 @@
    "text": "Tracked parts with the same quantity are then ordered by description, A to Z.",
    "status": "COVERED",
    "keys": [
-    "S6-02"
+    "S6-02",
+    "S6-11"
    ],
    "case_ids": [
-    "154775"
+    "154775",
+    null
    ]
   },
   "S6-R7": {
@@ -2410,13 +2418,15 @@
     "S9-21",
     "S9-22",
     "S9-23",
-    "S9-30"
+    "S9-30",
+    "S9-50"
    ],
    "case_ids": [
     "425739",
     "425740",
     "425741",
-    "425748"
+    "425748",
+    null
    ]
   },
   "S9-R18": {
@@ -2584,11 +2594,13 @@
    "status": "COVERED",
    "keys": [
     "S9-04",
-    "S9-30"
+    "S9-30",
+    "S9-51"
    ],
    "case_ids": [
     "154787",
-    "425748"
+    "425748",
+    null
    ]
   },
   "S9-E2a": {
@@ -3363,6 +3375,7 @@
     "S11-01",
     "S11-02",
     "S11-18",
+    "S11-22",
     "S12-02",
     "S12-05"
    ],
@@ -3371,6 +3384,7 @@
     "154828",
     "154829",
     "573671",
+    null,
     "154833",
     "425619"
    ]
@@ -3378,18 +3392,24 @@
   "S11-R3c": {
    "story": 11,
    "jira": "SV-10824",
-   "text": "While an inventory part, an open part request or a part return still uses the entry, the Delete button is disabled and hovering it shows \"Part cannot be deleted. Please delete related parts first.\"",
+   "text": "While an inventory part, an open part request, a work order line that received it, or a part return (open or credited) still uses the entry, the Delete button is disabled and hovering it shows \"Part cannot be deleted. Please delete related parts first.\"",
    "status": "COVERED",
    "keys": [
     "S11-02",
     "S11-18",
     "S11-21",
+    "S11-22",
+    "S11-23",
+    "S12-02",
     "S12-06"
    ],
    "case_ids": [
     "154829",
     "573671",
     "847730",
+    null,
+    null,
+    "154833",
     "425620"
    ]
   },
@@ -4228,7 +4248,8 @@
     "S13-18c",
     "S13-19",
     "S13-20",
-    "S13-21"
+    "S13-21",
+    "S13-50"
    ],
    "case_ids": [
     "425613",
@@ -4236,21 +4257,24 @@
     "839446",
     "425697",
     "425698",
-    "425699"
+    "425699",
+    null
    ]
   },
   "S13-R19a": {
    "story": 13,
    "jira": "SV-10826",
-   "text": "A line that only shares the old number, typed in by hand with no link to this part, keeps its number.",
+   "text": "A line that only shares the old number, typed in by hand with no link to this part, keeps its number. A part request added by picking this part's Part Library result is linked to it, and takes the new number.",
    "status": "COVERED",
    "keys": [
     "S13-18c",
-    "S13-22b"
+    "S13-22b",
+    "S13-50"
    ],
    "case_ids": [
     "839446",
-    "839447"
+    "839447",
+    null
    ]
   },
   "S13-R19b": {
@@ -4414,9 +4438,11 @@
    "text": "Delete Part deletes the part and closes the dialog. It asks for no confirmation.",
    "status": "COVERED",
    "keys": [
+    "S11-23",
     "S13-34"
    ],
    "case_ids": [
+    null,
     "425713"
    ]
   },
@@ -4438,9 +4464,11 @@
    "text": "When the part has a return or credit that is not completed, Delete Part does nothing and hovering it shows \"Please complete or cancel the related return or credit first.\"",
    "status": "COVERED",
    "keys": [
+    "S11-23",
     "S13-36"
    ],
    "case_ids": [
+    null,
     "425715"
    ]
   },

@@ -11,7 +11,11 @@ The 14 Oct "not checked by hand" lines are gone (L-14).
 re-quoted; S13-19 now also quotes S13-R19e (a part request already received onto the line keeps its number); new S13-48 (S13-R19e on part
 sale lines, open and completed) and S13-49 (S13-N1a on the Part Library page, which has no current location: the message names the
 location). S13-03b (the core's own Part History page, which has no link on screen, answer 13) is kept unchanged and listed in
-../full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json."""
+../full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json.
+4 Nov 2026 named set (PRD v36 S13-R19a, second sentence: a part request added by picking the part's Part Library result is linked and takes
+the new number; ruling on SV-12110): S13-18c, S13-22 and S13-22b re-checked and re-quoted on v36 (their expectations do not change); new
+S13-50 (a part request picked from the Part Library result takes the new number, a hand-typed one with the same number keeps its own, and
+ordering the linked one puts the new number on the purchase order line)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
 from pc_common import *
@@ -299,7 +303,7 @@ C("S13-18c", "S13", "A purchase order line typed by hand with the old number kee
    ["The line picked from the lookup reads the new number.",
     "The line typed by hand still reads the old number: it only shares the number and has no link to part A."]],
   ["S13-R19a", "S13-R19"], part_of="S13-18",
-  design=dict(note=NOBOARD))
+  design=dict(note=NOBOARD), prd=36)
 
 C("S13-19", "S13", "A rename carries over to open part requests but not to received ones",
   [ADMIN, "Create a part, part A, for this test with 5 on hand.",
@@ -356,7 +360,7 @@ C("S13-22", "S13", "A delivery opened before a rename is received under the new 
    ["The Vendor Invoices list opens."],
    ["The vendor invoice's line reads the new number, although the Receive screen was opened before the rename."]],
   ["S13-R19c", ("TECH", "§3 Technical Decisions, D30", "S13-R19c: ReceiveADelivery.php:88,108 take the number posted by the Receive screen; for a line linked to an order item with a part_id, the handler resolves the number from that part's current entry instead, so a rename between opening and accepting is honored and no entry is created for the old number.")],
-  design=dict(note=NOBOARD))
+  design=dict(note=NOBOARD), prd=36)
 
 C("S13-22b", "S13", "A hand-typed purchase order line is received under its own number",
   [ADMIN, "Create a part, part A, for this test.", "Create an open purchase order for this test, purchase order 1, from any vendor, with one line where part A's number was typed by hand and added as typed, 1 ordered and none received.",
@@ -370,7 +374,7 @@ C("S13-22b", "S13", "A hand-typed purchase order line is received under its own 
    ["The invoice number shows what you typed."], ["The cost shows 10.00."], ["The received quantity shows 1."], ["The line is received."],
    ["The Vendor Invoices list opens."], ["The vendor invoice's line reads the old number: a hand-typed line is received under its own number."]],
   ["S13-R19c", "S13-R19a"], part_of="S13-22",
-  design=dict(note=NOBOARD))
+  design=dict(note=NOBOARD), prd=36)
 
 C("S13-23", "S13", "Part Status offers Active and Inactive, set to the saved status",
   [ADMIN, "Have an active part, part A, and an inactive part, part B, at the test location.", START],
@@ -713,3 +717,21 @@ C("S13-49", "S13", "A look-alike rename on the Part Library page names the locat
    ["The window closes and the entry still shows part A's own number."], ["The Parts left menu shows Part Library."], ["The Part Library page opens."],
    ["Part B's entry is listed with its own number, unchanged."]],
   ["S13-N1a", "S11-R3a", "UFS-14", "CN-S13-3", A23], stories=[13, 11], design=dict(boards=["7.2"]), prd=35)
+
+C("S13-50", "S13", "A part request picked from the Part Library result takes the new number",
+  [ADMIN, "Create a part, part A, for this test with 5 on hand.",
+   "Create a work order for this test, work order 1, with a line holding two part requests, neither ordered nor received: one added by picking part A's \"Part Library\" result, "
+   "and one where part A's number was typed by hand and added as typed, with no link to the part.", NEWNUM_X, START],
+  [TYPE_A, ROW_A, REPLACE_NEW, SAVE, "Click Work Orders in the top bar.", "Open work order 1.", "Click the Parts tab.",
+   "Click Order on the row of the part request picked from the Part Library result.", PARTS, PO_LINE, "Open the newest purchase order."],
+  [["Part A is listed."], ["Edit Inventory Part opens for part A."], ["Part Number shows the new number."],
+   ["The rename is saved, the window closes and part A's row shows the new number."], ["The Work Orders list opens."], ["Work order 1 opens."],
+   ["The part request picked from the Part Library result reads the new number: it is linked to part A.",
+    "The part request typed by hand still reads the old number: it only shares the number and has no link to part A."],
+   ["The part request is ordered and goes through."], ["The Parts left menu shows Purchase Orders."], ["The Purchase Orders list opens."],
+   ["The new purchase order's line reads the new number, not the old one."]],
+  ["S13-R19a", "S13-R19", "TERM-6"], prd=36,
+  design=dict(note=NOBOARD),
+  claude=["New number: ZZAUTOTEST-PL-NEW-1350 (it must not contain part A's number).",
+          "Setup on work order 1's line: + Add Part, type part A's number, pick the \"Part Library\" result, Qty 1, Save Part; then + Add Part, type part A's number, pick the offer to add the typed number as typed (not a result), Source Vendor, Save Part.",
+          "New 4 Nov 2026 for PRD v36 S13-R19a, second sentence (ruling on SV-12110)."])

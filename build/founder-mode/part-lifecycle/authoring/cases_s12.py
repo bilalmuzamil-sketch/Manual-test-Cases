@@ -8,7 +8,9 @@ a control the tester can see (a received number that IS offered with its vendor)
 28 Oct 2026 named set (PRD v35 S11-R3c, S11-E5, S12-R6, S12-R11a; Chris Ward's answers 15 and 24 of 27 Oct 2026): S12-03 and S12-10
 re-quoted (Roles & Permissions is under Settings); S12-06 released (Delete stays as it was until the page is reloaded, S11-E5); new S12-15
 (S12-R11a: opening the address of a deleted entry shows "Part Library entry not found for ID: {id}."). The other S12-R11 refusals are
-verified in code review, not on screen (S12-R11a; requirement_map.py)."""
+verified in code review, not on screen (S12-R11a; requirement_map.py).
+4 Nov 2026 named set (PRD v36 S11-R3c widened): S12-02 and S12-06 re-quoted on v36; their entry is now one nothing uses (ENTRY_UNUSED rules
+out a part request, a work order line, a return and a credit too), and S12-02 also quotes S11-R3c, whose converse it checks."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
 from pc_common import *
@@ -21,6 +23,10 @@ ADD_PART = "In the Parts row of the line, click + Add Part."
 CLOSE_NPR = "Click the X at the top right of the New Part Request window."
 ENTRY_NO_PART = ("Create a Part Library entry with no part behind it for this test, entry A: create a part at the test location, then delete it, so "
                  "the entry stays with \"Total parts\" 0.")
+# 4 Nov 2026 (PRD v36 S11-R3c): an entry nothing uses, ruling out every user v36 names (inventory part, open part request, work order line
+# that received it, part return open or credited); used by S12-02 and S12-06 only (ENTRY_NO_PART stays as it is for the other cases)
+ENTRY_UNUSED = ("Create a Part Library entry for this test, entry A, that nothing uses: create a part at the test location, put it on no work order, "
+                "part request, return or credit, then delete it, so the entry stays with \"Total parts\" 0.")
 TECH_Q9 = ("TECH", "§1 Clarifications, Q9 S12-R11 copy", "Delete refusal \"This Part Library entry is in use and cannot be deleted.\"")
 TECH_PS = ("TECH", "Phase 7 frontend changes, PartSelect.vue", "so the special-order lookup reads \"Part Library · {vendor}\" (S12-R10, S12-R14)")
 
@@ -35,17 +41,17 @@ C("S12-01", "S12", "The Parts menu, page title and browser tab read Part Library
   design=dict(boards=["7.1"], words=[note("Called Part Library in the side menu")]))
 
 C("S12-02", "S12", "Deleting an unused Part Library entry asks and confirms in Part Library words",
-  [ADMIN, ENTRY_NO_PART, START_PL],
+  [ADMIN, ENTRY_UNUSED, START_PL],
   ["Type entry A's part number in the Search box.", "Click the entry A row.", PENCIL, "Click Delete at the bottom left of the window.",
    "Confirm the deletion.", PARTS, TO_PL, "Type entry A's part number in the Search box."],
   [["Entry A is listed."], ["Its detail page opens and shows \"Total parts\" 0."],
-   ["The \"Edit Library Part\" window opens.", "A Delete button sits at the bottom left of the window and is enabled, because no part uses the entry."],
+   ["The \"Edit Library Part\" window opens.", "A Delete button sits at the bottom left of the window and is enabled, because nothing uses the entry: no part, part request, work order line or return."],
    ["A confirmation asks \"Are you sure you want to delete this library part?\""],
    ["The entry is deleted and a green message reads \"Library part deleted successfully.\""],
    ["The Parts left menu shows Part Library."], ["The Part Library page opens."],
    ["No entry is listed for entry A's number: the deletion shown in the green message took effect."]],
-  ["S12-R13", "S12-R5", "S11-R3", PO12, QA4],
-  design=dict(boards=["7.2"]))
+  ["S12-R13", "S12-R5", "S11-R3", "S11-R3c", PO12, QA4],
+  design=dict(boards=["7.2"]), prd=36)
 
 C("S12-03", "S12", "Roles & Permissions shows the Part Library and Inventory permission group",
   [ADMIN, "Create a custom role for this test, role A, so no shared role is opened.", START_RP],
@@ -82,7 +88,7 @@ C("S12-05", "S12", "The edit window for a Part Library entry is titled Edit Libr
   design=dict(boards=["7.2"], words=[note("Clicking a row opens the entry")]))
 
 C("S12-06", "S12", "Deleting a Part Library entry that a part now uses is refused",
-  [ADMIN, ENTRY_NO_PART, TWO_TABS, "Start in browser tab 1 on the Part Library page (Parts in the top bar, then Part Library in the left menu)."],
+  [ADMIN, ENTRY_UNUSED, TWO_TABS, "Start in browser tab 1 on the Part Library page (Parts in the top bar, then Part Library in the left menu)."],
   ["In tab 1, type entry A's part number in the Search box.", "In tab 1, click the entry A row.",
    "In tab 1, click the pencil icon beside the entry's name in the Part details panel.", "Open a second browser tab on the same ShopView address.",
    "In tab 2, click Parts in the top bar.", "In tab 2, click Inventory in the left menu.", "In tab 2, click New Inventory Part.",
@@ -91,7 +97,7 @@ C("S12-06", "S12", "Deleting a Part Library entry that a part now uses is refuse
    "In tab 1, click Delete.", "In tab 1, confirm the deletion.", WAIT5, "In tab 1, click Parts in the top bar.", "In tab 1, click Part Library in the left menu.",
    "In tab 1, type entry A's part number in the Search box.", "In tab 1, click the entry A row."],
   [["Entry A is listed."], ["Its detail page opens and shows \"Total parts\" 0."],
-   ["The \"Edit Library Part\" window opens and its Delete button, bottom left, is enabled, because no part uses the entry yet."],
+   ["The \"Edit Library Part\" window opens and its Delete button, bottom left, is enabled, because nothing uses the entry yet."],
    ["A second tab opens."], ["Tab 2 shows the Parts left menu."], ["Tab 2 shows the Inventory page."], ["The \"New Inventory Part\" window opens in tab 2."],
    ["Description shows entry A's description."], ["Part Number shows entry A's number."], ["Category shows the category you picked."], ["Cost shows 10.00."],
    ["The window closes in tab 2 and the part is saved."],
@@ -103,7 +109,7 @@ C("S12-06", "S12", "Deleting a Part Library entry that a part now uses is refuse
    ["Tab 1 shows the Parts left menu."], ["The Part Library page opens."], ["Entry A is still listed."],
    ["Its detail page shows \"Total parts\" 1: the part saved in tab 2 uses it."]],
   ["S12-R11", "S12-R11a", "S12-R13", "UFS-46", "CN-S13-3", "S11-R3c", "S11-E5", TECH_Q9, A15, A24],
-  design=D72, prd=35)
+  design=D72, prd=36)
 
 C("S12-07", "S12", "Saving a Part Library entry deleted in another tab is refused",
   [ADMIN, ENTRY_NO_PART, "Use a new description for entry A, description 1.", TWO_TABS,

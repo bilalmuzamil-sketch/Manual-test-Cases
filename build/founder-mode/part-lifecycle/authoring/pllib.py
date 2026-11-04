@@ -42,10 +42,14 @@ def md_to_text(md):
 # 28 Oct 2026 (named set, Rule 122 amendment): the QA lead chose a NAMED SET, not a full pass. Cases in the set carry prd=35 and quote
 # PRD v35 (Confluence 829227015 version 35, edited 27 Oct 2026 by Chris Ward); every other case keeps prd=33 and renders exactly as it was
 # written on 27 Oct 2026 (quotes, From line and version stamp unchanged). Coverage (build.py) runs on the v35 codes.
-PRD_FILES = {33: f"{P}/sources/CONFLUENCE-829227015-PartLifecycle-v33-2026-10-27.md", 35: f"{P}/sources/CONFLUENCE-829227015-2026-10-28.md"}
+# 4 Nov 2026 (named set to PRD v36, QA lead "Named set"): cases in the 4 Nov set and every case added then carry prd=36 EXPLICITLY (the
+# switch is per case, never "mapped or not", so a new case stays on v36 after apply.py maps it); v33 and v35 cases render as before.
+PRD_FILES = {33: f"{P}/sources/CONFLUENCE-829227015-PartLifecycle-v33-2026-10-27.md", 35: f"{P}/sources/CONFLUENCE-829227015-2026-10-28.md",
+             36: f"{P}/sources/CONFLUENCE-829227015-v36-2026-11-04.md"}
 PRD_NAMES = {33: 'PRD "Parts Lifecycle Update", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward)',
-             35: 'PRD "Parts Lifecycle Update", Confluence 829227015, version 35 (edited 27 Oct 2026 by Chris Ward)'}
-PRD_READ = {33: "read 27 Oct 2026", 35: "read 28 Oct 2026"}
+             35: 'PRD "Parts Lifecycle Update", Confluence 829227015, version 35 (edited 27 Oct 2026 by Chris Ward)',
+             36: 'PRD "Parts Lifecycle Update", Confluence 829227015, version 36 (3 Nov 2026, Chris Ward)'}
+PRD_READ = {33: "read 27 Oct 2026", 35: "read 28 Oct 2026", 36: "read 4 Nov 2026"}
 
 def _parse(ver):
     all_ = open(PRD_FILES[ver]).read()
@@ -85,7 +89,8 @@ def _parse(ver):
     for line in md.split("\n"):
         m = re.match(r"^### Story (\d+):", line)
         if m: story = int(m.group(1)); continue
-        if line.startswith(">") and "Context note" in line:
+        # v36 (4 Nov 2026) was converted from ADF by another script: its notes start "** Context note" instead of "> *\\* Context note"
+        if (line.startswith(">") or line.startswith("** Context note")) and "Context note" in line:
             t = ws(md_to_text(line)).lstrip("* ").rstrip("*").strip()   # each note is wrapped in Markdown italics: no stray "*" at either end
             cn[story] = cn.get(story, 0) + 1
             _n(f"CN-S{story}-{cn[story]}", f"Story {story}, context note", t)
@@ -103,13 +108,18 @@ PRDV = {v: _parse(v) for v in PRD_FILES}
 if set(PRDV[33]["NAMED"]) != set(PRDV[35]["NAMED"]): raise SystemExit("v33 and v35 name different context notes, bullets or feedback rows")
 if set(PRDV[33]["CODE"]) - set(PRDV[35]["CODE"]): raise SystemExit("a v33 code is missing from v35")
 if PRDV[33]["STORY_TITLE"] != PRDV[35]["STORY_TITLE"]: raise SystemExit("story titles changed between v33 and v35")
-PRD_VERSION = 35                                         # coverage, the requirement map and new cases use v35
+if set(PRDV[35]["NAMED"]) != set(PRDV[36]["NAMED"]): raise SystemExit("v35 and v36 name different context notes, bullets or feedback rows")
+if set(PRDV[35]["CODE"]) != set(PRDV[36]["CODE"]): raise SystemExit("v35 and v36 have different codes")
+if PRDV[35]["STORY_TITLE"] != PRDV[36]["STORY_TITLE"]: raise SystemExit("story titles changed between v35 and v36")
+PRD_VERSION = 36                                         # coverage and the requirement map use v36 (4 Nov 2026; was v35)
 _cur = PRDV[PRD_VERSION]
 PRD_FILE, PRD_ALL, PRD_MD, PRDW, PRD_ROWSW = PRD_FILES[PRD_VERSION], _cur["ALL"], _cur["MD"], _cur["W"], _cur["ROWSW"]
 CODE, CODE_STORY, STORY_TITLE, NAMED, UFS = _cur["CODE"], _cur["CODE_STORY"], _cur["STORY_TITLE"], _cur["NAMED"], _cur["UFS"]
 PRD_NAME, READ = PRD_NAMES[33], PRD_READ[33]             # the From line of every case NOT in the 28 Oct named set (unchanged)
-NEW_V35 = sorted(set(CODE) - set(PRDV[33]["CODE"]))     # S7-N11, S9-R18a, S10-R11a, S11-E5, S12-R11a, S13-R19e
-CHANGED_V35 = sorted(c for c in PRDV[33]["CODE"] if PRDV[33]["CODE"][c] != CODE[c])
+NEW_V35 = sorted(set(PRDV[35]["CODE"]) - set(PRDV[33]["CODE"]))     # S7-N11, S9-R18a, S10-R11a, S11-E5, S12-R11a, S13-R19e
+CHANGED_V35 = sorted(c for c in PRDV[33]["CODE"] if PRDV[33]["CODE"][c] != PRDV[35]["CODE"][c])
+NEW_V36 = sorted(set(CODE) - set(PRDV[35]["CODE"]))                   # none
+CHANGED_V36 = sorted(c for c in PRDV[35]["CODE"] if PRDV[35]["CODE"][c] != CODE[c])   # S6-R5, S11-R3c, S13-R19a
 EPIC = "SV-10647"
 DESIGN_URL = "https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE"
 NOBUILD = "The build is not yet available to check this case against."
@@ -150,6 +160,12 @@ PO27_DOC = "https://docs.google.com/document/d/1pkAPGqWVTdtYorNN4SVNl9HkHxuuB9cz
 PO27_NAME = (f"Product's answers to questions 13 to 27 (Chris Ward, 27 Oct 2026, Google Doc {PO27_DOC}, saved word for word in "
              "full-pass-2026-10-27/ANSWERS-13-27-2026-10-27.md)")
 def PO27(n, text): return ("PO27", f"Chris Ward, 27 Oct 2026, answer {n}", text)
+# 4 Nov 2026: Jira SV-12010 (Task, Board Backlog), saved word for word on 4 Nov 2026 (read only); quoted by the held Story 9 cases
+J12010_FILE = f"{P}/sources/jira-2026-11-04/SV-12010-2026-11-04.md"
+J12010W = ws(re.sub(r"<!--.*?-->", "", open(J12010_FILE).read(), flags=re.S))
+J12010_NAME = ('Jira SV-12010 "Vendor bill: refuse an inactive part\'s number on a received line" (Task, Board Backlog, requested by Chris Ward '
+               'in SV-10647 comment 79703; saved word for word in sources/jira-2026-11-04/SV-12010-2026-11-04.md)')
+def J12010(text): return ("J12010", "SV-12010, Expected", text)
 CANVAS = json.load(open(f"{P}/sources/design-2026-10-13-artifact/files/canvas.json"))
 BOARD_FILE = {a["title"]: a["file"].replace(".dc.html", ".png") for a in CANVAS["artboards"]}
 BOARD_BY_NO = {a["title"].split(" ")[0]: a["title"] for a in CANVAS["artboards"]}
@@ -159,6 +175,7 @@ DOCS = {"PRD": (PRD_NAME, lambda t: ws(t) in PRDW or ws(t) in PRD_ROWSW),
         "PO27": (PO27_NAME, lambda t: ws(t) in PO27W),
         "TECH": (TECH_NAME, lambda t: ws(t) in TECHW),
         "JIRA": (JIRA_NAME, lambda t: ws(t) in JIRAW),
+        "J12010": (J12010_NAME, lambda t: ws(t) in J12010W),
         "PO": (PO_NAME, lambda t: ws(t) in POW)}
 def prd_ok(text, ver):
     """A PRD quote is verbatim in the case's own PRD version (a requirement line, a named item or a feedback row)."""
@@ -178,7 +195,8 @@ def C(key, sec, title, pre, steps, res, q, note="", marker=None, design=None, st
        PRD / TECH / JIRA / PO. design: dict(boards=["4.1", ...], words=[verbatim canvas note text], pictures=[png names]) — boards
        default to none; pictures default to the boards' own pictures. claude: setup-file lines (examples, recipes) for Claude sessions
        only. part_of: the key of the case this one was split from (Rule 136; the original keeps its C-id as part 1).
-    prd: the PRD version the case quotes (33, or 35 for a case in the 28 Oct 2026 named set and every case added then)."""
+    prd: the PRD version the case quotes (33; 35 for a case in the 28 Oct 2026 named set and every case added then; 36 for the 4 Nov
+    2026 named set and every case added then)."""
     if prd not in PRDV: raise SystemExit(f"{key}: no PRD version {prd}")
     res = [[r] if isinstance(r, str) else list(r) for r in res]
     CASES.append(dict(key=key, sec=sec, title=title, pre=list(pre), steps=list(steps), res=res, q=list(q), note=note,
@@ -265,10 +283,10 @@ def quotes_block(c):
     if not sto and c["sec"] == "IV": sto = IV_BUG      # an Inventory Value case quotes no story (stories=[0]): name the bug instead
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
-    for doc in ("PRD", "PO", "PO27", "JIRA", "TECH"):
+    for doc in ("PRD", "PO", "PO27", "JIRA", "J12010", "TECH"):
         if doc not in groups: continue
         name = PRD_NAMES[ver] if doc == "PRD" else DOCS[doc][0]
-        read = PRD_READ[ver] if doc == "PRD" else (PRD_READ[35] if doc == "PO27" else READ)
+        read = PRD_READ[ver] if doc == "PRD" else (PRD_READ[35] if doc == "PO27" else PRD_READ[36] if doc == "J12010" else READ)
         h += f"<p>From: {e(name)}, {read}" + (f" &middot; Epic {EPIC}, {e(sto)}" if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in groups[doc]) + "</ul>"
         first = False
