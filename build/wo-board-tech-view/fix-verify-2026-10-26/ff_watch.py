@@ -48,6 +48,23 @@ for r in rows:
     r['testable_new'] = bool(r.get('qa_status') and r.get('branch') and not r.get('our_passed_comment') and not waiting)
     r['failed_waiting'] = bool(r.get('qa_status') and waiting and not r.get('our_passed_comment'))
     r['no_branch'] = bool(r.get('qa_status') and not r.get('branch') and not r.get('our_passed_comment') and not waiting)
+# 4 Nov 2026 (SV-11837 missed for 5 days): the developer asked for a retest IN A COMMENT (30 Oct, "ready to retest on sv11754") while
+# the ticket stayed REJECTED FROM TESTING, then it went straight to Done — comments were read only for QA-status tickets, so nothing showed.
+# Now every ticket outside QA (except OBSOLETE) whose LAST "QA Status:" comment from us is a Failed is checked too:
+#   RECHECK-OUTSIDE-QA = someone else commented after our Failed (read it: a retest request?) — test on its QA branch while not Done;
+#   DONE-AFTER-FAIL    = the ticket is Done and our last word is still Failed — verify on production (QA lead ruling 2 Nov, L0614).
+for r in rows:
+    if r.get('qa_status') or r['status'].upper() == 'OBSOLETE': continue
+    s, d = jira(f"/rest/api/2/issue/{r['key']}?fields=comment")
+    if s != 200: sys.exit(f"jira {s} reading {r['key']}: {str(d)[:200]}")
+    cs = d['fields']['comment']['comments']
+    if d['fields']['comment'].get('total', len(cs)) > len(cs): sys.exit(f"{r['key']}: comments are paged - read them all before judging")
+    ours = [c for c in cs if c['author'].get('displayName') == 'Bilal Muzamil' and ('QA Status: Passed' in (c.get('body') or '') or 'QA Status: Failed' in (c.get('body') or ''))]
+    last = max(ours, key=lambda c: ts(c['created']), default=None)
+    if not last or 'QA Status: Failed' not in (last.get('body') or ''): continue
+    r['last_failed_outside_qa'] = last['id']
+    r['reply_after_fail_outside_qa'] = [c['id'] for c in cs if c['author'].get('displayName') != 'Bilal Muzamil' and ts(c['created']) > ts(last['created'])]
+    r['outside_tag'] = 'DONE-AFTER-FAIL' if r['status'].upper() == 'DONE' else 'RECHECK-OUTSIDE-QA' if r['reply_after_fail_outside_qa'] else 'FAILED-WAIT'
 stamp = datetime.datetime.utcnow().strftime('%Y%m%d-%H%M')
 json.dump(rows, open(os.path.join(HERE, f'ff-watch-{stamp}.json'), 'w'), indent=1)
 print(f'{len(rows)} children of SV-11593 | testable and not yet verified by us: {sum(r["testable_new"] for r in rows)} | in QA with no QA Branch: {sum(r["no_branch"] for r in rows)}')
@@ -55,4 +72,9 @@ for r in rows:
     if r.get('qa_status'):
         tag = ('RECHECK' if r.get('reply_after_fail') else 'NEW ') if r['testable_new'] else 'FAILED-WAIT' if r.get('failed_waiting') else 'NO-BRANCH' if r['no_branch'] else 'done'
         print(tag, r['key'], r['status'], r['branch'], r['summary'][:70], r.get('our_passed_comment'), ('back in QA since ' + r['entered_qa'][:16] + ', older pass ' + str(r['old_passed_comment'])) if r.get('old_passed_comment') else '')
+for r in rows:
+    if r.get('outside_tag'):
+        print(r['outside_tag'], r['key'], r['status'], r['branch'], r['summary'][:70], 'our Failed', r['last_failed_outside_qa'], 'replies after it', r['reply_after_fail_outside_qa'])
+act = [r['key'] for r in rows if r.get('outside_tag') in ('DONE-AFTER-FAIL', 'RECHECK-OUTSIDE-QA')]
+if act: print(f'ACTION NEEDED outside QA status: {act} (Done -> verify on production; otherwise read the reply and retest on its QA branch)')
 from collections import Counter; print(Counter(r['status'] for r in rows))
