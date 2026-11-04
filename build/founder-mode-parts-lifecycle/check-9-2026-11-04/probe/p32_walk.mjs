@@ -1,0 +1,25 @@
+// Probe 32 (read-only) on the new build: every screen the nine tests use. Windows are cancelled; nothing is saved.
+import { start } from '../../build-verify-sv10647-2026-11-03/probe/lib.mjs';
+import fs from 'fs';
+const OUT = process.env.OUT; const { r, page, step, go, search, dots, dlg } = await start(OUT);
+const save = (n, o) => fs.writeFileSync(`${OUT}/${n}.json`, JSON.stringify(o, null, 1));
+let k = 0; const body = async (n, whole) => { await page.waitForTimeout(1500); n = String(++k).padStart(2, '0') + '-' + n; const d = page.locator('.q-dialog:visible, .q-menu:visible'); const t = (!whole && await d.count()) ? (await d.allInnerTexts()).join('\n----\n') : await page.locator('main').innerText().catch(() => '');
+  fs.writeFileSync(`${OUT}/${n}.txt`, page.url() + '\n' + t); await page.screenshot({ path: `${OUT}/${n}.png` }); console.log(n, t.replace(/\n+/g, ' | ').slice(0, 260)); };
+save('marker', await page.locator('meta[name="app-version"]').getAttribute('content'));
+await step('data', async () => { await go('/parts/inventory'); await page.getByRole('tab', { name: 'Inactive' }).click(); await page.waitForTimeout(1200); await search('ZZAUTOTEST-PLBV-A'); await body('old-throwaway-part', true); });
+await step('sort', async () => { await go('/parts/inventory'); await search('W30'); await page.locator('main th').filter({ hasText: 'Total Qty' }).first().click(); await page.waitForTimeout(2500); await body('totalqty-sort-1', true); await page.locator('main th').filter({ hasText: 'Total Qty' }).first().click(); await page.waitForTimeout(2500); await body('totalqty-sort-2', true); });
+await step('lib-used', async () => { await go('/parts/parts-catalogue'); await search('W3030LS'); await page.locator('main tbody tr.cursor-pointer').first().locator('td').nth(1).click(); await page.waitForTimeout(2500); await body('detail-used', true);
+  save('detail-buttons', await page.locator('main button:visible').allInnerTexts());
+  await page.locator('main i:visible', { hasText: 'edit_note' }).first().click(); await page.waitForTimeout(1500); await body('edit-used');
+  const del = dlg().getByRole('button', { name: 'Delete', exact: true }); save('delete-used-enabled', await del.isEnabled()); await del.hover({ force: true }); await page.waitForTimeout(1200); await body('delete-hover'); await dlg().getByRole('button', { name: 'Cancel', exact: true }).click().catch(async () => page.keyboard.press('Escape')); });
+await step('lib-unused', async () => { await go('/parts/parts-catalogue'); await search('21-361'); await page.locator('main tbody tr.cursor-pointer').first().locator('td').nth(1).click(); await page.waitForTimeout(2500); await body('detail-unused', true);
+  await page.locator('main i:visible', { hasText: 'edit_note' }).first().click(); await page.waitForTimeout(1500); const del = dlg().getByRole('button', { name: 'Delete', exact: true }); save('delete-unused-enabled', await del.isEnabled());
+  if (await del.isEnabled()) { await del.click(); await page.waitForTimeout(1500); await body('delete-confirm'); await page.locator('.q-dialog:visible').last().getByRole('button', { name: 'Cancel', exact: true }).click(); } });
+await step('inv-part', async () => { await go('/parts/inventory'); await page.locator('main button:visible', { hasText: 'New Inventory Part' }).click(); await page.waitForTimeout(1500); await body('new-part'); await page.keyboard.press('Escape');
+  await search('W3030LS'); await page.locator('main td').filter({ hasText: 'W3030LS' }).first().click(); await page.waitForTimeout(2000); save('edit-part-buttons', await dlg().locator('button:visible').allInnerTexts()); await page.keyboard.press('Escape'); });
+await step('po', async () => { await go('/parts/orders'); await page.waitForTimeout(2500); await page.locator('main button:visible', { hasText: 'New PO' }).first().click(); await page.waitForTimeout(2000); await body('new-po');
+  await dlg().getByLabel('Part Number').first().click(); await page.keyboard.type('W3030', { delay: 60 }); await page.waitForTimeout(2500); save('po-lookup', (await page.locator('.q-menu:visible').allInnerTexts()).map(x => x.slice(0, 400))); await page.keyboard.press('Escape'); await page.keyboard.press('Escape');
+  await go('/parts/orders'); await page.waitForTimeout(2500); await page.locator('main button:visible', { hasText: /^Receive$/ }).first().click(); await page.waitForTimeout(6000);
+  fs.writeFileSync(`${OUT}/receive.txt`, page.url() + '\n' + await page.locator('body').innerText()); save('receive-buttons', await page.locator('button:visible').allInnerTexts()); });
+await step('vinv', async () => { await go('/parts/inventory'); await page.locator('text="Vendor Invoices"').first().click(); await page.waitForTimeout(3000); await body('vendor-invoices', true); });
+await r.browser.close();

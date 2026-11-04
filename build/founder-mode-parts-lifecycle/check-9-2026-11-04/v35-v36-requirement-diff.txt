@@ -1,0 +1,12 @@
+67c67
+< - **S11-R3c:** While an inventory part, an open part request or a part return still uses the entry, the Delete button is disabled and hovering it shows "Part cannot be deleted. Please delete related parts first."
+---
+> - **S11-R3c:** While an inventory part, an open part request, a work order line that received it, or a part return (open or credited) still uses the entry, the Delete button is disabled and hovering it shows "Part cannot be deleted. Please delete related parts first."
+119c119
+< - **S13-R19a:** A line that only shares the old number, typed in by hand with no link to this part, keeps its number.
+---
+> - **S13-R19a:** A line that only shares the old number, typed in by hand with no link to this part, keeps its number. A part request added by picking this part's Part Library result is linked to it, and takes the new number.
+220c220
+< - **S6-R5:** Tracked parts sort against each other by quantity.
+---
+> - **S6-R5:** Tracked parts sort against each other by the quantity shown in the Total Qty column. The printed count sheet follows the same order.

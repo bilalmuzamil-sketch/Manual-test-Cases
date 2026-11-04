@@ -1,0 +1,479 @@
+> <!-- Confluence 829227015 'Parts Lifecycle Update', version 36, edited 3 Nov 2026 by Chris Ward. Fetched 4 Nov 2026 (ADF, converted to Markdown by script; text unaltered). -->
+> # Parts Lifecycle Update
+> 
+> Confluence page 829227015 | owner Chris Ward | https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/829227015/Parts+Lifecycle+Update
+> 
+< | --- | --- |
+< |  |  |
+< | **Epic** | <https://shopview.atlassian.net/browse/SV-10647> SV-10647, FounderMode Part Lifecycle |
+> |---|---|
+> | **Epic** | https://shopview.atlassian.net/browse/SV-10647 SV-10647, FounderMode Part Lifecycle |
+< | **Design** | <https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE> |
+> | **Design** | https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE |
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< **Design:** Part Lifecycle design canvas, page 3, board 3.5; page 4, boards 4.2, 4.6 and 4.10  
+> **Design:** Part Lifecycle design canvas, page 3, board 3.5; page 4, boards 4.2, 4.6 and 4.10
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< > *\* Context note: S1-R5 describes the data on release day, not a rule the system keeps enforcing. Nothing makes a part active again on its own.*
+> 
+> ** Context note: S1-R5 describes the data on release day, not a rule the system keeps enforcing. Nothing makes a part active again on its own.*
+> 
+> 
+> 
+< **Design:** Part Lifecycle design canvas, page 4, boards 4.1 to 4.5, 4.8 and 4.9  
+> **Design:** Part Lifecycle design canvas, page 4, boards 4.1 to 4.5, 4.8 and 4.9
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< > *\* Context note: S2-R15 lets the user retry the failures by pressing the button again, instead of finding them by hand. S2-R5 is the reason the mode exists: the row has one click, and the mode changes what that click means. A single part is deactivated from its part dialog (Story 13).*
+> 
+> ** Context note: S2-R15 lets the user retry the failures by pressing the button again, instead of finding them by hand. S2-R5 is the reason the mode exists: the row has one click, and the mode changes what that click means. A single part is deactivated from its part dialog (Story 13).*
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< **Design:** Part Lifecycle design canvas, page 4, boards 4.6 and 4.7  
+> **Design:** Part Lifecycle design canvas, page 4, boards 4.6 and 4.7
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< **Design:** Part Lifecycle design canvas, page 1, board 1.6; page 5, board 5.3  
+> **Design:** Part Lifecycle design canvas, page 1, board 1.6; page 5, board 5.3
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< > *\* Context note: in the dialog a new part always starts with the location's default bin, and the last bin and the default bin cannot be removed, so S4-N1 and S4-N2 come from requests made outside the dialog.*
+> 
+> ** Context note: in the dialog a new part always starts with the location's default bin, and the last bin and the default bin cannot be removed, so S4-N1 and S4-N2 come from requests made outside the dialog.*
+< **Design:** Part Lifecycle design canvas, page 5, boards 5.1 to 5.7  
+> **Design:** Part Lifecycle design canvas, page 5, boards 5.1 to 5.7
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< **Design:** Part Lifecycle design canvas, page 5, board 5.4  
+> **Design:** Part Lifecycle design canvas, page 5, board 5.4
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< **Design:** Part Lifecycle design canvas, page 1, boards 1.1 to 1.5  
+> **Design:** Part Lifecycle design canvas, page 1, boards 1.1 to 1.5
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< > *\* Context note: S7-R4 to S7-R8 decide which Part Library entry a new part shares. Linking happens only on an exact match. A number that matches several entries exactly, or none, never gets guessed onto one of them.*
+< > *\* Context note (S7-R6d): many existing entries point to a manufacturer that no longer exists. The data cleanup in SV-10033 runs before this feature is released. Manufacturers cannot be deleted in ShopView, so an entry pointing to a missing manufacturer comes only from data saved before the release.*
+> ** Context note: S7-R4 to S7-R8 decide which Part Library entry a new part shares. Linking happens only on an exact match. A number that matches several entries exactly, or none, never gets guessed onto one of them.*
+> 
+> ** Context note (S7-R6d): many existing entries point to a manufacturer that no longer exists. The data cleanup in SV-10033 runs before this feature is released. Manufacturers cannot be deleted in ShopView, so an entry pointing to a missing manufacturer comes only from data saved before the release.*
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< > *\* Context note (S7-N7): in one rare case the import can still add a second part whose number differs from a stocked part only by punctuation, when the Part Library entry it matches is not the one stocked here. The duplicate merge tool cleans these up; the import does not refuse them.*
+< > *\* Context note (S7-N9): before this change, a blank description in an import file emptied an existing entry's description and saved a new entry with none. S7-N9 replaces that.*
+> ** Context note (S7-N7): in one rare case the import can still add a second part whose number differs from a stocked part only by punctuation, when the Part Library entry it matches is not the one stocked here. The duplicate merge tool cleans these up; the import does not refuse them.*
+> 
+> ** Context note (S7-N9): before this change, a blank description in an import file emptied an existing entry's description and saved a new entry with none. S7-N9 replaces that.*
+< **Design:** Not applicable  
+> **Design:** Not applicable
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< > *\* Context note: S8-N1 to S8-N3 hold for a user who cannot delete inventory parts today. The system checks that access itself, so hiding the controls is not the only protection.*
+< > *\* Context note (S8-R14, S8-R15): this spec does not change who can do what. Several role settings carry the right to delete inventory parts behind the scenes, and that stays exactly as it is today.*
+> ** Context note: S8-N1 to S8-N3 hold for a user who cannot delete inventory parts today. The system checks that access itself, so hiding the controls is not the only protection.*
+> 
+> ** Context note (S8-R14, S8-R15): this spec does not change who can do what. Several role settings carry the right to delete inventory parts behind the scenes, and that stays exactly as it is today.*
+< **Design:** Part Lifecycle design canvas, page 6, boards 6.1 to 6.7; page 3, board 3.6  
+> **Design:** Part Lifecycle design canvas, page 6, boards 6.1 to 6.7; page 3, board 3.6
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< > *\* Context note: S9-R1 to S9-R8 are the point of the feature. The customer evidence in PRD 462 is a shop whose technicians could still select a retired number and bill it. S9-R16 and S9-R17 close the way round it: typing the retired number by hand as a special order.*
+< > *\* Context note: in S9-R9a, S9-R15, S9-R16 and S9-R17 a number "matches" an inactive part when the two are the same once upper and lower case, hyphens, asterisks, periods and spaces are ignored. A number that also belongs to an active part at this location is not refused.*
+> ** Context note: S9-R1 to S9-R8 are the point of the feature. The customer evidence in PRD 462 is a shop whose technicians could still select a retired number and bill it. S9-R16 and S9-R17 close the way round it: typing the retired number by hand as a special order.*
+< > *\* Context note: S9-R4 and S9-R7 describe screens ShopView does not have. They are kept so that any future lookup of that kind follows the same rule.*
+> ** Context note: in S9-R9a, S9-R15, S9-R16 and S9-R17 a number "matches" an inactive part when the two are the same once upper and lower case, hyphens, asterisks, periods and spaces are ignored. A number that also belongs to an active part at this location is not refused.*
+< > *\* Context note: the Inactive tab (Story 1) is what tells active and inactive parts apart on the Inventory list. If an "All" option is ever added (PRD 462, FR-012), a per-row badge becomes necessary.*
+> ** Context note: S9-R4 and S9-R7 describe screens ShopView does not have. They are kept so that any future lookup of that kind follows the same rule.*
+> 
+> ** Context note: the Inactive tab (Story 1) is what tells active and inactive parts apart on the Inventory list. If an "All" option is ever added (PRD 462, FR-012), a per-row badge becomes necessary.*
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< **Design:** Part Lifecycle design canvas, page 2, boards 2.4 and 2.6; page 3, boards 3.3, 3.7 and 3.8; page 4, boards 4.4, 4.5 and 4.7; page 5, board 5.5  
+> **Design:** Part Lifecycle design canvas, page 2, boards 2.4 and 2.6; page 3, boards 3.3, 3.7 and 3.8; page 4, boards 4.4, 4.5 and 4.7; page 5, board 5.5
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< **Design:** Part Lifecycle design canvas, page 7, boards 7.1 and 7.2  
+> **Design:** Part Lifecycle design canvas, page 7, boards 7.1 and 7.2
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< > *\* Context note: in the reference dataset 29,376 Part Library entries, 19,664 with no inventory part, and 17,359 with no inventory part and no part request either. No standalone create is what keeps that number from growing.*
+> 
+> ** Context note: in the reference dataset 29,376 Part Library entries, 19,664 with no inventory part, and 17,359 with no inventory part and no part request either. No standalone create is what keeps that number from growing.*
+< **Design:** Part Lifecycle design canvas, page 7, board 7.1  
+> **Design:** Part Lifecycle design canvas, page 7, board 7.1
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< > *\* Context note: a catalog is something a shop buys from. This list is the shop's own record of the parts it knows, which is a library.*
+> 
+> ** Context note: a catalog is something a shop buys from. This list is the shop's own record of the parts it knows, which is a library.*
+< **Design:** Part Lifecycle design canvas, page 1, board 1.1; page 2, boards 2.1 and 2.2; page 3, boards 3.1 to 3.4 and 3.6; ShopView Design System (Modal, Button, Radio)  
+> **Design:** Part Lifecycle design canvas, page 1, board 1.1; page 2, boards 2.1 and 2.2; page 3, boards 3.1 to 3.4 and 3.6; ShopView Design System (Modal, Button, Radio)
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< > *\* Context note: S13-R14 and S13-R18 follow from the description and the number living on the shared Part Library entry. S13-R12 and S13-R16 make that reach visible before the save. Changing either needs only Create & Edit (S8-R11); the message is what makes it deliberate.*
+< > *\* Context note: S13-R19 matters because those records hold their own copy of the number and find the part by it later. Records already completed, such as received purchase order lines, completed returns and past work orders and invoices, keep the number they were written with. The Inventory list, Part History, Parts Velocity and today's Inventory Value show the new number. Inventory Value run for a date before the rename shows the number as it was on that date.*
+> ** Context note: S13-R14 and S13-R18 follow from the description and the number living on the shared Part Library entry. S13-R12 and S13-R16 make that reach visible before the save. Changing either needs only Create & Edit (S8-R11); the message is what makes it deliberate.*
+> 
+> ** Context note: S13-R19 matters because those records hold their own copy of the number and find the part by it later. Records already completed, such as received purchase order lines, completed returns and past work orders and invoices, keep the number they were written with. The Inventory list, Part History, Parts Velocity and today's Inventory Value show the new number. Inventory Value run for a date before the rename shows the number as it was on that date.*
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+< | --- | --- | --- |
+> |---|---|---|
+< > *\* Context note: every refusal sent by the system, the rows that fade after 3 seconds, also shows a second, smaller line under the message: "Please try to resolve this." Messages the screen builds itself carry their own second line, as listed, or none.*
+> ** Context note: every refusal sent by the system, the rows that fade after 3 seconds, also shows a second, smaller line under the message: "Please try to resolve this." Messages the screen builds itself carry their own second line, as listed, or none.*
+< | --- | --- | --- | --- |
+> |---|---|---|---|
+> 
+> 
