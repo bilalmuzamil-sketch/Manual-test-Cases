@@ -30,3 +30,10 @@
 
 ## Partly checked (43 tests) — see `final-tally.txt` for the C-ids per reason
 Not seen on this build: signing in as a newly made staff member; "Reassign lead technician"; recording time as the new staff member; a line's own technician / a Schedule shift / five lines; "No technicians yet"; a phone number field in Edit Staff Member (the window has none — C897217–C897219 ask the tester to change it); the Sales Representative removal warning; a part sale's page; work orders in Ready for Review / Declined / Complete / Invoiced / Paid; the add-time-entry window; a technician filter on Technician Efficiency; Schedule department lanes; switching permissions off in a custom role; Add Technician without a labor entry; "Deleted technician" in the filter.
+
+## Follow-up, 4 Nov 2026 (QA lead: "1. (a)", "2. Yes, if those tests were created by ME/us")
+- C897217, C897218, C897219: the phone number (no such field in Edit Staff Member) is now Job Title in preconditions, steps and the step
+  results; the quoted PRD text is unchanged (it names no phone). Build line now full. `phone-fix/` (writes read back; checks 3/3; display 3/3).
+- Run 555: the 11 Public API tests that were in it (C897280–C897290, all created by us, all untested) removed; read back 192 tests, all
+  still assigned to Mudassir and untested. `run555/`. C897291–C897294 were never in the run.
+- Partly checked now 40 tests (the 3 phone tests are fully checked).
