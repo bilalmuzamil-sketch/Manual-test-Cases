@@ -2,7 +2,8 @@
 import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
 const ENV=process.env.ENV||'prod'; const ID=process.env.LOCID||'c43fe73d-74e4-408c-83d7-92994b3fb2fe'; const [MODE,TZ]=process.argv.slice(2); const SNAP=`/tmp/sv11970/${ENV}-loc-original-${ID.slice(0,8)}.json`;
 const rd=f=>fs.readFileSync('/tmp/sv11970/'+f,'utf8').trim();
-const s=ENV==='prod'? await open({env:'prod',dir:'/tmp/qa52',user:'bilal.muzamil+serviceadvisornoreports@shopview.com',pw:fs.readFileSync('/tmp/sv-prod-pw2.txt','utf8').trim(),vp:{width:1440,height:900}})
+const rs=f=>fs.readFileSync('/tmp/staging/'+f,'utf8').trim();
+const s=ENV==='staging'? await open({env:'staging',cookies:{sv_sso_session:rs('sso'),PHPSESSID:rs('phpsess'),cf_clearance:rs('cfc')},quick:'admin',dir:'/tmp/qa53',vp:{width:1440,height:900}}) : ENV==='prod'? await open({env:'prod',dir:'/tmp/qa52',user:'bilal.muzamil+serviceadvisornoreports@shopview.com',pw:fs.readFileSync('/tmp/sv-prod-pw2.txt','utf8').trim(),vp:{width:1440,height:900}})
  : await open({env:'branch',ticket:'11970',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')},quick:'admin',dir:'/tmp/qa51',vp:{width:1440,height:900}});
 const get=async()=>((await s.api('/api/workplaces')).json.data.collection||[]).find(x=>x.id===ID);
 const w=await get();

@@ -3,7 +3,8 @@ import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.
 const [ENV,WO,TAG,AMT0]=process.argv.slice(2); const AMT=AMT0||'5.00'; const WP=process.env.WP, TZ=process.env.TZ;
 const OUT=`/home/user/Manual-test-Cases/build/sv11970-deposit-date-finance-tab-2026-11-03/ev/${TAG}`; fs.mkdirSync(OUT,{recursive:true});
 const rd=f=>fs.readFileSync('/tmp/sv11970/'+f,'utf8').trim();
-const s=ENV==='prod'? await open({env:'prod',dir:'/tmp/qa52',user:'bilal.muzamil+serviceadvisornoreports@shopview.com',pw:fs.readFileSync('/tmp/sv-prod-pw2.txt','utf8').trim(),vp:{width:1440,height:900},dpr:2,tz:TZ})
+const rs=f=>fs.readFileSync('/tmp/staging/'+f,'utf8').trim();
+const s=ENV==='staging'? await open({env:'staging',cookies:{sv_sso_session:rs('sso'),PHPSESSID:rs('phpsess'),cf_clearance:rs('cfc')},quick:'admin',dir:'/tmp/qa53',vp:{width:1440,height:900},dpr:2,tz:TZ}) : ENV==='prod'? await open({env:'prod',dir:'/tmp/qa52',user:'bilal.muzamil+serviceadvisornoreports@shopview.com',pw:fs.readFileSync('/tmp/sv-prod-pw2.txt','utf8').trim(),vp:{width:1440,height:900},dpr:2,tz:TZ})
  : await open({env:'branch',ticket:'11970',cookies:{sv_sso_session:rd('sso'),PHPSESSID:rd('phpsess'),cf_clearance:rd('cfc')},quick:'admin',dir:'/tmp/qa51',vp:{width:1440,height:900},dpr:2,tz:TZ});
 const p=s.page; const R={env:ENV,wo:WO,marker:await s.marker(),browserNow:null,utcNow:new Date().toISOString()};
 const {setLoc}=await import('./loc.mjs'); R.screenLocation=await setLoc(s,process.env.LOCNAME);

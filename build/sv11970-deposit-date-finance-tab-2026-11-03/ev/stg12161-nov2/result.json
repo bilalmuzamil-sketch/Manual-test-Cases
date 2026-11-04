@@ -1,0 +1,98 @@
+{
+ "env": "staging",
+ "wo": "ba95aeba-4738-42cc-b3f4-266b13fd255c",
+ "marker": {
+  "version": "v26.45.0-f417d48",
+  "lastModified": "Tue, 03 Nov 2026 19:42:39 GMT",
+  "etag": "W/\"a0e7d9f2088afe87dfa7d3d0281c3470\""
+ },
+ "browserNow": "Tue Nov 03 2026 21:06:05 GMT-0700 (Mountain Standard Time)",
+ "utcNow": "2026-11-04T04:05:57.780Z",
+ "screenLocation": "Staging Lethbridge - 4310",
+ "create": {
+  "st": 201,
+  "body": "{\"data\":{\"work_order_id\":\"ba95aeba-4738-42cc-b3f4-266b13fd255c\"}}"
+ },
+ "contact": {
+  "create": 200,
+  "id": "9fd0ea92-e49b-440b-9ec8-b0f97d17eeca",
+  "set": 200
+ },
+ "url": "https://app.staging.shopview.com/workorders/ba95aeba-4738-42cc-b3f4-266b13fd255c/finance",
+ "woLocation": {
+  "number": "S-38349",
+  "display_number": "S3-38349",
+  "status_value": "estimate",
+  "status": "Estimate",
+  "workplace_id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+  "invoice_status": "null"
+ },
+ "payBefore": [],
+ "modal": {
+  "text": "Create Deposit | close | event | Deposit Date | Payment Method | arrow_drop_down | $ | Deposit Amount | Reference Number | Memo | Cancel | Collect In Portal | Record Deposit",
+  "inputs": [
+   "date_input_create_deposit_date=11/03/2026",
+   "select_create_deposit_payment_method=",
+   "input_create_deposit_amount=",
+   "input_create_deposit_reference="
+  ]
+ },
+ "modalFilled": [
+  "date_input_create_deposit_date=11/02/2026",
+  "select_create_deposit_payment_method=EFT",
+  "input_create_deposit_amount=4.00",
+  "input_create_deposit_reference="
+ ],
+ "submitBtn": {
+  "t": "Record Deposit",
+  "x": 937.2421875,
+  "y": 626.4921875
+ },
+ "caps": [
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b21v9250300735za200zd9250300735xf1&_p=1793765166019&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=1256389430.1793765152&frm=0&ngs=1&pscdl=noapi&rcb=4&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=3&tag_exp=115938466~115938469~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121246026~121246034~123691370~123814944&sid=1793765151&sct=1&seg=1&dl=https%3A%2F%2Fapp.staging.shopview.com%2Fworkorders%2Fba95aeba-4738-42cc-b3f4-266b13fd255c%2Ffinance&dt=S3-38349%20-%20ZZAUTOTEST%20P2C%20DEP%20%7C%20Work%20Order%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=deposit_create&_ee=1&ep.debug_mode=true&ep.page_type=work_orders&ep.element_type=button&ep.element_location=dialog&ep.element_label=add_deposit&_et=11880&tfd=17244",
+   "st": 204,
+   "req": null,
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/api/deposits",
+   "st": 201,
+   "req": "{\"workOrderId\":\"ba95aeba-4738-42cc-b3f4-266b13fd255c\",\"amount\":4,\"paymentMethod\":\"EFT\",\"depositDate\":\"2026-11-02T07:00:00.000Z\",\"memo\":\"Deposit for Work Order S3-38349\"}",
+   "res": "{\"data\":{\"id\":\"3f0bba85-6933-4ef6-82c4-6f5afff5e81f\",\"creditNumber\":\"DEP-4825\",\"amount\":4,\"paymentMethod\":\"EFT\",\"depositDate\":\"2026-11-03T04:06:24Z\",\"referenceNumber\":null,\"memo\":\"Deposit for Work Order S3-38349\",\"status\":\"held\",\"workOrderId\":\"ba95aeba-4738-42cc-b3f4-266b13fd255c\",\"replayed\":false}}"
+  },
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b21v9250300735za208zd9250300735xf1&_p=1793765201411&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=1256389430.1793765152&frm=0&ngs=1&pscdl=noapi&rcb=0&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=1&tag_exp=115616986~115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121246026~121246034~123691370~123814946&sid=1793765151&sct=1&seg=1&dl=https%3A%2F%2Fapp.staging.shopview.com%2Fcustomers%2Fa63836b3-ae77-4bb9-8f13-3784e0e22212%2Fdeposits&dt=ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=411",
+   "st": 204,
+   "req": null,
+   "res": ""
+  },
+  {
+   "m": "POST",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b21v9250300735za200zd9250300735xf1&_p=1793765201411&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=1256389430.1793765152&frm=0&ngs=1&pscdl=noapi&rcb=0&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=&uaw=0&ul=en-us&_s=2&tag_exp=115616986~115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121246026~121246034~123691370~123814946&dp=%2Fcustomers%2Fa63836b3-ae77-4bb9-8f13-3784e0e22212%2Fdeposits&dt=CustomerDepositsTab&dl=https%3A%2F%2Fapp.staging.shopview.com%2Fcustomers%2Fa63836b3-ae77-4bb9-8f13-3784e0e22212%2Fdeposits&sid=1793765151&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&tfd=5413",
+   "st": 204,
+   "req": null,
+   "res": ""
+  }
+ ],
+ "toasts": [
+  "check_circle A deposit was created Close"
+ ],
+ "payAfter": [
+  "(Deposit) Nov 3, 2026 - EFT"
+ ],
+ "pdf": "/home/user/Manual-test-Cases/build/sv11970-deposit-date-finance-tab-2026-11-03/ev/stg12161-nov2/4-downloaded.pdf",
+ "pdfDeposit": [
+  "disposed of unless otherwise requested. The customer is responsible for payment upon         (Deposit) Nov 3, 2026 - EFT                                $4.00"
+ ],
+ "pdfDates": [],
+ "cid": "a63836b3-ae77-4bb9-8f13-3784e0e22212",
+ "woNumber": "S-38349",
+ "depRows": [
+  "Today DEP-4824 S3-38348 $5.00 $0.00 $5.00 EFT Held Deposit for Work Order S3-3834.. delete",
+  "Yesterday DEP-4825 S3-38349 $4.00 $0.00 $4.00 EFT Held Deposit for Work Order S3-3834.. delete"
+ ]
+}
