@@ -1,3 +1,4 @@
+<!-- FILED 4 Nov 2026 00:25 UTC as SV-12161 (https://shopview.atlassian.net/browse/SV-12161) after the evening re-check reproduced it on v26.45.0-f417d48. Filed text: filed/SV-12161.html -->
 <!-- DRAFT 3 Nov 2026. QA lead's go-ahead (3 Nov 2026): "This ticket [SV-11970] has already been worked on, can we create a new ticket for the issue you are referrring to?"
 FILE ONLY AFTER the fresh re-check on the CURRENT staging build (v26.43.5-d10ef51 or later) reproduces it, after 7 PM Toronto (00:00 UTC or later).
 The example, figures and pictures below are then replaced with that run's. If it does not reproduce, DO NOT FILE; report to the QA lead.

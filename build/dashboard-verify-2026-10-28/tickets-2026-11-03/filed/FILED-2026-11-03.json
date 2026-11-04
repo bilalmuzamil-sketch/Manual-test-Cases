@@ -1,0 +1,34 @@
+{
+ "SF2": {
+  "key": "SV-12161",
+  "url": "https://shopview.atlassian.net/browse/SV-12161",
+  "filed_utc": "2026-11-04T00:25:01Z",
+  "summary": "Deposits - a deposit taken in the evening at a North American location is saved one day early (customer's Deposits tab shows the day before)",
+  "type": "Bug",
+  "parent": null,
+  "priority": "Medium",
+  "product_area": "Customers",
+  "go_ahead": "QA lead, 3 Nov 2026: \"This ticket has already been worked on, can we create a new ticket for the issue you are referrring to?\" — filed only after the evening re-check on the current build reproduced it.",
+  "recheck": {
+   "build": "v26.45.0-f417d48",
+   "when": "3 Nov 2026 7:16 PM Toronto (00:16 UTC 4 Nov)",
+   "deposit": "DEP-4823, $5.00 cash, S1-38222, Deposit Date 11/03/2026 (default)",
+   "finance_tab": "(Deposit) Nov 3, 2026 - Cash",
+   "deposits_tab": "Yesterday",
+   "server_payment_date": "2026-11-03 00:16:40 (UTC) = Nov 2 7:16 PM Toronto",
+   "rule99": "session change-location DVI Test, browser America/Toronto, process TZ America/Toronto, localStorage timezone + location set, header check start/end VALID"
+  },
+  "attachments": [
+   "63566 SF2-1-finance-tab-nov-3.png 734733 B",
+   "63567 SF2-2-deposits-tab-yesterday.png 335296 B"
+  ],
+  "links": [
+   "relates to SV-11573",
+   "relates to SV-11970"
+  ],
+  "readback": "fields, both pictures in the description (sizes match), both links — OK",
+  "filed_text": "tickets-2026-11-03/filed/SV-12161.html",
+  "evidence": "tickets-2026-10-29/filter-recheck/evidence/f3/SF1/evening-2026-11-03/, dep-dvi-2026-11-03/, evening-2026-11-03-server.json"
+ },
+ "side_observation_not_filed": "Same run: the work order estimate (EST-S1-38222) shows \"Estimate date: Nov 4, 2026\" at 7:16 PM Toronto on Nov 3 (picture evening-2026-11-03/finance-evening.png). Not filed; reported to the QA lead."
+}

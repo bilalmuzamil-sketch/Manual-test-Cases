@@ -1,0 +1,24 @@
+<h2>What is wrong</h2>
+<p>When a deposit is recorded in the evening at a North American location, it is <strong>saved on the day before</strong> the date that was picked. At Toronto locations this happens after <strong>7 PM</strong> (after 8 PM before 1 November).</p>
+<p>The customer's <strong>Deposits</strong> tab then shows the deposit a day early: a deposit dated today reads <strong>"Yesterday"</strong>. The work order's <strong>Finance</strong> tab shows the date that was picked, so the two screens disagree.</p>
+<p><a href="https://shopview.atlassian.net/browse/SV-11573">SV-11573</a> fixed this for locations ahead of UTC (such as Karachi). This is the North American evening case. Its own test case, <a href="https://shopview.testrail.io/index.php?/cases/view/872466">C872466</a> "Deposit dated today in a US evening saves today's date", is the one that fails.</p>
+<p><strong>Example:</strong> deposit <strong>DEP-4823</strong> on work order <strong>S1-38222</strong> (DVI Test, customer ZZAUTOTEST P2C DEP). Deposit Date left on today, <strong>Nov 3, 2026</strong>, recorded at <strong>7:16 PM</strong> Toronto time.</p>
+<ul><li><p>Work order → <strong>Finance</strong> tab: "(Deposit) <strong>Nov 3, 2026</strong> - Cash". Right.</p></li><li><p>Customer → <strong>Deposits</strong> tab: <strong>"Yesterday"</strong> (Nov 2). Wrong by one day.</p></li></ul>
+<p>A past date is shifted the same way: DEP-4822, dated <strong>Oct 28</strong> and recorded at 8:42 PM Toronto time on Oct 29, reads <strong>Oct 27, 2026</strong> on the Deposits tab.</p>
+<h2>Steps to reproduce</h2>
+<ol start="1"><li><p>Log in to staging as an Admin.</p></li><li><p>At the top right, switch the location to <strong>DVI Test</strong> (Toronto time).</p></li><li><p>Wait until after <strong>7 PM</strong> Toronto time.</p></li><li><p>Open a work order that is not invoiced yet (for example <strong>S1-38222</strong>, customer <strong>ZZAUTOTEST P2C DEP</strong>) and click the <strong>Finance</strong> tab.</p></li><li><p>Click <strong>Add Deposit</strong>. Leave <strong>Deposit Date</strong> on today. Pick <strong>Payment Method: Cash</strong>, type <strong>Deposit Amount: 5.00</strong>, and click <strong>Record Deposit</strong>.</p></li><li><p>Open <strong>Customers</strong>, open the same customer, and click the <strong>Deposits</strong> tab. Switch <strong>Open only</strong> off. Look at the new deposit's <strong>Date</strong>.</p></li></ol>
+<p><strong>Actual:</strong> the Deposits tab reads <strong>"Yesterday"</strong> for a deposit dated today.</p>
+<p><strong>Expected:</strong> the Deposits tab reads <strong>"Today"</strong>, the date that was picked, the same as the Finance tab.</p>
+<hr>
+<p><strong>Source:</strong> "Deposits for Work Orders" (Confluence, product space, last modified Apr 16, 2026):</p>
+<blockquote><p><strong>Deposit Date</strong> … Default value: Today (based on user's current datetime from device) … The date can be in the past</p></blockquote>
+<blockquote><p>The Customer → Payments page will display all deposit payments … Date: the date the deposit was made</p></blockquote>
+<p><a href="https://shopview.atlassian.net/browse/SV-11573">SV-11573</a> (Done), QA case added for the fix:</p>
+<blockquote><p>C872466 Deposit dated today in a US evening saves today's date</p></blockquote>
+<h2>Screenshots</h2>
+<p><strong>1.</strong> Work order S1-38222, Finance tab: DEP-4823 reads "(Deposit) Nov 3, 2026 - Cash".</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="de1ca9e9-cfe8-424c-acbc-d6c2e099992e" data-collection="upload-user-collection-1343233018" data-alt="SF2-1-finance-tab-nov-3.png"></div></figure>
+<p><strong>2.</strong> Customer ZZAUTOTEST P2C DEP, Deposits tab, Open only off: the same DEP-4823 reads "Yesterday".</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="c9c1c790-3c24-4f4b-a84a-b295d1a9abfc" data-collection="upload-user-collection-1343233018" data-alt="SF2-2-deposits-tab-yesterday.png"></div></figure>
+<h2>Where it was seen</h2>
+<ul><li><p>Staging (<a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a>), build v26.45.0-f417d48, 3 Nov 2026, 7:16–7:25 PM Toronto time, Admin, DVI Test.</p></li><li><p>Browser, the app's own time-zone setting and the test computer all set to the location's time zone (America/Toronto).</p></li><li><p>Also seen on 29 Oct 2026 (build v26.43.3-8ad4001): DEP-4821 dated Oct 29 at 8:27 PM reads Oct 28; DEP-4822 dated Oct 28 at 8:42 PM reads Oct 27.</p></li><li><p>Deposits recorded earlier in the day are not affected (DEP-4819, recorded at 7:20 AM on Oct 29, reads Oct 29).</p></li><li><p>Not checked on Production, on a QA branch, in QuickBooks or in AccountingHub.</p></li></ul>
