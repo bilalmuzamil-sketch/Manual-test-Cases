@@ -374,3 +374,8 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   evidently reassigned its tests too. **No write was needed or made**; all statuses unchanged.
 - FYI recorded: TestRail run 552 shows 38 P · 34 F · 2 B · 225 U, while **TMS run 4 "Mantenence Reminders"** shows
   237 P · 1 B · 61 U (Nebojsa is testing in TMS). TMS → TestRail results are copied **only when the QA lead asks**.
+- **QA lead (2026-11-04): "Mudassir is testing in testrail so everything mudassir is testing in testrail should go to TMS"**
+  → copy TestRail results of Mudassir's runs (555 Technician Toggle, 556 Part Lifecycle, 557 A/R and A/P) into TMS runs
+  16 / 17 / 7 with `tr_results_to_tms.py` (ledger-protected). Checked the same day: nothing new since the 491 already copied.
+- **TMS run 7 "A/R and A/P Report Sorting, Export and Location Filter - Execution" unassigned from Bilal** (QA lead: it
+  will later go to Mudassir); totals unchanged. TMS runs 6 and 8 (outside milestone 5) are still assigned to Bilal.
