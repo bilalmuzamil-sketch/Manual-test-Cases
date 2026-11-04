@@ -31,3 +31,8 @@ Annotated picture: ev/sv12161-retest-deposits-tab.png. Verdict: SV-12161 does NO
 DEP-4823 (7:16 PM) still reads "Yesterday" — stored 2026-11-03T00:16:40Z, a day early at the time. Cause of the change between 7:16 PM and
 11 PM not established (DVI Test time-zone change by someone; possible back-end deploy that does not move the front-end marker).
 Scripts fixed: dep.mjs now picks the payment method by test-id (PM env, default CASH) — the list item text carries a hidden "check" icon word.
+
+## Closed (QA lead: "If this issue is not reproducible any more just put the evidence ... and obsolete the ticket")
+4 Nov 04:29 UTC: comment 80084 posted (not-reproducible evidence, annotated picture attached inline), then transition id 8 "Close" ->
+status OBSOLETE (resolution Done). Staging build re-read v26.45.0-f417d48 right before posting. The "I will move the ticket to OPEN after
+retesting" header the QA lead put in the description was left as it is.
