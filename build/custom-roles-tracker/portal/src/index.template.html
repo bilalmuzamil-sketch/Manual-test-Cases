@@ -308,7 +308,7 @@ async function updateNow(btn) {
   } catch (e) {
     btn.disabled = false;
     const why = { not_granted: 'this view cannot start it', server_not_connected: 'the Claude Code Remote connector is not connected', approval_required: 'it needs your approval: press again and choose Allow', not_in_manifest: 'it is not allowed for this page' }[e && e.code] || (e && (e.message || e.code)) || 'unknown reason';
-    btn.insertAdjacentHTML('afterend', `<span class="chip c-bad">Could not start the update (${esc(why)})</span>`);
+    btn.insertAdjacentHTML('afterend', `<span class="chip c-bad">Could not start the update here (${esc(why)})</span> <a href="https://claude.ai/code/routines/${UPDATE_TRIGGER}" target="_blank" rel="noopener">Start it in claude.ai instead (press Run now) →</a>`);
   }
 }
 function freshness() {
