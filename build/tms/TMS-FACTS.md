@@ -330,3 +330,11 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   (as TestRail 552). Run map now: 552↔4 · 555↔16 · 556↔17 · 557↔7.
 - **Results proof:** snapshot before/after over 3,289 run items in 11 runs: the ONLY change is the 299 intended assignee
   changes on run 4; **281 results, every status, comment and run total unchanged**.
+- **QA lead decisions (2026-11-04): "1. C 2. B".**
+  - **Maintenance Reminder — the 77 TMS-edited cases are LEFT AS THEY ARE** (option C). Future syncs will keep showing them
+    as CONFLICT; report them as *"left as is per the QA lead, 2026-11-04"* and **never overwrite** them. A case among the 77
+    that changes in TestRail AFTER 2026-11-04 is a new question, not covered by this decision.
+  - **TMS runs 6, 8, 10 removed from milestone 5** (option B) — `milestone_id` → null, run totals unchanged, runs kept.
+    **TMS milestone 5 now = TestRail milestone 5:** 4↔552 · 7↔557 · 16↔555 · 17↔556.
+  - **Waiting on Mudassir's TMS sign-in + admin merge:** assign TMS runs **7, 16, 17** and their cases to Mudassir (as in
+    TestRail). Run 10 no longer needs assigning — its TestRail run (553) was deleted and it left the milestone.
