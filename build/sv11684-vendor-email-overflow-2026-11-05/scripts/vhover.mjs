@@ -1,0 +1,8 @@
+// usage: node vhover.mjs <vendorId> <emailText> <width> <shot> -> vendor page at width: email element attrs (title, href, parent link), hover -> tooltip text; select+copy text via selection API; screenshots before/after hover
+import {sess} from './common.mjs'; const [VID,EM,W,SH]=process.argv.slice(2); const s=await sess({dpr:2}); const p=s.page; await p.setViewportSize({width:Number(W),height:900});
+await s.go(`/parts/vendor/${VID}/contacts`); await p.waitForTimeout(5000);
+const info=await p.evaluate(t=>{ const leaf=[...document.querySelectorAll('*')].find(e=>e.children.length===0&&e.textContent.trim()===t); const a=leaf.closest('a'); const b=leaf.getBoundingClientRect(); return {title:leaf.getAttribute('title')||leaf.parentElement.getAttribute('title'),href:a?.getAttribute('href'),rect:[b.x,b.y,b.right,b.bottom].map(Math.round),html:leaf.parentElement.outerHTML.slice(0,400)}; },EM); console.log('INFO',JSON.stringify(info));
+await p.screenshot({path:`../ev/${SH}-0.png`}); await p.mouse.move((info.rect[0]+info.rect[2])/2,(info.rect[1]+info.rect[3])/2); await p.waitForTimeout(1500);
+console.log('TIP',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-tooltip,[role=tooltip]')].filter(e=>e.getClientRects().length).map(e=>{const b=e.getBoundingClientRect(); return [e.innerText,[b.x,b.y,b.right,b.bottom].map(Math.round)];})))); await p.screenshot({path:`../ev/${SH}-1-hover.png`});
+console.log('COPY',await p.evaluate(t=>{ const leaf=[...document.querySelectorAll('*')].find(e=>e.children.length===0&&e.textContent.trim()===t); const r=document.createRange(); r.selectNodeContents(leaf); const sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); return sel.toString(); },EM));
+await s.close(); process.exit(0);
