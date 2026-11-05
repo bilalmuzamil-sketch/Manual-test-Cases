@@ -1,0 +1,10 @@
+// usage: node bulk.mjs <tag> <idxList e.g. 2,3> [actionRegex] -> ticks those lines' checkboxes on the Lines tab, lists the bulk bar, optionally clicks the bulk action (and any confirm), prints writes
+import {sess} from './common.mjs'; import fs from 'fs'; const [TAG,IDX,RX]=process.argv.slice(2); const S=JSON.parse(fs.readFileSync(`/tmp/sv12048/wo-${TAG}.json`,'utf8')); const s=await sess({dpr:1}); const p=s.page;
+await s.go('/workorders/'+S.wo+'/lines'); await p.waitForTimeout(4500);
+for(const i of IDX.split(',')){ await p.locator(`[data-test-id="line_checkbox_${S.lines[Number(i)]}"]`).click({force:true}); await p.waitForTimeout(500); }
+const bar=async()=>p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="button_bulk"], .q-menu [data-test-id]')].filter(e=>e.offsetParent).map(e=>e.getAttribute('data-test-id')+'='+e.innerText.replace(/\s+/g,' ').trim()).join(' | '));
+console.log('BAR',await bar()); await p.screenshot({path:`../ev/${TAG}-bulk-ticked.png`}); const n=s.writes.length;
+if(RX){ let b=p.locator('[data-test-id^="button_bulk"]').filter({hasText:new RegExp(RX,'i')}).first(); if(!(await b.count())){ await p.locator('[data-test-id="button_bulk_more"]').click(); await p.waitForTimeout(1000); console.log('MORE',await bar()); b=p.locator('.q-menu [data-test-id]').filter({hasText:new RegExp(RX,'i')}).first(); }
+ console.log('click',await b.count()); await b.click(); await p.waitForTimeout(2000);
+ for(let k=0;k<3;k++){ const dl=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog button')].map(b=>(b.getAttribute('data-test-id')||'')+'='+b.innerText.trim()).join(' | ')); console.log('DIALOG',k,dl); const c=p.locator('.q-dialog button').filter({hasText:/^(Yes|Confirm|Are You Sure\?|Approve|Approve lines)$/i}); if(await c.count()){ await c.last().click(); await p.waitForTimeout(2500);} else break; } }
+console.log('SENT',JSON.stringify(s.writes.slice(n).map(w=>w.slice(0,400)))); await p.screenshot({path:`../ev/${TAG}-bulk-after.png`}); await s.close(); process.exit(0);

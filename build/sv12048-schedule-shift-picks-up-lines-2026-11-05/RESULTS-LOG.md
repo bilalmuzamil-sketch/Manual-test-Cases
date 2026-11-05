@@ -58,3 +58,10 @@ Data note: on this branch every staff record has one name on the Schedule and an
 ## L. Unchanged line rules — PASSED (screen; 17:2x UTC, sv12048 v26.45.0-747429d)
 - L1 S12048-17600 (ZZAUTOTEST SV12048 L1 36112, David Haynes, Fri 6 Nov, 3 lines): line 1 right-click → Decline → change-status authorization_declined 200 → Shift details still "3 lines · Est. 6h", line 1 shown "Auth Declined" (ev/L1-declined-0.png).
 - Line 2 right-click → Delete line → Delete → lines/delete 200 → Shift details "2 lines · Est. 4h", line gone (ev/L1-deleted-0.png). No error toasts.
+## A. Work order created from a Schedule cell — PASSED (screen, 17:3x UTC)
+- Day view Fri 6 Nov, empty spot on Marissa Armstrong's lane 1 PM → cell menu (Assign Work Order / Create Event / New Work Order) → New Work Order → customer ZZAUTOTEST SV12048 L1 36112, asset Unit ZZL1 → Save → POST work-orders/create 201, dialog closed, still on /schedule, block appears: S12048-17601, whole_work_order, 60 min.
+- Block opened: "0 lines · No work-order lines are covered by this shift." (ev/A1-nolines-1.png)
+- 2 lines added (waiting) and approved with the Lines-tab Approve button → block "2 lines · Est. 4h" (ev/A1-twolines-1.png); line-technicians: staff 9b02b43f source shift on both (WO screen name "Monica Brady" = same staff the Schedule calls Marissa Armstrong — see name observation).
+## Regression hotspot 1 — bulk approval — PASSED
+- Same WO: 2 more waiting lines ticked → "Approve (2)" → one POST …/lines/bulk-status {targetStatus:authorized} 200 → shift 4 lines, technician on all 4, shift still 60 min. No error toast.
+- Hotspots 2–5 covered by I/J (deletes + Undo), B/C (drop dialog tabs), K (lead change + Undo), and the line-technician reads throughout.
