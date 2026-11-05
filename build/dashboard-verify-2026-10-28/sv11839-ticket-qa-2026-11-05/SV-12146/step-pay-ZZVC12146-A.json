@@ -1,0 +1,147 @@
+{
+ "phase": "pay",
+ "args": [
+  "ZZVC12146-A",
+  "C-13668"
+ ],
+ "app_version": "v26.45.0-277b249",
+ "rule99_start": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-05T05:09:12.063Z"
+  },
+  "browser_local_time_start": "Wed Nov 04 2026 22:09:12 GMT-0700 (Mountain Standard Time)",
+  "all_match": true,
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-05T05:09:36.592Z"
+  },
+  "localStorage_timezone_end": "\"America/Edmonton\""
+ },
+ "unpaid_before": [
+  "Nov 4, 2026 Credit ZZAUTOTEST credit 10.. C-13668 -$100.00 -$100.00 Unapplied",
+  "Nov 4, 2026 Delivery ZZVC12146-C - $10.00 $10.00 Unpaid",
+  "Nov 4, 2026 Delivery ZZVC12146-A - $10.00 $10.00 Unpaid",
+  "Nov 4, 2026 Delivery ZZVC12146-B - $50.00 $50.00 Unpaid"
+ ],
+ "dialog_rows": [
+  {
+   "text": "",
+   "ids": []
+  },
+  {
+   "text": "ZZVC12146-A Today Today $10.00 $",
+   "ids": [
+    "checkbox_select_transaction_d0ca49fe-4f3b-49db-8213-dca2b79b2b12",
+    "input_payment_amount"
+   ]
+  },
+  {
+   "text": "Credit ZZAUTOTEST credit 10.. Today Applies $10.00 · $90.00 remaining -$100.00",
+   "ids": [
+    "checkbox_select_transaction_917f0d30-761c-42c4-b2dc-eb4934cead1c",
+    "text_application_hint_917f0d30-761c-42c4-b2dc-eb4934cead1c"
+   ]
+  },
+  {
+   "text": "",
+   "ids": []
+  }
+ ],
+ "dialog_text": "New Vendor Payment close event Payment Date Payment Method arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment ZZVC12146-A Today Today $10.00 $ Credit ZZAUTOTEST credit 10.. Today Applies $10.00 · $90.00 remaining -$100.00 Amount to credit: $ Payment amount: $0.00 Make Payment",
+ "pic_dialog": "SV-12146/2-new-payment-dialog-pay.png",
+ "dialog_after_select": "New Vendor Payment close event Payment Date Payment Method 10000 Calgary Chequing arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment ZZVC12146-A Today Today $10.00 $ Credit ZZAUTOTEST credit 10.. Today Applies $10.00 · $90.00 remaining -$100.00 Amount to credit: $ Payment amount: $0.00 Make Payment",
+ "inputs": [
+  [
+   "date_input_",
+   "Nov 04, 2026"
+  ],
+  [
+   "input_reference_number",
+   ""
+  ],
+  [
+   "input_memo",
+   ""
+  ],
+  [
+   "input_payment_amount",
+   "10.00"
+  ],
+  [
+   "text_application_hint_917f0d30-761c-42c4-b2dc-eb4934cead1c",
+   "Applies $10.00 · $90.00 remaining"
+  ],
+  [
+   "input_manually_entered_credit",
+   "0.00"
+  ],
+  [
+   "text_payment_amount",
+   "$0.00"
+  ]
+ ],
+ "pic_ready": "SV-12146/3-payment-ready-ZZVC12146-A.png",
+ "toasts": [],
+ "net": [
+  {
+   "status": 200,
+   "url": "/api/parts-catalogue/vendor/payment/create",
+   "sent": "{\"account_id\":\"8572fae9-902d-45c9-9352-e4aa8f629977\",\"payment_date\":\"2026-11-05T05:09:29.564Z\",\"payment_method\":\"10000_CALGARY_CHEQUING\",\"reference_number\":null,\"description\":null,\"transactions\":[{\"id\":\"d0ca49fe-4f3b-49db-8213-dca2b79b2b12\",\"vendor_account_id\":\"8572fae9-902d-45c9-9352-e4aa8f629977\",\"amount\":10,\"balance\":10,\"reference_id\":\"e6e8adb1-7afa-40c5-af59-bd201b13b2a6\",\"vendor_transaction_type\":\"delivery\",\"vendor_transaction_status\":\"unpaid\",\"invoice_number\":\"ZZVC12146-A\",\"description\":\"\",\"date\":\"2026-11-04 07:00:00\",\"payment_method\":null,\"due_date\":\"2026-11-04 07:00:00\",\"type\":\"delivery\",\"type_label\":\"Invoice\",\"status\":\"unpaid\",\"status_label\":\"Unpaid\",\"transaction_payment_amount\":10,\"index\":0}],\"primary_id\":null,\"new_credit\":0,\"new_deposit\":0,\"applied_credits\":[{\"id\":\"917f0d30-761c-42c4-b2dc-eb4934cead1c\",\"vendor_account_id\":\"8572fae9-902d-45c9-9352-e4aa8f629977\",\"amount\":-100,\"balance\":-100,\"origin_payment_id\":null,\"date_created\":\"2026-11-05 05:05:35\",\"credit_number\":\"C-13668\",\"memo\":\"C-13668\",\"vendor_return_id\":null,\"date\":\"2026-11-05 05:05:35\",\"invoice_number\":\"ZZAUTOTEST credit 100\",\"type\":\"credit\",\"type_label\":\"Credit\",\"status\":\"unapplied\",\"status_label\":\"unapplied\",\"index\":1}],\"applied_deposits\":[],\"ibs_batch_id\":null,\"payment_amount\":0}",
+   "body": "{\"data\":{\"headers\":{}}}"
+  }
+ ],
+ "rule99_end": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-05T05:09:12.063Z"
+  },
+  "browser_local_time_start": "Wed Nov 04 2026 22:09:12 GMT-0700 (Mountain Standard Time)",
+  "all_match": true,
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-05T05:09:36.592Z"
+  },
+  "localStorage_timezone_end": "\"America/Edmonton\""
+ }
+}
