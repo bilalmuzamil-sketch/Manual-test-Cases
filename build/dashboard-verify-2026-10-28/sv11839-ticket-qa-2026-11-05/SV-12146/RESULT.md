@@ -1,6 +1,6 @@
 # SV-12146 — Vendor payments: applying a credit larger than the bill uses up the whole credit, and the remaining amount is lost
 
-**Ticket:** https://shopview.atlassian.net/browse/SV-12146 (status TESTING QA, standalone bug) · **QA branch:** https://sv11839.qa.shopview.com · **Fix:** commit aacb66c73, which is in the build tested.
+**Ticket:** https://shopview.atlassian.net/browse/SV-12146 (status TESTING QA, standalone bug) · **QA branch:** https://sv11839.qa.shopview.com · **Fix:** commit aacb66c73, which is in the build tested (v26.45.0-277b249).
 
 ## Verdict: FAIL (partly fixed)
 The money is now right: only the bill amount is taken from the credit, the rest stays open and can be used, and the remittance slip never goes negative. **But the vendor's Payments tab still shows the credit as "−$100.00 Applied"** under each payment it was used for. The ticket lists exactly that as wrong ("Payments tab: the credit shows −$100.00, status Applied") and expects only $10.00 of the credit to be used.
@@ -34,7 +34,7 @@ Chris Ward, comment 80115 (4 Nov 2026): *"Expected behavior is exactly as you wr
 Annotated picture: `SV-12146/FAIL-annotated.png`.
 
 ## Build, time, location, zones
-- Build: **v26.45.0-aacb66c**, read from `<meta name="app-version">` at 04:58:22 UTC on 5 Nov 2026. It contains fix aacb66c73.
+- Build: **v26.45.0-277b249**. Every step file records the page's own `app-version` at the time of that step, and all of them, 05:01–05:17 UTC, read v26.45.0-277b249. A read at 04:58:22 UTC, before the steps began, still showed v26.45.0-aacb66c, so the build changed just before testing started. 277b249 is the branch's newest commit and contains the SV-12146 fix aacb66c73.
 - When: 5 Nov 2026, 05:00–05:20 UTC (late evening of 4 Nov at Heavy Duty).
 - Location: **Staging Heavy Duty - 9919**.
 - Zones (Rule 99), recorded at the start and end of every step file: change-location with `workplace_timezone=America/Edmonton` (200) · browser `timezoneId` America/Edmonton · process `TZ` America/Edmonton · `localStorage['timezone']` "America/Edmonton" · header showing the location.
@@ -52,7 +52,7 @@ No Jira or TestRail write was made.
 ## Draft Jira comment (NOT POSTED)
 **QA result: partly fixed. One thing is still wrong.**
 
-**What I did** (QA branch sv11839, build v26.45.0-aacb66c, Staging Heavy Duty - 9919, 4 Nov 2026 late evening, Edmonton time):
+**What I did** (QA branch sv11839, build v26.45.0-277b249, Staging Heavy Duty - 9919, 4 Nov 2026 late evening, Edmonton time):
 1. Made a new vendor with a $10.00 bill and a $50.00 bill.
 2. Parts → Vendors → the vendor → New credit, $100.00.
 3. New payment: picked the $10.00 bill and the $100.00 credit, and saved.
