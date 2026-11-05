@@ -2361,3 +2361,8 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
   
   Recommendation: ask Chris Ward first.
 - **DR-5 OPEN — QA lead (deferred by him to "after everything else").** 39(b): probably a duplicate of SV-10702. Asked in "Dashboard and Reports – questions for Chris Ward (28 Oct 2026)", Section 3, question 39.
+
+### 5 Nov 2026 additions (SV-11839 ticket QA)
+- **DR-6 · SV-12207** (remittance slip prints the next day for evening payments and credits). Filed 5 Nov on the QA lead's instruction. **Waiting for Chris Ward** to confirm expected behaviour and fix or leave: Jira SV-12207, comment 80185, 5 Nov 2026.
+- **DR-7 · SV-11822**. Not reproduced in 24 checks at DPR 1.25 on Linux Chromium; Mudassir reproduces on Windows Chrome at 125%. **Waiting for Mudassir**: his Chrome version and a Guest-window retest, asked in a Slack DM on 5 Nov 2026 07:55 UTC. He attached screenshots at 07:57 UTC.
+- **DR-4 (re-checked 07:58 UTC 5 Nov):** Chris has not answered SV-11691 comment 80171 or SV-11885 comment 80172.

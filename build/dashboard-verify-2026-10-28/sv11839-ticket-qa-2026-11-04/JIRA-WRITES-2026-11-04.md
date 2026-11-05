@@ -108,3 +108,19 @@ SV-12202 is pending: the after-midnight Last Sale read runs at 07:05 UTC.
 - The 80179 comment on SV-12201 says "11:25 PM Edmonton time"; under UTC−7 it is 10:25 PM. Same date, verdict unaffected.
 
 **Totals for Milomir's four:** 3 QA Complete (SV-12199, SV-12201, SV-12202), 1 Rejected from Testing (SV-12146).
+
+## 5 Nov 2026 (≈07:55–08:05 UTC): QA lead's three instructions
+QA lead, verbatim: *"1. Rather ask Mudassir thankfulky and respectfully on slack. Yes remove QA complete label and keep Mudassir and ayesha assigned as a QA assignee. 2. Create a ticket with all the evidences amd then in the comment ask. Bris ward to confirm the expected behavior and tell if we should fix it and keave it as is, be thankful and respectful to chris always. 3. Yes see if chris has responded."*
+
+1. **SV-11822**
+   - Labels set to none (QAcomplete removed). QA Assignee set to Mudassir Qamar + Ayesha Khan (Bilal removed).
+   - JQL read-back confirms both.
+   - Slack DM to Mudassir (user U0B7LKF4YJ2), 07:55 UTC: https://shopview.slack.com/archives/D0B80VBM789/p1793865304011389. It asks for the 5 Nov evidence, his Chrome version, and a Guest-window retest at 100% zoom.
+   - At 07:57 UTC Mudassir attached 3 screenshots (attachments 63637/63638/63639). One is saved as `../sv11839-ticket-qa-2026-11-05/SV-11822-retest/mudassir-sv11839-TestLocation.jpg`: the Test Location chip is clicked and no list shows.
+2. **New ticket SV-12207** (Bug, Medium, Product Area Parts, label QA_found, Relates to SV-12146): *"Vendor remittance slip shows the next day's date for payments and credits made in the evening"*.
+   - Pictures embedded: slip, Payments tab "Yesterday", Unpaid Invoices "Nov 4". Upload sizes equal the file sizes.
+   - The slip PDF is attached.
+   - Chris Ward comment 80185 (@mention, thankful, asks to confirm the expected behaviour and fix or leave).
+   - Evidence: `../sv11839-ticket-qa-2026-11-05/REMIT-DATE/` and `SV-12146/step-read-remitdate-recheck.json`. Fresh read at 07:56 UTC (Edmonton 00:56 on 5 Nov), build 277b249, Rule 99 all_match true. All 3 slips print Date and Credit Date Nov 5; on screen it is "Yesterday" / Nov 4.
+   - The slip template and handler are byte-identical on main, develop and SV-11839.
+3. **Chris Ward:** no reply yet on SV-11691 (80171) or SV-11885 (80172). The newest comment on each is still ours, checked 07:58 UTC.
