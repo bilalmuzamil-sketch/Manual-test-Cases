@@ -99,3 +99,12 @@ SV-12202 is pending: the after-midnight Last Sale read runs at 07:05 UTC.
 - The QA lead deleted our "QA passed" comment 80173. The ticket is now REJECTED FROM TESTING.
 - QAcomplete and QA Assignee from our 05:10 write are still on it. This was not changed: it is the QA lead's call.
 - Retest: `../sv11839-ticket-qa-2026-11-05/SV-11822-retest/RESULT.md`. 24 checks at DPR 1.25 on sv11839 and staging opened the list every time.
+
+## 5 Nov 2026 (≈07:08 UTC): SV-12202 passed
+- Evidence checked (Rule 86): `../sv11839-ticket-qa-2026-11-05/SV-12202/pv-control-same-day.json` (Last Sale "0 days") and `pv-after-midnight.json` ("1 day"), both on v26.45.0-277b249.
+- Comment 80182; labels → QAcomplete; QA Assignee → Bilal Muzamil; transition 10 → QA Complete.
+- JQL read-back returned SV-12202.
+- The comment gives no clock times on purpose. This machine's time-zone data puts Edmonton at UTC−6, while the test browser uses UTC−7 (DST ended 1 Nov 2026). So the sale was 10:23 or 11:23 PM on 4 Nov, and the read 12:06 or 1:06 AM on 5 Nov. The dates are the same either way.
+- The 80179 comment on SV-12201 says "11:25 PM Edmonton time"; under UTC−7 it is 10:25 PM. Same date, verdict unaffected.
+
+**Totals for Milomir's four:** 3 QA Complete (SV-12199, SV-12201, SV-12202), 1 Rejected from Testing (SV-12146).
