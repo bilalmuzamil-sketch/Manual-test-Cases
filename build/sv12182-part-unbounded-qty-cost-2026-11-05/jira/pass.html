@@ -1,0 +1,20 @@
+<div data-type="panel-success"><p><strong>OVERALL QA STATUS: PASSED</strong></p></div>
+<p>Tested on the QA branch <a href="https://sv12182.qa.shopview.com">sv12182</a> (build v26.45.2-ef57078) and compared with production (build v26.45.1-753355c) on 5 Nov 2026. Every check below was run on the current branch build.</p>
+<p>A part's quantity or cost that is far too large (for example a barcode pasted into the number box) is now refused with a message that names the field and its limit. On production the same value is saved without any message and quietly changed into a different number.</p>
+<h3>Before and after</h3>
+<figure data-type="media-single" data-layout="center" data-width="80" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="1fdd40d2-fba5-43d8-9259-646f4d4c0bf3" data-collection="upload-user-collection-1343233018" data-alt="before-after-cost.png"></div></figure>
+<p><em>Picture 1: Parts &gt; Inventory &gt; Edit Inventory Part. Production (top two): an Average Cost of 99,999,999,999 is saved with no message and comes back as 21,474,836.47 (part A158). QA branch (bottom): the same cost is refused with "Cost cannot exceed 21,474,836.47." and nothing is saved.</em></p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="52cd351a-ea25-43de-a1c7-26b8b04599a3" data-collection="upload-user-collection-1343233018" data-alt="before-after-quantity.png"></div></figure>
+<p><em>Picture 2: Production (top): a Quantity of 012345678901234567 is saved with no message and part A158 now shows "100000096.99 Available". QA branch (bottom): the same quantity is refused with "Quantity must be between -99,999,999.99 and 99,999,999.99." and the same message for the bin quantity.</em></p>
+<h3>What was checked</h3>
+<table><tbody>
+<tr><th>#</th><th>Check</th><th>Result</th><th>Status</th></tr>
+<tr><td>1</td><td>Edit a part: quantity far too large</td><td>Quantity 012345678901234567 on P550848, Save: "Quantity must be between -99,999,999.99 and 99,999,999.99." and "Bin quantity must be between -99,999,999.99 and 99,999,999.99." The window stays open and the stored quantity does not change.</td><td>PASSED</td></tr>
+<tr><td>2</td><td>Edit a part: cost far too large</td><td>Average Cost 99,999,999,999, Save: "Cost cannot exceed 21,474,836.47." Nothing saved.</td><td>PASSED</td></tr>
+<tr><td>3</td><td>New Inventory Part: quantity far too large</td><td>Same two quantity messages, part not created.</td><td>PASSED</td></tr>
+<tr><td>4</td><td>New Inventory Part: cost far too large</td><td>"Cost cannot exceed 21,474,836.47.", part not created.</td><td>PASSED</td></tr>
+<tr><td>5</td><td>Two bins that together go over the limit</td><td>Two bin locations of 60,000,000 each: refused with the quantity message.</td><td>PASSED</td></tr>
+<tr><td>6</td><td>Limits are exact</td><td>Cost 21,474,836.48 refused, 21,474,836.47 and 21,474,836.46 saved. Quantity 100,000,000 and -100,000,000 refused, 99,999,999.99 and 99,999,999.98 saved.</td><td>PASSED</td></tr>
+<tr><td>7</td><td>Largest cost with largest quantity</td><td>P550848 saved with cost 21,474,836.47 and quantity 99,999,999.99 together, with no error. This is the combination (quantity × cost) that caused the original server error.</td><td>PASSED</td></tr>
+<tr><td>8</td><td>Normal values still save</td><td>New Inventory Part for a new catalog part ZZ12182G3 with quantity 5 and cost 12.50: created and saved as 5 / 12.50.</td><td>PASSED</td></tr>
+</tbody></table>

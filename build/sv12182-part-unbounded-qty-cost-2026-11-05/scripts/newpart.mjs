@@ -1,0 +1,13 @@
+// usage: node newpart.mjs [qty] [cost] -> Parts > Inventory: find the add/new part button, open dialog, list fields; with qty+cost fill catalog part (first option), category (first), bin (first), qty, cost; Save; prints response + toasts
+import {sess} from './common.mjs'; const [QTY,COST]=process.argv.slice(2); const s=await sess({dpr:2}); const p=s.page; const resp=[];
+p.on('response',async r=>{ if(/inventory\/parts\/(change|create)/.test(r.url())){ let b=''; try{ b=await r.text(); }catch(e){} resp.push(r.status()+' '+b.slice(0,400)); } });
+await s.go('/parts/inventory'); await p.waitForTimeout(5000);
+console.log('BTNS',await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="button"]')].filter(e=>e.offsetParent).map(e=>e.getAttribute('data-test-id')+'='+e.innerText.trim().slice(0,25)).filter(t=>/add|new|part|create/i.test(t)).join(' | ')));
+const b=p.locator('[data-test-id^="button"]').filter({hasText:/Add Part|New Part|Add Inventory|New Inventory|Add$/i}).first(); if(!(await b.count())){ await s.close(); process.exit(0);} await b.click(); await p.waitForTimeout(2500);
+console.log('DLG',(await p.locator('.q-dialog').last().innerText()).replace(/\s+/g,' ').slice(0,400)); console.log('IDS',await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].filter(e=>e.offsetParent).map(e=>e.getAttribute('data-test-id')).join(' ')));
+if(QTY){ const pick=async(id,txt)=>{ await p.locator(`[data-test-id="${id}"]`).click(); await p.waitForTimeout(600); if(txt){ await p.keyboard.type(txt,{delay:30}); await p.waitForTimeout(2000);} const o=process.env.NOCHECK&&id==='select_catalogue_part'?p.locator('.q-menu .q-item').filter({hasNotText:/^check/}).first():p.locator('.q-menu .q-item').first(); console.log('pick',id,await o.count(), await o.count()?(await o.innerText()).replace(/\s+/g,' ').slice(0,60):''); await o.click(); await p.waitForTimeout(900); };
+ await pick('select_catalogue_part',process.env.PN||'P55'); await pick('select_category','');
+ const set=async(id,v)=>{ const f=p.locator(`[data-test-id="${id}"]`); await f.click({clickCount:3}); await f.fill(''); await p.keyboard.type(v,{delay:10}); await p.keyboard.press('Tab'); await p.waitForTimeout(400); };
+ await set('input_quantity_0',QTY); await set('input_cost',COST); await p.screenshot({path:`../ev/E-create-${QTY}-${COST}-1.png`}); await p.locator('[data-test-id="button_confirm_dialog"]').click(); await p.waitForTimeout(3500);
+ console.log('RESP',JSON.stringify(resp)); console.log('NOTIF',JSON.stringify(await p.locator('.q-notification').allInnerTexts())); await p.screenshot({path:`../ev/E-create-${QTY}-${COST}-2.png`}); }
+await s.close(); process.exit(0);
