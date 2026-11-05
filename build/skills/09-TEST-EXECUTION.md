@@ -355,3 +355,12 @@ Lessons L1, L2 and L4 in `build/LESSONS-2026-11-05.md`. The proven recipes are i
    - Copy the staging record faithfully: read-only on staging; every field the screen allows; the exact name when the name could matter.
    - Record what could not be copied. Never defer to "re-test on staging later" for this reason.
    - QA lead, 2026-11-05: *"You could create a similar location in the QA branch"*. Origin: SV-11822, "DVI Test".
+
+## 🔴 Can't test it → Blocked + tag the developer (QA lead's instruction, 2026-11-05)
+QA lead, verbatim: *"Anything which you can not test shiuld be in blocked status and tag the assignee developer to orovide what is needed"*.
+
+When a Jira ticket in TESTING QA cannot be tested for a reason the session can't fix itself (after the three unblock rules above and the Rule 97 search):
+1. Move it to **Blocked** (transition `7` from TESTING QA).
+2. Post one plain comment that **@mentions the ticket's assignee** (the developer). Say exactly what is needed (for example "deploy branch X to QA branch Y", "a login for Z", "a record set up like W") and what will be tested once it is there.
+3. Re-check the blocker before blocking. On 5 Nov the "fix not deployed" blocker cleared within 15 minutes, so read the build marker again first.
+4. When the need is met, test it and move it on from Blocked as usual.
