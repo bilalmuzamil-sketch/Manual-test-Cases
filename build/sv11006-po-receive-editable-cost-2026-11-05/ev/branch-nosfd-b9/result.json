@@ -1,0 +1,58 @@
+{
+ "sfd": {
+  "seeFinancialData": false,
+  "seeApArData": false,
+  "viewHistoryLogs": false
+ },
+ "hasOrder": [
+  "vendorOrderManagementCreateAndEdit",
+  "vendorOrderManagementDelete",
+  "vendorOrderManagementView",
+  "woOrderParts",
+  "woReviewWorkOrders",
+  "workOrderLinesCreateAndEdit",
+  "workOrderLinesDelete",
+  "workOrdersCreateAndEdit",
+  "workOrdersDelete",
+  "workOrdersView"
+ ],
+ "rowFound": 1,
+ "listHeaders": [
+  "",
+  "Work Orderarrow_drop_up",
+  "Purchase Order Numberarrow_drop_up",
+  "Vendor",
+  "Order Statusarrow_drop_up",
+  "Created Onarrow_drop_up",
+  "Ordered By",
+  "Notearrow_drop_up",
+  ""
+ ],
+ "receive": {
+  "url": "/order/3af71b0c-e945-4836-8184-3d92103a827b?receive=1",
+  "headers": [
+   "",
+   "Part number & description",
+   "Qty ordered",
+   "Qty received"
+  ],
+  "inputs": [
+   "select_assign_vendor_3af71b0c-e945-4836-8184-3d92103a827b=",
+   "input_invoice_3af71b0c-e945-4836-8184-3d92103a827b=",
+   "date_input_invoice_date_3af71b0c-e945-4836-8184-3d92103a827b=11/05/2026",
+   "input_qty_32ea49fa-aa35-4eeb-9c13-e8ff700f187e=1",
+   "input_qty_897a08ff-3d77-4f46-8eaa-13d011fd7963=1"
+  ],
+  "rows": [
+   " ZZ11006-b9A-735485 edit ZZAUTOTEST SV-11006 part A 1.00 ",
+   " ZZ11006-b9B-735485 edit ZZAUTOTEST SV-11006 part B 1.00 "
+  ]
+ },
+ "sent": [
+  "POST 200 /api/orders/receive-requested-parts :: {\"vendor_id\":\"30078d30-2033-42cb-871d-48b97635a519\",\"invoice_number\":\"ZZb9t\",\"invoice_date\":\"2026-11-05T07:00:00",
+  "POST 200 /api/inventory/orders/receive-view :: {\"orderIds\":[\"3af71b0c-e945-4836-8184-3d92103a827b\"]}"
+ ],
+ "toasts": [
+  "check_circle Parts received for S-17588. Close"
+ ]
+}

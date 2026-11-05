@@ -1,0 +1,3 @@
+import {sess} from './common.mjs'; import fs from 'fs';
+const S=JSON.parse(fs.readFileSync(`/tmp/sv11006/seed-branch-${process.argv[2]}.json`,'utf8')); const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(1200);
+const v=(await s.api('/api/work-orders/lines/'+S.wo)).json; const parts=[]; JSON.stringify(v,(k,val)=>{ if(val&&val.part_request_id&&S.parts.some(x=>x.pr===val.part_request_id)) parts.push({pn:val.part_number,status:val.status_val,cost:val.cost,sell:val.sell_price,margin:val.margin,inv:val.delivery_invoice_number}); return val; }); console.log(JSON.stringify(parts)); await s.close(); process.exit(0);

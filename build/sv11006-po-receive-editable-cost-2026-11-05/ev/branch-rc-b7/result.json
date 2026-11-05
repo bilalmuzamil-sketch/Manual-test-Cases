@@ -1,0 +1,40 @@
+{
+ "rowFound": 1,
+ "url": "/order/4a5e56de-3af4-4811-8fbb-5fd4d46bd34a?receive=1",
+ "before": [
+  {
+   "id": "00ee826d",
+   "costInput": "0",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$35.00",
+   "total": "$0.00"
+  }
+ ],
+ "typed": [
+  {
+   "id": "00ee826d",
+   "costInput": "10",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$35.00",
+   "total": "$10.00"
+  }
+ ],
+ "sent": [
+  "POST 200 /api/orders/receive-requested-parts :: {\"vendor_id\":\"30078d30-2033-42cb-871d-48b97635a519\",\"invoice_number\":\"ZZ",
+  "POST 200 /api/inventory/orders/receive-view :: {\"orderIds\":[\"4a5e56de-3af4-4811-8fbb-5fd4d46bd34a\"]}"
+ ],
+ "toasts": [
+  "check_circle Parts received for S-17586. Close"
+ ],
+ "woParts": [
+  {
+   "pn": "ZZ11006-FIX-348345",
+   "status": "authorized",
+   "cost": 10,
+   "sell": 35,
+   "margin": 71.43
+  }
+ ]
+}

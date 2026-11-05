@@ -1,0 +1,40 @@
+{
+ "rowFound": 1,
+ "url": "/order/73c8128d-c131-4a52-aeef-e69bbf775c8e?receive=1",
+ "before": [
+  {
+   "id": "c663ec74",
+   "costInput": "0",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$0.00",
+   "total": "$0.00"
+  }
+ ],
+ "typed": [
+  {
+   "id": "c663ec74",
+   "costInput": "10",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$22.22",
+   "total": "$10.00"
+  }
+ ],
+ "sent": [
+  "POST 200 /api/orders/receive-requested-parts :: {\"vendor_id\":\"30078d30-2033-42cb-871d-48b97635a519\",\"invoice_number\":\"ZZ",
+  "POST 200 /api/inventory/orders/receive-view :: {\"orderIds\":[\"73c8128d-c131-4a52-aeef-e69bbf775c8e\"]}"
+ ],
+ "toasts": [
+  "check_circle Parts received for S-17584. Close"
+ ],
+ "woParts": [
+  {
+   "pn": "02-507",
+   "status": "authorized",
+   "cost": 10,
+   "sell": 22.22,
+   "margin": 55
+  }
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "before": [
+  {
+   "id": "dfd4f068",
+   "costInput": "40",
+   "tds": [
+    "",
+    "ZZ11006-b4A-234384 edit ZZAUTOTEST SV-11006 part A",
+    "",
+    "$90.00",
+    "2.00",
+    "",
+    "$80.00"
+   ],
+   "qty": "2"
+  },
+  {
+   "id": "552c21ee",
+   "costInput": "0",
+   "tds": [
+    "",
+    "ZZ11006-b4B-234384 edit ZZAUTOTEST SV-11006 part B",
+    "",
+    "$0.00",
+    "2.00",
+    "",
+    "$0.00"
+   ],
+   "qty": "2"
+  }
+ ],
+ "typed": [
+  {
+   "id": "dfd4f068",
+   "costInput": "40",
+   "tds": [
+    "",
+    "ZZ11006-b4A-234384 edit ZZAUTOTEST SV-11006 part A",
+    "",
+    "$90.00",
+    "2.00",
+    "",
+    "$40.00"
+   ],
+   "qty": "1"
+  },
+  {
+   "id": "552c21ee",
+   "costInput": "30",
+   "tds": [
+    "",
+    "ZZ11006-b4B-234384 edit ZZAUTOTEST SV-11006 part B",
+    "",
+    "$75.00",
+    "2.00",
+    "",
+    "$30.00"
+   ],
+   "qty": "1"
+  }
+ ],
+ "sent": [
+  "POST 200 /api/orders/receive-requested-parts :: {\"vendor_id\":\"30078d30-2033-42cb-871d-48b97635a519\",\"invoice_number\":\"ZZb4p1\",\"invoice_date\":\"2026-11-05T07:00:00.000Z\",\"note\":\"\",\"total\":73.5,\"tax\":3.5,\"items\":[{\"catalogue_part_id\":null,\"core_charge\":null,\"core_item_id\":null,\"core_part_id",
+  "POST 200 /api/inventory/orders/receive-view :: {\"orderIds\":[\"2b174c97-67ca-4f23-9d92-688c9fc678db\"]}"
+ ],
+ "urlAfter": "/order/2b174c97-67ca-4f23-9d92-688c9fc678db?receive=1",
+ "toasts": [
+  "check_circle Parts received for S-17582. Close"
+ ]
+}

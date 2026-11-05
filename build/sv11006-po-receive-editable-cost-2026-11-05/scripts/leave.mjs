@@ -1,0 +1,10 @@
+import {sess} from './common.mjs'; import fs from 'fs';
+const TAG=process.argv[2]; const S=JSON.parse(fs.readFileSync(`/tmp/sv11006/seed-branch-${TAG}.json`,'utf8')); const it=S.parts[0].order.orderItemId;
+const s=await sess(); const p=s.page; const OUT=`../ev/branch-back-${TAG}`; fs.mkdirSync(OUT,{recursive:true}); const R={};
+await s.go('/parts/orders'); await p.waitForTimeout(3000); await p.locator('tbody tr',{hasText:S.number}).first().locator('[data-test-id="button_receive"]').click(); await p.waitForTimeout(4000);
+const c=p.locator(`[data-test-id="input_cost_${it}"]`); await c.click(); await c.fill(''); await c.type('55',{delay:50}); await p.waitForTimeout(500);
+await p.locator('[data-test-id="button_back_to_purchase_orders"]').click(); await p.waitForTimeout(1500); await p.locator('[data-test-id="button_confirm_leave_receive"]').click(); await p.waitForTimeout(2500);
+R.urlAfterLeave=p.url().replace(/^https:\/\/[^/]+/,''); await p.screenshot({path:OUT+'/4-after-leave.png'});
+await s.go('/order/'+S.parts[0].order.orderId+'?receive=1'); await p.waitForTimeout(3500); R.costOnReopen=await p.locator(`[data-test-id="input_cost_${it}"]`).inputValue();
+const v=(await s.api('/api/work-orders/lines/'+S.wo)).json; JSON.stringify(v,(k,val)=>{ if(val&&val.part_request_id===S.parts[0].pr) R.stored={cost:val.cost,sell:val.sell_price,status:val.status_val}; return val; });
+console.log(JSON.stringify(R)); await s.close(); process.exit(0);

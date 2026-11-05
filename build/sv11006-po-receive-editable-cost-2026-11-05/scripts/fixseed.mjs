@@ -1,0 +1,20 @@
+// usage: node fixseed.mjs <tag> -> inventory part (0 in stock, FIXED sell price 35) + WO + vendor-sourced request linked to it (no cost), ordered
+import {sess,post,arr} from './common.mjs'; import fs from 'fs';
+const ENV=process.env.ENV||'branch'; const TAG=process.argv[2];
+const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(2000); const log=(...a)=>console.log(...a);
+const ws=arr((await s.api('/api/staff/my-workplaces')).json?.data); const W=ws.find(w=>w.id.startsWith('b3c8c820')); await post(s,'/api/iam/change-location',{workplace_id:W.id,workplace_timezone:W.timezone||'America/Edmonton'});
+const ref=arr((await s.api('/api/inventory/parts?limit=5&search=')).json?.data).find(x=>(x.binLocations||[]).length&&x.workplace_id===W.id); const bin=ref.binLocations[0]; const binId=bin.bin_location_id||bin.binLocationId||bin.id;
+const cats=arr((await s.api('/api/inventory/categories?limit=500')).json?.data); const cat=cats.find(x=>x.label==='Uncategorized').value;
+const pn='ZZ11006-FIX-'+Date.now().toString().slice(-6);
+const cp=await post(s,'/api/parts-catalogue/add-catalogue-part',{name:'ZZAUTOTEST SV-11006 fixed price part',part_number:pn,size:'',category:cat,measurement:'ea',manufacturer_id:null,tags:[],category_id:cat}); const cid=cp.json?.data?.id||cp.json?.data?.catalogue_part_id||cp.json?.data?.catalog_part_id||cp.json?.data?.part_id||cp.json?.id; log('catalog',cp.status,cid,JSON.stringify(cp.json).slice(0,200));
+const ip=await post(s,'/api/inventory/parts/create',{catalog_part_id:cid,category_id:cat,quantity:0,cost:10,purchase_price:10,sell_price:35,is_fixed_price:true,isFixedPrice:true,tags:[],workplace_id:W.id,min:0,max:5,bins:[{id:binId,quantity:0,isDefault:true}]}); const iid=ip.json?.data?.part_id||ip.json?.data?.id; log('inventory',ip.status,JSON.stringify(ip.json).slice(0,200));
+const fx=arr((await s.api('/api/parts/list-fixed-price?pagination%5BrowsPerPage%5D=5&pagination%5Bpage%5D=1&search='+pn)).json?.data); log('fixed list',JSON.stringify(fx).slice(0,200));
+const COMPANY='6a7b6afc-084d-4584-aacb-773bcd71cbcd'; const veh=arr((await s.api('/api/vehicles?company_id='+COMPANY)).json?.data);
+const wo=(await post(s,'/api/work-orders/create',{company_id:COMPANY,vehicle_id:veh[0]?.id,workplace_id:W.id,start_date:new Date().toISOString().slice(0,10),is_vehicle_here:true})).json?.data?.work_order_id;
+const can=arr((await s.api('/api/work-orders/canned-lines')).json?.data).find(x=>Number(x.total_parts)===0&&x.workplace_id===W.id);
+const line=(await post(s,'/api/work-orders/'+wo+'/lines/create-from-canned-line',{canned_line_id:can.id,status:'authorized'})).json?.data?.line_id;
+const V=arr((await s.api('/api/parts-catalogue/vendors?pagination[page]=1&pagination[rowsPerPage]=50')).json?.data)[0];
+const m=await post(s,'/api/work-orders/part/make-request',{work_order:wo,line,description:'ZZAUTOTEST SV-11006 fixed price part',part_number:pn,quantity:1,part_source_type:'vendor',inventory_part_id:iid,is_authorized:false,part_category_id:cat,vendor_id:V.id}); log('make-request',m.status,JSON.stringify(m.json?.data?.part_request&&{cost:m.json.data.part_request.cost,sell:m.json.data.part_request.sell_price,inv:m.json.data.part_request.inventory_part_id}),JSON.stringify(m.json).slice(0,150));
+const pr=m.json?.data?.id; const o=await post(s,'/api/work-orders/part/perform-request-status-action',{part_request_id:pr,action:'order'}); log('order',o.status);
+const out={env:ENV,wo,line,inventoryPart:iid,parts:[{k:'F',pn,pr,order:o.json?.data}]}; out.number=((await s.api('/api/work-orders/view/'+wo)).json?.data?.work_order||{}).display_number; log(out.number);
+fs.writeFileSync(`/tmp/sv11006/seed-${ENV}-${TAG}.json`,JSON.stringify(out,null,1)); await s.close(); process.exit(0);

@@ -33,7 +33,9 @@ export function port(dir){
 
 export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw=(process.env.SV_PROD_PW||(()=>{try{return fs.readFileSync('/tmp/sv-prod-pw.txt','utf8').trim()}catch(e){return ''}})()),
                             cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null, quick='admin', tz=null,
-                            scrollbars=false, touch=false, device=null}={}){
+                            scrollbars=false, touch=false, device=null, headed=false}={}){
+  // headed: run a real windowed Chromium (wrap the node command in `xvfb-run -a`). Added 2026-11-05 (SV-12003): only a
+  // headed browser downloads the spell-check dictionary and draws the red wavy underline; headless never shows it.
   // device: a Chrome DevTools / Playwright device preset name, e.g. 'iPhone 12 Pro', 'iPhone SE', 'Pixel 7'. Sets viewport,
   // pixel ratio, touch, isMobile AND the phone userAgent. Added 2026-11-03 (SV-11904): touch:true alone keeps the DESKTOP
   // userAgent, so the app can treat the page as a desktop with a touchscreen; a developer testing with a DevTools preset may
@@ -49,7 +51,7 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
   // record: a folder path -> the whole session is filmed (see recording.mjs: finishRecording()).
   tz = tz || process.env.SV_TZ_BROWSER || null;
   const H = env==='prod' ? PROD : env==='staging' ? STAGING : branch(ticket);
-  const b = await chromium.launch({executablePath:CHROME, args:[
+  const b = await chromium.launch({executablePath:CHROME, headless:!headed, args:[
     '--proxy-server=http://127.0.0.1:'+port(dir),'--ignore-certificate-errors','--no-sandbox','--ssl-version-max=tls1.2'],
     ...(scrollbars ? {ignoreDefaultArgs:['--hide-scrollbars']} : {})});
   const ctx = await b.newContext(Object.assign({viewport:vp, deviceScaleFactor:dpr, ignoreHTTPSErrors:true}, tz ? {timezoneId:tz} : {},

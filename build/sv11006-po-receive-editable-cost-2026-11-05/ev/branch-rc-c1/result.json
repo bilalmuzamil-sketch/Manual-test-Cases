@@ -1,0 +1,63 @@
+{
+ "rowFound": 1,
+ "url": "/order/6046650f-2776-4ea6-a457-f4fc6d7917a0?receive=1",
+ "before": [
+  {
+   "id": "49350159",
+   "costInput": "40",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$90.00",
+   "total": "$40.00"
+  },
+  {
+   "id": "2f062edb",
+   "costInput": "0",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$0.00",
+   "total": "$0.00"
+  }
+ ],
+ "typed": [
+  {
+   "id": "49350159",
+   "costInput": "70",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$157.50",
+   "total": "$70.00"
+  },
+  {
+   "id": "2f062edb",
+   "costInput": "0",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$0.00",
+   "total": "$0.00"
+  }
+ ],
+ "sent": [
+  "POST 200 /api/orders/receive-requested-parts :: {\"vendor_id\":\"30078d30-2033-42cb-871d-48b97635a519\",\"invoice_number\":\"ZZ",
+  "POST 200 /api/inventory/orders/receive-view :: {\"orderIds\":[\"6046650f-2776-4ea6-a457-f4fc6d7917a0\"]}"
+ ],
+ "toasts": [
+  "check_circle Parts received for S-17592. Close"
+ ],
+ "woParts": [
+  {
+   "pn": "ZZ11006-c1B-527866",
+   "status": "authorized",
+   "cost": 0,
+   "sell": 0,
+   "margin": 0
+  },
+  {
+   "pn": "ZZ11006-c1A-527866",
+   "status": "authorized",
+   "cost": 70,
+   "sell": 157.5,
+   "margin": 55.56
+  }
+ ]
+}
