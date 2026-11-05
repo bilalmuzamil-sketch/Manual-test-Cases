@@ -3474,3 +3474,9 @@ Every item below cost a wrong verdict or a "cannot verify" before it was found.
   - `@Chris Ward` mention: `<span data-type="mention" data-user-id="712020:aa00b8d6-a71f-4259-8919-82a304227c20">@Chris Ward</span>`, posted with `contentFormat: html`.
   - Then: "found while testing this ticket", what happens, one example, what I expected, "Fix it, or leave it as it is?".
   - Examples: SV-11691 comment 80171, SV-11885 comment 80172.
+- **Create a location on screen (5 Nov 2026, sv11839):** Settings → Locations (`/administration/locations`) → `button_add_workplace`.
+  - Dialog ids: `input_name`, `input_shop_id`, `input_address_1/2`, `input_city`, `select_state_or_province`, `select_country_code`, `input_postal_code`, `select_timezone`, `input_telephone`, `select_remit_to`, `select_tax`, `select_sales_tax_rounding_mode`, `input_default_color`, `button_save_workplace`.
+  - Selects: click, type to filter, click the `.q-menu .q-item`. Set Country before State: the state list depends on it. Tax options read e.g. "Zero Rated (0%)".
+  - The save sends `POST /api/workplaces/create` → 201 `{workplace_id}`. An empty Remit To is stored as the new location itself.
+  - The Admin could switch to the new location immediately (it was in `GET /api/staff/my-workplaces`).
+  - Staging's "DVI Test" (read-only, `GET https://api.staging.shopview.com/api/workplaces`): Pacific/Fiji, #2276DA, US/Hawaii, tax Zero Rated, shop id 1. A copy now exists on sv11839 (id `93404b24…`), left in place.

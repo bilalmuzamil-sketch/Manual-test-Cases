@@ -11,7 +11,7 @@ Every check ran with the location's zone matched in all four places: session cha
 | [SV-11691](https://shopview.atlassian.net/browse/SV-11691) | Invoices marked Paid with $0 payments | **PASS** | All 4 invoices now Unpaid at full amount and not payable; Balance = A/R Aging for Wellington ($2,182.34), Inland ($7,298.24), Oakland ($98.26). Work orders still say Paid, as Chris ruled (fixed one by one) | `SV-11691/` |
 | [SV-11820](https://shopview.atlassian.net/browse/SV-11820) | Service Advisor Analysis excludes inactive advisor | **PASS** | Seeded invoice whose advisor was deleted stays in SAA as "Unknown (Inactive)"; This month: Sales 8.75 h / 250.00% = SAA 8.75 h / 250.00% = tile 250.00% | `SV-11820/` |
 | [SV-11821](https://shopview.atlassian.net/browse/SV-11821) | "1 Invoices" / "Range: 1 days" | **PASS** | "Range: 1 day", one date shown; seeded one-invoice day reads "1 Invoice" | `SV-11821/` |
-| [SV-11822](https://shopview.atlassian.net/browse/SV-11822) | Location dropdown empty after reload (DVI Test) | **BLOCKED** (exact step) · equivalent **PASS** | No "DVI Test" location exists on sv11839 (proven: `/api/workplaces` lists 3). With Lethbridge and Test Location the list opens on screen after every reload, but Lethbridge also worked before the fix | `SV-11822/` |
+| [SV-11822](https://shopview.atlassian.net/browse/SV-11822) | Location dropdown empty after reload (DVI Test) | **PASS** (retest 5 Nov) | A "DVI Test" copied field for field from staging (Pacific/Fiji, #2276DA, US) was created on sv11839. After a reload on Dashboard, Reports and Work Orders, at 1536×936 and 1920×1080, the list opens on screen with all 4 locations, and switching away and back works. The Lethbridge control is the same | `SV-11822/` |
 | [SV-11823](https://shopview.atlassian.net/browse/SV-11823) | Negative Parts % with credit memos | **PASS** | Parts −$306.79 → "4 Invoices"; Parts −$25.00 → "1 Invoice"; Parts exactly $0.00 → split still shown "Parts 0% · Labor 90% · Other 10%" | `SV-11823/` |
 | [SV-11824](https://shopview.atlassian.net/browse/SV-11824) | First date click clears the range | **PASS** | One click selects the date ("Oct 9, 2026", "Range: 1 day"), also inside the current range and with a custom range set | `SV-11824/` |
 | [SV-11825](https://shopview.atlassian.net/browse/SV-11825) | "Open Sales Report report" | **PASS** | All 5 links read "Open … Report" once | `SV-11825/` |
@@ -23,10 +23,10 @@ Every check ran with the location's zone matched in all four places: session cha
 | [SV-11931](https://shopview.atlassian.net/browse/SV-11931) | Tech Efficiency counts a declined line | **PASS** | Seeded WO S11839-17589: technician row 1.00 Clocked / 1.00 Invoiced / 100.00% (declined line left out) | `SV-11931/` |
 | [SV-11934](https://shopview.atlassian.net/browse/SV-11934) | Labor Delta keeps old value after timesheet edit | **PASS** | Seeded WO S11839-17590: +0.50 → timesheet corrected → Stats 1.00/1.00 → Dashboard and report Labor Delta 0.00 | `SV-11934/` |
 
-**Totals:** 13 PASS · 1 BLOCKED for the exact step, with the equivalent passing (SV-11822) · 0 FAIL. (SV-11885 was "PASS for 8 of 11" on 4 Nov; the 5 Nov follow-up completed it.)
+**Totals:** 14 PASS · 0 BLOCKED · 0 FAIL. (SV-11885 was completed on 5 Nov; SV-11822 was retested on 5 Nov on a DVI Test location copied from staging.)
 
 ## NOT VERIFIED, and why
-- **SV-11822, the "DVI Test" condition itself.** The location doesn't exist on sv11839. Searches run: `GET /api/workplaces` and `GET /api/staff/my-workplaces` (3 locations each); `/api/organization/workplaces`, `/api/settings/workplaces` and `/api/iam/workplaces` (all 404); this repo, for the staging DVI Test id `39522bc6-…`.
+- (Resolved on 5 Nov: SV-11822's DVI Test condition was tested on a location copied from staging; see `SV-11822/RESULT.md`.)
 - **SV-11885, Journal Entry "Description" column: cannot occur, not a pass.** It is written by the system and always starts "Inventory Increase; " or "Inventory Decrease; " (product code `api/src/Reporting/Domain/JournalEntry/Services/DescriptionGenerator.php`).
 - **SV-11885, QuickBooks: not checked**, on the QA lead's instruction (5 Nov 2026).
 - (Resolved on 5 Nov: Vendor Credit Memo, Sales Representative Assignments, the Location columns, and a leading tab or carriage return are now verified; see `SV-11885/RESULT.md`.)
@@ -84,11 +84,12 @@ Every check ran with the location's zone matched in all four places: session cha
   - manual vendor credit "=ZZCM 1+1" for "@ZZAUTOTEST QA11839 Vendor";
   - sales rep "-ZZAUTOTEST QA11839 Tech" on customer "+ZZAUTOTEST QA11839 Plus".
 - **Location rename:** "Test Location" was renamed to "=ZZAUTOTEST Test Location" for 79 s (03:37:33.730 → 03:38:52.968 UTC, 5 Nov) and restored. The read-back record is identical to the original.
+- **5 Nov (SV-11822 retest):** location **"DVI Test"** created on sv11839 (id 93404b24-8d43-4459-b152-513e64e2ad81, Pacific/Fiji, a copy of staging's). **Left in place** as QA-branch data.
 - Every seed call (90, with HTTP status) is in `seed-log.jsonl`; ids are in `seed-ids.json`.
 
 ## Questions for the QA lead
 1. **[SV-11826](https://shopview.atlassian.net/browse/SV-11826).** When read at the same moment, the tile and the report match exactly; the gaps only appear when the report is opened seconds after the tile while technicians are clocked in. This disagrees with the 4 Nov reading in `rerun-sv11839-2026-11-04/SUMMARY-sv11839-2026-11-04.md`, row B, that it is the tile's own rounding. **My recommendation:** accept as passed / "cannot reproduce" (as the developer proposed in comment 79615), and correct row B of that summary.
-2. **[SV-11822](https://shopview.atlassian.net/browse/SV-11822).** It can't be proven on sv11839 because there is no DVI Test location. **My recommendation:** keep it in TESTING QA and re-test on staging's DVI Test once branch SV-11839 is there; don't pass it from the QA branch alone.
+2. **[SV-11822](https://shopview.atlassian.net/browse/SV-11822).** Retested on 5 Nov on a DVI Test copied from staging, at 1536×936 and 1920×1080: not reproducible; the list opens every time. Ayesha Khan's comment 80169 (4 Nov) says she checked "Staging and QA (sv11839)", but sv11839 had no DVI Test location until 5 Nov. **My recommendation:** move it to QA Complete as not reproducible, with the pass comment in `SV-11822/RESULT.md`.
 3. **[SV-11885](https://shopview.atlassian.net/browse/SV-11885).** Completed on 5 Nov: every download that can carry such text passes. **My recommendation:** move it to QA Complete with the pass comment in `SV-11885/RESULT.md`.
 
 ## OUTSTANDING — what I need from you

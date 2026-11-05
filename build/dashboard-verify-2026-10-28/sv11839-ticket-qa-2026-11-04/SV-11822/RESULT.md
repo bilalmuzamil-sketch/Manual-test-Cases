@@ -2,41 +2,78 @@
 
 **Ticket:** https://shopview.atlassian.net/browse/SV-11822 (status TESTING QA, epic SV-11839) · **QA branch:** https://sv11839.qa.shopview.com
 
-## Verdict: BLOCKED for the exact step (no "DVI Test" location on sv11839) — closest faithful equivalent PASSED
+## Verdict: PASS (retest 5 Nov 2026, on a "DVI Test" location copied from staging)
+This replaces the 4 Nov verdict ("BLOCKED for the exact step"), which was given because sv11839 had no "DVI Test" location. On the QA lead's instruction one was created on sv11839, matching staging's DVI Test field for field, and the ticket's exact steps were run on it.
 
 ## What the ticket expects (verbatim)
 > **Expected**
 > * Location list opens (QB Location, Staging Heavy Duty - 9919, Staging Lethbridge - 4310, DVI Test) and user can switch.
 
-Source: SV-11822 description. Mudassir Qamar's comment (28 Oct 2026, comment 79640): the empty list was the location menu drawn off-screen (x=0, y=936, `visibility: collapse`) and "Only DVI Test reproduces"; the same steps with Lethbridge worked.
+Source: SV-11822 description. sv11839 has no "QB Location", so the list there is DVI Test · Test Location · Staging Heavy Duty - 9919 · Staging Lethbridge - 4310.
+Comments:
+- Mudassir Qamar, 28 Oct 2026 (comment 79640): on staging the menu was drawn off-screen (x=0, y=936, `visibility: collapse`), and "Only DVI Test reproduces".
+- The developer, 27 Oct (comment 79616), asked for the my-workplaces body with its X-Cache header, the menu's inline top/left and items, and the DVI Test row's organization_id, timezone, color and country_code.
+
+## The location that was copied (read-only from staging, 5 Nov 2026)
+`staging-dvi-test-record.json` holds staging's full DVI Test record (`GET /api/workplaces` and `GET /api/staff/my-workplaces`, nothing changed on staging). The fields the developer asked for:
+
+| Field | Staging "DVI Test" | sv11839 "DVI Test" (created 5 Nov) |
+|---|---|---|
+| organization_id | d55bc308-e61a-438d-b5f1-c7a73c89d49f | d55bc308-e61a-438d-b5f1-c7a73c89d49f |
+| timezone | **Pacific/Fiji** | Pacific/Fiji |
+| color | #2276DA | #2276DA |
+| country_code | US | US |
+
+Every other field is also the same: name "DVI Test", 111 Granton Drive, Richmond Hill, Hawaii, L4B 1L5, (467) 484 - 4563, shop id 1, tax "Zero Rated", sales tax rounding line_by_line, shop supplies 0 / min 0 / max none, remit-to = itself, bookkeeping enabled.
+**What differs:** only the location's own id (`93404b24-…` on sv11839, `39522bc6-…` on staging), and therefore the remit-to id that points at itself. The location was created on screen (Settings → Locations → Add); the screen sent `POST /api/workplaces/create` → 201. The Admin could switch to it straight away (it appeared in `GET /api/staff/my-workplaces`; no access change was needed). The location has been left in place on sv11839.
 
 ## What I did
-**Why the exact step cannot be done:** sv11839's organisation has exactly three locations — `GET /api/workplaces` and `GET /api/staff/my-workplaces` both list only Staging Heavy Duty - 9919, Staging Lethbridge - 4310 and Test Location (the staging DVI Test id `39522bc6-…` is absent). Searches run: those two endpoints, plus `/api/organization/workplaces`, `/api/settings/workplaces`, `/api/iam/workplaces` (all 404), and this repo for the DVI Test id.
+The ticket's steps, in Chrome, signed in as Admin starting at Staging Heavy Duty - 9919:
+1. Profile → Change Location → **DVI Test**.
+2. Reload the page, three times: on Dashboard, on Reports (Sales) and on Work Orders.
+3. After each reload: Profile → click the **DVI Test** chip.
+4. With the list open: switch to Staging Heavy Duty - 9919, reload, and switch back to DVI Test.
 
-**Closest faithful equivalent (labelled as such):**
-- Run A (Edmonton): Admin at Heavy Duty → Profile → Change Location → **Staging Lethbridge - 4310** → reload on Dashboard, Reports > Sales, Customers and Work Orders → Profile → click the location chip each time → switch back to Heavy Duty. Also pressed Backspace on the chip (the developer's hardening note).
-- Run B (Karachi): Test Location selected → reload → Profile → click the chip.
+This was done at **1536×936** (Mudassir's size) and at **1920×1080**. Control: the same steps with **Staging Lethbridge - 4310** at 1536×936.
 
 ## What I saw
-- After every reload (4 pages in run A, 1 in run B) the list **opened on screen** (menu top 203 px, left ≈1338 px, visible) with all three locations: Staging Heavy Duty - 9919 · Staging Lethbridge - 4310 · Test Location. Switching back to Heavy Duty worked and survived a reload.
-- Backspace on the chip left it showing "Staging Lethbridge - 4310"; the stored location was unchanged.
+| Run | After reload on | List on screen? | Menu position (inline top / left) | Visibility | Items in the list | Switch away and back |
+|---|---|---|---|---|---|---|
+| DVI Test, 1536×936 | Dashboard · Reports · Work Orders | **Yes**, all 3 | 202.906px / 1274.19px | visible | DVI Test · Test Location · Staging Heavy Duty - 9919 · Staging Lethbridge - 4310 | **worked** |
+| DVI Test, 1920×1080 | Dashboard · Reports · Work Orders | **Yes**, all 3 | 202.906px / 1658.19px | visible | same 4 | **worked** |
+| Lethbridge control, 1536×936 | Dashboard · Reports · Work Orders | **Yes**, all 3 | 202.906px / 1274.19px | visible | same 4 | **worked** |
 
-This does **not** prove the DVI-Test-specific cause is fixed: in the original report the same steps with Lethbridge already worked before the fix. Only a location set up like staging's DVI Test can show that.
+`GET /api/staff/my-workplaces` answered 200 with all 4 locations every time (10 responses per run). The responses carried **no X-Cache header**. Full bodies are in the evidence files.
+
+## Other retests (for context)
+Ayesha Khan, comment 80169 (4 Nov 2026, 19:11 −05:00): *"Retested on Staging and QA (sv11839), Chrome, at 1920×1080, 1536×864 and 1536×936 … Not reproducible on my side."*
+Note that sv11839 had **no** "DVI Test" location until this retest created it on 5 Nov (on 4 Nov `GET /api/workplaces` listed only three locations). So the "QA (sv11839)" part of her retest cannot have used DVI Test.
 
 ## Build, time, location, zones
-- Build: v26.45.0-aacb66c (read from `<meta name="app-version">` on sv11839; the brief said v26.43.5-c73a58b — the branch has moved on)
-- When: 4 Nov 2026, 20:49–20:51 UTC
-- Location **Staging Heavy Duty - 9919 / Staging Lethbridge - 4310 (run A, America/Edmonton) and Test Location (run B, Asia/Karachi)**. Zones (Rule 99), all recorded in the evidence JSON: session `change-location` with `workplace_timezone=America/Edmonton` (HTTP 200) · browser `timezoneId=America/Edmonton` · process `TZ=America/Edmonton` · `localStorage['timezone']="America/Edmonton"` · header/location selector showed Staging Heavy Duty - 9919 / Staging Lethbridge - 4310 (run A, America/Edmonton) and Test Location (run B, Asia/Karachi) at the start and end of the run. Note: on this machine the time-zone database (2026e) puts America/Edmonton at UTC−6, while the test browser (Chromium 153) still uses UTC−7 — see RESULTS.md, environment notes.
+- Build: v26.45.0-aacb66c.
+- When: 5 Nov 2026, 04:50–04:56 UTC (the location was created just before).
+- Zones (Rule 99): each run's browser time zone and process `TZ` were the **target location's** zone, because every check happens after switching to it — Pacific/Fiji for DVI Test, America/Edmonton for Lethbridge. Each run started at Heavy Duty with Heavy Duty's own zone (America/Edmonton) in the session and `localStorage`. The app's own Change Location then set the session (`change-location` with `workplace_timezone`) and `localStorage['timezone']` to the target zone.
+- At **every** check, all four matched the target, and the header showed the target location. This is recorded per check in each evidence file (`rule99_at_checks_all_match: true`).
 
 ## Pictures (deviceScaleFactor 2)
-- `SV-11822/A-2-after-reload-dashboard.png`
-- `SV-11822/A-5-after-reload-work-orders.png`
-- `SV-11822/B-1-test-location-after-reload.png`
+- `SV-11822/DVI-1536x936-1-after-reload-dashboard.png`: DVI Test, after reload, list open with all locations.
+- `SV-11822/DVI-1536x936-3-after-reload-work-orders.png`
+- `SV-11822/DVI-1920x1080-2-after-reload-reports.png`
+- `SV-11822/LB-1536x936-1-after-reload-dashboard.png`: control.
+- `SV-11822/dvi-0-create-location-filled.png`: the new location as entered in Settings → Locations.
 
 ## Evidence
-SV-11822/evidence-A.json, SV-11822/evidence-B.json
+`staging-dvi-test-record.json`, `evidence-create-dvi-test-save.json` (what the screen sent and the stored record), `evidence-DVI-1536x936.json`, `evidence-DVI-1920x1080.json` and `evidence-LB-1536x936.json` (menu state, my-workplaces bodies and headers, change-location requests, zones per check). The 4 Nov runs without a DVI Test location: `evidence-A.json`, `evidence-B.json`.
 
 No Jira or TestRail write was made.
 
-## Draft comment (NOT POSTED)
-Not a pass and not a failure: the ticket's own step needs a location called "DVI Test", which does not exist on the QA branch sv11839 (it has only Staging Heavy Duty - 9919, Staging Lethbridge - 4310 and Test Location). On sv11839 (build v26.45.0-aacb66c, 4 Nov 2026), switching to Lethbridge, reloading Dashboard, Reports > Sales, Customers and Work Orders, and opening the location list each time worked every time: the list opened on screen with all three locations and switching back worked. Because Lethbridge also worked before the fix in the original report, this still needs checking on a location set up like staging's DVI Test (for example on staging after this branch is merged).
+## Draft QA-pass comment (NOT POSTED)
+QA check on the QA branch sv11839 (build v26.45.0-aacb66c), 5 Nov 2026, Chrome, as Admin.
+
+sv11839 had no "DVI Test" location, so I created one, copying staging's DVI Test exactly: same name, time zone Pacific/Fiji, color, country, address and tax.
+
+I then did the ticket's steps: Profile → Change Location → DVI Test → reload → Profile → click the "DVI Test" chip. I reloaded on Dashboard, on Reports and on Work Orders, at 1536×936 and at 1920×1080. Every time, the location list opened just below the chip with all four locations, and switching to Staging Heavy Duty - 9919 and back to DVI Test worked. The same steps with Staging Lethbridge - 4310 also worked.
+
+This matches Ayesha's retest (comment of 4 Nov). Note that before today sv11839 had no DVI Test location, so her sv11839 check could not have used it.
+
+Picture: SV-11822/DVI-1536x936-1-after-reload-dashboard.png
