@@ -30,3 +30,10 @@ Data note: on this branch every staff record has one name on the Schedule and an
 - Production test data left: S2-198 shift 00607e6b on staff 1370698b, 6 Nov (prod test org, test data left per ruling).
 
 ## BLOCKED 13:20 UTC: all .qa.shopview.com sign-ins expired (quick-login 401 sso_required; shared sv_sso_session saved 10:34 UTC). Builds unchanged (sv12048 v26.45.0-747429d). Remaining: G, H, I, J, K, L + A + regression hotspots + on-screen Shift-details captures for C/D/E/F.
+
+### Observation: technician names differ between Schedule and work-order screens on sv12048
+- All 13 Heavy Duty staff on sv12048: Schedule board name ≠ /api/technicians (WO Labor) name for the same staff id (e.g. 0aac76eb Emily Madden vs Cameron Johnston).
+- Production v26.45.1-6505633: names identical on both for every staff member (checked 5 Nov 13:3x UTC).
+- Bucket (d) UNVERIFIED cause: likely the QA data copy, not this ticket (no technician/name change in the handoff). Settle by running scripts/names.mjs on another QA branch (sv12003) once sign-in is back.
+
+### SV-11006 note (read live 5 Nov 07:01 CDT): QA lead edited our comment 80209 (added screen-capture.webm), set QA Assignee, moved the ticket TESTING QA → REJECTED FROM TESTING. His action; nothing reversed.
