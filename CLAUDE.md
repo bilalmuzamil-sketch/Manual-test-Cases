@@ -60,6 +60,7 @@ These are stated here **in full** because a session that gets only this far must
   Chris Ward and says in plain words what happens today vs what we understand should happen (one example + the source),
   asking him to confirm "fix it, or leave it as it is?".
   **Amendment 5 Nov: every question to Chris carries an ANNOTATED SCREENSHOT embedded in the comment itself.**
+  **Amendment 5 Nov (2): every ticket we file gets its EPIC at creation. Reports go to SV-11936 and Dashboard to SV-11839. If a ticket is neither, ask; never guess.**
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act

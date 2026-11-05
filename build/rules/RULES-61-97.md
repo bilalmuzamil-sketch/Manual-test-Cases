@@ -2443,3 +2443,11 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     - **Before posting:** open the annotated picture and check it.
     - **Afterwards:** read back `renderedBody` and confirm that an `<img>` of the attachment is present.
     - **FIRST APPLIED:** comments 80171 (SV-11691), 80172 (SV-11885) and 80185 (SV-12207), edited 5 Nov 2026 to add pictures. Tool: `build/dashboard-verify-2026-10-28/sv11839-ticket-qa-2026-11-04/tools/annotate.py`.
+    **🔴 AMENDMENT, 5 Nov 2026: EVERY TICKET WE FILE GETS ITS EPIC AT CREATION.** QA lead, verbatim: *"for any ticket which you have created and that is related to report it should have this EPIC assigned to that https://shopview.atlassian.net/browse/SV-11936 And any ticket which is related to dashboard it should have this epic assigned to that: https://shopview.atlassian.net/browse/SV-11839 … I see that you have created the tickets but the epic is not assigned to them, that will badly bite me"*.
+    - **Which epic:**
+      - A **Reports** ticket gets `parent = SV-11936`.
+      - A **Dashboard** ticket gets `parent = SV-11839`.
+    - **How:** pass `parent` on `createJiraIssue`, then read back with JQL (`key = X AND parent = SV-1193x`).
+    - **A ticket that is neither:** do not guess an epic. Ask the QA lead, naming the ticket and giving a recommendation (Rule 102). Example: SV-12207, the vendor remittance slip, asked 5 Nov.
+    - **Tickets already filed under another epic:** do not move them without asking. Example: SV-12199/12201/12202, under SV-11839 and QA Complete.
+    - **Applied 5 Nov:** SV-12208 (edited to parent SV-11936) and SV-12209 (created with parent SV-11936).

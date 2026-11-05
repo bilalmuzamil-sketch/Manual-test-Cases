@@ -151,3 +151,19 @@ QA lead, verbatim: *"For this comment since the ticket is now ready for producti
   - Confluence search (title or text "A/R Aging" + credit) found no document on credit aging.
 - **Chris Ward comment 80193** on SV-12208: @mention, thankful, picture inside the comment, asks "expected behaviour, or improve it?".
 - **SV-11691 comment 80171** edited: an "Update (5 Nov 2026)" line at the top links SV-12208 and asks for replies there. The original question and its picture are kept below.
+
+## 5 Nov 2026 (≈10:40 UTC): SV-11885 question moved to SV-12209; epics set
+QA lead, verbatim: *"yes do the same for 11885 too"*, plus the epic instruction (Reports → SV-11936, Dashboard → SV-11839).
+
+- **New ticket SV-12209**: *"Reports - Export Reports: clicking Export when there is nothing to export gives no file and no message"*.
+  - Bug, Medium, QA_found, Product Area "Reports & Dashboards", **parent SV-11936**, Relates to SV-11885.
+  - Picture embedded (upload 364699 B = file size).
+  - Evidence: `../sv11839-ticket-qa-2026-11-05/CHRIS-PICS/export-vcm-yesterday-empty-0805.json` (277b249, Test Location, Asia/Karachi, Rule 99 all_match true).
+  - The Confluence search found no document on empty exports. The A/R-A/P PRD (page 947650561) covers only those reports' own export.
+- **Chris Ward comment 80196** on SV-12209: thankful, picture inside the comment, asks "expected, or improve it, and which option?".
+- **SV-11885 comment 80172** edited: an "Update (5 Nov 2026)" line links SV-12209. The original question and picture are kept below.
+- **SV-12208:** parent set to **SV-11936**.
+- **Read-back:** JQL `key in (SV-12208, SV-12209) AND parent = SV-11936` returned both.
+- **Not changed, asked instead:**
+  - SV-12207 (vendor remittance slip) is neither a report nor the dashboard.
+  - SV-12199/12201/12202 are already under SV-11839 and QA Complete.
