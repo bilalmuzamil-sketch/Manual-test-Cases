@@ -375,3 +375,8 @@ build marker is captured by the same preflight) · 50 (verify exhaustively and e
 creation hold) · 68 (a blocker blocks only what it actually blocks) · 76 (do not spend spawns
 retry-looping) · 82 (the real secret-scan gate) · 83 (lane write locks — do not steal a shared login) ·
 **89 (this skill is that rule's operator form)** · 90 (report the quota spend).
+
+## 9 · Confirm every Jira change with a search on the new values — approved by the QA lead 2026-11-05 ("Approve all four")
+- Since 5 Nov 2026 the Atlassian MCP read tools (`getJiraIssue`, `searchJiraIssuesUsingJql`) can leave out `labels` and custom fields, even when they are asked for by id.
+- After any Jira write, confirm it with a JQL filter on the written values, for example `key = SV-x AND labels = QAcomplete AND cf[10385] = "<accountId>" AND status = "QA Complete"`. One hit means every write landed; zero hits means re-check each write.
+- Lesson L6 in `build/LESSONS-2026-11-05.md`. Field ids and transition ids are in `build/APP-ACTIONS-PLAYBOOK.md` → "How to unblock yourself".

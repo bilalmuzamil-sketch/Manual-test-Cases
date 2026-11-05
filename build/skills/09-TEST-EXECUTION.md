@@ -336,3 +336,22 @@ script with `TZ=<zone>`; (4) record location zone, live browser zone and process
 *"browser and test machine set to the location's time zone (<zone>)"* in the ticket's Environment. A result seen with the zones
 unmatched or unrecorded is NOT VERIFIED and is never filed. Staging zones: Heavy Duty Asia/Karachi · Lethbridge America/Edmonton ·
 QB Location America/Vancouver · DVI Test America/Toronto. Full text: `build/rules/RULES-61-97.md` Rule 99.
+
+## 🔴 Three unblock rules — approved by the QA lead 2026-11-05 ("Approve all four")
+Lessons L1, L2 and L4 in `build/LESSONS-2026-11-05.md`. The proven recipes are in `build/APP-ACTIONS-PLAYBOOK.md` → "How to unblock yourself".
+
+1. **Before calling test data impossible to create, find out what feeds it.**
+   - Read the code that produces the screen or download (for exports, `api/src/Reporting/Export/Application/<Name>Export/*QueryHandler.php`). It tells you which flow creates the record and which text a user can control.
+   - Search other sessions' branches for the same symptom: `list_sessions` → `get_session` → branch → `git grep`, facts only (Rule 98).
+   - Write down where you looked.
+   - Code tells you how to SET UP data. It is never the expected behaviour (Rule 57).
+   - Origin: SV-11885 had 3 downloads left "not verified" on 4 Nov; all three were testable.
+2. **Before calling a mismatch between two screens whose figures keep changing** (running clocks, live counters):
+   - read both at the same moment (fire both requests together, several rounds);
+   - also compare a date range that has already ended.
+
+   Only a difference that survives both is a finding. Origin: SV-11826 was wrongly called "tile rounding".
+3. **A location or record missing on a QA branch is test data to create there, not a blocker.**
+   - Copy the staging record faithfully: read-only on staging; every field the screen allows; the exact name when the name could matter.
+   - Record what could not be copied. Never defer to "re-test on staging later" for this reason.
+   - QA lead, 2026-11-05: *"You could create a similar location in the QA branch"*. Origin: SV-11822, "DVI Test".
