@@ -1,0 +1,3 @@
+import {sess,post} from './common.mjs'; import fs from 'fs'; const [TAG,ID]=process.argv.slice(2); const S=JSON.parse(fs.readFileSync(`/tmp/sv12048/wo-${TAG}.json`,'utf8')); const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(1000);
+const r=await post(s,'/api/work-orders/change-lead-technician',{work_order_id:S.wo,tech_assigned_id:ID}); console.log('lead',r.status,JSON.stringify(r.json).slice(0,200));
+const w=(await s.api('/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=3&search='+S.number)).json?.data?.work_orders?.[0]; console.log('now',w?.techAssignedId,w?.techAssignedFirstName,w?.techAssignedLastName,w?.status); await s.close(); process.exit(0);

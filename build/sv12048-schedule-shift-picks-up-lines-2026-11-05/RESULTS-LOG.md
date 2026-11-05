@@ -53,3 +53,8 @@ Data note: on this branch every staff record has one name on the Schedule and an
 - J2 C2 S12048-17584 chosen shift delete → Undo → chosen_lines; new line approved → still 2.
 - J3 J3 S12048-17597 2-day whole series → "Entire series" → board 0 shifts → Undo → restore request carries ONE shift (Fri) → only Fri returns. E1 S12048-17587 lost Sat the same way. Variant J4 S12048-17598 3-day series, "This and all later" from Sat → Undo restores only Sat, Mon lost.
 - PRODUCTION v26.45.1-753355c S2-1928 (ZZAUTOTEST PJ3, staff 1370698b) 2-day series → "Entire series" → 0 → Undo restore carries 1 shift → same. Pre-existing. Jira search: SV-9238 covers Undo after CREATING a series, not after deleting. → QUESTION to QA lead.
+## K. Lead technician change + Undo — PASSED
+- K1 S12048-17599: whole-WO shift on the lead technician. Board View card ⋮ → Reassign lead technician → prompt "Clear <name>'s scheduled shifts?" → Clear shifts → shift gone. Undo → shift back as whole_work_order. New line approved afterwards → joins the shift.
+## L. Unchanged line rules — PASSED (screen; 17:2x UTC, sv12048 v26.45.0-747429d)
+- L1 S12048-17600 (ZZAUTOTEST SV12048 L1 36112, David Haynes, Fri 6 Nov, 3 lines): line 1 right-click → Decline → change-status authorization_declined 200 → Shift details still "3 lines · Est. 6h", line 1 shown "Auth Declined" (ev/L1-declined-0.png).
+- Line 2 right-click → Delete line → Delete → lines/delete 200 → Shift details "2 lines · Est. 4h", line gone (ev/L1-deleted-0.png). No error toasts.

@@ -1,0 +1,78 @@
+{
+ "date": "2026-11-06",
+ "cardFound": 1,
+ "lane": {
+  "id": "16469a2e-c167-4797-b16e-a17bdc5f32e9",
+  "name": "DH",
+  "x": 310,
+  "y": 343.15625,
+  "w": 199,
+  "h": 50
+ },
+ "hourLabel": {
+  "hit": {
+   "t": "3 PM",
+   "x": 1320,
+   "w": 69
+  },
+  "sample": [
+   {
+    "t": "12 AM",
+    "x": 285,
+    "w": 69
+   },
+   {
+    "t": "1 AM",
+    "x": 354,
+    "w": 69
+   },
+   {
+    "t": "2 AM",
+    "x": 423,
+    "w": 69
+   },
+   {
+    "t": "3 AM",
+    "x": 492,
+    "w": 69
+   },
+   {
+    "t": "4 AM",
+    "x": 561,
+    "w": 69
+   },
+   {
+    "t": "5 AM",
+    "x": 630,
+    "w": 69
+   }
+  ]
+ },
+ "rowY": null,
+ "dialog": [
+  {
+   "text": "S12048-17600 · ZZAUTOTEST SV12048 L1 36112 David Haynes close Entire work order Choose lines Hours − 6h + calendar_month 1 shift · 6h Nov 6 to Nov 6 · Mon–Sat, per tech hours expand_more Cancel Create 1 shift",
+   "ids": [
+    "dialog_title=S12048-17600 · ZZAUTOTEST SV12",
+    "text_drop_scope=David Haynes",
+    "button_close_dialog=close",
+    "drop_schedule_body=Entire work order Choose lines",
+    "tab_drop_whole_order=Entire work order",
+    "tab_drop_choose_lines=Choose lines",
+    "drop_single_day_surface=Hours − 6h +",
+    "button_drop_single_day_decrement=−",
+    "text_drop_single_day_hours=6h",
+    "button_drop_single_day_increment=+",
+    "button_drop_plan_toggle=calendar_month 1 shift · 6h No",
+    "text_drop_plan_summary=1 shift · 6h",
+    "text_drop_plan_cadence=Nov 6 to Nov 6 · Mon–Sat, per ",
+    "button_drop_cancel=Cancel",
+    "button_drop_confirm=Create 1 shift"
+   ]
+  }
+ ],
+ "confirmText": "Create 1 shift",
+ "sent": [
+  "POST 201 /api/schedule/shifts :: {\"workOrderId\":\"926ea940-b4f0-4dce-ba1a-9abc38181b64\",\"lineIds\":[\"abae1d11-e2c6-4775-80aa-1ae1b1384e48\",\"49b97dd3-d85f-43b9-9708-1aacf40bf831\",\"ef2fff57-7c7e-4ed7-bd9a-12c726ff714c\"],\"staffId\":\"16469a2e-c167-4797-b16e-a17bdc5f32e9\",\"departm"
+ ]
+}
