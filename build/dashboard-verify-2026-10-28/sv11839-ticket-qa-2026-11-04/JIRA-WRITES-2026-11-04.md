@@ -79,3 +79,23 @@ Both @mention Chris Ward (712020:aa00b8d6-…). Checked before posting: the A/R 
 - **SV-12199:** comment 80174 to Milomir. sv11839 still runs v26.45.0-aacb66c, which predates the SV-12199/12201/12202 fixes (c93ba940d, da8754eca, 277b24901 on branch SV-11839). Asked him to deploy.
 
 **Totals for the original 14:** all 14 QA Complete.
+
+## 5 Nov 2026 (≈06:39 UTC): Milomir's four new TESTING QA tickets, build v26.45.0-277b249
+Verdicts checked against committed evidence first (Rule 86), from `../sv11839-ticket-qa-2026-11-05/`:
+- 12199: `customer-invoice-today-extract.csv`, Terms COD.
+- 12201: `payroll-timesheet-today-extract.csv`, 2.00.
+- 12146: `step-read-after-pay2.json` (−$100.00 Applied twice), `remittance-after-payment-1-text.txt`, and `FAIL-annotated.png`, opened by hand.
+
+| Ticket | Comment id | Labels after | QA Assignee after | Status after |
+|---|---|---|---|---|
+| SV-12199 | 80178 | QAcomplete | Bilal Muzamil | QA Complete |
+| SV-12201 | 80179 | QAcomplete | Bilal Muzamil | QA Complete |
+| SV-12146 | 80180, layman comment with the annotated picture embedded (upload size 254858 = file size) | unchanged | unchanged | REJECTED FROM TESTING (transition 15) |
+
+Read-back by JQL (`labels = QAcomplete AND cf[10385] = Bilal AND status = "QA Complete"`) returned SV-12199 and SV-12201.
+SV-12202 is pending: the after-midnight Last Sale read runs at 07:05 UTC.
+
+## 5 Nov 2026: SV-11822 reopened by Mudassir Qamar (comment 80176)
+- The QA lead deleted our "QA passed" comment 80173. The ticket is now REJECTED FROM TESTING.
+- QAcomplete and QA Assignee from our 05:10 write are still on it. This was not changed: it is the QA lead's call.
+- Retest: `../sv11839-ticket-qa-2026-11-05/SV-11822-retest/RESULT.md`. 24 checks at DPR 1.25 on sv11839 and staging opened the list every time.
