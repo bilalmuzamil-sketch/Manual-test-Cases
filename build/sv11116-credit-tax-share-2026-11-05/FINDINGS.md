@@ -26,3 +26,18 @@ Mode (QA lead): API mode, no recording, no technical section. Two comments if no
 | 8 | Exempt (0%) invoice | PASSED — customer EX set to Exempt on screen (Edit Customer > Taxes), S11116-17590 $994.17; $100 credit CM-4196 → tax 0, no credits, no icon, no "incl." text. |
 | CW4 | Credit split across GST + Exempt invoices | PASSED — CM-4197 $150: $100 to S11116-17590 (exempt) → 0; $50 to S11116-17591 (GST) → −2.38. |
 | — | Report totals ignore the search box | OBSERVATION — search=S11116-17581 returns 1 row but totals = 2 invoices. Compare with production before deciding. |
+| 9 | Returned-parts credit | Behaves as before — S11116-17594 ($90 part): CM-4199 $94.50 incl $4.50 tax; report unchanged GST 23.84, no icon, no "incl." line. (Note for QA lead: the report keeps the full 23.84 although $4.50 tax was credited — out of this ticket's scope per description; not on the ticket.) |
+| 10 | Old credits | PASSED — CM-3956 (applied 2026-08-04 to P2-193) + CM-2177 (2026-05-07 to P2-60/P2-56): report full tax, creditTax 0, no icon. ~2,000 older rows checked: none with a credit deduction. |
+| 11 | Multi-rate GST 5% + PST 7% ("ZZ GST+PST 11116", created via POST /api/taxes) | Numbers PASSED (S11116-17592 credit CM-4198 10.71 = 4.46 + 6.25; GST 45.25 PST 63.34 total 108.59; tooltip "Invoice tax / Less tax on CM-4198 / Reported tax"; keyboard doesn't expand; expanded Total line icon after amount). **FAILED: collapsed row icon sits BEFORE the amount** (icon x1439, amount 1467, arrow 1525). |
+| 2 | Keyboard | **FAILED** — Tab onto icon already opens it; Enter/Space then closes it (toggle); 2nd press reopens. Same on single and multi-rate rows. |
+| 13 | QuickBooks | BLOCKED — /api/bookkeeping/integration shows only authUrl (not connected); no Intuit sandbox login. Asked Parth. |
+| 14 | API cross-customer origin invoice | PASSED — 400 "The origin invoice was not found for this customer." |
+| CW7 | Cash out unused credit | PASSED — S11116-17582 Cash Out $100 → POST credit-memos/{id}/cash-out 200, GST stays 49.71. |
+| R | Regression | PASSED — deposit (DEP-4703 $200, S11116-17596) GST unchanged; Void (Reverse Credit, button_confirm_remove_credit) works; status filter, search, See All Tax Rates (/reports/sales-tax/all-tax-rates), invoice link (new tab → /workorders/{id}/finance); layout aligned (x 1358/1438/1476 both rows; icon centre y = amount centre). |
+| prod before | S2-1933 (prod 5%) after $100 credit CM2-4408: report tax 29.99, no icon. |
+## Observations for the QA lead (NOT on the ticket)
+- Report status reads "Paid" for an invoice covered only partly by a deposit (S11116-17596 balance 843.88; production S2-1934 the same) — existing behaviour.
+- Report totals ignore the search box (branch: 1 row, totals of 2 invoices; production totals also mismatch) — existing behaviour.
+- Returned-parts credits are not deducted from the Sales Tax report (see 9).
+## Posted 5 Nov 2026: comment 80271 (WHAT PASSED, 21 rows, 2 images) + 80272 (PARTIALLY PASSED: 3 failed, QB blocked, 2 questions for Chris). Build v26.45.0-fd56729 re-read before posting. Steps for failure 2 walked live (walk2.mjs).
+## Learning check: comment text param is commentBody (lesson saved); QA branch wake recipe saved; "Open only" toggle on customer Invoices tab hides paid invoices; Issue Credit without a ticked invoice = plain-amount credit (button reads "Issue Refund" until Store Credit chosen).

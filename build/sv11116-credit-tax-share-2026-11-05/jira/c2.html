@@ -1,0 +1,38 @@
+<div data-type="panel-error"><p><strong>OVERALL QA STATUS: PARTIALLY PASSED</strong></p></div>
+<p>Everything that passed has been posted separately in the previous comment. What is still to be fixed is below:</p>
+<p><span data-type="mention" data-user-id="5bd6d7573aa82432ce72b8d3">@parth fadadu</span></p>
+<h3>1. Clicking the info icon does not keep the tooltip open: FAILED</h3>
+<p>On the Sales Tax Collected report, a click on the info icon opens the tooltip, but it closes as soon as the mouse moves off the icon.</p>
+<p><strong>Steps to reproduce</strong></p>
+<ol>
+<li><p>Open <a href="https://sv11116.qa.shopview.com/reports/sales-tax/invoices">sv11116 &gt; Reports &gt; Sales Tax Collected</a> (Date Range: This month).</p></li>
+<li><p>Find the row <strong>S11116-17580</strong> (customer &quot;ZZAUTOTEST SV11116 T1 61385&quot;). In the Taxes column, after <strong>$44.95</strong>, there is a small round info icon.</p></li>
+<li><p>Click the icon once. The tooltip opens.</p></li>
+<li><p>Move the mouse away from the icon without clicking.</p></li>
+</ol>
+<p><strong>Current:</strong> the tooltip closes. <strong>Expected</strong> (QA handoff): <em>&quot;Click (desktop): the tooltip opens and stays open; a second click closes it.&quot;</em></p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="3005bf31-3f9a-4df1-b52a-eb03284338a3" data-collection="upload-user-collection-1343233018" data-alt="branch-click-fail.png"></div></figure>
+<p><em>Picture 3: left, right after the click; right, after moving the mouse away.</em></p>
+<h3>2. Enter or Space closes the tooltip instead of opening it: FAILED</h3>
+<p>When the icon is reached with the Tab key the tooltip already opens on its own, and pressing Enter or Space then closes it.</p>
+<p><strong>Steps to reproduce</strong></p>
+<ol>
+<li><p>Same report and row as above (S11116-17580).</p></li>
+<li><p>Click the invoice number <strong>S11116-17580</strong>, close the new tab it opens, and press <strong>Tab</strong> once. The info icon gets a blue focus ring and the tooltip appears.</p></li>
+<li><p>Press <strong>Enter</strong> (or Space).</p></li>
+</ol>
+<p><strong>Current:</strong> the tooltip disappears. Pressing Enter a second time brings it back. <strong>Expected</strong> (QA handoff): <em>&quot;Keyboard: Tab to the icon, press Enter or Space → the tooltip opens.&quot;</em> Same result on the multi-rate row S11116-17592.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="6096cd5b-5b66-42c3-9bae-8c4d8df4c1df" data-collection="upload-user-collection-1343233018" data-alt="branch-keyboard-fail.png"></div></figure>
+<p><em>Picture 4: left, after Tab; right, after pressing Enter.</em></p>
+<h3>3. Multi-rate row: the icon sits in front of the amount: FAILED</h3>
+<p>On a collapsed row with two tax rates the icon is placed before the tax amount, while on every other row it comes after the amount.</p>
+<p><strong>Steps to reproduce:</strong> same report, row <strong>S11116-17592</strong> (customer &quot;ZZAUTOTEST SV11116 MR 87340&quot;, tax &quot;GST… +1&quot;). Look at the Taxes column without expanding the row.</p>
+<p><strong>Current:</strong> icon, then $108.59, then the expand arrow. <strong>Expected</strong> (QA handoff): <em>&quot;the icon sits after the amount&quot;</em> and, on a collapsed multi-rate row, <em>&quot;the icon sits just before the expand arrow&quot;</em>. Once the row is expanded, the icon is correctly after $108.59 on the Total line.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="9edfd259-26a9-4b56-be20-15d22a43c3f6" data-collection="upload-user-collection-1343233018" data-alt="branch-multirate-icon.png"></div></figure>
+<p><em>Picture 5: the GST + PST row (red) next to a single-rate row (green).</em></p>
+<p>Set-up for 1–3: Chrome on desktop, window 1600 × 900, 100% zoom. Each one was tried at least twice with the same result.</p>
+<h3>4. QuickBooks credit memo (check 13): BLOCKED</h3>
+<p>This branch has no QuickBooks company connected (Settings only offers the connect link), and I don't have an Intuit sandbox login to connect one. Could you connect a sandbox company to sv11116, or share a login, so I can check that the credit memo carries $95.24 taxable + $4.76 tax?</p>
+<h3>5. Questions for <span data-type="mention" data-user-id="712020:aa00b8d6-a71f-4259-8919-82a304227c20">@Chris Ward</span></h3>
+<p><strong>a) Refund on an invoice paid in an earlier month.</strong> Invoice S11116-17588 was paid on 20 Oct and shows in October's report with GST $49.71. After a $50 refund on 5 Nov, the whole invoice moved to November's report ($47.33), and October's report no longer lists it at all, so October's total dropped by $49.71. Your answer 5 says <em>&quot;the tax reduction counts in the period the credit is applied&quot;</em>. Should October keep its $49.71 and November show only the −$2.38, or is moving the whole invoice what you want?</p>
+<p><strong>b) Payment view.</strong> Your answer 1 says <em>&quot;the invoice and payment views show the split, e.g. Credit applied: $100.00 (incl. GST $4.76)&quot;</em>. The invoice shows it. On the customer's Payments tab the credit row only shows &quot;-$100.00&quot;, with no tax (the handoff says this was left unchanged on purpose). Is that OK, or should the Payments tab show the split too?</p>
