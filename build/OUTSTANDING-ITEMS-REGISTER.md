@@ -2369,3 +2369,6 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **DR-4a · SV-12208** (moved out of SV-11691 comment 80171 on 5 Nov at the QA lead's suggestion): same-day credit shows under 1-30 Days in A/R Aging. **Waiting for Chris Ward**: Jira SV-12208, comment 80193, 5 Nov 2026.
 - **DR-4b · SV-12209** (moved out of SV-11885 comment 80172 on 5 Nov): empty Export Reports gives no file and no message. **Waiting for Chris Ward**: Jira SV-12209, comment 80196, 5 Nov 2026.
 - **DR-8 · Epic for SV-12207** (vendor remittance slip, neither Reports nor Dashboard). **Asked the QA lead** in chat on 5 Nov 2026.
+- **DR-8 · CLOSED (5 Nov 2026).** QA lead, verbatim: *"1. Keep it like that 2. Keep it like that"*.
+  - SV-12207 (vendor remittance slip) stays standalone with no epic, the same as SV-12146.
+  - SV-12199, SV-12201 and SV-12202 stay under epic SV-11839. Do not move them.

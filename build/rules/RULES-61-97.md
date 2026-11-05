@@ -2451,3 +2451,6 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     - **A ticket that is neither:** do not guess an epic. Ask the QA lead, naming the ticket and giving a recommendation (Rule 102). Example: SV-12207, the vendor remittance slip, asked 5 Nov.
     - **Tickets already filed under another epic:** do not move them without asking. Example: SV-12199/12201/12202, under SV-11839 and QA Complete.
     - **Applied 5 Nov:** SV-12208 (edited to parent SV-11936) and SV-12209 (created with parent SV-11936).
+    **Ruling, 5 Nov 2026 (QA lead: "Keep it like that"):**
+    - A non-report, non-dashboard ticket such as SV-12207 stays standalone with no epic.
+    - Tickets already filed and finished under SV-11839 (SV-12199/12201/12202) stay there.
