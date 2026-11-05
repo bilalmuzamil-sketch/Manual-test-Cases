@@ -35,6 +35,7 @@ if you need it.
 
 ---
 
+| 2026-11-05 | Posted two SV-12048 QA comments with the text in a parameter named `body`; the tool ignored it and stored only the images | Text goes in `commentBody`; images as `<figure>` inside it, no `inlineFileId`; read every comment back and compare first line + row count + image count before moving on | build/APP-ACTIONS-PLAYBOOK.md §BD |
 ## The corrections, newest first
 
 | Date | What went wrong | What we do now | Where it lives |

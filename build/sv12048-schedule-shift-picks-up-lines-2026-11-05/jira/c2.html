@@ -1,0 +1,32 @@
+<div data-type="panel-error"><p><strong>OVERALL QA STATUS: PARTIALLY PASSED</strong></p></div>
+<p>Everything that passed has been posted separately in the previous comment. What is still to be fixed is below:</p>
+<h3>1. Undo after "Entire series" brings back only the first day (check J3): FAILED</h3>
+<p>When a work order booked over several days is deleted with "Entire series" and then Undo is clicked, only the first day comes back. The other days are lost.</p>
+<p><strong>Steps to reproduce</strong></p>
+<ol>
+<li><p>Open <a href="https://sv12048.qa.shopview.com">sv12048</a> and log in as Admin.</p></li>
+<li><p>Work order <strong>S12048-17606</strong> (customer "ZZAUTOTEST SV12048 JY 14000") is booked on <strong>Karen Peck</strong> for Mon 9 and Tue 10 Nov and left ready for this check.</p></li>
+<li><p>In the top menu click <strong>Schedule</strong>, then in the small calendar on the left click <strong>9</strong>, then click <strong>Week</strong> at the top right. On Karen Peck's row (scroll down the technician list) there is one booking across Monday and Tuesday.</p></li>
+<li><p>Click the booking. In the Shift details window click the trash icon at the top right, then choose <strong>Entire series</strong>. The booking disappears and a toast with <strong>Undo</strong> appears at the bottom.</p></li>
+<li><p>Click <strong>Undo</strong> in the toast.</p></li>
+</ol>
+<p><strong>Current:</strong> only Monday comes back. Tuesday is not restored.</p>
+<p><strong>Expected:</strong> both days come back. The test plan, section J: <em>"Delete a whole-work-order series with Entire series and Undo. All days return and still pick up a newly approved line."</em></p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="e63ac06a-1f6d-4951-bb06-daa7342ce1a1" data-collection="upload-user-collection-1343233018" data-alt="branch-series-undo-fail.png"></div></figure>
+<p><em>Picture 4: QA branch, Week view, John Ortiz (S12048-17602, the same steps). Left: before the delete, one booking over Mon 9 and Tue 10. Right: after "Entire series" and Undo, only Monday is back.</em></p>
+<ul>
+<li><p>Tried 3 times (S12048-17587, S12048-17597, S12048-17602), same result every time.</p></li>
+<li><p>The same happens with <strong>This and all later shifts</strong>: on a 3-day booking (S12048-17598) deleted from the middle day, Undo brought back only that middle day.</p></li>
+<li><p>Production behaves the same way today (S2-1928), so this was not introduced by this change. It still fails this check.</p></li>
+<li><p>Set-up: Chrome on desktop, window 1600 × 900, 100% zoom, mouse clicks.</p></li>
+</ul>
+<h3>2. Question for the developer about check H</h3>
+<p><span data-type="mention" data-user-id="712020:ae9c04d8-74e7-48c4-91fc-370caedf9615">@Dipesh Changawala</span> the first step of check H says: <em>"On the Lines tab, remove the shift's technician from that line (the line comes off that technician's shift)."</em> I could not find a way to do that on screen:</p>
+<ul>
+<li><p>Right-click the line &gt; <strong>Edit labor</strong> opens with an empty Technician box. It only lists technicians added by hand, never the one who came from the shift. Saving it empty leaves the shift's technician on the line.</p></li>
+<li><p>The ⋮ next to the technician's name under the line only offers "Add Labor Fee / Discount".</p></li>
+<li><p>The Shift details window has no way to take one line off.</p></li>
+</ul>
+<p>Could you tell me how this step should be done from the screens? The rest of check H passed: after Uncomplete the shift stayed the same and the technician was not added twice (S12048-17594).</p>
+
+<p><em>Edited on 5 Nov 2026, 13:10 (UTC−5, the time Jira shows): the text of this comment was missing when it was first posted; the results did not change.</em></p>
