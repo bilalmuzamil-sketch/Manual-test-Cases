@@ -70,3 +70,12 @@ Read-back by JQL (`labels = QAcomplete AND cf[10385] = Bilal AND cf[10385] = Aye
 | SV-11691 | 80171 | A credit given today shows as "1-30 Days" late in A/R Aging, while a same-day invoice shows "Current". Fix or leave? |
 | SV-11885 | 80172 | Export Reports with nothing to export gives no file and no message. Fix or leave? |
 Both @mention Chris Ward (712020:aa00b8d6-…). Checked before posting: the A/R Aging picture `SV-11691/5-ar-aging-summary-wellington.png` (row ZZAUTOTEST QA11839 Credit: Current $185.58, 1-30 Days $-25.00) and the empty-export repro of 4 and 5 Nov.
+
+## 5 Nov 2026 (≈05:10 UTC): SV-11822 passed, plus a deploy request
+- **SV-11822:** comment 80173; labels → QAcomplete; QA Assignee → Mudassir Qamar + Bilal Muzamil; transition 10 → QA Complete.
+  - JQL read-back returned it.
+  - Evidence (Rule 86 check): `SV-11822/evidence-DVI-1536x936.json` (all checks visible + on screen + 4 items), `evidence-DVI-1920x1080.json`, `evidence-LB-1536x936.json`, `rule99_at_checks_all_match: true`.
+  - DVI Test copied from staging; created on sv11839 with id 93404b24-…, left in place.
+- **SV-12199:** comment 80174 to Milomir. sv11839 still runs v26.45.0-aacb66c, which predates the SV-12199/12201/12202 fixes (c93ba940d, da8754eca, 277b24901 on branch SV-11839). Asked him to deploy.
+
+**Totals for the original 14:** all 14 QA Complete.
