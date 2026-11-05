@@ -1,0 +1,142 @@
+{
+ "ticket": "SV-11885",
+ "app_version": "v26.45.0-aacb66c",
+ "rule99_start": {
+  "location": "Test Location",
+  "workplace_id": "f9da140e-f4eb-4e3b-adc8-028214ebaf4c",
+  "location_tz": "Asia/Karachi",
+  "session_change_location": {
+   "workplace_timezone": "Asia/Karachi",
+   "http_status": 200
+  },
+  "browser_timezoneId": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "process_resolved_tz": "Asia/Karachi",
+  "localStorage_timezone": "\"Asia/Karachi\"",
+  "localStorage_location": "\"f9da140e-f4eb-4e3b-adc8-028214ebaf4c\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Test Location AS",
+   "location_selector_text": [
+    "Test Location"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-05T03:31:27.675Z"
+  },
+  "browser_local_time_start": "Thu Nov 05 2026 08:31:27 GMT+0500 (Pakistan Standard Time)",
+  "all_match": true,
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Test Location AS",
+   "location_selector_text": [
+    "Test Location"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-05T03:31:57.073Z"
+  },
+  "localStorage_timezone_end": "\"Asia/Karachi\""
+ },
+ "url": "/parts/create-credit",
+ "labels": [
+  "Vendor arrow_drop_down",
+  "Packaging Slip",
+  "Credit Memo Number",
+  "event Credit Date",
+  "Part Number arrow_drop_down",
+  "Description",
+  "Quantity",
+  "$ Price Per Unit",
+  "$ Restocking Fee",
+  "$ Tax",
+  "Note"
+ ],
+ "pic_form": "SV-11885/vc-1-create-credit-form.png",
+ "part_menu": "No results",
+ "form_values": [
+  [
+   "Packaging Slip",
+   "ZZ-PS-885"
+  ],
+  [
+   "Credit Memo Number",
+   "=ZZCM 1+1"
+  ],
+  [
+   "event Credit Date",
+   "11/05/2026"
+  ],
+  [
+   "Part Number arrow_drop_down",
+   "+ZZPN-885"
+  ],
+  [
+   "Description",
+   "@ZZAUTOTEST part desc"
+  ],
+  [
+   "Quantity",
+   "1"
+  ],
+  [
+   "$ Price Per Unit",
+   "10.00000"
+  ],
+  [
+   "$ Tax",
+   "0.00"
+  ],
+  [
+   "Note",
+   "-ZZAUTOTEST return note"
+  ]
+ ],
+ "pic_filled": "SV-11885/vc-2-create-credit-filled.png",
+ "after_url": "/parts/returns",
+ "toasts": [
+  "check_circle\nManual return credited successfully\nClose"
+ ],
+ "pic_after": "SV-11885/vc-3-after-post-credit.png",
+ "posts": [
+  {
+   "status": 201,
+   "url": "/api/part/manual-return-request/create",
+   "body": "{\"data\":{\"id\":\"3ec83f3f-4cff-43b5-bc95-8a1960398f21\",\"status\":\"returned\",\"createdAt\":\"2026-11-05T03:31:50Z\",\"vendorId\":\"29e71b4b-5a21-42e3-9852-0556c8e32629\",\"vendorName\":null,\"staffId\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"staffName\":null,\"packagingSlip\":\"ZZ-PS-885\",\"totalDecimal\":10,\"totalRestockingFeeDecimal\":0,\"items\":[{\"id\":\"0d84030a-4fc6-422d-93ac-415b631ed85d\",\"inventoryPartId\":null,\"part"
+  },
+  {
+   "status": 201,
+   "url": "/api/part/manual-return/3ec83f3f-4cff-43b5-bc95-8a1960398f21/create",
+   "body": "{\"data\":{\"return_id\":\"981f093d-be36-46de-91bd-da7d95665dbc\"}}"
+  }
+ ],
+ "rule99_end": {
+  "location": "Test Location",
+  "workplace_id": "f9da140e-f4eb-4e3b-adc8-028214ebaf4c",
+  "location_tz": "Asia/Karachi",
+  "session_change_location": {
+   "workplace_timezone": "Asia/Karachi",
+   "http_status": 200
+  },
+  "browser_timezoneId": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "process_resolved_tz": "Asia/Karachi",
+  "localStorage_timezone": "\"Asia/Karachi\"",
+  "localStorage_location": "\"f9da140e-f4eb-4e3b-adc8-028214ebaf4c\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Test Location AS",
+   "location_selector_text": [
+    "Test Location"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-05T03:31:27.675Z"
+  },
+  "browser_local_time_start": "Thu Nov 05 2026 08:31:27 GMT+0500 (Pakistan Standard Time)",
+  "all_match": true,
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Test Location AS",
+   "location_selector_text": [
+    "Test Location"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-05T03:31:57.073Z"
+  },
+  "localStorage_timezone_end": "\"Asia/Karachi\""
+ }
+}

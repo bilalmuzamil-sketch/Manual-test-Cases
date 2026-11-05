@@ -3417,3 +3417,27 @@ Scripts: `build/dashboard-verify-2026-10-28/sv11839-ticket-qa-2026-11-04/tools/`
 - **Forcing a dashboard request to fail:** `route.abort()` again produced the **"Environment Sleeping … Wake Up"** page (see `build/report-suite/rulings-2026-08-04/RULING-1-THE-15-CASES.md`); `route.fulfill({status:500})` works. A 500 also raises the global **"Ooooops! An error occurred"** toast, which a network block does not.
 - **Dashboard Sales by Customer → View details lists only the top 15 customers by subtotal** — a small test customer never appears under Last 12 Months at Heavy Duty; narrow the tile to the seed day.
 - **⚠️ Time-zone data mismatch on this test machine (Rule 99):** the system tz database is **2026e** (America/Edmonton = **UTC−6** all winter from 1 Nov 2026), but the bundled **Chromium 153 still says UTC−7 (MST)**. The app's own displayed times followed UTC−6 (an edit at 20:26 UTC showed "02:26 PM"), while the browser-built date ranges ended at `…T06:59:59.999Z` (UTC−7). Both are "America/Edmonton" by name — record both offsets in Rule-99 evidence, and treat day-boundary results within one hour of midnight as unsafe until the server's offset is checked.
+
+### More sv11839 recipes, 5 Nov 2026 (build v26.45.0-aacb66c) — SV-11885 follow-up
+Scripts: `build/dashboard-verify-2026-10-28/sv11839-ticket-qa-2026-11-04/tools/` (`seed_tl.py`, `sv11885_vcredit.mjs`, `sv11885_tl.mjs`).
+- **QA branch asleep overnight:** `GET https://sv11839api.qa.shopview.com/api/...` answers **302 → `https://sleep.qa.shopview.com:443/...?api=sv11839`**. Wake it with the recorded `POST https://fz4hhptxi8.execute-api.ca-central-1.amazonaws.com/default/toggleQaEnv {"action":"wake","env":"sv11839"}` ("sv11839 is waking up."), then poll the API root: 302 → 503 → 200 took ≈ 100 s. The QA lead's cookie set still worked afterwards (fe-permissions 200).
+- **A row in the Vendor Credit Memo download needs a vendor RETURN credit, not a manual vendor credit** (`POST /api/parts-catalogue/vendor/credit/create` rows never appear in it). Quickest on screen: **`/parts/create-credit`** (Parts → Returns → create credit). Controls:
+  - `select_vendor`: type to filter;
+  - `input_packaging_slip`, `input_credit_memo`;
+  - `create_credit_part_select`: type a NEW part number, press Enter, then Tab — it accepts free text and the menu shows "No results";
+  - `input_manual_credit_part_description`, `input_manual_credit_part_quantity`, `input_manual_credit_part_price`, `input_credit_note`;
+  - `button_post_credit`.
+  This sends `POST /api/part/manual-return-request/create` (201) then `POST /api/part/manual-return/{id}/create` (201) and shows the toast "Manual return credited successfully". The credit date defaults to today in the location's zone. The base `Input` component's test id is `input_<data-test-id-suffix>`; matching by label failed here, because labels carry icon text such as "$ Price Per Unit".
+- **Inventory part (for Journal Entry rows):** `POST /api/inventory/parts/create {catalog_part_id, category_id, quantity, cost, tags:[], bins:[{id:<bin id>, quantity, isDefault:true}]}` → 201 `{part_id}`. Errors that point to the fix:
+  - `bins: []` → **"At least one bin must be provided."**
+  - `binLocationId` → **"[0][binLocationId] This field was not expected."**
+  - `/change` without `isDefault` → **"[0][isDefault] This field is missing."**
+  Change the quantity with `POST /api/inventory/parts/change {id, catalog_part_id, category_id, quantity, purchase_price, tags, bins:[{id, quantity, isDefault}]}` → 201; that makes the "Inventory Increase; Type: Manual Adjustment" Journal Entry rows. Bins: `GET /api/inventory/bin-locations` (Test Location has one, "General Storage").
+- **Customer sales rep:** the customer dialog's Sales Representative picker (`select_customer_sales_rep`, opened from the `edit_note` button on the customer page) did NOT offer a just-created Technician ("No results"). Set-up by request works:
+  - echo the whole record from `GET /api/customers/view/{id}` (`data.company`, scalars only) to `POST /api/customers/change`;
+  - add `sales_rep_id` = the staff USER `id` (not `staff_id`), plus `sales_rep_first_name` / `sales_rep_last_name` as text;
+  - → 200.
+  The 4 Nov 500 came from sending only `{id, name, sales_rep_first_name, sales_rep_last_name}`.
+- **Leading TAB / CR in a name:** `POST /api/customers/create {name:"\tZZ…"}` and `POST /api/contacts/create {first_name:"\rZZ…"}` store the leading character as sent (read back with `GET /api/customers/view/{id}`).
+- **Rename a location on screen:** Settings → Locations (`/administration/locations`) → the row's `edit_note` button → `input_name` → `button_save_workplace` → `POST /api/workplaces/change` (201, 22 fields: name, address_1/2, city, state_or_province, postal_code, country_code, telephone, timezone, color, shop_id, remit_to, shop-supplies fields, shopSupplyPercentageEnabled, remit_to_type, sales_tax_rounding_mode, tax, another, id, workplace_id). Read back with `GET /api/workplaces`. The Journal Entry, Customer Invoice and Vendor Credit Memo downloads print the location's CURRENT name at download time, so data can be seeded first and the rename kept to the minutes of the download (here 79 s, restored, record identical).
+- **Export Reports with nothing in range** (Vendor Credit Memo, Yesterday): still no file and no message (`page.waitForEvent: Timeout … waiting for event "download"`). The same report with a credit in range (Today / This Month) downloads normally.

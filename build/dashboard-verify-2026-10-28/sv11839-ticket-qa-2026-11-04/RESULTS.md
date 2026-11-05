@@ -19,18 +19,17 @@ Every check ran with the location's zone matched in all four places: session cha
 | [SV-11827](https://shopview.atlassian.net/browse/SV-11827) | Reports show dates instead of "Custom" | **PASS** | Technician Utilization and Sales By Customer open with "Date: Custom" (Oct 9 – Oct 20, 2026) | `SV-11827/` |
 | [SV-11828](https://shopview.atlassian.net/browse/SV-11828) | ~1023 px: mixed layout | **PASS** | 1022, 1023 and true fractional 1023.33 px (browser zoom) all one column + "View Report"; 1024 px desktop | `SV-11828/` |
 | [SV-11829](https://shopview.atlassian.net/browse/SV-11829) | Expanded chart/table don't show load failure | **PASS** | With the request forced to fail (HTTP 500 in the browser): tile, chart and table all "Couldn't load", no "No data", no old figures, both cases | `SV-11829/` |
-| [SV-11885](https://shopview.atlassian.net/browse/SV-11885) | Downloads: text starting = + - @ | **PASS for 8 of 11 downloads** · 3 NOT VERIFIED | One apostrophe on every such name in 8 downloads, numbers untouched, opens as text; Vendor Credit Memo, Journal Entry and Sales Rep Assignments could not hold such a value | `SV-11885/` |
+| [SV-11885](https://shopview.atlassian.net/browse/SV-11885) | Downloads: text starting = + - @ | **PASS** (follow-up 5 Nov) | All 11 Export Reports downloads, their location columns and a leading tab/CR get exactly one apostrophe; numbers untouched; opens as text. Journal Entry "Description" cannot hold such text (system-written). QuickBooks skipped on the QA lead's instruction | `SV-11885/` |
 | [SV-11931](https://shopview.atlassian.net/browse/SV-11931) | Tech Efficiency counts a declined line | **PASS** | Seeded WO S11839-17589: technician row 1.00 Clocked / 1.00 Invoiced / 100.00% (declined line left out) | `SV-11931/` |
 | [SV-11934](https://shopview.atlassian.net/browse/SV-11934) | Labor Delta keeps old value after timesheet edit | **PASS** | Seeded WO S11839-17590: +0.50 → timesheet corrected → Stats 1.00/1.00 → Dashboard and report Labor Delta 0.00 | `SV-11934/` |
 
-**Totals:** 12 PASS · 1 PASS for part of the scope (SV-11885) · 1 BLOCKED for the exact step, with the equivalent passing (SV-11822) · 0 FAIL.
+**Totals:** 13 PASS · 1 BLOCKED for the exact step, with the equivalent passing (SV-11822) · 0 FAIL. (SV-11885 was "PASS for 8 of 11" on 4 Nov; the 5 Nov follow-up completed it.)
 
 ## NOT VERIFIED, and why
 - **SV-11822, the "DVI Test" condition itself.** The location doesn't exist on sv11839. Searches run: `GET /api/workplaces` and `GET /api/staff/my-workplaces` (3 locations each); `/api/organization/workplaces`, `/api/settings/workplaces` and `/api/iam/workplaces` (all 404); this repo, for the staging DVI Test id `39522bc6-…`.
-- **SV-11885, Vendor Credit Memo download.** No file is produced (the server returns an empty report). I created a vendor credit (`POST /api/parts-catalogue/vendor/credit/create` → 200), but couldn't confirm it is the record type this report lists.
-- **SV-11885, Journal Entry download.** Every description is system text starting with a word ("Inventory Increase; …"), so no row can start with = + - @.
-- **SV-11885, Sales Representative Assignments download.** None of its 1,859 rows starts with these characters, and giving the test customer a sales rep failed (`POST /api/customers/change` → HTTP 500 with my minimal request).
-- **SV-11885, other gaps.** The Customer Invoice "Location" column, a leading tab or carriage return, and QuickBooks (no connection checked on sv11839) were not tested.
+- **SV-11885, Journal Entry "Description" column: cannot occur, not a pass.** It is written by the system and always starts "Inventory Increase; " or "Inventory Decrease; " (product code `api/src/Reporting/Domain/JournalEntry/Services/DescriptionGenerator.php`).
+- **SV-11885, QuickBooks: not checked**, on the QA lead's instruction (5 Nov 2026).
+- (Resolved on 5 Nov: Vendor Credit Memo, Sales Representative Assignments, the Location columns, and a leading tab or carriage return are now verified; see `SV-11885/RESULT.md`.)
 - **SV-11691, the census list.** The developer's read-only command is a server command and wasn't run by QA.
 
 ## Separate issues found (not filed — for the QA lead to decide)
@@ -46,6 +45,7 @@ Every check ran with the location's zone matched in all four places: session cha
    - A user can't tell "no records" from "nothing happened".
    - Evidence: `SV-11885/vendor-credit-memo-export-this-month.png` and `SV-11885/vendor-credit-memo-export-network.json`.
    - No source checked for the intended behaviour.
+   - **Re-checked 5 Nov 2026 with a vendor credit now in range** (Test Location, Asia/Karachi): Vendor Credit Memo for **Today** and **This Month** downloads a file, but for **Yesterday** (no credits) Export still gives **no file and no message**. Evidence: `SV-11885/evidence-test-location-rename.json` (the download log).
    - **No ticket yet** (related ticket: [SV-11885](https://shopview.atlassian.net/browse/SV-11885)). **My recommendation:** leave it unless the PRD or Chris says an empty export should show a message.
 
 ## Environment notes (test harness, not product findings)
@@ -77,12 +77,19 @@ Every check ran with the location's zone matched in all four places: session cha
   - "ZZAUTOTEST Advisor QA11839" — created, then **deleted** (that was the test).
   - "-ZZAUTOTEST QA11839 Tech" — **still present**: deleting it is refused ("Staff is being used elsewhere.") because it has a timesheet.
 - **Timesheet change:** the clock on S11839-17590 was moved from 11:51 AM to 11:21 AM, as the SV-11934 test requires.
+- **5 Nov (SV-11885 follow-up, Test Location):**
+  - customers "<TAB>ZZAUTOTEST QA11839 TAB customer" and "<CR>ZZAUTOTEST QA11839 CR customer", each with a contact;
+  - customer "ZZAUTOTEST QA11839 TL Invoice" with one invoiced work order;
+  - inventory part P550848 at Test Location (quantity 1 → 2, bin General Storage);
+  - manual vendor credit "=ZZCM 1+1" for "@ZZAUTOTEST QA11839 Vendor";
+  - sales rep "-ZZAUTOTEST QA11839 Tech" on customer "+ZZAUTOTEST QA11839 Plus".
+- **Location rename:** "Test Location" was renamed to "=ZZAUTOTEST Test Location" for 79 s (03:37:33.730 → 03:38:52.968 UTC, 5 Nov) and restored. The read-back record is identical to the original.
 - Every seed call (90, with HTTP status) is in `seed-log.jsonl`; ids are in `seed-ids.json`.
 
 ## Questions for the QA lead
 1. **[SV-11826](https://shopview.atlassian.net/browse/SV-11826).** When read at the same moment, the tile and the report match exactly; the gaps only appear when the report is opened seconds after the tile while technicians are clocked in. This disagrees with the 4 Nov reading in `rerun-sv11839-2026-11-04/SUMMARY-sv11839-2026-11-04.md`, row B, that it is the tile's own rounding. **My recommendation:** accept as passed / "cannot reproduce" (as the developer proposed in comment 79615), and correct row B of that summary.
 2. **[SV-11822](https://shopview.atlassian.net/browse/SV-11822).** It can't be proven on sv11839 because there is no DVI Test location. **My recommendation:** keep it in TESTING QA and re-test on staging's DVI Test once branch SV-11839 is there; don't pass it from the QA branch alone.
-3. **[SV-11885](https://shopview.atlassian.net/browse/SV-11885).** Eight of eleven downloads pass; three couldn't hold a test value here. **My recommendation:** pass the eight now in the comment, and ask Nemanja (on SV-11885) how a vendor credit memo row and a Sales Representative Assignment row are created, so those two can be checked. Journal Entry can't carry such text by design.
+3. **[SV-11885](https://shopview.atlassian.net/browse/SV-11885).** Completed on 5 Nov: every download that can carry such text passes. **My recommendation:** move it to QA Complete with the pass comment in `SV-11885/RESULT.md`.
 
 ## OUTSTANDING — what I need from you
 - Decisions on the three questions above (SV-11826, SV-11822, SV-11885).
