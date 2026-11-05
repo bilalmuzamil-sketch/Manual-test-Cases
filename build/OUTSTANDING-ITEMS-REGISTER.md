@@ -2366,3 +2366,4 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **DR-6 · SV-12207** (remittance slip prints the next day for evening payments and credits). Filed 5 Nov on the QA lead's instruction. **Waiting for Chris Ward** to confirm expected behaviour and fix or leave: Jira SV-12207, comment 80185, 5 Nov 2026.
 - **DR-7 · SV-11822**. Not reproduced in 24 checks at DPR 1.25 on Linux Chromium; Mudassir reproduces on Windows Chrome at 125%. **Waiting for Mudassir**: his Chrome version and a Guest-window retest, asked in a Slack DM on 5 Nov 2026 07:55 UTC. He attached screenshots at 07:57 UTC.
 - **DR-4 (re-checked 07:58 UTC 5 Nov):** Chris has not answered SV-11691 comment 80171 or SV-11885 comment 80172.
+- **DR-4a · SV-12208** (moved out of SV-11691 comment 80171 on 5 Nov at the QA lead's suggestion): same-day credit shows under 1-30 Days in A/R Aging. **Waiting for Chris Ward**: Jira SV-12208, comment 80193, 5 Nov 2026.

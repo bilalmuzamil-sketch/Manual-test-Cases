@@ -136,3 +136,18 @@ QA lead, verbatim: *"Never post a question to chris wothout annotated screenshot
 
 Read back: comment 80185's renderedBody holds `<img …/attachment/content/63650>`. For the other two, the API confirmed `inlineMediaEmbedded: true`.
 The rule is recorded as an amendment to Rule 103 (`build/rules/RULES-61-97.md`) and in the CLAUDE.md index.
+
+## 5 Nov 2026 (≈09:55 UTC): same-day credit aging question moved to its own ticket, SV-12208
+QA lead, verbatim: *"For this comment since the ticket is now ready for production, do you think that woild be a good idea to reat a separate ticket for this and then in the comment ask chris if this is an expected behavior or we want to improve it 80171 … make sure in the main ticket you edit the comment and post the link of the new ticket"*.
+
+- **New ticket SV-12208**: *"A/R Aging: a customer credit given today shows under "1-30 Days" instead of "Current""*.
+  - Bug, Medium, label QA_found, Product Area "Reports & Dashboards", Relates to SV-11691.
+  - Annotated picture embedded (upload 199004 B = file size).
+  - JQL read-back confirms the fields and the link.
+- **Evidence:**
+  - `SV-11691/evidence-ar.json`: build aacb66c, read 4 Nov 13:42 Edmonton, Rule 99 all_match true.
+  - `seed-log.jsonl` line 31: CM-4190, $25.00, created 19:21 UTC = 12:21 PM Edmonton the same day.
+  - No front-end or A/R file changed between aacb66c and 277b249 (`git diff --stat`: export and Parts Velocity files only).
+  - Confluence search (title or text "A/R Aging" + credit) found no document on credit aging.
+- **Chris Ward comment 80193** on SV-12208: @mention, thankful, picture inside the comment, asks "expected behaviour, or improve it?".
+- **SV-11691 comment 80171** edited: an "Update (5 Nov 2026)" line at the top links SV-12208 and asks for replies there. The original question and its picture are kept below.
