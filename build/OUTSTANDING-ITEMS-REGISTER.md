@@ -2376,3 +2376,6 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
   - **Done:** area 1 (reconcile). Every Dashboard defect Chris confirmed has a ticket.
   - **BLOCKED:** areas 2–8 (on-screen hunt). The sv11839 and staging cookies expired after about 24 h, and only the QA lead can mint new ones.
   - **Waiting for the QA lead:** fresh cookies for sv11839 and staging. See `build/BLOCKED-sv11839-and-staging-cookies-2026-11-05.md`.
+- **DR-6 · ANSWERED 5 Nov (Chris, SV-12207 comment 80223): fix it.** Slip dates follow the location time zone. Ticket stays open for the developer.
+- **DR-4a · ANSWERED 5 Nov (Chris, SV-12208 comment 80224):** duplicate of SV-11441 (SV-11315, S1-R5a); SV-12208 closed as OBSOLETE. **Our follow-up:** check it on SV-11315's QA branch once cookies for that branch exist.
+- **DR-4b · ANSWERED 5 Nov (Chris, SV-12209 comment 80225): fix it.** Show the "Empty export / Export didn't yield any results" warning. Ticket stays open for the developer.

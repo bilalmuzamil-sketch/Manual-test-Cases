@@ -167,3 +167,15 @@ QA lead, verbatim: *"yes do the same for 11885 too"*, plus the epic instruction 
 - **Not changed, asked instead:**
   - SV-12207 (vendor remittance slip) is neither a report nor the dashboard.
   - SV-12199/12201/12202 are already under SV-11839 and QA Complete.
+
+## 5 Nov 2026 (≈19:25 UTC check-in): Chris Ward answered all three (14:01–14:09 UTC)
+- **SV-12207** (comment 80223): *"Please fix it. The Remittance Slip prints every date in the location's own time zone, the same date the screen shows …"*
+  - The description's Expected is rewritten to his answer.
+  - All 3 pictures are kept (same media ids).
+- **SV-12209** (comment 80225): *"Please fix it: … Export shows the same warning the newer reports already use, "Empty export" with "Export didn't yield any results". No file downloads, and the Export Report window stays open …"*
+  - The description's Expected is rewritten to his answer.
+  - The picture is kept.
+- **SV-12208** (comment 80224): closed by Chris as **OBSOLETE**, a duplicate of **SV-11441**, already decided and built in SV-11315 (PRD S1-R5a).
+  - He asked: *"Please check it on SV-11315."*
+  - **Not yet done:** the cookies have expired (see `build/BLOCKED-sv11839-and-staging-cookies-2026-11-05.md`), and SV-11315's own QA branch needs its own cookie set.
+- **Mistake (Rule 101):** the 17:33 UTC report said "waiting on Chris" for these three without re-checking. He had already answered at 14:01–14:09 UTC.
