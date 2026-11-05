@@ -1,0 +1,27 @@
+<div data-type="panel-success"><p><strong>WHAT PASSED</strong>: everything that passed is in this comment. What is still to be fixed is in the next comment below.</p></div>
+<p>I tested this on the QA branch <a href="https://sv12003.qa.shopview.com">sv12003</a> (build v26.45.0-440aa25) and compared it with production (build v26.45.1-6505633) on 5 Nov 2026. Browser: Chrome 153, desktop, window 1600 x 900, 100% zoom.</p>
+<p>In each box I typed <code>thee spellling are wrong wrng</code>. "thee" is a real English word, so the correct result is that only "spellling" and "wrng" get the red wavy underline.</p>
+<h3>1. Tech Story: now underlines misspellings while you type</h3>
+<p>This is the box the customer reported. On production nothing is underlined. On the QA branch "spellling" and "wrng" are underlined as you type.</p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="9cbb0578-9058-4335-aeb4-db0d308b4da4" data-collection="upload-user-collection-1343233018" data-alt="before-after-tech-story.png"></div></figure>
+<p><em>Picture 1: Tech Story box. Left, production: no underline. Right, QA branch: the two misspellings are underlined.</em></p>
+<h3>2. Edit Line: the Description box now underlines misspellings</h3>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="011789cc-ac6e-4570-8fb3-e5c7aca2f788" data-collection="upload-user-collection-1343233018" data-alt="before-after-edit-line.png"></div></figure>
+<p><em>Picture 2: Edit Line window, Description box. Left, production: no underline. Right, QA branch: underlined. The text was typed at the end of the existing description, so "inspectionthee" is also a misspelling and is underlined too.</em></p>
+<h3>3. New Line and New Note</h3>
+<ul>
+<li>New Line window, Description box: no spell check, which is what Chris asked for in his comment of 30 Oct (<em>"it is intended that this DOES NOT work in the New Line modal"</em>).</li>
+<li>Notes tab, New Note: misspellings are underlined, the same as on production, so nothing broke there.</li>
+</ul>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="787f2e30-9cd2-4399-be0c-3b040b68e4c5" data-collection="upload-user-collection-1343233018" data-alt="branch-new-line-new-note.png"></div></figure>
+<p><em>Picture 3: QA branch. Left, New Line Description: no underline, as intended. Right, New Note: underlined, same as production.</em></p>
+<h3>What was checked</h3>
+<table><tbody>
+<tr><th>#</th><th>Box</th><th>Production</th><th>QA branch</th><th>Status</th></tr>
+<tr><td>1</td><td>Tech Story (Lines tab, "Add tech story for this line")</td><td>No underline</td><td>Misspellings underlined while typing</td><td>PASSED (see the next comment about clicking out)</td></tr>
+<tr><td>2</td><td>Edit Line, Description</td><td>No underline</td><td>Misspellings underlined, and they stay after clicking out</td><td>PASSED</td></tr>
+<tr><td>3</td><td>New Line, Description</td><td>No underline</td><td>No underline, as Chris intended</td><td>PASSED</td></tr>
+<tr><td>4</td><td>Notes tab, New Note</td><td>Underlined</td><td>Underlined, unchanged</td><td>PASSED</td></tr>
+</tbody></table>
+<p>Edit Customer Notes and Edit Asset Notes, and the Tech Story underline after clicking out, are in the next comment.</p>
+<p>Each box was checked three ways: while typing, after clicking outside the box, and after clicking back into it.</p>

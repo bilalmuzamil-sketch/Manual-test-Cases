@@ -1,0 +1,15 @@
+import {sess} from './common.mjs';
+const s=await sess({dir:'/tmp/qa95'}); const p=s.page;
+const WO='737fce7f-bf9c-4634-960a-b72de9a2e7a7';
+await s.go('/workorders/'+WO+'/lines'); await p.waitForTimeout(4000);
+const t=async id=>{const l=p.locator(`[data-test-id="${id}"]`).first(); return (await l.count())? (await l.innerText()).replace(/\s+/g,' ').slice(0,80):'(none)';};
+console.log('customer link:',await t('link_customer_card_name'));
+console.log('vehicle link:',await t('vehicle_card_title_link'));
+console.log('tech story btns:', (await p.locator('text=Add tech story').allInnerTexts()).slice(0,3));
+await p.locator('[data-test-id="link_customer_card_name"]').click(); await p.waitForTimeout(3500);
+const b=p.locator('[data-test-id="button_base"]').first();
+console.log('cust url',p.url(),'edit btn text:',JSON.stringify(await b.innerText()),'aria',await b.getAttribute('aria-label'), 'icon', await b.locator('i').first().innerText().catch(()=>''));
+await b.click(); await p.waitForTimeout(2000);
+console.log('dialog title:',(await p.locator('.q-dialog').first().innerText()).split('\n').slice(0,3));
+await p.screenshot({path:'/tmp/sv12003/walk-cust.png'});
+await s.close?.(); process.exit(0);

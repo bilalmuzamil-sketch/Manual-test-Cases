@@ -1,0 +1,33 @@
+<div data-type="panel-error"><p><strong>OVERALL QA STATUS: PARTIALLY PASSED</strong></p></div>
+<p>Everything that passed has been posted separately in the previous comment. What is still to be fixed is below:</p>
+<p><span data-type="mention" data-user-id="5bd6d7573aa82432ce72b8d3">@parth fadadu</span></p>
+<h3>1. Edit Customer Notes and Edit Asset Notes still have no spell check</h3>
+<p>The ticket lists both boxes under "Additional Areas to Verify":</p>
+<blockquote><p>Please also verify spell-check functionality in the following fields where it is expected to be available: … Edit Customer Notes, Edit Vehicle Notes</p></blockquote>
+<p>On the QA branch neither box underlines anything: not while typing, not after clicking out, not after clicking back in. Production is the same.</p>
+<p><strong>Steps to reproduce</strong> (QA branch <a href="https://sv12003.qa.shopview.com">https://sv12003.qa.shopview.com</a>, signed in as admin):</p>
+<ol>
+<li>In the top menu, click <code>Work Orders</code>, search <code>S12003-17580</code> and open it.</li>
+<li>In the left column, click the customer name <code>4 Star Truck Repair</code> (in the box under Sales Representative). The customer page opens.</li>
+<li>In the box at the top left of the customer page, click the small blue icon (three lines with a pencil) just right of the customer name. The <code>Edit Customer</code> window opens.</li>
+<li>Click in the <code>Notes</code> box and type <code>thee spellling are wrong wrng</code>. Nothing is underlined.</li>
+<li>Go back to the work order. In the left column, click the blue asset name <code>2020 Ford Transit</code>. The asset page opens.</li>
+<li>Click the same small blue icon just right of <code>2020 Ford Transit</code> at the top left. The <code>Edit Asset</code> window opens. Click in the <code>Notes</code> box at the bottom and type the same text. Nothing is underlined.</li>
+</ol>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="38905c9e-7a8a-48da-a4a7-1566fdf21f79" data-collection="upload-user-collection-1343233018" data-alt="remaining-customer-asset-notes.png"></div></figure>
+<p><em>Picture 1: QA branch. Left, Edit Customer Notes. Right, Edit Asset Notes. No red underline in either.</em></p>
+<p><strong>Expected:</strong> "spellling" and "wrng" are underlined in both boxes, the same as in Edit Line.</p>
+<h3>2. Tech Story: the underlines disappear when you click outside the box</h3>
+<p>While you type in Tech Story the misspellings are underlined. As soon as you click outside the box, the first letter is capitalised ("thee" becomes "Thee") and every underline disappears. They come back only when you click into the box again. So someone who finishes typing and then reads the text over sees no mistakes marked. Edit Line does not do this: its underlines stay after clicking out.</p>
+<p><strong>Steps to reproduce:</strong></p>
+<ol>
+<li>Open work order <code>S12003-17580</code> and stay on the <code>Lines</code> tab.</li>
+<li>Under line 1 <code>Service - Electric brake trailer CVIP</code>, on the <code>Story</code> row, click <code>Add tech story for this line</code>. The Tech Story window opens.</li>
+<li>Type <code>thee spellling are wrong wrng</code>. "spellling" and "wrng" are underlined.</li>
+<li>Click the window's title (<code>Tech Story: Service - Electric brake trailer CVIP</code>) at the top of the window. The text now starts with "Thee" and all underlines are gone.</li>
+<li>Click back into the text box. The underlines come back.</li>
+</ol>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="1ca914e5-358e-4cb4-a290-1b6a75661326" data-collection="upload-user-collection-1343233018" data-alt="remaining-tech-story-underline-disappears.png"></div></figure>
+<p><em>Picture 2: QA branch Tech Story window. 1, while typing: underlined. 2, after clicking the title: "Thee" and no underlines. 3, after clicking back in: underlines return.</em></p>
+<p><strong>Expected:</strong> the underlines stay after clicking outside the box, the same as in Edit Line. The ticket asks that <em>"Users should be able to identify spelling mistakes before saving their changes."</em></p>
+<p>Environment: QA branch sv12003 (build v26.45.0-440aa25), production (build v26.45.1-6505633), Chrome 153 desktop, window 1600 x 900, 100% zoom, 5 Nov 2026. Each result was seen on every try.</p>
