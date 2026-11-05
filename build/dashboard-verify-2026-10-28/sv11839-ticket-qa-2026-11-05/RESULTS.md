@@ -9,7 +9,7 @@ No Jira or TestRail write was made. Rule 99 (all four zone settings) is recorded
 | [SV-12146](https://shopview.atlassian.net/browse/SV-12146) | Vendor credit larger than the bill is used up | **FAIL** (partly fixed) | The money is right now: slip Credits Included $10.00 / Total $0.00, $90 then $40 stays open, the equal $10/$10 case works. But the **Payments tab still shows the credit as "−$100.00 Applied"** under each payment | `SV-12146/` (FAIL-annotated.png) |
 | [SV-12199](https://shopview.atlassian.net/browse/SV-12199) | Customer Invoice export Terms | **PASS** | Invoice made on COD; customer then changed to Net 30; the export shows **COD** | `SV-12199/` |
 | [SV-12201](https://shopview.atlassian.net/browse/SV-12201) | Payroll Timesheet overlapping timesheets | **PASS** | Overlapping 8:00–9:00 and 8:30–9:30 PM plus 0.5 h earlier → day total **2.00** (not 2.50) | `SV-12201/` |
-| [SV-12202](https://shopview.atlassian.net/browse/SV-12202) | Parts Velocity Last Sale calendar days | *pending* | Part sold on 4 Nov at 11:24 PM (Heavy Duty); same-day control reads 0 days; the after-midnight read runs once at 07:05 UTC | `SV-12202/` |
+| [SV-12202](https://shopview.atlassian.net/browse/SV-12202) | Parts Velocity Last Sale calendar days | **PASS** | Part sold 4 Nov 11:23 PM (Heavy Duty): 0 days at 11:33 PM, **1 day at 1:06 AM on 5 Nov** (1.7 h after the sale) | `SV-12202/` |
 
 ## Separate issues found (not filed)
 1. **The remittance slip shows the next day's date in the evening.** Found while testing **SV-12146**.
@@ -26,3 +26,5 @@ No Jira or TestRail write was made. Rule 99 (all four zone settings) is recorded
   - customers "ZZAUTOTEST QA11839 Vendor Credit WO", "… Last Sale" and "… Terms test";
   - inventory part ZZAUTOTEST-PV12202-11050521.
 - Every set-up call is logged in `seed-log.jsonl`.
+
+**Totals:** 3 PASS (SV-12199, SV-12201, SV-12202) · 1 FAIL (SV-12146, partly fixed) · 0 BLOCKED.
