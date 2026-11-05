@@ -1,0 +1,4 @@
+import {sess} from './common.mjs'; const s=await sess(); const p=s.page; await s.go('/workorders'); await p.waitForTimeout(3000);
+const r=await p.evaluate(async()=>{ const urls=performance.getEntriesByType('resource').map(e=>e.name).filter(u=>/\.js(\?|$)/.test(u)); const out=new Set();
+ for(const u of urls){ try{ const t=await (await fetch(u)).text(); for(const m of t.matchAll(/(?:authorized|declined|complete)["'][^;]{0,0}/g)){} for(const m of t.matchAll(/["'](not_authorized|unauthorized|estimate|waiting_approval|pending_approval|recommended|deferred|declined|authorized|complete|in_progress)["']/g)) out.add(m[1]); for(const m of t.matchAll(/lines\/(change-status|authorize|approve|update-status|change)[^"'`]{0,40}/g)) out.add('EP:'+m[0]); }catch(e){} } return [...out]; });
+console.log(r.join('\n')); await s.close(); process.exit(0);
