@@ -1,0 +1,15 @@
+// usage: node cellmenu.mjs <laneIdx> <hour> <menuTestId> [dayOffset=1] -> clicks an empty cell, picks the menu item, dumps the dialog
+import {sess} from './common.mjs';
+const [SI,HR,MENU,OFF]=process.argv.slice(2); const s=await sess({dpr:1}); const p=s.page; const d=new Date(Date.now()+Number(OFF||1)*86400000).toISOString().slice(0,10);
+await s.go('/schedule'); await p.waitForTimeout(4500);
+const vt=p.locator('[data-test-id="schedule_view_toggle"]').getByText('Day',{exact:true}); if(await vt.count()){ await vt.first().click(); await p.waitForTimeout(1500);} 
+const mc=p.locator(`[data-test-id="button_mini_calendar_day_${d}"]`); if(await mc.count()){ await mc.first().click(); await p.waitForTimeout(3000);} 
+const lanes=await p.evaluate(()=>[...document.querySelectorAll('[data-staff-id]')].filter(e=>e.offsetParent).map(e=>e.getAttribute('data-staff-id')));
+const id=lanes[Number(SI)]; await p.locator(`[data-staff-id="${id}"]`).first().scrollIntoViewIfNeeded(); await p.waitForTimeout(800);
+const ly=await p.evaluate(id=>{const e=[...document.querySelectorAll(`[data-staff-id="${id}"]`)].find(x=>x.offsetParent).getBoundingClientRect(); return e.y+e.height-12;},id);
+const hx=await p.evaluate(h=>{ const want=(h%12||12)+(h<12?' AM':' PM'); const l=[...document.querySelectorAll('.fc-timeline-slot-label, th.fc-timeline-slot')].filter(e=>e.offsetParent).find(e=>e.innerText.trim().toUpperCase().startsWith(want)); return l.getBoundingClientRect().x+20; },Number(HR));
+await p.mouse.click(hx,ly); await p.waitForTimeout(1500); console.log('MENU',(await p.locator('[data-test-id="schedule_cell_menu"]').innerText().catch(()=>'none')).replace(/\s+/g,' '));
+await p.locator(`[data-test-id="${MENU}"]`).click(); await p.waitForTimeout(2500);
+console.log('DIALOG',await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(x=>x.innerText.replace(/\s+/g,' ').slice(0,600)+' || '+[...x.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).join(','))));
+if(process.env.PICK){ const n=s.writes.length; const sel=p.locator('[data-test-id="select_assign_work_order"]'); await sel.click(); await p.waitForTimeout(800); await p.keyboard.type(process.env.PICK,{delay:40}); await p.waitForTimeout(2500); const opt=p.locator('.q-menu .q-item',{hasText:process.env.PICK}).first(); console.log('OPT',await opt.count(), await opt.count()?(await opt.innerText()).replace(/\s+/g,' '):''); await opt.click(); await p.waitForTimeout(1200); await p.screenshot({path:'../ev/cellmenu-'+MENU+'-picked.png'}); await p.locator('[data-test-id="button_assign_confirm"]').click(); await p.waitForTimeout(2500); const dc=p.locator('[data-test-id="button_drop_confirm"]'); if(await dc.count()){ console.log('DROP',(await p.locator('.q-dialog').last().innerText()).replace(/\s+/g,' ').slice(0,200)); await p.screenshot({path:'../ev/cellmenu-'+MENU+'-drop.png'}); await dc.click(); await p.waitForTimeout(3500);} console.log('SENT',JSON.stringify(s.writes.slice(n).map(w=>w.slice(0,300)))); }
+await p.screenshot({path:'../ev/cellmenu-'+MENU+'.png'}); await s.close(); process.exit(0);

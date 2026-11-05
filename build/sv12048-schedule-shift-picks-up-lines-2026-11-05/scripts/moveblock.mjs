@@ -1,0 +1,13 @@
+// usage: node moveblock.mjs <tag> <laneIdx> <hour> [dayOffset=1] -> drags the WO's block on the board onto a technician lane (move)
+import {sess} from './common.mjs'; import fs from 'fs';
+const [TAG,SI,HR,OFF]=process.argv.slice(2); const S=JSON.parse(fs.readFileSync(`/tmp/sv12048/wo-${TAG}.json`,'utf8')); const s=await sess({dpr:1}); const p=s.page; const d=new Date(Date.now()+Number(OFF||1)*86400000).toISOString().slice(0,10);
+await s.go('/schedule'); await p.waitForTimeout(4500);
+const vt=p.locator('[data-test-id="schedule_view_toggle"]').getByText('Day',{exact:true}); if(await vt.count()){ await vt.first().click(); await p.waitForTimeout(1500);} 
+const mc=p.locator(`[data-test-id="button_mini_calendar_day_${d}"]`); if(await mc.count()){ await mc.first().click(); await p.waitForTimeout(3000);} 
+const blk=p.locator('.fc-event',{hasText:S.customerName.split(' ').slice(-2).join(' ')}).first(); console.log('block',await blk.count()); await blk.scrollIntoViewIfNeeded(); const b=await blk.boundingBox();
+const lanes=await p.evaluate(()=>[...document.querySelectorAll('[data-staff-id]')].filter(e=>e.offsetParent).map(e=>e.getAttribute('data-staff-id'))); const id=lanes[Number(SI)];
+const tgt=await p.evaluate(([id,h])=>{ const row=[...document.querySelectorAll(`[data-resource-id$="${id}"]`)].filter(e=>e.getBoundingClientRect().width>400)[0]; const r=row.getBoundingClientRect(); const want=(h%12||12)+(h<12?' AM':' PM'); const l=[...document.querySelectorAll('.fc-timeline-slot-label, th.fc-timeline-slot')].filter(e=>e.offsetParent).find(e=>e.innerText.trim().toUpperCase().startsWith(want)); return {x:l.getBoundingClientRect().x+10,y:r.y+r.height/2,top:r.y,bot:r.y+r.height}; },[id,Number(HR)]);
+console.log('from',JSON.stringify(b),'to',JSON.stringify(tgt)); const n=s.writes.length;
+await p.mouse.move(b.x+15,b.y+b.height/2); await p.mouse.down(); for(let i=1;i<=4;i++){ await p.mouse.move(b.x+15+i*3,b.y+b.height/2+i*3); await p.waitForTimeout(40);} for(let i=1;i<=25;i++){ await p.mouse.move(b.x+15+(tgt.x-b.x-15)*i/25,b.y+b.height/2+(tgt.y-b.y-b.height/2)*i/25); await p.waitForTimeout(50);} await p.waitForTimeout(400); await p.mouse.up(); await p.waitForTimeout(3000);
+const dl=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(x=>x.innerText.replace(/\s+/g,' ').slice(0,300))); console.log('DIALOG',dl); if(dl.length){ const c=p.locator('.q-dialog button').filter({hasText:/^(Move|Confirm|Yes|Save|Reassign)/i}).last(); if(await c.count()){ await c.click(); await p.waitForTimeout(3000);} }
+console.log('SENT',JSON.stringify(s.writes.slice(n).map(w=>w.slice(0,300)))); await p.screenshot({path:`../ev/move-${TAG}.png`}); await s.close(); process.exit(0);
