@@ -39,3 +39,27 @@ The read-back at 21:24 UTC shows all 12 with status QA Complete, label QAcomplet
 No ticket failed, so no Rejected from Testing transition was made and no failure picture was needed.
 
 No new ticket was filed: the two separate issues need a source first (see `RESULTS.md`).
+
+## Follow-up, 5 Nov 2026 (≈03:55 UTC): SV-11885
+
+The QA lead pointed me at the "6. Test Tickets" session (facts only, Rule 98). Its notes plus the product code explained the three gaps:
+- **Vendor Credit Memo** lists only credits made through Parts → Returns.
+- **Sales rep:** the customer's rep is saved as first/last name text.
+- **Journal Entry:** the description always starts "Inventory …", so only the Location cells can start with = + - @.
+
+The worker re-tested on 5 Nov, 03:20–03:45 UTC. Every one of the 11 downloads guards with exactly one apostrophe, including Location columns and a leading tab or carriage return. No unguarded cell, no double apostrophe, no number touched.
+
+Test Location was renamed for 79 s. The read-back after restore is identical to the original record. QuickBooks was skipped on the QA lead's instruction.
+
+Verified from committed evidence before writing (Rule 86):
+- `SV-11885/raw-bytes-test-records-2026-11-05.txt`
+- `scan-test-location-2026-11-05.json` (0 unguarded / 0 double / 0 guarded numbers)
+- `evidence-test-location-rename.json` (`record_identical_after_restore: true`)
+
+| Ticket | Comment id | Labels after | QA Assignee after | Status after |
+|---|---|---|---|---|
+| SV-11885 | 80170 | QAcomplete | Ayesha Khan, Bilal Muzamil | QA Complete |
+
+Read-back by JQL (`labels = QAcomplete AND cf[10385] = Bilal AND cf[10385] = Ayesha AND status = "QA Complete"`) returned SV-11885. The MCP read tools stopped echoing labels and custom fields on 5 Nov, so JQL is the check now.
+
+**Totals for the 14:** 13 QA Complete, 1 held (SV-11822).

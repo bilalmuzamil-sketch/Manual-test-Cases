@@ -2354,7 +2354,7 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 ### Dashboard & Reports — SV-11839 ticket QA (added 2026-11-04, 21:25 UTC)
 - **DR-1 DONE 2026-11-04.** 12 of the 14 SV-11839 TESTING QA tickets passed on sv11839 (build v26.45.0-aacb66c) and were moved to QA Complete, with the `QAcomplete` label and Bilal added as QA Assignee. Log: `build/dashboard-verify-2026-10-28/sv11839-ticket-qa-2026-11-04/JIRA-WRITES-2026-11-04.md`.
 - **DR-2 OPEN — QA lead.** [SV-11822](https://shopview.atlassian.net/browse/SV-11822) is still in TESTING QA. Its DVI Test condition does not exist on sv11839. Recommendation: re-test on staging's DVI Test once the branch is merged there.
-- **DR-3 OPEN — QA lead.** [SV-11885](https://shopview.atlassian.net/browse/SV-11885) is still in TESTING QA. 8 of 11 downloads passed; 3 downloads and the QuickBooks part were not verified. Recommendation: ask Nemanja on SV-11885 how vendor credit memos and sales-rep assignment rows are made, then finish and pass it.
+- **DR-3 DONE 2026-11-05 (QA Complete, comment 80170).** [SV-11885](https://shopview.atlassian.net/browse/SV-11885) is still in TESTING QA. 8 of 11 downloads passed; 3 downloads and the QuickBooks part were not verified. Recommendation: ask Nemanja on SV-11885 how vendor credit memos and sales-rep assignment rows are made, then finish and pass it.
 - **DR-4 OPEN — QA lead.** Two separate issues, not filed (no source checked yet):
   - a same-day credit memo is aged "1-30 Days" in A/R Aging (found testing [SV-11691](https://shopview.atlassian.net/browse/SV-11691));
   - an empty Export Reports download gives no message (found testing [SV-11885](https://shopview.atlassian.net/browse/SV-11885)).
