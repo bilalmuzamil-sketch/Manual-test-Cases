@@ -63,3 +63,10 @@ Verified from committed evidence before writing (Rule 86):
 Read-back by JQL (`labels = QAcomplete AND cf[10385] = Bilal AND cf[10385] = Ayesha AND status = "QA Complete"`) returned SV-11885. The MCP read tools stopped echoing labels and custom fields on 5 Nov, so JQL is the check now.
 
 **Totals for the 14:** 13 QA Complete, 1 held (SV-11822).
+
+## 5 Nov 2026: questions to Chris Ward (QA lead's instruction: "Send a comment to Chris in Jira, in a layman non technical format ... very concise")
+| Ticket | Comment id | Question |
+|---|---|---|
+| SV-11691 | 80171 | A credit given today shows as "1-30 Days" late in A/R Aging, while a same-day invoice shows "Current". Fix or leave? |
+| SV-11885 | 80172 | Export Reports with nothing to export gives no file and no message. Fix or leave? |
+Both @mention Chris Ward (712020:aa00b8d6-…). Checked before posting: the A/R Aging picture `SV-11691/5-ar-aging-summary-wellington.png` (row ZZAUTOTEST QA11839 Credit: Current $185.58, 1-30 Days $-25.00) and the empty-export repro of 4 and 5 Nov.
