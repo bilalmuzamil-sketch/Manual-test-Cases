@@ -3441,3 +3441,36 @@ Scripts: `build/dashboard-verify-2026-10-28/sv11839-ticket-qa-2026-11-04/tools/`
 - **Leading TAB / CR in a name:** `POST /api/customers/create {name:"\tZZ…"}` and `POST /api/contacts/create {first_name:"\rZZ…"}` store the leading character as sent (read back with `GET /api/customers/view/{id}`).
 - **Rename a location on screen:** Settings → Locations (`/administration/locations`) → the row's `edit_note` button → `input_name` → `button_save_workplace` → `POST /api/workplaces/change` (201, 22 fields: name, address_1/2, city, state_or_province, postal_code, country_code, telephone, timezone, color, shop_id, remit_to, shop-supplies fields, shopSupplyPercentageEnabled, remit_to_type, sales_tax_rounding_mode, tax, another, id, workplace_id). Read back with `GET /api/workplaces`. The Journal Entry, Customer Invoice and Vendor Credit Memo downloads print the location's CURRENT name at download time, so data can be seeded first and the rename kept to the minutes of the download (here 79 s, restored, record identical).
 - **Export Reports with nothing in range** (Vendor Credit Memo, Yesterday): still no file and no message (`page.waitForEvent: Timeout … waiting for event "download"`). The same report with a credit in range (Today / This Month) downloads normally.
+
+### How to unblock yourself: methods proven 4–5 Nov 2026 (Dashboard & Reports, SV-11839 ticket QA)
+Every item below cost a wrong verdict or a "cannot verify" before it was found.
+
+- **"This download / report can't be seeded" → read its query handler first.** The product code says which table and flow feed a report and which text cells a user can control. It is a fact about set-up, never a source of expected behaviour (Rule 57).
+  - Export downloads live in `api/src/Reporting/Export/Application/<Name>Export/<Name>ExportQueryHandler.php`.
+  - Proven 5 Nov:
+    - **Vendor Credit Memo** reads `vendor_return` + `item_return`, filtered on the credit date. A manual vendor credit never appears.
+    - **Sales Rep Assignments** reads the customer's own rep name text (`company.sales_rep_first_name/last_name`); `sales_rep_id` is a USER id. No date filter.
+    - **Journal Entry** is built from `inventory_changes`. Its description always starts "Inventory Increase; " / "Inventory Decrease; " (`Reporting/Domain/JournalEntry/Services/DescriptionGenerator.php`), so the only user-controlled text there is the location name (twice).
+  - Before this was done, three downloads were reported "not verified" on 4 Nov.
+- **Another session's facts, when the QA lead names a session:**
+  - `list_sessions(mine:true)` → find the title → `get_session(<id>)` → `session_context.outcomes[].git_info.branches` gives its branch.
+  - Then `git fetch origin <branch>` and `git grep -n "<symptom>" origin/<branch> -- build/` (facts only, never its rules — Rule 98).
+  - "6. Test Tickets" = branch `claude/heic-upload-iphone-test-sz7h5p`. Its playbook had the sales-rep 500 trap and the vendor return flow. Its `build/sv11869-11870-staging-2026-10-28/` has the sister ticket SV-11869.
+- **Two screens disagree by a few hundredths while technicians are clocked in → it is probably read timing, not a bug.**
+  - Hours rise every few seconds, so a report opened 15–25 s after the tile reads higher.
+  - Before calling a mismatch, fire both requests at the same instant (Promise.all, several rounds) AND compare a range that ends in the past.
+  - SV-11826 was first wrongly called "tile rounding". Same-instant reads matched 15 of 16, and the past ranges matched exactly.
+- **A precondition location / record missing on a QA branch → create a faithful copy there; don't defer to staging.** QA lead, 5 Nov: "You could create a similar location in the QA branch".
+  - Read the staging record (read-only), copy every field the screen allows, and keep the exact name when the name itself could matter (chip width).
+  - SV-11822's "DVI Test" was handled this way.
+- **Text a screen can't type** (leading TAB / CR, server-only fields): seed with the same request the screen sends, as set-up only. Run the actual check on screen or on the downloaded file.
+- **Jira read-back (Atlassian MCP), as of 5 Nov 2026:**
+  - `getJiraIssue` / `searchJiraIssuesUsingJql` stopped returning `labels` and custom fields, even when asked by id. Verify writes with a JQL filter instead: `key = SV-x AND labels = QAcomplete AND cf[10385] = "<accountId>" AND status = "QA Complete"`.
+  - One hit means all three writes landed.
+  - QA Assignee (`customfield_10385`) is multi-user. Send the full list: the existing assignees plus Bilal `712020:6d590212-5c9b-4135-ae11-277f3826110e`.
+  - Labels are set, not appended, so send existing labels + `QAcomplete`.
+  - Transitions from TESTING QA: `10` QA Complete, `15` Rejected from Testing, `7` Blocked, `8` Close/OBSOLETE.
+- **Questions to the PO on an existing ticket:** one short comment.
+  - `@Chris Ward` mention: `<span data-type="mention" data-user-id="712020:aa00b8d6-a71f-4259-8919-82a304227c20">@Chris Ward</span>`, posted with `contentFormat: html`.
+  - Then: "found while testing this ticket", what happens, one example, what I expected, "Fix it, or leave it as it is?".
+  - Examples: SV-11691 comment 80171, SV-11885 comment 80172.
