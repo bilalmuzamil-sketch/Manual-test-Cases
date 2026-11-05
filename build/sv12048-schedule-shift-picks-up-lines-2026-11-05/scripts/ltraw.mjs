@@ -1,0 +1,1 @@
+import {sess} from './common.mjs'; const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(800); console.log(JSON.stringify((await s.api('/api/work-orders/'+process.argv[2]+'/line-technicians')).json).slice(0,900)); await s.close(); process.exit(0);

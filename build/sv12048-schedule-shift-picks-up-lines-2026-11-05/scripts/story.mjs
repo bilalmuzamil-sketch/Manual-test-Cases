@@ -1,0 +1,2 @@
+import {sess,post} from './common.mjs'; import fs from 'fs'; const [TAG,I]=process.argv.slice(2); const S=JSON.parse(fs.readFileSync(`/tmp/sv12048/wo-${TAG}.json`,'utf8')); const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(1000);
+console.log('story',(await post(s,'/api/work-orders/lines/change-story',{line_id:S.lines[Number(I)],tech_story:'ZZAUTOTEST done',work_order_id:S.wo})).status); await s.close(); process.exit(0);

@@ -37,3 +37,19 @@ Data note: on this branch every staff record has one name on the Schedule and an
 - Bucket (d) UNVERIFIED cause: likely the QA data copy, not this ticket (no technician/name change in the handoff). Settle by running scripts/names.mjs on another QA branch (sv12003) once sign-in is back.
 
 ### SV-11006 note (read live 5 Nov 07:01 CDT): QA lead edited our comment 80209 (added screen-capture.webm), set QA Assignee, moved the ticket TESTING QA → REJECTED FROM TESTING. His action; nothing reversed.
+
+## (resumed 15:5x UTC, fresh sign-in; sv12048 still v26.45.0-747429d)
+## G. Ended and existing shifts — PASSED
+- G1 S12048-17593: whole-WO booking on 4 Nov (yesterday, Jason Johnson) + 6 Nov (Douglas Fields). New line approved → 4 Nov shift still 2 lines, its tech NOT added to the new line; 6 Nov shift 3 lines, 240 min, Douglas on new line.
+- G2 pre-release booking S2-17562 (Elite Truck & Trailer Repair, chosen_lines = migration default, 6 Nov, Clayton Stephens): new line approved → still 2 lines.
+## H. Un-complete — PARTLY RUN (handoff step 1 not buildable on screen)
+- No screen removes a shift-sourced technician from a line: Edit Labor opens empty (shows only hand-assigned techs — same on production S2-198, where it shows "Technician 1" but not the shift tech ZZROWCHECK Technicianov); saving it empty sends assigned_techs:[] and the shift tech stays (source "shift"); Labor-row ⋮ = only "Add Labor Fee / Discount"; Shift details has no per-line remove; PATCH shift lineIds → 400 "The request changes nothing." → QUESTION to Parth.
+- Ran the rest on H1 S12048-17594: line completed on screen (needed mileage first: "Fill in mileage to complete a line"), then line menu "Uncomplete" → status authorized; shift unchanged (2 lines, 240 min), technician not duplicated.
+## I. Deleting shifts cleans up technicians — PASSED
+- I1 D1 S12048-17585 single whole-WO shift → trash deletes at once ("Shift deleted." + Undo) → both lines Unassigned.
+- I2 S12048-17596 3-day series (Fri 6 / Sat 7 / Mon 9, Marissa Armstrong) + Dylan Rush chosen-lines shift on line 1 (Tue 10): Sat → "This and all later shifts" → Sat+Mon gone, Fri stays, Marissa stays on all 4 lines. Fri → "Delete this shift" → Marissa removed from all lines, Dylan stays on line 1.
+## J. Undo — J1 + J2 PASSED, J3 FAILS (pre-existing, production same)
+- J1 F1 S12048-17589 whole shift delete → Undo → restored whole_work_order, 3 lines, tech back; new line approved → 4 lines.
+- J2 C2 S12048-17584 chosen shift delete → Undo → chosen_lines; new line approved → still 2.
+- J3 J3 S12048-17597 2-day whole series → "Entire series" → board 0 shifts → Undo → restore request carries ONE shift (Fri) → only Fri returns. E1 S12048-17587 lost Sat the same way. Variant J4 S12048-17598 3-day series, "This and all later" from Sat → Undo restores only Sat, Mon lost.
+- PRODUCTION v26.45.1-753355c S2-1928 (ZZAUTOTEST PJ3, staff 1370698b) 2-day series → "Entire series" → 0 → Undo restore carries 1 shift → same. Pre-existing. Jira search: SV-9238 covers Undo after CREATING a series, not after deleting. → QUESTION to QA lead.
