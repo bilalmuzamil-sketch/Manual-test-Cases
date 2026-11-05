@@ -65,3 +65,10 @@ Data note: on this branch every staff record has one name on the Schedule and an
 ## Regression hotspot 1 — bulk approval — PASSED
 - Same WO: 2 more waiting lines ticked → "Approve (2)" → one POST …/lines/bulk-status {targetStatus:authorized} 200 → shift 4 lines, technician on all 4, shift still 60 min. No error toast.
 - Hotspots 2–5 covered by I/J (deletes + Undo), B/C (drop dialog tabs), K (lead change + Undo), and the line-technician reads throughout.
+## Chris Ward's ruling (comment 80064) — extra rows, all PASSED (17:5x–18:1x UTC)
+- Q3 shift under way: MS S12048-17603 booked today 15:00–19:00 UTC (Marissa Armstrong); at 17:56 UTC a new line approved on screen → shift 3 lines, technician on it.
+- Q6 sent back for approval: line 1 right-click → Authorization required → stays on the shift, shown "Auth Req'd" (ev/MS-final-0.png).
+- Q5 technician limit: Edit Labor says "Max 5 selections" (a 6th pick is ignored). LM S12048-17604: waiting line given 5 technicians, then approved onto Marissa's whole-WO shift → Lines tab shows the 5, Marissa not added. Drag comparison LN S12048-17605 (line with 5 technicians dragged onto Marissa): same — Lines tab shows the 5, Marissa not added. Approval behaves as a drag. (The schedule's line-technicians read lists the shift technician in both cases; screen is the verdict.)
+## Production before (Rule 73/86): PB S2-1931 (ZZAUTOTEST SV12048 PB 43544), whole booking with 2 lines on 6 Nov, line 3 approved on screen → shift still 2 lines (prod v26.45.1-753355c). ev/PB-prod-final-0.png, ev/PB-prod-lines.png.
+## J3 re-run with Week view: JX S12048-17602 (John Ortiz, Mon 9 + Tue 10) → Entire series → Undo → restore carries 1 shift → only Mon back. ev/JX-week-before.png, ev/JX-week-after-undo.png.
+## Pre-post: Powertools plan (customfield_10419) read via API = identical to QA-HANDOFF.md. Names differ Schedule vs WO screens on sv11006 too → QA data copy, not this ticket.

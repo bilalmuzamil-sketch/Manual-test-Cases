@@ -6469,3 +6469,10 @@ Hand-added open entry: Reports > Timesheet Activities (/reports/punch-clock-acti
 - **Split keeps a part on the ORIGINAL PO only after a partial receive:** a plain line split moves the part onto its own new PO under the new work order. Receive 1 of 2 first (set `input_qty_<item>` to 1), then split the line → the outstanding part stays on the original PO while its line sits on the new work order.
 - **A work order completes itself when its last line is completed** (`change-status complete` on the WO then returns 400 "Complete work order cannot change its status again") — go straight to `POST /api/invoices/create {work_order_id}`.
 - **Pay on screen:** WO Finance tab → `New Payment` → `select_payment_method` (pick the option by its index in the list; a text-filter locator misses it) → `button_make_payment` → WO badge reads Paid.
+
+## §BD — Powertools QA test plans (proven 2026-11-05)
+- A ticket's plan link is in Jira field **QA Test Plan = `customfield_10419`** (e.g. `https://powertools.shopview.com/qa/test-plans/<uuid>`); QA Branch = `customfield_10318`, QA Assignee = `customfield_10385`.
+- Read it WITHOUT Google sign-in: `curl -H "Authorization: Bearer $(cat /tmp/powertools/key)" https://powertools.shopview.com/api/v1/test-plans/<uuid>` → `{data:{title, markdown, progress, jira_issue:{issue_key}}}`. The key lives in /tmp only (user-supplied, never commit). Helper `/tmp/powertools/pt.sh <uuid>` (recreate: curl + print keys).
+- QA-lead rule 2026-11-05: read the Powertools page for every ticket that has one, before testing.
+- ShopView line menu = RIGHT-CLICK the line title (`line_title`): Decline (`menu-item_decline`), Authorization required, Delete line (→ dialog `button_confirm_dialog` "Delete"), Edit labor ("Max 5 selections"). Bulk: tick `line_checkbox_<id>` (force click) → `button_bulk_approve` "Approve (N)" → POST /api/work-orders/{wo}/lines/bulk-status.
+- Schedule cell menu ids: `menu_schedule_assign_work_order`, `menu_schedule_create_event`, `menu_schedule_new_work_order` (dialog: `select_customer_select`, `select_company_vehicle_select`, `button_save_work_order`).

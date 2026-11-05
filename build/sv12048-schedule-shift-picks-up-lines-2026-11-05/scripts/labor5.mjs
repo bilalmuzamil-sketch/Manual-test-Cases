@@ -1,0 +1,9 @@
+// usage: node labor5.mjs <tag> <lineIdx> [n=5] -> line right-click > Edit labor, picks the first n technician options, Save & Close; prints chosen names + writes
+import {sess} from './common.mjs'; import fs from 'fs'; const [TAG,I,N]=process.argv.slice(2); const S=JSON.parse(fs.readFileSync(`/tmp/sv12048/wo-${TAG}.json`,'utf8')); const s=await sess({dpr:1}); const p=s.page;
+await s.go('/workorders/'+S.wo+'/lines'); await p.waitForTimeout(4500);
+await p.locator('[data-test-id="line_title"]').nth(Number(I)).click({button:'right'}); await p.waitForTimeout(1200); await p.locator('[data-test-id="menu-item_edit_labor"]').click(); await p.waitForTimeout(2500);
+await p.locator('[data-test-id="select_technician"]').click(); await p.waitForTimeout(1500); const picked=[];
+for(let k=0;k<Number(N||5);k++){ const opts=p.locator('.q-menu .q-item'); const c=await opts.count(); let done=false; for(let j=0;j<c;j++){ const o=opts.nth(j); const t=(await o.innerText()).replace(/\s+/g,' ').trim(); const sel=await o.getAttribute('aria-selected'); if(sel==='true'||picked.includes(t)) continue; await o.click(); await p.waitForTimeout(700); picked.push(t); done=true; break; } if(!done) break; }
+console.log('PICKED',JSON.stringify(picked)); console.log('MENU-AFTER',(await p.locator('.q-menu').innerText().catch(()=>'')).replace(/\s+/g,' ').slice(0,300));
+await p.keyboard.press('Escape'); await p.waitForTimeout(600); console.log('DIALOG',(await p.locator('.q-dialog').last().innerText().catch(()=>'')).replace(/\s+/g,' ').slice(0,300)); await p.screenshot({path:`../ev/${TAG}-labor5.png`});
+const n=s.writes.length; await p.locator('[data-test-id="button_save_labour"]').click(); await p.waitForTimeout(2500); console.log('SENT',JSON.stringify(s.writes.slice(n).map(w=>w.slice(0,400)))); await s.close(); process.exit(0);
