@@ -2372,3 +2372,7 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **DR-8 · CLOSED (5 Nov 2026).** QA lead, verbatim: *"1. Keep it like that 2. Keep it like that"*.
   - SV-12207 (vendor remittance slip) stays standalone with no epic, the same as SV-12146.
   - SV-12199, SV-12201 and SV-12202 stay under epic SV-11839. Do not move them.
+- **DR-9 · Dashboard bug hunt, 5 Nov.**
+  - **Done:** area 1 (reconcile). Every Dashboard defect Chris confirmed has a ticket.
+  - **BLOCKED:** areas 2–8 (on-screen hunt). The sv11839 and staging cookies expired after about 24 h, and only the QA lead can mint new ones.
+  - **Waiting for the QA lead:** fresh cookies for sv11839 and staging. See `build/BLOCKED-sv11839-and-staging-cookies-2026-11-05.md`.
