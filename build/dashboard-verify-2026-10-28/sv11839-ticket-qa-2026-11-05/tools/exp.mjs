@@ -20,8 +20,10 @@ E.dialog = (await page.locator('.q-dialog').last().innerText()).replace(/\n+/g, 
 if (pic) E.pic = await shot(page, pic, `export-dialog-${tag}`);
 const dl = page.waitForEvent('download', { timeout: 40000 }).catch(() => null);
 await page.locator('.q-dialog').last().locator('button').filter({ hasText: /^\s*Export\s*$/ }).first().click(); const d = await dl; await sleep(1500);
+await sleep(2500); E.notifications_after = await page.locator('.q-notification').allInnerTexts().catch(() => []); E.dialog_open_after = await page.locator('.q-dialog').count();
+if (pic) E.pic_after = await shot(page, pic, `export-dialog-after-${tag}`);
 if (d) { E.file = `${DIR}/${tag}.csv`; await d.saveAs(E.file); E.bytes = fs.statSync(E.file).size; }
 E.at_utc = new Date().toISOString(); E.net = NET; E.rule99_end = await finish(page, loc, rule99);
 if (pic) { fs.mkdirSync(`${OUT}/${pic}`, { recursive: true }); fs.writeFileSync(`${OUT}/${pic}/export-${tag}.json`, JSON.stringify(E, null, 1)); }
-console.log(JSON.stringify({ net: NET.map(n => [n.status, n.url.slice(0, 220), n.body.slice(0, 150)]), tag, file: E.file, bytes: E.bytes, dialog: E.dialog, r99: E.rule99_end.all_match, v: app_version }));
+console.log(JSON.stringify({ notes: E.notifications_after, dlgOpen: E.dialog_open_after, net: NET.map(n => [n.status, n.url.slice(0, 220), n.body.slice(0, 150)]), tag, file: E.file, bytes: E.bytes, dialog: E.dialog, r99: E.rule99_end.all_match, v: app_version }));
 await browser.close();

@@ -59,6 +59,7 @@ These are stated here **in full** because a session that gets only this far must
 - **🔴 EVERY NEW TICKET GETS A COMMENT TAGGING CHRIS WARD (103).** QA lead, 2026-11-04: after filing, one comment that @mentions
   Chris Ward and says in plain words what happens today vs what we understand should happen (one example + the source),
   asking him to confirm "fix it, or leave it as it is?".
+  **Amendment 5 Nov: every question to Chris carries an ANNOTATED SCREENSHOT embedded in the comment itself.**
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act

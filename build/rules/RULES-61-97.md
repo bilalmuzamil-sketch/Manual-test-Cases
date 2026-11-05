@@ -2437,3 +2437,9 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     The PO for another project replaces Chris where the QA lead names a different PO. Record the comment id with the filing record.
     **FIRST APPLIED:** SV-12199 (comment 80134) and SV-12201 (comment 80135), 4 Nov 2026.
     **TIES:** Rules 7/9 and 100 (plain words for a first-time reader), 55 (PO questions), 101 (name where a question was asked).
+    **🔴 AMENDMENT, 5 Nov 2026: EVERY QUESTION TO CHRIS CARRIES AN ANNOTATED SCREENSHOT.** QA lead, verbatim: *"Never post a question to chris wothout annotated screenshot to make it easier for him to understand what are we referring to"*.
+    This applies to every comment that asks Chris (or the project's PO) anything, not only the Rule 103 comment on a new ticket.
+    - **The picture:** embed at least one picture **inside the comment itself**. Mark the exact value(s) in question with red boxes and a short plain label, or with numbers plus a numbered legend in a white strip, so that no data is covered. A picture that sits only in the description does not count. Re-embed it in the comment: a media node with the same `data-id` reuses the existing attachment, with no duplicate.
+    - **Before posting:** open the annotated picture and check it.
+    - **Afterwards:** read back `renderedBody` and confirm that an `<img>` of the attachment is present.
+    - **FIRST APPLIED:** comments 80171 (SV-11691), 80172 (SV-11885) and 80185 (SV-12207), edited 5 Nov 2026 to add pictures. Tool: `build/dashboard-verify-2026-10-28/sv11839-ticket-qa-2026-11-04/tools/annotate.py`.

@@ -124,3 +124,15 @@ QA lead, verbatim: *"1. Rather ask Mudassir thankfulky and respectfully on slack
    - Evidence: `../sv11839-ticket-qa-2026-11-05/REMIT-DATE/` and `SV-12146/step-read-remitdate-recheck.json`. Fresh read at 07:56 UTC (Edmonton 00:56 on 5 Nov), build 277b249, Rule 99 all_match true. All 3 slips print Date and Credit Date Nov 5; on screen it is "Yesterday" / Nov 4.
    - The slip template and handler are byte-identical on main, develop and SV-11839.
 3. **Chris Ward:** no reply yet on SV-11691 (80171) or SV-11885 (80172). The newest comment on each is still ours, checked 07:58 UTC.
+
+## 5 Nov 2026 (≈08:12 UTC): annotated pictures added to every open question to Chris
+QA lead, verbatim: *"Never post a question to chris wothout annotated screenshot to make it easier for him to understand what are we referring to"*.
+
+| Ticket | Comment | Picture embedded | Source |
+|---|---|---|---|
+| SV-11691 | 80171 (edited) | `SV-11691-credit-aging-annotated.png` (199004 B) | A/R Aging Summary of 4 Nov |
+| SV-11885 | 80172 (edited) | `SV-11885-empty-export-annotated.png` (364699 B) | fresh repro at 08:05 UTC, Test Location, Asia/Karachi, build 277b249, Rule 99 all_match true, export answered `{"data":[""]}`, no file, no message (`CHRIS-PICS/export-vcm-yesterday-empty-0805.json`) |
+| SV-12207 | 80185 (edited) | the existing slip picture (attachment 63650), re-embedded without duplicating | — |
+
+Read back: comment 80185's renderedBody holds `<img …/attachment/content/63650>`. For the other two, the API confirmed `inlineMediaEmbedded: true`.
+The rule is recorded as an amendment to Rule 103 (`build/rules/RULES-61-97.md`) and in the CLAUDE.md index.
