@@ -1,0 +1,63 @@
+{
+ "rowFound": 1,
+ "url": "/order/8a0368c1-b7dc-4865-8a11-92635b0142d2?receive=1",
+ "before": [
+  {
+   "id": "f8fb4e03",
+   "costInput": "40",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$90.00",
+   "total": "$40.00"
+  },
+  {
+   "id": "4f2a2653",
+   "costInput": "0",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$0.00",
+   "total": "$0.00"
+  }
+ ],
+ "typed": [
+  {
+   "id": "f8fb4e03",
+   "costInput": "70",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$157.50",
+   "total": "$70.00"
+  },
+  {
+   "id": "4f2a2653",
+   "costInput": "0",
+   "costEditable": true,
+   "costText": "",
+   "sell": "$0.00",
+   "total": "$0.00"
+  }
+ ],
+ "sent": [
+  "POST 200 /api/orders/receive-requested-parts :: {\"vendor_id\":\"30078d30-2033-42cb-871d-48b97635a519\",\"invoice_number\":\"ZZ",
+  "POST 200 /api/inventory/orders/receive-view :: {\"orderIds\":[\"8a0368c1-b7dc-4865-8a11-92635b0142d2\"]}"
+ ],
+ "toasts": [
+  "check_circle Parts received for S-17612. Close"
+ ],
+ "woParts": [
+  {
+   "pn": "ZZ11006-e9B-636270",
+   "status": "authorized",
+   "cost": 0,
+   "sell": 0,
+   "margin": 0
+  },
+  {
+   "pn": "ZZ11006-e9A-636270",
+   "status": "authorized",
+   "cost": 70,
+   "sell": 157.5,
+   "margin": 55.56
+  }
+ ]
+}

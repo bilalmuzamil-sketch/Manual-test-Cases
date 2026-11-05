@@ -36,3 +36,13 @@ partial receive (still blocks), creating the permission via API (405/404).
 
 ## State left on the branch
 Tech user role = "ZZAUTOTEST SV-11006 No SFD" (was Technician). Admin role unchanged (57 perms). requireOrderingParts restored true.
+
+## FINAL (5 Nov 2026, 16:13 UTC) — PASSED, posted comment 80245, label QAcomplete, status QA Complete
+- Parth added the woReceivedLater permission (catalogue now has it; Admin role 57 -> 58 after switching "Receive later" on and saving; re-read confirmed).
+- The branch REDEPLOYED at 15:36:30 UTC: v26.45.0-7571668 -> v26.45.2-b7be383. Every check was re-run on b7be383 (scripts/rerun.sh, log /tmp/sv11006/rerun.log, 15:56-16:09 UTC), plus split (d6) and stale tab (d7), which already ran after the redeploy.
+- Production for the before picture: v26.45.1-753355c (redeployed 14:16 UTC). Its receive screen already has a Sell column, but a filled cost on an open work order is plain text (S2-1927) = the bug.
+- Results on b7be383: 1 S11006-17605 40->80 sell 90->180 saved; 2 matrix 25->62.50 + fixed 10->35 (17606); 3 inventory PO no Sell, $12.00000 text; 4 invoiced 17613 + paid 17614: filled cost locked, empty fillable, receive unchanged keeps 40/90, totals unchanged; 5 partial receive 1 of 2 on 17601, split onto 17602, invoiced -> original PO locks that part (a plain split moves the part onto its own new PO instead, so the partial-receive split is the shape that leaves it on the original PO); 6 stale tab 17603: 400 "can't be changed because its work order is invoiced or paid. Reload the page and try again.", reloads locked, stored 40/90; 7 Back prompt (17607); 8 no SFD (tech on role ZZAUTOTEST SV-11006 No SFD) no Cost/Sell, receive ok; R1 WO modal 40->60 sell 135; R2 bulk 80/180, other PO 40/90; R3 receive later ok; R4 core row greyed $15, A 70->157.50.
+- Note in comment: on an invoiced/paid WO the line menu has no "Receive parts", so the WO window can't be opened there (handoff said it shows the cost read-only).
+- Side observation, NOT in the comment, asked to QA lead: filling an EMPTY cost while receiving a part on an INVOICED work order raises the WO Financial Info card (Parts $90 -> $152.50, Total $737.06) while the invoice stays $674.56 and Balance $674.56. Production does the same (S2-1926: card $489.90 -> $714.90, invoice $489.90). Existing behaviour, not this ticket.
+- Exhibits: ev/before-after-po-receive.png, ev/branch-invoiced-paid-locked.png, ev/branch-split-locked.png, ev/branch-stale-tab.png (scripts/exhibit.py). Read back: 4 images, 13 rows.
+- Learning check: playbook gets the split-after-partial-receive recipe + bulk action button ids (button_bulk_more / button_bulk_receive) + WO auto-completes when its last line completes.

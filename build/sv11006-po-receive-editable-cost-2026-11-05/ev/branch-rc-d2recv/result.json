@@ -1,0 +1,51 @@
+{
+ "rowFound": 1,
+ "url": "/order/66455d0f-55dd-42ca-81d0-879dbfc08026?receive=1",
+ "before": [
+  {
+   "id": "1c10db19",
+   "costInput": null,
+   "costEditable": false
+  },
+  {
+   "id": "ab623452",
+   "costInput": "0",
+   "costEditable": true
+  }
+ ],
+ "typed": [
+  {
+   "id": "1c10db19",
+   "costInput": null,
+   "costEditable": false
+  },
+  {
+   "id": "ab623452",
+   "costInput": "25",
+   "costEditable": true
+  }
+ ],
+ "sent": [
+  "POST 200 /api/orders/receive-requested-parts :: {\"vendor_id\":\"30078d30-2033-42cb-871d-48b97635a519\",\"invoice_number\":\"ZZ",
+  "POST 200 /api/inventory/orders/receive-view :: {\"orderIds\":[\"66455d0f-55dd-42ca-81d0-879dbfc08026\"]}"
+ ],
+ "toasts": [
+  "check_circle Parts received for S-17595. Close"
+ ],
+ "woParts": [
+  {
+   "pn": "ZZ11006-d2B-954348",
+   "status": "authorized",
+   "cost": 25,
+   "sell": 62.5,
+   "margin": 60
+  },
+  {
+   "pn": "ZZ11006-d2A-954348",
+   "status": "authorized",
+   "cost": 40,
+   "sell": 90,
+   "margin": 55.56
+  }
+ ]
+}

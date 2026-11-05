@@ -1,0 +1,54 @@
+{
+ "rowFound": 1,
+ "url": "/order/e448fec1-54e7-462c-ad48-105e58419004?receive=1",
+ "before": [
+  {
+   "id": "4d5a1daf",
+   "costInput": null,
+   "costEditable": false
+  },
+  {
+   "id": "b697a264",
+   "costInput": "0",
+   "costEditable": true
+  }
+ ],
+ "typed": [
+  {
+   "id": "4d5a1daf",
+   "costInput": null,
+   "costEditable": false
+  },
+  {
+   "id": "b697a264",
+   "costInput": "25",
+   "costEditable": true
+  }
+ ],
+ "sent": [
+  "POST 200 /api/orders/receive-requested-parts :: {\"vendor_id\":\"3e9b6c1d-b6be-476a-b252-ea29730df1fe\",\"invoice_number\":\"ZZ",
+  "POST 200 /api/inventory/orders/receive-view :: {\"orderIds\":[\"e448fec1-54e7-462c-ad48-105e58419004\"]}",
+  "POST 200 /api/6364962/envelope/ :: {\"sent_at\":\"2026-11-05T15:23:29.662Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\"",
+  "POST 200 /api/6364962/envelope/ :: {\"sent_at\":\"2026-11-05T15:23:29.663Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\"",
+  "POST 200 /api/6364962/envelope/ :: {\"event_id\":\"9975f0485cad4938a7f9f9b5b49a0189\",\"sent_at\":\"2026-11-05T15:23:31.720Z\",\""
+ ],
+ "toasts": [
+  "check_circle Parts received for S-1926. Close"
+ ],
+ "woParts": [
+  {
+   "pn": "ZZ11006-p2B-782461",
+   "status": "authorized",
+   "cost": 25,
+   "sell": 225,
+   "margin": 88.89
+  },
+  {
+   "pn": "ZZ11006-p2A-782461",
+   "status": "authorized",
+   "cost": 40,
+   "sell": 90,
+   "margin": 55.56
+  }
+ ]
+}

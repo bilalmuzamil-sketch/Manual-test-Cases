@@ -1,0 +1,51 @@
+{
+ "rowFound": 1,
+ "url": "/order/7796aec7-c6be-472a-bdac-a7993a02cf05?receive=1",
+ "before": [
+  {
+   "id": "5166e37a",
+   "costInput": null,
+   "costEditable": false
+  },
+  {
+   "id": "7dde4ee3",
+   "costInput": "0",
+   "costEditable": true
+  }
+ ],
+ "typed": [
+  {
+   "id": "5166e37a",
+   "costInput": null,
+   "costEditable": false
+  },
+  {
+   "id": "7dde4ee3",
+   "costInput": "0",
+   "costEditable": true
+  }
+ ],
+ "sent": [
+  "POST 200 /api/orders/receive-requested-parts :: {\"vendor_id\":\"30078d30-2033-42cb-871d-48b97635a519\",\"invoice_number\":\"ZZ",
+  "POST 200 /api/inventory/orders/receive-view :: {\"orderIds\":[\"7796aec7-c6be-472a-bdac-a7993a02cf05\"]}"
+ ],
+ "toasts": [
+  "check_circle Parts received for S-17614. Close"
+ ],
+ "woParts": [
+  {
+   "pn": "ZZ11006-e11B-819451",
+   "status": "authorized",
+   "cost": 0,
+   "sell": 0,
+   "margin": 0
+  },
+  {
+   "pn": "ZZ11006-e11A-819451",
+   "status": "authorized",
+   "cost": 40,
+   "sell": 90,
+   "margin": 55.56
+  }
+ ]
+}

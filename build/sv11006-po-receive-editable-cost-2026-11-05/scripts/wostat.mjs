@@ -1,0 +1,1 @@
+import {sess} from './common.mjs'; const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(1000); for(const id of process.argv.slice(2)){ const v=(await s.api('/api/work-orders/view/'+id)).json?.data; const w=v?.work_order||v; console.log(w?.display_number,w?.status); } await s.close(); process.exit(0);

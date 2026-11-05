@@ -1,0 +1,156 @@
+{
+ "rowFound": 1,
+ "rowText": " S11006-17605 S11006-17605 5 Star Truck Repai... Ordered Today Admin ShopView $40.00 - Receive",
+ "url": "/order/56f0aacd-1828-4d54-ab4b-61ee6c78692f?receive=1",
+ "before": [
+  {
+   "id": "60a42751",
+   "cost": "40",
+   "costRO": false,
+   "tds": [
+    "",
+    "ZZ11006-e1A-184575\nedit\nZZAUTOTEST SV-11006 part A",
+    "",
+    "$90.00",
+    "1.00",
+    "",
+    "$40.00"
+   ],
+   "sellInputs": [
+    "checkbox_item_60a42751-6c6e-4a35-824f-4bc069e27491",
+    "input_cost_60a42751-6c6e-4a35-824f-4bc069e27491",
+    "input_qty_60a42751-6c6e-4a35-824f-4bc069e27491"
+   ]
+  },
+  {
+   "id": "ac89bb1f",
+   "cost": "0",
+   "costRO": false,
+   "tds": [
+    "",
+    "ZZ11006-e1B-184575\nedit\nZZAUTOTEST SV-11006 part B",
+    "",
+    "$0.00",
+    "1.00",
+    "",
+    "$0.00"
+   ],
+   "sellInputs": [
+    "checkbox_item_ac89bb1f-89f4-4448-8e23-152ebae56d6c",
+    "input_cost_ac89bb1f-89f4-4448-8e23-152ebae56d6c",
+    "input_qty_ac89bb1f-89f4-4448-8e23-152ebae56d6c"
+   ]
+  }
+ ],
+ "afterType": [
+  {
+   "id": "60a42751",
+   "cost": "80",
+   "costRO": false,
+   "tds": [
+    "",
+    "ZZ11006-e1A-184575\nedit\nZZAUTOTEST SV-11006 part A",
+    "",
+    "$180.00",
+    "1.00",
+    "",
+    "$80.00"
+   ],
+   "sellInputs": [
+    "checkbox_item_60a42751-6c6e-4a35-824f-4bc069e27491",
+    "input_cost_60a42751-6c6e-4a35-824f-4bc069e27491",
+    "input_qty_60a42751-6c6e-4a35-824f-4bc069e27491"
+   ]
+  },
+  {
+   "id": "ac89bb1f",
+   "cost": "25",
+   "costRO": false,
+   "tds": [
+    "",
+    "ZZ11006-e1B-184575\nedit\nZZAUTOTEST SV-11006 part B",
+    "",
+    "$62.50",
+    "1.00",
+    "",
+    "$25.00"
+   ],
+   "sellInputs": [
+    "checkbox_item_ac89bb1f-89f4-4448-8e23-152ebae56d6c",
+    "input_cost_ac89bb1f-89f4-4448-8e23-152ebae56d6c",
+    "input_qty_ac89bb1f-89f4-4448-8e23-152ebae56d6c"
+   ]
+  }
+ ],
+ "afterSellTry": [
+  {
+   "id": "60a42751",
+   "cost": "80",
+   "costRO": false,
+   "tds": [
+    "",
+    "ZZ11006-e1A-184575\nedit\nZZAUTOTEST SV-11006 part A",
+    "",
+    "$180.00",
+    "1.00",
+    "",
+    "$80.00"
+   ],
+   "sellInputs": [
+    "checkbox_item_60a42751-6c6e-4a35-824f-4bc069e27491",
+    "input_cost_60a42751-6c6e-4a35-824f-4bc069e27491",
+    "input_qty_60a42751-6c6e-4a35-824f-4bc069e27491"
+   ]
+  },
+  {
+   "id": "ac89bb1f",
+   "cost": "25",
+   "costRO": false,
+   "tds": [
+    "",
+    "ZZ11006-e1B-184575\nedit\nZZAUTOTEST SV-11006 part B",
+    "",
+    "$62.50",
+    "1.00",
+    "",
+    "$25.00"
+   ],
+   "sellInputs": [
+    "checkbox_item_ac89bb1f-89f4-4448-8e23-152ebae56d6c",
+    "input_cost_ac89bb1f-89f4-4448-8e23-152ebae56d6c",
+    "input_qty_ac89bb1f-89f4-4448-8e23-152ebae56d6c"
+   ]
+  }
+ ],
+ "btn": "Receive Parts (2) disabled=false",
+ "urlAfter": "/parts/orders",
+ "writes": [
+  "POST 200 /api/quick-login :: {\"key\":\"admin\"}",
+  "POST 204 /api/user/recent-entities/touch :: {\"type\":\"purchase_orders\",\"id\":\"56f0aacd-1828-4d54-ab4b-61ee6c78692f\"}",
+  "POST 200 /api/inventory/orders/receive-view :: {\"orderIds\":[\"56f0aacd-1828-4d54-ab4b-61ee6c78692f\"]}",
+  "POST 200 /api/orders/receive-requested-parts :: {\"vendor_id\":\"30078d30-2033-42cb-871d-48b97635a519\",\"invoice_number\":\"ZZ11006e1\",\"invoice_date\":\"2026-11-05T07:00:00.000Z\",\"note\":\"\",\"total\":110.25,\"tax\":5.25,\"items\":[{\"catalogue_part_id\":null,\"core_charge\":null,\"core_item_id\":null,\"core_p",
+  "POST 200 /api/inventory/orders/receive-view :: {\"orderIds\":[\"56f0aacd-1828-4d54-ab4b-61ee6c78692f\"]}"
+ ],
+ "woParts": [
+  {
+   "id": "9201fc8e",
+   "pn": "ZZ11006-e1B-184575",
+   "status": "authorized",
+   "margin": 60,
+   "inv": "ZZ11006e1",
+   "cost": 25,
+   "sell": 62.5,
+   "qty": 1
+  },
+  {
+   "id": "7199f21d",
+   "pn": "ZZ11006-e1A-184575",
+   "status": "authorized",
+   "margin": 55.56,
+   "inv": "ZZ11006e1",
+   "cost": 80,
+   "sell": 180,
+   "qty": 1
+  }
+ ]
+}

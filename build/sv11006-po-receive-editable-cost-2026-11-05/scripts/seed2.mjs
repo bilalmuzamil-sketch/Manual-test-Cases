@@ -19,7 +19,7 @@ const vs=arr((await s.api('/api/parts-catalogue/vendors?pagination[page]=1&pagin
 const cats=arr((await s.api('/api/inventory/categories?limit=500')).json?.data); const cat=(cats.find(x=>x.label==='Uncategorized')||cats[0]).value;
 const stamp=Date.now().toString().slice(-6); const out={env:ENV,wo,lines:L,line:L[1],company:COMPANY,contact:CONTACT,vendor:V?.id,category:cat,parts:[]};
 for(const [k,cost,sell] of [['A',40,90],['B',null,null]]){ const pn=`ZZ11006-${TAG}${k}-${stamp}`;
-  const body={work_order:wo,line:L[1],description:'ZZAUTOTEST SV-11006 part '+k,part_number:pn,quantity:Number(process.env.QTY||1),part_source_type:'vendor',is_authorized:false,part_category_id:cat,vendor_id:V?.id}; if(cost!==null){body.cost=cost;body.sell_price=sell;}
+  const body={work_order:wo,line:(process.env.SPLITLINES&&k==='B')?L[0]:L[1],description:'ZZAUTOTEST SV-11006 part '+k,part_number:pn,quantity:Number(process.env.QTY||1),part_source_type:'vendor',is_authorized:false,part_category_id:cat,vendor_id:V?.id}; if(cost!==null){body.cost=cost;body.sell_price=sell;}
   const m=await post(s,'/api/work-orders/part/make-request',body); const pr=m.json?.data?.id; const o=await post(s,'/api/work-orders/part/perform-request-status-action',{part_request_id:pr,action:'order'}); log('part',k,m.status,o.status);
   out.parts.push({k,pn,pr,cost,sell,order:o.json?.data}); }
 if(MODE!=='none'){

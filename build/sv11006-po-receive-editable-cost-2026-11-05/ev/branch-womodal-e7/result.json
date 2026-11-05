@@ -1,0 +1,55 @@
+{
+ "before": [
+  {
+   "id": "df25bcc3",
+   "cost": "40",
+   "ro": false,
+   "row": ""
+  },
+  {
+   "id": "9c390704",
+   "cost": "0",
+   "ro": false,
+   "row": ""
+  }
+ ],
+ "headers": [
+  "Part number & description Select All Cost Qty Ordered Qty Received Total ZZ11006-e7A-471702 edit ZZ"
+ ],
+ "typed": [
+  {
+   "id": "df25bcc3",
+   "cost": "60",
+   "ro": false,
+   "row": ""
+  },
+  {
+   "id": "9c390704",
+   "cost": "0",
+   "ro": false,
+   "row": ""
+  }
+ ],
+ "sent": [
+  "POST 200 /api/orders/receive-requested-parts :: {\"vendor_id\":\"30078d30-2033-42cb-871d-48b97635a519\",\"invoice_number\":\"ZZe7m\",\"invoice_date\":\"2026-11-05T07:00:00.000Z\",\"note\":\"\",\"total\":63,\"tax\":3,\"ite"
+ ],
+ "toasts": [
+  "check_circle Parts received. Close"
+ ],
+ "woParts": [
+  {
+   "pn": "ZZ11006-e7B-471702",
+   "status": "authorized",
+   "cost": 0,
+   "sell": 0,
+   "margin": 0
+  },
+  {
+   "pn": "ZZ11006-e7A-471702",
+   "status": "authorized",
+   "cost": 60,
+   "sell": 135,
+   "margin": 55.56
+  }
+ ]
+}
