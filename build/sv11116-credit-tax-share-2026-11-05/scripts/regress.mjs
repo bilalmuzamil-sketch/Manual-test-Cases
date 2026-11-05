@@ -1,0 +1,10 @@
+// usage: node regress.mjs -> Sales Tax report regression: status filter Paid, See All Tax Rates, search box, invoice link -> WO page; prints observations
+import {sess} from './common.mjs'; const s=await sess({dpr:2,dir:'/tmp/qa93'}); const p=s.page;
+await s.go('/reports/sales-tax/invoices'); await p.waitForTimeout(6000); const rows=async()=>p.evaluate(()=>[...document.querySelectorAll('table tbody tr')].map(r=>r.innerText.replace(/\s+/g,' ').trim().slice(0,40)).filter(t=>t&&!/^(GST|PST|Total)/.test(t)));
+console.log('all',(await rows()).length);
+await p.locator('[data-test-id="filter_chip_statuses"]').click(); await p.waitForTimeout(1000); await p.locator('[data-test-id="filter_option_statuses_paid"]').click(); await p.waitForTimeout(2500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500); const pr=await rows(); console.log('Paid filter',pr.length,'non-paid rows',pr.filter(t=>!/^Paid/.test(t)).length);
+await p.locator('[data-test-id="filter_chip_statuses"]').click(); await p.waitForTimeout(1000); await p.locator('[data-test-id="filter_clear_selection_statuses"]').click(); await p.waitForTimeout(2500); await p.keyboard.press('Escape'); await p.waitForTimeout(1500); console.log('cleared',(await rows()).length);
+await p.locator('[data-test-id="page_search_toggle"]').click(); await p.waitForTimeout(800); await p.keyboard.type('S11116-17581',{delay:30}); await p.waitForTimeout(3000); const sr=await rows(); console.log('search',sr.length,JSON.stringify(sr)); await p.screenshot({path:'../ev/reg-search.png'});
+await s.go('/reports/sales-tax/invoices'); await p.waitForTimeout(5000); await p.locator('[data-test-id="button_see_all_tax_rates"]').click(); await p.waitForTimeout(3000); console.log('see all url',p.url()); console.log('see all text',(await p.locator('main, .q-page').first().innerText()).replace(/\s+/g,' ').slice(0,400)); await p.screenshot({path:'../ev/reg-see-all.png'});
+await s.go('/reports/sales-tax/invoices'); await p.waitForTimeout(5000); await p.locator('[data-test-id^="link_sales_tax_invoice_"]').first().click(); await p.waitForTimeout(4000); console.log('link url',p.url());
+await s.close(); process.exit(0);

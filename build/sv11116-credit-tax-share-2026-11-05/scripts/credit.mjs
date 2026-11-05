@@ -6,10 +6,10 @@ if(process.env.ALL){ const tg=p.locator('.q-toggle').filter({hasText:'Open only'
 if(TICK==='1'){ const cb=p.locator('table tbody tr .q-checkbox').first(); await cb.click(); await p.waitForTimeout(800); }
 await p.locator('[data-test-id="button_issue_credit_customer"]').click(); await p.waitForTimeout(2500);
 console.log('DLG1',(await p.locator('.q-dialog').last().innerText()).replace(/\s+/g,' ').slice(0,600)); console.log('IDS1',await ids());
-const parts=p.locator('[data-test-id="checkbox_credit_memo_type_parts"]'); if(await parts.count()){ const on=await parts.getAttribute('aria-checked'); console.log('parts checkbox',on); if(on==='true'){ await parts.focus(); await p.keyboard.press('Space'); await p.waitForTimeout(800);} }
+const parts=p.locator('[data-test-id="checkbox_credit_memo_type_parts"]'); if(await parts.count()){ const on=await parts.getAttribute('aria-checked'); console.log('parts checkbox',on); if(on==='true' && !process.env.PARTS){ await parts.focus(); await p.keyboard.press('Space'); await p.waitForTimeout(800);} }
 await p.locator(`[data-test-id="radio_credit_memo_outcome_${OUT==='refund'?'refund':'hold'}"]`).click(); await p.waitForTimeout(600); console.log('confirm label',await p.locator('[data-test-id="button_confirm_dialog"]').innerText());
 if(OUT==='refund'){ await p.locator('[data-test-id="select_credit_memo_payment_method"]').click(); await p.waitForTimeout(900); const o=p.locator('.q-menu .q-item').filter({hasText:/cash/i}).first(); console.log('pm',await o.count()); await o.click(); await p.waitForTimeout(700); }
-const amt=p.locator('[data-test-id="input_credit_memo_amount"]'); console.log('amount field',await amt.count()); if(await amt.count()){ await amt.fill(String(AMT)); }
+const amt=p.locator('[data-test-id="input_credit_memo_amount"]'); console.log('amount field',await amt.count()); if(await amt.count() && !process.env.PARTS){ await amt.fill(String(AMT)); }
 await p.locator('[data-test-id="input_credit_memo_reason"]').fill('ZZAUTOTEST goodwill '+TAG); await p.waitForTimeout(800);
 console.log('DLG2',(await p.locator('.q-dialog').last().innerText()).replace(/\s+/g,' ').slice(0,700)); console.log('IDS2',await ids()); await p.screenshot({path:`../ev/${TAG}-credit-dialog.png`});
 if(process.env.GO){ const n=s.writes.length; await p.locator('[data-test-id="button_confirm_dialog"]').click(); await p.waitForTimeout(3500); console.log('SENT',JSON.stringify(s.writes.slice(n).map(w=>w.slice(0,500)))); await p.screenshot({path:`../ev/${TAG}-credit-after.png`}); }

@@ -1,0 +1,14 @@
+// usage: node mrui.mjs <invoiceNumber> <shotPrefix> -> multi-rate row: rects of icon vs expand arrow; keyboard Enter on icon (tooltip? expanded?); click expand -> Total line icon + per-rate rows; tooltip texts; screenshots
+import {sess} from './common.mjs'; const [INV,PF]=process.argv.slice(2); const s=await sess({dpr:2}); const p=s.page;
+await s.go('/reports/sales-tax/invoices'); await p.waitForTimeout(6000);
+const row=p.locator('table tbody tr').filter({hasText:INV}).first(); await row.scrollIntoViewIfNeeded();
+const tip=async()=>p.evaluate(()=>[...document.querySelectorAll('.q-tooltip,.q-menu,[role=tooltip]')].filter(e=>e.offsetParent||e.getClientRects().length).map(e=>e.innerText.replace(/\s+/g,' ')).join(' || ')||'(none)');
+const rects=async()=>row.evaluate(r=>[...r.querySelectorAll('[data-test-id], i, .q-icon, button')].filter(e=>e.offsetParent).map(e=>{const b=e.getBoundingClientRect(); return (e.getAttribute('data-test-id')||e.tagName)+':'+e.innerText.trim().slice(0,18)+'@'+[b.x,b.y,b.right,b.bottom].map(Math.round).join(',');}).join(' ; '));
+console.log('ROW',(await row.innerText()).replace(/\s+/g,' | ')); console.log('RECTS',await rects()); await p.screenshot({path:`../ev/${PF}-1-collapsed.png`});
+const rowsN=async()=>p.locator('table tbody tr').count(); const n0=await rowsN();
+const icon=row.locator('[data-test-id^="icon_sales_tax_row_credit_info"]').first(); await icon.focus(); await p.keyboard.press('Enter'); await p.waitForTimeout(1200); console.log('ENTER tip',await tip(),'rows',n0,'->',await rowsN()); await p.screenshot({path:`../ev/${PF}-2-enter.png`}); await p.keyboard.press('Escape'); await p.waitForTimeout(800);
+await icon.focus(); await p.keyboard.press('Space'); await p.waitForTimeout(1200); console.log('SPACE tip',await tip(),'rows',await rowsN()); await p.keyboard.press('Escape'); await p.waitForTimeout(800);
+const ex=row.locator('i, .q-icon, button').filter({hasText:/expand_more|keyboard_arrow_down|chevron/}).first(); console.log('expand',await ex.count()); if(await ex.count()){ await ex.click(); await p.waitForTimeout(1500); console.log('EXPANDED',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('table tbody tr')].map(r=>r.innerText.replace(/\s+/g,' | ').slice(0,200)).filter(t=>/GST|PST|Total/.test(t))))); 
+ const ic2=p.locator('[data-test-id^="icon_sales_tax_row_credit_info"]'); console.log('icons now',await ic2.count()); for(let i=0;i<await ic2.count();i++){ const b=await ic2.nth(i).boundingBox(); const tr=await ic2.nth(i).evaluate(e=>e.closest('tr')?.innerText.replace(/\s+/g,' | ').slice(0,120)); console.log('icon',i,JSON.stringify(b),tr); }
+ await p.screenshot({path:`../ev/${PF}-3-expanded.png`}); const last=ic2.last(); if(await last.count()){ await last.hover(); await p.waitForTimeout(1200); console.log('EXP HOVER',await tip()); await p.screenshot({path:`../ev/${PF}-4-exp-hover.png`}); } }
+await s.close(); process.exit(0);
