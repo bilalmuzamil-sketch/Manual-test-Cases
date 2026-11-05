@@ -1,0 +1,6 @@
+import {sess} from './common.mjs'; import fs from 'fs';
+const s=await sess(); const p=s.page;
+const dlg=async()=>p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(d=>({title:d.querySelector('.text-h6,.q-card__section .text-h5,h6,h5')?.innerText,areas:[...d.querySelectorAll('textarea,input[type=text],[contenteditable=true]')].map(a=>({tid:a.getAttribute('data-test-id')||a.closest('[data-test-id]')?.getAttribute('data-test-id'),label:a.closest('label')?.innerText.replace(/\s+/g,' ').slice(0,40),tag:a.tagName,spell:a.spellcheck,attr:a.getAttribute('spellcheck'),formAttr:a.closest('form')?.getAttribute('spellcheck')}))})));
+for(const [url,btn] of [['/customers/6a7b6afc-084d-4584-aacb-773bcd71cbcd/work-orders','button_base'],['/customers/vehicle/00052898-8ce9-4bf4-b0be-c3644db57f29/work-orders?companyId=6a7b6afc-084d-4584-aacb-773bcd71cbcd','button_edit_vehicle']]){
+  await s.go(url); await p.waitForTimeout(3500); await p.locator(`[data-test-id="${btn}"]`).first().click(); await p.waitForTimeout(2500); console.log('==',btn,JSON.stringify(await dlg(),null,0).slice(0,1800)); await p.screenshot({path:'../ev/branch-dlg-'+btn+'.png'}); await p.keyboard.press('Escape'); }
+await s.close(); process.exit(0);

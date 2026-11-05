@@ -1,0 +1,5 @@
+import {sess} from './common.mjs'; import fs from 'fs';
+const s=await sess(); const p=s.page; await s.go('/schedule'); await p.waitForTimeout(5000);
+const res=await p.evaluate(async()=>{ const urls=performance.getEntriesByType('resource').map(e=>e.name).filter(u=>/\.js(\?|$)/.test(u)); const ids=new Set(); const hits={};
+  for(const u of urls){ try{ const t=await (await fetch(u)).text(); if(!/schedule/i.test(t)) continue; for(const m of t.matchAll(/"data-test-id":"([^"]*(?:schedule|shift|drop|scope|assign|series|undo|cell|sidebar|line_panel|coverage)[^"]*)"/gi)) ids.add(m[1]); for(const k of ['Entire work order','Choose lines','Assign Work Order','This shift only','Work Order Lines']){ const m=t.match(new RegExp('.{0,120}'+k+'.{0,160}')); if(m) hits[k]=(u.split('/').pop())+' :: '+m[0]; } }catch(e){} } return {ids:[...ids].sort(),hits}; });
+fs.writeFileSync('/tmp/sv12048/ids.json',JSON.stringify(res,null,1)); console.log(res.ids.join('\n')); console.log(Object.keys(res.hits)); await s.close(); process.exit(0);
