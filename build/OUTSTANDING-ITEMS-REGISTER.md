@@ -1532,6 +1532,12 @@ what is still owed.
 | SV-12269 (API-only: location created without a colour breaks work orders + Locations list org-wide; Open API release): fix or Obsolete? (comment 80301). sv11249 left broken on purpose for the reader. | Chris Ward | Open API safety of workplace create | 2026-11-06 |
 | SV-12187: passed by its QA assignee Mudassir (80302) while I tested; my results agree, no second comment posted. Nothing needed unless you want my evidence posted. | — | — | 2026-11-06 |
 
+## Waiting on the QA lead — 6 Nov 2026 (later)
+| Item | What I need | Blocks | Since |
+|---|---|---|---|
+| SV-12214 role="menu" | Yes/no: should the 5 plain menus that lost role="menu" (Columns, Status filter, Schedule View options, Schedule Filter & display, Report Date Range) go in the remaining-issues comment? Steps in build/sv12214-quasar-upgrade-2026-11-06/FINDINGS.md | SV-12214 verdict (everything else PASSED) | 2026-11-06 |
+| SV-12203 | (a) test it at all? (QuickBooks sync, near Accounting); (b) branch sv12203 not reachable; (c) QuickBooks Online sandbox login for the branch's connected company | SV-12203 all 8 scenarios | 2026-11-06 |
+
 ## Rejected from testing — watch (3-hourly check re-reads these; added 2026-11-06)
 | Ticket | Rejected on | Waiting for | Current state |
 |---|---|---|---|
