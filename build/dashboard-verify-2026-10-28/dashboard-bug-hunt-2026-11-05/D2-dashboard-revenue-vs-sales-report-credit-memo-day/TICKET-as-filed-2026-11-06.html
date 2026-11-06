@@ -1,0 +1,38 @@
+<p><strong>What is wrong</strong></p>
+<p>On the Dashboard, the Revenue tile and the Sales report it links to show different amounts for the same day. It happens with a credit memo dated late in the evening, location time. The tile counts the credit memo on the next day. The report counts it on its own day, but its date column shows the next day's date.</p>
+<p><strong>Example</strong> (location Staging Heavy Duty - 9919, Edmonton time)</p>
+<ul>
+<li>Credit memo <strong>CM11839-4189</strong> for <strong>$5.00</strong> is dated <strong>11:00 PM on Nov 2</strong>, Edmonton time.</li>
+<li><strong>Nov 3:</strong> the Revenue tile shows <strong>$1,625.23</strong>. The Sales report opened from the tile shows <strong>$1,630.23</strong>. The four invoices that day add up to $1,630.23. The tile takes the $5.00 credit memo off ($1,630.23 − $5.00 = $1,625.23); the report does not list it.</li>
+<li><strong>Nov 2:</strong> the Revenue tile shows <strong>$0.00</strong>. The Sales report shows <strong>−$5.00</strong>. Its only row is CM11839-4189, and that row is dated <strong>"Nov 03 2026"</strong>.</li>
+<li>So for this one credit memo the tile and the report disagree on both days, and the report shows a Nov 3 row inside a Nov 2 report.</li>
+</ul>
+<p><strong>Steps to reproduce</strong></p>
+<ol>
+<li>Log in as an Admin and pick the location <strong>Staging Heavy Duty - 9919</strong> in the top bar.</li>
+<li>Open <strong>Dashboard</strong>.</li>
+<li>On the <strong>Revenue</strong> tile, click the date button, click <strong>3</strong> (November) twice, and click <strong>Apply</strong>. Note the amount.</li>
+<li>Click the small report icon next to the word "Revenue". The Sales report opens in a new tab on the same day. Note the <strong>Totals</strong> amount in the Subtotal column.</li>
+<li>Repeat steps 3 and 4 with <strong>Nov 2</strong>.</li>
+</ol>
+<p><strong>Actual</strong></p>
+<ul>
+<li>Nov 3: tile $1,625.23, report $1,630.23.</li>
+<li>Nov 2: tile $0.00, report −$5.00, with one row dated "Nov 03 2026".</li>
+</ul>
+<p><strong>Expected</strong></p>
+<p>The tile and the report show the same amount for the same day, and the credit memo is counted on the same day in both places. The report row's date matches the day it is counted on.</p>
+<p>Dashboard PRD (Confluence page "Dashboard", version 53):</p>
+<ul>
+<li>S3-R1: <em>"Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. This holds at every moment, not merely in principle."</em></li>
+<li>S3-N1: <em>"If a measure's report shows a value, the matching tile shows the same value; the two never disagree."</em></li>
+</ul>
+<p>Which day is right for a credit memo dated 11:00 PM on Nov 2 (location time) is asked of Chris Ward in the comment below.</p>
+<p><strong>Where it was seen</strong></p>
+<ul>
+<li>QA branch <a href="https://sv11839.qa.shopview.com">https://sv11839.qa.shopview.com</a>, build <strong>v26.45.0-5d54a3f</strong>, Admin, location Staging Heavy Duty - 9919.</li>
+<li>6 Nov 2026, about 10:40 UTC (3:40 AM in Edmonton).</li>
+<li>All four time-zone settings matched the location (America/Edmonton) and were recorded: the session, the browser, the app's own time-zone setting, and the test computer.</li>
+<li>The credit memo was not made by us. It is an existing record at this location (customer "=1+1").</li>
+</ul>
+<p><strong>Screenshot</strong></p>

@@ -191,3 +191,15 @@ Every ticket: Bug, Medium, label QA_found, Product Area "Reports & Dashboards", 
 - **Duplicate search before filing:** text/summary JQL over credit memo + dashboard/Sales report/time zone (90 days), `parent in (SV-11839, SV-11936)` plus "custom range"/"after today" (60 days), and all of SV-11839 before 28 Oct. No duplicate; nearest are SV-11468 (report chart, Done) and SV-11255 (small screen label, fixed).
 - **Read-back:** JQL `key in (SV-12275..SV-12278) AND parent = SV-11839 AND labels = QA_found AND priority = Medium AND "Product Area[Dropdown]" = "Reports & Dashboards"` returned all four, each with exactly one attachment of the uploaded size.
 - **D2 evidence (Rule 86, verified by me):** `dashboard-bug-hunt-2026-11-05/evidence/D2-cm-day/` (on-screen run 10:40 UTC, Rule 99 all_match true, Edmonton). The memo's stamp was found by narrowing the Sales report window: present from 2026-11-03T06:00:00Z, absent from 06:00:01Z.
+
+## 6 Nov 2026 (12:10–12:13 UTC): SV-12276 corrected
+
+| Ticket | Write | Result |
+|---|---|---|
+| SV-12276 | Summary changed to "Dashboard - Revenue tile and Sales report disagree for sales made just after midnight in Edmonton (browser time-zone rules)". Description rewritten (cause, corrected example, steps, correction note); same embedded picture (media f2a0f98f…) | 200; read back |
+| SV-12276 | Correction comment tagging Chris Ward, picture embedded, asks fix or leave | comment **80326** |
+
+- **Why:** the worker's cross-check (`dashboard-bug-hunt-2026-11-05/evidence/D2-cm-day-crosscheck/requests.json`) showed the Sales report sends browser-built UTC boundaries (`2026-11-03T07:00Z`, offset 420), while the Dashboard sends plain dates.
+- **My own check (Rule 86):** Sales API custom range with UTC−6 boundaries puts CM11839-4189 on **Nov 3** and leaves Nov 2 empty; with UTC−7 boundaries it lands on Nov 2 (`evidence/D2-cm-day-crosscheck/api-boundaries-coordinator-2026-11-06.txt`). System `zdump` (tzdata 2026e) and Node 22 (tz 2026e) both give Edmonton UTC−6 on 6 Nov 2026.
+- The as-filed texts are kept as `D2-…/TICKET-as-filed-2026-11-06.html` and `CHRIS-COMMENT-as-filed-2026-11-06.html`.
+- **Read-back:** JQL `key = SV-12276 AND parent = SV-11839 AND labels = QA_found AND priority = Medium AND "Product Area[Dropdown]" = "Reports & Dashboards"` returned the ticket with the new summary.

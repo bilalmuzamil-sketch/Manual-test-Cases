@@ -1,38 +1,37 @@
-<p><strong>What is wrong</strong></p>
-<p>On the Dashboard, the Revenue tile and the Sales report it links to show different amounts for the same day. It happens with a credit memo dated late in the evening, location time. The tile counts the credit memo on the next day. The report counts it on its own day, but its date column shows the next day's date.</p>
-<p><strong>Example</strong> (location Staging Heavy Duty - 9919, Edmonton time)</p>
+<h2>What is wrong</h2>
+<p>On the Dashboard, the Revenue tile and the Sales report it links to can show different amounts for the same day at an Edmonton (Alberta) location. It happens to sales and credit memos made between midnight and 1:00 AM, location time.</p>
+<p><strong>Why (in plain words):</strong> the Dashboard works out where a day starts and ends on the server, using the newest time-zone rules. The Sales report works it out in the user's web browser, using whatever time-zone rules that browser has built in. The newest rules (time-zone data version 2026e) keep Edmonton at UTC−6 after 1 Nov 2026. A browser with older rules, including the Chromium 153 browser we tested with, still moves Edmonton back to UTC−7. So that browser starts the report's day one hour later than the Dashboard does.</p>
+<p><strong>Example</strong> (location Staging Heavy Duty - 9919)</p>
 <ul>
-<li>Credit memo <strong>CM11839-4189</strong> for <strong>$5.00</strong> is dated <strong>11:00 PM on Nov 2</strong>, Edmonton time.</li>
-<li><strong>Nov 3:</strong> the Revenue tile shows <strong>$1,625.23</strong>. The Sales report opened from the tile shows <strong>$1,630.23</strong>. The four invoices that day add up to $1,630.23. The tile takes the $5.00 credit memo off ($1,630.23 − $5.00 = $1,625.23); the report does not list it.</li>
+<li>Credit memo <strong>CM11839-4189</strong> for <strong>$5.00</strong> was made between 12:00 AM and 1:00 AM on <strong>Nov 3</strong> under the newest rules. Under the browser's older rule, that is 11 PM to midnight on Nov 2.</li>
+<li><strong>Nov 3:</strong> the Revenue tile shows <strong>$1,625.23</strong>. The Sales report opened from the tile shows <strong>$1,630.23</strong>. The four invoices that day add up to $1,630.23. The tile takes the $5.00 credit memo off ($1,630.23 − $5.00 = $1,625.23); the report leaves it out.</li>
 <li><strong>Nov 2:</strong> the Revenue tile shows <strong>$0.00</strong>. The Sales report shows <strong>−$5.00</strong>. Its only row is CM11839-4189, and that row is dated <strong>"Nov 03 2026"</strong>.</li>
-<li>So for this one credit memo the tile and the report disagree on both days, and the report shows a Nov 3 row inside a Nov 2 report.</li>
+<li>When we ask the server for the Sales report with the day starting at midnight under the newest rules (UTC−6), the credit memo falls on Nov 3, the same day as the tile. So the tile's day is the right one, and the report's day comes from the browser's older rule.</li>
 </ul>
-<p><strong>Steps to reproduce</strong></p>
+<h2>Steps to reproduce</h2>
 <ol>
+<li>Use a browser whose time-zone rules still put Edmonton on UTC−7 after 1 Nov 2026, with the computer set to Edmonton time. (We used Chromium 153.)</li>
 <li>Log in as an Admin and pick the location <strong>Staging Heavy Duty - 9919</strong> in the top bar.</li>
 <li>Open <strong>Dashboard</strong>.</li>
 <li>On the <strong>Revenue</strong> tile, click the date button, click <strong>3</strong> (November) twice, and click <strong>Apply</strong>. Note the amount.</li>
 <li>Click the small report icon next to the word "Revenue". The Sales report opens in a new tab on the same day. Note the <strong>Totals</strong> amount in the Subtotal column.</li>
-<li>Repeat steps 3 and 4 with <strong>Nov 2</strong>.</li>
+<li>Repeat steps 4 and 5 with <strong>Nov 2</strong>.</li>
 </ol>
-<p><strong>Actual</strong></p>
-<ul>
-<li>Nov 3: tile $1,625.23, report $1,630.23.</li>
-<li>Nov 2: tile $0.00, report −$5.00, with one row dated "Nov 03 2026".</li>
-</ul>
-<p><strong>Expected</strong></p>
-<p>The tile and the report show the same amount for the same day, and the credit memo is counted on the same day in both places. The report row's date matches the day it is counted on.</p>
-<p>Dashboard PRD (Confluence page "Dashboard", version 53):</p>
+<p><strong>Actual:</strong> Nov 3: tile $1,625.23, report $1,630.23. Nov 2: tile $0.00, report −$5.00, with one row dated "Nov 03 2026".</p>
+<p><strong>Expected:</strong> the tile and the report show the same amount for the same day, whatever time-zone rules the user's browser has built in. Dashboard PRD (Confluence page "Dashboard", version 53):</p>
 <ul>
 <li>S3-R1: <em>"Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. This holds at every moment, not merely in principle."</em></li>
 <li>S3-N1: <em>"If a measure's report shows a value, the matching tile shows the same value; the two never disagree."</em></li>
 </ul>
-<p>Which day is right for a credit memo dated 11:00 PM on Nov 2 (location time) is asked of Chris Ward in the comment below.</p>
-<p><strong>Where it was seen</strong></p>
+<p>Whether this should be fixed is asked of Chris Ward in the comments below.</p>
+<h2>Where it was seen</h2>
 <ul>
 <li>QA branch <a href="https://sv11839.qa.shopview.com">https://sv11839.qa.shopview.com</a>, build <strong>v26.45.0-5d54a3f</strong>, Admin, location Staging Heavy Duty - 9919.</li>
-<li>6 Nov 2026, about 10:40 UTC (3:40 AM in Edmonton).</li>
-<li>All four time-zone settings matched the location (America/Edmonton) and were recorded: the session, the browser, the app's own time-zone setting, and the test computer.</li>
+<li>6 Nov 2026, about 10:40 UTC, and checked again at 12:07 UTC.</li>
+<li>The session, the browser, the app's own time-zone setting and the test computer were all set to America/Edmonton, and this was recorded. The browser's built-in rules gave UTC−7 for Nov 3; the server and the test computer's rules (2026e) gave UTC−6.</li>
 <li>The credit memo was not made by us. It is an existing record at this location (customer "=1+1").</li>
+<li>Correction, 6 Nov 2026: the first version of this ticket said the credit memo was dated 11:00 PM on Nov 2 and was a credit-memo problem. That time came from the browser's older rule. Under the newest rules it is just after midnight on Nov 3, and the same split would happen to an invoice made in that hour. At a Fiji location, where the browser and server rules agree, a credit memo made just after midnight showed the same amount on the tile and in the report.</li>
 </ul>
-<p><strong>Screenshot</strong></p>
+<h2>Screenshot</h2>
+<p>Both days, tile and report, with numbered notes. The "11:00 PM" in the notes is the time under the browser's older rule.</p>
+<figure data-type="media-single" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="f2a0f98f-0347-4a78-9591-751880cc2111" data-collection="upload-user-collection-1343233018"></div></figure>

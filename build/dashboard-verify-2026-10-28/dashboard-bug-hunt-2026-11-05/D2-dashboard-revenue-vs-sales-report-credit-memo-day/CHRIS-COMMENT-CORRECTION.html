@@ -1,0 +1,11 @@
+<p><span data-type="mention" data-user-id="712020:aa00b8d6-a71f-4259-8919-82a304227c20">@Chris Ward</span> sorry, a correction to my question above, and thank you for your patience.</p>
+<p><strong>What we found since:</strong> this credit memo was really made just after midnight on <strong>Nov 3</strong> (Edmonton). The "11:00 PM on Nov 2" came from our test browser, whose built-in time-zone rules are older. The newest rules keep Edmonton at UTC−6 after 1 Nov 2026, and our browser still moves it to UTC−7.</p>
+<ul>
+<li>The <strong>Revenue tile</strong> works out the day on the server with the newest rules, so it puts the credit memo on <strong>Nov 3</strong>. That is the right day.</li>
+<li>The <strong>Sales report</strong> works out the day in the browser, so with older rules its day starts an hour later and the credit memo falls on <strong>Nov 2</strong>. For Nov 3 the tile shows $1,625.23 and the report shows $1,630.23.</li>
+<li>When the browser and server rules agree (we checked at a Fiji location), the tile and the report match, credit memo included.</li>
+</ul>
+<p><strong>What we understand should happen:</strong> the tile and the report always agree, whatever browser the user has (PRD S3-N1: <em>"the two never disagree"</em>).</p>
+<p>The picture below shows both days, with numbered notes. The "11:00 PM" in it is the time under the browser's older rule.</p>
+<figure data-type="media-single" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="f2a0f98f-0347-4a78-9591-751880cc2111" data-collection="upload-user-collection-1343233018"></div></figure>
+<p>Could you please confirm: should the reports work out the day the same way the Dashboard does, so they always match (<strong>fix it</strong>), or <strong>leave it as it is</strong>? Please ignore my earlier question about Nov 2; Nov 3 is the right day. Thank you!</p>
