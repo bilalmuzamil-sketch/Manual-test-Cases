@@ -203,3 +203,20 @@ Every ticket: Bug, Medium, label QA_found, Product Area "Reports & Dashboards", 
 - **My own check (Rule 86):** Sales API custom range with UTC−6 boundaries puts CM11839-4189 on **Nov 3** and leaves Nov 2 empty; with UTC−7 boundaries it lands on Nov 2 (`evidence/D2-cm-day-crosscheck/api-boundaries-coordinator-2026-11-06.txt`). System `zdump` (tzdata 2026e) and Node 22 (tz 2026e) both give Edmonton UTC−6 on 6 Nov 2026.
 - The as-filed texts are kept as `D2-…/TICKET-as-filed-2026-11-06.html` and `CHRIS-COMMENT-as-filed-2026-11-06.html`.
 - **Read-back:** JQL `key = SV-12276 AND parent = SV-11839 AND labels = QA_found AND priority = Medium AND "Product Area[Dropdown]" = "Reports & Dashboards"` returned the ticket with the new summary.
+
+## 6 Nov 2026 (~14:40 UTC): Rule 99 amendment approved; audit of tickets filed or passed since 1 Nov
+QA lead, verbatim: *"RUle 99: DO what ensures that the results of your testing/tickets which you create are accurte and your work does not cause me to loose my job."*
+
+Browser vs machine offsets (`build/testing-tools/tz_rules_check.py`, Chromium 153 vs tz database 2026e): Edmonton, Vancouver and Winnipeg are one hour apart from 1 Nov 2026 to 13 Mar 2027. Toronto, Karachi and Fiji match.
+
+| Ticket | Zone / when tested | Inside the gap hour? | Outcome |
+|---|---|---|---|
+| SV-12276 | Edmonton, credit memo just after midnight 3 Nov | Yes | Already corrected (comment 80326) |
+| SV-12207 | Edmonton, payments 05:00–05:20 UTC 5 Nov (11:00–11:20 PM under server rules, 10:00–10:20 PM under browser rules) | Example no; step 2's "after about 5:00 PM" yes | Finding stands. **Comment 80351** corrects step 2 to "after 6:00 PM". Description not edited (it holds embedded pictures) |
+| SV-12202 (QA Complete) | Edmonton, sale 05:23 UTC, read 07:06 UTC | Checked under both rules (sale before midnight, read after midnight under both) | Unaffected |
+| SV-12201 (QA Complete) | Edmonton, 05:23–05:26 UTC | Only a stray 0.00 row, already explained in RESULT.md | Unaffected |
+| SV-12146 (QA Complete) | Edmonton, money amounts | Amounts don't depend on the day | Unaffected |
+| SV-12275 | Edmonton, 09:57–10:00 UTC | No (about 3 to 4 AM under either rule) | Unaffected |
+| SV-12277, SV-12278 | Visual only | n/a | Unaffected |
+
+Filed under the QA lead's account by another session, not on my branch: SV-12193, SV-12267, SV-12268, SV-12269. None is about a time of day by its title. I didn't check them (Rule 98).

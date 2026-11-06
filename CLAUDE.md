@@ -47,6 +47,7 @@ These are stated here **in full** because a session that gets only this far must
   Location timezone and your machine timezone is the SAME."* Before any check, reproduction, screenshot or ticket: session
   `change-location` with the location's zone, browser `timezoneId` = that zone, process `TZ=<zone>`, **and the app's own
   `localStorage['timezone']` key (it falls back to UTC — amendment 29 Oct)**, all RECORDED in the evidence and the ticket. A result seen with the zones unmatched or unrecorded is NOT VERIFIED and is never filed.
+  **Amendment 6 Nov: the same zone NAME is not enough — the browser's, machine's and server's UTC OFFSETS must agree for the tested dates** (Chromium 153 is an hour off for Edmonton/Vancouver/Winnipeg, 1 Nov 2026–13 Mar 2027). Run `build/testing-tools/tz_rules_check.py`; a result inside the gap hour is NOT VERIFIED until re-checked on the server side; ticket times are given under the server's rules.
 - **🔴 TICKETS ARE WRITTEN FOR A FIRST-TIME, NON-TECHNICAL READER (100).** QA lead, 2026-10-28: *"keep the issue clear ... so that it
   can be understood by a lay man ... or by a person who is look at the ticket for the first time."* What the screen shows and what it
   means · one example with the arithmetic · where on screen to look · plain steps · source quote · few pictures · **no technical/developer section (29 Oct)**.
