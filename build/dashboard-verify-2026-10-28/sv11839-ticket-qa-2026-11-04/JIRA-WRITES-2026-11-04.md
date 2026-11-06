@@ -236,3 +236,9 @@ Filed under the QA lead's account by another session, not on my branch: SV-12193
   - SV-12278, comment 80319
   - All four are now **In Progress**, updated about 16:42 UTC; not by us.
 - **Karachi day-boundary test:** NOT VERIFIED; blocked by the expired sign-in. The set-up is ready: S11839-17606 is completed and not invoiced. Re-run steps are in `dashboard-bug-hunt-2026-11-05/RESULTS.md`.
+
+## 6 Nov 2026: SV-12277 comment 80318 edited
+- QA lead's instruction, 6 Nov: questions to Chris Ward never ask him to change the PRD.
+- Comment 80318's closing question was edited from "…or leave it as it is (blue pill), with S12-R2 updated?" to "…or leave it as it is (blue pill)?".
+- Read back: the picture (media b0aeeb28…) and the @mention are still in place.
+- Searched every open question to Chris and every ticket description since 4 Nov: no other open ask for a PRD change. The "S… gets updated" lines elsewhere quote Chris's own answers, not our asks.
