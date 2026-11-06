@@ -1,0 +1,30 @@
+<div data-type="panel-success"><p><strong>OVERALL QA STATUS: PASSED</strong></p></div>
+<p>Tested on the QA branch <a href="https://sv11839.qa.shopview.com">sv11839</a> (build v26.45.0-5d54a3f) on 6 Nov 2026 at Test Location, against the steps and expected results in this ticket, Chris's comment, and Mike's request to show the remaining credit on the remittance slip. Production (build v26.45.1-753355c) was used for the "before".</p>
+<p>A vendor credit that is bigger than the bill now pays only the bill. The rest of the credit stays open for the vendor's next bill. The Payments tab shows what the credit really paid, and the remittance slip shows the remaining credit and never goes negative.</p>
+<h3>Before and after</h3>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="1fa917a0-7754-42fb-9c3b-388a0c696aeb" data-collection="upload-user-collection-1343233018" data-alt="exh-1-before-after.png"></div></figure>
+<p><em>Picture 1: The same steps on both builds: a $10.00 bill and a $100.00 credit, both ticked in New Payment, then Make Payment. Production (left): the bill line shows $0.00, the credit shows -$100.00 Applied, and the slip says Credits Included $100.00, Total $-90.00. The whole credit is gone. QA branch (right): the bill line shows $10.00, the credit shows -$10.00 Applied, and the slip says Credits Included $10.00, Total $0.00, Remaining $90.00 and "Remaining Credit: $90.00".</em></p>
+<h3>What was checked</h3>
+<table><tbody>
+<tr><th><p>#</p></th><th><p>Check</p></th><th><p>Result</p></th></tr>
+<tr><td><p>1</p></td><td><p>$100.00 credit on a $10.00 bill: only $10.00 of the credit is used. New Payment shows "Applies $10.00 · $90.00 remaining" and Payment amount $0.00.</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>2</p></td><td><p>Unpaid Invoices keeps the credit open with -$90.00 left (Unapplied)</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>3</p></td><td><p>Payments tab: the bill line shows $10.00 and the credit line shows -$10.00 Applied</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>4</p></td><td><p>Remittance slip: Subtotal $10.00, Credits Included $10.00, Total $0.00 (never negative)</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>5</p></td><td><p>Mike's request: the slip shows the remaining credit. The Credits Summary has a Remaining column ($90.00) and a "Remaining Credit: $90.00" line.</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>6</p></td><td><p>The $50.00 bill paid from the $90.00 left on the same credit: -$50.00 Applied, slip shows Remaining Credit $40.00, Unpaid Invoices shows -$40.00 open. The first payment and its slip still show $10.00 and Remaining Credit $90.00.</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>7</p></td><td><p>Credit equal to the bill ($10.00 on $10.00): "Fully consumed", Total $0.00, Remaining Credit $0.00, nothing left open</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>8</p></td><td><p>Credit smaller than the bill ($20.00 on $50.00): the whole credit is used, $30.00 is paid, Total $30.00, Remaining Credit $0.00</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>9</p></td><td><p>One credit across two bills in one payment ($60.00 on $25.00 + $15.00): $40.00 used, Total $0.00, Remaining Credit $20.00, -$20.00 left open</p></td><td><p>PASSED</p></td></tr>
+</tbody></table>
+<figure data-type="media-single" data-layout="center" data-width="60" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="28ce4282-c0cb-4f49-8a13-1501a0c1af2f" data-collection="upload-user-collection-1343233018" data-alt="exh-2-second-payment.png"></div></figure>
+<p><em>Picture 2: QA branch, check 6. The Payments tab lists both payments with what the credit paid on each (-$50.00 and -$10.00), and the second payment's slip shows credit Balance $90.00, Payment $50.00, Remaining $40.00.</em></p>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="0c0efc73-93e0-4d73-837c-f60347960aab" data-collection="upload-user-collection-1343233018" data-alt="exh-3-variants.png"></div></figure>
+<p><em>Picture 3: QA branch, checks 9 (left) and 8 (right).</em></p>
+<h3>How to repeat it</h3>
+<ol>
+<li><p>Open the QA branch <a href="https://sv11839.qa.shopview.com">sv11839</a>. In the top menu click <code>Parts</code>, then <code>Vendors</code>, and open the vendor <code>ZZAUTOTEST SV12146 A</code> (or any vendor with an unpaid bill).</p></li>
+<li><p>On the <code>Unpaid Invoices</code> tab click <code>New Credit</code>, enter 100 in the amount, add a memo and save.</p></li>
+<li><p>Tick the checkbox on a bill row and on the new <code>Credit</code> row, then click <code>New Payment</code>. The credit row in the window reads "Applies $10.00 · $90.00 remaining" for a $10.00 bill. Click <code>Make Payment</code>.</p></li>
+<li><p>The <code>Unpaid Invoices</code> tab now shows the credit with the rest still open. On the <code>Payments</code> tab click the small arrow at the left of the payment row to open it, then click the receipt icon in the <code>Remittance</code> column to download the slip.</p></li>
+</ol>
