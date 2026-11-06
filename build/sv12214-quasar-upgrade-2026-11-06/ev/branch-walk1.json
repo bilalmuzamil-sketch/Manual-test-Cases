@@ -1,0 +1,246 @@
+{
+ "build": "v26.45.2-aa4c767",
+ "checks": [
+  {
+   "name": "L1-list-columns: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": null,
+      "x": 1081.453125,
+      "y": 119,
+      "w": 207.546875,
+      "h": 585,
+      "items": [
+       "Waiting On Parts",
+       "Asset",
+       "VIN/Serial #",
+       "Progress",
+       "Service Advisor",
+       "Lead Technician",
+       "Clocked In",
+       "Lines",
+       "Total price",
+       "Created on",
+       "Invoiced Date",
+       "Days open"
+      ]
+     }
+    ],
+    "roleMenuCount": 0
+   }
+  },
+  {
+   "name": "L2-status-filter: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": null,
+      "x": 798.171875,
+      "y": 121,
+      "w": 200,
+      "h": 413,
+      "items": [
+       "Estimate",
+       "Approved",
+       "In progress",
+       "Review",
+       "Complete",
+       "Invoiced",
+       "Paid",
+       "Declined",
+       "Imported"
+      ]
+     }
+    ],
+    "roleMenuCount": 0
+   }
+  },
+  {
+   "name": "L3-status filter: picking an option shows on the chip",
+   "ok": true,
+   "detail": {
+    "optName": "Estimate",
+    "chip": "Status: Estimate keyboard_arrow_down cancel"
+   }
+  },
+  {
+   "name": "L4-list: tooltip on the copy-VIN icon shows text, placed on screen",
+   "ok": true,
+   "detail": [
+    {
+     "text": "Copy VIN/Serial #",
+     "x": 1008.828125,
+     "y": 236.359375,
+     "w": 123.078125,
+     "h": 31.359375
+    }
+   ]
+  },
+  {
+   "name": "T1-techview-density: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": "menu",
+      "x": 1016,
+      "y": 116.25,
+      "w": 232,
+      "h": 150.453125,
+      "items": [
+       "Compact",
+       "Regular",
+       "Comfortable"
+      ]
+     }
+    ],
+    "roleMenuCount": 1
+   }
+  },
+  {
+   "name": "T2-techview density: each choice changes the row height (Compact 36 / Regular 48 / Comfortable 64)",
+   "ok": true,
+   "detail": {
+    "before": 48,
+    "res": {
+     "Compact": 36,
+     "Regular": 48,
+     "Comfortable": 64
+    }
+   }
+  },
+  {
+   "name": "T3-techview-columns: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": "dialog",
+      "x": 1081.453125,
+      "y": 119,
+      "w": 207.546875,
+      "h": 585,
+      "items": [
+       "On Site",
+       "Waiting On Parts",
+       "Unit",
+       "Asset",
+       "VIN/Serial #",
+       "Progress",
+       "Service Advisor",
+       "Lead Technician",
+       "Clocked In",
+       "Lines",
+       "Assigned Techs",
+       "Created on"
+      ]
+     }
+    ],
+    "roleMenuCount": 0
+   }
+  },
+  {
+   "name": "T4-techview: technician avatar tooltip shows a name, placed on screen",
+   "ok": true,
+   "detail": [
+    {
+     "text": "Michael Newman",
+     "x": 1472.59375,
+     "y": 351.140625,
+     "w": 121.328125,
+     "h": 31.359375
+    }
+   ]
+  },
+  {
+   "name": "B1-board-card-size: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": "menu",
+      "x": 1016,
+      "y": 116.25,
+      "w": 232,
+      "h": 113.59375,
+      "items": [
+       "Compact",
+       "Detailed"
+      ]
+     }
+    ],
+    "roleMenuCount": 1
+   }
+  },
+  {
+   "name": "B2-board card size: choices change the card height",
+   "ok": true,
+   "detail": {
+    "before": 162,
+    "cres": {
+     "Compact": 93,
+     "Detailed": 162
+    }
+   }
+  },
+  {
+   "name": "B3-board-fields: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": "dialog",
+      "x": 1087.875,
+      "y": 119,
+      "w": 201.125,
+      "h": 585,
+      "items": [
+       "Lead technician",
+       "Customer",
+       "Asset",
+       "VIN/serial",
+       "Progress",
+       "Service advisor",
+       "Clocked in",
+       "Line count",
+       "Line technicians",
+       "Estimated hours",
+       "Total price",
+       "On-site"
+      ]
+     }
+    ],
+    "roleMenuCount": 0
+   }
+  },
+  {
+   "name": "B4-board: hovering a card shows its hover card at a real on-screen position (no NaN)",
+   "ok": false,
+   "detail": []
+  },
+  {
+   "name": "B5-board: columns scroll sideways",
+   "ok": true,
+   "detail": {
+    "found": true,
+    "cls": "sr-only",
+    "scrollWidth": 96,
+    "clientWidth": 1,
+    "before": 0,
+    "after": 95
+   }
+  }
+ ],
+ "console": [],
+ "prefBefore": {
+  "display": "tech_view"
+ },
+ "cards": 517,
+ "prefAfter": {
+  "display": "tech_view"
+ },
+ "prefRestored": true
+}

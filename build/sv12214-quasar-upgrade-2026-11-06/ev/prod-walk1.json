@@ -1,0 +1,332 @@
+{
+ "build": "v26.45.2-864113d",
+ "checks": [
+  {
+   "name": "L1-list-columns: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": "menu",
+      "x": 1081,
+      "y": 119,
+      "w": 207.546875,
+      "h": 585,
+      "items": [
+       "Waiting On Parts",
+       "Asset",
+       "VIN/Serial #",
+       "Progress",
+       "Service Advisor",
+       "Lead Technician",
+       "Clocked In",
+       "Lines",
+       "Total price",
+       "Created on",
+       "Invoiced Date",
+       "Days open"
+      ]
+     }
+    ],
+    "roleMenuCount": 1
+   }
+  },
+  {
+   "name": "L2-status-filter: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": "menu",
+      "x": 798.171875,
+      "y": 121,
+      "w": 200,
+      "h": 413,
+      "items": [
+       "Estimate",
+       "Approved",
+       "In progress",
+       "Review",
+       "Complete",
+       "Invoiced",
+       "Paid",
+       "Declined",
+       "Imported"
+      ]
+     }
+    ],
+    "roleMenuCount": 1
+   }
+  },
+  {
+   "name": "L3-status filter: picking an option shows on the chip",
+   "ok": true,
+   "detail": {
+    "optName": "Estimate",
+    "chip": "Status: Estimate keyboard_arrow_down cancel"
+   }
+  },
+  {
+   "name": "L4-list: tooltip on the copy-VIN icon shows text, placed on screen",
+   "ok": true,
+   "detail": [
+    {
+     "text": "Copy VIN/Serial #",
+     "x": 1001.75,
+     "y": 236.359375,
+     "w": 123.078125,
+     "h": 31.359375
+    }
+   ]
+  },
+  {
+   "name": "T1-techview-density: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": "menu",
+      "x": 1016,
+      "y": 116.25,
+      "w": 232,
+      "h": 150.453125,
+      "items": [
+       "Compact",
+       "Regular",
+       "Comfortable"
+      ]
+     }
+    ],
+    "roleMenuCount": 1
+   }
+  },
+  {
+   "name": "T2-techview density: each choice changes the row height (Compact 36 / Regular 48 / Comfortable 64)",
+   "ok": true,
+   "detail": {
+    "before": 48,
+    "res": {
+     "Compact": 36,
+     "Regular": 48,
+     "Comfortable": 64
+    }
+   }
+  },
+  {
+   "name": "T3-techview-columns: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": "dialog",
+      "x": 1081,
+      "y": 119,
+      "w": 207.546875,
+      "h": 585,
+      "items": [
+       "On Site",
+       "Waiting On Parts",
+       "Unit",
+       "Asset",
+       "VIN/Serial #",
+       "Progress",
+       "Service Advisor",
+       "Lead Technician",
+       "Clocked In",
+       "Lines",
+       "Assigned Techs",
+       "Created on"
+      ]
+     }
+    ],
+    "roleMenuCount": 0
+   }
+  },
+  {
+   "name": "T4-techview: technician avatar tooltip shows a name, placed on screen",
+   "ok": true,
+   "detail": [
+    {
+     "text": "Ayesha Khan",
+     "x": 1143.671875,
+     "y": 414.5,
+     "w": 96.296875,
+     "h": 31.359375
+    }
+   ]
+  },
+  {
+   "name": "B1-board-card-size: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": "menu",
+      "x": 1016,
+      "y": 116.25,
+      "w": 232,
+      "h": 113.59375,
+      "items": [
+       "Compact",
+       "Detailed"
+      ]
+     }
+    ],
+    "roleMenuCount": 1
+   }
+  },
+  {
+   "name": "B2-board card size: choices change the card height",
+   "ok": true,
+   "detail": {
+    "before": 162,
+    "cres": {
+     "Compact": 93,
+     "Detailed": 162
+    }
+   }
+  },
+  {
+   "name": "B3-board-fields: menu opens, on screen, with items",
+   "ok": true,
+   "detail": {
+    "menus": [
+     {
+      "role": "dialog",
+      "x": 1088,
+      "y": 119,
+      "w": 201.125,
+      "h": 585,
+      "items": [
+       "Lead technician",
+       "Customer",
+       "Asset",
+       "VIN/serial",
+       "Progress",
+       "Service advisor",
+       "Clocked in",
+       "Line count",
+       "Line technicians",
+       "Estimated hours",
+       "Total price",
+       "On-site"
+      ]
+     }
+    ],
+    "roleMenuCount": 0
+   }
+  },
+  {
+   "name": "B4-board: hovering a card shows its hover card at a real on-screen position (no NaN)",
+   "ok": false,
+   "detail": []
+  },
+  {
+   "name": "B5-board: columns scroll sideways",
+   "ok": true,
+   "detail": {
+    "found": true,
+    "cls": "sr-only",
+    "scrollWidth": 96,
+    "clientWidth": 1,
+    "before": 0,
+    "after": 95
+   }
+  }
+ ],
+ "console": [],
+ "prefBefore": {
+  "tab": "all",
+  "sortBy": "linesCount",
+  "columns": {
+   "vin": true,
+   "vehicle": true,
+   "daysOpen": true,
+   "progress": true,
+   "startDate": true,
+   "linesCount": true,
+   "technician": true,
+   "totalPrice": true,
+   "invoicedDate": true,
+   "serviceAdvisor": true,
+   "partRequestsCount": true,
+   "clockedInTechnicians": true,
+   "partReturnRequestsCount": true,
+   "unreceivedPartRequestsCount": true
+  },
+  "display": "board_view",
+  "filters": {
+   "lead_technician": []
+  },
+  "descending": true,
+  "collapsedGroups": [],
+  "technicianOrder": [
+   "d5b3c919-033a-4511-9ead-ff13d77083d3",
+   "8c24a505-d0ba-41b2-9f83-aace9282fe76",
+   "e6465a80-1e38-4f80-a19d-e45be544a7ca",
+   "3d2a9387-643f-463d-a1a5-6e10d061a7a4",
+   "fd13e79f-fab1-4071-9801-0bb833df685d",
+   "1800eb0c-f19f-4e3e-b590-c4d56b30d208",
+   "1cf9ffb4-555d-4c3c-917c-5bd80f55ffc0",
+   "85b4e46a-efdb-4ac6-9117-6df102430474",
+   "1e19e572-1c88-4d75-a8d6-551bb22a21fc",
+   "a1d7fb4a-8d44-4557-bb7e-cb7d2b0c6acb",
+   "5debec7d-6f2d-437a-8a26-4e28c1160bdf",
+   "c665eacd-e6f3-47ac-af27-09142c4bc0da",
+   "12fb7ab4-f856-4f21-a7b6-ecd3f7b648b0",
+   "9e79ef26-6d75-48ac-a687-8e852d532166",
+   "fca7830f-e275-452b-8eb8-98b04ae5881a",
+   "a6a6b327-89d0-4f56-8f24-d4b0bbea4dec",
+   "59862a55-a1d2-495b-bafe-34e6ee2df90c",
+   "1370698b-ac5f-4a20-9bfe-62399440e722"
+  ]
+ },
+ "cards": 88,
+ "prefAfter": {
+  "tab": "all",
+  "sortBy": "linesCount",
+  "columns": {
+   "vin": true,
+   "vehicle": true,
+   "daysOpen": true,
+   "progress": true,
+   "startDate": true,
+   "linesCount": true,
+   "technician": true,
+   "totalPrice": true,
+   "invoicedDate": true,
+   "serviceAdvisor": true,
+   "partRequestsCount": true,
+   "clockedInTechnicians": true,
+   "partReturnRequestsCount": true,
+   "unreceivedPartRequestsCount": true
+  },
+  "display": "board_view",
+  "filters": {
+   "lead_technician": []
+  },
+  "descending": true,
+  "collapsedGroups": [],
+  "technicianOrder": [
+   "d5b3c919-033a-4511-9ead-ff13d77083d3",
+   "8c24a505-d0ba-41b2-9f83-aace9282fe76",
+   "e6465a80-1e38-4f80-a19d-e45be544a7ca",
+   "3d2a9387-643f-463d-a1a5-6e10d061a7a4",
+   "fd13e79f-fab1-4071-9801-0bb833df685d",
+   "1800eb0c-f19f-4e3e-b590-c4d56b30d208",
+   "1cf9ffb4-555d-4c3c-917c-5bd80f55ffc0",
+   "85b4e46a-efdb-4ac6-9117-6df102430474",
+   "1e19e572-1c88-4d75-a8d6-551bb22a21fc",
+   "a1d7fb4a-8d44-4557-bb7e-cb7d2b0c6acb",
+   "5debec7d-6f2d-437a-8a26-4e28c1160bdf",
+   "c665eacd-e6f3-47ac-af27-09142c4bc0da",
+   "12fb7ab4-f856-4f21-a7b6-ecd3f7b648b0",
+   "9e79ef26-6d75-48ac-a687-8e852d532166",
+   "fca7830f-e275-452b-8eb8-98b04ae5881a",
+   "a6a6b327-89d0-4f56-8f24-d4b0bbea4dec",
+   "59862a55-a1d2-495b-bafe-34e6ee2df90c",
+   "1370698b-ac5f-4a20-9bfe-62399440e722"
+  ]
+ },
+ "prefRestored": true
+}

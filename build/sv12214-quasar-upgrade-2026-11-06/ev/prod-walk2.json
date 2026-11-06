@@ -1,0 +1,160 @@
+{
+ "build": "v26.45.2-864113d",
+ "checks": [
+  {
+   "name": "S1-schedule view options menu: opens on screen with content",
+   "ok": true,
+   "detail": [
+    {
+     "role": "menu",
+     "x": 1103,
+     "y": 96,
+     "w": 282,
+     "h": 317,
+     "text": "VIEW OPTIONS Business Hours Tech Hours Capacity Planning Events Show Saturday Show Sunday"
+    }
+   ]
+  },
+  {
+   "name": "S2-schedule filter & display menu: opens on screen with content",
+   "ok": true,
+   "detail": [
+    {
+     "role": "menu",
+     "x": 959,
+     "y": 96,
+     "w": 387,
+     "h": 334,
+     "text": "FILTER & DISPLAY Backup foreman duties (Jimmy only - Kirk not here) deparrtment3 Department1 Department 2 testing testing testing My Shifts VIN Number"
+    }
+   ]
+  },
+  {
+   "name": "S3-schedule switch to Month",
+   "ok": true,
+   "detail": {
+    "range": "November 2026"
+   }
+  },
+  {
+   "name": "S3-schedule switch to Week",
+   "ok": true,
+   "detail": {
+    "range": "Nov 2 – 8, 2026"
+   }
+  },
+  {
+   "name": "S3-schedule switch to Day",
+   "ok": true,
+   "detail": {
+    "range": "Fri, Nov 6"
+   }
+  },
+  {
+   "name": "S4-schedule: hovering a booking shows its details box at a real on-screen position",
+   "ok": true,
+   "detail": [
+    {
+     "role": "tooltip",
+     "x": 880,
+     "y": 383,
+     "w": 294,
+     "h": 337,
+     "text": "ZZAUTOTEST SV12048 PJ3 63010 ZZPJ3 Fri, Nov 6, 2026 · 7:00 AM – 7:00 PM ZT ZZROWCHECK Technicianov 4 lines · Est. 16h SHop Supplies Tax Test SHop Supplies Tax T"
+    }
+   ]
+  },
+  {
+   "name": "S5-mini calendar: clicking a day moves the schedule",
+   "ok": true,
+   "detail": {
+    "range": "Thu, Nov 5"
+   }
+  },
+  {
+   "name": "R1-timesheet report: date range menu opens with choices",
+   "ok": true,
+   "detail": [
+    {
+     "role": "menu",
+     "x": 1000,
+     "y": 119,
+     "w": 224,
+     "h": 384,
+     "text": "Today Yesterday This week Last week This month Last month This quarter Last quarter This year Last year Custom"
+    }
+   ]
+  },
+  {
+   "name": "R1b-custom range: clicking the From calendar icon opens a calendar with selectable days, on screen",
+   "ok": true,
+   "detail": {
+    "qd": [
+     {
+      "role": null,
+      "x": 1024,
+      "y": 99,
+      "w": 290,
+      "h": 425,
+      "text": "2026 Fri, Nov 6 chevron_left November chevron_right chevron_left 2026 chevron_right Sun Mon Tue Wed Thu Fri Sat 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 "
+     }
+    ],
+    "count": 6
+   }
+  },
+  {
+   "name": "R1c-picking a day fills the From date",
+   "ok": true,
+   "detail": {
+    "before": "11/06/2026",
+    "after": "11/03/2026",
+    "url": "/reports/punch-clock-activities"
+   }
+  },
+  {
+   "name": "R2-A/R aging: the as-of date opens a calendar with selectable days",
+   "ok": true,
+   "detail": {
+    "ids": [
+     "filter_chip_asOfDate"
+    ],
+    "days": 30
+   }
+  }
+ ],
+ "console": [],
+ "ids": {
+  "toggle": [
+   {
+    "role": null,
+    "x": 1399,
+    "y": 69,
+    "w": 50,
+    "h": 32,
+    "text": "Day"
+   },
+   {
+    "role": null,
+    "x": 1450,
+    "y": 69,
+    "w": 60,
+    "h": 32,
+    "text": "Week"
+   },
+   {
+    "role": null,
+    "x": 1513,
+    "y": 69,
+    "w": 64,
+    "h": 32,
+    "text": "Month"
+   }
+  ],
+  "shift": [
+   "schedule_shift_block"
+  ],
+  "aging": [
+   "filter_chip_asOfDate"
+  ]
+ }
+}
