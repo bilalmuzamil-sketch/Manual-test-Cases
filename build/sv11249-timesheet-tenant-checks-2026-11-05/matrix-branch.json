@@ -1,0 +1,218 @@
+[
+ {
+  "id": "C0",
+  "what": "valid entry on own WO + line",
+  "url": "/api/technician-tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"id\":\"8a4e2820-d71b-42ad-98a9-efb31c3e3b49\"}}",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "C1",
+  "what": "other company work order (with own line)",
+  "url": "/api/technician-tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Work Order' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "C2",
+  "what": "other company line (with own WO)",
+  "url": "/api/technician-tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "C3",
+  "what": "other company work order + its line",
+  "url": "/api/technician-tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Work Order' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "C4",
+  "what": "other company technician",
+  "url": "/api/technician-tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Staff' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "C5",
+  "what": "other company department (no WO)",
+  "url": "/api/technician-tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Department' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "C6",
+  "what": "line that is not on the given WO (same location)",
+  "url": "/api/technician-tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "C7",
+  "what": "own department (no WO)",
+  "url": "/api/technician-tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"id\":\"099fe7d9-9f46-4518-8d81-a52b5e6a1f4e\"}}",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "C8",
+  "what": "own WO in another location (by design allowed)",
+  "url": "/api/technician-tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"id\":\"9bf0be2f-7e0a-444c-bf04-6c851e1626db\"}}",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "W0",
+  "what": "valid labor row",
+  "url": "/api/work-orders/tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"task\":{\"id\":\"adf98df8-9061-4b59-9947-4c8c7d27c2d0\",\"scheduled_start\":null,\"scheduled_end\":null,\"note\":null,\"work_order_id\":\"d171c90e-141f-40bc-b339-af",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "W1",
+  "what": "other company technician",
+  "url": "/api/work-orders/tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Staff' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "W2",
+  "what": "other company WO + line",
+  "url": "/api/work-orders/tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Work Order' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "W3",
+  "what": "other company line on own WO",
+  "url": "/api/work-orders/tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "W4",
+  "what": "line not on the given WO",
+  "url": "/api/work-orders/tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "W5",
+  "what": "own WO in another location",
+  "url": "/api/work-orders/tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Work Order' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M0",
+  "what": "move own entry to own WO+line",
+  "url": "/api/technician-tasks/move",
+  "status": 201,
+  "body": "{\"data\":{\"technician_task_id\":\"73e22a9e-8e4b-4fab-a1f2-9a7c9c0c5b1c\"}}",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M1",
+  "what": "move to other company WO + line",
+  "url": "/api/technician-tasks/move",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Department' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M2",
+  "what": "move to own WO + other company line",
+  "url": "/api/technician-tasks/move",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M3",
+  "what": "move to own WO + a line from another WO",
+  "url": "/api/technician-tasks/move",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M4",
+  "what": "move with WO but no line",
+  "url": "/api/technician-tasks/move",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M5",
+  "what": "move to other company department",
+  "url": "/api/technician-tasks/move",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Department' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M6",
+  "what": "move own entry to own department",
+  "url": "/api/technician-tasks/move",
+  "status": 201,
+  "body": "{\"data\":{\"technician_task_id\":\"87b48409-8240-4deb-8ad3-2439f76514e0\"}}",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M7",
+  "what": "move with WO + made-up line id",
+  "url": "/api/technician-tasks/move",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M8",
+  "what": "move an entry from another location to a department",
+  "url": "/api/technician-tasks/move",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Technician Task Record' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ }
+]

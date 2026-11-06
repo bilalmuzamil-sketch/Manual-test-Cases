@@ -1,0 +1,17 @@
+// usage: node setupA.mjs -> org A: creates WO A1 (2 lines) and A2 (1 line) in Heavy Duty and WO L1 (1 line) in Lethbridge, using an existing customer+vehicle; writes ids to ../ids.json
+import {sess,post} from './common.mjs'; import fs from 'fs'; const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(1500);
+const HD=process.env.HD||'b3c8c820-f815-4cf1-8938-10956c5ee71a', LE=process.env.LE||'f8a8b802-7780-4b16-bf10-343caeb616b2', TZ1=process.env.TZ1||'America/Edmonton', TZ2=process.env.TZ2||'America/Edmonton';
+const cu=await post(s,'/api/customers/create',{name:'ZZAUTOTEST SV11249 A Customer'}); const C=cu.json?.data?.company_id; const ct=await post(s,'/api/contacts/create',{company_id:C,first_name:'ZZA',last_name:'Contact',email:'zza11249@example.com'}); const CT=ct.json?.data?.contact_id;
+const vv=await post(s,'/api/vehicles/create',{company_id:C,customer_id:CT,unit:'A-UNIT-1'}); const V=vv.json?.data?.id; console.log('cust',cu.status,ct.status,vv.status,C,V);
+const lt=await s.api('/api/labour-types'); const LT=(lt.json?.data?.collection||[]); console.log('labour types',LT.slice(0,3).map(x=>x.id+':'+x.name+':'+x.workplaceId).join(' | '));
+const mkWO=async(wp)=>{ const r=await post(s,'/api/work-orders/create',{company_id:C,vehicle_id:V,workplace_id:wp,start_date:'2026-11-06',is_vehicle_here:true}); console.log('wo',r.status,JSON.stringify(r.json).slice(0,150)); return r.json?.data?.work_order_id; };
+const mkLine=async(wo,lt,n)=>{ const r=await post(s,'/api/work-orders/lines/create',{work_order_id:wo,line_name:'ZZAUTOTEST SV11249 '+n,description:'ZZAUTOTEST SV11249 '+n,status:'authorized',labour_type_id:lt,time_estimate:1,is_diagnosis:false,is_warranty:false,is_authorized_to_repair:true,is_parts_required_are_authorized:true}); console.log('line',n,r.status,JSON.stringify(r.json).slice(0,150)); return r.json?.data?.line_id; };
+const ltFor=wp=>(LT.find(x=>x.workplaceId===wp)||LT[0]).id;
+const ids={}; ids.A1=await mkWO(HD); ids.A1L1=await mkLine(ids.A1,ltFor(HD),'A1 line 1'); ids.A1L2=await mkLine(ids.A1,ltFor(HD),'A1 line 2');
+ids.A2=await mkWO(HD); ids.A2L1=await mkLine(ids.A2,ltFor(HD),'A2 line 1');
+await post(s,'/api/iam/change-location',{workplace_id:LE,workplace_timezone:TZ2}); const lt2=await s.api('/api/labour-types'); const LT2=lt2.json?.data?.collection||[];
+ids.L1=await mkWO(LE); ids.L1L1=await mkLine(ids.L1,(LT2[0]||LT[0]).id,'Lethbridge line 1');
+await post(s,'/api/iam/change-location',{workplace_id:HD,workplace_timezone:TZ1});
+if(process.env.OUT){ const st=await s.api('/api/staff?limit=400'); const L=st.json?.data?.collection||[]; const t=L.find(x=>x.role_label==='Technician'&&x.workplace_id===HD)||L.find(x=>x.role_label==='Technician'); const t2=L.find(x=>x.role_label==='Technician'&&x.workplace_id===LE)||t; const dp=await s.api('/api/departments'); Object.assign(ids,{A_TECH:t.staff_id,L_TECH:t2.staff_id,A_DEPT:(dp.json?.data?.collection||[])[0]?.id}); fs.writeFileSync(process.env.OUT,JSON.stringify(ids,null,1)); console.log(JSON.stringify(ids)); await s.close(); process.exit(0);}
+Object.assign(ids,{B_WO:'39116244-00df-4a67-9857-ad7e25117f6f',B_LINE:'abf0e85b-d100-49a2-8516-f3a2ce1b2a6f',B_STAFF:'52c3f180-b5bb-447b-a807-f96fbca51c96',B_DEPT:'22bc5e41-d473-43c8-9c4e-17991dfc0e72',A_DEPT:'0653be2e-2816-4428-8dd2-db3526cccebb'});
+fs.writeFileSync('../ids.json',JSON.stringify(ids,null,1)); console.log(JSON.stringify(ids)); await s.close(); process.exit(0);

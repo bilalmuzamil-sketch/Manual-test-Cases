@@ -1,0 +1,119 @@
+[
+ {
+  "id": "C0",
+  "what": "valid entry on own WO + line",
+  "url": "/api/technician-tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"id\":\"18c13033-0c81-451d-8ec5-fe258b823e35\"}}",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "C6",
+  "what": "line that is not on the given WO (same location)",
+  "url": "/api/technician-tasks/create",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "C7",
+  "what": "own department (no WO)",
+  "url": "/api/technician-tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"id\":\"68e6f4a4-0885-4d4a-9301-fbd42751bfa2\"}}",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "C8",
+  "what": "own WO in another location (by design allowed)",
+  "url": "/api/technician-tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"id\":\"c47d53d2-5d27-4fd9-836b-c8bc38b32572\"}}",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "W0",
+  "what": "valid labor row",
+  "url": "/api/work-orders/tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"task\":{\"id\":\"f5f46f8d-cd3e-4548-9879-6de745fb02d4\",\"scheduled_start\":null,\"scheduled_end\":null,\"note\":null,\"work_order_id\":\"0f1407d2-d401-43c0-b483-d0",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "W4",
+  "what": "line not on the given WO",
+  "url": "/api/work-orders/tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"task\":{\"id\":\"3821cf94-a9d1-4e74-897a-0966f269d568\",\"scheduled_start\":null,\"scheduled_end\":null,\"note\":null,\"work_order_id\":\"0f1407d2-d401-43c0-b483-d0",
+  "expect": "4xx",
+  "verdict": "FAIL"
+ },
+ {
+  "id": "W5",
+  "what": "own WO in another location",
+  "url": "/api/work-orders/tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"task\":{\"id\":\"05a2b225-cc90-41d3-91b1-8bc364fb3088\",\"scheduled_start\":null,\"scheduled_end\":null,\"note\":null,\"work_order_id\":\"4c580436-acd1-470d-b206-09",
+  "expect": "4xx",
+  "verdict": "FAIL"
+ },
+ {
+  "id": "M0",
+  "what": "move own entry to own WO+line",
+  "url": "/api/technician-tasks/move",
+  "status": 201,
+  "body": "{\"data\":{\"technician_task_id\":\"afd48179-6958-4348-a783-b140c98c4d53\"}}",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M3",
+  "what": "move to own WO + a line from another WO",
+  "url": "/api/technician-tasks/move",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M4",
+  "what": "move with WO but no line",
+  "url": "/api/technician-tasks/move",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M6",
+  "what": "move own entry to own department",
+  "url": "/api/technician-tasks/move",
+  "status": 201,
+  "body": "{\"data\":{\"technician_task_id\":\"f849847e-9606-4a21-97ed-08ac09aa19a7\"}}",
+  "expect": "2xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M7",
+  "what": "move with WO + made-up line id",
+  "url": "/api/technician-tasks/move",
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"'Line' was not found.\"}]}",
+  "expect": "4xx",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M8",
+  "what": "move an entry from another location to a department",
+  "url": "/api/technician-tasks/move",
+  "status": 201,
+  "body": "{\"data\":{\"technician_task_id\":\"218428b8-6196-48bc-8d43-8d9d08440dfc\"}}",
+  "expect": "4xx",
+  "verdict": "FAIL"
+ }
+]

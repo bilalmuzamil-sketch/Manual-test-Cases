@@ -1,0 +1,29 @@
+[
+ {
+  "id": "C9",
+  "what": "technician based in the other location, own WO+line",
+  "url": "/api/technician-tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"id\":\"e09fee45-fbb9-4eda-bb69-c6c4d23f67f7\"}}",
+  "expect": "info",
+  "verdict": "PASS"
+ },
+ {
+  "id": "W6",
+  "what": "labor row for a technician based in the other location, own WO",
+  "url": "/api/work-orders/tasks/create",
+  "status": 201,
+  "body": "{\"data\":{\"task\":{\"id\":\"e8fe2034-d539-4321-8d8d-f06cf1f98e06\",\"scheduled_start\":null,\"scheduled_end\":null,\"note\":null,\"work_order_id\":\"968a7138-644f-4dc8-a22d-f3",
+  "expect": "info",
+  "verdict": "PASS"
+ },
+ {
+  "id": "M9B",
+  "what": "move own entry to own WO+line in the other location (destination = organization boundary, by design)",
+  "url": "/api/technician-tasks/move",
+  "status": 201,
+  "body": "{\"data\":{\"technician_task_id\":\"7f741eb6-d123-4ae8-9d80-669aa1aa1571\"}}",
+  "expect": "2xx",
+  "verdict": "PASS"
+ }
+]
