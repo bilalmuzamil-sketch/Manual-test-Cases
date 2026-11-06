@@ -1559,3 +1559,12 @@ what is still owed.
 | SV-12041 (given ticket) | production "before" captured (old "bin locations" toast) | fresh `.qa.shopview.com` cookies (quick-login 401 sso_required) | 2026-11-06 |
 | SV-12143 (Board 2, Dusan) | read; no dev handoff comment, no Powertools plan, QA assignee empty | same QA cookies | 2026-11-06 |
 | SV-9570 (Board 2, Dusan, handoff 80327) | production before in progress (230-field template "ZZAUTOTEST SV9570 230 fields 6062" on S2-1921) | same QA cookies for the branch | 2026-11-06 |
+
+
+### Added 2026-11-06 (afternoon)
+| Item | Owed by | Blocks | Since |
+|---|---|---|---|
+| SV-9570: issue 4 (inspection shows 448 when Settings shows 450 - instructions not counted) is "by design" per Dusan (80241/80327, "Your call" to Milos, unanswered). PASSED or PARTIALLY PASSED? Issues 1-2 fixed (11 checks passed); issue 3 out of scope. Comment held. | QA lead | SV-9570 verdict post + status | 6 Nov |
+| SV-12288 (customer: times one hour ahead after DST) has no repro steps; we reproduced it on branch + staging (Timesheet Activities +1 h in America/Edmonton). Add our steps there? Production not verifiable (no DST location; changing one was blocked). | QA lead | SV-12288 repro | 6 Nov |
+| SV-12041: typed line / core row at 0 show only "Quantity cannot be lower than 0.01" (same as production) - counts as the fix? | QA lead | SV-12041 verdict | 6 Nov |
+| SV-12203 handed to Mudassir (QA lead 6 Nov). SV-12268/12269: Chris answered (80334/80335). | - | cleared | 6 Nov |

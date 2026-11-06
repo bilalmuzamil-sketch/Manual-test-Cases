@@ -1,0 +1,14 @@
+import {sess,post,arr} from './common.mjs'; import fs from 'fs';
+const ENV=process.env.ENV||'branch'; const S=JSON.parse(fs.readFileSync(`/tmp/sv12193/seed-${ENV}.json`,'utf8')); const W=S.W; const st=n=>S.staff.find(x=>x.name===n).id;
+const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(3000); const P=(u,b)=>post(s,u,b);
+const at=L=>P('/api/iam/change-location',{workplace_id:L.id,workplace_timezone:L.timezone}); await at(S.H);
+const f=(ms)=>{const p=new Intl.DateTimeFormat('en-GB',{timeZone:S.H.timezone,day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date(Date.now()-ms)).reduce((a,q)=>(a[q.type]=q.value,a),{}); return `${p.day}/${p.month}/${p.year} ${p.hour}:${p.minute}`;};
+const row=async w=>{ const l=arr((await s.api('/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=20&search='+encodeURIComponent(w.number)+'&showMyWorkOrders=0')).json?.data).find(x=>x.id===w.id); const names=(l?.clockedInTechnicians||[]).map(n=>n.firstName+' '+n.lastName); return {names,count:l?.clockedInTechniciansCount,match:names.length===l?.clockedInTechniciansCount}; };
+const out=[]; const log=async(k,step)=>{ const r=await row(W[k]); out.push({k,wo:W[k].number,step,...r}); console.log(W[k].number,step.padEnd(42),JSON.stringify(r.names),'count',r.count,r.match?'MATCH':'MISMATCH'); };
+const create=async(k,name,startMin,endMin)=>{ const b={start_date:f(startMin*60e3),end_date:endMin==null?null:f(endMin*60e3),work_order_id:W[k].id,tech_assigned_id:st(name),line_id:W[k].line}; const r=await P('/api/technician-tasks/create',b); if(r.status>=300) console.log(' create',r.status,JSON.stringify(r.json).slice(0,200)); return {id:r.json?.data?.id,b}; };
+const A=process.env.A||'W5', B=process.env.B||'W6', who=process.env.WHO||'John Ortiz';
+const e=await create(A,who,55); console.log(' create id',e.id); await log(A,'open entry added ('+who+')'); await log(B,'before the move');
+let r=await P('/api/technician-tasks/move',{id:e.id,line_id:W[B].line,work_order_id:W[B].id}); console.log(' move',r.status,JSON.stringify(r.json).slice(0,160));
+await log(A,'after the entry is moved away'); await log(B,'after the entry is moved here');
+const rec=arr((await s.api(`/api/technician-tasks/list?pagination[rowsPerPage]=100&pagination[page]=1&filters[0][field]=work_order&filters[0][value]=${W[B].id}&search=`)).json?.data).filter(x=>x.id===e.id).map(x=>({wo:x.work_order_id===W[B].id?'B':'?',open:!x.end_date}));
+console.log(' record now on',JSON.stringify(rec)); fs.writeFileSync('../ev/movecheck-'+ENV+'.json',JSON.stringify({out,move:r.status,entry:e.id},null,1)); await s.close(); process.exit(0);

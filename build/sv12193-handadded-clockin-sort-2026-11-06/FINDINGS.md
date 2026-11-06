@@ -34,3 +34,16 @@ Same open entry (Michael Stephenson, S12193-17581) reads **06:30 AM** on Reports
 - Gate: build marker re-read 14:55 UTC unchanged; ticket re-read (Slavcho 80342 picked up, split tested before posting); text human, no AI fingerprint.
 ## Test data (left in place): S12193-17580..17594 on sv12193; S2-1921 open entry on production (ZZAUTOTEST N1 Tim 65732).
 ## Learning check: the mid-pass handoff (posted after I started) was only caught by the pre-post re-read — Rule 59 working as intended; added to LESSONS-INDEX. Recipes: Timesheet Activities "Clock out" needs the End typed; open entries can't be edited; split via button_bulk_more twice — already in playbook.
+
+## Follow-ups (QA lead 6 Nov: "YES - but report separately")
+- **SV-12292 filed** (Bug, Medium, Product Area Work Orders, label QA_Validation_Required, Relates SV-12193): a running
+  entry moved via technician-tasks/move leaves the Clocked In sort count on the old WO. Re-verified live 2/2 on sv12193
+  (S12193-17584 -> S12193-17585, Carol Ramos); console snippet (ev/jira-move/console-snippet.js) run in a real browser
+  session first (201). Branch left in the moved state for the developer. Duplicate search: none.
+- **Time difference = already reported as SV-12288** (customer STL Truck Centers, opened 6 Nov 12:40 CST, no repro steps).
+  Measured: Timesheet Activities shows times in a daylight-saving zone one hour ahead after 1 Nov; the WO Timesheets page
+  is right. Branch (Heavy Duty = America/Edmonton) 5/5 open + 3/3 finished entries +1 h; staging with session at
+  Lethbridge (America/Edmonton) 3/3 +1 h (S2-38354 started 16:51 UTC -> shown 10:51 AM, correct 09:51 AM). Staging Heavy
+  Duty is now Asia/Karachi (no DST) -> matches. Production: every location is in a zone without DST -> 3/3 match; setting a
+  production location to America/Edmonton was blocked by the permission check, so production is NOT verified. Not filed;
+  asked the QA lead whether to add these steps to SV-12288.
