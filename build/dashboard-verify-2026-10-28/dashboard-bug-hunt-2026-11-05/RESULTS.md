@@ -23,6 +23,45 @@ Set-up: `tools/dvi_seed.py`, logged in `seed-log.jsonl`. Customer "ZZAUTOTEST Hu
 | 2.8 This Week on a Friday in Fiji | **PASS.** The request is `from=2026-11-01&to=2026-11-06` (Sunday to today, Fiji date). | same JSON |
 | 5.3 Empty states (DVI Test has no invoices) | **PASS.** Tiles with fewer than 2 points show the dashed placeholder (S4-R12): Revenue, Billing, Tech Efficiency, Sales by Customer, At Risk. Billing and Tech Efficiency headlines read "-" (S3-E3). The expanded Billing Efficiency chart reads **"No data for selected date range"** (S9-R11). Technician Utilization, which has 2 points with values, draws its line. | `t0-before-midnight-default.png`, `-be-expanded.png` |
 
+### Follow-up run, 6 Nov 2026 (coordinator's 4 asks after SV-12276 was corrected)
+**Rule 99 from here on:** every evidence file also carries `rule99.offsets`, which records:
+- the browser's offset (`-getTimezoneOffset()` today);
+- the system tz-database offset (Python zoneinfo);
+- `offsets_agree`.
+
+At Heavy Duty they **differ**: browser −420 min (UTC−7), system −360 min (UTC−6). Every Heavy Duty result below is 5–6 hours from local midnight, so none sits in the unsafe hour.
+
+#### Ask 1: money edge cases not covered before (Heavy Duty, Today = Nov 6, 12:20–12:28 UTC; `tools/money.py`, `part_sale_ui*.mjs`)
+| Step | What was done | Revenue (Today) | Supporting line | Billing / Tech Eff. | Sales by Customer | Verdict |
+|---|---|---|---|---|---|---|
+| before | (s4 from earlier: invoice $182.27 − credit memo $10) | $172.27 | 1 Invoice | 200 % / 200 % | 1 | baseline |
+| s5 **part-sale-only invoice** | Part sale **P11839-248** created (`POST /api/part-sales`). On screen: stocked part ZZAUTOTEST-PV12202-11050521 added, qty 1, $30.00 (Add Part → Save & Close), then Authorize, then Pick. Status set to Complete, then invoiced (201). An invoice before completion was refused with **400 "Work order is not complete."**, which is normal. | **$202.27** (+$30.00) | Parts 10% · Labor 81% · Other 9% | unchanged (no labour) | 1 (same customer) | **PASS.** Revenue = subtotals − credit memos (S3-R2). Parts net = $30 − $10 = $20. 20/202.27 = 9.9 % → 10; 164.95/202.27 = 81.5 %; 17.32/202.27 = 8.6 %. Rounded to add to 100 → 10/81/9 (S4-R3). No labour hours were added. |
+| s6 **deposit** $50 | `POST /api/deposits` on a new estimate work order (201, DEP-4703, cash) | $202.27 | unchanged | unchanged | 1 | **PASS.** A deposit is not an invoice subtotal or a credit memo, so S3-R2 leaves Revenue unchanged. |
+| s7 **refund** of the $10 credit memo CM-4192 | `POST /api/credit-memos/{id}/cash-out` (200, status "closed_via_refund") | $202.27 | unchanged | unchanged | 1 | **PASS by the formula.** The credit memo still counts as a credit memo once refunded, so Revenue stays net of it (S3-R2: "minus credit memos"). The PRD says nothing about refunds as such. |
+| tile vs report | Revenue tile on custom Nov 6 → Sales report (tile link) | tile **$202.27** | report Totals **$202.27**; rows P11839-248, CM11839-4192, S11839-17601, all Nov 06 2026 | | | **PASS.** Tile = report. |
+
+Evidence: `evidence/area8-money/s5…s7*.json/png`, `partsale-setup*.json`, `ps-*.png`, `hd-today-drill.json`, `hd-today-drill-*.png`. Set-up calls are in `seed-log.jsonl`.
+
+#### Ask 4: which reports build their day range in the BROWSER (12:13 UTC, Heavy Duty; `tools/report_ranges.mjs`, `evidence/part4-report-ranges/report-ranges.json`)
+Each tile's report link was opened on a preset (Last Quarter) and on a Custom single day, and every reporting request was logged.
+
+| Report (tile) | Preset (e.g. Last Quarter) | Custom range |
+|---|---|---|
+| Sales (Revenue) | server preset: `/api/reporting/sales/last_quarter?range=last_quarter` | **browser instants**: `start_date=…T06:00:00.000Z&end_date=…T05:59:59.999Z` |
+| Service Advisor Analysis (Billing Efficiency) | server preset | **browser instants** |
+| Technician Efficiency | server preset | **browser instants** |
+| **Technician Utilization** | **browser instants even on presets**: `start_date=2026-07-01T06:00:00.000Z&end_date=2026-10-01T05:59:59.999Z` | **browser instants** |
+| **Sales By Customer** | **browser instants even on presets** | **browser instants** (Nov 4 → `2026-11-04T07:00:00.000Z`, i.e. UTC−7) |
+
+**So SV-12276 reaches beyond the Sales report.**
+- Any **Custom** range on all five tile reports takes its day edges from the browser's zone rules.
+- **Technician Utilization** and **Sales By Customer** do so on **every** range, presets included.
+- The Dashboard tiles send plain dates, and the server applies its own rules.
+- For Edmonton dates after 1 Nov 2026 on this test machine, the browser starts each day at 07:00Z and the server at 06:00Z. Any record between 00:00 and 01:00 local can therefore sit in the tile and not in the report:
+  - on a Custom range, for all five reports;
+  - on This Month / This Week etc., for Technician Utilization and Sales By Customer.
+- **Not reproduced on screen with a record in that hour.** This is request evidence only.
+
 ### Area 2: day boundary. Part 2, after Fiji midnight (DVI Test, Pacific/Fiji; Fiji date **Sat 7 Nov**, UTC date **Fri 6 Nov**; 12:03–12:06 UTC)
 Set-up, at 12:03:26 UTC (00:03 on 7 Nov, Fiji):
 - invoice for **S11839-17604**, whose labour was clocked 22:00–22:30 on 6 Nov, Fiji;

@@ -47,11 +47,26 @@ elif step == 'reverse':
     call('POST', '/api/invoices/reverse-invoice', {'id': R['A']['invoices'][-1]}); save()
 elif step == 'credit':
     c, b = call('POST', '/api/credit-memos', {'customer_account_id': R['customer_account_id'], 'amount': 10}); R['credit'] = b; save()
+elif step == 'partsale':   # POST /api/part-sales {company_id} -> a part sale (a work order underneath); parts are added ON SCREEN (part_sale_ui.mjs)
+    c, b = call('POST', '/api/part-sales', {'company_id': R['company_id']}); d = (b or {}).get('data'); R['PS'] = {'wo': (d[0] if isinstance(d, list) else d or {}).get('id')}
+    c, v = curl('GET', f'/api/work-orders/view/{R["PS"]["wo"]}', extra_headers=H); R['PS']['display'] = (v.get('data') or {}).get('work_order', {}).get('display_number'); save()
+elif step == 'partsale_complete':
+    c, l = curl('GET', f'/api/work-orders/lines/{R["PS"]["wo"]}', extra_headers=H); ln = l['data']['collection'][0]
+    print('part_requests', json.dumps([{k: p.get(k) for k in ('status', 'quantity', 'sell_price', 'price', 'part_number')} for p in ln.get('part_requests', [])])[:400])
+    call('POST', '/api/work-orders/lines/change-status', {'line_id': ln['line_id'], 'status': 'complete', 'workOrderId': R['PS']['wo']})
+    call('POST', '/api/work-orders/change-status', {'id': R['PS']['wo'], 'status': 'complete'})
+elif step == 'partsale_invoice':
+    c, l = curl('GET', f'/api/work-orders/lines/{R["PS"]["wo"]}', extra_headers=H); R['PS']['lines_dump'] = json.dumps(l)[:1500]
+    c, b = call('POST', '/api/invoices/create', {'work_order_id': R['PS']['wo']}); R['PS']['invoice_resp'] = {'http': c, 'body': b}; R['PS']['invoice'] = did(b); save()
+elif step == 'deposit':     # POST /api/deposits on a NEW estimate work order (key E), amount $50, cash, today's location date
+    new_wo('E'); c, b = call('POST', '/api/deposits', {'workOrderId': R['E']['wo'], 'amount': 50, 'paymentMethod': 'cash', 'depositDate': now.strftime('%Y-%m-%d'), 'memo': 'ZZAUTOTEST hunt deposit'}); R['E']['deposit_resp'] = {'http': c, 'body': b}; save()
+elif step == 'refund':      # refund (cash-out) the $10 credit memo CM-4192
+    cm = ((R.get('credit') or {}).get('data') or {}).get('creditMemoId'); c, b = call('POST', f'/api/credit-memos/{cm}/cash-out', {'amount': 10, 'paymentMethod': 'cash', 'memo': 'ZZAUTOTEST hunt refund'}); R['refund_resp'] = {'http': c, 'body': b}; save()
 elif step == 'zero':   # a work order whose only line is declined, then invoiced -> $0.00 invoice (if the server allows it)
     new_wo('Z'); call('POST', '/api/work-orders/lines/change-status', {'line_id': R['Z']['lines'][0], 'status': 'authorization_declined', 'workOrderId': R['Z']['wo']})
     call('POST', '/api/work-orders/change-status', {'id': R['Z']['wo'], 'status': 'complete'})
     c, b = call('POST', '/api/invoices/create', {'work_order_id': R['Z']['wo']}); R['Z']['invoice'] = did(b); save()
-for k in ('A', 'Z'):
+for k in [x for x in R if isinstance(R.get(x), dict) and R[x].get('wo')]:
     if k in R:
         c, v = curl('GET', f'/api/work-orders/view/{R[k]["wo"]}', extra_headers=H); w = v['data']['work_order']; print(k, R[k].get('display'), w.get('status'), w.get('invoice_number') or w.get('invoice_id'))
 print('HUNT8', json.dumps({k: v for k, v in R.items() if k not in ('credit',)})[:500])
