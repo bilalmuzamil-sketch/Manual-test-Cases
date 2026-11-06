@@ -1516,7 +1516,7 @@ what is still owed.
 | Item | Owes | Blocks | Since |
 |---|---|---|---|
 | SV-11249: is a technician from ANOTHER LOCATION allowed on a work order? Both create endpoints accept Michelle Ingram (Lethbridge-only) on a Heavy Duty WO (201). Ticket "Fix" says staff is checked by organization only; done-when bullet 1 lists "technician … from another … location". | QA lead | SV-11249 verdict (otherwise 27/27 checks pass); comment drafted, not posted | 2026-11-06 |
-| SV-12167 is AccountingHub payment-method sync (no "accounting" label). Test it or skip per the Accounting instruction? | QA lead | SV-12167 | 2026-11-06 |
+| ~~SV-12167 test or skip?~~ CLEARED 2026-11-06: QA lead "Skip this ticket." | — | SV-12167 | 2026-11-06 |
 | SV-12048: Dipesh (comment 80290) asks to re-pass with J3 (Undo after "Entire series" brings back only the first day; production does the same) treated as outside this ticket and check H step 1 skipped (no screen to remove the shift technician from one line). This is a developer ruling on his own test plan (Rule 109c) - may I re-pass on that basis? And should J3 get its own ticket, since it is a real bug on production too? | QA lead | SV-12048 verdict | 2026-11-06 |
 | API-only (Rule 94, not filed): a location created through the API without a colour makes work order create return 500. File or not? | QA lead | nothing | 2026-11-06 |
 | Board-2 Testing QA bugs with another QA assignee: SV-12185, SV-12187 (Mudassir). Test them anyway? (SV-11822 cleared: QA lead said test it, 2026-11-06) | QA lead | those tickets | 2026-11-06 |
@@ -1524,3 +1524,10 @@ what is still owed.
 
 - 2026-11-06: SV-12003 status question cleared (Parth redeployed; retested, PARTIALLY PASSED again 80293/80294, moved to Rejected from Testing).
 - 2026-11-06: SV-11822 test-or-not cleared (QA lead: test it) - PASSED 80292, QA Complete.
+
+## 2026-11-06, ~09:00 UTC. **Waiting on Chris Ward (two new tickets filed today, both tagging him).**
+| What | Who owes it | What it blocks | Since |
+|---|---|---|---|
+| SV-12268 (Vendor New Payment "Amount to credit" not saved): fix or Obsolete? (comment 80299) | Chris Ward | Whether vendor overpayment credit is in scope | 2026-11-06 |
+| SV-12269 (API-only: location created without a colour breaks work orders + Locations list org-wide; Open API release): fix or Obsolete? (comment 80301). sv11249 left broken on purpose for the reader. | Chris Ward | Open API safety of workplace create | 2026-11-06 |
+| SV-12187: passed by its QA assignee Mudassir (80302) while I tested; my results agree, no second comment posted. Nothing needed unless you want my evidence posted. | — | — | 2026-11-06 |
