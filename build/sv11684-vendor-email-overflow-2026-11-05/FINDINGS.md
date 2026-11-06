@@ -28,3 +28,8 @@ Copy gives the full address; hover tooltip shows it on desktop. Customer 566fa3d
 Expected (ticket how-to-check): "at 1440px and at a narrow width. The email stays inside the card and is fully readable." → desktop still fails → PARTIALLY PASSED.
 Exhibits ev/r2-1-phone-before-after.png, ev/r2-2-desktop-still-cut.png (scripts/exhibit2.py).
 Posted 80324 (WHAT PASSED, 5 rows, picture 1) + 80325 (PARTIALLY PASSED, @Dusan, picture 2). Pre-post gate: build marker 7516f9c, ticket TESTING QA with last comment Dusan 80310, all cells observed. Moved to REJECTED FROM TESTING (transition 15); QA Assignee already Bilal. Learning check: nothing new.
+
+## 6 Nov 2026 (afternoon) - QA PASSED on Chris's decision
+QA lead ruling: the ticket stands as QA passed after Dusan's comment 80363 ("As discussed with Chris Ward we are good to go with '…' and a tooltip on desktop").
+Re-checked live on sv11684 v26.45.1-7516f9c at 1440 wide: email ends in "…", hovering shows the full 89-character address in a tooltip, copy gives the full address (vhover.mjs, ev/r3-desktop-1440-*.png).
+Posted PASSED comment 80383 (states it is marked QA Complete after the decision in 80363, with the link), added label QAcomplete, moved to QA Complete (transition 10), priority set to Medium. QA Assignee already Bilal.
