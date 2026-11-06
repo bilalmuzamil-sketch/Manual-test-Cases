@@ -6521,3 +6521,8 @@ Hand-added open entry: Reports > Timesheet Activities (/reports/punch-clock-acti
 ### Tech story completion wizard + Tech story gate window (proven 2026-11-06, SV-12003)
 - **Completion wizard:** line `Complete` button `button_action_complete_line_<lineId>` → "Tech stories" step with `input_tech_story_<lineId>` (only when org setting `requireTechStories` is true and the line has no story). Clicking out of the box SAVES the story to the line.
 - **Tech story gate window:** work order in **Review** (`ready_for_review`) → `button_mark_reviewed` → if `requireTechStories` and any non-declined line has no story, the "Tech story" window opens (`section_tech_story_gate`, `input_tech_story`, `button_tech_story_next`, "Line 1 of N"). Find such a WO: `GET /api/work-orders?pagination[page]=1&pagination[rowsPerPage]=200&pagination[sortBy]=status&pagination[descending]=true&search=&showMyWorkOrders=0` then `GET /api/work-orders/lines/{id}` and look for empty `tech_story`.
+
+### QuickBooks tickets: where to test (proven 2026-11-06, SV-12203)
+- The ticket's **QA Branch field (`customfield_10318`)** names the front end. QuickBooks tickets use **qb / qb1 / qb2** (`https://qb.qa.shopview.com` etc.), whose front end is re-pointed at the ticket's back end (`sv####api`); the ticket's own `sv####.qa.shopview.com` has no front end. Check: grep the qb front-end JS for `sv####api`.
+- Connect QuickBooks from that front end: location → QuickBooks settings → Connect → pick **QA US** (US location) or **QA CA** (Canadian). qb1 = QA 1 US/CA, qb2 = QA 2 US/CA. Never check QuickBooks data in another env's company.
+- QuickBooks sandbox login: https://sandbox.qbo.intuit.com/ — credentials in 1Password (QA lead supplies; keep in /tmp only). Source: Confluence 924123137 v3.

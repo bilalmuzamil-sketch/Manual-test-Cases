@@ -9,3 +9,10 @@ Nothing posted on the ticket.
 ## 6 Nov 2026 ~12:50 UTC — QA lead: test it. Asked Dipesh what's needed (Rule 122)
 Woke the branch (toggleQaEnv wake → "sv12203 is waking up"; API answered 200 after ~90 s). Front end sv12203.qa.shopview.com has no DNS record (proxy connect_rejected). QuickBooks NOT connected on the branch: GET /api/bookkeeping/integration → Intuit OAuth authUrl; /api/bookkeeping/products-and-services → 400 "Bookkeeping is not configured"; adjustment-item-mapping-status says quickBooksConnected:true (known misleading signal, playbook). Comment 80329 tagging Dipesh: front-end address, sandbox connected, QBO login, which location.
 Moved to Blocked (transition 7) 6 Nov 2026 07:54 (UTC−5), per QA lead; re-read: status Blocked.
+
+## 6 Nov 2026 ~13:10 UTC — Dipesh answered (80330, 80331)
+- Test address = **https://qb.qa.shopview.com** (it was already in the ticket's QA Branch field, customfield_10318 — my miss: I never read that field before asking). Verified: qb front end build v26.45.2-2a69b44 and its JS calls https://sv12203api.qa.shopview.com, so qb → this ticket's back end. quick-login admin on sv12203api = 200 with the shared .qa.shopview.com cookies.
+- Connect QuickBooks myself from qb (location → QuickBooks settings → Connect), company **QA US** (US location) or **QA CA** (Canadian); not his local SV12203-A/C data.
+- QuickBooks sandbox login: in **1Password** (per Dipesh) / personal Intuit account (per Confluence page 924123137 "QuickBooks QA Environments (qb, qb1, qb2)", v3). sandbox.qbo.intuit.com answers 301 through the proxy (reachable).
+- Any one location; turn OFF "Automatically apply credits" and "Automatically apply payments" first.
+- **Remaining blocker: the Intuit sandbox login — only the QA lead can give it (1Password).** Ticket left in Blocked until then.

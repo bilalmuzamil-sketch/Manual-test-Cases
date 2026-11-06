@@ -5778,7 +5778,7 @@ deliver the 7-tab management report.
     words, only what was actually observed — Rule 12) · what I need them to do. End with what happens once it's there ("I'll run all N
     scenarios"). Human voice, no verdict panel (it is not a result), no technical section. Do not wait for the QA lead to relay it. **THEN MOVE THE TICKET TO "Blocked"** (workflow transition "Blocked", id 7 from TESTING QA)
     and re-read it to confirm (QA-lead ruling 2026-11-06, verbatim: *"After asking dipesh for missing pieces move the ticket to blocked"*).
-    Things only the QA lead can give (cookies for our own sessions, a ruling, permission) still go to the QA lead. Log the ask in the
+    **BEFORE ASKING, READ WHAT THE TICKET ALREADY SAYS:** the **QA Branch field (`customfield_10318`)**, the Powertools plan and any environment page they name — a QuickBooks ticket is tested on the **qb / qb1 / qb2** front ends (Confluence 924123137), not on its own sv#### address (SV-12203, 2026-11-06: I asked for an address that was already in the QA Branch field). Things only the QA lead can give (cookies for our own sessions, a ruling, permission) still go to the QA lead. Log the ask in the
     OUTSTANDING register and re-read the ticket on the 3-hourly check for the answer. First applied: SV-12203 comment 80329 (Dipesh:
     front-end address, QuickBooks sandbox connected, QuickBooks login, which location). Ties to Rules 22, 36, 65, 68, 85, 116.
 
