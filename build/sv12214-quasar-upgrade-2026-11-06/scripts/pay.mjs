@@ -1,6 +1,6 @@
 // node pay.mjs <woId> -> Finance tab New Payment: discover dialog; tick the store credit (applied credit) and pay the rest by cash; then re-open invoice menu and hover Reverse. ENV=prod. ../ev/<env>-RC-6..9
 import {sess,post} from './common.mjs'; import fs from 'fs';
-const E=process.env.ENV==='prod'?'prod':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const wo=process.argv[2]; const R={};
+const E=process.env.ENV==='prod'?'prod':process.env.ENV==='staging'?'staging':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const wo=process.argv[2]; const R={};
 if(E==='prod'){ const ws=(await s.api('/api/staff/my-workplaces')).json.data; const W=(ws.collection||ws).find(w=>/Trucks Hill 2/.test(w.name)); await post(s,'/api/iam/change-location',{workplace_id:W.id,workplace_timezone:W.timezone}); }
 await s.go('/workorders/'+wo+'/finance'); await p.waitForTimeout(4000);
 const nb=p.locator('button').filter({hasText:'New Payment'}).first(); await nb.click(); await p.waitForTimeout(2500);

@@ -1,7 +1,7 @@
 // node walk1.mjs -> SV-12214 Work Orders page: menus (columns, density, card size, board fields, filter chip), select an option and confirm it applies,
 // board hover card + tooltips (position finite + inside window), board sideways scroll. ENV=prod for production. Writes ../ev/<env>-walk1.json + shots.
 import {sess,post} from './common.mjs'; import fs from 'fs';
-const E=process.env.ENV==='prod'?'prod':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const R={build:await p.evaluate(()=>document.querySelector('meta[name=app-version]')?.content),checks:[],console:[]};
+const E=process.env.ENV==='prod'?'prod':process.env.ENV==='staging'?'staging':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const R={build:await p.evaluate(()=>document.querySelector('meta[name=app-version]')?.content),checks:[],console:[]};
 p.on('console',m=>{ if(m.type()==='error') R.console.push(m.text().slice(0,200)); }); p.on('pageerror',e=>R.console.push('PAGEERROR '+e.message.slice(0,200)));
 if(E==='prod'){ const ws=(await s.api('/api/staff/my-workplaces')).json.data; const W=(ws.collection||ws).find(w=>/Trucks Hill 2/.test(w.name)); await post(s,'/api/iam/change-location',{workplace_id:W.id,workplace_timezone:W.timezone}); }
 const pref=(await s.api('/api/users/me/preferences/work-orders-list')).json?.data?.value||null; R.prefBefore=pref;

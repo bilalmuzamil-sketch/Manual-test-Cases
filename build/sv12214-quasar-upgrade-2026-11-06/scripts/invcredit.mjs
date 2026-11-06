@@ -1,6 +1,6 @@
 // node invcredit.mjs -> new WO (contact, 1 canned line) -> complete -> invoice; Finance tab: invoice menu -> Issue Credit (STEP=discover prints dialog ids) -> then hover Reverse and read its tooltip. ENV=prod for production. ../ev/<env>-RC-*.png
 import {sess,post} from './common.mjs'; import fs from 'fs';
-const E=process.env.ENV==='prod'?'prod':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const arr=x=>Array.isArray(x)?x:(x?.collection||x?.items||[]); const R={};
+const E=process.env.ENV==='prod'?'prod':process.env.ENV==='staging'?'staging':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const arr=x=>Array.isArray(x)?x:(x?.collection||x?.items||[]); const R={};
 await s.go('/workorders'); await p.waitForTimeout(1500);
 const ws=arr((await s.api('/api/staff/my-workplaces')).json?.data); const W=E==='prod'?ws.find(w=>/Trucks Hill 2/.test(w.name)):ws.find(w=>w.id.startsWith('b3c8c820')); await post(s,'/api/iam/change-location',{workplace_id:W.id,workplace_timezone:W.timezone});
 let wo=process.env.WO;

@@ -1,6 +1,6 @@
 // node b5.mjs -> Board view: find the horizontal column scroller (wide, overflowing), scroll it by 600 px with the mouse wheel (shift) and by scrollLeft, read before/after; also vertical scroll inside the first column. ENV=prod. ../ev/<env>-B5b*.png
 import {sess,post} from './common.mjs'; import fs from 'fs';
-const E=process.env.ENV==='prod'?'prod':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const R={};
+const E=process.env.ENV==='prod'?'prod':process.env.ENV==='staging'?'staging':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const R={};
 if(E==='prod'){ const ws=(await s.api('/api/staff/my-workplaces')).json.data; const W=(ws.collection||ws).find(w=>/Trucks Hill 2/.test(w.name)); await post(s,'/api/iam/change-location',{workplace_id:W.id,workplace_timezone:W.timezone}); }
 const pref=(await s.api('/api/users/me/preferences/work-orders-list')).json?.data?.value||null;
 await s.go('/workorders'); await p.waitForTimeout(3000); await p.click('[data-test-id=display_option_board_view]'); await p.waitForTimeout(4000);

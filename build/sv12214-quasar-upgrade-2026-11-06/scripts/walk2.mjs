@@ -1,6 +1,6 @@
 // node walk2.mjs -> SV-12214 second walk: Schedule menus + hover, report date pickers (QDate), dropdowns (QSelect) in New Customer / New Work Order / New Line, long-list scrolling. ENV=prod for production. ../ev/<env>-walk2.json + shots
 import {sess,post} from './common.mjs'; import fs from 'fs';
-const E=process.env.ENV==='prod'?'prod':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const R={build:await p.evaluate(()=>document.querySelector('meta[name=app-version]')?.content),checks:[],console:[],ids:{}};
+const E=process.env.ENV==='prod'?'prod':process.env.ENV==='staging'?'staging':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const R={build:await p.evaluate(()=>document.querySelector('meta[name=app-version]')?.content),checks:[],console:[],ids:{}};
 p.on('console',m=>{ if(m.type()==='error') R.console.push(p.url().replace(/^https:\/\/[^/]+/,'')+' :: '+m.text().slice(0,200)); }); p.on('pageerror',e=>R.console.push('PAGEERROR '+p.url()+' '+e.message.slice(0,200)));
 if(E==='prod'){ const ws=(await s.api('/api/staff/my-workplaces')).json.data; const W=(ws.collection||ws).find(w=>/Trucks Hill 2/.test(w.name)); await post(s,'/api/iam/change-location',{workplace_id:W.id,workplace_timezone:W.timezone}); }
 const add=(name,ok,detail)=>{ R.checks.push({name,ok,detail}); console.log((ok?'PASS ':(ok===null?'INFO ':'FAIL '))+name+' :: '+JSON.stringify(detail).slice(0,320)); };

@@ -1,6 +1,6 @@
 // node s4.mjs -> Schedule Day view today: move the pointer onto the visible left part of each booking (up to 3) and read the details box. ../ev/<env>-S4b-*.png
 import {sess,post} from './common.mjs'; import fs from 'fs';
-const E=process.env.ENV==='prod'?'prod':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const out=[];
+const E=process.env.ENV==='prod'?'prod':process.env.ENV==='staging'?'staging':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const out=[];
 if(E==='prod'){ const ws=(await s.api('/api/staff/my-workplaces')).json.data; const W=(ws.collection||ws).find(w=>/Trucks Hill 2/.test(w.name)); await post(s,'/api/iam/change-location',{workplace_id:W.id,workplace_timezone:W.timezone}); }
 await s.go('/schedule'); await p.waitForTimeout(4000); await p.locator('[data-test-id=schedule_view_toggle]').getByText('Day',{exact:true}).first().click(); await p.click('[data-test-id=button_schedule_today]'); await p.waitForTimeout(3000);
 const blocks=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].filter(e=>/shift/.test(e.getAttribute('data-test-id'))).map(e=>{const r=e.getBoundingClientRect();return {tid:e.getAttribute('data-test-id'),x:r.x,y:r.y,w:r.width,h:r.height}}).filter(b=>b.w>20&&b.h>20&&b.y>0&&b.y<880).slice(0,3));

@@ -39,3 +39,10 @@ QA branch sv12152 does not resolve (no DNS) and the wake service returns "Intern
 - Status → Blocked (Rule 122: asked the assignee for what testing needs); QA Assignee set to Bilal (was empty). Read back: 2 comments in order, 3 images, Blocked, QA Assignee Bilal.
 - Pre-post gate: ticket re-read live (TESTING QA, 0 comments) before posting; build marker could not be re-read (branch gone) — said so in the comment; no AI fingerprint; no technical section.
 - Learning: QA Assignee (customfield_10385) must be written as an ARRAY [{accountId}] — a single object returns 400 "data was not an array". Added to playbook.
+
+# Staging re-test (6 Nov 2026 ~16:00 UTC) — QA lead: "This needs to be tested on Staging" (Stefan 80339: merged to staging)
+Staging v26.45.2-9e313a5 (last-modified 14:38:33 GMT, etag 30d62707…), re-read before posting unchanged. Same walk scripts with ENV=staging (cookies /tmp/staging, never committed).
+All 16 checks PASS as on the branch (walk1/walk2/b5/s4 + invcredit/pay: S2-38362, CM-4536, Reverse tooltip on screen). Seeded booking ZZAUTOTEST SV12214 61980 on Ayesha Tech Role (shift 4bd4ed8f) — staging test data, left.
+role="menu" STILL missing on 5 plain menus (L1, L2, S1, S2, R1: role null); Density + Card size keep role="menu". B4 board hover card: none on staging or production.
+Posted NEW comments (Rule 112): **80346** WHAT PASSED ON STAGING (16 rows, picture prod vs staging tooltip) + **80347** PARTIALLY PASSED on staging, tags Stefan: role="menu" question again (picture prod vs staging Columns menu, Comparison only), hover card / accounting forms / other browsers still open.
+Status TESTING STAGE -> **REJECTED FROM TESTING** (transition 6); QA Assignee already Bilal. Learning check: nothing new (staging session via qa-session env:'staging' + quick-login worked first time).
