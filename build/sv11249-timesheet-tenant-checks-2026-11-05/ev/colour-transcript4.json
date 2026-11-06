@@ -1,0 +1,227 @@
+{
+ "build": "v26.45.2-ef57078",
+ "newLocation": {
+  "id": "908a63f3-1453-4744-a8d7-89873b739c40",
+  "name": "ZZAUTOTEST NoColour 81408"
+ },
+ "T": [
+  {
+   "step": "1 WO create before (Heavy Duty)",
+   "at": "2026-11-06T07:51:12.463Z",
+   "method": "POST",
+   "url": "/api/work-orders/create",
+   "body": {
+    "company_id": "6a7b6afc-084d-4584-aacb-773bcd71cbcd",
+    "vehicle_id": "00052898-8ce9-4bf4-b0be-c3644db57f29",
+    "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "start_date": "2026-11-06",
+    "is_vehicle_here": true
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "work_order_id": "9e7a2c6e-77aa-4fc1-97e8-008528b564e1"
+    }
+   }
+  },
+  {
+   "step": "2 GET /api/workplaces before",
+   "at": "2026-11-06T07:51:12.620Z",
+   "method": "GET",
+   "url": "/api/workplaces",
+   "status": 200,
+   "response": {
+    "data": {
+     "collection": [
+      {
+       "id": "c2821804-dd8d-4ed3-84da-c2388fc86480",
+       "name": "ZZAUTOTEST WithColour 90649",
+       "address_1": "1 Test St",
+       "address_2": null,
+       "state_or_province": "AB",
+       "postal_code": "T2P1J9",
+       "city": "Calgary",
+       "telephone": "4035550100",
+       "color": "#3366ff",
+       "tax": {
+        "id": "0c47b1fb-38bb-4788-8719-6900c365e34c",
+        "name": "Exempt"
+       },
+       "timezone": "America/Edmonton",
+       "country_code": "CA",
+       "organization_id": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+       "shop_id": "ZY90649",
+       "remit_to": "c2821804-dd8d-4ed3-84da-c2388fc86480",
+       "ibs_location_id": null,
+       "shop_supplies_charge": 0,
+       "max_shop_supplies_charge": null,
+       "min_shop_supplies_charge": 0,
+       "bookkeeping_enabled": true,
+       "shopSupplyPercentageEnabled": false,
+       "remit_to_type": 1,
+       "remitToAddress": null,
+       "salesTaxRoundingMode": "line_by_line"
+      },
+      {
+       "id": "452f3c1d-37b6-42e3-a983-1bc9e13716e8",
+       "name": "ZZAUTOTEST NoColour 90649",
+       "address_1": "1 Test St",
+       "address_2": null,
+       "state_or_province": "AB",
+       "postal_code": "T2P1J9",
+       "city": "Calgary",
+       "telephone": "4035550100",
+       "color": "#888888",
+       "tax": {
+        "id": "819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b",
+        "name": "GST"
+       },
+       "timezone": "America/Edmonton",
+       "country_code": "CA",
+       "organization_id": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+       "shop_id": "ZZ90649",
+       "remit_to": "452f3c1d-37b6-42e3-a983-1bc9e13716e8",
+       "ibs_location_id": null,
+       "shop_supplies_charge": 0,
+       "max_shop_supplies_charge": null,
+       "min_shop_supplies_charge": 0,
+       "bookkeeping_enabled": true,
+       "shopSupplyPercentageEnabled": false,
+       "remit_to_type": 1,
+       "remitToAddress": null,
+       "salesTaxRoundingMode": "line_by_line"
+      },
+      {
+       "id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+       "name": "Staging Lethbridge - 4310",
+       "address_1": "4310 9 Avenue North",
+       "address_2": null,
+       "state_or_province": "Alberta",
+       "postal_code": "T1H 6N4",
+       "city": "Lethbridge",
+       "telephone": "(403) 327 - 3405",
+       "color": "#00a300",
+       "tax": {
+        "id": "819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b",
+        "name": "GST"
+       },
+       "timezone": "America/Edmonton",
+       "country_code": "CA",
+       "organization_id": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+       "shop_id": "11249",
+       "remit_to": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+       "ibs_location_id": "1547",
+       "shop_supplies_charge": 10.5,
+       "max_shop_supplies_charge": 350,
+       "min_shop_supplies_charge": 0,
+       "bookkeeping_enabled": true,
+       "shopSupplyPercentageEnabled": false,
+       "remit_to_type": 1,
+       "remitToAddress": null,
+       "salesTaxRoundingMode": "line_by_line"
+      },
+      {
+       "id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+       "name": "Staging Heavy Duty - 9919",
+       "address_1": "9919 Shepard Road SE",
+       "address_2": null,
+       "state_or_province": "Alberta",
+       "postal_code": "T2C 4M5",
+       "city": "Calgary",
+       "telephone": "(403) 523 - 0488",
+       "color": "#d66c00",
+       "tax": {
+        "id": "819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b",
+        "name": "GST"
+       },
+       "timezone": "America/Edmonton",
+       "country_code": "CA",
+       "organization_id": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+       "shop_id": "11249",
+       "remit_to": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+       "ibs_location_id": null,
+       "shop_supplies_charge": 10.5,
+       "max_shop_supplies_charge": 350,
+       "min_shop_supplies_charge": 0,
+       "bookkeeping_enabled": true,
+       "shopSupplyPercentageEnabled": false,
+       "remit_to_type": 1,
+       "remitToAddress": null,
+       "salesTaxRoundingMode": "line_by_line"
+      }
+     ],
+     "pagination": {
+      "sortBy": null,
+      "descending": false,
+      "page": 1,
+      "rowsPerPage": 100
+     }
+    }
+   }
+  },
+  {
+   "step": "3 create location with NO colour",
+   "at": "2026-11-06T07:51:21.928Z",
+   "method": "POST",
+   "url": "/api/workplaces/create",
+   "body": {
+    "name": "ZZAUTOTEST NoColour 81408",
+    "shop_id": "NC1408",
+    "address_1": "1 Test St",
+    "city": "Calgary",
+    "state_or_province": "AB",
+    "postal_code": "T2P1J9",
+    "telephone": "4035550100",
+    "timezone": "America/Edmonton",
+    "country_code": "CA"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "workplace_id": "908a63f3-1453-4744-a8d7-89873b739c40"
+    }
+   }
+  },
+  {
+   "step": "4 WO create after (Heavy Duty)",
+   "at": "2026-11-06T07:51:22.357Z",
+   "method": "POST",
+   "url": "/api/work-orders/create",
+   "body": {
+    "company_id": "6a7b6afc-084d-4584-aacb-773bcd71cbcd",
+    "vehicle_id": "00052898-8ce9-4bf4-b0be-c3644db57f29",
+    "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "start_date": "2026-11-06",
+    "is_vehicle_here": true
+   },
+   "status": 500,
+   "response": {
+    "errors": [
+     {
+      "error": "An error occurred. We're sorry for this inconvenience, please try again a bit later."
+     },
+     {
+      "requestId": "37776e77-c59a-4d13-b3f9-2844ecaf75f6"
+     }
+    ]
+   }
+  },
+  {
+   "step": "5 GET /api/workplaces after",
+   "at": "2026-11-06T07:51:22.599Z",
+   "method": "GET",
+   "url": "/api/workplaces",
+   "status": 500,
+   "response": {
+    "errors": [
+     {
+      "error": "An error occurred. We're sorry for this inconvenience, please try again a bit later."
+     },
+     {
+      "requestId": "9037e5a3-bb38-4fc2-8888-3828dedfe258"
+     }
+    ]
+   }
+  }
+ ]
+}

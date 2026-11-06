@@ -1,0 +1,143 @@
+{
+ "at": "2026-11-06T07:46:36.037Z",
+ "company": "6a7b6afc-084d-4584-aacb-773bcd71cbcd",
+ "vehicle": "00052898-8ce9-4bf4-b0be-c3644db57f29",
+ "calls": [
+  {
+   "method": "POST",
+   "url": "/api/workplaces/create",
+   "body": {
+    "name": "ZZAUTOTEST NoColour 90649",
+    "shop_id": "ZZ90649",
+    "address_1": "1 Test St",
+    "city": "Calgary",
+    "state_or_province": "AB",
+    "postal_code": "T2P1J9",
+    "telephone": "4035550100",
+    "timezone": "America/Edmonton",
+    "country_code": "CA"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "workplace_id": "452f3c1d-37b6-42e3-a983-1bc9e13716e8"
+    }
+   },
+   "headers": {}
+  },
+  {
+   "method": "POST",
+   "url": "/api/workplaces/create",
+   "body": {
+    "name": "ZZAUTOTEST WithColour 90649",
+    "shop_id": "ZY90649",
+    "address_1": "1 Test St",
+    "city": "Calgary",
+    "state_or_province": "AB",
+    "postal_code": "T2P1J9",
+    "telephone": "4035550100",
+    "timezone": "America/Edmonton",
+    "country_code": "CA",
+    "color": "#3366ff"
+   },
+   "status": 201,
+   "response": {
+    "data": {
+     "workplace_id": "c2821804-dd8d-4ed3-84da-c2388fc86480"
+    }
+   },
+   "headers": {}
+  },
+  {
+   "method": "POST",
+   "url": "/api/iam/change-location",
+   "body": {
+    "workplace_id": "452f3c1d-37b6-42e3-a983-1bc9e13716e8",
+    "workplace_timezone": "America/Edmonton"
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "bookkeeping_enabled": true
+    }
+   },
+   "headers": {}
+  },
+  {
+   "method": "POST",
+   "url": "/api/work-orders/create",
+   "body": {
+    "company_id": "6a7b6afc-084d-4584-aacb-773bcd71cbcd",
+    "vehicle_id": "00052898-8ce9-4bf4-b0be-c3644db57f29",
+    "workplace_id": "452f3c1d-37b6-42e3-a983-1bc9e13716e8",
+    "start_date": "2026-11-06",
+    "is_vehicle_here": true
+   },
+   "status": 500,
+   "response": {
+    "errors": [
+     {
+      "error": "An error occurred. We're sorry for this inconvenience, please try again a bit later."
+     },
+     {
+      "requestId": "12a86735-a1bd-4b40-8f9d-ab12b5e4854d"
+     }
+    ]
+   },
+   "headers": {}
+  },
+  {
+   "method": "POST",
+   "url": "/api/iam/change-location",
+   "body": {
+    "workplace_id": "c2821804-dd8d-4ed3-84da-c2388fc86480",
+    "workplace_timezone": "America/Edmonton"
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "bookkeeping_enabled": true
+    }
+   },
+   "headers": {}
+  },
+  {
+   "method": "POST",
+   "url": "/api/work-orders/create",
+   "body": {
+    "company_id": "6a7b6afc-084d-4584-aacb-773bcd71cbcd",
+    "vehicle_id": "00052898-8ce9-4bf4-b0be-c3644db57f29",
+    "workplace_id": "c2821804-dd8d-4ed3-84da-c2388fc86480",
+    "start_date": "2026-11-06",
+    "is_vehicle_here": true
+   },
+   "status": 500,
+   "response": {
+    "errors": [
+     {
+      "error": "An error occurred. We're sorry for this inconvenience, please try again a bit later."
+     },
+     {
+      "requestId": "83acb971-4ab9-49cc-ba64-e83b89a3fc34"
+     }
+    ]
+   },
+   "headers": {}
+  },
+  {
+   "method": "POST",
+   "url": "/api/iam/change-location",
+   "body": {
+    "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "workplace_timezone": "America/Edmonton"
+   },
+   "status": 200,
+   "response": {
+    "data": {
+     "bookkeeping_enabled": true
+    }
+   },
+   "headers": {}
+  }
+ ]
+}

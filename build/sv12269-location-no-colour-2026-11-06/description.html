@@ -1,0 +1,43 @@
+<p>Found while testing <a href="https://shopview.atlassian.net/browse/SV-11249">SV-11249</a></p>
+<p>This can only be reproduced through the API. The New Location screen always sends a colour, so a user on screen cannot cause it.</p>
+<p>When a location is created through the API without a colour, the whole organization breaks:</p>
+<ul>
+<li><p>New work orders can no longer be created in any location.</p></li>
+<li><p>Settings → Locations shows an empty list with two red "Ooooops! An error occurred" messages.</p></li>
+</ul>
+<p>Giving that location a colour fixes it straight away.</p>
+<h3>Steps to reproduce</h3>
+<p>Open the QA branch to reproduce the issue: <a href="https://sv11249.qa.shopview.com">https://sv11249.qa.shopview.com</a> (log in as an admin).</p>
+<ol>
+<li><p>Open Chrome's developer tools (F12) and go to the Console tab. The requests below run from the logged-in page.</p></li>
+<li><p>Create a work order to confirm the starting state is fine. Use <code>POST https://sv11249api.qa.shopview.com/api/work-orders/create</code> with the body <code>{"company_id":"&lt;customer company id&gt;","vehicle_id":"&lt;asset id&gt;","workplace_id":"b3c8c820-f815-4cf1-8938-10956c5ee71a","start_date":"2026-11-06","is_vehicle_here":true}</code>. It returns 201 with a work order id.</p></li>
+<li><p>Create a location with no <code>color</code>: <code>POST https://sv11249api.qa.shopview.com/api/workplaces/create</code> with the body <code>{"name":"ZZAUTOTEST NoColour 81408","shop_id":"NC1408","address_1":"1 Test St","city":"Calgary","state_or_province":"AB","postal_code":"T2P1J9","telephone":"4035550100","timezone":"America/Edmonton","country_code":"CA"}</code>. It returns 201, <code>{"data":{"workplace_id":"908a63f3-1453-4744-a8d7-89873b739c40"}}</code>, and the location is saved with <code>color: null</code>.</p></li>
+<li><p>Send the same work-order request as in step 2 again. It now returns 500: <code>"An error occurred. We're sorry for this inconvenience, please try again a bit later."</code> (requestId 37776e77-c59a-4d13-b3f9-2844ecaf75f6).</p></li>
+<li><p>Send <code>GET https://sv11249api.qa.shopview.com/api/workplaces</code>. It returns 500 too (requestId 9037e5a3-bb38-4fc2-8888-3828dedfe258).</p></li>
+<li><p>In the app, click the gear (Settings) and then <code>Locations</code> in the left menu. The list is empty and two red error messages appear.</p></li>
+</ol>
+<p><strong>Fastest way to see it:</strong> the branch has been left in the broken state. Open <a href="https://sv11249.qa.shopview.com/administration/locations">https://sv11249.qa.shopview.com/administration/locations</a> and you will see the empty list and the two red errors straight away.</p>
+<figure data-type="media-single" data-layout="center" data-width="80" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="889d0902-f516-4ba6-90b5-aad548d97f0e" data-collection="upload-user-collection-1343233018" data-alt="colour-exhibit.png"></div></figure>
+<p><em>Picture 1: Settings → Locations on sv11249. Top: before, all 4 locations are listed. Bottom: after one location is created through the API with no colour, the list is empty and two red errors appear.</em></p>
+<h3>Expected behaviour</h3>
+<p>One of these should happen:</p>
+<ul>
+<li><p>The API refuses a location without a colour with a clear message (for example 400 "Color is required").</p></li>
+<li><p>Or the location is saved with a default colour.</p></li>
+</ul>
+<p>Either way, one location's data must never stop the rest of the organization from creating work orders or listing its locations.</p>
+<h3>Current behaviour</h3>
+<p>The API accepts the location and saves it with no colour. After that, every work order create and the locations list return 500 for the whole organization.</p>
+<table><tbody>
+<tr><th><p>Try</p></th><th><p>Result</p></th></tr>
+<tr><td><p>Work order in Staging Heavy Duty - 9919, before</p></td><td><p>201</p></td></tr>
+<tr><td><p>Location created with no colour</p></td><td><p>201 (saved with colour empty)</p></td></tr>
+<tr><td><p>Location created with colour #3366ff</p></td><td><p>201</p></td></tr>
+<tr><td><p>Work order in Staging Heavy Duty - 9919, after</p></td><td><p>500</p></td></tr>
+<tr><td><p>Work order in the colour-less location and in the coloured new location</p></td><td><p>500 and 500</p></td></tr>
+<tr><td><p>GET /api/workplaces (Locations list)</p></td><td><p>500</p></td></tr>
+<tr><td><p>Colour set on the colour-less location: <code>POST /api/workplaces/change</code> with the full location and <code>"color":"#888888"</code></p></td><td><p>201. Locations list back to 200, and work order create back to 201</p></td></tr>
+</tbody></table>
+<p>The same thing happened twice: first with location "ZZAUTOTEST NoColour 90649" and again with "ZZAUTOTEST NoColour 81408".</p>
+<p>The server error log (Sentry SHOPVIEW-API-34P) shows: <code>TypeError: WorkplaceDto::__construct(): Argument #9 ($color) must be of type string, null given, called in …/WorkOrderSnapshotDataProvider.php on line 600</code>.</p>
+<p>Environment: QA branch sv11249 (build v26.45.2-ef57078), 6 November 2026, admin login.</p>

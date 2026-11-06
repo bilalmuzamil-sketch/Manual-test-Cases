@@ -1,0 +1,22 @@
+// node colour4.mjs -> full transcript: create colour-less location via API, show org-wide 500s (API + Locations screen), repair with a colour, show recovery
+import {sess,post} from './common.mjs'; import fs from 'fs';
+const T=[]; const log=(step,req,res)=>{T.push({step,at:new Date().toISOString(),...req,status:res.status,response:res.json});console.log(step,res.status,JSON.stringify(res.json).slice(0,220));};
+const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(2500);
+const all=(await s.api('/api/staff/my-workplaces')).json.data.collection; const home=all.find(x=>x.id.startsWith('b3c8c820'));
+const cust=(await s.api('/api/customers?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=5')).json.data.collection[0]; const company=cust.company_id||cust.id;
+const veh=(await s.api('/api/vehicles?company_id='+company)).json.data; const vehicle=(veh.collection||veh)[0]?.id;
+const woBody={company_id:company,vehicle_id:vehicle,workplace_id:home.id,start_date:new Date().toISOString().slice(0,10),is_vehicle_here:true};
+await post(s,'/api/iam/change-location',{workplace_id:home.id,workplace_timezone:home.timezone});
+let r=await post(s,'/api/work-orders/create',woBody); log('1 WO create before (Heavy Duty)',{method:'POST',url:'/api/work-orders/create',body:woBody},r);
+r=await s.api('/api/workplaces'); log('2 GET /api/workplaces before',{method:'GET',url:'/api/workplaces'},r);
+await s.go('/administration/locations'); await s.page.waitForTimeout(4000); await s.page.screenshot({path:'../ev/colour-locations-before.png'});
+const name='ZZAUTOTEST NoColour '+String(Date.now()).slice(-5);
+const wb={name,shop_id:'NC'+String(Date.now()).slice(-4),address_1:'1 Test St',city:'Calgary',state_or_province:'AB',postal_code:'T2P1J9',telephone:'4035550100',timezone:'America/Edmonton',country_code:'CA'};
+r=await post(s,'/api/workplaces/create',wb); log('3 create location with NO colour',{method:'POST',url:'/api/workplaces/create',body:wb},r); const nid=r.json?.data?.workplace_id||r.json?.data?.id;
+r=await post(s,'/api/work-orders/create',woBody); log('4 WO create after (Heavy Duty)',{method:'POST',url:'/api/work-orders/create',body:woBody},r);
+r=await s.api('/api/workplaces'); log('5 GET /api/workplaces after',{method:'GET',url:'/api/workplaces'},r);
+await s.go('/administration/locations'); await s.page.waitForTimeout(5000); await s.page.screenshot({path:'../ev/colour-locations-broken.png'});
+await s.go('/workorders'); await s.page.waitForTimeout(4000);
+fs.writeFileSync('../ev/colour-transcript4.json',JSON.stringify({build:(await s.page.evaluate(()=>document.querySelector('meta[name=app-version]')?.content)),newLocation:{id:nid,name},T},null,1));
+console.log('NEW',nid,name);
+await s.close(); process.exit(0);
