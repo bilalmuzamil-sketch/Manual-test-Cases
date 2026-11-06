@@ -3480,3 +3480,15 @@ Every item below cost a wrong verdict or a "cannot verify" before it was found.
   - The save sends `POST /api/workplaces/create` → 201 `{workplace_id}`. An empty Remit To is stored as the new location itself.
   - The Admin could switch to the new location immediately (it was in `GET /api/staff/my-workplaces`).
   - Staging's "DVI Test" (read-only, `GET https://api.staging.shopview.com/api/workplaces`): Pacific/Fiji, #2276DA, US/Hawaii, tax Zero Rated, shop id 1. A copy now exists on sv11839 (id `93404b24…`), left in place.
+
+### Dashboard bug-hunt recipes, 6 Nov 2026 (sv11839 v26.45.0-5d54a3f; staging v26.45.2-7238f98)
+Scripts: `build/dashboard-verify-2026-10-28/dashboard-bug-hunt-2026-11-05/tools/` (`hb.mjs` helpers, `ann.py` numbered-legend annotator).
+- **Tile report links open the report in a NEW TAB** (`link_report_<key>`). Catch it with `ctx.waitForEvent('page')`. `page.goBack()` on the Dashboard tab goes to the page before the Dashboard (e.g. Work Orders): a test artefact, not a defect.
+- **Tile date picker ids:** `date-range-selector_hero_range_<key>_trigger` / `_calendar` / `_preset_<this-month…>` / `_range_indicator`, plus `button_hero_range_<key>_today` and `_apply`. The calendar opens on the month where the tile's range STARTS. For example, Sales by Customer on Last 12 Months opens on last December, so clicking "5" picks Dec 5 of last year.
+- **Dashboard and report charts are canvas (Chart.js).** Tooltips are drawn on the canvas, not in the DOM. Hover the mouse, then photograph the canvas clip. Hovering the legend row gives the S9-R10 legend tooltip (name, latest value, date), not the point tooltip.
+- **Location switch on screen:** profile button (`header .short-text-content`) → click the orange current-location button under "Change Location:" → click the other location's name.
+- **Light/Dark:** the same profile menu has "Light" / "Dark". On the QA lead's cookie set this changes HIS preference. Restore it afterwards.
+- **Staging Tech role swap:** the staff id hard-coded in `build/testing-tools/staging-restore-tech.mjs` (`6fb22c1b…`) now answers **404** on `/api/staff/{id}/change`. Take `staff_id` from `GET /api/staff?search=tech%40shopview.com&limit=20` (it was `d2cb20a6…` on 6 Nov; answers 201). Restore to the role id you read first.
+- **"Reverse invoice" = void** for the Dashboard: `POST /api/invoices/reverse-invoice {id}` → the invoice drops out of every tile; invoicing again counts once.
+- **A $0.00 invoice cannot be made from a work order whose only line is declined:** 400 "A work order must have at least one completed line in order for it to be eligible for invoicing."
+- **Never write a run time from memory.** Read it from the evidence file's `rule99.header_start.at_utc`. Three times written from memory on 6 Nov were wrong by 10–20 minutes.
