@@ -1531,3 +1531,11 @@ what is still owed.
 | SV-12268 (Vendor New Payment "Amount to credit" not saved): fix or Obsolete? (comment 80299) | Chris Ward | Whether vendor overpayment credit is in scope | 2026-11-06 |
 | SV-12269 (API-only: location created without a colour breaks work orders + Locations list org-wide; Open API release): fix or Obsolete? (comment 80301). sv11249 left broken on purpose for the reader. | Chris Ward | Open API safety of workplace create | 2026-11-06 |
 | SV-12187: passed by its QA assignee Mudassir (80302) while I tested; my results agree, no second comment posted. Nothing needed unless you want my evidence posted. | — | — | 2026-11-06 |
+
+## Rejected from testing — watch (3-hourly check re-reads these; added 2026-11-06)
+| Ticket | Rejected on | Waiting for | Current state |
+|---|---|---|---|
+| SV-12003 | 6 Nov (80293/80294) | Parth's fix | Back in TESTING QA (80308) — retest in progress 6 Nov |
+| SV-7898 | 6 Nov (80286/80287) | Slavcho's fix for New Note offline Save | Fix redeployed (80307) — retest in progress 6 Nov |
+| SV-11116 | 6 Nov | developer | in Code Review at last read |
+
