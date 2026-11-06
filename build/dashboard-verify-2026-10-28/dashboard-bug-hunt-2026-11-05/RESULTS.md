@@ -23,6 +23,42 @@ Set-up: `tools/dvi_seed.py`, logged in `seed-log.jsonl`. Customer "ZZAUTOTEST Hu
 | 2.8 This Week on a Friday in Fiji | **PASS.** The request is `from=2026-11-01&to=2026-11-06` (Sunday to today, Fiji date). | same JSON |
 | 5.3 Empty states (DVI Test has no invoices) | **PASS.** Tiles with fewer than 2 points show the dashed placeholder (S4-R12): Revenue, Billing, Tech Efficiency, Sales by Customer, At Risk. Billing and Tech Efficiency headlines read "-" (S3-E3). The expanded Billing Efficiency chart reads **"No data for selected date range"** (S9-R11). Technician Utilization, which has 2 points with values, draws its line. | `t0-before-midnight-default.png`, `-be-expanded.png` |
 
+### Area 2: day boundary. Part 2, after Fiji midnight (DVI Test, Pacific/Fiji; Fiji date **Sat 7 Nov**, UTC date **Fri 6 Nov**; 12:03–12:06 UTC)
+Set-up, at 12:03:26 UTC (00:03 on 7 Nov, Fiji):
+- invoice for **S11839-17604**, whose labour was clocked 22:00–22:30 on 6 Nov, Fiji;
+- credit memo **CM-4193** for **$7.00** (customer "ZZAUTOTEST Hunt Fiji Day", `dvi_seed.py credit 7`).
+
+| Check | Tile (Dashboard) | Sales report from the tile link | Verdict |
+|---|---|---|---|
+| 2.1 / 2.2 Revenue on **Nov 7** (Fiji date) | **$128.00**, "1 Invoice" | rows CM11839-4193 and S11839-17604, both dated **Nov 07 2026**; Totals **$128.00** ($135.00 − $7.00) | **PASS.** Both land on the Fiji date, and **tile = report total**. |
+| Revenue on **Nov 6** (the UTC date) | $0.00, "0 Invoices" | no rows | **PASS.** Nothing leaks onto the UTC date. |
+| 2.4 Billing / Tech Efficiency on Nov 7 | 200.00 % (1.00 / 0.50) on both | — | **PASS.** Invoiced hours land on the invoice's Fiji date. |
+| 2.5 Technician Utilization | Nov 6: 1.00 / 1.00 (0.50 from the midnight-crossing clock + 0.50 from 22:00–22:30); Nov 7: "-" (no clocks) | — | **PASS.** Clocks land on the Fiji day they were worked. |
+| 2.8 This Week / This Month on Sat 7 Nov | requests `from=2026-11-01&to=2026-11-07`; Revenue $128.00, Sales by Customer 1 customer | — | **PASS** |
+| Credit memo at the day boundary (coordinator's request about SV-12276) | CM-4193 on Nov 7 in the tile | CM-4193 on Nov 07 in the report, inside the Nov 7 range | **Not reproduced at Fiji.** A credit memo issued while Fiji is a day ahead of UTC lands on the same day in the tile and the report. |
+
+Evidence: `evidence/area2-daybound/dvi-t1-after-midnight.json`, `dvi-p2-drill.json`, `p2-tile-day7.png` and `p2-sales-report-day7.png`.
+
+**Not tested, and why:** Test Location (Karachi, open from 19:00 UTC) and Edmonton (late evening there = 00:00–06:00 UTC). Both windows were outside this run. Edmonton is the direction SV-12276 sits in (local date behind UTC).
+
+#### Important for SV-12276 (D2): the gap comes from the TEST BROWSER's time-zone data, not from credit memos
+Cross-check run at 12:07 UTC, Heavy Duty (`tools/d2_req.mjs`, `evidence/D2-cm-day-crosscheck/requests.json`):
+- **The Sales report builds its custom-day range in the browser, as UTC instants:**
+  `GET /api/reporting/sales/custom?range=custom&start_date=2026-11-03T07:00:00.000Z&end_date=2026-11-04T06:59:59.999Z`.
+  That is midnight on Nov 3 at **UTC−7**.
+- **The Dashboard sends plain dates** (`from=2026-11-03&to=2026-11-03`), and the server turns them into instants with its own zone data.
+- **This test machine's two sets of zone data disagree for America/Edmonton from 1 Nov 2026:**
+  - the bundled Chromium 153 says **UTC−7**: `getTimezoneOffset()` = 420 on 3 Nov, and the browser clock reads "Mountain Standard Time";
+  - the system tz database (2026e) says **UTC−6**: 06:00 UTC on 3 Nov is 00:00 on 3 Nov local.
+  - The server agrees with UTC−6, because it put CM11839-4189 (06:00 UTC) on Nov 3.
+  - The playbook already warned about this ("treat day-boundary results within one hour of midnight as unsafe").
+- **So CM11839-4189 sits exactly in the one hour where the two disagree.** Any record between 06:00 and 07:00 UTC on an Edmonton day after 1 Nov would split the same way, credit memo or invoice. The Fiji test above, where the browser and server zone data agree, shows tile = report for both an invoice and a credit memo.
+- **What this means for SV-12276:**
+  - A user whose browser has the current zone data (UTC−6 for Edmonton) would not see the $5.00 gap.
+  - A user on a browser with older zone data would.
+  - The product question underneath is real but different: the Sales report trusts the browser's zone rules, while the Dashboard trusts the server's. Rule 99 matched the zone **name** but not the **offset**.
+- **My recommendation:** the coordinator re-states SV-12276's cause on the ticket ("browser vs server time-zone rules for America/Edmonton since 1 Nov 2026; any record between 00:00 and 01:00 local"). Or the coordinator asks Chris whether reports should take their day boundaries from the server, as the Dashboard does. **Not** "late-evening credit memos" in general.
+
 ### Area 7: visual conformance (Story 12), measured. Heavy Duty, America/Edmonton, 1920/1536/1280/1024/390 px, light and dark, 10:24–10:28 UTC
 Each check was measured with computed colours, box positions and font sizes (`tools/visual.mjs`), not judged by eye.
 
