@@ -23,6 +23,17 @@ Set-up: `tools/dvi_seed.py`, logged in `seed-log.jsonl`. Customer "ZZAUTOTEST Hu
 | 2.8 This Week on a Friday in Fiji | **PASS.** The request is `from=2026-11-01&to=2026-11-06` (Sunday to today, Fiji date). | same JSON |
 | 5.3 Empty states (DVI Test has no invoices) | **PASS.** Tiles with fewer than 2 points show the dashed placeholder (S4-R12): Revenue, Billing, Tech Efficiency, Sales by Customer, At Risk. Billing and Tech Efficiency headlines read "-" (S3-E3). The expanded Billing Efficiency chart reads **"No data for selected date range"** (S9-R11). Technician Utilization, which has 2 points with values, draws its line. | `t0-before-midnight-default.png`, `-be-expanded.png` |
 
+#### Ask 3: Karachi day boundary: **NOT VERIFIED, BLOCKED by sign-in** (19:03–19:06 UTC, 6 Nov)
+- 19:03:29 UTC (00:03 on 7 Nov, Karachi): `preflight.py` showed sv11839 **asleep** (302 → sleep.qa.shopview.com). It was woken with the playbook's toggleQaEnv call ("sv11839 is waking up."), and the API answered by 19:05:06.
+- 19:05:13 UTC: `fe-permissions` **401 `sso_required`**. Both set-up calls (invoice for S11839-17606 and a $3 credit memo) answered **401 `sso_required`**, so **nothing was created**.
+- The SSO cookie alone now redirects to the **Google sign-in page**, so the sign-in itself has ended. The cookie set was written at 09:28 UTC, about 9.5 h earlier. Staging also answers 401, and its build changed during the day (v26.45.2-7238f98 → v26.45.2-df7aeed), which suggests a deployment.
+- Searched before calling it blocked (Rule 97): playbook "sso_required" entries (lines ~192–215, 283–352). Only the QA lead can mint cookies (Google SSO).
+- **Ready for a re-run.** At Test Location, work order **S11839-17606** ("ZZAUTOTEST Hunt Karachi Day") is completed and **not invoiced**: 30 min clocked 17:00–17:30 on 6 Nov, Karachi. With fresh cookies, any day from **19:00 UTC** (Karachi midnight):
+  1. `TZ=Asia/Karachi python3 tools/tl_seed.py invoice_key K`, then `TZ=Asia/Karachi python3 tools/tl_seed.py credit 3`.
+  2. `TZ=Asia/Karachi node tools/day_drill.mjs <yesterday>,<today> TL area2-daybound tl-p2`. Today means the Karachi date.
+  3. A tile read with a TL copy of `dvi_screen.mjs`.
+- **Offsets for Karachi:** `tz_rules_check.py` shows MATCH (browser and machine UTC+5, `evidence/rule99-tz/Asia_Karachi.txt`). The server's offset could not be read, because no request succeeded.
+
 ### Rule 99 (g)–(j), applied to this whole run (amendment of 6 Nov, commit 01ce93488)
 `tz_rules_check.py` was run at 15:43–15:44 UTC (file times in `evidence/rule99-tz/`). Output is in `evidence/rule99-tz/`.
 
