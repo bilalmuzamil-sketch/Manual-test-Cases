@@ -1,0 +1,1 @@
+import {sess} from './common.mjs'; const s=await sess(); const v=(await s.api('/api/users/me/preferences/work-orders-list')).json?.data?.value||{}; const {columns,...rest}=v; console.log(JSON.stringify(rest).slice(0,600)); await s.close(); process.exit(0);

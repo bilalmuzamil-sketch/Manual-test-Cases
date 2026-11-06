@@ -1,0 +1,2 @@
+import {sess} from './common.mjs'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; await s.go('/workorders'); await p.waitForTimeout(4000);
+await p.click('[data-test-id=filter_chip_assigned_to_me]'); await p.waitForTimeout(2500); const v=(await s.api('/api/users/me/preferences/work-orders-list')).json?.data?.value||{}; console.log(JSON.stringify(v.filters)); await s.close(); process.exit(0);

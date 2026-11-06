@@ -46,3 +46,16 @@ All 16 checks PASS as on the branch (walk1/walk2/b5/s4 + invcredit/pay: S2-38362
 role="menu" STILL missing on 5 plain menus (L1, L2, S1, S2, R1: role null); Density + Card size keep role="menu". B4 board hover card: none on staging or production.
 Posted NEW comments (Rule 112): **80346** WHAT PASSED ON STAGING (16 rows, picture prod vs staging tooltip) + **80347** PARTIALLY PASSED on staging, tags Stefan: role="menu" question again (picture prod vs staging Columns menu, Comparison only), hover card / accounting forms / other browsers still open.
 Status TESTING STAGE -> **REJECTED FROM TESTING** (transition 6); QA Assignee already Bilal. Learning check: nothing new (staging session via qa-session env:'staging' + quick-login worked first time).
+
+## Retest 6 Nov 2026 ~22:00 UTC - staging v26.45.2-df7aeed (Stefan 80362, PR #4214)
+Production v26.45.2-198e632 used as the before.
+- Five panels now role="dialog" + aria-label, opener aria-haspopup="dialog" (scripts/roles.mjs, ev/staging-r3-roles.json vs ev/prod-r3-roles.json):
+  Columns = "Column Selection" · Status filter = "Status filter" · Schedule Filter & display = "Filter and display options" · Schedule View options = "View options" · Timesheet Date Range = "Date Range filter". Asset on Site chip = "Asset on Site filter". Production: all role="menu", no name, no aria-haspopup.
+- Real command menus: Density and Card size still role="menu" + named. Work order "⋮" menu and line "Add labor fee or discount" menu: inner element role="menu" with menuitem children (production: role="menu" on the outer box with list/listitem inside) - fine.
+- Re-walk (walk1/walk2 on df7aeed): columns, status filter (chip shows "Status: Estimate"), Density row heights 36/48/64, Card size 93/232, board sideways scroll, schedule menus + Month/Week/Day switch, mini calendar, Timesheet date range + custom From calendar (picks 11/03/2026), A/R aging as-of calendar (30 days): all PASS, 0 console errors.
+  (First run showed Density/Card size "FAIL" only because my own probe had left "Status: Estimate" + "Assigned to me" on; cleared with Clear all filters -> 257 cards, all pass.)
+- Schedule booking hover card (check 9): seeded ZZAUTOTEST SV12214 22446/22849 bookings on Sat 7 Nov; hovering 3 of 3 bookings shows the tooltip fully on screen (scripts/s4b.mjs, ev/staging-r3-hover-*.png).
+- NEW, asked the QA lead (Rule 97d) before including: two more popups lost their marking with nothing in its place - module switcher (top-left "ShopHub", button still aria-haspopup="menu", popup no role) and profile menu (top-right name, no role, no name). Production: both role="menu". (scripts/womenus2.mjs, ev/*-r3-wo-menus2.json). My earlier pass missed these two.
+- Safari / Firefox: not available in this environment (only Chromium installed) - asked the QA lead.
+- Clean-up: production "Assigned to me" chip was toggled by the probe and switched back (filters {"assigned_to_me":[]}); staging filters cleared.
+Exhibit: ev/jira/sv12214-r3-panels-before-after.png

@@ -10,7 +10,7 @@ const wo=(await post(s,'/api/work-orders/create',{company_id:company,customer_id
 const all=arr((await s.api('/api/work-orders/canned-lines')).json?.data); const can=all.filter(x=>Number(x.time_estimate)>0).sort((a,b)=>Number(a.time_estimate)-Number(b.time_estimate)).find(x=>Number(x.time_estimate)>=1)||all.find(x=>Number(x.time_estimate)>0);
 const ln=(await post(s,'/api/work-orders/'+wo+'/lines/create-from-canned-line',{canned_line_id:can.id,status:'authorized'})).json?.data?.line_id;
 await post(s,'/api/work-orders/change-status',{id:wo,status:'approved'});
-const d=new Date(); const iso=d.toISOString().slice(0,10); const from=iso+'T00:00:00Z', to=iso+'T23:59:59Z';
+const d=new Date(); const iso=process.env.DATE||d.toISOString().slice(0,10); const from=iso+'T00:00:00Z', to=iso+'T23:59:59Z';
 const b=(await s.api(`/api/schedule/board?from=${from}&to=${to}`)).json?.data?.board; const st=(b?.workingWindows||[]).find(w=>w.staffId)?.staffId;
 const techs=arr((await s.api('/api/technicians')).json?.data); const t=techs.find(x=>((x.first_name||'')+' '+(x.last_name||'')+(x.name||'')).includes(process.env.STAFF_NAME)&&!/ZZAUTOTEST/.test(x.first_name||''))||techs[0]; const staffId=t.staff_id||t.id; console.log('tech',JSON.stringify(t).slice(0,160));
 let r=await post(s,'/api/schedule/shifts',{workOrderId:wo,lineIds:[ln],staffId,startDate:iso,startTime:process.env.START||'08:00',spreadMode:'single',totalMinutes:120,perDayMinutes:120}); console.log('shift',r.status,JSON.stringify(r.json).slice(0,300));

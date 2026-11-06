@@ -1,5 +1,5 @@
 {
- "build": "v26.45.2-9e313a5",
+ "build": "v26.45.2-df7aeed",
  "checks": [
   {
    "name": "L1-list-columns: menu opens, on screen, with items",
@@ -7,10 +7,10 @@
    "detail": {
     "menus": [
      {
-      "role": null,
-      "x": 1081.453125,
+      "role": "dialog",
+      "x": 1052.140625,
       "y": 119,
-      "w": 207.546875,
+      "w": 236.859375,
       "h": 585,
       "items": [
        "Waiting On Parts",
@@ -21,10 +21,10 @@
        "Lead Technician",
        "Clocked In",
        "Lines",
+       "Maintenance schedule",
        "Total price",
        "Created on",
-       "Invoiced Date",
-       "Days open"
+       "Invoiced Date"
       ]
      }
     ],
@@ -37,8 +37,8 @@
    "detail": {
     "menus": [
      {
-      "role": null,
-      "x": 798.171875,
+      "role": "dialog",
+      "x": 646.484375,
       "y": 121,
       "w": 200,
       "h": 413,
@@ -250,12 +250,13 @@
    "invoicedDate": true,
    "serviceAdvisor": true,
    "partRequestsCount": true,
+   "maintenanceSchedule": true,
    "clockedInTechnicians": true,
    "partReturnRequestsCount": true,
    "unreceivedPartRequestsCount": true
   },
   "density": "comfortable",
-  "display": "list",
+  "display": "board_view",
   "filters": [],
   "descending": true,
   "boardFields": {
@@ -605,12 +606,13 @@
    "invoicedDate": true,
    "serviceAdvisor": true,
    "partRequestsCount": true,
+   "maintenanceSchedule": true,
    "clockedInTechnicians": true,
    "partReturnRequestsCount": true,
    "unreceivedPartRequestsCount": true
   },
   "density": "comfortable",
-  "display": "list",
+  "display": "board_view",
   "filters": [],
   "descending": true,
   "boardFields": {

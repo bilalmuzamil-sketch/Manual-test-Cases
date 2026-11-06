@@ -3,6 +3,7 @@
 import {sess,post} from './common.mjs'; import fs from 'fs';
 const E=process.env.ENV==='prod'?'prod':process.env.ENV==='staging'?'staging':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const R={build:await p.evaluate(()=>document.querySelector('meta[name=app-version]')?.content),checks:[],console:[]};
 p.on('console',m=>{ if(m.type()==='error') R.console.push(m.text().slice(0,200)); }); p.on('pageerror',e=>R.console.push('PAGEERROR '+e.message.slice(0,200)));
+if(E==='staging'){ await post(s,'/api/iam/change-location',{workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',workplace_timezone:'America/Edmonton'}); }
 if(E==='prod'){ const ws=(await s.api('/api/staff/my-workplaces')).json.data; const W=(ws.collection||ws).find(w=>/Trucks Hill 2/.test(w.name)); await post(s,'/api/iam/change-location',{workplace_id:W.id,workplace_timezone:W.timezone}); }
 const pref=(await s.api('/api/users/me/preferences/work-orders-list')).json?.data?.value||null; R.prefBefore=pref;
 const add=(name,ok,detail)=>{ R.checks.push({name,ok,detail}); console.log((ok?'PASS ':'FAIL ')+name+' :: '+JSON.stringify(detail).slice(0,300)); };

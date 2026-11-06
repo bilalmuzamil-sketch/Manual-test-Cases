@@ -1,12 +1,12 @@
 {
- "build": "v26.45.2-9e313a5",
+ "build": "v26.45.2-df7aeed",
  "checks": [
   {
    "name": "S1-schedule view options menu: opens on screen with content",
    "ok": true,
    "detail": [
     {
-     "role": null,
+     "role": "dialog",
      "x": 1103,
      "y": 96,
      "w": 282,
@@ -20,7 +20,7 @@
    "ok": true,
    "detail": [
     {
-     "role": null,
+     "role": "dialog",
      "x": 1064,
      "y": 96,
      "w": 282,
@@ -47,16 +47,13 @@
    "name": "S3-schedule switch to Day",
    "ok": true,
    "detail": {
-    "range": "Fri, Nov 6"
+    "range": "Sat, Nov 7"
    }
   },
   {
-   "name": "S4-schedule: hovering a booking",
-   "ok": null,
-   "detail": {
-    "note": "no booking element found",
-    "ids": []
-   }
+   "name": "S4-schedule: hovering a booking shows its details box at a real on-screen position",
+   "ok": false,
+   "detail": []
   },
   {
    "name": "S5-mini calendar: clicking a day moves the schedule",
@@ -70,7 +67,7 @@
    "ok": true,
    "detail": [
     {
-     "role": null,
+     "role": "dialog",
      "x": 1000,
      "y": 119,
      "w": 224,
@@ -90,17 +87,17 @@
       "y": 99,
       "w": 290,
       "h": 425,
-      "text": "2026 Fri, Nov 6 chevron_left November chevron_right chevron_left 2026 chevron_right Sun Mon Tue Wed Thu Fri Sat 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 "
+      "text": "2026 Sat, Nov 7 chevron_left November chevron_right chevron_left 2026 chevron_right Sun Mon Tue Wed Thu Fri Sat 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 "
      }
     ],
-    "count": 6
+    "count": 7
    }
   },
   {
    "name": "R1c-picking a day fills the From date",
    "ok": true,
    "detail": {
-    "before": "11/06/2026",
+    "before": "11/07/2026",
     "after": "11/03/2026",
     "url": "/reports/punch-clock-activities"
    }
@@ -113,66 +110,6 @@
      "filter_chip_asOfDate"
     ],
     "days": 30
-   }
-  },
-  {
-   "name": "Q1-New Customer: State/Province dropdown opens and the picked value shows in the field",
-   "ok": true,
-   "detail": {
-    "opts": [
-     "check\n Alabama",
-     "check\n Alaska",
-     "check\n American Samoa",
-     "check\n Arizona",
-     "check\n Arkansas",
-     "check\n California",
-     "check\n Colorado",
-     "check\n Connecticut"
-    ],
-    "shown": "State/Province Alaska arrow_drop_down"
-   }
-  },
-  {
-   "name": "Q2-Country dropdown (long list): scrolling down brings in further countries",
-   "ok": true,
-   "detail": {
-    "c": 30,
-    "vs": {
-     "scrollHeight": 11904,
-     "clientHeight": 450,
-     "first": "check\n Tanzania, United Republic of",
-     "before": 30
-    },
-    "after": {
-     "first": "check\n Kazakhstan",
-     "count": 30,
-     "texts": [
-      "check\n Kazakhstan",
-      "check\n Kenya",
-      "check\n Kiribati"
-     ]
-    }
-   }
-  },
-  {
-   "name": "Q3-New Work Order: customer dropdown lists customers and scrolls",
-   "ok": true,
-   "detail": {
-    "first": {
-     "count": 30,
-     "first": "check ZZBREAK <b>bold</b> \"q\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders"
-    },
-    "after": {
-     "count": 30,
-     "last": "check ZZTOGWO Haulage"
-    }
-   }
-  },
-  {
-   "name": "Q3b-picked customer shows in the field",
-   "ok": true,
-   "detail": {
-    "shown": "Customer ZZAUTOTEST WO Page Lines Follow 26203 arrow_drop_down"
    }
   }
  ],
@@ -204,19 +141,12 @@
     "text": "Month"
    }
   ],
-  "shift": [],
+  "shift": [
+   "schedule_shift_block",
+   "schedule_block_span_before"
+  ],
   "aging": [
    "filter_chip_asOfDate"
-  ],
-  "newwo": [
-   "dialog_title",
-   "button_close_dialog",
-   "select_customer_select",
-   "button_add_customer",
-   "select_company_vehicle_select",
-   "button_add_vehicle",
-   "checkbox_is_vehicle_here",
-   "button_save_work_order"
   ]
  }
 }
