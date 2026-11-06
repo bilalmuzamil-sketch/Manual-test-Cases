@@ -23,6 +23,35 @@ Set-up: `tools/dvi_seed.py`, logged in `seed-log.jsonl`. Customer "ZZAUTOTEST Hu
 | 2.8 This Week on a Friday in Fiji | **PASS.** The request is `from=2026-11-01&to=2026-11-06` (Sunday to today, Fiji date). | same JSON |
 | 5.3 Empty states (DVI Test has no invoices) | **PASS.** Tiles with fewer than 2 points show the dashed placeholder (S4-R12): Revenue, Billing, Tech Efficiency, Sales by Customer, At Risk. Billing and Tech Efficiency headlines read "-" (S3-E3). The expanded Billing Efficiency chart reads **"No data for selected date range"** (S9-R11). Technician Utilization, which has 2 points with values, draws its line. | `t0-before-midnight-default.png`, `-be-expanded.png` |
 
+### Rule 99 (g)–(j), applied to this whole run (amendment of 6 Nov, commit 01ce93488)
+`tz_rules_check.py` was run at 14:3x UTC. Output is in `evidence/rule99-tz/`.
+
+| Zone | Browser (Chromium 153) | Machine (tz db 2026e) | Server (read from something it built) | Verdict |
+|---|---|---|---|---|
+| America/Edmonton, 1–7 Nov | **UTC−7** | **UTC−6** | **UTC−6**. It put CM11839-4189 (06:00 UTC, 3 Nov) on Nov 3 (SV-12276, confirmed by the coordinator), and its Dashboard windows start at 06:00Z. | **MISMATCH**: the gap hour is 00:00–01:00 local (server rules) = 06:00–07:00 UTC. |
+| Pacific/Fiji, 5–8 Nov | UTC+12 | UTC+12 | **UTC+12**: the invoice and CM-4193 made at 12:03:26 UTC were counted on **Nov 7**. At +11 they would have fallen on Nov 6. | MATCH |
+| Asia/Karachi, 5–8 Nov | UTC+5 | UTC+5 | read in the Karachi run (below) | MATCH |
+
+**Every Edmonton result re-checked against the gap hour (Rule 99 h/i):**
+- **Area 3** drill-ins on Last Quarter (Jul–Sep): summer dates, when both rules say UTC−6. Not affected.
+- **Area 3**, This Month report charts: the end date only; the Sales/SAA/TE presets are computed by the server. Not affected.
+- **Area 5**: a single-day tile (Nov 4) compared with the Dashboard's own bucket, both server-built. Not affected.
+- **D1 / SV-12275**: about the chart's end date, not a record's day. Not affected (the coordinator checked it too).
+- **Area 8** set-up records were made 10:18–12:30 UTC, which is 04:18–06:30 local under server rules, outside 00:00–01:00. The Nov 6 tile ($202.27) equals the Sales report total ($202.27), even though the report's window was built by the browser (07:00Z start). So no record from Nov 6 sits in the gap hour. Results stand (Rule 99 i).
+- **Area 6** (location switch) and **area 7** (visual) do not depend on dates.
+- **Area 2** ran at Fiji, where the offsets match.
+- **All times in this file are UTC.** Where local Edmonton time is given, it is under the server's rules (UTC−6), except where both are stated.
+
+**Ask 4 (reports that build their day range in the browser): observed vs inferred.**
+- **Observed** (request URLs logged, `evidence/part4-report-ranges/report-ranges.json`):
+  - Technician Utilization and Sales By Customer send browser-built `start_date=…T…Z` on a preset (Last Quarter: `2026-07-01T06:00:00.000Z`).
+  - All five tile reports send browser-built instants on a Custom single day. Sales By Customer on 4 Nov sent `2026-11-04T07:00:00.000Z`, i.e. the browser's UTC−7.
+  - Sales, Service Advisor Analysis and Technician Efficiency send a server preset (`/last_quarter`) on presets.
+- **Inferred, not observed:**
+  - that Technician Utilization and Sales By Customer on a November preset (This Month etc.) would start the day at 07:00Z;
+  - that a record in the gap hour would then appear on the tile but not in those reports.
+  - No such record was seeded or seen.
+
 ### Follow-up run, 6 Nov 2026 (coordinator's 4 asks after SV-12276 was corrected)
 **Rule 99 from here on:** every evidence file also carries `rule99.offsets`, which records:
 - the browser's offset (`-getTimezoneOffset()` today);
