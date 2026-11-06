@@ -1,0 +1,3 @@
+import {sess,post,arr} from './common.mjs'; import fs from 'fs'; const W=JSON.parse(fs.readFileSync('/tmp/sv11413-branch-wo.json','utf8')); const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(3000);
+const L=arr((await s.api('/api/work-orders/lines/'+W.id)).json?.data)[0].line_id; const cats=arr((await s.api('/api/inventory/categories')).json?.data);
+const r=await post(s,'/api/work-orders/part/make-request',{line:L,work_order:W.id,description:'ZZAUTOTEST special 194',quantity:1,part_source_type:'vendor',part_number:'194',sell_price:10,cost:5,part_category_id:cats[0]?.value||cats[0]?.id}); console.log(r.status,JSON.stringify(r.json).slice(0,150)); await s.close(); process.exit(0);

@@ -1,0 +1,11 @@
+import {sess} from './common.mjs'; import fs from 'fs'; const W=JSON.parse(fs.readFileSync('/tmp/sv11413-branch-wo.json','utf8')); const s=await sess(); const p=s.page; const caps=[];
+p.on('response',async r=>{ if(r.request().method()!=='GET'&&/\/api\//.test(r.url())&&!/envelope|collect|recent/.test(r.url())){ let b='';try{b=(await r.text()).slice(0,160)}catch{} caps.push(r.status()+' '+r.url().replace(/^https:\/\/[^/]+/,'')+' -> '+b);} });
+await s.go('/workorders/'+W.id+'/lines'); await p.waitForTimeout(8000); await p.click('[data-test-id="button_add_part"]'); await p.waitForTimeout(2500);
+await p.click('[data-test-id="select_inline_part_number"]'); await p.waitForTimeout(800); await p.keyboard.type('194',{delay:80}); await p.waitForTimeout(4500);
+await p.screenshot({path:'../ev/branch-check1-194-dropdown.png'});
+const first=p.locator('.q-menu .q-item').first(); console.log('picking',(await first.innerText()).replace(/\s+/g,' ')); await first.click(); await p.waitForTimeout(2000);
+console.log('row',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="input_inline_part"],[data-test-id^="select_inline_part"]')].map(e=>e.getAttribute('data-test-id')+'='+(e.value||e.innerText||'').replace(/\s+/g,' ').slice(0,30)))));
+await p.click('[data-test-id="input_inline_part_quantity"]'); await p.keyboard.type('1'); await p.waitForTimeout(800); const sb=p.locator('[data-test-id="button_save_inline_part"]'); console.log('save disabled?',await sb.isDisabled(),'title',await sb.getAttribute('title')); await sb.click(); await p.waitForTimeout(4000); console.log('dialog',await p.evaluate(()=>document.querySelector('.q-dialog')?.innerText.replace(/\s+/g,' ').slice(0,200)));
+console.log('toasts',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(n=>n.innerText.replace(/\s+/g,' ')))));
+await p.reload(); await p.waitForTimeout(8000); console.log('parts',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="part_number_"]')].map(e=>e.closest('tr')?.innerText.replace(/\s+/g,' ').slice(0,120)))));
+await p.screenshot({path:'../ev/branch-check7-added.png'}); console.log('caps',JSON.stringify(caps).slice(0,700)); await s.close(); process.exit(0);
