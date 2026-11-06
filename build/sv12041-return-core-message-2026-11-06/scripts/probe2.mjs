@@ -6,5 +6,6 @@ const f=p=>p.part_number+' ['+p.name?.slice(0,20)+'] q'+p.quantity+' core$'+p.co
 console.log('CORED+BINS'); L.filter(p=>Number(p.core_charge)>0&&!p.is_core&&(p.binLocations||[]).length).slice(0,6).forEach(p=>console.log(' ',f(p)));
 console.log('CORED no bins'); L.filter(p=>Number(p.core_charge)>0&&!p.is_core&&!(p.binLocations||[]).length).slice(0,3).forEach(p=>console.log(' ',f(p)));
 console.log('NOCORE+BINS'); L.filter(p=>!(Number(p.core_charge)>0)&&!p.is_core&&(p.binLocations||[]).length&&Number(p.quantity)>0).slice(0,4).forEach(p=>console.log(' ',f(p)));
+console.log('CORED multi-bin'); L.filter(p=>Number(p.core_charge)>0&&!p.is_core&&(p.binLocations||[]).length>1).slice(0,3).forEach(p=>console.log(' ',f(p)));
 console.log('NOCORE no bins'); L.filter(p=>!(Number(p.core_charge)>0)&&!p.is_core&&!(p.binLocations||[]).length&&Number(p.quantity)>0).slice(0,3).forEach(p=>console.log(' ',f(p)));
 await s.close(); process.exit(0);
