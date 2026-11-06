@@ -220,3 +220,19 @@ Browser vs machine offsets (`build/testing-tools/tz_rules_check.py`, Chromium 15
 | SV-12277, SV-12278 | Visual only | n/a | Unaffected |
 
 Filed under the QA lead's account by another session, not on my branch: SV-12193, SV-12267, SV-12268, SV-12269. None is about a time of day by its title. I didn't check them (Rule 98).
+
+## 6 Nov 2026 (~20:00 UTC): worker hand-back checked (Rule 86); no Jira write
+
+- **Money edge cases (part-sale-only invoice P11839-248, $50 deposit, refund of the $10 credit memo):** PASS, confirmed from `dashboard-bug-hunt-2026-11-05/evidence/area8-money/*.json`. Revenue $172.27 → $202.27 (+$30); deposit and refund move no tile; the tile ($202.27) equals the Sales report for 6 Nov. Read 12:20–12:28 UTC, away from Edmonton's gap hour (06:00–07:00 UTC), so these results stand under Rule 99(i).
+- **Which reports build their day in the browser:** confirmed from `evidence/part4-report-ranges/report-ranges.json`.
+  - Technician Utilization and Sales By Customer send browser-built start/end times even on a preset (Last Quarter: 2026-07-01T06:00Z, which is right for summer).
+  - All five reports do so on a Custom range.
+  - Sales By Customer, Custom 4 Nov, sent **start 07:00 UTC**: the browser's older rule; the newest rules give 06:00 UTC.
+- **Decision: SV-12276 not updated yet.** The only part observed is what the browser *sends*. A wrong figure *on screen* in Technician Utilization or Sales By Customer has not been seen: no record was made in the gap hour. Rule 94 needs an on-screen reproduction, and Rule 99(h) says a gap-hour result stays NOT VERIFIED until it is checked on the server side. The note is held until a record is seeded in the gap hour and the report is seen on screen to leave it out. That needs fresh sv11839 sign-in cookies; the session ended at 19:05 UTC with 401 `sso_required`.
+- **Re-check of the four questions to Chris (Rule 101):** no reply on any of them.
+  - SV-12275, comment 80316
+  - SV-12276, comments 80317 and 80326
+  - SV-12277, comment 80318
+  - SV-12278, comment 80319
+  - All four are now **In Progress**, updated about 16:42 UTC; not by us.
+- **Karachi day-boundary test:** NOT VERIFIED; blocked by the expired sign-in. The set-up is ready: S11839-17606 is completed and not invoiced. Re-run steps are in `dashboard-bug-hunt-2026-11-05/RESULTS.md`.
