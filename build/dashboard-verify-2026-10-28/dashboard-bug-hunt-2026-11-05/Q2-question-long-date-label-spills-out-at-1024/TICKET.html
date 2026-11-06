@@ -1,0 +1,15 @@
+<p><strong>QUESTION FOR CHRIS, not a ticket yet.</strong> File only if Chris answers "fix it".</p>
+<p><strong>Summary (if filed):</strong> Dashboard - at 1024 px a long custom date on a tile's date button sticks out of the tile</p>
+<p><strong>Epic:</strong> SV-11839 (Dashboard). Related: SV-11255 (the same problem on small screens, fixed).</p>
+<h2>What we see</h2>
+<p>At a screen 1024 pixels wide, the narrowest size the PRD calls desktop (S12-R1), a tile set to a custom range shows the full dates on its button, for example "Nov 3, 2026 - Nov 20, 2026". The button is then wider than the tile. Its right end and the arrow cross the tile's edge into the gap next to Billing Efficiency.</p>
+<ul>
+<li>At 1280 px and wider it fits.</li>
+<li>On a phone (390 px) it fits, and the page does not scroll sideways (S12-R13 PASS).</li>
+<li>Light and dark themes are the same.</li>
+</ul>
+<h2>What the document says</h2>
+<p>S12-R13: <em>"On a small screen the page never scrolls sideways, whatever date range a tile shows. A long date label fits within its tile (SV-11255)."</em> That rule is written for small screens. The PRD has no rule for a long label on a desktop-width screen, so this is a question, not a defect.</p>
+<h2>Where it was seen</h2>
+<ul><li>QA branch sv11839, build v26.45.0-5d54a3f, Admin, Staging Heavy Duty - 9919, 1024 × 768, 6 Nov 2026 10:24–10:25 UTC. Time zones (session, browser, app setting, test computer) all America/Edmonton, recorded in evidence.json. The measurement tool found the button's arrow outside the tile (evidence.json → runs_1024 → text.revenueKpi.overflow_tile).</li></ul>
+<p><strong>Expected:</strong> to be confirmed by Chris.</p>

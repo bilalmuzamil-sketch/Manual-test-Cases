@@ -1,0 +1,12 @@
+<p><strong>QUESTION FOR CHRIS, not a ticket yet.</strong> File only if Chris answers "fix it".</p>
+<p><strong>Summary (if filed):</strong> Dashboard - the tile date buttons show blue text; the PRD asks for near-black</p>
+<p><strong>Epic:</strong> SV-11839 (Dashboard).</p>
+<h2>What we see</h2>
+<p>In the light theme, every tile's date button ("This Month", "Last 12 Months") and the At Risk "120 Days" button show <strong>blue text on a light-blue pill</strong>. The measured text colour is rgb(56, 116, 255). The tile labels next to them ("Revenue", "Billing Efficiency") are near-black, rgb(49, 55, 74). The supporting lines are dark grey.</p>
+<h2>What the document says</h2>
+<p>Dashboard PRD (Confluence "Dashboard", v53), S12-R2: <em>"The descriptive text on the tiles — tile labels, supporting lines, and the date-range and inactivity-window controls — is shown in a near-black color in the light theme."</em> Its context note: <em>"the descriptive text was darkened from muted grey to a near-black (light) and near-white (dark) so the words read clearly on both themes."</em></p>
+<p>Why this is a question and not a defect: the blue pill looks like deliberate styling, shared with the report filter buttons ("Date: Last quarter" is a blue pill on the reports too). The PRD's design link could not be read to settle it. The PRD wording covers the date controls, but the context note is about muted grey, not blue. We do not choose a side; Chris decides.</p>
+<h2>Where it was seen</h2>
+<ul><li>QA branch sv11839, build v26.45.0-5d54a3f, Admin, Staging Heavy Duty - 9919, light theme, 1920 px wide, 6 Nov 2026 10:27 UTC. Time zones (session, browser, app setting, test computer) all America/Edmonton, recorded in evidence.json.</li>
+<li>The same at 1536, 1280, 1024 and 390 px (area 7 measurements). In the dark theme the date text is white, as S12-R3 asks.</li></ul>
+<p><strong>Expected:</strong> to be confirmed by Chris.</p>

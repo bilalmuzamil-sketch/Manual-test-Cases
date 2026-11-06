@@ -12,13 +12,31 @@
 - the header location at the start and at the end;
 - `all_match`.
 
-### Area 6: location switch (Heavy Duty → Lethbridge, both America/Edmonton, so Rule 99 holds on both sides; 10:22 UTC)
+### Area 7: visual conformance (Story 12), measured. Heavy Duty, America/Edmonton, 1920/1536/1280/1024/390 px, light and dark, 10:24–10:28 UTC
+Each check was measured with computed colours, box positions and font sizes (`tools/visual.mjs`), not judged by eye.
+
+| Rule | Result | Evidence |
+|---|---|---|
+| S12-R1 four KPI tiles in one row, count tiles below, at 1024 px and wider | **PASS** at 1920, 1536, 1280 and 1024. At 390 px the tiles stack, as intended. | `evidence/area7-visual/visual.json` (tiles x,y) |
+| S12-R2 light theme: near-black descriptive text | Tile labels rgb(49, 55, 74) and supporting lines dark grey: PASS. **Date-range and inactivity-window buttons are BLUE**, rgb(56, 116, 255). → **question Q1**: the PRD wording covers them, but the blue pill looks like deliberate styling shared with the reports (Rule 58). | `Q1-question-tile-date-buttons-blue-not-near-black/` |
+| S12-R3 dark theme: near-white | **PASS.** Date text white, labels and lines light. | `visual.json` |
+| S12-R4 count headline larger than KPI headline | **PASS.** 34 px vs 26 px at every width. | `visual.json` |
+| S12-R11 dark tile date picker is dark | **PASS.** Background rgb(15, 17, 26); presets rgba(255, 255, 255, 0.85). | `evidence/area7-visual/dark-1920-picker.png` |
+| S12-R12 small screen: the date button opens its picker however far the page is scrolled | **PASS** at 390 px after scrolling to the bottom (Sales by Customer). The picker opens as a dialog, in both themes. | `light-390-picker.png`, `dark-390-picker.png` |
+| S12-R13 small screen: no sideways scroll, and a long date label fits | **PASS** at 390 px with "Nov 3, 2026 - Nov 20, 2026". | `light-390.png` |
+| Long date label at **1024 px** (desktop) | The button spills past the tile's right edge (fits from 1280 up). The PRD rule is written for small screens only. → **question Q2** | `Q2-question-long-date-label-spills-out-at-1024/` |
+| No sideways page scroll at any width | **PASS** (documentElement.scrollWidth = viewport width at all 10 sizes). | `visual.json` |
+| S12-R7 to R10 (report at 1536×864, table scroll, picker floating, upward filter list) | **NOT RUN.** Each has its own closed ticket (SV-10933, SV-10934, SV-10936, SV-11242); time went to the day-boundary window. | |
+
+The light/dark choice was restored to **Light** at the end. It was switched from the profile menu of the QA lead's own session.
+
+### Area 6: location switch (Heavy Duty → Lethbridge, both America/Edmonton, so Rule 99 holds on both sides; 10:16 UTC)
 | Check | Result | Evidence |
 |---|---|---|
 | Switch from the top bar (profile menu → Change Location) with Revenue on Last Quarter and Technician Utilization expanded. Every tile's text was read every ~150 ms for 12 s after the click. | **PASS.** The Heavy Duty figures were seen only at the first read (58 ms, before the switch began). After that, every tile showed Lethbridge's own figures: Revenue $151.74, Technician Utilization 100.00 %, Sales by Customer 310, At Risk 260. The API cross-check gives the same values. Header and `localStorage` moved to Lethbridge. Tiles came back on their defaults, and the expanded tile stayed open (S6-R16). | `evidence/area6-locswitch/` |
 | Empty states (5.3) | Done with the DVI Test day-boundary run (area 2). | |
 
-### Area 8: money edge cases (Heavy Duty, America/Edmonton, every tile read on **Today = Nov 6** with the calendar's Today button; 10:27–10:40 UTC)
+### Area 8: money edge cases (Heavy Duty, America/Edmonton, every tile read on **Today = Nov 6** with the calendar's Today button; 10:18–10:23 UTC)
 Set-up: `tools/money.py`, logged in `seed-log.jsonl`.
 - Customer "ZZAUTOTEST Hunt Money".
 - Work order **S11839-17601**: one "Battery service" line (1.00 h) with 30 minutes clocked by Craig Mckee.
