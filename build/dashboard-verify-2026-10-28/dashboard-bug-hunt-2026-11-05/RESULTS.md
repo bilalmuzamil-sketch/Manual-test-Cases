@@ -12,6 +12,21 @@
 - the header location at the start and at the end;
 - `all_match`.
 
+### Area 5: Stories 6–9 gaps (Heavy Duty, America/Edmonton, 09:57–10:40 UTC)
+| Check | Result | Evidence |
+|---|---|---|
+| 5.2a Custom range of a single day (Nov 4) | **PASS.** Picker reads "Range: 1 day". The request is `from=2026-11-04&to=2026-11-04`. The tile shows $1,483.16, which equals the Nov 4 daily bar. | `evidence/area5/5.2a-*` |
+| 5.2b **Custom range ending in the future (Nov 3–Nov 20, today is Nov 6)** | **FAIL → candidate D1.** The tile sparkline and the open chart run to Nov 20, with 14 empty future days. The Sales report chart for the same range ends on Nov 6. PRD S4-R11c, S7-E1 and S11-R8. Seen on Revenue and Technician Utilization. | `D1-dashboard-chart-runs-past-today-custom-range/` |
+| 5.2c "Today" button in the calendar | **PASS.** The request is `from=2026-11-06&to=2026-11-06`. Technician Efficiency reads "-" with 0.00 / 0.00 (S3-E3: no value when nothing to divide by). | `evidence/area5/area5-HD.json` |
+| 5.1 Ranges on 4 tiles changed, Technician Utilization expanded, then reload | **PASS.** Every tile is back on its default: This Month ×4 and Sales by Customer on Last 12 Months (S7-R7, S7-R8). The expanded Technician Utilization tile is remembered (S6-R16). | `evidence/area5/5.1-after-reload.png` |
+| 5.4 Revenue chart hover (Last Quarter) | **PASS.** Jul 1 $59,064, Jul 29 $160,613 and Aug 26 $121,636 equal the data ($59,064.08 / $160,612.71 / $121,636.34; the tooltip rounds to whole dollars, and the PRD sets no format). | `evidence/area5/5.4-revenue-hover-*.png` |
+| 5.4 Billing Efficiency tooltip (S9-R5) | **PASS.** The tooltip shows the advisor's % **and** "ELR: $…" (e.g. Gerald Ortiz 108 %, ELR $159.85, Jul 8). | `evidence/area5-be-tooltip/` |
+| 5.4 Legend hover (S9-R10) | **PASS.** Technician Efficiency, Last 12 Months: Cameron Johnston "92% · Aug 2026" (data 92.39) and Daniel Montoya "109% · Aug 2026" (data 108.87), with no average. | `evidence/area5/5.4-te-legend-*.png` |
+| 5.3 Empty states | Done in area 6 (DVI Test has little data). | |
+| 3.3 Tile technician filter carried to the report | **Not run.** PRD Story 10 carries only the date range. Any difference could only be a question for Chris, and the QA lead ruled on the related O2 ("leave it", 4 Nov). | |
+
+A note on reading these pictures: in the Billing Efficiency chart, hovering the **legend row** gives the S9-R10 legend tooltip (name, latest value, date, no ELR). That is correct and is not the point tooltip. It was ruled out as a defect before drafting.
+
 ### Area 4: access by role (Story 1, STAGING v26.45.2-7238f98, Staging Heavy Duty - 9919, Asia/Karachi, 09:50–09:56 UTC)
 Rule 99 (both runs): browser `timezoneId` Asia/Karachi, process `TZ` Asia/Karachi, `localStorage['timezone']` "Asia/Karachi", `localStorage['location']` = Heavy Duty, session `change-location` to Heavy Duty/Karachi. All recorded in `evidence/area4-access/access.json`.
 

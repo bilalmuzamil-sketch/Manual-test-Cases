@@ -1,0 +1,40 @@
+<p><strong>Summary:</strong> Dashboard - a custom date range that ends after today draws empty future days on the tile and in its chart</p>
+<p><strong>Epic:</strong> SV-11839 (Dashboard). Type Bug, priority Medium, Product Area Reports &amp; Dashboards. Related: SV-11468 (the same rule on the report pages, Done).</p>
+<h2>What is wrong</h2>
+<p>On the Dashboard, a tile's date picker lets you choose a custom range whose end date is still in the future. When you do, the tile's small chart and its open chart ("View details") carry on <strong>past today</strong>, all the way to the end date. The days that have not happened yet are drawn as empty days.</p>
+<p>The report the tile links to, opened on exactly the same range, correctly stops its chart at today. So the Dashboard and the report show two different charts for the same dates.</p>
+<p><strong>Example</strong> (QA branch sv11839, location Staging Heavy Duty - 9919, Edmonton time, today = Fri 6 Nov 2026):</p>
+<ul>
+<li>Revenue tile, custom range <strong>Nov 3 to Nov 20, 2026</strong>. The date picker reads "Range: 18 days".</li>
+<li>The open Revenue chart has one bar per day: Nov 3 ($1,625.23), Nov 4 ($1,483.16), then <strong>16 more days up to Nov 20</strong>. 18 days − 4 days that have happened (Nov 3–6) = <strong>14 days in the future</strong>, drawn as empty space.</li>
+<li>The small chart on the tile runs flat at $0 to Nov 20 for the same reason.</li>
+<li>The Technician Utilization tile behaves the same way: its open chart is labelled to Nov 20, and the lines stop at Nov 6.</li>
+<li>The tile's link opens the Sales report on <strong>Date: Custom</strong>, and its chart ends on <strong>Nov 6, 2026</strong>, as it should.</li>
+</ul>
+<p>The figures themselves (the headline $3,108.39 and the report total) are right. Only the charts are wrong.</p>
+<h2>Steps to reproduce</h2>
+<ol>
+<li>Log in as an Admin and pick the location <strong>Staging Heavy Duty - 9919</strong> in the top bar.</li>
+<li>Open <strong>Dashboard</strong>.</li>
+<li>On the <strong>Revenue</strong> tile, click the date button (it reads "This Month").</li>
+<li>In the calendar, click a day earlier this month (for example the 3rd), then a day <strong>after today</strong> (for example the 20th). Click <strong>Apply</strong>.</li>
+<li>Look at the small chart on the tile, then click <strong>View details</strong> and look at the open chart's last date.</li>
+<li>Click the small report icon next to the word "Revenue". The Sales report opens in a new tab. Look at its chart's last date.</li>
+</ol>
+<p><strong>Actual:</strong> the Dashboard charts run to the end date (Nov 20) and show 14 empty future days. The Sales report chart for the same range ends today (Nov 6).</p>
+<p><strong>Expected:</strong> the Dashboard charts stop at today, Nov 6, the same as the report chart. The Dashboard PRD (Confluence page "Dashboard", version 53) says:</p>
+<ul>
+<li>S4-R11c: <em>"A range that ends today … is sized by its days so far, not by the full period, because the dashboard's ranges stop at today. … The expanded and report charts follow the same rule."</em></li>
+<li>S7-E1: <em>"If the selected range has not finished, the tile's headline and sparkline both describe the same partial window."</em></li>
+<li>S11-R8: <em>"When the report's date range ends after today (This week, This month, This quarter, This year, or a custom range that ends in the future), the chart runs from the range's first day through today, with no empty days after today, so it ends on the same date as the dashboard chart for the same range (S7-E1)."</em></li>
+</ul>
+<p>(The other way to meet these rules is for the Dashboard date picker not to offer days after today at all. Chris Ward is asked which he prefers in the comment below.)</p>
+<h2>Where it was seen</h2>
+<ul>
+<li>QA branch <a href="https://sv11839.qa.shopview.com">https://sv11839.qa.shopview.com</a>, build <strong>v26.45.0-5d54a3f</strong>, Admin, location Staging Heavy Duty - 9919.</li>
+<li>6 Nov 2026, 09:59–10:20 UTC (about 3:00–4:20 AM in Edmonton, so far from midnight).</li>
+<li>All four time-zone settings matched the location (America/Edmonton) and were recorded: the session, the browser, the app's own time-zone setting, and the test computer.</li>
+<li>The browser's own date picker allowed the future end date. "Apply" was enabled.</li>
+</ul>
+<h2>Screenshot</h2>
+<p><strong>1.</strong> Top: the Revenue tile on Nov 3 – Nov 20 and its open chart, with 14 empty future days. Bottom: the Sales report opened from the tile link on the same range; its chart stops at Nov 6. (D1-annotated.png)</p>

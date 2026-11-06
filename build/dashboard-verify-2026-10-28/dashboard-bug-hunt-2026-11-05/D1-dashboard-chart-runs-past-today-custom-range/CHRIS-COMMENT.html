@@ -1,0 +1,6 @@
+<p><span data-type="mention" data-user-id="712020:aa00b8d6-a71f-4259-8919-82a304227c20">@Chris Ward</span> thank you for looking at this one. We found it while testing the Dashboard date ranges on the QA branch.</p>
+<p><strong>What happens today:</strong> on a Dashboard tile you can pick a custom range that ends in the future, for example Nov 3 to Nov 20 when today is Nov 6. The tile's small chart and its open chart then run all the way to Nov 20, with 14 empty days that have not happened yet. The Sales report opened from the same tile, on the same range, stops its chart at Nov 6.</p>
+<p><strong>What we understand should happen:</strong> the Dashboard chart stops at today (Nov 6), the same as the report chart. The PRD says <em>"the dashboard's ranges stop at today"</em> (S4-R11c), and S11-R8 says the report chart <em>"ends on the same date as the dashboard chart for the same range"</em>.</p>
+<p>The picture below shows both charts, with numbered notes.</p>
+<p>[annotated screenshot D1-annotated.png embedded here]</p>
+<p>Could you please confirm: <strong>fix it, or leave it as it is?</strong> If it should be fixed, would you prefer (a) the chart stops at today, or (b) the Dashboard date picker does not allow days after today?</p>
