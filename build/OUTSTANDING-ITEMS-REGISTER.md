@@ -1568,3 +1568,4 @@ what is still owed.
 | SV-12288 (customer: times one hour ahead after DST) has no repro steps; we reproduced it on branch + staging (Timesheet Activities +1 h in America/Edmonton). Add our steps there? Production not verifiable (no DST location; changing one was blocked). | QA lead | SV-12288 repro | 6 Nov |
 | SV-12041: typed line / core row at 0 show only "Quantity cannot be lower than 0.01" (same as production) - counts as the fix? | QA lead | SV-12041 verdict | 6 Nov |
 | SV-12203 handed to Mudassir (QA lead 6 Nov). SV-12268/12269: Chris answered (80334/80335). | - | cleared | 6 Nov |
+| SV-11684: Dusan 80363 says Chris agreed "..." + tooltip on desktop (Chris has not written it on the ticket; his description asks wrap/fully readable). Pass on that, or ask Chris to confirm on the ticket? Branch unchanged (7516f9c) since my retest. | QA lead | SV-11684 verdict | 6 Nov |
