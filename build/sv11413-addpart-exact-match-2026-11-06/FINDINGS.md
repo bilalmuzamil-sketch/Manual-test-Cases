@@ -27,3 +27,8 @@ Staging corroborates: exact 194 at position 19, CR1 not first, PATM-2 2nd, speci
 | 6 | cleared search default list | PASS (311 rows; identical order to staging once 3 staging-only special parts added after the copy are set aside) |
 | 7 | add exact part | PASS ("Part added", (194) Light Bulb In Stock, Pick, on S11413-17580; needs Qty typed) |
 Test data (branch, left): WOs S11413-17580, S11413-17581 (vendor request "194"). Production: catalogue+inventory "Light Bulb" 194 (Trucks Hill 2).
+
+## Posted
+- 80369 WHAT PASSED (exhibit 01, 7-row table), 80370 PARTIALLY PASSED (check 5, exhibit 02, tagged Dusan). Edited 80370
+  minutes after posting to drop "(52 in stock)" (that figure was staging's, not observed on the branch).
+- Status -> REJECTED FROM TESTING (15); QA Assignee set to Bilal (was empty). Gate: build b07ae41 re-read before posting.
