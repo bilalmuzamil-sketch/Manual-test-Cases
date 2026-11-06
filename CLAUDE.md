@@ -5782,6 +5782,14 @@ deliver the 7-tab management report.
     OUTSTANDING register and re-read the ticket on the 3-hourly check for the answer. First applied: SV-12203 comment 80329 (Dipesh:
     front-end address, QuickBooks sandbox connected, QuickBooks login, which location). Ties to Rules 22, 36, 65, 68, 85, 116.
 
+123. **NEVER ASK THE PO TO CHANGE THE PRD FOR A FEATURE THAT HAS ALREADY SHIPPED (all projects).**
+    QA-lead guidance (2026-11-06): changes to a PRD after the feature has shipped are not allowed by company rule, so no Jira
+    comment, follow-up question or question sheet to Chris Ward (or any PO) asks him to edit, update, align or add to a shipped
+    feature's PRD. Where a ticket and a shipped PRD disagree, ask the PO the plain product question ("is X correct, or should it
+    be Y?") and let his written answer on the ticket stand as the record; take anything still unclear to the QA lead. **Never
+    mention this rule or its source in a ticket.** This narrows Rule 109(b) and Rule 99's "PO updated the spec" path to features
+    not yet shipped. Earned on SV-12277 (comment 80377 asked Chris to edit Dashboard PRD S12-R2; Dashboard is live, PRD frozen).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
