@@ -1552,3 +1552,10 @@ what is still owed.
 | SV-12193 API-only finding: moving an OPEN time entry to another work order through the back end (`technician-tasks/move`) leaves the Clocked In count on the old work order and not on the new one. No screen can do this (open entries only have Clock out; Edit refuses "Active timesheets cannot be edited"). Rule 94: not filed — report it or not? | nothing on SV-12193 (passed, QA Complete) | 2026-11-06 |
 | Side observation (unverified): the same open time entry shows 06:30 AM on Timesheet Activities but 05:30 AM on the work order's Timesheets page (S12193-17581, Michael Stephenson). Nearest ticket SV-11590 (Done). Look into it? | nothing on SV-12193 | 2026-11-06 |
 
+
+## Board 2 queue — 6 Nov 2026 ~15:30 UTC (QA lead: "start picking the ticket from that Board 2" after the given tickets)
+| Ticket | State | Blocked on | Since |
+|---|---|---|---|
+| SV-12041 (given ticket) | production "before" captured (old "bin locations" toast) | fresh `.qa.shopview.com` cookies (quick-login 401 sso_required) | 2026-11-06 |
+| SV-12143 (Board 2, Dusan) | read; no dev handoff comment, no Powertools plan, QA assignee empty | same QA cookies | 2026-11-06 |
+| SV-9570 (Board 2, Dusan, handoff 80327) | production before in progress (230-field template "ZZAUTOTEST SV9570 230 fields 6062" on S2-1921) | same QA cookies for the branch | 2026-11-06 |
