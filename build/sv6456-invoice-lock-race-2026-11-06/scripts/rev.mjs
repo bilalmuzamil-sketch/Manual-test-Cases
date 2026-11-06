@@ -1,0 +1,1 @@
+import {sess,post} from './common.mjs'; const s=await sess(); const r=await post(s,`/api/deposits/${process.env.DEP}/reverse`,{}); console.log(r.status,JSON.stringify(r.json).slice(0,300)); await s.close(); process.exit(0);
