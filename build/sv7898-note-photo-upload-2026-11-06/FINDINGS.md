@@ -34,3 +34,12 @@ Build markers re-read at post time (branch v26.45.1-a5c66b3, prod v26.45.1-75335
 Many "_files_" notes and ZZAUTOTEST SV7898 notes on S2-4219 (branch) and S2-1926 (production).
 
 Learning check: playbook gets the QA-branch sleep-redirect note and the notes endpoints.
+
+---
+# Retest — 6 Nov 2026 after Slavcho's fix (80307) — branch `v26.45.1-aa4c767`
+**Verdict: PASSED** — comment 80320 (one green comment, 16 rows, exh-4 before/after). Label `QAcomplete` added, TESTING QA → **QA Complete** (transition 10). QA Assignee already Bilal.
+- Fix (scripts/newnote_offline2.mjs): New Note + photo, offline, Save → toast "Your note wasn't saved / Check your connection, then tap Save." at +3 s, window open, photo kept, **0 note write requests while offline**; back online, Save → create 201 + add-attachments 201, server 1 note with image.jpg (R1). Text-only variant same, note created (R2).
+- Regression lanes R-/S-/T- (lane.sh): every row matches the a5c66b3 pass. Caveat: lanes A–D ran concurrently on the same WO, so their SERVER lines (notes[0]) can belong to another lane; each row's screen result is its own, and the server-dependent rows (paperclip abort-retry, hang-retry, offline-retry, card latency) were re-run alone (S-, S2-, T-) and confirmed. R-toolbar-abort-retry lost its banner once because the QA branch's own reload fired (NAV at +32.6 s) — alone 2/2 fine.
+- Card no-answer (T-card-latency-retry): hedged "1 file may not have been attached. Check the note's attachments…" banner; the delayed upload eventually lands, so Retry can add a duplicate — the message warns about exactly that; same as the a5c66b3 pass (Y-card-latency-retry had 4 copies).
+- Unverified side observation (bucket d, not posted): R-toolbar-offline-retry once showed a second toast "Part of the page failed to load. Your connection may have dropped. Reload to try again." (error_boundary_retry); 0 of 2 solo runs. Slavcho's "Network Error" toast not seen in any run.
+- Pre-post gate: marker aa4c767 re-read; ticket TESTING QA, last comment 80307; exhibit uploaded as Jira media. Rule 121: not applicable.

@@ -6517,3 +6517,7 @@ Hand-added open entry: Reports > Timesheet Activities (/reports/punch-clock-acti
 - Part-number suggestions come from GET /api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts.
 - Code: chunk WorkOrderLineParts.*.js; the row's onKeydown enter handler is gated by a flag set by the part-number typeahead's onPopupShow/onPopupHide.
 - Line in "Needs Approval": create from canned line WITHOUT a status (`{canned_line_id}`) → status authorization_required. 'pending'/'estimate'/'needs_approval' are rejected ("Wrong status name").
+
+### Tech story completion wizard + Tech story gate window (proven 2026-11-06, SV-12003)
+- **Completion wizard:** line `Complete` button `button_action_complete_line_<lineId>` → "Tech stories" step with `input_tech_story_<lineId>` (only when org setting `requireTechStories` is true and the line has no story). Clicking out of the box SAVES the story to the line.
+- **Tech story gate window:** work order in **Review** (`ready_for_review`) → `button_mark_reviewed` → if `requireTechStories` and any non-declined line has no story, the "Tech story" window opens (`section_tech_story_gate`, `input_tech_story`, `button_tech_story_next`, "Line 1 of N"). Find such a WO: `GET /api/work-orders?pagination[page]=1&pagination[rowsPerPage]=200&pagination[sortBy]=status&pagination[descending]=true&search=&showMyWorkOrders=0` then `GET /api/work-orders/lines/{id}` and look for empty `tech_story`.

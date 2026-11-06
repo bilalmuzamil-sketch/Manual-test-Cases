@@ -1,0 +1,16 @@
++19.9s [before-offline] {"dialog":true,"save":{"text":"Save","loading":false,"disabled":false,"box":[57,678,284,36]},"text":"","pending":[{"t":"image.jpg 1.45 MB For Customer close","box":[50,422,290,60]}],"msgs":[{"t":"Cancel","id":"button_cancel_note","box":[57,639,284,36]}]}
++20.1s offline
++23.1s [offline-before-save] {"dialog":true,"save":{"text":"Save","loading":false,"disabled":false,"box":[57,678,284,36]},"text":"","pending":[{"t":"image.jpg 1.45 MB For Customer close","box":[50,422,290,60]}],"msgs":[{"t":"Cancel","id":"button_cancel_note","box":[57,639,284,36]}]}
++23.3s tapped Save (offline)
++26.3s [offline-save+3s] {"dialog":true,"save":{"text":"Save","loading":false,"disabled":false,"box":[57,545,284,36]},"text":"","pending":[{"t":"image.jpg 1.45 MB For Customer close","box":[50,289,290,60]}],"msgs":[{"t":"warning Your note wasn't saved Check your connection, then tap Save. Close","id":"q-notification row items-stretch q-notif","box":[10,598,371,56]},{"t":"Cancel","id":"button_cancel_note","box":[57,506,284,36]}]}
++43.4s [offline-save+20s] {"dialog":true,"save":{"text":"Save","loading":false,"disabled":false,"box":[57,545,284,36]},"text":"","pending":[{"t":"image.jpg 1.45 MB For Customer close","box":[50,289,290,60]}],"msgs":[{"t":"Cancel","id":"button_cancel_note","box":[57,506,284,36]}]}
++43.6s note write requests while offline: 0
++43.6s online
++48.6s [online+5s] {"dialog":true,"save":{"text":"Save","loading":false,"disabled":false,"box":[57,545,284,36]},"text":"","pending":[{"t":"image.jpg 1.45 MB For Customer close","box":[50,289,290,60]}],"msgs":[{"t":"Cancel","id":"button_cancel_note","box":[57,506,284,36]}]}
++48.8s REQ POST /api/note/create
++48.8s tapped Save (online)
++49.2s RES 201 /api/note/create
++49.2s REQ POST /api/note/add-attachments
++53.0s RES 201 /api/note/add-attachments
++60.8s [online-save+12s] {"dialog":false,"save":null,"text":"","pending":[],"msgs":[]}
++78.6s SERVER notes with tag: 1 [{"id":"e734cc0e-f464-404b-b095-0cb0027f319e","att":["image.jpg"]}]

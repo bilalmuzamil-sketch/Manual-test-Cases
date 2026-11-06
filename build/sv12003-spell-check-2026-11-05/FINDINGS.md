@@ -42,3 +42,13 @@ Full matrix re-run (ev/branch-matrix; old 5 Nov run kept as ev/branch-matrix-202
 
 ## Pre-post gate
 Branch marker re-read at post time (b7be383 unchanged); ticket re-read (last comment Parth 80289); exhibits checked by eye; two-comment order 80293 → 80294.
+
+---
+# Retest 3 — 6 Nov 2026 after Parth's redeploy (80308) — branch `v26.45.1-9ae1530`
+**Verdict: PASSED** — comment 80315 (one green comment, 9 rows, 2 exhibits; edited once at 05:45 UTC−5 to fix "How to see it" — line 1 now shows the saved story "wrng spellling"). Label `QAcomplete` added, moved TESTING QA → **QA Complete** (transition 10). QA Assignee already Bilal.
+- Matrix (scripts/matrix.mjs, ev/branch-matrix-r3-{space,nospace,period}): every box underlines in typing / clicked-out / refocus for all three endings — Tech Story 382×3 (was 0/0/382 with a full stop), Customer/Asset Notes 382×3, Edit Line Description 789×3, New Note 382×3, New Line 0×3 (intended).
+- scripts/gate.mjs (ev/branch-r3-gate, -run2): Edit Line Title 522 typing / 0 clicked-out / 515 refocus, 2 of 2 (click-out drop = plain Chrome input behaviour, proven earlier ev/branch-parth/plain-input-*). Completion wizard (`input_tech_story_<line>` via `button_action_complete_line_<line>`) 384 typing; clicking out saved the story (shot timed out because the box became read-only) — matches Parth's note. Tech story gate (`button_mark_reviewed` on S2-17422, ready_for_review, 5 lines without story) 384/384/384, spellcheck attr true, not autofocused.
+- How the gate is reached: WorkOrder chunk — `onOpenMarkReviewed` → if requireTechStories && lines without story → TechStoryGateModal (found via bundle read, findgate.mjs).
+- Pre-post gate: marker 9ae1530 re-read; ticket TESTING QA, last comment Parth 80308; images uploaded as Jira media; steps walked (howto.mjs) — caught the stale "Add tech story" link and fixed in place with dated note.
+- Rule 121 (AccountingHub/QB): not applicable — no money/tax data touched.
+Learning check: the completion-gate Tech story window opens from Mark Reviewed when tech stories are required and a line has none — added to playbook.
