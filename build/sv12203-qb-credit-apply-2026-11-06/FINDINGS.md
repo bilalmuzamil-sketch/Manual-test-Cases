@@ -16,3 +16,9 @@ Moved to Blocked (transition 7) 6 Nov 2026 07:54 (UTC−5), per QA lead; re-read
 - QuickBooks sandbox login: in **1Password** (per Dipesh) / personal Intuit account (per Confluence page 924123137 "QuickBooks QA Environments (qb, qb1, qb2)", v3). sandbox.qbo.intuit.com answers 301 through the proxy (reachable).
 - Any one location; turn OFF "Automatically apply credits" and "Automatically apply payments" first.
 - **Remaining blocker: the Intuit sandbox login — only the QA lead can give it (1Password).** Ticket left in Blocked until then.
+
+## Handed over (6 Nov 2026, about 09:00 CDT)
+- The QA lead: "OK I have given the ticket SV-12203 to do." Read as: the ticket now belongs to someone else, so we stopped. No test was run and nothing was posted after comment 80329.
+- He also gave the Intuit sandbox login for future QuickBooks work. The password is stored in /tmp/intuit/ only, never in git or Jira.
+- Ticket state when we stopped: Blocked, assignee Dipesh Changawala, QA Assignee empty, last comment 80331 (Dipesh).
+- Learning check: nothing new.

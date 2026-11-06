@@ -1536,7 +1536,7 @@ what is still owed.
 | Item | What I need | Blocks | Since |
 |---|---|---|---|
 | SV-12214 role="menu" | Yes/no: should the 5 plain menus that lost role="menu" (Columns, Status filter, Schedule View options, Schedule Filter & display, Report Date Range) go in the remaining-issues comment? Steps in build/sv12214-quasar-upgrade-2026-11-06/FINDINGS.md | SV-12214 verdict (everything else PASSED) | 2026-11-06 |
-| SV-12203 | QA lead: test it (cleared 6 Nov). Dipesh ANSWERED 80330/80331 (use qb.qa.shopview.com; connect QA US/QA CA myself). NOW WAITING ON THE QA LEAD: the QuickBooks Online sandbox login (in 1Password). Ticket in Blocked: front-end address for sv12203, QuickBooks sandbox connected to the branch, QuickBooks login, which location | SV-12203 all 8 scenarios | 2026-11-06 |
+| SV-12203 | HANDED TO SOMEONE ELSE by the QA lead (6 Nov, ~09:00 CDT: "I have given the ticket SV-12203 to do"). We stopped work on it; nothing posted after 80329. Dipesh had answered 80330/80331. The Intuit sandbox login was given to us for future QuickBooks testing (kept in /tmp only). Ticket left as it was (Blocked) for its new owner. | — (not ours now) | 2026-11-06 |
 
 ## Rejected from testing — watch (3-hourly check re-reads these; added 2026-11-06)
 | Ticket | Rejected on | Waiting for | Current state |
