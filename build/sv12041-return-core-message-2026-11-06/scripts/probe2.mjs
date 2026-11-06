@@ -1,0 +1,10 @@
+import {sess,arr} from './common.mjs';
+const s=await sess(); await s.go('/parts/inventory'); await s.page.waitForTimeout(3000);
+const ws=arr((await s.api('/api/staff/my-workplaces')).json?.data); console.log('workplaces',ws.map(w=>w.name).join(' | '));
+const L=arr((await s.api('/api/inventory/parts?pagination[page]=1&pagination[rowsPerPage]=500')).json?.data);
+const f=p=>p.part_number+' ['+p.name?.slice(0,20)+'] q'+p.quantity+' core$'+p.core_charge+' is_core:'+p.is_core+' vendor:'+(p.vendor_name||'-')+' bins:'+JSON.stringify((p.binLocations||[]).map(b=>(b.name||b.bin_location_name||b.id?.slice(0,6))+'='+(b.quantity??''))).slice(0,90);
+console.log('CORED+BINS'); L.filter(p=>Number(p.core_charge)>0&&!p.is_core&&(p.binLocations||[]).length).slice(0,6).forEach(p=>console.log(' ',f(p)));
+console.log('CORED no bins'); L.filter(p=>Number(p.core_charge)>0&&!p.is_core&&!(p.binLocations||[]).length).slice(0,3).forEach(p=>console.log(' ',f(p)));
+console.log('NOCORE+BINS'); L.filter(p=>!(Number(p.core_charge)>0)&&!p.is_core&&(p.binLocations||[]).length&&Number(p.quantity)>0).slice(0,4).forEach(p=>console.log(' ',f(p)));
+console.log('NOCORE no bins'); L.filter(p=>!(Number(p.core_charge)>0)&&!p.is_core&&!(p.binLocations||[]).length&&Number(p.quantity)>0).slice(0,3).forEach(p=>console.log(' ',f(p)));
+await s.close(); process.exit(0);

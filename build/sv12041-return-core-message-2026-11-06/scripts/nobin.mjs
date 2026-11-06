@@ -1,0 +1,10 @@
+import {sess} from './common.mjs';
+const s=await sess(); const p=s.page; await s.go('/parts/create-return'); await p.waitForTimeout(6000);
+await p.click('[data-test-id="select_vendor"]'); await p.keyboard.type(process.env.VENDOR||'gfhfghg',{delay:60}); await p.waitForTimeout(2500); await p.locator('.q-menu .q-item').first().click(); await p.waitForTimeout(2000);
+const btns=await p.evaluate(()=>[...document.querySelectorAll('button,[data-test-id]')].map(e=>(e.getAttribute('data-test-id')||'')+':'+(e.innerText||'').replace(/\s+/g,' ').slice(0,30)).filter(x=>x.length>2)); console.log('controls',JSON.stringify(btns.filter(b=>/part|add|return|line|manual/i.test(b))).slice(0,1200));
+await p.click('[data-test-id="create_return_part_select"]'); await p.waitForTimeout(800); await p.keyboard.type('ZZNOBIN41',{delay:60}); await p.waitForTimeout(3500);
+console.log('menu',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.replace(/\s+/g,' ').slice(0,80)))));
+await p.keyboard.press('Enter'); await p.waitForTimeout(2000); await p.keyboard.press('Escape'); await p.waitForTimeout(800);
+console.log('inputs',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="input_"]')].map(e=>{const i=e.matches('input')?e:e.querySelector('input'); return e.getAttribute('data-test-id')+'='+(i?i.value:'')}))));
+console.log('rows',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('tbody tr')].map(r=>r.innerText.replace(/\s+/g,' ').slice(0,140)))));
+await p.screenshot({path:`../ev/${process.env.ENV||'branch'}-nobin-disc.png`}); await s.close(); process.exit(0);
