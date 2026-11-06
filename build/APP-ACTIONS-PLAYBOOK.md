@@ -6526,3 +6526,6 @@ Hand-added open entry: Reports > Timesheet Activities (/reports/punch-clock-acti
 - The ticket's **QA Branch field (`customfield_10318`)** names the front end. QuickBooks tickets use **qb / qb1 / qb2** (`https://qb.qa.shopview.com` etc.), whose front end is re-pointed at the ticket's back end (`sv####api`); the ticket's own `sv####.qa.shopview.com` has no front end. Check: grep the qb front-end JS for `sv####api`.
 - Connect QuickBooks from that front end: location → QuickBooks settings → Connect → pick **QA US** (US location) or **QA CA** (Canadian). qb1 = QA 1 US/CA, qb2 = QA 2 US/CA. Never check QuickBooks data in another env's company.
 - QuickBooks sandbox login: https://sandbox.qbo.intuit.com/ — the QA lead gave us this login on 6 Nov 2026 (Intuit account bilal.muzamil@shopview.com). The password is kept ONLY in /tmp/intuit/ (user, pw) and is never committed; on a fresh container ask the QA lead for it again. After signing in, switch to company QA US or QA CA. Source: Confluence 924123137 v3.
+
+### Jira: setting QA Assignee (proven 2026-11-06, SV-12214)
+- Field `customfield_10385` is a multi-user (people) field: write `{"customfield_10385": [{"accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e"}]}`. A single object (no array) returns HTTP 400 "data was not an array".

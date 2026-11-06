@@ -1535,7 +1535,7 @@ what is still owed.
 ## Waiting on the QA lead — 6 Nov 2026 (later)
 | Item | What I need | Blocks | Since |
 |---|---|---|---|
-| SV-12214 role="menu" | Yes/no: should the 5 plain menus that lost role="menu" (Columns, Status filter, Schedule View options, Schedule Filter & display, Report Date Range) go in the remaining-issues comment? Steps in build/sv12214-quasar-upgrade-2026-11-06/FINDINGS.md | SV-12214 verdict (everything else PASSED) | 2026-11-06 |
+| SV-12214 | Posted 6 Nov ~09:15 CDT: 80337 (passed, 16 checks) + 80338 (PARTIALLY PASSED, tags Stefan). Branch sv12214 is gone. WAITING ON STEFAN: (1) redeploy sv12214, (2) role="menu" missing on 5 plain menus — intended or fix?, (3) which screen shows the board hover card, (4) walk the accounting forms or not. Ticket in Blocked, QA Assignee Bilal. | SV-12214 recheck of menus + hover card (+ accounting forms if asked) | 2026-11-06 |
 | SV-12203 | HANDED TO SOMEONE ELSE by the QA lead (6 Nov, ~09:00 CDT: "I have given the ticket SV-12203 to do"). We stopped work on it; nothing posted after 80329. Dipesh had answered 80330/80331. The Intuit sandbox login was given to us for future QuickBooks testing (kept in /tmp only). Ticket left as it was (Blocked) for its new owner. | — (not ours now) | 2026-11-06 |
 
 ## Rejected from testing — watch (3-hourly check re-reads these; added 2026-11-06)
