@@ -12,6 +12,30 @@
 - the header location at the start and at the end;
 - `all_match`.
 
+### Area 6: location switch (Heavy Duty → Lethbridge, both America/Edmonton, so Rule 99 holds on both sides; 10:22 UTC)
+| Check | Result | Evidence |
+|---|---|---|
+| Switch from the top bar (profile menu → Change Location) with Revenue on Last Quarter and Technician Utilization expanded. Every tile's text was read every ~150 ms for 12 s after the click. | **PASS.** The Heavy Duty figures were seen only at the first read (58 ms, before the switch began). After that, every tile showed Lethbridge's own figures: Revenue $151.74, Technician Utilization 100.00 %, Sales by Customer 310, At Risk 260. The API cross-check gives the same values. Header and `localStorage` moved to Lethbridge. Tiles came back on their defaults, and the expanded tile stayed open (S6-R16). | `evidence/area6-locswitch/` |
+| Empty states (5.3) | Done with the DVI Test day-boundary run (area 2). | |
+
+### Area 8: money edge cases (Heavy Duty, America/Edmonton, every tile read on **Today = Nov 6** with the calendar's Today button; 10:27–10:40 UTC)
+Set-up: `tools/money.py`, logged in `seed-log.jsonl`.
+- Customer "ZZAUTOTEST Hunt Money".
+- Work order **S11839-17601**: one "Battery service" line (1.00 h) with 30 minutes clocked by Craig Mckee.
+- Work order **S11839-17602**: its only line declined.
+
+| Step | Revenue | Supporting line | Billing Eff. | Tech Eff. | Sales by Customer | Verdict against the document |
+|---|---|---|---|---|---|---|
+| s0 before invoicing | $0.00 | 0 Invoices | - (0.00/0.00) | - | 0 customers | baseline |
+| s1 invoiced (S11839-17601) | $182.27 | Parts 0% · Labor 90% · Other 10% | 200.00 % (1.00/0.50) | 200.00 % | 1 customer | **PASS.** Subtotal $164.95 labour + $17.32 supplies. 164.95/182.27 = 90.5 % → 90 and 9.5 % → 10, adding to 100 (S4-R3). |
+| s2 invoice **reversed** (void) | $0.00 | 0 Invoices | - | - | 0 customers | **PASS.** S3-E2: a voided invoice is excluded from every figure. |
+| s3 invoiced again | $182.27 | as s1 | 200.00 % | 200.00 % | 1 customer | **PASS.** Counted once, not twice. |
+| s4 credit memo **$10.00** (CM-4192) | **$172.27** | **1 Invoice** | 200.00 % | 200.00 % | 1 customer | **PASS.** Revenue is subtotals minus credit memos (S3-R2): 182.27 − 10 = 172.27. The split is hidden because Parts is negative (Chris Q3 / SV-11823), and the count says "1 Invoice" (SV-11821). |
+| $0.00 invoice | not created | | | | | **NOT RUN.** The server refuses to invoice a work order whose only line is declined (400 "A work order must have at least one completed line…"). No other $0 path was tried. |
+| Part-sale-only invoice, deposit, refund | | | | | | **NOT RUN** (time given to areas 2 and 7). The PRD measures Revenue on invoice subtotals minus credit memos (S3-R2), so a deposit or refund should move nothing. Not observed. |
+
+Evidence: `evidence/area8-money/s0…s4*.json` and `.png`.
+
 ### Area 5: Stories 6–9 gaps (Heavy Duty, America/Edmonton, 09:57–10:10 UTC; `area5.mjs` re-run 10:09–10:10 UTC to save its JSON, with the same results)
 | Check | Result | Evidence |
 |---|---|---|

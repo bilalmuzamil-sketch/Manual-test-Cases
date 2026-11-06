@@ -1,0 +1,183 @@
+{
+ "app_version": "v26.45.0-5d54a3f",
+ "label": "s4-credit-memo-10",
+ "tiles": {
+  "revenueKpi": {
+   "value": "$172.27",
+   "meta": "1 Invoice",
+   "chip": "event Nov 6, 2026 expand_more",
+   "error": null
+  },
+  "billingEfficiencyKpi": {
+   "value": "200.00%",
+   "meta": "1.00 Invoiced / 0.50 Clocked",
+   "chip": "event Nov 6, 2026 expand_more",
+   "error": null
+  },
+  "techEfficiencyKpi": {
+   "value": "200.00%",
+   "meta": "1.00 Invoiced Tech Hrs / 0.50 Clocked",
+   "chip": "event Nov 6, 2026 expand_more",
+   "error": null
+  },
+  "salesByCustomer": {
+   "value": "1 customer",
+   "meta": "Top: ZZAUTOTEST Hunt Money",
+   "chip": "event Nov 6, 2026 expand_more",
+   "error": null
+  },
+  "atRiskHero": {
+   "value": "198",
+   "meta": "$1,230,249.15 (12mo) · 198 customers",
+   "chip": null,
+   "error": null
+  }
+ },
+ "server": [
+  {
+   "url": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=invoicesKpi&from=2026-11-06&to=2026-11-06&group=day",
+   "data": {
+    "revenueKpi": {
+     "value": 172.27,
+     "partsPct": null,
+     "laborPct": null,
+     "otherPct": null,
+     "sparkline": [
+      172.27
+     ]
+    },
+    "invoicesKpi": {
+     "value": 1
+    }
+   }
+  },
+  {
+   "url": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=invoicesKpi&from=2026-11-06&to=2026-11-06&group=day",
+   "data": {
+    "revenueKpi": {
+     "value": 172.27,
+     "partsPct": null,
+     "laborPct": null,
+     "otherPct": null,
+     "sparkline": [
+      172.27
+     ]
+    },
+    "billingEfficiencyKpi": {
+     "ratio": 2,
+     "invoicedHours": 1,
+     "clockedHours": 0.5,
+     "sparkline": [
+      200
+     ]
+    },
+    "invoicesKpi": {
+     "value": 1
+    }
+   }
+  },
+  {
+   "url": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=invoicesKpi&from=2026-11-06&to=2026-11-06&group",
+   "data": {
+    "revenueKpi": {
+     "value": 172.27,
+     "partsPct": null,
+     "laborPct": null,
+     "otherPct": null,
+     "sparkline": [
+      172.27
+     ]
+    },
+    "billingEfficiencyKpi": {
+     "ratio": 2,
+     "invoicedHours": 1,
+     "clockedHours": 0.5,
+     "sparkline": [
+      200
+     ]
+    },
+    "techEfficiencyKpi": {
+     "value": 200,
+     "hoursBilled": 1,
+     "hoursLogged": 0.5,
+     "sparkline": [
+      200
+     ]
+    },
+    "invoicesKpi": {
+     "value": 1
+    }
+   }
+  },
+  {
+   "url": "/api/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=topCustomers&reports[]=invoicesKpi&from=2026-11",
+   "data": {
+    "revenueKpi": {
+     "value": 172.27,
+     "partsPct": null,
+     "laborPct": null,
+     "otherPct": null,
+     "sparkline": [
+      172.27
+     ]
+    },
+    "billingEfficiencyKpi": {
+     "ratio": 2,
+     "invoicedHours": 1,
+     "clockedHours": 0.5,
+     "sparkline": [
+      200
+     ]
+    },
+    "techEfficiencyKpi": {
+     "value": 200,
+     "hoursBilled": 1,
+     "hoursLogged": 0.5,
+     "sparkline": [
+      200
+     ]
+    },
+    "topCustomers": {
+     "count": 1
+    },
+    "invoicesKpi": {
+     "value": 1
+    }
+   }
+  }
+ ],
+ "rule99": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-06T10:22:17.860Z"
+  },
+  "browser_local_time_start": "Fri Nov 06 2026 03:22:17 GMT-0700 (Mountain Standard Time)",
+  "all_match": true,
+  "note": "QA lead's own cookie set: change-location also moves his browser's location on sv11839",
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-06T10:22:48.930Z"
+  },
+  "localStorage_timezone_end": "\"America/Edmonton\""
+ }
+}
