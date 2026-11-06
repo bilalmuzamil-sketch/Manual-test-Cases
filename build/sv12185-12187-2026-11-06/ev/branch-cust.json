@@ -1,0 +1,44 @@
+{
+ "build": "v26.45.2-b7be383",
+ "rows": [
+  {
+   "label": "1-dup-create",
+   "name": "4 Star Truck Repair",
+   "toasts": [
+    {
+     "text": "warning Company with provided name already exists. Please try to resolve this. Close",
+     "red": true,
+     "ms": 252
+    }
+   ],
+   "dialogStillOpen": true,
+   "requests": [
+    "POST /api/customers/create -> 400"
+   ]
+  },
+  {
+   "label": "2-dup-create-case",
+   "name": "4 STAR TRUCK REPAIR",
+   "toasts": [
+    {
+     "text": "warning Company with provided name already exists. Please try to resolve this. Close",
+     "red": true,
+     "ms": 168
+    }
+   ],
+   "dialogStillOpen": true,
+   "requests": [
+    "POST /api/customers/create -> 400"
+   ]
+  },
+  {
+   "label": "3-valid-create",
+   "name": "ZZAUTOTEST SV12185 30790",
+   "toasts": [],
+   "dialogStillOpen": false,
+   "requests": [
+    "POST /api/customers/create -> 201"
+   ]
+  }
+ ]
+}

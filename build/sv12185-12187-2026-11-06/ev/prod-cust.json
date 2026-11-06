@@ -1,0 +1,54 @@
+{
+ "build": "v26.45.1-753355c",
+ "rows": [
+  {
+   "label": "1-dup-create",
+   "name": "aa",
+   "toasts": [
+    {
+     "text": "warning Company with provided name already exists. Please try to resolve this. Close",
+     "red": true,
+     "ms": 170
+    },
+    {
+     "text": "warning Error creating/updating customer Close",
+     "red": true,
+     "ms": 170
+    }
+   ],
+   "dialogStillOpen": true,
+   "requests": [
+    "POST /api/customers/create -> 400"
+   ]
+  },
+  {
+   "label": "2-dup-create-case",
+   "name": "AA",
+   "toasts": [
+    {
+     "text": "warning Company with provided name already exists. Please try to resolve this. Close",
+     "red": true,
+     "ms": 168
+    },
+    {
+     "text": "warning Error creating/updating customer Close",
+     "red": true,
+     "ms": 168
+    }
+   ],
+   "dialogStillOpen": true,
+   "requests": [
+    "POST /api/customers/create -> 400"
+   ]
+  },
+  {
+   "label": "3-valid-create",
+   "name": "ZZAUTOTEST SV12185 83637",
+   "toasts": [],
+   "dialogStillOpen": false,
+   "requests": [
+    "POST /api/customers/create -> 201"
+   ]
+  }
+ ]
+}

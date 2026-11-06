@@ -1,0 +1,29 @@
+{
+ "build": "v26.45.2-b7be383",
+ "rows": [
+  {
+   "label": "4-dup-edit",
+   "name": "4 Star Truck Repair",
+   "toasts": [
+    {
+     "text": "warning Company with provided name already exists. Please try to resolve this. Close",
+     "red": true,
+     "ms": 253
+    }
+   ],
+   "dialogStillOpen": true,
+   "requests": [
+    "POST /api/customers/change -> 400"
+   ]
+  },
+  {
+   "label": "5-valid-edit",
+   "name": "7 Star Truck Repair",
+   "toasts": [],
+   "dialogStillOpen": false,
+   "requests": [
+    "POST /api/customers/change -> 200"
+   ]
+  }
+ ]
+}

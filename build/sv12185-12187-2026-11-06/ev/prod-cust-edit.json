@@ -1,0 +1,34 @@
+{
+ "build": "v26.45.1-753355c",
+ "rows": [
+  {
+   "label": "4-dup-edit",
+   "name": "aa",
+   "toasts": [
+    {
+     "text": "warning Company with provided name already exists. Please try to resolve this. Close",
+     "red": true,
+     "ms": 167
+    },
+    {
+     "text": "warning Error creating/updating customer Close",
+     "red": true,
+     "ms": 167
+    }
+   ],
+   "dialogStillOpen": true,
+   "requests": [
+    "POST /api/customers/change -> 400"
+   ]
+  },
+  {
+   "label": "5-valid-edit",
+   "name": "Ahsan",
+   "toasts": [],
+   "dialogStillOpen": false,
+   "requests": [
+    "POST /api/customers/change -> 200"
+   ]
+  }
+ ]
+}

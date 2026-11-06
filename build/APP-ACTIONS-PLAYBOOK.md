@@ -6506,3 +6506,14 @@ Hand-added open entry: Reports > Timesheet Activities (/reports/punch-clock-acti
 ### Locations through the API (proven 2026-11-06, sv11249)
 - Create: `POST /api/workplaces/create {name, shop_id, address_1, city, state_or_province, postal_code, telephone, timezone, country_code[, color]}` → 201 `{data:{workplace_id}}`. Omitting `color` saves it null and then breaks WO create + `GET /api/workplaces` org-wide (SV-12269).
 - Edit: `POST /api/workplaces/change` needs the whole object (id, workplace_id, name, address fields, timezone, color, shop_id, remit_to(_type), shop-supplies fields, shopSupplyPercentageEnabled, tax {id,name}, another:false) → 201. When `GET /api/workplaces` is 500, read the objects from `GET /api/staff/my-workplaces`.
+
+### Customers: edit dialog + duplicate-name toast (proven 2026-11-06, SV-12185)
+- New Customer: `button_new_customer` → `input_customer_name` … `button_save_customer` (POST /api/customers/create). Edit: customer page → pencil next to the name = `button_base` → same field ids, POST /api/customers/change.
+- On QA branches the Edit Customer dialog's Save does nothing for the first ~3 s after opening (the Google geocode search never runs there; production runs it in ~0.7 s). Wait ~4 s before clicking Save, or you will record a false "Save does nothing".
+- QA orgs have `requireMileage: true` (GET /api/organizations/settings); production test org false — the "Mileage is a required field" text in a WO's left panel on QA branches is that setting.
+
+### Work order inline Add Part row — Enter handling (proven 2026-11-06, SV-12187)
+- Row ids: `button_add_part` (nth per line) → `select_inline_part_number` · `input_inline_part_description` · `input_inline_part_quantity` · `select_inline_part_category` · `input_inline_part_cost` · `input_inline_part_sell_price` · `button_save_inline_part`. Enter = save & next row (POST /api/work-orders/part/make-request, toast "Part added", new row with focus in Part number).
+- Part-number suggestions come from GET /api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts.
+- Code: chunk WorkOrderLineParts.*.js; the row's onKeydown enter handler is gated by a flag set by the part-number typeahead's onPopupShow/onPopupHide.
+- Line in "Needs Approval": create from canned line WITHOUT a status (`{canned_line_id}`) → status authorization_required. 'pending'/'estimate'/'needs_approval' are rejected ("Wrong status name").
