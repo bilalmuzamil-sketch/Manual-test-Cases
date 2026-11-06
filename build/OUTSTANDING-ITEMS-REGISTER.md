@@ -2379,3 +2379,8 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **DR-6 · ANSWERED 5 Nov (Chris, SV-12207 comment 80223): fix it.** Slip dates follow the location time zone. Ticket stays open for the developer.
 - **DR-4a · ANSWERED 5 Nov (Chris, SV-12208 comment 80224):** duplicate of SV-11441 (SV-11315, S1-R5a); SV-12208 closed as OBSOLETE. **Our follow-up:** check it on SV-11315's QA branch once cookies for that branch exist.
 - **DR-4b · ANSWERED 5 Nov (Chris, SV-12209 comment 80225): fix it.** Show the "Empty export / Export didn't yield any results" warning. Ticket stays open for the developer.
+- **6 Nov 2026 09:30 UTC: QA lead's replies.**
+  - Fresh cookies for staging and sv11839 were saved to /tmp. Preflight returned 200/200, so DR-9 is unblocked and the worker resumed areas 2–8.
+  - *"2. I would follow your recomendation"*: check SV-11441 when SV-11315 reaches QA (still open).
+  - *"3. I will follow your recomendation"*: SV-11688 is now under SV-11839 (edited 6 Nov).
+  - sv11839 build is now v26.45.0-5d54a3f. SV-11822 and SV-12146 are QA Complete, not by us.

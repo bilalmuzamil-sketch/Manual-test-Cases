@@ -1,4 +1,4 @@
-# BLOCKED, 5 Nov 2026 17:33 UTC: sign-in has expired on sv11839 and on staging
+# RESOLVED 6 Nov 2026 09:28 UTC (fresh cookies from the QA lead, preflight 200/200). WAS: BLOCKED, 5 Nov 2026 17:33 UTC: sign-in has expired on sv11839 and on staging
 
 - **What fails:**
   - `tools/preflight.py` (in `build/dashboard-verify-2026-10-28/dashboard-bug-hunt-2026-11-05/`) gets **401 `sso_required`** from `…api/auth/me/fe-permissions` on both sites:
