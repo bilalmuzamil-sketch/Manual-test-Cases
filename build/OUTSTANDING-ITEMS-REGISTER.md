@@ -1511,3 +1511,12 @@ what is still owed.
 | Kind | Item | Owner | Blocks | Since |
 |---|---|---|---|---|
 | OTHER TEAM | SV-6915 (Open): note lost only when it contains text in angle brackets; attachments/BCC/extra recipients do not cause it on v26.40.20-aada856. Dev/PO to decide the fix. | Milos / developer | Fix for the invoice/estimate email note | 20 Oct |
+
+## Ticket QA asks raised 2026-11-06 (unattended run)
+| Item | Owes | Blocks | Since |
+|---|---|---|---|
+| SV-11249: is a technician from ANOTHER LOCATION allowed on a work order? Both create endpoints accept Michelle Ingram (Lethbridge-only) on a Heavy Duty WO (201). Ticket "Fix" says staff is checked by organization only; done-when bullet 1 lists "technician … from another … location". | QA lead | SV-11249 verdict (otherwise 27/27 checks pass); comment drafted, not posted | 2026-11-06 |
+| SV-12167 is AccountingHub payment-method sync (no "accounting" label). Test it or skip per the Accounting instruction? | QA lead | SV-12167 | 2026-11-06 |
+| SV-12003 is in Code Review (Parth moved it) though PARTIALLY PASSED; leave it or move to Rejected from Testing? | QA lead | status only | 2026-11-06 |
+| API-only (Rule 94, not filed): a location created through the API without a colour makes work order create return 500. File or not? | QA lead | nothing | 2026-11-06 |
+| Board-2 Testing QA bugs with another QA assignee: SV-11822 (Ayesha/Mudassir), SV-12185, SV-12187 (Mudassir). Test them anyway? | QA lead | those tickets | 2026-11-06 |
