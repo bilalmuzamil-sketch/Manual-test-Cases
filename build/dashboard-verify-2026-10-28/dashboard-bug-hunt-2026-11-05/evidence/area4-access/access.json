@@ -1,0 +1,100 @@
+{
+ "env": "staging",
+ "app_version": "v26.45.2-7238f98",
+ "runs": {
+  "A-technician-role": {
+   "label": "A-technician-role",
+   "perms_has_reportsPageAccess": false,
+   "app_version": "v26.45.2-7238f98",
+   "rule99": {
+    "browser_tz": "Asia/Karachi",
+    "ls_timezone": "\"Asia/Karachi\"",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+    "header": "ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K timer Clock In notifications 2 Staging Heavy Duty - 9919",
+    "process_TZ": "Asia/Karachi"
+   },
+   "nav": [
+    "Work Orders",
+    "Schedule",
+    "Customers"
+   ],
+   "dashboard_typed_url_lands_on": "/workorders?assigned_to_me=1&tab=work_orders",
+   "dashboard_body": "Skip to main content ShopHub expand_more Work Orders Schedule Customers search Search customers, work orders, parts... Ctrl K timer Clock In notifications 2 Staging Heavy Duty - 9919 All Estimates Work Orders Completed Search Assigned to me Asset on Site keyboard_arrow_down On Sitearrow_drop_up Stat",
+   "tiles": [],
+   "tile_errors": [],
+   "api": {
+    "status": 403,
+    "has_revenue_value": false,
+    "body_head": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+   }
+  },
+  "B-reports-role-no-financial-data": {
+   "label": "B-reports-role-no-financial-data",
+   "perms_has_reportsPageAccess": true,
+   "app_version": "v26.45.2-7238f98",
+   "rule99": {
+    "browser_tz": "Asia/Karachi",
+    "ls_timezone": "\"Asia/Karachi\"",
+    "ls_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+    "header": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications 5 Staging Heavy Duty - 9919",
+    "process_TZ": "Asia/Karachi"
+   },
+   "nav": [
+    "Dashboard",
+    "Work Orders",
+    "Schedule",
+    "Customers",
+    "Parts",
+    "Reports"
+   ],
+   "dashboard_typed_url_lands_on": "/dashboard",
+   "dashboard_body": "Skip to main content ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications 5 Staging Heavy Duty - 9919 Revenue open_in_new event This Month expand_more $212.27 Parts 14% \u00b7 Labor 78% \u00b7 Other 8% View details expan",
+   "tiles": [
+    [
+     "hero_value_revenueKpi",
+     "$212.27"
+    ],
+    [
+     "hero_value_billingEfficiencyKpi",
+     "400.00%"
+    ],
+    [
+     "hero_value_techEfficiencyKpi",
+     "400.00%"
+    ],
+    [
+     "hero_value_techUtilizationKpi",
+     "33.39%"
+    ],
+    [
+     "hero_value_salesByCustomer",
+     "414 customers"
+    ],
+    [
+     "hero_value_atRiskHero",
+     "194"
+    ]
+   ],
+   "tile_errors": [],
+   "api": {
+    "status": 200,
+    "has_revenue_value": true,
+    "body_head": "{\"data\":{\"from\":\"2026-11-01\",\"to\":\"2026-11-06\",\"group\":\"day\",\"revenueKpi\":{\"value\":212.27,\"partsPct\":14,\"laborPct\":78,\"otherPct\":8,\"sparkline\":[0,0,0,212.27,0,0]},\"topCustomers\":{\"customers\":[{\"compan"
+   }
+  }
+ },
+ "tech_before": {
+  "id": "ba74948b-5777-4f0c-90fb-2f60d9ce8107",
+  "staff_id": "d2cb20a6-90a8-4884-ac50-022ff2fb9313",
+  "role_id": "af8d02b5-ecd1-4205-a82f-32a4d5bb1015",
+  "role_label": "Technician",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+ },
+ "restore": {
+  "status": 201,
+  "role_id_now": "af8d02b5-ecd1-4205-a82f-32a4d5bb1015",
+  "role_label_now": "Technician",
+  "same_as_before": true
+ },
+ "first_attempt_role_change": "404: the staff id hard-coded in staging-restore-tech.mjs (6fb22c1b...) is stale; the search result staff_id d2cb20a6... works (201). Tech role was never changed by the failed attempt (verified Technician)."
+}

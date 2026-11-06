@@ -12,6 +12,19 @@
 - the header location at the start and at the end;
 - `all_match`.
 
+### Area 4: access by role (Story 1, STAGING v26.45.2-7238f98, Staging Heavy Duty - 9919, Asia/Karachi, 09:50–09:56 UTC)
+Rule 99 (both runs): browser `timezoneId` Asia/Karachi, process `TZ` Asia/Karachi, `localStorage['timezone']` "Asia/Karachi", `localStorage['location']` = Heavy Duty, session `change-location` to Heavy Duty/Karachi. All recorded in `evidence/area4-access/access.json`.
+
+| Check | Result | Evidence |
+|---|---|---|
+| 4.1 Tech, Technician role (no reportsPageAccess) | **PASS.** No "Dashboard" (or "Reports") in the navigation (S1-N1). Typing `/dashboard` lands on `/workorders?assigned_to_me=1&tab=work_orders` with no error page (S1-R8). `GET /api/dashboard/reports` answers **403** with no figures (S1-R7). | `evidence/area4-access/A-technician-role-*.png` |
+| 4.2 Tech moved for ~20 s to the custom role "ZZAUTOTEST No Financial Data", which has reportsPageAccess, then **restored to Technician** (read back: same role id) | **PASS.** "Dashboard" appears, the dashboard opens, all 6 tiles load with no error, and the API answers 200. reportsPageAccess is the only gate (S1-R6). | `evidence/area4-access/B-*.png`, `role-changes.jsonl` |
+| 4.3 Where login lands (S1-R3) | **NOT TESTED.** A real login goes through Google SSO, which cannot be scripted here. Every script starts from an existing session. | none |
+| 4.4 Per-report permissions | **Not applicable.** The only report codes in the staging roles are `reportsPageAccess` and `accountingReportsView`; no role carries a per-report permission to take away. | `access.json` |
+| Note on S1-R5 | The navigation reads **Dashboard, Work Orders, Schedule, Customers, Parts, Reports**. PRD v53 S1-R5 says *"The 'Dashboard' entry sits immediately to the right of the 'Reports' entry."* **Not a defect.** Chris Ward's own ticket [SV-11712](https://shopview.atlassian.net/browse/SV-11712) (created 22 Oct 2026, 19:28 UTC, 33 minutes AFTER PRD v53 was saved at 18:55 UTC; Done) says *"move 'Dashboard' in the top navigation to the first spot, where 'Work Orders' is today"*. The latest written source wins (Rule 32). **Housekeeping only:** PRD S1-R5 was not updated after SV-11712. Worth one line to Chris at the next PRD edit. | `evidence/area4-access/B-reports-role-no-financial-data-1-nav.png` |
+
+**Set-up fact found:** the Tech staff id hard-coded in `build/testing-tools/staging-restore-tech.mjs` (`6fb22c1b…`) now answers **404** on `/api/staff/{id}/change`. The id that works is the `staff_id` from `GET /api/staff?search=tech%40shopview.com` (`d2cb20a6…`, answers 201). The failed attempt changed nothing.
+
 ### Area 3: report drill-in and the chart on the report page (Heavy Duty, America/Edmonton, 09:35–10:05 UTC)
 | Check | What was done | Result | Evidence |
 |---|---|---|---|
