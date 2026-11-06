@@ -6529,3 +6529,16 @@ Hand-added open entry: Reports > Timesheet Activities (/reports/punch-clock-acti
 
 ### Jira: setting QA Assignee (proven 2026-11-06, SV-12214)
 - Field `customfield_10385` is a multi-user (people) field: write `{"customfield_10385": [{"accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e"}]}`. A single object (no array) returns HTTP 400 "data was not an array".
+
+### Core OK / Not OK + part reorder on a WO line (SV-12143, 2026-11-06)
+- Picking a cored inventory part adds a "Core for X" row with `Ok` / `Not Ok` buttons. `Ok` sends
+  `POST /api/work-orders/parts/handle-core {part_id, is_core_ok:true, work_order_id}` and the row shows **Returned**;
+  `Not Ok` sends `is_core_ok:false` and the core is charged (core_charge). No confirm dialog.
+- Cored parts: production 1238214 (Trucks Hill 2); staging-heavy-duty branches S31S-950 (11 in stock), MT47HH5.
+  Look up an inventory part by `GET /api/inventory/parts?...&search=<PN>` - page 1 of the full list does NOT contain every part.
+- Reorder = `POST /api/work-orders/lines/{L}/part-order {parts:[{part_request_id,part_order}]}` (drag handle
+  `button_drag_part_<id>` needs Playwright `locator.dragTo`; also Move up/Move down in the part's three-dot menu).
+  Before the SV-12143 fix, a line holding a **Returned** core rejected every reorder with 409 "The parts submitted for
+  reordering no longer match this line."
+- Jira MCP gotcha: `addOrEditJiraIssueComment` takes the text in **`commentBody`**. A call with `body` plus
+  `inlineFileId` succeeds and posts the image ONLY. Always read the comment back.
