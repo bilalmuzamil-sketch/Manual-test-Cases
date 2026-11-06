@@ -27,3 +27,18 @@ Cause (read from the deployed bundle): the fix sets `spellcheck` on in LineDialo
 Build markers re-read live (both unchanged); ticket re-read (TESTING QA, 3 comments, no new ones); every step walked live (walk.mjs / walk2.mjs — corrected customer name from "5 Star" (vendor) to "4 Star Truck Repair" and the edit icon description); voice scan clean; failing rows removed from the passed comment; unmeasured "every try" sentence removed; read back from Jira: 80210 = 3 images + 4 rows, 80211 = 2 images, in created order.
 
 Learning check: playbook entry added for the headed spell-check method.
+
+---
+# Retest 6 Nov 2026 after Parth's redeploy (80289) — branch `v26.45.1-b7be383`
+**Verdict: PARTIALLY PASSED** — 80293 (what passed, 6 rows, before/after) then 80294 (still to fix, @parth, 2 items, 2 exhibits). Moved **TESTING QA → REJECTED FROM TESTING** (transition 15). QA Assignee already Bilal.
+
+Full matrix re-run (ev/branch-matrix; old 5 Nov run kept as ev/branch-matrix-2026-11-05-440aa25), text WITH trailing space: all boxes underline in typing / clicked-out / refocus — Tech Story 382/382/382 (was 382/0/384), Customer Notes 382×3, Asset Notes 382×3 (were 0), Edit Line Description 789×3, New Note 382×3, New Line 0×3 (intended).
+
+## Parth's two "browser behaviour" notes, checked
+- **No trailing space** (ev/branch-matrix-nospace-1..3, 3 runs): Customer Notes, Asset Notes, Edit Line Description, New Note underline including the last word, all states, 3/3. **Tech Story: 0 or 238 (one word) while typing and after click-out, 382 only after refocus, 3/3.** Ending with a full stop (`…wrng.`, ev/branch-matrix-period-1..2): Tech Story 0/0/382, 2/2.
+- **Single-line box**: plain Chrome input on a blank page (comparison only, ev/branch-parth/plain-input-*) = underline while typing (125 px), none after blur — that half of Parth's note is Chrome. But **Edit Line Title** (`input_line_name`) = 0 while typing, 0 after blur, underlined only after refocus, 2/2 (ev/branch-parth, branch-parth-r2).
+- New Note no-space crop bug of mine (cropped the "Create note for" select, read 0) caught and re-run with the textarea's own field: 382×3 on branch and production.
+- Production Title check timed out (no line on that WO) — not needed for the verdict; recorded.
+
+## Pre-post gate
+Branch marker re-read at post time (b7be383 unchanged); ticket re-read (last comment Parth 80289); exhibits checked by eye; two-comment order 80293 → 80294.
