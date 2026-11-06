@@ -1,0 +1,13 @@
+import {sess} from './common.mjs'; import fs from 'fs'; const s=await sess(); const p=s.page; const reqs=[];
+const RANGE=process.env.RANGE||'this_month', TAG=process.env.TAG||(process.env.ENV||'branch');
+p.on('response',async r=>{ const u=r.url(); if(/\/api\//.test(u)&&!/envelope|collect|recent|notifications/.test(u)) reqs.push(r.status()+' '+r.request().method()+' '+u.replace(/^https:\/\/[^/]+/,'').slice(0,220)+' '+(r.request().postData()||'').slice(0,300)); });
+await s.go('/reports/punch-clock-activities'); await p.waitForTimeout(5000); await p.click('[data-test-id="report_nav_export_reports"]'); await p.waitForTimeout(3000);
+await p.click('[data-test-id="select_report_name"]'); await p.waitForTimeout(1000); await p.click('[data-test-id="option__customer_contact"]'); await p.waitForTimeout(800);
+await p.click('[data-test-id="select_date_range"]'); await p.waitForTimeout(1000); await p.click(`[data-test-id="option__${RANGE}"]`); await p.waitForTimeout(1500);
+console.log('dialog',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].map(a=>a.getAttribute('data-test-id')+'='+(a.innerText||a.value||'').replace(/\s+/g,' ').trim().slice(0,50)))));
+await p.screenshot({path:`../ev/${TAG}-export-dialog.png`});
+const dl=p.waitForEvent('download',{timeout:60000}).catch(e=>null);
+await p.click('[data-test-id="button_confirm_dialog"]'); const d=await dl;
+if(d){ const f=`../ev/${TAG}-customer_contact-${RANGE}${(d.suggestedFilename().match(/\.\w+$/)||['.bin'])[0]}`; await d.saveAs(f); console.log('saved',f,d.suggestedFilename()); } else console.log('no download');
+await p.waitForTimeout(3000); await p.screenshot({path:`../ev/${TAG}-export-after.png`});
+console.log(reqs.slice(-10).join('\n')); await s.close(); process.exit(0);
