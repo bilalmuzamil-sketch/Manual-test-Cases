@@ -1,0 +1,6 @@
+import {sess} from './common.mjs'; const s=await sess(); const p=s.page; const reqs=[];
+p.on('request',r=>{ if(/\/api\//.test(r.url())&&!/envelope|collect|recent/.test(r.url())) reqs.push(r.method()+' '+r.url().replace(/^https:\/\/[^/]+/,'').slice(0,200)); });
+await s.go('/reports/punch-clock-activities'); await p.waitForTimeout(6000); await p.click('[data-test-id="report_nav_export_reports"]'); await p.waitForTimeout(5000);
+console.log(p.url()); console.log(JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id], .q-menu [data-test-id], .q-dialog .q-item, .q-menu .q-item')].map(a=>a.getAttribute('data-test-id')+'='+(a.innerText||a.value||'').replace(/\s+/g,' ').trim().slice(0,40)).slice(0,60))));
+for(const sel of ['select_report_name','select_date_range']){ await p.click(`[data-test-id="${sel}"]`); await p.waitForTimeout(1500); console.log(sel,JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>(e.getAttribute('data-test-id')||'')+':'+e.innerText.replace(/\s+/g,' ').trim())))); await p.keyboard.press('Escape'); await p.waitForTimeout(800); }
+await p.screenshot({path:'../ev/'+(process.env.ENV||'branch')+'-export-reports.png'}); console.log('reqs',JSON.stringify(reqs.slice(-8))); await s.close(); process.exit(0);
