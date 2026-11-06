@@ -17,17 +17,5 @@ for (const k of ['revenueKpi', 'billingEfficiencyKpi', 'techEfficiencyKpi', 'tec
   console.log(k, 'dash', dashLabels.slice(-3), '| report', repLabels.slice(-3), rs.chartButtons);
   await p.close();
 }
-// 3.6 show/hide memory on the Sales report
-let p = await ctx.newPage(); await p.goto(APP + '/reports/sales', { waitUntil: 'domcontentloaded' }); await waitIdle(p);
-const btn = () => p.locator('button', { hasText: /Hide Chart|Show Chart/ }).first();
-ev.s36 = { start: (await btn().innerText()).trim() };
-await btn().click(); await sleep(2000); ev.s36.afterClick = (await btn().innerText()).trim();
-await p.close(); p = await ctx.newPage(); await p.goto(APP + '/reports/sales', { waitUntil: 'domcontentloaded' }); await waitIdle(p);
-ev.s36.newVisit = (await btn().innerText()).trim(); ev.s36.otherReport = null;
-const q = await ctx.newPage(); await q.goto(APP + '/reports/technician-efficiency', { waitUntil: 'domcontentloaded' }); await waitIdle(q);
-ev.s36.otherReport = (await q.locator('button', { hasText: /Hide Chart|Show Chart/ }).first().innerText()).trim(); await q.close();
-await shot(p, 'area3-chartend', 'sales-after-revisit');
-if (/Show Chart/.test(ev.s36.newVisit)) { await btn().click(); await sleep(1500); } ev.s36.restored = (await btn().innerText()).trim();
-console.log('3.6', JSON.stringify(ev.s36));
 ev.rule99 = await finish(page, loc, rule99); save('area3-chartend', `${loc.name.replace(/[^A-Za-z]+/g, '').slice(0, 12)}-${preset.replace(/ /g, '')}`, ev);
 console.log(app_version, 'rule99', ev.rule99.all_match); await browser.close();

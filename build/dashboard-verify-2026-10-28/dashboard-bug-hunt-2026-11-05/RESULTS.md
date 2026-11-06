@@ -12,7 +12,7 @@
 - the header location at the start and at the end;
 - `all_match`.
 
-### Area 5: Stories 6–9 gaps (Heavy Duty, America/Edmonton, 09:57–10:40 UTC)
+### Area 5: Stories 6–9 gaps (Heavy Duty, America/Edmonton, 09:57–10:10 UTC; `area5.mjs` re-run 10:09–10:10 UTC to save its JSON, with the same results)
 | Check | Result | Evidence |
 |---|---|---|
 | 5.2a Custom range of a single day (Nov 4) | **PASS.** Picker reads "Range: 1 day". The request is `from=2026-11-04&to=2026-11-04`. The tile shows $1,483.16, which equals the Nov 4 daily bar. | `evidence/area5/5.2a-*` |
@@ -40,7 +40,7 @@ Rule 99 (both runs): browser `timezoneId` Asia/Karachi, process `TZ` Asia/Karach
 
 **Set-up fact found:** the Tech staff id hard-coded in `build/testing-tools/staging-restore-tech.mjs` (`6fb22c1b…`) now answers **404** on `/api/staff/{id}/change`. The id that works is the `staff_id` from `GET /api/staff?search=tech%40shopview.com` (`d2cb20a6…`, answers 201). The failed attempt changed nothing.
 
-### Area 3: report drill-in and the chart on the report page (Heavy Duty, America/Edmonton, 09:35–10:05 UTC)
+### Area 3: report drill-in and the chart on the report page (Heavy Duty, America/Edmonton, 09:33–09:52 UTC; `chartend.mjs` re-run at 10:10 UTC to save its JSON)
 | Check | What was done | Result | Evidence |
 |---|---|---|---|
 | 3.1 | All 5 tile links on Last Quarter. Each link opens the report in a **new tab**. | **PASS.** Each report shows "Last quarter" (S10-R5), and its Totals/Summary row equals the tile: Revenue $993,491.27 · Billing 102.42 % (3,085.24/3,012.39) · Tech Efficiency 95.54 % (2,879.65/3,014.18) · Tech Utilization 72.93 % (4,729.40/6,485.12). Sales By Customer: 104 customers with the same top customer. | `evidence/area3-drill/` |

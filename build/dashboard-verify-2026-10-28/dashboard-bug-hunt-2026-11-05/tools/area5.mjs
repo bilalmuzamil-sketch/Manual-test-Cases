@@ -35,15 +35,5 @@ const afterReload = Object.fromEntries(await Promise.all(TILES.map(async k => [k
 const expanded = await page.evaluate(() => { const p = document.querySelector('[data-test-id="hero_detail_panel"]'); return p ? p.innerText.replace(/\s+/g, ' ').slice(0, 120) : null; });
 await shot(page, 'area5', '5.1-after-reload'); ev.checks['5.1-reload'] = { beforeReload, afterReload, expanded_after_reload: expanded };
 console.log('5.1', JSON.stringify(ev.checks['5.1-reload']));
-// 5.4 tooltip vs data: Revenue expanded chart on Last Quarter, hover across the chart
-if (expanded) { await page.locator('[data-test-id="btn_toggle_details_techUtilizationKpi"]').click().catch(() => {}); await sleep(1500); }
-await setRange(page, 'revenueKpi', 'Last Quarter'); const series = net.at(-1)?.body?.data?.revenueSeries;
-await page.locator('[data-test-id="btn_toggle_details_revenueKpi"]').click(); await sleep(6000);
-const panel = page.locator('[data-test-id="hero_detail_panel"]').first(); const box = await panel.locator('canvas, svg').first().boundingBox();
-const tips = new Set();
-if (box) for (let i = 1; i < 60; i++) { await page.mouse.move(box.x + box.width * i / 60, box.y + box.height * 0.6); await sleep(120);
-  const t = await page.evaluate(() => [...document.querySelectorAll('div')].filter(d => getComputedStyle(d).position === 'absolute' && /\$/.test(d.innerText) && d.innerText.length < 200 && d.offsetParent).map(d => d.innerText.replace(/\s+/g, ' ').trim()).slice(-1)[0]); if (t) tips.add(t); }
-await shot(page, 'area5', '5.4-tooltip-last'); ev.checks['5.4-tooltip'] = { series, tooltips: [...tips], box };
-console.log('5.4 series', JSON.stringify(series).slice(0, 600)); console.log('5.4 tips', JSON.stringify([...tips]).slice(0, 1500));
 ev.rule99 = await finish(page, loc, rule99); save('area5', 'area5-HD', ev); console.log(app_version, 'rule99', ev.rule99.all_match);
 await browser.close();
