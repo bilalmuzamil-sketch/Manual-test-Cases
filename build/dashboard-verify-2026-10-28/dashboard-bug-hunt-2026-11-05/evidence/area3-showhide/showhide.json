@@ -1,0 +1,95 @@
+{
+ "app_version": "v26.45.0-5d54a3f",
+ "steps": [
+  {
+   "label": "sales first",
+   "url": "/reports/sales",
+   "buttons": [
+    "insert_chart_outlined Hide Chart"
+   ]
+  },
+  {
+   "label": "sales after Hide click",
+   "url": "/reports/sales",
+   "buttons": [
+    "insert_chart_outlined Show Chart"
+   ]
+  },
+  {
+   "label": "TE report (other report)",
+   "url": "/reports/technician-efficiency",
+   "buttons": [
+    "insert_chart_outlined Hide Chart"
+   ]
+  },
+  {
+   "label": "sales revisit same tab",
+   "url": "/reports/sales",
+   "buttons": [
+    "insert_chart_outlined Show Chart"
+   ]
+  },
+  {
+   "label": "sales new tab",
+   "url": "/reports/sales",
+   "buttons": [
+    "insert_chart_outlined Show Chart"
+   ]
+  },
+  {
+   "label": "sales new tab after reload",
+   "url": "/reports/sales",
+   "buttons": [
+    "insert_chart_outlined Show Chart"
+   ]
+  },
+  {
+   "label": "before restore",
+   "url": "/reports/sales",
+   "buttons": [
+    "insert_chart_outlined Show Chart"
+   ]
+  },
+  {
+   "label": "restored",
+   "url": "/reports/sales",
+   "buttons": [
+    "insert_chart_outlined Hide Chart"
+   ]
+  }
+ ],
+ "rule99": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-06T09:51:35.873Z"
+  },
+  "browser_local_time_start": "Fri Nov 06 2026 02:51:35 GMT-0700 (Mountain Standard Time)",
+  "all_match": true,
+  "note": "QA lead's own cookie set: change-location also moves his browser's location on sv11839",
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-06T09:52:32.572Z"
+  },
+  "localStorage_timezone_end": "\"America/Edmonton\""
+ }
+}

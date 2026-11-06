@@ -1,0 +1,10 @@
+import { boot, LOC, gotoDash, tile, TILES, shot, save, sleep } from './hb.mjs';
+const { browser, page, rule99, app_version } = await boot(LOC.HD);
+await gotoDash(page);
+const ids = await page.evaluate(() => [...new Set([...document.querySelectorAll('[data-test-id]')].map(e => e.getAttribute('data-test-id')))]);
+const links = await page.evaluate(() => [...document.querySelectorAll('a[href*="report"], a[href*="/reports"]')].map(a => ({ href: a.getAttribute('href'), text: a.innerText.trim(), aria: a.getAttribute('aria-label'), tid: a.getAttribute('data-test-id') })));
+const tiles = {}; for (const k of [...TILES, 'atRiskHero']) tiles[k] = await tile(page, k);
+await shot(page, 'explore', 'hd-dashboard', { fullPage: true });
+save('explore', 'hd', { app_version, rule99, ids, links, tiles, });
+console.log(app_version, rule99.all_match, JSON.stringify(links), JSON.stringify(tiles));
+await browser.close();

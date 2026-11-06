@@ -1,5 +1,27 @@
 # Dashboard bug hunt, 5 Nov 2026: results
 
+# LIVE RUN, 6 Nov 2026 (cookies renewed by the coordinator; preflight 200/200 at 09:28 and 09:30 UTC)
+
+**Build:** sv11839 **v26.45.0-5d54a3f** (recorded in every evidence JSON as `app_version`).
+**Sign-in:** the QA lead's own cookie set. **Every `change-location` call in this run also moved the QA lead's own browser location on sv11839.** Each evidence file records it as `rule99.note`.
+**Rule 99:** every script refuses to run unless the process `TZ` equals the location's zone. Each evidence JSON records the `rule99` block:
+- the change-location status;
+- the browser `timezoneId`;
+- the process `TZ`;
+- `localStorage['timezone']` and `localStorage['location']`;
+- the header location at the start and at the end;
+- `all_match`.
+
+### Area 3: report drill-in and the chart on the report page (Heavy Duty, America/Edmonton, 09:35–10:05 UTC)
+| Check | What was done | Result | Evidence |
+|---|---|---|---|
+| 3.1 | All 5 tile links on Last Quarter. Each link opens the report in a **new tab**. | **PASS.** Each report shows "Last quarter" (S10-R5), and its Totals/Summary row equals the tile: Revenue $993,491.27 · Billing 102.42 % (3,085.24/3,012.39) · Tech Efficiency 95.54 % (2,879.65/3,014.18) · Tech Utilization 72.93 % (4,729.40/6,485.12). Sales By Customer: 104 customers with the same top customer. | `evidence/area3-drill/` |
+| 3.2 | On the Technician Utilization report, and again on Sales By Customer: Location changed to Lethbridge from the Reports menu, then the Heavy Duty tile link followed | **PASS.** The report opened on Heavy Duty with the tile's figure. The Lethbridge choice was not carried to the next visit. | `evidence/area3-locmem/` |
+| 3.4 | Browser Back | **Not applicable.** The link opens a new tab, so the Dashboard tab is untouched. My first try used Back in the same tab and landed on the previous page (Work Orders), which is a test artefact, not a defect. | `evidence/explore/` |
+| 3.5 | Report charts on This Month (Sales, Advisor Analysis, Tech Efficiency, Tech Utilization), compared with the expanded Dashboard chart | **PASS.** Every report chart ends on **Nov 6, 2026** (today at Heavy Duty) with no later empty days (S11-R8). | `evidence/area3-chartend/` |
+| 3.6 | Hide Chart on Sales, then: another report, a revisit, a new tab, a reload | **PASS.** Sales stays hidden on every revisit, and Technician Efficiency still shows its chart (S11-E1, per report). Restored to shown afterwards. | `evidence/area3-showhide/` |
+| 2-lead | Sales chart on This Month draws bars on Nov 3 and Nov 4; the first screen seemed to list only Nov 04 rows | **Not a defect.** The full table has 5 rows on Nov 03 (4 invoices + CM11839-4189) and 9 on Nov 04. The bars match. | `evidence/area2-daybound/sales-*` |
+
 **Worker run:** 5 Nov 2026, 17:23 to about 17:50 UTC.
 
 **Builds seen:**
