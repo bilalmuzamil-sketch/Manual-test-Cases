@@ -1,0 +1,22 @@
+<div data-type="panel-error"><p><strong>OVERALL QA STATUS: PARTIALLY PASSED</strong></p></div>
+<p>Everything that passed has been posted separately in the previous comment. What is still to be fixed is below:</p>
+<h3>1. New Note window: offline Save spins with no message, no Retry: FAILED</h3>
+<p>With a photo attached in the New Note window, tapping Save while the phone is offline leaves the Save button spinning. After 3 minutes it is still spinning, with no message, no banner and no Retry. The note only saves when the connection comes back. The paperclip and ⋯ &gt; Add Attachment do show a message at once in the same situation.</p>
+<p><strong>Steps to reproduce</strong></p>
+<ol>
+<li><p>Open <a href="https://sv7898.qa.shopview.com">sv7898</a> in Chrome and log in as Admin.</p></li>
+<li><p>Press F12, click the phone icon at the top left of the developer tools ("Toggle device toolbar") and choose <strong>iPhone 12 Pro</strong> from the device list at the top of the page.</p></li>
+<li><p>Open work order <strong>S2-4219</strong> (customer "Abode Trucking &amp; Repair") and tap the <strong>Notes</strong> tab.</p></li>
+<li><p>Tap the blue <strong>New Note</strong> button.</p></li>
+<li><p>Type any text, tap <strong>Attach Files</strong> and choose a photo. It appears under the button.</p></li>
+<li><p>In the developer tools, open the <strong>Network</strong> tab and change "No throttling" to <strong>Offline</strong> (this stands for Airplane Mode on a phone).</p></li>
+<li><p>Tap the blue <strong>Save</strong> button at the bottom of the window (one quick tap) and wait.</p></li>
+</ol>
+<p><strong>Current behaviour:</strong> Save keeps spinning. After 3 minutes there is still no message, no banner and no Retry. When the connection is turned back on, the note saves with the photo within a few seconds. Production behaves the same way.</p>
+<figure data-type="media-single" data-layout="center" data-width="80" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="0d90578a-68bb-42f9-b736-889484cc9c45" data-collection="upload-user-collection-1343233018" data-alt="exh-3-newnote-offline-fail.png"></div></figure>
+<p><em>Picture 3: New Note window after 3 minutes offline. Production (left) and QA branch (right) look the same: (1) the photo is still in the window, (2) Save is still spinning, with no message.</em></p>
+<p><strong>Expected behaviour:</strong> one message, and the photo kept with Retry and Discard, as for the other two ways of attaching. The test plan in <a href="https://github.com/ShopView/shopview/pull/4134">PR #4134</a> says:</p>
+<blockquote><p>"Work order → Notes. Block the upload, or go offline, then attach a photo via the toolbar paperclip, ⋯ &gt; Add Attachment, and the New Note window's Attach Files. Expect one toast and "1 file wasn't attached" with Retry and Discard on the note."</p></blockquote>
+<p>This ticket's expected behaviour:</p>
+<blockquote><p>"Captured photos should upload successfully and appear as attachments on the work order without hanging or failing."</p></blockquote>
+<p><strong>Environment and how often:</strong> QA branch sv7898, build v26.45.1-a5c66b3, 6 Nov 2026. Chrome 153.0.8010.12 with the "iPhone 12 Pro" device preset; offline set with Chrome's network "Offline" setting right after picking the photo; one quick tap on Save. Reproduced 3 of 3 times on the branch (watched for 6 s, 3 min and 3 min) and 2 of 2 on production (3 min each). Not tried on a real phone.</p>

@@ -1,0 +1,16 @@
+NAV https://app.shopview.com/workorders/339286d5-e6e2-4ce4-be38-8c3450f7c8cc/notes
+NAV https://app.shopview.com/workorders/339286d5-e6e2-4ce4-be38-8c3450f7c8cc/notes
+NAV https://app.shopview.com/workorders/339286d5-e6e2-4ce4-be38-8c3450f7c8cc/notes
+[dialog] toasts=[] ids=["button_attach_files:upload_file","button_note_attach_files:upload Attach Files"]
+dialog ids ["dialog_title","button_close_dialog","select_note_reference","input_note_content","note_characters_remaining","button_note_attach_files","date_icon_reminder_date","date_input_reminder_date","checkbox_note_customer_visible","button_cancel_note","button_save_note"]
+[dialog-picked] toasts=[] ids=["button_attach_files:upload_file","button_note_attach_files:upload Attach Files","note_pending_attachments:image.jpg 1.45 MB For Customer close","pending_attachment_0:image.jpg 1.45 MB For Customer close","checkbox_pending_attachment_for_customer_0:For Customer","button_remove_pending_attachment_0:close"]
+save button_save_note
+RES 201 /api/note/create
+ROUTE abort
+FAILED /api/note/add-attachments net::ERR_INTERNET_DISCONNECTED
+[t2] toasts=["warning Network Error Close","warning Your note was saved, but its files weren't attached. Use ⋯ > Add Attachment to try again. Close"] ids=["button_attach_files:upload_file"]
+[t6] toasts=["warning Network Error Close","warning Your note was saved, but its files weren't attached. Use ⋯ > Add Attachment to try again. Close"] ids=["button_attach_files:upload_file"]
+NAV https://app.shopview.com/workorders/339286d5-e6e2-4ce4-be38-8c3450f7c8cc/notes
+NAV https://app.shopview.com/workorders/339286d5-e6e2-4ce4-be38-8c3450f7c8cc/notes
+[reload] toasts=[] ids=["button_attach_files:upload_file"]
+NAV https://app.shopview.com/workorders/339286d5-e6e2-4ce4-be38-8c3450f7c8cc/notes

@@ -1,0 +1,20 @@
+// usage: SECS=180 node offline_long.mjs <woId> -> phone: New Note window, type text, Attach Files (photo), go OFFLINE, tap Save,
+// read the window every 30 s while offline, then come back online and read what happens. Prints toasts / Save button / dialog state.
+import {sess} from './common.mjs'; import fs from 'fs'; const TAG=process.env.TAG||'L-newnote-offline-long';
+const s=await sess({device:'iPhone 12 Pro',dir:process.env.QDIR||'/tmp/qa91'}); const p=s.page; const wo=process.argv[2]; const T0=Date.now(); const out=[]; const L=(...a)=>{const t=`+${((Date.now()-T0)/1000).toFixed(1)}s `+a.join(' '); out.push(t); console.log(t);};
+await p.addInitScript(()=>{ const o=window.setTimeout; window.setTimeout=function(fn,ms,...a){ if(typeof fn==='function'&&/location\.href/.test(String(fn))) return 0; return o.call(this,fn,ms,...a); }; });
+p.on('response',async r=>{ if(/\/api\/note\//.test(r.url())&&r.request().method()!=='GET') L('RES',r.status(),r.url().replace(/^https:\/\/[^/]+/,'')); });
+p.on('requestfailed',r=>{ if(/\/api\/note\//.test(r.url())) L('FAILED',r.url().replace(/^https:\/\/[^/]+/,''),r.failure()?.errorText); });
+await s.go(`/workorders/${wo}/notes`); await p.waitForTimeout(3000);
+await p.click('[data-test-id="button_new_note"]'); await p.waitForTimeout(1500); await p.click('[data-test-id="input_note_content"]'); await p.keyboard.type('ZZAUTOTEST SV7898 '+TAG);
+const fc=p.waitForEvent('filechooser'); await p.click('[data-test-id="button_note_attach_files"]'); await (await fc).setFiles('/tmp/sv7898/image.jpg'); await p.waitForTimeout(1000);
+await s.ctx.setOffline(true); L('offline'); await p.click('[data-test-id="button_save_note"]'); L("tapped Save"); const tS=(Date.now()-T0)/1000;
+const rects=async(n)=>{ const r=await p.evaluate(()=>{ const q=(sel,lab)=>[...document.querySelectorAll(sel)].filter(e=>{const b=e.getBoundingClientRect(); return b.width>0&&b.height>0;}).map(e=>{const b=e.getBoundingClientRect(); return {lab,text:(e.innerText||'').replace(/\s+/g,' ').trim().slice(0,120),x:Math.round(b.x),y:Math.round(b.y),w:Math.round(b.width),h:Math.round(b.height)};});
+  return [...q('[data-test-id="note_upload_failed"]','banner'),...q('[data-test-id="button_retry_note_upload"]','retry'),...q('[data-test-id="button_discard_note_upload"]','discard'),...q('[data-test-id="note_upload_progress"]','progress'),...q('.q-notification','toast'),...q('[data-test-id="button_save_note"]','save'),...q('[data-test-id="pending_attachment_0"]','pending'),...q('[data-test-id^="note_attachment_card_"]','attachment'),...q('[data-test-id="button_attach_files"]','paperclip')]; }); fs.writeFileSync(`../ev/${TAG}-${n}.json`,JSON.stringify(r)); };
+const st=async n=>{ await rects(n); const r=await p.evaluate(()=>({dialog:!!document.querySelector('.q-dialog [data-test-id="button_save_note"]'),saveText:(document.querySelector('[data-test-id="button_save_note"]')?.innerText||'').trim(),saveLoading:!!document.querySelector('[data-test-id="button_save_note"] .q-spinner, [data-test-id="button_save_note"].q-btn--loading, [data-test-id="button_save_note"] .q-btn__content.q-btn__content--hidden'),pending:!!document.querySelector('[data-test-id="pending_attachment_0"]'),toasts:[...document.querySelectorAll('.q-notification')].map(e=>e.innerText.replace(/\s+/g,' ').trim())}));
+  L(`[${n}]`,JSON.stringify(r)); await p.screenshot({path:`../ev/${TAG}-${n}.png`}); };
+const SECS=+(process.env.SECS||180); for(const t of [10,60,120,SECS]){ if(t>SECS) continue; await p.waitForTimeout(Math.max(0,(t+tS)*1000-(Date.now()-T0))); await st("offline-"+t+"s"); }
+await st('offline-end');
+await s.ctx.setOffline(false); L('online'); await p.waitForTimeout(15000); await st('online+15s');
+const nl=await s.api(`/api/notes?search=&reference_ids%5B0%5D=${wo}&pagination%5BsortBy%5D=created_at&pagination%5Bdescending%5D=true`); const n=(nl.json?.data?.notes||[]).find(x=>(x.content||'').includes(TAG)); L('SERVER',n?n.id:'no note','attachments='+JSON.stringify((n?.attachments||[]).map(a=>a.name||a.fileName||a.id)));
+fs.writeFileSync(`../ev/${TAG}.log`,out.join('\n')); await s.close(); process.exit(0);
