@@ -1,7 +1,7 @@
 // usage: HEADED=1 [ENV=prod] xvfb-run -a node matrix.mjs <woId> <lineId> -> every text box: type misspelled text, screenshot focused + after clicking out; spellcheck attrs
 import {sess} from './common.mjs'; import fs from 'fs';
-const ENV=process.env.ENV||'branch'; const [WO,LINE]=process.argv.slice(2); const TEXT='thee spellling are wrong wrng ';
-const s=await sess(); const p=s.page; const OUT=`../ev/${ENV}-matrix`; fs.mkdirSync(OUT,{recursive:true}); const R=[];
+const ENV=process.env.ENV||'branch'; const [WO,LINE]=process.argv.slice(2); const TEXT=process.env.TEXT??'thee spellling are wrong wrng ';
+const s=await sess(); const p=s.page; const OUT=`../ev/${ENV}-matrix${process.env.SUFFIX||''}`; fs.mkdirSync(OUT,{recursive:true}); const R=[];
 const goWO=async(tab='lines')=>{ await s.go('/workorders/'+WO+'/'+tab); await p.waitForTimeout(3500); };
 const cases=[
  ['tech_story', async()=>{ await goWO(); await p.locator(`[data-test-id="line_tech_story_${LINE}"]`).click(); }, '.q-dialog textarea'],

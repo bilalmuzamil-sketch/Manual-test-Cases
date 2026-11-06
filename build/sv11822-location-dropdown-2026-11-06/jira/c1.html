@@ -1,0 +1,22 @@
+<div data-type="panel-success"><p><strong>OVERALL QA STATUS: PASSED</strong></p></div>
+<p>Tested on the QA branch <a href="https://sv11839.qa.shopview.com">sv11839</a> (build v26.45.0-5d54a3f, which carries the fix "the Change Location menu is always placed on screen") on 6 Nov 2026, in Chrome with the window at 1536 × 936 and a pixel ratio of 1.25 (the same as Windows 125% display scaling, Mudassir's set-up). Production (build v26.45.1-753355c) was used for the "before".</p>
+<p>The location list under Profile → Change Location now always opens under the chip, with every location in it, after a reload and with any location selected. On production the same steps can leave the list hidden at the bottom of the page.</p>
+<h3>Before and after</h3>
+<figure data-type="media-single" data-layout="center" data-width="100" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="e17e32b9-3e0b-4d64-a800-cabfc9bdb01f" data-collection="upload-user-collection-1343233018" data-alt="exh-1-before-after.png"></div></figure>
+<p><em>Picture 1: Profile → Change Location chip after a reload, 1536 × 936 at pixel ratio 1.25, with the list made to finish drawing 1.5 seconds late. Production (left): nothing opens. The list exists with all 8 locations but has no position and stays hidden at the bottom of the page (y = 936), exactly as Mudassir described. QA branch (right): the list opens under the chip with all 4 locations.</em></p>
+<h3>What was checked</h3>
+<table><tbody>
+<tr><th><p>#</p></th><th><p>Check</p></th><th><p>Result</p></th></tr>
+<tr><td><p>1</p></td><td><p>After a reload, at pixel ratio 1.25, with each location selected in turn (DVI Test, Staging Heavy Duty - 9919, Staging Lethbridge - 4310, Test Location): the list opens under the chip with all 4 locations</p></td><td><p>PASSED</p></td></tr><tr><td><p>2</p></td><td><p>The same 4 locations with the list made to draw 0.8 s and 1.5 s late (the condition that breaks production): the list still opens under the chip every time</p></td><td><p>PASSED</p></td></tr><tr><td><p>3</p></td><td><p>Pixel ratios 1.5 and 1.0, all 4 locations, normal and late-drawn list (16 runs): opens under the chip every time</p></td><td><p>PASSED</p></td></tr><tr><td><p>4</p></td><td><p>Computer slowed down 6 times (Chrome CPU throttling), pixel ratio 1.25: opens under the chip</p></td><td><p>PASSED</p></td></tr><tr><td><p>5</p></td><td><p>Picking another location from the opened list works: from DVI Test to Staging Lethbridge - 4310, the page switches and the top-right button then shows Staging Lethbridge - 4310</p></td><td><p>PASSED</p></td></tr>
+</tbody></table>
+<h3>How the slow case was made</h3>
+<p>Comparison only: on this test machine the list draws quickly, so production also opens normally unless the list is slowed down. To recreate what a slower PC does, I delayed the page's drawing of the list by 0.8 and 1.5 seconds in the test browser (the same condition the developer describes in the fix). This is not a ShopView feature. With that delay production failed in all 3 tries (Trucks Hill 2 twice, QA Testing once) and the QA branch worked in all 12 delayed tries (3 pixel ratios × 4 locations).</p>
+<h3>How to repeat it</h3>
+<ol>
+<li><p>Open the QA branch <a href="https://sv11839.qa.shopview.com">sv11839</a> in Chrome on Windows with display scaling at 125% and the window at about 1536 × 936.</p></li>
+<li><p>At the top right, click the button that shows the current location name and your initials (or logo). In the menu that opens, under <code>Change Location:</code> click the blue location chip and pick another location, for example <code>DVI Test</code>.</p></li>
+<li><p>Reload the page (F5).</p></li>
+<li><p>Click that same top-right button again and click the blue <code>DVI Test</code> chip. The list of locations opens right under the chip. Pick another location: the page switches to it.</p></li>
+</ol>
+<h3>What I could not test</h3>
+<p>A real Windows PC with 125% display scaling: I do not have one. The same pixel ratio was set in Chrome on Linux. Mudassir's machine is where this showed up, so a quick look there would confirm it too.</p>
