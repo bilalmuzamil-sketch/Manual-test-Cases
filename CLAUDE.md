@@ -102,7 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
-> - **MISSING SOMETHING TO TEST A TICKET? TAG THE TICKET'S ASSIGNED DEVELOPER ON THE TICKET WITH A NUMBERED LIST OF WHAT IS NEEDED (Standing Rule 122).**
+> - **MISSING SOMETHING TO TEST A TICKET? TAG THE TICKET'S ASSIGNED DEVELOPER ON THE TICKET WITH A NUMBERED LIST OF WHAT IS NEEDED, THEN MOVE THE TICKET TO BLOCKED (Standing Rule 122).**
 > - **EVERY TICKET IS ALSO CHECKED FOR ITS ACCOUNTINGHUB / QUICKBOOKS EFFECT — nothing left "on an island" (Standing Rule 121, Chris Ward 2026-11-05).**
 - **A FAILED ITEM NAMES THE EXACT DEVICE PRESET, BROWSER + VERSION, GESTURE (QUICK TAP / PRESS-AND-HOLD / HOVER + TIME), SPOT, TIMING, N-OF-N AND WHAT WASN'T TRIED — reproduce it on the developer's standard set-up first (Standing Rule 120).**
 > - **TEST THE STATE, NOT ONLY THE SCREEN (Standing Rule 119): OPEN EVERY SURFACE THAT SHOWS WHAT THE TEST CREATED, RUN THE SUMS THAT MUST HOLD, WALK EVERY LIST IN THE HANDOFF, AND TEST THE VARIANTS EARLIER FIXES OF THE SAME BUG FAMILY MISSED — every ticket, every area.**
@@ -5776,7 +5776,8 @@ deliver the 7-tab management report.
     sandbox), a login to an outside system, test data only they can make, the location/company to use — goes straight to the
     **ticket's assignee**, in ONE comment on that ticket that tags them, as a short numbered list: what is missing · what I saw (plain
     words, only what was actually observed — Rule 12) · what I need them to do. End with what happens once it's there ("I'll run all N
-    scenarios"). Human voice, no verdict panel (it is not a result), no technical section. Do not wait for the QA lead to relay it.
+    scenarios"). Human voice, no verdict panel (it is not a result), no technical section. Do not wait for the QA lead to relay it. **THEN MOVE THE TICKET TO "Blocked"** (workflow transition "Blocked", id 7 from TESTING QA)
+    and re-read it to confirm (QA-lead ruling 2026-11-06, verbatim: *"After asking dipesh for missing pieces move the ticket to blocked"*).
     Things only the QA lead can give (cookies for our own sessions, a ruling, permission) still go to the QA lead. Log the ask in the
     OUTSTANDING register and re-read the ticket on the 3-hourly check for the answer. First applied: SV-12203 comment 80329 (Dipesh:
     front-end address, QuickBooks sandbox connected, QuickBooks login, which location). Ties to Rules 22, 36, 65, 68, 85, 116.
