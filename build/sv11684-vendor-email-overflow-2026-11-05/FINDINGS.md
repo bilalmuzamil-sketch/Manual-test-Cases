@@ -15,3 +15,16 @@ Production before (v26.45.1-753355c, vendor ac36fac0…, same name/email): white
 Point 3: customer 566fa3d3 page, WO 04ab678b, part sale 4f7287b3 — no email text in any card. PASSED.
 Verdict: PARTIALLY PASSED — never runs past the card (fix works) but it truncates instead of wrapping; on a phone the full address can't be read.
 ## Posted 5 Nov 2026 ~20:30 UTC: 80273 (WHAT PASSED, 4 rows, 1 image) + 80274 (PARTIALLY PASSED). Build re-read v26.45.1-5bdeeb6 before posting. Production test data left: vendor ac36fac0 'ZZAUTOTEST SV11684 long email'.
+
+## Retest 6 Nov 2026 after Dusan's fix (comment 80310) — build v26.45.1-7516f9c (re-read before posting)
+| Email | Width | Result |
+|---|---|---|
+| long (89) ZZAUTOTEST SV11684 long email | 1440 / 1280 / 1024 | cut off with "…" (nowrap, ellipsis) — 3 of 3 |
+| same | 900 / 768 / 600 / iPhone 12 Pro preset | full, wraps inside card |
+| Saint Cloud Diesel Repair (47) | 1440 | fits on one line |
+| same | 1280 / 1024 | cut off with "…" — 2 of 2 |
+| same | 900 / 768 / 600 | full |
+Copy gives the full address; hover tooltip shows it on desktop. Customer 566fa3d3 / WO 04ab678b / part sale 4f7287b3 re-checked: no email in any card. Chrome 153.0.8010.12, 100% zoom.
+Expected (ticket how-to-check): "at 1440px and at a narrow width. The email stays inside the card and is fully readable." → desktop still fails → PARTIALLY PASSED.
+Exhibits ev/r2-1-phone-before-after.png, ev/r2-2-desktop-still-cut.png (scripts/exhibit2.py).
+Posted 80324 (WHAT PASSED, 5 rows, picture 1) + 80325 (PARTIALLY PASSED, @Dusan, picture 2). Pre-post gate: build marker 7516f9c, ticket TESTING QA with last comment Dusan 80310, all cells observed. Moved to REJECTED FROM TESTING (transition 15); QA Assignee already Bilal. Learning check: nothing new.

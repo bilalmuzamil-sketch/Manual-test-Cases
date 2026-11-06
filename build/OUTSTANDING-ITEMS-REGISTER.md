@@ -1535,7 +1535,8 @@ what is still owed.
 ## Rejected from testing — watch (3-hourly check re-reads these; added 2026-11-06)
 | Ticket | Rejected on | Waiting for | Current state |
 |---|---|---|---|
-| SV-12003 | 6 Nov (80293/80294) | Parth's fix | Back in TESTING QA (80308) — retest in progress 6 Nov |
-| SV-7898 | 6 Nov (80286/80287) | Slavcho's fix for New Note offline Save | Fix redeployed (80307) — retest in progress 6 Nov |
+| SV-12003 | 6 Nov (80293/80294) | — | CLEARED: retest PASSED 6 Nov (80315), QA Complete |
+| SV-7898 | 6 Nov (80286/80287) | — | CLEARED: retest PASSED 6 Nov (80320), QA Complete |
 | SV-11116 | 6 Nov | developer | in Code Review at last read |
+| SV-11684 | 6 Nov (80324/80325), 2nd rejection | Dusan: email still cut off with "…" on desktop 1024–1440 wide (phone + ≤900 fixed) | REJECTED FROM TESTING |
 
