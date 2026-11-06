@@ -1,0 +1,7 @@
+// create a ZZAUTOTEST template with TOTAL checkbox fields (sections of up to 50) as a DRAFT; PUBLISH=1 to publish. prints id + server fieldCount
+import {sess,post} from './common.mjs'; const T=+process.env.TOTAL; const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(3000);
+const name='ZZAUTOTEST SV9570 '+T+' fields '+Date.now().toString().slice(-4); let r=await post(s,'/api/inspection-templates',{name}); const id=r.json?.data?.inspectionTemplate?.id;
+const sections=[]; let left=T,i=0; while(left>0){ const n=Math.min(50,left); sections.push({name:'Section '+(i+1),position:i,fields:[...Array(n)].map((_,j)=>({type:'checkbox',label:`S${i+1} item ${j+1}`,position:j,isRequired:false,config:{labels:{na:'N/A',fail:'Fail',pass:'Pass'}}}))}); left-=n; i++; }
+if(process.env.INSTR){ sections[0].fields.push({type:'instructions',label:'Read before starting',position:sections[0].fields.length,isRequired:false,config:{body:'ZZAUTOTEST instructions'}}); }
+r=await s.api(`/api/inspection-templates/${id}/draft`,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify({name,description:'ZZAUTOTEST SV-9570',isSignatureRequired:false,sections})}); console.log('draft',T,r.status,id,'fieldCount',r.json?.data?.inspectionTemplate?.version?.fieldCount,JSON.stringify(r.json).slice(0,200));
+if(process.env.PUBLISH==='1'){ r=await post(s,`/api/inspection-templates/${id}/publish`,{}); console.log('publish',r.status,JSON.stringify(r.json).slice(0,200)); } await s.close(); process.exit(0);

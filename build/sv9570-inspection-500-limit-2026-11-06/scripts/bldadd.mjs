@@ -1,0 +1,16 @@
+// builder: duplicate the last field N times (DUP), report counter text, add/duplicate controls state + hint; SAVE=draft|publish to press and report
+import {sess} from './common.mjs'; const s=await sess(); const p=s.page; const TAG=process.env.TAG||'add'; const caps=[];
+p.on('response',async r=>{ if(r.request().method()!=='GET'&&/inspection-templates/.test(r.url())){ let b='';try{b=(await r.text()).slice(0,220)}catch{} caps.push(r.status()+' '+r.request().method()+' '+r.url().replace(/^https:\/\/[^/]+/,'')+' -> '+b);} });
+await s.go('/inspection-templates/'+process.env.TPL); await p.waitForTimeout(8000);
+const state=async(l)=>{ const st=await p.evaluate(()=>{ const t=[...document.querySelectorAll('body *')].filter(e=>e.children.length===0&&/\d+\s*\/\s*500/.test(e.textContent)).map(e=>e.textContent.trim());
+  const ctl=[...document.querySelectorAll('[data-test-id]')].filter(e=>/add_field|duplicate|add_section|limit/.test(e.getAttribute('data-test-id'))).slice(-6).map(e=>e.getAttribute('data-test-id').replace(/_field_\d+$/,'_field_N')+'['+(e.disabled||e.getAttribute('aria-disabled')==='true'||e.classList.contains('disabled')?'DISABLED':'on')+']'+(e.getAttribute('title')||'')+(e.innerText||'').replace(/\s+/g,' ').slice(0,40));
+  const hints=[...document.querySelectorAll('[role="tooltip"],.q-tooltip,[role="alert"],.builder-field-limit-hint,[class*="limit"]')].map(e=>(e.getAttribute('data-test-id')||e.className)+': '+e.innerText.replace(/\s+/g,' ').slice(0,160));
+  return {counter:t,ctl:[...new Set(ctl)],hints}; }); console.log(l,JSON.stringify(st)); };
+await state('start');
+for(let i=0;i<+(process.env.DUP||0);i++){ const d=p.locator('[data-test-id^="builder_field_duplicate_field_"]').last(); await d.scrollIntoViewIfNeeded(); await d.click({timeout:5000}).catch(e=>console.log('dup click err',String(e).slice(0,120))); await p.waitForTimeout(700); }
+await state('after dup '+(process.env.DUP||0)); const n=await p.locator('[data-test-id^="builder_field_field_"]').count(); console.log('field rows',n);
+if(process.env.TRYMORE){ const d=p.locator('[data-test-id^="builder_field_duplicate_field_"]').last(); await d.hover().catch(()=>{}); await p.waitForTimeout(1200); await state('hover dup'); await d.click({timeout:3000,force:true}).catch(e=>console.log('blocked click',String(e).slice(0,100))); await p.waitForTimeout(800); console.log('field rows after extra',await p.locator('[data-test-id^="builder_field_field_"]').count()); await state('after extra'); }
+await p.screenshot({path:`../ev/branch-${TAG}.png`});
+if(process.env.SAVE){ await p.click(`[data-test-id="builder_${process.env.SAVE==='publish'?'publish':'save_draft'}"]`); await p.waitForTimeout(2500); const dl=await p.evaluate(()=>{const d=document.querySelector('.q-dialog'); return d?d.innerText.replace(/\s+/g,' ').slice(0,300):null}); console.log('dialog',dl); if(dl){ const b=p.locator('.q-dialog button').filter({hasText:/publish|save|confirm|yes/i}).last(); if(await b.count()){ await b.click(); await p.waitForTimeout(3000);} }
+  console.log('toasts',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(n=>n.innerText.replace(/\s+/g,' '))))); await p.screenshot({path:`../ev/branch-${TAG}-saved.png`}); }
+console.log('caps',JSON.stringify(caps)); await s.close(); process.exit(0);

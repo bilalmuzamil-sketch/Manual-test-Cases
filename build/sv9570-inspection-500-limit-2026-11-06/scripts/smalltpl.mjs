@@ -1,0 +1,8 @@
+import {sess} from './common.mjs'; const s=await sess(); const p=s.page; const caps=[];
+p.on('response',async r=>{ if(r.request().method()!=='GET'&&/\/api\/inspection-templates/.test(r.url())){ let b='';try{b=(await r.text()).slice(0,260)}catch{} caps.push(r.status()+' '+r.request().method()+' '+r.url().replace(/^https:\/\/[^/]+/,'')+' -> '+b);} });
+await s.go('/inspection-templates/new'); await p.waitForTimeout(7000); await p.click('[data-test-id="starter_library_template_air-brake"]'); await p.waitForTimeout(4000);
+await p.click('[data-test-id="builder_template_name"]'); await p.waitForTimeout(800); await p.keyboard.press('Control+A'); await p.keyboard.type('ZZAUTOTEST SV9570 Air-Brake small'); await p.keyboard.press('Enter'); await p.waitForTimeout(800);
+const n=await p.locator('[data-test-id^="builder_field_field_"]').count(); console.log('fields',n,'counter',await p.locator('[data-test-id="text_builder_field_count"]').count());
+await p.screenshot({path:'../ev/branch-small-builder.png'}); await p.click('[data-test-id="builder_publish"]'); await p.waitForTimeout(3000);
+const dl=await p.evaluate(()=>{const d=document.querySelector('.q-dialog'); return d?d.innerText.replace(/\s+/g,' ').slice(0,300):null}); console.log('dialog',dl); if(dl){ const b=p.locator('.q-dialog button').filter({hasText:/publish|save|confirm|yes/i}).last(); if(await b.count()){ await b.click(); await p.waitForTimeout(3500);} }
+console.log('toasts',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(n=>n.innerText.replace(/\s+/g,' '))))); console.log('url',p.url()); console.log('caps',JSON.stringify(caps)); await s.close(); process.exit(0);
