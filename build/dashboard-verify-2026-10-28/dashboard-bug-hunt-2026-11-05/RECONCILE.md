@@ -47,5 +47,5 @@
 | Phase 2 report-only defects | Filed as SV-11937 to SV-11957 under SV-11936. They do not touch the Dashboard. |
 
 ## Things to note (no action taken)
-- **SV-11688 is not under SV-11839 or SV-11936.** It changes the Technician Utilization tile (F1). Under the 5 Nov epic rule ("Dashboard → SV-11839"), the QA lead may want it parented to SV-11839. That is his call, so nothing was changed.
+- **SV-11688** was not under SV-11839 when this reconcile was written on 5 Nov. **Update 6 Nov:** the coordinator moved it under SV-11839 on the QA lead's instruction (commit 530a7925d).
 - **SV-11822 is REJECTED FROM TESTING.** It is still an open Dashboard-area defect, tracked in the epic.
