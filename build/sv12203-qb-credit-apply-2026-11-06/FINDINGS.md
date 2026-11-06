@@ -5,3 +5,6 @@ NOT STARTED — two blockers, both asked of the QA lead:
 2. Every scenario needs actions inside QuickBooks Online (use up a credit, pay an invoice, turn Automatically apply credits on/off) on the sandbox company connected to the branch. We hold no QuickBooks Online sandbox login for this.
 Also: the ticket is QuickBooks-sync work (Rule 121 / the "no Accounting tickets for now" instruction) — asked whether to test it at all.
 Nothing posted on the ticket.
+
+## 6 Nov 2026 ~12:50 UTC — QA lead: test it. Asked Dipesh what's needed (Rule 122)
+Woke the branch (toggleQaEnv wake → "sv12203 is waking up"; API answered 200 after ~90 s). Front end sv12203.qa.shopview.com has no DNS record (proxy connect_rejected). QuickBooks NOT connected on the branch: GET /api/bookkeeping/integration → Intuit OAuth authUrl; /api/bookkeeping/products-and-services → 400 "Bookkeeping is not configured"; adjustment-item-mapping-status says quickBooksConnected:true (known misleading signal, playbook). Comment 80329 tagging Dipesh: front-end address, sandbox connected, QBO login, which location.

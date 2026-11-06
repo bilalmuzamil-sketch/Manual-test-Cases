@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **MISSING SOMETHING TO TEST A TICKET? TAG THE TICKET'S ASSIGNED DEVELOPER ON THE TICKET WITH A NUMBERED LIST OF WHAT IS NEEDED (Standing Rule 122).**
 > - **EVERY TICKET IS ALSO CHECKED FOR ITS ACCOUNTINGHUB / QUICKBOOKS EFFECT — nothing left "on an island" (Standing Rule 121, Chris Ward 2026-11-05).**
 - **A FAILED ITEM NAMES THE EXACT DEVICE PRESET, BROWSER + VERSION, GESTURE (QUICK TAP / PRESS-AND-HOLD / HOVER + TIME), SPOT, TIMING, N-OF-N AND WHAT WASN'T TRIED — reproduce it on the developer's standard set-up first (Standing Rule 120).**
 > - **TEST THE STATE, NOT ONLY THE SCREEN (Standing Rule 119): OPEN EVERY SURFACE THAT SHOWS WHAT THE TEST CREATED, RUN THE SUMS THAT MUST HOLD, WALK EVERY LIST IN THE HANDOFF, AND TEST THE VARIANTS EARLIER FIXES OF THE SAME BUG FAMILY MISSED — every ticket, every area.**
@@ -5767,6 +5768,18 @@ deliver the 7-tab management report.
     **THE RULE:** whenever a ticket's change creates or alters money or accounting data — invoices, credits/credit memos, payments, deposits, refunds, taxes and tax status, fees/discounts, parts cost/price, vendor bills, customers/vendors that sync — the matrix (Rules 96/119) includes **the accounting surface**: does what the screen now shows agree with what AccountingHub / QuickBooks will receive or already holds (same amount, same tax treatment, same customer/vendor, same document)? **A change that is right on the ShopView screen but cannot be represented, or is represented differently, in AccountingHub/QB is a finding** — name it plainly, with steps, and ASK the QA lead whether it goes into the remaining-issues comment (Rule 97(d)); never quietly accept it.
     **HOW:** check the accounting-facing fields the product exposes (tax flags, account/item mapping, sync status, the document's totals) on the record the test created; where the QB-connected flow is available on the environment, follow the record through to it (Rule 6 — QB is a disposable test account). If AccountingHub/QB is not connected on the branch, say so in one line and state what was checked instead — never imply the sync was observed (Rule 12).
     **DOES NOT OVERRIDE THE "DO NOT TEST ACCOUNTING TICKETS" RULING:** tickets that ARE AccountingHub MVP work (label `accounting` / Product Area Accounting) are still not picked up without confirmation. This rule is about the accounting EFFECT of every other ticket. Worked example Chris pointed at: [SV-11116](https://shopview.atlassian.net/browse/SV-11116) — manual customer credits ignore the invoice/customer tax status. Ties to Rules 40, 57, 96, 97, 109 and 119.
+
+122. **WHEN SOMETHING WE NEED TO TEST A TICKET IS MISSING, ASK THE TICKET'S ASSIGNED DEVELOPER ON THE TICKET, TAGGING THEM — always (all projects).**
+    USER DIRECTIVE (2026-11-06, verbatim): *"Tag the assignee developer for what we need to test it. And always do that set it as a ruke"*.
+    **THE RULE:** after self-unblocking has genuinely run out (wake the branch, seed, CRUD, UI↔API — Rules 14/87/88), every remaining
+    thing the test needs from engineering — the branch or its web address, a deploy, an integration connected (e.g. a QuickBooks
+    sandbox), a login to an outside system, test data only they can make, the location/company to use — goes straight to the
+    **ticket's assignee**, in ONE comment on that ticket that tags them, as a short numbered list: what is missing · what I saw (plain
+    words, only what was actually observed — Rule 12) · what I need them to do. End with what happens once it's there ("I'll run all N
+    scenarios"). Human voice, no verdict panel (it is not a result), no technical section. Do not wait for the QA lead to relay it.
+    Things only the QA lead can give (cookies for our own sessions, a ruling, permission) still go to the QA lead. Log the ask in the
+    OUTSTANDING register and re-read the ticket on the 3-hourly check for the answer. First applied: SV-12203 comment 80329 (Dipesh:
+    front-end address, QuickBooks sandbox connected, QuickBooks login, which location). Ties to Rules 22, 36, 65, 68, 85, 116.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
