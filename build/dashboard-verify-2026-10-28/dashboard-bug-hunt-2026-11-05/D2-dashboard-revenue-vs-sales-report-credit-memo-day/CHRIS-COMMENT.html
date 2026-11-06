@@ -1,0 +1,8 @@
+<p><span data-type="mention" data-user-id="712020:aa00b8d6-a71f-4259-8919-82a304227c20">@Chris Ward</span> thank you for looking at this one. We found it while comparing the Dashboard with the reports on the QA branch.</p>
+<p><strong>What happens today:</strong> a $5.00 credit memo is dated 11:00 PM on Nov 2, Edmonton time (Staging Heavy Duty - 9919).</p>
+<ul>
+<li>The Revenue tile counts it on <strong>Nov 3</strong>. For Nov 3 the tile shows $1,625.23, but the Sales report opened from it shows $1,630.23.</li>
+<li>The Sales report counts it on <strong>Nov 2</strong>. For Nov 2 the report shows −$5.00 while the tile shows $0.00, and the report labels the row "Nov 03 2026".</li>
+</ul>
+<p><strong>What we understand should happen:</strong> the tile and the report always agree (PRD S3-N1: <em>"the two never disagree"</em>), and the credit memo is counted on its own day in the location's time: Nov 2, with the report row dated Nov 2.</p>
+<p>The picture below shows both days, with numbered notes.</p>

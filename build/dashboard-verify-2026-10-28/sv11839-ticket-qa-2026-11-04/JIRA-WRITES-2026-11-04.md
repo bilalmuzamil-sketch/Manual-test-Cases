@@ -179,3 +179,15 @@ QA lead, verbatim: *"yes do the same for 11885 too"*, plus the epic instruction 
   - He asked: *"Please check it on SV-11315."*
   - **Not yet done:** the cookies have expired (see `build/BLOCKED-sv11839-and-staging-cookies-2026-11-05.md`), and SV-11315's own QA branch needs its own cookie set.
 - **Mistake (Rule 101):** the 17:33 UTC report said "waiting on Chris" for these three without re-checking. He had already answered at 14:01–14:09 UTC.
+
+## 6 Nov 2026 (10:43–10:47 UTC): Dashboard bug hunt, four tickets filed
+Every ticket: Bug, Medium, label QA_found, Product Area "Reports & Dashboards", **parent SV-11839**, annotated picture embedded in the description (inline upload, size checked) and the same picture inside the Chris comment.
+| Ticket | What | Chris comment | Picture (bytes) | Other |
+|---|---|---|---|---|
+| SV-12275 | Dashboard chart runs past today on a custom range that ends in the future (worker candidate D1) | 80316 | D1-annotated.png 222,692 | Relates to SV-11468 |
+| SV-12276 | Revenue tile vs Sales report disagree for credit memo CM11839-4189 dated 11 PM local (coordinator finding D2) | 80317 | D2-annotated.png 453,109 | |
+| SV-12277 | Tile date buttons blue; PRD S12-R2 near-black (worker question Q1; Expected: to be confirmed) | 80318 | Q1-annotated.png 141,685 | |
+| SV-12278 | Long custom date label sticks out of the tile at 1024 px (worker question Q2; Expected: to be confirmed) | 80319 | Q2-annotated.png 168,854 | |
+- **Duplicate search before filing:** text/summary JQL over credit memo + dashboard/Sales report/time zone (90 days), `parent in (SV-11839, SV-11936)` plus "custom range"/"after today" (60 days), and all of SV-11839 before 28 Oct. No duplicate; nearest are SV-11468 (report chart, Done) and SV-11255 (small screen label, fixed).
+- **Read-back:** JQL `key in (SV-12275..SV-12278) AND parent = SV-11839 AND labels = QA_found AND priority = Medium AND "Product Area[Dropdown]" = "Reports & Dashboards"` returned all four, each with exactly one attachment of the uploaded size.
+- **D2 evidence (Rule 86, verified by me):** `dashboard-bug-hunt-2026-11-05/evidence/D2-cm-day/` (on-screen run 10:40 UTC, Rule 99 all_match true, Edmonton). The memo's stamp was found by narrowing the Sales report window: present from 2026-11-03T06:00:00Z, absent from 06:00:01Z.
