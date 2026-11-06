@@ -29,13 +29,13 @@ Each check was measured with computed colours, box positions and font sizes (`to
 | Rule | Result | Evidence |
 |---|---|---|
 | S12-R1 four KPI tiles in one row, count tiles below, at 1024 px and wider | **PASS** at 1920, 1536, 1280 and 1024. At 390 px the tiles stack, as intended. | `evidence/area7-visual/visual.json` (tiles x,y) |
-| S12-R2 light theme: near-black descriptive text | Tile labels rgb(49, 55, 74) and supporting lines dark grey: PASS. **Date-range and inactivity-window buttons are BLUE**, rgb(56, 116, 255). → **question Q1**: the PRD wording covers them, but the blue pill looks like deliberate styling shared with the reports (Rule 58). | `Q1-question-tile-date-buttons-blue-not-near-black/` |
+| S12-R2 light theme: near-black descriptive text | Tile labels rgb(49, 55, 74) and supporting lines dark grey: PASS. **Date-range and inactivity-window buttons are BLUE**, rgb(56, 116, 255). → **question Q1 → filed [SV-12277](https://shopview.atlassian.net/browse/SV-12277)**: the PRD wording covers them, but the blue pill looks like deliberate styling shared with the reports (Rule 58). | `Q1-question-tile-date-buttons-blue-not-near-black/` |
 | S12-R3 dark theme: near-white | **PASS.** Date text white, labels and lines light. | `visual.json` |
 | S12-R4 count headline larger than KPI headline | **PASS.** 34 px vs 26 px at every width. | `visual.json` |
 | S12-R11 dark tile date picker is dark | **PASS.** Background rgb(15, 17, 26); presets rgba(255, 255, 255, 0.85). | `evidence/area7-visual/dark-1920-picker.png` |
 | S12-R12 small screen: the date button opens its picker however far the page is scrolled | **PASS** at 390 px after scrolling to the bottom (Sales by Customer). The picker opens as a dialog, in both themes. | `light-390-picker.png`, `dark-390-picker.png` |
 | S12-R13 small screen: no sideways scroll, and a long date label fits | **PASS** at 390 px with "Nov 3, 2026 - Nov 20, 2026". | `light-390.png` |
-| Long date label at **1024 px** (desktop) | The button spills past the tile's right edge (fits from 1280 up). The PRD rule is written for small screens only. → **question Q2** | `Q2-question-long-date-label-spills-out-at-1024/` |
+| Long date label at **1024 px** (desktop) | The button spills past the tile's right edge (fits from 1280 up). The PRD rule is written for small screens only. → **question Q2 → filed [SV-12278](https://shopview.atlassian.net/browse/SV-12278)** | `Q2-question-long-date-label-spills-out-at-1024/` |
 | No sideways page scroll at any width | **PASS** (documentElement.scrollWidth = viewport width at all 10 sizes). | `visual.json` |
 | S12-R7 to R10 (report at 1536×864, table scroll, picker floating, upward filter list) | **NOT RUN.** Each has its own closed ticket (SV-10933, SV-10934, SV-10936, SV-11242); time went to the day-boundary window. | |
 
@@ -69,7 +69,7 @@ Evidence: `evidence/area8-money/s0…s4*.json` and `.png`.
 | Check | Result | Evidence |
 |---|---|---|
 | 5.2a Custom range of a single day (Nov 4) | **PASS.** Picker reads "Range: 1 day". The request is `from=2026-11-04&to=2026-11-04`. The tile shows $1,483.16, which equals the Nov 4 daily bar. | `evidence/area5/5.2a-*` |
-| 5.2b **Custom range ending in the future (Nov 3–Nov 20, today is Nov 6)** | **FAIL → candidate D1.** The tile sparkline and the open chart run to Nov 20, with 14 empty future days. The Sales report chart for the same range ends on Nov 6. PRD S4-R11c, S7-E1 and S11-R8. Seen on Revenue and Technician Utilization. | `D1-dashboard-chart-runs-past-today-custom-range/` |
+| 5.2b **Custom range ending in the future (Nov 3–Nov 20, today is Nov 6)** | **FAIL → candidate D1 → filed [SV-12275](https://shopview.atlassian.net/browse/SV-12275).** The tile sparkline and the open chart run to Nov 20, with 14 empty future days. The Sales report chart for the same range ends on Nov 6. PRD S4-R11c, S7-E1 and S11-R8. Seen on Revenue and Technician Utilization. | `D1-dashboard-chart-runs-past-today-custom-range/` |
 | 5.2c "Today" button in the calendar | **PASS.** The request is `from=2026-11-06&to=2026-11-06`. Technician Efficiency reads "-" with 0.00 / 0.00 (S3-E3: no value when nothing to divide by). | `evidence/area5/area5-HD.json` |
 | 5.1 Ranges on 4 tiles changed, Technician Utilization expanded, then reload | **PASS.** Every tile is back on its default: This Month ×4 and Sales by Customer on Last 12 Months (S7-R7, S7-R8). The expanded Technician Utilization tile is remembered (S6-R16). | `evidence/area5/5.1-after-reload.png` |
 | 5.4 Revenue chart hover (Last Quarter) | **PASS.** Jul 1 $59,064, Jul 29 $160,613 and Aug 26 $121,636 equal the data ($59,064.08 / $160,612.71 / $121,636.34; the tooltip rounds to whole dollars, and the PRD sets no format). | `evidence/area5/5.4-revenue-hover-*.png` |
@@ -101,7 +101,7 @@ Rule 99 (both runs): browser `timezoneId` Asia/Karachi, process `TZ` Asia/Karach
 | 3.4 | Browser Back | **Not applicable.** The link opens a new tab, so the Dashboard tab is untouched. My first try used Back in the same tab and landed on the previous page (Work Orders), which is a test artefact, not a defect. | `evidence/explore/` |
 | 3.5 | Report charts on This Month (Sales, Advisor Analysis, Tech Efficiency, Tech Utilization), compared with the expanded Dashboard chart | **PASS.** Every report chart ends on **Nov 6, 2026** (today at Heavy Duty) with no later empty days (S11-R8). | `evidence/area3-chartend/` |
 | 3.6 | Hide Chart on Sales, then: another report, a revisit, a new tab, a reload | **PASS.** Sales stays hidden on every revisit, and Technician Efficiency still shows its chart (S11-E1, per report). Restored to shown afterwards. | `evidence/area3-showhide/` |
-| 2-lead | Sales chart on This Month draws bars on Nov 3 and Nov 4; the first screen seemed to list only Nov 04 rows | **Not a defect.** The full table has 5 rows on Nov 03 (4 invoices + CM11839-4189) and 9 on Nov 04. The bars match. | `evidence/area2-daybound/sales-*` |
+| 2-lead | Sales chart on This Month draws bars on Nov 3 and Nov 4; the first screen seemed to list only Nov 04 rows | **Not a chart defect, but see [SV-12276](https://shopview.atlassian.net/browse/SV-12276)** (coordinator, 6 Nov: credit memo CM11839-4189 is put on Nov 3 by the Dashboard and on Nov 2 by the Sales report's range, so the tile and report totals differ by $5.00). The full table has 5 rows on Nov 03 (4 invoices + CM11839-4189) and 9 on Nov 04. The bars match. | `evidence/area2-daybound/sales-*` |
 
 **Worker run:** 5 Nov 2026, 17:23 to about 17:50 UTC.
 

@@ -54,7 +54,7 @@ elif step == 'invoice':
 elif step == 'reverse':
     call('POST', '/api/invoices/reverse-invoice', {'id': R['A']['invoices'][-1]}); save()
 elif step == 'credit':
-    c, b = call('POST', '/api/credit-memos', {'customer_account_id': R['customer_account_id'], 'amount': 10}); R['credit'] = b; save()
+    amt = float(sys.argv[2]) if len(sys.argv) > 2 else 10; c, b = call('POST', '/api/credit-memos', {'customer_account_id': R['customer_account_id'], 'amount': amt}); R.setdefault('credits', []).append({'amount': amt, 'resp': b, 'created_utc': dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}); save()
 elif step == 'zero':   # a work order whose only line is declined, then invoiced -> $0.00 invoice (if the server allows it)
     new_wo('Z'); call('POST', '/api/work-orders/lines/change-status', {'line_id': R['Z']['lines'][0], 'status': 'authorization_declined', 'workOrderId': R['Z']['wo']})
     call('POST', '/api/work-orders/change-status', {'id': R['Z']['wo'], 'status': 'complete'})
