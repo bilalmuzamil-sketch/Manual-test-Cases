@@ -1,0 +1,9 @@
+import {sess,post,arr} from './common.mjs'; import fs from 'fs';
+const S=JSON.parse(fs.readFileSync('/tmp/sv12193/seed-branch.json','utf8')); const s=await sess(); await s.go('/workorders'); await s.page.waitForTimeout(3000); const P=(u,b)=>post(s,u,b);
+if(process.env.ADD2){ const X=S.X.X3; const ts=arr((await s.api('/api/staff?limit=400')).json?.data); const f=ms=>{const p=new Intl.DateTimeFormat('en-GB',{timeZone:S.H.timezone,day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date(Date.now()-ms)).reduce((a,q)=>(a[q.type]=q.value,a),{}); return `${p.day}/${p.month}/${p.year} ${p.hour}:${p.minute}`;};
+  const opts=(await s.api('/api/technician-tasks/staff-options')).json; const bil=ts.find(x=>x.first_name==='Bilal'&&/Muzam/.test(x.last_name||'')); console.log('bilal ids',bil?.id,bil?.staff_id,bil?.user_id);
+  for(const idk of ['staff_id','id','user_id']){ if(!bil?.[idk]) continue; const r=await P('/api/technician-tasks/create',{start_date:f(25*60e3),end_date:null,work_order_id:X.id,tech_assigned_id:bil[idk],line_id:X.lines[1].id}); console.log('create line2 with',idk,r.status,JSON.stringify(r.json).slice(0,120)); if(r.status<300) break; } }
+const nums=(process.env.NUMS||'').split(',').filter(Boolean); const all=[...Object.values(S.X).map(x=>x.number),...nums];
+for(const n of all){ const l=arr((await s.api('/api/work-orders?pagination[page]=1&pagination[rowsPerPage]=20&search='+encodeURIComponent(n)+'&showMyWorkOrders=0')).json?.data).find(x=>x.number===n); const names=(l?.clockedInTechnicians||[]).map(x=>x.firstName+' '+x.lastName);
+  console.log(n.padEnd(14),'status',String(l?.status).padEnd(12),'names',JSON.stringify(names),'count',l?.clockedInTechniciansCount,names.length===l?.clockedInTechniciansCount?'MATCH':'MISMATCH'); }
+await s.close(); process.exit(0);

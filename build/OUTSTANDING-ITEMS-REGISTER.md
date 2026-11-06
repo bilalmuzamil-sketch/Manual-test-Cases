@@ -1546,3 +1546,9 @@ what is still owed.
 | SV-11116 | 6 Nov | developer | in Code Review at last read |
 | SV-11684 | 6 Nov (80324/80325), 2nd rejection | Dusan: email still cut off with "…" on desktop 1024–1440 wide (phone + ≤900 fixed) | REJECTED FROM TESTING |
 
+## Waiting on the QA lead — SV-12193 (6 Nov 2026, ~10:00 CDT)
+| Item | What it blocks | Since |
+|---|---|---|
+| SV-12193 API-only finding: moving an OPEN time entry to another work order through the back end (`technician-tasks/move`) leaves the Clocked In count on the old work order and not on the new one. No screen can do this (open entries only have Clock out; Edit refuses "Active timesheets cannot be edited"). Rule 94: not filed — report it or not? | nothing on SV-12193 (passed, QA Complete) | 2026-11-06 |
+| Side observation (unverified): the same open time entry shows 06:30 AM on Timesheet Activities but 05:30 AM on the work order's Timesheets page (S12193-17581, Michael Stephenson). Nearest ticket SV-11590 (Done). Look into it? | nothing on SV-12193 | 2026-11-06 |
+
