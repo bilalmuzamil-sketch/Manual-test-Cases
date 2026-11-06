@@ -12,6 +12,17 @@
 - the header location at the start and at the end;
 - `all_match`.
 
+### Area 2: day boundary / time zone (DVI Test, Pacific/Fiji, UTC+12). Part 1, before Fiji midnight (10:30–10:33 UTC = 22:30 Fiji, 6 Nov)
+Set-up: `tools/dvi_seed.py`, logged in `seed-log.jsonl`. Customer "ZZAUTOTEST Hunt Fiji Day".
+- **S11839-17603**: a "Battery service" line clocked **23:30 on 5 Nov to 00:30 on 6 Nov, Fiji time** (across Fiji midnight), not invoiced.
+- **S11839-17604**: clocked 22:00–22:30 on 6 Nov Fiji and completed, ready to be invoiced after Fiji midnight (part 2).
+
+| Check | Result | Evidence |
+|---|---|---|
+| 2.6 Technician Utilization: a clock across the location's midnight | **PASS.** The tile on custom **Nov 5** reads 0.50 WO Hrs / 0.50 Clocked, and on **Nov 6** also 0.50 / 0.50. The hour is split at Fiji midnight, as Chris's 39(b) asks for the export (*"split at midnight"*). This Month reads 1.00 / 1.00. | `evidence/area2-daybound/dvi-t0-before-midnight.json`, `t0-before-midnight-day5.png`, `-day6.png` |
+| 2.8 This Week on a Friday in Fiji | **PASS.** The request is `from=2026-11-01&to=2026-11-06` (Sunday to today, Fiji date). | same JSON |
+| 5.3 Empty states (DVI Test has no invoices) | **PASS.** Tiles with fewer than 2 points show the dashed placeholder (S4-R12): Revenue, Billing, Tech Efficiency, Sales by Customer, At Risk. Billing and Tech Efficiency headlines read "-" (S3-E3). The expanded Billing Efficiency chart reads **"No data for selected date range"** (S9-R11). Technician Utilization, which has 2 points with values, draws its line. | `t0-before-midnight-default.png`, `-be-expanded.png` |
+
 ### Area 7: visual conformance (Story 12), measured. Heavy Duty, America/Edmonton, 1920/1536/1280/1024/390 px, light and dark, 10:24–10:28 UTC
 Each check was measured with computed colours, box positions and font sizes (`tools/visual.mjs`), not judged by eye.
 
