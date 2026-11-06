@@ -1,0 +1,152 @@
+{
+ "app_version": "v26.45.0-5d54a3f",
+ "r": {
+  "last-quarter:revenueKpi": {
+   "report": "/reports/sales?range=last_quarter",
+   "requests": [
+    "/api/reporting/sales/last_quarter?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=&pagination[descending]=false&search=&range=last_quarter",
+    "/api/dashboard/reports?reports[]=revenueSeries&from=2026-07-01&to=2026-09-30&group=week"
+   ],
+   "uses_browser_built_instants": false,
+   "examples": []
+  },
+  "last-quarter:billingEfficiencyKpi": {
+   "report": "/reports/service-advisor-analysis?range=last_quarter",
+   "requests": [
+    "/api/reporting/service-advisor-analysis/last_quarter?pagination[page]=1&pagination[rowsPerPage]=1000&pagination[sortBy]=&pagination[descending]=false&range=last_quarter",
+    "/api/dashboard/reports?reports[]=invoicingEfficiencySeries&reports[]=invoicingEfficiencyByAdvisorSeries&from=2026-07-01&to=2026-09-30&group=week"
+   ],
+   "uses_browser_built_instants": false,
+   "examples": []
+  },
+  "last-quarter:techEfficiencyKpi": {
+   "report": "/reports/technician-efficiency?range=last_quarter",
+   "requests": [
+    "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-07-01&to=2026-09-30&group=week",
+    "/api/reporting/technician-efficiency/last_quarter?range=last_quarter"
+   ],
+   "uses_browser_built_instants": false,
+   "examples": []
+  },
+  "last-quarter:techUtilizationKpi": {
+   "report": "/reports/technician-utilization?dateRange=last-quarter",
+   "requests": [
+    "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-07-01T06:00:00.000Z&end_date=2026-10-01T05:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2026-07-01&to=2026-09-30&group=week&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-07-01T06:00:00.000Z&end_date=2026-10-01T05:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false"
+   ],
+   "uses_browser_built_instants": true,
+   "examples": [
+    "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-07-01T06:00:00.000Z&end_date=2026-10-01T05:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-07-01T06:00:00.000Z&end_date=2026-10-01T05:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false"
+   ]
+  },
+  "last-quarter:salesByCustomer": {
+   "report": "/reports/sales-by-customer?dateRange=last-quarter",
+   "requests": [
+    "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-07-01T06:00:00.000Z&end_date=2026-10-01T05:59:59.999Z&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false"
+   ],
+   "uses_browser_built_instants": true,
+   "examples": [
+    "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-07-01T06:00:00.000Z&end_date=2026-10-01T05:59:59.999Z&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false"
+   ]
+  },
+  "custom-day-4:revenueKpi": {
+   "report": "/reports/sales?range=custom&range=2026-07-04&range=2026-07-04",
+   "requests": [
+    "/api/reporting/sales/custom?range=custom&start_date=2026-07-04T06:00:00.000Z&end_date=2026-07-05T05:59:59.999Z",
+    "/api/dashboard/reports?reports[]=revenueSeries&from=2026-07-04&to=2026-07-04&group=day"
+   ],
+   "uses_browser_built_instants": true,
+   "examples": [
+    "/api/reporting/sales/custom?range=custom&start_date=2026-07-04T06:00:00.000Z&end_date=2026-07-05T05:59:59.999Z"
+   ]
+  },
+  "custom-day-4:billingEfficiencyKpi": {
+   "report": "/reports/service-advisor-analysis?range=custom&range=2026-07-04&range=2026-07-04",
+   "requests": [
+    "/api/reporting/service-advisor-analysis/custom?pagination[page]=1&pagination[rowsPerPage]=1000&pagination[sortBy]=&pagination[descending]=false&range=custom&start_date=2026-07-04T06:00:00.000Z&end_date=2026-07-05T05:59:59.999Z",
+    "/api/dashboard/reports?reports[]=invoicingEfficiencySeries&reports[]=invoicingEfficiencyByAdvisorSeries&from=2026-07-04&to=2026-07-04&group=day"
+   ],
+   "uses_browser_built_instants": true,
+   "examples": [
+    "/api/reporting/service-advisor-analysis/custom?pagination[page]=1&pagination[rowsPerPage]=1000&pagination[sortBy]=&pagination[descending]=false&range=custom&start_date=2026-07-04T06:00:00.000Z&end_date=2026-07-05T05:59:59.999Z"
+   ]
+  },
+  "custom-day-4:techEfficiencyKpi": {
+   "report": "/reports/technician-efficiency?range=custom&range=2026-07-04&range=2026-07-04",
+   "requests": [
+    "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-07-04&to=2026-07-04&group=day",
+    "/api/reporting/technician-efficiency/custom?range=custom&start_date=2026-07-04T06:00:00.000Z&end_date=2026-07-05T05:59:59.999Z"
+   ],
+   "uses_browser_built_instants": true,
+   "examples": [
+    "/api/reporting/technician-efficiency/custom?range=custom&start_date=2026-07-04T06:00:00.000Z&end_date=2026-07-05T05:59:59.999Z"
+   ]
+  },
+  "custom-day-4:techUtilizationKpi": {
+   "report": "/reports/technician-utilization?dateRange=custom&dateRange=2026-07-04&dateRange=2026-07-04",
+   "requests": [
+    "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-07-04T06:00:00.000Z&end_date=2026-07-05T05:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2026-07-04&to=2026-07-04&group=day&location[]=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-07-04T06:00:00.000Z&end_date=2026-07-05T05:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false"
+   ],
+   "uses_browser_built_instants": true,
+   "examples": [
+    "/api/reporting/reports/technician-utilization/technicians?range=custom&start_date=2026-07-04T06:00:00.000Z&end_date=2026-07-05T05:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "/api/reporting/reports/technician-utilization?range=custom&start_date=2026-07-04T06:00:00.000Z&end_date=2026-07-05T05:59:59.999Z&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=technician&pagination[descending]=false"
+   ]
+  },
+  "custom-day-4:salesByCustomer": {
+   "report": "/reports/sales-by-customer?dateRange=custom&dateRange=2026-11-04&dateRange=2026-11-04",
+   "requests": [
+    "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-11-04T07:00:00.000Z&end_date=2026-11-05T06:59:59.999Z&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false"
+   ],
+   "uses_browser_built_instants": true,
+   "examples": [
+    "/api/reporting/reports/sales-by-customer?range=custom&start_date=2026-11-04T07:00:00.000Z&end_date=2026-11-05T06:59:59.999Z&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=customer&pagination[descending]=false"
+   ]
+  }
+ },
+ "rule99": {
+  "location": "Staging Heavy Duty - 9919",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "location_tz": "America/Edmonton",
+  "session_change_location": {
+   "workplace_timezone": "America/Edmonton",
+   "http_status": 200
+  },
+  "browser_timezoneId": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "process_resolved_tz": "America/Edmonton",
+  "localStorage_timezone": "\"America/Edmonton\"",
+  "localStorage_location": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "header_start": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-06T12:13:07.170Z"
+  },
+  "browser_local_time_start": "Fri Nov 06 2026 05:13:07 GMT-0700 (Mountain Standard Time)",
+  "all_match": true,
+  "note": "QA lead's own cookie set: change-location also moves his browser's location on sv11839",
+  "offsets": {
+   "browser_offset_min": -420,
+   "system_offset_min": -360,
+   "system_local_now": "2026-11-06T06:13:07.213077-06:00",
+   "offsets_agree": false,
+   "warning": "browser and system offsets differ: day-boundary results within 1 h of local midnight are UNSAFE"
+  },
+  "header_end": {
+   "header_text": "ShopHub expand_more Dashboard Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K notifications Staging Heavy Duty - 9919 AS",
+   "location_selector_text": [
+    "Staging Heavy Duty - 9919"
+   ],
+   "shows_location": true,
+   "at_utc": "2026-11-06T12:16:22.152Z"
+  },
+  "localStorage_timezone_end": "\"America/Edmonton\""
+ }
+}
