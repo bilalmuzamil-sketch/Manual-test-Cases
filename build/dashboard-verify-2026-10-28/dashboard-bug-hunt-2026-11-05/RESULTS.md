@@ -59,7 +59,7 @@ Each tile's report link was opened on a preset (Last Quarter) and on a Custom si
 - The Dashboard tiles send plain dates, and the server applies its own rules.
 - For Edmonton dates after 1 Nov 2026 on this test machine, the browser starts each day at 07:00Z and the server at 06:00Z. Any record between 00:00 and 01:00 local can therefore sit in the tile and not in the report:
   - on a Custom range, for all five reports;
-  - on This Month / This Week etc., for Technician Utilization and Sales By Customer.
+  - on This Month / This Week etc., for Technician Utilization and Sales By Customer. This last point is **inferred** from the mechanism: those two reports sent browser instants on Last Quarter. Their Edmonton November presets were not captured.
 - **Not reproduced on screen with a record in that hour.** This is request evidence only.
 
 ### Area 2: day boundary. Part 2, after Fiji midnight (DVI Test, Pacific/Fiji; Fiji date **Sat 7 Nov**, UTC date **Fri 6 Nov**; 12:03–12:06 UTC)
