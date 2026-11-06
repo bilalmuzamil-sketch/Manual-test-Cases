@@ -24,7 +24,7 @@ Set-up: `tools/dvi_seed.py`, logged in `seed-log.jsonl`. Customer "ZZAUTOTEST Hu
 | 5.3 Empty states (DVI Test has no invoices) | **PASS.** Tiles with fewer than 2 points show the dashed placeholder (S4-R12): Revenue, Billing, Tech Efficiency, Sales by Customer, At Risk. Billing and Tech Efficiency headlines read "-" (S3-E3). The expanded Billing Efficiency chart reads **"No data for selected date range"** (S9-R11). Technician Utilization, which has 2 points with values, draws its line. | `t0-before-midnight-default.png`, `-be-expanded.png` |
 
 ### Rule 99 (g)–(j), applied to this whole run (amendment of 6 Nov, commit 01ce93488)
-`tz_rules_check.py` was run at 14:3x UTC. Output is in `evidence/rule99-tz/`.
+`tz_rules_check.py` was run at 15:43–15:44 UTC (file times in `evidence/rule99-tz/`). Output is in `evidence/rule99-tz/`.
 
 | Zone | Browser (Chromium 153) | Machine (tz db 2026e) | Server (read from something it built) | Verdict |
 |---|---|---|---|---|
