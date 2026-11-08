@@ -1,0 +1,13 @@
+0.09 marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+6.08 button before: {"txt":"Start","aria":null,"cls":"q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--rectangle bg-positive text-white q-btn--actionable q","dis":null}
+6.62 REQ POST /api/technician-tasks/check-in {"task_id":"14aa44d0-09f2-4f28-b154-f6c2ef099791","line_id":"1ecdd840-1a8c-469d-b930-428d41a522cd","work_order_id":"3024331e-319b-482c-a636-3ae78143b702","refresh_lines":true}
+6.62 click 1
+6.72 click 2
+6.72 REQ POST /api/technician-tasks/check-in {"task_id":"14aa44d0-09f2-4f28-b154-f6c2ef099791","line_id":"1ecdd840-1a8c-469d-b930-428d41a522cd","work_order_id":"3024331e-319b-482c-a636-3ae78143b702","refresh_lines":true}
+6.91 RES 201 /api/technician-tasks/check-in {"data":{"id":"f679baa7-aceb-41a4-84d5-ad4b5c802ce9","workOrderId":"3024331e-319b-482c-a636-3ae78143b702"}}
+6.92 PAGEERROR Request failed with status code 400
+6.92 RES 400 /api/technician-tasks/check-in {"errors":[{"error":"You are already clocked into different line."}]}
+7.03 TOAST warning You are already clocked into different line. Please try to resolve this. Close
+12.97 button after: {"txt":"Stop","aria":null,"cls":"q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--rectangle bg-negative text-white q-btn--actionable q","dis":null}
+12.97 uncaught promise rejections: ["Request failed with status code 400"]
+13.05 current task: {"status":404,"json":{"errors":[{"error":"'resource' was not found."}]}}

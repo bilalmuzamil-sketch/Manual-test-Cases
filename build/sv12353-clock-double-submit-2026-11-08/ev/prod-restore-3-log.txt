@@ -1,0 +1,13 @@
+0.11 marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+6.02 button before: {"txt":"Stop","aria":null,"cls":"q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--rectangle bg-negative text-white q-btn--actionable q","dis":null}
+6.72 clicked Stop (opens window)
+10.12 now clicking Clock Out
+10.14 click 1
+10.14 REQ POST /api/technician-tasks/check-out {"task_id":"604cf1b3-efb2-4f2d-93bd-8954dde3d651","tech_story":"ZZAUTOTEST SV12353 story","complete_line":false,"work_order_id":"3024331e-319b-482c-a636-3ae78143b702"}
+10.30 DIALOG Stop working on S2-1920, What are you doing... - Why are you doi... close Line Completed? What Have You Been Doing On This Line? AI SHOPCOACH IMPROVE STORY Depa
+10.39 RES 201 /api/technician-tasks/check-out {"data":{"work_order_id":"3024331e-319b-482c-a636-3ae78143b702","technician_task_record_id":"604cf1b3-efb2-4f2d-93bd-8954dde3d651","line_id":"1ecdd840-1a8c-469d-b930-428d41a522cd","action":"clock_out"
+10.45 TOAST check_circle Timesheet clocked out Close
+10.76 DIALOG (none)
+16.50 button after: {"txt":"Start","aria":null,"cls":"q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--rectangle bg-positive text-white q-btn--actionable q","dis":null}
+16.50 uncaught promise rejections: []
+16.60 current task: {"status":404,"json":{"errors":[{"error":"'resource' was not found."}]}}

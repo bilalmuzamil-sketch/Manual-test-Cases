@@ -9,7 +9,8 @@ Mode: Board-2 defaults.
 | 1 | Desktop 1600 wide | 2 clicks 50 ms apart on the line's green **Start** | 1 check-in (201) | clocked in, button turns red **Stop** | none |
 | 2 | Desktop | **Stop** → story → 2 clicks 60 ms apart on **Clock Out** | 1 check-out (201) | "Timesheet clocked out" | none |
 | 3 | Phone (Chrome preset iPhone 12 Pro, touch) | 2 taps 80 ms apart on the line card's green **Start** | **2 check-ins: 201 then 400** "You are already clocked into different line." | clocked in, plus a yellow warning **"You are already clocked into different line."** although the user clicked only this line | **YES** "Request failed with status code 400" |
-(rounds 2-3 of #3 appended below)
+| 3b, 3c | Phone, rounds 2 and 3 | same double tap | 201 then 400 both times | same warning both times | **YES** both times |
+Phone double tap: **3 of 3** rounds sent two check-ins, showed the misleading warning and threw the uncaught error. Admin clocked out after each round; final state Start (not clocked in).
 Desktop paths are already protected on production; the phone card is the unprotected one, matching the ticket's own analysis ("The mobile card's loading input follows general line loading while task actions update a separate flag").
 Logs: ev/prod-*-log.txt. Clean-up: admin clocked out at the end of each round (story "ZZAUTOTEST SV12353 story").
 
