@@ -15,7 +15,11 @@ MODE=fail replaces it with a standard rejection `400 {"errors":[{"error":"ZZ tes
 | 2 | Work order New Part Request, Save Part | 400 (test-only) | stayed open | kept | yes | **YES** |
 | 3 | Work order Edit part, Save Part | 400 (test-only) | stayed open | kept (sell 181) | yes | **YES** |
 | 4 | Part sale, Save & Add Part | held 5 s, then real 201 | stayed open, loading until reply, then form cleared for the next part | cleared after success | n/a | none |
-(part sale rows 5-7 below)
+| 5 | Part sale, Save & Close | held 5 s, then real 201 | stayed open, loading until reply, then closed | n/a | n/a | none |
+| 6 | Part sale, Save & Add Part | 400 (test-only) | stayed open | kept | yes | **YES** |
+| 7 | Part sale, Save & Close | 400 (test-only) | stayed open | kept | yes | **YES** |
+Summary: on production the dialogs already wait for the save before closing (rows 1, 4, 5); the defect visible on screen-level is the
+uncaught error on every rejected save (rows 2, 3, 6, 7) — 4 of 4.
 Logs: ev/prod-*-log.txt.
 
 ## Branch AFTER

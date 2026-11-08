@@ -1,0 +1,12 @@
+0.13 marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+15.68 click button_workorder_part_save_add_part
+15.70 SAVE request sent (fail)
+15.90 dialog OPEN
+15.90 save button loading=true
+17.20 SAVE reply: test-only 400 {"errors":[{"error":"ZZ test-only rejection"}]}
+17.23 PAGEERROR Request failed with status code 400
+17.31 TOAST warning ZZ test-only rejection Please try to resolve this. Close
+17.72 save button loading=false
+25.05 dialog fields at end: select_part=SV-4162B ; workorder_part_description=TESTB ; select_workorder_part_source=Inventory ; part_cost=20.00000 ; workorder_part_sell_price=180.00 ; workorder_part_margin=88.88889 ; bin_quantity_0dfbedb3-479b-11f1-9bed-020a144de1a3=1
+25.05 unhandled promise rejections in page: ["Request failed with status code 400"]
+25.20 part requests before 2 after 2
