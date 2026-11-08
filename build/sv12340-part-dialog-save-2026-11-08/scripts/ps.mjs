@@ -1,0 +1,10 @@
+import {sess} from './common.mjs';
+const s=await sess(); const v=await s.api(`/api/work-orders/view/${process.env.WO}`); const d=v.json?.data||{};
+const cid=process.env.CID; console.log('company',cid);
+const r=await s.api('/api/part-sales',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({company_id:cid})}); console.log(r.status, JSON.stringify(r.json).slice(0,300));
+const id=r.json?.data?.[0]?.id||r.json?.data?.id; const p=s.page;
+await s.go(`/parts/part-sale/${id}/part-requests`); await p.waitForTimeout(3000);
+await s.glideClick('button_add_part').catch(e=>console.log('no add',e.message)); await p.waitForTimeout(2000);
+console.log('DIALOG',await p.evaluate(()=>[...document.querySelectorAll('.q-dialog button')].map(e=>`${e.innerText.trim().replace(/\s+/g,' ')}|${e.getAttribute('data-test-id')}`).join(' ; ')));
+console.log('INLINE',await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).filter(t=>/inline/.test(t)).join(' ')));
+await p.screenshot({path:'../ev/prod-partsale-dialog.png'}); console.log('PS',id); await s.close();

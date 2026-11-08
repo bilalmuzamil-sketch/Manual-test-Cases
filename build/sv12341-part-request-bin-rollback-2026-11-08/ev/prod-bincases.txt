@@ -1,0 +1,13 @@
+marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+A nonexistent bin id: HTTP 400 {"errors":[{"error":"Bin location not found."}]}
+   part requests before 1 after 2 new=["994951f2-2be6-4e3c-9af3-f065dbb38e93"]
+   stock before {"status":200,"q":4,"bins":[]}
+   stock after  {"status":200,"q":4,"bins":[]}
+B bin total 1 vs quantity 2: HTTP 400 {"errors":[{"error":"Bin quantities must match the requested quantity."}]}
+   part requests before 2 after 3 new=["f777aff1-d55f-476a-9746-d6fcd3e36c31"]
+   stock before {"status":200,"q":4,"bins":[]}
+   stock after  {"status":200,"q":4,"bins":[]}
+A again (resubmit): HTTP 400 {"errors":[{"error":"Bin location not found."}]}
+   part requests before 3 after 4 new=["c3108d93-bd8c-421d-890f-1b57c2d67477"]
+   stock before {"status":200,"q":4,"bins":[]}
+   stock after  {"status":200,"q":4,"bins":[]}

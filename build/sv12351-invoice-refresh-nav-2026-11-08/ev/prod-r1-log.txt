@@ -1,0 +1,90 @@
+marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+--- round 1
+5.49 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+5.49 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+5.64 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+5.75 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+5.75 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+5.93 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+5.93 CONSOLE.error Failed to load resource: the server responded with a status of 400 ()
+5.94 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+6.11 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+6.11 REQ POST /api/work-orders/invoices/estimate
+6.56 RES 200 POST /api/work-orders/invoices/estimate
+9.40 on /workorders/4560a837-ee20-46e5-a62c-c6a4892fc85d/finance
+10.32 CLICK side menu {"x":416.0390625,"y":28,"tid":"button_desktop_nav_link","txt":"Work Orders","href":"/workorders"}
+10.36 REQ POST /api/work-orders/change-customer-po
+10.55 RES 201 POST /api/work-orders/change-customer-po
+10.55 REQ GET /api/invoices//details?includeDeclined=0
+10.68 RES 404 GET /api/invoices//details?includeDeclined=0
+10.68 CONSOLE.error Failed to load resource: the server responded with a status of 404 ()
+10.84 TOAST-SHOWN warning Error fetching draft invoice details Invoice error Close
+16.57 URL /workorders
+--- round 2
+21.57 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+21.58 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+21.69 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+21.78 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+21.78 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+21.88 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+21.88 CONSOLE.error Failed to load resource: the server responded with a status of 400 ()
+21.89 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+22.01 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+22.01 REQ POST /api/work-orders/invoices/estimate
+22.38 RES 200 POST /api/work-orders/invoices/estimate
+25.56 on /workorders/4560a837-ee20-46e5-a62c-c6a4892fc85d/finance
+26.33 CLICK side menu {"x":416.0390625,"y":28,"tid":"button_desktop_nav_link","txt":"Work Orders","href":"/workorders"}
+26.36 REQ POST /api/work-orders/change-customer-po
+26.51 RES 201 POST /api/work-orders/change-customer-po
+26.51 REQ GET /api/invoices//details?includeDeclined=0
+26.59 RES 404 GET /api/invoices//details?includeDeclined=0
+26.59 CONSOLE.error Failed to load resource: the server responded with a status of 404 ()
+26.77 TOAST-SHOWN warning Error fetching draft invoice details Invoice error Close
+32.35 URL /workorders
+--- round 3
+37.27 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+37.27 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+37.40 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+37.48 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+37.48 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+37.59 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+37.59 CONSOLE.error Failed to load resource: the server responded with a status of 400 ()
+37.59 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+37.72 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+37.72 REQ POST /api/work-orders/invoices/estimate
+38.12 RES 200 POST /api/work-orders/invoices/estimate
+41.26 on /workorders/4560a837-ee20-46e5-a62c-c6a4892fc85d/finance
+41.96 CLICK side menu {"x":416.0390625,"y":28,"tid":"button_desktop_nav_link","txt":"Work Orders","href":"/workorders"}
+41.99 REQ POST /api/work-orders/change-customer-po
+42.14 RES 201 POST /api/work-orders/change-customer-po
+42.14 REQ GET /api/invoices//details?includeDeclined=0
+42.22 RES 404 GET /api/invoices//details?includeDeclined=0
+42.22 CONSOLE.error Failed to load resource: the server responded with a status of 404 ()
+42.23 TOAST-SHOWN warning Error fetching draft invoice details Invoice error Close
+47.99 URL /workorders
+--- round 4
+52.85 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+52.85 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+52.98 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+53.05 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+53.06 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+53.16 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+53.16 CONSOLE.error Failed to load resource: the server responded with a status of 400 ()
+53.17 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+53.28 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+53.28 REQ POST /api/work-orders/invoices/estimate
+53.66 RES 200 POST /api/work-orders/invoices/estimate
+56.84 on /workorders/4560a837-ee20-46e5-a62c-c6a4892fc85d/finance
+57.75 CLICK side menu {"x":416.0390625,"y":28,"tid":"button_desktop_nav_link","txt":"Work Orders","href":"/workorders"}
+57.77 REQ POST /api/work-orders/change-customer-po
+57.97 RES 201 POST /api/work-orders/change-customer-po
+58.09 REQ GET /api/invoices//details?includeDeclined=0
+58.48 RES 404 GET /api/invoices//details?includeDeclined=0
+58.48 CONSOLE.error Failed to load resource: the server responded with a status of 404 ()
+58.48 TOAST-SHOWN warning Error fetching draft invoice details Invoice error Close
+63.77 URL /workorders
+SUMMARY
+round 1: emptyId404=true errorToast=true
+round 2: emptyId404=true errorToast=true
+round 3: emptyId404=true errorToast=true
+round 4: emptyId404=true errorToast=true
