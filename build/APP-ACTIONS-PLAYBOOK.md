@@ -6548,3 +6548,10 @@ Hand-added open entry: Reports > Timesheet Activities (/reports/punch-clock-acti
 - `build/testing-tools/qa-session.mjs` → `open({..., engine:'firefox'|'webkit'})` (paths /tmp/pw-extra/firefox-1543/firefox/firefox and /tmp/pw-extra/webkit-2359/pw_run.sh; override with SV_FIREFOX / SV_WEBKIT). Firefox/WebKit get `proxy:{server:'http://127.0.0.1:<bridge port>'}` instead of Chromium's args. Use a separate bridge dir per engine.
 - WebKit = Safari's engine (not Safari itself) — say "Safari's engine (WebKit)" in reports.
 - Trap: scripts that toggle list filter chips (e.g. a roles probe clicking "Assigned to me"/"From maintenance") leave them ON in the user's saved Work Orders list preference; every later board/density measurement then finds no rows. Click "Clear all filters" (scripts/clearf.mjs) before measuring, and never toggle a chip without toggling it back.
+
+## §BG Payment methods (proven 2026-11-09, SV-12038 on sv12038)
+- List: `GET /api/organizations/finance/payment-methods?pagination[page]=1&pagination[rowsPerPage]=200&type=1` (1 = Customer Payments, 2 = Vendor Payments) → `data.collection[]` with `name`, `code`, `id`. Screen: Settings > FINANCE > Payment Methods (`/administration/payment-methods`).
+- Create: `POST .../payment-methods/create {name, type}`; delete: `POST .../payment-methods/delete {id}` (200 `{"data":[]}`).
+- Duplicates are judged by CODE per type (Cheque → CHEQUE = Check). After SV-12038 the database refuses a second (org, type, code) row; race-test by sending the same create 3× with `Promise.all` (expect 1×201, 2×400 "Payment method already exist").
+- Export: `GET /api/reporting/export/customer_payment?report=customer_payment&range=this_month` → CSV in `data[0]`.
+- Find a fix's code first: `git ls-remote origin 'refs/heads/*<TICKET>*'`, `git fetch --depth 5 origin <branch>`, `git diff --stat origin/develop...FETCH_HEAD` in a blobless clone of ShopView/shopview (`/tmp/svsrc`).

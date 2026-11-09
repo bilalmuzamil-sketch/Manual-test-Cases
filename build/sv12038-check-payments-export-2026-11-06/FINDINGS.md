@@ -38,3 +38,11 @@ API-only observation (Rule 94, not filed, told the QA lead): `POST .../payment-m
 Accounting effect (Rule 121): the payment itself is one payment; the doubling is in the export file used for reconciliation. QuickBooks is not connected on the branch, so a sync was not observed.
 
 Exhibit: ev/jira/01-check-export-before-after.png. Scripts: scripts/{pmui,pmapi,pmdel,pay,apiexp,doexp,findinv,custinv,exhibit}.
+
+## Unblocked + PASSED, 9 Nov 2026 (QA lead: "see if you can unblock yourself")
+- Branch was asleep (quick-login 302 → sleep.qa); woken with toggleQaEnv. Build v26.45.2-df7aeed (unchanged).
+- Fix branch SV-12038 (head ceefa4ac): migration `Version20261102200000.php` deletes existing same (org,type,code) rows (keeps mapped/oldest/lowest id) and adds unique `paym__organization_id_type_code_unq` (orm.xml L46). So row 8 "account that already has the duplicate" cannot be built on any fixed branch — the DB refuses it. My 80376 ask to Milomir was answered by his own code.
+- Live: 15 customer + 8 vendor methods, no shared code within a type; 3 simultaneous creates of "ZZ12038 Race 87216" → 1×201, 2×400; export this_month re-run = ZZ12038-B1 2 rows $3,205.72 + $1,211.85 with vendor "Cheque" (CHEQUE) present; S2-17292/S2-16913 Finance tab "Nov 6, 2026 - Check".
+- Deleted my own API-only "Payroll  Deduction" (two spaces) test row so the exhibit doesn't look like a duplicate.
+- Posted 80489 (green PASSED, 7 rows, picture ev/jira/02-one-check-unique-rule.png, code links). Label QAcomplete; Rejected → In Progress (16) → Code Review (3) → TESTING QA (4) → QA Complete (10). QA Assignee already Bilal.
+- Gate: build marker re-read; comment read back (panel, 7 rows, 1 media). Learning: Rule 125 + playbook §BG.

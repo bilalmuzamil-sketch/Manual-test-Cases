@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **NEVER REJECT/BLOCK A TICKET (OR ASK A DEV TO BUILD A STATE) BEFORE THE SELF-UNBLOCK IS EXHAUSTED — WAKE, SEED, UI↔API, AND READ THE FIX'S OWN CODE (migrations, constraints, tests); re-sweep every Rejected/Blocked ticket (Standing Rule 125).**
 > - **ISSUE IN THE CODE? ALWAYS GIVE THE CODE REFERENCE — file + lines as a commit-pinned GitHub link + which PR did/did not touch it (Standing Rule 124).**
 > - **MISSING SOMETHING TO TEST A TICKET? TAG THE TICKET'S ASSIGNED DEVELOPER ON THE TICKET WITH A NUMBERED LIST OF WHAT IS NEEDED, THEN MOVE THE TICKET TO BLOCKED (Standing Rule 122).**
 > - **EVERY TICKET IS ALSO CHECKED FOR ITS ACCOUNTINGHUB / QUICKBOOKS EFFECT — nothing left "on an island" (Standing Rule 121, Chris Ward 2026-11-05).**
@@ -5802,6 +5803,25 @@ deliver the 7-tab management report.
     references are developer pointers, so they are allowed even without a technical section (Rule 84) but stay short — the plain
     description, picture and steps still come first. Never guess a line: read the file at that commit. First applied: SV-12214
     comment 80479 (ModuleSelector.vue L34-41/L22, ProfileMenu.vue L60-61, untouched by PRs #4183/#4214).
+
+125. **BEFORE A TICKET IS REJECTED OR BLOCKED, OR A DEVELOPER IS ASKED TO BUILD SOMETHING, EXHAUST THE SELF-UNBLOCK — INCLUDING READING THE FIX'S OWN CODE (all projects).**
+    USER DIRECTIVE (2026-11-09, verbatim): *"see if you can unblock yourself on this and that rejecting the ticket for something which we can do to unblock ourself does not bite me … ALso do the same for the other tickets you have moved to Rejected from testing or to Blocked. And save it as a rule for the future tickets too."*
+    **THE RULE:** a ticket goes to **Rejected from Testing** only for a **real, reproduced failure**, and to **Blocked** only for something
+    genuinely outside our reach (a third-party account, a hardware device, a PO decision). Before either move, and before any
+    "please set up X on the branch" ask to a developer (Rule 122), run the full unblock order: **(1)** wake the branch if it
+    sleeps; **(2)** build the state yourself on screen or by API (Rules 14/87/88); **(3) read the fix itself in `ShopView/shopview`
+    — the PR's changed files, migrations, database constraints and tests (Rule 124)** — because the code often answers the
+    question (a migration that cleans up old data, a constraint that makes a state impossible, a test that names the expected
+    case); **(4)** only then ask, and the ask names what was tried. **A state the fix makes impossible is not a blocker — it is
+    the evidence:** prove the rule live (try to create it, race it) and pass on that.
+    **SWEEP DUTY:** when this rule is invoked, and on every 3-hourly check, re-open every ticket we have in Rejected from Testing
+    or Blocked and apply the same order; post a NEW comment (Rule 112) and move the ticket on when it unblocks.
+    **RATIONALE (2026-11-09, SV-12038):** I asked Milomir (80376) to put a second same-code "Check" method on the branch because
+    the screen refused it, and the ticket sat in Rejected from Testing. The fix's own migration
+    (`Version20261102200000.php`) deletes existing duplicates and adds a database unique rule, so the state could never exist on
+    the branch, and that was the answer to both of my questions. Reading the PR took minutes; after the branch was woken,
+    proving the rule live (three creates sent at once, one saved) and re-running the export closed it: PASSED (80489), QA Complete.
+    Ties to Rules 12, 14, 22, 36, 61, 68, 85, 87, 88, 91, 97, 112, 116, 122 and 124.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
