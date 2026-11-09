@@ -266,3 +266,16 @@ Filed under the QA lead's account by another session, not on my branch: SV-12193
   - The deployed build is still v26.45.2-1a211d8.
   - The only later commit on origin/SV-11839 (05c56a0, merge of main) touches none of the fix's 22 files.
 - Transition id 10. The result returned status QA Complete.
+
+## 9 Nov 2026: Sales By Customer total leaves out credit memos — not raised (documents silent)
+- What was seen (SV-12276 retest, Nov 3, Heavy Duty):
+  - The Sales By Customer report total is $1,630.23, without the $5.00 credit memo.
+  - The Sales report total is $1,625.23, with it.
+- Source checked LIVE on 9 Nov:
+  - Confluence page 577634305, "SBC (Sales By Customer) Report", version 22, last changed 19 Oct 2026.
+  - It never mentions credit memos (0 hits for "credit" and "refund").
+  - It is an invoice tree (Customer → Asset → Invoice) whose Subtotal = Labor + Parts + Shop Supplies + Adjustments.
+  - It excludes only reversed and voided invoices.
+- No document says Sales By Customer should take credit memos off, so per the QA lead's 9 Nov "Ok" this is NOT raised.
+- It is already listed as open question 1 in `report-suite/ShopView-Reports-What-Every-Column-Calculates-2026-10-28.md`. That document is code-derived, not an expectation source.
+- Side finding: our local SBC copy (v20, 12 Aug) is behind the live page (v22, 19 Oct).
