@@ -1,0 +1,1413 @@
+{
+ "made": "9 Nov 2026",
+ "prd": "PRD v0.5 (Confluence 1003585538)",
+ "design": "Bill To design version 1794239066-4906",
+ "counts": {
+  "SHOWN": 78,
+  "DIFFERENT": 13,
+  "NOT SHOWN": 67,
+  "NO SCREEN": 39
+ },
+ "unchecked": [],
+ "method": "every requirement line and every §8 row compared by hand with the boards' pictures and captions; SHOWN = the design draws it as the PRD says; DIFFERENT = register row; NOT SHOWN = no picture (register BT-N rows); NO SCREEN = PRD says no screen change",
+ "rows": [
+  {
+   "code": "S1-R1",
+   "prd_words": "When a default other than the customer itself is saved, the customer page left card shows \"Bill Invoices To\" with the payer's name.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-12, bt-p1-16",
+   "note": "line under IBS"
+  },
+  {
+   "code": "S1-R2",
+   "prd_words": "Users who may set the default see \"Change\" beside the name; it opens the \"Bill Invoices To\" window.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-12, bt-p1-13",
+   "note": ""
+  },
+  {
+   "code": "S1-R3",
+   "prd_words": "The window shows the help line \"New work orders and part sales for [customer] will be billed to this customer. Existing ones don't change.\"",
+   "verdict": "SHOWN",
+   "where": "bt-p1-13",
+   "note": "word for word"
+  },
+  {
+   "code": "S1-R4",
+   "prd_words": "The window has a searchable \"Bill Invoices To\" field and a \"Save\" button.",
+   "verdict": "DIFFERENT",
+   "where": "bt-p1-13",
+   "note": "BT-D03 extra Cancel (and x)"
+  },
+  {
+   "code": "S1-R5",
+   "prd_words": "The field's first option is \"[customer] (this customer)\"; picking it and saving clears the default.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-14, caption bt-p1-08",
+   "note": "clearing by '(this customer)' is caption only"
+  },
+  {
+   "code": "S1-R6",
+   "prd_words": "Saving applies only to work orders and part sales created afterwards.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-13 help line",
+   "note": "behaviour itself has no picture"
+  },
+  {
+   "code": "S1-R7",
+   "prd_words": "When at least one customer has this customer as its default, the card shows a \"Pays for\" counter beside Contacts and Assets, with the count.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-16, bt-p6-02",
+   "note": ""
+  },
+  {
+   "code": "S1-R8",
+   "prd_words": "The counter's tooltip reads \"Customers billed to this customer by default\".",
+   "verdict": "SHOWN",
+   "where": "bt-p1-17",
+   "note": "BT-D08 position note"
+  },
+  {
+   "code": "S1-R9",
+   "prd_words": "Clicking the counter opens a window titled \"[customer] pays for\", listing each customer A to Z as a link to its page; a long list scrolls inside the window.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-18",
+   "note": "one customer only; long list scroll BT-N01"
+  },
+  {
+   "code": "S1-R10",
+   "prd_words": "The window shows the line \"These customers bill new work orders and part sales to [customer] by default.\" and a \"Close\" button.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-18",
+   "note": ""
+  },
+  {
+   "code": "S1-N1",
+   "prd_words": "A customer that bills itself shows no \"Bill Invoices To\" line and no way to set one on the card; the default is set in New Customer or Edit Customer (Story 2).",
+   "verdict": "SHOWN",
+   "where": "bt-p1-11/12 captions, bt-p5-10 (Orchard card)",
+   "note": ""
+  },
+  {
+   "code": "S1-N2",
+   "prd_words": "Without 'Customers → Create & Edit' or 'View and Manage AP/AR Data', \"Change\" is hidden; the line still shows.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-22",
+   "note": ""
+  },
+  {
+   "code": "S1-N3",
+   "prd_words": "On Counter Sale, \"Change\" is hidden.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "Counter Sale card with a saved default is impossible (S1 Error Handling); no picture"
+  },
+  {
+   "code": "S1-N4",
+   "prd_words": "The \"Pays for\" counter is hidden when the count is 0.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-12 (Buda, no counter), bt-p6-08",
+   "note": ""
+  },
+  {
+   "code": "S1-N5",
+   "prd_words": "Counter Sale never appears in the field's options.",
+   "verdict": "SHOWN",
+   "where": "bt-p3-18 (work order field); customer windows not searched for Counter Sale",
+   "note": "partly: BT-N02"
+  },
+  {
+   "code": "S1-E1",
+   "prd_words": "One hop only: if the payer has its own default, new work orders still bill the payer, not the payer's default.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-16 caption",
+   "note": "caption only"
+  },
+  {
+   "code": "S2-R1",
+   "prd_words": "New Customer and Edit Customer show a searchable \"Bill Invoices To\" field, reading \"This customer\" until another customer is picked.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-02, bt-p1-07",
+   "note": ""
+  },
+  {
+   "code": "S2-R2",
+   "prd_words": "The field sits after Credit Terms | Credit Limit and before Sales Representative (context: field order shared with SV-11638 and SV-10890).",
+   "verdict": "SHOWN",
+   "where": "bt-p1-02, bt-p1-07",
+   "note": ""
+  },
+  {
+   "code": "S2-R3",
+   "prd_words": "Edit Customer shows the help line \"New work orders and part sales bill to this customer. Existing ones don't change.\" under the field.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-07",
+   "note": "word for word"
+  },
+  {
+   "code": "S2-R4",
+   "prd_words": "In New Customer, the first option reads \"[name typed so far] (this customer)\", or \"New customer (this customer)\" before a name is typed.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-03",
+   "note": "typed name only; 'New customer (this customer)' BT-N03"
+  },
+  {
+   "code": "S2-R5",
+   "prd_words": "The pick saves together with the window's Save; if any part fails, nothing is saved and no customer is created.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-05 caption",
+   "note": "not saved in the picture"
+  },
+  {
+   "code": "S2-R6",
+   "prd_words": "An empty Address 2 is hidden; a + button beside Address 1 (tooltip \"Add Address 2\") shows it.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-02",
+   "note": "+ shown; tooltip BT-N04"
+  },
+  {
+   "code": "S2-R7",
+   "prd_words": "A shown Address 2 has an x button (tooltip \"Remove Address 2\") that clears and hides it; nothing is saved until Save.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-07",
+   "note": "x shown; tooltip BT-N04"
+  },
+  {
+   "code": "S2-R8",
+   "prd_words": "A customer whose Address 2 holds a value opens with Address 2 showing, even when Address 1 is empty.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-07",
+   "note": "Address 1 not empty in the picture"
+  },
+  {
+   "code": "S2-N1",
+   "prd_words": "Without 'View and Manage AP/AR Data', the field is hidden and the window closes up around it.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-20, bt-p1-24",
+   "note": ""
+  },
+  {
+   "code": "S2-N2",
+   "prd_words": "New Customer shows no help line under the field.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-02",
+   "note": ""
+  },
+  {
+   "code": "S2-N3",
+   "prd_words": "On Counter Sale, Edit Customer shows no \"Bill Invoices To\" field.",
+   "verdict": "SHOWN",
+   "where": "bt-p1-10",
+   "note": ""
+  },
+  {
+   "code": "S3-R1",
+   "prd_words": "The card's expanded section shows a \"Bill To\" field under Authorizer.",
+   "verdict": "SHOWN",
+   "where": "bt-p2-02, bt-p2-17, bt-p2-21",
+   "note": ""
+  },
+  {
+   "code": "S3-R2",
+   "prd_words": "The field reads \"This customer\" when the customer pays for itself, otherwise the Bill To's name.",
+   "verdict": "DIFFERENT",
+   "where": "bt-p2-06, bt-p2-08",
+   "note": "BT-D06 name cut on desktop"
+  },
+  {
+   "code": "S3-R3",
+   "prd_words": "Typing searches every customer in the organization except Counter Sale, A to Z, showing the first 50 matches; the first option is always \"[customer] (this customer)\".",
+   "verdict": "DIFFERENT",
+   "where": "bt-p2-03 (A to Z), bt-p3-17/21 (current Bill To second)",
+   "note": "BT-D01; BT-D09 list position"
+  },
+  {
+   "code": "S3-R4",
+   "prd_words": "With no match, the list shows only the \"(this customer)\" option.",
+   "verdict": "SHOWN",
+   "where": "bt-p2-05",
+   "note": ""
+  },
+  {
+   "code": "S3-R5",
+   "prd_words": "Picking a customer saves the Bill To immediately; picking \"(this customer)\" makes the customer pay for itself.",
+   "verdict": "SHOWN",
+   "where": "bt-p2-06",
+   "note": ""
+  },
+  {
+   "code": "S3-R6",
+   "prd_words": "A new work order or part sale starts billed to the customer's saved default, if any, else the customer itself.",
+   "verdict": "SHOWN",
+   "where": "bt-p2-19 caption, bt-p2-02 caption",
+   "note": "caption only"
+  },
+  {
+   "code": "S3-R7",
+   "prd_words": "Splitting a work order or part sale, or reopening a paid work order onto a new one, copies its Bill To to the new one.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N06"
+  },
+  {
+   "code": "S3-R8",
+   "prd_words": "New Work Order and New Part Sale show no Bill To.",
+   "verdict": "SHOWN",
+   "where": "bt-p2-19",
+   "note": ""
+  },
+  {
+   "code": "S3-R9",
+   "prd_words": "On a Counter Sale work order or part sale, any customer except Counter Sale can be picked as Bill To.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N06"
+  },
+  {
+   "code": "S3-N1",
+   "prd_words": "Users without the permission see the field only when someone else pays, read-only.",
+   "verdict": "SHOWN",
+   "where": "bt-p3-10",
+   "note": "deposit-locked work order"
+  },
+  {
+   "code": "S3-N2",
+   "prd_words": "In history mode the field is read-only, shown only when someone else pays, with no lock message.",
+   "verdict": "NOT SHOWN",
+   "where": "board note p3 (words only)",
+   "note": "BT-N05"
+  },
+  {
+   "code": "S3-N3",
+   "prd_words": "Invoiced or holding deposits: see Story 5.",
+   "verdict": "SHOWN",
+   "where": "page 3",
+   "note": "see Story 5"
+  },
+  {
+   "code": "S4-R1",
+   "prd_words": "The Authorizer list shows \"No authorizer\", then the customer's authorizer contacts, then the Bill To's.",
+   "verdict": "SHOWN",
+   "where": "bt-p2-10, bt-p2-11",
+   "note": ""
+  },
+  {
+   "code": "S4-R2",
+   "prd_words": "Each contact shows its customer's name on a second line.",
+   "verdict": "SHOWN",
+   "where": "bt-p2-10, bt-p2-11",
+   "note": ""
+  },
+  {
+   "code": "S4-R3",
+   "prd_words": "A contact of the current Bill To can be saved as Authorizer and prints as the authorizer on documents.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N07"
+  },
+  {
+   "code": "S4-R4",
+   "prd_words": "Changing the Bill To clears an Authorizer who is a contact of the previous Bill To, with no message.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N07"
+  },
+  {
+   "code": "S4-R5",
+   "prd_words": "Change Customer clears the Authorizer, as today, including a contact of a Bill To that stays.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N07"
+  },
+  {
+   "code": "S4-N1",
+   "prd_words": "When the customer pays for itself, the list is exactly today's, with no second line.",
+   "verdict": "SHOWN",
+   "where": "bt-p2-11 caption",
+   "note": "caption only"
+  },
+  {
+   "code": "S4-N2",
+   "prd_words": "An Authorizer from the customer stays when the Bill To changes.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N07"
+  },
+  {
+   "code": "S4-N3",
+   "prd_words": "A contact of any other customer is refused, as today.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N07"
+  },
+  {
+   "code": "S5-R1",
+   "prd_words": "When Invoiced, the Bill To field is read-only with M4 as its tooltip.",
+   "verdict": "SHOWN",
+   "where": "bt-p3-02, bt-p3-03",
+   "note": "BT-D08 tooltip position"
+  },
+  {
+   "code": "S5-R2",
+   "prd_words": "Clicking or tapping the Invoiced field shows M4 as an error toast with a \"Go To Invoice\" button.",
+   "verdict": "DIFFERENT",
+   "where": "bt-p3-04",
+   "note": "BT-D02 Close"
+  },
+  {
+   "code": "S5-R3",
+   "prd_words": "\"Go To Invoice\" opens the work order's or part sale's Finance tab; it never reverses anything.",
+   "verdict": "SHOWN",
+   "where": "bt-p3-04 caption",
+   "note": "caption only"
+  },
+  {
+   "code": "S5-R4",
+   "prd_words": "While deposits are held on an Open document, the field is read-only with M1 as its tooltip.",
+   "verdict": "SHOWN",
+   "where": "bt-p3-06, bt-p3-07",
+   "note": "BT-D08"
+  },
+  {
+   "code": "S5-R5",
+   "prd_words": "Clicking or tapping that field shows M1 as an error toast with an \"Open Deposits\" button.",
+   "verdict": "DIFFERENT",
+   "where": "bt-p3-08",
+   "note": "BT-D02 Close"
+  },
+  {
+   "code": "S5-R6",
+   "prd_words": "\"Open Deposits\" opens the Deposits tab of the customer holding the largest share of the deposits.",
+   "verdict": "SHOWN",
+   "where": "bt-p3-08 caption",
+   "note": "caption only"
+  },
+  {
+   "code": "S5-R7",
+   "prd_words": "M1 names the total not reversed and the customer it was taken from, or \"[N] customers\" when there are several.",
+   "verdict": "SHOWN",
+   "where": "bt-p3-07",
+   "note": "one deposit, one customer; other forms BT-N08"
+  },
+  {
+   "code": "S5-R8",
+   "prd_words": "After the invoice is reversed, or all deposits are reversed, the field unlocks.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N08"
+  },
+  {
+   "code": "S5-N1",
+   "prd_words": "Without 'Invoicing & payments → View' and 'See Financial Data', the M4 toast shows with no button.",
+   "verdict": "DIFFERENT",
+   "where": "bt-p3-04 caption",
+   "note": "BT-D02: 'message and Close only'"
+  },
+  {
+   "code": "S5-N2",
+   "prd_words": "Without 'View and Manage AP/AR Data' and 'Customers → View', the M1 toast shows with no button.",
+   "verdict": "DIFFERENT",
+   "where": "bt-p3-11, bt-p3-12",
+   "note": "BT-D02 Close"
+  },
+  {
+   "code": "S5-N3",
+   "prd_words": "Users who cannot change the Bill To get M1 or M4 as an error toast on click or tap, with no button.",
+   "verdict": "DIFFERENT",
+   "where": "bt-p3-11, bt-p3-12",
+   "note": "BT-D02"
+  },
+  {
+   "code": "S5-E1",
+   "prd_words": "If the document is invoiced while the page is open, a change is refused with M4 and the field refreshes to its locked state.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N08"
+  },
+  {
+   "code": "S5-E2",
+   "prd_words": "If a deposit is taken while the page is open, a change is refused with M1 and its button, and the field refreshes.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N08"
+  },
+  {
+   "code": "S5-E3",
+   "prd_words": "When the document is both Invoiced and holds deposits, M4 shows.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N08"
+  },
+  {
+   "code": "S6-R1",
+   "prd_words": "If the Bill To was the old customer or the old customer's saved default, it follows to the new customer's saved default, else the new customer.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S6-R2",
+   "prd_words": "A Bill To picked on purpose stays after Change Customer.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S6-R3",
+   "prd_words": "The existing deposit block on Change Customer applies only when the change would change the Bill To.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S6-N1",
+   "prd_words": "On an Invoiced document, the invoice keeps its Bill To. A self-billed document stays self-billed, so invoicing again after Reverse bills the new customer, as today.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S6-E1",
+   "prd_words": "If the picked Bill To is the new customer, the document becomes self-billed.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S7-R1",
+   "prd_words": "The invoice's Bill To block prints the Bill To's name, address and phone, saved on the invoice when it is created.",
+   "verdict": "DIFFERENT",
+   "where": "page 4 documents",
+   "note": "BT-D05 legacy prints no phone; modern prints it"
+  },
+  {
+   "code": "S7-R2",
+   "prd_words": "The Bill To's credit term, saved on the invoice, sets the due date.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "due date not demonstrable from the pictures"
+  },
+  {
+   "code": "S7-R3",
+   "prd_words": "Pricing, tax, discounts, fees and shop supplies are the customer's; changing the Bill To never changes the total.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "no screen"
+  },
+  {
+   "code": "S7-R4",
+   "prd_words": "The Bill To's \"PO is required\" applies to Customer PO.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "no picture"
+  },
+  {
+   "code": "S7-R5",
+   "prd_words": "The Over Credit warning measures the Bill To's limit against everything the Bill To owes; it never blocks.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N09"
+  },
+  {
+   "code": "S7-R6",
+   "prd_words": "If the Bill To is on Credit Hold, the Credit Hold banner reads M2 with a \"Change Bill To\" button (work orders: page header; part sales: Finance tab).",
+   "verdict": "DIFFERENT",
+   "where": "bt-p3-14, bt-p3-16, bt-p3-20",
+   "note": "BT-D10 placement; part sale BT-N10"
+  },
+  {
+   "code": "S7-R7",
+   "prd_words": "\"Change Bill To\" opens and focuses the Customer card's Bill To field; on a phone it first opens the work order details.",
+   "verdict": "SHOWN",
+   "where": "bt-p3-17, bt-p3-21",
+   "note": "BT-D01, BT-D09 in the list"
+  },
+  {
+   "code": "S7-R8",
+   "prd_words": "The Create Invoice action is disabled with M2 as its tooltip.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N09 (caption: tooltip not shot)"
+  },
+  {
+   "code": "S7-R9",
+   "prd_words": "If Create Invoice is reached anyway or the server refuses it, M2 shows as an error toast with a \"Change Bill To\" button, and no invoice is created.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N09"
+  },
+  {
+   "code": "S7-R10",
+   "prd_words": "The server refuses an invoice for a Bill To on Credit Hold with M2, however the Credit Hold term is capitalized.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "server"
+  },
+  {
+   "code": "S7-R11",
+   "prd_words": "The work order's Credit Hold and Over Limit badges describe the Bill To.",
+   "verdict": "SHOWN",
+   "where": "bt-p3-14, bt-p3-20",
+   "note": "Credit Hold pill; Over Limit BT-N09"
+  },
+  {
+   "code": "S7-N1",
+   "prd_words": "The customer's own Credit Hold does not block when someone else is billed.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N10"
+  },
+  {
+   "code": "S7-N2",
+   "prd_words": "When the customer pays for itself, Credit Hold reads and blocks exactly as today (\"This customer is on Credit Hold!\", \"Cannot invoice this customer. Customer is on Credit Hold\").",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N10"
+  },
+  {
+   "code": "S7-N3",
+   "prd_words": "Without permission to change the Bill To, M2 shows with no button.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "no picture"
+  },
+  {
+   "code": "S7-N4",
+   "prd_words": "Once invoiced, the banner reads as today.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "no picture"
+  },
+  {
+   "code": "S7-E1",
+   "prd_words": "Later changes to the Bill To's name, address or terms never change an existing invoice.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "no picture"
+  },
+  {
+   "code": "S8-R1",
+   "prd_words": "A full-width band prints directly under the address row, reading \"SERVICE FOR\", then the customer's name in bold.",
+   "verdict": "SHOWN",
+   "where": "bt-p4-02, bt-p4-04",
+   "note": ""
+  },
+  {
+   "code": "S8-R2",
+   "prd_words": "On a work order with an asset, the band adds \"Unit [unit]\" and \"[year] [make] [model]\", separated by \" · \".",
+   "verdict": "SHOWN",
+   "where": "bt-p4-02",
+   "note": ""
+  },
+  {
+   "code": "S8-R3",
+   "prd_words": "Missing unit, year, make or model parts drop out with their separator; a unit already starting with \"Unit\" is not prefixed again.",
+   "verdict": "SHOWN",
+   "where": "bt-p4-06, bt-p4-08",
+   "note": "missing unit; 'Unit' prefix rule not shown"
+  },
+  {
+   "code": "S8-R4",
+   "prd_words": "On a part sale with a vehicle attached, the band adds the unit as in S8-R2 and S8-R3; without a vehicle it prints only \"SERVICE FOR\" and the name.",
+   "verdict": "SHOWN",
+   "where": "bt-p4-10, 12, 14, 16",
+   "note": "part sale ESTIMATES"
+  },
+  {
+   "code": "S8-R5",
+   "prd_words": "The band has a light grey fill and a thin grey border so it reads in black and white.",
+   "verdict": "SHOWN",
+   "where": "bt-p4-02",
+   "note": ""
+  },
+  {
+   "code": "S8-R6",
+   "prd_words": "The band prints on the modern and legacy layouts, invoice and estimate, part sale invoice and batch invoice.",
+   "verdict": "SHOWN",
+   "where": "page 4",
+   "note": "no part sale invoice, no modern batch, batch page 1 only: BT-N11"
+  },
+  {
+   "code": "S8-R7",
+   "prd_words": "The band leaves the address row free for a future Ship To block.",
+   "verdict": "SHOWN",
+   "where": "bt-p4-02",
+   "note": "address row keeps Bill To and Remit payment to only"
+  },
+  {
+   "code": "S8-N1",
+   "prd_words": "When the customer pays for itself, no band prints and the document is unchanged.",
+   "verdict": "SHOWN",
+   "where": "bt-p4-18, bt-p4-20",
+   "note": ""
+  },
+  {
+   "code": "S8-N2",
+   "prd_words": "Invoices created before this release never print the band.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "no picture"
+  },
+  {
+   "code": "S9-R1",
+   "prd_words": "The send window lists the Bill To's contacts.",
+   "verdict": "SHOWN",
+   "where": "bt-p5-12",
+   "note": ""
+  },
+  {
+   "code": "S9-R2",
+   "prd_words": "It pre-ticks the Bill To's contact marked Billing, else its first contact A to Z by name.",
+   "verdict": "SHOWN",
+   "where": "bt-p5-12",
+   "note": "one contact only; BT-N12"
+  },
+  {
+   "code": "S9-R3",
+   "prd_words": "Staff can tick other contacts and type addresses, as today.",
+   "verdict": "SHOWN",
+   "where": "bt-p5-12",
+   "note": "Optional Emails as today"
+  },
+  {
+   "code": "S9-R4",
+   "prd_words": "\"For Customer\" attachments behave as today: sent only when staff tick the box, which starts unticked.",
+   "verdict": "SHOWN",
+   "where": "bt-p5-12",
+   "note": ""
+  },
+  {
+   "code": "S9-R5",
+   "prd_words": "While the Bill To's contacts load, the window shows a loading state, never the customer's contacts.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N12"
+  },
+  {
+   "code": "S9-N1",
+   "prd_words": "When the customer pays for itself, the list and the pre-ticked contact are exactly today's.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "no self-paying send window pictured"
+  },
+  {
+   "code": "S10-R1",
+   "prd_words": "The invoice's receivable posts to the Bill To's account, on its Invoices tab, AR Aging and statements.",
+   "verdict": "SHOWN",
+   "where": "bt-p5-02, bt-p5-04",
+   "note": "payer's Invoices tab"
+  },
+  {
+   "code": "S10-R2",
+   "prd_words": "A deposit is taken on the account of whoever is the Bill To when it is recorded.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "no picture"
+  },
+  {
+   "code": "S10-R3",
+   "prd_words": "A credit for returned parts on a part sale goes to the Bill To.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "no picture"
+  },
+  {
+   "code": "S10-R4",
+   "prd_words": "A payment settles only invoices owed by the paying customer; one payment can cover several of its invoices across customers.",
+   "verdict": "SHOWN",
+   "where": "bt-p5-08",
+   "note": ""
+  },
+  {
+   "code": "S10-R5",
+   "prd_words": "The server refuses a payment applied to another customer's invoice with M3.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N13"
+  },
+  {
+   "code": "S10-R6",
+   "prd_words": "The Bill To's Invoices tab shows a \"Service For\" column naming the customer the work was for.",
+   "verdict": "SHOWN",
+   "where": "bt-p5-02, bt-p5-04",
+   "note": ""
+  },
+  {
+   "code": "S10-R7",
+   "prd_words": "The column is blank on rows billed to this customer for its own work.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N14"
+  },
+  {
+   "code": "S10-R8",
+   "prd_words": "A credit issued from an invoice created after release reduces the revenue of that invoice's customer.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "no screen"
+  },
+  {
+   "code": "S10-R9",
+   "prd_words": "A payment can use only deposits and credits held by the paying customer; otherwise it is refused with M5.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N13"
+  },
+  {
+   "code": "S10-N1",
+   "prd_words": "The \"Service For\" column is hidden when no row on the tab, before any search, is billed for someone else.",
+   "verdict": "SHOWN",
+   "where": "bt-p5-10",
+   "note": "hidden on an empty tab; 'before any search' BT-N14"
+  },
+  {
+   "code": "S10-N2",
+   "prd_words": "The customer's own Invoices tab does not list invoices billed to someone else, so they cannot be paid from its side.",
+   "verdict": "SHOWN",
+   "where": "bt-p5-10",
+   "note": ""
+  },
+  {
+   "code": "S10-N3",
+   "prd_words": "Payments and credits applied before this release are not re-checked.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "no screen"
+  },
+  {
+   "code": "S11-R1",
+   "prd_words": "Reverse works exactly as today: the invoice is removed and the work order goes back to Complete.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S11-R2",
+   "prd_words": "After Reverse, the Bill To field unlocks and can be changed.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S11-R3",
+   "prd_words": "Invoicing again bills the current Bill To with its current terms and PO rules.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S11-R4",
+   "prd_words": "The re-issued invoice keeps the same invoice number.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S11-N1",
+   "prd_words": "With anything applied, Reverse is refused as today; staff reverse payments or deposits first.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S11-E1",
+   "prd_words": "A deposit taken under the wrong Bill To must be reversed and taken again under the new Bill To (M1 says so).",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S12-R1",
+   "prd_words": "Deleting a customer that is another customer's saved default is refused, opening a \"Delete Customer\" window.",
+   "verdict": "SHOWN",
+   "where": "bt-p6-05",
+   "note": "after production's Confirmation (BT-S01)"
+  },
+  {
+   "code": "S12-R2",
+   "prd_words": "The window shows the refusal message and each dependent customer as a link to its page.",
+   "verdict": "SHOWN",
+   "where": "bt-p6-05",
+   "note": ""
+  },
+  {
+   "code": "S12-R3",
+   "prd_words": "The window has \"Cancel\" and \"Remove As Default Bill To\" buttons.",
+   "verdict": "SHOWN",
+   "where": "bt-p6-05",
+   "note": ""
+  },
+  {
+   "code": "S12-R4",
+   "prd_words": "\"Remove As Default Bill To\" asks to confirm, in a window titled \"Remove as default Bill To\" with \"Remove\" and \"Cancel\".",
+   "verdict": "DIFFERENT",
+   "where": "bt-p6-06",
+   "note": "BT-D04 order"
+  },
+  {
+   "code": "S12-R5",
+   "prd_words": "Confirming clears the saved default on every dependent customer; open work orders keep their Bill To.",
+   "verdict": "SHOWN",
+   "where": "bt-p6-07, bt-p6-08",
+   "note": ""
+  },
+  {
+   "code": "S12-R6",
+   "prd_words": "The user then deletes the customer again.",
+   "verdict": "SHOWN",
+   "where": "bt-p6-07",
+   "note": ""
+  },
+  {
+   "code": "S12-R7",
+   "prd_words": "A customer that is the Bill To on any work order or part sale cannot be deleted, with today's message \"Company with a work order cannot be deleted.\"",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N15"
+  },
+  {
+   "code": "S12-R8",
+   "prd_words": "Today's delete refusals come first; the \"Delete Customer\" window shows only when being another customer's default is the only reason.",
+   "verdict": "SHOWN",
+   "where": "board note p6",
+   "note": "BT-S01"
+  },
+  {
+   "code": "S12-N1",
+   "prd_words": "Without 'Customers → Create & Edit' and 'View and Manage AP/AR Data', \"Remove As Default Bill To\" is hidden.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N15"
+  },
+  {
+   "code": "S13-R1",
+   "prd_words": "Each Bill To change adds a \"Bill To changed\" entry on the work order or part sale log.",
+   "verdict": "SHOWN",
+   "where": "bt-p2-15",
+   "note": ""
+  },
+  {
+   "code": "S13-R2",
+   "prd_words": "The entry shows \"Bill To\" with the old and new customer, each as a link.",
+   "verdict": "SHOWN",
+   "where": "bt-p2-15",
+   "note": "arrow between names"
+  },
+  {
+   "code": "S13-R3",
+   "prd_words": "A Change Customer that moves the Bill To other than simply with the customer adds the same entry.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N16"
+  },
+  {
+   "code": "S13-N1",
+   "prd_words": "A plain Change Customer on a self-billed document adds only today's customer change entry.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N16"
+  },
+  {
+   "code": "S13-N2",
+   "prd_words": "Without 'Customers → View', the names show without links.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N16"
+  },
+  {
+   "code": "S14-R1",
+   "prd_words": "The tab lists every service work order on the asset at the current location, for every customer, in today's sort.",
+   "verdict": "SHOWN",
+   "where": "bt-p7-02, bt-p7-07",
+   "note": ""
+  },
+  {
+   "code": "S14-R2",
+   "prd_words": "A \"Customer\" filter chip sits beside Status, defaulting to \"All customers\".",
+   "verdict": "SHOWN",
+   "where": "bt-p7-02",
+   "note": ""
+  },
+  {
+   "code": "S14-R3",
+   "prd_words": "Its options are every customer on the asset's work orders, as customer or Bill To, A to Z.",
+   "verdict": "SHOWN",
+   "where": "bt-p7-03",
+   "note": ""
+  },
+  {
+   "code": "S14-R4",
+   "prd_words": "The filter is multi-select; a work order matches when a picked customer is its customer or its Bill To.",
+   "verdict": "SHOWN",
+   "where": "bt-p7-04, bt-p7-05",
+   "note": ""
+  },
+  {
+   "code": "S14-R5",
+   "prd_words": "With more than 8 options, the chip offers search (\"Search customers\").",
+   "verdict": "NOT SHOWN",
+   "where": "bt-p7-03 caption",
+   "note": "BT-N17"
+  },
+  {
+   "code": "S14-R6",
+   "prd_words": "A \"Bill To\" column shows when at least one row bills someone else; it is blank on self-billed rows.",
+   "verdict": "DIFFERENT",
+   "where": "bt-p7-10, bt-p7-11",
+   "note": "BT-D11 'loaded', BT-D07 width"
+  },
+  {
+   "code": "S14-R7",
+   "prd_words": "The Customer filter resets when another asset is opened.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N17"
+  },
+  {
+   "code": "S14-N1",
+   "prd_words": "When the Status filter includes Imported, the Customer filter is disabled and cleared.",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N17"
+  },
+  {
+   "code": "S15-R1",
+   "prd_words": "Internal and No Charge work orders have no Bill To; the field is hidden.",
+   "verdict": "NOT SHOWN",
+   "where": "cover",
+   "note": "BT-N18"
+  },
+  {
+   "code": "S15-R2",
+   "prd_words": "Converting to No Charge, or changing to an internal customer, resets the Bill To to the customer.",
+   "verdict": "NOT SHOWN",
+   "where": "cover",
+   "note": "BT-N18"
+  },
+  {
+   "code": "S15-R3",
+   "prd_words": "Converting back to billable starts from the customer's saved default, else the customer.",
+   "verdict": "NOT SHOWN",
+   "where": "cover",
+   "note": "BT-N18"
+  },
+  {
+   "code": "S15-R4",
+   "prd_words": "An internal customer is never offered or accepted as a Bill To.",
+   "verdict": "NOT SHOWN",
+   "where": "cover",
+   "note": "BT-N18"
+  },
+  {
+   "code": "S15-R5",
+   "prd_words": "The customer alone decides whether a work order is internal; the Bill To never does.",
+   "verdict": "NOT SHOWN",
+   "where": "cover",
+   "note": "BT-N18"
+  },
+  {
+   "code": "S15-N1",
+   "prd_words": "Until SV-11665 ships, every work order is billable and these rules have nothing to act on.",
+   "verdict": "NOT SHOWN",
+   "where": "cover",
+   "note": "BT-N18"
+  },
+  {
+   "code": "S16-R1",
+   "prd_words": "The Bill To's portal contacts see the invoice and can pay it.",
+   "verdict": "NOT SHOWN",
+   "where": "bt-p5-13 placeholder",
+   "note": "BT-N19"
+  },
+  {
+   "code": "S16-R2",
+   "prd_words": "The customer's portal contacts see the invoice read-only, with \"Billed to [Bill To]\" where Pay would be.",
+   "verdict": "NOT SHOWN",
+   "where": "bt-p5-13 placeholder",
+   "note": "BT-N19"
+  },
+  {
+   "code": "S16-R3",
+   "prd_words": "The \"invoice created\" email goes to the Bill To's portal contacts only.",
+   "verdict": "NOT SHOWN",
+   "where": "bt-p5-13 placeholder",
+   "note": "BT-N19"
+  },
+  {
+   "code": "S16-R4",
+   "prd_words": "Paying several invoices at once includes only invoices the viewer's customer owes.",
+   "verdict": "NOT SHOWN",
+   "where": "bt-p5-13 placeholder",
+   "note": "BT-N19"
+  },
+  {
+   "code": "S16-R5",
+   "prd_words": "The Bill To's contacts see only invoices that name their customer, not the customer's other jobs or assets.",
+   "verdict": "NOT SHOWN",
+   "where": "bt-p5-13 placeholder",
+   "note": "BT-N19"
+  },
+  {
+   "code": "S16-R6",
+   "prd_words": "A deposit link remembers the Bill To the work order had when staff created it.",
+   "verdict": "NOT SHOWN",
+   "where": "bt-p5-13 placeholder",
+   "note": "BT-N19"
+  },
+  {
+   "code": "S16-R7",
+   "prd_words": "If the work order's Bill To has changed since, paying the link is refused with G3 before any card is charged; no deposit is recorded.",
+   "verdict": "NOT SHOWN",
+   "where": "bt-p5-13 placeholder",
+   "note": "BT-N19"
+  },
+  {
+   "code": "S16-N1",
+   "prd_words": "When the customer pays for itself, the portal is unchanged.",
+   "verdict": "NOT SHOWN",
+   "where": "bt-p5-13 placeholder",
+   "note": "BT-N19"
+  },
+  {
+   "code": "S17-R1",
+   "prd_words": "The invoice is sent to QuickBooks with the Bill To as its customer.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S17-R2",
+   "prd_words": "A customer already linked to a QuickBooks customer always syncs to that one, whatever either is named.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S17-R3",
+   "prd_words": "A customer with no link is matched to the QuickBooks customer with exactly the same name, and linked to it.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S17-R4",
+   "prd_words": "If that QuickBooks customer is already linked to another ShopView customer, the invoice is not sent and appears on the Unexported report with Q1.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S17-R5",
+   "prd_words": "Reverse deletes the QuickBooks invoice, and the re-issued invoice is sent as new, as today.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S17-N1",
+   "prd_words": "If QuickBooks is not connected, nothing is sent and invoicing works as without the integration.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S17-N2",
+   "prd_words": "Invoices created before this release are not re-sent.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S18-R1",
+   "prd_words": "The invoice reaches AccountingHub with the Bill To as its customer.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S18-R2",
+   "prd_words": "What AccountingHub receives keeps its current format; no AccountingHub change is needed.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S18-R3",
+   "prd_words": "AccountingHub AR, aging and balances therefore group by the Bill To.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S18-R4",
+   "prd_words": "Reverse keeps the reversal record in AccountingHub and the re-issued invoice arrives as a new event, as today.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S18-R5",
+   "prd_words": "Payments, deposits and credits arrive under the Bill To's account.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S18-N1",
+   "prd_words": "When the customer pays for itself, AccountingHub receives what it receives today.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-R1",
+   "prd_words": "IBS uses the Bill To's IBS account: its remit-to, approval and batch.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-R2",
+   "prd_words": "The Bill To's IBS number is saved on the invoice when it is created, blank when the Bill To has none.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-R3",
+   "prd_words": "The remit-to, the \"(IBS#: [number])\" after the Bill To's name and the IBS batch read the saved number.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-R4",
+   "prd_words": "If the Bill To has no IBS account, the invoice does not go through IBS, even if the customer has one.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-R5",
+   "prd_words": "In the invoice CSV export, \"Customer\" is the Bill To and \"Terms\" is the term saved on the invoice.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-R6",
+   "prd_words": "The export's last column, \"Service Customer\", names the customer the work was for when someone else is billed.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-R7",
+   "prd_words": "The Public API adds the Bill To to work orders and invoices; existing customer fields keep naming the customer.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-R8",
+   "prd_words": "The Public API work order and invoice lists accept an optional Bill To filter; a malformed id returns an error.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-R9",
+   "prd_words": "The Public API changelog announces the addition.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-R10",
+   "prd_words": "Creating an invoice through the Public API for a Bill To on Credit Hold is refused.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-N1",
+   "prd_words": "\"Service Customer\" is blank when the invoice bills its own customer.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-N2",
+   "prd_words": "Invoices created before this release export exactly as before.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-N3",
+   "prd_words": "The Public API cannot set a Bill To or read a saved default.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "S19-N4",
+   "prd_words": "A later change to the Bill To's IBS account never changes an existing invoice; invoices created before this release read the current account.",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "PRD: 'Design: No screen change.'"
+  },
+  {
+   "code": "§8 M1",
+   "prd_words": "\"This work order has a [$amount] deposit from [customer]. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\" — Field tooltip; on click, error toast with \"Open Deposits\"",
+   "trigger": "Change the Bill To while one deposit is held",
+   "verdict": "SHOWN",
+   "where": "bt-p3-07, bt-p3-08, bt-p3-11",
+   "note": "word for word; toast adds Close (BT-D02); tooltip position BT-D08"
+  },
+  {
+   "code": "§8 M1",
+   "prd_words": "\"This work order has [$total] in deposits from [customer]. Reverse them, change the Bill To, then take the deposits again under the new Bill To.\" — Same as above",
+   "trigger": "Same, several deposits",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N08"
+  },
+  {
+   "code": "§8 M1",
+   "prd_words": "[customer] reads \"[N] customers\" — Same as above",
+   "trigger": "Deposits from more than one customer",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N08"
+  },
+  {
+   "code": "§8 M1",
+   "prd_words": "\"work order\" reads \"part sale\" — Same as above",
+   "trigger": "On a part sale",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N08"
+  },
+  {
+   "code": "§8 M2",
+   "prd_words": "\"Cannot invoice. The Bill To customer, [Bill To], is on Credit Hold\" — Banner with \"Change Bill To\"; Create Invoice tooltip; error toast with \"Change Bill To\"",
+   "trigger": "Create Invoice when the Bill To is on Credit Hold",
+   "verdict": "SHOWN",
+   "where": "bt-p3-14, bt-p3-16, bt-p3-20",
+   "note": "banner word for word; tooltip and toast BT-N09; placement BT-D10"
+  },
+  {
+   "code": "§8 M3",
+   "prd_words": "\"This payment can only be applied to invoices billed to [customer].\" — Standard error toast",
+   "trigger": "Payment applied to another customer's invoice",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N13"
+  },
+  {
+   "code": "§8 M5",
+   "prd_words": "\"This payment can only use deposits and credits held by [customer].\" — Standard error toast",
+   "trigger": "Payment uses a deposit or credit held by another customer",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N13"
+  },
+  {
+   "code": "§8 M4",
+   "prd_words": "\"Invoiced. Reverse the invoice to change who's billed.\" — Field tooltip; on click, error toast with \"Go To Invoice\"",
+   "trigger": "Change the Bill To on an Invoiced document",
+   "verdict": "SHOWN",
+   "where": "bt-p3-03, bt-p3-04",
+   "note": "word for word; Close added (BT-D02)"
+  },
+  {
+   "code": "§8 D3",
+   "prd_words": "\"Counter Sale can't be the Bill To for another customer.\" — Standard error toast",
+   "trigger": "Counter Sale picked as a Bill To or default",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N02"
+  },
+  {
+   "code": "§8 D3",
+   "prd_words": "\"Counter Sale always bills itself.\" — Standard error toast",
+   "trigger": "A default saved on Counter Sale",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N02"
+  },
+  {
+   "code": "§8 D8",
+   "prd_words": "\"This customer is the default Bill To for [names, comma separated]. Remove it from [that customer / those customers] first.\" — \"Delete Customer\" window with links, \"Cancel\", \"Remove As Default Bill To\"",
+   "trigger": "Delete a customer that is someone's default",
+   "verdict": "SHOWN",
+   "where": "bt-p6-05",
+   "note": "word for word, one customer"
+  },
+  {
+   "code": "§8 D8",
+   "prd_words": "\"Remove [customer] as the default Bill To for [N] [customer / customers]? Open work orders keep their Bill To.\" — Confirmation with \"Remove\", \"Cancel\"",
+   "trigger": "Confirm removal",
+   "verdict": "DIFFERENT",
+   "where": "bt-p6-06",
+   "note": "words match; button order BT-D04"
+  },
+  {
+   "code": "§8 S12-R7",
+   "prd_words": "\"Company with a work order cannot be deleted.\" — Standard error toast (today's message)",
+   "trigger": "Delete a customer that is a Bill To on any work order",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N15"
+  },
+  {
+   "code": "§8 Help",
+   "prd_words": "\"New work orders and part sales for [customer] will be billed to this customer. Existing ones don't change.\" — Static line",
+   "trigger": "\"Bill Invoices To\" window",
+   "verdict": "SHOWN",
+   "where": "bt-p1-13",
+   "note": "word for word"
+  },
+  {
+   "code": "§8 Help",
+   "prd_words": "\"New work orders and part sales bill to this customer. Existing ones don't change.\" — Static line",
+   "trigger": "Edit Customer field",
+   "verdict": "SHOWN",
+   "where": "bt-p1-07",
+   "note": "word for word"
+  },
+  {
+   "code": "§8 Pays for",
+   "prd_words": "\"Customers billed to this customer by default\" / \"[customer] pays for\" / \"These customers bill new work orders and part sales to [customer] by default.\" — Tooltip; window with \"Close\"",
+   "trigger": "Counter tooltip / window",
+   "verdict": "SHOWN",
+   "where": "bt-p1-17, bt-p1-18",
+   "note": "word for word"
+  },
+  {
+   "code": "§8 Portal",
+   "prd_words": "\"Billed to [Bill To]\" — In place of Pay",
+   "trigger": "Customer's contact views an invoice billed to someone else",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N19"
+  },
+  {
+   "code": "§8 Q1",
+   "prd_words": "\"QuickBooks customer [name] is already linked to another ShopView customer.\" — Unexported report reason; invoice not sent",
+   "trigger": "QuickBooks: same-name customer linked to another ShopView customer",
+   "verdict": "NO SCREEN",
+   "where": "",
+   "note": "Unexported report not pictured"
+  },
+  {
+   "code": "§8 G3",
+   "prd_words": "\"This work order is now billed to another customer. Contact the shop.\" — Portal payment error; no card is charged",
+   "trigger": "Customer portal: a deposit link is paid after the work order's Bill To changed",
+   "verdict": "NOT SHOWN",
+   "where": "",
+   "note": "BT-N19"
+  }
+ ]
+}

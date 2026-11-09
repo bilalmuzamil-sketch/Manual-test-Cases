@@ -1,0 +1,2201 @@
+{
+ "design": "Bill To design, https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd, version 1794239066-4906",
+ "made": "9 Nov 2026",
+ "boards": 8,
+ "figures": 126,
+ "figures_with_picture": 125,
+ "list": [
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 1,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "New Customer",
+   "captions": [
+    "No Bill To field. The red \"Oooops! An error occurred\" toast and the empty list behind are the production code reading this build's data copy; they are not part of the window."
+   ],
+   "picture_in_design": "shots/before-p1-new-customer.png",
+   "figure_picture": "images/bt-p1-01-before-new-customer.png",
+   "alt": "New Customer window in production",
+   "shown_size": "1200x847",
+   "state": "Production New Customer window: Address 2 is always shown as its own field; no Credit Terms, Credit Limit, Bill Invoices To or Sales Representative fields; Name has focus (blue border)."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 2,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Bill Invoices To, empty",
+   "captions": [
+    "\"Bill Invoices To\" sits after Credit Terms and Credit Limit and before Sales Representative. It reads \"This customer\".",
+    "No help line under it in New Customer."
+   ],
+   "picture_in_design": "shots/after-p1-new-customer-field-empty.png",
+   "figure_picture": "images/bt-p1-02-after-bill-invoices-to-empty.png",
+   "alt": "New Customer with the Bill Invoices To field reading This customer",
+   "shown_size": "1200x853",
+   "state": "Field order: Name *, Phone, Address 1 with a + at its right (no Address 2 field), City | ZIP/Postal Code, State/Province | Country, Credit Terms | Credit Limit, Bill Invoices To (full width, dropdown arrow, reads 'This customer'), Sales Representative (with a + at its right), Notes, Website, IBS, Save (blue, right)."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 3,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Open",
+   "captions": [
+    "Name typed: \"Lone Star Fleet Services\". The first option reads \"Lone Star Fleet Services (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\", \"Aberdeen Diesel Services LLC\".",
+    "The list holds the first 50 customers A to Z; typing narrows it. Reshot after the tech review."
+   ],
+   "picture_in_design": "shots/after-p1-new-customer-field-open.png",
+   "figure_picture": "images/bt-p1-03-after-open.png",
+   "alt": "Bill Invoices To list open",
+   "shown_size": "1200x875",
+   "state": "Bill Invoices To open: the field border is blue, arrow points up, the text 'This customer' is selected (blue highlight)."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 4,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Searching",
+   "captions": [
+    "Typing \"A & J\" narrows the list. The \"(this customer)\" option stays first."
+   ],
+   "picture_in_design": "shots/after-p1-new-customer-field-search.png",
+   "figure_picture": "images/bt-p1-04-after-searching.png",
+   "alt": "Bill Invoices To searching A and J",
+   "shown_size": "1200x825",
+   "state": "Typed 'A & J' in the field; list shows 2 rows: the '(this customer)' row first (blue text, light-blue background), then 'A & J Truck & Trailer Repair'."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 5,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Picked",
+   "captions": [
+    "\"A & J Truck & Trailer Repair\" picked. It saves with Save, right after the customer is created. Not saved here."
+   ],
+   "picture_in_design": "shots/after-p1-new-customer-field-picked.png",
+   "figure_picture": "images/bt-p1-05-after-picked.png",
+   "alt": "A and J picked in Bill Invoices To",
+   "shown_size": "1200x825",
+   "state": "Bill Invoices To reads 'A & J Truck & Trailer Repair'; label blue and border blue (focused); list closed. Not saved."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 6,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Edit Customer",
+   "captions": [
+    "No Bill To field. Shot 1440 x 1300 so the whole window shows."
+   ],
+   "picture_in_design": "shots/before-p1-edit-customer-buda.png",
+   "figure_picture": "images/bt-p1-06-before-edit-customer.png",
+   "alt": "Edit Customer in production",
+   "shown_size": "1200x1158",
+   "state": "Production Edit Customer: Address 2 always shown, no x; Sales Representative empty (placeholder only), no +; Credit Limit black (enabled); no Bill Invoices To field. Name text selected. Delete (red) and Save (blue) at the bottom right."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 7,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Saved default",
+   "captions": [
+    "\"Bill Invoices To\" shows the saved default, \"A & J Truck & Trailer Repair\".",
+    "Help line, Edit Customer only: \"New work orders and part sales bill to this customer. Existing ones don't change.\"",
+    "Address 2 has a value, so it shows, with an x to clear it."
+   ],
+   "picture_in_design": "shots/after-p1-edit-customer-buda.png",
+   "figure_picture": "images/bt-p1-07-after-saved-default.png",
+   "alt": "Edit Customer with Bill Invoices To A and J",
+   "shown_size": "1200x1214",
+   "state": "'Bill Invoices To' full-width field after Credit Terms | Credit Limit, before Sales Representative; reads 'A & J Truck & Trailer Repair'; help line in small grey text directly under it, left-aligned with the field."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 8,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Open",
+   "captions": [
+    "The list opens with \"Buda Truck Repair (this customer)\" first, then customers A to Z. The current pick, \"A & J Truck & Trailer Repair\", is highlighted in its A to Z place. Picking \"(this customer)\" and saving clears the default.",
+    "Reshot after the tech review. Buda's saved default had been cleared in the build's data before this reshoot; it was set back to A & J for these shots and cleared again after."
+   ],
+   "picture_in_design": "shots/after-p1-edit-customer-buda-open.png",
+   "figure_picture": "images/bt-p1-08-after-open.png",
+   "alt": "Edit Customer Bill Invoices To list open",
+   "shown_size": "1200x1230",
+   "state": "List open BELOW the field, 5 rows, covering the help line, Sales Representative, Default Labor Rate, Default Shop Supplies and the top of Notes. Field text 'A & J Truck & Trailer Repair' selected (blue highlight); arrow up."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 9,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Searching",
+   "captions": [
+    "Typing \"Vald\": \"Buda Truck Repair (this customer)\", then \"Uvalde Estates Truck Centre\" and \"Valders Diesel & Fleet Repair\", A to Z. Closed without saving."
+   ],
+   "picture_in_design": "shots/after-p1-edit-customer-buda-search.png",
+   "figure_picture": "images/bt-p1-09-after-searching.png",
+   "alt": "Edit Customer Bill Invoices To searching Vald",
+   "shown_size": "1200x1158",
+   "state": "Typed 'Vald'; 3 rows: 'Buda Truck Repair (this customer)', 'Uvalde Estates Truck Centre', 'Valders Diesel & Fleet Repair'; no row highlighted; list covers help line through Default Labor Rate."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 10,
+   "badge": "New, no before needed",
+   "side": "This build (after)",
+   "heading": "Edit Customer, Counter Sale customer",
+   "captions": [
+    "In this data the Counter Sale customer is named \"Gennadiy's Mobile Truck Repair\". Its Edit Customer window has no \"Bill Invoices To\" field and no help line: Credit Terms and Credit Limit are followed directly by Sales Representative.",
+    "No before board: production has no \"Bill Invoices To\" field on any customer, so production's window for this customer matches the production Edit Customer board above. Shot 1440 x 1300."
+   ],
+   "picture_in_design": "shots/after-p1-edit-customer-counter-sale.png",
+   "figure_picture": "images/bt-p1-10-after-edit-customer-counter-sale-customer.png",
+   "alt": "Edit Customer on the Counter Sale customer with no Bill Invoices To field",
+   "shown_size": "1200x1230",
+   "state": "Counter Sale customer (named Gennadiy's Mobile Truck Repair in this data): Edit Customer has NO Bill Invoices To field and no help line; Credit Terms | Credit Limit are followed directly by Sales Representative (Unassigned, +). Address 2 shown with x."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 11,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Customer page",
+   "captions": [
+    "The card ends with IBS, then Contacts and Assets."
+   ],
+   "picture_in_design": "shots/before-p1-buda-page.png",
+   "figure_picture": "images/bt-p1-11-before-customer-page.png",
+   "alt": "Buda customer page in production",
+   "shown_size": "1200x825",
+   "state": "Production customer page: left card ends with IBS N/A, a divider, then Contacts 1 and Assets 3 counters. Tabs above the Work Orders table; Progress shown as coloured pills (blue %, red over 100%, grey 0%); status pills (Paid green, Approved green, Invoiced green outline, Estimate blue)."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 12,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Bill Invoices To line",
+   "captions": [
+    "Under IBS: \"Bill Invoices To\", \"A & J Truck & Trailer Repair\", and \"Change\".",
+    "The line shows only when another customer is saved. A customer that bills itself shows nothing here."
+   ],
+   "picture_in_design": "shots/after-p1-buda-page.png",
+   "figure_picture": "images/bt-p1-12-after-bill-invoices-to-line.png",
+   "alt": "Buda customer page with Bill Invoices To line",
+   "shown_size": "1200x853",
+   "state": "Card: under 'IBS / N/A' a new block 'Bill Invoices To' (bold label, same style as Address/Phone labels), the payer name 'A & J Truck & Trailer Repair' (regular, grey-black) and 'Change' (blue link text) on its own line; then the divider and Contacts 1 / Assets 3. No 'Pays for' counter (Buda pays for nobody). The rest of the page is as production."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 13,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Change",
+   "captions": [
+    "Window \"Bill Invoices To\": \"New work orders and part sales for Buda Truck Repair will be billed to this customer. Existing ones don't change.\"",
+    "Buttons \"Cancel\" and \"Save\"."
+   ],
+   "picture_in_design": "shots/after-p1-buda-change-dialog.png",
+   "figure_picture": "images/bt-p1-13-after-change.png",
+   "alt": "Bill Invoices To window",
+   "shown_size": "1200x853",
+   "state": "Small centred window titled 'Bill Invoices To' with an x at the top right; help line (grey, wraps to 2 lines: '... Existing' / 'ones don't change.'); one full-width field 'Bill Invoices To' reading 'A & J Truck & Trailer Repair' with a down arrow; buttons bottom right: 'Cancel' (grey filled) then 'Save' (blue filled)."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 14,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Change, open",
+   "captions": [
+    "The list opens above the field when there is no room below: \"Buda Truck Repair (this customer)\" first, then customers A to Z, the current pick \"A & J Truck & Trailer Repair\" highlighted. Closed without saving. Reshot after the tech review."
+   ],
+   "picture_in_design": "shots/after-p1-buda-change-dialog-open.png",
+   "figure_picture": "images/bt-p1-14-after-change-open.png",
+   "alt": "Bill Invoices To window with the list open",
+   "shown_size": "1200x847",
+   "state": "The list opens ABOVE the field (9 rows visible) and runs up to the very top of the browser window: it covers the window title, the help line and part of the app's top bar (over 'Work Orders', 'Schedule', 'Customers', 'Parts', 'Reports' and the search box)."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 15,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Customer page",
+   "captions": [
+    "Contacts and Assets only."
+   ],
+   "picture_in_design": "shots/before-p1-aj-page.png",
+   "figure_picture": "images/bt-p1-15-before-customer-page.png",
+   "alt": "A and J customer page in production",
+   "shown_size": "1200x825",
+   "state": "Production A & J card: Contacts 1 and Assets 1 only; Sales Representative N/A; no Bill Invoices To line."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 16,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Pays for counter",
+   "captions": [
+    "\"Pays for\" 1 sits beside Contacts and Assets. Hidden when the count is 0.",
+    "A & J has its own default, so it also shows \"Bill Invoices To\", \"Mayfield Heights Truck Centre\", \"Change\". New work orders for Buda still bill A & J, one hop only."
+   ],
+   "picture_in_design": "shots/after-p1-aj-page.png",
+   "figure_picture": "images/bt-p1-16-after-pays-for-counter.png",
+   "alt": "A and J customer page with Pays for 1",
+   "shown_size": "1200x853",
+   "state": "Card: 'Bill Invoices To' / 'Mayfield Heights Truck Centre' / 'Change' (blue) under IBS; counters row now has three: 'Contacts 1', 'Assets 1', 'Pays for 1' (the Pays for number is BLUE, the other two black); counters move closer together."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 17,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Tooltip",
+   "captions": [
+    "Tooltip: \"Customers billed to this customer by default\"."
+   ],
+   "picture_in_design": "shots/after-p1-aj-pays-for-tooltip.png",
+   "figure_picture": "images/bt-p1-17-after-tooltip.png",
+   "alt": "Pays for tooltip",
+   "shown_size": "1200x825",
+   "state": "Hovering the Pays for counter: a dark-grey tooltip with white text 'Customers billed to this customer by default' shows BELOW the card's bottom edge, starting left of the counter (under Contacts) and running past the card's right edge."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 18,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Pays for list",
+   "captions": [
+    "Window \"A & J Truck & Trailer Repair pays for\": \"These customers bill new work orders and part sales to A & J Truck & Trailer Repair by default.\"",
+    "Each customer is a link to its page (\"Buda Truck Repair\"). Button \"Close\".",
+    "Customers are listed A to Z, and a long list scrolls inside the window. A & J pays for one customer, so this window looks the same after the tech review; not reshot."
+   ],
+   "picture_in_design": "shots/after-p1-aj-pays-for-dialog.png",
+   "figure_picture": "images/bt-p1-18-after-pays-for-list.png",
+   "alt": "A and J pays for window",
+   "shown_size": "1200x881",
+   "state": "Centred window; the title 'A & J Truck & Trailer Repair pays for' is LARGER and bolder than the other Bill To window titles (about 24px vs 18px); grey help line; the customer is a bulleted list item, 'Buda Truck Repair' as an underlined blue link; 'Close' grey filled button bottom right; x top right."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 19,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "New Customer",
+   "captions": [
+    "Her location is Staging Lethbridge - 4310; customers are shared across the organization."
+   ],
+   "picture_in_design": "shots/before-p1-mary-new-customer.png",
+   "figure_picture": "images/bt-p1-19-before-new-customer.png",
+   "alt": "New Customer for a Foreman in production",
+   "shown_size": "1200x750",
+   "state": "Production, mary.moore (Foreman): same window as admin's production New Customer. NOTE: this picture is 1600 x 900 while its 'after' pair is 1440 x 900, so the board shows them at different scales."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 20,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "New Customer",
+   "captions": [
+    "No \"Bill Invoices To\" field; the window closes up around it."
+   ],
+   "picture_in_design": "shots/after-p1-mary-new-customer.png",
+   "figure_picture": "images/bt-p1-20-after-new-customer.png",
+   "alt": "New Customer for a Foreman in this build",
+   "shown_size": "1200x825",
+   "state": "No 'Bill Invoices To' field (and no Credit Terms / Credit Limit): State/Province | Country is followed directly by Sales Representative; no gap is left (the window closes up). Address 1 has the +."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 21,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Customer page",
+   "captions": [
+    "The customer card as her role sees it today."
+   ],
+   "picture_in_design": "shots/before-p1-mary-buda-page.png",
+   "figure_picture": "images/bt-p1-21-before-customer-page.png",
+   "alt": "Buda page for a Foreman in production",
+   "shown_size": "1200x750",
+   "state": "Production, Foreman: card has no Credit term / Credit limit rows; ends with IBS N/A then Contacts 1 / Assets 3. Work Orders tab empty at her location ('Empty bays, endless possibilities. Get Going!'). 1600 x 900 picture (after pair is 1440)."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 22,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Customer page",
+   "captions": [
+    "She still sees \"Bill Invoices To\", \"A & J Truck & Trailer Repair\", with no \"Change\"."
+   ],
+   "picture_in_design": "shots/after-p1-mary-buda-page.png",
+   "figure_picture": "images/bt-p1-22-after-customer-page.png",
+   "alt": "Buda page for a Foreman in this build",
+   "shown_size": "1200x825",
+   "state": "Foreman sees 'Bill Invoices To' / 'A & J Truck & Trailer Repair' under IBS with NO 'Change' link; then Contacts / Assets."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 23,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Edit Customer",
+   "captions": [
+    "Shot 1440 x 1300."
+   ],
+   "picture_in_design": "shots/before-p1-mary-edit-customer-buda.png",
+   "figure_picture": "images/bt-p1-23-before-edit-customer.png",
+   "alt": "Edit Customer for a Foreman in production",
+   "shown_size": "1200x750",
+   "state": "Production Edit Customer for a Foreman: no Credit Terms/Limit, no Delete; Sales Representative empty; Address 2 always shown."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 24,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Edit Customer",
+   "captions": [
+    "No \"Bill Invoices To\" field and no help line. The saved default is untouched when she saves."
+   ],
+   "picture_in_design": "shots/after-p1-mary-edit-customer-buda.png",
+   "figure_picture": "images/bt-p1-24-after-edit-customer.png",
+   "alt": "Edit Customer for a Foreman in this build",
+   "shown_size": "1200x1158",
+   "state": "No Bill Invoices To field and no help line in Edit Customer for a Foreman; State/Province | Country followed directly by Sales Representative. Card behind still shows 'Bill Invoices To' / 'A & J Truck & Trailer Repair' without Change."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 25,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Phone",
+   "captions": [
+    "390 wide."
+   ],
+   "picture_in_design": "shots/before-p1-phone-buda-page.png",
+   "figure_picture": "images/bt-p1-25-before-phone.png",
+   "alt": "Buda page on a phone in production",
+   "shown_size": "390x916",
+   "state": "Phone 390 wide: card first (address lines run together), then tabs (scrolling, > arrow), Search, full-width New Work Order, Status filter, table."
+  },
+  {
+   "board": "DefaultBillTo.dc.html",
+   "page": 1,
+   "page_name": "Set a customer's default Bill To",
+   "n": 26,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Phone",
+   "captions": [
+    "The same \"Bill Invoices To\" line with \"Change\", under IBS. Nothing phone-only."
+   ],
+   "picture_in_design": "shots/after-p1-phone-buda-page.png",
+   "figure_picture": "images/bt-p1-26-after-phone.png",
+   "alt": "Buda page on a phone in this build",
+   "shown_size": "390x938",
+   "state": "Phone: 'Bill Invoices To' label under IBS; the payer name and the blue 'Change' sit on ONE line ('A & J Truck & Trailer Repair  Change'), unlike desktop where Change is on its own line. Then Contacts / Assets."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 1,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Customer card",
+   "captions": [
+    "Contact, Phone, Authorizer. No Bill To."
+   ],
+   "picture_in_design": "shots/before-p2-wo-self-card.png",
+   "figure_picture": "images/bt-p2-01-before-customer-card.png",
+   "alt": "S2-15937 customer card in production",
+   "shown_size": "1200x825",
+   "state": "Production work order page: left column has the work order card, then the customer card 'Buda Truck Repair' with Contact (Wendy Lopez), Phone (071-234-2245), Authorizer (None), then the asset card. No Bill To."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 2,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "This customer",
+   "captions": [
+    "\"Bill To\" under Authorizer reads \"This customer\".",
+    "The work order was created before Buda had a default, so it bills Buda."
+   ],
+   "picture_in_design": "shots/after-p2-wo-self-card.png",
+   "figure_picture": "images/bt-p2-02-after-this-customer.png",
+   "alt": "S2-15937 card with Bill To This customer",
+   "shown_size": "1200x853",
+   "state": "Customer card: new last row 'Bill To' (small grey label, same style as Contact/Phone/Authorizer labels) with 'This customer' under it (same style as the other values); no border, arrow or button visible at rest. The card grows by one row; the work order card above is 20px shorter than production's (Sales Representative spacing, not Bill To)."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 3,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Open",
+   "captions": [
+    "First option: \"Buda Truck Repair (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\", \"Aberdeen Diesel Services LLC\" and on. Never Counter Sale.",
+    "The list holds the first 50 customers A to Z; typing narrows it.",
+    "Reshot after the tech review (the list used to come in database order)."
+   ],
+   "picture_in_design": "shots/after-p2-wo-billto-open.png",
+   "figure_picture": "images/bt-p2-03-after-open.png",
+   "alt": "Bill To list open",
+   "shown_size": "1200x903",
+   "state": "Clicking Bill To turns it into a bordered field (label 'Bill To', value 'This customer' selected in blue, arrow up)."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 4,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Searching",
+   "captions": [
+    "Typing \"Vald\": \"Buda Truck Repair (this customer)\", then A to Z \"Uvalde Estates Truck Centre\", \"Valders Diesel & Fleet Repair\".",
+    "Reshot after the tech review."
+   ],
+   "picture_in_design": "shots/after-p2-wo-billto-search.png",
+   "figure_picture": "images/bt-p2-04-after-searching.png",
+   "alt": "Bill To searching Vald",
+   "shown_size": "1200x853",
+   "state": "Typed 'Vald': the list now opens BELOW the field, 3 rows, as wide as the card: '(this customer)' row first (blue on light blue), then 'Uvalde Estates Truck Centre', 'Valders Diesel & Fleet Repair'. The list covers the top of the asset card."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 5,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "No match",
+   "captions": [
+    "Typing \"zzqx\": only \"Buda Truck Repair (this customer)\" stays. The \"(this customer)\" option is always listed, so the list is never empty.",
+    "Rechecked after the tech review: unchanged."
+   ],
+   "picture_in_design": "shots/after-p2-wo-billto-no-match.png",
+   "figure_picture": "images/bt-p2-05-after-no-match.png",
+   "alt": "Bill To with no matching customer",
+   "shown_size": "1200x853",
+   "state": "Typed 'zzqx': the list shows ONE row, 'Buda Truck Repair (this customer)' (blue on light blue); no 'no results' message; the list is never empty."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 6,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Picked",
+   "captions": [
+    "Picking \"Valders Diesel & Fleet Repair\" saves at once. The card shows \"Bill To\" \"Valders Diesel & Fleet Re\", cut at the card's width.",
+    "Reverted after the shot."
+   ],
+   "picture_in_design": "shots/after-p2-wo-billto-picked.png",
+   "figure_picture": "images/bt-p2-06-after-picked.png",
+   "alt": "Bill To Valders picked",
+   "shown_size": "1200x853",
+   "state": "After picking Valders the field is back at rest: 'Bill To' / 'Valders Diesel & Fleet Re' - the name is CUT at the card's right edge with NO ellipsis ('...'); no toast or message shows after the save; nothing else on the page changes."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 7,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "S2-17579",
+   "captions": [
+    "Nothing says who pays."
+   ],
+   "picture_in_design": "shots/before-p2-wo79-card.png",
+   "figure_picture": "images/bt-p2-07-before-s2-17579.png",
+   "alt": "S2-17579 in production",
+   "shown_size": "1200x825",
+   "state": "Production: Buda customer card with Contact, Phone, Authorizer None; nothing says who pays."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 8,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "S2-17579",
+   "captions": [
+    "\"Bill To\" reads \"Valders Diesel & Fleet Repair\". Nothing is added to the card's header or the work order header."
+   ],
+   "picture_in_design": "shots/after-p2-wo79-card.png",
+   "figure_picture": "images/bt-p2-08-after-s2-17579.png",
+   "alt": "S2-17579 with Bill To Valders",
+   "shown_size": "1200x825",
+   "state": "'Bill To' / 'Valders Diesel & Fleet Re' as the last row of the customer card, cut at the card edge with no ellipsis."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 9,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Authorizer list (S2-17577)",
+   "captions": [
+    "S2-17577 is Desert Edge billed to 7 Star. Production lists Desert Edge's contacts only, one line each.",
+    "The \"Over Limit\" pill in the header is production's credit check; this build's Credit Terms work skips it for COD."
+   ],
+   "picture_in_design": "shots/before-p2-authorizer-open.png",
+   "figure_picture": "images/bt-p2-09-before-authorizer-list-s2-17577.png",
+   "alt": "Authorizer list in production",
+   "shown_size": "1200x853",
+   "state": "Production Authorizer list opens ABOVE the field: 'No authorizer', then Desert Edge's 8 contacts, ONE line each (name only). Header shows 'Estimate' and a red 'Over Limit' pill (production credit check)."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 10,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Authorizer list, top",
+   "captions": [
+    "\"No authorizer\", then the customer's contacts, each with \"Desert Edge Truck Service & Repair\" on a second line."
+   ],
+   "picture_in_design": "shots/after-p2-authorizer-open.png",
+   "figure_picture": "images/bt-p2-10-after-authorizer-list-top.png",
+   "alt": "Authorizer list with customer names",
+   "shown_size": "1200x825",
+   "state": "List opens ABOVE the field and is wider than the card (about 235px vs 215px). 'No authorizer' first (one line), then each contact on TWO lines: name (black) and 'Desert Edge Truck Service & Repair' (grey, smaller) under it."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 11,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Authorizer list, bottom",
+   "captions": [
+    "The Bill To's contacts come last: \"Jaime Johnson\", \"7 Star Truck Repair\".",
+    "When the customer pays for itself the list is exactly today's, with no second line."
+   ],
+   "picture_in_design": "shots/after-p2-authorizer-open-scrolled.png",
+   "figure_picture": "images/bt-p2-11-after-authorizer-list-bottom.png",
+   "alt": "Authorizer list scrolled to the Bill To contact",
+   "shown_size": "1200x853",
+   "state": "Scrolled to the bottom: after Desert Edge's contacts comes 'Jaime Johnson' with '7 Star Truck Repair' on its second line (the Bill To's contact, last). No separator or heading between the customer's and the Bill To's contacts."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 12,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Card",
+   "captions": [
+    "The Change Customer button (two arrows at the top right of the customer card) is enabled. The \"Over Limit\" pill is production's credit check; not Bill To.",
+    "The same production board as page 3's deposit row."
+   ],
+   "picture_in_design": "shots/before-p3-deposits-card.png",
+   "figure_picture": "images/bt-p2-12-before-card.png",
+   "alt": "S2-17577 in production with the Change Customer button",
+   "shown_size": "1200x853",
+   "state": "Production S2-17577: header pills 'Estimate' (blue) and 'Over Limit' (red). Customer card 'Desert Edge Truck Service & Repair' with a pinned note, Contact, Phone, Authorizer None. The Change Customer icon (two arrows) is blue (enabled) at the top right of the customer card. Used by three figures (page 2 Change Customer row; page 3 deposit row and mary.moore row)."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 13,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Change Customer enabled",
+   "captions": [
+    "The Change Customer button stays enabled while the deposit is held, as in production. The deposit no longer greys it out.",
+    "The server refuses Change Customer only when the change would change the Bill To; picking a customer that keeps \"7 Star Truck Repair\" as Bill To goes through.",
+    "New after the tech review. The refusal was not shot: it needs a real Change Customer attempt."
+   ],
+   "picture_in_design": "shots/after-p2-wo77-change-customer.png",
+   "figure_picture": "images/bt-p2-13-after-change-customer-enabled.png",
+   "alt": "S2-17577 with the Change Customer button enabled",
+   "shown_size": "1200x881",
+   "state": "The Change Customer icon is blue (enabled) while the $10.00 deposit is held, same as production. No 'Over Limit' pill."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 14,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Work Order Log",
+   "captions": [
+    "The \"Bill To changed\" rows exist only because this build wrote them into the shared data. Production reads them as \"Customer:\" changes. Production itself never writes them."
+   ],
+   "picture_in_design": "shots/before-p2-wo-log.png",
+   "figure_picture": "images/bt-p2-14-before-work-order-log.png",
+   "alt": "Work Order Log in production",
+   "shown_size": "1200x847",
+   "state": "Production reads the build's 'Bill To changed' rows with Details 'Customer: <old> -> <new>' (bold 'Customer:', names as underlined blue links, arrow between). Five 'Bill To changed' rows, a 'Split to' row (Total: $661.20), six 'Line created' rows and 'Created'."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 15,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Work Order Log",
+   "captions": [
+    "Event \"Bill To changed\". Details: \"Bill To:\" old customer, arrow, new customer, each a link (for example \"Buda Truck Repair\" to \"Valders Diesel & Fleet Repair\").",
+    "These rows come from earlier testing on this work order."
+   ],
+   "picture_in_design": "shots/after-p2-wo-log.png",
+   "figure_picture": "images/bt-p2-15-after-work-order-log.png",
+   "alt": "Work Order Log with Bill To changed rows",
+   "shown_size": "1200x853",
+   "state": "Event column 'Bill To changed'; Details 'Bill To: <old customer> -> <new customer>': 'Bill To:' in bold, each customer an underlined blue link, a black right arrow between (e.g. 'Bill To: Buda Truck Repair -> Valders Diesel & Fleet Repair'). User 'Admin ShopView', Line '-'. Newest first."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 16,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Part sale P2-256",
+   "captions": [
+    "4 Star Truck Repair card: Contact, Phone, Authorizer."
+   ],
+   "picture_in_design": "shots/before-p2-part-sale-card.png",
+   "figure_picture": "images/bt-p2-16-before-part-sale-p2-256.png",
+   "alt": "Part sale P2-256 in production",
+   "shown_size": "1200x825",
+   "state": "Production part sale P2-256: customer card '4 Star Truck Repair' with Contact, Phone, Authorizer None; no Bill To."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 17,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Part sale P2-256",
+   "captions": [
+    "The same \"Bill To\" field, here \"7 Star Truck Repair\".",
+    "The parts table columns differ from production (Quantity, Requested At, Fees & Discounts). That comes from newer develop work under this build, not Bill To."
+   ],
+   "picture_in_design": "shots/after-p2-part-sale-card.png",
+   "figure_picture": "images/bt-p2-17-after-part-sale-p2-256.png",
+   "alt": "Part sale P2-256 with Bill To 7 Star",
+   "shown_size": "1200x853",
+   "state": "Part sale customer card gains 'Bill To' / '7 Star Truck Repair' as its last row, same style as on the work order card."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 18,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "New Work Order",
+   "captions": [
+    "Buda Truck Repair and its CV515 picked."
+   ],
+   "picture_in_design": "shots/before-p2-new-work-order.png",
+   "figure_picture": "images/bt-p2-18-before-new-work-order.png",
+   "alt": "New Work Order in production",
+   "shown_size": "1200x825",
+   "state": "Production New Work Order window: Customer (Buda Truck Repair) + Add, Asset (2024 INTERNATIONAL CV515 854) + Add, 'Asset Here?' ticked, 'View open work orders' (work orders is a blue link), Save. Work Orders list behind has no Bill To column."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 19,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "New Work Order, unchanged",
+   "captions": [
+    "The window is pixel-identical to production. No Bill To here; Buda's saved default applies quietly when the work order is created.",
+    "Accuracy check: the Work Orders list toolbar behind the window is spaced differently (tabs and Search sit further left). That comes from release fixes newer than this build's base, not Bill To."
+   ],
+   "picture_in_design": "shots/after-p2-new-work-order.png",
+   "figure_picture": "images/bt-p2-19-after-new-work-order-unchanged.png",
+   "alt": "New Work Order in this build",
+   "shown_size": "1200x875",
+   "state": "The window is identical to production: no Bill To field. The list toolbar behind sits further left (tabs start x~46 vs 59; Search x~620 vs 679) - release fixes, not Bill To. Work Orders list has no Bill To column."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 20,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "S2-17579",
+   "captions": [
+    "Details shown."
+   ],
+   "picture_in_design": "shots/before-p2-phone-wo79-card.png",
+   "figure_picture": "images/bt-p2-20-before-s2-17579.png",
+   "alt": "S2-17579 details on a phone in production",
+   "shown_size": "390x916",
+   "state": "Phone, details shown ('Hide Details' with a down arrow): work order card, customer card (Contact, Phone, Authorizer), asset card."
+  },
+  {
+   "board": "BillJob.dc.html",
+   "page": 2,
+   "page_name": "Bill a work order or part sale to someone else",
+   "n": 21,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "S2-17579",
+   "captions": [
+    "The same card, with \"Bill To\" \"Valders Diesel & Fleet Repair\" under Authorizer. Nothing phone-only."
+   ],
+   "picture_in_design": "shots/after-p2-phone-wo79-card.png",
+   "figure_picture": "images/bt-p2-21-after-s2-17579.png",
+   "alt": "S2-17579 details on a phone with Bill To",
+   "shown_size": "390x938",
+   "state": "Phone: 'Bill To' / 'Valders Diesel & Fleet Repair' under Authorizer; the full name fits (the phone card is wider than the desktop card). Nothing phone-only."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 1,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Invoiced card",
+   "captions": [
+    "No Bill To on the card."
+   ],
+   "picture_in_design": "shots/before-p3-invoiced-card.png",
+   "figure_picture": "images/bt-p3-01-before-invoiced-card.png",
+   "alt": "S2-17581 in production",
+   "shown_size": "1200x825",
+   "state": "Production paid work order: read-only cards ('Lead technician', 'Service advisor', 'Sales representative' in sentence case); customer card values in grey; no Bill To."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 2,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Read-only",
+   "captions": [
+    "\"Bill To\" \"Valders Diesel & Fleet Repair\", read-only."
+   ],
+   "picture_in_design": "shots/after-p3-invoiced-card.png",
+   "figure_picture": "images/bt-p3-02-after-read-only.png",
+   "alt": "S2-17581 with read-only Bill To",
+   "shown_size": "1200x825",
+   "state": "Paid work order: customer card adds 'Bill To' (grey label) / 'Valders Diesel & Fleet Repair' (black, smaller text than on an open work order, so the whole name fits). No lock icon; looks like the other read-only rows."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 3,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Hover",
+   "captions": [
+    "Tooltip: \"Invoiced. Reverse the invoice to change who's billed.\"",
+    "No tooltip and no toast in history mode."
+   ],
+   "picture_in_design": "shots/after-p3-invoiced-tooltip.png",
+   "figure_picture": "images/bt-p3-03-after-hover.png",
+   "alt": "Invoiced tooltip",
+   "shown_size": "1200x853",
+   "state": "Hovering the Bill To: a dark-grey tooltip with white text 'Invoiced. Reverse the invoice to change who's billed.' shows BELOW the customer card, starting at the very left edge of the browser window (x=0) and overlapping the top of the asset card's title '2024 INTERNATIONAL'."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 4,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Click",
+   "captions": [
+    "Error toast with the same words and \"Go To Invoice\" and \"Close\". \"Go To Invoice\" opens the Finance tab; it never reverses anything.",
+    "Anyone who can see the field gets the toast. \"Go To Invoice\" shows only for users who can open the Finance tab; others get the message and \"Close\" only.",
+    "Rechecked after the tech review: pixel-identical to the earlier shot, so not replaced."
+   ],
+   "picture_in_design": "shots/after-p3-invoiced-toast.png",
+   "figure_picture": "images/bt-p3-04-after-click.png",
+   "alt": "Invoiced toast with Go To Invoice",
+   "shown_size": "1200x881",
+   "state": "After a click: a RED error toast at the BOTTOM RIGHT of the window (about 400 x 87px) with a white warning-triangle icon, white text 'Invoiced. Reverse the invoice to change who's billed.' and two white text buttons on a second line, 'Go To Invoice' then 'Close'. The hover tooltip still shows at the bottom left (pointer on the field)."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 5,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Card",
+   "captions": [
+    "No Bill To on the card. The \"Over Limit\" pill is production's credit check; not Bill To."
+   ],
+   "picture_in_design": "shots/before-p3-deposits-card.png",
+   "figure_picture": "images/bt-p3-05-before-card.png",
+   "alt": "S2-17577 in production",
+   "shown_size": "1200x825",
+   "state": "Production S2-17577: header pills 'Estimate' (blue) and 'Over Limit' (red). Customer card 'Desert Edge Truck Service & Repair' with a pinned note, Contact, Phone, Authorizer None. The Change Customer icon (two arrows) is blue (enabled) at the top right of the customer card. Used by three figures (page 2 Change Customer row; page 3 deposit row and mary.moore row)."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 6,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Read-only",
+   "captions": [
+    "\"Bill To\" \"7 Star Truck Repair\", read-only while the deposit is held.",
+    "The Change Customer button (two arrows at the top right of the customer card) stays enabled. The server refuses Change Customer only when it would change the Bill To.",
+    "Reshot after the tech review."
+   ],
+   "picture_in_design": "shots/after-p3-deposits-card.png",
+   "figure_picture": "images/bt-p3-06-after-read-only.png",
+   "alt": "S2-17577 with read-only Bill To",
+   "shown_size": "1200x903",
+   "state": "Deposit held: 'Bill To' / '7 Star Truck Repair' at the bottom of the customer card; at rest it looks exactly like an editable Bill To (no lock icon, no grey-out). The Change Customer icon is not shown in this picture (pointer elsewhere)."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 7,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Hover",
+   "captions": [
+    "Tooltip: \"This work order has a $10.00 deposit from 7 Star Truck Repair. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\""
+   ],
+   "picture_in_design": "shots/after-p3-deposits-tooltip.png",
+   "figure_picture": "images/bt-p3-07-after-hover.png",
+   "alt": "Deposit tooltip",
+   "shown_size": "1200x825",
+   "state": "Hover: dark-grey tooltip with the M1 text on ONE line (about 850px wide), at the bottom of the window, starting at the window's left edge (x=0), running far past the card into the page. The Change Customer icon shows blue (enabled)."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 8,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Click",
+   "captions": [
+    "Error toast with the same words, \"Open Deposits\" and \"Close\". \"Open Deposits\" opens the Deposits tab of the customer holding the largest share.",
+    "Shot as admin, who can open Deposits. The hover tooltip also shows at the bottom left because the pointer is still on the field. Reshot after the tech review."
+   ],
+   "picture_in_design": "shots/after-p3-deposits-toast.png",
+   "figure_picture": "images/bt-p3-08-after-click.png",
+   "alt": "Deposit toast with Open Deposits",
+   "shown_size": "1200x853",
+   "state": "Click (admin): red error toast at the bottom right, warning icon, the M1 text wrapped over 3 lines, buttons 'Open Deposits' then 'Close' (white text) on the last line, right side. The hover tooltip still shows at the bottom left."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 9,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Card (admin)",
+   "captions": [
+    "The same production board as the row above: production has no Bill To, so there is nothing to tap. No production board was shot as mary.moore for this work order."
+   ],
+   "picture_in_design": "shots/before-p3-deposits-card.png",
+   "figure_picture": "images/bt-p3-09-before-card-admin.png",
+   "alt": "S2-17577 in production",
+   "shown_size": "1200x825",
+   "state": "Production S2-17577: header pills 'Estimate' (blue) and 'Over Limit' (red). Customer card 'Desert Edge Truck Service & Repair' with a pinned note, Contact, Phone, Authorizer None. The Change Customer icon (two arrows) is blue (enabled) at the top right of the customer card. Used by three figures (page 2 Change Customer row; page 3 deposit row and mary.moore row)."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 10,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Card",
+   "captions": [
+    "She sees \"Bill To\" \"7 Star Truck Repair\" because someone else pays.",
+    "Accuracy check: the top bar shows her role's menu (no Dashboard, no Reports, a wider search box) and \"Staging Heavy Duty - 9919\". Her only location is Staging Lethbridge - 4310, so for these shots her staff location was moved to Staging Heavy Duty - 9919 and moved back after. Not Bill To."
+   ],
+   "picture_in_design": "shots/after-p3-mary-deposits-card.png",
+   "figure_picture": "images/bt-p3-10-after-card.png",
+   "alt": "S2-17577 as mary.moore with the Bill To shown read-only",
+   "shown_size": "1200x875",
+   "state": "mary.moore (Foreman): her top bar (no Dashboard, no Reports, wide search box, 'Staging Heavy Duty - 9919', MM). She sees 'Bill To' / '7 Star Truck Repair' at the bottom of the customer card, same look as admin's."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 11,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Click",
+   "captions": [
+    "Error toast: \"This work order has a $10.00 deposit from 7 Star Truck Repair. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\" with \"Close\" only.",
+    "No \"Open Deposits\": she cannot open a customer's Deposits tab. The tooltip with the same words shows at the bottom left because the pointer is still on the field."
+   ],
+   "picture_in_design": "shots/after-p3-mary-deposits-toast.png",
+   "figure_picture": "images/bt-p3-11-after-click.png",
+   "alt": "Deposit toast with only Close for mary.moore",
+   "shown_size": "1200x875",
+   "state": "Red error toast at the bottom right, M1 text wrapped over 4 lines, ONLY a 'Close' button, placed to the RIGHT of the text and vertically centred (not on a line below as in admin's toast). No 'Open Deposits'. The one-line tooltip still shows at the bottom left."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 12,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Phone, tap",
+   "captions": [
+    "Details open, the Bill To field tapped (it sits below the fold, under the toast). The same toast, \"Close\" only. A tap never depends on a hover."
+   ],
+   "picture_in_design": "shots/after-p3-mary-phone-deposits-toast.png",
+   "figure_picture": "images/bt-p3-12-after-phone-tap.png",
+   "alt": "Deposit toast on a phone for mary.moore",
+   "shown_size": "390x960",
+   "state": "Phone, details open: the red toast spans the screen width near the bottom (about 370px), warning icon, M1 text over 5 lines, 'Close' on the right. The Bill To field is below the fold under the toast (not visible)."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 13,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Lines",
+   "captions": [
+    "Production checks only Buda, which is on COD, so no banner."
+   ],
+   "picture_in_design": "shots/before-p3-credit-hold-banner.png",
+   "figure_picture": "images/bt-p3-13-before-lines.png",
+   "alt": "S2-17579 in production with the payer on Credit Hold",
+   "shown_size": "1200x825",
+   "state": "Production S2-17579 with Valders on Credit Hold: no banner, no Credit Hold pill (production checks only Buda, on COD)."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 14,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Banner",
+   "captions": [
+    "Banner: \"Cannot invoice. The Bill To customer, Valders Diesel & Fleet Repair, is on Credit Hold\", with \"Change Bill To\".",
+    "The work order header shows a \"Credit Hold\" pill."
+   ],
+   "picture_in_design": "shots/after-p3-credit-hold-banner.png",
+   "figure_picture": "images/bt-p3-14-after-banner.png",
+   "alt": "Credit Hold banner naming the Bill To",
+   "shown_size": "1200x853",
+   "state": "A full-width pink banner (light red fill) sits between the tabs and the lines table header: red text 'Cannot invoice. The Bill To customer, Valders Diesel & Fleet Repair, is on Credit Hold' (no full stop) on the first line, and 'Change Bill To' (red text button) at the bottom right of the banner."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 15,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Finance",
+   "captions": [
+    "No banner. Create Invoice is greyed here only because no line is complete yet."
+   ],
+   "picture_in_design": "shots/before-p3-credit-hold-finance.png",
+   "figure_picture": "images/bt-p3-15-before-finance.png",
+   "alt": "Finance tab in production",
+   "shown_size": "1200x825",
+   "state": "Production Finance tab: toolbar Customer PO field, download/email/print/settings icons, 'Add Deposit' (blue), 'Create Invoice' (pale blue = disabled). No banner. Estimate preview: Bill To block = Buda (name and address, NO phone line), Terms COD."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 16,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Finance",
+   "captions": [
+    "The same banner on Finance. Create Invoice is greyed here because no line is complete; the Credit Hold tooltip on it was not shot.",
+    "The toolbar (Customer PO, icons, Add Deposit, Create Invoice) sits where it does in production."
+   ],
+   "picture_in_design": "shots/after-p3-credit-hold-finance.png",
+   "figure_picture": "images/bt-p3-16-after-finance.png",
+   "alt": "Finance tab with the banner and Create Invoice disabled",
+   "shown_size": "1200x853",
+   "state": "The same pink banner (M2 + 'Change Bill To') sits under the Finance toolbar, above the Estimate/Invoice switch. Toolbar unchanged in position; Create Invoice pale (disabled; here because no line is complete)."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 17,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Change Bill To",
+   "captions": [
+    "\"Change Bill To\" opens and focuses the card's Bill To field, so the page scrolls to it.",
+    "The list: \"Buda Truck Repair (this customer)\" first, then the current Bill To \"Valders Diesel & Fleet Repair\" highlighted, then customers A to Z (\"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\"). Reshot after the tech review."
+   ],
+   "picture_in_design": "shots/after-p3-credit-hold-change-bill-to.png",
+   "figure_picture": "images/bt-p3-17-after-change-bill-to.png",
+   "alt": "Change Bill To opens the card's Bill To list",
+   "shown_size": "1200x875",
+   "state": "After 'Change Bill To' the page scrolls and the card's Bill To field is focused (value selected) with its list open ABOVE it. The list is wider than the card and runs up over the app's top bar (covers the logo and 'Dashboard', 'Work Orders')."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 18,
+   "badge": "New, no before exists",
+   "side": "This build (after)",
+   "heading": "Counter Sale not offered",
+   "captions": [
+    "In this data the Counter Sale customer is named \"Gennadiy's Mobile Truck Repair\". Typing \"Gennadiy\" in Bill To leaves only \"Buda Truck Repair (this customer)\"."
+   ],
+   "picture_in_design": "shots/after-p3-counter-sale-not-offered.png",
+   "figure_picture": "images/bt-p3-18-after-counter-sale-not-offered.png",
+   "alt": "Searching the Counter Sale customer finds nothing",
+   "shown_size": "1200x825",
+   "state": "Typed 'Gennadiy' (the Counter Sale customer's name in this data): the list shows only 'Buda Truck Repair (this customer)' - the Counter Sale customer is not offered; no message."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 19,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Phone",
+   "captions": [
+    "No banner."
+   ],
+   "picture_in_design": "shots/before-p3-phone-credit-hold.png",
+   "figure_picture": "images/bt-p3-19-before-phone.png",
+   "alt": "S2-17579 on a phone in production",
+   "shown_size": "390x916",
+   "state": "Production phone S2-17579 (Valders on Credit Hold): summary card with Approved only, no banner."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 20,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Phone",
+   "captions": [
+    "The \"Credit Hold\" pill shows in the phone header, and the banner \"Cannot invoice. The Bill To customer, Valders Diesel & Fleet Repair, is on Credit Hold\" with \"Change Bill To\" sits above the lines."
+   ],
+   "picture_in_design": "shots/after-p3-phone-credit-hold.png",
+   "figure_picture": "images/bt-p3-20-after-phone.png",
+   "alt": "S2-17579 on a phone with Credit Hold",
+   "shown_size": "390x982",
+   "state": "Phone: red-outlined 'Credit Hold' pill beside 'Approved' in the summary card; pink banner under the tabs/New Line row, above line 1: the M2 text wraps over 2 lines (red), 'Change Bill To' (red) at the bottom right of the banner."
+  },
+  {
+   "board": "Blocked.dc.html",
+   "page": 3,
+   "page_name": "When the Bill To is blocked",
+   "n": 21,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Phone, Change Bill To",
+   "captions": [
+    "Tapping \"Change Bill To\" opens the phone Details, scrolls to the Bill To field and opens its list: \"Buda Truck Repair (this customer)\", \"Valders Diesel & Fleet Repair\" highlighted, then customers A to Z.",
+    "New after the tech review (it used to target the card hidden behind Details, so nothing visible happened). Closed without saving."
+   ],
+   "picture_in_design": "shots/after-p3-phone-credit-hold-change-bill-to.png",
+   "figure_picture": "images/bt-p3-21-after-phone-change-bill-to.png",
+   "alt": "Change Bill To on a phone opens Details and the Bill To list",
+   "shown_size": "390x1054",
+   "state": "Phone after tapping 'Change Bill To': Details open, scrolled to the customer card; Bill To field focused ('Valders Diesel & Fleet Repair' selected) with its list open ABOVE, covering the top of the screen incl. the top bar. Order: '(this customer)' first, current Bill To 'Valders Diesel & Fleet Repair' second (blue on light blue), then A to Z."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 1,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Modern",
+   "captions": [
+    "The Bill To block names Valders only because this build created the invoice and saved Valders on it. Production, creating it, would have saved Buda. Nothing says whose truck it was."
+   ],
+   "picture_in_design": "shots/before-p4-modern-invoice-billed-to-other.png",
+   "figure_picture": "images/bt-p4-01-before-modern.png",
+   "alt": "Modern invoice in production",
+   "shown_size": "700x1085",
+   "state": "Production modern invoice: ADDRESSES box with BILL TO (Valders, saved on the invoice by the build) and REMIT PAYMENT TO side by side; then the asset row; no band. The Bill To phone line reads 839-680-8298 (Buda's number) under Valders' name."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 2,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Modern",
+   "captions": [
+    "A full-width band under the address row: \"SERVICE FOR\", \"Buda Truck Repair\", \"Unit 854\", \"2024 INTERNATIONAL CV515\", joined by \" · \".",
+    "Light grey fill and thin grey border, so it reads in black and white."
+   ],
+   "picture_in_design": "shots/after-p4-modern-invoice-billed-to-other.png",
+   "figure_picture": "images/bt-p4-02-after-modern.png",
+   "alt": "Modern invoice with the Service For band",
+   "shown_size": "700x1113",
+   "state": "Modern: a full-width band (light grey fill, thin grey border, rounded corners) directly under the ADDRESSES box and above the ASSET row: 'SERVICE FOR' (small bold uppercase, letter-spaced), then 'Buda Truck Repair' (bold, larger), then ' · Unit 854 · 2024 INTERNATIONAL CV515' (regular). Everything below moves down by the band's height (about 50px)."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 3,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Legacy",
+   "captions": [
+    "Same note on the Bill To block as the modern one."
+   ],
+   "picture_in_design": "shots/before-p4-legacy-invoice-billed-to-other.png",
+   "figure_picture": "images/bt-p4-03-before-legacy.png",
+   "alt": "Legacy invoice in production",
+   "shown_size": "700x1063",
+   "state": "Production legacy invoice: 'Bill To' (left) and 'Remit payment to' (right) headings; Bill To shows name, street, city line - NO phone line; then the asset table. No band."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 4,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Legacy",
+   "captions": [
+    "The same band, under Bill To and Remit payment to, above the asset table."
+   ],
+   "picture_in_design": "shots/after-p4-legacy-invoice-billed-to-other.png",
+   "figure_picture": "images/bt-p4-04-after-legacy.png",
+   "alt": "Legacy invoice with the Service For band",
+   "shown_size": "700x1063",
+   "state": "Legacy: the same band (grey fill, thin border, rounded) under Bill To / Remit payment to, above the asset table: 'SERVICE FOR  Buda Truck Repair · Unit 854 · 2024 INTERNATIONAL CV515'. The legacy Bill To block still has NO phone line (PRD S7-R1 says the Bill To block prints name, address and phone)."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 5,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Modern",
+   "captions": [
+    "Rendered live from the work order: the Bill To block is the customer, A & J Truck & Trailer Repair. This is production's true behavior."
+   ],
+   "picture_in_design": "shots/before-p4-modern-estimate-billed-to-other.png",
+   "figure_picture": "images/bt-p4-05-before-modern.png",
+   "alt": "Modern estimate in production",
+   "shown_size": "700x1085",
+   "state": "Production modern estimate: one BILL TO box (no Remit payment to on an estimate) naming the customer A & J with address and phone; no band."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 6,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Modern",
+   "captions": [
+    "Bill To: \"Buda Truck Repair\" with its address. Band: \"SERVICE FOR\", \"A & J Truck & Trailer Repair\", \"2017 Ford Transit\". The asset has no unit, so \"Unit\" drops out with its separator."
+   ],
+   "picture_in_design": "shots/after-p4-modern-estimate-billed-to-other.png",
+   "figure_picture": "images/bt-p4-06-after-modern.png",
+   "alt": "Modern estimate billed to Buda with Service For",
+   "shown_size": "700x1085",
+   "state": "Estimate billed to Buda: BILL TO box = Buda with address and phone; band 'SERVICE FOR  A & J Truck & Trailer Repair · 2017 Ford Transit' (no Unit part: the asset has no unit, so 'Unit' and its separator drop out)."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 7,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Legacy",
+   "captions": [
+    "Bill To is A & J."
+   ],
+   "picture_in_design": "shots/before-p4-legacy-estimate-billed-to-other.png",
+   "figure_picture": "images/bt-p4-07-before-legacy.png",
+   "alt": "Legacy estimate in production",
+   "shown_size": "700x1063",
+   "state": "Production legacy estimate: Bill To = A & J (name, street, city line; no phone); no band."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 8,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Legacy",
+   "captions": [
+    "Bill To is Buda; the same band."
+   ],
+   "picture_in_design": "shots/after-p4-legacy-estimate-billed-to-other.png",
+   "figure_picture": "images/bt-p4-08-after-legacy.png",
+   "alt": "Legacy estimate with Service For",
+   "shown_size": "700x1063",
+   "state": "Legacy estimate: Bill To = Buda (no phone line); band 'SERVICE FOR  A & J Truck & Trailer Repair · 2017 Ford Transit' under the Bill To / Remit payment to row, above the asset table."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 9,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Modern",
+   "captions": [
+    "Bill To is the customer, 4 Star."
+   ],
+   "picture_in_design": "shots/before-p4-modern-part-sale-with-vehicle.png",
+   "figure_picture": "images/bt-p4-09-before-modern.png",
+   "alt": "Modern part sale estimate in production",
+   "shown_size": "700x1063",
+   "state": "Production modern PART SALE ESTIMATE (EST-P2-256, not an invoice): BILL TO = 4 Star; asset row with unit 4417; no band."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 10,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Modern",
+   "captions": [
+    "Bill To is 7 Star. Band: \"SERVICE FOR\", \"4 Star Truck Repair\", \"Unit 4417\", \"2011 Hyundai Santa Fe\"."
+   ],
+   "picture_in_design": "shots/after-p4-modern-part-sale-with-vehicle.png",
+   "figure_picture": "images/bt-p4-10-after-modern.png",
+   "alt": "Modern part sale with Service For and unit",
+   "shown_size": "700x1085",
+   "state": "Part sale estimate billed to 7 Star: band 'SERVICE FOR  4 Star Truck Repair · Unit 4417 · 2011 Hyundai Santa Fe' under the BILL TO box. It is an estimate; no part sale INVOICE is shown anywhere in the design."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 11,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Legacy",
+   "captions": [
+    "Bill To is 4 Star."
+   ],
+   "picture_in_design": "shots/before-p4-legacy-part-sale-with-vehicle.png",
+   "figure_picture": "images/bt-p4-11-before-legacy.png",
+   "alt": "Legacy part sale estimate in production",
+   "shown_size": "700x1063",
+   "state": "Production legacy part sale estimate: Bill To = 4 Star; no band."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 12,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Legacy",
+   "captions": [
+    "The same band with the unit."
+   ],
+   "picture_in_design": "shots/after-p4-legacy-part-sale-with-vehicle.png",
+   "figure_picture": "images/bt-p4-12-after-legacy.png",
+   "alt": "Legacy part sale with Service For and unit",
+   "shown_size": "700x1063",
+   "state": "Legacy part sale estimate: Bill To = 7 Star; band 'SERVICE FOR  4 Star Truck Repair · Unit 4417 · 2011 Hyundai Santa Fe'."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 13,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Modern",
+   "captions": [
+    "Bill To is 4 Star."
+   ],
+   "picture_in_design": "shots/before-p4-modern-part-sale-no-vehicle.png",
+   "figure_picture": "images/bt-p4-13-before-modern.png",
+   "alt": "Modern part sale without vehicle in production",
+   "shown_size": "700x1063",
+   "state": "Production modern part sale estimate without a vehicle: BILL TO = 4 Star; no asset row; no band."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 14,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Modern",
+   "captions": [
+    "Band: \"SERVICE FOR\", \"4 Star Truck Repair\" only."
+   ],
+   "picture_in_design": "shots/after-p4-modern-part-sale-no-vehicle.png",
+   "figure_picture": "images/bt-p4-14-after-modern.png",
+   "alt": "Modern part sale without vehicle with Service For",
+   "shown_size": "700x1063",
+   "state": "Band with only 'SERVICE FOR  4 Star Truck Repair' (no separator, no unit) under the BILL TO box, above 'Terms COD'."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 15,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Legacy",
+   "captions": [
+    "Bill To is 4 Star."
+   ],
+   "picture_in_design": "shots/before-p4-legacy-part-sale-no-vehicle.png",
+   "figure_picture": "images/bt-p4-15-before-legacy.png",
+   "alt": "Legacy part sale without vehicle in production",
+   "shown_size": "700x1063",
+   "state": "Production legacy part sale estimate, no vehicle: Bill To = 4 Star; no asset table; no band."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 16,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Legacy",
+   "captions": [
+    "Name only."
+   ],
+   "picture_in_design": "shots/after-p4-legacy-part-sale-no-vehicle.png",
+   "figure_picture": "images/bt-p4-16-after-legacy.png",
+   "alt": "Legacy part sale without vehicle with Service For",
+   "shown_size": "700x1063",
+   "state": "Legacy: band 'SERVICE FOR  4 Star Truck Repair' (name only) between the Bill To row and the Parts Order table."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 17,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Modern, pays for itself",
+   "captions": [
+    "S2-17322 bills its own customer."
+   ],
+   "picture_in_design": "shots/before-p4-modern-invoice-pays-for-itself.png",
+   "figure_picture": "images/bt-p4-17-before-modern-pays-for-itself.png",
+   "alt": "Modern invoice that pays for itself in production",
+   "shown_size": "700x1063",
+   "state": "Invoice that pays for itself (S2-17322): Bill To 'Zero Truck and Trailer Repair (IBS#: 873606)' with IBS remit-to; no band. Page 1 of 4."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 18,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Modern, pays for itself",
+   "captions": [
+    "No band. Pixel-identical to production (compared)."
+   ],
+   "picture_in_design": "shots/after-p4-modern-invoice-pays-for-itself.png",
+   "figure_picture": "images/bt-p4-18-after-modern-pays-for-itself.png",
+   "alt": "Modern invoice that pays for itself in this build",
+   "shown_size": "700x1063",
+   "state": "Byte-identical (md5) to the production render: no band, nothing changed."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 19,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Legacy, pays for itself",
+   "captions": [
+    "S2-17322."
+   ],
+   "picture_in_design": "shots/before-p4-legacy-invoice-pays-for-itself.png",
+   "figure_picture": "images/bt-p4-19-before-legacy-pays-for-itself.png",
+   "alt": "Legacy invoice that pays for itself in production",
+   "shown_size": "700x1063",
+   "state": "Legacy invoice that pays for itself: Bill To with '(IBS#: 873606)', no phone line; no band. Page 1 of 4."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 20,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Legacy, pays for itself",
+   "captions": [
+    "No band. Pixel-identical to production (compared)."
+   ],
+   "picture_in_design": "shots/after-p4-legacy-invoice-pays-for-itself.png",
+   "figure_picture": "images/bt-p4-20-after-legacy-pays-for-itself.png",
+   "alt": "Legacy invoice that pays for itself in this build",
+   "shown_size": "700x1063",
+   "state": "Byte-identical (md5) to the production render: no band, nothing changed."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 21,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Batch, page 1",
+   "captions": [
+    "Batch of S2-17581, S2-17513 and S2-17322. Page 1 shown."
+   ],
+   "picture_in_design": "shots/before-p4-batch.png",
+   "figure_picture": "images/bt-p4-21-before-batch-page-1.png",
+   "alt": "Batch invoice page 1 in production",
+   "shown_size": "700x1063",
+   "state": "Production batch PDF, page 1 of 7: INV-S2-17581 in the legacy layout (Bill To Valders, no phone, no band); footer 'GST# 812694966 RT0001' / 'Software Powered by ShopView' and 'Page 1 of 7'."
+  },
+  {
+   "board": "ServiceFor.dc.html",
+   "page": 4,
+   "page_name": "Service For band on invoices and estimates",
+   "n": 22,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Batch, page 1",
+   "captions": [
+    "Page 1 is S2-17581 with its band. In the full PDF each invoice billed to someone else gets its own band; S2-17513 reads \"SERVICE FOR\", \"Orchard City Truck & Trailer Repair\", \"Unit 15\", \"2018 Freightliner 114sd\". S2-17322 gets none."
+   ],
+   "picture_in_design": "shots/after-p4-batch.png",
+   "figure_picture": "images/bt-p4-22-after-batch-page-1.png",
+   "alt": "Batch invoice page 1 with Service For",
+   "shown_size": "700x1107",
+   "state": "Batch page 1 of 7: the band 'SERVICE FOR  Buda Truck Repair · Unit 854 · 2024 INTERNATIONAL CV515' under Bill To / Remit payment to. Only page 1 is pictured: S2-17513's band ('Orchard City Truck & Trailer Repair', 'Unit 15', '2018 Freightliner 114sd') and S2-17322 with no band are stated in the caption only, not shown. Batch shown in the legacy layout only."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 1,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "A & J, Invoices",
+   "captions": [
+    "Date, Type, No., Memo, Total, Balance, Status, Action. Nothing says whose work each invoice was."
+   ],
+   "picture_in_design": "shots/before-p5-aj-invoices.png",
+   "figure_picture": "images/bt-p5-01-before-a-j-invoices.png",
+   "alt": "A and J invoices in production",
+   "shown_size": "1200x825",
+   "state": "Production A & J Invoices tab (Open only on): columns Date, Type, No., Memo, Total, Balance, Status, Action; two invoices; Balance: $1,679.02 in green; New Payment pale (disabled, nothing ticked)."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 2,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "A & J, Invoices",
+   "captions": [
+    "New column after No.: header \"Service For\", naming the customer the work was for.",
+    "The column is hidden when no row on the tab is billed for someone else."
+   ],
+   "picture_in_design": "shots/after-p5-aj-invoices.png",
+   "figure_picture": "images/bt-p5-02-after-a-j-invoices.png",
+   "alt": "A and J invoices with the Service For column",
+   "shown_size": "1200x853",
+   "state": "New column header 'Service For' (Title Case) right AFTER 'No.' and before 'Memo'; cells 'Orchard City Truck & Trailer Repair' and 'Phillipsburg Truck & Trailer Repair' in regular black text (not links). Date/Type/No. columns shift left to make room; the Service For text runs right up to the Memo '-' (no wrap, no overlap at 1440)."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 3,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Valders, Open only off",
+   "captions": [
+    "S2-17581 listed with no Service For column."
+   ],
+   "picture_in_design": "shots/before-p5-valders-invoices-all.png",
+   "figure_picture": "images/bt-p5-03-before-valders-open-only-off.png",
+   "alt": "Valders invoices in production",
+   "shown_size": "1200x825",
+   "state": "Production Valders Invoices tab, Open only OFF: S2-17581 Paid; no Service For column."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 4,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Valders, Open only off",
+   "captions": [
+    "S2-17581, Service For \"Buda Truck Repair\", Paid."
+   ],
+   "picture_in_design": "shots/after-p5-valders-invoices-all.png",
+   "figure_picture": "images/bt-p5-04-after-valders-open-only-off.png",
+   "alt": "Valders invoices with Service For Buda",
+   "shown_size": "1200x825",
+   "state": "'Service For' column after No.: 'Buda Truck Repair' on S2-17581 (Paid). Valders has no default and pays for nobody by default here (no Bill Invoices To line, no Pays for counter)."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 5,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Rows picked",
+   "captions": [
+    "Both invoices ticked; New Payment turns on."
+   ],
+   "picture_in_design": "shots/before-p5-aj-rows-selected.png",
+   "figure_picture": "images/bt-p5-05-before-rows-picked.png",
+   "alt": "A and J rows selected in production",
+   "shown_size": "1200x825",
+   "state": "Production: both rows ticked; 'Totals selected' row $1,680.02 / $1,679.02 (green); New Payment turns solid blue (enabled); Issue Credit greys out."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 6,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Rows picked",
+   "captions": [
+    "The same, with the Service For column."
+   ],
+   "picture_in_design": "shots/after-p5-aj-rows-selected.png",
+   "figure_picture": "images/bt-p5-06-after-rows-picked.png",
+   "alt": "A and J rows selected in this build",
+   "shown_size": "1200x825",
+   "state": "Same as production with the Service For column; New Payment enabled; Totals selected $1,680.02 / $1,679.02."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 7,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "New Customer Payment",
+   "captions": [
+    "The payment window."
+   ],
+   "picture_in_design": "shots/before-p5-aj-new-payment.png",
+   "figure_picture": "images/bt-p5-07-before-new-customer-payment.png",
+   "alt": "New Customer Payment in production",
+   "shown_size": "1200x825",
+   "state": "Production 'New Customer Payment' window: left column Payment Date / Payment Method / Reference Number / Memo; right table No. (blue links), Date, Due, Balance, Payment ($ inputs); Amount to credit $0.00; Payment amount $1,679.02; 'Make Payment' (pale, disabled until a method is picked) and 'Send to Terminal' (blue)."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 8,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "New Customer Payment",
+   "captions": [
+    "The window is unchanged: S2-17362 and S2-17513, Payment amount $1,679.02. One payment covers several of the payer's invoices across the customers it pays for.",
+    "A payment applied to another customer's invoice is refused by the server; that refusal has no screen here."
+   ],
+   "picture_in_design": "shots/after-p5-aj-new-payment.png",
+   "figure_picture": "images/bt-p5-08-after-new-customer-payment.png",
+   "alt": "New Customer Payment in this build",
+   "shown_size": "1200x853",
+   "state": "The payment window is identical to production (no Service For column in the window); it lists both of A & J's invoices across the two customers it pays for. The Service For header is visible behind the dimmed overlay."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 9,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Orchard City, Invoices",
+   "captions": [
+    "Empty on this data."
+   ],
+   "picture_in_design": "shots/before-p5-orchard-invoices.png",
+   "figure_picture": "images/bt-p5-09-before-orchard-city-invoices.png",
+   "alt": "Orchard City invoices in production",
+   "shown_size": "1200x825",
+   "state": "Production Orchard City Invoices tab (Open only on): empty, Balance $0.00."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 10,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Orchard City, Invoices",
+   "captions": [
+    "S2-17513 was Orchard City's work but is not on its tab, so it cannot be paid from Orchard City's side."
+   ],
+   "picture_in_design": "shots/after-p5-orchard-invoices.png",
+   "figure_picture": "images/bt-p5-10-after-orchard-city-invoices.png",
+   "alt": "Orchard City invoices in this build",
+   "shown_size": "1200x825",
+   "state": "Orchard City (the customer of S2-17513, billed to A & J): its Invoices tab is empty, Balance $0.00; no Service For column; its card has no Bill Invoices To line (the Bill To was picked on the job, not saved as a default)."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 11,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Sending invoice (S2-17581)",
+   "captions": [
+    "Lists Buda's contact, \"Wendy Lopez\", ticked."
+   ],
+   "picture_in_design": "shots/before-p5-invoice-email.png",
+   "figure_picture": "images/bt-p5-11-before-sending-invoice-s2-17581.png",
+   "alt": "Sending invoice in production",
+   "shown_size": "1200x825",
+   "state": "Production 'Sending invoice' window for S2-17581: 'Include 'For Customer' Attachments in email' unticked; one contact row, 'Wendy Lopez wendy.lopez2@staging.shopview.local' ticked (Buda's contact); Optional Emails box focused; email body; BCC switch off; Send Email."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 12,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Sending invoice (S2-17581)",
+   "captions": [
+    "Lists the Bill To's contacts and ticks \"George Thomas\" (Valders): its Billing contact, else its first.",
+    "\"Include 'For Customer' Attachments in email\" starts unticked, as today."
+   ],
+   "picture_in_design": "shots/after-p5-invoice-email.png",
+   "figure_picture": "images/bt-p5-12-after-sending-invoice-s2-17581.png",
+   "alt": "Sending invoice to the Bill To contact",
+   "shown_size": "1200x853",
+   "state": "Same window; the contact row is now 'George Thomas george.thomas@staging.shopview.local' (Valders' contact) ticked; no customer name is shown beside the contact. Attachments box unticked. No loading state is pictured."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 13,
+   "badge": "Not shown",
+   "side": "Not shown",
+   "heading": "Customer portal",
+   "captions": [],
+   "picture_in_design": null,
+   "figure_picture": "images/bt-p5-13-after-customer-portal.png",
+   "alt": null,
+   "shown_size": "1200x784",
+   "state": "portal placeholder: not shot"
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 14,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Phone",
+   "captions": [
+    "The customer card comes first on a phone; the tab is below."
+   ],
+   "picture_in_design": "shots/before-p5-phone-aj-invoices.png",
+   "figure_picture": "images/bt-p5-14-before-phone.png",
+   "alt": "A and J invoices on a phone in production",
+   "shown_size": "390x938",
+   "state": "Production phone: card first, then the tabs (scrolling), Balance, Search, Open only, icons, full-width Issue Credit and New Payment, then the table header Date, Type, No., Memo, Tot..."
+  },
+  {
+   "board": "GettingPaid.dc.html",
+   "page": 5,
+   "page_name": "Getting paid",
+   "n": 15,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Phone",
+   "captions": [
+    "Same order as production. Nothing phone-only."
+   ],
+   "picture_in_design": "shots/after-p5-phone-aj-invoices.png",
+   "figure_picture": "images/bt-p5-15-after-phone.png",
+   "alt": "A and J invoices on a phone in this build",
+   "shown_size": "390x916",
+   "state": "Phone: card adds 'Bill Invoices To' / 'Mayfield Heights Truck Centre  Change' (one line) and a third counter 'Pays for 1' (blue). The invoice table is pushed below the fold, so the Service For column is NOT visible in this picture."
+  },
+  {
+   "board": "DeletePayer.dc.html",
+   "page": 6,
+   "page_name": "Deleting a customer that pays for others",
+   "n": 1,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Edit Customer, Delete",
+   "captions": [
+    "Delete is available."
+   ],
+   "picture_in_design": "shots/before-p6-edit-bottom.png",
+   "figure_picture": "images/bt-p6-01-before-edit-customer-delete.png",
+   "alt": "Edit Customer for Murrieta in production",
+   "shown_size": "1200x825",
+   "state": "Production Edit Customer for Murrieta, scrolled to the bottom: 'Delete' (dark red, hovered) and 'Save'."
+  },
+  {
+   "board": "DeletePayer.dc.html",
+   "page": 6,
+   "page_name": "Deleting a customer that pays for others",
+   "n": 2,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Edit Customer, Delete",
+   "captions": [
+    "Murrieta's card shows \"Pays for\" 1. Delete is still available; the check happens on delete."
+   ],
+   "picture_in_design": "shots/after-p6-edit-bottom.png",
+   "figure_picture": "images/bt-p6-02-after-edit-customer-delete.png",
+   "alt": "Edit Customer for Murrieta in this build",
+   "shown_size": "1200x825",
+   "state": "Murrieta (bills itself): 'Bill Invoices To' reads 'This customer' with the help line under it. Card counters: Contacts 0, Assets 0, Pays for 1 (blue). Delete is still offered (dark red)."
+  },
+  {
+   "board": "DeletePayer.dc.html",
+   "page": 6,
+   "page_name": "Deleting a customer that pays for others",
+   "n": 3,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Confirmation",
+   "captions": [
+    "\"Confirmation\": \"Are you sure you want to delete this company?\" with \"Cancel\" and \"Delete\". Confirming would delete it; not clicked."
+   ],
+   "picture_in_design": "shots/before-p6-delete-first.png",
+   "figure_picture": "images/bt-p6-03-before-confirmation.png",
+   "alt": "Delete confirmation in production",
+   "shown_size": "1200x825",
+   "state": "Production 'Confirmation' window over Edit Customer: large bold title, 'Are you sure you want to delete this company?', 'Cancel' (grey) then 'Delete' (red)."
+  },
+  {
+   "board": "DeletePayer.dc.html",
+   "page": 6,
+   "page_name": "Deleting a customer that pays for others",
+   "n": 4,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Confirmation",
+   "captions": [
+    "The same confirmation, unchanged."
+   ],
+   "picture_in_design": "shots/after-p6-delete-first.png",
+   "figure_picture": "images/bt-p6-04-after-confirmation.png",
+   "alt": "Delete confirmation in this build",
+   "shown_size": "1200x825",
+   "state": "The same Confirmation window as production; unchanged."
+  },
+  {
+   "board": "DeletePayer.dc.html",
+   "page": 6,
+   "page_name": "Deleting a customer that pays for others",
+   "n": 5,
+   "badge": "New, no before exists",
+   "side": "This build (after)",
+   "heading": "Delete Customer refused",
+   "captions": [
+    "Window \"Delete Customer\": \"This customer is the default Bill To for Valders Diesel & Fleet Repair. Remove it from that customer first.\" Each dependent customer is a link.",
+    "Buttons \"Cancel\" and \"Remove As Default Bill To\" (app buttons render in Title Case)."
+   ],
+   "picture_in_design": "shots/after-p6-blocked.png",
+   "figure_picture": "images/bt-p6-05-after-delete-customer-refused.png",
+   "alt": "Delete Customer window naming the dependent customer",
+   "shown_size": "1200x875",
+   "state": "After clicking Delete in the Confirmation window, a 'Delete Customer' window opens ON TOP of it (the Confirmation stays visible, dimmed, behind). Its title row has a YELLOW background (warning style) with a large bold 'Delete Customer' and a blue x; body: the refusal sentence (wraps after 'Repair.'), then a bulleted list with 'Valders Diesel & Fleet Repair' as an underlined blue link; buttons 'Cancel' (grey) then 'Remove As Default Bill To' (blue), bottom right."
+  },
+  {
+   "board": "DeletePayer.dc.html",
+   "page": 6,
+   "page_name": "Deleting a customer that pays for others",
+   "n": 6,
+   "badge": "New, no before exists",
+   "side": "This build (after)",
+   "heading": "Remove as default Bill To",
+   "captions": [
+    "\"Remove as default Bill To\": \"Remove Murrieta Diesel Repair as the default Bill To for 1 customer? Open work orders keep their Bill To.\" Buttons \"Cancel\" and \"Remove\"."
+   ],
+   "picture_in_design": "shots/after-p6-remove-confirm.png",
+   "figure_picture": "images/bt-p6-06-after-remove-as-default-bill-to.png",
+   "alt": "Remove as default Bill To confirmation",
+   "shown_size": "1200x847",
+   "state": "A third window on top: title 'Remove as default Bill To' (large bold, sentence case), the D8 question over two lines, buttons 'Cancel' (grey) then 'Remove' (blue) at the bottom right. The yellow 'Delete Customer' header is visible (dimmed) behind it."
+  },
+  {
+   "board": "DeletePayer.dc.html",
+   "page": 6,
+   "page_name": "Deleting a customer that pays for others",
+   "n": 7,
+   "badge": "New, no before exists",
+   "side": "This build (after)",
+   "heading": "After Remove",
+   "captions": [
+    "The default is cleared and the user is back on the delete \"Confirmation\"; the user deletes again from there (not clicked here).",
+    "Fixed after these shots: the customer page now refreshes when the default is removed, so \"Pays for\" 1 disappears at once."
+   ],
+   "picture_in_design": "shots/after-p6-remove-result.png",
+   "figure_picture": "images/bt-p6-07-after-after-remove.png",
+   "alt": "Back on the delete confirmation after Remove",
+   "shown_size": "1200x853",
+   "state": "After Remove: back on the 'Confirmation' window ('Are you sure you want to delete this company?'); 'Cancel' looks pale (lighter grey) and 'Delete' red. The card behind STILL shows 'Pays for 1' (the caption says this was fixed after the shot)."
+  },
+  {
+   "board": "DeletePayer.dc.html",
+   "page": 6,
+   "page_name": "Deleting a customer that pays for others",
+   "n": 8,
+   "badge": "New, no before exists",
+   "side": "This build (after)",
+   "heading": "Result",
+   "captions": [
+    "Reloaded: no \"Pays for\" counter. Valders now bills itself for new work."
+   ],
+   "picture_in_design": "shots/after-p6-del-after-remove.png",
+   "figure_picture": "images/bt-p6-08-after-result.png",
+   "alt": "Murrieta page after the default was removed",
+   "shown_size": "1200x825",
+   "state": "Reloaded Murrieta page: counters Contacts 0 / Assets 0 only - no 'Pays for' counter. Murrieta still exists."
+  },
+  {
+   "board": "DeletePayer.dc.html",
+   "page": 6,
+   "page_name": "Deleting a customer that pays for others",
+   "n": 9,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Phone",
+   "captions": [
+    "Confirmation on a phone."
+   ],
+   "picture_in_design": "shots/before-p6-phone-delete-first.png",
+   "figure_picture": "images/bt-p6-09-before-phone.png",
+   "alt": "Delete confirmation on a phone in production",
+   "shown_size": "390x916",
+   "state": "Production phone: Confirmation window with full-width stacked buttons 'Cancel' (grey) above 'Delete' (red)."
+  },
+  {
+   "board": "DeletePayer.dc.html",
+   "page": 6,
+   "page_name": "Deleting a customer that pays for others",
+   "n": 10,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Phone",
+   "captions": [
+    "The default had already been removed, so this shows the plain confirmation, same as production."
+   ],
+   "picture_in_design": "shots/after-p6-phone-delete-first.png",
+   "figure_picture": "images/bt-p6-10-after-phone.png",
+   "alt": "Delete confirmation on a phone in this build",
+   "shown_size": "390x938",
+   "state": "Phone (default already removed): the plain Confirmation, same as production. Behind it the phone Edit Customer shows 'Bill Invoices To' / 'This customer' with the help line wrapped over 2 lines."
+  },
+  {
+   "board": "AssetTab.dc.html",
+   "page": 7,
+   "page_name": "Asset Work Orders tab",
+   "n": 1,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Work Orders tab",
+   "captions": [
+    "Only the current owner's work: S2-16988. Toolbar: Search, Status, New."
+   ],
+   "picture_in_design": "shots/before-p7-asset-work-orders.png",
+   "figure_picture": "images/bt-p7-01-before-work-orders-tab.png",
+   "alt": "Asset Work Orders tab in production",
+   "shown_size": "1200x825",
+   "state": "Production asset tab: only the current owner's S2-16988; toolbar Search, Status, New (blue); column 'Number' sorted up (▲); ShopCoach Asset History box below."
+  },
+  {
+   "board": "AssetTab.dc.html",
+   "page": 7,
+   "page_name": "Asset Work Orders tab",
+   "n": 2,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Whole history",
+   "captions": [
+    "Every work order on the asset at this location, for every owner and payer, oldest first as today: Kolosov's work orders now appear too.",
+    "No row here bills someone else, so there is no \"Bill To\" column (see the S2-17579 asset below). Rechecked after the tech review: pixel-identical, not replaced.",
+    "New chip between Status and New: \"Customer: All customers\". Search and Status shift left to make room; New stays at the right edge. The chip is the only addition and nothing wraps.",
+    "Release-day change: old owners' jobs appear on this tab."
+   ],
+   "picture_in_design": "shots/after-p7-asset-work-orders.png",
+   "figure_picture": "images/bt-p7-02-after-whole-history.png",
+   "alt": "Asset Work Orders tab with the whole history",
+   "shown_size": "1200x931",
+   "state": "Toolbar now: Search, Status, a new chip '(building icon) Customer: All customers' with a down arrow, then New at the right edge; Search and Status moved left; one line, nothing wraps at 1440."
+  },
+  {
+   "board": "AssetTab.dc.html",
+   "page": 7,
+   "page_name": "Asset Work Orders tab",
+   "n": 3,
+   "badge": "New, no before exists",
+   "side": "This build (after)",
+   "heading": "Customer chip open",
+   "captions": [
+    "\"All customers\" ticked, then \"All customers are included. Pick one or more to narrow.\", then each customer on the asset's work orders, as customer or Bill To, A to Z: \"Kolosov's Diesel Repair\", \"Quartzsite Truck Service & Repair\".",
+    "Search shows only with more than 8 options."
+   ],
+   "picture_in_design": "shots/after-p7-asset-customer-open.png",
+   "figure_picture": "images/bt-p7-03-after-customer-chip-open.png",
+   "alt": "Customer chip open",
+   "shown_size": "1200x875",
+   "state": "Chip open (grey highlighted): a panel drops below the chip, right-aligned with New, covering the Lead Technician, Total Price and Created On columns of the first rows. Row 1 '[ticked box] All customers' (blue tick), a divider, grey help text 'All customers are included. Pick one or more to narrow.' (2 lines), then one row per customer A to Z with a grey DASH box (indeterminate): 'Kolosov's Diesel Repair', 'Quartzsite Truck Service & Repair'. No search box (2 options), no Apply button."
+  },
+  {
+   "board": "AssetTab.dc.html",
+   "page": 7,
+   "page_name": "Asset Work Orders tab",
+   "n": 4,
+   "badge": "New, no before exists",
+   "side": "This build (after)",
+   "heading": "One customer picked",
+   "captions": [
+    "Quartzsite ticked: \"1 selected\", and the chip reads \"Customer: Quartzsite Truc...\"."
+   ],
+   "picture_in_design": "shots/after-p7-asset-customer-picked-open.png",
+   "figure_picture": "images/bt-p7-04-after-one-customer-picked.png",
+   "alt": "Quartzsite picked in the Customer chip",
+   "shown_size": "1200x825",
+   "state": "Quartzsite ticked (blue), Kolosov's unticked (empty box), 'All customers' unticked with '1 selected' (grey) at its right; no help text now. The chip turns light blue with blue text 'Customer: Quartzsite Truc...' (cut with '...'). The list already shows only S2-16988 behind the open panel."
+  },
+  {
+   "board": "AssetTab.dc.html",
+   "page": 7,
+   "page_name": "Asset Work Orders tab",
+   "n": 5,
+   "badge": "New, no before exists",
+   "side": "This build (after)",
+   "heading": "Applied",
+   "captions": [
+    "Only S2-16988. A work order matches when a picked customer is its customer or its Bill To."
+   ],
+   "picture_in_design": "shots/after-p7-asset-customer-applied.png",
+   "figure_picture": "images/bt-p7-05-after-applied.png",
+   "alt": "Customer filter applied",
+   "shown_size": "1200x825",
+   "state": "Panel closed: chip stays light blue 'Customer: Quartzsite Truc...'; only S2-16988 is listed."
+  },
+  {
+   "board": "AssetTab.dc.html",
+   "page": 7,
+   "page_name": "Asset Work Orders tab",
+   "n": 6,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "1600 wide, search \"S2-16\"",
+   "captions": [
+    "One match from the current owner, S2-16988."
+   ],
+   "picture_in_design": "shots/before-p7-asset-work-orders-1600-search.png",
+   "figure_picture": "images/bt-p7-06-before-1600-wide-search-s2-16.png",
+   "alt": "Asset tab at 1600 with search in production",
+   "shown_size": "1600x975",
+   "state": "Production at 1600: search box filled 'S2-16' (with a clear x); one match, S2-16988."
+  },
+  {
+   "board": "AssetTab.dc.html",
+   "page": 7,
+   "page_name": "Asset Work Orders tab",
+   "n": 7,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "1600 wide, search \"S2-16\"",
+   "captions": [
+    "Searching the whole history finds Kolosov's S2-16894 as well. The search box, Status, Customer chip and New sit on one line at 1600; nothing wraps."
+   ],
+   "picture_in_design": "shots/after-p7-asset-work-orders-1600-search.png",
+   "figure_picture": "images/bt-p7-07-after-1600-wide-search-s2-16.png",
+   "alt": "Asset tab at 1600 with search in this build",
+   "shown_size": "1600x975",
+   "state": "At 1600: search box (filled 'S2-16', clear x), Status, 'Customer: All customers' chip and New all on one line; two matches: Kolosov's S2-16894 (Paid) then Quartzsite's S2-16988."
+  },
+  {
+   "board": "AssetTab.dc.html",
+   "page": 7,
+   "page_name": "Asset Work Orders tab",
+   "n": 8,
+   "badge": "Production (v26.45.2.1)",
+   "side": "Production today (before)",
+   "heading": "Phone",
+   "captions": [
+    "The asset card comes first on a phone."
+   ],
+   "picture_in_design": "shots/before-p7-phone-asset-work-orders.png",
+   "figure_picture": "images/bt-p7-08-before-phone.png",
+   "alt": "Asset page on a phone in production",
+   "shown_size": "390x916",
+   "state": "Phone asset page: asset card first, then the owner card, then the preferred contact; the Work Orders tab is below the fold (not pictured), so neither the Customer chip nor the list is visible."
+  },
+  {
+   "board": "AssetTab.dc.html",
+   "page": 7,
+   "page_name": "Asset Work Orders tab",
+   "n": 9,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Phone",
+   "captions": [
+    "Same order as production."
+   ],
+   "picture_in_design": "shots/after-p7-phone-asset-work-orders.png",
+   "figure_picture": "images/bt-p7-09-after-phone.png",
+   "alt": "Asset page on a phone in this build",
+   "shown_size": "390x916",
+   "state": "Byte-identical (md5) to the production phone picture: the Bill To changes on this tab are not visible at phone width in this shot."
+  },
+  {
+   "board": "AssetTab.dc.html",
+   "page": 7,
+   "page_name": "Asset Work Orders tab",
+   "n": 10,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Work Orders tab, top",
+   "captions": [
+    "A \"Bill To\" column sits right after Customer because a loaded row bills someone else. S2-17579 reads \"Buda Truck Repair\", \"Valders Diesel & Fleet Repair\".",
+    "Self-billed rows leave the Bill To cell blank. Oldest first, as today.",
+    "At 1440 the extra column pushes the last columns past the right edge; the table scrolls sideways.",
+    "No production board for this asset: production was not re-run for this update. Production's tab has no Bill To column on any asset (see the \"shop heavy\" before board above).",
+    "Accuracy check: top bar identical to production; the tab toolbar differs from production only by the Customer chip (this build) and the Invoices count, which is this asset's data."
+   ],
+   "picture_in_design": "shots/after-p7-asset854-work-orders.png",
+   "figure_picture": "images/bt-p7-10-after-work-orders-tab-top.png",
+   "alt": "Asset Work Orders tab with a Bill To column",
+   "shown_size": "1200x981",
+   "state": "A 'Bill To' column sits right after 'Customer': blank on Buda's self-billed rows, 'Valders Diesel & Fleet Repair' on S2-17579. The extra column pushes the last columns past the right edge at 1440: the 'Total Price' header shows only 'T' and the column values are cut (the table scrolls sideways). Oldest first (Number ▲)."
+  },
+  {
+   "board": "AssetTab.dc.html",
+   "page": 7,
+   "page_name": "Asset Work Orders tab",
+   "n": 11,
+   "badge": "This build",
+   "side": "This build (after)",
+   "heading": "Work Orders tab, scrolled",
+   "captions": [
+    "The last two rows, S2-17579 (Approved) and S2-17581 (Paid), both read \"Valders Diesel & Fleet Repair\" under Bill To.",
+    "When no loaded row bills someone else the column is not shown at all."
+   ],
+   "picture_in_design": "shots/after-p7-asset854-work-orders-bottom.png",
+   "figure_picture": "images/bt-p7-11-after-work-orders-tab-scrolled.png",
+   "alt": "Asset Work Orders tab scrolled to the last rows",
+   "shown_size": "1200x853",
+   "state": "Scrolled down: the last two rows S2-17579 (Approved) and S2-17581 (Paid) both read 'Valders Diesel & Fleet Repair' under Bill To; the right-hand columns stay cut at the edge."
+  }
+ ]
+}

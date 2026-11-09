@@ -97,3 +97,24 @@ NOT_SHOWN = [  # PRD look/screen sentences the design draws no version of (DESIG
  ("BT-N19", "S16 / §8 Portal, G3", "Customer portal (cover and page 5 placeholder: not shot)"),
  ("BT-N20", "S17 / S18 / S19", "QuickBooks, AccountingHub, IBS export, CSV export, Public API (no screens)"),
 ]
+# Keys read by build/testing-tools/spec_to_design_check.py ("CODE|words"): every PRD phrase the word check could not find, closed here.
+_SW, _DS = "SHOWN-WHEN-DRIVEN", "DESIGN-SILENT"
+TOOL_KEYS = {
+ "S1-R5|[customer] (this customer)": (_SW, "drawn filled: \"Buda Truck Repair (this customer)\" (bt-p1-08, bt-p1-14), checked by hand"),
+ "S3-R3|[customer] (this customer)": (_SW, "drawn filled: \"Buda Truck Repair (this customer)\" (bt-p2-03, -04, -05; bt-p3-17, -18, -21)"),
+ "S1-R9|[customer] pays for": (_SW, "drawn filled: \"A & J Truck & Trailer Repair pays for\" (bt-p1-18)"),
+ "S1-R10|These customers bill new work orders and part sales to [customer] by default.": (_SW, "drawn filled with A & J Truck & Trailer Repair (bt-p1-18), word for word"),
+ "S2-R4|[name typed so far] (this customer)": (_SW, "drawn filled: \"Lone Star Fleet Services (this customer)\" (bt-p1-03, -04)"),
+ "S2-R4|New customer (this customer)": (_DS, "no picture before a name is typed (BT-N03)"),
+ "S2-R6|Add Address 2": (_DS, "the + is drawn (bt-p1-02), its tooltip is not (BT-N04)"),
+ "S2-R7|Remove Address 2": (_DS, "the x is drawn (bt-p1-07), its tooltip is not (BT-N04)"),
+ "S5-R7|[N] customers": (_DS, "only one deposit from one customer is drawn (BT-N08)"),
+ "S7-N2|This customer is on Credit Hold!": (_DS, "self-paying Credit Hold not drawn (BT-N10)"),
+ "S7-N2|Cannot invoice this customer. Customer is on Credit Hold": (_DS, "self-paying Credit Hold not drawn (BT-N10)"),
+ "S8-R2|Unit [unit]": (_SW, "drawn filled: \"Unit 854\" (bt-p4-02, -04), \"Unit 4417\" (bt-p4-10, -12)"),
+ "S8-R2|[year] [make] [model]": (_SW, "drawn filled: \"2024 INTERNATIONAL CV515\", \"2017 Ford Transit\", \"2011 Hyundai Santa Fe\" (page 4)"),
+ "S12-R7|Company with a work order cannot be deleted.": (_DS, "not drawn (BT-N15)"),
+ "S19-R3|(IBS#: [number])": (_SW, "drawn on the self-paying invoice: \"Zero Truck and Trailer Repair (IBS#: 873606)\" (bt-p4-17..20); never for a Bill To that differs"),
+ "S19-R6|Service Customer": (_DS, "CSV export has no screen (BT-N20)"),
+ "S19-N1|Service Customer": (_DS, "CSV export has no screen (BT-N20)"),
+}
