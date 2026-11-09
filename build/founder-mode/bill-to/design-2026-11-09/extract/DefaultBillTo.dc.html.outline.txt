@@ -1,0 +1,347 @@
+<html>
+  <head>
+    <meta>
+    <title>
+      "1. Set a customer's default Bill To"
+    <link>
+    <link>
+  <body>
+    <x-dc>
+      <helmet>
+      <div data-theme="light" [width:6400px; background:var(--sv-surface-canvas); color:var(--sv-text-primary)]>
+        <div>
+          <h2.sv-h2>
+            "1. Set a customer's default Bill To"
+          <p [color:var(--sv-text-secondary)]>
+            "Customers. Left to right: New Customer, Edit Customer, the customer card, the payer's "Pays for" list, a user without "View and Manage AP/AR Data", then phone. Before: production v26.45.2.1. After: the locked Bill To build. Credit Terms, Credit Limit and the + beside Sales Representative come from the Credit Terms and Split Representatives work in the same build; they are context, not Bill To."
+        <div>
+          <div>
+            <h3.bt-rowt>
+              "New Customer"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "New Customer"
+                <img.bt-shot alt="New Customer window in production" src="shots/before-p1-new-customer.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "No Bill To field. The red "Oooops! An error occurred" toast and the empty list behind are the production code reading this build's data copy; they are not part of the window."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Bill Invoices To, empty"
+                <img.bt-shot alt="New Customer with the Bill Invoices To field reading This customer" src="shots/after-p1-new-customer-field-empty.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      ""Bill Invoices To" sits after Credit Terms and Credit Limit and before Sales Representative. It reads "This customer"."
+                    <li>
+                      "No help line under it in New Customer."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Open"
+                <img.bt-shot alt="Bill Invoices To list open" src="shots/after-p1-new-customer-field-open.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Name typed: "Lone Star Fleet Services". The first option reads "Lone Star Fleet Services (this customer)", then customers A to Z: "4 Star Truck Repair", "7 Star Truck Repair", "A & J Truck & Trailer Repair", "Aberdeen Diesel Services LLC"."
+                    <li>
+                      "The list holds the first 50 customers A to Z; typing narrows it. Reshot after the tech review."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Searching"
+                <img.bt-shot alt="Bill Invoices To searching A and J" src="shots/after-p1-new-customer-field-search.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Typing "A & J" narrows the list. The "(this customer)" option stays first."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Picked"
+                <img.bt-shot alt="A and J picked in Bill Invoices To" src="shots/after-p1-new-customer-field-picked.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      ""A & J Truck & Trailer Repair" picked. It saves with Save, right after the customer is created. Not saved here."
+          <div>
+            <h3.bt-rowt>
+              "Edit Customer (Buda Truck Repair)"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Edit Customer"
+                <img.bt-shot alt="Edit Customer in production" src="shots/before-p1-edit-customer-buda.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "No Bill To field. Shot 1440 x 1300 so the whole window shows."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Saved default"
+                <img.bt-shot alt="Edit Customer with Bill Invoices To A and J" src="shots/after-p1-edit-customer-buda.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      ""Bill Invoices To" shows the saved default, "A & J Truck & Trailer Repair"."
+                    <li>
+                      "Help line, Edit Customer only: "New work orders and part sales bill to this customer. Existing ones don't change.""
+                    <li>
+                      "Address 2 has a value, so it shows, with an x to clear it."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Open"
+                <img.bt-shot alt="Edit Customer Bill Invoices To list open" src="shots/after-p1-edit-customer-buda-open.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The list opens with "Buda Truck Repair (this customer)" first, then customers A to Z. The current pick, "A & J Truck & Trailer Repair", is highlighted in its A to Z place. Picking "(this customer)" and saving clears the default."
+                    <li>
+                      "Reshot after the tech review. Buda's saved default had been cleared in the build's data before this reshoot; it was set back to A & J for these shots and cleared again after."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Searching"
+                <img.bt-shot alt="Edit Customer Bill Invoices To searching Vald" src="shots/after-p1-edit-customer-buda-search.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Typing "Vald": "Buda Truck Repair (this customer)", then "Uvalde Estates Truck Centre" and "Valders Diesel & Fleet Repair", A to Z. Closed without saving."
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--warning>
+                    "New, no before needed"
+                  <span.bt-name>
+                    "Edit Customer, Counter Sale customer"
+                <img.bt-shot alt="Edit Customer on the Counter Sale customer with no Bill Invoices To field" src="shots/after-p1-edit-customer-counter-sale.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "In this data the Counter Sale customer is named "Gennadiy's Mobile Truck Repair". Its Edit Customer window has no "Bill Invoices To" field and no help line: Credit Terms and Credit Limit are followed directly by Sales Representative."
+                    <li>
+                      "No before board: production has no "Bill Invoices To" field on any customer, so production's window for this customer matches the production Edit Customer board above. Shot 1440 x 1300."
+          <div>
+            <h3.bt-rowt>
+              "The customer card (Buda Truck Repair)"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Customer page"
+                <img.bt-shot alt="Buda customer page in production" src="shots/before-p1-buda-page.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The card ends with IBS, then Contacts and Assets."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Bill Invoices To line"
+                <img.bt-shot alt="Buda customer page with Bill Invoices To line" src="shots/after-p1-buda-page.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Under IBS: "Bill Invoices To", "A & J Truck & Trailer Repair", and "Change"."
+                    <li>
+                      "The line shows only when another customer is saved. A customer that bills itself shows nothing here."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Change"
+                <img.bt-shot alt="Bill Invoices To window" src="shots/after-p1-buda-change-dialog.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Window "Bill Invoices To": "New work orders and part sales for Buda Truck Repair will be billed to this customer. Existing ones don't change.""
+                    <li>
+                      "Buttons "Cancel" and "Save"."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Change, open"
+                <img.bt-shot alt="Bill Invoices To window with the list open" src="shots/after-p1-buda-change-dialog-open.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The list opens above the field when there is no room below: "Buda Truck Repair (this customer)" first, then customers A to Z, the current pick "A & J Truck & Trailer Repair" highlighted. Closed without saving. Reshot after the tech review."
+          <div>
+            <h3.bt-rowt>
+              "The payer (A & J Truck & Trailer Repair)"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Customer page"
+                <img.bt-shot alt="A and J customer page in production" src="shots/before-p1-aj-page.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Contacts and Assets only."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Pays for counter"
+                <img.bt-shot alt="A and J customer page with Pays for 1" src="shots/after-p1-aj-page.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      ""Pays for" 1 sits beside Contacts and Assets. Hidden when the count is 0."
+                    <li>
+                      "A & J has its own default, so it also shows "Bill Invoices To", "Mayfield Heights Truck Centre", "Change". New work orders for Buda still bill A & J, one hop only."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Tooltip"
+                <img.bt-shot alt="Pays for tooltip" src="shots/after-p1-aj-pays-for-tooltip.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Tooltip: "Customers billed to this customer by default"."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Pays for list"
+                <img.bt-shot alt="A and J pays for window" src="shots/after-p1-aj-pays-for-dialog.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Window "A & J Truck & Trailer Repair pays for": "These customers bill new work orders and part sales to A & J Truck & Trailer Repair by default.""
+                    <li>
+                      "Each customer is a link to its page ("Buda Truck Repair"). Button "Close"."
+                    <li>
+                      "Customers are listed A to Z, and a long list scrolls inside the window. A & J pays for one customer, so this window looks the same after the tech review; not reshot."
+          <div>
+            <h3.bt-rowt>
+              "A user without "View and Manage AP/AR Data" (mary.moore, Foreman)"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "New Customer"
+                <img.bt-shot alt="New Customer for a Foreman in production" src="shots/before-p1-mary-new-customer.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Her location is Staging Lethbridge - 4310; customers are shared across the organization."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "New Customer"
+                <img.bt-shot alt="New Customer for a Foreman in this build" src="shots/after-p1-mary-new-customer.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "No "Bill Invoices To" field; the window closes up around it."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Customer page"
+                <img.bt-shot alt="Buda page for a Foreman in production" src="shots/before-p1-mary-buda-page.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The customer card as her role sees it today."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Customer page"
+                <img.bt-shot alt="Buda page for a Foreman in this build" src="shots/after-p1-mary-buda-page.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "She still sees "Bill Invoices To", "A & J Truck & Trailer Repair", with no "Change"."
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Edit Customer"
+                <img.bt-shot alt="Edit Customer for a Foreman in production" src="shots/before-p1-mary-edit-customer-buda.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Shot 1440 x 1300."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Edit Customer"
+                <img.bt-shot alt="Edit Customer for a Foreman in this build" src="shots/after-p1-mary-edit-customer-buda.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "No "Bill Invoices To" field and no help line. The saved default is untouched when she saves."
+              <figure.bt-figp>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Phone"
+                <img.bt-phone alt="Buda page on a phone in production" src="shots/before-p1-phone-buda-page.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "390 wide."
+              <figure.bt-figp>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Phone"
+                <img.bt-phone alt="Buda page on a phone in this build" src="shots/after-p1-phone-buda-page.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The same "Bill Invoices To" line with "Change", under IBS. Nothing phone-only."

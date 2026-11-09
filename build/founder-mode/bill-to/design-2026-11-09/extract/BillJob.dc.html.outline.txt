@@ -1,0 +1,296 @@
+<html>
+  <head>
+    <meta>
+    <title>
+      "2. Bill a work order or part sale to someone else"
+    <link>
+    <link>
+  <body>
+    <x-dc>
+      <helmet>
+      <div data-theme="light" [width:7700px; background:var(--sv-surface-canvas); color:var(--sv-text-primary)]>
+        <div>
+          <h2.sv-h2>
+            "2. Bill a work order or part sale to someone else"
+          <p [color:var(--sv-text-secondary)]>
+            "Work order page, Customer card. Left to right: pick a Bill To on a work order that bills itself (S2-15937, Buda), a work order billed to someone else (S2-17579, Buda billed to Valders), the Authorizer list, Change Customer while a deposit is held (S2-17577), the Work Order Log, a part sale, New Work Order, then phone. Before: production v26.45.2.1. After: the locked Bill To build."
+        <div>
+          <div>
+            <h3.bt-rowt>
+              "Pick a Bill To (S2-15937, Buda Truck Repair bills itself)"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Customer card"
+                <img.bt-shot alt="S2-15937 customer card in production" src="shots/before-p2-wo-self-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Contact, Phone, Authorizer. No Bill To."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "This customer"
+                <img.bt-shot alt="S2-15937 card with Bill To This customer" src="shots/after-p2-wo-self-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      ""Bill To" under Authorizer reads "This customer"."
+                    <li>
+                      "The work order was created before Buda had a default, so it bills Buda."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Open"
+                <img.bt-shot alt="Bill To list open" src="shots/after-p2-wo-billto-open.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "First option: "Buda Truck Repair (this customer)", then customers A to Z: "4 Star Truck Repair", "7 Star Truck Repair", "A & J Truck & Trailer Repair", "Aberdeen Diesel Services LLC" and on. Never Counter Sale."
+                    <li>
+                      "The list holds the first 50 customers A to Z; typing narrows it."
+                    <li>
+                      "Reshot after the tech review (the list used to come in database order)."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Searching"
+                <img.bt-shot alt="Bill To searching Vald" src="shots/after-p2-wo-billto-search.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Typing "Vald": "Buda Truck Repair (this customer)", then A to Z "Uvalde Estates Truck Centre", "Valders Diesel & Fleet Repair"."
+                    <li>
+                      "Reshot after the tech review."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "No match"
+                <img.bt-shot alt="Bill To with no matching customer" src="shots/after-p2-wo-billto-no-match.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Typing "zzqx": only "Buda Truck Repair (this customer)" stays. The "(this customer)" option is always listed, so the list is never empty."
+                    <li>
+                      "Rechecked after the tech review: unchanged."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Picked"
+                <img.bt-shot alt="Bill To Valders picked" src="shots/after-p2-wo-billto-picked.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Picking "Valders Diesel & Fleet Repair" saves at once. The card shows "Bill To" "Valders Diesel & Fleet Re", cut at the card's width."
+                    <li>
+                      "Reverted after the shot."
+          <div>
+            <h3.bt-rowt>
+              "Billed to someone else, and the Authorizer list"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "S2-17579"
+                <img.bt-shot alt="S2-17579 in production" src="shots/before-p2-wo79-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Nothing says who pays."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "S2-17579"
+                <img.bt-shot alt="S2-17579 with Bill To Valders" src="shots/after-p2-wo79-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      ""Bill To" reads "Valders Diesel & Fleet Repair". Nothing is added to the card's header or the work order header."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Authorizer list (S2-17577)"
+                <img.bt-shot alt="Authorizer list in production" src="shots/before-p2-authorizer-open.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "S2-17577 is Desert Edge billed to 7 Star. Production lists Desert Edge's contacts only, one line each."
+                    <li>
+                      "The "Over Limit" pill in the header is production's credit check; this build's Credit Terms work skips it for COD."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Authorizer list, top"
+                <img.bt-shot alt="Authorizer list with customer names" src="shots/after-p2-authorizer-open.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      ""No authorizer", then the customer's contacts, each with "Desert Edge Truck Service & Repair" on a second line."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Authorizer list, bottom"
+                <img.bt-shot alt="Authorizer list scrolled to the Bill To contact" src="shots/after-p2-authorizer-open-scrolled.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The Bill To's contacts come last: "Jaime Johnson", "7 Star Truck Repair"."
+                    <li>
+                      "When the customer pays for itself the list is exactly today's, with no second line."
+          <div>
+            <h3.bt-rowt>
+              "Change Customer while a deposit is held (S2-17577, Desert Edge billed to 7 Star, $10.00 deposit)"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Card"
+                <img.bt-shot alt="S2-17577 in production with the Change Customer button" src="shots/before-p3-deposits-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The Change Customer button (two arrows at the top right of the customer card) is enabled. The "Over Limit" pill is production's credit check; not Bill To."
+                    <li>
+                      "The same production board as page 3's deposit row."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Change Customer enabled"
+                <img.bt-shot alt="S2-17577 with the Change Customer button enabled" src="shots/after-p2-wo77-change-customer.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The Change Customer button stays enabled while the deposit is held, as in production. The deposit no longer greys it out."
+                    <li>
+                      "The server refuses Change Customer only when the change would change the Bill To; picking a customer that keeps "7 Star Truck Repair" as Bill To goes through."
+                    <li>
+                      "New after the tech review. The refusal was not shot: it needs a real Change Customer attempt."
+          <div>
+            <h3.bt-rowt>
+              "Work Order Log, part sale, New Work Order"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Work Order Log"
+                <img.bt-shot alt="Work Order Log in production" src="shots/before-p2-wo-log.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The "Bill To changed" rows exist only because this build wrote them into the shared data. Production reads them as "Customer:" changes. Production itself never writes them."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Work Order Log"
+                <img.bt-shot alt="Work Order Log with Bill To changed rows" src="shots/after-p2-wo-log.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Event "Bill To changed". Details: "Bill To:" old customer, arrow, new customer, each a link (for example "Buda Truck Repair" to "Valders Diesel & Fleet Repair")."
+                    <li>
+                      "These rows come from earlier testing on this work order."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Part sale P2-256"
+                <img.bt-shot alt="Part sale P2-256 in production" src="shots/before-p2-part-sale-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "4 Star Truck Repair card: Contact, Phone, Authorizer."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Part sale P2-256"
+                <img.bt-shot alt="Part sale P2-256 with Bill To 7 Star" src="shots/after-p2-part-sale-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The same "Bill To" field, here "7 Star Truck Repair"."
+                    <li>
+                      "The parts table columns differ from production (Quantity, Requested At, Fees & Discounts). That comes from newer develop work under this build, not Bill To."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "New Work Order"
+                <img.bt-shot alt="New Work Order in production" src="shots/before-p2-new-work-order.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Buda Truck Repair and its CV515 picked."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "New Work Order, unchanged"
+                <img.bt-shot alt="New Work Order in this build" src="shots/after-p2-new-work-order.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The window is pixel-identical to production. No Bill To here; Buda's saved default applies quietly when the work order is created."
+                    <li>
+                      "Accuracy check: the Work Orders list toolbar behind the window is spaced differently (tabs and Search sit further left). That comes from release fixes newer than this build's base, not Bill To."
+          <div>
+            <h3.bt-rowt>
+              "Phone"
+            <div.bt-row>
+              <figure.bt-figp>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "S2-17579"
+                <img.bt-phone alt="S2-17579 details on a phone in production" src="shots/before-p2-phone-wo79-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Details shown."
+              <figure.bt-figp>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "S2-17579"
+                <img.bt-phone alt="S2-17579 details on a phone with Bill To" src="shots/after-p2-phone-wo79-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The same card, with "Bill To" "Valders Diesel & Fleet Repair" under Authorizer. Nothing phone-only."

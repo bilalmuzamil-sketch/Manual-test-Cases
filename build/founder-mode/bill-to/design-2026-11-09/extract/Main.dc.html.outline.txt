@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <meta>
+    <title>
+      "Bill To design: cover"
+    <link>
+    <link>
+  <body>
+    <x-dc>
+      <helmet>
+      <div data-theme="light" [width:2400px; background:var(--sv-surface-canvas); color:var(--sv-text-primary)]>
+        <div>
+          <h1.sv-h1>
+            "Bill To: design file"
+          <p [color:var(--sv-text-secondary)]>
+            "Bill To lets a work order or part sale bill one customer while the work stays with another. Every picture in this file is a real screenshot or a real PDF render, never a drawing. Before boards are production code; after boards are the locked Bill To build. Both ran against the same copy of the same data, so the same records appear on both sides."
+        <div>
+          <div>
+            <h2.sv-h3>
+              "Pages"
+            <ol.bt-list>
+              <li>
+                <span.bt-k>
+                  "1 Set a customer's default Bill To"
+                "(26 boards): New Customer and Edit Customer field (lists A to Z), no field on the Counter Sale customer, the customer card line with Change, the "Pays for" counter and list, a user without AP/AR, phone."
+              <li>
+                <span.bt-k>
+                  "2 Bill a work order or part sale to someone else"
+                "(21 boards): the Customer card Bill To field (A to Z, first 50), the Authorizer list, Change Customer enabled while a deposit is held, the Work Order Log, the part sale card, New Work Order unchanged, phone."
+              <li>
+                <span.bt-k>
+                  "3 When the Bill To is blocked"
+                "(21 boards): invoiced lock, deposits lock (toast for everyone, the button only for users allowed to use it, shown as admin and as mary.moore), Credit Hold on the Bill To with "Change Bill To" on desktop and phone, Counter Sale not offered."
+              <li>
+                <span.bt-k>
+                  "4 Service For band on invoices and estimates"
+                "(22 boards): modern and legacy invoice, estimate, part sale with and without a vehicle, batch, and an invoice that pays for itself."
+              <li>
+                <span.bt-k>
+                  "5 Getting paid"
+                "(15 boards): the payer's Invoices tab with "Service For", the payment window, invoice email recipients, the customer portal note, phone."
+              <li>
+                <span.bt-k>
+                  "6 Deleting a customer that pays for others"
+                "(10 boards): the refusal, the confirm, the result, phone."
+              <li>
+                <span.bt-k>
+                  "7 Asset Work Orders tab"
+                "(11 boards): whole history at this location by default, the Customer chip open, one customer picked, a 1600px board with search filled, phone, and the "Bill To" column on the asset of S2-17579."
+          <div>
+            <h2.sv-h3>
+              "What the boards are"
+            <ul.bt-list>
+              <li>
+                <span.sv-badge.sv-badge--neutral>
+                  "Production (v26.45.2.1)"
+                "the latest release tag, v26.45.2.1, run from a separate checkout."
+              <li>
+                <span.sv-badge.sv-badge--info>
+                  "This build"
+                "the Bill To build after the tech review fixes, uncommitted on branch project/bill-to, snapshot lock_snapshot_20261106_155048 (base commit 551fa20901c7). Boards whose behavior changed in the review were reshot on it and say "Reshot after the tech review" or "New after the tech review"; the other after boards are from the earlier snapshot, lock_snapshot_20261106_113444, and still match the build."
+              <li>
+                <span.sv-badge.sv-badge--warning>
+                  "New, no before exists"
+                "or"
+                <span.sv-badge.sv-badge--warning>
+                  "New, no before needed"
+                "a screen production does not have, or one where production's screen is already on the page."
+              <li>
+                "Production was not re-run for the review reshoot. New boards that pair with production reuse an existing production board, and say so."
+              <li>
+                "Desktop boards are 1440 wide (one list board is 1600 wide); phone boards are 390 wide."
+              <li>
+                "Example data: Buda Truck Repair bills A & J Truck & Trailer Repair by default; A & J pays for Buda; S2-17579 and S2-17581 are Buda billed to Valders Diesel & Fleet Repair; S2-17577 is Desert Edge billed to 7 Star and holds a $10.00 deposit; P2-256 is 4 Star billed to 7 Star. In this data the Counter Sale customer is named "Gennadiy's Mobile Truck Repair". Buda's saved default was found cleared in the build's data at the review reshoot; it was set back to A & J only while page 1 was reshot."
+            <h2.sv-h3>
+              "What is not shown"
+            <ul.bt-list>
+              <li>
+                "Customer portal ("Billed to", Pay only for the Bill To, the "invoice created" email, the deposit link check): the portal app does not run locally."
+              <li>
+                "QuickBooks, AccountingHub, the IBS batch export, the invoice CSV export and the Public API: no screens; covered in the PRD."
+              <li>
+                "AccountingHub: the version 4 invoice event that carries the Bill To to AccountingHub is not built yet (it needs the AccountingHub owner), so nothing here shows it."
+              <li>
+                "Change Customer with a Bill To, its refusal while a deposit is held, and Reverse then invoice again: they change data and add no new screen."
+              <li>
+                "The send window for invoice email (page 5) was rechecked after the tech review and looks the same for S2-17581, so it was not reshot."
+              <li>
+                "Internal and No Charge work orders: they wait on Internal Work Orders (SV-11665)."
+              <li>
+                "Global search inside a list: the local search index is empty on both stacks, so the 1600px search board uses the asset tab's own search."
+              <li>
+                "Credit Terms and Split Representatives changes are in the same build. They are not Bill To and are not described here; they show only where they sit on a Bill To screen (Credit Terms and Credit Limit in the customer windows, the + beside Sales Representative, "Unassigned" in place of "N/A")."

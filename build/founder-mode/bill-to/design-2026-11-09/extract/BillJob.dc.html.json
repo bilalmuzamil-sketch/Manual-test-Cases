@@ -1,0 +1,1663 @@
+{
+ "board": "BillJob.dc.html",
+ "title": "2. Bill a work order or part sale to someone else",
+ "h2": "2. Bill a work order or part sale to someone else",
+ "note": "Work order page, Customer card. Left to right: pick a Bill To on a work order that bills itself (S2-15937, Buda), a work order billed to someone else (S2-17579, Buda billed to Valders), the Authorizer list, Change Customer while a deposit is held (S2-17577), the Work Order Log, a part sale, New Work Order, then phone. Before: production v26.45.2.1. After: the locked Bill To build.",
+ "helmet_css": "\n<style>\nbody{margin:0}\n.bt-shot{width:1200px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-phone{width:390px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}\n.bt-cap li{margin:0 0 6px}\n.bt-row{display:flex;gap:48px;align-items:flex-start}\n.bt-fig{margin:0;width:1200px;display:flex;flex-direction:column;gap:12px}\n.bt-figp{margin:0;width:390px;display:flex;flex-direction:column;gap:12px}\n.bt-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}\n.bt-name{font-size:18px;font-weight:600}\n.bt-rowt{margin:0;font-size:22px;font-weight:600}\n</style>\n",
+ "figures": [
+  {
+   "n": 1,
+   "line": 36,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Customer card",
+   "captions": [
+    "Contact, Phone, Authorizer. No Bill To."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p2-wo-self-card.png",
+     "alt": "S2-15937 customer card in production",
+     "line": 38
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 37,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 1
+    },
+    {
+     "text": "Customer card",
+     "line": 37,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 1
+    },
+    {
+     "text": "S2-15937 customer card in production",
+     "line": 38,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Contact, Phone, Authorizer. No Bill To.",
+     "line": 39,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "line": 41,
+   "badge": "This build",
+   "heading": "This customer",
+   "captions": [
+    "\"Bill To\" under Authorizer reads \"This customer\".",
+    "The work order was created before Buda had a default, so it bills Buda."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-wo-self-card.png",
+     "alt": "S2-15937 card with Bill To This customer",
+     "line": 43
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "This customer",
+     "line": 42,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 2
+    },
+    {
+     "text": "S2-15937 card with Bill To This customer",
+     "line": 43,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"Bill To\" under Authorizer reads \"This customer\".",
+     "line": 44,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "The work order was created before Buda had a default, so it bills Buda.",
+     "line": 44,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "line": 46,
+   "badge": "This build",
+   "heading": "Open",
+   "captions": [
+    "First option: \"Buda Truck Repair (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\", \"Aberdeen Diesel Services LLC\" and on. Never Counter Sale.",
+    "The list holds the first 50 customers A to Z; typing narrows it.",
+    "Reshot after the tech review (the list used to come in database order)."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-wo-billto-open.png",
+     "alt": "Bill To list open",
+     "line": 48
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 47,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 3
+    },
+    {
+     "text": "Open",
+     "line": 47,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 3
+    },
+    {
+     "text": "Bill To list open",
+     "line": 48,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "First option: \"Buda Truck Repair (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\", \"Aberdeen Diesel Services LLC\" and on. Never Counter Sale.",
+     "line": 49,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "The list holds the first 50 customers A to Z; typing narrows it.",
+     "line": 49,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Reshot after the tech review (the list used to come in database order).",
+     "line": 49,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "line": 51,
+   "badge": "This build",
+   "heading": "Searching",
+   "captions": [
+    "Typing \"Vald\": \"Buda Truck Repair (this customer)\", then A to Z \"Uvalde Estates Truck Centre\", \"Valders Diesel & Fleet Repair\".",
+    "Reshot after the tech review."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-wo-billto-search.png",
+     "alt": "Bill To searching Vald",
+     "line": 53
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 52,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 4
+    },
+    {
+     "text": "Searching",
+     "line": 52,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 4
+    },
+    {
+     "text": "Bill To searching Vald",
+     "line": 53,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Typing \"Vald\": \"Buda Truck Repair (this customer)\", then A to Z \"Uvalde Estates Truck Centre\", \"Valders Diesel & Fleet Repair\".",
+     "line": 54,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Reshot after the tech review.",
+     "line": 54,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "line": 56,
+   "badge": "This build",
+   "heading": "No match",
+   "captions": [
+    "Typing \"zzqx\": only \"Buda Truck Repair (this customer)\" stays. The \"(this customer)\" option is always listed, so the list is never empty.",
+    "Rechecked after the tech review: unchanged."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-wo-billto-no-match.png",
+     "alt": "Bill To with no matching customer",
+     "line": 58
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 5
+    },
+    {
+     "text": "No match",
+     "line": 57,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 5
+    },
+    {
+     "text": "Bill To with no matching customer",
+     "line": 58,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Typing \"zzqx\": only \"Buda Truck Repair (this customer)\" stays. The \"(this customer)\" option is always listed, so the list is never empty.",
+     "line": 59,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Rechecked after the tech review: unchanged.",
+     "line": 59,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "line": 61,
+   "badge": "This build",
+   "heading": "Picked",
+   "captions": [
+    "Picking \"Valders Diesel & Fleet Repair\" saves at once. The card shows \"Bill To\" \"Valders Diesel & Fleet Re\", cut at the card's width.",
+    "Reverted after the shot."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-wo-billto-picked.png",
+     "alt": "Bill To Valders picked",
+     "line": 63
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 62,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 6
+    },
+    {
+     "text": "Picked",
+     "line": 62,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 6
+    },
+    {
+     "text": "Bill To Valders picked",
+     "line": 63,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Picking \"Valders Diesel & Fleet Repair\" saves at once. The card shows \"Bill To\" \"Valders Diesel & Fleet Re\", cut at the card's width.",
+     "line": 64,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Reverted after the shot.",
+     "line": 64,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "line": 71,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "S2-17579",
+   "captions": [
+    "Nothing says who pays."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p2-wo79-card.png",
+     "alt": "S2-17579 in production",
+     "line": 73
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 72,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 7
+    },
+    {
+     "text": "S2-17579",
+     "line": 72,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 7
+    },
+    {
+     "text": "S2-17579 in production",
+     "line": 73,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Nothing says who pays.",
+     "line": 74,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "line": 76,
+   "badge": "This build",
+   "heading": "S2-17579",
+   "captions": [
+    "\"Bill To\" reads \"Valders Diesel & Fleet Repair\". Nothing is added to the card's header or the work order header."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-wo79-card.png",
+     "alt": "S2-17579 with Bill To Valders",
+     "line": 78
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 77,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 8
+    },
+    {
+     "text": "S2-17579",
+     "line": 77,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 8
+    },
+    {
+     "text": "S2-17579 with Bill To Valders",
+     "line": 78,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"Bill To\" reads \"Valders Diesel & Fleet Repair\". Nothing is added to the card's header or the work order header.",
+     "line": 79,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "line": 81,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Authorizer list (S2-17577)",
+   "captions": [
+    "S2-17577 is Desert Edge billed to 7 Star. Production lists Desert Edge's contacts only, one line each.",
+    "The \"Over Limit\" pill in the header is production's credit check; this build's Credit Terms work skips it for COD."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p2-authorizer-open.png",
+     "alt": "Authorizer list in production",
+     "line": 83
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 82,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 9
+    },
+    {
+     "text": "Authorizer list (S2-17577)",
+     "line": 82,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 9
+    },
+    {
+     "text": "Authorizer list in production",
+     "line": 83,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "S2-17577 is Desert Edge billed to 7 Star. Production lists Desert Edge's contacts only, one line each.",
+     "line": 84,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 9
+    },
+    {
+     "text": "The \"Over Limit\" pill in the header is production's credit check; this build's Credit Terms work skips it for COD.",
+     "line": 84,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 9
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "line": 86,
+   "badge": "This build",
+   "heading": "Authorizer list, top",
+   "captions": [
+    "\"No authorizer\", then the customer's contacts, each with \"Desert Edge Truck Service & Repair\" on a second line."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-authorizer-open.png",
+     "alt": "Authorizer list with customer names",
+     "line": 88
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 87,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 10
+    },
+    {
+     "text": "Authorizer list, top",
+     "line": 87,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 10
+    },
+    {
+     "text": "Authorizer list with customer names",
+     "line": 88,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"No authorizer\", then the customer's contacts, each with \"Desert Edge Truck Service & Repair\" on a second line.",
+     "line": 89,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "line": 91,
+   "badge": "This build",
+   "heading": "Authorizer list, bottom",
+   "captions": [
+    "The Bill To's contacts come last: \"Jaime Johnson\", \"7 Star Truck Repair\".",
+    "When the customer pays for itself the list is exactly today's, with no second line."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-authorizer-open-scrolled.png",
+     "alt": "Authorizer list scrolled to the Bill To contact",
+     "line": 93
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 92,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 11
+    },
+    {
+     "text": "Authorizer list, bottom",
+     "line": 92,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 11
+    },
+    {
+     "text": "Authorizer list scrolled to the Bill To contact",
+     "line": 93,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The Bill To's contacts come last: \"Jaime Johnson\", \"7 Star Truck Repair\".",
+     "line": 94,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "When the customer pays for itself the list is exactly today's, with no second line.",
+     "line": 94,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 11
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "line": 101,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Card",
+   "captions": [
+    "The Change Customer button (two arrows at the top right of the customer card) is enabled. The \"Over Limit\" pill is production's credit check; not Bill To.",
+    "The same production board as page 3's deposit row."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p3-deposits-card.png",
+     "alt": "S2-17577 in production with the Change Customer button",
+     "line": 103
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 102,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 12
+    },
+    {
+     "text": "Card",
+     "line": 102,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 12
+    },
+    {
+     "text": "S2-17577 in production with the Change Customer button",
+     "line": 103,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The Change Customer button (two arrows at the top right of the customer card) is enabled. The \"Over Limit\" pill is production's credit check; not Bill To.",
+     "line": 104,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 12
+    },
+    {
+     "text": "The same production board as page 3's deposit row.",
+     "line": 104,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 12
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "line": 106,
+   "badge": "This build",
+   "heading": "Change Customer enabled",
+   "captions": [
+    "The Change Customer button stays enabled while the deposit is held, as in production. The deposit no longer greys it out.",
+    "The server refuses Change Customer only when the change would change the Bill To; picking a customer that keeps \"7 Star Truck Repair\" as Bill To goes through.",
+    "New after the tech review. The refusal was not shot: it needs a real Change Customer attempt."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-wo77-change-customer.png",
+     "alt": "S2-17577 with the Change Customer button enabled",
+     "line": 108
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 107,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 13
+    },
+    {
+     "text": "Change Customer enabled",
+     "line": 107,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 13
+    },
+    {
+     "text": "S2-17577 with the Change Customer button enabled",
+     "line": 108,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The Change Customer button stays enabled while the deposit is held, as in production. The deposit no longer greys it out.",
+     "line": 109,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 13
+    },
+    {
+     "text": "The server refuses Change Customer only when the change would change the Bill To; picking a customer that keeps \"7 Star Truck Repair\" as Bill To goes through.",
+     "line": 109,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 13
+    },
+    {
+     "text": "New after the tech review. The refusal was not shot: it needs a real Change Customer attempt.",
+     "line": 109,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 13
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "line": 116,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Work Order Log",
+   "captions": [
+    "The \"Bill To changed\" rows exist only because this build wrote them into the shared data. Production reads them as \"Customer:\" changes. Production itself never writes them."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p2-wo-log.png",
+     "alt": "Work Order Log in production",
+     "line": 118
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 117,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 14
+    },
+    {
+     "text": "Work Order Log",
+     "line": 117,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 14
+    },
+    {
+     "text": "Work Order Log in production",
+     "line": 118,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The \"Bill To changed\" rows exist only because this build wrote them into the shared data. Production reads them as \"Customer:\" changes. Production itself never writes them.",
+     "line": 119,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 14
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "line": 121,
+   "badge": "This build",
+   "heading": "Work Order Log",
+   "captions": [
+    "Event \"Bill To changed\". Details: \"Bill To:\" old customer, arrow, new customer, each a link (for example \"Buda Truck Repair\" to \"Valders Diesel & Fleet Repair\").",
+    "These rows come from earlier testing on this work order."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-wo-log.png",
+     "alt": "Work Order Log with Bill To changed rows",
+     "line": 123
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 122,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 15
+    },
+    {
+     "text": "Work Order Log",
+     "line": 122,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 15
+    },
+    {
+     "text": "Work Order Log with Bill To changed rows",
+     "line": 123,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Event \"Bill To changed\". Details: \"Bill To:\" old customer, arrow, new customer, each a link (for example \"Buda Truck Repair\" to \"Valders Diesel & Fleet Repair\").",
+     "line": 124,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 15
+    },
+    {
+     "text": "These rows come from earlier testing on this work order.",
+     "line": 124,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 15
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "line": 126,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Part sale P2-256",
+   "captions": [
+    "4 Star Truck Repair card: Contact, Phone, Authorizer."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p2-part-sale-card.png",
+     "alt": "Part sale P2-256 in production",
+     "line": 128
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 127,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 16
+    },
+    {
+     "text": "Part sale P2-256",
+     "line": 127,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 16
+    },
+    {
+     "text": "Part sale P2-256 in production",
+     "line": 128,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "4 Star Truck Repair card: Contact, Phone, Authorizer.",
+     "line": 129,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 16
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "line": 131,
+   "badge": "This build",
+   "heading": "Part sale P2-256",
+   "captions": [
+    "The same \"Bill To\" field, here \"7 Star Truck Repair\".",
+    "The parts table columns differ from production (Quantity, Requested At, Fees & Discounts). That comes from newer develop work under this build, not Bill To."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-part-sale-card.png",
+     "alt": "Part sale P2-256 with Bill To 7 Star",
+     "line": 133
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 132,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 17
+    },
+    {
+     "text": "Part sale P2-256",
+     "line": 132,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 17
+    },
+    {
+     "text": "Part sale P2-256 with Bill To 7 Star",
+     "line": 133,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The same \"Bill To\" field, here \"7 Star Truck Repair\".",
+     "line": 134,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 17
+    },
+    {
+     "text": "The parts table columns differ from production (Quantity, Requested At, Fees & Discounts). That comes from newer develop work under this build, not Bill To.",
+     "line": 134,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 17
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "line": 136,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "New Work Order",
+   "captions": [
+    "Buda Truck Repair and its CV515 picked."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p2-new-work-order.png",
+     "alt": "New Work Order in production",
+     "line": 138
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 137,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 18
+    },
+    {
+     "text": "New Work Order",
+     "line": 137,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 18
+    },
+    {
+     "text": "New Work Order in production",
+     "line": 138,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Buda Truck Repair and its CV515 picked.",
+     "line": 139,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 18
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "line": 141,
+   "badge": "This build",
+   "heading": "New Work Order, unchanged",
+   "captions": [
+    "The window is pixel-identical to production. No Bill To here; Buda's saved default applies quietly when the work order is created.",
+    "Accuracy check: the Work Orders list toolbar behind the window is spaced differently (tabs and Search sit further left). That comes from release fixes newer than this build's base, not Bill To."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-new-work-order.png",
+     "alt": "New Work Order in this build",
+     "line": 143
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 142,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 19
+    },
+    {
+     "text": "New Work Order, unchanged",
+     "line": 142,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 19
+    },
+    {
+     "text": "New Work Order in this build",
+     "line": 143,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The window is pixel-identical to production. No Bill To here; Buda's saved default applies quietly when the work order is created.",
+     "line": 144,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 19
+    },
+    {
+     "text": "Accuracy check: the Work Orders list toolbar behind the window is spaced differently (tabs and Search sit further left). That comes from release fixes newer than this build's base, not Bill To.",
+     "line": 144,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 19
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "line": 151,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "S2-17579",
+   "captions": [
+    "Details shown."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p2-phone-wo79-card.png",
+     "alt": "S2-17579 details on a phone in production",
+     "line": 153
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 152,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 20
+    },
+    {
+     "text": "S2-17579",
+     "line": 152,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 20
+    },
+    {
+     "text": "S2-17579 details on a phone in production",
+     "line": 153,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "Details shown.",
+     "line": 154,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 20
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "line": 156,
+   "badge": "This build",
+   "heading": "S2-17579",
+   "captions": [
+    "The same card, with \"Bill To\" \"Valders Diesel & Fleet Repair\" under Authorizer. Nothing phone-only."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p2-phone-wo79-card.png",
+     "alt": "S2-17579 details on a phone with Bill To",
+     "line": 158
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 157,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 21
+    },
+    {
+     "text": "S2-17579",
+     "line": 157,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 21
+    },
+    {
+     "text": "S2-17579 details on a phone with Bill To",
+     "line": 158,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "The same card, with \"Bill To\" \"Valders Diesel & Fleet Repair\" under Authorizer. Nothing phone-only.",
+     "line": 159,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 21
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "text": "2. Bill a work order or part sale to someone else",
+   "line": 5,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "2. Bill a work order or part sale to someone else",
+   "line": 29,
+   "kind": "text",
+   "ctx": "sv-h2",
+   "fig": 0
+  },
+  {
+   "text": "Work order page, Customer card. Left to right: pick a Bill To on a work order that bills itself (S2-15937, Buda), a work order billed to someone else (S2-17579, Buda billed to Valders), the Authorizer list, Change Customer while a deposit is held (S2-17577), the Work Order Log, a part sale, New Work Order, then phone. Before: production v26.45.2.1. After: the locked Bill To build.",
+   "line": 30,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "Pick a Bill To (S2-15937, Buda Truck Repair bills itself)",
+   "line": 34,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 37,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 1
+  },
+  {
+   "text": "Customer card",
+   "line": 37,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 1
+  },
+  {
+   "text": "Contact, Phone, Authorizer. No Bill To.",
+   "line": 39,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "This build",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "This customer",
+   "line": 42,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 2
+  },
+  {
+   "text": "\"Bill To\" under Authorizer reads \"This customer\".",
+   "line": 44,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "The work order was created before Buda had a default, so it bills Buda.",
+   "line": 44,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "This build",
+   "line": 47,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 3
+  },
+  {
+   "text": "Open",
+   "line": 47,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 3
+  },
+  {
+   "text": "First option: \"Buda Truck Repair (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\", \"Aberdeen Diesel Services LLC\" and on. Never Counter Sale.",
+   "line": 49,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "The list holds the first 50 customers A to Z; typing narrows it.",
+   "line": 49,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Reshot after the tech review (the list used to come in database order).",
+   "line": 49,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "This build",
+   "line": 52,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 4
+  },
+  {
+   "text": "Searching",
+   "line": 52,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 4
+  },
+  {
+   "text": "Typing \"Vald\": \"Buda Truck Repair (this customer)\", then A to Z \"Uvalde Estates Truck Centre\", \"Valders Diesel & Fleet Repair\".",
+   "line": 54,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Reshot after the tech review.",
+   "line": 54,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "This build",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 5
+  },
+  {
+   "text": "No match",
+   "line": 57,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 5
+  },
+  {
+   "text": "Typing \"zzqx\": only \"Buda Truck Repair (this customer)\" stays. The \"(this customer)\" option is always listed, so the list is never empty.",
+   "line": 59,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Rechecked after the tech review: unchanged.",
+   "line": 59,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "This build",
+   "line": 62,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 6
+  },
+  {
+   "text": "Picked",
+   "line": 62,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 6
+  },
+  {
+   "text": "Picking \"Valders Diesel & Fleet Repair\" saves at once. The card shows \"Bill To\" \"Valders Diesel & Fleet Re\", cut at the card's width.",
+   "line": 64,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Reverted after the shot.",
+   "line": 64,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Billed to someone else, and the Authorizer list",
+   "line": 69,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 72,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 7
+  },
+  {
+   "text": "S2-17579",
+   "line": 72,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 7
+  },
+  {
+   "text": "Nothing says who pays.",
+   "line": 74,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "This build",
+   "line": 77,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 8
+  },
+  {
+   "text": "S2-17579",
+   "line": 77,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 8
+  },
+  {
+   "text": "\"Bill To\" reads \"Valders Diesel & Fleet Repair\". Nothing is added to the card's header or the work order header.",
+   "line": 79,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 82,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 9
+  },
+  {
+   "text": "Authorizer list (S2-17577)",
+   "line": 82,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 9
+  },
+  {
+   "text": "S2-17577 is Desert Edge billed to 7 Star. Production lists Desert Edge's contacts only, one line each.",
+   "line": 84,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 9
+  },
+  {
+   "text": "The \"Over Limit\" pill in the header is production's credit check; this build's Credit Terms work skips it for COD.",
+   "line": 84,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 9
+  },
+  {
+   "text": "This build",
+   "line": 87,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 10
+  },
+  {
+   "text": "Authorizer list, top",
+   "line": 87,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 10
+  },
+  {
+   "text": "\"No authorizer\", then the customer's contacts, each with \"Desert Edge Truck Service & Repair\" on a second line.",
+   "line": 89,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "This build",
+   "line": 92,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 11
+  },
+  {
+   "text": "Authorizer list, bottom",
+   "line": 92,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 11
+  },
+  {
+   "text": "The Bill To's contacts come last: \"Jaime Johnson\", \"7 Star Truck Repair\".",
+   "line": 94,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "When the customer pays for itself the list is exactly today's, with no second line.",
+   "line": 94,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Change Customer while a deposit is held (S2-17577, Desert Edge billed to 7 Star, $10.00 deposit)",
+   "line": 99,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 102,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 12
+  },
+  {
+   "text": "Card",
+   "line": 102,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 12
+  },
+  {
+   "text": "The Change Customer button (two arrows at the top right of the customer card) is enabled. The \"Over Limit\" pill is production's credit check; not Bill To.",
+   "line": 104,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 12
+  },
+  {
+   "text": "The same production board as page 3's deposit row.",
+   "line": 104,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 12
+  },
+  {
+   "text": "This build",
+   "line": 107,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 13
+  },
+  {
+   "text": "Change Customer enabled",
+   "line": 107,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 13
+  },
+  {
+   "text": "The Change Customer button stays enabled while the deposit is held, as in production. The deposit no longer greys it out.",
+   "line": 109,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 13
+  },
+  {
+   "text": "The server refuses Change Customer only when the change would change the Bill To; picking a customer that keeps \"7 Star Truck Repair\" as Bill To goes through.",
+   "line": 109,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 13
+  },
+  {
+   "text": "New after the tech review. The refusal was not shot: it needs a real Change Customer attempt.",
+   "line": 109,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 13
+  },
+  {
+   "text": "Work Order Log, part sale, New Work Order",
+   "line": 114,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 117,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 14
+  },
+  {
+   "text": "Work Order Log",
+   "line": 117,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 14
+  },
+  {
+   "text": "The \"Bill To changed\" rows exist only because this build wrote them into the shared data. Production reads them as \"Customer:\" changes. Production itself never writes them.",
+   "line": 119,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 14
+  },
+  {
+   "text": "This build",
+   "line": 122,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 15
+  },
+  {
+   "text": "Work Order Log",
+   "line": 122,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 15
+  },
+  {
+   "text": "Event \"Bill To changed\". Details: \"Bill To:\" old customer, arrow, new customer, each a link (for example \"Buda Truck Repair\" to \"Valders Diesel & Fleet Repair\").",
+   "line": 124,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 15
+  },
+  {
+   "text": "These rows come from earlier testing on this work order.",
+   "line": 124,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 15
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 127,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 16
+  },
+  {
+   "text": "Part sale P2-256",
+   "line": 127,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 16
+  },
+  {
+   "text": "4 Star Truck Repair card: Contact, Phone, Authorizer.",
+   "line": 129,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 16
+  },
+  {
+   "text": "This build",
+   "line": 132,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 17
+  },
+  {
+   "text": "Part sale P2-256",
+   "line": 132,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 17
+  },
+  {
+   "text": "The same \"Bill To\" field, here \"7 Star Truck Repair\".",
+   "line": 134,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 17
+  },
+  {
+   "text": "The parts table columns differ from production (Quantity, Requested At, Fees & Discounts). That comes from newer develop work under this build, not Bill To.",
+   "line": 134,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 17
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 137,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 18
+  },
+  {
+   "text": "New Work Order",
+   "line": 137,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 18
+  },
+  {
+   "text": "Buda Truck Repair and its CV515 picked.",
+   "line": 139,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 18
+  },
+  {
+   "text": "This build",
+   "line": 142,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 19
+  },
+  {
+   "text": "New Work Order, unchanged",
+   "line": 142,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 19
+  },
+  {
+   "text": "The window is pixel-identical to production. No Bill To here; Buda's saved default applies quietly when the work order is created.",
+   "line": 144,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 19
+  },
+  {
+   "text": "Accuracy check: the Work Orders list toolbar behind the window is spaced differently (tabs and Search sit further left). That comes from release fixes newer than this build's base, not Bill To.",
+   "line": 144,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 19
+  },
+  {
+   "text": "Phone",
+   "line": 149,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 152,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 20
+  },
+  {
+   "text": "S2-17579",
+   "line": 152,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 20
+  },
+  {
+   "text": "Details shown.",
+   "line": 154,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 20
+  },
+  {
+   "text": "This build",
+   "line": 157,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 21
+  },
+  {
+   "text": "S2-17579",
+   "line": 157,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 21
+  },
+  {
+   "text": "The same card, with \"Bill To\" \"Valders Diesel & Fleet Repair\" under Authorizer. Nothing phone-only.",
+   "line": 159,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 21
+  }
+ ]
+}

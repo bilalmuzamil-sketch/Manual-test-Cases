@@ -1,0 +1,292 @@
+<html>
+  <head>
+    <meta>
+    <title>
+      "3. When the Bill To is blocked"
+    <link>
+    <link>
+  <body>
+    <x-dc>
+      <helmet>
+      <div data-theme="light" [width:6400px; background:var(--sv-surface-canvas); color:var(--sv-text-primary)]>
+        <div>
+          <h2.sv-h2>
+            "3. When the Bill To is blocked"
+          <p [color:var(--sv-text-secondary)]>
+            "Left to right: an invoiced work order, a work order holding a deposit, a Bill To on Credit Hold, Counter Sale, then phone. Before: production v26.45.2.1. After: the locked Bill To build. For the Credit Hold row, Valders was put on Credit Hold on both stacks for the shots and set back to COD after. After the tech review: clicking or tapping a locked Bill To shows its message as an error toast for anyone who can see the field; the button in the toast ("Open Deposits" or "Go To Invoice") shows only for users allowed to use it; history mode shows no lock message. The deposit row and the mary.moore row were reshot on the build after the review."
+        <div>
+          <div>
+            <h3.bt-rowt>
+              "Invoiced (S2-17581, Buda billed to Valders, Paid)"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Invoiced card"
+                <img.bt-shot alt="S2-17581 in production" src="shots/before-p3-invoiced-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "No Bill To on the card."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Read-only"
+                <img.bt-shot alt="S2-17581 with read-only Bill To" src="shots/after-p3-invoiced-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      ""Bill To" "Valders Diesel & Fleet Repair", read-only."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Hover"
+                <img.bt-shot alt="Invoiced tooltip" src="shots/after-p3-invoiced-tooltip.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Tooltip: "Invoiced. Reverse the invoice to change who's billed.""
+                    <li>
+                      "No tooltip and no toast in history mode."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Click"
+                <img.bt-shot alt="Invoiced toast with Go To Invoice" src="shots/after-p3-invoiced-toast.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Error toast with the same words and "Go To Invoice" and "Close". "Go To Invoice" opens the Finance tab; it never reverses anything."
+                    <li>
+                      "Anyone who can see the field gets the toast. "Go To Invoice" shows only for users who can open the Finance tab; others get the message and "Close" only."
+                    <li>
+                      "Rechecked after the tech review: pixel-identical to the earlier shot, so not replaced."
+          <div>
+            <h3.bt-rowt>
+              "Deposit held (S2-17577, Desert Edge billed to 7 Star, $10.00 deposit)"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Card"
+                <img.bt-shot alt="S2-17577 in production" src="shots/before-p3-deposits-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "No Bill To on the card. The "Over Limit" pill is production's credit check; not Bill To."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Read-only"
+                <img.bt-shot alt="S2-17577 with read-only Bill To" src="shots/after-p3-deposits-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      ""Bill To" "7 Star Truck Repair", read-only while the deposit is held."
+                    <li>
+                      "The Change Customer button (two arrows at the top right of the customer card) stays enabled. The server refuses Change Customer only when it would change the Bill To."
+                    <li>
+                      "Reshot after the tech review."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Hover"
+                <img.bt-shot alt="Deposit tooltip" src="shots/after-p3-deposits-tooltip.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Tooltip: "This work order has a $10.00 deposit from 7 Star Truck Repair. Reverse it, change the Bill To, then take the deposit again under the new Bill To.""
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Click"
+                <img.bt-shot alt="Deposit toast with Open Deposits" src="shots/after-p3-deposits-toast.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Error toast with the same words, "Open Deposits" and "Close". "Open Deposits" opens the Deposits tab of the customer holding the largest share."
+                    <li>
+                      "Shot as admin, who can open Deposits. The hover tooltip also shows at the bottom left because the pointer is still on the field. Reshot after the tech review."
+          <div>
+            <h3.bt-rowt>
+              "Deposit held, a user without "View and Manage AP/AR Data" (mary.moore, Foreman, S2-17577)"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Card (admin)"
+                <img.bt-shot alt="S2-17577 in production" src="shots/before-p3-deposits-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The same production board as the row above: production has no Bill To, so there is nothing to tap. No production board was shot as mary.moore for this work order."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Card"
+                <img.bt-shot alt="S2-17577 as mary.moore with the Bill To shown read-only" src="shots/after-p3-mary-deposits-card.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "She sees "Bill To" "7 Star Truck Repair" because someone else pays."
+                    <li>
+                      "Accuracy check: the top bar shows her role's menu (no Dashboard, no Reports, a wider search box) and "Staging Heavy Duty - 9919". Her only location is Staging Lethbridge - 4310, so for these shots her staff location was moved to Staging Heavy Duty - 9919 and moved back after. Not Bill To."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Click"
+                <img.bt-shot alt="Deposit toast with only Close for mary.moore" src="shots/after-p3-mary-deposits-toast.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Error toast: "This work order has a $10.00 deposit from 7 Star Truck Repair. Reverse it, change the Bill To, then take the deposit again under the new Bill To." with "Close" only."
+                    <li>
+                      "No "Open Deposits": she cannot open a customer's Deposits tab. The tooltip with the same words shows at the bottom left because the pointer is still on the field."
+              <figure.bt-figp>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Phone, tap"
+                <img.bt-phone alt="Deposit toast on a phone for mary.moore" src="shots/after-p3-mary-phone-deposits-toast.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Details open, the Bill To field tapped (it sits below the fold, under the toast). The same toast, "Close" only. A tap never depends on a hover."
+          <div>
+            <h3.bt-rowt>
+              "Bill To on Credit Hold (S2-17579, Buda billed to Valders)"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Lines"
+                <img.bt-shot alt="S2-17579 in production with the payer on Credit Hold" src="shots/before-p3-credit-hold-banner.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Production checks only Buda, which is on COD, so no banner."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Banner"
+                <img.bt-shot alt="Credit Hold banner naming the Bill To" src="shots/after-p3-credit-hold-banner.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Banner: "Cannot invoice. The Bill To customer, Valders Diesel & Fleet Repair, is on Credit Hold", with "Change Bill To"."
+                    <li>
+                      "The work order header shows a "Credit Hold" pill."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Finance"
+                <img.bt-shot alt="Finance tab in production" src="shots/before-p3-credit-hold-finance.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "No banner. Create Invoice is greyed here only because no line is complete yet."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Finance"
+                <img.bt-shot alt="Finance tab with the banner and Create Invoice disabled" src="shots/after-p3-credit-hold-finance.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The same banner on Finance. Create Invoice is greyed here because no line is complete; the Credit Hold tooltip on it was not shot."
+                    <li>
+                      "The toolbar (Customer PO, icons, Add Deposit, Create Invoice) sits where it does in production."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Change Bill To"
+                <img.bt-shot alt="Change Bill To opens the card's Bill To list" src="shots/after-p3-credit-hold-change-bill-to.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      ""Change Bill To" opens and focuses the card's Bill To field, so the page scrolls to it."
+                    <li>
+                      "The list: "Buda Truck Repair (this customer)" first, then the current Bill To "Valders Diesel & Fleet Repair" highlighted, then customers A to Z ("4 Star Truck Repair", "7 Star Truck Repair", "A & J Truck & Trailer Repair"). Reshot after the tech review."
+          <div>
+            <h3.bt-rowt>
+              "Counter Sale is never offered, and phone"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--warning>
+                    "New, no before exists"
+                  <span.bt-name>
+                    "Counter Sale not offered"
+                <img.bt-shot alt="Searching the Counter Sale customer finds nothing" src="shots/after-p3-counter-sale-not-offered.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "In this data the Counter Sale customer is named "Gennadiy's Mobile Truck Repair". Typing "Gennadiy" in Bill To leaves only "Buda Truck Repair (this customer)"."
+              <figure.bt-figp>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Phone"
+                <img.bt-phone alt="S2-17579 on a phone in production" src="shots/before-p3-phone-credit-hold.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "No banner."
+              <figure.bt-figp>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Phone"
+                <img.bt-phone alt="S2-17579 on a phone with Credit Hold" src="shots/after-p3-phone-credit-hold.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The "Credit Hold" pill shows in the phone header, and the banner "Cannot invoice. The Bill To customer, Valders Diesel & Fleet Repair, is on Credit Hold" with "Change Bill To" sits above the lines."
+              <figure.bt-figp>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Phone, Change Bill To"
+                <img.bt-phone alt="Change Bill To on a phone opens Details and the Bill To list" src="shots/after-p3-phone-credit-hold-change-bill-to.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Tapping "Change Bill To" opens the phone Details, scrolls to the Bill To field and opens its list: "Buda Truck Repair (this customer)", "Valders Diesel & Fleet Repair" highlighted, then customers A to Z."
+                    <li>
+                      "New after the tech review (it used to target the card hidden behind Details, so nothing visible happened). Closed without saving."

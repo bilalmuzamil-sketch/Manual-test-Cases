@@ -1,0 +1,1948 @@
+{
+ "board": "DefaultBillTo.dc.html",
+ "title": "1. Set a customer's default Bill To",
+ "h2": "1. Set a customer's default Bill To",
+ "note": "Customers. Left to right: New Customer, Edit Customer, the customer card, the payer's \"Pays for\" list, a user without \"View and Manage AP/AR Data\", then phone. Before: production v26.45.2.1. After: the locked Bill To build. Credit Terms, Credit Limit and the + beside Sales Representative come from the Credit Terms and Split Representatives work in the same build; they are context, not Bill To.",
+ "helmet_css": "\n<style>\nbody{margin:0}\n.bt-shot{width:1200px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-phone{width:390px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}\n.bt-cap li{margin:0 0 6px}\n.bt-row{display:flex;gap:48px;align-items:flex-start}\n.bt-fig{margin:0;width:1200px;display:flex;flex-direction:column;gap:12px}\n.bt-figp{margin:0;width:390px;display:flex;flex-direction:column;gap:12px}\n.bt-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}\n.bt-name{font-size:18px;font-weight:600}\n.bt-rowt{margin:0;font-size:22px;font-weight:600}\n</style>\n",
+ "figures": [
+  {
+   "n": 1,
+   "line": 36,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "New Customer",
+   "captions": [
+    "No Bill To field. The red \"Oooops! An error occurred\" toast and the empty list behind are the production code reading this build's data copy; they are not part of the window."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p1-new-customer.png",
+     "alt": "New Customer window in production",
+     "line": 38
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 37,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 1
+    },
+    {
+     "text": "New Customer",
+     "line": 37,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 1
+    },
+    {
+     "text": "New Customer window in production",
+     "line": 38,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "No Bill To field. The red \"Oooops! An error occurred\" toast and the empty list behind are the production code reading this build's data copy; they are not part of the window.",
+     "line": 39,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "line": 41,
+   "badge": "This build",
+   "heading": "Bill Invoices To, empty",
+   "captions": [
+    "\"Bill Invoices To\" sits after Credit Terms and Credit Limit and before Sales Representative. It reads \"This customer\".",
+    "No help line under it in New Customer."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-new-customer-field-empty.png",
+     "alt": "New Customer with the Bill Invoices To field reading This customer",
+     "line": 43
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "Bill Invoices To, empty",
+     "line": 42,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 2
+    },
+    {
+     "text": "New Customer with the Bill Invoices To field reading This customer",
+     "line": 43,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"Bill Invoices To\" sits after Credit Terms and Credit Limit and before Sales Representative. It reads \"This customer\".",
+     "line": 44,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "No help line under it in New Customer.",
+     "line": 44,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "line": 46,
+   "badge": "This build",
+   "heading": "Open",
+   "captions": [
+    "Name typed: \"Lone Star Fleet Services\". The first option reads \"Lone Star Fleet Services (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\", \"Aberdeen Diesel Services LLC\".",
+    "The list holds the first 50 customers A to Z; typing narrows it. Reshot after the tech review."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-new-customer-field-open.png",
+     "alt": "Bill Invoices To list open",
+     "line": 48
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 47,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 3
+    },
+    {
+     "text": "Open",
+     "line": 47,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 3
+    },
+    {
+     "text": "Bill Invoices To list open",
+     "line": 48,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Name typed: \"Lone Star Fleet Services\". The first option reads \"Lone Star Fleet Services (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\", \"Aberdeen Diesel Services LLC\".",
+     "line": 49,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "The list holds the first 50 customers A to Z; typing narrows it. Reshot after the tech review.",
+     "line": 49,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "line": 51,
+   "badge": "This build",
+   "heading": "Searching",
+   "captions": [
+    "Typing \"A & J\" narrows the list. The \"(this customer)\" option stays first."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-new-customer-field-search.png",
+     "alt": "Bill Invoices To searching A and J",
+     "line": 53
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 52,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 4
+    },
+    {
+     "text": "Searching",
+     "line": 52,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 4
+    },
+    {
+     "text": "Bill Invoices To searching A and J",
+     "line": 53,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Typing \"A & J\" narrows the list. The \"(this customer)\" option stays first.",
+     "line": 54,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "line": 56,
+   "badge": "This build",
+   "heading": "Picked",
+   "captions": [
+    "\"A & J Truck & Trailer Repair\" picked. It saves with Save, right after the customer is created. Not saved here."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-new-customer-field-picked.png",
+     "alt": "A and J picked in Bill Invoices To",
+     "line": 58
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 5
+    },
+    {
+     "text": "Picked",
+     "line": 57,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 5
+    },
+    {
+     "text": "A and J picked in Bill Invoices To",
+     "line": 58,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"A & J Truck & Trailer Repair\" picked. It saves with Save, right after the customer is created. Not saved here.",
+     "line": 59,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "line": 66,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Edit Customer",
+   "captions": [
+    "No Bill To field. Shot 1440 x 1300 so the whole window shows."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p1-edit-customer-buda.png",
+     "alt": "Edit Customer in production",
+     "line": 68
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 67,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 6
+    },
+    {
+     "text": "Edit Customer",
+     "line": 67,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 6
+    },
+    {
+     "text": "Edit Customer in production",
+     "line": 68,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "No Bill To field. Shot 1440 x 1300 so the whole window shows.",
+     "line": 69,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "line": 71,
+   "badge": "This build",
+   "heading": "Saved default",
+   "captions": [
+    "\"Bill Invoices To\" shows the saved default, \"A & J Truck & Trailer Repair\".",
+    "Help line, Edit Customer only: \"New work orders and part sales bill to this customer. Existing ones don't change.\"",
+    "Address 2 has a value, so it shows, with an x to clear it."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-edit-customer-buda.png",
+     "alt": "Edit Customer with Bill Invoices To A and J",
+     "line": 73
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 72,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 7
+    },
+    {
+     "text": "Saved default",
+     "line": 72,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 7
+    },
+    {
+     "text": "Edit Customer with Bill Invoices To A and J",
+     "line": 73,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"Bill Invoices To\" shows the saved default, \"A & J Truck & Trailer Repair\".",
+     "line": 74,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Help line, Edit Customer only: \"New work orders and part sales bill to this customer. Existing ones don't change.\"",
+     "line": 74,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Address 2 has a value, so it shows, with an x to clear it.",
+     "line": 74,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "line": 76,
+   "badge": "This build",
+   "heading": "Open",
+   "captions": [
+    "The list opens with \"Buda Truck Repair (this customer)\" first, then customers A to Z. The current pick, \"A & J Truck & Trailer Repair\", is highlighted in its A to Z place. Picking \"(this customer)\" and saving clears the default.",
+    "Reshot after the tech review. Buda's saved default had been cleared in the build's data before this reshoot; it was set back to A & J for these shots and cleared again after."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-edit-customer-buda-open.png",
+     "alt": "Edit Customer Bill Invoices To list open",
+     "line": 78
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 77,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 8
+    },
+    {
+     "text": "Open",
+     "line": 77,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 8
+    },
+    {
+     "text": "Edit Customer Bill Invoices To list open",
+     "line": 78,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The list opens with \"Buda Truck Repair (this customer)\" first, then customers A to Z. The current pick, \"A & J Truck & Trailer Repair\", is highlighted in its A to Z place. Picking \"(this customer)\" and saving clears the default.",
+     "line": 79,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Reshot after the tech review. Buda's saved default had been cleared in the build's data before this reshoot; it was set back to A & J for these shots and cleared again after.",
+     "line": 79,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "line": 81,
+   "badge": "This build",
+   "heading": "Searching",
+   "captions": [
+    "Typing \"Vald\": \"Buda Truck Repair (this customer)\", then \"Uvalde Estates Truck Centre\" and \"Valders Diesel & Fleet Repair\", A to Z. Closed without saving."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-edit-customer-buda-search.png",
+     "alt": "Edit Customer Bill Invoices To searching Vald",
+     "line": 83
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 82,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 9
+    },
+    {
+     "text": "Searching",
+     "line": 82,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 9
+    },
+    {
+     "text": "Edit Customer Bill Invoices To searching Vald",
+     "line": 83,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Typing \"Vald\": \"Buda Truck Repair (this customer)\", then \"Uvalde Estates Truck Centre\" and \"Valders Diesel & Fleet Repair\", A to Z. Closed without saving.",
+     "line": 84,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 9
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "line": 88,
+   "badge": "New, no before needed",
+   "heading": "Edit Customer, Counter Sale customer",
+   "captions": [
+    "In this data the Counter Sale customer is named \"Gennadiy's Mobile Truck Repair\". Its Edit Customer window has no \"Bill Invoices To\" field and no help line: Credit Terms and Credit Limit are followed directly by Sales Representative.",
+    "No before board: production has no \"Bill Invoices To\" field on any customer, so production's window for this customer matches the production Edit Customer board above. Shot 1440 x 1300."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-edit-customer-counter-sale.png",
+     "alt": "Edit Customer on the Counter Sale customer with no Bill Invoices To field",
+     "line": 90
+    }
+   ],
+   "texts": [
+    {
+     "text": "New, no before needed",
+     "line": 89,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--warning",
+     "fig": 10
+    },
+    {
+     "text": "Edit Customer, Counter Sale customer",
+     "line": 89,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 10
+    },
+    {
+     "text": "Edit Customer on the Counter Sale customer with no Bill Invoices To field",
+     "line": 90,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "In this data the Counter Sale customer is named \"Gennadiy's Mobile Truck Repair\". Its Edit Customer window has no \"Bill Invoices To\" field and no help line: Credit Terms and Credit Limit are followed directly by Sales Representative.",
+     "line": 91,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "No before board: production has no \"Bill Invoices To\" field on any customer, so production's window for this customer matches the production Edit Customer board above. Shot 1440 x 1300.",
+     "line": 91,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "line": 98,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Customer page",
+   "captions": [
+    "The card ends with IBS, then Contacts and Assets."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p1-buda-page.png",
+     "alt": "Buda customer page in production",
+     "line": 100
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 99,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 11
+    },
+    {
+     "text": "Customer page",
+     "line": 99,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 11
+    },
+    {
+     "text": "Buda customer page in production",
+     "line": 100,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The card ends with IBS, then Contacts and Assets.",
+     "line": 101,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 11
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "line": 103,
+   "badge": "This build",
+   "heading": "Bill Invoices To line",
+   "captions": [
+    "Under IBS: \"Bill Invoices To\", \"A & J Truck & Trailer Repair\", and \"Change\".",
+    "The line shows only when another customer is saved. A customer that bills itself shows nothing here."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-buda-page.png",
+     "alt": "Buda customer page with Bill Invoices To line",
+     "line": 105
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 104,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 12
+    },
+    {
+     "text": "Bill Invoices To line",
+     "line": 104,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 12
+    },
+    {
+     "text": "Buda customer page with Bill Invoices To line",
+     "line": 105,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Under IBS: \"Bill Invoices To\", \"A & J Truck & Trailer Repair\", and \"Change\".",
+     "line": 106,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 12
+    },
+    {
+     "text": "The line shows only when another customer is saved. A customer that bills itself shows nothing here.",
+     "line": 106,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 12
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "line": 108,
+   "badge": "This build",
+   "heading": "Change",
+   "captions": [
+    "Window \"Bill Invoices To\": \"New work orders and part sales for Buda Truck Repair will be billed to this customer. Existing ones don't change.\"",
+    "Buttons \"Cancel\" and \"Save\"."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-buda-change-dialog.png",
+     "alt": "Bill Invoices To window",
+     "line": 110
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 109,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 13
+    },
+    {
+     "text": "Change",
+     "line": 109,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 13
+    },
+    {
+     "text": "Bill Invoices To window",
+     "line": 110,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Window \"Bill Invoices To\": \"New work orders and part sales for Buda Truck Repair will be billed to this customer. Existing ones don't change.\"",
+     "line": 111,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 13
+    },
+    {
+     "text": "Buttons \"Cancel\" and \"Save\".",
+     "line": 111,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 13
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "line": 113,
+   "badge": "This build",
+   "heading": "Change, open",
+   "captions": [
+    "The list opens above the field when there is no room below: \"Buda Truck Repair (this customer)\" first, then customers A to Z, the current pick \"A & J Truck & Trailer Repair\" highlighted. Closed without saving. Reshot after the tech review."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-buda-change-dialog-open.png",
+     "alt": "Bill Invoices To window with the list open",
+     "line": 115
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 114,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 14
+    },
+    {
+     "text": "Change, open",
+     "line": 114,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 14
+    },
+    {
+     "text": "Bill Invoices To window with the list open",
+     "line": 115,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The list opens above the field when there is no room below: \"Buda Truck Repair (this customer)\" first, then customers A to Z, the current pick \"A & J Truck & Trailer Repair\" highlighted. Closed without saving. Reshot after the tech review.",
+     "line": 116,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 14
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "line": 123,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Customer page",
+   "captions": [
+    "Contacts and Assets only."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p1-aj-page.png",
+     "alt": "A and J customer page in production",
+     "line": 125
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 124,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 15
+    },
+    {
+     "text": "Customer page",
+     "line": 124,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 15
+    },
+    {
+     "text": "A and J customer page in production",
+     "line": 125,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Contacts and Assets only.",
+     "line": 126,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 15
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "line": 128,
+   "badge": "This build",
+   "heading": "Pays for counter",
+   "captions": [
+    "\"Pays for\" 1 sits beside Contacts and Assets. Hidden when the count is 0.",
+    "A & J has its own default, so it also shows \"Bill Invoices To\", \"Mayfield Heights Truck Centre\", \"Change\". New work orders for Buda still bill A & J, one hop only."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-aj-page.png",
+     "alt": "A and J customer page with Pays for 1",
+     "line": 130
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 129,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 16
+    },
+    {
+     "text": "Pays for counter",
+     "line": 129,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 16
+    },
+    {
+     "text": "A and J customer page with Pays for 1",
+     "line": 130,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"Pays for\" 1 sits beside Contacts and Assets. Hidden when the count is 0.",
+     "line": 131,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 16
+    },
+    {
+     "text": "A & J has its own default, so it also shows \"Bill Invoices To\", \"Mayfield Heights Truck Centre\", \"Change\". New work orders for Buda still bill A & J, one hop only.",
+     "line": 131,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 16
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "line": 133,
+   "badge": "This build",
+   "heading": "Tooltip",
+   "captions": [
+    "Tooltip: \"Customers billed to this customer by default\"."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-aj-pays-for-tooltip.png",
+     "alt": "Pays for tooltip",
+     "line": 135
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 134,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 17
+    },
+    {
+     "text": "Tooltip",
+     "line": 134,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 17
+    },
+    {
+     "text": "Pays for tooltip",
+     "line": 135,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Tooltip: \"Customers billed to this customer by default\".",
+     "line": 136,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 17
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "line": 138,
+   "badge": "This build",
+   "heading": "Pays for list",
+   "captions": [
+    "Window \"A & J Truck & Trailer Repair pays for\": \"These customers bill new work orders and part sales to A & J Truck & Trailer Repair by default.\"",
+    "Each customer is a link to its page (\"Buda Truck Repair\"). Button \"Close\".",
+    "Customers are listed A to Z, and a long list scrolls inside the window. A & J pays for one customer, so this window looks the same after the tech review; not reshot."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-aj-pays-for-dialog.png",
+     "alt": "A and J pays for window",
+     "line": 140
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 139,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 18
+    },
+    {
+     "text": "Pays for list",
+     "line": 139,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 18
+    },
+    {
+     "text": "A and J pays for window",
+     "line": 140,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Window \"A & J Truck & Trailer Repair pays for\": \"These customers bill new work orders and part sales to A & J Truck & Trailer Repair by default.\"",
+     "line": 141,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 18
+    },
+    {
+     "text": "Each customer is a link to its page (\"Buda Truck Repair\"). Button \"Close\".",
+     "line": 141,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 18
+    },
+    {
+     "text": "Customers are listed A to Z, and a long list scrolls inside the window. A & J pays for one customer, so this window looks the same after the tech review; not reshot.",
+     "line": 141,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 18
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "line": 148,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "New Customer",
+   "captions": [
+    "Her location is Staging Lethbridge - 4310; customers are shared across the organization."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p1-mary-new-customer.png",
+     "alt": "New Customer for a Foreman in production",
+     "line": 150
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 149,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 19
+    },
+    {
+     "text": "New Customer",
+     "line": 149,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 19
+    },
+    {
+     "text": "New Customer for a Foreman in production",
+     "line": 150,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Her location is Staging Lethbridge - 4310; customers are shared across the organization.",
+     "line": 151,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 19
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "line": 153,
+   "badge": "This build",
+   "heading": "New Customer",
+   "captions": [
+    "No \"Bill Invoices To\" field; the window closes up around it."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-mary-new-customer.png",
+     "alt": "New Customer for a Foreman in this build",
+     "line": 155
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 154,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 20
+    },
+    {
+     "text": "New Customer",
+     "line": 154,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 20
+    },
+    {
+     "text": "New Customer for a Foreman in this build",
+     "line": 155,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "No \"Bill Invoices To\" field; the window closes up around it.",
+     "line": 156,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 20
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "line": 158,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Customer page",
+   "captions": [
+    "The customer card as her role sees it today."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p1-mary-buda-page.png",
+     "alt": "Buda page for a Foreman in production",
+     "line": 160
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 159,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 21
+    },
+    {
+     "text": "Customer page",
+     "line": 159,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 21
+    },
+    {
+     "text": "Buda page for a Foreman in production",
+     "line": 160,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The customer card as her role sees it today.",
+     "line": 161,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 21
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "line": 163,
+   "badge": "This build",
+   "heading": "Customer page",
+   "captions": [
+    "She still sees \"Bill Invoices To\", \"A & J Truck & Trailer Repair\", with no \"Change\"."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-mary-buda-page.png",
+     "alt": "Buda page for a Foreman in this build",
+     "line": 165
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 164,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 22
+    },
+    {
+     "text": "Customer page",
+     "line": 164,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 22
+    },
+    {
+     "text": "Buda page for a Foreman in this build",
+     "line": 165,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "She still sees \"Bill Invoices To\", \"A & J Truck & Trailer Repair\", with no \"Change\".",
+     "line": 166,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 22
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "line": 170,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Edit Customer",
+   "captions": [
+    "Shot 1440 x 1300."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p1-mary-edit-customer-buda.png",
+     "alt": "Edit Customer for a Foreman in production",
+     "line": 172
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 171,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 23
+    },
+    {
+     "text": "Edit Customer",
+     "line": 171,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 23
+    },
+    {
+     "text": "Edit Customer for a Foreman in production",
+     "line": 172,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Shot 1440 x 1300.",
+     "line": 173,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 23
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "line": 175,
+   "badge": "This build",
+   "heading": "Edit Customer",
+   "captions": [
+    "No \"Bill Invoices To\" field and no help line. The saved default is untouched when she saves."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-mary-edit-customer-buda.png",
+     "alt": "Edit Customer for a Foreman in this build",
+     "line": 177
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 176,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 24
+    },
+    {
+     "text": "Edit Customer",
+     "line": 176,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 24
+    },
+    {
+     "text": "Edit Customer for a Foreman in this build",
+     "line": 177,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "No \"Bill Invoices To\" field and no help line. The saved default is untouched when she saves.",
+     "line": 178,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 24
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "line": 180,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Phone",
+   "captions": [
+    "390 wide."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p1-phone-buda-page.png",
+     "alt": "Buda page on a phone in production",
+     "line": 182
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 181,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 25
+    },
+    {
+     "text": "Phone",
+     "line": 181,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 25
+    },
+    {
+     "text": "Buda page on a phone in production",
+     "line": 182,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "390 wide.",
+     "line": 183,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 25
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "line": 185,
+   "badge": "This build",
+   "heading": "Phone",
+   "captions": [
+    "The same \"Bill Invoices To\" line with \"Change\", under IBS. Nothing phone-only."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p1-phone-buda-page.png",
+     "alt": "Buda page on a phone in this build",
+     "line": 187
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 186,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 26
+    },
+    {
+     "text": "Phone",
+     "line": 186,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 26
+    },
+    {
+     "text": "Buda page on a phone in this build",
+     "line": 187,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "The same \"Bill Invoices To\" line with \"Change\", under IBS. Nothing phone-only.",
+     "line": 188,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 26
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "text": "1. Set a customer's default Bill To",
+   "line": 5,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "1. Set a customer's default Bill To",
+   "line": 29,
+   "kind": "text",
+   "ctx": "sv-h2",
+   "fig": 0
+  },
+  {
+   "text": "Customers. Left to right: New Customer, Edit Customer, the customer card, the payer's \"Pays for\" list, a user without \"View and Manage AP/AR Data\", then phone. Before: production v26.45.2.1. After: the locked Bill To build. Credit Terms, Credit Limit and the + beside Sales Representative come from the Credit Terms and Split Representatives work in the same build; they are context, not Bill To.",
+   "line": 30,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "New Customer",
+   "line": 34,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 37,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 1
+  },
+  {
+   "text": "New Customer",
+   "line": 37,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 1
+  },
+  {
+   "text": "No Bill To field. The red \"Oooops! An error occurred\" toast and the empty list behind are the production code reading this build's data copy; they are not part of the window.",
+   "line": 39,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "This build",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "Bill Invoices To, empty",
+   "line": 42,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 2
+  },
+  {
+   "text": "\"Bill Invoices To\" sits after Credit Terms and Credit Limit and before Sales Representative. It reads \"This customer\".",
+   "line": 44,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "No help line under it in New Customer.",
+   "line": 44,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "This build",
+   "line": 47,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 3
+  },
+  {
+   "text": "Open",
+   "line": 47,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 3
+  },
+  {
+   "text": "Name typed: \"Lone Star Fleet Services\". The first option reads \"Lone Star Fleet Services (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\", \"Aberdeen Diesel Services LLC\".",
+   "line": 49,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "The list holds the first 50 customers A to Z; typing narrows it. Reshot after the tech review.",
+   "line": 49,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "This build",
+   "line": 52,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 4
+  },
+  {
+   "text": "Searching",
+   "line": 52,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 4
+  },
+  {
+   "text": "Typing \"A & J\" narrows the list. The \"(this customer)\" option stays first.",
+   "line": 54,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "This build",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 5
+  },
+  {
+   "text": "Picked",
+   "line": 57,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 5
+  },
+  {
+   "text": "\"A & J Truck & Trailer Repair\" picked. It saves with Save, right after the customer is created. Not saved here.",
+   "line": 59,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Edit Customer (Buda Truck Repair)",
+   "line": 64,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 67,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 6
+  },
+  {
+   "text": "Edit Customer",
+   "line": 67,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 6
+  },
+  {
+   "text": "No Bill To field. Shot 1440 x 1300 so the whole window shows.",
+   "line": 69,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "This build",
+   "line": 72,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 7
+  },
+  {
+   "text": "Saved default",
+   "line": 72,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 7
+  },
+  {
+   "text": "\"Bill Invoices To\" shows the saved default, \"A & J Truck & Trailer Repair\".",
+   "line": 74,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Help line, Edit Customer only: \"New work orders and part sales bill to this customer. Existing ones don't change.\"",
+   "line": 74,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Address 2 has a value, so it shows, with an x to clear it.",
+   "line": 74,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "This build",
+   "line": 77,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 8
+  },
+  {
+   "text": "Open",
+   "line": 77,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 8
+  },
+  {
+   "text": "The list opens with \"Buda Truck Repair (this customer)\" first, then customers A to Z. The current pick, \"A & J Truck & Trailer Repair\", is highlighted in its A to Z place. Picking \"(this customer)\" and saving clears the default.",
+   "line": 79,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Reshot after the tech review. Buda's saved default had been cleared in the build's data before this reshoot; it was set back to A & J for these shots and cleared again after.",
+   "line": 79,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "This build",
+   "line": 82,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 9
+  },
+  {
+   "text": "Searching",
+   "line": 82,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 9
+  },
+  {
+   "text": "Typing \"Vald\": \"Buda Truck Repair (this customer)\", then \"Uvalde Estates Truck Centre\" and \"Valders Diesel & Fleet Repair\", A to Z. Closed without saving.",
+   "line": 84,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 9
+  },
+  {
+   "text": "New, no before needed",
+   "line": 89,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--warning",
+   "fig": 10
+  },
+  {
+   "text": "Edit Customer, Counter Sale customer",
+   "line": 89,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 10
+  },
+  {
+   "text": "In this data the Counter Sale customer is named \"Gennadiy's Mobile Truck Repair\". Its Edit Customer window has no \"Bill Invoices To\" field and no help line: Credit Terms and Credit Limit are followed directly by Sales Representative.",
+   "line": 91,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "No before board: production has no \"Bill Invoices To\" field on any customer, so production's window for this customer matches the production Edit Customer board above. Shot 1440 x 1300.",
+   "line": 91,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "The customer card (Buda Truck Repair)",
+   "line": 96,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 99,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 11
+  },
+  {
+   "text": "Customer page",
+   "line": 99,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 11
+  },
+  {
+   "text": "The card ends with IBS, then Contacts and Assets.",
+   "line": 101,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "This build",
+   "line": 104,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 12
+  },
+  {
+   "text": "Bill Invoices To line",
+   "line": 104,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 12
+  },
+  {
+   "text": "Under IBS: \"Bill Invoices To\", \"A & J Truck & Trailer Repair\", and \"Change\".",
+   "line": 106,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 12
+  },
+  {
+   "text": "The line shows only when another customer is saved. A customer that bills itself shows nothing here.",
+   "line": 106,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 12
+  },
+  {
+   "text": "This build",
+   "line": 109,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 13
+  },
+  {
+   "text": "Change",
+   "line": 109,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 13
+  },
+  {
+   "text": "Window \"Bill Invoices To\": \"New work orders and part sales for Buda Truck Repair will be billed to this customer. Existing ones don't change.\"",
+   "line": 111,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 13
+  },
+  {
+   "text": "Buttons \"Cancel\" and \"Save\".",
+   "line": 111,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 13
+  },
+  {
+   "text": "This build",
+   "line": 114,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 14
+  },
+  {
+   "text": "Change, open",
+   "line": 114,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 14
+  },
+  {
+   "text": "The list opens above the field when there is no room below: \"Buda Truck Repair (this customer)\" first, then customers A to Z, the current pick \"A & J Truck & Trailer Repair\" highlighted. Closed without saving. Reshot after the tech review.",
+   "line": 116,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 14
+  },
+  {
+   "text": "The payer (A & J Truck & Trailer Repair)",
+   "line": 121,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 124,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 15
+  },
+  {
+   "text": "Customer page",
+   "line": 124,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 15
+  },
+  {
+   "text": "Contacts and Assets only.",
+   "line": 126,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 15
+  },
+  {
+   "text": "This build",
+   "line": 129,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 16
+  },
+  {
+   "text": "Pays for counter",
+   "line": 129,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 16
+  },
+  {
+   "text": "\"Pays for\" 1 sits beside Contacts and Assets. Hidden when the count is 0.",
+   "line": 131,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 16
+  },
+  {
+   "text": "A & J has its own default, so it also shows \"Bill Invoices To\", \"Mayfield Heights Truck Centre\", \"Change\". New work orders for Buda still bill A & J, one hop only.",
+   "line": 131,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 16
+  },
+  {
+   "text": "This build",
+   "line": 134,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 17
+  },
+  {
+   "text": "Tooltip",
+   "line": 134,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 17
+  },
+  {
+   "text": "Tooltip: \"Customers billed to this customer by default\".",
+   "line": 136,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 17
+  },
+  {
+   "text": "This build",
+   "line": 139,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 18
+  },
+  {
+   "text": "Pays for list",
+   "line": 139,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 18
+  },
+  {
+   "text": "Window \"A & J Truck & Trailer Repair pays for\": \"These customers bill new work orders and part sales to A & J Truck & Trailer Repair by default.\"",
+   "line": 141,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 18
+  },
+  {
+   "text": "Each customer is a link to its page (\"Buda Truck Repair\"). Button \"Close\".",
+   "line": 141,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 18
+  },
+  {
+   "text": "Customers are listed A to Z, and a long list scrolls inside the window. A & J pays for one customer, so this window looks the same after the tech review; not reshot.",
+   "line": 141,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 18
+  },
+  {
+   "text": "A user without \"View and Manage AP/AR Data\" (mary.moore, Foreman)",
+   "line": 146,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 149,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 19
+  },
+  {
+   "text": "New Customer",
+   "line": 149,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 19
+  },
+  {
+   "text": "Her location is Staging Lethbridge - 4310; customers are shared across the organization.",
+   "line": 151,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 19
+  },
+  {
+   "text": "This build",
+   "line": 154,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 20
+  },
+  {
+   "text": "New Customer",
+   "line": 154,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 20
+  },
+  {
+   "text": "No \"Bill Invoices To\" field; the window closes up around it.",
+   "line": 156,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 20
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 159,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 21
+  },
+  {
+   "text": "Customer page",
+   "line": 159,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 21
+  },
+  {
+   "text": "The customer card as her role sees it today.",
+   "line": 161,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 21
+  },
+  {
+   "text": "This build",
+   "line": 164,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 22
+  },
+  {
+   "text": "Customer page",
+   "line": 164,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 22
+  },
+  {
+   "text": "She still sees \"Bill Invoices To\", \"A & J Truck & Trailer Repair\", with no \"Change\".",
+   "line": 166,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 22
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 171,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 23
+  },
+  {
+   "text": "Edit Customer",
+   "line": 171,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 23
+  },
+  {
+   "text": "Shot 1440 x 1300.",
+   "line": 173,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 23
+  },
+  {
+   "text": "This build",
+   "line": 176,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 24
+  },
+  {
+   "text": "Edit Customer",
+   "line": 176,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 24
+  },
+  {
+   "text": "No \"Bill Invoices To\" field and no help line. The saved default is untouched when she saves.",
+   "line": 178,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 24
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 181,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 25
+  },
+  {
+   "text": "Phone",
+   "line": 181,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 25
+  },
+  {
+   "text": "390 wide.",
+   "line": 183,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 25
+  },
+  {
+   "text": "This build",
+   "line": 186,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 26
+  },
+  {
+   "text": "Phone",
+   "line": 186,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 26
+  },
+  {
+   "text": "The same \"Bill Invoices To\" line with \"Change\", under IBS. Nothing phone-only.",
+   "line": 188,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 26
+  }
+ ]
+}

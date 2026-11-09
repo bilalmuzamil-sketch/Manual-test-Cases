@@ -1,0 +1,1633 @@
+{
+ "board": "Blocked.dc.html",
+ "title": "3. When the Bill To is blocked",
+ "h2": "3. When the Bill To is blocked",
+ "note": "Left to right: an invoiced work order, a work order holding a deposit, a Bill To on Credit Hold, Counter Sale, then phone. Before: production v26.45.2.1. After: the locked Bill To build. For the Credit Hold row, Valders was put on Credit Hold on both stacks for the shots and set back to COD after. After the tech review: clicking or tapping a locked Bill To shows its message as an error toast for anyone who can see the field; the button in the toast (\"Open Deposits\" or \"Go To Invoice\") shows only for users allowed to use it; history mode shows no lock message. The deposit row and the mary.moore row were reshot on the build after the review.",
+ "helmet_css": "\n<style>\nbody{margin:0}\n.bt-shot{width:1200px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-phone{width:390px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}\n.bt-cap li{margin:0 0 6px}\n.bt-row{display:flex;gap:48px;align-items:flex-start}\n.bt-fig{margin:0;width:1200px;display:flex;flex-direction:column;gap:12px}\n.bt-figp{margin:0;width:390px;display:flex;flex-direction:column;gap:12px}\n.bt-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}\n.bt-name{font-size:18px;font-weight:600}\n.bt-rowt{margin:0;font-size:22px;font-weight:600}\n</style>\n",
+ "figures": [
+  {
+   "n": 1,
+   "line": 36,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Invoiced card",
+   "captions": [
+    "No Bill To on the card."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p3-invoiced-card.png",
+     "alt": "S2-17581 in production",
+     "line": 38
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 37,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 1
+    },
+    {
+     "text": "Invoiced card",
+     "line": 37,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 1
+    },
+    {
+     "text": "S2-17581 in production",
+     "line": 38,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "No Bill To on the card.",
+     "line": 39,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "line": 41,
+   "badge": "This build",
+   "heading": "Read-only",
+   "captions": [
+    "\"Bill To\" \"Valders Diesel & Fleet Repair\", read-only."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-invoiced-card.png",
+     "alt": "S2-17581 with read-only Bill To",
+     "line": 43
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "Read-only",
+     "line": 42,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 2
+    },
+    {
+     "text": "S2-17581 with read-only Bill To",
+     "line": 43,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"Bill To\" \"Valders Diesel & Fleet Repair\", read-only.",
+     "line": 44,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "line": 46,
+   "badge": "This build",
+   "heading": "Hover",
+   "captions": [
+    "Tooltip: \"Invoiced. Reverse the invoice to change who's billed.\"",
+    "No tooltip and no toast in history mode."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-invoiced-tooltip.png",
+     "alt": "Invoiced tooltip",
+     "line": 48
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 47,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 3
+    },
+    {
+     "text": "Hover",
+     "line": 47,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 3
+    },
+    {
+     "text": "Invoiced tooltip",
+     "line": 48,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Tooltip: \"Invoiced. Reverse the invoice to change who's billed.\"",
+     "line": 49,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "No tooltip and no toast in history mode.",
+     "line": 49,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "line": 51,
+   "badge": "This build",
+   "heading": "Click",
+   "captions": [
+    "Error toast with the same words and \"Go To Invoice\" and \"Close\". \"Go To Invoice\" opens the Finance tab; it never reverses anything.",
+    "Anyone who can see the field gets the toast. \"Go To Invoice\" shows only for users who can open the Finance tab; others get the message and \"Close\" only.",
+    "Rechecked after the tech review: pixel-identical to the earlier shot, so not replaced."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-invoiced-toast.png",
+     "alt": "Invoiced toast with Go To Invoice",
+     "line": 53
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 52,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 4
+    },
+    {
+     "text": "Click",
+     "line": 52,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 4
+    },
+    {
+     "text": "Invoiced toast with Go To Invoice",
+     "line": 53,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Error toast with the same words and \"Go To Invoice\" and \"Close\". \"Go To Invoice\" opens the Finance tab; it never reverses anything.",
+     "line": 54,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Anyone who can see the field gets the toast. \"Go To Invoice\" shows only for users who can open the Finance tab; others get the message and \"Close\" only.",
+     "line": 54,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Rechecked after the tech review: pixel-identical to the earlier shot, so not replaced.",
+     "line": 54,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "line": 61,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Card",
+   "captions": [
+    "No Bill To on the card. The \"Over Limit\" pill is production's credit check; not Bill To."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p3-deposits-card.png",
+     "alt": "S2-17577 in production",
+     "line": 63
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 62,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 5
+    },
+    {
+     "text": "Card",
+     "line": 62,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 5
+    },
+    {
+     "text": "S2-17577 in production",
+     "line": 63,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "No Bill To on the card. The \"Over Limit\" pill is production's credit check; not Bill To.",
+     "line": 64,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "line": 66,
+   "badge": "This build",
+   "heading": "Read-only",
+   "captions": [
+    "\"Bill To\" \"7 Star Truck Repair\", read-only while the deposit is held.",
+    "The Change Customer button (two arrows at the top right of the customer card) stays enabled. The server refuses Change Customer only when it would change the Bill To.",
+    "Reshot after the tech review."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-deposits-card.png",
+     "alt": "S2-17577 with read-only Bill To",
+     "line": 68
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 67,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 6
+    },
+    {
+     "text": "Read-only",
+     "line": 67,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 6
+    },
+    {
+     "text": "S2-17577 with read-only Bill To",
+     "line": 68,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"Bill To\" \"7 Star Truck Repair\", read-only while the deposit is held.",
+     "line": 69,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "The Change Customer button (two arrows at the top right of the customer card) stays enabled. The server refuses Change Customer only when it would change the Bill To.",
+     "line": 69,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Reshot after the tech review.",
+     "line": 69,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "line": 71,
+   "badge": "This build",
+   "heading": "Hover",
+   "captions": [
+    "Tooltip: \"This work order has a $10.00 deposit from 7 Star Truck Repair. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\""
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-deposits-tooltip.png",
+     "alt": "Deposit tooltip",
+     "line": 73
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 72,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 7
+    },
+    {
+     "text": "Hover",
+     "line": 72,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 7
+    },
+    {
+     "text": "Deposit tooltip",
+     "line": 73,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Tooltip: \"This work order has a $10.00 deposit from 7 Star Truck Repair. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\"",
+     "line": 74,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "line": 76,
+   "badge": "This build",
+   "heading": "Click",
+   "captions": [
+    "Error toast with the same words, \"Open Deposits\" and \"Close\". \"Open Deposits\" opens the Deposits tab of the customer holding the largest share.",
+    "Shot as admin, who can open Deposits. The hover tooltip also shows at the bottom left because the pointer is still on the field. Reshot after the tech review."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-deposits-toast.png",
+     "alt": "Deposit toast with Open Deposits",
+     "line": 78
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 77,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 8
+    },
+    {
+     "text": "Click",
+     "line": 77,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 8
+    },
+    {
+     "text": "Deposit toast with Open Deposits",
+     "line": 78,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Error toast with the same words, \"Open Deposits\" and \"Close\". \"Open Deposits\" opens the Deposits tab of the customer holding the largest share.",
+     "line": 79,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Shot as admin, who can open Deposits. The hover tooltip also shows at the bottom left because the pointer is still on the field. Reshot after the tech review.",
+     "line": 79,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "line": 86,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Card (admin)",
+   "captions": [
+    "The same production board as the row above: production has no Bill To, so there is nothing to tap. No production board was shot as mary.moore for this work order."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p3-deposits-card.png",
+     "alt": "S2-17577 in production",
+     "line": 88
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 87,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 9
+    },
+    {
+     "text": "Card (admin)",
+     "line": 87,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 9
+    },
+    {
+     "text": "S2-17577 in production",
+     "line": 88,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The same production board as the row above: production has no Bill To, so there is nothing to tap. No production board was shot as mary.moore for this work order.",
+     "line": 89,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 9
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "line": 91,
+   "badge": "This build",
+   "heading": "Card",
+   "captions": [
+    "She sees \"Bill To\" \"7 Star Truck Repair\" because someone else pays.",
+    "Accuracy check: the top bar shows her role's menu (no Dashboard, no Reports, a wider search box) and \"Staging Heavy Duty - 9919\". Her only location is Staging Lethbridge - 4310, so for these shots her staff location was moved to Staging Heavy Duty - 9919 and moved back after. Not Bill To."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-mary-deposits-card.png",
+     "alt": "S2-17577 as mary.moore with the Bill To shown read-only",
+     "line": 93
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 92,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 10
+    },
+    {
+     "text": "Card",
+     "line": 92,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 10
+    },
+    {
+     "text": "S2-17577 as mary.moore with the Bill To shown read-only",
+     "line": 93,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "She sees \"Bill To\" \"7 Star Truck Repair\" because someone else pays.",
+     "line": 94,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Accuracy check: the top bar shows her role's menu (no Dashboard, no Reports, a wider search box) and \"Staging Heavy Duty - 9919\". Her only location is Staging Lethbridge - 4310, so for these shots her staff location was moved to Staging Heavy Duty - 9919 and moved back after. Not Bill To.",
+     "line": 94,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "line": 96,
+   "badge": "This build",
+   "heading": "Click",
+   "captions": [
+    "Error toast: \"This work order has a $10.00 deposit from 7 Star Truck Repair. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\" with \"Close\" only.",
+    "No \"Open Deposits\": she cannot open a customer's Deposits tab. The tooltip with the same words shows at the bottom left because the pointer is still on the field."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-mary-deposits-toast.png",
+     "alt": "Deposit toast with only Close for mary.moore",
+     "line": 98
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 97,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 11
+    },
+    {
+     "text": "Click",
+     "line": 97,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 11
+    },
+    {
+     "text": "Deposit toast with only Close for mary.moore",
+     "line": 98,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Error toast: \"This work order has a $10.00 deposit from 7 Star Truck Repair. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\" with \"Close\" only.",
+     "line": 99,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "No \"Open Deposits\": she cannot open a customer's Deposits tab. The tooltip with the same words shows at the bottom left because the pointer is still on the field.",
+     "line": 99,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 11
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "line": 101,
+   "badge": "This build",
+   "heading": "Phone, tap",
+   "captions": [
+    "Details open, the Bill To field tapped (it sits below the fold, under the toast). The same toast, \"Close\" only. A tap never depends on a hover."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-mary-phone-deposits-toast.png",
+     "alt": "Deposit toast on a phone for mary.moore",
+     "line": 103
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 102,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 12
+    },
+    {
+     "text": "Phone, tap",
+     "line": 102,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 12
+    },
+    {
+     "text": "Deposit toast on a phone for mary.moore",
+     "line": 103,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "Details open, the Bill To field tapped (it sits below the fold, under the toast). The same toast, \"Close\" only. A tap never depends on a hover.",
+     "line": 104,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 12
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "line": 111,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Lines",
+   "captions": [
+    "Production checks only Buda, which is on COD, so no banner."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p3-credit-hold-banner.png",
+     "alt": "S2-17579 in production with the payer on Credit Hold",
+     "line": 113
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 112,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 13
+    },
+    {
+     "text": "Lines",
+     "line": 112,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 13
+    },
+    {
+     "text": "S2-17579 in production with the payer on Credit Hold",
+     "line": 113,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Production checks only Buda, which is on COD, so no banner.",
+     "line": 114,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 13
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "line": 116,
+   "badge": "This build",
+   "heading": "Banner",
+   "captions": [
+    "Banner: \"Cannot invoice. The Bill To customer, Valders Diesel & Fleet Repair, is on Credit Hold\", with \"Change Bill To\".",
+    "The work order header shows a \"Credit Hold\" pill."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-credit-hold-banner.png",
+     "alt": "Credit Hold banner naming the Bill To",
+     "line": 118
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 117,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 14
+    },
+    {
+     "text": "Banner",
+     "line": 117,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 14
+    },
+    {
+     "text": "Credit Hold banner naming the Bill To",
+     "line": 118,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Banner: \"Cannot invoice. The Bill To customer, Valders Diesel & Fleet Repair, is on Credit Hold\", with \"Change Bill To\".",
+     "line": 119,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 14
+    },
+    {
+     "text": "The work order header shows a \"Credit Hold\" pill.",
+     "line": 119,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 14
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "line": 121,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Finance",
+   "captions": [
+    "No banner. Create Invoice is greyed here only because no line is complete yet."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p3-credit-hold-finance.png",
+     "alt": "Finance tab in production",
+     "line": 123
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 122,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 15
+    },
+    {
+     "text": "Finance",
+     "line": 122,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 15
+    },
+    {
+     "text": "Finance tab in production",
+     "line": 123,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "No banner. Create Invoice is greyed here only because no line is complete yet.",
+     "line": 124,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 15
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "line": 126,
+   "badge": "This build",
+   "heading": "Finance",
+   "captions": [
+    "The same banner on Finance. Create Invoice is greyed here because no line is complete; the Credit Hold tooltip on it was not shot.",
+    "The toolbar (Customer PO, icons, Add Deposit, Create Invoice) sits where it does in production."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-credit-hold-finance.png",
+     "alt": "Finance tab with the banner and Create Invoice disabled",
+     "line": 128
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 127,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 16
+    },
+    {
+     "text": "Finance",
+     "line": 127,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 16
+    },
+    {
+     "text": "Finance tab with the banner and Create Invoice disabled",
+     "line": 128,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The same banner on Finance. Create Invoice is greyed here because no line is complete; the Credit Hold tooltip on it was not shot.",
+     "line": 129,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 16
+    },
+    {
+     "text": "The toolbar (Customer PO, icons, Add Deposit, Create Invoice) sits where it does in production.",
+     "line": 129,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 16
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "line": 131,
+   "badge": "This build",
+   "heading": "Change Bill To",
+   "captions": [
+    "\"Change Bill To\" opens and focuses the card's Bill To field, so the page scrolls to it.",
+    "The list: \"Buda Truck Repair (this customer)\" first, then the current Bill To \"Valders Diesel & Fleet Repair\" highlighted, then customers A to Z (\"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\"). Reshot after the tech review."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-credit-hold-change-bill-to.png",
+     "alt": "Change Bill To opens the card's Bill To list",
+     "line": 133
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 132,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 17
+    },
+    {
+     "text": "Change Bill To",
+     "line": 132,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 17
+    },
+    {
+     "text": "Change Bill To opens the card's Bill To list",
+     "line": 133,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"Change Bill To\" opens and focuses the card's Bill To field, so the page scrolls to it.",
+     "line": 134,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 17
+    },
+    {
+     "text": "The list: \"Buda Truck Repair (this customer)\" first, then the current Bill To \"Valders Diesel & Fleet Repair\" highlighted, then customers A to Z (\"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\"). Reshot after the tech review.",
+     "line": 134,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 17
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "line": 141,
+   "badge": "New, no before exists",
+   "heading": "Counter Sale not offered",
+   "captions": [
+    "In this data the Counter Sale customer is named \"Gennadiy's Mobile Truck Repair\". Typing \"Gennadiy\" in Bill To leaves only \"Buda Truck Repair (this customer)\"."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-counter-sale-not-offered.png",
+     "alt": "Searching the Counter Sale customer finds nothing",
+     "line": 143
+    }
+   ],
+   "texts": [
+    {
+     "text": "New, no before exists",
+     "line": 142,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--warning",
+     "fig": 18
+    },
+    {
+     "text": "Counter Sale not offered",
+     "line": 142,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 18
+    },
+    {
+     "text": "Searching the Counter Sale customer finds nothing",
+     "line": 143,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "In this data the Counter Sale customer is named \"Gennadiy's Mobile Truck Repair\". Typing \"Gennadiy\" in Bill To leaves only \"Buda Truck Repair (this customer)\".",
+     "line": 144,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 18
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "line": 146,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Phone",
+   "captions": [
+    "No banner."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p3-phone-credit-hold.png",
+     "alt": "S2-17579 on a phone in production",
+     "line": 148
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 147,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 19
+    },
+    {
+     "text": "Phone",
+     "line": 147,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 19
+    },
+    {
+     "text": "S2-17579 on a phone in production",
+     "line": 148,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "No banner.",
+     "line": 149,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 19
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "line": 151,
+   "badge": "This build",
+   "heading": "Phone",
+   "captions": [
+    "The \"Credit Hold\" pill shows in the phone header, and the banner \"Cannot invoice. The Bill To customer, Valders Diesel & Fleet Repair, is on Credit Hold\" with \"Change Bill To\" sits above the lines."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-phone-credit-hold.png",
+     "alt": "S2-17579 on a phone with Credit Hold",
+     "line": 153
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 152,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 20
+    },
+    {
+     "text": "Phone",
+     "line": 152,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 20
+    },
+    {
+     "text": "S2-17579 on a phone with Credit Hold",
+     "line": 153,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "The \"Credit Hold\" pill shows in the phone header, and the banner \"Cannot invoice. The Bill To customer, Valders Diesel & Fleet Repair, is on Credit Hold\" with \"Change Bill To\" sits above the lines.",
+     "line": 154,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 20
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "line": 156,
+   "badge": "This build",
+   "heading": "Phone, Change Bill To",
+   "captions": [
+    "Tapping \"Change Bill To\" opens the phone Details, scrolls to the Bill To field and opens its list: \"Buda Truck Repair (this customer)\", \"Valders Diesel & Fleet Repair\" highlighted, then customers A to Z.",
+    "New after the tech review (it used to target the card hidden behind Details, so nothing visible happened). Closed without saving."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p3-phone-credit-hold-change-bill-to.png",
+     "alt": "Change Bill To on a phone opens Details and the Bill To list",
+     "line": 158
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 157,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 21
+    },
+    {
+     "text": "Phone, Change Bill To",
+     "line": 157,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 21
+    },
+    {
+     "text": "Change Bill To on a phone opens Details and the Bill To list",
+     "line": 158,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "Tapping \"Change Bill To\" opens the phone Details, scrolls to the Bill To field and opens its list: \"Buda Truck Repair (this customer)\", \"Valders Diesel & Fleet Repair\" highlighted, then customers A to Z.",
+     "line": 159,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 21
+    },
+    {
+     "text": "New after the tech review (it used to target the card hidden behind Details, so nothing visible happened). Closed without saving.",
+     "line": 159,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 21
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "text": "3. When the Bill To is blocked",
+   "line": 5,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "3. When the Bill To is blocked",
+   "line": 29,
+   "kind": "text",
+   "ctx": "sv-h2",
+   "fig": 0
+  },
+  {
+   "text": "Left to right: an invoiced work order, a work order holding a deposit, a Bill To on Credit Hold, Counter Sale, then phone. Before: production v26.45.2.1. After: the locked Bill To build. For the Credit Hold row, Valders was put on Credit Hold on both stacks for the shots and set back to COD after. After the tech review: clicking or tapping a locked Bill To shows its message as an error toast for anyone who can see the field; the button in the toast (\"Open Deposits\" or \"Go To Invoice\") shows only for users allowed to use it; history mode shows no lock message. The deposit row and the mary.moore row were reshot on the build after the review.",
+   "line": 30,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "Invoiced (S2-17581, Buda billed to Valders, Paid)",
+   "line": 34,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 37,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 1
+  },
+  {
+   "text": "Invoiced card",
+   "line": 37,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 1
+  },
+  {
+   "text": "No Bill To on the card.",
+   "line": 39,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "This build",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "Read-only",
+   "line": 42,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 2
+  },
+  {
+   "text": "\"Bill To\" \"Valders Diesel & Fleet Repair\", read-only.",
+   "line": 44,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "This build",
+   "line": 47,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 3
+  },
+  {
+   "text": "Hover",
+   "line": 47,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 3
+  },
+  {
+   "text": "Tooltip: \"Invoiced. Reverse the invoice to change who's billed.\"",
+   "line": 49,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "No tooltip and no toast in history mode.",
+   "line": 49,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "This build",
+   "line": 52,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 4
+  },
+  {
+   "text": "Click",
+   "line": 52,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 4
+  },
+  {
+   "text": "Error toast with the same words and \"Go To Invoice\" and \"Close\". \"Go To Invoice\" opens the Finance tab; it never reverses anything.",
+   "line": 54,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Anyone who can see the field gets the toast. \"Go To Invoice\" shows only for users who can open the Finance tab; others get the message and \"Close\" only.",
+   "line": 54,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Rechecked after the tech review: pixel-identical to the earlier shot, so not replaced.",
+   "line": 54,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Deposit held (S2-17577, Desert Edge billed to 7 Star, $10.00 deposit)",
+   "line": 59,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 62,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 5
+  },
+  {
+   "text": "Card",
+   "line": 62,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 5
+  },
+  {
+   "text": "No Bill To on the card. The \"Over Limit\" pill is production's credit check; not Bill To.",
+   "line": 64,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "This build",
+   "line": 67,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 6
+  },
+  {
+   "text": "Read-only",
+   "line": 67,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 6
+  },
+  {
+   "text": "\"Bill To\" \"7 Star Truck Repair\", read-only while the deposit is held.",
+   "line": 69,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "The Change Customer button (two arrows at the top right of the customer card) stays enabled. The server refuses Change Customer only when it would change the Bill To.",
+   "line": 69,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Reshot after the tech review.",
+   "line": 69,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "This build",
+   "line": 72,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 7
+  },
+  {
+   "text": "Hover",
+   "line": 72,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 7
+  },
+  {
+   "text": "Tooltip: \"This work order has a $10.00 deposit from 7 Star Truck Repair. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\"",
+   "line": 74,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "This build",
+   "line": 77,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 8
+  },
+  {
+   "text": "Click",
+   "line": 77,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 8
+  },
+  {
+   "text": "Error toast with the same words, \"Open Deposits\" and \"Close\". \"Open Deposits\" opens the Deposits tab of the customer holding the largest share.",
+   "line": 79,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Shot as admin, who can open Deposits. The hover tooltip also shows at the bottom left because the pointer is still on the field. Reshot after the tech review.",
+   "line": 79,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Deposit held, a user without \"View and Manage AP/AR Data\" (mary.moore, Foreman, S2-17577)",
+   "line": 84,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 87,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 9
+  },
+  {
+   "text": "Card (admin)",
+   "line": 87,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 9
+  },
+  {
+   "text": "The same production board as the row above: production has no Bill To, so there is nothing to tap. No production board was shot as mary.moore for this work order.",
+   "line": 89,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 9
+  },
+  {
+   "text": "This build",
+   "line": 92,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 10
+  },
+  {
+   "text": "Card",
+   "line": 92,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 10
+  },
+  {
+   "text": "She sees \"Bill To\" \"7 Star Truck Repair\" because someone else pays.",
+   "line": 94,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Accuracy check: the top bar shows her role's menu (no Dashboard, no Reports, a wider search box) and \"Staging Heavy Duty - 9919\". Her only location is Staging Lethbridge - 4310, so for these shots her staff location was moved to Staging Heavy Duty - 9919 and moved back after. Not Bill To.",
+   "line": 94,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "This build",
+   "line": 97,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 11
+  },
+  {
+   "text": "Click",
+   "line": 97,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 11
+  },
+  {
+   "text": "Error toast: \"This work order has a $10.00 deposit from 7 Star Truck Repair. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\" with \"Close\" only.",
+   "line": 99,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "No \"Open Deposits\": she cannot open a customer's Deposits tab. The tooltip with the same words shows at the bottom left because the pointer is still on the field.",
+   "line": 99,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "This build",
+   "line": 102,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 12
+  },
+  {
+   "text": "Phone, tap",
+   "line": 102,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 12
+  },
+  {
+   "text": "Details open, the Bill To field tapped (it sits below the fold, under the toast). The same toast, \"Close\" only. A tap never depends on a hover.",
+   "line": 104,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 12
+  },
+  {
+   "text": "Bill To on Credit Hold (S2-17579, Buda billed to Valders)",
+   "line": 109,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 112,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 13
+  },
+  {
+   "text": "Lines",
+   "line": 112,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 13
+  },
+  {
+   "text": "Production checks only Buda, which is on COD, so no banner.",
+   "line": 114,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 13
+  },
+  {
+   "text": "This build",
+   "line": 117,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 14
+  },
+  {
+   "text": "Banner",
+   "line": 117,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 14
+  },
+  {
+   "text": "Banner: \"Cannot invoice. The Bill To customer, Valders Diesel & Fleet Repair, is on Credit Hold\", with \"Change Bill To\".",
+   "line": 119,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 14
+  },
+  {
+   "text": "The work order header shows a \"Credit Hold\" pill.",
+   "line": 119,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 14
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 122,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 15
+  },
+  {
+   "text": "Finance",
+   "line": 122,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 15
+  },
+  {
+   "text": "No banner. Create Invoice is greyed here only because no line is complete yet.",
+   "line": 124,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 15
+  },
+  {
+   "text": "This build",
+   "line": 127,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 16
+  },
+  {
+   "text": "Finance",
+   "line": 127,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 16
+  },
+  {
+   "text": "The same banner on Finance. Create Invoice is greyed here because no line is complete; the Credit Hold tooltip on it was not shot.",
+   "line": 129,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 16
+  },
+  {
+   "text": "The toolbar (Customer PO, icons, Add Deposit, Create Invoice) sits where it does in production.",
+   "line": 129,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 16
+  },
+  {
+   "text": "This build",
+   "line": 132,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 17
+  },
+  {
+   "text": "Change Bill To",
+   "line": 132,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 17
+  },
+  {
+   "text": "\"Change Bill To\" opens and focuses the card's Bill To field, so the page scrolls to it.",
+   "line": 134,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 17
+  },
+  {
+   "text": "The list: \"Buda Truck Repair (this customer)\" first, then the current Bill To \"Valders Diesel & Fleet Repair\" highlighted, then customers A to Z (\"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A & J Truck & Trailer Repair\"). Reshot after the tech review.",
+   "line": 134,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 17
+  },
+  {
+   "text": "Counter Sale is never offered, and phone",
+   "line": 139,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "New, no before exists",
+   "line": 142,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--warning",
+   "fig": 18
+  },
+  {
+   "text": "Counter Sale not offered",
+   "line": 142,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 18
+  },
+  {
+   "text": "In this data the Counter Sale customer is named \"Gennadiy's Mobile Truck Repair\". Typing \"Gennadiy\" in Bill To leaves only \"Buda Truck Repair (this customer)\".",
+   "line": 144,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 18
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 147,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 19
+  },
+  {
+   "text": "Phone",
+   "line": 147,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 19
+  },
+  {
+   "text": "No banner.",
+   "line": 149,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 19
+  },
+  {
+   "text": "This build",
+   "line": 152,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 20
+  },
+  {
+   "text": "Phone",
+   "line": 152,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 20
+  },
+  {
+   "text": "The \"Credit Hold\" pill shows in the phone header, and the banner \"Cannot invoice. The Bill To customer, Valders Diesel & Fleet Repair, is on Credit Hold\" with \"Change Bill To\" sits above the lines.",
+   "line": 154,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 20
+  },
+  {
+   "text": "This build",
+   "line": 157,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 21
+  },
+  {
+   "text": "Phone, Change Bill To",
+   "line": 157,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 21
+  },
+  {
+   "text": "Tapping \"Change Bill To\" opens the phone Details, scrolls to the Bill To field and opens its list: \"Buda Truck Repair (this customer)\", \"Valders Diesel & Fleet Repair\" highlighted, then customers A to Z.",
+   "line": 159,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 21
+  },
+  {
+   "text": "New after the tech review (it used to target the card hidden behind Details, so nothing visible happened). Closed without saving.",
+   "line": 159,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 21
+  }
+ ]
+}

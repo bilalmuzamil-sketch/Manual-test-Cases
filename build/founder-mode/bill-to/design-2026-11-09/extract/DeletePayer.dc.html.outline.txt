@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <meta>
+    <title>
+      "6. Deleting a customer that pays for others"
+    <link>
+    <link>
+  <body>
+    <x-dc>
+      <helmet>
+      <div data-theme="light" [width:6400px; background:var(--sv-surface-canvas); color:var(--sv-text-primary)]>
+        <div>
+          <h2.sv-h2>
+            "6. Deleting a customer that pays for others"
+          <p [color:var(--sv-text-secondary)]>
+            "Customers, Edit Customer, Delete. A customer with work orders, assets or contacts cannot be deleted at all, as today, so this flow uses Murrieta Diesel Repair, which has none. For the shots Murrieta was saved as Valders Diesel & Fleet Repair's default Bill To; "Remove as default Bill To" then cleared it, which is also the original state. Murrieta was never deleted. Before: production v26.45.2.1. After: the locked Bill To build."
+        <div>
+          <div.bt-row>
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--neutral>
+                  "Production (v26.45.2.1)"
+                <span.bt-name>
+                  "Edit Customer, Delete"
+              <img.bt-shot alt="Edit Customer for Murrieta in production" src="shots/before-p6-edit-bottom.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "Delete is available."
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--info>
+                  "This build"
+                <span.bt-name>
+                  "Edit Customer, Delete"
+              <img.bt-shot alt="Edit Customer for Murrieta in this build" src="shots/after-p6-edit-bottom.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "Murrieta's card shows "Pays for" 1. Delete is still available; the check happens on delete."
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--neutral>
+                  "Production (v26.45.2.1)"
+                <span.bt-name>
+                  "Confirmation"
+              <img.bt-shot alt="Delete confirmation in production" src="shots/before-p6-delete-first.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    ""Confirmation": "Are you sure you want to delete this company?" with "Cancel" and "Delete". Confirming would delete it; not clicked."
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--info>
+                  "This build"
+                <span.bt-name>
+                  "Confirmation"
+              <img.bt-shot alt="Delete confirmation in this build" src="shots/after-p6-delete-first.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "The same confirmation, unchanged."
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--warning>
+                  "New, no before exists"
+                <span.bt-name>
+                  "Delete Customer refused"
+              <img.bt-shot alt="Delete Customer window naming the dependent customer" src="shots/after-p6-blocked.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "Window "Delete Customer": "This customer is the default Bill To for Valders Diesel & Fleet Repair. Remove it from that customer first." Each dependent customer is a link."
+                  <li>
+                    "Buttons "Cancel" and "Remove As Default Bill To" (app buttons render in Title Case)."
+          <div.bt-row>
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--warning>
+                  "New, no before exists"
+                <span.bt-name>
+                  "Remove as default Bill To"
+              <img.bt-shot alt="Remove as default Bill To confirmation" src="shots/after-p6-remove-confirm.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    ""Remove as default Bill To": "Remove Murrieta Diesel Repair as the default Bill To for 1 customer? Open work orders keep their Bill To." Buttons "Cancel" and "Remove"."
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--warning>
+                  "New, no before exists"
+                <span.bt-name>
+                  "After Remove"
+              <img.bt-shot alt="Back on the delete confirmation after Remove" src="shots/after-p6-remove-result.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "The default is cleared and the user is back on the delete "Confirmation"; the user deletes again from there (not clicked here)."
+                  <li>
+                    "Fixed after these shots: the customer page now refreshes when the default is removed, so "Pays for" 1 disappears at once."
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--warning>
+                  "New, no before exists"
+                <span.bt-name>
+                  "Result"
+              <img.bt-shot alt="Murrieta page after the default was removed" src="shots/after-p6-del-after-remove.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "Reloaded: no "Pays for" counter. Valders now bills itself for new work."
+            <figure.bt-figp>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--neutral>
+                  "Production (v26.45.2.1)"
+                <span.bt-name>
+                  "Phone"
+              <img.bt-phone alt="Delete confirmation on a phone in production" src="shots/before-p6-phone-delete-first.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "Confirmation on a phone."
+            <figure.bt-figp>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--info>
+                  "This build"
+                <span.bt-name>
+                  "Phone"
+              <img.bt-phone alt="Delete confirmation on a phone in this build" src="shots/after-p6-phone-delete-first.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "The default had already been removed, so this shows the plain confirmation, same as production."

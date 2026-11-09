@@ -20,7 +20,7 @@ is open; say where). A row whose ticket was updated after the row was written is
   python3 build/testing-tools/ticket_sweep.py --config C --jira J --prd-version N --ledger L [--cases X]"""
 import argparse, json, re, sys
 ap = argparse.ArgumentParser()
-ap.add_argument("--config", required=True); ap.add_argument("--jira", required=True); ap.add_argument("--prd-version", type=int, required=True)
+ap.add_argument("--config", required=True); ap.add_argument("--jira", required=True); ap.add_argument("--prd-version", type=float, required=True)   # float: a PRD may carry an in-body version such as 0.5 (Bill To, 9 Nov 2026)
 ap.add_argument("--ledger", required=True); ap.add_argument("--cases")
 a = ap.parse_args()
 cfg = json.load(open(a.config)); led = json.load(open(a.ledger))
@@ -40,7 +40,7 @@ for i in issues:
     elif row.get("outcome") not in OK: why = f"outcome '{row.get('outcome')}' is not one of {sorted(OK)}"
     elif f.get("updated") and row.get("updated") and f["updated"] > row["updated"]: why = f"ticket updated {f['updated']} after the ledger row ({row['updated']})"
     if why: todo.append((k, f.get("summary", ""), why, cited.get(k, [])))
-prd_todo = a.prd_version > int(cfg["prd_version_handled"])
+prd_todo = a.prd_version > float(cfg["prd_version_handled"])
 print(f"{cfg['project']}: {len(issues)} tickets under {cfg['epic']} and its stories; ledger rows {len(led)}")
 print(f"PRD {cfg['prd_page']}: read version {a.prd_version}, handled version {cfg['prd_version_handled']}" + ("  <-- NOT HANDLED: diff it, list the cases it changes" if prd_todo else ""))
 for k, s, why, cs in todo: print(f"UNHANDLED {k}: {s} | {why}" + (f" | cases naming it: {', '.join(cs)}" if cs else ""))

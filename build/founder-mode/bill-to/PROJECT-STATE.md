@@ -6,3 +6,8 @@
 
 ## 9 Nov 2026 — intake
 - PRD, all 20 tickets and the design package (8 boards, 124 screenshots) saved. `INTAKE-2026-11-09.md`.
+
+## 9 Nov 2026 — round 1 case library (case worker; no TestRail/Jira/Slack/Google writes, no commit)
+- 271 cases in `authoring/` (S1–S19, API, DATA, REL, INV; "Design — how it looks" empty until the design round). `python3 authoring/build.py` → 0 PROBLEM lines; tester-readiness 0 hard. 235 runnable on a build (Rule 69 marker), 36 held: 6 on PO questions 1–3 (`PO-QUESTIONS-DRAFT.md`, not sent), 6 on the SV-11665 release, 4 on the portal app release, 9 production around the release, 11 a tester cannot set up (`NO-MANUAL-PROPOSAL.md`).
+- PRD codes 176/178 covered (S15-N1, S18-R2 not testable, reasons in `REPORT.md`); stories identical to PRD v0.5; epic's "AccountingHub change" superseded by the PRD (latest wins).
+- `TICKET-LEDGER.json` / `TICKET-SWEEP.json` (prd_version_handled "0.5"): `ticket_sweep.py` 0 unhandled (the tool now reads decimal versions). Setup file for Claude sessions: `BILL-TO-SETUP-FILE.md`. Proposed subsections: `sections.json` (ids null).

@@ -1,0 +1,900 @@
+{
+ "board": "AssetTab.dc.html",
+ "title": "7. Asset Work Orders tab",
+ "h2": "7. Asset Work Orders tab",
+ "note": "Asset \"shop heavy\", opened from its current owner, Quartzsite Truck Service & Repair. It had an earlier owner, Kolosov's Diesel Repair. Left to right: the default view, the Customer chip open, one customer picked, applied, a 1600px board with search filled, then phone. Last row: the asset of S2-17579 (2024 INTERNATIONAL CV515, unit 854, Buda Truck Repair), where two work orders bill someone else, to show the \"Bill To\" column added after the tech review. Before: production v26.45.2.1. After: the locked Bill To build.",
+ "helmet_css": "\n<style>\nbody{margin:0}\n.bt-shot{width:1200px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-wide{width:1600px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-phone{width:390px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}\n.bt-cap li{margin:0 0 6px}\n.bt-row{display:flex;gap:48px;align-items:flex-start}\n.bt-fig{margin:0;width:1200px;display:flex;flex-direction:column;gap:12px}\n.bt-figw{margin:0;width:1600px;display:flex;flex-direction:column;gap:12px}\n.bt-figp{margin:0;width:390px;display:flex;flex-direction:column;gap:12px}\n.bt-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}\n.bt-name{font-size:18px;font-weight:600}\n</style>\n",
+ "figures": [
+  {
+   "n": 1,
+   "line": 35,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Work Orders tab",
+   "captions": [
+    "Only the current owner's work: S2-16988. Toolbar: Search, Status, New."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p7-asset-work-orders.png",
+     "alt": "Asset Work Orders tab in production",
+     "line": 37
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 36,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 1
+    },
+    {
+     "text": "Work Orders tab",
+     "line": 36,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 1
+    },
+    {
+     "text": "Asset Work Orders tab in production",
+     "line": 37,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Only the current owner's work: S2-16988. Toolbar: Search, Status, New.",
+     "line": 38,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "line": 40,
+   "badge": "This build",
+   "heading": "Whole history",
+   "captions": [
+    "Every work order on the asset at this location, for every owner and payer, oldest first as today: Kolosov's work orders now appear too.",
+    "No row here bills someone else, so there is no \"Bill To\" column (see the S2-17579 asset below). Rechecked after the tech review: pixel-identical, not replaced.",
+    "New chip between Status and New: \"Customer: All customers\". Search and Status shift left to make room; New stays at the right edge. The chip is the only addition and nothing wraps.",
+    "Release-day change: old owners' jobs appear on this tab."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p7-asset-work-orders.png",
+     "alt": "Asset Work Orders tab with the whole history",
+     "line": 42
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 41,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "Whole history",
+     "line": 41,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 2
+    },
+    {
+     "text": "Asset Work Orders tab with the whole history",
+     "line": 42,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Every work order on the asset at this location, for every owner and payer, oldest first as today: Kolosov's work orders now appear too.",
+     "line": 43,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "No row here bills someone else, so there is no \"Bill To\" column (see the S2-17579 asset below). Rechecked after the tech review: pixel-identical, not replaced.",
+     "line": 43,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "New chip between Status and New: \"Customer: All customers\". Search and Status shift left to make room; New stays at the right edge. The chip is the only addition and nothing wraps.",
+     "line": 43,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Release-day change: old owners' jobs appear on this tab.",
+     "line": 43,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "line": 45,
+   "badge": "New, no before exists",
+   "heading": "Customer chip open",
+   "captions": [
+    "\"All customers\" ticked, then \"All customers are included. Pick one or more to narrow.\", then each customer on the asset's work orders, as customer or Bill To, A to Z: \"Kolosov's Diesel Repair\", \"Quartzsite Truck Service & Repair\".",
+    "Search shows only with more than 8 options."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p7-asset-customer-open.png",
+     "alt": "Customer chip open",
+     "line": 47
+    }
+   ],
+   "texts": [
+    {
+     "text": "New, no before exists",
+     "line": 46,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--warning",
+     "fig": 3
+    },
+    {
+     "text": "Customer chip open",
+     "line": 46,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 3
+    },
+    {
+     "text": "Customer chip open",
+     "line": 47,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"All customers\" ticked, then \"All customers are included. Pick one or more to narrow.\", then each customer on the asset's work orders, as customer or Bill To, A to Z: \"Kolosov's Diesel Repair\", \"Quartzsite Truck Service & Repair\".",
+     "line": 48,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Search shows only with more than 8 options.",
+     "line": 48,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "line": 50,
+   "badge": "New, no before exists",
+   "heading": "One customer picked",
+   "captions": [
+    "Quartzsite ticked: \"1 selected\", and the chip reads \"Customer: Quartzsite Truc...\"."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p7-asset-customer-picked-open.png",
+     "alt": "Quartzsite picked in the Customer chip",
+     "line": 52
+    }
+   ],
+   "texts": [
+    {
+     "text": "New, no before exists",
+     "line": 51,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--warning",
+     "fig": 4
+    },
+    {
+     "text": "One customer picked",
+     "line": 51,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 4
+    },
+    {
+     "text": "Quartzsite picked in the Customer chip",
+     "line": 52,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Quartzsite ticked: \"1 selected\", and the chip reads \"Customer: Quartzsite Truc...\".",
+     "line": 53,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "line": 55,
+   "badge": "New, no before exists",
+   "heading": "Applied",
+   "captions": [
+    "Only S2-16988. A work order matches when a picked customer is its customer or its Bill To."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p7-asset-customer-applied.png",
+     "alt": "Customer filter applied",
+     "line": 57
+    }
+   ],
+   "texts": [
+    {
+     "text": "New, no before exists",
+     "line": 56,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--warning",
+     "fig": 5
+    },
+    {
+     "text": "Applied",
+     "line": 56,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 5
+    },
+    {
+     "text": "Customer filter applied",
+     "line": 57,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Only S2-16988. A work order matches when a picked customer is its customer or its Bill To.",
+     "line": 58,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "line": 62,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "1600 wide, search \"S2-16\"",
+   "captions": [
+    "One match from the current owner, S2-16988."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p7-asset-work-orders-1600-search.png",
+     "alt": "Asset tab at 1600 with search in production",
+     "line": 64
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 63,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 6
+    },
+    {
+     "text": "1600 wide, search \"S2-16\"",
+     "line": 63,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 6
+    },
+    {
+     "text": "Asset tab at 1600 with search in production",
+     "line": 64,
+     "kind": "attr:alt",
+     "ctx": "bt-wide"
+    },
+    {
+     "text": "One match from the current owner, S2-16988.",
+     "line": 65,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "line": 67,
+   "badge": "This build",
+   "heading": "1600 wide, search \"S2-16\"",
+   "captions": [
+    "Searching the whole history finds Kolosov's S2-16894 as well. The search box, Status, Customer chip and New sit on one line at 1600; nothing wraps."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p7-asset-work-orders-1600-search.png",
+     "alt": "Asset tab at 1600 with search in this build",
+     "line": 69
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 68,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 7
+    },
+    {
+     "text": "1600 wide, search \"S2-16\"",
+     "line": 68,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 7
+    },
+    {
+     "text": "Asset tab at 1600 with search in this build",
+     "line": 69,
+     "kind": "attr:alt",
+     "ctx": "bt-wide"
+    },
+    {
+     "text": "Searching the whole history finds Kolosov's S2-16894 as well. The search box, Status, Customer chip and New sit on one line at 1600; nothing wraps.",
+     "line": 70,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "line": 72,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Phone",
+   "captions": [
+    "The asset card comes first on a phone."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p7-phone-asset-work-orders.png",
+     "alt": "Asset page on a phone in production",
+     "line": 74
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 73,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 8
+    },
+    {
+     "text": "Phone",
+     "line": 73,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 8
+    },
+    {
+     "text": "Asset page on a phone in production",
+     "line": 74,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "The asset card comes first on a phone.",
+     "line": 75,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "line": 77,
+   "badge": "This build",
+   "heading": "Phone",
+   "captions": [
+    "Same order as production."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p7-phone-asset-work-orders.png",
+     "alt": "Asset page on a phone in this build",
+     "line": 79
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 78,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 9
+    },
+    {
+     "text": "Phone",
+     "line": 78,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 9
+    },
+    {
+     "text": "Asset page on a phone in this build",
+     "line": 79,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "Same order as production.",
+     "line": 80,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 9
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "line": 86,
+   "badge": "This build",
+   "heading": "Work Orders tab, top",
+   "captions": [
+    "A \"Bill To\" column sits right after Customer because a loaded row bills someone else. S2-17579 reads \"Buda Truck Repair\", \"Valders Diesel & Fleet Repair\".",
+    "Self-billed rows leave the Bill To cell blank. Oldest first, as today.",
+    "At 1440 the extra column pushes the last columns past the right edge; the table scrolls sideways.",
+    "No production board for this asset: production was not re-run for this update. Production's tab has no Bill To column on any asset (see the \"shop heavy\" before board above).",
+    "Accuracy check: top bar identical to production; the tab toolbar differs from production only by the Customer chip (this build) and the Invoices count, which is this asset's data."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p7-asset854-work-orders.png",
+     "alt": "Asset Work Orders tab with a Bill To column",
+     "line": 88
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 87,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 10
+    },
+    {
+     "text": "Work Orders tab, top",
+     "line": 87,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 10
+    },
+    {
+     "text": "Asset Work Orders tab with a Bill To column",
+     "line": 88,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "A \"Bill To\" column sits right after Customer because a loaded row bills someone else. S2-17579 reads \"Buda Truck Repair\", \"Valders Diesel & Fleet Repair\".",
+     "line": 89,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Self-billed rows leave the Bill To cell blank. Oldest first, as today.",
+     "line": 89,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "At 1440 the extra column pushes the last columns past the right edge; the table scrolls sideways.",
+     "line": 89,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "No production board for this asset: production was not re-run for this update. Production's tab has no Bill To column on any asset (see the \"shop heavy\" before board above).",
+     "line": 89,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Accuracy check: top bar identical to production; the tab toolbar differs from production only by the Customer chip (this build) and the Invoices count, which is this asset's data.",
+     "line": 89,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "line": 91,
+   "badge": "This build",
+   "heading": "Work Orders tab, scrolled",
+   "captions": [
+    "The last two rows, S2-17579 (Approved) and S2-17581 (Paid), both read \"Valders Diesel & Fleet Repair\" under Bill To.",
+    "When no loaded row bills someone else the column is not shown at all."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p7-asset854-work-orders-bottom.png",
+     "alt": "Asset Work Orders tab scrolled to the last rows",
+     "line": 93
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 92,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 11
+    },
+    {
+     "text": "Work Orders tab, scrolled",
+     "line": 92,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 11
+    },
+    {
+     "text": "Asset Work Orders tab scrolled to the last rows",
+     "line": 93,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The last two rows, S2-17579 (Approved) and S2-17581 (Paid), both read \"Valders Diesel & Fleet Repair\" under Bill To.",
+     "line": 94,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "When no loaded row bills someone else the column is not shown at all.",
+     "line": 94,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 11
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "text": "7. Asset Work Orders tab",
+   "line": 5,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "7. Asset Work Orders tab",
+   "line": 30,
+   "kind": "text",
+   "ctx": "sv-h2",
+   "fig": 0
+  },
+  {
+   "text": "Asset \"shop heavy\", opened from its current owner, Quartzsite Truck Service & Repair. It had an earlier owner, Kolosov's Diesel Repair. Left to right: the default view, the Customer chip open, one customer picked, applied, a 1600px board with search filled, then phone. Last row: the asset of S2-17579 (2024 INTERNATIONAL CV515, unit 854, Buda Truck Repair), where two work orders bill someone else, to show the \"Bill To\" column added after the tech review. Before: production v26.45.2.1. After: the locked Bill To build.",
+   "line": 31,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 36,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 1
+  },
+  {
+   "text": "Work Orders tab",
+   "line": 36,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 1
+  },
+  {
+   "text": "Only the current owner's work: S2-16988. Toolbar: Search, Status, New.",
+   "line": 38,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "This build",
+   "line": 41,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "Whole history",
+   "line": 41,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 2
+  },
+  {
+   "text": "Every work order on the asset at this location, for every owner and payer, oldest first as today: Kolosov's work orders now appear too.",
+   "line": 43,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "No row here bills someone else, so there is no \"Bill To\" column (see the S2-17579 asset below). Rechecked after the tech review: pixel-identical, not replaced.",
+   "line": 43,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "New chip between Status and New: \"Customer: All customers\". Search and Status shift left to make room; New stays at the right edge. The chip is the only addition and nothing wraps.",
+   "line": 43,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Release-day change: old owners' jobs appear on this tab.",
+   "line": 43,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "New, no before exists",
+   "line": 46,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--warning",
+   "fig": 3
+  },
+  {
+   "text": "Customer chip open",
+   "line": 46,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 3
+  },
+  {
+   "text": "\"All customers\" ticked, then \"All customers are included. Pick one or more to narrow.\", then each customer on the asset's work orders, as customer or Bill To, A to Z: \"Kolosov's Diesel Repair\", \"Quartzsite Truck Service & Repair\".",
+   "line": 48,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Search shows only with more than 8 options.",
+   "line": 48,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "New, no before exists",
+   "line": 51,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--warning",
+   "fig": 4
+  },
+  {
+   "text": "One customer picked",
+   "line": 51,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 4
+  },
+  {
+   "text": "Quartzsite ticked: \"1 selected\", and the chip reads \"Customer: Quartzsite Truc...\".",
+   "line": 53,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "New, no before exists",
+   "line": 56,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--warning",
+   "fig": 5
+  },
+  {
+   "text": "Applied",
+   "line": 56,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 5
+  },
+  {
+   "text": "Only S2-16988. A work order matches when a picked customer is its customer or its Bill To.",
+   "line": 58,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 63,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 6
+  },
+  {
+   "text": "1600 wide, search \"S2-16\"",
+   "line": 63,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 6
+  },
+  {
+   "text": "One match from the current owner, S2-16988.",
+   "line": 65,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "This build",
+   "line": 68,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 7
+  },
+  {
+   "text": "1600 wide, search \"S2-16\"",
+   "line": 68,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 7
+  },
+  {
+   "text": "Searching the whole history finds Kolosov's S2-16894 as well. The search box, Status, Customer chip and New sit on one line at 1600; nothing wraps.",
+   "line": 70,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 73,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 8
+  },
+  {
+   "text": "Phone",
+   "line": 73,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 8
+  },
+  {
+   "text": "The asset card comes first on a phone.",
+   "line": 75,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "This build",
+   "line": 78,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 9
+  },
+  {
+   "text": "Phone",
+   "line": 78,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 9
+  },
+  {
+   "text": "Same order as production.",
+   "line": 80,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 9
+  },
+  {
+   "text": "Bill To column (asset of S2-17579, unit 854, Buda Truck Repair)",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "This build",
+   "line": 87,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 10
+  },
+  {
+   "text": "Work Orders tab, top",
+   "line": 87,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 10
+  },
+  {
+   "text": "A \"Bill To\" column sits right after Customer because a loaded row bills someone else. S2-17579 reads \"Buda Truck Repair\", \"Valders Diesel & Fleet Repair\".",
+   "line": 89,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Self-billed rows leave the Bill To cell blank. Oldest first, as today.",
+   "line": 89,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "At 1440 the extra column pushes the last columns past the right edge; the table scrolls sideways.",
+   "line": 89,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "No production board for this asset: production was not re-run for this update. Production's tab has no Bill To column on any asset (see the \"shop heavy\" before board above).",
+   "line": 89,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Accuracy check: top bar identical to production; the tab toolbar differs from production only by the Customer chip (this build) and the Invoices count, which is this asset's data.",
+   "line": 89,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "This build",
+   "line": 92,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 11
+  },
+  {
+   "text": "Work Orders tab, scrolled",
+   "line": 92,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 11
+  },
+  {
+   "text": "The last two rows, S2-17579 (Approved) and S2-17581 (Paid), both read \"Valders Diesel & Fleet Repair\" under Bill To.",
+   "line": 94,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "When no loaded row bills someone else the column is not shown at all.",
+   "line": 94,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 11
+  }
+ ]
+}

@@ -1,0 +1,1088 @@
+{
+ "board": "GettingPaid.dc.html",
+ "title": "5. Getting paid",
+ "h2": "5. Getting paid",
+ "note": "Customer page, Invoices tab, then the payment window, then the invoice email, then the portal and phone. A & J Truck & Trailer Repair is the payer for S2-17513 (Orchard City's work) and S2-17362 (Phillipsburg's work). Before: production v26.45.2.1. After: the locked Bill To build. Both ran on the same data, and the receivables in that data were already posted to the payer by this build, so production lists them on the payer too; production itself would post them to the customer.",
+ "helmet_css": "\n<style>\nbody{margin:0}\n.bt-shot{width:1200px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-phone{width:390px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}\n.bt-cap li{margin:0 0 6px}\n.bt-row{display:flex;gap:48px;align-items:flex-start}\n.bt-fig{margin:0;width:1200px;display:flex;flex-direction:column;gap:12px}\n.bt-figp{margin:0;width:390px;display:flex;flex-direction:column;gap:12px}\n.bt-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}\n.bt-name{font-size:18px;font-weight:600}\n.bt-rowt{margin:0;font-size:22px;font-weight:600}\n</style>\n",
+ "figures": [
+  {
+   "n": 1,
+   "line": 36,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "A & J, Invoices",
+   "captions": [
+    "Date, Type, No., Memo, Total, Balance, Status, Action. Nothing says whose work each invoice was."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p5-aj-invoices.png",
+     "alt": "A and J invoices in production",
+     "line": 38
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 37,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 1
+    },
+    {
+     "text": "A & J, Invoices",
+     "line": 37,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 1
+    },
+    {
+     "text": "A and J invoices in production",
+     "line": 38,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Date, Type, No., Memo, Total, Balance, Status, Action. Nothing says whose work each invoice was.",
+     "line": 39,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "line": 41,
+   "badge": "This build",
+   "heading": "A & J, Invoices",
+   "captions": [
+    "New column after No.: header \"Service For\", naming the customer the work was for.",
+    "The column is hidden when no row on the tab is billed for someone else."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p5-aj-invoices.png",
+     "alt": "A and J invoices with the Service For column",
+     "line": 43
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "A & J, Invoices",
+     "line": 42,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 2
+    },
+    {
+     "text": "A and J invoices with the Service For column",
+     "line": 43,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "New column after No.: header \"Service For\", naming the customer the work was for.",
+     "line": 44,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "The column is hidden when no row on the tab is billed for someone else.",
+     "line": 44,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "line": 46,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Valders, Open only off",
+   "captions": [
+    "S2-17581 listed with no Service For column."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p5-valders-invoices-all.png",
+     "alt": "Valders invoices in production",
+     "line": 48
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 47,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 3
+    },
+    {
+     "text": "Valders, Open only off",
+     "line": 47,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 3
+    },
+    {
+     "text": "Valders invoices in production",
+     "line": 48,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "S2-17581 listed with no Service For column.",
+     "line": 49,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "line": 51,
+   "badge": "This build",
+   "heading": "Valders, Open only off",
+   "captions": [
+    "S2-17581, Service For \"Buda Truck Repair\", Paid."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p5-valders-invoices-all.png",
+     "alt": "Valders invoices with Service For Buda",
+     "line": 53
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 52,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 4
+    },
+    {
+     "text": "Valders, Open only off",
+     "line": 52,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 4
+    },
+    {
+     "text": "Valders invoices with Service For Buda",
+     "line": 53,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "S2-17581, Service For \"Buda Truck Repair\", Paid.",
+     "line": 54,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "line": 61,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Rows picked",
+   "captions": [
+    "Both invoices ticked; New Payment turns on."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p5-aj-rows-selected.png",
+     "alt": "A and J rows selected in production",
+     "line": 63
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 62,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 5
+    },
+    {
+     "text": "Rows picked",
+     "line": 62,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 5
+    },
+    {
+     "text": "A and J rows selected in production",
+     "line": 63,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Both invoices ticked; New Payment turns on.",
+     "line": 64,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "line": 66,
+   "badge": "This build",
+   "heading": "Rows picked",
+   "captions": [
+    "The same, with the Service For column."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p5-aj-rows-selected.png",
+     "alt": "A and J rows selected in this build",
+     "line": 68
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 67,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 6
+    },
+    {
+     "text": "Rows picked",
+     "line": 67,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 6
+    },
+    {
+     "text": "A and J rows selected in this build",
+     "line": 68,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The same, with the Service For column.",
+     "line": 69,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "line": 71,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "New Customer Payment",
+   "captions": [
+    "The payment window."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p5-aj-new-payment.png",
+     "alt": "New Customer Payment in production",
+     "line": 73
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 72,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 7
+    },
+    {
+     "text": "New Customer Payment",
+     "line": 72,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 7
+    },
+    {
+     "text": "New Customer Payment in production",
+     "line": 73,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The payment window.",
+     "line": 74,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "line": 76,
+   "badge": "This build",
+   "heading": "New Customer Payment",
+   "captions": [
+    "The window is unchanged: S2-17362 and S2-17513, Payment amount $1,679.02. One payment covers several of the payer's invoices across the customers it pays for.",
+    "A payment applied to another customer's invoice is refused by the server; that refusal has no screen here."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p5-aj-new-payment.png",
+     "alt": "New Customer Payment in this build",
+     "line": 78
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 77,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 8
+    },
+    {
+     "text": "New Customer Payment",
+     "line": 77,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 8
+    },
+    {
+     "text": "New Customer Payment in this build",
+     "line": 78,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The window is unchanged: S2-17362 and S2-17513, Payment amount $1,679.02. One payment covers several of the payer's invoices across the customers it pays for.",
+     "line": 79,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "A payment applied to another customer's invoice is refused by the server; that refusal has no screen here.",
+     "line": 79,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "line": 81,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Orchard City, Invoices",
+   "captions": [
+    "Empty on this data."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p5-orchard-invoices.png",
+     "alt": "Orchard City invoices in production",
+     "line": 83
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 82,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 9
+    },
+    {
+     "text": "Orchard City, Invoices",
+     "line": 82,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 9
+    },
+    {
+     "text": "Orchard City invoices in production",
+     "line": 83,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Empty on this data.",
+     "line": 84,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 9
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "line": 86,
+   "badge": "This build",
+   "heading": "Orchard City, Invoices",
+   "captions": [
+    "S2-17513 was Orchard City's work but is not on its tab, so it cannot be paid from Orchard City's side."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p5-orchard-invoices.png",
+     "alt": "Orchard City invoices in this build",
+     "line": 88
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 87,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 10
+    },
+    {
+     "text": "Orchard City, Invoices",
+     "line": 87,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 10
+    },
+    {
+     "text": "Orchard City invoices in this build",
+     "line": 88,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "S2-17513 was Orchard City's work but is not on its tab, so it cannot be paid from Orchard City's side.",
+     "line": 89,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "line": 96,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Sending invoice (S2-17581)",
+   "captions": [
+    "Lists Buda's contact, \"Wendy Lopez\", ticked."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p5-invoice-email.png",
+     "alt": "Sending invoice in production",
+     "line": 98
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 97,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 11
+    },
+    {
+     "text": "Sending invoice (S2-17581)",
+     "line": 97,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 11
+    },
+    {
+     "text": "Sending invoice in production",
+     "line": 98,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Lists Buda's contact, \"Wendy Lopez\", ticked.",
+     "line": 99,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 11
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "line": 101,
+   "badge": "This build",
+   "heading": "Sending invoice (S2-17581)",
+   "captions": [
+    "Lists the Bill To's contacts and ticks \"George Thomas\" (Valders): its Billing contact, else its first.",
+    "\"Include 'For Customer' Attachments in email\" starts unticked, as today."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p5-invoice-email.png",
+     "alt": "Sending invoice to the Bill To contact",
+     "line": 103
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 102,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 12
+    },
+    {
+     "text": "Sending invoice (S2-17581)",
+     "line": 102,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 12
+    },
+    {
+     "text": "Sending invoice to the Bill To contact",
+     "line": 103,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Lists the Bill To's contacts and ticks \"George Thomas\" (Valders): its Billing contact, else its first.",
+     "line": 104,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 12
+    },
+    {
+     "text": "\"Include 'For Customer' Attachments in email\" starts unticked, as today.",
+     "line": 104,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 12
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "line": 106,
+   "badge": "Not shown",
+   "heading": "Customer portal",
+   "captions": [],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "Not shown",
+     "line": 107,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--warning",
+     "fig": 13
+    },
+    {
+     "text": "Customer portal",
+     "line": 107,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 13
+    },
+    {
+     "text": "The customer portal could not be shot.",
+     "line": 109,
+     "kind": "text",
+     "ctx": "",
+     "fig": 13
+    },
+    {
+     "text": "The portal is a separate app and does not run on this machine. Its Bill To changes (\"Billed to [Bill To]\" where Pay would be, Pay only for the Bill To, paying several invoices at once only for the viewer's own customer, the \"invoice created\" email to the Bill To's portal contacts, and the deposit link check) are built but have not been run live. They are covered in the PRD.",
+     "line": 110,
+     "kind": "text",
+     "ctx": "",
+     "fig": 13
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "line": 113,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Phone",
+   "captions": [
+    "The customer card comes first on a phone; the tab is below."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p5-phone-aj-invoices.png",
+     "alt": "A and J invoices on a phone in production",
+     "line": 115
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 114,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 14
+    },
+    {
+     "text": "Phone",
+     "line": 114,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 14
+    },
+    {
+     "text": "A and J invoices on a phone in production",
+     "line": 115,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "The customer card comes first on a phone; the tab is below.",
+     "line": 116,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 14
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "line": 118,
+   "badge": "This build",
+   "heading": "Phone",
+   "captions": [
+    "Same order as production. Nothing phone-only."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p5-phone-aj-invoices.png",
+     "alt": "A and J invoices on a phone in this build",
+     "line": 120
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 119,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 15
+    },
+    {
+     "text": "Phone",
+     "line": 119,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 15
+    },
+    {
+     "text": "A and J invoices on a phone in this build",
+     "line": 120,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "Same order as production. Nothing phone-only.",
+     "line": 121,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 15
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "text": "5. Getting paid",
+   "line": 5,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "5. Getting paid",
+   "line": 29,
+   "kind": "text",
+   "ctx": "sv-h2",
+   "fig": 0
+  },
+  {
+   "text": "Customer page, Invoices tab, then the payment window, then the invoice email, then the portal and phone. A & J Truck & Trailer Repair is the payer for S2-17513 (Orchard City's work) and S2-17362 (Phillipsburg's work). Before: production v26.45.2.1. After: the locked Bill To build. Both ran on the same data, and the receivables in that data were already posted to the payer by this build, so production lists them on the payer too; production itself would post them to the customer.",
+   "line": 30,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "The payer's Invoices tab",
+   "line": 34,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 37,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 1
+  },
+  {
+   "text": "A & J, Invoices",
+   "line": 37,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 1
+  },
+  {
+   "text": "Date, Type, No., Memo, Total, Balance, Status, Action. Nothing says whose work each invoice was.",
+   "line": 39,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "This build",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "A & J, Invoices",
+   "line": 42,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 2
+  },
+  {
+   "text": "New column after No.: header \"Service For\", naming the customer the work was for.",
+   "line": 44,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "The column is hidden when no row on the tab is billed for someone else.",
+   "line": 44,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 47,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 3
+  },
+  {
+   "text": "Valders, Open only off",
+   "line": 47,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 3
+  },
+  {
+   "text": "S2-17581 listed with no Service For column.",
+   "line": 49,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "This build",
+   "line": 52,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 4
+  },
+  {
+   "text": "Valders, Open only off",
+   "line": 52,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 4
+  },
+  {
+   "text": "S2-17581, Service For \"Buda Truck Repair\", Paid.",
+   "line": 54,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Payment limited to the Bill To",
+   "line": 59,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 62,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 5
+  },
+  {
+   "text": "Rows picked",
+   "line": 62,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 5
+  },
+  {
+   "text": "Both invoices ticked; New Payment turns on.",
+   "line": 64,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "This build",
+   "line": 67,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 6
+  },
+  {
+   "text": "Rows picked",
+   "line": 67,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 6
+  },
+  {
+   "text": "The same, with the Service For column.",
+   "line": 69,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 72,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 7
+  },
+  {
+   "text": "New Customer Payment",
+   "line": 72,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 7
+  },
+  {
+   "text": "The payment window.",
+   "line": 74,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "This build",
+   "line": 77,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 8
+  },
+  {
+   "text": "New Customer Payment",
+   "line": 77,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 8
+  },
+  {
+   "text": "The window is unchanged: S2-17362 and S2-17513, Payment amount $1,679.02. One payment covers several of the payer's invoices across the customers it pays for.",
+   "line": 79,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "A payment applied to another customer's invoice is refused by the server; that refusal has no screen here.",
+   "line": 79,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 82,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 9
+  },
+  {
+   "text": "Orchard City, Invoices",
+   "line": 82,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 9
+  },
+  {
+   "text": "Empty on this data.",
+   "line": 84,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 9
+  },
+  {
+   "text": "This build",
+   "line": 87,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 10
+  },
+  {
+   "text": "Orchard City, Invoices",
+   "line": 87,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 10
+  },
+  {
+   "text": "S2-17513 was Orchard City's work but is not on its tab, so it cannot be paid from Orchard City's side.",
+   "line": 89,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Invoice email, the portal, phone",
+   "line": 94,
+   "kind": "text",
+   "ctx": "bt-rowt",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 97,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 11
+  },
+  {
+   "text": "Sending invoice (S2-17581)",
+   "line": 97,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 11
+  },
+  {
+   "text": "Lists Buda's contact, \"Wendy Lopez\", ticked.",
+   "line": 99,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "This build",
+   "line": 102,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 12
+  },
+  {
+   "text": "Sending invoice (S2-17581)",
+   "line": 102,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 12
+  },
+  {
+   "text": "Lists the Bill To's contacts and ticks \"George Thomas\" (Valders): its Billing contact, else its first.",
+   "line": 104,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 12
+  },
+  {
+   "text": "\"Include 'For Customer' Attachments in email\" starts unticked, as today.",
+   "line": 104,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 12
+  },
+  {
+   "text": "Not shown",
+   "line": 107,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--warning",
+   "fig": 13
+  },
+  {
+   "text": "Customer portal",
+   "line": 107,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 13
+  },
+  {
+   "text": "The customer portal could not be shot.",
+   "line": 109,
+   "kind": "text",
+   "ctx": "",
+   "fig": 13
+  },
+  {
+   "text": "The portal is a separate app and does not run on this machine. Its Bill To changes (\"Billed to [Bill To]\" where Pay would be, Pay only for the Bill To, paying several invoices at once only for the viewer's own customer, the \"invoice created\" email to the Bill To's portal contacts, and the deposit link check) are built but have not been run live. They are covered in the PRD.",
+   "line": 110,
+   "kind": "text",
+   "ctx": "",
+   "fig": 13
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 114,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 14
+  },
+  {
+   "text": "Phone",
+   "line": 114,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 14
+  },
+  {
+   "text": "The customer card comes first on a phone; the tab is below.",
+   "line": 116,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 14
+  },
+  {
+   "text": "This build",
+   "line": 119,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 15
+  },
+  {
+   "text": "Phone",
+   "line": 119,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 15
+  },
+  {
+   "text": "Same order as production. Nothing phone-only.",
+   "line": 121,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 15
+  }
+ ]
+}

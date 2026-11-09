@@ -1,0 +1,722 @@
+{
+ "board": "DeletePayer.dc.html",
+ "title": "6. Deleting a customer that pays for others",
+ "h2": "6. Deleting a customer that pays for others",
+ "note": "Customers, Edit Customer, Delete. A customer with work orders, assets or contacts cannot be deleted at all, as today, so this flow uses Murrieta Diesel Repair, which has none. For the shots Murrieta was saved as Valders Diesel & Fleet Repair's default Bill To; \"Remove as default Bill To\" then cleared it, which is also the original state. Murrieta was never deleted. Before: production v26.45.2.1. After: the locked Bill To build.",
+ "helmet_css": "\n<style>\nbody{margin:0}\n.bt-shot{width:1200px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-phone{width:390px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}\n.bt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}\n.bt-cap li{margin:0 0 6px}\n.bt-row{display:flex;gap:48px;align-items:flex-start}\n.bt-fig{margin:0;width:1200px;display:flex;flex-direction:column;gap:12px}\n.bt-figp{margin:0;width:390px;display:flex;flex-direction:column;gap:12px}\n.bt-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}\n.bt-name{font-size:18px;font-weight:600}\n</style>\n",
+ "figures": [
+  {
+   "n": 1,
+   "line": 33,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Edit Customer, Delete",
+   "captions": [
+    "Delete is available."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p6-edit-bottom.png",
+     "alt": "Edit Customer for Murrieta in production",
+     "line": 35
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 34,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 1
+    },
+    {
+     "text": "Edit Customer, Delete",
+     "line": 34,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 1
+    },
+    {
+     "text": "Edit Customer for Murrieta in production",
+     "line": 35,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Delete is available.",
+     "line": 36,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "line": 38,
+   "badge": "This build",
+   "heading": "Edit Customer, Delete",
+   "captions": [
+    "Murrieta's card shows \"Pays for\" 1. Delete is still available; the check happens on delete."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p6-edit-bottom.png",
+     "alt": "Edit Customer for Murrieta in this build",
+     "line": 40
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 39,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "Edit Customer, Delete",
+     "line": 39,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 2
+    },
+    {
+     "text": "Edit Customer for Murrieta in this build",
+     "line": 40,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Murrieta's card shows \"Pays for\" 1. Delete is still available; the check happens on delete.",
+     "line": 41,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "line": 43,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Confirmation",
+   "captions": [
+    "\"Confirmation\": \"Are you sure you want to delete this company?\" with \"Cancel\" and \"Delete\". Confirming would delete it; not clicked."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p6-delete-first.png",
+     "alt": "Delete confirmation in production",
+     "line": 45
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 44,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 3
+    },
+    {
+     "text": "Confirmation",
+     "line": 44,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 3
+    },
+    {
+     "text": "Delete confirmation in production",
+     "line": 45,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"Confirmation\": \"Are you sure you want to delete this company?\" with \"Cancel\" and \"Delete\". Confirming would delete it; not clicked.",
+     "line": 46,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "line": 48,
+   "badge": "This build",
+   "heading": "Confirmation",
+   "captions": [
+    "The same confirmation, unchanged."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p6-delete-first.png",
+     "alt": "Delete confirmation in this build",
+     "line": 50
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 49,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 4
+    },
+    {
+     "text": "Confirmation",
+     "line": 49,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 4
+    },
+    {
+     "text": "Delete confirmation in this build",
+     "line": 50,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The same confirmation, unchanged.",
+     "line": 51,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "line": 53,
+   "badge": "New, no before exists",
+   "heading": "Delete Customer refused",
+   "captions": [
+    "Window \"Delete Customer\": \"This customer is the default Bill To for Valders Diesel & Fleet Repair. Remove it from that customer first.\" Each dependent customer is a link.",
+    "Buttons \"Cancel\" and \"Remove As Default Bill To\" (app buttons render in Title Case)."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p6-blocked.png",
+     "alt": "Delete Customer window naming the dependent customer",
+     "line": 55
+    }
+   ],
+   "texts": [
+    {
+     "text": "New, no before exists",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--warning",
+     "fig": 5
+    },
+    {
+     "text": "Delete Customer refused",
+     "line": 54,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 5
+    },
+    {
+     "text": "Delete Customer window naming the dependent customer",
+     "line": 55,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Window \"Delete Customer\": \"This customer is the default Bill To for Valders Diesel & Fleet Repair. Remove it from that customer first.\" Each dependent customer is a link.",
+     "line": 56,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Buttons \"Cancel\" and \"Remove As Default Bill To\" (app buttons render in Title Case).",
+     "line": 56,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "line": 60,
+   "badge": "New, no before exists",
+   "heading": "Remove as default Bill To",
+   "captions": [
+    "\"Remove as default Bill To\": \"Remove Murrieta Diesel Repair as the default Bill To for 1 customer? Open work orders keep their Bill To.\" Buttons \"Cancel\" and \"Remove\"."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p6-remove-confirm.png",
+     "alt": "Remove as default Bill To confirmation",
+     "line": 62
+    }
+   ],
+   "texts": [
+    {
+     "text": "New, no before exists",
+     "line": 61,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--warning",
+     "fig": 6
+    },
+    {
+     "text": "Remove as default Bill To",
+     "line": 61,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 6
+    },
+    {
+     "text": "Remove as default Bill To confirmation",
+     "line": 62,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "\"Remove as default Bill To\": \"Remove Murrieta Diesel Repair as the default Bill To for 1 customer? Open work orders keep their Bill To.\" Buttons \"Cancel\" and \"Remove\".",
+     "line": 63,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "line": 65,
+   "badge": "New, no before exists",
+   "heading": "After Remove",
+   "captions": [
+    "The default is cleared and the user is back on the delete \"Confirmation\"; the user deletes again from there (not clicked here).",
+    "Fixed after these shots: the customer page now refreshes when the default is removed, so \"Pays for\" 1 disappears at once."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p6-remove-result.png",
+     "alt": "Back on the delete confirmation after Remove",
+     "line": 67
+    }
+   ],
+   "texts": [
+    {
+     "text": "New, no before exists",
+     "line": 66,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--warning",
+     "fig": 7
+    },
+    {
+     "text": "After Remove",
+     "line": 66,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 7
+    },
+    {
+     "text": "Back on the delete confirmation after Remove",
+     "line": 67,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "The default is cleared and the user is back on the delete \"Confirmation\"; the user deletes again from there (not clicked here).",
+     "line": 68,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Fixed after these shots: the customer page now refreshes when the default is removed, so \"Pays for\" 1 disappears at once.",
+     "line": 68,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "line": 70,
+   "badge": "New, no before exists",
+   "heading": "Result",
+   "captions": [
+    "Reloaded: no \"Pays for\" counter. Valders now bills itself for new work."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p6-del-after-remove.png",
+     "alt": "Murrieta page after the default was removed",
+     "line": 72
+    }
+   ],
+   "texts": [
+    {
+     "text": "New, no before exists",
+     "line": 71,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--warning",
+     "fig": 8
+    },
+    {
+     "text": "Result",
+     "line": 71,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 8
+    },
+    {
+     "text": "Murrieta page after the default was removed",
+     "line": 72,
+     "kind": "attr:alt",
+     "ctx": "bt-shot"
+    },
+    {
+     "text": "Reloaded: no \"Pays for\" counter. Valders now bills itself for new work.",
+     "line": 73,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "line": 75,
+   "badge": "Production (v26.45.2.1)",
+   "heading": "Phone",
+   "captions": [
+    "Confirmation on a phone."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-p6-phone-delete-first.png",
+     "alt": "Delete confirmation on a phone in production",
+     "line": 77
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (v26.45.2.1)",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 9
+    },
+    {
+     "text": "Phone",
+     "line": 76,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 9
+    },
+    {
+     "text": "Delete confirmation on a phone in production",
+     "line": 77,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "Confirmation on a phone.",
+     "line": 78,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 9
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "line": 80,
+   "badge": "This build",
+   "heading": "Phone",
+   "captions": [
+    "The default had already been removed, so this shows the plain confirmation, same as production."
+   ],
+   "imgs": [
+    {
+     "src": "shots/after-p6-phone-delete-first.png",
+     "alt": "Delete confirmation on a phone in this build",
+     "line": 82
+    }
+   ],
+   "texts": [
+    {
+     "text": "This build",
+     "line": 81,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 10
+    },
+    {
+     "text": "Phone",
+     "line": 81,
+     "kind": "text",
+     "ctx": "bt-name",
+     "fig": 10
+    },
+    {
+     "text": "Delete confirmation on a phone in this build",
+     "line": 82,
+     "kind": "attr:alt",
+     "ctx": "bt-phone"
+    },
+    {
+     "text": "The default had already been removed, so this shows the plain confirmation, same as production.",
+     "line": 83,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "text": "6. Deleting a customer that pays for others",
+   "line": 5,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "6. Deleting a customer that pays for others",
+   "line": 28,
+   "kind": "text",
+   "ctx": "sv-h2",
+   "fig": 0
+  },
+  {
+   "text": "Customers, Edit Customer, Delete. A customer with work orders, assets or contacts cannot be deleted at all, as today, so this flow uses Murrieta Diesel Repair, which has none. For the shots Murrieta was saved as Valders Diesel & Fleet Repair's default Bill To; \"Remove as default Bill To\" then cleared it, which is also the original state. Murrieta was never deleted. Before: production v26.45.2.1. After: the locked Bill To build.",
+   "line": 29,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 34,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 1
+  },
+  {
+   "text": "Edit Customer, Delete",
+   "line": 34,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 1
+  },
+  {
+   "text": "Delete is available.",
+   "line": 36,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "This build",
+   "line": 39,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "Edit Customer, Delete",
+   "line": 39,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 2
+  },
+  {
+   "text": "Murrieta's card shows \"Pays for\" 1. Delete is still available; the check happens on delete.",
+   "line": 41,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 44,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 3
+  },
+  {
+   "text": "Confirmation",
+   "line": 44,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 3
+  },
+  {
+   "text": "\"Confirmation\": \"Are you sure you want to delete this company?\" with \"Cancel\" and \"Delete\". Confirming would delete it; not clicked.",
+   "line": 46,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "This build",
+   "line": 49,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 4
+  },
+  {
+   "text": "Confirmation",
+   "line": 49,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 4
+  },
+  {
+   "text": "The same confirmation, unchanged.",
+   "line": 51,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "New, no before exists",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--warning",
+   "fig": 5
+  },
+  {
+   "text": "Delete Customer refused",
+   "line": 54,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 5
+  },
+  {
+   "text": "Window \"Delete Customer\": \"This customer is the default Bill To for Valders Diesel & Fleet Repair. Remove it from that customer first.\" Each dependent customer is a link.",
+   "line": 56,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Buttons \"Cancel\" and \"Remove As Default Bill To\" (app buttons render in Title Case).",
+   "line": 56,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "New, no before exists",
+   "line": 61,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--warning",
+   "fig": 6
+  },
+  {
+   "text": "Remove as default Bill To",
+   "line": 61,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 6
+  },
+  {
+   "text": "\"Remove as default Bill To\": \"Remove Murrieta Diesel Repair as the default Bill To for 1 customer? Open work orders keep their Bill To.\" Buttons \"Cancel\" and \"Remove\".",
+   "line": 63,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "New, no before exists",
+   "line": 66,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--warning",
+   "fig": 7
+  },
+  {
+   "text": "After Remove",
+   "line": 66,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 7
+  },
+  {
+   "text": "The default is cleared and the user is back on the delete \"Confirmation\"; the user deletes again from there (not clicked here).",
+   "line": 68,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Fixed after these shots: the customer page now refreshes when the default is removed, so \"Pays for\" 1 disappears at once.",
+   "line": 68,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "New, no before exists",
+   "line": 71,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--warning",
+   "fig": 8
+  },
+  {
+   "text": "Result",
+   "line": 71,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 8
+  },
+  {
+   "text": "Reloaded: no \"Pays for\" counter. Valders now bills itself for new work.",
+   "line": 73,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Production (v26.45.2.1)",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 9
+  },
+  {
+   "text": "Phone",
+   "line": 76,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 9
+  },
+  {
+   "text": "Confirmation on a phone.",
+   "line": 78,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 9
+  },
+  {
+   "text": "This build",
+   "line": 81,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 10
+  },
+  {
+   "text": "Phone",
+   "line": 81,
+   "kind": "text",
+   "ctx": "bt-name",
+   "fig": 10
+  },
+  {
+   "text": "The default had already been removed, so this shows the plain confirmation, same as production.",
+   "line": 83,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  }
+ ]
+}

@@ -1,0 +1,162 @@
+<html>
+  <head>
+    <meta>
+    <title>
+      "7. Asset Work Orders tab"
+    <link>
+    <link>
+  <body>
+    <x-dc>
+      <helmet>
+      <div data-theme="light" [width:6400px; background:var(--sv-surface-canvas); color:var(--sv-text-primary)]>
+        <div>
+          <h2.sv-h2>
+            "7. Asset Work Orders tab"
+          <p [color:var(--sv-text-secondary)]>
+            "Asset "shop heavy", opened from its current owner, Quartzsite Truck Service & Repair. It had an earlier owner, Kolosov's Diesel Repair. Left to right: the default view, the Customer chip open, one customer picked, applied, a 1600px board with search filled, then phone. Last row: the asset of S2-17579 (2024 INTERNATIONAL CV515, unit 854, Buda Truck Repair), where two work orders bill someone else, to show the "Bill To" column added after the tech review. Before: production v26.45.2.1. After: the locked Bill To build."
+        <div>
+          <div.bt-row>
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--neutral>
+                  "Production (v26.45.2.1)"
+                <span.bt-name>
+                  "Work Orders tab"
+              <img.bt-shot alt="Asset Work Orders tab in production" src="shots/before-p7-asset-work-orders.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "Only the current owner's work: S2-16988. Toolbar: Search, Status, New."
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--info>
+                  "This build"
+                <span.bt-name>
+                  "Whole history"
+              <img.bt-shot alt="Asset Work Orders tab with the whole history" src="shots/after-p7-asset-work-orders.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "Every work order on the asset at this location, for every owner and payer, oldest first as today: Kolosov's work orders now appear too."
+                  <li>
+                    "No row here bills someone else, so there is no "Bill To" column (see the S2-17579 asset below). Rechecked after the tech review: pixel-identical, not replaced."
+                  <li>
+                    "New chip between Status and New: "Customer: All customers". Search and Status shift left to make room; New stays at the right edge. The chip is the only addition and nothing wraps."
+                  <li>
+                    "Release-day change: old owners' jobs appear on this tab."
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--warning>
+                  "New, no before exists"
+                <span.bt-name>
+                  "Customer chip open"
+              <img.bt-shot alt="Customer chip open" src="shots/after-p7-asset-customer-open.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    ""All customers" ticked, then "All customers are included. Pick one or more to narrow.", then each customer on the asset's work orders, as customer or Bill To, A to Z: "Kolosov's Diesel Repair", "Quartzsite Truck Service & Repair"."
+                  <li>
+                    "Search shows only with more than 8 options."
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--warning>
+                  "New, no before exists"
+                <span.bt-name>
+                  "One customer picked"
+              <img.bt-shot alt="Quartzsite picked in the Customer chip" src="shots/after-p7-asset-customer-picked-open.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "Quartzsite ticked: "1 selected", and the chip reads "Customer: Quartzsite Truc..."."
+            <figure.bt-fig>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--warning>
+                  "New, no before exists"
+                <span.bt-name>
+                  "Applied"
+              <img.bt-shot alt="Customer filter applied" src="shots/after-p7-asset-customer-applied.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "Only S2-16988. A work order matches when a picked customer is its customer or its Bill To."
+          <div.bt-row>
+            <figure.bt-figw>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--neutral>
+                  "Production (v26.45.2.1)"
+                <span.bt-name>
+                  "1600 wide, search "S2-16""
+              <img.bt-wide alt="Asset tab at 1600 with search in production" src="shots/before-p7-asset-work-orders-1600-search.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "One match from the current owner, S2-16988."
+            <figure.bt-figw>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--info>
+                  "This build"
+                <span.bt-name>
+                  "1600 wide, search "S2-16""
+              <img.bt-wide alt="Asset tab at 1600 with search in this build" src="shots/after-p7-asset-work-orders-1600-search.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "Searching the whole history finds Kolosov's S2-16894 as well. The search box, Status, Customer chip and New sit on one line at 1600; nothing wraps."
+            <figure.bt-figp>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--neutral>
+                  "Production (v26.45.2.1)"
+                <span.bt-name>
+                  "Phone"
+              <img.bt-phone alt="Asset page on a phone in production" src="shots/before-p7-phone-asset-work-orders.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "The asset card comes first on a phone."
+            <figure.bt-figp>
+              <div.bt-head>
+                <span.sv-badge.sv-badge--info>
+                  "This build"
+                <span.bt-name>
+                  "Phone"
+              <img.bt-phone alt="Asset page on a phone in this build" src="shots/after-p7-phone-asset-work-orders.png">
+              <figcaption>
+                <ul.bt-cap>
+                  <li>
+                    "Same order as production."
+          <div>
+            <h3 [font-weight:600]>
+              "Bill To column (asset of S2-17579, unit 854, Buda Truck Repair)"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Work Orders tab, top"
+                <img.bt-shot alt="Asset Work Orders tab with a Bill To column" src="shots/after-p7-asset854-work-orders.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "A "Bill To" column sits right after Customer because a loaded row bills someone else. S2-17579 reads "Buda Truck Repair", "Valders Diesel & Fleet Repair"."
+                    <li>
+                      "Self-billed rows leave the Bill To cell blank. Oldest first, as today."
+                    <li>
+                      "At 1440 the extra column pushes the last columns past the right edge; the table scrolls sideways."
+                    <li>
+                      "No production board for this asset: production was not re-run for this update. Production's tab has no Bill To column on any asset (see the "shop heavy" before board above)."
+                    <li>
+                      "Accuracy check: top bar identical to production; the tab toolbar differs from production only by the Customer chip (this build) and the Invoices count, which is this asset's data."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Work Orders tab, scrolled"
+                <img.bt-shot alt="Asset Work Orders tab scrolled to the last rows" src="shots/after-p7-asset854-work-orders-bottom.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The last two rows, S2-17579 (Approved) and S2-17581 (Paid), both read "Valders Diesel & Fleet Repair" under Bill To."
+                    <li>
+                      "When no loaded row bills someone else the column is not shown at all."

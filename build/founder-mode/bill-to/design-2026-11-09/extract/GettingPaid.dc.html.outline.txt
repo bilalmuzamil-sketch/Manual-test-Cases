@@ -1,0 +1,200 @@
+<html>
+  <head>
+    <meta>
+    <title>
+      "5. Getting paid"
+    <link>
+    <link>
+  <body>
+    <x-dc>
+      <helmet>
+      <div data-theme="light" [width:7700px; background:var(--sv-surface-canvas); color:var(--sv-text-primary)]>
+        <div>
+          <h2.sv-h2>
+            "5. Getting paid"
+          <p [color:var(--sv-text-secondary)]>
+            "Customer page, Invoices tab, then the payment window, then the invoice email, then the portal and phone. A & J Truck & Trailer Repair is the payer for S2-17513 (Orchard City's work) and S2-17362 (Phillipsburg's work). Before: production v26.45.2.1. After: the locked Bill To build. Both ran on the same data, and the receivables in that data were already posted to the payer by this build, so production lists them on the payer too; production itself would post them to the customer."
+        <div>
+          <div>
+            <h3.bt-rowt>
+              "The payer's Invoices tab"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "A & J, Invoices"
+                <img.bt-shot alt="A and J invoices in production" src="shots/before-p5-aj-invoices.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Date, Type, No., Memo, Total, Balance, Status, Action. Nothing says whose work each invoice was."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "A & J, Invoices"
+                <img.bt-shot alt="A and J invoices with the Service For column" src="shots/after-p5-aj-invoices.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "New column after No.: header "Service For", naming the customer the work was for."
+                    <li>
+                      "The column is hidden when no row on the tab is billed for someone else."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Valders, Open only off"
+                <img.bt-shot alt="Valders invoices in production" src="shots/before-p5-valders-invoices-all.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "S2-17581 listed with no Service For column."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Valders, Open only off"
+                <img.bt-shot alt="Valders invoices with Service For Buda" src="shots/after-p5-valders-invoices-all.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "S2-17581, Service For "Buda Truck Repair", Paid."
+          <div>
+            <h3.bt-rowt>
+              "Payment limited to the Bill To"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Rows picked"
+                <img.bt-shot alt="A and J rows selected in production" src="shots/before-p5-aj-rows-selected.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Both invoices ticked; New Payment turns on."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Rows picked"
+                <img.bt-shot alt="A and J rows selected in this build" src="shots/after-p5-aj-rows-selected.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The same, with the Service For column."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "New Customer Payment"
+                <img.bt-shot alt="New Customer Payment in production" src="shots/before-p5-aj-new-payment.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The payment window."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "New Customer Payment"
+                <img.bt-shot alt="New Customer Payment in this build" src="shots/after-p5-aj-new-payment.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The window is unchanged: S2-17362 and S2-17513, Payment amount $1,679.02. One payment covers several of the payer's invoices across the customers it pays for."
+                    <li>
+                      "A payment applied to another customer's invoice is refused by the server; that refusal has no screen here."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Orchard City, Invoices"
+                <img.bt-shot alt="Orchard City invoices in production" src="shots/before-p5-orchard-invoices.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Empty on this data."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Orchard City, Invoices"
+                <img.bt-shot alt="Orchard City invoices in this build" src="shots/after-p5-orchard-invoices.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "S2-17513 was Orchard City's work but is not on its tab, so it cannot be paid from Orchard City's side."
+          <div>
+            <h3.bt-rowt>
+              "Invoice email, the portal, phone"
+            <div.bt-row>
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Sending invoice (S2-17581)"
+                <img.bt-shot alt="Sending invoice in production" src="shots/before-p5-invoice-email.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Lists Buda's contact, "Wendy Lopez", ticked."
+              <figure.bt-fig>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Sending invoice (S2-17581)"
+                <img.bt-shot alt="Sending invoice to the Bill To contact" src="shots/after-p5-invoice-email.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Lists the Bill To's contacts and ticks "George Thomas" (Valders): its Billing contact, else its first."
+                    <li>
+                      ""Include 'For Customer' Attachments in email" starts unticked, as today."
+              <figure.bt-fig [width:1200px]>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--warning>
+                    "Not shown"
+                  <span.bt-name>
+                    "Customer portal"
+                <div [width:1200px; border:1px dashed var(--sv-border-default); border-radius:var(--sv-radius-md); background:var(--sv-surface-default)]>
+                  <p [font-weight:600]>
+                    "The customer portal could not be shot."
+                  <p [color:var(--sv-text-secondary)]>
+                    "The portal is a separate app and does not run on this machine. Its Bill To changes ("Billed to [Bill To]" where Pay would be, Pay only for the Bill To, paying several invoices at once only for the viewer's own customer, the "invoice created" email to the Bill To's portal contacts, and the deposit link check) are built but have not been run live. They are covered in the PRD."
+              <figure.bt-figp>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--neutral>
+                    "Production (v26.45.2.1)"
+                  <span.bt-name>
+                    "Phone"
+                <img.bt-phone alt="A and J invoices on a phone in production" src="shots/before-p5-phone-aj-invoices.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "The customer card comes first on a phone; the tab is below."
+              <figure.bt-figp>
+                <div.bt-head>
+                  <span.sv-badge.sv-badge--info>
+                    "This build"
+                  <span.bt-name>
+                    "Phone"
+                <img.bt-phone alt="A and J invoices on a phone in this build" src="shots/after-p5-phone-aj-invoices.png">
+                <figcaption>
+                  <ul.bt-cap>
+                    <li>
+                      "Same order as production. Nothing phone-only."

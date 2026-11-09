@@ -1,0 +1,1094 @@
+{
+ "codes": {
+  "S1-R1": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "When a default other than the customer itself is saved, the customer page left card shows \"Bill Invoices To\" with the payer's name.",
+   "prd_text": "When a default other than the customer itself is saved, the customer page left card shows \"Bill Invoices To\" with the payer's name."
+  },
+  "S1-R2": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "Users who may set the default see \"Change\" beside the name; it opens the \"Bill Invoices To\" window.",
+   "prd_text": "Users who may set the default see \"Change\" beside the name; it opens the \"Bill Invoices To\" window."
+  },
+  "S1-R3": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "The window shows the help line \"New work orders and part sales for [customer] will be billed to this customer. Existing ones don't change.\"",
+   "prd_text": "The window shows the help line \"New work orders and part sales for [customer] will be billed to this customer. Existing ones don't change.\""
+  },
+  "S1-R4": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "The window has a searchable \"Bill Invoices To\" field and a \"Save\" button.",
+   "prd_text": "The window has a searchable \"Bill Invoices To\" field and a \"Save\" button."
+  },
+  "S1-R5": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "The field's first option is \"[customer] (this customer)\"; picking it and saving clears the default.",
+   "prd_text": "The field's first option is \"[customer] (this customer)\"; picking it and saving clears the default."
+  },
+  "S1-R6": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "Saving applies only to work orders and part sales created afterwards.",
+   "prd_text": "Saving applies only to work orders and part sales created afterwards."
+  },
+  "S1-R7": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "When at least one customer has this customer as its default, the card shows a \"Pays for\" counter beside Contacts and Assets, with the count.",
+   "prd_text": "When at least one customer has this customer as its default, the card shows a \"Pays for\" counter beside Contacts and Assets, with the count."
+  },
+  "S1-R8": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "The counter's tooltip reads \"Customers billed to this customer by default\".",
+   "prd_text": "The counter's tooltip reads \"Customers billed to this customer by default\"."
+  },
+  "S1-R9": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "Clicking the counter opens a window titled \"[customer] pays for\", listing each customer A to Z as a link to its page; a long list scrolls inside the window.",
+   "prd_text": "Clicking the counter opens a window titled \"[customer] pays for\", listing each customer A to Z as a link to its page; a long list scrolls inside the window."
+  },
+  "S1-R10": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "The window shows the line \"These customers bill new work orders and part sales to [customer] by default.\" and a \"Close\" button.",
+   "prd_text": "The window shows the line \"These customers bill new work orders and part sales to [customer] by default.\" and a \"Close\" button."
+  },
+  "S1-N1": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "A customer that bills itself shows no \"Bill Invoices To\" line and no way to set one on the card; the default is set in New Customer or Edit Customer (Story 2).",
+   "prd_text": "A customer that bills itself shows no \"Bill Invoices To\" line and no way to set one on the card; the default is set in New Customer or Edit Customer (Story 2)."
+  },
+  "S1-N2": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "Without 'Customers → Create & Edit' or 'View and Manage AP/AR Data', \"Change\" is hidden; the line still shows.",
+   "prd_text": "Without 'Customers → Create & Edit' or 'View and Manage AP/AR Data', \"Change\" is hidden; the line still shows."
+  },
+  "S1-N3": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "On Counter Sale, \"Change\" is hidden.",
+   "prd_text": "On Counter Sale, \"Change\" is hidden."
+  },
+  "S1-N4": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "The \"Pays for\" counter is hidden when the count is 0.",
+   "prd_text": "The \"Pays for\" counter is hidden when the count is 0."
+  },
+  "S1-N5": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "Counter Sale never appears in the field's options.",
+   "prd_text": "Counter Sale never appears in the field's options."
+  },
+  "S1-E1": {
+   "story": "SV-12303",
+   "same": true,
+   "story_text": "One hop only: if the payer has its own default, new work orders still bill the payer, not the payer's default.",
+   "prd_text": "One hop only: if the payer has its own default, new work orders still bill the payer, not the payer's default."
+  },
+  "S2-R1": {
+   "story": "SV-12304",
+   "same": true,
+   "story_text": "New Customer and Edit Customer show a searchable \"Bill Invoices To\" field, reading \"This customer\" until another customer is picked.",
+   "prd_text": "New Customer and Edit Customer show a searchable \"Bill Invoices To\" field, reading \"This customer\" until another customer is picked."
+  },
+  "S2-R2": {
+   "story": "SV-12304",
+   "same": true,
+   "story_text": "The field sits after Credit Terms | Credit Limit and before Sales Representative (context: field order shared with SV-11638 and SV-10890).",
+   "prd_text": "The field sits after Credit Terms | Credit Limit and before Sales Representative (context: field order shared with SV-11638 and SV-10890)."
+  },
+  "S2-R3": {
+   "story": "SV-12304",
+   "same": true,
+   "story_text": "Edit Customer shows the help line \"New work orders and part sales bill to this customer. Existing ones don't change.\" under the field.",
+   "prd_text": "Edit Customer shows the help line \"New work orders and part sales bill to this customer. Existing ones don't change.\" under the field."
+  },
+  "S2-R4": {
+   "story": "SV-12304",
+   "same": true,
+   "story_text": "In New Customer, the first option reads \"[name typed so far] (this customer)\", or \"New customer (this customer)\" before a name is typed.",
+   "prd_text": "In New Customer, the first option reads \"[name typed so far] (this customer)\", or \"New customer (this customer)\" before a name is typed."
+  },
+  "S2-R5": {
+   "story": "SV-12304",
+   "same": true,
+   "story_text": "The pick saves together with the window's Save; if any part fails, nothing is saved and no customer is created.",
+   "prd_text": "The pick saves together with the window's Save; if any part fails, nothing is saved and no customer is created."
+  },
+  "S2-R6": {
+   "story": "SV-12304",
+   "same": true,
+   "story_text": "An empty Address 2 is hidden; a + button beside Address 1 (tooltip \"Add Address 2\") shows it.",
+   "prd_text": "An empty Address 2 is hidden; a + button beside Address 1 (tooltip \"Add Address 2\") shows it."
+  },
+  "S2-R7": {
+   "story": "SV-12304",
+   "same": true,
+   "story_text": "A shown Address 2 has an x button (tooltip \"Remove Address 2\") that clears and hides it; nothing is saved until Save.",
+   "prd_text": "A shown Address 2 has an x button (tooltip \"Remove Address 2\") that clears and hides it; nothing is saved until Save."
+  },
+  "S2-R8": {
+   "story": "SV-12304",
+   "same": true,
+   "story_text": "A customer whose Address 2 holds a value opens with Address 2 showing, even when Address 1 is empty.",
+   "prd_text": "A customer whose Address 2 holds a value opens with Address 2 showing, even when Address 1 is empty."
+  },
+  "S2-N1": {
+   "story": "SV-12304",
+   "same": true,
+   "story_text": "Without 'View and Manage AP/AR Data', the field is hidden and the window closes up around it.",
+   "prd_text": "Without 'View and Manage AP/AR Data', the field is hidden and the window closes up around it."
+  },
+  "S2-N2": {
+   "story": "SV-12304",
+   "same": true,
+   "story_text": "New Customer shows no help line under the field.",
+   "prd_text": "New Customer shows no help line under the field."
+  },
+  "S2-N3": {
+   "story": "SV-12304",
+   "same": true,
+   "story_text": "On Counter Sale, Edit Customer shows no \"Bill Invoices To\" field.",
+   "prd_text": "On Counter Sale, Edit Customer shows no \"Bill Invoices To\" field."
+  },
+  "S3-R1": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "The card's expanded section shows a \"Bill To\" field under Authorizer.",
+   "prd_text": "The card's expanded section shows a \"Bill To\" field under Authorizer."
+  },
+  "S3-R2": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "The field reads \"This customer\" when the customer pays for itself, otherwise the Bill To's name.",
+   "prd_text": "The field reads \"This customer\" when the customer pays for itself, otherwise the Bill To's name."
+  },
+  "S3-R3": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "Typing searches every customer in the organization except Counter Sale, A to Z, showing the first 50 matches; the first option is always \"[customer] (this customer)\".",
+   "prd_text": "Typing searches every customer in the organization except Counter Sale, A to Z, showing the first 50 matches; the first option is always \"[customer] (this customer)\"."
+  },
+  "S3-R4": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "With no match, the list shows only the \"(this customer)\" option.",
+   "prd_text": "With no match, the list shows only the \"(this customer)\" option."
+  },
+  "S3-R5": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "Picking a customer saves the Bill To immediately; picking \"(this customer)\" makes the customer pay for itself.",
+   "prd_text": "Picking a customer saves the Bill To immediately; picking \"(this customer)\" makes the customer pay for itself."
+  },
+  "S3-R6": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "A new work order or part sale starts billed to the customer's saved default, if any, else the customer itself.",
+   "prd_text": "A new work order or part sale starts billed to the customer's saved default, if any, else the customer itself."
+  },
+  "S3-R7": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "Splitting a work order or part sale, or reopening a paid work order onto a new one, copies its Bill To to the new one.",
+   "prd_text": "Splitting a work order or part sale, or reopening a paid work order onto a new one, copies its Bill To to the new one."
+  },
+  "S3-R8": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "New Work Order and New Part Sale show no Bill To.",
+   "prd_text": "New Work Order and New Part Sale show no Bill To."
+  },
+  "S3-R9": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "On a Counter Sale work order or part sale, any customer except Counter Sale can be picked as Bill To.",
+   "prd_text": "On a Counter Sale work order or part sale, any customer except Counter Sale can be picked as Bill To."
+  },
+  "S3-N1": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "Users without the permission see the field only when someone else pays, read-only.",
+   "prd_text": "Users without the permission see the field only when someone else pays, read-only."
+  },
+  "S3-N2": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "In history mode the field is read-only, shown only when someone else pays, with no lock message.",
+   "prd_text": "In history mode the field is read-only, shown only when someone else pays, with no lock message."
+  },
+  "S3-N3": {
+   "story": "SV-12305",
+   "same": true,
+   "story_text": "Invoiced or holding deposits: see Story 5.",
+   "prd_text": "Invoiced or holding deposits: see Story 5."
+  },
+  "S4-R1": {
+   "story": "SV-12306",
+   "same": true,
+   "story_text": "The Authorizer list shows \"No authorizer\", then the customer's authorizer contacts, then the Bill To's.",
+   "prd_text": "The Authorizer list shows \"No authorizer\", then the customer's authorizer contacts, then the Bill To's."
+  },
+  "S4-R2": {
+   "story": "SV-12306",
+   "same": true,
+   "story_text": "Each contact shows its customer's name on a second line.",
+   "prd_text": "Each contact shows its customer's name on a second line."
+  },
+  "S4-R3": {
+   "story": "SV-12306",
+   "same": true,
+   "story_text": "A contact of the current Bill To can be saved as Authorizer and prints as the authorizer on documents.",
+   "prd_text": "A contact of the current Bill To can be saved as Authorizer and prints as the authorizer on documents."
+  },
+  "S4-R4": {
+   "story": "SV-12306",
+   "same": true,
+   "story_text": "Changing the Bill To clears an Authorizer who is a contact of the previous Bill To, with no message.",
+   "prd_text": "Changing the Bill To clears an Authorizer who is a contact of the previous Bill To, with no message."
+  },
+  "S4-R5": {
+   "story": "SV-12306",
+   "same": true,
+   "story_text": "Change Customer clears the Authorizer, as today, including a contact of a Bill To that stays.",
+   "prd_text": "Change Customer clears the Authorizer, as today, including a contact of a Bill To that stays."
+  },
+  "S4-N1": {
+   "story": "SV-12306",
+   "same": true,
+   "story_text": "When the customer pays for itself, the list is exactly today's, with no second line.",
+   "prd_text": "When the customer pays for itself, the list is exactly today's, with no second line."
+  },
+  "S4-N2": {
+   "story": "SV-12306",
+   "same": true,
+   "story_text": "An Authorizer from the customer stays when the Bill To changes.",
+   "prd_text": "An Authorizer from the customer stays when the Bill To changes."
+  },
+  "S4-N3": {
+   "story": "SV-12306",
+   "same": true,
+   "story_text": "A contact of any other customer is refused, as today.",
+   "prd_text": "A contact of any other customer is refused, as today."
+  },
+  "S5-R1": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "When Invoiced, the Bill To field is read-only with M4 as its tooltip.",
+   "prd_text": "When Invoiced, the Bill To field is read-only with M4 as its tooltip."
+  },
+  "S5-R2": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "Clicking or tapping the Invoiced field shows M4 as an error toast with a \"Go To Invoice\" button.",
+   "prd_text": "Clicking or tapping the Invoiced field shows M4 as an error toast with a \"Go To Invoice\" button."
+  },
+  "S5-R3": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "\"Go To Invoice\" opens the work order's or part sale's Finance tab; it never reverses anything.",
+   "prd_text": "\"Go To Invoice\" opens the work order's or part sale's Finance tab; it never reverses anything."
+  },
+  "S5-R4": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "While deposits are held on an Open document, the field is read-only with M1 as its tooltip.",
+   "prd_text": "While deposits are held on an Open document, the field is read-only with M1 as its tooltip."
+  },
+  "S5-R5": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "Clicking or tapping that field shows M1 as an error toast with an \"Open Deposits\" button.",
+   "prd_text": "Clicking or tapping that field shows M1 as an error toast with an \"Open Deposits\" button."
+  },
+  "S5-R6": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "\"Open Deposits\" opens the Deposits tab of the customer holding the largest share of the deposits.",
+   "prd_text": "\"Open Deposits\" opens the Deposits tab of the customer holding the largest share of the deposits."
+  },
+  "S5-R7": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "M1 names the total not reversed and the customer it was taken from, or \"[N] customers\" when there are several.",
+   "prd_text": "M1 names the total not reversed and the customer it was taken from, or \"[N] customers\" when there are several."
+  },
+  "S5-R8": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "After the invoice is reversed, or all deposits are reversed, the field unlocks.",
+   "prd_text": "After the invoice is reversed, or all deposits are reversed, the field unlocks."
+  },
+  "S5-N1": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "Without 'Invoicing & payments → View' and 'See Financial Data', the M4 toast shows with no button.",
+   "prd_text": "Without 'Invoicing & payments → View' and 'See Financial Data', the M4 toast shows with no button."
+  },
+  "S5-N2": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "Without 'View and Manage AP/AR Data' and 'Customers → View', the M1 toast shows with no button.",
+   "prd_text": "Without 'View and Manage AP/AR Data' and 'Customers → View', the M1 toast shows with no button."
+  },
+  "S5-N3": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "Users who cannot change the Bill To get M1 or M4 as an error toast on click or tap, with no button.",
+   "prd_text": "Users who cannot change the Bill To get M1 or M4 as an error toast on click or tap, with no button."
+  },
+  "S5-E1": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "If the document is invoiced while the page is open, a change is refused with M4 and the field refreshes to its locked state.",
+   "prd_text": "If the document is invoiced while the page is open, a change is refused with M4 and the field refreshes to its locked state."
+  },
+  "S5-E2": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "If a deposit is taken while the page is open, a change is refused with M1 and its button, and the field refreshes.",
+   "prd_text": "If a deposit is taken while the page is open, a change is refused with M1 and its button, and the field refreshes."
+  },
+  "S5-E3": {
+   "story": "SV-12307",
+   "same": true,
+   "story_text": "When the document is both Invoiced and holds deposits, M4 shows.",
+   "prd_text": "When the document is both Invoiced and holds deposits, M4 shows."
+  },
+  "S6-R1": {
+   "story": "SV-12308",
+   "same": true,
+   "story_text": "If the Bill To was the old customer or the old customer's saved default, it follows to the new customer's saved default, else the new customer.",
+   "prd_text": "If the Bill To was the old customer or the old customer's saved default, it follows to the new customer's saved default, else the new customer."
+  },
+  "S6-R2": {
+   "story": "SV-12308",
+   "same": true,
+   "story_text": "A Bill To picked on purpose stays after Change Customer.",
+   "prd_text": "A Bill To picked on purpose stays after Change Customer."
+  },
+  "S6-R3": {
+   "story": "SV-12308",
+   "same": true,
+   "story_text": "The existing deposit block on Change Customer applies only when the change would change the Bill To.",
+   "prd_text": "The existing deposit block on Change Customer applies only when the change would change the Bill To."
+  },
+  "S6-N1": {
+   "story": "SV-12308",
+   "same": true,
+   "story_text": "On an Invoiced document, the invoice keeps its Bill To. A self-billed document stays self-billed, so invoicing again after Reverse bills the new customer, as today.",
+   "prd_text": "On an Invoiced document, the invoice keeps its Bill To. A self-billed document stays self-billed, so invoicing again after Reverse bills the new customer, as today."
+  },
+  "S6-E1": {
+   "story": "SV-12308",
+   "same": true,
+   "story_text": "If the picked Bill To is the new customer, the document becomes self-billed.",
+   "prd_text": "If the picked Bill To is the new customer, the document becomes self-billed."
+  },
+  "S7-R1": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "The invoice's Bill To block prints the Bill To's name, address and phone, saved on the invoice when it is created.",
+   "prd_text": "The invoice's Bill To block prints the Bill To's name, address and phone, saved on the invoice when it is created."
+  },
+  "S7-R2": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "The Bill To's credit term, saved on the invoice, sets the due date.",
+   "prd_text": "The Bill To's credit term, saved on the invoice, sets the due date."
+  },
+  "S7-R3": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "Pricing, tax, discounts, fees and shop supplies are the customer's; changing the Bill To never changes the total.",
+   "prd_text": "Pricing, tax, discounts, fees and shop supplies are the customer's; changing the Bill To never changes the total."
+  },
+  "S7-R4": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "The Bill To's \"PO is required\" applies to Customer PO.",
+   "prd_text": "The Bill To's \"PO is required\" applies to Customer PO."
+  },
+  "S7-R5": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "The Over Credit warning measures the Bill To's limit against everything the Bill To owes; it never blocks.",
+   "prd_text": "The Over Credit warning measures the Bill To's limit against everything the Bill To owes; it never blocks."
+  },
+  "S7-R6": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "If the Bill To is on Credit Hold, the Credit Hold banner reads M2 with a \"Change Bill To\" button (work orders: page header; part sales: Finance tab).",
+   "prd_text": "If the Bill To is on Credit Hold, the Credit Hold banner reads M2 with a \"Change Bill To\" button (work orders: page header; part sales: Finance tab)."
+  },
+  "S7-R7": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "\"Change Bill To\" opens and focuses the Customer card's Bill To field; on a phone it first opens the work order details.",
+   "prd_text": "\"Change Bill To\" opens and focuses the Customer card's Bill To field; on a phone it first opens the work order details."
+  },
+  "S7-R8": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "The Create Invoice action is disabled with M2 as its tooltip.",
+   "prd_text": "The Create Invoice action is disabled with M2 as its tooltip."
+  },
+  "S7-R9": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "If Create Invoice is reached anyway or the server refuses it, M2 shows as an error toast with a \"Change Bill To\" button, and no invoice is created.",
+   "prd_text": "If Create Invoice is reached anyway or the server refuses it, M2 shows as an error toast with a \"Change Bill To\" button, and no invoice is created."
+  },
+  "S7-R10": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "The server refuses an invoice for a Bill To on Credit Hold with M2, however the Credit Hold term is capitalized.",
+   "prd_text": "The server refuses an invoice for a Bill To on Credit Hold with M2, however the Credit Hold term is capitalized."
+  },
+  "S7-R11": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "The work order's Credit Hold and Over Limit badges describe the Bill To.",
+   "prd_text": "The work order's Credit Hold and Over Limit badges describe the Bill To."
+  },
+  "S7-N1": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "The customer's own Credit Hold does not block when someone else is billed.",
+   "prd_text": "The customer's own Credit Hold does not block when someone else is billed."
+  },
+  "S7-N2": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "When the customer pays for itself, Credit Hold reads and blocks exactly as today (\"This customer is on Credit Hold!\", \"Cannot invoice this customer. Customer is on Credit Hold\").",
+   "prd_text": "When the customer pays for itself, Credit Hold reads and blocks exactly as today (\"This customer is on Credit Hold!\", \"Cannot invoice this customer. Customer is on Credit Hold\")."
+  },
+  "S7-N3": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "Without permission to change the Bill To, M2 shows with no button.",
+   "prd_text": "Without permission to change the Bill To, M2 shows with no button."
+  },
+  "S7-N4": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "Once invoiced, the banner reads as today.",
+   "prd_text": "Once invoiced, the banner reads as today."
+  },
+  "S7-E1": {
+   "story": "SV-12309",
+   "same": true,
+   "story_text": "Later changes to the Bill To's name, address or terms never change an existing invoice.",
+   "prd_text": "Later changes to the Bill To's name, address or terms never change an existing invoice."
+  },
+  "S8-R1": {
+   "story": "SV-12310",
+   "same": true,
+   "story_text": "A full-width band prints directly under the address row, reading \"SERVICE FOR\", then the customer's name in bold.",
+   "prd_text": "A full-width band prints directly under the address row, reading \"SERVICE FOR\", then the customer's name in bold."
+  },
+  "S8-R2": {
+   "story": "SV-12310",
+   "same": true,
+   "story_text": "On a work order with an asset, the band adds \"Unit [unit]\" and \"[year] [make] [model]\", separated by \" · \".",
+   "prd_text": "On a work order with an asset, the band adds \"Unit [unit]\" and \"[year] [make] [model]\", separated by \" · \"."
+  },
+  "S8-R3": {
+   "story": "SV-12310",
+   "same": true,
+   "story_text": "Missing unit, year, make or model parts drop out with their separator; a unit already starting with \"Unit\" is not prefixed again.",
+   "prd_text": "Missing unit, year, make or model parts drop out with their separator; a unit already starting with \"Unit\" is not prefixed again."
+  },
+  "S8-R4": {
+   "story": "SV-12310",
+   "same": true,
+   "story_text": "On a part sale with a vehicle attached, the band adds the unit as in S8-R2 and S8-R3; without a vehicle it prints only \"SERVICE FOR\" and the name.",
+   "prd_text": "On a part sale with a vehicle attached, the band adds the unit as in S8-R2 and S8-R3; without a vehicle it prints only \"SERVICE FOR\" and the name."
+  },
+  "S8-R5": {
+   "story": "SV-12310",
+   "same": true,
+   "story_text": "The band has a light grey fill and a thin grey border so it reads in black and white.",
+   "prd_text": "The band has a light grey fill and a thin grey border so it reads in black and white."
+  },
+  "S8-R6": {
+   "story": "SV-12310",
+   "same": true,
+   "story_text": "The band prints on the modern and legacy layouts, invoice and estimate, part sale invoice and batch invoice.",
+   "prd_text": "The band prints on the modern and legacy layouts, invoice and estimate, part sale invoice and batch invoice."
+  },
+  "S8-R7": {
+   "story": "SV-12310",
+   "same": true,
+   "story_text": "The band leaves the address row free for a future Ship To block.",
+   "prd_text": "The band leaves the address row free for a future Ship To block."
+  },
+  "S8-N1": {
+   "story": "SV-12310",
+   "same": true,
+   "story_text": "When the customer pays for itself, no band prints and the document is unchanged.",
+   "prd_text": "When the customer pays for itself, no band prints and the document is unchanged."
+  },
+  "S8-N2": {
+   "story": "SV-12310",
+   "same": true,
+   "story_text": "Invoices created before this release never print the band.",
+   "prd_text": "Invoices created before this release never print the band."
+  },
+  "S9-R1": {
+   "story": "SV-12311",
+   "same": true,
+   "story_text": "The send window lists the Bill To's contacts.",
+   "prd_text": "The send window lists the Bill To's contacts."
+  },
+  "S9-R2": {
+   "story": "SV-12311",
+   "same": true,
+   "story_text": "It pre-ticks the Bill To's contact marked Billing, else its first contact A to Z by name.",
+   "prd_text": "It pre-ticks the Bill To's contact marked Billing, else its first contact A to Z by name."
+  },
+  "S9-R3": {
+   "story": "SV-12311",
+   "same": true,
+   "story_text": "Staff can tick other contacts and type addresses, as today.",
+   "prd_text": "Staff can tick other contacts and type addresses, as today."
+  },
+  "S9-R4": {
+   "story": "SV-12311",
+   "same": true,
+   "story_text": "\"For Customer\" attachments behave as today: sent only when staff tick the box, which starts unticked.",
+   "prd_text": "\"For Customer\" attachments behave as today: sent only when staff tick the box, which starts unticked."
+  },
+  "S9-R5": {
+   "story": "SV-12311",
+   "same": true,
+   "story_text": "While the Bill To's contacts load, the window shows a loading state, never the customer's contacts.",
+   "prd_text": "While the Bill To's contacts load, the window shows a loading state, never the customer's contacts."
+  },
+  "S9-N1": {
+   "story": "SV-12311",
+   "same": true,
+   "story_text": "When the customer pays for itself, the list and the pre-ticked contact are exactly today's.",
+   "prd_text": "When the customer pays for itself, the list and the pre-ticked contact are exactly today's."
+  },
+  "S10-R1": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "The invoice's receivable posts to the Bill To's account, on its Invoices tab, AR Aging and statements.",
+   "prd_text": "The invoice's receivable posts to the Bill To's account, on its Invoices tab, AR Aging and statements."
+  },
+  "S10-R2": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "A deposit is taken on the account of whoever is the Bill To when it is recorded.",
+   "prd_text": "A deposit is taken on the account of whoever is the Bill To when it is recorded."
+  },
+  "S10-R3": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "A credit for returned parts on a part sale goes to the Bill To.",
+   "prd_text": "A credit for returned parts on a part sale goes to the Bill To."
+  },
+  "S10-R4": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "A payment settles only invoices owed by the paying customer; one payment can cover several of its invoices across customers.",
+   "prd_text": "A payment settles only invoices owed by the paying customer; one payment can cover several of its invoices across customers."
+  },
+  "S10-R5": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "The server refuses a payment applied to another customer's invoice with M3.",
+   "prd_text": "The server refuses a payment applied to another customer's invoice with M3."
+  },
+  "S10-R6": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "The Bill To's Invoices tab shows a \"Service For\" column naming the customer the work was for.",
+   "prd_text": "The Bill To's Invoices tab shows a \"Service For\" column naming the customer the work was for."
+  },
+  "S10-R7": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "The column is blank on rows billed to this customer for its own work.",
+   "prd_text": "The column is blank on rows billed to this customer for its own work."
+  },
+  "S10-R8": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "A credit issued from an invoice created after release reduces the revenue of that invoice's customer.",
+   "prd_text": "A credit issued from an invoice created after release reduces the revenue of that invoice's customer."
+  },
+  "S10-R9": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "A payment can use only deposits and credits held by the paying customer; otherwise it is refused with M5.",
+   "prd_text": "A payment can use only deposits and credits held by the paying customer; otherwise it is refused with M5."
+  },
+  "S10-N1": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "The \"Service For\" column is hidden when no row on the tab, before any search, is billed for someone else.",
+   "prd_text": "The \"Service For\" column is hidden when no row on the tab, before any search, is billed for someone else."
+  },
+  "S10-N2": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "The customer's own Invoices tab does not list invoices billed to someone else, so they cannot be paid from its side.",
+   "prd_text": "The customer's own Invoices tab does not list invoices billed to someone else, so they cannot be paid from its side."
+  },
+  "S10-N3": {
+   "story": "SV-12312",
+   "same": true,
+   "story_text": "Payments and credits applied before this release are not re-checked.",
+   "prd_text": "Payments and credits applied before this release are not re-checked."
+  },
+  "S11-R1": {
+   "story": "SV-12313",
+   "same": true,
+   "story_text": "Reverse works exactly as today: the invoice is removed and the work order goes back to Complete.",
+   "prd_text": "Reverse works exactly as today: the invoice is removed and the work order goes back to Complete."
+  },
+  "S11-R2": {
+   "story": "SV-12313",
+   "same": true,
+   "story_text": "After Reverse, the Bill To field unlocks and can be changed.",
+   "prd_text": "After Reverse, the Bill To field unlocks and can be changed."
+  },
+  "S11-R3": {
+   "story": "SV-12313",
+   "same": true,
+   "story_text": "Invoicing again bills the current Bill To with its current terms and PO rules.",
+   "prd_text": "Invoicing again bills the current Bill To with its current terms and PO rules."
+  },
+  "S11-R4": {
+   "story": "SV-12313",
+   "same": true,
+   "story_text": "The re-issued invoice keeps the same invoice number.",
+   "prd_text": "The re-issued invoice keeps the same invoice number."
+  },
+  "S11-N1": {
+   "story": "SV-12313",
+   "same": true,
+   "story_text": "With anything applied, Reverse is refused as today; staff reverse payments or deposits first.",
+   "prd_text": "With anything applied, Reverse is refused as today; staff reverse payments or deposits first."
+  },
+  "S11-E1": {
+   "story": "SV-12313",
+   "same": true,
+   "story_text": "A deposit taken under the wrong Bill To must be reversed and taken again under the new Bill To (M1 says so).",
+   "prd_text": "A deposit taken under the wrong Bill To must be reversed and taken again under the new Bill To (M1 says so)."
+  },
+  "S12-R1": {
+   "story": "SV-12314",
+   "same": true,
+   "story_text": "Deleting a customer that is another customer's saved default is refused, opening a \"Delete Customer\" window.",
+   "prd_text": "Deleting a customer that is another customer's saved default is refused, opening a \"Delete Customer\" window."
+  },
+  "S12-R2": {
+   "story": "SV-12314",
+   "same": true,
+   "story_text": "The window shows the refusal message and each dependent customer as a link to its page.",
+   "prd_text": "The window shows the refusal message and each dependent customer as a link to its page."
+  },
+  "S12-R3": {
+   "story": "SV-12314",
+   "same": true,
+   "story_text": "The window has \"Cancel\" and \"Remove As Default Bill To\" buttons.",
+   "prd_text": "The window has \"Cancel\" and \"Remove As Default Bill To\" buttons."
+  },
+  "S12-R4": {
+   "story": "SV-12314",
+   "same": true,
+   "story_text": "\"Remove As Default Bill To\" asks to confirm, in a window titled \"Remove as default Bill To\" with \"Remove\" and \"Cancel\".",
+   "prd_text": "\"Remove As Default Bill To\" asks to confirm, in a window titled \"Remove as default Bill To\" with \"Remove\" and \"Cancel\"."
+  },
+  "S12-R5": {
+   "story": "SV-12314",
+   "same": true,
+   "story_text": "Confirming clears the saved default on every dependent customer; open work orders keep their Bill To.",
+   "prd_text": "Confirming clears the saved default on every dependent customer; open work orders keep their Bill To."
+  },
+  "S12-R6": {
+   "story": "SV-12314",
+   "same": true,
+   "story_text": "The user then deletes the customer again.",
+   "prd_text": "The user then deletes the customer again."
+  },
+  "S12-R7": {
+   "story": "SV-12314",
+   "same": true,
+   "story_text": "A customer that is the Bill To on any work order or part sale cannot be deleted, with today's message \"Company with a work order cannot be deleted.\"",
+   "prd_text": "A customer that is the Bill To on any work order or part sale cannot be deleted, with today's message \"Company with a work order cannot be deleted.\""
+  },
+  "S12-R8": {
+   "story": "SV-12314",
+   "same": true,
+   "story_text": "Today's delete refusals come first; the \"Delete Customer\" window shows only when being another customer's default is the only reason.",
+   "prd_text": "Today's delete refusals come first; the \"Delete Customer\" window shows only when being another customer's default is the only reason."
+  },
+  "S12-N1": {
+   "story": "SV-12314",
+   "same": true,
+   "story_text": "Without 'Customers → Create & Edit' and 'View and Manage AP/AR Data', \"Remove As Default Bill To\" is hidden.",
+   "prd_text": "Without 'Customers → Create & Edit' and 'View and Manage AP/AR Data', \"Remove As Default Bill To\" is hidden."
+  },
+  "S13-R1": {
+   "story": "SV-12315",
+   "same": true,
+   "story_text": "Each Bill To change adds a \"Bill To changed\" entry on the work order or part sale log.",
+   "prd_text": "Each Bill To change adds a \"Bill To changed\" entry on the work order or part sale log."
+  },
+  "S13-R2": {
+   "story": "SV-12315",
+   "same": true,
+   "story_text": "The entry shows \"Bill To\" with the old and new customer, each as a link.",
+   "prd_text": "The entry shows \"Bill To\" with the old and new customer, each as a link."
+  },
+  "S13-R3": {
+   "story": "SV-12315",
+   "same": true,
+   "story_text": "A Change Customer that moves the Bill To other than simply with the customer adds the same entry.",
+   "prd_text": "A Change Customer that moves the Bill To other than simply with the customer adds the same entry."
+  },
+  "S13-N1": {
+   "story": "SV-12315",
+   "same": true,
+   "story_text": "A plain Change Customer on a self-billed document adds only today's customer change entry.",
+   "prd_text": "A plain Change Customer on a self-billed document adds only today's customer change entry."
+  },
+  "S13-N2": {
+   "story": "SV-12315",
+   "same": true,
+   "story_text": "Without 'Customers → View', the names show without links.",
+   "prd_text": "Without 'Customers → View', the names show without links."
+  },
+  "S14-R1": {
+   "story": "SV-12316",
+   "same": true,
+   "story_text": "The tab lists every service work order on the asset at the current location, for every customer, in today's sort.",
+   "prd_text": "The tab lists every service work order on the asset at the current location, for every customer, in today's sort."
+  },
+  "S14-R2": {
+   "story": "SV-12316",
+   "same": true,
+   "story_text": "A \"Customer\" filter chip sits beside Status, defaulting to \"All customers\".",
+   "prd_text": "A \"Customer\" filter chip sits beside Status, defaulting to \"All customers\"."
+  },
+  "S14-R3": {
+   "story": "SV-12316",
+   "same": true,
+   "story_text": "Its options are every customer on the asset's work orders, as customer or Bill To, A to Z.",
+   "prd_text": "Its options are every customer on the asset's work orders, as customer or Bill To, A to Z."
+  },
+  "S14-R4": {
+   "story": "SV-12316",
+   "same": true,
+   "story_text": "The filter is multi-select; a work order matches when a picked customer is its customer or its Bill To.",
+   "prd_text": "The filter is multi-select; a work order matches when a picked customer is its customer or its Bill To."
+  },
+  "S14-R5": {
+   "story": "SV-12316",
+   "same": true,
+   "story_text": "With more than 8 options, the chip offers search (\"Search customers\").",
+   "prd_text": "With more than 8 options, the chip offers search (\"Search customers\")."
+  },
+  "S14-R6": {
+   "story": "SV-12316",
+   "same": true,
+   "story_text": "A \"Bill To\" column shows when at least one row bills someone else; it is blank on self-billed rows.",
+   "prd_text": "A \"Bill To\" column shows when at least one row bills someone else; it is blank on self-billed rows."
+  },
+  "S14-R7": {
+   "story": "SV-12316",
+   "same": true,
+   "story_text": "The Customer filter resets when another asset is opened.",
+   "prd_text": "The Customer filter resets when another asset is opened."
+  },
+  "S14-N1": {
+   "story": "SV-12316",
+   "same": true,
+   "story_text": "When the Status filter includes Imported, the Customer filter is disabled and cleared.",
+   "prd_text": "When the Status filter includes Imported, the Customer filter is disabled and cleared."
+  },
+  "S15-R1": {
+   "story": "SV-12317",
+   "same": true,
+   "story_text": "Internal and No Charge work orders have no Bill To; the field is hidden.",
+   "prd_text": "Internal and No Charge work orders have no Bill To; the field is hidden."
+  },
+  "S15-R2": {
+   "story": "SV-12317",
+   "same": true,
+   "story_text": "Converting to No Charge, or changing to an internal customer, resets the Bill To to the customer.",
+   "prd_text": "Converting to No Charge, or changing to an internal customer, resets the Bill To to the customer."
+  },
+  "S15-R3": {
+   "story": "SV-12317",
+   "same": true,
+   "story_text": "Converting back to billable starts from the customer's saved default, else the customer.",
+   "prd_text": "Converting back to billable starts from the customer's saved default, else the customer."
+  },
+  "S15-R4": {
+   "story": "SV-12317",
+   "same": true,
+   "story_text": "An internal customer is never offered or accepted as a Bill To.",
+   "prd_text": "An internal customer is never offered or accepted as a Bill To."
+  },
+  "S15-R5": {
+   "story": "SV-12317",
+   "same": true,
+   "story_text": "The customer alone decides whether a work order is internal; the Bill To never does.",
+   "prd_text": "The customer alone decides whether a work order is internal; the Bill To never does."
+  },
+  "S15-N1": {
+   "story": "SV-12317",
+   "same": true,
+   "story_text": "Until SV-11665 ships, every work order is billable and these rules have nothing to act on.",
+   "prd_text": "Until SV-11665 ships, every work order is billable and these rules have nothing to act on."
+  },
+  "S16-R1": {
+   "story": "SV-12318",
+   "same": true,
+   "story_text": "The Bill To's portal contacts see the invoice and can pay it.",
+   "prd_text": "The Bill To's portal contacts see the invoice and can pay it."
+  },
+  "S16-R2": {
+   "story": "SV-12318",
+   "same": true,
+   "story_text": "The customer's portal contacts see the invoice read-only, with \"Billed to [Bill To]\" where Pay would be.",
+   "prd_text": "The customer's portal contacts see the invoice read-only, with \"Billed to [Bill To]\" where Pay would be."
+  },
+  "S16-R3": {
+   "story": "SV-12318",
+   "same": true,
+   "story_text": "The \"invoice created\" email goes to the Bill To's portal contacts only.",
+   "prd_text": "The \"invoice created\" email goes to the Bill To's portal contacts only."
+  },
+  "S16-R4": {
+   "story": "SV-12318",
+   "same": true,
+   "story_text": "Paying several invoices at once includes only invoices the viewer's customer owes.",
+   "prd_text": "Paying several invoices at once includes only invoices the viewer's customer owes."
+  },
+  "S16-R5": {
+   "story": "SV-12318",
+   "same": true,
+   "story_text": "The Bill To's contacts see only invoices that name their customer, not the customer's other jobs or assets.",
+   "prd_text": "The Bill To's contacts see only invoices that name their customer, not the customer's other jobs or assets."
+  },
+  "S16-R6": {
+   "story": "SV-12318",
+   "same": true,
+   "story_text": "A deposit link remembers the Bill To the work order had when staff created it.",
+   "prd_text": "A deposit link remembers the Bill To the work order had when staff created it."
+  },
+  "S16-R7": {
+   "story": "SV-12318",
+   "same": true,
+   "story_text": "If the work order's Bill To has changed since, paying the link is refused with G3 before any card is charged; no deposit is recorded.",
+   "prd_text": "If the work order's Bill To has changed since, paying the link is refused with G3 before any card is charged; no deposit is recorded."
+  },
+  "S16-N1": {
+   "story": "SV-12318",
+   "same": true,
+   "story_text": "When the customer pays for itself, the portal is unchanged.",
+   "prd_text": "When the customer pays for itself, the portal is unchanged."
+  },
+  "S17-R1": {
+   "story": "SV-12319",
+   "same": true,
+   "story_text": "The invoice is sent to QuickBooks with the Bill To as its customer.",
+   "prd_text": "The invoice is sent to QuickBooks with the Bill To as its customer."
+  },
+  "S17-R2": {
+   "story": "SV-12319",
+   "same": true,
+   "story_text": "A customer already linked to a QuickBooks customer always syncs to that one, whatever either is named.",
+   "prd_text": "A customer already linked to a QuickBooks customer always syncs to that one, whatever either is named."
+  },
+  "S17-R3": {
+   "story": "SV-12319",
+   "same": true,
+   "story_text": "A customer with no link is matched to the QuickBooks customer with exactly the same name, and linked to it.",
+   "prd_text": "A customer with no link is matched to the QuickBooks customer with exactly the same name, and linked to it."
+  },
+  "S17-R4": {
+   "story": "SV-12319",
+   "same": true,
+   "story_text": "If that QuickBooks customer is already linked to another ShopView customer, the invoice is not sent and appears on the Unexported report with Q1.",
+   "prd_text": "If that QuickBooks customer is already linked to another ShopView customer, the invoice is not sent and appears on the Unexported report with Q1."
+  },
+  "S17-R5": {
+   "story": "SV-12319",
+   "same": true,
+   "story_text": "Reverse deletes the QuickBooks invoice, and the re-issued invoice is sent as new, as today.",
+   "prd_text": "Reverse deletes the QuickBooks invoice, and the re-issued invoice is sent as new, as today."
+  },
+  "S17-N1": {
+   "story": "SV-12319",
+   "same": true,
+   "story_text": "If QuickBooks is not connected, nothing is sent and invoicing works as without the integration.",
+   "prd_text": "If QuickBooks is not connected, nothing is sent and invoicing works as without the integration."
+  },
+  "S17-N2": {
+   "story": "SV-12319",
+   "same": true,
+   "story_text": "Invoices created before this release are not re-sent.",
+   "prd_text": "Invoices created before this release are not re-sent."
+  },
+  "S18-R1": {
+   "story": "SV-12320",
+   "same": true,
+   "story_text": "The invoice reaches AccountingHub with the Bill To as its customer.",
+   "prd_text": "The invoice reaches AccountingHub with the Bill To as its customer."
+  },
+  "S18-R2": {
+   "story": "SV-12320",
+   "same": true,
+   "story_text": "What AccountingHub receives keeps its current format; no AccountingHub change is needed.",
+   "prd_text": "What AccountingHub receives keeps its current format; no AccountingHub change is needed."
+  },
+  "S18-R3": {
+   "story": "SV-12320",
+   "same": true,
+   "story_text": "AccountingHub AR, aging and balances therefore group by the Bill To.",
+   "prd_text": "AccountingHub AR, aging and balances therefore group by the Bill To."
+  },
+  "S18-R4": {
+   "story": "SV-12320",
+   "same": true,
+   "story_text": "Reverse keeps the reversal record in AccountingHub and the re-issued invoice arrives as a new event, as today.",
+   "prd_text": "Reverse keeps the reversal record in AccountingHub and the re-issued invoice arrives as a new event, as today."
+  },
+  "S18-R5": {
+   "story": "SV-12320",
+   "same": true,
+   "story_text": "Payments, deposits and credits arrive under the Bill To's account.",
+   "prd_text": "Payments, deposits and credits arrive under the Bill To's account."
+  },
+  "S18-N1": {
+   "story": "SV-12320",
+   "same": true,
+   "story_text": "When the customer pays for itself, AccountingHub receives what it receives today.",
+   "prd_text": "When the customer pays for itself, AccountingHub receives what it receives today."
+  },
+  "S19-R1": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "IBS uses the Bill To's IBS account: its remit-to, approval and batch.",
+   "prd_text": "IBS uses the Bill To's IBS account: its remit-to, approval and batch."
+  },
+  "S19-R2": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "The Bill To's IBS number is saved on the invoice when it is created, blank when the Bill To has none.",
+   "prd_text": "The Bill To's IBS number is saved on the invoice when it is created, blank when the Bill To has none."
+  },
+  "S19-R3": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "The remit-to, the \"(IBS#: [number])\" after the Bill To's name and the IBS batch read the saved number.",
+   "prd_text": "The remit-to, the \"(IBS#: [number])\" after the Bill To's name and the IBS batch read the saved number."
+  },
+  "S19-R4": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "If the Bill To has no IBS account, the invoice does not go through IBS, even if the customer has one.",
+   "prd_text": "If the Bill To has no IBS account, the invoice does not go through IBS, even if the customer has one."
+  },
+  "S19-R5": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "In the invoice CSV export, \"Customer\" is the Bill To and \"Terms\" is the term saved on the invoice.",
+   "prd_text": "In the invoice CSV export, \"Customer\" is the Bill To and \"Terms\" is the term saved on the invoice."
+  },
+  "S19-R6": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "The export's last column, \"Service Customer\", names the customer the work was for when someone else is billed.",
+   "prd_text": "The export's last column, \"Service Customer\", names the customer the work was for when someone else is billed."
+  },
+  "S19-R7": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "The Public API adds the Bill To to work orders and invoices; existing customer fields keep naming the customer.",
+   "prd_text": "The Public API adds the Bill To to work orders and invoices; existing customer fields keep naming the customer."
+  },
+  "S19-R8": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "The Public API work order and invoice lists accept an optional Bill To filter; a malformed id returns an error.",
+   "prd_text": "The Public API work order and invoice lists accept an optional Bill To filter; a malformed id returns an error."
+  },
+  "S19-R9": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "The Public API changelog announces the addition.",
+   "prd_text": "The Public API changelog announces the addition."
+  },
+  "S19-R10": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "Creating an invoice through the Public API for a Bill To on Credit Hold is refused.",
+   "prd_text": "Creating an invoice through the Public API for a Bill To on Credit Hold is refused."
+  },
+  "S19-N1": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "\"Service Customer\" is blank when the invoice bills its own customer.",
+   "prd_text": "\"Service Customer\" is blank when the invoice bills its own customer."
+  },
+  "S19-N2": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "Invoices created before this release export exactly as before.",
+   "prd_text": "Invoices created before this release export exactly as before."
+  },
+  "S19-N3": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "The Public API cannot set a Bill To or read a saved default.",
+   "prd_text": "The Public API cannot set a Bill To or read a saved default."
+  },
+  "S19-N4": {
+   "story": "SV-12321",
+   "same": true,
+   "story_text": "A later change to the Bill To's IBS account never changes an existing invoice; invoices created before this release read the current account.",
+   "prd_text": "A later change to the Bill To's IBS account never changes an existing invoice; invoices created before this release read the current account."
+  }
+ },
+ "missing_in_story": [],
+ "other_lines_not_in_prd": [],
+ "epic": [
+  {
+   "text": "Release dependencies: AccountingHub change (Hub team) and the customer portal deposit check.",
+   "in_epic": true,
+   "prd": "What AccountingHub receives keeps its current format; no AccountingHub change is needed. / AccountingHub receives the invoice under the Bill To, as QuickBooks does. The invoice, its payments, deposits and credits sit on one customer, and no AccountingHub change is needed.",
+   "verdict": "CONFLICT resolved by latest wins (Rule 32): the PRD (last modified 7 Nov 2026; owning PM ruling 6 Nov 2026) says no AccountingHub change is needed; the epic text (updated 6 Nov 2026 14:25 -0500) is older. Cases follow the PRD (Story 18)."
+  },
+  {
+   "text": "QuickBooks invoice under the Bill To, customers linked by ID; customer portal; IBS.",
+   "in_epic": true,
+   "prd": "A customer already linked to a QuickBooks customer always syncs to that one, whatever either is named.",
+   "verdict": "SAME meaning (S17-R2: a linked customer always syncs to its QuickBooks customer)."
+  },
+  {
+   "text": "Stories carry \"Status: Pending approval from Mat and Amani. Do not start until approved.\"",
+   "in_epic": true,
+   "prd": "PRD status: Pending approval from Mat and Amani (v0.5, 2026-11-06).",
+   "verdict": "SAME (both pending approval)."
+  }
+ ]
+}
