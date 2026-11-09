@@ -14,8 +14,14 @@ Phone double tap: **3 of 3** rounds sent two check-ins, showed the misleading wa
 Desktop paths are already protected on production; the phone card is the unprotected one, matching the ticket's own analysis ("The mobile card's loading input follows general line loading while task actions update a separate flag").
 Logs: ev/prod-*-log.txt. Clean-up: admin clocked out at the end of each round (story "ZZAUTOTEST SV12353 story").
 
-## Branch AFTER
-Waiting for fresh `.qa.shopview.com` cookies.
+## Branch AFTER — sv12353 v26.45.2-9444adc (last-modified Sun 08 Nov 2026 00:53:07 GMT), 9 Nov 2026
+S2-15658 lines 75fb9874 (Note) / 241ddef4 (Sublet - Tow).
+- Phone (iPhone 12 Pro preset) double tap Start at 30/80/200/400 ms: ONE check-in each (4/4), no toast, 0 uncaught (ev/branch-phone-*-log.txt).
+- Phone double tap Stop: Stop window once. Desktop double click Start: 1 check-in. Desktop Clock Out double click: 1 check-out, "Timesheet clocked out".
+- Start on line B while clocked into A (same screen): switch window opens (desktop + phone), as production.
+- Genuine refusal (stale screen; clock-in on line A sent outside the tab via the API with A's task id, then Start on B): branch desktop + phone -> 400 "You are already clocked into different line.", toast once, Start enabled, 0 uncaught. Production desktop + phone (S2-1919 A / S2-1920 B) -> same toast PLUS uncaught "Request failed with status code 400" (2/2). (scripts/stale.mjs)
+- Empty story Clock Out accepted on both builds.
+Posted comment **80474** PASSED (8 rows, picture ev/jira/01-phone-double-tap-prod-vs-branch.png). Gate: marker unchanged; ticket TESTING QA 0 comments. QAcomplete + QA assignee Bilal + QA Complete. Admin left clocked out on both builds.
 Planned: phone double tap Start (several gaps 30/80/200/400 ms) → one check-in, no warning, no uncaught error · phone double tap Stop → window once ·
 desktop double click Start / Clock Out (regression) · a genuine refused clock-in (clocked into another line, then Start on this line) → clear message, no uncaught error,
 button usable again · successful clock in/out still refreshes the line (Start↔Stop, timer) · switch task from the Stop window.
