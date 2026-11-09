@@ -6542,3 +6542,9 @@ Hand-added open entry: Reports > Timesheet Activities (/reports/punch-clock-acti
   reordering no longer match this line."
 - Jira MCP gotcha: `addOrEditJiraIssueComment` takes the text in **`commentBody`**. A call with `body` plus
   `inlineFileId` succeeds and posts the image ONLY. Always read the comment back.
+
+## §BF Other browsers (Firefox + Safari's engine) in this container (proven 2026-11-09, SV-12214)
+- Install once per container (not in git, ~250 MB): `PLAYWRIGHT_BROWSERS_PATH=/tmp/pw-extra node /opt/node-tools/node_modules/playwright/cli.js install firefox webkit`, then `... install-deps webkit` (run the two as separate commands).
+- `build/testing-tools/qa-session.mjs` → `open({..., engine:'firefox'|'webkit'})` (paths /tmp/pw-extra/firefox-1543/firefox/firefox and /tmp/pw-extra/webkit-2359/pw_run.sh; override with SV_FIREFOX / SV_WEBKIT). Firefox/WebKit get `proxy:{server:'http://127.0.0.1:<bridge port>'}` instead of Chromium's args. Use a separate bridge dir per engine.
+- WebKit = Safari's engine (not Safari itself) — say "Safari's engine (WebKit)" in reports.
+- Trap: scripts that toggle list filter chips (e.g. a roles probe clicking "Assigned to me"/"From maintenance") leave them ON in the user's saved Work Orders list preference; every later board/density measurement then finds no rows. Click "Clear all filters" (scripts/clearf.mjs) before measuring, and never toggle a chip without toggling it back.
