@@ -44,3 +44,7 @@ Issue 3 (deleting auto notes): out of scope per 80327, not tested.
 ## Test data left (branch, no cleanup needed)
 Templates ZZAUTOTEST SV9570 230 / 449 x3 / 450 / 499(500) / 501(empty) / Air-Brake; WOs S9570-17581, S9570-17582.
 Production: template 2b30b6fd (230 fields), inspections cd5ed1f3 (S2-1921), fca721b1 (S2-1943) left unsaved.
+
+## Posted 9 Nov 2026 ~08:08 UTC (QA lead: PARTIALLY PASSED, "It should be rejected from testing")
+Pre-post gate: sv9570 marker v26.45.2-b7be383 unchanged; ticket TESTING QA, last comment Dusan 80327. Inspection of template "449 Fields 2146" confirmed live on S9570-17582 (API, 9 Nov).
+Comment **80446** WHAT PASSED (10 rows, pictures 1-2) + **80447** PARTIALLY PASSED, tags Milos with issue 4 as a plain A/B/C question (picture 3 ev/jira/03-issue4-450-vs-448.png, scripts/exhibit_issue4.py). QA Assignee Bilal, -> REJECTED FROM TESTING (transition 15).

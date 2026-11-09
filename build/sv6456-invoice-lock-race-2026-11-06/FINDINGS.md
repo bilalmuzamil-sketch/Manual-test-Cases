@@ -27,3 +27,7 @@ Mode: Board-2 defaults (API mode, no recording, no technical section).
 Accounting effect (Rule 121): deposits and invoice balances stayed consistent in every round; QuickBooks not connected on the branch, sync not observed.
 
 Exhibit: ev/jira/01-two-tabs-before-after.png. Scripts: scripts/{race,uirace,race2,seed,bal,deps,deptab,rev,complete,exhibit}. Logs: ev/*-race-log.jsonl, ev/branch-race2-log.jsonl, ev/seed-*.json.
+
+## Posted 9 Nov 2026 ~08:04 UTC (QA lead: "I will follow your recommendation" = pass, reversal error as a side note)
+Pre-post gate: sv6456 marker re-read v26.45.2-fa8d378 (last-modified 06 Nov 18:43:51 GMT) = the build tested; ticket TESTING QA, last comment Milan 80433 (approved, root cause SV-11214) - referenced.
+Comment **80444** OVERALL QA STATUS: PASSED (5 rows, picture 01-two-tabs-before-after, side note on the reversal error + SV-11214, how-to-see steps). Label QAcomplete added, QA Assignee Bilal, status -> QA Complete (transition 10). Read back: QA Complete, labels BE/QAcomplete/claude-fix-jira/sentry-sync.

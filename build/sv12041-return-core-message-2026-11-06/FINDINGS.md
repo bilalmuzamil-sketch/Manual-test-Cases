@@ -27,3 +27,7 @@ Nothing saved on production (no request).
 | 9 | typed-in line (description only) at 0 | Quantity box: "Quantity cannot be lower than 0.01" | same |
 Refused saves send no request and change no stock. Another manual return today (5 Star Truck Repair, 895-PK + core, $10.42) is NOT mine (likely the developer's).
 **Open (Rule 97d / 109c — asked the QA lead):** description says "Any other line at 0" -> message; Slavcho 80333 says lines without bin locations keep their inline error. Rows 8-9 match Slavcho and are unchanged from production.
+
+## Posted 9 Nov 2026 ~08:06 UTC (QA lead: "I will follow your recommendation" = approve Slavcho's reading, pass)
+Pre-post gate: sv12041 marker v26.45.2-11fd956 unchanged; ticket TESTING QA, last comment Slavcho 80333 (quoted). Exhibit ev/jira/01-return-at-zero-before-after.png (scripts/exhibit.py).
+Comment **80445** PASSED (8 rows; row 8 quotes Slavcho on rows without bin locations). Label QAcomplete, QA Assignee Bilal, -> QA Complete.
