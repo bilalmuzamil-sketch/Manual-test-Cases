@@ -66,7 +66,7 @@ checklist, NEW-QUESTIONS.py). Reuse its tools (`tools/render.js`, `extract.py`, 
    at 1440 and 1536 px where the layout could wrap; plus one HELD "design version" case per behaviour difference (Rule 130).
    Expected behaviour still comes from the PRD; the design gives the look.
 8. **Questions:** draft the design questions for Chris Ward in `NEW-QUESTIONS.py` as a ROWS list (number from 1; topic "Bill To:
-   Toggle: …"; question with (a)/(b)/(c); what we know today; where we found it (board, picture, PRD code); cases affected). Apply
+   …"; question with (a)/(b)/(c); what we know today; where we found it (board, picture, PRD code); cases affected). Apply
    skill 07 §6 first: drop anything PRD v0.5 settles, and list what you dropped and why.
 
 ## Output
