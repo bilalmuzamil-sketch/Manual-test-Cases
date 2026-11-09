@@ -32,3 +32,13 @@ Test data (branch, left): WOs S11413-17580, S11413-17581 (vendor request "194").
 - 80369 WHAT PASSED (exhibit 01, 7-row table), 80370 PARTIALLY PASSED (check 5, exhibit 02, tagged Dusan). Edited 80370
   minutes after posting to drop "(52 in stock)" (that figure was staging's, not observed on the branch).
 - Status -> REJECTED FROM TESTING (15); QA Assignee set to Bilal (was empty). Gate: build b07ae41 re-read before posting.
+
+## Passed per Dusan's comment + follow-up SV-12410 (9 Nov 2026)
+- Dusan (80491, 07:11 CST): the list limit existed before the fix (staging brake 98 of 205); fix changes which parts fill the page, not how many; tag rows shrink the page too; proposed a separate ticket. QA lead: pass on that basis, file the follow-up.
+- Duplicate search first: SV-12286 (matching rules / exact-first / highlighting), SV-12337 (route searches to OpenSearch, notes "broad terms need a cap"), SV-12338 (no-term list cost) - none covers the page limit / missing matches. Not duplicates.
+- Live re-check 9 Nov (branch b07ae41 unchanged; staging v26.45.2-8a3ce52): branch brake response = 218 rows / 141 distinct (62 inventory, 21 special, 135 catalogue), chamber absent; scrolled to end: branch 215 rows, staging 196 rows - DOT 3 BRAKE FLUID (PBFPS301C, inventory) absent from BOTH; "brake fluid" on branch shows it. 47 inventory parts containing "brake" appear in neither list.
+- Tag rows: in the response each part is ONE row carrying a tags array (48 rows had tags); the row-per-tag effect Dusan describes is server-side before the page cut and was NOT measured separately - stated as his finding in SV-12410.
+- Filed SV-12410 (Bug, Medium, Product Area Parts, label bug-report; source-intercom/powertools-unassigned NOT copied as they would be false for this ticket; no parent since SV-11413 has none). "Found while testing SV-11413" top line, steps on sv11413 WO S11413-17580, exhibit ev/jira/03-brake-list-limit.png (attachment 63924, read back), Relates SV-11413.
+- SV-11413: new comment 80494 OVERALL QA STATUS: PASSED (80369/80370 untouched, Rule 112), check 5 "PASSED (limit handled in SV-12410)", before/after 194 image reused. Label QAcomplete added; TESTING QA -> QA Complete (transition 10; someone had moved it from Rejected back to TESTING QA before this). QA Assignee already Bilal.
+- Pre-post gate: build marker re-read live b07ae41 (12:1x UTC); ticket state + newest comment re-read; image is a real attachment; no AI fingerprint; no technical section.
+- Learning check: nothing new beyond the standard (a mid-flow status change by someone else was simply read and used, Rule 103).

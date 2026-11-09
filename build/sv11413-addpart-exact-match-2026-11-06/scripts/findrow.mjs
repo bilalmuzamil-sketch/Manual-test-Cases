@@ -1,0 +1,8 @@
+// type Q, scroll the dropdown until a row containing LOOK is rendered, bring it into view, screenshot + its box
+import {sess} from './common.mjs'; import fs from 'fs'; const E=process.env.ENV||'branch'; const W=JSON.parse(fs.readFileSync(`/tmp/sv11413-${E}-wo.json`,'utf8'));
+const s=await sess(); const p=s.page; await s.go('/workorders/'+W.id+'/lines'); await p.waitForTimeout(8000); await p.click('[data-test-id="button_add_part"]'); await p.waitForTimeout(2500);
+await p.click('[data-test-id="select_inline_part_number"]'); await p.waitForTimeout(800); await p.keyboard.type(process.env.Q,{delay:80}); await p.waitForTimeout(5000);
+let box=null; for(let i=0;i<300&&!box;i++){ box=await p.evaluate(L=>{const it=[...document.querySelectorAll('.q-menu .q-item')].find(e=>e.innerText.includes(L)); if(!it) {const m=document.querySelector('.q-menu'); m.scrollTop+=m.clientHeight*0.6; return null;} it.scrollIntoView({block:'center'}); return true;},process.env.LOOK); await p.waitForTimeout(150); }
+await p.waitForTimeout(500);
+const b=await p.evaluate(L=>{const it=[...document.querySelectorAll('.q-menu .q-item')].find(e=>e.innerText.includes(L)); const r=it.getBoundingClientRect(); const i=document.querySelector('[data-test-id="select_inline_part_number"]').getBoundingClientRect(); const m=document.querySelector('.q-menu').getBoundingClientRect(); return {row:[r.x,r.y,r.width,r.height],input:[i.x,i.y,i.width,i.height],menu:[m.x,m.y,m.width,m.height]};},process.env.LOOK);
+console.log(JSON.stringify(b)); await p.screenshot({path:`../ev/${E}-find-${process.env.TAG}.png`}); fs.writeFileSync(`../ev/${E}-find-${process.env.TAG}.json`,JSON.stringify(b)); await s.close(); process.exit(0);

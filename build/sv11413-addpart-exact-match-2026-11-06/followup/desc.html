@@ -1,0 +1,30 @@
+<p>Found while testing <a href="https://shopview.atlassian.net/browse/SV-11413">SV-11413</a></p>
+<h3>Summary</h3>
+<p>In a work order's <strong>Add Part</strong> box, a word that matches a lot of parts (for example <code>brake</code>) shows only one page of results. Parts past that page can't be found with that word at all; you have to type more of the name, and nothing on the screen says that more parts match. This was already the case before SV-11413.</p>
+<h3>Steps to reproduce</h3>
+<ol>
+<li><p>Open the QA branch to reproduce the issue: <a href="https://sv11413.qa.shopview.com">https://sv11413.qa.shopview.com</a>. Sign in. The location at the top right is <code>Staging Heavy Duty - 9919</code>.</p></li>
+<li><p>Open work order <a href="https://sv11413.qa.shopview.com/workorders/89350c1e-c428-4b23-ae12-c07c6584444e/lines">S11413-17580</a>.</p></li>
+<li><p>On the <code>Lines</code> tab, under line 1 (&quot;Service - Electric brake trailer CVIP&quot;), next to <code>Parts</code>, click <code>+ Add Part</code>.</p></li>
+<li><p>Click the <code>Part number</code> box and type <code>brake</code>.</p></li>
+<li><p>Scroll the list that opens all the way to the end. <strong>DOT 3 BRAKE FLUID</strong> (part number <code>PBFPS301C</code>) is not in it (pictures 1 and 2).</p></li>
+<li><p>Clear the box and type <code>brake fluid</code>. DOT 3 BRAKE FLUID now appears (picture 3), so the part is there.</p></li>
+</ol>
+<p><strong>Fastest way to see it:</strong> open <a href="https://sv11413.qa.shopview.com/workorders/89350c1e-c428-4b23-ae12-c07c6584444e/lines">S11413-17580</a>, click <code>+ Add Part</code> under line 1, type <code>brake</code> and scroll to the end of the list.</p>
+<p>The same happens on staging, which does not have the SV-11413 fix: work order S2-38096 at Staging Heavy Duty - 9919, same search, same part missing (picture 1).</p>
+<h3>What should happen</h3>
+<p>This needs a decision on how a broad search should behave (for example: every matching part can be reached, or the list says more parts match and asks you to narrow the search). Dusan proposed this ticket in <a href="https://shopview.atlassian.net/browse/SV-11413?focusedCommentId=80491">his comment on SV-11413</a>:</p>
+<blockquote><p>&quot;The Add Part list shows one page of results. When a word matches more parts than fit, some are always left out.&quot;</p><p>&quot;Each tag on a part takes up its own row in that page. So parts with several tags mean fewer distinct parts are shown, sometimes well under the page size.&quot;</p><p>&quot;I suggest we handle both, the page limit on broad searches and the tag rows, together in a separate ticket.&quot;</p></blockquote>
+<p>Related: <a href="https://shopview.atlassian.net/browse/SV-12286">SV-12286</a> (making search behave the same across the app).</p>
+<h3>Current behaviour</h3>
+<p>A one-word search shows only part of the parts that contain the word. At Staging Heavy Duty - 9919:</p>
+<table><thead><tr><th><p>Word typed</p></th><th><p>Inventory parts that contain it</p></th><th><p>Shown without the fix (staging)</p></th><th><p>Shown with the fix (QA branch)</p></th></tr></thead><tbody>
+<tr><td><p>brake</p></td><td><p>205</p></td><td><p>98</p></td><td><p>62</p></td></tr>
+<tr><td><p>seal</p></td><td><p>340</p></td><td><p>142</p></td><td><p>93</p></td></tr>
+<tr><td><p>filter</p></td><td><p>408</p></td><td><p>89</p></td><td><p>82</p></td></tr>
+<tr><td><p>bulb</p></td><td><p>68</p></td><td><p>68</p></td><td><p>68 (all fit)</p></td></tr>
+</tbody></table>
+<p>DOT 3 BRAKE FLUID is one of 47 inventory parts containing &quot;brake&quot; that appear in neither list.</p>
+<p>The tag rows Dusan describes were not measured separately here.</p>
+<!--IMG-->
+<p>Environment: QA branch sv11413 (build v26.45.2-b07ae41) and staging (build v26.45.2-8a3ce52), signed in as admin at Staging Heavy Duty - 9919, Chrome on desktop, window 1600 wide. The table was measured on 6 Nov 2026; the brake search and the pictures were re-checked on 9 Nov 2026.</p>
