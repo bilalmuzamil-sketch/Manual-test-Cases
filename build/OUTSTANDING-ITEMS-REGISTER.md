@@ -1587,3 +1587,5 @@ what is still owed.
 | SV-12405 | new follow-up from SV-12351 (preview drawn twice after Reverse) | developer / PO | 2026-11-09 |
 | SV-12351 | PASSED (80481), QA Complete | — | cleared 2026-11-09 |
 | SV-9570 / SV-12117 | QA lead: 9570 handled manually; 12117 left for Ahtasham | — | cleared 2026-11-09 |
+| SV-12038 | CLEARED 9 Nov: unblocked ourselves (fix's migration + DB unique rule make the duplicate impossible; proven live); PASSED 80489, QA Complete | — | cleared 2026-11-09 |
+| Rule-125 sweep 9 Nov | SV-11413 stays Rejected (real FAIL, check 5; build b07ae41 unchanged, no new comment). SV-12214 Rejected by the QA lead 05:42 CST; waiting on Stefan's A/B/C (a product decision, not something we can build). SV-10673 Blocked: Chris "hold off" (79235), Sasha took over ShopCoach (79832); Lee's baseline Google Doc still not reachable (Drive: not found) | Stefan / Chris / Sasha | 2026-11-09 |
