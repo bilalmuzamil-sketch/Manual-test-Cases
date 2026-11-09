@@ -1593,6 +1593,6 @@ what is still owed.
 ## 3-hourly check 9 Nov 2026 15:32 UTC
 | Item | State | Needs |
 |---|---|---|
-| SV-12267 (Schedule Undo after Entire-series delete; our own follow-up from SV-12048) | TESTING QA, QA branch sv12267, no QA assignee, no Powertools plan | fresh `.qa.shopview.com` cookies (current set 401) |
+| SV-12267 (Schedule Undo after Entire-series delete) | **CLEARED 9 Nov 2026** — QA PASSED (comment 80531), QAcomplete label, QA Complete, QA Assignee Bilal. 9 variants + 70-day series all restore every day; production still loses days in Day view | nothing |
 | SV-12279 | QA Complete (someone else) | nothing — ask withdrawn |
-| SV-12299 | Ready to Fix; production repro NOT reproduced (6 sends, all invoices) | QA lead: post the not-reproduced comment? |
+| SV-12299 | Open; NOT reproduced on production (5 emails from the envelope, all invoices). Comment 80521 posted 9 Nov tagging Mike Freeman | **Mike Freeman / HD Force owe:** subject line + attachment name of the email the customer received for invoice 6024. Blocks: knowing which screen sent the statement; until then nothing to fix or retest |

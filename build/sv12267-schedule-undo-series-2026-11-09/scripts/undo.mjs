@@ -2,13 +2,13 @@
 import {sess,j} from './common.mjs'; import fs from 'fs';
 const [TAG,VIEW,NAV,SCOPE,BI]=process.argv.slice(2); const W=JSON.parse(fs.readFileSync(`/tmp/sv12267/wo-${TAG}.json`,'utf8'));
 const s=await sess({dir:process.env.DIR||'/tmp/qa93'}); const p=s.page; const out={tag:TAG,view:VIEW,nav:NAV,scope:SCOPE,wo:W.number,tech:W.tech};
-const board=async()=>{const b=(await s.api('/api/schedule/board?from=2026-10-26T00:00:00Z&to=2026-12-20T23:59:59Z')).json?.data?.board; return (b?.shifts||[]).filter(x=>(x.workOrder?.id||x.workOrderId)===W.wo).map(x=>({id:x.id,s:x.startsAt,e:x.endsAt,m:x.durationMinutes,staff:x.staffId,series:x.seriesId,lines:(x.lines||x.workOrderLines||[]).length,cov:x.coverage})).sort((a,b)=>a.s<b.s?-1:1);};
+const board=async()=>{const b=(await s.api('/api/schedule/board?from='+(process.env.FROM||'2026-10-26')+'T00:00:00Z&to='+(process.env.TO||'2026-12-20')+'T23:59:59Z')).json?.data?.board; return (b?.shifts||[]).filter(x=>(x.workOrder?.id||x.workOrderId)===W.wo).map(x=>({id:x.id,s:x.startsAt,e:x.endsAt,m:x.durationMinutes,staff:x.staffId,series:x.seriesId,lines:(x.lines||x.workOrderLines||[]).length,cov:x.coverage})).sort((a,b)=>a.s<b.s?-1:1);};
 const key=x=>[x.s,x.e,x.m,x.staff,x.lines,x.cov].join('|');
 out.build=await p.evaluate(async()=>{const t=await (await fetch('/index.html?cb='+Date.now(),{cache:'no-store'})).text();return (t.match(/app-version" content="([^"]+)/)||[])[1];});
 out.before=await board();
 await s.go('/schedule'); await p.waitForTimeout(4500);
 const vt=p.locator('[data-test-id="schedule_view_toggle"]').getByText(VIEW,{exact:true}); if(await vt.count()){await vt.first().click(); await p.waitForTimeout(1500);}
-const mc=p.locator(`[data-test-id="button_mini_calendar_day_${NAV}"]`); if(await mc.count()){await mc.first().click(); await p.waitForTimeout(3500);} else out.navMissing=true;
+for(let k=0;k<6&&!(await p.locator(`[data-test-id="button_mini_calendar_day_${NAV}"]`).count());k++){ await p.locator('button,i,span').filter({hasText:/^chevron_right$/}).first().click(); await p.waitForTimeout(800);} const mc=p.locator(`[data-test-id="button_mini_calendar_day_${NAV}"]`); if(await mc.count()){await mc.first().click(); await p.waitForTimeout(3500);} else out.navMissing=true;
 const blocks=p.locator('.fc-event',{hasText:W.customerName}); out.blocksOnScreen=await blocks.count();
 const blk=blocks.nth(Number(BI||0)); await blk.scrollIntoViewIfNeeded(); await p.waitForTimeout(500);
 await p.screenshot({path:`/tmp/sv12267/${TAG}-1-before.png`}); out.blockBox=await blk.boundingBox();

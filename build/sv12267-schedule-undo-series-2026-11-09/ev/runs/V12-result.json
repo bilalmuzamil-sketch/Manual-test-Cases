@@ -1,0 +1,39 @@
+{
+ "tag": "V12",
+ "view": "Day",
+ "nav": "2027-01-04",
+ "scope": "series",
+ "wo": "S12267-17591",
+ "tech": "Douglas Fields",
+ "build": "v26.45.2-3378a88",
+ "before": [],
+ "blocksOnScreen": 1,
+ "blockBox": {
+  "x": 527,
+  "y": 747,
+  "width": 712,
+  "height": 80
+ },
+ "detail": [
+  "ZZAUTOTEST SV12267 V12 74076 Approved S12267-17591 · ZZV12 delete_outline close TIME LOGGED 0m logged / 2h est. SCHEDULED Mon, Jan 4, 2027 TIME – event_repeat Part of a 12-week job · Week 1 of 12 TECHNICIAN DF Douglas Fields Work Order Lines 1 Single line · Est. 2h 1 Service - Install coupler 0h / 2"
+ ],
+ "scopeDlg": [
+  "Delete from this series? close layers Series of 70 shifts This shift is part of a series. Choose how much to remove. This shift only returns 8h Entire series (70 shifts) returns 560h Cancel || card_dialog_schedule_delete_scope,schedule_delete_scope_body,text_delete_scope_series_badge,button_delete_scope_shift,text_delete_scope_returns_shift,button_delete_scope_series,text_delete_scope_returns_series"
+ ],
+ "toast": [
+  "January 2027 expand_more chevron_left chevron_right expand_less M T W T F S S 28 29 30 31 1 2 3 4 5 6 7 8 9 10 11 12 13 "
+ ],
+ "undoButton": 1,
+ "afterDelete": [],
+ "deleteWrites": [
+  "DELETE 204 /api/schedule/shifts/ca785880-aa30-4283-90ae-ce4141ea348e :: "
+ ],
+ "undoWrites": [
+  "POST 201 /api/schedule/shifts/restore :: {\"shifts\":[{\"id\":\"ca785880-aa30-4283-90ae-ce4141ea348e\",\"workOrderId\":\"403854b6-7235-4344-981d-14c31d9adeaa\",\"lineIds\":[\"311ae206-e655-4fa2-b9d8-9b74ee22e8e5\"],\"staffId\":\"740249f3"
+ ],
+ "restoreCount": 70,
+ "afterUndo": [],
+ "missingAfterUndo": [],
+ "extraAfterUndo": [],
+ "verdict": "before 0 / afterDelete 0 / afterUndo 0 / missing 0 / extra 0"
+}

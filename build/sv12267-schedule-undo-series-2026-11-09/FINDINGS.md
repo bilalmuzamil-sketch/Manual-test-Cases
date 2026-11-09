@@ -36,7 +36,19 @@ The Undo button appeared every time ("Shift deleted." + Undo). Note: my first V1
 
 So on today's production the loss happens when the board does not hold every day of the series (Day view, or a series running past the visible week); on 5 Nov it also happened in Week view on build v26.45.1-753355c. The branch restores every day in all of these.
 
-(Full before/after exhibit cycle, both environments, Day view, 1–2 Dec: see below once run.)
+## Before/after exhibit cycle (same steps both sides, Day view, booking Tue 1 + Wed 2 Dec)
+- Production S2-1928: Week view before = one booking across Tue+Wed (block 307 px wide); Day view → Entire series → Undo (restore carried 1) → Week view after = Tuesday only (block 153 px). **Bug reproduces.**
+- Branch S12267-17590 (Karen Peck): same → restore carried 2 → Week view after = both days (block 307 px). **Fixed.**
+- Exhibit: `ev/exhibits/01-before-vs-after-day-view.png` (scripts/exhibit.py, composed from `ev/runs/EX-*`).
+
+## Long series (the fix reads the series in 61-day pages)
+- The branch refuses a series over 56 days unless confirmed (409 "…beyond the 56-day limit. Resubmit with acknowledgeLongSeries…"), so a longer series is reachable by a user who accepts the warning.
+- V12 S12267-… (Douglas Fields): 70 shifts, 4 Jan → 25 Mar 2027 (81 days, past one 61-day page), booked with the warning accepted. Day view 4 Jan → Entire series (70 shifts) → Undo: restore request carried **70**; board read in two windows afterwards = **70 unique shifts, same ids as booked, 1 series, 33,600 min**.
+- The delete itself is not separately counted (my board read used too wide a range and came back empty); the restore carrying all 70 ids, all of which are back, is the evidence.
 
 ## Not tried
-- A series longer than 61 days (the fix's page size); a forced failure of the series read (the fix then deletes nothing).
+- A forced failure of the series read (the fix then deletes nothing and offers no Undo) — needs a network failure injected at that moment; not attempted.
+
+## Posted 9 Nov 2026 — comment 80531 (QA PASSED)
+11-row table, 1 annotated before/after exhibit (production vs branch), steps on the branch with S12267-17590. Then label QAcomplete added, status → QA Complete, QA Assignee set to Bilal (was empty) — all re-read. Pre-post gate: branch marker v26.45.2-3378a88 (last-modified Mon 09 Nov 2026 14:39:15 GMT, unchanged across every run), production v26.45.2-107ad4b, ticket had only comment 80298, no technical section, no recording (Board-2 defaults).
+Learning check: (1) my first V1 run's "no Undo button" was my own toast finder (the toast is not `.q-notification`; use the button role "Undo") — fixed in undo.mjs before any verdict; (2) I first sent QA Assignee (customfield_10385) as a single object and got 400 "data was not an array" — the array shape was ALREADY in the playbook (§ near line 6533); I should have looked it up first (Rule 117). No new rule; recipe reused on the retry.
