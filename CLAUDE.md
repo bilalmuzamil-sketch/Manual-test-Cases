@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **ANYTHING REPORTED FROM A QA BRANCH IS ALSO CHECKED ON PRODUCTION — say whether it is QA-branch-only or on production too, with annotated screenshots of both (Standing Rule 126).**
 > - **NEVER REJECT/BLOCK A TICKET (OR ASK A DEV TO BUILD A STATE) BEFORE THE SELF-UNBLOCK IS EXHAUSTED — WAKE, SEED, UI↔API, AND READ THE FIX'S OWN CODE (migrations, constraints, tests); re-sweep every Rejected/Blocked ticket (Standing Rule 125).**
 > - **ISSUE IN THE CODE? ALWAYS GIVE THE CODE REFERENCE — file + lines as a commit-pinned GitHub link + which PR did/did not touch it (Standing Rule 124).**
 > - **MISSING SOMETHING TO TEST A TICKET? TAG THE TICKET'S ASSIGNED DEVELOPER ON THE TICKET WITH A NUMBERED LIST OF WHAT IS NEEDED, THEN MOVE THE TICKET TO BLOCKED (Standing Rule 122).**
@@ -5822,6 +5823,11 @@ deliver the 7-tab management report.
     the branch, and that was the answer to both of my questions. Reading the PR took minutes; after the branch was woken,
     proving the rule live (three creates sent at once, one saved) and re-running the export closed it: PASSED (80489), QA Complete.
     Ties to Rules 12, 14, 22, 36, 61, 68, 85, 87, 88, 91, 97, 112, 116, 122 and 124.
+
+126. **ANYTHING REPORTED FROM A QA BRANCH IS ALSO CHECKED ON PRODUCTION, WITH ANNOTATED SCREENSHOTS OF BOTH (all projects).**
+    USER DIRECTIVE (2026-11-09, verbatim): *"ALso check if its the same on production and give the annotated screenshots as reference. Always do that when you report something from the QA branch to confirm if it is happening only on the QA branch or on Production too."*
+    **THE RULE:** every issue, failed item or follow-up ticket we report from a QA branch (or staging) is reproduced on **PRODUCTION** (`app.shopview.com`, test org) before or alongside the report, and the report says plainly which of the two it is: **(a) only on the QA branch** (the change introduced it) or **(b) on production too** (it already exists for customers). Both halves carry **annotated screenshots** (Rule 64), each labelled with environment + build marker + date. Where production lacks the same data, **seed it or use production's own data that shows the same thing** (Rules 14/87); never fall back to "production does not have these parts" — that is a set-up step, not an answer. If production genuinely cannot show it, say why in one line. This extends Rule 86 (the BEFORE half comes from production) from verdict comments to every reported issue. First applied: SV-12410 (9 Nov 2026), where the first version used staging as the "without the fix" side.
+    Ties to Rules 12, 14, 50, 64, 67, 68, 73, 86, 87 and 93.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

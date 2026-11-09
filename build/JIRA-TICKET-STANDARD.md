@@ -254,3 +254,6 @@ Where the cause of a failed item, a developer question or a follow-up ticket liv
 **"Where it is in the code"** block after the picture: file path + line numbers as a GitHub permalink pinned to a
 commit (`https://github.com/ShopView/shopview/blob/<full sha>/<path>#Lx-Ly`), one plain line on what is wrong there,
 and which PR changed it or did not. Read the file at that commit; never guess lines. Example: SV-12214 comment 80479.
+
+## Production check for anything reported from a QA branch (Standing Rule 126, QA lead 2026-11-09)
+Every issue or follow-up ticket we report from a QA branch or staging is also checked on production. The ticket says plainly whether it happens **only on the QA branch** or **on production too**, and shows annotated screenshots of both, each labelled with environment, build marker and date. If production lacks the data, seed it or find production data that shows the same thing. First applied: SV-12410.
