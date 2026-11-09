@@ -1,0 +1,29 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+0.38 REQ POST /api/user/recent-entities/touch
+3.12 RES 204 POST /api/user/recent-entities/touch
+11.49 REQ GET /api/invoices/b94d839f-0d91-4fdd-bf00-26fdd3d557ac/settings/view
+11.49 REQ GET /api/invoices/b94d839f-0d91-4fdd-bf00-26fdd3d557ac/details?includeDeclined=0
+12.03 RES 200 GET /api/invoices/b94d839f-0d91-4fdd-bf00-26fdd3d557ac/settings/view
+12.15 RES 200 GET /api/invoices/b94d839f-0d91-4fdd-bf00-26fdd3d557ac/details?includeDeclined=0
+12.15 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=4255e024-938c-4514-83d9-95f1a0a7f324
+12.32 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=4255e024-938c-4514-83d9-95f1a0a7f324
+12.32 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=b94d839f-0d91-4fdd-bf00-26fdd3d557ac
+12.53 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=b94d839f-0d91-4fdd-bf00-26fdd3d557ac
+12.53 REQ POST /api/work-orders/invoices/estimate
+12.96 RES 200 POST /api/work-orders/invoices/estimate
+--- deposit
+method check Cash
+21.52 REQ POST /api/deposits
+21.87 RES 201 POST /api/deposits
+21.87 REQ POST /api/work-orders/invoices/estimate
+21.95 TOAST check_circle A deposit was created Close
+22.54 REQ GET /api/invoices/b94d839f-0d91-4fdd-bf00-26fdd3d557ac/details?includeDeclined=0
+22.85 RES 200 POST /api/work-orders/invoices/estimate
+22.88 RES 200 GET /api/invoices/b94d839f-0d91-4fdd-bf00-26fdd3d557ac/details?includeDeclined=0
+22.90 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=4255e024-938c-4514-83d9-95f1a0a7f324
+23.03 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=4255e024-938c-4514-83d9-95f1a0a7f324
+23.03 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=b94d839f-0d91-4fdd-bf00-26fdd3d557ac
+23.16 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=b94d839f-0d91-4fdd-bf00-26fdd3d557ac
+23.16 REQ POST /api/work-orders/invoices/estimate
+23.54 RES 200 POST /api/work-orders/invoices/estimate
+28.52 preview deposit lines: Deposit) Nov 9, 2026 - Cash $5.00
