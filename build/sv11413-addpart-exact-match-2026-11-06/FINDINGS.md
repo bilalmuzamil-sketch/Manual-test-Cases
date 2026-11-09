@@ -42,3 +42,9 @@ Test data (branch, left): WOs S11413-17580, S11413-17581 (vendor request "194").
 - SV-11413: new comment 80494 OVERALL QA STATUS: PASSED (80369/80370 untouched, Rule 112), check 5 "PASSED (limit handled in SV-12410)", before/after 194 image reused. Label QAcomplete added; TESTING QA -> QA Complete (transition 10; someone had moved it from Rejected back to TESTING QA before this). QA Assignee already Bilal.
 - Pre-post gate: build marker re-read live b07ae41 (12:1x UTC); ticket state + newest comment re-read; image is a real attachment; no AI fingerprint; no technical section.
 - Learning check: nothing new beyond the standard (a mid-flow status change by someone else was simply read and used, Rule 103).
+
+## SV-12410 production check (Rule 126, QA lead 9 Nov 2026)
+- Production test org (v26.45.2-132dcb4) has too few parts per word to hit the 200-row page (scripts/prodprobe.mjs, ev/prod-probe-0911.json: brake 17, filter 9 ...). Seeded 210 catalogue+inventory parts "ZZ12410 Seal Ring 001..210" / ZZ12410-001..210 at Trucks Hill 2, qty 2 (scripts/seedmany.mjs, 210/210 created, left in place).
+- Picker for ZZ12410 on production: 400 rows = 200 inventory + 200 catalogue; parts 201-210 missing. On screen (WO S2-1943, scrollall): list ends at Seal Ring 200; "ZZ12410-210" finds it (findrow). => happens on production too.
+- SV-12410 description edited 08:04 CST: "it happens on production too" in Summary + new "On production" section (steps + picture 2, ev/jira/04-production-zz12410.png), dated edit note; picture 1 moved up next to the QA-branch steps. Read back: 2 images, order 03 then 04.
+- Rule 126 added to CLAUDE.md + JIRA-TICKET-STANDARD + LESSONS-INDEX.
