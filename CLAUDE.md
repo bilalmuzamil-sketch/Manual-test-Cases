@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **ISSUE IN THE CODE? ALWAYS GIVE THE CODE REFERENCE — file + lines as a commit-pinned GitHub link + which PR did/did not touch it (Standing Rule 124).**
 > - **MISSING SOMETHING TO TEST A TICKET? TAG THE TICKET'S ASSIGNED DEVELOPER ON THE TICKET WITH A NUMBERED LIST OF WHAT IS NEEDED, THEN MOVE THE TICKET TO BLOCKED (Standing Rule 122).**
 > - **EVERY TICKET IS ALSO CHECKED FOR ITS ACCOUNTINGHUB / QUICKBOOKS EFFECT — nothing left "on an island" (Standing Rule 121, Chris Ward 2026-11-05).**
 - **A FAILED ITEM NAMES THE EXACT DEVICE PRESET, BROWSER + VERSION, GESTURE (QUICK TAP / PRESS-AND-HOLD / HOVER + TIME), SPOT, TIMING, N-OF-N AND WHAT WASN'T TRIED — reproduce it on the developer's standard set-up first (Standing Rule 120).**
@@ -4111,6 +4112,7 @@ deliver the 7-tab management report.
     there is NO "Technical details for developers" section unless the QA lead approved one for this
     ticket (Rule 84 — check the section is absent)**; priority Medium on any ticket created/edited
     (the priority rule).
+    **(7a) CODE REFERENCE (Rule 124)** — every failed item, developer question or follow-up ticket whose cause is in the code names the file + lines (commit-pinned link) and the PR that did or did not change it.
     **(7b) THE VERDICT RESTS ON A FINISHED MATRIX (Rule 106)** — every point's cells observed, and every failing example was built using screens only (how it was built is written in the findings doc).
     **(7c) THE STATE WAS CHECKED EVERYWHERE IT SHOWS (Rule 119)** — the findings doc lists the surfaces opened, the sums run, every handoff list walked (hotspots included) and the bug-family tickets read.
     **(8) READ IT BACK AFTER POSTING** — re-fetch the posted comment/ticket and verify the first line,
@@ -5790,7 +5792,8 @@ deliver the 7-tab management report.
     mention this rule or its source in a ticket.** This narrows Rule 109(b) and Rule 99's "PO updated the spec" path to features
     not yet shipped. Earned on SV-12277 (comment 80377 asked Chris to edit Dashboard PRD S12-R2; Dashboard is live, PRD frozen).
 
-124. **WHEN AN ISSUE IS IN THE CODE, THE COMMENT OR TICKET GIVES THE CODE REFERENCE (all projects).**
+124. **ALWAYS GIVE THE CODE REFERENCE WHERE IT IS NEEDED — WHEN AN ISSUE IS IN THE CODE, THE COMMENT OR TICKET SAYS WHERE (all projects).**
+    USER DIRECTIVE (2026-11-09, verbatim, confirming it as a permanent rule): *"Save it as a rule to always give reference from the code too where it is needed."*
     USER DIRECTIVE (2026-11-09, verbatim, on SV-12214): *"They should have the reference from the code if th eissue is in the code."*
     Whenever a finding we report to a developer (failed item, question, follow-up ticket) comes from a specific place in the code,
     the report names it: the **file path + line numbers as a GitHub permalink pinned to a commit** (`blob/<full sha>/<path>#Lx-Ly`),

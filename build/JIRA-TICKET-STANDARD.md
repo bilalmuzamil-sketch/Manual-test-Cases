@@ -248,3 +248,9 @@ When approved, the QA comment — **PASSED, FAILED or PARTIALLY PASSED** — end
 3. Write for someone seeing the ticket for the first time: plain words before every requirement ID, no internal shorthand, the
    date Jira shows (Central time). A full pass stays one green comment.
 Canonical example: SV-11631 comments 79620 + 79621.
+
+## Code reference when the issue is in the code (Standing Rule 124, QA lead 2026-11-09)
+Where the cause of a failed item, a developer question or a follow-up ticket lives in the code, add a short
+**"Where it is in the code"** block after the picture: file path + line numbers as a GitHub permalink pinned to a
+commit (`https://github.com/ShopView/shopview/blob/<full sha>/<path>#Lx-Ly`), one plain line on what is wrong there,
+and which PR changed it or did not. Read the file at that commit; never guess lines. Example: SV-12214 comment 80479.
