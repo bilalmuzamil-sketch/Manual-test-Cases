@@ -1,0 +1,16 @@
+<p><strong>Retest: PASS.</strong> The Dashboard tiles and the reports they open now show the same figures, including the credit memo made just after midnight.</p>
+<p><strong>Where and how:</strong> QA branch sv11839, build v26.45.2-1a211d8, Admin, location Staging Heavy Duty - 9919, 9 Nov 2026 at 08:18 UTC. The session, the browser, the app's own time-zone setting and the test computer were all set to America/Edmonton, and this was recorded. I used the same older browser that showed the problem (Chromium 153, which still moves Edmonton to UTC−7 after 1 Nov), so this is the situation that went wrong before.</p>
+<p><strong>Revenue tile and Sales report (the original problem):</strong></p>
+<ul>
+<li><strong>Nov 3:</strong> tile <strong>$1,625.23</strong>, report <strong>$1,625.23</strong>. The $5.00 credit memo CM11839-4189 is now listed in the report, dated Nov 03 2026. Before the fix the report showed $1,630.23.</li>
+<li><strong>Nov 2:</strong> tile <strong>$0.00</strong>, report shows no records. Before the fix the report showed −$5.00.</li>
+</ul>
+<p><strong>The other reports a tile opens</strong> (Chris asked for all of them), same location, same two days:</p>
+<ul>
+<li><strong>Technician Utilization:</strong> Nov 3 tile 50.01% (48.02 work-order hours / 96.02 clocked), report 50.01% with the same hours. Nov 2: 50.00% on both.</li>
+<li><strong>Sales By Customer:</strong> Nov 3 tile "2 customers, Top: 7 Star Truck Repair", report lists the same 2 customers. Nov 2: none on both.</li>
+<li><strong>Billing Efficiency (Advisor Analysis report):</strong> Nov 3 tile 3.75 invoiced hours, report 3.75. Nov 2: 0 on both.</li>
+<li><strong>Technician Efficiency:</strong> no data on either day, on the tile and in the report.</li>
+</ul>
+<p>Each of these reports now works out the day the same way the Dashboard does, so the browser's own time-zone rules no longer move it. One note: the only record at this location in the hour that went wrong (midnight to 1:00 AM) is the credit memo, so the Revenue check is the one that shows the fix working; the other four reports matched their tiles on both days.</p>
+<p>The picture shows the Revenue tile and the Sales report for both days, with numbered notes.</p>

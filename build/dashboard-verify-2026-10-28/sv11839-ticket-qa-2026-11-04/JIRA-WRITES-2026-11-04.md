@@ -242,3 +242,19 @@ Filed under the QA lead's account by another session, not on my branch: SV-12193
 - Comment 80318's closing question was edited from "…or leave it as it is (blue pill), with S12-R2 updated?" to "…or leave it as it is (blue pill)?".
 - Read back: the picture (media b0aeeb28…) and the @mention are still in place.
 - Searched every open question to Chris and every ticket description since 4 Nov: no other open ask for a PRD change. The "S… gets updated" lines elsewhere quote Chris's own answers, not our asks.
+
+## 9 Nov 2026: SV-12276 retest PASS, comment 80448
+- Fresh sv11839 sign-in from the QA lead (stored in /tmp only). The branch was asleep; I woke it with toggleQaEnv.
+- Build v26.45.2-1a211d8 carries the fix (shopview commit 1a211d8: the reports send the picked day as a date and the server works out the day).
+- Run 08:18 UTC in Chromium 153, which still has the older Edmonton rule (browser UTC−7; machine and server UTC−6), so this is the condition the bug needs. Rule 99: the four zone settings matched and were recorded. The day is now worked out on the server, which the result shows: the 06:xx UTC credit memo lands on Nov 3 in both the tile and the report.
+- Results:
+  - Revenue: Nov 3 tile $1,625.23 = report $1,625.23 (CM11839-4189 listed); Nov 2 tile $0.00 = report empty.
+  - Technician Utilization, Sales By Customer and Advisor Analysis match their tiles on both days.
+  - Technician Efficiency: empty on both days.
+  - None of the report requests sent a browser-built time (0 of 10).
+- Picture media id d2837cd0-bc70-41d0-831a-6721f40cfda4 (266,527 bytes, matches the local file). Evidence: `sv12276-retest-2026-11-09/`.
+- Re-checked just before posting (08:24 UTC): status TESTING QA, no new comments.
+- Status not changed. Waiting for the QA lead's go-ahead.
+- Same day: the earlier claim that SV-12275, SV-12277 and SV-12278 were "waiting for Chris" was wrong.
+  - Chris had answered all three on 6 Nov: comments 80372, 80373 and 80374, plus 80389 and 80390.
+  - Rule 101 amended (commit 88bf94189).
