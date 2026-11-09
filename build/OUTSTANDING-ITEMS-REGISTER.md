@@ -1573,3 +1573,13 @@ what is still owed.
 | SV-6456 (Board 2): the Create Invoice fix works (production 2/2 rounds fail one invoice with "Ooooops! An error occurred"; branch 22/22 invoices made, money always correct). But when someone reverses a deposit at the same moment the invoice takes it, the reversal shows the generic "An error occurred" (3 of 3 such races) instead of the clear "Cannot reverse a deposit…" it gives otherwise. Add it to the remaining-issues comment, or pass the ticket? | QA lead | SV-6456 verdict | 6 Nov |
 | SV-12203 handed to Mudassir (QA lead 6 Nov). SV-12268/12269: Chris answered (80334/80335). | - | cleared | 6 Nov |
 | SV-11684: QA lead ruled (6 Nov) it stands as QA passed on Chris's decision relayed by Dusan (80363). Desktop tooltip re-checked live, PASSED comment 80383, label QAcomplete, QA Complete, priority Medium. | - | cleared | 6 Nov |
+
+## 3-hourly Board 2 check — 9 Nov 2026 09:31 UTC (read 10:08 UTC)
+| Ticket | Finding | Action |
+|---|---|---|
+| SV-12206 / SV-12088 (QuickBooks, qb1) | Already tested this morning by another session under our account (80469, 80470 scoped pass, 80475 blocker to Dipesh). | Not picked up, to avoid colliding on the QA 1 US sandbox. |
+| SV-12117 (invoice API docs) | QA assignee is Ahtasham Amjad. | Asked the QA lead before testing. |
+| SV-12351 | Fully tested on sv12351; waiting on QA lead (Reverse double-render request: pass or send to Stefan). | Post on answer. |
+| SV-12214 | 3-browser staging walk done; waiting on QA lead (module switcher + profile menu marking → Stefan?). | Post on answer. |
+| SV-9570 | Milos replied "good for now" (80466) to issue-4 question; ticket is Rejected from Testing per QA lead. | Asked the QA lead whether to pass it now. |
+| SV-12276 | QA passed this morning under our account (80448), QA Complete. | Cleared. |
