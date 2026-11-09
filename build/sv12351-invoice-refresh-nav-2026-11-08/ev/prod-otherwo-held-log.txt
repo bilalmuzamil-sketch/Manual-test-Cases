@@ -1,0 +1,35 @@
+marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+6.43 REQ GET /api/invoices/18b4d12d-19bc-48d2-a587-c8ee3ceae787/settings/view
+6.43 REQ GET /api/invoices/18b4d12d-19bc-48d2-a587-c8ee3ceae787/details?includeDeclined=0
+6.56 RES 200 GET /api/invoices/18b4d12d-19bc-48d2-a587-c8ee3ceae787/settings/view
+6.60 RES 200 GET /api/invoices/18b4d12d-19bc-48d2-a587-c8ee3ceae787/details?includeDeclined=0
+6.61 REQ POST /api/work-orders/invoices/estimate
+6.99 RES 200 POST /api/work-orders/invoices/estimate
+10.32 first opened work order A 18b4d12d-19bc-48d2-a587-c8ee3ceae787 Finance
+16.44 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+16.44 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+16.56 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+16.64 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+16.64 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+16.74 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+16.75 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+16.86 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+16.87 REQ POST /api/work-orders/invoices/estimate
+17.23 RES 200 POST /api/work-orders/invoices/estimate
+20.84 on /workorders/4560a837-ee20-46e5-a62c-c6a4892fc85d/finance
+22.74 REQ POST /api/work-orders/change-customer-po
+22.74 TEST-ONLY: holding the PO save 4000 ms
+24.21 search hit {"x":800,"y":381.7109375,"t":"≈ close match: S2-850 aqeel transport 56 Complete 1m Custom Car Transports, Inc."}
+27.14 TEST-ONLY: PO save released (201)
+27.14 RES 201 POST /api/work-orders/change-customer-po
+27.15 REQ GET /api/invoices/18b4d12d-19bc-48d2-a587-c8ee3ceae787/details?includeDeclined=0
+27.31 RES 200 GET /api/invoices/18b4d12d-19bc-48d2-a587-c8ee3ceae787/details?includeDeclined=0
+27.31 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=01de15df-5651-4704-9450-0b94f4375f6b
+27.40 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=01de15df-5651-4704-9450-0b94f4375f6b
+27.41 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=18b4d12d-19bc-48d2-a587-c8ee3ceae787
+27.52 TOAST-SHOWN warning IBS Account Number is not configured for customer "aqeel transport 56". Please try to resolve this. Close
+27.52 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=18b4d12d-19bc-48d2-a587-c8ee3ceae787
+27.52 REQ POST /api/work-orders/invoices/estimate
+27.88 RES 200 POST /api/work-orders/invoices/estimate
+31.54 URL /workorders/18b4d12d-19bc-48d2-a587-c8ee3ceae787/lines
+saved customer PO on this work order: ["\"customer_po\":\"ZZ12351-otherwo-97546\""] typed ZZ12351-otherwo-97546

@@ -9,7 +9,13 @@ import {spawnSync} from 'child_process';
 //   await s.go('/workorders/'+wo+'/lines')                   // waits for network idle, not a clock
 //   const tip = await s.hoverTip('menu-item_delete_line_'+id)
 //   await s.shot('delete-tooltip'); await s.close()
-import pkg from '/opt/node22/lib/node_modules/playwright/index.js'; const {chromium, devices}=pkg;
+import pkg from '/opt/node22/lib/node_modules/playwright/index.js'; const {chromium, firefox, webkit, devices}=pkg;
+// engine: 'chromium' (default) | 'firefox' | 'webkit'. Added 2026-11-09 (SV-12214, QA lead: test other browsers too).
+// Firefox/WebKit are NOT pre-installed: install them for this Playwright (1.63) into /tmp/pw-extra -
+//   PLAYWRIGHT_BROWSERS_PATH=/tmp/pw-extra node /opt/node-tools/node_modules/playwright/cli.js install firefox webkit
+//   PLAYWRIGHT_BROWSERS_PATH=/tmp/pw-extra node /opt/node-tools/node_modules/playwright/cli.js install-deps webkit   (system libs)
+// WebKit = the engine behind Safari (Playwright WebKit 26.x ~ Safari 26). Override paths with SV_FIREFOX / SV_WEBKIT.
+const EXTRA={firefox:process.env.SV_FIREFOX||'/tmp/pw-extra/firefox-1543/firefox/firefox', webkit:process.env.SV_WEBKIT||'/tmp/pw-extra/webkit-2359/pw_run.sh'};
 import fs from 'fs';
 
 const CHROME=(()=>{ for(const c of ['/opt/pw-browsers/chromium','/opt/pw-browsers/chromium-1243/chrome-linux/chrome','/opt/pw-browsers/chromium-1194/chrome-linux/chrome']){ try{ if(fs.statSync(c).isFile()) return c; }catch(e){} } return undefined; })();
@@ -33,7 +39,7 @@ export function port(dir){
 
 export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw=(process.env.SV_PROD_PW||(()=>{try{return fs.readFileSync('/tmp/sv-prod-pw.txt','utf8').trim()}catch(e){return ''}})()),
                             cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null, quick='admin', tz=null,
-                            scrollbars=false, touch=false, device=null, headed=false}={}){
+                            scrollbars=false, touch=false, device=null, headed=false, engine='chromium'}={}){
   // headed: run a real windowed Chromium (wrap the node command in `xvfb-run -a`). Added 2026-11-05 (SV-12003): only a
   // headed browser downloads the spell-check dictionary and draws the red wavy underline; headless never shows it.
   // device: a Chrome DevTools / Playwright device preset name, e.g. 'iPhone 12 Pro', 'iPhone SE', 'Pixel 7'. Sets viewport,
@@ -51,9 +57,11 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
   // record: a folder path -> the whole session is filmed (see recording.mjs: finishRecording()).
   tz = tz || process.env.SV_TZ_BROWSER || null;
   const H = env==='prod' ? PROD : env==='staging' ? STAGING : branch(ticket);
-  const b = await chromium.launch({executablePath:CHROME, headless:!headed, args:[
+  const b = engine==='chromium' ? await chromium.launch({executablePath:CHROME, headless:!headed, args:[
     '--proxy-server=http://127.0.0.1:'+port(dir),'--ignore-certificate-errors','--no-sandbox','--ssl-version-max=tls1.2'],
-    ...(scrollbars ? {ignoreDefaultArgs:['--hide-scrollbars']} : {})});
+    ...(scrollbars ? {ignoreDefaultArgs:['--hide-scrollbars']} : {})})
+    : await (engine==='firefox'?firefox:webkit).launch({executablePath:EXTRA[engine], headless:!headed,
+        proxy:{server:'http://127.0.0.1:'+port(dir)}});
   const ctx = await b.newContext(Object.assign({viewport:vp, deviceScaleFactor:dpr, ignoreHTTPSErrors:true}, tz ? {timezoneId:tz} : {},
     touch==='laptop' ? {hasTouch:true} : touch ? {hasTouch:true, isMobile:true} : {},
     device ? (()=>{ const d=devices[device]; if(!d) throw new Error('unknown device preset: '+device); const {defaultBrowserType,...rest}=d; return rest; })() : {},

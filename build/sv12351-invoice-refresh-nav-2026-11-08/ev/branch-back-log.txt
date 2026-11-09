@@ -1,0 +1,32 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+10.59 REQ GET /api/invoices/c33308ec-695e-4676-a37c-21fa3f486b54/settings/view
+10.59 REQ GET /api/invoices/c33308ec-695e-4676-a37c-21fa3f486b54/details?includeDeclined=0
+11.17 RES 200 GET /api/invoices/c33308ec-695e-4676-a37c-21fa3f486b54/settings/view
+11.29 RES 200 GET /api/invoices/c33308ec-695e-4676-a37c-21fa3f486b54/details?includeDeclined=0
+11.29 REQ POST /api/work-orders/invoices/estimate
+11.71 RES 200 POST /api/work-orders/invoices/estimate
+14.52 first opened work order A c33308ec-695e-4676-a37c-21fa3f486b54 Finance
+24.74 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+24.74 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+25.28 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+25.39 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+25.40 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+25.57 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+25.57 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+25.76 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+25.76 REQ POST /api/work-orders/invoices/estimate
+26.13 RES 200 POST /api/work-orders/invoices/estimate
+29.23 on /workorders/38e33787-e746-4f53-ac6d-6a6f31d3062e/finance
+30.16 pressed the browser Back button
+30.23 REQ POST /api/work-orders/change-customer-po
+30.42 RES 201 POST /api/work-orders/change-customer-po
+30.42 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+30.67 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+30.67 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+30.80 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+30.80 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+30.96 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+30.96 REQ POST /api/work-orders/invoices/estimate
+31.37 RES 200 POST /api/work-orders/invoices/estimate
+37.44 URL /workorders/38e33787-e746-4f53-ac6d-6a6f31d3062e/lines
+saved customer PO on this work order: ["\"customer_po\":\"ZZ12351-back-50271\""] typed ZZ12351-back-50271

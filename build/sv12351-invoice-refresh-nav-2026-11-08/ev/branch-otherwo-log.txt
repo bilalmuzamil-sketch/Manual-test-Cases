@@ -1,0 +1,25 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+11.22 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+11.22 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+11.83 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+11.88 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+11.88 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+12.06 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+12.06 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+12.24 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+12.24 REQ POST /api/work-orders/invoices/estimate
+12.67 RES 200 POST /api/work-orders/invoices/estimate
+15.65 on /workorders/38e33787-e746-4f53-ac6d-6a6f31d3062e/finance
+17.56 REQ POST /api/work-orders/change-customer-po
+17.94 RES 201 POST /api/work-orders/change-customer-po
+17.94 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+18.28 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+18.28 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+18.43 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+18.43 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+18.57 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+18.57 REQ POST /api/work-orders/invoices/estimate
+19.04 RES 200 POST /api/work-orders/invoices/estimate
+19.06 search hit {"x":800,"y":381.7109375,"t":"≈ close match: S12351-16273 Los Lunas Diesel & Fleet Repair Complete 2023 XCMG X"}
+26.39 URL /workorders/c33308ec-695e-4676-a37c-21fa3f486b54/lines
+saved customer PO on this work order: ["\"customer_po\":\"ZZ12351-otherwo-41126\""] typed ZZ12351-otherwo-41126

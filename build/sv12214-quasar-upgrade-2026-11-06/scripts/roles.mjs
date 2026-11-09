@@ -1,4 +1,4 @@
-import {sess} from './common.mjs'; import fs from 'fs'; const E=process.env.ENV||'staging'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const R=[];
+import {sess} from './common.mjs'; import fs from 'fs'; const E=(process.env.ENV||'staging')+(process.env.ENGINE&&process.env.ENGINE!=='chromium'?'-'+process.env.ENGINE:''); const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const R=[];
 const pop=()=>p.evaluate(()=>[...document.querySelectorAll('.q-menu')].filter(m=>m.getBoundingClientRect().width>0).map(m=>{const r=m.getBoundingClientRect(); return {role:m.getAttribute('role'),label:m.getAttribute('aria-label'),box:[r.x,r.y,r.right,r.bottom].map(Math.round),items:m.querySelectorAll('[role^=menuitem]').length,text:m.innerText.replace(/\s+/g,' ').slice(0,90)}}));
 async function probe(name,sel,shot){ const b=p.locator(sel).first(); if(!(await b.count())){ R.push({name,missing:sel}); return; }
   const btn=await b.evaluate(e=>{const c=e.closest('[aria-haspopup]')||e; const r=e.getBoundingClientRect(); return {haspopup:c.getAttribute('aria-haspopup'),box:[r.x,r.y,r.right,r.bottom].map(Math.round)}});

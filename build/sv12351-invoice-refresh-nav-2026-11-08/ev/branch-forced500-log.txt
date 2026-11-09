@@ -1,0 +1,14 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+10.73 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+10.73 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+10.73 RES 500 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+10.78 TOAST-SHOWN warning Ooooops! An error occurred Close
+11.13 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+11.75 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+11.75 RES 500 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+11.77 REQ POST /api/work-orders/invoices/estimate
+11.83 TOAST-SHOWN warning Ooooops! An error occurred Close 2
+11.83 TOAST-SHOWN warning Error fetching draft invoice details Invoice error Close
+12.28 RES 200 POST /api/work-orders/invoices/estimate
+15.10 on /workorders/38e33787-e746-4f53-ac6d-6a6f31d3062e/finance
+saved customer PO on this work order: ["\"customer_po\":\"ZZ12351-stay-39185\""] typed ZZ12351-forced500-78173

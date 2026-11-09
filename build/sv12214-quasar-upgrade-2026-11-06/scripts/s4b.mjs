@@ -1,5 +1,5 @@
-import {sess,post} from './common.mjs'; import fs from 'fs'; const E=process.env.ENV||'staging'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const out=[];
-if(E==='staging') await post(s,'/api/iam/change-location',{workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',workplace_timezone:'America/Edmonton'});
+import {sess,post} from './common.mjs'; import fs from 'fs'; const E=(process.env.ENV||'staging')+(process.env.ENGINE&&process.env.ENGINE!=='chromium'?'-'+process.env.ENGINE:''); const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const out=[];
+if(E.startsWith('staging')) await post(s,'/api/iam/change-location',{workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',workplace_timezone:'America/Edmonton'});
 await s.go('/schedule'); await p.waitForTimeout(5000); await p.locator('[data-test-id=schedule_view_toggle]').getByText('Day',{exact:true}).first().click(); await p.click('[data-test-id=button_schedule_today]'); await p.waitForTimeout(3500);
 const bl=p.locator('[data-test-id=schedule_shift_block]'); const n=await bl.count(); console.log('blocks',n);
 for(let i=0;i<n;i++){ const b=bl.nth(i); await b.scrollIntoViewIfNeeded(); await p.waitForTimeout(800); const bb=await b.boundingBox(); if(!bb) continue;

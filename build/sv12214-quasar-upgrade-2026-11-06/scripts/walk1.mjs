@@ -1,10 +1,10 @@
 // node walk1.mjs -> SV-12214 Work Orders page: menus (columns, density, card size, board fields, filter chip), select an option and confirm it applies,
 // board hover card + tooltips (position finite + inside window), board sideways scroll. ENV=prod for production. Writes ../ev/<env>-walk1.json + shots.
 import {sess,post} from './common.mjs'; import fs from 'fs';
-const E=process.env.ENV==='prod'?'prod':process.env.ENV==='staging'?'staging':'branch'; const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const R={build:await p.evaluate(()=>document.querySelector('meta[name=app-version]')?.content),checks:[],console:[]};
+const E=(process.env.ENV==='prod'?'prod':process.env.ENV==='staging'?'staging':'branch')+(process.env.ENGINE&&process.env.ENGINE!=='chromium'?'-'+process.env.ENGINE:''); const s=await sess({vp:{width:1600,height:900}}); const p=s.page; const R={build:await p.evaluate(()=>document.querySelector('meta[name=app-version]')?.content),checks:[],console:[]};
 p.on('console',m=>{ if(m.type()==='error') R.console.push(m.text().slice(0,200)); }); p.on('pageerror',e=>R.console.push('PAGEERROR '+e.message.slice(0,200)));
-if(E==='staging'){ await post(s,'/api/iam/change-location',{workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',workplace_timezone:'America/Edmonton'}); }
-if(E==='prod'){ const ws=(await s.api('/api/staff/my-workplaces')).json.data; const W=(ws.collection||ws).find(w=>/Trucks Hill 2/.test(w.name)); await post(s,'/api/iam/change-location',{workplace_id:W.id,workplace_timezone:W.timezone}); }
+if(E.startsWith('staging')){ await post(s,'/api/iam/change-location',{workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',workplace_timezone:'America/Edmonton'}); }
+if(E.startsWith('prod')){ const ws=(await s.api('/api/staff/my-workplaces')).json.data; const W=(ws.collection||ws).find(w=>/Trucks Hill 2/.test(w.name)); await post(s,'/api/iam/change-location',{workplace_id:W.id,workplace_timezone:W.timezone}); }
 const pref=(await s.api('/api/users/me/preferences/work-orders-list')).json?.data?.value||null; R.prefBefore=pref;
 const add=(name,ok,detail)=>{ R.checks.push({name,ok,detail}); console.log((ok?'PASS ':'FAIL ')+name+' :: '+JSON.stringify(detail).slice(0,300)); };
 const menus=async()=>p.evaluate(()=>[...document.querySelectorAll('.q-menu')].filter(m=>{const r=m.getBoundingClientRect();return r.width>0&&r.height>0}).map(m=>{const r=m.getBoundingClientRect();return {role:m.getAttribute('role')||m.querySelector('[role=menu]')?.getAttribute('role')||null,x:r.x,y:r.y,w:r.width,h:r.height,items:[...m.querySelectorAll('.q-item,[role=menuitem],[role=menuitemradio],[role=checkbox],[role=option]')].map(i=>i.innerText.replace(/\s+/g,' ').trim()).filter(Boolean).slice(0,12)}}));

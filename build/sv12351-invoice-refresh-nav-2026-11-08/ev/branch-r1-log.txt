@@ -1,0 +1,74 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+--- round 1
+12.36 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+12.36 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+13.04 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+13.18 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+13.19 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+13.40 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+13.40 CONSOLE.error Failed to load resource: the server responded with a status of 400 ()
+13.41 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+13.64 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+13.64 REQ POST /api/work-orders/invoices/estimate
+14.13 RES 200 POST /api/work-orders/invoices/estimate
+16.20 on /workorders/38e33787-e746-4f53-ac6d-6a6f31d3062e/finance
+17.29 CLICK side menu {"x":416.0390625,"y":28,"tid":"button_desktop_nav_link","txt":"Work Orders","href":"/workorders"}
+17.33 REQ POST /api/work-orders/change-customer-po
+17.74 RES 201 POST /api/work-orders/change-customer-po
+23.62 URL /workorders?tab=complete
+--- round 2
+34.12 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+34.12 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+34.59 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+34.77 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+34.77 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+34.93 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+34.93 CONSOLE.error Failed to load resource: the server responded with a status of 400 ()
+34.94 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+35.08 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+35.08 REQ POST /api/work-orders/invoices/estimate
+35.51 RES 200 POST /api/work-orders/invoices/estimate
+38.10 on /workorders/38e33787-e746-4f53-ac6d-6a6f31d3062e/finance
+38.90 CLICK side menu {"x":416.0390625,"y":28,"tid":"button_desktop_nav_link","txt":"Work Orders","href":"/workorders"}
+38.95 REQ POST /api/work-orders/change-customer-po
+39.24 RES 201 POST /api/work-orders/change-customer-po
+44.94 URL /workorders?tab=complete
+--- round 3
+54.90 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+54.90 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+55.55 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+55.55 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+55.55 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+55.74 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+55.74 CONSOLE.error Failed to load resource: the server responded with a status of 400 ()
+55.74 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+55.88 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+55.88 REQ POST /api/work-orders/invoices/estimate
+56.60 RES 200 POST /api/work-orders/invoices/estimate
+58.87 on /workorders/38e33787-e746-4f53-ac6d-6a6f31d3062e/finance
+59.71 CLICK side menu {"x":416.0390625,"y":28,"tid":"button_desktop_nav_link","txt":"Work Orders","href":"/workorders"}
+59.74 REQ POST /api/work-orders/change-customer-po
+60.13 RES 201 POST /api/work-orders/change-customer-po
+65.73 URL /workorders?tab=complete
+--- round 4
+75.39 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+75.39 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+75.94 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+76.06 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+76.06 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+76.24 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+76.24 CONSOLE.error Failed to load resource: the server responded with a status of 400 ()
+76.24 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+76.39 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+76.39 REQ POST /api/work-orders/invoices/estimate
+76.79 RES 200 POST /api/work-orders/invoices/estimate
+79.37 on /workorders/38e33787-e746-4f53-ac6d-6a6f31d3062e/finance
+80.14 CLICK side menu {"x":416.0390625,"y":28,"tid":"button_desktop_nav_link","txt":"Work Orders","href":"/workorders"}
+80.18 REQ POST /api/work-orders/change-customer-po
+80.44 RES 201 POST /api/work-orders/change-customer-po
+86.18 URL /workorders?tab=complete
+SUMMARY
+round 1: emptyId404=false errorToast=false
+round 2: emptyId404=false errorToast=false
+round 3: emptyId404=false errorToast=false
+round 4: emptyId404=false errorToast=false
