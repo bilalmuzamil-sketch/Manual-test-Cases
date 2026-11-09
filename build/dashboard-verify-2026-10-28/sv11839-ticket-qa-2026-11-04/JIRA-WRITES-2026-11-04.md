@@ -289,3 +289,18 @@ Filed under the QA lead's account by another session, not on my branch: SV-12193
   - Comment 80448 now opens "QA passed." (was "Retest: PASS."). The rest is unchanged, and the picture is kept.
   - Labels set to `QA_found` + `QAcomplete`.
 - Read-back: JQL `key = SV-12276 AND labels = QAcomplete AND labels = QA_found AND cf[10385] = "<Bilal>" AND status = "QA Complete"` returns 1 hit.
+
+## 9 Nov 2026 (~11:15 UTC): SV-12207 description re-checked against Rule 99 (g)–(j); correction comment 80485
+- Asked by the QA lead: does the description need correcting as well as step 2 (comment 80351)?
+- Checked against the evidence in `sv11839-ticket-qa-2026-11-05/SV-12146/step-*.json`:
+  - The payments were made at 05:05–05:16 UTC on 5 Nov.
+    - That is 23:05–23:16 on 4 Nov under 2026e (UTC−6), and 22:05–22:16 under the browser's old rule (UTC−7).
+    - So they are 4 Nov either way, and the finding stands. The slip prints Nov 5.
+  - The "just after midnight" re-read was at 07:56 UTC.
+    - The browser showed 00:56 (old rule); the real time is about 01:56 AM.
+    - This phrase appears twice in the description. It is corrected in comment 80485.
+  - "Where it was seen" now records the browser UTC−7 vs server/machine UTC−6 offsets.
+- The description could not be edited (it contains media), so the correction went in a comment, the same way as 80351.
+- No question was asked, so no picture was needed.
+- Not changed: "late in the evening" (true under both rules); step 2 (already corrected by 80351); Expected (Chris's 5 Nov answer; Nov 4 either way).
+- Also scheduled for the QA lead: a reminder on 16 Nov 10:00 UTC to decide SV-11688's epic (trig_01XN1oUzaRotu4x6ucjr68co).
