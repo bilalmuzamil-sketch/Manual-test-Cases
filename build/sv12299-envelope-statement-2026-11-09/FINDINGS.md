@@ -46,3 +46,10 @@ Learning check: nothing new for the rule book; recipe reused from playbook (prod
 - Correction owned: comment 80521 called that tab "Transactions" (taken from the component name, not the screen). Corrected in 80538.
 - The reporter's file is saved as `ev/statement/received-from-ticket-statement.pdf` and picture 7 as `ev/exhibits/07-received-vs-reproduced-statement.png` (Rule 127: ticket data is safe for this repo).
 - 13:50 CST: comment 80538 rewritten in plain words (Rule 127c): status, what is happening, 5 steps, 3 captioned pictures, expected; read back with 3 media in order.
+
+## 9 Nov 2026 14:49 CST — Mike 80541: Jordan insists it was the envelope INSIDE the work order (Finance tab)
+- Code: the Finance-tab send attaches every work-order note file marked For Customer, under its ORIGINAL file name, when "Include 'For Customer' Attachments in email" is ticked (`InvoiceStatusUpdatedToSentActions.php` L56–58, L143–148, query L254–279).
+- Reproduced on production v26.45.2-107ad4b, S2-1945 (Invoiced, charged): Notes → upload "ZZAUTOTEST SV12299 Charge Account Statement (1).pdf" (`note/create` + `note/add-attachments` 201) → tick For Customer (`note/update-attachment` 201) → Finance → envelope → tick Include For Customer → Send (`work-order/invoice/send-email` 201). Gmail 19:54:31Z "Invoice for order number: S2-1945" with 2 files: `invoice-for-order-S2-1945.pdf` + `ZZAUTOTEST SV12299 Charge Account Statement (1).pdf`. Script `scripts/forcust.mjs`, pictures `ev/exhibits/08`, `09`.
+- The "(1)" in the reporter's file name = a browser's second save → the file was uploaded from a computer, consistent with this path.
+- Posted ONE new complete comment 80542 (status, what is happening, 6 steps, 3 captioned pictures, ask Jordan to check WO 6024 Notes for a For-Customer statement). Read back: 3 media in order.
+- Both ways a statement reaches the customer are now reproduced: (a) customer Invoices-tab envelope (80538), (b) work-order envelope with a For-Customer statement note (80542).
