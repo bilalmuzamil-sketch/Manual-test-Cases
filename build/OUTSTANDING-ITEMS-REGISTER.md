@@ -1543,8 +1543,8 @@ what is still owed.
 |---|---|---|---|
 | SV-12003 | 6 Nov (80293/80294) | — | CLEARED: retest PASSED 6 Nov (80315), QA Complete |
 | SV-7898 | 6 Nov (80286/80287) | — | CLEARED: retest PASSED 6 Nov (80320), QA Complete |
-| SV-11116 | 6 Nov | developer | in Code Review at last read |
-| SV-11684 | 6 Nov (80324/80325), 2nd rejection | Dusan: email still cut off with "…" on desktop 1024–1440 wide (phone + ≤900 fixed) | REJECTED FROM TESTING |
+| SV-11116 | 6 Nov | developer | In Progress at 9 Nov 15:47 UTC read |
+| SV-11684 | 6 Nov (80324/80325), 2nd rejection | — | CLEARED from watch: re-read 9 Nov 15:47 UTC = Ready for Production (moved by someone else, updated 08:55 −0500) |
 
 ## Waiting on the QA lead — SV-12193 (6 Nov 2026, ~10:00 CDT)
 | Item | What it blocks | Since |
@@ -1589,3 +1589,10 @@ what is still owed.
 | SV-9570 / SV-12117 | QA lead: 9570 handled manually; 12117 left for Ahtasham | — | cleared 2026-11-09 |
 | SV-12038 | CLEARED 9 Nov: unblocked ourselves (fix's migration + DB unique rule make the duplicate impossible; proven live); PASSED 80489, QA Complete | — | cleared 2026-11-09 |
 | Rule-125 sweep 9 Nov | SV-11413 CLEARED 9 Nov: passed on Dusan's comment 80491 (list limit pre-dates the fix) per QA-lead ruling; PASSED comment 80494, QAcomplete, QA Complete; follow-up SV-12410 filed (broad-search page limit + tag rows) - awaiting product/dev. SV-12214 CLEARED 9 Nov: Stefan fixed it in the ticket (option C, PR #4242); PASSED on staging c157d82 in 3 browsers (80496), QAcomplete, Ready for Production. SV-10673 Blocked: Chris "hold off" (79235), Sasha took over ShopCoach (79832); Lee's baseline Google Doc still not reachable (Drive: not found) | Stefan / Chris / Sasha | 2026-11-09 |
+
+## 3-hourly check 9 Nov 2026 15:32 UTC
+| Item | State | Needs |
+|---|---|---|
+| SV-12267 (Schedule Undo after Entire-series delete; our own follow-up from SV-12048) | TESTING QA, QA branch sv12267, no QA assignee, no Powertools plan | fresh `.qa.shopview.com` cookies (current set 401) |
+| SV-12279 | QA Complete (someone else) | nothing — ask withdrawn |
+| SV-12299 | Ready to Fix; production repro NOT reproduced (6 sends, all invoices) | QA lead: post the not-reproduced comment? |
