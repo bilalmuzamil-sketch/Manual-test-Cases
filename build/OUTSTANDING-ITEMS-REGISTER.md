@@ -1583,3 +1583,7 @@ what is still owed.
 | SV-12214 | 3-browser staging walk done; waiting on QA lead (module switcher + profile menu marking → Stefan?). | Post on answer. |
 | SV-9570 | Milos replied "good for now" (80466) to issue-4 question; ticket is Rejected from Testing per QA lead. | Asked the QA lead whether to pass it now. |
 | SV-12276 | QA passed this morning under our account (80448), QA Complete. | Cleared. |
+| SV-12214 | 80478 passed + 80479 question to Stefan (popups marking: A leave / B separate ticket / C fix here); left in TESTING STAGE for Stefan | Stefan's answer | 2026-11-09 |
+| SV-12405 | new follow-up from SV-12351 (preview drawn twice after Reverse) | developer / PO | 2026-11-09 |
+| SV-12351 | PASSED (80481), QA Complete | — | cleared 2026-11-09 |
+| SV-9570 / SV-12117 | QA lead: 9570 handled manually; 12117 left for Ahtasham | — | cleared 2026-11-09 |

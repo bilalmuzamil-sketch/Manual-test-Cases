@@ -43,3 +43,7 @@ Production also sent two Sentry error reports on Reverse; the branch sent none.
 | 10 | Part sale (P2-204 branch / P2-93 production): Finance preview loads; type Customer PO, click Parts in the top menu | 2/2: red "Error fetching draft invoice details" after leaving | 0/3, preview loads | prod-ps1/2, branch-ps/ps2/ps3 |
 | 11 | Add Deposit on S2-17435 (Cash $5.00, ZZAUTOTEST SV12351 deposit) | - | "A deposit was created", preview shows Deposit Nov 9, 2026 Cash $5.00 | branch-reg9 |
 Double render request also happens on PRODUCTION when a part sale's Finance tab first opens (2/2), so double requests are not new in general; only the Reverse case differs (branch 2/3 double, production 0/2).
+Reverse double-render extra trials: branch 3 of 6 doubled (rv-3..5 + reg6/8-1/8-2), production 0 of 5 (prod-rv-3..5 + reg-rev/rev2).
+## Posted 9 Nov 2026 (QA lead: "Pass it and create a followup ticket ... if that is really a genuine issue")
+Follow-up **SV-12405** created (Bug, Medium, FE, Product Area Work Orders, no parent like SV-12351, Relates SV-12351, picture jira/02-reverse-preview-drawn-twice.png). Duplicate search: none.
+Comment **80481** OVERALL QA STATUS: PASSED (12 rows, picture jira/01-leave-finance-prod-vs-branch.png, test-only timing disclosed, names SV-12405). Gate: marker last-modified unchanged 22:21:53 GMT; ticket TESTING QA, 0 comments before posting. QAcomplete + QA assignee Bilal + QA Complete.

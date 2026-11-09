@@ -1,0 +1,47 @@
+marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+0.51 REQ POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+0.51 REQ POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+0.53 REQ POST /api/user/recent-entities/touch
+0.55 RES 200 POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+0.60 RES 200 POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+0.72 RES 204 POST /api/user/recent-entities/touch
+2.25 REQ POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+2.67 RES 200 POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+5.74 REQ POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+5.74 REQ POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+5.80 RES 200 POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+5.82 REQ GET /api/invoices/ee9adbb2-0df5-4e12-8771-506591445638/settings/view
+5.82 REQ GET /api/invoices/ce3eceef-c132-4bef-850c-4c7b2ca11cdd/view
+5.82 RES 200 POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+5.97 RES 200 GET /api/invoices/ee9adbb2-0df5-4e12-8771-506591445638/settings/view
+6.04 RES 200 GET /api/invoices/ce3eceef-c132-4bef-850c-4c7b2ca11cdd/view
+6.04 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+6.18 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+6.20 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=ee9adbb2-0df5-4e12-8771-506591445638
+6.35 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=ee9adbb2-0df5-4e12-8771-506591445638
+6.35 REQ GET /api/invoices/preview?invoice_id=ce3eceef-c132-4bef-850c-4c7b2ca11cdd&type=html&isEstimate=0&includeDeclined=0
+6.72 RES 200 GET /api/invoices/preview?invoice_id=ce3eceef-c132-4bef-850c-4c7b2ca11cdd&type=html&isEstimate=0&includeDeclined=0
+--- reverse
+dialog ["Warning close This action will re-open and undo the invoice. Are you sure you want to proceed? Reverse Cancel || TIDS card_dialog_invoice_warning,text_dialog_title,button_close_dialog,text_invoice_warning_message,button_confirm_reverse_invoice,button_cancel_invoice_warning"]
+15.09 REQ POST /api/invoices/reverse-invoice
+15.94 RES 200 POST /api/invoices/reverse-invoice
+16.32 REQ POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+16.32 REQ POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+16.37 REQ POST /api/user/recent-entities/touch
+16.41 RES 200 POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+16.41 RES 200 POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+16.48 RES 204 POST /api/user/recent-entities/touch
+confirm {"steps":[[]]}
+16.65 REQ GET /api/invoices/ee9adbb2-0df5-4e12-8771-506591445638/settings/view
+16.65 REQ GET /api/invoices/ee9adbb2-0df5-4e12-8771-506591445638/details?includeDeclined=0
+16.75 RES 200 GET /api/invoices/ee9adbb2-0df5-4e12-8771-506591445638/settings/view
+16.87 RES 200 GET /api/invoices/ee9adbb2-0df5-4e12-8771-506591445638/details?includeDeclined=0
+16.87 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+16.98 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+16.98 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=ee9adbb2-0df5-4e12-8771-506591445638
+17.09 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=ee9adbb2-0df5-4e12-8771-506591445638
+17.09 REQ POST /api/work-orders/invoices/estimate
+17.54 RES 200 POST /api/work-orders/invoices/estimate
+18.60 REQ POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+18.72 RES 200 POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javas
+status Complete
