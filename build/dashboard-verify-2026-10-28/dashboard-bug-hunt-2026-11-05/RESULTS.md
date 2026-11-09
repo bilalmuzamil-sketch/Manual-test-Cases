@@ -423,3 +423,33 @@ Check at 1920, 1536×864, 1280, 1024 and 390 px wide, in light and dark.
 ## Files
 - `RECONCILE.md`: area 1.
 - `tools/preflight.py`: sign-in check that prints no secrets (run 17:30 UTC: 401 / 401).
+
+### Karachi day boundary, re-run 9 Nov 2026 (19:06–19:18 UTC = 00:06–00:18 on 10 Nov in Karachi): PASS so far
+- **Set-up:** QA branch sv11839, build **v26.45.2-bf8896e** (new since this morning's v26.45.2-1a211d8), Admin, Test Location (Asia/Karachi).
+  - The QA lead's new sign-in (9 Nov) answered 200.
+  - The set-up script's own cookie file (`/tmp/cln/qa11839/cookie.txt`, 6 Nov) was stale and gave 401 first. Nothing was created by those calls. It was rebuilt from the new cookies.
+- **Records (made after Karachi midnight, while the UTC date was still 9 Nov):**
+  - Invoice for WO S11839-17606: 19:08:53 UTC, $135.00.
+  - Credit memo CM-4199: 19:08:57 UTC, $3.00.
+- **Rule 99:**
+  - All four zone settings were Asia/Karachi, recorded in the evidence.
+  - `tz_rules_check.py`: MATCH (`evidence/rule99-tz/Asia_Karachi-2026-11-09.txt`).
+  - Browser and machine were both UTC+5 (`offsets_agree: true`). The server put both records on 10 Nov, which is UTC+5.
+- **Every tile vs its linked report** (`evidence/karachi-2026-11-09/run1/evidence.json`):
+
+| Tile → report | Nov 10 (Karachi day) | Nov 9 |
+|---|---|---|
+| Revenue → Sales | $132.00 = $132.00 ($135 − $3) | $0 = none |
+| Billing Efficiency → Advisor Analysis | 200.00% (1.00 / 0.50) = 200.00% | – = none |
+| Technician Efficiency | 200.00% = 200% | – = none |
+| Technician Utilization | no data on both (the clock was on 6 Nov) | none on both |
+| Sales by Customer | 1 customer = 1 customer | 0 = none |
+
+- **Presets** (`weeks-utc-sun.json`; the file name is wrong, because 10 Nov is a Tuesday and 9 Nov a Monday, so this was NOT a week-boundary test):
+  - This Week: Revenue $132.00 = Sales report "This week" $132.00, with S11839-17606 dated Nov 10 2026.
+  - Last Week: $641.14 = $641.14.
+  - Both tiles and both reports agree.
+- **Seen but already known:** Billing Efficiency, Last Week: the tile reads "23000.00%" and the report "23,000.00%". This is observation O1 from 4 Nov (no thousands comma on the tile).
+- **Still to do:**
+  - Re-read after the UTC date reaches 10 Nov (scheduled 00:10 UTC).
+  - A true week-boundary check needs Karachi's Monday while UTC is still Sunday, which is a Sunday 19:00–23:59 UTC. Not covered.
