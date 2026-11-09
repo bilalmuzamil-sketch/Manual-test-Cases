@@ -2471,3 +2471,20 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **Ruling, 5 Nov 2026 (QA lead: "Keep it like that"):**
     - A non-report, non-dashboard ticket such as SV-12207 stays standalone with no epic.
     - Tickets already filed and finished under SV-11839 (SV-12199/12201/12202) stay there.
+    **🔴 AMENDMENT, 9 Nov 2026: NEVER ASK CHRIS TO CHANGE THE PRD; STILL REPORT EVERY DIFFERENCE.** The QA lead set this on
+    6 Nov and confirmed it as a rule on 9 Nov, verbatim: *"YES, but it should be limited to not asking chris ti change the PRD
+    without compromising on testing depth and testing coverage or quality. We still need to see if something is different in PRD
+    vs what is in the build and tell Chris/PO that it is different and ask them to decide whether we want it to be exactly what the
+    ORD says … or whether we want to keep it the way it is."* (satisfies Rule 72).
+    - **Never:** a comment or question to Chris (or the project's PO) never asks him to change, update, reword or amend the PRD
+      or any other document. No "…with S12-R2 updated?", no "could you take X out of the PRD?". The reason is not written in
+      tickets or in this repository.
+    - **Always, unchanged:** every difference between the PRD (or any source, Rule 57) and the build is still found, tested to
+      full depth and reported to Chris. Say what the PRD says (quote it), what the build does (with the annotated picture), and
+      ask him to decide: **make it exactly as the PRD says (fix it), or keep it the way it is (leave it)?**
+    - **Not to be read as less testing:** this rule changes only the wording of the question. Testing depth, coverage and quality
+      do not change (Rule 95 clause 12).
+    - **When Chris says "leave it"** while the PRD says otherwise, his comment is the record (as on SV-12277, comment 80380).
+      Cite that comment as the source for that behaviour from then on (Rules 54/56). Do not ask for the PRD to be brought in line.
+    - **Example:** SV-12277 comment 80318's closing question was edited on 6 Nov from "…or leave it as it is (blue pill), with
+      S12-R2 updated?" to "…fix it (near-black text on the date buttons), or leave it as it is (blue pill)?".

@@ -258,3 +258,11 @@ Filed under the QA lead's account by another session, not on my branch: SV-12193
 - Same day: the earlier claim that SV-12275, SV-12277 and SV-12278 were "waiting for Chris" was wrong.
   - Chris had answered all three on 6 Nov: comments 80372, 80373 and 80374, plus 80389 and 80390.
   - Rule 101 amended (commit 88bf94189).
+
+## 9 Nov 2026 (~09:18 UTC): SV-12276 moved TESTING QA → QA Complete
+- The QA lead approved it ("yes if that does not bite me").
+- Checks before the move:
+  - No comments since 80448.
+  - The deployed build is still v26.45.2-1a211d8.
+  - The only later commit on origin/SV-11839 (05c56a0, merge of main) touches none of the fix's 22 files.
+- Transition id 10. The result returned status QA Complete.

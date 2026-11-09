@@ -63,6 +63,7 @@ These are stated here **in full** because a session that gets only this far must
   asking him to confirm "fix it, or leave it as it is?".
   **Amendment 5 Nov: every question to Chris carries an ANNOTATED SCREENSHOT embedded in the comment itself.**
   **Amendment 5 Nov (2): every ticket we file gets its EPIC at creation. Reports go to SV-11936 and Dashboard to SV-11839. If a ticket is neither, ask; never guess.**
+  **Amendment 9 Nov: never ask Chris to change the PRD.** Still find and report EVERY PRD-vs-build difference at full testing depth, quote the PRD, and ask only "make it exactly as the PRD says (fix it), or keep it the way it is (leave it)?".
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
@@ -283,7 +284,7 @@ rule. Generated from the split files' own headers.
 | **100** | EVERY TICKET IS WRITTEN FOR A FIRST-TIME, NON-TECHNICAL READER — short, clear, plain |
 | **101** | EVERY "WAITING FOR AN ANSWER" NAMES WHERE THE QUESTION WAS ASKED — the document's full title or the ticket comment, re-checked first; **amended 9 Nov: re-check LIVE before claiming anything** |
 | **102** | EVERY QUESTION TO THE QA LEAD NAMES ITS TICKET (with link, or "no ticket yet" + the related one) AND CARRIES MY RECOMMENDATION |
-| **103** | EVERY NEW TICKET GETS A COMMENT TAGGING CHRIS WARD (the PO) — what happens, what should happen, fix or leave? |
+| **103** | EVERY NEW TICKET GETS A COMMENT TAGGING CHRIS WARD (the PO) — what happens, what should happen, fix or leave? **amended 9 Nov: never ask him to change the PRD; still report every difference** |
 
 **Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-97.md`. Its
 canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses
