@@ -1,0 +1,14 @@
+import {sess,mkpost,load,save,j} from './common.mjs';
+const s=await sess(); const post=mkpost(s); const S=load(); const key=process.argv[2]||'wo2';
+const ws=(await s.api('/api/staff/my-workplaces')).json.data.collection; const wp=ws.find(w=>w.id===S.wp);
+await post('/api/iam/change-location',{workplace_id:wp.id,workplace_timezone:wp.timezone});
+const w=await post('/api/work-orders/create',{company_id:S.cid,customer_id:S.ctid,vehicle_id:S.vid,workplace_id:S.wp,start_date:new Date().toISOString().slice(0,19).replace('T',' '),is_vehicle_here:true}); const wo=w.json?.data?.work_order_id;
+await post('/api/work-orders/change-contact',{work_order_id:wo,vehicle_id:S.vid,contact_id:S.ctid,update_vehicle:false});
+const cl=(await s.api('/api/work-orders/canned-lines')).json; const L=(cl?.data?.collection||cl?.data||[]);
+await post(`/api/work-orders/${wo}/lines/create-from-canned-line`,{canned_line_id:L[0].id,status:'authorized'});
+let ls=(await s.api('/api/work-orders/lines/'+wo)).json?.data?.collection||[];
+for(const l of ls) for(const pr of (l.part_requests||[])) await post('/api/work-orders/part/remove-request/'+(pr.id),{});
+for(const l of ls) await post('/api/work-orders/lines/change-status',{line_id:l.line_id,status:'complete',workOrderId:wo,work_order_id:wo});
+await post('/api/work-orders/change-mileage',{work_order_id:wo,mileage:1100});
+await post('/api/work-orders/change-status',{id:wo,status:'complete'});
+const X=(await s.api('/api/work-orders/view/'+wo)).json?.data; console.log('WO',X?.number,X?.status); S[key]=wo; S[key+'n']=X?.number; save(S); await s.close();

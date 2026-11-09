@@ -1,0 +1,13 @@
+import {sess,load,save,j} from './common.mjs';
+const s=await sess(); const p=s.page; const S=load(); const reqs=[];
+p.on('response',async r=>{const q=r.request(); if(/\/api\//.test(r.url())&&q.method()!=='GET'&&!/6364962|recent/.test(r.url())) reqs.push([q.method(),r.url().replace(/https:\/\/[^/]+/,''),r.status(),(q.postData()||'').slice(0,600)]);});
+await s.go('/customers/'+S.cid); await p.waitForTimeout(7000);
+const ids=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).filter(t=>/edit|customer/i.test(t)).slice(0,40)); console.log(ids.join(' '));
+const ed=p.locator('[data-test-id$="edit_customer"], button:has-text("edit_note")').first(); await ed.click(); await p.waitForTimeout(2500);
+await p.locator('[data-test-id="select_customer_credit_term"]').click(); await p.waitForTimeout(1000);
+await p.locator('.q-menu .q-item').filter({hasText:/^\s*Net 30\s*$/}).first().click(); await p.waitForTimeout(800);
+await p.screenshot({path:'/tmp/qa12299/term-filled.png'});
+await p.locator('[data-test-id="button_save_customer"]').click(); await p.waitForTimeout(4000);
+console.log(j(reqs));
+let cv=(await s.api('/api/customers/view/'+S.cid)).json?.data; cv=cv?.company||cv; console.log('credit_term now',cv.credit_term);
+await s.close();

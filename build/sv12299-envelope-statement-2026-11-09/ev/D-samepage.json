@@ -1,0 +1,70 @@
+{
+ "tag": "D-samepage",
+ "reqs": [
+  [
+   "15:44:06",
+   "POST",
+   "/api/work-orders/invoices/estimate",
+   200
+  ],
+  [
+   "15:44:20",
+   "POST",
+   "/api/work-orders/invoices/estimate",
+   200
+  ],
+  [
+   "15:44:21",
+   "POST",
+   "/api/work-order/invoice/send-email",
+   201
+  ],
+  [
+   "--- send 1 done"
+  ],
+  [
+   "15:44:27",
+   "POST",
+   "/api/invoices/create",
+   201
+  ],
+  [
+   "15:44:28",
+   "GET",
+   "/api/invoices/preview?invoice_id=21c48d56-aa95-4856-854a-567bfbd843da&type=html&isEstimate=0&includeDeclined=0&historyEvent=",
+   200
+  ],
+  [
+   "15:44:34",
+   "GET",
+   "/api/invoices/preview?invoice_id=21c48d56-aa95-4856-854a-567bfbd843da&type=html&isEstimate=0&includeDeclined=0&historyEvent=",
+   200
+  ],
+  [
+   "15:44:43",
+   "GET",
+   "/api/invoices/preview?invoice_id=21c48d56-aa95-4856-854a-567bfbd843da&type=pdf&isEstimate=0&includeDeclined=0&historyEvent=",
+   200
+  ],
+  [
+   "15:44:43",
+   "POST",
+   "/api/work-order/invoice/send-email",
+   201
+  ],
+  [
+   "--- send 2 done"
+  ]
+ ],
+ "dlg1": "Sending invoice close Include 'For Customer' Attachments in email You're about to send invoice to selected contacts: Inbox SV12299 bilal.muzamil+sv12299@shopview.com Optional Emails (Comma Separated) ",
+ "toast1": [
+  "check_circle Successfully sent invoice to email. Close"
+ ],
+ "payDlg": [
+  "New Customer Payment close event Payment Date Payment Method Charge Account arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment S2-1"
+ ],
+ "dlg2": "Sending invoice close Include 'For Customer' Attachments in email You're about to send invoice to selected contacts: Inbox SV12299 bilal.muzamil+sv12299@shopview.com Optional Emails (Comma Separated) ",
+ "toast2": [
+  "check_circle Successfully sent invoice to email. Close"
+ ]
+}

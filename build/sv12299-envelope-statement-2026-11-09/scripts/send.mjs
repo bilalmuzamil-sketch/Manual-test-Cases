@@ -1,0 +1,21 @@
+// usage: node send.mjs <tag> ; clicks the Finance-tab envelope, sends, saves the uploaded PDF
+import {sess,load,j} from './common.mjs'; import fs from 'fs';
+const tag=process.argv[2]; const S=load(); const s=await sess(); const p=s.page; const out={tag,reqs:[]};
+p.on('request',q=>{ if(/invoice\/send-email/.test(q.url())){ const b=q.postDataBuffer(); if(b){ fs.writeFileSync(`/tmp/qa12299/${tag}-multipart.bin`,b);
+  const i=b.indexOf('%PDF'), e=b.lastIndexOf('%%EOF'); if(i>=0&&e>i) fs.writeFileSync(`/tmp/qa12299/${tag}-uploaded.pdf`,b.subarray(i,e+5)); out.multipartBytes=b.length;
+  out.fields=[...b.toString('latin1').matchAll(/name="([^"]+)"(?:; filename="([^"]*)")?\r\n(?:Content-Type: [^\r]+\r\n)?\r\n([^\r]{0,120})/g)].map(m=>[m[1],m[2]||'',m[2]?'<file>':m[3]]); } } });
+let pdfN=0; p.on('response',async r=>{const q=r.request(); if(/invoices\/(estimate|preview)/.test(r.url())){try{const b=await r.body(); if(b.slice(0,4).toString()==='%PDF'){pdfN++; fs.writeFileSync(`/tmp/qa12299/${tag}-pdf${pdfN}.pdf`,b);}}catch(e){}} if(/\/api\//.test(r.url())&&!/6364962|recent/.test(r.url())&&(q.method()!=='GET'||/preview|estimate|statement/.test(r.url()))) out.reqs.push([q.method(),r.url().replace(/https:\/\/[^/]+/,'').slice(0,160),r.status()]);});
+out.build=await p.evaluate(async()=>{const r=await fetch('/index.html?cb='+Date.now(),{cache:'no-store'});const t=await r.text();return (t.match(/name="app-version"\s+content="([^"]+)"/)||[])[1];});
+await s.go('/workorders/'+S.wo+'/finance'); await p.waitForTimeout(8000);
+out.statusBadge=await p.evaluate(()=>document.body.innerText.match(/\b(Completed|Complete|Invoiced|Paid|Charged)\b/g)?.slice(0,6));
+await p.screenshot({path:`/tmp/qa12299/${tag}-0-finance.png`});
+const env=p.locator('[data-test-id="button_send_email"]').first(); out.envBox=await env.boundingBox(); await env.click(); await p.waitForTimeout(3500);
+out.dialog=await p.evaluate(()=>{const d=document.querySelector('.q-dialog'); return d? d.innerText.replace(/\s+/g,' ').slice(0,400):null;});
+await p.locator('[data-test-id="input_email_content"]').fill(`ZZAUTOTEST SV12299 ${tag} - sent from the envelope on the Finance tab.`).catch(()=>{});
+await p.screenshot({path:`/tmp/qa12299/${tag}-1-dialog.png`});
+out.sentAt=new Date().toISOString();
+await p.locator('[data-test-id="button_send_email"]').last().click(); await p.waitForTimeout(7000);
+out.after=await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>e.innerText));
+await p.screenshot({path:`/tmp/qa12299/${tag}-2-after.png`});
+fs.writeFileSync(`/tmp/qa12299/${tag}.json`,JSON.stringify(out,null,1)); console.log(j({...out,reqs:out.reqs.slice(-12)}).slice(0,2000));
+await s.close();

@@ -1,0 +1,38 @@
+{
+ "reqs": [
+  [
+   "POST",
+   "/api/work-orders/invoices/estimate",
+   200,
+   "{\"work_order_id\":\"a53ff202-d342-4f00-85cb-191bf7583c2f\",\"type\":\"html\",\"isEstimate\":0,\"includeDeclined\":0,\"issueDate\":\"2026-11-09T15:38:48+00:00\",\"dueDate\":\"2026-12-09T15:38:48+00:00\",\"historyEvent\":null}"
+  ],
+  [
+   "POST",
+   "/api/invoices/create",
+   201,
+   "{\"invoice_number\":\"S2-1944\",\"due_date\":\"2026-12-09T15:38:48+00:00\",\"discount\":0,\"cost\":\"149.95\",\"customer_id\":\"ff5fae13-8415-4d5f-8a0f-4d0fac90464e\",\"company_id\":\"164013e0-2148-402e-b0e2-4f9390b72c29\",\"work_order_id\":\"a53ff202-d342-4f00-85cb-191bf7583c2f\",\"work_place_id\":\"b617914c-16e9-4485-8e8b-193"
+  ]
+ ],
+ "dlg1": [
+  "New Customer Payment close event Payment Date Payment Method Charge Account arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment S2-1944 Today Dec 9, 2026 $149.95 Amount to credit: $0.00 Payment amount: $0.00 Make Payment Charge Account"
+ ],
+ "pmFound": 1,
+ "options": [
+  "Direct Payment (Bilal)",
+  "Mastercard",
+  "New payment for testing",
+  "Check",
+  "Cash",
+  "Debit",
+  "Amex",
+  "Visa",
+  "check Charge Account"
+ ],
+ "notes": [],
+ "wo": {
+  "n": "S-1944",
+  "st": "Invoiced",
+  "inv": "fe2cc870-a3fa-4bf4-ae29-c8a19a9d83c1",
+  "invStatus": "pending"
+ }
+}
