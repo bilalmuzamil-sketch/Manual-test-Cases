@@ -28,6 +28,7 @@
 - **Credit memos:** v22 still does not mention credit memos (0 hits). It excludes only reversed and voided invoices.
 - **Not done:** our Sales By Customer TestRail cases have NOT been updated to v22.
   - That needs a source-verification pass on this project. Ask the QA lead first (Rules 80/81).
+- **QA lead's ruling, 9 Nov 2026: "NO".** He declined updating the Sales By Customer cases to v22 when asked. Do not do it, and do not re-ask, unless he raises it.
 
 ## §0-COUNT-CORRECTION-2026-08-28 (LATEST) — the case count is **516**, not 509
 

@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **103 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **104 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -64,6 +64,10 @@ These are stated here **in full** because a session that gets only this far must
   **Amendment 5 Nov: every question to Chris carries an ANNOTATED SCREENSHOT embedded in the comment itself.**
   **Amendment 5 Nov (2): every ticket we file gets its EPIC at creation. Reports go to SV-11936 and Dashboard to SV-11839. If a ticket is neither, ask; never guess.**
   **Amendment 9 Nov: never ask Chris to change the PRD.** Still find and report EVERY PRD-vs-build difference at full testing depth, quote the PRD, and ask only "make it exactly as the PRD says (fix it), or keep it the way it is (leave it)?".
+- **🔴 QA COMPLETE ONLY WHEN QA PASSED — AND THE FULL CLOSE-OUT IN THE SAME PASS (104).** QA lead, 4 Nov + 9 Nov 2026. On a passed
+  retest: comment opening **"QA passed."** · labels = existing + **`QAcomplete`** · **QA Assignee** (`customfield_10385`) = existing + **Bilal Muzamil**
+  · transition **QA Complete** (`10`) · read back with ONE JQL (labels + cf[10385] + status) before reporting. Failed → **Rejected from Testing** (`15`)
+  with a plain annotated comment. Only partly tested → stay put; say what passed, what is left and why.
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
@@ -157,7 +161,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 103 rules, and where each one lives
+## 2 · THE RULE INDEX — all 104 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -238,7 +242,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-97.md` — rules 61–103 (Rules 98–103 are appended at the end of this file)
+### `build/rules/RULES-61-97.md` — rules 61–104 (Rules 98–104 are appended at the end of this file)
 
 | # | Rule (short title) |
 |---|---|
@@ -285,6 +289,7 @@ rule. Generated from the split files' own headers.
 | **101** | EVERY "WAITING FOR AN ANSWER" NAMES WHERE THE QUESTION WAS ASKED — the document's full title or the ticket comment, re-checked first; **amended 9 Nov: re-check LIVE before claiming anything** |
 | **102** | EVERY QUESTION TO THE QA LEAD NAMES ITS TICKET (with link, or "no ticket yet" + the related one) AND CARRIES MY RECOMMENDATION |
 | **103** | EVERY NEW TICKET GETS A COMMENT TAGGING CHRIS WARD (the PO) — what happens, what should happen, fix or leave? **amended 9 Nov: never ask him to change the PRD; still report every difference** |
+| **104** | A TICKET GOES TO QA COMPLETE ONLY WHEN IT PASSED QA — same pass: "QA passed" comment, `QAcomplete` label, Bilal as QA Assignee, one-JQL read-back |
 
 **Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-97.md`. Its
 canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses

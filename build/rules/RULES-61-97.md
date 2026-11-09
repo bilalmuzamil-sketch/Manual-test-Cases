@@ -2488,3 +2488,23 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
       Cite that comment as the source for that behaviour from then on (Rules 54/56). Do not ask for the PRD to be brought in line.
     - **Example:** SV-12277 comment 80318's closing question was edited on 6 Nov from "…or leave it as it is (blue pill), with
       S12-R2 updated?" to "…fix it (near-black text on the date buttons), or leave it as it is (blue pill)?".
+
+104. **A TICKET GOES TO "QA COMPLETE" ONLY WHEN IT PASSED QA — AND THE SAME PASS ADDS THE "QA PASSED" COMMENT, THE `QAcomplete` LABEL AND BILAL AS QA ASSIGNEE, CHECKED BEFORE REPORTING (all projects, permanent).**
+    **THE QA LEAD'S WORDS.**
+    - 4 Nov 2026, verbatim: *"The tickets if they turn out to be QA passed, please move their starus to QA complete, assign Bilal Muzamil as a QA assignee and add the existing label to the ticket QAcomplete. Those whoch do not pass the QA move them to rejected from testing status and tye ricket comment should clearly state in clear comment for a layman to u derstand with the annotated screenshot why it failed."*
+    - 9 Nov 2026, verbatim: *"Note if a ticket is QA complete it should be moved to QA complete only if that is QA passed. SO if that is QA passed, please edit your comment to say QA passed. Then also add the QAcomplete label why did you miss it ? And you also did not assigned Bilal Muzamil as the QA assignee which I had to do manually."*
+    - Confirmed as a rule on 9 Nov (*"1. Yes"*), which satisfies Rule 72.
+    **WHY.** On 9 Nov SV-12276 was moved to QA Complete with a "Retest: PASS" comment, no `QAcomplete` label and no QA Assignee. The 4 Nov procedure existed, but only in a log file and the playbook, and it was not opened. The QA lead had to fix the ticket by hand.
+    **THE RULE. When a retest PASSES** (every check observed, Rule 12), do all of the following in one pass:
+    **(1)** Re-check the ticket live first: status and every comment since mine (Rule 101 amendment).
+    **(2)** Post the results comment. It **opens with "QA passed."**, then gives plain words, the build, the time, the four zones, and an annotated picture (Rules 99/100).
+    **(3)** Set labels to the **existing labels + `QAcomplete`**. Labels are replaced, not appended, so send the full list.
+    **(4)** Set **QA Assignee** (`customfield_10385`, multi-user) to the existing assignees + Bilal Muzamil `712020:6d590212-5c9b-4135-ae11-277f3826110e`.
+    **(5)** Transition to **QA Complete**. From TESTING QA this is transition `10`.
+    **(6)** Read back with one JQL query:
+        `key = SV-x AND labels = QAcomplete AND cf[10385] = "712020:6d590212-5c9b-4135-ae11-277f3826110e" AND status = "QA Complete"`.
+        One hit means everything landed. Zero hits means something is missing: find it and fix it before reporting.
+    **(7)** Log the writes in the project's JIRA-WRITES file and report them.
+    **When a retest FAILS:** transition to **Rejected from Testing** (`15`). The comment says in plain words, with an annotated picture, why it failed. There is no `QAcomplete` label.
+    **When it is NOT fully passed** (only part could be checked, or something is still to be tested later), do **not** move it to QA Complete. Say in the comment what passed, what is left and why, and when it will be tested. Move it only when everything has passed.
+    **TIES:** Rules 12 (observed, never inferred), 99 (zones), 100 (plain words), 101 (re-check live), 103 (Chris comments).
