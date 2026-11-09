@@ -1,0 +1,25 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+0.40 REQ POST /api/user/recent-entities/touch
+3.26 RES 204 POST /api/user/recent-entities/touch
+11.77 REQ GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/settings/view
+11.77 REQ GET /api/invoices/dfa3235e-dda1-4f7c-aaaa-7592f42abcf8/view
+12.46 RES 200 GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/settings/view
+12.65 RES 200 GET /api/invoices/dfa3235e-dda1-4f7c-aaaa-7592f42abcf8/view
+12.65 REQ GET /api/invoices/preview?invoice_id=dfa3235e-dda1-4f7c-aaaa-7592f42abcf8&type=html&isEstimate=0&includeDeclined=0
+13.06 RES 200 GET /api/invoices/preview?invoice_id=dfa3235e-dda1-4f7c-aaaa-7592f42abcf8&type=html&isEstimate=0&includeDeclined=0
+--- reverse
+dialog ["Warning close This action will re-open and undo the invoice. Are you sure you want to proceed? Reverse Cancel || TIDS card_dialog_invoice_warning,text_dialog_title,button_close_dialog,text_invoice_warning_message,button_confirm_reverse_invoice,button_cancel_invoice_warning"]
+21.02 REQ POST /api/invoices/reverse-invoice
+21.91 RES 200 POST /api/invoices/reverse-invoice
+22.23 REQ POST /api/user/recent-entities/touch
+confirm {"steps":[[]]}
+22.65 RES 204 POST /api/user/recent-entities/touch
+24.01 REQ GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/settings/view
+24.01 REQ GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/details?includeDeclined=0
+26.34 RES 200 GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/settings/view
+27.16 RES 200 GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/details?includeDeclined=0
+27.16 REQ POST /api/work-orders/invoices/estimate
+27.16 REQ POST /api/work-orders/invoices/estimate
+28.23 RES 200 POST /api/work-orders/invoices/estimate
+28.26 RES 200 POST /api/work-orders/invoices/estimate
+status Complete

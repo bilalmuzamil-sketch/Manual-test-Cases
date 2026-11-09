@@ -1,0 +1,18 @@
+marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+6.46 opened the Finance tab
+6.57 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+6.57 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+6.57 TEST-ONLY: holding the first details load 5000 ms
+6.69 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+7.96 clicked Work Orders in the top menu
+11.93 TEST-ONLY: the first details load released (200)
+11.93 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+11.94 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+12.04 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+12.05 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+12.15 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+12.15 REQ POST /api/work-orders/invoices/estimate
+12.25 RES 400 POST /api/work-orders/invoices/estimate
+12.29 TOAST-SHOWN warning Bad request Close
+12.29 TOAST-SHOWN warning Error get invoice HTML Close
+18.21 URL /workorders

@@ -1,0 +1,40 @@
+marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+6.05 opened the destination work order 1926 first (so it is in the search box's recent list)
+12.35 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+12.36 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+12.46 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+12.50 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+12.50 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+12.61 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+12.62 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+12.72 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+12.72 REQ POST /api/work-orders/invoices/estimate
+13.08 RES 200 POST /api/work-orders/invoices/estimate
+17.25 on /workorders/4560a837-ee20-46e5-a62c-c6a4892fc85d/finance
+18.05 clicked elsewhere (PO saves, preview refresh starts)
+18.06 REQ POST /api/work-orders/change-customer-po
+18.21 RES 201 POST /api/work-orders/change-customer-po
+18.22 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+18.37 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+18.37 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+18.47 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+18.48 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+18.59 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+18.60 REQ POST /api/work-orders/invoices/estimate
+18.60 TEST-ONLY: holding the preview render 5000 ms
+20.10 changed the PO again while the preview was still loading (a second refresh is queued)
+20.11 REQ POST /api/work-orders/change-customer-po
+20.25 RES 201 POST /api/work-orders/change-customer-po
+23.23 opened another work order from the search box: {"x":800,"y":381.7109375,"t":"≈ close match: S2-1926 aa Invoiced ZZF4DM · 2021"}
+24.25 TEST-ONLY: the preview render released (200)
+24.25 RES 200 POST /api/work-orders/invoices/estimate
+24.26 REQ GET /api/invoices/339286d5-e6e2-4ce4-be38-8c3450f7c8cc/details?includeDeclined=0
+24.40 RES 200 GET /api/invoices/339286d5-e6e2-4ce4-be38-8c3450f7c8cc/details?includeDeclined=0
+24.41 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=8df7dd80-b4d5-4ea1-a311-1fe9342d4011
+24.51 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=8df7dd80-b4d5-4ea1-a311-1fe9342d4011
+24.52 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=339286d5-e6e2-4ce4-be38-8c3450f7c8cc
+24.62 TOAST-SHOWN warning IBS Account Number is not configured for customer "aa". Please try to resolve this. Close
+24.63 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=339286d5-e6e2-4ce4-be38-8c3450f7c8cc
+24.64 REQ POST /api/work-orders/invoices/estimate
+25.00 RES 200 POST /api/work-orders/invoices/estimate
+33.52 URL /workorders/339286d5-e6e2-4ce4-be38-8c3450f7c8cc/lines

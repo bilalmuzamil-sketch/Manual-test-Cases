@@ -1,0 +1,13 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+0.37 REQ POST /api/user/recent-entities/touch
+2.85 RES 204 POST /api/user/recent-entities/touch
+11.17 REQ GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/settings/view
+11.17 REQ GET /api/invoices/aa761c05-af2e-4e19-a79c-3cf50141975a/view
+11.74 RES 200 GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/settings/view
+11.97 RES 200 GET /api/invoices/aa761c05-af2e-4e19-a79c-3cf50141975a/view
+11.97 REQ GET /api/invoices/preview?invoice_id=aa761c05-af2e-4e19-a79c-3cf50141975a&type=html&isEstimate=0&includeDeclined=0
+12.45 RES 200 GET /api/invoices/preview?invoice_id=aa761c05-af2e-4e19-a79c-3cf50141975a&type=html&isEstimate=0&includeDeclined=0
+--- reverse
+dialog ["Warning close This action will re-open and undo the invoice. Are you sure you want to proceed? Reverse Cancel || TIDS card_dialog_invoice_warning,text_dialog_title,button_close_dialog,text_invoice_warning_message,button_confirm_reverse_invoice,button_cancel_invoice_warning"]
+confirm {"steps":[],"error":"not found: button_confirm"}
+status Invoiced

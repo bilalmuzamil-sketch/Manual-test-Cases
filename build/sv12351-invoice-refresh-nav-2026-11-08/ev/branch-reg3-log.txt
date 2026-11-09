@@ -1,0 +1,30 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+0.40 REQ POST /api/user/recent-entities/touch
+2.39 RES 204 POST /api/user/recent-entities/touch
+11.13 REQ GET /api/invoices/e918c7b5-50db-4c54-86fc-0bba19df3958/settings/view
+11.13 REQ GET /api/invoices/38b1bed7-2450-4065-b7db-c1cb624ce5a1/view
+11.70 RES 200 GET /api/invoices/e918c7b5-50db-4c54-86fc-0bba19df3958/settings/view
+11.94 RES 200 GET /api/invoices/38b1bed7-2450-4065-b7db-c1cb624ce5a1/view
+11.95 REQ GET /api/invoices/preview?invoice_id=38b1bed7-2450-4065-b7db-c1cb624ce5a1&type=html&isEstimate=0&includeDeclined=0
+12.40 RES 200 GET /api/invoices/preview?invoice_id=38b1bed7-2450-4065-b7db-c1cb624ce5a1&type=html&isEstimate=0&includeDeclined=0
+--- pay
+method  Cash
+23.51 REQ POST /api/customer-account/create-customer-payment
+23.82 RES 201 POST /api/customer-account/create-customer-payment
+23.84 REQ GET /api/invoices/38b1bed7-2450-4065-b7db-c1cb624ce5a1/view
+23.92 TOAST priority_high QuickBooks sync is incomplete. The payment was saved, but the QuickBooks sync did not complete. Review pending items in Unexported Items. View Close
+24.03 RES 200 GET /api/invoices/38b1bed7-2450-4065-b7db-c1cb624ce5a1/view
+24.48 REQ POST /api/user/recent-entities/touch
+24.89 RES 204 POST /api/user/recent-entities/touch
+26.33 REQ GET /api/invoices/e918c7b5-50db-4c54-86fc-0bba19df3958/settings/view
+26.33 REQ GET /api/invoices/38b1bed7-2450-4065-b7db-c1cb624ce5a1/view
+29.21 RES 200 GET /api/invoices/38b1bed7-2450-4065-b7db-c1cb624ce5a1/view
+29.21 REQ GET /api/invoices/preview?invoice_id=38b1bed7-2450-4065-b7db-c1cb624ce5a1&type=html&isEstimate=0&includeDeclined=0
+29.30 RES 200 GET /api/invoices/e918c7b5-50db-4c54-86fc-0bba19df3958/settings/view
+30.50 preview: Payments $10.00
+30.51 balance text: Balance $283.77
+30.51 RES 200 GET /api/invoices/preview?invoice_id=38b1bed7-2450-4065-b7db-c1cb624ce5a1&type=html&isEstimate=0&includeDeclined=0
+--- reverse
+dialog ["Warning close This invoice has been paid, please delete payment before reversing. Close || TIDS card_dialog_invoice_warning,text_dialog_title,button_close_dialog,text_invoice_warning_message,button_close_invoice_warning"]
+confirm {"steps":[],"error":"not found: button_confirm"}
+status Invoiced

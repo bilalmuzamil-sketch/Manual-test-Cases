@@ -1,0 +1,33 @@
+marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+6.58 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+6.59 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+6.71 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/settings/view
+6.79 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+6.79 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+6.90 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+6.91 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+7.03 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+7.03 REQ POST /api/work-orders/invoices/estimate
+7.42 RES 200 POST /api/work-orders/invoices/estimate
+11.49 on /workorders/4560a837-ee20-46e5-a62c-c6a4892fc85d/finance
+12.31 clicked elsewhere (PO saves, preview refresh starts)
+12.32 REQ POST /api/work-orders/change-customer-po
+12.46 RES 201 POST /api/work-orders/change-customer-po
+12.46 REQ GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+12.62 RES 200 GET /api/invoices/4560a837-ee20-46e5-a62c-c6a4892fc85d/details?includeDeclined=0
+12.62 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+12.73 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=beba5672-52ad-4f1f-b6ec-fde498ab4d52
+12.75 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+12.85 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=4560a837-ee20-46e5-a62c-c6a4892fc85d
+12.85 REQ POST /api/work-orders/invoices/estimate
+12.85 TEST-ONLY: holding the preview render 5000 ms
+14.34 changed the PO again while the preview was still loading (a second refresh is queued)
+14.34 REQ POST /api/work-orders/change-customer-po
+14.51 RES 201 POST /api/work-orders/change-customer-po
+15.18 clicked Work Orders in the top menu
+18.43 TEST-ONLY: the preview render released (200)
+18.44 RES 200 POST /api/work-orders/invoices/estimate
+18.45 REQ GET /api/invoices//details?includeDeclined=0
+18.53 RES 404 GET /api/invoices//details?includeDeclined=0
+18.76 TOAST-SHOWN warning Error fetching draft invoice details Invoice error Close
+25.44 URL /workorders

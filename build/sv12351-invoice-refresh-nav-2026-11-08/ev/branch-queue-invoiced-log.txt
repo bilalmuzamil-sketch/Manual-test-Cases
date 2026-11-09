@@ -1,0 +1,31 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+11.41 opened the destination work order 16654 first (so it is in the search box's recent list)
+22.33 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+22.33 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+22.91 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+23.02 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+23.03 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+23.23 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+23.24 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+23.42 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+23.42 REQ POST /api/work-orders/invoices/estimate
+23.84 RES 200 POST /api/work-orders/invoices/estimate
+27.22 on /workorders/38e33787-e746-4f53-ac6d-6a6f31d3062e/finance
+28.02 clicked elsewhere (PO saves, preview refresh starts)
+28.03 REQ POST /api/work-orders/change-customer-po
+28.22 RES 201 POST /api/work-orders/change-customer-po
+28.23 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+28.46 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+28.46 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+28.63 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+28.63 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+28.82 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+28.82 REQ POST /api/work-orders/invoices/estimate
+28.82 TEST-ONLY: holding the preview render 5000 ms
+30.27 changed the PO again while the preview was still loading (a second refresh is queued)
+30.28 REQ POST /api/work-orders/change-customer-po
+30.42 RES 201 POST /api/work-orders/change-customer-po
+33.40 opened another work order from the search box: {"x":800,"y":381.7109375,"t":"≈ close match: S2-16654 Andrews' Truck & Trailer Repair LLC Invoiced 1 · 2008 Hi"}
+36.09 TEST-ONLY: the preview render released (200)
+36.10 RES 200 POST /api/work-orders/invoices/estimate
+43.74 URL /workorders/0a41cc04-a2d1-4379-abbb-06fcd2ae2017/lines

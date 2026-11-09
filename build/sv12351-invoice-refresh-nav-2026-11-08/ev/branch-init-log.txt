@@ -1,0 +1,10 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+11.23 opened the Finance tab
+11.32 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+11.33 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+11.33 TEST-ONLY: holding the first details load 5000 ms
+11.73 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+12.69 clicked Work Orders in the top menu
+16.86 TEST-ONLY: the first details load released (200)
+16.86 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+22.96 URL /workorders?tab=complete

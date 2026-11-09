@@ -1,0 +1,25 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+0.45 REQ POST /api/user/recent-entities/touch
+2.40 RES 204 POST /api/user/recent-entities/touch
+10.89 REQ GET /api/invoices/e918c7b5-50db-4c54-86fc-0bba19df3958/settings/view
+10.89 REQ GET /api/invoices/e918c7b5-50db-4c54-86fc-0bba19df3958/details?includeDeclined=0
+11.50 RES 200 GET /api/invoices/e918c7b5-50db-4c54-86fc-0bba19df3958/settings/view
+11.61 RES 200 GET /api/invoices/e918c7b5-50db-4c54-86fc-0bba19df3958/details?includeDeclined=0
+11.62 REQ POST /api/work-orders/invoices/estimate
+12.16 RES 200 POST /api/work-orders/invoices/estimate
+--- date
+16.29 REQ POST /api/work-orders/invoices/estimate
+16.68 RES 200 POST /api/work-orders/invoices/estimate
+21.32 preview says: Invoice date: Nov 12, 2026
+--- download
+22.42 REQ POST /api/work-orders/invoices/estimate
+25.00 RES 200 POST /api/work-orders/invoices/estimate
+25.02 DOWNLOAD INV-S2-16271.pdf
+--- create
+29.50 REQ POST /api/invoices/create
+30.85 RES 201 POST /api/invoices/create
+30.86 REQ GET /api/invoices/38b1bed7-2450-4065-b7db-c1cb624ce5a1/view
+31.11 RES 200 GET /api/invoices/38b1bed7-2450-4065-b7db-c1cb624ce5a1/view
+31.35 REQ GET /api/invoices/preview?invoice_id=38b1bed7-2450-4065-b7db-c1cb624ce5a1&type=html&isEstimate=0&includeDeclined=0
+dialog []
+31.88 RES 200 GET /api/invoices/preview?invoice_id=38b1bed7-2450-4065-b7db-c1cb624ce5a1&type=html&isEstimate=0&includeDeclined=0

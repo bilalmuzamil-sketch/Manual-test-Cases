@@ -23,3 +23,21 @@ Work order S2-786 (Ahsan, Complete, not invoiced). The Finance tab is disabled o
 Waiting for fresh `.qa.shopview.com` cookies (6 Nov set returns 401).
 Planned matrix: list (4 rounds) · another draft WO · an invoiced WO · stay on the WO and tab Lines->Finance (preview must still refresh)
 · PO change then wait (current-owner refresh) · Finance tab first open on a fresh WO.
+
+## Branch AFTER — sv12351 v26.45.2-9444adc (last-modified Sat 07 Nov 2026 22:21:53 GMT), 9 Nov 2026
+Fresh cookies 8 Nov. Work order S2-17113 (shown as S12351-17113 on the branch, Complete, not invoiced). Production comparison: S2-786 / S2-918.
+"TEST-ONLY" below = the browser held or altered one server answer so the timing race can be produced on demand; the product was not changed.
+| # | Case (ticket wording) | Production v26.45.2-132dcb4 | Branch | Evidence |
+|---|---|---|---|---|
+| 1 | Type Customer PO, click Work Orders in the top menu (4 rounds) | 4/4: empty-id 404 + red "Error fetching draft invoice details" | 0/4 | prod-r1, branch-r1 |
+| 2 | Hold the preview render, change the PO again (queues a refresh), leave to the list, release (the ticket's own recipe) | `GET /api/invoices//details` 404 + red toast | nothing after release, no toast | prod-queue, branch-queue |
+| 3 | Same, but leave to another, INVOICED work order (S2-1926 / S2-16654) | details + render requests sent for the DESTINATION work order | none | prod-queue-invoiced, branch-queue-invoiced |
+| 4 | PO save held, open another draft work order (S2-850 / S2-16273) | details + render for the destination | none | prod-otherwo-held, branch-otherwo-held |
+| 5 | Initialization race: open Finance, leave before the first details load answers | after release: render request 400 + toasts "Bad request" / "Error get invoice HTML" on the list | details answered, nothing else, no toast | prod-init, branch-init |
+| 6 | Hold the render only, leave to the list (no queued refresh) | no error either | no error | prod-holdest, branch-holdest |
+| 7 | Stay on Finance after a PO change -> preview refreshes; Lines tab and back -> refreshes | yes | yes | prod-stay, branch-stay |
+| 8 | Current work order's own details fail (TEST-ONLY 500) -> error still shown | - | "Ooooops! An error occurred" + "Error fetching draft invoice details" shown | branch-forced500 |
+| 9 | Regression walk: invoice date 11/12/2026 -> preview "Invoice date: Nov 12, 2026"; Download -> INV-S2-16271.pdf; Create Invoice (S2-16271, S2-15597) -> 201 and New Customer Payment opens (creation hand-off); Cash payment $10 -> preview Payments $10.00, Balance $283.77; Reverse paid invoice -> "please delete payment before reversing"; Reverse unpaid S2-15597 -> status Complete, preview refreshed | - | all as expected | branch-reg1..8 |
+Observation (not on screen): after Reverse the branch sent the preview render request TWICE at the same moment in 2 of 3 tries (28.23/28.26, 27.15/27.15); production sent it once in 2 of 2 (S2-918). The screen looks the same. Ticket says "Preserve ... serialized/coalesced rebuilds". -> asked the QA lead (Rule 97d) whether it goes to Stefan.
+Production also sent two Sentry error reports on Reverse; the branch sent none.
+Not run: part-sale invoice and deposit preview (named in the ticket's regression list) - next.

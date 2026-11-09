@@ -1,0 +1,27 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+11.11 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+11.11 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+11.72 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/settings/view
+11.74 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+11.74 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+11.92 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+11.93 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+12.07 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+12.08 REQ POST /api/work-orders/invoices/estimate
+12.49 RES 200 POST /api/work-orders/invoices/estimate
+16.00 on /workorders/38e33787-e746-4f53-ac6d-6a6f31d3062e/finance
+16.78 clicked elsewhere (PO saves, preview refresh starts)
+16.80 REQ POST /api/work-orders/change-customer-po
+16.95 RES 201 POST /api/work-orders/change-customer-po
+16.95 REQ GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+17.25 RES 200 GET /api/invoices/38e33787-e746-4f53-ac6d-6a6f31d3062e/details?includeDeclined=0
+17.25 REQ GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+17.42 RES 400 GET /api/invoices/ibs/retrieveCustomerInformation?customerId=84469919-600f-4427-a559-096e9853270a
+17.42 REQ GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+17.56 RES 204 GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=38e33787-e746-4f53-ac6d-6a6f31d3062e
+17.57 REQ POST /api/work-orders/invoices/estimate
+17.57 TEST-ONLY: holding the preview render 5000 ms
+18.33 clicked Work Orders in the top menu
+23.24 TEST-ONLY: the preview render released (200)
+23.25 RES 200 POST /api/work-orders/invoices/estimate
+28.60 URL /workorders?tab=complete

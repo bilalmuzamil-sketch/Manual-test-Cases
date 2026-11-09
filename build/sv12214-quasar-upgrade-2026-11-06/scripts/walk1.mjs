@@ -17,6 +17,7 @@ await s.go('/workorders'); await p.waitForTimeout(3500);
 // List view
 await p.click('[data-test-id=display_option_list]'); await p.waitForTimeout(2500);
 await menuCheck('L1-list-columns','button_column_selection'); await closeMenu();
+if(!(await p.locator('[data-test-id=filter_chip_status]').count())){ const t=await p.evaluate(()=>{const e=[...document.querySelectorAll('[role=tab],.q-tab')].find(x=>/^\s*All\b/.test(x.innerText)); if(!e) return null; const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2,t:e.innerText}}); console.log('status chip not on this tab; opening tab',JSON.stringify(t)); if(t){ await p.mouse.click(t.x,t.y); await p.waitForTimeout(2500);} }
 await menuCheck('L2-status-filter','filter_chip_status');
 const opt=p.locator('[data-test-id^=filter_option_status_]').first(); const optName=await opt.innerText().catch(()=>null);
 if(optName){ await opt.click(); await p.waitForTimeout(1500); const chip=await p.locator('[data-test-id=filter_chip_status]').innerText(); add('L3-status filter: picking an option shows on the chip',/\(1\)|1/.test(chip)||chip.includes(optName.trim().split('\n')[0]),{optName:optName.replace(/\s+/g,' '),chip:chip.replace(/\s+/g,' ')}); await p.screenshot({path:`../ev/${E}-L3-status-picked.png`}); await closeMenu(); await opt.isVisible().catch(()=>0); await s.go('/workorders'); await p.waitForTimeout(2500); const clr=p.locator('[data-test-id=filter_chip_status]'); }
