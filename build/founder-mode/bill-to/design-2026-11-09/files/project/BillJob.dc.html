@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>2. Bill a work order or part sale to someone else</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopview/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopview/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.bt-shot{width:1200px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}
+.bt-phone{width:390px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md)}
+.bt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}
+.bt-cap li{margin:0 0 6px}
+.bt-row{display:flex;gap:48px;align-items:flex-start}
+.bt-fig{margin:0;width:1200px;display:flex;flex-direction:column;gap:12px}
+.bt-figp{margin:0;width:390px;display:flex;flex-direction:column;gap:12px}
+.bt-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bt-name{font-size:18px;font-weight:600}
+.bt-rowt{margin:0;font-size:22px;font-weight:600}
+</style>
+</helmet>
+<div data-theme="light" style="width: 7700px; min-height: 7200px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 32px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 8px; max-width: 2400px;">
+    <h2 class="sv-h2" style="margin: 0;">2. Bill a work order or part sale to someone else</h2>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--sv-text-secondary);">Work order page, Customer card. Left to right: pick a Bill To on a work order that bills itself (S2-15937, Buda), a work order billed to someone else (S2-17579, Buda billed to Valders), the Authorizer list, Change Customer while a deposit is held (S2-17577), the Work Order Log, a part sale, New Work Order, then phone. Before: production v26.45.2.1. After: the locked Bill To build.</p>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 96px;">
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <h3 class="bt-rowt">Pick a Bill To (S2-15937, Buda Truck Repair bills itself)</h3>
+      <div class="bt-row">
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Customer card</span></div>
+          <img class="bt-shot" src="shots/before-p2-wo-self-card.png" alt="S2-15937 customer card in production">
+          <figcaption><ul class="bt-cap"><li>Contact, Phone, Authorizer. No Bill To.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">This customer</span></div>
+          <img class="bt-shot" src="shots/after-p2-wo-self-card.png" alt="S2-15937 card with Bill To This customer">
+          <figcaption><ul class="bt-cap"><li>"Bill To" under Authorizer reads "This customer".</li><li>The work order was created before Buda had a default, so it bills Buda.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Open</span></div>
+          <img class="bt-shot" src="shots/after-p2-wo-billto-open.png" alt="Bill To list open">
+          <figcaption><ul class="bt-cap"><li>First option: "Buda Truck Repair (this customer)", then customers A to Z: "4 Star Truck Repair", "7 Star Truck Repair", "A &amp; J Truck &amp; Trailer Repair", "Aberdeen Diesel Services LLC" and on. Never Counter Sale.</li><li>The list holds the first 50 customers A to Z; typing narrows it.</li><li>Reshot after the tech review (the list used to come in database order).</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Searching</span></div>
+          <img class="bt-shot" src="shots/after-p2-wo-billto-search.png" alt="Bill To searching Vald">
+          <figcaption><ul class="bt-cap"><li>Typing "Vald": "Buda Truck Repair (this customer)", then A to Z "Uvalde Estates Truck Centre", "Valders Diesel &amp; Fleet Repair".</li><li>Reshot after the tech review.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">No match</span></div>
+          <img class="bt-shot" src="shots/after-p2-wo-billto-no-match.png" alt="Bill To with no matching customer">
+          <figcaption><ul class="bt-cap"><li>Typing "zzqx": only "Buda Truck Repair (this customer)" stays. The "(this customer)" option is always listed, so the list is never empty.</li><li>Rechecked after the tech review: unchanged.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Picked</span></div>
+          <img class="bt-shot" src="shots/after-p2-wo-billto-picked.png" alt="Bill To Valders picked">
+          <figcaption><ul class="bt-cap"><li>Picking "Valders Diesel &amp; Fleet Repair" saves at once. The card shows "Bill To" "Valders Diesel &amp; Fleet Re", cut at the card's width.</li><li>Reverted after the shot.</li></ul></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <h3 class="bt-rowt">Billed to someone else, and the Authorizer list</h3>
+      <div class="bt-row">
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">S2-17579</span></div>
+          <img class="bt-shot" src="shots/before-p2-wo79-card.png" alt="S2-17579 in production">
+          <figcaption><ul class="bt-cap"><li>Nothing says who pays.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">S2-17579</span></div>
+          <img class="bt-shot" src="shots/after-p2-wo79-card.png" alt="S2-17579 with Bill To Valders">
+          <figcaption><ul class="bt-cap"><li>"Bill To" reads "Valders Diesel &amp; Fleet Repair". Nothing is added to the card's header or the work order header.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Authorizer list (S2-17577)</span></div>
+          <img class="bt-shot" src="shots/before-p2-authorizer-open.png" alt="Authorizer list in production">
+          <figcaption><ul class="bt-cap"><li>S2-17577 is Desert Edge billed to 7 Star. Production lists Desert Edge's contacts only, one line each.</li><li>The "Over Limit" pill in the header is production's credit check; this build's Credit Terms work skips it for COD.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Authorizer list, top</span></div>
+          <img class="bt-shot" src="shots/after-p2-authorizer-open.png" alt="Authorizer list with customer names">
+          <figcaption><ul class="bt-cap"><li>"No authorizer", then the customer's contacts, each with "Desert Edge Truck Service &amp; Repair" on a second line.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Authorizer list, bottom</span></div>
+          <img class="bt-shot" src="shots/after-p2-authorizer-open-scrolled.png" alt="Authorizer list scrolled to the Bill To contact">
+          <figcaption><ul class="bt-cap"><li>The Bill To's contacts come last: "Jaime Johnson", "7 Star Truck Repair".</li><li>When the customer pays for itself the list is exactly today's, with no second line.</li></ul></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <h3 class="bt-rowt">Change Customer while a deposit is held (S2-17577, Desert Edge billed to 7 Star, $10.00 deposit)</h3>
+      <div class="bt-row">
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Card</span></div>
+          <img class="bt-shot" src="shots/before-p3-deposits-card.png" alt="S2-17577 in production with the Change Customer button">
+          <figcaption><ul class="bt-cap"><li>The Change Customer button (two arrows at the top right of the customer card) is enabled. The "Over Limit" pill is production's credit check; not Bill To.</li><li>The same production board as page 3's deposit row.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Change Customer enabled</span></div>
+          <img class="bt-shot" src="shots/after-p2-wo77-change-customer.png" alt="S2-17577 with the Change Customer button enabled">
+          <figcaption><ul class="bt-cap"><li>The Change Customer button stays enabled while the deposit is held, as in production. The deposit no longer greys it out.</li><li>The server refuses Change Customer only when the change would change the Bill To; picking a customer that keeps "7 Star Truck Repair" as Bill To goes through.</li><li>New after the tech review. The refusal was not shot: it needs a real Change Customer attempt.</li></ul></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <h3 class="bt-rowt">Work Order Log, part sale, New Work Order</h3>
+      <div class="bt-row">
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Work Order Log</span></div>
+          <img class="bt-shot" src="shots/before-p2-wo-log.png" alt="Work Order Log in production">
+          <figcaption><ul class="bt-cap"><li>The "Bill To changed" rows exist only because this build wrote them into the shared data. Production reads them as "Customer:" changes. Production itself never writes them.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Work Order Log</span></div>
+          <img class="bt-shot" src="shots/after-p2-wo-log.png" alt="Work Order Log with Bill To changed rows">
+          <figcaption><ul class="bt-cap"><li>Event "Bill To changed". Details: "Bill To:" old customer, arrow, new customer, each a link (for example "Buda Truck Repair" to "Valders Diesel &amp; Fleet Repair").</li><li>These rows come from earlier testing on this work order.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Part sale P2-256</span></div>
+          <img class="bt-shot" src="shots/before-p2-part-sale-card.png" alt="Part sale P2-256 in production">
+          <figcaption><ul class="bt-cap"><li>4 Star Truck Repair card: Contact, Phone, Authorizer.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Part sale P2-256</span></div>
+          <img class="bt-shot" src="shots/after-p2-part-sale-card.png" alt="Part sale P2-256 with Bill To 7 Star">
+          <figcaption><ul class="bt-cap"><li>The same "Bill To" field, here "7 Star Truck Repair".</li><li>The parts table columns differ from production (Quantity, Requested At, Fees &amp; Discounts). That comes from newer develop work under this build, not Bill To.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">New Work Order</span></div>
+          <img class="bt-shot" src="shots/before-p2-new-work-order.png" alt="New Work Order in production">
+          <figcaption><ul class="bt-cap"><li>Buda Truck Repair and its CV515 picked.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">New Work Order, unchanged</span></div>
+          <img class="bt-shot" src="shots/after-p2-new-work-order.png" alt="New Work Order in this build">
+          <figcaption><ul class="bt-cap"><li>The window is pixel-identical to production. No Bill To here; Buda's saved default applies quietly when the work order is created.</li><li>Accuracy check: the Work Orders list toolbar behind the window is spaced differently (tabs and Search sit further left). That comes from release fixes newer than this build's base, not Bill To.</li></ul></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <h3 class="bt-rowt">Phone</h3>
+      <div class="bt-row">
+        <figure class="bt-figp">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">S2-17579</span></div>
+          <img class="bt-phone" src="shots/before-p2-phone-wo79-card.png" alt="S2-17579 details on a phone in production">
+          <figcaption><ul class="bt-cap"><li>Details shown.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-figp">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">S2-17579</span></div>
+          <img class="bt-phone" src="shots/after-p2-phone-wo79-card.png" alt="S2-17579 details on a phone with Bill To">
+          <figcaption><ul class="bt-cap"><li>The same card, with "Bill To" "Valders Diesel &amp; Fleet Repair" under Authorizer. Nothing phone-only.</li></ul></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":7700,"height":7200}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

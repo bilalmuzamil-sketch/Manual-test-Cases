@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>4. Service For band on invoices and estimates</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopview/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopview/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.bt-doc{width:700px;height:auto;display:block;border:1px solid var(--sv-border-default);border-radius:var(--sv-radius-md);background:#fff}
+.bt-cap{margin:0;padding-left:18px;font-size:15px;line-height:22px;color:var(--sv-text-secondary)}
+.bt-cap li{margin:0 0 6px}
+.bt-row{display:flex;gap:48px;align-items:flex-start}
+.bt-fig{margin:0;width:700px;display:flex;flex-direction:column;gap:12px}
+.bt-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bt-name{font-size:18px;font-weight:600}
+.bt-rowt{margin:0;font-size:22px;font-weight:600}
+</style>
+</helmet>
+<div data-theme="light" style="width: 3200px; min-height: 7900px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 32px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 8px; max-width: 2900px;">
+    <h2 class="sv-h2" style="margin: 0;">4. Service For band on invoices and estimates</h2>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--sv-text-secondary);">Page 1 of each PDF, rendered by each stack from the same records at 110 dpi. Each row: modern before, modern after, legacy before, legacy after. All renders are new for this file; none shows an "Attn" line. Printed documents have no phone layout, so this page has no phone board. For the part sale with a vehicle, a 4 Star vehicle (2011 Hyundai Santa Fe, unit set to 4417) was attached to P2-256 for the render on both stacks and removed after. The document design setting was switched between modern and legacy for the renders and set back to legacy.</p>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 96px;">
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <h3 class="bt-rowt">Invoice billed to someone else (INV-S2-17581, Buda billed to Valders)</h3>
+      <div class="bt-row">
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Modern</span></div>
+          <img class="bt-doc" src="shots/before-p4-modern-invoice-billed-to-other.png" alt="Modern invoice in production">
+          <figcaption><ul class="bt-cap"><li>The Bill To block names Valders only because this build created the invoice and saved Valders on it. Production, creating it, would have saved Buda. Nothing says whose truck it was.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Modern</span></div>
+          <img class="bt-doc" src="shots/after-p4-modern-invoice-billed-to-other.png" alt="Modern invoice with the Service For band">
+          <figcaption><ul class="bt-cap"><li>A full-width band under the address row: "SERVICE FOR", "Buda Truck Repair", "Unit 854", "2024 INTERNATIONAL CV515", joined by " · ".</li><li>Light grey fill and thin grey border, so it reads in black and white.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Legacy</span></div>
+          <img class="bt-doc" src="shots/before-p4-legacy-invoice-billed-to-other.png" alt="Legacy invoice in production">
+          <figcaption><ul class="bt-cap"><li>Same note on the Bill To block as the modern one.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Legacy</span></div>
+          <img class="bt-doc" src="shots/after-p4-legacy-invoice-billed-to-other.png" alt="Legacy invoice with the Service For band">
+          <figcaption><ul class="bt-cap"><li>The same band, under Bill To and Remit payment to, above the asset table.</li></ul></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <h3 class="bt-rowt">Estimate billed to someone else (EST-S2-17582, A &amp; J billed to Buda)</h3>
+      <div class="bt-row">
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Modern</span></div>
+          <img class="bt-doc" src="shots/before-p4-modern-estimate-billed-to-other.png" alt="Modern estimate in production">
+          <figcaption><ul class="bt-cap"><li>Rendered live from the work order: the Bill To block is the customer, A &amp; J Truck &amp; Trailer Repair. This is production's true behavior.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Modern</span></div>
+          <img class="bt-doc" src="shots/after-p4-modern-estimate-billed-to-other.png" alt="Modern estimate billed to Buda with Service For">
+          <figcaption><ul class="bt-cap"><li>Bill To: "Buda Truck Repair" with its address. Band: "SERVICE FOR", "A &amp; J Truck &amp; Trailer Repair", "2017 Ford Transit". The asset has no unit, so "Unit" drops out with its separator.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Legacy</span></div>
+          <img class="bt-doc" src="shots/before-p4-legacy-estimate-billed-to-other.png" alt="Legacy estimate in production">
+          <figcaption><ul class="bt-cap"><li>Bill To is A &amp; J.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Legacy</span></div>
+          <img class="bt-doc" src="shots/after-p4-legacy-estimate-billed-to-other.png" alt="Legacy estimate with Service For">
+          <figcaption><ul class="bt-cap"><li>Bill To is Buda; the same band.</li></ul></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <h3 class="bt-rowt">Part sale with a vehicle (P2-256, 4 Star billed to 7 Star)</h3>
+      <div class="bt-row">
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Modern</span></div>
+          <img class="bt-doc" src="shots/before-p4-modern-part-sale-with-vehicle.png" alt="Modern part sale estimate in production">
+          <figcaption><ul class="bt-cap"><li>Bill To is the customer, 4 Star.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Modern</span></div>
+          <img class="bt-doc" src="shots/after-p4-modern-part-sale-with-vehicle.png" alt="Modern part sale with Service For and unit">
+          <figcaption><ul class="bt-cap"><li>Bill To is 7 Star. Band: "SERVICE FOR", "4 Star Truck Repair", "Unit 4417", "2011 Hyundai Santa Fe".</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Legacy</span></div>
+          <img class="bt-doc" src="shots/before-p4-legacy-part-sale-with-vehicle.png" alt="Legacy part sale estimate in production">
+          <figcaption><ul class="bt-cap"><li>Bill To is 4 Star.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Legacy</span></div>
+          <img class="bt-doc" src="shots/after-p4-legacy-part-sale-with-vehicle.png" alt="Legacy part sale with Service For and unit">
+          <figcaption><ul class="bt-cap"><li>The same band with the unit.</li></ul></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <h3 class="bt-rowt">Part sale without a vehicle (P2-254, 4 Star billed to 7 Star)</h3>
+      <div class="bt-row">
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Modern</span></div>
+          <img class="bt-doc" src="shots/before-p4-modern-part-sale-no-vehicle.png" alt="Modern part sale without vehicle in production">
+          <figcaption><ul class="bt-cap"><li>Bill To is 4 Star.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Modern</span></div>
+          <img class="bt-doc" src="shots/after-p4-modern-part-sale-no-vehicle.png" alt="Modern part sale without vehicle with Service For">
+          <figcaption><ul class="bt-cap"><li>Band: "SERVICE FOR", "4 Star Truck Repair" only.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Legacy</span></div>
+          <img class="bt-doc" src="shots/before-p4-legacy-part-sale-no-vehicle.png" alt="Legacy part sale without vehicle in production">
+          <figcaption><ul class="bt-cap"><li>Bill To is 4 Star.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Legacy</span></div>
+          <img class="bt-doc" src="shots/after-p4-legacy-part-sale-no-vehicle.png" alt="Legacy part sale without vehicle with Service For">
+          <figcaption><ul class="bt-cap"><li>Name only.</li></ul></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <h3 class="bt-rowt">Pays for itself, unchanged (S2-17322), and batch</h3>
+      <div class="bt-row">
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Modern, pays for itself</span></div>
+          <img class="bt-doc" src="shots/before-p4-modern-invoice-pays-for-itself.png" alt="Modern invoice that pays for itself in production">
+          <figcaption><ul class="bt-cap"><li>S2-17322 bills its own customer.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Modern, pays for itself</span></div>
+          <img class="bt-doc" src="shots/after-p4-modern-invoice-pays-for-itself.png" alt="Modern invoice that pays for itself in this build">
+          <figcaption><ul class="bt-cap"><li>No band. Pixel-identical to production (compared).</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Legacy, pays for itself</span></div>
+          <img class="bt-doc" src="shots/before-p4-legacy-invoice-pays-for-itself.png" alt="Legacy invoice that pays for itself in production">
+          <figcaption><ul class="bt-cap"><li>S2-17322.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Legacy, pays for itself</span></div>
+          <img class="bt-doc" src="shots/after-p4-legacy-invoice-pays-for-itself.png" alt="Legacy invoice that pays for itself in this build">
+          <figcaption><ul class="bt-cap"><li>No band. Pixel-identical to production (compared).</li></ul></figcaption>
+        </figure>
+      </div>
+      <div class="bt-row">
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--neutral">Production (v26.45.2.1)</span><span class="bt-name">Batch, page 1</span></div>
+          <img class="bt-doc" src="shots/before-p4-batch.png" alt="Batch invoice page 1 in production">
+          <figcaption><ul class="bt-cap"><li>Batch of S2-17581, S2-17513 and S2-17322. Page 1 shown.</li></ul></figcaption>
+        </figure>
+        <figure class="bt-fig">
+          <div class="bt-head"><span class="sv-badge sv-badge--info">This build</span><span class="bt-name">Batch, page 1</span></div>
+          <img class="bt-doc" src="shots/after-p4-batch.png" alt="Batch invoice page 1 with Service For">
+          <figcaption><ul class="bt-cap"><li>Page 1 is S2-17581 with its band. In the full PDF each invoice billed to someone else gets its own band; S2-17513 reads "SERVICE FOR", "Orchard City Truck &amp; Trailer Repair", "Unit 15", "2018 Freightliner 114sd". S2-17322 gets none.</li></ul></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3200,"height":7900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

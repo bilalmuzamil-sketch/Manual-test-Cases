@@ -1,0 +1,707 @@
+/* Shopview Design System — generated from tokens.json */
+:root, [data-theme="light"] {
+  --sv-white: #ffffff; /* Basic. */
+  --sv-black: #121212; /* Basic. */
+  --sv-brand-blue: #257cff; /* Brand. Primary-500. */
+  --sv-brand-blue-dark: #175cd3; /* Brand. Primary-700 — link visited / hover. */
+  --sv-brand-dark: #202939; /* Brand. Dark text on light bg. */
+  --sv-primary-25: #f4faff; /* Primary (Blue) scale — Figma Color/Brand/Primary. */
+  --sv-primary-50: #e9f5ff; /* Primary (Blue) scale — Figma Color/Brand/Primary. */
+  --sv-primary-100: #d8ecff; /* Primary (Blue) scale — Figma Color/Brand/Primary. */
+  --sv-primary-200: #bedfff; /* Primary (Blue) scale — Figma Color/Brand/Primary. */
+  --sv-primary-300: #82c1fb; /* Primary (Blue) scale — Figma Color/Brand/Primary. */
+  --sv-primary-400: #4b96ff; /* Primary (Blue) scale — Figma Color/Brand/Primary. */
+  --sv-primary-500: #257cff; /* Primary (Blue) scale — Figma Color/Brand/Primary. Primary. */
+  --sv-primary-600: #2170e6; /* Primary (Blue) scale — Figma Color/Brand/Primary. */
+  --sv-primary-700: #175cd3; /* Primary (Blue) scale — Figma Color/Brand/Primary. Hover for primary buttons. */
+  --sv-primary-800: #0b254d; /* Primary (Blue) scale — Figma Color/Brand/Primary. */
+  --sv-primary-900: #040c19; /* Primary (Blue) scale — Figma Color/Brand/Primary. */
+  --sv-grey-25: #fcfcfd; /* Neutrals (Grey 25–900) — Figma Color/Grey. */
+  --sv-grey-50: #f8fafc; /* Neutrals (Grey 25–900) — Figma Color/Grey. */
+  --sv-grey-100: #eef2f6; /* Neutrals (Grey 25–900) — Figma Color/Grey. */
+  --sv-grey-200: #e3e8ef; /* Neutrals (Grey 25–900) — Figma Color/Grey. */
+  --sv-grey-300: #cdd5df; /* Neutrals (Grey 25–900) — Figma Color/Grey. */
+  --sv-grey-400: #9aa4b2; /* Neutrals (Grey 25–900) — Figma Color/Grey. */
+  --sv-grey-500: #697586; /* Neutrals (Grey 25–900) — Figma Color/Grey. */
+  --sv-grey-600: #4b5565; /* Neutrals (Grey 25–900) — Figma Color/Grey. */
+  --sv-grey-700: #364152; /* Neutrals (Grey 25–900) — Figma Color/Grey. */
+  --sv-grey-800: #202939; /* Neutrals (Grey 25–900) — Figma Color/Grey. */
+  --sv-grey-900: #121926; /* Neutrals (Grey 25–900) — Figma Color/Grey. */
+  --sv-success-25: #f6fef9; /* Feedback / Success — Figma Color/Feedback/Success. */
+  --sv-success-50: #edfcf2; /* Feedback / Success — Figma Color/Feedback/Success. */
+  --sv-success-100: #d3f8df; /* Feedback / Success — Figma Color/Feedback/Success. */
+  --sv-success-200: #aaf0c4; /* Feedback / Success — Figma Color/Feedback/Success. */
+  --sv-success-300: #73e2a3; /* Feedback / Success — Figma Color/Feedback/Success. */
+  --sv-success-400: #3ccb7f; /* Feedback / Success — Figma Color/Feedback/Success. */
+  --sv-success-500: #16b364; /* Feedback / Success — Figma Color/Feedback/Success. */
+  --sv-success-600: #099250; /* Feedback / Success — Figma Color/Feedback/Success. */
+  --sv-success-700: #087443; /* Feedback / Success — Figma Color/Feedback/Success. */
+  --sv-success-800: #095c37; /* Feedback / Success — Figma Color/Feedback/Success. */
+  --sv-success-900: #084c2e; /* Feedback / Success — Figma Color/Feedback/Success. */
+  --sv-error-25: #fffbfa; /* Feedback / Error — Figma Color/Feedback/Error. */
+  --sv-error-50: #fef3f2; /* Feedback / Error — Figma Color/Feedback/Error. */
+  --sv-error-100: #fee4e2; /* Feedback / Error — Figma Color/Feedback/Error. */
+  --sv-error-200: #fecdca; /* Feedback / Error — Figma Color/Feedback/Error. */
+  --sv-error-300: #fda29b; /* Feedback / Error — Figma Color/Feedback/Error. */
+  --sv-error-400: #f97066; /* Feedback / Error — Figma Color/Feedback/Error. */
+  --sv-error-500: #f04438; /* Feedback / Error — Figma Color/Feedback/Error. */
+  --sv-error-600: #d92d20; /* Feedback / Error — Figma Color/Feedback/Error. */
+  --sv-error-700: #b42318; /* Feedback / Error — Figma Color/Feedback/Error. */
+  --sv-error-800: #912018; /* Feedback / Error — Figma Color/Feedback/Error. */
+  --sv-error-900: #7a271a; /* Feedback / Error — Figma Color/Feedback/Error. */
+  --sv-warning-25: #fffcf5; /* Feedback / Warning — Figma Color/Feedback/Warning. */
+  --sv-warning-50: #fffaeb; /* Feedback / Warning — Figma Color/Feedback/Warning. */
+  --sv-warning-100: #fef0c7; /* Feedback / Warning — Figma Color/Feedback/Warning. */
+  --sv-warning-200: #fedf89; /* Feedback / Warning — Figma Color/Feedback/Warning. */
+  --sv-warning-300: #fec84b; /* Feedback / Warning — Figma Color/Feedback/Warning. */
+  --sv-warning-400: #fdb022; /* Feedback / Warning — Figma Color/Feedback/Warning. */
+  --sv-warning-500: #f79009; /* Feedback / Warning — Figma Color/Feedback/Warning. */
+  --sv-warning-600: #dc6803; /* Feedback / Warning — Figma Color/Feedback/Warning. */
+  --sv-warning-700: #b54708; /* Feedback / Warning — Figma Color/Feedback/Warning. */
+  --sv-warning-800: #93370d; /* Feedback / Warning — Figma Color/Feedback/Warning. */
+  --sv-warning-900: #7a2e0e; /* Feedback / Warning — Figma Color/Feedback/Warning. */
+  --sv-success: var(--sv-success-500); /* Convenience aliases (semantic shorthand). */
+  --sv-success-fill: var(--sv-success-50); /* Convenience aliases (semantic shorthand). */
+  --sv-success-text: var(--sv-success-700); /* Convenience aliases (semantic shorthand). */
+  --sv-warning: var(--sv-warning-500); /* Convenience aliases (semantic shorthand). */
+  --sv-warning-fill: var(--sv-warning-50); /* Convenience aliases (semantic shorthand). */
+  --sv-warning-text: var(--sv-warning-700); /* Convenience aliases (semantic shorthand). */
+  --sv-error: var(--sv-error-500); /* Convenience aliases (semantic shorthand). */
+  --sv-error-fill: var(--sv-error-50); /* Convenience aliases (semantic shorthand). */
+  --sv-error-text: var(--sv-error-700); /* Convenience aliases (semantic shorthand). */
+  --sv-info: var(--sv-primary-500); /* Convenience aliases (semantic shorthand). */
+  --sv-info-fill: var(--sv-primary-50); /* Convenience aliases (semantic shorthand). */
+  --sv-info-text: var(--sv-primary-700); /* Convenience aliases (semantic shorthand). */
+  --sv-teal-25: #f6fefc; /* Additional / Teal — Figma Color/Additional Teal. */
+  --sv-teal-50: #f0fdf9; /* Additional / Teal — Figma Color/Additional Teal. */
+  --sv-teal-100: #ccfbef; /* Additional / Teal — Figma Color/Additional Teal. */
+  --sv-teal-200: #99f6e0; /* Additional / Teal — Figma Color/Additional Teal. */
+  --sv-teal-300: #5fe9d0; /* Additional / Teal — Figma Color/Additional Teal. */
+  --sv-teal-400: #2ed3b7; /* Additional / Teal — Figma Color/Additional Teal. */
+  --sv-teal-500: #15b79e; /* Additional / Teal — Figma Color/Additional Teal. */
+  --sv-teal-600: #0e9384; /* Additional / Teal — Figma Color/Additional Teal. */
+  --sv-teal-700: #107569; /* Additional / Teal — Figma Color/Additional Teal. */
+  --sv-teal-800: #125d56; /* Additional / Teal — Figma Color/Additional Teal. */
+  --sv-teal-900: #134e48; /* Additional / Teal — Figma Color/Additional Teal. */
+  --sv-cyan-25: #f5feff; /* Additional / Cyan — Figma Color/Additional Cyan. */
+  --sv-cyan-50: #ecfdff; /* Additional / Cyan — Figma Color/Additional Cyan. */
+  --sv-cyan-100: #cff9fe; /* Additional / Cyan — Figma Color/Additional Cyan. */
+  --sv-cyan-200: #a5f0fc; /* Additional / Cyan — Figma Color/Additional Cyan. */
+  --sv-cyan-300: #67e3f9; /* Additional / Cyan — Figma Color/Additional Cyan. */
+  --sv-cyan-400: #22ccee; /* Additional / Cyan — Figma Color/Additional Cyan. */
+  --sv-cyan-500: #06aed4; /* Additional / Cyan — Figma Color/Additional Cyan. */
+  --sv-cyan-600: #088ab2; /* Additional / Cyan — Figma Color/Additional Cyan. */
+  --sv-cyan-700: #0e7090; /* Additional / Cyan — Figma Color/Additional Cyan. */
+  --sv-cyan-800: #155b75; /* Additional / Cyan — Figma Color/Additional Cyan. */
+  --sv-cyan-900: #164c63; /* Additional / Cyan — Figma Color/Additional Cyan. */
+  --sv-violet-25: #fbfaff; /* Additional / Violet — Figma Color/Additional Violet. */
+  --sv-violet-50: #f5f3ff; /* Additional / Violet — Figma Color/Additional Violet. */
+  --sv-violet-100: #ece9fe; /* Additional / Violet — Figma Color/Additional Violet. */
+  --sv-violet-200: #ddd6fe; /* Additional / Violet — Figma Color/Additional Violet. */
+  --sv-violet-300: #c3b5fd; /* Additional / Violet — Figma Color/Additional Violet. */
+  --sv-violet-400: #a48afb; /* Additional / Violet — Figma Color/Additional Violet. */
+  --sv-violet-500: #875bf7; /* Additional / Violet — Figma Color/Additional Violet. */
+  --sv-violet-600: #7839ee; /* Additional / Violet — Figma Color/Additional Violet. */
+  --sv-violet-700: #6927da; /* Additional / Violet — Figma Color/Additional Violet. */
+  --sv-violet-800: #5720b7; /* Additional / Violet — Figma Color/Additional Violet. */
+  --sv-violet-900: #491c96; /* Additional / Violet — Figma Color/Additional Violet. */
+  --sv-purple-25: #fafaff; /* Additional / Purple — Figma Color/Additional Purple. */
+  --sv-purple-50: #f4f3ff; /* Additional / Purple — Figma Color/Additional Purple. */
+  --sv-purple-100: #ebe9fe; /* Additional / Purple — Figma Color/Additional Purple. */
+  --sv-purple-200: #d9d6fe; /* Additional / Purple — Figma Color/Additional Purple. */
+  --sv-purple-300: #bdb4fe; /* Additional / Purple — Figma Color/Additional Purple. */
+  --sv-purple-400: #9b8afb; /* Additional / Purple — Figma Color/Additional Purple. */
+  --sv-purple-500: #7a5af8; /* Additional / Purple — Figma Color/Additional Purple. */
+  --sv-purple-600: #6938ef; /* Additional / Purple — Figma Color/Additional Purple. */
+  --sv-purple-700: #5925dc; /* Additional / Purple — Figma Color/Additional Purple. */
+  --sv-purple-800: #4a1fb8; /* Additional / Purple — Figma Color/Additional Purple. */
+  --sv-purple-900: #3e1c96; /* Additional / Purple — Figma Color/Additional Purple. */
+  --sv-pink-25: #fef6fb; /* Additional / Pink — Figma Color/Additional Pink. */
+  --sv-pink-50: #fdf2fa; /* Additional / Pink — Figma Color/Additional Pink. */
+  --sv-pink-100: #fce7f6; /* Additional / Pink — Figma Color/Additional Pink. */
+  --sv-pink-200: #fcceee; /* Additional / Pink — Figma Color/Additional Pink. */
+  --sv-pink-300: #faa7e0; /* Additional / Pink — Figma Color/Additional Pink. */
+  --sv-pink-400: #f670c7; /* Additional / Pink — Figma Color/Additional Pink. */
+  --sv-pink-500: #ee46bc; /* Additional / Pink — Figma Color/Additional Pink. */
+  --sv-pink-600: #dd2590; /* Additional / Pink — Figma Color/Additional Pink. */
+  --sv-pink-700: #c11574; /* Additional / Pink — Figma Color/Additional Pink. */
+  --sv-pink-800: #9e165f; /* Additional / Pink — Figma Color/Additional Pink. */
+  --sv-pink-900: #851651; /* Additional / Pink — Figma Color/Additional Pink. */
+  --sv-bg-app: var(--sv-surface-canvas); /* Surfaces. */
+  --sv-bg-surface: var(--sv-surface); /* Surfaces. */
+  --sv-bg-tint-warm: #fffaeb; /* Surfaces. Help / guidance. */
+  --sv-bg-tint-cool: #e9f5ff; /* Surfaces. Tips / info. */
+  --sv-overlay: var(--sv-scrim); /* Surfaces. */
+  --sv-fg-primary: var(--sv-text-primary); /* Foreground semantics. Main text. */
+  --sv-fg-secondary: var(--sv-text-secondary); /* Foreground semantics. Labels, muted. */
+  --sv-fg-tertiary: var(--sv-text-muted); /* Foreground semantics. Hints, placeholder. */
+  --sv-fg-disabled: var(--sv-text-disabled); /* Foreground semantics. */
+  --sv-fg-inverse: var(--sv-text-inverse); /* Foreground semantics. */
+  --sv-fg-link: var(--sv-accent-text); /* Foreground semantics. */
+  --sv-border: var(--sv-border-default); /* Borders. */
+  --sv-border-strong: var(--sv-grey-300); /* Borders. */
+  --sv-border-focus: var(--sv-primary-500); /* Borders. */
+  --sv-dgrey-950: #0f1114; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. Deepest — sunken/inset. */
+  --sv-dgrey-900: #16181d; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. App canvas. */
+  --sv-dgrey-850: #1b1e24; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. Base surface. */
+  --sv-dgrey-800: #22262e; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. Raised surface. */
+  --sv-dgrey-750: #292e37; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. Overlay surface. */
+  --sv-dgrey-700: #2c313a; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. Hairline border default. */
+  --sv-dgrey-650: #333944; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. Hover — two steps above the overlay surface. */
+  --sv-dgrey-600: #3a404b; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. Strong border. */
+  --sv-dgrey-500: #565d68; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. Disabled text / muted UI. */
+  --sv-dgrey-400: #7a828f; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. Muted text. */
+  --sv-dgrey-300: #a9b1be; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. Secondary text. */
+  --sv-dgrey-200: #c6ccd5; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. */
+  --sv-dgrey-100: #e6e9ef; /* Dark neutral primitives — theme-agnostic raw palette for dark surfaces/text. Primary text (off-white). */
+  --sv-surface-canvas: var(--sv-grey-50); /* Surfaces (elevation by tone). App background. */
+  --sv-surface: #ffffff; /* Surfaces (elevation by tone). Default surface / base. */
+  --sv-surface-raised: #ffffff; /* Surfaces (elevation by tone). Cards (elevation via shadow in light). */
+  --sv-surface-overlay: #ffffff; /* Surfaces (elevation by tone). Popovers, dropdowns, modals, tooltips. */
+  --sv-surface-sunken: var(--sv-grey-100); /* Surfaces (elevation by tone). Wells, inputs track, table stripe. */
+  --sv-surface-hover: var(--sv-grey-100); /* Surfaces (elevation by tone). Row / control hover — grey-100 per the chip spec; grey-50 is the canvas and read as no hover. */
+  --sv-surface-selected: var(--sv-primary-50); /* Surfaces (elevation by tone). Selected row / active nav. */
+  --sv-surface-nav-selected: var(--sv-grey-100); /* Surfaces (elevation by tone). Selected primary nav item. */
+  --sv-surface-inverse: var(--sv-grey-900); /* Surfaces (elevation by tone). Tooltips / inverted chips. */
+  --sv-text-on-inverse: #ffffff; /* Surfaces (elevation by tone). */
+  --sv-text-strong: var(--sv-grey-900); /* Text hierarchy. Headlines on public pages (Display L/M/S, Prose H3, the page label). One step darker than text-primary in light; same as text-primary in dark, which is already the lightest off-white. */
+  --sv-text-primary: var(--sv-grey-700); /* Text hierarchy. */
+  --sv-text-secondary: var(--sv-grey-500); /* Text hierarchy. */
+  --sv-text-muted: #828a98; /* Text hierarchy. Darkened from grey-400 to clear 3:1 on white. */
+  --sv-text-disabled: var(--sv-grey-300); /* Text hierarchy. */
+  --sv-text-inverse: #ffffff; /* Text hierarchy. On accent-solid / dark chips. */
+  --sv-text-on-accent: #ffffff; /* Text hierarchy. */
+  --sv-border-subtle: var(--sv-grey-100); /* Borders. */
+  --sv-border-default: var(--sv-grey-200); /* Borders. */
+  --sv-accent: var(--sv-primary-500); /* Accent (interactive blue). Solid fill: primary button, active tab. */
+  --sv-accent-hover: var(--sv-primary-700); /* Accent (interactive blue). */
+  --sv-accent-active: var(--sv-primary-800); /* Accent (interactive blue). */
+  --sv-accent-text: var(--sv-primary-700); /* Accent (interactive blue). Accent-colored TEXT/icon on a surface, links. */
+  --sv-accent-subtle: var(--sv-primary-50); /* Accent (interactive blue). Tinted fill behind accent content. */
+  --sv-accent-subtle-text: var(--sv-primary-700); /* Accent (interactive blue). */
+  --sv-accent-on-solid: #ffffff; /* Accent (interactive blue). Label on --sv-accent. */
+  --sv-success-border: var(--sv-success-200); /* State: success / warning / danger / info. */
+  --sv-warning-border: var(--sv-warning-200); /* State: success / warning / danger / info. */
+  --sv-danger: var(--sv-error-500); /* State: success / warning / danger / info. */
+  --sv-danger-fill: var(--sv-error-50); /* State: success / warning / danger / info. */
+  --sv-danger-text: var(--sv-error-700); /* State: success / warning / danger / info. */
+  --sv-danger-border: var(--sv-error-200); /* State: success / warning / danger / info. */
+  --sv-danger-hover: var(--sv-error-600); /* State: success / warning / danger / info. Solid destructive fill on hover — mirrors --sv-accent-hover. */
+  --sv-error-border: var(--sv-error-200); /* State: success / warning / danger / info. */
+  --sv-info-border: var(--sv-primary-200); /* State: success / warning / danger / info. */
+  --sv-elev-0-bg: var(--sv-surface); /* Elevation scale (paired: bg + shadow + border per level). */
+  --sv-elev-0-border: var(--sv-border-subtle); /* Elevation scale (paired: bg + shadow + border per level). */
+  --sv-elev-1-bg: var(--sv-surface-raised); /* Elevation scale (paired: bg + shadow + border per level). */
+  --sv-elev-1-border: var(--sv-border-default); /* Elevation scale (paired: bg + shadow + border per level). Cards. */
+  --sv-elev-2-bg: var(--sv-surface-overlay); /* Elevation scale (paired: bg + shadow + border per level). */
+  --sv-elev-2-border: var(--sv-border-default); /* Elevation scale (paired: bg + shadow + border per level). Dropdowns, popovers. */
+  --sv-elev-3-bg: var(--sv-surface-overlay); /* Elevation scale (paired: bg + shadow + border per level). */
+  --sv-elev-3-border: var(--sv-border-subtle); /* Elevation scale (paired: bg + shadow + border per level). Modals, side panels. */
+  --sv-cat-blue-fill: var(--sv-primary-50); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-blue-text: #175cd3; /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-blue-accent: var(--sv-primary-500); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-teal-fill: var(--sv-teal-50); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-teal-text: var(--sv-teal-700); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-teal-accent: var(--sv-teal-500); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-violet-fill: var(--sv-violet-50); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-violet-text: var(--sv-violet-700); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-violet-accent: var(--sv-violet-500); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-pink-fill: var(--sv-pink-50); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-pink-text: var(--sv-pink-700); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-pink-accent: var(--sv-pink-500); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-cyan-fill: var(--sv-cyan-50); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-cyan-text: var(--sv-cyan-700); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-cyan-accent: var(--sv-cyan-500); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-amber-fill: var(--sv-warning-50); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-amber-text: #92610a; /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-amber-accent: #e5a400; /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-grey-fill: var(--sv-grey-100); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-grey-text: var(--sv-grey-600); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-cat-grey-accent: var(--sv-grey-500); /* Categorical / data palette — LIGHT triplets (fill / text / accent). */
+  --sv-scrim: rgba(15,17,26,0.5); /* Overlay scrim + focus. */
+  --sv-shadow-xs: 0 1px 2px rgba(16,24,40,0.05); /* Elevation. */
+  --sv-shadow-sm: 0 1px 2px rgba(11,23,51,0.05), 0 1px 3px rgba(11,23,51,0.05); /* Elevation. */
+  --sv-shadow-md: 0 4px 8px rgba(11,23,51,0.08), 0 1px 2px rgba(11,23,51,0.05); /* Elevation. */
+  --sv-shadow-lg: 0 12px 24px rgba(11,23,51,0.10), 0 4px 8px rgba(11,23,51,0.05); /* Elevation. */
+  --sv-focus-ring: 0 0 0 4px rgba(37,124,255,0.24); /* Elevation. */
+}
+[data-theme="dark"] {
+  --sv-success: #3ccb7f;
+  --sv-success-fill: #112a1d;
+  --sv-success-text: #6fe0a0;
+  --sv-warning: #fb9a3e;
+  --sv-warning-fill: #33240f;
+  --sv-warning-text: #f7c088;
+  --sv-error: #f97066;
+  --sv-error-fill: #3a1715;
+  --sv-error-text: #fda29b;
+  --sv-info: #5e9dff;
+  --sv-info-fill: #16233c;
+  --sv-info-text: #9bc2ff;
+  --sv-bg-app: var(--sv-surface-canvas);
+  --sv-bg-surface: var(--sv-surface);
+  --sv-overlay: var(--sv-scrim);
+  --sv-fg-primary: var(--sv-text-primary);
+  --sv-fg-secondary: var(--sv-text-secondary);
+  --sv-fg-tertiary: var(--sv-text-muted);
+  --sv-fg-disabled: var(--sv-text-disabled);
+  --sv-fg-inverse: var(--sv-text-inverse);
+  --sv-fg-link: var(--sv-accent-text);
+  --sv-border: var(--sv-border-default);
+  --sv-border-strong: var(--sv-dgrey-600);
+  --sv-border-focus: #6ba6ff;
+  --sv-surface-canvas: var(--sv-dgrey-900);
+  --sv-surface: var(--sv-dgrey-850);
+  --sv-surface-raised: var(--sv-dgrey-800);
+  --sv-surface-overlay: var(--sv-dgrey-750);
+  --sv-surface-sunken: var(--sv-dgrey-950);
+  --sv-surface-hover: var(--sv-dgrey-650);
+  --sv-surface-selected: #1c2a44;
+  --sv-surface-nav-selected: var(--sv-dgrey-750);
+  --sv-surface-inverse: var(--sv-dgrey-750);
+  --sv-text-on-inverse: var(--sv-dgrey-100);
+  --sv-text-strong: var(--sv-dgrey-100);
+  --sv-text-primary: var(--sv-dgrey-100);
+  --sv-text-secondary: var(--sv-dgrey-300);
+  --sv-text-muted: var(--sv-dgrey-400);
+  --sv-text-disabled: var(--sv-dgrey-500);
+  --sv-text-inverse: var(--sv-dgrey-900);
+  --sv-text-on-accent: #0a1b33;
+  --sv-border-subtle: var(--sv-dgrey-700);
+  --sv-border-default: var(--sv-dgrey-700);
+  --sv-accent: #4b96ff;
+  --sv-accent-hover: #6ba6ff;
+  --sv-accent-active: #82baff;
+  --sv-accent-text: #8fbeff;
+  --sv-accent-subtle: #1c2a44;
+  --sv-accent-subtle-text: #b9d4ff;
+  --sv-accent-on-solid: #0a1b33;
+  --sv-success-border: #1f5b3c;
+  --sv-warning-border: #6b4a18;
+  --sv-danger: #f97066;
+  --sv-danger-fill: #3a1715;
+  --sv-danger-text: #fda29b;
+  --sv-danger-border: #7a2e28;
+  --sv-danger-hover: #fda29b;
+  --sv-error-border: #7a2e28;
+  --sv-info-border: #2a4576;
+  --sv-elev-0-bg: var(--sv-surface);
+  --sv-elev-0-border: var(--sv-border-subtle);
+  --sv-elev-1-bg: var(--sv-surface-raised);
+  --sv-elev-1-border: var(--sv-border-default);
+  --sv-elev-2-bg: var(--sv-surface-overlay);
+  --sv-elev-2-border: var(--sv-border-strong);
+  --sv-elev-3-bg: var(--sv-dgrey-750);
+  --sv-elev-3-border: var(--sv-border-strong);
+  --sv-cat-blue-fill: #1e2a44;
+  --sv-cat-blue-text: #a9ccff;
+  --sv-cat-blue-accent: #5e9dff;
+  --sv-cat-teal-fill: #123430;
+  --sv-cat-teal-text: #79e3cf;
+  --sv-cat-teal-accent: #34c7ad;
+  --sv-cat-violet-fill: #281c46;
+  --sv-cat-violet-text: #c4b3fb;
+  --sv-cat-violet-accent: #9b7df5;
+  --sv-cat-pink-fill: #3a1a30;
+  --sv-cat-pink-text: #f3a6d6;
+  --sv-cat-pink-accent: #e86fbf;
+  --sv-cat-cyan-fill: #0f3242;
+  --sv-cat-cyan-text: #7cdbf2;
+  --sv-cat-cyan-accent: #38c4e0;
+  --sv-cat-amber-fill: #33290f;
+  --sv-cat-amber-text: #f0d48a;
+  --sv-cat-amber-accent: #e5c158;
+  --sv-cat-grey-fill: #262a31;
+  --sv-cat-grey-text: #c2c8d2;
+  --sv-cat-grey-accent: #9aa4b2;
+  --sv-scrim: rgba(0,0,0,0.66);
+  --sv-focus-ring: 0 0 0 4px rgba(107,166,255,0.40);
+}
+:root {
+  --sv-space-1: 4px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-2: 8px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-3: 12px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-4: 16px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-5: 20px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-6: 24px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-8: 32px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-10: 40px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-12: 48px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-16: 64px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-20: 80px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-24: 96px; /* Spacing (4px base; scale follows Figma). */
+  --sv-space-32: 128px; /* Spacing (4px base; scale follows Figma). */
+  --sv-radius-xs: 4px; /* Radii. */
+  --sv-radius-sm: 6px; /* Radii. */
+  --sv-radius-md: 8px; /* Radii. */
+  --sv-radius-lg: 12px; /* Radii. */
+  --sv-radius-xl: 16px; /* Radii. */
+  --sv-radius-pill: 9999px; /* Radii. */
+  --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --text-sv-display-l: 700 48px/56px var(--font-display); /* Page title on public and marketing pages (What's New, release notes). One per page. Steps down to 36/44 below 760px. Never inside product screens. */
+  --text-sv-display-m: 700 40px/48px var(--font-display); /* Article title on public pages. Steps down to 30/38 below 760px. */
+  --text-sv-display-s: 700 28px/36px var(--font-display); /* Entry and card titles in a feed on public pages. Steps down to 22/30 below 760px. */
+  --text-sv-h1: 600 30px/38px var(--font-ui); /* h1 and .sv-h1. */
+  --text-sv-h2: 600 24px/32px var(--font-ui); /* h2 and .sv-h2. */
+  --text-sv-h3: 500 20px/28px var(--font-ui); /* h3 and .sv-h3. */
+  --text-sv-h4: 600 16px/24px var(--font-ui); /* h4 and .sv-h4. */
+  --text-sv-body: 400 14px/20px var(--font-ui); /* p, .sv-body and the page default (html, body). */
+  --text-sv-body2: 500 12px/16px var(--font-ui); /* .sv-body2. */
+  --text-sv-caption: 600 10px/14px var(--font-ui); /* .sv-caption. */
+  --text-sv-dense: 400 13px/18px var(--font-ui); /* Data-dense text: table body, toast timestamps. */
+  --text-sv-micro: 400 11px/14px var(--font-ui); /* Badges, kbd chips, menu badges, uppercase eyebrows. */
+  --text-sv-body-l: 400 16px/24px var(--font-ui); /* Reading text in articles and release notes, and their lead paragraph. Product screens stay on sv-body 14/20. */
+  --text-sv-prose-h3: 600 22px/30px var(--font-ui); /* Section heading inside an article, above sv-body-l. Steps down to 20/28 below 760px. */
+}
+.sv-display-l {
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.sv-display-m {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.sv-display-s {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.sv-h1 {
+  font-family: var(--font-ui);
+  font-size: 30px;
+  line-height: 38px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.sv-h2 {
+  font-family: var(--font-ui);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.sv-h3 {
+  font-family: var(--font-ui);
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.sv-h4 {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.sv-body {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.sv-body2 {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.sv-caption {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+}
+.sv-dense {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.sv-micro {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.sv-body-l {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.sv-prose-h3 {
+  font-family: var(--font-ui);
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter_18pt-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("fonts/Inter_28pt-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
