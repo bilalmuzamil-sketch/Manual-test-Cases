@@ -59,3 +59,11 @@ Production v26.45.2-198e632 used as the before.
 - Safari / Firefox: not available in this environment (only Chromium installed) - asked the QA lead.
 - Clean-up: production "Assigned to me" chip was toggled by the probe and switched back (filters {"assigned_to_me":[]}); staging filters cleared.
 Exhibit: ev/jira/sv12214-r3-panels-before-after.png
+
+## Staging 3-browser re-walk — 9 Nov 2026 (v26.45.2-8a3ce52, last-modified Sat 07 Nov 2026 12:46:55 GMT)
+QA lead (9 Nov): test on staging in Chrome AND other browsers; send the two unmarked popups to Stefan as a question (separate comments: passed first, question after).
+Chrome / Firefox 1543 / WebKit 2359 (Playwright 1.63, /tmp/pw-extra). walk1, walk2, b5, s4b, roles, womenus2 per engine (logs /tmp/s12214-all.log, /tmp/s12214-w2.log; ev/staging-{,firefox-,webkit-}*).
+- First run: walk1 died at filter_chip_status and T2/B2/B5 measured nothing — the admin's saved list pref had "Assigned to me" + "From maintenance" on Completed (left by my own roles.mjs chip clicks). Saved pref to ev/staging-pref-before-2026-11-09.json, cleared with clearf.mjs, re-ran; left cleared (not restored: the saved state was my own residue).
+- All 14 rows PASS in all three engines. WebKit Shift+wheel does not scroll the board sideways — same on PRODUCTION WebKit (afterWheel sl 0), so not from the upgrade; scrollLeft change works.
+- Module switcher + profile menu: role null/no name on staging in all 3 engines; production role="menu".
+Posted 9 Nov: **80478** WHAT PASSED (14 rows × 3 browsers, picture jira9/01-staging-three-browsers.png; edited 04:29 CST to make row-7 note exact) then **80479** PARTIALLY PASSED question to Stefan (A leave / B separate ticket / C fix here; asked him to move to QA Complete for A or B; picture jira9/02-module-profile-marking-prod-vs-staging.png). Status left TESTING STAGE as the QA lead asked Stefan to move it.

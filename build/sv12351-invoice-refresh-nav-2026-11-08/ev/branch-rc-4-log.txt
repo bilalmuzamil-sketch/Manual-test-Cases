@@ -1,0 +1,17 @@
+marker {"version":"v26.45.2-9444adc","lastModified":"Sat, 07 Nov 2026 22:21:53 GMT","etag":"W/\"3064d85480b4e44245e248698da97b79\""}
+0.37 REQ POST /api/user/recent-entities/touch
+3.54 RES 204 POST /api/user/recent-entities/touch
+12.31 REQ GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/settings/view
+12.31 REQ GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/details?includeDeclined=0
+12.75 RES 200 GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/settings/view
+12.98 RES 200 GET /api/invoices/4b168567-78b5-42a1-9602-968ade61f480/details?includeDeclined=0
+12.98 REQ POST /api/work-orders/invoices/estimate
+13.43 RES 200 POST /api/work-orders/invoices/estimate
+--- create
+18.03 REQ POST /api/invoices/create
+18.83 RES 201 POST /api/invoices/create
+18.83 REQ GET /api/invoices/6bf57698-dd09-462c-88c8-44b634dbc65d/view
+19.06 RES 200 GET /api/invoices/6bf57698-dd09-462c-88c8-44b634dbc65d/view
+19.27 REQ GET /api/invoices/preview?invoice_id=6bf57698-dd09-462c-88c8-44b634dbc65d&type=html&isEstimate=0&includeDeclined=0
+19.88 RES 200 GET /api/invoices/preview?invoice_id=6bf57698-dd09-462c-88c8-44b634dbc65d&type=html&isEstimate=0&includeDeclined=0
+dialog ["New Customer Payment close event Payment Date Payment Method arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment S12351-16271 Nov 12, 2026 Nov 12, 2026 $283.77 S12351-15597 Today Today $633.50 $ Amount to credit: $ Payment amount: $633.50 Make Payment Send to Terminal || TIDS title_new_payment,button_close_payment_dialog,section_new_payment_form,date_icon_,date_input_,select_payment_method,input_reference_number,input_memo,table_transactions,checkbox_select_transaction_ed8ca8f0-b4ee-4bc8-9f31-778680576ed2,button_invoice_link_ed8ca8f0-b4ee-4bc8-9f31-778680576ed2,checkbox_select_transaction_543fb89d-f570-43a3-ad0e-f370bb7dd750,button_invoice_link_543fb89d-f570-43a3-ad0e-f370bb7dd750,input_payment_amount,input_manually_entered_credit,text_payment_amount,button_make_payment,button_send_to_terminal"]
