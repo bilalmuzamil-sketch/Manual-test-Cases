@@ -1,0 +1,13 @@
+0.13 marker {"version":"v26.45.2-9444adc","lastModified":"Sun, 08 Nov 2026 00:53:07 GMT","etag":"W/\"d5cb5f8938b5dff21f93774e7a420482\""}
+12.39 button before: {"txt":"Stop","aria":null,"cls":"q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--rectangle bg-negative text-white q-btn--actionable q","dis":null}
+13.16 clicked Stop (opens window)
+16.59 now clicking Clock Out
+16.61 click 1
+16.61 REQ POST /api/technician-tasks/check-out {"task_id":"3617dbef-4bde-4b1a-a3f4-e878460dde31","tech_story":"ZZAUTOTEST SV12353 story","complete_line":false,"work_order_id":"e4215cb8-1388-4db9-b69d-fc5b93c0a121"}
+16.76 DIALOG Stop working on S2-15658, Sublet - Tow - Tow unit close Line Completed? What Have You Been Doing On This Line? AI SHOPCOACH IMPROVE STORY Or, If you wish to fin
+17.15 RES 201 /api/technician-tasks/check-out {"data":{"work_order_id":"e4215cb8-1388-4db9-b69d-fc5b93c0a121","technician_task_record_id":"3617dbef-4bde-4b1a-a3f4-e878460dde31","line_id":"241ddef4-121d-49dd-944b-93a6e0d9751c","action":"clock_out"
+17.23 TOAST check_circle Timesheet clocked out Close
+17.53 DIALOG (none)
+23.05 button after: {"txt":"Start","aria":null,"cls":"q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--rectangle bg-positive text-white q-btn--actionable q","dis":null}
+23.05 uncaught promise rejections: []
+23.18 current task: {"status":404,"json":{"errors":[{"error":"'resource' was not found."}]}}

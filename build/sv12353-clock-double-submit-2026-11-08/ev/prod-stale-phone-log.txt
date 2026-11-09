@@ -1,0 +1,15 @@
+0.12 marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+6.51 tab 1 open, line B button: Start
+6.51 TAB1 REQ POST /api/technician-tasks/check-in
+6.75 other device clocks into line A (same user, sent outside this tab): HTTP 201
+6.75 TAB1 RES 201 /api/technician-tasks/check-in {"data":{"id":"9fbf7854-a443-4e60-abb4-e58cff817fae","workOrderId":"ac5def2e-f38c-400a-acba-465f8552ebea"}}
+7.25 tab 1 line B still shows: Start
+7.40 tab 1: Start on line B
+7.41 TAB1 REQ POST /api/technician-tasks/check-in
+7.53 PAGEERROR Request failed with status code 400
+7.53 TAB1 RES 400 /api/technician-tasks/check-in {"errors":[{"error":"You are already clocked into different line."}]}
+7.56 TOAST warning You are already clocked into different line. Please try to resolve this. Close
+7.56 DIALOG (none)
+13.67 toast elements on screen now: 0
+13.67 tab 1 line B button after: Start disabled=false
+13.68 uncaught promise rejections: ["Request failed with status code 400"]

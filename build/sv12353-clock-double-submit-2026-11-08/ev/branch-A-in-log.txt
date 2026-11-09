@@ -1,0 +1,10 @@
+0.13 marker {"version":"v26.45.2-9444adc","lastModified":"Sun, 08 Nov 2026 00:53:07 GMT","etag":"W/\"d5cb5f8938b5dff21f93774e7a420482\""}
+12.01 button before: {"txt":"Start","aria":null,"cls":"q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--rectangle bg-positive text-white q-btn--actionable q","dis":null}
+12.91 click 1
+12.91 REQ POST /api/technician-tasks/check-in {"task_id":"d969ac8e-99f9-44af-9040-567446dd7020","line_id":"241ddef4-121d-49dd-944b-93a6e0d9751c","work_order_id":"e4215cb8-1388-4db9-b69d-fc5b93c0a121","refresh_lines":true}
+13.23 RES 201 /api/technician-tasks/check-in {"data":{"id":"fd0085a5-9f68-4086-bac7-6cf42593352d","workOrderId":"e4215cb8-1388-4db9-b69d-fc5b93c0a121"}}
+17.85 REQ POST /g/collect 
+17.90 RES 204 /g/collect 
+19.64 button after: {"txt":"Stop","aria":null,"cls":"q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--rectangle bg-negative text-white q-btn--actionable q","dis":null}
+19.64 uncaught promise rejections: []
+19.75 current task: {"status":404,"json":{"errors":[{"error":"'resource' was not found."}]}}

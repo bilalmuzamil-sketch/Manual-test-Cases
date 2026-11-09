@@ -1,0 +1,11 @@
+0.12 marker {"version":"v26.45.2-9444adc","lastModified":"Sun, 08 Nov 2026 00:53:07 GMT","etag":"W/\"d5cb5f8938b5dff21f93774e7a420482\""}
+11.41 button before: {"txt":"Start","aria":null,"cls":"q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--rectangle bg-positive text-white q-btn--actionable q","dis":null}
+12.03 click 1
+12.03 REQ POST /api/technician-tasks/check-in {"task_id":"25986816-de1f-413b-b5ea-722f296ef37d","line_id":"75fb9874-e7f9-43ed-a3d4-b8ea4e2e97a3","work_order_id":"e4215cb8-1388-4db9-b69d-fc5b93c0a121","refresh_lines":true}
+12.14 click 2
+12.26 RES 201 /api/technician-tasks/check-in {"data":{"id":"64535c3f-0dfb-4d85-8844-15821cf9e495","workOrderId":"e4215cb8-1388-4db9-b69d-fc5b93c0a121"}}
+17.00 REQ POST /g/collect 
+17.05 RES 204 /g/collect 
+18.40 button after: {"txt":"Stop","aria":null,"cls":"q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--rectangle bg-negative text-white q-btn--actionable q","dis":null}
+18.40 uncaught promise rejections: []
+18.52 current task: {"status":404,"json":{"errors":[{"error":"'resource' was not found."}]}}

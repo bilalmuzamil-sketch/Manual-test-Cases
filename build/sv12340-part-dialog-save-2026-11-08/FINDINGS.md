@@ -22,5 +22,18 @@ Summary: on production the dialogs already wait for the save before closing (row
 uncaught error on every rejected save (rows 2, 3, 6, 7) — 4 of 4.
 Logs: ev/prod-*-log.txt.
 
-## Branch AFTER
-Waiting for fresh `.qa.shopview.com` cookies.
+## Branch AFTER — sv12340 v26.45.2-8a3ce52 (last-modified Sat 07 Nov 2026 14:34:38 GMT), 9 Nov 2026
+S2-15658 (part 84-2005 CONNECTOR, bin A2CD), edit part GREASETUBE 9f2ec1aa, part sale P2-246 (196d3947). Log /tmp/s12340-branch.log -> ev/branch-*-log.txt.
+| # | Row | Result |
+|---|---|---|
+| 1 | WO Save Part, held 5 s | waited (loading), closed after real 201, part added | 
+| 2 | WO Save Part, test 400 | open, draft kept, toast once, 0 uncaught, nothing added |
+| 3 | WO edit Save Part, test 400 | open, price 181 kept, 0 uncaught |
+| 4 | PS Save & Add Part, held | waited, form cleared for next part, added |
+| 5 | PS Save & Close, held | waited, closed, added |
+| 6/7 | PS Save & Add / Save & Close, test 400 | open, kept, toast, 0 uncaught |
+| 8 | Bin Amount blank | "Amount must be greater than or equal to 0", 0 save requests (production same) |
+| 9 | test 500 HTML | "Ooooops! An error occurred", kept, 0 uncaught (production: uncaught "status code 500") |
+| 10 | Edit real save (182) | closed after 200 |
+Sell price blank: saves with "Sell price is lower than part cost" on both builds (unchanged).
+Posted comment **80473** PASSED (10 rows, picture ev/jira/01-refused-save-prod-vs-branch.png, test-only technique disclosed). Gate: marker last-modified unchanged; ticket TESTING QA 0 comments. QAcomplete + QA assignee Bilal + QA Complete.

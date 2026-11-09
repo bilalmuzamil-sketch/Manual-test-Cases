@@ -15,7 +15,7 @@ L('button before: '+JSON.stringify(await st()));
 await p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.scrollIntoView({block:'center'}),tid); await p.waitForTimeout(400);
 let b=await s.box(tid); await p.screenshot({path:`../ev/${TAG}-1-before.png`});
 if(process.env.CLOCKOUT==='1'){ await p.mouse.click(b.x,b.y); L('clicked Stop (opens window)'); await p.waitForTimeout(2500);
-  const ta=p.locator('.q-dialog [data-test-id="input_tech_story"]').first(); await ta.click(); await p.keyboard.press('Control+A'); await p.keyboard.type('ZZAUTOTEST SV12353 story'); await p.waitForTimeout(500);
+  const ta=p.locator('.q-dialog [data-test-id="input_tech_story"]').first(); await ta.click(); await p.keyboard.press('Control+A'); if(process.env.NOSTORY) await p.keyboard.press('Delete'); else await p.keyboard.type('ZZAUTOTEST SV12353 story'); await p.waitForTimeout(500);
   b=await s.box('button_clock_out'); await p.screenshot({path:`../ev/${TAG}-1b-window.png`}); L('now clicking Clock Out'); }
 for(let i=0;i<CLICKS;i++){ if(process.env.DEVICE) await p.touchscreen.tap(b.x,b.y); else await p.mouse.click(b.x,b.y); L(`click ${i+1}`); if(i<CLICKS-1) await p.waitForTimeout(GAP); }
 const toasts=new Set(); let lastDlg='';
