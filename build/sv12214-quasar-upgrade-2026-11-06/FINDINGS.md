@@ -67,3 +67,5 @@ Chrome / Firefox 1543 / WebKit 2359 (Playwright 1.63, /tmp/pw-extra). walk1, wal
 - All 14 rows PASS in all three engines. WebKit Shift+wheel does not scroll the board sideways — same on PRODUCTION WebKit (afterWheel sl 0), so not from the upgrade; scrollLeft change works.
 - Module switcher + profile menu: role null/no name on staging in all 3 engines; production role="menu".
 Posted 9 Nov: **80478** WHAT PASSED (14 rows × 3 browsers, picture jira9/01-staging-three-browsers.png; edited 04:29 CST to make row-7 note exact) then **80479** PARTIALLY PASSED question to Stefan (A leave / B separate ticket / C fix here; asked him to move to QA Complete for A or B; picture jira9/02-module-profile-marking-prod-vs-staging.png). Status left TESTING STAGE as the QA lead asked Stefan to move it.
+
+9 Nov 04:41 CST: 80479 edited to add code references (QA lead: "They should have the reference from the code"): ModuleSelector.vue L34-41 (q-menu no role/label) + L22 (aria-haspopup="menu"); ProfileMenu.vue L60-61 (q-menu/q-list no role); neither touched by PR #4183 or #4214, last changed 28 Oct #3971; develop 733f03c6. Rule 124 added.

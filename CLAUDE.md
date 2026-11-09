@@ -5790,6 +5790,16 @@ deliver the 7-tab management report.
     mention this rule or its source in a ticket.** This narrows Rule 109(b) and Rule 99's "PO updated the spec" path to features
     not yet shipped. Earned on SV-12277 (comment 80377 asked Chris to edit Dashboard PRD S12-R2; Dashboard is live, PRD frozen).
 
+124. **WHEN AN ISSUE IS IN THE CODE, THE COMMENT OR TICKET GIVES THE CODE REFERENCE (all projects).**
+    USER DIRECTIVE (2026-11-09, verbatim, on SV-12214): *"They should have the reference from the code if th eissue is in the code."*
+    Whenever a finding we report to a developer (failed item, question, follow-up ticket) comes from a specific place in the code,
+    the report names it: the **file path + line numbers as a GitHub permalink pinned to a commit** (`blob/<full sha>/<path>#Lx-Ly`),
+    one plain line saying what is wrong at that spot, and **which PR changed it or did NOT change it** (so the developer sees why).
+    Find it in `ShopView/shopview` (attached repo; blobless clone + `git log -- <file>`, PR file lists via the GitHub MCP). Code
+    references are developer pointers, so they are allowed even without a technical section (Rule 84) but stay short — the plain
+    description, picture and steps still come first. Never guess a line: read the file at that commit. First applied: SV-12214
+    comment 80479 (ModuleSelector.vue L34-41/L22, ProfileMenu.vue L60-61, untouched by PRs #4183/#4214).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
