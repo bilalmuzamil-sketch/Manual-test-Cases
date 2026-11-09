@@ -69,3 +69,13 @@ Chrome / Firefox 1543 / WebKit 2359 (Playwright 1.63, /tmp/pw-extra). walk1, wal
 Posted 9 Nov: **80478** WHAT PASSED (14 rows × 3 browsers, picture jira9/01-staging-three-browsers.png; edited 04:29 CST to make row-7 note exact) then **80479** PARTIALLY PASSED question to Stefan (A leave / B separate ticket / C fix here; asked him to move to QA Complete for A or B; picture jira9/02-module-profile-marking-prod-vs-staging.png). Status left TESTING STAGE as the QA lead asked Stefan to move it.
 
 9 Nov 04:41 CST: 80479 edited to add code references (QA lead: "They should have the reference from the code"): ModuleSelector.vue L34-41 (q-menu no role/label) + L22 (aria-haspopup="menu"); ProfileMenu.vue L60-61 (q-menu/q-list no role); neither touched by PR #4183 or #4214, last changed 28 Oct #3971; develop 733f03c6. Rule 124 added.
+
+## Stefan's fix da82465a (PR #4242) - PASSED on staging c157d82, 9 Nov 2026
+- Stefan 80493 (07:22 CST): fixed, deploying. Code: ModuleSelector.vue q-menu role="dialog" aria-label="Switch module", trigger aria-haspopup="dialog"; ProfileMenu.vue q-menu role="dialog" aria-label="Profile and settings", button aria-haspopup="dialog". Verified da82465a is an ancestor of c157d82 (merge of PR #4242).
+- Staging deployed 12:31:28 UTC (06:31 CST), marker v26.45.2-c157d82 (re-read just before posting).
+- Production before (v26.45.2-132dcb4, chromium): both role="menu", no aria-label; module trigger aria-haspopup="menu", Profile button none.
+- Staging after, chromium / firefox / webkit (scripts/nav.mjs, ev/staging*-r4-nav.json): module switcher role=dialog "Switch module", trigger haspopup=dialog; profile menu role=dialog "Profile and settings", button haspopup=dialog; both on screen, same entries (staging org has no PeopleHub module - org setting, production test org has it), Esc closes both, Settings item -> /administration/locations.
+- Regression (scripts/roles.mjs, 3 engines): five panels still named dialogs; Density / Card size still role=menu with menuitems.
+- Console: WebKit run showed view-profile "access control checks", Sentry ingest and ResizeObserver messages. Re-run with step tags (scripts/werr.mjs, 2 runs x staging/prod, WebKit): all occur at page LOAD, intermittently, on production too (view-profile cancelled + Sentry on prod run2; ResizeObserver staging run1 only); none while opening/using the popups. Bucket (c): explained, not from the fix. Comment row 7 scoped to "while opening and using the two popups".
+- Posted 80496 OVERALL QA STATUS: PASSED (exhibit ev/jira/03-module-profile-named-prod-vs-staging.png, attachment, comparison-only label). Label QAcomplete; no QA Complete transition from TESTING STAGE -> Ready for Production (id 5). QA Assignee already Bilal.
+- Learning check: nothing new.
