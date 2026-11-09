@@ -1,0 +1,25 @@
+marker {"version":"v26.45.2-8a3ce52","lastModified":"Sat, 07 Nov 2026 19:15:02 GMT","etag":"W/\"87a1077f09d380d51e4caeb421db3673\""}
+A nonexistent bin id: HTTP 400 {"errors":[{"error":"Bin location not found."}]}
+   part requests before 30 after 30 new=[]
+   stock before {"status":200,"q":14,"bins":["A2CD:14"]}
+   stock after  {"status":200,"q":14,"bins":["A2CD:14"]}
+B bin total 1 vs quantity 2: HTTP 400 {"errors":[{"error":"Bin quantities must match the requested quantity."}]}
+   part requests before 30 after 30 new=[]
+   stock before {"status":200,"q":14,"bins":["A2CD:14"]}
+   stock after  {"status":200,"q":14,"bins":["A2CD:14"]}
+C bin quantity 0: HTTP 400 {"errors":[{"error":"Bin quantities must match the requested quantity."}]}
+   part requests before 30 after 30 new=[]
+   stock before {"status":200,"q":14,"bins":["A2CD:14"]}
+   stock after  {"status":200,"q":14,"bins":["A2CD:14"]}
+D more than the bin holds: HTTP 201 {"data":{"id":"9e774609-a8c3-48ee-839a-6134b7a06c3d","part_request":{"id":"9e774609-a8c3-48ee-839a-6134b7a06c3d","work_order_id":"e4215cb8-1388-4db9-b69d-fc5b93c0a121","description":"CONNECTOR","line_id":"75fb9874-e7f9-4
+   part requests before 30 after 31 new=["9e774609-a8c3-48ee-839a-6134b7a06c3d"]
+   stock before {"status":200,"q":14,"bins":["A2CD:14"]}
+   stock after  {"status":200,"q":14,"bins":["A2CD:14"]}
+A again (resubmit): HTTP 400 {"errors":[{"error":"Bin location not found."}]}
+   part requests before 31 after 31 new=[]
+   stock before {"status":200,"q":14,"bins":["A2CD:14"]}
+   stock after  {"status":200,"q":14,"bins":["A2CD:14"]}
+V valid: 1 from the bin: HTTP 201 {"data":{"id":"e30a8cf5-402a-41c3-8b0b-a62c5a841c7b","part_request":{"id":"e30a8cf5-402a-41c3-8b0b-a62c5a841c7b","work_order_id":"e4215cb8-1388-4db9-b69d-fc5b93c0a121","description":"CONNECTOR","line_id":"75fb9874-e7f9-4
+   part requests before 31 after 32 new=["e30a8cf5-402a-41c3-8b0b-a62c5a841c7b"]
+   stock before {"status":200,"q":14,"bins":["A2CD:14"]}
+   stock after  {"status":200,"q":14,"bins":["A2CD:14"]}

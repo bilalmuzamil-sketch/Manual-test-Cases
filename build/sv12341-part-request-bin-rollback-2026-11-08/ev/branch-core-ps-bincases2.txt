@@ -1,0 +1,9 @@
+marker {"version":"v26.45.2-8a3ce52","lastModified":"Sat, 07 Nov 2026 19:15:02 GMT","etag":"W/\"87a1077f09d380d51e4caeb421db3673\""}
+G1 cored part, rejected (missing bin): HTTP 400 [{"error":"Bin location not found."}]
+   requests 34->34 new=0 | line authorized->authorized | stock 0 [Unassigned:0] -> 0 [Unassigned:0]
+G2 cored part, valid: HTTP 201 "27663edc-a208-4990-b600-85d21451615a"
+   requests 34->35 new=1 | line authorized->authorized | stock 0 [Unassigned:0] -> 0 [Unassigned:0]
+H1 part sale, rejected (missing bin): HTTP 400 [{"error":"Bin location not found."}]
+   requests 1->1 new=0 | line authorization_required->authorization_required | stock 13 [A2CD:13] -> 13 [A2CD:13]
+H2 part sale, valid: HTTP 201 "d7844bf6-3f89-4a44-980f-0e4b1d8de675"
+   requests 1->2 new=1 | line authorization_required->authorization_required | stock 13 [A2CD:13] -> 13 [A2CD:13]

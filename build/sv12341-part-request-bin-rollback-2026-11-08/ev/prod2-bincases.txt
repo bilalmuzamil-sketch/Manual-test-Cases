@@ -1,0 +1,25 @@
+marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+A nonexistent bin id: HTTP 400 {"errors":[{"error":"Bin location not found."}]}
+   part requests before 7 after 8 new=["5c315c98-c0e3-4a69-bb71-59a8e52f9f21"]
+   stock before {"status":200,"q":4,"bins":["General Storage:4"]}
+   stock after  {"status":200,"q":4,"bins":["General Storage:4"]}
+B bin total 1 vs quantity 2: HTTP 400 {"errors":[{"error":"Bin quantities must match the requested quantity."}]}
+   part requests before 8 after 9 new=["1dffdebb-6fac-4e88-a23f-f6070bb96340"]
+   stock before {"status":200,"q":4,"bins":["General Storage:4"]}
+   stock after  {"status":200,"q":4,"bins":["General Storage:4"]}
+C bin quantity 0: HTTP 400 {"errors":[{"error":"Bin quantities must match the requested quantity."}]}
+   part requests before 9 after 10 new=["4dccea57-ab5d-4ec2-a0e6-46a83027ad81"]
+   stock before {"status":200,"q":4,"bins":["General Storage:4"]}
+   stock after  {"status":200,"q":4,"bins":["General Storage:4"]}
+D more than the bin holds: HTTP 201 {"data":{"id":"869d2e4d-5781-4361-ae51-626cdf664dd4","part_request":{"id":"869d2e4d-5781-4361-ae51-626cdf664dd4","work_order_id":"3024331e-319b-482c-a636-3ae78143b702","description":"TESTB","line_id":"1ecdd840-1a8c-469d-
+   part requests before 10 after 11 new=["869d2e4d-5781-4361-ae51-626cdf664dd4"]
+   stock before {"status":200,"q":4,"bins":["General Storage:4"]}
+   stock after  {"status":200,"q":4,"bins":["General Storage:4"]}
+A again (resubmit): HTTP 400 {"errors":[{"error":"Bin location not found."}]}
+   part requests before 11 after 12 new=["a4cc1efb-1e16-4618-b913-4eb87c67ad5f"]
+   stock before {"status":200,"q":4,"bins":["General Storage:4"]}
+   stock after  {"status":200,"q":4,"bins":["General Storage:4"]}
+V valid: 1 from the bin: HTTP 201 {"data":{"id":"6f6eb489-f66f-47bc-ae31-39ab186223e9","part_request":{"id":"6f6eb489-f66f-47bc-ae31-39ab186223e9","work_order_id":"3024331e-319b-482c-a636-3ae78143b702","description":"TESTB","line_id":"1ecdd840-1a8c-469d-
+   part requests before 12 after 13 new=["6f6eb489-f66f-47bc-ae31-39ab186223e9"]
+   stock before {"status":200,"q":4,"bins":["General Storage:4"]}
+   stock after  {"status":200,"q":4,"bins":["General Storage:4"]}

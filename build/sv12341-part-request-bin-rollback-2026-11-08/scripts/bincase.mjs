@@ -4,13 +4,16 @@ const WO=process.env.WO, LINE=process.env.LINE, INV=process.env.INV, BIN=process
 const s=await sess(); const out=[]; const L=x=>{out.push(x); console.log(x);};
 L('marker '+JSON.stringify(await s.marker()));
 const reqs=async()=>{ const r=await s.api(`/api/work-orders/lines/${WO}`); const ids=[]; for(const l of (r.json?.data?.collection||[])) for(const q of (l.part_requests||[])) ids.push(q.id); return ids.sort(); };
-const stock=async()=>{ const r=await s.api(`/api/inventory/parts/${INV}`); const d=r.json?.data||{}; return JSON.stringify({status:r.status, q:d.quantity??d.part?.quantity, avail:d.available??d.part?.available, bins:(d.bins||d.part?.bins||[]).map(b=>`${b.name||b.binLocationName}:${b.quantity}`)}); };
+const stock=async()=>{ const r=await s.api(`/api/inventory/parts/${INV}`); const d=r.json?.data||{}; return JSON.stringify({status:r.status, q:d.quantity??d.part?.quantity, avail:d.available??d.part?.available, bins:(d.bins||d.part?.bins||d.part?.binLocations||[]).map(b=>`${b.name||b.binLocationName}:${b.quantity}`)}); };
 const mk=b=>s.api('/api/work-orders/part/make-request',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
 const base={work_order:WO,line:LINE,description:'ZZAUTOTEST SV12341',part_source_type:'inventory',inventory_part_id:INV,part_category_id:CAT,sell_price:180};
 const cases=[
  ['A nonexistent bin id', {...base,quantity:1,bins:[{id:'11111111-2222-4333-8444-555555555555',name:'Nowhere',quantity:1}]}],
- ['B bin total 1 vs quantity 2', {...base,quantity:2,bins:[{id:BIN,name:'General Storage',quantity:1}]}],
+ ['B bin total 1 vs quantity 2', {...base,quantity:2,bins:[{id:BIN,name:process.env.BINNAME||'General Storage',quantity:1}]}],
+ ['C bin quantity 0', {...base,quantity:1,bins:[{id:BIN,name:process.env.BINNAME||'General Storage',quantity:0}]}],
+ ['D more than the bin holds', {...base,quantity:999,bins:[{id:BIN,name:process.env.BINNAME||'General Storage',quantity:999}]}],
  ['A again (resubmit)', {...base,quantity:1,bins:[{id:'11111111-2222-4333-8444-555555555555',name:'Nowhere',quantity:1}]}],
+...(process.env.VALID?[['V valid: 1 from the bin', {...base,quantity:1,bins:[{id:BIN,name:process.env.BINNAME||'General Storage',quantity:1}]}]]:[]),
 ];
 for(const [name,b] of cases){
   const before=await reqs(); const st0=await stock();

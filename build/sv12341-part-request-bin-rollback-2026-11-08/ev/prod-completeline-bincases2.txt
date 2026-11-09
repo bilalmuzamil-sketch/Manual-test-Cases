@@ -1,0 +1,8 @@
+marker {"version":"v26.45.2-132dcb4","lastModified":"Sat, 07 Nov 2026 20:28:42 GMT","etag":"W/\"425e2be0eec7da87aa326179a49b9970\""}
+set line complete: HTTP 200 {"data":[]} -> complete
+E1 rejected (missing bin) on a COMPLETE line: HTTP 400 [{"error":"Bin location not found."}]
+   requests 13->14 new=1 | line complete->authorized | stock 4 [General Storage:4] -> 4 [General Storage:4]
+E2 rejected (wrong total) on a COMPLETE line: HTTP 400 [{"error":"Bin quantities must match the requested quantity."}]
+   requests 14->15 new=1 | line authorized->authorized | stock 4 [General Storage:4] -> 4 [General Storage:4]
+E3 valid on a COMPLETE line: HTTP 201 "c8fe1652-f96a-4e6f-b395-897bb01baf58"
+   requests 15->16 new=1 | line authorized->authorized | stock 4 [General Storage:4] -> 4 [General Storage:4]
