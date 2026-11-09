@@ -1595,4 +1595,6 @@ what is still owed.
 |---|---|---|
 | SV-12267 (Schedule Undo after Entire-series delete) | **CLEARED 9 Nov 2026** — QA PASSED (comment 80531), QAcomplete label, QA Complete, QA Assignee Bilal. 9 variants + 70-day series all restore every day; production still loses days in Day view | nothing |
 | SV-12279 | QA Complete (someone else) | nothing — ask withdrawn |
+| SV-12183 (staff salary limits) | BLOCKED 9 Nov 18:56 CST (comment 80537). Dialog + internal API all pass; production reproduces all 3 defects | **Dipesh owes:** (1) Open API switched on for the sv12183 org; (2) one staff with a negative hourly rate seeded. Blocks: public API check + Chris's point 4 (existing negatives) |
+| SV-12275 (Dashboard future days) | TESTING QA, QA assignee **Ayesha Khan** | **QA lead:** test it or leave to Ayesha? |
 | SV-12299 | Open; NOT reproduced on production (5 emails from the envelope, all invoices). Comment 80521 posted 9 Nov tagging Mike Freeman | **Mike Freeman / HD Force owe:** subject line + attachment name of the email the customer received for invoice 6024. Blocks: knowing which screen sent the statement; until then nothing to fix or retest |
