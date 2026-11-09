@@ -279,3 +279,13 @@ Filed under the QA lead's account by another session, not on my branch: SV-12193
 - No document says Sales By Customer should take credit memos off, so per the QA lead's 9 Nov "Ok" this is NOT raised.
 - It is already listed as open question 1 in `report-suite/ShopView-Reports-What-Every-Column-Calculates-2026-10-28.md`. That document is code-derived, not an expectation source.
 - Side finding: our local SBC copy (v20, 12 Aug) is behind the live page (v22, 19 Oct).
+
+## 9 Nov 2026 (~10:04 UTC): SV-12276 close-out corrected
+- The QA lead pointed out that the 4 Nov QA-pass procedure was not followed when SV-12276 was moved to QA Complete. That procedure is at the top of this file and in APP-ACTIONS-PLAYBOOK "Jira read-back".
+- Two steps were missed:
+  - the `QAcomplete` label;
+  - Bilal as QA Assignee. The QA lead set this by hand.
+- Corrected:
+  - Comment 80448 now opens "QA passed." (was "Retest: PASS."). The rest is unchanged, and the picture is kept.
+  - Labels set to `QA_found` + `QAcomplete`.
+- Read-back: JQL `key = SV-12276 AND labels = QAcomplete AND labels = QA_found AND cf[10385] = "<Bilal>" AND status = "QA Complete"` returns 1 hit.
