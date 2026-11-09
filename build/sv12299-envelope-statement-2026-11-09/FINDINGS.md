@@ -53,3 +53,4 @@ Learning check: nothing new for the rule book; recipe reused from playbook (prod
 - The "(1)" in the reporter's file name = a browser's second save → the file was uploaded from a computer, consistent with this path.
 - Posted ONE new complete comment 80542 (status, what is happening, 6 steps, 3 captioned pictures, ask Jordan to check WO 6024 Notes for a For-Customer statement). Read back: 3 media in order.
 - Both ways a statement reaches the customer are now reproduced: (a) customer Invoices-tab envelope (80538), (b) work-order envelope with a For-Customer statement note (80542).
+- 9 Nov 2026: comment 80538 deleted by the QA lead (the Jira connector has no delete-comment action). Ticket now: 80510, 80521, 80536, 80541, 80542 — 80542 is the single reproduction comment.
