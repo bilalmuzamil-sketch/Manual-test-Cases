@@ -8,6 +8,27 @@
 > Confluence page and case-source path — **so none of them has to be guessed.**
 
 
+## §0-SBC-SOURCE-REFRESH-2026-11-09 (LATEST) — Sales By Customer PRD moved v20 → v22; our cases are behind it
+
+- **What changed:** the live page "SBC (Sales By Customer) Report" (Confluence 577634305) is at **v22**, last changed 19 Oct 2026; read 9 Nov 2026. Our copy was **v20** (12 Aug).
+  - Snapshot: `source-refresh-2026-11-09/Sales-By-Customer-v22.md`.
+  - Diff: `source-refresh-2026-11-09/DIFF-v20-to-v22.txt`.
+- **Scope of the change:** 243 requirements in both versions, none added or removed, **32 reworded**. Two of the rewordings change behaviour:
+  1. **Story 3: "Product Type" renamed "Sales Type"** (2026-10-06, Splitting Sales Representatives PRD, epic SV-10890, Story 8).
+     - The options are now "Part Sales" / "Service Sales", under "Select all" with "Clear selection".
+     - The filter reads "Sales Type: All Sales / Part Sales / Service Sales / No sales".
+     - Export lines read "Sales Type: All Sales", "Sales Type: Part Sales only" and "Sales Type: Service Sales only"; with none selected, Export shows "Empty export".
+     - Also touches S7-N2, S7-R5, S7-R7, S8-R20, S9-R3, S18-R6 and S21-R1.
+  2. **Story 6: filters live in the page link, no longer remembered in the browser.**
+     - The date range, Sales Type, location and Customer selection are kept in the link.
+     - Opening the report from the menu, after logging in again, or on another device starts every filter on its default.
+     - Only the sort and visible columns are remembered between visits.
+     - A date range in the link is now applied (S2-R9 reversed).
+     - Also touches S2-R8, S3-R8, S4-R11, S6-N1, S6-R1–R3, S10-R4, S13-R7 and S18-R4.
+- **Credit memos:** v22 still does not mention credit memos (0 hits). It excludes only reversed and voided invoices.
+- **Not done:** our Sales By Customer TestRail cases have NOT been updated to v22.
+  - That needs a source-verification pass on this project. Ask the QA lead first (Rules 80/81).
+
 ## §0-COUNT-CORRECTION-2026-08-28 (LATEST) — the case count is **516**, not 509
 
 **Approved by the QA lead 2026-08-28.** The CLAUDE.md project index and this file both carried
