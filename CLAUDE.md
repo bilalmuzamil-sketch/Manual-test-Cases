@@ -54,6 +54,7 @@ These are stated here **in full** because a session that gets only this far must
 - **🔴 EVERY "WAITING FOR AN ANSWER" NAMES WHERE IT WAS ASKED (101).** QA lead, 2026-11-02: *"When you say waiting for the answer
   also confirm the document name too."* Give the document's full title (+ section/question, link) or the ticket key + comment id + date,
   and **re-check that place first** — an answered question is never reported as waiting.
+  **Amendment 9 Nov: ALWAYS RE-CHECK BEFORE CLAIMING ANYTHING** — every claim about a ticket, document, build or sign-in is re-checked live in the same turn (status + every comment since my last), with the check time stated; an earlier check never counts.
 - **🔴 EVERY QUESTION NAMES ITS TICKET AND MY RECOMMENDATION (102).** QA lead, 2026-11-04: *"Always mention the ticket number with
   what you are asking me and what is your recoomendation for it"*. Ticket number + link (or "no ticket yet" + the related ticket), then
   "My recommendation: …" in one plain line.
@@ -280,7 +281,7 @@ rule. Generated from the split files' own headers.
 | **98** | FOLLOW ONLY YOUR OWN RULE BOOK — FACTS MAY BE SHARED BETWEEN SESSIONS, RULES MAY NOT |
 | **99** | THE TEST MACHINE RUNS IN THE LOCATION'S OWN TIME ZONE — every check, reproduction, screenshot and defect |
 | **100** | EVERY TICKET IS WRITTEN FOR A FIRST-TIME, NON-TECHNICAL READER — short, clear, plain |
-| **101** | EVERY "WAITING FOR AN ANSWER" NAMES WHERE THE QUESTION WAS ASKED — the document's full title or the ticket comment, re-checked first |
+| **101** | EVERY "WAITING FOR AN ANSWER" NAMES WHERE THE QUESTION WAS ASKED — the document's full title or the ticket comment, re-checked first; **amended 9 Nov: re-check LIVE before claiming anything** |
 | **102** | EVERY QUESTION TO THE QA LEAD NAMES ITS TICKET (with link, or "no ticket yet" + the related one) AND CARRIES MY RECOMMENDATION |
 | **103** | EVERY NEW TICKET GETS A COMMENT TAGGING CHRIS WARD (the PO) — what happens, what should happen, fix or leave? |
 

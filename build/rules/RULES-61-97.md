@@ -2415,8 +2415,19 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     ticket's comments). A question that was answered is never reported as waiting — lesson of 2 Nov 2026: Chris had answered
     on SV-11931 (comment 79842, 29 Oct) and two reports still listed it as waiting.
     **(4)** Each waiting item states the date of that re-check.
+    **AMENDMENT 9 Nov 2026 — ALWAYS RE-CHECK BEFORE CLAIMING ANYTHING.** QA lead, verbatim: *"YOu should always recheck before
+    claiming anything, save it as your rule to recheck always."* (an explicit order to record it, which satisfies Rule 72).
+    Why: on 9 Nov I reported SV-12275, SV-12277 and SV-12278 as "waiting for Chris" from a check made on 6 Nov. Chris had
+    answered all three on 6 Nov, a tester had retested two of them, and SV-12278 was already QA Complete.
+    **(5) Every claim about a ticket or a document is re-checked LIVE, in the same turn, immediately before it is written.**
+    That covers its status, its assignee, whether anyone replied, whether it was retested, and whether it still needs us.
+    Read the ticket's current status and every comment after my last one, from anyone, not only the person asked.
+    A check from an earlier turn, an earlier day, a summary or memory never counts, however recent.
+    **(6)** The claim states the time of that re-check (e.g. *"checked 9 Nov, 08:30 UTC"*).
+    **(7)** This also covers facts about builds, branches and sign-ins: re-measure them (deployed version, cookie alive, branch
+    awake) before stating them. If a re-check cannot be made, say "not re-checked" — never repeat the old claim as current.
     **TIES:** Rules 36 (OUTSTANDING section), 48 (never "waiting on you" without context), 70 (plain, table-form), 86 (verify
-    from the record, not from memory).
+    from the record, not from memory), 12 (verified means observed).
 
 102. **EVERY QUESTION TO THE QA LEAD NAMES ITS TICKET AND CARRIES MY RECOMMENDATION (all projects, permanent).**
     **THE QA LEAD'S WORDS (2026-11-04, verbatim):** *"Always mention the ticket number with what you are asking me and what is your
