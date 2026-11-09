@@ -1,0 +1,112 @@
+{
+ "tag": "V5",
+ "view": "Day",
+ "nav": "2026-11-18",
+ "scope": "following",
+ "wo": "S12267-17584",
+ "tech": "Douglas Fields",
+ "build": "v26.45.2-3378a88",
+ "before": [
+  {
+   "id": "e364879b-49ee-440a-becd-763d42556375",
+   "s": "2026-11-17T12:00:00Z",
+   "e": "2026-11-17T20:00:00Z",
+   "m": 480,
+   "staff": "740249f3-6e80-4e64-a8af-f24bb1838f7e",
+   "series": "82ffc153-c0e9-4415-bc6f-caa40d8bb4a6",
+   "lines": 1,
+   "cov": "chosen_lines"
+  },
+  {
+   "id": "dce543f6-bcf7-4da2-86cd-f48da9158b37",
+   "s": "2026-11-18T12:00:00Z",
+   "e": "2026-11-18T20:00:00Z",
+   "m": 480,
+   "staff": "740249f3-6e80-4e64-a8af-f24bb1838f7e",
+   "series": "82ffc153-c0e9-4415-bc6f-caa40d8bb4a6",
+   "lines": 1,
+   "cov": "chosen_lines"
+  },
+  {
+   "id": "03d070f2-2d58-4531-aef4-776f10a66216",
+   "s": "2026-11-19T12:00:00Z",
+   "e": "2026-11-19T20:00:00Z",
+   "m": 480,
+   "staff": "740249f3-6e80-4e64-a8af-f24bb1838f7e",
+   "series": "82ffc153-c0e9-4415-bc6f-caa40d8bb4a6",
+   "lines": 1,
+   "cov": "chosen_lines"
+  }
+ ],
+ "blocksOnScreen": 1,
+ "blockBox": {
+  "x": 527,
+  "y": 747,
+  "width": 712,
+  "height": 80
+ },
+ "detail": [
+  "ZZAUTOTEST SV12267 V5 46676 Approved S12267-17584 · ZZV5 delete_outline close TIME LOGGED 0m logged / 2h est. SCHEDULED Wed, Nov 18, 2026 TIME – event_repeat Part of a series · Shift 2 of 3 TECHNICIAN DF Douglas Fields Work Order Lines 1 Single line · Est. 2h 1 Service - Install coupler 0h / 2h Auth"
+ ],
+ "scopeDlg": [
+  "Delete from this series? close layers Series of 3 shifts This shift is part of a series. Choose how much to remove. This shift only returns 8h This and all later shifts returns 16h Entire series (3 shifts) returns 24h Cancel || card_dialog_schedule_delete_scope,schedule_delete_scope_body,text_delete_scope_series_badge,button_delete_scope_shift,text_delete_scope_returns_shift,button_delete_scope_following,text_delete_scope_returns_following,button_delete_scope_series,text_delete_scope_returns_series"
+ ],
+ "toast": [
+  "November 2026 expand_more chevron_left chevron_right expand_less M T W T F S S 26 27 28 29 30 31 1 2 3 4 5 6 7 8 9 10 11"
+ ],
+ "undoButton": 1,
+ "afterDelete": [
+  {
+   "id": "e364879b-49ee-440a-becd-763d42556375",
+   "s": "2026-11-17T12:00:00Z",
+   "e": "2026-11-17T20:00:00Z",
+   "m": 480,
+   "staff": "740249f3-6e80-4e64-a8af-f24bb1838f7e",
+   "series": "82ffc153-c0e9-4415-bc6f-caa40d8bb4a6",
+   "lines": 1,
+   "cov": "chosen_lines"
+  }
+ ],
+ "deleteWrites": [
+  "DELETE 204 /api/schedule/shifts/dce543f6-bcf7-4da2-86cd-f48da9158b37 :: "
+ ],
+ "undoWrites": [
+  "POST 201 /api/schedule/shifts/restore :: {\"shifts\":[{\"id\":\"dce543f6-bcf7-4da2-86cd-f48da9158b37\",\"workOrderId\":\"2851d577-16ba-40fa-9946-009a3b006fdb\",\"lineIds\":[\"cb9463aa-fbd8-41ca-a9f9-192ea381774a\"],\"staffId\":\"740249f3"
+ ],
+ "restoreCount": 2,
+ "afterUndo": [
+  {
+   "id": "e364879b-49ee-440a-becd-763d42556375",
+   "s": "2026-11-17T12:00:00Z",
+   "e": "2026-11-17T20:00:00Z",
+   "m": 480,
+   "staff": "740249f3-6e80-4e64-a8af-f24bb1838f7e",
+   "series": "82ffc153-c0e9-4415-bc6f-caa40d8bb4a6",
+   "lines": 1,
+   "cov": "chosen_lines"
+  },
+  {
+   "id": "dce543f6-bcf7-4da2-86cd-f48da9158b37",
+   "s": "2026-11-18T12:00:00Z",
+   "e": "2026-11-18T20:00:00Z",
+   "m": 480,
+   "staff": "740249f3-6e80-4e64-a8af-f24bb1838f7e",
+   "series": "82ffc153-c0e9-4415-bc6f-caa40d8bb4a6",
+   "lines": 1,
+   "cov": "chosen_lines"
+  },
+  {
+   "id": "03d070f2-2d58-4531-aef4-776f10a66216",
+   "s": "2026-11-19T12:00:00Z",
+   "e": "2026-11-19T20:00:00Z",
+   "m": 480,
+   "staff": "740249f3-6e80-4e64-a8af-f24bb1838f7e",
+   "series": "82ffc153-c0e9-4415-bc6f-caa40d8bb4a6",
+   "lines": 1,
+   "cov": "chosen_lines"
+  }
+ ],
+ "missingAfterUndo": [],
+ "extraAfterUndo": [],
+ "verdict": "before 3 / afterDelete 1 / afterUndo 3 / missing 0 / extra 0"
+}

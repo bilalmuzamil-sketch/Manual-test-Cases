@@ -1,0 +1,81 @@
+{
+ "tag": "V1",
+ "view": "Week",
+ "nav": "2026-11-10",
+ "scope": "series",
+ "wo": "S12267-17580",
+ "tech": "Karen Peck",
+ "build": "v26.45.2-3378a88",
+ "before": [
+  {
+   "id": "757ce2fb-e583-4efc-afca-ba35166ca9b6",
+   "s": "2026-11-10T12:00:00Z",
+   "e": "2026-11-10T20:00:00Z",
+   "m": 480,
+   "staff": "e7651b0a-5575-4f0b-ba11-804a187d6d58",
+   "series": "b476d90b-c79c-4cb5-9244-2fc946a70537",
+   "lines": 1,
+   "cov": "chosen_lines"
+  },
+  {
+   "id": "3aa75157-ea9a-4e07-876b-f9ade6db5173",
+   "s": "2026-11-11T12:00:00Z",
+   "e": "2026-11-11T20:00:00Z",
+   "m": 480,
+   "staff": "e7651b0a-5575-4f0b-ba11-804a187d6d58",
+   "series": "b476d90b-c79c-4cb5-9244-2fc946a70537",
+   "lines": 1,
+   "cov": "chosen_lines"
+  }
+ ],
+ "blocksOnScreen": 1,
+ "blockBox": {
+  "x": 677,
+  "y": 806,
+  "width": 307,
+  "height": 86
+ },
+ "detail": [
+  "ZZAUTOTEST SV12267 V1 87087 Approved S12267-17580 · ZZV1 delete_outline close TIME LOGGED 0m logged / 2h est. SCHEDULED Tue, Nov 10, 2026 TIME – event_repeat Part of a series · Shift 1 of 2 TECHNICIAN KP Karen Peck Work Order Lines 1 Single line · Est. 2h 1 Service - Install coupler 0h / 2h Authoriz"
+ ],
+ "scopeDlg": [
+  "Delete from this series? close layers Series of 2 shifts This shift is part of a series. Choose how much to remove. This shift only returns 8h Entire series (2 shifts) returns 16h Cancel || card_dialog_schedule_delete_scope,schedule_delete_scope_body,text_delete_scope_series_badge,button_delete_scope_shift,text_delete_scope_returns_shift,button_delete_scope_series,text_delete_scope_returns_series"
+ ],
+ "toast": [
+  "November 2026 expand_more chevron_left chevron_right expand_less M T W T F S S 26 27 28 29 30 31 1 2 3 4 5 6 7 8 9 10 11"
+ ],
+ "undoButton": 1,
+ "afterDelete": [],
+ "deleteWrites": [
+  "DELETE 204 /api/schedule/shifts/757ce2fb-e583-4efc-afca-ba35166ca9b6 :: "
+ ],
+ "undoWrites": [
+  "POST 201 /api/schedule/shifts/restore :: {\"shifts\":[{\"id\":\"757ce2fb-e583-4efc-afca-ba35166ca9b6\",\"workOrderId\":\"0818b6d1-d10a-4643-8e38-d2c8e68f6abc\",\"lineIds\":[\"51044da6-0344-4a27-99db-1ca0702447b1\"],\"staffId\":\"e7651b0a"
+ ],
+ "restoreCount": 2,
+ "afterUndo": [
+  {
+   "id": "757ce2fb-e583-4efc-afca-ba35166ca9b6",
+   "s": "2026-11-10T12:00:00Z",
+   "e": "2026-11-10T20:00:00Z",
+   "m": 480,
+   "staff": "e7651b0a-5575-4f0b-ba11-804a187d6d58",
+   "series": "b476d90b-c79c-4cb5-9244-2fc946a70537",
+   "lines": 1,
+   "cov": "chosen_lines"
+  },
+  {
+   "id": "3aa75157-ea9a-4e07-876b-f9ade6db5173",
+   "s": "2026-11-11T12:00:00Z",
+   "e": "2026-11-11T20:00:00Z",
+   "m": 480,
+   "staff": "e7651b0a-5575-4f0b-ba11-804a187d6d58",
+   "series": "b476d90b-c79c-4cb5-9244-2fc946a70537",
+   "lines": 1,
+   "cov": "chosen_lines"
+  }
+ ],
+ "missingAfterUndo": [],
+ "extraAfterUndo": [],
+ "verdict": "before 2 / afterDelete 0 / afterUndo 2 / missing 0 / extra 0"
+}

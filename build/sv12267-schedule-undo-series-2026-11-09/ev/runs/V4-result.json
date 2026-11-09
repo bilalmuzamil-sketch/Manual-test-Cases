@@ -1,0 +1,81 @@
+{
+ "tag": "V4",
+ "view": "Month",
+ "nav": "2026-11-30",
+ "scope": "series",
+ "wo": "S12267-17583",
+ "tech": "Marissa Armstrong",
+ "build": "v26.45.2-3378a88",
+ "before": [
+  {
+   "id": "bed1a537-b19b-4c9e-aa0f-9078e938e0bf",
+   "s": "2026-11-30T12:00:00Z",
+   "e": "2026-11-30T20:00:00Z",
+   "m": 480,
+   "staff": "9b02b43f-fb05-4789-9290-a86460597a25",
+   "series": "7fb116dc-692d-46db-bd01-56dce265e455",
+   "lines": 1,
+   "cov": "chosen_lines"
+  },
+  {
+   "id": "781b967f-28b6-481f-9d2b-9db9dc7fa48d",
+   "s": "2026-12-01T12:00:00Z",
+   "e": "2026-12-01T20:00:00Z",
+   "m": 480,
+   "staff": "9b02b43f-fb05-4789-9290-a86460597a25",
+   "series": "7fb116dc-692d-46db-bd01-56dce265e455",
+   "lines": 1,
+   "cov": "chosen_lines"
+  }
+ ],
+ "blocksOnScreen": 1,
+ "blockBox": {
+  "x": 306,
+  "y": 808.875,
+  "width": 358.625,
+  "height": 28
+ },
+ "detail": [
+  "ZZAUTOTEST SV12267 V4 19074 Approved S12267-17583 · ZZV4 delete_outline close TIME LOGGED 0m logged / 2h est. SCHEDULED Mon, Nov 30, 2026 TIME – event_repeat Part of a series · Shift 1 of 2 TECHNICIAN MA Marissa Armstrong Work Order Lines 1 Single line · Est. 2h 1 Service - Install coupler 0h / 2h A"
+ ],
+ "scopeDlg": [
+  "Delete from this series? close layers Series of 2 shifts This shift is part of a series. Choose how much to remove. This shift only returns 8h Entire series (2 shifts) returns 16h Cancel || card_dialog_schedule_delete_scope,schedule_delete_scope_body,text_delete_scope_series_badge,button_delete_scope_shift,text_delete_scope_returns_shift,button_delete_scope_series,text_delete_scope_returns_series"
+ ],
+ "toast": [
+  "November 2026 expand_more chevron_left chevron_right expand_less M T W T F S S 26 27 28 29 30 31 1 2 3 4 5 6 7 8 9 10 11"
+ ],
+ "undoButton": 1,
+ "afterDelete": [],
+ "deleteWrites": [
+  "DELETE 204 /api/schedule/shifts/bed1a537-b19b-4c9e-aa0f-9078e938e0bf :: "
+ ],
+ "undoWrites": [
+  "POST 201 /api/schedule/shifts/restore :: {\"shifts\":[{\"id\":\"bed1a537-b19b-4c9e-aa0f-9078e938e0bf\",\"workOrderId\":\"48dbc827-b932-4da1-bc8f-0b7d37ef7ca8\",\"lineIds\":[\"ca208b76-d65c-4fdd-b86a-9eea4063a984\"],\"staffId\":\"9b02b43f"
+ ],
+ "restoreCount": 2,
+ "afterUndo": [
+  {
+   "id": "bed1a537-b19b-4c9e-aa0f-9078e938e0bf",
+   "s": "2026-11-30T12:00:00Z",
+   "e": "2026-11-30T20:00:00Z",
+   "m": 480,
+   "staff": "9b02b43f-fb05-4789-9290-a86460597a25",
+   "series": "7fb116dc-692d-46db-bd01-56dce265e455",
+   "lines": 1,
+   "cov": "chosen_lines"
+  },
+  {
+   "id": "781b967f-28b6-481f-9d2b-9db9dc7fa48d",
+   "s": "2026-12-01T12:00:00Z",
+   "e": "2026-12-01T20:00:00Z",
+   "m": 480,
+   "staff": "9b02b43f-fb05-4789-9290-a86460597a25",
+   "series": "7fb116dc-692d-46db-bd01-56dce265e455",
+   "lines": 1,
+   "cov": "chosen_lines"
+  }
+ ],
+ "missingAfterUndo": [],
+ "extraAfterUndo": [],
+ "verdict": "before 2 / afterDelete 0 / afterUndo 2 / missing 0 / extra 0"
+}
