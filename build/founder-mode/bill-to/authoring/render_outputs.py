@@ -18,7 +18,7 @@ by_item = defaultdict(list)
 for c in L.CASES:
     for x in L.codes_of(c): by_item[x].append(c["key"])
 CASE = {c["key"]: c for c in L.CASES}
-PO = lambda c: "waiting on the PO" in c["marker"]
+PO = lambda c: L.qnum(c) is not None
 NOMAN = [c for c in L.CASES if c["held"] and not PO(c) and c["marker"] not in (L.IWO_HOLD, L.PORTAL_HOLD, L.PRE_REL)]
 
 # ---- ticket ledger and sweep config (Rule 129)
@@ -29,7 +29,8 @@ for i in JS["issues"]:
         led[k] = {"updated": f["updated"], "summary": f["summary"], "type": "Epic", "outcome": "NEW-CASES",
                   "cases": [f"every case in authoring/proposals.json ({len(L.CASES)})"],
                   "note": "Epic text read in full (9 Nov 2026). Its scope line \"AccountingHub change (Hub team)\" conflicts with PRD v0.5 "
-                          "(no AccountingHub change needed); latest wins, cases follow the PRD (REPORT.md, story-vs-PRD differences)."}
+                          "(no AccountingHub change needed); the design's cover also says an AccountingHub event is still to be built, so it is asked "
+                          "(PO question 15) and the four Story 18 cases that depend on it are held."}
         continue
     n = next(s for s, (key, _) in L.STORY.items() if key == k)
     ks = sorted({c["key"] for c in L.CASES if k in L.refs_of(c).split(",")}, key=lambda x: (x.split("-")[0], x))
@@ -52,7 +53,7 @@ Q = ["# Bill To — questions for Chris Ward (DRAFT, not sent)", "",
      "Skill 07 §6 was applied to every row: each question decides the verdict of a held case, was checked against every saved source "
      "(PRD, the 20 tickets, the design captions), and everything a tester can run without the answer is already a runnable case.", ""]
 for i, (slug, q, basis, opts, holds) in enumerate(QUESTIONS, 1):
-    keys = [c["key"] for c in L.CASES if c["marker"] == L.PO_HOLD(i)]
+    keys = [c["key"] for c in L.CASES if L.qnum(c) == i]
     Q += [f"## {i}. {q}", "", f"**What the PRD says now:** {basis}", "", "**Options:**", ""] + [f"- {o}" for o in opts] + \
          ["", "**Your answer:** _(blank)_", "", "_QA only (not for the PO): " + holds + " Cases: " + ", ".join(k + " (" + CASE[k]["title"] + ")" for k in keys) + "._", ""]
 Q += ["## Points checked and not asked (our own sources answer them)", ""] + [f"- **{a}** — {b}" for a, b in DROPPED]
@@ -76,16 +77,16 @@ open(f"{P}/NO-MANUAL-PROPOSAL.md", "w").write("\n".join(N) + "\n")
 # ---- REPORT.md
 R = []; w = R.append
 held = [c for c in L.CASES if c["held"]]
-w("# Bill To — round 1 case library (9 Nov 2026)"); w("")
+w("# Bill To — case library, rounds 1 and 2 (9 Nov 2026)"); w("")
 w("Project type (ii) V2 / upgrade (QA lead, 9 Nov 2026). PRD \"Bill To\" v0.5 (Confluence 1003585538, 6 Nov 2026, pending approval from Mat "
   "and Amani, last modified 7 Nov 2026, Chris Ward). Epic SV-12289, stories SV-12303 to SV-12321. No tech plan (QA lead: may come later; "
   "the cases are then checked against it, Rule 134). No QA build named. **Nothing was written to TestRail, Jira, Slack or Google; nothing "
-  "was committed.** Design cases come in round 2 (the design worker owns `design-2026-11-09/` and the divergence register); every case "
-  "has the empty \"References from Design\" hook (`authoring/design_refs.py`)."); w("")
+  "was committed.** Round 2 (after the design drive, commit 1270669c) added the 70 design cases and the References from Design blocks "
+  "(section 9)."); w("")
 w("## 1. Counts"); w("")
 w(f"- **{len(L.CASES)} cases**: {len(L.CASES) - len(held)} runnable once a build exists (marker \"AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026\", Rule 69), {len(held)} held.")
 w(f"- Held: waiting on the PO {sum(PO(c) for c in held)} · blocked on the Internal Work Orders release (SV-11665) {sum(c['marker'] == L.IWO_HOLD for c in held)} · blocked on the customer portal app release {sum(c['marker'] == L.PORTAL_HOLD for c in held)} · production around the release {sum(c['marker'] == L.PRE_REL for c in held)} · a tester cannot set it up {len(NOMAN)} (NO-MANUAL-PROPOSAL.md).")
-w("- Gates: `python3 authoring/build.py` → **0 PROBLEM lines**; `tester_readiness_check.py` → **0 hard problems**, 55 \"does not / never\" results, every one read and each has a control the tester can see; the random sample of 6 (seed 9: S7-14, S5-03, S2-03, S12-04, S14-09, API-04) read in full — found and fixed a doubled comma in work order preconditions; S12-07 given a search control.")
+w("- Gates: `python3 authoring/build.py` → **0 PROBLEM lines**; `tester_readiness_check.py` → **0 hard problems**, 73 \"does not / never\" results, every one read and each has a control the tester can see (the 18 new design ones by picture comparison or a positive result); random samples read in full: round 1 seed 9 (6 cases: fixed a doubled comma, S12-07 given a search control), round 2 seed 31 (API-07, S3-18, D-46, S19-03, D-61: D-46's generated reason reworded).")
 w(""); w("| Section (proposed subsection of 132467) | Cases | Held |"); w("|---|---|---|")
 cnt = Counter(c["sec"] for c in L.CASES); hc = Counter(c["sec"] for c in held)
 for s, v in SECS.items(): w(f"| {s} — {v['name']} | {cnt.get(s, 0)} | {hc.get(s, 0)} |")
@@ -115,7 +116,9 @@ w(f"- All {len(SD['codes'])} requirement, negative and edge codes in the 19 stor
 w("- Wording of a label only: Story SV-12318 writes \"Dependency:\" where the PRD writes \"Release dependency:\"; the sentence is the same.")
 w("- Every story says \"Status: Pending approval from Mat and Amani. Do not start until approved.\", matching the PRD's status.")
 for n in SD["epic"]: w(f"- Epic SV-12289: \"{n['text']}\" — {n['verdict']}")
-w("- No real conflict needs a PO question: the one conflict (AccountingHub change) is settled by latest wins (Rule 32).")
+w("- Round 2: the AccountingHub conflict is now PO question 15. The design's cover says the AccountingHub invoice event that carries the "
+  "Bill To is not built yet, which sides with the epic against the PRD; with two sources against the newest one, latest-wins is not "
+  "applied and the question is asked (S18-01 to S18-04 held; S18-05, self-billed, stays runnable).")
 w("")
 w("## 5. What must not change (Rule 96, skill 17)"); w("")
 w("Code baseline: **NOT AVAILABLE** (no product repository access in this session); the invariant set rests on the PRD's own \"as today\" / "
@@ -139,7 +142,7 @@ SURF = [("Customer page (Bill Invoices To line, Change, Pays for)", "S1"), ("New
         ("Receivables, deposits, payments, credits, Invoices tab Service For column", "S10"), ("Reverse and invoice again", "S11"),
         ("Delete customer", "S12"), ("Work Order Log", "S13"), ("Asset Work Orders tab", "S14"), ("Internal / No Charge", "S15"),
         ("Customer portal", "S16"), ("QuickBooks", "S17"), ("AccountingHub", "S18"), ("IBS and invoice CSV export", "S19"), ("Public API", "API"),
-        ("Cross-surface money parity", "DATA"), ("Release day", "REL"), ("What must not change", "INV")]
+        ("Cross-surface money parity", "DATA"), ("Release day", "REL"), ("What must not change", "INV"), ("Design — how it looks", "DESIGN")]
 for name, s in SURF: w(f"| {name} | {', '.join(c['key'] for c in L.CASES if c['sec'] == s)} |")
 w("")
 money = [c["key"] for c in L.CASES if re.search(r"\$\d", " ".join(b for r in c["res"] for b in r))]
@@ -162,21 +165,42 @@ w("- `build/testing-tools/ticket_sweep.py` was widened to accept a decimal PRD v
   "`prd_version_handled` are read as numbers with decimals; whole-number versions behave exactly as before (Technician Toggle 20, Credit "
   "terms 5). The only change to a shared tool in this pass.")
 w("")
-w("## 8. Reading coverage (Rule 119)"); w("")
+DC = json.load(open(f"{D}/design_changes.json"))
+w("## 8. Round 2: design cases and References from Design"); w("")
+w("- **70 design cases** in section DESIGN (Design — how it looks), keys D-01..D-70, generated by `authoring/make_cases_design.py` from the "
+  "design worker's drafts (`design-2026-11-09/DESIGN-CASE-PLAN.md`): D-01..D-60 from DC-01..DC-60, D-61..D-70 from DV-01..DV-10. Every title "
+  "starts with Design and a colon; every case carries its References from Design block (canvas, page and figure, the pictures to attach from "
+  "`design-2026-11-09/images/`, the design's own words, each checked word for word against the design package by build.py).")
+w("- Changes to the drafts (everything else is the drafts' wording):")
+for x in DC["changes"]: w(f"  - {x}")
+w("- Map: " + ", ".join(f"{a} → {b}" for a, b in DC["map"].items()) + ".")
+prd_ref = [c for c in L.CASES if c["sec"] != "DESIGN" and L.design_for(c)]
+diff_ref = [c["key"] for c in prd_ref if any("Difference BT-" in n for n in (L.design_for(c).get("notes") or []))]
+w(f"- **{len(prd_ref)} PRD cases** now carry a References from Design block, built from `SPEC-TO-DESIGN-2026-11-09.json` (codes SHOWN or "
+  "DIFFERENT) and `DESIGN-FIGURES-2026-11-09.json`; a case whose screen no board draws has no heading. Where a quoted code differs from the "
+  f"design, the block names the register row and its question (Rule 130 item 3): {', '.join(diff_ref)}.")
+w("- PRD cases held or changed for the design questions: S5-02 and S5-07 held on question 5 (their 10-second fade step depends on the Close "
+  "button); S7-01 now names the modern layout and the legacy phone is the new held S7-24 (question 8); S7-09 no longer states the banner's "
+  "place and the new held S7-25 checks the page header (question 13); new held S3-32, a long payer name in full (question 9); new held "
+  "S14-13, the Bill To column with the payer's row on a later page (question 14); S18-01..S18-04 held on question 15.")
+w("- `create.py` now attaches each case's pictures (the names under References from Design), idempotent and read back, as Technician Toggle's does.")
+w("")
+w("## 9. Reading coverage (Rule 119)"); w("")
 w("| Source | Size | Read |"); w("|---|---|---|")
 w("| PRD `sources/CONFLUENCE-1003585538-v0.5-2026-11-09.md` | 53,054 bytes, 1,049 lines | lines 1–1049, 100% |")
 w("| Tickets `sources/JIRA-SV-12289-tickets-2026-11-09.md` (epic + 19 stories) | 66,031 bytes, 814 lines | lines 1–814, 100%; plus every code compared by script |")
 w("| Jira sweep `sources/jira-sweep-2026-11-09.json` | 20 issues | read by script (keys, types, updated) for the ledger |")
 w("| Design captions `design-2026-11-09/files/project/*.dc.html` (8 boards) | 97,134 bytes | visible text of all 8 boards read, for the screen's own labels only; the design drive (every board, clickable and screenshot) is the design worker's |")
+w("| Design round outputs (read only): DESIGN-CASE-PLAN.md (153,620 bytes), NEW-QUESTIONS.py, DESIGN-DIVERGENCE-REGISTER.json, SPEC-TO-DESIGN and DESIGN-FIGURES json | — | all 70 drafts parsed by script and the generated cases read through gates and samples; the 13 questions and 13 differences printed and read in full; 197 spec rows and 126 figures read by script |")
 w("| Rules and skills | — | LESSONS-REGISTER (every row); Rules 4, 96, 113, 114, 116, 117 (all amendments), 122, 129, 130, 132, 134–138; IDEAL-TEST-CASE-STANDARD; skill 17 in full; skill 07 §0–§6 |")
 w("")
 w("## OUTSTANDING — what I need from you"); w("")
-w("- TestRail: create the 23 proposed subsections under 132467 (`sections.json`), then `create.py --apply`, with the QA lead's go-ahead (Rule 6). The creation hold (Rule 62, H1) must be checked as lifted before any new case is created.")
+w("- TestRail: create the 24 proposed subsections under 132467 (`sections.json`), then `create.py --apply`, with the QA lead's go-ahead (Rule 6). The creation hold (Rule 62, H1) must be checked as lifted before any new case is created.")
 w("- Decide NO-MANUAL-PROPOSAL.md: the cases a tester cannot set up go to TestRail held, or stay in the library only.")
-w("- Send the three questions in PO-QUESTIONS-DRAFT.md to Chris Ward (question sheet, Rule 131) and add them to `build/PO-QUESTIONS-OPEN.md` (Rule 132).")
+w("- Send the 15 questions in PO-QUESTIONS-DRAFT.md to Chris Ward (question sheet, Rule 131) and add them to `build/PO-QUESTIONS-OPEN.md` (Rule 132).")
 w("- A QA branch for Bill To, to lift the Rule 69 marker; the tech plan when it exists; product code access for the skill 17 baseline.")
 w("")
-w("**Waiting on the PO:** nothing sent yet. Once sent: Chris Ward questions 1–3 (Bill To); " +
+w("**Waiting on the PO:** nothing sent yet. Once sent: Chris Ward questions 1–15 (Bill To); " +
   "; ".join(f"question {i} holds {', '.join(c['key'] for c in L.CASES if c['marker'] == L.PO_HOLD(i))}" for i in range(1, len(QUESTIONS) + 1)) + ".")
 open(f"{P}/REPORT.md", "w").write("\n".join(R) + "\n")
 print("written: TICKET-LEDGER.json", len(led), "| PO-QUESTIONS-DRAFT.md", len(QUESTIONS), "| NO-MANUAL-PROPOSAL.md", len(NOMAN), "| REPORT.md", len(R), "lines")

@@ -89,3 +89,10 @@ C("S14-12", S, "Picking Imported in Status disables and clears the Customer filt
   [["2 rows are listed."], ["The options show."], ["Customer C is ticked."], ["Only work order 1 is listed; work order 2 is not."],
    ['The "Customer" chip is disabled.', 'It reads "Customer: All customers": the pick was cleared.']],
   ["S14-N1"])
+C("S14-13", S, "The Bill To column shows when the payer's row is on a later page",
+  [ADMIN, A, cust("B", ", a payer"),
+   "Have a new asset for this test, asset 1, owned by customer A, with more work orders at the test location than the tab shows on its first "
+   "page: all bill customer A except the oldest, work order 1, which is billed to customer B and sits on a later page."],
+  [TAB],
+  [['A "Bill To" column shows on the first page, because work order 1 bills customer B, although work order 1 is not on the first page.']],
+  ["S14-R6"], marker="PO:asset-tab-loaded-rows")

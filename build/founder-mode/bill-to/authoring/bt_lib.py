@@ -272,13 +272,17 @@ def story_nums(c):
 
 e = lambda s: html.escape(s, quote=False)
 
-from design_refs import DREFS   # key -> {"pages", "pictures", "words", "notes"}; EMPTY in round 1 (the design round fills it)
-def design_for(c): return DREFS.get(c["key"])
+from design_refs import DREFS, for_case as _for_case   # round 2: design cases' blocks and PRD cases' blocks from the figures
+_DCACHE = {}
+def design_for(c):
+    if c["key"] not in _DCACHE: _DCACHE[c["key"]] = _for_case(c)
+    return _DCACHE[c["key"]]
 
 
 def design_block(c):
-    """Rule 117 tenth amendment: design references in their own block below the quotes. Round 1 leaves this hook empty: a case with no
-    entry in DREFS gets no References from Design heading at all (Technician Toggle precedent)."""
+    """Rule 117 tenth amendment: design references in their own block below the quotes: the canvas, page and figure names, the pictures
+    attached to the case, the design's own words quoted, and any difference with its register id and question. A case whose screen no
+    board draws gets no References from Design heading at all (Technician Toggle precedent)."""
     d = design_for(c)
     if not d: return ""
     h = "<p></p><p><strong>References from Design</strong></p>"
@@ -287,6 +291,18 @@ def design_block(c):
     if d.get("words"): h += "<p>The design's own words:</p><ul>" + "".join(f"<li>&ldquo;{e(w)}&rdquo;</li>" for w in d["words"]) + "</ul>"
     for n in d.get("notes") or []: h += "<p>" + e(n) + "</p>"
     return h
+
+
+# every word quoted from the design must be in the design package (board files, design-system files, or the figure captions)
+_DD = f"{P}/design-2026-11-09"
+_dtext = []
+for _root, _dirs, _files in os.walk(f"{_DD}/files/project"):
+    for _f in _files:
+        if _f.endswith((".html", ".css", ".json", ".md")): _dtext.append(open(os.path.join(_root, _f), errors="replace").read())
+_dtext.append(open(f"{_DD}/DESIGN-FIGURES-2026-11-09.json").read())
+DESIGNW = ws(re.sub(r"\s*\*\s+", " ", re.sub(r"<[^>]+>", " ", " ".join(_dtext))))
+DESIGNW_RAW = ws(" ".join(_dtext).replace('\\"', '"'))
+DESIGN_IMAGES = f"{_DD}/images"
 
 
 def quotes_block(c):
@@ -406,4 +422,19 @@ def check(c):
     if not any(isinstance(x, str) or not x[0].startswith("Jira") for x in c["q"]):
         p.append(f"{k}: no PRD quote (Rule 57: the PRD is the source of every expected result)")
     if not c["marker"].startswith("AUTOMATION: "): p.append(f"{k}: marker")
+    d = design_for(c)
+    if c["sec"] == "DESIGN" and not d: p.append(f"{k}: a design case without References from Design")
+    if d:
+        for x in d.get("pictures") or []:
+            if not os.path.exists(f"{DESIGN_IMAGES}/{x}"): p.append(f"{k}: design picture {x} not in design-2026-11-09/images/")
+        for w in d.get("words") or []:
+            ww = ws(w)
+            if ww not in DESIGNW and ww not in DESIGNW_RAW: p.append(f"{k}: design words not found in the design package: {w[:70]!r}")
+        if not (d.get("pages") or "").startswith('Design canvas "Bill To design"'): p.append(f"{k}: References from Design does not name the canvas")
     return p
+
+
+def qnum(c):
+    """The PO question a held case waits on (PRD cases: "waiting on the PO (question n)"; design cases name it the same way), else None."""
+    m = re.search(r"waiting on the PO \(question (\d+)\)$", c["marker"])
+    return int(m.group(1)) if m else None

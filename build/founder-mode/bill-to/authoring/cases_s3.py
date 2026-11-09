@@ -187,3 +187,9 @@ C("S3-31", S, "On a phone the Customer card shows the same Bill To field",
   [["Work order 1 opens for customer A, in the phone layout."], ["The Customer card shows \"Bill To\" under Authorizer, reading customer B's name."],
    ["The searchable list opens without any hover."], ["\"Bill To\" reads customer C's name."]],
   ["FF-S3", "S3-R1", "S3-R5"])
+C("S3-32", S, "A long payer name reads in full on the Customer card",
+  [ADMIN, DESK, A_SELF, cust("B", ", the payer, with a name of at least 30 characters"), wo(1, "A")],
+  [OPEN_WO, EXPAND, CLICK_BT, "Pick customer B in the list."],
+  [["Work order 1 opens for customer A."], [BT_SELF], ["The list opens."],
+   ["The \"Bill To\" field reads customer B's whole name; no part of it is cut off."]],
+  ["S3-R2"], marker="PO:long-bill-to-name-on-card")

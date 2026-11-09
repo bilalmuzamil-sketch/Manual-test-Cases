@@ -24,7 +24,7 @@ C("S5-02", S, "Clicking an invoiced Bill To shows an error toast with Go To Invo
   [["Work order 1 opens for customer A."], [bt_reads("B")],
    [f'An error toast shows "{M4}"', 'The toast has a "Go To Invoice" button.', "No list opens."],
    ["The toast fades away after 10 seconds."]],
-  ["S5-R2", UFS["M4"], "UFS-H1"])
+  ["S5-R2", UFS["M4"], "UFS-H1"], marker="PO:close-button-on-lock-toasts")
 C("S5-03", S, "Go To Invoice opens the Finance tab and reverses nothing",
   [ADMIN, A, B, INVD],
   [OPEN_WO, EXPAND, CLICK_BT, 'Click "Go To Invoice" in the toast.'],
@@ -53,7 +53,7 @@ C("S5-07", S, "Clicking a deposit-locked Bill To shows an error toast with Open 
   [["Work order 1 opens for customer A."], [bt_reads("B")],
    ['An error toast shows "' + M1_ONE.format(amt="$10.00", c="B") + '"', 'The toast has an "Open Deposits" button.', "No list opens."],
    ["The toast fades away after 10 seconds."]],
-  ["S5-R5", UFS["M1-one"], "UFS-H1"], note=NAME_NOTE)
+  ["S5-R5", UFS["M1-one"], "UFS-H1"], note=NAME_NOTE, marker="PO:close-button-on-lock-toasts")
 C("S5-08", S, "Open Deposits opens the Deposits tab of the customer holding the deposit",
   [ADMIN, A, B, DEP1],
   [OPEN_WO, EXPAND, CLICK_BT, 'Click "Open Deposits" in the toast.'],

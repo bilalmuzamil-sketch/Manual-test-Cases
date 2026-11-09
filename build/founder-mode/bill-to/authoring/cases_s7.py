@@ -13,7 +13,8 @@ HOLD_B = cust("B", ", the payer, on the Credit Hold credit term")
 M2B = M2.format(c="B")
 
 C("S7-01", S, "The invoice's Bill To block prints the payer's name, address and phone",
-  [ADMIN, A, cust("B", ", the payer, with an address and a phone number different from customer A's"), wo(1, "A", READY, "B")],
+  [ADMIN, "Make sure the organization's document design setting is the modern layout.", A,
+   cust("B", ", the payer, with an address and a phone number different from customer A's"), wo(1, "A", READY, "B")],
   [OPEN_WO, FIN, CREATE_INV, "Open the new invoice's document."],
   [["Work order 1 opens for customer A."], ["The Finance tab shows Create Invoice."], ["The invoice is created."],
    ["The Bill To block shows customer B's name, address and phone number.", "Customer A's address and phone are not in the Bill To block."]],
@@ -77,7 +78,7 @@ C("S7-08", S, "No Over Credit warning when the payer is far under its limit",
 C("S7-09", S, "A payer on Credit Hold shows the banner with Change Bill To on the work order",
   [ADMIN, A, HOLD_B, wo(1, "A", READY, "B")],
   [OPEN_WO],
-  [[f'A banner at the top of the work order page reads "{M2B}"', 'The banner has a "Change Bill To" button.', "Customer A is on COD: the banner is about customer B."]],
+  [[f'The work order page shows a Credit Hold banner reading "{M2B}"', 'The banner has a "Change Bill To" button.', "Customer A is on COD: the banner is about customer B."]],
   ["S7-R6", UFS["M2"], "KD-CH"], note=NAME_NOTE)
 C("S7-10", S, "A part sale whose payer is on Credit Hold shows the banner on its Finance tab",
   [ADMIN, A, HOLD_B, ps(1, "A", "open, with one part ready to invoice", "B")],
@@ -93,7 +94,7 @@ C("S7-11", S, "Change Bill To opens and focuses the Customer card's Bill To fiel
 C("S7-12", S, "On a phone Change Bill To opens the details first, then the Bill To field",
   [ADMIN, "Use a phone, or a browser window 390 pixels wide.", A, HOLD_B, wo(1, "A", READY, "B")],
   [OPEN_WO, 'Tap "Change Bill To" in the banner.'],
-  [["Work order 1 opens for customer A, in the phone layout, with customer B's Credit Hold banner and \"Change Bill To\" above the lines."],
+  [["Work order 1 opens for customer A, in the phone layout, with customer B's Credit Hold banner and \"Change Bill To\"."],
    ["The work order details open.", "The page scrolls to the Bill To field and its list opens."]],
   ["S7-R7", "FF-S7"])
 C("S7-13", S, "Create Invoice is disabled with the Credit Hold tooltip",
@@ -165,3 +166,16 @@ C("S7-23", S, "A part sale's Credit Hold badge follows the payer",
   [OPEN_PS],
   [["Part sale 1 opens for customer A.", "The part sale header shows a \"Credit Hold\" badge for customer B, as the work order's badge does."]],
   ["S7-R11"], marker="PO:part-sale-badges")
+C("S7-24", S, "The legacy invoice's Bill To block prints the payer's phone",
+  [ADMIN, "Make sure the organization's document design setting is the legacy layout.", A,
+   cust("B", ", the payer, with an address and a phone number different from customer A's"), wo(1, "A", READY, "B")],
+  [OPEN_WO, FIN, CREATE_INV, "Open the new invoice's document."],
+  [["Work order 1 opens for customer A."], ["The Finance tab shows Create Invoice."], ["The invoice is created."],
+   ["The Bill To block shows customer B's name, address and phone number."]],
+  ["S7-R1"], marker="PO:phone-on-legacy-invoice")
+C("S7-25", S, "The payer's Credit Hold banner sits in the work order's page header",
+  [ADMIN, A, HOLD_B, wo(1, "A", READY, "B")],
+  [OPEN_WO, FIN],
+  [["Work order 1 opens for customer A, with customer B's Credit Hold banner in the work order's page header, above the tabs."],
+   ["The banner stays in the page header on the Finance tab."]],
+  ["S7-R6"], marker="PO:credit-hold-banner-place")

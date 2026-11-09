@@ -74,12 +74,12 @@ w("")
 w("## 3. Questions (drafted, not sent) and held cases")
 w("")
 for i, (slug, q, basis, opts, holds) in enumerate(QUESTIONS, 1):
-    keys = [c["key"] for c in L.CASES if c["marker"] == L.PO_HOLD(i)]
+    keys = [c["key"] for c in L.CASES if L.qnum(c) == i]
     w(f"- **Question {i}** ({slug}): {q} Held: {', '.join(keys)}.")
 for title, pred in (("Blocked on the Internal Work Orders release (SV-11665)", lambda c: c["marker"] == L.IWO_HOLD),
                     ("Blocked on the customer portal app release", lambda c: c["marker"] == L.PORTAL_HOLD),
                     ("Run on production around the release", lambda c: c["marker"] == L.PRE_REL),
-                    ("Cannot be forced by hand (NO-MANUAL-PROPOSAL.md)", lambda c: c["held"] and c["marker"] not in (L.IWO_HOLD, L.PORTAL_HOLD, L.PRE_REL) and "waiting on the PO" not in c["marker"])):
+                    ("Cannot be forced by hand (NO-MANUAL-PROPOSAL.md)", lambda c: c["held"] and c["marker"] not in (L.IWO_HOLD, L.PORTAL_HOLD, L.PRE_REL) and L.qnum(c) is None)):
     w(f"- {title}: {', '.join(c['key'] for c in L.CASES if pred(c)) or 'none'}.")
 w("")
 w("## 4. Every case: its records, ZZAUTOTEST names, PRD items and marker")

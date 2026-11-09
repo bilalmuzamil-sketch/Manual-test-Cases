@@ -34,8 +34,9 @@ for c in L.CASES:
     m = re.search(r"question (\d+)", c["marker"])
     if m and not 1 <= int(m.group(1)) <= len(QUESTIONS): probs.append(f"{c['key']}: marker names question {m.group(1)}, which does not exist")
     if "waiting on the PO" in c["marker"] and not c["held"]: probs.append(f"{c['key']}: held on the PO but not flagged held")
-for i in range(1, len(QUESTIONS) + 1):
-    if not any(c["marker"] == L.PO_HOLD(i) for c in L.CASES): probs.append(f"question {i} holds no case (skill 07 §6: a question must decide a verdict)")
+QHELD = {i: [c["key"] for c in L.CASES if "waiting on the PO" in c["marker"] and re.search(rf"\(question {i}\)$", c["marker"])] for i in range(1, len(QUESTIONS) + 1)}
+for i, ks in QHELD.items():
+    if not ks: probs.append(f"question {i} holds no case (skill 07 §6: a question must decide a verdict)")
 
 # ---- coverage of PRD codes and named items
 used = Counter(x for c in L.CASES for x in L.codes_of(c))

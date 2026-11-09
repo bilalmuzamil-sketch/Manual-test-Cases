@@ -11,3 +11,7 @@
 - 271 cases in `authoring/` (S1–S19, API, DATA, REL, INV; "Design — how it looks" empty until the design round). `python3 authoring/build.py` → 0 PROBLEM lines; tester-readiness 0 hard. 235 runnable on a build (Rule 69 marker), 36 held: 6 on PO questions 1–3 (`PO-QUESTIONS-DRAFT.md`, not sent), 6 on the SV-11665 release, 4 on the portal app release, 9 production around the release, 11 a tester cannot set up (`NO-MANUAL-PROPOSAL.md`).
 - PRD codes 176/178 covered (S15-N1, S18-R2 not testable, reasons in `REPORT.md`); stories identical to PRD v0.5; epic's "AccountingHub change" superseded by the PRD (latest wins).
 - `TICKET-LEDGER.json` / `TICKET-SWEEP.json` (prd_version_handled "0.5"): `ticket_sweep.py` 0 unhandled (the tool now reads decimal versions). Setup file for Claude sessions: `BILL-TO-SETUP-FILE.md`. Proposed subsections: `sections.json` (ids null).
+
+## 9 Nov 2026 — round 2 (design cases and references; no TestRail/Jira/Slack/Google writes, no commit)
+- 345 cases: + 70 design cases D-01..D-70 (`authoring/make_cases_design.py` from `design-2026-11-09/DESIGN-CASE-PLAN.md`; changes listed in `authoring/design_changes.json`) and 4 new held PRD cases (S3-32, S7-24, S7-25, S14-13). 135 PRD cases carry References from Design. build.py 0 PROBLEM; readiness 0 hard.
+- 59 held: 29 on PO questions 1–15 (`PO-QUESTIONS-DRAFT.md`: ours 1–3, the design's 4–15; design question 13 dropped as settled), 6 SV-11665, 4 portal release, 9 production, 11 cannot be set up. `create.py` (dry run) now attaches 412 pictures (113 files).

@@ -42,9 +42,6 @@ DROPPED = [
  ("S12-N1 \"Without 'Customers → Create & Edit' and 'View and Manage AP/AR Data'\" (one or both missing?)",
   "Key Decisions, Permissions: \"Setting or removing a saved default Bill To needs 'Customers → Create & Edit' and 'View and Manage AP/AR "
   "Data'\" — both are needed, so missing either hides the button. Cases written for each missing permission."),
- ("The epic SV-12289 lists \"AccountingHub change (Hub team)\" as a release dependency; PRD Story 18 and Key Decisions say \"no AccountingHub change is needed\"",
-  "Latest wins (Rule 32): the PRD (last modified 7 Nov 2026, owning PM ruling of 6 Nov 2026) is newer than the epic text (updated 6 Nov "
-  "14:25 -0500). Cases follow the PRD; recorded in REPORT.md as a story-vs-PRD difference."),
  ("S9-R2 \"its first contact A to Z by name\" (first name or last name?)",
   "Not asked: the cases use contacts whose first and last names sort the same way, so the verdict does not depend on it."),
  ("S7-R5 \"everything the Bill To owes\" (does it include the invoice being created?)",
@@ -56,3 +53,24 @@ DROPPED = [
   "Not asked: deposits from two customers on one work order cannot be made through the screens (deposits lock the Bill To); the cases "
   "are kept held and listed in NO-MANUAL-PROPOSAL.md."),
 ]
+
+# ---- Round 2 (9 Nov 2026): the design worker's 13 questions (design-2026-11-09/NEW-QUESTIONS.py, rows 1-13), merged after ours as
+# questions 4-15 (Rule 131: one sheet per suite). Row 13 (pictures that do not match their own notes) is DROPPED: every case it names
+# follows the PRD and the note, so no verdict depends on it (DROPPED below; the four cases carry a note naming the mismatch).
+import runpy as _rp, os as _os
+_ROWS = _rp.run_path(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "design-2026-11-09", "NEW-QUESTIONS.py"))["ROWS"]
+DESIGN_SLUGS = {1: "list-order-current-bill-to", 2: "close-button-on-lock-toasts", 3: "cancel-in-bill-invoices-to-window",
+                4: "remove-confirmation-button-order", 5: "phone-on-legacy-invoice", 6: "long-bill-to-name-on-card",
+                7: "asset-tab-width-with-bill-to-column", 8: "lock-tooltip-position", 9: "lists-opening-over-top-bar",
+                10: "credit-hold-banner-place", 11: "asset-tab-loaded-rows", 12: "accountinghub-change"}
+for _r in _ROWS:
+    if _r[0] not in DESIGN_SLUGS: continue
+    _lines = _r[2].split("\n")
+    QUESTIONS.append((DESIGN_SLUGS[_r[0]], "Bill To, from the design: " + _lines[0], _r[3] + " Where: " + _r[4],
+                      [x for x in _lines[1:] if x.startswith("(")], f"Design question {_r[0]} ({_r[1]})."))
+QN = {slug: i for i, (slug, *_r) in enumerate(QUESTIONS, 1)}
+DROPPED.append(("Design question 13: pictures that do not match their own notes (production New Customer toast, a 1600-wide picture, the cut "
+                "name on S2-17579, \"Pays for\" 1 after Remove)",
+                "Not asked: no verdict depends on it. The cases follow the PRD and the notes (S3-R2 full name, with the cut name asked in "
+                "question 9; S1-N4 no counter after Remove); D-01, D-14, D-19 and D-54 each carry a note naming the mismatch so the tester "
+                "compares the right part of the picture."))
