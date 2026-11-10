@@ -151,3 +151,13 @@
 - 4 Nov 2026: QA lead ordered the project's execution run (in milestone 5) deleted: run deleted (record build/milestone-5-2026-11-03/). The cases are unchanged.
 - 4 Nov 2026 (QA lead "Yes, named sets"): applied from build/answers-2026-11-04/ (lock held, read back): 9 cases given AUTOMATION: READY - EXPECT FAIL (SV-12138..SV-12141) with the Rule 61 block.
 - 4 Nov 2026 (QA lead "Yes, create it"): run 557 "A/R and A/P Report Sorting, Export and Location Filter - Execution" created for build verification before the 19 Nov 2026 release: 356 tests = all mapped cases, milestone 5, assigned to Mudassir (user 6), description starts "Owner: Mudassir." (applied-run-2026-11-04.json). Tickets swept 4 Nov: SV-12136 (Mudassir, A/P Aging Open Balance a few cents above Amount; staging and sv10647) is a defect from execution, not a spec change.
+
+## 10 Nov 2026 — V1 currency check against PRD v11 (5 Nov), Jira (26 tickets) and the 5 Nov design
+- QA lead: "Source verify them" (section 90418); chose V1 (Rule 125). Assessment: `currency-2026-11-10/ASSESSMENT.md` — 224 confirmed,
+  131 change, 1 retire (REL-08 C715478, S1-R5a / SV-11441), 25 new. Live vs library: 9 cases differ, all our 4 Nov expect-fail lines.
+  QA build now exists: sv11315.qa.shopview.com, v26.45.2-6a8b89c.
+- QA lead's decisions (10 Nov, all as recommended): "Named set" (rewrite the 132, stamp-only on the 224 after reading each in full);
+  "Yes, both" (delete REL-08, add the 25 new cases to TestRail and run 557); "Yes, add Q1 only" (PDF "As of" date format, to the
+  existing sheet in a new colour; its one case held); "Remove old, add later" (the 3 re-shot design pictures cannot be downloaded:
+  remove the old ones from the cases, quote the new captions, attach the new pictures when available).
+- Round 2 drafting with the worker; TestRail writes by the coordinator after the gates.
