@@ -6,3 +6,18 @@ try 2 badge-at-start "Complete"
 after create badge Complete
 menu/dialog tids: menu_item_reverse,menu_item_issue_credit
 try 2: created=true before=Invoiced after=Complete linesHeld=1 estimateReqs=1 maxAtOnce=1 times=102.35-103.05 preview="Invoice D"
+try 3 badge-at-start "Complete"
+after create badge Complete
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForTimeout: Target page, context or browser has been closed
+    at settle (/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs:82:84)
+    at async Object.go (/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs:115:83)
+    at async fin (/home/user/Manual-test-Cases/build/sv12405-reverse-preview-twice-2026-11-10/scripts/rvd.mjs:24:22)
+    at async file:///home/user/Manual-test-Cases/build/sv12405-reverse-preview-twice-2026-11-10/scripts/rvd.mjs:36:5 {
+  log: []
+}
+
+Node.js v22.22.0
