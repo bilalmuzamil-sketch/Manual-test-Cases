@@ -15,7 +15,7 @@ await fin();
 for(let i=1;i<=N;i++){
   let created=false;
   if(await vis('button_create_invoice')){ await s.glideClick('button_create_invoice'); await p.waitForTimeout(5000); created=true;
-    if(await vis('button_close_dialog')) await s.glideClick('button_close_dialog'); else await p.keyboard.press('Escape'); await p.waitForTimeout(4000); }
+    if(await vis('button_close_payment_dialog')) await s.glideClick('button_close_payment_dialog'); else if(await vis('button_close_dialog')) await s.glideClick('button_close_dialog'); else await p.keyboard.press('Escape'); await p.waitForTimeout(4000); }
   const badgeBefore=await p.locator('[data-test-id=badge_wo_status]').innerText().catch(()=>'?');
   await p.screenshot({path:`../ev/${TAG}-try${i}-0-before-menu.png`}); await s.glideClick('button_wo_invoice_menu'); await p.waitForTimeout(1200); if(!(await vis('menu_item_reverse'))){ await p.keyboard.press('Escape'); await p.waitForTimeout(3000); await s.glideClick('button_wo_invoice_menu'); await p.waitForTimeout(1500);} const mt=await p.evaluate(()=>[...document.querySelectorAll('.q-menu [data-test-id], .q-dialog [data-test-id]')].map(e=>e.getAttribute('data-test-id')).join(',')); console.log('menu/dialog tids:',mt); if(!(await vis('menu_item_reverse'))){ await p.screenshot({path:`../ev/${TAG}-try${i}-menu.png`}); console.log('no reverse; badge',badgeBefore); break; } await s.glideClick('menu_item_reverse'); await p.waitForTimeout(1500);
   reqs=[]; const tc=T();
