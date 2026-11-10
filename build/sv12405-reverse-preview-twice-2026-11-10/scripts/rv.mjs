@@ -17,7 +17,10 @@ for(let i=1;i<=N;i++){
   if(i>1) await fin();
   const bTxt=async()=>p.evaluate(()=>[...document.querySelectorAll('[data-test-id=badge_wo_status]')].map(e=>e.innerText.trim()).filter(Boolean).join('|'));
   const bt0=await bTxt(); console.log('try',i,'badge-at-start',JSON.stringify(bt0)); if(/complete/i.test(bt0)){ await s.glideClick('button_create_invoice'); await p.waitForTimeout(5000); created=true; await p.screenshot({path:`../ev/${TAG}-try${i}-a-after-create.png`}); console.log('after create badge',await bTxt());
-    await s.glideClick('button_close_payment_dialog').catch(()=>p.keyboard.press('Escape')); await p.waitForTimeout(4000); }
+    for(let k=0;k<4;k++){ const ids=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].filter(e=>{const r=e.getBoundingClientRect(); return r.width>0;}).map(e=>e.getAttribute('data-test-id')));
+      if(!ids.length) break; const c=['button_close_payment_dialog','button_close','button_close_dialog'].find(t=>ids.includes(t));
+      console.log('closing dialog via',c||'Escape',ids.slice(0,4).join(',')); if(c) await s.glideClick(c).catch(()=>p.keyboard.press('Escape')); else await p.keyboard.press('Escape'); await p.waitForTimeout(2500); }
+    await p.waitForTimeout(2500); }
   for(let k=0;k<30;k++){ if(await s.box('button_wo_invoice_menu').catch(()=>null)) break; await p.waitForTimeout(500); }
   const badgeBefore=await bTxt();
   await p.screenshot({path:`../ev/${TAG}-try${i}-0-before-menu.png`}); await s.glideClick('button_wo_invoice_menu'); await p.waitForTimeout(1200); if(!(await vis('menu_item_reverse'))){ await p.keyboard.press('Escape'); await p.waitForTimeout(3000); await s.glideClick('button_wo_invoice_menu'); await p.waitForTimeout(1500);} const mt=await p.evaluate(()=>[...document.querySelectorAll('.q-menu [data-test-id], .q-dialog [data-test-id]')].map(e=>e.getAttribute('data-test-id')).join(',')); console.log('menu/dialog tids:',mt); if(!(await vis('menu_item_reverse'))){ await p.screenshot({path:`../ev/${TAG}-try${i}-menu.png`}); console.log('no reverse; badge',badgeBefore); break; } await s.glideClick('menu_item_reverse'); await p.waitForTimeout(1500);
