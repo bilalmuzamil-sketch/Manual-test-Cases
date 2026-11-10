@@ -1,0 +1,19 @@
+try 1 badge-at-start "Complete"
+after create badge Complete
+menu/dialog tids: menu_item_reverse,menu_item_issue_credit
+try 1: created=true before=Invoiced after=Complete linesHeld=1 estimateReqs=2 maxAtOnce=1 times=45.40-45.99,46.30-46.60 preview="Invoice D"
+try 2 badge-at-start "Complete"
+after create badge Complete
+menu/dialog tids: menu_item_reverse,menu_item_issue_credit
+try 2: created=true before=Invoiced after=Complete linesHeld=1 estimateReqs=2 maxAtOnce=1 times=102.00-102.74,102.92-103.25 preview="Invoice D"
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForTimeout: Target page, context or browser has been closed
+    at fin (/home/user/Manual-test-Cases/build/sv12405-reverse-preview-twice-2026-11-10/scripts/rvd.mjs:17:139)
+    at async file:///home/user/Manual-test-Cases/build/sv12405-reverse-preview-twice-2026-11-10/scripts/rvd.mjs:21:11 {
+  log: []
+}
+
+Node.js v22.22.0

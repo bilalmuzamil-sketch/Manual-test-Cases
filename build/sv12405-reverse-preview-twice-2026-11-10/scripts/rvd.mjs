@@ -10,7 +10,11 @@ p.on('requestfinished',done); p.on('requestfailed',done);
 // TEST-ONLY (comparison aid, not a ShopView feature): after Reverse is confirmed, hold the work order's lines answer
 // (GET /api/work-orders/lines/{id}) for DELAY ms so the lines land after the Finance panel has mounted — the timing PR #4289 names.
 const DELAY=+(process.env.DELAY||3000); let armed=false; let held=0;
-await p.route(/\/api\/work-orders\/lines\//, async r=>{ if(!armed||r.request().method()!=='GET') return r.continue(); held++; await new Promise(x=>setTimeout(x,DELAY)); return r.continue(); });
+const HOLD=process.env.HOLD||'lines';
+if(HOLD==='lines') await p.route(/\/api\/work-orders\/lines\//, async r=>{ if(!armed||r.request().method()!=='GET') return r.continue(); held++; await new Promise(x=>setTimeout(x,DELAY)); return r.continue(); });
+// HOLD=render: hold only the FIRST preview render request after Reverse for DELAY ms, so the lines land while that render is still out
+// (the second case of PR #4289's unit tests). TEST-ONLY timing aid.
+if(HOLD==='render') await p.route(/\/api\/work-orders\/invoices\/estimate/, async r=>{ if(!armed||held>0) return r.continue(); held++; await new Promise(x=>setTimeout(x,DELAY)); return r.continue(); });
 const errs=[]; p.on('pageerror',e=>errs.push(e.message.slice(0,120)));
 const out=[]; const marker=await s.marker(); out.push('marker '+JSON.stringify(marker));
 const vis=async tid=>p.evaluate(t=>[...document.querySelectorAll(`[data-test-id="${t}"]`)].some(e=>{const r=e.getBoundingClientRect(); return r.width>0&&r.height>0&&getComputedStyle(e).visibility!=='hidden';}),tid).catch(()=>false);
