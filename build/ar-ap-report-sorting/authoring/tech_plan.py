@@ -259,3 +259,19 @@ for _x in S:
         _x["reason"] = _x["reason"] + " " + _r
 for _x in S:
     _x["cases"] = [k for k in _x["cases"] if k not in ("D-76", "D-77", "D-78", "D-79", "D-80")]
+
+# ---- 10 Nov 2026: currency check against PRD version 11 (5 Nov 2026). The plan has not changed (same upload of 22 Oct 2026). Two statements
+# are now behind the PRD (the cases follow the PRD, Rule 134.5; reported to the QA lead as tech-design contradictions, his ruling of
+# 12 Aug 2026); REL-08 is removed from the library (QA lead, 10 Nov 2026).
+V11 = {
+ "TP-66": ("DIVERGE", ["S2-24", "S1-18"], "10 Nov 2026: PRD v10/v11 S1-R5a (SV-11441 moved into scope, 4 and 5 Nov 2026) puts a credit dated exactly on the as-of date in Current with Past Due 0; the plan says credits are never Current. S1-18 follows the PRD and quotes the plan as the difference; S2-24 (due date = its own date) is confirmed. REL-08, which kept today's ageing, is removed."),
+ "TP-71": ("DIVERGE", ["D-01", "D-04", "D-07", "D-10", "D-13", "D-16"], "10 Nov 2026: PRD v11 S8-R3 (5 Nov 2026) lets Location wrap on A/P Unpaid Invoices too; the plan says only A/P Detail. D-16 follows the PRD and quotes the plan as the difference."),
+ "TP-37": (None, None, "10 Nov 2026: the design picture was reshot (round 15, published 5 Nov 2026), its caption: \"No Totals row and no Location column.\""),
+}
+for _x in S:
+    if _x["id"] in V11:
+        _v, _c, _r = V11[_x["id"]]
+        if _v: _x["verdict"] = _v
+        if _c is not None: _x["cases"] = _c
+        _x["reason"] = _x["reason"] + " " + _r
+    _x["cases"] = [k for k in _x["cases"] if k != "REL-08"]

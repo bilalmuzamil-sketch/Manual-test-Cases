@@ -6,7 +6,7 @@ from collections import Counter, defaultdict
 D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import ar_lib as L
 import tech_plan as TP
-for m in ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design"]: importlib.import_module(m)
+for m in ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design", "cases_v11"]: importlib.import_module(m)
 from po_questions import QUESTIONS, QN
 QPAT = r"question (\d+)"
 P = L.P; CASES = L.CASES; BY = {c["key"]: c for c in CASES}

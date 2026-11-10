@@ -32,7 +32,8 @@ def md_to_text(md):
         else: out.append(t)
     return "\n".join(out)
 
-PRD_FILE = f"{P}/sources/CONFLUENCE-947650561-v9-2026-10-26.md"
+# 10 Nov 2026 (currency check): PRD version 11 (5 Nov 2026, Chris Ward; Change Log rows 2026-11-04 "v10" and 2026-11-05), read 10 Nov 2026
+PRD_FILE = f"{P}/sources/CONFLUENCE-947650561-2026-11-05-read-2026-11-10.md"
 PRD_MD = open(PRD_FILE).read().split("<!-- Saved")[0]
 PRD_TXT = md_to_text(PRD_MD)
 PRDW = ws(PRD_TXT)
@@ -40,8 +41,8 @@ PRD_RAWW = ws(re.sub(r"\[([^\]]*)\]\(([^)]*)\)", r"\1", PRD_MD))      # keeps th
 JIRA_FILE = f"{P}/sources/JIRA-READING-2026-10-22.md"
 JIRAW = ws(open(JIRA_FILE).read())
 
-PRD_NAME = 'PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 9 (23 Oct 2026, Chris Ward)'
-PRD_READ = "read 26 Oct 2026"
+PRD_NAME = 'PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward)'
+PRD_READ = "read 10 Nov 2026"
 # Chris Ward's answers to our question sheet (Google Sheet 11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA, column E rows 6-23), read 26 Oct 2026
 # (questions-2026-10-22/chris-answers-2026-10-26.json). PRD version 9 carries most of them; an answer is quoted only where PRD v9 is silent.
 ANS_FILE = f"{P}/questions-2026-10-22/chris-answers-2026-10-26.json"
@@ -64,8 +65,14 @@ JIRA_NAME = "Developer verify task SV-11597 \"A/R & A/P aging — verify Phase 1
 DESIGN_URL = "https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4"
 SETUP_URL = ("https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/"
              "ar-ap-report-sorting/AR-AP-SETUP-FILE.md")
-NOBUILD = "The build is not yet available to check this case against."
-MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
+# 10 Nov 2026: a QA build exists (https://sv11315.qa.shopview.com, v26.45.2-6a8b89c; SV-11441, Bilal Muzamil, 10 Nov 2026); no case of this suite
+# has been checked against it yet (Rule 54 second sentence, said plainly).
+NOBUILD = "Not yet checked against a build: the QA build v26.45.2-6a8b89c exists since 10 Nov 2026 and this case has not been run on it yet."
+# 10 Nov 2026 (Rule 69, read in full; QA lead round 2): a build exists but no case is build-verified yet, so the deferred marker, dated the
+# day of this documents-only pass; it replaces the old "no build yet" HOLD, whose reason has gone (Rule 61: HOLD only for what cannot be had).
+# Expect-fail and real HOLD markers are kept (Rule 69: the deferred marker never overwrites them).
+MARKER = "AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026"
+OLD_MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 PRE_REL = "AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site"
 # 26 Oct 2026, Rule 117 FIFTEENTH amendment (QA lead: "B -> and never add that line in the future test cases too"): no case carries
 # the closing "mark this test Blocked: "setup not done"" line or any variant of it; build.py fails on any of these patterns anywhere in
@@ -108,6 +115,8 @@ def prd_sentence(start):
 NAMED = {}
 def _n(key, label, text): NAMED[key] = (label, text)
 _n("EH", "Story 3, Error Handling", prd_line("If an export fails for any other reason"))
+_n("EH4-1", "Story 4, Error Handling", prd_line("If a bucket's lines fail to load when it is expanded"))   # added in PRD v10 (4 Nov 2026)
+_n("EH4-2", "Story 4, Error Handling", prd_line("If a bucket's later lines stop loading while the user scrolls"))
 # User Feedback Summary rows (Trigger | Message | Behavior), quoted as the table row reads
 _ufs = []
 _inside = False
@@ -123,7 +132,9 @@ _WC = ["A/R reports no longer come out in an unpredictable order", "A/P Detail o
        "The A/R Summary Totals row now adds up exactly", "Clicking a row no longer opens it.",
        "The date filter is labelled", "Re-sorting A/R Collection or A/P Unpaid Invoices no longer collapses",
        "The A/R column \"Location full name\"", "Which rows and amounts each user can see is unchanged",
-       "The A/R column headings change to Title Case"]   # WC-11 added in PRD v9 (23 Oct 2026)
+       "The A/R column headings change to Title Case",   # WC-11 added in PRD v9 (23 Oct 2026)
+       "A credit memo, deposit or vendor credit dated exactly on the as-of date now shows in Current",   # WC-12 to WC-14 added in PRD v10 (4 Nov 2026)
+       "Date and Due Date show plain dates", "Transaction Type names each kind of credit"]
 for i, s in enumerate(_WC, 1): _n(f"WC-{i}", "What changes for existing users", prd_line(s))
 # Out of Scope (9 bullets)
 _OOS = ["Background exports for very large reports", "Restricting these reports by the user's location enrollment.",
@@ -198,7 +209,8 @@ DESIGN_PAGE = {1: "page 1 (Opening order and header sorting)", 2: "page 1 (Openi
                7: "page 5 (Document links and Switch location) and page 7 (vendor credit link)",
                8: "page 6 (Descriptions and pinned column)", 9: "page 7 (Filters and call list)"}
 NAMED_STORY = {"EH": 3, "UFS-1": 3, "UFS-2": 3, "UFS-3": 7, "UFS-4": 7, "UFS-5": 4, "UFS-6": 3, "UFS-7": 3, "UFS-8": 3,
-               "UFS-9": 8, "UFS-10": 8}
+               "UFS-9": 8, "UFS-10": 8, "UFS-11": 4, "UFS-12": 4, "EH4-1": 4, "EH4-2": 4,
+               "WC-12": 1, "WC-13": 2, "WC-14": 2}
 
 # On-screen navigation (design pictures, 22 Oct 2026): the reports sit under Reports in the top menu, in the left menu's ACCOUNTS
 # RECEIVABLE and ACCOUNTS PAYABLE sections (the PRD's "Reports > Finance" is its own description, not a label on screen).
@@ -223,17 +235,26 @@ def ui_res(s):
     s = ui(s)
     return s.replace("marked as the sorted column", "marked as the sorted column (a small arrow beside its heading)", 1) if "small arrow" not in s else s
 
+# 10 Nov 2026 (currency check, coordinator round 2): the 9 expect-fail blocks written to TestRail on 4 Nov 2026 (Rule 61; from
+# build/answers-2026-11-04/) are folded into the library, so a rebuild never drops them: the block replaces the case's old
+# "Where the build is expected to differ" note, byte for byte as live, and the marker is the live READY - EXPECT FAIL marker.
+EF = json.load(open(f"{D}/expect_fail_2026_11_04.json"))
 CASES = []
 def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, known="", reports=None, design=None, scenario=None, design_codes=None):
     """pre: list of str or (state, example). res: one 'Step N:' line per step. q: PRD codes, NAMED keys, SUB keys or ('label', 'verbatim').
     design: None (pictures chosen from the codes the case quotes) or a dict: figs (I-ids), boards (for a picture used twice), why, words.
     scenario: the case's "Scenario:" sentence (Rule 117 thirteenth amendment); by default taken from scenarios.SCENARIO by key and
     rendered as the first Preconditions bullet."""
+    import v11_layout as V11
+    if key in V11.REMOVED: return        # 10 Nov 2026: taken out of the library (proposed for deletion; QA lead deletes in TestRail)
+    q = list(q) + [x for x in V11.Q_ADD.get(key, []) if x not in q]
+    if key in V11.NOTE: note = V11.NOTE[key]
     pre = [p if isinstance(p, tuple) else (p, None) for p in pre]
     CASES.append(dict(key=key, sec=sec, title=title, scenario=scenario if scenario is not None else SCENARIO.get(key, ""),
                       pre=[(ui(a), ui(b) if b else b) for a, b in pre],
                       steps=[ui(x) for x in steps], res=[ui_res(x) for x in res], q=q, stories=stories, note=note, marker=marker or MARKER,
                       known=known, reports=reports, design=design, design_codes=design_codes))
+    if key in EF: CASES[-1]["marker"] = EF[key]["marker"]; CASES[-1]["ef_html"] = EF[key]["region_html"]
 
 def quotes(c):
     out = []
@@ -273,7 +294,7 @@ def reports_of(c):
 
 e = lambda s: html.escape(s, quote=False)
 
-def design_block(c):
+def _design_block(c, now):
     """Rule 117 tenth amendment: design references in their own block, below the quotes. The design was read on 22 Oct 2026:
     the board and page, the pictures to compare against, the design's own words (board title, figure heading, caption), every
     design-vs-PRD difference that touches the case (Rule 130 item 3), rulings, and what the design does not draw."""
@@ -283,8 +304,11 @@ def design_block(c):
     boards = d.get("boards", {})
     figs = [DD.fig(i, boards.get(i)) for i in d.get("figs", [])] or DD.relevant(codes, reps)
     figs = figs + [f for f in DD.before_for(codes, reps) if f not in figs]
-    diffs = DD.diffs_for(codes, reps)
-    diffs += [x for x in DD.DIFFS if x["id"] in d.get("diffs", []) and x not in diffs]
+    diffs = DD.diffs_for(codes, reps, now)
+    extra = list(d.get("diffs", [])) + (["DD-07"] if now and c["key"] in DD.DD07_CASES else [])
+    diffs += [x for x in DD.DIFFS if x["id"] in extra and x not in diffs]
+    cap = (lambda f: f["caption_now"]) if now else (lambda f: f["caption_old"])
+    shown = [f for f in figs if not (now and f["reshot"])]
     pages = sorted({f["page"] for f in figs})
     if not pages:
         for n in story_nums(c):
@@ -294,30 +318,36 @@ def design_block(c):
     elif c["marker"] == DESIGN_HOLD:
         why = ("This held case follows the design picture below, not the PRD sentence quoted above (Rule 130 item 5): the quote shows "
                "what the PRD says today, the picture what the design shows.")
+    elif figs and not shown: why = ("The design's pictures for this case were reshot (see below) and will be attached later; the expected results "
+                                    "still come from the PRD quotes above.")
     elif figs: why = ("Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, "
                       "the pictures give the look and the on-screen labels.")
     else: why = "The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD."
     if any(isinstance(x, tuple) and x[0].startswith("Tech plan") for x in c["q"]):
         why = why.replace("from the PRD quotes above", "from the PRD and tech plan quotes above")
-    lead = 'Design canvas "A/R and A/P Report Sorting" (' + DD.URL + "), " + DD.READ + ": " + "; ".join(DD.PAGE_TEXT[n] for n in pages) + ". " + why
+    lead = 'Design canvas "A/R and A/P Report Sorting" (' + DD.URL + "), " + (DD.READ_NOW if now else DD.READ) + ": " + "; ".join(DD.PAGE_TEXT[n] for n in pages) + ". " + why
     h = "<p></p><p><strong>References from Design</strong></p>" + "<p>" + e(lead) + "</p>"
     if figs:
-        h += "<p>Design pictures attached to this case:</p><ul>"
-        for f in figs:
+        h += "<p>Design pictures attached to this case:</p><ul>" if shown else "<p>"
+        for f in shown:
             today = "" if f["after"] else " (today's look, for comparison only)"
             h += "<li>" + e(DD.pic(f) + ': figure "' + f["heading"] + '" (' + f["badge"] + '), board "' + DD.BOARD[f["board"]][2] + '"' + today) + "</li>"
-        h += "</ul><p>The design's own words:</p><ul>"
+        h += ("</ul>" if shown else "") + "<p>The design's own words:</p><ul>"
         for f in figs:
-            h += "<li>" + e('"' + f["caption"] + '" (caption of "' + f["heading"] + '")') + "</li>"
+            h += "<li>" + e('"' + cap(f) + '" (caption of "' + f["heading"] + '")') + "</li>"
         for w in d.get("words", []):
             h += "<li>" + e('"' + w + '"') + "</li>"
         h += "</ul>"
+        for f in figs:
+            if now and f["reshot"]:
+                h += "<p>" + e('The design version of 5 Nov 2026 replaced the picture "' + f["heading"] + '" (reshot 23 Oct 2026, round 15). The old '
+                               "picture " + DD.pic(f) + " is no longer attached to this case; the new picture will be attached later.") + "</p>"
     held = c["marker"] == DESIGN_HOLD
     for x in diffs:
         if x.get("ruling"):
             # 26 Oct 2026: every difference is closed by Chris Ward's answer and PRD version 9 (Rule 130 item 3: the case still names it)
-            t = ("Difference from the PRD (" + x["id"] + "), closed: PRD version 5 said " + x["prd"] + "; the design shows " + x["design"] + ". "
-                 + x["ruling"])
+            t = ("Difference from the PRD (" + x["id"] + "), closed: " + x.get("said", "PRD version 5 said") + " " + x["prd"] + "; the design shows "
+                 + x["design"] + ". " + (x["ruling_now"] if now else x["ruling"]))
             h += "<p>" + e(t) + "</p>"
             continue
         if x["q"] == 4: how = "question 4 on Chris Ward's sheet (sent 22 Oct 2026)"
@@ -332,6 +362,13 @@ def design_block(c):
         t = "Design note (" + x["id"] + "): the design shows " + x["design"] + ". Closed without a question: " + x["ruling"]
         h += "<p>" + e(t) + "</p>"
     return h + "<p></p>"
+
+def design_block(c):
+    """10 Nov 2026: the block as the 5 Nov 2026 design gives it. A case whose block reads the same as with the 22 Oct 2026 design keeps
+    the 22 Oct read line (its boards and figures did not change: stamp-only cases are not rewritten, QA lead 10 Nov 2026 "Named set")."""
+    a, b = _design_block(c, False), _design_block(c, True)
+    if c.get("new_v11"): return b          # a case written on 10 Nov 2026 cites the design as read that day
+    return a if a == b.replace(DD.READ_NOW, DD.READ) else b
 
 def quotes_block(c):
     """Rule 117 eleventh amendment: each document quoted gets a "From:" line above its own quotes; the epic and the stories go on
@@ -355,8 +392,9 @@ def tail(c):
     their From: lines, References from Design and the AUTOMATION line, byte for byte as before the pattern pass (26 Oct 2026), except
     that a note's {placeholders} are written as the plain names the case uses (S1-16, S3-17, S5-18; coordinator, 26 Oct 2026)."""
     import pattern as PT   # 26 Oct 2026 (coordinator): the build-difference notes name records by their plain names, as the case does
-    return ((f"<p>{e(c['known'])}</p>" if c["known"] else "") + (f"<p>{e(PT.plain(c['note']))}</p>" if c["note"] else "")
-            + quotes_block(c) + design_block(c) + f"<p>{e(c['marker'])}</p>")
+    if c.get("ef_html"): head = c["ef_html"]
+    else: head = (f"<p>{e(c['known'])}</p>" if c["known"] else "") + (f"<p>{e(PT.plain(c['note']))}</p>" if c["note"] else "")
+    return (head + quotes_block(c) + design_block(c) + f"<p>{e(c['marker'])}</p>")
 
 def render(c):
     """Rule 117 fourteenth amendment (26 Oct 2026, the QA lead's own pattern, "Yes, permanent, all suites"): Preconditions as plain
@@ -408,7 +446,7 @@ def check(c):
             if ws(t) not in TPW and ws(t) not in TP_RAWW: p.append(f"{k}: quote {l} not verbatim in the tech plan")
         elif src is not None:
             if ws(t) not in src: p.append(f"{k}: quote {l} not verbatim in the Jira reading record")
-        elif ws(t) not in PRDW and ws(t) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v9")
+        elif ws(t) not in PRDW and ws(t) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v11")
     if not c["q"]: p.append(f"{k}: no source quote (Rule 64)")
     if len(c["pre"]) > 8: p.append(f"{k}: {len(c['pre'])} preconditions")
     # Over 10 steps is over the Rule 117 ninth-amendment TARGET ("Limits are targets"), not an error: the case stays whole and is listed

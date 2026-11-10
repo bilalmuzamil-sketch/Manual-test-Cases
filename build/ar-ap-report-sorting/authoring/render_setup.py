@@ -8,7 +8,7 @@ D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import ar_lib as L
 import design_data as DD
 import pattern as PT
-for m in ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design"]: importlib.import_module(m)
+for m in ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design", "cases_v11"]: importlib.import_module(m)
 from po_questions import QUESTIONS, QN
 SEC = json.load(open(f"{L.P}/sections.json"))
 NAMES = {"S1": "Story 1 — Reports open in QuickBooks name order", "S2": "Story 2 — Sort by clicking any column header",

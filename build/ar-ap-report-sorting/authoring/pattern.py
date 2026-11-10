@@ -323,4 +323,6 @@ def pattern(c):
     """The case in the QA lead's pattern: dict(title, pre, steps, results)."""
     import pattern_layout as PL, readthrough_layout as RTL, ar_lib as L
     # 26 Oct 2026: the tester read-through's corrections (readthrough_layout.py) come last
-    return RTL.readthrough(c, relate(c, apply_layout(c, convert(c), PL.LAYOUT.get(c["key"]), PL.RES_SPLIT), PL), L)
+    import v11_layout as V11
+    # 10 Nov 2026: the currency-check layer (PRD version 11, design of 5 Nov 2026) comes after the read-through layer
+    return V11.apply(c, RTL.readthrough(c, relate(c, apply_layout(c, convert(c), PL.LAYOUT.get(c["key"]), PL.RES_SPLIT), PL), L))

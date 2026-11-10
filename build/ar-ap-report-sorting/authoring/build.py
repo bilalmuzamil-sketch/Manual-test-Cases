@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build and check every A/R and A/P Report Sorting case. python3 build.py   (exit 1 on any PROBLEM line)
 Gates: title <= 80 and no semicolon; design titles start "Design: "; steps = results, each "Step N:"; placeholders defined;
-quotes verbatim in PRD v9 (or Chris Ward's answers, the Jira reading record, or the tech plan); every PRD code and every named PRD item (error handling, User Feedback
+quotes verbatim in PRD v11 (since 10 Nov 2026; v9 before) (or Chris Ward's answers, the Jira reading record, or the tech plan); every PRD code and every named PRD item (error handling, User Feedback
 Summary rows, What changes, Out of Scope, key decisions) covered or listed as not testable with the reason; every report a
 requirement names covered; one AUTOMATION line, last; the "From:" / build line / "References from Design" layout; the PATTERN GATE
 (Rule 117 fourteenth amendment, 26 Oct 2026, the QA lead's own pattern; it replaced the thirteenth amendment's Scenario gate): the
@@ -15,7 +15,7 @@ from collections import Counter, defaultdict
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ar_lib as L
 import pattern as PT
-MODS = ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design"]
+MODS = ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design", "cases_v11"]
 MODS = [m for m in MODS if os.path.exists(f"{L.D}/{m}.py")]
 for m in MODS: importlib.import_module(m)
 SECS = json.load(open(f"{L.P}/sections.json"))
@@ -66,7 +66,8 @@ MSGS = ["This report is too large for PDF. Export it as CSV, or narrow the filte
         "All customers are included. Pick one or more to narrow.", "All vendors are included. Pick one or more to narrow.",
         "All ranges are included. Pick one or more to narrow.", "Clear all filters", "Clear selection", "Select all", "Search locations",
         "Search vendors", "Export report", "Download (PDF)", "Download (CSV)", "Switch location", "Cancel", "Multiple", "COD", "Phone: ",
-        "Credit term: ", "Location: All locations", "Location: No locations", "Customer: All customers", "Vendor: All vendors",
+        "Credit term: ", "Something went wrong loading this bucket. Collapse and expand it to try again.",
+        "Not every line loaded. Collapse and expand this bucket to try again.", "Credit Memo", "Vendor Credit", "Credit Term", "Location: All locations", "Location: No locations", "Customer: All customers", "Vendor: All vendors",
         "Past due: Any", "Past due: 4 ranges", "91 And Over", "Locations: All locations", "As of Oct 15, 2026", "As of: Oct 15, 2026"]
 PAT = {c["key"]: PT.pattern(c) for c in L.CASES}
 tester_all = " ".join(" ".join(PAT[c["key"]]["steps"] + sum(PAT[c["key"]]["results"], [])) for c in L.CASES)
@@ -85,7 +86,7 @@ for c in L.CASES:
     q = h.split("Exact quotes from the source")[1].split("References from Design")[0]
     if not q.split("</strong></p>", 1)[1].startswith("<p>From: "): probs.append(f"{c['key']}: quotes do not start with a From line")
     if q.count("<p>From: ") != q.count("<ul>"): probs.append(f"{c['key']}: a quote group without its own From line")
-    if "Epic SV-11315" not in q or L.NOBUILD not in q or "version 9" not in q: probs.append(f"{c['key']}: epic, version or build line missing")
+    if "Epic SV-11315" not in q or L.NOBUILD not in q or "version 11" not in q: probs.append(f"{c['key']}: epic, version or build line missing")
     top = h.split("References from Design")[0]
     if "claude.ai/artifact" in top: probs.append(f"{c['key']}: design reference above the References from Design block")
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")
@@ -142,8 +143,9 @@ import pattern_layout as PLY
 _conv = {b for c in L.CASES for r in PT.convert(c)["results"] for b in r}
 for kk in PLY.RES_SPLIT:
     if kk not in _conv: probs.append(f"pattern_layout.RES_SPLIT entry matches no result any more: {kk[:70]}")
+import v11_layout as V11L
 for kk in PLY.LAYOUT:
-    if kk not in PAT: probs.append(f"pattern_layout.LAYOUT names a case that does not exist: {kk}")
+    if kk not in PAT and kk not in V11L.REMOVED: probs.append(f"pattern_layout.LAYOUT names a case that does not exist: {kk}")
 print("pattern: cases", len(PAT), "| precondition bullets", sum(len(p["pre"]) for p in PAT.values()), "(most in one case:",
       max(len(p["pre"]) for p in PAT.values()), ") | result bullets", sum(len(b) for p in PAT.values() for b in p["results"]),
       "| cases corrected by hand", len(PLY.LAYOUT))

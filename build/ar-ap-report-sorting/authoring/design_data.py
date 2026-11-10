@@ -59,6 +59,22 @@ for i, f in enumerate(json.load(open(f"{DDIR}/DESIGN-FIGURES-2026-10-22.json")),
     cap = f["caption"].replace("&quot;", '"')
     FIGS.append(dict(n=i, board=f["board"], page=BOARD[f["board"]][0], badge=f["badge"], heading=f["heading"], img=h, iid=IID[h],
                      alt=f["alt"], caption=cap, codes=_codes(cap), after=f["badge"] != "Production (before)"))
+# ---- 10 Nov 2026: the canvas was republished on 5 Nov 2026 (version 1793886208-34e0, read 10 Nov 2026; currency-2026-11-10/
+# design-2026-11-05/). canvas.json and the Main, Export and Layout boards are byte-identical to 22 Oct; five figures changed: three pictures
+# reshot on 23 Oct 2026 (round 15: "The native Vendor menu", "Links only where they can open", "Cleared: No locations") and two captions
+# ("The customer row stays pinned", "Another location asks first"). The reshot pictures could not be fetched (uploads of a canvas this
+# account cannot edit): a case no longer attaches the old picture, quotes the new caption and says the new picture comes later (QA lead,
+# 10 Nov 2026: "Remove old, add later"). Which pictures a case uses is still chosen by the 22 Oct captions' codes, so no case gains a
+# picture; the words printed are the 5 Nov captions.
+READ_NOW = "version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026"
+_NOW = json.load(open(f"{P}/currency-2026-11-10/design-2026-11-05/DESIGN-FIGURES-2026-11-05.json"))
+for _f, _n in zip(FIGS, _NOW):
+    assert _f["heading"] == _n["heading"] and _f["board"] == _n["board"]
+    _f["caption_old"] = _f["caption"]
+    _f["caption_now"] = _n["caption"].replace("&quot;", '"')
+    _f["img_now"] = _n["image"].split("/")[1][:-4]
+    _f["reshot"] = _f["img_now"] != _f["img"]
+    _f["changed"] = _f["reshot"] or _f["caption_now"] != _f["caption_old"]
 FIG_BY_IID = {}
 for f in FIGS: FIG_BY_IID.setdefault(f["iid"], f)
 
@@ -129,8 +145,41 @@ RULING = {
            "version 9 adds S2-R4a and writes S2-R1 in Title Case. The design's version is now the requirement and this case follows PRD version 9; D-81 "
            "(C715563), held until then, is now a normal design case."),
 }
+# 10 Nov 2026: the rulings as they read now. The 5 Nov 2026 design kept the pictures' promises of answers 13 to 15 (and names the two
+# build bugs, now tickets SV-12138 and SV-12139, in its captions); the cases follow PRD version 11. DD-01 and DD-06 read as before
+# (their facts did not change); the cases that print DD-02 to DD-05 are rewritten in this pass.
+RULING_NOW = {
+ "DD-02": ("PRD version 9 (23 Oct 2026), written after question 12, keeps \"Search vendors\" and adds that the search box shows only when there are more "
+           "than 8 vendors (S5-R13), unchanged in version 11. The design's Vendor menu picture was reshot on 23 Oct 2026 (round 15) and published on 5 Nov "
+           "2026; its caption now reads: a search box reading \"Search vendors\" (shown when there are more than 8 vendors). This case follows the PRD. "
+           "The held design-version case D-77 (C715559)" + DEL),
+ "DD-03": ("Chris Ward ruled on 23 Oct 2026 (answer 13): no Totals row, as the PRD says. The design picture was reshot on 23 Oct 2026 (round 15) and "
+           "published on 5 Nov 2026; its caption now adds \"No Totals row and no Location column.\" This case follows the PRD (S5-R6a, unchanged in "
+           "version 11). The held design-version case D-78 (C715560)" + DEL),
+ "DD-04": ("Chris Ward ruled on 23 Oct 2026 (answers 12 and 14): document-number order, as the PRD says, whatever the time of day the invoices were "
+           "created. The build bug is ticket SV-12138, and the design (5 Nov 2026) keeps the picture with the caption \"Known build bug: invoices on the "
+           "same date show in time-of-day order here; the PRD puts them in invoice-number order (S1-R6).\" This case follows the PRD (S1-R6, S2-R4, "
+           "unchanged in version 11). The held design-version case D-79 (C715561)" + DEL),
+ "DD-05": ("Chris Ward ruled on 23 Oct 2026 (answer 15): semi-bold, exactly as Work In Progress links look today. The design's \"Links only where they "
+           "can open\" picture was reshot on 23 Oct 2026 (round 15) and published on 5 Nov 2026; its caption now reads \"Native link style: the Work In "
+           "Progress blue, semi-bold, no underline.\" This case follows the PRD (S7-R7, unchanged in version 11). The held design-version case D-80 "
+           "(C715562)" + DEL),
+}
 ANSWER_OF = {"DD-01": 11, "DD-02": 12, "DD-03": 13, "DD-04": 14, "DD-05": 15, "DD-06": 4}
-for _d in DIFFS: _d["ruling"] = RULING[_d["id"]]; _d["answer"] = ANSWER_OF[_d["id"]]
+for _d in DIFFS: _d["ruling"] = RULING[_d["id"]]; _d["answer"] = ANSWER_OF[_d["id"]]; _d["ruling_now"] = RULING_NOW.get(_d["id"], RULING[_d["id"]])
+# DD-07 (10 Nov 2026, Rule 130): the "this build" pictures show Transaction Type "Credit" for every credit; PRD version 10 S2-R1b (4 Nov 2026,
+# Chris Ward, the design authority) names them. Closed by that later ruling: no question, no held design-version case. Printed by the
+# cases that quote S2-R1b and by the three cases that compare credit rows with those pictures (DD07_CASES).
+DIFFS.append(dict(id="DD-07", codes=["S2-R1b"], named=[], reps=None, figs=["I14", "I16", "I25", "I30", "I43"], q=None, held=None, now_only=True,
+      said="PRD version 10 (4 Nov 2026) says",
+      prd='Transaction Type "names each kind of credit: "Credit Memo" and "Deposit" on A/R, "Vendor Credit" on A/P" (S2-R1b)',
+      design='Transaction Type "Credit" on every credit memo, deposit and vendor credit row (for example in "Expand all from the header", "Same on A/P Unpaid Invoices", "A/P Unpaid Invoices at 1440: every column visible", "Cancel stays on the report" and "Vendor credits link")',
+      kind="cell text", answer=None,
+      ruling=("Closed by the later PRD ruling: PRD version 10 (4 Nov 2026, Chris Ward, the design authority) added S2-R1b after these pictures were "
+              "taken and lists it under What changes for existing users (\"today all three read \"Credit\"\"); version 11 keeps it. Compare the layout "
+              "with the pictures; the Transaction Type words come from the PRD.")))
+DIFFS[-1]["ruling_now"] = DIFFS[-1]["ruling"]
+DD07_CASES = {"D-18", "D-58", "D-63"}
 # differences closed by a ruling already in our sources (not asked; skill 07 section 6)
 RULED = [
  dict(id="DR-01", codes=["S8-R4"], figs=["I14", "I15", "I16", "I23", "I25", "I32", "I03", "I28", "I30"],
@@ -191,9 +240,9 @@ def relevant(codes, reports=None, limit=3):
         seen.add(f["iid"]); out.append(f)
     return out[:limit]
 
-def diffs_for(codes, reports=None):
+def diffs_for(codes, reports=None, now=True):
     cs = set(codes)
-    return [d for d in DIFFS if cs & (set(d["codes"]) | set(d["named"]))
+    return [d for d in DIFFS if cs & (set(d["codes"]) | set(d["named"])) and (now or not d.get("now_only"))
             and (d["reps"] is None or not reports or set(d["reps"]) & set(reports))]
 
 def ruled_for(codes):
