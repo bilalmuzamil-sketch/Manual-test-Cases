@@ -1,0 +1,13 @@
+PATCH {"salary":-5000} 422 {"error":{"code":"validation_error","message":"salary must be between 0 and 999999 cents for this salary_type."},"meta":{"request_id":"baf91654-97f3-4929-9d8b-6 | now "salary":500
+PATCH {"salary":"abc"} 422 {"error":{"code":"validation_error","message":"salary must be an integer number of cents or null."},"meta":{"request_id":"620ac922-5cbe-4d01-91dc-81f2cb3e51ab", | now "salary":500
+PATCH {"salary":-1} 422 {"error":{"code":"validation_error","message":"salary must be between 0 and 999999 cents for this salary_type."},"meta":{"request_id":"6f467a65-8771-4ff8-b518-2 | now "salary":500
+PATCH {"salary":1000000} 422 {"error":{"code":"validation_error","message":"salary must be between 0 and 999999 cents for this salary_type."},"meta":{"request_id":"8e35d0a1-152d-455b-bece-4 | now "salary":500
+PATCH {"salary":999999} 200 OK | now "salary":999999
+PATCH {"salary":0} 200 OK | now "salary":0
+PATCH {"salary":1999} 200 OK | now "salary":1999
+PATCH {"salary_type":"salary","salary":5000000} 200 OK | now "salary"
+PATCH {"salary_type":"hourly"} 422 {"error":{"code":"validation_error","message":"salary must be between 0 and 999999 cents for this salary_type."},"meta":{"request_id":"53ce2041-f0b5-4e92-b6e5-f | now "salary"
+PATCH {"salary":999999999} 200 OK | now "salary"
+PATCH {"salary":1000000000} 422 {"error":{"code":"validation_error","message":"salary must be between 0 and 999999999 cents for this salary_type."},"meta":{"request_id":"0a97d59d-71a7-4328-bdf | now "salary"
+PATCH {"salary_type":"hourly","salary":500} 200 OK | now "salary":500
+revoke 204

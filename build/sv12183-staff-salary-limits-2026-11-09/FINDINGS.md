@@ -37,3 +37,17 @@ Side note (API-only, not filed — Rule 94, ask QA lead): `POST /api/iam/create`
 ## Done on Jira
 - Comment 80537 tagging Dipesh with the 2 needs (Rule 122); ticket moved TESTING QA → **Blocked** (Rule 122).
 - Not done: the accounting effect (Rule 121) — rates are copied onto time records as pay rate; not checked (needs a clock-in as the new staff). Raised to the QA lead.
+
+## 10 Nov 2026 ~06:10 UTC — unblocked (Dipesh, Slack DM 10 Nov 09:45 +04: Open API on for d55bc308; "ZZAUTOTEST SV12183 A 58404" saved at -5.00)
+Branch sv12183 (same build as 9 Nov). Public API = `/api/v1/staff/{staff id}` (the user id answers 404 "Staff not found."), values in cents. Test key minted per run and revoked (204), never printed.
+| # | Check | Result |
+|---|---|---|
+| 16a | Name-only PATCH `{"first_name":"ZZAUTOTEST2"}` then back, on A 58404 (stored -500) | PASS: 200 both, salary stays -500 |
+| 16b | Pay change on a negative-rate staff without a valid value: `{"salary_type":"salary"}`, `{"salary_type":"hourly","salary":-500}` | PASS: 422 "salary must be between 0 and 999999999 / 999999 cents for this salary_type."; stays -500 |
+| 17a | Screen: Edit Staff Member on A 58404 → Hourly Rate shows -5.00; Save & Close unchanged | PASS: error "Hourly rate cannot be lower than 0", no request, window stays (ev/branch-N1-after-save.png) |
+| 17b | Screen: same window, rate 5 → Save & Close → reopen | PASS: change 201, reopens 5.00, list 5 (ev/branch-N2-*) |
+| 16c | Public PATCH -5000, "abc", -1, 1000000 (hourly) | PASS: 422 each ("…between 0 and 999999 cents…" / "salary must be an integer number of cents or null."); value unchanged |
+| 16d | Public PATCH 999999, 0, 1999 | PASS: 200, stored exactly |
+| 16e | salary_type salary + 5000000 → 200; then `{"salary_type":"hourly"}` alone → 422; 999999999 → 200; 1000000000 → 422; back to hourly 500 → 200 | PASS (matches openapi.yaml) |
+Production before (public API, ZZAUTOTEST SV12183 P1 60548, staff 2343a183…): `{"salary":-5000}` 200 stored -5000; `{"salary":1000000}` 200 stored; then 0. Raw lines: ev/ev-pubapi-10nov.txt (branch).
+Still open: Rule 121 time-record pay rate — department clock-in (`POST /api/technician-tasks/department-clock-in`, self only) freezes `$staff->getHourlyRate()`; checking it means changing the admin's own rate and clocking in. Asked the QA lead before posting.
