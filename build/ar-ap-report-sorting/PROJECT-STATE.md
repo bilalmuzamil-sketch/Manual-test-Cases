@@ -197,3 +197,6 @@
   could switch to only one location (affects C715480); A/R Detail has no customer filter before the release (C1062590 fine: it ticks the
   customer after the release); offline CSV export on Sales By Customer showed "Network Error" plus "This report is too large to export.
   Narrow the date range or filters, then try again." (the second is misleading; existing production behaviour, not ours to file).
+- 10 Nov 2026, QA lead: C715617 and C715476 keep their wording ("Leave as is"; the tester picks the right Sales By Customer download).
+  C715480: "Re-capture" — Mudassir enrols the user at a second location and retakes the switcher screenshot by 18 Nov (added to the
+  prep file); no case change.

@@ -97,3 +97,16 @@ Used by: C715584.
 ---
 
 When done, tell the QA lead where the folder is.
+
+---
+
+## Added 10 Nov 2026: redo section 5 (the location switcher) by 18 Nov
+
+Used by: C715480. In the first capture the user could switch to only one location (Truck Hill 1), so after the release the test
+cannot switch to a second one.
+
+1. In the production test account, enrol the same user at a second location (for example Trucks Hill 2).
+2. Sign out and back in as that user, open A/R Aging Summary, and open the location switcher in the top right of ShopView.
+3. Check that it now lists both locations, and take a screenshot of it open. Save it in the same folder, `5-location-switcher`,
+   replacing the old one (or name it "location switcher open - two locations").
+4. Run the after-release check of C715480 with this same user.
