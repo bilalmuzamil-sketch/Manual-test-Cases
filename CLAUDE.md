@@ -113,7 +113,8 @@ These are stated here **in full** because a session that gets only this far must
   him** to keep / edit / delete. Session-recorded results stay **Passed only**; sync-copied results mirror
   the human tester exactly. **Never touch TMS "Test layer" / "Deferred".** Read `build/tms/TMS-FACTS.md`
   first. It overlays — it changes no other rule. **Name every run, milestone and folder by number AND name AND
-  system — never a bare number** (addition 2026-11-04).
+  system — never a bare number** (addition 2026-11-04). **Never add a synced case to any nightly run (or any run)
+  unless he asks** (addition 2026-11-10).
 - **🔴 FOLLOW ONLY YOUR OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (114).** Ordered by the QA
   lead 2026-10-06. Your rules are this copy's index (`CLAUDE.md`), its rule files (`RULES-01-20`,
   `21-40`, `41-60`, `61-96`) and its skills. **Never take a rule, standard or procedure from another

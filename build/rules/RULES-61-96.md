@@ -2584,3 +2584,14 @@ mention the number and name both."* Recorded under that express instruction (Rul
    question and report to the QA lead. Write *"TestRail run 552 Maintenance reminder (Chunk1 and 2)"* and *"TMS run 4
    Mantenence Reminders"* (the name exactly as that system shows it), never *"run 552"* or *"TMS 4"* alone. Folders are
    given by their full path (`build/tms/SYNC-POLICY.md`). A case keeps its existing form (C-number + link, Rule 8).
+
+### Addition 2026-11-10 — synced cases are never put into the nightly runs
+
+**QA lead, verbatim (2026-11-10):** *"the test cases for Bill to should not be the part of the nightly run, and never add
+the cases which I sync to TMS to the nightly runs unless I ask you to do that."* Recorded under that express instruction (Rule 72).
+
+8. **A session never adds a case it syncs or creates in TMS to any "Nightly Test Run"** (or any other run) **unless the QA
+   lead asks for that run by name.** Fact (proven 2026-11-10): the nightly runs are created by **Vladimir Tomovic** around
+   22:10 UTC with **"include all cases"**; each takes a one-time copy of the cases that exist at that moment and never
+   absorbs later ones. So a NEW nightly run will contain newly synced cases **without any action by us** — that is
+   reported to the QA lead, never "fixed" by editing Vlad's runs without his go-ahead.

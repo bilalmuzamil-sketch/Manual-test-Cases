@@ -46,3 +46,9 @@ never by a vague label.
 
 **QA lead, verbatim:** *"Name the Test run instead of calling it for my by number make it a rule to mention the number and
 name both."* Rule 115 point 7. E.g. *TestRail run 552 Maintenance reminder (Chunk1 and 2)* / *TMS run 4 Mantenence Reminders*.
+
+## Synced cases never go into the nightly runs (2026-11-10)
+
+**QA lead, verbatim:** *"the test cases for Bill to should not be the part of the nightly run, and never add the cases which I
+sync to TMS to the nightly runs unless I ask you to do that."* Rule 115 point 8. Nightly runs are Vlad's (created ~22:10 UTC,
+"include all cases"); a new one will pick up synced cases on its own — report it, never edit his runs without a go-ahead.

@@ -388,3 +388,15 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   16 "Technician Toggle - Execution", 17 "Part Lifecycle - Execution" + all their cases (356 / 192 / 580) → Mudassir**;
   every status, result and total verified unchanged. **TMS milestone 5 now matches TestRail milestone 5 in runs, cases
   and assignees.**
+
+## 20 · 2026-11-10 — Bill To (TestRail 132467) synced into TMS under Founder Mode
+
+- **Created in TMS:** folder **10000025 "Bill To"** under **20434 Founder Mode (September 2026)**, 26 sub-folders, **334 cases**
+  (each read back identical). Three resumable restarts: TestRail read timeout and a 504 — `TestRail.get` now retries reads
+  on timeouts, dropped connections and 429/5xx.
+- **Proof nothing else changed** (before/after photo, `/tmp/tms/billto-before.json`): **all 7,905 existing cases unchanged**
+  (version, folder, last-updated); **all 21 runs unchanged** except TMS run 17 "Part Lifecycle - Execution", where
+  **Mudassir recorded 22 results in TMS during the sync** (08:00 UTC hour) — his testing, not a sync write. **No Bill To case
+  is in any nightly run.** My writes: 27 folder creations + 334 case creations, nothing else.
+- **Risk reported:** nightly runs are created by **Vladimir Tomovic** ~22:10 UTC with "include all cases" — the next one will
+  include Bill To unless his process excludes it. Not ours to change without the QA lead's go-ahead (Rule 115 point 8).
