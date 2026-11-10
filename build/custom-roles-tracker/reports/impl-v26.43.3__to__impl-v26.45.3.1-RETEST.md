@@ -1,0 +1,73 @@
+# What to retest after release v26.45.3.1
+
+Custom Roles & Permissions only. Read from the app itself; the steps are suggestions to plan with.
+
+Release v26.45.3.1 changed 9 things in roles and permissions. 6 checks to do.
+
+## Part 1 · Re-check these areas
+
+### 1. Reports: re-check who can use it (Medium priority)
+
+This release made 2 changes to behind-the-scenes checks in Reports.
+
+Should work for: Sales Representative · Should be refused for: Senior Service Advisor
+
+1. Log in as Sales Representative, who has “Reports — Page Access”. Go to Reports and use the features listed below. Everything should work as before.
+2. Log in as Senior Service Advisor, who does not have “Reports — Page Access”. The same buttons, menus and pages should be hidden, and the actions should be refused.
+
+Features to try: Viewing reporting › sales follow up; Viewing reporting › vendors expenses
+
+Test result: Not Tested
+
+### 2. Settings: re-check who can use it (Medium priority)
+
+This release made 1 change to which screens show or hide things and 5 changes to behind-the-scenes checks in Settings.
+
+Should work for: Office User · Should be refused for: Technician
+
+1. Log in as Office User, who has “Settings — App”. Go to Settings and use the features listed below. Everything should work as before.
+2. Log in as Technician, who has none of the permissions listed below. The same buttons, menus and pages should be hidden, and the actions should be refused.
+3. Any one of these permissions is enough to allow the actions. If time allows, check a role that has only one of them, for example “Customers — Create & Edit” or “Settings — Parts”.
+
+Features to try: Viewing be permissions; Viewing fe be permission relations; Deleting fe be permission relations; Creating or running fe be permission relations
+
+Test result: Not Tested
+
+### 3. Work Orders: re-check who can use it (Low priority)
+
+This release made 1 change to behind-the-scenes checks in Work Orders.
+
+Should work for: Sales Representative · Should be refused for: a test role with the permission switched off
+
+1. Log in as Sales Representative, who has “Work Orders — Full View Mode”. Go to Work Orders and use the features listed below. Everything should work as before.
+2. Every built-in role has at least one of the 14 permissions listed below, so make a test role with all of them switched off. Log in with it: the same buttons, menus and pages should be hidden, and the actions should be refused.
+3. Any one of these permissions is enough to allow the actions. If time allows, check a role that has only one of them, for example “Invoicing & Payments — Create & Edit” or “Part Sales — Create & Edit”.
+
+Features to try: Creating or running work orders › lead change undo
+
+Test result: Not Tested
+
+## Part 2 · Quick checks after any permission change
+
+### 4. Built-in roles still open and save
+
+1. Open Administration › Roles and Permissions. Open each built-in role and press save without changing anything.
+2. No error should appear, and no permission should change.
+
+Test result: Not Tested
+
+### 5. Custom roles made before this release are unchanged
+
+1. Open a custom role that was made before this release. Check its permissions are exactly as they were.
+2. Log in as a user with that role and check they can still do their normal work.
+
+Test result: Not Tested
+
+### 6. Changing someone’s role still logs them out
+
+The plan says: "Changing a user’s role triggers a forced logout for the affected user. The new role takes effect when they log back in."
+
+1. Give a test user a different role while they are logged in.
+2. They should be logged out. When they log back in, they should have only what the new role allows.
+
+Test result: Not Tested
