@@ -1,0 +1,27 @@
+// Route A re-walk, production, screen only: Customers list -> search -> open customer -> Invoices tab -> hover/click the three icons -> Send
+import {sess,j} from './common.mjs'; import fs from 'fs';
+const NAME='ZZAUTOTEST SV12299 Charge Account'; const D='/tmp/qa12299/walk/'; const log=[]; const L=x=>{log.push(x);console.log(x);};
+const s=await sess({acceptDownloads:true}); const p=s.page; const shot=async n=>p.screenshot({path:D+'A-'+n+'.png'});
+const vis=()=>p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(d=>d.innerText.replace(/\s+/g,' ').trim()).join(' || '));
+L('marker '+JSON.stringify(await s.marker()));
+await s.go('/customers'); await p.waitForTimeout(3500); await shot('01-customers-list');
+const tops=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].filter(e=>e.offsetParent&&e.getBoundingClientRect().top<140).map(e=>e.getAttribute('data-test-id')+'|'+(e.innerText||e.getAttribute('aria-label')||'').trim().slice(0,30)));
+L('top controls '+j(tops));
+const st=p.locator('[data-test-id="page_search_toggle"]'); if(await st.count()){ await st.first().click(); await p.waitForTimeout(500);} await p.keyboard.type(NAME,{delay:15}); await p.waitForTimeout(2500); await shot('02-searched');
+await p.locator('tr',{hasText:NAME}).first().click(); await p.waitForTimeout(4000); L('url '+p.url());
+const tabs=await p.evaluate(()=>[...document.querySelectorAll('.q-tab')].map(t=>t.innerText.replace(/\s+/g,' ').trim()).filter(Boolean)); L('tabs '+j(tabs)); await shot('03-customer');
+await p.locator('.q-tab',{hasText:/^Invoices/}).first().click(); await p.waitForTimeout(4000); L('url '+p.url()); await shot('04-invoices-tab');
+const icons=await p.evaluate(()=>[...document.querySelectorAll('button[aria-label]')].filter(b=>b.offsetParent).map(b=>{const r=b.getBoundingClientRect();return b.getAttribute('aria-label')+'@'+Math.round(r.x)+','+Math.round(r.y)+' tid='+b.getAttribute('data-test-id')+' txt='+b.innerText.trim().slice(0,20)}));
+L('labelled buttons '+j(icons));
+const rows=await p.evaluate(()=>[...document.querySelectorAll('tbody tr')].map(r=>r.innerText.replace(/\s+/g,' ').trim().slice(0,140))); L('rows '+j(rows));
+const cbs=await p.locator('tbody .q-checkbox').count(); L('row checkboxes '+cbs);
+const env=p.locator('button[aria-label="Send Email"]').first(); await env.hover(); await p.waitForTimeout(1200);
+L('tooltip '+j(await p.evaluate(()=>[...document.querySelectorAll('.q-tooltip')].map(t=>t.innerText.trim())))); await shot('05-hover-envelope');
+await env.click(); await p.waitForTimeout(3000); L('dialog '+(await vis()).slice(0,700)); await shot('06-dialog');
+const dbtn=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog button, .q-dialog .q-checkbox, .q-dialog input')].map(b=>(b.tagName+'|'+(b.getAttribute('aria-label')||'')+'|'+(b.innerText||b.value||'').trim().slice(0,40)+'|'+(b.getAttribute('data-test-id')||'')+'|'+(b.getAttribute('aria-checked')||''))));
+L('dialog controls '+j(dbtn).slice(0,900));
+const n0=s.writes.length; await p.locator('.q-dialog button',{hasText:'Send Email'}).last().click(); await p.waitForTimeout(6000);
+L('writes '+j(s.writes.slice(n0).map(w=>w.slice(0,220))));
+L('toasts '+j(await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>e.innerText.replace(/\s+/g,' ').trim()))));
+await shot('07-after-send'); L('sent at '+new Date().toISOString());
+fs.writeFileSync(D+'A-log.txt',log.join('\n')+'\n'); await s.close(); process.exit(0);
