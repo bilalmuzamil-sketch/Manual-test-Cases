@@ -27,6 +27,7 @@ import json
 import os
 import re
 import sys
+import time
 
 import requests
 
@@ -106,8 +107,16 @@ class TestRail:
         self.auth = load_creds.testrail_creds()
         self.base = load_creds.testrail_host() + "/index.php?/api/v2/"
 
-    def get(self, path):
-        r = requests.get(self.base + path, auth=self.auth, timeout=120)
+    def get(self, path, retries=5):
+        # READS only: a slow or dropped TestRail answer (seen 2026-11-10) is retried with back-off.
+        for attempt in range(retries):
+            try:
+                r = requests.get(self.base + path, auth=self.auth, timeout=120)
+                break
+            except (requests.exceptions.Timeout, requests.exceptions.ConnectionError):
+                if attempt == retries - 1:
+                    raise
+                time.sleep(2 ** attempt)
         r.raise_for_status()
         return r.json()
 
