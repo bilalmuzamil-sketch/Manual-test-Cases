@@ -1,0 +1,11 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./09/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dlg = () => page.locator('.q-dialog:visible').last();
+await step('customers', async () => { await page.locator('header').getByText('Customers', { exact: true }).first().click(); await page.waitForTimeout(3000); log('URL', page.url()); log('BUTTONS', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))].slice(0, 15))); });
+await step('new', async () => { const b = page.locator('main button:visible', { hasText: /New Customer|Create Customer|Add Customer/ }).first(); log('new btn:', T(await b.innerText())); await b.click(); await page.waitForTimeout(2500);
+  log('FORM:', T(await dlg().innerText().catch(async () => await page.locator('main').innerText())).slice(0, 1500)); log('LABELS:', JSON.stringify(await page.locator('.q-dialog:visible .q-field__label, main .q-field__label').allTextContents()));
+  log('TOGGLES:', JSON.stringify(await page.locator('.q-dialog:visible .q-toggle, .q-dialog:visible .q-checkbox').allInnerTexts())); await dump('new-customer');
+  const ct = page.locator('.q-dialog:visible .q-field').filter({ has: page.locator('.q-field__label', { hasText: /term/i }) }).first(); if (await ct.count()) { await ct.click(); await page.waitForTimeout(1200); log('CREDIT TERM OPTIONS:', JSON.stringify((await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T))); await page.keyboard.press('Escape'); } });
+await r.browser?.close?.(); process.exit(0);
