@@ -1,0 +1,14 @@
+{
+ "/api/invoices?limit=3": [
+  404,
+  "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+ ],
+ "/api/invoices/list?limit=3": [
+  200,
+  "{\"data\":{\"collection\":[{\"id\":\"a4cb2ad1-f448-4b4e-b123-7e2a8e55587e\",\"invoice_number\":\"S-17322\",\"status\":\"sent\",\"work_order_id\":\"25962b25-59a9-4142-996d-fc2976e89245\",\"customer_id\":\"bc726b6b-cf00-48b1-962e-58a3673f3a6d\",\"company_id\":\"cafa67be-87a5-4815-bef3-1c6a1cf5649d\",\"work_place_id\":\"b3c8c820-f81"
+ ],
+ "/api/customers/invoices?limit=3": [
+  404,
+  "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+ ]
+}

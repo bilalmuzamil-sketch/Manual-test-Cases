@@ -1627,3 +1627,11 @@ what is still owed.
 
 - 2026-11-10 ~12:45 UTC — A/P aging PDF export fails at ~30 s for 1,100+ lines (under the 2,000 cap) on sv11315; no existing ticket; Sentry SHOPVIEW-API-350. Asked QA lead: file a ticket (linked to SV-11533) or comment on SV-11533? Detail: build/sv11441-aging-credit-asof-2026-11-10/FINDINGS.md.
 - 2026-11-10 — SV-11441 QuickBooks check on hold until 17:15 UTC reminder (QA lead: leave it 5 hours).
+
+## 3-hourly check 10 Nov 2026 12:31 UTC
+| Item | State | Needs |
+|---|---|---|
+| SV-12120 (return view scoped to own shop) | tested on sv12120: all 5 handoff checks pass (other org / made-up id / other location -> 404, own returns 200); production made-up id -> 500 | QA lead: (1) pass without the description's 'decide invoice-view scoping' point (PR does not touch it; invoice view isolates other orgs but opens another location's invoice)? (2) raise the empty 'Return Details' page with no not-found message (same on production)? |
+| SV-12135..12141, SV-11688 (aging/report bugs) | TESTING QA, QA assignee Mudassir Qamar | QA lead: test them or leave to Mudassir? |
+| SV-11116 | now Blocked (was In Progress) | developer |
+| Watch list / Rule 122 asks | no new answers (SV-12486/87/88 Open; SV-12221/12223 no replies) | — |

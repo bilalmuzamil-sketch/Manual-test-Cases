@@ -1,0 +1,17 @@
+import {sess} from './common.mjs'; import fs from 'fs';
+const EV='../ev'; const s=await sess(); const p=s.page; const net=[];
+p.on('response',r=>{ if(/\/api\/inventory\/returns\/[^?]/.test(r.url())) net.push([r.status(),r.url().replace(/^https:\/\/[^/]+/,'')]); });
+const RAND='3f6c2b1e-9d4a-4c8e-b7a1-5e2d9c0f1a77', A='343cd292-e692-450f-914f-a1878639e073'; const res={marker:await s.marker()};
+const look=async(id,name)=>{ await s.go('/parts/return/'+id); await p.waitForTimeout(2500);
+  const n=await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(x=>x.innerText.replace(/\s+/g,' ')));
+  await p.screenshot({path:`${EV}/${name}.png`}); await p.waitForTimeout(4000);
+  const m=await p.evaluate(()=>document.querySelector('main')?.innerText.replace(/\s+/g,' ').slice(0,160));
+  const box=await p.evaluate(()=>{const h=[...document.querySelectorAll('main *')].find(e=>/^Return Details$/.test(e.innerText?.trim()));const r=h?.getBoundingClientRect();return r?[r.x,r.y,r.width,r.height]:null;});
+  return {n,m,box}; };
+res.a_own=await look(A,'b-01-orgA-own-return');
+res.a_rand=await look(RAND,'b-02-orgA-unknown-id');
+const pw=fs.readFileSync('/tmp/sv12120/orgb-pw','utf8').trim();
+await s.api('/api/login',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({username:'bilal.muzamil+sv12120b@shopview.com',password:pw})});
+res.b_A=await look(A,'b-03-orgB-opens-orgA-return');
+res.net=net; fs.writeFileSync(EV+'/brshot.json',JSON.stringify(res,null,1)); console.log(JSON.stringify(res,null,1));
+await s.close(); process.exit(0);

@@ -1,0 +1,12 @@
+import {sess} from './common.mjs'; import fs from 'fs';
+const s=await sess(); const H={'content-type':'application/json'}; const out={}; const I='a4cb2ad1-f448-4b4e-b123-7e2a8e55587e';
+const v=async()=>{const r=await s.api('/api/invoices/'+I+'/view'); return [r.status,JSON.stringify(r.json).slice(0,120)];};
+out.hd=await v();
+await s.api('/api/iam/change-location',{method:'POST',headers:H,body:JSON.stringify({workplace_id:'f8a8b802-7780-4b16-bf10-343caeb616b2',workplace_timezone:'America/Edmonton'})});
+out.leth=await v();
+await s.api('/api/iam/change-location',{method:'POST',headers:H,body:JSON.stringify({workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',workplace_timezone:'America/Edmonton'})});
+const pw=fs.readFileSync('/tmp/sv12120/orgb-pw','utf8').trim();
+await s.api('/api/login',{method:'POST',headers:H,body:JSON.stringify({username:'bilal.muzamil+sv12120b@shopview.com',password:pw})});
+out.orgB=await v();
+fs.writeFileSync('../ev/inv-view.json',JSON.stringify(out,null,1)); console.log(JSON.stringify(out));
+await s.close(); process.exit(0);
