@@ -1,0 +1,111 @@
+C715280 [90419] A/R Detail lists the five buckets in fixed order and rows by name
+   WHY: R4 the FIRST step does not say where to go: 'Read the bucket rows from top to bottom without expanding anythin
+   PRE-last: Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu). | STEP1: Read the bucket rows from top to bottom without expanding anything.
+C715281 [90419] A/P Detail lists the five buckets in fixed order and rows by name
+   WHY: R4 the FIRST step does not say where to go: 'Read the bucket rows from top to bottom without expanding anythin
+   PRE-last: Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu). | STEP1: Read the bucket rows from top to bottom without expanding anything.
+C715283 [90419] A/P Unpaid Invoices groups vendors by name, rows oldest date first
+   WHY: R4 the FIRST step does not say where to go: 'Find the groups of vendor A and vendor B and note their order.'
+   PRE-last: Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report"). | STEP1: Find the groups of vendor A and vendor B and note their order.
+C1062571 [90419] A/P Unpaid Invoices: a vendor with over 100 bills loads 100 at a time
+   WHY: R4 the FIRST step does not say where to go: "Read the count in brackets after vendor A's name."
+   PRE-last: Leave the report with only vendor A ticked in the Vendor filter. | STEP1: Read the count in brackets after vendor A's name.
+C715390 [90423] A/P Detail: a bill belongs to the location of its delivery
+   WHY: R4 the FIRST step does not say where to go: 'Read the Location of bill A and bill B.'
+   PRE-last: Leave the report with the Vendor filter showing that vendor ticked and every bucket expanded. | STEP1: Read the Location of bill A and bill B.
+C715391 [90423] A/P Unpaid Invoices: a vendor credit belongs to its return or vendor
+   WHY: R4 the FIRST step does not say where to go: 'Read the Location of vendor credit A and vendor credit B.'
+   PRE-last: Leave the report with the Vendor filter showing vendor A ticked and its group expanded. | STEP1: Read the Location of vendor credit A and vendor credit B.
+C715394 [90423] A/P Summary: a link naming several locations or every location
+   WHY: R5 jargon a tester will not understand: a camelCase identifier (e.g. a permission name) -- 'locationIds'
+   PRE-last: Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu). | STEP1: In the Location menu, untick location C.
+C715395 [90423] A/R Detail: a link with an unknown location ignores it
+   WHY: R5 jargon a tester will not understand: a camelCase identifier (e.g. a permission name) -- 'locationIds'
+   PRE-last: Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu). | STEP1: In the Location menu, untick location B.
+C715396 [90423] A/P Unpaid Invoices: a Past due value the chip does not offer reads Any
+   WHY: R5 jargon a tester will not understand: a camelCase identifier (e.g. a permission name) -- 'pastDue'
+   PRE-last: Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report"). | STEP1: In the Past due filter, tick "31-60 days".
+C715577 [90423] A/R Collection: a link with an unknown customer ignores it
+   WHY: R5 jargon a tester will not understand: a camelCase identifier (e.g. a permission name) -- 'customerIds'
+   PRE-last: Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu). | STEP1: In the Customer filter, tick customer A.
+C715578 [90423] A/P Unpaid Invoices: a link with an unknown vendor ignores it
+   WHY: R5 jargon a tester will not understand: a camelCase identifier (e.g. a permission name) -- 'vendorIds'
+   PRE-last: Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report"). | STEP1: In the Vendor filter, tick vendor A.
+C715413 [90424] A/P Summary: a row shows one location's name or Multiple
+   WHY: R4 the FIRST step does not say where to go: 'Read the Location cell of vendor A and vendor B.'
+   PRE-last: Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu). | STEP1: Read the Location cell of vendor A and vendor B.
+C715420 [90425] A/P Detail: a vendor credit links to the return it came from
+   WHY: R4 the FIRST step does not say where to go: "Look at the three vendor credits' numbers."
+   PRE-last: Leave the report with that vendor ticked and its rows showing. | STEP1: Look at the three vendor credits' numbers.
+C715421 [90425] A/P Unpaid Invoices: a vendor credit links to the return it came from
+   WHY: R4 the FIRST step does not say where to go: "Look at the three vendor credits' numbers."
+   PRE-last: Leave the report with that vendor ticked and its rows showing. | STEP1: Look at the three vendor credits' numbers.
+C715425 [90425] With Invoicing and Work Orders View, a work order invoice is a link
+   WHY: R4 the FIRST step does not say where to go: "Look at invoice B's number."
+   PRE-last: Leave the report with that customer ticked and every bucket expanded. | STEP1: Look at invoice B's number.
+C715426 [90425] Without Invoicing View, work order and part sale invoices are plain text
+   WHY: R4 the FIRST step does not say where to go: "Look at invoice A's and invoice B's numbers."
+   PRE-last: Leave the report with that customer's group expanded. | STEP1: Look at invoice A's and invoice B's numbers.
+C715427 [90425] With Invoicing and Part Sales View only, only part sale invoices link
+   WHY: R4 the FIRST step does not say where to go: "Look at invoice A's number."
+   PRE-last: Leave the report with that customer's group expanded. | STEP1: Look at invoice A's number.
+C715428 [90425] With Vendor Order Management View, a bill at your location is a link
+   WHY: R4 the FIRST step does not say where to go: "Look at bill A's number."
+   PRE-last: Leave the report with that vendor's group expanded. | STEP1: Look at bill A's number.
+C715429 [90425] With Vendor Order Management Create & Edit, a bill at your location is a link
+   WHY: R4 the FIRST step does not say where to go: "Look at bill A's number."
+   PRE-last: Leave the report with that vendor's group expanded. | STEP1: Look at bill A's number.
+C715430 [90425] Without Vendor Order Management, bills and vendor credits are plain text
+   WHY: R4 the FIRST step does not say where to go: "Look at bill A's and vendor credit A's numbers."
+   PRE-last: Leave the report with that vendor ticked and every bucket expanded. | STEP1: Look at bill A's and vendor credit A's numbers.
+C715432 [90425] A/P Summary: vendor names link for everyone who can open the report
+   WHY: R4 the FIRST step does not say where to go: "Look at vendor A's name."
+   PRE-last: Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu). | STEP1: Look at vendor A's name.
+C715440 [90426] A/R Detail: Clear all filters keeps the date and resets the rest
+   WHY: R4 the FIRST step does not say where to go: 'Read the table area.'
+   PRE-last: Leave the report with the as-of date set to yesterday, only that customer ticked in the Customer filter, "61-90 days" ticked in the Past due filter and only your current location ticked in the Location filter. | STEP1: Read the table area.
+C715441 [90426] A/P Detail: Clear all filters keeps the date and resets the rest
+   WHY: R4 the FIRST step does not say where to go: 'Read the table area.'
+   PRE-last: Leave the report with the as-of date set to yesterday, only that vendor ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only your current location ticked in the Location filter. | STEP1: Read the table area.
+C715447 [90427] A/R Collection: the PDF and CSV carry the phone and credit term
+   WHY: R4 step has nothing to aim at: 'Open the CSV.'
+   PRE-last: Leave the report with only customer A ticked. | STEP1: Choose "Download (PDF)" from the ⋯ menu.
+C1062589 [90428] A/P Unpaid Invoices: 101 bills count and add up before all are shown
+   WHY: R4 step has nothing to aim at: 'Open the CSV.'
+   PRE-last: Leave the report with only vendor A ticked in the Vendor filter. | STEP1: Read vendor A's group row and the Totals row.
+C715474 [90429] Reports page access alone opens all six reports with their amounts
+   WHY: R4 step has nothing to aim at: 'Open A/R Summary.'; R4 step has nothing to aim at: 'Open A/R Detail.'; R4 step has nothing to aim at: 'Open A/R Collection.'; R4 step has nothing to aim at: 'Open A/P Summary.'; R4 step has nothing to aim at: 'Open A/P Detail.'; R4 step has nothing to aim at: 'Open A/P Unpaid Invoices.'
+   PRE-last: Open the ShopView home page. | STEP1: Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) and read the list.
+C715477 [90429] A work order link from another location still asks to switch
+   WHY: R3 nothing to aim at: no tab, panel, menu, icon, button, column or row
+   PRE-last: After the release is installed, open Work Orders at your current location. | STEP1: Paste the link to work order 1 into the address bar.
+C715479 [90429] The research ideas left out of this release do not appear
+   WHY: R4 step has nothing to aim at: 'Open A/R Collection.'
+   PRE-last: Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE). | STEP1: Open A/R Summary and read its filter row and its columns.
+C715529 [90430] Design: narrower than 1024 px the reports show the mobile filter row
+   WHY: R4 step has nothing to aim at: 'Look at the table.'
+   PRE-last: Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu). | STEP1: Look at the filter row.
+C715544 [90430] Design: A/P Unpaid Invoices at 1440 px shows every column, as pictured
+   WHY: R4 the FIRST step does not say where to go: 'Look for a sideways scroll bar under the table.'
+   PRE-last: Open the design picture "A/P Unpaid Invoices at 1440: every column visible" (ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples. | STEP1: Look for a sideways scroll bar under the table.
+C715547 [90430] Design: A/R Detail opens on All locations as in the design picture
+   WHY: R4 step has nothing to aim at: 'Read the Location cells.'
+   PRE-last: Open the design picture "Opens on All locations" (ar-ap-p4-opens-on-all-locations.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples. | STEP1: Compare the filter row with the picture.
+C715624 [90430] Design: A/R Detail links are blue, semi-bold and not underlined
+   WHY: R4 the FIRST step does not say where to go: 'Look at the document numbers that are links and compare them with
+   PRE-last: Open Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) in a second tab of the same window, so its links can be compared. | STEP1: Look at the document numbers that are links and compare them with the links on Work In Progress.
+C715626 [90430] Design: A/R Collection links are blue, semi-bold and not underlined
+   WHY: R4 the FIRST step does not say where to go: 'Look at the document numbers that are links and compare them with
+   PRE-last: Open Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) in a second tab of the same window, so its links can be compared. | STEP1: Look at the document numbers that are links and compare them with the links on Work In Progress.
+C715628 [90430] Design: A/P Summary links are blue, semi-bold and not underlined
+   WHY: R4 the FIRST step does not say where to go: 'Look at the vendor names and compare them with the links on Work 
+   PRE-last: Open Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) in a second tab of the same window, so its links can be compared. | STEP1: Look at the vendor names and compare them with the links on Work In Progress.
+C715630 [90430] Design: A/P Detail links are blue, semi-bold and not underlined
+   WHY: R4 the FIRST step does not say where to go: 'Look at the document numbers that are links and compare them with
+   PRE-last: Open Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) in a second tab of the same window, so its links can be compared. | STEP1: Look at the document numbers that are links and compare them with the links on Work In Progress.
+C715632 [90430] Design: A/P Unpaid Invoices links are blue, semi-bold and not underlined
+   WHY: R4 the FIRST step does not say where to go: 'Look at the document numbers that are links and compare them with
+   PRE-last: Open Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) in a second tab of the same window, so its links can be compared. | STEP1: Look at the document numbers that are links and compare them with the links on Work In Progress.
+C715582 [133628] A drill-down link saved before the release still opens on its customer
+   WHY: R3 nothing to aim at: no tab, panel, menu, icon, button, column or row; R4 the FIRST step does not say where to go: 'Open the A/R Collection address saved before the release.'
+   PRE-last: After the release is installed, open the ShopView home page. | STEP1: Open the A/R Collection address saved before the release.

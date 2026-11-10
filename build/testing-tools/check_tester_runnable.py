@@ -29,7 +29,10 @@ from load_creds import testrail_creds, testrail_host
 # --- jargon barred from tester-facing text (case-insensitive unless noted) ---
 # (regex, human label, case_sensitive?) — case_sensitive=True means match exactly as written
 JARGON = [
-    (r'\b[a-z]+[A-Z][a-zA-Z]*\b', 'internal camelCase code (e.g. reportsPageAccess)', True),
+    # 2026-11-10 (A/R and A/P aging, C715394-C715396, C715577, C715578): a key the tester reads or types in the
+    # browser's ADDRESS BAR ("locationIds=", "pastDue=", "customerIds=", "vendorIds=") is literal on-screen text, not a
+    # developer code; it is always written with its "=" — so a camelCase word directly followed by "=" is allowed.
+    (r'\b[a-z]+[A-Z][a-zA-Z]*\b(?!=)', 'internal camelCase code (e.g. reportsPageAccess)', True),
     (r'\bendpoints?\b', 'endpoint', False),
     (r'\bAPIs?\b', 'API', True),                       # the acronym only, not "capital" etc.
     (r'\bpayloads?\b', 'payload', False),

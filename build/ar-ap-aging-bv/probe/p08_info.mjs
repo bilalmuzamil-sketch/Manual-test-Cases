@@ -1,0 +1,10 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./08/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+for (const p of ['/reports/ar-aging-summary', '/reports/ap-unpaid-invoices']) await step('info' + p, async () => { await go(p); await page.waitForTimeout(3500);
+  const i = page.locator('main i', { hasText: 'info_outline' }).first(); const box = await i.boundingBox(); log(p, 'icon box', JSON.stringify(box));
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2); await page.waitForTimeout(1800);
+  log(p, 'HOVER:', T((await page.locator('.q-tooltip:visible, .q-menu:visible, [role=tooltip]:visible').allInnerTexts()).join(' | ')).slice(0, 900)); await dump('hover' + p.replace(/\W/g, '-')); await page.mouse.move(5, 5); await page.waitForTimeout(800);
+  log(p, 'after move away:', await page.locator('.q-tooltip:visible, [role=tooltip]:visible').count()); });
+await r.browser?.close?.(); process.exit(0);
