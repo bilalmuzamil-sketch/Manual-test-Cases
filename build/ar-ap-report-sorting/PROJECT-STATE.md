@@ -161,3 +161,10 @@
   existing sheet in a new colour; its one case held); "Remove old, add later" (the 3 re-shot design pictures cannot be downloaded:
   remove the old ones from the cases, quote the new captions, attach the new pictures when available).
 - Round 2 drafting with the worker; TestRail writes by the coordinator after the gates.
+- Round 2 drafted 10 Nov 2026 (worker; nothing written to TestRail/Jira/Google, nothing committed): `currency-2026-11-10/PASS-REPORT.md`.
+  Library 380 cases: 133 CHANGE, 222 stamp-only, 25 new (no C-id yet), REL-08 C715478 proposed for deletion. Marker: Rule 69
+  "Not available on Build to test Yet - Last checked 11/10/2026" (356); expect-fail 9, release-day HOLD 13, DATA-19 HOLD, S3-32 held
+  on question 18. Gates: build.py 0 PROBLEM; readiness 0 hard; ticket_sweep 0 unhandled (PRD 11; ledger 26 tickets, refreshed by
+  `currency-2026-11-10/scripts/ledger_update.py`; render_outputs.py no longer overwrites the ledger once the PRD handled is above 9).
+  Dry-run write scripts in `currency-2026-11-10/write/` (update, create, delete REL-08, run 557 union sync, 46 old picture attachments).
+  Question 18 row text in PASS-REPORT section 7 (not on the sheet yet).
