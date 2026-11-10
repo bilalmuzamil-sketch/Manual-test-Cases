@@ -1,0 +1,12 @@
+// on screen: Reports > Timesheet Activities > row "Clock out" for the given person + work order; follows any second confirmation
+import {sess} from './common.mjs';
+const [who,wo]=[process.env.WHO,process.env.WO]; const s=await sess(); const p=s.page; const caps=[];
+p.on('response',async r=>{ if(r.request().method()==='POST'&&/technician-tasks/.test(r.url())){ let b='';try{b=(await r.text()).slice(0,160)}catch{} caps.push(r.status()+' '+r.url().replace(/^https:\/\/[^/]+/,'')+' :: '+(r.request().postData()||'').slice(0,200)+' -> '+b);} });
+await s.go('/reports/punch-clock-activities'); await p.waitForTimeout(8000);
+const row=p.locator('tbody tr',{hasText:who}).filter({hasText:wo}).first(); await row.hover(); await p.waitForTimeout(600);
+const btn=row.locator('[data-test-id="button_clock_out_timesheet"],[data-test-id="button_stop_timesheet"]').first(); await btn.click(); await p.waitForTimeout(2000);
+const dlg=async()=>p.evaluate(()=>{const d=document.querySelector('.q-dialog'); return d?{t:d.innerText.replace(/\n+/g,' | ').slice(0,300),ids:[...d.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')+'='+(e.innerText||e.value||'').replace(/\s+/g,' ').slice(0,30))}:null;});
+let d=await dlg(); console.log('dialog1',JSON.stringify(d)); await p.screenshot({path:`../ev/clockout-${wo}-dialog.png`});
+{ const ei=p.locator('[data-test-id="input_clock_out_end_date"] input, input[data-test-id="input_clock_out_end_date"]').first(); await ei.click(); const q=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:process.env.TZ_LOC||'America/Edmonton',month:'short',day:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true}).formatToParts(new Date(Date.now()-3*60e3)).map(x=>[x.type,x.value])); const t=`${q.month} ${q.day}, ${q.year} ${q.hour}:${q.minute} ${q.dayPeriod}`; await p.keyboard.press('Control+A'); await p.keyboard.type(t,{delay:50}); await p.keyboard.press('Tab'); await p.waitForTimeout(800); console.log('typed end',t); await p.screenshot({path:`../ev/clockout-${wo}-filled.png`}); }
+for(let i=0;i<3&&d;i++){ const b=p.locator('.q-dialog [data-test-id*="confirm"],.q-dialog [data-test-id="button_clock_out"],.q-dialog [data-test-id*="save"],.q-dialog button:has-text("Clock Out")').last(); if(!(await b.count())) break; await b.click(); await p.waitForTimeout(2500); d=await dlg(); console.log('after click',i,JSON.stringify(d)); }
+console.log('caps',JSON.stringify(caps,null,1)); await s.close(); process.exit(0);

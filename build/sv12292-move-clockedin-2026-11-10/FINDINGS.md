@@ -16,8 +16,18 @@ Open entry for ZZAUTOTEST N4 Dee created on S1-915 (201), moved to S1-914 via te
 Screen: Work Orders > All, search S1-91, Clocked In sorted most-first → S1-915 (empty) is FIRST, S1-914 (Dee) third
 (ev/prod/list-sorted-desc.png). List preference restored (value identical, only updatedAt). Test data left in place.
 
-## Branch AFTER — NOT RUN YET
-Blocked: the `.qa.shopview.com` cookies (from 9 Nov 15:50 UTC) have expired; sign-in now redirects to Google.
+## Branch AFTER — DONE 10 Nov (fresh cookies from QA lead), sv12292 v26.45.2-6a8b89c (last-mod 09:46:28 GMT, etag ab0659..., re-read before posting: same)
+Seed S12292-17580..17587 (Heavy Duty). ev/branch-matrix.json: 26 reads, 0 MISMATCH (names shown == stored count every step):
+1 A->B (17580->17581, Michael Stephenson) 0/1; back 1/0; again 0/1 · 2 same-WO other line (17582) stays 1 ·
+3 to department "Shop Time (Shop hand)" (17583) 1->0 · 4 closed entry 17584->17580: 0/0 unchanged · 5 two open on 17585, one to 17586: 1/1.
+Screen: Work Orders > All, search S12292, Clocked In most-first and least-first both correct (ev/branch/list-sorted-*.png).
+SV-12193 regression: Timesheet Activities > New (screen, no End) on 17587 -> 1; own Stop > story > Clock Out (screen) -> 0.
+Note: the seed script's staff names differ from who shows (staff list id mapping), so the table uses the names shown on screen.
+## Posted
+Comment 80640 green PASSED (8 rows + before/after picture f55eafc3), no technical section, no recording. Edited once in the same
+minute (line about time/hours/pay rate reworded to what the code change covers; dated note 06:00 CST — first note said 05:12, corrected).
+Label QAcomplete added, QA Assignee Bilal, transition -> QA Complete.
+Gate: marker re-read before posting (same), ticket re-read (no comments, TESTING QA), voice scan clean.
 Planned matrix (from the PR's tests + our 6 Nov repro): open WO→WO; move back; open → another line same WO (stays 1);
 open → department (left WO drops to 0); closed entry moved (counts unchanged); two open on A, move one; screen sort both
 directions; regression of SV-12193 hand-added clock-in + screen Clock out. Scripts in scripts/ (common.mjs uses /tmp/svqa12267).
