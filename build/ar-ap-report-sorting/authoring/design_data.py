@@ -97,6 +97,17 @@ for _f in FIGS:
     PIC_NAME[_f["img"]] = _n; PIC_FILE[_n] = f"{DDIR}/images/{_f['img']}.png"
 def pic(f):
     return PIC_NAME[f["img"]]
+# 10 Nov 2026 (round 3): the QA lead sent the three re-shot pictures (currency-2026-11-10/design-2026-11-05/reshot-from-qa-lead/, "download (4)",
+# "(9)" and "(17)"), copied under readable names to currency-2026-11-10/design-2026-11-05/images/. TestRail refuses to delete the old copies
+# ("attached to a closed/archived run"), so a case attaches both and tells the tester to compare with the new one only.
+RESHOT_DIR = f"{P}/currency-2026-11-10/design-2026-11-05/images"
+for _f in FIGS:
+    if _f["reshot"]:
+        _f["pic_now"] = PIC_NAME[_f["img"]][:-4] + "-reshot-2026-11-05.png"
+        PIC_FILE[_f["pic_now"]] = f"{RESHOT_DIR}/{_f['pic_now']}"
+        assert os.path.exists(PIC_FILE[_f["pic_now"]]), PIC_FILE[_f["pic_now"]]
+def pic_now(f, now=True):
+    return f["pic_now"] if now and f.get("reshot") else pic(f)
 
 # ---- design-vs-PRD differences (Rule 130); every one closed by a question for Chris Ward (drafted 22 Oct 2026, new rows 11-15 of his
 # sheet, added 22 Oct 2026) or by a ruling already in the PRD. "held": the design-version case that waits on the answer.
@@ -179,7 +190,8 @@ DIFFS.append(dict(id="DD-07", codes=["S2-R1b"], named=[], reps=None, figs=["I14"
               "taken and lists it under What changes for existing users (\"today all three read \"Credit\"\"); version 11 keeps it. Compare the layout "
               "with the pictures; the Transaction Type words come from the PRD.")))
 DIFFS[-1]["ruling_now"] = DIFFS[-1]["ruling"]
-DD07_CASES = {"D-18", "D-58", "D-63"}
+# 10 Nov 2026 (round 3): D-04 added. Its credit memo row is compared with the re-shot "Links only where they can open" picture, which still shows Transaction Type "Credit".
+DD07_CASES = {"D-18", "D-58", "D-63", "D-04"}
 # differences closed by a ruling already in our sources (not asked; skill 07 section 6)
 RULED = [
  dict(id="DR-01", codes=["S8-R4"], figs=["I14", "I15", "I16", "I23", "I25", "I32", "I03", "I28", "I30"],

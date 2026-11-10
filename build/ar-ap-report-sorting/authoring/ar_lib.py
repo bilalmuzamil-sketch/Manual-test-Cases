@@ -308,7 +308,7 @@ def _design_block(c, now):
     extra = list(d.get("diffs", [])) + (["DD-07"] if now and c["key"] in DD.DD07_CASES else [])
     diffs += [x for x in DD.DIFFS if x["id"] in extra and x not in diffs]
     cap = (lambda f: f["caption_now"]) if now else (lambda f: f["caption_old"])
-    shown = [f for f in figs if not (now and f["reshot"])]
+    shown = figs   # round 3 (10 Nov 2026): the re-shot pictures are attached under their new names
     pages = sorted({f["page"] for f in figs})
     if not pages:
         for n in story_nums(c):
@@ -318,8 +318,6 @@ def _design_block(c, now):
     elif c["marker"] == DESIGN_HOLD:
         why = ("This held case follows the design picture below, not the PRD sentence quoted above (Rule 130 item 5): the quote shows "
                "what the PRD says today, the picture what the design shows.")
-    elif figs and not shown: why = ("The design's pictures for this case were reshot (see below) and will be attached later; the expected results "
-                                    "still come from the PRD quotes above.")
     elif figs: why = ("Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, "
                       "the pictures give the look and the on-screen labels.")
     else: why = "The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD."
@@ -331,7 +329,8 @@ def _design_block(c, now):
         h += "<p>Design pictures attached to this case:</p><ul>" if shown else "<p>"
         for f in shown:
             today = "" if f["after"] else " (today's look, for comparison only)"
-            h += "<li>" + e(DD.pic(f) + ': figure "' + f["heading"] + '" (' + f["badge"] + '), board "' + DD.BOARD[f["board"]][2] + '"' + today) + "</li>"
+            h += "<li>" + e(DD.pic_now(f, now) + ': figure "' + f["heading"] + '" (' + f["badge"] + '), board "' + DD.BOARD[f["board"]][2] + '"' + today
+                            + (", re-shot 23 Oct 2026, design version of 5 Nov 2026" if now and f["reshot"] else "")) + "</li>"
         h += ("</ul>" if shown else "") + "<p>The design's own words:</p><ul>"
         for f in figs:
             h += "<li>" + e('"' + cap(f) + '" (caption of "' + f["heading"] + '")') + "</li>"
@@ -340,8 +339,9 @@ def _design_block(c, now):
         h += "</ul>"
         for f in figs:
             if now and f["reshot"]:
-                h += "<p>" + e('The design version of 5 Nov 2026 replaced the picture "' + f["heading"] + '" (reshot 23 Oct 2026, round 15). The old '
-                               "picture " + DD.pic(f) + " is no longer attached to this case; the new picture will be attached later.") + "</p>"
+                h += "<p>" + e('The design version of 5 Nov 2026 replaced the picture "' + f["heading"] + '" (re-shot 23 Oct 2026): compare with '
+                               + DD.pic_now(f) + " only. This case also still has an older attachment named " + DD.pic(f) + ": it shows the design "
+                               "before 23 Oct 2026, so do not use it for comparison (TestRail cannot remove it).") + "</p>"
     held = c["marker"] == DESIGN_HOLD
     for x in diffs:
         if x.get("ruling"):

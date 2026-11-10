@@ -114,8 +114,8 @@ CL = ["# Design-case checklist (skill 21 §6d, Rule 133) — A/R and A/P Report 
       "", "Lessons applied (LESSONS-REGISTER): L-01 look covered (visual inventory, picture cases); L-02 both directions and every dialog's rows and buttons; "
       "L-03 not applicable (no Jira writes in this pass); L-04 letter case compared by hand; L-05 this checklist.", "",
       "10 Nov 2026 (design version of 5 Nov 2026): the three re-shot pictures (Location \"Cleared: No locations\", Links \"Links only where they can open\", "
-      "Filters \"The native Vendor menu\") are no longer attached to any case and their new 5 Nov captions are quoted instead (QA lead, \"Remove old, add later\"); "
-      "line 1's picture list therefore shows them with no case until the new pictures are attached."]
+      "Filters \"The native Vendor menu\") were sent by the QA lead on 10 Nov 2026 and are attached to the 46 cases under names ending \"-reshot-2026-11-05.png\" "
+      "(round 3). The old copies cannot be deleted from TestRail (\"attached to a closed/archived run\"); each case says not to use them."]
 open(f"{P}/DESIGN-CASE-CHECKLIST-2026-10-22.md", "w").write("\n".join(CL) + "\n")
 open(f"{P}/design-2026-10-22/DESIGN-CASE-CHECKLIST-2026-10-22.md", "w").write("\n".join(CL) + "\n")
 json.dump(DR.build(), open(f"{P}/DESIGN-DIVERGENCE-REGISTER.json", "w"), indent=1, ensure_ascii=False)

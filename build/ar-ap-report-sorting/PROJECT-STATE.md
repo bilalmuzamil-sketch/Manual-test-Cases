@@ -177,3 +177,7 @@
   the file is attached to a closed/archived run." The case text no longer names them (References from Design quotes the 5 Nov captions).
 - Question 18 added to Chris Ward's sheet (rows 26-27, light pink). Production capture list for Mudassir:
   `release-2026-11-19/PRODUCTION-PREP-FOR-MUDASSIR.md`. Build-verification list: `build/BUILD-VERIFICATION-LIST-AR-AP-2026-11-10.md`.
+- Round 3 (10 Nov 2026): the 46 old picture attachments cannot be deleted (TestRail: "attached to a closed/archived run"); permanent.
+  The QA lead sent the 3 re-shot pictures; copied to `currency-2026-11-10/design-2026-11-05/images/*-reshot-2026-11-05.png`. Library:
+  the 46 cases list the new picture and tell the tester not to use the old one (References from Design only; D-04 also prints DD-07).
+  Dry runs `currency-2026-11-10/write/update_refs.py` (locked on the live text round 2 wrote) and `write/attach_reshot.py`.

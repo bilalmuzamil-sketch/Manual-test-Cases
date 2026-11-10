@@ -36,7 +36,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 - No feature setting: the PRD says nobody gains or loses access and no setup is needed.
 - Browser: desktop, window 1440 px wide at 100% zoom unless the case names 1536, 1280, 1200 or 900 px; light theme unless the case says dark.
 - Every report is opened from the Reports menu so nothing is remembered from an earlier visit. On screen (design pictures): Reports in the top menu; the left menu lists "A/R Aging Summary", "A/R Aging Detail", "A/R Aging Collection" under ACCOUNTS RECEIVABLE and "A/P Aging Summary", "A/P Aging Detail", "A/P Unpaid Invoices" under ACCOUNTS PAYABLE (page title "A/P Unpaid Invoices Report"); Sales By Customer and Work In Progress under PERFORMANCE, Inventory Value under PARTS.
-- Design picture cases (D-50 to D-75 and D-81; D-76 to D-80 were deleted on 26 Oct 2026): open the named picture from `design-2026-10-22/images/` (in TestRail, attached to the case) at 100% zoom beside the browser.
+- Design picture cases (D-50 to D-75 and D-81; D-76 to D-80 were deleted on 26 Oct 2026): open the named picture from `design-2026-10-22/images/` (in TestRail, attached to the case) at 100% zoom beside the browser. The three re-shot pictures of the 5 Nov 2026 design (sent by the QA lead on 10 Nov 2026) are in `currency-2026-11-10/design-2026-11-05/images/` under names ending "-reshot-2026-11-05.png"; the 46 cases that use them also keep the old copy, which TestRail cannot delete ("attached to a closed/archived run"), and say not to use it.
 - Comparison tabs: design cases open Sales By Customer, Inventory Value or Work In Progress in a second tab, as the case says.
 - Test-site facts from the tech plan (21 Oct 2026): (1) on staging and QA the reports read the main database ("Staging/QA reader = writer"), so a change shows on reload at once; production reads a copy about a second behind. (2) The PDF generator is "not configured on every environment": if every PDF fails with "We couldn't export this report. Please try again." while CSVs work, the site lacks it; record Blocked, not Failed. (3) A 2,000-row PDF takes about 30 seconds. (4) Enrolling the shared Admin at another location changes the Location chip of every other report; prefer a separate user for multi-location setups. (5) The Customer menu lists at most 50 customers until you search, from all the organization's customers; the Vendor menu lists all the organization's vendors and shows its search box only above 8 (PRD v11 S5-R13 says so too). (6) Every default role with report access also has the "View and Manage AP/AR Data" switch, and the default Technician role has no report access: a permission split needs a custom role. (7) The page address keeps the filters as asOfDate, customerIds / vendorIds, pastDue (1-30, 31-60, 61-90, 91-plus) and locationIds, each id a long code written as its own entry; a comma list is also read.
 
@@ -1574,7 +1574,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S3-R4, S3-R5, S3-R6, S3-R8, S5-R13, S6-N1.
-Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
+Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used).
 
 ### SETUP-S3-13 — A/P Detail: each export states the as-of date and the filters
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -1593,7 +1593,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S3-R4, S3-R5, S3-R6, S3-R8, S5-R13, S6-N1.
-Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
+Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used).
 
 ### SETUP-S3-14 — A/P Unpaid Invoices: each export states the as-of date and the filters
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -1612,7 +1612,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S3-R4, S3-R5, S3-R6, S3-R8, S5-R13, S6-N1.
-Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
+Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used).
 
 ### SETUP-S3-15 — A/R Summary: exports say All locations and add only the lines that are set
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -1781,7 +1781,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S3-R10, S5-R6a, UFS-7.
-Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png` (I35, "Cleared: No locations", re-shot; the old attachment ar-ap-p4-cleared-no-locations.png stays on the TestRail case and must not be used).
 
 ### SETUP-S3-25 — A/P Unpaid Invoices: exporting an empty report downloads nothing and warns
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -2431,7 +2431,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R1, S5-R10a, S5-R13, S5-R15, S5-R2, S5-R6, WC-7.
-Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today").
+Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today").
 
 ### SETUP-S5-05 — A/P Detail: the filter row reads As of, Vendor, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -2667,7 +2667,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R10, S5-R6a, S8-R5, UFS-9.
-Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked"), `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
+Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png` (I35, "Cleared: No locations", re-shot; the old attachment ar-ap-p4-cleared-no-locations.png stays on the TestRail case and must not be used).
 
 ### SETUP-S5-15 — A/R Detail: each row belongs to its own document's location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -2742,7 +2742,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO.
 Sources (verbatim text in section 9): S5-E3, S5-N1, S5-R9.
-Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png` (I35, "Cleared: No locations", re-shot; the old attachment ar-ap-p4-cleared-no-locations.png stays on the TestRail case and must not be used).
 
 ### SETUP-S5-19 — A/R Collection: ticked locations survive reload, Back and a shared link
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -2836,7 +2836,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-VOLUME.
 Sources (verbatim text in section 9): S5-R14; Tech plan §3 D31; Tech plan §5 API, new endpoints.
-Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
 
 ### SETUP-S5-25 — A/P Unpaid Invoices: opening from the Reports menu starts with no filters
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -2909,7 +2909,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S5-R13.
-Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
+Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
 
 ### SETUP-S5-29 — A/P Detail: the Vendor menu ticks several vendors and the chip counts them
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -2927,7 +2927,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-VOLUME.
 Sources (verbatim text in section 9): S5-R13.
-Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
+Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
 
 ### SETUP-S5-30 — A/R Collection: the Past due menu offers Any and four ranges in order
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3030,7 +3030,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S5-R14, S5-R19; Tech plan §3 D29; Tech plan §3 D29, rationale; Tech plan §3 D30.
-Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
+Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
 
 ### SETUP-S5-36 — A/P Unpaid Invoices: a link with an unknown vendor ignores it
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3046,7 +3046,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S5-R14, S5-R19; Tech plan §3 D29; Tech plan §3 D29, rationale; Tech plan §3 D30.
-Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
+Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
 
 ### SETUP-S5-37 — A/R Summary: the As of date cannot be set later than today
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3094,7 +3094,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S5-R13.
-Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
+Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
 
 ### SETUP-S6-01 — A/R reports: the column is named Location and sits in its place
 Section: Story 6 — Location column (TestRail section 90424). Reports: A/R Summary, A/R Detail, A/R Collection. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3142,7 +3142,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R6a, S6-N1, S6-R2.
-Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked"), `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
+Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png` (I35, "Cleared: No locations", re-shot; the old attachment ar-ap-p4-cleared-no-locations.png stays on the TestRail case and must not be used).
 
 ### SETUP-S6-04 — A/R Summary: a row shows one location's name or Multiple
 Section: Story 6 — Location column (TestRail section 90424). Reports: A/R Summary. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3197,7 +3197,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S7-R1, S7-R2, WC-6.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-02 — A/R Collection: a part sale invoice at your location opens its finance page
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3214,7 +3214,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-INV-PS.
 Sources (verbatim text in section 9): S7-R1, S7-R2, WC-6; Tech plan §6 Phase 3, frontend.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-03 — A/R Detail: a work order invoice at another location asks to switch
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: READY - EXPECT FAIL (SV-12139)`.
@@ -3296,7 +3296,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Bill-B} = "bill B", {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S7-R1, S7-R6.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-07 — A/P Detail: a vendor credit links to the return it came from
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3315,7 +3315,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A", {Vendor-credit-B} = "vendor credit B", {Vendor-credit-C} = "vendor credit C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): S7-R6, S7-R9.
-Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Vendor credits link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Vendor credits link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-08 — A/P Unpaid Invoices: a vendor credit links to the return it came from
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3334,7 +3334,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A", {Vendor-credit-B} = "vendor credit B", {Vendor-credit-C} = "vendor credit C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-VC.
 Sources (verbatim text in section 9): S7-R6, S7-R9.
-Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Vendor credits link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Vendor credits link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-09 — A/R Detail: opening an invoice link in a new tab asks there
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3388,7 +3388,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-ROLE.
 Sources (verbatim text in section 9): S5-R12, S7-N1.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-12 — With Invoicing and Work Orders View, a work order invoice is a link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3405,7 +3405,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-INV-PS, P-ROLE.
 Sources (verbatim text in section 9): S7-N2, S7-R1.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-13 — Without Invoicing View, work order and part sale invoices are plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3422,7 +3422,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-INV-PS, P-ROLE.
 Sources (verbatim text in section 9): S7-N2, S7-R1.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-14 — With Invoicing and Part Sales View only, only part sale invoices link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3439,7 +3439,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-INV-PS, P-ROLE.
 Sources (verbatim text in section 9): S7-N2, S7-R2.
-Design pictures: `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-15 — With Vendor Order Management View, a bill at your location is a link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3456,7 +3456,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-ROLE.
 Sources (verbatim text in section 9): S7-R1, S7-R6.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-16 — With Vendor Order Management Create & Edit, a bill at your location is a link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3473,7 +3473,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-ROLE.
 Sources (verbatim text in section 9): S7-R1, S7-R6.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-17 — Without Vendor Order Management, bills and vendor credits are plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3490,7 +3490,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL, P-VC, P-ROLE.
 Sources (verbatim text in section 9): S7-N2, S7-R9.
-Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Vendor credits link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Vendor credits link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-18 — A/R Summary: with Customers View, customer names link to A/R Collection
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Summary, A/R Collection. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3506,7 +3506,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-ROLE.
 Sources (verbatim text in section 9): S7-R1, WC-6.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-18b — A/R Summary: without Customers View, customer names are plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Summary. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3522,7 +3522,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {User-C} = "user C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-ROLE.
 Sources (verbatim text in section 9): S7-R1, WC-6.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S7-19 — A/P Summary: vendor names link for everyone who can open the report
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Summary, A/P Unpaid Invoices. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -3538,7 +3538,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL, P-ROLE.
 Sources (verbatim text in section 9): S7-R1, WC-6.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S8-01 — A/R Summary: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Summary. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -4282,7 +4282,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-B} = "vendor B", {Vendors-A} = "vendor set A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-VOLUME.
 Sources (verbatim text in section 9): S3-N1, S3-N3, S3-R10, S3-R9, S5-R13; Tech plan §9 Known risks; Tech plan §7 E2E backlog.
-Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png` (I11, "PDF over 2,000 rows is refused"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
+Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png` (I11, "PDF over 2,000 rows is refused"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used).
 
 ### SETUP-DATA-22 — A/R Summary: a payment shows as soon as the report is reloaded
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -4572,7 +4572,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-PRE-RELEASE.
 Sources (verbatim text in section 9): KD-DRILL, S5-R14; Tech plan §3 D30; Tech plan §6 Phase 2, frontend.
-Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
 
 ### SETUP-REL-12 — Sales By Customer keeps or forgets its filter between visits as before
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
@@ -4766,7 +4766,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): KD-REUSE, S2-R1, S2-R4a, S6-R3, S8-R2, S8-R3.
-Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
+Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
 
 ### SETUP-D-04b — Design: A/R Detail Open Balance and Totals row match Sales By Customer
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -4786,7 +4786,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): KD-REUSE, S8-R3, S8-R4.
-Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
+Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
 
 ### SETUP-D-04c — Design: A/R Detail links are blue, semi-bold and not underlined
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -4806,7 +4806,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): S7-R7.
-Design pictures: `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
 
 ### SETUP-D-05 — Design: A/R Detail in dark theme: chips, links and Totals row readable
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -5271,7 +5271,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
-Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png` (I35, "Cleared: No locations", re-shot; the old attachment ar-ap-p4-cleared-no-locations.png stays on the TestRail case and must not be used).
 
 ### SETUP-D-19b — Design: A/R Summary load error message shows in place of the rows
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -5309,7 +5309,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
-Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png` (I35, "Cleared: No locations", re-shot; the old attachment ar-ap-p4-cleared-no-locations.png stays on the TestRail case and must not be used).
 
 ### SETUP-D-20b — Design: A/R Detail load error message shows in place of the rows
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -5347,7 +5347,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
-Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png` (I35, "Cleared: No locations", re-shot; the old attachment ar-ap-p4-cleared-no-locations.png stays on the TestRail case and must not be used).
 
 ### SETUP-D-21b — Design: A/R Collection load error message shows in place of the rows
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -5385,7 +5385,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
-Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png` (I35, "Cleared: No locations", re-shot; the old attachment ar-ap-p4-cleared-no-locations.png stays on the TestRail case and must not be used).
 
 ### SETUP-D-22b — Design: A/P Summary load error message shows in place of the rows
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -5423,7 +5423,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
-Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png` (I35, "Cleared: No locations", re-shot; the old attachment ar-ap-p4-cleared-no-locations.png stays on the TestRail case and must not be used).
 
 ### SETUP-D-23b — Design: A/P Detail load error message shows in place of the rows
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -5461,7 +5461,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
-Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png` (I35, "Cleared: No locations", re-shot; the old attachment ar-ap-p4-cleared-no-locations.png stays on the TestRail case and must not be used).
 
 ### SETUP-D-24b — Design: A/P Unpaid Invoices load error message shows in place of the rows
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -5496,7 +5496,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S4-R1, S4-R5, S4-R6, UFS-5.
-Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
+Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
 
 ### SETUP-D-26 — Design: A/R Collection chevron button, tooltips and pinned group row
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -5621,7 +5621,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL, P-VOLUME.
 Sources (verbatim text in section 9): KD-REUSE, S5-R13.
-Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used).
 
 ### SETUP-D-33 — Design: A/R Past due chip and its tick-box menu
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -6192,7 +6192,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-CM, P-AGE.
 Sources (verbatim text in section 9): S1-R5, S2-R1, S7-R1, S7-R10, S7-R3, S7-R7.
-Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-D-64 — Design: the switch-location dialog frame matches the design pictures
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: READY - EXPECT FAIL (SV-12139)`.
@@ -6288,7 +6288,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R6, S5-R6a, S5-R9, S8-R5.
-Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png` (I35, "Cleared: No locations", re-shot; the old attachment ar-ap-p4-cleared-no-locations.png stays on the TestRail case and must not be used).
 
 ### SETUP-D-69 — Design: A/R Summary sorted by Location matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -6384,7 +6384,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-VOLUME.
 Sources (verbatim text in section 9): KD-REUSE, S5-R13.
-Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
+Design pictures: `currency-2026-11-10/design-2026-11-05/images/ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png` (I40, "The native Vendor menu", re-shot; the old attachment ar-ap-p7-the-native-vendor-menu.png stays on the TestRail case and must not be used).
 
 ### SETUP-D-74 — Design: two customers ticked look as in the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
@@ -6441,7 +6441,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): OOS-3, S2-R1, S2-R4a, WC-11.
-Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
+Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `currency-2026-11-10/design-2026-11-05/images/ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png` (I28, "Links only where they can open", re-shot; the old attachment ar-ap-p5-links-only-where-they-can-open.png stays on the TestRail case and must not be used).
 
 ### SETUP-S1-17 — A/R Detail: a credit memo or deposit dated on the as-of date is in Current
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Detail. Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026`.
