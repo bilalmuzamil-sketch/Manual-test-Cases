@@ -1,0 +1,15 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./53/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 400);
+const mclick = async (loc) => { await loc.scrollIntoViewIfNeeded(); await page.waitForTimeout(300); const bb = await loc.boundingBox(); await page.mouse.click(bb.x + bb.width / 2, bb.y + bb.height / 2); };
+const CU = fs.readFileSync(new URL('./10/customer-url.txt', import.meta.url), 'utf8').trim().replace(A, '').replace('/work-orders', '');
+const WO = fs.readFileSync(new URL('./25/wo2-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+const invRows = async () => { const p2 = await page.context().newPage(); await p2.goto(A + CU + '/work-orders'); await p2.waitForTimeout(4000); await p2.locator('main .q-tab', { hasText: /^\s*Invoices/ }).first().click(); await p2.waitForTimeout(3000); const rows = (await p2.locator('main tbody tr').allInnerTexts()).map(T).filter(Boolean); await p2.close(); return rows; };
+await step('create', async () => { await go(WO.replace('/lines', '/finance')); await page.waitForTimeout(4000); const d = page.locator('main .q-field').filter({ has: page.locator('.q-field__label', { hasText: /Invoice Date/i }) }).first().locator('input'); await d.click(); await d.press('Control+a'); await d.type('09/01/2026', { delay: 60 }); await page.keyboard.press('Tab'); await page.waitForTimeout(800); log('date', await d.inputValue());
+  const ci = page.locator('button').filter({ hasText: /Create invoice/i }).first(); log('CI disabled', await ci.isDisabled()); await mclick(ci); await page.waitForTimeout(5000); log('DLG', await dl()); log('TOAST', T((await page.locator('.q-notification').allInnerTexts()).join('|')));
+  log('INVOICES (other tab, dialog still open)', JSON.stringify(await invRows())); await dump('after-create'); });
+await step('escape', async () => { await page.keyboard.press('Escape'); await page.waitForTimeout(2500); log('DLG after esc', await dl()); log('INVOICES after esc', JSON.stringify(await invRows())); log('badges', JSON.stringify((await page.locator('.q-badge').allInnerTexts()).map(T).slice(0, 4))); });
+await r.browser?.close?.(); process.exit(0);

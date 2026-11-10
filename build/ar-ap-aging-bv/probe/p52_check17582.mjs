@@ -1,0 +1,11 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./52/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const CU = fs.readFileSync(new URL('./10/customer-url.txt', import.meta.url), 'utf8').trim().replace(A, '').replace('/work-orders', '');
+const WO = fs.readFileSync(new URL('./25/wo2-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+await step('invoices-tab', async () => { await go(CU + '/work-orders'); await page.waitForTimeout(3000); await page.locator('main .q-tab', { hasText: /^\s*Invoices/ }).first().click(); await page.waitForTimeout(3000); log('INV ROWS', JSON.stringify((await page.locator('main tbody tr').allInnerTexts()).map(T).filter(Boolean))); await dump('invoices'); });
+await step('wo2', async () => { await go(WO.replace('/lines', '/finance')); await page.waitForTimeout(4000); log('CARD', T(await page.locator('main').first().innerText()).slice(0, 200)); log('badges', JSON.stringify((await page.locator('.q-badge, .q-chip').allInnerTexts()).map(T).slice(0, 6))); await dump('wo2'); });
+await step('ar-detail-asof', async () => { const id = CU.split('/').pop(); await go(`/reports/ar-aging-detail?customerIds=${id}&pastDue=31-60`); await page.waitForTimeout(5000); log('ROWS', JSON.stringify((await page.locator('main tbody tr').allInnerTexts()).map(T).slice(0, 8))); });
+await r.browser?.close?.(); process.exit(0);

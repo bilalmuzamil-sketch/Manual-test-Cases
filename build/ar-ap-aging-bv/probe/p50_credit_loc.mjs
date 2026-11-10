@@ -1,0 +1,23 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./50b/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 900);
+const dlg = () => page.locator('.q-dialog:visible').last();
+const mclick = async (loc) => { await loc.scrollIntoViewIfNeeded(); await page.waitForTimeout(300); const bb = await loc.boundingBox(); await page.mouse.click(bb.x + bb.width / 2, bb.y + bb.height / 2); };
+const fld = (root, re) => root.locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: re }) }).first();
+const CU = fs.readFileSync(new URL('./10/customer-url.txt', import.meta.url), 'utf8').trim().replace(A, '').replace('/work-orders', '');
+await step('issue-credit', async () => { await go(CU + '/work-orders'); await page.waitForTimeout(3000); await page.locator('main .q-tab', { hasText: /^\s*Invoices/ }).first().click(); await page.waitForTimeout(3000); await mclick(page.locator('main button:visible', { hasText: 'Issue Credit' }).first()); await page.waitForTimeout(3000);
+  const d = dlg(); const cd = fld(d, /Credit Date/i).locator('input'); await cd.click(); await cd.press('Control+a'); await cd.type('10/20/2026', { delay: 60 }); await page.keyboard.press('Tab');
+  await fld(d, /^Amount/i).locator('input').fill('150'); await page.keyboard.press('Tab');
+  await mclick(d.getByText('Issue Store Credit', { exact: true }).first()); await page.waitForTimeout(800);
+  await fld(d, /Reason/i).locator('input, textarea').first().fill('ZZAUTOTEST credit'); await page.waitForTimeout(600);
+  await dump('credit-filled'); log('FORM', (await dl()).slice(0, 500)); const bs = d.locator('button:visible'); const tx = (await bs.allInnerTexts()).map(T); log('btns', JSON.stringify(tx)); await mclick(bs.nth(tx.lastIndexOf('Issue Credit'))); await page.waitForTimeout(3500); log('TOAST', T((await page.locator('.q-notification').allInnerTexts()).join('|'))); log('DLG after', (await dl()).slice(0, 200)); });
+await step('ar-detail', async () => { const id = CU.split('/').pop(); await go(`/reports/ar-aging-detail?customerIds=${id}`); await page.waitForTimeout(5000); const ex = page.getByRole('button', { name: /Expand all/ }); if (await ex.count()) { await ex.first().click(); await page.waitForTimeout(3000); }
+  log('AR ROWS', JSON.stringify((await page.locator('main tbody tr').allInnerTexts()).map(T).filter(x => /ZZAUTOTEST|Credit|Invoice|Deposit|Total/.test(x)).slice(0, 14))); await dump('ar-detail'); });
+if(0) await step('switch-location', async () => { await mclick(page.locator('header button, .q-header button').filter({ hasText: /Staging/ }).last()); await page.waitForTimeout(1200); await mclick(page.locator('.q-menu:visible .q-item').filter({ hasText: /Change Location/ }).first()); await page.waitForTimeout(1500);
+  await mclick(page.locator('.q-menu:visible .q-item').filter({ hasText: /Staging Lethbridge - 4310/ }).first()); await page.waitForTimeout(4000); log('DLG', await dl()); log('TOP', T(await page.locator('header, .q-header').first().innerText()).slice(-60));
+  await mclick(page.locator('header button, .q-header button').filter({ hasText: /Staging/ }).last()); await page.waitForTimeout(1200); await mclick(page.locator('.q-menu:visible .q-item').filter({ hasText: /Change Location/ }).first()); await page.waitForTimeout(1500); await mclick(page.locator('.q-menu:visible .q-item').filter({ hasText: /Staging Heavy Duty - 9919/ }).first()); await page.waitForTimeout(4000); log('TOP back', T(await page.locator('header, .q-header').first().innerText()).slice(-60)); });
+await r.browser?.close?.(); process.exit(0);

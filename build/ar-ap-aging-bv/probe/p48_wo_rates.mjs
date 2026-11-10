@@ -1,0 +1,22 @@
+import { start } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./48e/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 1200);
+const dlg = () => page.locator('.q-dialog:visible').last();
+const mclick = async (loc) => { await loc.scrollIntoViewIfNeeded(); await page.waitForTimeout(300); const bb = await loc.boundingBox(); await page.mouse.click(bb.x + bb.width / 2, bb.y + bb.height / 2); };
+const field = (root, re) => root.locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: re }) }).first();
+const WO = fs.readFileSync(new URL('./25/wo2-url.txt', import.meta.url), 'utf8').trim().replace(/^https:\/\/[^/]+/, '');
+await step('rates', async () => { await go(WO); await page.waitForTimeout(4000); log('URL', page.url()); log('BTNS', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))].filter(Boolean).slice(0, 20)));
+  const nl = page.locator('main button:visible').filter({ hasText: /New Line/ }).first(); await mclick(nl); await page.waitForTimeout(2500); log('NEW LINE', (await dl()).slice(0, 400));
+  await mclick(field(page.locator('.q-dialog:visible'), /Labor rate/i)); await page.waitForTimeout(1500); await mclick(page.locator('.q-menu:visible .q-item').filter({ hasText: /^\s*\S*\s*Fixed Line Total\s*$/ }).first()); await page.waitForTimeout(1200);
+  const D = page.locator('.q-dialog:visible'); log('labels after', JSON.stringify(await D.locator('.q-field__label').allTextContents())); log('NL', (await dl()).slice(0, 500)); await dump('fixed');
+  await field(D, /^Title/i).locator('input').first().fill('ZZAUTOTEST fixed line'); await page.keyboard.press('Tab'); await page.waitForTimeout(800);
+  const amt = D.locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: /total|amount|price/i }) }); log('amount fields', JSON.stringify(await amt.locator('.q-field__label').allTextContents()));
+  if (await amt.count()) { await amt.first().locator('input').fill('1250.50'); await page.keyboard.press('Tab'); }
+  const la = D.locator('.q-checkbox, .q-toggle').filter({ hasText: /Line Approved/i }).first(); if (await la.count()) await mclick(la);
+  await page.waitForTimeout(800); await dump('fixed-filled'); const bs = D.locator('button:visible'); const tx = (await bs.allInnerTexts()).map(T); await mclick(bs.nth(tx.indexOf('Save & Close'))); await page.waitForTimeout(3500); log('DLG left', (await dl()).slice(0, 200));
+  log('LINES', T(await page.locator('main').last().innerText()).slice(0, 600)); await dump('after-line'); });
+await r.browser?.close?.(); process.exit(0);
