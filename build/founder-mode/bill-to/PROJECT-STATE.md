@@ -23,3 +23,4 @@
 - Run **558 "Bill To - Execution"** (https://shopview.testrail.io/index.php?/runs/view/558): 286 tests, all assigned to Mudassir, description "Owner: Mudassir.", no milestone. 48 held out of the run: `applied/HELD-CASES-2026-11-10.md` (31 on PO questions, 6 SV-11665, 4 portal release, 9 production around the release).
 - Question sheet for Chris Ward built (QA lead: "Yes please"): https://docs.google.com/spreadsheets/d/1o55Q5O5kFNV1JWcBX2pFZy741A1enT8BomHWzJH_Vi8 (15 questions); the QA lead shares it. Listed in `build/PO-QUESTIONS-OPEN.md`.
 - When an answer arrives: apply it to the held cases named in the open list, release them into run 558 (union only), delete the losing design-version case.
+- 10 Nov 2026, QA lead: question sheet shared with Chris Ward ("Done"). Rule 128 ticket footers: "Skip again" (not added to SV-12303..SV-12321). TestRail API key: "Never delete it" (do not remind him to revoke it again).
