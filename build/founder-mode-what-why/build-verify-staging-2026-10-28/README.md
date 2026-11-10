@@ -101,3 +101,12 @@ Unexported. The shared Admin's location was switched to 9919 once by API and put
 - Checks on C549088, C154719: tester-runnable 2/2, runnable 2/2, display 2/2 (served-2.json).
 - Rules: 99 second amendment (suite + C-ids in every ask), 107 amendment (shared-account workarounds), Rule 118 added.
 - Final: READY 54 · READY - EXPECT FAIL 5 · HOLD 9 (QuickBooks 6, ShopCoach 1, financial-data user 1, clear button 1).
+
+## One-week reminder, 10 Nov 2026 (QA lead, 3 Nov: "Ask this question after one week")
+- Chris's questions 15–17: answered in his Doc (https://docs.google.com/document/d/1QcT7FRZci6AhYcI33HUac-Oob03-gCnCOKn2NFHMLjA/edit);
+  applied to C154710 / C839513 by the test-writing session on 4 Nov and stamped by this session on staging v26.45.0-440aa25 the same day
+  (`build/founder-mode-what-why/stamp-2026-11-04/README.md`). Nothing open.
+- QuickBooks (C154715 C154721 C549084 C549085 C549087 C847723): asked again with context. Facts 10 Nov: staging v26.45.3-1a5b9f2;
+  qb1 redeployed 9 Nov (v26.45.2-dab51f7) — not reachable from this container (sign-in attempt timed out), so not checked.
+  **QA lead, 10 Nov 2026: "Keep on hold"** — the six stay HOLD until a site carries both the What/Why change and its own working
+  QuickBooks link; staging's QuickBooks setting is not touched.
