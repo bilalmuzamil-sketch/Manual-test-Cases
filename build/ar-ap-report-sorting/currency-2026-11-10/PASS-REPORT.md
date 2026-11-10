@@ -13,7 +13,8 @@ Feature: A/R and A/P Report Sorting, Export and Location Filter (epic SV-11315),
   - Links "Links only where they can open": the credit memo rows (CM2-2821, CM2-418) read Transaction Type "Credit" (DD-07, closed by PRD v10/v11 S2-R1b: "Credit Memo" / "Deposit"). The rest agrees with the PRD: plain dates ("Jul 23, 2025", S2-R1a), credit memo numbers plain text (S7-R10), invoice numbers blue links, Location right after Date, no Past Due column, "Total for 91 or more days past due" subtotal, the bold Totals row, A/R Title Case headings.
   - Filters "The native Vendor menu": the search box now reads "Search vendors" (DD-02 settled in the picture too); "All vendors" ticked, the helper line, then the vendors, whose boxes show a grey dash while All vendors is ticked. The figure's alt text still says "Search vendor" (a stale alt text, not the picture). The menu lists "10 Trucking Parts" before "2 Trucking Parts"; no case states the menu order beyond "the same as Inventory Value's" (D-73).
   - Location "Cleared: No locations" (A/R Detail): no Totals row and no Location column (DD-03 now matches the PRD), "Location: No locations" with the pin icon, the empty state words and "Clear all filters" button word for word. The No locations chip is drawn without the blue pill (resting look); the PRD does not set its style and no case states one.
-- Round-3 write scripts (dry runs): `write/update_refs.py` (46 cases, custom_expected only, run first) and `write/attach_reshot.py` (46 uploads: Links 21, Vendor menu 14, No locations 11; idempotent, sha256-checked files, read back by name).
+- Coordinator, 10 Nov 2026: D-63, D-68 and D-73 again carry the precondition "Open the design picture …", naming the re-shot file and telling the tester not to use the older attachment (a design case cannot be judged without its picture, Rules 114 and 137). Re-read whole (Rule 134): steps and results unchanged and true against the new pictures.
+- Round-3 write scripts (dry runs): `write/update_refs.py` (46 cases: custom_expected on all, plus custom_preconds on D-63, D-68, D-73; run first) and `write/attach_reshot.py` (46 uploads: Links 21, Vendor menu 14, No locations 11; idempotent, sha256-checked files, read back by name).
 
 ## 1. Counts
 
@@ -134,7 +135,7 @@ Row 27:
 | Your answer | (empty, yellow) |
 | Where we found it | PRD v11 (5 Nov 2026) S3-R4, S3-R7a; Jira SV-11533 (Story 3) |
 
-Held on it: S3-32 (new, no C-id yet; out of run 557 until answered). REL-03 checks only which date the line shows, so it is not held. Q2 dropped as ordered. Not added to the sheet: that is the QA lead's or coordinator's write (no Google writes in this pass).
+Held on it: S3-32 (new, no C-id yet; out of run 557 until answered). REL-03 checks only which date the line shows, so it is not held. Q2 dropped as ordered. Question 18 is on Chris Ward's sheet since 10 Nov 2026 (rows 26-27, light pink; added by the coordinator) and in build/PO-QUESTIONS-OPEN.md, unanswered.
 
 ## 8. Tech-plan differences to report to the QA lead (Rules 115, 134)
 
@@ -156,13 +157,12 @@ Held on it: S3-32 (new, no C-id yet; out of run 557 until answered). REL-03 chec
 |---|---|---|
 | Go-ahead to run the five write scripts (section 5) | TestRail writes need your permission (Rule 6) | run them in the order given |
 | Go-ahead to delete REL-08 C715478 | ordered "Yes, both"; deletion is the coordinator's call | delete: PRD v11 S1-R5a reverses it and REL-14 replaces it |
-| Add question 18 to Chris Ward's sheet (section 7) | no Google writes in this pass | add rows 26-27 as written |
 | The three re-shot pictures (5 Nov 2026) | this account is not a writer of the design canvas, so the files cannot be fetched | share them, or open the canvas and download the three pictures |
 | The 13 release-day cases' records and captures | must be made before the release is installed (19 Nov 2026) | testers capture them this week |
 
 ### Waiting on the PO
 
-Sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA: questions 1 to 17 answered. Question 18 (added 10 Nov 2026) is not sent yet; held on it: S3-32 (new). `build/PO-QUESTIONS-OPEN.md` needs this row once the question is on the sheet.
+Sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA: questions 1 to 17 answered. Question 18 is on Chris Ward's sheet since 10 Nov 2026 (rows 26-27, light pink; added by the coordinator) and in build/PO-QUESTIONS-OPEN.md, unanswered Held on it: S3-32 (new, no C-id yet; out of run 557).
 
 ## 11. Reading coverage (Rule 119)
 

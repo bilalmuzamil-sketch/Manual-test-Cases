@@ -6183,6 +6183,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with the "91 or more days past due" bucket expanded.
+- Open the design picture "Links only where they can open" (ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples. Do not use the older attachment of the same picture, "Links only where they can open" (ar-ap-p5-links-only-where-they-can-open.png): it shows the design before 23 Oct 2026.
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
@@ -6280,6 +6281,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Have open documents in these reports at two locations, so the Location column and the Location chip show.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+- Open the design picture "Cleared: No locations" (ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples. Do not use the older attachment of the same picture, "Cleared: No locations" (ar-ap-p4-cleared-no-locations.png): it shows the design before 23 Oct 2026.
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
@@ -6375,6 +6377,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
 - Open Inventory Value (Reports, then "Inventory Value" under PARTS in the left menu) in a second tab of the same window, for comparison.
+- Open the design picture "The native Vendor menu" (ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples. Do not use the older attachment of the same picture, "The native Vendor menu" (ar-ap-p7-the-native-vendor-menu.png): it shows the design before 23 Oct 2026.
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors). For example: the QA organization (437 vendors).
@@ -7162,7 +7165,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ## 10. VIU status
 - Every case and recipe: UNVERIFIED — the QA build (sv11315, v26.45.2-6a8b89c, 10 Nov 2026) has not been run yet. The design was read and every case re-checked against it on 22 Oct 2026 and against the version of 5 Nov 2026 on 10 Nov 2026; the tech plan was read and every case re-checked against it on 22 Oct 2026; every case was re-checked against PRD version 9 and Chris Ward's answers 1 to 16 on 26 Oct 2026 and against PRD version 11, answer 17 and Jira of 10 Nov 2026 on 10 Nov 2026.
 
-## 11. Questions (Chris Ward's sheet): 1 to 16 answered 23 Oct 2026, 17 answered 4 Nov 2026, 18 added 10 Nov 2026 and not sent
+## 11. Questions (Chris Ward's sheet): 1 to 16 answered 23 Oct 2026, 17 answered 4 Nov 2026, 18 on the sheet since 10 Nov 2026 (rows 26-27), unanswered
 - Q1: 1. (a) "Emile's Towing" first. Accents fold to their base letter (S1-R3), so the two names tie, and S1-R4 breaks the tie by the plain lower-cased name, where the plain E comes first. I'll add this example to S1-R4.
 - Q2: 2. (a) Smallest number first; the second click gives largest first.
 - Q3: 3. (a) Tied rows stay smallest document number first in both directions. Only the sorted column reverses.
@@ -7180,5 +7183,5 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 - Q15: 15. (a) Semi-bold, exactly as Work In Progress links look today. The design pictures will be corrected.
 - Q16: 16. (a) Plain character order, as the PRD says: "#1 Diesel", "-1 Diesel", "10 Trucking", "@Home Towing". Engineering's plan needs to match this. I'll add this example to S1-R2.
 - Q17: answered 4 Nov 2026 (`po-answers-2026-11-04/ANSWER-17-Chris-Ward.md`): the build differences were filed as SV-12138 to SV-12141; the nine cases carry the expect-fail line.
-- Q18 (OPEN, not sent; added 10 Nov 2026 on the QA lead's order): the PDF's "As of" line for a day before the 10th: "As of Nov 4, 2026" (S3-R4's format), "As of Nov 04, 2026" or "As of Nov 04 2026" (S3-R7a's date format). Held on it: S3-32 (out of the run until answered).
+- Q18 (OPEN; on the sheet since 10 Nov 2026, rows 26-27, light pink; in build/PO-QUESTIONS-OPEN.md): the PDF's "As of" line for a day before the 10th: "As of Nov 4, 2026" (S3-R4's format), "As of Nov 04, 2026" or "As of Nov 04 2026" (S3-R7a's date format). Held on it: S3-32 (out of the run until answered).
 - (Row 17's text for question 12 repeats question 14's subject; PRD S5-R13 settles question 12.)

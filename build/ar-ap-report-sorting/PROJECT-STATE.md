@@ -167,7 +167,8 @@
   on question 18. Gates: build.py 0 PROBLEM; readiness 0 hard; ticket_sweep 0 unhandled (PRD 11; ledger 26 tickets, refreshed by
   `currency-2026-11-10/scripts/ledger_update.py`; render_outputs.py no longer overwrites the ledger once the PRD handled is above 9).
   Dry-run write scripts in `currency-2026-11-10/write/` (update, create, delete REL-08, run 557 union sync, 46 old picture attachments).
-  Question 18 row text in PASS-REPORT section 7 (not on the sheet yet).
+  Question 18 row text in PASS-REPORT section 7; question 18 is on Chris Ward's sheet (rows 26-27, light pink, added by the coordinator
+  10 Nov 2026) and in build/PO-QUESTIONS-OPEN.md, unanswered; S3-32 held on it.
 
 ## 10 Nov 2026 — written to TestRail (named set, PRD v11)
 - 355 cases updated (133 rewritten, 222 source/build lines only), every one read back, 0 skipped by the edit lock. 25 new cases
@@ -179,5 +180,5 @@
   `release-2026-11-19/PRODUCTION-PREP-FOR-MUDASSIR.md`. Build-verification list: `build/BUILD-VERIFICATION-LIST-AR-AP-2026-11-10.md`.
 - Round 3 (10 Nov 2026): the 46 old picture attachments cannot be deleted (TestRail: "attached to a closed/archived run"); permanent.
   The QA lead sent the 3 re-shot pictures; copied to `currency-2026-11-10/design-2026-11-05/images/*-reshot-2026-11-05.png`. Library:
-  the 46 cases list the new picture and tell the tester not to use the old one (References from Design only; D-04 also prints DD-07).
+  the 46 cases list the new picture and tell the tester not to use the old one (References from Design only, plus the "open the design picture" precondition back on D-63, D-68, D-73; D-04 also prints DD-07).
   Dry runs `currency-2026-11-10/write/update_refs.py` (locked on the live text round 2 wrote) and `write/attach_reshot.py`.

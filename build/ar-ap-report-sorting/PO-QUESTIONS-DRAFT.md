@@ -1,6 +1,6 @@
-# A/R and A/P Report Sorting — questions for Chris Ward (sent 22 Oct 2026; questions 1 to 17 answered; question 18 added 10 Nov 2026, not sent)
+# A/R and A/P Report Sorting — questions for Chris Ward (sent 22 Oct 2026; questions 1 to 17 answered; question 18 on the sheet since 10 Nov 2026, unanswered)
 
-10 Nov 2026: question 17 was answered on 4 Nov 2026 (`po-answers-2026-11-04/ANSWER-17-Chris-Ward.md`: tickets SV-12138 to SV-12141). Question 18 (the PDF's "As of" line for a day before the 10th: S3-R4 against S3-R7a, PRD version 11) is added at the bottom of the same sheet on the QA lead's order of 10 Nov 2026 ("Yes, add Q1 only"); its row text is in `currency-2026-11-10/PASS-REPORT.md`. It is not sent yet; S3-32 is held on it. The rest of this file is the 22 Oct 2026 record.
+10 Nov 2026: question 17 was answered on 4 Nov 2026 (`po-answers-2026-11-04/ANSWER-17-Chris-Ward.md`: tickets SV-12138 to SV-12141). Question 18 (the PDF's "As of" line for a day before the 10th: S3-R4 against S3-R7a, PRD version 11) is added at the bottom of the same sheet on the QA lead's order of 10 Nov 2026 ("Yes, add Q1 only"); its row text is in `currency-2026-11-10/PASS-REPORT.md`. It was added to the sheet (rows 26-27, light pink) on 10 Nov 2026 and is unanswered; S3-32 is held on it. The rest of this file is the 22 Oct 2026 record.
 
 26 Oct 2026: Chris Ward answered questions 1 to 16 on the sheet (read 26 Oct 2026, `questions-2026-10-22/chris-answers-2026-10-26.json`) and PRD version 9 (23 Oct 2026) carries the answers. The table below is the 22 Oct 2026 draft, kept for the record.
 

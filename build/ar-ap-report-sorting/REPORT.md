@@ -333,4 +333,4 @@ Every testable statement of the tech plan has a verdict in `tech-plan-pass-2026-
 
 ### Waiting on the PO
 
-Sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA: questions 1 to 16 answered 23 Oct 2026, question 17 answered 4 Nov 2026. Question 18 (added 10 Nov 2026) is not sent yet. Cases held on a PO question: S3-32 (Q18).
+Sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA: questions 1 to 16 answered 23 Oct 2026, question 17 answered 4 Nov 2026. Question 18 is on the sheet since 10 Nov 2026 (rows 26-27) and unanswered. Cases held on a PO question: S3-32 (Q18).

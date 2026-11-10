@@ -66,12 +66,12 @@ LAYOUT = {
                            "Money, date and number cells stay on one line.")],
                  res_step=None),
     "D-63": dict(title="Design: A/R Detail invoice numbers are blue links, credit memos plain text",
-                 pre_set=[("Open the design picture \"Links only where they can open\"", [])],
+                 pre_set=[("Open the design picture \"Links only where they can open\"", ["Open the design picture \"Links only where they can open\" (ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples. Do not use the older attachment of the same picture, \"Links only where they can open\" (ar-ap-p5-links-only-where-they-can-open.png): it shows the design before 23 Oct 2026."])],
                  step_set={1: "Read the header row, letter for letter.", 3: "Look at the subtotal row at the end of the bucket."},
                  res_sub=[("The chevron, then the columns in the picture's order, letter for letter:", "The chevron, then the columns in this order, letter for letter:")],
                  res_step=None),
     "D-68": dict(title="Design: No locations shows the empty state with no Totals row",
-                 pre_set=[("Open the design picture \"Cleared: No locations\"", [])],
+                 pre_set=[("Open the design picture \"Cleared: No locations\"", ["Open the design picture \"Cleared: No locations\" (ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples. Do not use the older attachment of the same picture, \"Cleared: No locations\" (ar-ap-p4-cleared-no-locations.png): it shows the design before 23 Oct 2026."])],
                  pre_sub=[("so the Location column and the Location chip show, as in the design picture.", "so the Location column and the Location chip show.")],
                  res_step={2: ["The menu closes.",
                                "The chip reads \"Location: No locations\" with the location pin icon, still in the filter row.",
@@ -79,7 +79,7 @@ LAYOUT = {
                                "No rows and no Totals row.",
                                "The empty state reads, letter for letter, \"No record matches these filters\", \"Try changing filters to widen your results.\" and a \"Clear all filters\" button."]}),
     "D-73": dict(title="Design: the Vendor menu shows its search box and rows in order",
-                 pre_set=[("Open the design picture \"The native Vendor menu\"", [])],
+                 pre_set=[("Open the design picture \"The native Vendor menu\"", ["Open the design picture \"The native Vendor menu\" (ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples. Do not use the older attachment of the same picture, \"The native Vendor menu\" (ar-ap-p7-the-native-vendor-menu.png): it shows the design before 23 Oct 2026."])],
                  res_step={1: ["The menu opens under the chip (\"Vendor: All vendors\", truck icon).",
                                "Its rows read, top to bottom, a search box with the placeholder \"Search vendors\", \"All vendors\" (ticked), the line \"All vendors are included. Pick one or more to narrow.\", then the vendors."]}),
     "D-81": dict(pre_set=[("Open the design pictures \"Links only where they can open\"",
@@ -139,3 +139,6 @@ LAYOUT["D-03"] = dict(pre_sub=[(_ARSUM_OLD, _ARSUM_NEW)])
 # tester judges the date itself, not its leading zero.
 LAYOUT["REL-03"]["res_sub"].append(("not tomorrow's date.",
     "not tomorrow's date. On a day before the 10th, judge only which date it is: whether the day carries a leading zero is waiting on the product owner."))
+
+# Round 3 (10 Nov 2026, coordinator for the QA lead): D-63, D-68 and D-73 again ask the tester to open their design picture, now the
+# re-shot file sent by the QA lead (a design case cannot be judged without it, Rules 114 and 137), and say not to use the old copy.
