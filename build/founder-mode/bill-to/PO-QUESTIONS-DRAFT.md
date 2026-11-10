@@ -1,4 +1,6 @@
-# Bill To — questions for Chris Ward (DRAFT, not sent)
+# Bill To — questions for Chris Ward
+
+**Sheet built 10 Nov 2026** (QA lead: "Yes please"): https://docs.google.com/spreadsheets/d/1o55Q5O5kFNV1JWcBX2pFZy741A1enT8BomHWzJH_Vi8 — questions 1-15 in the colour-coded layout of the Technician Toggle sheet; the QA lead shares it with Chris Ward. Rows built by `questions-2026-11-10/sheet_rows.py`.
 
 Project: Bill To (Founder Mode). PRD "Bill To" v0.5 (Confluence 1003585538, pending approval from Mat and Amani). Drafted 9 Nov 2026 by the case worker; **nothing has been sent** (no Google write). The coordinator puts these in the suite's question sheet (colour-coded format, Rule 125/131) and lists them in `build/PO-QUESTIONS-OPEN.md` the moment they are sent (Rule 132).
 

@@ -1,0 +1,162 @@
+[
+ [
+  "Bill To – questions for Chris Ward (10 Nov 2026)",
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],
+ [
+  "Hi Chris, we are writing the Bill To test cases from the feature spec (version 0.5, 6 Nov), its Jira stories (SV-12303 to SV-12321) and the design \"Bill To design\", and found the points below that only you can decide. Please write your answer in the yellow column (a letter such as (a) is enough).",
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],
+ [
+  "Colour guide:",
+  "Yellow = please write your answer here",
+  "Blue = the topic",
+  "Grey = where we found it",
+  "",
+  ""
+ ],
+ [
+  "",
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],
+ [
+  "#",
+  "Topic",
+  "Question for you",
+  "What we know today",
+  "Your answer",
+  "Where we found it"
+ ],
+ [
+  "1",
+  "Bill To: Locked Bill To, a user with only one of the two permissions",
+  "A user who has only ONE of the two permissions the PRD names clicks a locked Bill To field. Does the error message show its button (\"Go To Invoice\" or \"Open Deposits\") or not?\n(a) The button needs BOTH permissions: a user missing either one gets the message with no button\n(b) The button is hidden only when the user has NEITHER permission: one of the two is enough to see it\n(c) Something else (please say)",
+  "S5-N1: \"Without 'Invoicing & payments → View' and 'See Financial Data', the M4 toast shows with no button.\" S5-N2: \"Without 'View and Manage AP/AR Data' and 'Customers → View', the M1 toast shows with no button.\" The sentences can be read as \"missing both\" or \"missing either\". (Elsewhere the PRD writes \"or\" when one missing permission is enough, S1-N2.) The cases for a user who has neither permission are written and runnable; only the one-of-two cases wait.",
+  "",
+  "PRD v0.5 Story 5 (SV-12307), S5-N1 and S5-N2; S1-N2 for the \"or\" wording"
+ ],
+ [
+  "2",
+  "Bill To: Credit Hold banner on an invoiced work order",
+  "If the work order's own customer is on Credit Hold (and the payer is not), does the banner show today's \"This customer is on Credit Hold!\" for the customer, or nothing?\n(a) It shows today's banner for the customer (\"This customer is on Credit Hold!\"), because an invoiced work order reads as today\n(b) It shows nothing, because the customer's Credit Hold does not matter when someone else is billed\n(c) Something else (please say)",
+  "S7-N4: \"Once invoiced, the banner reads as today.\" Today the banner describes the work order's customer. S7-N1: \"The customer's own Credit Hold does not block when someone else is billed.\" S7-R11: \"The work order's Credit Hold and Over Limit badges describe the Bill To.\" The PRD does not say whose Credit Hold the banner on an invoiced work order describes when the two customers differ.",
+  "",
+  "PRD v0.5 Story 7 (SV-12309), S7-N1, S7-N4 and S7-R11"
+ ],
+ [
+  "3",
+  "Bill To: Credit Hold and Over Limit badges on a part sale",
+  "When a part sale is billed to someone else, should its Credit Hold and Over Limit badges describe the payer, as the work order's badges do, or the part sale's own customer, as today?\n(a) The payer, the same as on a work order\n(b) The part sale's own customer, as today\n(c) Something else (please say)",
+  "S7-R11: \"The work order's Credit Hold and Over Limit badges describe the Bill To.\" The PRD says this for work orders only and is silent about the same badges on a part sale (Story 7 puts the part sale's Credit Hold banner on its Finance tab, S7-R6). The banner and invoicing already follow the payer on part sales, so a badge that kept describing the customer would contradict the banner.",
+  "",
+  "PRD v0.5 Story 7 (SV-12309), S7-R6 and S7-R11"
+ ],
+ [
+  "4",
+  "Bill To: Order of the Bill To list",
+  "When a work order already bills another customer and you open its Bill To list (for example with Change Bill To), where should the current Bill To appear?\n(a) As the spec: the \"(this customer)\" row first, then every customer A to Z, the current Bill To in its A to Z place (as the customer windows do).\n(b) As the design: the \"(this customer)\" row first, the current Bill To second, then the rest A to Z.\n(c) Something else (please say).",
+  "The spec says \"the first option is always \"[customer] (this customer)\"\" and the list is A to Z. The design's page 3 pictures put the current Bill To second; its page 1 pictures (customer windows) keep the current pick in its A to Z place.",
+  "",
+  "Spec: Story 3 (SV-12305), the Bill To search rule. The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), page \"3 When the Bill To is blocked\", pictures \"Change Bill To\" and \"Phone, Change Bill To\"; page 1, picture \"Open\" (Edit Customer)."
+ ],
+ [
+  "5",
+  "Bill To: Close button on the locked Bill To message",
+  "When someone clicks a Bill To that cannot be changed, the design shows a red message with \"Go To Invoice\" (or \"Open Deposits\") AND a \"Close\" button; people who may not open the Finance or Deposits tab get the red message with only \"Close\". Which is right?\n(a) As the design: red message, the action button when allowed, plus Close for everyone.\n(b) As the spec: only the action button; people without it get the app's standard error message with the line \"Please try to resolve this.\", which fades after 3 seconds.\n(c) Something else (please say).",
+  "The spec names one button (\"Go To Invoice\" / \"Open Deposits\") and says the others get the message \"with no button\"; its section 8 says messages without a button are the standard error message with \"Please try to resolve this.\" that fades after 3 seconds, and messages with a button fade after 10 seconds.",
+  "",
+  "Spec: Story 5 (SV-12307), the click rules and the 'no button' rules; section 8 (messages). The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), page 3, pictures \"Click\" (invoiced, deposit, mary.moore) and \"Phone, tap\"."
+ ],
+ [
+  "6",
+  "Bill To: Cancel button in the Bill Invoices To window",
+  "The Bill Invoices To window (Change on the customer page) shows \"Cancel\" and \"Save\" (and an x). Should Cancel be there?\n(a) Yes, keep Cancel and Save as drawn.\n(b) Only Save (and the x), as the spec lists.\n(c) Something else (please say).",
+  "The spec says the window has the field and \"a \"Save\" button\"; section 8 says buttons are listed as they render.",
+  "",
+  "Spec: Story 1 (SV-12303), the window's field and button. The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), page 1, picture \"Change\"."
+ ],
+ [
+  "7",
+  "Bill To: Button order in \"Remove as default Bill To\"",
+  "In the \"Remove as default Bill To\" confirmation the design shows \"Cancel\" then \"Remove\"; the spec lists \"Remove\", \"Cancel\" and says buttons are listed as they render. Which order?\n(a) Cancel, Remove (as drawn).\n(b) Remove, Cancel (as written).\n(c) The order does not matter for testing.",
+  "In the Delete Customer window the spec's order (\"Cancel\" and \"Remove As Default Bill To\") matches the picture; only this confirmation differs.",
+  "",
+  "Spec: Story 12 (SV-12314), the confirmation rule; section 8, D8 Confirm removal. The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), page 6, picture \"Remove as default Bill To\"."
+ ],
+ [
+  "8",
+  "Bill To: Phone number on legacy invoices",
+  "The spec says the invoice's Bill To block prints the Bill To's name, address and phone. The design's legacy invoices and estimates print the name and address only (no phone), as production's legacy layout does today; the modern layout prints the phone. Which is right for the legacy layout?\n(a) Legacy keeps no phone (as today and as drawn).\n(b) Legacy must add the Bill To's phone.\n(c) Something else (please say).",
+  "Modern pictures show the Bill To's phone (for example 963-871-9453); legacy pictures show none, before and after.",
+  "",
+  "Spec: Story 7 (SV-12309), the Bill To block rule. The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), page 4, legacy invoice, estimate, part sale and batch pictures."
+ ],
+ [
+  "9",
+  "Bill To: Long Bill To name on the work order",
+  "On a desktop work order the design shows a long Bill To name cut at the card's edge with no \"...\" and no way to see the rest (\"Valders Diesel & Fleet Re\"). Is that intended?\n(a) Yes, cut it as drawn.\n(b) Show \"...\" and the full name on hover or tap.\n(c) Wrap the name onto a second line.",
+  "The spec says the field reads the Bill To's name. The design's caption on one picture says it reads \"Valders Diesel & Fleet Repair\" while the picture shows it cut; on the phone and on an invoiced work order the whole name fits.",
+  "",
+  "Spec: Story 3 (SV-12305), what the field reads. The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), page 2, pictures \"Picked\" and \"S2-17579\"; page 3, \"Banner\"."
+ ],
+ [
+  "10",
+  "Bill To: Bill To column width on the asset's Work Orders tab",
+  "On an asset whose work orders include one billed to someone else, the design adds a Bill To column and, at 1440 pixels, the last columns go past the right edge and the table scrolls sideways. Is that accepted?\n(a) Yes, sideways scrolling at 1440 is fine.\n(b) No, all columns must fit at 1440 (and 1536) pixels.\n(c) Something else (please say).",
+  "The spec only says when the column shows. Our design checks look for no cut-off columns at 1440 and 1536 pixels.",
+  "",
+  "Spec: Story 14 (SV-12316), the Bill To column rule. The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), page 7, picture \"Work Orders tab, top\"."
+ ],
+ [
+  "11",
+  "Bill To: Where the locked Bill To tooltip appears",
+  "In the design, the tooltip of a locked Bill To appears under the customer card starting at the very left edge of the browser window (over the asset card), and the deposit tooltip is one long line at the bottom left. Is that the intended place?\n(a) Yes, as drawn.\n(b) Next to the Bill To value, wrapped to a normal tooltip width.\n(c) Something else (please say).",
+  "The spec says only that the message is the field's tooltip. The \"Pays for\" tooltip also appears under the card.",
+  "",
+  "Spec: Story 5 (SV-12307), the tooltip rules. The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), page 3, pictures \"Hover\" (invoiced and deposit); page 1, \"Tooltip\"."
+ ],
+ [
+  "12",
+  "Bill To: Lists that open over the top bar",
+  "When there is no room below, the Bill To and Bill Invoices To lists open upward and run over the app's top bar (and on the work order the list is wider than the card). Is that intended?\n(a) Yes, as drawn.\n(b) The list should stay below the top bar (shorter, scrolling).\n(c) Something else (please say).",
+  "The spec does not say where the list opens; the design's caption says it opens above when there is no room below.",
+  "",
+  "Spec: Story 1 (SV-12303) and Story 3 (SV-12305). The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), page 1, picture \"Change, open\"; page 2, \"Open\"; page 3, \"Change Bill To\"."
+ ],
+ [
+  "13",
+  "Bill To: Where the Credit Hold banner sits",
+  "The spec says the Bill To's Credit Hold banner is in the work order's page header. The design shows it under the tab bar, above the lines on the Lines tab and above the document on the Finance tab (and above the lines on a phone). Which is right?\n(a) As drawn (under the tab bar, on Lines and Finance).\n(b) In the page header above the tabs.\n(c) Something else (please say).",
+  "No part sale Credit Hold picture exists (the spec says part sales show it on the Finance tab).",
+  "",
+  "Spec: Story 7 (SV-12309), the banner rule. The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), page 3, pictures \"Banner\", \"Finance\", \"Phone\"."
+ ],
+ [
+  "14",
+  "Bill To: Bill To column, \"loaded row\" or \"at least one row\"",
+  "The spec says the asset's Work Orders tab shows a Bill To column when at least one row bills someone else. The design's caption says \"because a loaded row bills someone else\" and \"When no loaded row bills someone else the column is not shown at all\". If the tab shows work orders a page at a time, which rows count?\n(a) Any of the asset's work orders (all pages).\n(b) Only the rows loaded on screen now.\n(c) Something else (please say).",
+  "All rows of the pictured asset are loaded, so the pictures cannot show the difference.",
+  "",
+  "Spec: Story 14 (SV-12316). The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), page 7, pictures \"Work Orders tab, top\" and \"scrolled\"."
+ ],
+ [
+  "15",
+  "Bill To: AccountingHub change",
+  "The spec says what AccountingHub receives keeps its current format and no AccountingHub change is needed. The design's cover says \"the version 4 invoice event that carries the Bill To to AccountingHub is not built yet (it needs the AccountingHub owner)\". Which is right for this release?\n(a) No AccountingHub change: the invoice arrives under the Bill To in today's format (as the spec).\n(b) A new version 4 invoice event is needed and ships with Bill To.\n(c) Bill To ships first; the AccountingHub part comes later.",
+  "This decides what the Story 18 cases expect.",
+  "",
+  "Spec: Story 18 (SV-12320) and Key Decisions. The design \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), Cover, \"What is not shown\"."
+ ]
+]
