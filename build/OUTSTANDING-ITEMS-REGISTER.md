@@ -1611,3 +1611,11 @@ what is still owed.
 | SV-12486 / 12487 / 12488 | Open, no new comments | Milos / Chris / developer |
 | SV-12221 / SV-12223 | QA Complete; no reply yet to our questions in 80551 (Chris/Milos) and 80550 (Milomir) | PO / Milomir |
 | SV-12275 | QA Complete (Ayesha retested 80545) — our "test it or leave to Ayesha?" ask is overtaken | cleared |
+
+## QA lead answers 10 Nov 2026
+| Item | Answer | State |
+|---|---|---|
+| SV-12193 API-only move of an open time entry | "No" — not reported | cleared |
+| SV-12038 double-space payment method via back end | "Not if it is not doable by a user" — not reported | cleared |
+| SV-12288 Ammar's comment 80533 | reviewed: Ammar right (Winnipeg zone, Manitoba stays -05); our own 6 Nov DST note corrected (test-browser artefact) | answered in chat; asking whether to raise the two extra points |
+| Tag Milos + Chris on Open tickets awaiting a PO decision | done 10 Nov: SV-12487 (80574), SV-12404 (80575), SV-10548 (80576), SV-8131 (80577), and the 25 Open tickets parked in SV-11936 (80578-80602) | waiting on Milos / Chris |

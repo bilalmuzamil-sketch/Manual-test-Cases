@@ -47,3 +47,7 @@ Same open entry (Michael Stephenson, S12193-17581) reads **06:30 AM** on Reports
   Duty is now Asia/Karachi (no DST) -> matches. Production: every location is in a zone without DST -> 3/3 match; setting a
   production location to America/Edmonton was blocked by the permission check, so production is NOT verified. Not filed;
   asked the QA lead whether to add these steps to SV-12288.
+
+**CORRECTION 10 Nov 2026:** the "Time difference" note above is wrong. Alberta stopped changing clocks (IANA tz 2026c), so
+America/Edmonton stays UTC-6: Timesheet Activities was right, and the WO Timesheets page looked different only because our
+headless Chromium has out-of-date time-zone rules. See build/sv12288-dst-review-2026-11-10/FINDINGS.md.
