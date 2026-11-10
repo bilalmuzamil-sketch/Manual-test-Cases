@@ -38,6 +38,12 @@ you to start - But be completely ready." Status: **READY, NOT STARTED** (waiting
   build-verification session was working there today.
 - No QuickBooks needed (developer, Slack reply).
 
-## Questions put to him (10 Nov) — see the chat report
-1. Scope (Rule 110): general vs replacement. 2. Record in run 557 (Mudassir's) or a new run. 3. Read PRD v11 once at the start and
-check every test against it (Rule 81/106). 4. Sign-in clash on sv11315.
+## His answers (10 Nov 2026): "1A 2A 3A 4A" — still NOT told to start
+1. **GENERAL scope** (Rule 110): tested against PRD v11 + the developer's handoff notes; no old-vs-new comparison beyond the suite's own
+   "Release day and what must not change" folder.
+2. **Results go into run 557** (Mudassir's); he can pick up anything Blocked.
+3. **PRD v11 read once at the start** and every test checked against it: done 10 Nov — `sources/prd-947650561-v11-read-1110.md` (v:11,
+   58,618 chars, 113 rule ids); `quote_check.py` → 931 quoted sentences in 363 tests, **all word-for-word in v11** (the 9 hits the
+   script printed are not PRD quotes: design notes / a Chris ruling / two Technical Implementation Plan quotes for S3-R10 and S5-R3 —
+   checked by eye); 17 tests quote no PRD rule.
+4. **Sign in when he says start**; anyone signed out signs in again.
