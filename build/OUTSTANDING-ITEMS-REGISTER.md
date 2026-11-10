@@ -1538,12 +1538,15 @@ what is still owed.
 | SV-12214 | Posted 6 Nov ~09:15 CDT: 80337 (passed, 16 checks) + 80338 (PARTIALLY PASSED, tags Stefan). Branch sv12214 is gone. WAITING ON STEFAN: (1) redeploy sv12214, (2) role="menu" missing on 5 plain menus — intended or fix?, (3) which screen shows the board hover card, (4) walk the accounting forms or not. Ticket in Blocked, QA Assignee Bilal. | SV-12214 recheck of menus + hover card (+ accounting forms if asked) | 2026-11-06 |
 | SV-12203 | HANDED TO SOMEONE ELSE by the QA lead (6 Nov, ~09:00 CDT: "I have given the ticket SV-12203 to do"). We stopped work on it; nothing posted after 80329. Dipesh had answered 80330/80331. The Intuit sandbox login was given to us for future QuickBooks testing (kept in /tmp only). Ticket left as it was (Blocked) for its new owner. | — (not ours now) | 2026-11-06 |
 
+## 3-hourly check 10 Nov 18:31 UTC
+Board 2 TESTING QA (Bug/Story Defect, no accounting/QAcomplete): SV-12405 (ours, being tested now), SV-12135..12141 + SV-11688 (Mudassir's, left to him per QA lead). Nothing new to pick up. Rejected/Blocked watch: SV-11116 Blocked waiting on Chris (80644). Nothing answered for a Rule-122 ask.
+
 ## Rejected from testing — watch (3-hourly check re-reads these; added 2026-11-06)
 | Ticket | Rejected on | Waiting for | Current state |
 |---|---|---|---|
 | SV-12003 | 6 Nov (80293/80294) | — | CLEARED: retest PASSED 6 Nov (80315), QA Complete |
 | SV-7898 | 6 Nov (80286/80287) | — | CLEARED: retest PASSED 6 Nov (80320), QA Complete |
-| SV-11116 | 6 Nov | developer | In Progress at 9 Nov 15:47 UTC read |
+| SV-11116 | 6 Nov | Chris Ward (2 product decisions in Parth's 80644) | Blocked at 10 Nov 18:31 UTC read; last comment 80644 (Parth, 06:34 −0500) asks Chris about Sales/Dashboard revenue and the credit memo PDF tax line — nothing for us yet |
 | SV-11684 | 6 Nov (80324/80325), 2nd rejection | — | CLEARED from watch: re-read 9 Nov 15:47 UTC = Ready for Production (moved by someone else, updated 08:55 −0500) |
 
 ## Waiting on the QA lead — SV-12193 (6 Nov 2026, ~10:00 CDT)
