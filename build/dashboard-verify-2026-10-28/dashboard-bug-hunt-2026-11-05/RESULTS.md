@@ -450,6 +450,13 @@ Check at 1920, 1536×864, 1280, 1024 and 390 px wide, in light and dark.
   - Last Week: $641.14 = $641.14.
   - Both tiles and both reports agree.
 - **Seen but already known:** Billing Efficiency, Last Week: the tile reads "23000.00%" and the report "23,000.00%". This is observation O1 from 4 Nov (no thousands comma on the tile).
+- **Re-read after the UTC date reached 10 Nov** (10 Nov, 00:15–00:20 UTC = 05:15–05:20 Karachi). Evidence: `evidence/karachi-2026-11-09/run2/`.
+  - Build **v26.45.2-e5eff4a**, deployed after run1. The branch had been asleep and was woken. Sign-in 200.
+  - Rule 99: all four zone settings matched; browser and machine UTC+5.
+  - **Every figure is identical to run1:**
+    - Nov 10: Revenue $132.00 = $132.00; Billing Efficiency 200.00% on both; Technician Efficiency 200% on both; Technician Utilization no data on both; Sales by Customer 1 customer on both.
+    - Nov 9: empty on both.
+    - This Week: $132.00 = $132.00. Last Week: $641.14 = $641.14.
+  - **Verdict: PASS.** At an ahead-of-UTC location, records made just after local midnight land on the local day, before and after the UTC date catches up, in every tile and its linked report.
 - **Still to do:**
-  - Re-read after the UTC date reaches 10 Nov (scheduled 00:10 UTC).
   - A true week-boundary check needs Karachi's Monday while UTC is still Sunday, which is a Sunday 19:00–23:59 UTC. Not covered.
