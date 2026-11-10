@@ -1601,3 +1601,13 @@ what is still owed.
 
 | SV-12223 | PASSED 10 Nov (80550), QA Complete + QAcomplete. Question to Milomir in 80550: production prints 4,098-line count sheets (no 30 s cut-off), so the 500-line limit would refuse them once shipped — intended? Re-read on every 3-hourly check. | Milomir Kotlajic |
 | SV-12221 | PASSED 10 Nov (80551), QA Complete. Asked Chris Ward + Milos Vasic in 80551 whether "Ordered By" should also be sortable (Dusan asked first in 80498). PO/WO number text sort noted as pre-existing (on production too). | Chris Ward / Milos Vasic |
+## 3-hourly check 10 Nov 2026 09:31 UTC (read 09:35 UTC)
+| Item | State | Needs |
+|---|---|---|
+| Board 2 TESTING QA bugs (non-accounting) | 0 found | nothing |
+| TESTING QA with QA Assignee = Bilal | 0 found | nothing |
+| SV-11116 (watch) | still In Progress; last comment maria 80544 (9 Nov 15:17 CST) asking parth/Chris Amani for AH advice | developer |
+| SV-12299 | Ready to Fix; Slavcho 80558 asked Jordan for subject + attachment names, no answer yet | Jordan |
+| SV-12486 / 12487 / 12488 | Open, no new comments | Milos / Chris / developer |
+| SV-12221 / SV-12223 | QA Complete; no reply yet to our questions in 80551 (Chris/Milos) and 80550 (Milomir) | PO / Milomir |
+| SV-12275 | QA Complete (Ayesha retested 80545) — our "test it or leave to Ayesha?" ask is overtaken | cleared |
