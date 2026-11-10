@@ -51,3 +51,14 @@ Branch sv12183 (same build as 9 Nov). Public API = `/api/v1/staff/{staff id}` (t
 | 16e | salary_type salary + 5000000 → 200; then `{"salary_type":"hourly"}` alone → 422; 999999999 → 200; 1000000000 → 422; back to hourly 500 → 200 | PASS (matches openapi.yaml) |
 Production before (public API, ZZAUTOTEST SV12183 P1 60548, staff 2343a183…): `{"salary":-5000}` 200 stored -5000; `{"salary":1000000}` 200 stored; then 0. Raw lines: ev/ev-pubapi-10nov.txt (branch).
 Still open: Rule 121 time-record pay rate — department clock-in (`POST /api/technician-tasks/department-clock-in`, self only) freezes `$staff->getHourlyRate()`; checking it means changing the admin's own rate and clocking in. Asked the QA lead before posting.
+
+## 10 Nov 2026 ~06:45 UTC — Rule 121 time-record pay rate (QA lead: "Run it, then post")
+- Where the frozen rate is readable: `GET /api/technician-tasks/list?filters[0][field]=work_order&filters[0][value]=<wo>` returns `hourly_rate` (cents) per time record; it only lists time clocked on a WORK ORDER (it filters on the work order's location), so department clock-ins never show there.
+- Branch sv12183 (v26.45.2-ad81f0b): Admin ShopView (staff 7f85bc58) Edit Staff Member → Hourly 19.99 → Save & Close → reopens 19.99 (ev/branch-TR-admin-*). Work order S2-17435, line "Service - CVIP inspection single or tandem axle": green Start (check-in 201) → 65 s → Stop → story "ZZAUTOTEST SV12183 pay rate check" → Clock Out (check-out 201). Time record e9062d02: **hourly_rate 1999** (= $19.99 exactly), 06:44–06:45 (ev/TR-*.png, ev/TR-log.txt). PASS.
+- Production: the Edit Staff Member window saves 19.99 as 19.99 (only New Staff Member saves 19.98), so a production clock-in would also read 1999 — not run; nothing to show. My own production staff record (bilal.muzamil@shopview.com, staff 3d2a9387) was set to 19.99 for this and **restored to blank (salary null, type null)**, departments intact.
+- Admin's branch rate left at 19.99 (per-ticket branch, no cleanup).
+
+## Posted 10 Nov 2026
+- Comment **80555** (green PASSED, 11 rows, 2 pictures: `ev/exhibits/01-before-after-negative-rate.png`, `02-existing-negative-rate.png`, built by `scripts/exhibit.py`, uploaded as real attachments). Pre-post gate: branch marker v26.45.2-ad81f0b (unchanged), ticket Blocked with last comment our 80537, no technical section, human voice.
+- Label QAcomplete; QA Assignee set to Bilal (was empty); status Blocked → Ready to Fix → In Progress → Code Review → TESTING QA → **QA Complete** (Blocked offers no direct route). Read back: QA Complete, QAcomplete, QA Assignee Bilal.
+- Still open with the QA lead (not on the ticket, Rule 94): API-only 500 from `POST /api/iam/create` when departments are sent as names.
