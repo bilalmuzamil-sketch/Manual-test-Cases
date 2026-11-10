@@ -1,0 +1,6 @@
+import {sess,post} from './common.mjs'; const s=await sess(); await s.go('/parts/vendors');
+const v={"id":"7f2412d4-a1c8-4375-b052-e153ac1f2201","email":"lindsey.jordan@staging.shopview.local","address_1":"274 Solomon Street","address_2":"Apt. 598","state_or_province":"Newfoundland and Labrador","postal_code":"A6S3T4","city":"Williamsview","telephone":"446-524-6362","notes":null,"website":"jtequipcorp.com","credit_term":"COD","credit_limit":0,"country_code":"CA","tax_id":"819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b"};
+const body={vendor_id:v.id,tax_id:v.tax_id,name:process.env.NAME,address_1:v.address_1,address_2:v.address_2,state_or_province:v.state_or_province,postal_code:v.postal_code,city:v.city,telephone:v.telephone,email:v.email,notes:v.notes,website:v.website,credit_term:v.credit_term,credit_limit:v.credit_limit,country_code:v.country_code,tax:v.tax_id};
+const r=await post(s,'/api/parts-catalogue/change-vendor',body); console.log(r.status,JSON.stringify(r.json||r.text).slice(0,300));
+for(const t of JSON.parse(process.env.T||'[]')){ const x=await s.api(`/api/inventory/orders?pagination%5BrowsPerPage%5D=30&pagination%5Bpage%5D=1&search=${encodeURIComponent(t)}`); console.log(JSON.stringify(t),(x.json?.data?.collection||[]).map(o=>o.order_number+':'+(o.vendorNames||[]).join('|')).join(' ; ')); }
+await s.browser.close();
