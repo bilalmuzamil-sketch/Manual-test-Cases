@@ -1615,7 +1615,9 @@ what is still owed.
 ## QA lead answers 10 Nov 2026
 | Item | Answer | State |
 |---|---|---|
-| SV-12193 API-only move of an open time entry | "No" — not reported | cleared |
+| SV-12193 API-only move of an open time entry | "No" — but my ask was stale: it was already filed as SV-12292 on 6 Nov (QA lead's 6 Nov "YES - but report separately"); SV-12292 is now fixed and in TESTING QA | see SV-12292 row |
 | SV-12038 double-space payment method via back end | "Not if it is not doable by a user" — not reported | cleared |
 | SV-12288 Ammar's comment 80533 | reviewed: Ammar right (Winnipeg zone, Manitoba stays -05); our own 6 Nov DST note corrected (test-browser artefact) | answered in chat; asking whether to raise the two extra points |
 | Tag Milos + Chris on Open tickets awaiting a PO decision | done 10 Nov: SV-12487 (80574), SV-12404 (80575), SV-10548 (80576), SV-8131 (80577), and the 25 Open tickets parked in SV-11936 (80578-80602) | waiting on Milos / Chris |
+| SV-12292 (our ticket, fix PR #4263) | production before captured (S1-915/S1-914 reproduce); branch test blocked — `.qa.shopview.com` cookies expired | QA lead: fresh sv_sso_session / PHPSESSID / cf_clearance |
+| SV-12299 | replied to Slavcho 80573 with the 3 follow-ups (comment 80603) | — |
