@@ -400,3 +400,6 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   is in any nightly run.** My writes: 27 folder creations + 334 case creations, nothing else.
 - **Risk reported:** nightly runs are created by **Vladimir Tomovic** ~22:10 UTC with "include all cases" — the next one will
   include Bill To unless his process excludes it. Not ours to change without the QA lead's go-ahead (Rule 115 point 8).
+- **QA lead decision (2026-11-10): "c" — leave the nightly runs as they are.** No session removes synced cases from Vlad's
+  nightly runs or asks Vlad to change them on its own. A nightly run that picks up synced cases through its own
+  "include all cases" setting is NOT a breach of Rule 115 point 8 (we added nothing) — report it only if asked.
