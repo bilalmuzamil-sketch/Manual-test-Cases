@@ -3612,3 +3612,20 @@ TestRail write. The QA lead answered, verbatim: *"Readiness check - Yes"*.
    every "does not appear / never" result it lists, checking that each such result has a control the tester can see (L-15). Reports
    say how many cases were read and what was found. "Runnable" or "related" is never claimed from gate output alone (L-13).
 4. A fault the tool does not yet know is added to it the day it is found, so it is caught on every suite from then on.
+
+## 139 · EVERY QUESTION TO THE QA LEAD CARRIES ITS CONTEXT AND MY RECOMMENDATION (all projects, permanent)
+
+Ordered on 10 Nov 2026. I had asked whether nine Bill To cases ("Run on Production After Release") should stay as they were or be
+rewritten to use old records on the QA branch, without explaining the situation and without saying what I would do. The QA lead
+answered, verbatim: *"I dont understand the question and context and also you are not giving me your recomendation which you should
+always give, set it as a rule"*. Recorded on his explicit directive (Rule 72 is satisfied: he asked for it in his own words).
+
+1. **Every question I put to the QA lead** (in chat, in a question dialog, in an OUTSTANDING list, in a report) **gives my
+   recommendation and the reason for it**, in one or two plain sentences. In a list of options the recommended one comes first and
+   is marked "(Recommended)". "Which do you prefer?" with no recommendation is never asked.
+2. **It stands on its own.** It says, in plain words and without our internal terms, what the question is about, why it needs his
+   decision, and what happens with each answer, so he can answer without scrolling back or knowing how we work.
+3. **If a fact I need to recommend is missing**, I say which fact and recommend the safest course until it is known; "I can't
+   recommend" is not an answer.
+4. **A question he does not understand is my failure, not his.** I explain it again from the start, plainly, with the recommendation,
+   and check the next question against points 1 to 3 before I send it.

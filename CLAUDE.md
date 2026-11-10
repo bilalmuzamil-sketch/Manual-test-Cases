@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–138** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–139** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -114,6 +114,10 @@ These are stated here **in full** because a session that gets only this far must
   refuses on failure. It fails on the Blocked line, cases a tester cannot set up, vague look words, "Make sure" for a record the test
   creates, case ids in tester text and "ask your QA lead". I also read its random sample and every "does not appear" result in full;
   "runnable" is never claimed from gates alone. Lessons L-12 to L-18.
+- **🔴 EVERY QUESTION TO THE QA LEAD CARRIES ITS CONTEXT AND MY RECOMMENDATION (139, 10 Nov 2026, PERMANENT).** QA lead: *"you are not
+  giving me your recomendation which you should always give, set it as a rule"*. Every question says in plain words what it is about,
+  why it needs his decision and what each answer leads to, and gives my recommendation with its reason (recommended option first). A
+  question he does not understand is explained again from the start.
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.
