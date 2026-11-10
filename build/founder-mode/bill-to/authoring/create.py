@@ -14,7 +14,7 @@ MAP = f"{P}/testrail-id-map.csv"; IMG = f"{P}/design-2026-11-09/images"
 PICRE = re.compile(r"bt-p\d-\d\d-[\w-]+\.png")
 def pics(f): return sorted(set(PICRE.findall(f["custom_expected"])))
 ids = {r["key"]: int(r["case_id"]) for r in csv.DictReader(open(MAP))} if os.path.exists(MAP) else {}
-NO_MANUAL = set()   # filled only on the QA lead's answer about NO-MANUAL-PROPOSAL.md
+NO_MANUAL = {"S1-17","S1-18","S1-19","S2-08","S3-21","S3-30","S5-11","S7-15","S9-06","S10-08","S12-14"}   # QA lead 10 Nov 2026: "If a tester can not set it up then they should not be in testrail." (kept in the library only)
 todo = [k for k in PROP if k not in ids and k not in NO_MANUAL]
 print("PLAN (dry run unless --apply)")
 print(f"{'key':7} {'subsection of 132467':58} {'cases':>5} {'held':>5} {'to run':>6}")
