@@ -1647,3 +1647,12 @@ what is still owed.
 
 | SV-12120 | CLEARED 10 Nov: PASSED 80657, QAcomplete, QA Complete, QA Assignee Bilal; follow-up SV-12510 (empty return page) | Parth: confirm invoice view stays company-wide (question in 80657); Milos/Chris: SV-12510 wording |
 | SV-12404 | CLEARED 10 Nov: replied to Milos (80656), OBSOLETE | — |
+
+## 3-hourly check 10 Nov 2026 15:31 UTC
+| Item | State | Needs |
+|---|---|---|
+| SV-12435 (dark mode imported invoice) | CLEARED: PASSED 80670, QAcomplete, QA Complete, QA Assignee Bilal | — |
+| Imported invoice labor quantity: screen 1.00 vs PDF 60.00 (production + branch) | not tracked in Jira | QA lead: raise a follow-up ticket? |
+| SV-12268 | rewritten with production evidence per new Rule 128 | — |
+| SV-12510 | 'only on QA environment' line added (Rule 128) | Milos / Chris wording |
+| SV-12135..12141, SV-11688 | QA assignee Mudassir — left to him (QA lead 10 Nov) | — |
