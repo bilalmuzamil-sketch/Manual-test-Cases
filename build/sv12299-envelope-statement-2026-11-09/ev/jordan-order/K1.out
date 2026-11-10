@@ -1,0 +1,28 @@
+start Invoiced
+RESP 1 200 GET /api/invoices/preview?invoice_id=fedb978c-1f7a-4abd-91e2-2eeebc678b9c&type=html&isEstimate=0&includeDeclined=0&historyEvent= 106441
+pay dialog New Customer Payment close event Payment Date Payment Method Charge Account arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment S2-1944 Today Dec 10, 2026 $149.95 S2-1945 Yesterday Dec 9, 2026 $149.95 Amount to credit: $0.00 Payment amount: $0.00 Make Payment
+methods [" Direct Payment (Bilal)"," Mastercard"," New payment for testing"," Check"," Cash"," Debit"," Amex"," Visa","check Charge Account"]
+POST /api/customer-account/create-customer-payment
+RESP 2 200 GET /api/invoices/preview?invoice_id=fedb978c-1f7a-4abd-91e2-2eeebc678b9c&type=html&isEstimate=0&includeDeclined=0&historyEvent= 108859
+after pay Paid
+invoice rows 1
+stmt dialog Sending statement close You're about to send statement to selected contacts: Inbox SV12299 bilal.muzamil+sv12299@shopview.com Optional Emails (Comma Separated) Hello, Please find your statement attached and remit payment at your earliest convenience. Thank you.. Email Content Best regards, Bilal Muzammil Bilal-Trucks 971545454 Include your email to BCC Send Email
+bins 1
+rev dialog Confirmation close This action will reverse the payment for all invoices associated with it. The payment record is preserved for audit history. Are you sure you want to proceed? Cancel Reverse
+POST /api/customer-account/reverse-customer-payment
+after delete dialog undefined
+wo Invoiced
+RESP 3 200 GET /api/invoices/preview?invoice_id=fedb978c-1f7a-4abd-91e2-2eeebc678b9c&type=html&isEstimate=0&includeDeclined=0&historyEvent= 106441
+reverse dialog Warning close This action will re-open and undo the invoice. Are you sure you want to proceed? Reverse Cancel
+POST /api/invoices/reverse-invoice
+POST /api/work-orders/invoices/estimate
+RESP 4 200 POST /api/work-orders/invoices/estimate 106441
+after reverse Complete
+POST /api/invoices/create
+RESP 5 200 GET /api/invoices/preview?invoice_id=0e5a9dc2-71a5-46df-9147-98acfecbb5f5&type=html&isEstimate=0&includeDeclined=0&historyEvent= 106441
+create-invoice dialog New Customer Payment close event Payment Date Payment Method Charge Account arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment S2-1944 Today Dec 10, 2026 $149.95 S2-1945 Yesterday Dec 9, 2026 $149.95 Amount to credit: $0.00 Payment amount: $0.00 Make Payment Charge Account
+RESP 6 200 GET /api/invoices/preview?invoice_id=0e5a9dc2-71a5-46df-9147-98acfecbb5f5&type=html&isEstimate=0&includeDeclined=0&historyEvent= 106441
+after charge Invoiced
+send dialog Sending invoice close Include 'For Customer' Attachments in email You're about to send invoice to selected contacts: Inbox SV12299 bilal.muzamil+sv12299@shopview.com Optional Emails (Comma Separated) Hello, Please find your attached invoice for work order: S2-1944. Email Content Best regards, Bilal Muzammil Bilal-Trucks 971545454 Include your email to BCC Send Email
+POST /api/work-order/invoice/send-email
+RESP 7 200 GET /api/invoices/preview?invoice_id=0e5a9dc2-71a5-46df-9147-98acfecbb5f5&type=pdf&isEstimate=0&includeDeclined=0&historyEvent= 32808

@@ -65,3 +65,10 @@ Our runs, production v26.45.2-107ad4b, one browser session, in-app navigation on
 | J3 | default unticked, typed bilal.muzamil+sv12299j@shopview.com | same | sent (201) | INV-S2-1944 (`ev/jordan-order/J3/sent-invoice.pdf`) |
 So Jordan's steps send the invoice on our data. The For-Customer path (80542) is a way a statement CAN go out with the invoice, but Jordan says no note was added, so it is not his case.
 Pointer: the file Mike shared is "West Creek Farms Ltd Statement (1).pdf"; the customer-page statement email names its file "<customer> Statement.pdf" (MailTransactionsCommandHandler) with subject "Statement for <customer>". The email's subject + attachment name would say which screen sent it — asked of the QA lead first.
+
+## 10 Nov 2026 ~03:50 UTC — Jordan 80549 WITH the payment steps (run K1, scripts/jordan2.mjs), NOT reproduced
+Production v26.45.2-107ad4b, S2-1944, one session, in-app navigation:
+1. WO Finance > New Payment > Cash > Make Payment (badge Paid). 2. Customers > ZZAUTOTEST SV12299 Charge Account > Invoices > tick invoices > envelope ("Sending statement") > X. 3. Payments tab > bin > Reverse (`reverse-customer-payment`). 4. WO > Finance > ⋮ > Reverse > confirm (Complete) > Create Invoice > "New Customer Payment" (lists BOTH open invoices S2-1944 + S2-1945, Charge Account preselected) > Charge Account (Invoiced). 5. Envelope > untick Inbox SV12299 > Optional emails bilal.muzamil+sv12299k@shopview.com > Send Email.
+Result: `work-order/invoice/send-email` 201; uploaded PDF = `invoices/preview?…type=pdf` = INV-S2-1944 (ev/jordan-order/K1/sent-invoice.pdf).
+WO page menus checked: nav ⋮ = Audit Log / Timesheets / Print Work Order; invoice ⋮ = Reverse / Issue Credit; icons Download / Send email / Print / Settings / New Payment. No statement option inside the work order.
+Total: Jordan's order tried 4 ways (J1–J3, K1), the invoice was sent every time.
