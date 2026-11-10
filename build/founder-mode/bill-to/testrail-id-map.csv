@@ -186,3 +186,150 @@ S13-03,1062415,S13,Changing a part sale's Bill To adds the entry to its log,http
 S13-04,1062416,S13,Change Customer that moves the Bill To to a new default logs it,https://shopview.testrail.io/index.php?/cases/view/1062416,0.5
 S13-05,1062417,S13,Plain Change Customer on a self-billed work order logs only that change,https://shopview.testrail.io/index.php?/cases/view/1062417,0.5
 S13-06,1062418,S13,Without Customers View the log shows the names without links,https://shopview.testrail.io/index.php?/cases/view/1062418,0.5
+S14-01,1062419,S14,The asset's Work Orders tab lists every owner's work orders,https://shopview.testrail.io/index.php?/cases/view/1062419,0.5
+S14-02,1062420,S14,The tab lists only work orders at the current location,https://shopview.testrail.io/index.php?/cases/view/1062420,0.5
+S14-03,1062421,S14,The Customer chip sits beside Status and starts at All customers,https://shopview.testrail.io/index.php?/cases/view/1062421,0.5
+S14-04,1062422,S14,"Customer chip options are every customer or Bill To on the asset, A to Z",https://shopview.testrail.io/index.php?/cases/view/1062422,0.5
+S14-05,1062423,S14,Picking customers keeps work orders where they are customer or Bill To,https://shopview.testrail.io/index.php?/cases/view/1062423,0.5
+S14-06,1062424,S14,Filtering by a payer alone keeps only the work order it pays for,https://shopview.testrail.io/index.php?/cases/view/1062424,0.5
+S14-07,1062425,S14,With more than 8 options the Customer chip offers search,https://shopview.testrail.io/index.php?/cases/view/1062425,0.5
+S14-08,1062426,S14,With 8 options or fewer the Customer chip has no search,https://shopview.testrail.io/index.php?/cases/view/1062426,0.5
+S14-09,1062427,S14,A Bill To column shows when a row bills someone else,https://shopview.testrail.io/index.php?/cases/view/1062427,0.5
+S14-10,1062428,S14,No Bill To column when every row bills its own customer,https://shopview.testrail.io/index.php?/cases/view/1062428,0.5
+S14-11,1062429,S14,The Customer filter resets when another asset is opened,https://shopview.testrail.io/index.php?/cases/view/1062429,0.5
+S14-12,1062430,S14,Picking Imported in Status disables and clears the Customer filter,https://shopview.testrail.io/index.php?/cases/view/1062430,0.5
+S14-13,1062431,S14,The Bill To column shows when the payer's row is on a later page,https://shopview.testrail.io/index.php?/cases/view/1062431,0.5
+S15-01,1062432,S15,An internal work order has no Bill To field,https://shopview.testrail.io/index.php?/cases/view/1062432,0.5
+S15-02,1062433,S15,Converting to No Charge hides the Bill To and resets it to the customer,https://shopview.testrail.io/index.php?/cases/view/1062433,0.5
+S15-03,1062434,S15,Converting back to billable starts from the customer's saved default,https://shopview.testrail.io/index.php?/cases/view/1062434,0.5
+S15-04,1062435,S15,Changing to an internal customer removes the Bill To,https://shopview.testrail.io/index.php?/cases/view/1062435,0.5
+S15-05,1062436,S15,An internal customer is never offered as a Bill To,https://shopview.testrail.io/index.php?/cases/view/1062436,0.5
+S15-06,1062437,S15,Billing a payer does not make a billable work order internal,https://shopview.testrail.io/index.php?/cases/view/1062437,0.5
+S16-01,1062438,S16,The payer's portal contact sees the invoice and can pay it,https://shopview.testrail.io/index.php?/cases/view/1062438,0.5
+S16-02,1062439,S16,The customer's portal contact sees the invoice read-only with Billed to,https://shopview.testrail.io/index.php?/cases/view/1062439,0.5
+S16-03,1062440,S16,The invoice created email goes only to the payer's portal contacts,https://shopview.testrail.io/index.php?/cases/view/1062440,0.5
+S16-04,1062441,S16,Paying several invoices at once includes only what the viewer's customer owes,https://shopview.testrail.io/index.php?/cases/view/1062441,0.5
+S16-05,1062442,S16,The payer's contact sees only invoices that name the payer,https://shopview.testrail.io/index.php?/cases/view/1062442,0.5
+S16-06,1062443,S16,A deposit link paid after the Bill To changed is refused,https://shopview.testrail.io/index.php?/cases/view/1062443,0.5
+S16-07,1062444,S16,A deposit link paid with the Bill To unchanged lands on the payer,https://shopview.testrail.io/index.php?/cases/view/1062444,0.5
+S16-08,1062445,S16,When the customer pays for itself the portal works as today,https://shopview.testrail.io/index.php?/cases/view/1062445,0.5
+S17-01,1062446,S17,The invoice reaches QuickBooks under the payer,https://shopview.testrail.io/index.php?/cases/view/1062446,0.5
+S17-02,1062447,S17,A linked payer syncs to its QuickBooks customer even after a rename,https://shopview.testrail.io/index.php?/cases/view/1062447,0.5
+S17-03,1062448,S17,An unlinked payer is matched to the QuickBooks customer with its exact name,https://shopview.testrail.io/index.php?/cases/view/1062448,0.5
+S17-04,1062449,S17,A same-name QuickBooks customer linked elsewhere puts the invoice on Unexported,https://shopview.testrail.io/index.php?/cases/view/1062449,0.5
+S17-05,1062450,S17,Reverse deletes the QuickBooks invoice and the new one is sent fresh,https://shopview.testrail.io/index.php?/cases/view/1062450,0.5
+S17-06,1062451,S17,"Without QuickBooks connected, invoicing to a payer works and nothing is sent",https://shopview.testrail.io/index.php?/cases/view/1062451,0.5
+S17-07,1062452,S17,Invoices created before the release are not sent again,https://shopview.testrail.io/index.php?/cases/view/1062452,0.5
+S17-08,1062453,S17,A self-billed invoice reaches QuickBooks under its own customer,https://shopview.testrail.io/index.php?/cases/view/1062453,0.5
+S18-01,1062454,S18,The invoice reaches AccountingHub under the payer,https://shopview.testrail.io/index.php?/cases/view/1062454,0.5
+S18-02,1062455,S18,AccountingHub AR and aging group the invoice under the payer,https://shopview.testrail.io/index.php?/cases/view/1062455,0.5
+S18-03,1062456,S18,Reverse keeps the reversal in AccountingHub and the new invoice arrives as new,https://shopview.testrail.io/index.php?/cases/view/1062456,0.5
+S18-04,1062457,S18,"Payments, deposits and credits reach AccountingHub under the payer",https://shopview.testrail.io/index.php?/cases/view/1062457,0.5
+S18-05,1062458,S18,A self-billed invoice reaches AccountingHub as today,https://shopview.testrail.io/index.php?/cases/view/1062458,0.5
+S19-01,1062459,S19,The invoice uses the payer's IBS account and prints its IBS number,https://shopview.testrail.io/index.php?/cases/view/1062459,0.5
+S19-02,1062460,S19,The invoice goes into the payer's IBS batch,https://shopview.testrail.io/index.php?/cases/view/1062460,0.5
+S19-03,1062461,S19,"No IBS when the payer has no IBS account, even if the customer has one",https://shopview.testrail.io/index.php?/cases/view/1062461,0.5
+S19-04,1062462,S19,A later change to the payer's IBS account does not change the invoice,https://shopview.testrail.io/index.php?/cases/view/1062462,0.5
+S19-05,1062463,S19,Invoices made before the release read the payer's current IBS account,https://shopview.testrail.io/index.php?/cases/view/1062463,0.5
+S19-06,1062464,S19,The CSV export names the payer as Customer with the saved term,https://shopview.testrail.io/index.php?/cases/view/1062464,0.5
+S19-07,1062465,S19,"Service Customer, the export's last column, names the customer the work was for",https://shopview.testrail.io/index.php?/cases/view/1062465,0.5
+S19-08,1062466,S19,Invoices created before the release export as before,https://shopview.testrail.io/index.php?/cases/view/1062466,0.5
+API-01,1062467,API,Public API work order shows the Bill To and keeps customer as the customer,https://shopview.testrail.io/index.php?/cases/view/1062467,0.5
+API-02,1062468,API,Public API invoice shows the Bill To and keeps customer as the customer,https://shopview.testrail.io/index.php?/cases/view/1062468,0.5
+API-03,1062469,API,Public API self-billed work order shows itself as Bill To,https://shopview.testrail.io/index.php?/cases/view/1062469,0.5
+API-04,1062470,API,Public API work order list filters by Bill To,https://shopview.testrail.io/index.php?/cases/view/1062470,0.5
+API-05,1062471,API,Public API invoice list filters by Bill To,https://shopview.testrail.io/index.php?/cases/view/1062471,0.5
+API-06,1062472,API,Public API lists work as before without the Bill To filter,https://shopview.testrail.io/index.php?/cases/view/1062472,0.5
+API-07,1062473,API,A malformed Bill To id in a Public API list filter returns an error,https://shopview.testrail.io/index.php?/cases/view/1062473,0.5
+API-08,1062474,API,The Public API changelog announces the Bill To addition,https://shopview.testrail.io/index.php?/cases/view/1062474,0.5
+API-09,1062475,API,Creating an invoice through the Public API for a payer on Credit Hold is refused,https://shopview.testrail.io/index.php?/cases/view/1062475,0.5
+API-10,1062476,API,Public API invoice for a self-billed customer on Credit Hold is refused,https://shopview.testrail.io/index.php?/cases/view/1062476,0.5
+API-11,1062477,API,The Public API cannot set a work order's Bill To,https://shopview.testrail.io/index.php?/cases/view/1062477,0.5
+API-12,1062478,API,The Public API does not return a customer's saved default Bill To,https://shopview.testrail.io/index.php?/cases/view/1062478,0.5
+DATA-01,1062479,DATA,"The payer's balance is the same on its Invoices tab, A/R Aging and statement",https://shopview.testrail.io/index.php?/cases/view/1062479,0.5
+DATA-02,1062480,DATA,A part payment lowers the payer's balance the same way everywhere,https://shopview.testrail.io/index.php?/cases/view/1062480,0.5
+DATA-03,1062481,DATA,A deposit taken under the payer reduces what the payer owes,https://shopview.testrail.io/index.php?/cases/view/1062481,0.5
+DATA-04,1062482,DATA,Sales stay with the customer the work was for,https://shopview.testrail.io/index.php?/cases/view/1062482,0.5
+REL-01,1062483,REL,Existing work orders bill their own customer after the release,https://shopview.testrail.io/index.php?/cases/view/1062483,0.5
+REL-02,1062484,REL,Existing invoices and balances are unchanged after the release,https://shopview.testrail.io/index.php?/cases/view/1062484,0.5
+REL-03,1062485,REL,Bill To is on for every shop at release with no setting to switch,https://shopview.testrail.io/index.php?/cases/view/1062485,0.5
+REL-04,1062486,REL,A credit on an invoice from before the release keeps today's revenue split,https://shopview.testrail.io/index.php?/cases/view/1062486,0.5
+REL-05,1062487,REL,Credit Hold is also checked when invoicing a self-billed work order,https://shopview.testrail.io/index.php?/cases/view/1062487,0.5
+INV-01,1062488,INV,The truck and its history stay with the customer when someone else pays,https://shopview.testrail.io/index.php?/cases/view/1062488,0.5
+INV-02,1062489,INV,A tax-exempt payer is still charged tax on a taxable customer's job,https://shopview.testrail.io/index.php?/cases/view/1062489,0.5
+INV-03,1062490,INV,Estimate emails still go to the customer's contacts,https://shopview.testrail.io/index.php?/cases/view/1062490,0.5
+INV-04,1062491,INV,A standalone credit stays on one customer as today,https://shopview.testrail.io/index.php?/cases/view/1062491,0.5
+INV-05,1062492,INV,"The Work Orders list, Board View and Tech View show no Bill To",https://shopview.testrail.io/index.php?/cases/view/1062492,0.5
+INV-06,1062493,INV,An imported historical invoice has no Bill To and is unchanged,https://shopview.testrail.io/index.php?/cases/view/1062493,0.5
+INV-07,1062494,INV,New Work Order picks up a saved default without any new field,https://shopview.testrail.io/index.php?/cases/view/1062494,0.5
+INV-08,1062495,INV,A shop that never picks a payer sees today's invoice and totals,https://shopview.testrail.io/index.php?/cases/view/1062495,0.5
+D-01,1062496,DESIGN,Design: New Customer shows Bill Invoices To between Credit Limit and Sales Rep,https://shopview.testrail.io/index.php?/cases/view/1062496,0.5
+D-02,1062497,DESIGN,Design: New Customer Bill Invoices To list shows the typed name first,https://shopview.testrail.io/index.php?/cases/view/1062497,0.5
+D-03,1062498,DESIGN,"Design: Typing in Bill Invoices To narrows the list, this customer stays first",https://shopview.testrail.io/index.php?/cases/view/1062498,0.5
+D-04,1062499,DESIGN,Design: Edit Customer shows the saved Bill Invoices To and its help line,https://shopview.testrail.io/index.php?/cases/view/1062499,0.5
+D-05,1062500,DESIGN,Design: Edit Customer list keeps the current pick in its A to Z place,https://shopview.testrail.io/index.php?/cases/view/1062500,0.5
+D-06,1062501,DESIGN,Design: Counter Sale customer's Edit Customer has no Bill Invoices To field,https://shopview.testrail.io/index.php?/cases/view/1062501,0.5
+D-07,1062502,DESIGN,Design: Customer card shows the Bill Invoices To line with Change under IBS,https://shopview.testrail.io/index.php?/cases/view/1062502,0.5
+D-08,1062503,DESIGN,Design: A customer that bills itself shows no Bill Invoices To line,https://shopview.testrail.io/index.php?/cases/view/1062503,0.5
+D-09,1062504,DESIGN,"Design: Bill Invoices To window shows its help line, field and buttons",https://shopview.testrail.io/index.php?/cases/view/1062504,0.5
+D-10,1062505,DESIGN,Design: Pays for counter sits beside Contacts and Assets with a blue number,https://shopview.testrail.io/index.php?/cases/view/1062505,0.5
+D-11,1062506,DESIGN,Design: Pays for tooltip reads Customers billed to this customer by default,https://shopview.testrail.io/index.php?/cases/view/1062506,0.5
+D-12,1062507,DESIGN,Design: Pays for window lists each customer as a link with Close,https://shopview.testrail.io/index.php?/cases/view/1062507,0.5
+D-13,1062508,DESIGN,Design: New Customer has no Bill Invoices To field without AP/AR access,https://shopview.testrail.io/index.php?/cases/view/1062508,0.5
+D-14,1062509,DESIGN,Design: Card shows Bill Invoices To without Change for a user without AP/AR,https://shopview.testrail.io/index.php?/cases/view/1062509,0.5
+D-15,1062510,DESIGN,Design: Customer page on a phone shows Bill Invoices To and Change on one line,https://shopview.testrail.io/index.php?/cases/view/1062510,0.5
+D-16,1062511,DESIGN,Design: Work order Customer card shows Bill To This customer under Authorizer,https://shopview.testrail.io/index.php?/cases/view/1062511,0.5
+D-17,1062512,DESIGN,Design: Bill To list opens with this customer first then customers A to Z,https://shopview.testrail.io/index.php?/cases/view/1062512,0.5
+D-18,1062513,DESIGN,Design: Bill To search keeps this customer first and never shows an empty list,https://shopview.testrail.io/index.php?/cases/view/1062513,0.5
+D-19,1062514,DESIGN,Design: Picking a Bill To saves at once and shows the payer's name,https://shopview.testrail.io/index.php?/cases/view/1062514,0.5
+D-20,1062515,DESIGN,Design: Authorizer list shows each contact's customer on a second line,https://shopview.testrail.io/index.php?/cases/view/1062515,0.5
+D-21,1062516,DESIGN,Design: Authorizer list is unchanged when the customer pays for itself,https://shopview.testrail.io/index.php?/cases/view/1062516,0.5
+D-22,1062517,DESIGN,Design: Part sale Customer card shows Bill To under Authorizer,https://shopview.testrail.io/index.php?/cases/view/1062517,0.5
+D-23,1062518,DESIGN,Design: New Work Order window has no Bill To,https://shopview.testrail.io/index.php?/cases/view/1062518,0.5
+D-24,1062519,DESIGN,Design: Work order on a phone shows Bill To under Authorizer,https://shopview.testrail.io/index.php?/cases/view/1062519,0.5
+D-25,1062520,DESIGN,Design: Work Order Log shows Bill To changed with both customers as links,https://shopview.testrail.io/index.php?/cases/view/1062520,0.5
+D-26,1062521,DESIGN,Design: Invoiced Bill To shows the Invoiced tooltip,https://shopview.testrail.io/index.php?/cases/view/1062521,0.5
+D-27,1062522,DESIGN,Design: Clicking an invoiced Bill To shows a red toast with Go To Invoice,https://shopview.testrail.io/index.php?/cases/view/1062522,0.5
+D-28,1062523,DESIGN,Design: Deposit-held Bill To shows the deposit tooltip,https://shopview.testrail.io/index.php?/cases/view/1062523,0.5
+D-29,1062524,DESIGN,Design: Clicking a deposit-held Bill To shows a red toast with Open Deposits,https://shopview.testrail.io/index.php?/cases/view/1062524,0.5
+D-30,1062525,DESIGN,Design: Deposit toast has no Open Deposits for a user without Deposits access,https://shopview.testrail.io/index.php?/cases/view/1062525,0.5
+D-31,1062526,DESIGN,Design: Tapping a deposit-held Bill To on a phone shows the toast,https://shopview.testrail.io/index.php?/cases/view/1062526,0.5
+D-32,1062527,DESIGN,Design: Credit Hold banner and pill show on the work order Lines tab,https://shopview.testrail.io/index.php?/cases/view/1062527,0.5
+D-33,1062528,DESIGN,Design: Credit Hold banner shows on the work order Finance tab,https://shopview.testrail.io/index.php?/cases/view/1062528,0.5
+D-34,1062529,DESIGN,Design: Change Bill To opens the card's Bill To list,https://shopview.testrail.io/index.php?/cases/view/1062529,0.5
+D-35,1062530,DESIGN,Design: Credit Hold banner and Change Bill To work on a phone,https://shopview.testrail.io/index.php?/cases/view/1062530,0.5
+D-36,1062531,DESIGN,Design: Modern invoice billed to someone else prints the Service For band,https://shopview.testrail.io/index.php?/cases/view/1062531,0.5
+D-37,1062532,DESIGN,Design: Legacy invoice billed to someone else prints the Service For band,https://shopview.testrail.io/index.php?/cases/view/1062532,0.5
+D-38,1062533,DESIGN,Design: Modern estimate without a unit drops Unit from the band,https://shopview.testrail.io/index.php?/cases/view/1062533,0.5
+D-39,1062534,DESIGN,Design: Legacy estimate billed to someone else prints the band,https://shopview.testrail.io/index.php?/cases/view/1062534,0.5
+D-40,1062535,DESIGN,Design: Modern part sale with a vehicle prints the band with the unit,https://shopview.testrail.io/index.php?/cases/view/1062535,0.5
+D-41,1062536,DESIGN,Design: Legacy part sale with a vehicle prints the band with the unit,https://shopview.testrail.io/index.php?/cases/view/1062536,0.5
+D-42,1062537,DESIGN,Design: Modern part sale without a vehicle prints only Service For and the name,https://shopview.testrail.io/index.php?/cases/view/1062537,0.5
+D-43,1062538,DESIGN,Design: Legacy part sale without a vehicle prints only the name in the band,https://shopview.testrail.io/index.php?/cases/view/1062538,0.5
+D-44,1062539,DESIGN,Design: Modern invoice that pays for itself prints no band,https://shopview.testrail.io/index.php?/cases/view/1062539,0.5
+D-45,1062540,DESIGN,Design: Legacy invoice that pays for itself prints no band,https://shopview.testrail.io/index.php?/cases/view/1062540,0.5
+D-46,1062541,DESIGN,Design: Batch invoice prints a band only on invoices billed to someone else,https://shopview.testrail.io/index.php?/cases/view/1062541,0.5
+D-47,1062542,DESIGN,Design: Payer's Invoices tab shows the Service For column after No.,https://shopview.testrail.io/index.php?/cases/view/1062542,0.5
+D-48,1062543,DESIGN,Design: Invoices tab hides Service For when no row is for someone else,https://shopview.testrail.io/index.php?/cases/view/1062543,0.5
+D-49,1062544,DESIGN,Design: New Customer Payment window is unchanged for the payer,https://shopview.testrail.io/index.php?/cases/view/1062544,0.5
+D-50,1062545,DESIGN,Design: Sending invoice lists the Bill To's contact ticked,https://shopview.testrail.io/index.php?/cases/view/1062545,0.5
+D-51,1062546,DESIGN,Design: Payer page on a phone shows Pays for and Bill Invoices To,https://shopview.testrail.io/index.php?/cases/view/1062546,0.5
+D-52,1062547,DESIGN,Design: Delete Customer window names the customers that bill to it,https://shopview.testrail.io/index.php?/cases/view/1062547,0.5
+D-53,1062548,DESIGN,Design: Remove as default Bill To confirmation shows its question and buttons,https://shopview.testrail.io/index.php?/cases/view/1062548,0.5
+D-54,1062549,DESIGN,Design: After Remove the Confirmation shows again and Pays for is gone,https://shopview.testrail.io/index.php?/cases/view/1062549,0.5
+D-55,1062550,DESIGN,Design: Asset Work Orders tab shows the Customer chip between Status and New,https://shopview.testrail.io/index.php?/cases/view/1062550,0.5
+D-56,1062551,DESIGN,Design: Customer chip panel lists All customers and each customer A to Z,https://shopview.testrail.io/index.php?/cases/view/1062551,0.5
+D-57,1062552,DESIGN,Design: Picking one customer in the chip shows 1 selected and narrows the list,https://shopview.testrail.io/index.php?/cases/view/1062552,0.5
+D-58,1062553,DESIGN,Design: Asset tab toolbar stays on one line at 1600 with a search,https://shopview.testrail.io/index.php?/cases/view/1062553,0.5
+D-59,1062554,DESIGN,Design: Asset tab shows a Bill To column after Customer,https://shopview.testrail.io/index.php?/cases/view/1062554,0.5
+D-60,1062555,DESIGN,Design: Asset tab shows no Bill To column when every row bills itself,https://shopview.testrail.io/index.php?/cases/view/1062555,0.5
+D-61,1062556,DESIGN,"Design: Bill To list puts the current Bill To second, before A to Z",https://shopview.testrail.io/index.php?/cases/view/1062556,0.5
+D-62,1062557,DESIGN,Design: Bill To lock toasts carry a Close button,https://shopview.testrail.io/index.php?/cases/view/1062557,0.5
+D-63,1062558,DESIGN,Design: Bill Invoices To window has Cancel before Save,https://shopview.testrail.io/index.php?/cases/view/1062558,0.5
+D-64,1062559,DESIGN,Design: Remove as default Bill To shows Cancel before Remove,https://shopview.testrail.io/index.php?/cases/view/1062559,0.5
+D-65,1062560,DESIGN,Design: Legacy invoice Bill To block prints no phone,https://shopview.testrail.io/index.php?/cases/view/1062560,0.5
+D-66,1062561,DESIGN,Design: Long Bill To name is cut at the card edge with no ellipsis,https://shopview.testrail.io/index.php?/cases/view/1062561,0.5
+D-67,1062562,DESIGN,Design: Asset tab with a Bill To column scrolls sideways at 1440,https://shopview.testrail.io/index.php?/cases/view/1062562,0.5
+D-68,1062563,DESIGN,Design: Bill To lock tooltip shows at the window's left edge,https://shopview.testrail.io/index.php?/cases/view/1062563,0.5
+D-69,1062564,DESIGN,Design: Bill To list opening upward runs over the app's top bar,https://shopview.testrail.io/index.php?/cases/view/1062564,0.5
+D-70,1062565,DESIGN,Design: Work order Credit Hold banner sits under the tab bar,https://shopview.testrail.io/index.php?/cases/view/1062565,0.5
