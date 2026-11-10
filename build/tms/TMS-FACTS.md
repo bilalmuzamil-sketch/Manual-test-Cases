@@ -403,3 +403,19 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **QA lead decision (2026-11-10): "c" — leave the nightly runs as they are.** No session removes synced cases from Vlad's
   nightly runs or asks Vlad to change them on its own. A nightly run that picks up synced cases through its own
   "include all cases" setting is NOT a breach of Rule 115 point 8 (we added nothing) — report it only if asked.
+
+## 21 · 2026-11-10 — TestRail case PICTURES are not in TMS, and TMS cannot hold them today
+
+- **The gap (QA lead):** TestRail cases carry their pictures as **case attachments** (e.g. Bill To C1062496:
+  `bt-p1-01-before-new-customer.png`, `bt-p1-02-after-bill-invoices-to-empty.png`, each listed twice), and the steps say
+  *"Open the attached pictures … at 100% zoom"*. ~1,185 Founder Mode cases mention attached pictures; 112 of the first 200
+  checked have attachments. **The sync copied text only — attachments were never read.**
+- **What TMS supports (read from its API doc AND its website code, 2026-11-10):** **no case attachments** — files can only be
+  attached to RESULTS (`POST /results/{id}/attachments`), which is off-limits (QA lead: test run results must never be affected).
+  The case page renders case HTML (`SanitizedHtml`, innerHTML) and the editor keeps `<img>`, and the CSP allows `img-src 'self' data: blob:`, BUT:
+  - **the server strips `data:` image sources** (1×1 probe: `<img>` kept, `src` removed);
+  - a full-size embedded picture (~150 KB) was **refused 422**.
+  Probe on TMS C10000890 (= TestRail C1062496): two edits, **fully reverted** (preconditions byte-identical, now version 3);
+  the case is in **no run**, so no result could be touched.
+- **⇒ Not fixable from the API today without touching results.** Needs either a TMS change (case attachments, or allowing
+  a picture source) by whoever owns TMS, or an interim link to the TestRail attachment. QA lead asked.
