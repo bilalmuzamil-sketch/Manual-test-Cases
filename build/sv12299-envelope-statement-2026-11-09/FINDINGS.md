@@ -83,3 +83,31 @@ Total: Jordan's order tried 4 ways (J1–J3, K1), the invoice was sent every tim
 - UNSUPPORTED: "the '(1)' … is a sign it was uploaded from a computer and not created by ShopView" — "(1)" only shows the file was saved to a computer more than once (e.g. downloaded twice from the email). Inference, not evidence.
 - OK: the steps themselves are true and live-verified (S2-1945, 19:54:31Z email with 2 files).
 Risk: assignee Slavcho (Ready to Fix) may change the For-Customer path or close the ticket as user error based on 80542.
+
+## 10 Nov 2026 — Sentry session recordings of HD Force (QA lead: "see everything and reach the exact steps")
+
+Search: Sentry replays `user.email:*hdforce*`, last 8 days (36 recordings: service@, gm@ = Ryan Wallis, sean@). Server spans searched for `statement-pdf`, `send-transactions-mail`, `add-attachments`, the WO id, the customer id and the invoice id. Recordings and spans are SAMPLED, so a missing event proves nothing.
+
+**The one recording that sends anything — Ryan (gm@), 6 Nov 2026 21:18:48 UTC (13:18 Pacific), replay 0a34af059d1e4a9a9f5634008758f2aa, work order 6f595db5, customer 2b40283b:**
+| time in recording | click | request |
+|---|---|---|
+| 21.2 s | Notes tab | `GET notes` for the WO and its lines (list only, nothing uploaded) |
+| 28.5 s | Finance tab | invoice settings, details, estimate |
+| 54–64 s | line chip, line menu, a round button | line history |
+| 71.0 s | blue button (Create Invoice) | `POST invoices/create` 201 → invoice 1d7e0717 |
+| 94.7 s | **Charge Account** | (no payment request in the recording) |
+| 98.3 s | envelope **Send email** | — |
+| 105.7 s | tick contact **SHAHIM KHAN** | — |
+| 106.4 s | tick one more box, unticked before, no label captured (a second contact, or "Include 'For Customer' Attachments") | — |
+| 109.6 s | **Send email** | `GET invoices/preview?invoice_id=1d7e0717…&type=pdf` 200, then `POST work-order/invoice/send-email` 201 |
+
+So this send attached the INVOICE PDF (plus For-Customer note files only if that second box was the Include box). No statement download, statement email or note upload appears in any HD Force recording or sampled span. The other recordings (service@ 6 Nov 21:11 WO 8c623673; sean@ 6 Nov 20:56 imported list; Ryan/service@ 9 Nov sessions incl. 22:07 vehicle invoices for customer 2b40283b) show no send.
+
+**What this proves and what it does not:**
+- Proven (code): only two screens make a file called "<customer> Statement.pdf" — Customers → customer → Invoices tab → Download, and the same tab's envelope (email subject "Statement for <customer>"). The work-order envelope sends "invoice-for-order-<n>.pdf" and, with the Include box ticked, every For-Customer note file under its own name.
+- Proven (production, earlier today): both routes deliver a statement file to the customer (80521 path; For-Customer note path, pictures 08/09).
+- Not proven: which of the two HD Force used. The customer's file is "West Creek Farms Ltd Statement (1).pdf"; the "(1)" is a browser's second-download suffix, which the statement email never adds — so it points at a DOWNLOADED statement that was then sent on (as a For-Customer note, or by hand), unless the "(1)" came from Mike saving it twice.
+- Not proven: that invoice 1d7e0717 is S-6024. The statement is dated 6 Nov and lists only S-6024 due 6 Dec, which fits an invoice made on 6 Nov — if it is this one, the statement was made AFTER Ryan's send and went out separately.
+
+**The one thing that settles it:** the email log for HD Force on 6 Nov (subject + attachment name of the email West Creek Farms received). "Statement for West Creek Farms Ltd" = Customers → Invoices tab envelope; "Invoice for order number: …" with a "… Statement (1).pdf" second file = work-order envelope + For-Customer note. The developer can read it from the mail provider log; nothing on the ticket or in Sentry can.
+Nothing posted to Jira (QA lead: no comment yet).
