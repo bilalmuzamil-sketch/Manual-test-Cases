@@ -72,3 +72,14 @@ Production v26.45.2-107ad4b, S2-1944, one session, in-app navigation:
 Result: `work-order/invoice/send-email` 201; uploaded PDF = `invoices/preview?…type=pdf` = INV-S2-1944 (ev/jordan-order/K1/sent-invoice.pdf).
 WO page menus checked: nav ⋮ = Audit Log / Timesheets / Print Work Order; invoice ⋮ = Reverse / Issue Credit; icons Download / Send email / Print / Settings / New Payment. No statement option inside the work order.
 Total: Jordan's order tried 4 ways (J1–J3, K1), the invoice was sent every time.
+
+## 10 Nov 2026 — audit of OUR posted comments (QA lead: "we cant rely on Jordan … check if what we have mentioned as reproduction steps will not bite us"). Nothing posted.
+80521 (NOT REPRODUCED, 9 Nov):
+- OK: the 5 sends + their results; "the work-order envelope only attaches the invoice, plus notes marked For Customer when the box is ticked" (code + live).
+- WRONG: "customer page → **Transactions** → Send Email" — the tab on screen is **Invoices** and the control is an envelope icon (same mistake already logged in LESSONS-INDEX for 80538).
+- WRONG: "That email's subject **ends in** 'Statement'" (twice) — the real subject is "**Statement for** <customer>" (Gmail 9 Nov 19:23Z); it is the FILE name that ends in "Statement.pdf".
+80542 (REPRODUCED…, 9 Nov):
+- OVERCLAIM: headline "REPRODUCED ON PRODUCTION" — we reproduced one way a statement goes out WITH the invoice (note file marked For Customer + box ticked; email had 2 files). The report is a statement INSTEAD of the invoice, and Jordan says no note was added (80547). Not the customer's issue.
+- UNSUPPORTED: "the '(1)' … is a sign it was uploaded from a computer and not created by ShopView" — "(1)" only shows the file was saved to a computer more than once (e.g. downloaded twice from the email). Inference, not evidence.
+- OK: the steps themselves are true and live-verified (S2-1945, 19:54:31Z email with 2 files).
+Risk: assignee Slavcho (Ready to Fix) may change the For-Customer path or close the ticket as user error based on 80542.
