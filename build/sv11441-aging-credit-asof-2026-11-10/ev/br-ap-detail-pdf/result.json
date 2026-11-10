@@ -1,0 +1,119 @@
+{
+ "url": "https://sv11315.qa.shopview.com/reports/ap-aging-detail?pastDue=1-30",
+ "rows": [
+  [
+   "",
+   278,
+   209,
+   1292,
+   0
+  ],
+  [
+   "keyboard_arrow_right 91 or more days past due (1237) Total $-601,320.65 $-601,320.65",
+   278,
+   209,
+   1292,
+   48
+  ],
+  [
+   "keyboard_arrow_right 61-90 days past due (61) Total $-34,602.04 $-34,602.04",
+   278,
+   257,
+   1292,
+   48
+  ],
+  [
+   "keyboard_arrow_right 31-60 days past due (1) Total $-153.25 $-153.25",
+   278,
+   305,
+   1292,
+   48
+  ],
+  [
+   "keyboard_arrow_right 1-30 days past due (301) Total $117,254.99 $117,254.99",
+   278,
+   353,
+   1292,
+   48
+  ],
+  [
+   "keyboard_arrow_right Current (2) Total $-11.10 $-11.10",
+   278,
+   401,
+   1292,
+   48
+  ],
+  [
+   "",
+   278,
+   449,
+   1292,
+   0
+  ],
+  [
+   "Totals $-518,832.05 $-518,832.05",
+   278,
+   449,
+   1292,
+   48
+  ]
+ ],
+ "heads": [
+  [
+   "keyboard_arrow_right\nDate\narrow_drop_up",
+   278,
+   145
+  ],
+  [
+   "Location\narrow_drop_up",
+   423,
+   126
+  ],
+  [
+   "Transaction Type\narrow_drop_up",
+   549,
+   196
+  ],
+  [
+   "No.\narrow_drop_up",
+   744,
+   83
+  ],
+  [
+   "Vendor Name\narrow_drop_up",
+   827,
+   168
+  ],
+  [
+   "Due Date\narrow_drop_up",
+   996,
+   134
+  ],
+  [
+   "Past Due\narrow_drop_up",
+   1129,
+   130
+  ],
+  [
+   "Amount\narrow_drop_up",
+   1259,
+   155
+  ],
+  [
+   "Open Balance\narrow_drop_up",
+   1414,
+   156
+  ]
+ ],
+ "menu_PDF": [
+  "action_apdet_export_pdf=Download (PDF)",
+  "action_apdet_export_csv=Download (CSV)"
+ ],
+ "toast_PDF": [],
+ "reqs": [
+  "/api/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-10",
+  "/api/reporting/reports/ap-aging/vendors",
+  "/api/reporting/reports/ap-aging-detail?asOfDate=2026-11-10&pastDue=1-30",
+  "/api/reporting/reports/ap-aging-detail/export?asOfDate=2026-11-10&pastDue=1-30&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=vendor_name&pagination[descending]=false&format=pdf"
+ ]
+}

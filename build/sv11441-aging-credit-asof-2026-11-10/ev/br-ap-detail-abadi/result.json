@@ -1,0 +1,168 @@
+{
+ "vopts": [
+  "filter_search_vendorIds=",
+  "filter_select_all_vendorIds=All vendors",
+  "filter_all_in_scope_vendorIds=All vendors are included. Pick",
+  "filter_option_vendorIds_30078d30-2033-42cb-871d-48b97635a519=5 Star Truck Repair",
+  "filter_option_vendorIds_98c705a1-ba42-42c1-b291-303deb797d3b=Abadi's Diesel Repair",
+  "filter_option_vendorIds_55f23bd3-57f2-48a6-a88f-d8c6a6d78f66=AC Truck Repair - Branford",
+  "filter_option_vendorIds_4681b982-fdef-4968-bc0a-46c0e86a44ce=Adams Diesel Repair",
+  "filter_option_vendorIds_8999dc0a-92d6-45c4-9faf-1db6dc1dd90a=Afhly's Mobile Truck Repair",
+  "filter_option_vendorIds_617a714d-b728-4f6a-98aa-d2d55dfad110=Agolli Truck Center",
+  "filter_option_vendorIds_ded0230e-03ba-4a39-917c-9b1ee927c136=Aibonito Fleet Services",
+  "filter_option_vendorIds_3f1e45af-e9e9-47e5-9e05-5c0f0f19f510=Airoldi Trucking & Repair",
+  "filter_option_vendorIds_9f3d7f52-2738-4bb9-9569-f522e66bd9bd=Airway Heights Truck & Trailer"
+ ],
+ "url": "https://sv11315.qa.shopview.com/reports/ap-aging-detail?vendorIds=98c705a1-ba42-42c1-b291-303deb797d3b",
+ "rows": [
+  [
+   "",
+   278,
+   209,
+   1292,
+   0
+  ],
+  [
+   "keyboard_arrow_right 91 or more days past due (1) Total $215.25 $215.25",
+   278,
+   209,
+   1292,
+   48
+  ],
+  [
+   "keyboard_arrow_right 61-90 days past due (0) Total $0.00 $0.00",
+   278,
+   257,
+   1292,
+   48
+  ],
+  [
+   "keyboard_arrow_right 31-60 days past due (0) Total $0.00 $0.00",
+   278,
+   305,
+   1292,
+   48
+  ],
+  [
+   "keyboard_arrow_right 1-30 days past due (0) Total $0.00 $0.00",
+   278,
+   353,
+   1292,
+   48
+  ],
+  [
+   "keyboard_arrow_down Current (2)",
+   278,
+   401,
+   1292,
+   48
+  ],
+  [
+   "Nov 10, 2026 Staging Heavy Duty - 9919 Vendor Credit C-13665 Abadi's Diesel Repair Nov 10, 2026 0 $-7.89 $-7.89",
+   278,
+   449,
+   1292,
+   48
+  ],
+  [
+   "Nov 10, 2026 Staging Heavy Duty - 9919 Vendor Credit C-13666 Abadi's Diesel Repair Nov 10, 2026 0 $-3.21 $-3.21",
+   278,
+   497,
+   1292,
+   48
+  ],
+  [
+   "Total for Current $-11.10 $-11.10",
+   278,
+   545,
+   1292,
+   48
+  ],
+  [
+   "",
+   278,
+   593,
+   1292,
+   0
+  ],
+  [
+   "Totals $204.15 $204.15",
+   278,
+   593,
+   1292,
+   48
+  ]
+ ],
+ "heads": [
+  [
+   "keyboard_arrow_down\nDate\narrow_drop_up",
+   278,
+   132
+  ],
+  [
+   "Location\narrow_drop_up",
+   410,
+   227
+  ],
+  [
+   "Transaction Type\narrow_drop_up",
+   637,
+   178
+  ],
+  [
+   "No.\narrow_drop_up",
+   815,
+   90
+  ],
+  [
+   "Vendor Name\narrow_drop_up",
+   905,
+   181
+  ],
+  [
+   "Due Date\narrow_drop_up",
+   1085,
+   124
+  ],
+  [
+   "Past Due\narrow_drop_up",
+   1209,
+   119
+  ],
+  [
+   "Amount\narrow_drop_up",
+   1328,
+   100
+  ],
+  [
+   "Open Balance\narrow_drop_up",
+   1428,
+   142
+  ]
+ ],
+ "menu_CSV": [
+  "action_apdet_export_pdf=Download (PDF)",
+  "action_apdet_export_csv=Download (CSV)"
+ ],
+ "file_CSV": "../ev/br-ap-detail-abadi/ap-aging-detail.csv",
+ "toast_CSV": [
+  "check_circle Success Data exported successfully. Close"
+ ],
+ "menu_PDF": [
+  "action_apdet_export_pdf=Download (PDF)",
+  "action_apdet_export_csv=Download (CSV)"
+ ],
+ "file_PDF": "../ev/br-ap-detail-abadi/ap-aging-detail.pdf",
+ "toast_PDF": [
+  "check_circle Success Data exported successfully. Close 2"
+ ],
+ "reqs": [
+  "/api/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-10",
+  "/api/reporting/reports/ap-aging/vendors",
+  "/api/reporting/reports/ap-aging-detail?asOfDate=2026-11-10",
+  "/api/reporting/reports/ap-aging-detail?asOfDate=2026-11-10&vendors=98c705a1-ba42-42c1-b291-303deb797d3b",
+  "/api/reporting/reports/ap-aging-detail/buckets/current/rows?asOfDate=2026-11-10&vendors=98c705a1-ba42-42c1-b291-303deb797d3b&pagination[page]=1&pagination[rowsPerPage]=100&pagination[sortBy]=vendor_name&pagination[descending]=false",
+  "/api/reporting/reports/ap-aging-detail/export?asOfDate=2026-11-10&vendors=98c705a1-ba42-42c1-b291-303deb797d3b&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=vendor_name&pagination[descending]=false&format=csv",
+  "/api/reporting/reports/ap-aging-detail/export?asOfDate=2026-11-10&vendors=98c705a1-ba42-42c1-b291-303deb797d3b&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=vendor_name&pagination[descending]=false&format=pdf"
+ ]
+}
