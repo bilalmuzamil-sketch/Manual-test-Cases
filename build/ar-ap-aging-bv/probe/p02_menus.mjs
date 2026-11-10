@@ -1,0 +1,16 @@
+import { start } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./02/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const menu = async () => (await page.locator('.q-menu:visible').allInnerTexts()).map(T).join(' || ');
+await step('leftmenu', async () => { await page.waitForTimeout(3000); const b = T(await page.locator('body').innerText()); const i = b.indexOf('ACCOUNTS RECEIVABLE'); log('LEFT MENU around:', i >= 0 ? b.slice(Math.max(0, i - 400), i + 500) : 'ACCOUNTS RECEIVABLE not in innerText'); const tc = await page.evaluate(() => [...document.querySelectorAll('*')].filter(e => e.children.length === 0 && /accounts (receivable|payable)|performance/i.test(e.textContent)).map(e => e.textContent.trim() + ' [' + getComputedStyle(e).textTransform + ']').slice(0, 6)); log('SECTION LABELS (textContent + transform):', JSON.stringify(tc)); });
+await step('export', async () => { await page.locator('main button[aria-label="Export report"]').first().click(); await page.waitForTimeout(1200); log('EXPORT MENU:', await menu()); await dump('export'); await page.keyboard.press('Escape'); });
+await step('info', async () => { const i = page.locator('main i:text-is("info_outline")').first(); await i.hover(); await page.waitForTimeout(1500); log('INFO TOOLTIP:', T((await page.locator('.q-tooltip:visible').allInnerTexts()).join(' | ')).slice(0, 600)); await page.mouse.move(5, 5); });
+for (const f of ['As of', 'Customer', 'Past due', 'Location']) await step('filter-' + f, async () => { await page.locator('main button:visible', { hasText: f + ':' }).first().click(); await page.waitForTimeout(1500); log(`FILTER ${f}:`, (await menu()).slice(0, 900)); await dump('filter-' + f.replace(/\W/g, '')); await page.keyboard.press('Escape'); await page.waitForTimeout(600); });
+await step('detail', async () => { await go('/reports/ar-aging-detail'); await page.waitForTimeout(3500); await page.locator('main button[aria-label="Expand all buckets"]').click(); await page.waitForTimeout(4000);
+  log('AFTER EXPAND ALL header btn:', await page.locator('main thead button').evaluateAll(b => b.map(x => x.getAttribute('aria-label')))); const rows = (await page.locator('main tbody tr').allInnerTexts()).map(T); log('rows n', rows.length); log('TOTAL FOR rows:', JSON.stringify(rows.filter(x => /^Total for/.test(x)).slice(0, 3))); log('first doc rows:', JSON.stringify(rows.slice(1, 4))); await dump('detail-expanded', true);
+  const link = page.locator('main tbody a').first(); log('first doc link:', T(await link.innerText().catch(() => '')), await link.getAttribute('href').catch(() => '')); });
+await step('sbc', async () => { const b = page.locator('a:visible, .q-item:visible').filter({ hasText: /^\s*\S*\s*Sales By Customer\s*$/ }).first(); log('SBC link', await b.count()); await b.click(); await page.waitForTimeout(3500); log('SBC URL', page.url(), '|', T(await page.locator('main').innerText()).slice(0, 200)); });
+await step('profile', async () => { await page.locator('[data-test-id=profile_menu_button]').click(); await page.waitForTimeout(1000); log('PROFILE:', await menu()); await page.keyboard.press('Escape'); });
+await r.browser?.close?.(); process.exit(0);
