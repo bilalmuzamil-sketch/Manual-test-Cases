@@ -1,0 +1,20 @@
+row boxes 2
+stmt dialog Sending statement close You're about to send statement to selected contacts: Inbox SV12299 bilal.muzamil+sv12299@shopview.com Optional Emails (Comma Separated) Hello, Please find your statement attached and remit payment at your earliest convenience. Thank you.. Email Content Best regards, Bilal Muz
+X found 1
+dialog open after X 0
+url https://app.shopview.com/workorders/a53ff202-d342-4f00-85cb-191bf7583c2f/lines status Invoiced
+RESP 1 200 GET /api/invoices/preview?invoice_id=567c2618-4284-4b79-ae6b-bbb7b2220039&type=html&isEstimate=0&includeDeclined=0&historyEvent= text/html; charset=UTF-8 106441
+RESP 2 200 POST /api/work-orders/invoices/estimate text/html; charset=UTF-8 106441
+after reverse Complete
+RESP 3 200 GET /api/invoices/preview?invoice_id=fedb978c-1f7a-4abd-91e2-2eeebc678b9c&type=html&isEstimate=0&includeDeclined=0&historyEvent= text/html; charset=UTF-8 106441
+RESP 4 200 GET /api/invoices/preview?invoice_id=fedb978c-1f7a-4abd-91e2-2eeebc678b9c&type=html&isEstimate=0&includeDeclined=0&historyEvent= text/html; charset=UTF-8 106441
+after charge Invoiced
+send dialog Sending invoice close Include 'For Customer' Attachments in email You're about to send invoice to selected contacts: Inbox SV12299 bilal.muzamil+sv12299@shopview.com Optional Emails (Comma Separated) Hello, Please find your attached invoice for work order: S2-1944. Email Content Best regards, Bilal Muzammil Bilal-Trucks 971545454 Include your email to BCC Send Email
+dialog checkboxes ["Include 'For Customer' Attachments in email","Inbox SV12299"]
+inputs ["||checkbox","||checkbox","input_optional_emails|Optional emails (comma separated)|textarea","input_email_content|Email content|textarea","||checkbox"]
+RESP 5 200 GET /api/invoices/preview?invoice_id=fedb978c-1f7a-4abd-91e2-2eeebc678b9c&type=pdf&isEstimate=0&includeDeclined=0&historyEvent= application/pdf 32808
+send body bytes 34705
+send writes ["POST 201 /api/work-order/invoice/send-email :: ------WebKitFormBoundaryhw6lAFdRWyDoBhhE\r\nContent-Disposition: form-data; name=\"invoice_pdf\"; filename=\"blob\"\r\nCo"]
+bodies [{"url":"https://api.shopview.com/api/work-order/invoice/send-email","len":34705}]
+at 2026-11-10T00:43:07.552Z
+done

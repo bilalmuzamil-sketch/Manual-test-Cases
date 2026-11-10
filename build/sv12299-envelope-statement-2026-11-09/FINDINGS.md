@@ -54,3 +54,14 @@ Learning check: nothing new for the rule book; recipe reused from playbook (prod
 - Posted ONE new complete comment 80542 (status, what is happening, 6 steps, 3 captioned pictures, ask Jordan to check WO 6024 Notes for a For-Customer statement). Read back: 3 media in order.
 - Both ways a statement reaches the customer are now reproduced: (a) customer Invoices-tab envelope (80538), (b) work-order envelope with a For-Customer statement note (80542).
 - 9 Nov 2026: comment 80538 deleted by the QA lead (the Jira connector has no delete-comment action). Ticket now: 80510, 80521, 80536, 80541, 80542 — 80542 is the single reproduction comment.
+
+## 10 Nov 2026 00:35–01:00 UTC — Jordan's order (80547, 80549) on production, NOT reproduced
+Jordan: no file was added to notes. Order: Customers > customer > Invoices > select invoices > envelope > X (nothing sent); then WO > Finance > Reverse > corrections > Create Invoice > Charge Account > envelope > untick default recipients, type own email > Send > received a statement.
+Our runs, production v26.45.2-107ad4b, one browser session, in-app navigation only (no reload), customer ZZAUTOTEST SV12299 Charge Account, WO S2-1944 (script `scripts/jordan.mjs`):
+| Run | Recipients | Statement window | Email received | PDF the browser uploaded |
+|---|---|---|---|---|
+| J1 | default contact | opened (2 invoices ticked) + X | 00:35:37Z "Invoice for order number: S2-1944", 1 file invoice-for-order-S2-1944.pdf | not captured |
+| J2 | default contact | same | same subject | `invoices/preview?…type=pdf` = INV-S2-1944, 1 page, "statement" 0 times (`ev/jordan-order/J2/sent-invoice.pdf`) |
+| J3 | default unticked, typed bilal.muzamil+sv12299j@shopview.com | same | sent (201) | INV-S2-1944 (`ev/jordan-order/J3/sent-invoice.pdf`) |
+So Jordan's steps send the invoice on our data. The For-Customer path (80542) is a way a statement CAN go out with the invoice, but Jordan says no note was added, so it is not his case.
+Pointer: the file Mike shared is "West Creek Farms Ltd Statement (1).pdf"; the customer-page statement email names its file "<customer> Statement.pdf" (MailTransactionsCommandHandler) with subject "Statement for <customer>". The email's subject + attachment name would say which screen sent it — asked of the QA lead first.
