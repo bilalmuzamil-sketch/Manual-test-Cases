@@ -1,0 +1,12 @@
+import {sess} from './common.mjs';
+const s=await sess(); const p=s.page; const WO=process.env.WO;
+const tb=async()=>p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].filter(e=>{const r=e.getBoundingClientRect(); return r.y<110&&r.y>60&&r.x>900&&r.width>0;}).map(e=>e.getAttribute('data-test-id')).join(' ')+' | badge '+[...document.querySelectorAll('[data-test-id=badge_wo_status]')].map(e=>e.innerText).join('/'));
+const reqs=[]; p.on('request',r=>{ if(r.method()!=='GET'&&/\/api\//.test(r.url())&&!/sentry|envelope/.test(r.url())) reqs.push(r.method()+' '+r.url().replace(/^https:\/\/[^/]+/,'').slice(0,90)); });
+await s.go(`/workorders/${WO}/lines`); await p.waitForTimeout(2500); await s.glideClick('link_finance_tab'); await p.waitForTimeout(7000);
+console.log('start:',await tb());
+await s.glideClick('button_create_invoice'); await p.waitForTimeout(5000); console.log('after create:',await tb());
+const xs=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id=button_close_payment_dialog]')].map(e=>{const r=e.getBoundingClientRect(); return [r.x+r.width/2,r.y+r.height/2,r.width];}));
+console.log('close buttons',JSON.stringify(xs)); const v=xs.find(x=>x[2]>0); await p.mouse.click(v[0],v[1]); await p.waitForTimeout(6000);
+console.log('after close:',await tb()); await p.screenshot({path:'../ev/dbg-4-after-close.png'});
+await p.reload(); await p.waitForTimeout(8000); console.log('after reload:',await tb()); console.log('POSTs:',reqs.join(' ; '));
+await s.close(); process.exit(0);
