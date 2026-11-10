@@ -14,6 +14,8 @@ const fin=async()=>{ await s.go(`/workorders/${WO}/lines`); await p.waitForTimeo
 await fin();
 for(let i=1;i<=N;i++){
   let created=false;
+  if(i>1) await fin();
+  for(let k=0;k<30 && !(await vis('button_create_invoice')) && !(await vis('button_wo_invoice_menu'));k++) await p.waitForTimeout(500);
   if(await vis('button_create_invoice')){ await s.glideClick('button_create_invoice'); await p.waitForTimeout(5000); created=true;
     if(await vis('button_close_payment_dialog')) await s.glideClick('button_close_payment_dialog'); else if(await vis('button_close_dialog')) await s.glideClick('button_close_dialog'); else await p.keyboard.press('Escape'); await p.waitForTimeout(4000); }
   const badgeBefore=await p.locator('[data-test-id=badge_wo_status]').innerText().catch(()=>'?');
