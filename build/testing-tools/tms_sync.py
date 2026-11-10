@@ -156,9 +156,23 @@ def desired(tr):
     return body
 
 
+# TMS cannot hold TestRail case attachments (2026-11-10), so a block of LINKS to them is appended to the TMS
+# preconditions (build/testing-tools/tms_picture_links.py). It is TMS-only by design: compare without it, and
+# keep it when a sync updates the case.
+PICTURES_HEAD = "<p><strong>Attached pictures (stored in TestRail"
+
+
+def split_pictures(v):
+    """(text without the pictures block, the block or '')."""
+    v = v or ""
+    i = v.find(PICTURES_HEAD)
+    return (v, "") if i < 0 else (v[:i], v[i:])
+
+
 def differences(tr, tm):
     d = [f2 for f1, f2 in SCALAR if tr.get(f1) != tm.get(f2)]
-    d += [f2 for f1, f2 in TEXT if norm(tr.get(f1)) != norm(tm.get(f2))]
+    d += [f2 for f1, f2 in TEXT
+          if norm(tr.get(f1)) != norm(split_pictures(tm.get(f2))[0] if f2 == "preconditions" else tm.get(f2))]
     if steps_norm(tr.get("custom_steps_separated")) != steps_norm(tm.get("steps_separated")):
         d.append("steps_separated")
     if norm(tr.get("refs")).replace(" ", "") != norm(tm.get("refs")).replace(" ", ""):
@@ -271,6 +285,10 @@ def apply(rows, tms, limit):
             continue
         cid = r["tms_id"]
         if r["action"] == "UPDATE":
+            cur = tms.case(cid)
+            block = split_pictures(cur.get("data", cur).get("preconditions"))[1]
+            if block:  # keep the TMS-only picture links
+                r["body"]["preconditions"] = (r["body"].get("preconditions") or "") + block
             code, _ = tms.update_case(cid, r["body"])
             if code >= 400:
                 print("FAIL update C%d http %s" % (cid, code))
