@@ -209,15 +209,14 @@ N("S3-32", "S3", "A/R Detail: the PDF prints dates as month, two-digit day and y
    "Have a customer with an open invoice, invoice A, dated date A and due 30 days later.", W1440, OPEN("A/R Detail"),
    "Leave the report with only that customer ticked in the Customer filter."],
   ["Change the as-of date to date A.", 'Expand the "Current" bucket.', 'Choose "Download (PDF)" from the ⋯ menu.',
-   "Open the PDF and read its top lines and invoice A's row."],
+   "Open the PDF and read invoice A's row."],
   [["The report reloads for date A."],
    ['Invoice A\'s Date reads date A as month, day and year (for example "Nov 4, 2026").'],
    ["The PDF downloads."],
-   ['Invoice A\'s Date and Due Date print as three-letter month, two-digit day and year with no comma (for example "Nov 04 2026").',
-    'The top line reads "As of " and date A; its exact form for a day before the 10th waits on the product owner\'s answer.']],
-  ["S3-R7a", "S3-R4", "S2-R1a"], ["ARD"], marker=HOLD_Q18, ex={2: EXU("S3-32", "customer", "Early Day")},
-  note=("Held: the PDF's top line for a day before the 10th (\"As of Nov 4, 2026\" or \"As of Nov 04, 2026\" or \"As of Nov 04 2026\") is question 18 "
-        "on Chris Ward's sheet, not sent yet (added 10 Nov 2026); this case stays out of the test run until he answers."))
+   ['Invoice A\'s Date and Due Date print as three-letter month, two-digit day and year with no comma (for example "Nov 04 2026").']],
+  ["S3-R7a", "S2-R1a"], ["ARD"], ex={2: EXU("S3-32", "customer", "Early Day")},
+  note=("The PDF's top \"As of\" line is not checked in this case: its form for a day before the 10th (\"As of Nov 4, 2026\", \"As of Nov 04, 2026\" "
+        "or \"As of Nov 04 2026\") is question 18 on Chris Ward's sheet (added 10 Nov 2026). It will be added to this case when he answers."))
 
 # ================================ S4: a bucket that fails to load (Story 4 Error Handling) ==================================
 N("S4-22", "S4", "A/R Detail: a bucket that cannot load its lines says so",

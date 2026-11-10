@@ -3,3 +3,20 @@
 {"op": "update_run_reassign", "run": 557, "http": [200, 200], "tests": 379, "assigned": {"6": 379}}
 {"op": "add_section", "key": "WAIT-PO", "section": 133627, "http": 200}
 {"op": "move_case", "key": "S3-32", "case": "C1062581", "from": 90421, "to": 133627, "http": 200, "readback_ok": true}
+{"op": "add_section", "key": "PROD", "section": 133628, "readback_ok": true}
+{"op": "update_case", "key": "S3-32", "case": "C1062581", "fields": ["custom_steps", "custom_expected"], "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "S3-32", "case": "C1062581", "to": 90421, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-01", "case": "C715471", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-02", "case": "C715472", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-05", "case": "C715475", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-05b", "case": "C715617", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-05c", "case": "C715618", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-06", "case": "C715476", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-10", "case": "C715480", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-11", "case": "C715582", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-12", "case": "C715583", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-12b", "case": "C715619", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-12c", "case": "C715620", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-13", "case": "C715584", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "move_case", "key": "REL-14", "case": "C1062590", "to": 133628, "http": 200, "readback_ok": true}
+{"op": "update_run", "run": 557, "before": 379, "after": 380, "added": "C1062581", "kept_all": true, "assigned": {"6": 380}}

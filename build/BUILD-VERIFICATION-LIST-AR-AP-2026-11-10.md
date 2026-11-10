@@ -2,7 +2,7 @@
 
 QA branch: https://sv11315.qa.shopview.com/ (build v26.45.2-6a8b89c on 10 Nov 2026). Run 557: https://shopview.testrail.io/index.php?/runs/view/557 (379 tests, Mudassir). Release 19 Nov 2026.
 
-The other 222 cases changed only their source/build lines (no change to what a tester does).
+Skip the folder "Run on Production After Release" (13 cases, production before/after the 19 Nov release). The other 222 cases changed only their source/build lines (no change to what a tester does).
 
 ## New cases (25)
 
@@ -21,7 +21,7 @@ The other 222 cases changed only their source/build lines (no change to what a t
 - C1062578 A/R Collection: a Location sort returns to Date order when one location is left — https://shopview.testrail.io/index.php?/cases/view/1062578
 - C1062579 A/R Summary: a Location sort falls back when a new date leaves one location — https://shopview.testrail.io/index.php?/cases/view/1062579
 - C1062580 A/R Detail: the PDF prints a credit's amount in brackets with a minus sign — https://shopview.testrail.io/index.php?/cases/view/1062580
-- C1062581 A/R Detail: the PDF prints dates as month, two-digit day and year — https://shopview.testrail.io/index.php?/cases/view/1062581  (HELD: question 18, not in run 557)
+- C1062581 A/R Detail: the PDF prints dates as month, two-digit day and year — https://shopview.testrail.io/index.php?/cases/view/1062581  (released 10 Nov 2026 without the PDF's "As of" line, which waits on question 18)
 - C1062582 A/R Detail: a bucket that cannot load its lines says so — https://shopview.testrail.io/index.php?/cases/view/1062582
 - C1062583 A/P Detail: lines that stop loading while scrolling leave a message — https://shopview.testrail.io/index.php?/cases/view/1062583
 - C1062584 A/R Detail: a new as-of date keeps the ticked locations still in the list — https://shopview.testrail.io/index.php?/cases/view/1062584
@@ -30,7 +30,7 @@ The other 222 cases changed only their source/build lines (no change to what a t
 - C1062587 A/R Summary and Detail count a credit dated on the as-of date in Current — https://shopview.testrail.io/index.php?/cases/view/1062587
 - C1062588 A/P Summary and Detail count a vendor credit dated on the as-of date in Current — https://shopview.testrail.io/index.php?/cases/view/1062588
 - C1062589 A/P Unpaid Invoices: 101 bills count and add up before all are shown — https://shopview.testrail.io/index.php?/cases/view/1062589
-- C1062590 A credit dated on the as-of date moves from 1-30 to Current — https://shopview.testrail.io/index.php?/cases/view/1062590  (run on production after release, see release-2026-11-19/PRODUCTION-PREP-FOR-MUDASSIR.md)
+- C1062590 A credit dated on the as-of date moves from 1-30 to Current — https://shopview.testrail.io/index.php?/cases/view/1062590  (folder "Run on Production After Release": not for the QA build)
 
 ## Rewritten cases (133)
 

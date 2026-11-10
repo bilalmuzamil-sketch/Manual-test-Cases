@@ -185,3 +185,7 @@
 - 10 Nov 2026: 46 cases point to the 3 re-shot pictures (sent by the QA lead); new pictures attached, old ones stay (TestRail refuses).
   Folder "Waiting on Chris Ward's answers" 133627 under 90418: S3-32 C1062581 moved (question 18). Chris's sheet checked 10 Nov: 1-17
   answered and applied, 18 open (E27 empty).
+- 10 Nov 2026: Chris Ward on vacation for a week. QA lead: S3-32 C1062581 released without the PDF "As of" line (checks the document
+  dates only; the As-of check is added when question 18 is answered) — back in S3 (90421), in run 557 (now 380 tests, all Mudassir).
+  The 13 release-day cases moved to folder "Run on Production After Release" 133628 (REL-01, -02, -05, -05b, -05c, -06, -10, -11, -12,
+  -12b, -12c, -13, -14). Folder "Waiting on Chris Ward's answers" 133627 is now empty (kept for future waiting cases).

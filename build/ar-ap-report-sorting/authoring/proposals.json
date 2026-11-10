@@ -6291,8 +6291,8 @@
   }
  },
  "REL-01": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "On release day an untouched A/R report shows the same rows and amounts",
   "refs": "SV-11531,SV-11532,SV-11535",
   "reports": [
@@ -6322,8 +6322,8 @@
   }
  },
  "REL-02": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "On release day an untouched A/P report shows the same rows and amounts",
   "refs": "SV-11531,SV-11532,SV-11535",
   "reports": [
@@ -6436,8 +6436,8 @@
   }
  },
  "REL-05": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "Inventory Value link, PDF and CSV work as before the release",
   "refs": "SV-11535,SV-11533",
   "reports": [],
@@ -6458,8 +6458,8 @@
   }
  },
  "REL-05b": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "Sales By Customer link, PDF and CSV work as before the release",
   "refs": "SV-11535,SV-11533",
   "reports": [],
@@ -6480,8 +6480,8 @@
   }
  },
  "REL-05c": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "Work In Progress link, PDF and CSV work as before the release",
   "refs": "SV-11535,SV-11533",
   "reports": [],
@@ -6502,8 +6502,8 @@
   }
  },
  "REL-06": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "Other reports keep their own export error message",
   "refs": "SV-11533",
   "reports": [],
@@ -6573,8 +6573,8 @@
   }
  },
  "REL-10": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "The location switcher in the top right is unchanged",
   "refs": "SV-11535,SV-11537",
   "reports": [
@@ -6599,8 +6599,8 @@
   }
  },
  "REL-11": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "A drill-down link saved before the release still opens on its customer",
   "refs": "SV-11535",
   "reports": [
@@ -6625,8 +6625,8 @@
   }
  },
  "REL-12": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "Sales By Customer keeps or forgets its filter between visits as before",
   "refs": "SV-11535",
   "reports": [
@@ -6649,8 +6649,8 @@
   }
  },
  "REL-12b": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "Inventory Value keeps or forgets its filter between visits as before",
   "refs": "SV-11535",
   "reports": [
@@ -6673,8 +6673,8 @@
   }
  },
  "REL-12c": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "Work In Progress keeps or forgets its filter between visits as before",
   "refs": "SV-11535",
   "reports": [
@@ -6697,8 +6697,8 @@
   }
  },
  "REL-13": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "Sales By Customer's filter menus behave as before the release",
   "refs": "SV-11535",
   "reports": [],
@@ -9586,8 +9586,8 @@
   }
  },
  "S3-32": {
-  "sec": "WAIT-PO",
-  "section_id": 133627,
+  "sec": "S3",
+  "section_id": 90421,
   "title": "A/R Detail: the PDF prints dates as month, two-digit day and year",
   "refs": "SV-11532,SV-11533",
   "reports": [
@@ -9595,7 +9595,6 @@
   ],
   "codes": [
    "S2-R1a",
-   "S3-R4",
    "S3-R7a"
   ],
   "fields": {
@@ -9607,8 +9606,8 @@
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Pick an earlier date, date A, from the 1st to the 9th of a month.</li><li>Have a customer with an open invoice, invoice A, dated date A and due 30 days later.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/R Detail (Reports, then \"A/R Aging Detail\" under ACCOUNTS RECEIVABLE in the left menu).</li><li>Leave the report with only that customer ticked in the Customer filter.</li></ul>",
-   "custom_steps": "<ol><li>Change the as-of date to date A.</li><li>Expand the \"Current\" bucket.</li><li>Choose \"Download (PDF)\" from the ⋯ menu.</li><li>Open the PDF and read its top lines and invoice A's row.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The report reloads for date A.</li></ul><p>Step 2:</p><ul><li>Invoice A's Date reads date A as month, day and year (for example \"Nov 4, 2026\").</li></ul><p>Step 3:</p><ul><li>The PDF downloads.</li></ul><p>Step 4:</p><ul><li>Invoice A's Date and Due Date print as three-letter month, two-digit day and year with no comma (for example \"Nov 04 2026\").</li><li>The top line reads \"As of \" and date A; its exact form for a day before the 10th waits on the product owner's answer.</li></ul><p></p><p>Held: the PDF's top line for a day before the 10th (\"As of Nov 4, 2026\" or \"As of Nov 04, 2026\" or \"As of Nov 04 2026\") is question 18 on Chris Ward's sheet, not sent yet (added 10 Nov 2026); this case stays out of the test run until he answers.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 &middot; Epic SV-11315, story SV-11532 (Story 2, Sort by clicking any column header), story SV-11533 (Story 3, Export to PDF and CSV)</p><ul><li><strong>S3-R7a:</strong> &ldquo;The PDF uses the app-wide report PDF format, the same as Sales By Customer and Inventory Value: a negative amount prints in brackets with a minus sign, for example \"(-$11,111.00)\", and dates print as \"Nov 04 2026\". On screen a negative amount reads \"$-11,111.00\", as today.&rdquo;</li><li><strong>S3-R4:</strong> &ldquo;Each export states the as-of date the user picked: the PDF \"As of Oct 15, 2026\", the CSV \"As of: Oct 15, 2026\" (format: three-letter month, day, four-digit year).&rdquo;</li><li><strong>S2-R1a:</strong> &ldquo;Date and Due Date show plain dates on screen, for example \"Nov 4, 2026\". The PDF and the CSV keep their own date formats (S3-R7a, S3-R8). They never read \"Today\", \"Yesterday\" or \"2 days ago\".&rdquo;</li></ul><p>Not yet checked against a build: the QA build v26.45.2-6a8b89c exists since 10 Nov 2026 and this case has not been run on it yet.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 1 \"Opening order and header sorting\" (board Main.dc.html); page 2 \"Export\" (board Export.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.</p><p></p><p>AUTOMATION: HOLD - waiting on the PO (question 18)</p>"
+   "custom_steps": "<ol><li>Change the as-of date to date A.</li><li>Expand the \"Current\" bucket.</li><li>Choose \"Download (PDF)\" from the ⋯ menu.</li><li>Open the PDF and read invoice A's row.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The report reloads for date A.</li></ul><p>Step 2:</p><ul><li>Invoice A's Date reads date A as month, day and year (for example \"Nov 4, 2026\").</li></ul><p>Step 3:</p><ul><li>The PDF downloads.</li></ul><p>Step 4:</p><ul><li>Invoice A's Date and Due Date print as three-letter month, two-digit day and year with no comma (for example \"Nov 04 2026\").</li></ul><p></p><p>The PDF's top \"As of\" line is not checked in this case: its form for a day before the 10th (\"As of Nov 4, 2026\", \"As of Nov 04, 2026\" or \"As of Nov 04 2026\") is question 18 on Chris Ward's sheet (added 10 Nov 2026). It will be added to this case when he answers.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 &middot; Epic SV-11315, story SV-11532 (Story 2, Sort by clicking any column header), story SV-11533 (Story 3, Export to PDF and CSV)</p><ul><li><strong>S3-R7a:</strong> &ldquo;The PDF uses the app-wide report PDF format, the same as Sales By Customer and Inventory Value: a negative amount prints in brackets with a minus sign, for example \"(-$11,111.00)\", and dates print as \"Nov 04 2026\". On screen a negative amount reads \"$-11,111.00\", as today.&rdquo;</li><li><strong>S2-R1a:</strong> &ldquo;Date and Due Date show plain dates on screen, for example \"Nov 4, 2026\". The PDF and the CSV keep their own date formats (S3-R7a, S3-R8). They never read \"Today\", \"Yesterday\" or \"2 days ago\".&rdquo;</li></ul><p>Not yet checked against a build: the QA build v26.45.2-6a8b89c exists since 10 Nov 2026 and this case has not been run on it yet.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 1 \"Opening order and header sorting\" (board Main.dc.html); page 2 \"Export\" (board Export.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.</p><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/10/2026</p>"
   }
  },
  "S4-22": {
@@ -9820,8 +9819,8 @@
   }
  },
  "REL-14": {
-  "sec": "REL",
-  "section_id": 90429,
+  "sec": "PROD",
+  "section_id": 133628,
   "title": "A credit dated on the as-of date moves from 1-30 to Current",
   "refs": "SV-11531",
   "reports": [
