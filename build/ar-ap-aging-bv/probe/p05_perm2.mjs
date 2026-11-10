@@ -1,0 +1,11 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./05/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+await step('form', async () => { await go('/administration/roles-permissions'); await page.waitForTimeout(3000); await page.locator('main button:visible', { hasText: 'Create Custom Role' }).first().click(); await page.waitForTimeout(2000); await page.locator('.q-dialog:visible button', { hasText: 'Skip' }).first().click(); await page.waitForTimeout(3500); });
+await step('parts', async () => { const t = page.locator('[data-test-id=toggle_parts_department]'); await t.scrollIntoViewIfNeeded(); await t.click(); await page.waitForTimeout(1500);
+  const panel = page.locator('.parts-panel').first(); log('PARTS PANEL:', T(await panel.innerText())); await panel.scrollIntoViewIfNeeded(); await dump('parts-panel'); });
+await step('page-access', async () => { const pa = page.locator('.page-access__card').first(); await pa.scrollIntoViewIfNeeded(); log('PAGE ACCESS CARD:', T(await pa.innerText()).slice(0, 900)); await dump('page-access'); });
+await step('financial', async () => { const b = T(await page.locator('main').innerText()); for (const s of ['See Financial Data', 'View and Manage AP/AR Data']) { const i = b.indexOf(s); log(`[${s}]`, i >= 0 ? b.slice(i, i + 200) : 'NOT FOUND'); } });
+await step('cancel', async () => { await page.locator('button:visible', { hasText: /^Cancel$/ }).last().click(); await page.waitForTimeout(2000); const d = page.locator('.q-dialog:visible button', { hasText: /Discard|Leave|Yes/ }).first(); if (await d.count()) await d.click(); await page.waitForTimeout(1500); log('after cancel url', page.url()); });
+await r.browser?.close?.(); process.exit(0);

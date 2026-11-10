@@ -1,0 +1,15 @@
+# OBSERVED UI LABELS — sv11315.qa.shopview.com, build `v26.45.2-6a8b89c`, read 2026-11-10
+
+Every label below was read on screen by the probes in `build/ar-ap-aging-bv/probe/` (p01–p06; dumps and screenshots beside each
+script). Signed in as the quick-login Admin at Staging Heavy Duty - 9919. Details and context: `build/ar-ap-aging-bv/README.md`.
+
+- Top bar: `Dashboard` · `Work Orders` · `Schedule` · `Customers` · `Parts` · `Reports`; profile menu (location name + initials): `Change Location: …` · `Settings` · `Logout` · `Light` · `Dark`.
+- Reports left menu sections (displayed upper-case): `PERFORMANCE` (`Sales By Customer`, `Work In Progress`, …), `PARTS` (`Inventory Value`, …), `ACCOUNTS RECEIVABLE` (`A/R Aging Summary`, `A/R Aging Detail`, `A/R Aging Collection`), `ACCOUNTS PAYABLE` (`A/P Aging Summary`, `A/P Aging Detail`, `A/P Unpaid Invoices`).
+- Report titles: `A/R Aging Summary` · `A/R Aging Detail` · `A/R Aging Collection` · `A/P Aging Summary` · `A/P Aging Detail` · `A/P Unpaid Invoices Report`; info icon; ⋯ `Export report` → `Download (PDF)` · `Download (CSV)`.
+- Filters: `As of: <date>` (calendar) · `Customer: All customers` / `Vendor: All vendors` (search; "All customers are included. Pick one or more to narrow.") · `Past due: Any` (`1-30 days` · `31-60 days` · `61-90 days` · `91+ days`) · `Location: All locations` (`Select all` · `<n> selected` · locations · `Clear selection`; empty → `Location: No locations`).
+- Headings: Summary `Customer`/`Vendor` · `Location` · `Current` · `1-30 Days` · `31-60 Days` · `61-90 Days` · `91 And Over` · `Total`; A/R Detail `Date` · `Location` · `Transaction Type` · `ID` · `Customer Full Name` · `Due Date` · `Amount` · `Open Balance`; A/R Collection `Date` · `Location` · `Transaction Type` · `ID` · `Due Date` · `Past Due` · `Amount` · `Open Balance`; A/P Detail and A/P Unpaid `Date` · `Location` · `Transaction Type` · `No.` · `Vendor Name` · `Due Date` · `Past Due` · `Amount` · `Open Balance`.
+- Group rows: `91 or more days past due (n)` … `Current`; `Total`; after expanding `Total for <group>`; header button `Expand all buckets` / `Collapse all buckets` (`Expand all customers`, `Expand all vendors`); A/R Collection group row `Phone:` · `Credit term:`.
+- Empty: `No record matches these filters` · `Try changing filters to widen your results.` · `Clear all filters`.
+- Other-location document: `Switch location?` · "This work order is in <location>. Switch your active location to view it?" · `Cancel` · `Switch location`.
+- Role form: `Create Custom Role` → `Choose a template` → `Skip`; cards `Work orders`, `Customers`, `Invoicing & payments`, `Timesheets`, `Parts Department` (switch → `Part sales`, `Catalog and Inventory`, `Vendor and order management`), `Page Access` (`Reports`, `Customer portal`, `Settings`, `Billing Portal`); switches `See Financial Data`, `View and Manage AP/AR Data`; columns `View` · `Create & Edit` · `Delete` (`Delete / Reverse` on Invoicing & payments); buttons `Cancel` · `Create`.
+- Address bar: `pastDue=`, `locationIds=`, `customerIds=`, `vendorIds=`.

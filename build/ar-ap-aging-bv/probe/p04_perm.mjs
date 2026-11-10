@@ -1,0 +1,11 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./04/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const card = (name) => page.locator('main .q-card, main [class*=card], main section').filter({ has: page.getByText(name, { exact: true }) }).last();
+await step('form', async () => { await go('/administration/roles-permissions'); await page.waitForTimeout(3000); await page.locator('main button:visible', { hasText: 'Create Custom Role' }).first().click(); await page.waitForTimeout(2000); await page.locator('.q-dialog:visible button', { hasText: 'Skip' }).first().click(); await page.waitForTimeout(3500); });
+for (const q of ['Part', 'Vendor', 'Report', 'Financial', 'AP/AR', 'Customer', 'Invoic', 'Time']) await step('search-' + q, async () => { const s = page.locator('main input[placeholder*="Search permission"], main input').filter({ hasNot: page.locator('[readonly]') }).last(); const inp = page.getByPlaceholder('Search permission'); await inp.fill(q); await page.waitForTimeout(1500);
+  const tx = T(await page.locator('main').innerText()); const i = tx.indexOf('Set permissions that determine'); log(`SEARCH "${q}":`, tx.slice(i + 60, i + 60 + 700)); await dump('search-' + q); });
+await step('parts-open', async () => { await page.getByPlaceholder('Search permission').fill(''); await page.waitForTimeout(1200); const c = card('Parts Department'); log('parts card count', await c.count()); const cb = c.locator('.q-checkbox, .q-toggle').first(); await cb.click(); await page.waitForTimeout(1500); log('PARTS CARD:', T(await c.innerText()).slice(0, 900)); await dump('parts-open', true); });
+await step('cancel', async () => { await page.locator('main button:visible, button:visible', { hasText: /^Cancel$/ }).last().click(); await page.waitForTimeout(2000); const d = page.locator('.q-dialog:visible button', { hasText: /Discard|Leave|Yes/ }).first(); if (await d.count()) await d.click(); await page.waitForTimeout(1500); log('after cancel url', page.url()); });
+await r.browser?.close?.(); process.exit(0);

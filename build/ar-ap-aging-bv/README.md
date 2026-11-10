@@ -26,3 +26,19 @@ on the epic, https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=806
 - Headings: Summary — Customer/Vendor · Location · Current · 1-30 Days · 31-60 Days · 61-90 Days · 91 And Over · Total; A/R Detail — Date · Location · Transaction Type · ID · Customer Full Name · Due Date · Amount · Open Balance; A/R Collection — Date · Location · Transaction Type · ID · Due Date · Past Due · Amount · Open Balance; A/P Detail and A/P Unpaid — Date · Location · Transaction Type · No. · Vendor Name · Due Date · Past Due · Amount · Open Balance.
 - Group rows "91 or more days past due (55) … Total"; after Expand all, "Total for 91 or more days past due"; header button "Expand all buckets" / "Collapse all buckets" (A/R Collection "Expand all customers", A/P Unpaid "Expand all vendors"). A/R Collection group row shows "Phone:" and "Credit term:".
 - Profile menu: Light / Dark.
+
+## Walk, probes 03–06
+- "Switch location?" prompt (a document at the other location): "This work order is in Staging Lethbridge - 4310. Switch your active location to view it?" · Cancel · Switch location (Cancel used; nothing switched).
+- Location → Clear selection gives "Location: No locations"; empty state "No record matches these filters" / "Try changing filters to widen your results." / "Clear all filters" (which brings back "Location: All locations").
+- Role form (Settings → Roles & Permissions → Create Custom Role → Choose a template → Skip; never saved): cards "Work orders", "Customers",
+  "Invoicing & payments" (View · Create & Edit · Delete / Reverse), "Timesheets", "Parts Department" (a switch that reveals "Part sales",
+  "Catalog and Inventory", "Vendor and order management", each View · Create & Edit · Delete), the "Page Access" card (rows "Reports",
+  "Customer portal", "Settings", "Billing Portal"), and the switches "See Financial Data" and "View and Manage AP/AR Data".
+  **Wording to align in the tests (labels only):** "Reports → Page Access" → the Page Access card's "Reports"; "Invoicing & Payments →
+  View" → "Invoicing & payments → View"; "Work Orders → View" → "Work orders → View"; "Part Sales → View" → Parts Department → "Part sales →
+  View"; "Vendor Order Management → View / Create & Edit" → Parts Department → "Vendor and order management → View / Create & Edit".
+- Address bar after filtering: `pastDue=31-60`, `locationIds=<id>`, `customerIds=<id>`, `vendorIds=<id>`.
+
+## Still to see during the write pass (per test, after the v11 update)
+PDF and CSV contents, dark theme, Ctrl-click into a new tab, a role without Reports page access, the error messages (network blocking),
+the PDF row limit on the large A/P data, the location column wrap at 1440 px.
