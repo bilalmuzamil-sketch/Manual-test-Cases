@@ -110,3 +110,4 @@ How the stores divide (each fact lives in ONE place; this map and `recall.py` fi
 | Fees & Discounts | `build/fees-discounts/PROJECT-STATE.md` | pricing |
 | Simple Flow / Simple Flow V2 | `build/simple-flow/`, `build/simple-flow-v2/PROJECT-STATE.md` | V2/upgrade method (skill 17) |
 | Invoice UI Refresh · Invoice Design Selection · Printer Friendly WO · Digital Inspections V2 | `build/invoice-ui-refresh/`, `build/invoice-design-selection/`, `build/printer-friendly-wo/`, `build/digital-inspections-v2/` (each `PROJECT-STATE.md`) | invoices, printing, inspections |
+| I am about to test the A/R & A/P aging reports (SV-11315, sv11315, TestRail group 90418, run 557) | `build/aging-reports/PROJECT-STATE.md` · L0619 |

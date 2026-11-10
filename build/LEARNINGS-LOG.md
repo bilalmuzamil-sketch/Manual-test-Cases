@@ -561,3 +561,10 @@
 - QA lead, 4 Nov 2026 13:36 UTC (verbatim): "Time to end this automated checker." The scheduled task "SV-11593 fast-follow watch (every 2 hours)" (trig_01ChheYVZpn4ngDQUctX7Fue) was switched off (disabled, not deleted — its run history and prompt are kept; it can be switched back on by updating it). At the end all 28 children of SV-11593 were Done (26) or OBSOLETE (2).
 - Still open from it: C682419 (minimap, SV-11835 Done) Blocked at step 8 in run 498, waiting on the QA lead's eye-check of the chat bubble vs the minimap on production.
 #ruling #ff-watch → L0617
+
+## L0619 — 2026-11-10 — New suite: A/R & A/P Aging Reports rebuild (SV-11315) on sv11315 — prepared, not started
+- QA lead: "DO not start until I ask you to start - But be completely ready." Everything is in `build/aging-reports/PROJECT-STATE.md` (sources, run 557, env, needs map, open questions).
+- Facts: TestRail group 90418 (380 cases, ours, READY on v26.45.2-6a8b89c after another session's build verification the same day); run 557 assigned to Mudassir (380 untested); PRD Confluence 947650561 v11; developer's shared notes = SV-11315 comment 80616 with a KNOWN MISMATCHES list that must not be filed; no QuickBooks needed.
+- A QA-branch admin quick-login signs out other admin users on that branch — don't sign in "just to check" while another session or tester is on it; check the site is up with the app host (200) and the api host (401 unauthenticated = awake).
+- Sign-in values given as three strings: a 64-hex `sv_sso_session`, a "v1.<13 digits>.<token>" value (new form, not seen before) and a long cf_clearance — stored in /tmp/shopview/sv11315.env as SV_SSO_SESSION / SV_V1_TOKEN / CF_CLEARANCE.
+#aging-reports #sv11315 #new-suite → L0614
