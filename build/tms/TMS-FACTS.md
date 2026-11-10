@@ -419,3 +419,14 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   the case is in **no run**, so no result could be touched.
 - **⇒ Not fixable from the API today without touching results.** Needs either a TMS change (case attachments, or allowing
   a picture source) by whoever owns TMS, or an interim link to the TestRail attachment. QA lead asked.
+- **QA lead (2026-11-10): "add the screenshots/pictures to all the test cases in founder mode who do not have a result
+  recorded against them."** TMS cannot show the pictures themselves, so each TestRail attachment was added as a **link**
+  in a block at the end of the TMS case's **preconditions** (heading *"Attached pictures (stored in TestRail — sign in to
+  TestRail to open them)"*). Expected results untouched. Tool: `build/testing-tools/tms_picture_links.py`.
+  - Founder Mode cases with TestRail pictures: **1,182** → **764 updated** (each read back), **417 skipped (a result is recorded
+    against them in a TMS run)**, 1 already done (pilot C10000890).
+  - **Results:** the before/after check flagged 6 run items + run totals — all **Mudassir's own results in TMS run 16
+    "Technician Toggle - Execution" (10:36–10:53 UTC)**, on cases I did not edit; my edits ran 11:00–11:02 and were case
+    edits only. **No case I edited has any result in any run.**
+  - **`tms_sync.py` ignores and preserves the block** (`PICTURES_HEAD` / `split_pictures`), so later syncs keep the links.
+  - Duplicate TestRail attachment entries (each picture listed twice) are de-duplicated by attachment id.
