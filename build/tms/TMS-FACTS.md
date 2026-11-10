@@ -430,3 +430,4 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
     edits only. **No case I edited has any result in any run.**
   - **`tms_sync.py` ignores and preserves the block** (`PICTURES_HEAD` / `split_pictures`), so later syncs keep the links.
   - Duplicate TestRail attachment entries (each picture listed twice) are de-duplicated by attachment id.
+- **QA lead (2026-11-10): "No"** — the 417 Founder Mode cases WITH results get no picture links.
