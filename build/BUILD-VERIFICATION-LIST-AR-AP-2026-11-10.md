@@ -1,0 +1,171 @@
+# A/R and A/P — cases to build-verify after the 10 Nov 2026 update (PRD v11)
+
+QA branch: https://sv11315.qa.shopview.com/ (build v26.45.2-6a8b89c on 10 Nov 2026). Run 557: https://shopview.testrail.io/index.php?/runs/view/557 (379 tests, Mudassir). Release 19 Nov 2026.
+
+The other 222 cases changed only their source/build lines (no change to what a tester does).
+
+## New cases (25)
+
+- C1062566 A/R Detail: a credit memo or deposit dated on the as-of date is in Current — https://shopview.testrail.io/index.php?/cases/view/1062566
+- C1062567 A/P Detail: a vendor credit dated on the as-of date is Current, Past Due 0 — https://shopview.testrail.io/index.php?/cases/view/1062567
+- C1062568 A/R Collection: a credit dated on the as-of date shows Past Due 0 — https://shopview.testrail.io/index.php?/cases/view/1062568
+- C1062569 A/P Detail: a bill not yet due shows a negative Past Due — https://shopview.testrail.io/index.php?/cases/view/1062569
+- C1062570 A/R Collection: a customer with over 100 documents loads 100 at a time — https://shopview.testrail.io/index.php?/cases/view/1062570
+- C1062571 A/P Unpaid Invoices: a vendor with over 100 bills loads 100 at a time — https://shopview.testrail.io/index.php?/cases/view/1062571
+- C1062572 A/R Detail: Date and Due Date read as dates, never Today or Yesterday — https://shopview.testrail.io/index.php?/cases/view/1062572
+- C1062573 A/P Detail: Date and Due Date read as dates, never Today or Yesterday — https://shopview.testrail.io/index.php?/cases/view/1062573
+- C1062574 A/R Detail: Transaction Type names Credit Memo and Deposit and sorts them — https://shopview.testrail.io/index.php?/cases/view/1062574
+- C1062575 A/P Detail: Transaction Type names Vendor Credit and sorts it after Invoice — https://shopview.testrail.io/index.php?/cases/view/1062575
+- C1062576 A/R Detail: the PDF and CSV name each credit as the screen does — https://shopview.testrail.io/index.php?/cases/view/1062576
+- C1062577 A/R Summary: a Location sort returns to name order when one location is left — https://shopview.testrail.io/index.php?/cases/view/1062577
+- C1062578 A/R Collection: a Location sort returns to Date order when one location is left — https://shopview.testrail.io/index.php?/cases/view/1062578
+- C1062579 A/R Summary: a Location sort falls back when a new date leaves one location — https://shopview.testrail.io/index.php?/cases/view/1062579
+- C1062580 A/R Detail: the PDF prints a credit's amount in brackets with a minus sign — https://shopview.testrail.io/index.php?/cases/view/1062580
+- C1062581 A/R Detail: the PDF prints dates as month, two-digit day and year — https://shopview.testrail.io/index.php?/cases/view/1062581  (HELD: question 18, not in run 557)
+- C1062582 A/R Detail: a bucket that cannot load its lines says so — https://shopview.testrail.io/index.php?/cases/view/1062582
+- C1062583 A/P Detail: lines that stop loading while scrolling leave a message — https://shopview.testrail.io/index.php?/cases/view/1062583
+- C1062584 A/R Detail: a new as-of date keeps the ticked locations still in the list — https://shopview.testrail.io/index.php?/cases/view/1062584
+- C1062585 A/R Detail: a new as-of date with no ticked location left returns to All — https://shopview.testrail.io/index.php?/cases/view/1062585
+- C1062586 A/R Detail: No locations stays No locations after a new as-of date — https://shopview.testrail.io/index.php?/cases/view/1062586
+- C1062587 A/R Summary and Detail count a credit dated on the as-of date in Current — https://shopview.testrail.io/index.php?/cases/view/1062587
+- C1062588 A/P Summary and Detail count a vendor credit dated on the as-of date in Current — https://shopview.testrail.io/index.php?/cases/view/1062588
+- C1062589 A/P Unpaid Invoices: 101 bills count and add up before all are shown — https://shopview.testrail.io/index.php?/cases/view/1062589
+- C1062590 A credit dated on the as-of date moves from 1-30 to Current — https://shopview.testrail.io/index.php?/cases/view/1062590  (run on production after release, see release-2026-11-19/PRODUCTION-PREP-FOR-MUDASSIR.md)
+
+## Rewritten cases (133)
+
+- C715282 A/R Collection groups customers by name, rows oldest date first — https://shopview.testrail.io/index.php?/cases/view/715282
+- C715283 A/P Unpaid Invoices groups vendors by name, rows oldest date first — https://shopview.testrail.io/index.php?/cases/view/715283
+- C715299 A/R Collection: Date and Due date sort oldest first, then newest first — https://shopview.testrail.io/index.php?/cases/view/715299
+- C715590 A/P Unpaid Invoices: the Vendor Name header cannot be clicked — https://shopview.testrail.io/index.php?/cases/view/715590
+- C715307 A/P Unpaid Invoices: Date and Due Date sort oldest first, then newest first — https://shopview.testrail.io/index.php?/cases/view/715307
+- C715316 A/R Summary: the sort stays while changing date, page and filters — https://shopview.testrail.io/index.php?/cases/view/715316
+- C715317 A/R Detail: the sort stays while changing date, page and filters — https://shopview.testrail.io/index.php?/cases/view/715317
+- C715318 A/R Collection: the sort stays while changing date, page and filters — https://shopview.testrail.io/index.php?/cases/view/715318
+- C715319 A/P Summary: the sort stays while changing date, page and filters — https://shopview.testrail.io/index.php?/cases/view/715319
+- C715320 A/P Detail: the sort stays while changing date, page and filters — https://shopview.testrail.io/index.php?/cases/view/715320
+- C715321 A/P Unpaid Invoices: the sort stays while changing date, page and filters — https://shopview.testrail.io/index.php?/cases/view/715321
+- C715322 A/R Collection: changing the Past due filter keeps the sort — https://shopview.testrail.io/index.php?/cases/view/715322
+- C715338 A/P Summary: each export states the as-of date and the filters — https://shopview.testrail.io/index.php?/cases/view/715338
+- C715339 A/P Detail: each export states the as-of date and the filters — https://shopview.testrail.io/index.php?/cases/view/715339
+- C715340 A/P Unpaid Invoices: each export states the as-of date and the filters — https://shopview.testrail.io/index.php?/cases/view/715340
+- C715350 A/R Summary: exporting an empty report downloads nothing and warns — https://shopview.testrail.io/index.php?/cases/view/715350
+- C715358 A/R Collection: after Expand all, groups loaded later arrive expanded — https://shopview.testrail.io/index.php?/cases/view/715358
+- C715359 A/P Unpaid Invoices: after Expand all, groups loaded later arrive expanded — https://shopview.testrail.io/index.php?/cases/view/715359
+- C715360 A/R Detail: an expanded bucket shows 100 lines, then loads more on scroll — https://shopview.testrail.io/index.php?/cases/view/715360
+- C715361 A/P Detail: an expanded bucket shows 100 lines, then loads more on scroll — https://shopview.testrail.io/index.php?/cases/view/715361
+- C715362 A/R Detail: the group row stays pinned under the headings — https://shopview.testrail.io/index.php?/cases/view/715362
+- C715599 A/R Detail: group labels stay at the left when scrolling sideways — https://shopview.testrail.io/index.php?/cases/view/715599
+- C715363 A/R Collection: the group row stays pinned under the headings — https://shopview.testrail.io/index.php?/cases/view/715363
+- C715600 A/R Collection: group labels stay at the left when scrolling sideways — https://shopview.testrail.io/index.php?/cases/view/715600
+- C715364 A/P Detail: the group row stays pinned under the headings — https://shopview.testrail.io/index.php?/cases/view/715364
+- C715601 A/P Detail: group labels stay at the left when scrolling sideways — https://shopview.testrail.io/index.php?/cases/view/715601
+- C715365 A/P Unpaid Invoices: the group row stays pinned under the headings — https://shopview.testrail.io/index.php?/cases/view/715365
+- C715602 A/P Unpaid Invoices: group labels stay at the left when scrolling sideways — https://shopview.testrail.io/index.php?/cases/view/715602
+- C715366 A/R Collection: paging keeps each group expanded or collapsed — https://shopview.testrail.io/index.php?/cases/view/715366
+- C715367 A/P Unpaid Invoices: paging keeps each group expanded or collapsed — https://shopview.testrail.io/index.php?/cases/view/715367
+- C715378 A/P Summary: the filter row reads As of, Vendor, Past due, Location — https://shopview.testrail.io/index.php?/cases/view/715378
+- C715379 A/P Detail: the filter row reads As of, Vendor, Past due, Location — https://shopview.testrail.io/index.php?/cases/view/715379
+- C715380 A/P Unpaid Invoices: the filter row reads As of, Vendor, Past due, Location — https://shopview.testrail.io/index.php?/cases/view/715380
+- C715388 A/P Detail: with no location ticked the report is empty — https://shopview.testrail.io/index.php?/cases/view/715388
+- C715392 A/R Collection: the Location chip hides when only one location has data — https://shopview.testrail.io/index.php?/cases/view/715392
+- C715398 A/R Collection: a customer ticked by link is named even if hard to find — https://shopview.testrail.io/index.php?/cases/view/715398
+- C715402 A/R Detail: the Customer menu ticks several customers and the chip counts them — https://shopview.testrail.io/index.php?/cases/view/715402
+- C715403 A/P Detail: the Vendor menu ticks several vendors and the chip counts them — https://shopview.testrail.io/index.php?/cases/view/715403
+- C715577 A/R Collection: a link with an unknown customer ignores it — https://shopview.testrail.io/index.php?/cases/view/715577
+- C715578 A/P Unpaid Invoices: a link with an unknown vendor ignores it — https://shopview.testrail.io/index.php?/cases/view/715578
+- C797943 A/P Summary: the Vendor menu has no search box with 8 vendors or fewer — https://shopview.testrail.io/index.php?/cases/view/797943
+- C715411 A/R Collection: the Location column shows with two or more locations — https://shopview.testrail.io/index.php?/cases/view/715411
+- C715414 A/R Detail: an invoice at your location opens its finance page — https://shopview.testrail.io/index.php?/cases/view/715414
+- C715415 A/R Collection: a part sale invoice at your location opens its finance page — https://shopview.testrail.io/index.php?/cases/view/715415
+- C715416 A/R Detail: a work order invoice at another location asks to switch — https://shopview.testrail.io/index.php?/cases/view/715416
+- C715417 A/R Collection: a part sale invoice at another location asks to switch — https://shopview.testrail.io/index.php?/cases/view/715417
+- C715419 A/P Detail: a bill opens its delivery here and is plain text elsewhere — https://shopview.testrail.io/index.php?/cases/view/715419
+- C715420 A/P Detail: a vendor credit links to the return it came from — https://shopview.testrail.io/index.php?/cases/view/715420
+- C715421 A/P Unpaid Invoices: a vendor credit links to the return it came from — https://shopview.testrail.io/index.php?/cases/view/715421
+- C715424 A/R Detail: a document at a location you are not enrolled in is plain text — https://shopview.testrail.io/index.php?/cases/view/715424
+- C715425 With Invoicing and Work Orders View, a work order invoice is a link — https://shopview.testrail.io/index.php?/cases/view/715425
+- C715426 Without Invoicing View, work order and part sale invoices are plain text — https://shopview.testrail.io/index.php?/cases/view/715426
+- C715427 With Invoicing and Part Sales View only, only part sale invoices link — https://shopview.testrail.io/index.php?/cases/view/715427
+- C715428 With Vendor Order Management View, a bill at your location is a link — https://shopview.testrail.io/index.php?/cases/view/715428
+- C715429 With Vendor Order Management Create & Edit, a bill at your location is a link — https://shopview.testrail.io/index.php?/cases/view/715429
+- C715430 Without Vendor Order Management, bills and vendor credits are plain text — https://shopview.testrail.io/index.php?/cases/view/715430
+- C715431 A/R Summary: customer names link to A/R Collection only with Customers View — https://shopview.testrail.io/index.php?/cases/view/715431
+- C715610 A/R Summary: without Customers View, customer names are plain text — https://shopview.testrail.io/index.php?/cases/view/715610
+- C715432 A/P Summary: vendor names link for everyone who can open the report — https://shopview.testrail.io/index.php?/cases/view/715432
+- C715447 A/R Collection: the PDF and CSV carry the phone and credit term — https://shopview.testrail.io/index.php?/cases/view/715447
+- C715448 A/R Collection: without AP/AR Data access there is no credit term — https://shopview.testrail.io/index.php?/cases/view/715448
+- C797944 A/R Detail: the × on the switch prompt leaves the report as it was — https://shopview.testrail.io/index.php?/cases/view/797944
+- C715450 A/R Summary: 30 customers per page, none repeated or skipped — https://shopview.testrail.io/index.php?/cases/view/715450
+- C715612 A/R Summary: the Totals row adds up every page, not only the one shown — https://shopview.testrail.io/index.php?/cases/view/715612
+- C715451 A/P Summary: 30 vendors per page, none repeated or skipped — https://shopview.testrail.io/index.php?/cases/view/715451
+- C715613 A/P Summary: the Totals row adds up every page, not only the one shown — https://shopview.testrail.io/index.php?/cases/view/715613
+- C715452 A/R Collection: 30 customers per page, none repeated or skipped — https://shopview.testrail.io/index.php?/cases/view/715452
+- C715614 A/R Collection: the Totals row adds up every page, not only the one shown — https://shopview.testrail.io/index.php?/cases/view/715614
+- C715453 A/P Unpaid Invoices: 30 vendors per page, none repeated or skipped — https://shopview.testrail.io/index.php?/cases/view/715453
+- C715615 A/P Unpaid Invoices: the Totals row adds up every page, not only the one shown — https://shopview.testrail.io/index.php?/cases/view/715615
+- C715454 A/R Detail: a long bucket loads in 100s with no line repeated or skipped — https://shopview.testrail.io/index.php?/cases/view/715454
+- C715455 A/P Detail: a long bucket loads in 100s with no line repeated or skipped — https://shopview.testrail.io/index.php?/cases/view/715455
+- C715469 A/P Detail: 2,000 document rows download as PDF, headings not counted — https://shopview.testrail.io/index.php?/cases/view/715469
+- C715471 On release day an untouched A/R report shows the same rows and amounts — https://shopview.testrail.io/index.php?/cases/view/715471
+- C715472 On release day an untouched A/P report shows the same rows and amounts — https://shopview.testrail.io/index.php?/cases/view/715472
+- C715473 A/R PDF prints the as-of date you picked, late in the day too — https://shopview.testrail.io/index.php?/cases/view/715473
+- C715479 The research ideas left out of this release do not appear — https://shopview.testrail.io/index.php?/cases/view/715479
+- C715582 A drill-down link saved before the release still opens on its customer — https://shopview.testrail.io/index.php?/cases/view/715582
+- C715481 Design: A/R Summary at 1440 px in light theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715481
+- C715621 Design: A/R Summary Total column and Totals row look native — https://shopview.testrail.io/index.php?/cases/view/715621
+- C715622 Design: A/R Summary links use the native report link style — https://shopview.testrail.io/index.php?/cases/view/715622
+- C715482 Design: A/R Summary in dark theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715482
+- C715483 Design: A/R Summary at 1536 px looks as described in both themes — https://shopview.testrail.io/index.php?/cases/view/715483
+- C715484 Design: A/R Detail at 1440 px in light theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715484
+- C715623 Design: A/R Detail Open balance column and Totals row look native — https://shopview.testrail.io/index.php?/cases/view/715623
+- C715624 Design: A/R Detail links use the native report link style — https://shopview.testrail.io/index.php?/cases/view/715624
+- C715485 Design: A/R Detail in dark theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715485
+- C715486 Design: A/R Detail at 1536 px looks as described in both themes — https://shopview.testrail.io/index.php?/cases/view/715486
+- C715487 Design: A/R Collection at 1440 px in light theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715487
+- C715625 Design: A/R Collection Open balance column and Totals row look native — https://shopview.testrail.io/index.php?/cases/view/715625
+- C715626 Design: A/R Collection links use the native report link style — https://shopview.testrail.io/index.php?/cases/view/715626
+- C715488 Design: A/R Collection in dark theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715488
+- C715489 Design: A/R Collection at 1536 px looks as described in both themes — https://shopview.testrail.io/index.php?/cases/view/715489
+- C715490 Design: A/P Summary at 1440 px in light theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715490
+- C715627 Design: A/P Summary Total column and Totals row look native — https://shopview.testrail.io/index.php?/cases/view/715627
+- C715628 Design: A/P Summary links use the native report link style — https://shopview.testrail.io/index.php?/cases/view/715628
+- C715491 Design: A/P Summary in dark theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715491
+- C715492 Design: A/P Summary at 1536 px looks as described in both themes — https://shopview.testrail.io/index.php?/cases/view/715492
+- C715493 Design: A/P Detail at 1440 px in light theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715493
+- C715629 Design: A/P Detail Open Balance column and Totals row look native — https://shopview.testrail.io/index.php?/cases/view/715629
+- C715630 Design: A/P Detail links use the native report link style — https://shopview.testrail.io/index.php?/cases/view/715630
+- C715494 Design: A/P Detail in dark theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715494
+- C715495 Design: A/P Detail at 1536 px looks as described in both themes — https://shopview.testrail.io/index.php?/cases/view/715495
+- C715496 Design: A/P Unpaid Invoices at 1440 px in light theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715496
+- C715631 Design: A/P Unpaid Invoices Open Balance column and Totals row look native — https://shopview.testrail.io/index.php?/cases/view/715631
+- C715632 Design: A/P Unpaid Invoices links use the native report link style — https://shopview.testrail.io/index.php?/cases/view/715632
+- C715497 Design: A/P Unpaid Invoices in dark theme looks as described — https://shopview.testrail.io/index.php?/cases/view/715497
+- C715498 Design: A/P Unpaid Invoices at 1536 px looks as described in both themes — https://shopview.testrail.io/index.php?/cases/view/715498
+- C715499 Design: A/R Summary loading, empty and error states look as described — https://shopview.testrail.io/index.php?/cases/view/715499
+- C715500 Design: A/R Detail loading, empty and error states look as described — https://shopview.testrail.io/index.php?/cases/view/715500
+- C715501 Design: A/R Collection loading, empty and error states look as described — https://shopview.testrail.io/index.php?/cases/view/715501
+- C715502 Design: A/P Summary loading, empty and error states look as described — https://shopview.testrail.io/index.php?/cases/view/715502
+- C715503 Design: A/P Detail loading, empty and error states look as described — https://shopview.testrail.io/index.php?/cases/view/715503
+- C715504 Design: A/P Unpaid Invoices loading, empty and error states look as described — https://shopview.testrail.io/index.php?/cases/view/715504
+- C715505 Design: A/R Detail chevrons and pinned group row look as described — https://shopview.testrail.io/index.php?/cases/view/715505
+- C715506 Design: A/R Collection chevrons and pinned group row look as described — https://shopview.testrail.io/index.php?/cases/view/715506
+- C715512 Design: A/P Vendor chip and menu match Inventory Value's — https://shopview.testrail.io/index.php?/cases/view/715512
+- C715519 Design: the switch-location dialog for a work order looks as described — https://shopview.testrail.io/index.php?/cases/view/715519
+- C715520 Design: the switch-location dialog for a part sale looks as described — https://shopview.testrail.io/index.php?/cases/view/715520
+- C715527 Design: A/R Detail narrower than 1440 px scrolls under the pinned column — https://shopview.testrail.io/index.php?/cases/view/715527
+- C715528 Design: A/P Detail narrower than 1440 px scrolls under the pinned column — https://shopview.testrail.io/index.php?/cases/view/715528
+- C715532 Design: A/R Summary opening screen matches the design picture — https://shopview.testrail.io/index.php?/cases/view/715532
+- C715538 Design: A/R Collection after Expand all matches the design picture — https://shopview.testrail.io/index.php?/cases/view/715538
+- C715539 Design: the pinned customer row matches the design picture — https://shopview.testrail.io/index.php?/cases/view/715539
+- C715540 Design: A/P Unpaid Invoices pinned vendor row matches the design pictures — https://shopview.testrail.io/index.php?/cases/view/715540
+- C715541 Design: A/R Collection with groups closed matches the pictures in both themes — https://shopview.testrail.io/index.php?/cases/view/715541
+- C715543 Design: A/P Detail with a bucket open matches the pictures in both themes — https://shopview.testrail.io/index.php?/cases/view/715543
+- C715544 Design: A/P Unpaid Invoices at 1440 px shows every column, as pictured — https://shopview.testrail.io/index.php?/cases/view/715544
+- C715545 Design: A/R Detail links and plain numbers match the design picture — https://shopview.testrail.io/index.php?/cases/view/715545
+- C715546 Design: the switch-location dialog frame matches the design pictures — https://shopview.testrail.io/index.php?/cases/view/715546
+- C715550 Design: No locations shows the empty state as in the design picture — https://shopview.testrail.io/index.php?/cases/view/715550
+- C715555 Design: the Vendor menu matches the design picture — https://shopview.testrail.io/index.php?/cases/view/715555
+- C715563 Design: A/R Detail and Collection headings keep their capital letters — https://shopview.testrail.io/index.php?/cases/view/715563
+
+Deleted: C715478 (old release-day credit case, replaced by C1062590).

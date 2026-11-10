@@ -168,3 +168,12 @@
   `currency-2026-11-10/scripts/ledger_update.py`; render_outputs.py no longer overwrites the ledger once the PRD handled is above 9).
   Dry-run write scripts in `currency-2026-11-10/write/` (update, create, delete REL-08, run 557 union sync, 46 old picture attachments).
   Question 18 row text in PASS-REPORT section 7 (not on the sheet yet).
+
+## 10 Nov 2026 — written to TestRail (named set, PRD v11)
+- 355 cases updated (133 rewritten, 222 source/build lines only), every one read back, 0 skipped by the edit lock. 25 new cases
+  C1062566-C1062590. REL-08 C715478 deleted (copy `currency-2026-11-10/applied/C715478-before-delete.json`). Live: 380 cases in 90418,
+  all ours, all citing PRD v11. Run 557: 379 tests, all assigned to Mudassir; S3-32 C1062581 held out (question 18).
+- The 3 outdated design pictures could NOT be removed from the 46 cases: TestRail answers "Attachment can't be deleted or replaced as
+  the file is attached to a closed/archived run." The case text no longer names them (References from Design quotes the 5 Nov captions).
+- Question 18 added to Chris Ward's sheet (rows 26-27, light pink). Production capture list for Mudassir:
+  `release-2026-11-19/PRODUCTION-PREP-FOR-MUDASSIR.md`. Build-verification list: `build/BUILD-VERIFICATION-LIST-AR-AP-2026-11-10.md`.

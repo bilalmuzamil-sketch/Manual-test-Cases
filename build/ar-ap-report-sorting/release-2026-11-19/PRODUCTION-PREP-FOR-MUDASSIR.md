@@ -30,7 +30,7 @@ Used by: C715471 (A/R) and C715472 (A/P).
 
 ## 2. A credit memo for the aging change
 
-Used by the new release-day case that replaces C715478 (its number will follow once it is created).
+Used by C1062590 (it replaces the old case C715478, which was deleted on 10 Nov 2026).
 
 1. Create an unused credit memo for a customer, dated **the day before the release** (18 Nov 2026). Put ZZAUTOTEST in its memo or
    reference.
