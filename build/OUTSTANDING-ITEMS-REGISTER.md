@@ -1635,3 +1635,12 @@ what is still owed.
 | SV-12135..12141, SV-11688 (aging/report bugs) | TESTING QA, QA assignee Mudassir Qamar | QA lead: test them or leave to Mudassir? |
 | SV-11116 | now Blocked (was In Progress) | developer |
 | Watch list / Rule 122 asks | no new answers (SV-12486/87/88 Open; SV-12221/12223 no replies) | — |
+
+## QA lead answers 10 Nov 2026 (~13:15 UTC)
+| Item | Answer | State |
+|---|---|---|
+| SV-12223 staging retest | "No more needed to be tested on staging" | cleared |
+| A/P aging PDF failure (sv11315) | "ignore it for now" | parked |
+| SV-12135..12141, SV-11688 | QA assignee Mudassir: "leave them to him for now" | cleared |
+| SV-11441 QuickBooks check | "being tested by another session" — 17:15 reminder deleted | cleared |
+| SV-12120 two questions | QA lead asked for context + recommendation | waiting on QA lead |
