@@ -204,7 +204,8 @@ print("markers", dict(markers))
 over = [(c["key"], len(c["steps"])) for c in L.CASES if len(c["steps"]) > 10]
 for k_, n_ in over: print(f"OVER-TARGET {k_}: {n_} steps (Rule 117 target about 10; split or kept whole under Rule 136, reason in rule136-2026-10-22/SPLITS.json)")
 for p in probs: print("PROBLEM", p)
-out = {c["key"]: dict(sec=c["sec"], section_id=SECS.get(c["sec"]), title=c["title"], refs=L.render(c)["refs"],
+FOLDER = {"S3-32": "WAIT-PO"}   # 10 Nov 2026, QA lead: cases waiting on Chris Ward's answers in their own folder (question 18)
+out = {c["key"]: dict(sec=FOLDER.get(c["key"], c["sec"]), section_id=SECS.get(FOLDER.get(c["key"], c["sec"])), title=c["title"], refs=L.render(c)["refs"],
                       reports=[L.REPORTS[r] for r in L.reports_of(c)], codes=sorted(L.codes_of(c)), fields=L.render(c)) for c in L.CASES}
 json.dump(out, open(f"{L.D}/proposals.json", "w"), indent=1, ensure_ascii=False)
 # Rule 126: the design cases' sources also live in cases/design/

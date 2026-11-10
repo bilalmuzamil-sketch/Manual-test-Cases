@@ -24,3 +24,6 @@
 - Question sheet for Chris Ward built (QA lead: "Yes please"): https://docs.google.com/spreadsheets/d/1o55Q5O5kFNV1JWcBX2pFZy741A1enT8BomHWzJH_Vi8 (15 questions); the QA lead shares it. Listed in `build/PO-QUESTIONS-OPEN.md`.
 - When an answer arrives: apply it to the held cases named in the open list, release them into run 558 (union only), delete the losing design-version case.
 - 10 Nov 2026, QA lead: question sheet shared with Chris Ward ("Done"). Rule 128 ticket footers: "Skip again" (not added to SV-12303..SV-12321). TestRail API key: "Never delete it" (do not remind him to revoke it again).
+- 10 Nov 2026, QA lead: cases waiting on Chris's answers get their own folder, design cases stay in "Design — how it looks". Folder
+  "Waiting on Chris Ward's answers" 133626: 16 cases moved (read back). Held on PO questions = 29 (16 + 13 design), not 31 as first
+  reported (miscount, corrected).

@@ -182,3 +182,6 @@
   The QA lead sent the 3 re-shot pictures; copied to `currency-2026-11-10/design-2026-11-05/images/*-reshot-2026-11-05.png`. Library:
   the 46 cases list the new picture and tell the tester not to use the old one (References from Design only, plus the "open the design picture" precondition back on D-63, D-68, D-73; D-04 also prints DD-07).
   Dry runs `currency-2026-11-10/write/update_refs.py` (locked on the live text round 2 wrote) and `write/attach_reshot.py`.
+- 10 Nov 2026: 46 cases point to the 3 re-shot pictures (sent by the QA lead); new pictures attached, old ones stay (TestRail refuses).
+  Folder "Waiting on Chris Ward's answers" 133627 under 90418: S3-32 C1062581 moved (question 18). Chris's sheet checked 10 Nov: 1-17
+  answered and applied, 18 open (E27 empty).

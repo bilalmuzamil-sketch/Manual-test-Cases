@@ -84,7 +84,10 @@ print("markers", dict(Counter(re.sub(r"\(question \d+\)", "(question n)", c["mar
 # 10 Nov 2026, QA lead: cases blocked on a release, or run on production after it, live in their own TestRail folders
 FOLDER = {**{k: "BLK-IWO" for k in ("S15-01", "S15-02", "S15-03", "S15-04", "S15-05", "S15-06")},
           **{k: "BLK-PORTAL" for k in ("S16-02", "S16-03", "S16-04", "S16-06")},
-          **{k: "PROD" for k in ("S8-15", "S10-13", "S17-07", "S19-05", "S19-08", "REL-01", "REL-02", "REL-03", "REL-04")}}
+          **{k: "PROD" for k in ("S8-15", "S10-13", "S17-07", "S19-05", "S19-08", "REL-01", "REL-02", "REL-03", "REL-04")},
+          # 10 Nov 2026, QA lead: cases waiting on Chris Ward's answers in their own folder (design cases stay in DESIGN, his choice)
+          **{k: "WAIT-PO" for k in ("S5-16", "S5-17", "S5-18", "S5-19", "S7-22", "S7-23", "S5-02", "S5-07", "S7-24", "S3-32", "S7-25",
+                                    "S14-13", "S18-01", "S18-02", "S18-03", "S18-04")}}
 out = {}
 for c in L.CASES:
     f = L.render(c); sec = FOLDER.get(c["key"], c["sec"])
