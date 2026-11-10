@@ -37,3 +37,9 @@ Fix (ShopView/shopview branch SV-12223-count-sheet-pdf-timeout, commit 3dc18baa 
 **Consequence of the fix if shipped as is:** on production a count sheet over 500 lines is refused, though today production prints at least 4,098 lines. Raised with the QA lead before any verdict (Rule 97(d)).
 
 Test data left in place (no cleanup rule): branch bins ZZRING12223 (42 parts) + ZZLONG12223 (500 parts); production bins ZZBIG12223 (1,200 parts) + ZZBIG2-12223 (1,448 parts), qty 0, not default.
+
+## Posted 10 Nov 2026 02:26 UTC — comment 80550 (QA PASSED + question to Milomir), QA lead ruling "Pass + question" (10 Nov)
+9-row table, pictures ev/exhibits/01–04. Production re-print of the 4,098-line sheet: 180 pages, 46.5 s (first run 77.1 s). Label QAcomplete added, status -> QA Complete (re-read). QA Assignee stays Mudassir Qamar (not empty).
+Pre-post gate: branch marker v26.45.2-411684a at 02:25:26Z (same as all runs), production v26.45.2-107ad4b, ticket had 0 comments, no technical section, no recording.
+Mistake + fix: the first post sent the text as `body` instead of `commentBody`, so only the 4 inline pictures saved; read-back caught it and the comment was rewritten in place with a dated edit note (21:35 CST).
+Learning check: the Atlassian comment tool's text parameter is `commentBody` (playbook + lessons updated).
