@@ -460,3 +460,4 @@ Check at 1920, 1536×864, 1280, 1024 and 390 px wide, in light and dark.
   - **Verdict: PASS.** At an ahead-of-UTC location, records made just after local midnight land on the local day, before and after the UTC date catches up, in every tile and its linked report.
 - **Still to do:**
   - A true week-boundary check needs Karachi's Monday while UTC is still Sunday, which is a Sunday 19:00–23:59 UTC. Not covered.
+  - **Scheduled (QA lead OK, 10 Nov):** Sun 15 Nov 19:05 UTC (trig_01LjRarNdfh9fJz695gYkCGv). A sign-in check runs at 14:00 UTC the same day and asks for fresh cookies if needed (trig_01JHGwLJtkgDJ3yauvBd3yX3).
