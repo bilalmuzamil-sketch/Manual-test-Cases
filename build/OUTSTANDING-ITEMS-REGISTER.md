@@ -1538,6 +1538,8 @@ what is still owed.
 | SV-12214 | Posted 6 Nov ~09:15 CDT: 80337 (passed, 16 checks) + 80338 (PARTIALLY PASSED, tags Stefan). Branch sv12214 is gone. WAITING ON STEFAN: (1) redeploy sv12214, (2) role="menu" missing on 5 plain menus — intended or fix?, (3) which screen shows the board hover card, (4) walk the accounting forms or not. Ticket in Blocked, QA Assignee Bilal. | SV-12214 recheck of menus + hover card (+ accounting forms if asked) | 2026-11-06 |
 | SV-12203 | HANDED TO SOMEONE ELSE by the QA lead (6 Nov, ~09:00 CDT: "I have given the ticket SV-12203 to do"). We stopped work on it; nothing posted after 80329. Dipesh had answered 80330/80331. The Intuit sandbox login was given to us for future QuickBooks testing (kept in /tmp only). Ticket left as it was (Blocked) for its new owner. | — (not ours now) | 2026-11-06 |
 
+## ⏸️ PAUSED 10 Nov 18:37 UTC — QA lead: pause the scheduled check-in and testing new tickets until further notice. Trigger disabled. SV-12405 finished (QA Complete, comment 80719).
+
 ## 3-hourly check 10 Nov 18:31 UTC
 Board 2 TESTING QA (Bug/Story Defect, no accounting/QAcomplete): SV-12405 (ours, being tested now), SV-12135..12141 + SV-11688 (Mudassir's, left to him per QA lead). Nothing new to pick up. Rejected/Blocked watch: SV-11116 Blocked waiting on Chris (80644). Nothing answered for a Rule-122 ask.
 

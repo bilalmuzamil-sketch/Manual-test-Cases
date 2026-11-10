@@ -55,3 +55,8 @@ Logs `ev/branch-reg-run.out`, `ev/prod-reg-run.out`.
 - Handoff/checklist: none beyond the ticket; tested the ticket's own flow + SV-12351's "serialized/coalesced rebuilds" clause (quick PO edits) + date change.
 - Not a fault, flagged as a note (same on production): closing the New Customer Payment window with X now cancels the new invoice (step 3 of the ticket's own steps) — reload used instead.
 - Voice/format: green PASSED, no technical section, no recording (QA lead's answers).
+
+## Posted
+- Comment 80719 (10 Nov 13:36 UTC−5), green PASSED, 1 image (before/after exhibit), 8 rows; edited 13:37 to show labels in bold (the {{ }} markers came through literally in HTML) with a dated note. Read back: verdict first line, 1 image, 8 rows.
+- Labels FE + QAcomplete; QA Assignee Bilal (was empty); status TESTING QA → QA Complete. Read back.
+- Learning check: in an HTML-format comment, `{{label}}` is NOT rendered as monospace (that is wiki markup) — use <strong> or <code>. Added to playbook §V.0.
