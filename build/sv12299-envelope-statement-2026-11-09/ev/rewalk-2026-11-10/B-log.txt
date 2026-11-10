@@ -1,0 +1,22 @@
+marker {"version":"v26.45.2-107ad4b","lastModified":"Mon, 09 Nov 2026 14:33:28 GMT","etag":"W/\"384ad0e005d779fab989729966620c16\""}
+download tooltip ["Download"]
+downloaded file name ZZAUTOTEST SV12299 Charge Account Statement.pdf
+after download dialogs []
+wo url https://app.shopview.com/workorders/a53ff202-d342-4f00-85cb-191bf7583c2f/lines
+wo tabs ["Lines (1)","Parts","Notes","Timesheets","History (24)","Stats","Finance"]
+wo status text ["Invoiced","Complete"]
+notes controls ["BUTTON|button_work_order_nav_bar_menu||more_vert","BUTTON|page_search_toggle|Search|search Search","BUTTON|button_attach_files|Attach files to a new note|upload_file","BUTTON|button_new_note||New Note","BUTTON|button_create_first_note||note_add Create Your First Note"]
+existing for-customer boxes 0
+attach tooltip ["Attach Files"]
+attach writes ["POST 201 /api/note/create :: {\"type\":\"work_order\",\"reference_id\":\"a53ff202-d342-4f00-85cb-191bf7583c2f\",\"content\":\"_files_\"}","POST 201 /api/note/add-attachments :: "]
+for-customer boxes now 1
+box labels ["For Customer|For Customer|false|For Customer"]
+tick writes ["POST 201 /api/note/update-attachment :: {\"id\":\"caf91dd2-527f-4f87-8a2e-31a27bb9ed37\",\"forCustomer\":true}"]
+envelope tooltip ["Send Email"]
+dialog Sending invoice close Include 'For Customer' Attachments in email You're about to send invoice to selected contacts: Inbox SV12299 bilal.muzamil+sv12299@shopview.com Optional Emails (Comma Separated) Hello, Please find your attached invoice for work order: S2-1944. Email Content Best regards, Bilal Muzammil Bilal-Trucks 971545454 Include your email to BCC Send Email
+dialog controls ["BUTTON|button_close_dialog||close","DIV|checkbox_include_customer_attachments|Include 'For Customer' Attachments in email|Include 'For Customer' Attachments in email","DIV|checkbox_contact_ff5fae13-8415-4d5f-8a0f-4d0fac90464e|Inbox SV12299|Inbox SV12299","DIV|toggle_include_bcc|Include your email to BCC|Include your email to BCC","BUTTON|button_send_email|Send email|Send Email"]
+include box state before false
+include box state after true
+send writes ["POST 201 /api/work-order/invoice/send-email :: "]
+toasts ["check_circle Successfully sent invoice to email. Close"]
+sent at 2026-11-10T07:58:48.203Z

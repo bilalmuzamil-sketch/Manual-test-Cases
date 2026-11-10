@@ -1,0 +1,14 @@
+marker {"version":"v26.45.2-107ad4b","lastModified":"Mon, 09 Nov 2026 14:33:28 GMT","etag":"W/\"384ad0e005d779fab989729966620c16\""}
+top controls ["skip-to-content|Skip to main content","module_selector_trigger|ShopHub\nexpand_more","module_nav_divider|","button_desktop_nav_link|Dashboard","button_desktop_nav_link|Work Orders","button_desktop_nav_link|Schedule","button_desktop_nav_link|Customers","button_desktop_nav_link|Parts","button_desktop_nav_link|Reports","global_search_trigger|search\nSearch customers, work ","clock_in_button|timer\n
+url https://app.shopview.com/customers/164013e0-2148-402e-b0e2-4f9390b72c29/work-orders
+tabs ["Work Orders (2)","Part Sales","Contacts (1)","Assets (1)","Notes","Invoices (2)","Payments","Deposits","Fees & Discounts (0)"]
+url https://app.shopview.com/customers/164013e0-2148-402e-b0e2-4f9390b72c29/invoices
+labelled buttons ["Current module: ShopHub. Switch module@103,0 tid=module_selector_trigger txt=ShopHub\nexpand_more","Search@918,11 tid=global_search_trigger txt=search\nSearch custom","Profile@1439,8 tid=profile_menu_button txt=Trucks Hill 2","Search@895,146 tid=page_search_toggle txt=search\nSearch","Download@1127,144 tid=button_action txt=get_app","Send Email@1176,144 tid=button_action txt=email","Print@1224,1
+rows ["","Nov 10, 2026 Invoice S2-1944 - $149.95 $149.95 Unpaid","Nov 9, 2026 Invoice S2-1945 - $149.95 $149.95 Unpaid",""]
+row checkboxes 2
+tooltip ["Send Email"]
+dialog Sending statement close You're about to send statement to selected contacts: Inbox SV12299 bilal.muzamil+sv12299@shopview.com Optional Emails (Comma Separated) Hello, Please find your statement attached and remit payment at your earliest convenience. Thank you.. Email Content Best regards, Bilal Muzammil Bilal-Trucks 971545454 Include your email to BCC Send Email
+dialog controls ["BUTTON||close|button_close_dialog|","DIV|Inbox SV12299|Inbox SV12299|checkbox_contact_ff5fae13-8415-4d5f-8a0f-4d0fac90464e|true","INPUT||on||","INPUT||on||","BUTTON|Send email|Send Email|button_send_email|"]
+writes ["POST 201 /api/customer-account/send-transactions-mail :: "]
+toasts []
+sent at 2026-11-10T07:56:01.215Z
