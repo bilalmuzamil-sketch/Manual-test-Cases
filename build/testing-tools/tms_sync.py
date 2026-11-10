@@ -112,6 +112,9 @@ class TestRail:
         for attempt in range(retries):
             try:
                 r = requests.get(self.base + path, auth=self.auth, timeout=120)
+                if r.status_code in (429, 500, 502, 503, 504) and attempt < retries - 1:
+                    time.sleep(int(r.headers.get("Retry-After", 0)) or 2 ** (attempt + 1))
+                    continue
                 break
             except (requests.exceptions.Timeout, requests.exceptions.ConnectionError):
                 if attempt == retries - 1:
