@@ -38,3 +38,14 @@ Made-up id → 500 + two error toasts (ev/prod-01-unknown-id.png). Cross-organiz
 production organization is held; registering a new production organization was not done).
 Rule 121: read-only view, no money or accounting data written — no AccountingHub/QuickBooks effect.
 Exhibits: ev/exhibits/01-before-after-unknown-return.png, 02-own-return-vs-other-organization.png.
+
+## Posted 10 Nov 2026 (QA lead: "I will follow your recommendation")
+- Pre-post gate (13:49 UTC): branch marker v26.45.3-8f11821 unchanged; ticket still TESTING QA, no new comments; location case re-driven live
+  (404 with Lethbridge selected, 200 after switching back); no recording, no technical section.
+- Follow-up **SV-12510** "Return page is blank with no message when the return is at another location" — Bug, Medium, Product Area Parts,
+  no parent (SV-12120 is parentless), Relates SV-12120, Milos + Chris tagged for the wording; steps on the QA branch (the location case does
+  not exist on production yet); 2 pictures (03 exhibit + production made-up id) read back as attachments 64066/64067.
+- Comment **80657** on SV-12120: green PASSED, 6 checks, pictures 01 + 02 (attachments 64068/64069), SV-12510 named, question to Parth
+  about the description's invoice-view point. Then label QAcomplete, QA Assignee Bilal (was empty), status QA Complete — all read back.
+- Learning check: nothing new (embedding uploaded media in a description needs no inlineFileId when the media node is in the HTML;
+  passing both is rejected before any write).

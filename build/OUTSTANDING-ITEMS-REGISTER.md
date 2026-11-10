@@ -1644,3 +1644,6 @@ what is still owed.
 | SV-12135..12141, SV-11688 | QA assignee Mudassir: "leave them to him for now" | cleared |
 | SV-11441 QuickBooks check | "being tested by another session" — 17:15 reminder deleted | cleared |
 | SV-12120 two questions | QA lead asked for context + recommendation | waiting on QA lead |
+
+| SV-12120 | CLEARED 10 Nov: PASSED 80657, QAcomplete, QA Complete, QA Assignee Bilal; follow-up SV-12510 (empty return page) | Parth: confirm invoice view stays company-wide (question in 80657); Milos/Chris: SV-12510 wording |
+| SV-12404 | CLEARED 10 Nov: replied to Milos (80656), OBSOLETE | — |

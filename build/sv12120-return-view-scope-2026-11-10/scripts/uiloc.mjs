@@ -14,7 +14,7 @@ async function switchTo(name){
   const opt=await p.$(`.q-menu .q-item:has-text("${name}")`); await opt.click(); await p.waitForTimeout(6000);
   return {items, header:await hdr()};
 }
-const res={};
+const res={marker:await s.marker()};
 res.sw1=await switchTo('Staging Lethbridge - 4310');
 await s.go('/parts/return/'+A); await p.waitForTimeout(6000); res.hdA=await hdr();
 res.screenA=await p.evaluate(()=>document.querySelector('main')?.innerText.replace(/\s+/g,' ').slice(0,300));
