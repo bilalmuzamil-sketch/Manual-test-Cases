@@ -1,3 +1,15 @@
 try 1 badge-at-start "Complete"
 after create badge Complete
 menu/dialog tids: menu_item_reverse,menu_item_issue_credit
+try 1: created=true before=Invoiced after=Complete linesHeld=1 estimateReqs=1 maxAtOnce=1 times=38.99-41.39 preview="Invoice D"
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForTimeout: Target page, context or browser has been closed
+    at fin (/home/user/Manual-test-Cases/build/sv12405-reverse-preview-twice-2026-11-10/scripts/rvd.mjs:21:139)
+    at async file:///home/user/Manual-test-Cases/build/sv12405-reverse-preview-twice-2026-11-10/scripts/rvd.mjs:25:11 {
+  log: []
+}
+
+Node.js v22.22.0

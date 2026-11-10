@@ -14,6 +14,9 @@ const HOLD=process.env.HOLD||'lines';
 if(HOLD==='lines') await p.route(/\/api\/work-orders\/lines\//, async r=>{ if(!armed||r.request().method()!=='GET') return r.continue(); held++; await new Promise(x=>setTimeout(x,DELAY)); return r.continue(); });
 // HOLD=render: hold only the FIRST preview render request after Reverse for DELAY ms, so the lines land while that render is still out
 // (the second case of PR #4289's unit tests). TEST-ONLY timing aid.
+// HOLD=details: hold only the FIRST invoice-details read after Reverse (GET /api/invoices/{id}/details) for DELAY ms, so the lines
+// land while the first build is still reading the invoice (the first case of PR #4289's unit tests). TEST-ONLY timing aid.
+if(HOLD==='details') await p.route(/\/api\/invoices\/[^/]+\/details/, async r=>{ if(!armed||held>0||r.request().method()!=='GET') return r.continue(); held++; await new Promise(x=>setTimeout(x,DELAY)); return r.continue(); });
 if(HOLD==='render') await p.route(/\/api\/work-orders\/invoices\/estimate/, async r=>{ if(!armed||held>0) return r.continue(); held++; await new Promise(x=>setTimeout(x,DELAY)); return r.continue(); });
 const errs=[]; p.on('pageerror',e=>errs.push(e.message.slice(0,120)));
 const out=[]; const marker=await s.marker(); out.push('marker '+JSON.stringify(marker));
