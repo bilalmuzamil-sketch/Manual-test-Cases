@@ -1624,3 +1624,6 @@ what is still owed.
 | SV-12288 extra points (other US shops on Canadian zones; browser-side time rules) | QA lead 10 Nov: Ammar's explanation is enough for the developer, leave it | cleared |
 | SV-11441 | PASSED posted 80649 (status kept TESTING QA per QA lead). QuickBooks check: Intuit sandbox refused headless sign-in (account recovery page) | QA lead: is a QuickBooks check needed (report-only change; Mudassir's 79851 already covers QBO), and if yes, how to sign in |
 | A/P Aging Detail PDF (Past due 1-30, 1,602 lines) 500 after 32 s on sv11315 | unverified side observation | QA lead: look into it? |
+
+- 2026-11-10 ~12:45 UTC — A/P aging PDF export fails at ~30 s for 1,100+ lines (under the 2,000 cap) on sv11315; no existing ticket; Sentry SHOPVIEW-API-350. Asked QA lead: file a ticket (linked to SV-11533) or comment on SV-11533? Detail: build/sv11441-aging-credit-asof-2026-11-10/FINDINGS.md.
+- 2026-11-10 — SV-11441 QuickBooks check on hold until 17:15 UTC reminder (QA lead: leave it 5 hours).

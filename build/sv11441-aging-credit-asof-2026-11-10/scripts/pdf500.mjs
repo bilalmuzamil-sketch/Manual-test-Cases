@@ -1,0 +1,27 @@
+import {sess} from './common.mjs'; import fs from 'fs';
+const OUT='../ev/pdf500-recheck'; const s=await sess(); const p=s.page;
+const log=[]; p.on('response',async r=>{ if(r.url().includes('/export')) log.push({t:Date.now(),status:r.status(),url:r.url().replace(/^https:\/\/[^/]+/,'')}); });
+p.on('requestfailed',r=>{ if(r.url().includes('/export')) log.push({t:Date.now(),failed:r.failure()?.errorText,url:r.url().replace(/^https:\/\/[^/]+/,'')}); });
+let dl=null; p.on('download',d=>{dl=d.suggestedFilename();});
+console.log('marker',JSON.stringify(await s.marker()));
+await s.go('/reports/ap-aging-detail'); await p.waitForTimeout(6000);
+await p.click('[data-test-id="filter_chip_pastDue"]'); await p.waitForTimeout(1500);
+await p.click('[data-test-id="filter_option_pastDue_1-30"]'); await p.waitForTimeout(1500);
+await p.keyboard.press('Escape'); await p.waitForTimeout(6000);
+const groups=await p.evaluate(()=>[...document.querySelectorAll('tr,.q-tr')].map(x=>x.innerText.replace(/\s+/g,' ').trim()).filter(t=>/days past due|Current|Totals/.test(t)).slice(0,10));
+console.log('url',p.url()); console.log('groups',JSON.stringify(groups));
+await p.screenshot({path:OUT+'/01-filtered.png'});
+await p.click('[data-test-id="btn_dropdown_apdet_export"]'); await p.waitForTimeout(1000);
+await p.screenshot({path:OUT+'/02-menu.png'});
+const t0=Date.now(); await p.click('[data-test-id="action_apdet_export_pdf"]');
+const notes=[];
+for(let i=0;i<24;i++){ await p.waitForTimeout(5000);
+  const n=await p.evaluate(()=>[...document.querySelectorAll('.q-notification,.q-notifications__list *[role=alert],.q-notification__message')].map(x=>x.innerText.replace(/\s+/g,' ').trim()).filter(Boolean));
+  if(n.length) notes.push({s:Math.round((Date.now()-t0)/1000),n});
+  if(i===1) await p.screenshot({path:OUT+'/03-waiting-10s.png'});
+  if(i===7) await p.screenshot({path:OUT+'/04-after-40s.png'});
+}
+await p.screenshot({path:OUT+'/05-after-120s.png'});
+const res={marker:await s.marker(),url:p.url(),groups,download:dl,notes,exports:log.map(x=>({...x,t:Math.round((x.t-t0)/1000)}))};
+fs.writeFileSync(OUT+'/result.json',JSON.stringify(res,null,1)); console.log(JSON.stringify(res,null,1));
+await s.close(); process.exit(0);

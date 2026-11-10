@@ -1,0 +1,50 @@
+[
+ {
+  "q": "ap-aging-detail?asOfDate=2026-11-10",
+  "secs": 0,
+  "st": 200,
+  "ct": "application/json",
+  "len": 709,
+  "head": "{\"data\":{\"groups\":[{\"bucket\":\"days_91_plus\",\"label\":\"91 or more days past due\",\"rowsNumber\":11912,\"amountCents\":404019433,\"openBalanceCents\":404019435},{\"bucket\":\"days_61_to_90\",\"label\":\"61-90 days past due\",\"rowsNumber\""
+ },
+ {
+  "q": "ap-aging-detail?asOfDate=2026-11-10&pastDue=31-60",
+  "secs": 0,
+  "st": 200,
+  "ct": "application/json",
+  "len": 690,
+  "head": "{\"data\":{\"groups\":[{\"bucket\":\"days_91_plus\",\"label\":\"91 or more days past due\",\"rowsNumber\":1237,\"amountCents\":-60132065,\"openBalanceCents\":-60132065},{\"bucket\":\"days_61_to_90\",\"label\":\"61-90 days past due\",\"rowsNumber\":"
+ },
+ {
+  "q": "ap-aging-detail?asOfDate=2026-11-10&pastDue=61-90",
+  "secs": 0,
+  "st": 200,
+  "ct": "application/json",
+  "len": 685,
+  "head": "{\"data\":{\"groups\":[{\"bucket\":\"days_91_plus\",\"label\":\"91 or more days past due\",\"rowsNumber\":1237,\"amountCents\":-60132065,\"openBalanceCents\":-60132065},{\"bucket\":\"days_61_to_90\",\"label\":\"61-90 days past due\",\"rowsNumber\":"
+ },
+ {
+  "q": "ap-aging-detail/export?asOfDate=2026-11-10&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=vendor_name&pagination[descending]=false&format=pdf",
+  "secs": 0,
+  "st": 400,
+  "ct": "application/problem+json",
+  "len": 115,
+  "head": "{\"errors\":[{\"error\":\"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\"}]}"
+ },
+ {
+  "q": "ap-aging-detail/export?asOfDate=2026-11-10&pastDue=61-90&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=vendor_name&pagination[descending]=false&format=pdf",
+  "secs": 31,
+  "st": 500,
+  "ct": "application/problem+json",
+  "len": 167,
+  "head": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"7523f55f-2366-4685-8043-023629433eb9\"}]}"
+ },
+ {
+  "q": "ap-aging-detail/export?asOfDate=2026-11-10&pastDue=1-30&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=vendor_name&pagination[descending]=false&format=csv",
+  "secs": 2,
+  "st": 200,
+  "ct": "text/csv; charset=UTF-8",
+  "len": 239196,
+  "head": "\"As of: Nov 10, 2026\"\n\"Locations: All locations\"\n\"Past due: 1-30 days\"\n\"Aging Bucket\",Date,Location,\"Transaction Type\",No.,\"Vendor Name\",\"Due Date\",\"Past Due\",Amount,\"Open Balance\"\n\"91 or more days past due\",2025-03-17,\""
+ }
+]

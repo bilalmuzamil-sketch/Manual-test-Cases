@@ -55,3 +55,35 @@ status TESTING QA. Nothing posted — asked the QA lead whether to post (rule: s
   locking the account. Asked the QA lead.
 - What the change touches: the six aging reports only (reading); nothing new is sent to QuickBooks. Mudassir's 79851 (30 Oct)
   already shows QBO puts a credit dated on the as-of day in Current and moves it to 1-30 the next day.
+
+## A/P aging PDF fails well under the 2,000-line limit (investigated 10 Nov 2026 ~12:15–12:45 UTC, QA lead: "look into that")
+Build sv11315 `v26.45.2-6a8b89c` (last-modified Tue 10 Nov 10:27:26 GMT), PR #4262 head `8e35ee0d02`.
+
+**Jira search (Rule 93), all statuses:** text "too large for PDF", "couldn't export this report", aging + PDF, SV-11315 children
+and links. Nothing covers it. SV-11533 (Story 3, exports, TESTING QA) handoff 80619 only promises the
+"This report is too large for PDF…" message above 2,000 lines and "Narrow (one vendor) → the PDF downloads".
+
+**On screen:** A/P Aging Detail → Past due: 1-30 days (1,602 lines: 1,237+61+1+301+2 — credits are kept by the filter) →
+⋯ → Download (PDF) → after 35 s a toast "We couldn't export this report. Please try again."; no file. (ev/pdf500-recheck/)
+**Sizes (A/P Aging Detail PDF, one vendor each, `vendors=<id>`):**
+| lines | vendor | result |
+|---|---|---|
+| 344 | Butautas' Truck & Trailer Repair LLC | PDF, 10 s |
+| 403 | Pilar's Truck & Trailer Repair | PDF, 12 s |
+| 504 | Vero Beach Heavy Duty Truck & Equipment Repair | PDF, 17 s |
+| 715 | Fate Roadside Truck Repair | PDF, 22 s |
+| 1,133 | Stillwater Diesel Repair | 500 at 31 s |
+| ~1,300 | Past due 61-90 (all vendors) | 500 at 31 s |
+| 1,602 | Past due 1-30 (all vendors) | 500 at 32 s (3 of 3) |
+| 13,539 | no filter | 400 "This report is too large for PDF…" in 0 s (correct) |
+A/P Unpaid Invoices: Stillwater 1,133 → PDF at 31 s (borderline); Past due 1-30 → 500 at 32 s. A/R Detail/Collection/Summary
+and A/P Summary PDFs all fine (2–9 s; A/R data is small). CSV of the failing filter downloads in 2 s.
+**Cause (Sentry SHOPVIEW-API-350, 6 events, first seen 11:29 UTC today, all ours):** "WeasyPrint PDF generation failed for
+template "reporting/aging/grouped.html.twig" (HTTP 500)" — the PDF service itself answers 500 after ~30 s.
+Code: `api/src/Shared/Application/Pdf/WeasyPrintPdfGenerator.php` L60-66 @8e35ee0d020f1a941618630bb86e18b5db4e258c (throws on the
+service's 500; its own client timeout is 600 s), cap `api/src/Reporting/Reports/Application/Service/Aging/AgingExportFormat.php`
+L25 `PDF_MAX_ROWS = 2_000` (Phase 2 commit 0fa078718d). Repo Dockerfile gives gunicorn `--timeout 120`, so the ~30 s limit
+on the QA environment comes from how the service runs there — not proven which.
+**Production:** A/P Aging Detail has no export/PDF at all (ev/prod/ap-detail.png) — QA-branch-only, new with this PR.
+**Same family:** SV-12223 (count sheet too large → 500, fixed with a message).
+Bucket: (a) confirmed new defect, not yet filed — asked the QA lead.
