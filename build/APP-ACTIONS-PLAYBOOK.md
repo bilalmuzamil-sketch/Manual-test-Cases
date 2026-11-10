@@ -6337,6 +6337,7 @@ files** into the same collection — change only `name=` and `--data-binary @pat
 (always pair `data-width` with `data-width-type="percentage"`, or the image renders tiny). Do NOT also run phase 2 — the inline embed attaches the file.
 Panels: `<div data-type="panel-success|warning|error">`. Read back with `listJiraIssueComments` (the stored body drops `data-collection` — expected).
 Never commit the token.
+**Mentions in an HTML body (proven 2026-11-10, SV-12520):** `<span data-type="mention" data-user-id="<AAID>">@Name</span>` (Milos `712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab`, Chris `712020:aa00b8d6-a71f-4259-8919-82a304227c20`). A read-back shows them as `<custom data-type="mention" data-id="id-0">` (anonymised) — so NEVER round-trip an HTML body that holds mentions; regenerate it from the script with the real ids. createJiraIssue/editJiraIssue accept markdown or html only (no ADF). Create the ticket first with a short html body, upload, then editJiraIssue with the full body + figures.
 
 ## AW. IMPORTED INVOICES — where they are after an Invoices import (proven 2026-10-28, SV-11870; first known 2026-08-28 SV-8504, 2026-10-21 SV-9818)
 - **Imported invoices are NOT ordinary work orders.** They do not appear in the top-bar search, the normal status tabs,
@@ -6351,6 +6352,8 @@ Never commit the token.
 - **Production rejects the NEW template headers** ("Invalid file headers provided!") until the What/Why rename ships —
   use the old headers (`*Line Title - What are you doing`, `Line Description - Why are you doing it`) there.
 - **A leftover "Status: Imported" filter persists per user** (SV-11576) — clear it with "Clear all filters" before other list work.
+- **In BOARD view the `Imported` box in the Status filter is DISABLED** (proven 2026-11-10, SV-12520, production). Click the list-view button first (`data-test-id="display_option_list"`, three lines with dots, right of the filters), then Status → Imported. Put the view back with `display_option_board_view` on a shared account.
+- **Imported invoice PDF:** `GET /api/imported-work-orders/{id}/pdf` (the Download button on the invoice). Labor/Sublet quantities are stored in minutes (`timeEstimate`), screen shows hours, PDF prints minutes — SV-12520.
 
 ## AX. PAYMENTS SPLIT OVER SEVERAL INVOICES — what to read, and production session limits (proven 2026-10-29, SV-11744 / SV-11960)
 - **Read each invoice itself:** work order → `/workorders/{woId}/finance` shows the invoice with a **Payments** section

@@ -1652,7 +1652,7 @@ what is still owed.
 | Item | State | Needs |
 |---|---|---|
 | SV-12435 (dark mode imported invoice) | CLEARED: PASSED 80670, QAcomplete, QA Complete, QA Assignee Bilal | — |
-| Imported invoice labor quantity: screen 1.00 vs PDF 60.00 (production + branch) | not tracked in Jira | QA lead: raise a follow-up ticket? |
+| ~~Imported invoice labor quantity: screen 1.00 vs PDF 60.00~~ CLEARED 10 Nov 17:07 UTC: QA lead said raise it if genuine; confirmed (spec + code + prod + sv12435) and filed as SV-12520 | Milos / Chris | answer on SV-12520: fix the PDF, or keep it as it is |
 | SV-12268 | rewritten with production evidence per new Rule 128 | — |
 | SV-12510 | 'only on QA environment' line added (Rule 128) | Milos / Chris wording |
 | SV-12135..12141, SV-11688 | QA assignee Mudassir — left to him (QA lead 10 Nov) | — |
