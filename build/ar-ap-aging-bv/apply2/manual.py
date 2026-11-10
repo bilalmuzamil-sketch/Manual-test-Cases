@@ -1,7 +1,7 @@
 # Hand-built Setup for the precondition sentences the parser in setup.py does not read on its own.
 # Every entry uses only the Book recipes (seen on sv11315, apply2/RECIPES-SEEN.md). Keys are the sentence's opening words.
 import re
-LONG = '"ZZAUTOTEST Northern Alberta Heavy Haul and Towing Ltd" (more than 40 characters)'
+LONG = 'ZZAUTOTEST Northern Alberta Heavy Haul and Towing Ltd (more than 40 characters)'
 NOTHING = None   # the state was seen on the QA site on 10 Nov 2026; nothing to make
 R = 'switch on "Reports" in the Page Access card'
 
@@ -20,8 +20,8 @@ def three_locs(b, kind, long_c=False):
 def named(b, l, kind):
     for nm, who, X in re.findall(r'"([^"]+)" \((customer|vendor) ([A-F])\)', l):
         P = f'{who} {X}'
-        if kind == 'ar': b.customer(P, name=f'"{nm}"'); b.invoice(f'invoice for {P}', P, '100.00', None)
-        else: b.vendor(P, name=f'"{nm}"'); b.bill(f'bill for {P}', P, '100.00', None)
+        if kind == 'ar': b.customer(P, name=nm); b.invoice(f'invoice for {P}', P, '100.00', None)
+        else: b.vendor(P, name=nm); b.bill(f'bill for {P}', P, '100.00', None)
 def many(b, X, kind, n=20, name=None):
     (b.customer if kind == 'ar' else b.vendor)(X, name=name) if name else (b.customer if kind == 'ar' else b.vendor)(X)
     if kind == 'ar':
@@ -58,7 +58,7 @@ MANUAL = {
  'Have a customer, customer A, with open invoices on today\'s date and a long name': lambda b, c: (b.customer('customer A', name=LONG), b.invoice('invoice 1', 'customer A', '100.00', None)),
  'Have a customer, customer A, with a long name, an overdue invoice, a phone number and a credit term.': lambda b, c: (b.customer('customer A', name=LONG), b.invoice('invoice 1', 'customer A', '100.00', 45)),
  'Make sure the report lists customers at both locations on today\'s date, including at least one with a credit balance': lambda b, c: (b.customer('customer A', name=LONG), b.invoice('invoice 1', 'customer A', '100.00', None), b.credit_memo('credit memo 1 (the only document of customer B)', 'customer B', '80.00', None, 'location B')),
- 'Make sure vendor A and vendor B both have long names.': lambda b, c: (rename(b, 'vendor A', LONG), rename(b, 'vendor B', '"ZZAUTOTEST Southern Alberta Fleet Parts and Supply Co" (more than 40 characters)')),
+ 'Make sure vendor A and vendor B both have long names.': lambda b, c: (rename(b, 'vendor A', LONG), rename(b, 'vendor B', 'ZZAUTOTEST Southern Alberta Fleet Parts and Supply Co (more than 40 characters)')),
  # ---- parties with documents at one or both locations ----
  'Have a customer, customer A, with open documents at both locations.': lambda b, c: (b.invoice('invoice 1', 'customer A', '100.00', None), b.invoice('invoice 2', 'customer A', '200.00', None, 'location B')),
  'Have a vendor, vendor A, with open documents at both locations.': lambda b, c: (b.bill('bill 1', 'vendor A', '100.00', None), b.bill('bill 2', 'vendor A', '200.00', None, 'location B')),
@@ -102,7 +102,7 @@ MANUAL = {
  'Have a customer with only an unused credit memo, credit memo A, of $150.00.': lambda b, c: b.credit_memo('credit memo A', 'customer A', '150.00'),
  'Have a new customer (created for this test) that has, on today\'s date, an invoice A made at location A for $500.00 and partly paid ($200.00) by a payment taken at location B': lambda b, c: (
      b.invoice('invoice A', 'customer A', '500.00', None),
-     b.add('Pay $200.00 of invoice A at location B', 'While switched to location B (see "Locations to use"): on customer A\'s page click New Payment, type 200 in the Payment box on invoice A\'s row, pick a Payment Method, then click Make Payment.'),
+     b.add('Pay $200.00 of invoice A at location B', 'While switched to location B (see the Locations to use item): on customer A\'s page click New Payment, type 200 in the Payment box on invoice A\'s row, pick a Payment Method, then click Make Payment.'),
      b.credit_memo('credit memo A', 'customer A', '50.00', None, 'location B'), b.deposit('deposit A', 'customer A', '40.00', 'location B')),
  'Have a new customer (created for this test), customer A, with an invoice of $100.00 paid $120.00 (overpaid)': lambda b, c: (b.invoice('invoice 1', 'customer A', '100.00', None, None, '120.00'), b.miss('paying more than an invoice\'s balance'), b.invoice('invoice B', 'customer A', '500.00', None)),
  # ---- dates and buckets ----
@@ -137,8 +137,8 @@ MANUAL = {
  'Have a customer, customer A, with an overdue invoice, a phone number and a credit term.': lambda b, c: b.invoice('invoice 1', 'customer A', '100.00', 45),
  'Have a customer, customer A, with an overdue invoice and no phone number': lambda b, c: (b.customer('customer A', phone=False), b.invoice('invoice for customer A', 'customer A', '100.00', 45)),
  'Have a customer, customer B, with an overdue invoice and no phone.': lambda b, c: (b.customer('customer B', phone=False), b.invoice('invoice for customer B', 'customer B', '200.00', 45)),
- 'Make sure customer A, first in name order, has an overdue invoice, an unused credit memo': lambda b, c: (b.customer('customer A', name='"000 ZZAUTOTEST First Customer" (a name that sorts first)'), b.invoice('invoice 1', 'customer A', '100.00', 45), b.credit_memo('credit memo 1', 'customer A', '50.00')),
- 'Make sure that on today\'s date the report has two customers next to each other in name order': lambda b, c: (many(b, 'customer A', 'ar', name='"ZZAUTOTEST Call List A"'), many(b, 'customer B', 'ar', name='"ZZAUTOTEST Call List B"')),
+ 'Make sure customer A, first in name order, has an overdue invoice, an unused credit memo': lambda b, c: (b.customer('customer A', name='000 ZZAUTOTEST First Customer (a name that sorts first)'), b.invoice('invoice 1', 'customer A', '100.00', 45), b.credit_memo('credit memo 1', 'customer A', '50.00')),
+ 'Make sure that on today\'s date the report has two customers next to each other in name order': lambda b, c: (many(b, 'customer A', 'ar', name='ZZAUTOTEST Call List A'), many(b, 'customer B', 'ar', name='ZZAUTOTEST Call List B')),
  'Make sure that on today\'s date the report has a customer, customer A, with more overdue invoices than fit on the screen': lambda b, c: many(b, 'customer A', 'ar'),
  'Make sure that at least ten customers have overdue invoices on today\'s date': lambda b, c: (b.invoice('invoice for customer 1', 'customer 1', '100.00', 45), b.add('Make customers 2 to 10', 'Same way as customer 1 and its invoice, nine more times (a new Name, a Phone and Credit Terms "Net 30" each), so ten customers have an overdue invoice.')),
  # ---- names ----
@@ -146,10 +146,10 @@ MANUAL = {
  'Have four vendors with open bills on today\'s date, named': lambda b, c: named(b, c['_line'], 'ap'),
  'Have six customers with open invoices on today\'s date, named': lambda b, c: named(b, c['_line'], 'ar'),
  'Have six vendors with open bills on today\'s date, named': lambda b, c: named(b, c['_line'], 'ap'),
- 'Have two customers with open invoices on today\'s date, whose names differ only in capitals': lambda b, c: [(b.customer(X, name=n), b.invoice(f'invoice for {X}', X, '100.00', None)) for X, n in (('customer A', '"ZZAUTOTEST Capital Test"'), ('customer B', '"ZZAUTOTEST CAPITAL TEST"'))],
- 'Have two vendors with open bills on today\'s date, whose names differ only in capitals': lambda b, c: [(b.vendor(X, name=n), b.bill(f'bill for {X}', X, '100.00', None)) for X, n in (('vendor A', '"ZZAUTOTEST Capital Test"'), ('vendor B', '"ZZAUTOTEST CAPITAL TEST"'))],
- 'Have two customers with open invoices on today\'s date whose names differ only by an accent': lambda b, c: [(b.customer(X, name=n), b.invoice(f'invoice for {X}', X, '100.00', None)) for X, n in (('customer A', '"Emile\'s Towing"'), ('customer B', '"Émile\'s Towing"'))],
- 'Have four customers with open invoices on today\'s date: customer A, customer B, customer C and customer D. After the same first words': lambda b, c: [(b.customer(X, name=n), b.invoice(f'invoice for {X}', X, '100.00', None)) for X, n in (('customer A', '"ZZAUTOTEST Fleet #1"'), ('customer B', '"ZZAUTOTEST Fleet -1"'), ('customer C', '"ZZAUTOTEST Fleet 1"'), ('customer D', '"ZZAUTOTEST Fleet @1"'))],
+ 'Have two customers with open invoices on today\'s date, whose names differ only in capitals': lambda b, c: [(b.customer(X, name=n), b.invoice(f'invoice for {X}', X, '100.00', None)) for X, n in (('customer A', 'ZZAUTOTEST Capital Test'), ('customer B', 'ZZAUTOTEST CAPITAL TEST'))],
+ 'Have two vendors with open bills on today\'s date, whose names differ only in capitals': lambda b, c: [(b.vendor(X, name=n), b.bill(f'bill for {X}', X, '100.00', None)) for X, n in (('vendor A', 'ZZAUTOTEST Capital Test'), ('vendor B', 'ZZAUTOTEST CAPITAL TEST'))],
+ 'Have two customers with open invoices on today\'s date whose names differ only by an accent': lambda b, c: [(b.customer(X, name=n), b.invoice(f'invoice for {X}', X, '100.00', None)) for X, n in (('customer A', 'Emile\'s Towing'), ('customer B', 'Émile\'s Towing'))],
+ 'Have four customers with open invoices on today\'s date: customer A, customer B, customer C and customer D. After the same first words': lambda b, c: [(b.customer(X, name=n), b.invoice(f'invoice for {X}', X, '100.00', None)) for X, n in (('customer A', 'ZZAUTOTEST Fleet #1'), ('customer B', 'ZZAUTOTEST Fleet -1'), ('customer C', 'ZZAUTOTEST Fleet 1'), ('customer D', 'ZZAUTOTEST Fleet @1'))],
  'Have a new customer (created for this test), customer A, with only these open documents on today\'s date: an invoice A of $500.00, 20 days past due, and an unused credit memo A of $120.00 dated today.': lambda b, c: (b.invoice('invoice A', 'customer A', '500.00', 50), b.credit_memo('credit memo A', 'customer A', '120.00')),
  'Have a new vendor (created for this test), vendor A, with only these open documents on today\'s date: a bill A of $500.00, 20 days past due, and an unused vendor credit A of $120.00 dated today.': lambda b, c: (b.bill('bill A', 'vendor A', '500.00', 50), b.vendor_credit('vendor credit A', 'vendor A', '120.00')),
  # ---- roles and sign-in ----

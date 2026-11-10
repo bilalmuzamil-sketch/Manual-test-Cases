@@ -145,10 +145,21 @@ def main():
         for rx, why in BARRED:
             if rx.search(pre):
                 barred_hits[rx.pattern].append((case['id'], why))
-        found = {a or b for a, b in QUOTED.findall(pre)}
+        # 2026-11-10 (A/R and A/P suite, sv11315): two kinds of quoted text are not screen labels and only sent the
+        # gate hunting the screen for them. (1) A design-picture caption, quoted and followed by its attachment's file
+        # name: Open the design picture "Click the Total header" (ar-ap-p1-click-the-total-header.png). (2) A name the
+        # tester types for a record: named "10 Trucking" (customer A), named "Emile's Towing". Both are removed before
+        # the labels are read; everything else quoted is still checked. A span that starts with a comma is the text
+        # BETWEEN two separately quoted one-character values (with "#", customer B's with "-"; has "æ" and vendor E has "ß"),
+        # recognisable because a real label never starts with a space or a comma, and is skipped too.
+        pre_l = re.sub(r'[“"][^\n]{2,90}?[”"] \([^()\n]*\.png\)', '', pre)   # a caption may hold quotes of its own
+        pre_l = re.sub(r'[“"][^”"\n]{1,60}[”"] \((?:customer|vendor) [A-F]\)', '', pre_l)
+        pre_l = re.sub(r'\bnamed [“"][^”"\n]{1,60}[”"]', 'named', pre_l)
+        found = {a or b for a, b in QUOTED.findall(pre_l)}
         for label in sorted(found):
+            if label[:1] in ' ,;': continue   # text BETWEEN two quoted values ("æ" and vendor E has "ß"), not a quoted label
             label = label.strip().rstrip('.,;:')
-            if not label or IGNORE.match(label) or DATA_LOOKING.search(label): continue
+            if not label or IGNORE.match(label) or DATA_LOOKING.search(label) or label.startswith((',', ';')): continue
             if not seen(label):
                 unconfirmed[label].append(case['id'])
         stp = txt(case.get('custom_steps') or '')

@@ -17,8 +17,8 @@ def num(a): return a.replace(',', '')
 
 def at(loc):
     if loc in (None, 'location A', 'your current location'): return ''
-    if loc in ('location B', 'your other location'): return 'While switched to location B (see "Locations to use"): '
-    if loc == 'location C': return 'While switched to location C (see "Make location C"): '
+    if loc in ('location B', 'your other location'): return 'While switched to location B (see the Locations to use item): '
+    if loc == 'location C': return 'While switched to location C (see the Make location C item): '
     raise ValueError(loc)
 
 def when(days_ago, label):
@@ -94,7 +94,7 @@ class Book:
             s.full['bill'] = doc
             body = (f'{at(loc)}Click Parts in the top bar, then Purchase Orders in the left menu, then New PO. Pick {X} in Vendor. In Part Number type a new part number and click "Add new special order part: …"; '
                     f'type a Description, 1 in Quantity and {num(amount)} in Cost; click Add, then Save & Close. In the Purchase Orders list click Receive on that order (Vendor column: {X}); '
-                    f'type a Vendor Invoice # (for example "{doc}"), {when(days_ago, "Invoice Date")}, type 0 in Tax, then click Receive Parts (1).')
+                    f'type a Vendor Invoice # (for example {doc}), {when(days_ago, "Invoice Date")}, type 0 in Tax, then click Receive Parts (1).')
         else:
             body = f'{at(loc)}Same way as {s.full["bill"]}, with {X} in Vendor: Cost {num(amount)}; {when(days_ago, "Invoice Date")}.'
         s.add(f'Make {doc}', body)
@@ -119,7 +119,7 @@ class Book:
               f'Then click {ME}, then Logout, and on the QA site\'s sign-in page click Tech in the quick login panel. After the test, sign in as Admin again and set Tech ShopView\'s Role back to Technician.')
         s.miss('signing in as Tech ShopView after giving it another role')
     def loc_c(s, long_name=False):
-        nm = 'a Name longer than the Location chip can show (for example "ZZAUTOTEST Location C with a very long name")' if long_name else 'a Name'
+        nm = 'a Name longer than the Location chip can show (for example ZZAUTOTEST Location C with a very long name)' if long_name else 'a Name'
         s.add('Make location C', f'Click {ME}, then Settings, then Locations in the left menu, then New Location. Type {nm}, fill the boxes the window marks as required, then click Save & Close. '
               f'To make documents there, switch to it: click {ME}, then Change Location, then the new location.')
         s.miss('saving a third location and switching to it')
