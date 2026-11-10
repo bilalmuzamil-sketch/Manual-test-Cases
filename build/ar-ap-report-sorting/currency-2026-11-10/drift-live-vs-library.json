@@ -1,0 +1,218 @@
+[
+ {
+  "key": "S1-10",
+  "case_id": 715282,
+  "fields": [
+   "custom_expected"
+  ],
+  "updated_on": 1793766090,
+  "updated_by": 3,
+  "diff": {
+   "custom_expected": [
+    "--- library",
+    "+++ live",
+    "@@ -9 +9,4 @@",
+    "-<p>Where the build is expected to differ: Chris Ward (answers 12 and 14, 23 Oct 2026) says the current build orders same-day rows by the time of day they were created, a build bug to fix; no ticket number is known yet. If the rows come out in time-of-day order, mark this test Failed.</p>",
+    "+<p>What you should see today: in step 3, invoice B and invoice C, which have the same date, come out in the order they were invoiced that day, so invoice C comes before invoice B, instead of in invoice number order. This is a known problem and it is already reported \u2014 see https://shopview.atlassian.net/browse/SV-12138 (filed by Chris Ward on 3 Nov 2026).</p>",
+    "+<p>\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new.</p>",
+    "+<p>\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem \u2014 please report it.</p>",
+    "+<p>\u00b7 If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.</p>",
+    "@@ -27 +30 @@",
+    "-<p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+    "+<p>AUTOMATION: READY - EXPECT FAIL (SV-12138)</p>"
+   ]
+  }
+ },
+ {
+  "key": "S1-11",
+  "case_id": 715283,
+  "fields": [
+   "custom_expected"
+  ],
+  "updated_on": 1793766091,
+  "updated_by": 3,
+  "diff": {
+   "custom_expected": [
+    "--- library",
+    "+++ live",
+    "@@ -9 +9,4 @@",
+    "-<p>Where the build is expected to differ: Chris Ward (answers 12 and 14, 23 Oct 2026) says the current build orders same-day rows by the time of day they were created, a build bug to fix; no ticket number is known yet. If the rows come out in time-of-day order, mark this test Failed.</p>",
+    "+<p>What you should see today: in step 3, bill B and bill C, which have the same date, come out in the order they were entered that day, so bill C comes before bill B, instead of in bill number order. This is a known problem and it is already reported \u2014 see https://shopview.atlassian.net/browse/SV-12138 (filed by Chris Ward on 3 Nov 2026).</p>",
+    "+<p>\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new.</p>",
+    "+<p>\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem \u2014 please report it.</p>",
+    "+<p>\u00b7 If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.</p>",
+    "@@ -27 +30 @@",
+    "-<p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+    "+<p>AUTOMATION: READY - EXPECT FAIL (SV-12138)</p>"
+   ]
+  }
+ },
+ {
+  "key": "S1-16",
+  "case_id": 715573,
+  "fields": [
+   "custom_expected"
+  ],
+  "updated_on": 1793766098,
+  "updated_by": 3,
+  "diff": {
+   "custom_expected": [
+    "--- library",
+    "+++ live",
+    "@@ -6 +6,4 @@",
+    "-<p>Where the build is expected to differ: the tech plan (21 Oct 2026) puts every punctuation mark before every digit and orders the marks differently (\"-\" before \"#\"), which would give customer B first, then customer A and customer D, then customer C. Chris Ward (answer 16, 23 Oct 2026) keeps the PRD's plain character order and asks engineering to match it; PRD version 9 adds this example to the requirement. No ticket number is known yet. If the build gives the tech plan's order, mark this test Failed.</p>",
+    "+<p>What you should see today: customer B (whose name goes on with \"-\") is listed first, then customer A and customer D (the other names that go on with a punctuation mark), then customer C: the names going on with a punctuation mark are put before the one going on with a digit, instead of plain character order. This is a known problem and it is already reported \u2014 see https://shopview.atlassian.net/browse/SV-12140 (filed by Chris Ward on 3 Nov 2026).</p>",
+    "+<p>\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new.</p>",
+    "+<p>\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem \u2014 please report it.</p>",
+    "+<p>\u00b7 If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.</p>",
+    "@@ -22 +25 @@",
+    "-<p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+    "+<p>AUTOMATION: READY - EXPECT FAIL (SV-12140)</p>"
+   ]
+  }
+ },
+ {
+  "key": "S3-17",
+  "case_id": 715343,
+  "fields": [
+   "custom_expected"
+  ],
+  "updated_on": 1793766099,
+  "updated_by": 3,
+  "diff": {
+   "custom_expected": [
+    "--- library",
+    "+++ live",
+    "@@ -18 +18,4 @@",
+    "-<p>Where the build is expected to differ: the tech plan (21 Oct 2026) says selections keep the order they were ticked, which would list location C first. PRD version 9 (S3-R5, from Chris Ward's answer 7 of 23 Oct 2026) sets the Location menu's A to Z order with a comma and a space between names; the case follows the PRD. No ticket number is known yet. If the export lists the names in tick order, mark this test Failed.</p>",
+    "+<p>What you should see today: in steps 4 and 6, the Locations line names location C first, then location A: the order you ticked them, instead of the Location menu's A to Z order. This is a known problem and it is already reported \u2014 see https://shopview.atlassian.net/browse/SV-12141 (filed by Chris Ward on 3 Nov 2026).</p>",
+    "+<p>\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new.</p>",
+    "+<p>\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem \u2014 please report it.</p>",
+    "+<p>\u00b7 If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.</p>",
+    "@@ -39 +42 @@",
+    "-<p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+    "+<p>AUTOMATION: READY - EXPECT FAIL (SV-12141)</p>"
+   ]
+  }
+ },
+ {
+  "key": "S7-03",
+  "case_id": 715416,
+  "fields": [
+   "custom_expected"
+  ],
+  "updated_on": 1793766092,
+  "updated_by": 3,
+  "diff": {
+   "custom_expected": [
+    "--- library",
+    "+++ live",
+    "@@ -12 +12,4 @@",
+    "-<p>Where the build is expected to differ: Chris Ward (answer 11, 23 Oct 2026) says the current build writes the button \"Switch Location\" with a capital L, a build bug to fix; the PRD's \"Switch location\" stands. No ticket number is known yet. If the button reads \"Switch Location\", mark this test Failed.</p>",
+    "+<p>What you should see today: in step 1, the right-hand button of the \"Switch location?\" dialog reads \"Switch Location\" with a capital L instead of \"Switch location\". This is a known problem and it is already reported \u2014 see https://shopview.atlassian.net/browse/SV-12139 (filed by Chris Ward on 3 Nov 2026).</p>",
+    "+<p>\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new.</p>",
+    "+<p>\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem \u2014 please report it.</p>",
+    "+<p>\u00b7 If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.</p>",
+    "@@ -28 +31 @@",
+    "-<p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+    "+<p>AUTOMATION: READY - EXPECT FAIL (SV-12139)</p>"
+   ]
+  }
+ },
+ {
+  "key": "S7-04",
+  "case_id": 715417,
+  "fields": [
+   "custom_expected"
+  ],
+  "updated_on": 1793766094,
+  "updated_by": 3,
+  "diff": {
+   "custom_expected": [
+    "--- library",
+    "+++ live",
+    "@@ -12 +12,4 @@",
+    "-<p>Where the build is expected to differ: Chris Ward (answer 11, 23 Oct 2026) says the current build writes the button \"Switch Location\" with a capital L, a build bug to fix; the PRD's \"Switch location\" stands. No ticket number is known yet. If the button reads \"Switch Location\", mark this test Failed.</p>",
+    "+<p>What you should see today: in step 1, the right-hand button of the \"Switch location?\" dialog reads \"Switch Location\" with a capital L instead of \"Switch location\". This is a known problem and it is already reported \u2014 see https://shopview.atlassian.net/browse/SV-12139 (filed by Chris Ward on 3 Nov 2026).</p>",
+    "+<p>\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new.</p>",
+    "+<p>\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem \u2014 please report it.</p>",
+    "+<p>\u00b7 If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.</p>",
+    "@@ -28 +31 @@",
+    "-<p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+    "+<p>AUTOMATION: READY - EXPECT FAIL (SV-12139)</p>"
+   ]
+  }
+ },
+ {
+  "key": "D-39",
+  "case_id": 715519,
+  "fields": [
+   "custom_expected"
+  ],
+  "updated_on": 1793766095,
+  "updated_by": 3,
+  "diff": {
+   "custom_expected": [
+    "--- library",
+    "+++ live",
+    "@@ -14 +14,4 @@",
+    "-<p>Where the build is expected to differ: Chris Ward (answer 11, 23 Oct 2026) says the current build writes the button \"Switch Location\" with a capital L, a build bug to fix; the PRD's \"Switch location\" stands. No ticket number is known yet. If the button reads \"Switch Location\", mark this test Failed.</p>",
+    "+<p>What you should see today: in step 1, the right-hand button of the \"Switch location?\" dialog reads \"Switch Location\" with a capital L instead of \"Switch location\". This is a known problem and it is already reported \u2014 see https://shopview.atlassian.net/browse/SV-12139 (filed by Chris Ward on 3 Nov 2026).</p>",
+    "+<p>\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new.</p>",
+    "+<p>\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem \u2014 please report it.</p>",
+    "+<p>\u00b7 If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.</p>",
+    "@@ -32 +35 @@",
+    "-<p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+    "+<p>AUTOMATION: READY - EXPECT FAIL (SV-12139)</p>"
+   ]
+  }
+ },
+ {
+  "key": "D-40",
+  "case_id": 715520,
+  "fields": [
+   "custom_expected"
+  ],
+  "updated_on": 1793766096,
+  "updated_by": 3,
+  "diff": {
+   "custom_expected": [
+    "--- library",
+    "+++ live",
+    "@@ -14 +14,4 @@",
+    "-<p>Where the build is expected to differ: Chris Ward (answer 11, 23 Oct 2026) says the current build writes the button \"Switch Location\" with a capital L, a build bug to fix; the PRD's \"Switch location\" stands. No ticket number is known yet. If the button reads \"Switch Location\", mark this test Failed.</p>",
+    "+<p>What you should see today: in step 1, the right-hand button of the \"Switch location?\" dialog reads \"Switch Location\" with a capital L instead of \"Switch location\". This is a known problem and it is already reported \u2014 see https://shopview.atlassian.net/browse/SV-12139 (filed by Chris Ward on 3 Nov 2026).</p>",
+    "+<p>\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new.</p>",
+    "+<p>\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem \u2014 please report it.</p>",
+    "+<p>\u00b7 If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.</p>",
+    "@@ -30 +33 @@",
+    "-<p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+    "+<p>AUTOMATION: READY - EXPECT FAIL (SV-12139)</p>"
+   ]
+  }
+ },
+ {
+  "key": "D-64",
+  "case_id": 715546,
+  "fields": [
+   "custom_expected"
+  ],
+  "updated_on": 1793766097,
+  "updated_by": 3,
+  "diff": {
+   "custom_expected": [
+    "--- library",
+    "+++ live",
+    "@@ -10 +10,4 @@",
+    "-<p>Where the build is expected to differ: Chris Ward (answer 11, 23 Oct 2026) says the current build writes the button \"Switch Location\" with a capital L, a build bug to fix; the PRD's \"Switch location\" stands. No ticket number is known yet. If the button reads \"Switch Location\", mark this test Failed.</p>",
+    "+<p>What you should see today: in step 1, the right-hand button of the \"Switch location?\" dialog reads \"Switch Location\" with a capital L instead of \"Switch location\". This is a known problem and it is already reported \u2014 see https://shopview.atlassian.net/browse/SV-12139 (filed by Chris Ward on 3 Nov 2026).</p>",
+    "+<p>\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new.</p>",
+    "+<p>\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem \u2014 please report it.</p>",
+    "+<p>\u00b7 If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.</p>",
+    "@@ -28 +31 @@",
+    "-<p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+    "+<p>AUTOMATION: READY - EXPECT FAIL (SV-12139)</p>"
+   ]
+  }
+ }
+]

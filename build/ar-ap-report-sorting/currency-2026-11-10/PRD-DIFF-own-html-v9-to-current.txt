@@ -1,0 +1,54 @@
+--- v9
++++ current
+@@ -34,0 +35,3 @@
++A credit memo, deposit or vendor credit dated exactly on the as-of date now shows in Current with Past Due 0, as in QuickBooks; today it shows in 1-30 (S1-R5a).
++Date and Due Date show plain dates, for example "Nov 4, 2026", instead of "Today", "Yesterday" or "2 days ago" (S2-R1a).
++Transaction Type names each kind of credit: "Credit Memo", "Deposit" or "Vendor Credit"; today all three read "Credit" (S2-R1b).
+@@ -45 +48 @@
+-Other improvements found in research, each a separate ticket on SV-11315: a credit dated on the as-of date landing in 1-30 instead of Current (SV-11441, checked against QuickBooks first); configurable aging periods (SV-11442); send a statement from the report (SV-11443); salesperson and Parts vs Service filters (SV-11444); last payment date and credit limit (SV-11446); a collections notes log (SV-11447).
++Other improvements found in research, each a separate ticket on SV-11315: configurable aging periods (SV-11442); send a statement from the report (SV-11443); salesperson and Parts vs Service filters (SV-11444); last payment date and credit limit (SV-11446); a collections notes log (SV-11447).
+@@ -99,0 +103 @@
++S1-R5a: A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date: negative while the document is not yet due (a bill due 9 days after the as-of date reads -9, as today) and 0 on its due date. A credit memo, deposit or vendor credit counts its own date as its due date, so one dated exactly on the as-of date is in Current with Past Due 0, not in "1-30 days past due". This is how QuickBooks ages them (SV-11441).
+@@ -102 +106 @@
+-S1-R8: A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time, and the next 30 load as the user scrolls down, as today. There are no page buttons. A/R Detail and A/P Detail show each bucket's first 100 lines, then load more as the user scrolls (S4-R4). Paging never repeats or skips a customer, vendor or row, in any sort.
++S1-R8: A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time, and the next 30 load as the user scrolls down, as today. There are no page buttons. A/R Detail and A/P Detail show each bucket's first 100 lines, then load more as the user scrolls (S4-R4). Paging never repeats or skips a customer, vendor or row, in any sort. On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents.
+@@ -119,0 +124,2 @@
++S2-R1a: Date and Due Date show plain dates on screen, for example "Nov 4, 2026". The PDF and the CSV keep their own date formats (S3-R7a, S3-R8). They never read "Today", "Yesterday" or "2 days ago".
++S2-R1b: Transaction Type reads "Invoice" for invoices and bills, as today, and names each kind of credit: "Credit Memo" and "Deposit" on A/R, "Vendor Credit" on A/P. The same names appear in the PDF and the CSV, and Transaction Type sorts A to Z by these names (S2-R2).
+@@ -126 +132,2 @@
+-S2-R7: The sort is kept while the user stays on the report: changing the as-of date, loading more rows by scrolling, and changing the customer, vendor, Past due or Location filter keep it.
++S2-R7: The sort is kept while the user stays on the report: changing the as-of date, loading more rows by scrolling, and changing the customer, vendor, Past due or Location filter keep it, except as in S2-R7a.
++S2-R7a: If the report is sorted by Location and the Location column then hides (Story 6), whether the Location filter is narrowed to one location or a new as-of date leaves only one location in the list, the sort returns to the opening order (Story 1), so a sorted header is always visible.
+@@ -147,0 +155 @@
++S3-R7a: The PDF uses the app-wide report PDF format, the same as Sales By Customer and Inventory Value: a negative amount prints in brackets with a minus sign, for example "(-$11,111.00)", and dates print as "Nov 04 2026". On screen a negative amount reads "$-11,111.00", as today.
+@@ -150 +158 @@
+-S3-R8a: On A/R Collection, every CSV row also carries the customer's "Phone" and, for users with 'View and Manage AP/AR Data', "Credit term", in columns right after "Customer"; the PDF prints them on each customer's line (Story 9).
++S3-R8a: On A/R Collection, every CSV row also carries the customer's "Phone" and, for users with 'View and Manage AP/AR Data', "Credit Term", in columns right after "Customer"; the PDF prints them on each customer's line (Story 9).
+@@ -178,0 +187,3 @@
++Error Handling:
++If a bucket's lines fail to load when it is expanded, the bucket shows "Something went wrong loading this bucket. Collapse and expand it to try again." in place of its lines.
++If a bucket's later lines stop loading while the user scrolls, the lines already shown stay and the bucket shows "Not every line loaded. Collapse and expand this bucket to try again." under them.
+@@ -216,0 +228 @@
++S5-E3: Changing the as-of date keeps every ticked location that is still in the new list (S5-R3). If none of the ticked locations is still in the list, the filter returns to All locations, and the chip reads "Location: All locations". A user who chose No locations keeps No locations.
+@@ -273 +285 @@
+-S8-R3: The headline column (Open Balance; Total on the Summaries) is pinned to the right edge and bold on the header, every row, every expanded row and the Totals row, as on Sales By Customer. At 1440 pixels wide every column of all six reports is visible without scrolling sideways: the customer or vendor name and Transaction Type wrap long values onto a second line, Location wraps only on A/P Detail (nine columns), column headings never wrap, and money, date and number columns never wrap. Narrower than 1440 pixels, the table scrolls sideways under the pinned column.
++S8-R3: The headline column (Open Balance; Total on the Summaries) is pinned to the right edge and bold on the header, every row, every expanded row and the Totals row, as on Sales By Customer. At 1440 pixels wide every column of all six reports is visible without scrolling sideways: the customer or vendor name and Transaction Type wrap long values onto a second line, Location wraps only on A/P Detail (nine columns) and A/P Unpaid Invoices, column headings never wrap, and money, date and number columns never wrap. Narrower than 1440 pixels, the table scrolls sideways under the pinned column.
+@@ -292 +304 @@
+-S9-N2: A user without 'View and Manage AP/AR Data' sees no credit term on screen, none in the PDF, and no Credit term column in the CSV.
++S9-N2: A user without 'View and Manage AP/AR Data' sees no credit term on screen, none in the PDF, and no Credit Term column in the CSV.
+@@ -326,0 +339,6 @@
++A bucket fails to load (A/R Detail, A/P Detail)
++"Something went wrong loading this bucket. Collapse and expand it to try again."
++Inside the bucket, in place of its lines
++A bucket's later lines stop loading
++"Not every line loaded. Collapse and expand this bucket to try again."
++Inside the bucket, under the lines already shown
+@@ -403,0 +422,8 @@
++2026-11-04
++@Chris Ward
++S1-R5a added (credit dated on the as-of date is Current, Past Due 0; SV-11441 moved into scope). S1-R8: documents inside an open customer or vendor load 100 at a time. S2-R1a added (plain dates). S2-R1b added (Credit Memo, Deposit, Vendor Credit). S2-R7a added (Location sort falls back when the column hides). S3-R8a and S9-N2: "Credit Term" heading. Story 4 Error Handling and two §8 rows added (bucket load messages). S5-E3 added (as-of change keeps ticked locations, else All). §2 lists the three visible changes.
++Nemanja's build questions on SV-11315, answered 2026-11-04 (items 1, 5, 9, 13, 14, 15c, 16c, 16i, 17).
++2026-11-05
++@Chris Ward
++S1-R5a: a document not yet due keeps its negative Past Due (as today); only the v10 credit rule reads 0. S8-R3: Location also wraps on A/P Unpaid Invoices. S2-R1a: drops "same format as the PDF and the CSV". S5-E3: No locations is kept. S2-R7a: covers every case where the Location column hides; S2-R7 points to it. S3-R7a added (PDF negative amounts and dates, app-wide format).
++Nemanja's last open points on SV-11315 checked against v10, answered 2026-11-05 (items 1 to 6). No build change.
