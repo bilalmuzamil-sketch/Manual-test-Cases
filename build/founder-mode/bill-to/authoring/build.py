@@ -81,10 +81,14 @@ print("cases", len(L.CASES), dict(by_sec), "| held", len(held))
 print("PRD codes", len(L.CODE), "covered", len(set(L.CODE) & set(used)), "| named items", len(L.NAMED), "covered", len(set(L.NAMED) & set(used)),
       "| not testable", sorted(L.NOT_TESTABLE))
 print("markers", dict(Counter(re.sub(r"\(question \d+\)", "(question n)", c["marker"]) for c in L.CASES)))
+# 10 Nov 2026, QA lead: cases blocked on a release, or run on production after it, live in their own TestRail folders
+FOLDER = {**{k: "BLK-IWO" for k in ("S15-01", "S15-02", "S15-03", "S15-04", "S15-05", "S15-06")},
+          **{k: "BLK-PORTAL" for k in ("S16-02", "S16-03", "S16-04", "S16-06")},
+          **{k: "PROD" for k in ("S8-15", "S10-13", "S17-07", "S19-05", "S19-08", "REL-01", "REL-02", "REL-03", "REL-04")}}
 out = {}
 for c in L.CASES:
-    f = L.render(c)
-    out[c["key"]] = {"sec": c["sec"], "section_name": SECS.get(c["sec"], {}).get("name"), "section_id": SECS.get(c["sec"], {}).get("id"),
+    f = L.render(c); sec = FOLDER.get(c["key"], c["sec"])
+    out[c["key"]] = {"sec": sec, "section_name": SECS.get(sec, {}).get("name"), "section_id": SECS.get(sec, {}).get("id"),
                      "title": c["title"], "refs": f["refs"], "codes": sorted(L.codes_of(c)), "automation": c["marker"],
                      "held": c["held"], "api": c["api"], "prd_version": L.prd_version(c), "fields": f}
 json.dump(out, open(f"{D}/proposals.json", "w"), indent=1, ensure_ascii=False)
