@@ -42,3 +42,23 @@ on the epic, https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=806
 ## Still to see during the write pass (per test, after the v11 update)
 PDF and CSV contents, dark theme, Ctrl-click into a new tab, a role without Reports page access, the error messages (network blocking),
 the PDF row limit on the large A/P data, the location column wrap at 1440 px.
+
+## Pass 1 — written 10 Nov 2026 (`apply1/`)
+- All 380 tests (after the writing session's v11 update): the build line now reads "Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026."; 357 "Not available on Build" markers became `AUTOMATION: READY` (HOLD and EXPECT FAIL kept); 30 tests' role labels aligned to the screen; 51 first-step anchors added (where to click to start); one note's code "S8-R3" replaced with plain words. Guarded writes (ours, not Automated, text unchanged), 380/380 read back OK (`apply1/write-log.txt`).
+- Checker fix (dated comments): a camelCase word directly followed by "=" is an address-bar key the tester reads (`pastDue=`), not an internal code — `check_tester_runnable.py`, `check_runnable_cases.py`.
+
+## Setup recipes walked — probes 09–58 (10 Nov 2026)
+Every click path the Setup lists use was done on the QA site, with throwaway records named ZZAUTOTEST: `apply2/RECIPES-SEEN.md`
+(what was clicked, the result, the evidence folder, what was NOT seen, and the data left on sv11315). Findings worth knowing:
+- Any exact invoice amount: New Line → Labor Rate "Fixed Line Total" → type the amount.
+- Closing the "New Customer Payment" window with × right after Create Invoice took the new invoice away again (S11315-17583 disappeared and its work order went back to Complete); reloading the page kept it. The Setup lists say "reload, do not close with ×". This is outside this suite's tests; reported to the QA lead as an observation only (no ticket — hold H1).
+- A deposit held on a work order is not on the A/R reports; only the part left over after that work order is invoiced is, dated the day of the invoice.
+- "Due on Receipt" makes an invoice due on its own date; vendor terms other than Net 30 were not tried.
+- The second location ("Staging Lethbridge - 4310") has its own, longer Labor Rate list: type "Fixed" to find "Fixed Line Total".
+
+## Pass 2 — Setup lists, written 10 Nov 2026 evening (`apply2/`)
+- 142 tests were classed as needing records (`hard-classes.json`). 9 need nothing made (their states were seen on the QA site), so **133 tests** got a separate, plain **Setup** list after their Preconditions (Rule 119), built only from their own preconditions by `apply2/setup.py` + `apply2/manual.py`, and were moved into the new folder **S133629 "Setup needed before testing"** under 90418 (origin folders in `apply2/move-origin.json`). 133/133 written and read back; 133/133 read back in S133629.
+- 44 of them carry "Partly checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026; not yet seen on that build: …" naming what was not walked (signing in as Tech with another role ×14, a third location ×8, paying part of a bill ×6, a bill due on its own date ×6, and smaller ones — full list from `apply2/plan.py`).
+- Correction write: 90 tests' Setup lost the quote marks around names the tester types and cross-references (not screen labels). 90/90 read back.
+- `check_precond_labels.py` (dated comment): a design-picture caption followed by its attachment file name, and a name the tester types ("named "…"", ""…" (customer A)"), are not read as screen labels; nor is the text between two quoted single characters.
+- Gates: offline `check_runnable_cases` 0 fails and `check_tester_runnable` 0 fails on all 380 with the new text; live `verify_suite.py --root 90418 --observed build/OBSERVED-UI-LABELS-sv11315.md --run 557 --build v26.45.2-6a8b89c` **ALL CHECKS PASSED** (380 sourced, READY 357 + EXPECT FAIL 9 = 366, HOLD 14, 0 not runnable, precondition labels clear, run 557 = 380 tests, none missing).
