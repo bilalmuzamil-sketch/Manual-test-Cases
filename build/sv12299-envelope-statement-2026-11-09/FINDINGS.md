@@ -130,3 +130,4 @@ Filed (Bug, Medium, Product Area Work Orders, no parent — SV-12299 has none, l
 - **SV-12487** "Invoice email shows a stray "<" after the work order number" — picture 15 (lines copied verbatim from the received email + Gmail preview); code: `api/templates/email/invoice/send-invoice-email.html.twig` L2–3 at 6a8b89c (`{{ workOrderNumber }}<{% endblock %}`).
 - **SV-12488** "Sending invoice: For Customer files are attached without being listed" — picture 14.
 Learning check: nothing new for the standard; Gmail preview text = the template's hidden preheader block (noted here).
+- 10 Nov 09:16 UTC: SV-12486 and SV-12488 Expected behaviour now says the exact fix is for @Milos Vasic and @Chris Ward to decide (QA lead). SV-12487 left as is (plain code fix). Rule saved in CLAUDE.md.
