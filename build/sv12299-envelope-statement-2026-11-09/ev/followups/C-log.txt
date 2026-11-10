@@ -1,0 +1,10 @@
+marker {"version":"v26.45.2-107ad4b","lastModified":"Mon, 09 Nov 2026 14:33:28 GMT","etag":"W/\"384ad0e005d779fab989729966620c16\""}
+wo tooltip ["Send Email"]
+wo envelope box {"x":1257.6875,"y":85,"width":39.359375,"height":39.359375}
+ticked rows 1
+dialog Sending statement close You're about to send statement to selected contacts: Inbox SV12299 bilal.muzamil+sv12299@shopview.com Optional Emails (Comma Separated) Hello, Please find your statement attached and remit payment at your earliest convenience. Thank you.. Email Content Best regards, Bilal Muz
+requests on open []
+requests on send ["GET /api/customers/164013e0-2148-402e-b0e2-4f9390b72c29/statement-pdf ","POST /api/customer-account/send-transactions-mail "]
+sent at 2026-11-10T09:07:16.534Z
+fetch /api/customers/164013e0-2148-402e-b0e2-4f9390b72c29/statement-pdf -> 200 bytes 23767
+pdf text:  Trucks Hill 2 |  United Arab Emirates |  Ajman, Federally Administered Tribal Areas 0000 |  971545454 |  |  |  |  Statement DATE: Nov 10, 2026 |  |  |  ZZAUTOTEST SV12299 Charge TOTAL DUE: $299.90 |  Account |  |  Date Description Location Amount Balance |  |  Nov 9, 2026 Invoice #:S2-1945 Due: Dec 9, 2026 Trucks Hill 2 $149.95 $149.95 |  |  Nov 10, 2026 Invoice #:S2-1944 Due: Dec 10, 2026 Trucks Hill 2 $149.95 $149.95 |  |  |  |  Current Due 1-30 Days Past Due 31-60 Days 61-90 Days 90+ Days Amount Due |  |  $299.90 $0.00 $0.00 $0.00 $0.00 $299.90 |  |  |  |  | 5454545454544544 Software Powered by ShopView Page 1 of 1 | 
