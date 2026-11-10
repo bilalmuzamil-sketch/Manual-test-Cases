@@ -37,14 +37,13 @@ lists may use; anything else is written as "not yet seen on this build".
 | Recipe | Clicks, in the build's labels | Seen in |
 |---|---|---|
 | Two locations | The organisation has two: "Staging Heavy Duty - 9919" and "Staging Lethbridge - 4310" (Settings → Locations; profile menu → Change Location lists both). In A to Z order Heavy Duty comes first | `probe/34d/`, `probe/34/` |
-| Make a document at the other location | Profile menu → Change Location: <location> → pick the other location (the top bar then shows "Staging Lethbridge - 4310"); make the document there; switch back the same way afterwards. Switching was done and undone | `probe/50/`, `probe/51/` |
+| Make a document at the other location | Profile menu → Change Location: <location> → pick the other location (the top bar then shows "Staging Lethbridge - 4310"); make the document there; switch back the same way afterwards. Made this way at Lethbridge: invoice S11315-17586 ($20.00, Location "Staging Lethbridge - 4310" on A/R Aging Detail) and bill ZZAUTOTEST-BILL-B1 ($40.00, same location on A/P Aging Detail). Lethbridge has its own, longer Labor Rate list: type "Fixed" in the Labor Rate box to find "Fixed Line Total" | `probe/50/`, `probe/51/`, `probe/57/`, `probe/57b/` |
 | Third location | Settings → Locations → New Location → Name * … → Save & Close (form seen, not saved; it warns "Setting up a new location may result in additional billing.") | `probe/35/` |
 | Custom role | Settings → Roles & Permissions → Create Custom Role → "Choose a template": Skip → Create Role: Role Name, switches (with Skip every switch starts off) → Create ("Role created successfully."). Made one throwaway role, "ZZAUTOTEST AR AP Reports only" (Reports in Page Access on, nothing else) | `probe/45b/` |
 | Give the Tech sign-in user the role | Settings → Staff → the row "Tech ShopView" → edit icon → Edit Staff Member → Role (the custom role is offered) → Save & Close; sign out, then on the QA sign-in page press "Tech" in the DEV MODE — QUICK LOGIN panel. Tech ShopView's role is Technician at "Staging Heavy Duty - 9919" only; put it back to Technician afterwards | `probe/47b/` (role list seen; not assigned, so Tech was not changed) |
 
 ## Not walked this pass (Setup lines that use them say "not yet seen on this build")
 
-- Making a document while switched to the other location (the switch itself was done and undone).
 - An unused deposit dated an earlier day (the leftover deposit takes the day the invoice is made), and a deposit taken at a location other than the work order's.
 - Saving a third location, and enrolling yourself at it.
 - Signing in as Tech with a custom role (role offered in the list; not assigned).
@@ -54,7 +53,7 @@ lists may use; anything else is written as "not yet seen on this build".
 ## Throwaway data left on sv11315 (all named ZZAUTOTEST)
 
 Customer "ZZAUTOTEST AR Customer A" (contact, asset, work order S11315-17581 invoiced $300 / paid $250,
-work orders S11315-17582 $1,250.50, S11315-17583 $100, S11315-17584 $50 (paid by its $75 deposit, leftover deposit DEP11315-4707 $25), S11315-17585 $10 (made under Due on Receipt; terms back to Net 30), credit memo CM11315-4192 $150, part sale P11315-248 invoiced $300); vendor "ZZAUTOTEST AP Vendor A"
+work orders S11315-17582 $1,250.50, S11315-17583 $100, S11315-17584 $50 (paid by its $75 deposit, leftover deposit DEP11315-4707 $25), S11315-17585 $10 (made under Due on Receipt; terms back to Net 30), S11315-17586 $20 at Lethbridge, credit memo CM11315-4192 $150, part sale P11315-248 invoiced $300); vendor "ZZAUTOTEST AP Vendor A"
 (purchase orders I11315-1395 received as bill ZZAUTOTEST-BILL-A1 $200, and the part-sale order received
-as ZZAUTOTEST-BILL-PS1 $100; return credit C-13667 $50); custom role "ZZAUTOTEST AR AP Reports only"
+as ZZAUTOTEST-BILL-PS1 $100; I11315-724 received at Lethbridge as ZZAUTOTEST-BILL-B1 $40; return credit C-13667 $50); custom role "ZZAUTOTEST AR AP Reports only"
 (assigned to nobody). Tech ShopView was not changed.
