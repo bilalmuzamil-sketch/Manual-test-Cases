@@ -63,6 +63,7 @@ Found while testing [SV-xxxx|https://shopview.atlassian.net/browse/SV-xxxx]     
 
 h3. Summary
 <2–3 plain sentences: what goes wrong, in everyday words. No codes, no jargon.>
+*Where it happens:* <"Reproducible on production, and also on the QA environment it was found on: <link>." OR "Only reproducible on the QA environment: <link>. It does not happen on production.">   <- Rule 128: try BOTH before writing; production too => steps, data, links and pictures all from production
 
 h3. Steps to reproduce
 Open <environment>: <link> (<login>, location <name>).
