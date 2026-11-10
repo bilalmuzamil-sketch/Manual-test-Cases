@@ -1,0 +1,14 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./13/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dlg = () => page.locator('.q-dialog:visible').last(); const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+await step('create', async () => { await page.locator('header').getByText('Work Orders', { exact: true }).first().click(); await page.waitForTimeout(3000); await page.getByRole('button', { name: 'Create Work Order' }).first().click(); await page.waitForTimeout(2500);
+  log('NEW WO DIALOG:', T(await dlg().innerText()));
+  const cf = dlg().locator('.q-field', { hasText: 'Customer' }).first(); await cf.click(); await page.waitForTimeout(800); await page.keyboard.type('ZZAUTOTEST AR'); await page.waitForTimeout(3000); log('customer results:', JSON.stringify((await menu()).slice(0, 4))); await page.locator('.q-menu:visible .q-item', { hasText: 'ZZAUTOTEST AR Customer A' }).first().click(); await page.waitForTimeout(1500);
+  log('DIALOG after customer:', T(await dlg().innerText())); await dump('after-customer');
+  const add = dlg().getByText('Add Asset', { exact: true }).first(); log('Add Asset count', await add.count()); });
+await step('asset', async () => { const af = dlg().locator('.q-field', { hasText: /Asset/ }).first(); await af.click(); await page.waitForTimeout(1500); log('asset menu:', JSON.stringify((await menu()).slice(0, 6))); await dump('asset-menu'); await page.keyboard.press('Escape'); await page.waitForTimeout(500);
+  const btn = dlg().locator('button:visible, a:visible, .cursor-pointer:visible').filter({ hasText: /Add Asset/ }); log('add-asset clickables', await btn.count(), JSON.stringify((await btn.allInnerTexts()).map(T))); });
+await r.browser?.close?.(); process.exit(0);

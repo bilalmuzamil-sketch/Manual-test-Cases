@@ -1,0 +1,13 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./21/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dlg = () => page.locator('.q-dialog:visible').last();
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 1200);
+const WO = fs.readFileSync(new URL('./16b/wo-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+const okNotes = async () => { for (let i = 0; i < 2; i++) { const ok = page.locator('.q-dialog:visible button', { hasText: /^Ok$/ }).first(); if (await ok.count()) { await ok.click(); await page.waitForTimeout(1000); } } };
+await step('review', async () => { await go(WO.replace('/lines', '/finance')); await page.waitForTimeout(3500); await okNotes(); await page.locator('main button:visible', { hasText: 'Mark Reviewed' }).first().click(); await page.waitForTimeout(2500);
+  await dlg().locator('.q-field', { hasText: 'VIN' }).first().locator('input').fill('ZZAUTOTESTVIN0001'); await page.waitForTimeout(500); await dlg().locator('button:visible', { hasText: 'Confirm Review' }).click(); await page.waitForTimeout(4000); log('after confirm:', await dl());
+  log('CARD:', T(await page.locator('body').innerText()).match(/S11315-17581 .{0,40}/)?.[0]); log('BUTTONS:', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))].filter(Boolean))); log('LABELS:', JSON.stringify(await page.locator('main .q-field__label').allTextContents())); await dump('after-review', true); });
+await r.browser?.close?.(); process.exit(0);

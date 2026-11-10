@@ -1,0 +1,20 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./17/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dlg = () => page.locator('.q-dialog:visible').last(); const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const fld = (lab) => dlg().locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: lab }) }).first();
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 900);
+const WO = fs.readFileSync(new URL('./16b/wo-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+const okNotes = async () => { for (let i = 0; i < 2; i++) { const ok = page.locator('.q-dialog:visible button', { hasText: /^Ok$/ }).first(); if (await ok.count()) { await ok.click(); await page.waitForTimeout(1000); } } };
+await step('line', async () => { await go(WO); await page.waitForTimeout(3000); await okNotes(); if (!(await page.locator('.q-dialog:visible', { hasText: 'New Line' }).count())) { await page.locator('main button:visible', { hasText: /^New Line$/ }).first().click(); await page.waitForTimeout(2000); }
+  await dlg().locator('.q-field', { hasText: 'Title' }).first().locator('input').first().fill('ZZAUTOTEST AR line'); await page.keyboard.press('Tab'); await page.waitForTimeout(800);
+  await fld('Labor Rate').click(); await page.waitForTimeout(1200); await page.keyboard.type('Calgary Transit'); await page.waitForTimeout(1500); await page.locator('.q-menu:visible .q-item', { hasText: 'Calgary Transit Rate' }).first().click(); await page.waitForTimeout(800);
+  const ins = await dlg().locator('input').evaluateAll(els => els.map(e => (e.getAttribute('aria-label') || '') + '|' + (e.closest('.q-field')?.querySelector('.q-field__label')?.textContent || ''))); log('inputs:', JSON.stringify(ins));
+  await fld(/Estimated time/i).locator('input').fill('2'); await fld(/Tech time/i).locator('input').fill('2'); await page.waitForTimeout(800);
+  await dlg().getByText('Line Approved', { exact: true }).click(); await page.waitForTimeout(500); log('LINE:', await dl()); await dump('line-filled');
+  await dlg().locator('button:visible', { hasText: 'Save & Close' }).first().click(); await page.waitForTimeout(3500); log('after save:', await dl()); });
+await step('lines', async () => { await go(WO); await page.waitForTimeout(3000); await okNotes(); log('LINES:', T(await page.locator('main').innerText()).slice(0, 900)); log('CARD:', T(await page.locator('body').innerText()).match(/S11315-\d+ .{0,120}/)?.[0]); });
+await step('complete-line', async () => { const c = page.locator('main button:visible', { hasText: /^Complete$/ }).first(); log('Complete btn', await c.count()); await c.click(); await page.waitForTimeout(3000); log('COMPLETE DIALOG:', await dl()); await dump('complete'); log('dialog buttons:', JSON.stringify((await page.locator('.q-dialog:visible button').allInnerTexts()).map(T))); });
+await r.browser?.close?.(); process.exit(0);

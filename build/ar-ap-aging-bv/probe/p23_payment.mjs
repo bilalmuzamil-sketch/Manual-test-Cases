@@ -1,0 +1,15 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./23/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dlg = () => page.locator('.q-dialog:visible').last(); const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 1200);
+const WO = fs.readFileSync(new URL('./16b/wo-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+const okNotes = async () => { for (let i = 0; i < 2; i++) { const ok = page.locator('.q-dialog:visible button', { hasText: /^Ok$/ }).first(); if (await ok.count()) { await ok.click(); await page.waitForTimeout(1000); } } };
+await step('pay', async () => { await go(WO.replace('/lines', '/finance')); await page.waitForTimeout(3500); await okNotes(); await page.locator('main button:visible', { hasText: 'New Payment' }).first().click(); await page.waitForTimeout(3000); log('PAYMENT DIALOG:', await dl());
+  const pm = dlg().locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: 'Payment Method' }) }).first(); await pm.click(); await page.waitForTimeout(1200); log('METHODS:', JSON.stringify(await menu())); await page.locator('.q-menu:visible .q-item', { hasText: /Cash/ }).first().click(); await page.waitForTimeout(800);
+  const row = dlg().locator('tr', { hasText: 'S11315-17581' }).first(); const inp = row.locator('input').last(); log('row inputs', await row.locator('input').count()); await inp.fill('250'); await page.keyboard.press('Tab'); await page.waitForTimeout(1000); log('after amount:', await dl()); await dump('payment-filled');
+  await dlg().locator('button:visible', { hasText: 'Make Payment' }).click(); await page.waitForTimeout(4000); log('after Make Payment:', await dl()); });
+await step('check', async () => { await go('/reports/ar-aging-detail?customerIds='); await page.waitForTimeout(500); await go(WO.replace('/lines', '/finance')); await page.waitForTimeout(3000); await okNotes(); log('FIN:', T(await page.locator('main').innerText()).match(/(Paid|Balance|Amount due|Balance due)[^$]{0,30}\$[\d,.]+/g)); });
+await r.browser?.close?.(); process.exit(0);

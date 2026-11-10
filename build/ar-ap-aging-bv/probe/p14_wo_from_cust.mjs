@@ -1,0 +1,12 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./14/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dlg = () => page.locator('.q-dialog:visible').last(); const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const CU = fs.readFileSync(new URL('./10/customer-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+await step('btn', async () => { await go(CU); await page.waitForTimeout(3500); const b = page.getByRole('button', { name: /New Work Order/ }); log('role buttons', await b.count()); await b.first().click(); await page.waitForTimeout(3000);
+  log('url', page.url(), '| dialog:', T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 500)); await dump('after-click', true); });
+await step('asset', async () => { if (!(await page.locator('.q-dialog:visible').count())) return; const af = dlg().locator('.q-field', { hasText: /Asset/ }).first(); log('asset field text', T(await af.innerText())); await af.click(); await page.waitForTimeout(1500); log('asset menu:', JSON.stringify((await menu()).slice(0, 6))); await page.keyboard.press('Escape');
+  const here = dlg().getByText('Add Asset Here?', { exact: true }); log('Add Asset Here? count', await here.count()); if (await here.count()) { await here.click(); await page.waitForTimeout(2500); log('ADD ASSET:', T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 700)); log('ADD ASSET labels:', JSON.stringify(await page.locator('.q-dialog:visible .q-field__label').allTextContents())); await dump('add-asset'); } });
+await r.browser?.close?.(); process.exit(0);

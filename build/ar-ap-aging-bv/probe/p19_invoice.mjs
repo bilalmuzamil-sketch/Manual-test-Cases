@@ -1,0 +1,12 @@
+import { start, A } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./19/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 1200);
+const WO = fs.readFileSync(new URL('./16b/wo-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+const okNotes = async () => { for (let i = 0; i < 2; i++) { const ok = page.locator('.q-dialog:visible button', { hasText: /^Ok$/ }).first(); if (await ok.count()) { await ok.click(); await page.waitForTimeout(1000); } } };
+await step('wo', async () => { await go(WO); await page.waitForTimeout(3000); await okNotes(); log('CARD:', T(await page.locator('body').innerText()).match(/S11315-17581 .{0,80}/)?.[0]); log('BUTTONS:', JSON.stringify([...new Set((await page.locator('button:visible').allInnerTexts()).map(T))].filter(Boolean).slice(0, 30)));
+  await page.locator('main button:visible').filter({ has: page.locator('i:text-is("more_vert")') }).first().click(); await page.waitForTimeout(1000); log('WO MENU:', JSON.stringify((await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T))); await page.keyboard.press('Escape'); });
+await step('finance', async () => { await page.locator('main .q-tab', { hasText: /^\s*Finance/ }).first().click(); await page.waitForTimeout(3000); log('FINANCE:', T(await page.locator('main').innerText()).slice(0, 1500)); log('FIN BUTTONS:', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))].filter(Boolean))); log('FIN LABELS:', JSON.stringify(await page.locator('main .q-field__label').allTextContents())); await dump('finance', true); });
+await r.browser?.close?.(); process.exit(0);
