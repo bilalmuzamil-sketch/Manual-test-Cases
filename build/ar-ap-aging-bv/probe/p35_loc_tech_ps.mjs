@@ -1,0 +1,23 @@
+import { start } from './lib.mjs';
+import fs from 'fs';
+const OUT = new URL('./35/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 1200);
+const dlg = () => page.locator('.q-dialog:visible').last();
+const btnIn = async (root, label) => { const bs = root.locator('button:visible'); const tx = (await bs.allInnerTexts()).map(T); const i = tx.indexOf(label); if (i < 0) throw new Error('no button ' + label + ' in ' + JSON.stringify(tx)); await bs.nth(i).click(); };
+const field = (root, re) => root.locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: re }) }).first();
+await step('new-location', async () => { await go('/administration/locations'); await page.waitForTimeout(3000); await btnIn(page.locator('main').last(), 'New Location'); await page.waitForTimeout(2500); log('NEW LOCATION', await dl()); log('labels', JSON.stringify(await dlg().locator('.q-field__label').allTextContents())); await dump('new-location'); await page.keyboard.press('Escape'); await page.waitForTimeout(800); });
+await step('tech-user', async () => { await go('/administration/staff'); await page.waitForTimeout(3000); const row = page.locator('main tbody tr').filter({ hasText: /Tech\s+ShopView/ }).first(); log('TECH ROW', T(await row.innerText().catch(() => 'none on page 1')));
+  if (!(await row.count())) { await page.locator('main').last().getByText('Search', { exact: true }).click().catch(() => {}); await page.keyboard.type('Tech', { delay: 60 }); await page.waitForTimeout(2500); log('TECH ROW after search', T(await row.innerText().catch(() => 'none'))); }
+  await row.locator('button').last().click(); await page.waitForTimeout(2500); log('EDIT TECH', await dl());
+  await field(dlg(), /^Role/).click(); await page.waitForTimeout(1200); log('ROLE OPTS', JSON.stringify(await menu())); await page.keyboard.press('Escape'); await page.waitForTimeout(400);
+  await field(dlg(), /^Location/).click(); await page.waitForTimeout(1200); log('LOC OPTS', JSON.stringify(await menu())); await dump('edit-tech'); await page.keyboard.press('Escape'); await page.keyboard.press('Escape'); });
+await step('part-sale', async () => { await go('/parts/inventory'); await page.waitForTimeout(2000); await page.locator('a:visible, .q-item:visible').filter({ hasText: /^\s*\S*\s*Part Sales\s*$/ }).first().click(); await page.waitForTimeout(3000); log('PS URL', page.url()); log('PS BTNS', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))].filter(Boolean)));
+  await btnIn(page.locator('main').last(), 'New Part Sale'); await page.waitForTimeout(2000); log('NEW PS', await dl());
+  await field(dlg(), /^Customer/).click(); await page.keyboard.type('ZZAUTOTEST AR', { delay: 50 }); await page.waitForTimeout(2500); log('CUST OPTS', JSON.stringify((await menu()).slice(0, 5)));
+  const o = page.locator('.q-menu:visible .q-item').filter({ hasText: 'ZZAUTOTEST AR Customer A' }).first(); if (!(await o.count())) throw new Error('customer not offered');
+  await o.click(); await page.waitForTimeout(800); await btnIn(dlg(), 'Save'); await page.waitForTimeout(4000); log('PS PAGE URL', page.url()); fs.writeFileSync(OUT + 'ps-url.txt', page.url() + '\n');
+  log('PS TABS', JSON.stringify((await page.locator('.q-tab:visible').allInnerTexts()).map(T))); log('PS BTNS', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))].filter(Boolean).slice(0, 30))); log('PS TEXT', T(await page.locator('main').last().innerText()).slice(0, 700)); await dump('ps-page'); });
+await r.browser?.close?.(); process.exit(0);

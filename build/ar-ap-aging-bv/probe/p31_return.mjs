@@ -1,0 +1,21 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./31/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const nav = async (name) => { await go('/parts/inventory'); await page.waitForTimeout(2000); await page.locator('a:visible, .q-item:visible').filter({ hasText: new RegExp('^\\s*\\S*\\s*' + name + '\\s*$') }).first().click(); await page.waitForTimeout(3000); };
+const M = () => page.locator('main').last();
+const field = (root, re) => root.locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: re }) }).first();
+const VN = 'ZZAUTOTEST AP Vendor A';
+await step('create-return', async () => { await nav('Returns'); await page.getByRole('button', { name: 'Create Return' }).click(); await page.waitForTimeout(3000); log('URL', page.url());
+  await field(M(), /^Vendor/).click(); await page.keyboard.type('ZZAUTOTEST', { delay: 50 }); await page.waitForTimeout(2000); log('V OPTS', JSON.stringify(await menu())); await page.locator('.q-menu:visible .q-item').filter({ hasText: VN }).first().click(); await page.waitForTimeout(800);
+  await field(M(), /^Packaging Slip/).locator('input').fill('ZZAUTOTEST-SLIP-1');
+  await field(M(), /^Part Number/).click(); await page.keyboard.type('ZZAUTO-PART', { delay: 50 }); await page.waitForTimeout(2500); log('P OPTS', JSON.stringify((await menu()).slice(0, 6)));
+  const o = page.locator('.q-menu:visible .q-item').filter({ hasText: 'ZZAUTO-PART-A' }).first(); if (await o.count()) { await o.click(); await page.waitForTimeout(1000); }
+  await field(M(), /^Price Per Unit/).locator('input').fill('50').catch(e => log('price', e.message.split('\n')[0]));
+  await page.waitForTimeout(800); await dump('return-filled'); log('TEXT', T(await M().innerText()).slice(0, 500));
+  await page.getByRole('button', { name: 'Save Return' }).click(); await page.waitForTimeout(3500); log('after save', page.url()); log('DLG', T((await page.locator('.q-dialog:visible').allInnerTexts()).join('|')).slice(0, 300)); await dump('after-save'); });
+await step('receive-credit', async () => { await nav('Returns'); const row = page.locator('main tbody tr').filter({ hasText: 'ZZAUTO-PART-A' }).first(); log('ROW', T(await row.innerText()));
+  await row.locator('.q-checkbox').first().click(); await page.waitForTimeout(1000); await page.getByRole('button', { name: 'Receive Credit' }).click(); await page.waitForTimeout(3500); log('URL', page.url());
+  log('labels', JSON.stringify(await page.locator('main .q-field__label').allTextContents())); log('btns', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))].filter(Boolean))); log('TEXT', T(await M().innerText()).slice(0, 700)); await dump('receive-credit'); });
+await r.browser?.close?.(); process.exit(0);

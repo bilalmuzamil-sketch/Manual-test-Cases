@@ -1,0 +1,14 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./27c/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dlg = () => page.locator('.q-dialog:visible').last(); const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 1200);
+const nav = async (name) => { await go('/parts/inventory'); await page.waitForTimeout(2000); await page.locator('a:visible, .q-item:visible').filter({ hasText: new RegExp('^\\s*\\S*\\s*' + name + '\\s*$') }).first().click(); await page.waitForTimeout(3000); };
+await step('new-vendor', async () => { await nav('Vendors'); log('url', page.url()); await page.getByText('New Vendor', { exact: true }).click(); await page.waitForTimeout(2500); log('NEW VENDOR:', await dl()); log('labels', JSON.stringify(await dlg().locator('.q-field__label').allTextContents()));
+  const t = dlg().locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: /term/i }) }).first(); if (await t.count()) { await t.click(); await page.waitForTimeout(1200); log('VENDOR TERMS:', JSON.stringify(await menu())); await page.keyboard.press('Escape'); } await dump('new-vendor'); await page.keyboard.press('Escape'); await page.waitForTimeout(800); });
+if(0) await step('new-po', async () => { await nav('Purchase Orders'); await page.getByRole('button', { name: /New PO/ }).click(); await page.waitForTimeout(2500); log('NEW PO:', await dl()); log('labels', JSON.stringify(await dlg().locator('.q-field__label').allTextContents())); await dump('new-po'); await page.keyboard.press('Escape'); await page.waitForTimeout(800); });
+await step('receive', async () => { await nav('Purchase Orders'); await page.locator('main').getByText('Receive', { exact: true }).first().click(); await page.waitForTimeout(2500); log('RECEIVE:', await dl()); log('url', page.url()); log('labels', JSON.stringify(await page.locator('.q-dialog:visible .q-field__label, main .q-field__label').allTextContents())); await dump('receive'); await page.keyboard.press('Escape'); });
+await step('create-return', async () => { await nav('Returns'); await page.getByText('Create Return', { exact: true }).click(); await page.waitForTimeout(2500); log('CREATE RETURN:', await dl()); log('labels', JSON.stringify(await dlg().locator('.q-field__label').allTextContents())); await dump('create-return'); await page.keyboard.press('Escape'); await page.waitForTimeout(800);
+  await page.locator('main button:visible').filter({ hasText: 'more_vert' }).first().click(); await page.waitForTimeout(1000); log('RETURNS MORE:', JSON.stringify(await menu())); await page.keyboard.press('Escape'); });
+await r.browser?.close?.(); process.exit(0);

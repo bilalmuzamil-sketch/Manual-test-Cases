@@ -1,0 +1,966 @@
+### C715343 [3rd location / not enrolled] A/R Detail: exports list the ticked locations in A to Z order
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the organization has open A/R documents at three locations, location A, location B and location C; in A to Z order location A's name comes before location C's.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with no location ticked in the Location filter ("Clear selection" clicked).
+### C715387 [3rd location / not enrolled] A/R Summary: the Location chip reads all, a count, one name or none
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the organization has open A/R documents at three locations, location A, location B and location C; location C's name is longer than the chip can show.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715394 [3rd location / not enrolled] A/P Summary: a link naming several locations or every location
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the organization has open A/P documents at three locations, location A, location B and location C.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715411 [3rd location / not enrolled] A/R Collection: the Location column shows with two or more locations
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the organization has open A/R documents at three locations, your current location, location B and location C.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+### C715412 [3rd location / not enrolled] A/R Summary: a row shows one location's name or Multiple
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the organization has open documents at three locations, location A, location B and location C.
+  - Have a customer, customer A, with open invoices only at location A.
+  - Have a customer, customer B, with open invoices at location A and location B.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715413 [3rd location / not enrolled] A/P Summary: a row shows one location's name or Multiple
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the organization has open documents at three locations, location A, location B and location C.
+  - Have a vendor, vendor A, with open bills only at location A.
+  - Have a vendor, vendor B, with open bills at location A and location B.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715424 [3rd location / not enrolled] A/R Detail: a document at a location you are not enrolled in is plain text
+  - Sign in as an "Admin" user enrolled at one location only.
+  - Have a customer with an open invoice A made at another location, one this user is not enrolled in.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with that customer ticked and every bucket expanded.
+### C1062576 [credit memo/deposit] A/R Detail: the PDF and CSV name each credit as the screen does
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with an open invoice A, an unused credit memo A and an unused deposit A.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only that customer ticked in the Customer filter.
+### C715312 [credit memo/deposit] A/R Detail: sorting moves rows, never groups, and keeps groups open
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents on today's date (invoices, credit memos and deposits) in the "31-60 days past due" and "1-30 days past due" buckets, at least two in each with different open balances and dates, so the re-sort can be seen.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report so that two buckets are expanded: "31-60 days past due" and "1-30 days past due"; the other three are collapsed.
+### C715354 [credit memo/deposit] A/R Detail: the top-left chevron collapses and expands every group
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open invoices, credit memos and deposits in at least three aging buckets on today's date.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with every group collapsed.
+### C715423 [credit memo/deposit] A/R Detail: credit memos and deposits are plain text
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with an unused credit memo A and an unused deposit A at your current location.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with that customer ticked and every bucket expanded.
+### C715481 [credit memo/deposit, named records] Design: A/R Summary at 1440 px in light theme shows every column
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715482 [credit memo/deposit, named records] Design: A/R Summary in dark theme: chips, links and Totals row readable
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a negative amount, which must not overlap or be cut off.
+  - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab, also in dark theme, for comparison.
+### C715483 [credit memo/deposit, named records] Design: A/R Summary at 1536 px: no overlap or clipping, light and dark
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a negative amount, which must not overlap or be cut off.
+  - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715484 [credit memo/deposit, named records] Design: A/R Detail at 1440 px in light theme shows every column
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with every group expanded (Expand all).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715485 [credit memo/deposit, named records] Design: A/R Detail in dark theme: chips, links and Totals row readable
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
+  - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with every group expanded (Expand all).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab, also in dark theme, for comparison.
+### C715486 [credit memo/deposit, named records] Design: A/R Detail at 1536 px: no overlap or clipping, light and dark
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
+  - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715487 [credit memo/deposit, named records] Design: A/R Collection at 1440 px in light theme shows every column
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with every group expanded (Expand all).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715488 [credit memo/deposit, named records] Design: A/R Collection in dark theme: chips, links and Totals row readable
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
+  - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with every group expanded (Expand all).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab, also in dark theme, for comparison.
+### C715489 [credit memo/deposit, named records] Design: A/R Collection at 1536 px: no overlap or clipping, light and dark
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
+  - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715538 [credit memo/deposit] Design: A/R Collection after Expand all matches the design picture
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in this report at two locations, so the Location column shows.
+  - Make sure your role has the "View and Manage AP/AR Data" switch on, so the credit term shows.
+  - Make sure customer A, first in name order, has an overdue invoice, an unused credit memo, a phone number and a credit term.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with every group collapsed.
+  - Open the design picture "Expand all from the header" (ar-ap-p3-expand-all-from-the-header.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
+### C715545 [credit memo/deposit] Design: A/R Detail invoice numbers are blue links, credit memos plain text
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
+  - Make sure you are enrolled at both locations, so an invoice at your other location is a link.
+  - Have a customer, customer A, with an open invoice made at your other location, more than 90 days past due.
+  - Have a customer, customer B, with an unused credit memo at your current location, more than 90 days past due.
+  - Have a customer, customer C, with an open invoice at your current location, more than 90 days past due.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with the "91 or more days past due" bucket expanded.
+  - Open the design picture "Links only where they can open" (ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples. Do not use the older attachment of the same picture, "Links only where they can open" (ar-ap-p5-links-only-where-they-can-open.png): it shows the design before 23 Oct 2026.
+### C1062566 [dated N days, credit memo/deposit] A/R Detail: a credit memo or deposit dated on the as-of date is in Current
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with an unused credit memo, credit memo A, and an unused deposit, deposit A, both dated the same earlier day, date A.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only that customer ticked in the Customer filter.
+### C1062567 [dated N days, vendor credit/return] A/P Detail: a vendor credit dated on the as-of date is Current, Past Due 0
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with an unused vendor credit, vendor credit A, dated an earlier day, date A.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with only that vendor ticked in the Vendor filter.
+### C1062568 [dated N days, credit memo/deposit] A/R Collection: a credit dated on the as-of date shows Past Due 0
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer, customer A, with an unused credit memo, credit memo A, dated an earlier day, date A.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only customer A ticked in the Customer filter.
+### C1062569 [dated N days] A/P Detail: a bill not yet due shows a negative Past Due
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with two unpaid bills on today's date: bill A due 9 days after today and bill B due today.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with only that vendor ticked in the Vendor filter.
+### C1062572 [dated N days] A/R Detail: Date and Due Date read as dates, never Today or Yesterday
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with three open invoices, each due 30 days after its own date: invoice A dated today, invoice B dated yesterday and invoice C dated 2 days ago.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only that customer ticked in the Customer filter.
+### C1062573 [dated N days] A/P Detail: Date and Due Date read as dates, never Today or Yesterday
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with three open bills, each due 30 days after its own date: bill A dated today, bill B dated yesterday and bill C dated 2 days ago.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with only that vendor ticked in the Vendor filter.
+### C1062574 [dated N days, credit memo/deposit, same-day/evening] A/R Detail: Transaction Type names Credit Memo and Deposit and sorts them
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with an open invoice A, an unused credit memo A and an unused deposit A, all dated 10 days ago, with invoice A due the same day, so all three sit in the "1-30 days past due" bucket.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only that customer ticked in the Customer filter.
+### C1062575 [dated N days, vendor credit/return, same-day/evening] A/P Detail: Transaction Type names Vendor Credit and sorts it after Invoice
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with an unpaid bill A and an unused vendor credit A, both dated 10 days ago, with bill A due the same day, so both sit in the "1-30 days past due" bucket.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with only that vendor ticked in the Vendor filter.
+### C1062578 [dated N days] A/R Collection: a Location sort returns to Date order when one location is left
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have a customer, customer A, with three overdue invoices: invoice A at location B dated 40 days ago, invoice B at location A dated 20 days ago and invoice C at location A dated 30 days ago.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only customer A ticked in the Customer filter.
+### C1062579 [dated N days] A/R Summary: a Location sort falls back when a new date leaves one location
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, so the Location column shows.
+  - Pick an earlier date, date A, on which all of the organization's open A/R documents were at location A.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C1062581 [dated N days] A/R Detail: the PDF prints dates as month, two-digit day and year
+  - Sign in as an Admin user (the "Admin" role).
+  - Pick an earlier date, date A, from the 1st to the 9th of a month.
+  - Have a customer with an open invoice, invoice A, dated date A and due 30 days later.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only that customer ticked in the Customer filter.
+### C1062584 [dated N days, 3rd location / not enrolled] A/R Detail: a new as-of date keeps the ticked locations still in the list
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in A/R Detail on today's date at three locations, location A, location B and location C.
+  - Pick an earlier date, date A, on which location A and location B had open documents in A/R Detail and location C had none.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+### C1062585 [dated N days, 3rd location / not enrolled] A/R Detail: a new as-of date with no ticked location left returns to All
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in A/R Detail on today's date at three locations, location A, location B and location C.
+  - Pick an earlier date, date A, on which location A and location B had open documents in A/R Detail and location C had none.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+### C1062586 [dated N days] A/R Detail: No locations stays No locations after a new as-of date
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location menu lists two.
+  - Pick an earlier date, date A, on which both locations had open documents in A/R Detail.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+### C715295 [dated N days, exact amount] A/R Detail: Date and Due Date sort oldest first, then newest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C, each for a different customer, so the rows sort across customers:
+  - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
+  - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
+  - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with the "1-30 days past due" bucket expanded.
+### C715296 [dated N days, exact amount] A/R Detail: money headers sort largest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C, each for a different customer, so the rows sort across customers:
+  - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
+  - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
+  - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with the "1-30 days past due" bucket expanded.
+### C715299 [dated N days, exact amount] A/R Collection: the Date header reverses on its first click
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with overdue invoices on today's date.
+  - Make sure that in that customer's group there are three open invoices, document A, document B and document C:
+  - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
+  - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
+  - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with that customer's group expanded.
+### C715300 [dated N days, exact amount] A/R Collection: money and Past Due headers sort largest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with overdue invoices on today's date.
+  - Make sure that in that customer's group there are three open invoices, document A, document B and document C:
+  - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
+  - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
+  - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with that customer's group expanded.
+### C715303 [dated N days, exact amount] A/P Detail: Date and Due Date sort oldest first, then newest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C, each for a different vendor, so the rows sort across vendors:
+  - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
+  - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
+  - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with the "1-30 days past due" bucket expanded.
+### C715304 [dated N days, exact amount] A/P Detail: money and Past Due headers sort largest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C, each for a different vendor, so the rows sort across vendors:
+  - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
+  - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
+  - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with the "1-30 days past due" bucket expanded.
+### C715307 [dated N days, exact amount] A/P Unpaid Invoices: the Date header reverses on its first click
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with overdue bills on today's date.
+  - Make sure that in that vendor's group there are three open bills, document A, document B and document C:
+  - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
+  - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
+  - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with that vendor's group expanded.
+### C715308 [dated N days, exact amount] A/P Unpaid Invoices: money and Past Due headers sort largest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with overdue bills on today's date.
+  - Make sure that in that vendor's group there are three open bills, document A, document B and document C:
+  - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
+  - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
+  - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with that vendor's group expanded.
+### C715310 [dated N days, vendor credit/return] A/P Unpaid Invoices: a vendor credit stays at the bottom when Due Date is sorted
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor, vendor A, with two overdue bills, bill A (due 10 days ago) and bill B (due 20 days ago), and one unused vendor credit, vendor credit A, on today's date.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+### C715316 [dated N days] A/R Summary: the sort stays while changing date, scrolling and filters
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Make sure the report has more than 30 customers with open documents on today's date and on yesterday's date, at both locations.
+  - Have a customer, customer A, with open documents at both locations.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715318 [dated N days] A/R Collection: the sort stays while changing date, scrolling and filters
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Make sure the report has more than 30 customers with open documents on today's date and on yesterday's date, at both locations.
+  - Have a customer, customer A, with open documents at both locations.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+### C715319 [dated N days] A/P Summary: the sort stays while changing date, scrolling and filters
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Make sure the report has more than 30 vendors with open documents on today's date and on yesterday's date, at both locations.
+  - Have a vendor, vendor A, with open documents at both locations.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715321 [dated N days] A/P Unpaid Invoices: the sort stays while changing date, scrolling and filters
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Make sure the report has more than 30 vendors with open documents on today's date and on yesterday's date, at both locations.
+  - Have a vendor, vendor A, with open documents at both locations.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+### C715323 [dated N days] A/R Summary forgets the sort between visits
+  - Sign in as an Admin user (the "Admin" role).
+  - Have two customers with open invoices on today's date and different totals, so sorting by Total changes their order.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715346 [dated N days, exact amount] A/R Detail: the CSV has one row per document and no group rows
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test), customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with the Customer filter showing customer A ticked.
+### C715347 [dated N days, exact amount] A/R Collection: the CSV has one row per document and no group rows
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test), customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with the Customer filter showing customer A ticked.
+### C715348 [dated N days, exact amount] A/P Detail: the CSV has one row per document and no group rows
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new vendor (created for this test), vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with the Vendor filter showing vendor A ticked.
+### C715349 [dated N days, exact amount] A/P Unpaid Invoices: the CSV has one row per document and no group rows
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new vendor (created for this test), vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with the Vendor filter showing vendor A ticked.
+### C715392 [dated N days] A/R Collection: the Location chip hides when only one location has data
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Pick an earlier date, date A, on which all of the organization's open A/R documents were at location A.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+### C715468 [dated N days] A/R Summary: a PDF of exactly 2,000 customers downloads, 2,001 is refused
+  - Sign in as an Admin user (the "Admin" role).
+  - Pick two as-of dates: date A, on which A/R Summary lists exactly 2,000 customers, and date B, on which it lists exactly 2,001.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715511 [dated N days, named records] Design: A/R Customer chip and menu match Sales By Customer's
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer, customer A, with open invoices on today's date and a long name (more than 40 characters).
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715552 [dated N days] Design: clicking a customer on A/R Summary matches the drill-down picture
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure your role has the "Customers → View" permission and the "View and Manage AP/AR Data" switch on, so customer A's name is a link and its credit term shows.
+  - Have a customer, customer A, with open invoices on an earlier date, date A.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with the as-of date set to date A.
+  - Open the design picture "Drill-down keeps the as-of date" (ar-ap-p4-drill-down-keeps-the-as-of-date.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
+### C715580 [dated N days, exact amount] A/R Summary: ticking several customers quickly shows rows for all of them
+  - Sign in as an Admin user (the "Admin" role).
+  - Have five new customers (created for this test), customer A, customer B, customer C, customer D and customer E, each with one open invoice on today's date and nothing else open: customer A's invoice is $100.00, customer B's $200.00, customer C's $300.00, customer D's $400.00 and customer E's $500.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715588 [dated N days, exact amount] A/R Collection: Due Date sorts oldest first, then newest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with overdue invoices on today's date.
+  - Make sure that in that customer's group there are three open invoices, document A, document B and document C:
+  - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
+  - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
+  - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with that customer's group expanded.
+### C715591 [dated N days, exact amount] A/P Unpaid Invoices: Due Date sorts oldest first, then newest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with overdue bills on today's date.
+  - Make sure that in that vendor's group there are three open bills, document A, document B and document C:
+  - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
+  - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
+  - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with that vendor's group expanded.
+### C715593 [dated N days] A/P Summary forgets the sort between visits
+  - Sign in as an Admin user (the "Admin" role).
+  - Have two vendors with open bills on today's date and different totals, so sorting by Total changes their order.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715607 [dated N days] A/R Collection: the Location list changes with the as-of date
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the organization has open documents in this report at your current location and location B on today's date.
+  - Pick an earlier date, date A, on which location B had no open documents in this report.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+### C715609 [dated N days] A/P Unpaid Invoices: the Location list changes with the as-of date
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the organization has open documents in this report at your current location and location B on today's date.
+  - Pick an earlier date, date A, on which location B had no open documents in this report.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+### C797940 [dated N days] A/R Detail: column headings are in Title Case on screen, PDF and CSV
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in this report on today's date at two locations, so the Location column shows.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with every group expanded (Expand all).
+### C797941 [dated N days] A/R Collection: column headings are in Title Case on screen, PDF and CSV
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in this report on today's date at two locations, so the Location column shows.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with every group expanded (Expand all).
+### C797942 [dated N days] A/P Detail: column headings are in Title Case on screen, PDF and CSV
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in this report on today's date at two locations, so the Location column shows.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with every group expanded (Expand all).
+### C1062580 [exact amount, credit memo/deposit] A/R Detail: the PDF prints a credit's amount in brackets with a minus sign
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with only an unused credit memo, credit memo A, of $150.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only that customer ticked in the Customer filter.
+### C1062587 [exact amount, credit memo/deposit] A/R Summary and Detail count a credit dated on the as-of date in Current
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test), customer A, with only these open documents on today's date: an invoice A of $500.00, 20 days past due, and an unused credit memo A of $120.00 dated today.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only customer A ticked in the Customer filter.
+### C1062588 [exact amount, vendor credit/return] A/P Summary and Detail count a vendor credit dated on the as-of date in Current
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new vendor (created for this test), vendor A, with only these open documents on today's date: a bill A of $500.00, 20 days past due, and an unused vendor credit A of $120.00 dated today.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with only vendor A ticked in the Vendor filter.
+### C1062589 [exact amount] A/P Unpaid Invoices: 101 bills count and add up before all are shown
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new vendor (created for this test), vendor A, with exactly 101 unpaid bills of $10.00 each, all overdue on today's date.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with only vendor A ticked in the Vendor filter.
+### C715289 [exact amount] A/R Summary: Current, 1-30 Days and 31-60 Days sort largest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Have three new customers (created for this test), customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:
+  - Customer A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
+  - Customer B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
+  - Customer C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715290 [exact amount] A/R Summary: 61-90 Days, 91 And Over and Total sort largest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Have three new customers (created for this test), customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:
+  - Customer A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
+  - Customer B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
+  - Customer C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715292 [exact amount] A/P Summary: Current, 1-30 Days and 31-60 Days sort largest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Have three new vendors (created for this test), vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:
+  - Vendor A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
+  - Vendor B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
+  - Vendor C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715293 [exact amount] A/P Summary: 61-90 Days, 91 And Over and Total sort largest first
+  - Sign in as an Admin user (the "Admin" role).
+  - Have three new vendors (created for this test), vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:
+  - Vendor A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
+  - Vendor B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
+  - Vendor C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715344 [exact amount] A/R Summary: the CSV is one flat table with plain two-decimal amounts
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test), customer A, with open invoices on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715345 [exact amount] A/P Summary: the CSV is one flat table with plain two-decimal amounts
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new vendor (created for this test), vendor A, with open bills on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715389 [exact amount, credit memo/deposit] A/R Detail: each row belongs to its own document's location
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have a new customer (created for this test) that has, on today's date, an invoice A made at location A for $500.00 and partly paid ($200.00) by a payment taken at location B, a credit memo A made at location B and a deposit A taken at location B.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with the Customer filter showing that customer ticked and every bucket expanded.
+### C715456 [exact amount, credit memo/deposit] A/R Summary: the Totals row adds up exactly the rows each filter leaves
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have three new customers (created for this test) with only these open documents on today's date:
+  - Customer A: an invoice of $1,000.00 at location A 15 days past due, an invoice of $400.00 at location B 45 days past due and an unused credit memo of $150.00 at location A.
+  - Customer B: an invoice of $700.00 at location A 45 days past due and an invoice of $250.00 at location B 100 days past due.
+  - Customer C: an invoice of $900.00 at location A 5 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715457 [exact amount, vendor credit/return] A/P Summary: the Totals row adds up exactly the rows each filter leaves
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have three new vendors (created for this test) with only these open documents on today's date:
+  - Vendor A: a bill of $1,000.00 at location A 15 days past due, a bill of $400.00 at location B 45 days past due and an unused vendor credit of $150.00 at location A.
+  - Vendor B: a bill of $700.00 at location A 45 days past due and a bill of $250.00 at location B 100 days past due.
+  - Vendor C: a bill of $900.00 at location A 5 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715458 [exact amount, credit memo/deposit] A/R Detail: Totals follow the customer, Past due and Location filters
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have three new customers (created for this test) with only these open documents on today's date:
+  - Customer A: an invoice of $1,000.00 at location A 15 days past due, an invoice of $400.00 at location B 45 days past due and an unused credit memo of $150.00 at location A.
+  - Customer B: an invoice of $700.00 at location A 45 days past due and an invoice of $250.00 at location B 100 days past due.
+  - Customer C: an invoice of $900.00 at location A 5 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+### C715459 [exact amount, credit memo/deposit] A/R Collection: Totals follow the customer, Past due and Location filters
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have three new customers (created for this test) with only these open documents on today's date:
+  - Customer A: an invoice of $1,000.00 at location A 15 days past due, an invoice of $400.00 at location B 45 days past due and an unused credit memo of $150.00 at location A.
+  - Customer B: an invoice of $700.00 at location A 45 days past due and an invoice of $250.00 at location B 100 days past due.
+  - Customer C: an invoice of $900.00 at location A 5 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+### C715460 [exact amount, vendor credit/return] A/P Detail: Totals follow the vendor, Past due and Location filters
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have three new vendors (created for this test) with only these open documents on today's date:
+  - Vendor A: a bill of $1,000.00 at location A 15 days past due, a bill of $400.00 at location B 45 days past due and an unused vendor credit of $150.00 at location A.
+  - Vendor B: a bill of $700.00 at location A 45 days past due and a bill of $250.00 at location B 100 days past due.
+  - Vendor C: a bill of $900.00 at location A 5 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+### C715461 [exact amount, vendor credit/return] A/P Unpaid Invoices: Totals follow the vendor, Past due and Location filters
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have three new vendors (created for this test) with only these open documents on today's date:
+  - Vendor A: a bill of $1,000.00 at location A 15 days past due, a bill of $400.00 at location B 45 days past due and an unused vendor credit of $150.00 at location A.
+  - Vendor B: a bill of $700.00 at location A 45 days past due and a bill of $250.00 at location B 100 days past due.
+  - Vendor C: a bill of $900.00 at location A 5 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+### C715462 [exact amount] A/R Summary: the Totals row leaves out overpaid invoices, as the rows do
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test), customer A, with an invoice of $100.00 paid $120.00 (overpaid), and an open invoice B of $500.00 on today's date.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with the Customer filter showing only customer A ticked.
+### C715463 [exact amount] A/R Summary Totals equal A/R Detail's Open Balance, bucket by bucket
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have two new customers (created for this test) with only these open documents on today's date:
+  - Customer A: an invoice of $1,000.00 at location A that is not yet due, an invoice of $400.00 at location A 45 days past due and an invoice of $300.00 at location B 15 days past due.
+  - Customer B: an invoice of $700.00 at location A 45 days past due, partly paid $200.00 (open $500.00), and an invoice of $250.00 at location A 100 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with customer A and customer B ticked in the Customer filter and Past due on Any.
+### C715464 [exact amount] A/P Summary Totals equal A/P Detail's Open Balance, bucket by bucket
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have two new vendors (created for this test) with only these open documents on today's date:
+  - Vendor A: a bill of $1,000.00 at location A that is not yet due, a bill of $400.00 at location A 45 days past due and a bill of $300.00 at location B 15 days past due.
+  - Vendor B: a bill of $700.00 at location A 45 days past due, partly paid $200.00 (open $500.00), and a bill of $250.00 at location A 100 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with vendor A and vendor B ticked in the Vendor filter and Past due on Any.
+### C715465 [exact amount] A/R Detail: the Past due ranges split at 30, 60 and 90 days exactly
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test) with eight open invoices on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only that customer ticked in the Customer filter and every group expanded.
+### C715466 [exact amount] A/P Unpaid Invoices: the Past due ranges split at 30, 60 and 90 days exactly
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new vendor (created for this test) with eight open bills on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with only that vendor ticked in the Vendor filter and every group expanded.
+### C715581 [exact amount] A/R Summary: a payment shows as soon as the report is reloaded
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test), customer A, with one open invoice, invoice A, of $500.00 on today's date, and nothing else open.
+  - Open invoice A's page in a second browser tab, ready to record a payment.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with the Customer filter showing only customer A ticked.
+### C797945 [exact amount, credit memo/deposit] A/R Summary and Detail Totals differ by what a Past due filter drops
+  - Sign in as an Admin user (the "Admin" role).
+  - Have two new customers (created for this test) with only these open documents on today's date:
+  - Customer A: an invoice of $1,000.00 that is not yet due, an invoice of $400.00 45 days past due, an invoice of $300.00 15 days past due and an unused credit memo of $150.00.
+  - Customer B: an invoice of $500.00 45 days past due and an invoice of $250.00 100 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with customer A and customer B ticked in the Customer filter.
+### C797946 [exact amount, vendor credit/return] A/P Summary and Detail Totals differ by what a Past due filter drops
+  - Sign in as an Admin user (the "Admin" role).
+  - Have two new vendors (created for this test) with only these open documents on today's date:
+  - Vendor A: a bill of $1,000.00 that is not yet due, a bill of $400.00 45 days past due, a bill of $300.00 15 days past due and an unused vendor credit of $150.00.
+  - Vendor B: a bill of $500.00 45 days past due and a bill of $250.00 100 days past due.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with vendor A and vendor B ticked in the Vendor filter.
+### C715273 [named records] A/R Summary opens with customers in name order, A to Z
+  - Sign in as an Admin user (the "Admin" role).
+  - Have four customers with open invoices on today's date, named "10 Trucking" (customer A), "2 Trucking" (customer B), "A-1 Towing" (customer C) and "a1 towing" (customer D). Their names differ by a number, a dash or capitals.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715274 [named records] A/P Summary opens with vendors in name order, A to Z
+  - Sign in as an Admin user (the "Admin" role).
+  - Have four vendors with open bills on today's date, named "10 Trucking" (vendor A), "2 Trucking" (vendor B), "A-1 Towing" (vendor C) and "a1 towing" (vendor D). Their names differ by a number, a dash or capitals.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715275 [named records] A/R Summary sorts accented customer names with their base letter
+  - Sign in as an Admin user (the "Admin" role).
+  - Have six customers with open invoices on today's date, named "Eagle" (customer A), "Émile's" (customer B), "Emma" (customer C), "Fargo" (customer D), "Øster" (customer E) and "Ozone" (customer F). Customer B and customer E start with a capital accented letter.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715276 [named records] A/P Summary sorts lower-case accented and joined letters as plain letters
+  - Sign in as an Admin user (the "Admin" role).
+  - Have six vendors with open bills on today's date, named "Ackley" (vendor A), "æble" (vendor B), "Afton" (vendor C), "Strand" (vendor D), "Straße" (vendor E) and "Strasser" (vendor F). Vendor B has "æ" and vendor E has "ß" in its name.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715277 [named records] Two customer names that differ only in capitals keep one order everywhere
+  - Sign in as an Admin user (the "Admin" role).
+  - Have two customers with open invoices on today's date, whose names differ only in capitals: customer A and customer B.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715278 [named records] Two vendor names that differ only in capitals keep one order everywhere
+  - Sign in as an Admin user (the "Admin" role).
+  - Have two vendors with open bills on today's date, whose names differ only in capitals: vendor A and vendor B.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715279 [named records] A/R Summary lists Emile's Towing before Émile's Towing
+  - Sign in as an Admin user (the "Admin" role).
+  - Have two customers with open invoices on today's date whose names differ only by an accent: customer A, named "Emile's Towing", without it, and customer B, named "Émile's Towing", with it.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715532 [named records] Design: A/R Summary opening screen matches the design picture
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
+  - Make sure the report lists customers at both locations on today's date, including at least one with a credit balance (a negative Total) and one with a long name.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+  - Open the design picture "A/R Aging Summary opens A to Z" (ar-ap-p1-a-r-aging-summary-opens-a-to-z.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
+### C715533 [named records] Design: A/R Summary sorted by Total matches the design picture
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
+  - Make sure the report lists customers at both locations on today's date, including at least one with a credit balance (a negative Total) and one with a long name.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+  - Open the design picture "Click the Total header" (ar-ap-p1-click-the-total-header.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
+### C715544 [named records] Design: A/P Unpaid Invoices at 1440 px shows every column, as pictured
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
+  - Have a vendor, vendor A, with an unpaid bill at your other location.
+  - Have a vendor, vendor B, with unpaid bills at your current location.
+  - Make sure vendor A and vendor B both have long names.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with every group expanded.
+  - Open the design picture "A/P Unpaid Invoices at 1440: every column visible" (ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
+### C715557 [named records] Design: the call list for one customer matches the design picture
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure your role has the "View and Manage AP/AR Data" switch on, so the credit term shows.
+  - Have a customer, customer A, with a long name, an overdue invoice, a phone number and a credit term.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Open the design picture "Call list on A/R Collection" (ar-ap-p7-call-list-on-a-r-collection.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
+### C715573 [named records] A/R Summary sorts names that start with a punctuation mark by character
+  - Sign in as an Admin user (the "Admin" role).
+  - Have four customers with open invoices on today's date: customer A, customer B, customer C and customer D. After the same first words, customer A's name goes on with "#", customer B's with "-", customer C's with a digit and customer D's with "@".
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715415 [part sale] A/R Collection: a part sale invoice at your location opens its finance page
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with an overdue part sale invoice A made at your current location.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with that customer's group expanded.
+### C715417 [part sale] A/R Collection: a part sale invoice at another location asks to switch
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
+  - Make sure you are enrolled at both locations.
+  - Have a customer with an open part sale invoice A made at location B.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with that customer ticked and its rows showing.
+### C715520 [part sale] Design: the Switch location? dialog for a part sale at another location
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
+  - Make sure you are enrolled at both locations.
+  - Have a customer with an open part sale invoice A made at location B.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with that customer ticked and its rows showing.
+  - Open a link to a work order made at location B (copied from the address bar) in a second tab, so the existing location-switch prompt shows there for comparison.
+### C715363 [phone/credit term specific] A/R Collection: the group row stays pinned under the headings
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure your role has the "View and Manage AP/AR Data" switch on, so the credit term shows.
+  - Make sure that on today's date the report has two customers next to each other in name order, customer A then customer B, each with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with the groups of customer A and customer B expanded.
+### C715446 [phone/credit term specific] A/R Collection: a customer with no phone shows no Phone label
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer, customer A, with an overdue invoice and no phone number on its customer card.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only customer A ticked.
+### C715523 [phone/credit term specific] Design: A/R Collection customer row shows Phone and Credit term
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer, customer A, with an overdue invoice, a phone number and a credit term.
+  - Have a customer, customer B, with an overdue invoice and no phone.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+### C715541 [phone/credit term specific] Design: A/R Collection with groups closed matches the pictures in both themes
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in this report at two locations, so the Location chip shows.
+  - Make sure your role has the "View and Manage AP/AR Data" switch on, so the credit term shows.
+  - Make sure that at least ten customers have overdue invoices on today's date, each with a phone number and a credit term.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with every group collapsed.
+  - Open the design pictures "Info icon beside the title, light" (ar-ap-p6-info-icon-beside-the-title-light.png) and "Info icon beside the title, dark" (ar-ap-p6-info-icon-beside-the-title-dark.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
+### C715600 [phone/credit term specific] A/R Collection: group labels stay at the left when scrolling sideways
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that on today's date the report has a customer, customer A, with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with customer A's group expanded.
+### C715286 [role user] Without Reports page access the six reports are not available
+  - Sign in as a user whose custom role has every permission except "Reports" in the Page Access card.
+  - Make sure you have a link to A/R Summary and a link to A/P Detail, copied earlier from the address bar by an Admin user.
+  - Use a desktop browser window 1440 px wide.
+  - Open the ShopView home page.
+### C715425 [role user, part sale] With Invoicing and Work Orders View, a work order invoice is a link
+  - Sign in as a user whose custom role has "Reports" in the Page Access card, "Invoicing & payments → View", "Work orders → View" but not "Part sales → View" (under the Parts Department switch).
+  - Have a customer with an open work order invoice A and an open part sale invoice B, both made at your current location.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with that customer ticked and every bucket expanded.
+### C715426 [role user, part sale] Without Invoicing View, work order and part sale invoices are plain text
+  - Sign in as a user whose custom role has "Reports" in the Page Access card, "Work orders → View", "Part sales → View" (under the Parts Department switch) but not "Invoicing & payments → View".
+  - Have a customer with an overdue work order invoice A and an overdue part sale invoice B, both made at your current location.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with that customer's group expanded.
+### C715427 [role user, part sale] With Invoicing and Part Sales View only, only part sale invoices link
+  - Sign in as a user whose custom role has "Reports" in the Page Access card, "Invoicing & payments → View", "Part sales → View" (under the Parts Department switch) but not "Work orders → View".
+  - Have a customer with an overdue work order invoice A and an overdue part sale invoice B, both made at your current location.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with that customer's group expanded.
+### C715428 [role user] With Vendor Order Management View, a bill at your location is a link
+  - Sign in as a user whose custom role has "Reports" in the Page Access card, "Vendor and order management → View" (under the Parts Department switch) but not "Vendor and order management → Create & Edit" (under the Parts Department switch).
+  - Have a vendor with an unpaid bill A received at your current location.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with that vendor's group expanded.
+### C715429 [role user] With Vendor Order Management Create & Edit, a bill at your location is a link
+  - Sign in as a user whose custom role has "Reports" in the Page Access card, "Vendor and order management → Create & Edit" (under the Parts Department switch) but not "Vendor and order management → View" (under the Parts Department switch).
+  - Have a vendor with an unpaid bill A received at your current location.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with that vendor's group expanded.
+### C715431 [role user] A/R Summary: with Customers View, customer names link to A/R Collection
+  - Sign in as a user whose custom role has "Reports" in the Page Access card and "Customers → View".
+  - Have a customer, customer A, with open invoices on today's date.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715432 [role user] A/P Summary: vendor names link for everyone who can open the report
+  - Sign in as a user whose custom role has "Reports" in the Page Access card but not "Vendor and order management → View" (under the Parts Department switch) or "Vendor and order management → Create & Edit" (under the Parts Department switch).
+  - Have a vendor, vendor A, with unpaid bills on today's date.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+### C715448 [role user] A/R Collection: without AP/AR Data access there is no credit term
+  - Sign in as a user whose custom role has "Reports" in the Page Access card and the "View and Manage AP/AR Data" switch off.
+  - Have a customer, customer A, with an overdue invoice, a phone number and a credit term.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+  - Leave the report with only customer A ticked.
+### C715474 [role user] Reports page access alone opens all six reports with their amounts
+  - Sign in as a user whose custom role has "Reports" in the Page Access card and nothing else, with "See Financial Data" off.
+  - Have a customer with an overdue invoice and a vendor with an overdue bill on today's date, so each of the six reports has rows and amounts.
+  - Use a desktop browser window 1440 px wide.
+  - Open the ShopView home page.
+### C715610 [role user] A/R Summary: without Customers View, customer names are plain text
+  - Sign in as a user whose custom role has "Reports" in the Page Access card but not "Customers → View".
+  - Have a customer, customer A, with open invoices on today's date.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715616 [role user] Reports page access alone exports the reports
+  - Sign in as a user whose custom role has "Reports" in the Page Access card and nothing else, with "See Financial Data" off.
+  - Have a customer with an open invoice and a vendor with an open bill on today's date, so both exports have rows.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+### C715473 [same-day/evening] A/R PDF prints the as-of date you picked, late in the day too
+  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Make sure the report has open invoices on today's date, so the PDF has rows.
+  - Run this test in the evening at location A's local time, when the date in UTC is already tomorrow.
+  - Set this computer's clock to location A's time zone.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+### C715311 [vendor credit/return] A/P Detail: a vendor credit shows its own date as its Due Date
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with one unused vendor credit, vendor credit A, on today's date.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+### C715314 [vendor credit/return] A/P Detail: sorting moves rows, never groups, and keeps groups open
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents on today's date (bills and vendor credits) in the "31-60 days past due" and "1-30 days past due" buckets, at least two in each with different open balances and dates, so the re-sort can be seen.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report so that two buckets are expanded: "31-60 days past due" and "1-30 days past due"; the other three are collapsed.
+### C715356 [vendor credit/return] A/P Detail: the top-left chevron collapses and expands every group
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open bills and vendor credits in at least three aging buckets on today's date.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with every group collapsed.
+### C715391 [vendor credit/return] A/P Unpaid Invoices: a vendor credit belongs to its return or vendor
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have a vendor, vendor A, with two unused vendor credits: vendor credit A, from a vendor return made at location B, and vendor credit B, entered directly (not from a vendor return) while signed in at location A.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with the Vendor filter showing vendor A ticked and its group expanded.
+### C715420 [vendor credit/return] A/P Detail: a vendor credit links to the return it came from
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
+  - Have a vendor with three unused vendor credits: vendor credit A from a vendor return made at your current location, vendor credit B from a vendor return made at your other location, and vendor credit C not from a vendor return.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with that vendor ticked and its rows showing.
+### C715421 [vendor credit/return] A/P Unpaid Invoices: a vendor credit links to the return it came from
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
+  - Have a vendor with three unused vendor credits: vendor credit A from a vendor return made at your current location, vendor credit B from a vendor return made at your other location, and vendor credit C not from a vendor return.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with that vendor ticked and its rows showing.
+### C715430 [vendor credit/return, role user] Without Vendor Order Management, bills and vendor credits are plain text
+  - Sign in as a user whose custom role has "Reports" in the Page Access card but not "Vendor and order management → View" (under the Parts Department switch) or "Vendor and order management → Create & Edit" (under the Parts Department switch).
+  - Have a vendor with an unpaid bill A received at your current location and an unused vendor credit A from a vendor return made at your current location.
+  - Use a desktop browser window 1440 px wide.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with that vendor ticked and every bucket expanded.
+### C715490 [vendor credit/return, named records] Design: A/P Summary at 1440 px in light theme shows every column
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715491 [vendor credit/return, named records] Design: A/P Summary in dark theme: chips, links and Totals row readable
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit, so the page shows a long name and a negative amount, which must not overlap or be cut off.
+  - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab, also in dark theme, for comparison.
+### C715492 [vendor credit/return, named records] Design: A/P Summary at 1536 px: no overlap or clipping, light and dark
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit, so the page shows a long name and a negative amount, which must not overlap or be cut off.
+  - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
+  - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715493 [vendor credit/return, named records] Design: A/P Detail at 1440 px in light theme shows every column
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with every group expanded (Expand all).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715494 [vendor credit/return, named records] Design: A/P Detail in dark theme: chips, links and Totals row readable
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
+  - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Leave the report with every group expanded (Expand all).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab, also in dark theme, for comparison.
+### C715495 [vendor credit/return, named records] Design: A/P Detail at 1536 px: no overlap or clipping, light and dark
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
+  - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
+  - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715496 [vendor credit/return, named records] Design: A/P Unpaid Invoices at 1440 px in light theme shows every column
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with every group expanded (Expand all).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715497 [vendor credit/return, named records] Design: A/P Unpaid Invoices in dark theme: chips, links and Totals row readable
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
+  - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with every group expanded (Expand all).
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab, also in dark theme, for comparison.
+### C715498 [vendor credit/return, named records] Design: A/P Unpaid Invoices at 1536 px: no overlap or clipping, light and dark
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
+  - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+### C715540 [vendor credit/return, named records] Design: A/P Unpaid Invoices pinned vendor row matches the design pictures
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor, vendor A, with more unpaid bills than fit on the screen at your location, a long name, and an unused vendor credit A from a vendor return made at your location.
+  - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+  - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+  - Leave the report with every group expanded.
+  - Open the design pictures "Same on A/P Unpaid Invoices" (ar-ap-p3-same-on-a-p-unpaid-invoices.png) and "Vendor credits link" (ar-ap-p7-vendor-credits-link.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.

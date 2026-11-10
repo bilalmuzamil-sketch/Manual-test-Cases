@@ -1,0 +1,16 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./38/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 1400);
+const M = () => page.locator('main').last();
+const clickBtn = async (root, label) => { const bs = root.locator('button:visible'); const tx = (await bs.allInnerTexts()).map(T); const i = tx.indexOf(label); if (i < 0) throw new Error('no button ' + label + ' in ' + JSON.stringify(tx)); const bb = await bs.nth(i).boundingBox(); await page.mouse.click(bb.x + bb.width / 2, bb.y + bb.height / 2); };
+const PS = '/parts/part-sale/f966af4d-3243-4faa-ad6d-4dae41cccf8d/part-requests';
+await step('inline-price', async () => { await go(PS); await page.waitForTimeout(3500); const row = M().locator('tbody tr').filter({ hasText: 'ZZAUTOTEST part sale item' }).first();
+  const ins = row.locator('input'); const n = await ins.count(); const vals = []; for (let k = 0; k < n; k++) vals.push(await ins.nth(k).inputValue()); log('row inputs', JSON.stringify(vals));
+  const hdr = (await M().locator('thead th').allInnerTexts()).map(T); log('hdr', JSON.stringify(hdr));
+  const sp = ins.nth(6); await sp.click(); await sp.press('Control+a'); await sp.type('300', { delay: 60 }); await sp.press('Tab'); await page.waitForTimeout(2500);
+  const v2 = []; for (let k = 0; k < n; k++) v2.push(await ins.nth(k).inputValue()); log('row inputs after', JSON.stringify(v2)); await dump('row'); });
+await step('invoice', async () => { await go(PS); await page.waitForTimeout(3500); await M().getByText('Finance', { exact: true }).first().click(); await page.waitForTimeout(3000); log('FIN total', T(await M().innerText()).match(/SUMMARY.{0,80}/)?.[0]);
+  await clickBtn(M(), 'Create Invoice'); await page.waitForTimeout(3000); log('CREATE INV DLG', await dl()); log('labels', JSON.stringify(await page.locator('.q-dialog:visible .q-field__label').allTextContents())); log('URL', page.url()); await dump('create-invoice'); });
+await r.browser?.close?.(); process.exit(0);

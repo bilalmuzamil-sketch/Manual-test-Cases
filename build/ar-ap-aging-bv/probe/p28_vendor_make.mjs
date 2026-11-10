@@ -1,0 +1,12 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./28/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dlg = () => page.locator('.q-dialog:visible').last(); const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 1500);
+const nav = async (name) => { await go('/parts/inventory'); await page.waitForTimeout(2000); await page.locator('a:visible, .q-item:visible').filter({ hasText: new RegExp('^\\s*\\S*\\s*' + name + '\\s*$') }).first().click(); await page.waitForTimeout(3000); };
+await step('new-vendor', async () => { await nav('Vendors'); const all = page.locator('main button:visible'); const tx = (await all.allInnerTexts()).map(T); log('btns', JSON.stringify(tx)); const b = all.nth(tx.indexOf('New Vendor')); log('count', tx.indexOf('New Vendor')); await b.first().click({ timeout: 8000 }).catch(async e => { log('click err', e.message.split('\n')[0]); await b.first().dispatchEvent('click'); }); await page.waitForTimeout(3000);
+  log('URL', page.url()); log('DLG:', await dl()); log('labels', JSON.stringify(await page.locator('.q-dialog:visible .q-field__label, main .q-field__label').allTextContents()));
+  log('buttons', JSON.stringify([...new Set((await page.locator('.q-dialog:visible button, main button:visible').allInnerTexts()).map(T))].filter(Boolean)));
+  const t = page.locator('.q-dialog:visible .q-field, main .q-field').filter({ has: page.locator('.q-field__label', { hasText: /term/i }) }).first(); if (await t.count()) { await t.click(); await page.waitForTimeout(1200); log('VENDOR TERMS:', JSON.stringify(await menu())); await page.keyboard.press('Escape'); } await dump('new-vendor'); });
+await r.browser?.close?.(); process.exit(0);

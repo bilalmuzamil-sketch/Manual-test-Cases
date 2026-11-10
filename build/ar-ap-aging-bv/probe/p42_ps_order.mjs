@@ -1,0 +1,14 @@
+import { start } from './lib.mjs';
+const OUT = new URL('./42/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join(' || ')).slice(0, 1200);
+const M = () => page.locator('main').last();
+const mclick = async (loc) => { const bb = await loc.boundingBox(); await page.mouse.click(bb.x + bb.width / 2, bb.y + bb.height / 2); };
+const PS = '/parts/part-sale/f966af4d-3243-4faa-ad6d-4dae41cccf8d';
+await step('vendor-on-row', async () => { await go(PS + '/part-requests'); await page.waitForTimeout(3500); const row = M().locator('tbody tr').filter({ has: page.locator('input[value="ZZAUTOTEST part sale item"]') }).first(); log('rows', await row.count());
+  const sels = row.locator('.q-select'); log('selects', await sels.count()); const vend = sels.nth(1); await mclick(vend); await page.waitForTimeout(800); await page.keyboard.type('ZZAUTOTEST', { delay: 50 }); await page.waitForTimeout(2000); log('V OPTS', JSON.stringify(await menu()));
+  await mclick(page.locator('.q-menu:visible .q-item').filter({ hasText: 'ZZAUTOTEST AP Vendor A' }).first()); await page.waitForTimeout(2000);
+  await mclick(row.locator('button').filter({ hasText: /^\s*Order\s*$/ }).first()); await page.waitForTimeout(3000); log('ORDER DLG', await dl()); log('dlg labels', JSON.stringify(await page.locator('.q-dialog:visible .q-field__label').allTextContents())); log('dlg btns', JSON.stringify((await page.locator('.q-dialog:visible button').allInnerTexts()).map(T))); await dump('order'); });
+await r.browser?.close?.(); process.exit(0);
