@@ -1,3 +1,7 @@
 try 1 badge-at-start "Invoiced"
 menu/dialog tids: menu_item_reverse,menu_item_issue_credit
 try 1: created=false before=Invoiced after=Complete estimateReqs=1 maxAtOnce=1 times=24.14-24.78 preview="Invoice D"
+try 2 badge-at-start "Complete"
+after create badge Complete
+menu/dialog tids: menu_item_reverse,menu_item_issue_credit
+try 2: created=true before=Invoiced after=Complete estimateReqs=1 maxAtOnce=1 times=76.89-77.21 preview="Invoice D"
