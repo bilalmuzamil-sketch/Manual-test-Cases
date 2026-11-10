@@ -1,0 +1,1 @@
+import {sess} from './common.mjs'; const s=await sess(); await s.go('/parts/orders'); const v=await s.page.evaluate(()=>document.querySelector('meta[name="app-version"]')?.content); console.log(process.env.ENV||'branch',v,new Date().toISOString()); await s.browser.close();

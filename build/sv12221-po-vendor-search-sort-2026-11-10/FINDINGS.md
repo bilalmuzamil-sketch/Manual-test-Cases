@@ -27,3 +27,8 @@ Observations (not in the ticket's two items; asked the QA lead before posting):
 - "Ordered By" header still not sortable (code: sortable:false). Customer asked for every column; Dusan asked Milos/Chris in 80498, no answer.
 - Purchase Order Number and Work Order sort as text: S-10002 … S-17503 before S-4103. Same on production (S-1923, S-1927 before S-218) → existed before this ticket.
 Exhibits: ev/exhibits/01-before-production.png, 02-after-search.png, 03-after-sort.png.
+
+## Posted 10 Nov 2026 03:36 UTC — comment 80551 (QA PASSED), QA lead ruling "PASSED, mention both"
+Before/after pictures + 10-row table + "Two points outside this ticket" (Ordered By sortable? — Chris + Milos tagged; PO/WO number text sort exists on production too). Labels + QAcomplete, status -> QA Complete. QA Assignee Dusan (not empty), left.
+Pre-post gate: branch marker v26.45.2-411684a at 03:36:07Z, ticket had only 80498, no technical section, no recording. Comment echo shows the stored body (verdict first, 3 pictures, 10 rows).
+Learning check: nothing new (commentBody parameter used correctly this time).
