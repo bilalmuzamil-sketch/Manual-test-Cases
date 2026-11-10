@@ -42,3 +42,16 @@ not repeated; outside SV-11441 (exports are SV-11533 / SV-12141). Asked the QA l
 ## Status at hand-over
 QA Assignee was EMPTY when the QA lead asked me to test (read ~11:00 UTC); at the pre-post re-read (06:16 CST) it is Mudassir Qamar,
 status TESTING QA. Nothing posted — asked the QA lead whether to post (rule: someone else is QA assignee).
+
+## Posted (QA lead 10 Nov: post, do NOT move to QA Complete; then QuickBooks if needed, QB result in its own comment)
+- Comment 80649 green PASSED (13 rows, pictures 310744b4 / 90d2e25a). Status left at TESTING QA, QA Assignee left as Mudassir,
+  no label added. Gate: marker re-read (same), ticket comments re-read (nothing new since 80625).
+- Extra check before posting: work order S2-16654 opens from A/R Collection. Bill 5956 on A/P Unpaid shows as plain text
+  (no link) in the Abadi group; not part of SV-11441 (links are SV-11537), not investigated.
+
+## QuickBooks (separate comment, not posted)
+- Intuit sandbox sign-in from the headless browser (login from /tmp/intuit): email + password accepted, then Intuit shows
+  "Need help signing in? ... submit an account recovery request" (qb/intuit-signin-refused.png). Stopped after one try to avoid
+  locking the account. Asked the QA lead.
+- What the change touches: the six aging reports only (reading); nothing new is sent to QuickBooks. Mudassir's 79851 (30 Oct)
+  already shows QBO puts a credit dated on the as-of day in Current and moves it to 1-30 the next day.
