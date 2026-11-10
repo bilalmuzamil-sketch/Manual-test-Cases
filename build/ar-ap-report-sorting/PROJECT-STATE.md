@@ -189,3 +189,11 @@
   dates only; the As-of check is added when question 18 is answered) — back in S3 (90421), in run 557 (now 380 tests, all Mudassir).
   The 13 release-day cases moved to folder "Run on Production After Release" 133628 (REL-01, -02, -05, -05b, -05c, -06, -10, -11, -12,
   -12b, -12c, -13, -14). Folder "Waiting on Chris Ward's answers" 133627 is now empty (kept for future waiting cases).
+- 10 Nov 2026 (17:57-18:10 UTC, production v26.45.3-fc08f23): before-release captures done by Mudassir's side, saved on branch
+  claude/global-search-v1-baseline-6ax9ul, folder build/ar-ap-report-sorting/release-2026-11-19/"A-R A-P before release 2026-11-19"
+  (74 files, all 8 tasks; README + NOTES per task; RE-CHECK-AFTER-RELEASE.md). Credit memo CM1-4411 ($5.00, 18 Nov 2026, customer
+  "ZZAUTOTEST SV11744 Q3") must not be touched before the after-release check (C1062590). Found: Sales By Customer has a date range and
+  four downloads (Download Summary/Expanded View, PDF/CSV), not "Download (PDF)/(CSV)" (affects C715617, C715476); the production user
+  could switch to only one location (affects C715480); A/R Detail has no customer filter before the release (C1062590 fine: it ticks the
+  customer after the release); offline CSV export on Sales By Customer showed "Network Error" plus "This report is too large to export.
+  Narrow the date range or filters, then try again." (the second is misleading; existing production behaviour, not ours to file).
