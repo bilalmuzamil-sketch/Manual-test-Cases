@@ -1,0 +1,31 @@
+{
+ "key": "SV-12137",
+ "summary": "Reports - A/P Aging Detail and A/P Unpaid Invoices: Amount/Open Balance cut off, no loading state, no Print",
+ "status": "TESTING QA",
+ "type": "Bug",
+ "assignee": "Nemanja Djuric",
+ "parent": "SV-11315",
+ "qa_branch": "https://sv11315.qa.shopview.com",
+ "labels": [],
+ "description": "*Environment:* app.staging.shopview.com (Staging Heavy Duty - 9919), Admin, window 1400 px wide. Also seen on sv10647.qa.shopview.com.\n\n*Steps*\n\n# Open Reports > A/P Aging Detail. Date = today. Watch the page while it loads.\n# Expand a bucket.\n# Open A/P Unpaid Invoices and expand a vendor.\n# Look for a Print button on A/P Aging Summary, A/P Aging Detail and A/P Unpaid Invoices.\n\n*Expected*\n\n* All columns fit, or Amount/Open Balance stay visible, like on the A/R reports.\n* A spinner shows while the report loads.\n* A Print button like on the 3 A/R reports.\n\n*Actual*\n\n* Once a group is expanded, the Amount and Open Balance columns are pushed off the right edge; you have to scroll sideways to see them.\n* The reports take about 15-20 s to load (A/P Detail: ~13,600 rows). Until then the page shows empty totals \"$0.00 / $0.00\" with no spinner, so it looks like there is no data.\n* The 3 A/P reports have no Print button; the 3 A/R reports do.\n\n*Evidence:*\n\n!SV-12137_evidence.mp4|width=865,alt=\"SV-12137_evidence.mp4\"!",
+ "comments": [
+  {
+   "id": "80639",
+   "created": "2026-11-10T05:47:11.475-0500",
+   "author": "Nemanja Djuric",
+   "body": "h1. QA Handoff \u2014 SV-12137 Bug \u2014 A/P Aging Detail and A/P Unpaid Invoices: Amount / Open Balance cut off, no loading state, no Print\n\n*QA env:* https://sv11315.qa.shopview.com \u00b7 *PR:* https://github.com/ShopView/shopview/pull/4262 (branch {{SV-11315-ar-ap-aging-reports}}, head {{8e35ee0d02}})\n*Screens:* {{/reports/ap-aging-detail}}, {{/reports/ap-unpaid-invoices}} (and the other four aging reports)\n*Shared notes* (roles, test data, known mismatches): https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616\n*Videos:* {{sv-11534-grouped-reports-v2.mp4}}, {{sv-11538-layout.mp4}}\n*Filed:* 2026-11-03 by QA on staging/QA (old reports). Fixed by the rebuilt reports (S8-R3, S8-R5, S8-R6, S3-R1).\n\n----\n\nh2. What changed\n\n* *Columns:* Open Balance is pinned to the right and bold on every row. At 1440 px every column of all six reports is visible without a sideways scroll. Long document numbers end in \"\u2026\" (full on hover); Location wraps on A/P Detail and A/P Unpaid.\n* *Group rows:* a closed vendor or bucket shows \"Total\" and its bold Amount and Open Balance; an open one ends with a \"Total for <name>\" row.\n* *Loading:* the table's loading bar shows while the report reads, including the first read of the Location list. Totals appear only once data has arrived (no \"$0.00\" first), and \"No record matches these filters\" never flashes while loading.\n* *Print:* every report, A/P included, has the \u22ef Export menu with Download (PDF) and Download (CSV). It replaces the old A/R Print button.\n\nh2. QA Checklist (do these)\n\nh3. Original repro, now fixed\n\n* Window 1440 px: A/P Aging Detail and A/P Unpaid Invoices, all locations, Expand all \u2192 Date, Location, Transaction Type, No., Vendor Name, Due Date, Past Due, Amount, Open Balance all visible; Open Balance pinned right and bold.\n* Reload A/P Aging Detail on the QA organization (large A/P data): the loading bar shows; no \"$0.00\" Totals and no \"No record matches these filters\" before the data arrives.\n* A/P Aging Summary, A/P Aging Detail, A/P Unpaid Invoices: \u22ef \u2192 Download (PDF) and Download (CSV).\n* \u21b3 Over 2,000 lines the PDF is refused with exactly one message: \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\" CSV works. Narrow to one vendor \u2192 the PDF downloads.\n\nh3. Current details to expect\n\n* Past Due is left-aligned; a vendor credit on A/P Unpaid shows \"\u2014\" for Due Date and Past Due.\n* Group rows: closed \u2192 bold \"Total\" with bold Amount and Open Balance; open \u2192 \"Total for <vendor or bucket>\" row after the lines.\n* Narrower than 1440 \u2192 the table scrolls sideways under the pinned Open Balance; a closed group's name stays visible at the left.\n\nh2. Known mismatches (not bugs)\n\n* *At 1400 px* (narrower than 1440) A/P Detail and A/P Unpaid are 2\u20134 px wider than the window: a tiny sideways scrollbar, Amount a few pixels under the pinned Open Balance. Open Balance always stays visible. The PRD guarantees the fit at 1440 and allows a sideways scroll below it.\n* The unfiltered A/P Detail PDF on large organizations (QA has about 13,500 lines) is refused by design; use CSV or narrow the filters.\n* SR-2: on a sideways scroll the group chevron scrolls away (follow-up).\n\nh2. What is NOT impacted\n\n* Other reports' loading and export behaviour.\n\nh2. Dev verification\n\n* [x] Tests: the six report specs ({{reconciling}} loading guard, warm-cache guards), {{agingColumns.spec.ts}}, {{useReportExport.spec.ts}}.\n* [x] Review rounds: sv12137-r1 \u2192 sv12137-r2 approved; design fixes (design-r2), S4-R7 (s4r7-r1), all approved.\n* [x] Step check (local, admin): columns fit at 1440 on all six, Export menus work, loading bar instead of the empty state during the first reads \u2014 all pass. A/P Unpaid Expand all 0.77 s on a vendor with 2,252 bills.\n\n!sv-11534-grouped-reports-v2.mp4|width=786,alt=\"sv-11534-grouped-reports-v2.mp4\"!\n!sv-11538-layout.mp4|width=786,alt=\"sv-11538-layout.mp4\"!"
+  }
+ ],
+ "comments_total": 1,
+ "attachments": [
+  "sv-11534-grouped-reports-v2.mp4",
+  "sv-11538-layout.mp4",
+  "SV-12137_evidence.mp4"
+ ],
+ "links": [
+  [
+   "Fixed by",
+   "SV-11315"
+  ]
+ ]
+}

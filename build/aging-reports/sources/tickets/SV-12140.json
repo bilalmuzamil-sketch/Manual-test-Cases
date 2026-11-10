@@ -1,0 +1,24 @@
+{
+ "key": "SV-12140",
+ "summary": "Reports - A/R and A/P aging: customer and vendor names that start with a punctuation mark are sorted before the digits",
+ "status": "TESTING QA",
+ "type": "Bug",
+ "assignee": null,
+ "parent": "SV-11315",
+ "qa_branch": "https://sv11315.qa.shopview.com",
+ "labels": [],
+ "description": "*What happens:* Names starting with a punctuation mark are put before every name starting with a digit, instead of plain character order.\n\n*Steps*\n\n* Have four customers: \"#1 Diesel\", \"-1 Diesel\", \"10 Trucking\" and \"@Home Towing\".\n* Open A/R Aging Summary (opens A to Z).\n\n*Expected:* Plain character order, the way QuickBooks sorts: \"#1 Diesel\", \"-1 Diesel\", \"10 Trucking\", \"@Home Towing\".\n\n*Actual:* \"-1 Diesel\" first, then the other punctuation names, then \"10 Trucking\".\n\n*Rule:* S1-R2 (plain character order) in the [A/R and A/P Report Sorting PRD|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/947650561]. Confirmed by Chris in Bilal's QA sheet (22 Oct 2026).\n\n*TestRail cases that fail until this is fixed:* C715573",
+ "comments": [
+  {
+   "id": "80630",
+   "created": "2026-11-10T05:42:15.106-0500",
+   "author": "Nemanja Djuric",
+   "body": "h1. QA Handoff \u2014 SV-12140 Bug \u2014 names starting with punctuation sorted before digits\n\n*QA env:* https://sv11315.qa.shopview.com \u00b7 *PR:* https://github.com/ShopView/shopview/pull/4262 (branch {{SV-11315-ar-ap-aging-reports}}, head {{8e35ee0d02}})\n*Screens:* all six aging reports (the name order)\n*Shared notes* (roles, test data, known mismatches): https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616\n*Video:* {{sv-11531-opening-order-v2.mp4}}\n\n----\n\nh2. What changed\n\nNames compare in plain character order, ignoring capitals, with accents folded to their base letter [S1-R2, S1-R3, S1-R4].\n\nh2. QA Checklist (do these)\n\nh3. Original repro, now fixed\n\n* Customers \"#1 Diesel\", \"-1 Diesel\", \"10 Trucking\", \"@Home Towing\" (one open invoice each) \u2192 A/R Aging Summary lists them in exactly that order.\n* Same vendors \u2192 the same order on A/P Aging Summary.\n* Same order inside a bucket on A/R Detail and A/P Detail, and between groups on A/R Collection and A/P Unpaid.\n* Same order in the PDF and the CSV.\n\nh3. Neighbours\n\n* \"10 Trucking\" before \"2 Trucking\"; \"A-1 Towing\" before \"a1 towing\".\n* \"Emile's Towing\" before \"\u00c9mile's Towing\"; \"\u00c9mile's\" among the E names; \"\u00d8ster\" among the O names.\n\nh2. Known mismatches (not bugs)\n\n* Letters outside the PRD's accent table (e.g. Polish \u0142, Turkish \u0131, non-Latin scripts) sort after z (Product OK'd, answer 4).\n\nh2. What is NOT impacted\n\n* Name order on other reports.\n\nh2. Dev verification\n\n* [x] Tests: {{ReportNameOrderSqlTest}}, {{AgingSqlTest}}; MySQL 8.0.42 proof {{api/tools/sql/aging-name-order-check.sql}} = {{aging-name-order-check.expected.txt}}.\n* [x] Review rounds: phases 1, 2, 4, approved.\n\n!sv-11531-opening-order-v2.mp4|width=786,alt=\"sv-11531-opening-order-v2.mp4\"!"
+  }
+ ],
+ "comments_total": 1,
+ "attachments": [
+  "sv-11531-opening-order-v2.mp4"
+ ],
+ "links": []
+}

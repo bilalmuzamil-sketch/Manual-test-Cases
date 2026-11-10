@@ -1,0 +1,33 @@
+{
+ "key": "SV-11599",
+ "summary": "A/R & A/P aging \u2014 verify Phase 5: legacy aging code retired",
+ "status": "Done",
+ "type": "Task",
+ "assignee": "Nemanja Djuric",
+ "parent": "SV-11315",
+ "qa_branch": "https://sv11315.qa.shopview.com",
+ "labels": [],
+ "description": "Verifies Phase 5 of the tech plan for SV-11315 (PRD: [A/R and A/P Report Sorting, Export and Location Filter|https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/947650561/A+R+and+A+P+Report+Sorting+Export+and+Location+Filter]).\n\n*Covers:* retiring the old aging endpoints and their print path (A/R Print replaced by the Export menu), orphan filter components and the legacy Cypress aging specs.\n\n*Check:*\n\n* The E2E helpers and specs that used the old aging endpoints were moved before this merged ({{/e2e-after-change}}), and the nightly E2E run is green.\n* The old aging routes no longer exist; the endpoint smoke test has no 500s.\n* All six reports work end to end once more as admin.\n\nAll verification tickets Done \u2192 the feature is ready for QA.",
+ "comments": [
+  {
+   "id": "80638",
+   "created": "2026-11-10T05:47:10.433-0500",
+   "author": "Nemanja Djuric",
+   "body": "h1. QA Handoff \u2014 SV-11599 Task \u2014 verify Phase 5: the old aging code is retired\n\n*QA env:* https://sv11315.qa.shopview.com \u00b7 *PR:* https://github.com/ShopView/shopview/pull/4262 (branch {{SV-11315-ar-ap-aging-reports}}, head {{8e35ee0d02}})\n*Screens:* all six aging reports; the old aging API addresses\n*Shared notes* (roles, test data, known mismatches): https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616\n*Video:* {{sv-11599-legacy-retired.mp4}}\n\n----\n\nh2. What changed\n\nThe seven old A/R and A/P aging API addresses, the old A/R Print PDF and their tests are deleted. No screen has used them since the rebuild; the six reports read only {{/api/reporting/reports/\u2026}}. Removed in this release with no month-end wait (Milan, 2026-11-04).\n\nh2. QA Checklist (do these)\n\nh3. Old addresses are gone\n\n* [ ] Signed in as admin, each answers *404* (open it in the browser, or {{fetch}} it from the DevTools console):\n* [ ] \u21b3 {{/api/reporting/account-receivable/aging-summary-report}}\n* [ ] \u21b3 {{/api/reporting/account-receivable/aging-detail-report}}\n* [ ] \u21b3 {{/api/reporting/account-receivable/collections-report}}\n* [ ] \u21b3 {{/api/reporting/account-receivable/pdf}}\n* [ ] \u21b3 {{/api/reporting/account-payable/aging-summary-report}}\n* [ ] \u21b3 {{/api/reporting/account-payable/aging-detail-report}}\n* [ ] \u21b3 {{/api/reporting/account-payable/unpaid-invoices-report}}\n* [ ] No aging report has a Print button; \u22ef (Export report) is the only way to a PDF or CSV.\n\nh3. The six reports still work\n\n* [ ] Each report: open it from Reports, scroll until more load, sort two columns, Expand all (grouped reports), open one document link, Download (PDF) and Download (CSV). No error message, nothing blank.\n* [ ] A user with only Reports \u2192 Page Access opens all six; a user without it (e.g. the Time Clock role) is refused.\n* [ ] The as-of request carries the day itself ({{asOfDate=YYYY-MM-DD}}). Sending a full time instead (e.g. {{asOfDate=2026-11-02T06:59:59Z}}) answers 400.\n\nh3. Nightly E2E\n\n* [ ] Green on the updated specs: @C27260\u2013@C27264 (aging name and document links), @C26560 and @C26564 ({{fe-permissions-shape}}), @C29451 ({{time-clock-role-authorization}}; needs a staging run, SSO only).\n* [ ] The deleted specs no longer run: {{ar-ap-report-gating}} (@C26553\u2013@C26559) and {{ar-aging-as-of-date}} (@C26623\u2013@C26626). Backend tests cover those checks.\n* [ ] QA automation:\n* [ ] \u21b3 mark the 11 deleted cases Deprecated in TestRail;\n* [ ] \u21b3 retitle C26560 \u2014 it now proves only that a Reports user can open both Summaries;\n* [ ] \u21b3 pick up the 4 handed-over workflows: A/R Detail invoice at another location \u2192 \"Switch location?\" \u2192 finance page; A/R Summary with filters \u2192 A/R Collection keeps them \u2192 Back; A/R Detail CSV + PDF export; A/P Summary vendor \u2192 A/P Unpaid with the scope kept.\n\nh2. Known mismatches (not bugs)\n\n* See the shared notes (https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616) (Product decisions, kept items, follow-ups).\n\nh2. What is NOT impacted\n\n* [ ] Other reports.\n* [ ] Customer card \"Over limit\", the schedule sidebar, the payments backfill: only comments and test oracles changed.\n* [ ] The Accounting module's own aging screens ({{/accounting/reports/...}}).\n\nh2. Dev verification\n\n* [x] {{debug:router}} lists no old aging route; every deleted PHP class has 0 references left; full PHPStan 0.\n* [x] Three tests that used the old code as their reference now check the new report against values captured from it before deletion ({{DbalCustomerAmountOwedReaderTest}}, {{ArAgingAsOfReplayTest}}, {{AgingTodayAgedAtEndOfDayTest}}).\n* [x] Smoke: 0 \u00d7 500 (44 endpoints; the curated list probes the new Summaries).\n* [x] Review rounds: phase5-r1/r2 approved (scope items accepted by the developer).\n* [x] E2E: the 5 aging link specs 11/11 locally; {{fe-permissions-shape}} C26560 / C26564 pass; C29451's probe checked by hand (no-Reports user 403, admin 200, old route 404). The PR carries the E2E override line for the 4 handed-over workflows.\n* [ ] Staging (dev): {{staging-gates.sql}} parity gate (b) predates S1-R5a; a credit dated on the as-of date is Current in the app.\n* [ ] After release: close SV-7192 and SV-10798 (Product answer 2).\n\n!sv-11599-legacy-retired.mp4|width=786,alt=\"sv-11599-legacy-retired.mp4\"!"
+  }
+ ],
+ "comments_total": 1,
+ "attachments": [
+  "sv-11599-legacy-retired.mp4"
+ ],
+ "links": [
+  [
+   "relates to",
+   "SV-11537"
+  ],
+  [
+   "relates to",
+   "SV-11533"
+  ]
+ ]
+}

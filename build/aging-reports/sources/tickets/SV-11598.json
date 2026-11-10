@@ -1,0 +1,57 @@
+{
+ "key": "SV-11598",
+ "summary": "A/R & A/P aging \u2014 verify Phase 4: A/R Detail and A/P Detail",
+ "status": "Done",
+ "type": "Task",
+ "assignee": "Nemanja Djuric",
+ "parent": "SV-11315",
+ "qa_branch": "https://sv11315.qa.shopview.com",
+ "labels": [],
+ "description": "Verifies Phase 4 of the tech plan for SV-11315 (PRD: [A/R and A/P Report Sorting, Export and Location Filter|https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/947650561/A+R+and+A+P+Report+Sorting+Export+and+Location+Filter]).\n\n*Covers:* S1-R5, S1-R7, S1-R8, S2 (Detail), S3 (Detail exports), S4 incl. S4-R4, S5, S6, S7, S8 (Detail).\n\n*Check:*\n\n* Buckets always read 91+, 61-90, 31-60, 1-30, Current, whatever the sort. Rows inside open by name, then number-aware document number (S1-99 before S1-100).\n* Expanding a bucket shows 100 lines, then more on scroll, on both reports (new on A/R Detail).\n* On the QA organization (13,540 open A/P lines): first paint is quick, an A/P Detail PDF is refused with one message, and the CSV downloads.\n* At 1440 px every column is visible; Location wraps only on A/P Detail.\n\nAll verification tickets Done \u2192 the feature is ready for QA.",
+ "comments": [
+  {
+   "id": "80635",
+   "created": "2026-11-10T05:42:52.617-0500",
+   "author": "Nemanja Djuric",
+   "body": "h1. QA Handoff \u2014 SV-11598 Task \u2014 verify Phase 4: A/R Aging Detail and A/P Aging Detail\n\n*QA env:* https://sv11315.qa.shopview.com \u00b7 *PR:* https://github.com/ShopView/shopview/pull/4262 (branch {{SV-11315-ar-ap-aging-reports}}, head {{8e35ee0d02}})\n*Screens:* {{/reports/ar-aging-detail}}, {{/reports/ap-aging-detail}}\n*Shared notes* (roles, test data, known mismatches): https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616\n*Video:* {{sv-11534-grouped-reports-v2.mp4}}\n\n----\n\nh2. QA Checklist (do these)\n\nh3. Run the Detail parts of the story files\n\n* SV-11531 (buckets in fixed order, name order inside, 100 lines then more), SV-11532, SV-11533 (CSV \"Aging Bucket\", PDF by bucket), SV-11534 (Expand all, pinned bucket row, bucket errors), SV-11535, SV-11536, SV-11537, SV-11538, SV-11441, SV-12136, SV-12138, SV-12140, SV-12141.\n\nh3. Detail-specific checks\n\n* Buckets: \"91 or more days past due\", \"61-90 days past due\", \"31-60 days past due\", \"1-30 days past due\", \"Current\", each with \"(N)\". Closed: bold \"Total\" and bold Amount / Open Balance. Open: \"Total for <bucket>\" row after its last line.\n* A bucket's lines and its count agree: scroll to the end and count unique numbers = \"(N)\".\n* A/R Detail headings: Date, Location, Transaction Type, ID, Customer Full Name, Due Date, Amount, Open Balance (no Past Due). A/P Detail: Date, Location, Transaction Type, No., Vendor Name, Due Date, Past Due, Amount, Open Balance.\n* A/P Detail vendor credit: Due Date = its own date; Past Due counted from it (0 when dated on the as-of date).\n* A/P Detail on the QA organization (about 13,500 lines): Expand all, scroll deep into \"91 or more days past due\"; PDF refused with one message; CSV downloads.\n* A role without the document permissions: numbers are plain text.\n\nh2. Known mismatches (not bugs)\n\n* Empty bucket listed as \"(0)\" with a greyed chevron; the PDF prints only buckets that hold a document.\n* A/R Detail's columns shift about 34 px on Expand all; a failing bucket also raises the \"Ooooops! An error occurred\" toast. Other items: the shared notes (https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616).\n\nh2. What is NOT impacted\n\n* A/R Summary and A/P Summary behaviour.\n\nh2. Dev verification\n\n* [x] Tests: {{AgingDetailEndpointTest}}, {{AgingDetailGroupsQueryHandlerTest}}, {{AgingDetailBucketRowsQueryHandlerTest}}, {{AgingDetailExportQueryHandlerTest}}, {{AgingDetailSqlTest}}, {{DbalArAgingDetailTest}}, {{DbalApAgingDetailTest}}, {{AgingSummaryDetailParityTest}}, {{AgingDetailReport.spec.ts}}, {{ApAgingDetailReport.spec.ts}}, {{useAgingBucketPages.spec.ts}}.\n* [x] Review rounds: phase4-r1\u2013r4, bucketfix-r1\u2013r3, design-r1/r2, approved.\n* [x] Perf (local, 1440 px): A/R Detail Expand all 0.61 s, A/P Detail 0.62 s, no long scroll pauses.\n* [x] E2E: @C27261 (A/R Detail finance link) and @C27264 (A/P Detail delivery link) updated and passing locally.\n* [ ] Staging (dev): A/P Detail deepest bucket pages on the largest organizations ({{staging-gates.sql}} \u00a75).\n\n!sv-11534-grouped-reports-v2.mp4|width=786,alt=\"sv-11534-grouped-reports-v2.mp4\"!"
+  }
+ ],
+ "comments_total": 1,
+ "attachments": [
+  "sv-11534-grouped-reports-v2.mp4"
+ ],
+ "links": [
+  [
+   "relates to",
+   "SV-11534"
+  ],
+  [
+   "relates to",
+   "SV-11531"
+  ],
+  [
+   "relates to",
+   "SV-11536"
+  ],
+  [
+   "relates to",
+   "SV-11537"
+  ],
+  [
+   "relates to",
+   "SV-11538"
+  ],
+  [
+   "relates to",
+   "SV-11535"
+  ],
+  [
+   "relates to",
+   "SV-11533"
+  ],
+  [
+   "relates to",
+   "SV-11532"
+  ]
+ ]
+}

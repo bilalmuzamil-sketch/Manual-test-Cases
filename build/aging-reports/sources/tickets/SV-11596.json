@@ -1,0 +1,63 @@
+{
+ "key": "SV-11596",
+ "summary": "A/R & A/P aging \u2014 verify Phase 3: A/R Collection and A/P Unpaid Invoices",
+ "status": "Done",
+ "type": "Task",
+ "assignee": "Nemanja Djuric",
+ "parent": "SV-11315",
+ "qa_branch": "https://sv11315.qa.shopview.com",
+ "labels": [],
+ "description": "Verifies Phase 3 of the tech plan for SV-11315 (PRD: [A/R and A/P Report Sorting, Export and Location Filter|https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/947650561/A+R+and+A+P+Report+Sorting+Export+and+Location+Filter]).\n\n*Covers:* S1-R6\u2013R8, S2 (incl. S2-N1, S2-R5, S2-R6, S2-R9), S3 incl. S3-R8a, S4-R1\u2013R3, S4-R5\u2013R9, S4-N1, S5 incl. S5-R11 and S5-R16, S6, S7, S8, S9.\n\n*Check:*\n\n* Groups stay in name order while header clicks re-sort rows inside them. Re-sorting never collapses a group. Changing a filter collapses everything. Collapse all / Expand all sits in the top-left header cell, with its tooltip above.\n* Expand all, then scroll: later groups also arrive expanded. The pinned group row pushes up as the next group arrives. The label stays visible when scrolling sideways.\n* The Totals row follows the customer/vendor filter (today's bug is fixed).\n* Links: an invoice at your current location opens its finance page. An invoice at another enrolled location asks to switch: Cancel leaves the address, filters, sort, expanded groups and scroll untouched; \"Switch location\" opens it. Non-enrolled or not-permitted \u2192 plain text. A bill at another location \u2192 plain text. A vendor credit from a return \u2192 links to the return. Opening in a new tab works.\n* Call list: phone shown when present; credit term (\"COD\" when unset) only for users with 'View and Manage AP/AR Data', on screen, in the PDF and as a CSV column. Use a custom role to see it hidden.\n* The Summary drill-down now carries the as-of date, Past due and locations.\n\nAll verification tickets Done \u2192 the feature is ready for QA.",
+ "comments": [
+  {
+   "id": "80633",
+   "created": "2026-11-10T05:42:50.951-0500",
+   "author": "Nemanja Djuric",
+   "body": "h1. QA Handoff \u2014 SV-11596 Task \u2014 verify Phase 3: A/R Aging Collection and A/P Unpaid Invoices\n\n*QA env:* https://sv11315.qa.shopview.com \u00b7 *PR:* https://github.com/ShopView/shopview/pull/4262 (branch {{SV-11315-ar-ap-aging-reports}}, head {{8e35ee0d02}})\n*Screens:* {{/reports/ar-aging-collection}}, {{/reports/ap-unpaid-invoices}}\n*Shared notes* (roles, test data, known mismatches): https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616\n*Videos:* {{sv-11534-grouped-reports-v2.mp4}}, {{sv-11539-call-list.mp4}}, {{sv-11537-links.mp4}}\n\n----\n\nh2. QA Checklist (do these)\n\nh3. Run the Collection / Unpaid parts of the story files\n\n* SV-11531 (groups in name order, documents oldest first, 30 groups then 30 more, 100 documents per open group), SV-11532, SV-11533, SV-11534, SV-11535 (drill-down from the Summaries), SV-11536, SV-11537 (prompt and Cancel), SV-11538, SV-11539 (call list), SV-12138, SV-12139.\n\nh3. Collection / Unpaid-specific checks\n\n* Group rows: closed \u2192 bold name and count, bold \"Total\", bold Amount and Open Balance; open \u2192 \"Total for <customer or vendor>\" row after the last document.\n* A/R Collection lists only overdue invoices (Past Due 1+ in calendar days) plus every unused credit memo and deposit.\n* A/P Unpaid lists every unpaid bill; bills not yet due show negative Past Due; vendor credits show \"\u2014\" for Due Date and Past Due and stay at the bottom of their group.\n* Totals follow the Customer / Vendor filter (today's old reports ignore it).\n* Custom role with Reports \u2192 Page Access but without View and Manage AP/AR Data: no Credit term anywhere.\n* A/P Unpaid on the QA organization (largest A/P): page load time; Expand all smooth; PDF refused over 2,000 documents with one message; CSV works.\n\nh2. Known mismatches (not bugs)\n\n* Inside an open group over 100 documents, Find only finds documents already drawn (PRD S1-R8). Other items: the shared notes (https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616).\n\nh2. What is NOT impacted\n\n* Other reports.\n\nh2. Dev verification\n\n* [x] Tests: {{AgingGroupedEndpointTest}}, {{AgingGroupedQueryHandlerTest}}, {{AgingGroupedExportQueryHandlerTest}}, {{AgingGroupedSqlTest}}, {{DbalArAgingCollectionTest}}, {{DbalApUnpaidInvoicesTest}}, {{AgingCollectionReport.spec.ts}}, {{ApUnpaidInvoicesReport.spec.ts}}, {{useAgingGroupRowWindows.spec.ts}}.\n* [x] Review rounds: phase3-r1/r2, phase4 r1\u2013r4 (the 1440 fit, pinned row and 100-document fixes), design-r1/r2, s4r7-r1, approved.\n* [x] Perf (local): A/P Unpaid Expand all 0.77 s on a vendor with 2,252 bills (was 5.4 s).\n* [ ] Staging (dev): A/P Unpaid page 1 size on the largest organizations ({{staging-gates.sql}} \u00a75; 1.5 MB locally).\n\n!sv-11537-links.mp4|width=786,alt=\"sv-11537-links.mp4\"!\n!sv-11534-grouped-reports-v2.mp4|width=786,alt=\"sv-11534-grouped-reports-v2.mp4\"!\n!sv-11539-call-list.mp4|width=786,alt=\"sv-11539-call-list.mp4\"!"
+  }
+ ],
+ "comments_total": 1,
+ "attachments": [
+  "sv-11534-grouped-reports-v2.mp4",
+  "sv-11537-links.mp4",
+  "sv-11539-call-list.mp4"
+ ],
+ "links": [
+  [
+   "relates to",
+   "SV-11534"
+  ],
+  [
+   "relates to",
+   "SV-11532"
+  ],
+  [
+   "relates to",
+   "SV-11538"
+  ],
+  [
+   "relates to",
+   "SV-11535"
+  ],
+  [
+   "relates to",
+   "SV-11531"
+  ],
+  [
+   "relates to",
+   "SV-11536"
+  ],
+  [
+   "relates to",
+   "SV-11539"
+  ],
+  [
+   "relates to",
+   "SV-11537"
+  ],
+  [
+   "relates to",
+   "SV-11533"
+  ]
+ ]
+}

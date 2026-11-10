@@ -1,0 +1,25 @@
+{
+ "key": "SV-12138",
+ "summary": "Reports - A/R Aging Collection and A/P Unpaid Invoices: same-day invoices are listed by time of day instead of invoice number",
+ "status": "TESTING QA",
+ "type": "Bug",
+ "assignee": null,
+ "parent": "SV-11315",
+ "qa_branch": "https://sv11315.qa.shopview.com",
+ "labels": [],
+ "description": "*What happens:* Inside a customer or vendor, invoices with the same date come out in the order they were made that day, not in invoice number order.\n\n*Steps*\n\n* Open Reports > A/R Aging Collection (or A/P Unpaid Invoices).\n* Expand a customer or vendor that has several invoices on the same date.\n\n*Expected:* Same-day invoices are in invoice number order (for example S3-14690, S3-14691, S3-14692, S3-14693, S3-15660), in both sort directions.\n\n*Actual:* They are ordered by the time of day they were made.\n\n*Rule:* S1-R6 and S2-R4 (ties break by document number) in the [A/R and A/P Report Sorting PRD|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/947650561]. Confirmed by Chris in Bilal's QA sheet (22 Oct 2026).\n\n*TestRail cases that fail until this is fixed:* C715282, C715283",
+ "comments": [
+  {
+   "id": "80628",
+   "created": "2026-11-10T05:42:13.457-0500",
+   "author": "Nemanja Djuric",
+   "body": "h1. QA Handoff \u2014 SV-12138 Bug \u2014 same-day invoices listed by time of day\n\n*QA env:* https://sv11315.qa.shopview.com \u00b7 *PR:* https://github.com/ShopView/shopview/pull/4262 (branch {{SV-11315-ar-ap-aging-reports}}, head {{8e35ee0d02}})\n*Screens:* {{/reports/ar-aging-collection}}, {{/reports/ap-unpaid-invoices}}, {{/reports/ar-aging-detail}}, {{/reports/ap-aging-detail}}\n*Shared notes* (roles, test data, known mismatches): https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616\n*Videos:* {{sv-11531-opening-order-v2.mp4}}, {{sv-11532-sorting.mp4}}\n\n----\n\nh2. What changed\n\nA date compares the day only, as the location sees it. Documents on the same day go in document-number order (S3-14690 < S3-14691 < \u2026 < S3-15660), in both sort directions, whatever time they were created [S1-R6, S2-R4].\n\nh2. QA Checklist (do these)\n\nh3. Original repro, now fixed (A/R Collection, A/P Unpaid)\n\n* [ ] Expand a customer with several invoices on one date (e.g. S3-14690, S3-14691, S3-14692, S3-14693, S3-15660) \u2192 they are in invoice-number order.\n* [ ] Click Date \u2192 oldest day first, same-day rows smallest number first. Click again \u2192 newest day first, same-day rows *still* smallest number first.\n* [ ] Same on A/P Unpaid with bills.\n\nh3. Detail reports\n\n* A/R Detail: open a bucket with several invoices on one date \u2192 sort by Date \u2192 same-day rows in number order, both directions.\n* Opening order: one customer's documents in number order, whatever time they were created.\n* A/P Detail: the same for Date and Due Date.\n\nh3. The location's day\n\n* An invoice created late in the evening (after about 6 pm at the location) shows that evening's date and sorts with that day, not the next.\n\nh2. Known mismatches (not bugs)\n\n* None for this ticket.\n\nh2. What is NOT impacted\n\n* Other reports' date sorting.\n\nh2. Dev verification\n\n* [x] Tests: {{AgingSqlTest}} (day key, number key, runs over 20 digits), {{AgingLocalDaySqlTest}} (location day, DST-safe), {{AgingGroupedSqlTest}}, {{AgingDetailSqlTest}}, {{DbalArAgingCollectionTest}}, {{DbalApUnpaidInvoicesTest}}.\n* [x] Review rounds: phases 1, 3, 4 and asof-r2, approved.\n* [x] Design re-check (local): 38 pairs of same-date documents, 0 out of order.\n\n!sv-11531-opening-order-v2.mp4|width=786,alt=\"sv-11531-opening-order-v2.mp4\"!\n!sv-11532-sorting.mp4|width=786,alt=\"sv-11532-sorting.mp4\"!"
+  }
+ ],
+ "comments_total": 1,
+ "attachments": [
+  "sv-11531-opening-order-v2.mp4",
+  "sv-11532-sorting.mp4"
+ ],
+ "links": []
+}

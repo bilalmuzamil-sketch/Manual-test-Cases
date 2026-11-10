@@ -1,0 +1,24 @@
+{
+ "key": "SV-12141",
+ "summary": "Reports - A/R and A/P aging exports: the \"Locations:\" line lists locations in the order ticked instead of A to Z",
+ "status": "TESTING QA",
+ "type": "Bug",
+ "assignee": null,
+ "parent": "SV-11315",
+ "qa_branch": "https://sv11315.qa.shopview.com",
+ "labels": [],
+ "description": "*What happens:* On the PDF and CSV, the \"Locations:\" line follows the order the user ticked the locations.\n\n*Steps*\n\n* Open any A/R or A/P aging report.\n* Tick Lethbridge, then Calgary (not every location).\n* Download (PDF) and Download (CSV).\n\n*Expected:* \"Locations: Calgary, Lethbridge\": Location menu order (A to Z by name), separated by a comma and a space. With every location ticked: \"Locations: All locations\".\n\n*Actual:* \"Locations: Lethbridge, Calgary\".\n\n*Rule:* S3-R5 in the [A/R and A/P Report Sorting PRD|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/947650561]. Confirmed by Chris in Bilal's QA sheet (22 Oct 2026).\n\n*TestRail cases that fail until this is fixed:* C715343",
+ "comments": [
+  {
+   "id": "80631",
+   "created": "2026-11-10T05:42:15.953-0500",
+   "author": "Nemanja Djuric",
+   "body": "h1. QA Handoff \u2014 SV-12141 Bug \u2014 \"Locations:\" export line in tick order\n\n*QA env:* https://sv11315.qa.shopview.com \u00b7 *PR:* https://github.com/ShopView/shopview/pull/4262 (branch {{SV-11315-ar-ap-aging-reports}}, head {{8e35ee0d02}})\n*Screens:* the \u22ef Export menu on all six aging reports\n*Shared notes* (roles, test data, known mismatches): https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616\n*Video:* {{sv-11533-exports-v2.mp4}}\n\n----\n\nh2. What changed\n\nThe export's \"Locations:\" line lists the ticked locations A to Z (the Location menu's order), whatever order you ticked them in. Customers and vendors stay in tick order [S3-R5].\n\nh2. QA Checklist (do these)\n\nh3. Original repro, now fixed\n\n* A/R Aging Summary: tick Lethbridge, then Calgary (not all) \u2192 Download (CSV) and Download (PDF) \u2192 \"Locations: Calgary, Lethbridge\".\n* All locations ticked \u2192 \"Locations: All locations\".\n* Repeat on A/P Aging Summary, A/R Detail, A/P Detail, A/R Collection and A/P Unpaid.\n\nh3. Customers and vendors keep tick order\n\n* Tick customer B, then A \u2192 the line reads \"Customers: B, A\" (vendors likewise).\n\nh2. Known mismatches (not bugs)\n\n* None for this ticket. (Use your own location names on QA; Calgary / Lethbridge are examples.)\n\nh2. What is NOT impacted\n\n* Other reports' export header lines.\n\nh2. Dev verification\n\n* [x] Tests: {{DbalOrganizationLocationsScopeResolverTest}}, {{AgingExportHeaderResolverTest}}, {{AgingSummaryEndpointTest}}, {{AgingGroupedEndpointTest}}, {{AgingDetailEndpointTest}}.\n* [x] Review rounds: phases 1, 2, 4, approved.\n\n!sv-11533-exports-v2.mp4|width=786,alt=\"sv-11533-exports-v2.mp4\"!"
+  }
+ ],
+ "comments_total": 1,
+ "attachments": [
+  "sv-11533-exports-v2.mp4"
+ ],
+ "links": []
+}

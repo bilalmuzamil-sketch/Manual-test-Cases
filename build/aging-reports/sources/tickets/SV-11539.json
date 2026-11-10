@@ -1,0 +1,29 @@
+{
+ "key": "SV-11539",
+ "summary": "A/R and A/P Report Sorting - Story 9 - A/R Collection call list",
+ "status": "TESTING QA",
+ "type": "Story",
+ "assignee": null,
+ "parent": "SV-11315",
+ "qa_branch": "https://sv11315.qa.shopview.com",
+ "labels": [],
+ "description": "h2. Summary\n\nShow each customer's phone and, for users who manage A/R and A/P data, their credit term on A/R Collection's customer rows and in its exports, so it works as a call list.\n\nh2. Context\n\nAs a user chasing overdue accounts, I want each customer's phone and credit term on A/R Collection so that I can call without opening every customer.\n\nPrerequisites: User must have 'Reports \u2192 Page Access' setting enabled.\n\nForm factor: Desktop only by rule: detailed reports.\n\nh2. Requirements\n\n* S9-R1: On A/R Collection, each customer's group row shows, after the customer's name, \"Phone: \" and the customer's phone number as the customer card shows it.\n* S9-R2: For users with the 'View and Manage AP/AR Data' switch, the group row also shows \"Credit term: \" and the customer's credit term as the customer card shows it (\"COD\" when none is set).\n* S9-R3: The PDF prints the same phone and credit term on each customer's line; the CSV carries them in columns (S3-R8a).\n* S9-N1: A customer with no phone shows no \"Phone:\" label, on screen or in the PDF.\n* S9-N2: A user without 'View and Manage AP/AR Data' sees no credit term on screen, none in the PDF, and no Credit term column in the CSV.\n\nh2. Acceptance Criteria\n\n* Given a customer with a phone, then the customer's group row shows \"Phone: <number>\" after the name, as the customer card shows it (S9-R1).\n* Given a user with 'View and Manage AP/AR Data', then the row also shows \"Credit term: <term>\", \"COD\" when none is set (S9-R2).\n* Given the PDF and CSV, then the PDF prints the same on each customer's line and the CSV carries \"Phone\" and \"Credit term\" columns after \"Customer\" (S9-R3, S3-R8a).\n* Given a customer with no phone, then no \"Phone:\" label shows on screen or in the PDF (S9-N1).\n* Given a user without 'View and Manage AP/AR Data', then no credit term shows on screen or in the PDF, and the CSV has no Credit term column (S9-N2).\n\nh2. UI/UX\n\nDesign: page 7 (Filters and call list)\n\n[A/R and A/P Report Sorting design canvas|https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4]\n\nh2. PRD\n\n[A/R and A/P Report Sorting, Export and Location Filter, Story 9|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=947650561]",
+ "comments": [
+  {
+   "id": "80624",
+   "created": "2026-11-10T05:41:33.051-0500",
+   "author": "Nemanja Djuric",
+   "body": "h1. QA Handoff \u2014 SV-11539 Story 9 \u2014 A/R Collection works as a call list\n\n*QA env:* https://sv11315.qa.shopview.com \u00b7 *PR:* https://github.com/ShopView/shopview/pull/4262 (branch {{SV-11315-ar-ap-aging-reports}}, head {{8e35ee0d02}})\n*Screens:* {{/reports/ar-aging-collection}}\n*Shared notes* (roles, test data, known mismatches): https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616\n*Video:* {{sv-11539-call-list.mp4}}\n\n----\n\nh2. What changed\n\nEach customer row on A/R Collection shows the phone and, for users who manage A/R and A/P data, the credit term. Both are in the exports.\n\nh2. QA Checklist (do these)\n\nh3. Screen [S9-R1, S9-R2, S9-N1]\n\n* Each customer group row reads \"Phone: \u2026\" after the bold name and count. The pinned row repeats it.\n* With View and Manage AP/AR Data: \"Credit term: \u2026\" (small t) too; \"COD\" when the customer has no term.\n* A customer without a phone shows no \"Phone:\" label.\n* Scroll the table sideways (narrower than 1440 px): the customer name and count stay at the left; Phone and Credit term slide under them.\n\nh3. Permission [S9-N2]\n\n* Custom role with Reports \u2192 Page Access only (no View and Manage AP/AR Data): no Credit term on screen, in the pinned row, in the PDF or in the CSV (no column at all).\n\nh3. Exports [S3-R8a, S9-R3]\n\n* [ ] Download (CSV): headings \"Date, \u2026, ID, Customer, Phone, *Credit Term*, Due Date, \u2026\" \u2014 \"Credit Term\" with a capital T, only with the permission. Each row carries its customer's phone and term (COD when none).\n* [ ] Download (PDF): each customer line reads \"Phone: \u2026 Credit term: \u2026\" (small t; it is a label, not a heading).\n\nh3. The rest of the list\n\n* Only overdue invoices (Past Due 1 or more, in calendar days at the location) plus unused credit memos and deposits. An invoice due today is not listed.\n* Totals follow the Customer filter: tick one customer \u2192 the Totals row equals that customer's \"Total\" [S5-R18].\n\nh2. Known mismatches (not bugs)\n\n* Jira SV-11539's acceptance criteria say \"Credit term\" for the CSV column. The PRD (v10) and the build say \"Credit Term\". The screen and PDF keep \"Credit term:\".\n\nh2. What is NOT impacted\n\n* The rest of A/R Collection (groups, sort, links, 100-document windows) \u2014 see SV-11531 to SV-11537.\n* Customer records themselves (phone and term are read only).\n\nh2. Dev verification\n\n* [x] Tests: {{AgingGroupedEndpointTest}} (CSV \"Credit Term\" only with the permission; PDF \"Credit term: Net 30\" / \"Credit term: COD\"; none without it), {{AgingGroupedExportQueryHandlerTest}}, {{AgingCollectionReport.spec.ts}}.\n* [x] Test ids: {{text_arcol_phone_<customerId>}}, {{text_arcol_credit_term_<customerId>}}, {{text_arcol_pinned_group_phone}}, {{text_arcol_pinned_group_credit_term}}.\n* [x] Review rounds: phases 3\u20135, S4-R7 (s4r7-r1), all approved.\n* [x] Walks: A/R Collection CSV heading \"Credit Term\"; video 8/8 checks.\n\n\n!sv-11539-call-list.mp4|width=810,alt=\"sv-11539-call-list.mp4\"!"
+  }
+ ],
+ "comments_total": 1,
+ "attachments": [
+  "sv-11539-call-list.mp4"
+ ],
+ "links": [
+  [
+   "relates to",
+   "SV-11596"
+  ]
+ ]
+}

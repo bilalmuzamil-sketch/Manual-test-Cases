@@ -1,0 +1,24 @@
+{
+ "key": "SV-12136",
+ "summary": "Reports - A/P Aging: Open Balance is higher than Amount by a few cents",
+ "status": "TESTING QA",
+ "type": "Bug",
+ "assignee": null,
+ "parent": "SV-11315",
+ "qa_branch": "https://sv11315.qa.shopview.com",
+ "labels": [],
+ "description": "*Environment:* app.staging.shopview.com (Staging Heavy Duty - 9919), Admin. Also seen on sv10647.qa.shopview.com.\n\n*Steps*\n\n# Open Reports > A/P Aging Detail. Date = 2026-11-03.\n# Compare the Amount and Open Balance on each bucket total.\n# Open A/P Unpaid Invoices and compare the grand totals.\n\n*Expected*\nOpen Balance is never higher than Amount (open = amount minus payments/credits).\n\n*Actual*\n\n* A/P Aging Detail, 91 or more days past due: Amount $3,967,303.05, Open Balance $3,967,303.07.\n* A/P Aging Detail, 31-60 days past due: Amount $316,332.37, Open Balance $316,332.39.\n* QA env, A/P Unpaid Invoices totals: Amount $4,734,817.09, Open Balance $4,734,817.13.\n* A/P Aging Summary uses the higher Open Balance figures (91+ $3,967,303.07; 31-60 $316,332.39).\n* Looks like rounding on a few bills (open balance summed unrounded or rounded differently from amount).\n\n*Evidence:* \n\n!SV-12136_evidence.mp4|width=865,alt=\"SV-12136_evidence.mp4\"!",
+ "comments": [
+  {
+   "id": "80627",
+   "created": "2026-11-10T05:42:12.863-0500",
+   "author": "Nemanja Djuric",
+   "body": "h1. QA Handoff \u2014 SV-12136 Bug \u2014 A/P Open Balance a few cents above Amount (expected behaviour)\n\n*QA env:* https://sv11315.qa.shopview.com \u00b7 *PR:* https://github.com/ShopView/shopview/pull/4262 (branch {{SV-11315-ar-ap-aging-reports}}, head {{8e35ee0d02}})\n*Screens:* {{/reports/ap-aging-detail}}, {{/reports/ap-aging-summary}} (and {{/reports/ap-unpaid-invoices}})\n*Shared notes* (roles, test data, known mismatches): https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616\n*Video:* none (no screen change of its own)\n\n----\n\nh2. Finding\n\n* No rounding is involved: every amount behind these reports is stored in whole cents.\n* The gap comes from *partly used vendor credits*. On a bucket's totals, Amount adds each credit's original amount (e.g. \"$-10.00\") while Open Balance adds what is still unused (e.g. \"$-7.98\"). So a bucket's Open Balance total can come out above its Amount total although no single row is wrong.\n* Product decided (Chris, 2026-11-04, answer 10): \"Open Balance never above Amount\" is meant *per row*. That holds. The ticket can be closed as expected behaviour \u2014 QA, as the reporter, please close it after the check below.\n* The rebuild also rounds each row's Amount and Open Balance once, the same way, and the totals add up the rows exactly.\n\nh2. QA Checklist (do these)\n\n* [ ] A/P Detail, Expand all: on every *bill* row, Open Balance is never above Amount.\n* [ ] Find a partly used vendor credit: Amount = the original credit (e.g. \"$-10.00\"), Open Balance = what is unused (e.g. \"$-7.98\"). Its bucket's Open Balance total may be above its Amount total \u2014 expected.\n* [ ] Each bucket's \"Total for\" row and the Totals row add up the rows to the cent. In the CSV, sum the Amount and Open Balance columns and compare with the Totals row. The PDF shows the same figures.\n* [ ] A/P Aging Summary Totals = the sum of its rows to the cent; with Past due Any, they equal A/P Detail's Open Balance Totals bucket by bucket [S5-R18a].\n\nh2. Known mismatches (not bugs)\n\n* A bucket's Open Balance total above its Amount total, caused by partly used vendor credits (above).\n\nh2. What is NOT impacted\n\n* Stored amounts and payments (read only).\n\nh2. Dev verification\n\n* [x] Tests: {{DbalApAgingQueryRepositoryTest}} (sub-cent balance rounded once; totals = sum of row cents), {{AgingSummaryDetailParityTest}}.\n* [ ] Data check (dev) on QA / staging: per-shop counts in {{staging-gates.sql}} \u00a74.\n* [x] Review rounds: phases 2 and 4, approved."
+  }
+ ],
+ "comments_total": 1,
+ "attachments": [
+  "SV-12136_evidence.mp4"
+ ],
+ "links": []
+}

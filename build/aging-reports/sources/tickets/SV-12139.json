@@ -1,0 +1,24 @@
+{
+ "key": "SV-12139",
+ "summary": "Reports - A/R and A/P aging: the location prompt's button reads \"Switch Location\" instead of \"Switch location\"",
+ "status": "TESTING QA",
+ "type": "Bug",
+ "assignee": null,
+ "parent": "SV-11315",
+ "qa_branch": "https://sv11315.qa.shopview.com",
+ "labels": [],
+ "description": "*What happens:* The \"Switch location?\" prompt that opens when a user clicks a document from another location shows its button with a capital L.\n\n*Steps*\n\n* Open any A/R or A/P aging report with two locations ticked.\n* Click an invoice or bill from a location other than the one you are signed into.\n\n*Expected:* The buttons read \"Cancel\" (left) and \"Switch location\" (right, small l), with a close X at the top right that works like Cancel.\n\n*Actual:* The button reads \"Switch Location\".\n\n*Rule:* S7-R3 (the existing location-switch prompt wording) in the [A/R and A/P Report Sorting PRD|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/947650561]. Confirmed by Chris in Bilal's QA sheet (22 Oct 2026).\n\n*TestRail cases that fail until this is fixed:* C715416, C715417, C715519, C715520, C715546",
+ "comments": [
+  {
+   "id": "80629",
+   "created": "2026-11-10T05:42:14.280-0500",
+   "author": "Nemanja Djuric",
+   "body": "h1. QA Handoff \u2014 SV-12139 Bug \u2014 location prompt button reads \"Switch Location\"\n\n*QA env:* https://sv11315.qa.shopview.com \u00b7 *PR:* https://github.com/ShopView/shopview/pull/4262 (branch {{SV-11315-ar-ap-aging-reports}}, head {{8e35ee0d02}})\n*Screens:* {{/reports/ar-aging-detail}}, {{/reports/ar-aging-collection}}\n*Shared notes* (roles, test data, known mismatches): https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616\n*Video:* {{sv-11537-links.mp4}}\n\n----\n\nh2. What changed\n\nThe prompt on the aging reports reads \"Switch location?\" with buttons \"Cancel\" (left) and \"Switch location\" (right, small l), and a close \u00d7 [S7-R3]. Cancel and \u00d7 keep you exactly where you were [S7-R5]. The app's global button style capitalises every word; the aging prompt now overrides it.\n\nh2. QA Checklist (do these)\n\nh3. Original repro, now fixed\n\n* [ ] Admin enrolled at 2+ locations. A/R Collection (or A/R Detail, bucket open), all locations ticked. Click an invoice number from another location you are enrolled in \u2192 title \"Switch location?\", message \"This work order is in {location}. Switch your active location to view it?\" (part sale: \"This part sale is in {location}. \u2026\").\n* [ ] Buttons: \"Cancel\" on the left, \"Switch location\" on the right, with a *small l*. \u00d7 at the top right.\n* [ ] \u00d7 and Cancel \u2192 the prompt closes; same address, filters, sort, open groups and scroll position.\n* [ ] \"Switch location\" \u2192 the active location changes and the document opens.\n* [ ] A/P reports never show this prompt (a bill at another location is plain text).\n\nh2. Known mismatches (not bugs)\n\n* The work order and part sale pages' *own* prompt (e.g. after a Ctrl-click into a new tab, or a deep link with another {{locationId}}) still reads \"Switch Location\" with a capital L. That comes from the app-wide button style and was not changed here. Only the aging prompt is fixed.\n\nh2. What is NOT impacted\n\n* The work order / part sale prompt's behaviour: Cancel still returns to Work Orders with its message (SV-11597).\n\nh2. Dev verification\n\n* [x] Fixed in the design pass (68c886966f): a dialog-scoped override of the global button capitalisation. The unit tests don't load the app stylesheet, so the casing is checked in the browser (review design-r1 SR-1 removed two class-only checks).\n* [x] Tests: {{useWorkOrderLocationResolver.spec.ts}} (stay mode: Cancel and \u00d7 keep the page), {{useAgingDocumentSwitch.spec.ts}}.\n* [x] Review rounds: phases 1, 3, 4, design-r1/r2, approved.\n* [x] Walks: the prompt reads \"Switch location\"; Cancel keeps the address and open groups; video 15/15 checks.\n\n\n!sv-11537-links.mp4|width=810,alt=\"sv-11537-links.mp4\"!"
+  }
+ ],
+ "comments_total": 1,
+ "attachments": [
+  "sv-11537-links.mp4"
+ ],
+ "links": []
+}

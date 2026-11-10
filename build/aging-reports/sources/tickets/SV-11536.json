@@ -1,0 +1,37 @@
+{
+ "key": "SV-11536",
+ "summary": "A/R and A/P Report Sorting - Story 6 - Location column",
+ "status": "TESTING QA",
+ "type": "Story",
+ "assignee": null,
+ "parent": "SV-11315",
+ "qa_branch": "https://sv11315.qa.shopview.com",
+ "labels": [],
+ "description": "h2. Summary\n\nGive all six reports a column labelled \"Location\", shown when two or more locations are in scope, so every row says where its document lives.\n\nh2. Context\n\nAs a user of a multi-location shop, I want to see each row's location so that the Location filter has something to match.\n\nPrerequisites: User must have 'Reports \u2192 Page Access' setting enabled.\n\nForm factor: Desktop only by rule: detailed reports.\n\nh2. Requirements\n\n* S6-R1: All six reports have a column labelled exactly \"Location\". This renames A/R Detail's and A/R Collection's \"Location full name\" and A/P Detail's and A/P Unpaid Invoices' \"Location Name\", and adds the column to A/R Summary and A/P Summary.\n* S6-R2: The column is shown when two or more locations are ticked (All locations counts when the report's list has two or more) and hidden when one or none is ticked.\n* S6-R3: It sits right after the Date column, before the money columns; on A/R Summary and A/P Summary, which have no Date column, right after the customer or vendor name.\n* S6-R4: On A/R Summary and A/P Summary a row shows the location's name when all of that customer's or vendor's open documents at the chosen locations are at one location, otherwise \"Multiple\".\n* S6-R5: The column sorts A to Z on its first click; \"Multiple\" sorts as text.\n* S6-N1: With one location chosen, the column is hidden on screen and in the export.\n\nh2. Acceptance Criteria\n\n* Given any of the six reports, then the column is labelled exactly \"Location\" (replacing \"Location full name\" and \"Location Name\"; new on the Summaries) (S6-R1).\n* Given All locations with two or more locations in the report's list, or two or more chosen, then the column shows; given one location chosen, then it is hidden on screen and in the export (S6-R2, S6-N1, S3-R6).\n* Given a detail report, then the column sits right after Date; on the Summaries right after the name (S6-R3).\n* Given a Summary row whose open documents at the chosen locations are at one location, then it shows that location; otherwise \"Multiple\"; the column sorts A to Z on its first click, \"Multiple\" as text (S6-R4, S6-R5).\n\nh2. UI/UX\n\nDesign: page 4 (Location filter and Location column)\n\n[A/R and A/P Report Sorting design canvas|https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4]\n\nh2. PRD\n\n[A/R and A/P Report Sorting, Export and Location Filter, Story 6|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=947650561]",
+ "comments": [
+  {
+   "id": "80622",
+   "created": "2026-11-10T05:41:31.183-0500",
+   "author": "Nemanja Djuric",
+   "body": "h1. QA Handoff \u2014 SV-11536 Story 6 \u2014 Location column\n\n*QA env:* https://sv11315.qa.shopview.com \u00b7 *PR:* https://github.com/ShopView/shopview/pull/4262 (branch {{SV-11315-ar-ap-aging-reports}}, head {{8e35ee0d02}})\n*Screens:* all six aging reports\n*Shared notes* (roles, test data, known mismatches): https://shopview.atlassian.net/browse/SV-11315?focusedCommentId=80616\n*Video:* {{sv-11536-location-column.mp4}}\n\n----\n\nh2. What changed\n\nEvery report shows a \"Location\" column when more than one location is in view, on screen and in both exports. It hides with one location, and a Location sort then falls back to the opening order.\n\nh2. QA Checklist (do these)\n\nh3. When it shows [S6-R1, S6-R2, S6-N1]\n\n* All locations ticked (organization with 2+ locations with open documents) \u2192 a \"Location\" column. It hides when one location is ticked \u2014 on screen, in the PDF and in the CSV.\n* Position: right after the name on the Summaries; right after Date on the other four.\n* Heading reads \"Location\" (it was \"Location full name\" on A/R Detail and \"Location Name\" on A/P Detail).\n\nh3. What it shows [S6-R3, S6-R4]\n\n* Summaries: the location's name when all of that customer's or vendor's open documents at the ticked locations are at one location, otherwise \"Multiple\".\n* Other reports: each row shows its own document's location. A/P: a bill \u2192 its delivery's location; a vendor credit from a return \u2192 the return's; any other vendor credit \u2192 the vendor's.\n\nh3. Sort [S6-R5, S2-R7a]\n\n* First click A to Z (\"Multiple\" sorts as text); inside each group or bucket on the grouped reports.\n* Sort by Location, then tick one location \u2192 the column hides and the sort returns to the opening order with its header marked (name column on the Summaries and Detail; Date on A/R Collection and A/P Unpaid). Exports follow. Tick a second location \u2192 the column returns; the sort stays on the opening order.\n* Check on all six reports.\n\nh3. Wrapping at 1440 px [S8-R3]\n\n* A long location name wraps onto a second line on A/P Detail and A/P Unpaid. All nine columns stay visible without a sideways scroll.\n* On A/R Summary, A/P Summary, A/R Detail and A/R Collection, Location stays on one line.\n\nh2. Known mismatches (not bugs)\n\n* PRD S8-R3 still says Location wraps only on A/P Detail; it also wraps on A/P Unpaid (Product agreed, wording fix pending).\n* PRD S2-R7a mentions only narrowing the filter; the fallback happens whenever the column hides (Product agreed).\n* A location whose record has no organization set shows no name in these reports (the old reports showed it). Kept on purpose: stricter, same as the other Reporting reports.\n\nh2. What is NOT impacted\n\n* Which documents each user can see (organization-wide, as before).\n* The top-right location switcher.\n\nh2. Dev verification\n\n* [x] Tests: {{agingColumns.spec.ts}} (when the column shows; which reports wrap), {{DbalOrganizationLocationsScopeResolverTest}}, {{useAgingLocationSortFallback.spec.ts}}, the Summary / Detail / Unpaid report specs (header, request and export), {{AgingTenantBoundaryTest}} (a location outside the organization never lends its name).\n* [x] Review rounds: phases 1\u20135, approved; the develop merge (2026-11-09) kept the stricter location-name rule.\n* [x] Walks: A/P Unpaid fits at 1440 with Location wrapping; A/R Summary Location sort falls back when narrowed; video 44/44 checks.\n\n\n!sv-11536-location-column.mp4|width=810,alt=\"sv-11536-location-column.mp4\"!"
+  }
+ ],
+ "comments_total": 1,
+ "attachments": [
+  "sv-11536-location-column.mp4"
+ ],
+ "links": [
+  [
+   "relates to",
+   "SV-11598"
+  ],
+  [
+   "relates to",
+   "SV-11595"
+  ],
+  [
+   "relates to",
+   "SV-11596"
+  ]
+ ]
+}
