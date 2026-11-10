@@ -9,7 +9,7 @@ const done=r=>{ const o=live.get(r); if(o&&o.end===null) o.end=T(); };
 p.on('requestfinished',done); p.on('requestfailed',done);
 const errs=[]; p.on('pageerror',e=>errs.push(e.message.slice(0,120)));
 const out=[]; const marker=await s.marker(); out.push('marker '+JSON.stringify(marker));
-const vis=async tid=>p.locator(`[data-test-id="${tid}"]`).first().isVisible().catch(()=>false);
+const vis=async tid=>p.evaluate(t=>[...document.querySelectorAll(`[data-test-id="${t}"]`)].some(e=>{const r=e.getBoundingClientRect(); return r.width>0&&r.height>0&&getComputedStyle(e).visibility!=='hidden';}),tid).catch(()=>false);
 const fin=async()=>{ await s.go(`/workorders/${WO}/lines`); await p.waitForTimeout(2500); await s.glideClick('link_finance_tab'); await p.waitForTimeout(6000); };
 await fin();
 for(let i=1;i<=N;i++){
