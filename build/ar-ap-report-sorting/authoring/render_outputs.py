@@ -50,8 +50,12 @@ row("SV-11598", "COVERED", [c["key"] for c in CASES if set(L.reports_of(c)) & {"
 row("SV-11599", "NO-CASE", [], "Developer verify task, Phase 5: old code and routes removed and the nightly automated run green are developer checks; \"All six reports work end to end once more as admin\" is the whole suite.")
 row("SV-11600", "NO-CASE", [], "Duplicate of SV-11597 (same summary and description, word for word); covered by the SV-11597 cases. Noted for the QA lead.")
 assert {i["key"] for i in epic} == set(ledger), set(i["key"] for i in epic) ^ set(ledger)
-json.dump(ledger, open(f"{P}/TICKET-LEDGER.json", "w"), indent=1, ensure_ascii=False)
-json.dump({"project": "A/R and A/P Report Sorting, Export and Location Filter", "epic": "SV-11315",
+# From 10 Nov 2026 the ledger and the sweep config are refreshed from the 10 Nov 2026 Jira read (26 tickets) by
+# currency-2026-11-10/scripts/ledger_update.py; the 22 Oct 2026 rows above are no longer written over them.
+_LATER = float(json.load(open(f"{P}/TICKET-SWEEP.json")).get("prd_version_handled", 0)) > 9
+if _LATER: print("TICKET-LEDGER.json and TICKET-SWEEP.json kept as refreshed on 10 Nov 2026 (currency-2026-11-10/scripts/ledger_update.py)")
+if not _LATER: json.dump(ledger, open(f"{P}/TICKET-LEDGER.json", "w"), indent=1, ensure_ascii=False)
+if not _LATER: json.dump({"project": "A/R and A/P Report Sorting, Export and Location Filter", "epic": "SV-11315",
            "stories": [v[0] for v in L.STORY.values()], "prd_page": "947650561", "prd_version_handled": 9,
            "_query": "(key = SV-11315 OR parent = SV-11315 OR parent in (SV-11531..SV-11539)), every page, saved as sources/JIRA-EPIC-SV-11315-2026-10-22.json (25 tickets).",
            "prd_handled_note": "22 Oct 2026: first draft of the whole suite from PRD v5 (21 Oct 2026). 26 Oct 2026: PRD v9 (23 Oct 2026) saved, diffed against v5 (sources/PRD-DIFF-v5-to-v9.json plus the non-requirement text) and every case re-checked against it (v9-pass-2026-10-26/PASS-REPORT.md). The ticket rows are as read on 22 Oct 2026; the tickets were not re-read in the 26 Oct pass (Chris Ward's answer 10: the stories will be brought in line with the PRD)."},
@@ -61,9 +65,13 @@ json.dump({"project": "A/R and A/P Report Sorting, Export and Location Filter", 
 refs = defaultdict(list)
 for c in CASES:
     for n in set(int(x) for x in re.findall(r"question (\d+)", c["note"] + " " + c["marker"])): refs[n].append(c["key"])
-Q = ["# A/R and A/P Report Sorting — questions for Chris Ward (sent 22 Oct 2026; ALL ANSWERED 23 Oct 2026)", "",
+Q = ["# A/R and A/P Report Sorting — questions for Chris Ward (sent 22 Oct 2026; questions 1 to 17 answered; question 18 added 10 Nov 2026, not sent)", "",
+     "10 Nov 2026: question 17 was answered on 4 Nov 2026 (`po-answers-2026-11-04/ANSWER-17-Chris-Ward.md`: tickets SV-12138 to SV-12141). "
+     "Question 18 (the PDF's \"As of\" line for a day before the 10th: S3-R4 against S3-R7a, PRD version 11) is added at the bottom of the same sheet "
+     "on the QA lead's order of 10 Nov 2026 (\"Yes, add Q1 only\"); its row text is in `currency-2026-11-10/PASS-REPORT.md`. It is not sent yet; "
+     "S3-32 is held on it. The rest of this file is the 22 Oct 2026 record.", "",
      "26 Oct 2026: Chris Ward answered questions 1 to 16 on the sheet (read 26 Oct 2026, `questions-2026-10-22/chris-answers-2026-10-26.json`) and PRD version 9 "
-     "(23 Oct 2026) carries the answers. Nothing is waiting on the PO for this suite. The table below is the 22 Oct 2026 draft, kept for the record.", "",
+     "(23 Oct 2026) carries the answers. The table below is the 22 Oct 2026 draft, kept for the record.", "",
      "Project: A/R and A/P Report Sorting, Export and Location Filter (epic SV-11315). Feature: the six A/R and A/P aging reports. "
      "PRD version 5 (21 Oct 2026). Prepared 22 Oct 2026 from a full read of the PRD and every ticket under the epic. **Nothing here has been sent** "
      "(QA lead's instruction for this pass). When it is sent, it uses the colour-coded question sheet format (Rule 125) and the open list goes into "
@@ -104,7 +112,10 @@ CL = ["# Design-case checklist (skill 21 §6d, Rule 133) — A/R and A/P Report 
       "| 7 | Every PRD look sentence has a design case | DONE (S7-R7, S8-R1 to S8-R6, S3-R7, S4-R1, S4-R5, S4-R6, S5-R2, S5-R13, S5-R15, KD reuse rule, Out of Scope phone layout); re-checked against the design | D-01 to D-49 |",
       "| 8 | Result written down in the divergence register and the proof file; checklist beside them | DONE: DESIGN-DIVERGENCE-REGISTER.json, design-2026-10-22/DESIGN-READING-RECORD.md, DESIGN-TEXT-INVENTORY, DESIGN-VISUAL-INVENTORY, PASS-REPORT.md | this folder and design-2026-10-22/ |",
       "", "Lessons applied (LESSONS-REGISTER): L-01 look covered (visual inventory, picture cases); L-02 both directions and every dialog's rows and buttons; "
-      "L-03 not applicable (no Jira writes in this pass); L-04 letter case compared by hand; L-05 this checklist."]
+      "L-03 not applicable (no Jira writes in this pass); L-04 letter case compared by hand; L-05 this checklist.", "",
+      "10 Nov 2026 (design version of 5 Nov 2026): the three re-shot pictures (Location \"Cleared: No locations\", Links \"Links only where they can open\", "
+      "Filters \"The native Vendor menu\") are no longer attached to any case and their new 5 Nov captions are quoted instead (QA lead, \"Remove old, add later\"); "
+      "line 1's picture list therefore shows them with no case until the new pictures are attached."]
 open(f"{P}/DESIGN-CASE-CHECKLIST-2026-10-22.md", "w").write("\n".join(CL) + "\n")
 open(f"{P}/design-2026-10-22/DESIGN-CASE-CHECKLIST-2026-10-22.md", "w").write("\n".join(CL) + "\n")
 json.dump(DR.build(), open(f"{P}/DESIGN-DIVERGENCE-REGISTER.json", "w"), indent=1, ensure_ascii=False)
@@ -119,8 +130,11 @@ cov = defaultdict(list)
 for c in CASES:
     for x in L.codes_of(c): cov[x].append(c["key"])
 def fsize(p): return os.path.getsize(p), sum(1 for _ in open(p, encoding="utf-8", errors="replace"))
-R = ["# A/R and A/P Report Sorting, Export and Location Filter — suite report (22 Oct 2026; full pass against PRD version 9, 26 Oct 2026)", "",
+R = ["# A/R and A/P Report Sorting, Export and Location Filter — suite report (22 Oct 2026; PRD version 9 pass 26 Oct 2026; PRD version 11 pass 10 Nov 2026)", "",
      "## What I did", "",
+     "- 10 Nov 2026: currency pass against PRD version 11 (5 Nov 2026), Jira of 10 Nov 2026 (26 tickets) and the design version of 5 Nov 2026, on the QA lead's "
+     "decisions of 10 Nov 2026 (\"Named set\", \"Yes, both\", \"Yes, add Q1 only\", \"Remove old, add later\"): verdicts, per-part record and the dry-run write "
+     "plans in `currency-2026-11-10/PASS-REPORT.md`. Drafted only: nothing written to TestRail, Jira, Slack or Google in that pass.",
      "- 26 Oct 2026: full pass (QA lead's choice) against PRD version 9 (23 Oct 2026) and Chris Ward's answers 1 to 16: every case checked, verdict and per-part record "
      "in `v9-pass-2026-10-26/PASS-REPORT.md`. Drafted only: nothing written to TestRail, Jira, Slack or Google in that pass.",
      f"- Drafted the whole suite as authoring files: **{len(CASES)} cases** in 12 sections, every one in the Rule 117 shape (all twelve amendments). "
@@ -133,11 +147,12 @@ for s in secs: R.append(f"| {sec_names[s]} | {secs[s]} | {cnt[s]} |")
 R += [f"| **Total** | group 90418 | **{len(CASES)}** |", "",
       "## Automation markers (read back from the cases)", "", "| Marker | Cases |", "|---|---|"]
 for m, n in markers.most_common(): R.append(f"| `{m}` | {n} |")
-R += ["", "Every case is HOLD today because no build exists (Rule 85: source-verified only). READY + EXPECT-FAIL = 0 = total − HOLD.", "",
+R += ["", "A QA build exists since 10 Nov 2026 (sv11315, v26.45.2-6a8b89c) and no case has been run on it yet, so every case without a ticket-backed "
+      "expect-fail line or a real HOLD carries the Rule 69 marker \"Not available on Build to test Yet\" (Rule 61: a HOLD only for what cannot be had).", "",
       "## What is held, and why", "", "| Case | Title | Why held |", "|---|---|---|"]
 for c in CASES:
     if c["marker"] != L.MARKER: R.append(f"| {c['key']} | {c['title']} | {c['marker'].split(' - ', 1)[1]} |")
-R += ["", "## PRD version 9 coverage — every requirement code", "", "| Code | Cases | Reports covered |", "|---|---|---|"]
+R += ["", "## PRD version 11 coverage — every requirement code", "", "| Code | Cases | Reports covered |", "|---|---|---|"]
 for k in sorted(L.CODE, key=lambda s: (int(s.split('-')[0][1:]), {"R": 0, "N": 1, "E": 2}[s.split('-')[1][0]], int(re.sub(r'\D', '', s.split('-')[1])), s)):
     reps = sorted({r for ck in cov[k] for r in L.reports_of(BY[ck])}, key=list(L.REPORTS).index)
     R.append(f"| {k} | {', '.join(cov[k]) or L.DELETED_NOTE} | {', '.join(L.REPORTS[r] for r in reps)} |")
@@ -150,7 +165,7 @@ for dk, d in L.DELETED.items():
         R.append(f"| {dk} {d['case']} ({d['title']}) | {x} | {', '.join(cov[x]) and 'still covered by ' + ', '.join(cov[x]) or L.DELETED_NOTE} |")
 R += ["", f"Not testable as written: {', '.join(L.NOT_TESTABLE) or 'none'} (every PRD line has a case).", "",
       "Gates `build.py` runs on every build: title ≤ 80 and no semicolon · design titles start \"Design: \" · one \"Step N:\" result per step · every {placeholder} defined in the preconditions · "
-      "every quote word for word in PRD version 9 (or Chris Ward's answers, the Jira reading record or the tech plan) · every PRD code and named item covered · every report a requirement names covered · every column of every report clicked "
+      "every quote word for word in PRD version 11 (or Chris Ward's answers, the Jira reading record or the tech plan) · every PRD code and named item covered · every report a requirement names covered · every column of every report clicked "
       "in a sort case, with a third click per report · every PRD message used word for word in a step or result · the six descriptions quoted word for word · one AUTOMATION line, last · "
       "\"From:\" line per document, build line, \"References from Design\" block · setup-file link first.", "",
       "## What must not change (Rule 96, upgrade of six existing reports)", "",
@@ -170,7 +185,9 @@ R += ["", "## Where Jira differs from PRD v5 (the PRD wins; listed for the PO)",
       "| SV-7192 (origin) | Proposes a selectable \"Sort customers: Alphabetical (A-Z)\" option with a \"Default order\" and ties by Customer ID; the PRD always opens A to Z and breaks ties by the lower-cased name, then the customer. |",
       "| SV-11597 / SV-11600 | Duplicate developer tasks, word for word (for the QA lead). |", "",
       "## Reading coverage (Rule 119)", "", "| Source | Size | Lines | Read |", "|---|---|---|---|"]
-for p, what in [(f"{P}/sources/CONFLUENCE-947650561-v9-2026-10-26.md", "PRD v9 (markdown, read in full 26 Oct 2026)"),
+for p, what in [(f"{P}/sources/CONFLUENCE-947650561-2026-11-05-read-2026-11-10.md", "PRD v11 (markdown, read in full 10 Nov 2026)"),
+                (f"{P}/sources/JIRA-READING-2026-11-10.md", "My record of every ticket under the epic as read 10 Nov 2026 (26 tickets, comments included)"),
+                (f"{P}/sources/CONFLUENCE-947650561-v9-2026-10-26.md", "PRD v9 (markdown, read in full 26 Oct 2026)"),
                 (f"{P}/questions-2026-10-22/chris-answers-2026-10-26.json", "Chris Ward's answers 1 to 16 (read in full 26 Oct 2026)"),
                 (f"{P}/sources/CONFLUENCE-947650561-v5-2026-10-22.md", "PRD v5 (markdown, saved 22 Oct 2026)"),
                 (f"{P}/sources/CONFLUENCE-947650561-v5-2026-10-22-html.json", "PRD v5 (HTML, used to verify the markdown copy by script)"),
@@ -195,11 +212,13 @@ R += ["| Stories SV-11531 to SV-11539 (description, requirements, acceptance cri
       "- `DESIGN-CASE-CHECKLIST-2026-10-22.md`, `DESIGN-DIVERGENCE-REGISTER.json`, `cases/design/DESIGN-CASES.json`.", "",
       "## OUTSTANDING — what I need from you", "",
       "| What | Who | What it blocks | Since |", "|---|---|---|---|",
-      "| Permission to write the 26 Oct 2026 full pass to TestRail (changed and new cases) and to add the new and released cases to run 549 (Rules 6, 123) | QA lead | the v9 pass stays a draft | 26 Oct 2026 |",
+      "| Permission to run the 10 Nov 2026 write scripts (update, create, run 557 sync, picture removals, REL-08 deletion) (Rules 6, 123) | QA lead | the v11 pass stays a draft | 10 Nov 2026 |",
+      "| The three re-shot design pictures (5 Nov 2026), which this account cannot fetch | QA lead | the new pictures are not attached yet | 10 Nov 2026 |",
+      "| The 13 release-day cases' records and captures, made before the release is installed (19 Nov 2026) | testers | the release-day HOLD cases | 22 Oct 2026 |",
       "| A test data set with exactly 2,000/2,001 customers, or a lower test limit | developers | 1 held export-limit case (DATA-19; DATA-21 was deleted 26 Oct 2026) | 22 Oct 2026 |",
-      "| A build of the feature | developers | every case is HOLD (no build yet) | 22 Oct 2026 |", "",
+      "| A run of the suite on the QA build (sv11315, v26.45.2-6a8b89c) | build verification session | every case keeps the Rule 69 marker until then | 10 Nov 2026 |", "",
       "### Waiting on the PO", "",
-      "Sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA: questions 1 to 16 all answered by Chris Ward on 23 Oct 2026 (read 26 Oct 2026). Nothing is waiting on the PO; cases held on a PO question: "
+      "Sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA: questions 1 to 16 answered 23 Oct 2026, question 17 answered 4 Nov 2026. Question 18 (added 10 Nov 2026) is not sent yet. Cases held on a PO question: "
       + (", ".join(c["key"] + " (Q" + re.search(QPAT, c["marker"]).group(1) + ")" for c in CASES if re.search(QPAT, c["marker"])) or "none") + "."]
 open(f"{P}/REPORT.md", "w").write("\n".join(R) + "\n")
 print("ledger rows", len(ledger), "| questions", len(QUESTIONS), "| report lines", len(R))

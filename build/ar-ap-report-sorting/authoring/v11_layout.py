@@ -122,3 +122,20 @@ def apply(c, out):
         res = [[b for b in r if "A/R Summary Totals row" not in b] for r in res]
         return dict(out, results=res)
     return PT.apply_layout(c, out, L) if L else out
+
+# Found in the full reading of 10 Nov 2026 (Rules 134, 137): the A/P Summary design cases named a "Transaction Type" that the
+# Summary has no column for, and the A/R Summary ones a "credit memo row" (a Summary lists customers, not documents).
+_APSUM_OLD = ("including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, "
+              "which must not overlap or be cut off.")
+_APSUM_NEW = "including a vendor credit, so the page shows a long name and a negative amount, which must not overlap or be cut off."
+_ARSUM_OLD = "including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off."
+_ARSUM_NEW = "including a credit memo, so the page shows a long name and a negative amount, which must not overlap or be cut off."
+LAYOUT["D-10"] = dict(pre_sub=[("including a vendor credit (its Transaction Type is the longest).", "including a vendor credit.")])
+LAYOUT["D-11"] = dict(pre_sub=[(_APSUM_OLD, _APSUM_NEW)])
+LAYOUT["D-12"] = dict(pre_sub=[(_APSUM_OLD, _APSUM_NEW)])
+LAYOUT["D-02"] = dict(pre_sub=[(_ARSUM_OLD, _ARSUM_NEW)])
+LAYOUT["D-03"] = dict(pre_sub=[(_ARSUM_OLD, _ARSUM_NEW)])
+# REL-03 runs on today's date; for a day before the 10th the PDF's leading zero is question 18 (S3-R4 against S3-R7a), so the
+# tester judges the date itself, not its leading zero.
+LAYOUT["REL-03"]["res_sub"].append(("not tomorrow's date.",
+    "not tomorrow's date. On a day before the 10th, judge only which date it is: whether the day carries a leading zero is waiting on the product owner."))

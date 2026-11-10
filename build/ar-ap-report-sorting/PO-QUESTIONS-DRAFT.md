@@ -1,6 +1,8 @@
-# A/R and A/P Report Sorting — questions for Chris Ward (sent 22 Oct 2026; ALL ANSWERED 23 Oct 2026)
+# A/R and A/P Report Sorting — questions for Chris Ward (sent 22 Oct 2026; questions 1 to 17 answered; question 18 added 10 Nov 2026, not sent)
 
-26 Oct 2026: Chris Ward answered questions 1 to 16 on the sheet (read 26 Oct 2026, `questions-2026-10-22/chris-answers-2026-10-26.json`) and PRD version 9 (23 Oct 2026) carries the answers. Nothing is waiting on the PO for this suite. The table below is the 22 Oct 2026 draft, kept for the record.
+10 Nov 2026: question 17 was answered on 4 Nov 2026 (`po-answers-2026-11-04/ANSWER-17-Chris-Ward.md`: tickets SV-12138 to SV-12141). Question 18 (the PDF's "As of" line for a day before the 10th: S3-R4 against S3-R7a, PRD version 11) is added at the bottom of the same sheet on the QA lead's order of 10 Nov 2026 ("Yes, add Q1 only"); its row text is in `currency-2026-11-10/PASS-REPORT.md`. It is not sent yet; S3-32 is held on it. The rest of this file is the 22 Oct 2026 record.
+
+26 Oct 2026: Chris Ward answered questions 1 to 16 on the sheet (read 26 Oct 2026, `questions-2026-10-22/chris-answers-2026-10-26.json`) and PRD version 9 (23 Oct 2026) carries the answers. The table below is the 22 Oct 2026 draft, kept for the record.
 
 Project: A/R and A/P Report Sorting, Export and Location Filter (epic SV-11315). Feature: the six A/R and A/P aging reports. PRD version 5 (21 Oct 2026). Prepared 22 Oct 2026 from a full read of the PRD and every ticket under the epic. **Nothing here has been sent** (QA lead's instruction for this pass). When it is sent, it uses the colour-coded question sheet format (Rule 125) and the open list goes into `build/PO-QUESTIONS-OPEN.md` (Rule 132).
 

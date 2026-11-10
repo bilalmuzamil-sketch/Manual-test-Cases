@@ -14,3 +14,5 @@ Full pass against the design canvas (https://claude.ai/artifact/BRYCdjKwGRSgGPC9
 | 8 | Result written down in the divergence register and the proof file; checklist beside them | DONE: DESIGN-DIVERGENCE-REGISTER.json, design-2026-10-22/DESIGN-READING-RECORD.md, DESIGN-TEXT-INVENTORY, DESIGN-VISUAL-INVENTORY, PASS-REPORT.md | this folder and design-2026-10-22/ |
 
 Lessons applied (LESSONS-REGISTER): L-01 look covered (visual inventory, picture cases); L-02 both directions and every dialog's rows and buttons; L-03 not applicable (no Jira writes in this pass); L-04 letter case compared by hand; L-05 this checklist.
+
+10 Nov 2026 (design version of 5 Nov 2026): the three re-shot pictures (Location "Cleared: No locations", Links "Links only where they can open", Filters "The native Vendor menu") are no longer attached to any case and their new 5 Nov captions are quoted instead (QA lead, "Remove old, add later"); line 1's picture list therefore shows them with no case until the new pictures are attached.

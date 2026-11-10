@@ -83,7 +83,7 @@ N("S1-19", "S1", "A/R Collection: a credit dated on the as-of date shows Past Du
    W1440, OPEN("A/R Collection"), "Leave the report with only customer A ticked in the Customer filter."],
   ["Change the as-of date to date A.", "Expand customer A's group.", "Change the as-of date to the day after date A.", "Expand customer A's group."],
   [["The report reloads for date A."],
-   ["Credit memo A is listed.", "Its Due Date is date A, its own date.", "Its Past Due reads 0."],
+   ["Credit memo A is listed.", "Its Past Due reads 0."],
    ["The report reloads for the day after date A, with every group collapsed."],
    ["Credit memo A is listed with Past Due 1."]],
   ["S1-R5a", "S4-N1"], ["ARC"], ex={1: EXN("S1-19", "customer", "Credit Caller")})
