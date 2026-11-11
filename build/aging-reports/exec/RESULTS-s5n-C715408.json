@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, C715408 (s5n)"
+ },
+ "results": {
+  "C715408": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail as of 11/11/2026, signed in at Staging Heavy Duty - 9919; vendor A = ZZAUTOTEST LOC MIX V (23 bills 1-30 days past due; bill A ZZLMV-A at Staging Lethbridge - 4310). Vendor A ticked, \"Past due: 1-30 days\", \"Amount\" clicked once, every group expanded, the list scrolled down 748 px. Bill A's number is plain text (another location).",
+    "Step 1: the location switcher in the top right opens, listing Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.",
+    "Step 2: switched to Lethbridge: the report reloads and stays open with the same filters (As of 11/11/2026, Vendor A, Past due: 1-30 days, Location: All locations) and the same 23 bills; the Amount sort is gone (back to the opening Vendor Name order); every group is collapsed and the list is back at the top (scrolled 0).",
+    "Step 3: bill A's number is now a link, and clicking it opens its delivery."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715408-0-before.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715408-1b-switch-list.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715408-2-switched.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715408-3-opened.png"
+   ]
+  }
+ }
+}
