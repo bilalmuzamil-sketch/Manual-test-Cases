@@ -18,3 +18,21 @@
 2,000 rows (S3-N1; production prints any size today), the credit dated on the as-of date moving to Current
 (S1-R5a), the drill-down keeping the date (S5-R11), the Totals rows following the filters (§2), and the other
 changes listed under "What changes for existing users".
+
+## SENT 11 Nov 2026 (QA lead: "go for 1, 2 and 5")
+
+Added as questions **19–22** (rows 28–32, light teal, colour guide I3) to Chris Ward's existing sheet
+"A/R and A/P Report Sorting – Questions for Chris Ward" — https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA
+(already shared with him as Editor). Written values read back identical.
+
+| Sheet # | Topic | Our tests waiting on it |
+|---|---|---|
+| 19 | As-of date after today (picker and saved link) | V1R-07 C1078980, V1R-08 C1078981 |
+| 20 | Empty buckets in the A/R Aging Detail PDF | V1R-35 C1079008 |
+| 21 | "Subtotal" instead of "Total for ..." in the A/R PDFs | V1R-36 C1079009 |
+| 22 | Invoice without a stored due date | V1R-25 C1078998 |
+
+Not on the sheet: the PDF document-date format — a clear PRD requirement (S3-R7a), so it is a defect, not a
+question (ticket text ready in `defect-pack-2026-11-11/TICKET-READY-PDF-DATE-FORMAT.md`). Sheet question 18
+(added 10 Nov by another session) covers only the "As of" line's date form and does not overlap.
+Chris is NOT notified by a sheet edit; the QA lead decides how to tell him.
