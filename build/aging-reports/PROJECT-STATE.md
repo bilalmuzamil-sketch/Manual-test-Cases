@@ -47,3 +47,13 @@ you to start - But be completely ready." Status: **READY, NOT STARTED** (waiting
    script printed are not PRD quotes: design notes / a Chris ruling / two Technical Implementation Plan quotes for S3-R10 and S5-R3 —
    checked by eye); 17 tests quote no PRD rule.
 4. **Sign in when he says start**; anyone signed out signs in again.
+
+
+## Execution progress — run 557 (11 Nov 2026, QA site sv11315, build v26.45.2-6a8b89c)
+- Live run tally after S2 batch a: 25 passed · 2 failed · 2 blocked · 351 untested.
+- Failed (ticket HELD for the QA lead, draft `tickets-held/01-open-group-loads-all-documents-at-once.md`): C1062570, C1062571 — an open group on A/R Collection / A/P Unpaid sends all its documents at once (PRD S1-R8 says 100 at a time).
+- Blocked (QA lead to decide retire/keep): C715277, C715279 — the product refuses customer names that differ only in capitals/accents.
+- Expect-fail tests that PASS (fix is on the branch): C715282, C715283 (SV-12138, TESTING QA).
+- Waiting for the location's midnight (07:00 UTC 11 Nov): C1062566 (credit memo CM11315-4194 + deposit DEP11315-4712 dated 10 Nov, customer ZZAUTOTEST CREDIT DAY B); reminder set.
+- Seeded data (ZZAUTOTEST, all on sv11315): customers S1R5 Alpha/Bravo, CREDIT DAY A/B, OVER100 C (105 invoices); vendors S1R5 V Alpha/Bravo (bills 9917/10023/10024/ZZBR-1), NEG PASTDUE V2 (Net 30), VCREDIT V (credit C-13668 dated 5 Nov), OVER100 V (105 bills). Tech ShopView role restored to Technician.
+- Tooling: exec/sortlib.mjs + s2_run.mjs (scenario JSON) for S2; exec/filt.mjs (filters/as-of); exec/ann.py + s2_pics.py (pictures from recorded boxes).

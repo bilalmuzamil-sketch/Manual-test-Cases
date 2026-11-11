@@ -13,8 +13,10 @@ export function mkSort(p) {
       const moved = await p.evaluate(`(() => { const e = ${SC}; const b = e.scrollTop; e.scrollTop = b + e.clientHeight * 0.8; return e.scrollTop !== b; })()`); await p.waitForTimeout(450); stall = (!moved && !add) ? stall + 1 : 0; }
     await p.evaluate(`${SC}.scrollTop = 0`); await p.waitForTimeout(300); return seen; }
   async function find(re) { await p.evaluate(`${SC}.scrollTop = 0`); await p.waitForTimeout(400);
-    for (let i = 0; i < 400; i++) { const l = p.locator('main tbody tr').filter({ hasText: re }).first(); if (await l.count()) { await l.scrollIntoViewIfNeeded(); await p.waitForTimeout(300); return l; }
-      const moved = await p.evaluate(`(() => { const e = ${SC}; const b = e.scrollTop; e.scrollTop = b + e.clientHeight * 0.8; return e.scrollTop !== b; })()`); await p.waitForTimeout(400); if (!moved) return null; } return null; }
+    let stall = 0; for (let i = 0; i < 400; i++) { const l = p.locator('main tbody tr').filter({ hasText: re }).first(); if (await l.count()) { await l.scrollIntoViewIfNeeded(); await p.waitForTimeout(300); return l; }
+      const moved = await p.evaluate(`(() => { const e = ${SC}; const b = e.scrollTop; e.scrollTop = b + e.clientHeight * 0.8; return e.scrollTop !== b; })()`); await p.waitForTimeout(moved ? 400 : 900); stall = moved ? 0 : stall + 1; if (stall >= 4) return null; } return null; }
+  /* 11 Nov: A/R Collection, A/P Unpaid and the Summaries load 30 groups at a time; at the bottom the next 30 arrive after a moment, so a
+     single "did not move" is not the end of the list — wait for 4 in a row before giving up (C715298 first run: 'not-found'). */
   async function expand(re) { const l = await find(re); if (!l) return 'not-found'; const t = await l.innerText(); if (/keyboard_arrow_right/.test(t)) { await l.locator('button, i.q-icon').first().click(); await p.waitForTimeout(2500); return 'opened'; } return 'already-open'; }
   async function collapse(re) { const l = await find(re); if (!l) return 'not-found'; const t = await l.innerText(); if (/keyboard_arrow_down/.test(t)) { await l.locator('button, i.q-icon').first().click(); await p.waitForTimeout(1500); return 'closed'; } return 'already-closed'; }
   async function clickTh(label) { const loc = p.locator('main thead th').filter({ hasText: new RegExp('^\\s*(keyboard_arrow_(down|right)\\s*)?' + label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*(arrow_drop_(up|down))?\\s*$') }).first();
