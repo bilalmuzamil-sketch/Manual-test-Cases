@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715347": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of 11/11/2026, Customer filter = new customer ZZX CSV Det A R3: invoice A S11315-17764 dated Sep 27, 2026 (date A), $1,250.50, 45 days past due; invoice B S11315-17765, $75.00, 15 days past due.",
+    "Step 1: Download (CSV) - the file downloads with the Success message.",
+    "Step 2: as plain text it starts with \"As of: Nov 11, 2026\", \"Locations: All locations\" and \"Customer: ZZX CSV Det A R3\", one line each; the heading row follows directly: Date, Location, Transaction Type, ID, Customer, Phone, Credit Term, Due Date, Past Due, Amount, Open Balance - the screen's headings letter for letter, with a Customer column (Phone and Credit Term, shown on the customer's group row on screen, are columns too).",
+    "Invoice A's row: Customer \"ZZX CSV Det A R3\", Date 2026-09-27, Amount 1250.50. One row for invoice B. No group header or subtotal rows; one Totals row with Amount 1325.50."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715347-0-ticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715347-2-csv-text.png"
+   ]
+  }
+ }
+}
