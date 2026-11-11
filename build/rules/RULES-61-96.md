@@ -2741,6 +2741,12 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     developers' handoff corrected, a PO answer), update its Sources row and the Yes/No — read the live description
     first so nobody else's edit is overwritten.
 
+    **119.1 · Label for the A/R and A/P suite (QA lead, 2026-11-11, verbatim: "ALl the tickets which you have
+    created and will create in the future for the A/R and A/P testing suite please apply the label on those ticket
+    as AP-AR-FM").** Every ticket filed from the A/R and A/P aging suite (epic SV-11315, folder "Regression Tests",
+    run 557, and any later run of it) carries the labels **`QA_Found` AND `AP-AR-FM`**. Labels are SET, not
+    appended — always send both. Applied 11 Nov 2026 to SV-12544, SV-12545, SV-12546 and SV-12547 (read back).
+
 120. **HOW TO AVOID REPORTING A BUG THAT ISN'T THERE — MEASURE BEFORE YOU CLAIM (all projects, permanent).**
     Given by the QA lead on **2026-11-11**. His text, verbatim:
 

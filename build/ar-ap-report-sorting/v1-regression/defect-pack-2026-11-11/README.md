@@ -26,3 +26,5 @@ open PO question (sheet rows 19/20/21) — Chris Ward may decide the change is i
 - "Product Area" is not on the Story Defect create screen (Jira rejects it).
 - Differs from our playbook's 7-section format (which forbids test-case links in the ticket) — proposed to the QA lead
   for recording (Rule 72), not yet recorded as a rule.
+
+**Labels (Rule 119.1, QA lead 11 Nov 2026):** every ticket from this suite carries `QA_Found` and `AP-AR-FM`. Applied to SV-12544…SV-12547 on 11 Nov 2026 and read back.
