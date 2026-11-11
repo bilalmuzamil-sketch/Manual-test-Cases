@@ -1,0 +1,1074 @@
+{
+ "pass_meta": {
+  "note": "Run 557, 11 Nov 2026: results re-added in the format of the \"Create defects from TestRail\" session (Rule 117). V1R-68 C1079041 and V1R-70 C1079043 held: their live case text still says step 5 \"it appears\", which was not observed."
+ },
+ "results": {
+  "C1078974": {
+   "verdict": "Passed",
+   "observed": [
+    "In the Reports menu, the Finance part has an Accounts Receivable heading listing A/R Aging Summary, A/R Aging Detail and A/R Aging Collection.",
+    "Clicking A/R Aging Summary opens the page titled \"A/R Aging Summary\"; the address ends in /reports/ar-aging-summary.",
+    "Clicking A/R Aging Detail opens the page titled \"A/R Aging Detail\"; the address ends in /reports/ar-aging-detail.",
+    "Clicking A/R Aging Collection opens the page titled \"A/R Aging Collection\"; the address ends in /reports/ar-aging-collection."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078974-1-step-2-finance-part-of-the-reports-menu.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078974-2-step-4-ar-aging-summary.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078974-3-step-6-ar-aging-detail.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078974-4-step-8-ar-aging-collection.png"
+   ],
+   "note": "V1R-01"
+  },
+  "C1078975": {
+   "verdict": "Passed",
+   "observed": [
+    "In the Reports menu, the Accounts Payable heading lists A/P Aging Summary, A/P Aging Detail and A/P Unpaid Invoices.",
+    "Clicking A/P Aging Summary opens the page titled \"A/P Aging Summary\"; the address ends in /reports/ap-aging-summary.",
+    "Clicking A/P Aging Detail opens the page titled \"A/P Aging Detail\"; the address ends in /reports/ap-aging-detail.",
+    "Clicking A/P Unpaid Invoices opens the page titled \"A/P Unpaid Invoices Report\"; the address ends in /reports/ap-unpaid-invoices."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078975-1-step-2-accounts-payable-heading.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078975-2-step-4-ap-aging-summary.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078975-3-step-6-ap-aging-detail.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078975-4-step-8-ap-unpaid-invoices.png"
+   ],
+   "note": "V1R-02"
+  },
+  "C1078976": {
+   "verdict": "Passed",
+   "observed": [
+    "Working at Staging Heavy Duty - 9919 (location A, shown top right).",
+    "With every bucket of A/R Aging Detail open, invoice S11315-17835 of ZZAUTOTEST AR R03 Location B is listed with Staging Lethbridge - 4310 (location B) on its line: dated Nov 6, 2026, $33.00, open balance $33.00.",
+    "The invoice is dated Nov 6, 2026 rather than today as the setup says; it is open today, which is what the test checks."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078976-1-steps-3-4-location-b-invoice-while-working-at-a.png"
+   ],
+   "note": "V1R-03"
+  },
+  "C1078977": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary with the date chip set to As of: 10/01/2026.",
+    "After switching location to Staging Lethbridge - 4310 in the top right, the page is still A/R Aging Summary and the chip still reads As of: 10/01/2026."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078977-1-step-5-after-switching-to-location-b.png"
+   ],
+   "note": "V1R-04"
+  },
+  "C1078978": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary opens with the date chip on today: As of: 11/11/2026.",
+    "A/R Aging Detail opens with As of: 11/11/2026.",
+    "A/R Aging Collection opens with As of: 11/11/2026.",
+    "A/P Aging Summary opens with As of: 11/11/2026.",
+    "A/P Aging Detail opens with As of: 11/11/2026.",
+    "A/P Unpaid Invoices opens with As of: 11/11/2026."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078978-1-step-3-ar-aging-summary-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078978-2-step-5-ar-aging-detail-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078978-3-step-7-ar-aging-collection-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078978-4-step-9-ap-aging-summary-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078978-5-step-11-ap-aging-detail-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078978-6-step-13-ap-unpaid-invoices-date-chip.png"
+   ],
+   "note": "V1R-05"
+  },
+  "C1078979": {
+   "verdict": "Passed",
+   "observed": [
+    "On A/P Aging Summary, the date menu opened from the chip offers no clear or empty choice, and the chip has no clear (x) button.",
+    "After closing the menu, the chip still reads As of: 11/11/2026 and the report still lists its vendor rows for that date."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078979-1-step-4-date-menu-open.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078979-2-step-5-after-closing-the-date-menu.png"
+   ],
+   "note": "V1R-06"
+  },
+  "C1078980": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 4 and 5: a date after today cannot be picked - every day after 11/11/2026 is greyed out and the next-month arrow does nothing, so the chip stays on today.",
+   "bold_steps": [
+    4,
+    5
+   ],
+   "source": "Production v26.45.3 (the behaviour before this release, which this test protects): on A/R Aging Summary the date menu lets you pick a date after today, for example 31 Dec 2026, and the report is worked out for that date. PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026) does not ask for this change; PO question 19 is open.",
+   "observed": [
+    "Set up: A/R Aging Summary on the QA site, working at Staging Heavy Duty - 9919; today is 11/11/2026.",
+    "Step 4: in the date menu every day after 11/11/2026 is greyed out and the next-month arrow does nothing, so 31 Dec 2026 (the last day of next month) cannot be reached.",
+    "Step 5: the date chip stays on As of: 11/11/2026.",
+    "The test says the last day of next month can be picked, the chip shows it, and the report is worked out for that date.",
+    "On production (v26.45.3) the same steps pick 31 Dec 2026 and the report is recalculated: customer aqeel transport 56 shows Current $1,229.93 today, and on 12/31 that amount moves into the past-due columns."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-12545 (status: Open)",
+   "defects": [
+    "SV-12545"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078980-1-fail-days-after-today-greyed.png"
+   ],
+   "note": "V1R-07",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the Product Owner has answered question 19 and the ticket is fixed or closed."
+  },
+  "C1078981": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 5: a saved link with ?asOfDate=2026-12-31 opens A/P Aging Summary on today, 11/11/2026, and the date is dropped from the address.",
+   "bold_steps": [
+    5
+   ],
+   "source": "Production v26.45.3: a saved A/P Aging Summary link that carries ?asOfDate= with a date after today opens on that date (for 2026-12-31 the chip reads Date: 2026-12-31) and the figures are worked out for it. PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026) does not ask for this change; PO question 19 is open.",
+   "observed": [
+    "Set up: A/P Aging Summary on the QA site; today is 11/11/2026; ?asOfDate=2026-12-31 added to the address.",
+    "Step 5: the date chip reads As of: 11/11/2026 (today), and the address no longer carries the date.",
+    "The test says the chip shows the last day of next month and the report is worked out for that date.",
+    "On production (v26.45.3) the same link opens with Date: 2026-12-31 and figures different from today's."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-12545 (status: Open)",
+   "defects": [
+    "SV-12545"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078981-1-fail-link-opens-on-today.png"
+   ],
+   "note": "V1R-08",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the Product Owner has answered question 19 and the ticket is fixed or closed."
+  },
+  "C1078982": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail with the date chip set to As of: 10/15/2026.",
+    "After reloading the page the chip still reads As of: 10/15/2026.",
+    "After opening A/R Aging Summary and pressing the browser Back button, A/R Aging Detail is back, still on As of: 10/15/2026."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078982-1-step-5-after-reload.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078982-2-step-8-after-browser-back.png"
+   ],
+   "note": "V1R-09"
+  },
+  "C1078983": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices with the date chip set to As of: 10/01/2026.",
+    "After opening Inventory Value and then A/P Unpaid Invoices again from the left list, the chip reads As of: 11/11/2026 (today), not 10/01/2026."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078983-1-step-6-date-chip.png"
+   ],
+   "note": "V1R-10"
+  },
+  "C1078984": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 10/20/2026, A/R Aging Detail lists invoice S11315-17837 of ZZAUTOTEST AR R11 Date Edge, dated Oct 20, 2026 (the as-of date), $60.00.",
+    "On that date the customer's credit memo CM11315-4202, dated Oct 21, 2026 (the day after), is not listed; the invoice is the customer's only line.",
+    "As of 10/19/2026 (the day before), the customer has no lines: the invoice is not listed."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078984-1-steps-3-6-as-of-2026-10-20.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078984-2-steps-7-9-as-of-2026-10-19.png"
+   ],
+   "note": "V1R-11"
+  },
+  "C1078985": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 10/20/2026, A/P Aging Detail lists bill ZZAUTOTEST-P12-A of ZZAUTOTEST AP P12 Bill Dates, dated Oct 20, 2026, $51.00.",
+    "The vendor's bill ZZT-P12-BILLD1, dated Oct 21, 2026 (the day after), is not listed; ZZAUTOTEST-P12-A is the vendor's only line."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078985-1-steps-3-6-as-of-2026-10-20.png"
+   ],
+   "note": "V1R-12"
+  },
+  "C1078986": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 10/12/2026, before the payment, the invoice of ZZAUTOTEST AR R13 Payment After shows Amount $100.00 and Open balance $100.00.",
+    "As of 10/15/2026, after the payment, its Open balance is $60.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078986-1-step-5-as-of-d-2-2026-10-12.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078986-2-step-8-as-of-d-5-2026-10-15.png"
+   ],
+   "note": "V1R-13"
+  },
+  "C1078987": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 10/11/2026 (the day before the payment), A/R Aging Summary lists ZZAUTOTEST AR R14 Paid In Full with $80.00 under 1-30 Days; Total $80.00.",
+    "As of 10/12/2026 (the payment date), the customer is not listed."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078987-1-step-4-as-of-the-day-before-p-2026-10-11.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078987-2-step-6-as-of-p-2026-10-12.png"
+   ],
+   "note": "V1R-14"
+  },
+  "C1078988": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 10/20/2026 (after the Oct 6 payment, before its reversal), invoice S11315-17839 of ZZAUTOTEST AR R15 Payment Reversed is not listed.",
+    "As of 11/11/2026 (the reversal date), the invoice is listed again: dated Oct 1, 2026, Amount $100.00, Open balance $100.00.",
+    "The payment was reversed today, 11/11/2026 (the app stamps a reversal with the moment it is made), so the reversal day is today rather than a past day as the setup describes."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078988-1-step-5-as-of-2026-10-20-between-p-and-r.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078988-2-step-8-as-of-r-2026-11-11.png"
+   ],
+   "note": "V1R-15"
+  },
+  "C1078989": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 10/25/2026 (after the memo date, before the void), credit memo CM11315-4203 of ZZAUTOTEST AR R16 Memo Voided is listed at $-25.00, open balance $-25.00.",
+    "As of 11/11/2026 (the void date), it is not listed.",
+    "The credit memo was voided today, 11/11/2026 (a void is stamped with the moment it is made), so the void day is today."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078989-1-step-5-as-of-2026-10-25.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078989-2-step-8-as-of-v-2026-11-11.png"
+   ],
+   "note": "V1R-16"
+  },
+  "C1078990": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 10/20/2026, credit memo CM11315-4204 of ZZAUTOTEST AR R17 Memo Applied shows Open balance $-30.00.",
+    "As of 10/27/2026 (the day it was applied), it is not listed."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078990-1-step-5-as-of-2026-10-20.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078990-2-step-8-as-of-a-2026-10-27.png"
+   ],
+   "note": "V1R-17"
+  },
+  "C1078991": {
+   "verdict": "Passed",
+   "observed": [
+    "With every bucket of A/R Aging Detail open, ZZAUTOTEST AR R18 Deposits shows deposit DEP11315-4714 (the $50.00 deposit not tied to a work order) at $-50.00, open balance $-50.00.",
+    "The $70.00 work order deposit DEP11315-4713 is not listed; the $50.00 deposit is the customer's only line."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078991-1-steps-3-5-every-bucket-open.png"
+   ],
+   "note": "V1R-18"
+  },
+  "C1078992": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 11/10/2026 (the day before the reversal), A/R Aging Collection shows deposit DEP11315-4715 of ZZAUTOTEST AR R19 Deposit Reversed, dated Oct 30, 2026, at $-20.00.",
+    "As of 11/11/2026 (the reversal date), the deposit is not listed; the customer now shows only invoice S11315-17850 ($5.00), which the reversed payment had paid.",
+    "The deposit was ended by reversing the payment that made it, stamped today, 11/11/2026."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078992-1-steps-3-5-as-of-the-day-before-r-2026-11-10.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078992-2-steps-6-7-as-of-r-2026-11-11.png"
+   ],
+   "note": "V1R-19"
+  },
+  "C1078993": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 10/13/2026, A/P Aging Detail shows bill ZZT-P20-BILL of ZZAUTOTEST AP P20 Payment After (dated Oct 12, 2026) with Open Balance $200.00: the later payment is not taken off.",
+    "As of 10/16/2026, after the payment, its Open Balance is $120.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078993-1-step-5-as-of-d-1-2026-10-13.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078993-2-step-8-as-of-d-4-2026-10-16.png"
+   ],
+   "note": "V1R-20"
+  },
+  "C1078994": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 10/25/2026, A/P Aging Detail lists vendor credit C-13673 of ZZAUTOTEST AP P21 Credit Used, dated Oct 22, 2026, at $-35.00.",
+    "As of 10/30/2026 (the day it was used), it is not listed."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078994-1-step-5-as-of-2026-10-25.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078994-2-step-8-as-of-u-2026-10-30.png"
+   ],
+   "note": "V1R-21"
+  },
+  "C1078995": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 08/01/2026, ZZAUTOTEST AR R22 Bucket Edges shows $10.00 under Current; Total $10.00.",
+    "As of 08/31/2026, ZZAUTOTEST AR R22 Bucket Edges shows $10.00 under 1-30 Days; Total $10.00.",
+    "As of 09/01/2026, ZZAUTOTEST AR R22 Bucket Edges shows $10.00 under 31-60 Days; Total $10.00.",
+    "As of 09/30/2026, ZZAUTOTEST AR R22 Bucket Edges shows $10.00 under 31-60 Days; Total $10.00.",
+    "As of 10/01/2026, ZZAUTOTEST AR R22 Bucket Edges shows $10.00 under 61-90 Days; Total $10.00.",
+    "As of 10/30/2026, ZZAUTOTEST AR R22 Bucket Edges shows $10.00 under 61-90 Days; Total $10.00.",
+    "As of 10/31/2026, ZZAUTOTEST AR R22 Bucket Edges shows $10.00 under 91 And Over; Total $10.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078995-1-step-4-as-of-d-0-2026-08-01.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078995-2-step-6-as-of-d-30-2026-08-31.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078995-3-step-8-as-of-d-31-2026-09-01.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078995-4-step-12-as-of-d-61-2026-10-01.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078995-5-step-14-as-of-d-90-2026-10-30.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078995-6-step-16-as-of-d-91-2026-10-31.png"
+   ],
+   "note": "V1R-22"
+  },
+  "C1078996": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 09/16/2026 (the day after the memo date), ZZAUTOTEST AR R23 Memo Aging shows $-15.00 under 1-30 Days and nothing under Current.",
+    "As of 10/16/2026 (31 days after the memo date), the $-15.00 is under 31-60 Days."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078996-1-step-4-as-of-c-1-2026-09-16.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078996-2-step-6-as-of-c-31-2026-10-16.png"
+   ],
+   "note": "V1R-23"
+  },
+  "C1078997": {
+   "verdict": "Passed",
+   "observed": [
+    "As of 09/03/2026 (the day after the credit's date), ZZAUTOTEST AP P24 Credit Aging shows $-12.00 under 1-30 Days and nothing under Current.",
+    "As of 11/02/2026 (61 days after), the $-12.00 is under 61-90 Days."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078997-1-step-4-as-of-c-1-2026-09-03.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1078997-2-step-6-as-of-c-61-2026-11-02.png"
+   ],
+   "note": "V1R-24"
+  },
+  "C1079001": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary lists ZZAUTOTEST AR R28 Credit Only, a customer whose only document is a credit.",
+    "Its Total reads $-40.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079001-1-steps-3-4-credit-only-customer.png"
+   ],
+   "note": "V1R-28"
+  },
+  "C1079002": {
+   "verdict": "Passed",
+   "observed": [
+    "The headings read, left to right: Customer, Location, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total (Location is new by design).",
+    "ZZAUTOTEST AR R29 One Bucket shows $100.00 under 1-30 Days and Total $100.00; its other buckets are blank, not $0.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079002-1-step-3-column-headings.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079002-2-steps-4-5-one-bucket-customer.png"
+   ],
+   "note": "V1R-29"
+  },
+  "C1079003": {
+   "verdict": "Passed",
+   "observed": [
+    "ZZAUTOTEST AR R30 Netting shows Current $50.00.",
+    "Its 1-30 Days reads $70.00 (the $100.00 invoice less the $30.00 credit).",
+    "Its Total reads $120.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079003-1-steps-3-6-netting-customer.png"
+   ],
+   "note": "V1R-30"
+  },
+  "C1079004": {
+   "verdict": "Passed",
+   "observed": [
+    "ZZAUTOTEST AR R31 Thousands shows $1,234.56 under 1-30 Days and Total $1,234.56: dollar sign, thousands comma and two decimals.",
+    "The negative Total reads $-12.00, with the minus sign after the dollar sign."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079004-1-step-3-amount-over-1000.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079004-2-step-4-negative-total.png"
+   ],
+   "note": "V1R-31"
+  },
+  "C1079006": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary with the date chip set to As of: 01/01/2000.",
+    "The table reads \"No record matches these filters\" and \"Try changing filters to widen your results.\""
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079006-1-step-4-message-on-1-january-2000.png"
+   ],
+   "note": "V1R-33"
+  },
+  "C1079007": {
+   "verdict": "Passed",
+   "observed": [
+    "The downloaded A/R Aging Summary PDF opens with \"A/R Aging Summary\", \"Staging Foothills Group Inc\", \"As of Nov 11, 2026\" and \"Locations: All locations\" at the top of page 1.",
+    "The pages are landscape; the bottom of page 1 reads \"Software Powered by ShopView\" in the middle and \"Page 1 of 7\" on the right.",
+    "The last row of page 7 is Totals ($2,926.00 / $101,628.88 / $167,363.30 / $126,336.92 / $118,341.26 / $516,596.36), with customer rows above it; no customer row shows $0.00 - empty buckets are blank."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079007-1-pdf-page-1.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079007-2-pdf-last-page.png"
+   ],
+   "note": "V1R-34"
+  },
+  "C1079008": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 7: the A/R Aging Detail PDF leaves out the empty \"61-90 days past due\" bucket and its \"Total for 61-90 days past due\" $0.00 line; only the bucket that holds a document is printed.",
+   "bold_steps": [
+    7
+   ],
+   "source": "Production v26.45.3: the A/R Aging Detail print shows every bucket, an empty one too, with its \"Total for ... past due\" line at $0.00 (seen on production as of 1 Jul 2025: \"Total for 91 or more days past due $0.00\"). PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026) does not ask for this change; PO question 20 is open.",
+   "observed": [
+    "Set up: A/R Aging Detail narrowed to customer ZZAUTOTEST AR R13 Payment After; on screen the bucket \"61-90 days past due (0)\" shows Total $0.00 $0.00.",
+    "Step 7: in the downloaded PDF there is no \"61-90 days past due\" heading and no \"Total for 61-90 days past due\" line; the only bucket printed is \"31-60 days past due\".",
+    "The test says the PDF still prints the empty bucket's heading followed by \"Total for 61-90 days past due\" with $0.00, so all five buckets appear on paper.",
+    "On production (v26.45.3) the print still shows an empty bucket with its $0.00 total line."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-12546 (status: Open)",
+   "defects": [
+    "SV-12546"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079008-1-fail-pdf-empty-buckets-missing.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079008-2-screen-61-90-bucket-0.png"
+   ],
+   "note": "V1R-35",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the Product Owner has answered question 20 and the ticket is fixed or closed."
+  },
+  "C1079009": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 7: the A/R Aging Collection PDF closes customer ZZAUTOTEST AR R36 Collect X with \"Subtotal $110.00 $110.00\" instead of a \"Total for ZZAUTOTEST AR R36 Collect X\" line.",
+   "bold_steps": [
+    7
+   ],
+   "source": "Production v26.45.3: the A/R Aging Collection print closes each customer with \"Total for <customer name>\" (for example \"Total for aqeel transport 56\"). PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026) does not ask for this change; PO question 21 is open.",
+   "observed": [
+    "Set up: A/R Aging Collection with only ZZAUTOTEST AR R36 Collect X picked in the Customer chip; Export menu, Download (PDF).",
+    "Step 7: the PDF prints only that customer, but the line that closes it reads \"Subtotal $110.00 $110.00\"; there is no \"Total for ZZAUTOTEST AR R36 Collect X\" line.",
+    "The test says the PDF prints a \"Total for\" line for the picked customer, with a Totals row.",
+    "The amounts are right; only the \"Total for <customer>\" label is lost.",
+    "On production (v26.45.3) the same print closes the picked customer with \"Total for aqeel transport 56\"."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-12547 (status: Open)",
+   "defects": [
+    "SV-12547"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079009-1-fail-pdf-subtotal.png"
+   ],
+   "note": "V1R-36",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the Product Owner has answered question 21 and the ticket is fixed or closed."
+  },
+  "C1079010": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail's bucket rows read, top to bottom: 91 or more days past due (70), 61-90 days past due (54), 31-60 days past due (184), 1-30 days past due (268), Current (14) - each with its number of lines in brackets."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079010-1-step-3-bucket-rows.png"
+   ],
+   "note": "V1R-37"
+  },
+  "C1079011": {
+   "verdict": "Passed",
+   "observed": [
+    "The Current bucket starts closed: \"Current (14)\" with Total $2,862.00 (Amount) and $2,862.00 (Open balance).",
+    "After clicking its arrow, its 14 lines are shown.",
+    "Clicking the arrow again closes it; the row is back to Current (14), Total $2,862.00 $2,862.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079011-1-step-3-current-closed.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079011-2-step-5-current-open.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079011-3-step-6-current-closed-again.png"
+   ],
+   "note": "V1R-38"
+  },
+  "C1079012": {
+   "verdict": "Passed",
+   "observed": [
+    "With 1-30 days past due open, the line after its last document reads \"Total for 1-30 days past due\", $103,028.88 (Amount) and $101,628.88 (Open balance).",
+    "The bottom row reads \"Totals\", $546,308.68 (Amount) and $516,532.36 (Open balance)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079012-1-steps-4-5-end-of-1-30-bucket-and-totals.png"
+   ],
+   "note": "V1R-39"
+  },
+  "C1079013": {
+   "verdict": "Passed",
+   "observed": [
+    "The line of invoice S11315-17835 reads: Nov 6, 2026 - Staging Lethbridge - 4310 - Invoice - S11315-17835 - ZZAUTOTEST AR R03 Location B - due Nov 6, 2026 - Amount $33.00 - Open balance $33.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079013-1-step-5-the-location-b-invoice-line.png"
+   ],
+   "note": "V1R-40"
+  },
+  "C1079014": {
+   "verdict": "Passed",
+   "observed": [
+    "The partly paid invoice of ZZAUTOTEST AR R41 Partly Paid shows Amount $250.00 (the invoice total).",
+    "Its Open balance reads $150.00 (what is still unpaid)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079014-1-steps-4-6-partly-paid-invoice.png"
+   ],
+   "note": "V1R-41"
+  },
+  "C1079015": {
+   "verdict": "Passed",
+   "observed": [
+    "The credit memo of ZZAUTOTEST AR R42 Memo Line reads CM11315-4209: the number with its location prefix.",
+    "Its Due date is Oct 26, 2026, the credit memo's own date.",
+    "Amount $-5.00 and Open balance $-5.00.",
+    "The number CM11315-4209 is plain text: clicking it opens nothing and the page stays on A/R Aging Detail."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079015-1-steps-4-7-credit-memo-line.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079015-2-step-8-after-clicking-the-id.png"
+   ],
+   "note": "V1R-42"
+  },
+  "C1079016": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail with Current open (14 lines shown).",
+    "After setting the date chip to As of: 11/10/2026 (yesterday), every bucket row is closed, from 91 or more days past due down to Current (38)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079016-1-step-5-bucket-rows-after-the-date-change.png"
+   ],
+   "note": "V1R-43"
+  },
+  "C1079017": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection shows \"ZZAUTOTEST AR R44 Two Past Due (2)\", Credit term: COD, with Total $81.00 $81.00.",
+    "With the group open, the line after its last document reads \"Total for ZZAUTOTEST AR R44 Two Past Due\", $81.00 $81.00.",
+    "The bottom row reads \"Totals\", $81.00 $81.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079017-1-steps-3-6-customer-with-two-past-due-invoices.png"
+   ],
+   "note": "V1R-44"
+  },
+  "C1079018": {
+   "verdict": "Passed",
+   "observed": [
+    "With ZZAUTOTEST AR R45 Collection Mix open on A/R Aging Collection, invoice S11315-17856 (Nov 6, 2026, 5 days past due) and credit memo CM11315-4210 (Nov 4, 2026, 7) are listed.",
+    "Invoice S11315-17857 (due today) and invoice S11315-17858 (not yet due) are not listed."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079018-1-steps-3-4-lines-of-the-four-document-customer.png"
+   ],
+   "note": "V1R-45"
+  },
+  "C1079019": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection lists \"ZZAUTOTEST AR R46 Collection Credit (1)\", Credit term: COD, Total $-11.00 $-11.00.",
+    "Its only line is credit memo CM11315-4211, Nov 4, 2026, Past due 7, $-11.00 $-11.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079019-1-steps-3-4-credit-only-customer.png"
+   ],
+   "note": "V1R-46"
+  },
+  "C1079020": {
+   "verdict": "Passed",
+   "observed": [
+    "ZZAUTOTEST AR R47 Oldest First's lines read, top to bottom: Oct 13, 2026, Oct 23, 2026, Nov 2, 2026 - oldest first."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079020-1-steps-3-4-date-column.png"
+   ],
+   "note": "V1R-47"
+  },
+  "C1079021": {
+   "verdict": "Passed",
+   "observed": [
+    "The invoice line of ZZAUTOTEST AR R48 Days Past Due reads: Oct 30, 2026 - Staging Heavy Duty - 9919 - Invoice - S11315-17862 - due Oct 30, 2026 - Past due 12 - $48.00 - $48.00.",
+    "The credit memo CM11315-4212 (Nov 8, 2026) shows Past due 3."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079021-1-steps-3-5-invoice-and-credit-memo-lines.png"
+   ],
+   "note": "V1R-48"
+  },
+  "C1079022": {
+   "verdict": "Passed",
+   "observed": [
+    "Typing in the Customer chip and picking ZZAUTOTEST AR R36 Collect X leaves only that customer's group on A/R Aging Collection.",
+    "After reloading the page, still only ZZAUTOTEST AR R36 Collect X is listed."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079022-1-step-6-groups-after-picking-x.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079022-2-step-8-groups-after-reload.png"
+   ],
+   "note": "V1R-49"
+  },
+  "C1079023": {
+   "verdict": "Passed",
+   "observed": [
+    "With a customer's group open on A/R Aging Collection (1 line), setting the date chip to As of: 11/10/2026 closes every group: no document lines are shown.",
+    "After opening the group again and picking ZZAUTOTEST AR R36 Collect Z in the Customer chip, every group is closed: only ZZAUTOTEST AR R36 Collect Z is listed, with no lines showing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079023-1-step-5-groups-after-date-change.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079023-2-step-8-groups-after-picking-z.png"
+   ],
+   "note": "V1R-50"
+  },
+  "C1079024": {
+   "verdict": "Passed",
+   "observed": [
+    "With a customer who has nothing past due picked in the Customer chip, A/R Aging Collection reads \"No record matches these filters\" and \"Try changing filters to widen your results.\", with a \"Clear all filters\" button.",
+    "After clicking \"Clear all filters\", the Customer chip reads \"Customer: All customers\", customer groups are listed again (30 loaded) and the date stays As of: 11/11/2026."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079024-1-step-4-message.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079024-2-step-6-after-clear-all-filters.png"
+   ],
+   "note": "V1R-51"
+  },
+  "C1079025": {
+   "verdict": "Passed",
+   "observed": [
+    "The headings read: Vendor, Location, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total (Location is new by design).",
+    "ZZAUTOTEST AP P52 Netting shows Current $90.00 and 31-60 Days $280.00 (the $300.00 bill less the $20.00 vendor credit); the other buckets are blank; Total $370.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079025-1-step-3-headings.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079025-2-steps-4-5-vendor-row.png"
+   ],
+   "note": "V1R-52"
+  },
+  "C1079027": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail's bucket rows read, top to bottom, each closed with its count in brackets and Total (Amount / Open Balance): 91 or more days past due (11935) $4,044,727.90 / $4,044,727.92; 61-90 days past due (708) $320,924.51 / $320,924.53; 31-60 days past due (723) $269,043.91 / $268,843.91; 1-30 days past due (496) $124,147.02 / $123,547.02; Current (28) $4,327.34 / $4,247.34."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079027-1-step-3-bucket-rows.png"
+   ],
+   "note": "V1R-54"
+  },
+  "C1079028": {
+   "verdict": "Passed",
+   "observed": [
+    "With Current open and scrolled to its end, the line after its last document reads \"Total for Current\", $4,327.34 (Amount) and $4,247.34 (Open Balance).",
+    "The bottom row reads \"Totals\", $4,763,170.68 and $4,762,290.72."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079028-1-steps-5-6-end-of-current-and-totals.png"
+   ],
+   "note": "V1R-55"
+  },
+  "C1079029": {
+   "verdict": "Passed",
+   "observed": [
+    "The bill line reads: Nov 5, 2026 - Staging Lethbridge - 4310 - Invoice - ZZT-P56-BILL - ZZAUTOTEST AP P56 Location B - due Dec 5, 2026 - Past Due -24 - $56.00 - $56.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079029-1-step-5-location-b-bill-line.png"
+   ],
+   "note": "V1R-56"
+  },
+  "C1079030": {
+   "verdict": "Passed",
+   "observed": [
+    "Under Current, bill ZZT-P57-BILL of ZZAUTOTEST AP P57 Not Yet Due (dated Oct 21, 2026, due Nov 20, 2026) shows Past Due -9."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079030-1-steps-3-5-bill-due-in-9-days.png"
+   ],
+   "note": "V1R-57"
+  },
+  "C1079031": {
+   "verdict": "Passed",
+   "observed": [
+    "Under 1-30 days past due, vendor credit C-13676 of ZZAUTOTEST AP P58 Credit Line shows Due Date Nov 1, 2026, its own date.",
+    "Its Past Due reads 10.",
+    "Amount $-25.00 and Open Balance $-25.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079031-1-steps-3-7-vendor-credit-line.png"
+   ],
+   "note": "V1R-58"
+  },
+  "C1079032": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail with Current open (28 lines).",
+    "After setting the date chip to As of: 11/10/2026 (yesterday), every bucket row is closed."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079032-1-step-5-buckets-after-date-change.png"
+   ],
+   "note": "V1R-59"
+  },
+  "C1079033": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices lists vendor groups A to Z - #1 Diesel, -1 Diesel, 10 Trucking, 2 Trucking, @Home Towing, A-1 Towing, a1 towing, Abadi's Diesel Repair and on (30 loaded) - each with its count in brackets and Total with Amount and Open Balance.",
+    "With #1 Diesel open, the line after its last document reads \"Total for #1 Diesel\", $36.00 $36.00.",
+    "The bottom row reads \"Totals\", $4,763,170.68 $4,762,290.72."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079033-1-step-3-vendor-groups.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079033-2-steps-5-6-first-vendor-open.png"
+   ],
+   "note": "V1R-60"
+  },
+  "C1079034": {
+   "verdict": "Passed",
+   "observed": [
+    "ZZAUTOTEST AP P61 Mix lists all three documents: bill ZZT-P61-BILL_LATE (Past Due 10), vendor credit C-13677 (Past Due \"—\") and bill ZZT-P61-BILL_CUR, not yet due, with Past Due -27."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079034-1-steps-3-4-vendor-lines.png"
+   ],
+   "note": "V1R-61"
+  },
+  "C1079035": {
+   "verdict": "Passed",
+   "observed": [
+    "ZZAUTOTEST AP P62 Oldest First's lines read, top to bottom: Oct 27, 2026, Nov 1, 2026, Nov 6, 2026 - oldest first."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079035-1-steps-3-4-date-column.png"
+   ],
+   "note": "V1R-62"
+  },
+  "C1079036": {
+   "verdict": "Passed",
+   "observed": [
+    "The vendor credit's Due Date reads \"—\".",
+    "Its Past Due reads \"—\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079036-1-steps-3-6-vendor-credit-line.png"
+   ],
+   "note": "V1R-63"
+  },
+  "C1079037": {
+   "verdict": "Passed",
+   "observed": [
+    "Typing in the Vendor chip and picking ZZAUTOTEST AP P60 Alpha leaves only that vendor's group on A/P Unpaid Invoices.",
+    "After reloading the page, still only ZZAUTOTEST AP P60 Alpha is listed."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079037-1-step-6-groups.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079037-2-step-8-groups-after-reload.png"
+   ],
+   "note": "V1R-64"
+  },
+  "C1079038": {
+   "verdict": "Passed",
+   "observed": [
+    "Opening A/P Unpaid Invoices with ?vendorName= and &vendorId= for ZZAUTOTEST AP P60 Alpha added to the address lists only that vendor, and the Vendor chip names it (\"Vendor: ZZAUTOTEST AP P...\")."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079038-1-step-5-after-opening-the-saved-link.png"
+   ],
+   "note": "V1R-65"
+  },
+  "C1079039": {
+   "verdict": "Passed",
+   "observed": [
+    "Clicking bill number ZZT-P60A-BILL in the ZZAUTOTEST AP P60 Alpha group opens its delivery page: Vendor Invoice ZZT-P60A-BILL, invoice date Nov 3, 2026, due date Dec 3, 2026, vendor ZZAUTOTEST AP P60 Alpha, delivery I-1718."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079039-1-steps-3-vendor-group-open.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079039-2-step-4-after-clicking-the-bill-no.png"
+   ],
+   "note": "V1R-66"
+  },
+  "C1079040": {
+   "verdict": "Passed",
+   "observed": [
+    "With the vendor's group open (1 line), setting the date chip to As of: 11/10/2026 closes every group: no lines are shown.",
+    "After opening it again and picking another vendor in the Vendor chip, every group is closed: no lines are shown."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079040-1-step-5-after-date-change.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079040-2-step-8-after-picking-w.png"
+   ],
+   "note": "V1R-67"
+  },
+  "C1079044": {
+   "verdict": "Passed",
+   "observed": [
+    "Working at Staging Heavy Duty - 9919, opening the work order link shows the prompt \"Switch location?\": \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\" with Cancel and Switch Location.",
+    "After clicking Cancel, the Work Orders list opens with the message \"Switch cancelled. Returning to work orders.\"; the location stays Staging Heavy Duty - 9919."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079044-1-step-2-prompt.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079044-2-step-2-after-cancel.png"
+   ],
+   "note": "V1R-71"
+  },
+  "C1095429": {
+   "verdict": "Passed",
+   "observed": [
+    "On A/R Aging Summary the date chip is labelled \"As of\".",
+    "It shows today: As of: 11/11/2026.",
+    "The date menu offers no way to clear the date, and the chip has no clear (x) button."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095429-1-step-3-4-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095429-2-step-6-date-menu.png"
+   ],
+   "note": "V1R-73"
+  },
+  "C1095430": {
+   "verdict": "Passed",
+   "observed": [
+    "On A/R Aging Detail, the $8.00 credit memo dated today (ZZAUTOTEST AR R74 Credit Today) is under Current.",
+    "The $6.00 credit memo dated yesterday is under 1-30 days past due.",
+    "On A/R Aging Collection, the $8.00 credit memo shows Past Due 0."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095430-1-steps-3-6-two-credit-memos.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095430-2-steps-7-9-collection.png"
+   ],
+   "note": "V1R-74"
+  },
+  "C1095431": {
+   "verdict": "Passed",
+   "observed": [
+    "On A/P Aging Detail, the $9.00 vendor credit dated today (ZZAUTOTEST AP P75 Credit Today) is under Current, with Past Due 0.",
+    "The $4.00 vendor credit dated yesterday is under 1-30 days past due."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095431-1-steps-3-7-two-vendor-credits.png"
+   ],
+   "note": "V1R-75"
+  },
+  "C1095433": {
+   "verdict": "Passed",
+   "observed": [
+    "Clicking the Total amount of the first customer row (#1 Diesel) leaves you on A/R Aging Summary.",
+    "Clicking the customer name #1 Diesel opens A/R Aging Collection, with the Customer chip reading \"Customer: #1 Diesel\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095433-1-step-4-after-clicking-the-total-amount.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095433-2-step-6-after-clicking-the-customer-name.png"
+   ],
+   "note": "V1R-77"
+  },
+  "C1095434": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary set to As of: 10/01/2026.",
+    "Clicking the customer's name opens A/R Aging Collection.",
+    "The date chip there reads As of: 10/01/2026.",
+    "The Customer chip names the customer (\"Customer: ZZAUTOTEST AR R...\")."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095434-1-steps-5-7-after-clicking-the-customer.png"
+   ],
+   "note": "V1R-78"
+  },
+  "C1095435": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail has no printer button.",
+    "The ⋯ button beside the title, labelled \"Export report\", offers \"Download (PDF)\" and \"Download (CSV)\".",
+    "Download (PDF) downloads a file, ar-aging-detail.pdf.",
+    "The PDF heading reads \"A/R Aging Detail\", \"Staging Foothills Group Inc\", \"As of Nov 11, 2026\", \"Locations: All locations\".",
+    "The bottom of page 1 reads \"Software Powered by ShopView\" and \"Page 1 of 26\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095435-1-step-4-export-menu.png"
+   ],
+   "note": "V1R-79"
+  },
+  "C1095436": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 9: in the PDF the credit memo's dates print as \"Oct 26, 2026\" (with a comma) instead of the required \"Nov 04 2026\" form (\"Oct 26 2026\").",
+   "bold_steps": [
+    9
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), S3-R7a: \"The PDF uses the app-wide report PDF format, the same as Sales By Customer and Inventory Value: a negative amount prints in brackets with a minus sign, for example \"(-$11,111.00)\", and dates print as \"Nov 04 2026\".\"",
+   "observed": [
+    "Set up: credit memo CM11315-4209 of ZZAUTOTEST AR R42 Memo Line (dated Oct 26, 2026, $-5.00) on A/R Aging Detail; Export menu, Download (PDF).",
+    "Step 9: in the PDF its line reads Date \"Oct 26, 2026\" and Due Date \"Oct 26, 2026\" - with a comma. The amount reads \"(-$5.00)\", in brackets with a minus sign, as required.",
+    "The test says the amount reads \"(-$5.00)\" and the date reads like \"Nov 04 2026\": three-letter month, two-digit day, year, no comma.",
+    "The A/R Aging Collection PDF prints its dates the same way (for example \"Oct 27, 2026\"). This was first seen at 12:10 UTC on 11 November 2026."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-12544 (status: Open)",
+   "defects": [
+    "SV-12544"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095436-1-fail-pdf-date-with-comma.png"
+   ],
+   "note": "V1R-80",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the ticket is fixed."
+  },
+  "C1095437": {
+   "verdict": "Passed",
+   "observed": [
+    "With the browser offline, choosing Download (PDF) from the Export menu on A/R Aging Summary downloads nothing and shows exactly one message: \"We couldn't export this report. Please try again.\"",
+    "After going back online, the report is still on screen with its 31 rows, as before."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095437-1-step-6-messages-while-offline.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095437-2-step-8-report-after-network-back.png"
+   ],
+   "note": "V1R-81"
+  },
+  "C1095438": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail holds 13,890 lines (11,935 + 708 + 723 + 496 + 28).",
+    "Download (PDF) downloads nothing and shows \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\"",
+    "Download (CSV) gives a file with 13,890 document rows, the five bucket counts added up.",
+    "On A/R Aging Detail (under 2,000 lines), Download (PDF) still gives a PDF, ar-aging-detail.pdf."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095438-1-step-5-pdf-message.png"
+   ],
+   "note": "V1R-82"
+  },
+  "C1095439": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary set to As of: 10/15/2026.",
+    "The downloaded PDF reads \"A/R Aging Summary\", then \"Staging Foothills Group Inc\", then \"As of Oct 15, 2026\": the date picked, not the 16th."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095439-1-date-chip-oct-15.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095439-2-pdf-heading-as-of-oct-15.png"
+   ],
+   "note": "V1R-83"
+  },
+  "C1095440": {
+   "verdict": "Passed",
+   "observed": [
+    "On A/R Aging Detail the 1-30 days past due bucket shows (268).",
+    "Opening it shows the first 100 lines.",
+    "Scrolling to the end brings in the rest: 268 lines in all, the same as the count.",
+    "The line after its last document reads \"Total for 1-30 days past due\", $103,028.88 $101,628.88."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095440-1-step-5-first-load.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095440-2-step-8-end-of-bucket.png"
+   ],
+   "note": "V1R-84"
+  },
+  "C1095441": {
+   "verdict": "Passed",
+   "observed": [
+    "On A/R Aging Detail the invoice's Transaction Type reads \"Invoice\".",
+    "The credit memo's reads \"Credit Memo\".",
+    "The deposit's reads \"Deposit\".",
+    "On A/P Aging Detail the bill's reads \"Invoice\".",
+    "The vendor credit's reads \"Vendor Credit\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095441-1-step-4-invoice-type.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095441-2-step-5-credit-memo-type.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095441-3-step-6-deposit-type.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095441-4-steps-9-10-bill-and-vendor-credit-types.png"
+   ],
+   "note": "V1R-85"
+  },
+  "C1095442": {
+   "verdict": "Passed",
+   "observed": [
+    "In the customer's group on A/R Aging Collection, the credit memo dated today reads \"Nov 11, 2026\", not \"Today\".",
+    "The older invoice reads \"Nov 1, 2026\", in the same form as before."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095442-1-steps-3-5-dates.png"
+   ],
+   "note": "V1R-86"
+  },
+  "C1095444": {
+   "verdict": "Passed",
+   "observed": [
+    "With every customer, A/R Aging Collection's Totals row reads $513,542.36 Open Balance.",
+    "After picking customer ZZAUTOTEST AR R36 Collect X in the Customer chip, its group's Open Balance is $110.00 and the Totals row also reads $110.00.",
+    "After clearing the Customer chip the Totals row is back to $513,542.36."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095444-1-step-3-totals.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095444-2-steps-5-6-x-picked.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095444-3-step-8-chip-cleared.png"
+   ],
+   "note": "V1R-88"
+  },
+  "C1095445": {
+   "verdict": "Passed",
+   "observed": [
+    "On A/P Unpaid Invoices, ZZAUTOTEST AP P62 Oldest First's group is open with bills ZZT-P62-B_OLD, ZZT-P62-B_MID and ZZT-P62-B_NEW.",
+    "After clicking the Amount heading, the group stays open and its lines are ordered by Amount: $73.00, $72.00, $71.00.",
+    "After setting the date chip to yesterday, every group is closed: no lines are shown."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095445-1-step-5-after-sorting-by-amount.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095445-2-step-7-after-date-change.png"
+   ],
+   "note": "V1R-89"
+  },
+  "C1095446": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection shows \"ZZAUTOTEST AR R90 Many Lines (101)\".",
+    "Opening it shows the first 100 lines.",
+    "Scrolling to the end brings the 101st line: 101 in all.",
+    "The line after its last document reads \"Total for ZZAUTOTEST AR R90 Many Lines\", $-101.00 $-101.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095446-1-step-5-first-load.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095446-2-step-8-end-of-group.png"
+   ],
+   "note": "V1R-90"
+  },
+  "C1095447": {
+   "verdict": "Passed",
+   "observed": [
+    "On screen, A/P Aging Summary's headings read Vendor, Location, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total (Location is new by design).",
+    "Download (PDF) from the Export menu gives a file, ap-aging-summary.pdf.",
+    "The PDF's headings are the same as the screen: Vendor, Location, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total.",
+    "Its last row is Totals: $4,247.34, $123,547.02, $268,843.91, $320,924.53, $4,044,727.92, $4,762,290.72."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095447-1-screen-headings.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095447-2-pdf-page-1-headings.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095447-3-pdf-last-page-totals.png"
+   ],
+   "note": "V1R-91"
+  },
+  "C1095448": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail's buckets read, top to bottom: 91 or more days past due, 61-90 days past due, 31-60 days past due, 1-30 days past due, Current.",
+    "With 1-30 days past due open, the vendors run A to Z: #1 Diesel, -1 Diesel, 10 Trucking, 2 Trucking, @Home Towing and on.",
+    "After clicking the Past Due heading, the largest Past Due comes first (30, 30, 30 ...)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095448-1-step-5-vendor-names.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095448-2-step-7-after-clicking-past-due.png"
+   ],
+   "note": "V1R-92"
+  },
+  "C1095449": {
+   "verdict": "Passed",
+   "observed": [
+    "Clicking C-13679, the vendor credit from a return, opens that vendor return.",
+    "The other vendor credit, C-13680, is plain text (no link).",
+    "Clicking the bill's number opens its delivery page."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095449-1-step-3-every-bucket.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095449-2-step-4-vendor-return-opened.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1095449-3-step-7-bill-opened.png"
+   ],
+   "note": "V1R-93"
+  }
+ }
+}
