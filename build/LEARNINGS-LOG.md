@@ -583,3 +583,10 @@
 - "Heading on one line" in a PDF: `pdftotext -bbox -f 1 -l 1 <pdf> -` and compare the yMin of the words ("91", "And", "Over" all at 139 = one line) — exact, no picture reading needed (d3a C715524/C715525).
 - `pdftoppm -png -f 1 -l 1 x.pdf out` names the page `out-1.png` for a PDF under 10 pages but `out-01.png` for 10-99 pages (A/P Summary PDF: 22 pages). Glob for `out-*1.png`, never hard-code `-1`.
 - #pdf #tool → L0664
+
+## L0676 — 2026-11-11 — Aging reports below ~1000 px: filters open as a full dialog; 1200 px barely scrolls sideways
+- At 1000 px wide the app switches to the compact layout (hamburger menu) and the Customer filter opens as a centred **dialog** ("Customer", search box, "Apply Filters"), not a `.q-menu` — `filt.mjs` pick() waits for `.q-menu input` and times out (s83c C715600).
+- Workaround: set filters and open groups at 1440, then `setViewportSize` to the narrow width WITHOUT reloading (`exec/s83d_side.mjs`).
+- At 1200 px A/R Collection overflows by only ~6 px (scrollWidth 898 vs clientWidth 892): a "label stays at the left" check there cannot tell a pinned label from one that scrolls (label moved 388→382 = the scroll). Measure at 1000/900 px too, with a column moving as the positive control (L0661).
+- Pinned group row (C715363): s83c's numeric geometry was unreliable; the scroll pictures (header strip, pinned strip, Totals strip) settled it — Passed.
+- #aging #layout #tool → L0661, L0671

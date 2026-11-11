@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s83c C715363"
+ },
+ "results": {
+  "C715363": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of today, all locations, filtered to two customers next to each other in name order: Desert Edge Truck Service & Repair (74 invoices) then Tucson Truck Center (39), both open.",
+    "Step 1: scrolling slowly into Desert Edge, its row stays just under the column headings while its invoices move beneath it. It shows the open chevron, \"Desert Edge Truck Service & Repair (74)\", \"Phone: 605-175-8825\" and \"Credit term: Net 45\", and no amounts.",
+    "Step 2: when Tucson Truck Center reaches the top it takes the pinned place and Desert Edge is gone; only one customer row is ever pinned.",
+    "Step 3: scrolling on through Tucson, its row (\"Phone: 913-614-9479\", \"Credit term: Net 30\") stays pinned.",
+    "Step 4: scrolling back up slowly, Desert Edge comes back into the pinned place.",
+    "Steps 5 and 6: scrolling fast down and fast back up, the pinned row is replaced cleanly each time; it never covers the column headings or the Totals row at the bottom, and two customer rows never overlap."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715363-C715363-1-3-slow-down-8.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715363-C715363-1-3-slow-down-32.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715363-C715363-4-slow-up-16.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715363-C715363-5-fast-down-6.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715363-C715363-6-fast-up-6.png"
+   ]
+  }
+ }
+}
