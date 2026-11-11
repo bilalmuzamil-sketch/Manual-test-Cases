@@ -590,3 +590,8 @@
 - At 1200 px A/R Collection overflows by only ~6 px (scrollWidth 898 vs clientWidth 892): a "label stays at the left" check there cannot tell a pinned label from one that scrolls (label moved 388→382 = the scroll). Measure at 1000/900 px too, with a column moving as the positive control (L0661).
 - Pinned group row (C715363): s83c's numeric geometry was unreliable; the scroll pictures (header strip, pinned strip, Totals strip) settled it — Passed.
 - #aging #layout #tool → L0661, L0671
+
+## L0677 — 2026-11-11 — A design runner that resets scroll before a dark-theme picture never shows the pinned row in dark
+- d3b's chevron step 7 ("switch to dark, the pinned row is readable") ran `scrollTop = 0` before the dark picture, so the picture showed the top of the table, not a pinned row: step 7 unobserved for C715505-508. Fix: switch theme WITHOUT scrolling and read the row under the headings with `elementFromPoint` (`exec/d3c_darkpin.mjs`).
+- `sortlib.find(/^Willoughby/)` on A/P Unpaid Invoices (vendor groups of 2,000+ documents, 100 per scroll) found nothing, so no pinned picture was taken. For "a pinned group row" checks, scroll into whichever group is at the top and match any label with a count (`/\(\d+\)/`) instead of naming a huge group.
+- #aging #design #tool → L0671, L0676
