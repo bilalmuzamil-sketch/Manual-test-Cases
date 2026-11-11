@@ -1,0 +1,18 @@
+C715445 A/R Collection: each customer row shows phone and credit term
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure your role has the "View and Manage AP/AR Data" switch on, so the credit term shows.
+- Have a customer, customer A, with an overdue invoice, a phone number and a credit term on its customer card.
+- Have a customer, customer B, with an overdue invoice and no credit term.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+STEPS: - Read customer A's group row.
+- Open customer A's customer card in another tab and compare the phone and credit term.
+- Switch back to the report's tab.
+EXP: Expected Result
+Step 1:
+- After the name: "Phone: " and the phone number, then "Credit term: " and the credit term.Step 2:
+- Both read exactly as the customer card shows them.Step 3:
+- Customer B's row reads "Credit term: COD" (none is set).
+- Neither row shows an email address or a primary contact.
+

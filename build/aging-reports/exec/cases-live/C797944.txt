@@ -1,0 +1,24 @@
+C797944 A/R Detail: the × on the switch prompt leaves the report as it was
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Have open documents in these reports at two locations, location A and your other location.
+- Make sure you are enrolled at both locations.
+- Have a customer, customer A, with open invoices at location A and one open work order invoice, invoice A, made at your other location.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+- Leave the report with customer A ticked, the "Amount" header clicked once, every bucket expanded and the page scrolled so invoice A is in the middle of the screen.
+- Make sure you have noted which rows are at the top and bottom of the screen.
+STEPS: - Copy the page address.
+- Click invoice A's number.
+- Click the "×" at the dialog's top right.
+- Compare the page address with the copied one.
+EXP: Expected Result
+Step 1:
+- The address is copied.Step 2:
+- The "Switch location?" dialog opens, with a close "×" at its top right.Step 3:
+- The dialog closes.
+- No message pops up.
+- You stay on the report exactly where you were: customer A still ticked, the Amount sort, every bucket still expanded and the same rows at the top and bottom of the screen (the same scroll position).
+- The location switcher in the top right still shows location A.Step 4:
+- The address is the same.
+

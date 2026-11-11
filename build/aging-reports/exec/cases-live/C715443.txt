@@ -1,0 +1,18 @@
+C715443 A/P Summary: a report that fails to load says so in place of the rows
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
+- Use a desktop browser window 1440 px wide.
+- Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+STEPS: - Switch the computer's network connection off.
+- Change the as-of date to yesterday.
+- Switch the network back on.
+- Change the as-of date back to today.
+EXP: Expected Result
+Step 1:
+- The computer is offline.Step 2:
+- The report tries to load and fails: in place of the rows it shows "Something went wrong loading this report. Please try again.", with the standard error message as well.Step 3:
+- The computer is online again.Step 4:
+- The report loads normally again.
+A server error cannot be caused by hand; a lost connection is the failure a tester can cause.
+

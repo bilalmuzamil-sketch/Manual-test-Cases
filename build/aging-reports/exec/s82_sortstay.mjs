@@ -13,9 +13,11 @@ function judge(rows, grouped) { const body = rows.filter((r) => !/^Totals?\b|^To
   const gm = groups.map((r) => money(r.text)).filter((x) => x !== null); const lm = lines.map((r) => money(r.text)).filter((x) => x !== null);
   return { nGroups: groups.length, groupMoney: gm.slice(0, 40), groupDesc: desc(gm), nLines: lines.length, lineMoney: lm.slice(0, 40), lineDesc: desc(lm), names: groups.map((r) => clean(r.cells[0] || r.text).slice(0, 50)).slice(0, 40), locs: [...new Set(body.map((r) => r.cells[1]).filter(Boolean))].slice(0, 6) }; }
 const snap = async (o, label, rows) => { const st = { label, sorted: await S.sorted(), chips: await F.chips(), ...judge(rows, o.grouped) }; st.shot = await s.shot(o.id + '-' + label.replace(/[^a-z0-9]+/gi, '_').slice(0, 30)); o.steps.push(st); fs.writeFileSync(OUT + o.id + '.json', JSON.stringify(o, null, 1)); return st; };
+/* 11 Nov 14:17: on A/R Collection / A/P Unpaid a header click sorts the lines INSIDE each group and groups never move (PRD S2-R5); steps 1-3 had every group closed, so no line was seen. Keep the first group with 3+ lines open at every step. */
+async function openGroup(o) { if (!o.grouped) return; const r = p.locator('main tbody tr').filter({ hasText: /keyboard_arrow_right/ }).filter({ hasText: /\((?:[3-9]|\d{2,})\)/ }).first(); if (await r.count()) { o.openedGroup ||= clean(await r.innerText()).slice(0, 50); await r.locator('button').first().click().catch(() => {}); await p.waitForTimeout(2000); } }
 async function run(o, route, col, kind, name) { await ensureLoc(p, 'Staging Heavy Duty - 9919'); await s.go(route); await p.waitForTimeout(3500);
-  o.click = await S.clickTh(col); await snap(o, '1 sorted', await visible());
-  await F.asOf(10); await snap(o, '2 yesterday', await visible());
+  o.click = await S.clickTh(col); await openGroup(o); await snap(o, '1 sorted', await visible());
+  await F.asOf(10); await openGroup(o); await snap(o, '2 yesterday', await visible());
   const all = await S.collect(); o.allCount = all.length; await snap(o, '3 scrolled all loaded', all);
   await F.chip?.(kind); o.menuOpen = await (async () => { await p.locator('main button', { hasText: new RegExp(kind + ':') }).first().click(); await p.waitForTimeout(1200); const t = (await p.locator('.q-menu').last().innerText().catch(() => '')).slice(0, 200); await s.shot(o.id + '-4_menu'); await p.keyboard.press('Escape'); await p.waitForTimeout(800); return t; })();
   await F.pick(kind, name); if (o.grouped) await S.expand(new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ' \\(')); await snap(o, '5 one ' + kind.toLowerCase(), await S.collect());
