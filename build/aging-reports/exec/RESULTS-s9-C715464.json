@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715464": {
+   "verdict": "Passed",
+   "observed": [
+    "New vendors ZZY Bkt Vend A/B R1, as of 11/11/2026: A = $1,000 bill at Heavy Duty not yet due, $400 at Heavy Duty 45 days past due, $300 at Lethbridge 15 days past due; B = $700 at Heavy Duty 45 days past due paid $200 (open $500), $250 at Heavy Duty 100 days past due.",
+    "Step 1: A/P Summary Totals row - Current $1,000.00, 1-30 Days $300.00, 31-60 Days $900.00, 61-90 Days $0.00, 91 And Over $250.00, Total $2,450.00.",
+    "Step 2: A/P Detail opens on 11/11/2026 with Vendor: All vendors and Past due: Any.",
+    "Step 3: vendor A ticked.",
+    "Step 4: both ticked - bucket rows read 91+ $250.00, 31-60 $900.00 open (Amount $1,100.00), 1-30 $300.00, Current $1,000.00, 61-90 no rows; Totals Open Balance $2,450.00 - bucket by bucket the same as the Summary.",
+    "Step 5: Lethbridge unticked - 1-30 has no rows; Totals Open Balance $2,150.00; the other buckets keep their sums.",
+    "Step 6: back on A/P Summary - as in step 1.",
+    "Step 7: Lethbridge unticked - Totals Current $1,000.00, 1-30 $0.00, 31-60 $900.00, 61-90 $0.00, 91+ $250.00, Total $2,150.00, bucket by bucket the same as A/P Detail in step 5."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715464-1-summary-AB.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715464-2-detail-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715464-4-detail-AB.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715464-5-detail-no-lethbridge.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715464-7-summary-no-lethbridge.png"
+   ]
+  }
+ }
+}

@@ -37,6 +37,100 @@
    ],
    "totals": "Totals $4,763,170.68 $4,762,290.72",
    "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715464-2-detail-open.png"
+  },
+  {
+   "label": "3-detail-A",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: ZZY Bkt Vend A R1 keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_right Date arrow_drop_up | Location arrow_drop_up | Transaction Type arrow_drop_up | No. arrow_drop_up | Vendor Name arrow_drop_up | Due Date arrow_drop_up | Past Due arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_right | 91 or more days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 61-90 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 31-60 days past due (1) | Total | $400.00 | $400.00",
+    "keyboard_arrow_right | 1-30 days past due (1) | Total | $300.00 | $300.00",
+    "keyboard_arrow_right | Current (1) | Total | $1,000.00 | $1,000.00",
+    "Totals | $1,700.00 | $1,700.00"
+   ],
+   "totals": "Totals $1,700.00 $1,700.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715464-3-detail-A.png"
+  },
+  {
+   "label": "4-detail-AB",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: 2 vendors keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_right Date arrow_drop_up | Location arrow_drop_up | Transaction Type arrow_drop_up | No. arrow_drop_up | Vendor Name arrow_drop_up | Due Date arrow_drop_up | Past Due arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_right | 91 or more days past due (1) | Total | $250.00 | $250.00",
+    "keyboard_arrow_right | 61-90 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 31-60 days past due (2) | Total | $1,100.00 | $900.00",
+    "keyboard_arrow_right | 1-30 days past due (1) | Total | $300.00 | $300.00",
+    "keyboard_arrow_right | Current (1) | Total | $1,000.00 | $1,000.00",
+    "Totals | $2,650.00 | $2,450.00"
+   ],
+   "totals": "Totals $2,650.00 $2,450.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715464-4-detail-AB.png"
+  },
+  {
+   "label": "5-detail-no-lethbridge",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: 2 vendors keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: Staging Heavy D... keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_right Date arrow_drop_up | Transaction Type arrow_drop_up | No. arrow_drop_up | Vendor Name arrow_drop_up | Due Date arrow_drop_up | Past Due arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_right | 91 or more days past due (1) | Total | $250.00 | $250.00",
+    "keyboard_arrow_right | 61-90 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 31-60 days past due (2) | Total | $1,100.00 | $900.00",
+    "keyboard_arrow_right | 1-30 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | Current (1) | Total | $1,000.00 | $1,000.00",
+    "Totals | $2,350.00 | $2,150.00"
+   ],
+   "totals": "Totals $2,350.00 $2,150.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715464-5-detail-no-lethbridge.png"
+  },
+  {
+   "label": "6-summary-again",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: 2 vendors keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "Vendor arrow_drop_up | Location arrow_drop_up | Current arrow_drop_up | 1-30 Days arrow_drop_up | 31-60 Days arrow_drop_up | 61-90 Days arrow_drop_up | 91 And Over arrow_drop_up | Total arrow_drop_up",
+    "ZZY Bkt Vend A R1 | Multiple | $1,000.00 | $300.00 | $400.00 |  |  | $1,700.00",
+    "ZZY Bkt Vend B R1 | Staging Heavy Duty - 9919 |  |  | $500.00 |  | $250.00 | $750.00",
+    "Totals |  | $1,000.00 | $300.00 | $900.00 | $0.00 | $250.00 | $2,450.00"
+   ],
+   "totals": "Totals $1,000.00 $300.00 $900.00 $0.00 $250.00 $2,450.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715464-6-summary-again.png"
+  },
+  {
+   "label": "7-summary-no-lethbridge",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: 2 vendors keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: Staging Heavy D... keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "Vendor arrow_drop_up | Current arrow_drop_up | 1-30 Days arrow_drop_up | 31-60 Days arrow_drop_up | 61-90 Days arrow_drop_up | 91 And Over arrow_drop_up | Total arrow_drop_up",
+    "ZZY Bkt Vend A R1 | $1,000.00 |  | $400.00 |  |  | $1,400.00",
+    "ZZY Bkt Vend B R1 |  |  | $500.00 |  | $250.00 | $750.00",
+    "Totals | $1,000.00 | $0.00 | $900.00 | $0.00 | $250.00 | $2,150.00"
+   ],
+   "totals": "Totals $1,000.00 $0.00 $900.00 $0.00 $250.00 $2,150.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715464-7-summary-no-lethbridge.png"
   }
  ]
 }
