@@ -1,0 +1,98 @@
+{
+ "tries": [
+  {
+   "route": "A-work-order-finance",
+   "url": "https://sv11315.qa.shopview.com/workorders/d2d939a3-bd71-4252-9117-2c6a7ea3d02d/lines",
+   "finance": 1,
+   "buttons": [
+    "more_vert",
+    "get_app",
+    "email",
+    "print",
+    "settings",
+    "more_vert",
+    "New Payment"
+   ],
+   "np": 1,
+   "form": "New Customer Payment close event Payment Date Payment Method arrow_drop_down Reference Number Memo No. Date arrow_drop_up Due Balance Payment S11315-17831 Nov 6, 2026 Nov 6, 2026 $500.00 S11315-17830 Nov 1, 2026 Nov 1, 2026 $100.00 $ Amount to credit: $ Payment amount: $100.00 Make Payment Send to Terminal",
+   "inputs": [
+    {
+     "v": "Nov 11, 2026",
+     "ph": "",
+     "aria": "Payment date",
+     "tid": "date_input_"
+    },
+    {
+     "v": "",
+     "ph": "",
+     "aria": "Payment method",
+     "tid": "select_payment_method"
+    },
+    {
+     "v": "",
+     "ph": "",
+     "aria": "Reference number",
+     "tid": "input_reference_number"
+    },
+    {
+     "v": "on",
+     "ph": "",
+     "aria": null,
+     "tid": null
+    },
+    {
+     "v": "on",
+     "ph": "",
+     "aria": null,
+     "tid": null
+    },
+    {
+     "v": "on",
+     "ph": "",
+     "aria": null,
+     "tid": null
+    },
+    {
+     "v": "100.00",
+     "ph": "",
+     "aria": null,
+     "tid": "input_payment_amount"
+    },
+    {
+     "v": "0.00",
+     "ph": "",
+     "aria": null,
+     "tid": "input_manually_entered_credit"
+    }
+   ],
+   "amt": 1,
+   "valueAfter": "120.00",
+   "notesTyped": [
+    "Payment Method arrow_drop_down",
+    "Payment method is a required field",
+    "$",
+    "Payment cannot be higher than 100"
+   ],
+   "makeLabel": "Make Payment",
+   "makeDisabled": true,
+   "notesAfter": [
+    "Payment Method arrow_drop_down",
+    "Payment method is a required field",
+    "$",
+    "Payment cannot be higher than 100"
+   ],
+   "calls": [],
+   "ok": false
+  }
+ ],
+ "customer": "ZZX Overpaid R5",
+ "invoice": "S11315-17830",
+ "before": [
+  {
+   "amount": 100,
+   "balance": 100,
+   "paid": 0,
+   "status": "unpaid"
+  }
+ ]
+}
