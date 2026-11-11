@@ -560,3 +560,8 @@
 - On A/R Collection / A/P Unpaid, clicking a customer's/vendor's group ROW does not expand it; only its own chevron does. Use `sortlib.expand(/^<name> \(/)` (s90 missed P11315-248 and P3-188 because of this; fixed in s90b).
 - vseed's fixed inventory part `000657fe-…` (P550848) now answers "Inventory part not found." on `part/manual-return-request/create`; pick a stocked part at the CURRENT location from `GET /api/inventory/parts` each time (`s89_vcredit.mjs` `credit2()`).
 - #aging #runner #seed → L0635, L0670
+
+## L0672 — 2026-11-11 — sv11315 data facts for "every document once" checks
+- **Grand Haven Diesel Services LLC** (A/P, 578 unpaid bills) holds two pairs of separate bills with the SAME vendor invoice number, date and amount: **979569** (2025-05-21, $2,765.24) and **1008064** (2026-04-29, $1,592.59) — each appears twice in the A/P Unpaid CSV too. A "no number repeated" check on this vendor must compare against the CSV's multiset, not demand unique numbers (s91 C1062571).
+- Phone control for "no Phone:" checks: **Andrews' Truck & Trailer Repair LLC** prints "Phone: 343-203-3967" on its A/R Collection group row and PDF line (p73); **ZZAUTOTEST S1R5 Alpha** has no phone.
+- #aging #data #positive-control → L0664, L0672
