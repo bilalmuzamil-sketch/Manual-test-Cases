@@ -491,16 +491,19 @@ async function unpaidFor(x, key, label, date) {
   return { rs, docs: docRows(rs), grp: rs.find((r) => r.tid.endsWith('_row_' + id)) };
 }
 C['V1R-60'] = async (x) => {
-  const { page, lib } = x; await go(x, 'A/P Unpaid Invoices');
+  const { page, lib } = x; await go(x, 'A/P Unpaid Invoices'); await page.waitForSelector('tr[data-test-id^="ap_unpaid_invoices_report_row_"]', { timeout: 60000 }); await lib.settle(page, 1000);
   const groups = (await lib.rows(page)).filter(isGroup); const names = groups.map((g) => (g.cells.vendor_name || g.text).trim());
   x.ev.push(await lib.shot(page, x.key, 'step 3 vendor groups'));
-  const sorted = [...names].sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }));
+  const fold = (s) => s.toLowerCase().replace(/æ/g, 'ae').replace(/ø/g, 'o').replace(/ß/g, 'ss').normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+  const sorted = [...names].sort((a, b) => (fold(a) < fold(b) ? -1 : fold(a) > fold(b) ? 1 : 0)); // A to Z as a reader sees it: letters folded (æ = ae), case ignored
   const fmt = groups.every((g) => /\(\d+\)/.test(g.text) && /Total \$[-\d,.]+ \$[-\d,.]+/.test(g.text));
-  const first = groups[0]; await page.locator(`button[data-test-id$="_toggle_${first.tid.split('_row_').pop()}"]`).first().click(); await lib.settle(page, 1500); await lib.scrollAll(page);
-  const rs = await lib.rows(page); const tf = rs.find((r) => r.text.startsWith('Total for ')); const bottom = rs[rs.length - 1];
+  const first = groups[0]; await page.locator(`button[data-test-id$="_toggle_${first.tid.split('_row_').pop()}"]`).first().click(); await lib.settle(page, 1500);
+  const rs = await lib.rows(page); x.ev.push(lib.saveText(x.key, 'rows after opening the first vendor', rs.slice(0, 60))); const tf = rs.find((r) => r.text.startsWith('Total for ')); const bottom = rs[rs.length - 1];
   x.ev.push(await lib.shot(page, x.key, 'steps 5-6 first vendor open'));
-  return verdict([chk('Step 3: vendors A to Z, each with (count) and "Total" with Amount and Open Balance', JSON.stringify(names) === JSON.stringify(sorted) && fmt, names.slice(0, 8).join(' | ') + ` ... (${names.length} loaded)`),
-    chk('Step 5: "Total for" + vendor name with the two amounts', tf && tf.text.startsWith('Total for ' + names[0]) && /\$[-\d,.]+ \$[-\d,.]+$/.test(tf.text), tf ? tf.text : 'none'), chk('Step 6: "Totals"', /^Totals/.test(bottom.text), bottom.text)]);
+  const bad = names.findIndex((n, i) => n !== sorted[i]);
+  const bottomTot = (await lib.rows(page)).find((r) => /^row_apunp_totals/.test(r.tid) || r.text.startsWith('Totals'));
+  return verdict([chk('Step 3: vendors A to Z, each with (count) and "Total" with Amount and Open Balance', JSON.stringify(names) === JSON.stringify(sorted) && fmt, (bad >= 0 ? `first out of order at #${bad}: "${names[bad]}" (sorted would be "${sorted[bad]}"); ` : '') + names.join(' | ') + ` (${names.length} loaded); count/total format ok: ${fmt}`),
+    chk('Step 5: "Total for" + vendor name with the two amounts', tf && tf.text.startsWith('Total for ' + names[0]) && /\$[-\d,.]+ \$[-\d,.]+$/.test(tf.text), tf ? tf.text : 'none'), chk('Step 6: "Totals"', bottomTot && /^Totals/.test(bottomTot.text), bottomTot ? bottomTot.text : 'none')]);
 };
 C['V1R-61'] = async (x) => {
   const a = await unpaidFor(x, 'P61', 'steps 3-4 vendor lines'); const cur = find(a.docs, num('doc:P61:bill_cur')), late = find(a.docs, num('doc:P61:bill_late')), vc = vcRow(a.docs, '8.00');

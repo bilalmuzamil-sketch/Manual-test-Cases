@@ -1108,5 +1108,450 @@
   "marker": "v26.45.2-6a8b89c",
   "utc_start": "2026-11-11T11:54:43.223Z",
   "utc_end": "2026-11-11T11:55:26.572Z"
+ },
+ "V1R-12": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5: bill ZZAUTOTEST-P12-A dated 2026-10-20 listed",
+    "ok": true,
+    "saw": "Oct 20, 2026 Staging Heavy Duty - 9919 Invoice ZZAUTOTEST-P12-A ZZAUTOTEST AP P12 Bill Dates Nov 19, 2026 -30 $51.00 $51.00"
+   },
+   {
+    "what": "Step 6: bill ZZT-P12-BILLD1 dated 2026-10-21 not listed",
+    "ok": true,
+    "saw": "ZZAUTOTEST-P12-A"
+   }
+  ],
+  "observed": "OK Step 5: bill ZZAUTOTEST-P12-A dated 2026-10-20 listed: Oct 20, 2026 Staging Heavy Duty - 9919 Invoice ZZAUTOTEST-P12-A ZZAUTOTEST AP P12 Bill Dates Nov 19, 2026 -30 $51.00 $51.00 | OK Step 6: bill ZZT-P12-BILLD1 dated 2026-10-21 not listed: ZZAUTOTEST-P12-A",
+  "evidence": [
+   "V1R-12 - steps 3-6 as of 2026-10-20.png",
+   "V1R-12 - steps 3-6 as of 2026-10-20 rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:56:37.468Z",
+  "utc_end": "2026-11-11T11:56:54.462Z"
+ },
+ "V1R-20": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5: Open Balance $200.00",
+    "ok": true,
+    "saw": "{\"date\":\"Oct 12, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Invoice\",\"id\":\"ZZT-P20-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P20 Payment After\",\"due_date\":\"Nov 11, 2026\",\"past_due\":\"-29\",\"amount\":\"$200.00\",\"open_balance\":\"$200.00\"}"
+   },
+   {
+    "what": "Step 8: Open Balance $120.00",
+    "ok": true,
+    "saw": "$120.00"
+   }
+  ],
+  "observed": "OK Step 5: Open Balance $200.00: {\"date\":\"Oct 12, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Invoice\",\"id\":\"ZZT-P20-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P20 Payment After\",\"due_date\":\"Nov 11, 2026\",\"past_due\":\"-29\",\"amount\":\"$200.00\",\"open_balance\":\"$200.00\"} | OK Step 8: Open Balance $120.00: $120.00",
+  "evidence": [
+   "V1R-20 - step 5 as of D+1 2026-10-13.png",
+   "V1R-20 - step 5 as of D+1 2026-10-13 rows.json",
+   "V1R-20 - step 8 as of D+4 2026-10-16.png",
+   "V1R-20 - step 8 as of D+4 2026-10-16 rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:56:54.749Z",
+  "utc_end": "2026-11-11T11:57:27.741Z"
+ },
+ "V1R-21": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5: vendor credit listed at $-35.00",
+    "ok": true,
+    "saw": "{\"date\":\"Oct 22, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Vendor Credit\",\"id\":\"C-13673\",\"vendor_name\":\"ZZAUTOTEST AP P21 Credit Used\",\"due_date\":\"Oct 22, 2026\",\"past_due\":\"3\",\"amount\":\"$-35.00\",\"open_balance\":\"$-35.00\"}"
+   },
+   {
+    "what": "Step 8: not listed on day U",
+    "ok": true,
+    "saw": "no lines"
+   }
+  ],
+  "observed": "OK Step 5: vendor credit listed at $-35.00: {\"date\":\"Oct 22, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Vendor Credit\",\"id\":\"C-13673\",\"vendor_name\":\"ZZAUTOTEST AP P21 Credit Used\",\"due_date\":\"Oct 22, 2026\",\"past_due\":\"3\",\"amount\":\"$-35.00\",\"open_balance\":\"$-35.00\"} | OK Step 8: not listed on day U: no lines",
+  "evidence": [
+   "V1R-21 - step 5 as of 2026-10-25.png",
+   "V1R-21 - step 5 as of 2026-10-25 rows.json",
+   "V1R-21 - step 8 as of U 2026-10-30.png",
+   "V1R-21 - step 8 as of U 2026-10-30 rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:57:28.028Z",
+  "utc_end": "2026-11-11T11:58:02.801Z"
+ },
+ "V1R-24": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4: $-12.00 under 1-30 Days; nothing under Current",
+    "ok": true,
+    "saw": "{\"vendor_name\":\"ZZAUTOTEST AP P24 Credit Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$-12.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$-12.00\"}"
+   },
+   {
+    "what": "Step 6: $-12.00 under 61-90 Days",
+    "ok": true,
+    "saw": "{\"vendor_name\":\"ZZAUTOTEST AP P24 Credit Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"$-12.00\",\"days_91_plus\":\"\",\"total\":\"$-12.00\"}"
+   }
+  ],
+  "observed": "OK Step 4: $-12.00 under 1-30 Days; nothing under Current: {\"vendor_name\":\"ZZAUTOTEST AP P24 Credit Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$-12.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$-12.00\"} | OK Step 6: $-12.00 under 61-90 Days: {\"vendor_name\":\"ZZAUTOTEST AP P24 Credit Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"$-12.00\",\"days_91_plus\":\"\",\"total\":\"$-12.00\"}",
+  "evidence": [
+   "V1R-24 - step 4 as of C+1 2026-09-03.png",
+   "V1R-24 - step 6 as of C+61 2026-11-02.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:58:03.093Z",
+  "utc_end": "2026-11-11T11:58:33.234Z"
+ },
+ "V1R-26": {
+  "verdict": "BLOCKED",
+  "observed": "Precondition cannot be set up: a received bill with NO due date. Rungs tried: (1) receiving a purchase order through the front end's own call (POST /api/inventory/orders/accept) for a vendor on COD - the bill still gets a due date (= its invoice date; bill ZZT-P26-BILL, due Nov 06 2026); (2) a vendor with no payment terms cannot be saved - add-vendor answers 400 \"credit_term: Missing required parameter\"; (3) the code (CreateTransactionWhenDeliveryIsCreated at 8e35ee0d02) only blanks the due date when CreditTerms::getDueDate returns the very same object, which it never does (it always builds a new one), so no new bill can lack a due date. What needs to be done: a developer stores one unpaid bill with an empty due date on QA, then run this case.",
+  "evidence": [],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:58:33.552Z",
+  "utc_end": "2026-11-11T11:58:33.657Z"
+ },
+ "V1R-27": {
+  "verdict": "BLOCKED",
+  "observed": "Precondition cannot be set up: a bill paid MORE than its amount. Rung tried: the vendor payment call the front end makes (POST /api/parts-catalogue/vendor/payment/create) paying $110.00 on the $100.00 bill ZZT-P27-BILL answers 400 \"Vendor transaction cannot be overpaid.\" The screen's payment dialog uses the same call. What needs to be done: a developer stores one overpaid bill on QA (or names an existing one), then run this case.",
+  "evidence": [],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:58:33.959Z",
+  "utc_end": "2026-11-11T11:58:34.055Z"
+ },
+ "V1R-52": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: Vendor, (Location), Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total",
+    "ok": true,
+    "saw": "[\"Vendor\",\"Location\",\"Current\",\"1-30 Days\",\"31-60 Days\",\"61-90 Days\",\"91 And Over\",\"Total\"]"
+   },
+   {
+    "what": "Step 5: Current $90.00, 31-60 Days $280.00, other buckets blank, Total $370.00",
+    "ok": true,
+    "saw": "{\"vendor_name\":\"ZZAUTOTEST AP P52 Netting\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"$90.00\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"$280.00\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$370.00\"}"
+   }
+  ],
+  "observed": "OK Step 3: Vendor, (Location), Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total: [\"Vendor\",\"Location\",\"Current\",\"1-30 Days\",\"31-60 Days\",\"61-90 Days\",\"91 And Over\",\"Total\"] | OK Step 5: Current $90.00, 31-60 Days $280.00, other buckets blank, Total $370.00: {\"vendor_name\":\"ZZAUTOTEST AP P52 Netting\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"$90.00\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"$280.00\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$370.00\"}",
+  "note": "Bill $300.00 dated Sep 02 2026 (due Oct 02, 40 days past due), bill $90.00 dated Nov 06 (due Dec 06), vendor credit $20.00 dated Oct 07 (35 days old).",
+  "evidence": [
+   "V1R-52 - step 3 headings.png",
+   "V1R-52 - steps 4-5 vendor row.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:58:34.325Z",
+  "utc_end": "2026-11-11T11:58:51.726Z"
+ },
+ "V1R-55": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5: \"Total for Current\" with Amount and Open Balance",
+    "ok": true,
+    "saw": "Total for Current $4,327.34 $4,247.34"
+   },
+   {
+    "what": "Step 6: \"Totals\" with Amount and Open Balance",
+    "ok": true,
+    "saw": "Totals $4,763,170.68 $4,762,290.72"
+   }
+  ],
+  "observed": "OK Step 5: \"Total for Current\" with Amount and Open Balance: Total for Current $4,327.34 $4,247.34 | OK Step 6: \"Totals\" with Amount and Open Balance: Totals $4,763,170.68 $4,762,290.72",
+  "evidence": [
+   "V1R-55 - steps 5-6 end of Current and Totals.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:58:52.002Z",
+  "utc_end": "2026-11-11T11:59:03.018Z"
+ },
+ "V1R-56": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5: date, \"Invoice\", No., vendor name, location B, due date, Past Due, Amount, Open Balance",
+    "ok": true,
+    "saw": "{\"date\":\"Nov 5, 2026\",\"location\":\"Staging Lethbridge - 4310\",\"type\":\"Invoice\",\"id\":\"ZZT-P56-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P56 Location B\",\"due_date\":\"Dec 5, 2026\",\"past_due\":\"-24\",\"amount\":\"$56.00\",\"open_balance\":\"$56.00\"}"
+   }
+  ],
+  "observed": "OK Step 5: date, \"Invoice\", No., vendor name, location B, due date, Past Due, Amount, Open Balance: {\"date\":\"Nov 5, 2026\",\"location\":\"Staging Lethbridge - 4310\",\"type\":\"Invoice\",\"id\":\"ZZT-P56-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P56 Location B\",\"due_date\":\"Dec 5, 2026\",\"past_due\":\"-24\",\"amount\":\"$56.00\",\"open_balance\":\"$56.00\"}",
+  "evidence": [
+   "V1R-56 - step 5 location B bill line.png",
+   "V1R-56 - step 5 location B bill line rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:59:03.342Z",
+  "utc_end": "2026-11-11T11:59:17.415Z"
+ },
+ "V1R-57": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5: a negative number of days, about -9",
+    "ok": true,
+    "saw": "{\"date\":\"Oct 21, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Invoice\",\"id\":\"ZZT-P57-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P57 Not Yet Due\",\"due_date\":\"Nov 20, 2026\",\"past_due\":\"-9\",\"amount\":\"$57.00\",\"open_balance\":\"$57.00\"}"
+   }
+  ],
+  "observed": "OK Step 5: a negative number of days, about -9: {\"date\":\"Oct 21, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Invoice\",\"id\":\"ZZT-P57-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P57 Not Yet Due\",\"due_date\":\"Nov 20, 2026\",\"past_due\":\"-9\",\"amount\":\"$57.00\",\"open_balance\":\"$57.00\"}",
+  "evidence": [
+   "V1R-57 - steps 3-5 bill due in 9 days.png",
+   "V1R-57 - steps 3-5 bill due in 9 days rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:59:17.688Z",
+  "utc_end": "2026-11-11T11:59:31.908Z"
+ },
+ "V1R-58": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5: Due Date = the credit's own date (Nov 01, 2026)",
+    "ok": true,
+    "saw": "{\"date\":\"Nov 1, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Vendor Credit\",\"id\":\"C-13676\",\"vendor_name\":\"ZZAUTOTEST AP P58 Credit Line\",\"due_date\":\"Nov 1, 2026\",\"past_due\":\"10\",\"amount\":\"$-25.00\",\"open_balance\":\"$-25.00\"}"
+   },
+   {
+    "what": "Step 6: Past Due 10",
+    "ok": true,
+    "saw": "10"
+   },
+   {
+    "what": "Step 7: $-25.00 and $-25.00",
+    "ok": true,
+    "saw": "$-25.00 / $-25.00"
+   }
+  ],
+  "observed": "OK Step 5: Due Date = the credit's own date (Nov 01, 2026): {\"date\":\"Nov 1, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Vendor Credit\",\"id\":\"C-13676\",\"vendor_name\":\"ZZAUTOTEST AP P58 Credit Line\",\"due_date\":\"Nov 1, 2026\",\"past_due\":\"10\",\"amount\":\"$-25.00\",\"open_balance\":\"$-25.00\"} | OK Step 6: Past Due 10: 10 | OK Step 7: $-25.00 and $-25.00: $-25.00 / $-25.00",
+  "evidence": [
+   "V1R-58 - steps 3-7 vendor credit line.png",
+   "V1R-58 - steps 3-7 vendor credit line rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:59:32.211Z",
+  "utc_end": "2026-11-11T11:59:45.065Z"
+ },
+ "V1R-59": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: Current opened",
+    "ok": true,
+    "saw": "28 lines"
+   },
+   {
+    "what": "Step 4: yesterday set",
+    "ok": true,
+    "saw": "As of: 11/10/2026"
+   },
+   {
+    "what": "Step 5: every bucket closed",
+    "ok": true,
+    "saw": "keyboard_arrow_right 91 or mor / keyboard_arrow_right 61-90 day / keyboard_arrow_right 31-60 day / keyboard_arrow_right 1-30 days / keyboard_arrow_right Current ("
+   }
+  ],
+  "observed": "OK Step 3: Current opened: 28 lines | OK Step 4: yesterday set: As of: 11/10/2026 | OK Step 5: every bucket closed: keyboard_arrow_right 91 or mor / keyboard_arrow_right 61-90 day / keyboard_arrow_right 31-60 day / keyboard_arrow_right 1-30 days / keyboard_arrow_right Current (",
+  "evidence": [
+   "V1R-59 - step 5 buckets after date change.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T11:59:45.351Z",
+  "utc_end": "2026-11-11T11:59:57.583Z"
+ },
+ "V1R-60": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: vendors A to Z, each with (count) and \"Total\" with Amount and Open Balance",
+    "ok": true,
+    "saw": "#1 Diesel | -1 Diesel | 10 Trucking | 2 Trucking | @Home Towing | A-1 Towing | a1 towing | Abadi's Diesel Repair | Ackley | Adams Diesel Repair | æble | Afton | Akal's Mobile Truck Repair | Alameda Mechanical Services | Alzuhairi Truck & Machine Service | Amani & Sons Truck & Trailer Repair | Amherst Truck Center | Amimi Diesel Services Inc | Andover Fleet Services | Antioch Diesel & Fleet Repair | Apex Truck & Trailer Repair | Asbury Park Truck Repair | Athens Roadside Truck Repair | Atlantic Truck & Trailer Repair | Auburn Truck & Trailer Repair 24/7 | Axle Diesel & Fleet Repair | Azle Truck & Trailer Repair | Azossi's Truck Repair | Baldwin Park Truck & Trailer Repair | Bandy Truck Center - Vacaville (30 loaded); count/total format ok: true"
+   },
+   {
+    "what": "Step 5: \"Total for\" + vendor name with the two amounts",
+    "ok": true,
+    "saw": "Total for #1 Diesel $36.00 $36.00"
+   },
+   {
+    "what": "Step 6: \"Totals\"",
+    "ok": true,
+    "saw": "Totals $4,763,170.68 $4,762,290.72"
+   }
+  ],
+  "observed": "OK Step 3: vendors A to Z, each with (count) and \"Total\" with Amount and Open Balance: #1 Diesel | -1 Diesel | 10 Trucking | 2 Trucking | @Home Towing | A-1 Towing | a1 towing | Abadi's Diesel Repair | Ackley | Adams Diesel Repair | æble | Afton | Akal's Mobile Truck Repair | Alameda Mechanical Services | Alzuhairi Truck & Machine Service | Amani & Sons Truck & Trailer Repair | Amherst Truck Center | Amimi Diesel Services Inc | Andover Fleet Services | Antioch Diesel & Fleet Repair | Apex Truck & Trailer Repair | Asbury Park Truck Repair | Athens Roadside Truck Repair | Atlantic Truck & Trailer Repair | Auburn Truck & Trailer Repair 24/7 | Axle Diesel & Fleet Repair | Azle Truck & Trailer Repair | Azossi's Truck Repair | Baldwin Park Truck & Trailer Repair | Bandy Truck Center - Vacaville (30 loaded); count/total format ok: true | OK Step 5: \"Total for\" + vendor name with the two amounts: Total for #1 Diesel $36.00 $36.00 | OK Step 6: \"Totals\": Totals $4,763,170.68 $4,762,290.72",
+  "evidence": [
+   "V1R-60 - step 3 vendor groups.png",
+   "V1R-60 - rows after opening the first vendor.json",
+   "V1R-60 - steps 5-6 first vendor open.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:04:59.532Z",
+  "utc_end": "2026-11-11T12:05:11.636Z"
+ },
+ "V1R-61": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4: bill not yet due, past-due bill and vendor credit all listed; the not-yet-due bill shows a negative Past Due",
+    "ok": true,
+    "saw": "[[\"ZZT-P61-BILL_LATE\",\"Invoice\",\"10\"],[\"C-13677\",\"Vendor Credit\",\"—\"],[\"ZZT-P61-BILL_CUR\",\"Invoice\",\"-27\"]]"
+   }
+  ],
+  "observed": "OK Step 4: bill not yet due, past-due bill and vendor credit all listed; the not-yet-due bill shows a negative Past Due: [[\"ZZT-P61-BILL_LATE\",\"Invoice\",\"10\"],[\"C-13677\",\"Vendor Credit\",\"—\"],[\"ZZT-P61-BILL_CUR\",\"Invoice\",\"-27\"]]",
+  "evidence": [
+   "V1R-61 - steps 3-4 vendor lines.png",
+   "V1R-61 - steps 3-4 vendor lines rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:00:09.385Z",
+  "utc_end": "2026-11-11T12:00:22.457Z"
+ },
+ "V1R-62": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4: oldest at the top",
+    "ok": true,
+    "saw": "[\"Oct 27, 2026\",\"Nov 1, 2026\",\"Nov 6, 2026\"]"
+   }
+  ],
+  "observed": "OK Step 4: oldest at the top: [\"Oct 27, 2026\",\"Nov 1, 2026\",\"Nov 6, 2026\"]",
+  "evidence": [
+   "V1R-62 - steps 3-4 date column.png",
+   "V1R-62 - steps 3-4 date column rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:00:22.727Z",
+  "utc_end": "2026-11-11T12:00:35.611Z"
+ },
+ "V1R-63": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5: Due Date \"—\"",
+    "ok": true,
+    "saw": "—"
+   },
+   {
+    "what": "Step 6: Past Due \"—\"",
+    "ok": true,
+    "saw": "—"
+   }
+  ],
+  "observed": "OK Step 5: Due Date \"—\": — | OK Step 6: Past Due \"—\": —",
+  "evidence": [
+   "V1R-63 - steps 3-6 vendor credit line.png",
+   "V1R-63 - steps 3-6 vendor credit line rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:00:35.895Z",
+  "utc_end": "2026-11-11T12:00:48.843Z"
+ },
+ "V1R-64": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5: picked",
+    "ok": true,
+    "saw": "local_shipping Vendor: ZZAUTOTEST AP P..."
+   },
+   {
+    "what": "Step 6: only vendor Y",
+    "ok": true,
+    "saw": "keyboard_arrow_right ZZAUTOTEST AP P60 A"
+   },
+   {
+    "what": "Step 8: still only vendor Y",
+    "ok": true,
+    "saw": "keyboard_arrow_right ZZAUTOTEST AP P60 A"
+   }
+  ],
+  "observed": "OK Step 5: picked: local_shipping Vendor: ZZAUTOTEST AP P... | OK Step 6: only vendor Y: keyboard_arrow_right ZZAUTOTEST AP P60 A | OK Step 8: still only vendor Y: keyboard_arrow_right ZZAUTOTEST AP P60 A",
+  "evidence": [
+   "V1R-64 - step 6 groups.png",
+   "V1R-64 - step 8 groups after reload.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:00:49.215Z",
+  "utc_end": "2026-11-11T12:01:08.632Z"
+ },
+ "V1R-65": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5: only vendor Y listed and the Vendor chip names it",
+    "ok": true,
+    "saw": "groups: keyboard_arrow_right ZZAUTOTEST AP P60 A; chip: local_shipping Vendor: ZZAUTOTEST AP P...; address now https://sv11315.qa.shopview.com/reports/ap-unpaid-invoices?vendorIds=3c322e5d-ad9d-4231-9ab3-14e098e3cec1"
+   }
+  ],
+  "observed": "OK Step 5: only vendor Y listed and the Vendor chip names it: groups: keyboard_arrow_right ZZAUTOTEST AP P60 A; chip: local_shipping Vendor: ZZAUTOTEST AP P...; address now https://sv11315.qa.shopview.com/reports/ap-unpaid-invoices?vendorIds=3c322e5d-ad9d-4231-9ab3-14e098e3cec1",
+  "link": "https://sv11315.qa.shopview.com/reports/ap-unpaid-invoices?vendorName=ZZAUTOTEST%20AP%20P60%20Alpha&vendorId=3c322e5d-ad9d-4231-9ab3-14e098e3cec1",
+  "evidence": [
+   "V1R-65 - step 5 after opening the saved link.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:01:08.983Z",
+  "utc_end": "2026-11-11T12:01:23.501Z"
+ },
+ "V1R-66": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4: the delivery page of that bill opens",
+    "ok": true,
+    "saw": "address https://sv11315.qa.shopview.com/parts/delivery/bedf1a9f-2d6e-4621-95c2-d74f9f4d3d34 (delivery id bedf1a9f-2d6e-4621-95c2-d74f9f4d3d34); page starts: Vendor Invoice edit_note ZZT-P60A-BILL Invoice date Nov 3, 2026 Due date Dec 3, 2026 Vendor ZZAUTOTEST AP P60 Alpha Delivery Details I-1718 Date received Today Ordered by Admin ShopView Received by Ad"
+   }
+  ],
+  "observed": "OK Step 4: the delivery page of that bill opens: address https://sv11315.qa.shopview.com/parts/delivery/bedf1a9f-2d6e-4621-95c2-d74f9f4d3d34 (delivery id bedf1a9f-2d6e-4621-95c2-d74f9f4d3d34); page starts: Vendor Invoice edit_note ZZT-P60A-BILL Invoice date Nov 3, 2026 Due date Dec 3, 2026 Vendor ZZAUTOTEST AP P60 Alpha Delivery Details I-1718 Date received Today Ordered by Admin ShopView Received by Ad",
+  "evidence": [
+   "V1R-66 - steps 3 vendor group open.png",
+   "V1R-66 - steps 3 vendor group open rows.json",
+   "V1R-66 - step 4 after clicking the bill No.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:03:55.081Z",
+  "utc_end": "2026-11-11T12:04:11.018Z"
+ },
+ "V1R-67": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: Y open",
+    "ok": true,
+    "saw": "1"
+   },
+   {
+    "what": "Step 4: yesterday set",
+    "ok": true,
+    "saw": "As of: 11/10/2026"
+   },
+   {
+    "what": "Step 5: all groups closed",
+    "ok": true,
+    "saw": "0 lines"
+   },
+   {
+    "what": "Step 6: Y open again",
+    "ok": true,
+    "saw": "1"
+   },
+   {
+    "what": "Step 7: W picked",
+    "ok": true,
+    "saw": "local_shipping Vendor: ZZAUTOTEST AP P..."
+   },
+   {
+    "what": "Step 8: all groups closed",
+    "ok": true,
+    "saw": "0 lines"
+   }
+  ],
+  "observed": "OK Step 3: Y open: 1 | OK Step 4: yesterday set: As of: 11/10/2026 | OK Step 5: all groups closed: 0 lines | OK Step 6: Y open again: 1 | OK Step 7: W picked: local_shipping Vendor: ZZAUTOTEST AP P... | OK Step 8: all groups closed: 0 lines",
+  "evidence": [
+   "V1R-67 - step 5 after date change.png",
+   "V1R-67 - step 8 after picking W.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:01:37.070Z",
+  "utc_end": "2026-11-11T12:02:35.000Z"
  }
 }
