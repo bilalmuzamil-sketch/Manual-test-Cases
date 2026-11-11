@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S2 (sv11315)"
+ },
+ "results": {
+  "C715305": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, as of 11/11/2026, Vendor filter = ZZAUTOTEST S1R5 V Alpha and ZZAUTOTEST S1R5 V Bravo (so the whole \"1-30 days past due\" bucket, 4 lines, is read); bucket expanded. Documents A, B, C = bills 9917, 10023, 10024, all due Oct 25, 2026 (letter-by-letter order would be 10023, 10024, 9917).",
+    "Step 1: clicked \"No.\": sorted by No. as numbers, smallest first: 9917, 10023, 10024 (then ZZBR-1).",
+    "Step 2: clicked again: largest first: ZZBR-1, 10024, 10023, 9917 - still number order.",
+    "Step 3: clicked \"Due Date\": oldest first; A, B and C tie on Due Date and are ordered by number: 9917, 10023, 10024.",
+    "Step 4: clicked again (newest first): the three still tie and keep 9917, 10023, 10024 (only the sorted column reversed)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715305-1-1-No.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715305-2-2-No.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715305-3-3-DueDate.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715305-4-4-DueDate.png"
+   ]
+  }
+ }
+}
