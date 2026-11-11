@@ -1,0 +1,134 @@
+{
+ "steps": [
+  [
+   "customer ZZAUTOTEST S1R5 Alpha",
+   201
+  ],
+  [
+   "contact",
+   200
+  ],
+  [
+   "vehicle",
+   200
+  ],
+  [
+   "customer ZZAUTOTEST S1R5 Bravo",
+   201
+  ],
+  [
+   "contact",
+   200
+  ],
+  [
+   "vehicle",
+   200
+  ],
+  [
+   "wo",
+   201
+  ],
+  [
+   "wo-contact",
+   200
+  ],
+  [
+   "line",
+   201
+  ],
+  [
+   "line-complete 460c90 was authorized",
+   200,
+   "{\"data\":[]}"
+  ],
+  [
+   "wo",
+   201
+  ],
+  [
+   "wo-contact",
+   200
+  ],
+  [
+   "line",
+   201
+  ],
+  [
+   "line-complete 9f1c3f was authorized",
+   200,
+   "{\"data\":[]}"
+  ],
+  [
+   "change-customer",
+   200
+  ],
+  [
+   "est-contact",
+   200
+  ],
+  [
+   "line",
+   201
+  ],
+  [
+   "line-complete aac031 was authorization_required",
+   400,
+   "{\"errors\":[{\"error\":\"Status transition from authorization_required to complete is not allowed.\"}]}"
+  ],
+  [
+   "line-complete 7347fd was authorization_required",
+   400,
+   "{\"errors\":[{\"error\":\"Status transition from authorization_required to complete is not allowed.\"}]}"
+  ],
+  [
+   "line-complete fd7c4c was authorized",
+   200,
+   "{\"data\":[]}"
+  ]
+ ],
+ "al": {
+  "name": "ZZAUTOTEST S1R5 Alpha",
+  "company_id": "0867384b-6e61-454b-a983-bb167086b186",
+  "contact_id": "55779fbe-3abb-47fe-b1bf-ad51148fbac7",
+  "vehicle_id": "dde43eeb-c821-4b17-a0e2-09cf4c32f32c"
+ },
+ "br": {
+  "name": "ZZAUTOTEST S1R5 Bravo",
+  "company_id": "c0b08c23-e1b3-41a0-a56a-80ce42a3c7e3",
+  "contact_id": "781d7752-6606-4ba6-bf58-b675b83f254f",
+  "vehicle_id": "835c678e-7ba9-4c44-98b3-c65862438f13"
+ },
+ "alA-sent": {
+  "invoice_number": "S11315-17610",
+  "created_on": "2026-08-20T18:00:00.000Z",
+  "due_date": "2026-08-20T18:00:00.000Z"
+ },
+ "alA": "cf15fc00-d65f-4c0d-8217-93199cefe0d0",
+ "alC-sent": {
+  "invoice_number": "S11315-17611",
+  "created_on": "2026-10-25T18:00:00.000Z",
+  "due_date": "2026-10-25T18:00:00.000Z"
+ },
+ "alC": "6c2a76a7-f9f3-465f-a0f0-04bae46e1d75",
+ "custErr": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel(/Invoice Date/i).first()\u001b[22m\n",
+ "va": "83c53bf7-cc36-45fd-ad4b-6a4c6490f847",
+ "vb": "28cfc85d-a5bd-44af-8cb4-1b0b1cb1468f",
+ "bAA": {
+  "orderId": "70b1efde-4a7d-4c5d-ac3e-b0f99cc02844",
+  "number": "ZZAL-A"
+ },
+ "bAC": {
+  "orderId": "8536c19f-d5d3-48ce-aaa0-4643ec739409",
+  "number": "10023"
+ },
+ "bAB": {
+  "orderId": "db04f46a-07a7-4df7-8528-ecae0e5def9b",
+  "number": "9917"
+ },
+ "bBA": {
+  "orderId": "fa7475ab-c807-4434-8076-8ada08c8d499",
+  "number": "ZZBR-1"
+ },
+ "rep-arc": "{\"data\":{\"collection\":[{\"customerId\":\"0867384b-6e61-454b-a983-bb167086b186\",\"name\":\"ZZAUTOTEST S1R5 Alpha\",\"phone\":null,\"creditTerm\":\"COD\",\"amountCents\":34808,\"openBalanceCents\":34808,\"rowsNumber\":2,\"rows\":[{\"documentId\":\"c7c873d7-ff29-48ab-b5d7-0acbeed013c9\",\"date\":\"2026-08-20T18:00:00Z\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"locationName\":\"Staging Heavy Duty - 9919\",\"transactionType\":\"Invoice\",\"documentNumber\":\"S11315-17610\",\"customerId\":\"0867384b-6e61-454b-a983-bb167086b186\",\"customerName\":\"ZZAUTOTEST S1R5 Alpha\",\"dueDate\":\"2026-08-20T18:00:00Z\",\"daysPastDue\":82,\"amountCents\":17404,\"openBalanceCents\":17404,\"link\":{\"kind\":\"work_order\",\"targetId\":\"cf15fc00-d65f-4c0d-8217-93199cefe0d0\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"}},{\"documentId\":\"c36edb4a-785a-436d-aac8-91ae02d562f3\",\"date\":\"2026-10-25T15:00:00Z\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"locationName\":\"Staging Heavy Duty - 9919\",\"transactionType\":\"Invoice\",\"documentNumber\":\"S11315-17611\",\"customerId\":\"0867384b-6e61-454b-a983-bb167086b186\",\"customerName\":\"ZZAUTOTEST S1R5 Alpha\",\"dueDate\":\"2026-10-25T15:00:00Z\",\"daysPastDue\":16,\"amountCents\":17404,\"openBalanceCents\":17404,\"link\":{\"kind\":\"work_order\",\"targetId\":\"6c2a76a7-f9f3-465f-a0f0-04bae46e1d75\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"}}]}],\"totals\":{\"amountCents\":34808,\"openBalanceCents\":34808,\"documentCount\":2},\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":30,\"rowsNumber\":1}}}",
+ "rep-apu": "{\"data\":{\"collection\":[{\"vendorId\":\"83c53bf7-cc36-45fd-ad4b-6a4c6490f847\",\"name\":\"ZZAUTOTEST S1R5 V Alpha\",\"amountCents\":3600,\"openBalanceCents\":3600,\"rowsNumber\":3,\"rows\":[{\"documentId\":\"1b53baa8-fd4b-4fe7-ad70-13507ff5b286\",\"date\":\"2026-08-20T18:00:00Z\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"locationName\":\"Staging Heavy Duty - 9919\",\"transactionType\":\"Invoice\",\"documentNumber\":\"ZZAL-A\",\"vendorId\":\"83c53bf7-cc36-45fd-ad4b-6a4c6490f847\",\"vendorName\":\"ZZAUTOTEST S1R5 V Alpha\",\"dueDate\":\"2026-08-20T18:00:00Z\",\"daysPastDue\":82,\"amountCents\":1100,\"openBalanceCents\":1100,\"link\":{\"kind\":\"bill\",\"targetId\":\"e4a5310a-a891-4646-b10e-27b1fe6ece77\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"}},{\"documentId\":\"51d794a9-ec04-40eb-b325-2155ce03882f\",\"date\":\"2026-10-25T18:00:00Z\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"locationName\":\"Staging Heavy Duty - 9919\",\"transactionType\":\"Invoice\",\"documentNumber\":\"9917\",\"vendorId\":\"83c53bf7-cc36-45fd-ad4b-6a4c6490f847\",\"vendorName\":\"ZZAUTOTEST S1R5 V Alpha\",\"dueDate\":\"2026-10-25T18:00:00Z\",\"daysPastDue\":16,\"amountCents\":1300,\"openBalanceCents\":1300,\"link\":{\"kind\":\"bill\",\"targetId\":\"979c404f-704c-4e25-979f-e43e5ff46fac\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"}},{\"documentId\":\"1781ec8f-2ce7-4754-90ac-836055f66adc\",\"date\":\"2026-10-25T18:00:00Z\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"locationName\":\"Staging Heavy Duty - 9919\",\"transactionType\":\"Invoice\",\"documentNumber\":\"10023\",\"vendorId\":\"83c53bf7-cc36-45fd-ad4b-6a4c6490f847\",\"vendorName\":\"ZZAUTOTEST S1R5 V Alpha\",\"dueDate\":\"2026-10-25T18:00:00Z\",\"daysPastDue\":16,\"amountCents\":1200,\"openBalanceCents\":1200,\"link\":{\"kind\":\"bill\",\"targetId\":\"69bbae35-5b5c-4fd6-bedd-b4d6f8c50f22\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"}}]}],\"totals\":{\"amountCents\":3600,\"openBalanceCents\":3600,\"documentCount\":3},\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":30,\"rowsNumber\":1}}}"
+}

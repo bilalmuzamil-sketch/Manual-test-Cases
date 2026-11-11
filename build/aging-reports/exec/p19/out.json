@@ -1,0 +1,50 @@
+{
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "b": "{\"type\":\"work_orders\",\"id\":\"c16fb80a-2eec-499b-bc3c-3f849c694580\"}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/change-required-data",
+   "b": "{\"work_order_id\":\"c16fb80a-2eec-499b-bc3c-3f849c694580\",\"data\":{\"vin\":\"ZZVIN364781508\"}}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/change-status",
+   "b": "{\"id\":\"c16fb80a-2eec-499b-bc3c-3f849c694580\",\"status\":\"complete\",\"work_order_part_cost\":0,\"work_order_labour_cost\":150,\"work_order_lines\":[{\"isLine\":true,\"isInProgress\":false,\"line_id\":\"77f61aa7-6146-4f8a-a585-63b8f7ab8c0c\",\"number\":1,\"ID\":\"77f61aa7-6146-4f8a-a585-63b8f7ab8c0c\",\"name\":\" Service - Wheels off trailer tri-axle\",\"work_order_number\":\"S-17609\",\"description\":\"Annual inspection\",\"deletable\":false,\"deletable_reason\":\"You cannot delete a line that is completed. Please uncomplete the line first\",\"editable\":false,\"can_decline\":false,\"cost\":150,\"total_parts_sell_price\":\"0.00\",\"parts\":[],\"p"
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "b": "{\"type\":\"work_orders\",\"id\":\"c16fb80a-2eec-499b-bc3c-3f849c694580\"}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/invoices/estimate",
+   "b": "{\"work_order_id\":\"c16fb80a-2eec-499b-bc3c-3f849c694580\",\"type\":\"html\",\"isEstimate\":0,\"includeDeclined\":0,\"issueDate\":\"2026-11-11T02:40:13+00:00\",\"dueDate\":\"2026-11-11T02:40:13+00:00\",\"historyEvent\":null}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/work-orders/invoices/estimate",
+   "b": "{\"work_order_id\":\"c16fb80a-2eec-499b-bc3c-3f849c694580\",\"type\":\"html\",\"isEstimate\":0,\"includeDeclined\":0,\"issueDate\":\"2026-09-25T18:00:00.000Z\",\"dueDate\":\"2026-09-25T18:00:00.000Z\",\"historyEvent\":null}"
+  },
+  {
+   "m": "POST",
+   "u": "/api/invoices/create",
+   "b": "{\"invoice_number\":\"S11315-17609\",\"due_date\":\"2026-09-25T18:00:00.000Z\",\"discount\":0,\"cost\":\"165.75\",\"customer_id\":\"5fb3721b-8f5a-45be-84b4-d1db68b8a2b8\",\"company_id\":\"2373750d-3c10-4832-a7ac-5fc19d67c6c2\",\"work_order_id\":\"c16fb80a-2eec-499b-bc3c-3f849c694580\",\"work_place_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"work_order_part_cost\":\"0.00\",\"work_order_labour_cost\":\"150.00\",\"time_estimate\":\"0.00\",\"include_declined\":false,\"created_on\":\"2026-09-25T18:00:00.000Z\",\"tax\":{\"id\":\"819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b\",\"name\":\"GST\",\"isEnabledLabor\":true,\"isEnabledParts\":true,\"isEnabledShopSupplies\":t"
+  },
+  {
+   "m": "POST",
+   "u": "/api/user/recent-entities/touch",
+   "b": "{\"type\":\"work_orders\",\"id\":\"c16fb80a-2eec-499b-bc3c-3f849c694580\"}"
+  }
+ ],
+ "boxCount": 1,
+ "btn": 1,
+ "id": "c16fb80a-2eec-499b-bc3c-3f849c694580",
+ "company_id": "2373750d-3c10-4832-a7ac-5fc19d67c6c2",
+ "name": "ZZAUTOTEST BACKDATE PROBE 80673",
+ "report": "{\"data\":{\"collection\":[{\"customerId\":\"2373750d-3c10-4832-a7ac-5fc19d67c6c2\",\"name\":\"ZZAUTOTEST BACKDATE PROBE 80673\",\"phone\":null,\"creditTerm\":\"COD\",\"amountCents\":17404,\"openBalanceCents\":17404,\"rowsNumber\":1,\"rows\":[{\"documentId\":\"a001e588-5b8f-448f-a411-48f2fafca2cb\",\"date\":\"2026-09-25T18:00:00Z\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"locationName\":\"Staging Heavy Duty - 9919\",\"transactionType\":\"Invoice\",\"documentNumber\":\"S11315-17609\",\"customerId\":\"2373750d-3c10-4832-a7ac-5fc19d67c6c2\",\"customerName\":\"ZZAUTOTEST BACKDATE PROBE 80673\",\"dueDate\":\"2026-09-25T18:00:00Z\",\"daysPastDue\":46,\"amountCents\":17404,\"openBalanceCents\":17404,\"link\":{\"kind\":\"work_order\",\"targetId\":\"c16fb80a-2eec-499b-bc3c-3f849c694580\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"}}]}],\"totals\":{\"amountCents\":17404,\"openBalanceCents\":17404,\"documentCount\":1},\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":30,\"rowsNumber\":1}}}"
+}

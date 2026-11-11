@@ -1,0 +1,29 @@
+{"pass_meta": {"note": "11 Nov 2026, aging reports run 557, folder S1 batch b (sv11315) — sorting with numbers of different lengths"},
+ "results": {
+  "C715280": {"verdict": "Passed", "observed": [
+    "Opened on 11/10/2026, the buckets read top to bottom: 91 or more days past due, 61-90, 31-60, 1-30 days past due, Current.",
+    "Customer Full Name carries the sort arrow; no other heading does.",
+    "Test customers: ZZAUTOTEST S1R5 Alpha (customer B, first by name) and ZZAUTOTEST S1R5 Bravo (customer A), all invoices dated Oct 25, 2026.",
+    "Opening 1-30 days past due: Alpha's S11315-7195 first, then Alpha's S11315-17611 (7195 is the smaller number with fewer digits), then Bravo's S11315-17612."],
+   "pictures": ["/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715280-1-buckets.png", "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715280-2-rows.png"]},
+  "C715281": {"verdict": "Passed", "observed": [
+    "Opened on 11/10/2026, the buckets read top to bottom: 91 or more days past due, 61-90, 31-60, 1-30 days past due, Current.",
+    "Vendor Name carries the sort arrow; no other heading does.",
+    "Test vendors: ZZAUTOTEST S1R5 V Alpha (vendor B, first by name) with bills 9917 and 10023, and ZZAUTOTEST S1R5 V Bravo (vendor A) with bill ZZBR-1, all dated Oct 25, 2026.",
+    "Opening 1-30 days past due: Alpha's bill 9917, then Alpha's bill 10023, then Bravo's ZZBR-1."],
+   "pictures": ["/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715281-1-buckets.png", "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715281-2-rows.png"]},
+  "C715282": {"verdict": "Passed", "observed": [
+    "ZZAUTOTEST S1R5 Alpha's group (customer B) is above ZZAUTOTEST S1R5 Bravo's group (customer A).",
+    "Date carries the sort arrow.",
+    "Alpha's group opens: S11315-17610 dated Aug 20, 2026 first; then the two dated Oct 25, 2026: S11315-7195, then S11315-17611.",
+    "S11315-17611 was invoiced earlier that day (15:00 UTC) than S11315-7195 (21:00 UTC), yet the smaller number comes first.",
+    "The known problem this test describes (SV-12138, same-day invoices listed by time of day) did not happen on this build: the fix is here."],
+   "pictures": ["/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715282-rows.png"]},
+  "C715283": {"verdict": "Passed", "observed": [
+    "ZZAUTOTEST S1R5 V Alpha's group (vendor B) is above ZZAUTOTEST S1R5 V Bravo's group (vendor A).",
+    "Date carries the sort arrow.",
+    "Alpha's group opens: bill ZZAL-A dated Aug 20, 2026 first; then the two dated Oct 25, 2026: 9917, then 10023.",
+    "Bill 10023 was entered first and 9917 a few seconds later, yet the smaller number comes first.",
+    "The known problem this test describes (SV-12138) did not happen on this build: the fix is here."],
+   "pictures": ["/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715283-rows.png"]}
+ }}
