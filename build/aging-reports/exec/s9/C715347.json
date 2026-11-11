@@ -1,0 +1,135 @@
+{
+ "id": "C715347",
+ "steps": [
+  {
+   "label": "0-ticked",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "person Customer: ZZX CSV Det A R3 keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_down Date arrow_drop_up | Location arrow_drop_up | Transaction Type arrow_drop_up | ID arrow_drop_up | Due Date arrow_drop_up | Past Due arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_down | ZZX CSV Det A R3 (2) Credit term: COD",
+    "Sep 27, 2026 | Staging Heavy Duty - 9919 | Invoice | S11315-17764 | Sep 27, 2026 | 45 | $1,250.50 | $1,250.50",
+    "Oct 27, 2026 | Staging Heavy Duty - 9919 | Invoice | S11315-17765 | Oct 27, 2026 | 15 | $75.00 | $75.00",
+    "Total for ZZX CSV Det A R3 | $1,325.50 | $1,325.50",
+    "Totals | $1,325.50 | $1,325.50"
+   ],
+   "totals": "Totals $1,325.50 $1,325.50",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715347-0-ticked.png"
+  },
+  {
+   "step": "CSV-1-csv",
+   "r": {
+    "kind": "CSV",
+    "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715347-1-csv-ar-aging-collection.csv",
+    "name": "ar-aging-collection.csv",
+    "bytes": 445,
+    "notes": [
+     "check_circle Success Data exported successfully. Close"
+    ],
+    "toast": null,
+    "raw": [
+     "﻿\"As of: Nov 11, 2026\"",
+     "\"Locations: All locations\"",
+     "\"Customer: ZZX CSV Det A R3\"",
+     "Date,Location,\"Transaction Type\",ID,Customer,Phone,\"Credit Term\",\"Due Date\",\"Past Due\",Amount,\"Open Balance\"",
+     "2026-09-27,\"Staging Heavy Duty - 9919\",Invoice,S11315-17764,\"ZZX CSV Det A R3\",,COD,2026-09-27,45,1250.50,1250.50",
+     "2026-10-27,\"Staging Heavy Duty - 9919\",Invoice,S11315-17765,\"ZZX CSV Det A R3\",,COD,2026-10-27,15,75.00,75.00",
+     "Totals,,,,,,,,,1325.50,1325.50",
+     ""
+    ],
+    "csvN": 7
+   }
+  }
+ ],
+ "customer": "ZZX CSV Det A R3",
+ "docs": [
+  {
+   "tag": "A",
+   "num": "S11315-17764",
+   "invoiceId": "78d4c511-469e-4aba-90be-a93f722f90a1",
+   "wo": "525e6634-c08a-42b9-8d62-933e7eb9e262",
+   "amount": 1250.5,
+   "daysAgo": 45,
+   "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "term": "COD"
+  },
+  {
+   "tag": "B",
+   "num": "S11315-17765",
+   "invoiceId": "2762710c-a379-42b1-b325-85d130bb9e46",
+   "wo": "4eb1969f-fc41-444b-b0e7-e99bd17c0546",
+   "amount": 75,
+   "daysAgo": 15,
+   "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "term": "COD"
+  }
+ ],
+ "expanded-0-ticked": true,
+ "csvAll": [
+  [
+   "As of: Nov 11, 2026"
+  ],
+  [
+   "Locations: All locations"
+  ],
+  [
+   "Customer: ZZX CSV Det A R3"
+  ],
+  [
+   "Date",
+   "Location",
+   "Transaction Type",
+   "ID",
+   "Customer",
+   "Phone",
+   "Credit Term",
+   "Due Date",
+   "Past Due",
+   "Amount",
+   "Open Balance"
+  ],
+  [
+   "2026-09-27",
+   "Staging Heavy Duty - 9919",
+   "Invoice",
+   "S11315-17764",
+   "ZZX CSV Det A R3",
+   "",
+   "COD",
+   "2026-09-27",
+   "45",
+   "1250.50",
+   "1250.50"
+  ],
+  [
+   "2026-10-27",
+   "Staging Heavy Duty - 9919",
+   "Invoice",
+   "S11315-17765",
+   "ZZX CSV Det A R3",
+   "",
+   "COD",
+   "2026-10-27",
+   "15",
+   "75.00",
+   "75.00"
+  ],
+  [
+   "Totals",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "1325.50",
+   "1325.50"
+  ]
+ ]
+}
