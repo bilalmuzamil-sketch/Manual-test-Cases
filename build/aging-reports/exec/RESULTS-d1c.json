@@ -1,0 +1,38 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d1c re-measure"
+ },
+ "results": {
+  "C715494": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail at 1440 px in dark theme, measured after the report had finished loading (the first measurement caught the 91+ bucket still loading - its progress bar read as a blank heading; re-measured).",
+    "Step 1: title, info icon and \u22ef on one line; the filter row below, as in light theme.",
+    "Step 2: \"Vendor: All vendors\" and \"Past due: Any\" show in the resting style and are readable (white text, no fill).",
+    "Step 3: the links are blue rgb(34, 118, 218), semi-bold (600), not underlined, readable on the dark background.",
+    "Step 4: \"Open Balance\" is pinned right (sticky) and bold on the header (weight 800); the Totals row is background rgb(15, 17, 26), 13px, weight 700 - the same as Sales By Customer's dark Totals row.",
+    "Step 5: the focused link (Tab) is underlined.",
+    "Step 6: every heading on one line, no sideways scroll bar, nothing overlaps or is hard to read."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715494-07-apd-dark-1440-focus.png"
+   ]
+  },
+  "C715495": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail in a 1536 px wide window, measured after loading finished.",
+    "Step 1: title, info icon and \u22ef on one line; the filter row below.",
+    "Step 2: the headings \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\", \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\" are each on one line.",
+    "Step 3: there is no sideways scroll bar.",
+    "Step 4: \"Open Balance\" is pinned to the right edge and bold; the Totals row is background rgb(249, 250, 251), 13px, weight 700 - the same as Sales By Customer's.",
+    "Step 5: nothing overlaps, is cut off or clipped.",
+    "Step 6: in dark theme the layout is the same, links blue and readable, Totals row background rgb(15, 17, 26), 13px, weight 700; nothing overlaps."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715495-04-apd-light-1536-top.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715495-09-apd-dark-1536-top.png"
+   ]
+  }
+ }
+}
