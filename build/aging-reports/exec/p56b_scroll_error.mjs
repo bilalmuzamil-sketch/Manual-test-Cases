@@ -3,7 +3,7 @@
 // failed call recorded (the failure listener was attached after the scrolling). This logs EVERY request/response/failure from before the
 // expand: (1) online control - which call loads lines 101-200 when you scroll? (2) offline scroll; (3) online, that exact call aborted.
 import { start, REPORTS } from './lib.mjs'; import { mkSort } from './sortlib.mjs'; import fs from 'fs';
-const OUT = new URL('./p56b/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT); const p = s.page; const S = mkSort(p); const o = {};
+const OUT = new URL(process.env.P56B_OUT || './p56b/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT); const p = s.page; const S = mkSort(p); const o = {};
 let log = []; const t0 = { v: Date.now() }; const rel = () => Date.now() - t0.v;
 p.on('request', (r) => { if (/sv11315api/.test(r.url())) log.push([rel(), 'req', r.method(), r.url().replace(/^.*\/api/, '/api').slice(0, 200)]); });
 p.on('response', (r) => { if (/sv11315api/.test(r.url())) log.push([rel(), 'res', r.status(), r.url().replace(/^.*\/api/, '/api').slice(0, 200)]); });

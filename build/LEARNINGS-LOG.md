@@ -410,3 +410,7 @@
 ## L0643 — 2026-11-11 — Aging Detail scroll paging: offline, the next page is never asked for
 - Online, scrolling an A/P Detail bucket loads lines 101+ with `…/buckets/<bucket>/rows?…pagination[page]=2…` (and 3, 4 …); a 496-line bucket ends at 496 lines (p56b control).
 - With the browser set offline (Playwright `setOffline(true)`, proved by an `ERR_INTERNET_DISCONNECTED` on the page's own `index.html`), scrolling to the end leaves 100 lines and sends **no** page-2 request at all — so no request "fails". To test a "lines stopped loading" message, also block only the page-2 call while online (`page.route` on `pagination%5Bpage%5D=[2-9]`), which does make the request fail.
+
+## L0644 — 2026-11-11 — sv11315 fell asleep mid-run; a watcher now wakes it
+- At ~12:20 UTC p56b's page turned into "Environment Sleeping … Wake Up" (pictures p56b/05, 06) and the step timed out on `locator('main')`. A chain's `wait_ok` only sees "not 200" and would wait for ever as if the sign-in had expired.
+- `build/aging-reports/exec/wake_watch.sh` (background, every 60 s) curls quick-login; on a redirect to `sleep.qa.shopview.com` it runs `wake_sv11315.mjs` (opens `https://sleep.qa.shopview.com/?app=sv11315&api=sv11315`, clicks Wake Up, polls quick-login to 200). The same sv_sso_session keeps working after the wake (L0599).
