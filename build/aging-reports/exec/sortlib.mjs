@@ -10,7 +10,8 @@ export function mkSort(p) {
   const rowsNow = () => p.evaluate(`[...document.querySelectorAll('main tbody tr')].map(tr => ({ text: tr.innerText.replace(/\\s+/g,' ').trim(), cells: [...tr.querySelectorAll('td')].map(td => td.innerText.replace(/\\s+/g,' ').trim()) })).filter(r => r.text)`);
   async function collect() { const seen = [], has = new Set(); let stall = 0; await p.evaluate(`${SC}.scrollTop = 0`); await p.waitForTimeout(500);
     for (let i = 0; i < 600 && stall < 4; i++) { const rs = await rowsNow(); let add = 0; for (const r of rs) { const k = r.text; if (!has.has(k)) { has.add(k); seen.push({ ...r, raw: r.text, text: clean(r.text), cells: r.cells.map(clean) }); add++; } }
-      const moved = await p.evaluate(`(() => { const e = ${SC}; const b = e.scrollTop; e.scrollTop = b + e.clientHeight * 0.8; return e.scrollTop !== b; })()`); await p.waitForTimeout(450); stall = (!moved && !add) ? stall + 1 : 0; }
+      const moved = await p.evaluate(`(() => { const e = ${SC}; const b = e.scrollTop; e.scrollTop = b + e.clientHeight * 0.8; return e.scrollTop !== b; })()`); await p.waitForTimeout(moved ? 450 : 1100); stall = (!moved && !add) ? stall + 1 : 0; }
+    /* 11 Nov: a Detail bucket over 100 lines loads its next 100 only when the bottom is reached; 4 x 1.1 s at the bottom lets it arrive (C715305 first read missed rows) */
     await p.evaluate(`${SC}.scrollTop = 0`); await p.waitForTimeout(300); return seen; }
   async function find(re) { await p.evaluate(`${SC}.scrollTop = 0`); await p.waitForTimeout(400);
     let stall = 0; for (let i = 0; i < 400; i++) { const l = p.locator('main tbody tr').filter({ hasText: re }).first(); if (await l.count()) { await l.scrollIntoViewIfNeeded(); await p.waitForTimeout(300); return l; }

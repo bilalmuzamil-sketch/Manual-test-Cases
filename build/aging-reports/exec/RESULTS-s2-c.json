@@ -1,0 +1,43 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, folder S2 batch c (sv11315)"
+ },
+ "results": {
+  "C715325": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, 1-30 days past due open (bills with different open balances); Open Balance clicked: largest first ($15,255.56 first).",
+    "Opened Sales By Customer from the left menu: it opened.",
+    "Opened A/P Aging Detail again: Vendor Name is marked as the sorted column and the rows are back in vendor-name order - the Open Balance sort was not kept."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715325-1-ob.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715325-3-back.png"
+   ]
+  },
+  "C715592": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, 1-30 days past due open; Open Balance clicked: largest first ($23,136.04 first).",
+    "Opened Sales By Customer from the left menu: it opened.",
+    "Opened A/R Aging Detail again: Customer Full Name is marked as the sorted column and the rows are back in name order - the Open Balance sort was not kept."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715592-1-ob.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715592-3-back.png"
+   ]
+  },
+  "C715594": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices, ZZAUTOTEST AP Vendor A open (bills of $200.00, $100.00, $40.00 and a $-50.00 credit); Open Balance clicked: $200.00 first, $-50.00 last.",
+    "Opened Sales By Customer from the left menu: it opened.",
+    "Opened A/P Unpaid Invoices again: Date is marked as the sorted column and the rows are back in date order - the Open Balance sort was not kept."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715594-1-ob.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715594-3-back.png"
+   ]
+  }
+ }
+}

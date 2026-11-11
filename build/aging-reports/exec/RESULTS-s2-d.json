@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S2 C715298 (sv11315)"
+ },
+ "results": {
+  "C715298": {
+   "verdict": "Passed",
+   "observed": [
+    "Customer ZZAUTOTEST LOC MIX's group (open): invoice S11315-17723 and credit memo CM11315-4195 at Staging Heavy Duty - 9919, invoice S11315-17724 at Staging Lethbridge - 4310.",
+    "Location once: the two Heavy Duty rows, then the Lethbridge invoice; twice: the Lethbridge invoice first; three times: Heavy Duty first again.",
+    "Transaction Type once: Credit Memo, then the two Invoices; twice: the Invoices first, Credit Memo last."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715298-1-loc-az.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715298-2-loc-za.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715298-4-type-az.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715298-5-type-za.png"
+   ]
+  }
+ }
+}
