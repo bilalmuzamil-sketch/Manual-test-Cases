@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s85 (QA lead's extra test)"
+ },
+ "results": {
+  "C1095432": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 3: customer X (a $100.00 invoice paid $120.00) cannot be made - the app refuses to overpay an invoice.",
+   "bold_steps": [
+    3
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), 2. Feature Overview, What changes for existing users: \"The A/R Summary Totals row now adds up exactly the customer rows above it.\"",
+   "observed": [
+    "Step 3 cannot be set up: paying a $100.00 invoice $120.00 is refused through the app's payment request, and both payment screens stop at \"Payment cannot be higher than 100\" (tried 11 Nov for C715462, same result).",
+    "Steps 4-6 were run anyway on A/R Aging Summary as of 11/11/2026 (all customers, all locations): the 147 customer rows' Total column adds up to $521,344.25, and the Totals row reads $521,344.25 - the two figures are equal.",
+    "So the part of the planned change that can be checked works: the Totals row adds up exactly the customer rows above it."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1095432-4-6-totals.png"
+   ],
+   "todo": "What needs to be done: the QA lead decides whether this test is kept (and how an overpaid invoice can be made), reworded to the totals check alone, or retired - the app no longer lets an invoice be overpaid."
+  }
+ }
+}
