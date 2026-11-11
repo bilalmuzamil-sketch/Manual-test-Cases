@@ -1,0 +1,49 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s78b info icon"
+ },
+ "results": {
+  "C715436": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary as of 11/11/2026, signed in at Staging Heavy Duty - 9919.",
+    "Step 1: hovering the info icon right of the title shows the tooltip: \"Your unpaid balance with each vendor as of the selected date, after unused vendor credits, with a breakdown of overdue amounts.\" - word for word as the test quotes.",
+    "Step 2: pointer moved away - the tooltip closes.",
+    "Step 3: Tab until the info icon has keyboard focus (focused element: info_outline) - the same tooltip shows.",
+    "Step 4: Escape - the tooltip closes."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715436-1-hover.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715436-3-keyboard.png"
+   ]
+  },
+  "C715437": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail as of 11/11/2026, signed in at Staging Heavy Duty - 9919.",
+    "Step 1: hovering the info icon right of the title shows the tooltip: \"Unpaid bills and unused vendor credits as of the selected date, grouped by how overdue they are.\" - word for word as the test quotes.",
+    "Step 2: pointer moved away - the tooltip closes.",
+    "Step 3: Tab until the info icon has keyboard focus (focused element: info_outline) - the same tooltip shows.",
+    "Step 4: Escape - the tooltip closes."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715437-1-hover.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715437-3-keyboard.png"
+   ]
+  },
+  "C715438": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices as of 11/11/2026, signed in at Staging Heavy Duty - 9919.",
+    "Step 1: hovering the info icon right of the title shows the tooltip: \"Unpaid bills and unused vendor credits grouped by vendor, showing each bill\u2019s due date and days overdue.\" - word for word as the test quotes.",
+    "Step 2: pointer moved away - the tooltip closes.",
+    "Step 3: Tab until the info icon has keyboard focus (focused element: info_outline) - the same tooltip shows.",
+    "Step 4: Escape - the tooltip closes."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715438-1-hover.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715438-3-keyboard.png"
+   ]
+  }
+ }
+}
