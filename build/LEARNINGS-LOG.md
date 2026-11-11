@@ -440,3 +440,14 @@
 ## L0651 — 2026-11-11 — "Your current location" on sv11315 is set on screen only; the change-location API does not move the page
 - `POST /api/iam/change-location {workplace_id, workplace_timezone}` answers 200, but after an on-screen switch to Lethbridge (C715407/08) the header and every link check kept Lethbridge: s78's C715414 then clicked a Heavy Duty invoice and got "Switch location?" — a false result. Any test that depends on the current location must switch THROUGH THE SCREEN and read the header back: `build/aging-reports/exec/locsw.mjs` `ensureLoc(page, name)`; s78_run now calls it before every test.
 - When building an ONLY list from a runner, collect every `C\d{6,7}` in the file, not only `T.Cxxxxx` — tests defined in `for (const [id …] of [['C715418', …]])` loops are otherwise left out.
+
+## L0652 — 2026-11-11 — sv11315 now has a THIRD A/R location (another session's), so "untick location B" no longer leaves one
+- **What changed:** "ZZAUTOTEST V1R-87 Location C" (workplace `19abb244-4c5d-460a-86bb-e515d4eda24d`) was made by the parallel regression session; it holds A/R documents (customer "ZZAUTOTEST AR V1R-87 Location C") but no A/P documents (p61, 14:04 UTC). The Location menu on the A/R reports reads "3 selected".
+- **Effect on our cases:** every case written for two locations ("untick location B" → one location left → Location column hidden, a Location sort returns to Date) now leaves TWO ticked unless Location C is unticked too. Runners s82/s84 untick it as part of "untick location B" (`F.menuClick('Location', 'ZZAUTOTEST V1R-87 Location C')` when the menu lists it) and say so in the result.
+- **It also unblocks** the three-location cases (C715387, C715394, C715411–13, C1062584/85): Location C is the long-named location C. A/P needs a bill there first (p69: sign in at Location C with `S.loc(a, '19abb244…')`, then `S.bill`).
+- #aging #sv11315 #locations #parallel-session → L0651
+
+## L0653 — 2026-11-11 — A blank full-width table heading on the aging reports is the LOADING BAR, not a column
+- d1b measured A/P Detail while its 91+ bucket (11,936 lines) was still loading: the progress bar is an extra `th` the width of the table with no text, so the measure read a 10th blank heading and "headings overlap". Picture 44-apd-light-1536-top shows the bar under the headings and the "•••" loader row.
+- **Fix:** before measuring, wait until no `main thead th` is blank and wider than 600 px and no `.q-linear-progress` is visible, and move the mouse off the top-left chevron (its "Collapse all" tooltip covers the As of chip). `d1_design.mjs` now does both; `D1OUT=<dir> ONLY=<key>` re-measures one report into its own folder.
+- #aging #design #measure #loader → L0650

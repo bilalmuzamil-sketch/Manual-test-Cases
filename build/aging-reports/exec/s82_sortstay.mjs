@@ -19,7 +19,7 @@ async function run(o, route, col, kind, name) { await ensureLoc(p, 'Staging Heav
   const all = await S.collect(); o.allCount = all.length; await snap(o, '3 scrolled all loaded', all);
   await F.chip?.(kind); o.menuOpen = await (async () => { await p.locator('main button', { hasText: new RegExp(kind + ':') }).first().click(); await p.waitForTimeout(1200); const t = (await p.locator('.q-menu').last().innerText().catch(() => '')).slice(0, 200); await s.shot(o.id + '-4_menu'); await p.keyboard.press('Escape'); await p.waitForTimeout(800); return t; })();
   await F.pick(kind, name); if (o.grouped) await S.expand(new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ' \\(')); await snap(o, '5 one ' + kind.toLowerCase(), await S.collect());
-  o.locMenu = await F.menuClick('Location', 'Staging Lethbridge - 4310'); if (o.grouped) await S.expand(new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ' \\(')); await snap(o, '6 location A only', await S.collect()); }
+  o.locMenu = await F.menuClick('Location', 'Staging Lethbridge - 4310'); /* 11 Nov 14:06: a third A/R location now exists (another session's); the case has two, so untick it too to leave location A only */ if (/V1R-87 Location C/.test(o.locMenu)) o.locMenuC = await F.menuClick('Location', 'ZZAUTOTEST V1R-87 Location C'); if (o.grouped) await S.expand(new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ' \\(')); await snap(o, '6 location A only', await S.collect()); }
 const T = {
   C715316: (o) => run(o, REPORTS.ars, 'Total', 'Customer', 'ZZAUTOTEST LOC MIX'),
   C715318: (o) => { o.grouped = true; return run(o, REPORTS.arc, 'Open Balance', 'Customer', 'ZZAUTOTEST LOC MIX'); },

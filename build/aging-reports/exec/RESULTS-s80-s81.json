@@ -1,0 +1,37 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s80/s81"
+ },
+ "results": {
+  "C715611": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report with vendor A ticked (chip \"Vendor: ZZAUTOTEST S1R5...\").",
+    "Step 1: \"Download (PDF)\" downloads ap-unpaid-invoices.pdf; the message \"Success - Data exported successfully.\" shows.",
+    "Step 2: \"Download (CSV)\" downloads ap-unpaid-invoices.csv with the same message.",
+    "Step 3: vendor A's name is found in both files - they hold the report's rows.",
+    "Step 4: the words \"grouped by vendor\" are found in neither file - the report's description is not in the PDF or the CSV."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715611-0-ticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715611-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715611-csv.png"
+   ]
+  },
+  "C797944": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail with customer A (ZZAUTOTEST LOC MIX) ticked, sorted by Amount (largest first), every bucket expanded; invoice A (S11315-17724) is at Staging Lethbridge - 4310 and the current location is Staging Heavy Duty - 9919.",
+    "Step 1: the page address is noted.",
+    "Step 2: clicking invoice A's number opens \"Switch location?\" - \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\" - with Cancel, Switch location and a close \u00d7 at its top right.",
+    "Step 3: clicking \u00d7 closes the dialog; no message pops up; the report is unchanged - customer A still ticked, the Amount sort still on, every bucket still expanded, the same first and last rows on screen (the 91+ bucket row at the top, invoice S11315-17870 at the bottom); the location switcher still shows Staging Heavy Duty - 9919.",
+    "Step 4: the page address is exactly the same as before."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797944-0-before.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797944-2-dialog.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797944-3-after.png"
+   ]
+  }
+ }
+}
