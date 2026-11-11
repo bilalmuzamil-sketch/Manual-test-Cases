@@ -1,0 +1,47 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s82b sort stays"
+ },
+ "results": {
+  "C715318": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of today, all locations, 1440 px window. On these grouped reports a heading click sorts the invoices inside each customer; the customers themselves keep their order (PRD S2-R5).",
+    "Step 1: after one click on \"Open Balance\" the heading carries the small down arrow; inside the open customer the rows read $8,600.85, -$4.56, -$12.34 - largest first.",
+    "Step 2: as-of changed to 11/10/2026 - the report reloads for yesterday, the arrow is still on \"Open Balance\" and the open customer's rows are still largest first.",
+    "Step 3: scrolled until every customer had loaded (120 customers); the arrow stays on \"Open Balance\" and the rows stay largest first.",
+    "Step 4: the Customer menu opens.",
+    "Step 5: ticking \"ZZAUTOTEST LOC MIX\" (documents at both locations) leaves only that customer, 23 documents: 22 invoices of $174.04, then the -$40.00 credit memo at the bottom - still largest first, arrow still on \"Open Balance\".",
+    "Step 6: unticking \"Staging Lethbridge - 4310\" (and the third test location) - the chip reads \"Location: Staging Heavy D...\" and the customer drops to 21 documents (the two Lethbridge ones gone), still largest first, arrow still on \"Open Balance\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715318-01-C715318-1_sorted.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715318-02-C715318-2_yesterday.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715318-03-C715318-3_scrolled_all_loaded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715318-04-C715318-4_menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715318-05-C715318-5_one_customer.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715318-06-C715318-6_location_A_only.png"
+   ]
+  },
+  "C715321": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of today, all locations, 1440 px window. On these grouped reports a heading click sorts the bills inside each vendor; the vendors themselves keep their order (PRD S2-R5).",
+    "Step 1: after one click on \"Open Balance\" the heading carries the small down arrow; inside the open vendor the rows read $215.25, -$3.21, -$7.89 - largest first.",
+    "Step 2: as-of changed to 11/10/2026 - the report reloads for yesterday, still sorted by Open Balance, largest first.",
+    "Step 3: scrolled until every vendor had loaded (503 vendors); the arrow stays on \"Open Balance\" and the rows stay largest first.",
+    "Step 4: the Vendor menu opens.",
+    "Step 5: ticking \"ZZAUTOTEST LOC MIX V\" (bills at both locations) leaves only that vendor, 24 bills: $33.00, $32.00, $31.00, $29.00 ... $10.00 - largest first.",
+    "Step 6: unticking \"Staging Lethbridge - 4310\" (and the third test location) - the chip reads \"Location: Staging Heavy D...\" and the vendor drops to 23 bills (the $30.00 Lethbridge bill gone): $32.00 ... $10.00, still largest first, arrow still on \"Open Balance\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715321-07-C715321-1_sorted.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715321-08-C715321-2_yesterday.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715321-09-C715321-3_scrolled_all_loaded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715321-10-C715321-4_menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715321-11-C715321-5_one_vendor.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715321-12-C715321-6_location_A_only.png"
+   ]
+  }
+ }
+}
