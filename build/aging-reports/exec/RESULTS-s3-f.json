@@ -1,0 +1,35 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S3 A/P Detail exports (sv11315)"
+ },
+ "results": {
+  "C715342": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail. Today's report has over 2,000 lines, which the PDF limit refuses, so the latest 1st-of-month with few enough lines was used: as of 02/01/2025 (444 lines); documents at both locations, so the exports say \"Locations: All locations\". The as-of date is not what this test checks.",
+    "Steps 1-2: Download (PDF): \"Data exported successfully.\"; under the title the PDF reads \"As of Feb 1, 2025\", then \"Locations: All locations\"; no \"Past due: \" line and no \"Vendor: \" line.",
+    "Step 3: ticked only vendor A = Alameda Mechanical Services (open bills that day).",
+    "Steps 4-5: Download (CSV): it starts with three one-line rows: \"As of: Feb 1, 2025\", \"Locations: All locations\", \"Vendor: Alameda Mechanical Services\" (one vendor, so \"Vendor\"); no \"Past due: \" row; the column heading row follows directly."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715342-1-one-vendor.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715342-2-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715342-3-csv-raw.png"
+   ]
+  },
+  "C797942": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail as of 02/01/2025 (today's report is over the 2,000-line PDF limit), documents at both locations, every group expanded.",
+    "Step 1: headings read \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\", \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\" (chevron before Date): every word starts with a capital.",
+    "Steps 2-3: Download (PDF): downloaded; its column headings read the same, capitals included.",
+    "Steps 4-5: Download (CSV): after \"As of: Feb 1, 2025\" and \"Locations: All locations\" the heading row is \"Aging Bucket\", \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\", \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\" - the same headings letter for letter, plus \"Aging Bucket\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797942-1-headings.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797942-2-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797942-3-csv-raw.png"
+   ]
+  }
+ }
+}
