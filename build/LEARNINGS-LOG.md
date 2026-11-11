@@ -555,3 +555,8 @@
 - ⛔ CORRECTED 16:30: the Edit Staff Member **Location box is SINGLE-select** — it is the person's location, NOT enrolment; picking "Trucks Hill 2" REPLACED Truck Hill 1 (pr4). Restored to Truck Hill 1 at 16:27 (`pr4b_restore.mjs`) and read back (`pr4c_readback.mjs`: Location = Truck Hill 1). Enrolment at several locations is not set from this box. The superseded line, kept: 11 Nov 16:05 UTC (Rule 107, production in scope): enrolled it at **"Trucks Hill 2"** as well — Settings > Staff > **Search** "serviceadvis" > the row's **edit_note** icon > Edit Staff Member > **Location** (multi-select: Truck Hill 1, Trucks Hill 2, ZZAUTOTEST C614715 Empty Location, SANKAN) > tick > **Save & Close** (`exec/pr4_enrol.mjs`). Nothing else changed.
 - Production staff list: 216 active rows; always search, never scroll-match by name.
 - #production #login #location → L0659, L0665
+
+## L0671 — 2026-11-11 — Two runner traps: a group-row click does not open the group; the fixed return part is gone
+- On A/R Collection / A/P Unpaid, clicking a customer's/vendor's group ROW does not expand it; only its own chevron does. Use `sortlib.expand(/^<name> \(/)` (s90 missed P11315-248 and P3-188 because of this; fixed in s90b).
+- vseed's fixed inventory part `000657fe-…` (P550848) now answers "Inventory part not found." on `part/manual-return-request/create`; pick a stocked part at the CURRENT location from `GET /api/inventory/parts` each time (`s89_vcredit.mjs` `credit2()`).
+- #aging #runner #seed → L0635, L0670
