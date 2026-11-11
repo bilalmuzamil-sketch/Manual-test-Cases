@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715580": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of 11/11/2026; five new customers ZZX Quick A-E R3 with one open invoice each: $100, $200, $300, $400, $500.",
+    "Step 1: clicking the Customer chip opens the menu.",
+    "Step 2: all five ticked one after another in 0.35 seconds.",
+    "Step 3: the menu closes.",
+    "Step 4: the chip reads \"Customer: 5 customers\"; exactly five rows, one per customer; Totals row Total $1,500.00.",
+    "Step 5: after ten seconds untouched, the same five rows and the same Totals $1,500.00 - no late answer replaced them."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715580-1-menu-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715580-2-all-ticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715580-4-loaded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715580-5-after-10s.png"
+   ]
+  }
+ }
+}
