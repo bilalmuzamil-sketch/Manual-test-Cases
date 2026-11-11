@@ -480,3 +480,9 @@
 - On sv11315, Sales By Customer with **Location: No locations** (Clear selection) still lists every row and the Totals — so it cannot be the control for "empty state matches Sales By Customer's". Use another filter that leaves nothing (s84b tries Product Type = parts only, then an older Date range).
 - The six aging reports' empty state (s84): magnifier icon (24 px, rgb(105,117,134)), "No record matches these filters" (17 px, weight 600), "Try changing filters to widen your results." (14 px), a "Clear all filters" button; no Totals row. Their loading bar is `q-linear-progress q-table__linear-progress`, 2 px high, the table's full width under the headings, plus the page-top `q-loading-bar`.
 - #aging #design #sales-by-customer #empty-state → L0657
+
+## L0659 — 2026-11-11 — Production's old A/R Aging Detail: one reply, location-prefixed credit numbers, a dated credit in 1-30
+- Production (v26.45.3, before the release) loads A/R Aging Detail from ONE reply: `GET /api/reporting/account-receivable/aging-detail-report?asOfDate=<day>T23:59:59.999Z` → `data.buckets.{current,days1to30,days31to60,days61to90,days91Plus}.transactions[]` (`transactionNumber`, `type` invoice|credit, `locationName`, `date`, `dueDate`, `balance`).
+- **Credit numbers carry a location number there:** the API's `CM-4412` is listed as `CM1-4412` (Truck Hill 1). Search the reply by customer name, not by the number the create call returned.
+- **Before-release fact (C1062590):** a credit memo dated on the as-of date sits in `days1to30` ("1-30 days past due"); on the QA site with the release it is "Current". `exec/pr2d_bucket.mjs`.
+- #aging #production #before-release → L0658

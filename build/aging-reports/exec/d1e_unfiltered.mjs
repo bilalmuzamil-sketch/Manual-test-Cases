@@ -1,0 +1,12 @@
+// d1e_unfiltered.mjs — 11 Nov 2026: design step 5 on A/R Summary and A/P Summary in the UNFILTERED list (d1d ticked the long-named customer/vendor
+// alone, which widens the name column to ~414 px, so the name had room). At 1440 px, light theme: scroll to "ZZAUTOTEST Northern Alberta ..."
+// in the full list and measure the name cell (lines, width, cut off or not: scrollWidth > clientWidth), plus every money/date cell on screen.
+// PRD S8-R3: "the customer or vendor name and Transaction Type wrap long values onto a second line". Output exec/d1e/out.json + pictures.
+import { start, REPORTS } from './lib.mjs'; import { mkSort } from './sortlib.mjs'; import fs from 'fs';
+const OUT = new URL('./d1e/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT); const p = s.page; const S = mkSort(p); const o = {};
+const measure = () => p.evaluate(() => { const lines = (td) => { const rg = document.createRange(); rg.selectNodeContents(td); return new Set([...rg.getClientRects()].filter((x) => x.width > 2).map((x) => Math.round(x.top))).size; };
+  const out = { name: [], wrapped: [] }; for (const tr of document.querySelectorAll('main tbody tr')) for (const td of tr.children) { const t = td.innerText.trim(); if (/Northern Alberta/.test(t)) { const inner = td.querySelector('a, span, div') || td; out.name.push([t.slice(0, 70), lines(td), Math.round(td.getBoundingClientRect().width), inner.scrollWidth > inner.clientWidth + 1, getComputedStyle(inner).textOverflow]); } else if (/^\$-?[\d,]+\.\d\d$|^[A-Z][a-z]{2} \d{1,2}, \d{4}$/.test(t) && lines(td) > 1) out.wrapped.push(t); } return out; });
+for (const [k, re] of [['ars', /ZZAUTOTEST Northern Alberta Heavy Haul and Towing/], ['aps', /ZZAUTOTEST Northern Alberta Heavy Haul Parts Supply/]]) { try { await s.go(REPORTS[k]); await p.waitForTimeout(4000); const l = await S.find(re); o[k] = { found: !!l };
+    if (l) { await p.evaluate(`(() => { const e = ${S.SC}; const r = [...document.querySelectorAll('main tbody tr')].find(t => /Northern Alberta/.test(t.innerText)); if (r) e.scrollTop += r.getBoundingClientRect().top - 400; })()`); await p.waitForTimeout(1200); Object.assign(o[k], await measure()); o[k].shot = await s.shot(k + '-long-name-unfiltered'); }
+    console.log('d1e', k, JSON.stringify(o[k])); } catch (e) { o[k] = { err: String(e).slice(0, 200) }; } }
+fs.writeFileSync(OUT + 'out.json', JSON.stringify(o, null, 1)); await s.close(); process.exit(0);

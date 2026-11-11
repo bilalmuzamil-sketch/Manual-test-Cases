@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, pr2d + s84"
+ },
+ "results": {
+  "C1062590": {
+   "verdict": "Passed",
+   "observed": [
+    "The \"before the release\" side comes from production (app.shopview.com, build v26.45.3, the version before this release; no note was taken on the QA site before the release was installed): two $25.00 credit memos dated 11 Nov 2026 (CM1-4412, CM1-4413) are in \"1-30 days past due\" on A/R Aging Detail as of 11 Nov 2026.",
+    "Step 1 (QA site, with the release): A/R Aging Detail as of 11/11/2026 with every bucket expanded - credit memo CM11315-4319, dated 11 Nov 2026 ($-30.00), is in \"Current\", not in \"1-30 days past due\".",
+    "So from this release a credit dated exactly on the as-of date is Current, where before the release it counted in 1-30 days past due."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062590-1-before-production.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062590-2-after-qa.png"
+   ]
+  }
+ }
+}
