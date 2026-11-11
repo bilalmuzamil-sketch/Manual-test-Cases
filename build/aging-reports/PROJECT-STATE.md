@@ -62,3 +62,10 @@ you to start - But be completely ready." Status: **READY, NOT STARTED** (waiting
 - Asked the QA lead (11 Nov ~06:05 UTC): file the held ticket? retire/keep the two blocked name tests? (+ C682419 step 8 eye-check from before).
 
 - QA lead answers (11 Nov): (1) tickets: file AFTER all tests are complete, one by one with his approval; (2) C715277/C715279 retired (section 134653, removed from run 557 -> 378 tests); (3) noted.
+
+### 11 Nov 2026 ~06:30 UTC — progress and open points
+- Run 557 now: 68 Passed · 2 Failed (C1062570/71, ticket held until every test is done) · 308 untested. S4 first four recorded: C715355, C715358, C715359, C715360.
+- Strict serial queues (one sign-in at a time): queue.sh (s4 → p35 → s5 → s2b4 → s2c2 → s2d → s78) → queue2 (p38 exact-amount capture) → queue3 (s3x: C715342/C797942 A/P Detail exports at ≤800 rows, PDF wait 240 s) → queue4 (s3t: C715350-353 pop-up re-shoot) → queue5 (s4b: C715357 re-run). Each waits for the previous queue AND for no `node *.mjs` running.
+- Pop-up pictures: one shot at first sight caught the message before it slid in (twice). explib now takes three shots 0.4 s apart (`<tag>-toast-1..3.png`).
+- OPEN: A/P Detail PDF at 1,783 rows (as of 04/01/2025) gave NO file and NO message within 60 s, on two tests. Under the PRD's 2,000-row limit a PDF should come. s3x re-runs with fewer rows and a 240 s wait and records the server replies. If small sets work but ~1,800 rows silently does nothing, that is a candidate finding (prove it before calling it, Rule 104).
+- C715342: the seeded S1R5 vendors have no bills before 2026. On an earlier as-of date, vendor A is now the first vendor with open bills that day (read from A/P Unpaid).
