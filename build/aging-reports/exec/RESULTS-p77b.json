@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d3a + p77b C715537"
+ },
+ "results": {
+  "C715537": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices, as of today, all vendors and all locations (about 13,900 lines - over the PDF limit); compared with the design picture \"PDF over 2,000 rows is refused\".",
+    "Step 1: \"Download (PDF)\" shows one message at the bottom right and nothing downloads: a solid red box with a white warning triangle at the left, white text and a white \"Close\" at the right, no title line - as in the picture. It reads \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\" The report behind it does not change (Totals $4,764,225.51 / $4,763,345.55 before and after).",
+    "Step 2: clicking \"Close\" closes the message."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715537-design-pics-ar-ap-p2-pdf-over-2-000-rows-is-refused.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715537-d3a-C715537-toast-3.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715537-p77b-02-2-closed.png"
+   ]
+  }
+ }
+}

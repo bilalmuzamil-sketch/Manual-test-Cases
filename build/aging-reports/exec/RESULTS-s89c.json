@@ -1,0 +1,44 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s89b seed + s89c"
+ },
+ "results": {
+  "C715420": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, as of today, signed in at Staging Heavy Duty - 9919, vendor \"ZZY VCredit Links P89b\" ticked and open; three unused vendor credits: C-13686 ($-31.50, from a vendor return made at Heavy Duty), C-13687 ($-42.75, from a return made at Staging Lethbridge - 4310), C-13688 ($-23.45, entered directly, no return).",
+    "Step 1: C-13686 is a link (blue, hand pointer); C-13687 and C-13688 are plain black text.",
+    "Step 2: clicking C-13686 opens the vendor return it came from - \"Return Details\" for return ZZYCM6825104, vendor ZZY VCredit Links P89b - in the same tab."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715420-C715420-1-numbers.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715420-C715420-2-opened.png"
+   ]
+  },
+  "C715421": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices, as of today, signed in at Staging Heavy Duty - 9919, vendor \"ZZY VCredit Links P89b\" ticked and open; three unused vendor credits: C-13686 ($-31.50, from a vendor return made at Heavy Duty), C-13687 ($-42.75, from a return made at Staging Lethbridge - 4310), C-13688 ($-23.45, entered directly, no return).",
+    "Step 1: C-13686 is a link (blue, hand pointer); C-13687 and C-13688 are plain black text.",
+    "Step 2: clicking C-13686 opens the vendor return it came from - \"Return Details\" for return ZZYCM6825104, vendor ZZY VCredit Links P89b - in the same tab."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715421-C715421-1-numbers.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715421-C715421-2-opened.png"
+   ]
+  },
+  "C715391": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices, as of today, vendor \"ZZY VCredit Loc P89b\" ticked and its group open; two unused vendor credits: C-13689 ($-52.25, from a vendor return made at Staging Lethbridge - 4310) and C-13690 ($-19.95, entered directly while signed in at Staging Heavy Duty - 9919).",
+    "Step 1: C-13689's Location cell reads \"Staging Lethbridge - 4310\" (the return's location); C-13690's reads \"Staging Heavy Duty - 9919\" (where it was entered).",
+    "Step 2: unticking Staging Heavy Duty - 9919 in the Location menu narrows the report (chip \"Location: 2 locations\" - Lethbridge and the third test location); the group now reads \"ZZY VCredit Loc P89b (1)\", total $-52.25.",
+    "Step 3: opening the group lists only C-13689."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715391-C715391-1-locations.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715391-C715391-2-location-B.png"
+   ]
+  }
+ }
+}
