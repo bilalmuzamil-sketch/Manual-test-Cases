@@ -1,0 +1,74 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S3 batch d (sv11315)"
+ },
+ "results": {
+  "C715574": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail with only Rockaway Mobile Truck Repair ticked: three invoices, one in 61-90 days past due and two in 31-60 days past due.",
+    "Top-left chevron clicked until its tooltip read \"Expand all\": every bucket closed, no document row on screen.",
+    "Download (CSV): \"Data exported successfully.\", no \"Empty export\" warning; the file holds the three invoices (S3-17169, S3-17379, S3-17537), then the Totals row.",
+    "Download (PDF): the same message; the same three invoices and the Totals row."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715574-1-closed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715574-2-csv.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715574-3-pdf.png"
+   ]
+  },
+  "C715575": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail with only ZZAUTOTEST NEG PASTDUE V ticked: three bills, ZZNEG-C in 61-90 days past due and ZZNEG-A, ZZNEG-B in 1-30 days past due.",
+    "Top-left chevron clicked until its tooltip read \"Expand all\": every bucket closed, no document row on screen.",
+    "Download (CSV): \"Data exported successfully.\", no \"Empty export\" warning; the file holds the three bills, then the Totals row.",
+    "Download (PDF): the same message; the same three bills and the Totals row."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715575-1-closed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715575-2-csv.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715575-3-pdf.png"
+   ]
+  },
+  "C715576": {
+   "verdict": "Passed",
+   "observed": [
+    "Customer \"=2+3 ZZAUTOTEST FORMULA\" (one open invoice today), only that customer ticked on A/R Aging Summary: the name shows as typed, starting with \"=\".",
+    "Download (CSV): \"Data exported successfully.\"; the name cell is written as '=2+3 ZZAUTOTEST FORMULA (a ' mark in front keeps it text).",
+    "Opened in a spreadsheet program (LibreOffice Calc): the cell holds the name as text - not 5 and not an error."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715576-0-screen.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715576-1-csv.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715576-2-opened.png"
+   ]
+  },
+  "C797940": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, every group open: headings read \"Date\", \"Location\", \"Transaction Type\", \"ID\", \"Customer Full Name\", \"Due Date\", \"Amount\", \"Open Balance\" (chevron before Date) - every word starts with a capital.",
+    "Download (PDF): downloaded; its column headings read the same, capitals included.",
+    "Download (CSV): downloaded; after \"As of: Nov 10, 2026\" and \"Locations: All locations\" the heading row reads \"Aging Bucket\", then the same eight headings."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797940-1-screen.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797940-2-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797940-3-csv.png"
+   ]
+  },
+  "C797941": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, every group open: headings read \"Date\", \"Location\", \"Transaction Type\", \"ID\", \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\" (chevron before Date) - every word starts with a capital.",
+    "Download (PDF): downloaded; its column headings read the same, capitals included.",
+    "Download (CSV): downloaded; after \"As of\" and \"Locations: All locations\" the heading row holds the same headings plus \"Customer\" with \"Phone\" right after it (and \"Credit Term\")."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797941-1-screen.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797941-2-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797941-3-csv.png"
+   ]
+  }
+ }
+}

@@ -7,9 +7,10 @@ export function mkExp(p, OUT) {
   async function exportAs(kind, tag, waitMs = 60000) { await p.locator('main button[aria-label="Export report"]').first().click(); await p.waitForTimeout(900);
     const dl = p.waitForEvent('download', { timeout: waitMs }).catch(() => null); await p.locator('.q-menu:visible').getByText(`Download (${kind})`, { exact: true }).click();
     const seen = new Set(); const t0 = Date.now(); let d = null; const race = dl.then((x) => { d = x; });
-    while (Date.now() - t0 < Math.min(waitMs, 15000) && !d) { for (const n of await notes()) seen.add(n); await p.waitForTimeout(400); } await Promise.race([race, new Promise((r) => setTimeout(r, Math.max(0, waitMs - (Date.now() - t0))))]);
+    let shotTaken = null; while (Date.now() - t0 < Math.min(waitMs, 15000) && !d) { const ns = await notes(); for (const n of ns) seen.add(n); if (ns.length && !shotTaken && OUT) { shotTaken = OUT + (tag || kind) + '-toast.png'; await p.screenshot({ path: shotTaken }).catch(() => {}); } await p.waitForTimeout(300); }
+    /* 11 Nov: the pop-up message fades in a few seconds; picture it the moment it shows (C715350-53 first pictures missed it) */ await Promise.race([race, new Promise((r) => setTimeout(r, Math.max(0, waitMs - (Date.now() - t0))))]);
     await p.waitForTimeout(1500); for (const n of await notes()) seen.add(n);
-    if (!d) return { kind, file: null, notes: [...seen] }; const f = OUT + (tag ? tag + '-' : '') + d.suggestedFilename(); await d.saveAs(f); return { kind, file: f, name: d.suggestedFilename(), bytes: fs.statSync(f).size, notes: [...seen] }; }
+    if (!d) return { kind, file: null, notes: [...seen], toast: shotTaken }; const f = OUT + (tag ? tag + '-' : '') + d.suggestedFilename(); await d.saveAs(f); return { kind, file: f, name: d.suggestedFilename(), bytes: fs.statSync(f).size, notes: [...seen], toast: shotTaken }; }
   function readCsv(f) { const t = fs.readFileSync(f, 'utf8').replace(/^﻿/, ''); const rows = []; let row = [], cell = '', q = false;
     for (let i = 0; i < t.length; i++) { const ch = t[i]; if (q) { if (ch === '"' && t[i + 1] === '"') { cell += '"'; i++; } else if (ch === '"') q = false; else cell += ch; } else if (ch === '"') q = true; else if (ch === ',') { row.push(cell); cell = ''; } else if (ch === '\n') { row.push(cell.replace(/\r$/, '')); rows.push(row); row = []; cell = ''; } else cell += ch; }
     if (cell || row.length) { row.push(cell); rows.push(row); } return rows; }
