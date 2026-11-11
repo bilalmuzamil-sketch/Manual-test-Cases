@@ -1,0 +1,41 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d3b2 + d3j"
+ },
+ "results": {
+  "C715556": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of today, all locations, 1440 px, light theme; compared with the design picture \"Two customers ticked\". Customer A = \"Desert Edge Truck Service & Repair\"; customer B = \"4 Star Truck Repair\" (listed in the menu, nothing open).",
+    "Step 1: the Customer menu opens.",
+    "Step 2: both are ticked; as in the picture both names show as blue tags, each with an \"\u00d7\", inside the search box, with a circled \"\u00d7\" at the box's top right; \"All customers\" is unticked with \"2 selected\" at its right; the helper line is gone; the ticked customers keep their place in the A to Z list; the chip reads \"Customer: 2 customers\" in a blue pill.",
+    "Step 3: the menu closes; one row is listed - Desert Edge Truck Service & Repair (4 Star Truck Repair has nothing open, so it is not listed). The Totals row equals that row ($12,528.70 / $57,121.79 / $74,012.51 / $88,255.94 / $231,918.94), the empty Current bucket reading $0.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715556-design-pics-ar-ap-p7-two-customers-ticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715556-d3j-C715556-1-ticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715556-d3j-C715556-2-closed.png"
+   ]
+  },
+  "C715555": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 2: the vendors are not in the same order as in Inventory Value's Vendor menu.",
+   "bold_steps": [
+    2
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), Story 5, S5-R13: \"Vendor exactly as Inventory Value's Vendor filter (truck icon, \"Search vendors\"; as there, the search box shows only when there are more than 8 vendors).\"",
+   "observed": [
+    "Set up: open A/P Aging Summary and Inventory Value (Reports menu), as of today.",
+    "Step 2: open the Vendor menu on both and compare the order of the vendors.",
+    "You see: both menus hold the same 1,119 vendors, but the order differs at the top. A/P Aging Summary: #1 Diesel, -1 Diesel, 10 Trucking, 2 Trucking, 5 Star Truck Repair, @Home Towing, A-1 Towing. Inventory Value: -1 Diesel, @Home Towing, #1 Diesel, 10 Trucking, 2 Trucking, 5 Star Truck Repair, A-1 Towing.",
+    "The test says the vendors are in the same order as Inventory Value's Vendor menu."
+   ],
+   "ticket": "Ticket prepared and with the QA lead for approval (number added here when filed).",
+   "ticket_held": true,
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the ticket is fixed.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715555-..-defects-06-vendor-menu-order-differs-from-inventory-value-PIC1-vendor-menus-side-by-side.png"
+   ]
+  }
+ }
+}

@@ -111,6 +111,18 @@ E = {
  'C715557': (['A/R Aging Collection, as of today, all locations, 1440 px, light theme; compared with the design picture of the call list for one customer.',
    'Step 1: ticking "Mobile Truck & Trailer Repair Blackfoot" lists only that customer\'s group. The chip reads "Customer: Mobile Truck & ..." (shortened with "...") in a blue pill. The closed group row shows a chevron pointing right, the bold name and count "(6)", grey "Phone: 381-446-7448" and "Credit term: Net 30", "Total" and the sums $14,556.05 / $14,556.05; the Totals row equals the group\'s sums ($14,556.05 / $14,556.05).'],
    [('d3h/C715557-one-customer.png', 'Step 1: only that customer, shortened name in a blue pill, Totals = the group', (CH + ('good', 'Customer: Mobile Truck & ...'), (278, 208, 1132, 100, 'good', 'One group, Totals equal')))]),
+ 'C715544': (['A/P Unpaid Invoices, as of today, all locations, 1440 px, light theme; compared with the design picture "A/P Unpaid Invoices at 1440: every column visible".',
+   'Step 1: there is no sideways scroll bar - every column fits at 1440 px.',
+   'Step 2: the chevron, "Date" with a small up arrow, "Location", "Transaction Type", "No.", "Vendor Name" (no arrow), "Due Date", "Past Due", "Amount", "Open Balance"; none wraps.',
+   'Step 3: vendor A, Abadi\'s Diesel Repair: its bill 5956, made at Staging Lethbridge - 4310 (another location), is plain text. Vendor names wrap onto a second line when they are long, as S8-R3 says (e.g. "Amani & Sons Truck & Trailer Repair" takes two lines); shorter names such as "Abadi\'s Diesel Repair" fit on one line because this build\'s Vendor Name column is wider than in the picture.',
+   'Step 4: vendor B, Adams Diesel Repair (bills at Staging Heavy Duty - 9919): their numbers are blue links.',
+   'Step 5: each group row shows a blue chevron and the bold name and count; under each group "Total for " and the vendor\'s name with bold sums.',
+   'Step 6: at 1536 px nothing overlaps, is cut off or clipped; the layout is the same as at 1440 px.'],
+   [('design-pics/ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png', 'The design picture', ()),
+    ('d3b/C715544-1-1440.png', 'Steps 1-2 and 5: every column fits, headings on one line, groups and "Total for" rows', (HD + ('good', 'All columns, no wrap'),)),
+    ('d3g/C715544-vendors.png', 'Steps 3-4: Lethbridge bill 5956 plain text; Adams Diesel Repair\'s bills are blue links', ((490, 270, 160, 200, 'good', 'Plain / links'),)),
+    ('d3k/C715544-wrap.png', 'Step 3: a long vendor name wraps onto a second line', ((780, 240, 200, 340, 'good', 'Name on two lines'),)),
+    ('d3b/C715544-2-1536.png', 'Step 6: 1536 px - nothing clipped', ())]),
 }
 ids = sys.argv[1:]; R = {}
 for c in ids:
