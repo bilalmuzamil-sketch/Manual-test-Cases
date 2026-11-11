@@ -9,6 +9,8 @@ Prepared 11 Nov 2026 (~12:10 UTC). Run result recorded Failed (ticket held) in r
 
 **Scope observed:** A/R Detail (C1062581, Nov 4/Dec 4) and the saved PDFs of A/R Collection (C715459), A/P Detail (C715460), A/P Unpaid Invoices (C715461): all print "Nov 6, 2026"-style dates. No other suite case asserts the date form (scan of cases.json, 11 Nov), so no earlier Passed result is affected.
 
+**Inventory Value (the PRD's other named report):** its rows are parts with no document dates, and its PDF did not arrive within 2 minutes in two tries (p55, p55b; menu "Download (PDF)"), so it gives no date control. Sales By Customer alone is the control.
+
 **Reconciliation (Rule 106 / §1(d)):** case Expected = PRD v11 S3-R7a quoted verbatim (read live 10 Nov, this pass) · build differs · control: the Sales By Customer PDF, which S3-R7a names as the format to match, prints document dates "Nov 04 2026" on the same build (p55b, 11 Nov) — so the PRD's example and its "same as" agree; the case is right and the build differs ⇒ real defect. Nearest contradicting rule answered: S2-R1a says the SCREEN shows "Nov 4, 2026" — the screen does, and this ticket is about the PDF only. Not checked: the PDF's top "As of" line (open question 18 on Chris Ward's sheet), so it is left out of this ticket.
 
 **Description — wiki markup, exactly as it goes into `PUT /rest/api/2/issue/<KEY>`:**
