@@ -1,0 +1,3145 @@
+[
+ {
+  "t": 1794360918127,
+  "m": "GET",
+  "u": "https://sv11315api.qa.shopview.com/api/reporting/individual-punch-clock/today?range=today",
+  "st": 200,
+  "body": {
+   "data": {
+    "collection": [],
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 100
+    }
+   }
+  }
+ },
+ {
+  "t": 1794360918372,
+  "m": "GET",
+  "u": "https://sv11315api.qa.shopview.com/api/reporting/individual-punch-clock/today?range=today",
+  "st": 200,
+  "body": {
+   "data": {
+    "collection": [],
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 100
+    }
+   }
+  }
+ },
+ {
+  "t": 1794360918822,
+  "m": "GET",
+  "u": "https://sv11315api.qa.shopview.com/api/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-10",
+  "st": 200,
+  "body": {
+   "data": {
+    "collection": [
+     {
+      "id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "name": "Staging Heavy Duty - 9919"
+     },
+     {
+      "id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+      "name": "Staging Lethbridge - 4310"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "t": 1794360920780,
+  "m": "GET",
+  "u": "https://sv11315api.qa.shopview.com/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-10&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+  "st": 200,
+  "body": {
+   "data": {
+    "collection": [
+     {
+      "customerId": "4255e024-938c-4514-83d9-95f1a0a7f324",
+      "name": "Andrews' Truck & Trailer Repair LLC",
+      "phone": "343-203-3967",
+      "creditTerm": "Net 30",
+      "amountCents": 858395,
+      "openBalanceCents": 858395,
+      "rowsNumber": 3,
+      "rows": [
+       {
+        "documentId": "1d00250c-8065-40c1-8cdd-63d6c34111f4",
+        "date": "2026-08-27T21:46:56Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16654",
+        "customerId": "4255e024-938c-4514-83d9-95f1a0a7f324",
+        "customerName": "Andrews' Truck & Trailer Repair LLC",
+        "dueDate": "2026-09-26T21:46:56Z",
+        "daysPastDue": 45,
+        "amountCents": 860085,
+        "openBalanceCents": 860085,
+        "link": {
+         "kind": "work_order",
+         "targetId": "0a41cc04-a2d1-4379-abbb-06fcd2ae2017",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "a98dc7c3-186c-49b6-81ba-03b125a1b77b",
+        "date": "2026-11-09T07:00:00Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Credit Memo",
+        "documentNumber": "CM11315-4191",
+        "customerId": "4255e024-938c-4514-83d9-95f1a0a7f324",
+        "customerName": "Andrews' Truck & Trailer Repair LLC",
+        "dueDate": "2026-11-09T07:00:00Z",
+        "daysPastDue": 1,
+        "amountCents": -456,
+        "openBalanceCents": -456,
+        "link": null
+       },
+       {
+        "documentId": "bc31e63b-b495-4ba7-a43d-88cd73094513",
+        "date": "2026-11-10T07:00:00Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Credit Memo",
+        "documentNumber": "CM11315-4190",
+        "customerId": "4255e024-938c-4514-83d9-95f1a0a7f324",
+        "customerName": "Andrews' Truck & Trailer Repair LLC",
+        "dueDate": "2026-11-10T07:00:00Z",
+        "daysPastDue": 0,
+        "amountCents": -1234,
+        "openBalanceCents": -1234,
+        "link": null
+       }
+      ]
+     },
+     {
+      "customerId": "4f8e5beb-78a2-44ed-9dfe-eebc1bc2e8f4",
+      "name": "Apollo Beach Truck & Equipment Repair",
+      "phone": "833-303-1757",
+      "creditTerm": "Net 30",
+      "amountCents": 149158,
+      "openBalanceCents": 149158,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "4225d1cc-411b-46a8-83bd-85d0046221f5",
+        "date": "2026-04-06T15:33:05Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-14144",
+        "customerId": "4f8e5beb-78a2-44ed-9dfe-eebc1bc2e8f4",
+        "customerName": "Apollo Beach Truck & Equipment Repair",
+        "dueDate": "2026-05-06T15:33:05Z",
+        "daysPastDue": 188,
+        "amountCents": 149158,
+        "openBalanceCents": 149158,
+        "link": {
+         "kind": "work_order",
+         "targetId": "d2323e48-7f59-43c1-aaa0-68793011659b",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "b2c98389-f4c7-46af-9a5b-36135f61ab85",
+      "name": "Bancescu & Sons Truck & Trailer Repair",
+      "phone": "257-911-9306",
+      "creditTerm": "COD",
+      "amountCents": -188000,
+      "openBalanceCents": -188000,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "ca863746-8372-49dc-9660-ce625ccd27fb",
+        "date": "2025-06-05T12:48:16Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Credit Memo",
+        "documentNumber": "CM11315-552",
+        "customerId": "b2c98389-f4c7-46af-9a5b-36135f61ab85",
+        "customerName": "Bancescu & Sons Truck & Trailer Repair",
+        "dueDate": "2025-06-05T12:48:16Z",
+        "daysPastDue": 523,
+        "amountCents": -188000,
+        "openBalanceCents": -188000,
+        "link": null
+       }
+      ]
+     },
+     {
+      "customerId": "bffa57e1-3e1b-4613-aced-7533cbe5c656",
+      "name": "Carrick & Sons Truck & Trailer Repair",
+      "phone": "665-284-6874",
+      "creditTerm": "Net 15",
+      "amountCents": 895354,
+      "openBalanceCents": 895354,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "0541d0c6-0b72-4d4f-9eca-ac3489743771",
+        "date": "2026-07-30T19:04:26Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-16679",
+        "customerId": "bffa57e1-3e1b-4613-aced-7533cbe5c656",
+        "customerName": "Carrick & Sons Truck & Trailer Repair",
+        "dueDate": "2026-08-14T19:04:26Z",
+        "daysPastDue": 88,
+        "amountCents": 895354,
+        "openBalanceCents": 895354,
+        "link": {
+         "kind": "work_order",
+         "targetId": "3a6d7a47-c87a-4b52-82ab-e2032bd3c42c",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "0a0bf0f3-88ac-45ce-8c87-8e59d27f56ec",
+      "name": "CMLZ Truck Repair - Talladega",
+      "phone": "543-029-3894",
+      "creditTerm": "Net 30",
+      "amountCents": 630000,
+      "openBalanceCents": 630000,
+      "rowsNumber": 5,
+      "rows": [
+       {
+        "documentId": "eb4a43b0-7ad3-4fdd-9c95-ab5898e09fb9",
+        "date": "2026-08-27T14:52:56Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-14690",
+        "customerId": "0a0bf0f3-88ac-45ce-8c87-8e59d27f56ec",
+        "customerName": "CMLZ Truck Repair - Talladega",
+        "dueDate": "2026-09-26T14:52:56Z",
+        "daysPastDue": 45,
+        "amountCents": 126000,
+        "openBalanceCents": 126000,
+        "link": {
+         "kind": "work_order",
+         "targetId": "020f73d6-d518-4982-9fa7-1750580eaab7",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "a1df8596-1d83-48e3-8eb8-2a4a5dbedd3c",
+        "date": "2026-08-27T14:57:34Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-14691",
+        "customerId": "0a0bf0f3-88ac-45ce-8c87-8e59d27f56ec",
+        "customerName": "CMLZ Truck Repair - Talladega",
+        "dueDate": "2026-09-26T14:57:34Z",
+        "daysPastDue": 45,
+        "amountCents": 126000,
+        "openBalanceCents": 126000,
+        "link": {
+         "kind": "work_order",
+         "targetId": "adf549f3-aa7a-4c42-857b-c104ac464199",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "266c5aa5-7a7d-4dd0-8da5-cc0fd4ad41e5",
+        "date": "2026-08-27T14:58:16Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-14692",
+        "customerId": "0a0bf0f3-88ac-45ce-8c87-8e59d27f56ec",
+        "customerName": "CMLZ Truck Repair - Talladega",
+        "dueDate": "2026-09-26T14:58:16Z",
+        "daysPastDue": 45,
+        "amountCents": 126000,
+        "openBalanceCents": 126000,
+        "link": {
+         "kind": "work_order",
+         "targetId": "66207a11-ab5e-4e95-885d-ef1b5b0c6878",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "616d0d94-6583-4e30-a57a-e679f18e107e",
+        "date": "2026-08-27T14:55:18Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-14693",
+        "customerId": "0a0bf0f3-88ac-45ce-8c87-8e59d27f56ec",
+        "customerName": "CMLZ Truck Repair - Talladega",
+        "dueDate": "2026-09-26T14:55:18Z",
+        "daysPastDue": 45,
+        "amountCents": 126000,
+        "openBalanceCents": 126000,
+        "link": {
+         "kind": "work_order",
+         "targetId": "f233ca02-55cf-4482-afe6-4696e3cd02ca",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "059a77f3-974d-4c69-b625-3bee677cb7ed",
+        "date": "2026-08-27T14:55:58Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-15660",
+        "customerId": "0a0bf0f3-88ac-45ce-8c87-8e59d27f56ec",
+        "customerName": "CMLZ Truck Repair - Talladega",
+        "dueDate": "2026-09-26T14:55:58Z",
+        "daysPastDue": 45,
+        "amountCents": 126000,
+        "openBalanceCents": 126000,
+        "link": {
+         "kind": "work_order",
+         "targetId": "dd94b58b-d9b7-40fc-8869-9cf2ee8fdf36",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "84469919-600f-4427-a559-096e9853270a",
+      "name": "Colesville Diesel Repair",
+      "phone": "776-767-2768",
+      "creditTerm": "Net 30",
+      "amountCents": 441757,
+      "openBalanceCents": 441757,
+      "rowsNumber": 2,
+      "rows": [
+       {
+        "documentId": "2edc1dae-4ef5-461b-8cf8-f775cd973a23",
+        "date": "2026-08-31T17:15:09Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16913",
+        "customerId": "84469919-600f-4427-a559-096e9853270a",
+        "customerName": "Colesville Diesel Repair",
+        "dueDate": "2026-09-30T17:15:09Z",
+        "daysPastDue": 41,
+        "amountCents": 121185,
+        "openBalanceCents": 121185,
+        "link": {
+         "kind": "work_order",
+         "targetId": "65f2a5ab-55ea-48cc-84ef-91e620d621da",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "2ef76063-fd63-417c-b2f6-bbf39af5f53e",
+        "date": "2026-08-31T17:14:16Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17292",
+        "customerId": "84469919-600f-4427-a559-096e9853270a",
+        "customerName": "Colesville Diesel Repair",
+        "dueDate": "2026-09-30T17:14:16Z",
+        "daysPastDue": 41,
+        "amountCents": 320572,
+        "openBalanceCents": 320572,
+        "link": {
+         "kind": "work_order",
+         "targetId": "88c1f857-4da6-499f-a1fc-f3ac28c5fec1",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "5dcd41fc-3365-4e51-99ed-dcde53eb8a1b",
+      "name": "Cope Truck Center - Desloge",
+      "phone": "283-464-0262",
+      "creditTerm": "Net 30",
+      "amountCents": 252962,
+      "openBalanceCents": 252962,
+      "rowsNumber": 2,
+      "rows": [
+       {
+        "documentId": "99121a88-056c-42ca-bc74-91436d0f606a",
+        "date": "2026-08-27T22:23:33Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17496",
+        "customerId": "5dcd41fc-3365-4e51-99ed-dcde53eb8a1b",
+        "customerName": "Cope Truck Center - Desloge",
+        "dueDate": "2026-09-26T22:23:33Z",
+        "daysPastDue": 45,
+        "amountCents": 129823,
+        "openBalanceCents": 129823,
+        "link": {
+         "kind": "work_order",
+         "targetId": "4e928db8-1e6b-40a4-89d8-51340d9913df",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "3768be99-c897-4e11-ba21-f2e68874157a",
+        "date": "2026-08-27T22:22:44Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17497",
+        "customerId": "5dcd41fc-3365-4e51-99ed-dcde53eb8a1b",
+        "customerName": "Cope Truck Center - Desloge",
+        "dueDate": "2026-09-26T22:22:44Z",
+        "daysPastDue": 45,
+        "amountCents": 123139,
+        "openBalanceCents": 123139,
+        "link": {
+         "kind": "work_order",
+         "targetId": "01ae3958-2966-460b-a165-2188e7619d3e",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "b3ce715c-ccea-4ba9-a46a-42c9e5ea951b",
+      "name": "Coughlin & Sons Truck & Trailer Repair",
+      "phone": "812-656-9196",
+      "creditTerm": "Net 30",
+      "amountCents": 160931,
+      "openBalanceCents": 160931,
+      "rowsNumber": 2,
+      "rows": [
+       {
+        "documentId": "84ec1590-49f1-42f0-990d-7a6081b0fd84",
+        "date": "2026-07-21T12:31:42Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16595",
+        "customerId": "b3ce715c-ccea-4ba9-a46a-42c9e5ea951b",
+        "customerName": "Coughlin & Sons Truck & Trailer Repair",
+        "dueDate": "2026-08-20T12:31:42Z",
+        "daysPastDue": 82,
+        "amountCents": 80693,
+        "openBalanceCents": 80693,
+        "link": {
+         "kind": "work_order",
+         "targetId": "4e52ea78-806a-448e-961d-cb078221f567",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "39104cd7-acfc-4635-bb47-11b74bddf843",
+        "date": "2026-07-24T13:03:19Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16631",
+        "customerId": "b3ce715c-ccea-4ba9-a46a-42c9e5ea951b",
+        "customerName": "Coughlin & Sons Truck & Trailer Repair",
+        "dueDate": "2026-08-23T13:03:19Z",
+        "daysPastDue": 79,
+        "amountCents": 80238,
+        "openBalanceCents": 80238,
+        "link": {
+         "kind": "work_order",
+         "targetId": "04c22e1b-7103-4a47-9b00-a5a2aa64f36a",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+      "name": "Desert Edge Truck Service & Repair",
+      "phone": "605-175-8825",
+      "creditTerm": "Net 45",
+      "amountCents": 23191894,
+      "openBalanceCents": 23191894,
+      "rowsNumber": 74,
+      "rows": [
+       {
+        "documentId": "886e0547-6e10-4e27-9aee-5ffc06d24dd1",
+        "date": "2026-05-06T14:16:53Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-14868",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-06-20T14:16:53Z",
+        "daysPastDue": 143,
+        "amountCents": 75707,
+        "openBalanceCents": 75707,
+        "link": {
+         "kind": "work_order",
+         "targetId": "c61c7c92-7207-49ed-b6fd-5ca9de7b4838",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "b9d36fb5-8da4-4ba7-83eb-c6db756d41ec",
+        "date": "2026-05-12T16:20:40Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-14703",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-06-26T16:20:40Z",
+        "daysPastDue": 137,
+        "amountCents": 145523,
+        "openBalanceCents": 145523,
+        "link": {
+         "kind": "work_order",
+         "targetId": "bec9ab0a-2a34-480c-9b74-6612a5541507",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "3e515937-5b96-432a-a476-e15b116d02b7",
+        "date": "2026-05-13T21:02:08Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-14949",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-06-27T21:02:08Z",
+        "daysPastDue": 136,
+        "amountCents": 1675705,
+        "openBalanceCents": 1675705,
+        "link": {
+         "kind": "work_order",
+         "targetId": "4c87e415-a4ed-421e-bea3-9e73b025c20d",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "efc94e71-a478-4b70-a433-392f33e450ed",
+        "date": "2026-05-15T12:44:37Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15023",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-06-29T12:44:37Z",
+        "daysPastDue": 134,
+        "amountCents": 50808,
+        "openBalanceCents": 50808,
+        "link": {
+         "kind": "work_order",
+         "targetId": "32a7a973-4332-4e73-9bd6-24f30355c6c7",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "90088a19-b2d7-4a1d-9c67-d9bc1b69d68a",
+        "date": "2026-05-15T19:14:31Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15086",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-06-29T19:14:31Z",
+        "daysPastDue": 134,
+        "amountCents": 189579,
+        "openBalanceCents": 189579,
+        "link": {
+         "kind": "work_order",
+         "targetId": "1f040a9f-9672-4615-8d23-6ce9c1eaba73",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "cefc98d1-213c-4d95-8fa1-58fc6cfcf252",
+        "date": "2026-05-22T18:25:52Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15319",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-06T18:25:52Z",
+        "daysPastDue": 127,
+        "amountCents": 30786,
+        "openBalanceCents": 30786,
+        "link": {
+         "kind": "work_order",
+         "targetId": "a993c5c1-c457-4f8f-9824-df0cb72c1c77",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "21fecb42-b813-4fa2-92c7-1caad05d9559",
+        "date": "2026-06-03T16:01:07Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15449",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-18T16:01:07Z",
+        "daysPastDue": 115,
+        "amountCents": 31460,
+        "openBalanceCents": 31460,
+        "link": {
+         "kind": "work_order",
+         "targetId": "016c63ad-424a-4ee1-bf3a-05c1b4a859ed",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "ae55e155-fe6a-4716-9ebe-851b6849efd9",
+        "date": "2026-06-04T20:37:51Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15651",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-19T20:37:51Z",
+        "daysPastDue": 114,
+        "amountCents": 17496,
+        "openBalanceCents": 17496,
+        "link": {
+         "kind": "work_order",
+         "targetId": "e2cbc5bd-37ee-4ae8-9804-39ace4234d6d",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "5712c342-102a-46e0-af77-5b46b6e8c11c",
+        "date": "2026-06-05T15:40:50Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15312",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-20T15:40:50Z",
+        "daysPastDue": 113,
+        "amountCents": 124158,
+        "openBalanceCents": 124158,
+        "link": {
+         "kind": "work_order",
+         "targetId": "b6229a34-1f4d-49dd-98f0-73bdb55aae5c",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "50b35d04-897c-41ee-8a7c-96b17703e756",
+        "date": "2026-06-05T14:32:28Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15547",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-20T14:32:28Z",
+        "daysPastDue": 113,
+        "amountCents": 121631,
+        "openBalanceCents": 121631,
+        "link": {
+         "kind": "work_order",
+         "targetId": "b106e297-9852-47eb-be54-8e3ca6239262",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "c8c4b85b-38eb-4e82-ba9f-3a9720ae0153",
+        "date": "2026-06-05T14:33:58Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15550",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-20T14:33:58Z",
+        "daysPastDue": 113,
+        "amountCents": 65948,
+        "openBalanceCents": 65948,
+        "link": {
+         "kind": "work_order",
+         "targetId": "fa5b044f-1388-4c2d-bf58-9b328c1d1372",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "6a8bea80-296b-4002-b2df-b9210f8c34c0",
+        "date": "2026-06-05T14:33:38Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15552",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-20T14:33:38Z",
+        "daysPastDue": 113,
+        "amountCents": 40882,
+        "openBalanceCents": 40882,
+        "link": {
+         "kind": "work_order",
+         "targetId": "dce911f3-1d5d-4bab-ad7a-55157e47e6ca",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "f2f0eca0-97b3-4c4a-ac31-f69cc41138fa",
+        "date": "2026-06-05T14:30:43Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15553",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-20T14:30:43Z",
+        "daysPastDue": 113,
+        "amountCents": 31293,
+        "openBalanceCents": 31293,
+        "link": {
+         "kind": "work_order",
+         "targetId": "2465ed4d-b19b-45fb-b865-3fa2a2803829",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "2fe56b7e-5105-4aea-8bcf-cfac14bc6d9c",
+        "date": "2026-06-05T14:33:18Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15555",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-20T14:33:18Z",
+        "daysPastDue": 113,
+        "amountCents": 48620,
+        "openBalanceCents": 48620,
+        "link": {
+         "kind": "work_order",
+         "targetId": "d78bd120-3fc2-44ec-8283-3b3c64d8333d",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "8ed7f7cf-0b76-4bee-826c-544c909538a2",
+        "date": "2026-06-05T14:32:01Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15557",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-20T14:32:01Z",
+        "daysPastDue": 113,
+        "amountCents": 111860,
+        "openBalanceCents": 111860,
+        "link": {
+         "kind": "work_order",
+         "targetId": "6944b63d-adf1-440d-9067-25cf9a7fa55f",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "b24c362e-eb46-4728-b679-ae3404b6aa2a",
+        "date": "2026-06-05T14:31:12Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15558",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-20T14:31:12Z",
+        "daysPastDue": 113,
+        "amountCents": 45256,
+        "openBalanceCents": 45256,
+        "link": {
+         "kind": "work_order",
+         "targetId": "2618784a-035f-4b98-b948-199111b4c9a5",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "0667569e-39c6-4cb1-888d-adf644297ea4",
+        "date": "2026-06-05T14:31:36Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15560",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-20T14:31:36Z",
+        "daysPastDue": 113,
+        "amountCents": 54676,
+        "openBalanceCents": 54676,
+        "link": {
+         "kind": "work_order",
+         "targetId": "5d2022d1-2ab2-4ab8-bc56-47005baafa4a",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "73a048c8-4a0b-4137-8784-3ce65a64923f",
+        "date": "2026-06-05T14:30:16Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15561",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-20T14:30:16Z",
+        "daysPastDue": 113,
+        "amountCents": 28264,
+        "openBalanceCents": 28264,
+        "link": {
+         "kind": "work_order",
+         "targetId": "010aec5a-35a1-45d4-849a-bd5d3d6451e8",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "e4fc3a84-dc82-42ff-887f-64b52f7b43b8",
+        "date": "2026-06-05T15:25:19Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15617",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-20T15:25:19Z",
+        "daysPastDue": 113,
+        "amountCents": 138659,
+        "openBalanceCents": 138659,
+        "link": {
+         "kind": "work_order",
+         "targetId": "ac4abdbe-4653-4cc9-a427-4d56f0f96cbd",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "bf932778-ced5-4018-9322-b2b1fd5dadb8",
+        "date": "2026-06-08T13:54:18Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15356",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-23T13:54:18Z",
+        "daysPastDue": 110,
+        "amountCents": 120633,
+        "openBalanceCents": 120633,
+        "link": {
+         "kind": "work_order",
+         "targetId": "18376629-4e59-4d70-9c20-399953797223",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "ecbf97a3-d2af-4e1c-89d7-b8ff63ff7665",
+        "date": "2026-06-08T14:24:30Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15724",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-23T14:24:30Z",
+        "daysPastDue": 110,
+        "amountCents": 87891,
+        "openBalanceCents": 87891,
+        "link": {
+         "kind": "work_order",
+         "targetId": "d2926e17-67b9-4d9e-88fb-926d12f68fb9",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "c64d551a-9f45-453b-aa02-ce49310273fd",
+        "date": "2026-06-12T17:38:04Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15828",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-27T17:38:04Z",
+        "daysPastDue": 106,
+        "amountCents": 38695,
+        "openBalanceCents": 38695,
+        "link": {
+         "kind": "work_order",
+         "targetId": "2bc6a671-ef36-4d78-93ef-a1c65bcba7df",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "b53e8498-3cfc-43e5-83c9-1085f3e9e155",
+        "date": "2026-06-16T14:43:59Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15748",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-07-31T14:43:59Z",
+        "daysPastDue": 102,
+        "amountCents": 328510,
+        "openBalanceCents": 328510,
+        "link": {
+         "kind": "work_order",
+         "targetId": "99ac6cb3-48a1-40d2-b681-07ed5e841c7c",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "4bf4c24a-675e-41a6-a5bf-8e65aff1f0e5",
+        "date": "2026-06-19T18:26:59Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15113",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-03T18:26:59Z",
+        "daysPastDue": 99,
+        "amountCents": 66650,
+        "openBalanceCents": 66650,
+        "link": {
+         "kind": "work_order",
+         "targetId": "7f59bff2-02e6-414e-a597-de564a498624",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "50364e86-72da-4a66-8706-3c49fdaeac93",
+        "date": "2026-06-19T17:48:12Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15678",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-03T17:48:12Z",
+        "daysPastDue": 99,
+        "amountCents": 701241,
+        "openBalanceCents": 701241,
+        "link": {
+         "kind": "work_order",
+         "targetId": "0fbe7082-ca76-4ff3-a7e2-05bbd5f3c3bc",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "e99d8670-44b4-44db-8199-6190f3efdd07",
+        "date": "2026-06-19T18:12:16Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15681",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-03T18:12:16Z",
+        "daysPastDue": 99,
+        "amountCents": 2002875,
+        "openBalanceCents": 2002875,
+        "link": {
+         "kind": "work_order",
+         "targetId": "a1efe70a-5d03-42ea-8b36-234de139e39c",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "7b348c4f-d3a8-446b-87df-c32d69f8eaee",
+        "date": "2026-06-26T20:46:39Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15685",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-10T20:46:39Z",
+        "daysPastDue": 92,
+        "amountCents": 591384,
+        "openBalanceCents": 591384,
+        "link": {
+         "kind": "work_order",
+         "targetId": "7b2101b1-8768-4073-afec-e71c6125e90d",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "38e01363-7901-4f55-80b9-e45b2f9f05c0",
+        "date": "2026-06-26T21:24:39Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15686",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-10T21:24:39Z",
+        "daysPastDue": 92,
+        "amountCents": 1015111,
+        "openBalanceCents": 1015111,
+        "link": {
+         "kind": "work_order",
+         "targetId": "5b7a13a4-38be-4c52-a620-54652ee2decd",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "93bc1275-e1e3-4099-90d1-f9c24ad4bbcf",
+        "date": "2026-06-26T13:36:31Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15699",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-10T13:36:31Z",
+        "daysPastDue": 92,
+        "amountCents": 505784,
+        "openBalanceCents": 505784,
+        "link": {
+         "kind": "work_order",
+         "targetId": "84cd3419-c85b-4fad-9723-c6eef9471ad9",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "fe5ef23c-b4df-4656-8393-01eaca159767",
+        "date": "2026-06-26T13:42:25Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15940",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-10T13:42:25Z",
+        "daysPastDue": 92,
+        "amountCents": 171943,
+        "openBalanceCents": 171943,
+        "link": {
+         "kind": "work_order",
+         "targetId": "cd3646b7-a345-4501-b6a4-e8671de143b9",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "81afe12a-09c0-4577-96be-8ba3c1384d8f",
+        "date": "2026-06-26T20:45:31Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16136",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-10T20:45:31Z",
+        "daysPastDue": 92,
+        "amountCents": 166566,
+        "openBalanceCents": 166566,
+        "link": {
+         "kind": "work_order",
+         "targetId": "d25cb513-adf7-4df9-b741-0848a4d3d435",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "9d453a07-0f1e-45c7-86db-eeaab5586ea3",
+        "date": "2026-06-30T06:00:00Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15682",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-14T06:00:00Z",
+        "daysPastDue": 88,
+        "amountCents": 1082812,
+        "openBalanceCents": 1082812,
+        "link": {
+         "kind": "work_order",
+         "targetId": "09a823c2-ba63-49f2-a27d-00bec7fb1bd8",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "9f792901-dd0e-44bc-ac61-180178ac637b",
+        "date": "2026-06-30T16:50:33Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15947",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-14T16:50:33Z",
+        "daysPastDue": 88,
+        "amountCents": 946328,
+        "openBalanceCents": 946328,
+        "link": {
+         "kind": "work_order",
+         "targetId": "f6b65580-6c76-4cee-877c-4fe620ec3a2e",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "034c37db-d997-479a-8dea-82eae4f813b9",
+        "date": "2026-06-30T06:00:00Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16051",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-14T06:00:00Z",
+        "daysPastDue": 88,
+        "amountCents": 827458,
+        "openBalanceCents": 827458,
+        "link": {
+         "kind": "work_order",
+         "targetId": "d98cba06-1e8c-4c09-b19b-51890e458f8d",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "f83a719e-02a8-4c1c-bf89-43b66872f1c7",
+        "date": "2026-07-10T13:38:21Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15679",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-24T13:38:21Z",
+        "daysPastDue": 78,
+        "amountCents": 864395,
+        "openBalanceCents": 864395,
+        "link": {
+         "kind": "work_order",
+         "targetId": "bc2eb0ba-4d9d-4c58-9ea4-487e2b570cf8",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "af165bb2-9ddc-41d7-93e7-54c1258696e0",
+        "date": "2026-07-15T21:57:52Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16472",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-29T21:57:52Z",
+        "daysPastDue": 73,
+        "amountCents": 449801,
+        "openBalanceCents": 449801,
+        "link": {
+         "kind": "work_order",
+         "targetId": "0084056b-8da5-40c7-84b2-aad12b26c2a5",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "3188182b-c206-48a7-b9ea-f5c63e10178c",
+        "date": "2026-07-15T15:46:26Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16485",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-29T15:46:26Z",
+        "daysPastDue": 73,
+        "amountCents": 62671,
+        "openBalanceCents": 62671,
+        "link": {
+         "kind": "work_order",
+         "targetId": "3ce8e6da-b507-4056-bf17-b6fece22a381",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "9745f1ff-872e-4453-9e0e-ad49c7b43cfe",
+        "date": "2026-07-16T14:27:34Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16574",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-30T14:27:34Z",
+        "daysPastDue": 72,
+        "amountCents": 109426,
+        "openBalanceCents": 109426,
+        "link": {
+         "kind": "work_order",
+         "targetId": "f1d381e1-9e34-4609-a5ae-a399914ec00c",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "6eb614bf-6680-4e9d-acf4-27c4eb5619fa",
+        "date": "2026-07-17T19:59:46Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15684",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-31T19:59:46Z",
+        "daysPastDue": 71,
+        "amountCents": 770523,
+        "openBalanceCents": 770523,
+        "link": {
+         "kind": "work_order",
+         "targetId": "881a26db-9248-4f53-9680-4a6d241178ff",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "01a2850e-a202-4475-a6f0-79f7a229832f",
+        "date": "2026-07-17T20:07:06Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16619",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-08-31T20:07:06Z",
+        "daysPastDue": 71,
+        "amountCents": 276220,
+        "openBalanceCents": 276220,
+        "link": {
+         "kind": "work_order",
+         "targetId": "22c3d56c-57c5-4cc6-9f01-cd83f9d7322c",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "d071e020-c21a-4c55-929f-f6a879741df0",
+        "date": "2026-07-20T15:33:27Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15683",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-03T15:33:27Z",
+        "daysPastDue": 68,
+        "amountCents": 278925,
+        "openBalanceCents": 278925,
+        "link": {
+         "kind": "work_order",
+         "targetId": "b7e2881d-8379-43c4-88e3-a4cb3bd16e31",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "c1563f78-9176-4254-b580-ae8d688ca5d3",
+        "date": "2026-07-22T14:27:59Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15687",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-05T14:27:59Z",
+        "daysPastDue": 66,
+        "amountCents": 1247849,
+        "openBalanceCents": 1247849,
+        "link": {
+         "kind": "work_order",
+         "targetId": "84026db5-ff09-4a2a-a26d-73da95727331",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "8e813b22-4ad4-4c85-a532-ec0634751853",
+        "date": "2026-07-22T17:33:50Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16608",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-05T17:33:50Z",
+        "daysPastDue": 66,
+        "amountCents": 314018,
+        "openBalanceCents": 314018,
+        "link": {
+         "kind": "work_order",
+         "targetId": "6686836e-ed22-4480-9cc6-020155eabe13",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "d23a7028-c23f-4a96-93a1-79ac63680361",
+        "date": "2026-07-24T14:54:10Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16754",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-07T14:54:10Z",
+        "daysPastDue": 64,
+        "amountCents": 93272,
+        "openBalanceCents": 93272,
+        "link": {
+         "kind": "work_order",
+         "targetId": "637827d3-4c85-4144-a232-3d94e5db2e60",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "386f5c3c-6fcd-4b8c-a8f6-4b501189e0f8",
+        "date": "2026-07-28T21:01:08Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16717",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-11T21:01:08Z",
+        "daysPastDue": 60,
+        "amountCents": 77553,
+        "openBalanceCents": 77553,
+        "link": {
+         "kind": "work_order",
+         "targetId": "14361ddc-0173-4fa7-8921-6bad4eaa965b",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "85e9faf2-31b0-432e-af8f-1bdaf25bd21c",
+        "date": "2026-07-29T18:48:54Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16500",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-12T18:48:54Z",
+        "daysPastDue": 59,
+        "amountCents": 288981,
+        "openBalanceCents": 288981,
+        "link": {
+         "kind": "work_order",
+         "targetId": "a260b297-7892-4a15-b7c9-439086e7dfda",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "c7f1e440-60f5-4b72-8e53-23334b4782e0",
+        "date": "2026-07-29T19:47:26Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16836",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-12T19:47:26Z",
+        "daysPastDue": 59,
+        "amountCents": 72875,
+        "openBalanceCents": 72875,
+        "link": {
+         "kind": "work_order",
+         "targetId": "9307e0ae-a452-4107-b616-ac4ee60d4c0b",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "f31e2fc3-b3ad-42cb-a021-f4ddf82df11d",
+        "date": "2026-07-31T14:43:56Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16352",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-14T14:43:56Z",
+        "daysPastDue": 57,
+        "amountCents": 164747,
+        "openBalanceCents": 164747,
+        "link": {
+         "kind": "work_order",
+         "targetId": "18426606-325b-44ea-886c-a85c790bd1b3",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "c69dbafd-2915-4841-82f8-9c5f7b1cf4e9",
+        "date": "2026-07-31T14:44:38Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16758",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-14T14:44:38Z",
+        "daysPastDue": 57,
+        "amountCents": 342662,
+        "openBalanceCents": 342662,
+        "link": {
+         "kind": "work_order",
+         "targetId": "09295239-bad1-4073-b4de-8e66e301335b",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "f85e289a-5be7-4f32-8f97-ca9a1c5f0b8f",
+        "date": "2026-07-31T16:00:34Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16827",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-14T16:00:34Z",
+        "daysPastDue": 57,
+        "amountCents": 259837,
+        "openBalanceCents": 259837,
+        "link": {
+         "kind": "work_order",
+         "targetId": "5b281bb4-2c81-4605-8cda-a6fc70995388",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "aa351d4a-aa2a-462f-a19a-8d78285aea63",
+        "date": "2026-08-05T12:12:52Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16964",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-19T12:12:52Z",
+        "daysPastDue": 52,
+        "amountCents": 49841,
+        "openBalanceCents": 49841,
+        "link": {
+         "kind": "work_order",
+         "targetId": "64e987f1-64b5-46f2-8557-4259508453a5",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "661f38d1-5017-4a21-883a-8cf5b04cb774",
+        "date": "2026-08-06T19:42:32Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16908",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-20T19:42:32Z",
+        "daysPastDue": 51,
+        "amountCents": 526520,
+        "openBalanceCents": 526520,
+        "link": {
+         "kind": "work_order",
+         "targetId": "ed05387f-ab90-424d-a4ef-34101f0ab8d2",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "33d8039c-84fb-42ce-8e96-3acb7b3a699c",
+        "date": "2026-08-07T17:27:02Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16800",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-21T17:27:02Z",
+        "daysPastDue": 50,
+        "amountCents": 343225,
+        "openBalanceCents": 343225,
+        "link": {
+         "kind": "work_order",
+         "targetId": "071c430a-7b6b-497d-bafa-fbc464e5bc27",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "0c178246-3ab5-4236-a39a-8eb5c624ef68",
+        "date": "2026-08-07T18:16:43Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16865",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-21T18:16:43Z",
+        "daysPastDue": 50,
+        "amountCents": 228281,
+        "openBalanceCents": 228281,
+        "link": {
+         "kind": "work_order",
+         "targetId": "85724af5-a669-45d3-b66d-97edad9d87a9",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "f6c1f30a-27a8-41aa-8f61-8f5c7633c89f",
+        "date": "2026-08-10T14:27:53Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16895",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-24T14:27:53Z",
+        "daysPastDue": 47,
+        "amountCents": 79572,
+        "openBalanceCents": 79572,
+        "link": {
+         "kind": "work_order",
+         "targetId": "b4da5c5c-452b-4f0c-bb90-a8bbde68eb49",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "f2c22842-7e51-4db5-a1b3-1ca177daffb1",
+        "date": "2026-08-10T22:40:33Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17139",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-24T22:40:33Z",
+        "daysPastDue": 47,
+        "amountCents": 40469,
+        "openBalanceCents": 40469,
+        "link": {
+         "kind": "work_order",
+         "targetId": "3031c857-e5ea-470f-b888-d34e2bae83c2",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "21b6d2bc-e909-4df5-9c5c-a4b201a53f9f",
+        "date": "2026-08-11T15:35:08Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16958",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-25T15:35:08Z",
+        "daysPastDue": 46,
+        "amountCents": 14710,
+        "openBalanceCents": 14710,
+        "link": {
+         "kind": "work_order",
+         "targetId": "c8567d32-badd-4c03-b24b-756110a2fd98",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "305adf91-9505-4b7d-87e3-a488e2a1c06d",
+        "date": "2026-08-12T15:41:20Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17074",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-26T15:41:20Z",
+        "daysPastDue": 45,
+        "amountCents": 161338,
+        "openBalanceCents": 161338,
+        "link": {
+         "kind": "work_order",
+         "targetId": "e74c33ef-32c3-4f9c-8a0f-a3e55788866a",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "87d8a82d-516b-4dc5-bf3c-38a0bf003401",
+        "date": "2026-08-12T17:50:02Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17133",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-26T17:50:02Z",
+        "daysPastDue": 45,
+        "amountCents": 70047,
+        "openBalanceCents": 70047,
+        "link": {
+         "kind": "work_order",
+         "targetId": "39cc9365-3731-4aea-8c19-948ed56bb965",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "7416db55-6040-4c7a-b708-9a7136c51c37",
+        "date": "2026-08-13T14:22:17Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16198",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-27T14:22:17Z",
+        "daysPastDue": 44,
+        "amountCents": 84443,
+        "openBalanceCents": 84443,
+        "link": {
+         "kind": "work_order",
+         "targetId": "7bae2c1f-7c2b-4fb3-bfdb-57b08b98b17a",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "32591c3c-576c-4068-9fba-f65a8b438634",
+        "date": "2026-08-13T15:13:47Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16985",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-27T15:13:47Z",
+        "daysPastDue": 44,
+        "amountCents": 195234,
+        "openBalanceCents": 195234,
+        "link": {
+         "kind": "work_order",
+         "targetId": "e7bf56c6-0bf4-4c98-a01c-46ae5f56b8dc",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "dcb033fe-8d6a-447b-9b72-2e85ec7f257c",
+        "date": "2026-08-13T14:09:17Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17123",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-09-27T14:09:17Z",
+        "daysPastDue": 44,
+        "amountCents": 142569,
+        "openBalanceCents": 142569,
+        "link": {
+         "kind": "work_order",
+         "targetId": "a53f9ce4-47e7-4b9f-87ff-3fb9b9fa6feb",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "44bbe998-4f28-473b-ac20-350d15fbc297",
+        "date": "2026-08-17T20:19:54Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17198",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-01T20:19:54Z",
+        "daysPastDue": 40,
+        "amountCents": 211697,
+        "openBalanceCents": 211697,
+        "link": {
+         "kind": "work_order",
+         "targetId": "388d0a04-d3c9-4fc3-93b9-a109cc0e791c",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "afcb08f9-2c6e-48c2-9bb1-b32dc29fbf47",
+        "date": "2026-08-17T21:09:13Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17278",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-01T21:09:13Z",
+        "daysPastDue": 40,
+        "amountCents": 47291,
+        "openBalanceCents": 47291,
+        "link": {
+         "kind": "work_order",
+         "targetId": "a40bea40-c355-470d-8bc4-36676e5f9467",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "a9bdd5ec-a803-4f41-8713-b70051296e39",
+        "date": "2026-08-18T14:41:47Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17069",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-02T14:41:47Z",
+        "daysPastDue": 39,
+        "amountCents": 99534,
+        "openBalanceCents": 99534,
+        "link": {
+         "kind": "work_order",
+         "targetId": "f549cea2-d465-4a79-9b3b-6533e6f37a04",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "107dffd6-d264-403c-bd26-0e62cd8e741a",
+        "date": "2026-08-18T15:50:38Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17296",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-02T15:50:38Z",
+        "daysPastDue": 39,
+        "amountCents": 18338,
+        "openBalanceCents": 18338,
+        "link": {
+         "kind": "work_order",
+         "targetId": "4bd1aa5d-89ad-4163-a9b5-02f538b3f0ad",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "cf3a3847-79a7-466f-acf2-763e53255db8",
+        "date": "2026-08-19T13:21:46Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16575",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-03T13:21:46Z",
+        "daysPastDue": 38,
+        "amountCents": 334189,
+        "openBalanceCents": 334189,
+        "link": {
+         "kind": "work_order",
+         "targetId": "f26204ec-1aea-480e-b6b3-e55759793f47",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "8aa8f84e-f5ce-4fcb-9356-69871655a4d2",
+        "date": "2026-08-20T17:07:16Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17156",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-04T17:07:16Z",
+        "daysPastDue": 37,
+        "amountCents": 365188,
+        "openBalanceCents": 365188,
+        "link": {
+         "kind": "work_order",
+         "targetId": "c19f3af7-3929-4fbd-8ffb-c4488cdd4c0a",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "e9ddc623-aa8c-4bfc-a975-884051cf157e",
+        "date": "2026-08-26T20:18:16Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17098",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-10T20:18:16Z",
+        "daysPastDue": 31,
+        "amountCents": 122033,
+        "openBalanceCents": 122033,
+        "link": {
+         "kind": "work_order",
+         "targetId": "cac413e3-236d-4a8d-9f8f-fe39e9651ec3",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "4ebd625f-3824-4fb9-a691-0addb0a9979a",
+        "date": "2026-08-26T17:42:04Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17312",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-10T17:42:04Z",
+        "daysPastDue": 31,
+        "amountCents": 612286,
+        "openBalanceCents": 612286,
+        "link": {
+         "kind": "work_order",
+         "targetId": "9f9e31b3-360a-428d-b8e7-793e87af01c7",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "91f0ede5-6b79-4058-a158-7978848584f4",
+        "date": "2026-08-27T14:48:00Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17097",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-11T14:48:00Z",
+        "daysPastDue": 30,
+        "amountCents": 655694,
+        "openBalanceCents": 655694,
+        "link": {
+         "kind": "work_order",
+         "targetId": "d16b886d-b1f1-452e-b492-10b1235ba1a8",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "c9db9396-3c4c-487e-8e50-fc1d7c882944",
+        "date": "2026-08-27T15:34:15Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17307",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-11T15:34:15Z",
+        "daysPastDue": 30,
+        "amountCents": 180578,
+        "openBalanceCents": 180578,
+        "link": {
+         "kind": "work_order",
+         "targetId": "6267d69a-8c53-4006-a105-d1cbeffa546c",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "82561db4-3645-4475-825b-2f167485856b",
+        "date": "2026-08-28T21:56:39Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17154",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-12T21:56:39Z",
+        "daysPastDue": 29,
+        "amountCents": 1228048,
+        "openBalanceCents": 1228048,
+        "link": {
+         "kind": "work_order",
+         "targetId": "0337f508-61b1-4cd4-a948-cd4536d9e197",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "f85df884-403f-4cb9-ad75-023b0960dfcf",
+        "date": "2026-08-28T17:52:44Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17540",
+        "customerId": "7e90eb07-a144-465b-9743-df9c35d9b587",
+        "customerName": "Desert Edge Truck Service & Repair",
+        "dueDate": "2026-10-12T17:52:44Z",
+        "daysPastDue": 29,
+        "amountCents": 24822,
+        "openBalanceCents": 24822,
+        "link": {
+         "kind": "work_order",
+         "targetId": "60106d70-8a46-4b05-a079-3a625ae03444",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "b8e353d2-b716-4079-a92b-914b14aa1115",
+      "name": "Doi Truck Center",
+      "phone": "286-557-2913",
+      "creditTerm": "Net 30",
+      "amountCents": 45375,
+      "openBalanceCents": 45375,
+      "rowsNumber": 2,
+      "rows": [
+       {
+        "documentId": "09f62f79-1901-44bc-911e-8b38b16785b6",
+        "date": "2026-07-23T06:00:00Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Credit Memo",
+        "documentNumber": "CM11315-3841",
+        "customerId": "b8e353d2-b716-4079-a92b-914b14aa1115",
+        "customerName": "Doi Truck Center",
+        "dueDate": "2026-07-23T06:00:00Z",
+        "daysPastDue": 110,
+        "amountCents": -7520,
+        "openBalanceCents": -7520,
+        "link": null
+       },
+       {
+        "documentId": "29f8ca9f-5f41-4c81-902e-e29638b10e51",
+        "date": "2026-07-23T15:42:49Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "P3-188",
+        "customerId": "b8e353d2-b716-4079-a92b-914b14aa1115",
+        "customerName": "Doi Truck Center",
+        "dueDate": "2026-08-22T15:42:49Z",
+        "daysPastDue": 80,
+        "amountCents": 52895,
+        "openBalanceCents": 52895,
+        "link": {
+         "kind": "part_sale",
+         "targetId": "f6bf1d55-5806-4d99-bdda-aaf26fdb3212",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "29b3cfee-3cb8-48f2-80d8-52c0e89e915c",
+      "name": "Dorr Truck Center",
+      "phone": "592-091-9588",
+      "creditTerm": "Net 30",
+      "amountCents": 127034,
+      "openBalanceCents": 127034,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "ec5d2d2f-c0de-4f44-838a-22c055f23493",
+        "date": "2026-06-30T06:00:00Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16146",
+        "customerId": "29b3cfee-3cb8-48f2-80d8-52c0e89e915c",
+        "customerName": "Dorr Truck Center",
+        "dueDate": "2026-07-30T06:00:00Z",
+        "daysPastDue": 103,
+        "amountCents": 127034,
+        "openBalanceCents": 127034,
+        "link": {
+         "kind": "work_order",
+         "targetId": "61e39699-2771-4f92-b62b-f23cc20eb257",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "ce3692fc-8f5a-4b42-9d12-0016b492d055",
+      "name": "Dunn Truck and Trailer Repair",
+      "phone": "481-483-7469",
+      "creditTerm": "COD",
+      "amountCents": 49634,
+      "openBalanceCents": 735,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "2b2ae775-f10c-45df-bd0c-4edad6ed146a",
+        "date": "2026-07-08T22:08:25Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-16408",
+        "customerId": "ce3692fc-8f5a-4b42-9d12-0016b492d055",
+        "customerName": "Dunn Truck and Trailer Repair",
+        "dueDate": "2026-07-08T22:08:25Z",
+        "daysPastDue": 125,
+        "amountCents": 49634,
+        "openBalanceCents": 735,
+        "link": {
+         "kind": "work_order",
+         "targetId": "71086b03-617a-444d-b49b-1b1b35b133fa",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "f8f8481a-a20c-401b-9d07-29f78e020650",
+      "name": "Glendale Diesel & Fleet Repair",
+      "phone": "573-739-8833",
+      "creditTerm": "Net 60",
+      "amountCents": 59217,
+      "openBalanceCents": 59217,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "241b017e-b38c-4185-a37f-73cf2ed9d53b",
+        "date": "2026-06-30T06:00:00Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16140",
+        "customerId": "f8f8481a-a20c-401b-9d07-29f78e020650",
+        "customerName": "Glendale Diesel & Fleet Repair",
+        "dueDate": "2026-08-29T06:00:00Z",
+        "daysPastDue": 73,
+        "amountCents": 59217,
+        "openBalanceCents": 59217,
+        "link": {
+         "kind": "work_order",
+         "targetId": "348420a6-b259-472a-a6bc-7dcd87761b92",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "3369168f-57b8-45c4-83f1-82a6f64b8d15",
+      "name": "Halfmoon Truck Repair",
+      "phone": "186-114-8013",
+      "creditTerm": "Net 30",
+      "amountCents": 1180651,
+      "openBalanceCents": 1180651,
+      "rowsNumber": 5,
+      "rows": [
+       {
+        "documentId": "636c3800-6342-49c4-be19-b8e028c3d264",
+        "date": "2026-08-24T22:23:57Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-16706",
+        "customerId": "3369168f-57b8-45c4-83f1-82a6f64b8d15",
+        "customerName": "Halfmoon Truck Repair",
+        "dueDate": "2026-09-23T22:23:57Z",
+        "daysPastDue": 48,
+        "amountCents": 26985,
+        "openBalanceCents": 26985,
+        "link": {
+         "kind": "work_order",
+         "targetId": "82c12859-d068-48bb-96a5-3c1bd6def2e1",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "d798d1eb-6d15-41f2-b0c1-2ebdd178e696",
+        "date": "2026-08-27T19:20:34Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-16213",
+        "customerId": "3369168f-57b8-45c4-83f1-82a6f64b8d15",
+        "customerName": "Halfmoon Truck Repair",
+        "dueDate": "2026-09-26T19:20:34Z",
+        "daysPastDue": 45,
+        "amountCents": 713613,
+        "openBalanceCents": 713613,
+        "link": {
+         "kind": "work_order",
+         "targetId": "9f5de560-7522-401c-b990-f3c92d2ee19e",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "a7f00e53-9c48-4f24-9509-9fa93a540402",
+        "date": "2026-08-27T19:23:13Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17282",
+        "customerId": "3369168f-57b8-45c4-83f1-82a6f64b8d15",
+        "customerName": "Halfmoon Truck Repair",
+        "dueDate": "2026-09-26T19:23:13Z",
+        "daysPastDue": 45,
+        "amountCents": 4594,
+        "openBalanceCents": 4594,
+        "link": {
+         "kind": "work_order",
+         "targetId": "c3b3b928-eae0-44be-ab23-296dd735708e",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "d652d4d7-6afc-4e8f-a2ef-c5d771a170c4",
+        "date": "2026-08-27T19:24:38Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17353",
+        "customerId": "3369168f-57b8-45c4-83f1-82a6f64b8d15",
+        "customerName": "Halfmoon Truck Repair",
+        "dueDate": "2026-09-26T19:24:38Z",
+        "daysPastDue": 45,
+        "amountCents": 12311,
+        "openBalanceCents": 12311,
+        "link": {
+         "kind": "work_order",
+         "targetId": "1c2b0c6b-3ede-4bc3-98f5-aa079cf2399d",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "c3e77998-cdbe-4cc7-91c4-80a326e14c83",
+        "date": "2026-08-28T19:04:11Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-16914",
+        "customerId": "3369168f-57b8-45c4-83f1-82a6f64b8d15",
+        "customerName": "Halfmoon Truck Repair",
+        "dueDate": "2026-09-27T19:04:11Z",
+        "daysPastDue": 44,
+        "amountCents": 423148,
+        "openBalanceCents": 423148,
+        "link": {
+         "kind": "work_order",
+         "targetId": "86d99947-6d71-4d3a-8238-19c190f05f1e",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "a6f3a7bb-d3ea-448c-a16b-d3bae64298a8",
+      "name": "Henderson Mobile Truck Repair",
+      "phone": "617-191-2511",
+      "creditTerm": "Net 30",
+      "amountCents": 1064079,
+      "openBalanceCents": 1064079,
+      "rowsNumber": 4,
+      "rows": [
+       {
+        "documentId": "94568e1f-fb8b-442a-ae53-36416686e89c",
+        "date": "2026-06-30T22:32:27Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15775",
+        "customerId": "a6f3a7bb-d3ea-448c-a16b-d3bae64298a8",
+        "customerName": "Henderson Mobile Truck Repair",
+        "dueDate": "2026-07-30T22:32:27Z",
+        "daysPastDue": 103,
+        "amountCents": 480721,
+        "openBalanceCents": 480721,
+        "link": {
+         "kind": "work_order",
+         "targetId": "a9ac2296-8a71-480c-94f1-947a2c1456e2",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "5959922c-d507-4223-a6ff-8e0b44466c5f",
+        "date": "2026-06-30T22:33:07Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15777",
+        "customerId": "a6f3a7bb-d3ea-448c-a16b-d3bae64298a8",
+        "customerName": "Henderson Mobile Truck Repair",
+        "dueDate": "2026-07-30T22:33:07Z",
+        "daysPastDue": 103,
+        "amountCents": 343358,
+        "openBalanceCents": 343358,
+        "link": {
+         "kind": "work_order",
+         "targetId": "fa064e1c-b866-4493-9ee9-b53ac3ae4efe",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "5afce26b-bfba-4c6f-bee7-bdee1b3cad87",
+        "date": "2026-06-30T22:31:35Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16144",
+        "customerId": "a6f3a7bb-d3ea-448c-a16b-d3bae64298a8",
+        "customerName": "Henderson Mobile Truck Repair",
+        "dueDate": "2026-07-30T22:31:35Z",
+        "daysPastDue": 103,
+        "amountCents": 120000,
+        "openBalanceCents": 120000,
+        "link": {
+         "kind": "work_order",
+         "targetId": "31aac1ea-21ad-40de-9324-7e40e0fd5421",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "131fe9e7-7cb4-4ed4-887f-7317e3877415",
+        "date": "2026-07-28T15:53:09Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16711",
+        "customerId": "a6f3a7bb-d3ea-448c-a16b-d3bae64298a8",
+        "customerName": "Henderson Mobile Truck Repair",
+        "dueDate": "2026-08-27T15:53:09Z",
+        "daysPastDue": 75,
+        "amountCents": 120000,
+        "openBalanceCents": 120000,
+        "link": {
+         "kind": "work_order",
+         "targetId": "52b8ec83-1390-42c4-ab3d-4be05a317860",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "922b45a1-51ce-49a1-ad29-312d00ded648",
+      "name": "Honest Diesel Performance",
+      "phone": "964-429-4975",
+      "creditTerm": "Net 30",
+      "amountCents": 218875,
+      "openBalanceCents": 218875,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "468235de-8557-453a-a8ef-63a5a6a1b7db",
+        "date": "2026-06-30T06:00:00Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15996",
+        "customerId": "922b45a1-51ce-49a1-ad29-312d00ded648",
+        "customerName": "Honest Diesel Performance",
+        "dueDate": "2026-07-30T06:00:00Z",
+        "daysPastDue": 103,
+        "amountCents": 218875,
+        "openBalanceCents": 218875,
+        "link": {
+         "kind": "work_order",
+         "targetId": "4a839697-b653-4d78-8519-95ce81566e4a",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "03ec8947-57e7-4640-af7b-dc4db2e30ccc",
+      "name": "Inland Heavy Duty Truck Repair",
+      "phone": "093-669-1371",
+      "creditTerm": "COD",
+      "amountCents": 729824,
+      "openBalanceCents": 729824,
+      "rowsNumber": 2,
+      "rows": [
+       {
+        "documentId": "16f7b4eb-9842-46fa-a45a-43aa02b2a580",
+        "date": "2025-07-23T20:21:39Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-8092",
+        "customerId": "03ec8947-57e7-4640-af7b-dc4db2e30ccc",
+        "customerName": "Inland Heavy Duty Truck Repair",
+        "dueDate": "2025-07-23T20:21:39Z",
+        "daysPastDue": 475,
+        "amountCents": 642739,
+        "openBalanceCents": 642739,
+        "link": {
+         "kind": "work_order",
+         "targetId": "f7800590-838e-45be-8fd7-835125fa9ca7",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "71788d7a-e8d0-4d4b-a9a1-26783646f1bf",
+        "date": "2025-07-23T20:20:56Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-8771",
+        "customerId": "03ec8947-57e7-4640-af7b-dc4db2e30ccc",
+        "customerName": "Inland Heavy Duty Truck Repair",
+        "dueDate": "2025-07-23T20:20:56Z",
+        "daysPastDue": 475,
+        "amountCents": 87085,
+        "openBalanceCents": 87085,
+        "link": {
+         "kind": "work_order",
+         "targetId": "342b2568-d78b-4451-8dd8-85f60d2ed817",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "b1a706d3-94c7-4069-af89-370e8bab9c27",
+      "name": "La Mesa Diesel Repair",
+      "phone": "144-025-7848",
+      "creditTerm": "Net 30",
+      "amountCents": 101624,
+      "openBalanceCents": 101624,
+      "rowsNumber": 2,
+      "rows": [
+       {
+        "documentId": "9e6175f7-5a1c-4b24-848d-1e7a30799a62",
+        "date": "2026-08-27T19:38:43Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17436",
+        "customerId": "b1a706d3-94c7-4069-af89-370e8bab9c27",
+        "customerName": "La Mesa Diesel Repair",
+        "dueDate": "2026-09-26T19:38:43Z",
+        "daysPastDue": 45,
+        "amountCents": 35648,
+        "openBalanceCents": 35648,
+        "link": {
+         "kind": "work_order",
+         "targetId": "47e1af29-0ff1-4225-863f-20d272420202",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "cf75aee9-30bc-4987-bb6c-dd1f6a91f9fa",
+        "date": "2026-08-27T19:36:58Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17447",
+        "customerId": "b1a706d3-94c7-4069-af89-370e8bab9c27",
+        "customerName": "La Mesa Diesel Repair",
+        "dueDate": "2026-09-26T19:36:58Z",
+        "daysPastDue": 45,
+        "amountCents": 65976,
+        "openBalanceCents": 65976,
+        "link": {
+         "kind": "work_order",
+         "targetId": "98c9f83c-e35a-46e9-b49f-1e2932312bc9",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "53ac3a70-a4cb-47fe-a8b6-bd2669a5ec4a",
+      "name": "Lamkin Diesel Services Inc",
+      "phone": "453-520-6454",
+      "creditTerm": "Net 30",
+      "amountCents": 187440,
+      "openBalanceCents": 187440,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "da5cede6-b3e6-4794-9709-f6e5ca2d33c1",
+        "date": "2026-08-27T17:27:58Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17228",
+        "customerId": "53ac3a70-a4cb-47fe-a8b6-bd2669a5ec4a",
+        "customerName": "Lamkin Diesel Services Inc",
+        "dueDate": "2026-09-26T17:27:58Z",
+        "daysPastDue": 45,
+        "amountCents": 187440,
+        "openBalanceCents": 187440,
+        "link": {
+         "kind": "work_order",
+         "targetId": "a312535a-4f1f-4cbd-95ca-697902953a0d",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "459bb2bc-9b62-4c37-897f-88d939b8740f",
+      "name": "Lansing Truck & Trailer Repair",
+      "phone": "484-589-4681",
+      "creditTerm": "Net 30",
+      "amountCents": 111383,
+      "openBalanceCents": 111383,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "f793cdbe-479a-49cd-a866-7365cb7cc686",
+        "date": "2026-08-31T16:29:15Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17462",
+        "customerId": "459bb2bc-9b62-4c37-897f-88d939b8740f",
+        "customerName": "Lansing Truck & Trailer Repair",
+        "dueDate": "2026-09-30T16:29:15Z",
+        "daysPastDue": 41,
+        "amountCents": 111383,
+        "openBalanceCents": 111383,
+        "link": {
+         "kind": "work_order",
+         "targetId": "3f2bc8cc-94d4-4336-80a4-a9b5cbb256c2",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "85c08777-d097-4cbb-8f07-462381e42b9c",
+      "name": "Leland Diesel & Fleet Repair",
+      "phone": "921-041-8654",
+      "creditTerm": "Net 30",
+      "amountCents": 656473,
+      "openBalanceCents": 656473,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "e6da03d5-38a8-48d4-8e8a-e299c1ac0d36",
+        "date": "2026-08-31T16:36:09Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17407",
+        "customerId": "85c08777-d097-4cbb-8f07-462381e42b9c",
+        "customerName": "Leland Diesel & Fleet Repair",
+        "dueDate": "2026-09-30T16:36:09Z",
+        "daysPastDue": 41,
+        "amountCents": 656473,
+        "openBalanceCents": 656473,
+        "link": {
+         "kind": "work_order",
+         "targetId": "51279dcf-eadb-4b7d-b32b-5edc1da47c7e",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "ad9fa83d-3d11-47c5-8a1e-c80cab5b28f2",
+      "name": "McGarvie Mechanical Services",
+      "phone": "082-791-7057",
+      "creditTerm": "Due on Receipt",
+      "amountCents": 139239,
+      "openBalanceCents": 139239,
+      "rowsNumber": 2,
+      "rows": [
+       {
+        "documentId": "81cc5492-e55b-4f60-aa49-8d312edbf20d",
+        "date": "2026-04-07T21:14:12Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-14001",
+        "customerId": "ad9fa83d-3d11-47c5-8a1e-c80cab5b28f2",
+        "customerName": "McGarvie Mechanical Services",
+        "dueDate": "2026-04-07T21:14:12Z",
+        "daysPastDue": 217,
+        "amountCents": 55,
+        "openBalanceCents": 55,
+        "link": {
+         "kind": "work_order",
+         "targetId": "d4c19c27-b9a2-4647-a658-a5933f41a5ba",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "85d4b458-bed1-4d84-9eed-8d8c33a74f68",
+        "date": "2026-08-26T18:52:42Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17492",
+        "customerId": "ad9fa83d-3d11-47c5-8a1e-c80cab5b28f2",
+        "customerName": "McGarvie Mechanical Services",
+        "dueDate": "2026-08-26T18:52:42Z",
+        "daysPastDue": 76,
+        "amountCents": 139184,
+        "openBalanceCents": 139184,
+        "link": {
+         "kind": "work_order",
+         "targetId": "4d950470-50ec-4cea-aa7e-90fff315e5fc",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "224c76b9-70ba-4122-9b9b-edbc3320230f",
+      "name": "Mobile Truck & Trailer Repair Blackfoot",
+      "phone": "381-446-7448",
+      "creditTerm": "Net 30",
+      "amountCents": 1455605,
+      "openBalanceCents": 1455605,
+      "rowsNumber": 6,
+      "rows": [
+       {
+        "documentId": "c6484841-c2e7-4867-a760-1dfc5ede7dbc",
+        "date": "2026-05-13T14:15:45Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-7302",
+        "customerId": "224c76b9-70ba-4122-9b9b-edbc3320230f",
+        "customerName": "Mobile Truck & Trailer Repair Blackfoot",
+        "dueDate": "2026-06-12T14:15:45Z",
+        "daysPastDue": 151,
+        "amountCents": 253869,
+        "openBalanceCents": 253869,
+        "link": {
+         "kind": "work_order",
+         "targetId": "1af703cc-f568-4094-87e4-3fed5880e457",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "f06eddd5-7148-4525-8662-0de28c0acb62",
+        "date": "2026-05-28T14:27:59Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15192",
+        "customerId": "224c76b9-70ba-4122-9b9b-edbc3320230f",
+        "customerName": "Mobile Truck & Trailer Repair Blackfoot",
+        "dueDate": "2026-06-27T14:27:59Z",
+        "daysPastDue": 136,
+        "amountCents": 297331,
+        "openBalanceCents": 297331,
+        "link": {
+         "kind": "work_order",
+         "targetId": "f1d5eedb-d055-4004-8e41-a7cb4ee9e3cc",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "1cffa1bd-6e78-48b1-b70f-14ddd92ffa29",
+        "date": "2026-06-01T15:20:09Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15067",
+        "customerId": "224c76b9-70ba-4122-9b9b-edbc3320230f",
+        "customerName": "Mobile Truck & Trailer Repair Blackfoot",
+        "dueDate": "2026-07-01T15:20:09Z",
+        "daysPastDue": 132,
+        "amountCents": 75332,
+        "openBalanceCents": 75332,
+        "link": {
+         "kind": "work_order",
+         "targetId": "32ebb2a6-cd59-4a29-8edd-773a1c53ae83",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "b9eb57f0-ad15-49c6-af11-d2674c96af56",
+        "date": "2026-07-31T19:50:05Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16416",
+        "customerId": "224c76b9-70ba-4122-9b9b-edbc3320230f",
+        "customerName": "Mobile Truck & Trailer Repair Blackfoot",
+        "dueDate": "2026-08-30T19:50:05Z",
+        "daysPastDue": 72,
+        "amountCents": 497389,
+        "openBalanceCents": 497389,
+        "link": {
+         "kind": "work_order",
+         "targetId": "77dfa64f-c8ad-44ca-a70c-ffbfe2385199",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "f00f35f8-e7da-4e3e-9629-5fe4090ec897",
+        "date": "2026-08-26T20:02:14Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17343",
+        "customerId": "224c76b9-70ba-4122-9b9b-edbc3320230f",
+        "customerName": "Mobile Truck & Trailer Repair Blackfoot",
+        "dueDate": "2026-09-25T20:02:14Z",
+        "daysPastDue": 46,
+        "amountCents": 259649,
+        "openBalanceCents": 259649,
+        "link": {
+         "kind": "work_order",
+         "targetId": "93646057-b475-4a33-83e5-c727d048208b",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "99d42454-4e56-4706-804a-b2fe8c4713e2",
+        "date": "2026-08-27T19:32:46Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17377",
+        "customerId": "224c76b9-70ba-4122-9b9b-edbc3320230f",
+        "customerName": "Mobile Truck & Trailer Repair Blackfoot",
+        "dueDate": "2026-09-26T19:32:46Z",
+        "daysPastDue": 45,
+        "amountCents": 72035,
+        "openBalanceCents": 72035,
+        "link": {
+         "kind": "work_order",
+         "targetId": "106958d8-16ef-45a6-927f-fbfc305ffa1f",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "023402eb-206e-4a9b-8260-b42cdb330a9a",
+      "name": "Mobile Truck & Trailer Repair Island Lake",
+      "phone": "821-618-1508",
+      "creditTerm": "Net 30",
+      "amountCents": 148390,
+      "openBalanceCents": 148390,
+      "rowsNumber": 2,
+      "rows": [
+       {
+        "documentId": "894f9ac3-414c-4ea7-85f1-9cdd5c8a780f",
+        "date": "2026-08-27T15:04:20Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17102",
+        "customerId": "023402eb-206e-4a9b-8260-b42cdb330a9a",
+        "customerName": "Mobile Truck & Trailer Repair Island Lake",
+        "dueDate": "2026-09-26T15:04:20Z",
+        "daysPastDue": 45,
+        "amountCents": 117944,
+        "openBalanceCents": 117944,
+        "link": {
+         "kind": "work_order",
+         "targetId": "f3fcb03d-970c-4c83-a95e-fea4586bedfd",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "5269b881-73a9-4f38-834a-34085e4db573",
+        "date": "2026-08-28T13:16:44Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17530",
+        "customerId": "023402eb-206e-4a9b-8260-b42cdb330a9a",
+        "customerName": "Mobile Truck & Trailer Repair Island Lake",
+        "dueDate": "2026-09-27T13:16:44Z",
+        "daysPastDue": 44,
+        "amountCents": 30446,
+        "openBalanceCents": 30446,
+        "link": {
+         "kind": "work_order",
+         "targetId": "eeb0effa-2b05-48bc-b48d-eb5fc7e62cb3",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+      "name": "Monroe Truck Service & Repair",
+      "phone": "733-101-4929",
+      "creditTerm": "Net 60",
+      "amountCents": 8181715,
+      "openBalanceCents": 8181715,
+      "rowsNumber": 14,
+      "rows": [
+       {
+        "documentId": "524a0437-2df9-4e9a-ae17-a4fc5b8d79c0",
+        "date": "2026-04-10T15:56:29Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-14129",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-06-09T15:56:29Z",
+        "daysPastDue": 154,
+        "amountCents": 125446,
+        "openBalanceCents": 125446,
+        "link": {
+         "kind": "work_order",
+         "targetId": "3727b1c9-c8a8-427d-8d3d-fc1f785d1b88",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "c3d26a25-2c46-4a90-ba8c-f43cd9d2cf64",
+        "date": "2026-06-25T14:29:21Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16024",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-08-24T14:29:21Z",
+        "daysPastDue": 78,
+        "amountCents": 604643,
+        "openBalanceCents": 604643,
+        "link": {
+         "kind": "work_order",
+         "targetId": "c9234baf-703c-4ce3-8e85-f5fd90419020",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "286e3a45-e876-4c28-8e1f-1b40aef3e519",
+        "date": "2026-06-29T19:06:40Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16175",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-08-28T19:06:40Z",
+        "daysPastDue": 74,
+        "amountCents": 206206,
+        "openBalanceCents": 206206,
+        "link": {
+         "kind": "work_order",
+         "targetId": "df5309bf-6f61-40e4-8afb-d4a50331d37e",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "03e59ddd-fa6b-4363-ab1a-8311bd758c6b",
+        "date": "2026-06-30T06:00:00Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16252",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-08-29T06:00:00Z",
+        "daysPastDue": 73,
+        "amountCents": 37073,
+        "openBalanceCents": 37073,
+        "link": {
+         "kind": "work_order",
+         "targetId": "23a11d38-5f1c-4e27-84c5-63c4580db7a4",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "e667b775-36b4-4b7d-a22d-c1a881cb4693",
+        "date": "2026-06-30T06:00:00Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16305",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-08-29T06:00:00Z",
+        "daysPastDue": 73,
+        "amountCents": 10543,
+        "openBalanceCents": 10543,
+        "link": {
+         "kind": "work_order",
+         "targetId": "51092015-0d58-4dc6-a31e-5f0ebd523abe",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "bfa87109-2fc0-4bc1-a5c1-4b0ac954033a",
+        "date": "2026-07-07T22:15:49Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-15811",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-09-05T22:15:49Z",
+        "daysPastDue": 66,
+        "amountCents": 861753,
+        "openBalanceCents": 861753,
+        "link": {
+         "kind": "work_order",
+         "targetId": "c29e7617-cce5-418f-8d8a-00145f817737",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "4ed417b5-05ef-4e4b-a6b9-d35287450f5e",
+        "date": "2026-07-08T20:08:06Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16332",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-09-06T20:08:06Z",
+        "daysPastDue": 65,
+        "amountCents": 262905,
+        "openBalanceCents": 262905,
+        "link": {
+         "kind": "work_order",
+         "targetId": "7165459f-4bd2-4cb9-8084-6d0309934023",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "2cafb4bc-06f8-4eea-80a2-231acce7ae60",
+        "date": "2026-08-26T19:22:31Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16666",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-10-25T19:22:31Z",
+        "daysPastDue": 16,
+        "amountCents": 2313604,
+        "openBalanceCents": 2313604,
+        "link": {
+         "kind": "work_order",
+         "targetId": "c9751c09-8039-4f1c-8e0d-e3d1eeed671a",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "56f0840f-0796-438f-b306-2ad784f93afe",
+        "date": "2026-08-26T19:37:14Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17461",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-10-25T19:37:14Z",
+        "daysPastDue": 16,
+        "amountCents": 78300,
+        "openBalanceCents": 78300,
+        "link": {
+         "kind": "work_order",
+         "targetId": "3b624274-8c8f-4120-bbf4-686ad6af85ec",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "71a97dfa-0cc2-4aa7-bcb0-d7dea70e08bd",
+        "date": "2026-08-27T12:34:19Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16978",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-10-26T12:34:19Z",
+        "daysPastDue": 15,
+        "amountCents": 2155054,
+        "openBalanceCents": 2155054,
+        "link": {
+         "kind": "work_order",
+         "targetId": "9a814b30-933e-4c2b-9e8c-5f7fc9c4a8ad",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "ff7217cc-760e-4ea4-bdcc-718737d1dbbd",
+        "date": "2026-08-27T15:12:39Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17491",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-10-26T15:12:39Z",
+        "daysPastDue": 15,
+        "amountCents": 156445,
+        "openBalanceCents": 156445,
+        "link": {
+         "kind": "work_order",
+         "targetId": "e3fe03fd-960c-45b1-ab55-f92e241b85b3",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "e9c66dd0-60dc-4b76-8c56-eddccba1dcc1",
+        "date": "2026-08-31T15:54:58Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17387",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-10-30T15:54:58Z",
+        "daysPastDue": 11,
+        "amountCents": 828534,
+        "openBalanceCents": 828534,
+        "link": {
+         "kind": "work_order",
+         "targetId": "e314f2ba-246d-4d56-baf4-39527043ea2c",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "9fe6d3db-0c95-4297-8b36-e1d2e6c0bd37",
+        "date": "2026-08-31T17:30:05Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-17521",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-10-30T17:30:05Z",
+        "daysPastDue": 11,
+        "amountCents": 437198,
+        "openBalanceCents": 437198,
+        "link": {
+         "kind": "work_order",
+         "targetId": "ccca693e-490c-4745-8edf-5f9bff6b70df",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       },
+       {
+        "documentId": "c0208a69-9b92-47e4-a077-2e049fa51357",
+        "date": "2026-08-31T15:40:55Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17518",
+        "customerId": "59882c23-3a6d-4975-acf1-a10859982716",
+        "customerName": "Monroe Truck Service & Repair",
+        "dueDate": "2026-10-30T15:40:55Z",
+        "daysPastDue": 11,
+        "amountCents": 104011,
+        "openBalanceCents": 104011,
+        "link": {
+         "kind": "work_order",
+         "targetId": "c623ae7d-f005-40e4-a659-080924db23cb",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "48bac1a1-8ffb-4d23-b293-80e01fdae432",
+      "name": "Needles Truck & Equipment Repair",
+      "phone": "698-653-3811",
+      "creditTerm": "Net 30",
+      "amountCents": 48753,
+      "openBalanceCents": 48753,
+      "rowsNumber": 2,
+      "rows": [
+       {
+        "documentId": "ce3b3c89-adc6-4300-b5e7-150b35f749bb",
+        "date": "2026-08-14T15:12:15Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17254",
+        "customerId": "48bac1a1-8ffb-4d23-b293-80e01fdae432",
+        "customerName": "Needles Truck & Equipment Repair",
+        "dueDate": "2026-09-13T15:12:15Z",
+        "daysPastDue": 58,
+        "amountCents": 5478,
+        "openBalanceCents": 5478,
+        "link": {
+         "kind": "work_order",
+         "targetId": "b5b14ff2-621f-4bbd-97b8-785690fe87f8",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "39310f0f-69f3-40a7-89f2-8a93a8b3244c",
+        "date": "2026-08-26T20:00:33Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17443",
+        "customerId": "48bac1a1-8ffb-4d23-b293-80e01fdae432",
+        "customerName": "Needles Truck & Equipment Repair",
+        "dueDate": "2026-09-25T20:00:33Z",
+        "daysPastDue": 46,
+        "amountCents": 43275,
+        "openBalanceCents": 43275,
+        "link": {
+         "kind": "work_order",
+         "targetId": "35adf52b-96f3-434a-a3bc-489bba5bca6c",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "41c50915-6037-40b6-9dc2-24abea75d59f",
+      "name": "North Kensington Truck and Trailer Repair",
+      "phone": "411-077-3941",
+      "creditTerm": "COD",
+      "amountCents": -206266,
+      "openBalanceCents": -206266,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "32359d90-d41c-475b-84ac-368f3fefd068",
+        "date": "2025-04-28T10:12:43Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Credit Memo",
+        "documentNumber": "CM11315-395",
+        "customerId": "41c50915-6037-40b6-9dc2-24abea75d59f",
+        "customerName": "North Kensington Truck and Trailer Repair",
+        "dueDate": "2025-04-28T10:12:43Z",
+        "daysPastDue": 561,
+        "amountCents": -206266,
+        "openBalanceCents": -206266,
+        "link": null
+       }
+      ]
+     },
+     {
+      "customerId": "e05af6cf-bade-4cfa-adc9-161dc79d9400",
+      "name": "Oakland City Truck & Trailer Repair",
+      "phone": "603-072-7710",
+      "creditTerm": "COD",
+      "amountCents": 9826,
+      "openBalanceCents": 9826,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "69c9020f-84d8-4108-97c4-fd5fa9d6f4fb",
+        "date": "2025-07-23T20:33:58Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-8848",
+        "customerId": "e05af6cf-bade-4cfa-adc9-161dc79d9400",
+        "customerName": "Oakland City Truck & Trailer Repair",
+        "dueDate": "2025-07-23T20:33:58Z",
+        "daysPastDue": 475,
+        "amountCents": 9826,
+        "openBalanceCents": 9826,
+        "link": {
+         "kind": "work_order",
+         "targetId": "bb59f24b-961a-4262-9d9b-e08866f7923a",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "e2300eb4-4c7c-40f3-87e0-7e46ab276158",
+      "name": "Perkasie Truck Repair",
+      "phone": "365-465-7621",
+      "creditTerm": "Net 60",
+      "amountCents": 381730,
+      "openBalanceCents": 381730,
+      "rowsNumber": 1,
+      "rows": [
+       {
+        "documentId": "3d851b2c-80a7-4795-9595-76bf2ed0c3b1",
+        "date": "2026-08-13T16:29:22Z",
+        "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+        "locationName": "Staging Heavy Duty - 9919",
+        "transactionType": "Invoice",
+        "documentNumber": "S2-16874",
+        "customerId": "e2300eb4-4c7c-40f3-87e0-7e46ab276158",
+        "customerName": "Perkasie Truck Repair",
+        "dueDate": "2026-10-12T16:29:22Z",
+        "daysPastDue": 29,
+        "amountCents": 381730,
+        "openBalanceCents": 381730,
+        "link": {
+         "kind": "work_order",
+         "targetId": "47e462c7-1a9e-4a2d-9f3f-66cfe0c7b6a7",
+         "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+        }
+       }
+      ]
+     },
+     {
+      "customerId": "379c5194-aa31-4283-bc10-32c551e3477f",
+      "name": "Rockaway Mobile Truck Repair",
+      "phone": "876-560-8696",
+      "creditTerm": "Net 30",
+      "amountCents": 60414,
+      "openBalanceCents": 60414,
+      "rowsNumber": 3,
+      "rows": [
+       {
+        "documentId": "e3c39f34-0114-4172-9386-c98d87edcb74",
+        "date": "2026-08-11T22:02:40Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17169",
+        "customerId": "379c5194-aa31-4283-bc10-32c551e3477f",
+        "customerName": "Rockaway Mobile Truck Repair",
+        "dueDate": "2026-09-10T22:02:40Z",
+        "daysPastDue": 61,
+        "amountCents": 15225,
+        "openBalanceCents": 15225,
+        "link": {
+         "kind": "work_order",
+         "targetId": "8b0f3105-b294-43d8-b0ab-eb3594d58bfb",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "cd856e25-f9a6-424b-ac0b-a0b473732ab4",
+        "date": "2026-08-21T17:19:19Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17379",
+        "customerId": "379c5194-aa31-4283-bc10-32c551e3477f",
+        "customerName": "Rockaway Mobile Truck Repair",
+        "dueDate": "2026-09-20T17:19:19Z",
+        "daysPastDue": 51,
+        "amountCents": 19114,
+        "openBalanceCents": 19114,
+        "link": {
+         "kind": "work_order",
+         "targetId": "a9a05792-4e9a-4a95-9d1c-160dff7907f8",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       },
+       {
+        "documentId": "d5d0aeaf-1e74-46ab-9e9e-7896e47d3c95",
+        "date": "2026-08-31T15:41:49Z",
+        "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+        "locationName": "Staging Lethbridge - 4310",
+        "transactionType": "Invoice",
+        "documentNumber": "S3-17537",
+        "customerId": "379c5194-aa31-4283-bc10-32c551e3477f",
+        "customerName": "Rockaway Mobile Truck Repair",
+        "dueDate": "2026-09-30T15:41:49Z",
+        "daysPastDue": 41,
+        "amountCents": 26075,
+        "openBalanceCents": 26075,
+        "link": {
+         "kind": "work_order",
+         "targetId": "b9411910-a623-4500-b607-0dff93031f48",
+         "workplaceId": "f8a8b802-7780-4b16-bf10-343caeb616b2"
+        }
+       }
+      ]
+     }
+    ],
+    "totals": {
+     "amountCents": 49153602,
+     "openBalanceCents": 46334970,
+     "documentCount": 203
+    },
+    "pagination": {
+     "sortBy": "date",
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 30,
+     "rowsNumber": 44
+    }
+   }
+  }
+ }
+]

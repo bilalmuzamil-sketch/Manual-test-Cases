@@ -1,0 +1,108 @@
+[
+ {
+  "t": 1794360898455,
+  "m": "GET",
+  "u": "https://sv11315api.qa.shopview.com/api/reporting/individual-punch-clock/today?range=today",
+  "st": 200,
+  "body": {
+   "data": {
+    "collection": [],
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 100
+    }
+   }
+  }
+ },
+ {
+  "t": 1794360898646,
+  "m": "GET",
+  "u": "https://sv11315api.qa.shopview.com/api/reporting/individual-punch-clock/today?range=today",
+  "st": 200,
+  "body": {
+   "data": {
+    "collection": [],
+    "pagination": {
+     "sortBy": null,
+     "descending": false,
+     "page": 1,
+     "rowsPerPage": 100
+    }
+   }
+  }
+ },
+ {
+  "t": 1794360898746,
+  "m": "GET",
+  "u": "https://sv11315api.qa.shopview.com/api/reporting/reports/ar-aging-detail/locations?asOfDate=2026-11-10",
+  "st": 200,
+  "body": {
+   "data": {
+    "collection": [
+     {
+      "id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "name": "Staging Heavy Duty - 9919"
+     },
+     {
+      "id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+      "name": "Staging Lethbridge - 4310"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "t": 1794360899245,
+  "m": "GET",
+  "u": "https://sv11315api.qa.shopview.com/api/reporting/reports/ar-aging-detail?asOfDate=2026-11-10",
+  "st": 200,
+  "body": {
+   "data": {
+    "groups": [
+     {
+      "bucket": "days_91_plus",
+      "label": "91 or more days past due",
+      "rowsNumber": 55,
+      "amountCents": 11578925,
+      "openBalanceCents": 11530026
+     },
+     {
+      "bucket": "days_61_to_90",
+      "label": "61-90 days past due",
+      "rowsNumber": 42,
+      "amountCents": 15103268,
+      "openBalanceCents": 12358535
+     },
+     {
+      "bucket": "days_31_to_60",
+      "label": "31-60 days past due",
+      "rowsNumber": 86,
+      "amountCents": 13968177,
+      "openBalanceCents": 13968177
+     },
+     {
+      "bucket": "days_1_to_30",
+      "label": "1-30 days past due",
+      "rowsNumber": 17,
+      "amountCents": 8589562,
+      "openBalanceCents": 8564562
+     },
+     {
+      "bucket": "current",
+      "label": "Current",
+      "rowsNumber": 5,
+      "amountCents": -74330,
+      "openBalanceCents": -74330
+     }
+    ],
+    "totals": {
+     "amountCents": 49165602,
+     "openBalanceCents": 46346970,
+     "rowsNumber": 205
+    }
+   }
+  }
+ }
+]
