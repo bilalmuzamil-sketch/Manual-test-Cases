@@ -538,3 +538,9 @@
 - The app writes ticked locations as repeated `locationIds=` entries; a hand-edited comma list (`locationIds=a,b`) opens the same selection and stays in the address as typed; a link naming every location opens as "All locations" and the address drops the parameter.
 - Group "Location" cell: one location's name, or "Multiple"; it recomputes from the ticked locations only (LOC MIX: Multiple → Staging Heavy Duty - 9919 when Lethbridge is unticked; totals drop to the Heavy Duty documents).
 - #aging #location #links → L0665, L0666
+
+## L0668 — 2026-11-11 — Create Role: "Invoicing & payments" / "Part sales" View open an "Enable See Financial Data?" dialog
+- On sv11315 Settings > Roles & Permissions > Create Custom Role, ticking View on **Part sales** (and, from p71's log, **Invoicing & payments**) does not tick at once: a dialog "Enable See Financial Data?" — "Part Sales requires See Financial Data. Enable it to grant this permission?" — with Cancel / Enable. Until **Enable** is pressed the box stays unticked and the dialog blocks every later click (p71: 3 of 7 roles failed with click timeouts). `p71_roles.mjs` now presses Enable after each tick.
+- So those roles carry See Financial Data ON by design; a test needing "Invoicing View with financial data off" cannot be built.
+- Roles made (p71, sv11315): ZZAUTOTEST P71 Reports only `2551b1bb-…`, VOM view `5b89f5ff-…`, VOM create-edit `269548a7-…`, Customers view `9711d3a3-…` ("Similar role already exists" → Create Anyway).
+- #roles #permissions #aging → L0637
