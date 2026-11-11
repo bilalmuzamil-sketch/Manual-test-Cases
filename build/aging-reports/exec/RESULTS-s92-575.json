@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s92 C1062575"
+ },
+ "results": {
+  "C1062575": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, as of today, Vendor filter ticked to a new vendor ZZY Types P92 with an unpaid bill ($44.00) and an unused vendor credit ($-5.00), both dated Nov 1, 2026 (10 days ago), the bill due the same day.",
+    "Step 1: \"1-30 days past due (2)\" opens; the bill reads \"Invoice\" and the vendor credit reads \"Vendor Credit\" under Transaction Type; no row reads just \"Credit\".",
+    "Step 2: clicking \"Transaction Type\" puts the small up arrow on it and sorts A to Z: Invoice, then Vendor Credit.",
+    "Step 3: clicking it again turns the arrow down and reverses the order: Vendor Credit, then Invoice."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062575-C1062575-1-bucket.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062575-C1062575-2-sorted-az.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062575-C1062575-3-sorted-za.png"
+   ]
+  }
+ }
+}
