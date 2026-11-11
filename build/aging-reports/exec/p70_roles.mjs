@@ -1,0 +1,28 @@
+// p70_roles.mjs — 11 Nov 2026: discovery for the permission tests (C715425-C715432, C715448, C715474, C715610, C715616).
+// (1) Creates the C715425 role on screen as the case says: Settings > Roles & Permissions > Create Custom Role > "Choose a template" Skip >
+// Role Name "ZZAUTOTEST Aging R+Inv+WO" > Reports switch on (Page Access) > View ticked in "Invoicing & payments" and "Work orders" > Create —
+// recording every request the page sends (the body names the permission keys), the card titles and every switch/checkbox label on the form.
+// (2) Read-only: the links A/R Detail gives each document type (work order / part sale / credit / deposit) with an example per location.
+// Output p70/out.json + pictures.
+import { start } from './lib.mjs'; import { mk } from './api.mjs'; import fs from 'fs';
+const OUT = new URL('./p70/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT, '/administration/roles-permissions'); const p = s.page; const a = mk(p); const o = { reqs: [] };
+const save = () => fs.writeFileSync(OUT + 'out.json', JSON.stringify(o, null, 1)); const ROLE = 'ZZAUTOTEST Aging R+Inv+WO';
+p.on('request', (r) => { if (r.method() !== 'GET' && /\/api\//.test(r.url())) o.reqs.push({ m: r.method(), u: r.url().replace(/^https:\/\/[^/]+/, ''), b: (r.postData() || '').slice(0, 20000) }); });
+p.on('response', async (r) => { if (r.request().method() === 'GET' && /roles|permission/i.test(r.url()) && r.status() === 200) { try { const t = await r.text(); (o.gets ||= []).push({ u: r.url().replace(/^https:\/\/[^/]+/, ''), t: t.slice(0, 6000) }); } catch {} } });
+try { await p.waitForTimeout(3000); o.exists = await p.locator('tr', { hasText: ROLE }).count();
+  if (!o.exists) { await p.getByRole('button', { name: /Create Custom Role/i }).click(); await p.waitForTimeout(1500); await s.shot('01-template'); o.tplDialog = (await p.locator('.q-dialog').last().innerText()).slice(0, 600);
+    await p.locator('.q-dialog').last().getByRole('button', { name: /^Skip$/i }).click(); await p.waitForTimeout(2500); await s.shot('02-form');
+    o.form = await p.evaluate(() => { const out = []; for (const e of document.querySelectorAll('[role=switch], .q-toggle, .q-checkbox, [role=checkbox]')) { const lab = (e.closest('label, .q-item, .row, tr') || e.parentElement).innerText.replace(/\s+/g, ' ').trim().slice(0, 90); const card = e.closest('.q-card, section'); out.push([card ? card.innerText.split('\n')[0].trim().slice(0, 40) : '', lab, e.getAttribute('aria-checked'), e.getAttribute('role') || e.className.slice(0, 20)]); } return out; });
+    o.cards = await p.evaluate(() => [...document.querySelectorAll('.q-card')].map((c) => c.innerText.split('\n').slice(0, 3).join(' / ').slice(0, 120))); save();
+    const nm = p.getByLabel(/Role Name/i).first(); await nm.click(); await nm.type(ROLE); await p.keyboard.press('Tab');
+    const desc = p.getByText('Performance statistics, labor/parts/total reports, and analytics', { exact: true }).first(); await desc.scrollIntoViewIfNeeded();
+    const tg = desc.locator('xpath=ancestor::*[.//*[@role="switch" or contains(@class,"q-toggle")]][1]').locator('[role=switch], .q-toggle').first(); o.repBefore = await tg.getAttribute('aria-checked'); await tg.click(); await p.waitForTimeout(500); o.repAfter = await tg.getAttribute('aria-checked');
+    for (const card of [/Invoicing & payments/i, /Work orders/i]) { const c = p.locator('.q-card').filter({ hasText: card }).first(); await c.scrollIntoViewIfNeeded().catch(() => {}); const v = c.locator('.q-checkbox, [role=checkbox]').filter({ hasText: /^\s*View\s*$/ }).first();
+      const v2 = (await v.count()) ? v : c.getByText('View', { exact: true }).first(); (o.ticks ||= []).push([String(card), await v.count(), await c.innerText().then((t) => t.slice(0, 300)).catch(() => '')]); await v2.click().catch((e) => o.tickErr = String(e).slice(0, 150)); await p.waitForTimeout(400); }
+    await s.shot('03-filled'); save(); await p.getByRole('button', { name: /^Create$/ }).click(); await p.waitForTimeout(3500); await s.shot('04-created'); }
+  const roles = await a.get('/api/organizations/d55bc308-e61a-438d-b5f1-c7a73c89d49f/roles?pagination[rowsPerPage]=100'); o.roles = (roles.j?.data?.collection || roles.j?.data || []).map((r) => ({ id: r.id, name: r.name, n: (r.permissions || r.fe_permissions || []).length }));
+  const mine = o.roles.find((r) => r.name === ROLE); if (mine) { const d = await a.get('/api/organizations/d55bc308-e61a-438d-b5f1-c7a73c89d49f/roles/' + mine.id); o.mine = JSON.stringify(d.j).slice(0, 8000); }
+} catch (e) { o.err = String(e).slice(0, 400); try { await s.shot('error'); } catch {} } save();
+try { const links = {}; for (const b of ['current', 'days_1_to_30', 'days_31_to_60', 'days_61_to_90', 'days_91_plus']) for (let pg = 1; pg < 30; pg++) { const r = await a.get(`/api/reporting/reports/ar-aging-detail/buckets/${b}/rows?asOfDate=2026-11-11&pagination[page]=${pg}&pagination[rowsPerPage]=100`); const c = r.j?.data?.collection || []; for (const x of c) { const k = x.transactionType + ' ' + (x.link ? JSON.stringify(x.link).replace(/[0-9a-f-]{36}/g, '<id>').slice(0, 120) : 'null'); (links[k] ||= []).length < 4 && links[k].push([x.customerName, x.documentNumber, x.locationName, x.date?.slice(0, 10), x.openBalanceCents]); } if (c.length < 100) break; }
+  o.links = links; } catch (e) { o.linkErr = String(e).slice(0, 200); }
+save(); console.log('p70', o.err || 'ok', JSON.stringify({ reqs: o.reqs.map((r) => r.m + ' ' + r.u), roles: (o.roles || []).length, links: Object.keys(o.links || {}) }).slice(0, 1500)); await s.close(); process.exit(0);

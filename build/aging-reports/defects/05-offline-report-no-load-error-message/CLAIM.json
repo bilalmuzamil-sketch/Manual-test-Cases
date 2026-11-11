@@ -1,0 +1,12 @@
+{
+ "claim": "A/R Aging Collection and A/P Aging Summary: with the computer offline, changing the as-of date shows no 'Something went wrong loading this report. Please try again.' message (and no standard error message); the old rows stay under the new date",
+ "proofs": {
+  "positive_control": {"passed": true, "evidence": "p62/02-C715442-2-server-500.png and 05-C715443-2-server-500.png: same page, same date chip, online, with only the report's own data call answered 500 -> 'Something went wrong loading this report. Please try again.' in place of the rows plus the toast 'Ooooops! An error occurred'. The message exists and the screen read sees it."},
+  "tried_through_the_screen": {"passed": true, "evidence": "The as-of date was changed through the As of chip's calendar (filt.mjs asOf) on the real report pages; picture p62/01-C715442-1-offline.png shows the chip reading 'As of: 11/03/2026'."},
+  "waited_and_retried": {"passed": true, "evidence": "Two attempts per report: s78b (11 Nov ~13:40 UTC, offline, as-of changed, no message) and p62 (11 Nov 14:05-14:08 UTC, fresh page, polled 30 s after the change for the message and any toast)."},
+  "checked_for_navigation": {"passed": true, "evidence": "Same report URL and page in the offline picture; single page context, no new tab; the chip shows the new date."},
+  "precondition_read_back": {"passed": true, "evidence": "p62/out.json offline.net: the browser was offline (favicon and analytics calls failed with net::ERR_INTERNET_DISCONNECTED); 3 Nov was never loaded on that fresh page, so no stored answer could stand in; after going back online the date change to today loads 33 rows (after.rows)."},
+  "searched_the_repo": {"passed": true, "evidence": "git grep 'went wrong loading this report' over build/: only our cases, the PRD extract and these probes; draft 04 covers the Detail BUCKET messages (Story 4, SV-11534), not this report-level message (Story 8, SV-11538). JQL to be re-run before the ask."},
+  "asked_what_would_make_this_my_fault": {"passed": true, "evidence": "(1) The date change might not have happened offline - ruled out, the chip reads 11/03/2026. (2) Reading too early - ruled out, 30 s polling. (3) A cached answer - ruled out, 3 Nov never loaded on that page and no report call was even attempted (the request log shows none). (4) The message may need a server answer - that is the finding: the page does not try to load and says nothing, while the rows of the previous date stay under the new date."}
+ }
+}

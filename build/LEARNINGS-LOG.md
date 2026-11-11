@@ -451,3 +451,9 @@
 - d1b measured A/P Detail while its 91+ bucket (11,936 lines) was still loading: the progress bar is an extra `th` the width of the table with no text, so the measure read a 10th blank heading and "headings overlap". Picture 44-apd-light-1536-top shows the bar under the headings and the "•••" loader row.
 - **Fix:** before measuring, wait until no `main thead th` is blank and wider than 600 px and no `.q-linear-progress` is visible, and move the mouse off the top-left chevron (its "Collapse all" tooltip covers the As of chip). `d1_design.mjs` now does both; `D1OUT=<dir> ONLY=<key>` re-measures one report into its own folder.
 - #aging #design #measure #loader → L0650
+
+## L0654 — 2026-11-11 — A tooltip's words in the page are NOT a tooltip on screen: check the picture before "Passed"
+- p63 read `.q-tooltip` text within 3 s of a TAP on A/R Collection's info icon (touch context) and C715449 was recorded Passed — but none of the pictures taken after the tap shows the tooltip. The element existed in the page (perhaps for a flash, or not yet visible) and the reader counted it as shown.
+- **Rule 12 in practice:** for any "X shows" verdict read from the page, require the element's box (width/height > 0), opacity > 0.5, visibility not hidden, AND look at the picture taken at that moment. The Passed was withdrawn within minutes with a Retest result saying so; p63b re-measures every 100 ms with pictures.
+- The hover and keyboard tooltip passes (C715433-C715438) were checked against their pictures the same hour: the tooltip is visible in them.
+- #aging #tooltip #rule12 #touch → L0653
