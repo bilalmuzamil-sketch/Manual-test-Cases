@@ -646,3 +646,12 @@
 - `POST /api/parts-catalogue/add-vendor` needs `tax_id` = the tax UUID (`seedlib.TAX`); with an 82-character name it answered without a vendor id (p49 V40 now logs the raw answer and falls back to shorter names).
 - QA site offline export (C715476): the first message is the site's own "QA env is sleeping - Redirecting…" (L0317), the report's own message ("This report is too large to export…") still shows — compare that one with production.
 - #aging #export #location #trap → L0317, L0682
+
+## L0686 — 2026-11-11 — Before-release comparisons on production: three traps, and never commit a downloaded bundle
+- **The browser's stored "location" decides the reports' default Location filter.** The QA site's own sign-in leaves `localStorage.location = "<current location id>"`, so Sales By Customer / Inventory Value / Work In Progress open on the CURRENT location there; `prod-login-boot.mjs` (API sign-in) leaves none, so production opened "All locations" — a false difference. Set `localStorage.location` to the header's location on production before comparing (pr8 proved both sides then behave the same, incl. "Select all" writing every `locationIds=` into the address).
+- **Production's location list keeps the session's FIRST location ticked after a switch** (header changes, the user menu does not, even after a reload). Switching back to that location is ignored; go to a THIRD location when the test only needs "not location B" (pr6e).
+- **Report CSVs are made by the server** (`GET /api/reporting/reports/<report>/export?format=csv…`), so a front-end code search cannot answer CSV questions; prove server behaviour with data. The apostrophe guard (`'-…`, `'=…`) is PRE-EXISTING: a production part described "-ZZAUTOTEST P98 apostrophe check" exports as `"'-ZZAUTOTEST P98 apostrophe check"` (pr12). Production's export refuses ranges over 366 days.
+- **Inventory Value PDF size:** production printed 2,856 rows (103 pages, ~90 s); the QA site refused 3,627 rows ("This report is too large to export…") and printed 2 rows — bracket with Category filters (q6).
+- **Never commit a code dump:** pr10 saved the QA site's 79 JS chunks under `exec/pr10/qa-js/` and they were pushed (removed next commit; still in history at 660143414). Dumps now go to the scratchpad. A public repo is no place for company code even without keys.
+- `POST /api/parts-catalogue/add-vendor` now answers `201 {"data":[]}` — the vendor IS created; find its id with `GET /api/parts-catalogue/vendors?search=<name>`.
+- #aging #production #compare #trap #csv → L0685, L0682
