@@ -1,0 +1,70 @@
+<h2>Description</h2>
+<p><strong>What the PRD requires:</strong></p>
+<blockquote><p>The PDF uses the app-wide report PDF format, the same as Sales By Customer and Inventory Value: a negative amount prints in brackets with a minus sign, for example "(-$11,111.00)", and dates print as "Nov 04 2026". On screen a negative amount reads "$-11,111.00", as today.</p></blockquote>
+<p><strong>What happens instead:</strong></p>
+<p>On the QA branch, the A/R aging PDFs print every date with a comma and without the leading zero, for example <strong>"Apr 6, 2026"</strong> instead of <strong>"Apr 06 2026"</strong>. The negative amounts are already right, for example <strong>"(-$5.00)"</strong>. Only the dates are wrong.</p>
+<p>For example,</p>
+<ul>
+<li><strong>A/R Aging Detail</strong> PDF: invoice <strong>S3-14144</strong> reads <strong>"Apr 6, 2026"</strong>, due <strong>"May 6, 2026"</strong>; credit memo <strong>CM11315-4209</strong> reads <strong>"Oct 26, 2026"</strong>.</li>
+<li><strong>A/R Aging Collection</strong> PDF: invoice <strong>S11315-17846</strong> reads <strong>"Oct 27, 2026"</strong>.</li>
+<li>On the same site, the <strong>Sales By Customer</strong> PDF already prints <strong>"Nov 10 2026"</strong>, the form the PRD asks for.</li>
+</ul>
+<h2>QA branch vs production</h2>
+<table><thead><tr><th>What you check</th><th>QA branch (new version, v26.45.2-6a8b89c)</th><th>Production today (v26.45.3-f5ba431)</th></tr></thead>
+<tbody>
+<tr><td>Dates in the <strong>A/R Aging Detail</strong> PDF / print</td><td>❌ "Apr 6, 2026", "Oct 26, 2026"</td><td>"Dec 8, 2025" — the older form (production has not had this change yet)</td></tr>
+<tr><td>Dates in the <strong>A/R Aging Collection</strong> PDF / print</td><td>❌ "Oct 27, 2026"</td><td>"Dec 8, 2025" — the older form</td></tr>
+<tr><td>Negative amounts in the A/R PDFs</td><td>✅ "(-$5.00)", as the PRD asks</td><td>"$-12,011.08" — the older form</td></tr>
+<tr><td>Dates in the <strong>Sales By Customer</strong> PDF</td><td>✅ "Nov 10 2026"</td><td>✅ "Nov 02 2026"</td></tr>
+</tbody></table>
+<p>What this shows: the PRD moves the aging PDFs to the date form that production's other report PDFs (Sales By Customer) already use. The QA branch changed the negative amounts but not the dates.</p>
+<p>Production pictures (the QA branch pictures are under the steps below):</p>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="774f4a3d-8b70-4b08-a1f5-74f7eca3f84f" data-collection="upload-user-collection-1343233018" data-alt="PIC3-production-ar-aging-detail-print.png"></div><figcaption>Production — A/R Aging Detail print: dates read "Dec 8, 2025" (captured 10 Nov 2026)</figcaption></figure>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="4d8b01ce-0d3b-45d7-b754-ae5201ea5eef" data-collection="upload-user-collection-1343233018" data-alt="PIC4-production-sales-by-customer-pdf.png"></div><figcaption>Production — Sales By Customer PDF (Expanded View): dates already read "Nov 02 2026" (captured 10 Nov 2026)</figcaption></figure>
+<h2>Steps to Reproduce</h2>
+<h3>Example 1 - A/R Aging Detail</h3>
+<ol start="1">
+<li>Sign in to the QA site as an Admin user at <strong>Staging Heavy Duty - 9919</strong>.</li>
+<li>Open <strong>Reports</strong> → <strong>A/R Aging Detail</strong>. Leave every filter as it opens: <strong>As of: 11/11/2026</strong>, <strong>Customer: All customers</strong>, <strong>Past due: Any</strong>, <strong>Location: All locations</strong>. No test data needs to be created; any open document shows it.</li>
+<li>Click <strong>⋯</strong> at the top right → <strong>Download (PDF)</strong>.</li>
+<li>Open the PDF and read the <strong>Date</strong> and <strong>Due Date</strong> columns.<ul><li>Invoice <strong>S3-14144</strong> (Apollo Beach Truck &amp; Equipment Repair) reads <strong>"Apr 6, 2026"</strong>, due <strong>"May 6, 2026"</strong>.</li><li>Credit memo <strong>CM11315-4209</strong> (ZZAUTOTEST AR R42 Memo Line, page 16) reads <strong>"Oct 26, 2026"</strong>; its amount reads <strong>"(-$5.00)"</strong>, which is right.</li></ul></li>
+</ol>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="09b0705a-98bd-4214-a6b3-0aff35a15db9" data-collection="upload-user-collection-1343233018" data-alt="PIC1-qa-ar-aging-detail-pdf.png"></div><figcaption>QA branch — A/R Aging Detail PDF, page 16: dates print "Oct 26, 2026"; the amount "(-$5.00)" is right</figcaption></figure>
+<h3>Example 2 - A/R Aging Collection</h3>
+<ol start="1">
+<li>Open <strong>Reports</strong> → <strong>A/R Aging Collection</strong>; in the <strong>Customer</strong> filter tick only <strong>ZZAUTOTEST AR R36 Collect X</strong>.</li>
+<li>Click <strong>⋯</strong> → <strong>Download (PDF)</strong> and open the PDF.<ul><li>Invoice <strong>S11315-17846</strong> reads <strong>"Oct 27, 2026"</strong>, due <strong>"Oct 27, 2026"</strong>.</li></ul></li>
+</ol>
+<h3>For comparison - Sales By Customer on the same QA site</h3>
+<ol start="1">
+<li>Open <strong>Sales By Customer</strong> → <strong>⋯</strong> → <strong>Download Expanded View (PDF)</strong>.<ul><li>Its dates read <strong>"Nov 10 2026"</strong>, <strong>"Nov 06 2026"</strong>.</li></ul></li>
+</ol>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="2f0f692b-88e1-4347-8b58-1577f36bbc0e" data-collection="upload-user-collection-1343233018" data-alt="PIC2-qa-sales-by-customer-pdf.png"></div><figcaption>QA branch — Sales By Customer PDF: dates already print "Nov 10 2026"</figcaption></figure>
+<p><strong>Actual Result:</strong></p>
+<ul><li>Dates in the A/R aging PDFs read like "Apr 6, 2026": a comma, and no leading zero on the day.</li><li>All 591 dated lines of the A/R Aging Detail PDF read this way (seen in two separate downloads).</li></ul>
+<p><strong>Expected Result:</strong></p>
+<ul><li>Dates print like "Nov 04 2026", as the PRD says: invoice S3-14144 reads <strong>"Apr 06 2026"</strong>, due <strong>"May 06 2026"</strong>.</li><li>The same form as the Sales By Customer PDF.</li></ul>
+<h2>Environment</h2>
+<ul>
+<li>QA site: <a href="https://sv11315.qa.shopview.com">https://sv11315.qa.shopview.com</a> (build <strong>v26.45.2-6a8b89c</strong>), location <strong>Staging Heavy Duty - 9919</strong>, Admin role. First seen on 11 Nov 2026 at 12:10 UTC; seen again at 12:55 and 12:56 UTC.</li>
+<li>Production: <a href="https://app.shopview.com">https://app.shopview.com</a>, production test account, Admin role. A/R Aging Collection print seen on 11 Nov 2026 at 12:30 UTC (build v26.45.3-f5ba431). The A/R Aging Detail print and the Sales By Customer PDF pictures were taken on 10 Nov 2026 (build v26.45.3-fc08f23); the redeploy to f5ba431 on 11 Nov did not change these reports.</li>
+<li>Checked: the A/R Aging Detail and A/R Aging Collection PDFs. Not checked: the A/P Aging Detail and A/P Unpaid Invoices PDFs.</li>
+</ul>
+<h2>Sources</h2>
+<table><thead><tr><th>Document</th><th>What it says</th><th>Intended by the PRD?</th></tr></thead>
+<tbody>
+<tr><td>PRD "A/R and A/P Report Sorting, Export and Location Filter", <a href="https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=947650561">Confluence page 947650561</a>, version 11 (5 Nov 2026, Chris Ward), S3-R7a</td><td>"The PDF uses the app-wide report PDF format, the same as Sales By Customer and Inventory Value: a negative amount prints in brackets with a minus sign, for example "(-$11,111.00)", and dates print as "Nov 04 2026". On screen a negative amount reads "$-11,111.00", as today."</td><td><strong>Yes</strong> — the PRD asks for dates like "Nov 04 2026"</td></tr>
+<tr><td>The same PRD's change log, 5 Nov 2026</td><td>"S3-R7a added (PDF negative amounts and dates, app-wide format)."</td><td>—</td></tr>
+<tr><td>Developers' QA handoff (SV-11533, edited 11 Nov 2026)</td><td>Now says the PDF prints dates like the screen. This contradicts PRD v11 S3-R7a, which has not been changed. Until the PRD is changed, the PRD is the requirement — a Product decision is needed.</td><td>—</td></tr>
+<tr><td>Production v26.45.3 (the version before this release)</td><td>The A/R aging prints use the older form ("Dec 8, 2025"); the Sales By Customer PDF already prints "Nov 02 2026".</td><td>—</td></tr>
+</tbody></table>
+<div data-type="panel-warning"><p><strong>The QA branch does not do what the PRD asks.</strong> The PRD (version 11, S3-R7a) asks the aging PDFs to print dates like "Nov 04 2026", the same as Sales By Customer. Production's own Sales By Customer PDF already prints that form ("Nov 02 2026"); the QA branch's A/R aging PDFs still print "Apr 6, 2026".</p></div>
+<h2>Test case</h2>
+<ul>
+<li><a href="https://shopview.testrail.io/index.php?/cases/view/1095436">C1095436 Planned change: PDF negatives in brackets, dates as Nov 04 2026</a></li>
+</ul>
+<details><summary>Pictures from the first version of this ticket</summary>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="e4769bf8-edf6-4860-b149-11010b6d788b" data-collection=""></div></figure>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="7ed31fa9-3781-4b85-827e-be7f6d3b4703" data-collection=""></div></figure>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="9180267e-b116-4b95-aba1-b81cab9ef9b3" data-collection=""></div></figure>
+</details>
