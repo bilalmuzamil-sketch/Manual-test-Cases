@@ -492,3 +492,8 @@
 - **Match the Totals row exactly:** `/^\s*Totals(\s|$)/` (and group subtotals by `/^Total for /`). Fixed in `exec/s86_paging.mjs`; earlier runners using `/^Totals?\b/` (s85, s82, sortlib callers) only read A/R Summary or one-vendor lists where it did not bite, but check before reusing them on A/P lists.
 - Also: CSV exports prefix names that start with "-", "=", "@" with an apostrophe ("'-1 Diesel") — compare CSV names to the screen after stripping one leading apostrophe.
 - #aging #reader-trap #csv → L0659
+
+## L0661 — 2026-11-11 — QA lead's note "how to avoid reporting a bug that isn't there", and the ticket it caught (SV-12540)
+- His note (verbatim in `build/skills/06-DEFECT-PREP.md`, last section) is now the standing checklist before any defect is drafted, asked for or answered: measure the claim on the page before/after and quote numbers; "didn't see it" ≠ "didn't happen"; data that makes pass and fail look different (show N then more ⇒ well over 2×N); one check per clause; try to prove yourself wrong; when a developer says "it works", re-measure THEIR way and answer with numbers; keep settling evidence.
+- **Caught:** SV-12540 (filed 11 Nov on his go-ahead) said an open group "shows every document at once" — measured on the SERVER reply (105 of 105 in one answer) with a 105-document group. PRD S1-R8 says the group "shows its first 100 documents, then the next 100 as the user scrolls" — a statement about what is SHOWN. Developer (comment 80909): the page draws 100 and adds 100 at the end, from one fetch; with 105 the last 5 appear just before you reach them. Re-measure queued first (p72: largest real group, DOM rows before/after each scroll, plus a 105 control).
+- #defect #method #aging #SV-12540 → L0660
