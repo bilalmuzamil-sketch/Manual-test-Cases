@@ -1,0 +1,136 @@
+{
+ "reqs": [
+  {
+   "u": "/api/iam/change-location",
+   "b": "{\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"workplace_timezone\":\"America/Edmonton\"}"
+  },
+  {
+   "u": "/api/customers/create",
+   "b": "{\"name\":\"ZZAUTOTEST CREDIT DAY A\"}"
+  },
+  {
+   "u": "/api/contacts/create",
+   "b": "{\"company_id\":\"e12f8cb3-abc7-4524-9fab-9d1685906bde\",\"first_name\":\"ZZ\",\"last_name\":\"Credit\"}"
+  },
+  {
+   "u": "/api/credit-memos",
+   "b": "{\"customerAccountId\":\"1f867d7e-5993-4d60-87ef-9451be629fb2\",\"amount\":50,\"reason\":\"ZZAUTOTEST aging credit dated 5 Nov\\n— Admin ShopView\",\"originKind\":\"manual\",\"originDate\":\"2026-11-05T07:00:00.000Z\"}"
+  }
+ ],
+ "c": {
+  "st": 201,
+  "j": {
+   "data": {
+    "company_id": "e12f8cb3-abc7-4524-9fab-9d1685906bde"
+   }
+  }
+ },
+ "cid": "e12f8cb3-abc7-4524-9fab-9d1685906bde",
+ "contact": "e25ff130-182a-465e-920c-e6f36cb84337",
+ "url": "https://sv11315.qa.shopview.com/customers/e12f8cb3-abc7-4524-9fab-9d1685906bde/work-orders",
+ "form": "Issue Credit\nclose\nevent\nCredit Date\n$\nAmount\nOutcome\nIssue Store Credit\nIssue Refund\nPayment Method\narrow_drop_down\nReason\nCancel\nIssue Refund",
+ "after": "Skip to main content\nShopHub\nexpand_more\nDashboard\nWork Orders\nSchedule\nCustomers\nParts\nReports\nsearch\nSearch customers, work orders, parts...\nCtrl\nK\ntimer\nClock In\nnotifications\nStaging Heavy Duty - 9919\nAS\nZZAUTOTEST CREDIT DAY A\nedit_note\nContacts\n1\nAssets\n0\nMaintenance notifications\ninfo_outline",
+ "rows-days_1_to_30": "[{\"documentId\":\"8ed893aa-0c44-4afa-8d22-589ce3fd8b4b\",\"date\":\"2026-11-05T07:00:00Z\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"locationName\":\"Staging Heavy Duty - 9919\",\"transactionType\":\"Credit Memo\",\"documentNumber\":\"CM11315-4193\",\"customerId\":\"e12f8cb3-abc7-4524-9fab-9d1685906bde\",\"customerName\":\"ZZAUTOTEST CREDIT DAY A\",\"dueDate\":\"2026-11-05T07:00:00Z\",\"daysPastDue\":5,\"amountCents\":-5000,\"openBalanceCents\":-5000,\"link\":null}]",
+ "rows-current": "[]",
+ "dreqs": [
+  {
+   "u": "/api/iam/change-location",
+   "b": "{\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"workplace_timezone\":\"America/Edmonton\"}"
+  },
+  {
+   "u": "/api/vehicles/create",
+   "b": "{\"company_id\":\"e12f8cb3-abc7-4524-9fab-9d1685906bde\",\"customer_id\":\"e25ff130-182a-465e-920c-e6f36cb84337\",\"unit\":\"ZZ75145\",\"vin\":\"ZZVIN367475145\"}"
+  },
+  {
+   "u": "/api/work-orders/create",
+   "b": "{\"company_id\":\"e12f8cb3-abc7-4524-9fab-9d1685906bde\",\"vehicle_id\":\"91d23b0b-a034-4361-8768-16e74fc52976\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"start_date\":\"2026-11-11\",\"is_vehicle_here\":true,\"mileage\":1000}"
+  },
+  {
+   "u": "/api/work-orders/change-contact",
+   "b": "{\"work_order_id\":\"92c4a54c-6cbe-418c-9125-78f545021a4c\",\"vehicle_id\":\"91d23b0b-a034-4361-8768-16e74fc52976\",\"contact_id\":\"e25ff130-182a-465e-920c-e6f36cb84337\",\"update_vehicle\":true}"
+  },
+  {
+   "u": "/api/work-orders/92c4a54c-6cbe-418c-9125-78f545021a4c/lines/create-from-canned-line",
+   "b": "{\"canned_line_id\":\"3a212080-8c00-4981-a46d-de91db43f3e7\",\"status\":\"authorized\"}"
+  },
+  {
+   "u": "/api/deposits",
+   "b": "{\"workOrderId\":\"92c4a54c-6cbe-418c-9125-78f545021a4c\",\"amount\":200,\"paymentMethod\":\"CASH\",\"depositDate\":\"2026-11-05T07:00:00.000Z\",\"memo\":\"Deposit for Work Order S11315-17613\"}"
+  },
+  {
+   "u": "/api/work-orders/lines/change-story",
+   "b": "{\"line_id\":\"0c6de0ca-c6d5-4c6b-8bbd-43fbfe91ab56\",\"tech_story\":\"ZZAUTOTEST aging seed\",\"work_order_id\":\"92c4a54c-6cbe-418c-9125-78f545021a4c\"}"
+  },
+  {
+   "u": "/api/work-orders/lines/change-status",
+   "b": "{\"line_id\":\"0c6de0ca-c6d5-4c6b-8bbd-43fbfe91ab56\",\"work_order_id\":\"92c4a54c-6cbe-418c-9125-78f545021a4c\",\"status\":\"complete\"}"
+  },
+  {
+   "u": "/api/work-orders/change-required-data",
+   "b": "{\"work_order_id\":\"92c4a54c-6cbe-418c-9125-78f545021a4c\",\"data\":{\"vin\":\"ZZVIN367475145\"}}"
+  },
+  {
+   "u": "/api/work-orders/change-status",
+   "b": "{\"id\":\"92c4a54c-6cbe-418c-9125-78f545021a4c\",\"status\":\"complete\",\"work_order_part_cost\":0,\"work_order_labour_cost\":150,\"work_order_lines\":[{\"isLine\":true,\"isInProgress\":false,\"line_id\":\"0c6de0ca-c6d5-4c6b-8bbd-43fbfe91ab56\",\"number\":1,\"ID\":\"0c6de0ca-c6d5-4c6b-8bbd-43fbfe91ab56\",\"name\":\" Service - Wheels off trailer tri-axle\",\"work_order_number\":\"S-17613\",\"description\":\"Annual inspection\",\"deletable\":false,\"deletable_reason\":\"You cannot delete a line that is completed. Please uncomplete the line first\",\"editable\":false,\"can_decline\":false,\"cost\":150,\"total_parts_sell_price\":\"0.00\",\"parts\":[],\"part_requests\":[],\"part_return_requests\":[],\"estimate\":90,\"tech\":\"undefined undefined\",\"task_records\":[],\"tech_times\":[],\"tasks\":[{\"id\":\"aaecbca6-c00a-470f-bf5f-994362440e68\",\"line_id\":\"0c6de0ca-c6d5-4c6b-8bbd-43fbfe91ab56\",\"tech_assigned_id\":null,\"time_estimate\":0,\"tech_time\":0,\"first_name\":\"Unassig"
+  },
+  {
+   "u": "/api/invoices/create",
+   "b": "{\"invoice_number\":\"S11315-17613\",\"due_date\":\"2026-11-05T19:00:00.000Z\",\"discount\":0,\"cost\":\"165.75\",\"customer_id\":\"e25ff130-182a-465e-920c-e6f36cb84337\",\"company_id\":\"e12f8cb3-abc7-4524-9fab-9d1685906bde\",\"work_order_id\":\"92c4a54c-6cbe-418c-9125-78f545021a4c\",\"work_place_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"work_order_part_cost\":\"0.00\",\"work_order_labour_cost\":\"150.00\",\"time_estimate\":\"0.00\",\"include_declined\":false,\"created_on\":\"2026-11-05T19:00:00.000Z\",\"tax\":{\"id\":\"819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b\",\"name\":\"GST\",\"isEnabledLabor\":true,\"isEnabledParts\":true,\"isEnabledShopSupplies\":true,\"isDefault\":true,\"isDeletable\":false,\"rates\":[{\"id\":\"f98f5826-14d7-475e-8d1b-3fc10bf400bc\",\"name\":\"GST\",\"percentage\":5,\"amount\":8.29}],\"rateTotal\":5,\"amountTotal\":8.29}}"
+  }
+ ],
+ "depWo": "92c4a54c-6cbe-418c-9125-78f545021a4c",
+ "depForm": "Create Deposit\nclose\nevent\nDeposit Date\nPayment Method\narrow_drop_down\n$\nDeposit Amount\nReference Number\nMemo\nCancel\nRecord Deposit",
+ "pmMenu": "check\n EFT\ncheck\n Visa\ncheck\n Cash\ncheck\n E-transfer\ncheck\n Check\ncheck\n Gift card\ncheck\n Amex\ncheck\n Debit\ncheck\n Payroll deduction\ncheck\n Mastercard\ncheck\n Applied credit\ncheck\n Exmerce",
+ "d-2026-11-05-days_1_to_30": [],
+ "d-2026-11-05-current": [
+  [
+   "Credit Memo",
+   "CM11315-4193",
+   "2026-11-05T07:00:00Z",
+   0,
+   -5000
+  ],
+  [
+   "Invoice",
+   "S11315-17613",
+   "2026-11-05T19:00:00Z",
+   0,
+   17404
+  ]
+ ],
+ "d-2026-11-06-days_1_to_30": [
+  [
+   "Credit Memo",
+   "CM11315-4193",
+   "2026-11-05T07:00:00Z",
+   1,
+   -5000
+  ],
+  [
+   "Invoice",
+   "S11315-17613",
+   "2026-11-05T19:00:00Z",
+   1,
+   17404
+  ]
+ ],
+ "d-2026-11-06-current": [],
+ "d-2026-11-10-days_1_to_30": [
+  [
+   "Credit Memo",
+   "CM11315-4193",
+   "2026-11-05T07:00:00Z",
+   5,
+   -5000
+  ]
+ ],
+ "d-2026-11-10-current": [
+  [
+   "Deposit",
+   "DEP11315-4709",
+   "2026-11-11T03:25:51Z",
+   0,
+   -2596
+  ]
+ ]
+}

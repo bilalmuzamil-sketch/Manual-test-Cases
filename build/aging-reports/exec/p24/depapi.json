@@ -1,0 +1,34 @@
+{
+ "acct": "1f867d7e-5993-4d60-87ef-9451be629fb2",
+ "dep": [
+  "Deposit",
+  "DEP11315-4709",
+  "2026-11-11T03:25:51Z",
+  0,
+  -2596
+ ],
+ "GET /api/deposits?customerAccountId=1f867d7e-5993-4d60-87ef-9451be629fb2": [
+  405,
+  "{\"errors\":[{\"error\":\"No route found for \\\"GET http://sv11315api.qa.shopview.com/api/deposits\\\": Method Not Allowed (Allow: POST)\"}]}"
+ ],
+ "GET /api/deposits?companyId=e12f8cb3-abc7-4524-9fab-9d1685906bde": [
+  405,
+  "{\"errors\":[{\"error\":\"No route found for \\\"GET http://sv11315api.qa.shopview.com/api/deposits\\\": Method Not Allowed (Allow: POST)\"}]}"
+ ],
+ "GET /api/customers/e12f8cb3-abc7-4524-9fab-9d1685906bde/deposits": [
+  404,
+  "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+ ],
+ "GET /api/deposits/list?customerAccountId=1f867d7e-5993-4d60-87ef-9451be629fb2": [
+  405,
+  "{\"errors\":[{\"error\":\"No route found for \\\"GET http://sv11315api.qa.shopview.com/api/deposits/list\\\": Method Not Allowed (Allow: DELETE)\"}]}"
+ ],
+ "POST customerAccountId": [
+  400,
+  "{\"errors\":[{\"work_order_id\":\"Missing required parameter\"}]}"
+ ],
+ "POST companyId": [
+  400,
+  "{\"errors\":[{\"work_order_id\":\"Missing required parameter\"}]}"
+ ]
+}

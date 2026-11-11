@@ -1,0 +1,20 @@
+[
+ {"id":"C715288","report":"ars","acts":[{"th":"Customer"},{"th":"Customer"}],"full":true},
+ {"id":"C715291","report":"aps","acts":[{"th":"Vendor"},{"th":"Vendor"}],"full":true},
+ {"id":"C715585","report":"ars","acts":[{"th":"Location"},{"th":"Location"},{"th":"Location"}],"full":true},
+ {"id":"C715586","report":"aps","acts":[{"th":"Location"},{"th":"Location"},{"th":"Location"}],"full":true},
+ {"id":"C715587","report":"ard","pre":[{"expand":"1-30 days past due"}],"acts":[{"th":"Customer Full Name"},{"th":"Customer Full Name"}],"segs":["^1-30 days past due"]},
+ {"id":"C715589","report":"apd","pre":[{"expand":"1-30 days past due"}],"acts":[{"th":"Vendor Name"},{"th":"Vendor Name"}],"segs":["^1-30 days past due"]},
+ {"id":"C715294","report":"ard","pre":[{"expand":"1-30 days past due"}],"acts":[{"th":"Location"},{"th":"Location"},{"th":"Location"},{"th":"Transaction Type"},{"th":"Transaction Type"}],"segs":["^1-30 days past due"]},
+ {"id":"C715302","report":"apd","pre":[{"expand":"1-30 days past due"}],"acts":[{"th":"Location"},{"th":"Location"},{"th":"Location"},{"th":"Transaction Type"},{"th":"Transaction Type"}],"segs":["^1-30 days past due"]},
+ {"id":"C715297","report":"ard","pre":[{"expand":"1-30 days past due"}],"acts":[{"th":"ID"},{"th":"ID"},{"th":"Due Date"},{"th":"Due Date"}],"segs":["^1-30 days past due"]},
+ {"id":"C715298","report":"arc","pre":[{"expand":"ZZAUTOTEST AR Customer A \\("}],"acts":[{"th":"Location"},{"th":"Location"},{"th":"Location"},{"th":"Transaction Type"},{"th":"Transaction Type"}],"segs":["^ZZAUTOTEST AR Customer A \\("]},
+ {"id":"C715306","report":"apu","pre":[{"expand":"ZZAUTOTEST AP Vendor A \\("}],"acts":[{"th":"Location"},{"th":"Location"},{"th":"Location"},{"th":"Transaction Type"},{"th":"Transaction Type"}],"segs":["^ZZAUTOTEST AP Vendor A \\("]},
+ {"id":"C715313","report":"arc","pre":[{"expand":"ZZAUTOTEST AR Customer A \\("},{"expand":"ZZAUTOTEST S1R5 Alpha \\("}],"acts":[{"th":"Open Balance"},{"th":"Open Balance"},{"th":"Date"}],"segs":["^ZZAUTOTEST AR Customer A \\(","^ZZAUTOTEST S1R5 Alpha \\("],"groups":"^ZZAUTOTEST (AR Customer A|BACKDATE PROBE|S1R5 Alpha) \\("},
+ {"id":"C715315","report":"apu","pre":[{"expand":"ZZAUTOTEST AP Vendor A \\("},{"expand":"ZZAUTOTEST S1R5 V Alpha \\("}],"acts":[{"th":"Open Balance"},{"th":"Open Balance"},{"th":"Date"}],"segs":["^ZZAUTOTEST AP Vendor A \\(","^ZZAUTOTEST S1R5 V Alpha \\("],"groups":"^ZZAUTOTEST (AP Vendor A|NEG PASTDUE V |S1R5 V Alpha) \\("},
+ {"id":"C715590","report":"apu","pre":[{"expand":"ZZAUTOTEST S1R5 V Alpha \\("}],"acts":[{"th":"Vendor Name"},{"hover":"Vendor Name"}],"segs":["^ZZAUTOTEST S1R5 V Alpha \\("]},
+ {"id":"C715324","report":"arc","pre":[{"expand":"ZZAUTOTEST AR Customer A \\("}],"acts":[{"th":"Open Balance"},{"menu":"Sales By Customer"},{"menu":"A/R Aging Collection","snap":true},{"expand":"ZZAUTOTEST AR Customer A \\("}],"segs":["^ZZAUTOTEST AR Customer A \\("]},
+ {"id":"C715325","report":"apd","pre":[{"expand":"1-30 days past due"}],"acts":[{"th":"Open Balance"},{"menu":"Sales By Customer"},{"menu":"A/P Aging Detail","snap":true},{"expand":"1-30 days past due"}],"segs":["^1-30 days past due"]},
+ {"id":"C715592","report":"ard","pre":[{"expand":"1-30 days past due"}],"acts":[{"th":"Open Balance"},{"menu":"Sales By Customer"},{"menu":"A/R Aging Detail","snap":true},{"expand":"1-30 days past due"}],"segs":["^1-30 days past due"]},
+ {"id":"C715594","report":"apu","pre":[{"expand":"ZZAUTOTEST AP Vendor A \\("}],"acts":[{"th":"Open Balance"},{"menu":"Sales By Customer"},{"menu":"A/P Unpaid Invoices","snap":true},{"expand":"ZZAUTOTEST AP Vendor A \\("}],"segs":["^ZZAUTOTEST AP Vendor A \\("]}
+]

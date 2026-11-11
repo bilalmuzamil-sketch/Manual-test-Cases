@@ -1,0 +1,50 @@
+{
+ "reqs": [
+  {
+   "u": "/api/iam/change-location",
+   "b": "{\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"workplace_timezone\":\"America/Edmonton\"}"
+  },
+  {
+   "u": "/api/parts-catalogue/add-vendor",
+   "b": "{\"name\":\"ZZAUTOTEST NEG PASTDUE V\",\"email\":null,\"telephone\":null,\"address_1\":null,\"address_2\":null,\"city\":null,\"postal_code\":null,\"state_or_province\":null,\"country_code\":\"CA\",\"notes\":null,\"website\":null,\"credit_term\":\"COD\",\"credit_limit\":0,\"tax_id\":\"0c47b1fb-38bb-4788-8719-6900c365e34c\"}"
+  },
+  {
+   "u": "/api/user/recent-entities/touch",
+   "b": "{\"type\":\"vendors\",\"id\":\"b39392de-ad74-448d-b0b0-a65334245987\"}"
+  },
+  {
+   "u": "/api/inventory/orders/create",
+   "b": "{\"vendor_id\":\"b39392de-ad74-448d-b0b0-a65334245987\",\"note\":null,\"items\":[{\"core_charge\":null,\"core_id\":null,\"ext_price\":100,\"id\":\"1d8e7623-a406-47ee-acf7-764f8858e82b\",\"is_core\":false,\"part_number\":\"ZZAGING-309043\",\"price\":100,\"price_decimal\":100,\"quantity\":\"1\",\"manufacturer_id\":null,\"category\":\"b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d\",\"description\":\"ZZAUTOTEST aging seed part\",\"itemsPerPackage\":null}]}"
+  },
+  {
+   "u": "/api/inventory/orders/accept",
+   "b": "{\"id\":\"d2718e1e-3bd5-49fd-87ac-f55b76a8e3e2\",\"invoiceNumber\":\"ZZNEG-A\",\"invoiceDate\":\"2026-10-20T18:00:00.000Z\",\"note\":\"ZZAUTOTEST aging seed\",\"items\":\"[{\\\"order_item_id\\\":\\\"64a8924f-cfcc-48bf-b8e4-9f4ed8d67ccb\\\",\\\"part_number\\\":\\\"ZZAGING-309043\\\",\\\"price_display\\\":\\\"100.00\\\",\\\"price\\\":100,\\\"price_decimal\\\":\\\"100.00000\\\",\\\"sell_price\\\":100,\\\"cost\\\":0,\\\"total_cost\\\":\\\"100.00\\\",\\\"total_cost_decimal\\\":100,\\\"quantity_ordered\\\":\\\"1.00\\\",\\\"already_received\\\":\\\"0.00\\\",\\\"quantity_remaining\\\":1,\\\"vendor_name\\\":null,\\\"itemsPerPackage\\\":null,\\\"ioi_vendor_name\\\":\\\"ZZAUTOTEST NEG PASTDUE V\\\",\\\"manufacturer_id\\\":null,\\\"manufacturer_name\\\":null,\\\"category\\\":\\\"b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d\\\",\\\"category_label\\\":\\\"Uncategorized\\\",\\\"description\\\":\\\"ZZAUTOTEST aging seed part\\\",\\\"part_request_id\\\":null"
+  },
+  {
+   "u": "/api/inventory/orders/create",
+   "b": "{\"vendor_id\":\"b39392de-ad74-448d-b0b0-a65334245987\",\"note\":null,\"items\":[{\"core_charge\":null,\"core_id\":null,\"ext_price\":200,\"id\":\"17b84b74-dd73-4e26-8117-d13f990a9bcb\",\"is_core\":false,\"part_number\":\"ZZAGING-310693\",\"price\":200,\"price_decimal\":200,\"quantity\":\"1\",\"manufacturer_id\":null,\"category\":\"b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d\",\"description\":\"ZZAUTOTEST aging seed part\",\"itemsPerPackage\":null}]}"
+  },
+  {
+   "u": "/api/inventory/orders/accept",
+   "b": "{\"id\":\"55139ef2-331a-4fcc-a196-08a28f78acdd\",\"invoiceNumber\":\"ZZNEG-B\",\"invoiceDate\":\"2026-10-11T18:00:00.000Z\",\"note\":\"ZZAUTOTEST aging seed\",\"items\":\"[{\\\"order_item_id\\\":\\\"33cc0445-598d-4ad7-aa9d-0e7eb9ad9b20\\\",\\\"part_number\\\":\\\"ZZAGING-310693\\\",\\\"price_display\\\":\\\"200.00\\\",\\\"price\\\":200,\\\"price_decimal\\\":\\\"200.00000\\\",\\\"sell_price\\\":200,\\\"cost\\\":0,\\\"total_cost\\\":\\\"200.00\\\",\\\"total_cost_decimal\\\":200,\\\"quantity_ordered\\\":\\\"1.00\\\",\\\"already_received\\\":\\\"0.00\\\",\\\"quantity_remaining\\\":1,\\\"vendor_name\\\":null,\\\"itemsPerPackage\\\":null,\\\"ioi_vendor_name\\\":\\\"ZZAUTOTEST NEG PASTDUE V\\\",\\\"manufacturer_id\\\":null,\\\"manufacturer_name\\\":null,\\\"category\\\":\\\"b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d\\\",\\\"category_label\\\":\\\"Uncategorized\\\",\\\"description\\\":\\\"ZZAUTOTEST aging seed part\\\",\\\"part_request_id\\\":null"
+  }
+ ],
+ "form": "New Vendor\nclose\nName *\nAddress 1\nAddress 2\nCity\nZIP/Postal Code\nTelephone\nEmail\nState/Province\narrow_drop_down\nCountry\nCanada\narrow_drop_down\nCredit Terms\nCOD\narrow_drop_down\n$\nCredit Limit\nTaxes\narrow_drop_down\nNotes\nWebsite\nSave & Close",
+ "ctMenu": "check\n COD\ncheck\n Due on Receipt\ncheck\n Net 7\ncheck\n Net 15\ncheck\n Net 20\ncheck\n Net 30\ncheck\n Net 45\ncheck\n Net 50\ncheck\n Net 60\ncheck\n Net 90\ncheck\n Net 120\ncheck\n Credit Hold",
+ "ctErr": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.q-menu .q-item').filter({ has: getByText('Net 30', { ex",
+ "txMenu": "Exempt (0%)\nGST (5%)\nHST BC (12%)\nZero Rated (0%)\nZero Tax (0%)",
+ "vendor": {
+  "id": "b39392de-ad74-448d-b0b0-a65334245987",
+  "name": "ZZAUTOTEST NEG PASTDUE V"
+ },
+ "vid": "b39392de-ad74-448d-b0b0-a65334245987",
+ "bA": {
+  "orderId": "d2718e1e-3bd5-49fd-87ac-f55b76a8e3e2",
+  "number": "ZZNEG-A"
+ },
+ "bB": {
+  "orderId": "55139ef2-331a-4fcc-a196-08a28f78acdd",
+  "number": "ZZNEG-B"
+ },
+ "rep": "{\"data\":{\"groups\":[{\"bucket\":\"days_91_plus\",\"label\":\"91 or more days past due\",\"rowsNumber\":0,\"amountCents\":0,\"openBalanceCents\":0},{\"bucket\":\"days_61_to_90\",\"label\":\"61-90 days past due\",\"rowsNumber\":0,\"amountCents\":0,\"openBalanceCents\":0},{\"bucket\":\"days_31_to_60\",\"label\":\"31-60 days past due\",\"rowsNumber\":0,\"amountCents\":0,\"openBalanceCents\":0},{\"bucket\":\"days_1_to_30\",\"label\":\"1-30 days past due\",\"rowsNumber\":2,\"amountCents\":30000,\"openBalanceCents\":30000},{\"bucket\":\"current\",\"label\":\"Current\",\"rowsNumber\":0,\"amountCents\":0,\"openBalanceCents\":0}],\"totals\":{\"amountCents\":30000,\"openBalanceCents\":30000,\"rowsNumber\":2}}}"
+}
