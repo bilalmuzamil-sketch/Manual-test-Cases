@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d3b2 C715546"
+ },
+ "results": {
+  "C715546": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of today, light theme, 1440 px, signed in at Staging Heavy Duty - 9919; the \"91 or more days past due\" bucket open with work order invoice S3-14144 made at Staging Lethbridge - 4310; compared with the two design pictures.",
+    "Step 1: clicking S3-14144 opens a white dialog in the middle of the window with the report dimmed behind it, as in the first picture. Read in order: bold \"Switch location?\", then \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\"; below, \"Cancel\" on the left and \"Switch location\" (small l, as the requirement says) on the right; a close \u00d7 at the top right.",
+    "Step 2: \"Cancel\" closes the dialog; the report is exactly as before the click, as in the second picture - the same filters, the same open bucket, the same sort (Customer Full Name) and scroll position, the same address.",
+    "This test carried a \"what you should see today\" note for a known problem (the button read \"Switch Location\" with a capital L). That problem is gone - the fix has shipped, so the note can come off."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715546-design-pics-ar-ap-p5-another-location-asks-first.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715546-d3b-C715546-1-dialog.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715546-design-pics-ar-ap-p5-cancel-stays-on-the-report.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715546-d3b-C715546-2-cancelled.png"
+   ]
+  }
+ }
+}
