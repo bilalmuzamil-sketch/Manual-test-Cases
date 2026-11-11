@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715349": {
+   "verdict": "Passed",
+   "observed": [
+    "Same vendor as the A/P Detail test: ZZY CSV Det A R1 (vendor A), bill A $1,250.50 dated Sep 27, 2026 and bill B $75.00, as of 11/11/2026.",
+    "Steps 1-2: the CSV downloads and starts with \"As of: Nov 11, 2026\", \"Locations: All locations\" and \"Vendor: ZZY CSV Det A R1\", one line each.",
+    "The heading row follows directly: Date, Location, Transaction Type, No., Vendor Name, Due Date, Past Due, Amount, Open Balance - letter for letter the screen's headings.",
+    "Bill A's row: Date 2026-09-27, Vendor Name ZZY CSV Det A R1, Amount 1250.50. Bill B has its own row (Amount 75.00).",
+    "No group header or subtotal row; one Totals row at the bottom with Amount 1325.50."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715349-0-ticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715349-CSV-1-csv.png"
+   ]
+  }
+ }
+}
