@@ -1,7 +1,5 @@
 #!/bin/bash
-# queue14.sh (re-used name, 11 Nov) — s9b: more A/R exact-amount tests (C797945, C715344, C715346, C715347, C715580, C715581, C1062580, C1062581, C1062587), after queue13.
+# queue14.sh — 11 Nov 2026 ~16:25 UTC: s92 (C1062573, C1062575 A/P Detail dates / types, seeds its own bills) and s93 (C715343 Locations line order) after queue13.
 cd "$(dirname "$0")"; log() { echo "$(date -u +%H:%M:%S) $*" >> queue.log; }
-sleep 18; while pgrep -f "queue1[123]\.sh$|node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done
-run() { local name=$1; shift; log "start $name"; "$@"; log "end $name rc=$?"; }
-run s9b timeout 2400 node s9b_ar.mjs > s9b.log 2>&1
-log "queue14 (s9b) done"
+while pgrep -f "queue([2-9]|1[0-3]).sh|chain3[0-6].sh" >/dev/null || pgrep -f "node [a-z0-9_]+\.mjs" >/dev/null; do sleep 10; done
+log "start s92"; timeout 1800 node s92_apdates.mjs > s92.log 2>&1; log "end s92 rc=$?"; log "start s93"; timeout 900 node s93_locorder.mjs > s93.log 2>&1; log "end s93 rc=$?"; log "queue14 done"

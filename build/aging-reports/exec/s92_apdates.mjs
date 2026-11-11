@@ -1,0 +1,22 @@
+// s92_apdates.mjs — 11 Nov 2026 ~16:20: C1062573 (A/P Detail Date / Due Date read as dates, never "Today"/"Yesterday"/"2 days ago") and C1062575
+// (Transaction Type "Invoice" / "Vendor Credit", sort A-Z then Z-A). Seeds (ZZY ... P92): vendor D (Net 30) with bills A today (stamped 08:00 UTC =
+// 01:00 at the location, so it is inside "as of today" - L0628), B yesterday and C 2 days ago; vendor T (COD, so due = bill date) with a bill and a
+// vendor credit (from a return) both dated 10 days ago -> "1-30 days past due". Output exec/s92/<id>.json + pictures.
+import { start, REPORTS } from './lib.mjs'; import { mk } from './api.mjs'; import * as SL from './seedlib.mjs'; import { mkV } from './vseed.mjs'; import { mkSort } from './sortlib.mjs'; import { mkFilt } from './filt.mjs'; import { ensureLoc } from './locsw.mjs'; import fs from 'fs';
+const OUT = new URL('./s92/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT, '/customers'); const p = s.page; const a = mk(p); const S = mkSort(p); const F = mkFilt(p);
+const seed = { log: [] }; const log = (t) => { console.log(t); seed.log.push(t); }; const V = mkV(a, p, log, ''); const shot = async (o, n) => { const f = OUT + o.id + '-' + n + '.png'; await p.mouse.move(5, 890); await p.screenshot({ path: f }); (o.shots ||= []).push(f); };
+async function billAt(v, amount, iso, tag) { const number = 'ZZY92' + (Date.now() % 1e7); const orig = a.post.bind(a); a.post = async (u, b) => (u === '/api/inventory/orders/accept' ? orig(u, { ...b, invoiceDate: iso }) : orig(u, b)); try { await SL.bill(a, v.id, { amount, date: iso.slice(0, 10), number }); } finally { a.post = orig; } log('  bill ' + tag + ' ' + number + ' ' + amount + ' at ' + iso); return number; }
+await ensureLoc(p, 'Staging Heavy Duty - 9919');
+const D = await V.vendor('ZZY Dates P92', 'Net 30'); seed.A = await billAt(D, 11, '2026-11-11T08:00:00.000Z', 'A'); seed.B = await billAt(D, 22, '2026-11-10T18:00:00.000Z', 'B'); seed.C = await billAt(D, 33, '2026-11-09T18:00:00.000Z', 'C');
+const Tv = await V.vendor('ZZY Types P92', 'COD'); seed.T_bill = await billAt(Tv, 44, '2026-11-01T18:00:00.000Z', 'bill'); const cr = await V.credit(Tv, 5, 10, SL.WP.heavy, 'VC'); seed.T_credit = cr.number;
+fs.writeFileSync(OUT + 'seed.json', JSON.stringify(seed, null, 1)); await ensureLoc(p, 'Staging Heavy Duty - 9919');
+const rows = async () => (await p.locator('main tbody tr').allInnerTexts()).map((t) => t.replace(/\s+/g, ' ').trim()).filter((t) => /ZZY/.test(t) && !/^keyboard/.test(t));
+const T = {
+  C1062573: async (o) => { await s.go(REPORTS.apd); await p.waitForTimeout(3500); await F.pick('Vendor', D.name); o.chips = await F.chips(); o.expand = await S.expand(/^Current/); await p.waitForTimeout(1500); o.rows = await rows();
+    o.cells = await p.evaluate(() => { const ths = [...document.querySelectorAll('main thead th')].map((t) => t.innerText.replace(/arrow_drop_(up|down)/g, '').trim()); const di = ths.indexOf('Date'), ui = ths.indexOf('Due Date'); return [...document.querySelectorAll('main tbody tr')].filter((t) => /ZZY92/.test(t.innerText)).map((t) => { const td = t.querySelectorAll('td'); return [td[di]?.innerText.trim(), td[ui]?.innerText.trim(), t.innerText.match(/ZZY92\d+/)?.[0]]; }); });
+    o.relative = o.rows.filter((r) => /Today|Yesterday|days? ago/i.test(r)); await shot(o, '1-current'); },
+  C1062575: async (o) => { await s.go(REPORTS.apd); await p.waitForTimeout(3500); await F.pick('Vendor', Tv.name); o.chips = await F.chips(); o.expand = await S.expand(/^1-30/); await p.waitForTimeout(1500); o.rows0 = await rows(); await shot(o, '1-bucket');
+    await S.clickTh('Transaction Type'); await p.waitForTimeout(2500); o.rows1 = await rows(); o.sort1 = await S.sorted().catch(() => null); await shot(o, '2-sorted-az'); await S.clickTh('Transaction Type'); await p.waitForTimeout(2500); o.rows2 = await rows(); o.sort2 = await S.sorted().catch(() => null); await shot(o, '3-sorted-za'); },
+};
+for (const [id, fn] of Object.entries(T)) { const o = { id, seed }; try { await fn(o); } catch (e) { o.err = String(e).slice(0, 300); try { await shot(o, 'error'); } catch {} } fs.writeFileSync(OUT + id + '.json', JSON.stringify(o, null, 1)); console.log(id, o.err || 'ok', JSON.stringify({ cells: o.cells, rel: o.relative, r0: o.rows0, r1: o.rows1, r2: o.rows2 }).slice(0, 700)); }
+await s.close(); process.exit(0);
