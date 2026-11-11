@@ -1,0 +1,67 @@
+<h2>Description</h2>
+<p><strong>What the PRD requires:</strong></p>
+<div data-type="panel-info"><p>The PRD <strong>does not ask for this change</strong>. No requirement in the PRD limits the as-of date to today. The limit appears only in the developers' technical plan (21 Oct 2026, decision D20).</p></div>
+<p><strong>What happens instead:</strong></p>
+<p>On the QA branch, a date <strong>after today</strong> can no longer be used on the aging reports. Production allows it today.</p>
+<p>For example,</p>
+<ul>
+<li>On <strong>A/R Aging Summary</strong>, every day after today is greyed out in the date menu and the next-month arrow does nothing, so <strong>31 Dec 2026</strong> cannot be picked. The chip stays on <strong>As of: 11/11/2026</strong>.</li>
+<li>A saved link to <strong>A/P Aging Summary</strong> that ends with <code>?asOfDate=2026-12-31</code> opens on <strong>today</strong>, and the date disappears from the address.</li>
+</ul>
+<h2>QA branch vs production</h2>
+<table><thead><tr><th>What you check</th><th>QA branch (new version, v26.45.2-6a8b89c)</th><th>Production today (v26.45.3-f5ba431)</th></tr></thead>
+<tbody>
+<tr><td>Pick 31 Dec 2026 in the date menu of <strong>A/R Aging Summary</strong></td><td>❌ Not possible. Every day after 11/11/2026 is greyed out; the next-month arrow does nothing. The chip stays <strong>As of: 11/11/2026</strong>.</td><td>✅ Possible. The chip reads <strong>Date: 2026-12-31</strong> and the figures are worked out for that day (customer <strong>aqeel transport 56</strong>: $1,229.93 under Current today, nothing under Current on 31 Dec).</td></tr>
+<tr><td>Open the saved link <code>.../reports/ap-aging-summary?asOfDate=2026-12-31</code></td><td>❌ Opens on today, <strong>As of: 11/11/2026</strong>; the date is dropped from the address.</td><td>✅ Opens on <strong>Date: 2026-12-31</strong>, with figures different from today's.</td></tr>
+<tr><td>Name of the date chip</td><td>"As of" (renamed on purpose by the PRD)</td><td>"Date"</td></tr>
+</tbody></table>
+<p>Production pictures (the QA branch pictures are under the steps below):</p>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="752bdc0f-9853-4561-be33-4b4ac32385be" data-collection="upload-user-collection-1343233018" data-alt="PIC3-production-as-of-2026-12-31.png"></div><figcaption>Production — A/R Aging Summary with 31 Dec 2026 picked (11 Nov 2026, 12:10 UTC)</figcaption></figure>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="1e584851-bf13-473c-8a3e-33c36bdd18f7" data-collection="upload-user-collection-1343233018" data-alt="PIC4-production-saved-link-2026-12-31.png"></div><figcaption>Production — A/P Aging Summary opened from the link with ?asOfDate=2026-12-31 (11 Nov 2026, 12:10 UTC)</figcaption></figure>
+<h2>Steps to Reproduce</h2>
+<h3>Example 1 - A/R Aging Summary (picking a later date)</h3>
+<ol start="1">
+<li>Sign in to the QA site as an Admin user at <strong>Staging Heavy Duty - 9919</strong>.</li>
+<li>Open <strong>Reports</strong> → <strong>A/R Aging Summary</strong>.</li>
+<li>Click the <strong>As of</strong> chip, try to move to next month and pick <strong>31 Dec 2026</strong>.<ul><li>Every day after today is greyed out and the next-month arrow does nothing.</li><li>The chip stays <strong>As of: 11/11/2026</strong>.</li></ul></li>
+</ol>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="06836611-9bad-451e-ac3d-a92e2e3ae250" data-collection="upload-user-collection-1343233018" data-alt="PIC1-qa-date-menu.png"></div><figcaption>QA branch — the date menu on 11 Nov 2026: days after today are greyed out</figcaption></figure>
+<h3>Example 2 - A/P Aging Summary (a saved link)</h3>
+<ol start="1">
+<li>Open <a href="https://sv11315.qa.shopview.com/reports/ap-aging-summary?asOfDate=2026-12-31">https://sv11315.qa.shopview.com/reports/ap-aging-summary?asOfDate=2026-12-31</a>.<ul><li>The chip shows <strong>As of: 11/11/2026</strong> (today).</li><li>The address no longer has the date.</li></ul></li>
+</ol>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="0a26cacb-467a-4862-8854-c5abd3f39172" data-collection="upload-user-collection-1343233018" data-alt="PIC2-qa-saved-link.png"></div><figcaption>QA branch — the saved link opens on today, not on 31 Dec 2026</figcaption></figure>
+<p><strong>Actual Result:</strong></p>
+<ul><li>No date after today can be picked.</li><li>A saved link with a later date opens on today.</li></ul>
+<p><strong>Expected Result:</strong></p>
+<ul><li>As on production today: a date after today can be picked on all six aging reports, and the report is worked out for that date.</li><li>A saved link with a later date opens on that date.</li></ul>
+<h2>Environment</h2>
+<ul>
+<li>QA site: <a href="https://sv11315.qa.shopview.com">https://sv11315.qa.shopview.com</a> (build <strong>v26.45.2-6a8b89c</strong>), location <strong>Staging Heavy Duty - 9919</strong>, Admin role. Seen on 11 Nov 2026 at 11:29 UTC and again at 13:04 and 13:05 UTC.</li>
+<li>Production: <a href="https://app.shopview.com">https://app.shopview.com</a> (build <strong>v26.45.3-f5ba431</strong>), production test account, location <strong>Truck Hill 1</strong>, Admin role. Seen on 11 Nov 2026 at 12:10 UTC.</li>
+</ul>
+<h2>Sources</h2>
+<table><thead><tr><th>Document</th><th>What it says</th><th>Intended by the PRD?</th></tr></thead>
+<tbody>
+<tr><td>PRD "A/R and A/P Report Sorting, Export and Location Filter", <a href="https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=947650561">Confluence page 947650561</a>, version 11 (5 Nov 2026)</td><td>Says nothing about limiting the as-of date to today.</td><td><strong>No</strong></td></tr>
+<tr><td>Technical plan (21 Oct 2026), decision D20</td><td>Limits the as-of date to today. A technical plan does not change what the PRD asks for.</td><td>—</td></tr>
+<tr><td>Production v26.45.3 (the version before this release)</td><td>A date after today can be picked, and a saved link with a later date opens on it.</td><td>—</td></tr>
+</tbody></table>
+<div data-type="panel-warning"><p><strong>No — the PRD does not ask for this change.</strong> Since what the QA branch does is not intended by the PRD, it should work exactly as it works on production today.</p><p>Note: the Product Owner has been asked to confirm (question 19 on the A/R and A/P question sheet, 11 Nov 2026, not answered yet).</p></div>
+<h2>Test case</h2>
+<ul>
+<li><a href="https://shopview.testrail.io/index.php?/cases/view/1078980">C1078980 A future as-of date can be picked to see coming aging</a></li>
+<li><a href="https://shopview.testrail.io/index.php?/cases/view/1078981">C1078981 A saved link with a future as-of date opens on that date</a></li>
+</ul>
+<details><summary>Technical details for developers</summary>
+<ul>
+<li>Production v26.45.3 (commit fc08f23): the date filter sets no latest date (AgingSummaryReport.vue:191-201); the A/P fetchers handle a later date on purpose (DbalApAgingSummaryFetcher.php:37-43).</li>
+<li>New version (branch SV-11315-ar-ap-aging-reports at 8e35ee0d02): the picker stops at today (useAgingReportFilters.ts:554); a later date in a link is ignored (useAgingReportFilters.ts:145-146); the server caps the date at now (AgingAsOfDto.php:14-15).</li>
+</ul>
+</details>
+<details><summary>Pictures from the first version of this ticket</summary>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="a8bbcae0-3403-450f-acc6-e80164b80504" data-collection=""></div></figure>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="bc75bdbc-59e7-4426-82c3-cf42d5047f26" data-collection=""></div></figure>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="33605c2e-a494-4fbb-80ee-3fe40650bdc4" data-collection=""></div></figure>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="f8210746-36fc-4ef0-b79a-451493d6a521" data-collection=""></div></figure>
+</details>

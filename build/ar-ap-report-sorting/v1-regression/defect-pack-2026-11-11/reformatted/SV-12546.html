@@ -1,0 +1,62 @@
+<h2>Description</h2>
+<p><strong>What the PRD requires:</strong></p>
+<div data-type="panel-info"><p>The PRD <strong>does not ask for this change</strong>. It does not say that an empty bucket should be left out of the A/R Aging Detail PDF.</p></div>
+<p><strong>What happens instead:</strong></p>
+<p>On the QA branch, the <strong>A/R Aging Detail</strong> PDF prints only the buckets that hold a document. An empty bucket, its heading and its total line are left out, although the screen still shows that bucket with <strong>(0)</strong>. Production prints every bucket.</p>
+<p>For example,</p>
+<ul>
+<li>With only <strong>ZZAUTOTEST AR R13 Payment After</strong> ticked, the screen shows all five buckets, including <strong>61-90 days past due (0)</strong>.</li>
+<li>The PDF prints only <strong>31-60 days past due</strong>. 91 or more, 61-90, 1-30 days past due and Current are missing.</li>
+</ul>
+<h2>QA branch vs production</h2>
+<table><thead><tr><th>What you check</th><th>QA branch (new version, v26.45.2-6a8b89c)</th><th>Production today (v26.45.3-f5ba431)</th></tr></thead>
+<tbody>
+<tr><td>Empty bucket on the screen</td><td>✅ Shown, for example <strong>61-90 days past due (0)</strong>, Total $0.00 $0.00</td><td>✅ Shown, for example <strong>91 or more days past due (0)</strong></td></tr>
+<tr><td>Empty bucket in the PDF / print</td><td>❌ Left out, with its total line</td><td>✅ Printed with its heading and <strong>"Total for ... days past due $0.00"</strong></td></tr>
+<tr><td>Buckets on paper</td><td>❌ Only the buckets that hold a document (here: 31-60 days past due)</td><td>✅ All five, in fixed order: 91 or more, 61-90, 31-60, 1-30 days past due, Current</td></tr>
+</tbody></table>
+<p>Production picture (the QA branch pictures are under the steps below):</p>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="53e7e926-c1ed-493b-93c4-1b9b84371016" data-collection="upload-user-collection-1343233018" data-alt="PIC3-production-ar-aging-detail-print.png"></div><figcaption>Production — A/R Aging Detail print on Date 2025-07-01, a day when every bucket is empty: all five buckets are printed with $0.00 (11 Nov 2026, 12:14 UTC)</figcaption></figure>
+<h2>Steps to Reproduce</h2>
+<h3>Example 1 - A/R Aging Detail</h3>
+<ol start="1">
+<li>Sign in to the QA site as an Admin user at <strong>Staging Heavy Duty - 9919</strong>.</li>
+<li>Open <strong>Reports</strong> → <strong>A/R Aging Detail</strong>, <strong>As of: 11/11/2026</strong>.</li>
+<li>In the <strong>Customer</strong> filter, tick only <strong>ZZAUTOTEST AR R13 Payment After</strong> (one invoice, <strong>S11315-17834</strong>, dated Oct 10, 2026, $100.00 with $60.00 open).<ul><li>The screen shows all five buckets; <strong>61-90 days past due (0)</strong> is one of the empty ones.</li></ul></li>
+</ol>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="8c6ddf9b-534d-490c-8924-2171cb31dc24" data-collection="upload-user-collection-1343233018" data-alt="PIC1-qa-screen-61-90-bucket-0.png"></div><figcaption>QA branch — the screen shows the empty bucket "61-90 days past due (0)"</figcaption></figure>
+<ol start="4">
+<li>Click <strong>⋯</strong> → <strong>Download (PDF)</strong> and open the PDF.<ul><li>Only <strong>31-60 days past due</strong> is printed, then the Totals row.</li><li>91 or more, 61-90, 1-30 days past due and Current are not in the PDF at all.</li></ul></li>
+</ol>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="66549aee-5d9d-43db-9943-b3dcb92a08c7" data-collection="upload-user-collection-1343233018" data-alt="PIC2-qa-pdf-empty-buckets-missing.png"></div><figcaption>QA branch — the PDF prints only the bucket that holds a document</figcaption></figure>
+<p><strong>Actual Result:</strong></p>
+<ul><li>The A/R Aging Detail PDF leaves out every empty bucket and its $0.00 total line.</li></ul>
+<p><strong>Expected Result:</strong></p>
+<ul><li>As on production today: the PDF prints all five buckets in their fixed order.</li><li>An empty bucket prints its heading and its total line with $0.00.</li></ul>
+<h2>Environment</h2>
+<ul>
+<li>QA site: <a href="https://sv11315.qa.shopview.com">https://sv11315.qa.shopview.com</a> (build <strong>v26.45.2-6a8b89c</strong>), location <strong>Staging Heavy Duty - 9919</strong>, Admin role. Seen on 11 Nov 2026 at 12:14 UTC and again at 13:04 and 13:05 UTC.</li>
+<li>Production: <a href="https://app.shopview.com">https://app.shopview.com</a> (build <strong>v26.45.3-f5ba431</strong>), production test account, Admin role. Seen on 11 Nov 2026 at 12:14 UTC.</li>
+</ul>
+<h2>Sources</h2>
+<table><thead><tr><th>Document</th><th>What it says</th><th>Intended by the PRD?</th></tr></thead>
+<tbody>
+<tr><td>PRD "A/R and A/P Report Sorting, Export and Location Filter", <a href="https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=947650561">Confluence page 947650561</a>, version 11 (5 Nov 2026), Story 3 (Export)</td><td>Says nothing about leaving empty buckets out of the PDF.</td><td><strong>No</strong></td></tr>
+<tr><td>Production v26.45.3 (the version before this release)</td><td>The print shows all five buckets; an empty one prints "Total for ... days past due $0.00".</td><td>—</td></tr>
+</tbody></table>
+<div data-type="panel-warning"><p><strong>No — the PRD does not ask for this change.</strong> Since what the QA branch does is not intended by the PRD, it should work exactly as it works on production today.</p><p>Note: the Product Owner has been asked to confirm (question 20 on the A/R and A/P question sheet, 11 Nov 2026, not answered yet).</p></div>
+<h2>Test case</h2>
+<ul>
+<li><a href="https://shopview.testrail.io/index.php?/cases/view/1079008">C1079008 A/R Detail PDF prints an empty bucket with its $0.00 total</a></li>
+</ul>
+<details><summary>Technical details for developers</summary>
+<ul>
+<li>Production v26.45.3 (commit fc08f23): the PDF builds all five buckets, empty ones with $0.00 (AgingDetailPdfQueryHandler.php:81-110).</li>
+<li>New version (branch SV-11315-ar-ap-aging-reports at 8e35ee0d02): the export prints only buckets that hold a document (AgingDetailExportQueryHandler.php:7).</li>
+</ul>
+</details>
+<details><summary>Pictures from the first version of this ticket</summary>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="db9bcccc-01c0-4da3-a9d0-63cb18de0b4e" data-collection=""></div></figure>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="928704b5-37b6-46c3-b29f-419d69278f26" data-collection=""></div></figure>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="65e778fa-4443-4670-a7ef-43e7ae00e960" data-collection=""></div></figure>
+</details>
