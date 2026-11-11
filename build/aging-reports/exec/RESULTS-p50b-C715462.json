@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, C715462 setup refused on every route (p46 API, p50b two screens)"
+ },
+ "results": {
+  "C715462": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 1: the set-up cannot be made - the site will not let a $100.00 invoice be paid $120.00.",
+   "bold_steps": [
+    1
+   ],
+   "source": "Test case set-up (preconditions): \"an invoice of $100.00 paid $120.00 (overpaid)... To set this up, record a payment of $120.00 on the $100.00 invoice.\"",
+   "observed": [
+    "Set up: customer ZZX Overpaid R5 with a $100.00 invoice (S11315-17830) and a $500.00 invoice; tried to record $120.00 on the $100.00 invoice.",
+    "Customers > the customer > Invoices > New Payment: typing 120.00 shows \"Payment cannot be higher than 100\" and Make Payment stays disabled; extra money can only go to \"Amount to credit\".",
+    "Work order > Finance > New Payment: the same message, Make Payment disabled.",
+    "Recording the payment directly is refused too: \"Transaction cannot be overpaid.\" The invoice stays at $100.00 unpaid.",
+    "No overpaid invoice exists anywhere in the A/R data to use instead, so the overpaid case cannot be tried on this build."
+   ],
+   "todo": "What needs to be done: nothing for the tester now - the QA lead is asked whether this test should stay (the site turns any extra payment into customer credit).",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715462-0-setup-refused-customer.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715462-0-setup-refused-work-order.png"
+   ]
+  }
+ }
+}

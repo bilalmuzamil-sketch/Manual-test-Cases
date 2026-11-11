@@ -83,11 +83,107 @@
    ],
    "calls": [],
    "ok": false
+  },
+  {
+   "route": "B-customer-transactions",
+   "url": "https://sv11315.qa.shopview.com/customers/65b06c30-64e4-447c-9cd5-1f1724d75279/work-orders",
+   "tabs": [
+    "Work Orders (2)",
+    "Part Sales",
+    "Contacts (1)",
+    "Assets (1)",
+    "Notes",
+    "Invoices (2)",
+    "Payments",
+    "Deposits",
+    "Fees & Discounts (0)"
+   ],
+   "tab": "Invoices (2)",
+   "row": 1,
+   "cb": 1,
+   "np": 1,
+   "buttons": [
+    "edit_note",
+    "Add Contact",
+    "search\nSearch",
+    "get_app",
+    "email",
+    "print",
+    "Issue Credit",
+    "New Payment"
+   ],
+   "form": "New Customer Payment close event Payment Date Payment Method arrow_drop_down Reference Number Memo No. Date arrow_drop_up Due Balance Payment S11315-17830 Nov 1, 2026 Nov 1, 2026 $100.00 $ Amount to credit: $ Payment amount: $100.00 Make Payment Send to Terminal",
+   "inputs": [
+    {
+     "v": "Nov 11, 2026",
+     "ph": "",
+     "aria": "Payment date",
+     "tid": "date_input_"
+    },
+    {
+     "v": "",
+     "ph": "",
+     "aria": "Payment method",
+     "tid": "select_payment_method"
+    },
+    {
+     "v": "",
+     "ph": "",
+     "aria": "Reference number",
+     "tid": "input_reference_number"
+    },
+    {
+     "v": "on",
+     "ph": "",
+     "aria": null,
+     "tid": null
+    },
+    {
+     "v": "on",
+     "ph": "",
+     "aria": null,
+     "tid": null
+    },
+    {
+     "v": "100.00",
+     "ph": "",
+     "aria": null,
+     "tid": "input_payment_amount"
+    },
+    {
+     "v": "0.00",
+     "ph": "",
+     "aria": null,
+     "tid": "input_manually_entered_credit"
+    }
+   ],
+   "amt": 1,
+   "valueAfter": "120.00",
+   "notesTyped": [
+    "$",
+    "Payment cannot be higher than 100"
+   ],
+   "makeLabel": "Make Payment",
+   "makeDisabled": true,
+   "notesAfter": [
+    "$",
+    "Payment cannot be higher than 100"
+   ],
+   "calls": [],
+   "ok": false
   }
  ],
  "customer": "ZZX Overpaid R5",
  "invoice": "S11315-17830",
  "before": [
+  {
+   "amount": 100,
+   "balance": 100,
+   "paid": 0,
+   "status": "unpaid"
+  }
+ ],
+ "after": [
   {
    "amount": 100,
    "balance": 100,
