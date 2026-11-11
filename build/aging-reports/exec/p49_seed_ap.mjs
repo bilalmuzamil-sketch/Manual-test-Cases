@@ -45,6 +45,7 @@ const SETS = {
   V12: async () => { const A_ = await vendor('ZZY Diff Vend A', 'Net 30'); await bill(A_, 1000, 5, HD, 'A-notdue'); await bill(A_, 400, 75, HD, 'A-400'); await bill(A_, 300, 45, HD, 'A-300'); await credit(A_, 150, 5, HD, 'A-credit');
     const B = await vendor('ZZY Diff Vend B', 'Net 30'); await bill(B, 500, 75, HD, 'B-500'); await bill(B, 250, 130, HD, 'B-250'); return [A_, B]; },
   V14: async () => { const v = await vendor('ZZY Credit Today', 'COD'); await bill(v, 500, 20, HD, 'A'); await credit(v, 120, 0, HD, 'credit-today'); return [v]; },
+  V16: async () => { /* C715310, C715311: bills due 10 and 20 days ago and a vendor credit dated 15 days ago (between them) */ const v = await vendor('ZZY Credit Sort', 'COD'); await bill(v, 300, 10, HD, 'A'); await bill(v, 100, 20, HD, 'B'); await credit(v, 75, 15, HD, 'credit-A'); return [v]; },
   V15: async () => { const v = await vendor('ZZY 101 Bills', 'COD'); for (let i = 1; i <= 101; i++) await bill(v, 10, 10, HD, 'b' + i); return [v]; },
 };
 await p.waitForTimeout(2000); await S.loc(a);

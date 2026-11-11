@@ -20,6 +20,12 @@ EXP = {
  'C715296': (by_amount, [('Amount', 'ACB'), ('Amount', 'BCA'), ('Open Balance', 'CBA'), ('Open Balance', 'ABC'), ('Open Balance', 'CBA')]),
  'C715300': (by_amount, [('Past Due', 'BAC'), ('Past Due', 'CAB'), ('Amount', 'ACB'), ('Amount', 'BCA'), ('Open Balance', 'CBA'), ('Open Balance', 'ABC'), ('Open Balance', 'CBA')]),
  'C715588': (by_amount, [('Due Date', 'BAC'), ('Due Date', 'CAB'), ('Due Date', 'BAC')]),
+ 'C715292': (SUM_AP, [('Current', 'BCA'), ('Current', 'ACB'), ('Current', 'BCA'), ('1-30 Days', 'CAB'), ('1-30 Days', 'BAC'), ('1-30 Days', 'CAB'), ('31-60 Days', 'ABC'), ('31-60 Days', 'CBA'), ('31-60 Days', 'ABC')]),
+ 'C715293': (SUM_AP, [('61-90 Days', 'BAC'), ('61-90 Days', 'CAB'), ('61-90 Days', 'BAC'), ('91 And Over', 'ACB'), ('91 And Over', 'BCA'), ('91 And Over', 'ACB'), ('Total', 'ABC'), ('Total', 'CBA'), ('Total', 'ABC')]),
+ 'C715303': (by_amount, [('Date', 'ACB'), ('Date', 'BCA'), ('Date', 'ACB'), ('Due Date', 'BAC'), ('Due Date', 'CAB')]),
+ 'C715304': (by_amount, [('Past Due', 'BAC'), ('Past Due', 'CAB'), ('Amount', 'ACB'), ('Amount', 'BCA'), ('Open Balance', 'CBA'), ('Open Balance', 'ABC'), ('Open Balance', 'CBA')]),
+ 'C715308': (by_amount, [('Past Due', 'BAC'), ('Past Due', 'CAB'), ('Amount', 'ACB'), ('Amount', 'BCA'), ('Open Balance', 'CBA'), ('Open Balance', 'ABC'), ('Open Balance', 'CBA')]),
+ 'C715591': (by_amount, [('Due Date', 'BAC'), ('Due Date', 'CAB'), ('Due Date', 'BAC')]),
 }
 def judge(cid):
     o = json.load(open(PP + 's2/%s.json' % cid)); key, exp = EXP[cid]; steps = o['steps'][1:]; out = []; ok = True
@@ -38,8 +44,14 @@ if __name__ == '__main__':
         res[cid] = (ok, out)
     json.dump({k: {'ok': v[0], 'steps': [{kk: vv for kk, vv in s.items() if kk != 'boxes'} for s in v[1]]} for k, v in res.items()}, open(PP + 's2x-judged-%s.json' % tag, 'w'), indent=1)
 
-NAMES = {'C715289': 'customer', 'C715290': 'customer', 'C715295': 'document', 'C715296': 'document', 'C715300': 'document', 'C715588': 'document'}
+NAMES = {'C715292': 'vendor', 'C715293': 'vendor', 'C715303': 'document', 'C715304': 'document', 'C715308': 'document', 'C715591': 'document', 'C715289': 'customer', 'C715290': 'customer', 'C715295': 'document', 'C715296': 'document', 'C715300': 'document', 'C715588': 'document'}
 SETUP = {
+ 'C715292': 'A/P Aging Summary, as of 11/11/2026, Vendor filter = the three new vendors ZZY Sort Vend A/B/C R1 (Current $100/$300/$200, 1-30 $200/$100/$300, 31-60 $300/$200/$100).',
+ 'C715293': 'A/P Aging Summary, as of 11/11/2026, Vendor filter = ZZY Sort Vend A/B/C R1 (61-90 $250/$350/$150, 91 And Over $350/$150/$250, Total $1,200/$1,100/$1,000).',
+ 'C715303': 'A/P Aging Detail, as of 11/11/2026, Vendor filter = ZZY Doc Vend A/B/C R1, "1-30 days past due" open: bill A $300 (open $50, dated 40 days ago, due 10 days ago), B $100 (dated and due 20 days ago), C $200 (open $150, dated 35 days ago, due 5 days ago).',
+ 'C715304': 'A/P Aging Detail, as of 11/11/2026, Vendor filter = ZZY Doc Vend A/B/C R1, "1-30 days past due" open: bill A $300 (open $50, 10 days past due), B $100 (20 days), C $200 (open $150, 5 days).',
+ 'C715308': 'A/P Unpaid Invoices Report, as of 11/11/2026, Vendor filter = ZZY Doc Group R1, its group open: bill A $300 (open $50, 10 days past due), B $100 (20 days), C $200 (open $150, 5 days).',
+ 'C715591': 'A/P Unpaid Invoices Report, as of 11/11/2026, Vendor filter = ZZY Doc Group R1, its group open: bill A due 10 days ago, B due 20 days ago, C due 5 days ago.',
  'C715289': 'A/R Aging Summary, as of 11/11/2026, Customer filter = the three new customers ZZX Sort Cust A/B/C R4 (Current $100/$300/$200, 1-30 $200/$100/$300, 31-60 $300/$200/$100).',
  'C715290': 'A/R Aging Summary, as of 11/11/2026, Customer filter = ZZX Sort Cust A/B/C R4 (61-90 $250/$350/$150, 91 And Over $350/$150/$250, Total $1,200/$1,100/$1,000).',
  'C715295': 'A/R Aging Detail, as of 11/11/2026, Customer filter = ZZX Doc Cust A/B/C R3, "1-30 days past due" open: document A $300 (open $50, dated 40 days ago, due 10 days ago), B $100 (dated and due 20 days ago), C $200 (open $150, dated 35 days ago, due 5 days ago).',
