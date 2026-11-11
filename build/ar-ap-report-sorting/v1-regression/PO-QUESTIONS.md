@@ -36,3 +36,15 @@ Not on the sheet: the PDF document-date format — a clear PRD requirement (S3-R
 question (ticket text ready in `defect-pack-2026-11-11/TICKET-READY-PDF-DATE-FORMAT.md`). Sheet question 18
 (added 10 Nov by another session) covers only the "As of" line's date form and does not overlap.
 Chris is NOT notified by a sheet edit; the QA lead decides how to tell him.
+
+## PENDING (not yet sent) — raised 11 Nov 2026 by the developers' edited QA handoff
+
+Source: developers' QA handoff on SV-11533 (comment 80619, edited 11 Nov 2026 12:53Z) and comments 80816 / 80821.
+The PRD (Confluence 947650561) was last modified 5 Nov 2026 (= v11), so nothing below changes a case (Rule 113).
+
+| # | Report | Question for Product, with an example to try |
+|---|---|---|
+| P1 | A/R and A/P Aging Detail, A/R Collection, A/P Unpaid (PDF) | The PRD (S3-R7a) says PDF dates print as "Nov 04 2026", the same as Sales By Customer. The developers now say the PDF prints dates like the screen, "Nov 4, 2026". Which one is right? Try: export A/R Aging Detail to PDF and read any date. Ticket SV-12544 stays open until this is answered. |
+| P2 | A/R Aging Detail (PDF) | The developers' handoff says "Only buckets that hold a document are printed". The PRD says nothing, and production prints every bucket with $0.00. Is dropping the empty buckets intended? Ticket SV-12546. |
+| P3 | A/R Collection, A/P Unpaid (PDF) | The handoff says each group ends with "Subtotal". The PRD says nothing, and production prints "Total for <customer>". Is the new label intended? Ticket SV-12547. |
+| P4 | All six reports | The handoff says an as-of date after today "opens on today". The PRD says nothing, and production accepts a later date. Is this intended? Ticket SV-12545. |
