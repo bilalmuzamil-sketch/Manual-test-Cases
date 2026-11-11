@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S3 C715341 (sv11315)"
+ },
+ "results": {
+  "C715341": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary with no filters set (both locations in the report). Download (PDF): under the title it reads \"As of Nov 10, 2026\", then \"Locations: All locations\"; there is no Past due line and no Customer line.",
+    "Ticked only ZZAUTOTEST S1R5 Alpha in Customer.",
+    "Download (CSV): it starts with three one-line rows - \"As of: Nov 10, 2026\", \"Locations: All locations\", \"Customer: ZZAUTOTEST S1R5 Alpha\" (singular) - no Past due row; the column heading row follows directly."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715341-1-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715341-2-csv.png"
+   ]
+  }
+ }
+}
