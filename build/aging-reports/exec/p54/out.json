@@ -1,5 +1,31 @@
 {
+ "detailsKeys": [
+  "user_id",
+  "intercom_data",
+  "name",
+  "email",
+  "avatar_url",
+  "default_workplace",
+  "workplace_timezone",
+  "staff_id",
+  "clockable",
+  "created_on",
+  "bookkeeping_enabled",
+  "last_page_visited"
+ ],
  "lsKeys": [
+  "user_id",
+  "intercom_data",
+  "name",
+  "email",
+  "avatar_url",
+  "default_workplace",
+  "workplace_timezone",
+  "staff_id",
+  "clockable",
+  "created_on",
+  "bookkeeping_enabled",
+  "last_page_visited",
   "role",
   "details"
  ],
@@ -7,15 +33,51 @@
   "slug": "technician",
   "perms": 6,
   "keys": [
+   "user_id",
+   "intercom_data",
+   "name",
+   "email",
+   "avatar_url",
+   "default_workplace",
+   "workplace_timezone",
+   "staff_id",
+   "clockable",
+   "created_on",
+   "bookkeeping_enabled",
+   "last_page_visited",
    "role",
    "details"
   ]
  },
- "staffCands": [],
- "user": {},
+ "staffCands": [
+  "d2cb20a6-90a8-4884-ac50-022ff2fb9313",
+  "d2cb20a6-90a8-4884-ac50-022ff2fb9313",
+  "d2cb20a6-90a8-4884-ac50-022ff2fb9313",
+  "ba74948b-5777-4f0c-90fb-2f60d9ce8107"
+ ],
+ "staffId": "d2cb20a6-90a8-4884-ac50-022ff2fb9313",
+ "user": {
+  "email": "tech@shopview.com"
+ },
  "adminRole": {
   "id": "73f72525-3d67-436b-9c1d-12677cdf9883",
   "name": "Admin"
  },
- "err": "Error: missing staff id or admin role: {\"roles\":[\"QA AR Reports Only\",\"Sales Representative\",\"Service Advisor\",\"Parts Manager\",\"ZZAUTOTEST AR AP Reports only\",\"Service Manager\",\"Office User\",\"Admin\",\"Time Clock User\",\"Parts Technician\",\"ZZAUTOTEST Aging no Reports\",\"Senior Service Advisor\",\"Technician\",\"Foreman\"]}"
+ "change": {
+  "st": 404,
+  "j": {
+   "errors": [
+    {
+     "error": "'Staff' was not found."
+    }
+   ]
+  }
+ },
+ "changeId": "ba74948b-5777-4f0c-90fb-2f60d9ce8107",
+ "techAfter": {
+  "slug": "technician",
+  "perms": 6,
+  "url": "https://sv11315.qa.shopview.com/workorders"
+ },
+ "ok": false
 }
