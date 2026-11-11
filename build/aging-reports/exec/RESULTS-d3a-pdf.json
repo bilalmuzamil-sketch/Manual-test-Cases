@@ -1,0 +1,29 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d3a PDF headings"
+ },
+ "results": {
+  "C715524": {
+   "verdict": "Passed",
+   "observed": [
+    "Step 1: A/R Aging Summary, as of today, all locations - \"Download (PDF)\" downloads the PDF (\"Data exported successfully.\").",
+    "Step 2: the PDF's headings read \"Customer Location Current 1-30 Days 31-60 Days 61-90 Days 91 And Over Total\" - the bucket headings \"Current\", \"1-30 Days\", \"31-60 Days\", \"61-90 Days\", \"91 And Over\", as on screen.",
+    "\"91 And Over\" is on one line: its three words sit on the same line of the page (measured from the PDF's word positions, all at the same height), not wrapped."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715524-pdf-1.png"
+   ]
+  },
+  "C715525": {
+   "verdict": "Passed",
+   "observed": [
+    "Step 1: A/P Aging Summary, as of today, all locations - \"Download (PDF)\" downloads the PDF (\"Data exported successfully.\").",
+    "Step 2: the PDF's headings read \"Vendor Location Current 1-30 Days 31-60 Days 61-90 Days 91 And Over Total\" - the bucket headings \"Current\", \"1-30 Days\", \"31-60 Days\", \"61-90 Days\", \"91 And Over\", as on screen.",
+    "\"91 And Over\" is on one line: its three words sit on the same line of the page (measured from the PDF's word positions, all at the same height), not wrapped."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715525-pdf-1.png"
+   ]
+  }
+ }
+}
