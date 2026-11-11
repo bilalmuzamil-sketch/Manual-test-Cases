@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, q3e"
+ },
+ "results": {
+  "C715540": {
+   "verdict": "Passed",
+   "observed": [
+    "Set-up: vendor \"ZZY P97 Pinned Vendor With A Very Long Name For The Unpaid Invoices Wrap Check\" with 30 unpaid bills and an unused vendor credit C-13691 ($-37.25) from a vendor return made at Staging Heavy Duty - 9919; the report filtered to that vendor, its group open (31 rows), 1440 px, light theme. Compared with the design pictures \"Same on A/P Unpaid Invoices\" and \"Vendor credits link\".",
+    "Step 1: the title reads \"A/P Unpaid Invoices Report\" with the info icon; the chips are As of, Vendor, Past due and Location, as on the other A/P reports.",
+    "Step 2: scrolling into the vendor's rows, its group row stays pinned under the column headings while the bills scroll under it, as in the picture. The long vendor name wraps onto further lines in the Vendor Name column. The vendor credit's Due Date and Past Due cells show \"\u2014\". Bill numbers and C-13691 are blue links; Open Balance is bold.",
+    "Step 3: hovering C-13691, its row is light grey and the number is a link with a hand pointer, as in the second picture.",
+    "Step 4: at 1536 px nothing overlaps, is cut off or clipped; the same layout, with wider columns."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715540-design-pics-ar-ap-p3-same-on-a-p-unpaid-invoices.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715540-q3e-C715540-2-scrolled-pinned.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715540-design-pics-ar-ap-p7-vendor-credits-link.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715540-q3e-C715540-4-hover.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715540-q3e-C715540-5-1536.png"
+   ]
+  }
+ }
+}

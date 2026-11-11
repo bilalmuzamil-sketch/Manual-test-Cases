@@ -7,7 +7,7 @@ const OUT = new URL('./prod/' + (process.env.OUTDIR || 'q3p') + '/', import.meta
 const B = await bootProdLogin('/reports', { viewport: { width: 1440, height: 900 } }); const p = B.page; o.version = B.version; save(); const ONLY = process.env.ONLY?.split(',');
 const shot = async (n, pg = p) => { const f = OUT + n + '.png'; await pg.mouse.move(5, 890).catch(() => {}); await pg.waitForTimeout(400); await pg.screenshot({ path: f }); return f; };
 const run = async (id, fn) => { if (ONLY && !ONLY.includes(id)) return; const q = (o[id] = {}); try { await fn(q); } catch (e) { q.err = String(e).slice(0, 300); await p.screenshot({ path: OUT + id + '-error.png' }).catch(() => {}); } save(); console.log(id, q.err || 'ok', JSON.stringify(q).slice(0, 600)); };
-const LOC = 'Truck Hill 1';
+const LOC = process.env.LOC || 'Truck Hill 1';
 await run('C715480', async (q) => { await p.goto(B.APP + '/reports/ar-aging-summary', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
   const av = p.locator('header button, header .q-avatar').filter({ hasText: /^[A-Z]\S?$/ }).last(); await av.click(); await p.waitForTimeout(1500); q.menu = (await p.locator('.q-menu').last().innerText()).split('\n').map((t) => t.trim()).filter(Boolean); q.pic1 = await shot('C715480-1-menu-open');
   await p.locator('.q-menu').last().getByText(LOC, { exact: true }).first().click(); /* 18:58: not a button element */ await p.waitForTimeout(1500); q.list = (await p.locator('.q-menu:visible, .q-dialog').last().innerText()).split('\n').map((t) => t.trim()).filter(Boolean); q.pic2 = await shot('C715480-2-list'); await p.keyboard.press('Escape'); await p.keyboard.press('Escape'); });
