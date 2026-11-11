@@ -1,0 +1,29 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S5 (sv11315)"
+ },
+ "results": {
+  "C715400": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary set to: As of 11/09/2026 (an earlier day; the test asks for yesterday, 11/10 - the check is that the date is carried over), Past due \"91+ days\", only Staging Heavy Duty - 9919 ticked. Customer A = Desert Edge Truck Service & Repair (documents over 90 days past due at Heavy Duty).",
+    "Step 1: clicked Desert Edge Truck Service & Repair's name: A/R Aging Collection opened (address carries asOfDate=2026-11-09, the customer, pastDue=91-plus and the one location).",
+    "Only Desert Edge Truck Service & Repair is ticked (\"Customer: Desert Edge...\"); \"As of: 11/09/2026\"; \"Past due: 91+ days\"; \"Location: Staging Heavy D...\" (only that location). The report is the updated one (Past due and Location chips present), so the delivery note in the test does not apply."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715400-1-1-opened.png"
+   ]
+  },
+  "C715401": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary set to: As of 11/09/2026 (an earlier day; the test asks for yesterday, 11/10 - the check is that the date is carried over), Past due \"91+ days\", only Staging Heavy Duty - 9919 ticked. Vendor A = Alameda Mechanical Services (documents over 90 days past due at Heavy Duty).",
+    "Step 1: clicked Alameda Mechanical Services's name: A/P Unpaid Invoices Report opened (address carries asOfDate=2026-11-09, the vendor, pastDue=91-plus and the one location).",
+    "Only Alameda Mechanical Services is ticked (\"Vendor: Alameda...\"); \"As of: 11/09/2026\"; \"Past due: 91+ days\"; \"Location: Staging Heavy D...\" (only that location). The report is the updated one (Past due and Location chips present), so the delivery note in the test does not apply."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715401-1-1-opened.png"
+   ]
+  }
+ }
+}
