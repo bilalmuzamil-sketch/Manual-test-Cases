@@ -475,3 +475,8 @@
 - **For the filter-memory checks (C715583/C715619/C715620) and anything read off these three reports:** note the current location first (header), and judge "kept or forgotten" only from a chip that CHANGED after the untick (pr1b does).
 - Also 11 Nov ~14:25 UTC: the developer re-corrected the SV-11533 handoff — aging PDF dates must read "Nov 04 2026" (PRD v11 S3-R7a); "Nov 4, 2026" is the open defect SV-12544 (In Progress). Recorded in `build/aging-reports/PROJECT-STATE.md`.
 - #aging #reports #location #handoff → L0656
+
+## L0658 — 2026-11-11 — Sales By Customer does not empty with "Location: No locations"; the aging empty state and loading bar, measured
+- On sv11315, Sales By Customer with **Location: No locations** (Clear selection) still lists every row and the Totals — so it cannot be the control for "empty state matches Sales By Customer's". Use another filter that leaves nothing (s84b tries Product Type = parts only, then an older Date range).
+- The six aging reports' empty state (s84): magnifier icon (24 px, rgb(105,117,134)), "No record matches these filters" (17 px, weight 600), "Try changing filters to widen your results." (14 px), a "Clear all filters" button; no Totals row. Their loading bar is `q-linear-progress q-table__linear-progress`, 2 px high, the table's full width under the headings, plus the page-top `q-loading-bar`.
+- #aging #design #sales-by-customer #empty-state → L0657
