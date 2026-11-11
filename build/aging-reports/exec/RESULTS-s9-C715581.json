@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715581": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of 11/11/2026, Customer filter = only the new customer ZZX Pay Later R3, whose one open invoice is $500.00.",
+    "Step 1: customer A's Total and the Totals row both read $500.00.",
+    "Steps 2-3: a $200.00 payment was recorded on the invoice (made with the same request the New Payment screen sends, as a second-tab payment would); the invoice balance became $300.00.",
+    "Step 4: the report, not yet reloaded, still shows $500.00.",
+    "Step 5: after a reload, still only customer A ticked; its Total and the Totals row both read $300.00 - the payment shows straight away."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715581-1-before.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715581-4-not-reloaded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715581-5-reloaded.png"
+   ]
+  }
+ }
+}
