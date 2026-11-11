@@ -7,6 +7,8 @@ Prepared 11 Nov 2026 (~12:10 UTC). Run result recorded Failed (ticket held) in r
 
 **Fields:** see `FIELDS.json` (Story Defect · parent SV-11533 · Medium · relates to SV-11533).
 
+**Scope observed:** A/R Detail (C1062581, Nov 4/Dec 4) and the saved PDFs of A/R Collection (C715459), A/P Detail (C715460), A/P Unpaid Invoices (C715461): all print "Nov 6, 2026"-style dates. No other suite case asserts the date form (scan of cases.json, 11 Nov), so no earlier Passed result is affected.
+
 **Reconciliation (Rule 106 / §1(d)):** case Expected = PRD v11 S3-R7a quoted verbatim (read live 10 Nov, this pass) · build differs · control: the Sales By Customer PDF, which S3-R7a names as the format to match, prints document dates "Nov 04 2026" on the same build (p55b, 11 Nov) — so the PRD's example and its "same as" agree; the case is right and the build differs ⇒ real defect. Nearest contradicting rule answered: S2-R1a says the SCREEN shows "Nov 4, 2026" — the screen does, and this ticket is about the PDF only. Not checked: the PDF's top "As of" line (open question 18 on Chris Ward's sheet), so it is left out of this ticket.
 
 **Description — wiki markup, exactly as it goes into `PUT /rest/api/2/issue/<KEY>`:**
@@ -24,6 +26,7 @@ In the aging report PDFs, a document's *Date* and *Due Date* print with a *one-d
 
 For example,
 * an invoice dated Nov 4, 2026 and due Dec 4, 2026 prints *Nov 4, 2026* and *Dec 4, 2026*;
+* the *A/R Aging Collection*, *A/P Aging Detail* and *A/P Unpaid Invoices* PDFs print the same way, for example *Nov 6, 2026*;
 * the Sales By Customer PDF on the same site prints its dates as *Nov 04 2026*, as the PRD asks.
 
 On screen the dates correctly read "Nov 4, 2026". Negative amounts in the PDF correctly print in brackets, for example *(-$150.00)*.
