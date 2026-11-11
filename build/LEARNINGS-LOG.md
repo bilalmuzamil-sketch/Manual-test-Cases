@@ -549,3 +549,9 @@
 - `push_results_to_run.py ... | grep -E "run now|..."` printed nothing for a Blocked batch (the grep matched nothing it wrote in that mode), the push HAD succeeded, and running it again posted every result twice (C1078998/C1078999/C1079000: results 616868-70 and 616871-73, 18 s apart; TestRail results cannot be deleted through the API). Run it with `| tail -6`, and before any re-run read `get_results/<test_id>` to see whether the first one landed.
 - The three were recorded Blocked with `exec/claims/<id>.json` passing `blocker_gate.py --check`: the app will not create an invoice or bill without a due date, nor overpay a bill (p66, p66b, p66c).
 - #testrail #push #duplicate → L0654
+
+## L0670 — 2026-11-11 — Production's test sign-in: one location until 11 Nov; how it was enrolled at a second
+- The production login in `/tmp/shopview/prod-login.env` is **"Service Advisor No Reports (Admin)"** (bilal.muzamil+serviceadvisornoreports@…), role Admin, at **"Truck Hill 1"**. Its user menu ("S(" avatar, top right) holds "Change Location:" with ONE button — it was enrolled at one location only, so any "work order / document at another location" check on production was impossible.
+- 11 Nov 16:05 UTC (Rule 107, production in scope): enrolled it at **"Trucks Hill 2"** as well — Settings > Staff > **Search** "serviceadvis" > the row's **edit_note** icon > Edit Staff Member > **Location** (multi-select: Truck Hill 1, Trucks Hill 2, ZZAUTOTEST C614715 Empty Location, SANKAN) > tick > **Save & Close** (`exec/pr4_enrol.mjs`). Nothing else changed.
+- Production staff list: 216 active rows; always search, never scroll-match by name.
+- #production #login #location → L0659, L0665
