@@ -607,6 +607,7 @@
 - The cases say "change Tech ShopView's role", but the staff role-change route 404s on sv11315 (L0637, p75). Route used (`exec/pm1_perms.mjs`): make a new staff member with the p71 role (`POST /api/iam/create`, department Service), enrol at Heavy Duty (`/api/staff/enrollment/create`), `POST /api/switch-user`, then a NEW browser context with the switched person's own `user` + `fe_permissions_wrapper` in localStorage (the admin context rewrites them — wo-board `viewas.mts`, L0583). Always `exit-switch-user` in a finally.
 - The aging exec `api.mjs` returns `{ st, j }`, not `{ status, body }` like the wo-board helpers — copying wo-board code needs `.st` / `.j`.
 - p71b made all seven roles (names "ZZAUTOTEST P71 …", ids in `exec/p71/out.json`).
+- `POST /api/iam/create` on sv11315 needs `workPlaceId` (400 "Workplace ID is missing." without it) - the wo-board `person()` body lacks it; pm1's first run created nobody.
 - #aging #permissions #route → L0637, L0583
 
 ## L0680 — 2026-11-11 — A/P reports list a vendor credit by its CREDIT number (C-nnnnn), not the vendor return's number

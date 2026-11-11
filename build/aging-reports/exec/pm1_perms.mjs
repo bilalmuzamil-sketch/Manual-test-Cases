@@ -1,4 +1,5 @@
 // pm1_perms.mjs — 11 Nov 2026 ~18:15: the permission tests C715425-432, C715448, C715474, C715610, C715616 (run 557). The cases say "change Tech
+// 11 Nov ~19:20: first run - every POST /api/iam/create answered 400 {"workPlaceId":"Workplace ID is missing."}; the body now carries workPlaceId (and workplace_id) = Heavy Duty.
 // ShopView's role", but on sv11315 the staff role-change route answers 404 (L0637, p75). Route used instead (proven on sv11546, L0583,
 // wo-board viewas.mts): make a new staff member with the p71 role (POST /api/iam/create), enrol at Staging Heavy Duty - 9919, POST /api/switch-user,
 // then a NEW browser context carrying the switched person's own `user` + `fe_permissions_wrapper` (the admin context rewrites them). Each role's
@@ -19,7 +20,7 @@ const rid = (n) => roles.find((r) => (r.name ?? r.label) === n)?.id;
 const deps = coll(J(await a.get('/api/departments'))?.data); const svc = deps.find((d) => (d.name ?? d.label) === 'Service') ?? deps[0];
 async function staff(email) { return coll(J(await a.get('/api/staff?limit=200&search=' + encodeURIComponent(email)))?.data).find((x) => String(x.email).toLowerCase() === email); }
 async function person(key, roleName) { const email = `zz.ag.${key}@staging.shopview.local`; const log = []; let row = await staff(email);
-  if (!row) { const c = await a.post('/api/iam/create', { email, first_name: 'ZZAUTOTEST Perm', last_name: key, role_id: rid(roleName), departments: [svc?.id].filter(Boolean) }); log.push('create ' + c.st + ' ' + JSON.stringify(J(c)).slice(0, 160)); row = await staff(email); }
+  if (!row) { const c = await a.post('/api/iam/create', { email, first_name: 'ZZAUTOTEST Perm', last_name: key, role_id: rid(roleName), departments: [svc?.id].filter(Boolean), workPlaceId: HEAVY, workplace_id: HEAVY }); log.push('create ' + c.st + ' ' + JSON.stringify(J(c)).slice(0, 160)); row = await staff(email); }
   if (row) { const en = await a.post('/api/staff/enrollment/create', { staffId: row.staff_id, workplaceId: HEAVY, departmentId: svc?.id }); log.push('enrol ' + en.st); }
   return { row, log, roleId: rid(roleName), roleBody: J(await a.get('/api/roles/' + rid(roleName)))?.data ?? null }; }
 async function viewAs(userId) { let sw = await a.post('/api/switch-user', { user_id: userId }); if (sw.st >= 300) { await a.post('/api/exit-switch-user', {}); sw = await a.post('/api/switch-user', { user_id: userId }); }
