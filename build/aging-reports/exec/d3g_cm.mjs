@@ -44,4 +44,18 @@ async function setDark(on) { const isDark = () => p.evaluate(() => document.body
     await p.mouse.move(5, 890); await p.screenshot({ path: OUT + 'C715545-subtotal.png' });
   } catch (e) { q.err = String(e).slice(0, 300); }
   o.C715545 = q; console.log('C715545', q.err || 'ok', JSON.stringify(q).slice(0, 500)); }
+// C715554 (added 20:25): with Past due "31-60 days" + "91+ days" on A/R Summary, d3b2 stopped before the full list. Collect every row (sortlib collect),
+// check each listed customer has an amount in 31-60 or 91+ and keeps its other columns, and that the Totals row = the sum of the rows listed (cents).
+{ const q = { id: 'C715554' };
+  try { await s.go(REPORTS.ars); await p.waitForTimeout(3500); await settle(); await p.locator('main button', { hasText: /Past due:/ }).first().click(); await p.waitForTimeout(1200);
+    for (const r of ['31-60 days', '91+ days']) { await p.locator('.q-menu:visible').locator('.q-item, label, .q-checkbox').filter({ hasText: r }).first().click(); await p.waitForTimeout(1200); }
+    await p.keyboard.press('Escape'); await settle(); q.chips = await F.chips();
+    const S = (await import('./sortlib.mjs')).mkSort(p); const rows = await S.collect(); const cents = (t) => { const m = String(t || '').replace(/[$,]/g, ''); return m ? Math.round(parseFloat(m) * 100) : 0; };
+    const data = rows.map((r) => r.cells || []).filter((c) => c.length >= 8 && !/^Totals?$/.test(c[0]));
+    q.n = data.length; q.bad = data.filter((c) => !cents(c[4]) && !cents(c[6])).map((c) => c[0]).slice(0, 10);
+    const sums = [2, 3, 4, 5, 6, 7].map((i) => data.reduce((a, c) => a + cents(c[i]), 0));
+    const tot = await p.evaluate(() => { const t = [...document.querySelectorAll('main tr')].filter((r) => /^\s*Totals(\s|$)/.test(r.innerText)).pop(); return t ? [...t.querySelectorAll('td')].map((d) => d.innerText.trim()) : null; });
+    q.totals = tot; q.sums = sums.map((x) => (x / 100).toFixed(2)); q.match = !!tot && [2, 3, 4, 5, 6, 7].every((i, k) => cents(tot[i]) === sums[k]); q.sample = data.slice(0, 3);
+  } catch (e) { q.err = String(e).slice(0, 300); }
+  o.C715554 = q; console.log('C715554', q.err || 'ok', JSON.stringify(q).slice(0, 700)); }
 fs.writeFileSync(OUT + 'out.json', JSON.stringify(o, null, 1)); console.log('C715538b', o.err || 'ok', JSON.stringify(o).slice(0, 600)); await s.close(); process.exit(0);
