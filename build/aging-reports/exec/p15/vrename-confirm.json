@@ -1,0 +1,18 @@
+{
+ "id": "325f1dbe-8386-456b-9158-bb5fb84cba10",
+ "tries": [
+  {
+   "target": "zzcaps supply",
+   "btns": [
+    "button_close_dialog=close",
+    "vendor_save_button=Save & Close"
+   ],
+   "responses": [
+    "409 /api/parts-catalogue/change-vendor {\"errors\":[{\"error\":\"A vendor with this name already exists.\"}]}",
+    "200 /api/parts-catalogue/change-vendor {\"data\":[]}"
+   ]
+  }
+ ],
+ "confirm": "Confirmation\nclose\n\nAnother vendor named \"zzcaps supply\" already exists. Save anyway?\n\nCancel\nSave",
+ "nameNow": "zzcaps supply\nedit_note\nEmail\nN/A\nTelephone\nN/A\nAddress\nN/A\nState/Province\nN/A\nC"
+}

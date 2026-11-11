@@ -1,0 +1,129 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, folder S1 batch a (sv11315)"
+ },
+ "results": {
+  "C715273": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary opens with the Customer heading marked as sorted (arrow beside it); no other heading is marked.",
+    "Without clicking any heading, the four customers read from top to bottom: 10 Trucking, 2 Trucking, A-1 Towing, a1 towing (only @Home Towing sits between them)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715273.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/head-ars.png"
+   ]
+  },
+  "C715274": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary opens with the Vendor heading marked as sorted; no other heading is marked.",
+    "The four vendors read from top to bottom: 10 Trucking, 2 Trucking, A-1 Towing, a1 towing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715274.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/head-aps.png"
+   ]
+  },
+  "C715275": {
+   "verdict": "Passed",
+   "observed": [
+    "The six customers read from top to bottom: Eagle, Émile's, Emma, Fargo, then further down Øster, Ozone.",
+    "Émile's sits among the E names (between Eagle and Emma, with only Emile's Towing beside it); Øster sorts as an O, just before Ozone."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715275a.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715275b.png"
+   ]
+  },
+  "C715276": {
+   "verdict": "Passed",
+   "observed": [
+    "The vendors read from top to bottom: Ackley, then æble, then Afton (æble sorts as \"ae\"; only Adams Diesel Repair sits between Ackley and æble).",
+    "Further down: Strand, Straße, Strasser, next to each other (ß sorts as ss)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715276a.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715276b.png"
+   ]
+  },
+  "C715573": {
+   "verdict": "Passed",
+   "observed": [
+    "Four customers named the same apart from the character after \"ZZPUNCT Diesel \": they read #1, -1, 1, @1 from top to bottom — #, then -, then the digit, then @."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715573.png"
+   ]
+  },
+  "C715284": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary opens with only Customer marked as sorted.",
+    "A/R Aging Detail opens with only Customer Full Name marked as sorted.",
+    "A/R Aging Collection opens with only Date marked as sorted."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/head-ars.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/head-ard.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/head-arc.png"
+   ]
+  },
+  "C715285": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary opens with only Vendor marked as sorted.",
+    "A/P Aging Detail opens with only Vendor Name marked as sorted.",
+    "A/P Unpaid Invoices opens with only Date marked as sorted."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/head-aps.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/head-apd.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/head-apu.png"
+   ]
+  },
+  "C715277": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked before step 1: the set-up cannot be made — ShopView refuses a second customer whose name differs only in capitals",
+   "bold_steps": [],
+   "observed": [
+    "Creating customer \"zzcaps haulage\" next to \"ZZCAPS Haulage\" is refused: \"Company with provided name already exists.\"",
+    "The New Customer window on screen shows the red message \"Company with provided name already exists.\" and creates nothing.",
+    "Renaming another customer to \"zzcaps haulage\" on its Edit Customer window is refused the same way (the name stays). A rename to a name that clashes with nothing saves normally, so the refusal is real.",
+    "So two customers whose names differ only in capitals cannot exist on this site, and the order of such a pair cannot be checked."
+   ],
+   "todo": "What needs to be done: nothing for the tester. The QA lead decides whether this test stays (it needs data the product does not allow) or is retired.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715277-refused.png"
+   ]
+  },
+  "C715278": {
+   "verdict": "Passed",
+   "observed": [
+    "Vendors \"zzcaps supply\" and \"ZZCAPS Supply\" (the product asks \"Another vendor named … already exists. Save anyway?\" — answered Save) sit next to each other on A/P Aging Summary: zzcaps supply, then ZZCAPS Supply.",
+    "Download (PDF) and Download (CSV) both downloaded (\"Data exported successfully.\"); both files list the two vendors in the same order as the screen.",
+    "After a reload they are still next to each other in the same order."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715278-screen.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715278-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715278-reload.png"
+   ]
+  },
+  "C715279": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked before step 1: the set-up cannot be made — ShopView refuses \"Émile's Towing\" while \"Emile's Towing\" exists",
+   "bold_steps": [],
+   "observed": [
+    "Creating customer \"Émile's Towing\" after \"Emile's Towing\" is refused: \"Company with provided name already exists.\"",
+    "The New Customer window on screen shows the red message \"Company with provided name already exists.\" and creates nothing.",
+    "Renaming another customer to \"Émile's Towing\" is refused the same way; a rename to a name that clashes with nothing saves normally.",
+    "So the two names cannot both exist, and their order cannot be checked."
+   ],
+   "todo": "What needs to be done: nothing for the tester. The QA lead decides whether this test stays or is retired.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715279-refused.png"
+   ]
+  }
+ }
+}

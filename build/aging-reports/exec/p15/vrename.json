@@ -1,0 +1,25 @@
+{
+ "id": "23d7f1c6-0046-4f46-b3f1-e34a91aedb87",
+ "tries": [
+  {
+   "target": "ZZCAPS2 Supply RENAMETEST 6350",
+   "btns": [
+    "button_close_dialog=close",
+    "vendor_save_button=Save & Close"
+   ],
+   "responses": [
+    "200 /api/parts-catalogue/change-vendor {\"data\":[]}"
+   ]
+  },
+  {
+   "target": "zzcaps supply",
+   "btns": [
+    "button_close_dialog=close",
+    "vendor_save_button=Save & Close"
+   ],
+   "responses": [
+    "409 /api/parts-catalogue/change-vendor {\"errors\":[{\"error\":\"A vendor with this name already exists.\"}]}"
+   ]
+  }
+ ]
+}

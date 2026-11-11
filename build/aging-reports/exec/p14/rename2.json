@@ -1,0 +1,42 @@
+{
+ "dialogButtons": [
+  "button_close_dialog=close",
+  "button_delete_customer=Delete",
+  "button_save_customer=Save"
+ ],
+ "dialogs": [
+  "Edit Customer close Name * Phone Address 1 Address 2 City ZIP/Postal Code State/Province arrow_drop_down Country Canada arrow_drop_down Credit Terms COD arrow_drop_down $ Credit Limit Sales Representa"
+ ],
+ "dialogText": [
+  "Edit Customer\nclose\nName *\nPhone\nAddress 1\nAddress 2\nCity\nZIP/Postal Code\nState/Province\narrow_drop_down\nCountry\nCanada\narrow_drop_down\nCredit Terms\nCOD\narrow_drop_down\n$\nCredit Limit\nSales Representative\narrow_drop_down\nDefault Labor Rate\narrow_drop_down\n%\nDefault Shop Supplies\nof labor\n$\nMin\n$\nMax",
+  "Edit Customer\nclose\nName *\nPhone\nAddress 1\nAddress 2\nCity\nZIP/Postal Code\nState/Province\narrow_drop_down\nCountry\nCanada\narrow_drop_down\nCredit Terms\nCOD\narrow_drop_down\n$\nCredit Limit\nSales Representative\narrow_drop_down\nDefault Labor Rate\narrow_drop_down\n%\nDefault Shop Supplies\nof labor\n$\nMin\n$\nMax"
+ ],
+ "zzcaps haulage": {
+  "tmp": "ZZCAPS2 Haulage",
+  "customerId": "09ff1091-302d-484d-bb2b-9a945d595ace",
+  "requests": [
+   {
+    "u": "customers/change",
+    "body": "{\"name\":\"zzcaps haulage\",\"state_or_province\":null,\"country_code\":\"CA\",\"require_po\":false,\"credit_term\":\"COD\",\"credit_limit\":0,\"shop_supplies_charge\":null,\"min_shop_supplies_charge\":null,\"max_shop_supp",
+    "st": 400,
+    "t": "{\"errors\":[{\"error\":\"Company with provided name already exists.\"}]}"
+   }
+  ],
+  "toast": [],
+  "nameNow": "ZZCAPS2 Haulage RENAMETEST"
+ },
+ "Émile's Towing": {
+  "tmp": "ZZEMILE2 Towing",
+  "customerId": "85f2247e-b52d-4e90-a339-b3af0e870c41",
+  "requests": [
+   {
+    "u": "customers/change",
+    "body": "{\"name\":\"Émile's Towing\",\"state_or_province\":null,\"country_code\":\"CA\",\"require_po\":false,\"credit_term\":\"COD\",\"credit_limit\":0,\"shop_supplies_charge\":null,\"min_shop_supplies_charge\":null,\"max_shop_supp",
+    "st": 400,
+    "t": "{\"errors\":[{\"error\":\"Company with provided name already exists.\"}]}"
+   }
+  ],
+  "toast": [],
+  "nameNow": "ZZEMILE2 Towing"
+ }
+}
