@@ -1,0 +1,122 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S4 (sv11315)"
+ },
+ "results": {
+  "C715361": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, as of 11/10/2026: bucket A = \"91 or more days past due\" with 11,912 open lines; every bucket collapsed at the start.",
+    "Steps 1-2: opened bucket A with its own chevron: it showed its first 100 lines.",
+    "Step 3: scrolled down: lines kept loading 100 at a time in the same order (75 further pages read), no line repeated.",
+    "Step 4: closed bucket A: all 5 buckets closed.",
+    "Steps 5-7: clicked Expand all: every bucket opened; bucket A again showed its first 100 lines, and scrolling loaded more."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715361-1-1-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715361-2-5-expand-all.png"
+   ]
+  },
+  "C715366": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of 11/10/2026: 52 customers; only customer A (Bancescu & Sons Truck & Trailer Repair, third in name order) expanded.",
+    "Step 1: scrolling down loaded the other 22 customers; there are no page buttons.",
+    "Step 2: back at the top, customer A is still expanded and the other 29 of the first 30 are still collapsed (1 open of 52)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715366-1-0-A-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715366-2-2-back-top.png"
+   ]
+  },
+  "C715368": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of 11/10/2026: at the start every bucket was collapsed (chevrons pointing right).",
+    "Step 2: clicked the chevron on the first bucket row (\"91 or more days past due\"): it expanded and its chevron turned down.",
+    "Step 3: opened Sales By Customer from the left menu: it opened.",
+    "Step 4: opened A/R Aging Detail again: every bucket collapsed, as in step 1; the change was not remembered."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715368-1-1-before.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715368-2-2-changed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715368-3-4-back.png"
+   ]
+  },
+  "C715369": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, as of 11/10/2026: at the start every bucket was collapsed (chevrons pointing right).",
+    "Step 2: clicked the chevron on the first bucket row (\"91 or more days past due\"): it expanded and its chevron turned down.",
+    "Step 3: opened Sales By Customer from the left menu: it opened.",
+    "Step 4: opened A/P Aging Detail again: every bucket collapsed, as in step 1; the change was not remembered."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715369-1-1-before.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715369-2-2-changed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715369-3-4-back.png"
+   ]
+  },
+  "C715603": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of 11/10/2026: at the start every customer group was collapsed (chevrons pointing right).",
+    "Step 2: clicked the chevron on the first customer group row (Andrews' Truck & Trailer Repair LLC): it expanded and its chevron turned down.",
+    "Step 3: opened Sales By Customer from the left menu: it opened.",
+    "Step 4: opened A/R Aging Collection again: every customer group collapsed, as in step 1; the change was not remembered."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715603-1-1-before.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715603-2-2-changed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715603-3-4-back.png"
+   ]
+  },
+  "C715604": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices, as of 11/10/2026: at the start every vendor group was collapsed (chevrons pointing right).",
+    "Step 2: clicked the chevron on the first vendor group row (#1 Diesel): it expanded and its chevron turned down.",
+    "Step 3: opened Sales By Customer from the left menu: it opened.",
+    "Step 4: opened A/P Unpaid Invoices again: every vendor group collapsed, as in step 1; the change was not remembered."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715604-1-1-before.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715604-2-2-changed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715604-3-4-back.png"
+   ]
+  },
+  "C715370": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, every group expanded at the start. Customer A = ZZAUTOTEST LOC MIX (3 invoices 31-60 days past due, at Staging Heavy Duty - 9919 and Staging Lethbridge - 4310).",
+    "Step 1: as-of changed to 11/09/2026: the report reloaded with all 5 buckets collapsed. Step 2: Expand all: all 5 expanded.",
+    "Step 3: ticked customer A: only customer A's rows remain (31-60 days past due (3)); every bucket collapsed. Step 4: Expand all: the bucket with lines expanded.",
+    "Step 5: ticked \"31-60 days\" in Past due: every bucket collapsed. Step 6: Expand all: the bucket with lines expanded.",
+    "Step 7: unticked Staging Lethbridge - 4310 in Location: every bucket collapsed.",
+    "Note: with one customer or one past-due range ticked, the other buckets show (0) lines; their chevron cannot be opened even by hand, so \"every group expands\" was judged on the buckets that have lines."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715370-1-1-yesterday.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715370-2-3-filtered.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715370-3-5-pastdue.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715370-4-7-location.png"
+   ]
+  },
+  "C715371": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, every group expanded at the start (52 customers). Customer A = ZZAUTOTEST LOC MIX (invoices 31-60 days past due at both locations).",
+    "Step 1: as-of changed to 11/09/2026: the report reloaded, all 50 customer groups collapsed. Step 2: Expand all: all 50 expanded.",
+    "Step 3: ticked customer A: only customer A's group remains, collapsed. Step 4: Expand all: it expanded.",
+    "Step 5: ticked \"31-60 days\": the group collapsed. Step 6: Expand all: it expanded.",
+    "Step 7: unticked Staging Lethbridge - 4310: the group collapsed (now 2 invoices, at Heavy Duty)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715371-1-1-yesterday.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715371-2-3-filtered.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715371-3-5-pastdue.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715371-4-7-location.png"
+   ]
+  }
+ }
+}
