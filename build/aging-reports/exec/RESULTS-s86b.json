@@ -1,0 +1,47 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s86b paging A/P"
+ },
+ "results": {
+  "C715451": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary, as of today, all locations: the downloaded spreadsheet lists 504 vendors (504 rows), each once.",
+    "Before any scrolling the screen shows exactly 30 vendors; the 30th is \"Bandy Truck Center - Vacaville\", the same as the 30th in the spreadsheet.",
+    "Scrolling loads the next vendors below, with no page buttons: the first new one is \"Bangs' Truck Repair\" - the 31st in the spreadsheet, not a repeat. They arrive 30 at a time.",
+    "Scrolled to the end: 504 vendors, each exactly once, none missing - the same 504 as the spreadsheet. (The spreadsheet starts two names with an apostrophe, '-1 Diesel and '@Home Towing; on screen they read -1 Diesel and @Home Towing - the same vendors. \"Total Truck & Trailer Repair - Indian Lake\" is listed as a vendor like any other.)",
+    "Clicking \"Total\" sorts largest first (arrow on the heading); scrolled to the end again: 504 vendors, each once, none missing.",
+    "Past due \"1-30 days\": the chip reads \"Past due: 1-30 days\"; adding \"91+ days\": the chip reads \"Past due: 2 ranges\" and the report reloads.",
+    "Scrolled to the end with the two ranges: 484 vendors, each exactly once, none repeated as more loaded.",
+    "The test asks for 31-90 vendors; this site has 504, so the list loads 17 times instead of twice - a stronger check of the same thing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715451-01-C715451-3-first.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715451-02-C715451-5-end.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715451-03-C715451-7-sorted.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715451-04-C715451-9-two-ranges.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715451-05-C715451-10-filtered.png"
+   ]
+  },
+  "C715453": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of today, all locations: the downloaded spreadsheet lists 504 vendors (13,918 bill lines for 504 vendors), each once.",
+    "Before any scrolling the screen shows exactly 30 vendors; the 30th is \"Bandy Truck Center - Vacaville\", the same as the 30th in the spreadsheet.",
+    "Scrolling loads the next vendors below, with no page buttons: the first new one is \"Bangs' Truck Repair\" - the 31st in the spreadsheet, not a repeat. They arrive 30 at a time.",
+    "Scrolled to the end: 504 vendors, each exactly once, none missing - the same 504 as the spreadsheet. (The spreadsheet starts two names with an apostrophe, '-1 Diesel and '@Home Towing; on screen they read -1 Diesel and @Home Towing - the same vendors. \"Total Truck & Trailer Repair - Indian Lake\" is listed as a vendor like any other.)",
+    "Clicking \"Open Balance\" sorts largest first (arrow on the heading); scrolled to the end again: 504 vendors, each once, none missing.",
+    "Past due \"1-30 days\": the chip reads \"Past due: 1-30 days\"; adding \"91+ days\": the chip reads \"Past due: 2 ranges\" and the report reloads.",
+    "Scrolled to the end with the two ranges: 490 vendors, each exactly once, none repeated as more loaded.",
+    "The test asks for 31-90 vendors; this site has 504, so the list loads 17 times instead of twice - a stronger check of the same thing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715453-06-C715453-3-first.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715453-07-C715453-5-end.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715453-08-C715453-7-sorted.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715453-09-C715453-9-two-ranges.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715453-10-C715453-10-filtered.png"
+   ]
+  }
+ }
+}
