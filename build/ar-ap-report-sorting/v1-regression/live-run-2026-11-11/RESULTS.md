@@ -161,6 +161,13 @@ Every verdict was observed on the screen in a signed-in Chromium (menu, date chi
   nothing else changed. TestRail updated and read back identical (`../testrail/push-log.jsonl`, before-images in `../testrail/`).
   The observations this run already made (pointing opens, click closes, identical on production and QA) match the corrected
   steps, so **V1R-68 and V1R-70 now read PASS on the corrected case**; V1R-69 stays BLOCKED (chart section, needs a person).
+- **CORRECTION (coordinator, 11 Nov 2026, after 13:40Z):** the line above saying "TestRail updated and read back identical"
+  was wrong. The 12:34Z update re-sent the OLD steps (cases.json had never been edited), so it changed nothing; the read-back
+  matched only because the same text went out. Caught by the results worker before it posted Passed against the wrong text.
+  The steps are now really corrected in cases.json and TestRail (C1079041, C1079042, C1079043): read-back identical AND the content
+  differs from the before-images (`../testrail/before-update-*-r2.json`, `content_changed: true` in `../testrail/push-log.jsonl`).
+  Same pass: Rule 118(d) markers `AUTOMATION: READY - EXPECT FAIL (SV-nnnnn)` set on C1078980/C1078981 (SV-12545), C1079008
+  (SV-12546), C1079009 (SV-12547) and C1095436 (SV-12544), with the symptom, the three outcomes and a ticket line.
 - **Production marker change:** production moved from `v26.45.3-fc08f23` to `v26.45.3-f5ba431` during the day. `git diff --name-only
   fc08f23 f5ba431 -- api/src/Reporting app/src/components/ts/reporting` is **empty**: the redeploy did not touch these reports
   (its report changes are in the separate accounting module's aging pages), so the V1 baseline and every V1 confirmation still hold.
