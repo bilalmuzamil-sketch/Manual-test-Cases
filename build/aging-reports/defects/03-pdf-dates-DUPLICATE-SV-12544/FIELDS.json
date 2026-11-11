@@ -1,0 +1,37 @@
+{
+ "status": "DUPLICATE - not to be filed: SV-12544 (Open, Story Defect under SV-11533, created 11 Nov 2026 13:04 UTC from the regression-folder session, reporter Bilal Muzamil) reports the same S3-R7a date fault on the A/R Aging Detail PDF. C1062581 linked to SV-12544 instead. Our extra evidence (A/R Collection, A/P Detail, A/P Unpaid PDFs print the same way; SV-12544 says those were not checked) is reported to the QA lead, not written to the ticket (Rule 62).",
+ "project": "SV",
+ "issuetype": "Story Defect",
+ "summary": "Aging Reports \u2013 PDF Dates Print \"Nov 4, 2026\" Instead of \"Nov 04 2026\"",
+ "parent": "SV-11533",
+ "parent_summary": "A/R and A/P Report Sorting - Story 3 - Export to PDF and CSV",
+ "parent_status_live": "TESTING QA",
+ "parent_status_read_at_utc": "2026-11-11T11:56Z (JQL read; re-read live before the ask, Rule 112)",
+ "priority": "Medium",
+ "relates_to": [
+  "SV-11533"
+ ],
+ "labels": [
+  "QA_Found"
+ ],
+ "test_case_links_rule_120": [
+  "https://shopview.testrail.io/index.php?/cases/view/1062581"
+ ],
+ "tests_in_run_557": {
+  "run": "https://shopview.testrail.io/index.php?/runs/view/557",
+  "C1062581": {
+   "test_id": 4667057,
+   "link": "https://shopview.testrail.io/index.php?/tests/view/4667057",
+   "status": "Failed (ticket held), recorded 11 Nov ~12:08 UTC"
+  }
+ },
+ "duplicate_check": "JQL 11 Nov: project = SV AND created >= -10d AND (text ~ \"Nov 04\" OR (aging AND PDF)) - no ticket about PDF date format (SV-12539 is the 2,000-row PDF failure).",
+ "build": "v26.45.2-6a8b89c",
+ "qa_site": "https://sv11315.qa.shopview.com",
+ "evidence": [
+  "../exec/s9/C1062581.json",
+  "../exec/s9/C1062581-3-pdf-ar-aging-detail.pdf",
+  "../exec/p55b/out.json",
+  "../exec/p55b/sbc-sales-by-customer-expanded.pdf"
+ ]
+}
