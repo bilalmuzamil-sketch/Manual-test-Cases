@@ -1,0 +1,87 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d3b2 design C715547 C715548 C715550 C715551 C715552 C715553"
+ },
+ "results": {
+  "C715547": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of today, all locations, the first bucket open, 1440 px, light theme; compared with the design picture \"Opens on All locations\".",
+    "Step 1: the filter row reads \"As of: 11/11/2026\" (blue pill), \"Customer: All customers\" and \"Past due: Any\" (no fill), and \"Location: All locations\" in a blue pill with the pin icon.",
+    "Step 2: a column labelled \"Location\" right after \"Date\".",
+    "Step 3: each row's Location reads its location's name exactly as the location switcher names it (\"Staging Heavy Duty - 9919\", \"Staging Lethbridge - 4310\").",
+    "Step 4: the bold Totals row at the bottom.",
+    "Step 5: at 1536 px nothing overlaps, is cut off or clipped."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715547-design-pics-ar-ap-p4-opens-on-all-locations.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715547-d3b-C715547-1-1440.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715547-d3b-C715547-2-1536.png"
+   ]
+  },
+  "C715548": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of today, 1440 px, light theme; compared with the design picture \"The native Location menu\". This site has THREE locations with open documents (the picture shows two), so the menu lists three.",
+    "Step 1: the menu opens under the chip; while it is open the chip shows a circled \"\u00d7\" in place of its down arrow. Rows top to bottom: \"Select all\" with \"3 selected\" at its right, Staging Heavy Duty - 9919, Staging Lethbridge - 4310, ZZAUTOTEST V1R-87 Location C, a dividing line, \"Clear selection\". No search box. Ticked boxes are light-blue with a blue tick - as in the picture, with one more location row.",
+    "Step 2: at 1536 px nothing overlaps, is cut off or clipped."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715548-design-pics-ar-ap-p4-the-native-location-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715548-d3b-C715548-1-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715548-d3b-C715548-2-1536.png"
+   ]
+  },
+  "C715550": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of today, 1440 px, light theme; compared with the design picture \"Cleared: No locations\" (the 5 Nov reshot one).",
+    "Step 1: Location menu \"Clear selection\" - no location is ticked.",
+    "Step 2: the menu closes; the chip reads \"Location: No locations\" with the pin icon, still in the filter row; the headings show without a Location column, then the empty state; no rows and no Totals row. It reads \"No record matches these filters\", \"Try changing filters to widen your results.\" and a \"Clear all filters\" button.",
+    "Step 3: at 1536 px nothing overlaps, is cut off or clipped."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715550-design-pics-ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715550-d3b-C715550-2-closed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715550-d3b-C715550-3-1536.png"
+   ]
+  },
+  "C715551": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of today, all locations, 1440 px, light theme; compared with the design picture of the Summaries sorted by Location.",
+    "Step 1: clicking \"Location\" sorts the rows by Location A to Z: \"Location\" carries the small up arrow and \"Customer\" none; the rows reading \"Multiple\" come first (customer A, \"ZZAUTOTEST AR Customer A\", among them), then each location's rows.",
+    "Step 2: at 1536 px nothing overlaps, is cut off or clipped; the layout is the same as at 1440 px."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715551-design-pics-ar-ap-p4-summaries-show-multiple.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715551-d3b-C715551-1-sorted.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715551-d3b-C715551-2-1536.png"
+   ]
+  },
+  "C715552": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary as of 11/05/2026 (date A), all locations; compared with the design picture \"Drill-down keeps the as-of date\".",
+    "Step 1: clicking \"Desert Edge Truck Service & Repair\" opens A/R Aging Collection. As in the picture: \"As of: 11/05/2026\" in a blue pill; \"Customer: Desert Edge Truc\u2026\" in a blue pill (one customer ticked); \"Past due: Any\" with no fill; \"Location: All locations\"; one closed group row \"Desert Edge Truck Service & Repair (74)\" with \"Phone: 605-175-8825\", \"Credit term: Net 45\", \"Total\" and the sums ($231,918.94); the Totals row equals that group's sums."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715552-design-pics-ar-ap-p4-drill-down-keeps-the-as-of-date.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715552-d3b-C715552-1-drilled.png"
+   ]
+  },
+  "C715553": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of today, 1440 px, light theme; compared with the design picture \"Past due menu\".",
+    "Step 1: the menu opens; while it is open the chip has a light-grey background; the white menu opens under it. Rows top to bottom: \"Any\" (ticked), a dividing line, the grey line \"All ranges are included. Pick one or more to narrow.\", then \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\"; each range box shows a grey dash while \"Any\" is ticked.",
+    "Step 2: at 1536 px nothing overlaps, is cut off or clipped; the layout is the same as at 1440 px."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715553-design-pics-ar-ap-p7-past-due-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715553-d3b-C715553-1-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715553-d3b-C715553-2-1536.png"
+   ]
+  }
+ }
+}
