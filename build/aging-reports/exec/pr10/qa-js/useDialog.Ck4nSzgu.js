@@ -1,0 +1,2 @@
+import{e as a}from"./vue-vendor.DrI6mb_A.js";function t(c,o){const l=a({get:()=>c.modelValue,set:e=>{o("update:modelValue",e)}}),n=()=>{o("close"),o("update:modelValue",!1)};return{isDialogVisible:l,closeDialog:n,confirm:(...e)=>{o("confirm",...e),c.autoCloseOnConfirm&&n()},cancel:(...e)=>{o("cancel",...e),c.autoCloseOnCancel&&n()},beforeShow:e=>o("beforeShow",e),beforeHide:e=>o("beforeHide",e),hide:e=>o("hide",e)}}export{t as u};
+//# sourceMappingURL=useDialog.Ck4nSzgu.js.map

@@ -1,0 +1,2 @@
+import{d as a,Q as e,S as s,_ as l,P as n}from"./vue-vendor.DrI6mb_A.js";import{ed as o}from"./index.DmAo4IZ5.js";const d=["data-test-id"],i=a({name:"StatusPill",__name:"StatusPill",props:{label:{},tone:{},dense:{type:Boolean,default:!1},dataTestIdSuffix:{default:"status"}},setup(t){return(u,c)=>(e(),s("span",{class:l(["status-pill",`status-pill--${t.tone}`,{"status-pill--dense":t.dense}]),"data-test-id":`pill_${t.dataTestIdSuffix}`},n(t.label),11,d))}}),r=o(i,[["__scopeId","data-v-98f15266"]]);export{r as S};
+//# sourceMappingURL=StatusPill.XzHzUxmD.js.map
