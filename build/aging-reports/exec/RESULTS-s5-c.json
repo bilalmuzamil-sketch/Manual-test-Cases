@@ -1,0 +1,33 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S5 links (sv11315)"
+ },
+ "results": {
+  "C715395": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of 11/11/2026; location A = Staging Heavy Duty - 9919, location B = Staging Lethbridge - 4310.",
+    "Step 1: unticked location B: the report narrowed to location A; the address carries one entry, \"locationIds=b3c8c820-\u2026\" (location A's code).",
+    "Steps 2-3: added \",Nowhere\" after location A's code and pressed Enter: the report loaded normally, no error; the chip reads \"Location: Staging Heavy D...\" (location A only) and the Location column is hidden.",
+    "Steps 4-5: replaced the list with \"Nowhere\" and pressed Enter: the report loaded normally, no error, on \"Location: All locations\", and the Location column shows."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715395-1-3-code-nowhere.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715395-2-5-nowhere.png"
+   ]
+  },
+  "C715396": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of 11/11/2026.",
+    "Steps 1-2: ticked \"31-60 days\": the chip reads \"Past due: 31-60 days\"; the address carries \"pastDue=31-60\".",
+    "Steps 3-4: changed it to \"pastDue=5\" and pressed Enter: the report loaded normally; the chip reads \"Past due: Any\" in the grey resting style.",
+    "Steps 5-7: pasted the copied address, changed the value to \"pastDue=any\" and pressed Enter: the report loaded normally; the chip reads \"Past due: Any\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715396-1-4-pastdue-5.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715396-2-7-pastdue-any.png"
+   ]
+  }
+ }
+}
