@@ -1,0 +1,12 @@
+{
+ "claim": "A/R Detail: with the computer offline, a bucket whose lines fail to load shows no 'Something went wrong loading this bucket' message",
+ "proofs": {
+  "positive_control": {"passed": true, "evidence": "p56c/03-B-rows-blocked-first-open-3s.png: same page, same bucket, first open with only the /buckets/current/rows call failing while online -> the bucket shows 'Something went wrong loading this bucket. Collapse and expand it to try again.' So the message exists and the screen read can see it."},
+  "tried_through_the_screen": {"passed": true, "evidence": "Clicked the Current bucket's chevron on the real A/R Aging Detail page (sortlib expand), pictures p56c/01-A-offline-first-open-3s.png and 02-A-...-end.png; s4/01-C1062582-2-offline-expand.png."},
+  "waited_and_retried": {"passed": true, "evidence": "Three attempts: s4f 08:50 UTC, s4f 12:09 UTC, p56c 12:21 UTC; each polled 40 s for the message after the page had loaded (4 s settle)."},
+  "checked_for_navigation": {"passed": true, "evidence": "Pictures at 3 s and at 40 s show the same A/R Aging Detail URL and page, Current (15) open with no lines; no new tab (single page context)."},
+  "precondition_read_back": {"passed": true, "evidence": "p56c/out.json A-offline-first-open: the bucket's rows request failed with net::ERR_INTERNET_DISCONNECTED and the console logged 'Failed to load resource: net::ERR_INTERNET_DISCONNECTED' - the load really failed; state0 'Current (15)' was collapsed before the click (first open on that page, L0642)."},
+  "searched_the_repo": {"passed": true, "evidence": "git grep 'went wrong loading this bucket' / 'Not every line loaded' across build/: only our cases, PRD extract and these probes; no BLOCKED file or learning about it. JQL 11 Nov found no ticket on it."},
+  "asked_what_would_make_this_my_fault": {"passed": true, "evidence": "Most likely: re-opening a bucket reuses loaded lines so nothing fails (L0642) - ruled out, p56c opens it for the first time on a fresh page and the request is seen failing. Second: reading the screen too early - ruled out by 40 s polling and the end picture. Third: the message only appears online - that IS the finding: online failure shows it, offline failure does not."}
+ }
+}

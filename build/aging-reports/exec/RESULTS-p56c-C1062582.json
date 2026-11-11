@@ -1,0 +1,28 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, C1062582 (p56c, s4f)"
+ },
+ "results": {
+  "C1062582": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 2: with the network off, the \"Current\" bucket opens with no lines and no message.",
+   "bold_steps": [
+    2
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), Story 4 error handling: \"If a bucket's lines fail to load when it is expanded, the bucket shows \"Something went wrong loading this bucket. Collapse and expand it to try again.\" in place of its lines.\"",
+   "observed": [
+    "Set up: open A/R Aging Detail (as of 11/11/2026, \"Current\" has 15 lines) and switch the network off.",
+    "Step 2: expand \"Current\".",
+    "You see: the bucket opens empty - no lines and no message - and stays that way (watched 40 seconds, three tries). The bucket's lines did try to load and failed.",
+    "The test says the bucket shows \"Something went wrong loading this bucket. Collapse and expand it to try again.\" in place of its lines.",
+    "For the developer: when the same load fails while the computer is online, the message does appear - it is missing only when the computer is offline."
+   ],
+   "ticket": "Ticket prepared and with the QA lead for approval (number added here when filed).",
+   "ticket_held": true,
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the ticket is fixed.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062582-2-offline-no-message.png"
+   ]
+  }
+ }
+}
