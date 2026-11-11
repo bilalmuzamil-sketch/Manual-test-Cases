@@ -1,0 +1,31 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, PDF limit at exactly 2,000 lines (p48)"
+ },
+ "results": {
+  "C715469": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 4: a PDF of exactly 2,000 lines never downloads - the server gives up with an error after about 32 seconds.",
+   "bold_steps": [
+    4
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), S3-N1: \"Over 2,000 rows, the PDF is refused before anything is generated: no download, and the message \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\" Exactly 2,000 rows is allowed.\" and S3-R10: \"A successful export shows the native \"Success\" message, \"Data exported successfully.\"\"",
+   "observed": [
+    "Set up: A/P Aging Detail as of 11/11/2026 with the Vendor filter ticking Fate Roadside Truck Repair, New Castle Diesel Performance and Grand Haven Diesel Services LLC - exactly 2,000 lines (the CSV of the same report holds 2,000 document rows).",
+    "Step 4: choose Download (PDF) from the \u22ef menu and wait.",
+    "You see: no PDF arrives (watched for 4 minutes); the server answered the export with an error after about 32 seconds. A smaller report (444 lines) downloads its PDF fine, so it is the size, not a missing PDF tool.",
+    "The test says exactly 2,000 lines is allowed and the PDF downloads with the \"Success\" message."
+   ],
+   "ticket": "Ticket prepared and being filed with the QA lead's approval (number added here when filed).",
+   "ticket_held": true,
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the ticket is fixed.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715469-1-2000-lines.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715469-3-csv.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715469-4-no-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715469-5-2001-lines.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715469-6-2001-refused.png"
+   ]
+  }
+ }
+}
