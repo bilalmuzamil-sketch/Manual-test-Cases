@@ -2682,3 +2682,21 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     (d) the case's AUTOMATION marker reads `AUTOMATION: READY - EXPECT FAIL (SV-nnnnn)` with the symptom
     and the three outcomes of Rule 61. No ticket, no prefix. Never on Vladimir Tomovic's cases or on
     cases flagged Automated without his go-ahead (38, 65, 71).
+    **117.3 · No correction comments; a regression ticket shows QA branch vs production; Sources say
+    whether the PRD intends it (QA lead, 2026-11-11, verbatim: "Instead of such correction in any
+    ticket, rather delete your comment and make your ticket description correct. Also the ticket
+    description should clearly tell (if the ticket is from the regression) testing folder that how it is
+    behaving on the QA branch and how it is behaving on production with the annotated screenshot. In the
+    sources mention whether the behavior reported in the ticket is intended by the PRD and if it is not
+    intended by the PRD clearly mention that, and tell that since the behavior happening in the QA branch
+    is not intended behavior as per the PRD this should work exactly as it is working on production at
+    the moment. But you need to make this look better than just a paragraph. ... make sure that a lay
+    man and a manual qa tester can easily understand them.")** (a) A wrong fact in a ticket is fixed IN
+    THE DESCRIPTION; a correction comment is never added, and one already added is deleted. (b) A ticket
+    from a regression (V1-vs-V2) folder has a "QA branch vs production" section: a table (what you check
+    · QA branch · production, each with its build marker) and the annotated screenshots of both sides,
+    each captioned with its site. (c) Sources answer "Intended by the PRD?" visibly (a panel or table:
+    document + version · what it says or that it says nothing · Yes/No). When the answer is No, it says
+    so and says that the QA branch must therefore work exactly as production does today. (d) Layout is
+    headings, short bullets, tables and panels — never a wall of paragraphs — in plain words a manual QA
+    tester follows without help; technical detail only in a collapsed block at the end.
