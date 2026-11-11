@@ -1,0 +1,42 @@
+{
+ "status": "HELD - prepared 11 Nov 2026 ~12:30 UTC, not filed; ask the QA lead per ticket once all tests are complete (his ruling).",
+ "project": "SV",
+ "issuetype": "Story Defect",
+ "summary": "Aging Detail \u2013 No Load-Error Message When Lines Fail While Offline",
+ "parent": "SV-11534",
+ "parent_summary": "A/R and A/P Report Sorting - Story 4 (Collapse all, Expand all and pinned group rows; error handling)",
+ "parent_status_live": "TESTING QA (read 2026-11-11T10:55:55Z for draft 01; re-read live before the ask, Rule 112)",
+ "priority": "Medium",
+ "relates_to": [
+  "SV-11534"
+ ],
+ "labels": [
+  "QA_Found"
+ ],
+ "test_case_links_rule_120": [
+  "https://shopview.testrail.io/index.php?/cases/view/1062582",
+  "https://shopview.testrail.io/index.php?/cases/view/1062583"
+ ],
+ "tests_in_run_557": {
+  "run": "https://shopview.testrail.io/index.php?/runs/view/557",
+  "C1062582": {
+   "test_id": 4667048,
+   "link": "https://shopview.testrail.io/index.php?/tests/view/4667048",
+   "status": "Failed (ticket held), recorded 11 Nov ~12:28 UTC"
+  },
+  "C1062583": {
+   "test_id": 4667049,
+   "link": "https://shopview.testrail.io/index.php?/tests/view/4667049",
+   "status": "Failed (ticket held), recorded 11 Nov ~12:57 UTC"
+  }
+ },
+ "build": "v26.45.2-6a8b89c",
+ "qa_site": "https://sv11315.qa.shopview.com",
+ "evidence": [
+  "../exec/p56c/out.json",
+  "../exec/s4/C1062582.json",
+  "CLAIM.json",
+  "../exec/p56b3/out.json",
+  "../exec/s4/C1062583.json"
+ ]
+}
