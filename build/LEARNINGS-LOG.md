@@ -634,3 +634,7 @@
 - `exec/d3b2_design.py` holds the by-eye verdicts per case (observed lines + pictures) so later additions are one dict entry; `exec/d3g_cm.mjs` collects the missing states.
 - The title's info icon is a Quasar icon whose text is "info_outline" - `getByText('info', {exact:true})` never matches (C715542).
 - #aging #design #method → L0677, L0678
+
+## L0684 — 2026-11-11 — Summaries load 30 names at a time: a "ZZ…" customer/vendor is not on screen unless ticked first
+- pm1b C715610 / C715432 looked for "ZZAUTOTEST AR Customer A" (A/R Summary) and "ZZY Types P92" (A/P Summary) on the opening page: the Summaries show 30 rows per batch in A to Z order, so names starting "ZZ…" are far below - the cell search returned nothing and the click timed out. For any check on one named row of a Summary, tick it in the Customer/Vendor filter first (the row is then the only one), or use a seed name near the top of the alphabet (e.g. "AAA ZZAUTOTEST …").
+- #aging #permissions #trap → L0679
