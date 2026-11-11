@@ -486,3 +486,9 @@
 - **Credit numbers carry a location number there:** the API's `CM-4412` is listed as `CM1-4412` (Truck Hill 1). Search the reply by customer name, not by the number the create call returned.
 - **Before-release fact (C1062590):** a credit memo dated on the as-of date sits in `days1to30` ("1-30 days past due"); on the QA site with the release it is "Current". `exec/pr2d_bucket.mjs`.
 - #aging #production #before-release → L0658
+
+## L0660 — 2026-11-11 — sv11315 has a vendor named "Total Truck & Trailer Repair - Indian Lake": never find the Totals row with /^Totals?\b/
+- s86 read A/P Summary as 503 vendors against the CSV's 504; the missing one was "Total Truck & Trailer Repair - Indian Lake" — the reader dropped every row whose text starts with "Total", meant for the Totals row. The same pattern would also pick that vendor's row as "the Totals row".
+- **Match the Totals row exactly:** `/^\s*Totals(\s|$)/` (and group subtotals by `/^Total for /`). Fixed in `exec/s86_paging.mjs`; earlier runners using `/^Totals?\b/` (s85, s82, sortlib callers) only read A/R Summary or one-vendor lists where it did not bite, but check before reusing them on A/P lists.
+- Also: CSV exports prefix names that start with "-", "=", "@" with an apostrophe ("'-1 Diesel") — compare CSV names to the screen after stripping one leading apostrophe.
+- #aging #reader-trap #csv → L0659
