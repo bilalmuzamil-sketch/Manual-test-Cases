@@ -4,7 +4,7 @@ import json, sys
 from ann import ann
 PP = '/home/user/Manual-test-Cases/build/aging-reports/exec/'
 def P(cid, path, t, b=()): src = PP + path; dst = PP + 'pics/%s-%s' % (cid, path.replace('/', '-')); ann(src, dst, t, [], [], list(b)); return dst
-CH = (278, 70, 1132, 80); HD = (278, 160, 1132, 48)
+CH = (278, 70, 1132, 80); HD = (278, 160, 1132, 48); PIN = (278, 208, 1132, 48)
 E = {
  'C715534': (['A/P Aging Detail, as of today, all locations, every bucket closed, 1440 px, light theme; compared with the design picture "A/P Aging Detail opens by vendor name".',
    'Step 1: the title "A/P Aging Detail" with the info icon and the "⋯" at the right; chips "As of: 11/11/2026" (blue pill), "Vendor: All vendors" (truck icon, no fill), "Past due: Any" (hourglass, no fill), "Location: All locations" (blue pill).',
@@ -24,6 +24,14 @@ E = {
    [('design-pics/ar-ap-p2-a-p-gets-the-same-menu.png', 'The design picture', ()),
     ('d3b/C715536-1-1440.png', 'Steps 1-4: A/P Aging Summary at 1440 px - as designed, no print icon', (CH + ('good', 'Title, info icon, ⋯, chips'), HD + ('good', 'Headings'))),
     ('d3b/C715536-2-1536.png', 'Steps 4-5: 1536 px - "Multiple" for a vendor at both locations; nothing clipped', ((520, 540, 200, 40, 'good', 'Multiple'),))]),
+ 'C715539': (['A/R Aging Collection, as of today, customers "Desert Edge Truck Service & Repair" (74) and "Tucson Truck Center" (39) ticked and open, 1440 px, light theme; compared with the design picture "The customer row stays pinned".',
+   'Step 1: scrolling into Desert Edge\'s rows, its group row stays just under the column headings while its invoices slide beneath it; as in the picture it shows the blue chevron, the bold name and count, and the grey "Phone: 605-175-8825" and "Credit term: Net 45".',
+   'Step 2: when Tucson Truck Center\'s row reaches the top it takes the pinned place ("Phone: 913-614-9479", "Credit term: Net 30") and Desert Edge\'s row is gone; only one group row is pinned at a time.',
+   'Step 3: at 1536 px nothing overlaps, is cut off or clipped; the layout is the same as at 1440 px.'],
+   [('design-pics/ar-ap-p3-the-customer-row-stays-pinned.png', 'The design picture', ()),
+    ('d3b/C715539-2-scroll-3300.png', 'Step 1: Desert Edge\'s row pinned under the headings, rows sliding beneath', (PIN + ('good', 'Pinned, as designed'),)),
+    ('d3b/C715539-3-scroll-3700.png', 'Step 2: Tucson Truck Center has taken the pinned place - one pinned row', (PIN + ('good', 'Customer B pinned'),)),
+    ('d3b/C715539-4-1536.png', 'Step 3: 1536 px - nothing clipped, same layout', ())]),
 }
 ids = sys.argv[1:]; R = {}
 for c in ids:
