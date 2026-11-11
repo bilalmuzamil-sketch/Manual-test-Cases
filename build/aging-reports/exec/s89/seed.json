@@ -1,0 +1,48 @@
+{
+ "log": [
+  "vendor ZZY VCredit Links P89b Net 30",
+  "  vendor credit RA ZZYCM6825104 31.5 at HD",
+  "  vendor credit RB ZZYCM6826297 42.75 at LB",
+  "  direct credit 23.45 [{\"url\":\"https://sv11315api.qa.shopview.com/api/parts-catalogue/vendor/credit/create\",\"body\":\"{\\\"vendorId\\\":\\\"917189f3-d238-433d-ae0c-6090e25b5b00\\\",\\\"amount\\\":23.45,\\\"memo\\\":\\\"ZZY direct credit P89\\\"}\"}]",
+  "vendor ZZY VCredit Loc P89b Net 30",
+  "  vendor credit RB2 ZZYCM6839382 52.25 at LB",
+  "  direct credit 19.95 [{\"url\":\"https://sv11315api.qa.shopview.com/api/parts-catalogue/vendor/credit/create\",\"body\":\"{\\\"vendorId\\\":\\\"4ffd1603-ffd1-4107-b550-a510b1df8531\\\",\\\"amount\\\":19.95,\\\"memo\\\":\\\"ZZY direct credit P89\\\"}\"}]"
+ ],
+ "part": {
+  "RA": [
+   "00074422-93fd-4cd8-a023-00f06d4fb1a1",
+   "2--83-2511PK"
+  ],
+  "RB": [
+   "0002e6b2-0663-476f-a9b5-0acf2e287040",
+   "RFU-505"
+  ],
+  "RB2": [
+   "0002e6b2-0663-476f-a9b5-0acf2e287040",
+   "RFU-505"
+  ]
+ },
+ "form": "New Vendor Credit close $ Amount Memo Save",
+ "inputs": [
+  "$ Amount",
+  "Memo"
+ ],
+ "directReq": [
+  {
+   "url": "https://sv11315api.qa.shopview.com/api/parts-catalogue/vendor/credit/create",
+   "body": "{\"vendorId\":\"4ffd1603-ffd1-4107-b550-a510b1df8531\",\"amount\":19.95,\"memo\":\"ZZY direct credit P89\"}"
+  }
+ ],
+ "v1": {
+  "name": "ZZY VCredit Links P89b",
+  "id": "917189f3-d238-433d-ae0c-6090e25b5b00",
+  "ra": "ZZYCM6825104",
+  "rb": "ZZYCM6826297"
+ },
+ "v2": {
+  "name": "ZZY VCredit Loc P89b",
+  "id": "4ffd1603-ffd1-4107-b550-a510b1df8531",
+  "rb": "ZZYCM6839382"
+ },
+ "apu1": "{\"collection\":[{\"vendorId\":\"917189f3-d238-433d-ae0c-6090e25b5b00\",\"name\":\"ZZY VCredit Links P89b\",\"amountCents\":-9770,\"openBalanceCents\":-9770,\"rowsNumber\":3,\"rows\":[{\"documentId\":\"fdb3ebdc-b25d-4a61-973d-bc86d1b001a0\",\"date\":\"2026-11-11T08:00:00Z\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"locationName\":\"Staging Heavy Duty - 9919\",\"transactionType\":\"Vendor Credit\",\"documentNumber\":\"C-13686\",\"vendorId\":\"917189f3-d238-433d-ae0c-6090e25b5b00\",\"vendorName\":\"ZZY VCredit Links P89b\",\"dueDate\":null,\"daysPastDue\":null,\"amountCents\":-3150,\"openBalanceCents\":-3150,\"link\":{\"kind\":\"vendor_return\",\"targetId\":\"2f640267-896b-42f4-a9f7-4e5351a5d2d2\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"}},{\"documentId\":\"708a63a6-2526-470a-ab35-6a01aff69fe2\",\"date\":\"2026-11-11T08:00:00Z\",\"workplaceId\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"locationName\":\"Staging Lethbridge - 4310\",\"transactionType\":\"Vendor Credit\",\"documentNumber\":\"C-13687\",\"vendorId\":\"917189f3-d238-433d-ae0c-6090e25b5b00\",\"vendorName\":\"ZZY VCredit Links P89b\",\"dueDate\":null,\"daysPastDue\":null,\"amountCents\":-4275,\"openBalanceCents\":-4275,\"link\":{\"kind\":\"vendor_return\",\"targetId\":\"3ee7581f-20df-4100-976d-5e0c20474bca\",\"workplaceId\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\"}},{\"documentId\":\"55d453c4-aec5-49df-85b0-79ce50beeabc\",\"date\":\"2026-11-11T17:07:15Z\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"locationName\":\"Staging Heavy Duty - 9919\",\"transactionType\":\"Vendor Credit\",\"documentNumber\":\"C-13688\",\"vendorI"
+}
