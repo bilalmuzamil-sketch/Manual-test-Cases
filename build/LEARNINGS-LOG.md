@@ -510,3 +510,11 @@
 - Done: SV-12540 → labels `AP-AR-FM`, `QA_Found` (read back). SV-12544–SV-12547 already had it. Held drafts 01/03/04/05 `FIELDS.json` now carry it, so a filing on his per-ticket yes includes it.
 - The Jira label field is REPLACED, not appended, on edit: send the full list (existing + `AP-AR-FM`).
 - #jira #label #aging → L0661, `build/aging-reports/PROJECT-STATE.md` (standing instruction block)
+
+## L0664 — 2026-11-11 — sv11315 aging reports: number pattern at Location C, grouped-sort judging, and two positive-control gaps
+- **Invoice numbers at "ZZAUTOTEST V1R-87 Location C" read `S-17887`** (no location digits), unlike `S11315-17887` at Heavy Duty. A matcher `/^S\d+-\d+$/` silently finds nothing there; use `/^S\d*-\d+$/` (s87 C715424 missed its row this way).
+- **Grouped reports (A/R Collection, A/P Unpaid): judge "sorted" INSIDE the open group** — PRD S2-R5: a heading click sorts rows inside each group, the groups never move. A group-order check reading "not descending" is expected, not a fault (s82 C715318/C715321).
+- **A/R Collection hides its Location column when only one location is ticked**; prove "only location A" by the chip + the drop in the group count (23 → 21), not by reading Location cells.
+- **"Phone:" absence needs a PDF that prints a phone at all**: the collection PDFs we held (C715446, C715459) only had phoneless customers, so 0 "Phone:" proved nothing. Control: `exec/p73_phonectl.mjs` with "Andrews' Truck & Trailer Repair LLC" (Phone 343-203-3967).
+- **The Admin's enrolled locations are listed behind the avatar menu's "Change Location"**, not in the menu itself.
+- #aging #trap #positive-control → L0654, L0660
