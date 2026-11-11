@@ -504,3 +504,9 @@
 - When counting rows below an open group, the table's own **Totals** row is counted unless excluded (`^Totals( |$)`): p72's "101" on opening = 100 documents + the Totals row.
 - **Queue-name trap:** `git checkout -- queueN.sh` on a REUSED queue name restores the OLD committed queue of that name, not "undoes my sed". Give new queues new names (queue5, queue6 …) and never `git checkout` one that is running.
 - #defect #method #aging #SV-12540 #queue → L0661, L0647
+
+## L0663 — 2026-11-11 — A/R and A/P suite: every ticket carries the label `AP-AR-FM` (QA lead's standing instruction)
+- QA lead, 11 Nov ~15:30 UTC: *"ALl the tickets which you have created and will create in the future for the A/R and A/P testing suite please apply the label on those ticket as AP-AR-FM"*. Suite-scoped (aging reports, run 557), past and future tickets.
+- Done: SV-12540 → labels `AP-AR-FM`, `QA_Found` (read back). SV-12544–SV-12547 already had it. Held drafts 01/03/04/05 `FIELDS.json` now carry it, so a filing on his per-ticket yes includes it.
+- The Jira label field is REPLACED, not appended, on edit: send the full list (existing + `AP-AR-FM`).
+- #jira #label #aging → L0661, `build/aging-reports/PROJECT-STATE.md` (standing instruction block)

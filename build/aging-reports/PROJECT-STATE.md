@@ -17,6 +17,11 @@ you to start - But be completely ready." Status: **READY, NOT STARTED** (waiting
   Summary / Detail / Unpaid Invoices); addresses /reports/ar-aging-summary, …-detail, …-collection, /reports/ap-aging-summary,
   …-detail, /reports/ap-unpaid-invoices. NOT Accounting → Reports (/accounting/reports/…).
 
+## 🏷️ STANDING INSTRUCTION — every ticket of this suite carries the label `AP-AR-FM` (QA lead, 11 Nov 2026 ~15:30 UTC)
+Verbatim: *"ALl the tickets which you have created and will create in the future for the A/R and A/P testing suite please apply the label on those ticket as AP-AR-FM"*.
+- Applied 15:30 UTC to SV-12540 (the only suite ticket this session filed; labels now AP-AR-FM + QA_Found, read back). SV-12544-SV-12547 (filed by the other session) already carried it.
+- Every held draft's `FIELDS.json` (01, 03, 04, 05) now lists `AP-AR-FM` beside `QA_Found`; a new draft starts with both. Keep existing labels when adding it (the label field is replaced as a whole).
+
 ## TestRail
 - Suite 1, group **90418** "A/R and A/P Report Sorting, Export and Location Filter": 15 folders, **380 cases**, all ours (created_by 3),
   none Automated. Markers (10 Nov): 357 READY · 9 READY - EXPECT FAIL (SV-12138 ×2, SV-12139 ×5, SV-12140, SV-12141) · 13 HOLD "needs

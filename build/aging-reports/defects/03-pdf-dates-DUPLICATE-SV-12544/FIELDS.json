@@ -2,7 +2,7 @@
  "status": "DUPLICATE - not to be filed: SV-12544 (Open, Story Defect under SV-11533, created 11 Nov 2026 13:04 UTC from the regression-folder session, reporter Bilal Muzamil) reports the same S3-R7a date fault on the A/R Aging Detail PDF. C1062581 linked to SV-12544 instead. Our extra evidence (A/R Collection, A/P Detail, A/P Unpaid PDFs print the same way; SV-12544 says those were not checked) is reported to the QA lead, not written to the ticket (Rule 62).",
  "project": "SV",
  "issuetype": "Story Defect",
- "summary": "Aging Reports \u2013 PDF Dates Print \"Nov 4, 2026\" Instead of \"Nov 04 2026\"",
+ "summary": "Aging Reports – PDF Dates Print \"Nov 4, 2026\" Instead of \"Nov 04 2026\"",
  "parent": "SV-11533",
  "parent_summary": "A/R and A/P Report Sorting - Story 3 - Export to PDF and CSV",
  "parent_status_live": "TESTING QA",
@@ -12,7 +12,8 @@
   "SV-11533"
  ],
  "labels": [
-  "QA_Found"
+  "QA_Found",
+  "AP-AR-FM"
  ],
  "test_case_links_rule_120": [
   "https://shopview.testrail.io/index.php?/cases/view/1062581"
@@ -33,5 +34,6 @@
   "../exec/s9/C1062581-3-pdf-ar-aging-detail.pdf",
   "../exec/p55b/out.json",
   "../exec/p55b/sbc-sales-by-customer-expanded.pdf"
- ]
+ ],
+ "labels_note": "AP-AR-FM on every ticket of this suite - QA lead, 11 Nov 2026 ~15:30 UTC: \"ALl the tickets which you have created and will create in the future for the A/R and A/P testing suite please apply the label on those ticket as AP-AR-FM\""
 }
