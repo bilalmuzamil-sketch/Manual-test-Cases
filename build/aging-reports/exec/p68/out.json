@@ -174,6 +174,129 @@
      ]
     ]
    }
+  ],
+  "P1": [
+   {
+    "name": "ZZX Own Loc P68",
+    "cid": "62c17327-92d5-4264-a520-23d6dbdc0928",
+    "docs": [
+     {
+      "tag": "A-500-HD",
+      "num": "S11315-17896",
+      "invoiceId": "1f1ae81e-3356-4ead-bd6d-ead42741694a",
+      "wo": "a32529d2-35ef-4e3c-8377-183f341f573d",
+      "amount": 500,
+      "daysAgo": 5,
+      "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "term": "COD",
+      "paid": 200
+     },
+     {
+      "tag": "credit-LB",
+      "num": "CM-4318",
+      "amount": -40,
+      "daysAgo": 3,
+      "credit": true
+     },
+     {
+      "tag": "deposit-left",
+      "num": "S11315-17897",
+      "auto": true,
+      "depLeft": 25,
+      "wp": "LB"
+     }
+    ],
+    "report": [
+     [
+      "current",
+      "Deposit",
+      "DEP11315-4717",
+      "2026-11-11T14:32",
+      "2026-11-11",
+      "Staging Lethbridge - 4310",
+      -2500
+     ],
+     [
+      "days_1_to_30",
+      "Credit Memo",
+      "CM11315-4318",
+      "2026-11-08T07:00",
+      "2026-11-08",
+      "Staging Lethbridge - 4310",
+      -4000
+     ],
+     [
+      "days_1_to_30",
+      "Invoice",
+      "S11315-17896",
+      "2026-11-06T18:00",
+      "2026-11-06",
+      "Staging Heavy Duty - 9919",
+      30000
+     ]
+    ]
+   }
+  ],
+  "T1": [
+   {
+    "name": "ZZX Types P68",
+    "cid": "2cfa8cfd-c0cc-4c49-9e3b-21a7c829218c",
+    "docs": [
+     {
+      "tag": "A-invoice-today",
+      "num": "S11315-17898",
+      "invoiceId": "ef878593-2d69-4c17-af14-35d8c66bd9fa",
+      "wo": "1f047429-c957-4051-8f02-23a99d31dd0b",
+      "amount": 90,
+      "daysAgo": 0,
+      "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "term": "COD"
+     },
+     {
+      "tag": "credit-today",
+      "num": "CM-4319",
+      "amount": -30,
+      "daysAgo": 0,
+      "credit": true
+     },
+     {
+      "tag": "deposit-left",
+      "num": "S11315-17899",
+      "auto": true,
+      "depLeft": 20,
+      "wp": "HD"
+     }
+    ],
+    "report": [
+     [
+      "current",
+      "Credit Memo",
+      "CM11315-4319",
+      "2026-11-11T07:00",
+      "2026-11-11",
+      "Staging Heavy Duty - 9919",
+      -3000
+     ],
+     [
+      "current",
+      "Deposit",
+      "DEP11315-4719",
+      "2026-11-11T14:32",
+      "2026-11-11",
+      "Staging Heavy Duty - 9919",
+      -2000
+     ],
+     [
+      "current",
+      "Invoice",
+      "S11315-17898",
+      "2026-11-11T08:00",
+      "2026-11-11",
+      "Staging Heavy Duty - 9919",
+      9000
+     ]
+    ]
+   }
   ]
  },
  "log": [
@@ -194,6 +317,19 @@
   "  invoice S11315-17893 140.00 dated -40 COD LB",
   "  invoice S11315-17894 120.00 dated -20 COD HD",
   "  invoice S11315-17895 130.00 dated -30 COD HD",
-  "  report [[\"days_1_to_30\",\"Invoice\",\"S11315-17894\",\"2026-10-22T18:00\",\"2026-10-22\",\"Staging Heavy Duty - 9919\",12000],[\"days_1_to_30\",\"Invoice\",\"S11315-17895\",\"2026-10-12T18:00\",\"2026-10-12\",\"Staging Heavy Duty - 9919\",13000],[\"days_31_to_60\",\"Invoice\",\"S11315-17893\",\"2026-10-02T18:00\",\"2026-10-02\",\"Staging Lethbridge - 4310\",14000]]"
+  "  report [[\"days_1_to_30\",\"Invoice\",\"S11315-17894\",\"2026-10-22T18:00\",\"2026-10-22\",\"Staging Heavy Duty - 9919\",12000],[\"days_1_to_30\",\"Invoice\",\"S11315-17895\",\"2026-10-12T18:00\",\"2026-10-12\",\"Staging Heavy Duty - 9919\",13000],[\"days_31_to_60\",\"Invoice\",\"S11315-17893\",\"2026-10-02T18:00\",\"2026-10-02\",\"Staging Lethbridge - 4310\",14000]]",
+  "== P1",
+  "customer ZZX Own Loc P68 COD",
+  "  invoice S11315-17896 500.00 dated -5 COD HD",
+  "  paid 200 on S11315-17896",
+  "  credit CM-4318 40",
+  "  deposit left 25 via S11315-17897 auto_paid=true",
+  "  report [[\"current\",\"Deposit\",\"DEP11315-4717\",\"2026-11-11T14:32\",\"2026-11-11\",\"Staging Lethbridge - 4310\",-2500],[\"days_1_to_30\",\"Credit Memo\",\"CM11315-4318\",\"2026-11-08T07:00\",\"2026-11-08\",\"Staging Lethbridge - 4310\",-4000],[\"days_1_to_30\",\"Invoice\",\"S11315-17896\",\"2026-11-06T18:00\",\"2026-11-06\",\"Staging Heavy Duty - 9919\",30000]]",
+  "== T1",
+  "customer ZZX Types P68 COD",
+  "  invoice S11315-17898 90.00 dated -0 COD HD",
+  "  credit CM-4319 30",
+  "  deposit left 20 via S11315-17899 auto_paid=true",
+  "  report [[\"current\",\"Credit Memo\",\"CM11315-4319\",\"2026-11-11T07:00\",\"2026-11-11\",\"Staging Heavy Duty - 9919\",-3000],[\"current\",\"Deposit\",\"DEP11315-4719\",\"2026-11-11T14:32\",\"2026-11-11\",\"Staging Heavy Duty - 9919\",-2000],[\"current\",\"Invoice\",\"S11315-17898\",\"2026-11-11T08:00\",\"2026-11-11\",\"Staging Heavy Duty - 9919\",9000]]"
  ]
 }

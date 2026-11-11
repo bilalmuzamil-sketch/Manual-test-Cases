@@ -1,0 +1,239 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d2 design captures"
+ },
+ "results": {
+  "C715509": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary at 1440 px, Admin, as of 11/11/2026; this side has 3 locations in the list.",
+    "Step 1: the chip reads \"Location: All locations\" with the location pin icon - the same chip as Sales By Customer's (\"Location: ...\" with the same pin icon, rgb(56, 116, 255), same height 28px).",
+    "Step 2: the menu reads, in order: \"Select all\", \"3 selected\", \"Staging Heavy Duty - 9919\", \"Staging Lethbridge - 4310\", \"ZZAUTOTEST V1R-87 Location C\", \"Clear selection\" - \"Select all\", the count, the ticked locations first, then \"Clear selection\"; no search box (fewer than 9 locations).",
+    "Step 3: Sales By Customer's Location menu has the same rows in the same order (\"Select all\", \"1 selected\", \"Staging Lethbridge - 4310\", \"ZZAUTOTEST V1R-87 Location C\", \"Staging Heavy Duty - 9919\", \"Clear selection\"), the same tick boxes, and opens in the same place, 6 px under its chip, 274 px wide (both).",
+    "Step 4-5: in dark theme the menu opens the same and is readable; nothing is clipped.",
+    "The count reads \"3 selected\" here, not \"2 selected\" as in the case's example, because this organization now has 3 locations; the layout is the one the case describes."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715509-02-ars-menu-location.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715509-48-sbc-menu-location.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715509-09-ars-menu-location-dark.png"
+   ]
+  },
+  "C715510": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary at 1440 px, Admin, as of 11/11/2026; this side has 2 locations in the list.",
+    "Step 1: the chip reads \"Location: All locations\" with the location pin icon - the same chip as Sales By Customer's (\"Location: ...\" with the same pin icon, rgb(56, 116, 255), same height 28px).",
+    "Step 2: the menu reads, in order: \"Select all\", \"2 selected\", \"Staging Heavy Duty - 9919\", \"Staging Lethbridge - 4310\", \"Clear selection\" - \"Select all\", the count, the ticked locations first, then \"Clear selection\"; no search box (fewer than 9 locations).",
+    "Step 3: Sales By Customer's Location menu has the same rows in the same order (\"Select all\", \"1 selected\", \"Staging Lethbridge - 4310\", \"ZZAUTOTEST V1R-87 Location C\", \"Staging Heavy Duty - 9919\", \"Clear selection\"), the same tick boxes, and opens in the same place, 6 px under its chip, 235 px wide (both).",
+    "Step 4-5: in dark theme the menu opens the same and is readable; nothing is clipped.",
+    "The count reads \"2 selected\" here, not \"2 selected\" as in the case's example, because this organization now has 2 locations; the layout is the one the case describes."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715510-25-aps-menu-location.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715510-48-sbc-menu-location.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715510-32-aps-menu-location-dark.png"
+   ]
+  },
+  "C715512": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary at 1440 px; compared with Inventory Value on the same site.",
+    "Step 1: the chip reads \"Vendor: All vendors\" with the truck icon, in the resting style (no fill, grey text rgb(54, 65, 82)) - the same as Inventory Value's Vendor chip (rgb(54, 65, 82)).",
+    "Step 2: the menu reads, in order: a search box with the placeholder \"Search vendors\", \"All vendors\", \"All vendors are included. Pick one or more to narrow.\", then the vendors.",
+    "Step 3: Inventory Value's Vendor menu has the same rows, order, tick boxes and placeholder, and opens 6 px under its chip at the same size (352x510 on both)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715512-26-aps-menu-vendor.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715512-56-iv-menu-vendor.png"
+   ]
+  },
+  "C715515": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary at 1440 px; compared with Sales By Customer.",
+    "Step 1: the \u22ef button sits at the right end of the title row and is labelled \"Export report\".",
+    "Step 2: its menu reads \"Download (PDF)\", then \"Download (CSV)\".",
+    "Step 3: Sales By Customer has the same button (labelled \"Export report\", 55x31 px on both) and the same kind of menu, opening under the button and lined up with its right edge. Its own items are \"Download Summary / Expanded View (PDF/CSV)\" because that report has two views; the order is the same, PDF before CSV."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715515-06-ars-more-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715515-51-sbc-more-menu.png"
+   ]
+  },
+  "C715516": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary at 1440 px; compared with Sales By Customer.",
+    "Step 1: the \u22ef button sits at the right end of the title row and is labelled \"Export report\".",
+    "Step 2: its menu reads \"Download (PDF)\", then \"Download (CSV)\".",
+    "Step 3: Sales By Customer has the same button (labelled \"Export report\", 55x31 px on both) and the same kind of menu, opening under the button and lined up with its right edge. Its own items are \"Download Summary / Expanded View (PDF/CSV)\" because that report has two views; the order is the same, PDF before CSV."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715516-29-aps-more-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715516-51-sbc-more-menu.png"
+   ]
+  },
+  "C715563": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail and A/R Aging Collection at 1440 px.",
+    "Step 1: A/R Detail headings read \"Date\", \"Location\", \"Transaction Type\", \"ID\", \"Customer Full Name\", \"Due Date\", \"Amount\", \"Open Balance\" - every word starts with a capital letter.",
+    "Step 2: A/R Collection opens from the Reports menu.",
+    "Step 3: its headings read \"Date\", \"Location\", \"Transaction Type\", \"ID\", \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715563-10-ard-0-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715563-16-arc-0-open.png"
+   ]
+  },
+  "C715621": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary at 1440 px; compared with Sales By Customer.",
+    "Step 1: \"Total\" is pinned to the right edge (sticky, right 0) and bold on the header (weight 800), on every row (weight 700) and on the Totals row (weight 700), as Sales By Customer's last column is.",
+    "Step 2: the Totals row is background rgb(249, 250, 251), text 13px, weight 700 - the same as Sales By Customer's Totals row (rgb(249, 250, 251), 13px, 700)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715621-01-ars-0-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715621-47-sbc-0-open.png"
+   ]
+  },
+  "C715627": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary at 1440 px; compared with Sales By Customer.",
+    "Step 1: \"Total\" is pinned to the right edge (sticky, right 0) and bold on the header (weight 800), on every row (weight 700) and on the Totals row (weight 700), as Sales By Customer's last column is.",
+    "Step 2: the Totals row is background rgb(249, 250, 251), text 13px, weight 700 - the same as Sales By Customer's Totals row (rgb(249, 250, 251), 13px, 700)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715627-24-aps-0-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715627-47-sbc-0-open.png"
+   ]
+  },
+  "C715623": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail at 1440 px; compared with Sales By Customer.",
+    "Step 1: \"Open Balance\" is pinned to the right edge (sticky, right 0) and bold on the header (weight 800), on every group row and every expanded line (bold in the picture of the expanded report) and on the Totals row (weight 700), as Sales By Customer's last column is.",
+    "Step 2: the Totals row is background rgb(249, 250, 251), text 13px, weight 700 - the same as Sales By Customer's Totals row (rgb(249, 250, 251), 13px, 700)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715623-10-ard-0-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715623-13-ard-light-1440-scrolled.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715623-47-sbc-0-open.png"
+   ]
+  },
+  "C715625": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection at 1440 px; compared with Sales By Customer.",
+    "Step 1: \"Open Balance\" is pinned to the right edge (sticky, right 0) and bold on the header (weight 800), on every group row and every expanded line (bold in the picture of the expanded report) and on the Totals row (weight 700), as Sales By Customer's last column is.",
+    "Step 2: the Totals row is background rgb(249, 250, 251), text 13px, weight 700 - the same as Sales By Customer's Totals row (rgb(249, 250, 251), 13px, 700)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715625-16-arc-0-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715625-23-arc-light-1440-scrolled.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715625-47-sbc-0-open.png"
+   ]
+  },
+  "C715629": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail at 1440 px; compared with Sales By Customer.",
+    "Step 1: \"Open Balance\" is pinned to the right edge (sticky, right 0) and bold on the header (weight 800), on every group row and every expanded line (bold in the picture of the expanded report) and on the Totals row (weight 700), as Sales By Customer's last column is.",
+    "Step 2: the Totals row is background rgb(249, 250, 251), text 13px, weight 700 - the same as Sales By Customer's Totals row (rgb(249, 250, 251), 13px, 700)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715629-33-apd-0-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715629-43-apd-light-1440-scrolled.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715629-47-sbc-0-open.png"
+   ]
+  },
+  "C715631": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report at 1440 px; compared with Sales By Customer.",
+    "Step 1: \"Open Balance\" is pinned to the right edge (sticky, right 0) and bold on the header (weight 800), on every group row and every expanded line (bold in the picture of the expanded report) and on the Totals row (weight 700), as Sales By Customer's last column is.",
+    "Step 2: the Totals row is background rgb(249, 250, 251), text 13px, weight 700 - the same as Sales By Customer's Totals row (rgb(249, 250, 251), 13px, 700)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715631-39-apu-0-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715631-53-apu-light-1440-scrolled.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715631-47-sbc-0-open.png"
+   ]
+  },
+  "C715622": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary at 1440 px; compared with the links on Work In Progress.",
+    "Step 1: the document/name links are blue rgb(34, 118, 218) - the same blue as Work In Progress's links (rgb(34, 118, 218)) - semi-bold (weight 600) and not underlined.",
+    "Step 2: pressing Tab until a link has keyboard focus (\"#1 Diesel\"), that link is underlined; links are underlined only on keyboard focus."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715622-07-ars-focus-link.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715622-64-wip-focus-link.png"
+   ]
+  },
+  "C715628": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary at 1440 px; compared with the links on Work In Progress.",
+    "Step 1: the document/name links are blue rgb(34, 118, 218) - the same blue as Work In Progress's links (rgb(34, 118, 218)) - semi-bold (weight 600) and not underlined.",
+    "Step 2: pressing Tab until a link has keyboard focus (\"#1 Diesel\"), that link is underlined; links are underlined only on keyboard focus."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715628-30-aps-focus-link.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715628-64-wip-focus-link.png"
+   ]
+  },
+  "C715624": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail at 1440 px; compared with the links on Work In Progress.",
+    "Step 1: the document/name links are blue rgb(34, 118, 218) - the same blue as Work In Progress's links (rgb(34, 118, 218)) - semi-bold (weight 600) and not underlined.",
+    "Step 2: pressing Tab until a link has keyboard focus (\"S3-14144\"), that link is underlined; links are underlined only on keyboard focus."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715624-12-ard-light-1440-focus.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715624-64-wip-focus-link.png"
+   ]
+  },
+  "C715626": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection at 1440 px; compared with the links on Work In Progress.",
+    "Step 1: the document/name links are blue rgb(34, 118, 218) - the same blue as Work In Progress's links (rgb(34, 118, 218)) - semi-bold (weight 600) and not underlined.",
+    "Step 2: pressing Tab until a link has keyboard focus (\"S11315-17604\"), that link is underlined; links are underlined only on keyboard focus."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715626-22-arc-light-1440-focus.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715626-64-wip-focus-link.png"
+   ]
+  },
+  "C715630": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail at 1440 px; compared with the links on Work In Progress.",
+    "Step 1: the document/name links are blue rgb(34, 118, 218) - the same blue as Work In Progress's links (rgb(34, 118, 218)) - semi-bold (weight 600) and not underlined.",
+    "Step 2: pressing Tab until a link has keyboard focus (\"98\"), that link is underlined; links are underlined only on keyboard focus."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715630-42-apd-light-1440-focus.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715630-64-wip-focus-link.png"
+   ]
+  },
+  "C715632": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report at 1440 px; compared with the links on Work In Progress.",
+    "Step 1: the document/name links are blue rgb(34, 118, 218) - the same blue as Work In Progress's links (rgb(34, 118, 218)) - semi-bold (weight 600) and not underlined.",
+    "Step 2: pressing Tab until a link has keyboard focus (\"ZZB2379885\"), that link is underlined; links are underlined only on keyboard focus."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715632-52-apu-light-1440-focus.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715632-64-wip-focus-link.png"
+   ]
+  }
+ }
+}
