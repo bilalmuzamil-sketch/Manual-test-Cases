@@ -655,3 +655,8 @@
 - **Never commit a code dump:** pr10 saved the QA site's 79 JS chunks under `exec/pr10/qa-js/` and they were pushed (removed next commit; still in history at 660143414). Dumps now go to the scratchpad. A public repo is no place for company code even without keys.
 - `POST /api/parts-catalogue/add-vendor` now answers `201 {"data":[]}` — the vendor IS created; find its id with `GET /api/parts-catalogue/vendors?search=<name>`.
 - #aging #production #compare #trap #csv → L0685, L0682
+
+## L0687 — 2026-11-11 — "This report is too large to export" can be a plain server error, not a size rule
+- sv11315 Inventory Value PDF: the export call (`GET /api/reporting/reports/inventory-value/export?format=pdf…`) answered **HTTP 500 after ~31 s** for 1,194 rows, and the screen showed "This report is too large to export. Narrow the date range or filters, then try again." — the app shows that message for ANY failed export, so the wording proves nothing about a limit. Production printed 2,856 rows (~90 s).
+- Before calling it a size limit or a regression: record the export call's status, time and error body (`q6_ivlimit.mjs` listens for `/export?`), and bracket sizes down until one prints. A failure pinned near 30 s points at a time limit on the QA site's server, which must be ruled in or out (Rule 104) before any ticket.
+- #aging #export #pdf #trap → L0686
