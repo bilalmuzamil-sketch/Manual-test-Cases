@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s78b"
+ },
+ "results": {
+  "C715441": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail with As of 11/09/2026 (an earlier date than yesterday - the script picked the 9th), Vendor: Andover Fleet Services, Past due: 61-90 days, Location: Staging Heavy Duty - 9919 only.",
+    "Step 1: below the headings: \"No record matches these filters\", \"Try changing filters to widen your results.\" and a \"Clear all filters\" button.",
+    "Step 2: \"Clear all filters\" clicked: rows show again (6 bucket rows); the as-of date stays 11/09/2026; the chips read \"Vendor: All vendors\", \"Past due: Any\" and \"Location: All locations\".",
+    "Note: the set-up used 11/09 instead of yesterday; it does not change what Clear all filters is checked for (the date kept, everything else reset)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715441-1-empty.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715441-2-cleared.png"
+   ]
+  }
+ }
+}
