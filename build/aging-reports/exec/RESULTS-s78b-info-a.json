@@ -1,0 +1,49 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s78b info icon"
+ },
+ "results": {
+  "C715433": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary as of 11/11/2026, signed in at Staging Heavy Duty - 9919.",
+    "Step 1: hovering the info icon right of the title shows the tooltip: \"Each customer\u2019s unpaid balance as of the selected date, after unused credit memos and deposits, with a breakdown of overdue amounts.\" - word for word as the test quotes.",
+    "Step 2: pointer moved away - the tooltip closes.",
+    "Step 3: Tab until the info icon has keyboard focus (focused element: info_outline) - the same tooltip shows.",
+    "Step 4: Escape - the tooltip closes."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715433-1-hover.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715433-3-keyboard.png"
+   ]
+  },
+  "C715434": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail as of 11/11/2026, signed in at Staging Heavy Duty - 9919.",
+    "Step 1: hovering the info icon right of the title shows the tooltip: \"Each customer\u2019s unpaid invoices, unused credit memos and deposits as of the selected date, grouped by how overdue they are.\" - word for word as the test quotes.",
+    "Step 2: pointer moved away - the tooltip closes.",
+    "Step 3: Tab until the info icon has keyboard focus (focused element: info_outline) - the same tooltip shows.",
+    "Step 4: Escape - the tooltip closes."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715434-1-hover.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715434-3-keyboard.png"
+   ]
+  },
+  "C715435": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection as of 11/11/2026, signed in at Staging Heavy Duty - 9919.",
+    "Step 1: hovering the info icon right of the title shows the tooltip: \"Overdue invoices, unused credit memos and deposits for each customer to help you follow up on payments. Excludes invoices that aren\u2019t due yet.\" - word for word as the test quotes.",
+    "Step 2: pointer moved away - the tooltip closes.",
+    "Step 3: Tab until the info icon has keyboard focus (focused element: info_outline) - the same tooltip shows.",
+    "Step 4: Escape - the tooltip closes."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715435-1-hover.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715435-3-keyboard.png"
+   ]
+  }
+ }
+}
