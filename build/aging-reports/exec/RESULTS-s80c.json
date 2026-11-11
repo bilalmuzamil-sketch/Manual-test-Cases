@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s80c C715418"
+ },
+ "results": {
+  "C715418": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of today, Past due \"1-30 days\", sorted by Amount (largest first), a customer group open, scrolled down the list (scroll position 2294 px; top row \"ZZAUTOTEST AR R03 Location B (1)\", bottom row invoice S11315-17872).",
+    "Step 1: the page address is .../reports/ar-aging-collection?pastDue=1-30.",
+    "Step 2: clicking a work order invoice made at Staging Lethbridge - 4310 opens the \"Switch location?\" dialog: \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", \"Cancel\", \"Switch location\", and a close \u00d7.",
+    "Step 3: \"Cancel\" closes it; no message pops up; the report is exactly as before: Past due \"1-30 days\", the Amount sort, the open group, the same scroll position (2294 px) and the same top and bottom rows (37 rows on screen before and after).",
+    "Step 4: the address is unchanged (.../ar-aging-collection?pastDue=1-30)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715418-01-C715418-0-before.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715418-02-C715418-2-dialog.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715418-03-C715418-3-after.png"
+   ]
+  }
+ }
+}
