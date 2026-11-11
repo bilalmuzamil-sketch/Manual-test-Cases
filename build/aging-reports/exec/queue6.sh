@@ -1,7 +1,5 @@
 #!/bin/bash
-# queue6.sh (re-used name, 11 Nov 09:55) — pinned rows C715362/364/365 again (the detector's text match dropped every "s"), after queue5 (p46).
+# queue6.sh — 11 Nov 2026 ~15:55 UTC: s91 group paging re-run (C1062570, C1062571) after queue5.
 cd "$(dirname "$0")"; log() { echo "$(date -u +%H:%M:%S) $*" >> queue.log; }
-sleep 8; while pgrep -f "queue(22|5)\.sh$|node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done
-run() { local name=$1; shift; log "start $name"; "$@"; log "end $name rc=$?"; }
-run s4p3 env ONLY=C715362,C715364,C715365 timeout 1800 node s4_run.mjs > s4p3.log 2>&1
-log "queue6 (s4p3) done"
+while pgrep -f "queue[2345].sh|chain3[0-6].sh" >/dev/null || pgrep -f "node [a-z0-9_]+\.mjs" >/dev/null; do sleep 10; done
+log "start s91"; timeout 1800 node s91_grouppaging.mjs > s91.log 2>&1; log "end s91 rc=$?"; log "queue6 done"
