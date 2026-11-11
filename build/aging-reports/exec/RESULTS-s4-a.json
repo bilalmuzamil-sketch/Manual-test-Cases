@@ -1,0 +1,60 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S4 collapse/expand and paging (sv11315)"
+ },
+ "results": {
+  "C715355": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of 11/10/2026, all locations, 52 customer groups, all collapsed at the start (button tooltip \"Expand all\").",
+    "Step 1: clicked the chevron on Andrews' Truck & Trailer Repair LLC: that group opened and its chevron turned to point down.",
+    "Step 2: the top-left button's chevron points down and its tooltip reads \"Collapse all\".",
+    "Step 3: clicked it: all 52 groups closed (read by scrolling the whole list); the sort mark stayed on Date, the column the report opened on.",
+    "Step 4: the button now points right; tooltip \"Expand all\".",
+    "Step 5: clicked it: all 52 groups open, each group's own chevron points down; Date sort unchanged."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715355-1-1-one-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715355-2-2-tip-collapse.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715355-3-4-tip-expand.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715355-4-5-all-open.png"
+   ]
+  },
+  "C715358": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of 11/10/2026: 52 customers with documents, so the first 30 load first and the other 22 load on scroll.",
+    "Step 1: clicked the top-left button until its tooltip read \"Collapse all\": the 30 customers on screen were all expanded.",
+    "Step 2: scrolled down: the next 22 customers loaded (second page of 30) and every one arrived already expanded, showing its rows, with no extra click (52 of 52 open)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715358-1-2-later-groups.png"
+   ]
+  },
+  "C715359": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of 11/10/2026: 320 vendors with open bills, loaded 30 at a time.",
+    "Step 1: clicked the top-left button until its tooltip read \"Collapse all\": the 30 vendors on screen were all expanded.",
+    "Step 2: scrolled down: the following vendors loaded in pages of 30 and every one arrived already expanded, showing its rows, with no extra click (320 of 320 open)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715359-1-2-later-groups.png"
+   ]
+  },
+  "C715360": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of 11/10/2026: bucket A = \"31-60 days past due\" with 153 open lines; every bucket collapsed at the start.",
+    "Steps 1-2: opened bucket A with its own chevron: it showed its first 100 lines.",
+    "Step 3: scrolled down: the other 53 lines loaded, continuing the same order, no line repeated (153 different lines).",
+    "Step 4: closed bucket A with its chevron: it closed (all 5 buckets closed).",
+    "Steps 5-7: clicked Expand all: every bucket opened; bucket A again showed its first 100 lines, and scrolling loaded the rest."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715360-1-1-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715360-2-5-expand-all.png"
+   ]
+  }
+ }
+}
