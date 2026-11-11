@@ -1,0 +1,68 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S5 location filter (sv11315)"
+ },
+ "results": {
+  "C715381": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of 11/11/2026; documents at two locations only: location A = Staging Heavy Duty - 9919, location B = Staging Lethbridge - 4310.",
+    "Step 1: the Location menu reads, top to bottom: \"Select all\", \"2 selected\", Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 (both ticked), \"Clear selection\".",
+    "Step 2: unticked location A: \"1 selected\". Step 3: the menu closed; the chip reads \"Location: Staging Lethbri...\".",
+    "Step 4: reopened: Staging Lethbridge - 4310 (ticked) is listed first, then Staging Heavy Duty - 9919; no search box (2 locations).",
+    "Step 5: \"Clear selection\": nothing ticked; the chip reads \"Location: No locations\".",
+    "Step 6: \"Select all\": both ticked again; the chip reads \"Location: All locations\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715381-1-1-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715381-2-2-unticked-A.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715381-3-4-reopened.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715381-4-5-cleared.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715381-5-6-all.png"
+   ]
+  },
+  "C715382": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary, as of 11/11/2026; documents at two locations only: location A = Staging Heavy Duty - 9919, location B = Staging Lethbridge - 4310.",
+    "Step 1: the Location menu reads, top to bottom: \"Select all\", \"2 selected\", Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 (both ticked), \"Clear selection\".",
+    "Step 2: unticked location A: \"1 selected\". Step 3: the menu closed; the chip reads \"Location: Staging Lethbri...\".",
+    "Step 4: reopened: Staging Lethbridge - 4310 (ticked) is listed first, then Staging Heavy Duty - 9919; no search box (2 locations).",
+    "Step 5: \"Clear selection\": nothing ticked; the chip reads \"Location: No locations\".",
+    "Step 6: \"Select all\": both ticked again; the chip reads \"Location: All locations\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715382-1-1-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715382-2-2-unticked-A.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715382-3-4-reopened.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715382-4-5-cleared.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715382-5-6-all.png"
+   ]
+  },
+  "C715388": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, as of 11/11/2026, documents at two locations.",
+    "Step 1: \"Clear selection\" in the Location menu: the chip reads \"Location: No locations\"; no rows, no Totals row, and no Location column (headings: Date, Transaction Type, No., Vendor Name, Due Date, Past Due, Amount, Open Balance); the empty state reads \"No record matches these filters\" and \"Try changing filters to widen your results.\" with a \"Clear all filters\" button.",
+    "Step 2: reloaded the page: \"No locations\" was not kept; the report came back on \"Location: All locations\" with every row and the Location column back."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715388-1-1-empty.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715388-2-2-reloaded.png"
+   ]
+  },
+  "C715390": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, as of 11/11/2026, Vendor filter = ZZAUTOTEST AP Vendor A, every bucket expanded. Bill A = ZZAUTOTEST-BILL-A1 (received on a delivery at Staging Heavy Duty - 9919); bill B = ZZAUTOTEST-BILL-B1 (received on a delivery at Staging Lethbridge - 4310).",
+    "Step 1: Location column: ZZAUTOTEST-BILL-A1 shows \"Staging Heavy Duty - 9919\"; ZZAUTOTEST-BILL-B1 shows \"Staging Lethbridge - 4310\".",
+    "Step 2: unticked Staging Lethbridge - 4310: the report narrowed to Staging Heavy Duty - 9919 (chip \"Location: Staging Heavy D...\").",
+    "Step 3: every bucket expanded: ZZAUTOTEST-BILL-A1 is listed; ZZAUTOTEST-BILL-B1 is not (only the vendor's Heavy Duty documents remain: C-13667, ZZAUTOTEST-BILL-A1, ZZAUTOTEST-BILL-PS1)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715390-1-1-both.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715390-2-3-location-A.png"
+   ]
+  }
+ }
+}
