@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s86 + s86d"
+ },
+ "results": {
+  "C715454": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of today, all customers/vendors; bucket A = \"1-30 days past due (295)\".",
+    "Steps 1-2: the CSV downloads and holds 295 rows for that bucket.",
+    "Step 3: the bucket opens with its first 100 lines.",
+    "Step 4: scrolling to the end loads more in batches until all 295 show; every document number appears exactly once.",
+    "Step 5: clicking \"Amount\" sorts the rows by Amount, largest first, inside the bucket.",
+    "Step 6: the bucket stays open and drops back to its first 100 lines, now in Amount order. Sorted with the list scrolled to the top it stays at 100; sorted while scrolled to the end, the next 100 load straight away because the end of the first 100 is already on screen (the agreed loading rule).",
+    "Step 7: scrolling to the end again loads all 295; every document appears exactly once, and both lists hold exactly the CSV's documents for the bucket - none repeated, none missing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715454-s86-21-C715454-3-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715454-s86-22-C715454-4-scrolled.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715454-s86d-04-C715454-b-sort-at-top-end.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715454-s86-24-C715454-7-scrolled.png"
+   ]
+  }
+ }
+}
