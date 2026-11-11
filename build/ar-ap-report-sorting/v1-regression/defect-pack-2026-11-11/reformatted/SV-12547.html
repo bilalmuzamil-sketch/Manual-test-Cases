@@ -1,0 +1,60 @@
+<h2>Description</h2>
+<p><strong>What the PRD requires:</strong></p>
+<div data-type="panel-info"><p>The PRD <strong>does not ask for this change</strong>. It says the PDF uses the app-wide report PDF format (S3-R7a), but it says nothing about the customer or bucket total lines.</p></div>
+<p><strong>What happens instead:</strong></p>
+<p>On the QA branch, the A/R PDFs close each customer or bucket with a line that reads only <strong>"Subtotal"</strong>. Production, and the QA branch's own screen, read <strong>"Total for &lt;customer or bucket name&gt;"</strong>. The amounts on the line are right; only the name is lost.</p>
+<p>For example,</p>
+<ul>
+<li><strong>A/R Aging Collection</strong> PDF: <strong>"Subtotal $110.00 $110.00"</strong> instead of "Total for ZZAUTOTEST AR R36 Collect X".</li>
+<li><strong>A/R Aging Detail</strong> PDF: <strong>"Subtotal $100.00 $60.00"</strong> instead of "Total for 31-60 days past due".</li>
+</ul>
+<h2>QA branch vs production</h2>
+<table><thead><tr><th>What you check</th><th>QA branch (new version, v26.45.2-6a8b89c)</th><th>Production today (v26.45.3-f5ba431)</th></tr></thead>
+<tbody>
+<tr><td>Line closing a customer in the <strong>A/R Aging Collection</strong> PDF / print</td><td>❌ "Subtotal $110.00 $110.00"</td><td>✅ "Total for aqeel transport 56 $-12,011.08 $-15,012.08"</td></tr>
+<tr><td>Line closing a bucket in the <strong>A/R Aging Detail</strong> PDF / print</td><td>❌ "Subtotal $100.00 $60.00"</td><td>✅ "Total for 31-60 days past due $0.00 $0.00"</td></tr>
+<tr><td>The same lines on the QA branch's screen</td><td>✅ "Total for ..." (for example "Total for 1-30 days past due")</td><td>✅ "Total for ..."</td></tr>
+</tbody></table>
+<p>Production pictures (the QA branch pictures are under the steps below):</p>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="16e6dc2f-e73c-4303-a296-6c031cb029da" data-collection="upload-user-collection-1343233018" data-alt="PIC2-production-ar-collection-print.png"></div><figcaption>Production — A/R Aging Collection print for aqeel transport 56: the block ends with "Total for aqeel transport 56" (11 Nov 2026, 12:30 UTC)</figcaption></figure>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="65aec757-0461-4cc0-bcdc-ea7574142530" data-collection="upload-user-collection-1343233018" data-alt="PIC4-production-ar-detail-print-total-for.png"></div><figcaption>Production — A/R Aging Detail print: each bucket ends with "Total for &lt;bucket name&gt;" (11 Nov 2026, 12:14 UTC)</figcaption></figure>
+<h2>Steps to Reproduce</h2>
+<h3>Example 1 - A/R Aging Collection</h3>
+<ol start="1">
+<li>Sign in to the QA site as an Admin user at <strong>Staging Heavy Duty - 9919</strong>.</li>
+<li>Open <strong>Reports</strong> → <strong>A/R Aging Collection</strong>, <strong>As of: 11/11/2026</strong>.</li>
+<li>In the <strong>Customer</strong> filter, tick only <strong>ZZAUTOTEST AR R36 Collect X</strong> (one invoice, <strong>S11315-17846</strong>, $110.00).</li>
+<li>Click <strong>⋯</strong> → <strong>Download (PDF)</strong> and open the PDF.<ul><li>Under the customer's invoice the line reads <strong>"Subtotal $110.00 $110.00"</strong>.</li><li>There is no "Total for ZZAUTOTEST AR R36 Collect X" line.</li></ul></li>
+</ol>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="a47d7d33-a057-4628-b326-826c15b4bf51" data-collection="upload-user-collection-1343233018" data-alt="PIC1-qa-ar-collection-pdf-subtotal.png"></div><figcaption>QA branch — A/R Aging Collection PDF: the customer's line reads "Subtotal"</figcaption></figure>
+<h3>Example 2 - A/R Aging Detail</h3>
+<ol start="1">
+<li>Open <strong>Reports</strong> → <strong>A/R Aging Detail</strong>, <strong>As of: 11/11/2026</strong>; in the <strong>Customer</strong> filter tick only <strong>ZZAUTOTEST AR R13 Payment After</strong>.</li>
+<li>Click <strong>⋯</strong> → <strong>Download (PDF)</strong> and open the PDF.<ul><li>Under the <strong>31-60 days past due</strong> bucket the line reads <strong>"Subtotal $100.00 $60.00"</strong>.</li><li>There is no "Total for 31-60 days past due" line.</li></ul></li>
+</ol>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="503dc7cc-a6fa-4f26-bb5c-9e72d0f8538e" data-collection="upload-user-collection-1343233018" data-alt="PIC3-qa-ar-detail-pdf-subtotal.png"></div><figcaption>QA branch — A/R Aging Detail PDF: the bucket's line reads "Subtotal"</figcaption></figure>
+<p><strong>Actual Result:</strong></p>
+<ul><li>The customer and bucket total lines in the A/R PDFs read "Subtotal".</li></ul>
+<p><strong>Expected Result:</strong></p>
+<ul><li>As on production today and as on the QA branch's own screen: "Total for &lt;customer name&gt;" on A/R Aging Collection.</li><li>"Total for &lt;bucket name&gt;" on A/R Aging Detail.</li></ul>
+<h2>Environment</h2>
+<ul>
+<li>QA site: <a href="https://sv11315.qa.shopview.com">https://sv11315.qa.shopview.com</a> (build <strong>v26.45.2-6a8b89c</strong>), location <strong>Staging Heavy Duty - 9919</strong>, Admin role. Seen on 11 Nov 2026 at 12:14 UTC and again at 13:04 and 13:05 UTC.</li>
+<li>Production: <a href="https://app.shopview.com">https://app.shopview.com</a> (build <strong>v26.45.3-f5ba431</strong>), production test account, Admin role. Seen on 11 Nov 2026 at 12:14 and 12:30 UTC.</li>
+</ul>
+<h2>Sources</h2>
+<table><thead><tr><th>Document</th><th>What it says</th><th>Intended by the PRD?</th></tr></thead>
+<tbody>
+<tr><td>PRD "A/R and A/P Report Sorting, Export and Location Filter", <a href="https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=947650561">Confluence page 947650561</a>, version 11 (5 Nov 2026), S3-R7a</td><td>"The PDF uses the app-wide report PDF format, the same as Sales By Customer and Inventory Value: ..." — it says nothing about the customer or bucket total lines.</td><td><strong>No</strong></td></tr>
+<tr><td>Developers' QA handoff (SV-11533, edited 11 Nov 2026)</td><td>Calls the new PDF wording intended. The PRD does not say so — a Product decision is needed.</td><td>—</td></tr>
+<tr><td>Production v26.45.3 (the version before this release)</td><td>The prints close each customer and bucket with "Total for &lt;name&gt;".</td><td>—</td></tr>
+</tbody></table>
+<div data-type="panel-warning"><p><strong>No — the PRD does not ask for this change.</strong> Since what the QA branch does is not intended by the PRD, it should work exactly as it works on production today.</p><p>Note: the Product Owner has been asked to confirm (question 21 on the A/R and A/P question sheet, 11 Nov 2026, not answered yet).</p></div>
+<h2>Test case</h2>
+<ul>
+<li><a href="https://shopview.testrail.io/index.php?/cases/view/1079009">C1079009 A/R Collection PDF prints only the customer you picked</a></li>
+</ul>
+<details><summary>Pictures from the first version of this ticket</summary>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="ac0d342c-a387-49ad-9608-989bdc4b5e95" data-collection=""></div></figure>
+<figure data-type="media-single" data-layout="center"><div data-type="media" data-media-type="file" data-id="37ff004b-70ad-4f43-a256-e5130267ece0" data-collection=""></div></figure>
+</details>
