@@ -614,3 +614,9 @@
 - Already visible on s89b's picture: C-13686 (return at the current location) is blue (a link), C-13687 (return at the other location) is plain text.
 - Queue ordering: runq35/36 wait patterns had to be widened when runq37 was added — a new waiter that two others don't wait for can start at the same tick.
 - #aging #ap #seed #trap → L0672, L0662
+
+## L0681 — 2026-11-11 — "Stays visible at the left" ≠ "pinned"; elementFromPoint under the headings can come back empty
+- C715600 (S4-R7 "each group row's label stays visible at the left"): on sv11315 the label moves WITH the columns (td position relative), but the table scrolls only 6 px at 1200 px and 58 px at 900 px while the label starts ~110 px in, so it never leaves view. Judged Passed on the PRD's own words (Rule 137: nothing stricter) with the measurement stated; if a later build widens the table, re-measure.
+- At 900 px the filter row and the bottom "Totals" word also scroll sideways out of view (seen, not judged by any test).
+- d3c's "row just under the headings" read via `document.elementFromPoint(700, theadBottom + 20)` returned "" in light theme on all reports and in dark on A/R Collection — judge those from the pictures; when writing such a probe, sample several x positions and fall back to the first `tbody tr` whose top is within 5 px of the header's bottom.
+- #aging #layout #tool → L0676, L0677
