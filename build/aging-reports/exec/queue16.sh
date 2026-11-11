@@ -1,7 +1,5 @@
 #!/bin/bash
-# queue16.sh (re-used name, 11 Nov) — d1 design captures (C715481-C715498: six reports, light/dark, 1440/1536), after queue15 (p49).
+# queue16.sh — 11 Nov 2026 ~16:00 UTC: p75 (can Tech's role be changed with the runbook's staff id?) after queue15.
 cd "$(dirname "$0")"; log() { echo "$(date -u +%H:%M:%S) $*" >> queue.log; }
-sleep 22; while pgrep -f "queue1[12345]\.sh$|node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done
-run() { local name=$1; shift; log "start $name"; "$@"; log "end $name rc=$?"; }
-run d1 timeout 2400 node d1_design.mjs > d1.log 2>&1
-log "queue16 (d1) done"
+while pgrep -f "queue([2-9]|1[0-5]).sh|chain3[0-6].sh" >/dev/null || pgrep -f "node [a-z0-9_]+\.mjs" >/dev/null; do sleep 10; done
+log "start p75"; timeout 600 node p75_techrole.mjs > p75.log 2>&1; log "end p75 rc=$?"; log "queue16 done"
