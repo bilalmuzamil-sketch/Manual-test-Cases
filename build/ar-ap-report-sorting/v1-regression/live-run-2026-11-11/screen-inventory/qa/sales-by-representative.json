@@ -1,0 +1,154 @@
+{
+ "slug": "sales-by-representative",
+ "nav_text": "badge Sales By Representative",
+ "nav_tid": "report_nav_sales_by_representative",
+ "url": "https://sv11315.qa.shopview.com/reports/sales-by-representative",
+ "title": "Sales By Representative - Report | ShopView",
+ "heading": "",
+ "controls": [
+  {
+   "tid": "btn_dropdown_sbr_export",
+   "aria": "Export report",
+   "text": "more_horiz",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "button_column_selection",
+   "aria": "Column Selection",
+   "text": "width_normal",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_dateRange",
+   "aria": null,
+   "text": "calendar_today Date: This month keyboard_arrow_down",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_showUnassigned",
+   "aria": null,
+   "text": "person_off Show Unassigned",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_productTypes",
+   "aria": null,
+   "text": "category Product Type: All products keyboard_arrow_down cancel",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_clear_productTypes",
+   "aria": "Clear Product Type filter",
+   "text": "cancel",
+   "tag": "I"
+  },
+  {
+   "tid": "filter_chip_invoiceStatus",
+   "aria": null,
+   "text": "receipt_long Invoice Status: All statuses keyboard_arrow_down cancel",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_clear_invoiceStatus",
+   "aria": "Clear Invoice Status filter",
+   "text": "cancel",
+   "tag": "I"
+  },
+  {
+   "tid": "filter_chip_locationIds",
+   "aria": null,
+   "text": "place Location: All locations keyboard_arrow_down cancel",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_clear_locationIds",
+   "aria": "Clear Location filter",
+   "text": "cancel",
+   "tag": "I"
+  },
+  {
+   "tid": "table_sales_by_representative",
+   "aria": null,
+   "text": "keyboard_double_arrow_down Date Invoice Customer Status Location Labor Delta arr",
+   "tag": "DIV"
+  },
+  {
+   "tid": "text_sbr_empty",
+   "aria": null,
+   "text": "No record matches these filters",
+   "tag": "DIV"
+  },
+  {
+   "tid": "text_empty_state_body",
+   "aria": null,
+   "text": "Try changing filters to widen your results.",
+   "tag": "DIV"
+  }
+ ],
+ "headers": [
+  "keyboard_double_arrow_down",
+  "Date",
+  "Invoice",
+  "Customer",
+  "Status",
+  "Location",
+  "Labor Delta arrow_drop_up",
+  "Labor Invoiced arrow_drop_up",
+  "Labor Margin arrow_drop_up",
+  "Parts Invoiced arrow_drop_up",
+  "Parts Margin arrow_drop_up",
+  "Shop Supplies arrow_drop_up",
+  "Adjustments arrow_drop_up",
+  "Margin arrow_drop_up",
+  "Margin % arrow_drop_up",
+  "Subtotal arrow_drop_up"
+ ],
+ "row_count": 2,
+ "rows_sample": [
+  "",
+  ""
+ ],
+ "footer": [
+  "Subtotal"
+ ],
+ "row_links": [],
+ "body_text_head": "Sales By Representative more_horiz width_normal calendar_today Date: This month keyboard_arrow_down person_off Show Unassigned category Product Type: All products keyboard_arrow_down cancel receipt_long Invoice Status: All statuses keyboard_arrow_down cancel place Location: All locations keyboard_arrow_down cancel keyboard_double_arrow_down Date Invoice Customer Status Location Labor Delta arrow_drop_up Labor Invoiced arrow_drop_up Labor Margin arrow_drop_up Parts Invoiced arrow_drop_up Parts Margin arrow_drop_up Shop Supplies arrow_drop_up Adjustments arrow_drop_up Margin arrow_drop_up Margin % arrow_drop_up Subtotal arrow_drop_up search No record matches these filters Try changing filters to widen your results.",
+ "filters": [
+  {
+   "tid": "filter_chip_dateRange",
+   "label": "calendar_today Date: This month keyboard_arrow_down",
+   "panel": "This week Last week This month Last month This quarter Last quarter This year Last year Last 12 months Custom"
+  },
+  {
+   "tid": "filter_chip_showUnassigned",
+   "label": "person_off Show Unassigned",
+   "panel": "ERR locator.innerText: Timeout 3000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locato"
+  },
+  {
+   "tid": "filter_chip_productTypes",
+   "label": "category Product Type: All products keyboard_arrow_down cancel",
+   "panel": "Select all 2 selected Parts Services Clear selection"
+  },
+  {
+   "tid": "filter_chip_clear_productTypes",
+   "label": "cancel",
+   "panel": "ERR locator.innerText: Timeout 3000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locato"
+  },
+  {
+   "tid": "filter_chip_clear_invoiceStatus",
+   "label": "cancel",
+   "panel": "ERR locator.click: Timeout 4000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('["
+  },
+  {
+   "tid": "filter_chip_locationIds",
+   "label": "place Location: All locations keyboard_arrow_down cancel",
+   "panel": "Select all 2 selected Staging Heavy Duty - 9919 Staging Lethbridge - 4310 Clear selection"
+  },
+  {
+   "tid": "filter_chip_clear_locationIds",
+   "label": "cancel",
+   "panel": "ERR locator.innerText: Timeout 3000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locato"
+  }
+ ],
+ "error": "locator.getAttribute: Timeout 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-test-id^=\"filter_chip_\"]').nth(7)\u001b[22m\n"
+}

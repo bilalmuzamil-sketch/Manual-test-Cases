@@ -1,0 +1,312 @@
+{
+ "slug": "work-in-progress",
+ "nav_text": "loop Work In Progress",
+ "nav_tid": "report_nav_work_in_progress",
+ "url": "https://app.shopview.com/reports/work-in-progress",
+ "title": "Work In Progress - Report | ShopView",
+ "heading": "",
+ "controls": [
+  {
+   "tid": "btn_dropdown_wip_export",
+   "aria": "Export report",
+   "text": "more_horiz",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "button_column_selection",
+   "aria": "Column Selection",
+   "text": "width_normal",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_asOfDate",
+   "aria": null,
+   "text": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_advisors",
+   "aria": null,
+   "text": "person Advisor: All advisors keyboard_arrow_down",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_customers",
+   "aria": null,
+   "text": "business Customer: All customers keyboard_arrow_down",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_assets",
+   "aria": null,
+   "text": "local_shipping Asset: All assets keyboard_arrow_down",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_locationIds",
+   "aria": null,
+   "text": "place Location: All locations keyboard_arrow_down cancel",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_clear_locationIds",
+   "aria": "Clear Location filter",
+   "text": "cancel",
+   "tag": "I"
+  },
+  {
+   "tid": "wip_summary_strip",
+   "aria": "Work in progress summary",
+   "text": "COMPLETED WORK ON OPEN WORK ORDERS info_outline $539,323.76 + WORK ORDERS READY ",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_group_completed",
+   "aria": null,
+   "text": "COMPLETED WORK ON OPEN WORK ORDERS info_outline $539,323.76 + WORK ORDERS READY ",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_started_earned",
+   "aria": null,
+   "text": "COMPLETED WORK ON OPEN WORK ORDERS info_outline $539,323.76",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_info_started_earned",
+   "aria": "Completed Work on Open Work Orders: The total value of completed work order lines on work orders that are still in progress.",
+   "text": "info_outline",
+   "tag": "I"
+  },
+  {
+   "tid": "wip_summary_value_started_earned",
+   "aria": null,
+   "text": "$539,323.76",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_ready_to_invoice",
+   "aria": null,
+   "text": "WORK ORDERS READY TO INVOICE info_outline $11,879.89",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_info_ready_to_invoice",
+   "aria": "Work Orders Ready to Invoice: The total value of work orders where all work order lines are completed and the work order is ready to be invoiced.",
+   "text": "info_outline",
+   "tag": "I"
+  },
+  {
+   "tid": "wip_summary_value_ready_to_invoice",
+   "aria": null,
+   "text": "$11,879.89",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_total_earned",
+   "aria": null,
+   "text": "TOTAL COMPLETED WORK info_outline $551,203.65",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_info_total_earned",
+   "aria": "Total Completed Work: The total value of all completed work order lines that have not yet been invoiced, including completed lines on work orders that are still in progress and work orders where all work is complete.",
+   "text": "info_outline",
+   "tag": "I"
+  },
+  {
+   "tid": "wip_summary_value_total_earned",
+   "aria": null,
+   "text": "$551,203.65",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_group_remaining",
+   "aria": null,
+   "text": "WORK ORDERS NOT STARTED info_outline $61,197,352.20 + REMAINING WORK ON OPEN WOR",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_not_started",
+   "aria": null,
+   "text": "WORK ORDERS NOT STARTED info_outline $61,197,352.20",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_info_not_started",
+   "aria": "Work Orders Not Started: The total value of approved work orders where no work has started yet.",
+   "text": "info_outline",
+   "tag": "I"
+  },
+  {
+   "tid": "wip_summary_value_not_started",
+   "aria": null,
+   "text": "$61,197,352.20",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_started_remaining",
+   "aria": null,
+   "text": "REMAINING WORK ON OPEN WORK ORDERS info_outline $403,764.28",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_info_started_remaining",
+   "aria": "Remaining Work on Open Work Orders: The total value of incomplete work order lines on work orders where work has already started.",
+   "text": "info_outline",
+   "tag": "I"
+  },
+  {
+   "tid": "wip_summary_value_started_remaining",
+   "aria": null,
+   "text": "$403,764.28",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_total_remaining",
+   "aria": null,
+   "text": "REMAINING WORK info_outline $61,601,116.48",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_info_total_remaining",
+   "aria": "Remaining Work: The total value of all approved work that has not yet been completed, including work orders that have not started and incomplete work order lines on work orders already in progress.",
+   "text": "info_outline",
+   "tag": "I"
+  },
+  {
+   "tid": "wip_summary_value_total_remaining",
+   "aria": null,
+   "text": "$61,601,116.48",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_group_estimates",
+   "aria": null,
+   "text": "ESTIMATES info_outline $149,238.65",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_estimates",
+   "aria": null,
+   "text": "ESTIMATES info_outline $149,238.65",
+   "tag": "DIV"
+  },
+  {
+   "tid": "wip_summary_info_estimates",
+   "aria": "Estimates: The total value of all estimate lines that have not yet been approved, including lines awaiting authorization on open work orders.",
+   "text": "info_outline",
+   "tag": "I"
+  },
+  {
+   "tid": "wip_summary_value_estimates",
+   "aria": null,
+   "text": "$149,238.65",
+   "tag": "DIV"
+  },
+  {
+   "tid": "tab_wip_approved_partially_completed",
+   "aria": null,
+   "text": "Approved - Partially Completed (298)",
+   "tag": "DIV"
+  },
+  {
+   "tid": "tab_wip_approved_not_started",
+   "aria": null,
+   "text": "Approved - Not Started (980)",
+   "tag": "DIV"
+  },
+  {
+   "tid": "tab_wip_completed",
+   "aria": null,
+   "text": "Completed (48)",
+   "tag": "DIV"
+  },
+  {
+   "tid": "tab_wip_estimates",
+   "aria": null,
+   "text": "Estimates (144)",
+   "tag": "DIV"
+  },
+  {
+   "tid": "table_work_in_progress_report",
+   "aria": null,
+   "text": "WO #arrow_drop_up Statusarrow_drop_up Customerarrow_drop_up Assetarrow_drop_up L",
+   "tag": "DIV"
+  }
+ ],
+ "headers": [
+  "WO #arrow_drop_up",
+  "Statusarrow_drop_up",
+  "Customerarrow_drop_up",
+  "Assetarrow_drop_up",
+  "Location",
+  "Advisorarrow_drop_up",
+  "Days Openarrow_drop_up",
+  "arrow_drop_up Earned",
+  "arrow_drop_up Remaining",
+  "arrow_drop_up Adjustments",
+  "arrow_drop_up Total"
+ ],
+ "row_count": 33,
+ "rows_sample": [
+  "",
+  "S1-2 | Approved | First | Customer | Prod | T | 987 | Truck | Hill | 1 | Bilal | Muzammil | 468 | days | $135.00 | $0.00 | $0.00 | $135.00",
+  "S1-3 | Approved | First | Customer | Prod | T | 987 | Truck | Hill | 1 | Lanny | James | 462 | days | $8.10 | $451.90 | $0.00 | $460.00",
+  "S1-11 | Approved | First | Customer | Prod | 5454 | Truck | Hill | 1 | Bilal | Muzammil | 457 | days | $126.00 | $135.00 | $0.00 | $261.00"
+ ],
+ "footer": [
+  "TOTAL | COMPLETED | WORK | info_outline | $551,203.65",
+  "info_outline",
+  "$551,203.65",
+  "REMAINING | WORK | info_outline | $61,601,116.48"
+ ],
+ "row_links": [],
+ "body_text_head": "Work In Progress more_horiz width_normal calendar_today As of: 11/11/2026 keyboard_arrow_down person Advisor: All advisors keyboard_arrow_down business Customer: All customers keyboard_arrow_down local_shipping Asset: All assets keyboard_arrow_down place Location: All locations keyboard_arrow_down cancel COMPLETED WORK ON OPEN WORK ORDERS info_outline $539,323.76 + WORK ORDERS READY TO INVOICE info_outline $11,879.89 = TOTAL COMPLETED WORK info_outline $551,203.65 WORK ORDERS NOT STARTED info_outline $61,197,352.20 + REMAINING WORK ON OPEN WORK ORDERS info_outline $403,764.28 = REMAINING WORK info_outline $61,601,116.48 ESTIMATES info_outline $149,238.65 Approved - Partially Completed (298) Approved - Not Started (980) Completed (48) Estimates (144) WO #arrow_drop_up Statusarrow_drop_up Customerarrow_drop_up Assetarrow_drop_up Location Advisorarrow_drop_up Days Openarrow_drop_up arrow_drop_up Earned arrow_drop_up Remaining arrow_drop_up Adjustments arrow_drop_up Total S1-2 Approved First Customer Prod T 987 Truck Hill 1 Bilal Muzammil 468 days $135.00 $0.00 $0.00 $135.00 S1-3 Approved First Customer Prod T 987 Truck Hill 1 Lanny James 462 days $8.10 $451.90 $0.00 $460.00 S1-11 Approved First Customer Prod 5454 Truck Hill 1 Bilal Muzammil 457 days $126.00 $135.00 $0.00 $261.00 S1-37 Approved First Customer Prod 5454 Truck Hill 1 Bilal Muzammil 435 days $150.00 $1,719.00 $0.00 $1,869.00 S1-36 Approved First Customer Prod 5454 Truck Hill 1 Bilal Muzammil 435 days $795.00 $135.00",
+ "filters": [
+  {
+   "tid": "filter_chip_asOfDate",
+   "label": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "panel": "chevron_left November chevron_right chevron_left 2026 chevron_right Sun Mon Tue Wed Thu Fri Sat 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30"
+  },
+  {
+   "tid": "filter_chip_advisors",
+   "label": "person Advisor: All advisors keyboard_arrow_down",
+   "panel": "search All advisors All advisors are included. Pick one or more to narrow. Ahtasham Amjad Ahtesham ABCPROD Ayesha Advisor Ayesha Khan Bilal Muzammil Esther Howard Lanny James Ralph Edwards Service Advisor No Reports (Admin) Service advisor. No Reports ZZ WOB Runner ZZAUTOTEST Ana Alpha ZZAUTOTEST Ben Bravo ZZAUTOTEST P2C96973 Ana Alpha ZZAUTOTEST WOB User B"
+  },
+  {
+   "tid": "filter_chip_customers",
+   "label": "business Customer: All customers keyboard_arrow_down",
+   "panel": "search All customers All customers are included. Pick one or more to narrow. aa Ahsan Ali Raza Hamid Alpha Freight ZZ96929 aqeel transport 56 Asher transport3 Ayesha Bilal Production Essa Usama Fernvale Asset Holdings First Customer Prod Hashir Hina Khan Hina Tufail Import Test lanny James. Limited View Role Test Mid Trucking ZZ96929 Rowcheck Hidden Fields Holdings Sankan transport1 Second Customer Prod Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders TCP 1906 Test Invoice Zeta Hauling ZZ96929 ZZAUTOTEST Aabridge Freight ZZAUTOTEST Asset Tab 73448 ZZAUTOTEST Asset Tab 95305 ZZAUTOTEST Asset Tab Old Page 51476 ZZAUTOTEST Asset Tab Old Page 92947 ZZAUTOTEST Asset Tab Toggle Lead 51476 ZZAUTOTEST Asset Tab Toggle Lead 92947 ZZAUTOTEST Assign Lines Tech 92947 ZZAUTOTEST Assign Lines Tech 94832 ZZAUTOTEST Back Forward 15339 One Co ZZAUTOTEST Back Forward 88884 One Co ZZAUTOTEST Back Status 88884 ZZAUTOTEST Bravo GA 52064 Bravo Co ZZAUTOTEST Bravo GA 71767 Bravo Co ZZAUTOTEST Bravo GA 75326 Bravo Co ZZAUTOTEST Bravo GA 82354 Bravo Co ZZAUTOTEST Bridgeport Hauling ZZAUTOTEST C11576 Asset Year 32772 ZZAUTOTEST C11577 Staff Name 13323 Z"
+  },
+  {
+   "tid": "filter_chip_assets",
+   "label": "local_shipping Asset: All assets keyboard_arrow_down",
+   "panel": "search All assets All assets are included. Pick one or more to narrow. 1 1235844 123SUFYAN 131 123456 158 2HGFB2F59DH123456 1FTFW1E54NK123456 1GCEC29J09Z253557 1GNSL68F95J200100 1XKYDP9X1MJ441077 219 KMHCG45C73U123456 23232 12444444444 232425 245636678 3KPF24AD1ME345399 4343434 436 1N4AL3AP4JC123789 4444343434 44444 21056 4560 4T1BF1FK7HU01234521 52457275432 542 JTDKN3DU0A0123789 54321 5434 5454 WA1LAAF71KD987654 566325 613613 65641203 665 341.20 6915 Unknown 789123000 789415 789632 790 1FMCU0J96DU123456 80369 824 7789 85258 873 7786 874103 887 1FTFW1EF7EKF12345 887 7780 88888888888888888 916 WA1LFAFP7EA123456 97777777777777 987451 ;J;J; A-UNIT-1 Unknown A3422 1FD8W3HT9EEA3422 C11576-U1 ZZC11576327725030 C11577-U1 ZZWOB179270711407 C614711 ZZWOB179363917145 C614711 ZZWOB179363982840 C614711 ZZWOB179364301685 C614711 ZZWOB179364506413 C614719-A ZZWOB179269823724 C614719-A ZZWOB179271391449 C614719-B ZZWOB179269824007 C614719-B ZZWOB179271391885 C614719-C ZZWOB179271399277 CNTB-01 ZZCNTBUSY00000001 CNTQ-01 ZZCNTQUIET0000001 FSQ 001 1FVACWDT5RH441083 LJM. N1-U1 ZZWOB179269735644 N1-U1 ZZWOB179271347056 N3-U1 ZZWOB179269805130 N4-U1 ZZWOB179269813769 NWL-1 ZZWOB179268257950 SALRU2RV1L2"
+  },
+  {
+   "tid": "filter_chip_locationIds",
+   "label": "place Location: All locations keyboard_arrow_down cancel",
+   "panel": "Select all 4 selected Truck Hill 1 Trucks Hill 2 ZZAUTOTEST C614715 Empty Location SANKAN Clear selection"
+  },
+  {
+   "tid": "filter_chip_clear_locationIds",
+   "label": "cancel",
+   "panel": "ERR locator.innerText: Timeout 3000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locato"
+  }
+ ],
+ "menus": [
+  {
+   "tid": "report_nav_unexported_items",
+   "items": ""
+  },
+  {
+   "tid": "report_nav_export_reports",
+   "items": ""
+  },
+  {
+   "tid": "tab_unexported_customers",
+   "items": "ERR locator.click: Timeout 4000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('["
+  }
+ ]
+}

@@ -1,0 +1,129 @@
+{
+ "slug": "technician-utilization",
+ "nav_text": "groups Technician Utilization",
+ "nav_tid": "report_nav_technician_utilization",
+ "url": "https://app.shopview.com/reports/technician-utilization",
+ "title": "Technician Utilization - Report | ShopView",
+ "heading": "",
+ "controls": [
+  {
+   "tid": "btn_dropdown_tu_export",
+   "aria": "Export report",
+   "text": "more_horiz",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "button_column_selection",
+   "aria": "Column Selection",
+   "text": "width_normal",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_dateRange",
+   "aria": null,
+   "text": "calendar_today Date: This month keyboard_arrow_down",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_technicianIds",
+   "aria": null,
+   "text": "person Technician: All technicians keyboard_arrow_down cancel",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_clear_technicianIds",
+   "aria": "Clear Technician filter",
+   "text": "cancel",
+   "tag": "I"
+  },
+  {
+   "tid": "filter_chip_locationIds",
+   "aria": null,
+   "text": "place Location: All locations keyboard_arrow_down cancel",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_clear_locationIds",
+   "aria": "Clear Location filter",
+   "text": "cancel",
+   "tag": "I"
+  },
+  {
+   "tid": "btn_toggle_visualization_techUtilizationSeries",
+   "aria": null,
+   "text": "insert_chart_outlined Hide Chart",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "report_visualization_panel",
+   "aria": null,
+   "text": "",
+   "tag": "DIV"
+  },
+  {
+   "tid": "dashboard_chart_box",
+   "aria": null,
+   "text": "",
+   "tag": "DIV"
+  },
+  {
+   "tid": "dashboard_chart_canvas",
+   "aria": null,
+   "text": "",
+   "tag": "DIV"
+  },
+  {
+   "tid": "table_technician_utilization",
+   "aria": null,
+   "text": "keyboard_double_arrow_down Technician arrow_drop_up Location Total Hours arrow_d",
+   "tag": "DIV"
+  }
+ ],
+ "headers": [
+  "keyboard_double_arrow_down Technician arrow_drop_up",
+  "Location",
+  "Total Hours arrow_drop_up",
+  "WO Hours arrow_drop_up",
+  "Internal Hours arrow_drop_up",
+  "Utilization % arrow_drop_up",
+  "Est. Lost Labor arrow_drop_up info_outline"
+ ],
+ "row_count": 9,
+ "rows_sample": [
+  "",
+  "keyboard_arrow_right | Ahtesham | ABCPROD | Truck | Hill | 1 | 250.82 | 250.82 | 0.00 | 100.00% | $0.00",
+  "keyboard_arrow_right | Ayesha | Test | Trucks | Hill | 2 | 250.82 | 250.82 | 0.00 | 100.00% | $0.00",
+  "keyboard_arrow_right | Ayesha | Khan | Truck | Hill | 1 | 164.81 | 164.81 | 0.00 | 100.00% | $0.00"
+ ],
+ "footer": [
+  "Total | Hours",
+  "250.82",
+  "250.82",
+  "164.81"
+ ],
+ "row_links": [],
+ "body_text_head": "Technician Utilization more_horiz width_normal calendar_today Date: This month keyboard_arrow_down person Technician: All technicians keyboard_arrow_down cancel place Location: All locations keyboard_arrow_down cancel insert_chart_outlined Hide Chart keyboard_double_arrow_down Technician arrow_drop_up Location Total Hours arrow_drop_up WO Hours arrow_drop_up Internal Hours arrow_drop_up Utilization % arrow_drop_up Est. Lost Labor arrow_drop_up info_outline keyboard_arrow_right Ahtesham ABCPROD Truck Hill 1 250.82 250.82 0.00 100.00% $0.00 keyboard_arrow_right Ayesha Test Trucks Hill 2 250.82 250.82 0.00 100.00% $0.00 keyboard_arrow_right Ayesha Khan Truck Hill 1 164.81 164.81 0.00 100.00% $0.00 keyboard_arrow_right Bilal Muzammil Trucks Hill 2 0.25 0.25 0.00 100.00% $0.00 keyboard_arrow_right Floyd Miles Truck Hill 1 164.86 164.86 0.00 100.00% $0.00 keyboard_arrow_right Service Advisor No Reports (Admin) Trucks Hill 2 0.00 0.00 0.00 — $0.00 Summary 831.56 831.56 0.00 100.00% $0.00",
+ "filters": [
+  {
+   "tid": "filter_chip_dateRange",
+   "label": "calendar_today Date: This month keyboard_arrow_down",
+   "panel": "This week Last week This month Last month This quarter Last quarter This year Last year Last 12 months Custom"
+  },
+  {
+   "tid": "filter_chip_technicianIds",
+   "label": "person Technician: All technicians keyboard_arrow_down cancel",
+   "panel": "Select all 6 selected Ahtesham ABCPROD Ayesha Test Ayesha Khan Bilal Muzammil Floyd Miles Service Advisor No Reports (Admin) Clear selection"
+  },
+  {
+   "tid": "filter_chip_clear_technicianIds",
+   "label": "cancel",
+   "panel": "ERR locator.innerText: Timeout 3000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locato"
+  },
+  {
+   "tid": "filter_chip_clear_locationIds",
+   "label": "cancel",
+   "panel": "ERR locator.click: Timeout 4000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('["
+  }
+ ],
+ "error": "locator.getAttribute: Timeout 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-test-id^=\"filter_chip_\"]').nth(4)\u001b[22m\n"
+}

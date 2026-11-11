@@ -1,0 +1,125 @@
+{
+ "slug": "ap-aging-detail",
+ "nav_text": "list_alt A/P Aging Detail",
+ "nav_tid": "report_nav_ap_aging_detail_report",
+ "url": "https://sv11315.qa.shopview.com/reports/ap-aging-detail",
+ "title": "AP Aging Detail | ShopView",
+ "heading": "",
+ "controls": [
+  {
+   "tid": "icon_apdet_info",
+   "aria": "Unpaid bills and unused vendor credits as of the selected date, grouped by how overdue they are.",
+   "text": "info_outline",
+   "tag": "I"
+  },
+  {
+   "tid": "btn_dropdown_apdet_export",
+   "aria": "Export report",
+   "text": "more_horiz",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_asOfDate",
+   "aria": null,
+   "text": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_vendorIds",
+   "aria": null,
+   "text": "local_shipping Vendor: All vendors keyboard_arrow_down",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_pastDue",
+   "aria": null,
+   "text": "hourglass_empty Past due: Any keyboard_arrow_down",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_locationIds",
+   "aria": null,
+   "text": "place Location: All locations keyboard_arrow_down cancel",
+   "tag": "BUTTON"
+  },
+  {
+   "tid": "filter_chip_clear_locationIds",
+   "aria": "Clear Location filter",
+   "text": "cancel",
+   "tag": "I"
+  },
+  {
+   "tid": "ap_aging_detail_report_table",
+   "aria": null,
+   "text": "keyboard_arrow_right Date arrow_drop_up Location arrow_drop_up Transaction Type ",
+   "tag": "DIV"
+  }
+ ],
+ "headers": [
+  "keyboard_arrow_right Date arrow_drop_up",
+  "Location arrow_drop_up",
+  "Transaction Type arrow_drop_up",
+  "No. arrow_drop_up",
+  "Vendor Name arrow_drop_up",
+  "Due Date arrow_drop_up",
+  "Past Due arrow_drop_up",
+  "Amount arrow_drop_up",
+  "Open Balance arrow_drop_up"
+ ],
+ "row_count": 8,
+ "rows_sample": [
+  "",
+  "keyboard_arrow_right | 91 | or | more | days | past | due | (11927) | Total | $4,043,037.90 | $4,043,037.92",
+  "keyboard_arrow_right | 61-90 | days | past | due | (702) | Total | $320,035.51 | $320,035.53",
+  "keyboard_arrow_right | 31-60 | days | past | due | (709) | Total | $263,722.41 | $263,722.41"
+ ],
+ "footer": [
+  "Total",
+  "Total",
+  "Total",
+  "Total"
+ ],
+ "row_links": [],
+ "body_text_head": "A/P Aging Detail info_outline more_horiz calendar_today As of: 11/11/2026 keyboard_arrow_down local_shipping Vendor: All vendors keyboard_arrow_down hourglass_empty Past due: Any keyboard_arrow_down place Location: All locations keyboard_arrow_down cancel keyboard_arrow_right Date arrow_drop_up Location arrow_drop_up Transaction Type arrow_drop_up No. arrow_drop_up Vendor Name arrow_drop_up Due Date arrow_drop_up Past Due arrow_drop_up Amount arrow_drop_up Open Balance arrow_drop_up keyboard_arrow_right 91 or more days past due (11927) Total $4,043,037.90 $4,043,037.92 keyboard_arrow_right 61-90 days past due (702) Total $320,035.51 $320,035.53 keyboard_arrow_right 31-60 days past due (709) Total $263,722.41 $263,722.41 keyboard_arrow_right 1-30 days past due (365) Total $116,615.52 $116,615.52 keyboard_arrow_right Current (5) Total $752.34 $752.34 Totals $4,744,163.68 $4,744,163.72",
+ "filters": [
+  {
+   "tid": "filter_chip_asOfDate",
+   "label": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "panel": "chevron_left November chevron_right chevron_left 2026 chevron_right Sun Mon Tue Wed Thu Fri Sat 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30"
+  },
+  {
+   "tid": "filter_chip_vendorIds",
+   "label": "local_shipping Vendor: All vendors keyboard_arrow_down",
+   "panel": "search All vendors All vendors are included. Pick one or more to narrow. #1 Diesel -1 Diesel 10 Trucking 2 Trucking 5 Star Truck Repair @Home Towing A-1 Towing a1 towing Abadi's Diesel Repair AC Truck Repair - Branford Ackley Adams Diesel Repair æble Afhly's Mobile Truck Repair Afton Agolli Truck Center Aibonito Fleet Services Airoldi Trucking & Repair Airway Heights Truck & Trailer Repair Akal's Mobile Truck Repair Alameda Mechanical Services Alcocer Brothers Truck Repair Almeida's Fleet Service Alzuhairi Truck & Machine Service Amani & Sons Truck & Trailer Repair American Truck & Trailer Repair Amherst Mechanical Services Amherst Truck Center Amimi Diesel Services Inc Anderson Heavy Truck Repair Inc Andover Fleet Services Antioch Diesel & Fleet Repair Apex Fleet Services Apex Truck & Trailer Repair Apex Truck Repair 24/7 Appleton Truck & Equipment Repair Appleton's Truck & Trailer Repair LLC Arab Truck Repair Asbury Park Truck Repair Ashogbon Truck Center Athens Roadside Truck Repair Atlantic Truck & Trailer Repair Auburn Diesel Repair Auburn Truck & Trailer Repair 24/7 Aurora Heavy Duty Truck & Equipment Repair Aurora Trailer & Suspension Avello's Mobile Diesel Repair Avenal Mec"
+  },
+  {
+   "tid": "filter_chip_pastDue",
+   "label": "hourglass_empty Past due: Any keyboard_arrow_down",
+   "panel": "Any All ranges are included. Pick one or more to narrow. 1-30 days 31-60 days 61-90 days 91+ days"
+  },
+  {
+   "tid": "filter_chip_locationIds",
+   "label": "place Location: All locations keyboard_arrow_down cancel",
+   "panel": "Select all 2 selected Staging Heavy Duty - 9919 Staging Lethbridge - 4310 Clear selection"
+  },
+  {
+   "tid": "filter_chip_clear_locationIds",
+   "label": "cancel",
+   "panel": "ERR locator.innerText: Timeout 3000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locato"
+  }
+ ],
+ "menus": [
+  {
+   "tid": "report_nav_unexported_items",
+   "items": ""
+  },
+  {
+   "tid": "report_nav_export_reports",
+   "items": ""
+  },
+  {
+   "tid": "tab_unexported_customers",
+   "items": "ERR locator.click: Timeout 4000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('["
+  }
+ ]
+}
