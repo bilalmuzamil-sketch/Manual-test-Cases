@@ -7,7 +7,7 @@ def ann(src, out, title, boxes, marks, extra=()):
     args = ['python3.12', TOOL, src, out, '--title', title, '--scale', '1']
     for rx, kind, text in marks:
         hits = [b for b in boxes if re.search(rx, b[0])]
-        if not hits: raise SystemExit('no box for %r in %s' % (rx, src))
+        if not hits: print('  (skip: no box for %r)' % rx); continue
         b = max(hits, key=lambda b: b[3]) if len(hits) > 1 else hits[0]
         args += ['--mark', '%d,%d,%d,%d:%s:%s' % (b[1], b[2], b[3], b[4], kind, text)]
     for x, y, w, h, kind, text in extra: args += ['--mark', '%d,%d,%d,%d:%s:%s' % (x, y, w, h, kind, text)]

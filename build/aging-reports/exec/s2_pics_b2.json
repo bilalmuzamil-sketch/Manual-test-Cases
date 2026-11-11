@@ -1,0 +1,233 @@
+[
+ {
+  "id": "C715313",
+  "step": "#1",
+  "out": "C715313-1-ob-desc.png",
+  "title": "A/R Aging Collection, Open Balance clicked once: rows re-sort inside each group, largest first",
+  "head": "Open Balance",
+  "rows": [
+   [
+    "ZZAUTOTEST AR Customer A \\(6\\)",
+    "good",
+    "Group A stays first and open"
+   ],
+   [
+    "S11315-17582",
+    "good",
+    "$1,250.50 - largest first"
+   ],
+   [
+    "ZZAUTOTEST BACKDATE PROBE",
+    "good",
+    "Group B stays closed, in its place"
+   ],
+   [
+    "Total for ZZAUTOTEST AR Customer A",
+    "good",
+    "Group A (AR Customer A) still open"
+   ],
+   [
+    "S1R5 Alpha \\(4\\)",
+    "good",
+    "Group C (S1R5 Alpha) still open, rows re-sorted inside it"
+   ]
+  ]
+ },
+ {
+  "id": "C715313",
+  "step": "#2",
+  "out": "C715313-2-ob-asc.png",
+  "title": "Open Balance clicked twice: smallest first inside each group",
+  "head": "Open Balance",
+  "rows": [
+   [
+    "ZZAUTOTEST AR Customer A \\(6\\)",
+    "good",
+    "Group A still first and open"
+   ],
+   [
+    "CM11315-4192",
+    "good",
+    "$-150.00 - smallest first"
+   ],
+   [
+    "ZZAUTOTEST BACKDATE PROBE",
+    "good",
+    "Group B still closed"
+   ],
+   [
+    "Total for ZZAUTOTEST AR Customer A",
+    "good",
+    "Group A (AR Customer A) still open"
+   ],
+   [
+    "S1R5 Alpha \\(4\\)",
+    "good",
+    "Group C (S1R5 Alpha) still open, rows re-sorted inside it"
+   ]
+  ]
+ },
+ {
+  "id": "C715313",
+  "step": "#3",
+  "out": "C715313-3-date.png",
+  "title": "Date clicked: rows re-sort by date; groups keep their order and open/closed state",
+  "head": "Date",
+  "rows": [
+   [
+    "ZZAUTOTEST AR Customer A \\(6\\)",
+    "good",
+    "Group A open"
+   ],
+   [
+    "ZZAUTOTEST BACKDATE PROBE",
+    "good",
+    "Group B closed"
+   ],
+   [
+    "Total for ZZAUTOTEST AR Customer A",
+    "good",
+    "Group A (AR Customer A) still open"
+   ],
+   [
+    "S1R5 Alpha \\(4\\)",
+    "good",
+    "Group C (S1R5 Alpha) still open, rows re-sorted inside it"
+   ]
+  ]
+ },
+ {
+  "id": "C715315",
+  "step": "#1",
+  "out": "C715315-1-ob-desc.png",
+  "title": "A/P Unpaid Invoices, Open Balance clicked once: rows re-sort inside each group, largest first",
+  "head": "Open Balance",
+  "rows": [
+   [
+    "ZZAUTOTEST AP Vendor A \\(4\\)",
+    "good",
+    "Group A stays first and open"
+   ],
+   [
+    "ZZAUTOTEST-BILL-A1",
+    "good",
+    "$200.00 - largest first"
+   ],
+   [
+    "ZZAUTOTEST NEG PASTDUE V \\(",
+    "good",
+    "Group B stays closed, in its place"
+   ],
+   [
+    "Total for ZZAUTOTEST AP Vendor A",
+    "good",
+    "Group A (AP Vendor A) still open"
+   ],
+   [
+    "S1R5 V Alpha \\(4\\)",
+    "good",
+    "Group C (S1R5 V Alpha) still open, rows re-sorted inside it"
+   ]
+  ]
+ },
+ {
+  "id": "C715315",
+  "step": "#2",
+  "out": "C715315-2-ob-asc.png",
+  "title": "Open Balance clicked twice: smallest first inside each group",
+  "head": "Open Balance",
+  "rows": [
+   [
+    "C-13667",
+    "good",
+    "$-50.00 - smallest first"
+   ],
+   [
+    "ZZAUTOTEST NEG PASTDUE V \\(",
+    "good",
+    "Group B still closed"
+   ],
+   [
+    "Total for ZZAUTOTEST AP Vendor A",
+    "good",
+    "Group A (AP Vendor A) still open"
+   ],
+   [
+    "S1R5 V Alpha \\(4\\)",
+    "good",
+    "Group C (S1R5 V Alpha) still open, rows re-sorted inside it"
+   ]
+  ]
+ },
+ {
+  "id": "C715315",
+  "step": "#3",
+  "out": "C715315-3-date.png",
+  "title": "Date clicked: rows re-sort by date; groups keep their order and open/closed state",
+  "head": "Date",
+  "rows": [
+   [
+    "ZZAUTOTEST AP Vendor A \\(4\\)",
+    "good",
+    "Group A open"
+   ],
+   [
+    "ZZAUTOTEST NEG PASTDUE V \\(",
+    "good",
+    "Group B closed"
+   ],
+   [
+    "Total for ZZAUTOTEST AP Vendor A",
+    "good",
+    "Group A (AP Vendor A) still open"
+   ],
+   [
+    "S1R5 V Alpha \\(4\\)",
+    "good",
+    "Group C (S1R5 V Alpha) still open, rows re-sorted inside it"
+   ]
+  ]
+ },
+ {
+  "id": "C715590",
+  "step": "#1",
+  "out": "C715590-1-click.png",
+  "title": "A/P Unpaid Invoices after clicking the Vendor Name heading: nothing changed",
+  "head": "Date",
+  "rows": [
+   [
+    "ZZAL-A",
+    "good",
+    "Rows keep their opening order, oldest date first"
+   ]
+  ]
+ },
+ {
+  "id": "C715324",
+  "step": "#1",
+  "out": "C715324-1-ob.png",
+  "title": "A/R Aging Collection, Open Balance clicked: largest first",
+  "head": "Open Balance",
+  "rows": [
+   [
+    "S11315-17582",
+    "good",
+    "$1,250.50 first"
+   ]
+  ]
+ },
+ {
+  "id": "C715324",
+  "step": "expand #4",
+  "out": "C715324-3-back.png",
+  "title": "Back on A/R Aging Collection after visiting Sales By Customer: opening order again",
+  "head": "Date",
+  "rows": [
+   [
+    "S11315-17582",
+    "good",
+    "Back in date order - the Open Balance sort was not kept"
+   ]
+  ]
+ }
+]

@@ -1,0 +1,72 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, folder S2 batch b (sv11315)"
+ },
+ "results": {
+  "C715306": {
+   "verdict": "Passed",
+   "observed": [
+    "Vendor ZZAUTOTEST AP Vendor A's group (open): bills ZZAUTOTEST-BILL-A1 and ZZAUTOTEST-BILL-PS1 and vendor credit C-13667 at Staging Heavy Duty - 9919, bill ZZAUTOTEST-BILL-B1 at Staging Lethbridge - 4310.",
+    "Location once: the three Heavy Duty rows, then the Lethbridge bill; twice: the Lethbridge bill first; three times: Heavy Duty first again.",
+    "Transaction Type once: the Invoice rows, then the Vendor Credit; twice: Vendor Credit first, then the Invoices."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715306-1-loc-az.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715306-2-loc-za.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715306-4-type-az.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715306-5-type-za.png"
+   ]
+  },
+  "C715313": {
+   "verdict": "Passed",
+   "observed": [
+    "Groups used: ZZAUTOTEST AR Customer A (open), ZZAUTOTEST BACKDATE PROBE 80673 (closed), ZZAUTOTEST S1R5 Alpha (open) - in that name order.",
+    "Open Balance once: rows re-sort inside each group, largest first ($1,250.50 first in AR Customer A; $812.18 first in S1R5 Alpha). Groups stay in name order.",
+    "Open Balance twice: smallest first ($-150.00 first in AR Customer A). Groups stay in name order.",
+    "Date: rows back in date order. AR Customer A and S1R5 Alpha still open, BACKDATE PROBE still closed after every click."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715313-1-ob-desc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715313-2-ob-asc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715313-3-date.png"
+   ]
+  },
+  "C715315": {
+   "verdict": "Passed",
+   "observed": [
+    "Groups used: ZZAUTOTEST AP Vendor A (open), ZZAUTOTEST NEG PASTDUE V (closed), ZZAUTOTEST S1R5 V Alpha (open) - in that name order.",
+    "Open Balance once: largest first inside each group ($200.00 first in AP Vendor A; $15.00 first in S1R5 V Alpha). Groups stay in name order.",
+    "Open Balance twice: smallest first ($-50.00 first in AP Vendor A).",
+    "Date: rows back in date order. The two open groups stay open, NEG PASTDUE V stays closed."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715315-1-ob-desc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715315-2-ob-asc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715315-3-date.png"
+   ]
+  },
+  "C715590": {
+   "verdict": "Passed",
+   "observed": [
+    "ZZAUTOTEST S1R5 V Alpha's group open: bills dated Aug 20 and Oct 25, oldest first, Date marked as sorted.",
+    "Clicking the Vendor Name heading changes nothing: the rows keep their order and Date stays the sorted column.",
+    "Hovering over Vendor Name: ordinary pointer, no sort mark."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715590-1-click.png"
+   ]
+  },
+  "C715324": {
+   "verdict": "Passed",
+   "observed": [
+    "ZZAUTOTEST AR Customer A's group open; Open Balance clicked: rows largest first ($1,250.50 first).",
+    "Opened Sales By Customer from the left menu: it opened.",
+    "Opened A/R Aging Collection again from the left menu: Date is marked as the sorted column and the rows are back in date order - the Open Balance sort was not kept."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715324-1-ob.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715324-3-back.png"
+   ]
+  }
+ }
+}

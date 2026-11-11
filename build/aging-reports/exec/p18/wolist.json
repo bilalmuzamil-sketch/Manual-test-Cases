@@ -1,0 +1,37 @@
+{
+ "/api/work-orders?page=1&per_page=5": {
+  "st": 200,
+  "keys": [
+   "data"
+  ],
+  "sample": "{\"data\":{\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":100,\"totalWorkOrderPrice\":15702383},\"work_orders\":[{\"linesCount\":1,\"serviceActionsCount\":0,\"partRequestsCount\":0,\"statusRequestedCount\":0,\"statusAuthToOrderCount\":0,\"statusInStock\":0,\"partReturnRequestsCount\":0,\"progress\":0,\"unreceivedPartRequestsCount\":0,\"orderId\":null,\"maintenanceOrigin\":null,\"clockedInTechnicians\":[],\"id\":\"46288620-adfe-4e7f-ad0e-58a1fb7326d6\",\"startDate\":\"2026-11-11 01:58:37\",\"number\":\"S11315-17605\",\"status\":\"invoiced\",\"vehicleHere\":true,\"vehicleModelName\":null,\"vehicleMakeName\":null,\"engineHours\":null,\"mileage\":1000,\"timeEstimate\":0,\"totalPrice\":17404,\"vin\":\"ZZVIN362317278\",\"unit\":\"ZZ17278\",\"licencePlate\":null,\"companyName\":\"-1 Diesel\",\"invoicedDate\":\"2026-11-11 01:59:01\",\"serviceAdvisorFirstName\":\"Admin\",\"serviceAdvisorLastName\":\"ShopView\",\"techAssignedFirstName\":null,\"clockedInTechniciansCount\":0,\"techAssignedLastName\":null,\"priority\":null,\"techAssignedId\":null,\"vehicleYear\":null},{\"linesCount\":1,\"serviceActionsCount\":0,\"partRequestsCount\":0,\"statusRequestedCount\":0,\"statusAuthToOrderCount\":0,\"statusInStock\":0,\"partReturnRequestsCount\":0,\"progress\":0,\"unreceivedPartRequestsCount\":0,\"orderId\":null,\"maintenanceOrigin\":null,\"clockedInTechnicians\":[],\"id\":\"3a757288-ab88-4058-947b-3ddf44f48e0f\",\"startDate\":\"2026-11-11 01:59:04\",\"number\":\"S11315-17606\",\"status\":\"invoiced\",\"vehicleHere\":true,\"vehicleModelName\":null,\"vehicleMakeName\":null,\"engineHours\":null,\"mileage\":1000,\"timeEstim"
+ },
+ "/api/work-orders/simple-list": {
+  "st": 200,
+  "keys": [
+   "data"
+  ],
+  "sample": "{\"data\":{\"collection\":[{\"id\":\"d5baaf8a-51cd-486c-a7c7-6ef4ccd3f358\",\"number\":\"S2-17579\",\"rawNumber\":17579,\"companyId\":\"0877473d-0b22-4f69-8767-92c58c73d39f\",\"companyName\":\"Buda Truck Repair\",\"createdOn\":\"2026-08-31 18:33:12\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"},{\"id\":\"539e696b-9ef4-4ff4-9568-b9cbe794e1d2\",\"number\":\"S2-17578\",\"rawNumber\":17578,\"companyId\":\"0877473d-0b22-4f69-8767-92c58c73d39f\",\"companyName\":\"Buda Truck Repair\",\"createdOn\":\"2026-08-31 18:31:12\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"},{\"id\":\"7235a9f1-a646-44a5-88a2-cbd1b3e11e9e\",\"number\":\"S2-17577\",\"rawNumber\":17577,\"companyId\":\"7e90eb07-a144-465b-9743-df9c35d9b587\",\"companyName\":\"Desert Edge Truck Service & Repair\",\"createdOn\":\"2026-08-31 18:18:39\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"},{\"id\":\"27eeb282-7196-4b53-a6f1-4f5016022094\",\"number\":\"S2-17576\",\"rawNumber\":17576,\"companyId\":\"dd096478-0b37-4747-a920-7e2841a09ff1\",\"companyName\":\"Lexington Park Diesel Repair\",\"createdOn\":\"2026-08-31 17:01:10\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"},{\"id\":\"b9545d28-cdde-4616-8a64-e33e525ed590\",\"number\":\"S2-17575\",\"rawNumber\":17575,\"companyId\":\"7e90eb07-a144-465b-9743-df9c35d9b587\",\"companyName\":\"Desert Edge Truck Service & Repair\",\"createdOn\":\"2026-08-31 16:52:18\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"},{\"id\":\"cc5c2728-03df-4e9c-b1ef-db232a9ccb6d\",\"number\":\"S2-17573\",\"rawNumber\":17573,\"companyId\":\"e362f550-a466-4e03-af47-167b2154effc\",\"companyName\":\"Ell"
+ },
+ "/api/work-orders/statuses": {
+  "st": 200,
+  "keys": [
+   "data"
+  ],
+  "sample": "{\"data\":{\"collection\":[{\"value\":\"estimate\",\"label\":\"Estimate\"},{\"value\":\"approved\",\"label\":\"Approved\"},{\"value\":\"in_progress\",\"label\":\"In progress\"},{\"value\":\"ready_for_review\",\"label\":\"Review\"},{\"value\":\"complete\",\"label\":\"Complete\"},{\"value\":\"invoiced\",\"label\":\"Invoiced\"},{\"value\":\"paid\",\"label\":\"Paid\"}]}}"
+ },
+ "/api/settings": {
+  "st": 404,
+  "keys": [
+   "errors"
+  ],
+  "sample": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+ },
+ "/api/workplaces": {
+  "st": 200,
+  "keys": [
+   "data"
+  ],
+  "sample": "{\"data\":{\"collection\":[{\"id\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"name\":\"Staging Lethbridge - 4310\",\"address_1\":\"4310 9 Avenue North\",\"address_2\":null,\"state_or_province\":\"Alberta\",\"postal_code\":\"T1H 6N4\",\"city\":\"Lethbridge\",\"telephone\":\"(403) 327 - 3405\",\"color\":\"#00a300\",\"tax\":{\"id\":\"819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b\",\"name\":\"GST\"},\"timezone\":\"America/Edmonton\",\"country_code\":\"CA\",\"organization_id\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"shop_id\":\"11315\",\"remit_to\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"ibs_location_id\":\"1547\",\"shop_supplies_charge\":10.5,\"max_shop_supplies_charge\":350,\"min_shop_supplies_charge\":0,\"bookkeeping_enabled\":true,\"shopSupplyPercentageEnabled\":false,\"remit_to_type\":1,\"remitToAddress\":null,\"salesTaxRoundingMode\":\"line_by_line\"},{\"id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"name\":\"Staging Heavy Duty - 9919\",\"address_1\":\"9919 Shepard Road SE\",\"address_2\":null,\"state_or_province\":\"Alberta\",\"postal_code\":\"T2C 4M5\",\"city\":\"Calgary\",\"telephone\":\"(403) 523 - 0488\",\"color\":\"#d66c00\",\"tax\":{\"id\":\"819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b\",\"name\":\"GST\"},\"timezone\":\"America/Edmonton\",\"country_code\":\"CA\",\"organization_id\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"shop_id\":\"11315\",\"remit_to\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"ibs_location_id\":null,\"shop_supplies_charge\":10.5,\"max_shop_supplies_charge\":350,\"min_shop_supplies_charge\":0,\"bookkeeping_enabled\":true,\"shopSupplyPercentageEnabled\":false,\"remit_to_type\":1,\"remitToAddress\":null,\"salesTaxRoundingMode\""
+ }
+}
