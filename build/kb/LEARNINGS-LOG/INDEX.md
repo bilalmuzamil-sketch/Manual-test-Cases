@@ -569,3 +569,57 @@
 - L0539 — 2026-10-22 — Production: renaming an account through account access ALSO renamed its staff record
 - L0540 — 2026-10-22 — A case's example record is staging-only; on production SEED it, don't scan for one
 - L0541 — 2026-10-22 — "Open the work order" is a step: open it from the List, never by its address
+
+## build/kb/LEARNINGS-LOG/009-L0542-L0593.md
+- L0542 — 2026-10-22 — Production: the test admin cannot start account access through the screen
+- L0543 — 2026-10-22 — Open-from-list helpers must switch to List first: the saved display may be Tech View
+- L0544 — 2026-10-22 — Production filter defaults and left-menu links: two more traps
+- L0545 — 2026-10-22 — A usage-tracking case whose SET-UP saves Board View with a density cannot exist on production
+- L0546 — 2026-10-22 — run_queue.sh reported QUEUE-DONE at 54 of 74: lines appended late were never read
+- L0547 — 2026-10-22 — Production facts: the Schedule draws UTC; account access is not a role setting
+- L0548 — 2026-10-23 — Never test a helper's success by looking for the target's NAME in its return text
+- L0549 — 2026-10-23 — A container restart kills a step's sign-in but not the queue: check the step that was running
+- L0550 — 2026-10-23 — Chaining a queue after another: write a small script and start it with setsid
+- L0551 — 2026-10-23 — Held (not posted) production results leave the run showing the STAGING verdict
+- L0552 — 2026-10-23 — Tech View's "Lead Technician" switch is `toggle_tech_view_column_technician`; staging-made scripts hide three production traps
+- L0553 — 2026-10-23 — Passed on staging, Failed on production: two different causes, and how to tell them apart
+- L0554 — 2026-10-23 — Production keeps ONE name per person (proved properly this time); my 22 Oct proof read the wrong list
+- L0555 — 2026-10-23 — Filing a Bug straight into the Fast Follow epic; and Automation status 3 = Automated
+- L0556 — 2026-10-23 — "Which tests did you change for X?" must come from the CASE HISTORY, never from my own update folders
+- L0557 — 2026-10-23 — Production "Create Invoice" → "Part of the page failed to load" in the test browser: third-party hosts blocked, not the product
+- L0558 — 2026-10-23 — QA lead ruling: the SV-11720 page scroll is EXPECTED behaviour
+- L0559 — 2026-10-23 — A failure must say WHAT it failed against; the QA lead reopened SV-11720
+- L0560 — 2026-10-23 — The QA lead's verdict on the Rule 135(8) shape: "PERFECT" — this is THE standard for every bug and every failed test
+- L0561 — 2026-10-23 — Tests waiting on a FAST-FOLLOW ticket leave the run for their suite's Fast-follow folder (create it if missing); sweep with `fast_follow_sw
+- L0562 — 2026-10-23 — Before a test goes to Fast-follow, or flips Failed → Passed on a build change, bring its set-up, steps and expected up to the CURRENT PRD
+- L0563 — 2026-10-23 — QA lead allows changes to Automated tests; "changed after being automated" is dated from the atmstatus change
+- L0564 — 2026-10-23 — GA "page_location" carries the Work Orders search text; and set-up lines must stay runnable before a fix ships
+- L0565 — 2026-10-23 — Two QA-lead rulings: (1) what may fail a test; (2) never update a test on a ticket that is not on production
+- L0566 — 2026-10-23 — "Changed after being automated" = NET text difference, not any edit in the history
+- L0567 — 2026-10-23 — Filing a bug that has nothing to show on screen (analytics) — the composed "page + record" picture; tagging the PO
+- L0568 — 2026-10-23 — Production keeps ONE name per person through EVERY write route; a "two names" set-up cannot be built there (C707077, gate-proved)
+- L0569 — 2026-10-23 — Showing a layman that two names are one person; a 10-second "is the staging sign-in still alive?" test
+- L0570 — 2026-10-23 — C707077 Passed on staging v26.43.1; Edit Line has no "Cancel"; Board cards carry no technician name
+- L0571 — 2026-10-23 — Finding a section's tests for a list of tickets: read each ticket, then whole-word match, then the run
+- L0572 — 2026-10-26 — Verifying fixed tickets, each on its OWN QA branch; "→ QA Status: Passed" comments by script
+- L0573 — 2026-10-26 — Rule 136 in practice: a ticket passing QA does NOT mean its linked tests pass — run each test whole on the branch first
+- L0574 — 2026-10-26 — "Why did each automated test change?": TestRail history + the PRD's own version notes + our dated commits; a production result needs a prod
+- L0575 — 2026-10-26 — A picture in a Jira COMMENT needs Rule 116 sizing too: `size_comment_pics.py`
+- L0576 — 2026-10-26 — SV-11722 fix verified on sv11500: GA page_location no longer carries ?search=
+- L0577 — 2026-10-26 — SV-11503 drag preview verified on sv11503; how to read a drag preview
+- L0578 — 2026-10-26 — SV-11720 (Board View page scroll) verified on sv11720; two wait-loop traps
+- L0579 — 2026-10-26 — C590121 adjusted to Chris Ward's SV-11753 ruling; PRD v76 S3-R13 now places the … button
+- L0580 — 2026-10-26 — Two runs on one branch at once break each other; PRD v77 S11-E1 (search-only empty → focus to the message)
+- L0581 — 2026-10-26 — The Work Orders search matches single words, not a full technician name; SV-11627 / SV-11582 verified
+- L0582 — 2026-10-26 — Watching an epic for tickets ready to test: `ff_watch.py` + a 2-hour routine into this session
+- L0583 — 2026-10-26 — SV-11546 verified on sv11546; a fresh branch needs the view-only role and Esther Howard first
+- L0584 — 2026-10-26 — "quick-login answered HTTP 403" in the evening = the QA branch is ASLEEP, not an expired sign-in
+- L0585 — 2026-10-26 — SV-11728 drag preview (v26.43.1-baa44e3): `.board-drag-preview` is now a full copy; how to read it
+- L0586 — 2026-10-27 — Health check of the checking tools: watcher blind spots fixed; the secret scanner's reach is the QA lead's choice — LEAVE IT
+- L0587 — 2026-10-27 — SV-11722: I passed it with ONE search; the search text still leaks through the referrer (`dr`) after a SECOND search — Mudassir was right
+- L0588 — 2026-10-27 — Why Mudassir caught SV-11722 and I did not: I checked only the records my own report named, along one path; C97027 is the only test and can
+- L0589 — 2026-10-27 — QA lead: "always make the tests logical … the PRD and our defects and tests should say the same logic"; C97027 Expected reworded to S12-R5 
+- L0590 — 2026-10-27 — Analytics read-through (QA lead "B"): five tests still do density in Board View — the 22–23 Oct sweep went by rule id, not by topic
+- L0591 — 2026-10-28 — SV-11567 (Undo): tests brought to PRD v81 before the site existed; how to find a ticket's test site when the QA Branch field is empty
+- L0592 — 2026-10-28 — QA lead's three standing answers: sign-in asks carry the full URL (Rule 138); screenshots ALWAYS (Rule 130 amendment); Fast-follow tests go
+- L0593 — 2026-10-28 — SV-11594 verified (Deleted technician in the Technician filter); SV-11581 Card size tested — passes except one open question (VIN on Compac

@@ -33,3 +33,10 @@
 - parts re-joined: sha256 `388711e161af6aadc44a2f7b2de0b67db98b3ca0e95e662c2b80aff339754d12` — MATCH
 - parts: 008-L0485-L0541.md
 - index left at `build/LEARNINGS-LOG.md`: 79826 bytes
+
+## 2026-11-11 10:17 UTC — shard of `build/LEARNINGS-LOG.md` (entries)
+- original: 154603 bytes, sha256 `d7991755cf0ea9275c7f5d843891d9aa930c4ade6a26a9d32582586610473fba`
+- moved region: 75826 bytes, sha256 `b2675ec1a8932eb83e5b4abb749fd1ce7900649f92edee46a5b1fb7dc52a90b1`
+- parts re-joined: sha256 `b2675ec1a8932eb83e5b4abb749fd1ce7900649f92edee46a5b1fb7dc52a90b1` — MATCH
+- parts: 009-L0542-L0593.md
+- index left at `build/LEARNINGS-LOG.md`: 78996 bytes

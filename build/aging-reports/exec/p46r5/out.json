@@ -1,0 +1,206 @@
+{
+ "sets": {
+  "R12": [
+   {
+    "name": "ZZX Diff Cust A R5",
+    "cid": "d6ad3c84-40c2-48be-ab59-0da7945f3a63",
+    "acct": "959dcf16-3f12-49a6-a5e8-140725286851",
+    "docs": [
+     {
+      "tag": "A-400",
+      "num": "S11315-17825",
+      "invoiceId": "263b92bd-47f3-42e6-b0dc-1ceec97b7b65",
+      "wo": "0ae922da-87b6-4d6f-a40b-eb30f4652553",
+      "amount": 400,
+      "daysAgo": 45,
+      "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "term": "COD"
+     },
+     {
+      "tag": "A-300",
+      "num": "S11315-17826",
+      "invoiceId": "ba2795ee-1e0a-4a53-92b4-4667a91456e1",
+      "wo": "48465b65-ab3a-4a69-991b-76a3b71c28f9",
+      "amount": 300,
+      "daysAgo": 15,
+      "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "term": "COD"
+     },
+     {
+      "tag": "A-credit",
+      "num": "CM-4201",
+      "amount": -150,
+      "daysAgo": 5,
+      "credit": true
+     },
+     {
+      "tag": "A-1000-notdue",
+      "num": "S11315-17827",
+      "invoiceId": "585314ff-1775-4fff-afe7-480a25b7806a",
+      "wo": "c1c2584d-80cc-4654-ae45-aa9afb38e32e",
+      "amount": 1000,
+      "daysAgo": 0,
+      "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "term": "Net 30"
+     }
+    ],
+    "groups": [
+     [
+      "days_91_plus",
+      0,
+      0
+     ],
+     [
+      "days_61_to_90",
+      0,
+      0
+     ],
+     [
+      "days_31_to_60",
+      1,
+      40000
+     ],
+     [
+      "days_1_to_30",
+      2,
+      15000
+     ],
+     [
+      "current",
+      1,
+      100000
+     ]
+    ]
+   },
+   {
+    "name": "ZZX Diff Cust B R5",
+    "cid": "c5f46e5e-416e-493d-9131-f467578e41df",
+    "acct": "67dab846-0a1d-4c6b-b465-dc91d91848a9",
+    "docs": [
+     {
+      "tag": "B-500",
+      "num": "S11315-17828",
+      "invoiceId": "2394aa68-f21f-4660-9315-a883ae2d45f0",
+      "wo": "e3b2472d-49c9-4d71-b3e1-036b37d9bbf6",
+      "amount": 500,
+      "daysAgo": 45,
+      "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "term": "COD"
+     },
+     {
+      "tag": "B-250",
+      "num": "S11315-17829",
+      "invoiceId": "54935c32-b718-4fb4-99fe-5e25124a702a",
+      "wo": "97737205-1b14-4565-8398-273155649f80",
+      "amount": 250,
+      "daysAgo": 100,
+      "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "term": "COD"
+     }
+    ],
+    "groups": [
+     [
+      "days_91_plus",
+      1,
+      25000
+     ],
+     [
+      "days_61_to_90",
+      0,
+      0
+     ],
+     [
+      "days_31_to_60",
+      1,
+      50000
+     ],
+     [
+      "days_1_to_30",
+      0,
+      0
+     ],
+     [
+      "current",
+      0,
+      0
+     ]
+    ]
+   }
+  ],
+  "R15": [
+   {
+    "name": "ZZX Overpaid R5",
+    "cid": "65b06c30-64e4-447c-9cd5-1f1724d75279",
+    "acct": "c2134fc0-617b-45de-8830-1ee0e7462567",
+    "docs": [
+     {
+      "tag": "paid-120",
+      "num": "S11315-17830",
+      "invoiceId": "03f7ffc7-f53f-4e06-b240-922679584fcd",
+      "wo": "d2d939a3-bd71-4252-9117-2c6a7ea3d02d",
+      "amount": 100,
+      "daysAgo": 10,
+      "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "term": "COD"
+     },
+     {
+      "tag": "B",
+      "num": "S11315-17831",
+      "invoiceId": "c6908d42-4d2d-46b1-88eb-16d29b10ab6f",
+      "wo": "9bc202d1-db80-4037-a081-5fd87de9140a",
+      "amount": 500,
+      "daysAgo": 5,
+      "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+      "term": "COD"
+     }
+    ],
+    "groups": [
+     [
+      "days_91_plus",
+      0,
+      0
+     ],
+     [
+      "days_61_to_90",
+      0,
+      0
+     ],
+     [
+      "days_31_to_60",
+      0,
+      0
+     ],
+     [
+      "days_1_to_30",
+      2,
+      60000
+     ],
+     [
+      "current",
+      0,
+      0
+     ]
+    ]
+   }
+  ]
+ },
+ "log": [
+  "== R12",
+  "customer ZZX Diff Cust A R5 COD",
+  "  invoice S11315-17825 400.00 dated -45 COD HD",
+  "  invoice S11315-17826 300.00 dated -15 COD HD",
+  "  credit CM-4201 150",
+  "  invoice S11315-17827 1000.00 dated -0 Net 30 HD",
+  "customer ZZX Diff Cust B R5 COD",
+  "  invoice S11315-17828 500.00 dated -45 COD HD",
+  "  invoice S11315-17829 250.00 dated -100 COD HD",
+  "  read back ZZX Diff Cust A R5 [[\"days_91_plus\",0,0],[\"days_61_to_90\",0,0],[\"days_31_to_60\",1,40000],[\"days_1_to_30\",2,15000],[\"current\",1,100000]]",
+  "  read back ZZX Diff Cust B R5 [[\"days_91_plus\",1,25000],[\"days_61_to_90\",0,0],[\"days_31_to_60\",1,50000],[\"days_1_to_30\",0,0],[\"current\",0,0]]",
+  "== R15",
+  "customer ZZX Overpaid R5 COD",
+  "  invoice S11315-17830 100.00 dated -10 COD HD",
+  "  overpay refused: Error: payment 400 {\"errors\":[{\"error\":\"Transaction cannot be overpaid.\"}]}",
+  "  invoice S11315-17831 500.00 dated -5 COD HD",
+  "  read back ZZX Overpaid R5 [[\"days_91_plus\",0,0],[\"days_61_to_90\",0,0],[\"days_31_to_60\",0,0],[\"days_1_to_30\",2,60000],[\"current\",0,0]]"
+ ]
+}
