@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S5 (sv11315)"
+ },
+ "results": {
+  "C715608": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of 11/11/2026; documents at Staging Heavy Duty - 9919 (current) and Staging Lethbridge - 4310 (location B). Vendor A = ZZAUTOTEST S1R5 V Alpha, whose open documents are only at Staging Heavy Duty - 9919 (read from the report's data).",
+    "Step 1: ticked vendor A: only its rows remain (ZZAUTOTEST S1R5 V Alpha (4)).",
+    "Step 2: the Location menu still lists both locations (\"2 selected\", Staging Heavy Duty - 9919, Staging Lethbridge - 4310): not narrowed by the Vendor filter.",
+    "Steps 3-4: ticked \"1-30 days\": the chip reads \"Past due: 1-30 days\"; the Location menu still lists both locations.",
+    "Steps 5-7: unticked Staging Lethbridge - 4310, closed and reopened the menu: \"1 selected\"; Staging Lethbridge - 4310 is still in the list, unticked."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715608-1-2-loc-after-customer.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715608-2-4-loc-after-pastdue.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715608-3-7-loc-reopened.png"
+   ]
+  }
+ }
+}
