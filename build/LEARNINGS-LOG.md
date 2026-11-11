@@ -594,4 +594,5 @@
 ## L0677 — 2026-11-11 — A design runner that resets scroll before a dark-theme picture never shows the pinned row in dark
 - d3b's chevron step 7 ("switch to dark, the pinned row is readable") ran `scrollTop = 0` before the dark picture, so the picture showed the top of the table, not a pinned row: step 7 unobserved for C715505-508. Fix: switch theme WITHOUT scrolling and read the row under the headings with `elementFromPoint` (`exec/d3c_darkpin.mjs`).
 - `sortlib.find(/^Willoughby/)` on A/P Unpaid Invoices (vendor groups of 2,000+ documents, 100 per scroll) found nothing, so no pinned picture was taken. For "a pinned group row" checks, scroll into whichever group is at the top and match any label with a count (`/\(\d+\)/`) instead of naming a huge group.
+- Sales By Customer's ⋯ menu reads "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)" — not the aging reports' "Download (CSV)". `explib.exportAs(kind, tag, wait, label)` now takes the menu text; and it pictures a message still showing after a fast download (`-toast-late.png`).
 - #aging #design #tool → L0671, L0676

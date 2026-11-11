@@ -4,12 +4,13 @@
 import fs from 'fs'; import { execFileSync } from 'child_process';
 export function mkExp(p, OUT) {
   const notes = async () => (await p.locator('.q-notification').allInnerTexts().catch(() => [])).map((t) => t.replace(/\s+/g, ' ').trim());
-  async function exportAs(kind, tag, waitMs = 60000) { await p.locator('main button[aria-label="Export report"]').first().click(); await p.waitForTimeout(900);
-    const dl = p.waitForEvent('download', { timeout: waitMs }).catch(() => null); await p.locator('.q-menu:visible').getByText(`Download (${kind})`, { exact: true }).click();
+  async function exportAs(kind, tag, waitMs = 60000, label = null) { /* label: menu text when it is not "Download (KIND)" (Sales By Customer: "Download Summary (CSV)") */ await p.locator('main button[aria-label="Export report"]').first().click(); await p.waitForTimeout(900);
+    const dl = p.waitForEvent('download', { timeout: waitMs }).catch(() => null); await p.locator('.q-menu:visible').getByText(label || `Download (${kind})`, { exact: true }).click();
     const seen = new Set(); const t0 = Date.now(); let d = null; const race = dl.then((x) => { d = x; });
     let shotTaken = null; while (Date.now() - t0 < Math.min(waitMs, 15000) && !d) { const ns = await notes(); for (const n of ns) seen.add(n); if (ns.length && !shotTaken && OUT) { /* 11 Nov re-run: one shot at first sight caught the message before it slid in; take three, 0.4 s apart */ shotTaken = OUT + (tag || kind) + '-toast.png'; for (let i = 1; i <= 3; i++) { await p.waitForTimeout(400); await p.screenshot({ path: shotTaken.replace(/\.png$/, '-' + i + '.png') }).catch(() => {}); for (const n of await notes()) seen.add(n); } } await p.waitForTimeout(300); }
     /* 11 Nov: the pop-up message fades in a few seconds; picture it the moment it shows (C715350-53 first pictures missed it) */ await Promise.race([race, new Promise((r) => setTimeout(r, Math.max(0, waitMs - (Date.now() - t0))))]);
     await p.waitForTimeout(1500); for (const n of await notes()) seen.add(n);
+    /* 11 Nov 17:00: a fast download left no picture of the message (d3b C715517 arsCsv toast null); picture it now if it is still showing */ if (!shotTaken && OUT && (await notes()).length) { shotTaken = OUT + (tag || kind) + '-toast-late.png'; await p.screenshot({ path: shotTaken }).catch(() => {}); }
     if (!d) return { kind, file: null, notes: [...seen], toast: shotTaken }; const f = OUT + (tag ? tag + '-' : '') + d.suggestedFilename(); await d.saveAs(f); return { kind, file: f, name: d.suggestedFilename(), bytes: fs.statSync(f).size, notes: [...seen], toast: shotTaken }; }
   function readCsv(f) { const t = fs.readFileSync(f, 'utf8').replace(/^﻿/, ''); const rows = []; let row = [], cell = '', q = false;
     for (let i = 0; i < t.length; i++) { const ch = t[i]; if (q) { if (ch === '"' && t[i + 1] === '"') { cell += '"'; i++; } else if (ch === '"') q = false; else cell += ch; } else if (ch === '"') q = true; else if (ch === ',') { row.push(cell); cell = ''; } else if (ch === '\n') { row.push(cell.replace(/\r$/, '')); rows.push(row); row = []; cell = ''; } else cell += ch; }
