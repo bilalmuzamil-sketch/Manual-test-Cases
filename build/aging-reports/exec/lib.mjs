@@ -12,6 +12,9 @@ export async function start(OUT, route = '/reports/ar-aging-summary') {
   fs.mkdirSync(OUT, { recursive: true });
   const r = await boot('sv11315', route, 'admin'); const page = r.page; page.setDefaultTimeout(15000);
   await page.setViewportSize({ width: 1440, height: 900 });
+  /* 11 Nov: tests that switch location (C715407/408) or another session can leave the shared admin at Staging Lethbridge - 4310 (seen at 09:05 on C1062586's
+     picture); every runner now starts at Staging Heavy Duty - 9919, reloaded, unless KEEP_LOC=1 */
+  if (!process.env.KEEP_LOC) { try { await page.evaluate(async (u) => { await fetch(u + '/api/iam/change-location', { method: 'POST', credentials: 'include', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify({ workplace_id: 'b3c8c820-f815-4cf1-8938-10956c5ee71a', workplace_timezone: 'America/Edmonton' }) }); }, API); await page.reload({ waitUntil: 'domcontentloaded' }); await page.waitForTimeout(2500); } catch (e) { console.log('start: could not reset location', String(e).slice(0, 120)); } }
   const net = [];
   page.on('response', async (res) => { const u = res.url(); if (!/\/api\/reporting\//.test(u)) return;
     let body = null; try { body = await res.json(); } catch {} net.push({ t: Date.now(), m: res.request().method(), u, st: res.status(), body }); });
