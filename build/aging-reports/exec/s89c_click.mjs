@@ -18,4 +18,16 @@ for (const [id, k] of [['C715420', 'apd'], ['C715421', 'apu']]) { const o = { id
     await pg.screenshot({ path: OUT + id + '-2-opened.png' }); if (pg !== p) await pg.close();
   } catch (e) { o.err = String(e).slice(0, 300); await p.screenshot({ path: OUT + id + '-error.png' }).catch(() => {}); }
   R[id] = o; console.log(id, o.err || 'ok', JSON.stringify(o).slice(0, 600)); }
+// C715391: vendor "ZZY VCredit Loc P89b" - credit from a Lethbridge return ($-52.25) and a direct credit entered at Heavy Duty ($-19.95). s89b never
+// opened the group (a group-row click does not open it, L0671). Expand with sortlib, read each credit row's Location cell; untick Heavy Duty; expand; read.
+{ const o = { id: 'C715391' }; const V2 = 'ZZY VCredit Loc P89b'; const grp = new RegExp('^' + V2 + ' \\(');
+  const credits = () => p.evaluate(() => [...document.querySelectorAll('main tbody tr')].map((tr) => [...tr.querySelectorAll('td')].map((td) => td.innerText.replace(/\s+/g, ' ').trim())).filter((c) => c.some((x) => /Vendor Credit/.test(x))));
+  try { await s.go(REPORTS.apu); await p.waitForTimeout(3500); await settle(); await F.pick('Vendor', V2); await settle(); o.expand1 = await S.expand(grp).catch((e) => String(e).slice(0, 80)); await settle();
+    o.rows1 = await credits(); o.group1 = (await p.locator('main tbody tr').filter({ hasText: V2 }).first().innerText()).replace(/\s+/g, ' '); await p.mouse.move(5, 890); await p.screenshot({ path: OUT + 'C715391-1-locations.png' });
+    await p.locator('main button', { hasText: /Location:/ }).first().click(); await p.waitForTimeout(1200); const it = p.locator('.q-menu:visible').getByText('Staging Heavy Duty - 9919', { exact: true }); o.untick = await it.count(); if (o.untick) await it.click();
+    await p.keyboard.press('Escape'); await settle(); o.chips2 = await F.chips(); o.group2 = (await p.locator('main tbody tr').filter({ hasText: V2 }).first().innerText().catch(() => '')).replace(/\s+/g, ' ');
+    o.expand2 = await S.expand(grp).catch((e) => String(e).slice(0, 80)); await settle(); o.rows2 = await credits(); await p.mouse.move(5, 890); await p.screenshot({ path: OUT + 'C715391-2-location-B.png' });
+    await p.locator('main button', { hasText: /Location:/ }).first().click(); await p.waitForTimeout(1000); const all = p.locator('.q-menu:visible').getByText('Select all', { exact: true }); if (await all.count()) await all.click(); await p.keyboard.press('Escape');
+  } catch (e) { o.err = String(e).slice(0, 300); await p.screenshot({ path: OUT + 'C715391-error.png' }).catch(() => {}); }
+  R.C715391 = o; console.log('C715391', o.err || 'ok', JSON.stringify(o).slice(0, 600)); }
 fs.writeFileSync(OUT + 'out.json', JSON.stringify(R, null, 1)); await s.close(); process.exit(0);
