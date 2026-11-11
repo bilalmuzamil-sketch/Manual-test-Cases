@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d3d + d3f C715517"
+ },
+ "results": {
+  "C715517": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of today, all locations; Sales By Customer in a second tab for comparison.",
+    "Step 1: \"Download (CSV)\" downloads the file and shows \"Success\" / \"Data exported successfully.\" with Close.",
+    "Step 2: Sales By Customer's CSV download shows the same message - same words, the same green box, the same size and the same place at the bottom right.",
+    "Step 3: Location menu \"Clear selection\" - the chip reads \"Location: No locations\" (nothing ticked).",
+    "Step 4: \"Download (PDF)\" shows \"Empty export\" / \"Export didn't yield any results\" with Close, and nothing downloads.",
+    "Step 5: Sales By Customer's own empty-export warning (with its table emptied) is the same: the same words, the same orange box, in the same place."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715517-d3d-ars-csv-toast-late.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715517-d3d-sbc-csv-toast-late.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715517-d3d-ars-cleared.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715517-d3f-ars-pdf-toast-3.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715517-d3f-sbc-pdf-toast-3.png"
+   ]
+  }
+ }
+}
