@@ -463,3 +463,9 @@
 - **Check:** `curl -x http://127.0.0.1:$(cat /tmp/atlassian/bridge-port.txt) -k https://sv11315.qa.shopview.com/index.html` must answer 200; compare the `egress=` in `/tmp/atlassian/bridge.log` with `$HTTPS_PROXY`. **Fix:** playbook line 116 recipe (kill, `rm` the port file, `NODE_EXTRA_CA_CERTS` + `NODE_USE_ENV_PROXY=1`, `setsid nohup node …bridge.mjs`). Jobs already running keep the OLD port in their browser — stop and re-run them.
 - Production probes are now run as `node ./x.mjs` so the QA chains' wait (`node [a-z0-9_]+\.mjs`) does not hold up on them.
 - #bridge #proxy #restart #aging → L0654
+
+## L0656 — 2026-11-11 — sv11315 data shape for the paging tests, and states the app will not build
+- **p67 census (as of 11 Nov):** A/R Detail buckets Current 15 · 1-30 290 · 31-60 185 · 61-90 54 · 91+ 70 (two buckets fit the "101-400 lines" cases). A/P Detail buckets 28 · 520 · 724 · 708 · 5,900 — **none in 101-400**, so C715455 needs a vendor/location filter or seeded bills first. A/R Summary 142 customers, A/R Collection 140, A/P Summary / Unpaid 502 vendors (all above the cases' "31-90").
+- **Not buildable through the app (p66):** an A/R invoice sent with `due_date: null` is stored WITH a due date (invoice date + the customer's term); a vendor with credit term `''` gives bills due on the bill date; a vendor with `credit_term: null` is refused ("Missing required parameter"); paying a bill more than its balance is refused ("Vendor transaction cannot be overpaid."). Screen routes are checked by p66b before any Blocked.
+- **Production (v26.45.3) Reports page has no `aside`/`.q-drawer`/`nav` wrapper** around its left list — click report names with `page.getByText(name, {exact:true})`.
+- #aging #sv11315 #data #production → L0655
