@@ -47,5 +47,10 @@ R['C1062584'] = {'verdict': 'Passed', 'observed': ['A/R Aging Detail, as of toda
     'Step 3: the Location menu lists "Staging Heavy Duty - 9919" (ticked) and "Staging Lethbridge - 4310" (not ticked), "1 selected"; location C is not listed.'],
     'pictures': [P('C1062584', '17-C1062584-1.png', 'Step 1: "Location: 2 locations"', [CH + ('good', '2 locations')]), P('C1062584', '18-C1062584-2.png', 'Step 2: as of 10/31/2026 - only location A stays ticked', [CH + ('good', 'As of 10/31/2026 - Location: Staging Heavy D...')]),
                  P('C1062584', '19-C1062584-3-menu.png', 'Step 3: A ticked, B listed and not ticked, C not listed')]}
+d = j('C1062585')
+R['C1062585'] = {'verdict': 'Passed', 'observed': ['A/R Aging Detail, as of today, three locations with documents (A Staging Heavy Duty - 9919, B Staging Lethbridge - 4310, C ZZAUTOTEST V1R-87 Location C, whose documents start Nov 1). Date A = Oct 31, 2026.',
+    'Step 1: Heavy Duty unticked - "Location: 2 locations".', 'Step 2: Lethbridge unticked too - "Location: ZZAUTOTEST V1R-..." (location C\'s name, shortened).',
+    'Step 3: as-of changed to 10/31/2026 - the report reloads for that date and the chip reads "Location: All locations" (location C is not in the list for that date); the rows list Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.'],
+    'pictures': [P('C1062585', '20-C1062585-2.png', 'Step 2: only location C ticked', [CH + ('good', 'Location: ZZAUTOTEST V1R-...')]), P('C1062585', '21-C1062585-3.png', 'Step 3: as of 10/31/2026 - back to "All locations", rows from A and B', [CH + ('good', 'All locations'), ROWS + ('good', 'Rows from Heavy Duty and Lethbridge')])]}
 ids = sys.argv[1:] or list(R); out = {k: R[k] for k in ids if k in R}
 json.dump({'pass_meta': {'note': '11 Nov 2026, run 557, s88 three locations'}, 'results': out}, open(PP + 'RESULTS-s88-%s.json' % ('a' if not sys.argv[1:] else '-'.join(sys.argv[1:])), 'w'), indent=1); print(list(out))
