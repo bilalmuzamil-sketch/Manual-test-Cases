@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715465": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of 11/11/2026, only the new customer ZZX Bounds R4 ticked, every group open: eight invoices - $10.00 not yet due, and $1.00, $30.00, $31.00, $60.00, $61.00, $90.00, $91.00 at 1, 30, 31, 60, 61, 90 and 91 days past due.",
+    "Step 1: \"1-30 days\" only - Totals $31.00: only the 1 and 30 day invoices remain.",
+    "Step 2: also \"31-60 days\" - Totals $122.00: the 31 and 60 day invoices added; the 61 day one is not.",
+    "Step 3: also \"61-90 days\" - Totals $273.00: the 61 and 90 day invoices added; the 91 day one is not.",
+    "Step 4: chip reads \"Past due: 4 ranges\"; the 91 day invoice added and the not-yet-due one still left out - Totals $364.00.",
+    "Step 5: all four unticked - \"Past due: Any\" and all eight invoices show - Totals $374.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715465-1-130days.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715465-2-3160days.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715465-3-6190days.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715465-4-91days.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715465-5-none.png"
+   ]
+  }
+ }
+}
