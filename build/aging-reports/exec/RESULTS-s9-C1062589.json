@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C1062589": {
+   "verdict": "Passed",
+   "observed": [
+    "New vendor ZZY 101 Bills R1 (vendor A) with 101 unpaid $10.00 bills, all 10 days past due on 11/11/2026.",
+    "Step 1: group row \"ZZY 101 Bills R1 (101)\", Amount $1,010.00, Open Balance $1,010.00; Totals row Open Balance $1,010.00.",
+    "Step 2: the group opens with its first 100 bills; the Totals row still reads $1,010.00.",
+    "Step 3: scrolling to the end loads the 101st bill: 101 bill rows, 101 different bill numbers (each listed once).",
+    "Steps 4-5: the CSV downloads with 101 bill rows and one Totals row reading 1010.00 (Amount and Open Balance)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062589-1-group-and-totals.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062589-2-expanded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062589-3-scrolled-end.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062589-CSV-4-csv.png"
+   ]
+  }
+ }
+}
