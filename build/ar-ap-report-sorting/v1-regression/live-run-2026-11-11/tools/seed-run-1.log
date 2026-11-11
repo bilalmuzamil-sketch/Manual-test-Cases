@@ -1,0 +1,32 @@
+  [location -> B]
+  FAIL doc:R03:inv: line: HTTP 400 {"errors":[{"error":"Labor type not found for this workplace"}]}
+  OK doc:R71:wo {"wo": "f8c96432-47c0-4362-bacf-1f52a4a06ee3", "number": "S-17836", "type": "open_wo", "amount": null, "date": null, "at": "B"}
+  FAIL doc:R71:ps: 'list' object has no attribute 'get'
+  OK doc:P56:bill {"order": "e0c18de2-a918-4b8a-a31e-32ea82f492f5", "po_number": "I-726", "number": "ZZT-P56-BILL", "txn": "de0bc5f9-8d9e-40a6-ae3c-37f18e89e640", "delivery": "3e
+  [location -> A]
+  FAIL doc:R07:inv: credit term: HTTP 500 {"errors":[{"error":"An error occurred. We\u0027re sorry for this inconvenience, please try again a bit later."},{"requestId":"4d9712de-4096-4ae6-a3a3-0b95ee3f197b"}]}
+  OK doc:R11:inv {"wo": "54ff85bd-8fc4-4659-b71c-69ddc765cfa0", "wo_number": "S-17837", "invoice_id": "f4978ed2-2723-40ea-bc2b-2feb844de1ce", "account": "6583cdea-4410-4226-b1d4
+  OK doc:R11:cm {"id": null, "number": "CM-4202", "raw": {"creditMemoId": "06308d72-5333-464a-ae00-cab9056a4044", "creditNumber": "CM-4202", "totalAmount": 1500, "openBalance":
+  OK doc:R14:inv {"wo": "e6d26f7e-cf15-4203-8ed8-afc7acafe8bb", "wo_number": "S-17838", "invoice_id": "b30df962-1843-447d-8166-99791be09637", "account": "928e5aca-bab5-4a07-8ba0
+  OK doc:R14:pay {"id": "3fd70738-3bd7-4edc-a158-2bd9d5d0d9ab", "type": "payment", "amount": 80, "date": "2026-10-12", "at": "A"}
+  OK doc:R15:inv {"wo": "cc30e24e-091d-4d2c-9168-1274640b4b3a", "wo_number": "S-17839", "invoice_id": "f68ae95d-3a29-4a9a-9a9a-3c6457d5c14d", "account": "6965bc65-3b9c-4f77-a159
+  OK doc:R15:pay {"id": "220db4ba-fad5-43a1-b61c-3e8aec677677", "reversed_now": true, "type": "payment", "amount": 100, "date": "2026-10-06", "at": "A"}
+  FAIL doc:R16:cm: void: HTTP 400 {"errors":[{"id":"Invalid UUID"}]}
+  OK doc:R17:inv {"wo": "433ff462-8402-45c7-886c-4c0ad120219e", "wo_number": "S-17840", "invoice_id": "54a5adfb-6ad7-4853-b96a-824f5efc4c4e", "account": "ac49dee4-7259-4236-8e7d
+  OK doc:R17:cm {"id": null, "number": "CM-4204", "raw": {"creditMemoId": "34f7eaf8-b036-455b-b61b-bf67178e3aaf", "creditNumber": "CM-4204", "totalAmount": 3000, "openBalance":
+  OK doc:R17:apply {"id": "a9771858-70bf-49c5-b583-ff12522acba5", "type": "apply_credit", "amount": 30, "date": "2026-10-27", "at": "A"}
+  FAIL doc:R18:dep_free: free deposit: HTTP 400 {"errors":[{"transactions":"Transactions are missing."}]}
+  OK doc:R18:dep_wo {"wo": "edd424cd-35ab-493d-9a13-4fc6f33737c9", "id": "e370947c-33d9-440f-a94a-eb8a97a035a6", "number": "DEP-4713", "type": "wo_deposit", "amount": 70, "date": "
+  FAIL doc:R19:dep_free: free deposit: HTTP 400 {"errors":[{"transactions":"Transactions are missing."}]}
+  OK doc:R22:inv {"wo": "eccd94cd-9838-4bcc-aea7-92c51e7903f7", "wo_number": "S-17842", "invoice_id": "0746c9e9-637c-4fea-b905-d21ec7cb1119", "account": "c6cd47ad-c0b6-4462-b9d3
+  OK doc:R23:cm {"id": null, "number": "CM-4205", "raw": {"creditMemoId": "baf3f3d0-b038-4d84-804e-6723dfa2a5f6", "creditNumber": "CM-4205", "totalAmount": 1500, "openBalance":
+  OK doc:R28:cm {"id": null, "number": "CM-4206", "raw": {"creditMemoId": "657f5ba8-dd4e-4162-97c1-f7e897b415f4", "creditNumber": "CM-4206", "totalAmount": 4000, "openBalance":
+  OK doc:R29:inv1 {"wo": "0e7b1c3d-469e-4cf1-bdbb-a200afd4fa76", "wo_number": "S-17843", "invoice_id": "bbcabcbb-1d68-47a5-b39a-6b6b39cea83c", "account": "83eea45e-c108-4aa0-958f
+  OK doc:R29:inv2 {"wo": "336c6f2c-1c4a-458d-8b61-9e7c368c2741", "wo_number": "S-17844", "invoice_id": "03ec15b9-7f28-461a-acdb-107c8c2efb3a", "account": "83eea45e-c108-4aa0-958f
+  FAIL doc:R30:inv_late: credit term: HTTP 500 {"errors":[{"error":"An error occurred. We\u0027re sorry for this inconvenience, please try again a bit later."},{"requestId":"4cb20830-d179-4829-a957-b37ab52628a8"}]}
+  FAIL doc:R30:inv_cur: credit term: HTTP 500 {"errors":[{"error":"An error occurred. We\u0027re sorry for this inconvenience, please try again a bit later."},{"requestId":"98cffd51-ac97-4c92-8467-9dec20d00e1f"}]}
+  FAIL doc:R30:cm: credit term: HTTP 500 {"errors":[{"error":"An error occurred. We\u0027re sorry for this inconvenience, please try again a bit later."},{"requestId":"c0cc83d9-8c7b-4a2a-bac5-db8f1358f110"}]}
+  OK doc:R31K:inv {"wo": "f33946b4-eee2-430c-a621-9ff6fd1ef4ce", "wo_number": "S-17845", "invoice_id": "58026472-e809-481a-820f-3ddc17948e40", "account": "e53af7ec-dbde-4a39-b0b7
+  OK doc:R31N:cm {"id": null, "number": "CM-4207", "raw": {"creditMemoId": "573d6aa5-d189-441c-88d6-189806bf4de6", "creditNumber": "CM-4207", "totalAmount": 1200, "openBalance":
+  OK doc:R36X:inv {"wo": "46bd24a3-07df-4064-82d7-17fa7a498a91", "wo_number": "S-17846", "invoice_id": "a96a29b2-2a21-4245-9310-1195d2fd34b6", "account": "4bdd2ae7-dac6-4937-bea7
+SESSION LOST (401) on qa /api/work-orders/lines/change-status - stop
