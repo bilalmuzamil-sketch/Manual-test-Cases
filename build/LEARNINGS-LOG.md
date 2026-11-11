@@ -613,3 +613,8 @@
 - **Calendar:** As of chip → `chevron_left` steps back a month (filt.asOfPrev / asOfBack(months, day)).
 - **Reader traps:** a Detail bucket loads its next 100 only on a scroll event at the bottom — nudge up and back (sortlib.collect); a bucket with (0) has a DISABLED chevron (sortlib.expand returns 'disabled-empty'); group regexes need `\s*\(`; boxes must be read after scrolling a focused row to mid-screen (+300, not −250).
 - **Two admin scripts must never start together:** every queued waiter must wait for the previous job's log AND no runner — a second sign-in ends the first. p36 was neutralised (RUN_P36=1) after two waiters were found to share a trigger.
+
+## L0624 — 2026-11-11 — QA lead rulings on the aging suite, and how a live case is retired
+- **Ruling (QA lead, 11 Nov):** Story Defects for this suite are filed only AFTER all tests are completed, one by one with his approval, as always. Until then failed tests keep "ticket waiting for the QA lead"; tickets are drafted in `build/aging-reports/tickets-held/`.
+- **Ruling (QA lead, 11 Nov):** retire C715277 and C715279 (the product refuses customer names differing only in capitals/accents).
+- **Retiring a live TestRail case without deleting it:** `add_section/<PROJECT id = 1>` with `parent_id` = the suite group (90418) → new section 134653 "Retired - cannot be set up (QA lead 11 Nov 2026)"; `move_cases_to_section/<TARGET SECTION id>` body `{suite_id:1, case_ids:[…]}` (the path takes the SECTION, not the suite — my first call with /1 dropped them in root section 1 "Test Cases"; fixed); run 557 is `include_all:false`, so `update_run/557 {case_ids: live list minus the two}` removed them (380 → 378, read back, no other case lost). Evidence: `build/aging-reports/exec/retire-715277-715279.json`.

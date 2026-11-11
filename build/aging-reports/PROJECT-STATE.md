@@ -60,3 +60,5 @@ you to start - But be completely ready." Status: **READY, NOT STARTED** (waiting
 
 - 06:00 UTC 11 Nov: 68 of 380 finished (64 passed, 2 failed - ticket held, 2 blocked). Queue running: S4 (s4_run) → export re-shots (s3r) → p35 seed + S5 filters (s5_run) → C715305 re-run → C715317/C715320 re-run (s2c) → S2 batch d (20 sorts) → S6-S9 + release (s78_run). Then: p36 (RUN_P36=1, exact-amount invoice probe) before the Totals seeds; C1062566 after local midnight; C797943 needs an organisation with ≤ 8 vendors (second org); C715383 needs 9 locations with A/R data (do LAST, it changes the Location lists); C715384/385 need an Admin enrolled at one location (Tech + Admin role).
 - Asked the QA lead (11 Nov ~06:05 UTC): file the held ticket? retire/keep the two blocked name tests? (+ C682419 step 8 eye-check from before).
+
+- QA lead answers (11 Nov): (1) tickets: file AFTER all tests are complete, one by one with his approval; (2) C715277/C715279 retired (section 134653, removed from run 557 -> 378 tests); (3) noted.
