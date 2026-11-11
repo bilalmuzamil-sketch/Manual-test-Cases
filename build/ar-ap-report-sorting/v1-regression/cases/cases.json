@@ -1,0 +1,2288 @@
+[
+ {
+  "id": "V1R-01",
+  "title": "A/R: the three aging reports are in the Reports menu with their titles",
+  "section": "A/R reports",
+  "refs": "SV-11315; INV-001, INV-002, INV-003; V1 baseline fc08f23",
+  "invariants": [
+   "INV-001",
+   "INV-002",
+   "INV-003"
+  ],
+  "status": "KEPT",
+  "why": "Users must still find the receivables reports where they always were.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Find the \"Finance\" part of the left list.",
+   "Click \"A/R Aging Summary\" under \"Accounts Receivable\".",
+   "Read the page title and the page address.",
+   "Click \"A/R Aging Detail\".",
+   "Read the page title and the page address.",
+   "Click \"A/R Aging Collection\".",
+   "Read the page title and the page address."
+  ],
+  "expected": [
+   "Step 2: under \"Finance\" there is an \"Accounts Receivable\" heading with A/R Aging Summary, A/R Aging Detail and A/R Aging Collection.",
+   "Step 4: the title reads \"A/R Aging Summary\"; the address ends in /reports/ar-aging-summary.",
+   "Step 6: the title reads \"A/R Aging Detail\"; the address ends in /reports/ar-aging-detail.",
+   "Step 8: the title reads \"A/R Aging Collection\"; the address ends in /reports/ar-aging-collection."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/ReportLeftMenuNav.vue:199-300; app/src/router/routes.ts:1332-1380; app/src/pages/Reporting.vue:352-381; app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:35-38. V1 code, quoted: `<div class=\"ellipsis\">A/R Aging Summary</div> ... path: 'ar-aging-summary'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-001, INV-002, INV-003) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-02",
+  "title": "A/P: the three aging reports are in the Reports menu with their titles",
+  "section": "A/P reports",
+  "refs": "SV-11315; INV-001, INV-002, INV-003; V1 baseline fc08f23",
+  "invariants": [
+   "INV-001",
+   "INV-002",
+   "INV-003"
+  ],
+  "status": "KEPT",
+  "why": "Users must still find the payables reports where they always were.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Find the \"Accounts Payable\" heading under \"Finance\".",
+   "Click \"A/P Aging Summary\".",
+   "Read the page title and the page address.",
+   "Click \"A/P Aging Detail\".",
+   "Read the page title and the page address.",
+   "Click \"A/P Unpaid Invoices\".",
+   "Read the page title and the page address."
+  ],
+  "expected": [
+   "Step 2: the heading lists A/P Aging Summary, A/P Aging Detail and A/P Unpaid Invoices.",
+   "Step 4: title \"A/P Aging Summary\"; address ends in /reports/ap-aging-summary.",
+   "Step 6: title \"A/P Aging Detail\"; address ends in /reports/ap-aging-detail.",
+   "Step 8: title \"A/P Unpaid Invoices Report\"; address ends in /reports/ap-unpaid-invoices."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/ReportLeftMenuNav.vue:199-300; app/src/router/routes.ts:1332-1380; app/src/pages/Reporting.vue:352-381; app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:35-38. V1 code, quoted: `title: 'A/P Unpaid Invoices Report' ... path: 'ap-unpaid-invoices'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-001, INV-002, INV-003) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-03",
+  "title": "Aging reports list documents of every location, not only yours",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-007; V1 baseline fc08f23",
+  "invariants": [
+   "INV-007"
+  ],
+  "status": "KEPT",
+  "why": "A manager reconciles the whole organization's receivables from any location.",
+  "data_needs": "Two locations; one open invoice at the location you are not working at.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Your organization has at least two locations, location A and location B.",
+   "You are working at location A (top right).",
+   "Location B has an open invoice for customer X today."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Open every bucket with its arrow button.",
+   "Find customer X's invoice from location B."
+  ],
+  "expected": [
+   "Step 4: the location B invoice is listed, with location B shown on its line, although you work at location A."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:254-302; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:41-68. V1 code, quoted: `$qb = $this->organizationDecorator->decorateQuery($qb, 'c.organization_id');`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-007) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-04",
+  "title": "Switching location keeps you on the report with the same as-of date",
+  "section": "A/R Aging Summary",
+  "refs": "SV-11315; INV-008; V1 baseline fc08f23",
+  "invariants": [
+   "INV-008"
+  ],
+  "status": "KEPT",
+  "why": "Changing location must not throw away the date the user is reconciling.",
+  "data_needs": "A user enrolled in two locations.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "You work at two locations, A and B (top right switcher offers both)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Set the date chip to the 1st of last month.",
+   "Switch location to B in the top right.",
+   "Read the page title and the date chip."
+  ],
+  "expected": [
+   "Step 5: you are still on A/R Aging Summary and the date chip still shows the 1st of last month."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/pages/Reporting.vue:40-50; app/src/pages/Reporting.vue:66-70. V1 code, quoted: `:key=\"location ?? undefined\" ... Filters survive because they live in the URL`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-008) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-05",
+  "title": "Each aging report opens on today's date",
+  "section": "all six",
+  "refs": "SV-11315; INV-011; V1 baseline fc08f23",
+  "invariants": [
+   "INV-011"
+  ],
+  "status": "KEPT",
+  "why": "An untouched report must show the position as of today.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Read the date chip.",
+   "Click \"A/R Aging Detail\".",
+   "Read the date chip.",
+   "Click \"A/R Aging Collection\".",
+   "Read the date chip.",
+   "Click \"A/P Aging Summary\".",
+   "Read the date chip.",
+   "Click \"A/P Aging Detail\".",
+   "Read the date chip.",
+   "Click \"A/P Unpaid Invoices\".",
+   "Read the date chip."
+  ],
+  "expected": [
+   "Steps 3, 5, 7, 9, 11 and 13: the date chip shows today's date on every report."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:156-157; app/src/components/ts/reporting/ReportingModel.ts:376-377. V1 code, quoted: `const DEFAULT_AS_OF_DATE = todayAsOfDate();`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-011) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-06",
+  "title": "The as-of date cannot be emptied",
+  "section": "A/P Aging Summary",
+  "refs": "SV-11315; INV-012; V1 baseline fc08f23",
+  "invariants": [
+   "INV-012"
+  ],
+  "status": "KEPT",
+  "why": "An aging report without an as-of date has no meaning.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Summary\" in the left list.",
+   "Click the date chip.",
+   "Look for a way to clear the date.",
+   "Close the date menu."
+  ],
+  "expected": [
+   "Step 4: there is no way to leave the report without a date.",
+   "Step 5: the chip still shows a date and the report still shows rows for it."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:191-201. V1 code, quoted: `key: 'asOfDate', ... required: true,`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-012) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-07",
+  "title": "A future as-of date can be picked to see coming aging",
+  "section": "A/R Aging Summary",
+  "refs": "SV-11315; INV-013; V1 baseline fc08f23",
+  "invariants": [
+   "INV-013"
+  ],
+  "status": "POSSIBLY LOST",
+  "why": "Collectors and owners plan cash: \"what will be overdue at month end\" was answerable before the release.",
+  "data_needs": "One invoice whose due date is after today and before the end of next month.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "At least one customer has an open invoice that is not yet due today."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Click the date chip.",
+   "Pick the last day of next month.",
+   "Read the date chip.",
+   "Find the customer whose invoice is not yet due."
+  ],
+  "expected": [
+   "Step 4: the last day of next month can be picked.",
+   "Step 5: the chip shows that future date.",
+   "Step 6: the report is worked out for that date, so an invoice not due today but due before then has moved out of Current into a past-due bucket.",
+   "",
+   "EXPECT FAIL. What you should see on the upgraded build today: Every date after today is greyed out in the date menu; the chip stays on today.",
+   "(1) You see exactly that: mark the test FAILED and raise nothing new. This is a V1-to-V2 capability loss already reported to the QA lead for a Product Owner decision.",
+   "(2) It fails in a different way: that is a new problem. Mark FAILED, write down exactly what you saw, and report it.",
+   "(3) It passes: the capability is back. Mark PASSED and tell the QA lead.",
+   "Existing ticket: none found (Jira searched 11 Nov 2026); task ticket for the PO to be raised only with the QA lead's permission."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:191-201; app/src/components/ts/shared/filters/FilterSingleDatePanel.vue:52-55; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:37-43. V1 code, quoted: `filterDefs: { key: 'asOfDate', type: 'single-date', required: true } (no maxDate)`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-013) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) is silent on it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY - EXPECT FAIL (dates after today cannot be picked)"
+ },
+ {
+  "id": "V1R-08",
+  "title": "A saved link with a future as-of date opens on that date",
+  "section": "A/P Aging Summary",
+  "refs": "SV-11315; INV-014; V1 baseline fc08f23",
+  "invariants": [
+   "INV-014"
+  ],
+  "status": "POSSIBLY LOST",
+  "why": "Links and bookmarks people saved before the release must still open what they showed.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "You have the page address of A/P Aging Summary."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Summary\" in the left list.",
+   "In the browser address bar add ?asOfDate= followed by the last day of next month written YYYY-MM-DD.",
+   "Press Enter.",
+   "Read the date chip."
+  ],
+  "expected": [
+   "Step 5: the chip shows the last day of next month and the report is worked out for that date.",
+   "",
+   "EXPECT FAIL. What you should see on the upgraded build today: The report opens on today's date instead of the date in the link.",
+   "(1) You see exactly that: mark the test FAILED and raise nothing new. This is a V1-to-V2 capability loss already reported to the QA lead for a Product Owner decision.",
+   "(2) It fails in a different way: that is a new problem. Mark FAILED, write down exactly what you saw, and report it.",
+   "(3) It passes: the capability is back. Mark PASSED and tell the QA lead.",
+   "Existing ticket: none found (Jira searched 11 Nov 2026)."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/ReportingModel.ts:379; app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:154-157. V1 code, quoted: `export const isAsOfDate = (value: string): boolean => ISO_DATE.test(value);`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-014) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) is silent on it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY - EXPECT FAIL (the future date in the link is ignored)"
+ },
+ {
+  "id": "V1R-09",
+  "title": "The chosen as-of date survives a reload and browser Back",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-015; V1 baseline fc08f23",
+  "invariants": [
+   "INV-015"
+  ],
+  "status": "KEPT",
+  "why": "Users share and revisit a report for a given date.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Set the date chip to the 15th of last month.",
+   "Reload the page.",
+   "Read the date chip.",
+   "Click \"A/R Aging Summary\".",
+   "Press the browser Back button.",
+   "Read the date chip."
+  ],
+  "expected": [
+   "Step 5: the chip still shows the 15th of last month.",
+   "Step 8: A/R Aging Detail is back on the 15th of last month."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:154-155; app/src/composables/useReportFilters.ts:243-245. V1 code, quoted: `const SYNC_KEYS = ['asOfDate'];`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-015) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-10",
+  "title": "A report opened again from the menu starts on today's date",
+  "section": "A/P Unpaid Invoices",
+  "refs": "SV-11315; INV-016; V1 baseline fc08f23",
+  "invariants": [
+   "INV-016"
+  ],
+  "status": "KEPT",
+  "why": "Every visit starts from today's position; nothing stale is carried over.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Unpaid Invoices\" in the left list.",
+   "Set the date chip to the 1st of last month.",
+   "Click \"Inventory Value\" in the left list.",
+   "Click \"A/P Unpaid Invoices\" in the left list.",
+   "Read the date chip."
+  ],
+  "expected": [
+   "Step 6: the date chip shows today's date, not the 1st of last month."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/composables/useReportFilters.ts:245; app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:176-182. V1 code, quoted: `persistFiltersToAccount = false,`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-016) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-11",
+  "title": "A/R: a document dated on the as-of date counts, one dated after does not",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-017, INV-018; V1 baseline fc08f23",
+  "invariants": [
+   "INV-017",
+   "INV-018"
+  ],
+  "status": "KEPT",
+  "why": "The as-of date must include the whole chosen day and nothing later, or month-end figures are wrong.",
+  "data_needs": "One invoice and one credit memo for the same customer, a day apart.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has an open invoice created on date D (any past day).",
+   "Customer X also has an unused credit memo created on day D + 1."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Set the date chip to day D.",
+   "Open every bucket.",
+   "Look for customer X's invoice.",
+   "Look for customer X's credit memo.",
+   "Set the date chip to the day before D.",
+   "Open every bucket.",
+   "Look for customer X's invoice."
+  ],
+  "expected": [
+   "Step 5: the invoice created on day D is listed.",
+   "Step 6: the credit memo created on D + 1 is not listed.",
+   "Step 9: on the day before D the invoice is not listed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:276-278; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:113; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:189; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:237. V1 code, quoted: `->andWhere('i.created_on <= :asOfDate')`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-017, INV-018) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-12",
+  "title": "A/P: a bill dated on the as-of date counts, one dated after does not",
+  "section": "A/P Aging Detail",
+  "refs": "SV-11315; INV-029; V1 baseline fc08f23",
+  "invariants": [
+   "INV-029"
+  ],
+  "status": "KEPT",
+  "why": "Payables as of month end must include that day's bills only.",
+  "data_needs": "Two bills (deliveries with a due date) one day apart for one vendor.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has an unpaid bill dated day D (a past day) and another dated D + 1."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Detail\" in the left list.",
+   "Set the date chip to day D.",
+   "Open every bucket.",
+   "Look for vendor Y's bill dated D.",
+   "Look for vendor Y's bill dated D + 1."
+  ],
+  "expected": [
+   "Step 5: the bill dated D is listed.",
+   "Step 6: the bill dated D + 1 is not listed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:95; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:127. V1 code, quoted: `->andWhere('vt.date <= :asOfDate')`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-029) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-13",
+  "title": "A/R: a payment made after the as-of date is not taken off",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-019; V1 baseline fc08f23",
+  "invariants": [
+   "INV-019"
+  ],
+  "status": "KEPT",
+  "why": "A past month-end report must show what was owed then, not now.",
+  "data_needs": "One invoice with one partial payment recorded a few days after the invoice.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has an invoice of $100.00 created on day D.",
+   "A $40.00 payment on it was recorded on day D + 5 (a past day)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Set the date chip to day D + 2.",
+   "Open every bucket.",
+   "Read the invoice's two money columns (Amount, Open balance).",
+   "Set the date chip to day D + 5.",
+   "Open every bucket.",
+   "Read the invoice's Open balance."
+  ],
+  "expected": [
+   "Step 5: Amount $100.00, Open balance $100.00 (the payment came later).",
+   "Step 8: Open balance $60.00."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Customer/Customers/Infrastructure/Doctrine/CustomerAccount/OpenBalanceAsOfSql.php:184-194; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:88. V1 code, quoted: `cps.payment_date <= :asOfDate`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-019) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-14",
+  "title": "A/R: an invoice paid in full drops off from its payment date",
+  "section": "A/R Aging Summary",
+  "refs": "SV-11315; INV-020; V1 baseline fc08f23",
+  "invariants": [
+   "INV-020"
+  ],
+  "status": "KEPT",
+  "why": "Paid invoices must not inflate receivables.",
+  "data_needs": "A customer with one invoice paid in full.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X's only open invoice was paid in full on day P (a past day)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Set the date chip to the day before P.",
+   "Find customer X.",
+   "Set the date chip to day P.",
+   "Find customer X."
+  ],
+  "expected": [
+   "Step 4: customer X is listed with the invoice's amount.",
+   "Step 6: customer X is not listed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:115. V1 code, quoted: `->andWhere($this->invoiceAsOfBalanceExpression().' > 0')`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-020) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-15",
+  "title": "A/R: a payment reversed later still counts on the earlier date",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-021; V1 baseline fc08f23",
+  "invariants": [
+   "INV-021"
+  ],
+  "status": "KEPT",
+  "why": "Historic reports must not change when a payment is reversed later.",
+  "data_needs": "One paid invoice whose payment was reversed a few days after it was taken.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has a $100.00 invoice paid in full on day P.",
+   "That payment was reversed on day R, later than P (both past days)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Set the date chip to a day between P and R.",
+   "Open every bucket.",
+   "Look for the invoice.",
+   "Set the date chip to day R.",
+   "Open every bucket.",
+   "Look for the invoice."
+  ],
+  "expected": [
+   "Step 5: the invoice is not listed (it was paid on that day).",
+   "Step 8: the invoice is listed with Open balance $100.00."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Customer/Customers/Infrastructure/Doctrine/CustomerAccount/OpenBalanceAsOfSql.php:186-193. V1 code, quoted: `AND (cp.reversed_at IS NULL OR cp.reversed_at > :asOfDate)`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-021) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-16",
+  "title": "A/R: a credit memo voided later still shows on the earlier date",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-022; V1 baseline fc08f23",
+  "invariants": [
+   "INV-022"
+  ],
+  "status": "KEPT",
+  "why": "A voided credit must leave the report from its void date only.",
+  "data_needs": "A credit memo voided a few days after it was made.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has an unused $25.00 credit memo created on day C.",
+   "It was voided on day V, later than C (both past days)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Set the date chip to a day between C and V.",
+   "Open every bucket.",
+   "Look for the credit memo.",
+   "Set the date chip to day V.",
+   "Open every bucket.",
+   "Look for the credit memo."
+  ],
+  "expected": [
+   "Step 5: the credit memo is listed at $-25.00.",
+   "Step 8: it is not listed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:238. V1 code, quoted: `->andWhere('(cm.voided_at IS NULL OR cm.voided_at > :asOfDate)')`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-022) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-17",
+  "title": "A/R: a credit memo applied later shows its full amount before that",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-023; V1 baseline fc08f23",
+  "invariants": [
+   "INV-023"
+  ],
+  "status": "KEPT",
+  "why": "Credits are counted as they stood on the chosen day.",
+  "data_needs": "A credit memo applied a few days after it was made.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has a $30.00 credit memo created on day C.",
+   "It was applied in full to an invoice on day A, later than C (both past days)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Set the date chip to a day between C and A.",
+   "Open every bucket.",
+   "Read the credit memo's Open balance.",
+   "Set the date chip to day A.",
+   "Open every bucket.",
+   "Look for the credit memo."
+  ],
+  "expected": [
+   "Step 5: Open balance $-30.00.",
+   "Step 8: the credit memo is not listed (fully used)."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Customer/Customers/Infrastructure/Doctrine/CustomerAccount/OpenBalanceAsOfSql.php:196-206. V1 code, quoted: `AND cma.applied_date <= :asOfDate AND (cma.reversed_at IS NULL OR cma.reversed_at > :asOfDate)`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-023) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-18",
+  "title": "A/R: a free deposit shows as credit, an unused work order deposit does not",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-024, INV-025; V1 baseline fc08f23",
+  "invariants": [
+   "INV-024",
+   "INV-025"
+  ],
+  "status": "KEPT",
+  "why": "Money held against work not yet invoiced is not a customer credit.",
+  "data_needs": "Two deposits for one customer: one free-standing, one on a work order and not used.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has an unused deposit of $50.00 not attached to any work order.",
+   "Customer X has an unused deposit of $70.00 taken on an open work order."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Open every bucket.",
+   "Look for the $50.00 deposit.",
+   "Look for the $70.00 deposit."
+  ],
+  "expected": [
+   "Step 4: the $50.00 deposit is listed at $-50.00.",
+   "Step 5: the $70.00 work order deposit is not listed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Customer/Customers/Infrastructure/Doctrine/CustomerAccount/OpenBalanceAsOfSql.php:172-181; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:158-205; api/src/Customer/Customers/Infrastructure/Doctrine/CustomerAccount/OpenBalanceAsOfSql.php:119-181. V1 code, quoted: `(d.work_order_id IS NULL OR EXISTS (SELECT 1 FROM deposit_application da_used ...))`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-024, INV-025) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-19",
+  "title": "A/R: a reversed deposit is not listed from its reversal date",
+  "section": "A/R Aging Collection",
+  "refs": "SV-11315; INV-026; V1 baseline fc08f23",
+  "invariants": [
+   "INV-026"
+  ],
+  "status": "KEPT",
+  "why": "A reversed deposit is no longer a credit the collector can use.",
+  "data_needs": "A free-standing deposit reversed after it was taken.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X had an unused free deposit of $20.00 that was reversed on day R (a past day)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Collection\" in the left list.",
+   "Set the date chip to the day before R.",
+   "Open customer X's group.",
+   "Look for the deposit.",
+   "Set the date chip to day R.",
+   "Look for customer X or the deposit."
+  ],
+  "expected": [
+   "Step 5: the deposit is listed at $-20.00.",
+   "Step 7: the deposit is not listed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:190. V1 code, quoted: `->andWhere('(d.reversed_at IS NULL OR d.reversed_at > :asOfDate)')`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-026) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-20",
+  "title": "A/P: a bill payment made after a past as-of date is not taken off",
+  "section": "A/P Aging Detail",
+  "refs": "SV-11315; INV-027; V1 baseline fc08f23",
+  "invariants": [
+   "INV-027"
+  ],
+  "status": "KEPT",
+  "why": "A past month-end payables report must show what was owed then.",
+  "data_needs": "One bill with one partial vendor payment a few days later.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has a $200.00 bill dated day D.",
+   "$80.00 of it was paid on day D + 4 (a past day)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Detail\" in the left list.",
+   "Set the date chip to day D + 1.",
+   "Open every bucket.",
+   "Read the bill's Open Balance.",
+   "Set the date chip to day D + 4.",
+   "Open every bucket.",
+   "Read the bill's Open Balance."
+  ],
+  "expected": [
+   "Step 5: Open Balance $200.00.",
+   "Step 8: Open Balance $120.00."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:86-105; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:133-169. V1 code, quoted: `vps.payment_date <= :asOfDate ... (vt.amount - COALESCE(p.paid_amount, 0)) AS openBalance`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-027) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-21",
+  "title": "A/P: a vendor credit used later still shows on the earlier date",
+  "section": "A/P Aging Detail",
+  "refs": "SV-11315; INV-028; V1 baseline fc08f23",
+  "invariants": [
+   "INV-028"
+  ],
+  "status": "KEPT",
+  "why": "Vendor credits are counted as they stood on the chosen day.",
+  "data_needs": "A vendor credit used a few days after it was created.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has a $35.00 vendor credit created on day C.",
+   "It was used in full on a bill payment on day U, later than C (both past days)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Detail\" in the left list.",
+   "Set the date chip to a day between C and U.",
+   "Open every bucket.",
+   "Look for the vendor credit.",
+   "Set the date chip to day U.",
+   "Open every bucket.",
+   "Look for the vendor credit."
+  ],
+  "expected": [
+   "Step 5: the vendor credit is listed at $-35.00.",
+   "Step 8: it is not listed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:171-204. V1 code, quoted: `(vc.date_spent IS NULL OR vc.date_spent > :asOfDate)`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-028) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-22",
+  "title": "A/R Summary puts invoices in buckets at 0, 30, 60 and 90 days past due",
+  "section": "A/R Aging Summary",
+  "refs": "SV-11315; INV-030, INV-031; V1 baseline fc08f23",
+  "invariants": [
+   "INV-030",
+   "INV-031"
+  ],
+  "status": "KEPT",
+  "why": "Wrong boundaries move money between buckets and break QuickBooks reconciliation.",
+  "data_needs": "One open invoice with a known due date at least 92 days in the past (D + 91 must not be after today).",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has exactly one open invoice, due on day D (a day at least 92 days ago), for $10.00."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Set the date chip to day D.",
+   "Read customer X's row.",
+   "Set the date chip to D + 30.",
+   "Read customer X's row.",
+   "Set the date chip to D + 31.",
+   "Read customer X's row.",
+   "Set the date chip to D + 60.",
+   "Read customer X's row.",
+   "Set the date chip to D + 61.",
+   "Read customer X's row.",
+   "Set the date chip to D + 90.",
+   "Read customer X's row.",
+   "Set the date chip to D + 91.",
+   "Read customer X's row."
+  ],
+  "expected": [
+   "Step 4: $10.00 under Current.",
+   "Step 6: under 1-30 Days.",
+   "Step 8: under 31-60 Days.",
+   "Step 10: under 31-60 Days.",
+   "Step 12: under 61-90 Days.",
+   "Step 14: under 61-90 Days.",
+   "Step 16: under 91 And Over. Total is $10.00 every time."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AgingCalculator.php:28-47; api/src/Reporting/Dashboard/Domain/AccountReceivable/Enum/AgingBucketEnum.php:15-24; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:91-95; api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AgingCalculator.php:35-36. V1 code, quoted: `if ($daysPastDue <= 0) addCurrent; elseif (<= 30) add1to30; elseif (<= 60) add31to60; elseif (<= 90) add61to90; else add91Plus`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-030, INV-031) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-23",
+  "title": "A/R Summary ages a credit memo by its own date",
+  "section": "A/R Aging Summary",
+  "refs": "SV-11315; INV-032; V1 baseline fc08f23",
+  "invariants": [
+   "INV-032"
+  ],
+  "status": "KEPT",
+  "why": "Credits must reduce the right aging bucket.",
+  "data_needs": "A customer with one unused credit memo and nothing else open.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has only one open document: an unused $15.00 credit memo created on day C (at least 32 days ago)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Set the date chip to C + 1.",
+   "Read customer X's row.",
+   "Set the date chip to C + 31.",
+   "Read customer X's row."
+  ],
+  "expected": [
+   "Step 4: $-15.00 under 1-30 Days; nothing under Current.",
+   "Step 6: $-15.00 under 31-60 Days."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AgingCalculator.php:50-67. V1 code, quoted: `$daysAged = getDaysPastDue($credit->getCreatedAt(), $asOfDate); if ($daysAged <= 30) add1to30 ...`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-032) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-24",
+  "title": "A/P Summary ages a vendor credit by its own date",
+  "section": "A/P Aging Summary",
+  "refs": "SV-11315; INV-034; V1 baseline fc08f23",
+  "invariants": [
+   "INV-034"
+  ],
+  "status": "KEPT",
+  "why": "Vendor credits must reduce the right aging bucket.",
+  "data_needs": "A vendor with one unused vendor credit and nothing else open.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has only one open document: an unused $12.00 vendor credit created on day C (at least 62 days ago)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Summary\" in the left list.",
+   "Set the date chip to C + 1.",
+   "Read vendor Y's row.",
+   "Set the date chip to C + 61.",
+   "Read vendor Y's row."
+  ],
+  "expected": [
+   "Step 4: $-12.00 under 1-30 Days; nothing under Current.",
+   "Step 6: $-12.00 under 61-90 Days."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:139-143. V1 code, quoted: `SUM(CASE WHEN TIMESTAMPDIFF(DAY, vc.date_created, :asOfDate) <= 30 THEN ... END) AS creditDays1to30`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-034) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-25",
+  "title": "An invoice without a due date is aged from its customer's credit term",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-036; V1 baseline fc08f23",
+  "invariants": [
+   "INV-036"
+  ],
+  "status": "POSSIBLY LOST",
+  "why": "An invoice on Net 30 must not be chased as overdue a month early.",
+  "data_needs": "An invoice with an empty due date. The app always stores one when an invoice is made, so this needs a data fix from a developer.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has the credit term Net 30.",
+   "Customer X has an open invoice with no due date stored, created 40 days ago."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Open every bucket.",
+   "Find the invoice."
+  ],
+  "expected": [
+   "Step 4: the invoice is in \"1-30 days past due\" (due 30 days after it was created, so 10 days late), not in \"31-60 days past due\".",
+   "",
+   "EXPECT FAIL. What you should see on the upgraded build today: The invoice sits in \"31-60 days past due\".",
+   "(1) You see exactly that: mark the test FAILED and raise nothing new. This is a V1-to-V2 capability loss already reported to the QA lead for a Product Owner decision.",
+   "(2) It fails in a different way: that is a new problem. Mark FAILED, write down exactly what you saw, and report it.",
+   "(3) It passes: the capability is back. Mark PASSED and tell the QA lead.",
+   "Existing ticket: none found (Jira searched 11 Nov 2026)."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AccountReceivableCustomerService.php:66-81. V1 code, quoted: `$row['dueDate'] ? new \\DateTime($row['dueDate'], $utc) : CreditTerms::getDueDate($invoiceDate, $creditTerm)`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-036) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) is silent on it. Not yet checked against any build.",
+  "marker": "AUTOMATION: HOLD - an invoice without a due date cannot be made through the app"
+ },
+ {
+  "id": "V1R-26",
+  "title": "A/P: a bill with no due date is not listed",
+  "section": "A/P Aging Detail",
+  "refs": "SV-11315; INV-037; V1 baseline fc08f23",
+  "invariants": [
+   "INV-037"
+  ],
+  "status": "KEPT",
+  "why": "Unchanged inclusion rules keep A/P totals equal to before the release.",
+  "data_needs": "A delivery received from a vendor without payment terms, leaving the bill without a due date. If the app always sets one, mark Blocked with that reason.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has an unpaid bill (received delivery) with no due date."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Detail\" in the left list.",
+   "Open every bucket.",
+   "Look for vendor Y's bill."
+  ],
+  "expected": [
+   "Step 4: the bill without a due date is not listed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:96; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:103. V1 code, quoted: `->andWhere('vt.due_date IS NOT NULL')`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-037) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-27",
+  "title": "A/P: an overpaid bill is still listed with a negative balance",
+  "section": "A/P Aging Detail",
+  "refs": "SV-11315; INV-039; V1 baseline fc08f23",
+  "invariants": [
+   "INV-039"
+  ],
+  "status": "KEPT",
+  "why": "An overpayment to a vendor is money the shop is owed back.",
+  "data_needs": "One bill paid more than its amount.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has a $100.00 bill that was paid $110.00."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Detail\" in the left list.",
+   "Open every bucket.",
+   "Find vendor Y's bill.",
+   "Read its Open Balance."
+  ],
+  "expected": [
+   "Step 4: the bill is listed.",
+   "Step 5: Open Balance $-10.00."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:97; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:164. V1 code, quoted: `->andWhere('vt.balance <> 0')`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-039) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-28",
+  "title": "A/R Summary lists a customer who only has a credit",
+  "section": "A/R Aging Summary",
+  "refs": "SV-11315; INV-041; V1 baseline fc08f23",
+  "invariants": [
+   "INV-041"
+  ],
+  "status": "KEPT",
+  "why": "Customer credits must be visible when reconciling.",
+  "data_needs": "A customer with only an unused credit memo.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has no open invoice and one unused $40.00 credit memo."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Find customer X.",
+   "Read customer X's Total."
+  ],
+  "expected": [
+   "Step 3: customer X is listed.",
+   "Step 4: Total $-40.00."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:276-280. V1 code, quoted: `'EXISTS ('.$invoiceSub.') OR EXISTS ('.$creditSub.') OR EXISTS ('.$depositSub.')'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-041) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-29",
+  "title": "A/R Summary keeps its columns and leaves empty buckets blank",
+  "section": "A/R Aging Summary",
+  "refs": "SV-11315; INV-050, INV-052; V1 baseline fc08f23",
+  "invariants": [
+   "INV-050",
+   "INV-052"
+  ],
+  "status": "KEPT",
+  "why": "The layout users reconcile against QuickBooks must not change.",
+  "data_needs": "A customer whose open invoices all fall in one bucket.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has open invoices in only one bucket."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Read the column headings left to right.",
+   "Find customer X.",
+   "Read customer X's empty buckets."
+  ],
+  "expected": [
+   "Step 3: Customer, then Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total. (A Location column after Customer when two or more locations are in view is new by design.)",
+   "Step 5: the buckets with nothing in them are blank, not $0.00."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:213-269; app/src/utils/reporting.ts:9-11; api/src/Reporting/Dashboard/Application/AccountReceivable/AgingSummary/AgingSummaryItem.php:9-18. V1 code, quoted: `label: 'Customer' ... '1-30 Days' ... '31-60 Days' ... '61-90 Days' ... '91 and Over' ... 'Total'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-050, INV-052) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-30",
+  "title": "A/R Summary: buckets net invoices against credits, Total adds them",
+  "section": "A/R Aging Summary",
+  "refs": "SV-11315; INV-051; V1 baseline fc08f23",
+  "invariants": [
+   "INV-051"
+  ],
+  "status": "KEPT",
+  "why": "The summary figure is what the shop believes it is owed per customer.",
+  "data_needs": "One customer with a past-due invoice, a current invoice and a recent credit memo.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has a $100.00 invoice 10 days past due and an unused $30.00 credit memo created 5 days ago.",
+   "Customer X has a $50.00 invoice not yet due."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Find customer X.",
+   "Read customer X's Current.",
+   "Read customer X's 1-30 Days.",
+   "Read customer X's Total."
+  ],
+  "expected": [
+   "Step 4: $50.00.",
+   "Step 5: $70.00 (100 minus 30).",
+   "Step 6: $120.00."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/AgingSummary/AgingSummaryQueryHandler.php:26-45; api/src/Reporting/Dashboard/Domain/AccountReceivable/AgingBuckets.php:48-76. V1 code, quoted: `$buckets->add1to30($amount) ... $this->total = $this->total?->add($amount) ?? $amount;`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-051) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-31",
+  "title": "Money shows as $1,234.56 and negatives as $-12.00",
+  "section": "A/R Aging Summary",
+  "refs": "SV-11315; INV-053; V1 baseline fc08f23",
+  "invariants": [
+   "INV-053"
+  ],
+  "status": "KEPT",
+  "why": "Users compare these figures by eye with QuickBooks.",
+  "data_needs": "One amount over $1,000 and one negative customer Total on the report.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "One customer's Total is negative (more credit than invoices)."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Read an amount over $1,000.",
+   "Read the negative Total."
+  ],
+  "expected": [
+   "Step 3: dollar sign, thousands comma and two decimals, for example \"$1,234.56\".",
+   "Step 4: the minus sign follows the dollar sign, for example \"$-12.00\"."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/utils/reporting.ts:9-11. V1 code, quoted: ``$${formatNumber(row[prop])}``",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-053) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-32",
+  "title": "Without Customers View, A/R Summary names are not links",
+  "section": "A/R Aging Summary",
+  "refs": "SV-11315; INV-058; V1 baseline fc08f23",
+  "invariants": [
+   "INV-058"
+  ],
+  "status": "KEPT",
+  "why": "A user who cannot see customers must not be sent to customer detail.",
+  "data_needs": "A custom role: Reports page access on, Customers View off.",
+  "preconditions": [
+   "You are signed in as a user whose role has Reports page access but no Customers View."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Point at a customer name.",
+   "Click the customer name."
+  ],
+  "expected": [
+   "Step 3: the name is plain text (not blue).",
+   "Step 4: nothing opens; you stay on A/R Aging Summary."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:159; app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:330-337. V1 code, quoted: `const canViewCustomers = permissionService.canView('customers'); ... if (canViewCustomers && row.customerId !== null)`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-058) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-33",
+  "title": "With nothing open on the date, the report says so",
+  "section": "A/P Aging Summary",
+  "refs": "SV-11315; INV-062; V1 baseline fc08f23",
+  "invariants": [
+   "INV-062"
+  ],
+  "status": "KEPT",
+  "why": "An empty report must explain itself.",
+  "data_needs": "Any organization (nothing was open in 2000).",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Your organization had no open bill or vendor credit on 1 January 2000."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Summary\" in the left list.",
+   "Set the date chip to 1 January 2000.",
+   "Read the message in the table."
+  ],
+  "expected": [
+   "Step 4: \"No record matches these filters\" and \"Try changing filters to widen your results.\""
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/ReportingModel.ts:115; app/src/components/ts/reporting/ReportingModel.ts:125; app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:13-24. V1 code, quoted: `REPORT_EMPTY_TITLE = 'No record matches these filters'; REPORT_EMPTY_SUBTITLE = 'Try changing filters to widen your results.'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-062) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-34",
+  "title": "A/R Summary PDF keeps its heading, footer, page and Totals",
+  "section": "A/R Aging Summary",
+  "refs": "SV-11315; INV-070, INV-071, INV-072, INV-073; V1 baseline fc08f23",
+  "invariants": [
+   "INV-070",
+   "INV-071",
+   "INV-072",
+   "INV-073"
+  ],
+  "status": "KEPT",
+  "why": "Printed aging is filed and given to accountants; its heading and totals must stay.",
+  "data_needs": "Enough customers for a two-page PDF (about 30 or more).",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "The report has more than one page of customers when printed."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Summary\" in the left list.",
+   "Open the Export menu (the ⋯ button by the title).",
+   "Click \"Download (PDF)\".",
+   "Open the downloaded PDF.",
+   "Read the top of page 1.",
+   "Read the bottom of page 1.",
+   "Read the last row of the last page."
+  ],
+  "expected": [
+   "Step 6: the report name, your organization's name and \"As of\" with the date.",
+   "Step 7: \"Software Powered by ShopView\" in the middle and \"Page 1 of N\" on the right; the page is landscape.",
+   "Step 8: a Totals row; customer rows above it with empty buckets left blank."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/AgingSummaryPdfQueryHandler.php:57-67; api/templates/reporting/account-receivable/aging-summary.html.twig:116-118; api/templates/reporting/account-receivable/aging-summary.html.twig:8-14; api/templates/reporting/account-receivable/aging-summary.html.twig:3; api/templates/reporting/account-receivable/aging-summary.html.twig:122-153. V1 code, quoted: `<p class=\"report-org-name\">{{ organizationName }}</p> ... content: \"Software Powered by ShopView\"; ... size: A4 landscape;`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-070, INV-071, INV-072, INV-073) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-35",
+  "title": "A/R Detail PDF prints an empty bucket with its $0.00 total",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-074; V1 baseline fc08f23",
+  "invariants": [
+   "INV-074"
+  ],
+  "status": "POSSIBLY LOST",
+  "why": "A printed aging that silently skips a bucket can be read as incomplete by an auditor.",
+  "data_needs": "A date on which at least one bucket is empty.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "On the chosen date one bucket, for example \"61-90 days past due\", has nothing in it."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Read the empty bucket's count.",
+   "Open the Export menu.",
+   "Click \"Download (PDF)\".",
+   "Open the downloaded PDF.",
+   "Look for the empty bucket's heading."
+  ],
+  "expected": [
+   "Step 3: the bucket shows (0).",
+   "Step 7: the PDF still prints the bucket's heading followed by \"Total for 61-90 days past due\" with $0.00, so all five buckets appear on paper.",
+   "",
+   "EXPECT FAIL. What you should see on the upgraded build today: Only buckets holding a document are printed.",
+   "(1) You see exactly that: mark the test FAILED and raise nothing new. This is a V1-to-V2 capability loss already reported to the QA lead for a Product Owner decision.",
+   "(2) It fails in a different way: that is a new problem. Mark FAILED, write down exactly what you saw, and report it.",
+   "(3) It passes: the capability is back. Mark PASSED and tell the QA lead.",
+   "Existing ticket: none found (Jira searched 11 Nov 2026)."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/AgingDetailPdfQueryHandler.php:81-110; api/templates/reporting/account-receivable/aging-detail.html.twig:144-166. V1 code, quoted: `foreach ($reverseOrder as $bucket) { $result[] = ['label' => ..., 'transactions' => ..., 'amount' => ...]; }`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-074) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) is silent on it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY - EXPECT FAIL (the empty bucket is missing from the PDF)"
+ },
+ {
+  "id": "V1R-36",
+  "title": "A/R Collection PDF prints only the customer you picked",
+  "section": "A/R Aging Collection",
+  "refs": "SV-11315; INV-075; V1 baseline fc08f23",
+  "invariants": [
+   "INV-075"
+  ],
+  "status": "KEPT",
+  "why": "A collector prints one customer's call sheet.",
+  "data_needs": "Two customers with past-due invoices.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customers X and Z both have past-due invoices."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Collection\" in the left list.",
+   "Pick customer X in the Customer chip.",
+   "Open the Export menu.",
+   "Click \"Download (PDF)\".",
+   "Open the downloaded PDF.",
+   "Read the customer headings."
+  ],
+  "expected": [
+   "Step 7: only customer X is printed, with its lines, a \"Total for\" line for customer X and a Totals row."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/CollectionsPdfQueryHandler.php:25-61; api/src/Reporting/Dashboard/Infrastructure/Controller/Dto/AccountReceivablePdfRequestDto.php:54-62; app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:57-61. V1 code, quoted: `...(props.customerId && { customer_id: props.customerId })`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-075) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-37",
+  "title": "A/R Detail shows its five buckets in fixed order with counts",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-080; V1 baseline fc08f23",
+  "invariants": [
+   "INV-080"
+  ],
+  "status": "KEPT",
+  "why": "Shops read aging from oldest to newest.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Read the bucket rows top to bottom."
+  ],
+  "expected": [
+   "Step 3: \"91 or more days past due\", \"61-90 days past due\", \"31-60 days past due\", \"1-30 days past due\", \"Current\", each with its number of lines in brackets."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:71-84; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:321-357. V1 code, quoted: `label: '91 or more days past due' ... label: 'Current'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-080) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-38",
+  "title": "A/R Detail buckets start closed with totals and open on click",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-081, INV-082; V1 baseline fc08f23",
+  "invariants": [
+   "INV-081",
+   "INV-082"
+  ],
+  "status": "KEPT",
+  "why": "Users scan bucket totals first and open only what they need.",
+  "data_needs": "At least one current invoice.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "The \"Current\" bucket has at least one line."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Read the \"Current\" bucket row.",
+   "Click the arrow button on \"Current\".",
+   "Read the rows under it.",
+   "Click the arrow button on \"Current\" again."
+  ],
+  "expected": [
+   "Step 3: closed; it shows \"Total\" with its Amount and Open balance.",
+   "Step 5: its lines are shown.",
+   "Step 6: it closes again."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:86-98; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:280; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:72-79; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:444-452. V1 code, quoted: `<template v-if=\"!props.row.expanded && col.name === 'due_date'\"><strong>Total</strong>`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-081, INV-082) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-39",
+  "title": "A/R Detail keeps \"Total for\" lines and the Totals row",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-083, INV-084; V1 baseline fc08f23",
+  "invariants": [
+   "INV-083",
+   "INV-084"
+  ],
+  "status": "KEPT",
+  "why": "Bucket subtotals and the grand total are what gets reconciled.",
+  "data_needs": "At least one invoice 1 to 30 days past due.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "The \"1-30 days past due\" bucket has at least one line."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Open \"1-30 days past due\".",
+   "Read the line after its last document.",
+   "Read the bottom row of the report."
+  ],
+  "expected": [
+   "Step 4: \"Total for 1-30 days past due\" with the bucket's Amount and Open balance.",
+   "Step 5: \"Totals\" with the Amount and Open balance of all buckets together."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:130-153; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:157-173; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:362-365. V1 code, quoted: `Total for {{ props.row.label }} ... Totals`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-083, INV-084) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-40",
+  "title": "A/R Detail lines keep their information and the invoice's location",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-086, INV-089, INV-092; V1 baseline fc08f23",
+  "invariants": [
+   "INV-086",
+   "INV-089",
+   "INV-092"
+  ],
+  "status": "KEPT",
+  "why": "Each line must still say what, whose, where and how much.",
+  "data_needs": "One invoice at a location other than your current one.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has an open invoice made at location B."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Open every bucket.",
+   "Find customer X's invoice.",
+   "Read the whole line."
+  ],
+  "expected": [
+   "Step 5: date, transaction type \"Invoice\", the invoice ID, customer X's full name, location B, the due date, Amount and Open balance. (Heading capitals and the column name \"Location\" are new by design.)"
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:375-433; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:384-389; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:75; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:99; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:182; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:230. V1 code, quoted: `label: 'Date' ... 'Transaction type' ... 'ID' ... 'Customer full name' ... 'Location full name' ... 'Due date' ... 'Amount' ... 'Open balance'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-086, INV-089, INV-092) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-41",
+  "title": "A/R Detail: Amount is the invoice total, Open balance what is unpaid",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-087; V1 baseline fc08f23",
+  "invariants": [
+   "INV-087"
+  ],
+  "status": "KEPT",
+  "why": "Collectors need both the invoice size and what is left.",
+  "data_needs": "One partly paid invoice.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has a $250.00 invoice with $100.00 paid."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Open every bucket.",
+   "Find the invoice.",
+   "Read its Amount.",
+   "Read its Open balance."
+  ],
+  "expected": [
+   "Step 5: $250.00.",
+   "Step 6: $150.00."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/AgingDetail/AgingDetailTransactionArrayMapper.php:14-26; api/src/Reporting/Dashboard/Domain/AccountReceivable/AgingDetailTransaction.php:107-123. V1 code, quoted: `'amount' => $transaction->getAmountFixed()->toFloat(), 'balance' => $transaction->getBalanceFixed()->toFloat(),`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-087) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-42",
+  "title": "A/R Detail: a credit memo line is negative, self-dated and plain text",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-088, INV-091, INV-096; V1 baseline fc08f23",
+  "invariants": [
+   "INV-088",
+   "INV-091",
+   "INV-096"
+  ],
+  "status": "KEPT",
+  "why": "Credits must be readable and must not lead to a dead page.",
+  "data_needs": "One unused credit memo. Do NOT use credit memo CM1-4411 on production: it is reserved for the release check.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has an unused $5.00 credit memo created on day C at a location with a number prefix."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Open every bucket.",
+   "Find the credit memo.",
+   "Read its ID.",
+   "Read its Due date.",
+   "Read its two money columns (Amount, Open balance).",
+   "Click its ID."
+  ],
+  "expected": [
+   "Step 5: the credit memo number with the location prefix, for example \"CM1-4411\".",
+   "Step 6: day C.",
+   "Step 7: $-5.00 and $-5.00.",
+   "Step 8: nothing opens."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Domain/AccountReceivable/AgingDetailTransaction.php:125-143; api/src/Reporting/Dashboard/Domain/AccountReceivable/AgingDetailTransaction.php:142; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:93; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:315-319. V1 code, quoted: `$credit->getAmount()->negate(), ... $credit->getCreatedAt(), $credit->getCreatedAt(), ... ShopScopedDocumentNumber::composeForDocumentFamily(`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-088, INV-091, INV-096) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-43",
+  "title": "A/R Detail: changing the date closes the open buckets",
+  "section": "A/R Aging Detail",
+  "refs": "SV-11315; INV-098; V1 baseline fc08f23",
+  "invariants": [
+   "INV-098"
+  ],
+  "status": "KEPT",
+  "why": "A new date is a new report; stale open groups would mislead.",
+  "data_needs": "At least one current invoice.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "The \"Current\" bucket has at least one line."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Detail\" in the left list.",
+   "Open \"Current\".",
+   "Set the date chip to yesterday.",
+   "Read the bucket rows."
+  ],
+  "expected": [
+   "Step 5: every bucket is closed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:437-442. V1 code, quoted: `watch(() => asOfDate.value, () => { expandedKeys.value = new Set(); });`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-098) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-44",
+  "title": "A/R Collection groups by customer with counts, totals and Totals",
+  "section": "A/R Aging Collection",
+  "refs": "SV-11315; INV-100, INV-107; V1 baseline fc08f23",
+  "invariants": [
+   "INV-100",
+   "INV-107"
+  ],
+  "status": "KEPT",
+  "why": "The call list is worked customer by customer.",
+  "data_needs": "One customer with two past-due invoices.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has two past-due invoices."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Collection\" in the left list.",
+   "Read customer X's group row.",
+   "Click the arrow button on customer X.",
+   "Read the line after customer X's last document.",
+   "Read the bottom row of the report."
+  ],
+  "expected": [
+   "Step 3: customer X's name with (2), and \"Total\" with the Amount and Open balance.",
+   "Step 5: \"Total for\" followed by customer X's name, with the two amounts.",
+   "Step 6: \"Totals\" with the Amount and Open balance."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:79-108; app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:140-183. V1 code, quoted: `{{ props.row.customerName }} ({{ props.row.transactions.length }}) ... Total for {{ props.row.customerName }}`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-100, INV-107) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-45",
+  "title": "A/R Collection lists past-due invoices and credits only",
+  "section": "A/R Aging Collection",
+  "refs": "SV-11315; INV-101, INV-102; V1 baseline fc08f23",
+  "invariants": [
+   "INV-101",
+   "INV-102"
+  ],
+  "status": "KEPT",
+  "why": "The collection list is for money that is already late.",
+  "data_needs": "One customer with the four documents described.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has: invoice A 5 days past due; invoice B due today; invoice C due next week; an unused credit memo from last week."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Collection\" in the left list.",
+   "Open customer X's group.",
+   "Read its lines."
+  ],
+  "expected": [
+   "Step 4: invoice A and the credit memo are listed; invoice B (due today) and invoice C (not yet due) are not."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Collections/CollectionsItem.php:30-37; api/src/Reporting/Dashboard/Domain/AccountReceivable/Invoice.php:47-58; api/src/Reporting/Dashboard/Application/AccountReceivable/Collections/CollectionsItem.php:39-47. V1 code, quoted: `if ($invoice->getPastDue($asOfDate) <= 0) { continue; }`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-101, INV-102) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-46",
+  "title": "A/R Collection shows a customer who only has a credit",
+  "section": "A/R Aging Collection",
+  "refs": "SV-11315; INV-103; V1 baseline fc08f23",
+  "invariants": [
+   "INV-103"
+  ],
+  "status": "KEPT",
+  "why": "A collector must see credits to apply before calling.",
+  "data_needs": "A customer with only an unused credit memo.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has no past-due invoice and one unused credit memo dated last week."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Collection\" in the left list.",
+   "Find customer X.",
+   "Open customer X's group."
+  ],
+  "expected": [
+   "Step 3: customer X is listed.",
+   "Step 4: the credit memo is its only line."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:324-373. V1 code, quoted: `if ($pastDueOnly) { $qb->andWhere('TIMESTAMPDIFF(DAY, cm.date_created, :asOfDate) >= 0'); }`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-103) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-47",
+  "title": "A/R Collection lists each customer's lines oldest first",
+  "section": "A/R Aging Collection",
+  "refs": "SV-11315; INV-104; V1 baseline fc08f23",
+  "invariants": [
+   "INV-104"
+  ],
+  "status": "KEPT",
+  "why": "Collectors chase the oldest debt first.",
+  "data_needs": "One customer with three past-due invoices on different days.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has three past-due invoices dated on three different days."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Collection\" in the left list.",
+   "Open customer X's group.",
+   "Read the Date column top to bottom."
+  ],
+  "expected": [
+   "Step 4: oldest date at the top, newest at the bottom."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Collections/CollectionsItem.php:49-55. V1 code, quoted: `usort($items, static fn ($a, $b) => $a->getDate() <=> $b->getDate());`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-104) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-48",
+  "title": "A/R Collection lines keep their details and days past due",
+  "section": "A/R Aging Collection",
+  "refs": "SV-11315; INV-105, INV-106; V1 baseline fc08f23",
+  "invariants": [
+   "INV-105",
+   "INV-106"
+  ],
+  "status": "KEPT",
+  "why": "Days past due is what the collector says on the call.",
+  "data_needs": "One invoice due 12 days ago and one credit memo 3 days old, same customer.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer X has an invoice due exactly 12 days ago and an unused credit memo created 3 days ago."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Collection\" in the left list.",
+   "Open customer X's group.",
+   "Read the invoice's line.",
+   "Read the credit memo's Past due."
+  ],
+  "expected": [
+   "Step 4: date, type \"Invoice\", ID, location, due date, Past due 12, Amount, Open balance.",
+   "Step 5: 3."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:404-463; api/src/Reporting/Dashboard/Domain/AccountReceivable/Invoice.php:47-58; api/src/Reporting/Dashboard/Domain/AccountReceivable/CollectionsItemTransaction.php:108-125. V1 code, quoted: `$dueDate->diff($referenceDate)->days ... max(1, $credit->getPastDue($asOfDate))`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-105, INV-106) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-49",
+  "title": "A/R Collection: the Customer chip narrows to one customer",
+  "section": "A/R Aging Collection",
+  "refs": "SV-11315; INV-108; V1 baseline fc08f23",
+  "invariants": [
+   "INV-108"
+  ],
+  "status": "KEPT",
+  "why": "A collector works one account at a time.",
+  "data_needs": "Two customers with past-due invoices.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customers X and Z both have past-due invoices."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Collection\" in the left list.",
+   "Click the Customer chip.",
+   "Type the first letters of customer X.",
+   "Pick customer X.",
+   "Read the customer groups.",
+   "Reload the page.",
+   "Read the customer groups."
+  ],
+  "expected": [
+   "Step 6: only customer X is listed.",
+   "Step 8: still only customer X."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:243; app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:257-295; app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:326-331. V1 code, quoted: `key: 'customerId', label: 'Customer', icon: 'o_person', ... options: searchCustomers`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-108) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-50",
+  "title": "A/R Collection: changing date or customer closes open groups",
+  "section": "A/R Aging Collection",
+  "refs": "SV-11315; INV-111; V1 baseline fc08f23",
+  "invariants": [
+   "INV-111"
+  ],
+  "status": "KEPT",
+  "why": "A changed filter is a new list; stale open groups mislead.",
+  "data_needs": "Two customers with past-due invoices.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customers X and Z both have past-due invoices."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Collection\" in the left list.",
+   "Open customer X's group.",
+   "Set the date chip to yesterday.",
+   "Read the groups.",
+   "Open customer X's group.",
+   "Pick customer Z in the Customer chip.",
+   "Read the groups."
+  ],
+  "expected": [
+   "Step 5: all groups are closed.",
+   "Step 8: all groups are closed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:392-402. V1 code, quoted: `watch([() => asOfDate.value, () => selectedCustomerId.value ?? null, ...], () => { expandedKeys.value = new Set(); });`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-111) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-51",
+  "title": "A/R Collection: Clear all filters brings everyone back",
+  "section": "A/R Aging Collection",
+  "refs": "SV-11315; INV-114; V1 baseline fc08f23",
+  "invariants": [
+   "INV-114"
+  ],
+  "status": "KEPT",
+  "why": "The user must never be stuck on an empty report.",
+  "data_needs": "A customer with nothing past due (the Customer chip lists all customers today; if it offers only customers with open documents, mark Blocked with that note).",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Customer N has nothing past due and no unused credit."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/R Aging Collection\" in the left list.",
+   "Pick customer N in the Customer chip.",
+   "Read the message.",
+   "Click \"Clear all filters\".",
+   "Read the list."
+  ],
+  "expected": [
+   "Step 4: \"No record matches these filters\" with a \"Clear all filters\" button.",
+   "Step 6: every customer with past-due documents is listed again; the date is unchanged."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/shared/filters/FilteredTableEmptyState.vue:27-36; app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:13-24. V1 code, quoted: `<Button v-if=\"showClearAction\" ...> Clear all filters`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-114) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-52",
+  "title": "A/P Summary keeps its columns and nets credits in the buckets",
+  "section": "A/P Aging Summary",
+  "refs": "SV-11315; INV-121, INV-122; V1 baseline fc08f23",
+  "invariants": [
+   "INV-121",
+   "INV-122"
+  ],
+  "status": "KEPT",
+  "why": "The payables summary must still say what is owed to whom, by age.",
+  "data_needs": "One vendor with the three documents described.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has a $300.00 bill 40 days past due, a $90.00 bill not yet due and an unused $20.00 vendor credit created 35 days ago."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Summary\" in the left list.",
+   "Read the column headings.",
+   "Find vendor Y.",
+   "Read vendor Y's row."
+  ],
+  "expected": [
+   "Step 3: Vendor, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total (Location, when shown, is new by design).",
+   "Step 5: Current $90.00, 31-60 Days $280.00, other buckets blank, Total $370.00."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:192-248; api/src/Reporting/Dashboard/Application/AccountPayable/AgingSummary/ApAgingSummaryQueryHandler.php:46-111. V1 code, quoted: `new FixedDecimal2($inv / 100)->subtract(new FixedDecimal2($crd / 100))`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-121, INV-122) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-53",
+  "title": "A/P Summary vendor names link without any extra permission",
+  "section": "A/P Aging Summary",
+  "refs": "SV-11315; INV-124; V1 baseline fc08f23",
+  "invariants": [
+   "INV-124"
+  ],
+  "status": "KEPT",
+  "why": "Every report user could drill into a vendor before the release.",
+  "data_needs": "A custom role with only Reports page access.",
+  "preconditions": [
+   "You are signed in as a user whose role has Reports page access and NO Vendor Order Management, Customers or Invoicing permissions."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Summary\" in the left list.",
+   "Click the first vendor name.",
+   "Read the page title and the Vendor chip."
+  ],
+  "expected": [
+   "Step 4: A/P Unpaid Invoices opens narrowed to that vendor."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:54-68; app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:308-315. V1 code, quoted: `const onRowClick = async (row) => { if (row.vendorId !== null) { await router?.push({ path: '/reports/ap-unpaid-invoices', ...`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-124) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-54",
+  "title": "A/P Detail keeps its buckets, counts and closed totals",
+  "section": "A/P Aging Detail",
+  "refs": "SV-11315; INV-130; V1 baseline fc08f23",
+  "invariants": [
+   "INV-130"
+  ],
+  "status": "KEPT",
+  "why": "Shops read payables aging oldest first.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Detail\" in the left list.",
+   "Read the bucket rows top to bottom."
+  ],
+  "expected": [
+   "Step 3: \"91 or more days past due\", \"61-90 days past due\", \"31-60 days past due\", \"1-30 days past due\", \"Current\", each closed, with its count in brackets and \"Total\" with Amount and Open Balance."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:47-89; app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:344-385. V1 code, quoted: `label: '91 or more days past due' ... <strong>Total</strong>`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-130) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-55",
+  "title": "A/P Detail keeps \"Total for\" lines and the Totals row",
+  "section": "A/P Aging Detail",
+  "refs": "SV-11315; INV-132; V1 baseline fc08f23",
+  "invariants": [
+   "INV-132"
+  ],
+  "status": "KEPT",
+  "why": "Subtotals and the grand total are what gets paid against.",
+  "data_needs": "At least one current bill.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "The \"Current\" bucket has at least one bill."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Detail\" in the left list.",
+   "Open \"Current\".",
+   "Scroll to the end of the bucket.",
+   "Read the line after its last document.",
+   "Read the bottom row."
+  ],
+  "expected": [
+   "Step 5: \"Total for Current\" with Amount and Open Balance.",
+   "Step 6: \"Totals\" with Amount and Open Balance."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:130-173. V1 code, quoted: `Total for {{ props.row.label }} ... Totals`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-132) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-56",
+  "title": "A/P Detail lines keep their information and location",
+  "section": "A/P Aging Detail",
+  "refs": "SV-11315; INV-134, INV-139; V1 baseline fc08f23",
+  "invariants": [
+   "INV-134",
+   "INV-139"
+  ],
+  "status": "KEPT",
+  "why": "Each payables line must still say what, to whom, where and how much.",
+  "data_needs": "One bill received at a location other than your current one.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has an unpaid bill received at location B."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Detail\" in the left list.",
+   "Open every bucket.",
+   "Find vendor Y's bill.",
+   "Read the whole line."
+  ],
+  "expected": [
+   "Step 5: date, \"Invoice\", the bill No., vendor Y's name, location B, due date, Past Due, Amount and Open Balance."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:402-468; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:84; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:93. V1 code, quoted: `label: 'No.' ... 'Vendor Name' ... 'Location Name' ... 'Due Date' ... 'Past Due'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-134, INV-139) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-57",
+  "title": "A/P Detail: Past Due is negative for a bill not yet due",
+  "section": "A/P Aging Detail",
+  "refs": "SV-11315; INV-135; V1 baseline fc08f23",
+  "invariants": [
+   "INV-135"
+  ],
+  "status": "KEPT",
+  "why": "Accounts payable plans payments by days until due.",
+  "data_needs": "One bill due in the next two weeks.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has a bill due in about 9 days."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Detail\" in the left list.",
+   "Open \"Current\".",
+   "Find vendor Y's bill.",
+   "Read its Past Due."
+  ],
+  "expected": [
+   "Step 5: a negative number of days (about -9). The exact day count is the subject of open ticket SV-11922; do not raise a new ticket for a one-day difference."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:151. V1 code, quoted: `'TIMESTAMPDIFF(DAY, vt.due_date, :asOfDate) AS pastDue'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-135) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-58",
+  "title": "A/P Detail: a vendor credit line is negative and self-dated",
+  "section": "A/P Aging Detail",
+  "refs": "SV-11315; INV-136; V1 baseline fc08f23",
+  "invariants": [
+   "INV-136"
+  ],
+  "status": "KEPT",
+  "why": "Vendor credits must read as money in the shop's favour.",
+  "data_needs": "One unused vendor credit about 10 days old.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has an unused $25.00 vendor credit created 10 days ago."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Detail\" in the left list.",
+   "Open \"1-30 days past due\".",
+   "Find the vendor credit.",
+   "Read its Due Date.",
+   "Read its Past Due.",
+   "Read its two money columns (Amount, Open Balance)."
+  ],
+  "expected": [
+   "Step 5: the credit's own date.",
+   "Step 6: 10.",
+   "Step 7: $-25.00 and $-25.00."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:103-131; api/src/Reporting/Dashboard/Application/AccountPayable/AgingDetail/ApAgingDetailQueryHandler.php:31-34. V1 code, quoted: `'vc.date_created AS dueDate', 'GREATEST(1, TIMESTAMPDIFF(DAY, vc.date_created, :asOfDate)) AS pastDue'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-136) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-59",
+  "title": "A/P Detail: changing the date closes open buckets",
+  "section": "A/P Aging Detail",
+  "refs": "SV-11315; INV-140; V1 baseline fc08f23",
+  "invariants": [
+   "INV-140"
+  ],
+  "status": "KEPT",
+  "why": "A new date is a new report.",
+  "data_needs": "At least one current bill.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "The \"Current\" bucket has at least one bill."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Aging Detail\" in the left list.",
+   "Open \"Current\".",
+   "Set the date chip to yesterday.",
+   "Read the bucket rows."
+  ],
+  "expected": [
+   "Step 5: every bucket is closed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:473-479. V1 code, quoted: `watch(() => asOfDate.value, () => { expandedKeys.value = new Set(); Object.assign(visibleCounts, initialVisibleCounts()); });`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-140) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-60",
+  "title": "A/P Unpaid Invoices groups vendors A to Z with counts and totals",
+  "section": "A/P Unpaid Invoices",
+  "refs": "SV-11315; INV-150; V1 baseline fc08f23",
+  "invariants": [
+   "INV-150"
+  ],
+  "status": "KEPT",
+  "why": "Payables are paid vendor by vendor.",
+  "data_needs": "Two vendors with unpaid bills.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "At least two vendors have unpaid bills."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Unpaid Invoices\" in the left list.",
+   "Read the vendor group rows.",
+   "Click the arrow button on the first vendor.",
+   "Read the line after its last document.",
+   "Read the bottom row."
+  ],
+  "expected": [
+   "Step 3: vendors A to Z, each with its count in brackets and \"Total\" with Amount and Open Balance.",
+   "Step 5: \"Total for\" and the vendor's name with the two amounts.",
+   "Step 6: \"Totals\"."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:55-170; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApUnpaidInvoicesFetcher.php:66. V1 code, quoted: `->orderBy('pv.name', 'ASC') ... Total for {{ props.row.vendorName }}`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-150) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-61",
+  "title": "A/P Unpaid Invoices includes bills not yet due and vendor credits",
+  "section": "A/P Unpaid Invoices",
+  "refs": "SV-11315; INV-151; V1 baseline fc08f23",
+  "invariants": [
+   "INV-151"
+  ],
+  "status": "KEPT",
+  "why": "Unpaid Invoices is the full list of what will have to be paid.",
+  "data_needs": "One vendor with the three documents described.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has a bill not due yet, a past-due bill and an unused vendor credit."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Unpaid Invoices\" in the left list.",
+   "Open vendor Y's group.",
+   "Read its lines."
+  ],
+  "expected": [
+   "Step 4: all three are listed; the bill not yet due shows a negative Past Due."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApUnpaidInvoicesFetcher.php:164-215. V1 code, quoted: `vt.vendor_transaction_type = :type AND vt.date <= :asOfDate AND vt.due_date IS NOT NULL AND vt.balance <> 0 (no past-due condition)`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-151) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-62",
+  "title": "A/P Unpaid Invoices lists each vendor's lines oldest first",
+  "section": "A/P Unpaid Invoices",
+  "refs": "SV-11315; INV-152; V1 baseline fc08f23",
+  "invariants": [
+   "INV-152"
+  ],
+  "status": "KEPT",
+  "why": "Older bills are paid first.",
+  "data_needs": "One vendor with three bills on different days.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has three unpaid bills dated on three different days."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Unpaid Invoices\" in the left list.",
+   "Open vendor Y's group.",
+   "Read the Date column top to bottom."
+  ],
+  "expected": [
+   "Step 4: oldest at the top, newest at the bottom."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApUnpaidInvoicesFetcher.php:114. V1 code, quoted: `' ORDER BY vendorName ASC, transactionDate ASC'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-152) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-63",
+  "title": "A/P Unpaid Invoices: a vendor credit shows a dash for due date",
+  "section": "A/P Unpaid Invoices",
+  "refs": "SV-11315; INV-153; V1 baseline fc08f23",
+  "invariants": [
+   "INV-153"
+  ],
+  "status": "KEPT",
+  "why": "A credit is not due; a date there would mislead.",
+  "data_needs": "One unused vendor credit.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has an unused vendor credit."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Unpaid Invoices\" in the left list.",
+   "Open vendor Y's group.",
+   "Find the vendor credit.",
+   "Read its Due Date.",
+   "Read its Past Due."
+  ],
+  "expected": [
+   "Step 5: \"—\".",
+   "Step 6: \"—\"."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:426-441; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApUnpaidInvoicesFetcher.php:214-215. V1 code, quoted: `row.dueDate ? formatDate(row.dueDate) : '—' ... row.pastDue !== null ? row.pastDue : '—'`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-153) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-64",
+  "title": "A/P Unpaid Invoices: the Vendor chip narrows to one vendor",
+  "section": "A/P Unpaid Invoices",
+  "refs": "SV-11315; INV-154; V1 baseline fc08f23",
+  "invariants": [
+   "INV-154"
+  ],
+  "status": "KEPT",
+  "why": "Payables staff work one vendor statement at a time.",
+  "data_needs": "Two vendors with unpaid bills.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendors Y and W both have unpaid bills."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Unpaid Invoices\" in the left list.",
+   "Click the Vendor chip.",
+   "Type the first letters of vendor Y.",
+   "Pick vendor Y.",
+   "Read the vendor groups.",
+   "Reload the page.",
+   "Read the vendor groups."
+  ],
+  "expected": [
+   "Step 6: only vendor Y.",
+   "Step 8: still only vendor Y."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:226; app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:238-271; app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:298-303. V1 code, quoted: `key: 'vendorId', label: 'Vendor', ... options: searchVendors`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-154) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-65",
+  "title": "A saved vendor drill-down link still opens on that vendor",
+  "section": "A/P Unpaid Invoices",
+  "refs": "SV-11315; INV-155; V1 baseline fc08f23",
+  "invariants": [
+   "INV-155"
+  ],
+  "status": "KEPT",
+  "why": "Links saved before the release must still open on the right vendor.",
+  "data_needs": "One vendor with unpaid bills and its id.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendor Y has unpaid bills. You know vendor Y's id from the address A/P Aging Summary opened for it."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Unpaid Invoices\" in the left list.",
+   "In the address bar add ?vendorName= with vendor Y's name and &vendorId= with vendor Y's id.",
+   "Press Enter.",
+   "Read the vendor groups and the Vendor chip."
+  ],
+  "expected": [
+   "Step 5: only vendor Y is listed and the Vendor chip names vendor Y."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:310-313; app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:226. V1 code, quoted: `query: { vendorName: row.vendorName, vendorId: row.vendorId } ... const SYNC_KEYS = ['asOfDate', 'vendorId'];`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-155) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-66",
+  "title": "A/P Unpaid Invoices: a bill number opens its delivery",
+  "section": "A/P Unpaid Invoices",
+  "refs": "SV-11315; INV-137; V1 baseline fc08f23",
+  "invariants": [
+   "INV-137"
+  ],
+  "status": "KEPT",
+  "why": "Payables staff check the delivery before paying.",
+  "data_needs": "One unpaid bill at your current location.",
+  "preconditions": [
+   "You are signed in as a user with Reports page access and Vendor Order Management View.",
+   "Vendor Y has an unpaid bill received at your current location."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Unpaid Invoices\" in the left list.",
+   "Open vendor Y's group.",
+   "Click the bill's No."
+  ],
+  "expected": [
+   "Step 4: the delivery page of that bill opens."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:305-313; app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:499-508. V1 code, quoted: `void router?.push(`/parts/delivery/${transaction.referenceId}`);`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-137) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-67",
+  "title": "A/P Unpaid Invoices: changing date or vendor closes open groups",
+  "section": "A/P Unpaid Invoices",
+  "refs": "SV-11315; INV-156; V1 baseline fc08f23",
+  "invariants": [
+   "INV-156"
+  ],
+  "status": "KEPT",
+  "why": "A changed filter is a new list.",
+  "data_needs": "Two vendors with unpaid bills.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "Vendors Y and W both have unpaid bills."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"A/P Unpaid Invoices\" in the left list.",
+   "Open vendor Y's group.",
+   "Set the date chip to yesterday.",
+   "Read the groups.",
+   "Open vendor Y's group.",
+   "Pick vendor W in the Vendor chip.",
+   "Read the groups."
+  ],
+  "expected": [
+   "Step 5: all groups closed.",
+   "Step 8: all groups closed."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:363-373. V1 code, quoted: `watch([() => asOfDate.value, () => selectedVendorId.value ?? null, ...], () => { expandedKeys.value = new Set(); });`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-156) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-68",
+  "title": "Parts Velocity: the Units Sold info icon opens and closes as before",
+  "section": "Parts Velocity",
+  "refs": "SV-11315; INV-200; V1 baseline fc08f23",
+  "invariants": [
+   "INV-200"
+  ],
+  "status": "KEPT",
+  "why": "The shared info icon was changed for the aging reports; other reports must keep it working.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"Parts Velocity\" in the left list.",
+   "Point at the info icon beside \"Units Sold\".",
+   "Move the pointer away.",
+   "Click the info icon.",
+   "Click the info icon again.",
+   "Press Tab until the info icon has focus.",
+   "Press Escape."
+  ],
+  "expected": [
+   "Step 3: the explanation appears, starting \"Units taken out of inventory stock on invoiced work orders in this date range.\"",
+   "Step 4: it disappears.",
+   "Step 5: it appears.",
+   "Step 6: it disappears.",
+   "Step 7: it appears.",
+   "Step 8: it disappears."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/shell/ReportInfoIcon.vue:1-29; app/src/components/ts/reporting/shell/ReportInfoIcon.vue:75-91; app/src/components/ts/reporting/parts-velocity/PartsVelocityReport.vue:139-170. V1 code, quoted: `@click.stop=\"toggle\" @keydown.esc.stop=\"hide\" @focus=\"show\" @blur=\"hide\" @mouseenter=\"show\" @mouseleave=\"hide\"`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-200) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-69",
+  "title": "Technician Utilization: the Est. Lost Labor info icon works as before",
+  "section": "Technician Utilization",
+  "refs": "SV-11315; INV-201; V1 baseline fc08f23",
+  "invariants": [
+   "INV-201"
+  ],
+  "status": "KEPT",
+  "why": "The shared info icon was changed for the aging reports.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"Technician Utilization\" in the left list.",
+   "Point at the info icon beside \"Est. Lost Labor\".",
+   "Move the pointer away.",
+   "Click the info icon.",
+   "Click the info icon again."
+  ],
+  "expected": [
+   "Step 3: its explanation appears.",
+   "Step 4: it disappears.",
+   "Step 5: it appears.",
+   "Step 6: it disappears."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/technician-utilization/TechnicianUtilizationReport.vue:141-147; app/src/components/ts/reporting/shell/ReportInfoIcon.vue:1-29. V1 code, quoted: `<ReportInfoIcon v-if=\"col.name === 'est_lost_labor'\" :text=\"estLostLaborTooltip\"`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-201) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-70",
+  "title": "Work In Progress: summary strip info icons work as before",
+  "section": "Work In Progress",
+  "refs": "SV-11315; INV-202; V1 baseline fc08f23",
+  "invariants": [
+   "INV-202"
+  ],
+  "status": "KEPT",
+  "why": "The shared info icon was changed for the aging reports.",
+  "data_needs": "None.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user."
+  ],
+  "steps": [
+   "Open the Reports menu.",
+   "Click \"Work In Progress\" in the left list.",
+   "Point at the first info icon in the summary strip at the top.",
+   "Move the pointer away.",
+   "Click the same info icon.",
+   "Click it again."
+  ],
+  "expected": [
+   "Step 3: its explanation appears.",
+   "Step 4: it disappears.",
+   "Step 5: it appears.",
+   "Step 6: it disappears."
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/work-in-progress/WipSummaryStrip.vue:39-44; app/src/components/ts/reporting/shell/ReportInfoIcon.vue:1-29. V1 code, quoted: `<ReportInfoIcon :text=\"member.figure.tooltip\" ... size=\"14px\" />`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-202) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-71",
+  "title": "Work order link from another location: Cancel returns to Work Orders",
+  "section": "Work order",
+  "refs": "SV-11315; INV-204; V1 baseline fc08f23",
+  "invariants": [
+   "INV-204"
+  ],
+  "status": "KEPT",
+  "why": "The shared switch prompt was reworked for the aging reports.",
+  "data_needs": "A user enrolled in two locations; one work order at the other location.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "You work at locations A and B and are at A.",
+   "You have a link to a work order at location B (for example from a note-mention email)."
+  ],
+  "steps": [
+   "Open the work order link in the browser.",
+   "Read the prompt.",
+   "Click \"Cancel\".",
+   "Read the page and the message."
+  ],
+  "expected": [
+   "Step 2: \"Switch location?\" asking to switch to location B.",
+   "Step 4: you are on the work order list and the message reads \"Switch cancelled. Returning to work orders.\""
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/composables/useWorkOrderLocationResolver.ts:43-46. V1 code, quoted: `cancelMessage = 'Switch cancelled. Returning to work orders.', fallbackRouteName = 'WorkOrders',`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-204) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ },
+ {
+  "id": "V1R-72",
+  "title": "Part sale link from another location: prompt and Cancel as before",
+  "section": "Part sale",
+  "refs": "SV-11315; INV-205; V1 baseline fc08f23",
+  "invariants": [
+   "INV-205"
+  ],
+  "status": "KEPT",
+  "why": "The shared switch prompt was reworked for the aging reports.",
+  "data_needs": "A user enrolled in two locations; one part sale at the other location.",
+  "preconditions": [
+   "You are signed in to ShopView as an Admin user.",
+   "You work at locations A and B and are at A.",
+   "You have a link to a part sale at location B."
+  ],
+  "steps": [
+   "Open the part sale link in the browser.",
+   "Read the prompt.",
+   "Click \"Cancel\".",
+   "Read the page and the message."
+  ],
+  "expected": [
+   "Step 2: \"Switch location?\" with \"This part sale is in\" location B \". Switch your active location to view it?\"",
+   "Step 4: you are on the part sales list and the message reads \"Switch canceled. Returning to part sales.\""
+  ],
+  "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/parts/part-sale/PartSale.vue:100-110; app/src/components/ts/parts/part-sale/PartSale.vue:263-268. V1 code, quoted: `cancelMessage: 'Switch canceled. Returning to part sales.', fallbackRouteName: 'PartSales',`",
+  "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-205) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
+  "marker": "AUTOMATION: READY"
+ }
+]
