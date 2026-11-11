@@ -39,5 +39,121 @@
   }
  ],
  "arText": "Lines (1) Parts Notes Stats Finance more_vert Customer PO get_app email print settings more_vert New Payment",
- "arDueField": 0
+ "arDueField": 0,
+ "apRows": [
+  "",
+  " Oct 20, 2026 Delivery ZZRV-NODUE-E - $25.00 $25.00 Unpaid ",
+  ""
+ ],
+ "apUrl": "https://sv11315.qa.shopview.com/parts/delivery/069d4314-79fc-4d8e-83aa-594d8415b652",
+ "apFields": [],
+ "apText": "Vendor Invoice edit_note ZZRV-NODUE-E Invoice date Oct 20, 2026 Due date Oct 20, 2026 Vendor ZZRV No Due Date P66 E Delivery Details I-1749 Date received Today Ordered by Admin ShopView Received by Admin ShopView Inventory Delivery items Description Part Number Manufacturer Category Cost Quantity Delivered Total Cost Actions ZZAUTOTEST aging seed part ZZAGING-282517 - Uncategorized $25.00000 1.00 $25.00 edit_note Items cost: $25.00 Tax: $0.00 Total: $25.00 ",
+ "apDueField": 0,
+ "opRow": " Oct 27, 2026 Delivery ZZY6288880 - $100.00 $100.00 Unpaid ",
+ "opDialog": "New Vendor Payment close event Payment Date Payment Method arrow_drop_down Reference Number Memo No. Date arrow_drop_up Due Balance Payment ZZY6288880 Oct 27, 2026 Oct 27, 2026 $100.00 $ Amount to credit: $ Payment amount: $100.00 Make Payment",
+ "opFields": [
+  {
+   "label": "Payment Date",
+   "value": "Nov 11, 2026",
+   "ro": false,
+   "test": "date_input_"
+  },
+  {
+   "label": "Payment Method",
+   "value": "",
+   "ro": true,
+   "test": "select_payment_method"
+  },
+  {
+   "label": "Reference Number",
+   "value": "",
+   "ro": false,
+   "test": "input_reference_number"
+  },
+  {
+   "label": "Memo",
+   "value": "",
+   "ro": false,
+   "test": "input_memo"
+  },
+  {
+   "label": "",
+   "value": "100.00",
+   "ro": false,
+   "test": "input_payment_amount"
+  },
+  {
+   "label": "",
+   "value": "0.00",
+   "ro": false,
+   "test": "input_manually_entered_credit"
+  }
+ ],
+ "opInputs": [
+  {
+   "i": 0,
+   "test": "date_input_",
+   "val": "Nov 11, 2026",
+   "vis": true,
+   "ro": false
+  },
+  {
+   "i": 1,
+   "test": "select_payment_method",
+   "val": "",
+   "vis": true,
+   "ro": true
+  },
+  {
+   "i": 2,
+   "test": "input_reference_number",
+   "val": "",
+   "vis": true,
+   "ro": false
+  },
+  {
+   "i": 3,
+   "test": null,
+   "val": "on",
+   "vis": false,
+   "ro": false
+  },
+  {
+   "i": 4,
+   "test": null,
+   "val": "on",
+   "vis": false,
+   "ro": false
+  },
+  {
+   "i": 5,
+   "test": "input_payment_amount",
+   "val": "100.00",
+   "vis": true,
+   "ro": false
+  },
+  {
+   "i": 6,
+   "test": "input_manually_entered_credit",
+   "val": "0.00",
+   "vis": true,
+   "ro": false
+  }
+ ],
+ "amtPicked": {
+  "i": 5,
+  "test": "input_payment_amount",
+  "val": "100.00",
+  "vis": true,
+  "ro": false
+ },
+ "amtAfter": "110.00",
+ "opMsgs": [
+  "Payment Method arrow_drop_down",
+  "Payment method is a required field",
+  "$",
+  "Payment cannot be higher than 100"
+ ],
+ "opDialog2": "New Vendor Payment close event Payment Date Payment Method arrow_drop_down Payment method is a required field Reference Number Memo No. Date arrow_drop_up Due Balance Payment ZZY6288880 Oct 27, 2026 Oct 27, 2026 $100.00 $ Payment cannot be higher than 100 Amount to credit: $ Payment amount: $110.00 Make Payment",
+ "makeEnabled": false
 }
