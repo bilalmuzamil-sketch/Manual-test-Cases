@@ -6,6 +6,7 @@ wait_ok() { local n=0; until ok; do [ $((n % 20)) -eq 0 ] && log "chain7: sign-i
 while pgrep -f "node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done   # wait for EVERY running job (L0635 addendum)
 run() { local name=$1; shift; wait_ok; log "start $name"; "$@"; log "end $name rc=$?"; }
 run p55 timeout 600 node p55_sbc_pdf.mjs > p55.log 2>&1
+run p55b timeout 600 node p55b_sbc_pdf.mjs > p55b.log 2>&1
 run p48b timeout 400 node p48b_pdf2000_msg.mjs > p48b.log 2>&1
 run p50 timeout 600 node p50_overpay.mjs > p50.log 2>&1
 run s4f env ONLY=C1062582,C1062583 timeout 900 node s4_run.mjs > s4f.log 2>&1
