@@ -45,6 +45,149 @@
    ],
    "totals": "Totals $4,247.34 $123,547.02 $268,843.91 $320,924.53 $4,044,727.92 $4,762,290.72",
    "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715457-0-open.png"
+  },
+  {
+   "label": "1-AB",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: 2 vendors keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "Vendor arrow_drop_up | Location arrow_drop_up | Current arrow_drop_up | 1-30 Days arrow_drop_up | 31-60 Days arrow_drop_up | 61-90 Days arrow_drop_up | 91 And Over arrow_drop_up | Total arrow_drop_up",
+    "ZZY Tot Vend A R1 | Multiple |  | $850.00 | $400.00 |  |  | $1,250.00",
+    "ZZY Tot Vend B R1 | Multiple |  |  | $700.00 |  | $250.00 | $950.00",
+    "Totals |  | $0.00 | $850.00 | $1,100.00 | $0.00 | $250.00 | $2,200.00"
+   ],
+   "totals": "Totals $0.00 $850.00 $1,100.00 $0.00 $250.00 $2,200.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715457-1-AB.png"
+  },
+  {
+   "label": "2-no-lethbridge",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: 2 vendors keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: Staging Heavy D... keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "Vendor arrow_drop_up | Current arrow_drop_up | 1-30 Days arrow_drop_up | 31-60 Days arrow_drop_up | 61-90 Days arrow_drop_up | 91 And Over arrow_drop_up | Total arrow_drop_up",
+    "ZZY Tot Vend A R1 |  | $850.00 |  |  |  | $850.00",
+    "ZZY Tot Vend B R1 |  |  | $700.00 |  |  | $700.00",
+    "Totals | $0.00 | $850.00 | $700.00 | $0.00 | $0.00 | $1,550.00"
+   ],
+   "totals": "Totals $0.00 $850.00 $700.00 $0.00 $0.00 $1,550.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715457-2-no-lethbridge.png"
+  },
+  {
+   "label": "3-select-all",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: 2 vendors keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "Vendor arrow_drop_up | Location arrow_drop_up | Current arrow_drop_up | 1-30 Days arrow_drop_up | 31-60 Days arrow_drop_up | 61-90 Days arrow_drop_up | 91 And Over arrow_drop_up | Total arrow_drop_up",
+    "ZZY Tot Vend A R1 | Multiple |  | $850.00 | $400.00 |  |  | $1,250.00",
+    "ZZY Tot Vend B R1 | Multiple |  |  | $700.00 |  | $250.00 | $950.00",
+    "Totals |  | $0.00 | $850.00 | $1,100.00 | $0.00 | $250.00 | $2,200.00"
+   ],
+   "totals": "Totals $0.00 $850.00 $1,100.00 $0.00 $250.00 $2,200.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715457-3-select-all.png"
+  },
+  {
+   "label": "4-91plus",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: 2 vendors keyboard_arrow_down cancel",
+    "hourglass_empty Past due: 91+ days keyboard_arrow_down cancel",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "Vendor arrow_drop_up | Location arrow_drop_up | Current arrow_drop_up | 1-30 Days arrow_drop_up | 31-60 Days arrow_drop_up | 61-90 Days arrow_drop_up | 91 And Over arrow_drop_up | Total arrow_drop_up",
+    "ZZY Tot Vend B R1 | Multiple |  |  | $700.00 |  | $250.00 | $950.00",
+    "Totals |  | $0.00 | $0.00 | $700.00 | $0.00 | $250.00 | $950.00"
+   ],
+   "totals": "Totals $0.00 $0.00 $700.00 $0.00 $250.00 $950.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715457-4-91plus.png"
+  },
+  {
+   "step": "PDF-5-pdf",
+   "r": {
+    "kind": "PDF",
+    "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715457-5-pdf-ap-aging-summary.pdf",
+    "name": "ap-aging-summary.pdf",
+    "bytes": 75576,
+    "notes": [
+     "check_circle Success Data exported successfully. Close"
+    ],
+    "toast": null,
+    "text": [
+     "A/P Aging Summary",
+     "Staging Foothills Group Inc",
+     "As of Nov 11, 2026",
+     "Locations: All locations",
+     "Past due: 91+ days",
+     "Vendors: ZZY Tot Vend A R1, ZZY Tot Vend B R1",
+     "Vendor  Location  Current  1-30 Days  31-60 Days  61-90 Days  91 And Over  Total",
+     "ZZY Tot Vend B R1  Multiple  $700.00  $250.00  $950.00",
+     "Totals  $0.00  $0.00  $700.00  $0.00  $250.00  $950.00",
+     "Software Powered by ShopView  Page 1 of 1"
+    ]
+   }
+  },
+  {
+   "step": "CSV-7-csv",
+   "r": {
+    "kind": "CSV",
+    "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715457-7-csv-ap-aging-summary.csv",
+    "name": "ap-aging-summary.csv",
+    "bytes": 300,
+    "notes": [
+     "check_circle Success Data exported successfully. Close",
+     "check_circle Success Data exported successfully. Close 2"
+    ],
+    "toast": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715457-7-csv-toast.png",
+    "raw": [
+     "﻿\"As of: Nov 11, 2026\"",
+     "\"Locations: All locations\"",
+     "\"Past due: 91+ days\"",
+     "\"Vendors: ZZY Tot Vend A R1, ZZY Tot Vend B R1\"",
+     "Vendor,Location,Current,\"1-30 Days\",\"31-60 Days\",\"61-90 Days\",\"91 And Over\",Total",
+     "\"ZZY Tot Vend B R1\",Multiple,,,700.00,,250.00,950.00",
+     "Totals,,0.00,0.00,700.00,0.00,250.00,950.00",
+     ""
+    ],
+    "csvN": 7
+   }
   }
+ ],
+ "selectAllMenu": "Select all\n1 selected\nStaging Heavy Duty - 9919\nStaging Lethbridge - 4310\nClear selection",
+ "pdfTotals": [
+  "Totals  $0.00  $0.00  $700.00  $0.00  $250.00  $950.00"
+ ],
+ "csvTotals": [
+  [
+   "Vendor",
+   "Location",
+   "Current",
+   "1-30 Days",
+   "31-60 Days",
+   "61-90 Days",
+   "91 And Over",
+   "Total"
+  ],
+  [
+   "Totals",
+   "",
+   "0.00",
+   "0.00",
+   "700.00",
+   "0.00",
+   "250.00",
+   "950.00"
+  ]
  ]
 }

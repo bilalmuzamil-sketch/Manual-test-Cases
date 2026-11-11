@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715457": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary, as of 11/11/2026; new vendors ZZY Tot Vend A/B/C R1: A = $1,000 bill at Heavy Duty 15 days past due, $400 at Lethbridge 45 days, $150 vendor credit at Heavy Duty; B = $700 Heavy Duty 45 days, $250 Lethbridge 100 days; C = $900 Heavy Duty 5 days.",
+    "Step 1: two rows remain, C is gone. A shows once with Location \"Multiple\" and Total $1,250.00; B Total $950.00; Totals row Total $2,200.00.",
+    "Step 2: Lethbridge unticked - A Total $850.00, B $700.00, Totals $1,550.00.",
+    "Step 3: Select all ticks every location again (back to $1,250.00 / $950.00 / $2,200.00).",
+    "Step 4: chip reads \"Past due: 91+ days\"; only vendor B is listed at its full balance: 31-60 Days $700.00, 91 And Over $250.00, Total $950.00; Totals $950.00.",
+    "Steps 5-6: the PDF downloads; its Totals row reads $950.00, the same as the screen.",
+    "Steps 7-8: the CSV downloads; its Totals row reads 950.00, the same as the screen."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715457-1-AB.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715457-2-no-lethbridge.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715457-3-select-all.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715457-4-91plus.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715457-PDF-5-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715457-CSV-7-csv.png"
+   ]
+  }
+ }
+}
