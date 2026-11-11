@@ -1,0 +1,28 @@
+{
+  "status": "HELD - prepared, not filed. Needs the QA lead's own yes for THIS ticket (Rules 62/113). A relayed approval through another agent is not taken as his consent.",
+  "project": "SV",
+  "issuetype": "Story Defect",
+  "summary": "Aging Reports – Open Customer or Vendor Loads Every Document at Once",
+  "parent": "SV-11531",
+  "parent_summary": "A/R and A/P Report Sorting - Story 1 - Reports open in QuickBooks name order",
+  "parent_status_live": "TESTING QA",
+  "parent_status_read_at_utc": "2026-11-11T10:55:55Z",
+  "parent_why": "S1-R8 is a Story 1 requirement (S1 = Story 1); the PRD links S1-R8 to Story 1 and both test cases carry refs SV-11531. Rule 112 gate: TESTING QA is an allowed status.",
+  "priority": "Medium",
+  "relates_to": ["SV-11531", "SV-11534"],
+  "relates_to_why": "SV-11531 = owning story (house rule: also link the owning story 'relates to'). SV-11534 (Story 4, TESTING QA, read 2026-11-11T10:55:55Z) owns the 100-at-a-time loading of Detail buckets (S4-R4), the same mechanism; optional second link.",
+  "labels": ["QA_Found"],
+  "labels_why": "Matches the label on the team's existing aging-report Story Defect SV-12539; drop if the QA lead prefers none.",
+  "test_case_links_rule_120": [
+    "https://shopview.testrail.io/index.php?/cases/view/1062570",
+    "https://shopview.testrail.io/index.php?/cases/view/1062571"
+  ],
+  "tests_in_run_557": {
+    "run": "https://shopview.testrail.io/index.php?/runs/view/557",
+    "C1062570": {"test_id": 4667037, "link": "https://shopview.testrail.io/index.php?/tests/view/4667037", "status_read_live": "Failed (5)"},
+    "C1062571": {"test_id": 4667038, "link": "https://shopview.testrail.io/index.php?/tests/view/4667038", "status_read_live": "Failed (5)"}
+  },
+  "tests_read_at_utc": "2026-11-11T10:55Z",
+  "build": "v26.45.2-6a8b89c",
+  "qa_site": "https://sv11315.qa.shopview.com"
+}

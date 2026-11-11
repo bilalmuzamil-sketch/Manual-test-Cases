@@ -1,0 +1,12 @@
+Inline pictures (attach by these names, then reference them in the wiki description; run size_pics.py after the description write - Rule 116).
+Both already exist, are annotated (red = the fault, numbered call-outs), landscape 1802x984, and are committed. No new capture, no composition needed:
+each picture sits under its own example (skill 06 "example-block shape"), and each shows both sides of its own comparison (100th row vs rows 101-105).
+
+PIC1-ar-collection.png  <- build/aging-reports/exec/pics/C1062570-fail.png
+   banner: "A/R Aging Collection, only ZZAUTOTEST OVER100 C (105 overdue invoices) ticked, group opened and scrolled to its 100th invoice"
+PIC2-ap-unpaid.png      <- build/aging-reports/exec/pics/C1062571-fail.png
+   banner: "A/P Unpaid Invoices, only ZZAUTOTEST OVER100 V (105 unpaid bills) ticked, group opened and scrolled to its 100th bill"
+
+Caveat: the call-out 1 on both pictures reads "all 105 were sent at once" - slightly technical. Acceptable; if the QA lead wants it plainer,
+re-annotate with annotate_v2.py from the raw captures in build/aging-reports/exec/s1f/ (02-C1062570-boundary.png, 04-C1062571-boundary.png).
+Source captures are 1x (1440x900), so Rule 116's 2x capture is NOT met; re-capture at deviceScaleFactor 2 only if he asks (no UI capture was allowed in this pass).
