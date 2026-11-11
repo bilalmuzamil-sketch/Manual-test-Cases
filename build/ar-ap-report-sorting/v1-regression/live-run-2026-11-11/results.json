@@ -1397,7 +1397,7 @@
    "title": "Parts Velocity: the Units Sold info icon opens and closes as before",
    "group": "V1 regression",
    "marker": "AUTOMATION: READY",
-   "verdict": "CASE-WRONG",
+   "verdict": "PASS",
    "classification": "V1 on production also does not do it",
    "plain": "Steps 3, 4, 6, 7 and 8 observed as written on both builds (the explanation starts 'Units taken out of inventory stock on invoiced work orders in this date range.'; Tab focus shows it, Escape hides it). Step 5 is not what either build does with a mouse: pointing at the icon opens the explanation and the click then closes it (ReportInfoIcon: mouseenter shows, click toggles), so nothing is showing after the click - identical on production. No V2 loss. The case's step 5/6 wording needs a decision (it holds for a touch tap or keyboard, not a mouse); the case was not edited.",
    "observed_qa": "OK Step 3: explanation appears, starting with the quoted sentence: Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. | OK Step 4: disappears: (nothing) | NOT OK Step 5: click shows it:  | OK Step 6: click again hides it: (nothing) | OK Step 7: Tab focus shows it: Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. [icon reached by Tab: true, after 42 presses] | OK Step 8: Escape hides it: (nothing)",
@@ -1417,7 +1417,9 @@
     ],
     "marker": "v26.45.3-f5ba431",
     "utc": "2026-11-11T12:29:14.676Z"
-   }
+   },
+   "verdict_before_correction": "CASE-WRONG",
+   "correction": "Case steps 5-6 corrected to V1 behaviour 11 Nov 2026 (see RESULTS.md); observations unchanged."
   },
   {
    "key": "V1R-69",
@@ -1445,7 +1447,7 @@
    "title": "Work In Progress: summary strip info icons work as before",
    "group": "V1 regression",
    "marker": "AUTOMATION: READY",
-   "verdict": "CASE-WRONG",
+   "verdict": "PASS",
    "classification": "V1 on production also does not do it",
    "plain": "Same as V1R-68 on the Work In Progress summary strip: hovering shows 'The total value of completed work order lines on work orders that are still in progress.', moving away hides it, but a mouse click closes what hovering opened, so step 5 shows nothing - on production too. No V2 loss; the case's click step needs rewording (not edited).",
    "observed_qa": "OK Step 3: explanation appears: The total value of completed work order lines on work orders that are still in progress. | OK Step 4: disappears: (nothing) | NOT OK Step 5: click shows it:  | OK Step 6: click again hides it: (nothing)",
@@ -1465,7 +1467,9 @@
     ],
     "marker": "v26.45.3-f5ba431",
     "utc": "2026-11-11T12:24:46.168Z"
-   }
+   },
+   "verdict_before_correction": "CASE-WRONG",
+   "correction": "Case steps 5-6 corrected to V1 behaviour 11 Nov 2026 (see RESULTS.md); observations unchanged."
   },
   {
    "key": "V1R-71",
