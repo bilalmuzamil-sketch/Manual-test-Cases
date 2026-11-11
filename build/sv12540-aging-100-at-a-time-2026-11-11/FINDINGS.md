@@ -31,3 +31,8 @@ Recommendation: SV-12540 can be closed (QA lead's call — not touched). TestRai
 
 ## Learning
 A missing "loading" row is not proof everything loaded. To test "show N then the next N as the user scrolls", count the rows in the page right after opening (before any scroll), then after each scroll to the end, on a group with at least 2×N+ documents.
+
+## Closed (QA lead: "Now close the ticket which should be closed", 11 Nov 2026)
+- Re-read live first: still Ready to Fix, only comment 80909.
+- Posted comment 80923 to Nemanja: the three measured counts (100→113; 100→105; 100→200→244), matches S1-R8, closing.
+- Transition "Close" (id 24) → **OBSOLETE**, resolution Done, read back 10:11 (UTC−5). Priority Medium, labels QA_Found unchanged.
