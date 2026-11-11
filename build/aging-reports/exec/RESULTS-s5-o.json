@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S5 (sv11315)"
+ },
+ "results": {
+  "C715407": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of 11/11/2026. Customer A = ZZAUTOTEST LOC MIX (invoice A at Staging Lethbridge - 4310, others at Staging Heavy Duty - 9919). Set up: customer A ticked, \"Past due: 1-30 days\", \"Amount\" clicked once (sorted), every group expanded, page scrolled down.",
+    "Step 1: opened the location switcher (account menu, top right, then the location button under \"Change Location:\"): it lists Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.",
+    "Step 2: switched to Staging Lethbridge - 4310: the report reloaded and stayed open with the same filters (As of 11/11/2026, ZZAUTOTEST LOC MIX, Past due 1-30 days, All locations) and the same rows; the sort is back on Date (the opening order; the Amount sort is gone); every group collapsed; page at the top.",
+    "Step 3: clicked invoice A's number: its finance page opened straight away (no \"Switch location?\" prompt), because Staging Lethbridge - 4310 is now the current location.",
+    "Afterwards the test user was switched back to Staging Heavy Duty - 9919."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715407-1-0-before.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715407-2-1b-switch-list.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715407-3-2-switched.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715407-4-3-opened.png"
+   ]
+  }
+ }
+}
