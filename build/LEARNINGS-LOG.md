@@ -457,3 +457,9 @@
 - **Rule 12 in practice:** for any "X shows" verdict read from the page, require the element's box (width/height > 0), opacity > 0.5, visibility not hidden, AND look at the picture taken at that moment. The Passed was withdrawn within minutes with a Retest result saying so; p63b re-measures every 100 ms with pictures.
 - The hover and keyboard tooltip passes (C715433-C715438) were checked against their pictures the same hour: the tooltip is visible in them.
 - #aging #tooltip #rule12 #touch → L0653
+
+## L0655 — 2026-11-11 — After a session worker restart, CHECK THE BRIDGE FIRST: the egress proxy port moves, the bridge does not
+- At ~14:20 UTC the agent worker restarted (the container kept running: chains, node jobs and /tmp all survived). `$HTTPS_PROXY` moved from `:38033` to `:33511`, but the running bridge (`build/atlassian-login/bridge.mjs`) still sent everything to `:38033`, so every page the test browsers loaded was "bridge error: TypeError: fetch failed" (s83 C715356/C715363/C715600 timed out on it; the production sign-in got 502).
+- **Check:** `curl -x http://127.0.0.1:$(cat /tmp/atlassian/bridge-port.txt) -k https://sv11315.qa.shopview.com/index.html` must answer 200; compare the `egress=` in `/tmp/atlassian/bridge.log` with `$HTTPS_PROXY`. **Fix:** playbook line 116 recipe (kill, `rm` the port file, `NODE_EXTRA_CA_CERTS` + `NODE_USE_ENV_PROXY=1`, `setsid nohup node …bridge.mjs`). Jobs already running keep the OLD port in their browser — stop and re-run them.
+- Production probes are now run as `node ./x.mjs` so the QA chains' wait (`node [a-z0-9_]+\.mjs`) does not hold up on them.
+- #bridge #proxy #restart #aging → L0654

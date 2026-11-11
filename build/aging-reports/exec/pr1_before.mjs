@@ -15,11 +15,11 @@ const B = await bootProdLogin('/reports', { viewport: { width: 1440, height: 900
 const shot = async (n) => { const f = `${OUT}${String(++k).padStart(2, '0')}-${n}.png`; await p.screenshot({ path: f }); return f; };
 const go = async (path) => { await p.goto(B.APP + path, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); };
 const chips = () => p.evaluate(() => [...document.querySelectorAll('main button')].map((b) => b.innerText.replace(/\s+/g, ' ').trim()).filter((t) => /:/.test(t) && t.length < 90).slice(0, 8));
-const left = async (label) => { await p.locator('aside, .q-drawer, nav').getByText(label, { exact: true }).first().click(); await p.waitForTimeout(4500); };
+const left = async (label) => { await p.getByText(label, { exact: true }).first().click(); await p.waitForTimeout(4500); };
 async function locUntickSecond() { await p.locator('main button', { hasText: /Location/ }).first().click(); await p.waitForTimeout(1500); const m = p.locator('.q-menu').last(); const items = await m.locator('.q-item').allInnerTexts(); const locs = items.map((t) => t.replace(/\s+/g, ' ').trim()).filter((t) => t && !/Select all|Clear selection|selected|search/i.test(t));
   const ticked = await m.locator('.q-item').evaluateAll((els) => els.map((e) => [e.innerText.replace(/\s+/g, ' ').trim(), e.querySelector('[aria-checked]')?.getAttribute('aria-checked')])); const target = ticked.filter(([t, c]) => c === 'true' && !/Select all|selected/i.test(t)).map(([t]) => t)[1] || locs[1];
   if (target) await m.locator('.q-item').filter({ hasText: target }).first().click(); await p.waitForTimeout(1000); await p.keyboard.press('Escape'); await p.waitForTimeout(3000); return { locs, ticked, unticked: target }; }
-try { await go('/reports'); o.reportsMenu = (await p.locator('aside, .q-drawer, nav').first().innerText()).replace(/\s+/g, ' ').slice(0, 900); await shot('reports-menu');
+try { await go('/reports'); o.reportsMenu = (await p.evaluate(() => document.body.innerText)).replace(/\s+/g, ' ').slice(0, 900); /* 11 Nov: production's Reports page has no aside/.q-drawer/nav around its left list */ await shot('reports-menu');
   o.header = (await p.locator('header, .q-header').innerText()).replace(/\s+/g, ' ').slice(-80);
   for (const [id, label] of [['C715583', 'Sales By Customer'], ['C715619', 'Inventory Value'], ['C715620', 'Work In Progress']]) { const r = (o[id] = {});
     try { await left(label); r.url0 = p.url(); r.chips0 = await chips(); r.unt = await locUntickSecond(); r.chips1 = await chips(); r.url1 = p.url(); await shot(id + '-1-unticked');
