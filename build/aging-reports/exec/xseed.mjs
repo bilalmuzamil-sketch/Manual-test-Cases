@@ -7,8 +7,8 @@ export const dayAt = (daysAgo) => new Date(Date.UTC(2026, 10, 11 - daysAgo, 18))
 export function mkX(a, log) {
   const ok = (t, r) => { if (r.st >= 300) throw new Error(t + ' ' + r.st + ' ' + JSON.stringify(r.j).slice(0, 300)); return r.j; };
   async function setTerm(c, term) { ok('term', await a.post('/api/customers/change', { name: c.name, state_or_province: null, country_code: 'CA', require_po: false, credit_term: term, credit_limit: 0, shop_supplies_charge: 0, min_shop_supplies_charge: null, max_shop_supplies_charge: null, pin_notes: false, notes: null, id: c.cid, tax: EXEMPT })); c.term = term; }
-  async function customer(name, term = 'COD') { await S.loc(a); const cid = ok('customer', await a.post('/api/customers/create', { name })).data.company_id; const c = { name, cid, docs: [] }; await setTerm(c, term);
-    c.contact = ok('contact', await a.post('/api/contacts/create', { company_id: cid, first_name: 'ZZ', last_name: 'X' })).data.contact_id;
+  async function customer(name, term = 'COD') { name = name + (process.env.SFX || ''); await S.loc(a); const cid = ok('customer', await a.post('/api/customers/create', { name })).data.company_id; const c = { name, cid, docs: [] }; await setTerm(c, term);
+    c.contact = ok('contact', await a.post('/api/contacts/create', { company_id: cid, first_name: 'ZZ', last_name: 'Xx' })).data.contact_id;
     const vj = ok('vehicle', await a.post('/api/vehicles/create', { company_id: cid, customer_id: c.contact, unit: 'ZZ' + (Date.now() % 1e5), vin: 'ZZVIN' + (Date.now() % 1e9) })); c.vehicle = vj.data.vehicle_id || vj.data.id; log && log('customer ' + name + ' ' + term); return c; }
   async function invoice(c, amount, daysAgo, wp = S.WP.heavy, tag = '') { if (wp !== S.WP.heavy) await S.loc(a, wp);
     const id = ok('wo', await a.post('/api/work-orders/create', { company_id: c.cid, vehicle_id: c.vehicle, workplace_id: wp, start_date: dayAt(daysAgo).slice(0, 10), is_vehicle_here: true, mileage: 1000 })).data.work_order_id;

@@ -1,0 +1,39 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S4 pinned group rows (sv11315), re-run with the fixed detector"
+ },
+ "results": {
+  "C715362": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of 11/11/2026, 1440 px window; bucket A = 31-60 days past due (160 lines), bucket B = 1-30 days past due (101 lines), both open.",
+    "Step 1: scrolling slowly, the 31-60 days row stays just under the column headings with its down chevron, name and count, and no amounts.",
+    "Steps 2-3: the 1-30 days row pushes it off and stays pinned; only one group row is pinned at a time.",
+    "Step 4: scrolling back up, the 31-60 days row comes back into the pinned place.",
+    "Steps 5-6: at speed both ways, the pinned row is replaced cleanly; the column headings and the Totals row are never covered and no two group rows overlap."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715362-1-bucket-A-pinned.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715362-2-bucket-B-pinned.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715362-4-back-to-A.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715362-5-fast.png"
+   ]
+  },
+  "C715365": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of 11/11/2026, 1440 px window; Vendor filter = ZZAUTOTEST OVER100 V (105 bills) and ZZAUTOTEST OVER100 W (25 bills), both open.",
+    "Step 1: scrolling slowly, the OVER100 V row stays just under the column headings with its down chevron, name and count, and no amounts.",
+    "Steps 2-3: the OVER100 W row slides up, pushes the V row up under the headings and takes the pinned place; the two never overlap.",
+    "Step 4: scrolling back up, the V row returns to the pinned place.",
+    "Steps 5-6: at speed both ways, each pinned row is replaced cleanly; the column headings and the Totals row are never covered."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715365-1-vendor-A-pinned.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715365-2-vendor-B-pushes-A.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715365-4-back-to-A.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715365-5-fast.png"
+   ]
+  }
+ }
+}
