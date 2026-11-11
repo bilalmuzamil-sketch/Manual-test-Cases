@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s93 C715343"
+ },
+ "results": {
+  "C715343": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of today, Location filter cleared first (no location ticked).",
+    "Step 1: ticking location C (\"ZZAUTOTEST V1R-87 Location C\") - the chip reads \"Location: ZZAUTOTEST V1R-...\" (the long name shortened, as the other reports' chips do).",
+    "Step 2: ticking location A (\"Staging Heavy Duty - 9919\") as well - the chip reads \"Location: 2 locations\".",
+    "Steps 3-4: the PDF downloads; under its title it reads \"Locations: Staging Heavy Duty - 9919, ZZAUTOTEST V1R-87 Location C\" - the Location menu's A to Z order, not the order ticked. Staging Lethbridge - 4310 is not named.",
+    "Steps 5-6: the CSV downloads; its second line reads the same \"Locations: Staging Heavy Duty - 9919, ZZAUTOTEST V1R-87 Location C\".",
+    "This test carried a \"what you should see today\" note for a known problem (locations listed in the order ticked). That problem is gone - the fix has shipped, so the note can come off."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715343-C715343-1-C-ticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715343-C715343-2-A-ticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715343-C715343-pdf-01.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715343-C715343-csv-top.png"
+   ]
+  }
+ }
+}
