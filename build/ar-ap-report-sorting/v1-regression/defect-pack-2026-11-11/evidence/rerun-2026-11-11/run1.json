@@ -1,0 +1,86 @@
+{
+ "V1R-07": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "Step 4: 2026-12-31 can be picked",
+    "ok": false,
+    "saw": "Next month is disabled (cannot reach 2026-12-31)"
+   },
+   {
+    "what": "Step 5: chip shows that future date",
+    "ok": false,
+    "saw": "As of: 11/11/2026"
+   }
+  ],
+  "observed": "NOT OK Step 4: 2026-12-31 can be picked: Next month is disabled (cannot reach 2026-12-31) | NOT OK Step 5: chip shows that future date: As of: 11/11/2026",
+  "expect_fail_outcome": "matches the stated symptom (dates after today cannot be picked; chip stays on today)",
+  "evidence": [
+   "V1R-07 - step 4 picking the last day of next month.png",
+   "V1R-07 - step 5 date chip.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T13:04:04.003Z",
+  "utc_end": "2026-11-11T13:04:12.901Z"
+ },
+ "V1R-08": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "Step 5: chip shows 12/31/2026",
+    "ok": false,
+    "saw": "As of: 11/11/2026 (address now https://sv11315.qa.shopview.com/reports/ap-aging-summary)"
+   }
+  ],
+  "observed": "NOT OK Step 5: chip shows 12/31/2026: As of: 11/11/2026 (address now https://sv11315.qa.shopview.com/reports/ap-aging-summary)",
+  "expect_fail_outcome": "matches the stated symptom (opens on today)",
+  "evidence": [
+   "V1R-08 - step 5 date chip after opening the link.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T13:04:13.182Z",
+  "utc_end": "2026-11-11T13:04:26.266Z"
+ },
+ "V1R-35": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "Step 3: bucket shows (0)",
+    "ok": true,
+    "saw": "keyboard_arrow_right 61-90 days past due (0) Total $0.00 $0.00"
+   },
+   {
+    "what": "Step 7: PDF prints the empty bucket heading and \"Total for 61-90 days past due\" with $0.00",
+    "ok": false,
+    "saw": "no \"61-90 days past due\" anywhere in the PDF; buckets printed: 31-60 days past due"
+   }
+  ],
+  "observed": "OK Step 3: bucket shows (0): keyboard_arrow_right 61-90 days past due (0) Total $0.00 $0.00 | NOT OK Step 7: PDF prints the empty bucket heading and \"Total for 61-90 days past due\" with $0.00: no \"61-90 days past due\" anywhere in the PDF; buckets printed: 31-60 days past due",
+  "expect_fail_outcome": "matches the stated symptom (only buckets holding a document are printed)",
+  "note": "Narrowed with the Customer chip to ZZAUTOTEST AR R13 Payment After, whose only open document sits in 31-60, so four buckets are empty.",
+  "evidence": [
+   "V1R-35 - step 3 empty bucket count.png",
+   "V1R-35 - PDF text.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T13:04:26.549Z",
+  "utc_end": "2026-11-11T13:04:39.132Z"
+ },
+ "V1R-36": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "Step 7: only customer X, with its lines, \"Total for\" X and a Totals row",
+    "ok": false,
+    "saw": "customer X present: true; Z present: false; other ZZAUTOTEST customers: none; lines: 11"
+   }
+  ],
+  "observed": "NOT OK Step 7: only customer X, with its lines, \"Total for\" X and a Totals row: customer X present: true; Z present: false; other ZZAUTOTEST customers: none; lines: 11",
+  "evidence": [
+   "V1R-36 - PDF text.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T13:04:39.393Z",
+  "utc_end": "2026-11-11T13:04:53.520Z"
+ }
+}
