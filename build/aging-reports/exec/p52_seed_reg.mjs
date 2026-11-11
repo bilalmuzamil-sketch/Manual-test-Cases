@@ -21,6 +21,8 @@ const SETS = {
   H1: async () => { const c = await C('Dated D', 'COD'); await X.invoice(c, 77, 20, HD, 'inv-D'); await X.credit(c, 7, 19, HD, 'cm-D+1'); return [c]; }, // C1078984: D = 20 days ago
   H3: async () => { const c = await C('Paid Later', 'COD'); const d = await X.invoice(c, 100, 20, HD, 'inv-D'); await X.pay(c, d, 40, HD, day(15)); return [c]; }, // C1078986: payment D+5
   H4: async () => { const c = await C('Paid In Full', 'COD'); const d = await X.invoice(c, 90, 20, HD, 'inv'); await X.pay(c, d, 90, HD, day(10)); return [c]; }, // C1078987: paid day P = 10 days ago
+  PA: async () => { const c = await C('Credits Today', 'COD'); await X.credit(c, 8, 0, HD, 'cm-today'); await X.credit(c, 6, 1, HD, 'cm-yesterday'); await X.invoice(c, 55, 12, HD, 'past-due-12'); return [c]; }, // C1095430, C1095442
+  PB: async () => { const v = await V.vendor('ZZRV Credits Today', 'COD'); await V.credit(v, 9, 0, HD, 'vc-today'); await V.credit(v, 4, 1, HD, 'vc-yesterday'); return [v]; }, // C1095431
   VA: async () => { const v = await V.vendor('ZZRV Credit Twelve', 'COD'); await V.credit(v, 12, 70, HD, 'vc-70'); return [v]; },        // C1078997: credit day C = 70 days ago
   VB: async () => { const v = await V.vendor('ZZRV Net Mix', 'Net 30'); await V.bill(v, 300, 70, HD, '40-past'); await V.bill(v, 90, 5, HD, 'not-due'); await V.credit(v, 20, 35, HD, 'vc-35'); return [v]; }, // C1079025
   VC: async () => { const v = await V.vendor('ZZRV Due Nine', 'Net 30'); await V.bill(v, 99, 21, HD, 'due-in-9'); return [v]; },          // C1079030
