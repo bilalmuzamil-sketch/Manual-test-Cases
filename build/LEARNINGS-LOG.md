@@ -425,3 +425,7 @@
 ## L0647 — 2026-11-11 — Editing a running chain script: insert at least TWO lines past the job now running
 - bash reads a script file ahead of the command it is running. A line inserted directly after the running job's line (p56b3 before `run s5i`, while s5h ran) was SKIPPED; an `env P56B_OUT=` edit to the next line was also ignored (p56b2 wrote into p56b/). Lines inserted two or more jobs ahead (p56, p56b, p56c, p50b) ran.
 - Rule: never edit lines at or before the next job; insert two or more jobs ahead, then confirm in queue.log that the inserted job actually started. If it was skipped, insert it again further down.
+
+## L0648 — 2026-11-11 — A seeded bill stamped 06:00Z in winter shows the previous day but sorts and ages by the UTC day
+- Bill ZZB1519526 (vendor ZZAUTOTEST SEEDTEST V, an early seedlib test before the T18:00Z fix) shows Date/Due "Nov 10, 2026" on A/P Detail but sits in "Current" with Past Due 0 and sorts after the Nov 11 lines when sorting by Date. Its stored time is 06:00Z = 23:00 the previous evening in Edmonton (MST, UTC-7): the screen shows the local day, the bucket/sort use the UTC day.
+- Bills entered through the screen are stamped at local midnight (playbook: invoiceDate "…T06:00:00.000Z" in summer = MDT midnight), so their UTC day equals the local day — this does not reach real users. Treat such a row as our own data artefact; seed with T18:00Z (seedlib already does). It explained the single "order break" in C715314 step 3.

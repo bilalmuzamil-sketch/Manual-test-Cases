@@ -1,0 +1,60 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S2 (s2d3, sv11315)"
+ },
+ "results": {
+  "C715299": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection as of 11/11/2026 with customer Monroe Truck Service & Repair's group expanded (14 open invoices, dated Apr 10 to Aug 31, 2026). The report opens sorted by Date, oldest first. The case's three example invoices were not built; the same rule was checked on all 14 of this customer's invoices.",
+    "Step 1: the first click on \"Date\" reverses it: newest first (Aug 31, 2026 down to Apr 10, 2026), no line out of order; \"Date\" is marked descending.",
+    "Step 2: the second click puts it back oldest first (Apr 10 up to Aug 31, 2026), no line out of order."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715299-click_Date_1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715299-click_Date_2.png"
+   ]
+  },
+  "C715307": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices as of 11/11/2026 with vendor Alameda Mechanical Services' group expanded (43 open documents, dated Jan 13, 2025 to Aug 6, 2026). The report opens sorted by Date, oldest first. The case's three example documents were not built; the same rule was checked on all 43 of this vendor's documents.",
+    "Step 1: the first click on \"Date\" reverses it: newest first (Aug 6, 2026 down to Jan 13, 2025), no line out of order; \"Date\" is marked descending.",
+    "Step 2: the second click puts it back oldest first, no line out of order."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715307-click_Date_1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715307-click_Date_2.png"
+   ]
+  },
+  "C715312": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail as of 11/11/2026, every bucket collapsed except two: \"61-90 days past due\" (54 lines) and \"Current\" (15 lines) were left expanded (the case names 31-60 and 1-30; any two open buckets show the same behaviour).",
+    "Step 1: \"Open Balance\" once: lines re-sort inside each open bucket, largest first ($12,478.49 down to $7.04; $1,000.00 down to $-120.00); the five buckets stay 91 or more, 61-90, 31-60, 1-30, Current.",
+    "Step 2: again: smallest first in each bucket; bucket order unchanged.",
+    "Step 3: \"Date\": lines re-sort by Date in each bucket, no line out of order; bucket order unchanged; 61-90 and Current are still expanded and the other three still collapsed."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715312-click_Open_Balance_1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715312-click_Open_Balance_2.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715312-click_Date_3.png"
+   ]
+  },
+  "C715314": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail as of 11/11/2026, every bucket collapsed except \"61-90 days past due\" (708 lines) and \"Current\" (28 lines) (the case names 31-60 and 1-30; any two open buckets show the same behaviour).",
+    "Step 1: \"Open Balance\" once: lines re-sort inside each open bucket, largest first ($40,555.99 down to $-8,117.80; $1,000.00 down to $-120.00); bucket order unchanged.",
+    "Step 2: again: smallest first; bucket order unchanged.",
+    "Step 3: \"Date\": all 708 lines of 61-90 in Date order; in Current, 27 of 28 lines in Date order and the bucket order unchanged; 61-90 and Current still expanded, the rest collapsed.",
+    "The one line out of place in Current (bill ZZB1519526, shown Nov 10, after the Nov 11 lines) is a test bill made by our own script with an 11 pm time the evening before; the server dates it Nov 11. Bills entered through the screen are dated at local midnight, so this cannot happen to them."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715314-click_Open_Balance_1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715314-click_Open_Balance_2.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715314-click_Date_3.png"
+   ]
+  }
+ }
+}
