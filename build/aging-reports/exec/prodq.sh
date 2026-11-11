@@ -4,3 +4,4 @@
 cd "$(dirname "$0")"
 timeout 600 node ./pr2_credit_before.mjs > prod/pr2.log 2>&1; echo "exit $?" >> prod/pr2.log
 timeout 900 node ./pr1_before.mjs > prod/pr1.log 2>&1; echo "exit $?" >> prod/pr1.log
+timeout 600 node ./pr2b_find.mjs > prod/pr2b.log 2>&1; echo "exit $?" >> prod/pr2b.log

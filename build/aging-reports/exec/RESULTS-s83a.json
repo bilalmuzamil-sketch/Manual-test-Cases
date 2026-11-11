@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s83"
+ },
+ "results": {
+  "C715354": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail as of 11/11/2026; it opens with every bucket collapsed and \"Customer Full Name\" marked as the sorted column.",
+    "Step 1: clicking the chevron on \"91 or more days past due (70)\" opens that bucket and its chevron turns from right to down.",
+    "Step 2: the top-left chevron button points down and a tooltip above it reads \"Collapse all\".",
+    "Step 3: clicking it collapses every bucket (all five chevrons point right); the sort mark is still on \"Customer Full Name\" - the column under the button was not sorted.",
+    "Step 4: the button now points right and the tooltip reads \"Expand all\".",
+    "Step 5: clicking it opens every bucket (all five chevrons point down); \"Customer Full Name\" is still the sorted column."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715354-1-one-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715354-2-collapse-all.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715354-3-collapsed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715354-4-expand-all.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715354-5-expanded.png"
+   ]
+  }
+ }
+}
