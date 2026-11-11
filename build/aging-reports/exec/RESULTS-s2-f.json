@@ -1,0 +1,33 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S2 filters keep/fall back sort (sv11315)"
+ },
+ "results": {
+  "C715322": {
+   "verdict": "Passed",
+   "observed": [
+    "Customer used: Desert Edge Truck Service & Repair (overdue invoices 1-30 days and many 31-60 days past due, with different open balances), group open.",
+    "Open Balance clicked once: the rows in its group sort largest first; Open Balance carries the sort arrow.",
+    "Ticked \"31-60 days\" in Past due: the report reloaded with only those invoices; every group closed.",
+    "Opened Desert Edge again: its 26 rows are still largest Open Balance first and Open Balance is still marked as sorted."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715322-1-ob.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715322-2-pastdue.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715322-3-open.png"
+   ]
+  },
+  "C1062577": {
+   "verdict": "Passed",
+   "observed": [
+    "Customers used: Apollo Beach Truck & Equipment Repair (only at Staging Lethbridge - 4310), Bancescu & Sons Truck & Trailer Repair and Colesville Diesel Repair (only at Staging Heavy Duty - 9919) - names in that A to Z order.",
+    "Location clicked: Location carries the sort arrow; Bancescu and Colesville (Heavy Duty) are above Apollo Beach (Lethbridge).",
+    "Unticked Staging Lethbridge - 4310 in Location: the Location column is gone, Apollo Beach is no longer listed, and the Customer column is marked as sorted again - back in name order (Bancescu, then Colesville)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062577-1-location.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062577-2-unticked.png"
+   ]
+  }
+ }
+}
