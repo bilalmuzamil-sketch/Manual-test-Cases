@@ -18,5 +18,5 @@ log "start p71"; timeout 1800 node p71_roles.mjs > p71.log 2>&1; log "end p71 rc
 log "start p63c"; timeout 600 node p63c_hold.mjs > p63c.log 2>&1; log "end p63c rc=$?"
 log "start p66c"; timeout 600 node p66c_edit.mjs > p66c.log 2>&1; log "end p66c rc=$?"
 log "start p65b2"; timeout 600 node p65b_wo_link.mjs > p65b2.log 2>&1; log "end p65b2 rc=$?"
-log "start s86b"; ONLY=C715451,C715453,C715613,C715615 timeout 2400 node s86_paging.mjs > s86b.log 2>&1; log "end s86b rc=$?"
+log "start s86b"; ONLY=C715451,C715453,C715454,C715455,C715613,C715615 timeout 2400 node s86_paging.mjs > s86b.log 2>&1; log "end s86b rc=$?"
 log "queue2 done"
