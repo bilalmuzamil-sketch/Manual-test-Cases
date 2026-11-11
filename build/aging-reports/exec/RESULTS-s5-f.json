@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S5 (sv11315)"
+ },
+ "results": {
+  "C715403": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, as of 11/11/2026. Vendor A = Alameda Mechanical Services; vendor B = East Shoreham Truck & Equipment Repair (longer than the chip shows).",
+    "Step 1: the Vendor menu opens with a search box (\"Search vendors\"), an \"All vendors\" row, the line \"All vendors are included. Pick one or more to narrow.\" and the vendor list.",
+    "Steps 2-3: typed \"East Shoreham\": vendor B shows; ticked it: the chip reads \"Vendor: East Shoreham T...\" (shortened with \"...\").",
+    "Steps 4-5: searched for and ticked vendor A: the chip reads \"Vendor: 2 vendors\".",
+    "Step 6: every bucket expanded: only the two vendors' rows remain (Vendor Name column: Alameda Mechanical Services, East Shoreham Truck & Equipment Repair).",
+    "Step 7: unticked both: no vendor ticked; the chip reads \"Vendor: All vendors\" in the grey resting style."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715403-1-1-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715403-2-3-one.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715403-3-6-two.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715403-4-7-none.png"
+   ]
+  }
+ }
+}
