@@ -1,4 +1,5 @@
 #!/bin/bash
+# ON HOLD (QA lead 11 Nov ~11:10 UTC): do not test the Regression Tests folder (C1078974-C1079045) or the 21 planned-change tests (C1095429-C1095449) until he says so. Not running.
 # chain2.sh — 11 Nov 2026: jobs written after chain.sh started (bash reads a running script as it goes, so it is never edited in place).
 # Waits for chain.sh to finish, then the same sign-in check before each job.
 cd "$(dirname "$0")"; log() { echo "$(date -u +%H:%M:%S) $*" >> queue.log; }

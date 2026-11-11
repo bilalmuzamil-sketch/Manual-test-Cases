@@ -14,9 +14,6 @@ run s9c timeout 3000 node s9c_ap.mjs > s9c.log 2>&1
 run s9b2 env ONLY=C1062580,C1062581,C1062587 timeout 900 node s9b_ar.mjs > s9b2.log 2>&1
 run p48b timeout 400 node p48b_pdf2000_msg.mjs > p48b.log 2>&1
 run p50 timeout 600 node p50_overpay.mjs > p50.log 2>&1
-run r1 timeout 1500 node r1_reg.mjs > r1.log 2>&1
-run p52 env SFX=" R1" timeout 2400 node p52_seed_reg.mjs > p52.log 2>&1
-run r2 timeout 3000 node r2_reg.mjs > r2.log 2>&1
 run d1 timeout 2400 node d1_design.mjs > d1.log 2>&1
 run s4f env ONLY=C1062582,C1062583 timeout 900 node s4_run.mjs > s4f.log 2>&1
 run s5h env ONLY=C1062566 timeout 600 node s5_run.mjs > s5h.log 2>&1
