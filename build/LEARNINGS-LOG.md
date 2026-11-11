@@ -526,3 +526,9 @@
 - **The site has THREE locations** (A, B and another session's C), so design tests written for "two locations" ("2 selected", two menu rows) cannot match literally; untick C where the step allows (L0652), otherwise put it to the QA lead rather than editing anyone's data.
 - **Before-release ("as today") checks:** production is the "before" side (behaviour only); "evening at the location" tests must actually run after 00:00 UTC (s94 refuses outside 00:00–06:59 UTC; scheduled check-in 00:40 UTC).
 - #aging #edge-data #positive-control → L0661, L0664, L0652
+
+## L0666 — 2026-11-11 — sv11315 aging: Location menu order on reopen, catching a loading bar, and the empty-state twin
+- **The Location menu re-orders when it is REOPENED:** after unticking Lethbridge and reopening, it read "Staging Heavy Duty - 9919, ZZAUTOTEST V1R-87 Location C, Staging Lethbridge - 4310" (ticked first, unticked last); a later reopen with all ticked was A-Z again (s84 C715389 m2c/m4). C715549 asks that rows NOT move while the menu stays OPEN - judge it on the open menu only, and say which state a menu text came from.
+- **Sales By Customer's table loading bar is never seen at normal speed** (s84b sampled 30 × 100 ms: only the page-top `q-loading-bar`). To compare loading bars, hold every `/reporting/` reply ~3 s with `page.route` + delayed `continue()` (never abort, L0646) and sample — `exec/p74_loadbar.mjs`.
+- **The aging empty state is the Sales By Customer empty state to the pixel** (magnifier 24 px rgb(105,117,134) at 832,293; title 17 px/600; helper 14 px; "Clear all filters" 14 px/500 at the same boxes) — use Product Type = Services-only ("ptnone") on Sales By Customer as the control (Location: No locations does not empty it, L0658).
+- #aging #design #location-menu #loading → L0658, L0665
