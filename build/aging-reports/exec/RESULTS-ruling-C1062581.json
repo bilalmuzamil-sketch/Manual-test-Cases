@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, C1062581 passed on the QA lead's suite-only ruling (developer handoff on SV-11533)"
+ },
+ "results": {
+  "C1062581": {
+   "verdict": "Passed",
+   "observed": [
+    "QA lead ruling, 11 Nov 2026: for this test suite only, follow the developer's handoff on SV-11533 (comment 80619, corrected 11 Nov): the aging PDFs print dates like the screen, \"Nov 4, 2026\".",
+    "A/R Aging Detail as of 11/04/2026, customer ZZX PDF Date S9, invoice S11315-17866 dated Nov 4, 2026, due Dec 4, 2026.",
+    "Steps 1-2: the report reloads for 11/04/2026; on screen the invoice's Date reads \"Nov 4, 2026\".",
+    "Steps 3-4: the PDF downloads and prints the invoice's Date \"Nov 4, 2026\" and Due Date \"Dec 4, 2026\" - the same form as the screen, as the developer's handoff states."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062581-4-aging-pdf-row.png"
+   ]
+  }
+ }
+}
