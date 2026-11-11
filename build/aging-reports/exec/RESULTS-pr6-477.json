@@ -1,0 +1,26 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, pr6e + p65b"
+ },
+ "results": {
+  "C715477": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 2: the switch-location prompt this step expects does not appear for an address-bar link before the release either - the QA lead decides what this test should expect.",
+   "bold_steps": [
+    2
+   ],
+   "source": "Test case step 2: \"The existing switch-location prompt asks to switch to location B, as before the release.\"",
+   "observed": [
+    "Before the release (production v26.45.3-f5ba431): a work order opened at Trucks Hill 2, its address copied from the address bar (\".../workorders/<id>/lines\"), then pasted while at SANKAN: no prompt; two messages - \"WorkOrder not found. Please try to resolve this.\" and \"Request failed with status code 400 - Error fetching work order\"; the page shows Work Orders.",
+    "On the new build: a work order opened at Staging Lethbridge - 4310, its address copied from the address bar, pasted while at Staging Heavy Duty - 9919: the same - no prompt, the same two messages, Work Orders.",
+    "So the new build behaves exactly as before the release; it is not a new fault (no ticket).",
+    "The switch prompt the step expects shows on the new build only when the address carries the work order's location (\".../workorders/<id>?locationId=<location>\", the form the reports' own links use) - recorded on the switch-dialog design test."
+   ],
+   "todo": "What needs to be done: nothing for the tester now - the QA lead is asked whether this test should use the report link form (which shows the prompt) or expect the \"WorkOrder not found\" message that production shows today.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715477-prod-155-C715477-prod-2-pasted.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715477-p65b-04-A-copied-2-pasted.png"
+   ]
+  }
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, q4 + pr1 + pr8"
+ },
+ "results": {
+  "C715584": {
+   "verdict": "Passed",
+   "observed": [
+    "Before the release (production v26.45.3-f5ba431), signed in with the current location remembered by the browser (as the QA site's sign-in leaves it): Sales By Customer opens on the current location; \"Clear selection\" -> \"Location: No locations\", address unchanged; \"Select all\" -> \"Location: All locations\" and the address lists every location (\".../reports/sales-by-customer?locationIds=\u2026\" once per location, 4 here); the Customer search keeps the cursor while typing; at 900 px the filter row becomes one scrolling row with an arrow.",
+    "Step 1: \"Clear selection\" - no location ticked; the chip reads \"Location: No locations\"; the address is unchanged (\".../reports/sales-by-customer\").",
+    "Step 2: \"Select all\" - all three locations ticked; the chip reads \"Location: All locations\"; the address lists every location (\".../reports/sales-by-customer?locationIds=\u2026\" three times, one per location) - the same form as before the release.",
+    "Step 3: the Customer menu opens with its search box (\"Search customer\").",
+    "Step 4: typing \"D\", \"e\", \"s\" narrows the list at each letter: 26 customers after \"D\", 2 after \"De\", 1 after \"Des\" (\"ZZAUTOTEST AR R47 Oldest First\" - the search matches the letters anywhere in the name).",
+    "Step 5: the cursor stays in the search box all along and every letter appears (\"Des\"), as before the release.",
+    "Step 6: at 900 px the filter row shows as one scrolling row (Date, Product Type, Customer, then an arrow), the same as before the release."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715584-prod-13-C715584-2-select-all.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715584-q4-C715584-1-cleared.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715584-q4-C715584-2-select-all.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715584-q4-C715584-4-typing.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715584-prod-15-C715584-6-900px.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715584-q4-C715584-5-900px.png"
+   ]
+  }
+ }
+}
