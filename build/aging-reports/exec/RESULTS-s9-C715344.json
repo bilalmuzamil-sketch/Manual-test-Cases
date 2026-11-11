@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715344": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of 11/11/2026; new customer ZZX CSV Sum A R3 with $1,250.50 at 15 days past due and $99.00 at 100 days past due, nothing else.",
+    "Step 1: Download (CSV) - the file downloads with the Success message.",
+    "Step 2: opened as plain text, it starts with \"As of: Nov 11, 2026\" and \"Locations: All locations\", then the heading row Customer, Location, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total - letter for letter the screen's headings. Customer A's one row: 1-30 Days 1250.50, 91 And Over 99.00, Current/31-60/61-90 blank (not 0), Total 1349.50 - no $ sign, no thousands comma, two decimals. Exactly one Totals row at the bottom; every other row is one customer (no group or subtotal rows).",
+    "Step 3: Download (PDF) - the PDF downloads.",
+    "Step 4: the PDF heading reads \"91 And Over\" on one line."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715344-0-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715344-2-csv-text.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715344-CSV-1-csv.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715344-PDF-3-pdf.png"
+   ]
+  }
+ }
+}
