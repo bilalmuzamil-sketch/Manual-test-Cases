@@ -1,0 +1,44 @@
+C715394 A/P Summary: a link naming several locations or every location
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the organization has open A/P documents at three locations, location A, location B and location C.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).Setup
+- Make location C: Click the location name and your initials at the top right of the top bar, then Settings, then Locations in the left menu, then New Location. Type a Name, fill the boxes the window marks as required, then click Save & Close. To make documents there, switch to it: click the location name and your initials at the top right of the top bar, then Change Location, then the new location.
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make vendor A: Click Parts in the top bar, then Vendors in the left menu, then New Vendor. Type a new Name for vendor A, pick Credit Terms "Net 30" and Taxes "Exempt (0%)", then click Save & Close.
+- Make bill 1: Click Parts in the top bar, then Purchase Orders in the left menu, then New PO. Pick vendor A in Vendor. In Part Number type a new part number and click "Add new special order part: …"; type a Description, 1 in Quantity and 100.00 in Cost; click Add, then Save & Close. In the Purchase Orders list click Receive on that order (Vendor column: vendor A); type a Vendor Invoice # (for example bill 1), type today's date in Invoice Date, type 0 in Tax, then click Receive Parts (1).
+- Make bill 2: While switched to location B (see the Locations to use item): Same way as bill 1, with vendor A in Vendor: Cost 200.00; type today's date in Invoice Date.
+- Make bill 3: While switched to location C (see the Make location C item): Same way as bill 1, with vendor A in Vendor: Cost 300.00; type today's date in Invoice Date.
+STEPS: - In the Location menu, untick location C.
+- In the address bar, replace the two "locationIds=" entries with one: "locationIds=" followed by the two codes separated by a comma.
+- Press Enter.
+- In the Location menu, click "Select all".
+- Untick location A.
+- Untick location B.
+- In the address bar, replace location C's code with the three codes separated by commas: location A's and location B's (noted in step 1), then location C's.
+- Press Enter.
+EXP: Expected Result
+Step 1:
+- The report narrows to location A and location B.
+- The page address carries the two ticked locations as two "locationIds=" entries, each followed by a long code (the location's code, not its name).
+- Note the two codes.Step 2:
+- The address bar shows one "locationIds=" entry with the two codes separated by a comma.Step 3:
+- The link listing locations separated by commas opens the report with those two ticked ("Location: 2 locations").Step 4:
+- Every location is ticked and the address no longer lists locations.Step 5:
+- Location A is unticked.Step 6:
+- Only location C is ticked.
+- The address holds one "locationIds=" entry: location C's code.Step 7:
+- The address bar shows the three codes separated by commas.Step 8:
+- A link naming every location opens as "Location: All locations".
+The tester edits only the location part of the page address, in the same tab; pressing Enter opens the edited address as a link.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location)
+- S5-R10: “The ticked locations are kept in the page address while fewer than all are ticked, so browser Back, a reload and a shared link restore them; a link listing several locations separated by commas is read as those locations. "No locations" is not kept in the address: a reload or shared link opens on All locations, as on Sales By Customer. A link naming every location reads as All locations.”From: Tech plan "A/R and A/P Report Sorting, Export and Location Filter — Technical Implementation Plan" (2026-10-21, uploaded 22 Oct 2026), read 22 Oct 2026
+- Tech plan §3 D30: “URL keys asOfDate, customerIds / vendorIds, pastDue, locationIds (repeated keys written, comma lists also read); legacy customerId / vendorId read once as aliases.”Partly checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026; not yet seen on that build: saving a third location and switching to it.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 4 "Location filter and Location column" (board Location.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD and tech plan quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p4-one-location-ticked.png: figure "One location ticked" (This build (after)), board "4. Location filter and Location column"The design's own words:
+- "One location ticked ("1 selected"): the chip names it, rows, totals and exports narrow to it, and the Location column hides. S5-R6, S5-R7, S5-R10, S6-N1." (caption of "One location ticked")
+AUTOMATION: READY

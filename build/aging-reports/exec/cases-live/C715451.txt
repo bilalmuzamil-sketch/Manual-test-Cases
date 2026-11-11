@@ -1,0 +1,38 @@
+C715451 A/P Summary: 30 vendors at a time, none repeated or skipped
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that between 31 and 90 vendors have open documents on today's date.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+STEPS: - Choose "Download (CSV)" from the ⋯ menu.
+- Open the CSV and count the vendors in it (each name once).
+- Count the vendors shown before any more load (or compare them with the first 30 names in the CSV) and note the last one.
+- Scroll down until the next vendors load.
+- Keep scrolling to the end of the list, writing down each vendor's name.
+- Click the "Total" header.
+- Scroll from the top to the end of the list again, writing down each name.
+- In the Past due filter, tick "1-30 days".
+- Tick "91+ days".
+- Scroll from the top to the end of the list again, writing down each name.
+EXP: Expected Result
+Step 1:
+- The CSV downloads.Step 2:
+- Note the number of vendors (for example 46).Step 3:
+- Exactly 30 vendors.Step 4:
+- The next vendors load below as you scroll (there are no page buttons), starting with the vendor that comes right after the last one noted in step 3, not a repeat.Step 5:
+- Every vendor appears exactly once and the count equals the CSV's.Step 6:
+- The rows sort by Total, largest first.Step 7:
+- In this sort too, every vendor appears exactly once and none is missing.Step 8:
+- The chip reads "Past due: 1-30 days" and the report reloads with that range only.Step 9:
+- The chip reads "Past due: 2 ranges" and the report reloads with both ranges.Step 10:
+- Every vendor left by the filter appears exactly once.
+- None repeats as more load.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11531 (Story 1, Reports open in QuickBooks name order)
+- S1-R8: “A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time, and the next 30 load as the user scrolls down, as today. There are no page buttons. A/R Detail and A/P Detail show each bucket's first 100 lines, then load more as the user scrolls (S4-R4). Paging never repeats or skips a customer, vendor or row, in any sort. On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents.”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 1 "Opening order and header sorting" (board Main.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p1-a-r-aging-summary-opens-a-to-z.png: figure "A/R Aging Summary opens A to Z" (This build (after)), board "1. Opening order and header sorting"The design's own words:
+- "Customer name order the way QuickBooks sorts ("10 Trucking" before "2 Trucking"), marked on the Customer header. S1-R1, S1-R2, S1-R4, S1-R7, S1-R8." (caption of "A/R Aging Summary opens A to Z")
+AUTOMATION: READY

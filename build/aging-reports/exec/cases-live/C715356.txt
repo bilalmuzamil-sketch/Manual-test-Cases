@@ -1,0 +1,45 @@
+C715356 A/P Detail: the top-left chevron collapses and expands every group
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open bills and vendor credits in at least three aging buckets on today's date.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+- Leave the report with every group collapsed.Setup
+- Make vendor A: Click Parts in the top bar, then Vendors in the left menu, then New Vendor. Type a new Name for vendor A, pick Credit Terms "Net 30" and Taxes "Exempt (0%)", then click Save & Close.
+- Make bill 1: Click Parts in the top bar, then Purchase Orders in the left menu, then New PO. Pick vendor A in Vendor. In Part Number type a new part number and click "Add new special order part: …"; type a Description, 1 in Quantity and 100.00 in Cost; click Add, then Save & Close. In the Purchase Orders list click Receive on that order (Vendor column: vendor A); type a Vendor Invoice # (for example bill 1), type today's date in Invoice Date, type 0 in Tax, then click Receive Parts (1).
+- Make bill 2: Same way as bill 1, with vendor A in Vendor: Cost 200.00; type the date 45 days before today in Invoice Date.
+- Make bill 3: Same way as bill 1, with vendor A in Vendor: Cost 300.00; type the date 75 days before today in Invoice Date.
+- Make vendor credit 1: Click Parts in the top bar, then Returns in the left menu, then Create Return. Pick vendor A in Vendor, type a Packaging Slip, pick the part received on bill 1 in Part Number, type 50.00 in Price Per Unit, then click Save Return. In the Returns list tick that return and click Receive Credit; type a Credit Memo Number, type the date 20 days before today in Credit Date, type 0 in Tax, then click Post Credit.
+STEPS: - Click the chevron on one bucket row.
+- Hover over the chevron button in the table's top-left header cell.
+- Click that chevron button.
+- Hover over the chevron button again.
+- Click it.
+EXP: Expected Result
+Step 1:
+- That bucket expands.
+- Its own chevron turns from pointing right to pointing down.Step 2:
+- The button's chevron points down (a group is expanded).
+- A tooltip above the button reads "Collapse all".Step 3:
+- Every group collapses.
+- The column under the button was not sorted: the sort mark is still on the column the report opened on.Step 4:
+- The chevron now points right.
+- The tooltip reads "Expand all".Step 5:
+- Every group expands.
+- The column under the button is still not sorted.
+- Every bucket row's own chevron points down (open).
+This release does not change how the groups open, so they open as today; the starting screen asks for every group collapsed, collapsing any that are open.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11534 (Story 4, Collapse all, Expand all and pinned group rows)
+- S4-R1: “The table's top-left header cell holds one chevron button. While any group is expanded it points down, its tooltip (above the button) reads "Collapse all", and a click collapses every group. When every group is collapsed it points right, its tooltip reads "Expand all", and a click expands every group.”
+- S4-R3: “Clicking the button never sorts the column under it.”
+- S4-R5: “Each group's own expand toggle uses the same chevron: pointing down when open, right when closed. Behavior is unchanged.”
+- User Feedback Summary: “Collapse all / Expand all button | "Collapse all" / "Expand all" | Tooltip above the button”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 3 "Collapse all and pinned group rows" (board Grouped.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p3-expand-all-from-the-header.png: figure "Expand all from the header" (This build (after)), board "3. Collapse all, Expand all and pinned group rows"
+- ar-ap-p7-a-r-collection-date-and-customer-only.png: figure "A/R Collection, groups opened one by one" (Production (before)), board "3. Collapse all, Expand all and pinned group rows" (today's look, for comparison only)The design's own words:
+- "One chevron in the top-left header cell: "Collapse all" while any group is open, "Expand all" when none is. Group toggles use the same chevron. S4-R1 to S4-R5, S4-R8." (caption of "Expand all from the header")
+- "Each customer opens with its own arrow; there is no way to open or close them all." (caption of "A/R Collection, groups opened one by one")
+AUTOMATION: READY

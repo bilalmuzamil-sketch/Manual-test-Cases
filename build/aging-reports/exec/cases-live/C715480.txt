@@ -1,0 +1,27 @@
+C715480 The location switcher in the top right is unchanged
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
+- Make sure you are enrolled at both locations, so you can switch to location B in the location switcher.
+- Make sure that before the release was installed, you took a screenshot of the open location switcher.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+STEPS: - Open the location switcher in the top right of ShopView.
+- Switch to location B.
+EXP: Expected Result
+Step 1:
+- It opens.
+- It looks and lists the locations exactly as in the screenshot taken before the release.Step 2:
+- It switches as it always has.
+- A/R Summary reloads with the same filters and rows, in the opening order, at the top.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location), story SV-11537 (Story 7, Document links open where they can)
+- S7-E1: “The location switcher in the top right of ShopView is not changed.”
+- Out of Scope: “The location switcher in the top right of ShopView. It is not changed. Switching location while on one of these reports reloads it, as on every other report: the filters and the rows stay, because the reports are organization-wide; the sort returns to the opening order, groups collapse and the page returns to the top; which documents link, prompt or show as plain text updates (Story 7).”
+- S5-E2: “Switching location in the top right of ShopView while on a report reloads it, as on every other report: the user stays on the report with the same filters and the same rows; the sort returns to the opening order (Story 1), every group collapses and the page returns to the top; which documents link, prompt or show as plain text updates (Story 7).”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 5 "Document links and Switch location" (board Links.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p5-cancel-stays-on-the-report.png: figure "Cancel stays on the report" (This build (after)), board "5. Document links and Switch location (SV-5706)"The design's own words:
+- "Same filters, open groups and scroll position. S7-R5, S7-E1." (caption of "Cancel stays on the report")
+AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site

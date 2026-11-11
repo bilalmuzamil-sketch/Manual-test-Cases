@@ -1,0 +1,26 @@
+C715583 Sales By Customer keeps or forgets its filter between visits as before
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Make sure you are enrolled at both locations, so both are in Sales By Customer's Location filter.
+- Make sure that before the release was installed, you did the steps below on Sales By Customer and noted whether the unticked location was still unticked when you came back.
+- Use a desktop browser window 1440 px wide.
+- After the release is installed, open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu).
+STEPS: - In its Location filter, untick location B.
+- Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+- Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) again from the Reports menu.
+EXP: Expected Result
+Step 1:
+- Sales By Customer narrows to location A.Step 2:
+- A/R Summary opens.Step 3:
+- Sales By Customer opens again.
+- Its Location filter is kept, or forgotten, exactly as you noted before the release.
+Why: the six reports must not remember filters (they reuse the shared filter parts with that switched off); the other reports, which share those parts, must keep doing whatever they did before.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location)
+- Key Decisions, reuse rule: “The reuse rule. Every control on these reports reuses an existing ShopView pattern: the native filter chips, the native totals row and pinned headline column of the newer reports, the existing location-switch prompt, the design system's chevron icon. Nothing new is drawn. Basis: d-reuse-existing-pattern.”From: Tech plan "A/R and A/P Report Sorting, Export and Location Filter — Technical Implementation Plan" (2026-10-21, uploaded 22 Oct 2026), read 22 Oct 2026
+- Tech plan §7 E2E, regression re-runs: “Regression re-runs (Keep, no edits expected) when Phase 1 lands, because it changes the shared filter kit, URL sync, useReportTableQuery and the location resolver:”From: Developer verify task SV-11597 "A/R & A/P aging — verify Phase 1: shared report kit" (updated 21 Oct 2026), read 22 Oct 2026
+- Jira SV-11597, Check: “Inventory Value, Sales By Customer and Work In Progress: filters, links shared from the address bar, and CSV/PDF exports behave exactly as before.”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 4 "Location filter and Location column" (board Location.dc.html); page 7 "Filters and call list" (board Filters.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.
+AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site

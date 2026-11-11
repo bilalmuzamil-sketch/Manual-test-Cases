@@ -1,0 +1,40 @@
+C715455 A/P Detail: a long bucket loads in 100s with no line repeated or skipped
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure one aging bucket, bucket A, has between 101 and 400 open lines on today's date.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+- Leave the report with every bucket collapsed.
+STEPS: - Choose "Download (CSV)" from the ⋯ menu.
+- Open the CSV and count the rows whose bucket is bucket A.
+- Expand bucket A.
+- Scroll to the end of bucket A, letting every batch load, writing down each document number.
+- Click the "Amount" header.
+- Look at bucket A and count its lines before any more load.
+- Scroll to the end of bucket A again, letting every batch load, writing down each number.
+EXP: Expected Result
+Step 1:
+- The CSV downloads.Step 2:
+- Note the count (for example 250).Step 3:
+- Bucket A opens and its first 100 lines show.Step 4:
+- More lines load as you scroll.
+- Every document appears exactly once.Step 5:
+- The rows sort by Amount, largest first, inside each bucket.Step 6:
+- Bucket A is still expanded and starts again from its first 100 lines, now in Amount order (largest first).Step 7:
+- More lines load as you scroll.
+- In this sort too, every document appears exactly once.
+- Both lists (this one and the one from step 4) hold exactly the CSV's documents for bucket A: none repeated, none missing.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11531 (Story 1, Reports open in QuickBooks name order), story SV-11534 (Story 4, Collapse all, Expand all and pinned group rows)
+- S1-R8: “A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time, and the next 30 load as the user scrolls down, as today. There are no page buttons. A/R Detail and A/P Detail show each bucket's first 100 lines, then load more as the user scrolls (S4-R4). Paging never repeats or skips a customer, vendor or row, in any sort. On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents.”
+- S4-R4: “On A/R Detail and A/P Detail, expanding a bucket (by hand or with Expand all) shows its first 100 lines, then loads more as the user scrolls. This is as today on A/P Detail and new on A/R Detail, which today shows a whole bucket at once.”
+- S4-R8: “Re-sorting and paging keep every group's expanded or collapsed state.”From: Tech plan "A/R and A/P Report Sorting, Export and Location Filter — Technical Implementation Plan" (2026-10-21, uploaded 22 Oct 2026), read 22 Oct 2026
+- Tech plan §6 Phase 4, frontend: “sort resets expanded buckets to page 1 but keeps them expanded”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 1 "Opening order and header sorting" (board Main.dc.html); page 3 "Collapse all and pinned group rows" (board Grouped.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD and tech plan quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p3-expand-all-from-the-header.png: figure "Expand all from the header" (This build (after)), board "3. Collapse all, Expand all and pinned group rows"
+- ar-ap-p1-a-r-aging-summary-opens-a-to-z.png: figure "A/R Aging Summary opens A to Z" (This build (after)), board "1. Opening order and header sorting"The design's own words:
+- "One chevron in the top-left header cell: "Collapse all" while any group is open, "Expand all" when none is. Group toggles use the same chevron. S4-R1 to S4-R5, S4-R8." (caption of "Expand all from the header")
+- "Customer name order the way QuickBooks sorts ("10 Trucking" before "2 Trucking"), marked on the Customer header. S1-R1, S1-R2, S1-R4, S1-R7, S1-R8." (caption of "A/R Aging Summary opens A to Z")
+AUTOMATION: READY

@@ -1,0 +1,34 @@
+C715391 A/P Unpaid Invoices: a vendor credit belongs to its return or vendor
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have a vendor, vendor A, with two unused vendor credits: vendor credit A, from a vendor return made at location B, and vendor credit B, entered directly (not from a vendor return) while signed in at location A.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+- Leave the report with the Vendor filter showing vendor A ticked and its group expanded.Setup
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make vendor A: Click Parts in the top bar, then Vendors in the left menu, then New Vendor. Type a new Name for vendor A, pick Credit Terms "Net 30" and Taxes "Exempt (0%)", then click Save & Close.
+- Make bill 1: While switched to location B (see the Locations to use item): Click Parts in the top bar, then Purchase Orders in the left menu, then New PO. Pick vendor A in Vendor. In Part Number type a new part number and click "Add new special order part: …"; type a Description, 1 in Quantity and 300.00 in Cost; click Add, then Save & Close. In the Purchase Orders list click Receive on that order (Vendor column: vendor A); type a Vendor Invoice # (for example bill 1), type today's date in Invoice Date, type 0 in Tax, then click Receive Parts (1).
+- Make vendor credit A: While switched to location B (see the Locations to use item): Click Parts in the top bar, then Returns in the left menu, then Create Return. Pick vendor A in Vendor, type a Packaging Slip, pick the part received on bill 1 in Part Number, type 40.00 in Price Per Unit, then click Save Return. In the Returns list tick that return and click Receive Credit; type a Credit Memo Number, type today's date in Credit Date, type 0 in Tax, then click Post Credit.
+- Make vendor credit B: Make vendor credit B for vendor A without a vendor return.
+STEPS: - Read vendor credit A's and vendor credit B's cells in the Location column.
+- In the Location menu, untick location A.
+- Expand vendor A's group.
+EXP: Expected Result
+Step 1:
+- Vendor credit A shows location B (the return's location).
+- Vendor credit B shows location A (the vendor's location for that credit, where it was entered, as today).Step 2:
+- The report narrows to location B.Step 3:
+- Only vendor credit A is listed.
+A vendor has no single location of its own: each bill or credit is written to the vendor's account at one location, and that is the location it shows (tech plan, 21 Oct 2026).
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location)
+- S5-R7: “Choosing locations narrows every row, group, subtotal, total, page count, sort and export to the open documents at those locations. A row belongs to the location of its own document. On A/R: the invoice, credit memo or deposit. On A/P: a bill belongs to the location of the delivery it was received on; a vendor credit from a vendor return belongs to that return's location; any other vendor credit keeps its vendor's location, as today. That is the location the Location column shows.”From: Tech plan "A/R and A/P Report Sorting, Export and Location Filter — Technical Implementation Plan" (2026-10-21, uploaded 22 Oct 2026), read 22 Oct 2026
+- Tech plan §1 Clarifications, Q2 A/P row location: “A vendor account is per (vendor, location) on every write path (delivery, manual credit, return credit), so vendor_account.workplace_id already is the document's location.”
+- Tech plan §3 D13: “Equal to S5-R7's per-document rule by construction (every write path finds or creates the (vendor, location) account); prod 0 mismatches.”Partly checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026; not yet seen on that build: a vendor credit entered directly, not from a vendor return.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 4 "Location filter and Location column" (board Location.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD and tech plan quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p4-one-location-ticked.png: figure "One location ticked" (This build (after)), board "4. Location filter and Location column"The design's own words:
+- "One location ticked ("1 selected"): the chip names it, rows, totals and exports narrow to it, and the Location column hides. S5-R6, S5-R7, S5-R10, S6-N1." (caption of "One location ticked")
+AUTOMATION: READY

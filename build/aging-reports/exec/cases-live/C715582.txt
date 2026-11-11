@@ -1,0 +1,32 @@
+C715582 A drill-down link saved before the release still opens on its customer
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that before the release was installed, you clicked customer A's name on A/R Summary and saved the address of the A/R Collection page it opened, and did the same for vendor A on A/P Summary.
+- Make sure customer A had overdue invoices and vendor A unpaid bills on the day the addresses were saved.
+- Use a desktop browser window 1440 px wide.
+- After the release is installed, click Dashboard in the top menu.
+STEPS: - Paste the A/R Collection address saved before the release into the browser's address bar and press Enter (it opens on the Reports page).
+- Paste the A/P Unpaid Invoices address saved before the release into the browser's address bar and press Enter (it opens on the Reports page).
+EXP: Expected Result
+Step 1:
+- A/R Collection opens, with no error.
+- The chip reads "Customer: " and customer A's name.
+- Only customer A's group is listed.Step 2:
+- A/P Unpaid Invoices opens, with no error.
+- The chip reads "Vendor: " and vendor A's name.
+- Only vendor A's group is listed.
+Why: today's drill-down writes the customer or vendor into the address in an older form; the tech plan says the new reports still read it, so bookmarks made before the release keep working.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location)
+- S5-R14: “A customer or vendor ticked through a link, a reload or a Summary drill-down is named and ticked on the chip, even when it is not among the first results of the chip's search.”
+- Key Decisions, drill-down: “Drill-down keeps the report's scope. Clicking a customer or vendor on a Summary opens Collection or Unpaid Invoices with the same as-of date and the same chosen locations. Basis: d-drill-in-inherits-scope.”From: Tech plan "A/R and A/P Report Sorting, Export and Location Filter — Technical Implementation Plan" (2026-10-21, uploaded 22 Oct 2026), read 22 Oct 2026
+- Tech plan §3 D30: “URL keys asOfDate, customerIds / vendorIds, pastDue, locationIds (repeated keys written, comma lists also read); legacy customerId / vendorId read once as aliases.”
+- Tech plan §6 Phase 2, frontend: “Until Phase 3 the link keeps today's target query (asOfDate, customerId, customerName), because the legacy Collection page reads only those;”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 7 "Filters and call list" (board Filters.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD and tech plan quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png: figure "The native Vendor menu" (New in this build), board "7. Filters and call list", re-shot 23 Oct 2026, design version of 5 Nov 2026
+- ar-ap-p7-two-customers-ticked.png: figure "Two customers ticked" (New in this build), board "7. Filters and call list"The design's own words:
+- "Vendor chip with the truck icon, as on Inventory Value. Its menu: a search box reading "Search vendors" (shown when there are more than 8 vendors), "All vendors" ticked, "All vendors are included. Pick one or more to narrow.", then the vendors A to Z. Reshot 2026-10-23 (round 15). S5-R13, S5-R14." (caption of "The native Vendor menu")
+- "Customer menu with 10 Trucking and 4 Star Truck Repair ticked ("2 selected", shown as tags in the search box): the chip reads "Customer: 2 customers", and rows and Totals narrow to them (4 Star Truck Repair has nothing open). S5-R13, S5-R14, S5-R19." (caption of "Two customers ticked")The design version of 5 Nov 2026 replaced the picture "The native Vendor menu" (re-shot 23 Oct 2026): compare with ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png only. This case also still has an older attachment named ar-ap-p7-the-native-vendor-menu.png: it shows the design before 23 Oct 2026, so do not use it for comparison (TestRail cannot remove it).
+AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site

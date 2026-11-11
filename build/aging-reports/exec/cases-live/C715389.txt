@@ -1,0 +1,46 @@
+C715389 A/R Detail: each row belongs to its own document's location
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have a new customer (created for this test) that has, on today's date, an invoice A made at location A for $500.00 and partly paid ($200.00) by a payment taken at location B, a credit memo A made at location B and a deposit A taken at location B.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+- Leave the report with the Customer filter showing that customer ticked and every bucket expanded.Setup
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make customer A: Click Customers in the top bar, then New Customer. Type a new Name for customer A, type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make invoice A: On customer A's page click New Work Order, pick the Asset, then click Save (click Ok if a Customer Notes window opens). In the New Line window type a Title, pick Labor Rate "Fixed Line Total" (type "Fixed" in the box to find it), type 500.00 in Fixed Line Total, tick Line Approved, then click Save & Close. On the line click Complete; in Tech stories type a story and click Complete All Lines (if Missing Details asks for Mileage, type it and click Complete All Lines again). Open the Finance tab and click Mark Reviewed (if a window asks for the VIN, type one and click Confirm Review). Type today's date in Invoice Date, then click Create Invoice. When the New Customer Payment window opens, reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+- Pay $200.00 of invoice A at location B: While switched to location B (see the Locations to use item): on customer A's page click New Payment, type 200 in the Payment box on invoice A's row, pick a Payment Method, then click Make Payment.
+- Make credit memo A: While switched to location B (see the Locations to use item): On customer A's page open the Invoices tab and click Issue Credit. Type today's date in Credit Date, type 50.00 in Amount, click Issue Store Credit (not Issue Refund), type a Reason, then click Issue Credit.
+- Make deposit A: While switched to location B (see the Locations to use item): On customer A's page click New Work Order, pick the Asset, click Save, and close the New Line window. Open the Finance tab and click Add Deposit; in Create Deposit pick a Payment Method and type 41.00 in Deposit Amount, then click Record Deposit. Open the Lines tab and click New Line; in the New Line window type a Title, pick Labor Rate "Fixed Line Total" (type "Fixed" in the box to find it), type 1.00 in Fixed Line Total, tick Line Approved, then click Save & Close. On the line click Complete; in Tech stories type a story and click Complete All Lines (if Missing Details asks for Mileage, type it and click Complete All Lines again). Open the Finance tab and click Mark Reviewed (if a window asks for the VIN, type one and click Confirm Review). Leave Invoice Date as today, click Create Invoice, and reload the page (F5) when the New Customer Payment window opens. The invoice is paid from the deposit, and the rest, 40.00, stays as an unused deposit dated today.
+STEPS: - Read the Location column of invoice A, credit memo A and deposit A.
+- In the Location menu, untick location B.
+- Expand every bucket and read the rows.
+- Open the Location menu.
+- Tick location B.
+- Untick location A.
+- Expand every bucket and read the rows.
+EXP: Expected Result
+Step 1:
+- Invoice A shows location A.
+- Credit memo A and deposit A show location B.Step 2:
+- The report narrows to location A.
+- The Location column is hidden.Step 3:
+- Only invoice A remains, with its open balance of $300.00 ($500.00 − $200.00): the payment taken elsewhere does not move it.Step 4:
+- The Location menu opens.Step 5:
+- Location B is ticked again.Step 6:
+- Location A is unticked.
+- The report narrows to location B.Step 7:
+- Only credit memo A and deposit A remain.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location), story SV-11536 (Story 6, Location column)
+- S5-R7: “Choosing locations narrows every row, group, subtotal, total, page count, sort and export to the open documents at those locations. A row belongs to the location of its own document. On A/R: the invoice, credit memo or deposit. On A/P: a bill belongs to the location of the delivery it was received on; a vendor credit from a vendor return belongs to that return's location; any other vendor credit keeps its vendor's location, as today. That is the location the Location column shows.”
+- Key Decisions, row location: “A row belongs to the location of its own open document (the invoice, credit memo or deposit; the bill or vendor credit), the same location the Location column shows. Rationale: the aging reports list open documents, not payments, so a partly paid invoice keeps its own location and the filter never contradicts the column. Rejected: splitting a balance by where each payment was taken.”
+- S6-R2: “The column is shown when two or more locations are ticked (All locations counts when the report's list has two or more) and hidden when one or none is ticked.”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 4 "Location filter and Location column" (board Location.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p4-opens-on-all-locations.png: figure "Opens on All locations" (This build (after)), board "4. Location filter and Location column"
+- ar-ap-p4-one-location-ticked.png: figure "One location ticked" (This build (after)), board "4. Location filter and Location column"The design's own words:
+- "Native filter row: As of, Customer, Past due, then Location, which opens on "Location: All locations". Untouched, the report matches today. Column labelled "Location", after Date. S5-R1, S5-R2, S5-R5, S6-R1 to S6-R3." (caption of "Opens on All locations")
+- "One location ticked ("1 selected"): the chip names it, rows, totals and exports narrow to it, and the Location column hides. S5-R6, S5-R7, S5-R10, S6-N1." (caption of "One location ticked")
+AUTOMATION: READY

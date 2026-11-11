@@ -1,0 +1,30 @@
+C715423 A/R Detail: credit memos and deposits are plain text
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have a customer with an unused credit memo A and an unused deposit A at your current location.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+- Leave the report with that customer ticked and every bucket expanded.Setup
+- Make customer A: Click Customers in the top bar, then New Customer. Type a new Name for customer A, type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make credit memo A: On customer A's page open the Invoices tab and click Issue Credit. Type today's date in Credit Date, type 50.00 in Amount, click Issue Store Credit (not Issue Refund), type a Reason, then click Issue Credit.
+- Make deposit A: On customer A's page click New Work Order, pick the Asset, click Save, and close the New Line window. Open the Finance tab and click Add Deposit; in Create Deposit pick a Payment Method and type 41.00 in Deposit Amount, then click Record Deposit. Open the Lines tab and click New Line; in the New Line window type a Title, pick Labor Rate "Fixed Line Total" (type "Fixed" in the box to find it), type 1.00 in Fixed Line Total, tick Line Approved, then click Save & Close. On the line click Complete; in Tech stories type a story and click Complete All Lines (if Missing Details asks for Mileage, type it and click Complete All Lines again). Open the Finance tab and click Mark Reviewed (if a window asks for the VIN, type one and click Confirm Review). Leave Invoice Date as today, click Create Invoice, and reload the page (F5) when the New Customer Payment window opens. The invoice is paid from the deposit, and the rest, 40.00, stays as an unused deposit dated today.
+STEPS: - Hover over credit memo A's number.
+- Click it.
+- Hover over deposit A's number.
+- Click it.
+EXP: Expected Result
+Step 1:
+- Credit memo A's number is plain text, not a link.Step 2:
+- Nothing opens: a credit memo has no page of its own.Step 3:
+- Deposit A's number is plain text, not a link.Step 4:
+- Nothing opens.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11537 (Story 7, Document links open where they can)
+- S7-R10: “A/R credit memos and deposits show as plain text: they have no page of their own.”
+- Out of Scope: “Links for A/R credit memos and deposits. They have no page of their own to open, so they stay plain text.”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 7 "Filters and call list" (board Filters.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p7-vendor-credits-link.png: figure "Vendor credits link" (New in this build), board "7. Filters and call list"The design's own words:
+- "A vendor credit’s number (C-1224) links to the vendor return it came from, under the bill rules; A/R credit memos and deposits stay plain text. S7-R9, S7-R10." (caption of "Vendor credits link")
+AUTOMATION: READY

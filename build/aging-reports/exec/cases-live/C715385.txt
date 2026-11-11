@@ -1,0 +1,25 @@
+C715385 A/P Unpaid Invoices: every location is listed, whatever your enrollment
+PRE: Preconditions
+- Sign in as an "Admin" user enrolled only at location A, with location A as your current location.
+- Make sure the organization has open documents in this report at location A and location B on today's date.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+STEPS: - Look at the rows' Location column.
+- Click the Location chip and read the list.
+EXP: Expected Result
+Step 1:
+- Rows from location B are shown too: the report stays organization-wide.Step 2:
+- Both location A and location B are listed and ticked, although you are enrolled only at location A.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location)
+- S5-R3: “The list offers every location at which the organization has open documents in this report on the as-of date, whatever location the user is signed into and whatever locations they are enrolled in. It is not narrowed by the Location filter, the customer or vendor filter, or the Past due filter; it changes only with the as-of date.”
+- S5-R12: “The filter does not change who can see what: everyone who can open these reports sees every location's data, as today.”
+- Out of Scope: “Restricting these reports by the user's location enrollment. The reports stay organization-wide for everyone who can open them today; the Location filter only narrows. Any enrollment-based restriction would be its own announced permissions change.”
+- Key Decisions, organization-wide: “The reports stay organization-wide, by decision. Everyone with access sees every location's data, as today; the Location filter only narrows. Rationale: no permission changes in this release (decided 2026-10-15). Rejected: restricting the reports to the locations a user is enrolled in, which would be its own announced permissions change later.”
+- Goals: “Nobody gains or loses access to any data, and no setup is needed.”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 4 "Location filter and Location column" (board Location.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p4-the-native-location-menu.png: figure "The native Location menu" (This build (after)), board "4. Location filter and Location column"The design's own words:
+- ""Select all" with "2 selected", every location in this report's own data named as in the top-right switcher, then "Clear selection". S5-R2, S5-R3, S5-R4, S5-R5, S5-R6." (caption of "The native Location menu")
+AUTOMATION: READY

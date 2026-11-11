@@ -1,0 +1,34 @@
+C715421 A/P Unpaid Invoices: a vendor credit links to the return it came from
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
+- Have a vendor with three unused vendor credits: vendor credit A from a vendor return made at your current location, vendor credit B from a vendor return made at your other location, and vendor credit C not from a vendor return.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+- Leave the report with that vendor ticked and its rows showing.Setup
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make vendor A: Click Parts in the top bar, then Vendors in the left menu, then New Vendor. Type a new Name for vendor A, pick Credit Terms "Net 30" and Taxes "Exempt (0%)", then click Save & Close.
+- Make bill 1: Click Parts in the top bar, then Purchase Orders in the left menu, then New PO. Pick vendor A in Vendor. In Part Number type a new part number and click "Add new special order part: …"; type a Description, 1 in Quantity and 300.00 in Cost; click Add, then Save & Close. In the Purchase Orders list click Receive on that order (Vendor column: vendor A); type a Vendor Invoice # (for example bill 1), type today's date in Invoice Date, type 0 in Tax, then click Receive Parts (1).
+- Make vendor credit A: Click Parts in the top bar, then Returns in the left menu, then Create Return. Pick vendor A in Vendor, type a Packaging Slip, pick the part received on bill 1 in Part Number, type 40.00 in Price Per Unit, then click Save Return. In the Returns list tick that return and click Receive Credit; type a Credit Memo Number, type today's date in Credit Date, type 0 in Tax, then click Post Credit.
+- Make bill 2: While switched to location B (see the Locations to use item): Same way as bill 1, with vendor A in Vendor: Cost 300.00; type today's date in Invoice Date.
+- Make vendor credit B: While switched to location B (see the Locations to use item): Click Parts in the top bar, then Returns in the left menu, then Create Return. Pick vendor A in Vendor, type a Packaging Slip, pick the part received on bill 2 in Part Number, type 50.00 in Price Per Unit, then click Save Return. In the Returns list tick that return and click Receive Credit; type a Credit Memo Number, type today's date in Credit Date, type 0 in Tax, then click Post Credit.
+- Make vendor credit C: Make vendor credit C for vendor A without a vendor return.
+STEPS: - Look at the three vendor credits' numbers in the No. column.
+- Click vendor credit A's number.
+EXP: Expected Result
+Step 1:
+- Vendor credit A's number is a link.
+- Vendor credit B's (another location) and vendor credit C's (no vendor return) are plain text.Step 2:
+- The vendor return vendor credit A came from opens.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11537 (Story 7, Document links open where they can)
+- S7-R9: “On A/P Detail and A/P Unpaid Invoices, a vendor credit's number links to the vendor return it came from, under the same rules and permissions as a bill (S7-R6). A vendor credit that did not come from a vendor return shows as plain text.”
+- S7-R6: “A bill at the user's current location opens its delivery, as today. A bill at another location shows as plain text, because the bill page cannot switch location.”Partly checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026; not yet seen on that build: a vendor credit entered directly, not from a vendor return.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 5 "Document links and Switch location" (board Links.dc.html); page 7 "Filters and call list" (board Filters.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p7-vendor-credits-link.png: figure "Vendor credits link" (New in this build), board "7. Filters and call list"
+- ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png: figure "Links only where they can open" (This build (after)), board "5. Document links and Switch location (SV-5706)", re-shot 23 Oct 2026, design version of 5 Nov 2026The design's own words:
+- "A vendor credit’s number (C-1224) links to the vendor return it came from, under the bill rules; A/R credit memos and deposits stay plain text. S7-R9, S7-R10." (caption of "Vendor credits link")
+- "A number links only with the right permission and a location the user works at; otherwise plain text. Native link style: the Work In Progress blue, semi-bold, no underline. Reshot 2026-10-23 (round 15). S7-R1, S7-R2, S7-R6, S7-R7, S7-N1, S7-N2." (caption of "Links only where they can open")The design version of 5 Nov 2026 replaced the picture "Links only where they can open" (re-shot 23 Oct 2026): compare with ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png only. This case also still has an older attachment named ar-ap-p5-links-only-where-they-can-open.png: it shows the design before 23 Oct 2026, so do not use it for comparison (TestRail cannot remove it).
+AUTOMATION: READY

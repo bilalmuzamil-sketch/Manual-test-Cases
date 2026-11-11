@@ -1,0 +1,32 @@
+C715584 Sales By Customer's filter menus behave as before the release
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location filter shows and can be cleared.
+- Make sure that before the release was installed, you did the steps below on Sales By Customer and noted the Location chip and the page address after "Select all", whether the cursor stayed in the Customer menu's search box while you typed, and how the filter row looked at 900 px.
+- Use a desktop browser window 1440 px wide.
+- After the release is installed, open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu).
+STEPS: - In the Location menu, click "Clear selection".
+- Click "Select all".
+- Open the Customer menu.
+- Type a few letters of a customer's name into its search box.
+- Keep typing without clicking the box again.
+- Make the browser window 900 px wide and look at the filter row.
+EXP: Expected Result
+Step 1:
+- No location is ticked.Step 2:
+- Every location is ticked.
+- The Location chip and the page address read exactly as you noted before the release.Step 3:
+- The Customer menu opens with its search box.Step 4:
+- The list narrows as you type.Step 5:
+- The cursor stays in the search box and every letter appears, as before the release.Step 6:
+- The mobile filter row shows, as before the release.
+Why: the release changes the shared filter parts (an opt-in setting for the aging reports' Past due menu); Sales By Customer, which the aging reports copy, must not change.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location)
+- Key Decisions, reuse rule: “The reuse rule. Every control on these reports reuses an existing ShopView pattern: the native filter chips, the native totals row and pinned headline column of the newer reports, the existing location-switch prompt, the design system's chevron icon. Nothing new is drawn. Basis: d-reuse-existing-pattern.”From: Tech plan "A/R and A/P Report Sorting, Export and Location Filter — Technical Implementation Plan" (2026-10-21, uploaded 22 Oct 2026), read 22 Oct 2026
+- Tech plan §7 E2E, regression re-runs: “Regression re-runs (Keep, no edits expected) when Phase 1 lands, because it changes the shared filter kit, URL sync, useReportTableQuery and the location resolver:”
+- Tech plan §6 Phase 1, frontend: “opt-in fullSelectionNarrows flag: no "All <noun>" for a full selection, select-all row ticked only when empty ("Past due: 4 ranges", S5-R15)”From: Developer verify task SV-11597 "A/R & A/P aging — verify Phase 1: shared report kit" (updated 21 Oct 2026), read 22 Oct 2026
+- Jira SV-11597, Check: “Inventory Value, Sales By Customer and Work In Progress: filters, links shared from the address bar, and CSV/PDF exports behave exactly as before.”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 4 "Location filter and Location column" (board Location.dc.html); page 7 "Filters and call list" (board Filters.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.
+AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site

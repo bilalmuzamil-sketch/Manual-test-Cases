@@ -1,0 +1,25 @@
+C797943 A/P Summary: the Vendor menu has no search box with 8 vendors or fewer
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure your organization has 8 vendors or fewer in total.
+- Make sure that at least one of those vendors, vendor A, has an unpaid bill on today's date.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
+STEPS: - Click the Vendor chip and read the menu from top to bottom.
+EXP: Expected Result
+Step 1:
+- The menu opens with no search box: it starts with the "All vendors" row, then the line "All vendors are included. Pick one or more to narrow.", then the vendors, vendor A among them.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location)
+- S5-R13: “The customer chip (A/R) and vendor chip (A/P) and their open menus are the native ones: Customer exactly as Sales By Customer's Customer filter (person icon), Vendor exactly as Inventory Value's Vendor filter (truck icon, "Search vendors"; as there, the search box shows only when there are more than 8 vendors). The menu has a search box, an "All customers" or "All vendors" row, the native line "All customers are included. Pick one or more to narrow." (or vendors) while none is ticked, and the list; several can be ticked. The chip reads "Customer: All customers" or "Vendor: All vendors" in the resting (grey) style when none is ticked, the name when one is (shortened with "..." when long), and "Customer: N customers" or "Vendor: N vendors" when N are. The ticked customers or vendors narrow every row, group, total, page, sort and export; the Location list does not change (S5-R3).”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 7 "Filters and call list" (board Filters.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png: figure "The native Vendor menu" (New in this build), board "7. Filters and call list", re-shot 23 Oct 2026, design version of 5 Nov 2026
+- ar-ap-p7-four-chips-on-every-report.png: figure "Four chips on every report" (This build (after)), board "7. Filters and call list"
+- ar-ap-p7-two-customers-ticked.png: figure "Two customers ticked" (New in this build), board "7. Filters and call list"The design's own words:
+- "Vendor chip with the truck icon, as on Inventory Value. Its menu: a search box reading "Search vendors" (shown when there are more than 8 vendors), "All vendors" ticked, "All vendors are included. Pick one or more to narrow.", then the vendors A to Z. Reshot 2026-10-23 (round 15). S5-R13, S5-R14." (caption of "The native Vendor menu")
+- "As of, Customer (Vendor on A/P), Past due, Location. "Customer: All customers" and "Past due: Any" rest grey, Past due with the design system’s hourglass icon. S5-R1, S5-R13, S5-R15." (caption of "Four chips on every report")
+- "Customer menu with 10 Trucking and 4 Star Truck Repair ticked ("2 selected", shown as tags in the search box): the chip reads "Customer: 2 customers", and rows and Totals narrow to them (4 Star Truck Repair has nothing open). S5-R13, S5-R14, S5-R19." (caption of "Two customers ticked")The design version of 5 Nov 2026 replaced the picture "The native Vendor menu" (re-shot 23 Oct 2026): compare with ar-ap-p7-the-native-vendor-menu-reshot-2026-11-05.png only. This case also still has an older attachment named ar-ap-p7-the-native-vendor-menu.png: it shows the design before 23 Oct 2026, so do not use it for comparison (TestRail cannot remove it).
+Difference from the PRD (DD-02), closed: PRD version 5 said Vendor "exactly as Inventory Value's Vendor filter (truck icon, "Search vendors")" (S5-R13); the design shows the Vendor menu's search box reads "Search vendor" (singular); alt text: "Search vendor, All vendors and the helper line". PRD version 9 (23 Oct 2026), written after question 12, keeps "Search vendors" and adds that the search box shows only when there are more than 8 vendors (S5-R13), unchanged in version 11. The design's Vendor menu picture was reshot on 23 Oct 2026 (round 15) and published on 5 Nov 2026; its caption now reads: a search box reading "Search vendors" (shown when there are more than 8 vendors). This case follows the PRD. The held design-version case D-77 (C715559) was deleted from TestRail on 26 Oct 2026 with the QA lead's go-ahead (snapshot in v9-pass-2026-10-26/deleted/).
+AUTOMATION: READY

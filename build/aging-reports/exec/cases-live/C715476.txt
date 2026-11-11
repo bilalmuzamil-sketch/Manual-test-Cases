@@ -1,0 +1,23 @@
+C715476 Other reports keep their own export error message
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that before the release was installed, you noted the message Sales By Customer shows when its CSV export fails because the computer is offline.
+- Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
+- Use a desktop browser window 1440 px wide.
+- After the release is installed, open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu).
+STEPS: - Switch the network connection off.
+- Choose "Download (CSV)" from the ⋯ menu.
+- Switch the network connection back on.
+EXP: Expected Result
+Step 1:
+- The computer is offline.Step 2:
+- The export fails with the same message as before the release.
+- Not "We couldn't export this report. Please try again.", which is for the six aging reports only.Step 3:
+- The connection is back.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11533 (Story 3, Export to PDF and CSV)
+- Story 3, Error Handling: “If an export fails for any other reason (a server error or a lost connection), nothing downloads and one error message shows: "We couldn't export this report. Please try again." This message is on these six reports only; the other reports keep theirs.”
+- User Feedback Summary: “Export fails for any other reason | "We couldn't export this report. Please try again." | Error toast; nothing downloads; these six reports only”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 2 "Export" (board Export.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.
+AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site

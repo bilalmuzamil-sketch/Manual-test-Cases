@@ -1,0 +1,46 @@
+C715354 A/R Detail: the top-left chevron collapses and expands every group
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open invoices, credit memos and deposits in at least three aging buckets on today's date.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+- Leave the report with every group collapsed.Setup
+- Make customer A: Click Customers in the top bar, then New Customer. Type a new Name for customer A, type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make invoice 1: On customer A's page click New Work Order, pick the Asset, then click Save (click Ok if a Customer Notes window opens). In the New Line window type a Title, pick Labor Rate "Fixed Line Total" (type "Fixed" in the box to find it), type 100.00 in Fixed Line Total, tick Line Approved, then click Save & Close. On the line click Complete; in Tech stories type a story and click Complete All Lines (if Missing Details asks for Mileage, type it and click Complete All Lines again). Open the Finance tab and click Mark Reviewed (if a window asks for the VIN, type one and click Confirm Review). Type today's date in Invoice Date, then click Create Invoice. When the New Customer Payment window opens, reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+- Make invoice 2: Same way as invoice 1, on customer A's page: Fixed Line Total 200.00; type the date 45 days before today in Invoice Date; then in the New Customer Payment window reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+- Make invoice 3: Same way as invoice 1, on customer A's page: Fixed Line Total 300.00; type the date 75 days before today in Invoice Date; then in the New Customer Payment window reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+- Make credit memo 1: On customer A's page open the Invoices tab and click Issue Credit. Type the date 20 days before today in Credit Date, type 50.00 in Amount, click Issue Store Credit (not Issue Refund), type a Reason, then click Issue Credit.
+- Make deposit 1: On customer A's page click New Work Order, pick the Asset, click Save, and close the New Line window. Open the Finance tab and click Add Deposit; in Create Deposit pick a Payment Method and type 41.00 in Deposit Amount, then click Record Deposit. Open the Lines tab and click New Line; in the New Line window type a Title, pick Labor Rate "Fixed Line Total" (type "Fixed" in the box to find it), type 1.00 in Fixed Line Total, tick Line Approved, then click Save & Close. On the line click Complete; in Tech stories type a story and click Complete All Lines (if Missing Details asks for Mileage, type it and click Complete All Lines again). Open the Finance tab and click Mark Reviewed (if a window asks for the VIN, type one and click Confirm Review). Leave Invoice Date as today, click Create Invoice, and reload the page (F5) when the New Customer Payment window opens. The invoice is paid from the deposit, and the rest, 40.00, stays as an unused deposit dated today.
+STEPS: - Click the chevron on one bucket row.
+- Hover over the chevron button in the table's top-left header cell.
+- Click that chevron button.
+- Hover over the chevron button again.
+- Click it.
+EXP: Expected Result
+Step 1:
+- That bucket expands.
+- Its own chevron turns from pointing right to pointing down.Step 2:
+- The button's chevron points down (a group is expanded).
+- A tooltip above the button reads "Collapse all".Step 3:
+- Every group collapses.
+- The column under the button was not sorted: the sort mark is still on the column the report opened on.Step 4:
+- The chevron now points right.
+- The tooltip reads "Expand all".Step 5:
+- Every group expands.
+- The column under the button is still not sorted.
+- Every bucket row's own chevron points down (open).
+This release does not change how the groups open, so they open as today; the starting screen asks for every group collapsed, collapsing any that are open.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11534 (Story 4, Collapse all, Expand all and pinned group rows)
+- S4-R1: “The table's top-left header cell holds one chevron button. While any group is expanded it points down, its tooltip (above the button) reads "Collapse all", and a click collapses every group. When every group is collapsed it points right, its tooltip reads "Expand all", and a click expands every group.”
+- S4-R3: “Clicking the button never sorts the column under it.”
+- S4-R5: “Each group's own expand toggle uses the same chevron: pointing down when open, right when closed. Behavior is unchanged.”
+- User Feedback Summary: “Collapse all / Expand all button | "Collapse all" / "Expand all" | Tooltip above the button”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 3 "Collapse all and pinned group rows" (board Grouped.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p3-expand-all-from-the-header.png: figure "Expand all from the header" (This build (after)), board "3. Collapse all, Expand all and pinned group rows"
+- ar-ap-p7-a-r-collection-date-and-customer-only.png: figure "A/R Collection, groups opened one by one" (Production (before)), board "3. Collapse all, Expand all and pinned group rows" (today's look, for comparison only)The design's own words:
+- "One chevron in the top-left header cell: "Collapse all" while any group is open, "Expand all" when none is. Group toggles use the same chevron. S4-R1 to S4-R5, S4-R8." (caption of "Expand all from the header")
+- "Each customer opens with its own arrow; there is no way to open or close them all." (caption of "A/R Collection, groups opened one by one")
+AUTOMATION: READY

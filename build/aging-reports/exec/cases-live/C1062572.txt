@@ -1,0 +1,25 @@
+C1062572 A/R Detail: Date and Due Date read as dates, never Today or Yesterday
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have a customer with three open invoices, each due 30 days after its own date: invoice A dated today, invoice B dated yesterday and invoice C dated 2 days ago.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+- Leave the report with only that customer ticked in the Customer filter.Setup
+- Make customer A: Click Customers in the top bar, then New Customer. Type a new Name for customer A, type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make invoice A: On customer A's page click New Work Order, pick the Asset, then click Save (click Ok if a Customer Notes window opens). In the New Line window type a Title, pick Labor Rate "Fixed Line Total" (type "Fixed" in the box to find it), type 100.00 in Fixed Line Total, tick Line Approved, then click Save & Close. On the line click Complete; in Tech stories type a story and click Complete All Lines (if Missing Details asks for Mileage, type it and click Complete All Lines again). Open the Finance tab and click Mark Reviewed (if a window asks for the VIN, type one and click Confirm Review). Type today's date in Invoice Date, then click Create Invoice. When the New Customer Payment window opens, reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+- Make invoice B: Same way as invoice A, on customer A's page: Fixed Line Total 200.00; type the date 1 days before today in Invoice Date; then in the New Customer Payment window reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+- Make invoice C: Same way as invoice A, on customer A's page: Fixed Line Total 300.00; type the date 2 days before today in Invoice Date; then in the New Customer Payment window reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+STEPS: - Expand the "Current" bucket.
+EXP: Expected Result
+Step 1:
+- Invoice A, invoice B and invoice C are listed.
+- Their Date cells read today's date, yesterday's date and the date of 2 days ago as month, day and year (for example "Nov 10, 2026").
+- Their Due Date cells read dates in the same form.
+- No Date or Due Date cell reads "Today", "Yesterday" or "2 days ago".
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11532 (Story 2, Sort by clicking any column header)
+- S2-R1a: “Date and Due Date show plain dates on screen, for example "Nov 4, 2026". The PDF and the CSV keep their own date formats (S3-R7a, S3-R8). They never read "Today", "Yesterday" or "2 days ago".”
+- What changes for existing users: “Date and Due Date show plain dates, for example "Nov 4, 2026", instead of "Today", "Yesterday" or "2 days ago" (S2-R1a).”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 1 "Opening order and header sorting" (board Main.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.
+AUTOMATION: READY

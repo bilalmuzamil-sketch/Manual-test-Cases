@@ -1,0 +1,33 @@
+C715474 Reports page access alone opens all six reports with their amounts
+PRE: Preconditions
+- Sign in as a user whose custom role has "Reports" in the Page Access card and nothing else, with "See Financial Data" off.
+- Have a customer with an overdue invoice and a vendor with an overdue bill on today's date, so each of the six reports has rows and amounts.
+- Use a desktop browser window 1440 px wide.
+- Open the ShopView home page.Setup
+- Make the role for this test: Click the location name and your initials at the top right of the top bar, then Settings, then Roles & Permissions in the left menu, then Create Custom Role. In "Choose a template" click Skip (every switch then starts off). Type a Role Name, then switch on "Reports" in the Page Access card, and leave "See Financial Data" and everything else off, then click Create.
+- Sign in with that role: Click the location name and your initials at the top right of the top bar, then Settings, then Staff in the left menu. On the row "Tech ShopView" click the edit icon; in Edit Staff Member pick the new role in Role and click Save & Close. Then click the location name and your initials at the top right of the top bar, then Logout, and on the QA site's sign-in page click Tech in the quick login panel. After the test, sign in as Admin again and set Tech ShopView's Role back to Technician.
+STEPS: - Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) and read the list.
+- Open A/R Summary (Reports, then "A/R Aging Summary" in the left menu).
+- Open A/R Detail (Reports, then "A/R Aging Detail" in the left menu).
+- Open A/R Collection (Reports, then "A/R Aging Collection" in the left menu).
+- Open A/P Summary (Reports, then "A/P Aging Summary" in the left menu).
+- Open A/P Detail (Reports, then "A/P Aging Detail" in the left menu).
+- Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" in the left menu).
+EXP: Expected Result
+Step 1:
+- All six reports are offered.Step 2:
+- A/R Summary opens with its amounts: "See Financial Data" off does not hide them.Step 3:
+- A/R Detail opens with its amounts.Step 4:
+- A/R Collection opens with its amounts.Step 5:
+- A/P Summary opens with its amounts.Step 6:
+- A/P Detail opens with its amounts (the bucket sums).Step 7:
+- A/P Unpaid Invoices opens with its amounts.
+- No setting had to be changed after the release.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11531 (Story 1, Reports open in QuickBooks name order)
+- Key Decisions, Permissions: “Permissions. Viewing all six reports, and exporting them, is governed by 'Reports → Page Access', unchanged. No new permission is introduced and no existing permission changes. Opening a document from a report uses the permission that already opens that document (see Story 7). The credit term on the A/R Collection call list follows the customer card's rule: only users with the 'View and Manage AP/AR Data' switch see it, on screen, in the PDF and in the CSV (Story 9). Amounts show to everyone who can open the reports, as today and as on Sales By Customer and Inventory Value; 'See Financial Data' does not hide them.”
+- Goals: “Nobody gains or loses access to any data, and no setup is needed.”
+- S1-N1: “If the user lacks 'Reports → Page Access', the reports are not available, as today.”Partly checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026; not yet seen on that build: signing in as Tech ShopView after giving it another role.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 1 "Opening order and header sorting" (board Main.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.
+AUTOMATION: READY

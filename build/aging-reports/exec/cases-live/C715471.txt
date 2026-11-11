@@ -1,0 +1,39 @@
+C715471 On release day an untouched A/R report shows the same rows and amounts
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location chip shows.
+- Make sure that before the release was installed, you took screenshots (and, for A/R, any print or export there was) of the three A/R reports for one as-of date before the release, untouched.
+- Use a desktop browser window 1440 px wide.
+- After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
+- On each report, as you open it, choose the as-of date the screenshots show.
+STEPS: - Open A/R Summary from the Reports menu without touching any filter, and compare its rows, amounts and Totals with the screenshot of A/R Summary taken before the release.
+- Open A/R Detail from the Reports menu without touching any filter, and compare its rows, amounts and Totals with the screenshot of A/R Detail taken before the release.
+- Open A/R Collection from the Reports menu without touching any filter, and compare its rows, amounts and Totals with the screenshot of A/R Collection taken before the release.
+EXP: Expected Result
+Step 1:
+- The same customers and the same amounts, shown the same way (same $ sign, commas, two decimals and credit format).
+- Only the order may differ, and, as PRD section 2 lists for this release, a credit memo or deposit dated exactly on the as-of date now counts in Current, where it was in 1-30 Days. For customers with an overpaid invoice the Totals row may differ too.
+- The Location chip reads "Location: All locations": an untouched report is the organization-wide report it was before.Step 2:
+- The same documents and the same amounts, shown the same way (same $ sign, commas, two decimals and credit format).
+- Only the order may differ, and these three changes PRD section 2 lists for this release: Date and Due Date are plain dates (for example "Nov 4, 2026") where the screenshot shows "Today", "Yesterday" or "2 days ago"; a credit shows "Credit Memo" or "Deposit" under Transaction Type where it shows "Credit"; and a credit memo or deposit dated exactly on the as-of date is in "Current", where it was in "1-30 days past due".
+- The Location chip reads "Location: All locations": an untouched report is the organization-wide report it was before.Step 3:
+- The same documents and the same amounts, shown the same way (same $ sign, commas, two decimals and credit format).
+- Only the order may differ, and these three changes PRD section 2 lists for this release: Date and Due Date are plain dates (for example "Nov 4, 2026") where the screenshot shows "Today", "Yesterday" or "2 days ago"; a credit shows "Credit Memo" or "Deposit" under Transaction Type where it shows "Credit"; and a credit memo or deposit dated exactly on the as-of date shows Past Due 0, where it showed 1.
+- The Location chip reads "Location: All locations": an untouched report is the organization-wide report it was before.
+A customer with an overpaid invoice may show a different A/R Summary Totals row after the release; the PRD names this as a change (16 invoices across 13 customer accounts in production).
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11531 (Story 1, Reports open in QuickBooks name order), story SV-11532 (Story 2, Sort by clicking any column header), story SV-11535 (Story 5, Filters: customer or vendor, past due and location)
+- What changes for existing users: “Which rows and amounts each user can see is unchanged: an untouched report shows exactly today's organization-wide numbers (apart from the Totals rows noted above), and the reports show money exactly as they do today.”
+- S5-R5: “The filter opens with every location in the list ticked (All locations), so an untouched report shows exactly today's organization-wide rows and totals. "Select all" ticks every location again.”
+- Key Decisions, organization-wide: “The reports stay organization-wide, by decision. Everyone with access sees every location's data, as today; the Location filter only narrows. Rationale: no permission changes in this release (decided 2026-10-15). Rejected: restricting the reports to the locations a user is enrolled in, which would be its own announced permissions change later.”
+- What changes for existing users: “A credit memo, deposit or vendor credit dated exactly on the as-of date now shows in Current with Past Due 0, as in QuickBooks; today it shows in 1-30 (S1-R5a).”
+- What changes for existing users: “Date and Due Date show plain dates, for example "Nov 4, 2026", instead of "Today", "Yesterday" or "2 days ago" (S2-R1a).”
+- What changes for existing users: “Transaction Type names each kind of credit: "Credit Memo", "Deposit" or "Vendor Credit"; today all three read "Credit" (S2-R1b).”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 4 "Location filter and Location column" (board Location.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p4-opens-on-all-locations.png: figure "Opens on All locations" (This build (after)), board "4. Location filter and Location column"
+- ar-ap-p4-the-native-location-menu.png: figure "The native Location menu" (This build (after)), board "4. Location filter and Location column"The design's own words:
+- "Native filter row: As of, Customer, Past due, then Location, which opens on "Location: All locations". Untouched, the report matches today. Column labelled "Location", after Date. S5-R1, S5-R2, S5-R5, S6-R1 to S6-R3." (caption of "Opens on All locations")
+- ""Select all" with "2 selected", every location in this report's own data named as in the top-right switcher, then "Clear selection". S5-R2, S5-R3, S5-R4, S5-R5, S5-R6." (caption of "The native Location menu")
+AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site

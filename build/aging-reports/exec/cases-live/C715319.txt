@@ -1,0 +1,41 @@
+C715319 A/P Summary: the sort stays while changing date, scrolling and filters
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Make sure the report has more than 30 vendors with open documents on today's date and on yesterday's date, at both locations.
+- Have a vendor, vendor A, with open documents at both locations.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).Setup
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make vendor A: Click Parts in the top bar, then Vendors in the left menu, then New Vendor. Type a new Name for vendor A, pick Credit Terms "Net 30" and Taxes "Exempt (0%)", then click Save & Close.
+- Make bill 1: Click Parts in the top bar, then Purchase Orders in the left menu, then New PO. Pick vendor A in Vendor. In Part Number type a new part number and click "Add new special order part: …"; type a Description, 1 in Quantity and 100.00 in Cost; click Add, then Save & Close. In the Purchase Orders list click Receive on that order (Vendor column: vendor A); type a Vendor Invoice # (for example bill 1), type today's date in Invoice Date, type 0 in Tax, then click Receive Parts (1).
+- Make bill 2: While switched to location B (see the Locations to use item): Same way as bill 1, with vendor A in Vendor: Cost 200.00; type today's date in Invoice Date.
+STEPS: - Click the "Total" header once.
+- Change the as-of date to yesterday.
+- Scroll down until the next 30 vendors load.
+- Open the Vendor filter.
+- Tick vendor A.
+- In the Location filter, untick location B.
+EXP: Expected Result
+Step 1:
+- The rows sort by Total, largest first.
+- "Total" is marked as the sorted column (a small arrow beside its heading).Step 2:
+- The report reloads for yesterday and is still sorted by Total, largest first.Step 3:
+- The new rows are still sorted by Total, largest first.Step 4:
+- The Vendor menu opens.Step 5:
+- Only vendor A's rows remain, still sorted by Total, largest first.Step 6:
+- Only location A rows remain, still sorted by Total, largest first.
+- "Total" is still marked as the sorted column (a small arrow beside its heading).
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11531 (Story 1, Reports open in QuickBooks name order), story SV-11532 (Story 2, Sort by clicking any column header)
+- S2-R7: “The sort is kept while the user stays on the report: changing the as-of date, loading more rows by scrolling, and changing the customer, vendor, Past due or Location filter keep it, except as in S2-R7a.”
+- S2-R2: “The first click gives the useful order for the kind of data: text (names, Location, Transaction Type) A to Z; money columns largest first; dates oldest first; Past Due largest first; ID and No. smallest number first (S2-R4). The second click reverses it. The third click repeats the first; there is no unsorted state.”
+- S1-R8: “A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time, and the next 30 load as the user scrolls down, as today. There are no page buttons. A/R Detail and A/P Detail show each bucket's first 100 lines, then load more as the user scrolls (S4-R4). Paging never repeats or skips a customer, vendor or row, in any sort. On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents.”Partly checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026; not yet seen on that build: more than 30 vendors with open documents at both locations on today's and yesterday's date (not counted on this build).
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 1 "Opening order and header sorting" (board Main.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p1-click-the-total-header.png: figure "Click the Total header" (This build (after)), board "1. Opening order and header sorting"
+- ar-ap-p1-a-r-aging-summary-opens-a-to-z.png: figure "A/R Aging Summary opens A to Z" (This build (after)), board "1. Opening order and header sorting"The design's own words:
+- "First click gives the useful order: money largest first. Second click reverses, third repeats the first. S2-R1, S2-R2, S2-R3, S2-R7." (caption of "Click the Total header")
+- "Customer name order the way QuickBooks sorts ("10 Trucking" before "2 Trucking"), marked on the Customer header. S1-R1, S1-R2, S1-R4, S1-R7, S1-R8." (caption of "A/R Aging Summary opens A to Z")
+AUTOMATION: READY

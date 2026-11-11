@@ -1,0 +1,32 @@
+C715600 A/R Collection: group labels stay at the left when scrolling sideways
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that on today's date the report has a customer, customer A, with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+- Leave the report with customer A's group expanded.Setup
+- Make customer A: Click Customers in the top bar, then New Customer. Type a new Name for customer A, type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make invoice 1 for customer A: On customer A's page click New Work Order, pick the Asset, then click Save (click Ok if a Customer Notes window opens). In the New Line window type a Title, pick Labor Rate "Fixed Line Total" (type "Fixed" in the box to find it), type 10.00 in Fixed Line Total, tick Line Approved, then click Save & Close. On the line click Complete; in Tech stories type a story and click Complete All Lines (if Missing Details asks for Mileage, type it and click Complete All Lines again). Open the Finance tab and click Mark Reviewed (if a window asks for the VIN, type one and click Confirm Review). Type the date 45 days before today in Invoice Date, then click Create Invoice. When the New Customer Payment window opens, reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+- Make 19 more invoices for customer A: Same way as invoice 1 for customer A, 19 more times (any amounts, Invoice Date 45 days before today), so customer A has more overdue invoices than fit on the screen.
+STEPS: - Make the browser window 1200 px wide.
+- Scroll the table sideways to the right.
+EXP: Expected Result
+Step 1:
+- The table now scrolls sideways (narrower than 1440 px).Step 2:
+- Each group row's label (customer A's label) stays visible at the left while the columns move.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11534 (Story 4, Collapse all, Expand all and pinned group rows), story SV-11538 (Story 8, Report descriptions and layout)
+- S4-R7: “When the table scrolls sideways, each group row's label stays visible at the left.”
+- S8-R3: “The headline column (Open Balance; Total on the Summaries) is pinned to the right edge and bold on the header, every row, every expanded row and the Totals row, as on Sales By Customer. At 1440 pixels wide every column of all six reports is visible without scrolling sideways: the customer or vendor name and Transaction Type wrap long values onto a second line, Location wraps only on A/P Detail (nine columns) and A/P Unpaid Invoices, column headings never wrap, and money, date and number columns never wrap. Narrower than 1440 pixels, the table scrolls sideways under the pinned column.”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 6 "Descriptions and pinned column" (board Layout.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p6-open-balance-pinned-light.png: figure "Open Balance pinned, light" (This build (after)), board "6. Report descriptions and the pinned headline column"
+- ar-ap-p6-same-dark-2.png: figure "Same, dark" (This build (after)), board "6. Report descriptions and the pinned headline column"
+- ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png: figure "A/P Unpaid Invoices at 1440: every column visible" (This build (after)), board "6. Report descriptions and the pinned headline column"
+- ar-ap-p6-a-p-detail-scrolled-sideways-light.png: figure "A/P Detail scrolled sideways, light" (Production (before)), board "6. Report descriptions and the pinned headline column" (today's look, for comparison only)The design's own words:
+- "The headline column (Open Balance; Total on the Summaries) is bold and pinned right; the group label stays at the left. S8-R3, S8-R4, S4-R7." (caption of "Open Balance pinned, light")
+- "Pinned cells and links use the native colors in dark mode. S8-R3, S7-R7." (caption of "Same, dark")
+- "At 1440 pixels every column fits without sideways scrolling: Date, Location, Transaction Type, No., Vendor Name, Due Date, Past Due, Amount and the pinned, bold Open Balance. Group labels span to the total; text columns wrap. S8-R3." (caption of "A/P Unpaid Invoices at 1440: every column visible")
+- "No description anywhere; no column stays in place." (caption of "A/P Detail scrolled sideways, light")
+AUTOMATION: READY

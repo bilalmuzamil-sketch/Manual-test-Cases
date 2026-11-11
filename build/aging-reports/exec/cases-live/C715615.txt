@@ -1,0 +1,31 @@
+C715615 A/P Unpaid Invoices: the Totals row adds up every vendor, not only those loaded
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that between 31 and 90 vendors have overdue bills on today's date.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+STEPS: - Choose "Download (CSV)" from the ⋯ menu.
+- Open the CSV and read its Totals row.
+- Switch back to the report and read its Totals row.
+- Scroll down until the next vendors load.
+EXP: Expected Result
+Step 1:
+- The CSV downloads.Step 2:
+- Note the Totals row's Open Balance (it adds up every row of the report).Step 3:
+- The screen's Totals row reads the same Open Balance as the CSV's: it adds up every vendor, not only the 30 loaded so far.Step 4:
+- The Totals row reads the same after more load.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11531 (Story 1, Reports open in QuickBooks name order), story SV-11533 (Story 3, Export to PDF and CSV), story SV-11535 (Story 5, Filters: customer or vendor, past due and location)
+- S5-R18: “The Totals row always adds up exactly the rows the filters leave (customer or vendor, Past due, Location), on screen on every page, in the PDF and in the CSV. On A/R Collection and A/P Unpaid Invoices this fixes today's Totals row, which ignores the customer or vendor filter.”
+- S3-R3: “The PDF and the CSV contain exactly the rows on screen for the chosen as-of date, customer or vendor and locations, in the on-screen sort, including a sort changed after an earlier export, without refreshing the page.”
+- S1-R8: “A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time, and the next 30 load as the user scrolls down, as today. There are no page buttons. A/R Detail and A/P Detail show each bucket's first 100 lines, then load more as the user scrolls (S4-R4). Paging never repeats or skips a customer, vendor or row, in any sort. On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents.”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 2 "Export" (board Export.dc.html); page 7 "Filters and call list" (board Filters.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p2-export-menu-pdf-and-csv.png: figure "Export menu: PDF and CSV" (This build (after)), board "2. Export"
+- ar-ap-p7-past-due-ticked.png: figure "Past due ticked" (New in this build), board "7. Filters and call list"
+- ar-ap-p7-call-list-on-a-r-collection.png: figure "Call list on A/R Collection" (New in this build), board "7. Filters and call list"The design's own words:
+- "The native ⋯ Export menu on all six reports. Files hold exactly the rows on screen, in screen order, with the as-of date and locations, then Past due and the customer or vendor when chosen. S3-R1 to S3-R8, S3-R8a." (caption of "Export menu: PDF and CSV")
+- "31-60 days and 91+ days ticked: the chip reads "Past due: 2 ranges" in blue. The Summary lists only customers with an amount in those ranges, at full balances; the Totals row adds up exactly these rows. S5-R15, S5-R16, S5-R17, S5-R18, S5-R19." (caption of "Past due ticked")
+- "Customer picked: the group row shows "Phone:" and, for users with View and Manage AP/AR Data, "Credit term:". The Totals row follows the customer filter. S9-R1, S9-R2, S5-R18. Exports carry the same lines and columns: S9-R3, S3-R5, S3-R8a." (caption of "Call list on A/R Collection")
+AUTOMATION: READY

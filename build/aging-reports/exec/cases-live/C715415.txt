@@ -1,0 +1,32 @@
+C715415 A/R Collection: a part sale invoice at your location opens its finance page
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have a customer with an overdue part sale invoice A made at your current location.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+- Leave the report with that customer's group expanded.Setup
+- Make customer A: Click Customers in the top bar, then New Customer. Type a new Name for customer A, type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make part sale invoice A: Click Parts in the top bar, then Part Sales in the left menu, then New Part Sale; pick customer A in Customer and click Save. Click Add Part: in Part Number type a new part number and click "Add new special order part: …", type a Description, 1 in Quantity and a Cost, then click Save & Close; on the part's row type 300.00 in the Sell Price box. Click Authorize. On the part's row pick any Vendor and click Order (the status reads Awaiting), then click Receive on the row; tick the part, type a Vendor Invoice Number and click Receive Parts (1) (the status reads Received). Open the Finance tab, type the date 45 days before today in Invoice Date, then click Create Invoice; reload the page when the New Customer Payment window opens.
+STEPS: - Hover over invoice A's Open Balance cell.
+- Click invoice A's Open Balance cell.
+- Click invoice A's number.
+EXP: Expected Result
+Step 1:
+- The pointer does not turn into a hand.
+- The row's text is not blue: only the number is a link.Step 2:
+- Nothing opens.Step 3:
+- The part sale's finance page opens, as today.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11537 (Story 7, Document links open where they can)
+- S7-R1: “A document number is a link only when the user has the permission to open it and can open it in its own location; otherwise it shows as plain text.”
+- S7-R2: “An invoice or part sale at the user's current location opens its finance page, as today.”
+- What changes for existing users: “Clicking a row no longer opens it. The document number, or the customer or vendor name on the Summaries, is the link, as on the newer reports (Story 7).”From: Tech plan "A/R and A/P Report Sorting, Export and Location Filter — Technical Implementation Plan" (2026-10-21, uploaded 22 Oct 2026), read 22 Oct 2026
+- Tech plan §6 Phase 3, frontend: “whole-row click removed (onRowClick, canNavigate, cursor-pointer, text-blue)”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 5 "Document links and Switch location" (board Links.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD and tech plan quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png: figure "Links only where they can open" (This build (after)), board "5. Document links and Switch location (SV-5706)", re-shot 23 Oct 2026, design version of 5 Nov 2026
+- ar-ap-p5-every-invoice-number-is-a-link.png: figure "Every invoice number is a link" (Production (before)), board "5. Document links and Switch location (SV-5706)" (today's look, for comparison only)The design's own words:
+- "A number links only with the right permission and a location the user works at; otherwise plain text. Native link style: the Work In Progress blue, semi-bold, no underline. Reshot 2026-10-23 (round 15). S7-R1, S7-R2, S7-R6, S7-R7, S7-N1, S7-N2." (caption of "Links only where they can open")
+- "Signed in to Heavy Duty, the Lethbridge invoices (S3-) are links too." (caption of "Every invoice number is a link")The design version of 5 Nov 2026 replaced the picture "Links only where they can open" (re-shot 23 Oct 2026): compare with ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png only. This case also still has an older attachment named ar-ap-p5-links-only-where-they-can-open.png: it shows the design before 23 Oct 2026, so do not use it for comparison (TestRail cannot remove it).
+AUTOMATION: READY

@@ -1,0 +1,25 @@
+C1062573 A/P Detail: Date and Due Date read as dates, never Today or Yesterday
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have a vendor with three open bills, each due 30 days after its own date: bill A dated today, bill B dated yesterday and bill C dated 2 days ago.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+- Leave the report with only that vendor ticked in the Vendor filter.Setup
+- Make vendor A: Click Parts in the top bar, then Vendors in the left menu, then New Vendor. Type a new Name for vendor A, pick Credit Terms "Net 30" and Taxes "Exempt (0%)", then click Save & Close.
+- Make bill A: Click Parts in the top bar, then Purchase Orders in the left menu, then New PO. Pick vendor A in Vendor. In Part Number type a new part number and click "Add new special order part: …"; type a Description, 1 in Quantity and 100.00 in Cost; click Add, then Save & Close. In the Purchase Orders list click Receive on that order (Vendor column: vendor A); type a Vendor Invoice # (for example bill A), type today's date in Invoice Date, type 0 in Tax, then click Receive Parts (1).
+- Make bill B: Same way as bill A, with vendor A in Vendor: Cost 200.00; type the date 1 days before today in Invoice Date.
+- Make bill C: Same way as bill A, with vendor A in Vendor: Cost 300.00; type the date 2 days before today in Invoice Date.
+STEPS: - Expand the "Current" bucket.
+EXP: Expected Result
+Step 1:
+- Bill A, bill B and bill C are listed.
+- Their Date cells read today's date, yesterday's date and the date of 2 days ago as month, day and year (for example "Nov 10, 2026").
+- Their Due Date cells read dates in the same form.
+- No Date or Due Date cell reads "Today", "Yesterday" or "2 days ago".
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11532 (Story 2, Sort by clicking any column header)
+- S2-R1a: “Date and Due Date show plain dates on screen, for example "Nov 4, 2026". The PDF and the CSV keep their own date formats (S3-R7a, S3-R8). They never read "Today", "Yesterday" or "2 days ago".”
+- What changes for existing users: “Date and Due Date show plain dates, for example "Nov 4, 2026", instead of "Today", "Yesterday" or "2 days ago" (S2-R1a).”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 1 "Opening order and header sorting" (board Main.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.
+AUTOMATION: READY

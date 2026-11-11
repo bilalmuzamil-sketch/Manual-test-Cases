@@ -1,0 +1,30 @@
+C715429 With Vendor Order Management Create & Edit, a bill at your location is a link
+PRE: Preconditions
+- Sign in as a user whose custom role has "Reports" in the Page Access card, "Vendor and order management → Create & Edit" (under the Parts Department switch) but not "Vendor and order management → View" (under the Parts Department switch).
+- Have a vendor with an unpaid bill A received at your current location.
+- Use a desktop browser window 1440 px wide.
+- Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+- Leave the report with that vendor's group expanded.Setup
+- Make vendor A: Click Parts in the top bar, then Vendors in the left menu, then New Vendor. Type a new Name for vendor A, pick Credit Terms "Net 30" and Taxes "Exempt (0%)", then click Save & Close.
+- Make bill A: Click Parts in the top bar, then Purchase Orders in the left menu, then New PO. Pick vendor A in Vendor. In Part Number type a new part number and click "Add new special order part: …"; type a Description, 1 in Quantity and 300.00 in Cost; click Add, then Save & Close. In the Purchase Orders list click Receive on that order (Vendor column: vendor A); type a Vendor Invoice # (for example bill A), type today's date in Invoice Date, type 0 in Tax, then click Receive Parts (1).
+- Make the role for this test: Click the location name and your initials at the top right of the top bar, then Settings, then Roles & Permissions in the left menu, then Create Custom Role. In "Choose a template" click Skip (every switch then starts off). Type a Role Name, then switch on "Reports" in the Page Access card, switch on Parts Department and tick Create & Edit (not View) in "Vendor and order management", then click Create.
+- Sign in with that role: Click the location name and your initials at the top right of the top bar, then Settings, then Staff in the left menu. On the row "Tech ShopView" click the edit icon; in Edit Staff Member pick the new role in Role and click Save & Close. Then click the location name and your initials at the top right of the top bar, then Logout, and on the QA site's sign-in page click Tech in the quick login panel. After the test, sign in as Admin again and set Tech ShopView's Role back to Technician.
+STEPS: - Look at bill A's number in the No. column.
+- Click it.
+EXP: Expected Result
+Step 1:
+- It is a link.Step 2:
+- Bill A's delivery opens.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11537 (Story 7, Document links open where they can)
+- S7-R1: “A document number is a link only when the user has the permission to open it and can open it in its own location; otherwise it shows as plain text.”
+- S7-R6: “A bill at the user's current location opens its delivery, as today. A bill at another location shows as plain text, because the bill page cannot switch location.”
+- Story 7 Prerequisites: “A bill opens for a user with 'Vendor Order Management → View' or 'Vendor Order Management → Create & Edit'.”Partly checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026; not yet seen on that build: signing in as Tech ShopView after giving it another role; ticking Create & Edit without View in a custom role.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 5 "Document links and Switch location" (board Links.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png: figure "Links only where they can open" (This build (after)), board "5. Document links and Switch location (SV-5706)", re-shot 23 Oct 2026, design version of 5 Nov 2026
+- ar-ap-p5-every-invoice-number-is-a-link.png: figure "Every invoice number is a link" (Production (before)), board "5. Document links and Switch location (SV-5706)" (today's look, for comparison only)The design's own words:
+- "A number links only with the right permission and a location the user works at; otherwise plain text. Native link style: the Work In Progress blue, semi-bold, no underline. Reshot 2026-10-23 (round 15). S7-R1, S7-R2, S7-R6, S7-R7, S7-N1, S7-N2." (caption of "Links only where they can open")
+- "Signed in to Heavy Duty, the Lethbridge invoices (S3-) are links too." (caption of "Every invoice number is a link")The design version of 5 Nov 2026 replaced the picture "Links only where they can open" (re-shot 23 Oct 2026): compare with ar-ap-p5-links-only-where-they-can-open-reshot-2026-11-05.png only. This case also still has an older attachment named ar-ap-p5-links-only-where-they-can-open.png: it shows the design before 23 Oct 2026, so do not use it for comparison (TestRail cannot remove it).
+AUTOMATION: READY

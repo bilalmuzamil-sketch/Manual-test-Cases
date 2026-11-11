@@ -1,0 +1,38 @@
+C715417 A/R Collection: a part sale invoice at another location asks to switch
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
+- Make sure you are enrolled at both locations.
+- Have a customer with an open part sale invoice A made at location B.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+- Leave the report with that customer ticked and its rows showing.Setup
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make customer A: Click Customers in the top bar, then New Customer. Type a new Name for customer A, type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make part sale invoice A: While switched to location B (see the Locations to use item): Click Parts in the top bar, then Part Sales in the left menu, then New Part Sale; pick customer A in Customer and click Save. Click Add Part: in Part Number type a new part number and click "Add new special order part: …", type a Description, 1 in Quantity and a Cost, then click Save & Close; on the part's row type 300.00 in the Sell Price box. Click Authorize. On the part's row pick any Vendor and click Order (the status reads Awaiting), then click Receive on the row; tick the part, type a Vendor Invoice Number and click Receive Parts (1) (the status reads Received). Open the Finance tab, type today's date in Invoice Date, then click Create Invoice; reload the page when the New Customer Payment window opens.
+STEPS: - Click invoice A's number.
+- Click "Switch location".
+EXP: Expected Result
+Step 1:
+- A dialog opens on the report, before leaving it.
+- Its title reads "Switch location?".
+- Its message reads "This part sale is in " followed by location B's name and "Switch your active location to view it?".
+- The button "Cancel" is on the left and the button "Switch location" (small l) is on the right.
+- A close "×" is at the top right.Step 2:
+- The part sale's finance page opens.
+- The location switcher in the top right shows that your active location is now location B.
+What you should see today: in step 1, the right-hand button of the "Switch location?" dialog reads "Switch Location" with a capital L instead of "Switch location". This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-12139 (filed by Chris Ward on 3 Nov 2026).
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem — please report it.
+· If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11537 (Story 7, Document links open where they can)
+- S7-R3: “An invoice or part sale at another location the user is enrolled in shows the existing location-switch prompt on the report, before leaving it: title "Switch location?", message "This work order is in {location}. Switch your active location to view it?" (for a part sale: "This part sale is in {location}. Switch your active location to view it?"), buttons "Cancel" on the left and "Switch location" on the right, and a close × at the top right.”
+- S7-R4: “"Switch location" changes the active location to that location and opens the document.”
+- User Feedback Summary: “Click a part sale at another enrolled location | "This part sale is in {location}. Switch your active location to view it?" | Same dialog”Partly checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026; not yet seen on that build: a part sale made at location B.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 5 "Document links and Switch location" (board Links.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p5-another-location-asks-first.png: figure "Another location asks first" (This build (after)), board "5. Document links and Switch location (SV-5706)"The design's own words:
+- ""Switch location? This work order is in Staging Lethbridge - 4310. Switch your active location to view it?" on the report, with "Cancel" on the left, "Switch location" on the right and a close × at the top right; "Switch location" opens it there. Known build bug: this build labels the button "Switch Location" with a capital L; the PRD wording "Switch location" stands. S7-R3, S7-R4, S7-R5." (caption of "Another location asks first")Difference from the PRD (DD-01), closed: PRD version 5 said buttons "Switch location" and "Cancel" (S7-R3), title "Switch location?"; the design shows buttons "Cancel" (left, grey) then "Switch Location" (right, blue, capital L), and a close "×" at the top right of the dialog; caption: "Switch Location opens it there.". Chris Ward ruled on 23 Oct 2026 (answer 11): the existing prompt keeps "Cancel" on the left, "Switch location" (small l) on the right and a close × at the top right, and the × closes it like Cancel; the capital L the picture and the current build show is a build bug to fix. PRD version 9 (S7-R3, S7-R5) now says so, and this case follows PRD version 9. The held design-version case D-76 (C715558) was deleted from TestRail on 26 Oct 2026 with the QA lead's go-ahead (snapshot in v9-pass-2026-10-26/deleted/).
+AUTOMATION: READY - EXPECT FAIL (SV-12139)

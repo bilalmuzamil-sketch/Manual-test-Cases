@@ -1,0 +1,27 @@
+C715475 Inventory Value link, PDF and CSV work as before the release
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the organization has two or more locations, so one location can be ticked in Inventory Value's Location filter.
+- Make sure that before the release was installed, you saved Inventory Value's PDF and CSV for an as-of date before the release with one location ticked, and copied a link to Inventory Value with that filter.
+- Use a desktop browser window 1440 px wide.
+- After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
+STEPS: - Open the Inventory Value link saved before the release.
+- Choose "Download (PDF)" from the ⋯ menu.
+- Open the PDF and compare it with the saved PDF.
+- Choose "Download (CSV)" from the ⋯ menu.
+- Open the CSV and compare it with the saved CSV.
+EXP: Expected Result
+Step 1:
+- Inventory Value opens with the same filter ticked as before.Step 2:
+- The PDF downloads.Step 3:
+- The same rows, amounts and layout as the saved PDF.Step 4:
+- The CSV downloads.Step 5:
+- The same rows, amounts and layout as the saved CSV.
+Why: the six aging reports reuse the filter chips, totals row and export of Inventory Value, Sales By Customer and Work In Progress, so a change made for the aging reports could reach those three.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location), story SV-11533 (Story 3, Export to PDF and CSV)
+- Key Decisions, reuse rule: “The reuse rule. Every control on these reports reuses an existing ShopView pattern: the native filter chips, the native totals row and pinned headline column of the newer reports, the existing location-switch prompt, the design system's chevron icon. Nothing new is drawn. Basis: d-reuse-existing-pattern.”From: Developer verify task SV-11597 "A/R & A/P aging — verify Phase 1: shared report kit" (updated 21 Oct 2026), read 22 Oct 2026
+- Jira SV-11597, Check: “Inventory Value, Sales By Customer and Work In Progress: filters, links shared from the address bar, and CSV/PDF exports behave exactly as before.”Last checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 2 "Export" (board Export.dc.html); page 4 "Location filter and Location column" (board Location.dc.html); page 7 "Filters and call list" (board Filters.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.
+AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site

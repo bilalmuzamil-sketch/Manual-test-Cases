@@ -1,0 +1,39 @@
+C715411 A/R Collection: the Location column shows with two or more locations
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the organization has open A/R documents at three locations, your current location, location B and location C.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).Setup
+- Make location C: Click the location name and your initials at the top right of the top bar, then Settings, then Locations in the left menu, then New Location. Type a Name, fill the boxes the window marks as required, then click Save & Close. To make documents there, switch to it: click the location name and your initials at the top right of the top bar, then Change Location, then the new location.
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make customer A: Click Customers in the top bar, then New Customer. Type a new Name for customer A, type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make invoice 1: On customer A's page click New Work Order, pick the Asset, then click Save (click Ok if a Customer Notes window opens). In the New Line window type a Title, pick Labor Rate "Fixed Line Total" (type "Fixed" in the box to find it), type 100.00 in Fixed Line Total, tick Line Approved, then click Save & Close. On the line click Complete; in Tech stories type a story and click Complete All Lines (if Missing Details asks for Mileage, type it and click Complete All Lines again). Open the Finance tab and click Mark Reviewed (if a window asks for the VIN, type one and click Confirm Review). Type today's date in Invoice Date, then click Create Invoice. When the New Customer Payment window opens, reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+- Make invoice 2: While switched to location B (see the Locations to use item): Same way as invoice 1, on customer A's page: Fixed Line Total 200.00; type today's date in Invoice Date; then in the New Customer Payment window reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+- Make invoice 3: While switched to location C (see the Make location C item): Same way as invoice 1, on customer A's page: Fixed Line Total 300.00; type today's date in Invoice Date; then in the New Customer Payment window reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+STEPS: - Look for the Location column.
+- Untick location C in the Location menu.
+- Untick location B as well.
+- Click "Clear selection".
+EXP: Expected Result
+Step 1:
+- The Location column is shown (All locations, three in the list).Step 2:
+- The Location column is shown (two ticked).Step 3:
+- The Location column is hidden (one ticked).Step 4:
+- The Location column is hidden (none ticked).
+- The empty state shows.
+Exact quotes from the source (for reproducibility)
+From: PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward), read 10 Nov 2026 · Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location), story SV-11536 (Story 6, Location column)
+- S6-R2: “The column is shown when two or more locations are ticked (All locations counts when the report's list has two or more) and hidden when one or none is ticked.”
+- S6-N1: “With one location chosen, the column is hidden on screen and in the export.”
+- S5-R6a: “With no location ticked ("Clear selection" or unticking every row), the report shows no rows: the native empty state (S8-R5) with "Clear all filters", no totals and no Location column. An export from that state downloads nothing and shows "Empty export", "Export didn't yield any results", as on Sales By Customer.”Partly checked against build v26.45.2-6a8b89c (QA site sv11315) on 11/10/2026; not yet seen on that build: saving a third location and switching to it.
+References from Design
+Design canvas "A/R and A/P Report Sorting" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 4 "Location filter and Location column" (board Location.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.
+Design pictures attached to this case:
+- ar-ap-p4-opens-on-all-locations.png: figure "Opens on All locations" (This build (after)), board "4. Location filter and Location column"
+- ar-ap-p4-one-location-ticked.png: figure "One location ticked" (This build (after)), board "4. Location filter and Location column"
+- ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png: figure "Cleared: No locations" (This build (after)), board "4. Location filter and Location column", re-shot 23 Oct 2026, design version of 5 Nov 2026The design's own words:
+- "Native filter row: As of, Customer, Past due, then Location, which opens on "Location: All locations". Untouched, the report matches today. Column labelled "Location", after Date. S5-R1, S5-R2, S5-R5, S6-R1 to S6-R3." (caption of "Opens on All locations")
+- "One location ticked ("1 selected"): the chip names it, rows, totals and exports narrow to it, and the Location column hides. S5-R6, S5-R7, S5-R10, S6-N1." (caption of "One location ticked")
+- ""Clear selection" leaves no location chosen: the chip reads "Location: No locations" and stays visible, and the table shows the native empty state "No record matches these filters" with "Clear all filters". No Totals row and no Location column. Reshot 2026-10-23 (round 15). S5-R6a, S5-R9." (caption of "Cleared: No locations")The design version of 5 Nov 2026 replaced the picture "Cleared: No locations" (re-shot 23 Oct 2026): compare with ar-ap-p4-cleared-no-locations-reshot-2026-11-05.png only. This case also still has an older attachment named ar-ap-p4-cleared-no-locations.png: it shows the design before 23 Oct 2026, so do not use it for comparison (TestRail cannot remove it).
+Difference from the PRD (DD-03), closed: PRD version 5 said with no location ticked, "the native empty state (S8-R5) with "Clear all filters", no totals and no Location column" (S5-R6a); the design shows "Location: No locations" with a Totals row reading $0.00 and $0.00 under the headings, above the empty state. Chris Ward ruled on 23 Oct 2026 (answer 13): no Totals row, as the PRD says. The design picture was reshot on 23 Oct 2026 (round 15) and published on 5 Nov 2026; its caption now adds "No Totals row and no Location column." This case follows the PRD (S5-R6a, unchanged in version 11). The held design-version case D-78 (C715560) was deleted from TestRail on 26 Oct 2026 with the QA lead's go-ahead (snapshot in v9-pass-2026-10-26/deleted/).
+AUTOMATION: READY
