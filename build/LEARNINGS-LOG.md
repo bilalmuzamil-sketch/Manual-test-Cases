@@ -421,3 +421,7 @@
 ## L0646 — 2026-11-11 — QA sites: an ABORTED API call sends the page to the "Environment Sleeping" screen
 - On sv11315, making one API call fail with `page.route(..., r => r.abort('failed'))` shows a red "QA env is sleeping — Redirecting…" toast and then the "Environment Sleeping / Wake Up" page (p56b, p56c B, twice). The site was NOT asleep: quick-login answered 200 throughout and nothing needed waking. The QA wrapper treats any network-level API failure as "asleep".
 - So to simulate a server-side failure on a QA site, answer the call with `route.fulfill({ status: 500, … })`, not `abort()`. Supersedes the reading in L0644 that the site fell asleep on its own at 12:20 (the wake watcher is still harmless and stays).
+
+## L0647 — 2026-11-11 — Editing a running chain script: insert at least TWO lines past the job now running
+- bash reads a script file ahead of the command it is running. A line inserted directly after the running job's line (p56b3 before `run s5i`, while s5h ran) was SKIPPED; an `env P56B_OUT=` edit to the next line was also ignored (p56b2 wrote into p56b/). Lines inserted two or more jobs ahead (p56, p56b, p56c, p50b) ran.
+- Rule: never edit lines at or before the next job; insert two or more jobs ahead, then confirm in queue.log that the inserted job actually started. If it was skipped, insert it again further down.

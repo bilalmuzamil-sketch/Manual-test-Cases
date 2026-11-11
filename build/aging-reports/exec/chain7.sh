@@ -19,7 +19,9 @@ run s5h env ONLY=C1062566 timeout 600 node s5_run.mjs > s5h.log 2>&1
 run p56b3 timeout 600 node p56b3_scroll_error.mjs > p56b3.log 2>&1
 run s5i env ONLY=C715402 timeout 600 node s5_run.mjs > s5i.log 2>&1
 run s5j env ONLY=C715408 timeout 600 node s5_run.mjs > s5j.log 2>&1
+run s5i2 env ONLY=C715402 timeout 600 node s5_run.mjs > s5i2.log 2>&1
 run s5k env ONLY=C715392,C715607,C715609 timeout 1500 node s5_run.mjs > s5k.log 2>&1
+run p56b3b timeout 600 node p56b3_scroll_error.mjs > p56b3.log 2>&1
 run p44 timeout 600 node p44_pageedge.mjs > p44.log 2>&1
 run s2d3 env ONLY=C715299,C715307,C715312,C715314,C715323,C715593 timeout 2400 node s2_run.mjs s2d.json > s2d3.log 2>&1
 run s78 timeout 5400 node s78_run.mjs > s78.log 2>&1
