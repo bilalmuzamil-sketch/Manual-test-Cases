@@ -1,0 +1,33 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S2 (s2d3, sv11315)"
+ },
+ "results": {
+  "C715323": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary as of 11/11/2026, all customers; it opens sorted by Customer, A to Z, with \"Customer\" marked as the sorted column.",
+    "Step 1: clicked \"Total\": all 139 rows sort by Total, largest first (Desert Edge Truck Service $231,918.94 down to $-2,062.66), none out of order; \"Total\" is marked descending.",
+    "Step 2: opened Sales By Customer from the Reports menu - it opens.",
+    "Step 3: opened A/R Aging Summary again from the menu: it is back in its opening order, \"Customer\" marked as the sorted column (ascending); the Total sort was not remembered."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715323-click_Total_1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715323-3-back.png"
+   ]
+  },
+  "C715593": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary as of 11/11/2026, all vendors; it opens sorted by Vendor, A to Z, with \"Vendor\" marked as the sorted column.",
+    "Step 1: clicked \"Total\": all 499 rows sort by Total, largest first (Willoughby Mechanical Services $535,930.72 down to $-96.81), none out of order; \"Total\" is marked descending.",
+    "Step 2: opened Sales By Customer from the Reports menu - it opens.",
+    "Step 3: opened A/P Aging Summary again from the menu: it is back in its opening order, \"Vendor\" marked as the sorted column (ascending); the Total sort was not remembered."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715593-click_Total_1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715593-3-back.png"
+   ]
+  }
+ }
+}
