@@ -1,7 +1,5 @@
 #!/bin/bash
-# queue7.sh (re-used name, 11 Nov) — p46 A/R seed again (contact last name fixed), right after queue6 (s4p3). Later queues match "queue7.sh".
+# queue7.sh — 11 Nov 2026 ~16:00 UTC: p73 (phone positive control for C715446) after queue6.
 cd "$(dirname "$0")"; log() { echo "$(date -u +%H:%M:%S) $*" >> queue.log; }
-sleep 5; while pgrep -f "queue6\.sh$|node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done
-run() { local name=$1; shift; log "start $name"; "$@"; log "end $name rc=$?"; }
-run p46 timeout 1800 node p46_seed_ar.mjs > p46.log 2>&1
-log "queue7 (p46) done"
+while pgrep -f "queue[23456].sh|chain3[0-6].sh" >/dev/null || pgrep -f "node [a-z0-9_]+\.mjs" >/dev/null; do sleep 10; done
+log "start p73"; timeout 600 node p73_phonectl.mjs > p73.log 2>&1; log "end p73 rc=$?"; log "queue7 done"

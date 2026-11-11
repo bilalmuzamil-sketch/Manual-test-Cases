@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s87 C715423"
+ },
+ "results": {
+  "C715423": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of today, only customer \"ZZX Types P68\" ticked, Current expanded: credit memo CM11315-4319 (-$30.00), deposit DEP11315-4719 (-$20.00) and invoice S11315-17898 ($90.00), all at Staging Heavy Duty - 9919 (my current location).",
+    "Step 1: hovering CM11315-4319 - black text, no underline, the pointer stays an arrow (no hand): plain text, not a link.",
+    "Step 2: clicking it - nothing opens: same page and address, no new tab, no window.",
+    "Step 3: hovering DEP11315-4719 - black text, the pointer stays an arrow: plain text.",
+    "Step 4: clicking it - nothing opens: same page and address, no new tab, no window.",
+    "Check that the test could see a link: the invoice S11315-17898 in the same list is blue - a link - so the credit memo and deposit are plain by design, not because nothing on the page links."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715423-03-C715423-1-2-credit-hover.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715423-04-C715423-1-2-credit-clicked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715423-06-C715423-3-4-deposit-clicked.png"
+   ]
+  }
+ }
+}

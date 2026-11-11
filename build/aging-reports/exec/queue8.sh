@@ -1,7 +1,5 @@
 #!/bin/bash
-# queue8.sh (re-used name, 11 Nov) — p46 A/R seed, third try (names suffixed " R3" because the first two runs left customers with no invoices), right after queue23 (s4e).
+# queue8.sh — 11 Nov 2026 ~15:30 UTC: s87d = C715424 again (number pattern S-17887; Change Location list for enrolment) after queue7.
 cd "$(dirname "$0")"; log() { echo "$(date -u +%H:%M:%S) $*" >> queue.log; }
-sleep 5; while pgrep -f "queue23\.sh$|node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done
-run() { local name=$1; shift; log "start $name"; "$@"; log "end $name rc=$?"; }
-run p46 env SFX=" R3" timeout 1800 node p46_seed_ar.mjs > p46.log 2>&1
-log "queue8 (p46) done"
+while pgrep -f "queue[234567].sh|chain3[0-6].sh" >/dev/null || pgrep -f "node [a-z0-9_]+\.mjs" >/dev/null; do sleep 10; done
+log "start s87d"; ONLY=C715424 timeout 900 node s87_plain.mjs > s87d.log 2>&1; log "end s87d rc=$?"; log "queue8 done"
