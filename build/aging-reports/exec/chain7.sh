@@ -11,6 +11,7 @@ run p48b timeout 400 node p48b_pdf2000_msg.mjs > p48b.log 2>&1
 run p50 timeout 600 node p50_overpay.mjs > p50.log 2>&1
 run s4f env ONLY=C1062582,C1062583 timeout 900 node s4_run.mjs > s4f.log 2>&1
 run p50b timeout 600 node p50b_overpay_ui.mjs > p50b.log 2>&1
+run p56 timeout 600 node p56_bucket_error.mjs > p56.log 2>&1
 run s5h env ONLY=C1062566 timeout 600 node s5_run.mjs > s5h.log 2>&1
 run s5i env ONLY=C715402 timeout 600 node s5_run.mjs > s5i.log 2>&1
 run s5j env ONLY=C715408 timeout 600 node s5_run.mjs > s5j.log 2>&1
