@@ -1,2 +1,0 @@
-const o={Dashboard:"dashboard",WorkOrders:"work_orders",Schedule:"schedule",Customers:"customers",Parts:"parts",Reports:"reports",Profile:"profile",Administration:"administration"};function s(r){var e;return(e=o[r])!=null?e:r.replace(/([a-z0-9])([A-Z])/g,"$1_$2").replace(/[^a-zA-Z0-9]+/g,"_").replace(/^_+|_+$/g,"").toLowerCase()}export{o as N,s as t};
-//# sourceMappingURL=navAnalytics.DxWzEVOx.js.map

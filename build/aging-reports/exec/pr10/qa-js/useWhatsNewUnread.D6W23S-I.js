@@ -1,2 +1,0 @@
-import"./index.DmAo4IZ5.js";import{b as o,u}from"./index.DUxoGV8o.js";import{e as t}from"./vue-vendor.DrI6mb_A.js";const c=()=>"https://whatsnew.shopview.com".replace(/\/+$/,""),h=()=>c(),p=()=>!0,l=()=>{const{data:e,isFetched:s}=o(),{mutate:a}=u(),n=t(()=>e.value.unread),r=t(()=>s.value);return{isUnread:n,isSettled:r,markSeen:()=>{a()}}};export{p as i,l as u,h as w};
-//# sourceMappingURL=useWhatsNewUnread.D6W23S-I.js.map
