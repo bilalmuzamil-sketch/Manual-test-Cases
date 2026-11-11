@@ -32,6 +32,18 @@ E = {
     ('d3b/C715539-2-scroll-3300.png', 'Step 1: Desert Edge\'s row pinned under the headings, rows sliding beneath', (PIN + ('good', 'Pinned, as designed'),)),
     ('d3b/C715539-3-scroll-3700.png', 'Step 2: Tucson Truck Center has taken the pinned place - one pinned row', (PIN + ('good', 'Customer B pinned'),)),
     ('d3b/C715539-4-1536.png', 'Step 3: 1536 px - nothing clipped, same layout', ())]),
+ 'C715541': (['A/R Aging Collection, as of today, all locations, every group closed, 1440 px; compared with the design pictures "Info icon beside the title, light" and "…, dark".',
+   'Step 1: the title "A/R Aging Collection", the info icon directly right of it and the "⋯" at the right end, on one line; the filter row below.',
+   'Step 2: the chevron in the top-left header cell points right - every group is closed.',
+   'Step 3: each group row shows a blue chevron pointing right, the bold name with its count, grey "Credit term: " and the term (and grey "Phone: " and the number where the customer card has one, e.g. Andrews\' Truck & Trailer Repair LLC), "Total" under Past Due and the two bold sums.',
+   'Step 4: "Totals" with the two bold sums at the bottom.',
+   'Step 5: in dark theme the page is dark with white text, as in the dark picture; the "As of" and "Location" chips are dark-blue pills with white text; "Customer" and "Past due" are white text with no fill; Phone and Credit term are grey; everything is readable.',
+   'Step 6: at 1536 px (dark) nothing overlaps, is cut off or clipped; the layout is the same as at 1440 px.'],
+   [('design-pics/ar-ap-p6-info-icon-beside-the-title-light.png', 'Design picture, light', ()),
+    ('d3b/C715541-1-light.png', 'Steps 1-4: light theme - as designed', (CH + ('good', 'Title row and chips'), (278, 208, 1132, 300, 'good', 'Closed groups'))),
+    ('design-pics/ar-ap-p6-info-icon-beside-the-title-dark.png', 'Design picture, dark', ()),
+    ('d3b/C715541-2-dark.png', 'Step 5: dark theme - as designed, readable', (CH + ('good', 'Dark-blue pills, white text'),)),
+    ('d3b/C715541-3-dark-1536.png', 'Step 6: 1536 px - nothing clipped', ())]),
 }
 ids = sys.argv[1:]; R = {}
 for c in ids:
