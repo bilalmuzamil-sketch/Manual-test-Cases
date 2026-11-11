@@ -1,0 +1,129 @@
+== R1
+customer ZZX Sort Cust A R3 Net 30
+  invoice S11315-17741 100.00 dated -0 Net 30 HD
+  invoice S11315-17742 200.00 dated -45 Net 30 HD
+  invoice S11315-17743 300.00 dated -75 Net 30 HD
+  invoice S11315-17744 250.00 dated -105 Net 30 HD
+  invoice S11315-17745 350.00 dated -150 Net 30 HD
+customer ZZX Sort Cust B R3 Net 30
+  invoice S11315-17746 300.00 dated -0 Net 30 HD
+  invoice S11315-17747 100.00 dated -45 Net 30 HD
+  invoice S11315-17748 200.00 dated -75 Net 30 HD
+  invoice S11315-17749 350.00 dated -105 Net 30 HD
+  invoice S11315-17750 150.00 dated -150 Net 30 HD
+customer ZZX Sort Cust C R3 Net 30
+  invoice S11315-17751 200.00 dated -0 Net 30 HD
+  invoice S11315-17752 300.00 dated -45 Net 30 HD
+  invoice S11315-17753 100.00 dated -75 Net 30 HD
+  invoice S11315-17754 150.00 dated -105 Net 30 HD
+  invoice S11315-17755 250.00 dated -150 Net 30 HD
+  read back ZZX Sort Cust A R3 [["days_91_plus",1,35000],["days_61_to_90",1,25000],["days_31_to_60",1,30000],["days_1_to_30",1,20000],["current",0,0]]
+  read back ZZX Sort Cust B R3 [["days_91_plus",1,15000],["days_61_to_90",1,35000],["days_31_to_60",1,20000],["days_1_to_30",1,10000],["current",0,0]]
+  read back ZZX Sort Cust C R3 [["days_91_plus",1,25000],["days_61_to_90",1,15000],["days_31_to_60",1,10000],["days_1_to_30",1,30000],["current",0,0]]
+== R2
+customer ZZX Doc Cust A R3 Net 30
+  invoice S11315-17756 300.00 dated -40 Net 30 HD
+  paid 250 on S11315-17756
+customer ZZX Doc Cust B R3 COD
+  invoice S11315-17757 100.00 dated -20 COD HD
+customer ZZX Doc Cust C R3 Net 30
+  invoice S11315-17758 200.00 dated -35 Net 30 HD
+  paid 50 on S11315-17758
+  read back ZZX Doc Cust A R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,5000],["current",0,0]]
+  read back ZZX Doc Cust B R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,10000],["current",0,0]]
+  read back ZZX Doc Cust C R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,15000],["current",0,0]]
+== R3
+customer ZZX Doc Group R3 Net 30
+  invoice S11315-17759 300.00 dated -40 Net 30 HD
+  paid 250 on S11315-17759
+  invoice S11315-17760 200.00 dated -35 Net 30 HD
+  paid 50 on S11315-17760
+  invoice S11315-17761 100.00 dated -20 COD HD
+  read back ZZX Doc Group R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",3,30000],["current",0,0]]
+== R4
+customer ZZX CSV Sum A R3 COD
+  invoice S11315-17762 1250.50 dated -15 COD HD
+  invoice S11315-17763 99.00 dated -100 COD HD
+  read back ZZX CSV Sum A R3 [["days_91_plus",1,9900],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,125050],["current",0,0]]
+== R5
+customer ZZX CSV Det A R3 COD
+  invoice S11315-17764 1250.50 dated -45 COD HD
+  invoice S11315-17765 75.00 dated -15 COD HD
+  read back ZZX CSV Det A R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",1,125050],["days_1_to_30",1,7500],["current",0,0]]
+== R6
+customer ZZX Tot Cust A R3 COD
+  invoice S11315-17766 1000.00 dated -15 COD HD
+  invoice S11315-17767 400.00 dated -45 COD LB
+  credit CM-4197 150
+customer ZZX Tot Cust B R3 COD
+  invoice S11315-17768 700.00 dated -45 COD HD
+  invoice S11315-17769 250.00 dated -100 COD LB
+customer ZZX Tot Cust C R3 COD
+  invoice S11315-17770 900.00 dated -5 COD HD
+  read back ZZX Tot Cust A R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",1,40000],["days_1_to_30",2,85000],["current",0,0]]
+  read back ZZX Tot Cust B R3 [["days_91_plus",1,25000],["days_61_to_90",0,0],["days_31_to_60",1,70000],["days_1_to_30",0,0],["current",0,0]]
+  read back ZZX Tot Cust C R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,90000],["current",0,0]]
+== R8
+customer ZZX Bkt Cust A R3 COD
+  invoice S11315-17771 400.00 dated -45 COD HD
+  invoice S11315-17772 300.00 dated -15 COD LB
+  invoice S11315-17773 1000.00 dated -0 Net 30 HD
+customer ZZX Bkt Cust B R3 COD
+  invoice S11315-17774 700.00 dated -45 COD HD
+  paid 200 on S11315-17774
+  invoice S11315-17775 250.00 dated -100 COD HD
+  read back ZZX Bkt Cust A R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",1,40000],["days_1_to_30",1,30000],["current",0,0]]
+  read back ZZX Bkt Cust B R3 [["days_91_plus",1,25000],["days_61_to_90",0,0],["days_31_to_60",1,50000],["days_1_to_30",0,0],["current",0,0]]
+== R9
+customer ZZX Bounds R3 COD
+  invoice S11315-17776 1.00 dated -1 COD HD
+  invoice S11315-17777 30.00 dated -30 COD HD
+  invoice S11315-17778 31.00 dated -31 COD HD
+  invoice S11315-17779 60.00 dated -60 COD HD
+  invoice S11315-17780 61.00 dated -61 COD HD
+  invoice S11315-17781 90.00 dated -90 COD HD
+  invoice S11315-17782 91.00 dated -91 COD HD
+  invoice S11315-17783 10.00 dated -0 Net 30 HD
+  read back ZZX Bounds R3 [["days_91_plus",1,9100],["days_61_to_90",2,15100],["days_31_to_60",2,9100],["days_1_to_30",2,3100],["current",0,0]]
+== R10
+customer ZZX Quick A R3 COD
+  invoice S11315-17784 100.00 dated -5 COD HD
+customer ZZX Quick B R3 COD
+  invoice S11315-17785 200.00 dated -5 COD HD
+customer ZZX Quick C R3 COD
+  invoice S11315-17786 300.00 dated -5 COD HD
+customer ZZX Quick D R3 COD
+  invoice S11315-17787 400.00 dated -5 COD HD
+customer ZZX Quick E R3 COD
+  invoice S11315-17788 500.00 dated -5 COD HD
+  read back ZZX Quick A R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,10000],["current",0,0]]
+  read back ZZX Quick B R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,20000],["current",0,0]]
+  read back ZZX Quick C R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,30000],["current",0,0]]
+  read back ZZX Quick D R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,40000],["current",0,0]]
+  read back ZZX Quick E R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,50000],["current",0,0]]
+== R11
+customer ZZX Pay Later R3 COD
+  invoice S11315-17789 500.00 dated -5 COD HD
+  read back ZZX Pay Later R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,50000],["current",0,0]]
+== R12
+customer ZZX Diff Cust A R3 COD
+  invoice S11315-17790 400.00 dated -45 COD HD
+  invoice S11315-17791 300.00 dated -15 COD HD
+  credit CM-4198 150
+  invoice S11315-17792 1000.00 dated -0 Net 30 HD
+customer ZZX Diff Cust B R3 COD
+  invoice S11315-17793 500.00 dated -45 COD HD
+  invoice S11315-17794 250.00 dated -100 COD HD
+  read back ZZX Diff Cust A R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",1,40000],["days_1_to_30",2,15000],["current",0,0]]
+  read back ZZX Diff Cust B R3 [["days_91_plus",1,25000],["days_61_to_90",0,0],["days_31_to_60",1,50000],["days_1_to_30",0,0],["current",0,0]]
+== R13
+customer ZZX Credit Only R3 COD
+  invoice S11315-17795 50.00 dated -10 COD HD
+  paid 50 on S11315-17795
+  credit CM-4199 150
+  read back ZZX Credit Only R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,-15000],["current",0,0]]
+== R14
+customer ZZX Credit Today R3 COD
+  invoice S11315-17796 500.00 dated -20 COD HD
+  credit CM-4200 120
+  read back ZZX Credit Today R3 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,50000],["current",1,-12000]]

@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount sort tests (s2x)"
+ },
+ "results": {
+  "C715296": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of 11/11/2026, Customer filter = ZZX Doc Cust A/B/C R3, \"1-30 days past due\" open: document A $300 (open $50), B $100 (open $100), C $200 (open $150).",
+    "Every step gives exactly the order the test expects:",
+    "Step 1: Amount - document A, document C, document B",
+    "Step 2: Amount - document B, document C, document A",
+    "Step 3: Open Balance - document C, document B, document A",
+    "Step 4: Open Balance - document A, document B, document C",
+    "Step 5: Open Balance - document C, document B, document A"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715296-1-Amount.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715296-2-Amount.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715296-3-OpenBalance.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715296-4-OpenBalance.png"
+   ]
+  }
+ }
+}

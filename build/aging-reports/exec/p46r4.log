@@ -1,0 +1,44 @@
+== R1
+customer ZZX Sort Cust A R4 Net 30
+  invoice S11315-17797 100.00 dated -0 Net 30 HD
+  invoice S11315-17798 200.00 dated -45 Net 30 HD
+  invoice S11315-17799 300.00 dated -75 Net 30 HD
+  invoice S11315-17800 250.00 dated -105 Net 30 HD
+  invoice S11315-17801 350.00 dated -150 Net 30 HD
+customer ZZX Sort Cust B R4 Net 30
+  invoice S11315-17802 300.00 dated -0 Net 30 HD
+  invoice S11315-17803 100.00 dated -45 Net 30 HD
+  invoice S11315-17804 200.00 dated -75 Net 30 HD
+  invoice S11315-17805 350.00 dated -105 Net 30 HD
+  invoice S11315-17806 150.00 dated -150 Net 30 HD
+customer ZZX Sort Cust C R4 Net 30
+  invoice S11315-17807 200.00 dated -0 Net 30 HD
+  invoice S11315-17808 300.00 dated -45 Net 30 HD
+  invoice S11315-17809 100.00 dated -75 Net 30 HD
+  invoice S11315-17810 150.00 dated -105 Net 30 HD
+  invoice S11315-17811 250.00 dated -150 Net 30 HD
+  read back ZZX Sort Cust A R4 [["days_91_plus",1,35000],["days_61_to_90",1,25000],["days_31_to_60",1,30000],["days_1_to_30",1,20000],["current",1,10000]]
+  read back ZZX Sort Cust B R4 [["days_91_plus",1,15000],["days_61_to_90",1,35000],["days_31_to_60",1,20000],["days_1_to_30",1,10000],["current",1,30000]]
+  read back ZZX Sort Cust C R4 [["days_91_plus",1,25000],["days_61_to_90",1,15000],["days_31_to_60",1,10000],["days_1_to_30",1,30000],["current",1,20000]]
+== R8
+customer ZZX Bkt Cust A R4 COD
+  invoice S11315-17812 400.00 dated -45 COD HD
+  invoice S11315-17813 300.00 dated -15 COD LB
+  invoice S11315-17814 1000.00 dated -0 Net 30 HD
+customer ZZX Bkt Cust B R4 COD
+  invoice S11315-17815 700.00 dated -45 COD HD
+  paid 200 on S11315-17815
+  invoice S11315-17816 250.00 dated -100 COD HD
+  read back ZZX Bkt Cust A R4 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",1,40000],["days_1_to_30",1,30000],["current",1,100000]]
+  read back ZZX Bkt Cust B R4 [["days_91_plus",1,25000],["days_61_to_90",0,0],["days_31_to_60",1,50000],["days_1_to_30",0,0],["current",0,0]]
+== R9
+customer ZZX Bounds R4 COD
+  invoice S11315-17817 1.00 dated -1 COD HD
+  invoice S11315-17818 30.00 dated -30 COD HD
+  invoice S11315-17819 31.00 dated -31 COD HD
+  invoice S11315-17820 60.00 dated -60 COD HD
+  invoice S11315-17821 61.00 dated -61 COD HD
+  invoice S11315-17822 90.00 dated -90 COD HD
+  invoice S11315-17823 91.00 dated -91 COD HD
+  invoice S11315-17824 10.00 dated -0 Net 30 HD
+  read back ZZX Bounds R4 [["days_91_plus",1,9100],["days_61_to_90",2,15100],["days_31_to_60",2,9100],["days_1_to_30",2,3100],["current",1,1000]]
