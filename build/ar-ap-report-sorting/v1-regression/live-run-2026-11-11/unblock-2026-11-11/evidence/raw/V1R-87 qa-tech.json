@@ -1,0 +1,116 @@
+{
+ "key": "V1R-87",
+ "env": "qa-tech",
+ "startUtc": "2026-11-11T13:41:16.582Z",
+ "shots": [
+  {
+   "f": "V1R-87 qa-tech - step 3 location B invoice listed.png",
+   "boxes": {
+    "b": [
+     1478,
+     1041,
+     183,
+     39
+    ]
+   }
+  },
+  {
+   "f": "V1R-87 qa-tech - step 5 Switch location prompt.png",
+   "boxes": {
+    "dialog": [
+     832,
+     691,
+     1216,
+     402
+    ]
+   }
+  },
+  {
+   "f": "V1R-87 qa-tech - step 7 pointing at the location C invoice ID.png",
+   "boxes": {
+    "c": [
+     1478,
+     1041,
+     105,
+     39
+    ]
+   }
+  },
+  {
+   "f": "V1R-87 qa-tech - step 8 location A invoice before click.png",
+   "boxes": {
+    "a": [
+     1478,
+     1041,
+     183,
+     39
+    ]
+   }
+  },
+  {
+   "f": "V1R-87 qa-tech - step 8 location A invoice opened.png",
+   "boxes": {}
+  }
+ ],
+ "marker": "v26.45.2-6a8b89c",
+ "user": "tech@shopview.com",
+ "identity": {
+  "lines": 524,
+  "bucketsOpened": 5,
+  "B": {
+   "text": "Nov 6, 2026 Staging Lethbridge - 4310 Invoice S11315-17835 ZZAUTOTEST AR R03 Location B Nov 6, 2026 $33.00 $33.00",
+   "link": {
+    "tid": "link_ardet_doc_baa6f9f1-12bc-4c60-84e6-43993eede4b7",
+    "href": "/workorders/df6c69b1-21c9-4dcf-b0dc-a3788b5efcd2/finance?locationId=f8a8b802-7780-4b16-bf10-343caeb616b2",
+    "text": "S11315-17835"
+   }
+  },
+  "A": {
+   "text": "Oct 10, 2026 Staging Heavy Duty - 9919 Invoice S11315-17834 ZZAUTOTEST AR R13 Payment After Oct 10, 2026 $100.00 $60.00",
+   "link": {
+    "tid": "link_ardet_doc_ecedb52d-003f-4fa6-9c2f-d062cd6b8c99",
+    "href": "/workorders/69763b08-b91c-4c3a-9ffb-3e1b4866dd00/finance",
+    "text": "S11315-17834"
+   }
+  },
+  "C": {
+   "text": "Nov 1, 2026 ZZAUTOTEST V1R-87 Location C Invoice S-17887 ZZAUTOTEST AR V1R-87 Location C Nov 1, 2026 $87.00 $87.00",
+   "link": null,
+   "plain": "S-17887"
+  }
+ },
+ "checks": [
+  {
+   "what": "Step 2: A/R Aging Detail opens",
+   "ok": true,
+   "saw": "A/R Aging Detail"
+  },
+  {
+   "what": "Step 3: every bucket opened; the three invoices are listed",
+   "ok": true,
+   "saw": "524 lines; B true, A true, C true"
+  },
+  {
+   "what": "Step 5 (PRD S7-R3): \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", Cancel left, Switch location right, close ×",
+   "ok": true,
+   "saw": "Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch location | buttons [\"close\",\"Cancel\",\"Switch location\"]"
+  },
+  {
+   "what": "Step 6: you stay on the report",
+   "ok": true,
+   "saw": "A/R Aging Detail https://sv11315.qa.shopview.com/reports/ar-aging-detail"
+  },
+  {
+   "what": "Step 7 (PRD S7-R1): the location C invoice ID is plain text",
+   "ok": true,
+   "saw": "{\"tag\":\"SPAN\",\"tid\":\"text_ardet_doc_04ae2ac2-5278-4965-8dc0-a68a9b03abc6\",\"text\":\"S-17887\",\"href\":null,\"inLink\":false,\"color\":\"rgb(0, 0, 0)\",\"cursor\":\"auto\",\"textDecoration\":\"none\",\"rowText\":\"Nov 1, 2026 ZZAUTOTEST V1R-87 Location C Invoice S-17887 ZZAUTOTEST AR V1R-87 Location C Nov 1, 2026 $87.00 $87.00\",\"cursorAfterHover\":\"auto\"}"
+  },
+  {
+   "what": "Step 8: the location A invoice opens its finance page directly",
+   "ok": true,
+   "saw": "https://sv11315.qa.shopview.com/workorders/69763b08-b91c-4c3a-9ffb-3e1b4866dd00/finance"
+  }
+ ],
+ "endUtc": "2026-11-11T13:43:08.317Z",
+ "markerEnd": "v26.45.2-6a8b89c"
+}

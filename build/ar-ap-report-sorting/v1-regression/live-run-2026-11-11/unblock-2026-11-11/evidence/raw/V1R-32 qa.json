@@ -1,0 +1,64 @@
+{
+ "key": "V1R-32",
+ "env": "qa",
+ "startUtc": "2026-11-11T13:39:02.704Z",
+ "shots": [
+  {
+   "f": "V1R-32 qa - step 1 Reports menu.png",
+   "boxes": {
+    "nav": [
+     24,
+     1277,
+     430,
+     57
+    ]
+   }
+  },
+  {
+   "f": "V1R-32 qa - step 3 pointing at the first customer name.png",
+   "boxes": {
+    "name": [
+     580,
+     445,
+     112,
+     36
+    ],
+    "title": null
+   }
+  },
+  {
+   "f": "V1R-32 qa - step 4 after clicking the customer name.png",
+   "boxes": {
+    "name": null
+   }
+  }
+ ],
+ "marker": "v26.45.2-6a8b89c",
+ "user": "admin@shopview.com",
+ "url2": "https://sv11315.qa.shopview.com/reports/ar-aging-summary",
+ "identity": {
+  "customer": "#1 Diesel",
+  "customerId": "e2e804d8-f2f3-4a94-8bc9-98c22dc725c8",
+  "linksOnPage": 30,
+  "plainNamesOnPage": 0
+ },
+ "checks": [
+  {
+   "what": "Step 2: A/R Aging Summary opens",
+   "ok": true,
+   "saw": "A/R Aging Summary https://sv11315.qa.shopview.com/reports/ar-aging-summary"
+  },
+  {
+   "what": "Step 3: the name is plain text (not blue)",
+   "ok": false,
+   "saw": "{\"tag\":\"A\",\"tid\":\"link_arsum_party_e2e804d8-f2f3-4a94-8bc9-98c22dc725c8\",\"text\":\"#1 Diesel\",\"href\":\"/reports/ar-aging-collection?asOfDate=2026-11-11&customerIds=e2e804d8-f2f3-4a94-8bc9-98c22dc725c8\",\"inLink\":true,\"color\":\"rgb(34, 118, 218)\",\"cursor\":\"pointer\",\"textDecoration\":\"none\"} | 30 customer links, 0 plain names on the page"
+  },
+  {
+   "what": "Step 4: nothing opens; you stay on A/R Aging Summary",
+   "ok": false,
+   "saw": "before https://sv11315.qa.shopview.com/reports/ar-aging-summary after https://sv11315.qa.shopview.com/reports/ar-aging-collection?asOfDate=2026-11-11&customerIds=e2e804d8-f2f3-4a94-8bc9-98c22dc725c8 title A/R Aging Collection"
+  }
+ ],
+ "endUtc": "2026-11-11T13:39:18.150Z",
+ "markerEnd": "v26.45.2-6a8b89c"
+}

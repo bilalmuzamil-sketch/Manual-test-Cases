@@ -1,0 +1,62 @@
+{
+ "pass_meta": {
+  "run": 557,
+  "site": "QA site sv11315 (https://sv11315.qa.shopview.com)",
+  "build_marker": "v26.45.2-6a8b89c",
+  "date": "11 November 2026",
+  "by": "lane worker, unblock pass"
+ },
+ "results": {
+  "C1079005": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as tech@shopview.com with a role that has Reports page access ON and Customers View OFF, and nothing else.",
+    "Step 2: A/R Aging Summary opened.",
+    "Step 3: pointing at the first customer, \"#1 Diesel\": the name is plain black text, not blue. All 30 customer names on the page are plain text.",
+    "Step 4: clicking \"#1 Diesel\" opened nothing; the page stayed on A/R Aging Summary.",
+    "Cross-check: on the same screen the QA lead's Admin user, who has Customers View, sees \"#1 Diesel\" as a blue link (picture 3). So the plain text comes from the missing Customers View permission."
+   ],
+   "pictures": [
+    "evidence/C1079005-PIC1-step-3-customer-name-is-plain-text.png",
+    "evidence/C1079005-PIC2-step-4-click-opens-nothing.png",
+    "evidence/C1079005-PIC3-control-admin-with-customers-view-sees-a-link.png"
+   ],
+   "todo": "Nothing for the tester.",
+   "technical": "Role 'ZZAUTOTEST V1R-32 Reports on Customers View off' (0d6c87c1-5ec4-4883-91a6-e1f7c7f5b635): reportsPageAccess only, all cross toggles off; read back from /api/auth/me/fe-permissions as tech. First name element text_arsum_party_e2e804d8-f2f3-4a94-8bc9-98c22dc725c8 (SPAN, colour rgb(0,0,0), cursor auto); 0 link_arsum_party_ elements. Admin control: link_arsum_party_ same id, colour rgb(34,118,218), opens /reports/ar-aging-collection. Observed 2026-11-11T13:37Z, build v26.45.2-6a8b89c before and after."
+  },
+  "C1079026": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as tech@shopview.com with a role that has ONLY Reports page access (no vendor ordering, customer or invoicing permission).",
+    "Step 2: A/P Aging Summary opened.",
+    "Step 3: the first vendor, \"#1 Diesel\", is a blue link (all 30 vendor names on the page are links) and could be clicked.",
+    "Step 4: the page title reads \"A/P Unpaid Invoices Report\" and the Vendor chip reads \"Vendor: #1 Diesel\"; only that vendor's group and the Totals row are listed. A/P Unpaid Invoices opened narrowed to that vendor."
+   ],
+   "pictures": [
+    "evidence/C1079026-PIC1-step-3-vendor-name-is-a-link.png",
+    "evidence/C1079026-PIC2-step-4-unpaid-invoices-narrowed-to-vendor.png"
+   ],
+   "todo": "Nothing for the tester.",
+   "technical": "Role 'ZZAUTOTEST V1R-53 Reports page access only' (b7aa0ea7-fb0a-49ff-9f70-1feb2e6d7b9e): reportsPageAccess only, all cross toggles off. Vendor link link_apsum_party_772a84c3-4d82-4124-9ca7-66d96837a030 -> /reports/ap-unpaid-invoices?asOfDate=2026-11-11&vendorIds=772a84c3-4d82-4124-9ca7-66d96837a030. The page's own title is 'A/P Unpaid Invoices Report' (same as V1R-02 C1078975 step 8). Observed 2026-11-11T13:39Z, build v26.45.2-6a8b89c before and after."
+  },
+  "C1095443": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as tech@shopview.com with the Admin role, enrolled at Staging Heavy Duty - 9919 (location A, active) and Staging Lethbridge - 4310 (location B), and NOT enrolled at the new location \"ZZAUTOTEST V1R-87 Location C\".",
+    "Step 3: every bucket opened (524 lines); the location A invoice S11315-17834, the location B invoice S11315-17835 and the location C invoice S-17887 are all listed.",
+    "Step 5: clicking S11315-17835 showed \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", Cancel on the left, Switch location on the right and a close X.",
+    "Step 6: after Cancel the page stayed on A/R Aging Detail.",
+    "Step 7: pointing at S-17887 (location C): plain black text, not a link.",
+    "Step 8: clicking S11315-17834 (location A) opened its finance page straight away.",
+    "Cross-check: the QA lead's Admin user, who IS enrolled at location C, sees the same S-17887 as a blue link (picture 3). So the plain text comes from not being enrolled there."
+   ],
+   "pictures": [
+    "evidence/C1095443-PIC1-step-5-switch-location-prompt.png",
+    "evidence/C1095443-PIC2-step-7-location-C-invoice-is-plain-text.png",
+    "evidence/C1095443-PIC3-control-enrolled-admin-sees-a-link.png"
+   ],
+   "todo": "Nothing for the tester.",
+   "technical": "Location C = 'ZZAUTOTEST V1R-87 Location C' (19abb244-4c5d-460a-86bb-e515d4eda24d), created 11 Nov 2026 for this case. Invoice: WO S-17887, invoice id 04ae2ac2-5278-4965-8dc0-a68a9b03abc6, customer 'ZZAUTOTEST AR V1R-87 Location C', $87.00 open. Tech's role: system Admin (73f72525-3d67-436b-9c1d-12677cdf9883, identical to its template, 57 permissions). C row element text_ardet_doc_04ae2ac2-5278-4965-8dc0-a68a9b03abc6 (SPAN); enrolled-Admin control link_ardet_doc_04ae2ac2-... with locationId=19abb244-4c5d-460a-86bb-e515d4eda24d. Observed 2026-11-11T13:41Z, build v26.45.2-6a8b89c before and after."
+  }
+ }
+}

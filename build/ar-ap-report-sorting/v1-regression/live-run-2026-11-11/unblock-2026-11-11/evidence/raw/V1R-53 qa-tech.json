@@ -1,0 +1,77 @@
+{
+ "key": "V1R-53",
+ "env": "qa-tech",
+ "startUtc": "2026-11-11T13:39:34.867Z",
+ "shots": [
+  {
+   "f": "V1R-53 qa-tech - step 1 Reports menu.png",
+   "boxes": {
+    "nav": [
+     24,
+     1508,
+     430,
+     57
+    ]
+   }
+  },
+  {
+   "f": "V1R-53 qa-tech - step 3 the first vendor name.png",
+   "boxes": {
+    "name": [
+     580,
+     445,
+     112,
+     36
+    ]
+   }
+  },
+  {
+   "f": "V1R-53 qa-tech - step 4 page title and Vendor chip.png",
+   "boxes": {
+    "title": [
+     496,
+     114,
+     2384,
+     1686
+    ],
+    "chip": [
+     963,
+     239,
+     365,
+     56
+    ]
+   }
+  }
+ ],
+ "marker": "v26.45.2-6a8b89c",
+ "user": "tech@shopview.com",
+ "identity": {
+  "vendor": "#1 Diesel",
+  "vendorId": "772a84c3-4d82-4124-9ca7-66d96837a030",
+  "linksOnPage": 30,
+  "plainNamesOnPage": 0,
+  "firstRowsAfter": [
+   "keyboard_arrow_right #1 Diesel (1) Total $36.00 $36.00",
+   "Totals $36.00 $36.00"
+  ]
+ },
+ "checks": [
+  {
+   "what": "Step 2: A/P Aging Summary opens",
+   "ok": true,
+   "saw": "A/P Aging Summary"
+  },
+  {
+   "what": "Step 3: the first vendor name is a link that can be clicked",
+   "ok": true,
+   "saw": "{\"tag\":\"A\",\"tid\":\"link_apsum_party_772a84c3-4d82-4124-9ca7-66d96837a030\",\"text\":\"#1 Diesel\",\"href\":\"/reports/ap-unpaid-invoices?asOfDate=2026-11-11&vendorIds=772a84c3-4d82-4124-9ca7-66d96837a030\",\"inLink\":true,\"color\":\"rgb(34, 118, 218)\",\"cursor\":\"pointer\",\"textDecoration\":\"none\"} | 30 vendor links, 0 plain names"
+  },
+  {
+   "what": "Step 4: A/P Unpaid Invoices opens narrowed to that vendor",
+   "ok": false,
+   "saw": "title \"A/P Unpaid Invoices Report\", Vendor chip \"local_shipping Vendor: #1 Diesel\", address https://sv11315.qa.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-11-11&vendorIds=772a84c3-4d82-4124-9ca7-66d96837a030"
+  }
+ ],
+ "endUtc": "2026-11-11T13:40:46.183Z",
+ "markerEnd": "v26.45.2-6a8b89c"
+}

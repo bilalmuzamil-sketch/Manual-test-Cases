@@ -1,0 +1,7 @@
+run has 471 tests, results cover 3 cases, union 471
+3 results: Passed=3
+
+--- sample comment (case 1079005) ---
+<p>Tested on QA site sv11315, build v26.45.2-6a8b89c, on 11 November 2026.</p><ul><li>Signed in as tech@shopview.com with a role that has Reports page access ON and Customers View OFF, and nothing else.</li><li>Step 2: A/R Aging Summary opened.</li><li>Step 3: pointing at the first customer, "#1 Diesel": the name is plain black text, not blue. All 30 customer names on the page are plain text.</li><li>Step 4: clicking "#1 Diesel" opened nothing; the page stayed on A/R Aging Summary.</li><li>Cross-check: on the same screen the QA lead's Admin user, who has Customers View, sees "#1 Diesel" as a blue link (picture 3). So the plain text comes from the missing Customers View permission.</li></ul><hr /><p>Technical detail: Role 'ZZAUTOTEST V1R-32 Reports on Customers View off' (0d6c87c1-5ec4-4883-91a6-e1f7c7f5b635): reportsPageAccess only, all cross toggles off; read back from /api/auth/me/fe-permissions as tech. First name element text_arsum_party_e2e804d8-f2f3-4a94-8bc9-98c22dc725c8 (SPAN, colour rgb(0,0,0), cursor auto); 0 link_arsum_party_ elements. Admin control: link_arsum_party_ same id, colour rgb(34,118,218), opens /reports/ar-aging-collection. Observed 2026-11-11T13:37Z, build v26.45.2-6a8b89c before and after.</p>
+
+[dry-run] nothing written. Re-run without --dry-run to write.
