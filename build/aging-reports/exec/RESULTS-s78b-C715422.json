@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s78b"
+ },
+ "results": {
+  "C715422": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail as of 11/11/2026, signed in at Staging Heavy Duty - 9919, enrolled at both locations; customer ZZAUTOTEST LOC MIX ticked, every bucket expanded; invoice A = S11315-17724, a work order invoice at Staging Lethbridge - 4310.",
+    "Steps 1-2: invoice A's number is a real link (its address is the work order's finance page); opened in a new tab the way \"Open link in new tab\" does. The report's tab shows no dialog. (The browser's own right-click menu is not part of the page and cannot be pictured.)",
+    "Step 3: the new tab shows the work order page, which asks to switch location itself: \"Switch location? This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\"",
+    "Step 4: back on the report's tab: same address, no dialog - unchanged."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715422-2-report-tab.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715422-3-new-tab.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715422-4-report-unchanged.png"
+   ]
+  }
+ }
+}
