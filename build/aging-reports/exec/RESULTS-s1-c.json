@@ -1,0 +1,16 @@
+{"pass_meta": {"note": "11 Nov 2026, aging reports run 557, folder S1 batch c (sv11315) — access without Reports, nothing-open customer"},
+ "results": {
+  "C715286": {"verdict": "Passed", "observed": [
+    "Made the role ZZAUTOTEST Aging no Reports from the Admin template with only Reports switched off in Page Access (the save confirmation listed one removed permission: Reports - Page Access), and gave it to Tech ShopView.",
+    "Signed in as Tech: the top menu shows Work Orders, Schedule, Customers, Parts - there is no Reports item, so none of the six reports is offered anywhere.",
+    "Pasted the A/R Aging Summary link and pressed Enter: the report did not open; the page landed on Work Orders.",
+    "Pasted the A/P Aging Detail link and pressed Enter: the report did not open; the page landed on Work Orders.",
+    "Control: signed in as Admin, the same links open both reports and the left menu lists all six.",
+    "Tech ShopView was put back on the Technician role afterwards (read back on the Staff page)."],
+   "pictures": ["/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715286-1-menu.png", "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715286-2-ars-link.png", "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715286-3-apd-link.png", "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/head-ars.png"]},
+  "C715287": {"verdict": "Passed", "observed": [
+    "Customer A = Abode Trucking & Repair: its only work order is Paid. Customer B = 10 Trucking: one invoice made today (10 Nov at the location), nothing before.",
+    "As of 11/10/2026: 10 Trucking is listed; Abode Trucking & Repair is not (it would sit between a1 towing and Andrews').",
+    "Picked 9 in the As of calendar: the report reloaded for 11/09/2026 and 10 Trucking is not listed."],
+   "pictures": ["/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715287-1-today.png", "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715287-2-yesterday.png"]}
+ }}

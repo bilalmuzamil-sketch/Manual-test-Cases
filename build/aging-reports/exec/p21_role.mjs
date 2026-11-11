@@ -9,13 +9,14 @@ const keep = () => fs.writeFileSync(OUT + 'state.json', JSON.stringify(st, null,
 const txt = (p) => p.evaluate(() => document.body.innerText.replace(/[ \t]+/g, ' ').slice(0, 6000));
 async function setStaffRole(s, roleName, tag) {
   await s.go('/administration/staff'); await s.page.waitForTimeout(2500);
-  const row = s.page.locator('tr', { hasText: 'Tech ShopView' }).first(); await s.shot(tag + '-staff');
+  await s.page.getByText('Search', { exact: true }).first().click(); await s.page.waitForTimeout(500); await s.page.keyboard.type('tech@shopview.com'); await s.page.waitForTimeout(3000); await s.shot(tag + '-searched'); st[tag + '-rows'] = await s.page.evaluate(() => [...document.querySelectorAll('tbody tr')].map((t) => t.innerText.replace(/\s+/g, ' ')).slice(0, 5)); keep();
+  const row = s.page.locator('tbody tr', { hasText: /Tech\s*ShopView/ }).first(); await row.scrollIntoViewIfNeeded(); await s.shot(tag + '-staff');
   st[tag + '-row'] = (await row.innerText()).replace(/\s+/g, ' ');
-  await row.locator('button, a').filter({ has: s.page.locator('i, svg') }).first().click(); await s.page.waitForTimeout(2000); await s.shot(tag + '-edit-open');
+  await row.hover(); const eb = row.locator('button, a, i').filter({ hasText: /^edit(_note)?$/ }); st[tag + '-editBtns'] = await eb.count(); if (await eb.count()) await eb.first().click(); else await row.click(); await s.page.waitForTimeout(2000); await s.shot(tag + '-edit-open');
   const dlg = s.page.locator('.q-dialog, [role=dialog]').last(); const roleSel = dlg.getByLabel(/^Role/).first();
   st[tag + '-oldRole'] = await roleSel.inputValue().catch(() => null) || await dlg.locator('.q-field', { hasText: 'Role' }).first().innerText().catch(() => null);
-  await dlg.locator('.q-field', { hasText: /^Role/ }).first().click(); await s.page.waitForTimeout(1200);
-  await s.page.locator('.q-menu .q-item', { hasText: roleName }).first().click(); await s.page.waitForTimeout(800); await s.shot(tag + '-role-picked');
+  st[tag + '-dlg'] = (await dlg.innerText()).slice(0, 800); keep(); await dlg.locator('.q-field').filter({ hasText: /Role/ }).last().click(); await s.page.waitForTimeout(1200);
+  await s.page.locator('.q-menu .q-item').filter({ has: s.page.getByText(roleName, { exact: true }) }).first().click(); await s.page.waitForTimeout(800); await s.shot(tag + '-role-picked');
   await dlg.getByRole('button', { name: /Save/ }).first().click(); await s.page.waitForTimeout(3000); await s.shot(tag + '-saved'); st[tag + '-after'] = (await txt(s.page)).slice(0, 400); keep();
 }
 if (PH === 'setup' || PH === 'all') {
@@ -35,6 +36,18 @@ if (PH === 'setup' || PH === 'all') {
   }
   keep(); await setStaffRole(s, ROLE, 'assign'); await s.close();
 }
+if (PH === 'fixrole') {
+  const s = await start(OUT, '/administration/roles-permissions'); await s.page.waitForTimeout(2500);
+  const row = s.page.locator('tr', { hasText: ROLE }).first(); await row.locator('button, a, i').filter({ hasText: /^edit$/ }).first().click(); await s.page.waitForTimeout(3000);
+  const desc = s.page.getByText('Performance statistics, labor/parts/total reports, and analytics', { exact: true }).first(); await desc.scrollIntoViewIfNeeded(); await s.page.waitForTimeout(600);
+  const tg = desc.locator('xpath=ancestor::*[.//*[@role="switch" or contains(@class,"q-toggle")]][1]').locator('[role=switch], .q-toggle').first();
+  st.tgBefore = await tg.getAttribute('aria-checked'); await tg.click(); await s.page.waitForTimeout(800); st.tgAfter = await tg.getAttribute('aria-checked'); await s.shot('f1-reports-off');
+  await s.page.getByRole('button', { name: /^Save$/ }).click(); await s.page.waitForTimeout(2000); await s.shot('f2-confirm'); st.confirmText = (await txt(s.page)).slice(0, 200);
+  const dlg = s.page.locator('.q-dialog').last(); st.dlgText = (await dlg.innerText().catch(() => '')).slice(0, 600);
+  await dlg.getByRole('button', { name: /Confirm|Save|Update|Yes/ }).last().click().catch((e) => { st.confirmErr = String(e).slice(0, 200); }); await s.page.waitForTimeout(3000); await s.shot('f3-saved');
+  st.savedText = (await txt(s.page)).slice(0, 300); keep(); await s.close();
+}
+if (PH === 'assign') { const s = await start(OUT, '/administration/staff'); await setStaffRole(s, ROLE, 'assign'); await s.close(); }
 if (PH === 'tech' || PH === 'all') {
   const r = await boot('sv11315', '/', 'tech'); const p = r.page; await p.setViewportSize({ width: 1440, height: 900 }); await p.waitForTimeout(3000);
   st.techRole = r.role; st.techPerms = r.nFePerms; let k = 10; const shot = async (n) => { const f = `${OUT}/${++k}-tech-${n}.png`; await p.screenshot({ path: f }); return f; };
