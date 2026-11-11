@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C1062580": {
+   "verdict": "Passed",
+   "observed": [
+    "Customer ZZX Credit Only R3 with only an unused $150.00 credit memo (CM11315-4199), as of 11/11/2026; only this customer ticked.",
+    "Step 1: the \"1-30 days past due\" bucket holds credit memo A; its Amount and Open Balance read $-150.00.",
+    "Step 2: the PDF downloads (ar-aging-detail.pdf).",
+    "Step 3: credit memo A's row in the PDF prints Amount and Open Balance as (-$150.00) - in brackets, minus sign before the dollar sign (the Subtotal and Totals lines print the same)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062580-1-expanded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062580-PDF-2-pdf.png"
+   ]
+  }
+ }
+}
