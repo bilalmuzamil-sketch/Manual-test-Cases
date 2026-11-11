@@ -517,4 +517,5 @@
 - **A/R Collection hides its Location column when only one location is ticked**; prove "only location A" by the chip + the drop in the group count (23 → 21), not by reading Location cells.
 - **"Phone:" absence needs a PDF that prints a phone at all**: the collection PDFs we held (C715446, C715459) only had phoneless customers, so 0 "Phone:" proved nothing. Control: `exec/p73_phonectl.mjs` with "Andrews' Truck & Trailer Repair LLC" (Phone 343-203-3967).
 - **The Admin's enrolled locations are listed behind the avatar menu's "Change Location"**, not in the menu itself.
+- **The left report menu has no `aside`, `.q-drawer` or `nav` on the QA build either** (q1 timed out on it, as pr1 did on production): click menu entries with `page.getByText(label, {exact:true})`.
 - #aging #trap #positive-control → L0654, L0660

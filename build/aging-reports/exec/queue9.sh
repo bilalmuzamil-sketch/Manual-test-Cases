@@ -1,7 +1,5 @@
 #!/bin/bash
-# queue9.sh (re-used name, 11 Nov) — C715364 again, A/P Detail filtered to the two OVER100 vendors so both buckets fit in one scroll; after queue8 (p46).
+# queue9.sh — 11 Nov 2026 ~15:30 UTC: q1b = q1_after.mjs again (left menu found by text; the aside/.q-drawer/nav selector matched nothing) after queue8.
 cd "$(dirname "$0")"; log() { echo "$(date -u +%H:%M:%S) $*" >> queue.log; }
-sleep 8; while pgrep -f "queue8\.sh$|node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done
-run() { local name=$1; shift; log "start $name"; "$@"; log "end $name rc=$?"; }
-run s4p4 env ONLY=C715364 timeout 900 node s4_run.mjs > s4p4.log 2>&1
-log "queue9 (s4p4) done"
+while pgrep -f "queue[2-8].sh|chain3[0-6].sh" >/dev/null || pgrep -f "node [a-z0-9_]+\.mjs" >/dev/null; do sleep 10; done
+log "start q1b"; timeout 1800 node q1_after.mjs > q1b.log 2>&1; log "end q1b rc=$?"; log "queue9 done"
