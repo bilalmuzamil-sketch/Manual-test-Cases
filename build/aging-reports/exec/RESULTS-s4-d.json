@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S4 (sv11315)"
+ },
+ "results": {
+  "C715372": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, every group expanded at the start. Vendor A = ZZAUTOTEST AP Vendor A (bills at Staging Heavy Duty - 9919 and Staging Lethbridge - 4310).",
+    "Step 1: as-of changed to 11/09/2026 (an earlier day; the test says yesterday, 11/10 - any date change shows the same): the report reloaded with all 5 buckets collapsed. Step 2: Expand all: all 5 expanded.",
+    "Step 3: ticked vendor A: only its rows remain; every bucket collapsed. Step 4: Expand all: the bucket with lines expanded.",
+    "Step 5: ticked \"31-60 days\": every bucket collapsed. Step 6: Expand all: the bucket with lines expanded.",
+    "Step 7: unticked Staging Lethbridge - 4310: every bucket collapsed.",
+    "Note: with one vendor or one range ticked, the other buckets show (0) lines and cannot be opened even by hand, so \"every group expands\" was judged on the buckets with lines."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715372-1-1-yesterday.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715372-2-3-filtered.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715372-3-5-pastdue.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715372-4-7-location.png"
+   ]
+  }
+ }
+}
