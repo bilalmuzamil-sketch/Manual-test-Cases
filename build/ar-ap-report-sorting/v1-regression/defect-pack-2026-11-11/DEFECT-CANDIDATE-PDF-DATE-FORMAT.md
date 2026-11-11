@@ -1,4 +1,4 @@
-# Defect candidate — A/R and A/P aging PDFs print dates as "Apr 6, 2026" instead of "Nov 04 2026"
+# Defect candidate — A/R Aging Detail PDF prints dates as "Apr 6, 2026" instead of "Nov 04 2026" (only this PDF checked)
 
 QA lead's permission for THIS ticket: 11 Nov 2026, "go for 1, 2 and 5" (item 2 = this ticket). Rule 62/A10 satisfied per ask.
 Our case: V1R-80 [C1095436](https://shopview.testrail.io/index.php?/cases/view/1095436) (kept here, never in the ticket — Rule 94 A8).
