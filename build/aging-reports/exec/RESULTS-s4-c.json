@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S4 (sv11315)"
+ },
+ "results": {
+  "C715357": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of 11/11/2026, all locations: 463 vendor groups, all collapsed at the start (button tooltip \"Expand all\").",
+    "Step 1: clicked the chevron on #1 Diesel: that group opened and its chevron turned to point down.",
+    "Step 2: the top-left button's chevron points down and its tooltip reads \"Collapse all\".",
+    "Step 3: clicked it: all 463 groups closed (read by scrolling the whole list); the sort mark stayed on Date, the column the report opened on.",
+    "Step 4: the button now points right; tooltip \"Expand all\".",
+    "Step 5: clicked it: every group read was open, each chevron pointing down (320 groups read by scrolling; the rest of the list, very long once expanded, was not read); Date sort unchanged."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715357-1-1-one-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715357-2-2-tip-collapse.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715357-3-4-tip-expand.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715357-4-5-all-open.png"
+   ]
+  }
+ }
+}
