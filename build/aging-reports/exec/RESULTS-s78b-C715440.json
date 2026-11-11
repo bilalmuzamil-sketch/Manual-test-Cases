@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s78b"
+ },
+ "results": {
+  "C715440": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail with As of 11/09/2026 (an earlier date than yesterday - the script picked the 9th), Customer: Apollo Beach Truck & Equipment Repair (no 61-90 day invoices that day), Past due: 61-90 days, Location: 2 locations.",
+    "Step 1: below the headings: \"No record matches these filters\", \"Try changing filters to widen your results.\" and a \"Clear all filters\" button.",
+    "Step 2: \"Clear all filters\" clicked: rows show again (6 bucket rows); the as-of date stays 11/09/2026; the chips read \"Customer: All customers\", \"Past due: Any\" and \"Location: All locations\".",
+    "Note: the set-up differs from the test in the date (11/09 instead of yesterday) and the Location filter (not narrowed to the current location only); neither changes what Clear all filters is checked for here (the date kept, everything else reset)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715440-1-empty.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715440-2-cleared.png"
+   ]
+  }
+ }
+}
