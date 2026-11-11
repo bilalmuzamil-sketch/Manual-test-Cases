@@ -1,0 +1,12 @@
+vendor ZZY VCredit Links P89 Net 30
+  vendor credit ZZYCM3224860 31.5 dated -0
+file:///home/user/Manual-test-Cases/build/aging-reports/exec/vseed.mjs:6
+const ok = (tag, r) => { if (r.st >= 300) throw new Error(tag + ' ' + r.st + ' ' + JSON.stringify(r.j).slice(0, 300)); return r.j; };
+                                                ^
+
+Error: return-request 400 {"errors":[{"error":"Inventory part not found."}]}
+    at ok (file:///home/user/Manual-test-Cases/build/aging-reports/exec/vseed.mjs:6:49)
+    at Object.credit (file:///home/user/Manual-test-Cases/build/aging-reports/exec/vseed.mjs:12:14)
+    at async file:///home/user/Manual-test-Cases/build/aging-reports/exec/s89_vcredit.mjs:21:133
+
+Node.js v22.22.0
