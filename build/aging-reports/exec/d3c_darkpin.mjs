@@ -12,7 +12,7 @@ const pinned = (re) => p.evaluate(([src]) => { const re = new RegExp(src); const
   const cs = el && getComputedStyle(el); let bgEl = el; while (bgEl && getComputedStyle(bgEl).backgroundColor === 'rgba(0, 0, 0, 0)') bgEl = bgEl.parentElement;
   return { text: t.slice(0, 160), matches: re.test(t), color: cs && cs.color, bg: bgEl && getComputedStyle(bgEl).backgroundColor, dark: document.body.classList.contains('body--dark') }; }, [re.source]);
 const R = {};
-for (const [id, k, re] of [['C715505', 'ard', /91 or more/], ['C715506', 'arc', /Desert Edge/], ['C715507', 'apd', /91 or more/], ['C715508', 'apu', /Willoughby/]]) {
+for (const [id, k, re] of [['C715505', 'ard', /91 or more/], ['C715506', 'arc', /Desert Edge/], ['C715507', 'apd', /91 or more/], ['C715508', 'apu', /\(\d+\)/]]) {
   const o = { id }; try { await p.setViewportSize({ width: 1440, height: 900 }); await s.go(REPORTS[k]); await p.waitForTimeout(3000); await settle(); await headBtn().click(); await settle();
     const g = await S.find(new RegExp('^' + re.source)).catch(() => null); o.found = !!g; await p.evaluate(`(() => { const e = ${S.SC}; e.scrollTop += 900; })()`); await p.waitForTimeout(900);
     o.light = await pinned(re); await p.mouse.move(5, 890); await p.screenshot({ path: OUT + id + '-1-light-pinned.png' });

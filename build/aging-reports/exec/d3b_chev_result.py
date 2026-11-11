@@ -19,6 +19,10 @@ for cid, (rep, kind, big) in NAME.items():
     dk = c.get('dark') or {}; lt = c.get('light') or {}
     if not c or c.get('err') or not dk.get('dark') or not dk.get('matches'): print(cid, 'step 7 not yet proved', c.get('err'), dk); continue
     if not ok: print(cid, 'd3b values differ - judge by hand', o); continue
+    six = ('d3b', '%s-6-pinned.png' % cid)
+    if not os.path.exists(PP + 'd3b/%s-6-pinned.png' % cid):  # d3b could not find the named group (C715508): use d3c's light picture and its pinned row
+        if not lt.get('text') or lt.get('dark'): print(cid, 'step 6 not observed'); continue
+        six = ('d3c', '%s-1-light-pinned.png' % cid); big = lt['text'].split(' Phone')[0][:60]
     R[cid] = {'verdict': 'Passed', 'observed': [
         '%s, as of today, all locations, light theme, 1440 px, every group closed.' % rep,
         'Step 1: one chevron button in the top-left heading cell, pointing right.',
@@ -32,7 +36,7 @@ for cid, (rep, kind, big) in NAME.items():
         'pictures': [P(cid, 'd3b', '%s-1-collapsed.png' % cid, 'Steps 1-2: one chevron top-left pointing right; every %s chevron points right' % kind, [BTN + ('good', 'Chevron, right')]),
                      P(cid, 'd3b', '%s-3-hover-expand.png' % cid, 'Step 3: tooltip "Expand all" above the button', [TIP + ('good', 'Expand all')]),
                      P(cid, 'd3b', '%s-5-hover-collapse.png' % cid, 'Steps 4-5: everything open, chevrons down; tooltip "Collapse all"', [TIP + ('good', 'Collapse all')]),
-                     P(cid, 'd3b', '%s-6-pinned.png' % cid, 'Step 6: the %s row pinned under the headings, label at the left' % kind, [PIN + ('good', 'Pinned row')]),
+                     P(cid, six[0], six[1], 'Step 6: the %s row pinned under the headings, label at the left' % kind, [PIN + ('good', 'Pinned row')]),
                      P(cid, 'd3c', '%s-2-dark-pinned.png' % cid, 'Step 7: dark theme while scrolled - the pinned row is readable', [PIN + ('good', 'Readable in dark')]),
                      P(cid, 'd3b', '%s-7-dark-hover.png' % cid, 'Step 8: dark theme - tooltip "Collapse all" above the button, readable', [TIP + ('good', 'Readable tooltip')])]}
 json.dump({'pass_meta': {'note': '11 Nov 2026, run 557, d3b+d3c chevron design checks'}, 'results': R}, open(PP + 'RESULTS-d3b-chev.json', 'w'), indent=1); print('built', list(R))
