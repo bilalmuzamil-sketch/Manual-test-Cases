@@ -13,29 +13,29 @@
      31
     ],
     [
-     "calendar_today As of: 04/01/2025 keyboard_arrow_down",
+     "calendar_today As of: 02/01/2025 keyboard_arrow_down",
      283,
      120,
      185,
      28
     ],
     [
-     "local_shipping Vendor: ZZAUTOTEST S1R5... keyboard_arrow_down cancel",
+     "local_shipping Vendor: Alameda Mechani... keyboard_arrow_down cancel",
      482,
      120,
-     261,
+     248,
      28
     ],
     [
      "hourglass_empty Past due: Any keyboard_arrow_down",
-     756,
+     743,
      120,
      157,
      28
     ],
     [
      "place Location: All locations keyboard_arrow_down cancel",
-     927,
+     914,
      120,
      211,
      28
@@ -44,7 +44,7 @@
      "keyboard_arrow_right Date arrow_drop_up",
      278,
      161,
-     132,
+     130,
      48
     ],
     [
@@ -56,58 +56,58 @@
     ],
     [
      "Location arrow_drop_up",
-     410,
+     408,
      161,
-     114,
+     112,
      48
     ],
     [
      "Transaction Type arrow_drop_up",
-     524,
+     520,
      161,
-     179,
+     176,
      48
     ],
     [
      "No. arrow_drop_up",
-     702,
+     696,
      161,
-     75,
+     73,
      48
     ],
     [
      "Vendor Name arrow_drop_up",
-     777,
+     770,
      161,
-     153,
+     151,
      48
     ],
     [
      "Due Date arrow_drop_up",
-     930,
+     921,
      161,
-     121,
+     119,
      48
     ],
     [
      "Past Due arrow_drop_up",
-     1051,
+     1040,
      161,
-     118,
+     116,
      48
     ],
     [
      "Amount arrow_drop_up",
-     1169,
+     1156,
      161,
-     98,
+     113,
      48
     ],
     [
      "Open Balance arrow_drop_up",
-     1267,
+     1269,
      161,
-     143,
+     141,
      48
     ],
     [
@@ -118,18 +118,88 @@
      0
     ],
     [
-     "",
+     "keyboard_arrow_right 91 or more days past due (0) Total $0.00 $0.00",
      278,
      209,
+     1132,
+     48
+    ],
+    [
+     "keyboard_arrow_right",
+     361,
+     221,
+     22,
+     22
+    ],
+    [
+     "keyboard_arrow_right 61-90 days past due (0) Total $0.00 $0.00",
+     278,
+     257,
+     1132,
+     48
+    ],
+    [
+     "keyboard_arrow_right",
+     361,
+     269,
+     22,
+     22
+    ],
+    [
+     "keyboard_arrow_right 31-60 days past due (0) Total $0.00 $0.00",
+     278,
+     305,
+     1132,
+     48
+    ],
+    [
+     "keyboard_arrow_right",
+     361,
+     317,
+     22,
+     22
+    ],
+    [
+     "keyboard_arrow_right 1-30 days past due (0) Total $0.00 $0.00",
+     278,
+     353,
+     1132,
+     48
+    ],
+    [
+     "keyboard_arrow_right",
+     361,
+     365,
+     22,
+     22
+    ],
+    [
+     "keyboard_arrow_right Current (3) Total $2,837.06 $2,837.06",
+     278,
+     401,
+     1132,
+     48
+    ],
+    [
+     "keyboard_arrow_right",
+     361,
+     414,
+     22,
+     22
+    ],
+    [
+     "",
+     278,
+     449,
      1132,
      0
     ],
     [
-     "Clear all filters",
-     765,
-     410,
-     157,
-     36
+     "Totals $2,837.06 $2,837.06",
+     278,
+     449,
+     1132,
+     48
     ]
    ]
   }
@@ -137,11 +207,11 @@
  "tried": [
   [
    "2026-10-01",
-   13644
+   13670
   ],
   [
    "2026-09-01",
-   13544
+   13546
   ],
   [
    "2026-08-01",
@@ -210,33 +280,138 @@
   [
    "2025-04-01",
    1783
+  ],
+  [
+   "2025-03-01",
+   941
+  ],
+  [
+   "2025-02-01",
+   444
   ]
  ],
- "back": 19,
+ "back": 21,
  "chipsDate": [
-  "calendar_today As of: 04/01/2025 keyboard_arrow_down",
+  "calendar_today As of: 02/01/2025 keyboard_arrow_down",
   "local_shipping Vendor: All vendors keyboard_arrow_down",
   "hourglass_empty Past due: Any keyboard_arrow_down",
   "place Location: All locations keyboard_arrow_down cancel"
  ],
  "pdf": {
   "kind": "PDF",
-  "file": null,
-  "notes": [],
+  "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s3/C715342/all-ap-aging-detail.pdf",
+  "name": "ap-aging-detail.pdf",
+  "bytes": 159496,
+  "notes": [
+   "check_circle Success Data exported successfully. Close"
+  ],
   "toast": null
  },
+ "pdfNet": [
+  [
+   "GET",
+   "reports/ap-aging-detail/locations?asOfDate=2025-02-01",
+   200,
+   "{\"data\":{\"collection\":[{\"id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"name\":\"Staging Heavy Duty - 9919\"},{\"id\":\"f8a8b802-7780-4b16-bf10-343caeb616b2\",\"name\":\"Staging Lethbridge - 4310\"}]}}"
+  ],
+  [
+   "GET",
+   "reports/ap-aging-detail?asOfDate=2025-02-01",
+   200,
+   "{\"data\":{\"groups\":[{\"bucket\":\"days_91_plus\",\"label\":\"91 or more days past due\",\"rowsNumber\":2,\"amountCents\":65363,\"openBalanceCents\":65363},{\"bucket\":\"days_61_to_90\",\"label\":\"61-90 days past due\",\"row"
+  ],
+  [
+   "GET",
+   "reports/ap-aging-detail/export?asOfDate=2025-02-01&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false&format=pdf",
+   200,
+   "\"\""
+  ]
+ ],
+ "pdfText": "A/P Aging Detail\nStaging Foothills Group Inc\nAs of Feb 1, 2025\nLocations: All locations\n\n\n Date            Location               Transaction Type   No.               Vendor Name                              Due Date       Past Due     Amount     Open Balance\n\n 91 or more days past due\n\n                 Staging Lethbridge -\n Mar 5, 2024                            Invoice            GNV306853         Covina Truck Repair                      May 4, 2024        273      $109.99        $109.99\n                 4310\n\n                 Staging Lethbridge -\n Mar 27, 2024                           Invoice            102637            Darby Diesel Repair                      May 26, 2024       251      $543.64        $543.64\n                 4310\n\n Subtotal                                                                                                                                         $653.63        $653.63\n\n 1-30 days past due\n\n                 Staging Heavy Duty\n Jan 31, 2025                           Invoice            24362493          Amimi Diesel Services Inc                Jan 31, 2025         1       $42.87          $42.87\n                 - 9919\n\n                 Staging Heavy Duty\n Jan 31, 2025                           Invoice            24362937          Amimi Diesel Services Inc                Jan 31, 2025         1       $24.92          $24.92\n                 - 9919\n\n                 Staging Lethbridge -\n Jan 7, 2025                            Vendor Credit      C-",
+ "vendorA": "Alameda Mechanical Services",
  "chips": [
-  "calendar_today As of: 04/01/2025 keyboard_arrow_down",
-  "local_shipping Vendor: ZZAUTOTEST S1R5... keyboard_arrow_down cancel",
+  "calendar_today As of: 02/01/2025 keyboard_arrow_down",
+  "local_shipping Vendor: Alameda Mechani... keyboard_arrow_down cancel",
   "hourglass_empty Past due: Any keyboard_arrow_down",
   "place Location: All locations keyboard_arrow_down cancel"
  ],
  "csv": {
   "kind": "CSV",
-  "file": null,
+  "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s3/C715342/one-ap-aging-detail.csv",
+  "name": "ap-aging-detail.csv",
+  "bytes": 608,
   "notes": [
-   "priority_high Empty export Export didn't yield any results Close"
+   "check_circle Success Data exported successfully. Close"
   ],
   "toast": "/home/user/Manual-test-Cases/build/aging-reports/exec/s3/C715342/one-toast.png"
+ },
+ "csvd": {
+  "pre": [
+   "As of: Feb 1, 2025",
+   "Locations: All locations",
+   "Vendor: Alameda Mechanical Services"
+  ],
+  "head": [
+   "Aging Bucket",
+   "Date",
+   "Location",
+   "Transaction Type",
+   "No.",
+   "Vendor Name",
+   "Due Date",
+   "Past Due",
+   "Amount",
+   "Open Balance"
+  ],
+  "rows": [
+   [
+    "Current",
+    "2025-01-13",
+    "Staging Heavy Duty - 9919",
+    "Invoice",
+    "IN00267805",
+    "Alameda Mechanical Services",
+    "2025-03-14",
+    "-41",
+    "743.83",
+    "743.83"
+   ],
+   [
+    "Current",
+    "2025-01-21",
+    "Staging Heavy Duty - 9919",
+    "Invoice",
+    "IN00267944",
+    "Alameda Mechanical Services",
+    "2025-03-22",
+    "-49",
+    "1066.43",
+    "1066.43"
+   ],
+   [
+    "Current",
+    "2025-01-28",
+    "Staging Heavy Duty - 9919",
+    "Invoice",
+    "IN00268055",
+    "Alameda Mechanical Services",
+    "2025-03-29",
+    "-56",
+    "1026.80",
+    "1026.80"
+   ],
+   [
+    "Totals",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "2837.06",
+    "2837.06"
+   ]
+  ]
  }
 }

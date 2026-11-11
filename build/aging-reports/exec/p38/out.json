@@ -1,0 +1,44 @@
+{
+ "reqs": [
+  {
+   "u": "/api/iam/change-location",
+   "b": "{\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"workplace_timezone\":\"America/Edmonton\"}"
+  },
+  {
+   "u": "/api/customers/create",
+   "b": "{\"name\":\"ZZAUTOTEST EXACT CAPTURE\"}"
+  },
+  {
+   "u": "/api/contacts/create",
+   "b": "{\"company_id\":\"68b82c8a-6ed8-4457-9e3e-539b38cffd69\",\"first_name\":\"ZZ\",\"last_name\":\"Cap\"}"
+  },
+  {
+   "u": "/api/vehicles/create",
+   "b": "{\"company_id\":\"68b82c8a-6ed8-4457-9e3e-539b38cffd69\",\"customer_id\":\"2bdfd448-66f9-4b2a-b125-bd4919c91c8c\",\"unit\":\"ZZ21760\",\"vin\":\"ZZVIN384121760\"}"
+  },
+  {
+   "u": "---- edit customer"
+  },
+  {
+   "u": "/api/customers/change",
+   "b": "{\"name\":\"ZZAUTOTEST EXACT CAPTURE\",\"state_or_province\":null,\"country_code\":\"CA\",\"require_po\":false,\"credit_term\":\"COD\",\"credit_limit\":0,\"shop_supplies_charge\":0,\"min_shop_supplies_charge\":null,\"max_shop_supplies_charge\":null,\"pin_notes\":false,\"notes\":null,\"id\":\"68b82c8a-6ed8-4457-9e3e-539b38cffd69\",\"tax\":{\"id\":\"0c47b1fb-38bb-4788-8719-6900c365e34c\",\"isEnabledLabor\":false,\"isEnabledParts\":false,\"isEnabledShopSupplies\":false}}"
+  },
+  {
+   "u": "---- new line fixed"
+  },
+  {
+   "u": "/api/work-orders/create",
+   "b": "{\"company_id\":\"68b82c8a-6ed8-4457-9e3e-539b38cffd69\",\"vehicle_id\":\"35f187d8-4b84-49f2-b8ea-b9df156d43c5\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"start_date\":\"2026-11-11\",\"is_vehicle_here\":true,\"mileage\":1000}"
+  },
+  {
+   "u": "/api/work-orders/change-contact",
+   "b": "{\"work_order_id\":\"63e5ba30-bca6-4e2e-8708-481e9a0673de\",\"vehicle_id\":\"35f187d8-4b84-49f2-b8ea-b9df156d43c5\",\"contact_id\":\"2bdfd448-66f9-4b2a-b125-bd4919c91c8c\",\"update_vehicle\":true}"
+  }
+ ],
+ "cid": "68b82c8a-6ed8-4457-9e3e-539b38cffd69",
+ "contact": "2bdfd448-66f9-4b2a-b125-bd4919c91c8c",
+ "vehicle": "35f187d8-4b84-49f2-b8ea-b9df156d43c5",
+ "editForm": "Edit Customer\nclose\nName *\nPhone\nAddress 1\nAddress 2\nCity\nZIP/Postal Code\nState/Province\narrow_drop_down\nCountry\nCanada\narrow_drop_down\nCredit Terms\nCOD\narrow_drop_down\n$\nCredit Limit\nSales Representative\narrow_drop_down\nDefault Labor Rate\narrow_drop_down\n%\nDefault Shop Supplies\nof labor\n$\nMin\n$\nMax\nNotes\nWebsite\nIBS\nTaxes\nDefault Tax Settings\narrow_drop_down\nPO is required\nDelete\nSave",
+ "wo": "63e5ba30-bca6-4e2e-8708-481e9a0673de",
+ "err": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /New Line/i }).first()\u001b[22m\n\u001b[2m    - locator resolved to <button tabindex=\"0\" type=\"button\" filled=\"true\" data-v-68e00a17=\"\" data-v-3d4f20ce=\"\" data-test-id=\"button_new_line\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--unelevated q-btn--rectangle bg-blue-10 text-white q-bt"
+}
