@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s84"
+ },
+ "results": {
+  "C1062572": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail as of 11/11/2026 with only customer \"ZZX Date Fmt P68\" ticked (Net 30; invoice A dated today, invoice B yesterday, invoice C 2 days ago).",
+    "Step 1: \"Current (3)\" expanded lists invoice A (S11315-17890), invoice B (S11315-17891) and invoice C (S11315-17892).",
+    "Their Date cells read \"Nov 11, 2026\", \"Nov 10, 2026\" and \"Nov 9, 2026\"; their Due Date cells read \"Dec 11, 2026\", \"Dec 10, 2026\" and \"Dec 9, 2026\" - month, day and year.",
+    "No Date or Due Date cell reads \"Today\", \"Yesterday\" or \"2 days ago\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062572-1-current.png"
+   ]
+  }
+ }
+}
