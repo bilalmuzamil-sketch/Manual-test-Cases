@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s78b"
+ },
+ "results": {
+  "C715447": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection as of 11/11/2026, only customer A ticked: Monroe Truck Service & Repair (14 overdue invoices); on screen its row reads \"Phone: 733-101-4929   Credit term: Net 60\".",
+    "Steps 1-2: the PDF downloads (\"Success\"); customer A's line reads \"Monroe Truck Service & Repair   Phone: 733-101-4929   Credit term: Net 60\" - the same phone and credit term as on screen.",
+    "Steps 3-4: the CSV downloads; its heading row reads Date, Location, Transaction Type, ID, Customer, Phone, Credit Term, Due Date, Past Due, Amount, Open Balance - \"Phone\" and \"Credit Term\" right after \"Customer\"; all 14 of customer A's rows carry 733-101-4929 and Net 60."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715447-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715447-csv.png"
+   ]
+  }
+ }
+}
