@@ -1,0 +1,19 @@
+C1095432 Planned change: A/R Summary Totals add up the rows, overpaid left out
+PRE: Preconditions
+- You are signed in to ShopView as an Admin user.
+- Customer X has a $100.00 invoice paid $120.00 (overpaid by $20.00) and no other open document.
+STEPS: - Open the Reports menu.
+- Click "A/R Aging Summary" in the left list.
+- Look for customer X.
+- Scroll to the bottom row.
+- Add up the Total column of every customer row.
+- Compare your sum with the Totals row's Total.
+EXP: Expected Result
+- Step 3 (unchanged from before the release): Customer X is not listed (an overpaid invoice is not a row, as before).Step 6:
+- PRD v11, 2. Feature Overview, What changes for existing users, quoted: “The A/R Summary Totals row now adds up exactly the customer rows above it.”
+- Step 6 (our restatement, not the PRD's words): The two figures are equal; the overpaid $20.00 is not taken off the Totals row as it was on production.
+- Related existing case: DATA-13 C715462 (https://shopview.testrail.io/index.php?/cases/view/715462). This case checks the same planned change from the before-the-release side.
+Why this matters: The total must match the rows above it when reconciling.
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAgingSummaryTotalsFetcher.php:47-65; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:115.
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-055). Not yet checked against any build.
+AUTOMATION: READY

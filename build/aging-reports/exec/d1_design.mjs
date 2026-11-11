@@ -6,7 +6,7 @@
 // underline (Tab until a link in the table has focus), and the Totals row's background/size/weight next to Sales By Customer's.
 // Dark mode is switched from the user menu (avatar) and the result read back from document.body classes. Output exec/d1/out.json + pictures.
 import { start, REPORTS } from './lib.mjs'; import { mk } from './api.mjs'; import * as S from './seedlib.mjs'; import { mkX } from './xseed.mjs'; import fs from 'fs';
-const OUT = new URL('./d1/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true });
+const OUT = new URL('./' + (process.env.D1OUT || 'd1') + '/', import.meta.url).pathname; /* 11 Nov 14:05: D1OUT/ONLY let a re-measure of one report write to its own folder */ const ONLY = process.env.ONLY?.split(','); fs.mkdirSync(OUT, { recursive: true });
 const s = await start(OUT); const p = s.page; const a = mk(p); const X = mkX(a, (t) => console.log(t)); const o = { seed: {}, runs: {} };
 const save = () => fs.writeFileSync(OUT + 'out.json', JSON.stringify(o, null, 1));
 const LONGC = 'ZZAUTOTEST Northern Alberta Heavy Haul and Towing Ltd', LONGV = 'ZZAUTOTEST Northern Alberta Heavy Haul Parts Supply Ltd';
@@ -44,11 +44,13 @@ const measure = () => p.evaluate(() => {
 async function focusLink() { for (let i = 0; i < 40; i++) { await p.keyboard.press('Tab'); const f = await p.evaluate(() => { const e = document.activeElement; return e && e.tagName === 'A' && e.closest('main tbody') ? { t: e.innerText.trim().slice(0, 40), deco: getComputedStyle(e).textDecorationLine, outline: getComputedStyle(e).outlineStyle } : null; }); if (f) return { ...f, tabs: i + 1 }; } return null; }
 try {
   await p.waitForTimeout(2000); await seed();
-  for (const [k, path] of Object.entries({ ars: REPORTS.ars, ard: REPORTS.ard, arc: REPORTS.arc, aps: REPORTS.aps, apd: REPORTS.apd, apu: REPORTS.apu, sbc: '/reports/sales-by-customer' })) {
+  for (const [k, path] of Object.entries({ ars: REPORTS.ars, ard: REPORTS.ard, arc: REPORTS.arc, aps: REPORTS.aps, apd: REPORTS.apd, apu: REPORTS.apu, sbc: '/reports/sales-by-customer' })) { if (ONLY && !ONLY.includes(k)) continue;
     for (const dark of [false, true]) for (const w of [1440, 1536]) {
       const tag = `${k}-${dark ? 'dark' : 'light'}-${w}`; await p.setViewportSize({ width: w, height: 900 }); await s.go(path); await p.waitForTimeout(3500);
       const dk = await setDark(dark); if (dark && !dk) { o.runs[tag] = { err: 'dark mode not switched', menu: o.userMenu }; save(); continue; }
       if (['ard', 'arc', 'apd', 'apu'].includes(k)) { const hb = p.locator('main thead th').first().locator('button').first(); if (await hb.count()) { await hb.hover(); await p.waitForTimeout(500); const tip = (await p.locator('.q-tooltip').allInnerTexts().catch(() => [])).join(' '); if (/Expand all/i.test(tip)) { await hb.click(); await p.waitForTimeout(2500); } } }
+      /* 11 Nov 14:05: A/P Detail's 91+ bucket (11,936 lines) was still loading when measured: its progress bar is an extra full-width heading cell, read as a blank heading that "overlaps". Wait until the loader is gone and move the mouse off the chevron (its tooltip covered the As of chip). */
+      await p.mouse.move(900, 860); for (let i = 0; i < 60; i++) { const busy = await p.evaluate(() => [...document.querySelectorAll('main thead th')].some((th) => !th.innerText.trim() && th.getBoundingClientRect().width > 600) || [...document.querySelectorAll('main .q-linear-progress')].some((e) => e.getBoundingClientRect().width > 0)); if (!busy) break; await p.waitForTimeout(1000); }
       const m = await measure(); m.top = await s.shot(tag + '-top');
       if (k !== 'sbc' && w === 1440) { m.focus = await focusLink(); m.focusShot = await s.shot(tag + '-focus'); }
       await p.evaluate(() => { const e = [...document.querySelectorAll('main *')].find((x) => x.scrollHeight > x.clientHeight + 50 && ['auto', 'scroll'].includes(getComputedStyle(x).overflowY)); if (e) e.scrollTop = 400; }); await p.waitForTimeout(800); m.scrolled = await s.shot(tag + '-scrolled');

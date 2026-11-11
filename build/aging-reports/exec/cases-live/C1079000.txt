@@ -1,0 +1,17 @@
+C1079000 A/P: an overpaid bill is still listed with a negative balance
+PRE: Preconditions
+- You are signed in to ShopView as an Admin user.
+- Vendor Y has a $100.00 bill that was paid $110.00.
+STEPS: - Open the Reports menu.
+- Click "A/P Aging Detail" in the left list.
+- Open every bucket.
+- Find vendor Y's bill.
+- Read its Open Balance.
+EXP: Expected Result
+Step 4:
+- the bill is listed.Step 5:
+- Open Balance $-10.00.
+Why this matters: An overpayment to a vendor is money the shop is owed back.
+SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:97; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:164. V1 code, quoted: `->andWhere('vt.balance <> 0')`
+This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-039) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.
+AUTOMATION: READY

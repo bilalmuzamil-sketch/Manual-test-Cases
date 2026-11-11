@@ -1,0 +1,48 @@
+// s84_seeded.mjs — 11 Nov 2026: tests on the p68 data (suffix " P68").
+// C715499-C715504 loading bar + empty state on the six reports (customer/vendor with documents only at Lethbridge) vs Sales By Customer's;
+// C1062572 Date/Due Date as dates (ZZX Date Fmt); C1062574 Transaction Type names + sort (ZZX Types, "Current" bucket — see p68 header);
+// C1062576 PDF/CSV transaction types (ZZX Types); C1062578 Location sort back to Date order (ZZX Loc Sort); C715389 own-document location (ZZX Own Loc).
+// Output exec/s84/<id>.json + pictures + downloads.
+import { start, REPORTS } from './lib.mjs'; import { mkSort, clean } from './sortlib.mjs'; import { mkFilt } from './filt.mjs'; import { mkExp } from './explib.mjs'; import { ensureLoc } from './locsw.mjs'; import fs from 'fs';
+const OUT = new URL('./s84/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT); const p = s.page; const S = mkSort(p); const F = mkFilt(p); const E = mkExp(p, OUT); const ONLY = process.env.ONLY?.split(',');
+const SFX = ' P68'; const CUST_LB = 'ZZX Only LB' + SFX, VEND_LB = 'ZZY Only LB' + SFX;
+const shot = async (o, n) => { const f = await s.shot(o.id + '-' + n); (o.shots ||= []).push(f); return f; };
+const rows = () => p.evaluate(`[...document.querySelectorAll('main tbody tr')].map(tr => [...tr.children].map(td => td.innerText.replace(/\\s+/g,' ').trim()).join(' | ')).filter(t => t.replace(/[ |]/g,''))`);
+const mainText = () => p.evaluate(() => document.querySelector('main').innerText.replace(/\s+/g, ' ').trim());
+async function asOfWatch(o, day, tag) { await p.locator('main button', { hasText: /As of:/ }).first().click(); await p.waitForTimeout(1200);
+  await p.locator('.q-menu').last().locator('button, .q-date__calendar-item').filter({ hasText: new RegExp('^' + day + '$') }).first().click(); const seen = []; let pic = null;
+  for (let i = 0; i < 30; i++) { const r = await p.evaluate(() => [...document.querySelectorAll('main .q-linear-progress, main [role=progressbar], .q-loading-bar, main .q-table__progress, main .q-inner-loading')].filter((e) => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0; }).map((e) => ({ cls: e.className.toString().slice(0, 80), box: [...Object.values(e.getBoundingClientRect().toJSON())].slice(0, 4).map(Math.round), color: getComputedStyle(e.querySelector('.q-linear-progress__track, .q-linear-progress__model') || e).color })));
+    if (r.length) { seen.push(r); if (!pic) pic = await shot(o, tag + '-loading'); } await p.waitForTimeout(100); }
+  await p.waitForTimeout(2500); return { seen: seen.slice(0, 3), n: seen.length, pic }; }
+const empt = () => p.evaluate(() => { const m = document.querySelector('main'); const btn = [...m.querySelectorAll('button')].find((b) => /Clear all filters/i.test(b.innerText)); if (!btn) return null; const box = btn.closest('div.column, div.flex, div') ; const area = btn.parentElement?.parentElement || btn.parentElement; const bx = (e) => { const b = e.getBoundingClientRect(); return [Math.round(b.x), Math.round(b.y), Math.round(b.width), Math.round(b.height)]; };
+  const kids = [...area.querySelectorAll('*')].filter((e) => !e.children.length && e.innerText && e.innerText.trim()).map((e) => ({ t: e.innerText.trim(), tag: e.tagName, size: getComputedStyle(e).fontSize, weight: getComputedStyle(e).fontWeight, color: getComputedStyle(e).color, box: bx(e) }));
+  const icon = area.querySelector('i, svg, img'); return { text: area.innerText.replace(/\s+/g, ' ').trim(), kids, icon: icon && (icon.innerText || icon.tagName), btn: { box: bx(btn), cls: btn.className.slice(0, 120) }, totals: !![...m.querySelectorAll('tr')].find((r) => /^\s*Totals?\b/.test(r.innerText)) }; });
+async function emptyState(o, route, kind, who) { await ensureLoc(p, 'Staging Heavy Duty - 9919'); await s.go(route); await p.waitForTimeout(4000); await shot(o, '0-open');
+  o.s1 = await asOfWatch(o, 10, '1'); o.chips1 = await F.chips(); o.s2 = await asOfWatch(o, 11, '2'); o.chips2 = await F.chips(); await shot(o, '2-today');
+  o.locMenu = await F.menuClick('Location', 'Staging Lethbridge - 4310'); o.chips3 = await F.chips(); await shot(o, '3-location-A');
+  await F.pick(kind, who); o.chips4 = await F.chips(); o.rows4 = await rows(); o.empty = await empt(); o.text5 = (await mainText()).slice(-300); await shot(o, '4-5-empty');
+  await p.getByRole('button', { name: /Clear all filters/i }).first().click().catch((e) => { o.clearErr = String(e).slice(0, 100); }); await p.waitForTimeout(4000); o.chips6 = await F.chips(); o.rows6 = (await rows()).length; await shot(o, '6-cleared'); }
+const T = {
+  SBC: async (o) => { await s.go('/reports/sales-by-customer'); await p.waitForTimeout(5000); await shot(o, '0-open'); o.chips = await F.chips(); o.allChips = await p.evaluate(() => [...document.querySelectorAll('main button')].map((b) => b.innerText.replace(/\s+/g, ' ').trim()).filter((t) => /:/.test(t)).slice(0, 8));
+    const loc = p.locator('main button', { hasText: /Location/ }).first(); await loc.click(); await p.waitForTimeout(1200); o.locMenu = (await p.locator('.q-menu').last().innerText()).slice(0, 300); await p.locator('.q-menu').last().getByText(/Clear selection/i).first().click().catch((e) => { o.clearSelErr = String(e).slice(0, 100); }); await p.waitForTimeout(800); await p.keyboard.press('Escape'); await p.waitForTimeout(4000);
+    o.empty = await empt(); o.text = (await mainText()).slice(-300); await shot(o, 'empty'); },
+  C715499: (o) => emptyState(o, REPORTS.ars, 'Customer', CUST_LB), C715500: (o) => emptyState(o, REPORTS.ard, 'Customer', CUST_LB), C715501: (o) => emptyState(o, REPORTS.arc, 'Customer', CUST_LB),
+  C715502: (o) => emptyState(o, REPORTS.aps, 'Vendor', VEND_LB), C715503: (o) => emptyState(o, REPORTS.apd, 'Vendor', VEND_LB), C715504: (o) => emptyState(o, REPORTS.apu, 'Vendor', VEND_LB),
+  C1062572: async (o) => { await s.go(REPORTS.ard); await p.waitForTimeout(3500); await F.pick('Customer', 'ZZX Date Fmt' + SFX); o.exp = await S.expand(/^Current/); o.rows = await rows(); await shot(o, '1-current'); },
+  C1062574: async (o) => { await s.go(REPORTS.ard); await p.waitForTimeout(3500); await F.pick('Customer', 'ZZX Types' + SFX); o.exp = await S.expand(/^Current/); o.rows1 = await rows(); await shot(o, '1-current');
+    await S.clickTh('Transaction Type'); o.sorted2 = await S.sorted(); o.rows2 = await rows(); await shot(o, '2-type-az'); await S.clickTh('Transaction Type'); o.sorted3 = await S.sorted(); o.rows3 = await rows(); await shot(o, '3-type-za'); },
+  C1062576: async (o) => { await s.go(REPORTS.ard); await p.waitForTimeout(3500); await F.pick('Customer', 'ZZX Types' + SFX); const pdf = await E.exportAs('PDF', 'C1062576'); o.pdf = pdf; if (pdf.file) o.pdfText = E.readPdf(pdf.file).slice(0, 3000);
+    const csv = await E.exportAs('CSV', 'C1062576'); o.csv = csv; if (csv.file) o.csvRows = E.readCsv(csv.file).slice(0, 40); await shot(o, 'after-exports'); },
+  C1062578: async (o) => { await s.go(REPORTS.arc); await p.waitForTimeout(3500); await F.pick('Customer', 'ZZX Loc Sort' + SFX); o.sorted0 = await S.sorted(); await S.expand(/ZZX Loc Sort/); o.rows1 = await rows(); await shot(o, '1-expanded');
+    await S.clickTh('Location'); o.sorted2 = await S.sorted(); await S.expand(/ZZX Loc Sort/); o.rows2 = await rows(); await shot(o, '2-location-sort');
+    o.locMenu = await F.menuClick('Location', 'Staging Lethbridge - 4310'); o.sorted3 = await S.sorted(); o.heads3 = (await S.ths()).map((h) => h.t); o.rows3 = await rows(); await shot(o, '3-one-location'); await S.expand(/ZZX Loc Sort/); o.rows4 = await rows(); await shot(o, '4-expanded'); },
+  C715389: async (o) => { await s.go(REPORTS.ard); await p.waitForTimeout(3500); await F.pick('Customer', 'ZZX Own Loc' + SFX); for (const b of [/^Current/, /^1-30/, /^31-60/, /^61-90/, /^91/]) await S.expand(b); o.rows1 = await rows(); o.heads1 = (await S.ths()).map((h) => h.t); await shot(o, '1-both');
+    o.m2 = await F.menuClick('Location', 'Staging Lethbridge - 4310'); o.chips2 = await F.chips(); o.heads2 = (await S.ths()).map((h) => h.t); for (const b of [/^Current/, /^1-30/, /^31-60/, /^61-90/, /^91/]) await S.expand(b); o.rows3 = await rows(); await shot(o, '2-3-location-A');
+    await p.locator('main button', { hasText: /Location:/ }).first().click(); await p.waitForTimeout(1200); o.m4 = (await p.locator('.q-menu').last().innerText()).slice(0, 300); await shot(o, '4-menu');
+    await p.locator('.q-menu').last().locator('.q-item, label').filter({ hasText: 'Staging Lethbridge - 4310' }).first().click(); await p.waitForTimeout(1200); o.m5 = (await p.locator('.q-menu').last().innerText()).slice(0, 300); await shot(o, '5-B-ticked');
+    await p.locator('.q-menu').last().locator('.q-item, label').filter({ hasText: 'Staging Heavy Duty - 9919' }).first().click(); await p.waitForTimeout(1200); o.m6 = (await p.locator('.q-menu').last().innerText()).slice(0, 300); await p.keyboard.press('Escape'); await p.waitForTimeout(3000); o.chips6 = await F.chips(); await shot(o, '6-location-B');
+    for (const b of [/^Current/, /^1-30/, /^31-60/, /^61-90/, /^91/]) await S.expand(b); o.rows7 = await rows(); await shot(o, '7-rows'); },
+};
+for (const [id, fn] of Object.entries(T)) { if (ONLY && !ONLY.includes(id)) continue; const o = { id }; try { await fn(o); } catch (e) { o.err = String(e).slice(0, 300); try { await shot(o, 'error'); } catch {} }
+  fs.writeFileSync(OUT + id + '.json', JSON.stringify(o, null, 1)); console.log(id, o.err || 'ok'); }
+await s.close(); process.exit(0);

@@ -1,0 +1,22 @@
+C1078998 An invoice without a due date is aged from its customer's credit term
+PRE: Preconditions
+- You are signed in to ShopView as an Admin user.
+- Customer X has the credit term Net 30.
+- Customer X has an open invoice with no due date stored, created 40 days ago.
+STEPS: - Open the Reports menu.
+- Click "A/R Aging Detail" in the left list.
+- Open every bucket.
+- Find the invoice.
+EXP: Expected Result
+Step 4:
+- the invoice is in "1-30 days past due" (due 30 days after it was created, so 10 days late), not in "31-60 days past due".
+- 
+- EXPECT FAIL. What you should see on the upgraded build today: The invoice sits in "31-60 days past due".
+- (1) You see exactly that: mark the test FAILED and raise nothing new. This is a V1-to-V2 capability loss already reported to the QA lead for a Product Owner decision.
+- (2) It fails in a different way: that is a new problem. Mark FAILED, write down exactly what you saw, and report it.
+- (3) It passes: the capability is back. Mark PASSED and tell the QA lead.
+- Existing ticket: none found (Jira searched 11 Nov 2026).
+Why this matters: An invoice on Net 30 must not be chased as overdue a month early.
+SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AccountReceivableCustomerService.php:66-81. V1 code, quoted: `$row['dueDate'] ? new \DateTime($row['dueDate'], $utc) : CreditTerms::getDueDate($invoiceDate, $creditTerm)`
+This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-036) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) is silent on it. Not yet checked against any build.
+AUTOMATION: HOLD - an invoice without a due date cannot be made through the app

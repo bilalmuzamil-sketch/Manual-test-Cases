@@ -1,0 +1,31 @@
+C715495 Design: A/P Detail at 1536 px: no overlap or clipping, light and dark
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
+- Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
+- Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
+- Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+- Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.Setup
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make vendor A: Click Parts in the top bar, then Vendors in the left menu, then New Vendor. Type the Name ZZAUTOTEST Northern Alberta Heavy Haul and Towing Ltd (more than 40 characters), pick Credit Terms "Net 30" and Taxes "Exempt (0%)", then click Save & Close.
+- Make bill 1: Click Parts in the top bar, then Purchase Orders in the left menu, then New PO. Pick vendor A in Vendor. In Part Number type a new part number and click "Add new special order part: …"; type a Description, 1 in Quantity and 300.00 in Cost; click Add, then Save & Close. In the Purchase Orders list click Receive on that order (Vendor column: vendor A); type a Vendor Invoice # (for example bill 1), type today's date in Invoice Date, type 0 in Tax, then click Receive Parts (1).
+- Make bill 2: While switched to location B (see the Locations to use item): Same way as bill 1, with vendor A in Vendor: Cost 200.00; type today's date in Invoice Date.
+- Make vendor credit 1: Click Parts in the top bar, then Returns in the left menu, then Create Return. Pick vendor A in Vendor, type a Packaging Slip, pick the part received on bill 1 in Part Number, type 50.00 in Price Per Unit, then click Save Return. In the Returns list tick that return and click Receive Credit; type a Credit Memo Number, type today's date in Credit Date, type 0 in Tax, then click Post Credit.
+STEPS: - Look at the title row and the filter row.
+- Read the column headings.
+- Look for a sideways scroll bar below the last row of the report page.
+- Look at the "Open Balance" column and the Totals row, and compare the Totals row with Sales By Customer's.
+- Look across the page for overlap or clipping.
+- Switch ShopView to dark theme.
+EXP: Expected Result
+Step 1:
+- Title, info icon and ⋯ on one line.
+- The filter row below.Step 2:
+- Every heading on one line.Step 3:
+- There is none.Step 4:
+- "Open Balance" pinned to the right edge and bold.
+- Side by side, the Totals row looks the same as Sales By Customer's: the same background colour, text size and weight.Step 5:
+- Nothing overlaps, is cut off or clipped.Step 6:
+- The page switches to dark theme with the same layout, links readable.
+- Nothing overlaps or is clipped.
+
