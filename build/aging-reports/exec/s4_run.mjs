@@ -22,7 +22,7 @@ const pinnedAt = async () => p.evaluate(`(() => { const th = document.querySelec
   const vis = gr.filter(g => g.r.bottom > hb.bottom && g.r.top < (fb ? fb.top : 1e9));
   let overlap = false; for (let i = 0; i < vis.length; i++) for (let k = i + 1; k < vis.length; k++) { const a = vis[i].r, b = vis[k].r; if (a.top < b.bottom - 2 && b.top < a.bottom - 2) overlap = true; }
   const z = zone[0]; const hit = document.elementFromPoint(700, hb.top + 5);
-  return { headBottom: Math.round(hb.bottom), row: z ? z.t.innerText.replace(/\s+/g,' ').trim().slice(0, 80) : null, rowTop: z ? Math.round(z.r.top) : null, sticky: z ? z.pos : null, inZone: zone.length,
+  return { headBottom: Math.round(hb.bottom), row: z ? z.t.innerText.replace(/\\s+/g,' ').trim().slice(0, 80) : null, rowTop: z ? Math.round(z.r.top) : null, sticky: z ? z.pos : null, inZone: zone.length,
     overlap, headerVisible: !!(hit && hit.closest && hit.closest('thead')), coversTotals: !!(fb && vis.some(g => g.r.bottom > fb.top + 2 && g.r.top < fb.top)), totalsTop: fb ? Math.round(fb.top) : null }; })()`);
 const T = {};
 for (const [id, rep] of [['C715355', 'arc'], ['C715357', 'apu']]) T[id] = async (o) => { await s.go(REPORTS[rep]); await p.waitForTimeout(2500); o.h0 = await head(); if (/Collapse all/.test(o.h0.tip)) { await clickHead(); o.h0b = await head(); }
