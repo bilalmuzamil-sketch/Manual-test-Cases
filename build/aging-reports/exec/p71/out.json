@@ -2,16 +2,7 @@
  "roles": {
   "ZZAUTOTEST P71 Reports only": {
    "log": [],
-   "reports": "true",
-   "financial": "false",
-   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//01-ZZAUTOTEST-P71-Reports-only-filled.png",
-   "similar": "info close Similar role already exists A role \"QA AR Reports Only\" with identical permissions already exists. You can reuse the existing role or create a new one anyway. Cancel Create Anyway",
-   "reqs": [
-    "/api/check-existing-roles {\"fePermissions\":[\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}",
-    "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412090373&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121246026~121246034~123329125~124170881&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26541 en=page_view&_ee=1&ep.debug_mode=true&_et=21012&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2705\r\nen=permissions_apply&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=footer&ep.element_label=apply&_et=633",
-    "/api/roles {\"name\":\"ZZAUTOTEST P71 Reports only\",\"description\":null,\"fePermissions\":[\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":null,\"crossToggles\":{\"seeFinancialData\":false,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}"
-   ],
-   "after": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//02-ZZAUTOTEST-P71-Reports-only-created.png"
+   "existed": true
   },
   "ZZAUTOTEST P71 Inv+WO view": {
    "log": [
@@ -22,18 +13,34 @@
     ],
     [
      "Invoicing & payments",
+     "financial-dialog"
+    ],
+    [
+     "Invoicing & payments",
      0,
      "false",
-     "false"
+     "true"
     ],
     [
      "Work orders",
      0,
      3
+    ],
+    [
+     "Work orders",
+     0,
+     "false",
+     "true"
     ]
    ],
    "reports": "true",
-   "err": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div').filter({ has: getByText('Work orders', { exact: true }) }).filter({ has: locator('.q-checkbox, [role=checkbox]') }).last().locator('.q-checkbox, [role=checkbox]').first()\u001b[22m\n\u001b[2m    - locator resolv"
+   "financial": "true",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//01-ZZAUTOTEST-P71-Inv-WO-view-filled.png",
+   "reqs": [
+    "/api/check-existing-roles {\"fePermissions\":[\"c750f752-e6d2-48f2-978e-99a1ac27b11c\",\"d2bae268-f8ac-433f-8388-773487b3f85a\",\"267eed7b-a2a5-4d99-9ae0-15c690278854\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\",\"81ec5323-00ee-4d9d-96de-a32ecaab0f16\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}",
+    "/api/roles {\"name\":\"ZZAUTOTEST P71 Inv+WO view\",\"description\":null,\"fePermissions\":[\"c750f752-e6d2-48f2-978e-99a1ac27b11c\",\"d2bae268-f8ac-433f-8388-773487b3f85a\",\"267eed7b-a2a5-4d99-9ae0-15c690278854\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\",\"81ec5323-00ee-4d9d-96de-a32ecaab0f16\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":\"full\",\"crossToggles\":{\"seeFinancialData\":true,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}"
+   ],
+   "after": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//02-ZZAUTOTEST-P71-Inv-WO-view-created.png"
   },
   "ZZAUTOTEST P71 WO+PartSales view": {
    "log": [
@@ -60,310 +67,101 @@
     ],
     [
      "Part sales",
-     0,
-     "false",
-     "false"
-    ]
-   ],
-   "reports": "true",
-   "financial": "false",
-   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//04-ZZAUTOTEST-P71-WO-PartSales-view-filled.png",
-   "err": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /^Create$/ }).last()\u001b[22m\n\u001b[2m    - locator resolved to <button tabindex=\"0\" type=\"button\" filled=\"true\" data-v-68e00a17=\"\" data-v-0f580cf2=\"\" data-test-id=\"submit_create_role\" class=\"q-b"
-  },
-  "ZZAUTOTEST P71 Inv+PartSales view": {
-   "log": [
-    [
-     "Invoicing & payments",
-     0,
-     3
+     "financial-dialog"
     ],
     [
-     "Invoicing & payments",
-     0,
-     "false",
-     "false"
-    ]
-   ],
-   "reports": "true",
-   "err": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Parts Department', { exact: true }).first().locator('xpath=ancestor::*[.//*[@role=\"switch\" or contains(@class,\"q-toggle\")]][1]').locator('[role=switch], .q-toggle').first()\u001b[22m\n\u001b[2m    - locator resolved"
-  },
-  "ZZAUTOTEST P71 VOM view": {
-   "log": [
-    [
-     "Parts Department",
-     "false",
-     "true"
-    ],
-    [
-     "Vendor and order management",
-     0,
-     3
-    ],
-    [
-     "Vendor and order management",
+     "Part sales",
      0,
      "false",
      "true"
     ]
    ],
    "reports": "true",
-   "financial": "false",
-   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//07-ZZAUTOTEST-P71-VOM-view-filled.png",
+   "financial": "true",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//03-ZZAUTOTEST-P71-WO-PartSales-view-filled.png",
    "reqs": [
-    "/api/check-existing-roles {\"fePermissions\":[\"65ebb906-e844-47cb-88cb-15a3b0d835a9\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}",
-    "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412243544&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123329123~124170881&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26500 en=page_view&_ee=1&ep.debug_mode=true&_et=20949&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2643\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=parts_department&_et=581\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=vendor_order_management&_et=931\r\nen=permissions_apply&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=footer&ep.element_label=apply&_et=613",
-    "/api/roles {\"name\":\"ZZAUTOTEST P71 VOM view\",\"description\":null,\"fePermissions\":[\"65ebb906-e844-47cb-88cb-15a3b0d835a9\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":null,\"crossToggles\":{\"seeFinancialData\":false,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}"
+    "/api/check-existing-roles {\"fePermissions\":[\"c750f752-e6d2-48f2-978e-99a1ac27b11c\",\"27d35438-3fec-4ee9-bd9e-fa9f6e695670\",\"267eed7b-a2a5-4d99-9ae0-15c690278854\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\",\"81ec5323-00ee-4d9d-96de-a32ecaab0f16\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}",
+    "/api/roles {\"name\":\"ZZAUTOTEST P71 WO+PartSales view\",\"description\":null,\"fePermissions\":[\"c750f752-e6d2-48f2-978e-99a1ac27b11c\",\"27d35438-3fec-4ee9-bd9e-fa9f6e695670\",\"267eed7b-a2a5-4d99-9ae0-15c690278854\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\",\"81ec5323-00ee-4d9d-96de-a32ecaab0f16\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":\"full\",\"crossToggles\":{\"seeFinancialData\":true,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}"
    ],
-   "after": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//08-ZZAUTOTEST-P71-VOM-view-created.png"
-  },
-  "ZZAUTOTEST P71 VOM create-edit": {
-   "log": [
-    [
-     "Parts Department",
-     "false",
-     "true"
-    ],
-    [
-     "Vendor and order management",
-     1,
-     3
-    ],
-    [
-     "Vendor and order management",
-     1,
-     "false",
-     "true"
-    ]
-   ],
-   "reports": "true",
-   "financial": "false",
-   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//09-ZZAUTOTEST-P71-VOM-create-edit-filled.png",
-   "reqs": [
-    "/api/check-existing-roles {\"fePermissions\":[\"65ebb906-e844-47cb-88cb-15a3b0d835a9\",\"47fd3b91-d940-4ebf-b3b5-7c321e2eb20b\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}",
-    "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412272199&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938466~115938468~118897920~118897930~119860443~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170881&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26279 en=page_view&_ee=1&ep.debug_mode=true&_et=20999&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2743\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=parts_department&_et=579\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=vendor_order_management&_et=947\r\nen=permissions_apply&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=footer&ep.element_label=apply&_et=615",
-    "/api/roles {\"name\":\"ZZAUTOTEST P71 VOM create-edit\",\"description\":null,\"fePermissions\":[\"65ebb906-e844-47cb-88cb-15a3b0d835a9\",\"47fd3b91-d940-4ebf-b3b5-7c321e2eb20b\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":null,\"crossToggles\":{\"seeFinancialData\":false,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}"
-   ],
-   "after": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//10-ZZAUTOTEST-P71-VOM-create-edit-created.png"
-  },
-  "ZZAUTOTEST P71 Customers view": {
-   "log": [
-    [
-     "Customers",
-     0,
-     3
-    ],
-    [
-     "Customers",
-     0,
-     "false",
-     "true"
-    ]
-   ],
-   "reports": "true",
-   "financial": "false",
-   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//11-ZZAUTOTEST-P71-Customers-view-filled.png",
-   "reqs": [
-    "/api/check-existing-roles {\"fePermissions\":[\"55f5cb14-34bd-4999-95a1-0168497466e1\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}",
-    "/api/roles {\"name\":\"ZZAUTOTEST P71 Customers view\",\"description\":null,\"fePermissions\":[\"55f5cb14-34bd-4999-95a1-0168497466e1\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":null,\"crossToggles\":{\"seeFinancialData\":false,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}",
-    "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412300947&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=15&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121246026~121246034~123329125~123785233~124170883&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26307 en=page_view&_ee=1&ep.debug_mode=true&_et=20936&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2660\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=customers&_et=631\r\nen=permissions_apply&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=footer&ep.element_label=apply&_et=615\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=1077&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions"
-   ],
-   "after": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//12-ZZAUTOTEST-P71-Customers-view-created.png"
+   "after": "/home/user/Manual-test-Cases/build/aging-reports/exec/p71//04-ZZAUTOTEST-P71-WO-PartSales-view-created.png"
   }
  },
  "reqs": [
   {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412084419&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=115938466~115938468~118897920~118897930~119860443~120213116~120385422~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170883&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=44&up.user_role=admin&tfd=5457",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416439960&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=0&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=115938465~115938469~118897920~118897930~119404697~120213116~120385422~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170881&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794416425&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=40&up.user_role=admin&tfd=5565",
    "b": ""
   },
   {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412084419&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=3&tag_exp=115938466~115938468~118897920~118897930~119860443~120213116~120385422~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170883&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=5863&tfd=6321",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416439960&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=0&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=3&tag_exp=115938465~115938469~118897920~118897930~119404697~120213116~120385422~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170881&sid=1794416425&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=5800&tfd=6366",
    "b": ""
   },
   {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412084419&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=3&tag_exp=115938466~115938468~118897920~118897930~119860443~120213116~120385422~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170883&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=5863&tfd=6321&gaf=1",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416439960&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=0&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=3&tag_exp=115938465~115938469~118897920~118897930~119404697~120213116~120385422~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170881&sid=1794416425&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=5800&tfd=6366&gaf=1",
    "b": ""
   },
   {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za208zd9250300735xf1&_p=1794412090373&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121246026~121246034~123329125~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=524",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za208zd9250300735xf1&_p=1794416445858&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=1&tag_exp=100940090~115938466~115938469~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121246026~121246034~123329125~124170883&sid=1794416425&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=466",
    "b": ""
   },
   {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412090373&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121246026~121246034~123329125~124170881&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&up.user_role=admin&tfd=5525",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416445858&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=100940090~115938466~115938469~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121246026~121246034~123329125~124170883&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794416425&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&tfd=5467",
    "b": ""
+  },
+  {
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416445858&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=3&tag_exp=100940090~115938466~115938469~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121246026~121246034~123329125~124170883&sid=1794416425&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=19853&tfd=20323",
+   "b": ""
+  },
+  {
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416445858&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=3&tag_exp=100940090~115938466~115938469~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121246026~121246034~123329125~124170883&sid=1794416425&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=19853&tfd=20323&gaf=1",
+   "b": ""
+  },
+  {
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za208zd9250300735xf1&_p=1794416465896&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=1&tag_exp=115616986~115938465~115938469~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121246026~121246034~123329125~124170883&sid=1794416425&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=668",
+   "b": ""
+  },
+  {
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416465896&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=115616986~115938465~115938469~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121246026~121246034~123329125~124170883&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794416425&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&up.user_role=admin&tfd=5669",
+   "b": ""
+  },
+  {
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416465896&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115616986~115938465~115938469~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121246026~121246034~123329125~124170883&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794416425&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26666",
+   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=20987&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2717\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=invoicing_and_payments&_et=678\r\nen=permission_financial_confirm&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=dialog&ep.element_label=enable_financial_data&_et=747"
   },
   {
    "u": "/api/check-existing-roles",
-   "b": "{\"fePermissions\":[\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412090373&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121246026~121246034~123329125~124170881&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26541",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=21012&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2705\r\nen=permissions_apply&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=footer&ep.element_label=apply&_et=633"
+   "b": "{\"fePermissions\":[\"c750f752-e6d2-48f2-978e-99a1ac27b11c\",\"d2bae268-f8ac-433f-8388-773487b3f85a\",\"267eed7b-a2a5-4d99-9ae0-15c690278854\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\",\"81ec5323-00ee-4d9d-96de-a32ecaab0f16\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}"
   },
   {
    "u": "/api/roles",
-   "b": "{\"name\":\"ZZAUTOTEST P71 Reports only\",\"description\":null,\"fePermissions\":[\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":null,\"crossToggles\":{\"seeFinancialData\":false,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}"
+   "b": "{\"name\":\"ZZAUTOTEST P71 Inv+WO view\",\"description\":null,\"fePermissions\":[\"c750f752-e6d2-48f2-978e-99a1ac27b11c\",\"d2bae268-f8ac-433f-8388-773487b3f85a\",\"267eed7b-a2a5-4d99-9ae0-15c690278854\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\",\"81ec5323-00ee-4d9d-96de-a32ecaab0f16\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":\"full\",\"crossToggles\":{\"seeFinancialData\":true,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}"
   },
   {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412090373&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121246026~121246034~123329125~124170881&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=4&tfd=30639",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=2783&dp=%2Fadministration%2Froles-permissions\r\nen=user_engagement&ep.debug_mode=true&_et=2965&dt=Roles%20%26%20Permissions%20%7C%20ShopView"
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416465896&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115616986~115938465~115938469~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121246026~121246034~123329125~124170883&sid=1794416425&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&dt=Create%20Role%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=4&tfd=30299",
+   "b": "en=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=work_orders&_et=942\r\nen=permissions_apply&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=footer&ep.element_label=apply&_et=834\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=796&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions\r\nen=user_engagement&ep.debug_mode=true&_et=1898&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView"
   },
   {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412090373&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121246026~121246034~123329125~124170881&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=4&tfd=30639&gaf=1",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=2783&dp=%2Fadministration%2Froles-permissions\r\nen=user_engagement&ep.debug_mode=true&_et=2965&dt=Roles%20%26%20Permissions%20%7C%20ShopView"
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416465896&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115616986~115938465~115938469~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121246026~121246034~123329125~124170883&sid=1794416425&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&dt=Create%20Role%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=4&tfd=30299&gaf=1",
+   "b": "en=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=work_orders&_et=942\r\nen=permissions_apply&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=footer&ep.element_label=apply&_et=834\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=796&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions\r\nen=user_engagement&ep.debug_mode=true&_et=1898&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView"
   },
   {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za208zd9250300735xf1&_p=1794412120660&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=6&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123329123~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=333",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za208zd9250300735xf1&_p=1794416495759&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=15&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121246026~121246034~123329125~124170883&sid=1794416425&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=341",
    "b": ""
   },
   {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412120660&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=6&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123329123~124170881&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=2&up.user_role=admin&tfd=5334",
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416495759&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=15&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121246026~121246034~123329125~124170883&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794416425&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&tfd=5342",
    "b": ""
   },
   {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412120660&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=6&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123329123~124170881&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26282",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=20945&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2708\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=invoicing_and_payments&_et=666"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412120660&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=6&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=4&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123329123~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&dt=Create%20Role%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=15868&tfd=40532",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412120660&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=6&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=4&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123329123~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&dt=Create%20Role%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=15868&tfd=40532&gaf=1",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za208zd9250300735xf1&_p=1794412161067&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~119863601~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123329125~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=378",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412161067&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=115938465~115938468~118897920~118897930~119863601~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123329125~124170881&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&tfd=5379",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412161067&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938468~118897920~118897930~119863601~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123329125~124170881&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26355",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=20973&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2677\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=work_orders&_et=647\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=parts_department&_et=614\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=part_sales&_et=913"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412161067&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=4&tag_exp=115938465~115938468~118897920~118897930~119863601~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123329125~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&dt=Create%20Role%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=16007&tfd=42226",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412161067&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=4&tag_exp=115938465~115938468~118897920~118897930~119863601~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123329125~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&dt=Create%20Role%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=16007&tfd=42226&gaf=1",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za208zd9250300735xf1&_p=1794412203066&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938469~118897920~118897930~119860442~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123329123~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=560",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412203066&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=115938465~115938469~118897920~118897930~119860442~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123329123~124170881&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&tfd=5561",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412203066&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938469~118897920~118897930~119860442~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123329123~124170881&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26536",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=20971&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2711\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=invoicing_and_payments&_et=632"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412203066&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=4&tag_exp=115938465~115938469~118897920~118897930~119860442~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123329123~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&dt=Create%20Role%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=15968&tfd=40853",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412203066&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=4&tag_exp=115938465~115938469~118897920~118897930~119860442~120213116~120385422~120412528~120420414~120469145~120469153~121246026~121246034~123329123~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&dt=Create%20Role%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=user_engagement&ep.debug_mode=true&_et=15968&tfd=40853&gaf=1",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za208zd9250300735xf1&_p=1794412243544&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123329123~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=547",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412243544&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123329123~124170881&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&tfd=5548",
-   "b": ""
+   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794416495759&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=729698425.1794416425&frm=0&ngs=1&pscdl=noapi&rcb=15&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121246026~121246034~123329125~124170883&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794416425&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26313",
+   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=20966&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2743\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=work_orders&_et=677\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=parts_department&_et=830"
   },
   {
    "u": "/api/check-existing-roles",
-   "b": "{\"fePermissions\":[\"65ebb906-e844-47cb-88cb-15a3b0d835a9\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412243544&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123329123~124170881&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26500",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=20949&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2643\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=parts_department&_et=581\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=vendor_order_management&_et=931\r\nen=permissions_apply&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=footer&ep.element_label=apply&_et=613"
+   "b": "{\"fePermissions\":[\"c750f752-e6d2-48f2-978e-99a1ac27b11c\",\"27d35438-3fec-4ee9-bd9e-fa9f6e695670\",\"267eed7b-a2a5-4d99-9ae0-15c690278854\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\",\"81ec5323-00ee-4d9d-96de-a32ecaab0f16\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}"
   },
   {
    "u": "/api/roles",
-   "b": "{\"name\":\"ZZAUTOTEST P71 VOM view\",\"description\":null,\"fePermissions\":[\"65ebb906-e844-47cb-88cb-15a3b0d835a9\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":null,\"crossToggles\":{\"seeFinancialData\":false,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412243544&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123329123~124170881&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=4&tfd=29025",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=626&dp=%2Fadministration%2Froles-permissions\r\nen=user_engagement&ep.debug_mode=true&_et=2115&dt=Roles%20%26%20Permissions%20%7C%20ShopView"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412243544&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123329123~124170881&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=4&tfd=29025&gaf=1",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=626&dp=%2Fadministration%2Froles-permissions\r\nen=user_engagement&ep.debug_mode=true&_et=2115&dt=Roles%20%26%20Permissions%20%7C%20ShopView"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za208zd9250300735xf1&_p=1794412272199&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~119860443~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170881&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=275",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412272199&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=115938466~115938468~118897920~118897930~119860443~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170881&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&tfd=5276",
-   "b": ""
-  },
-  {
-   "u": "/api/check-existing-roles",
-   "b": "{\"fePermissions\":[\"65ebb906-e844-47cb-88cb-15a3b0d835a9\",\"47fd3b91-d940-4ebf-b3b5-7c321e2eb20b\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412272199&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938466~115938468~118897920~118897930~119860443~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170881&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26279",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=20999&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2743\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=parts_department&_et=579\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=vendor_order_management&_et=947\r\nen=permissions_apply&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=footer&ep.element_label=apply&_et=615"
-  },
-  {
-   "u": "/api/roles",
-   "b": "{\"name\":\"ZZAUTOTEST P71 VOM create-edit\",\"description\":null,\"fePermissions\":[\"65ebb906-e844-47cb-88cb-15a3b0d835a9\",\"47fd3b91-d940-4ebf-b3b5-7c321e2eb20b\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":null,\"crossToggles\":{\"seeFinancialData\":false,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412272199&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938466~115938468~118897920~118897930~119860443~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170881&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=4&tfd=28868",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=1416&dp=%2Fadministration%2Froles-permissions\r\nen=user_engagement&ep.debug_mode=true&_et=1274&dt=Roles%20%26%20Permissions%20%7C%20ShopView"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412272199&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938466~115938468~118897920~118897930~119860443~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123329123~124170881&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=4&tfd=28868&gaf=1",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=1416&dp=%2Fadministration%2Froles-permissions\r\nen=user_engagement&ep.debug_mode=true&_et=1274&dt=Roles%20%26%20Permissions%20%7C%20ShopView"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za208zd9250300735xf1&_p=1794412300947&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=15&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121246026~121246034~123329125~123785233~124170883&sid=1794412068&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&dt=Roles%20%26%20Permissions%20%7C%20ShopView&en=page_view&_ee=1&ep.debug_mode=true&tfd=326",
-   "b": ""
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412300947&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=15&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&_s=2&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121246026~121246034~123329125~123785233~124170883&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&en=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&tfd=5327",
-   "b": ""
-  },
-  {
-   "u": "/api/check-existing-roles",
-   "b": "{\"fePermissions\":[\"55f5cb14-34bd-4999-95a1-0168497466e1\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}"
-  },
-  {
-   "u": "/api/roles",
-   "b": "{\"name\":\"ZZAUTOTEST P71 Customers view\",\"description\":null,\"fePermissions\":[\"55f5cb14-34bd-4999-95a1-0168497466e1\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":null,\"crossToggles\":{\"seeFinancialData\":false,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}"
-  },
-  {
-   "u": "/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794412300947&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1813936022.1794412069&frm=0&ngs=1&pscdl=noapi&rcb=15&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121246026~121246034~123329125~123785233~124170883&dt=Create%20Role%20%7C%20ShopView&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions%2Fnew&sid=1794412068&sct=1&seg=1&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=26307",
-   "b": "en=page_view&_ee=1&ep.debug_mode=true&_et=20936&dp=%2Fadministration%2Froles-permissions%2Fnew&dt=RolesPermissionsCreate\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=page_access&_et=2660\r\nen=permission_toggle&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=toggle&ep.element_location=grid&ep.element_label=customers&_et=631\r\nen=permissions_apply&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=footer&ep.element_label=apply&_et=615\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=1077&dp=%2Fadministration%2Froles-permissions&dt=RolesPermissions&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Fadministration%2Froles-permissions"
-  }
- ],
- "list": [
-  {
-   "id": "2551b1bb-29c8-449f-b559-fd6d6a2d03a3",
-   "name": "ZZAUTOTEST P71 Reports only"
-  },
-  {
-   "id": "269548a7-4c40-4e2d-bfca-084c858a38a2",
-   "name": "ZZAUTOTEST P71 VOM create-edit"
-  },
-  {
-   "id": "5b89f5ff-f61d-47e9-b9d8-97ba63491f32",
-   "name": "ZZAUTOTEST P71 VOM view"
-  },
-  {
-   "id": "9711d3a3-44a4-4e87-a7a4-d8aa7bc8167a",
-   "name": "ZZAUTOTEST P71 Customers view"
+   "b": "{\"name\":\"ZZAUTOTEST P71 WO+PartSales view\",\"description\":null,\"fePermissions\":[\"c750f752-e6d2-48f2-978e-99a1ac27b11c\",\"27d35438-3fec-4ee9-bd9e-fa9f6e695670\",\"267eed7b-a2a5-4d99-9ae0-15c690278854\",\"7724fb7f-dba8-4672-a168-314c0460c0ab\",\"81ec5323-00ee-4d9d-96de-a32ecaab0f16\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\",\"viewMode\":\"full\",\"crossToggles\":{\"seeFinancialData\":true,\"seeApArData\":false,\"viewHistoryLogs\":false},\"templateId\":null}"
   }
  ]
 }
