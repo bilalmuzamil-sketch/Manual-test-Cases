@@ -532,3 +532,9 @@
 - **Sales By Customer's table loading bar is never seen at normal speed** (s84b sampled 30 × 100 ms: only the page-top `q-loading-bar`). To compare loading bars, hold every `/reporting/` reply ~3 s with `page.route` + delayed `continue()` (never abort, L0646) and sample — `exec/p74_loadbar.mjs`.
 - **The aging empty state is the Sales By Customer empty state to the pixel** (magnifier 24 px rgb(105,117,134) at 832,293; title 17 px/600; helper 14 px; "Clear all filters" 14 px/500 at the same boxes) — use Product Type = Services-only ("ptnone") on Sales By Customer as the control (Location: No locations does not empty it, L0658).
 - #aging #design #location-menu #loading → L0658, L0665
+
+## L0667 — 2026-11-11 — sv11315 location codes and link behaviour on the aging reports
+- Location codes (for `locationIds=` links): **Staging Heavy Duty - 9919 = b3c8c820-f815-4cf1-8938-10956c5ee71a**, **Staging Lethbridge - 4310 = f8a8b802-7780-4b16-bf10-343caeb616b2**, **ZZAUTOTEST V1R-87 Location C = 19abb244-4c5d-460a-86bb-e515d4eda24d** (Location C's A/R documents start Nov 1, so 10/31/2026 is a date with A and B only).
+- The app writes ticked locations as repeated `locationIds=` entries; a hand-edited comma list (`locationIds=a,b`) opens the same selection and stays in the address as typed; a link naming every location opens as "All locations" and the address drops the parameter.
+- Group "Location" cell: one location's name, or "Multiple"; it recomputes from the ticked locations only (LOC MIX: Multiple → Staging Heavy Duty - 9919 when Lethbridge is unticked; totals drop to the Heavy Duty documents).
+- #aging #location #links → L0665, L0666

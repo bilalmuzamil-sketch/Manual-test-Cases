@@ -40,5 +40,12 @@ R['C715413'] = {'verdict': 'Passed', 'observed': ['A/P Aging Summary, Vendor fil
     'Step 1: vendor A\'s Location cell reads "Staging Heavy Duty - 9919"; vendor B\'s reads "Multiple".',
     'Step 2: Lethbridge unticked (Heavy Duty and location C left, "Location: 2 locations") - the Location column stays, and vendor B\'s cell now reads "Staging Heavy Duty - 9919"; its Total drops from $503.00 to $470.00 (only its Heavy Duty bills count).'],
     'pictures': [P('C715413', '15-C715413-1.png', 'Step 1: vendor A one location, vendor B "Multiple"', [ROWS + ('good', 'Staging Heavy Duty - 9919 / Multiple')]), P('C715413', '16-C715413-2.png', 'Step 2: Lethbridge unticked - vendor B now shows Staging Heavy Duty - 9919', [ROWS + ('good', 'Multiple -> Staging Heavy Duty - 9919')])]}
+d = j('C1062584')
+R['C1062584'] = {'verdict': 'Passed', 'observed': ['A/R Aging Detail, as of today, three locations with documents: Staging Heavy Duty - 9919 (A), Staging Lethbridge - 4310 (B), ZZAUTOTEST V1R-87 Location C (C, whose documents start on Nov 1). Date A = Oct 31, 2026: A and B had open documents, C none.',
+    'Step 1: Lethbridge unticked - the chip reads "Location: 2 locations" (Heavy Duty and location C ticked).',
+    'Step 2: as-of changed to 10/31/2026 - the report reloads for that date and the chip reads "Location: Staging Heavy D..." (location A only: location C is not in the list for that date).',
+    'Step 3: the Location menu lists "Staging Heavy Duty - 9919" (ticked) and "Staging Lethbridge - 4310" (not ticked), "1 selected"; location C is not listed.'],
+    'pictures': [P('C1062584', '17-C1062584-1.png', 'Step 1: "Location: 2 locations"', [CH + ('good', '2 locations')]), P('C1062584', '18-C1062584-2.png', 'Step 2: as of 10/31/2026 - only location A stays ticked', [CH + ('good', 'As of 10/31/2026 - Location: Staging Heavy D...')]),
+                 P('C1062584', '19-C1062584-3-menu.png', 'Step 3: A ticked, B listed and not ticked, C not listed')]}
 ids = sys.argv[1:] or list(R); out = {k: R[k] for k in ids if k in R}
 json.dump({'pass_meta': {'note': '11 Nov 2026, run 557, s88 three locations'}, 'results': out}, open(PP + 'RESULTS-s88-%s.json' % ('a' if not sys.argv[1:] else '-'.join(sys.argv[1:])), 'w'), indent=1); print(list(out))
