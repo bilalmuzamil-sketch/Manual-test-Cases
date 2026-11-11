@@ -1,0 +1,29 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount sort tests (s2x)"
+ },
+ "results": {
+  "C715308": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of 11/11/2026, Vendor filter = ZZY Doc Group R2, its group open: bill A $300 (open $50, 10 days past due), B $100 (20 days), C $200 (open $150, 5 days).",
+    "Every step gives exactly the order the test expects:",
+    "Step 1: Past Due - document B, document A, document C",
+    "Step 2: Past Due - document C, document A, document B",
+    "Step 3: Amount - document A, document C, document B",
+    "Step 4: Amount - document B, document C, document A",
+    "Step 5: Open Balance - document C, document B, document A",
+    "Step 6: Open Balance - document A, document B, document C",
+    "Step 7: Open Balance - document C, document B, document A"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715308-1-PastDue.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715308-2-PastDue.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715308-3-Amount.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715308-4-Amount.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715308-5-OpenBalance.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715308-6-OpenBalance.png"
+   ]
+  }
+ }
+}
