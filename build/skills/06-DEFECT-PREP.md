@@ -801,3 +801,9 @@ A defect found by a regression suite (V1-vs-V2, before/after release, production
 APPROVED layout, every time: copy `build/skills/templates/REGRESSION-DEFECT-TEMPLATE.html` and fill it in.
 Approved examples: SV-12544…SV-12547 in `build/ar-ap-report-sorting/v1-regression/defect-pack-2026-11-11/reformatted/`.
 The rule text (`build/rules/RULES-61-96.md`, Rule 119) is the authority; this paragraph is only a pointer.
+
+## Before any Failed verdict or ticket — Rule 120 (QA lead, 11 Nov 2026)
+
+Measure before you claim: before/after numbers in the ticket, the state not the signal, data where pass and fail look
+different, one check per claim, every other explanation ruled out with evidence, re-measure when a developer says
+"it works", and keep the settling evidence. The rule text (`build/rules/RULES-61-96.md`, Rule 120) is the authority.

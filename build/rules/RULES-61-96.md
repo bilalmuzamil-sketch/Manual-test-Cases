@@ -2740,3 +2740,39 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     **Changes later:** fix the description, never a correction comment (117.3a). When a source changes (a
     developers' handoff corrected, a PO answer), update its Sources row and the Yes/No — read the live description
     first so nobody else's edit is overwritten.
+
+120. **HOW TO AVOID REPORTING A BUG THAT ISN'T THERE — MEASURE BEFORE YOU CLAIM (all projects, permanent).**
+    Given by the QA lead on **2026-11-11**. His text, verbatim:
+
+    > Measure the claim before you write it. "It shows everything at once", "nothing happens", "it never loads",
+    > "it doesn't save": each of these is a statement about what is on the page or in the data. Count or read the
+    > actual state at the moment it matters (before the action, then after it), and quote the numbers in the ticket.
+    > If you haven't measured it, don't state it as fact.
+    > "I didn't see it happen" is not "it didn't happen." A missing spinner, toast or loading row, or a screen that
+    > "looked the same", proves nothing. Many things in the app happen quietly: rows added as you scroll · a second
+    > confirmation dialog · a save without a message · data already fetched in the background. Check the state
+    > itself, not the signal you expected to see.
+    > Build the test data so that a pass and a fail look different. If the requirement is "show N, then more", use
+    > well over twice N items. If it is "round to 2 decimals", use a value that actually needs rounding. If it is
+    > "only for role X", test a role that is not X as well. Test data that sits right at the edge will look like a
+    > pass and a fail at the same time.
+    > Read the requirement word by word, then test each part separately. Most requirements make two or three claims,
+    > for example "shows the first 100", "adds the next 100 when you scroll" and "the totals always cover
+    > everything". Give each claim its own check and its own result.
+    > Try to prove yourself wrong before filing. Ask: "What else would explain what I saw?" Usual answers are a
+    > setting, the data, timing, a second click, or my own test method. Rule each one out with evidence. A false bug
+    > costs more than a missed one, because people trust it and spend time on it.
+    > When a developer says "it works", re-measure first and answer with numbers. Don't defend the ticket or repeat
+    > the old steps. Run the check again the way they describe it. If they are right, say so plainly. If they are
+    > wrong, show the figures that prove it.
+    > Keep the evidence that would settle an argument: counts before and after, the exact data you used, the build
+    > version and date, and a screenshot taken at the moment it happened.
+
+    **As a pre-filing checklist (every Failed verdict and every ticket, on top of 94 and 110):** (1) the claim is a
+    measured number or quoted text, before AND after the action, written into the ticket; (2) the state was read,
+    not the signal (no "no toast/spinner, so it failed"); (3) the data makes pass and fail look different (> 2×N,
+    a value that needs rounding, a role that is not X); (4) each claim in the requirement has its own check and
+    result; (5) the alternatives — a setting, the data, timing, a second click, our own method — are each ruled out
+    with evidence, written down; (6) a developer's "it works" is answered by re-measuring their way, with numbers,
+    and conceded plainly when they are right; (7) the settling evidence is kept: counts before/after, the exact
+    data, build marker + date, a screenshot at the moment.

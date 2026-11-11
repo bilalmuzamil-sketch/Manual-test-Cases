@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118 and 119** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119 and 120** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -463,6 +463,12 @@ Expected → Environment (both builds) → **Sources with an "Intended by the PR
 work exactly as on production" when the PRD does not ask for it) → Test case → collapsed developer details. Template:
 `build/skills/templates/REGRESSION-DEFECT-TEMPLATE.html`; approved examples: SV-12544…SV-12547 in
 `build/ar-ap-report-sorting/v1-regression/defect-pack-2026-11-11/reformatted/`.
+
+**Rule 120 (how to avoid reporting a bug that isn't there — measure before you claim)** was given by the QA lead
+**2026-11-11**, recorded verbatim at the end of `build/rules/RULES-61-96.md`. Measure the state before and after and
+quote the numbers; "I didn't see it happen" is not "it didn't happen"; build data so pass and fail look different;
+test each claim of the requirement separately; rule out every other explanation before filing; answer a developer's
+"it works" by re-measuring, with numbers; keep the evidence that would settle the argument.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
