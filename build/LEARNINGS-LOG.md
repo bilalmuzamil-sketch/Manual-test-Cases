@@ -417,3 +417,7 @@
 
 ## L0645 — 2026-11-11 — In this container `from PIL import Image` can fail; crop with ImageMagick
 - `python3 -c "from PIL import Image"` raised `ImportError: cannot import name '_imaging'` (system PIL in /usr/lib/python3/dist-packages). `ann.py` does not need PIL (it shells out). To crop or resize a picture use `convert <in> -crop WxH+X+Y +repage <out>` (ImageMagick is at /usr/bin/convert).
+
+## L0646 — 2026-11-11 — QA sites: an ABORTED API call sends the page to the "Environment Sleeping" screen
+- On sv11315, making one API call fail with `page.route(..., r => r.abort('failed'))` shows a red "QA env is sleeping — Redirecting…" toast and then the "Environment Sleeping / Wake Up" page (p56b, p56c B, twice). The site was NOT asleep: quick-login answered 200 throughout and nothing needed waking. The QA wrapper treats any network-level API failure as "asleep".
+- So to simulate a server-side failure on a QA site, answer the call with `route.fulfill({ status: 500, … })`, not `abort()`. Supersedes the reading in L0644 that the site fell asleep on its own at 12:20 (the wake watcher is still harmless and stays).

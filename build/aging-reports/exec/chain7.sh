@@ -16,6 +16,7 @@ run p56b timeout 600 node p56b_scroll_error.mjs > p56b.log 2>&1
 run p56c timeout 600 node p56c_bucket_first_load.mjs > p56c.log 2>&1
 run p56b2 env P56B_OUT=./p56b2/ timeout 600 node p56b_scroll_error.mjs > p56b2.log 2>&1
 run s5h env ONLY=C1062566 timeout 600 node s5_run.mjs > s5h.log 2>&1
+run p56b3 timeout 600 node p56b3_scroll_error.mjs > p56b3.log 2>&1
 run s5i env ONLY=C715402 timeout 600 node s5_run.mjs > s5i.log 2>&1
 run s5j env ONLY=C715408 timeout 600 node s5_run.mjs > s5j.log 2>&1
 run s5k env ONLY=C715392,C715607,C715609 timeout 1500 node s5_run.mjs > s5k.log 2>&1
