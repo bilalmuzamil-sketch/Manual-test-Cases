@@ -1,0 +1,78 @@
+<!--
+  REGRESSION DEFECT TEMPLATE — Rule 119 (QA lead approved, 11 Nov 2026).
+  Copied from the approved tickets SV-12545 / SV-12546 (PRD does NOT intend it) and SV-12544 (PRD DOES intend it).
+  Worked examples, exactly as sent to Jira:
+    build/ar-ap-report-sorting/v1-regression/defect-pack-2026-11-11/reformatted/SV-12544.html … SV-12547.html
+  Send with editJiraIssue / createJiraIssue, contentFormat "html". Replace every {{…}}; delete the block you do not use.
+  Pictures: annotated with annotate_v2.py, uploaded with uploadAttachmentToJiraIssue, placed as full-width figures,
+  each caption STARTS with its site: "QA branch — …" or "Production — …".
+  Never a correction comment (117.3a): a wrong fact is fixed here, in the description.
+-->
+<h2>Description</h2>
+<p><strong>What the PRD requires:</strong></p>
+
+<!-- A) The PRD asks for the behaviour (a planned change done wrong): quote it word for word (Rule 113) -->
+<blockquote><p>{{the PRD sentence, verbatim}}</p></blockquote>
+
+<!-- B) The PRD does NOT ask for the change (a regression): an info panel instead of a quote -->
+<div data-type="panel-info"><p>The PRD <strong>does not ask for this change</strong>. {{one plain sentence: what the PRD says or does not say about this; where the new behaviour came from, if known}}</p></div>
+
+<p><strong>What happens instead:</strong></p>
+<p>On the QA branch, {{one or two plain sentences, with the exact on-screen words in bold quotes}}.</p>
+<p>For example,</p>
+<ul>
+<li><strong>{{Report / screen}}</strong>: {{record}} reads <strong>"{{what you see}}"</strong>.</li>
+</ul>
+
+<h2>QA branch vs production</h2>
+<table><thead><tr><th>What you check</th><th>QA branch (new version, {{QA build marker}})</th><th>Production today ({{production build marker}})</th></tr></thead>
+<tbody>
+<tr><td>{{the thing to look at}}</td><td>❌ {{what the QA branch does}}</td><td>✅ {{what production does}}</td></tr>
+</tbody></table>
+<p>What this shows: {{one plain sentence}}.</p>
+<p>Production pictures (the QA branch pictures are under the steps below):</p>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="{{file id}}" data-collection="{{collection}}" data-alt="PIC{{n}}-production-{{what}}.png"></div><figcaption>Production — {{what the picture shows}} ({{date}})</figcaption></figure>
+
+<h2>Steps to Reproduce</h2>
+<h3>Example 1 - {{Report name}}</h3>
+<ol start="1">
+<li>Sign in to the QA site as {{role}} at <strong>{{location}}</strong>.</li>
+<li>Open <strong>Reports</strong> → <strong>{{report}}</strong>. {{filters exactly as set, with their on-screen labels}}</li>
+<li>{{action, using the build's exact labels}}<ul><li>{{what you see, with the record named}}</li></ul></li>
+</ol>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="{{file id}}" data-collection="{{collection}}" data-alt="PIC{{n}}-qa-{{what}}.png"></div><figcaption>QA branch — {{what the picture shows}}</figcaption></figure>
+<!-- Example 2, 3 … the same shape, one per report affected -->
+
+<p><strong>Actual Result:</strong></p>
+<ul><li>{{short bullet}}</li></ul>
+<p><strong>Expected Result:</strong></p>
+<ul><li>{{A: what the PRD says, in its words · B: "It works exactly as on production: …"}}</li></ul>
+
+<h2>Environment</h2>
+<ul>
+<li>QA site: <a href="{{QA url}}">{{QA url}}</a> (build <strong>{{QA marker}}</strong>), location <strong>{{location}}</strong>, {{role}}. Seen on {{date}} at {{time}} UTC and again at {{time}} UTC.</li>
+<li>Production: <a href="https://app.shopview.com">https://app.shopview.com</a> (build <strong>{{prod marker}}</strong>), production test account, location <strong>{{location}}</strong>, {{role}}. Seen on {{date}} at {{time}} UTC.</li>
+<li>Checked: {{what}}. Not checked: {{what, or "nothing else"}}.</li>
+</ul>
+
+<h2>Sources</h2>
+<table><thead><tr><th>Document</th><th>What it says</th><th>Intended by the PRD?</th></tr></thead>
+<tbody>
+<tr><td>PRD "{{title}}", <a href="{{link}}">Confluence page {{id}}</a>, version {{n}} ({{date}}, {{owner}}), {{section}}</td><td>{{verbatim quote, or "Says nothing about {{x}}."}}</td><td><strong>{{Yes / No}}</strong> — {{short reason}}</td></tr>
+<tr><td>Production {{marker}} (the version before this release)</td><td>{{what production does}}</td><td>—</td></tr>
+<!-- one row for any other written statement that touches it: developers' handoff, tech plan, PO answer — with its date -->
+</tbody></table>
+
+<!-- A) PRD intends it -->
+<div data-type="panel-warning"><p><strong>The QA branch does not do what the PRD asks.</strong> {{one plain sentence}}</p></div>
+<!-- B) PRD does not intend it -->
+<div data-type="panel-warning"><p><strong>No — the PRD does not ask for this change.</strong> Since what the QA branch does is not intended by the PRD, it should work exactly as it works on production today.</p><p>Note: {{PO question number and date, if one was asked}}</p></div>
+
+<h2>Test case</h2>
+<ul>
+<li><a href="https://shopview.testrail.io/index.php?/cases/view/{{id}}">C{{id}} {{case title}}</a></li>
+</ul>
+
+<details><summary>Technical details for developers</summary>
+<ul><li>{{V1 file:line at the pinned commit, V2 file:line — the only place code is named}}</li></ul>
+</details>

@@ -2706,3 +2706,37 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     branches). Use them without asking; restore tech@shopview.com's original role after a role test
     (Rule 26); tag created data ZZAUTOTEST. A second user is signed in with quick-login in a SEPARATE
     cookie jar (only sv_sso_session + cf_clearance), never with the QA lead's PHPSESSID.
+
+119. **A REGRESSION DEFECT IS WRITTEN IN THE APPROVED LAYOUT — EVERY TIME (all projects, permanent).** Ordered by
+    the QA lead on **2026-11-11**, verbatim: *"Remember that approved way of reporting the REGRESSION defects, that
+    is the way to do it save it as a rule for yourself"*. "That approved way" is the layout of SV-12544, SV-12545,
+    SV-12546 and SV-12547 as rewritten on 11 Nov 2026 under 117.3. **Fill-in template:**
+    `build/skills/templates/REGRESSION-DEFECT-TEMPLATE.html`. **Worked examples, exactly as sent:**
+    `build/ar-ap-report-sorting/v1-regression/defect-pack-2026-11-11/reformatted/SV-1254{4,5,6,7}.html`.
+    It applies to every defect found by a regression (V1-vs-V2, before/after-release, production-vs-branch) suite,
+    on top of Rule 117 (Story Defect shape, title, label, links, pictures, run results) and Rule 118 (the failed test
+    points to its ticket). The sections, in this order, none skipped:
+    1. **Description** — "What the PRD requires:" as a VERBATIM quote (113) when the PRD asks for it, or an info
+       panel "The PRD does not ask for this change" when it does not; then "What happens instead:" in one or two
+       plain sentences with the build's exact words in bold quotes, and "For example," bullets naming real records.
+    2. **QA branch vs production** — a table: What you check · QA branch (with its build marker) · Production today
+       (with its build marker), ❌/✅ per row; a one-line "What this shows"; then the PRODUCTION pictures.
+    3. **Steps to Reproduce** — "Example 1 - <report>", "Example 2 - …", numbered steps using the screen's labels,
+       each followed by its QA-branch picture.
+    4. **Actual Result** / **Expected Result** — short bullets. When the PRD does not ask for the change, the
+       expected result is "works exactly as on production".
+    5. **Environment** — both sites, both build markers, location, role, the UTC times seen (at least twice), and
+       what was and was not checked.
+    6. **Sources** — a table: Document · What it says · **Intended by the PRD?** (Yes/No), the PRD with version and
+       section first, production as the "before" row, and a row for every other written statement that touches it
+       (developers' handoff, tech plan, PO answer) with its date. Then a warning panel: either "The QA branch does not
+       do what the PRD asks." or "**No — the PRD does not ask for this change.** Since what the QA branch does is not
+       intended by the PRD, it should work exactly as it works on production today." plus the PO question if one is
+       open.
+    7. **Test case** — the TestRail case link(s) (117).
+    8. **Technical details for developers** — collapsed, last; the only place file paths and code appear.
+    **Pictures:** annotated, full width, every caption starting "QA branch — " or "Production — ".
+    **Words:** plain, layman, a manual QA follows it without help; tables and panels, never a wall of paragraphs.
+    **Changes later:** fix the description, never a correction comment (117.3a). When a source changes (a
+    developers' handoff corrected, a PO answer), update its Sources row and the Yes/No — read the live description
+    first so nobody else's edit is overwritten.

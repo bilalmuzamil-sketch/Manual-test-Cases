@@ -794,3 +794,10 @@ other name and is not found reads as unrecorded, and gets asked about twice.
 | Write or repair the affected cases | **[`01-CASE-BUILD`](01-CASE-BUILD.md)** |
 | Put the item in the completion report | **[`05-PROJECT-REPORT`](05-PROJECT-REPORT.md)** |
 | Ask the PO whether the behaviour is even wrong | **[`07-PO-QUESTIONS`](07-PO-QUESTIONS.md)** — **if the answer decides whether it IS a defect, it is a question, not a ticket** |
+
+## Regression defects — Rule 119 (QA lead, 11 Nov 2026)
+
+A defect found by a regression suite (V1-vs-V2, before/after release, production vs branch) is written in the
+APPROVED layout, every time: copy `build/skills/templates/REGRESSION-DEFECT-TEMPLATE.html` and fill it in.
+Approved examples: SV-12544…SV-12547 in `build/ar-ap-report-sorting/v1-regression/defect-pack-2026-11-11/reformatted/`.
+The rule text (`build/rules/RULES-61-96.md`, Rule 119) is the authority; this paragraph is only a pointer.

@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117 and 118** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118 and 119** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -455,6 +455,14 @@ session writes them, ending with the TestRail test case links)** and **Rule 118 
 its ticket — always: Defects field, run comment, "Follow the status here" result, title prefix, EXPECT FAIL
 marker)** were ordered by the QA lead **2026-11-11** and live at the end of `build/rules/RULES-61-96.md`.
 Rule 117 replaces the playbook's earlier bar on test case links in a ticket.
+
+**Rule 119 (a regression defect is written in the approved layout — every time)** was ordered by the QA lead
+**2026-11-11** and lives at the end of `build/rules/RULES-61-96.md`. Description (PRD quote, or "the PRD does not ask
+for this change" panel) → **QA branch vs production** table + production pictures → Steps with QA pictures → Actual /
+Expected → Environment (both builds) → **Sources with an "Intended by the PRD?" column** and the warning panel ("should
+work exactly as on production" when the PRD does not ask for it) → Test case → collapsed developer details. Template:
+`build/skills/templates/REGRESSION-DEFECT-TEMPLATE.html`; approved examples: SV-12544…SV-12547 in
+`build/ar-ap-report-sorting/v1-regression/defect-pack-2026-11-11/reformatted/`.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
