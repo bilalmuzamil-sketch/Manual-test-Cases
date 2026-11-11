@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s84c C715389"
+ },
+ "results": {
+  "C715389": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of today, only the new customer \"ZZX Own Loc P68\" ticked, every bucket open: invoice S11315-17896 ($500.00, made at Staging Heavy Duty - 9919, $200.00 paid by a payment taken at Staging Lethbridge - 4310), credit memo CM11315-4318 (-$40.00, Lethbridge) and deposit DEP11315-4717 (-$25.00, Lethbridge).",
+    "Step 1: the Location column reads \"Staging Heavy Duty - 9919\" for the invoice and \"Staging Lethbridge - 4310\" for the credit memo and the deposit.",
+    "Step 2: unticking Lethbridge (and the site's third test location) - the chip reads \"Location: Staging Heavy D...\" and the Location column is hidden (headings: Date, Transaction Type, ID, Customer Full Name, Due Date, Amount, Open Balance).",
+    "Step 3: only the invoice remains, Open Balance $300.00 ($500.00 - $200.00); Totals $500.00 / $300.00 - the payment taken at Lethbridge does not move it.",
+    "Steps 4-5: the Location menu opens; Lethbridge is ticked again (\"2 selected\").",
+    "Step 6: Heavy Duty unticked - \"1 selected\", the chip reads \"Location: Staging Lethbri...\".",
+    "Step 7: only the credit memo (-$40.00) and the deposit (-$25.00) remain; Totals -$65.00."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715389-01-C715389-1-both.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715389-02-C715389-2-3-location-A.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715389-03-C715389-4-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715389-04-C715389-5-B-ticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715389-05-C715389-6-location-B.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715389-06-C715389-7-rows.png"
+   ]
+  }
+ }
+}
