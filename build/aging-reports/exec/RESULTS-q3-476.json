@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, q3 + pr1"
+ },
+ "results": {
+  "C715476": {
+   "verdict": "Passed",
+   "observed": [
+    "Before the release (production v26.45.3-f5ba431), Sales By Customer offline, \"Download Summary (CSV)\": two messages - \"Network Error\" and \"This report is too large to export. Narrow the date range or filters, then try again.\"",
+    "Sales By Customer's \u22ef menu reads \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\" on both sides (the case says \"Download (CSV)\").",
+    "Step 1: the browser was taken offline.",
+    "Step 2: \"Download Summary (CSV)\" shows the same \"This report is too large to export. Narrow the date range or filters, then try again.\" message as before the release. It does NOT show the aging reports' \"We couldn't export this report. Please try again.\"",
+    "The \"Network Error\" line shows on the QA site as the QA site's own \"QA env is sleeping - Redirecting...\" notice: every QA site replaces a lost connection with that notice, so this line can only be compared on production after the release.",
+    "Step 3: the connection was switched back on."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715476-prod-11-C715476-offline-csv.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715476-q3-C715476-offline-csv.png"
+   ]
+  }
+ }
+}
