@@ -102,6 +102,15 @@ E = {
    'Step 1: in the Past due menu "31-60 days" and "91+ days" are ticked ("2 selected").',
    'Step 2: the menu closes; the chip reads "Past due: 2 ranges" in a blue pill with the hourglass icon. All 62 customers listed have an amount 31-60 days or 91+ days past due, each with its full balance in every column (e.g. Andrews\' Truck & Trailer Repair LLC: $-16.90 in 1-30 Days and $8,600.85 in 31-60 Days). The Totals row ($5,340.00 / $89,585.53 / $167,728.30 / $114,471.87 / $123,402.46 / $500,528.16) adds up exactly the 62 rows listed.'],
    [('d3b/C715554-1-ticked.png', 'Step 1: both ranges ticked - "2 selected"', ()), ('d3b/C715554-2-closed.png', 'Step 2: "Past due: 2 ranges"; each row has a 31-60 or 91+ amount; Totals = the rows', (CH + ('good', 'Past due: 2 ranges'), (278, 852, 1132, 46, 'good', 'Totals add up')))]),
+ 'C715549': (['A/R Aging Detail, as of today, every bucket closed, 1440 px, light theme; compared with the design picture "One location ticked". This site has three locations (the case assumes two), so to reach "one location ticked" location C was unticked as well as location A.',
+   'Step 1: the Location menu opens ("3 selected").',
+   'Step 2: unticking Staging Heavy Duty - 9919 (A), then ZZAUTOTEST V1R-87 Location C, the count reads "1 selected" and "Select all" is no longer ticked; while the menu stays open the rows do not move (the unticked locations stay where they were); the chip reads "Location: Staging Lethbri..." - location B\'s name shortened with "..." - still in a blue pill, as in the picture.',
+   'Step 3: the menu closes and the Location column is gone: the header row reads the chevron, then "Date", "Transaction Type", "ID", "Customer Full Name", "Due Date", "Amount", "Open Balance".'],
+   [('design-pics/ar-ap-p4-one-location-ticked.png', 'The design picture', ()), ('d3h/C715549-2-only-B.png', 'Step 2: only Lethbridge ticked - "1 selected", rows in place, chip "Location: Staging Lethbri..."', (CH + ('good', 'Chip shortened, blue pill'),)),
+    ('d3h/C715549-3-closed.png', 'Step 3: menu closed - no Location column', (HD + ('good', 'No Location column'),))]),
+ 'C715557': (['A/R Aging Collection, as of today, all locations, 1440 px, light theme; compared with the design picture of the call list for one customer.',
+   'Step 1: ticking "Mobile Truck & Trailer Repair Blackfoot" lists only that customer\'s group. The chip reads "Customer: Mobile Truck & ..." (shortened with "...") in a blue pill. The closed group row shows a chevron pointing right, the bold name and count "(6)", grey "Phone: 381-446-7448" and "Credit term: Net 30", "Total" and the sums $14,556.05 / $14,556.05; the Totals row equals the group\'s sums ($14,556.05 / $14,556.05).'],
+   [('d3h/C715557-one-customer.png', 'Step 1: only that customer, shortened name in a blue pill, Totals = the group', (CH + ('good', 'Customer: Mobile Truck & ...'), (278, 208, 1132, 100, 'good', 'One group, Totals equal')))]),
 }
 ids = sys.argv[1:]; R = {}
 for c in ids:
