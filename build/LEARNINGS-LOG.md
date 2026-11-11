@@ -391,3 +391,6 @@
 ## L0638 — 2026-11-11 — Aging report column headings: the heading text runs into the sort icon's name
 - On the aging reports (sv11315) a column heading's text reads like `Due Datearrow_drop_up` to a Playwright `hasText` filter (no space before the sort icon's ligature name), so a pattern ending in `\b` after the label never matches and the click times out after 15 s. That is a fault in the script, not the product.
 - Match `^\s*(keyboard_arrow_\w+\s*)?<label>\s*(arrow_drop_(up|down))?\s*$`, or simply use `clickTh` from `build/aging-reports/exec/sortlib.mjs`, which already does. Fixed in `s9c_ap.mjs` `sortSteps`; C715310/C715311 re-queued by `chain6.sh`.
+
+## L0639 — 2026-11-11 — Building a replacement chain from an old one: copy the run() line too
+- chain7.sh was cut from chain5.sh with `sed -n '1,8p'`, which stopped one line short of `run() { … }`; every `run` line then failed with "command not found" and the chain "finished" in 40 s. Check a new chain with `grep -n '^run() ' chain*.sh` and `bash -n` before starting it, and watch queue.log for the first "start" line.
