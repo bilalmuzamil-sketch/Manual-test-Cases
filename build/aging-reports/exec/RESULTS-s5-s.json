@@ -1,0 +1,38 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S5 Back (QA lead ruling)"
+ },
+ "results": {
+  "C715393": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA lead's ruling, 11 Nov 2026: Back restores the filters when it brings you back to the report (as on Sales By Customer); Back straight after a filter change leaves the report on these reports and on Sales By Customer alike.",
+    "A/R Aging Collection, as of 11/11/2026. Step 1: unticked Staging Lethbridge - 4310: the report narrowed to location A; the address carries \"locationIds=\" with location A's code.",
+    "Steps 2-3: reloaded the page: only location A is still ticked.",
+    "Step 4: \"Select all\": every location ticked again.",
+    "Step 5 (as ruled): with location A only ticked, opened another report from the left menu and pressed Back: A/R Aging Collection came back with only location A ticked.",
+    "Steps 6-8: opened the copied address in a new tab: the report opened with only location A ticked."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715393-1-reloaded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715393-2-leave-and-back.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715393-3-new-tab.png"
+   ]
+  },
+  "C715397": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA lead's ruling, 11 Nov 2026: Back restores the filters when it brings you back to the report (as on Sales By Customer); Back straight after a filter change leaves the report on these reports and on Sales By Customer alike.",
+    "A/R Aging Summary, as of 11/11/2026. Customers A and B = Desert Edge Truck Service & Repair and Monroe Truck Service & Repair (invoices over 90 days past due).",
+    "Steps 1-2: ticked both customers: \"Customer: 2 customers\"; ticked \"91+ days\": \"Past due: 91+ days\".",
+    "Step 3: reloaded: both customers and \"91+ days\" still ticked (rows: the two customers and Totals).",
+    "Step 4: unticked \"91+ days\": \"Past due: Any\".",
+    "Step 5 (as ruled): left the report and pressed Back: A/R Aging Summary came back with the filters kept in its address (both customers and \"91+ days\" restored, as measured on this report)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715397-1-reloaded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715397-2-leave-and-back.png"
+   ]
+  }
+ }
+}
