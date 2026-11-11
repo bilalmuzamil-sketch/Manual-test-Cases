@@ -1,89 +1,1023 @@
 {
  "ar-aging-detail": {
   "sizes": {
-   "current": 0,
-   "days_1_to_30": 0,
-   "days_31_to_60": 0,
-   "days_61_to_90": 0,
-   "days_91_plus": 0
+   "current": 15,
+   "days_1_to_30": 290,
+   "days_31_to_60": 185,
+   "days_61_to_90": 54,
+   "days_91_plus": 70
   },
-  "first-current": [
-   403,
-   "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+  "mixed": [
+   {
+    "w": "ZZAUTOTEST AR Customer A",
+    "bs": {
+     "current": {
+      "Invoice": [
+       [
+        "S11315-17583",
+        "2026-10-21",
+        "Staging Heavy Duty - 9919",
+        10000
+       ],
+       [
+        "S11315-17586",
+        "2026-11-10",
+        "Staging Lethbridge - 4310",
+        2000
+       ]
+      ]
+     },
+     "days_1_to_30": {
+      "Credit Memo": [
+       [
+        "CM11315-4192",
+        "2026-10-20",
+        "Staging Heavy Duty - 9919",
+        -15000
+       ]
+      ],
+      "Deposit": [
+       [
+        "DEP11315-4707",
+        "2026-11-10",
+        "Staging Heavy Duty - 9919",
+        -2500
+       ]
+      ],
+      "Invoice": [
+       [
+        "P11315-248",
+        "2026-09-15",
+        "Staging Heavy Duty - 9919",
+        30000
+       ],
+       [
+        "S11315-17581",
+        "2026-10-01",
+        "Staging Heavy Duty - 9919",
+        5000
+       ],
+       [
+        "S11315-17585",
+        "2026-10-31",
+        "Staging Heavy Duty - 9919",
+        1000
+       ]
+      ]
+     },
+     "days_31_to_60": {
+      "Invoice": [
+       [
+        "S11315-17582",
+        "2026-09-01",
+        "Staging Heavy Duty - 9919",
+        125050
+       ]
+      ]
+     }
+    }
+   }
   ],
-  "first-days_1_to_30": [
-   403,
-   "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+  "withCredit": [
+   [
+    "ZZAUTOTEST AR Customer A",
+    {
+     "current": {
+      "Invoice": 2
+     },
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Deposit": 1,
+      "Invoice": 3
+     },
+     "days_31_to_60": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R30 Netting",
+    {
+     "current": {
+      "Invoice": 1
+     },
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R45 Collection Mix",
+    {
+     "current": {
+      "Invoice": 2
+     },
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R74 Credit Today",
+    {
+     "current": {
+      "Credit Memo": 1
+     },
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZX Credit Today R3",
+    {
+     "current": {
+      "Credit Memo": 1
+     },
+     "days_1_to_30": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZX Diff Cust A R5",
+    {
+     "current": {
+      "Invoice": 1
+     },
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Invoice": 1
+     },
+     "days_31_to_60": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "Andrews' Truck & Trailer Repair LLC",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 2
+     },
+     "days_31_to_60": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R11 Date Edge",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R18 Deposits",
+    {
+     "days_1_to_30": {
+      "Deposit": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R28 Credit Only",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R31 Negative Total",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R42 Memo Line",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R46 Collection Credit",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R48 Days Past Due",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R90 Many Lines",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 101
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST CREDIT DAY A",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Deposit": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST CREDIT DAY B",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Deposit": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST EXACT PAY PROBE 2",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Invoice": 2
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST LOC MIX",
+    {
+     "days_1_to_30": {
+      "Invoice": 20
+     },
+     "days_31_to_60": {
+      "Credit Memo": 1,
+      "Invoice": 2
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST Northern Alberta Heavy Haul and Towing Ltd",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Invoice": 1
+     },
+     "days_31_to_60": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST SV11441 D 16760",
+    {
+     "days_1_to_30": {
+      "Deposit": 1
+     }
+    }
+   ],
+   [
+    "ZZX Credit Only R3",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1
+     }
+    }
+   ],
+   [
+    "ZZX Diff Cust A R3",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Invoice": 1
+     },
+     "days_31_to_60": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZX Tot Cust A R3",
+    {
+     "days_1_to_30": {
+      "Credit Memo": 1,
+      "Invoice": 1
+     },
+     "days_31_to_60": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AR R23 Memo Aging",
+    {
+     "days_31_to_60": {
+      "Credit Memo": 1
+     }
+    }
+   ],
+   [
+    "Doi Truck Center",
+    {
+     "days_61_to_90": {
+      "Invoice": 1
+     },
+     "days_91_plus": {
+      "Credit Memo": 1
+     }
+    }
+   ],
+   [
+    "Bancescu & Sons Truck & Trailer Repair",
+    {
+     "days_91_plus": {
+      "Credit Memo": 1
+     }
+    }
+   ],
+   [
+    "North Kensington Truck and Trailer Repair",
+    {
+     "days_91_plus": {
+      "Credit Memo": 1
+     }
+    }
+   ],
+   [
+    "Sledge Truck & Trailer Repair",
+    {
+     "days_91_plus": {
+      "Credit Memo": 1
+     }
+    }
+   ],
+   [
+    "Union Springs Truck Center",
+    {
+     "days_91_plus": {
+      "Credit Memo": 1
+     }
+    }
+   ]
   ],
-  "first-days_31_to_60": [
-   403,
-   "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+  "types": [
+   "Invoice",
+   "Credit Memo",
+   "Deposit"
   ],
-  "first-days_61_to_90": [
-   403,
-   "{\"errors\":[{\"error\":\"Access denied.\"}]}"
-  ],
-  "first-days_91_plus": [
-   403,
-   "{\"errors\":[{\"error\":\"Access denied.\"}]}"
-  ],
-  "mixed": [],
-  "withCredit": [],
-  "types": [],
-  "nWho": 0
+  "nWho": 142
  },
  "ap-aging-detail": {
   "sizes": {
-   "current": 0,
-   "days_1_to_30": 0,
-   "days_31_to_60": 0,
-   "days_61_to_90": 0,
-   "days_91_plus": 0
+   "current": 28,
+   "days_1_to_30": 520,
+   "days_31_to_60": 724,
+   "days_61_to_90": 708,
+   "days_91_plus": 5900
   },
-  "first-current": [
-   403,
-   "{\"errors\":[{\"error\":\"Access denied.\"}]}"
-  ],
-  "first-days_1_to_30": [
-   403,
-   "{\"errors\":[{\"error\":\"Access denied.\"}]}"
-  ],
-  "first-days_31_to_60": [
-   403,
-   "{\"errors\":[{\"error\":\"Access denied.\"}]}"
-  ],
-  "first-days_61_to_90": [
-   403,
-   "{\"errors\":[{\"error\":\"Access denied.\"}]}"
-  ],
-  "first-days_91_plus": [
-   403,
-   "{\"errors\":[{\"error\":\"Access denied.\"}]}"
-  ],
   "mixed": [],
-  "withCredit": [],
-  "types": [],
-  "nWho": 0
+  "withCredit": [
+   [
+    "ZZAUTOTEST AP P52 Netting",
+    {
+     "current": {
+      "Invoice": 1
+     },
+     "days_31_to_60": {
+      "Vendor Credit": 1,
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AP P61 Mix",
+    {
+     "current": {
+      "Invoice": 1
+     },
+     "days_1_to_30": {
+      "Vendor Credit": 1,
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AP P75 Credit Today",
+    {
+     "current": {
+      "Vendor Credit": 1
+     },
+     "days_1_to_30": {
+      "Vendor Credit": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AP P93 Credit Links",
+    {
+     "current": {
+      "Vendor Credit": 1,
+      "Invoice": 1
+     },
+     "days_1_to_30": {
+      "Vendor Credit": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AP Vendor A",
+    {
+     "current": {
+      "Invoice": 2
+     },
+     "days_1_to_30": {
+      "Vendor Credit": 1,
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST VCREDIT V",
+    {
+     "current": {
+      "Invoice": 1
+     },
+     "days_1_to_30": {
+      "Vendor Credit": 1
+     }
+    }
+   ],
+   [
+    "ZZY Credit Today R1",
+    {
+     "current": {
+      "Vendor Credit": 1
+     },
+     "days_1_to_30": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZY Diff Vend A R1",
+    {
+     "current": {
+      "Invoice": 1
+     },
+     "days_1_to_30": {
+      "Vendor Credit": 1,
+      "Invoice": 1
+     },
+     "days_31_to_60": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "Abadi's Diesel Repair",
+    {
+     "days_1_to_30": {
+      "Vendor Credit": 2
+     },
+     "days_91_plus": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "Apex Truck & Trailer Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 7
+     },
+     "days_31_to_60": {
+      "Invoice": 19
+     },
+     "days_61_to_90": {
+      "Invoice": 16,
+      "Vendor Credit": 4
+     },
+     "days_91_plus": {
+      "Invoice": 167,
+      "Vendor Credit": 31
+     }
+    }
+   ],
+   [
+    "Chernovol's Truck & Trailer Repair LLC",
+    {
+     "days_1_to_30": {
+      "Invoice": 2
+     },
+     "days_31_to_60": {
+      "Invoice": 7
+     },
+     "days_91_plus": {
+      "Invoice": 17,
+      "Vendor Credit": 3
+     }
+    }
+   ],
+   [
+    "Chesapeake Truck & Trailer Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 4
+     },
+     "days_31_to_60": {
+      "Invoice": 4
+     },
+     "days_61_to_90": {
+      "Invoice": 4
+     },
+     "days_91_plus": {
+      "Invoice": 50,
+      "Vendor Credit": 1
+     }
+    }
+   ],
+   [
+    "Crankshaft Truck & Trailer Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 6
+     },
+     "days_31_to_60": {
+      "Invoice": 25
+     },
+     "days_61_to_90": {
+      "Vendor Credit": 3,
+      "Invoice": 26
+     },
+     "days_91_plus": {
+      "Vendor Credit": 25,
+      "Invoice": 172
+     }
+    }
+   ],
+   [
+    "Darby Diesel Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 1
+     },
+     "days_31_to_60": {
+      "Invoice": 3
+     },
+     "days_61_to_90": {
+      "Invoice": 1
+     },
+     "days_91_plus": {
+      "Invoice": 45,
+      "Vendor Credit": 1
+     }
+    }
+   ],
+   [
+    "Fate Roadside Truck Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 8
+     },
+     "days_31_to_60": {
+      "Vendor Credit": 1,
+      "Invoice": 15
+     },
+     "days_61_to_90": {
+      "Invoice": 22
+     },
+     "days_91_plus": {
+      "Vendor Credit": 148,
+      "Invoice": 521
+     }
+    }
+   ],
+   [
+    "Glen Burnie Truck Shop",
+    {
+     "days_1_to_30": {
+      "Invoice": 6
+     },
+     "days_31_to_60": {
+      "Invoice": 22
+     },
+     "days_61_to_90": {
+      "Invoice": 26
+     },
+     "days_91_plus": {
+      "Invoice": 279,
+      "Vendor Credit": 29
+     }
+    }
+   ],
+   [
+    "Global Fleet Services",
+    {
+     "days_1_to_30": {
+      "Invoice": 14
+     },
+     "days_31_to_60": {
+      "Invoice": 32
+     },
+     "days_61_to_90": {
+      "Invoice": 18,
+      "Vendor Credit": 1
+     },
+     "days_91_plus": {
+      "Invoice": 199,
+      "Vendor Credit": 21
+     }
+    }
+   ],
+   [
+    "Hester & Sons Truck & Trailer Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 1
+     },
+     "days_31_to_60": {
+      "Invoice": 2
+     },
+     "days_91_plus": {
+      "Vendor Credit": 1,
+      "Invoice": 5
+     }
+    }
+   ],
+   [
+    "Hueytown Truck & Trailer Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 13
+     },
+     "days_31_to_60": {
+      "Invoice": 52
+     },
+     "days_61_to_90": {
+      "Invoice": 23,
+      "Vendor Credit": 3
+     },
+     "days_91_plus": {
+      "Invoice": 114,
+      "Vendor Credit": 14
+     }
+    }
+   ],
+   [
+    "Jefferson Truck Center - Roanoke",
+    {
+     "days_1_to_30": {
+      "Invoice": 1
+     },
+     "days_31_to_60": {
+      "Invoice": 1
+     },
+     "days_91_plus": {
+      "Invoice": 34,
+      "Vendor Credit": 3
+     }
+    }
+   ],
+   [
+    "JJD Diesel Services Inc",
+    {
+     "days_1_to_30": {
+      "Invoice": 5
+     },
+     "days_31_to_60": {
+      "Invoice": 7
+     },
+     "days_61_to_90": {
+      "Invoice": 9
+     },
+     "days_91_plus": {
+      "Vendor Credit": 2,
+      "Invoice": 101
+     }
+    }
+   ],
+   [
+    "Kalkaska Fleet Maintenance Inc",
+    {
+     "days_1_to_30": {
+      "Invoice": 2
+     },
+     "days_31_to_60": {
+      "Invoice": 3
+     },
+     "days_61_to_90": {
+      "Vendor Credit": 1,
+      "Invoice": 1
+     },
+     "days_91_plus": {
+      "Vendor Credit": 8,
+      "Invoice": 66
+     }
+    }
+   ],
+   [
+    "Kodiak Truck & Trailer Repair Inc",
+    {
+     "days_1_to_30": {
+      "Invoice": 1
+     },
+     "days_61_to_90": {
+      "Invoice": 1
+     },
+     "days_91_plus": {
+      "Invoice": 29,
+      "Vendor Credit": 2
+     }
+    }
+   ],
+   [
+    "Manjeet's Mobile Truck Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 4
+     },
+     "days_31_to_60": {
+      "Invoice": 6
+     },
+     "days_61_to_90": {
+      "Invoice": 3
+     },
+     "days_91_plus": {
+      "Invoice": 68,
+      "Vendor Credit": 9
+     }
+    }
+   ],
+   [
+    "Meikls' Truck Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 1
+     },
+     "days_61_to_90": {
+      "Invoice": 1
+     },
+     "days_91_plus": {
+      "Vendor Credit": 1,
+      "Invoice": 10
+     }
+    }
+   ],
+   [
+    "Mobile Truck & Trailer Repair Hampton",
+    {
+     "days_1_to_30": {
+      "Invoice": 15
+     },
+     "days_31_to_60": {
+      "Invoice": 25
+     },
+     "days_61_to_90": {
+      "Vendor Credit": 1,
+      "Invoice": 15
+     },
+     "days_91_plus": {
+      "Vendor Credit": 37,
+      "Invoice": 414
+     }
+    }
+   ],
+   [
+    "Mobile Truck & Trailer Repair Temple Terrace",
+    {
+     "days_1_to_30": {
+      "Invoice": 6
+     },
+     "days_31_to_60": {
+      "Invoice": 18
+     },
+     "days_61_to_90": {
+      "Invoice": 14,
+      "Vendor Credit": 1
+     },
+     "days_91_plus": {
+      "Invoice": 47,
+      "Vendor Credit": 14
+     }
+    }
+   ],
+   [
+    "New Castle Diesel Performance",
+    {
+     "days_1_to_30": {
+      "Invoice": 19
+     },
+     "days_31_to_60": {
+      "Invoice": 54
+     },
+     "days_61_to_90": {
+      "Invoice": 35,
+      "Vendor Credit": 1
+     },
+     "days_91_plus": {
+      "Invoice": 164
+     }
+    }
+   ],
+   [
+    "Okanogan Truck Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 4
+     },
+     "days_31_to_60": {
+      "Invoice": 2
+     },
+     "days_61_to_90": {
+      "Invoice": 8,
+      "Vendor Credit": 1
+     }
+    }
+   ],
+   [
+    "Pilar's Truck & Trailer Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 13
+     },
+     "days_31_to_60": {
+      "Invoice": 6
+     },
+     "days_61_to_90": {
+      "Vendor Credit": 1,
+      "Invoice": 14
+     }
+    }
+   ],
+   [
+    "Trinidad's Diesel Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 3
+     },
+     "days_31_to_60": {
+      "Invoice": 2
+     },
+     "days_61_to_90": {
+      "Vendor Credit": 1
+     }
+    }
+   ],
+   [
+    "Universal Diesel Performance",
+    {
+     "days_1_to_30": {
+      "Invoice": 7
+     },
+     "days_31_to_60": {
+      "Invoice": 12
+     },
+     "days_61_to_90": {
+      "Vendor Credit": 2
+     }
+    }
+   ],
+   [
+    "Willoughby Mechanical Services",
+    {
+     "days_1_to_30": {
+      "Invoice": 71
+     },
+     "days_31_to_60": {
+      "Invoice": 92
+     },
+     "days_61_to_90": {
+      "Vendor Credit": 11,
+      "Invoice": 96
+     }
+    }
+   ],
+   [
+    "Yulee Roadside Truck Repair",
+    {
+     "days_1_to_30": {
+      "Invoice": 10
+     },
+     "days_31_to_60": {
+      "Invoice": 12
+     },
+     "days_61_to_90": {
+      "Invoice": 9,
+      "Vendor Credit": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST AP P58 Credit Line",
+    {
+     "days_1_to_30": {
+      "Vendor Credit": 1
+     }
+    }
+   ],
+   [
+    "ZZAUTOTEST Northern Alberta Heavy Haul Parts Supply Ltd",
+    {
+     "days_1_to_30": {
+      "Vendor Credit": 1,
+      "Invoice": 1
+     },
+     "days_31_to_60": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "ZZY Credit Sort R1",
+    {
+     "days_1_to_30": {
+      "Vendor Credit": 1,
+      "Invoice": 2
+     }
+    }
+   ],
+   [
+    "ZZY Tot Vend A R1",
+    {
+     "days_1_to_30": {
+      "Vendor Credit": 1,
+      "Invoice": 1
+     },
+     "days_31_to_60": {
+      "Invoice": 1
+     }
+    }
+   ],
+   [
+    "Amani & Sons Truck & Trailer Repair",
+    {
+     "days_31_to_60": {
+      "Invoice": 2
+     },
+     "days_61_to_90": {
+      "Vendor Credit": 1
+     },
+     "days_91_plus": {
+      "Invoice": 28,
+      "Vendor Credit": 9
+     }
+    }
+   ],
+   [
+    "Colt's Truck & Trailer Repair",
+    {
+     "days_31_to_60": {
+      "Invoice": 1
+     },
+     "days_91_plus": {
+      "Vendor Credit": 2,
+      "Invoice": 4
+     }
+    }
+   ]
+  ],
+  "types": [
+   "Invoice",
+   "Vendor Credit"
+  ],
+  "nWho": 381
  },
- "ar-aging-summary-keys": " {}",
+ "ar-aging-summary-keys": "collection,totals,pagination {\"collection\":[{\"customerId\":\"e2e804d8-f2f3-4a94-8bc9-98c22dc725c8\",\"customerName\":\"#1 Diesel\",\"locationName\":\"Staging Heavy Duty - 9919\",\"currentCents\":0,\"days1To30Cents\":17404,\"days31To60Cents\":0,\"days61To90Cents\":0,\"days91PlusCents\":0,\"totalCents\":17404},{\"customerId\":\"937677c6-ead4-469b-bf0a-5cc",
  "ar-aging-summary": {
-  "n": 0,
-  "tot": null
+  "n": 142,
+  "tot": 142
  },
- "ar-aging-collection-keys": " {}",
+ "ar-aging-collection-keys": "collection,totals,pagination {\"collection\":[{\"customerId\":\"e2e804d8-f2f3-4a94-8bc9-98c22dc725c8\",\"name\":\"#1 Diesel\",\"phone\":null,\"creditTerm\":\"COD\",\"amountCents\":17404,\"openBalanceCents\":17404,\"rowsNumber\":1,\"rows\":[{\"documentId\":\"eb5bdce2-142f-46ba-b1a6-d58527f5d2fa\",\"date\":\"2026-11-11T01:58:36Z\",\"workplaceId\":\"b3c8c820-f815-4",
  "ar-aging-collection": {
-  "n": 0,
-  "tot": null
+  "n": 140,
+  "tot": 140
  },
- "ap-aging-summary-keys": " {}",
+ "ap-aging-summary-keys": "collection,totals,pagination {\"collection\":[{\"vendorId\":\"772a84c3-4d82-4124-9ca7-66d96837a030\",\"vendorName\":\"#1 Diesel\",\"locationName\":\"Staging Heavy Duty - 9919\",\"currentCents\":0,\"days1To30Cents\":3600,\"days31To60Cents\":0,\"days61To90Cents\":0,\"days91PlusCents\":0,\"totalCents\":3600},{\"vendorId\":\"f6a079d1-0684-44ab-a249-9818942a056",
  "ap-aging-summary": {
-  "n": 0,
-  "tot": null
+  "n": 502,
+  "tot": 502
  },
- "ap-unpaid-invoices-keys": " {}",
+ "ap-unpaid-invoices-keys": "collection,totals,pagination {\"collection\":[{\"vendorId\":\"772a84c3-4d82-4124-9ca7-66d96837a030\",\"name\":\"#1 Diesel\",\"amountCents\":3600,\"openBalanceCents\":3600,\"rowsNumber\":1,\"rows\":[{\"documentId\":\"8af410a9-79e0-435b-bfa7-471cbed7daef\",\"date\":\"2026-11-10T18:00:00Z\",\"workplaceId\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"locationName",
  "ap-unpaid-invoices": {
-  "n": 0,
-  "tot": null
+  "n": 502,
+  "tot": 502
  },
  "vendorsReply": [
   404,
