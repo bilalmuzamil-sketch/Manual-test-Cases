@@ -1,0 +1,31 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount sort tests (s2x)"
+ },
+ "results": {
+  "C715292": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary, as of 11/11/2026, Vendor filter = the three new vendors ZZY Sort Vend A/B/C R1 (Current $100/$300/$200, 1-30 $200/$100/$300, 31-60 $300/$200/$100).",
+    "Every step gives exactly the order the test expects:",
+    "Step 1: Current - vendor B, vendor C, vendor A",
+    "Step 2: Current - vendor A, vendor C, vendor B",
+    "Step 3: Current - vendor B, vendor C, vendor A",
+    "Step 4: 1-30 Days - vendor C, vendor A, vendor B",
+    "Step 5: 1-30 Days - vendor B, vendor A, vendor C",
+    "Step 6: 1-30 Days - vendor C, vendor A, vendor B",
+    "Step 7: 31-60 Days - vendor A, vendor B, vendor C",
+    "Step 8: 31-60 Days - vendor C, vendor B, vendor A",
+    "Step 9: 31-60 Days - vendor A, vendor B, vendor C"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715292-1-Current.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715292-2-Current.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715292-4-130Days.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715292-5-130Days.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715292-7-3160Days.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715292-8-3160Days.png"
+   ]
+  }
+ }
+}
