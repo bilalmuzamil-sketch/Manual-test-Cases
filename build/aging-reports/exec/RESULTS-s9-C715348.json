@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715348": {
+   "verdict": "Passed",
+   "observed": [
+    "New vendor ZZY CSV Det A R1 (vendor A): bill A $1,250.50 dated Sep 27, 2026 (45 days past due) and bill B $75.00 (15 days past due), as of 11/11/2026.",
+    "Steps 1-2: the CSV downloads and starts with \"As of: Nov 11, 2026\", \"Locations: All locations\" and \"Vendor: ZZY CSV Det A R1\", one line each.",
+    "The heading row follows directly: Aging Bucket, Date, Location, Transaction Type, No., Vendor Name, Due Date, Past Due, Amount, Open Balance - the screen's headings letter for letter, plus the Aging Bucket column.",
+    "Bill A's row: Aging Bucket \"31-60 days past due\", Date 2026-09-27, Vendor Name ZZY CSV Det A R1, Amount 1250.50.",
+    "Bill B's row: Aging Bucket \"1-30 days past due\", Amount 75.00.",
+    "No group header or subtotal rows; one Totals row at the bottom with Amount 1325.50."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715348-0-ticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715348-CSV-1-csv.png"
+   ]
+  }
+ }
+}

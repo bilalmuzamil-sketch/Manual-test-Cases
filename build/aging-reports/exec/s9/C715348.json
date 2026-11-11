@@ -1,0 +1,134 @@
+{
+ "id": "C715348",
+ "steps": [
+  {
+   "label": "0-ticked",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: ZZY CSV Det A R1 keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_down Date arrow_drop_up | Location arrow_drop_up | Transaction Type arrow_drop_up | No. arrow_drop_up | Vendor Name arrow_drop_up | Due Date arrow_drop_up | Past Due arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_right | 91 or more days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 61-90 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_down | 31-60 days past due (1)",
+    "Sep 27, 2026 | Staging Heavy Duty - 9919 | Invoice | ZZY95548490 | ZZY CSV Det A R1 | Sep 27, 2026 | 45 | $1,250.50 | $1,250.50",
+    "Total for 31-60 days past due | $1,250.50 | $1,250.50",
+    "keyboard_arrow_down | 1-30 days past due (1)",
+    "Oct 27, 2026 | Staging Heavy Duty - 9919 | Invoice | ZZY95549286 | ZZY CSV Det A R1 | Oct 27, 2026 | 15 | $75.00 | $75.00",
+    "Total for 1-30 days past due | $75.00 | $75.00",
+    "keyboard_arrow_right | Current (0) | Total | $0.00 | $0.00",
+    "Totals | $1,325.50 | $1,325.50"
+   ],
+   "totals": "Totals $1,325.50 $1,325.50",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715348-0-ticked.png"
+  },
+  {
+   "step": "CSV-1-csv",
+   "r": {
+    "kind": "CSV",
+    "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715348-1-csv-ap-aging-detail.csv",
+    "name": "ap-aging-detail.csv",
+    "bytes": 474,
+    "notes": [
+     "check_circle Success Data exported successfully. Close"
+    ],
+    "toast": null,
+    "raw": [
+     "﻿\"As of: Nov 11, 2026\"",
+     "\"Locations: All locations\"",
+     "\"Vendor: ZZY CSV Det A R1\"",
+     "\"Aging Bucket\",Date,Location,\"Transaction Type\",No.,\"Vendor Name\",\"Due Date\",\"Past Due\",Amount,\"Open Balance\"",
+     "\"31-60 days past due\",2026-09-27,\"Staging Heavy Duty - 9919\",Invoice,ZZY95548490,\"ZZY CSV Det A R1\",2026-09-27,45,1250.50,1250.50",
+     "\"1-30 days past due\",2026-10-27,\"Staging Heavy Duty - 9919\",Invoice,ZZY95549286,\"ZZY CSV Det A R1\",2026-10-27,15,75.00,75.00",
+     "Totals,,,,,,,,1325.50,1325.50",
+     ""
+    ],
+    "csvN": 7
+   }
+  }
+ ],
+ "vendor": "ZZY CSV Det A R1",
+ "docs": [
+  {
+   "tag": "A",
+   "number": "ZZY95548490",
+   "orderId": "48c8c804-3c3c-401e-9360-817b4cef529a",
+   "amount": 1250.5,
+   "daysAgo": 45,
+   "wp": "HD",
+   "term": "COD"
+  },
+  {
+   "tag": "B",
+   "number": "ZZY95549286",
+   "orderId": "4368b6aa-2594-4f25-a7be-5f6951a7aaf6",
+   "amount": 75,
+   "daysAgo": 15,
+   "wp": "HD",
+   "term": "COD"
+  }
+ ],
+ "expanded-0-ticked": false,
+ "csvAll": [
+  [
+   "As of: Nov 11, 2026"
+  ],
+  [
+   "Locations: All locations"
+  ],
+  [
+   "Vendor: ZZY CSV Det A R1"
+  ],
+  [
+   "Aging Bucket",
+   "Date",
+   "Location",
+   "Transaction Type",
+   "No.",
+   "Vendor Name",
+   "Due Date",
+   "Past Due",
+   "Amount",
+   "Open Balance"
+  ],
+  [
+   "31-60 days past due",
+   "2026-09-27",
+   "Staging Heavy Duty - 9919",
+   "Invoice",
+   "ZZY95548490",
+   "ZZY CSV Det A R1",
+   "2026-09-27",
+   "45",
+   "1250.50",
+   "1250.50"
+  ],
+  [
+   "1-30 days past due",
+   "2026-10-27",
+   "Staging Heavy Duty - 9919",
+   "Invoice",
+   "ZZY95549286",
+   "ZZY CSV Det A R1",
+   "2026-10-27",
+   "15",
+   "75.00",
+   "75.00"
+  ],
+  [
+   "Totals",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "1325.50",
+   "1325.50"
+  ]
+ ]
+}
