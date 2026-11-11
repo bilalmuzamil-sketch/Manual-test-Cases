@@ -1,0 +1,53 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557: link the filed group-paging ticket SV-12540 (Open) to C1062570/C1062571."
+ },
+ "results": {
+  "C1062570": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 2 and 3: the open group does not show 100 invoices first and then load the rest as you scroll; all of them come at once.",
+   "bold_steps": [
+    2,
+    3
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), S1-R8: \"On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents.\"",
+   "observed": [
+    "Set up: customer ZZAUTOTEST OVER100 C with 105 overdue invoices; A/R Aging Collection with only that customer ticked in Customer.",
+    "Step 2: opening the group brings all 105 invoices at once - the server sends every one of them in its first answer.",
+    "Step 3: scrolling past the 100th invoice (S11315-17714) loads nothing: invoices 101 to 105 are already there, with no loading row.",
+    "The test says the group shows its first 100 invoices and then loads the next ones under them, up to 100 more each time."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-12540 (status: Open)",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the ticket is filed and fixed.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062570-fail.png"
+   ],
+   "defects": [
+    "SV-12540"
+   ]
+  },
+  "C1062571": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 2 and 3: the open group does not show 100 bills first and then load the rest as you scroll; all of them come at once.",
+   "bold_steps": [
+    2,
+    3
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), S1-R8: \"On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents.\"",
+   "observed": [
+    "Set up: vendor ZZAUTOTEST OVER100 V with 105 unpaid bills; A/P Unpaid Invoices with only that vendor ticked in Vendor.",
+    "Step 2: opening the group brings all 105 bills at once - the server sends every one of them in its first answer.",
+    "Step 3: scrolling past the 100th bill (ZZO100-099) loads nothing: bills 101 to 105 are already there, with no loading row.",
+    "The test says the group shows its first 100 bills and then loads the next ones under them, up to 100 more each time."
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-12540 (status: Open)",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the ticket is filed and fixed.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062571-fail.png"
+   ],
+   "defects": [
+    "SV-12540"
+   ]
+  }
+ }
+}
