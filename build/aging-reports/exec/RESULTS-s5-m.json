@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S5 (sv11315)"
+ },
+ "results": {
+  "C1062579": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of 11/11/2026, documents at Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 (Location column shown). Date A = 01/01/2025, the latest 1st-of-month on which every open A/R document was at one location (read from the report's location list for each month back from August 2024).",
+    "Step 1: clicked \"Location\": it is marked as the sorted column (arrow beside it).",
+    "Step 2: changed the as-of date to 01/01/2025: the report reloaded for that date; the Location column is no longer shown (headings: Customer, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total) and the Location chip is gone (one location); \"Customer\" is marked as the sorted column: back in the opening order."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062579-1-1-location-sort.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062579-2-2-date-A.png"
+   ]
+  }
+ }
+}
