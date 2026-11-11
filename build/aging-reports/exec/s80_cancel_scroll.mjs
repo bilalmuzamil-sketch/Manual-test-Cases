@@ -5,7 +5,7 @@
 // the dialog we read: address, chips, sorted column, scrollTop, the first and last rows fully visible, notifications, header location.
 import { start, REPORTS } from './lib.mjs'; import { mkSort } from './sortlib.mjs'; import { mkFilt } from './filt.mjs'; import { ensureLoc } from './locsw.mjs'; import fs from 'fs';
 const OUT = new URL('./s80/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT); const p = s.page; const S = mkSort(p); const F = mkFilt(p);
-const ONLY = process.env.ONLY ? process.env.ONLY.split(',') : null; const INV = 'S11315-17724';
+const ONLY = process.env.ONLY ? process.env.ONLY.split(',') : null; const INV = process.env.INV || 'S11315-17724'; /* 11 Nov 14:55: C715418 filters Past due 1-30; 17724 is outside it, so INV=S11315-17734 (Lethbridge work order invoice, 21 days past due) is used there */
 const shot = async (o, n) => { const f = await s.shot(o.id + '-' + n); (o.shots ||= []).push({ name: n, f }); };
 const dialog = async () => (await p.locator('.q-dialog').allInnerTexts().catch(() => [])).join(' | ').replace(/\s+/g, ' ');
 const view = () => p.evaluate(`(() => { const e = ${S.SC}; const r = e.getBoundingClientRect(); const head = document.querySelector('main thead'); const hb = head ? head.getBoundingClientRect().bottom : r.top;
