@@ -31,6 +31,11 @@ S6 cases). The export/print menus were not captured reliably by this script (a c
 **Other reports:** no column, filter or report was lost between the two versions, except that FOUR reports did not load on the QA
 branch in this capture — **Sales, Service Advisor Analysis, Technician Efficiency and Technician Utilization** showed "Something went
 wrong loading this section" with a Retry button (screenshots `qa/<report>.png`); on production all four loaded.
+✅ **WITHDRAWN 11 Nov 2026 — not a product problem.** The QA lead opened Technician Utilization on the QA branch on his own
+phone (11 Nov 2026, about 11:41 UTC) and it loaded fully: chart, four technicians, Summary row, the Est. Lost Labor info icon
+(`qa-lead-check/`). In our headless test browser the page still fails at phone and desktop width, because the chart data request
+is cancelled inside that browser (the same request answers 200 in 0.7 s by curl). So these four screens cannot be checked by our
+automation browser; they are checked by a person. The original note, kept for the record:
 🔴 **UNPROVEN, not a finding yet:** the QA browser was signed in by filling the app's stored user details by hand (only the
 permissions were real), and these four reports may read details that were left empty. It must be re-checked in a genuine QA
 browser session before anyone calls it a defect. Technician Utilization is also one of the screens the upgrade's shared code
