@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S2 (sv11315)"
+ },
+ "results": {
+  "C715320": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, as of 11/11/2026; documents at Staging Heavy Duty - 9919 and Staging Lethbridge - 4310; vendor A = ZZAUTOTEST AP Vendor A (bills at both locations).",
+    "Step 1: clicked \"Open Balance\" once: rows sort by Open Balance, largest first (all 365 lines of 1-30 days past due read: $15,255.56, $14,744.55, $5,143.65 \u2026); \"Open Balance\" is marked as the sorted column.",
+    "Step 2: as-of changed to yesterday, 11/10/2026: the report reloaded, still sorted by Open Balance, largest first.",
+    "Steps 3-4: expanded the largest bucket (91 or more days past due, 11,912 lines) and scrolled: 7,475 lines read, including many pages loaded on scroll, all largest first ($57,953.90, $55,325.45 \u2026).",
+    "Steps 5-6: ticked vendor A: only its rows remain, still largest first (1-30 days past due: $200.00, then $-50.00).",
+    "Step 7: unticked Staging Lethbridge - 4310: the chip reads \"Location: Staging Heavy D...\"; the rows read are still largest first and \"Open Balance\" is still marked as the sorted column (that unticking removes vendor A's Lethbridge bill was shown in C715390)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715320-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715320-2.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715320-3.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715320-4.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715320-5.png"
+   ]
+  }
+ }
+}
