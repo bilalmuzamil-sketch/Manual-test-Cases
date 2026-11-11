@@ -1,11 +1,70 @@
 {
  "id": "C715418",
- "found": 0,
- "err": "Error: invoice A not on screen",
+ "found": 1,
+ "before": {
+  "url": "https://sv11315.qa.shopview.com/reports/ar-aging-collection?pastDue=1-30",
+  "chips": [
+   "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "person Customer: All customers keyboard_arrow_down",
+   "hourglass_empty Past due: 1-30 days keyboard_arrow_down cancel",
+   "place Location: All locations keyboard_arrow_down cancel"
+  ],
+  "sorted": [
+   "Amount:descending"
+  ],
+  "view": {
+   "top": 2294,
+   "first": "keyboard_arrow_right ZZAUTOTEST AR R03 Location B (1) Credit",
+   "last": "Oct 25, 2026 Staging Heavy Duty - 9919 Invoice S11315-17872 ",
+   "n": 37
+  },
+  "notes": [],
+  "dialog": "",
+  "switcher": "tifications Staging Heavy Duty - 9919 AS"
+ },
  "shots": [
   {
-   "name": "error",
-   "f": "/home/user/Manual-test-Cases/build/aging-reports/exec/s80//01-C715418-error.png"
+   "name": "0-before",
+   "f": "/home/user/Manual-test-Cases/build/aging-reports/exec/s80//01-C715418-0-before.png"
+  },
+  {
+   "name": "2-dialog",
+   "f": "/home/user/Manual-test-Cases/build/aging-reports/exec/s80//02-C715418-2-dialog.png"
+  },
+  {
+   "name": "3-after",
+   "f": "/home/user/Manual-test-Cases/build/aging-reports/exec/s80//03-C715418-3-after.png"
   }
- ]
+ ],
+ "dialog": "Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch location",
+ "hasX": 1,
+ "after": {
+  "url": "https://sv11315.qa.shopview.com/reports/ar-aging-collection?pastDue=1-30",
+  "chips": [
+   "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "person Customer: All customers keyboard_arrow_down",
+   "hourglass_empty Past due: 1-30 days keyboard_arrow_down cancel",
+   "place Location: All locations keyboard_arrow_down cancel"
+  ],
+  "sorted": [
+   "Amount:descending"
+  ],
+  "view": {
+   "top": 2294,
+   "first": "keyboard_arrow_right ZZAUTOTEST AR R03 Location B (1) Credit",
+   "last": "Oct 25, 2026 Staging Heavy Duty - 9919 Invoice S11315-17872 ",
+   "n": 37
+  },
+  "notes": [],
+  "dialog": "",
+  "switcher": "tifications Staging Heavy Duty - 9919 AS"
+ },
+ "same": {
+  "url": true,
+  "chips": true,
+  "sorted": true,
+  "top": true,
+  "first": true,
+  "last": true
+ }
 }

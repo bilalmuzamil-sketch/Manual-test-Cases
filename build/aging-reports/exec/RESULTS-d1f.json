@@ -1,0 +1,87 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d1 + d1c + d1d + d1e layout at 1440"
+ },
+ "results": {
+  "C715481": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary opened at 1440 px in light theme.",
+    "Step 1: the title, its info icon directly right of it and the \u22ef Export button at the right end are on one line.",
+    "Step 2: the filter row sits below the title row, in the same place as on Sales By Customer.",
+    "Step 3: the headings read \"Customer\", \"Location\", \"Current\", \"1-30 Days\", \"31-60 Days\", \"61-90 Days\", \"91 And Over\", \"Total\"; no heading wraps (each measured on one line).",
+    "Step 4: there is no sideways scroll bar: every column shows at 1440 px.",
+    "Step 5: in the full list the long customer name \"ZZAUTOTEST Northern Alberta Heavy Haul and Towing Ltd\" wraps onto a second line (2 lines in a 274 px name column, nothing cut off); money cells stay on one line; the Location cell (\"Multiple\" / the location name) does not wrap. (With only that customer ticked the column widens to 414 px and the name fits on one line.)",
+    "Step 6: nothing overlaps, is cut off or clipped; the first column keeps today's heading."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715481-01-ars-light-1440-top.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715481-01-ars-long-name-unfiltered.png"
+   ]
+  },
+  "C715490": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary opened at 1440 px in light theme.",
+    "Step 1: the title, its info icon directly right of it and the \u22ef Export button at the right end are on one line.",
+    "Step 2: the filter row sits below the title row, in the same place as on Sales By Customer.",
+    "Step 3: the headings read \"Vendor\", \"Location\", \"Current\", \"1-30 Days\", \"31-60 Days\", \"61-90 Days\", \"91 And Over\", \"Total\"; no heading wraps (each measured on one line).",
+    "Step 4: there is no sideways scroll bar: every column shows at 1440 px.",
+    "Step 5: in the full list the long vendor name \"ZZAUTOTEST Northern Alberta Heavy Haul Parts Supply Ltd\" wraps onto a second line (2 lines in a 287 px name column, nothing cut off); money cells stay on one line; the Location cell (\"Multiple\" / the location name) does not wrap. (With only that vendor ticked the column widens to 418 px and the name fits on one line.)",
+    "Step 6: nothing overlaps, is cut off or clipped; the first column keeps today's heading."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715490-31-aps-light-1440-top.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715490-02-aps-long-name-unfiltered.png"
+   ]
+  },
+  "C715487": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection opened at 1440 px in light theme, every group expanded.",
+    "Step 1: the title, its info icon directly right of it and the \u22ef Export button at the right end are on one line.",
+    "Step 2: the filter row sits below the title row, in the same place as on Sales By Customer.",
+    "Step 3: the headings read \"Date\", \"Location\", \"Transaction Type\", \"ID\", \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\"; no heading wraps (each measured on one line).",
+    "Step 4: there is no sideways scroll bar: every column shows at 1440 px.",
+    "Step 5: on this report the customer name is not a column: it sits on the customer's own group row, which spans the table (1004 px), so \"ZZAUTOTEST Northern Alberta Heavy Haul and Towing Ltd (3)\" shows in full on one line with nothing cut off; its \"Total for ...\" row likewise. Transaction Type values (\"Invoice\", \"Credit Memo\") fit their column. Money, date and number cells stay on one line; Location does not wrap.",
+    "Step 6: nothing overlaps, is cut off or clipped."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715487-21-arc-light-1440-top.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715487-02-arc-long-name.png"
+   ]
+  },
+  "C715493": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail opened at 1440 px in light theme, every group expanded.",
+    "Step 1: the title, its info icon directly right of it and the \u22ef Export button at the right end are on one line.",
+    "Step 2: the filter row sits below the title row, in the same place as on Sales By Customer.",
+    "Step 3: the headings read \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\", \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\"; no heading wraps (each measured on one line).",
+    "Step 4: there is no sideways scroll bar: every column shows at 1440 px.",
+    "Step 5: the long vendor name \"ZZAUTOTEST Northern Alberta Heavy Haul Parts Supply Ltd\" wraps onto a second line in the Vendor Name column (2 lines, 260 px); money, date and number cells stay on one line; long location names (\"Staging Heavy Duty - 9919\") wrap onto a second line in the Location column, as allowed here.",
+    "Step 6: nothing overlaps, is cut off or clipped."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715493-01-apd-light-1440-top.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715493-05-apd-long-name.png"
+   ]
+  },
+  "C715496": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report opened at 1440 px in light theme, every group expanded.",
+    "Step 1: the title, its info icon directly right of it and the \u22ef Export button at the right end are on one line.",
+    "Step 2: the filter row sits below the title row, in the same place as on Sales By Customer.",
+    "Step 3: the headings read \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\", \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\"; no heading wraps (each measured on one line).",
+    "Step 4: there is no sideways scroll bar: every column shows at 1440 px.",
+    "Step 5: the long vendor name \"ZZAUTOTEST Northern Alberta Heavy Haul Parts Supply Ltd\" wraps onto a second line in the Vendor Name column (2 lines, 260 px; on the vendor's group row it shows in full on one line); money, date and number cells stay on one line; long location names wrap onto a second line, as allowed here.",
+    "Step 6: nothing overlaps, is cut off or clipped."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715496-51-apu-light-1440-top.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715496-06-apu-long-name.png"
+   ]
+  }
+ }
+}
