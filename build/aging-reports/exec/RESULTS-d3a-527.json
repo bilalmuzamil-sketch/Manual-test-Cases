@@ -1,0 +1,31 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d3a narrow width"
+ },
+ "results": {
+  "C715527": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail at 1200 px wide (narrower than 1440), light theme, the \"91 or more days past due\" bucket open.",
+    "Step 1: \"Open Balance\" is pinned to the right edge (its heading stays at the same place, sticky) and the table scrolls sideways (1001 px of table in a 892 px window).",
+    "Step 2: scrolled fully right (109 px): the other columns slide under the pinned \"Open Balance\" column - it stays at the same place - and nothing overlaps; the bucket label \"91 or more days past due (...)\" stays visible at the left; the title row \"A/R Aging Detail\" with the info icon and \u22ef stays on one line."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715527-1-1200.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715527-2-scrolled-right.png"
+   ]
+  },
+  "C715528": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail at 1200 px wide (narrower than 1440), light theme, the \"91 or more days past due\" bucket open.",
+    "Step 1: \"Open Balance\" is pinned to the right edge (its heading stays at the same place, sticky) and the table scrolls sideways (1014 px of table in a 892 px window).",
+    "Step 2: scrolled fully right (122 px): the other columns slide under the pinned \"Open Balance\" column - it stays at the same place - and nothing overlaps; the bucket label \"91 or more days past due (...)\" stays visible at the left; the title row \"A/P Aging Detail\" with the info icon and \u22ef stays on one line."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715528-1-1200.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715528-2-scrolled-right.png"
+   ]
+  }
+ }
+}
