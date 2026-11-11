@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Generate every deliverable of the A/R and A/P V1 vs V2 capability check from inventory.py.
+"""
+!! DO NOT RE-RUN AFTER 11 Nov 2026: cases.json and CASES.md now carry post-publish edits (V1R-68/69/70 steps,
+!! Rule 118 EXPECT FAIL markers on V1R-07/08/35/36/80, V1R-72 deleted). Re-running would regenerate them from
+!! the inventory and silently undo those edits. Edit cases.json directly and re-render CASES.md per case instead.
+
+Generate every deliverable of the A/R and A/P V1 vs V2 capability check from inventory.py.
 
     python3 build/ar-ap-report-sorting/v1-regression/tools/build.py
 

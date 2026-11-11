@@ -249,7 +249,7 @@ EXPECT FAIL. What you should see on the upgraded build today: Every date after t
 (1) You see exactly that: mark the test FAILED and raise nothing new. This is a V1-to-V2 capability loss already reported to the QA lead for a Product Owner decision.
 (2) It fails in a different way: that is a new problem. Mark FAILED, write down exactly what you saw, and report it.
 (3) It passes: the capability is back. Mark PASSED and tell the QA lead.
-Existing ticket: none found (Jira searched 11 Nov 2026); task ticket for the PO to be raised only with the QA lead's permission.
+Ticket: SV-12545 (https://shopview.atlassian.net/browse/SV-12545). Put it in the Defects field when you mark this test FAILED.
 
 ---
 
@@ -257,7 +257,7 @@ SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/t
 
 This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-013) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) is silent on it. Not yet checked against any build.
 
-AUTOMATION: READY - EXPECT FAIL (dates after today cannot be picked)
+AUTOMATION: READY - EXPECT FAIL (SV-12545)
 
 ## V1R-08 · A saved link with a future as-of date opens on that date
 
@@ -287,7 +287,7 @@ EXPECT FAIL. What you should see on the upgraded build today: The report opens o
 (1) You see exactly that: mark the test FAILED and raise nothing new. This is a V1-to-V2 capability loss already reported to the QA lead for a Product Owner decision.
 (2) It fails in a different way: that is a new problem. Mark FAILED, write down exactly what you saw, and report it.
 (3) It passes: the capability is back. Mark PASSED and tell the QA lead.
-Existing ticket: none found (Jira searched 11 Nov 2026).
+Ticket: SV-12545 (https://shopview.atlassian.net/browse/SV-12545). Put it in the Defects field when you mark this test FAILED.
 
 ---
 
@@ -295,7 +295,7 @@ SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/t
 
 This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-014) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) is silent on it. Not yet checked against any build.
 
-AUTOMATION: READY - EXPECT FAIL (the future date in the link is ignored)
+AUTOMATION: READY - EXPECT FAIL (SV-12545)
 
 ## V1R-09 · The chosen as-of date survives a reload and browser Back
 
@@ -1244,7 +1244,7 @@ EXPECT FAIL. What you should see on the upgraded build today: Only buckets holdi
 (1) You see exactly that: mark the test FAILED and raise nothing new. This is a V1-to-V2 capability loss already reported to the QA lead for a Product Owner decision.
 (2) It fails in a different way: that is a new problem. Mark FAILED, write down exactly what you saw, and report it.
 (3) It passes: the capability is back. Mark PASSED and tell the QA lead.
-Existing ticket: none found (Jira searched 11 Nov 2026).
+Ticket: SV-12546 (https://shopview.atlassian.net/browse/SV-12546). Put it in the Defects field when you mark this test FAILED.
 
 ---
 
@@ -1252,7 +1252,7 @@ SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Da
 
 This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-074) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) is silent on it. Not yet checked against any build.
 
-AUTOMATION: READY - EXPECT FAIL (the empty bucket is missing from the PDF)
+AUTOMATION: READY - EXPECT FAIL (SV-12546)
 
 ## V1R-36 · A/R Collection PDF prints only the customer you picked
 
@@ -1280,13 +1280,19 @@ Report: A/R Aging Collection · Covers: INV-075 · KEPT
 
 Step 7: only customer X is printed, with its lines, a "Total for" line for customer X and a Totals row.
 
+EXPECT FAIL. What you should see on the upgraded build today: The PDF prints "Subtotal" where production printed "Total for" followed by the customer.
+(1) You see exactly that: mark the test FAILED, put the ticket in Defects and raise nothing new.
+(2) It fails in a different way: that is a new problem. Mark FAILED, write down exactly what you saw, and report it.
+(3) It passes: the fix has shipped. Mark PASSED and tell the QA lead.
+Ticket: SV-12547 (https://shopview.atlassian.net/browse/SV-12547). Put it in the Defects field when you mark this test FAILED.
+
 ---
 
 SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/CollectionsPdfQueryHandler.php:25-61; api/src/Reporting/Dashboard/Infrastructure/Controller/Dto/AccountReceivablePdfRequestDto.php:54-62; app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:57-61. V1 code, quoted: `...(props.customerId && { customer_id: props.customerId })`
 
 This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-075) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-12547)
 
 ## V1R-37 · A/R Detail shows its five buckets in fixed order with counts
 
@@ -2330,8 +2336,8 @@ Report: Parts Velocity · Covers: INV-200 · KEPT
 2. Click "Parts Velocity" in the left list.
 3. Point at the info icon beside "Units Sold".
 4. Move the pointer away.
-5. Click the info icon.
-6. Click the info icon again.
+5. Point at the info icon again.
+6. Click the info icon.
 7. Press Tab until the info icon has focus.
 8. Press Escape.
 
@@ -2340,7 +2346,7 @@ Report: Parts Velocity · Covers: INV-200 · KEPT
 Step 3: the explanation appears, starting "Units taken out of inventory stock on invoiced work orders in this date range."
 Step 4: it disappears.
 Step 5: it appears.
-Step 6: it disappears.
+Step 6: it disappears. With a mouse, pointing opens the explanation and a click closes it, as before the release. On a touch screen, a tap opens it and a second tap closes it.
 Step 7: it appears.
 Step 8: it disappears.
 
@@ -2369,15 +2375,15 @@ Report: Technician Utilization · Covers: INV-201 · KEPT
 2. Click "Technician Utilization" in the left list.
 3. Point at the info icon beside "Est. Lost Labor".
 4. Move the pointer away.
-5. Click the info icon.
-6. Click the info icon again.
+5. Point at the info icon again.
+6. Click the info icon.
 
 **Expected Result**
 
 Step 3: its explanation appears.
 Step 4: it disappears.
 Step 5: it appears.
-Step 6: it disappears.
+Step 6: it disappears. With a mouse, pointing opens the explanation and a click closes it, as before the release. On a touch screen, a tap opens it and a second tap closes it.
 
 ---
 
@@ -2404,15 +2410,15 @@ Report: Work In Progress · Covers: INV-202 · KEPT
 2. Click "Work In Progress" in the left list.
 3. Point at the first info icon in the summary strip at the top.
 4. Move the pointer away.
-5. Click the same info icon.
-6. Click it again.
+5. Point at the same info icon again.
+6. Click it.
 
 **Expected Result**
 
 Step 3: its explanation appears.
 Step 4: it disappears.
 Step 5: it appears.
-Step 6: it disappears.
+Step 6: it disappears. With a mouse, pointing opens the explanation and a click closes it, as before the release. On a touch screen, a tap opens it and a second tap closes it.
 
 ---
 
@@ -2457,6 +2463,8 @@ AUTOMATION: READY
 
 ## V1R-72 · Part sale link from another location: prompt and Cancel as before
 
+**DELETED Deleted from TestRail (C1079045) on 11 Nov 2026 on the QA lead's order: "T4687289 -> Delete this test case and run please". Snapshot: testrail/deleted-V1R-72-C1079045.json.**
+
 Report: Part sale · Covers: INV-205 · KEPT
 
 **Why an end user cares:** The shared switch prompt was reworked for the aging reports.  
@@ -2487,7 +2495,6 @@ SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/t
 This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-205) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.
 
 AUTOMATION: READY
-
 
 # Planned-change cases (V1R-73 onward)
 
@@ -2787,13 +2794,19 @@ Step 9: PRD v11, S3-R7a, quoted: “The PDF uses the app-wide report PDF format,
 Step 9 (our restatement, not the PRD's words): In the PDF the amount reads "(-$5.00)" and the date reads like "Nov 04 2026" (production printed "$-5.00" and "Nov 4, 2026").
 Related existing case: S3-31 C1062580 (https://shopview.testrail.io/index.php?/cases/view/1062580); S3-32 C1062581 (https://shopview.testrail.io/index.php?/cases/view/1062581). This case checks the same planned change from the before-the-release side.
 
+EXPECT FAIL. What you should see on the upgraded build today: The PDF prints the date the way the screen does, for example "Apr 6, 2026", not like "Nov 04 2026".
+(1) You see exactly that: mark the test FAILED, put the ticket in Defects and raise nothing new.
+(2) It fails in a different way: that is a new problem. Mark FAILED, write down exactly what you saw, and report it.
+(3) It passes: the fix has shipped. Mark PASSED and tell the QA lead.
+Ticket: SV-12544 (https://shopview.atlassian.net/browse/SV-12544). Put it in the Defects field when you mark this test FAILED.
+
 ---
 
 SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-R7a. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), api/templates/reporting/account-receivable/aging-detail.html.twig:150-157; app/src/utils/reporting.ts:9-11.
 
 This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-R7a, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-076). Not yet checked against any build.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-12544)
 
 ## V1R-81 · Planned change: a failed export shows one new message, report stays
 
