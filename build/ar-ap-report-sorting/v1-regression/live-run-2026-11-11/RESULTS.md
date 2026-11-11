@@ -182,3 +182,7 @@ Every verdict was observed on the screen in a signed-in Chromium (menu, date chi
 
 Build v26.45.2-6a8b89c throughout; tech's role restored to Technician and read back identical. Detail and evidence:
 `unblock-2026-11-11/README.md`. Results read back by the coordinator from TestRail (status Passed, pictures attached).
+
+## QA lead's decisions, 11 Nov 2026
+- V1R-69 [C1079042](https://shopview.testrail.io/index.php?/cases/view/1079042) (T4687286): **PASS** — checked by hand by the QA lead ("Worked as expected -> Passed"); result 616813.
+- V1R-72 C1079045 (T4687289): **DELETED** on the QA lead's order ("Delete this test case and run please"). Case and test removed; run 557 went 471 → 470. Snapshot: `../testrail/deleted-V1R-72-C1079045.json`.

@@ -48,3 +48,9 @@ The PRD (Confluence 947650561) was last modified 5 Nov 2026 (= v11), so nothing 
 | P2 | A/R Aging Detail (PDF) | The developers' handoff says "Only buckets that hold a document are printed". The PRD says nothing, and production prints every bucket with $0.00. Is dropping the empty buckets intended? Ticket SV-12546. |
 | P3 | A/R Collection, A/P Unpaid (PDF) | The handoff says each group ends with "Subtotal". The PRD says nothing, and production prints "Total for <customer>". Is the new label intended? Ticket SV-12547. |
 | P4 | All six reports | The handoff says an as-of date after today "opens on today". The PRD says nothing, and production accepts a later date. Is this intended? Ticket SV-12545. |
+
+**Update 11 Nov 2026 (after 14:25Z):** P1 is SETTLED — do not send it. The developers corrected their handoff again
+(SV-11533 comments 80619 / 80816 / 80821, edited 14:25–14:26Z): "PRD v11 (S3-R7a) wants PDF dates as "Nov 04 2026" …
+Until SV-12544 is fixed, the PDF prints "Nov 4, 2026"." They agree with the PRD; SV-12544 is In Progress (Nemanja Djuric).
+P2 (empty buckets), P3 ("Subtotal") and P4 (as-of date after today) still stand: the handoff still calls those intended
+and the PRD is silent.

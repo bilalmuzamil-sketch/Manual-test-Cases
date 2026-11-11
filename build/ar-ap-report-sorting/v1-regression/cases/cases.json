@@ -2269,7 +2269,7 @@
   "invariants": [
    "INV-205"
   ],
-  "status": "KEPT",
+  "status": "DELETED",
   "why": "The shared switch prompt was reworked for the aging reports.",
   "data_needs": "A user enrolled in two locations; one part sale at the other location.",
   "preconditions": [
@@ -2289,7 +2289,8 @@
   ],
   "source": "SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/parts/part-sale/PartSale.vue:100-110; app/src/components/ts/parts/part-sale/PartSale.vue:263-268. V1 code, quoted: `cancelMessage: 'Switch canceled. Returning to part sales.', fallbackRouteName: 'PartSales',`",
   "provenance": "This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-205) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) does not change it. Not yet checked against any build.",
-  "marker": "AUTOMATION: READY"
+  "marker": "AUTOMATION: READY",
+  "deleted": "Deleted from TestRail (C1079045) on 11 Nov 2026 on the QA lead's order: \"T4687289 -> Delete this test case and run please\". Snapshot: testrail/deleted-V1R-72-C1079045.json."
  },
  {
   "id": "V1R-73",
