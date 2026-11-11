@@ -638,3 +638,11 @@
 ## L0684 — 2026-11-11 — Summaries load 30 names at a time: a "ZZ…" customer/vendor is not on screen unless ticked first
 - pm1b C715610 / C715432 looked for "ZZAUTOTEST AR Customer A" (A/R Summary) and "ZZY Types P92" (A/P Summary) on the opening page: the Summaries show 30 rows per batch in A to Z order, so names starting "ZZ…" are far below - the cell search returned nothing and the click timed out. For any check on one named row of a Summary, tick it in the Customer/Vendor filter first (the row is then the only one), or use a seed name near the top of the alphabet (e.g. "AAA ZZAUTOTEST …").
 - #aging #permissions #trap → L0679
+
+## L0685 — 2026-11-11 — "Link with the filter" checks: tick a location that is NOT already the default, and give big PDFs minutes
+- q3 (C715475/617/618): on sv11315, Inventory Value / Sales By Customer / Work In Progress opened with the CURRENT location (Staging Heavy Duty - 9919) already ticked; "Clear selection + tick Heavy Duty" therefore left the address bare (/reports/inventory-value) and the copied link proved nothing. Production writes `?locationIds=<id>` when a location is ticked. Re-run with Lethbridge (q3d, `LOC=`).
+- The QA Inventory Value PDF (~6,000 parts, CSV 986 KB) did not download inside 90 s and no message was caught; `q3_common.dl()` now waits `DL_WAIT` (300 s) and reads messages every second.
+- Production's "Change Location:" location and sv11315's are plain text in the user menu, not buttons — click `getByText(<location>, { exact: true })` (a `button, .q-btn` filter times out). The production test account was enrolled at ONE location, so its list never opened (pr3); pr6 enrols it at Trucks Hill 2 via `POST /api/staff/enrollment/create` first.
+- `POST /api/parts-catalogue/add-vendor` needs `tax_id` = the tax UUID (`seedlib.TAX`); with an 82-character name it answered without a vendor id (p49 V40 now logs the raw answer and falls back to shorter names).
+- QA site offline export (C715476): the first message is the site's own "QA env is sleeping - Redirecting…" (L0317), the report's own message ("This report is too large to export…") still shows — compare that one with production.
+- #aging #export #location #trap → L0317, L0682
