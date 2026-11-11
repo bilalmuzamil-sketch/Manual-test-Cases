@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s84"
+ },
+ "results": {
+  "C1062578": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection as of 11/11/2026, only customer A \"ZZX Loc Sort P68\" ticked: invoice A S11315-17893 at Staging Lethbridge - 4310 dated Oct 2 (40 days ago), invoice B S11315-17894 at Staging Heavy Duty - 9919 dated Oct 22 (20 days ago), invoice C S11315-17895 at Heavy Duty dated Oct 12 (30 days ago).",
+    "Step 1: expanded, the lines read invoice A, invoice C, invoice B - oldest date first (\"Date\" is the sorted column).",
+    "Step 2: clicking \"Location\" marks it as the sorted column; invoice B and invoice C (Staging Heavy Duty - 9919) are above invoice A (Staging Lethbridge - 4310).",
+    "Step 3: unticking location B (and the third location, \"ZZAUTOTEST V1R-87 Location C\", which this site now also has, so that only location A is left as the case intends) removes the Location column, collapses every group, and \"Date\" is the sorted column again.",
+    "Step 4: expanded, invoice C (Oct 12) is above invoice B (Oct 22) - oldest first; invoice A is no longer listed."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062578-1-expanded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062578-2-location-sort.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062578-3-one-location.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062578-4-expanded.png"
+   ]
+  }
+ }
+}
