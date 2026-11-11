@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S5 (sv11315)"
+ },
+ "results": {
+  "C715404": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of 11/11/2026.",
+    "Step 1: the Past due menu reads, top to bottom: \"Any\" (ticked, as no range is), \"All ranges are included. Pick one or more to narrow.\", \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\".",
+    "Steps 2-4: ticked \"91+ days\": chip \"Past due: 91+ days\"; then \"31-60 days\": \"Past due: 2 ranges\"; then \"1-30 days\": \"Past due: 3 ranges\".",
+    "Step 5: ticked \"61-90 days\": the chip reads \"Past due: 4 ranges\", not Any; the \"Any\" row is not ticked (the menu shows \"4 selected\")."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715404-1-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715404-2-four.png"
+   ]
+  }
+ }
+}
