@@ -1,0 +1,62 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S3 export messages (sv11315)"
+ },
+ "results": {
+  "C715350": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of 11/11/2026, documents at Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.",
+    "Steps 1-2: opened the Location filter (Select all, \"2 selected\", both locations, Clear selection) and clicked \"Clear selection\": no location ticked; the empty state shows \"No record matches these filters\" with a \"Clear all filters\" button, no totals and no Location column.",
+    "Step 3: Download (PDF): the warning \"Empty export\", \"Export didn't yield any results\" shows; nothing downloaded.",
+    "Step 4: Download (CSV): the same warning; nothing downloaded."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715350-1-location-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715350-2-empty.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715350-toast.png"
+   ]
+  },
+  "C715351": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of 11/11/2026, only Staging Heavy Duty - 9919 (location A) ticked. Vendor A = Andover Fleet Services, whose open bills are only at Staging Lethbridge - 4310.",
+    "Step 1: ticked vendor A: the report shows no rows (\"No record matches these filters\").",
+    "Step 2: Download (PDF): the warning \"Empty export\", \"Export didn't yield any results\" shows; nothing downloaded.",
+    "Step 3: Download (CSV): the same warning; nothing downloaded."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715351-1-filtered.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715351-toast.png"
+   ]
+  },
+  "C715352": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of 11/11/2026, with rows on screen.",
+    "Step 1: switched the browser's connection off: the report stays on screen.",
+    "Steps 2-3: opened the \u22ef menu and clicked \"Download (CSV)\": exactly one message shows, \"We couldn't export this report. Please try again.\" (no second, generic error); nothing downloaded.",
+    "Steps 4-5: switched the connection back on and chose \"Download (CSV)\" again: \"Data exported successfully.\" and the CSV downloaded (ar-aging-detail.csv, 47890 bytes)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715352-1-offline.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715352-toast.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715352-3-online-again.png"
+   ]
+  },
+  "C715353": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary, as of 11/11/2026, with rows on screen.",
+    "Step 1: switched the browser's connection off: the report stays on screen.",
+    "Steps 2-3: opened the \u22ef menu and clicked \"Download (PDF)\": exactly one message shows, \"We couldn't export this report. Please try again.\" (no second, generic error); nothing downloaded.",
+    "Steps 4-5: switched the connection back on and chose \"Download (PDF)\" again: \"Data exported successfully.\" and the PDF downloaded (ap-aging-summary.pdf, 134596 bytes)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715353-1-offline.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715353-toast.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715353-3-online-again.png"
+   ]
+  }
+ }
+}
