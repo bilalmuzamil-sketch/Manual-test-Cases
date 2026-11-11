@@ -1,0 +1,68 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s88 three locations"
+ },
+ "results": {
+  "C715387": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of today; the Location menu lists three locations: Staging Heavy Duty - 9919, Staging Lethbridge - 4310, ZZAUTOTEST V1R-87 Location C.",
+    "Step 1: the chip reads \"Location: All locations\".",
+    "Step 2: Lethbridge unticked - \"Location: 2 locations\".",
+    "Step 3: Heavy Duty unticked too - \"Location: ZZAUTOTEST V1R-...\" (location C's name shortened with \"...\" because it is long), as Sales By Customer's chip does with one location.",
+    "Step 4: location C unticked - \"Location: No locations\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715387-01-C715387-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715387-02-C715387-2.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715387-03-C715387-3.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715387-04-C715387-4.png"
+   ]
+  },
+  "C715394": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary, three locations (A = Staging Heavy Duty - 9919, B = Staging Lethbridge - 4310, C = ZZAUTOTEST V1R-87 Location C).",
+    "Step 1: location C unticked - the address carries two \"locationIds=\" entries with long codes (b3c8c820-\u2026 and f8a8b802-\u2026), not names; the chip reads \"Location: 2 locations\".",
+    "Steps 2-3: the address edited to one entry \"locationIds=b3c8c820-\u2026,f8a8b802-\u2026\" and opened with Enter - the report opens with those two ticked (\"Location: 2 locations\").",
+    "Step 4: \"Select all\" - every location ticked and the address no longer lists locations (.../ap-aging-summary).",
+    "Steps 5-6: A and B unticked - only C ticked (\"Location: ZZAUTOTEST V1R-...\"); the address holds one entry, C's code 19abb244-\u2026.",
+    "Steps 7-8: the address edited to the three codes separated by commas and opened - \"Location: All locations\", and the address no longer lists locations."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715394-05-C715394-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715394-06-C715394-2-3-comma-link.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715394-07-C715394-6.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715394-08-C715394-7-8-all-codes.png"
+   ]
+  },
+  "C715411": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, three locations in the Location menu.",
+    "Step 1: \"Location: All locations\" - the Location column is shown (Date, Location, Transaction Type, ...).",
+    "Step 2: location C unticked - \"Location: 2 locations\"; the Location column is shown.",
+    "Step 3: Lethbridge unticked too - \"Location: Staging Heavy D...\"; the Location column is hidden (Date, Transaction Type, ID, Due Date, Past Due, Amount, Open Balance).",
+    "Step 4: \"Clear selection\" - \"Location: No locations\"; the Location column is hidden and the empty state shows: \"No record matches these filters\", \"Try changing filters to widen your results.\", \"Clear all filters\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715411-09-C715411-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715411-10-C715411-2.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715411-11-C715411-3.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715411-12-C715411-4.png"
+   ]
+  },
+  "C715412": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, Customer filter \"#1 Diesel\" (customer A, documents at Staging Heavy Duty only) and \"ZZAUTOTEST LOC MIX\" (customer B, documents at Heavy Duty and Lethbridge).",
+    "Step 1: customer A's Location cell reads \"Staging Heavy Duty - 9919\"; customer B's reads \"Multiple\".",
+    "Step 2: Lethbridge unticked (Heavy Duty and location C left, \"Location: 2 locations\") - the Location column stays, and customer B's cell now reads \"Staging Heavy Duty - 9919\"; its Total drops from $3,788.88 to $3,440.80 (only its Heavy Duty documents count)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715412-13-C715412-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715412-14-C715412-2.png"
+   ]
+  }
+ }
+}
