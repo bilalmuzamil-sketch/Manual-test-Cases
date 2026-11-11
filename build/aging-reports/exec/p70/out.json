@@ -1,0 +1,415 @@
+{
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/check-existing-roles",
+   "b": "{\"fePermissions\":[\"7724fb7f-dba8-4672-a168-314c0460c0ab\"],\"organization\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\"}"
+  }
+ ],
+ "exists": 0,
+ "tplDialog": "Choose a template\nStart from a template to pre-fill settings, or skip to start from scratch.\nclose\nAdmin\nFull system access\nForeman\nOversees technicians and work orders\nOffice User\nOffice administration, reporting, and back-office operations\nParts Manager\nFull parts and inventory control\nParts Technician\nParts operations and vendor management\nSales Representative\nReports and financial data access only\nSenior Service Advisor\nWork order and customer management with expanded access\nService Advisor\nWork order and customer management with invoicing access\nService Manager\nFull operational access, li",
+ "gets": [
+  {
+   "u": "/api/fe-permissions",
+   "t": "{\"data\":[{\"id\":\"05e82cdd-26da-4ef0-9fe5-d415d5b9bc73\",\"name\":\"settingsParts\",\"code\":\"settingsParts\"},{\"id\":\"06e09b15-29bc-4c05-981e-478f51511596\",\"name\":\"customersCreateAndEdit\",\"code\":\"customersCreateAndEdit\"},{\"id\":\"077478dd-e55d-4b13-a45b-77caf1ebc55c\",\"name\":\"timesheetsView\",\"code\":\"timesheetsView\"},{\"id\":\"093e2b0f-e16d-4a95-838e-46c0e76db643\",\"name\":\"workOrdersDelete\",\"code\":\"workOrdersDelete\"},{\"id\":\"0d78780d-ed43-48f4-ab4f-fabc4ad63fc2\",\"name\":\"customersDelete\",\"code\":\"customersDelete\"},{\"id\":\"1190ca56-40e3-463b-9ee6-16dbe752c60d\",\"name\":\"workOrderLinesDelete\",\"code\":\"workOrderLinesDelete\"},{\"id\":\"1290cbfd-4e60-46bd-ae52-31da6c8f68cf\",\"name\":\"catalogInventoryCreateAndEdit\",\"code\":\"catalogInventoryCreateAndEdit\"},{\"id\":\"17981c13-6d91-499c-ab50-cac766a051ba\",\"name\":\"settingsService\",\"code\":\"settingsService\"},{\"id\":\"1b597e63-ce4c-42d9-a230-6435dcc4b90f\",\"name\":\"scheduleDelete\",\"code\":\"scheduleDelete\"},{\"id\":\"1bfd7f07-ecee-455d-b088-2cd970a75ccc\",\"name\":\"viewHistoryLogs\",\"code\":\"viewHistoryLogs\"},{\"id\":\"21775b72-760a-46b6-a932-8405ce6c4cf4\",\"name\":\"hrPageAccess\",\"code\":\"hrPageAccess\"},{\"id\":\"267eed7b-a2a5-4d99-9ae0-15c690278854\",\"name\":\"woFullViewMode\",\"code\":\"woFullViewMode\"},{\"id\":\"27d35438-3fec-4ee9-bd9e-fa9f6e695670\",\"name\":\"partSalesView\",\"code\":\"partSalesView\"},{\"id\":\"29551554-0d08-43a7-8d63-d72980039360\",\"name\":\"woReceivedLater\",\"code\":\"woReceivedLater\"},{\"id\":\"33b1a1f9-f18a-441a-beac-168fb2a86453\",\"name\":\"scheduleCreateAndEdit\",\"code\":\"scheduleCreateAndEdit\"},{\"id\":\"37f4eae8-2434-4e3d-9502-cff98cdb53a1\",\"name\":\"accountingRunDepreciation\",\"code\":\"accountingRunDepreciation\"},{\"id\":\"3a50f7f9-1085-479c-b332-dd4fff79030a\",\"name\":\"woPickParts\",\"code\":\"woPickParts\"},{\"id\":\"47fd3b91-d940-4ebf-b3b5-7c321e2eb20b\",\"name\":\"vendorOrderManagementCreateAndEdit\",\"code\":\"vendorOrderManagementCreateAndEdit\"},{\"id\":\"517791cb-716f-4785-96a9-67d5d363faeb\",\"name\":\"accountingSalesView\",\"code\":\"accountingSalesView\"},{\"id\":\"55f5cb14-34bd-4999-95a1-0168497466e1\",\"name\":\"customersView\",\"code\":\"customersView\"},{\"id\":\"5a32e5ef-7e9b-4cbb-9595-18e0aa3f5b48\",\"name\":\"vendorOrderManagementDelete\",\"code\":\"vendorOrderManagementDelete\"},{\"id\":\"61435d03-a81c-499f-b814-79085dac3488\",\"name\":\"scheduleView\",\"code\":\"scheduleView\"},{\"id\":\"65ebb906-e844-47cb-88cb-15a3b0d835a9\",\"name\":\"vendorOrderManagementView\",\"code\":\"vendorOrderManagementView\"},{\"id\":\"6d015516-fdfe-4a3d-95c9-6f6e7b9bcee6\",\"name\":\"invoicingPaymentsDelete\",\"code\":\"invoicingPaymentsDelete\"},{\"id\":\"70c15ed1-e1d1-4637-8db8-8130be6011d3\",\"name\":\"accountingBankReconciliation\",\"code\":\"accountingBankReconciliation\"},{\"id\":\"739469a0-d0ae-4061-a3b4-14bd56278845\",\"name\":\"partSalesCreateAndEdit\",\"code\":\"partSalesCreateAndEdit\"},{\"id\":\"73b8b925-fc95-4e17-951c-a3d00ee839ac\",\"name\":\"workOrdersCreateAndEdit\",\"code\":\"workOrdersCreateAndEdit\"},{\"id\":\"7724fb7f-dba8-4672-a168-314c0460c0ab\",\"name\":\"reportsPageAccess\",\"code\":\"reportsPageAccess\"},{\"id\":\"7d6449be-7a13-4258-8c90-b590d4517ec8\",\"name\":\"accountingPurchasesView\",\"code\":\"accountingPurchasesView\"},{\"id\":\"81ec5323-00ee-4d9d-96de-a32ecaab0f16\",\"name\":\"seeFinancialData\",\"code\":\"seeFinancialData\"},{\"id\":\"82b2f37a-01f2-4ae4-a067-0300aecaaeb3\",\"name\":\"seeApArData\",\"code\":\"seeApArData\"},{\"id\":\"8c46eda6-a56a-49c1-919b-06cc2c91967b\",\"name\":\"catalogInventoryDelete\",\"code\":\"catalogInventoryDelete\"},{\"id\":\"8dbb8fa0-a707-473b-84ed-005483f4930d\",\"name\":\"settingsIntegrations\",\"code\":\"settingsIntegrations\"},{\"id\":\"93856b55-5efc-479d-8726-577d7eb1d92b\",\"name\":\"timesheetsCreateAndEdit\",\"code\":\"timesheetsCreateAndEdit\"},{\"id\":\"9911be4f-75f2-4ae7-9280-efc5853cfb3d\",\"name\":\"partSalesDelete\",\"code\":\"partSalesDelete\"},{\"id\":\"99751f8b-992c-49bc-b72a-ed37b3fd8fb0\",\"name\":\"accountingSettingsAccess\",\"code\":\"accountingSettingsAccess\"},{\"id\":\"9d51d1d6-9eeb-4b01-bb29-7b7b0d9d830a\",\"name\":\"woOrderParts\",\"code\":\"woOrderParts\"},{\"id\":\"a4f1cb5c-da4a-43e7-aeba-8df2930732bf\",\"name\":\"accountingReportsView\",\"code\":\"accountingReportsView\"},{\"id\":\"aceca0c7-4106-468e-a05d-587deb9fb1c3\",\"name\":\"woTechViewMode\",\"code\":\"woTechViewMode\"},{\"id\":\"b0b34331-58e3-4012-aa51-a92c6671f0b3\",\"name\":\"invoicingPaymentsCreateAndEdit\",\"code\":\"invoicingPaymentsCreateAndEdit\"},{\"id\":\"b1c081c9-74a3-4002-8423-e190acceee9e\",\"name\":\"accountingSalesCreateAndEdit\",\"code\":\"accountingSalesCreateAndEdit\"},{\"id\":\"b1cb3760-d416-49b5-bd41-9f146fa3c1d4\",\"name\":\"accountingFixedAssetsView\",\"code\":\"accountingFixedAssetsView\"},{\"id\":\"b6f67c65-0507-4ef4-9d36-97219c8a8510\",\"name\":\"catalogInventoryView\",\"code\":\"catalogInventoryView\"},{\"id\":\"b8438ab4-bf24-4ba9-a951-9621b41b14b1\",\"name\":\"accountingSetupView\",\"code\":\"accountingSetupView\"},{\"id\":\"bd1545fa-d8a1-4c8c-b6d4-3ea00124d301\",\"name\":\"woReviewWorkOrders\",\"code\":\"woReviewWorkOrders\"},{\"id\":\"c089ab98-1cc6-4916-ba20-fc2f0d8a5895\",\"name\":\"settingsApp\",\"code\":\"settingsApp\"},{\"id\":\"c17a1cc2-bdfc-45b9-92b4-c3c82060b0b0\",\"name\":\"accountingFixedAssetsCreateAndEdit\",\"code\":\"accountingFixedAssetsCreateAndEdit\"},{\"id\":\"c3ae0c3f-912c-4d41-bd08-d5c4cfb86d81\",\"name\":\"billingPortalPageAccess\",\"code\":\"billingPortalPageAccess\"},{\"id\":\"c62e3ea4-4a93-40e8-a3af-93465dbe9120\",\"name\":\"settingsFinance\",\"code\":\"settingsFinance\"},{\"id\":\"c750f752-e6d2-48f2-978e-99a1ac27b11c\",\"name\":\"workOrdersView\",\"code\":\"workOrdersView\"},{\"id\":\"d2bae268-f8ac-433f-8388-773487b3f85a\",\"name\":\"invoicingPaymentsView\",\"code\":\"invoicingPaymentsView\"},{\"id\":\"d4673f94-4710-4cb2-9a4d-5628eab7b5fe\",\"name\":\"accountingBankingView\",\"code\":\"accountingBankingView\"},{\"id\":\"d735bc63-0f64-4b48-bacb-f13ea757ea46\",\"name\":\"accountingView\",\"code\":\"accountingView\"},{\"id\":\"d8196848-1b09-4287-9053-3aea3c73571c\",\"name\":\"workOrderLinesCreateAndEdit\",\"code\":\"workOrderLinesCreateAndEdit\"},{\"id\":\"db491b36-3b08-4d3f-9acb-0eb1ca3783d4\",\"name\":\"accountingSetupCreateAndEdit\",\"code\":\"accountingSetupCreateAndEdit\"},{\"id\":\"e10f5034-11a7-4f62-a321-89ba10a2d21b\",\"name\":\"accountingPurchasesCreateAndEdit\",\"code\":\"accountingPurchasesCreateAndEdit\"},{\"id\":\"f53b9b76-6cff-4e7f-9d2e-fe6c128f1932\",\"name\":\"settingsDataImport\",\"code\""
+  },
+  {
+   "u": "/js/PermissionEditor.BgQbM4d6.js",
+   "t": "const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[\"js/AdminWarningBanner.DImEa9x2.js\",\"js/quasar.9aT0UPgn.js\",\"js/vue-vendor.n9UlGwnh.js\",\"css/quasar.B5UrY8d3.css\",\"js/index.BGW5_wr8.js\",\"js/vendor.B06Oo9Z5.js\",\"css/vendor.CEzmhgD0.css\",\"js/date.DK_fRtn5.js\",\"js/sentry.Bf-MsBF0.js\",\"css/index.C2-o_l6s.css\",\"css/AdminWarningBanner.DJaF86Nn.css\",\"js/PermissionGrid.IZmmBfaP.js\",\"css/PermissionGrid.D-lu4-vi.css\",\"js/WoSettingsRow.C0-vbKca.js\",\"css/WoSettingsRow.BlQdyqID.css\",\"js/PageAndSettingsToggles.C36M0Q64.js\",\"css/PageAndSettingsToggles.DIjtU9Yj.css\",\"js/CrossTogglesSection.DIPLwj8y.js\",\"css/CrossTogglesSection.E8tKjOJU.css\",\"js/AccountingSection.D-XVJty0.js\",\"css/AccountingSection.CwLI-nRj.css\",\"js/FinancialDataConfirmModal.urYD2BgT.js\",\"css/FinancialDataConfirmModal.CpTZPlgX.css\",\"js/FinancialDataDisableConfirmModal.D4GeaMtf.js\",\"css/FinancialDataDisableConfirmModal.B1_iPUR7.css\"])))=>i.map(i=>d[i]);\nvar vn=Object.defineProperty;var ae=Object.getOwnPropertySymbols;var pn=Object.prototype.hasOwnProperty,mn=Object.prototype.propertyIsEnumerable;var te=(e,t,a)=>t in e?vn(e,t,{enumerable:!0,configurable:!0,writable:!0,value:a}):e[t]=a,M=(e,t)=>{for(var a in t||(t={}))pn.call(t,a)&&te(e,a,t[a]);if(ae)for(var a of ae(t))mn.call(t,a)&&te(e,a,t[a]);return e};import{en as pe,cG as V,bV as ie,cJ as An,ed as wn}from\"./index.BGW5_wr8.js\";import{Q as _n}from\"./quasar.9aT0UPgn.js\";import{d as kn,L as yn,Q as N,S as re,O as d,a5 as se,a9 as Q,a4 as oe,u as g,w as H,an as j,ae as C,e as _,a as v}from\"./vue-vendor.n9UlGwnh.js\";import\"./vendor.B06Oo9Z5.js\";import\"./date.DK_fRtn5.js\";import\"./sentry.Bf-MsBF0.js\";const f=e=>JSON.parse(JSON.stringify(e)),me=(e,t,a)=>{if(t===\"view\"){e.view=a,a||(e.createAndEdit=!1,e.delete=!1);return}if(t===\"createAndEdit\"){e.createAndEdit=a,a?e.view=!0:e.delete=!1;return}e.delete=a,a&&(e.createAndEdit=!0,e.view=!0)},Ae=(e,t,a)=>{const r=f(e),c=r.crud.workOrders;return me(c,t,a),c.view||(r.workOrderLines.createAndEdit=!1,r.workOrderLines.delete=!1,r.woSettings.reviewWorkOrders=!1,r.woSettings.pickParts=!1,r.woSettings.orderParts=!1,r.woSettings.receivedLater=!1,r.woSettings.moveLabor=!1),r},K=(e,t,a,r)=>{if(t===\"workOrders\")return Ae(e,a,r);const c=f(e),m=c.crud[t];return me(m,a,r),c},Vn=(e,t,a)=>{const r=f(e);return r.crud[t]=M({},a),r},le=(e,t,a)=>{const r=f(e),c=r.workOrderLines;return t===\"createAndEdit\"?(c.createAndEdit=a,a||(c.delete=!1,r.woSettings.moveLabor=!1)):(c.delete=a,a&&(c.createAndEdit=!0)),r},Cn=(e,t,a)=>{const r=f(e),{timesheets:c}=r;return t===\"view\"?(c.view=a,a||(c.createAndEdit=!1)):(c.createAndEdit=a,a&&(c.view=!0)),r},ce=(e,t,a)=>{const r=f(e);return r.woSettings[t]=a,t===\"moveLabor\"&&a&&(r.workOrderLines.createAndEdit=!0,r.crud.workOrders.view=!0),r},En=(e,t)=>{const a=f(e);return a.woSettings.viewMode=t,a},h=(e,t)=>{const a=f(e);return a.crossToggles.seeFinancialData=t,t||(a.crud.partSales={view:!1,createAndEdit:!1,delete:!1},a.crud.invoicingPayments={view:!1,createAndEdit:!1,delete:!1},a.woSettings.orderParts=!1,a.crossToggles.seeApArData=!1),a},Pn=(e,t,a,r)=>!r||t!==\"partSales\"&&t!==\"invoicingPayments\"?!1:e.crossToggles.seeFinancialData===!1,Sn=(e,t)=>{const a=f(e);return a.crossToggles.seeApArData=t,t||(a.crud.invoicingPayments.delete=!1),a},On=e=>{const{partSales:t,invoicingPayments:a}=e.crud;return t.view||t.createAndEdit||t.delete||a.view||a.createAndEdit||a.delete||e.woSettings.orderParts||e.crossToggles.seeApArData},bn=(e,t)=>t?e.crossToggles.seeFinancialData===!1:!1,Dn=(e,t)=>t?e.crossToggles.seeFinancialData===!1:!1,Ln=(e,t,a)=>a?e.crud.workOrders.view===!1:!1,Tn=(e,t,a,r)=>!r||t!==\"invoicingPayments\"||a!==\"delete\"?!1:e.crossToggles.seeApArData===!1,xn=e=>e.crud.invoicingPayments.delete,Fn=(e,t,a)=>{const r=f(e);return r.settings[t]=a,r},In=(e,t,a)=>{const r=f(e);return r.pageAccess[t]=a,r},G=(e,t,a)=>{if(t===\"seeFinancialData\")return h(e,a);if(t===\"seeApArData\")return Sn(e,a);const r=f(e);return r.crossToggles[t]=a,r},ue=(e,t,a,r)=>{const c=f(e),m=c.accounting[t];return a===\"view\"?(m.view=r,r||(m.createAndEdit=!1,t===\"banking\"&&(c.accounting.bankReconciliation=!1),t===\"fixedAssets\"&&(c.accounting.runDepreciation=!1))):(m.createAndEdit=r,r&&(m.view=!0)),c},de=(e,t)=>{const a=f(e);return a.accounting.bankReconciliation=t,t&&(a.accounting.banking.view=!0),a},Rn=(e,t)=>{const a=f(e);return a.accounting.runDepreciation=t,t&&(a.accounting.fixedAssets.view=!0),a},ge=(e,t,a)=>{const r=f(e);return r.accounting[t]=a,t===\"pageAccess\"&&!a&&(r.accounting=pe().accounting),r},fe=(e,t,a)=>a?t.kind===\"toggle\"?t.key===\"pageAccess\"?!e.accounting.pageAccess:t.key===\"reportsView\"?!e.accounting.reportsView:!1:t.area===\"banking\"&&t.level===\"view\"&&!e.accounting.banking.view:!1,ve=(e,t)=>t?e.accounting.banking.view===!1:!1,Mn=[\"workOrders\",\"schedule\",\"customers\",\"partSales\",\"catalogInventory\",\"vendorOrderManagement\",\"invoicingPayments\"],hn=e=>Mn.every(a=>{const r=e.crud[a];return r.view&&r.createAndEdit&&r.delete})&&e.workOrderLines.createAndEdit&&e.workOrderLines.delete&&e.timesheets.view&&e.timesheets.createAndEdit&&e.woSettings.reviewWorkOrders&&e.woSettings.pickParts&&e.woSettings.orderParts&&e.settings.app&&e.settings.service&&e.settings.parts&&e.settings.finance&&e.settings.integrations&&e.settings.dataImport&&e.settings.wages&&e.pageAccess.reports&&e.pageAccess.customerPortal&&e.pageAccess.billingPortal&&e.crossToggles.seeFinancialData&&e.crossToggles.seeApArData&&e.crossToggles.viewHistoryLogs,Wn={class:\"permission-editor\"},Bn={key:0,class:\"permission-editor__search\"},Nn=kn({name:\"PermissionEditor\",__name:\"PermissionEditor\",props:{modelValue:{default:void 0},readonly:{type:Boolean,default:!1},lockedSettings:{default:()=>[]},searchTestId:{default:\"search_permission\"}},emits:[\"update:modelValue\"],setup(e,{emit:t}){const a={partSales:\"Part Sales\",invoicingPayments:\"Invoicing & Payments\"},r={workOrders:\"work_orders\",schedule:\"schedule\",customers:\"customers\",partSales:\"part_sales\",catalogInventory:\"catalog_inventory\",vendorOrderManagement:\"vendor_orde"
+  },
+  {
+   "u": "/css/PermissionEditor.RelPobHh.css",
+   "t": ".permission-editor[data-v-ca2e4d57]{display:flex;flex-direction:column;gap:16px;font-family:Inter,sans-serif}.permission-editor__search[data-v-ca2e4d57]{display:flex;justify-content:flex-end}.permission-editor__search-input[data-v-ca2e4d57]{width:260px;max-width:100%}@media(max-width:600px){.permission-editor__search[data-v-ca2e4d57]{justify-content:stretch}.permission-editor__search-input[data-v-ca2e4d57]{width:100%}}\n"
+  },
+  {
+   "u": "/js/PermissionGrid.IZmmBfaP.js",
+   "t": "import{a as B,p as u,m as G,ab as Q}from\"./quasar.9aT0UPgn.js\";import{d as W,Q as n,S as r,F as A,ab as O,N as s,P as v,a9 as d,a4 as V,a5 as I,a6 as F,O as _,M as j,e as c,a as Y}from\"./vue-vendor.n9UlGwnh.js\";import{ed as q}from\"./index.BGW5_wr8.js\";import\"./vendor.B06Oo9Z5.js\";import\"./date.DK_fRtn5.js\";import\"./sentry.Bf-MsBF0.js\";const H={class:\"permission-grid\"},J={key:0,class:\"permission-card\"},K={class:\"permission-card__main\"},X={class:\"permission-card__info\"},Z={class:\"permission-card__title\"},w={class:\"permission-card__description\"},ee={class:\"permission-card__columns\"},ae={class:\"permission-card__column\"},se={key:0,class:\"permission-card__column-label\"},te={class:\"permission-card__column\"},ne={class:\"permission-card__column\"},ie={key:0,class:\"permission-card__column-label\"},re={key:0,class:\"permission-card__embed\"},de={key:0,class:\"permission-card\"},oe={class:\"permission-card__main\"},le={key:0,class:\"permission-card__embed\"},ce={class:\"parts-panel\"},me={class:\"permission-card__info\"},ue={class:\"parts-panel__title\"},ve={class:\"permission-card__description\"},_e={class:\"permission-card__columns\"},pe={class:\"permission-card__column\"},he={class:\"permission-card__column\"},be={class:\"permission-card__column\"},ke=\"Also enable Work Orders: View or Part Sales: View, invoices are shown from those areas.\",ye=W({name:\"PermissionGrid\",__name:\"PermissionGrid\",props:{draft:{},readonly:{type:Boolean},search:{default:\"\"}},emits:[\"change\",\"parts-parent\"],setup(o,{emit:S}){const U=[{key:\"workOrders\",label:\"Work orders\",variant:\"standard\",testIdArea:\"workorders\",description:\"Manage work orders the core operational records in ShopView.\"},{key:\"workOrderLines\",label:\"Work order lines\",variant:\"linesCE_D\",testIdArea:\"workorderlines\",description:\"Add, edit, and remove the individual labor and part lines on a work order.\"},{key:\"schedule\",label:\"Schedule\",variant:\"standard\",testIdArea:\"schedule\",description:\"View and manage scheduled jobs across the shop calendar.\"},{key:\"customers\",label:\"Customers\",variant:\"standard\",testIdArea:\"customers\",description:\"Access and maintain customer records and contact details.\"},{key:\"invoicingPayments\",label:\"Invoicing & payments\",variant:\"standard\",testIdArea:\"invoicing\",deleteLabel:\"Delete / Reverse\",description:\"Generate invoices and record payments against work orders.\"},{key:\"timesheets\",label:\"Timesheets\",variant:\"timesheets\",testIdArea:\"timesheets\",description:\"Track and review technician labor hours and time entries.\"}],y=[{key:\"partSales\",label:\"Part sales\",variant:\"standard\",testIdArea:\"partsales\",description:\"Manage part sales, returns and related transactions.\"},{key:\"catalogInventory\",label:\"Catalog and Inventory\",variant:\"standard\",testIdArea:\"cataloginventory\",description:\"Manage the parts catalog and inventory levels.\"},{key:\"vendorOrderManagement\",label:\"Vendor and order management\",variant:\"standard\",testIdArea:\"vendorordermanagement\",description:\"Manage vendors, purchase orders, deliveries and part returns.\"}],E={workorders:\"workOrders\",schedule:\"schedule\",customers:\"customers\",partsales:\"partSales\",cataloginventory:\"catalogInventory\",vendorordermanagement:\"vendorOrderManagement\",invoicing:\"invoicingPayments\"},i=o,C=S,$=c(()=>U),x=c(()=>y),p=c(()=>i.search.trim().toLowerCase()),D=a=>{var t;return a.label.toLowerCase().includes(p.value)||((t=a.description)!=null?t:\"\").toLowerCase().includes(p.value)},L=a=>p.value?D(a):!0,T=c(()=>!p.value||\"parts department\".includes(p.value)?!0:y.some(D)),P=Y(!1),N=c(()=>y.some(a=>{const t=i.draft.crud[E[a.testIdArea]];return t.view||t.createAndEdit||t.delete})),f=c(()=>N.value||P.value),g=a=>E[a.testIdArea],h=a=>a.variant===\"timesheets\"?i.draft.timesheets.view:a.variant===\"linesCE_D\"?!1:i.draft.crud[g(a)].view,b=a=>a.variant===\"linesCE_D\"?i.draft.workOrderLines.createAndEdit:a.variant===\"timesheets\"?i.draft.timesheets.createAndEdit:i.draft.crud[g(a)].createAndEdit,k=a=>a.variant===\"linesCE_D\"?i.draft.workOrderLines.delete:a.variant===\"timesheets\"?!1:i.draft.crud[g(a)].delete,M=a=>a.variant===\"linesCE_D\",R=c(()=>!i.draft.crud.workOrders.view&&!i.draft.crud.partSales.view),m=(a,t,e)=>{const l={area:a.key,level:t,value:e};C(\"change\",l)},z=a=>{P.value=a,C(\"parts-parent\",a)};return(a,t)=>(n(),r(\"div\",H,[(n(!0),r(A,null,O($.value,e=>(n(),r(A,{key:e.key},[L(e)?(n(),r(\"div\",J,[s(\"div\",K,[s(\"div\",X,[s(\"div\",Z,v(e.label),1),s(\"div\",w,v(e.description),1)]),s(\"div\",ee,[s(\"div\",ae,[e.variant!==\"linesCE_D\"?(n(),r(\"span\",se,\"View\")):d(\"\",!0),e.variant!==\"linesCE_D\"?(n(),V(u,{key:1,\"model-value\":h(e),disable:o.readonly||M(e),\"data-test-id\":`area_${e.testIdArea}_view`,size:\"sm\",class:\"permission-checkbox\",\"onUpdate:modelValue\":l=>m(e,\"view\",!h(e))},{default:I(()=>[e.key===\"invoicingPayments\"&&R.value?(n(),V(B,{key:0,anchor:\"top middle\",self:\"bottom middle\",\"data-test-id\":\"area_invoicing_view_dependency_tooltip\"},{default:I(()=>[F(v(ke))]),_:1})):d(\"\",!0)]),_:2},1032,[\"model-value\",\"disable\",\"data-test-id\",\"onUpdate:modelValue\"])):d(\"\",!0)]),s(\"div\",te,[t[1]||(t[1]=s(\"span\",{class:\"permission-card__column-label\"},\"Create & Edit\",-1)),_(u,{\"model-value\":b(e),disable:o.readonly,\"data-test-id\":`area_${e.testIdArea}_createandedit`,size:\"sm\",class:\"permission-checkbox\",\"onUpdate:modelValue\":l=>m(e,\"createAndEdit\",!b(e))},null,8,[\"model-value\",\"disable\",\"data-test-id\",\"onUpdate:modelValue\"])]),s(\"div\",ne,[e.variant!==\"timesheets\"?(n(),r(\"span\",ie,v(e.deleteLabel||\"Delete\"),1)):d(\"\",!0),e.variant!==\"timesheets\"?(n(),V(u,{key:1,\"model-value\":k(e),disable:o.readonly,\"data-test-id\":`area_${e.testIdArea}_delete`,size:\"sm\",class:\"permission-checkbox\",\"onUpdate:modelValue\":l=>m(e,\"delete\",!k(e))},null,8,[\"model-value\",\"disable\",\"data-test-id\",\"onUpdate:modelValue\"])):d(\"\",!0)])])]),e.key===\"workOrders\"?(n(),r(\"div\",re,[j(a.$slots,\"work-orders-extra\",{},void 0,!0)])):d(\"\",!0)])):d(\"\",!0)],64))),128)),T.value?(n(),r(\"div\",de,[s(\"div\",oe,[t[2]||(t[2]=s(\"div\",{class:\"permission-card__info\"},[s(\"div\",{class:\"permission-card__title\"},\"Parts Department"
+  },
+  {
+   "u": "/css/PermissionGrid.D-lu4-vi.css",
+   "t": ".permission-grid[data-v-65167687]{display:flex;flex-direction:column;gap:16px;width:100%;font-family:Inter,sans-serif}.permission-card[data-v-65167687]{background:#fff;border:1px solid var(--color-grey-200);border-radius:8px;box-shadow:0 2px 4px #0000000d;padding:16px 20px}.permission-card__main[data-v-65167687]{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}.permission-card__info[data-v-65167687]{min-width:0}.permission-card__title[data-v-65167687]{font-size:16px;font-weight:600;color:var(--color-grey-900);line-height:1.4}.permission-card__description[data-v-65167687]{margin-top:2px;font-size:12px;font-weight:500;color:var(--color-grey-500);line-height:1.4}.permission-card__columns[data-v-65167687]{display:flex;align-items:flex-start;gap:32px;flex-shrink:0}.permission-card__column[data-v-65167687]{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:56px}.permission-card__column-label[data-v-65167687]{font-size:12px;font-weight:500;color:var(--color-grey-500);text-align:center;white-space:nowrap}.permission-card__parent-toggle[data-v-65167687]{flex-shrink:0}.permission-card__embed[data-v-65167687]{margin-top:16px}.permission-checkbox[data-v-65167687]{margin:0}.permission-checkbox[data-v-65167687] .q-checkbox__bg{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--color-grey-300);background:#fff;color:var(--color-primary-500);transition:background-color .15s ease,border-color .15s ease}.permission-checkbox[data-v-65167687] .q-checkbox__svg{color:#fff;padding:3px}.permission-checkbox[data-v-65167687] .q-checkbox__truthy{stroke:#fff}.permission-checkbox[data-v-65167687] .q-checkbox__inner--truthy .q-checkbox__bg{background:var(--color-primary-500);border-color:var(--color-primary-500)}.parts-panel[data-v-65167687]{background:var(--color-grey-50);border-radius:8px;padding:4px 16px}.parts-panel__row[data-v-65167687]{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:12px 0}.parts-panel__row+.parts-panel__row[data-v-65167687]{border-top:1px solid var(--color-grey-200)}.parts-panel__title[data-v-65167687]{font-size:14px;font-weight:600;color:var(--color-grey-900);line-height:1.4}body.body--dark .permission-card[data-v-65167687]{background:var(--dark-surface-muted);border-color:var(--phoenix-gray-800)}body.body--dark .permission-card__title[data-v-65167687]{color:var(--dark-text-strong)}body.body--dark .permission-card__description[data-v-65167687],body.body--dark .permission-card__column-label[data-v-65167687]{color:var(--dark-text-muted)}body.body--dark .permission-checkbox[data-v-65167687] .q-checkbox__bg{background:var(--dark-surface-muted);border-color:var(--phoenix-gray-800)}body.body--dark .parts-panel[data-v-65167687]{background:var(--dark-surface-sunken)}body.body--dark .parts-panel__title[data-v-65167687]{color:var(--dark-text-strong)}body.body--dark .parts-panel__row+.parts-panel__row[data-v-65167687]{border-top-color:var(--phoenix-gray-800)}@media(max-width:700px){.permission-card__main[data-v-65167687]{flex-direction:column;gap:12px}.permission-card__columns[data-v-65167687]{gap:20px;justify-content:flex-start}.permission-card__column[data-v-65167687]{min-width:0;flex:1 1 0;align-items:flex-start}.parts-panel[data-v-65167687]{padding:4px 12px}.parts-panel__row[data-v-65167687]{flex-direction:column;gap:12px}}\n"
+  },
+  {
+   "u": "/api/organizations/d55bc308-e61a-438d-b5f1-c7a73c89d49f/roles?pagination[rowsPerPage]=100",
+   "t": "{\"data\":[{\"id\":\"04df46a9-ffe4-4894-bf5c-7828c1ab90ff\",\"fePermissionsCount\":1,\"name\":\"QA AR Reports Only\",\"usersCount\":0,\"description\":\"QA SV-11315: Reports page access only\",\"isEditable\":true,\"isDeletable\":true,\"type\":\"custom\",\"templateId\":null,\"templateName\":null},{\"id\":\"0d6c87c1-5ec4-4883-91a6-e1f7c7f5b635\",\"fePermissionsCount\":1,\"name\":\"ZZAUTOTEST V1R-32 Reports on Customers View off\",\"usersCount\":0,\"description\":\"ZZAUTOTEST C1079005: Reports page access ON, Customers View OFF (nothing else)\",\"isEditable\":true,\"isDeletable\":true,\"type\":\"custom\",\"templateId\":null,\"templateName\":null},{\"id\":\"224da903-6f11-4c79-98f2-d1bd3c4ea892\",\"fePermissionsCount\":8,\"name\":\"Sales Representative\",\"usersCount\":9,\"description\":\"Reports and financial data access only\",\"isEditable\":true,\"isDeletable\":false,\"type\":\"system\",\"templateId\":\"1f6a2181-20e9-4fc0-8290-8cb205480b35\",\"templateName\":\"Sales Representative\"},{\"id\":\"2c04abb3-f348-4349-81e2-f934afe33e91\",\"fePermissionsCount\":25,\"name\":\"Service Advisor\",\"usersCount\":0,\"description\":\"Work order and customer management with invoicing access\",\"isEditable\":true,\"isDeletable\":false,\"type\":\"system\",\"templateId\":\"1181d87d-3cc6-456a-9fe1-01139f10ae74\",\"templateName\":\"Service Advisor\"},{\"id\":\"2f39dd36-49fb-4bcc-b0b3-107854c5a82c\",\"fePermissionsCount\":31,\"name\":\"Parts Manager\",\"usersCount\":0,\"description\":\"Full parts and inventory control\",\"isEditable\":true,\"isDeletable\":false,\"type\":\"system\",\"templateId\":\"40f0154c-23a3-4950-9124-f6740c65733d\",\"templateName\":\"Parts Manager\"},{\"id\":\"3b6b824d-67c2-4e0e-918b-e2f99bd18ebb\",\"fePermissionsCount\":1,\"name\":\"ZZAUTOTEST AR AP Reports only\",\"usersCount\":0,\"description\":null,\"isEditable\":true,\"isDeletable\":true,\"type\":\"custom\",\"templateId\":null,\"templateName\":null},{\"id\":\"56022b53-e77e-4d42-ba8a-4381e0852227\",\"fePermissionsCount\":36,\"name\":\"Service Manager\",\"usersCount\":0,\"description\":\"Full operational access, limited admin (App Settings + Wages only)\",\"isEditable\":true,\"isDeletable\":false,\"type\":\"system\",\"templateId\":\"5f2b50ac-86d0-410f-a625-c453d37936ea\",\"templateName\":\"Service Manager\"},{\"id\":\"6041aa21-4397-4a55-97ab-993b0b7751bb\",\"fePermissionsCount\":25,\"name\":\"Office User\",\"usersCount\":0,\"description\":\"Office administration, reporting, and back-office operations\",\"isEditable\":false,\"isDeletable\":false,\"type\":\"system\",\"templateId\":\"3b93f619-bcc4-4bc0-8d99-9cb0b061a761\",\"templateName\":\"Office User\"},{\"id\":\"73f72525-3d67-436b-9c1d-12677cdf9883\",\"fePermissionsCount\":57,\"name\":\"Admin\",\"usersCount\":84,\"description\":\"Full system access\",\"isEditable\":true,\"isDeletable\":false,\"type\":\"system\",\"templateId\":\"f2b32f17-753d-46db-882b-690ec1ace39d\",\"templateName\":\"Admin\"},{\"id\":\"77acfeb4-3b1e-4fe6-b54c-0de5d60d02db\",\"fePermissionsCount\":3,\"name\":\"Time Clock User\",\"usersCount\":0,\"description\":\"Clock in\\/out only\",\"isEditable\":false,\"isDeletable\":false,\"type\":\"system\",\"templateId\":\"02035ed5-a75c-4e5e-94d0-4ade7c663422\",\"templateName\":\"Time Clock User\"},{\"id\":\"7bcb00b6-38d6-4868-b770-ffd9fc4e2448\",\"fePermissionsCount\":28,\"name\":\"Parts Technician\",\"usersCount\":4,\"description\":\"Parts operations and vendor management\",\"isEditable\":true,\"isDeletable\":false,\"type\":\"system\",\"templateId\":\"fdcbbfc9-30f5-4e3a-8fbb-c33e48da8eb6\",\"templateName\":\"Parts Technician\"},{\"id\":\"7c070a56-c485-4537-9703-7566240766a3\",\"fePermissionsCount\":41,\"name\":\"ZZAUTOTEST Aging no Reports\",\"usersCount\":0,\"description\":null,\"isEditable\":true,\"isDeletable\":true,\"type\":\"custom\",\"templateId\":\"f2b32f17-753d-46db-882b-690ec1ace39d\",\"templateName\":\"Admin\"},{\"id\":\"ad1a793e-7cc7-48a5-8f93-507c03562b32\",\"fePermissionsCount\":31,\"name\":\"Senior Service Advisor\",\"usersCount\":1,\"description\":\"Work order and customer management with expanded access\",\"isEditable\":true,\"isDeletable\":false,\"type\":\"system\",\"templateId\":\"79a4a81e-f5c8-4c63-8e24-fbf56dc94dc0\",\"templateName\":\"Senior Service Advisor\"},{\"id\":\"af8d02b5-ecd1-4205-a82f-32a4d5bb1015\",\"fePermissionsCount\":6,\"name\":\"Technician\",\"usersCount\":55,\"description\":\"Assigned work orders and time tracking (Tech View)\",\"isEditable\":true,\"isDeletable\":false,\"type\":\"system\",\"templateId\":\"249df24e-4f65-4914-9dd3-525259904c37\",\"templateName\":\"Technician\"},{\"id\":\"b7aa0ea7-fb0a-49ff-9f70-1feb2e6d7b9e\",\"fePermissionsCount\":1,\"name\":\"ZZAUTOTEST V1R-53 Reports page access only\",\"usersCount\":0,\"description\":\"ZZAUTOTEST C1079026: only Reports page access\",\"isEditable\":true,\"isDeletable\":true,\"type\":\"custom\",\"templateId\":null,\"templateName\":null},{\"id\":\"e9838ada-b4eb-4401-9489-ae9f9870457e\",\"fePermissionsCount\":23,\"name\":\"Foreman\",\"usersCount\":12,\"description\":\"Oversees technicians and work orders\",\"isEditable\":true,\"isDeletable\":false,\"type\":\"system\",\"templateId\":\"f6d5a89b-0090-4da3-be7b-0de3d6a16977\",\"templateName\":\"Foreman\"}],\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":100}}"
+  }
+ ],
+ "form": [
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "checkbox"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ],
+  [
+   "Create Role",
+   "",
+   "false",
+   "switch"
+  ]
+ ],
+ "cards": [
+  "SETTINGS / info / Settings",
+  "Create Role / close / Basic Details"
+ ],
+ "repBefore": "false",
+ "repAfter": "true",
+ "ticks": [
+  [
+   "/Invoicing & payments/i",
+   0,
+   "Create Role\nclose\nBasic Details\nAdd basic information about the role you are creating\nRole Name*\nDescription\nPermissions\nSet permissions that determine what users in this role can see and do.\nsearch\nWork orders\nManage work orders the core operational records in ShopView.\nView\nCreate & Edit\nDelete\nVi"
+  ],
+  [
+   "/Work orders/i",
+   0,
+   "Create Role\nclose\nBasic Details\nAdd basic information about the role you are creating\nRole Name*\nDescription\nPermissions\nSet permissions that determine what users in this role can see and do.\nsearch\nWork orders\nManage work orders the core operational records in ShopView.\nView\nCreate & Edit\nDelete\nVi"
+  ]
+ ],
+ "roles": [
+  {
+   "id": "04df46a9-ffe4-4894-bf5c-7828c1ab90ff",
+   "name": "QA AR Reports Only",
+   "n": 0
+  },
+  {
+   "id": "0d6c87c1-5ec4-4883-91a6-e1f7c7f5b635",
+   "name": "ZZAUTOTEST V1R-32 Reports on Customers View off",
+   "n": 0
+  },
+  {
+   "id": "224da903-6f11-4c79-98f2-d1bd3c4ea892",
+   "name": "Sales Representative",
+   "n": 0
+  },
+  {
+   "id": "2c04abb3-f348-4349-81e2-f934afe33e91",
+   "name": "Service Advisor",
+   "n": 0
+  },
+  {
+   "id": "2f39dd36-49fb-4bcc-b0b3-107854c5a82c",
+   "name": "Parts Manager",
+   "n": 0
+  },
+  {
+   "id": "3b6b824d-67c2-4e0e-918b-e2f99bd18ebb",
+   "name": "ZZAUTOTEST AR AP Reports only",
+   "n": 0
+  },
+  {
+   "id": "56022b53-e77e-4d42-ba8a-4381e0852227",
+   "name": "Service Manager",
+   "n": 0
+  },
+  {
+   "id": "6041aa21-4397-4a55-97ab-993b0b7751bb",
+   "name": "Office User",
+   "n": 0
+  },
+  {
+   "id": "73f72525-3d67-436b-9c1d-12677cdf9883",
+   "name": "Admin",
+   "n": 0
+  },
+  {
+   "id": "77acfeb4-3b1e-4fe6-b54c-0de5d60d02db",
+   "name": "Time Clock User",
+   "n": 0
+  },
+  {
+   "id": "7bcb00b6-38d6-4868-b770-ffd9fc4e2448",
+   "name": "Parts Technician",
+   "n": 0
+  },
+  {
+   "id": "7c070a56-c485-4537-9703-7566240766a3",
+   "name": "ZZAUTOTEST Aging no Reports",
+   "n": 0
+  },
+  {
+   "id": "ad1a793e-7cc7-48a5-8f93-507c03562b32",
+   "name": "Senior Service Advisor",
+   "n": 0
+  },
+  {
+   "id": "af8d02b5-ecd1-4205-a82f-32a4d5bb1015",
+   "name": "Technician",
+   "n": 0
+  },
+  {
+   "id": "b7aa0ea7-fb0a-49ff-9f70-1feb2e6d7b9e",
+   "name": "ZZAUTOTEST V1R-53 Reports page access only",
+   "n": 0
+  },
+  {
+   "id": "e9838ada-b4eb-4401-9489-ae9f9870457e",
+   "name": "Foreman",
+   "n": 0
+  }
+ ],
+ "links": {
+  "Invoice {\"kind\":\"work_order\",\"targetId\":\"<id>\",\"workplaceId\":\"<id>\"}": [
+   [
+    "ZZAUTOTEST AR Customer A",
+    "S11315-17583",
+    "Staging Heavy Duty - 9919",
+    "2026-10-21",
+    10000
+   ],
+   [
+    "ZZAUTOTEST AR Customer A",
+    "S11315-17586",
+    "Staging Lethbridge - 4310",
+    "2026-11-10",
+    2000
+   ],
+   [
+    "ZZAUTOTEST AR R07 Future Date",
+    "S11315-17848",
+    "Staging Heavy Duty - 9919",
+    "2026-11-01",
+    6500
+   ],
+   [
+    "ZZAUTOTEST AR R30 Netting",
+    "S11315-17852",
+    "Staging Heavy Duty - 9919",
+    "2026-11-05",
+    5000
+   ]
+  ],
+  "Credit Memo null": [
+   [
+    "ZZAUTOTEST AR R74 Credit Today",
+    "CM11315-4316",
+    "Staging Heavy Duty - 9919",
+    "2026-11-11",
+    -800
+   ],
+   [
+    "ZZX Credit Today R3",
+    "CM11315-4200",
+    "Staging Heavy Duty - 9919",
+    "2026-11-11",
+    -12000
+   ],
+   [
+    "ZZX Types P68",
+    "CM11315-4319",
+    "Staging Heavy Duty - 9919",
+    "2026-11-11",
+    -3000
+   ],
+   [
+    "Andrews' Truck & Trailer Repair LLC",
+    "CM11315-4190",
+    "Staging Heavy Duty - 9919",
+    "2026-11-10",
+    -1234
+   ]
+  ],
+  "Deposit null": [
+   [
+    "ZZX Own Loc P68",
+    "DEP11315-4717",
+    "Staging Lethbridge - 4310",
+    "2026-11-11",
+    -2500
+   ],
+   [
+    "ZZX Types P68",
+    "DEP11315-4719",
+    "Staging Heavy Duty - 9919",
+    "2026-11-11",
+    -2000
+   ],
+   [
+    "ZZAUTOTEST AR Customer A",
+    "DEP11315-4707",
+    "Staging Heavy Duty - 9919",
+    "2026-11-10",
+    -2500
+   ],
+   [
+    "ZZAUTOTEST AR R18 Deposits",
+    "DEP11315-4714",
+    "Staging Heavy Duty - 9919",
+    "2026-11-02",
+    -5000
+   ]
+  ],
+  "Invoice {\"kind\":\"part_sale\",\"targetId\":\"<id>\",\"workplaceId\":\"<id>\"}": [
+   [
+    "ZZAUTOTEST AR Customer A",
+    "P11315-248",
+    "Staging Heavy Duty - 9919",
+    "2026-09-15",
+    30000
+   ],
+   [
+    "Doi Truck Center",
+    "P3-188",
+    "Staging Lethbridge - 4310",
+    "2026-07-23",
+    52895
+   ]
+  ]
+ }
+}
