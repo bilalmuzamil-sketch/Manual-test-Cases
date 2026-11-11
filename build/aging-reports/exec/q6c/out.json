@@ -1,0 +1,224 @@
+{
+ "F-0600": {
+  "loc": [
+   "Select all",
+   "1 selected",
+   "Staging Heavy Duty - 9919",
+   "ZZAUTOTEST V1R-87 Location C",
+   "Staging Lethbridge - 4310",
+   "Clear selection"
+  ],
+  "menuHead": [
+   "search",
+   "All categories",
+   "All categories are included. Pick one or more to narrow.",
+   "Uncategorized",
+   "70%override",
+   "Auto-Freight"
+  ],
+  "chips": [
+   "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "list Category: HD-Hose & Fittings keyboard_arrow_down cancel",
+   "local_shipping Vendor: All vendors keyboard_arrow_down",
+   "place Location: Staging Lethbri... keyboard_arrow_down cancel"
+  ],
+  "url": "https://sv11315.qa.shopview.com/reports/inventory-value?categoryIds=5e88a91e-ad39-4534-ba5a-df2715e5baf4&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2",
+  "csv": {
+   "label": "Download (CSV)",
+   "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/q6c/F-0600-inventory-value-report.csv",
+   "name": "inventory-value-report.csv",
+   "bytes": 106332,
+   "notes": [
+    "check_circle Success Data exported successfully. Close"
+   ],
+   "secs": 3,
+   "csvHead": [
+    "\"As of: 2026-11-11\"",
+    "\"Locations: Staging Lethbridge - 4310\"",
+    "\"Part #\",Description,Category,Vendor,Location,Qty,\"Unit Cost\",\"Unit Sell\",Margin,\"Margin %\",\"Total Sell\",\"Total Cost\"",
+    "4657-1555,\"6M2T #06 HYD HOSE SAE100R16 3/8\"\"\",\"HD-Hose & Fittings\",\"Jones Creek Mobile Truck Repair\",\"Staging Lethbridge - 4310\",376.00,5.75,11.27,2075.52,49.0,4237.52,2162.00",
+    "6TH8NC,\"#6 HYD. HOSE NON-CONDUCTIVE X10356 4467-1203\",\"HD-Hose & Fittings\",—,\"Staging Lethbridge - 4310\",150.00,12.69,24.40,1756.50,48.0,3660.00,1903.50",
+    "4657-1571,\"16M2T #16 HYD HOSE SAE100R16 1\"\"\",\"HD-Hose & Fittings\",\"Jones Creek Mobile Truck Repair\",\"Staging Lethbridge - 4310\",153.00,11.55,22.21,1630.98,48.0,3398.13,1767.15",
+    "27001,\"3/16\"\" FUEL HOSE 25'\",\"HD-Hose & Fittings\",\"Apex Truck & Trailer Repair\",\"Staging Lethbridge - 4310\",25.00,59.61,99.35,993.50,40.0,2483.75,1490.25",
+    "4657-1559,\"8M2T #08 HYD HOSE SAE100R16 1/2\"\"\",\"HD-Hose & Fittings\",\"Jones Creek Mobile Truck Repair\",\"Staging Lethbridge - 4310\",190.00,6.22,12.20,1136.20,49.0,2318.00,1181.80"
+   ],
+   "csvLines": 619,
+   "csvTail": [
+    "861-2,\"1/8\"\" BRASS AIR SHIFT TRANSMISSION NUT\",\"HD-Hose & Fittings\",\"Butautas' Truck & Trailer Repair LLC\",\"Staging Lethbridge - 4310\",2.00,0.24,0.60,0.72,60.0,1.20,0.48",
+    "N2403-04-04,\"#04 MALE JIC X #04 MALE JIC STRAIGHT\",\"HD-Hose & Fittings\",\"Butautas' Truck & Trailer Repair LLC\",\"Staging Lethbridge - 4310\",1.00,0.48,1.14,0.66,57.9,1.14,0.48",
+    "Totals,,,,,7199.00,,,32366.86,48.0,67381.94,35015.08",
+    ""
+   ]
+  },
+  "pdf": {
+   "label": "Download (PDF)",
+   "file": null,
+   "notes": [
+    "check_circle Success Data exported successfully. Close",
+    "warning This report is too large to export. Narrow the date range or filters, then try again. Close"
+   ],
+   "secs": 302
+  },
+  "answers": [
+   {
+    "st": 200,
+    "url": "/api/reporting/reports/inventory-value/export?format=csv&range=custom&start_date=2026-11-11T07%3A00%3A00.000Z&end_date=2026-11-12T06%3A59%3A59.999Z&categories=5e88a91e-ad39-4534-ba5a-df2715e5baf4&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&columns=part_number%2Cdescription%2Ccategory%2Cvendor%2Clocation%2Cqty%2Cunit_cost%2Cunit_sell%2Cmargin%2Cmargin_pct%2Ctotal_sell%2Ctotal_cost&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=total_cost&pagination%5Bdescending%5D=true",
+    "hdr": {
+     "x-request-id": "51a029c8-3e3e-42a9-a0db-563ca4ff89d0",
+     "x-user-id": "6d71382d-4ddb-4707-a0f3-33b4bb78b0b8",
+     "content-type": "text/csv; charset=UTF-8",
+     "x-organization-id": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+     "x-location-id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+     "x-powered-by": "PHP/8.5.12",
+     "server": "nginx/1.27.5"
+    }
+   },
+   {
+    "done": "csv",
+    "ms": 650
+   },
+   {
+    "done": "pdf",
+    "ms": 31590
+   },
+   {
+    "st": 500,
+    "url": "/api/reporting/reports/inventory-value/export?format=pdf&range=custom&start_date=2026-11-11T07%3A00%3A00.000Z&end_date=2026-11-12T06%3A59%3A59.999Z&categories=5e88a91e-ad39-4534-ba5a-df2715e5baf4&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&columns=part_number%2Cdescription%2Ccategory%2Cvendor%2Clocation%2Cqty%2Cunit_cost%2Cunit_sell%2Cmargin%2Cmargin_pct%2Ctotal_sell%2Ctotal_cost&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=total_cost&pagination%5Bdescending%5D=true",
+    "hdr": {
+     "x-request-id": "29b4060e-6029-4548-a6a2-b41aab63f98f",
+     "x-user-id": "6d71382d-4ddb-4707-a0f3-33b4bb78b0b8",
+     "content-type": "application/problem+json",
+     "x-organization-id": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+     "x-location-id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+     "x-powered-by": "PHP/8.5.12",
+     "server": "nginx/1.27.5"
+    },
+    "body": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later.\"},{\"requestId\":\"29b4060e-6029-4548-a6a2-b41aab63f98f\"}]}"
+   }
+  ]
+ },
+ "G-0245": {
+  "loc": [
+   "Select all",
+   "1 selected",
+   "Staging Heavy Duty - 9919",
+   "ZZAUTOTEST V1R-87 Location C",
+   "Staging Lethbridge - 4310",
+   "Clear selection"
+  ],
+  "menuHead": [
+   "search",
+   "All categories",
+   "All categories are included. Pick one or more to narrow.",
+   "Uncategorized",
+   "70%override",
+   "Auto-Freight"
+  ],
+  "chips": [
+   "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "list Category: HD-Filters keyboard_arrow_down cancel",
+   "local_shipping Vendor: All vendors keyboard_arrow_down",
+   "place Location: Staging Lethbri... keyboard_arrow_down cancel"
+  ],
+  "url": "https://sv11315.qa.shopview.com/reports/inventory-value?categoryIds=d64e8f1b-31e7-4c39-bedf-0846d97963cc&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2",
+  "csv": {
+   "label": "Download (CSV)",
+   "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/q6c/G-0245-inventory-value-report.csv",
+   "name": "inventory-value-report.csv",
+   "bytes": 34985,
+   "notes": [
+    "check_circle Success Data exported successfully. Close"
+   ],
+   "secs": 3,
+   "csvHead": [
+    "\"As of: 2026-11-11\"",
+    "\"Locations: Staging Lethbridge - 4310\"",
+    "\"Part #\",Description,Category,Vendor,Location,Qty,\"Unit Cost\",\"Unit Sell\",Margin,\"Margin %\",\"Total Sell\",\"Total Cost\"",
+    "A4720921705,\"Fuel Filter Kit\",HD-Filters,\"Willoughby Mechanical Services\",\"Staging Lethbridge - 4310\",17.00,116.73,162.91,785.06,28.4,2769.47,1984.41",
+    "2599273C92,\"LONESTAR AIR FILTERS\",HD-Filters,—,\"Staging Lethbridge - 4310\",2.00,526.70,752.44,451.48,30.0,1504.88,1053.40",
+    "H075-0953-001,\"HYDRAULIC FILTER, HEIL\",HD-Filters,—,\"Staging Lethbridge - 4310\",3.00,238.82,351.21,337.17,32.0,1053.63,716.46",
+    "FK11011,\"FUEL FILTER KIT\",HD-Filters,\"Willoughby Mechanical Services\",\"Staging Lethbridge - 4310\",6.00,113.09,168.79,334.20,33.0,1012.74,678.54",
+    "4169395C1,\"Fuel Filter\",HD-Filters,\"Dodgeville Truck and Trailer Repair\",\"Staging Lethbridge - 4310\",4.00,151.50,243.08,366.32,37.7,972.32,606.00"
+   ],
+   "csvLines": 250,
+   "csvTail": [
+    "LF3341,\"OIL LUBE FILTER (51068, P552518, B233, LF689)\",HD-Filters,\"Willoughby Mechanical Services\",\"Staging Lethbridge - 4310\",1.00,4.19,8.73,4.54,52.0,8.73,4.19",
+    "BF840,\"FUEL FILTER (FF149)\",HD-Filters,—,\"Staging Lethbridge - 4310\",2.00,0.01,0.02,0.02,50.0,0.04,0.02",
+    "Totals,,,,,642.00,,,16665.96,38.2,43654.20,26988.24",
+    ""
+   ]
+  },
+  "pdf": {
+   "label": "Download (PDF)",
+   "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/q6c/G-0245-inventory-value-report.pdf",
+   "name": "inventory-value-report.pdf",
+   "bytes": 120293,
+   "notes": [
+    "check_circle Success Data exported successfully. Close"
+   ],
+   "secs": 18,
+   "pdfHead": [
+    "Inventory Value",
+    "Staging Foothills Group Inc",
+    "Staging Heavy Duty - 9919",
+    "As of: 2026-11-11",
+    "Locations: Staging Lethbridge - 4310",
+    "Part #           Description                                                                          Category     Vendor                                                Location     Qty    Unit Cost   Unit Sell    Margin   Margin %   Total Sell     Total Cost",
+    "A4720921705      Fuel Filter Kit                                                                      HD-Filters   Willoughby Mechanical Services        Staging Lethbridge - 4310   17.00   $116.73     $162.91     $785.06     28.4%    $2,769.47      $1,984.41",
+    "2599273C92       LONESTAR AIR FILTERS                                                                 HD-Filters   —                                     Staging Lethbridge - 4310    2.00   $526.70     $752.44     $451.48     30.0%    $1,504.88      $1,053.40",
+    "H075-0953-001    HYDRAULIC FILTER, HEIL                                                               HD-Filters   —                                     Staging Lethbridge - 4310    3.00   $238.82     $351.21     $337.17     32.0%    $1,053.63       $716.46",
+    "FK11011          FUEL FILTER KIT                                                                      HD-Filters   Willoughby Mechanical Services        Staging Lethbridge - 4310    6.00   $113.09     $168.79     $334.20     33.0%    $1,012.74       $678.54",
+    "4169395C1        Fuel Filter                                                                          HD-Filters   Dodgeville Truck and Trailer Repair   Staging Lethbridge - 4310    4.00   $151.50     $243.08     $366.32     37.7%     $972.32        $606.00",
+    "FK13850NN        Fuel Filter Kit, DD13/15/16 (2014-2020)                                              HD-Filters   Willoughby Mechanical Services        Staging Lethbridge - 4310    5.00   $106.93     $164.51     $287.90     35.0%     $822.55        $534.65",
+    "LF3654           Engine Oil Filter, Mack/Volvo                                                        HD-Filters   Willoughby Mechanical Services        Staging Lethbridge - 4310   16.00     $25.31     $44.56     $308.00     43.2%     $712.96        $404.96",
+    "FK48556          FUEL FILTER KIT, DETROIT DD13, 15, 16                                                HD-Filters   —                                     Staging Lethbridge - 4310    5.00     $79.64    $126.41     $233.85     37.0%     $632.05        $398.20",
+    "LF14009NN        Engine Oil FIlter, Cummins ISL/L9                                                    HD-Filters   Willoughby Mechanical Services        Staging Lethbridge - 4310    6.00     $63.85    $104.67     $244.92     39.0%     $628.02        $383.10",
+    "FS20194          Fuel Filter                                                                          HD-Filters   Willoughby Mechanical Services        Staging Lethbridge - 4310    3.00   $127.21     $189.86     $187.95     33.0%     $569.58        $381.63",
+    "FS20121          FUEL/WATER SEPARATOR                                                                 HD-Filters   —                                     Staging Lethbridge - 4310    3.00   $121.29     $220.04     $296.25     44.9%     $660.12        $363.87",
+    "DN P634517       Air Filter                                                                           HD-Filters   Willoughby Mechanical Services        Staging Lethbridge - 4310    2.00   $177.50     $261.02     $167.04     32.0%     $522.04        $355.00",
+    "3255             FUEL FILTER                                                                          HD-Filters   New Castle Diesel Performance         Staging Lethbridge - 4310   10.00     $34.65     $61.00     $263.50     43.2%     $610.00        $346.50",
+    "CV50628          CRANKCASE VENT FILTER KIT, CUMMINS ISL9/L9                                           HD-Filters   —                                     Staging Lethbridge - 4310    2.00   $167.35     $246.10     $157.50     32.0%     $492.20        $334.70",
+    "300458           FUEL FILTER KIT WF10458                                                              HD-Filters   New Castle Diesel Performance         Staging Lethbridge - 4310    3.00   $106.67     $139.11      $97.32     23.3%     $417.33        $320.01",
+    "23304-EV023      Spin-On Fuel Filter, Hino                                                            HD-Filters   Ideal Truck & Equipment Repair        Staging Lethbridge - 4310    4.00     $77.60    $123.17     $182.28     37.0%     $492.68        $310.40"
+   ],
+   "pdfPic": "/home/user/Manual-test-Cases/build/aging-reports/exec/q6c/G-0245-pdf-p1-1.png",
+   "pdfPages": 6
+  },
+  "answers": [
+   {
+    "st": 200,
+    "url": "/api/reporting/reports/inventory-value/export?format=csv&range=custom&start_date=2026-11-11T07%3A00%3A00.000Z&end_date=2026-11-12T06%3A59%3A59.999Z&categories=d64e8f1b-31e7-4c39-bedf-0846d97963cc&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&columns=part_number%2Cdescription%2Ccategory%2Cvendor%2Clocation%2Cqty%2Cunit_cost%2Cunit_sell%2Cmargin%2Cmargin_pct%2Ctotal_sell%2Ctotal_cost&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=total_cost&pagination%5Bdescending%5D=true",
+    "hdr": {
+     "x-request-id": "3b06909a-6ce2-498f-bc47-55286395c05b",
+     "x-user-id": "6d71382d-4ddb-4707-a0f3-33b4bb78b0b8",
+     "content-type": "text/csv; charset=UTF-8",
+     "x-organization-id": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+     "x-location-id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+     "x-powered-by": "PHP/8.5.12",
+     "server": "nginx/1.27.5"
+    }
+   },
+   {
+    "done": "csv",
+    "ms": 484
+   },
+   {
+    "st": 200,
+    "url": "/api/reporting/reports/inventory-value/export?format=pdf&range=custom&start_date=2026-11-11T07%3A00%3A00.000Z&end_date=2026-11-12T06%3A59%3A59.999Z&categories=d64e8f1b-31e7-4c39-bedf-0846d97963cc&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&columns=part_number%2Cdescription%2Ccategory%2Cvendor%2Clocation%2Cqty%2Cunit_cost%2Cunit_sell%2Cmargin%2Cmargin_pct%2Ctotal_sell%2Ctotal_cost&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=total_cost&pagination%5Bdescending%5D=true",
+    "hdr": {
+     "x-request-id": "c4c5ca08-4da0-4896-98f6-f47bacf84c5e",
+     "x-user-id": "6d71382d-4ddb-4707-a0f3-33b4bb78b0b8",
+     "content-type": "application/pdf; charset=UTF-8",
+     "x-organization-id": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+     "x-location-id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+     "x-powered-by": "PHP/8.5.12",
+     "server": "nginx/1.27.5"
+    }
+   },
+   {
+    "done": "pdf",
+    "ms": 15960
+   }
+  ]
+ }
+}

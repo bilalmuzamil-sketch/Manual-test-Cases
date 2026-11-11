@@ -1,0 +1,30 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, q3d + q6 + q6b + q6c + q9 + prod q3p/q3p3"
+ },
+ "results": {
+  "C715475": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 2: \"Download (PDF)\" gives no PDF - after about 30 seconds the screen says \"This report is too large to export. Narrow the date range or filters, then try again.\"",
+   "bold_steps": [
+    2
+   ],
+   "source": "Test case step 2 (Inventory Value works as before the release): \"The PDF downloads.\" Before the release (production v26.45.3-f5ba431) Inventory Value's PDF downloads for one location (1,439 parts) and for every location (2,856 parts).",
+   "observed": [
+    "Set up: Inventory Value with one location ticked (\"Staging Lethbridge - 4310\"), as of today; to see the size, the Category filter was used to make smaller lists.",
+    "Do: \u22ef menu > \"Download (PDF)\".",
+    "You see: no PDF; after about 30 seconds the message \"This report is too large to export. Narrow the date range or filters, then try again.\"",
+    "It fails for every list tried from 614 parts up (614, 1,194, 1,464, 2,071, 2,896, 3,089, 3,627); a list of 245 parts prints. Production printed 1,439 and 2,856 parts before the release.",
+    "The link and the CSV work as before (the CSV of all 3,627 parts downloads in seconds).",
+    "The same failure after about 30 seconds is open for the A/P reports as SV-12539."
+   ],
+   "ticket": "Ticket prepared and with the QA lead for approval (number added here when filed). Same failure as https://shopview.atlassian.net/browse/SV-12539 (Open, read 11 Nov 2026 ~20:10 UTC) - the QA lead decides whether it goes there.",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the ticket is fixed.",
+   "ticket_held": true,
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715475-prod-q3p-C715475-iv-pdf-p1-01.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715475-q9-C715475-3-message.png"
+   ]
+  }
+ }
+}

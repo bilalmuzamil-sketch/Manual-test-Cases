@@ -1,0 +1,84 @@
+{
+ "ard": {
+  "secs": 23,
+  "file": "ar-aging-detail.pdf",
+  "notes": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "answers": [
+   {
+    "st": 200,
+    "ms": 22128,
+    "url": "/api/reporting/reports/ar-aging-detail/export?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pag"
+   }
+  ]
+ },
+ "apd": {
+  "secs": 151,
+  "file": null,
+  "notes": [],
+  "answers": [
+   {
+    "st": 400,
+    "ms": 825,
+    "url": "/api/reporting/reports/ap-aging-detail/export?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagin",
+    "body": "{\"errors\":[{\"error\":\"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\"}]}"
+   }
+  ]
+ },
+ "apu": {
+  "secs": 151,
+  "file": null,
+  "notes": [],
+  "answers": [
+   {
+    "st": 400,
+    "ms": 784,
+    "url": "/api/reporting/reports/ap-unpaid-invoices/export?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&paginatio",
+    "body": "{\"errors\":[{\"error\":\"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\"}]}"
+   }
+  ]
+ },
+ "arc": {
+  "secs": 26,
+  "file": "ar-aging-collection.pdf",
+  "notes": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "answers": [
+   {
+    "st": 200,
+    "ms": 24920,
+    "url": "/api/reporting/reports/ar-aging-collection/export?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&paginati"
+   }
+  ]
+ },
+ "sbcx": {
+  "secs": 14,
+  "file": "sales-by-customer-expanded.pdf",
+  "notes": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "answers": [
+   {
+    "st": 200,
+    "ms": 12937,
+    "url": "/api/reporting/reports/sales-by-customer/export?variant=expanded&format=pdf&range=custom&start_date=2026-11-01T06%3A00%3A00.000Z&end_date=2026-11-12T06%3A59%3A5"
+   }
+  ]
+ },
+ "wip": {
+  "secs": 7,
+  "file": "wip-2-report.pdf",
+  "notes": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "answers": [
+   {
+    "st": 200,
+    "ms": 6608,
+    "url": "/api/reporting/reports/work-in-progress/export?format=pdf&tab=ApprovedPartiallyCompleted&from=2026-11-11T07:00:00.000Z&to=2026-11-12T06:59:59.999Z&locations=19a"
+   }
+  ]
+ }
+}
