@@ -1,0 +1,483 @@
+{
+ "key": "ars",
+ "route": "/reports/ar-aging-summary",
+ "shots": [
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//01-ars-0-open.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//02-ars-menu-location.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//03-ars-menu-customer.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//04-ars-menu-pastdue.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//05-ars-more-hover.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//06-ars-more-menu.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//07-ars-focus-link.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//08-ars-dark.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//09-ars-menu-location-dark.png"
+ ],
+ "st": {
+  "title": [],
+  "chips": [
+   {
+    "text": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "icons": [
+     "calendar_today",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "backgroundColor": "rgba(56, 116, 255, 0.16)",
+    "color": "rgb(56, 116, 255)",
+    "borderColor": "rgb(56, 116, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     283,
+     120,
+     185,
+     28
+    ]
+   },
+   {
+    "text": "person Customer: All customers keyboard_arrow_down",
+    "icons": [
+     "person",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "color": "rgb(54, 65, 82)",
+    "borderColor": "rgb(54, 65, 82)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     482,
+     120,
+     227,
+     28
+    ]
+   },
+   {
+    "text": "hourglass_empty Past due: Any keyboard_arrow_down",
+    "icons": [
+     "hourglass_empty",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "color": "rgb(54, 65, 82)",
+    "borderColor": "rgb(54, 65, 82)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     723,
+     120,
+     157,
+     28
+    ]
+   },
+   {
+    "text": "place Location: All locations keyboard_arrow_down cancel",
+    "icons": [
+     "place",
+     "keyboard_arrow_down",
+     "cancel"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "backgroundColor": "rgba(56, 116, 255, 0.16)",
+    "color": "rgb(56, 116, 255)",
+    "borderColor": "rgb(56, 116, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     893,
+     120,
+     211,
+     28
+    ]
+   }
+  ],
+  "heads": [
+   "Customer",
+   "Location",
+   "Current",
+   "1-30 Days",
+   "31-60 Days",
+   "61-90 Days",
+   "91 And Over",
+   "Total"
+  ],
+  "lastTh": {
+   "t": "Total\narrow_drop_up",
+   "position": "sticky",
+   "right": "0px",
+   "fontWeight": "800",
+   "backgroundColor": "rgb(249, 250, 251)"
+  },
+  "lastTd": {
+   "t": "$174.04",
+   "position": "sticky",
+   "right": "0px",
+   "fontWeight": "700"
+  },
+  "totals": {
+   "t": "Totals $2,926.00 $105,145.77 $167,573.30 $126,336.92 $118,341.26 $520,323.25",
+   "backgroundColor": "rgb(249, 250, 251)",
+   "fontSize": "13.12px",
+   "fontWeight": "400",
+   "color": "rgb(0, 0, 0)",
+   "position": "static",
+   "bottom": "auto",
+   "td": {
+    "backgroundColor": "rgb(249, 250, 251)",
+    "fontSize": "13px",
+    "fontWeight": "700",
+    "color": "rgb(0, 0, 0)"
+   }
+  },
+  "links": [
+   {
+    "t": "#1 Diesel",
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "fontWeight": "600",
+    "textDecorationLine": "none",
+    "cursor": "pointer"
+   },
+   {
+    "t": "-1 Diesel",
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "fontWeight": "600",
+    "textDecorationLine": "none",
+    "cursor": "pointer"
+   },
+   {
+    "t": "10 Trucking",
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "fontWeight": "600",
+    "textDecorationLine": "none",
+    "cursor": "pointer"
+   }
+  ],
+  "more": [
+   {
+    "aria": "Export report",
+    "title": null,
+    "text": "more_horiz",
+    "box": [
+     1351,
+     77,
+     55,
+     31
+    ]
+   }
+  ]
+ },
+ "menu_location": {
+  "lines": [
+   "Select all",
+   "3 selected",
+   "Staging Heavy Duty - 9919",
+   "Staging Lethbridge - 4310",
+   "ZZAUTOTEST V1R-87 Location C",
+   "Clear selection"
+  ],
+  "placeholder": "",
+  "box": [
+   893,
+   154,
+   274,
+   214
+  ],
+  "chipBox": [
+   893,
+   148
+  ],
+  "items": [],
+  "checkboxes": 4,
+  "scrollH": 214,
+  "clientH": 214
+ },
+ "menu_customer": {
+  "lines": [
+   "search",
+   "All customers",
+   "All customers are included. Pick one or more to narrow.",
+   "#1 Diesel",
+   "-1 Diesel",
+   "10 Trucking",
+   "2 Trucking",
+   "4 Star Truck Repair",
+   "7 Star Truck Repair",
+   "=2+3 ZZAUTOTEST FORMULA",
+   "@Home Towing",
+   "A & J Truck & Trailer Repair",
+   "A-1 Towing",
+   "a1 towing",
+   "Aberdeen Diesel Services LLC",
+   "Aberdeen Truck Repair"
+  ],
+  "placeholder": "Search customer",
+  "box": [
+   482,
+   154,
+   352,
+   537
+  ],
+  "chipBox": [
+   482,
+   148
+  ],
+  "items": [],
+  "checkboxes": 51,
+  "scrollH": 537,
+  "clientH": 537
+ },
+ "menu_vendor": {
+  "none": true
+ },
+ "menu_pastdue": {
+  "lines": [
+   "Any",
+   "All ranges are included. Pick one or more to narrow.",
+   "1-30 days",
+   "31-60 days",
+   "61-90 days",
+   "91+ days"
+  ],
+  "placeholder": "",
+  "box": [
+   723,
+   154,
+   333,
+   253
+  ],
+  "chipBox": [
+   723,
+   148
+  ],
+  "items": [],
+  "checkboxes": 5,
+  "scrollH": 253,
+  "clientH": 253
+ },
+ "moreTip": "",
+ "moreMenu": {
+  "lines": [
+   "Download (PDF)",
+   "Download (CSV)"
+  ],
+  "box": [
+   1274,
+   108,
+   131,
+   96
+  ]
+ },
+ "focus": {
+  "tabs": 9,
+  "t": "#1 Diesel",
+  "tag": "A",
+  "dec": "underline",
+  "outline": "solid"
+ },
+ "dark": true,
+ "stDark": {
+  "title": [],
+  "chips": [
+   {
+    "text": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "icons": [
+     "calendar_today",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "backgroundColor": "rgba(56, 116, 255, 0.28)",
+    "color": "rgb(255, 255, 255)",
+    "borderColor": "rgb(255, 255, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     283,
+     120,
+     185,
+     28
+    ]
+   },
+   {
+    "text": "person Customer: All customers keyboard_arrow_down",
+    "icons": [
+     "person",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "borderColor": "rgb(255, 255, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     482,
+     120,
+     227,
+     28
+    ]
+   },
+   {
+    "text": "hourglass_empty Past due: Any keyboard_arrow_down",
+    "icons": [
+     "hourglass_empty",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "borderColor": "rgb(255, 255, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     723,
+     120,
+     157,
+     28
+    ]
+   },
+   {
+    "text": "place Location: All locations keyboard_arrow_down cancel",
+    "icons": [
+     "place",
+     "keyboard_arrow_down",
+     "cancel"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "backgroundColor": "rgba(56, 116, 255, 0.28)",
+    "color": "rgb(255, 255, 255)",
+    "borderColor": "rgb(255, 255, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     893,
+     120,
+     211,
+     28
+    ]
+   }
+  ],
+  "heads": [
+   "Customer",
+   "Location",
+   "Current",
+   "1-30 Days",
+   "31-60 Days",
+   "61-90 Days",
+   "91 And Over",
+   "Total"
+  ],
+  "lastTh": {
+   "t": "Total\narrow_drop_up",
+   "position": "sticky",
+   "right": "0px",
+   "fontWeight": "800",
+   "backgroundColor": "rgb(15, 17, 26)"
+  },
+  "lastTd": {
+   "t": "$174.04",
+   "position": "sticky",
+   "right": "0px",
+   "fontWeight": "700"
+  },
+  "totals": {
+   "t": "Totals $2,926.00 $105,145.77 $167,573.30 $126,336.92 $118,341.26 $520,323.25",
+   "backgroundColor": "rgb(15, 17, 26)",
+   "fontSize": "13.12px",
+   "fontWeight": "400",
+   "color": "rgb(255, 255, 255)",
+   "position": "static",
+   "bottom": "auto",
+   "td": {
+    "backgroundColor": "rgb(15, 17, 26)",
+    "fontSize": "13px",
+    "fontWeight": "700",
+    "color": "rgb(255, 255, 255)"
+   }
+  },
+  "links": [
+   {
+    "t": "#1 Diesel",
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "fontWeight": "600",
+    "textDecorationLine": "none",
+    "cursor": "pointer"
+   },
+   {
+    "t": "-1 Diesel",
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "fontWeight": "600",
+    "textDecorationLine": "none",
+    "cursor": "pointer"
+   },
+   {
+    "t": "10 Trucking",
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "fontWeight": "600",
+    "textDecorationLine": "none",
+    "cursor": "pointer"
+   }
+  ],
+  "more": [
+   {
+    "aria": "Export report",
+    "title": null,
+    "text": "more_horiz",
+    "box": [
+     1351,
+     77,
+     55,
+     31
+    ]
+   }
+  ]
+ },
+ "menuDarkLoc": {
+  "lines": [
+   "Select all",
+   "3 selected",
+   "Staging Heavy Duty - 9919",
+   "Staging Lethbridge - 4310",
+   "ZZAUTOTEST V1R-87 Location C",
+   "Clear selection"
+  ],
+  "placeholder": "",
+  "box": [
+   893,
+   154,
+   274,
+   214
+  ],
+  "chipBox": [
+   893,
+   148
+  ],
+  "items": [],
+  "checkboxes": 4,
+  "scrollH": 214,
+  "clientH": 214
+ }
+}
