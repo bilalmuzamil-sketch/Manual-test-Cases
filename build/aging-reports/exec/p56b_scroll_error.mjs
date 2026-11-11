@@ -11,13 +11,12 @@ p.on('requestfailed', (r) => log.push([rel(), 'FAIL', r.failure()?.errorText, r.
 const B = /1-30 days past due/; const lines = async () => (await p.locator('main tbody tr').allInnerTexts()).filter((t) => /^[A-Z][a-z]{2} \d/.test(t.trim())).length;
 const msg = async () => (await p.locator('main').innerText()).match(/Not every line loaded[^\n]*/)?.[0] || null;
 const toEnd = async () => { for (let i = 0; i < 12; i++) { await p.evaluate(`(() => { const e = ${S.SC}; e.scrollTop = e.scrollHeight; })()`); await p.waitForTimeout(700); } };
-async function trial(name, mid, after) { await S.collapse(B); await p.waitForTimeout(1000); log = []; t0.v = Date.now(); const r = { name };
+async function trial(name, mid, after) { /* L0642: a re-opened bucket reuses loaded lines, so every trial opens the report fresh */ await s.go(REPORTS.apd); await p.waitForTimeout(3500); log = []; t0.v = Date.now(); const r = { name };
   r.expand = await S.expand(B); await p.waitForTimeout(2500); r.linesOpen = await lines(); if (mid) await mid(); await toEnd(); await s.shot(name + '-scrolled');
   r.m = null; for (let i = 0; i < 30 && !r.m; i++) { r.m = await msg(); if (!r.m) { if (i % 5 === 0) await toEnd(); await p.waitForTimeout(1000); } } r.linesEnd = await lines(); await s.shot(name + '-end');
   r.net = log.filter((x) => !/fe-permissions|notifications|quick-login/.test(x[3])).slice(0, 50); if (after) await after(); o[name] = r; fs.writeFileSync(OUT + 'out.json', JSON.stringify(o, null, 1));
   console.log('p56b', name, JSON.stringify({ m: r.m, open: r.linesOpen, end: r.linesEnd, net: r.net.length })); return r; }
 try {
-  await s.go(REPORTS.apd); await p.waitForTimeout(3000);
   const ctl = await trial('1-online-control'); const reqs = ctl.net.filter((x) => x[1] === 'req'); o.pageCall = (reqs.find((x) => /pagination%5Bpage%5D=2/.test(x[3])) || reqs[0] || [])[3] || null; /* p56 control: lines come from /api/reporting/reports/<report>/buckets/<bucket>/rows?...pagination%5Bpage%5D=N */
   await trial('2-offline-scroll', async () => { await p.context().setOffline(true); await p.waitForTimeout(500); }, async () => { await p.context().setOffline(false); await p.waitForTimeout(1500); });
   const base = o.pageCall ? o.pageCall.split('?')[0] : 'buckets'; o.abortPattern = base;
