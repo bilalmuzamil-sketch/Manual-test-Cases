@@ -602,3 +602,9 @@
 - Fix in `exec/d3b_design.mjs`: close a dialog with its own Cancel before switching theme, and every case's `go()` asserts light (`setDark(false)` must return true or the case errors). Re-run as d3b2 (runq35).
 - Rule: any runner that switches theme must re-assert the theme at the start of EVERY case, and a result builder should check the picture's theme (header pixel ~255 light, ~24 dark) before judging.
 - #aging #design #tool #trap → L0677
+
+## L0679 — 2026-11-11 — Aging permission tests on sv11315: new staff + switch-user, not "change Tech's role"
+- The cases say "change Tech ShopView's role", but the staff role-change route 404s on sv11315 (L0637, p75). Route used (`exec/pm1_perms.mjs`): make a new staff member with the p71 role (`POST /api/iam/create`, department Service), enrol at Heavy Duty (`/api/staff/enrollment/create`), `POST /api/switch-user`, then a NEW browser context with the switched person's own `user` + `fe_permissions_wrapper` in localStorage (the admin context rewrites them — wo-board `viewas.mts`, L0583). Always `exit-switch-user` in a finally.
+- The aging exec `api.mjs` returns `{ st, j }`, not `{ status, body }` like the wo-board helpers — copying wo-board code needs `.st` / `.j`.
+- p71b made all seven roles (names "ZZAUTOTEST P71 …", ids in `exec/p71/out.json`).
+- #aging #permissions #route → L0637, L0583
