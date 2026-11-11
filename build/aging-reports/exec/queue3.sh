@@ -1,7 +1,6 @@
 #!/bin/bash
-# queue3.sh (re-used name, 11 Nov 09:36) — p47 PDF-500 message watch, right after queue2.sh (p45). Queues 22-30 match "queue3.sh" in their wait pattern.
+# queue3.sh — 11 Nov 2026 ~15:15 UTC: runs after queue2.sh. The long-bucket tests C715454 / C715455 with the fixed s86 reader (non-empty rows only,
+# document number by the ID column, location fallback reading the menu's own lines). (queue2 was edited while running; bash keeps the old text.)
 cd "$(dirname "$0")"; log() { echo "$(date -u +%H:%M:%S) $*" >> queue.log; }
-sleep 5; while pgrep -f "queue2\.sh$|node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done
-run() { local name=$1; shift; log "start $name"; "$@"; log "end $name rc=$?"; }
-run p47 timeout 900 node p47_pdf500.mjs > p47.log 2>&1
-log "queue3 (p47) done"
+while pgrep -f "queue2.sh|chain3[0-6].sh" >/dev/null || pgrep -f "node [a-z0-9_]+\.mjs" >/dev/null; do sleep 10; done
+log "start s86c"; ONLY=C715454,C715455 timeout 2400 node s86_paging.mjs > s86c.log 2>&1; log "end s86c rc=$?"; log "queue3 done"
