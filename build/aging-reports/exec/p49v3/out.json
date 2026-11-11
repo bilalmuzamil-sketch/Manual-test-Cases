@@ -1,0 +1,109 @@
+{
+ "sets": {
+  "V3": [
+   {
+    "name": "ZZY Doc Group R2",
+    "id": "dbb01684-f18d-4f82-b6f4-30ae5006099d",
+    "acct": "fd364758-5f4b-46ac-8f30-d86de7dc2966",
+    "docs": [
+     {
+      "tag": "A",
+      "number": "ZZY95715488",
+      "orderId": "df8b3119-637d-4954-b197-814743492b01",
+      "amount": 300,
+      "daysAgo": 40,
+      "wp": "HD",
+      "term": "Net 30"
+     },
+     {
+      "tag": "C",
+      "number": "ZZY95721477",
+      "orderId": "1613d213-4860-4fea-aeae-de6dc4043469",
+      "amount": 200,
+      "daysAgo": 35,
+      "wp": "HD",
+      "term": "Net 30"
+     },
+     {
+      "tag": "B",
+      "number": "ZZY95723088",
+      "orderId": "4a99182e-6c0e-4fd7-a4bc-b2f4455f401a",
+      "amount": 100,
+      "daysAgo": 20,
+      "wp": "HD",
+      "term": "COD"
+     }
+    ],
+    "groups": [
+     [
+      "days_91_plus",
+      0,
+      0
+     ],
+     [
+      "days_61_to_90",
+      0,
+      0
+     ],
+     [
+      "days_31_to_60",
+      0,
+      0
+     ],
+     [
+      "days_1_to_30",
+      3,
+      30000
+     ],
+     [
+      "current",
+      0,
+      0
+     ]
+    ]
+   }
+  ]
+ },
+ "disc": {
+  "lastPay": {
+   "st": 200,
+   "j": "{\"data\":{\"headers\":{}}}"
+  },
+  "vendorKeys": [
+   "id",
+   "email",
+   "name",
+   "address_1",
+   "address_2",
+   "state_or_province",
+   "postal_code",
+   "city",
+   "telephone",
+   "notes",
+   "organization_id",
+   "website",
+   "credit_term",
+   "credit_limit",
+   "created_at",
+   "country_code",
+   "tax_id",
+   "vendor_account_id",
+   "balance"
+  ],
+  "changeVendor": {
+   "st": 200,
+   "j": "{\"data\":[]}"
+  }
+ },
+ "log": [
+  "== V3",
+  "vendor ZZY Doc Group R2 Net 30",
+  "  bill ZZY95715488 300 dated -40 Net 30 HD",
+  "  paid 250 on ZZY95715488",
+  "  bill ZZY95721477 200 dated -35 Net 30 HD",
+  "  paid 50 on ZZY95721477",
+  "  term -> COD",
+  "  bill ZZY95723088 100 dated -20 COD HD",
+  "  read back ZZY Doc Group R2 [[\"days_91_plus\",0,0],[\"days_61_to_90\",0,0],[\"days_31_to_60\",0,0],[\"days_1_to_30\",3,30000],[\"current\",0,0]]"
+ ]
+}
