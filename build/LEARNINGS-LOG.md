@@ -370,3 +370,9 @@
 - Tech as technician cannot open the reports (lands on /workorders). `exec/p54_tech_admin.mjs` gives the Tech user the Administrator role (standing rule: only Tech's role is ever changed, never the Admin's) via `POST /api/staff/{staff_id}/change` with the staff_id read from the Tech session's fe-permissions answer; Tech signs in again to pick it up.
 - `lib.mjs` takes `QL_KEY=tech` to run a runner as Tech; `lane2.sh` runs the read-only design captures (d1) in parallel with the Admin chain (`chain3.sh`). Keep the second lane to work that changes no shared data the first lane reads.
 - Vendor account id for a payment comes from the request the vendor's Unpaid Invoices page makes; once it did not arrive in 4 s (V3) — the lookup now reloads up to three times.
+
+## L0635 — 2026-11-11 — sv11315 vendor seeding facts (p49), and stopping a chain without losing the running job
+- **Vendor part payment works on sv11315** with `POST /api/parts-catalogue/vendor/payment/create` and payment method key `10000_CALGARY_CHEQUING` (the playbook's key carried over): $300 bill paid $250 read back as $50 open (V2); $700 paid $200 → $500 (V8).
+- **Vendor credit on a chosen day** via the manual return of inventory part P550848 (`part/manual-return-request/create` → `part/manual-return/<id>/create {creditDate}`): dated today 08:00 UTC it reads back in Current as $-120.00 (V14); dated 15 days ago it sorts between two bills (V16).
+- **101 vendor bills** (PO + receive each) took about 2 minutes (V15: 1-30 bucket, 101 lines, $1,010.00).
+- **Killing a chain's bash (`pkill -f chain.sh$`) does NOT stop the node job it started** — the job runs to the end (nohup); a replacement chain must wait for that job by name (`pgrep -f "node p49_seed_ap\.mjs"`) before its first step, or two sign-ins overlap. Note the killed chain never logs that job's "end" line.
