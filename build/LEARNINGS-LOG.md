@@ -575,6 +575,7 @@
 ## L0674 — 2026-11-11 — "Offline, no load-error message" may be no failure at all: check the figures and the requests first
 - p62b (offline, as-of changed to YESTERDAY on six reports) saw no "Something went wrong loading this report" message — but the page made NO report request while offline, and A/P Summary's Totals changed to $4,763,410.45 under "As of: 11/10/2026" (today's $4,763,441.95). Yesterday's figures appear without the network (prefetched or held by the page), so nothing failed — not evidence of a missing message. Results HELD (not posted).
 - The fair offline test uses a date the page cannot already hold (p62 used the 3rd: today's Totals stayed under the new date = a real failure to load). `exec/p62c_cache.mjs` compares online-yesterday vs offline-yesterday Totals and tries the 6th.
+- ⚠️ 16:45 follow-up: A/P Summary/Detail TODAY now read Totals $4,763,410.45 online (d3a C715528 at 16:40) - the site's data moved during the day - so p62b's offline $4,763,410.45 may be TODAY's rows left on screen (a real failure), not yesterday's. p62c (online-yesterday vs offline-yesterday, and the 6th) decides; compare against a reading taken minutes before, never one from hours earlier.
 - Rule: for any "fails to load / no message" claim, record (a) whether a request was made, (b) whether the shown data matches the new date, before judging (QA lead's note, L0661).
 - #aging #offline #method → L0661, L0673
 
