@@ -1,5 +1,77 @@
 {
  "id": "C1062581",
- "steps": [],
- "err": "Error: customer 401 {\"error\":\"sso_required\",\"sso_redirect_url\":\"https://auth.qa.shopview.com/login?return_to=https%3A%2F%2Fauth.qa.shopview.com%2Fcallback\"}"
+ "steps": [
+  {
+   "label": "1-asof-nov4",
+   "chips": [
+    "calendar_today As of: 11/04/2026 keyboard_arrow_down",
+    "person Customer: ZZX PDF Date S9 keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_down Date arrow_drop_up | Location arrow_drop_up | Transaction Type arrow_drop_up | ID arrow_drop_up | Customer Full Name arrow_drop_up | Due Date arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_right | 91 or more days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 61-90 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 31-60 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 1-30 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_down | Current (1)",
+    "Nov 4, 2026 | Staging Heavy Duty - 9919 | Invoice | S11315-17866 | ZZX PDF Date S9 | Dec 4, 2026 | $64.00 | $64.00",
+    "Total for Current | $64.00 | $64.00",
+    "Totals | $64.00 | $64.00"
+   ],
+   "totals": "Totals $64.00 $64.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C1062581-1-asof-nov4.png"
+  },
+  {
+   "step": "PDF-3-pdf",
+   "r": {
+    "kind": "PDF",
+    "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C1062581-3-pdf-ar-aging-detail.pdf",
+    "name": "ar-aging-detail.pdf",
+    "bytes": 75710,
+    "notes": [
+     "check_circle Success Data exported successfully. Close"
+    ],
+    "toast": null,
+    "text": [
+     "A/R Aging Detail",
+     "Staging Foothills Group Inc",
+     "As of Nov 4, 2026",
+     "Locations: All locations",
+     "Customer: ZZX PDF Date S9",
+     "Date  Location  Transaction Type  ID  Customer Full Name  Due Date  Amount  Open Balance",
+     "Current",
+     "Nov 4, 2026  Staging Heavy Duty - 9919  Invoice  S11315-17866  ZZX PDF Date S9  Dec 4, 2026  $64.00  $64.00",
+     "Subtotal  $64.00  $64.00",
+     "Totals  $64.00  $64.00",
+     "Software Powered by ShopView  Page 1 of 1"
+    ]
+   }
+  }
+ ],
+ "customer": "ZZX PDF Date S9",
+ "doc": {
+  "tag": "nov4",
+  "num": "S11315-17866",
+  "invoiceId": "0a6dc8c8-6f58-43ec-9b69-61685b663363",
+  "wo": "3e859a0d-c325-4d08-93f0-aad601a01471",
+  "amount": 64,
+  "daysAgo": 7,
+  "wp": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "term": "Net 30"
+ },
+ "expanded-1-asof-nov4": false,
+ "pdfRows": [
+  "As of Nov 4, 2026",
+  "Nov 4, 2026  Staging Heavy Duty - 9919  Invoice  S11315-17866  ZZX PDF Date S9  Dec 4, 2026  $64.00  $64.00"
+ ],
+ "pdfTop": [
+  "A/R Aging Detail",
+  "Staging Foothills Group Inc",
+  "As of Nov 4, 2026",
+  "Locations: All locations",
+  "Customer: ZZX PDF Date S9",
+  "Date  Location  Transaction Type  ID  Customer Full Name  Due Date  Amount  Open Balance"
+ ]
 }

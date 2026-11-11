@@ -1,6 +1,62 @@
 {
  "id": "C1062587",
- "steps": [],
- "customer": "ZZX Credit Today R3",
- "err": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('main button').filter({ hasText: /Customer:/ }).first()\u001b[22m\n"
+ "steps": [
+  {
+   "label": "1-summary",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "person Customer: ZZX Credit Toda... keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "Customer arrow_drop_up | Location arrow_drop_up | Current arrow_drop_up | 1-30 Days arrow_drop_up | 31-60 Days arrow_drop_up | 61-90 Days arrow_drop_up | 91 And Over arrow_drop_up | Total arrow_drop_up",
+    "ZZX Credit Today R3 | Staging Heavy Duty - 9919 | $-120.00 | $500.00 |  |  |  | $380.00",
+    "Totals |  | $-120.00 | $500.00 | $0.00 | $0.00 | $0.00 | $380.00"
+   ],
+   "totals": "Totals $-120.00 $500.00 $0.00 $0.00 $0.00 $380.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C1062587-1-summary.png"
+  },
+  {
+   "label": "2-detail-open",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "person Customer: All customers keyboard_arrow_down",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_right Date arrow_drop_up | Location arrow_drop_up | Transaction Type arrow_drop_up | ID arrow_drop_up | Customer Full Name arrow_drop_up | Due Date arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_right | 91 or more days past due (70) | Total | $118,830.25 | $118,341.26",
+    "keyboard_arrow_right | 61-90 days past due (54) | Total | $153,784.25 | $126,336.92",
+    "keyboard_arrow_right | 31-60 days past due (184) | Total | $167,803.30 | $167,363.30",
+    "keyboard_arrow_right | 1-30 days past due (268) | Total | $103,028.88 | $101,628.88",
+    "keyboard_arrow_right | Current (15) | Total | $2,926.00 | $2,926.00",
+    "Totals | $546,372.68 | $516,596.36"
+   ],
+   "totals": "Totals $546,372.68 $516,596.36",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C1062587-2-detail-open.png"
+  },
+  {
+   "label": "3-ticked",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "person Customer: ZZX Credit Toda... keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_right Date arrow_drop_up | Location arrow_drop_up | Transaction Type arrow_drop_up | ID arrow_drop_up | Customer Full Name arrow_drop_up | Due Date arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_right | 91 or more days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 61-90 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 31-60 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 1-30 days past due (1) | Total | $500.00 | $500.00",
+    "keyboard_arrow_right | Current (1) | Total | $-120.00 | $-120.00",
+    "Totals | $380.00 | $380.00"
+   ],
+   "totals": "Totals $380.00 $380.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C1062587-3-ticked.png"
+  }
+ ],
+ "customer": "ZZX Credit Today R3"
 }
