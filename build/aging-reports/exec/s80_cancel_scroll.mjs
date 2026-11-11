@@ -16,6 +16,7 @@ const T = {};
 for (const [id, close] of [['C715418', 'Cancel'], ['C797944', 'x']]) T[id] = async (o) => { const rep = id === 'C715418' ? 'arc' : 'ard'; await s.go(REPORTS[rep]); await p.waitForTimeout(3000);
   if (id === 'C715418') { await F.menuClick('Past due', '1-30'); await p.waitForTimeout(2000); await S.clickTh('Amount'); await S.expand(/ZZAUTOTEST LOC MIX \(/); }
   else { await F.pick('Customer', 'ZZAUTOTEST LOC MIX'); await S.clickTh('Amount'); const b = p.locator('main thead th').first().locator('button').first(); await b.hover(); await p.waitForTimeout(600); if (/Expand all/.test((await p.locator('.q-tooltip').allInnerTexts().catch(() => [])).join())) { await b.click(); await p.waitForTimeout(3000); } }
+  /* 11 Nov 14:03: the group's 21 lines are drawn as you scroll (virtual list); the first run looked before scrolling and saw only the top 6. Scroll until the line is drawn. */ await S.find(new RegExp(INV));
   const row = p.locator('main tbody tr').filter({ hasText: INV }).first(); o.found = await row.count(); if (!o.found) throw new Error('invoice A not on screen');
   await row.scrollIntoViewIfNeeded(); await p.evaluate(`(() => { const e = ${S.SC}; const t = [...document.querySelectorAll('main tbody tr')].find((x) => x.innerText.includes('${INV}')); const r = e.getBoundingClientRect(); const b = t.getBoundingClientRect(); e.scrollTop += (b.top + b.height / 2) - (r.top + r.height / 2); })()`); await p.waitForTimeout(1500);
   o.before = await state(); await shot(o, '0-before');
