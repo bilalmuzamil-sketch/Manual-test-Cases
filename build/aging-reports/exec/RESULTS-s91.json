@@ -1,0 +1,40 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s91 group paging on the page"
+ },
+ "results": {
+  "C1062570": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of today, only customer \"ZZAUTOTEST OVER100 C\" ticked (113 overdue invoices).",
+    "Step 1: the group row reads \"ZZAUTOTEST OVER100 C (113)\" - more than 100.",
+    "Step 2: opening the group shows its first 100 invoices (100 rows on the page; the 100th is S11315-17653).",
+    "Step 3: scrolling to the end of those 100 adds the next ones underneath: 113 rows (the remaining 13 - up to 100 more each time).",
+    "Step 4: scrolled to the end until nothing more loads: 113 rows, 113 different invoice numbers, none repeated - equal to the count in brackets.",
+    "Measured on the page itself (rows counted after each scroll), not from the server reply - the earlier Failed result and its ticket came from reading the reply."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062570-01-C1062570-1-count.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062570-02-C1062570-2-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062570-05-C1062570-4-end.png"
+   ]
+  },
+  "C1062571": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of today, only vendor \"Grand Haven Diesel Services LLC\" ticked (578 unpaid bills - well over 2 x 100, so the \"100 more each time\" is seen several times).",
+    "Step 1: the group row reads \"Grand Haven Diesel Services LLC (578)\".",
+    "Step 2: opening the group shows its first 100 bills (100 rows on the page).",
+    "Step 3: each scroll to the end of what is drawn adds up to 100 more: 200, 300, 400, 500, then the last 78 (578).",
+    "Step 4: scrolled until nothing more loads: 578 rows - equal to the count in brackets. Two bill numbers appear twice (979569 and 1008064): the downloaded spreadsheet also holds each of them twice, as two separate bills with the same vendor invoice number, date and amount - they are two documents in the data, not a row loaded twice. Every other number appears once.",
+    "Measured on the page itself, not from the server reply."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062571-06-C1062571-1-count.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062571-07-C1062571-2-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062571-08-C1062571-3-scroll1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062571-10-C1062571-4-end.png"
+   ]
+  }
+ }
+}
