@@ -432,3 +432,7 @@
 
 ## L0649 — 2026-11-11 — Unticking a name in the aging reports' Customer/Vendor menu: click the CHECKED checkbox in the list row
 - Clicking the name (`.q-item` / `label` filtered by text, as `filt.mjs` pick and s5's untick did) leaves a ticked customer ticked when the menu is reopened — the first element with that text is the selected-name tag at the top of the menu, not the list row. Search the name, then click `.q-item` filtered by the name AND having `[aria-checked="true"]`, on that checkbox (`p59_untick.mjs`). After unticking all, the chip reads "Customer: All customers" with a transparent background and grey text (resting style).
+
+## L0650 — 2026-11-11 — Design measurements on the aging reports: heading "lines" and the dark-mode switch
+- Counting a heading's lines from a Range over the whole `th` gave 2 for EVERY heading (light, 1440 and 1536) although the pictures show one line: the sort arrow icon (`arrow_drop_up`, hidden until hover) sits on its own line box. Count only the label's text nodes, skipping text inside `i` / `.q-icon` (d1_design.mjs fixed 11 Nov). Always check a "wraps" claim against the picture before using it.
+- The user menu (avatar, top right) ends with two options "light_mode Light" and "dark_mode Dark". A filter `hasText: /dark/i` on `.q-item, label, button` matched a container and did nothing; click `getByText('Dark', { exact: true })` inside the open menu. Read back `body.classList.contains('body--dark')`.
