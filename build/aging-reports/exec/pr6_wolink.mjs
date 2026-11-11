@@ -7,11 +7,11 @@
 // header and its user menu ("Change Location"), switch to a second location on screen, open its first work order, copy the address, switch back,
 // paste the address, Enter - picture, dialog text, messages, where it lands; Cancel if a prompt shows. Restores the first location.
 import { bootProdLogin } from '../../testing-tools/prod-login-boot.mjs'; import fs from 'fs';
-const OUT = new URL('./prod/', import.meta.url).pathname; const o = {}; let k = 110; const save = () => fs.writeFileSync(OUT + process.env.PR6OUT || 'pr6.json', JSON.stringify(o, null, 1));
+const OUT = new URL('./prod/', import.meta.url).pathname; const o = {}; let k = 120; const save = () => fs.writeFileSync(OUT + process.env.PR6OUT || 'pr6.json', JSON.stringify(o, null, 1));
 const B = await bootProdLogin('/workorders', { viewport: { width: 1440, height: 900 } }); const p = B.page; o.version = B.version;
 const shot = async (n) => { const f = `${OUT}${String(++k).padStart(2, '0')}-${n}.png`; await p.screenshot({ path: f }); return f; };
 const notes = async () => (await p.locator('.q-notification').allInnerTexts().catch(() => [])).map((t) => t.replace(/\s+/g, ' ').trim());
-async function changeTo(pick) { const hdr = (await p.locator('header').innerText()).split('\n').map((t) => t.trim()).filter(Boolean); o.header ||= hdr;
+async function changeTo(pick) { /* 20:05 (pr6b): after a switch production's user menu keeps the OLD location ticked until the page reloads - clicking the real target then does nothing; reload first */ await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); const hdr = (await p.locator('header').innerText()).split('\n').map((t) => t.trim()).filter(Boolean); o.header ||= hdr;
   const cands = [p.locator('header').getByText(/Change Location/), p.locator('header .q-avatar').last(), p.locator('header button').last()];
   let opened = false; for (const c of cands.slice(1)) { try { await c.click({ timeout: 5000 }); await p.waitForTimeout(1200); if (await p.getByText(/Change Location/).count()) { opened = true; break; } await p.keyboard.press('Escape'); } catch {} }
   if (!opened) { const locEl = p.locator('header').getByText(/ - \d{4}|Location|Heavy|Lethbridge/).first(); await locEl.click().catch(() => {}); await p.waitForTimeout(1200); }
