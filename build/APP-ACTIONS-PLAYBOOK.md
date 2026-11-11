@@ -323,6 +323,23 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   whole session and never recovered** — useful confirmation, but the three-part signature is what
   settles it, and a probe that never recovers is not by itself proof of cause.
 
+- **QA-branch SSO session lasts a FIXED 24 hours (measured from code + a live loss, 11 Nov 2026, sv11315).**
+  `infrastructure/scripts/aws/lambda/functions/ssoAuthGateway.py`: `SESSION_TTL_SECONDS = 86400`, `expires_at` written
+  ONCE when the person signs in through Google, never extended by use; `api/src/Shared/Infrastructure/EventSubscriber/SsoGateListener.php`
+  checks only `expires_at`. So a captured `sv_sso_session` dies exactly 24 h after the person's SSO sign-in (not after we
+  received it): on 11 Nov the QA lead's set died at 10:43Z with no redeploy, and the replacement differed ONLY in
+  `sv_sso_session` (PHPSESSID and cf_clearance byte-identical). **Ask for a fresh set before a long run if the person
+  signed in yesterday.** `POST /api/iam/change-location` does NOT end it (it only sets a session value).
+- **Hydrating a test browser on a QA branch WITHOUT signing in (11 Nov 2026):** cookies on `.qa.shopview.com`, plus
+  localStorage `user` = `{data:{role, details}}` built from `GET /api/iam/view-profile/` (name, email, role_id) and
+  `GET /api/staff/my-workplaces` (default workplace + timezone), and `fe_permissions_wrapper` from
+  `GET /api/auth/me/fe-permissions`. Block `/logout` and `/api/logout` in the browser context
+  (`ctx.route(...abort)`) so a test page can never end the shared session — the app calls `GET /api/logout` on any
+  "session expired" answer (`app/src/boot/axios.ts` handleSessionExpiry). Helper:
+  `build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/screen-inventory/tools/env.js`.
+  ⚠️ With this hand-filled state, Sales, Service Advisor Analysis, Technician Efficiency and Technician Utilization showed
+  "Something went wrong loading this section" on sv11315 — unproven whether the state or the build causes it.
+
 ## B. Environment / location
 - **QA-BRANCH SESSION TRAPS live in §A** (the five that produce a false "dead session": expired
   `cf_clearance` mistaken for a dead sign-in · the app host answering 200 on any path · `paste -sd`

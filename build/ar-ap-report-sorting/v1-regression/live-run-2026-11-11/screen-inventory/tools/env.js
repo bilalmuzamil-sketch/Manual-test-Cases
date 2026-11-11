@@ -20,6 +20,8 @@ async function open(env, opts = {}) {
     const login = JSON.parse(fs.readFileSync(`${dir}/login-resp.json`)); const perms = JSON.parse(fs.readFileSync(`${dir}/fe-perms.json`));
     await ctx.addInitScript(([u, p]) => { try { localStorage.setItem('user', JSON.stringify({ data: u })); localStorage.setItem('fe_permissions_wrapper', JSON.stringify(p)); } catch (e) {} }, [login.data, perms.data || perms]);
   }
+  // safety: a test browser must never end the shared session
+  await ctx.route(/\/(api\/)?logout(\b|\/|\?|$)/, (r) => r.abort());
   const page = await ctx.newPage();
   return { browser, ctx, page, ...ENV[env] };
 }
