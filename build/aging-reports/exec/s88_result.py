@@ -35,5 +35,10 @@ R['C715412'] = {'verdict': 'Passed', 'observed': ['A/R Aging Summary, Customer f
     'Step 1: customer A\'s Location cell reads "Staging Heavy Duty - 9919"; customer B\'s reads "Multiple".',
     'Step 2: Lethbridge unticked (Heavy Duty and location C left, "Location: 2 locations") - the Location column stays, and customer B\'s cell now reads "Staging Heavy Duty - 9919"; its Total drops from $3,788.88 to $3,440.80 (only its Heavy Duty documents count).'],
     'pictures': [P('C715412', '13-C715412-1.png', 'Step 1: customer A one location, customer B "Multiple"', [ROWS + ('good', 'Staging Heavy Duty - 9919 / Multiple')]), P('C715412', '14-C715412-2.png', 'Step 2: Lethbridge unticked - customer B now shows Staging Heavy Duty - 9919', [ROWS + ('good', 'Multiple -> Staging Heavy Duty - 9919')])]}
+d = j('C715413')
+R['C715413'] = {'verdict': 'Passed', 'observed': ['A/P Aging Summary, Vendor filter "#1 Diesel" (vendor A, bills at Staging Heavy Duty only) and "ZZAUTOTEST LOC MIX V" (vendor B, bills at Heavy Duty and Lethbridge).',
+    'Step 1: vendor A\'s Location cell reads "Staging Heavy Duty - 9919"; vendor B\'s reads "Multiple".',
+    'Step 2: Lethbridge unticked (Heavy Duty and location C left, "Location: 2 locations") - the Location column stays, and vendor B\'s cell now reads "Staging Heavy Duty - 9919"; its Total drops from $503.00 to $470.00 (only its Heavy Duty bills count).'],
+    'pictures': [P('C715413', '15-C715413-1.png', 'Step 1: vendor A one location, vendor B "Multiple"', [ROWS + ('good', 'Staging Heavy Duty - 9919 / Multiple')]), P('C715413', '16-C715413-2.png', 'Step 2: Lethbridge unticked - vendor B now shows Staging Heavy Duty - 9919', [ROWS + ('good', 'Multiple -> Staging Heavy Duty - 9919')])]}
 ids = sys.argv[1:] or list(R); out = {k: R[k] for k in ids if k in R}
-json.dump({'pass_meta': {'note': '11 Nov 2026, run 557, s88 three locations'}, 'results': out}, open(PP + 'RESULTS-s88-a.json', 'w'), indent=1); print(list(out))
+json.dump({'pass_meta': {'note': '11 Nov 2026, run 557, s88 three locations'}, 'results': out}, open(PP + 'RESULTS-s88-%s.json' % ('a' if not sys.argv[1:] else '-'.join(sys.argv[1:])), 'w'), indent=1); print(list(out))
