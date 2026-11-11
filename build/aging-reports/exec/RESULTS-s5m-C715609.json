@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s5m (C715609)"
+ },
+ "results": {
+  "C715609": {
+   "verdict": "Passed",
+   "observed": [
+    "Data: today the Location list holds Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 (location B); on 03/01/2024 (date A) Lethbridge had no open A/P documents (only Heavy Duty in the report's own list that day; an old Heavy Duty bill was added for the test).",
+    "Step 1: As of set to 03/01/2024 - the report reloads for that day.",
+    "Step 2: Lethbridge is no longer offered. This organization has only two locations, so on date A only Heavy Duty is left, and the Location chip is not shown at all (PRD S5-N1: with one location ticked the chip is hidden) - there is no menu to open.",
+    "Note for the test: with only two locations the chip itself disappears; the list can only be read on a date when two other locations remain."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715609-2-no-chip.png"
+   ]
+  }
+ }
+}
