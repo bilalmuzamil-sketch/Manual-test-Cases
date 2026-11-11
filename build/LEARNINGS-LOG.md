@@ -519,3 +519,10 @@
 - **The Admin's enrolled locations are listed behind the avatar menu's "Change Location"**, not in the menu itself.
 - **The left report menu has no `aside`, `.q-drawer` or `nav` on the QA build either** (q1 timed out on it, as pr1 did on production): click menu entries with `page.getByText(label, {exact:true})`.
 - #aging #trap #positive-control → L0654, L0660
+
+## L0665 — 2026-11-11 — sv11315 aging: tests whose own data cannot tell pass from fail (enrolment, 1200 px, location count)
+- **"Every location is listed, whatever your enrollment" (C715384/C715385):** the Admin is enrolled at BOTH Heavy Duty and Lethbridge, so Lethbridge rows prove nothing. The only fair non-enrolled location is "ZZAUTOTEST V1R-87 Location C" (another session's; A/R invoices from Nov 1, A/P bill ZZYLC8872344). Confirm enrolment from the "Change Location" list first, then judge on Location C.
+- **"Group label stays at the left on a sideways scroll" (C715600) at 1200 px:** the A/R Collection table overflows only ~23 px there, so a pinned label and a scrolling one both stay visible. Also measure at 1000 px (s83c) before any verdict; S4-R7 + design SR-2 say the name and count stay, the chevron scrolls away.
+- **The site has THREE locations** (A, B and another session's C), so design tests written for "two locations" ("2 selected", two menu rows) cannot match literally; untick C where the step allows (L0652), otherwise put it to the QA lead rather than editing anyone's data.
+- **Before-release ("as today") checks:** production is the "before" side (behaviour only); "evening at the location" tests must actually run after 00:00 UTC (s94 refuses outside 00:00–06:59 UTC; scheduled check-in 00:40 UTC).
+- #aging #edge-data #positive-control → L0661, L0664, L0652
