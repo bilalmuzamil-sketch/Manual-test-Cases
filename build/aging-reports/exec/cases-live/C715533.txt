@@ -1,0 +1,24 @@
+C715533 Design: A/R Summary sorted by Total matches the design picture
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
+- Make sure the report lists customers at both locations on today's date, including at least one with a credit balance (a negative Total) and one with a long name.
+- Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+- Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+- Open the design picture "Click the Total header" (ar-ap-p1-click-the-total-header.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.Setup
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make customer A: Click Customers in the top bar, then New Customer. Type the Name ZZAUTOTEST Northern Alberta Heavy Haul and Towing Ltd (more than 40 characters), type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make invoice 1: On customer A's page click New Work Order, pick the Asset, then click Save (click Ok if a Customer Notes window opens). In the New Line window type a Title, pick Labor Rate "Fixed Line Total" (type "Fixed" in the box to find it), type 100.00 in Fixed Line Total, tick Line Approved, then click Save & Close. On the line click Complete; in Tech stories type a story and click Complete All Lines (if Missing Details asks for Mileage, type it and click Complete All Lines again). Open the Finance tab and click Mark Reviewed (if a window asks for the VIN, type one and click Confirm Review). Type today's date in Invoice Date, then click Create Invoice. When the New Customer Payment window opens, reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+- Make customer B: Click Customers in the top bar, then New Customer. Type a new Name for customer B, type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make credit memo 1 (the only document of customer B): While switched to location B (see the Locations to use item): On customer B's page open the Invoices tab and click Issue Credit. Type today's date in Credit Date, type 80.00 in Amount, click Issue Store Credit (not Issue Refund), type a Reason, then click Issue Credit.
+STEPS: - Click the "Total" header.
+- Click the "Total" header again.
+EXP: Expected Result
+Step 1:
+- The rows re-sort, largest Total first, as in the picture: "Total" now carries a small down arrow and "Customer" none.
+- No other heading changes.
+- The largest Total is at the top.
+- The Totals row reads the same as before the click: sorting moves rows, not the totals.Step 2:
+- The order reverses, smallest Total first.
+- "Total" is still the marked column.
+

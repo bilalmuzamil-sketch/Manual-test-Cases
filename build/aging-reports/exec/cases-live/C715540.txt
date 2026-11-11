@@ -1,0 +1,29 @@
+C715540 Design: A/P Unpaid Invoices pinned vendor row matches the design pictures
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have a vendor, vendor A, with more unpaid bills than fit on the screen at your location, a long name, and an unused vendor credit A from a vendor return made at your location.
+- Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+- Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+- Leave the report with every group expanded.
+- Open the design pictures "Same on A/P Unpaid Invoices" (ar-ap-p3-same-on-a-p-unpaid-invoices.png) and "Vendor credits link" (ar-ap-p7-vendor-credits-link.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.Setup
+- Make vendor A: Click Parts in the top bar, then Vendors in the left menu, then New Vendor. Type the Name ZZAUTOTEST Northern Alberta Heavy Haul and Towing Ltd (more than 40 characters), pick Credit Terms "Net 30" and Taxes "Exempt (0%)", then click Save & Close.
+- Make bill 1 for vendor A: Click Parts in the top bar, then Purchase Orders in the left menu, then New PO. Pick vendor A in Vendor. In Part Number type a new part number and click "Add new special order part: …"; type a Description, 1 in Quantity and 10.00 in Cost; click Add, then Save & Close. In the Purchase Orders list click Receive on that order (Vendor column: vendor A); type a Vendor Invoice # (for example bill 1 for vendor A), type the date 45 days before today in Invoice Date, type 0 in Tax, then click Receive Parts (1).
+- Make 19 more bills for vendor A: Same way as bill 1 for vendor A, 19 more times (any amounts, Invoice Date 45 days before today).
+- Make vendor credit A: Click Parts in the top bar, then Returns in the left menu, then Create Return. Pick vendor A in Vendor, type a Packaging Slip, pick the part received on bill 1 for vendor A in Part Number, type 5.00 in Price Per Unit, then click Save Return. In the Returns list tick that return and click Receive Credit; type a Credit Memo Number, type today's date in Credit Date, type 0 in Tax, then click Post Credit.
+STEPS: - Compare the title row with the pictures.
+- Scroll down into vendor A's rows.
+- Hover over vendor credit A's number.
+- Widen the browser window to 1536 px and look across the page.
+EXP: Expected Result
+Step 1:
+- The title reads "A/P Unpaid Invoices Report" with the info icon.
+- The chips are those of the other A/P reports.Step 2:
+- Vendor A's group row stays pinned under the column headings.
+- Compared with the pictures, the vendor name wraps onto a second line.
+- Vendor credit A's Due Date and Past Due cells hold no date and no number (a dash, "—").
+- Bill numbers and vendor credit A's number are blue links.
+- Open Balance is bold.Step 3:
+- The row turns light grey and the number is a link, as in the second picture.Step 4:
+- Nothing overlaps, is cut off or clipped.
+- The layout is the same as at 1440 px.
+

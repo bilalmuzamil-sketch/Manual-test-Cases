@@ -1,0 +1,17 @@
+C715638 Design: A/P Unpaid Invoices load error message shows in place of the rows
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have a vendor with an unpaid bill on today's date, so the report has rows.
+- Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
+- Use a desktop browser window 1440 px wide.
+- Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+STEPS: - Switch the network connection off.
+- Change the as-of date to yesterday.
+- Switch the network back on.
+EXP: Expected Result
+Step 1:
+- The computer is offline.Step 2:
+- The report fails to load: "Something went wrong loading this report. Please try again." shows in place of the rows.
+- The standard error message shows as well.Step 3:
+- The connection is back.
+

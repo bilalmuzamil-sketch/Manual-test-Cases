@@ -1,0 +1,37 @@
+C715532 Design: A/R Summary opening screen matches the design picture
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
+- Make sure the report lists customers at both locations on today's date, including at least one with a credit balance (a negative Total) and one with a long name.
+- Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+- Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+- Open the design picture "A/R Aging Summary opens A to Z" (ar-ap-p1-a-r-aging-summary-opens-a-to-z.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.Setup
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make customer A: Click Customers in the top bar, then New Customer. Type the Name ZZAUTOTEST Northern Alberta Heavy Haul and Towing Ltd (more than 40 characters), type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make invoice 1: On customer A's page click New Work Order, pick the Asset, then click Save (click Ok if a Customer Notes window opens). In the New Line window type a Title, pick Labor Rate "Fixed Line Total" (type "Fixed" in the box to find it), type 100.00 in Fixed Line Total, tick Line Approved, then click Save & Close. On the line click Complete; in Tech stories type a story and click Complete All Lines (if Missing Details asks for Mileage, type it and click Complete All Lines again). Open the Finance tab and click Mark Reviewed (if a window asks for the VIN, type one and click Confirm Review). Type today's date in Invoice Date, then click Create Invoice. When the New Customer Payment window opens, reload the page (F5) so the invoice stays unpaid. Do not close that window with its ×: that takes the new invoice away again.
+- Make customer B: Click Customers in the top bar, then New Customer. Type a new Name for customer B, type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make credit memo 1 (the only document of customer B): While switched to location B (see the Locations to use item): On customer B's page open the Invoices tab and click Issue Credit. Type today's date in Credit Date, type 80.00 in Amount, click Issue Store Credit (not Issue Refund), type a Reason, then click Issue Credit.
+STEPS: - Compare the title row with the picture.
+- Compare the filter row with the picture, chip by chip.
+- Compare the column headings with the picture, left to right, letter for letter.
+- Compare the customer name cells and the money cells with the picture.
+- Scroll the table down a little and look at the Totals row.
+- Look at how the table sits on the page.
+- Widen the browser window to 1536 px and look across the page.
+EXP: Expected Result
+Step 1:
+- The title "A/R Aging Summary", a grey circled "i" info icon directly right of it, and a grey "⋯" button at the far right, all on one line, as in the picture.Step 2:
+- Four chips in this order: "As of: " and the date in a blue pill with a calendar icon and a down arrow.
+- "Customer: All customers" with a person icon and no fill (resting).
+- "Past due: Any" with an hourglass icon and no fill (resting).
+- "Location: All locations" with a location pin icon in a blue pill.Step 3:
+- "Customer" with a small up arrow (the sorted column), "Location", "Current", "1-30 Days", "31-60 Days", "61-90 Days", "91 And Over", "Total", in bold, each on one line.
+- Only "Customer" carries an arrow.Step 4:
+- Customer names are blue and in A to Z order, a name starting "10" before one starting "2".
+- Money is right-aligned, an empty bucket is blank, a credit shows the minus after the dollar sign (for example "$-100.00"), as today.
+- The Total column is bold on every row.Step 5:
+- The bold Totals row stays at the bottom of the table while the rows scroll under it, as in the picture.Step 6:
+- The table runs across the page with no card or frame around it, rows divided by thin lines, as in the picture.Step 7:
+- Nothing overlaps, is cut off or clipped.
+- The layout is the same as at 1440 px.
+

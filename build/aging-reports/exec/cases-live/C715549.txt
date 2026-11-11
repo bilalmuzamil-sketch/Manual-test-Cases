@@ -1,0 +1,19 @@
+C715549 Design: one location ticked hides the Location column as pictured
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+- Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+- Leave the report with every bucket collapsed.
+- Open the design picture "One location ticked" (ar-ap-p4-one-location-ticked.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
+STEPS: - Click the Location chip.
+- Untick location A.
+- Close the menu.
+EXP: Expected Result
+Step 1:
+- The menu opens.Step 2:
+- The count reads "1 selected" and "Select all" is no longer ticked.
+- As in the picture, while the menu stays open the rows do not move: location A, now unticked, stays where it was.
+- The chip reads "Location: " and location B's name, shortened with "..." when long ("Location: Staging Lethbri..." in the picture), still in a blue pill.Step 3:
+- The menu closes, and as in the picture the Location column is gone: the header row reads the chevron, then "Date", "Transaction Type", "ID", "Customer Full Name", "Due Date", "Amount", "Open Balance".
+

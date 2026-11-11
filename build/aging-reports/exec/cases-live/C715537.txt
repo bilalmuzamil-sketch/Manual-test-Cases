@@ -1,0 +1,17 @@
+C715537 Design: the PDF-too-large message matches the design picture
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the organization has more than 2,000 open A/P lines on today's date.
+- Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+- Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+- Leave the report with every bucket collapsed.
+- Open the design picture "PDF over 2,000 rows is refused" (ar-ap-p2-pdf-over-2-000-rows-is-refused.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
+STEPS: - Choose "Download (PDF)" from the ⋯ menu.
+- Click "Close" on the message.
+EXP: Expected Result
+Step 1:
+- One message appears at the bottom right of the window and nothing downloads: as in the picture, a solid red box with a white warning triangle at the left, white text, and a white "Close" at the right, with no title line.
+- The report behind it does not change.
+- The message reads, letter for letter, "This report is too large for PDF. Export it as CSV, or narrow the filters, then try again."Step 2:
+- The message closes.
+

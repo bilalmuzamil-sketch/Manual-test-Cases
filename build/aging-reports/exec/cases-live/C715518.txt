@@ -1,0 +1,18 @@
+C715518 Design: the export error messages look like the other reports' errors
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the organization has more than 2,000 open A/P lines.
+- Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
+- Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+- Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
+STEPS: - Choose "Download (PDF)" from the ⋯ menu and read the message, letter for letter.
+- Switch the network connection off.
+- Choose "Download (CSV)" from the ⋯ menu and read the message, letter for letter.
+- Switch the network back on.
+EXP: Expected Result
+Step 1:
+- "This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.", in an error toast styled and placed as on the other reports, only one.Step 2:
+- The computer is offline.Step 3:
+- "We couldn't export this report. Please try again.", an error toast, only one.Step 4:
+- The connection is back.
+

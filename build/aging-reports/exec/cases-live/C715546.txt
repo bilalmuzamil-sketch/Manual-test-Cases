@@ -1,0 +1,24 @@
+C715546 Design: the switch-location dialog frame matches the design pictures
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
+- Make sure you are enrolled at both locations.
+- Have a customer with an open work order invoice A made at location B.
+- Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+- Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
+- Leave the report with that customer ticked and every bucket expanded.
+- Open the design pictures "Another location asks first" (ar-ap-p5-another-location-asks-first.png) and "Cancel stays on the report" (ar-ap-p5-cancel-stays-on-the-report.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
+STEPS: - Click invoice A's number.
+- Click "Cancel".
+EXP: Expected Result
+Step 1:
+- The dialog opens over the report: as in the first picture, a white dialog in the middle of the window, with the report dimmed behind it.
+- Read letter for letter: the bold title "Switch location?", then "This work order is in ", location B's name and "Switch your active location to view it?"
+- Below them, "Cancel" is on the left and "Switch location" (small l) on the right, and a close "×" is at the top right, as in the picture except that the picture writes "Switch Location" with a capital L (the PRD's small l is right: see References from Design).Step 2:
+- The dialog closes.
+- The report is exactly as before the click, as in the second picture: the same filters, open bucket, sort and scroll position.
+What you should see today: in step 1, the right-hand button of the "Switch location?" dialog reads "Switch Location" with a capital L instead of "Switch location". This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-12139 (filed by Chris Ward on 3 Nov 2026).
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem — please report it.
+· If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.
+

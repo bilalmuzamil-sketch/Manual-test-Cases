@@ -1,0 +1,33 @@
+C715544 Design: A/P Unpaid Invoices at 1440 px shows every column, as pictured
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
+- Have a vendor, vendor A, with an unpaid bill at your other location.
+- Have a vendor, vendor B, with unpaid bills at your current location.
+- Make sure vendor A and vendor B both have long names.
+- Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+- Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
+- Leave the report with every group expanded.
+- Open the design picture "A/P Unpaid Invoices at 1440: every column visible" (ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.Setup
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make vendor A: Click Parts in the top bar, then Vendors in the left menu, then New Vendor. Type a new Name for vendor A, pick Credit Terms "Net 30" and Taxes "Exempt (0%)", then click Save & Close.
+- Make bill 1 for vendor A: While switched to location B (see the Locations to use item): Click Parts in the top bar, then Purchase Orders in the left menu, then New PO. Pick vendor A in Vendor. In Part Number type a new part number and click "Add new special order part: …"; type a Description, 1 in Quantity and 100.00 in Cost; click Add, then Save & Close. In the Purchase Orders list click Receive on that order (Vendor column: vendor A); type a Vendor Invoice # (for example bill 1 for vendor A), type today's date in Invoice Date, type 0 in Tax, then click Receive Parts (1).
+- Make vendor B: Click Parts in the top bar, then Vendors in the left menu, then New Vendor. Type a new Name for vendor B, pick Credit Terms "Net 30" and Taxes "Exempt (0%)", then click Save & Close.
+- Make bill 1 for vendor B: Same way as bill 1 for vendor A, with vendor B in Vendor: Cost 200.00; type today's date in Invoice Date.
+STEPS: - Look for a sideways scroll bar below the last row of the report page.
+- Read the column headings.
+- Compare vendor A's bill row with the picture.
+- Compare vendor B's rows with the picture.
+- Compare the group rows and the subtotal rows with the picture.
+- Widen the browser window to 1536 px and look across the page.
+EXP: Expected Result
+Step 1:
+- There is none: every column fits at 1440 px.Step 2:
+- The chevron, "Date" with a small up arrow, "Location", "Transaction Type", "No.", "Vendor Name" (no arrow), "Due Date", "Past Due", "Amount", "Open Balance", none wrapping.Step 3:
+- Its number is plain text (a bill at another location) and the vendor name wraps onto a second line.Step 4:
+- Their numbers are blue links.Step 5:
+- Each group row: a blue chevron, the bold name and count.
+- Under each group "Total for " and the vendor's name with bold sums.Step 6:
+- Nothing overlaps, is cut off or clipped.
+- The layout is the same as at 1440 px.
+

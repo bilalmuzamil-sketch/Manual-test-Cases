@@ -1,0 +1,32 @@
+C715520 Design: the Switch location? dialog for a part sale at another location
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
+- Make sure you are enrolled at both locations.
+- Have a customer with an open part sale invoice A made at location B.
+- Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
+- Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
+- Leave the report with that customer ticked and its rows showing.
+- Open a link to a work order made at location B (copied from the address bar) in a second tab, so the existing location-switch prompt shows there for comparison.Setup
+- Locations to use: Use "Staging Heavy Duty - 9919" as location A (it comes first in A to Z order) and "Staging Lethbridge - 4310" as location B. To work at location B, click the location name and your initials at the top right of the top bar, then Change Location, then "Staging Lethbridge - 4310"; switch back to "Staging Heavy Duty - 9919" the same way when you are done.
+- Make customer A: Click Customers in the top bar, then New Customer. Type a new Name for customer A, type a Phone, then click Save. On the customer's page click the edit icon beside the name; in Edit Customer pick Credit Terms "Net 30", pick Taxes "Exempt (0%)" and type 0 in Default Shop Supplies (so totals stay exact), then click Save. Click Add Contact, type a First name and Last name, then click Save. On the Assets tab click New Asset, pick the Contact, fill Make and the other boxes the window marks as required, then click Save.
+- Make part sale invoice A: While switched to location B (see the Locations to use item): Click Parts in the top bar, then Part Sales in the left menu, then New Part Sale; pick customer A in Customer and click Save. Click Add Part: in Part Number type a new part number and click "Add new special order part: …", type a Description, 1 in Quantity and a Cost, then click Save & Close; on the part's row type 300.00 in the Sell Price box. Click Authorize. On the part's row pick any Vendor and click Order (the status reads Awaiting), then click Receive on the row; tick the part, type a Vendor Invoice Number and click Receive Parts (1) (the status reads Received). Open the Finance tab, type today's date in Invoice Date, then click Create Invoice; reload the page when the New Customer Payment window opens.
+- Make a work order at location B: While switched to location B: open the page of any customer that has an asset (its Assets tab lists one), click New Work Order, pick the Asset and click Save; copy the work order's address from the address bar, then switch back to location A.
+STEPS: - Click invoice A's number.
+- Compare the dialog with the location-switch prompt open in the second tab.
+- On the report's tab, click "Cancel".
+- Switch ShopView to dark theme.
+- Click invoice A's number again.
+EXP: Expected Result
+Step 1:
+- A dialog opens over the report.
+- Read letter for letter, in order: title "Switch location?", message "This part sale is in " then location B's name and "Switch your active location to view it?", then the button "Cancel" on the left and the button "Switch location" (small l) on the right, and a close "×" at the top right.Step 2:
+- It is the existing location-switch prompt: the same look, buttons and position as the prompt in the second tab.Step 3:
+- The dialog closes.Step 4:
+- The page switches to dark theme.Step 5:
+- The dialog opens again and is readable in dark theme.
+What you should see today: in step 1, the right-hand button of the "Switch location?" dialog reads "Switch Location" with a capital L instead of "Switch location". This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-12139 (filed by Chris Ward on 3 Nov 2026).
+· If you see exactly that, mark this test FAILED and do not raise anything new.
+· If it fails in a DIFFERENT way from what is described above, that is a NEW problem — please report it.
+· If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.
+

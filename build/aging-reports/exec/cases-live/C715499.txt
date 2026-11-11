@@ -1,0 +1,24 @@
+C715499 Design: A/R Summary loading bar and empty state match Sales By Customer
+PRE: Preconditions
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have a customer, customer A, with open invoices only at location B.
+- Use a desktop browser window 1440 px wide.
+- Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
+- Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
+STEPS: - Change the as-of date to yesterday and watch the table straight away.
+- Change the as-of date back to today.
+- In the Location menu, untick location B.
+- In the Customer filter, tick customer A.
+- Read the empty state, letter for letter, and compare it with Sales By Customer's empty state.
+- Click "Clear all filters".
+EXP: Expected Result
+Step 1:
+- A progress bar shows on the table while the report loads, the same loading bar Sales By Customer shows.Step 2:
+- The report shows today again.Step 3:
+- The report narrows to location A.Step 4:
+- The report has no rows: customer A has nothing open at location A.Step 5:
+- "No record matches these filters" and "Try changing filters to widen your results.", with a "Clear all filters" button, laid out the same as Sales By Customer's empty state when the two tabs are compared.
+- No Totals row.Step 6:
+- The filters return to their defaults and rows show.
+
