@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, C715446 with p73 control"
+ },
+ "results": {
+  "C715446": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of today, only customer \"ZZAUTOTEST S1R5 Alpha\" ticked - its customer card has no phone number.",
+    "Step 1: the group row reads \"ZZAUTOTEST S1R5 Alpha (4)  Credit term: COD  Total $1,334.30 $1,334.30\" - no \"Phone:\" label at all.",
+    "Step 2: \"Download (PDF)\" - the PDF downloads (\"Data exported successfully.\").",
+    "Step 3: the customer's line in the PDF reads \"ZZAUTOTEST S1R5 Alpha   Credit term: COD\" - no \"Phone:\" label.",
+    "Check that the PDF would show a phone when there is one: the same steps for \"Andrews' Truck & Trailer Repair LLC\" (phone 343-203-3967) give \"Phone: 343-203-3967\" on its group row and \"Andrews' Truck & Trailer Repair LLC   Phone: 343-203-3967   Credit term: Net 30\" in the PDF."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715446-s87-01-C715446-1-row.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715446-s87-C715446-pdf-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715446-p73-ctl-pdf-1.png"
+   ]
+  }
+ }
+}
