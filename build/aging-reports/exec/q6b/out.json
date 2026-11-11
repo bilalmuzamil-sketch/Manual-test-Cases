@@ -81,5 +81,88 @@
     "ms": 31256
    }
   ]
+ },
+ "D-1464": {
+  "loc": [
+   "Select all",
+   "1 selected",
+   "Staging Heavy Duty - 9919",
+   "ZZAUTOTEST V1R-87 Location C",
+   "Staging Lethbridge - 4310",
+   "Clear selection"
+  ],
+  "menuHead": [
+   "search",
+   "All categories",
+   "All categories are included. Pick one or more to narrow.",
+   "Uncategorized",
+   "70%override",
+   "Auto-Freight"
+  ],
+  "chips": [
+   "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "list Category: 3 categories keyboard_arrow_down cancel",
+   "local_shipping Vendor: All vendors keyboard_arrow_down",
+   "place Location: Staging Lethbri... keyboard_arrow_down cancel"
+  ],
+  "url": "https://sv11315.qa.shopview.com/reports/inventory-value?categoryIds=5e88a91e-ad39-4534-ba5a-df2715e5baf4&categoryIds=0e446ce2-3793-498f-b969-9ecde2ea2888&categoryIds=add88ebf-c459-4d09-85c6-5fbeedb83d17&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2",
+  "csv": {
+   "label": "Download (CSV)",
+   "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/q6b/D-1464-inventory-value-report.csv",
+   "name": "inventory-value-report.csv",
+   "bytes": 247014,
+   "notes": [
+    "check_circle Success Data exported successfully. Close"
+   ],
+   "secs": 3,
+   "csvHead": [
+    "\"As of: 2026-11-11\"",
+    "\"Locations: Staging Lethbridge - 4310\"",
+    "\"Part #\",Description,Category,Vendor,Location,Qty,\"Unit Cost\",\"Unit Sell\",Margin,\"Margin %\",\"Total Sell\",\"Total Cost\"",
+    "AB8724,\"AIR SPRING ROLLING LOBE\",\"HD-Air Brakes & Air Suspension\",—,\"Staging Lethbridge - 4310\",31.00,702.02,988.80,8890.18,29.0,30652.80,21762.62",
+    "4657-1555,\"6M2T #06 HYD HOSE SAE100R16 3/8\"\"\",\"HD-Hose & Fittings\",\"Jones Creek Mobile Truck Repair\",\"Staging Lethbridge - 4310\",376.00,5.75,11.27,2075.52,49.0,4237.52,2162.00",
+    "6TH8NC,\"#6 HYD. HOSE NON-CONDUCTIVE X10356 4467-1203\",\"HD-Hose & Fittings\",—,\"Staging Lethbridge - 4310\",150.00,12.69,24.40,1756.50,48.0,3660.00,1903.50",
+    "SB3636S3000,\"36/36 LONG STROKE SPRING BRAKE\",\"HD-Air Brakes & Air Suspension\",—,\"Staging Lethbridge - 4310\",27.00,69.95,124.91,1483.92,44.0,3372.57,1888.65",
+    "4657-1571,\"16M2T #16 HYD HOSE SAE100R16 1\"\"\",\"HD-Hose & Fittings\",\"Jones Creek Mobile Truck Repair\",\"Staging Lethbridge - 4310\",153.00,11.55,22.21,1630.98,48.0,3398.13,1767.15"
+   ],
+   "csvLines": 1469,
+   "csvTail": [
+    "\"VO 25169835\",\"HEADLIGHT SWITCH\",\"HD-Lighting & Electrical\",—,\"Staging Lethbridge - 4310\",1.00,0.00,0.00,0.00,,0.00,0.00",
+    "ES1,\"ELECTRICAL SUPPLIES\",\"HD-Lighting & Electrical\",—,\"Staging Lethbridge - 4310\",-3.00,0.01,12.95,-38.82,,-38.85,-0.03",
+    "Totals,,,,,12126.00,,,98477.20,42.8,230052.17,131574.97",
+    ""
+   ]
+  },
+  "pdf": {
+   "label": "Download (PDF)",
+   "file": null,
+   "notes": [
+    "check_circle Success Data exported successfully. Close",
+    "warning This report is too large to export. Narrow the date range or filters, then try again. Close"
+   ],
+   "secs": 302
+  },
+  "answers": [
+   {
+    "st": 200,
+    "url": "/api/reporting/reports/inventory-value/export?format=csv&range=custom&start_date=2026-11-11T07%3A00%3A00.000Z&end_date=2026-11-12T06%3A59%3A",
+    "t": 1794424206191,
+    "ms": 1794424206191
+   },
+   {
+    "done": "csv",
+    "ms": 821
+   },
+   {
+    "st": 500,
+    "url": "/api/reporting/reports/inventory-value/export?format=pdf&range=custom&start_date=2026-11-11T07%3A00%3A00.000Z&end_date=2026-11-12T06%3A59%3A",
+    "t": 1794424240774,
+    "ms": 1794424240774
+   },
+   {
+    "done": "pdf",
+    "ms": 31824
+   }
+  ]
  }
 }
