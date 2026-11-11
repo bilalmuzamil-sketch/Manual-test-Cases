@@ -1,0 +1,80 @@
+{
+ "reqs": [
+  {
+   "u": "/api/iam/change-location",
+   "b": "{\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"workplace_timezone\":\"America/Edmonton\"}"
+  },
+  {
+   "u": "/api/parts-catalogue/add-vendor",
+   "b": "{\"name\":\"ZZAUTOTEST VCREDIT V\",\"tax_id\":\"819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b\",\"country\":\"CA\",\"credit_term\":\"Net 30\",\"credit_limit\":0}"
+  },
+  {
+   "u": "/api/inventory/orders/create",
+   "b": "{\"vendor_id\":\"257f7c5a-0f5e-4b59-a0c9-b2a3b2206629\",\"note\":null,\"items\":[{\"core_charge\":null,\"core_id\":null,\"ext_price\":500,\"id\":\"361a34e5-2597-4add-9a71-12d2b95465c5\",\"is_core\":false,\"part_number\":\"ZZAGING-82075\",\"price\":500,\"price_decimal\":500,\"quantity\":\"1\",\"manufacturer_id\":null,\"category\":\"b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d\",\"description\":\"ZZAUTOTEST aging seed part\",\"itemsPerPackage\":null}]}"
+  },
+  {
+   "u": "/api/inventory/orders/accept",
+   "b": "{\"id\":\"6f2d6bec-d486-4550-9386-cab16bcc745a\",\"invoiceNumber\":\"ZZVC-BILL\",\"invoiceDate\":\"2026-11-10T18:00:00.000Z\",\"note\":\"ZZAUTOTEST aging seed\",\"items\":\"[{\\\"order_item_id\\\":\\\"f712670d-96fc-454a-b6d0-b6e93fcd2291\\\",\\\"part_number\\\":\\\"ZZAGING-82075\\\",\\\"price_display\\\":\\\"500.00\\\",\\\"price\\\":500,\\\"price_decimal\\\":\\\"500.00000\\\",\\\"sell_price\\\":500,\\\"cost\\\":0,\\\"total_cost\\\":\\\"500.00\\\",\\\"total_cost_decimal\\\":500,\\\"quantity_ordered\\\":\\\"1.00\\\",\\\"already_received\\\":\\\"0.00\\\",\\\"quantity_remaining\\\":1,\\\"vendor_name\\\":null,\\\"itemsPerPackage\\\":null,\\\"ioi_vendor_name\\\":\\\"ZZAUTOTEST VCREDIT V\\\",\\\"manufacturer_id\\\":null,\\\"manufacturer_name\\\":null,\\\"category\\\":\\\"b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d\\\",\\\"category_label\\\":\\\"Uncategorized\\\",\\\"description\\\":\\\"ZZAUTOTEST aging seed part\\\",\\\"part_request_id\\\":null,\\\"line_id\\\":null,\\\"work_order_id\\\":null,\\\"parent_part_id\\\":null,\\\"parent_part_number\\\":null,\\\"is_core\\"
+  },
+  {
+   "u": "/api/part/manual-return-request/create",
+   "b": "{\"vendorId\":\"257f7c5a-0f5e-4b59-a0c9-b2a3b2206629\",\"packagingSlip\":\"ZZVC-SLIP\",\"items\":[{\"inventoryPartId\":\"000657fe-522f-4c3f-9680-621c5449e2bd\",\"partNumber\":\"P550848\",\"partDescription\":\"FUEL/WATER SEPARATOR, (FS19732, 33732, BF1385-SPS)\",\"quantity\":1,\"costDecimal\":50}]}"
+  },
+  {
+   "u": "/api/part/manual-return/68db533a-d2ff-4100-b0b0-f1554e667ca4/create",
+   "b": "{\"creditMemoNumber\":\"ZZVC-CM1\",\"creditDate\":\"2026-11-06T03:35:53.223Z\",\"tax\":0,\"note\":null}"
+  }
+ ],
+ "vid": "257f7c5a-0f5e-4b59-a0c9-b2a3b2206629",
+ "bill": {
+  "orderId": "6f2d6bec-d486-4550-9386-cab16bcc745a",
+  "number": "ZZVC-BILL"
+ },
+ "form": "Skip to main content\nShopHub\nexpand_more\nDashboard\nWork Orders\nSchedule\nCustomers\nParts\nReports\nsearch\nSearch customers, work orders, parts...\nCtrl\nK\ntimer\nClock In\nnotifications\nStaging Heavy Duty - 9919\nAS\nCreate Return\nVendor\nN/A\nPackaging Slip\nN/A\nCreate Return\nVendor\narrow_drop_down\nPackaging Slip\nPart Number\tDescription\tBin Location\tQty In Stock\tQty To Return\tPrice Per Unit\tRestocking Fee\tTotal\n\n\nPart Number\narrow_drop_down\n\t\nDescription\n\t\n—\n\t\n—\n\t\nQuantity\n\t\n$\nPrice Per Unit\n\t\n$\nRestocking Fee\n\t$0.00\n\n\tTotal restocking fee:\t$0.00\n\tTotal:\t$0.00\nadd\nAdd Part\nSave Return",
+ "vMenu": "check\n ZZAUTOTEST VCREDIT V",
+ "pMenu": "FUEL/WATER SEPARATOR, (FS19732, 33732, BF1385-SPS)\nP550848\nInventory Qty: 6 EA\nH3B\n6\n12-10 GA RING TERMINAL\n2--83-2511PK\nInventory Qty: 46 EA\nST24BIN25\n46\nSHRINK\nTERMINAL\nHEAT\nCONNECTOR\n...\nCONNECTOR\n84-2005\nInventory Qty: 14 EA\nA2CD\n14\nPAC\nFEMALE\nSINGLECAVITY\nWEATHER\n...\nDO NOT USE Aluminum Seal Ring, 14mm\nN000000001069\nInventory Qty: 0 EA\nUnassigned\n0\nWRONG, DO NOT USE\nATF Bulk- Mobil Delvac 1 A",
+ "rowText": "\t-\tManual Return\tZZAUTOTEST VCREDIT V\tP550848\t\nFUEL/WATER SEPA..\n\t1.00\t$50.00\t$50.00\t-\tManual\tToday\tZZVC-SLIP\t\nmore_vert",
+ "prForm": "",
+ "r-2026-11-05-days_1_to_30": [],
+ "r-2026-11-05-current": [
+  [
+   "Vendor Credit",
+   "C-13668",
+   "2026-11-06T03:35:53Z",
+   "2026-11-06T03:35:53Z",
+   0,
+   -5000
+  ]
+ ],
+ "r-2026-11-06-days_1_to_30": [
+  [
+   "Vendor Credit",
+   "C-13668",
+   "2026-11-06T03:35:53Z",
+   "2026-11-06T03:35:53Z",
+   1,
+   -5000
+  ]
+ ],
+ "r-2026-11-06-current": [],
+ "r-2026-11-10-days_1_to_30": [
+  [
+   "Vendor Credit",
+   "C-13668",
+   "2026-11-06T03:35:53Z",
+   "2026-11-06T03:35:53Z",
+   5,
+   -5000
+  ]
+ ],
+ "r-2026-11-10-current": [
+  [
+   "Invoice",
+   "ZZVC-BILL",
+   "2026-11-10T18:00:00Z",
+   "2026-12-10T18:00:00Z",
+   -30,
+   50000
+  ]
+ ]
+}

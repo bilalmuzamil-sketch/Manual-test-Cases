@@ -1,0 +1,88 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, folder S1 batch d (sv11315) - credits on the as-of day, negative Past Due, over-100 groups"
+ },
+ "results": {
+  "C1062567": {
+   "verdict": "Passed",
+   "observed": [
+    "Vendor ZZAUTOTEST VCREDIT V: a bill, then a return with Receive Credit, Credit Date 11/05/2026 (vendor credit C-13668, $-50.00).",
+    "As of 11/05/2026 with only that vendor ticked: the credit is in Current, Due Date Nov 5, 2026, Past Due 0.",
+    "Picked 6 in the As of calendar: the report reloaded with every bucket closed.",
+    "Opened 1-30 days past due: the credit is there with Past Due 1; Current shows (0)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062567-1-asof5.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062567-3-collapsed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062567-2-asof6.png"
+   ]
+  },
+  "C1062568": {
+   "verdict": "Passed",
+   "observed": [
+    "Customer ZZAUTOTEST CREDIT DAY A: credit memo CM11315-4193, $-50.00, Credit Date 11/05/2026 (Issue Credit, Issue Store Credit).",
+    "As of 11/05/2026 with only that customer ticked: the credit memo is listed with Past Due 0.",
+    "Picked 6 in the As of calendar: the report reloaded with the group closed.",
+    "Opened the group: the credit memo is listed with Past Due 1."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062568-1-asof5.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062568-2-collapsed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062568-3-asof6.png"
+   ]
+  },
+  "C1062569": {
+   "verdict": "Passed",
+   "observed": [
+    "Vendor ZZAUTOTEST NEG PASTDUE V2 on Net 30: bill A dated Oct 20 (due Nov 19), bill B dated Oct 11 (due Nov 10, today).",
+    "As of 11/10/2026 with only that vendor ticked, Current opened: both bills are in Current.",
+    "Bill A shows Past Due -9; bill B shows Past Due 0."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062569-current.png"
+   ]
+  },
+  "C1062570": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 2 and 3: the open group does not show 100 invoices first and then load the rest as you scroll; all of them come at once.",
+   "bold_steps": [
+    2,
+    3
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), S1-R8: \"On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents.\"",
+   "observed": [
+    "Set up: customer ZZAUTOTEST OVER100 C with 105 overdue invoices; A/R Aging Collection with only that customer ticked in Customer.",
+    "Step 2: opening the group brings all 105 invoices at once - the server sends every one of them in its first answer.",
+    "Step 3: scrolling past the 100th invoice (S11315-17714) loads nothing: invoices 101 to 105 are already there, with no loading row.",
+    "The test says the group shows its first 100 invoices and then loads the next ones under them, up to 100 more each time."
+   ],
+   "ticket": "Ticket prepared and with the QA lead for permission to file (not filed yet).",
+   "ticket_held": true,
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the ticket is filed and fixed.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062570-fail.png"
+   ]
+  },
+  "C1062571": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 2 and 3: the open group does not show 100 bills first and then load the rest as you scroll; all of them come at once.",
+   "bold_steps": [
+    2,
+    3
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), S1-R8: \"On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents.\"",
+   "observed": [
+    "Set up: vendor ZZAUTOTEST OVER100 V with 105 unpaid bills; A/P Unpaid Invoices with only that vendor ticked in Vendor.",
+    "Step 2: opening the group brings all 105 bills at once - the server sends every one of them in its first answer.",
+    "Step 3: scrolling past the 100th bill (ZZO100-099) loads nothing: bills 101 to 105 are already there, with no loading row.",
+    "The test says the group shows its first 100 bills and then loads the next ones under them, up to 100 more each time."
+   ],
+   "ticket": "Ticket prepared and with the QA lead for permission to file (not filed yet).",
+   "ticket_held": true,
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once the ticket is filed and fixed.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062571-fail.png"
+   ]
+  }
+ }
+}
