@@ -414,3 +414,6 @@
 ## L0644 — 2026-11-11 — sv11315 fell asleep mid-run; a watcher now wakes it
 - At ~12:20 UTC p56b's page turned into "Environment Sleeping … Wake Up" (pictures p56b/05, 06) and the step timed out on `locator('main')`. A chain's `wait_ok` only sees "not 200" and would wait for ever as if the sign-in had expired.
 - `build/aging-reports/exec/wake_watch.sh` (background, every 60 s) curls quick-login; on a redirect to `sleep.qa.shopview.com` it runs `wake_sv11315.mjs` (opens `https://sleep.qa.shopview.com/?app=sv11315&api=sv11315`, clicks Wake Up, polls quick-login to 200). The same sv_sso_session keeps working after the wake (L0599).
+
+## L0645 — 2026-11-11 — In this container `from PIL import Image` can fail; crop with ImageMagick
+- `python3 -c "from PIL import Image"` raised `ImportError: cannot import name '_imaging'` (system PIL in /usr/lib/python3/dist-packages). `ann.py` does not need PIL (it shells out). To crop or resize a picture use `convert <in> -crop WxH+X+Y +repage <out>` (ImageMagick is at /usr/bin/convert).
