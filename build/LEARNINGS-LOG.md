@@ -627,3 +627,9 @@
 - The address bar copied from an open work order has NO `?locationId=` (`/workorders/<id>/lines`); pasted at another location it gives "WorkOrder not found" + "Request failed with status code 400" and no prompt (p65b). Bears on C715477 ("as before the release") - compare production the same way before calling it a fault.
 - For "same as the existing prompt" comparisons, open it with `?locationId=`.
 - #aging #route #location → L0673, L0680
+
+## L0683 — 2026-11-11 — Design-picture tests: a "default view" picture rarely holds every state the case names
+- The d3b design runner pictured each report's opening view only, so cases that name a specific row type failed to be judgeable from it: C715538 (a credit memo row inside an expanded A/R Collection group - opening groups are invoice-only), C715544 (a bill made at ANOTHER location, plain number - Abadi's Diesel Repair 5956 at Lethbridge sits below the fold), C715545 (the "Total for 91 or more…" subtotal at the END of a 70-line bucket). Before writing a design runner, list each Expected line's required row/state and filter or scroll to it (one customer/vendor that has it), not just the default screen.
+- `exec/d3b2_design.py` holds the by-eye verdicts per case (observed lines + pictures) so later additions are one dict entry; `exec/d3g_cm.mjs` collects the missing states.
+- The title's info icon is a Quasar icon whose text is "info_outline" - `getByText('info', {exact:true})` never matches (C715542).
+- #aging #design #method → L0677, L0678
