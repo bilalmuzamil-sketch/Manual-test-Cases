@@ -1,0 +1,31 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount sort tests (s2x)"
+ },
+ "results": {
+  "C715290": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of 11/11/2026, Customer filter = ZZX Sort Cust A/B/C R4 (61-90 $250/$350/$150, 91 And Over $350/$150/$250, Total $1,200/$1,100/$1,000).",
+    "Every step gives exactly the order the test expects:",
+    "Step 1: 61-90 Days - customer B, customer A, customer C",
+    "Step 2: 61-90 Days - customer C, customer A, customer B",
+    "Step 3: 61-90 Days - customer B, customer A, customer C",
+    "Step 4: 91 And Over - customer A, customer C, customer B",
+    "Step 5: 91 And Over - customer B, customer C, customer A",
+    "Step 6: 91 And Over - customer A, customer C, customer B",
+    "Step 7: Total - customer A, customer B, customer C",
+    "Step 8: Total - customer C, customer B, customer A",
+    "Step 9: Total - customer A, customer B, customer C"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715290-1-6190Days.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715290-2-6190Days.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715290-4-91AndOver.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715290-5-91AndOver.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715290-7-Total.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715290-8-Total.png"
+   ]
+  }
+ }
+}

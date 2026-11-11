@@ -1,7 +1,7 @@
 #!/bin/bash
-# queue16.sh — 11 Nov 2026: re-run C1062586 with a date A on which both locations had documents, after queues 1-15.
+# queue16.sh (re-used name, 11 Nov) — d1 design captures (C715481-C715498: six reports, light/dark, 1440/1536), after queue15 (p49).
 cd "$(dirname "$0")"; log() { echo "$(date -u +%H:%M:%S) $*" >> queue.log; }
-while pgrep -f "queue([2-9]|1[0-5])?\.sh$|node [a-z0-9_]+\.mjs" >/dev/null; do sleep 20; done
+sleep 22; while pgrep -f "queue1[12345]\.sh$|node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done
 run() { local name=$1; shift; log "start $name"; "$@"; log "end $name rc=$?"; }
-run s5g env ONLY=C1062586 timeout 600 node s5_run.mjs > s5g.log 2>&1
-log "queue16 done"
+run d1 timeout 2400 node d1_design.mjs > d1.log 2>&1
+log "queue16 (d1) done"
