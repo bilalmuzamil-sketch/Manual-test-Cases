@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s78b + p64"
+ },
+ "results": {
+  "C715445": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection as of 11/11/2026, Admin role (View and Manage AP/AR Data on).",
+    "Step 1: customer A's group row reads \"Monroe Truck Service & Repair (14)  Phone: 733-101-4929  Credit term: Net 60\" - the phone after the name, then the credit term.",
+    "Step 2: customer A's own customer card shows Phone 733-101-4929 and Credit term Net 60 - exactly as on the row.",
+    "Step 3: customer B's row reads \"ZZAUTOTEST S1R5 Alpha (4)  Credit term: COD\" - no term was chosen for it, and its card shows the default COD; it has no phone, so no \"Phone:\" label.",
+    "Neither row shows an email address or a primary contact."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715445-1-rows.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715445-2-card-A.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715445-3-card-B.png"
+   ]
+  }
+ }
+}

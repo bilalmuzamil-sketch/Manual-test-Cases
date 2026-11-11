@@ -1,0 +1,51 @@
+{
+ "log": [
+  "customer ZZR No Due Date P66 Net 30",
+  "  invoice S11315-17888 40.00 dated -40 Net 30 HD",
+  "vendor term \"\" rows [[\"ZZRV-NODUE-E\",\"2026-10-20T18:00:00Z\",22]]",
+  "vendor ZZRV Overpaid P66 COD",
+  "  bill ZZY6288880 100 dated -15 COD HD"
+ ],
+ "ar": {
+  "name": "ZZR No Due Date P66",
+  "cid": "af06db64-4c6e-4fda-b4f0-1165e4a558e3",
+  "acct": "12f8c329-5422-4aba-b51b-7a2e500e483b",
+  "num": "S11315-17888",
+  "invoiceId": "fb701cfa-b87e-497b-bd68-d452a1452ce4",
+  "stored": [
+   {
+    "n": "S11315-17888",
+    "date": "2026-10-02 18:00:00",
+    "due": "2026-11-01 18:00:00",
+    "bal": 40
+   }
+  ]
+ },
+ "ap": {
+  "id": "92f2e9be-0c17-468b-9c0c-6b6bc00d9c25",
+  "term": "",
+  "bill": {
+   "orderId": "dff260c1-5dc0-48cd-b63d-c9ecca556c8f",
+   "number": "ZZRV-NODUE-E"
+  },
+  "reportRows": [
+   [
+    "ZZRV-NODUE-E",
+    "2026-10-20T18:00:00Z",
+    22
+   ]
+  ],
+  "raw": "{\"errors\":[{\"account_id\":\"Missing required parameter\"}]}"
+ },
+ "apErr": [
+  "Error: vendor ZZRV No Due Date P66 N 400 {\"errors\":[{\"credit_term\":\"Missing required parameter\"}]}"
+ ],
+ "op": {
+  "name": "ZZRV Overpaid P66",
+  "id": "a9aeaf0f-a0f8-4e9e-b4cc-005fd63a802f",
+  "bill": "ZZY6288880",
+  "api": "Error: pay 400 {\"errors\":[{\"error\":\"Vendor transaction cannot be overpaid.\"}]}",
+  "np": 1
+ },
+ "opErr": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.q-dialog').last().locator('[data-test-id=\"input_payment_amount\"]').or(locator('.q-dialog').last().locator('tr').filter({ hasText: 'ZZY6288880' }).locator('input')).first()\u001b[22m\n\u001b[2m    - locator resolved t"
+}
