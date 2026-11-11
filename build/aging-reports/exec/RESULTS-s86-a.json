@@ -1,0 +1,89 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s86 paging + totals"
+ },
+ "results": {
+  "C715450": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of today, all locations: the downloaded spreadsheet lists 147 customers (147 rows), each once.",
+    "Before any scrolling the screen shows exactly 30 customers; the 30th is \"Inland Heavy Duty Truck Repair\", the same as the 30th in the spreadsheet.",
+    "Scrolling loads the next customers below, with no page buttons: the first new one is \"La Mesa Diesel Repair\" - the 31st in the spreadsheet, not a repeat. They arrive 30 at a time (30, 30, 30, 30, 27).",
+    "Scrolled to the end: 147 customers, each exactly once, none missing - the same 147 as the spreadsheet. (The spreadsheet starts three names with an apostrophe, e.g. '-1 Diesel; on screen they read -1 Diesel - the same customers.)",
+    "Clicking \"Total\" sorts largest first (arrow on the heading); scrolled to the end again: 147 customers, each once, none missing.",
+    "Past due \"1-30 days\": the chip reads \"Past due: 1-30 days\"; adding \"91+ days\": the chip reads \"Past due: 2 ranges\" and the report reloads.",
+    "Scrolled to the end with the two ranges: 100 customers, each exactly once, none repeated as more loaded.",
+    "The test asks for 31-90 customers; this site has 147, so the list loads five times instead of twice - a stronger check of the same thing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715450-01-C715450-3-first.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715450-02-C715450-5-end.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715450-03-C715450-7-sorted.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715450-04-C715450-9-two-ranges.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715450-05-C715450-10-filtered.png"
+   ]
+  },
+  "C715452": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of today, all locations: the downloaded spreadsheet lists 144 customers (610 invoice lines for 144 customers), each once.",
+    "Before any scrolling the screen shows exactly 30 customers; the 30th is \"Inland Heavy Duty Truck Repair\", the same as the 30th in the spreadsheet.",
+    "Scrolling loads the next customers below, with no page buttons: the first new one is \"La Mesa Diesel Repair\" - the 31st in the spreadsheet, not a repeat. They arrive 30 at a time (30, 30, 30, 30, 24).",
+    "Scrolled to the end: 144 customers, each exactly once, none missing - the same 144 as the spreadsheet. (The spreadsheet starts three names with an apostrophe, e.g. '-1 Diesel; on screen they read -1 Diesel - the same customers.)",
+    "Clicking \"Open Balance\" sorts largest first (arrow on the heading); scrolled to the end again: 144 customers, each once, none missing.",
+    "Past due \"1-30 days\": the chip reads \"Past due: 1-30 days\"; adding \"91+ days\": the chip reads \"Past due: 2 ranges\" and the report reloads.",
+    "Scrolled to the end with the two ranges: 118 customers, each exactly once, none repeated as more loaded.",
+    "The test asks for 31-90 customers; this site has 144, so the list loads five times instead of twice - a stronger check of the same thing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715452-11-C715452-3-first.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715452-12-C715452-5-end.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715452-13-C715452-7-sorted.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715452-14-C715452-9-two-ranges.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715452-15-C715452-10-filtered.png"
+   ]
+  },
+  "C715612": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, as of today, all locations: the downloaded spreadsheet has 147 customers and its Totals row reads $521,344.25.",
+    "I added up every row of the spreadsheet myself: the sum matches its Totals row in every column.",
+    "Back on the report, with only the first 30 customers loaded, the Totals row reads $521,344.25 (Current $3,247.00, 1-30 $105,705.77, 31-60 $167,713.30, 61-90 $126,336.92, 91+ $118,341.26) - the same Total as the spreadsheet, so it counts every customer, not only those loaded.",
+    "After scrolling until more customers loaded, the Totals row reads exactly the same.",
+    "The test asks for 31-90 customers; this site has 147 - more not-yet-loaded rows, a stronger check of the same thing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715612-26-C715612-3-totals.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715612-27-C715612-4-after-more.png"
+   ]
+  },
+  "C715613": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary, as of today, all locations: the downloaded spreadsheet has 504 vendors and its Totals row reads $4,763,441.95.",
+    "I added up every row of the spreadsheet myself: the sum matches its Totals row in every column.",
+    "Back on the report, with only the first 30 vendors loaded, the Totals row reads $4,763,441.95 (Current $4,247.34, 1-30 $124,557.80, 31-60 $268,967.36, 61-90 $320,924.53, 91+ $4,044,744.92) - the same Total as the spreadsheet, so it counts every vendor, not only those loaded.",
+    "After scrolling until more vendors loaded, the Totals row reads exactly the same.",
+    "The test asks for 31-90 vendors; this site has 504 - more not-yet-loaded rows, a stronger check of the same thing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715613-28-C715613-3-totals.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715613-29-C715613-4-after-more.png"
+   ]
+  },
+  "C715614": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of today, all locations: the downloaded spreadsheet has 610 overdue invoice lines for 144 customers; its Totals row reads Amount $547,870.57, Open Balance $517,894.25.",
+    "I added up every row of the spreadsheet myself: the sum matches its Totals row in every column.",
+    "Back on the report, with only the first 30 customers loaded, the Totals row reads Amount $547,870.57, Open Balance $517,894.25 - the same Open Balance as the spreadsheet, so it counts every customer, not only those loaded.",
+    "After scrolling until more customers loaded, the Totals row reads exactly the same.",
+    "The test asks for 31-90 customers; this site has 144 - more not-yet-loaded rows, a stronger check of the same thing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715614-30-C715614-3-totals.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715614-31-C715614-4-after-more.png"
+   ]
+  }
+ }
+}

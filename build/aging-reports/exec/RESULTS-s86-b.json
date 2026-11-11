@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s86 totals C715615"
+ },
+ "results": {
+  "C715615": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of today, all locations: the downloaded spreadsheet has 13,918 unpaid bill lines for 504 vendors; its Totals row reads Amount $4,764,321.91, Open Balance $4,763,441.95.",
+    "I added up every row of the spreadsheet myself: the sum matches its Totals row in every column.",
+    "Back on the report, with only the first 30 vendors loaded, the Totals row reads Amount $4,764,321.91, Open Balance $4,763,441.95 - the same Open Balance as the spreadsheet, so it counts every vendor, not only those loaded.",
+    "After scrolling until more vendors loaded, the Totals row reads exactly the same.",
+    "The test asks for 31-90 vendors; this site has 504 - more not-yet-loaded rows, a stronger check of the same thing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715615-32-C715615-3-totals.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715615-33-C715615-4-after-more.png"
+   ]
+  }
+ }
+}
