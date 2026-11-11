@@ -171,3 +171,14 @@ Every verdict was observed on the screen in a signed-in Chromium (menu, date chi
 - **Production marker change:** production moved from `v26.45.3-fc08f23` to `v26.45.3-f5ba431` during the day. `git diff --name-only
   fc08f23 f5ba431 -- api/src/Reporting app/src/components/ts/reporting` is **empty**: the redeploy did not touch these reports
   (its report changes are in the separate accounting module's aging pages), so the V1 baseline and every V1 confirmation still hold.
+
+## Unblocked later the same day (11 Nov 2026) — supersedes the BLOCKED lines above
+
+| Case | Run test | Now | Result id | How |
+|---|---|---|---|---|
+| V1R-32 [C1079005](https://shopview.testrail.io/index.php?/cases/view/1079005) | T4687249 | **PASS** | 616784 | tech@shopview.com with Reports on / Customers View off: names plain text; Admin control sees a link |
+| V1R-53 [C1079026](https://shopview.testrail.io/index.php?/cases/view/1079026) | T4687270 | **PASS** | 616785 | tech with Reports page access only: vendor names link to A/P Unpaid Invoices Report |
+| V1R-87 [C1095443](https://shopview.testrail.io/index.php?/cases/view/1095443) | T4693163 | **PASS** | 616786 | new ZZAUTOTEST location C + invoice S-17887: plain text for tech (not enrolled), link for the QA lead (enrolled) |
+
+Build v26.45.2-6a8b89c throughout; tech's role restored to Technician and read back identical. Detail and evidence:
+`unblock-2026-11-11/README.md`. Results read back by the coordinator from TestRail (status Passed, pictures attached).
