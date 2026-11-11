@@ -596,3 +596,9 @@
 - `sortlib.find(/^Willoughby/)` on A/P Unpaid Invoices (vendor groups of 2,000+ documents, 100 per scroll) found nothing, so no pinned picture was taken. For "a pinned group row" checks, scroll into whichever group is at the top and match any label with a count (`/\(\d+\)/`) instead of naming a huge group.
 - Sales By Customer's ⋯ menu reads "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)" — not the aging reports' "Download (CSV)". `explib.exportAs(kind, tag, wait, label)` now takes the menu text; and it pictures a message still showing after a fast download (`-toast-late.png`).
 - #aging #design #tool → L0671, L0676
+
+## L0678 — 2026-11-11 — A failed "back to light theme" silently turns every later picture dark
+- d3b C715519 took a dark-theme picture of the "Switch location?" dialog, pressed Escape (the dialog stayed open) and called setDark(false): the user-menu click was blocked, so C715546, C715520 and C715532 (all "light theme" cases) were pictured DARK, and every later case would have been. Caught only because the C715532 picture was dark beside the light design picture.
+- Fix in `exec/d3b_design.mjs`: close a dialog with its own Cancel before switching theme, and every case's `go()` asserts light (`setDark(false)` must return true or the case errors). Re-run as d3b2 (runq35).
+- Rule: any runner that switches theme must re-assert the theme at the start of EVERY case, and a result builder should check the picture's theme (header pixel ~255 light, ~24 dark) before judging.
+- #aging #design #tool #trap → L0677
