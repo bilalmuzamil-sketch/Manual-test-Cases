@@ -12,12 +12,12 @@ const snap = async (o, label, segRe) => { const rows = await S.collect(); const 
   o.steps.push(st); return st; };
 const T = {
   C715317: async (o) => { await s.go(REPORTS.ard); await S.clickTh('Open Balance'); await S.expand(/31-60 days past due/); await snap(o, '1 open balance', /^31-60 days past due/);
-    await F.asOf(9); await snap(o, '2 yesterday', null); const big = (o.steps[1].heads.map((h) => [h, +(h.match(/\((\d+)\)/) || [])[1]]).sort((x, y) => y[1] - x[1])[0] || [])[0]; o.big = big;
+    /* 11 Nov re-run: today is 11/11 now, so yesterday is 10 */ await F.asOf(10); await snap(o, '2 yesterday', null); const big = (o.steps[1].heads.map((h) => [h, +(h.match(/\((\d+)\)/) || [])[1]]).sort((x, y) => y[1] - x[1])[0] || [])[0]; o.big = big;
     const bre = new RegExp(clean(big).split(' (')[0].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')); await S.expand(bre); await snap(o, '3-4 largest bucket scrolled', new RegExp('^' + clean(big).split(' (')[0]));
-    o.custMenu = await F.pick('Customer', 'ZZAUTOTEST AR Customer A'); await S.expand(/1-30 days past due/); await S.expand(/31-60 days past due/); await S.expand(/Current \(/); await snap(o, '6 customer A', /^1-30 days past due/);
-    o.locMenu = await F.menuClick('Location', 'Staging Lethbridge - 4310'); await S.expand(/1-30 days past due/); await snap(o, '7 location A only', /^1-30 days past due/); },
+    /* 11 Nov re-run: customer A must have documents at BOTH locations (AR Customer A has one); ZZAUTOTEST LOC MIX has 31-60 invoices at both */ o.custMenu = await F.pick('Customer', 'ZZAUTOTEST LOC MIX'); await S.expand(/31-60 days past due/); await snap(o, '6 customer A', /^31-60 days past due/);
+    o.locMenu = await F.menuClick('Location', 'Staging Lethbridge - 4310'); await S.expand(/31-60 days past due/); await snap(o, '7 location A only', /^31-60 days past due/); },
   C715320: async (o) => { await s.go(REPORTS.apd); await S.clickTh('Open Balance'); await S.expand(/1-30 days past due/); await snap(o, '1 open balance', /^1-30 days past due/);
-    await F.asOf(9); await snap(o, '2 yesterday', null); const big = (o.steps[1].heads.map((h) => [h, +(h.match(/\((\d+)\)/) || [])[1]]).sort((x, y) => y[1] - x[1])[0] || [])[0]; o.big = big;
+    /* 11 Nov re-run: today is 11/11 now, so yesterday is 10 */ await F.asOf(10); await snap(o, '2 yesterday', null); const big = (o.steps[1].heads.map((h) => [h, +(h.match(/\((\d+)\)/) || [])[1]]).sort((x, y) => y[1] - x[1])[0] || [])[0]; o.big = big;
     await S.expand(new RegExp(clean(big).split(' (')[0].replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))); await snap(o, '3-4 largest bucket scrolled', new RegExp('^' + clean(big).split(' (')[0]));
     await F.pick('Vendor', 'ZZAUTOTEST AP Vendor A'); await S.expand(/1-30 days past due/); await S.expand(/Current \(/); await snap(o, '6 vendor A', /^1-30 days past due/);
     o.locMenu = await F.menuClick('Location', 'Staging Lethbridge - 4310'); await S.expand(/1-30 days past due/); await snap(o, '7 location A only', /^1-30 days past due/); },
