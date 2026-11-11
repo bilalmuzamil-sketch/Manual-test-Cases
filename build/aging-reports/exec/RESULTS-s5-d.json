@@ -1,0 +1,32 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S5 (sv11315)"
+ },
+ "results": {
+  "C715398": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of 11/11/2026. The Customer menu lists the first 50 customers (\"#1 Diesel\" \u2026 ); customer A = ZZAUTOTEST LOC MIX (overdue invoices) is not among them.",
+    "Steps 1-2: typed its name in the menu's search box: it showed; ticked it: the chip reads \"Customer: ZZAUTOTEST LOC MIX\".",
+    "Steps 3-6: copied the address (\"\u2026/ar-aging-collection?customerIds=de1fd197-\u2026\") and opened it in a new tab: the report opened with only ZZAUTOTEST LOC MIX's group; the chip reads \"Customer: ZZAUTOTEST LOC MIX\".",
+    "Step 7: opened the Customer menu: ZZAUTOTEST LOC MIX is shown selected (as a tag at the top of the menu, with \"1 selected\")."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715398-1-1-search.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715398-2-7-new-tab-menu.png"
+   ]
+  },
+  "C715399": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report set to: As of 11/09/2026 (an earlier day; the test asks for yesterday, 11/10 - any earlier day shows the same reset), Vendor = Alameda Mechanical (bills on that date), Past due = 61-90 days, Location = Staging Heavy Duty - 9919 only.",
+    "Step 1: opened Sales By Customer from the left menu: it opened.",
+    "Step 2: opened A/P Unpaid Invoices from the left menu: the filter row reads \"As of: 11/11/2026\" (today), \"Vendor: All vendors\", \"Past due: Any\", \"Location: All locations\": nothing was remembered."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715399-1-0-set.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715399-2-2-reopened.png"
+   ]
+  }
+ }
+}
