@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d3a C715523"
+ },
+ "results": {
+  "C715523": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of today, customers \"Andrews' Truck & Trailer Repair LLC\" (A: phone and credit term on its card) and \"ZZAUTOTEST S1R5 Alpha\" (B: no phone, credit term COD) ticked.",
+    "Step 1: customer A's group row reads the name and count, then \"Phone: 343-203-3967\", then \"Credit term: Net 30\".",
+    "Step 2: customer B's row reads the name and count and \"Credit term: COD\" - no \"Phone:\" label. On both rows nothing overlaps or is clipped (no text cut off: 0 clipped elements measured).",
+    "Step 3: in dark theme the same rows show; nothing overlaps or is clipped (0 clipped elements)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715523-1-light.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715523-2-dark.png"
+   ]
+  }
+ }
+}
