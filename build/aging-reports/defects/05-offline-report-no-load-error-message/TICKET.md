@@ -69,6 +69,12 @@ h2. Test case
 
 * [C715442 A/R Collection: a report that fails to load says so in place of the rows|https://shopview.testrail.io/index.php?/cases/view/715442]
 * [C715443 A/P Summary: a report that fails to load says so in place of the rows|https://shopview.testrail.io/index.php?/cases/view/715443]
+* [C715633 Design: A/R Summary load error message shows in place of the rows|https://shopview.testrail.io/index.php?/cases/view/715633]
+* [C715634 Design: A/R Detail load error message shows in place of the rows|https://shopview.testrail.io/index.php?/cases/view/715634]
+* [C715635 Design: A/R Collection load error message shows in place of the rows|https://shopview.testrail.io/index.php?/cases/view/715635]
+* [C715636 Design: A/P Summary load error message shows in place of the rows|https://shopview.testrail.io/index.php?/cases/view/715636]
+* [C715637 Design: A/P Detail load error message shows in place of the rows|https://shopview.testrail.io/index.php?/cases/view/715637]
+* [C715638 Design: A/P Unpaid Invoices load error message shows in place of the rows|https://shopview.testrail.io/index.php?/cases/view/715638]
 ```
 
 ---
