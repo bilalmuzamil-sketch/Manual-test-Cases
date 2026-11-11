@@ -210,5 +210,111 @@
     "place Location: All locations keyboard_arrow_down cancel"
    ]
   }
+ },
+ "C715635": {
+  "offline": {
+   "m": null,
+   "notes": [],
+   "net": [
+    [
+     1830,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-32x32.png"
+    ],
+    [
+     1831,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-16x16.png"
+    ],
+    [
+     1831,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-96x96.png"
+    ],
+    [
+     1832,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-128x128.png"
+    ],
+    [
+     5558,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794413965720&gcd=13l3l3l3l"
+    ],
+    [
+     5560,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://www.google.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba0h2v9250300735za200zd9250300735xf1&_p=1794413965720&gcd=13l3l3l3l1l1&npa=0&"
+    ]
+   ]
+  },
+  "server500": {
+   "m": "Something went wrong loading this report. Please try again.",
+   "notes": [
+    "warning Ooooops! An error occurred Close 4"
+   ],
+   "net": [
+    [
+     1329,
+     "req",
+     "/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-09&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D="
+    ],
+    [
+     1331,
+     "req",
+     "/api/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-09"
+    ],
+    [
+     1349,
+     "res",
+     500,
+     "/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-09&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D="
+    ],
+    [
+     1353,
+     "res",
+     500,
+     "/api/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-09"
+    ],
+    [
+     2357,
+     "req",
+     "/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-09&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D="
+    ],
+    [
+     2360,
+     "res",
+     500,
+     "/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-09&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D="
+    ],
+    [
+     2361,
+     "req",
+     "/api/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-09"
+    ],
+    [
+     2373,
+     "res",
+     500,
+     "/api/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-09"
+    ]
+   ]
+  },
+  "after": {
+   "m": null,
+   "rows": 33,
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "person Customer: All customers keyboard_arrow_down",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ]
+  }
  }
 }
