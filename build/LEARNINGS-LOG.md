@@ -406,3 +406,7 @@
 ## L0642 — 2026-11-11 — Aging Detail buckets: where the lines come from, and the offline trap
 - A Detail bucket's lines load from `GET /api/reporting/reports/<ar-aging-detail|ap-aging-detail>/buckets/<bucket>/rows?asOfDate=…&pagination[page]=N&pagination[rowsPerPage]=100&pagination[sortBy]=…` (p56 control, sv11315).
 - **Collapsing and re-opening a bucket reuses the lines already loaded** — no new request. So "go offline, then expand" only tests the error path if that bucket has NOT been opened on this page yet; otherwise nothing is asked and nothing can fail. To force a real failed load, block the `/rows` call (`page.route(... abort)`) and reload the report first, or open a bucket for the first time while blocked (p56/p56b).
+
+## L0643 — 2026-11-11 — Aging Detail scroll paging: offline, the next page is never asked for
+- Online, scrolling an A/P Detail bucket loads lines 101+ with `…/buckets/<bucket>/rows?…pagination[page]=2…` (and 3, 4 …); a 496-line bucket ends at 496 lines (p56b control).
+- With the browser set offline (Playwright `setOffline(true)`, proved by an `ERR_INTERNET_DISCONNECTED` on the page's own `index.html`), scrolling to the end leaves 100 lines and sends **no** page-2 request at all — so no request "fails". To test a "lines stopped loading" message, also block only the page-2 call while online (`page.route` on `pagination%5Bpage%5D=[2-9]`), which does make the request fail.
