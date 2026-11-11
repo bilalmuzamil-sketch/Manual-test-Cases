@@ -1,0 +1,85 @@
+{
+ "C-1194": {
+  "loc": [
+   "Select all",
+   "1 selected",
+   "Staging Heavy Duty - 9919",
+   "ZZAUTOTEST V1R-87 Location C",
+   "Staging Lethbridge - 4310",
+   "Clear selection"
+  ],
+  "menuHead": [
+   "search",
+   "All categories",
+   "All categories are included. Pick one or more to narrow.",
+   "Uncategorized",
+   "70%override",
+   "Auto-Freight"
+  ],
+  "chips": [
+   "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "list Category: 2 categories keyboard_arrow_down cancel",
+   "local_shipping Vendor: All vendors keyboard_arrow_down",
+   "place Location: Staging Lethbri... keyboard_arrow_down cancel"
+  ],
+  "url": "https://sv11315.qa.shopview.com/reports/inventory-value?categoryIds=5e88a91e-ad39-4534-ba5a-df2715e5baf4&categoryIds=0e446ce2-3793-498f-b969-9ecde2ea2888&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2",
+  "csv": {
+   "label": "Download (CSV)",
+   "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/q6b/C-1194-inventory-value-report.csv",
+   "name": "inventory-value-report.csv",
+   "bytes": 200395,
+   "notes": [
+    "check_circle Success Data exported successfully. Close"
+   ],
+   "secs": 3,
+   "csvHead": [
+    "\"As of: 2026-11-11\"",
+    "\"Locations: Staging Lethbridge - 4310\"",
+    "\"Part #\",Description,Category,Vendor,Location,Qty,\"Unit Cost\",\"Unit Sell\",Margin,\"Margin %\",\"Total Sell\",\"Total Cost\"",
+    "4657-1555,\"6M2T #06 HYD HOSE SAE100R16 3/8\"\"\",\"HD-Hose & Fittings\",\"Jones Creek Mobile Truck Repair\",\"Staging Lethbridge - 4310\",376.00,5.75,11.27,2075.52,49.0,4237.52,2162.00",
+    "6TH8NC,\"#6 HYD. HOSE NON-CONDUCTIVE X10356 4467-1203\",\"HD-Hose & Fittings\",—,\"Staging Lethbridge - 4310\",150.00,12.69,24.40,1756.50,48.0,3660.00,1903.50",
+    "4657-1571,\"16M2T #16 HYD HOSE SAE100R16 1\"\"\",\"HD-Hose & Fittings\",\"Jones Creek Mobile Truck Repair\",\"Staging Lethbridge - 4310\",153.00,11.55,22.21,1630.98,48.0,3398.13,1767.15",
+    "27001,\"3/16\"\" FUEL HOSE 25'\",\"HD-Hose & Fittings\",\"Apex Truck & Trailer Repair\",\"Staging Lethbridge - 4310\",25.00,59.61,99.35,993.50,40.0,2483.75,1490.25",
+    "4657-1559,\"8M2T #08 HYD HOSE SAE100R16 1/2\"\"\",\"HD-Hose & Fittings\",\"Jones Creek Mobile Truck Repair\",\"Staging Lethbridge - 4310\",190.00,6.22,12.20,1136.20,49.0,2318.00,1181.80"
+   ],
+   "csvLines": 1199,
+   "csvTail": [
+    "\"VO 25169835\",\"HEADLIGHT SWITCH\",\"HD-Lighting & Electrical\",—,\"Staging Lethbridge - 4310\",1.00,0.00,0.00,0.00,,0.00,0.00",
+    "ES1,\"ELECTRICAL SUPPLIES\",\"HD-Lighting & Electrical\",—,\"Staging Lethbridge - 4310\",-3.00,0.01,12.95,-38.82,,-38.85,-0.03",
+    "Totals,,,,,10855.00,,,55160.68,46.4,118870.88,63710.20",
+    ""
+   ]
+  },
+  "pdf": {
+   "label": "Download (PDF)",
+   "file": null,
+   "notes": [
+    "check_circle Success Data exported successfully. Close",
+    "warning This report is too large to export. Narrow the date range or filters, then try again. Close"
+   ],
+   "secs": 302
+  },
+  "answers": [
+   {
+    "st": 200,
+    "url": "/api/reporting/reports/inventory-value/export?format=csv&range=custom&start_date=2026-11-11T07%3A00%3A00.000Z&end_date=2026-11-12T06%3A59%3A",
+    "t": 1794423863107,
+    "ms": 1794423863107
+   },
+   {
+    "done": "csv",
+    "ms": 671
+   },
+   {
+    "st": 500,
+    "url": "/api/reporting/reports/inventory-value/export?format=pdf&range=custom&start_date=2026-11-11T07%3A00%3A00.000Z&end_date=2026-11-12T06%3A59%3A",
+    "t": 1794423897295,
+    "ms": 1794423897295
+   },
+   {
+    "done": "pdf",
+    "ms": 31256
+   }
+  ]
+ }
+}
