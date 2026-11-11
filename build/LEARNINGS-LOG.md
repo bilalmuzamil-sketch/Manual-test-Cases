@@ -603,3 +603,13 @@
 - **Filters:** Customer:/Vendor: chip → menu with a search box → type → click the name → Escape; address gets `?customerIds=` / `?vendorIds=` (`exec/filt.mjs`). Location: chip lists the locations to untick. As of chip → month calendar → click the day.
 - **Reader traps (all mine, all caught):** (1) the 30-groups-at-a-time lists need a WAIT at the bottom before "not found" (sortlib.find, 4 stalls); (2) Playwright `hasText` on a group row reads textContent, so "Name (6)" may have no space — use `\s*\(`; (3) the sticky "Totals" row shows up in a scroll read between virtual-scroll chunks and looks like an extra row — it is not a loader.
 - **Open groups on A/R Collection / A/P Unpaid:** the server sends ALL of a group's documents in one reply (105 of 105) and nothing loads on scroll — against PRD S1-R8 "first 100 … then the next 100". Positive control: A/R Detail buckets DO load via `/buckets/<b>/rows?…rowsPerPage=100`. C1062570/71 Failed, ticket held.
+
+## L0623 — 2026-11-11 — Aging reports on sv11315: export, filter and reader facts from S2/S3
+- **PDF limit is real here:** unfiltered A/P Detail has > 2,000 rows, so Download (PDF) shows "This report is too large for PDF. Export it as CSV, or narrow the filters, then try again." (PRD S3-N1) — for tests that only need *a* PDF, use an earlier as-of date with ≤ 2,000 rows (s3_run picks the latest 1st-of-month via `ap-aging-detail?asOfDate=` groups).
+- **Export pop-ups fade in ~3 s;** picture them the moment `.q-notification` appears (explib.exportAs now saves `<tag>-toast.png`).
+- **Offline:** `context.setOffline(true)` → Download gives one message "We couldn't export this report. Please try again."; nothing downloads.
+- **"=" names:** the CSV writes `'=2+3 …` (apostrophe guard); LibreOffice (`soffice --headless --convert-to xlsx`) opens it as a text cell. No openpyxl here; read the xlsx XML or convert back to CSV.
+- **pdftoppm** names the page `x-1.png` for short PDFs but `x-01.png` for ≥ 10 pages — glob, don't hard-code.
+- **Calendar:** As of chip → `chevron_left` steps back a month (filt.asOfPrev / asOfBack(months, day)).
+- **Reader traps:** a Detail bucket loads its next 100 only on a scroll event at the bottom — nudge up and back (sortlib.collect); a bucket with (0) has a DISABLED chevron (sortlib.expand returns 'disabled-empty'); group regexes need `\s*\(`; boxes must be read after scrolling a focused row to mid-screen (+300, not −250).
+- **Two admin scripts must never start together:** every queued waiter must wait for the previous job's log AND no runner — a second sign-in ends the first. p36 was neutralised (RUN_P36=1) after two waiters were found to share a trigger.
