@@ -571,3 +571,9 @@
 - **Sales By Customer, Location "Clear selection" then "Select all":** production's address stays `/reports/sales-by-customer`; the QA site writes `?locationIds=<all three codes>`. The QA reports open on the CURRENT location (L0657) while production's opened on All locations with a one-location user — so the two defaults differ and the address difference may follow from that; not judged without a production user enrolled at 2+ locations.
 - **Offline on a QA site shows "QA env is sleeping Redirecting…"** (its own sleep detector) instead of the app's error, so "offline export message" checks (C715476) cannot be observed on a QA branch; production shows "Network Error".
 - #aging #before-release #production → L0659, L0670
+
+## L0674 — 2026-11-11 — "Offline, no load-error message" may be no failure at all: check the figures and the requests first
+- p62b (offline, as-of changed to YESTERDAY on six reports) saw no "Something went wrong loading this report" message — but the page made NO report request while offline, and A/P Summary's Totals changed to $4,763,410.45 under "As of: 11/10/2026" (today's $4,763,441.95). Yesterday's figures appear without the network (prefetched or held by the page), so nothing failed — not evidence of a missing message. Results HELD (not posted).
+- The fair offline test uses a date the page cannot already hold (p62 used the 3rd: today's Totals stayed under the new date = a real failure to load). `exec/p62c_cache.mjs` compares online-yesterday vs offline-yesterday Totals and tries the 6th.
+- Rule: for any "fails to load / no message" claim, record (a) whether a request was made, (b) whether the shown data matches the new date, before judging (QA lead's note, L0661).
+- #aging #offline #method → L0661, L0673
