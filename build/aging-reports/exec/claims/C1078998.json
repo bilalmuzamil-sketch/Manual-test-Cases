@@ -1,0 +1,33 @@
+{
+ "claim": "sv11315 cannot hold an A/R invoice with NO due date stored: every route that makes an invoice stores one (the customer's credit term is applied), so C1078998's precondition cannot be built",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "p66/out.json: the same API route that would hold a missing due date reads back the stored due date - invoice S11315-17888 (Net 30 customer 'ZZR No Due Date P66', dated 2 Oct) reads due '2026-11-01 18:00:00'; so the read-back sees the field and would show it empty if it were."
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "p66b: the work order's Finance page (pictures p66b/01-02) has no Due Date field (fields: Contact, Authorizer, Mileage, Engine Hours, License Plate, Customer PO); p66c: every more_vert/settings menu on the finance page opened - no 'edit invoice' or due-date item."
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Three runs on 11 Nov: p66 (14:20, API create), p66b (14:58, screens), p66c (15:53, menus and edit)."
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "p66c recorded the URL and dialogs after each menu click; no page or dialog offered a due date."
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "list-unpaid-transaction for the customer's account reads due_date 2026-11-01 for S11315-17888 - the app filled it from Net 30 at creation."
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "git grep over build/ for 'due_date IS NOT NULL', 'without a due date', 'cannot be overpaid', 'Payment cannot be higher than': only our own cases, the V1 baseline and today's p66/p66b/p66c probes; playbook 005-e-parts (vendor invoices) and 022 give no due-date or overpay route; no BLOCKED-*.md covers it."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "A wrong record (read back by number and account id), a wrong term (Net 30 read from the customer card), an untried screen (the finance page and both menus were opened and pictured). The only remaining route is writing the database directly, which no tester can do; the case itself already carries 'AUTOMATION: HOLD - an invoice without a due date cannot be made through the app'."
+  }
+ }
+}

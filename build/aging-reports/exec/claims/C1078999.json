@@ -1,0 +1,33 @@
+{
+ "claim": "sv11315 cannot hold an A/P bill with NO due date: a vendor with no credit term gets the bill date as due date, a null term is refused, and the bill page shows the due date read-only",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The A/P report read for vendor 'ZZRV No Due Date P66 E' lists bill ZZRV-NODUE-E with dueDate 2026-10-20 (= its bill date) and 22 days past due - the read sees the due date."
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "p66b/04 and p66c/02: the bill's page (Parts > delivery) in edit mode offers Invoice Number, Invoice Date and Vendor; 'Due date Oct 20, 2026' is display-only text - no field to clear."
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "p66 (two vendors: term '' and null), p66b (screens), p66c (edit mode) on 11 Nov."
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "The edit stayed on /parts/delivery/069d4314-...; no dialog appeared; picture p66c/02."
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Vendor with credit term '' accepted, its bill stored due = bill date; a vendor with credit term null refused: 400 'credit_term: Missing required parameter'."
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "git grep over build/ for 'due_date IS NOT NULL', 'without a due date', 'cannot be overpaid', 'Payment cannot be higher than': only our own cases, the V1 baseline and today's p66/p66b/p66c probes; playbook 005-e-parts (vendor invoices) and 022 give no due-date or overpay route; no BLOCKED-*.md covers it."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "A wrong vendor (read back by id), a wrong bill (by number), an edit that did not open (picture shows the edit form with Save/Cancel). Remaining route: the database directly, not open to a tester."
+  }
+ }
+}

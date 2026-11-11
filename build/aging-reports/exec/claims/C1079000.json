@@ -1,0 +1,33 @@
+{
+ "claim": "sv11315 refuses to overpay a vendor bill: a $100.00 bill cannot be paid $110.00 through the payment request or the New Payment screen, so C1079000's precondition cannot be built",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The same New Payment screen accepts 100.00 for bill ZZY6288880 (Make Payment enabled at 100.00); typing 110.00 shows 'Payment cannot be higher than 100' and disables Make Payment (p66b/05-06)."
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Vendor's Unpaid Invoices tab > tick bill > New Payment > Amount 110.00: refused on screen (p66b/06)."
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "p66 (API, 14:20) and p66b (screen, 14:58), 11 Nov."
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "The dialog stayed open with the error under the amount; no payment was saved (the bill still reads $100.00 unpaid)."
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "API: POST vendor/payment/create with 110 for the $100 bill -> 400 'Vendor transaction cannot be overpaid.'; bill ZZY6288880 still open $100.00."
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "git grep over build/ for 'due_date IS NOT NULL', 'without a due date', 'cannot be overpaid', 'Payment cannot be higher than': only our own cases, the V1 baseline and today's p66/p66b/p66c probes; playbook 005-e-parts (vendor invoices) and 022 give no due-date or overpay route; no BLOCKED-*.md covers it."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "A wrong amount field (the dialog's own payment amount input, value read back 110.00), a payment method missing (the message names the amount, not the method), a different bill (number read). A vendor credit applied to the bill is not a payment of $110 and would not make the bill's balance negative."
+  }
+ }
+}

@@ -544,3 +544,8 @@
 - So those roles carry See Financial Data ON by design; a test needing "Invoicing View with financial data off" cannot be built.
 - Roles made (p71, sv11315): ZZAUTOTEST P71 Reports only `2551b1bb-…`, VOM view `5b89f5ff-…`, VOM create-edit `269548a7-…`, Customers view `9711d3a3-…` ("Similar role already exists" → Create Anyway).
 - #roles #permissions #aging → L0637
+
+## L0669 — 2026-11-11 — never pipe push_results_to_run.py through a filter you then "re-run because nothing printed"
+- `push_results_to_run.py ... | grep -E "run now|..."` printed nothing for a Blocked batch (the grep matched nothing it wrote in that mode), the push HAD succeeded, and running it again posted every result twice (C1078998/C1078999/C1079000: results 616868-70 and 616871-73, 18 s apart; TestRail results cannot be deleted through the API). Run it with `| tail -6`, and before any re-run read `get_results/<test_id>` to see whether the first one landed.
+- The three were recorded Blocked with `exec/claims/<id>.json` passing `blocker_gate.py --check`: the app will not create an invoice or bill without a due date, nor overpay a bill (p66, p66b, p66c).
+- #testrail #push #duplicate → L0654
