@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s90b C715417"
+ },
+ "results": {
+  "C715417": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of today, signed in at Staging Heavy Duty - 9919, customer \"Doi Truck Center\" ticked and open; part sale invoice P3-188 made at Staging Lethbridge - 4310 ($528.95, 81 days past due).",
+    "Step 1: clicking P3-188 opens a dialog over the report (the address does not change). Title \"Switch location?\"; message \"This part sale is in Staging Lethbridge - 4310. Switch your active location to view it?\"; \"Cancel\" on the left, \"Switch location\" (small l) on the right; a close \u00d7 at the top right.",
+    "Step 2: clicking \"Switch location\" opens the part sale's Finance page, and the location switcher at the top right now reads \"Staging Lethbridge - 4310\".",
+    "This test carried a \"what you should see today\" note for a known problem (the button read \"Switch Location\" with a capital L). That problem is gone - the fix has shipped, so the note can come off. (Switched back to Heavy Duty afterwards.)"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715417-05-C715417-1-dialog.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715417-06-C715417-2-switched.png"
+   ]
+  }
+ }
+}
