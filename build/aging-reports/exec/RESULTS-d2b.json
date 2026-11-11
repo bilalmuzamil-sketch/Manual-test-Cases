@@ -1,0 +1,51 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d2 + d2b chips"
+ },
+ "results": {
+  "C715511": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary and Sales By Customer side by side, 1440 px, light theme.",
+    "Step 1: the chip reads \"Customer: All customers\" with the person icon, no fill and grey text - the same resting style as Sales By Customer's Customer chip (same class, colour and size).",
+    "Step 2: the menu reads, in order: the search box (\"Search customer\"), \"All customers\" (ticked), the line \"All customers are included. Pick one or more to narrow.\", then the customers A to Z.",
+    "Step 3: ticking \"ZZAUTOTEST Northern Alberta Heavy Haul and Towing Ltd\" - the chip reads \"Customer: ZZAUTOTEST Nort...\" (shortened with \"...\") in a blue pill: no longer resting.",
+    "Step 4: the open menu matches Sales By Customer's: same rows and order, same tick boxes, same row spacing, same 352 px width, opening directly under its chip."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715511-menus.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715511-chip.png"
+   ]
+  },
+  "C715513": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary, 1440 px, light theme.",
+    "Step 1: the chip reads \"Past due: Any\" with the hourglass icon, no fill and grey text - the resting style (the same style as the Customer/Vendor chip beside it).",
+    "Step 2: the menu reads, in order: \"Any\", the line \"All ranges are included. Pick one or more to narrow.\", \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\" - five tick boxes.",
+    "Step 3: after ticking \"91+ days\" the chip reads \"Past due: 91+ days\" in a blue pill (no longer resting).",
+    "Step 4: the Location menu opens. Side by side the two are the same kind of tick-box menu: the same square tick boxes, the same 40 px row spacing, a top row with the count at its right (\"1 selected\" / \"3 selected\") and a divider, and both open directly under their own chip (6 px below it)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715513-pastdue-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715513-chip-91.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715513-side-by-side.png"
+   ]
+  },
+  "C715514": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary, 1440 px, light theme.",
+    "Step 1: the chip reads \"Past due: Any\" with the hourglass icon, no fill and grey text - the resting style (the same style as the Customer/Vendor chip beside it).",
+    "Step 2: the menu reads, in order: \"Any\", the line \"All ranges are included. Pick one or more to narrow.\", \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\" - five tick boxes.",
+    "Step 3: after ticking \"91+ days\" the chip reads \"Past due: 91+ days\" in a blue pill (no longer resting).",
+    "Step 4: the Location menu opens. Side by side the two are the same kind of tick-box menu: the same square tick boxes, the same 40 px row spacing, a top row with the count at its right (\"1 selected\" / \"3 selected\") and a divider, and both open directly under their own chip (6 px below it)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715514-pastdue-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715514-chip-91.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715514-side-by-side.png"
+   ]
+  }
+ }
+}
