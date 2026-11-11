@@ -608,3 +608,9 @@
 - The aging exec `api.mjs` returns `{ st, j }`, not `{ status, body }` like the wo-board helpers — copying wo-board code needs `.st` / `.j`.
 - p71b made all seven roles (names "ZZAUTOTEST P71 …", ids in `exec/p71/out.json`).
 - #aging #permissions #route → L0637, L0583
+
+## L0680 — 2026-11-11 — A/P reports list a vendor credit by its CREDIT number (C-nnnnn), not the vendor return's number
+- s89b searched the No. column for the vendor-return numbers it created (ZZYCM6825104…) and found nothing; the reports show the vendor credit's own number ("C-13686"). Map credit A/B/C by location and amount from the rows (Heavy Duty $-31.50 = C-13686 from the Heavy Duty return; Lethbridge $-42.75 = C-13687; direct credit $-23.45 = C-13688). Follow-up `exec/s89c_click.mjs`.
+- Already visible on s89b's picture: C-13686 (return at the current location) is blue (a link), C-13687 (return at the other location) is plain text.
+- Queue ordering: runq35/36 wait patterns had to be widened when runq37 was added — a new waiter that two others don't wait for can start at the same tick.
+- #aging #ap #seed #trap → L0672, L0662

@@ -1,0 +1,21 @@
+// s89c_click.mjs — 11 Nov 2026 ~18:40: C715420 (A/P Detail) / C715421 (A/P Unpaid Invoices) for vendor "ZZY VCredit Links P89b". s89b looked for
+// the vendor-return memo numbers (ZZYCM…), but the No. column shows the vendor CREDIT numbers: C-13686 ($-31.50, return at Heavy Duty = credit A),
+// C-13687 ($-42.75, return at Lethbridge = credit B), C-13688 ($-23.45, entered directly = credit C). Here: on each report read each number's cell
+// (a link element? colour, cursor), then click credit A's number and record where it lands (URL, page heading, new tab), with pictures.
+import { start, REPORTS, A } from './lib.mjs'; import { mkSort } from './sortlib.mjs'; import { mkFilt } from './filt.mjs'; import fs from 'fs';
+const OUT = new URL('./s89c/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT); const p = s.page; const S = mkSort(p); const F = mkFilt(p);
+const V = 'ZZY VCredit Links P89b'; const NUM = { A: 'C-13686', B: 'C-13687', C: 'C-13688' }; const R = {};
+const settle = async () => { for (let i = 0; i < 30; i++) { if (!(await p.locator('main .q-linear-progress').count())) break; await p.waitForTimeout(500); } await p.waitForTimeout(900); };
+const cell = (n) => p.evaluate((n) => { const td = [...document.querySelectorAll('main tbody td')].find((t) => t.innerText.trim() === n); if (!td) return { found: 0 };
+  const t = td.querySelector('a, [role=link]') || td.querySelector('span, div') || td; const c = getComputedStyle(t); return { found: 1, link: !!td.querySelector('a, [role=link]'), tag: t.tagName, href: td.querySelector('a')?.getAttribute('href') || null, color: c.color, cursor: c.cursor, row: td.closest('tr').innerText.replace(/\s+/g, ' ') }; }, n);
+for (const [id, k] of [['C715420', 'apd'], ['C715421', 'apu']]) { const o = { id };
+  try { await s.go(REPORTS[k]); await p.waitForTimeout(3500); await settle(); await F.pick('Vendor', V); await settle();
+    if (k === 'apd') { for (const b of [/^91 or more/, /^61-90/, /^31-60/, /^1-30/, /^Current/]) await S.expand(b).catch(() => {}); } else await S.expand(new RegExp('^' + V + ' \\(')).catch(() => {}); await settle();
+    for (const [l, n] of Object.entries(NUM)) o[l] = await cell(n); await p.mouse.move(5, 890); await p.screenshot({ path: OUT + id + '-1-numbers.png' });
+    const u0 = p.url(); const pages0 = p.context().pages().length; await p.locator('main tbody td').filter({ hasText: NUM.A }).first().locator('a, [role=link], span').first().click(); await p.waitForTimeout(5000);
+    const pg = p.context().pages().length > pages0 ? p.context().pages().at(-1) : p; await pg.waitForTimeout(1500);
+    o.clickA = { from: u0, url: pg.url(), newTab: pg !== p, heading: (await pg.locator('main').innerText().catch(() => '')).split('\n').slice(0, 8), dialogs: await p.locator('.q-dialog').count() };
+    await pg.screenshot({ path: OUT + id + '-2-opened.png' }); if (pg !== p) await pg.close();
+  } catch (e) { o.err = String(e).slice(0, 300); await p.screenshot({ path: OUT + id + '-error.png' }).catch(() => {}); }
+  R[id] = o; console.log(id, o.err || 'ok', JSON.stringify(o).slice(0, 600)); }
+fs.writeFileSync(OUT + 'out.json', JSON.stringify(R, null, 1)); await s.close(); process.exit(0);
