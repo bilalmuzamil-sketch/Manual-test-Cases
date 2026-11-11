@@ -577,3 +577,8 @@
 - The fair offline test uses a date the page cannot already hold (p62 used the 3rd: today's Totals stayed under the new date = a real failure to load). `exec/p62c_cache.mjs` compares online-yesterday vs offline-yesterday Totals and tries the 6th.
 - Rule: for any "fails to load / no message" claim, record (a) whether a request was made, (b) whether the shown data matches the new date, before judging (QA lead's note, L0661).
 - #aging #offline #method → L0661, L0673
+
+## L0675 — 2026-11-11 — PDF checks: word positions prove "on one line"; pdftoppm names pages by page-count width
+- "Heading on one line" in a PDF: `pdftotext -bbox -f 1 -l 1 <pdf> -` and compare the yMin of the words ("91", "And", "Over" all at 139 = one line) — exact, no picture reading needed (d3a C715524/C715525).
+- `pdftoppm -png -f 1 -l 1 x.pdf out` names the page `out-1.png` for a PDF under 10 pages but `out-01.png` for 10-99 pages (A/P Summary PDF: 22 pages). Glob for `out-*1.png`, never hard-code `-1`.
+- #pdf #tool → L0664
