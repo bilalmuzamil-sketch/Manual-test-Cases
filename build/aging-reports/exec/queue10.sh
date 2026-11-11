@@ -1,7 +1,5 @@
 #!/bin/bash
-# queue10.sh (re-used name, 11 Nov) — p48: C715469/C715467 PDF 2,000-line limit, after queue9 (s4p4).
+# queue10.sh — 11 Nov 2026 ~15:40 UTC: p62b (load-error message, six reports offline + 500 control; C715633-C715638) after queue9.
 cd "$(dirname "$0")"; log() { echo "$(date -u +%H:%M:%S) $*" >> queue.log; }
-sleep 10; while pgrep -f "queue9\.sh$|node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done
-run() { local name=$1; shift; log "start $name"; "$@"; log "end $name rc=$?"; }
-run p48 timeout 1500 node p48_pdf2000.mjs > p48.log 2>&1
-log "queue10 (p48) done"
+while pgrep -f "queue[2-9].sh|chain3[0-6].sh" >/dev/null || pgrep -f "node [a-z0-9_]+\.mjs" >/dev/null; do sleep 10; done
+log "start p62b"; timeout 1800 node p62b_six.mjs > p62b.log 2>&1; log "end p62b rc=$?"; log "queue10 done"
