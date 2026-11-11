@@ -22,21 +22,21 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** The Reports menu has a Finance part with an "Accounts Receivable" heading listing A/R Aging Summary, A/R Aging Detail and A/R Aging Collection, and an "Accounts Payable" heading listing A/P Aging Summary, A/P Aging Detail and A/P Unpaid Invoices.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/ReportLeftMenuNav.vue:199-300`  
 **V2 (code):** ReportLeftMenuNav.vue is not in the V2 change set (feature diff 411684ac3a..8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-01, V1R-02  
+**Case:** V1R-01, V1R-02  
 
 ## INV-002 · KEPT · Access and navigation
 
 **V1:** Each report has its own page address: /reports/ar-aging-summary, /reports/ar-aging-detail, /reports/ar-aging-collection, /reports/ap-aging-summary, /reports/ap-aging-detail and /reports/ap-unpaid-invoices.  
 **V1 source:** `fc08f23:app/src/router/routes.ts:1332-1380`  
 **V2 (code):** routes.ts is not in the V2 change set. NOT VERIFIED live.  
-**Regression case:** V1R-01, V1R-02  
+**Case:** V1R-01, V1R-02  
 
 ## INV-003 · KEPT · Access and navigation
 
 **V1:** Each report shows its title at the top left: A/R Aging Summary, A/R Aging Detail, A/R Aging Collection, A/P Aging Summary, A/P Aging Detail and "A/P Unpaid Invoices Report".  
 **V1 source:** `fc08f23:app/src/pages/Reporting.vue:352-381`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:35-38`  
 **V2 (code):** Reporting.vue is unchanged; every V2 report still renders the title slot (app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:8 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-01, V1R-02  
+**Case:** V1R-01, V1R-02  
 
 ## INV-004 · KEPT · Access and navigation
 
@@ -64,14 +64,14 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** The reports are organization-wide: documents of every location are listed, whatever location the user is working at.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:254-302`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:41-68`  
 **V2 (code):** The Location filter opens with every location ticked and only narrows (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:111-114). NOT VERIFIED live.  
-**Regression case:** V1R-03  
+**Case:** V1R-03  
 
 ## INV-008 · KEPT · Access and navigation
 
 **V1:** Switching location in the top right while on a report reloads it on the same report with the same as-of date.  
 **V1 source:** `fc08f23:app/src/pages/Reporting.vue:40-50`; `fc08f23:app/src/pages/Reporting.vue:66-70`  
 **V2 (code):** Reporting.vue is unchanged (report keyed on the location, filters held in the address). NOT VERIFIED live.  
-**Regression case:** V1R-04  
+**Case:** V1R-04  
 
 ## INV-010 · CHANGED-BY-DESIGN · As-of date
 
@@ -79,28 +79,29 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:191-201`  
 **V2 (code):** Chip labelled "As of" (app/src/components/ts/reporting/aging/useAgingReportFilters.ts:547-555). NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users: "The date filter is labelled "As of" (was "Date")."  
-**No new case because:** Label change by design; the PRD suite tests the new label.  
+**Case:** V1R-73  
+**Note:** Label change by design; the PRD suite tests the new label.  
 
 ## INV-011 · KEPT · As-of date
 
 **V1:** Every report opens on today's date.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:156-157`; `fc08f23:app/src/components/ts/reporting/ReportingModel.ts:376-377`  
 **V2 (code):** Default as-of day is today (app/src/components/ts/reporting/aging/useAgingReportFilters.ts:143, 190). NOT VERIFIED live.  
-**Regression case:** V1R-05  
+**Case:** V1R-05  
 
 ## INV-012 · KEPT · As-of date
 
 **V1:** The date chip is required: it cannot be emptied, the report always has an as-of date.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:191-201`  
 **V2 (code):** required: true (app/src/components/ts/reporting/aging/useAgingReportFilters.ts:551). NOT VERIFIED live.  
-**Regression case:** V1R-06  
+**Case:** V1R-06  
 
 ## INV-013 · 🔴 POSSIBLY LOST · As-of date
 
 **V1:** A date AFTER today can be chosen in the date chip, so a user can see how the aging will look on a future day (for example, what will be overdue at month end). The chip sets no latest date, and the A/P reports have a dedicated path for today-or-future dates.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:191-201`; `fc08f23:app/src/components/ts/shared/filters/FilterSingleDatePanel.vue:52-55`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:37-43`  
 **V2 (code):** The chip gets maxDate = today (app/src/components/ts/reporting/aging/useAgingReportFilters.ts:554) and the server clamps the as-of date to now (api/src/Reporting/Reports/Application/DTO/Aging/AgingAsOfDto.php:14-15). The PRD says nothing about future dates; the decision comes from the tech plan (D20 "asOfDate clamped to today"), which is not a source that can remove a V1 capability. NOT VERIFIED live.  
-**Regression case:** V1R-07  
+**Case:** V1R-07  
 **PO question:** PO-1 (`PO-QUESTIONS.md`)  
 
 ## INV-014 · 🔴 POSSIBLY LOST · As-of date
@@ -108,7 +109,7 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** A page address carrying a future as-of date (asOfDate=YYYY-MM-DD) opens the report on that future date.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/ReportingModel.ts:379`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:154-157`  
 **V2 (code):** A future date in the address is rejected and the report falls back to today (app/src/components/ts/reporting/aging/useAgingReportFilters.ts:145-146, 152). NOT VERIFIED live.  
-**Regression case:** V1R-08  
+**Case:** V1R-08  
 **PO question:** PO-1 (`PO-QUESTIONS.md`)  
 
 ## INV-015 · KEPT · As-of date
@@ -116,112 +117,112 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** The chosen as-of date is kept in the page address (asOfDate), so a reload, browser Back or a shared link restores it.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:154-155`; `fc08f23:app/src/composables/useReportFilters.ts:243-245`  
 **V2 (code):** Same key asOfDate (app/src/components/ts/reporting/aging/Model.ts:88; useAgingReportFilters.ts:216-217). NOT VERIFIED live.  
-**Regression case:** V1R-09  
+**Case:** V1R-09  
 
 ## INV-016 · KEPT · As-of date
 
 **V1:** Filters are not remembered between visits: opening a report again from the Reports menu starts on today's date.  
 **V1 source:** `fc08f23:app/src/composables/useReportFilters.ts:245`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:176-182`  
 **V2 (code):** No account preference; PRD S5-R10a says the same. NOT VERIFIED live.  
-**Regression case:** V1R-10  
+**Case:** V1R-10  
 
 ## INV-017 · KEPT · Which documents are included
 
 **V1:** The as-of date covers the whole chosen day: an invoice created on the as-of date is included.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:276-278`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:113`  
 **V2 (code):** i.created_on <= as-of, the end of the picked day (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:163). NOT VERIFIED live.  
-**Regression case:** V1R-11  
+**Case:** V1R-11  
 
 ## INV-018 · KEPT · Which documents are included
 
 **V1:** An invoice, credit memo or deposit created after the as-of date is left out.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:113`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:189`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:237`  
 **V2 (code):** Same cut-off on all three branches (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:163, 193, 226). NOT VERIFIED live.  
-**Regression case:** V1R-11  
+**Case:** V1R-11  
 
 ## INV-019 · KEPT · Which documents are included
 
 **V1:** A payment recorded after the as-of date is ignored: on an earlier as-of date the invoice shows the open balance it had on that date.  
 **V1 source:** `fc08f23:api/src/Customer/Customers/Infrastructure/Doctrine/CustomerAccount/OpenBalanceAsOfSql.php:184-194`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:88`  
 **V2 (code):** Reporting's copy ArOpenBalanceAsOfSql replays payments up to the as-of date (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:152). NOT VERIFIED live.  
-**Regression case:** V1R-13  
+**Case:** V1R-13  
 
 ## INV-020 · KEPT · Which documents are included
 
 **V1:** An invoice fully paid on or before the as-of date is not listed.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:115`  
 **V2 (code):** open_cents > 0 (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:127). NOT VERIFIED live.  
-**Regression case:** V1R-14  
+**Case:** V1R-14  
 
 ## INV-021 · KEPT · Which documents are included
 
 **V1:** A payment that was reversed after the as-of date still counts as paid on that date; a payment reversed on or before it does not count.  
 **V1 source:** `fc08f23:api/src/Customer/Customers/Infrastructure/Doctrine/CustomerAccount/OpenBalanceAsOfSql.php:186-193`  
 **V2 (code):** Same replay rule in ArOpenBalanceAsOfSql. NOT VERIFIED live.  
-**Regression case:** V1R-15  
+**Case:** V1R-15  
 
 ## INV-022 · KEPT · Which documents are included
 
 **V1:** A credit memo voided after the as-of date still shows on that date; one voided on or before it does not.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:238`  
 **V2 (code):** (cm.voided_at IS NULL OR cm.voided_at > as-of) (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:193-194). NOT VERIFIED live.  
-**Regression case:** V1R-16  
+**Case:** V1R-16  
 
 ## INV-023 · KEPT · Which documents are included
 
 **V1:** A credit memo applied to an invoice after the as-of date still shows its full unused amount on that date.  
 **V1 source:** `fc08f23:api/src/Customer/Customers/Infrastructure/Doctrine/CustomerAccount/OpenBalanceAsOfSql.php:196-206`  
 **V2 (code):** Same replay in ArOpenBalanceAsOfSql::creditMemo (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:182). NOT VERIFIED live.  
-**Regression case:** V1R-17  
+**Case:** V1R-17  
 
 ## INV-024 · KEPT · Which documents are included
 
 **V1:** An unused deposit that is not held on a work order shows as a credit (a negative amount).  
 **V1 source:** `fc08f23:api/src/Customer/Customers/Infrastructure/Doctrine/CustomerAccount/OpenBalanceAsOfSql.php:172-181`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:158-205`  
 **V2 (code):** depositIsCreditAsOf kept (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:226-228). NOT VERIFIED live.  
-**Regression case:** V1R-18  
+**Case:** V1R-18  
 
 ## INV-025 · KEPT · Which documents are included
 
 **V1:** A deposit held on a work order and not used yet is left out of all three A/R reports.  
 **V1 source:** `fc08f23:api/src/Customer/Customers/Infrastructure/Doctrine/CustomerAccount/OpenBalanceAsOfSql.php:119-181`  
 **V2 (code):** Same predicate (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:228). NOT VERIFIED live.  
-**Regression case:** V1R-18  
+**Case:** V1R-18  
 
 ## INV-026 · KEPT · Which documents are included
 
 **V1:** A deposit reversed on or before the as-of date is left out.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:190`  
 **V2 (code):** (d.reversed_at IS NULL OR d.reversed_at > as-of) (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:227). NOT VERIFIED live.  
-**Regression case:** V1R-19  
+**Case:** V1R-19  
 
 ## INV-027 · KEPT · Which documents are included
 
 **V1:** For a past as-of date, a bill payment made after that date is ignored: the bill shows the open balance it had then.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:86-105`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:133-169`  
 **V2 (code):** Historical mode replays payments up to the as-of date (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ApOpenDocumentsSql.php:143-156). NOT VERIFIED live.  
-**Regression case:** V1R-20  
+**Case:** V1R-20  
 
 ## INV-028 · KEPT · Which documents are included
 
 **V1:** For a past as-of date, a vendor credit used after that date still shows its unused amount on that date.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:171-204`  
 **V2 (code):** (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ApOpenDocumentsSql.php:194-202). NOT VERIFIED live.  
-**Regression case:** V1R-21  
+**Case:** V1R-21  
 
 ## INV-029 · KEPT · Which documents are included
 
 **V1:** A bill dated on the as-of date is included; a bill or vendor credit dated after it is left out.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:95`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:127`  
 **V2 (code):** vt.date <= as-of, vc.date_created <= as-of (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ApOpenDocumentsSql.php:182, 237). NOT VERIFIED live.  
-**Regression case:** V1R-12  
+**Case:** V1R-12  
 
 ## INV-030 · KEPT · Aging rules
 
 **V1:** An invoice or bill is placed by how many days past its due date it is on the as-of date: not past due is Current, 1 to 30 days is 1-30, 31 to 60 is 31-60, 61 to 90 is 61-90, more than 90 is 91 and over.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AgingCalculator.php:28-47`; `fc08f23:api/src/Reporting/Dashboard/Domain/AccountReceivable/Enum/AgingBucketEnum.php:15-24`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:91-95`  
 **V2 (code):** Same boundaries (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/AgingSql.php:101-118). NOT VERIFIED live.  
-**Regression case:** V1R-22  
+**Case:** V1R-22  
 **Already tested by the PRD suite:** DATA-16 C715465 (https://shopview.testrail.io/index.php?/cases/view/715465); DATA-17 C715466 (https://shopview.testrail.io/index.php?/cases/view/715466)  
 
 ## INV-031 · KEPT · Aging rules
@@ -229,14 +230,14 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** An invoice or bill due exactly on the as-of date is Current.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AgingCalculator.php:35-36`  
 **V2 (code):** days <= 0 is Current (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/AgingSql.php:101-118); PRD S1-R5a says the same. NOT VERIFIED live.  
-**Regression case:** V1R-22  
+**Case:** V1R-22  
 
 ## INV-032 · KEPT · Aging rules
 
 **V1:** An unused credit memo or deposit dated before the as-of date is aged by its own date: up to 30 days old in 1-30, then 31-60, 61-90 and 91 and over. It is never in Current.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AgingCalculator.php:50-67`  
 **V2 (code):** creditBucket uses the invoice boundaries for a credit at least one day old (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/AgingSql.php:126-134). NOT VERIFIED live.  
-**Regression case:** V1R-23  
+**Case:** V1R-23  
 
 ## INV-033 · CHANGED-BY-DESIGN · Aging rules
 
@@ -244,15 +245,16 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AgingCalculator.php:57-58`; `fc08f23:api/src/Reporting/Dashboard/Domain/AccountReceivable/CollectionsItemTransaction.php:108-111`  
 **V2 (code):** Current with Past Due 0 (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/AgingSql.php:126-134, 307-316). NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S1-R5a: "A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date: negative while the document is not yet due (a bill due 9 days after the as-of date reads -9, as today) and 0 on its due date. A credit memo, deposit or vendor credit counts its own date as its due date, so one dated exactly on the as-of date is in Current with Past Due 0, not in "1-30 days past due". This is how QuickBooks ages them (SV-11441)."  
+**Case:** V1R-74  
 **Already tested by the PRD suite:** DATA-25 C1062587 (https://shopview.testrail.io/index.php?/cases/view/1062587); REL-08 C715478 (https://shopview.testrail.io/index.php?/cases/view/715478)  
-**No new case because:** Changed by design; tested by the PRD suite.  
+**Note:** Changed by design; tested by the PRD suite.  
 
 ## INV-034 · KEPT · Aging rules
 
 **V1:** An unused vendor credit dated before the as-of date is aged by its own date (up to 30 days in 1-30, then 31-60, 61-90, 91 and over) and is never in Current.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:139-143`  
 **V2 (code):** (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/AgingSql.php:126-134). NOT VERIFIED live.  
-**Regression case:** V1R-24  
+**Case:** V1R-24  
 
 ## INV-035 · CHANGED-BY-DESIGN · Aging rules
 
@@ -260,15 +262,16 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:140`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:119`  
 **V2 (code):** Current, Past Due 0. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S1-R5a: "A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date: negative while the document is not yet due (a bill due 9 days after the as-of date reads -9, as today) and 0 on its due date. A credit memo, deposit or vendor credit counts its own date as its due date, so one dated exactly on the as-of date is in Current with Past Due 0, not in "1-30 days past due". This is how QuickBooks ages them (SV-11441)."  
+**Case:** V1R-75  
 **Already tested by the PRD suite:** DATA-25 C1062587 (https://shopview.testrail.io/index.php?/cases/view/1062587)  
-**No new case because:** Changed by design; tested by the PRD suite.  
+**Note:** Changed by design; tested by the PRD suite.  
 
 ## INV-036 · 🔴 POSSIBLY LOST · Aging rules
 
 **V1:** An invoice with no due date stored is given one from the customer's credit term, counted from the invoice date, and is aged from that date.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AccountReceivableCustomerService.php:66-81`  
 **V2 (code):** Due date falls back to the invoice's own date, COALESCE(i.due_date, i.created_on) (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:139-149). The developer's note there says no open production invoice lacks a due date (G-DATA, 21 Oct 2026). The PRD does not mention it. NOT VERIFIED live.  
-**Regression case:** V1R-25  
+**Case:** V1R-25  
 **PO question:** PO-2 (`PO-QUESTIONS.md`)  
 
 ## INV-037 · KEPT · Aging rules
@@ -276,7 +279,7 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** A bill with no due date is not listed on the A/P reports.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:96`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:103`  
 **V2 (code):** vt.due_date IS NOT NULL (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ApOpenDocumentsSql.php:182). NOT VERIFIED live.  
-**Regression case:** V1R-26  
+**Case:** V1R-26  
 
 ## INV-038 · KEPT · Which documents are included
 
@@ -290,7 +293,7 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** A bill whose open balance is negative (overpaid) is still listed, with its negative balance.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:97`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:164`  
 **V2 (code):** open_cents <> 0 (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ApOpenDocumentsSql.php:127). NOT VERIFIED live.  
-**Regression case:** V1R-27  
+**Case:** V1R-27  
 
 ## INV-040 · KEPT · Which documents are included
 
@@ -304,35 +307,35 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** A customer whose only open documents are unused credit memos or deposits is still listed on A/R Aging Summary, with negative amounts.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:276-280`  
 **V2 (code):** Credits are open documents in their own right (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:134). NOT VERIFIED live.  
-**Regression case:** V1R-28  
+**Case:** V1R-28  
 
 ## INV-050 · KEPT · A/R Aging Summary
 
 **V1:** Columns, left to right: Customer, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:213-269`  
 **V2 (code):** Same headings; a Location column is added after Customer when two or more locations are in view (by design, S6-R1) (app/src/components/ts/reporting/aging/agingColumns.ts:60-75). NOT VERIFIED live.  
-**Regression case:** V1R-29  
+**Case:** V1R-29  
 
 ## INV-051 · KEPT · A/R Aging Summary
 
 **V1:** One row per customer. Each bucket is that customer's open invoice balances in the bucket minus its unused credits in the bucket; Total is the sum of the five buckets.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/AgingSummary/AgingSummaryQueryHandler.php:26-45`; `fc08f23:api/src/Reporting/Dashboard/Domain/AccountReceivable/AgingBuckets.php:48-76`  
 **V2 (code):** Summary rows are sums of the open documents per bucket (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/AgingSummarySql.php). NOT VERIFIED live.  
-**Regression case:** V1R-30  
+**Case:** V1R-30  
 
 ## INV-052 · KEPT · A/R Aging Summary
 
 **V1:** A bucket with nothing in it is a blank cell.  
 **V1 source:** `fc08f23:app/src/utils/reporting.ts:9-11`; `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/AgingSummary/AgingSummaryItem.php:9-18`  
 **V2 (code):** A zero bucket renders blank (app/src/components/ts/reporting/aging/agingSummaryCells.ts:25-34). NOT VERIFIED live.  
-**Regression case:** V1R-29  
+**Case:** V1R-29  
 
 ## INV-053 · KEPT · All reports
 
 **V1:** Money reads like "$1,234.56"; a negative amount reads like "$-12.00".  
 **V1 source:** `fc08f23:app/src/utils/reporting.ts:9-11`  
 **V2 (code):** (app/src/components/ts/reporting/aging/agingCellFormat.ts:15-21); PRD S3-R7a: on screen "$-11,111.00", as today. NOT VERIFIED live.  
-**Regression case:** V1R-31  
+**Case:** V1R-31  
 
 ## INV-054 · KEPT · A/R Aging Summary
 
@@ -347,8 +350,9 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAgingSummaryTotalsFetcher.php:47-65`  
 **V2 (code):** Totals add up the rows. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users: "The A/R Summary Totals row now adds up exactly the customer rows above it."  
+**Case:** V1R-76  
 **Already tested by the PRD suite:** DATA-13 C715462 (https://shopview.testrail.io/index.php?/cases/view/715462)  
-**No new case because:** Changed by design; tested by the PRD suite.  
+**Note:** Changed by design; tested by the PRD suite.  
 
 ## INV-056 · KEPT · A/R Aging Summary
 
@@ -369,7 +373,7 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** For a user without Customers View, customer names are plain text and clicking does nothing.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:159`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:330-337`  
 **V2 (code):** (app/src/components/ts/reporting/aging/agingDocumentLinks.ts:44-47). NOT VERIFIED live.  
-**Regression case:** V1R-32  
+**Case:** V1R-32  
 
 ## INV-059 · CHANGED-BY-DESIGN · A/R and A/P Summary
 
@@ -377,7 +381,8 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:80`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:124`  
 **V2 (code):** Only the name or document number is a link. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users: "Clicking a row no longer opens it."  
-**No new case because:** Rerouted: the same page still opens from the name or number.  
+**Case:** V1R-77  
+**Note:** Rerouted: the same page still opens from the name or number.  
 
 ## INV-060 · CHANGED-BY-DESIGN · A/R and A/P Summary
 
@@ -385,8 +390,9 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:332-335`; `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:310-313`  
 **V2 (code):** Carries the same as-of date, ranges and locations. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S5-R11: "Clicking a customer or vendor on A/R Summary or A/P Summary opens A/R Collection or A/P Unpaid Invoices with just that customer or vendor ticked, the same as-of date, the same ticked Past due ranges and the same ticked locations."  
+**Case:** V1R-78  
 **Already tested by the PRD suite:** S5-26 C715400 (https://shopview.testrail.io/index.php?/cases/view/715400); S5-27 C715401 (https://shopview.testrail.io/index.php?/cases/view/715401)  
-**No new case because:** Changed by design (improvement).  
+**Note:** Changed by design (improvement).  
 
 ## INV-061 · CHANGED-BY-DESIGN · A/R print
 
@@ -394,14 +400,15 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/PrintARReportButton.vue:1-14`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/PrintARReportButton.vue:40-76`  
 **V2 (code):** Export menu; the PDF downloads as a file. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-R1: "Each of the six reports has the native report Export menu (the ⋯ button at the right of the title row, labelled "Export report") with "Download (PDF)" and "Download (CSV)". A/R's former Print button is replaced by this menu. The A/P reports gain a PDF."  
-**No new case because:** Rerouted: the PDF is reached through the Export menu (S3-R2 "The PDF downloads as a file.").  
+**Case:** V1R-79  
+**Note:** Rerouted: the PDF is reached through the Export menu (S3-R2 "The PDF downloads as a file.").  
 
 ## INV-062 · KEPT · All reports
 
 **V1:** When nothing is open on the chosen date the report says "No record matches these filters" and "Try changing filters to widen your results."  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/ReportingModel.ts:115`; `fc08f23:app/src/components/ts/reporting/ReportingModel.ts:125`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:13-24`  
 **V2 (code):** Same constants (app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:127-128 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-33  
+**Case:** V1R-33  
 
 ## INV-063 · KEPT · All reports
 
@@ -415,35 +422,35 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** The A/R PDF opens with the report name, the organization's name and "As of" with the date.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/AgingSummaryPdfQueryHandler.php:57-67`; `fc08f23:api/templates/reporting/account-receivable/aging-summary.html.twig:116-118`  
 **V2 (code):** Header keeps title, organization and as-of line (api/templates/reporting/aging/_header.html.twig at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-34  
+**Case:** V1R-34  
 
 ## INV-071 · KEPT · A/R PDF
 
 **V1:** Every PDF page carries "Software Powered by ShopView" at the bottom centre and "Page X of Y" at the bottom right.  
 **V1 source:** `fc08f23:api/templates/reporting/account-receivable/aging-summary.html.twig:8-14`  
 **V2 (code):** (api/templates/reporting/aging/_styles.html.twig:19, 23 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-34  
+**Case:** V1R-34  
 
 ## INV-072 · KEPT · A/R PDF
 
 **V1:** The PDF is A4 landscape.  
 **V1 source:** `fc08f23:api/templates/reporting/account-receivable/aging-summary.html.twig:3`  
 **V2 (code):** Default page size A4 landscape (_styles.html.twig:13 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-34  
+**Case:** V1R-34  
 
 ## INV-073 · KEPT · A/R PDF
 
 **V1:** The A/R Summary PDF lists every customer with its buckets (empty buckets blank) and ends with a Totals row.  
 **V1 source:** `fc08f23:api/templates/reporting/account-receivable/aging-summary.html.twig:122-153`  
 **V2 (code):** Flat export: one row per customer then one Totals row (api/templates/reporting/aging/flat.html.twig). NOT VERIFIED live.  
-**Regression case:** V1R-34  
+**Case:** V1R-34  
 
 ## INV-074 · 🔴 POSSIBLY LOST · A/R PDF
 
 **V1:** The A/R Detail PDF prints all five buckets, each with its heading and a "Total for <bucket>" line, even a bucket with nothing in it (which shows $0.00).  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/AgingDetailPdfQueryHandler.php:81-110`; `fc08f23:api/templates/reporting/account-receivable/aging-detail.html.twig:144-166`  
 **V2 (code):** "The PDF prints each bucket that holds a document" (api/src/Reporting/Reports/Application/Handler/Aging/AgingDetailExportQueryHandler.php:7, 94): an empty bucket is left out. The PRD does not mention empty buckets in the PDF. NOT VERIFIED live.  
-**Regression case:** V1R-35  
+**Case:** V1R-35  
 **PO question:** PO-3 (`PO-QUESTIONS.md`)  
 
 ## INV-075 · KEPT · A/R PDF
@@ -451,7 +458,7 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** The A/R Collection PDF is grouped by customer with a "Total for <customer>" line and a Totals row; with a customer chosen in the Customer chip it prints only that customer.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/CollectionsPdfQueryHandler.php:25-61`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Controller/Dto/AccountReceivablePdfRequestDto.php:54-62`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:57-61`  
 **V2 (code):** Grouped export follows the on-screen filters (PRD S3-R3; api/templates/reporting/aging/grouped.html.twig). NOT VERIFIED live.  
-**Regression case:** V1R-36  
+**Case:** V1R-36  
 
 ## INV-076 · CHANGED-BY-DESIGN · A/R PDF
 
@@ -459,7 +466,8 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:api/templates/reporting/account-receivable/aging-detail.html.twig:150-157`  
 **V2 (code):** Brackets and "Nov 04 2026". NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-R7a: "The PDF uses the app-wide report PDF format, the same as Sales By Customer and Inventory Value: a negative amount prints in brackets with a minus sign, for example "(-$11,111.00)", and dates print as "Nov 04 2026". On screen a negative amount reads "$-11,111.00", as today."  
-**No new case because:** Changed by design; tested by the PRD suite.  
+**Case:** V1R-80  
+**Note:** Changed by design; tested by the PRD suite.  
 
 ## INV-077 · CHANGED-BY-DESIGN · A/R PDF
 
@@ -467,7 +475,8 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/PrintARReportButton.vue:68-72`  
 **V2 (code):** One export error message. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 7. Story 3, Error Handling: "If an export fails for any other reason (a server error or a lost connection), nothing downloads and one error message shows:"  
-**No new case because:** Changed by design; tested by the PRD suite (S3-26, S3-27).  
+**Case:** V1R-81  
+**Note:** Changed by design; tested by the PRD suite (S3-26, S3-27).  
 
 ## INV-078 · REMOVED-BY-DESIGN · A/R PDF
 
@@ -475,8 +484,9 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/AgingDetailPdfQueryHandler.php:27-75`  
 **V2 (code):** PDF refused over 2,000 rows; CSV offered. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-N1: "Over 2,000 rows, the PDF is refused before anything is generated: no download, and the message "This report is too large for PDF. Export it as CSV, or narrow the filters, then try again." Exactly 2,000 rows is allowed."  
+**Case:** V1R-82  
 **Already tested by the PRD suite:** DATA-18 C715467 (https://shopview.testrail.io/index.php?/cases/view/715467)  
-**No new case because:** Removed by design: the data stays reachable as CSV, but a printable PDF over 2,000 rows no longer is. Listed for the QA lead (Rule 109 note in README).  
+**Note:** Removed by design: the data stays reachable as CSV, but a printable PDF over 2,000 rows no longer is. Listed for the QA lead (Rule 109 note in README).  
 
 ## INV-079 · CHANGED-BY-DESIGN · A/R PDF
 
@@ -484,43 +494,44 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/PrintARReportButton.vue:49-53`; `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/AgingSummaryPdfQueryHandler.php:64`  
 **V2 (code):** Prints the picked date. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users: "A/R's Print button becomes the Export menu; its PDF prints the on-screen order and the as-of date the user picked (today it can print the next day's date)."  
+**Case:** V1R-83  
 **Already tested by the PRD suite:** REL-03 C715473 (https://shopview.testrail.io/index.php?/cases/view/715473)  
-**No new case because:** A V1 defect fixed by design.  
+**Note:** A V1 defect fixed by design.  
 
 ## INV-080 · KEPT · A/R Aging Detail
 
 **V1:** Five bucket rows always show, in this order: "91 or more days past due", "61-90 days past due", "31-60 days past due", "1-30 days past due", "Current", each followed by its number of lines in brackets.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:71-84`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:321-357`  
 **V2 (code):** (app/src/components/ts/reporting/aging/Model.ts:113-123; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:104 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-37  
+**Case:** V1R-37  
 
 ## INV-081 · KEPT · A/R Aging Detail
 
 **V1:** Buckets open collapsed. A collapsed bucket shows the word "Total" with the bucket's Amount and Open balance.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:86-98`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:280`  
 **V2 (code):** Groups start collapsed (app/src/composables/useReportGroupExpansion.ts:49-51 at 8e35ee0d02); collapsed row shows Total and the two amounts (app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:105-122 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-38  
+**Case:** V1R-38  
 
 ## INV-082 · KEPT · A/R Aging Detail
 
 **V1:** The arrow button on a bucket row opens it to show its lines and closes it again.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:72-79`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:444-452`  
 **V2 (code):** PRD S4-R5: "Behavior is unchanged." (icon changes by design). A bucket with no lines cannot be opened in V2 (button disabled, app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:79 at 8e35ee0d02); its count (0) and $0.00 totals still show. NOT VERIFIED live.  
-**Regression case:** V1R-38  
+**Case:** V1R-38  
 
 ## INV-083 · KEPT · A/R Aging Detail
 
 **V1:** An open bucket ends with a "Total for <bucket name>" line with its Amount and Open balance.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:130-153`  
 **V2 (code):** (app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:196-216 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-39  
+**Case:** V1R-39  
 
 ## INV-084 · KEPT · A/R Aging Detail
 
 **V1:** A "Totals" row at the bottom gives the Amount and Open balance of all five buckets together.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:157-173`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:362-365`  
 **V2 (code):** (app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:222 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-39  
+**Case:** V1R-39  
 
 ## INV-085 · CHANGED-BY-DESIGN · A/R Aging Detail
 
@@ -528,36 +539,37 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:101-128`  
 **V2 (code):** First 100 lines, then more on scroll. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S4-R4: "On A/R Detail and A/P Detail, expanding a bucket (by hand or with Expand all) shows its first 100 lines, then loads more as the user scrolls. This is as today on A/P Detail and new on A/R Detail, which today shows a whole bucket at once."  
+**Case:** V1R-84  
 **Already tested by the PRD suite:** DATA-05 C715454 (https://shopview.testrail.io/index.php?/cases/view/715454)  
-**No new case because:** Changed by design; every line is still reachable by scrolling.  
+**Note:** Changed by design; every line is still reachable by scrolling.  
 
 ## INV-086 · KEPT · A/R Aging Detail
 
 **V1:** Each line shows its date, transaction type, ID, customer full name, location, due date, Amount and Open balance.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:375-433`  
 **V2 (code):** Same eight pieces of information (app/src/components/ts/reporting/aging/agingColumns.ts:77-86); heading capitals and the Location heading change by design (S2-R4a, S6-R1). NOT VERIFIED live.  
-**Regression case:** V1R-40  
+**Case:** V1R-40  
 
 ## INV-087 · KEPT · A/R Aging Detail
 
 **V1:** On an invoice line, Amount is the invoice's full amount and Open balance is what was still unpaid on the as-of date.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/AgingDetail/AgingDetailTransactionArrayMapper.php:14-26`; `fc08f23:api/src/Reporting/Dashboard/Domain/AccountReceivable/AgingDetailTransaction.php:107-123`  
 **V2 (code):** amount_cents = ct.amount, open_cents = replayed balance (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:151-152). NOT VERIFIED live.  
-**Regression case:** V1R-41  
+**Case:** V1R-41  
 
 ## INV-088 · KEPT · A/R Aging Detail
 
 **V1:** A credit memo or deposit line shows a negative Amount and Open balance, and its own date as its Due date.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Domain/AccountReceivable/AgingDetailTransaction.php:125-143`  
 **V2 (code):** Negated amounts; a credit shows its own date as due date on A/R Detail (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/AgingSql.php:291-298; api/src/Reporting/Reports/Domain/Model/Aging/AgingReport.php:72). NOT VERIFIED live.  
-**Regression case:** V1R-42  
+**Case:** V1R-42  
 
 ## INV-089 · KEPT · A/R Aging Detail
 
 **V1:** An invoice or bill line reads "Invoice" as its transaction type.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:384-389`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:75`  
 **V2 (code):** PRD S2-R1b: "Invoice" for invoices and bills, as today. NOT VERIFIED live.  
-**Regression case:** V1R-40  
+**Case:** V1R-40  
 
 ## INV-090 · CHANGED-BY-DESIGN · A/R Aging Detail
 
@@ -565,21 +577,22 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Domain/AccountReceivable/AgingDetailTransaction.php:13`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:108`  
 **V2 (code):** Credit Memo / Deposit / Vendor Credit. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S2-R1b: "Transaction Type reads "Invoice" for invoices and bills, as today, and names each kind of credit: "Credit Memo" and "Deposit" on A/R, "Vendor Credit" on A/P. The same names appear in the PDF and the CSV, and Transaction Type sorts A to Z by these names (S2-R2)."  
-**No new case because:** Changed by design; tested by the PRD suite.  
+**Case:** V1R-85  
+**Note:** Changed by design; tested by the PRD suite.  
 
 ## INV-091 · KEPT · A/R Aging Detail
 
 **V1:** The ID column shows the document's display number, with the location's prefix on credit memos and deposits (for example "CM1-4411").  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Domain/AccountReceivable/AgingDetailTransaction.php:142`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:93`  
 **V2 (code):** COALESCE(i.display_number, ...) and composeFamilyNumber with the shop id (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:150, 180, 212). NOT VERIFIED live.  
-**Regression case:** V1R-42  
+**Case:** V1R-42  
 
 ## INV-092 · KEPT · A/R Aging Detail
 
 **V1:** The location shown on a line is the location of that invoice, credit memo or deposit itself.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:99`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:182`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:230`  
 **V2 (code):** (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:145, 177, 209, 265); PRD S5-R7. NOT VERIFIED live.  
-**Regression case:** V1R-40  
+**Case:** V1R-40  
 
 ## INV-093 · CHANGED-BY-DESIGN · A/R Aging Detail
 
@@ -587,8 +600,9 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/utils/helpers.ts:195-217`  
 **V2 (code):** Always a plain date. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S2-R1a: "Date and Due Date show plain dates on screen, for example "Nov 4, 2026". The PDF and the CSV keep their own date formats (S3-R7a, S3-R8). They never read "Today", "Yesterday" or "2 days ago"."  
+**Case:** V1R-86  
 **Already tested by the PRD suite:** S2-43 C1062572 (https://shopview.testrail.io/index.php?/cases/view/1062572); S2-44 C1062573 (https://shopview.testrail.io/index.php?/cases/view/1062573)  
-**No new case because:** Changed by design; the older-date form "Nov 4, 2026" is unchanged.  
+**Note:** Changed by design; the older-date form "Nov 4, 2026" is unchanged.  
 
 ## INV-094 · KEPT · Document links
 
@@ -609,7 +623,7 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** Credit memos and deposits are never links.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:315-319`  
 **V2 (code):** link_kind NULL for both (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:185-186, 217-218). NOT VERIFIED live.  
-**Regression case:** V1R-42  
+**Case:** V1R-42  
 **Already tested by the PRD suite:** S7-10 C715423 (https://shopview.testrail.io/index.php?/cases/view/715423)  
 
 ## INV-097 · CHANGED-BY-DESIGN · Document links
@@ -618,78 +632,79 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:468-478`; `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:504-508`  
 **V2 (code):** Prompt to switch (enrolled, invoices) or plain text. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S7-R1: "A document number is a link only when the user has the permission to open it and can open it in its own location; otherwise it shows as plain text."  
+**Case:** V1R-87  
 **Already tested by the PRD suite:** S7-03 C715416 (https://shopview.testrail.io/index.php?/cases/view/715416); S7-04 C715417 (https://shopview.testrail.io/index.php?/cases/view/715417); S7-06 C715419 (https://shopview.testrail.io/index.php?/cases/view/715419); S7-11 C715424 (https://shopview.testrail.io/index.php?/cases/view/715424)  
-**No new case because:** Changed by design (fixes SV-5706).  
+**Note:** Changed by design (fixes SV-5706).  
 
 ## INV-098 · KEPT · A/R Aging Detail
 
 **V1:** Changing the date collapses every bucket.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:437-442`  
 **V2 (code):** PRD S4-N1 "as changing the date or filter does today". NOT VERIFIED live.  
-**Regression case:** V1R-43  
+**Case:** V1R-43  
 
 ## INV-100 · KEPT · A/R Aging Collection
 
 **V1:** One group row per customer: the customer's name with its number of lines in brackets; collapsed, it shows "Total" with the Amount and Open balance.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:79-108`  
 **V2 (code):** (app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:96-130 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-44  
+**Case:** V1R-44  
 
 ## INV-101 · KEPT · A/R Aging Collection
 
 **V1:** Only invoices at least one day past due are listed: invoices not yet due, and invoices due on the as-of date itself, are left out.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Collections/CollectionsItem.php:30-37`; `fc08f23:api/src/Reporting/Dashboard/Domain/AccountReceivable/Invoice.php:47-58`  
 **V2 (code):** days_past_due > 0 for A/R Collection only (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:128-130; AgingReport.php:60-62). NOT VERIFIED live.  
-**Regression case:** V1R-45  
+**Case:** V1R-45  
 
 ## INV-102 · KEPT · A/R Aging Collection
 
 **V1:** Every unused credit memo and deposit dated on or before the as-of date is listed under its customer.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Collections/CollectionsItem.php:39-47`  
 **V2 (code):** Credits always kept (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:134). NOT VERIFIED live.  
-**Regression case:** V1R-45  
+**Case:** V1R-45  
 
 ## INV-103 · KEPT · A/R Aging Collection
 
 **V1:** A customer with no past-due invoice but an unused credit memo or deposit still appears, with just the credit.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:324-373`  
 **V2 (code):** (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ArOpenDocumentsSql.php:132-134). NOT VERIFIED live.  
-**Regression case:** V1R-46  
+**Case:** V1R-46  
 
 ## INV-104 · KEPT · A/R Aging Collection
 
 **V1:** Inside a customer, lines go oldest date first.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountReceivable/Collections/CollectionsItem.php:49-55`  
 **V2 (code):** Opening sort Date ascending (app/src/components/ts/reporting/aging/agingColumns.ts:133). NOT VERIFIED live.  
-**Regression case:** V1R-47  
+**Case:** V1R-47  
 
 ## INV-105 · KEPT · A/R Aging Collection
 
 **V1:** Each line shows its date, transaction type, ID, location, due date, Past due, Amount and Open balance.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:404-463`  
 **V2 (code):** (app/src/components/ts/reporting/aging/agingColumns.ts:87-96); heading changes by design. NOT VERIFIED live.  
-**Regression case:** V1R-48  
+**Case:** V1R-48  
 
 ## INV-106 · KEPT · A/R Aging Collection
 
 **V1:** Past due is the number of days past the due date; for a credit memo or deposit it is the number of days since its own date.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Domain/AccountReceivable/Invoice.php:47-58`; `fc08f23:api/src/Reporting/Dashboard/Domain/AccountReceivable/CollectionsItemTransaction.php:108-125`  
 **V2 (code):** (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/AgingSql.php:307-316). NOT VERIFIED live.  
-**Regression case:** V1R-48  
+**Case:** V1R-48  
 
 ## INV-107 · KEPT · A/R Aging Collection
 
 **V1:** An open customer group ends with "Total for <customer>" and its Amount and Open balance; a Totals row ends the report.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:140-183`  
 **V2 (code):** (app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:180, 199 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-44  
+**Case:** V1R-44  
 
 ## INV-108 · KEPT · A/R Aging Collection
 
 **V1:** A "Customer" chip lets the user search customers and pick one; the report then shows only that customer, and the choice is kept in the page address.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:243`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:257-295`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:326-331`  
 **V2 (code):** Native Customer chip, one or several (PRD S5-R13). NOT VERIFIED live.  
-**Regression case:** V1R-49  
+**Case:** V1R-49  
 
 ## INV-109 · KEPT · A/R Aging Collection
 
@@ -704,15 +719,16 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalCollectionsTotalFetcher.php:33-75`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApUnpaidInvoicesFetcher.php:122-138`  
 **V2 (code):** Totals follow the filters. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users: "The Totals row on A/R Collection and A/P Unpaid Invoices now follows the customer or vendor filter; today it ignores it, on production too."  
+**Case:** V1R-88  
 **Already tested by the PRD suite:** DATA-10 C715459 (https://shopview.testrail.io/index.php?/cases/view/715459); DATA-12 C715461 (https://shopview.testrail.io/index.php?/cases/view/715461)  
-**No new case because:** A V1 defect fixed by design.  
+**Note:** A V1 defect fixed by design.  
 
 ## INV-111 · KEPT · A/R Aging Collection
 
 **V1:** Changing the date or the customer collapses every group.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:392-402`  
 **V2 (code):** PRD S4-N1. NOT VERIFIED live.  
-**Regression case:** V1R-50  
+**Case:** V1R-50  
 
 ## INV-112 · CHANGED-BY-DESIGN · A/R Aging Collection
 
@@ -720,7 +736,8 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:396-397`  
 **V2 (code):** Groups stay as they are. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users: "Re-sorting A/R Collection or A/P Unpaid Invoices no longer collapses the open groups."  
-**No new case because:** V1 had no clickable sort; changed by design.  
+**Case:** V1R-89  
+**Note:** V1 had no clickable sort; changed by design.  
 
 ## INV-113 · CHANGED-BY-DESIGN · A/R Aging Collection
 
@@ -728,14 +745,15 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:111-138`  
 **V2 (code):** 100 at a time, more on scroll. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S1-R8: "A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time, and the next 30 load as the user scrolls down, as today. There are no page buttons. A/R Detail and A/P Detail show each bucket's first 100 lines, then load more as the user scrolls (S4-R4). Paging never repeats or skips a customer, vendor or row, in any sort. On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents."  
-**No new case because:** Changed by design; every line still reachable.  
+**Case:** V1R-90  
+**Note:** Changed by design; every line still reachable.  
 
 ## INV-114 · KEPT · Empty state
 
 **V1:** With a customer (or vendor) chosen and nothing to show, the empty message offers a "Clear all filters" button that brings back every customer (vendor).  
 **V1 source:** `fc08f23:app/src/components/ts/shared/filters/FilteredTableEmptyState.vue:27-36`; `fc08f23:app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:13-24`  
 **V2 (code):** PRD S8-R5. NOT VERIFIED live.  
-**Regression case:** V1R-51  
+**Case:** V1R-51  
 
 ## INV-120 · KEPT · A/P Aging Summary
 
@@ -749,14 +767,14 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** Columns: Vendor, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total; one row per vendor, empty buckets blank.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:192-248`  
 **V2 (code):** (app/src/components/ts/reporting/aging/agingColumns.ts:60-76). NOT VERIFIED live.  
-**Regression case:** V1R-52  
+**Case:** V1R-52  
 
 ## INV-122 · KEPT · A/P Aging Summary
 
 **V1:** Each bucket is the vendor's open bill balances in that bucket minus its unused vendor credits in that bucket; Total is the sum.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Application/AccountPayable/AgingSummary/ApAgingSummaryQueryHandler.php:46-111`  
 **V2 (code):** Sums of open documents per bucket. NOT VERIFIED live.  
-**Regression case:** V1R-52  
+**Case:** V1R-52  
 
 ## INV-123 · KEPT · A/P Aging Summary
 
@@ -770,7 +788,7 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** Every vendor name is blue and opens A/P Unpaid Invoices narrowed to that vendor, for every user who can open the report (no other permission needed).  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:54-68`; `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:308-315`  
 **V2 (code):** family === 'ap' always links (app/src/components/ts/reporting/aging/agingDocumentLinks.ts:44-47). NOT VERIFIED live.  
-**Regression case:** V1R-53  
+**Case:** V1R-53  
 **Already tested by the PRD suite:** S5-27 C715401 (https://shopview.testrail.io/index.php?/cases/view/715401)  
 
 ## INV-125 · CHANGED-BY-DESIGN · A/P Aging Summary
@@ -779,14 +797,15 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:35-47`  
 **V2 (code):** Export menu with PDF and CSV. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-R1: "Each of the six reports has the native report Export menu (the ⋯ button at the right of the title row, labelled "Export report") with "Download (PDF)" and "Download (CSV)". A/R's former Print button is replaced by this menu. The A/P reports gain a PDF."  
-**No new case because:** Additive change.  
+**Case:** V1R-91  
+**Note:** Additive change.  
 
 ## INV-130 · KEPT · A/P Aging Detail
 
 **V1:** Five bucket rows in fixed order with their line counts; buckets open collapsed and show "Total" with Amount and Open Balance.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:47-89`; `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:344-385`  
 **V2 (code):** (app/src/components/ts/reporting/aging/Model.ts:113-123; app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-54  
+**Case:** V1R-54  
 
 ## INV-131 · KEPT · A/P Aging Detail
 
@@ -800,7 +819,7 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** An open bucket ends with "Total for <bucket>"; a Totals row gives the overall Amount and Open Balance.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:130-173`  
 **V2 (code):** (app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:202, 222 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-55  
+**Case:** V1R-55  
 
 ## INV-133 · CHANGED-BY-DESIGN · A/P Aging Detail
 
@@ -808,35 +827,36 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:62`  
 **V2 (code):** Vendor name order. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users: "A/P Detail opens with rows in vendor name order inside each bucket (today: most overdue first)."  
-**No new case because:** Changed by design; sorting by Past Due is still one click away (S2-R1).  
+**Case:** V1R-92  
+**Note:** Changed by design; sorting by Past Due is still one click away (S2-R1).  
 
 ## INV-134 · KEPT · A/P Aging Detail
 
 **V1:** Each line shows its date, transaction type, No., vendor name, location, due date, Past Due, Amount and Open Balance.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:402-468`  
 **V2 (code):** (app/src/components/ts/reporting/aging/agingColumns.ts:99-109); "Location Name" renamed "Location" by design (S6-R1). NOT VERIFIED live.  
-**Regression case:** V1R-56  
+**Case:** V1R-56  
 
 ## INV-135 · KEPT · A/P Aging Detail
 
 **V1:** Past Due is the number of days past the due date, negative for a bill not yet due.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:151`  
 **V2 (code):** PRD S1-R5a "negative while the document is not yet due ... as today". Exact day count: see open ticket SV-11922. NOT VERIFIED live.  
-**Regression case:** V1R-57  
+**Case:** V1R-57  
 
 ## INV-136 · KEPT · A/P Aging Detail
 
 **V1:** A vendor credit line shows a negative Amount and Open Balance, its own date as its Due Date, and a Past Due of at least 1.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:103-131`; `fc08f23:api/src/Reporting/Dashboard/Application/AccountPayable/AgingDetail/ApAgingDetailQueryHandler.php:31-34`  
 **V2 (code):** (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/AgingSql.php:291-316); the same-day credit reads 0 by design (S1-R5a). NOT VERIFIED live.  
-**Regression case:** V1R-58  
+**Case:** V1R-58  
 
 ## INV-137 · KEPT · Document links
 
 **V1:** For a user with Vendor Order Management View or Create & Edit, a bill's No. opens its delivery; a bill without a delivery is plain text.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:305-313`; `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:499-508`  
 **V2 (code):** Same permission, for a bill at the user's current location (app/src/components/ts/reporting/aging/agingDocumentLinks.ts:33-35, 57-58). NOT VERIFIED live.  
-**Regression case:** V1R-66  
+**Case:** V1R-66  
 **Already tested by the PRD suite:** S7-06 C715419 (https://shopview.testrail.io/index.php?/cases/view/715419); S7-15 C715428 (https://shopview.testrail.io/index.php?/cases/view/715428); S7-16 C715429 (https://shopview.testrail.io/index.php?/cases/view/715429); S7-17 C715430 (https://shopview.testrail.io/index.php?/cases/view/715430)  
 
 ## INV-138 · CHANGED-BY-DESIGN · Document links
@@ -845,92 +865,93 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:305-313`  
 **V2 (code):** A vendor credit from a vendor return links to that return. NOT VERIFIED live.  
 **Document:** A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S7-R9: "On A/P Detail and A/P Unpaid Invoices, a vendor credit's number links to the vendor return it came from, under the same rules and permissions as a bill (S7-R6). A vendor credit that did not come from a vendor return shows as plain text."  
+**Case:** V1R-93  
 **Already tested by the PRD suite:** S7-07 C715420 (https://shopview.testrail.io/index.php?/cases/view/715420); S7-08 C715421 (https://shopview.testrail.io/index.php?/cases/view/715421)  
-**No new case because:** Additive change.  
+**Note:** Additive change.  
 
 ## INV-139 · KEPT · A/P Aging Detail
 
 **V1:** The location shown on an A/P line is the location of the vendor's account the bill or credit was booked on.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:84`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:93`  
 **V2 (code):** Still va.workplace_id (api/src/Reporting/Reports/Infrastructure/Persistence/Query/Dbal/Aging/ApDocumentLocation.php:21-27). NOT VERIFIED live.  
-**Regression case:** V1R-56  
+**Case:** V1R-56  
 
 ## INV-140 · KEPT · A/P Aging Detail
 
 **V1:** Changing the date collapses every bucket and starts each bucket again from its first 100 lines.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:473-479`  
 **V2 (code):** PRD S4-N1. NOT VERIFIED live.  
-**Regression case:** V1R-59  
+**Case:** V1R-59  
 
 ## INV-150 · KEPT · A/P Unpaid Invoices
 
 **V1:** One group per vendor, A to Z, with its number of lines; collapsed it shows "Total" with Amount and Open Balance; open it ends with "Total for <vendor>"; a Totals row ends the report.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:55-170`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApUnpaidInvoicesFetcher.php:66`  
 **V2 (code):** (app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:166, 185 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-60  
+**Case:** V1R-60  
 
 ## INV-151 · KEPT · A/P Unpaid Invoices
 
 **V1:** Every open bill is listed, including bills not yet due, together with unused vendor credits.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApUnpaidInvoicesFetcher.php:164-215`  
 **V2 (code):** includesDocumentsNotYetDue is true for every report except A/R Collection (api/src/Reporting/Reports/Domain/Model/Aging/AgingReport.php:60-62). NOT VERIFIED live.  
-**Regression case:** V1R-61  
+**Case:** V1R-61  
 
 ## INV-152 · KEPT · A/P Unpaid Invoices
 
 **V1:** Inside a vendor, lines go oldest date first.  
 **V1 source:** `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApUnpaidInvoicesFetcher.php:114`  
 **V2 (code):** (app/src/components/ts/reporting/aging/agingColumns.ts:134). NOT VERIFIED live.  
-**Regression case:** V1R-62  
+**Case:** V1R-62  
 
 ## INV-153 · KEPT · A/P Unpaid Invoices
 
 **V1:** A vendor credit shows "—" for Due Date and Past Due.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:426-441`; `fc08f23:api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApUnpaidInvoicesFetcher.php:214-215`  
 **V2 (code):** (app/src/components/ts/reporting/accounts-payable/ApAgingReportModel.ts:76-79 at 8e35ee0d02). NOT VERIFIED live.  
-**Regression case:** V1R-63  
+**Case:** V1R-63  
 
 ## INV-154 · KEPT · A/P Unpaid Invoices
 
 **V1:** A "Vendor" chip lets the user search vendors and pick one; the report then shows only that vendor and the choice is kept in the page address.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:226`; `fc08f23:app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:238-271`; `fc08f23:app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:298-303`  
 **V2 (code):** Native Vendor chip (PRD S5-R13). NOT VERIFIED live.  
-**Regression case:** V1R-64  
+**Case:** V1R-64  
 
 ## INV-155 · KEPT · A/P Unpaid Invoices
 
 **V1:** A page address with vendorName and vendorId (the A/P Summary drill-down address) opens A/P Unpaid Invoices narrowed to that vendor.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:310-313`; `fc08f23:app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:226`  
 **V2 (code):** Same keys read (app/src/components/ts/reporting/aging/useAgingReportFilters.ts:56). NOT VERIFIED live.  
-**Regression case:** V1R-65  
+**Case:** V1R-65  
 
 ## INV-156 · KEPT · A/P Unpaid Invoices
 
 **V1:** Changing the date or the vendor collapses every group.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:363-373`  
 **V2 (code):** PRD S4-N1. NOT VERIFIED live.  
-**Regression case:** V1R-67  
+**Case:** V1R-67  
 
 ## INV-200 · KEPT · Collateral: Parts Velocity
 
 **V1:** The info icon beside "Units Sold" (and Demand, Turns per year) shows its explanation on hover, keyboard focus, Enter or Space, or a click, and hides when the pointer leaves, focus leaves, or Escape is pressed while it has focus.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/shell/ReportInfoIcon.vue:1-29`; `fc08f23:app/src/components/ts/reporting/shell/ReportInfoIcon.vue:75-91`; `fc08f23:app/src/components/ts/reporting/parts-velocity/PartsVelocityReport.vue:139-170`  
 **V2 (code):** ReportInfoIcon.vue changes in V2 (adds a page-wide Escape listener while open, diff 411684ac3a..8e35ee0d02); every V1 trigger is unchanged. NOT VERIFIED live.  
-**Regression case:** V1R-68  
+**Case:** V1R-68  
 
 ## INV-201 · KEPT · Collateral: Technician Utilization
 
 **V1:** The info icon beside "Est. Lost Labor" behaves as in INV-200.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/technician-utilization/TechnicianUtilizationReport.vue:141-147`; `fc08f23:app/src/components/ts/reporting/shell/ReportInfoIcon.vue:1-29`  
 **V2 (code):** Same shared component change. NOT VERIFIED live.  
-**Regression case:** V1R-69  
+**Case:** V1R-69  
 
 ## INV-202 · KEPT · Collateral: Work In Progress
 
 **V1:** The info icons in the Work In Progress summary strip behave as in INV-200.  
 **V1 source:** `fc08f23:app/src/components/ts/reporting/work-in-progress/WipSummaryStrip.vue:39-44`; `fc08f23:app/src/components/ts/reporting/shell/ReportInfoIcon.vue:1-29`  
 **V2 (code):** Same shared component change. NOT VERIFIED live.  
-**Regression case:** V1R-70  
+**Case:** V1R-70  
 
 ## INV-203 · KEPT · Collateral: work order page
 
@@ -944,12 +965,12 @@ Rule: a V1 behaviour is CHANGED-BY-DESIGN or REMOVED-BY-DESIGN only when a PRD, 
 **V1:** On that prompt, Cancel leaves the work order, returns to the work order list and says "Switch cancelled. Returning to work orders."  
 **V1 source:** `fc08f23:app/src/composables/useWorkOrderLocationResolver.ts:43-46`  
 **V2 (code):** cancelSwitch keeps the toast and redirect when cancelBehavior is 'redirect' (the default). NOT VERIFIED live.  
-**Regression case:** V1R-71  
+**Case:** V1R-71  
 
 ## INV-205 · KEPT · Collateral: part sale page
 
 **V1:** Opening a part sale link from another location the user works at asks "Switch location?" ("This part sale is in {location}. Switch your active location to view it?"); Cancel returns to the part sales list with "Switch canceled. Returning to part sales."  
 **V1 source:** `fc08f23:app/src/components/ts/parts/part-sale/PartSale.vue:100-110`; `fc08f23:app/src/components/ts/parts/part-sale/PartSale.vue:263-268`  
 **V2 (code):** Same shared resolver refactor. NOT VERIFIED live.  
-**Regression case:** V1R-72  
+**Case:** V1R-72  
 

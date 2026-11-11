@@ -29,9 +29,16 @@ Each is in `POSSIBLE-LOSSES.md` (V1 and V2 code lines, Jira search result: no ex
 - **103 kept**, **20 changed by design**, **1 removed by design** (PDF over 2,000 rows), **4 possibly lost**
   (the three items above; the future date counts twice: chip and link). Every changed or removed row quotes
   the PRD sentence that changes it (`INVARIANT-REGISTER.md`).
-- **72 new regression cases** (`cases/CASES.md`, `cases/cases.json`): 67 on the six reports, 5 on other
-  screens the upgrade's shared code reaches. 3 are marked EXPECT FAIL and 1 is HELD.
-- **26 behaviours are already tested by the PRD suite** (group 90418, run 549); they are cited, not duplicated.
+- **93 cases** (`cases/CASES.md`, `cases/cases.json`):
+  - **V1R-01 to V1R-72, regression cases** (live in TestRail as C1078974 to C1079045): 67 on the six reports,
+    5 on other screens the upgrade's shared code reaches. 3 are marked EXPECT FAIL and 1 is HELD.
+  - **V1R-73 to V1R-93, planned-change cases** (added 11 Nov 2026 on the QA lead's decision: "If they are
+    planned changes, then OK add tests for them too but in the same folder."): one per changed-or-removed
+    behaviour. Each quotes the PRD v11 sentence word for word, checks any documented replacement (for
+    example the CSV still gives every row when the PDF is refused), checks that the parts the PRD does not
+    touch are unchanged (cited at fc08f23), and names the related existing PRD-suite case.
+- **15 behaviours are tested only by the existing PRD suite** (group 90418, run 549); they are cited, not
+  duplicated. 1 has a written reason (a server failure a tester cannot cause).
 - **Screens:** 3 IN (the six reports; Parts Velocity, Technician Utilization and Work In Progress through the
   shared info icon; the work order and part sale pages through the shared location-switch prompt) and 12 shared
   changes ruled OUT with the reason read from the changed lines (`SCOPE.md`).
@@ -52,10 +59,8 @@ written reason, a PRD quote that is not word for word in v11, or a V1 citation o
 - **Not observed.** Every "V2" statement is read from code and marked NOT VERIFIED live. Running the cases on
   the upgraded build is the next step (no login was used here).
 - **Not in TestRail.** Nothing was written to TestRail or Jira.
-- **Rule note for the QA lead.** Rule 109 says a V2 document never removes a regression case. Your brief for
-  this task says "unless the PRD clearly asks to take something off". I followed the brief: the 21
-  changed-or-removed-by-design behaviours have no new case but are listed with the PRD sentence. One of them
-  is a real loss of output, not a reroute: a **PDF over 2,000 rows** can no longer be printed (CSV still gives
-  the data). Say if you want cases for those 21 as well.
+- **Planned changes are now tested too.** The 21 changed-or-removed-by-design behaviours have cases V1R-73 to
+  V1R-93 (QA lead, 11 Nov 2026). One of them is a real loss of output rather than a reroute: a **PDF over
+  2,000 rows** can no longer be produced; V1R-82 checks the refusal and that the CSV still gives every row.
 - **Side observation, not a V1 loss:** the date-based day counts moved from UTC to the shop's local day; a
   shop far from UTC may see a document change bucket one day earlier or later than before.

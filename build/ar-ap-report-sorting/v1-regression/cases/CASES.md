@@ -2488,3 +2488,824 @@ This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md 
 
 AUTOMATION: READY
 
+
+# Planned-change cases (V1R-73 onward)
+
+QA lead, 11 Nov 2026: "If they are planned changes, then OK add tests for them too but in the same folder." Each case quotes the PRD v11 sentence word for word, checks any documented replacement, and checks that the parts of the V1 behaviour the PRD does not touch are unchanged.
+
+## V1R-73 · Planned change: the date chip now reads "As of", still today and required
+
+Report: A/R Aging Summary · Covers: INV-010 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** Only the label was meant to change; the default and the required date must stay.  
+**Data needed:** None.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Summary" in the left list.
+3. Read the date chip's label.
+4. Read the date in the chip.
+5. Click the date chip.
+6. Look for a way to clear the date.
+
+**Expected Result**
+
+Step 3: PRD v11, 2. Feature Overview, What changes for existing users, quoted: “The date filter is labelled "As of" (was "Date").”
+Step 3 (our restatement, not the PRD's words): The chip's label is "As of" where production showed "Date".
+Step 4 (unchanged from before the release): The chip shows today's date.
+Step 6 (unchanged from before the release): There is no way to leave the report without a date.
+Related existing case: S5-01 C715375 (https://shopview.testrail.io/index.php?/cases/view/715375). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:191-201.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-010). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-74 · Planned change: an A/R credit dated on the as-of date is Current
+
+Report: A/R Aging Detail · Covers: INV-033 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** Only the same-day credit was meant to move; older credits must age as before.  
+**Data needed:** Two unused credit memos for one customer, made today and yesterday.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. Customer X has an unused $8.00 credit memo created today.
+3. Customer X has an unused $6.00 credit memo created yesterday.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Detail" in the left list.
+3. Open "Current".
+4. Find the $8.00 credit memo.
+5. Open "1-30 days past due".
+6. Find the $6.00 credit memo.
+7. Click "A/R Aging Collection" in the left list.
+8. Open customer X's group.
+9. Read the Past Due of the $8.00 credit memo.
+
+**Expected Result**
+
+Step 4: PRD v11, S1-R5a, quoted: “A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date: negative while the document is not yet due (a bill due 9 days after the as-of date reads -9, as today) and 0 on its due date. A credit memo, deposit or vendor credit counts its own date as its due date, so one dated exactly on the as-of date is in Current with Past Due 0, not in "1-30 days past due". This is how QuickBooks ages them (SV-11441).”
+Step 4 (our restatement, not the PRD's words): The credit memo dated today is under "Current" (production put it in "1-30 days past due").
+Step 6 (unchanged from before the release): The credit memo dated yesterday is still under "1-30 days past due".
+Step 9 (our restatement, not the PRD's words): 0 (production showed 1).
+Related existing case: S1-17 C1062566 (https://shopview.testrail.io/index.php?/cases/view/1062566); S1-19 C1062568 (https://shopview.testrail.io/index.php?/cases/view/1062568); DATA-25 C1062587 (https://shopview.testrail.io/index.php?/cases/view/1062587); REL-08 C715478 (https://shopview.testrail.io/index.php?/cases/view/715478). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S1-R5a. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AgingCalculator.php:57-58; api/src/Reporting/Dashboard/Domain/AccountReceivable/CollectionsItemTransaction.php:108-111; api/src/Reporting/Dashboard/Application/AccountReceivable/Service/AgingCalculator.php:50-67.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S1-R5a, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-033). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-75 · Planned change: a vendor credit dated on the as-of date is Current
+
+Report: A/P Aging Detail · Covers: INV-035 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** Only the same-day vendor credit was meant to move.  
+**Data needed:** Two unused vendor credits for one vendor, made today and yesterday.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. Vendor Y has an unused $9.00 vendor credit created today.
+3. Vendor Y has an unused $4.00 vendor credit created yesterday.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/P Aging Detail" in the left list.
+3. Open "Current".
+4. Find the $9.00 vendor credit.
+5. Read its Past Due.
+6. Open "1-30 days past due".
+7. Find the $4.00 vendor credit.
+
+**Expected Result**
+
+Step 4: PRD v11, S1-R5a, quoted: “A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date: negative while the document is not yet due (a bill due 9 days after the as-of date reads -9, as today) and 0 on its due date. A credit memo, deposit or vendor credit counts its own date as its due date, so one dated exactly on the as-of date is in Current with Past Due 0, not in "1-30 days past due". This is how QuickBooks ages them (SV-11441).”
+Step 5 (our restatement, not the PRD's words): Past Due 0; the credit is under "Current" (production: 1-30, Past Due 1).
+Step 7 (unchanged from before the release): The vendor credit dated yesterday is still under "1-30 days past due".
+Related existing case: S1-18 C1062567 (https://shopview.testrail.io/index.php?/cases/view/1062567). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S1-R5a. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:140; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:119; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingSummaryFetcher.php:139-143.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S1-R5a, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-035). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-76 · Planned change: A/R Summary Totals add up the rows, overpaid left out
+
+Report: A/R Aging Summary · Covers: INV-055 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** The total must match the rows above it when reconciling.  
+**Data needed:** One overpaid invoice; few enough customers to add up (or export the CSV to add up).
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. Customer X has a $100.00 invoice paid $120.00 (overpaid by $20.00) and no other open document.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Summary" in the left list.
+3. Look for customer X.
+4. Scroll to the bottom row.
+5. Add up the Total column of every customer row.
+6. Compare your sum with the Totals row's Total.
+
+**Expected Result**
+
+Step 3 (unchanged from before the release): Customer X is not listed (an overpaid invoice is not a row, as before).
+Step 6: PRD v11, 2. Feature Overview, What changes for existing users, quoted: “The A/R Summary Totals row now adds up exactly the customer rows above it.”
+Step 6 (our restatement, not the PRD's words): The two figures are equal; the overpaid $20.00 is not taken off the Totals row as it was on production.
+Related existing case: DATA-13 C715462 (https://shopview.testrail.io/index.php?/cases/view/715462). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAgingSummaryTotalsFetcher.php:47-65; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalAccountReceivableCustomerFetcher.php:115.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-055). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-77 · Planned change: clicking a row no longer opens it; the name still does
+
+Report: A/R Aging Summary · Covers: INV-059 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** The drill-down must survive; only where you click changed.  
+**Data needed:** None.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Summary" in the left list.
+3. Click the Total amount of the first customer row.
+4. Read the page title.
+5. Click the first customer's name.
+6. Read the page title.
+
+**Expected Result**
+
+Step 4: PRD v11, 2. Feature Overview, What changes for existing users, quoted: “Clicking a row no longer opens it. The document number, or the customer or vendor name on the Summaries, is the link, as on the newer reports (Story 7).”
+Step 4 (our restatement, not the PRD's words): You are still on A/R Aging Summary.
+Step 6 (unchanged from before the release): A/R Aging Collection is open, narrowed to that customer.
+Related existing case: S7-18 C715431 (https://shopview.testrail.io/index.php?/cases/view/715431). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:80; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:124; app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:330-337.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-059). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-78 · Planned change: the Summary drill-down keeps the as-of date
+
+Report: A/R Aging Summary · Covers: INV-060 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** A collector drilling into a past month must stay in that month.  
+**Data needed:** One customer with a past-due invoice on the chosen past date.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. Customer X had a past-due invoice on the 1st of last month.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Summary" in the left list.
+3. Set the date chip to the 1st of last month.
+4. Click customer X's name.
+5. Read the page title.
+6. Read the date chip.
+7. Read the Customer chip.
+
+**Expected Result**
+
+Step 5 (unchanged from before the release): A/R Aging Collection is open.
+Step 6: PRD v11, S5-R11, quoted: “Clicking a customer or vendor on A/R Summary or A/P Summary opens A/R Collection or A/P Unpaid Invoices with just that customer or vendor ticked, the same as-of date, the same ticked Past due ranges and the same ticked locations.”
+Step 6 (our restatement, not the PRD's words): The date chip shows the 1st of last month (production opened on today's date).
+Step 7 (unchanged from before the release): The Customer chip names customer X.
+Related existing case: S5-26 C715400 (https://shopview.testrail.io/index.php?/cases/view/715400); S5-27 C715401 (https://shopview.testrail.io/index.php?/cases/view/715401). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S5-R11. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:332-335; app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:310-313; app/src/components/ts/reporting/accounts-receivable/AgingSummaryReport.vue:330-337.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S5-R11, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-060). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-79 · Planned change: A/R Print is now Export > Download (PDF)
+
+Report: A/R Aging Detail · Covers: INV-061 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** The printed report must still be obtainable, with the same heading and footer.  
+**Data needed:** None.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Detail" in the left list.
+3. Look for the printer button.
+4. Click the Export menu (⋯ beside the title).
+5. Click "Download (PDF)".
+6. Open the downloaded file.
+7. Read its heading.
+8. Read the bottom of page 1.
+
+**Expected Result**
+
+Step 4: PRD v11, S3-R1, quoted: “Each of the six reports has the native report Export menu (the ⋯ button at the right of the title row, labelled "Export report") with "Download (PDF)" and "Download (CSV)". A/R's former Print button is replaced by this menu. The A/P reports gain a PDF.”
+Step 3 (our restatement, not the PRD's words): There is no printer button; the ⋯ Export menu offers "Download (PDF)" and "Download (CSV)".
+Step 5: PRD v11, S3-R2, quoted: “The PDF downloads as a file.”
+Step 7 (unchanged from before the release): The PDF shows the report name, your organization's name and the "As of" line.
+Step 8 (unchanged from before the release): "Software Powered by ShopView" and "Page 1 of N" at the bottom.
+Related existing case: S3-01b C715595 (https://shopview.testrail.io/index.php?/cases/view/715595); D-35 C715515 (https://shopview.testrail.io/index.php?/cases/view/715515). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-R1; S3-R2. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/PrintARReportButton.vue:1-14; app/src/components/ts/reporting/accounts-receivable/PrintARReportButton.vue:40-76; api/templates/reporting/account-receivable/aging-detail.html.twig:125-127; api/templates/reporting/account-receivable/aging-detail.html.twig:8-14.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-R1, S3-R2, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-061). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-80 · Planned change: PDF negatives in brackets, dates as Nov 04 2026
+
+Report: A/R Aging Detail · Covers: INV-076 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** Only the PDF format was meant to change; screen amounts must not.  
+**Data needed:** One unused credit memo.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. Customer X has an unused $5.00 credit memo.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Detail" in the left list.
+3. Open the bucket holding the credit memo.
+4. Read its Amount on screen.
+5. Click the Export menu.
+6. Click "Download (PDF)".
+7. Open the downloaded file.
+8. Find the credit memo's line.
+9. Read its Amount and date in the PDF.
+
+**Expected Result**
+
+Step 4 (unchanged from before the release): On screen the Amount still reads "$-5.00".
+Step 9: PRD v11, S3-R7a, quoted: “The PDF uses the app-wide report PDF format, the same as Sales By Customer and Inventory Value: a negative amount prints in brackets with a minus sign, for example "(-$11,111.00)", and dates print as "Nov 04 2026". On screen a negative amount reads "$-11,111.00", as today.”
+Step 9 (our restatement, not the PRD's words): In the PDF the amount reads "(-$5.00)" and the date reads like "Nov 04 2026" (production printed "$-5.00" and "Nov 4, 2026").
+Related existing case: S3-31 C1062580 (https://shopview.testrail.io/index.php?/cases/view/1062580); S3-32 C1062581 (https://shopview.testrail.io/index.php?/cases/view/1062581). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-R7a. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), api/templates/reporting/account-receivable/aging-detail.html.twig:150-157; app/src/utils/reporting.ts:9-11.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-R7a, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-076). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-81 · Planned change: a failed export shows one new message, report stays
+
+Report: A/R Aging Summary · Covers: INV-077 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** A failed export must say so once and leave the report usable.  
+**Data needed:** None.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Summary" in the left list.
+3. Turn the browser's network off (developer tools, Offline).
+4. Click the Export menu.
+5. Click "Download (PDF)".
+6. Read every message that appears.
+7. Turn the network back on.
+8. Read the report.
+
+**Expected Result**
+
+Step 6: PRD v11, 7. Story 3, Error Handling, quoted: “If an export fails for any other reason (a server error or a lost connection), nothing downloads and one error message shows: "We couldn't export this report. Please try again."”
+Step 6 (our restatement, not the PRD's words): Exactly one message, "We couldn't export this report. Please try again.", and no download (production said "Failed to print account receivable report.").
+Step 8 (unchanged from before the release): The report is still on screen with its rows; nothing was lost by the failed export.
+Related existing case: S3-26 C715352 (https://shopview.testrail.io/index.php?/cases/view/715352); S3-27 C715353 (https://shopview.testrail.io/index.php?/cases/view/715353); REL-06 C715476 (https://shopview.testrail.io/index.php?/cases/view/715476). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 7. Story 3, Error Handling. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/PrintARReportButton.vue:68-72; app/src/components/ts/reporting/accounts-receivable/PrintARReportButton.vue:68-75.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 7. Story 3, Error Handling, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-077). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-82 · Planned removal: PDF over 2,000 rows is refused, the CSV has every row
+
+Report: A/P Aging Detail · Covers: INV-078 · REMOVED-BY-DESIGN
+
+**Why an end user cares:** Large aging must still be obtainable in full, as CSV, even though the PDF is now capped.  
+**Data needed:** An organization with more than 2,000 open A/P lines on one date and fewer than 2,000 A/R Detail lines.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. On today's date A/P Aging Detail has more than 2,000 document lines (the organization with about 13,000 open A/P lines qualifies). If an A/R report in your organization has more than 2,000 lines, you may use it instead for steps 2 to 9.
+3. Write down the five bucket counts shown in brackets.
+4. On today's date A/R Aging Detail has fewer than 2,000 lines.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/P Aging Detail" in the left list.
+3. Click the Export menu.
+4. Click "Download (PDF)".
+5. Read the message.
+6. Click the Export menu.
+7. Click "Download (CSV)".
+8. Open the downloaded file in a spreadsheet.
+9. Count the document rows (leave out the heading lines and the Totals row).
+10. Click "A/R Aging Detail" in the left list.
+11. Click the Export menu.
+12. Click "Download (PDF)".
+
+**Expected Result**
+
+Step 5: PRD v11, S3-N1, quoted: “Over 2,000 rows, the PDF is refused before anything is generated: no download, and the message "This report is too large for PDF. Export it as CSV, or narrow the filters, then try again." Exactly 2,000 rows is allowed.”
+Step 5 (our restatement, not the PRD's words): No PDF downloads and the quoted message shows. Before the release the A/R reports printed a PDF of any size (the A/P reports had no PDF at all).
+Step 9 (our restatement, not the PRD's words): The CSV holds one row per document; the count equals the sum of the five bucket counts.
+Step 12 (unchanged from before the release): A/R Aging Detail, under 2,000 lines, still gives a PDF, as its print did before the release.
+Related existing case: DATA-18 C715467 (https://shopview.testrail.io/index.php?/cases/view/715467); DATA-20 C715469 (https://shopview.testrail.io/index.php?/cases/view/715469). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-N1. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/AgingDetailPdfQueryHandler.php:27-75; app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:35-47.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-N1, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-078). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-83 · Planned change: the A/R PDF prints the as-of date you picked
+
+Report: A/R Aging Summary · Covers: INV-079 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** A printed aging with the wrong date cannot be filed.  
+**Data needed:** None. Repeat late in the evening if you can.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Summary" in the left list.
+3. Set the date chip to the 15th of last month.
+4. Click the Export menu.
+5. Click "Download (PDF)".
+6. Open the downloaded file.
+7. Read the "As of" line.
+
+**Expected Result**
+
+Step 7: PRD v11, 2. Feature Overview, What changes for existing users, quoted: “A/R's Print button becomes the Export menu; its PDF prints the on-screen order and the as-of date the user picked (today it can print the next day's date).”
+Step 7: PRD v11, S3-R4, quoted: “Each export states the as-of date the user picked: the PDF "As of Oct 15, 2026", the CSV "As of: Oct 15, 2026" (format: three-letter month, day, four-digit year).”
+Step 7 (our restatement, not the PRD's words): It reads "As of" and the 15th of last month, never the 16th.
+Step 7 (unchanged from before the release): The "As of" line is still under the report name and organization name.
+Related existing case: REL-03 C715473 (https://shopview.testrail.io/index.php?/cases/view/715473). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users; S3-R4. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/PrintARReportButton.vue:49-53; api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/AgingSummaryPdfQueryHandler.php:64; api/templates/reporting/account-receivable/aging-summary.html.twig:116-118.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users, S3-R4, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-079). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-84 · Planned change: an A/R Detail bucket shows 100 lines, then more
+
+Report: A/R Aging Detail · Covers: INV-085 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** Paging must not hide any receivable.  
+**Data needed:** A bucket with more than 100 open A/R lines.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. One A/R bucket holds more than 100 lines (write its count down).
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Detail" in the left list.
+3. Read that bucket's count in brackets.
+4. Open that bucket.
+5. Count the lines shown before scrolling further.
+6. Scroll down to the end of the bucket.
+7. Count all its lines.
+8. Read the line after its last document.
+
+**Expected Result**
+
+Step 3 (unchanged from before the release): The count in brackets is the full number of lines, as before.
+Step 5: PRD v11, S4-R4, quoted: “On A/R Detail and A/P Detail, expanding a bucket (by hand or with Expand all) shows its first 100 lines, then loads more as the user scrolls. This is as today on A/P Detail and new on A/R Detail, which today shows a whole bucket at once.”
+Step 5 (our restatement, not the PRD's words): 100 lines first (production showed every line at once).
+Step 7 (our restatement, not the PRD's words): After scrolling every line is there; the total equals the count in brackets.
+Step 8 (unchanged from before the release): "Total for" the bucket, with its Amount and Open balance.
+Related existing case: S4-07 C715360 (https://shopview.testrail.io/index.php?/cases/view/715360); DATA-05 C715454 (https://shopview.testrail.io/index.php?/cases/view/715454). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S4-R4. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:101-128; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:83; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:130-153.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S4-R4, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-085). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-85 · Planned change: credits read Credit Memo, Deposit or Vendor Credit
+
+Report: A/R Aging Detail · Covers: INV-090 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** Only the credit names were meant to change.  
+**Data needed:** One of each document type.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. There is an open invoice, an unused credit memo and an unused free deposit on A/R.
+3. There is an open bill and an unused vendor credit on A/P.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Detail" in the left list.
+3. Open every bucket.
+4. Read the Transaction Type of the invoice.
+5. Read the Transaction Type of the credit memo.
+6. Read the Transaction Type of the deposit.
+7. Click "A/P Aging Detail" in the left list.
+8. Open every bucket.
+9. Read the Transaction Type of the bill.
+10. Read the Transaction Type of the vendor credit.
+
+**Expected Result**
+
+Step 5: PRD v11, S2-R1b, quoted: “Transaction Type reads "Invoice" for invoices and bills, as today, and names each kind of credit: "Credit Memo" and "Deposit" on A/R, "Vendor Credit" on A/P. The same names appear in the PDF and the CSV, and Transaction Type sorts A to Z by these names (S2-R2).”
+Step 4 (unchanged from before the release): "Invoice".
+Step 5 (our restatement, not the PRD's words): "Credit Memo" (production: "Credit").
+Step 6 (our restatement, not the PRD's words): "Deposit" (production: "Credit").
+Step 9 (unchanged from before the release): "Invoice".
+Step 10 (our restatement, not the PRD's words): "Vendor Credit" (production: "Credit").
+Related existing case: S2-45 C1062574 (https://shopview.testrail.io/index.php?/cases/view/1062574); S2-46 C1062575 (https://shopview.testrail.io/index.php?/cases/view/1062575). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S2-R1b. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Domain/AccountReceivable/AgingDetailTransaction.php:13; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:108; app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:384-389; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:75.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S2-R1b, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-090). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-86 · Planned change: recent dates read as dates, older ones unchanged
+
+Report: A/R Aging Collection · Covers: INV-093 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** Dates must be comparable with QuickBooks.  
+**Data needed:** A document dated today and one older, same customer.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. Customer X has an unused credit memo created today.
+3. Customer X has a past-due invoice dated more than a week ago.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Collection" in the left list.
+3. Open customer X's group.
+4. Read the credit memo's Date.
+5. Read the invoice's Date.
+
+**Expected Result**
+
+Step 4: PRD v11, S2-R1a, quoted: “Date and Due Date show plain dates on screen, for example "Nov 4, 2026". The PDF and the CSV keep their own date formats (S3-R7a, S3-R8). They never read "Today", "Yesterday" or "2 days ago".”
+Step 4 (our restatement, not the PRD's words): Today's date written out, for example "Nov 11, 2026", not "Today".
+Step 5 (unchanged from before the release): The older date reads in the same form as before, for example "Nov 4, 2026".
+Related existing case: S2-43 C1062572 (https://shopview.testrail.io/index.php?/cases/view/1062572); S2-44 C1062573 (https://shopview.testrail.io/index.php?/cases/view/1062573). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S2-R1a. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/utils/helpers.ts:195-217; app/src/utils/helpers.ts:210-217.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S2-R1a, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-093). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-87 · Planned change: an invoice at another location asks to switch first
+
+Report: A/R Aging Detail · Covers: INV-097 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** Links must lead somewhere that works; same-location links must stay one click.  
+**Data needed:** Invoices at your location, another enrolled location and a non-enrolled location.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. You work at locations A and B and are at A.
+3. There is an open invoice at location A and one at location B.
+4. There is an open invoice at location C, where you are not enrolled.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Detail" in the left list.
+3. Open every bucket.
+4. Click the ID of the location B invoice.
+5. Read the prompt.
+6. Click "Cancel".
+7. Point at the ID of the location C invoice.
+8. Click the ID of the location A invoice.
+
+**Expected Result**
+
+Step 5: PRD v11, S7-R3, quoted: “An invoice or part sale at another location the user is enrolled in shows the existing location-switch prompt on the report, before leaving it: title "Switch location?", message "This work order is in {location}. Switch your active location to view it?" (for a part sale: "This part sale is in {location}. Switch your active location to view it?"), buttons "Cancel" on the left and "Switch location" on the right, and a close × at the top right.”
+Step 5 (our restatement, not the PRD's words): "Switch location?" asking to switch to location B (production opened the invoice straight away).
+Step 6 (our restatement, not the PRD's words): You stay on the report.
+Step 7: PRD v11, S7-R1, quoted: “A document number is a link only when the user has the permission to open it and can open it in its own location; otherwise it shows as plain text.”
+Step 7 (our restatement, not the PRD's words): The location C invoice ID is plain text.
+Step 8 (unchanged from before the release): The location A invoice opens its finance page directly.
+Related existing case: S7-03 C715416 (https://shopview.testrail.io/index.php?/cases/view/715416); S7-11 C715424 (https://shopview.testrail.io/index.php?/cases/view/715424); S7-01 C715414 (https://shopview.testrail.io/index.php?/cases/view/715414). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S7-R3; S7-R1. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingDetailReport.vue:468-478; app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:504-508.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S7-R3, S7-R1, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-097). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-88 · Planned change: A/R Collection Totals follow the Customer chip
+
+Report: A/R Aging Collection · Covers: INV-110 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** A total must match the rows above it.  
+**Data needed:** Two customers with past-due invoices.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. Customers X and Z both have past-due invoices.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Collection" in the left list.
+3. Write down the Totals row's Open Balance.
+4. Pick customer X in the Customer chip.
+5. Read customer X's group Open Balance.
+6. Read the Totals row's Open Balance.
+7. Clear the Customer chip.
+8. Read the Totals row's Open Balance.
+
+**Expected Result**
+
+Step 6: PRD v11, 2. Feature Overview, What changes for existing users, quoted: “The Totals row on A/R Collection and A/P Unpaid Invoices now follows the customer or vendor filter; today it ignores it, on production too.”
+Step 6 (our restatement, not the PRD's words): The Totals row equals customer X's Open Balance (production kept the all-customer total).
+Step 8 (unchanged from before the release): With no customer chosen the Totals row is back to the figure from step 3.
+Related existing case: DATA-10 C715459 (https://shopview.testrail.io/index.php?/cases/view/715459); DATA-12 C715461 (https://shopview.testrail.io/index.php?/cases/view/715461). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountReceivable/Service/DbalCollectionsTotalFetcher.php:33-75; api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApUnpaidInvoicesFetcher.php:122-138.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-110). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-89 · Planned change: re-sorting keeps groups open; a new date still closes
+
+Report: A/P Unpaid Invoices · Covers: INV-112 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** Sorting must not lose the user's place; a new date is still a new report.  
+**Data needed:** One vendor with two unpaid bills.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. Vendor Y has at least two unpaid bills.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/P Unpaid Invoices" in the left list.
+3. Open vendor Y's group.
+4. Click the "Amount" column heading.
+5. Read vendor Y's group.
+6. Set the date chip to yesterday.
+7. Read vendor Y's group.
+
+**Expected Result**
+
+Step 5: PRD v11, 2. Feature Overview, What changes for existing users, quoted: “Re-sorting A/R Collection or A/P Unpaid Invoices no longer collapses the open groups.”
+Step 5: PRD v11, S2-R9, quoted: “Re-sorting never changes which groups are expanded or collapsed (Story 4).”
+Step 5 (our restatement, not the PRD's words): Vendor Y's group is still open, its lines in the new order.
+Step 7 (unchanged from before the release): Changing the date still closes every group.
+Related existing case: S4-13 C715366 (https://shopview.testrail.io/index.php?/cases/view/715366); S4-14 C715367 (https://shopview.testrail.io/index.php?/cases/view/715367). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users; S2-R9. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:396-397; app/src/components/ts/reporting/accounts-payable/ApUnpaidInvoicesReport.vue:363-373.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users, S2-R9, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-112). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-90 · Planned change: a customer with over 100 documents loads 100 at a time
+
+Report: A/R Aging Collection · Covers: INV-113 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** Paging must not hide any of a customer's debt.  
+**Data needed:** A customer with more than 100 past-due invoices and credits.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. Customer X has more than 100 lines on A/R Aging Collection (write the count down).
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/R Aging Collection" in the left list.
+3. Read customer X's count in brackets.
+4. Open customer X's group.
+5. Count the lines shown before scrolling further.
+6. Scroll to the end of customer X's group.
+7. Count all its lines.
+8. Read the line after its last document.
+
+**Expected Result**
+
+Step 3 (unchanged from before the release): The count is the full number of lines.
+Step 5: PRD v11, S1-R8, quoted: “A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time, and the next 30 load as the user scrolls down, as today. There are no page buttons. A/R Detail and A/P Detail show each bucket's first 100 lines, then load more as the user scrolls (S4-R4). Paging never repeats or skips a customer, vendor or row, in any sort. On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents.”
+Step 5 (our restatement, not the PRD's words): 100 lines first (production showed all of them).
+Step 7 (our restatement, not the PRD's words): Every line is there; the total equals the count.
+Step 8 (unchanged from before the release): "Total for" customer X covers every line.
+Related existing case: S1-21 C1062570 (https://shopview.testrail.io/index.php?/cases/view/1062570); S1-22 C1062571 (https://shopview.testrail.io/index.php?/cases/view/1062571). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S1-R8. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:111-138; app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:91-93; app/src/components/ts/reporting/accounts-receivable/AgingCollectionReport.vue:140-163.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S1-R8, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-113). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-91 · Planned change: A/P Summary gains a PDF that matches the screen
+
+Report: A/P Aging Summary · Covers: INV-125 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** The new PDF must carry the same columns users already know.  
+**Data needed:** None.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/P Aging Summary" in the left list.
+3. Read the column headings on screen.
+4. Click the Export menu.
+5. Click "Download (PDF)".
+6. Open the downloaded file.
+7. Read the PDF's column headings.
+8. Read the PDF's last row.
+
+**Expected Result**
+
+Step 4: PRD v11, S3-R1, quoted: “Each of the six reports has the native report Export menu (the ⋯ button at the right of the title row, labelled "Export report") with "Download (PDF)" and "Download (CSV)". A/R's former Print button is replaced by this menu. The A/P reports gain a PDF.”
+Step 5 (our restatement, not the PRD's words): A PDF downloads (production had no A/P print).
+Step 3 (unchanged from before the release): Vendor, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total, as before.
+Step 7 (our restatement, not the PRD's words): The same headings as the screen.
+Step 8 (our restatement, not the PRD's words): A Totals row.
+Related existing case: S3-02 C715328 (https://shopview.testrail.io/index.php?/cases/view/715328); S3-06 C715332 (https://shopview.testrail.io/index.php?/cases/view/715332). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-R1. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:35-47; app/src/components/ts/reporting/accounts-payable/ApAgingSummaryReport.vue:192-248.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S3-R1, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-125). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-92 · Planned change: A/P Detail rows by vendor name; Past Due sort still works
+
+Report: A/P Aging Detail · Covers: INV-133 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** The old most-overdue order must still be reachable.  
+**Data needed:** Bills from two vendors in one bucket.
+
+**Preconditions**
+
+1. You are signed in to ShopView as an Admin user.
+2. The "1-30 days past due" bucket holds bills from at least two vendors.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/P Aging Detail" in the left list.
+3. Read the bucket rows top to bottom.
+4. Open "1-30 days past due".
+5. Read the Vendor Name column.
+6. Click the "Past Due" column heading.
+7. Read the Past Due column.
+
+**Expected Result**
+
+Step 3 (unchanged from before the release): The five buckets in their fixed order, as before.
+Step 5: PRD v11, 2. Feature Overview, What changes for existing users, quoted: “A/P Detail opens with rows in vendor name order inside each bucket (today: most overdue first).”
+Step 5 (our restatement, not the PRD's words): Vendors A to Z inside the bucket (production: most overdue first).
+Step 7: PRD v11, S2-R2, quoted: “The first click gives the useful order for the kind of data: text (names, Location, Transaction Type) A to Z; money columns largest first; dates oldest first; Past Due largest first; ID and No. smallest number first (S2-R4). The second click reverses it. The third click repeats the first; there is no unsorted state.”
+Step 7 (our restatement, not the PRD's words): Largest Past Due first: the most-overdue-first order is one click away.
+Related existing case: S1-09 C715281 (https://shopview.testrail.io/index.php?/cases/view/715281); S2-33 C715320 (https://shopview.testrail.io/index.php?/cases/view/715320). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users; S2-R2. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Infrastructure/Doctrine/AccountPayable/Service/DbalApAgingDetailFetcher.php:62; app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:344-385.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, 2. Feature Overview, What changes for existing users, S2-R2, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-133). Not yet checked against any build.
+
+AUTOMATION: READY
+
+## V1R-93 · Planned change: a vendor credit from a return links to it; bills as before
+
+Report: A/P Aging Detail · Covers: INV-138 · CHANGED-BY-DESIGN
+
+**Why an end user cares:** The new link must not disturb the bill links users rely on.  
+**Data needed:** A vendor return credit, a manual vendor credit and a bill, same vendor, your location.
+
+**Preconditions**
+
+1. You are signed in as a user with Reports page access and Vendor Order Management View.
+2. Vendor Y has an unused vendor credit from a vendor return at your location, an unused vendor credit not from a return, and an unpaid bill at your location.
+
+**Steps**
+
+1. Open the Reports menu.
+2. Click "A/P Aging Detail" in the left list.
+3. Open every bucket.
+4. Click the No. of the vendor credit from the return.
+5. Press the browser Back button.
+6. Point at the No. of the other vendor credit.
+7. Click the bill's No.
+
+**Expected Result**
+
+Step 4: PRD v11, S7-R9, quoted: “On A/P Detail and A/P Unpaid Invoices, a vendor credit's number links to the vendor return it came from, under the same rules and permissions as a bill (S7-R6). A vendor credit that did not come from a vendor return shows as plain text.”
+Step 4 (our restatement, not the PRD's words): The vendor return opens (production showed vendor credits as plain text).
+Step 6 (our restatement, not the PRD's words): The credit not from a return is plain text.
+Step 7 (unchanged from before the release): The bill opens its delivery page.
+Related existing case: S7-07 C715420 (https://shopview.testrail.io/index.php?/cases/view/715420); S7-08 C715421 (https://shopview.testrail.io/index.php?/cases/view/715421). This case checks the same planned change from the before-the-release side.
+
+---
+
+SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S7-R9. V1 behaviour before the change: ShopView/shopview at fc08f23 (production v26.45.3), app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:305-313; app/src/components/ts/reporting/accounts-payable/ApAgingDetailReport.vue:499-508.
+
+This is the expected behaviour as per the A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026, S7-R9, for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md (INV-138). Not yet checked against any build.
+
+AUTOMATION: READY
+

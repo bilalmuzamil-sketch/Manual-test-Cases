@@ -126,11 +126,12 @@ def main():
         if q:
             r.append(f"**Document:** {q['doc']}, {q['section']}: \"{q['text']}\"  ")
         if i.get("case"):
-            r.append("**Regression case:** " + ", ".join(i["case"]) + "  ")
+            r.append("**Case:** " + ", ".join(i["case"]) + "  ")
         if i.get("existing"):
             r.append("**Already tested by the PRD suite:** " + existing_txt(i["existing"], idm) + "  ")
         if i.get("reason"):
-            r.append(f"**No new case because:** {i['reason']}  ")
+            label = "Note" if i.get("case") else "No new case because"
+            r.append(f"**{label}:** {i['reason']}  ")
         if i.get("po"):
             r.append(f"**PO question:** {i['po']} (`PO-QUESTIONS.md`)  ")
         r.append("")
@@ -194,6 +195,47 @@ def main():
         md += ["", "**Steps**", ""] + [f"{n}. {p}" for n, p in enumerate(c["steps"], 1)]
         md += ["", "**Expected Result**", ""] + [e if e else "" for e in expected]
         md += ["", "---", "", source, "", prov, "", marker, ""]
+    md += ["", "# Planned-change cases (V1R-73 onward)", "",
+           "QA lead, 11 Nov 2026: \"If they are planned changes, then OK add tests for them too but in the same folder.\" "
+           "Each case quotes the PRD v11 sentence word for word, checks any documented replacement, and checks that the "
+           "parts of the V1 behaviour the PRD does not touch are unchanged.", ""]
+    for c in I.PLANNED:
+        v = inv_by[c["inv"]]
+        expected, sections = [], []
+        for kind, n, val in c["exp"]:
+            if kind == "Q":
+                if val in I.QUOTE_TEXT:
+                    qt, sec = I.QUOTE_TEXT[val]
+                else:
+                    qt, sec = prd_requirement(val, text), val
+                if sec not in sections:
+                    sections.append(sec)
+                expected.append(f"Step {n}: PRD v11, {sec}, quoted: \u201c{qt}\u201d")
+            elif kind == "O":
+                expected.append(f"Step {n} (our restatement, not the PRD's words): {val}")
+            else:
+                expected.append(f"Step {n} (unchanged from before the release): {val}")
+        rel = existing_txt(c["related"], idm)
+        expected.append(f"Related existing case: {rel}. This case checks the same planned change from the before-the-release side.")
+        cites = list(v["cite"]) + [u for u in c["unchanged"] if u not in v["cite"]]
+        source = (f"SOURCE: {I.PRD}, " + "; ".join(sections) + f". V1 behaviour before the change: {I.V1_LABEL}, " + "; ".join(cites) + ".")
+        prov = (f"This is the expected behaviour as per the {I.PRD}, " + ", ".join(sections)
+                + f", for epic SV-11315; the V1 behaviour it changes is recorded in AR-AP-V1-BASELINE.md ({c['inv']}). Not yet checked against any build.")
+        case = {
+            "id": c["id"], "title": c["title"], "section": c["report"],
+            "refs": f"SV-11315; {c['inv']}; " + ", ".join(sections),
+            "invariants": [c["inv"]], "status": v["status"], "why": c["why"], "data_needs": c["data"],
+            "preconditions": c["pre"], "steps": c["steps"], "expected": expected,
+            "source": source, "provenance": prov, "marker": "AUTOMATION: READY",
+        }
+        cases_out.append(case)
+        md += [f"## {c['id']} · {c['title']}", "",
+               f"Report: {c['report']} · Covers: {c['inv']} · {v['status']}", "",
+               f"**Why an end user cares:** {c['why']}  ", f"**Data needed:** {c['data']}", "", "**Preconditions**", ""]
+        md += [f"{n}. {p}" for n, p in enumerate(c["pre"], 1)]
+        md += ["", "**Steps**", ""] + [f"{n}. {p}" for n, p in enumerate(c["steps"], 1)]
+        md += ["", "**Expected Result**", ""] + expected
+        md += ["", "---", "", source, "", case["provenance"], "", case["marker"], ""]
     (ROOT / "cases").mkdir(exist_ok=True)
     (ROOT / "cases" / "cases.json").write_text(json.dumps(cases_out, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     (ROOT / "cases" / "CASES.md").write_text("\n".join(md) + "\n", encoding="utf-8")
@@ -204,6 +246,8 @@ def main():
     for c in I.CASES:
         for x in c["inv"]:
             served.setdefault(x, []).append(c["id"])
+    for c in I.PLANNED:
+        served.setdefault(c["inv"], []).append(c["id"])
     p = ["# Coverage proof: every V1 behaviour has a case, an existing case or a written reason", "", HEADER,
          "| INV | Status | New case(s) | Existing PRD-suite case(s) | Reason when no new case |", "|---|---|---|---|---|"]
     gaps = []
@@ -217,7 +261,7 @@ def main():
         p.append(f"| {i['id']} | {i['status']} | {', '.join(new)} | {ex} | {i.get('reason') or ''} |")
     in_screens = [row for row in I.SCOPE if row[3] == "IN"]
     screen_cases = {
-        "core": [c["id"] for c in I.CASES if c["report"] not in ("Parts Velocity", "Technician Utilization", "Work In Progress", "Work order", "Part sale")],
+        "core": [c["id"] for c in I.CASES + I.PLANNED if c["report"] not in ("Parts Velocity", "Technician Utilization", "Work In Progress", "Work order", "Part sale")],
         "info": [c["id"] for c in I.CASES if c["report"] in ("Parts Velocity", "Technician Utilization", "Work In Progress")],
         "resolver": [c["id"] for c in I.CASES if c["report"] in ("Work order", "Part sale")],
     }
@@ -234,7 +278,7 @@ def main():
     p += ["## Counts", "",
           f"- Behaviours (invariants) in the baseline: {len(I.INV)}",
           "- By status: " + ", ".join(f"{k} {v}" for k, v in sorted(by_status.items())),
-          f"- New regression cases: {len(I.CASES)} ({sum(1 for c in cases_out if c['status'] == 'POSSIBLY LOST')} expect-fail or hold for possible losses)",
+          f"- New cases: {len(cases_out)}: {len(I.CASES)} regression cases V1R-01..V1R-{len(I.CASES):02d} ({sum(1 for c in cases_out if c['status'] == 'POSSIBLY LOST')} expect-fail or hold for possible losses) and {len(I.PLANNED)} planned-change cases V1R-73..V1R-{72 + len(I.PLANNED)}",
           f"- Behaviours served by a new case: {len(served)}; by an existing PRD-suite case only: {sum(1 for i in I.INV if i['id'] not in served and i.get('existing'))}; by a written reason only: {sum(1 for i in I.INV if i['id'] not in served and not i.get('existing'))}",
           f"- Screens IN: {len(in_screens)} rows in SCOPE.md; OUT: {len(I.SCOPE) - len(in_screens)}",
           f"- Gaps found by this proof: {len(gaps)}"]
@@ -263,7 +307,7 @@ def main():
           "- PL-3 (empty bucket in the Detail PDF): JQL `text ~ \"aging\" AND (text ~ \"empty bucket\" OR ... PDF and bucket)`: no ticket about it."]
     (ROOT / "POSSIBLE-LOSSES.md").write_text("\n".join(L) + "\n", encoding="utf-8")
 
-    print(f"invariants {len(I.INV)}  cases {len(I.CASES)}  scope rows {len(I.SCOPE)}  gaps {len(gaps)}")
+    print(f"invariants {len(I.INV)}  cases {len(cases_out)}  scope rows {len(I.SCOPE)}  gaps {len(gaps)}")
     return 1 if gaps else 0
 
 

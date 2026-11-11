@@ -42,13 +42,38 @@ def main():
     problems = []
 
     cases = json.loads((ROOT / "cases" / "cases.json").read_text(encoding="utf-8"))
+    PRD_TEXT = (ROOT / "sources" / "PRD-947650561-v11-2026-11-05.md").read_text(encoding="utf-8")
+    keys = [c["id"] for c in cases]
+    if keys[:72] != [f"V1R-{n:02d}" for n in range(1, 73)] or len(set(keys)) != len(keys):
+        problems.append("case keys V1R-01..V1R-72 must stay first, in order, and keys must be unique")
     inv_ids = {i["id"] for i in I.INV}
     for c in cases:
         cid = c["id"]
         if len(c["title"]) > 80:
             problems.append(f"{cid}: title {len(c['title'])} > 80")
-        if not c["source"].startswith("SOURCE: " + I.V1_LABEL + ", "):
+        planned = c["status"] in ("CHANGED-BY-DESIGN", "REMOVED-BY-DESIGN")
+        if not planned and not c["source"].startswith("SOURCE: " + I.V1_LABEL + ", "):
             problems.append(f"{cid}: SOURCE line missing or not leading with the V1 repo and commit")
+        if planned:
+            if not c["source"].startswith("SOURCE: " + I.PRD + ", "):
+                problems.append(f"{cid}: planned-change SOURCE line must lead with the PRD")
+            if "V1 behaviour before the change: " + I.V1_LABEL + ", " not in c["source"]:
+                problems.append(f"{cid}: planned-change SOURCE line must name the V1 behaviour at fc08f23")
+            quotes = [e for e in c["expected"] if ", quoted: \u201c" in e]
+            if not quotes:
+                problems.append(f"{cid}: no PRD quote in the Expected Result")
+            for e in quotes:
+                q = e.split(", quoted: \u201c", 1)[1].rsplit("\u201d", 1)[0]
+                if q not in PRD_TEXT:
+                    problems.append(f"{cid}: quote not word for word in PRD v11: {q[:60]!r}")
+            if not any("(unchanged from before the release)" in e for e in c["expected"]):
+                problems.append(f"{cid}: no step checking what the PRD does not change")
+            if not any(e.startswith("Related existing case:") for e in c["expected"]):
+                problems.append(f"{cid}: no Related existing case note")
+        for e in c["expected"]:
+            m = re.match(r"Step (\d+)", e)
+            if m and int(m.group(1)) > len(c["steps"]):
+                problems.append(f"{cid}: expected refers to step {m.group(1)} of {len(c['steps'])}")
         markers = [x for x in [c["marker"]] + c["expected"] + [c["provenance"]] if x.startswith("AUTOMATION:")]
         if len(markers) != 1 or not MARKER.match(c["marker"]):
             problems.append(f"{cid}: needs exactly one valid AUTOMATION marker, found {markers}")
@@ -65,7 +90,7 @@ def main():
 
     md = (ROOT / "cases" / "CASES.md").read_text(encoding="utf-8")
     for c in cases:
-        block = md.split(f"## {c['id']} ")[1].split("\n## ")[0].rstrip()
+        block = md.split(f"## {c['id']} ")[1].split("\n## ")[0].split("\n# ")[0].rstrip()
         if not block.endswith(c["marker"]):
             problems.append(f"{c['id']}: marker is not the last line of the case in CASES.md")
 
@@ -95,8 +120,10 @@ def main():
     checked = 0
     if a.repo:
         sizes = {}
-        for i in I.INV:
-            for ct in i["cite"]:
+        cite_sets = [(i["id"], i["cite"]) for i in I.INV] + [(p["id"], p["unchanged"]) for p in I.PLANNED]
+        for owner, cites in cite_sets:
+            i = {"id": owner}
+            for ct in cites:
                 m = re.match(r"^(.+?):(\d+)(?:-(\d+))?$", ct)
                 if not m:
                     problems.append(f"{i['id']}: citation without line numbers: {ct}")

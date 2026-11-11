@@ -175,7 +175,9 @@
    "section": "2. Feature Overview, What changes for existing users",
    "text": "The date filter is labelled \"As of\" (was \"Date\")."
   },
-  "cases": [],
+  "cases": [
+   "V1R-73"
+  ],
   "existing_prd_suite": [],
   "reason_no_case": "Label change by design; the PRD suite tests the new label.",
   "po_question": null,
@@ -633,7 +635,9 @@
    "section": "S1-R5a",
    "text": "A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date: negative while the document is not yet due (a bill due 9 days after the as-of date reads -9, as today) and 0 on its due date. A credit memo, deposit or vendor credit counts its own date as its due date, so one dated exactly on the as-of date is in Current with Past Due 0, not in \"1-30 days past due\". This is how QuickBooks ages them (SV-11441)."
   },
-  "cases": [],
+  "cases": [
+   "V1R-74"
+  ],
   "existing_prd_suite": [
    "DATA-25",
    "REL-08"
@@ -677,7 +681,9 @@
    "section": "S1-R5a",
    "text": "A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date: negative while the document is not yet due (a bill due 9 days after the as-of date reads -9, as today) and 0 on its due date. A credit memo, deposit or vendor credit counts its own date as its due date, so one dated exactly on the as-of date is in Current with Past Due 0, not in \"1-30 days past due\". This is how QuickBooks ages them (SV-11441)."
   },
-  "cases": [],
+  "cases": [
+   "V1R-75"
+  ],
   "existing_prd_suite": [
    "DATA-25"
   ],
@@ -916,7 +922,9 @@
    "section": "2. Feature Overview, What changes for existing users",
    "text": "The A/R Summary Totals row now adds up exactly the customer rows above it."
   },
-  "cases": [],
+  "cases": [
+   "V1R-76"
+  ],
   "existing_prd_suite": [
    "DATA-13"
   ],
@@ -1003,7 +1011,9 @@
    "section": "2. Feature Overview, What changes for existing users",
    "text": "Clicking a row no longer opens it."
   },
-  "cases": [],
+  "cases": [
+   "V1R-77"
+  ],
   "existing_prd_suite": [],
   "reason_no_case": "Rerouted: the same page still opens from the name or number.",
   "po_question": null,
@@ -1025,7 +1035,9 @@
    "section": "S5-R11",
    "text": "Clicking a customer or vendor on A/R Summary or A/P Summary opens A/R Collection or A/P Unpaid Invoices with just that customer or vendor ticked, the same as-of date, the same ticked Past due ranges and the same ticked locations."
   },
-  "cases": [],
+  "cases": [
+   "V1R-78"
+  ],
   "existing_prd_suite": [
    "S5-26",
    "S5-27"
@@ -1050,7 +1062,9 @@
    "section": "S3-R1",
    "text": "Each of the six reports has the native report Export menu (the ⋯ button at the right of the title row, labelled \"Export report\") with \"Download (PDF)\" and \"Download (CSV)\". A/R's former Print button is replaced by this menu. The A/P reports gain a PDF."
   },
-  "cases": [],
+  "cases": [
+   "V1R-79"
+  ],
   "existing_prd_suite": [],
   "reason_no_case": "Rerouted: the PDF is reached through the Export menu (S3-R2 \"The PDF downloads as a file.\").",
   "po_question": null,
@@ -1227,7 +1241,9 @@
    "section": "S3-R7a",
    "text": "The PDF uses the app-wide report PDF format, the same as Sales By Customer and Inventory Value: a negative amount prints in brackets with a minus sign, for example \"(-$11,111.00)\", and dates print as \"Nov 04 2026\". On screen a negative amount reads \"$-11,111.00\", as today."
   },
-  "cases": [],
+  "cases": [
+   "V1R-80"
+  ],
   "existing_prd_suite": [],
   "reason_no_case": "Changed by design; tested by the PRD suite.",
   "po_question": null,
@@ -1248,7 +1264,9 @@
    "section": "7. Story 3, Error Handling",
    "text": "If an export fails for any other reason (a server error or a lost connection), nothing downloads and one error message shows:"
   },
-  "cases": [],
+  "cases": [
+   "V1R-81"
+  ],
   "existing_prd_suite": [],
   "reason_no_case": "Changed by design; tested by the PRD suite (S3-26, S3-27).",
   "po_question": null,
@@ -1269,7 +1287,9 @@
    "section": "S3-N1",
    "text": "Over 2,000 rows, the PDF is refused before anything is generated: no download, and the message \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\" Exactly 2,000 rows is allowed."
   },
-  "cases": [],
+  "cases": [
+   "V1R-82"
+  ],
   "existing_prd_suite": [
    "DATA-18"
   ],
@@ -1293,7 +1313,9 @@
    "section": "2. Feature Overview, What changes for existing users",
    "text": "A/R's Print button becomes the Export menu; its PDF prints the on-screen order and the as-of date the user picked (today it can print the next day's date)."
   },
-  "cases": [],
+  "cases": [
+   "V1R-83"
+  ],
   "existing_prd_suite": [
    "REL-03"
   ],
@@ -1415,7 +1437,9 @@
    "section": "S4-R4",
    "text": "On A/R Detail and A/P Detail, expanding a bucket (by hand or with Expand all) shows its first 100 lines, then loads more as the user scrolls. This is as today on A/P Detail and new on A/R Detail, which today shows a whole bucket at once."
   },
-  "cases": [],
+  "cases": [
+   "V1R-84"
+  ],
   "existing_prd_suite": [
    "DATA-05"
   ],
@@ -1517,7 +1541,9 @@
    "section": "S2-R1b",
    "text": "Transaction Type reads \"Invoice\" for invoices and bills, as today, and names each kind of credit: \"Credit Memo\" and \"Deposit\" on A/R, \"Vendor Credit\" on A/P. The same names appear in the PDF and the CSV, and Transaction Type sorts A to Z by these names (S2-R2)."
   },
-  "cases": [],
+  "cases": [
+   "V1R-85"
+  ],
   "existing_prd_suite": [],
   "reason_no_case": "Changed by design; tested by the PRD suite.",
   "po_question": null,
@@ -1579,7 +1605,9 @@
    "section": "S2-R1a",
    "text": "Date and Due Date show plain dates on screen, for example \"Nov 4, 2026\". The PDF and the CSV keep their own date formats (S3-R7a, S3-R8). They never read \"Today\", \"Yesterday\" or \"2 days ago\"."
   },
-  "cases": [],
+  "cases": [
+   "V1R-86"
+  ],
   "existing_prd_suite": [
    "S2-43",
    "S2-44"
@@ -1667,7 +1695,9 @@
    "section": "S7-R1",
    "text": "A document number is a link only when the user has the permission to open it and can open it in its own location; otherwise it shows as plain text."
   },
-  "cases": [],
+  "cases": [
+   "V1R-87"
+  ],
   "existing_prd_suite": [
    "S7-03",
    "S7-04",
@@ -1908,7 +1938,9 @@
    "section": "2. Feature Overview, What changes for existing users",
    "text": "The Totals row on A/R Collection and A/P Unpaid Invoices now follows the customer or vendor filter; today it ignores it, on production too."
   },
-  "cases": [],
+  "cases": [
+   "V1R-88"
+  ],
   "existing_prd_suite": [
    "DATA-10",
    "DATA-12"
@@ -1951,7 +1983,9 @@
    "section": "2. Feature Overview, What changes for existing users",
    "text": "Re-sorting A/R Collection or A/P Unpaid Invoices no longer collapses the open groups."
   },
-  "cases": [],
+  "cases": [
+   "V1R-89"
+  ],
   "existing_prd_suite": [],
   "reason_no_case": "V1 had no clickable sort; changed by design.",
   "po_question": null,
@@ -1972,7 +2006,9 @@
    "section": "S1-R8",
    "text": "A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time, and the next 30 load as the user scrolls down, as today. There are no page buttons. A/R Detail and A/P Detail show each bucket's first 100 lines, then load more as the user scrolls (S4-R4). Paging never repeats or skips a customer, vendor or row, in any sort. On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents."
   },
-  "cases": [],
+  "cases": [
+   "V1R-90"
+  ],
   "existing_prd_suite": [],
   "reason_no_case": "Changed by design; every line still reachable.",
   "po_question": null,
@@ -2113,7 +2149,9 @@
    "section": "S3-R1",
    "text": "Each of the six reports has the native report Export menu (the ⋯ button at the right of the title row, labelled \"Export report\") with \"Download (PDF)\" and \"Download (CSV)\". A/R's former Print button is replaced by this menu. The A/P reports gain a PDF."
   },
-  "cases": [],
+  "cases": [
+   "V1R-91"
+  ],
   "existing_prd_suite": [],
   "reason_no_case": "Additive change.",
   "po_question": null,
@@ -2193,7 +2231,9 @@
    "section": "2. Feature Overview, What changes for existing users",
    "text": "A/P Detail opens with rows in vendor name order inside each bucket (today: most overdue first)."
   },
-  "cases": [],
+  "cases": [
+   "V1R-92"
+  ],
   "existing_prd_suite": [],
   "reason_no_case": "Changed by design; sorting by Past Due is still one click away (S2-R1).",
   "po_question": null,
@@ -2297,7 +2337,9 @@
    "section": "S7-R9",
    "text": "On A/P Detail and A/P Unpaid Invoices, a vendor credit's number links to the vendor return it came from, under the same rules and permissions as a bill (S7-R6). A vendor credit that did not come from a vendor return shows as plain text."
   },
-  "cases": [],
+  "cases": [
+   "V1R-93"
+  ],
   "existing_prd_suite": [
    "S7-07",
    "S7-08"

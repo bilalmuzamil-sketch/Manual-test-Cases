@@ -16,7 +16,7 @@
 | INV-006 | KEPT |  | REL-04 C715474 (https://shopview.testrail.io/index.php?/cases/view/715474) |  |
 | INV-007 | KEPT | V1R-03 |  |  |
 | INV-008 | KEPT | V1R-04 |  |  |
-| INV-010 | CHANGED-BY-DESIGN |  |  | Label change by design; the PRD suite tests the new label. |
+| INV-010 | CHANGED-BY-DESIGN | V1R-73 |  | Label change by design; the PRD suite tests the new label. |
 | INV-011 | KEPT | V1R-05 |  |  |
 | INV-012 | KEPT | V1R-06 |  |  |
 | INV-013 | POSSIBLY LOST | V1R-07 |  |  |
@@ -39,9 +39,9 @@
 | INV-030 | KEPT | V1R-22 | DATA-16 C715465 (https://shopview.testrail.io/index.php?/cases/view/715465); DATA-17 C715466 (https://shopview.testrail.io/index.php?/cases/view/715466) |  |
 | INV-031 | KEPT | V1R-22 |  |  |
 | INV-032 | KEPT | V1R-23 |  |  |
-| INV-033 | CHANGED-BY-DESIGN |  | DATA-25 C1062587 (https://shopview.testrail.io/index.php?/cases/view/1062587); REL-08 C715478 (https://shopview.testrail.io/index.php?/cases/view/715478) | Changed by design; tested by the PRD suite. |
+| INV-033 | CHANGED-BY-DESIGN | V1R-74 | DATA-25 C1062587 (https://shopview.testrail.io/index.php?/cases/view/1062587); REL-08 C715478 (https://shopview.testrail.io/index.php?/cases/view/715478) | Changed by design; tested by the PRD suite. |
 | INV-034 | KEPT | V1R-24 |  |  |
-| INV-035 | CHANGED-BY-DESIGN |  | DATA-25 C1062587 (https://shopview.testrail.io/index.php?/cases/view/1062587) | Changed by design; tested by the PRD suite. |
+| INV-035 | CHANGED-BY-DESIGN | V1R-75 | DATA-25 C1062587 (https://shopview.testrail.io/index.php?/cases/view/1062587) | Changed by design; tested by the PRD suite. |
 | INV-036 | POSSIBLY LOST | V1R-25 |  |  |
 | INV-037 | KEPT | V1R-26 |  |  |
 | INV-038 | KEPT |  | DATA-13 C715462 (https://shopview.testrail.io/index.php?/cases/view/715462) |  |
@@ -53,13 +53,13 @@
 | INV-052 | KEPT | V1R-29 |  |  |
 | INV-053 | KEPT | V1R-31 |  |  |
 | INV-054 | KEPT |  | DATA-01b C715612 (https://shopview.testrail.io/index.php?/cases/view/715612); DATA-07 C715456 (https://shopview.testrail.io/index.php?/cases/view/715456) |  |
-| INV-055 | CHANGED-BY-DESIGN |  | DATA-13 C715462 (https://shopview.testrail.io/index.php?/cases/view/715462) | Changed by design; tested by the PRD suite. |
+| INV-055 | CHANGED-BY-DESIGN | V1R-76 | DATA-13 C715462 (https://shopview.testrail.io/index.php?/cases/view/715462) | Changed by design; tested by the PRD suite. |
 | INV-056 | KEPT |  | DATA-01 C715450 (https://shopview.testrail.io/index.php?/cases/view/715450); DATA-02 C715451 (https://shopview.testrail.io/index.php?/cases/view/715451); DATA-03 C715452 (https://shopview.testrail.io/index.php?/cases/view/715452); DATA-04 C715453 (https://shopview.testrail.io/index.php?/cases/view/715453) |  |
 | INV-057 | KEPT |  | S5-26 C715400 (https://shopview.testrail.io/index.php?/cases/view/715400) |  |
 | INV-058 | KEPT | V1R-32 |  |  |
-| INV-059 | CHANGED-BY-DESIGN |  |  | Rerouted: the same page still opens from the name or number. |
-| INV-060 | CHANGED-BY-DESIGN |  | S5-26 C715400 (https://shopview.testrail.io/index.php?/cases/view/715400); S5-27 C715401 (https://shopview.testrail.io/index.php?/cases/view/715401) | Changed by design (improvement). |
-| INV-061 | CHANGED-BY-DESIGN |  |  | Rerouted: the PDF is reached through the Export menu (S3-R2 "The PDF downloads as a file."). |
+| INV-059 | CHANGED-BY-DESIGN | V1R-77 |  | Rerouted: the same page still opens from the name or number. |
+| INV-060 | CHANGED-BY-DESIGN | V1R-78 | S5-26 C715400 (https://shopview.testrail.io/index.php?/cases/view/715400); S5-27 C715401 (https://shopview.testrail.io/index.php?/cases/view/715401) | Changed by design (improvement). |
+| INV-061 | CHANGED-BY-DESIGN | V1R-79 |  | Rerouted: the PDF is reached through the Export menu (S3-R2 "The PDF downloads as a file."). |
 | INV-062 | KEPT | V1R-33 |  |  |
 | INV-063 | KEPT |  |  | A manual tester cannot make the server fail; the text is identical in V2 code and PRD S8-R6 is in the PRD suite (section S8). |
 | INV-070 | KEPT | V1R-34 |  |  |
@@ -68,28 +68,28 @@
 | INV-073 | KEPT | V1R-34 |  |  |
 | INV-074 | POSSIBLY LOST | V1R-35 |  |  |
 | INV-075 | KEPT | V1R-36 |  |  |
-| INV-076 | CHANGED-BY-DESIGN |  |  | Changed by design; tested by the PRD suite. |
-| INV-077 | CHANGED-BY-DESIGN |  |  | Changed by design; tested by the PRD suite (S3-26, S3-27). |
-| INV-078 | REMOVED-BY-DESIGN |  | DATA-18 C715467 (https://shopview.testrail.io/index.php?/cases/view/715467) | Removed by design: the data stays reachable as CSV, but a printable PDF over 2,000 rows no longer is. Listed for the QA lead (Rule 109 note in README). |
-| INV-079 | CHANGED-BY-DESIGN |  | REL-03 C715473 (https://shopview.testrail.io/index.php?/cases/view/715473) | A V1 defect fixed by design. |
+| INV-076 | CHANGED-BY-DESIGN | V1R-80 |  | Changed by design; tested by the PRD suite. |
+| INV-077 | CHANGED-BY-DESIGN | V1R-81 |  | Changed by design; tested by the PRD suite (S3-26, S3-27). |
+| INV-078 | REMOVED-BY-DESIGN | V1R-82 | DATA-18 C715467 (https://shopview.testrail.io/index.php?/cases/view/715467) | Removed by design: the data stays reachable as CSV, but a printable PDF over 2,000 rows no longer is. Listed for the QA lead (Rule 109 note in README). |
+| INV-079 | CHANGED-BY-DESIGN | V1R-83 | REL-03 C715473 (https://shopview.testrail.io/index.php?/cases/view/715473) | A V1 defect fixed by design. |
 | INV-080 | KEPT | V1R-37 |  |  |
 | INV-081 | KEPT | V1R-38 |  |  |
 | INV-082 | KEPT | V1R-38 |  |  |
 | INV-083 | KEPT | V1R-39 |  |  |
 | INV-084 | KEPT | V1R-39 |  |  |
-| INV-085 | CHANGED-BY-DESIGN |  | DATA-05 C715454 (https://shopview.testrail.io/index.php?/cases/view/715454) | Changed by design; every line is still reachable by scrolling. |
+| INV-085 | CHANGED-BY-DESIGN | V1R-84 | DATA-05 C715454 (https://shopview.testrail.io/index.php?/cases/view/715454) | Changed by design; every line is still reachable by scrolling. |
 | INV-086 | KEPT | V1R-40 |  |  |
 | INV-087 | KEPT | V1R-41 |  |  |
 | INV-088 | KEPT | V1R-42 |  |  |
 | INV-089 | KEPT | V1R-40 |  |  |
-| INV-090 | CHANGED-BY-DESIGN |  |  | Changed by design; tested by the PRD suite. |
+| INV-090 | CHANGED-BY-DESIGN | V1R-85 |  | Changed by design; tested by the PRD suite. |
 | INV-091 | KEPT | V1R-42 |  |  |
 | INV-092 | KEPT | V1R-40 |  |  |
-| INV-093 | CHANGED-BY-DESIGN |  | S2-43 C1062572 (https://shopview.testrail.io/index.php?/cases/view/1062572); S2-44 C1062573 (https://shopview.testrail.io/index.php?/cases/view/1062573) | Changed by design; the older-date form "Nov 4, 2026" is unchanged. |
+| INV-093 | CHANGED-BY-DESIGN | V1R-86 | S2-43 C1062572 (https://shopview.testrail.io/index.php?/cases/view/1062572); S2-44 C1062573 (https://shopview.testrail.io/index.php?/cases/view/1062573) | Changed by design; the older-date form "Nov 4, 2026" is unchanged. |
 | INV-094 | KEPT |  | S7-01 C715414 (https://shopview.testrail.io/index.php?/cases/view/715414); S7-02 C715415 (https://shopview.testrail.io/index.php?/cases/view/715415); S7-12 C715425 (https://shopview.testrail.io/index.php?/cases/view/715425) |  |
 | INV-095 | KEPT |  | S7-13 C715426 (https://shopview.testrail.io/index.php?/cases/view/715426); S7-14 C715427 (https://shopview.testrail.io/index.php?/cases/view/715427) |  |
 | INV-096 | KEPT | V1R-42 | S7-10 C715423 (https://shopview.testrail.io/index.php?/cases/view/715423) |  |
-| INV-097 | CHANGED-BY-DESIGN |  | S7-03 C715416 (https://shopview.testrail.io/index.php?/cases/view/715416); S7-04 C715417 (https://shopview.testrail.io/index.php?/cases/view/715417); S7-06 C715419 (https://shopview.testrail.io/index.php?/cases/view/715419); S7-11 C715424 (https://shopview.testrail.io/index.php?/cases/view/715424) | Changed by design (fixes SV-5706). |
+| INV-097 | CHANGED-BY-DESIGN | V1R-87 | S7-03 C715416 (https://shopview.testrail.io/index.php?/cases/view/715416); S7-04 C715417 (https://shopview.testrail.io/index.php?/cases/view/715417); S7-06 C715419 (https://shopview.testrail.io/index.php?/cases/view/715419); S7-11 C715424 (https://shopview.testrail.io/index.php?/cases/view/715424) | Changed by design (fixes SV-5706). |
 | INV-098 | KEPT | V1R-43 |  |  |
 | INV-100 | KEPT | V1R-44 |  |  |
 | INV-101 | KEPT | V1R-45 |  |  |
@@ -101,26 +101,26 @@
 | INV-107 | KEPT | V1R-44 |  |  |
 | INV-108 | KEPT | V1R-49 |  |  |
 | INV-109 | KEPT |  | REL-11 C715582 (https://shopview.testrail.io/index.php?/cases/view/715582) |  |
-| INV-110 | CHANGED-BY-DESIGN |  | DATA-10 C715459 (https://shopview.testrail.io/index.php?/cases/view/715459); DATA-12 C715461 (https://shopview.testrail.io/index.php?/cases/view/715461) | A V1 defect fixed by design. |
+| INV-110 | CHANGED-BY-DESIGN | V1R-88 | DATA-10 C715459 (https://shopview.testrail.io/index.php?/cases/view/715459); DATA-12 C715461 (https://shopview.testrail.io/index.php?/cases/view/715461) | A V1 defect fixed by design. |
 | INV-111 | KEPT | V1R-50 |  |  |
-| INV-112 | CHANGED-BY-DESIGN |  |  | V1 had no clickable sort; changed by design. |
-| INV-113 | CHANGED-BY-DESIGN |  |  | Changed by design; every line still reachable. |
+| INV-112 | CHANGED-BY-DESIGN | V1R-89 |  | V1 had no clickable sort; changed by design. |
+| INV-113 | CHANGED-BY-DESIGN | V1R-90 |  | Changed by design; every line still reachable. |
 | INV-114 | KEPT | V1R-51 |  |  |
 | INV-120 | KEPT |  | S1-02 C715274 (https://shopview.testrail.io/index.php?/cases/view/715274) |  |
 | INV-121 | KEPT | V1R-52 |  |  |
 | INV-122 | KEPT | V1R-52 |  |  |
 | INV-123 | KEPT |  | DATA-02b C715613 (https://shopview.testrail.io/index.php?/cases/view/715613); DATA-08 C715457 (https://shopview.testrail.io/index.php?/cases/view/715457) |  |
 | INV-124 | KEPT | V1R-53 | S5-27 C715401 (https://shopview.testrail.io/index.php?/cases/view/715401) |  |
-| INV-125 | CHANGED-BY-DESIGN |  |  | Additive change. |
+| INV-125 | CHANGED-BY-DESIGN | V1R-91 |  | Additive change. |
 | INV-130 | KEPT | V1R-54 |  |  |
 | INV-131 | KEPT |  | DATA-06 C715455 (https://shopview.testrail.io/index.php?/cases/view/715455) |  |
 | INV-132 | KEPT | V1R-55 |  |  |
-| INV-133 | CHANGED-BY-DESIGN |  |  | Changed by design; sorting by Past Due is still one click away (S2-R1). |
+| INV-133 | CHANGED-BY-DESIGN | V1R-92 |  | Changed by design; sorting by Past Due is still one click away (S2-R1). |
 | INV-134 | KEPT | V1R-56 |  |  |
 | INV-135 | KEPT | V1R-57 |  |  |
 | INV-136 | KEPT | V1R-58 |  |  |
 | INV-137 | KEPT | V1R-66 | S7-06 C715419 (https://shopview.testrail.io/index.php?/cases/view/715419); S7-15 C715428 (https://shopview.testrail.io/index.php?/cases/view/715428); S7-16 C715429 (https://shopview.testrail.io/index.php?/cases/view/715429); S7-17 C715430 (https://shopview.testrail.io/index.php?/cases/view/715430) |  |
-| INV-138 | CHANGED-BY-DESIGN |  | S7-07 C715420 (https://shopview.testrail.io/index.php?/cases/view/715420); S7-08 C715421 (https://shopview.testrail.io/index.php?/cases/view/715421) | Additive change. |
+| INV-138 | CHANGED-BY-DESIGN | V1R-93 | S7-07 C715420 (https://shopview.testrail.io/index.php?/cases/view/715420); S7-08 C715421 (https://shopview.testrail.io/index.php?/cases/view/715421) | Additive change. |
 | INV-139 | KEPT | V1R-56 |  |  |
 | INV-140 | KEPT | V1R-59 |  |  |
 | INV-150 | KEPT | V1R-60 |  |  |
@@ -139,7 +139,7 @@
 
 ## IN screens and their cases
 
-- Core six reports: 67 cases (V1R-01, V1R-02, V1R-03, V1R-04, V1R-05, V1R-06, V1R-07, V1R-08, V1R-09, V1R-10, V1R-11, V1R-12, V1R-13, V1R-14, V1R-15, V1R-16, V1R-17, V1R-18, V1R-19, V1R-20, V1R-21, V1R-22, V1R-23, V1R-24, V1R-25, V1R-26, V1R-27, V1R-28, V1R-29, V1R-30, V1R-31, V1R-32, V1R-33, V1R-34, V1R-35, V1R-36, V1R-37, V1R-38, V1R-39, V1R-40, V1R-41, V1R-42, V1R-43, V1R-44, V1R-45, V1R-46, V1R-47, V1R-48, V1R-49, V1R-50, V1R-51, V1R-52, V1R-53, V1R-54, V1R-55, V1R-56, V1R-57, V1R-58, V1R-59, V1R-60, V1R-61, V1R-62, V1R-63, V1R-64, V1R-65, V1R-66, V1R-67).
+- Core six reports: 88 cases (V1R-01, V1R-02, V1R-03, V1R-04, V1R-05, V1R-06, V1R-07, V1R-08, V1R-09, V1R-10, V1R-11, V1R-12, V1R-13, V1R-14, V1R-15, V1R-16, V1R-17, V1R-18, V1R-19, V1R-20, V1R-21, V1R-22, V1R-23, V1R-24, V1R-25, V1R-26, V1R-27, V1R-28, V1R-29, V1R-30, V1R-31, V1R-32, V1R-33, V1R-34, V1R-35, V1R-36, V1R-37, V1R-38, V1R-39, V1R-40, V1R-41, V1R-42, V1R-43, V1R-44, V1R-45, V1R-46, V1R-47, V1R-48, V1R-49, V1R-50, V1R-51, V1R-52, V1R-53, V1R-54, V1R-55, V1R-56, V1R-57, V1R-58, V1R-59, V1R-60, V1R-61, V1R-62, V1R-63, V1R-64, V1R-65, V1R-66, V1R-67, V1R-73, V1R-74, V1R-75, V1R-76, V1R-77, V1R-78, V1R-79, V1R-80, V1R-81, V1R-82, V1R-83, V1R-84, V1R-85, V1R-86, V1R-87, V1R-88, V1R-89, V1R-90, V1R-91, V1R-92, V1R-93).
 - Parts Velocity, Technician Utilization, Work In Progress: V1R-68, V1R-69, V1R-70.
 - Work order and part sale deep links: V1R-71, V1R-72 (plus existing REL-07).
 
@@ -147,7 +147,7 @@
 
 - Behaviours (invariants) in the baseline: 128
 - By status: CHANGED-BY-DESIGN 20, KEPT 103, POSSIBLY LOST 4, REMOVED-BY-DESIGN 1
-- New regression cases: 72 (4 expect-fail or hold for possible losses)
-- Behaviours served by a new case: 91; by an existing PRD-suite case only: 26; by a written reason only: 11
+- New cases: 93: 72 regression cases V1R-01..V1R-72 (4 expect-fail or hold for possible losses) and 21 planned-change cases V1R-73..V1R-93
+- Behaviours served by a new case: 112; by an existing PRD-suite case only: 15; by a written reason only: 1
 - Screens IN: 3 rows in SCOPE.md; OUT: 12
 - Gaps found by this proof: 0
