@@ -24,9 +24,56 @@
    ],
    "totals": "Totals $325.00 $325.00",
    "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715311-1-expanded.png"
+  },
+  {
+   "label": "2-DueDate",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: ZZY Credit Sort R1 keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_down Date arrow_drop_up | Location arrow_drop_up | Transaction Type arrow_drop_up | No. arrow_drop_up | Vendor Name arrow_drop_up | Due Date arrow_drop_up | Past Due arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_right | 91 or more days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 61-90 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 31-60 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_down | 1-30 days past due (3)",
+    "Oct 22, 2026 | Staging Heavy Duty - 9919 | Invoice | ZZY95580381 | ZZY Credit Sort R1 | Oct 22, 2026 | 20 | $100.00 | $100.00",
+    "Oct 27, 2026 | Staging Heavy Duty - 9919 | Vendor Credit | C-13672 | ZZY Credit Sort R1 | Oct 27, 2026 | 15 | $-75.00 | $-75.00",
+    "Nov 1, 2026 | Staging Heavy Duty - 9919 | Invoice | ZZY95579454 | ZZY Credit Sort R1 | Nov 1, 2026 | 10 | $300.00 | $300.00",
+    "Total for 1-30 days past due | $325.00 | $325.00",
+    "keyboard_arrow_right | Current (0) | Total | $0.00 | $0.00",
+    "Totals | $325.00 | $325.00"
+   ],
+   "totals": "Totals $325.00 $325.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715311-2-DueDate.png"
+  },
+  {
+   "label": "3-DueDate",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: ZZY Credit Sort R1 keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_down Date arrow_drop_up | Location arrow_drop_up | Transaction Type arrow_drop_up | No. arrow_drop_up | Vendor Name arrow_drop_up | Due Date arrow_drop_down | Past Due arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_right | 91 or more days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 61-90 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_right | 31-60 days past due (0) | Total | $0.00 | $0.00",
+    "keyboard_arrow_down | 1-30 days past due (3)",
+    "Nov 1, 2026 | Staging Heavy Duty - 9919 | Invoice | ZZY95579454 | ZZY Credit Sort R1 | Nov 1, 2026 | 10 | $300.00 | $300.00",
+    "Oct 27, 2026 | Staging Heavy Duty - 9919 | Vendor Credit | C-13672 | ZZY Credit Sort R1 | Oct 27, 2026 | 15 | $-75.00 | $-75.00",
+    "Oct 22, 2026 | Staging Heavy Duty - 9919 | Invoice | ZZY95580381 | ZZY Credit Sort R1 | Oct 22, 2026 | 20 | $100.00 | $100.00",
+    "Total for 1-30 days past due | $325.00 | $325.00",
+    "keyboard_arrow_right | Current (0) | Total | $0.00 | $0.00",
+    "Totals | $325.00 | $325.00"
+   ],
+   "totals": "Totals $325.00 $325.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715311-3-DueDate.png"
   }
  ],
  "vendor": "ZZY Credit Sort R1",
- "expanded-1-expanded": false,
- "err": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('main thead th').filter({ hasText: /^\\s*(keyboard_arrow_\\w+\\s*)?Due Date\\b/ }).first()\u001b[22m\n"
+ "expanded-1-expanded": false
 }

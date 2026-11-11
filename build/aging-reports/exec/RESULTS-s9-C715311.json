@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715311": {
+   "verdict": "Passed",
+   "observed": [
+    "Vendor ZZY Credit Sort R1: bill A ZZY95579454 (due Nov 1, 2026), bill B ZZY95580381 (due Oct 22, 2026) and unused vendor credit C-13672 dated Oct 27, 2026 ($-75.00); A/P Aging Detail as of 11/11/2026, only this vendor ticked.",
+    "Step 1: \"1-30 days past due\" opens and lists vendor credit A; its Due Date reads Oct 27, 2026, the same as its Date (not blank).",
+    "Step 2: Due Date clicked: Oct 22 (bill B), Oct 27 (vendor credit), Nov 1 (bill A) - oldest first, the credit sorts by its date, not held at the bottom.",
+    "Step 3: Due Date again: Nov 1, Oct 27 (vendor credit), Oct 22 - newest first, the credit still sorts by its date."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715311-1-expanded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715311-2-DueDate.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715311-3-DueDate.png"
+   ]
+  }
+ }
+}
