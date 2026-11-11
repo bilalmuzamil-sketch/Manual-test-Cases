@@ -1,0 +1,175 @@
+{
+ "V1R-07": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "V1 Step 4: the last day of next month can be picked",
+    "ok": true,
+    "saw": "picked"
+   },
+   {
+    "what": "V1 Step 5: chip shows that future date",
+    "ok": true,
+    "saw": "Date: 2026-12-31"
+   },
+   {
+    "what": "V1 Step 6: an invoice not due today has moved out of Current",
+    "ok": true,
+    "saw": "aqeel transport 56: Current $1,229.93 today -> (blank) on 12/31, 1-30 Days $2,503.23 -> (blank) | ZZAUTOTEST SV12299 Charge Account: Current $299.90 today -> (blank) on 12/31, 1-30 Days (blank) -> $299.90 | Totals: Current $1,529.83 today -> $0.00 on 12/31, 1-30 Days $14,150.01 -> $299.90"
+   }
+  ],
+  "observed": "OK V1 Step 4: the last day of next month can be picked: picked | OK V1 Step 5: chip shows that future date: Date: 2026-12-31 | OK V1 Step 6: an invoice not due today has moved out of Current: aqeel transport 56: Current $1,229.93 today -> (blank) on 12/31, 1-30 Days $2,503.23 -> (blank) | ZZAUTOTEST SV12299 Charge Account: Current $299.90 today -> (blank) on 12/31, 1-30 Days (blank) -> $299.90 | Totals: Current $1,529.83 today -> $0.00 on 12/31, 1-30 Days $14,150.01 -> $299.90",
+  "evidence": [
+   "V1R-07 - V1 today.png",
+   "V1R-07 - V1 as of 2026-12-31.png",
+   "V1R-07 - V1 rows today and 2026-12-31.json"
+  ],
+  "marker": "v26.45.3-f5ba431",
+  "utc_start": "2026-11-11T12:10:35.002Z",
+  "utc_end": "2026-11-11T12:10:45.796Z"
+ },
+ "V1R-08": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "V1 Step 5: chip shows 2026-12-31 and the report is worked out for that date",
+    "ok": true,
+    "saw": "Date: 2026-12-31; figures differ from today's: true"
+   }
+  ],
+  "observed": "OK V1 Step 5: chip shows 2026-12-31 and the report is worked out for that date: Date: 2026-12-31; figures differ from today's: true",
+  "evidence": [
+   "V1R-08 - V1 step 5 after opening the link.png",
+   "V1R-08 - V1 first rows today and from the link.json"
+  ],
+  "marker": "v26.45.3-f5ba431",
+  "utc_start": "2026-11-11T12:09:27.336Z",
+  "utc_end": "2026-11-11T12:10:08.452Z"
+ },
+ "V1R-35": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "V1 Step 3: 91 or more days past due shows (0) on 2025-07-01",
+    "ok": true,
+    "saw": "arrow_drop_down 91 or more days past due (0) Total $0.00 $0.00"
+   },
+   {
+    "what": "V1 Step 7: the PDF prints \"91 or more days past due\" and \"Total for 91 or more days past due\" with $0.00",
+    "ok": true,
+    "saw": "Total for 91 or more days past due $0.00"
+   }
+  ],
+  "observed": "OK V1 Step 3: 91 or more days past due shows (0) on 2025-07-01: arrow_drop_down 91 or more days past due (0) Total $0.00 $0.00 | OK V1 Step 7: the PDF prints \"91 or more days past due\" and \"Total for 91 or more days past due\" with $0.00: Total for 91 or more days past due $0.00",
+  "facts": {
+   "date": "2025-07-01",
+   "empty": "arrow_drop_down 91 or more days past due (0) Total $0.00 $0.00"
+  },
+  "evidence": [
+   "V1R-35 - V1 step 3 bucket with (0).png",
+   "V1R-35 - V1 step 5 print PDF.pdf",
+   "V1R-35 - V1 PDF text.json"
+  ],
+  "marker": "v26.45.3-f5ba431",
+  "utc_start": "2026-11-11T12:14:09.143Z",
+  "utc_end": "2026-11-11T12:14:30.381Z"
+ },
+ "V1R-36": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "V1 Step 7: only the picked customer (aqeel transport 56), with its lines, a \"Total for\" line for it and a Totals row",
+    "ok": true,
+    "saw": "Total for aqeel transport 56 $-12,011.08 $-15,012.08 / Totals $12,540,430.51 $12,533,279.95"
+   }
+  ],
+  "observed": "OK V1 Step 7: only the picked customer (aqeel transport 56), with its lines, a \"Total for\" line for it and a Totals row: Total for aqeel transport 56 $-12,011.08 $-15,012.08 / Totals $12,540,430.51 $12,533,279.95",
+  "facts": {
+   "picked": "aqeel transport 56"
+  },
+  "evidence": [
+   "V1R-36 - V1 step 3 customer picked.png",
+   "V1R-36 - V1 step 5 print PDF.pdf",
+   "V1R-36 - V1 PDF text.json"
+  ],
+  "marker": "v26.45.3-f5ba431",
+  "utc_start": "2026-11-11T12:30:15.298Z",
+  "utc_end": "2026-11-11T12:30:58.866Z"
+ },
+ "V1R-68": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "V1 Step 3: appears",
+    "ok": true,
+    "saw": "Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell."
+   },
+   {
+    "what": "V1 Step 4: disappears",
+    "ok": true,
+    "saw": "(nothing)"
+   },
+   {
+    "what": "V1 Step 5: click shows it",
+    "ok": false,
+    "saw": "(nothing)"
+   },
+   {
+    "what": "V1 Step 6: click again hides it",
+    "ok": true,
+    "saw": "(nothing)"
+   },
+   {
+    "what": "V1 Step 7: Tab focus shows it",
+    "ok": true,
+    "saw": "Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. [icon reached by Tab: true, after 27 presses]"
+   },
+   {
+    "what": "V1 Step 8: Escape hides it",
+    "ok": true,
+    "saw": "(nothing)"
+   }
+  ],
+  "observed": "OK V1 Step 3: appears: Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. | OK V1 Step 4: disappears: (nothing) | NOT OK V1 Step 5: click shows it: (nothing) | OK V1 Step 6: click again hides it: (nothing) | OK V1 Step 7: Tab focus shows it: Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. [icon reached by Tab: true, after 27 presses] | OK V1 Step 8: Escape hides it: (nothing)",
+  "evidence": [
+   "V1R-68 - V1 step 3 pointer on the icon.png",
+   "V1R-68 - V1 step 3 after first click.png"
+  ],
+  "marker": "v26.45.3-f5ba431",
+  "utc_start": "2026-11-11T12:28:12.940Z",
+  "utc_end": "2026-11-11T12:29:14.676Z"
+ },
+ "V1R-70": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "V1 Step 3: appears",
+    "ok": true,
+    "saw": "The total value of completed work order lines on work orders that are still in progress."
+   },
+   {
+    "what": "V1 Step 4: disappears",
+    "ok": true,
+    "saw": "(nothing)"
+   },
+   {
+    "what": "V1 Step 5: click shows it",
+    "ok": false,
+    "saw": "(nothing)"
+   },
+   {
+    "what": "V1 Step 6: click again hides it",
+    "ok": true,
+    "saw": "(nothing)"
+   }
+  ],
+  "observed": "OK V1 Step 3: appears: The total value of completed work order lines on work orders that are still in progress. | OK V1 Step 4: disappears: (nothing) | NOT OK V1 Step 5: click shows it: (nothing) | OK V1 Step 6: click again hides it: (nothing)",
+  "evidence": [
+   "V1R-70 - V1 step 3 pointer on the icon.png",
+   "V1R-70 - V1 step 3 after first click.png"
+  ],
+  "marker": "v26.45.3-f5ba431",
+  "utc_start": "2026-11-11T12:24:31.479Z",
+  "utc_end": "2026-11-11T12:24:46.168Z"
+ }
+}

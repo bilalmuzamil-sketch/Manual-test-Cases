@@ -38,7 +38,11 @@ async function setDate(page, iso) {
     await b.click(); await sleep(350);
   }
   await sleep(900);
-  const day = menu.locator(`button[aria-label="${d} ${MONTHS[m - 1]} ${y}"]`);
+  let day = menu.locator(`button[aria-label="${d} ${MONTHS[m - 1]} ${y}"]`);
+  if (!(await day.count())) {  // older Quasar (production V1): day buttons carry only their number
+    day = menu.locator('.q-date__calendar-days .q-date__calendar-item').filter({ hasText: new RegExp(`^${d}$`) }).locator('button').first();
+    if (!(await day.count())) { const outItem = menu.locator('.q-date__calendar-days .q-date__calendar-item--out').filter({ hasText: new RegExp(`^${d}$`) }); if (await outItem.count()) return { ok: false, why: `day ${iso} is greyed out (disabled)` }; }
+  }
   if (!(await day.count())) return { ok: false, why: `no day button for ${iso}` };
   const disabled = await day.evaluate((e) => e.disabled || e.classList.contains('disabled') || e.getAttribute('aria-disabled') === 'true' || !!e.closest('.q-date__calendar-item--out'));
   if (disabled) return { ok: false, why: `day ${iso} is greyed out (disabled)` };

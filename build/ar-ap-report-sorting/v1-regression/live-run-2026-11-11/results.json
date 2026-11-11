@@ -1,9 +1,9 @@
 {
  "run": "2026-11-11",
- "scope": "V1R-01..V1R-93 (C1078974-C1079045 and C1095429-C1095449)",
  "qa_marker": "v26.45.2-6a8b89c",
- "stopped_at_utc": "2026-11-11T10:43:36Z",
- "reason": "QA session answered 401; per instruction the QA part stopped without repair",
+ "prod_marker_measured": [
+  "v26.45.3-f5ba431"
+ ],
  "cases": [
   {
    "key": "V1R-01",
@@ -11,11 +11,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078974",
    "title": "A/R: the three aging reports are in the Reports menu with their titles",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 2: Accounts Receivable heading under Finance with the three reports: FINANCE payments Sales Tax Collected ACCOUNTS RECEIVABLE article A/R Aging Summary list_alt A/R Aging Detail library_books A/R Aging Collection ACCOUNTS PAYABLE article A/P Aging Summary list_alt A/P Aging Detail library_books A/P Unpaid Invoices ACC | OK Step 4: title \"A/R Aging Summary\", address ends /reports/ar-aging-summary: title \"A/R Aging Summary\", address https://sv11315.qa.shopview.com/reports/ar-aging-summary | OK Step 6: title \"A/R Aging Detail\", address ends /reports/ar-aging-detail: title \"A/R Aging Detail\", address https://sv11315.qa.shopview.com/reports/ar-aging-detail | OK Step 8: title \"A/R Aging Collection\", address ends /reports/ar-aging-collection: title \"A/R Aging Collection\", address https://sv11315.qa.shopview.com/reports/ar-aging-collection",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-01 - step 2 Finance part of the Reports menu.png",
+    "V1R-01 - step 4 AR Aging Summary.png",
+    "V1R-01 - step 6 AR Aging Detail.png",
+    "V1R-01 - step 8 AR Aging Collection.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:33:16.821Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-02",
@@ -23,11 +33,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078975",
    "title": "A/P: the three aging reports are in the Reports menu with their titles",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 2: heading lists A/P Aging Summary, A/P Aging Detail, A/P Unpaid Invoices: ACCOUNTS PAYABLE article A/P Aging Summary list_alt A/P Aging Detail library_books A/P Unpaid Invoices ACCOUNTING paid IBS Batches warning QB Unexported download Export Reports COMMUNICATIONS chat Not | OK Step 4: title \"A/P Aging Summary\", address ends /reports/ap-aging-summary: title \"A/P Aging Summary\", address https://sv11315.qa.shopview.com/reports/ap-aging-summary | OK Step 6: title \"A/P Aging Detail\", address ends /reports/ap-aging-detail: title \"A/P Aging Detail\", address https://sv11315.qa.shopview.com/reports/ap-aging-detail | OK Step 8: title \"A/P Unpaid Invoices Report\", address ends /reports/ap-unpaid-invoices: title \"A/P Unpaid Invoices Report\", address https://sv11315.qa.shopview.com/reports/ap-unpaid-invoices",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-02 - step 2 Accounts Payable heading.png",
+    "V1R-02 - step 4 AP Aging Summary.png",
+    "V1R-02 - step 6 AP Aging Detail.png",
+    "V1R-02 - step 8 AP Unpaid Invoices.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:33:27.899Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-03",
@@ -35,11 +55,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078976",
    "title": "Aging reports list documents of every location, not only yours",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": "The invoice was dated 6 Nov 2026 (5 days ago); the precondition says \"today\". It is open today, which is what the step checks.",
+   "observed_qa": "OK Precondition: working at location A (top right): Staging Heavy Duty - 9919 AS | OK Step 4: location B invoice S11315-17835 listed with location B on its line: {\"date\":\"Nov 6, 2026\",\"location\":\"Staging Lethbridge - 4310\",\"type\":\"Invoice\",\"id\":\"S11315-17835\",\"customer_name\":\"ZZAUTOTEST AR R03 Location B\",\"due_date\":\"Nov 6, 2026\",\"amount\":\"$33.00\",\"open_balance\":\"$33.00\"}",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-03 - steps 3-4 location B invoice while working at A.png",
+    "V1R-03 - steps 3-4 location B invoice while working at A rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:47:05.300Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-04",
@@ -47,11 +75,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078977",
    "title": "Switching location keeps you on the report with the same as-of date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: date set: As of: 10/01/2026 | OK Step 4: switched to B: Staging Lethbridge - 4310 AS | OK Step 5: still on A/R Aging Summary, chip 10/01/2026: title \"A/R Aging Summary\", chip As of: 10/01/2026, address https://sv11315.qa.shopview.com/reports/ar-aging-summary?asOfDate=2026-10-01",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-04 - step 5 after switching to location B.png",
+    "V1R-04 - cleanup switched back to location A.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:17:14.112Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-05",
@@ -59,11 +95,23 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078978",
    "title": "Each aging report opens on today's date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: A/R Aging Summary date chip shows today (11/11/2026): As of: 11/11/2026 | OK Step 5: A/R Aging Detail date chip shows today (11/11/2026): As of: 11/11/2026 | OK Step 7: A/R Aging Collection date chip shows today (11/11/2026): As of: 11/11/2026 | OK Step 9: A/P Aging Summary date chip shows today (11/11/2026): As of: 11/11/2026 | OK Step 11: A/P Aging Detail date chip shows today (11/11/2026): As of: 11/11/2026 | OK Step 13: A/P Unpaid Invoices date chip shows today (11/11/2026): As of: 11/11/2026",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-05 - step 3 AR Aging Summary date chip.png",
+    "V1R-05 - step 5 AR Aging Detail date chip.png",
+    "V1R-05 - step 7 AR Aging Collection date chip.png",
+    "V1R-05 - step 9 AP Aging Summary date chip.png",
+    "V1R-05 - step 11 AP Aging Detail date chip.png",
+    "V1R-05 - step 13 AP Unpaid Invoices date chip.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:29:31.333Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-06",
@@ -71,11 +119,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078979",
    "title": "The as-of date cannot be emptied",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: no way to leave the report without a date: clear-type controls in the menu: []; clear (x) on the chip: 0 | OK Step 5: chip still shows a date and the report shows rows: chip \"As of: 11/11/2026\", 30 vendor rows",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-06 - step 4 date menu open.png",
+    "V1R-06 - step 5 after closing the date menu.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:29:40.439Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-07",
@@ -83,11 +139,29 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078980",
    "title": "A future as-of date can be picked to see coming aging",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY - EXPECT FAIL (dates after today cannot be picked)",
+   "verdict": "FAIL",
+   "classification": "LOST (V2 regression, V1 confirmed on production)",
+   "plain": "EXPECT FAIL, outcome (1) - exactly the stated symptom. On the upgraded build every date after today is greyed out: the date menu's 'Next month' arrow is disabled in November, so 31 Dec 2026 cannot be reached and the chip stays on 11/11/2026. On production the same steps pick 31 Dec 2026 and the report recalculates (customer 'aqeel transport 56': Current $1,229.93 today becomes blank on 12/31, its amount moving into the past-due buckets).",
+   "observed_qa": "NOT OK Step 4: 2026-12-31 can be picked: Next month is disabled (cannot reach 2026-12-31) | NOT OK Step 5: chip shows that future date: As of: 11/11/2026",
+   "expect_fail_outcome": "matches the stated symptom (dates after today cannot be picked; chip stays on today)",
+   "evidence_qa": [
+    "V1R-07 - step 4 picking the last day of next month.png",
+    "V1R-07 - step 5 date chip.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:29:48.545Z",
+   "v1_prod": {
+    "verdict": "PASS",
+    "observed": "OK V1 Step 4: the last day of next month can be picked: picked | OK V1 Step 5: chip shows that future date: Date: 2026-12-31 | OK V1 Step 6: an invoice not due today has moved out of Current: aqeel transport 56: Current $1,229.93 today -> (blank) on 12/31, 1-30 Days $2,503.23 -> (blank) | ZZAUTOTEST SV12299 Charge Account: Current $299.90 today -> (blank) on 12/31, 1-30 Days (blank) -> $299.90 | Totals: Current $1,529.83 today -> $0.00 on 12/31, 1-30 Days $14,150.01 -> $299.90",
+    "evidence": [
+     "V1R-07 - V1 today.png",
+     "V1R-07 - V1 as of 2026-12-31.png",
+     "V1R-07 - V1 rows today and 2026-12-31.json"
+    ],
+    "marker": "v26.45.3-f5ba431",
+    "utc": "2026-11-11T12:10:45.796Z"
+   }
   },
   {
    "key": "V1R-08",
@@ -95,11 +169,27 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078981",
    "title": "A saved link with a future as-of date opens on that date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY - EXPECT FAIL (the future date in the link is ignored)",
+   "verdict": "FAIL",
+   "classification": "LOST (V2 regression, V1 confirmed on production)",
+   "plain": "EXPECT FAIL, outcome (1) - exactly the stated symptom. Opening A/P Aging Summary with ?asOfDate=2026-12-31 on the upgraded build shows the chip on 11/11/2026 (today), and the date is dropped from the address. On production the same link opens with 'Date: 2026-12-31' and different figures from today's.",
+   "observed_qa": "NOT OK Step 5: chip shows 12/31/2026: As of: 11/11/2026 (address now https://sv11315.qa.shopview.com/reports/ap-aging-summary)",
+   "expect_fail_outcome": "matches the stated symptom (opens on today)",
+   "evidence_qa": [
+    "V1R-08 - step 5 date chip after opening the link.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:30:02.336Z",
+   "v1_prod": {
+    "verdict": "PASS",
+    "observed": "OK V1 Step 5: chip shows 2026-12-31 and the report is worked out for that date: Date: 2026-12-31; figures differ from today's: true",
+    "evidence": [
+     "V1R-08 - V1 step 5 after opening the link.png",
+     "V1R-08 - V1 first rows today and from the link.json"
+    ],
+    "marker": "v26.45.3-f5ba431",
+    "utc": "2026-11-11T12:10:08.452Z"
+   }
   },
   {
    "key": "V1R-09",
@@ -107,11 +197,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078982",
    "title": "The chosen as-of date survives a reload and browser Back",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: date set: As of: 10/15/2026 | OK Step 5: chip still 10/15/2026: As of: 10/15/2026 | OK Step 8: A/R Aging Detail back on 10/15/2026: title \"A/R Aging Detail\", chip As of: 10/15/2026",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-09 - step 5 after reload.png",
+    "V1R-09 - step 8 after browser Back.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:30:24.915Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-10",
@@ -119,11 +217,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078983",
    "title": "A report opened again from the menu starts on today's date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: date set: As of: 10/01/2026 | OK Step 6: chip shows today 11/11/2026: As of: 11/11/2026",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-10 - step 6 date chip.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:30:38.980Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-11",
@@ -131,11 +236,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078984",
    "title": "A/R: a document dated on the as-of date counts, one dated after does not",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: invoice S11315-17837 (created 2026-10-20) listed on 2026-10-20: Oct 20, 2026 Staging Heavy Duty - 9919 Invoice S11315-17837 ZZAUTOTEST AR R11 Date Edge Oct 20, 2026 $60.00 $60.00 | OK Step 6: credit memo CM11315-4202 (created 2026-10-21) not listed on 2026-10-20: S11315-17837 | OK Step 9: invoice not listed on 2026-10-19: no lines",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-11 - steps 3-6 as of 2026-10-20.png",
+    "V1R-11 - steps 3-6 as of 2026-10-20 rows.json",
+    "V1R-11 - steps 7-9 as of 2026-10-19.png",
+    "V1R-11 - steps 7-9 as of 2026-10-19 rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:44:17.200Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-12",
@@ -143,11 +258,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078985",
    "title": "A/P: a bill dated on the as-of date counts, one dated after does not",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: bill ZZAUTOTEST-P12-A dated 2026-10-20 listed: Oct 20, 2026 Staging Heavy Duty - 9919 Invoice ZZAUTOTEST-P12-A ZZAUTOTEST AP P12 Bill Dates Nov 19, 2026 -30 $51.00 $51.00 | OK Step 6: bill ZZT-P12-BILLD1 dated 2026-10-21 not listed: ZZAUTOTEST-P12-A",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-12 - steps 3-6 as of 2026-10-20.png",
+    "V1R-12 - steps 3-6 as of 2026-10-20 rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:56:54.462Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-13",
@@ -155,11 +278,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078986",
    "title": "A/R: a payment made after the as-of date is not taken off",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: Amount $100.00, Open balance $100.00: $100.00 / $100.00 | OK Step 8: Open balance $60.00: $60.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-13 - step 5 as of D+2 2026-10-12.png",
+    "V1R-13 - step 5 as of D+2 2026-10-12 rows.json",
+    "V1R-13 - step 8 as of D+5 2026-10-15.png",
+    "V1R-13 - step 8 as of D+5 2026-10-15 rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:44:50.178Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-14",
@@ -167,11 +300,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078987",
    "title": "A/R: an invoice paid in full drops off from its payment date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: customer X listed with the invoice amount $80.00: {\"customer_name\":\"ZZAUTOTEST AR R14 Paid In Full\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$80.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$80.00\"} | OK Step 6: customer X not listed: not listed; table says: ",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-14 - step 4 as of the day before P 2026-10-11.png",
+    "V1R-14 - step 6 as of P 2026-10-12.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:49:30.932Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-15",
@@ -179,11 +320,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078988",
    "title": "A/R: a payment reversed later still counts on the earlier date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": "Payment dated 2026-10-06; reversed on 2026-11-11 (the app stamps a reversal with the moment it is made, so day R is today, not a past day as the precondition says).",
+   "observed_qa": "OK Step 5: invoice S11315-17839 not listed on 2026-10-20 (paid 2026-10-06): no lines | OK Step 8: listed on day R with Open balance $100.00: Oct 1, 2026 Staging Heavy Duty - 9919 Invoice S11315-17839 ZZAUTOTEST AR R15 Payment Reversed Oct 1, 2026 $100.00 $100.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-15 - step 5 as of 2026-10-20 between P and R.png",
+    "V1R-15 - step 5 as of 2026-10-20 between P and R rows.json",
+    "V1R-15 - step 8 as of R 2026-11-11.png",
+    "V1R-15 - step 8 as of R 2026-11-11 rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:45:21.816Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-16",
@@ -191,11 +342,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078989",
    "title": "A/R: a credit memo voided later still shows on the earlier date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": "Credit memo dated 2026-10-22, voided 2026-11-11 (day V = today: a void is stamped with the moment it is made).",
+   "observed_qa": "OK Step 5: credit memo CM11315-4203 listed at $-25.00: $-25.00 / $-25.00 | OK Step 8: not listed on day V: no lines",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-16 - step 5 as of 2026-10-25.png",
+    "V1R-16 - step 5 as of 2026-10-25 rows.json",
+    "V1R-16 - step 8 as of V 2026-11-11.png",
+    "V1R-16 - step 8 as of V 2026-11-11 rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:45:53.546Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-17",
@@ -203,11 +364,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078990",
    "title": "A/R: a credit memo applied later shows its full amount before that",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: CM11315-4204 Open balance $-30.00: $-30.00 | OK Step 8: not listed on day A: no lines",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-17 - step 5 as of 2026-10-20.png",
+    "V1R-17 - step 5 as of 2026-10-20 rows.json",
+    "V1R-17 - step 8 as of A 2026-10-27.png",
+    "V1R-17 - step 8 as of A 2026-10-27 rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:46:25.431Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-18",
@@ -215,11 +386,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078991",
    "title": "A/R: a free deposit shows as credit, an unused work order deposit does not",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: the $50.00 free deposit DEP11315-4714 listed at $-50.00: $-50.00 / $-50.00 | OK Step 5: the $70.00 work order deposit DEP11315-4713 not listed: Nov 2, 2026 Staging Heavy Duty - 9919 Deposit DEP11315-4714 ZZAUTOTEST AR R18 Deposits Nov 2, 2026 $-50.00 $-50.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-18 - steps 3-5 every bucket open.png",
+    "V1R-18 - steps 3-5 every bucket open rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:46:38.287Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-19",
@@ -227,11 +406,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078992",
    "title": "A/R: a reversed deposit is not listed from its reversal date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": "Deposit dated 2026-10-30; its reversal was stamped 2026-11-11 (the app ends a free deposit only by reversing the payment that made it). After the reversal the customer's $5.00 invoice that the payment had paid is open again and is listed on day R; the step checks only that the deposit is gone.",
+   "observed_qa": "OK Step 5: deposit DEP11315-4715 listed at $-20.00: {\"date\":\"Oct 30, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Deposit\",\"id\":\"DEP11315-4715\",\"due_date\":\"Oct 30, 2026\",\"past_due\":\"11\",\"amount\":\"$-20.00\",\"open_balance\":\"$-20.00\"} | OK Step 7: deposit not listed: Oct 29, 2026 Staging Heavy Duty - 9919 Invoice S11315-17850 Oct 29, 2026 13 $5.00 $5.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-19 - steps 3-5 as of the day before R 2026-11-10.png",
+    "V1R-19 - steps 3-5 as of the day before R 2026-11-10 rows.json",
+    "V1R-19 - steps 6-7 as of R 2026-11-11.png",
+    "V1R-19 - steps 6-7 as of R 2026-11-11 rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:52:18.301Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-20",
@@ -239,11 +428,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078993",
    "title": "A/P: a bill payment made after a past as-of date is not taken off",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: Open Balance $200.00: {\"date\":\"Oct 12, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Invoice\",\"id\":\"ZZT-P20-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P20 Payment After\",\"due_date\":\"Nov 11, 2026\",\"past_due\":\"-29\",\"amount\":\"$200.00\",\"open_balance\":\"$200.00\"} | OK Step 8: Open Balance $120.00: $120.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-20 - step 5 as of D+1 2026-10-13.png",
+    "V1R-20 - step 5 as of D+1 2026-10-13 rows.json",
+    "V1R-20 - step 8 as of D+4 2026-10-16.png",
+    "V1R-20 - step 8 as of D+4 2026-10-16 rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:57:27.741Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-21",
@@ -251,11 +450,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078994",
    "title": "A/P: a vendor credit used later still shows on the earlier date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: vendor credit listed at $-35.00: {\"date\":\"Oct 22, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Vendor Credit\",\"id\":\"C-13673\",\"vendor_name\":\"ZZAUTOTEST AP P21 Credit Used\",\"due_date\":\"Oct 22, 2026\",\"past_due\":\"3\",\"amount\":\"$-35.00\",\"open_balance\":\"$-35.00\"} | OK Step 8: not listed on day U: no lines",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-21 - step 5 as of 2026-10-25.png",
+    "V1R-21 - step 5 as of 2026-10-25 rows.json",
+    "V1R-21 - step 8 as of U 2026-10-30.png",
+    "V1R-21 - step 8 as of U 2026-10-30 rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:58:02.801Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-22",
@@ -263,11 +472,24 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078995",
    "title": "A/R Summary puts invoices in buckets at 0, 30, 60 and 90 days past due",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4 (as of 2026-08-01): $10.00 under current, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"$10.00\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$10.00\"} | OK Step 6 (as of 2026-08-31): $10.00 under days_1_to_30, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$10.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$10.00\"} | OK Step 8 (as of 2026-09-01): $10.00 under days_31_to_60, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"$10.00\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$10.00\"} | OK Step 10 (as of 2026-09-30): $10.00 under days_31_to_60, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"$10.00\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$10.00\"} | OK Step 12 (as of 2026-10-01): $10.00 under days_61_to_90, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"$10.00\",\"days_91_plus\":\"\",\"total\":\"$10.00\"} | OK Step 14 (as of 2026-10-30): $10.00 under days_61_to_90, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"$10.00\",\"days_91_plus\":\"\",\"total\":\"$10.00\"} | OK Step 16 (as of 2026-10-31): $10.00 under days_91_plus, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"$10.00\",\"total\":\"$10.00\"}",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-22 - step 4 as of D+0 2026-08-01.png",
+    "V1R-22 - step 6 as of D+30 2026-08-31.png",
+    "V1R-22 - step 8 as of D+31 2026-09-01.png",
+    "V1R-22 - step 10 as of D+60 2026-09-30.png",
+    "V1R-22 - step 12 as of D+61 2026-10-01.png",
+    "V1R-22 - step 14 as of D+90 2026-10-30.png",
+    "V1R-22 - step 16 as of D+91 2026-10-31.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:50:10.074Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-23",
@@ -275,11 +497,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078996",
    "title": "A/R Summary ages a credit memo by its own date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: $-15.00 under 1-30 Days; nothing under Current: {\"customer_name\":\"ZZAUTOTEST AR R23 Memo Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$-15.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$-15.00\"} | OK Step 6: $-15.00 under 31-60 Days: {\"customer_name\":\"ZZAUTOTEST AR R23 Memo Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"$-15.00\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$-15.00\"}",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-23 - step 4 as of C+1 2026-09-16.png",
+    "V1R-23 - step 6 as of C+31 2026-10-16.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:50:40.604Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-24",
@@ -287,11 +517,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078997",
    "title": "A/P Summary ages a vendor credit by its own date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: $-12.00 under 1-30 Days; nothing under Current: {\"vendor_name\":\"ZZAUTOTEST AP P24 Credit Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$-12.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$-12.00\"} | OK Step 6: $-12.00 under 61-90 Days: {\"vendor_name\":\"ZZAUTOTEST AP P24 Credit Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"$-12.00\",\"days_91_plus\":\"\",\"total\":\"$-12.00\"}",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-24 - step 4 as of C+1 2026-09-03.png",
+    "V1R-24 - step 6 as of C+61 2026-11-02.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:58:33.234Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-25",
@@ -299,11 +537,16 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078998",
    "title": "An invoice without a due date is aged from its customer's credit term",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: HOLD - an invoice without a due date cannot be made through the app",
+   "verdict": "BLOCKED",
+   "classification": null,
+   "plain": "BLOCKED (held case): an invoice with no due date cannot be made through the app on QA - the invoice create call always computes the due date from the customer's credit term. Needs a developer data fix.",
+   "observed_qa": "Precondition cannot be set up on QA: an invoice with no due date. Rungs tried: (1) the front end's invoice create call (POST /api/invoices/create) - its due date is always computed as the invoice date plus the customer's credit term (InvoiceBuilder::getDueDate at 8e35ee0d02), the request's due_date is not used; (2) no edit call for an invoice's due date exists in app/src/api/billing; (3) the case itself is HELD for this reason (needs a developer data fix). What needs to be done: a developer stores one open invoice with an empty due date on QA, then run this case.",
+   "expect_fail_outcome": null,
+   "evidence_qa": [],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:43:07.533Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-26",
@@ -311,11 +554,16 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1078999",
    "title": "A/P: a bill with no due date is not listed",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "BLOCKED",
+   "classification": null,
+   "plain": "BLOCKED: a bill without a due date cannot be made - a new vendor needs a payment term, and even a COD bill gets a due date (= its date). Needs a developer data fix.",
+   "observed_qa": "Precondition cannot be set up: a received bill with NO due date. Rungs tried: (1) receiving a purchase order through the front end's own call (POST /api/inventory/orders/accept) for a vendor on COD - the bill still gets a due date (= its invoice date; bill ZZT-P26-BILL, due Nov 06 2026); (2) a vendor with no payment terms cannot be saved - add-vendor answers 400 \"credit_term: Missing required parameter\"; (3) the code (CreateTransactionWhenDeliveryIsCreated at 8e35ee0d02) only blanks the due date when CreditTerms::getDueDate returns the very same object, which it never does (it always builds a new one), so no new bill can lack a due date. What needs to be done: a developer stores one unpaid bill with an empty due date on QA, then run this case.",
+   "expect_fail_outcome": null,
+   "evidence_qa": [],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:58:33.657Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-27",
@@ -323,11 +571,16 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079000",
    "title": "A/P: an overpaid bill is still listed with a negative balance",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "BLOCKED",
+   "classification": null,
+   "plain": "BLOCKED: the app refuses to overpay a bill ('Vendor transaction cannot be overpaid.'), so a $100 bill paid $110 cannot be set up. Needs a developer data fix or an existing overpaid bill.",
+   "observed_qa": "Precondition cannot be set up: a bill paid MORE than its amount. Rung tried: the vendor payment call the front end makes (POST /api/parts-catalogue/vendor/payment/create) paying $110.00 on the $100.00 bill ZZT-P27-BILL answers 400 \"Vendor transaction cannot be overpaid.\" The screen's payment dialog uses the same call. What needs to be done: a developer stores one overpaid bill on QA (or names an existing one), then run this case.",
+   "expect_fail_outcome": null,
+   "evidence_qa": [],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:58:34.055Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-28",
@@ -335,11 +588,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079001",
    "title": "A/R Summary lists a customer who only has a credit",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: customer X listed: ZZAUTOTEST AR R28 Credit Only Staging Heavy Duty - 9919 $-40.00 $-40.00 | OK Step 4: Total $-40.00: $-40.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-28 - steps 3-4 credit-only customer.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:50:52.011Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-29",
@@ -347,11 +607,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079002",
    "title": "A/R Summary keeps its columns and leaves empty buckets blank",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: Customer, (Location, new by design), Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total: [\"Customer\",\"Location\",\"Current\",\"1-30 Days\",\"31-60 Days\",\"61-90 Days\",\"91 And Over\",\"Total\"] | OK Step 5: empty buckets blank, not $0.00: {\"customer_name\":\"ZZAUTOTEST AR R29 One Bucket\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$100.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$100.00\"}",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-29 - step 3 column headings.png",
+    "V1R-29 - steps 4-5 one-bucket customer.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:51:09.654Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-30",
@@ -359,11 +627,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079003",
    "title": "A/R Summary: buckets net invoices against credits, Total adds them",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: Current $50.00: $50.00 | OK Step 5: 1-30 Days $70.00: $70.00 | OK Step 6: Total $120.00: $120.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-30 - steps 3-6 netting customer.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:51:22.155Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-31",
@@ -371,11 +646,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079004",
    "title": "Money shows as $1,234.56 and negatives as $-12.00",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: \"$1,234.56\" form: {\"customer_name\":\"ZZAUTOTEST AR R31 Thousands\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$1,234.56\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$1,234.56\"} | OK Step 4: minus after the dollar sign, \"$-12.00\": $-12.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-31 - step 3 amount over 1000.png",
+    "V1R-31 - step 4 negative total.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:51:43.524Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-32",
@@ -383,11 +666,16 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079005",
    "title": "Without Customers View, A/R Summary names are not links",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "BLOCKED",
+   "classification": null,
+   "plain": "BLOCKED: needs a second user with Reports access but no Customers View; only the QA lead's own Admin session is available and signing in as another user on QA is not allowed in this run.",
+   "observed_qa": "Needs a second user whose role has Reports page access but no Customers View. The only session available is the QA lead's own Admin session, and signing in as anyone else would mean calling the login endpoint on QA, which this run must never do (it ends the shared SSO session). What needs to be done: the QA lead (or a dedicated test login) signs in with such a role and runs steps 1-4.",
+   "expect_fail_outcome": null,
+   "evidence_qa": [],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:17:14.505Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-33",
@@ -395,11 +683,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079006",
    "title": "With nothing open on the date, the report says so",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: date set to 01/01/2000: As of: 01/01/2000 | OK Step 4: \"No record matches these filters\" and \"Try changing filters to widen your results.\": No record matches these filters Try changing filters to widen your results.",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-33 - step 4 message on 1 January 2000.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:33:53.893Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-34",
@@ -407,11 +702,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079007",
    "title": "A/R Summary PDF keeps its heading, footer, page and Totals",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 6: report name, organization name, \"As of\" with the date: A/R Aging Summary / Staging Foothills Group Inc / As of Nov 11, 2026 / Locations: All locations | OK Step 7: \"Software Powered by ShopView\" and \"Page 1 of N\"; landscape:  Dorr Truck Center                        Staging Heavy Duty - 9919                                                                  $1,270.34      $1,270.34 /                                                                       Software Powered by ShopView                                                  Page 1 of 7; size 841.89 x 595.276; 7 pages | OK Step 8: a Totals row last; empty buckets blank: Customer   Location            Current      1-30 Days   31-60 Days    61-90 Days    91 And Over         Total / Totals                       $2,926.00    $101,628.88   $167,363.30   $126,336.92   $118,341.26   $516,596.36 /                       Software Powered by ShopView                                                  Page 7 of 7; customer lines with $0.00: 0",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-34 - PDF text first and last lines.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:20:16.091Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-35",
@@ -419,11 +721,29 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079008",
    "title": "A/R Detail PDF prints an empty bucket with its $0.00 total",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY - EXPECT FAIL (the empty bucket is missing from the PDF)",
+   "verdict": "FAIL",
+   "classification": "LOST (V2 regression, V1 confirmed on production)",
+   "plain": "EXPECT FAIL, outcome (1) - exactly the stated symptom. Upgraded build: A/R Aging Detail narrowed to ZZAUTOTEST AR R13 shows '61-90 days past due (0)', and the downloaded PDF prints only the one bucket holding a document (31-60); the empty buckets and their 'Total for' lines are missing. Production on 1 Jul 2025 (where '91 or more days past due (0)'): the printed PDF still shows that bucket with 'Total for 91 or more days past due $0.00'.",
+   "observed_qa": "OK Step 3: bucket shows (0): keyboard_arrow_right 61-90 days past due (0) Total $0.00 $0.00 | NOT OK Step 7: PDF prints the empty bucket heading and \"Total for 61-90 days past due\" with $0.00: no \"61-90 days past due\" anywhere in the PDF; buckets printed: 31-60 days past due",
+   "expect_fail_outcome": "matches the stated symptom (only buckets holding a document are printed)",
+   "evidence_qa": [
+    "V1R-35 - step 3 empty bucket count.png",
+    "V1R-35 - PDF text.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:14:32.033Z",
+   "v1_prod": {
+    "verdict": "PASS",
+    "observed": "OK V1 Step 3: 91 or more days past due shows (0) on 2025-07-01: arrow_drop_down 91 or more days past due (0) Total $0.00 $0.00 | OK V1 Step 7: the PDF prints \"91 or more days past due\" and \"Total for 91 or more days past due\" with $0.00: Total for 91 or more days past due $0.00",
+    "evidence": [
+     "V1R-35 - V1 step 3 bucket with (0).png",
+     "V1R-35 - V1 step 5 print PDF.pdf",
+     "V1R-35 - V1 PDF text.json"
+    ],
+    "marker": "v26.45.3-f5ba431",
+    "utc": "2026-11-11T12:14:30.381Z"
+   }
   },
   {
    "key": "V1R-36",
@@ -431,11 +751,28 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079009",
    "title": "A/R Collection PDF prints only the customer you picked",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "FAIL",
+   "classification": "LOST (V2 regression, V1 confirmed on production)",
+   "plain": "Upgraded build: the A/R Collection PDF narrowed to customer X prints only customer X and a Totals row, as expected, but the customer's closing line reads 'Subtotal $110.00 $110.00' instead of 'Total for ZZAUTOTEST AR R36 Collect X'. Production prints 'Total for aqeel transport 56 ...' for the picked customer. Only the label is lost (the amounts are right). PRD S3-R7a ('the app-wide report PDF format, the same as Sales By Customer and Inventory Value') may be where 'Subtotal' comes from, but it does not say so; worth a PO question rather than a defect until he rules.",
+   "observed_qa": "NOT OK Step 7: only customer X, with its lines, \"Total for\" X and a Totals row: customer X present: true; Z present: false; other ZZAUTOTEST customers: none; lines: 11",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-36 - PDF text.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:14:45.216Z",
+   "v1_prod": {
+    "verdict": "PASS",
+    "observed": "OK V1 Step 7: only the picked customer (aqeel transport 56), with its lines, a \"Total for\" line for it and a Totals row: Total for aqeel transport 56 $-12,011.08 $-15,012.08 / Totals $12,540,430.51 $12,533,279.95",
+    "evidence": [
+     "V1R-36 - V1 step 3 customer picked.png",
+     "V1R-36 - V1 step 5 print PDF.pdf",
+     "V1R-36 - V1 PDF text.json"
+    ],
+    "marker": "v26.45.3-f5ba431",
+    "utc": "2026-11-11T12:30:58.866Z"
+   }
   },
   {
    "key": "V1R-37",
@@ -443,11 +780,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079010",
    "title": "A/R Detail shows its five buckets in fixed order with counts",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: five buckets in that order, each with its line count in brackets: [\"91 or more days past due (70)\",\"61-90 days past due (54)\",\"31-60 days past due (184)\",\"1-30 days past due (268)\",\"Current (14)\"]",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-37 - step 3 bucket rows.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:31:34.694Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-38",
@@ -455,11 +799,20 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079011",
    "title": "A/R Detail buckets start closed with totals and open on click",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: closed, shows \"Total\" with Amount and Open balance: keyboard_arrow_right Current (14) Total $2,862.00 $2,862.00 | OK Step 5: its lines are shown: 14 lines | OK Step 6: closes again: 0 lines, keyboard_arrow_right Current (14) Total $2,862.00 $2,862.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-38 - step 3 Current closed.png",
+    "V1R-38 - step 5 Current open.png",
+    "V1R-38 - step 6 Current closed again.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:42:44.336Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-39",
@@ -467,11 +820,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079012",
    "title": "A/R Detail keeps \"Total for\" lines and the Totals row",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: \"Total for 1-30 days past due\" with Amount and Open balance: Total for 1-30 days past due $103,028.88 $101,628.88 | OK Step 5: \"Totals\" with Amount and Open balance: Totals $546,308.68 $516,532.36",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-39 - steps 4-5 end of 1-30 bucket and Totals.png",
+    "V1R-39 - rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:42:55.164Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-40",
@@ -479,11 +840,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079013",
    "title": "A/R Detail lines keep their information and the invoice's location",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: date, \"Invoice\", ID, customer full name, location B, due date, Amount, Open balance: {\"date\":\"Nov 6, 2026\",\"location\":\"Staging Lethbridge - 4310\",\"type\":\"Invoice\",\"id\":\"S11315-17835\",\"customer_name\":\"ZZAUTOTEST AR R03 Location B\",\"due_date\":\"Nov 6, 2026\",\"amount\":\"$33.00\",\"open_balance\":\"$33.00\"}",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-40 - step 5 the location B invoice line.png",
+    "V1R-40 - step 5 the location B invoice line rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:48:46.050Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-41",
@@ -491,11 +860,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079014",
    "title": "A/R Detail: Amount is the invoice total, Open balance what is unpaid",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: Amount $250.00: $250.00 | OK Step 6: Open balance $150.00: $150.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-41 - steps 4-6 partly paid invoice.png",
+    "V1R-41 - steps 4-6 partly paid invoice rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:47:18.437Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-42",
@@ -503,11 +880,20 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079015",
    "title": "A/R Detail: a credit memo line is negative, self-dated and plain text",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: number with the location prefix (like CM1-4411): CM11315-4209 | OK Step 6: due date = day C (Oct 26, 2026): Oct 26, 2026 | OK Step 7: $-5.00 and $-5.00: $-5.00 / $-5.00 | OK Step 8: clicking the ID opens nothing: link element: null; address before https://sv11315.qa.shopview.com/reports/ar-aging-detail?customerIds=4a18211a-fd90-45fc-a7ac-1aad0fbf64a7 after https://sv11315.qa.shopview.com/reports/ar-aging-detail?customerIds=4a18211a-fd90-45fc-a7ac-1aad0fbf64a7",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-42 - steps 4-7 credit memo line.png",
+    "V1R-42 - steps 4-7 credit memo line rows.json",
+    "V1R-42 - step 8 after clicking the ID.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:49:00.740Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-43",
@@ -515,11 +901,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079016",
    "title": "A/R Detail: changing the date closes the open buckets",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: Current opened: 14 lines | OK Step 4: date set to yesterday: As of: 11/10/2026 | OK Step 5: every bucket closed: keyboard_arrow_right 91 or more days pas / keyboard_arrow_right 61-90 days past due / keyboard_arrow_right 31-60 days past due / keyboard_arrow_right 1-30 days past due  / keyboard_arrow_right Current (38) Total ",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-43 - step 5 bucket rows after the date change.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:43:07.202Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-44",
@@ -527,11 +920,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079017",
    "title": "A/R Collection groups by customer with counts, totals and Totals",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: name with (2) and \"Total\" with Amount and Open balance: keyboard_arrow_right ZZAUTOTEST AR R44 Two Past Due (2) Credit term: COD Total $81.00 $81.00 | OK Step 5: \"Total for ZZAUTOTEST AR R44 Two Past Due\" with the two amounts: Total for ZZAUTOTEST AR R44 Two Past Due $81.00 $81.00 | OK Step 6: \"Totals\" with Amount and Open balance: Totals $81.00 $81.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-44 - steps 3-6 customer with two past-due invoices.png",
+    "V1R-44 - steps 3-6 customer with two past-due invoices rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:52:31.878Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-45",
@@ -539,11 +940,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079018",
    "title": "A/R Collection lists past-due invoices and credits only",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: invoice A S11315-17856 (5 days past due) and the credit memo CM11315-4210 listed; B S11315-17857 (due today) and C S11315-17858 (not yet due) not: [[\"S11315-17856\",\"Nov 6, 2026\",\"5\"],[\"CM11315-4210\",\"Nov 4, 2026\",\"7\"]]",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-45 - steps 3-4 lines of the four-document customer.png",
+    "V1R-45 - steps 3-4 lines of the four-document customer rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:52:46.131Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-46",
@@ -551,11 +960,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079019",
    "title": "A/R Collection shows a customer who only has a credit",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: customer X listed: keyboard_arrow_right ZZAUTOTEST AR R46 Collection Credit (1) Credit term: COD Total $-11.00 $-11.00 | OK Step 4: the credit memo CM11315-4211 is its only line: Nov 4, 2026 Staging Heavy Duty - 9919 Credit Memo CM11315-4211 Nov 4, 2026 7 $-11.00 $-11.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-46 - steps 3-4 credit-only customer.png",
+    "V1R-46 - steps 3-4 credit-only customer rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:52:59.770Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-47",
@@ -563,11 +980,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079020",
    "title": "A/R Collection lists each customer's lines oldest first",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: oldest at the top, newest at the bottom: [\"Oct 13, 2026\",\"Oct 23, 2026\",\"Nov 2, 2026\"]",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-47 - steps 3-4 date column.png",
+    "V1R-47 - steps 3-4 date column rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:53:13.846Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-48",
@@ -575,11 +1000,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079021",
    "title": "A/R Collection lines keep their details and days past due",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: date, type \"Invoice\", ID, location, due date, Past due 12, Amount, Open balance: {\"date\":\"Oct 30, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Invoice\",\"id\":\"S11315-17862\",\"due_date\":\"Oct 30, 2026\",\"past_due\":\"12\",\"amount\":\"$48.00\",\"open_balance\":\"$48.00\"} | OK Step 5: credit memo Past due 3: {\"date\":\"Nov 8, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Credit Memo\",\"id\":\"CM11315-4212\",\"due_date\":\"Nov 8, 2026\",\"past_due\":\"3\",\"amount\":\"$-3.00\",\"open_balance\":\"$-3.00\"}",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-48 - steps 3-5 invoice and credit memo lines.png",
+    "V1R-48 - steps 3-5 invoice and credit memo lines rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:53:27.395Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-49",
@@ -587,11 +1020,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079022",
    "title": "A/R Collection: the Customer chip narrows to one customer",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: X picked: Customer: ZZAUTOTEST AR R... | OK Step 6: only customer X: ZZAUTOTEST AR R36 Collect X | OK Step 8: still only customer X: ZZAUTOTEST AR R36 Collect X",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-49 - step 6 groups after picking X.png",
+    "V1R-49 - step 8 groups after reload.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:53:44.960Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-50",
@@ -599,11 +1040,20 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079023",
    "title": "A/R Collection: changing date or customer closes open groups",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: X group opened: 1 lines | OK Step 4: date set to yesterday: As of: 11/10/2026 | OK Step 5: all groups closed: 0 document lines shown | OK Step 6: X group opened again: 1 lines | OK Step 7: Z picked: Customer: ZZAUTOTEST AR R... | OK Step 8: all groups closed: 0 document lines shown; groups: ZZAUTOTEST AR R36 Collect Z",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-50 - step 3 X group open.png",
+    "V1R-50 - step 5 groups after date change.png",
+    "V1R-50 - step 8 groups after picking Z.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:55:57.262Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-51",
@@ -611,11 +1061,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079024",
    "title": "A/R Collection: Clear all filters brings everyone back",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: \"No record matches these filters\" with a \"Clear all filters\" button: No record matches these filters Try changing filters to widen your results. Clear all filters | button: 1 | OK Step 6: every customer with past-due documents listed again, date unchanged: 30 customer groups loaded, date As of: 11/11/2026 (was As of: 11/11/2026), customer chip Customer: All customers",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-51 - step 4 message.png",
+    "V1R-51 - step 6 after Clear all filters.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:54:42.956Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-52",
@@ -623,11 +1081,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079025",
    "title": "A/P Summary keeps its columns and nets credits in the buckets",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": "Bill $300.00 dated Sep 02 2026 (due Oct 02, 40 days past due), bill $90.00 dated Nov 06 (due Dec 06), vendor credit $20.00 dated Oct 07 (35 days old).",
+   "observed_qa": "OK Step 3: Vendor, (Location), Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total: [\"Vendor\",\"Location\",\"Current\",\"1-30 Days\",\"31-60 Days\",\"61-90 Days\",\"91 And Over\",\"Total\"] | OK Step 5: Current $90.00, 31-60 Days $280.00, other buckets blank, Total $370.00: {\"vendor_name\":\"ZZAUTOTEST AP P52 Netting\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"$90.00\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"$280.00\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$370.00\"}",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-52 - step 3 headings.png",
+    "V1R-52 - steps 4-5 vendor row.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:58:51.726Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-53",
@@ -635,11 +1101,16 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079026",
    "title": "A/P Summary vendor names link without any extra permission",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "BLOCKED",
+   "classification": null,
+   "plain": "BLOCKED: needs a second user with only Reports page access; same reason as V1R-32.",
+   "observed_qa": "Needs a second user whose role has only Reports page access (no Vendor Order Management, Customers or Invoicing). Same reason as V1R-32: only the QA lead's Admin session is available and signing in as another user is not allowed on QA. What needs to be done: run with such a role.",
+   "expect_fail_outcome": null,
+   "evidence_qa": [],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:17:14.888Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-54",
@@ -647,11 +1118,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079027",
    "title": "A/P Detail keeps its buckets, counts and closed totals",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: five buckets in order, each closed, with (count) and \"Total\" with Amount and Open Balance: [\"keyboard_arrow_right 91 or more days past due (11935) Total $4,044,727.90 $4,044,727.92\",\"keyboard_arrow_right 61-90 days past due (708) Total $320,924.51 $320,924.53\",\"keyboard_arrow_right 31-60 days past due (723) Total $269,043.91 $268,843.91\",\"keyboard_arrow_right 1-30 days past due (496) Total $124,147.02 $123,547.02\",\"keyboard_arrow_right Current (28) Total $4,327.34 $4,247.34\"]",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-54 - step 3 bucket rows.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:34:01.205Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-55",
@@ -659,11 +1137,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079028",
    "title": "A/P Detail keeps \"Total for\" lines and the Totals row",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: \"Total for Current\" with Amount and Open Balance: Total for Current $4,327.34 $4,247.34 | OK Step 6: \"Totals\" with Amount and Open Balance: Totals $4,763,170.68 $4,762,290.72",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-55 - steps 5-6 end of Current and Totals.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:59:03.018Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-56",
@@ -671,11 +1156,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079029",
    "title": "A/P Detail lines keep their information and location",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: date, \"Invoice\", No., vendor name, location B, due date, Past Due, Amount, Open Balance: {\"date\":\"Nov 5, 2026\",\"location\":\"Staging Lethbridge - 4310\",\"type\":\"Invoice\",\"id\":\"ZZT-P56-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P56 Location B\",\"due_date\":\"Dec 5, 2026\",\"past_due\":\"-24\",\"amount\":\"$56.00\",\"open_balance\":\"$56.00\"}",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-56 - step 5 location B bill line.png",
+    "V1R-56 - step 5 location B bill line rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:59:17.415Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-57",
@@ -683,11 +1176,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079030",
    "title": "A/P Detail: Past Due is negative for a bill not yet due",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: a negative number of days, about -9: {\"date\":\"Oct 21, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Invoice\",\"id\":\"ZZT-P57-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P57 Not Yet Due\",\"due_date\":\"Nov 20, 2026\",\"past_due\":\"-9\",\"amount\":\"$57.00\",\"open_balance\":\"$57.00\"}",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-57 - steps 3-5 bill due in 9 days.png",
+    "V1R-57 - steps 3-5 bill due in 9 days rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:59:31.908Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-58",
@@ -695,11 +1196,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079031",
    "title": "A/P Detail: a vendor credit line is negative and self-dated",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: Due Date = the credit's own date (Nov 01, 2026): {\"date\":\"Nov 1, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Vendor Credit\",\"id\":\"C-13676\",\"vendor_name\":\"ZZAUTOTEST AP P58 Credit Line\",\"due_date\":\"Nov 1, 2026\",\"past_due\":\"10\",\"amount\":\"$-25.00\",\"open_balance\":\"$-25.00\"} | OK Step 6: Past Due 10: 10 | OK Step 7: $-25.00 and $-25.00: $-25.00 / $-25.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-58 - steps 3-7 vendor credit line.png",
+    "V1R-58 - steps 3-7 vendor credit line rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:59:45.065Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-59",
@@ -707,11 +1216,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079032",
    "title": "A/P Detail: changing the date closes open buckets",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: Current opened: 28 lines | OK Step 4: yesterday set: As of: 11/10/2026 | OK Step 5: every bucket closed: keyboard_arrow_right 91 or mor / keyboard_arrow_right 61-90 day / keyboard_arrow_right 31-60 day / keyboard_arrow_right 1-30 days / keyboard_arrow_right Current (",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-59 - step 5 buckets after date change.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:59:57.583Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-60",
@@ -719,11 +1235,20 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079033",
    "title": "A/P Unpaid Invoices groups vendors A to Z with counts and totals",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: vendors A to Z, each with (count) and \"Total\" with Amount and Open Balance: #1 Diesel | -1 Diesel | 10 Trucking | 2 Trucking | @Home Towing | A-1 Towing | a1 towing | Abadi's Diesel Repair | Ackley | Adams Diesel Repair | \u00e6ble | Afton | Akal's Mobile Truck Repair | Alameda Mechanical Services | Alzuhairi Truck & Machine Service | Amani & Sons Truck & Trailer Repair | Amherst Truck Center | Amimi Diesel Services Inc | Andover Fleet Services | Antioch Diesel & Fleet Repair | Apex Truck & Trailer Repair | Asbury Park Truck Repair | Athens Roadside Truck Repair | Atlantic Truck & Trailer Repair | Auburn Truck & Trailer Repair 24/7 | Axle Diesel & Fleet Repair | Azle Truck & Trailer Repair | Azossi's Truck Repair | Baldwin Park Truck & Trailer Repair | Bandy Truck Center - Vacaville (30 loaded); count/total format ok: true | OK Step 5: \"Total for\" + vendor name with the two amounts: Total for #1 Diesel $36.00 $36.00 | OK Step 6: \"Totals\": Totals $4,763,170.68 $4,762,290.72",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-60 - step 3 vendor groups.png",
+    "V1R-60 - rows after opening the first vendor.json",
+    "V1R-60 - steps 5-6 first vendor open.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:05:11.636Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-61",
@@ -731,11 +1256,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079034",
    "title": "A/P Unpaid Invoices includes bills not yet due and vendor credits",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: bill not yet due, past-due bill and vendor credit all listed; the not-yet-due bill shows a negative Past Due: [[\"ZZT-P61-BILL_LATE\",\"Invoice\",\"10\"],[\"C-13677\",\"Vendor Credit\",\"\u2014\"],[\"ZZT-P61-BILL_CUR\",\"Invoice\",\"-27\"]]",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-61 - steps 3-4 vendor lines.png",
+    "V1R-61 - steps 3-4 vendor lines rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:00:22.457Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-62",
@@ -743,11 +1276,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079035",
    "title": "A/P Unpaid Invoices lists each vendor's lines oldest first",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: oldest at the top: [\"Oct 27, 2026\",\"Nov 1, 2026\",\"Nov 6, 2026\"]",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-62 - steps 3-4 date column.png",
+    "V1R-62 - steps 3-4 date column rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:00:35.611Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-63",
@@ -755,11 +1296,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079036",
    "title": "A/P Unpaid Invoices: a vendor credit shows a dash for due date",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: Due Date \"\u2014\": \u2014 | OK Step 6: Past Due \"\u2014\": \u2014",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-63 - steps 3-6 vendor credit line.png",
+    "V1R-63 - steps 3-6 vendor credit line rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:00:48.843Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-64",
@@ -767,11 +1316,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079037",
    "title": "A/P Unpaid Invoices: the Vendor chip narrows to one vendor",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: picked: local_shipping Vendor: ZZAUTOTEST AP P... | OK Step 6: only vendor Y: keyboard_arrow_right ZZAUTOTEST AP P60 A | OK Step 8: still only vendor Y: keyboard_arrow_right ZZAUTOTEST AP P60 A",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-64 - step 6 groups.png",
+    "V1R-64 - step 8 groups after reload.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:01:08.632Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-65",
@@ -779,11 +1336,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079038",
    "title": "A saved vendor drill-down link still opens on that vendor",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5: only vendor Y listed and the Vendor chip names it: groups: keyboard_arrow_right ZZAUTOTEST AP P60 A; chip: local_shipping Vendor: ZZAUTOTEST AP P...; address now https://sv11315.qa.shopview.com/reports/ap-unpaid-invoices?vendorIds=3c322e5d-ad9d-4231-9ab3-14e098e3cec1",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-65 - step 5 after opening the saved link.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:01:23.501Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-66",
@@ -791,11 +1355,20 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079039",
    "title": "A/P Unpaid Invoices: a bill number opens its delivery",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: the delivery page of that bill opens: address https://sv11315.qa.shopview.com/parts/delivery/bedf1a9f-2d6e-4621-95c2-d74f9f4d3d34 (delivery id bedf1a9f-2d6e-4621-95c2-d74f9f4d3d34); page starts: Vendor Invoice edit_note ZZT-P60A-BILL Invoice date Nov 3, 2026 Due date Dec 3, 2026 Vendor ZZAUTOTEST AP P60 Alpha Delivery Details I-1718 Date received Today Ordered by Admin ShopView Received by Ad",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-66 - steps 3 vendor group open.png",
+    "V1R-66 - steps 3 vendor group open rows.json",
+    "V1R-66 - step 4 after clicking the bill No.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:04:11.018Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-67",
@@ -803,11 +1376,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079040",
    "title": "A/P Unpaid Invoices: changing date or vendor closes open groups",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: Y open: 1 | OK Step 4: yesterday set: As of: 11/10/2026 | OK Step 5: all groups closed: 0 lines | OK Step 6: Y open again: 1 | OK Step 7: W picked: local_shipping Vendor: ZZAUTOTEST AP P... | OK Step 8: all groups closed: 0 lines",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-67 - step 5 after date change.png",
+    "V1R-67 - step 8 after picking W.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:02:35.000Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-68",
@@ -815,11 +1396,28 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079041",
    "title": "Parts Velocity: the Units Sold info icon opens and closes as before",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "CASE-WRONG",
+   "classification": "V1 on production also does not do it",
+   "plain": "Steps 3, 4, 6, 7 and 8 observed as written on both builds (the explanation starts 'Units taken out of inventory stock on invoiced work orders in this date range.'; Tab focus shows it, Escape hides it). Step 5 is not what either build does with a mouse: pointing at the icon opens the explanation and the click then closes it (ReportInfoIcon: mouseenter shows, click toggles), so nothing is showing after the click - identical on production. No V2 loss. The case's step 5/6 wording needs a decision (it holds for a touch tap or keyboard, not a mouse); the case was not edited.",
+   "observed_qa": "OK Step 3: explanation appears, starting with the quoted sentence: Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. | OK Step 4: disappears: (nothing) | NOT OK Step 5: click shows it:  | OK Step 6: click again hides it: (nothing) | OK Step 7: Tab focus shows it: Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. [icon reached by Tab: true, after 42 presses] | OK Step 8: Escape hides it: (nothing)",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-68 - step 3 pointer on the icon.png",
+    "V1R-68 - step 3 after first click.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:28:11.581Z",
+   "v1_prod": {
+    "verdict": "FAIL",
+    "observed": "OK V1 Step 3: appears: Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. | OK V1 Step 4: disappears: (nothing) | NOT OK V1 Step 5: click shows it: (nothing) | OK V1 Step 6: click again hides it: (nothing) | OK V1 Step 7: Tab focus shows it: Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. [icon reached by Tab: true, after 27 presses] | OK V1 Step 8: Escape hides it: (nothing)",
+    "evidence": [
+     "V1R-68 - V1 step 3 pointer on the icon.png",
+     "V1R-68 - V1 step 3 after first click.png"
+    ],
+    "marker": "v26.45.3-f5ba431",
+    "utc": "2026-11-11T12:29:14.676Z"
+   }
   },
   {
    "key": "V1R-69",
@@ -827,11 +1425,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079042",
    "title": "Technician Utilization: the Est. Lost Labor info icon works as before",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "BLOCKED",
+   "classification": null,
+   "plain": "BLOCKED: automation browser cannot load the chart section; needs a person - the screen works on the QA lead's device (11 Nov 2026). Screenshot in evidence.",
+   "observed_qa": "automation browser cannot load the chart section; needs a person - the screen works on the QA lead's device (11 Nov 2026)",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-69 - section failed to load.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:15:57.928Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-70",
@@ -839,11 +1444,28 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079043",
    "title": "Work In Progress: summary strip info icons work as before",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "CASE-WRONG",
+   "classification": "V1 on production also does not do it",
+   "plain": "Same as V1R-68 on the Work In Progress summary strip: hovering shows 'The total value of completed work order lines on work orders that are still in progress.', moving away hides it, but a mouse click closes what hovering opened, so step 5 shows nothing - on production too. No V2 loss; the case's click step needs rewording (not edited).",
+   "observed_qa": "OK Step 3: explanation appears: The total value of completed work order lines on work orders that are still in progress. | OK Step 4: disappears: (nothing) | NOT OK Step 5: click shows it:  | OK Step 6: click again hides it: (nothing)",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-70 - step 3 pointer on the icon.png",
+    "V1R-70 - step 3 after first click.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:16:13.854Z",
+   "v1_prod": {
+    "verdict": "FAIL",
+    "observed": "OK V1 Step 3: appears: The total value of completed work order lines on work orders that are still in progress. | OK V1 Step 4: disappears: (nothing) | NOT OK V1 Step 5: click shows it: (nothing) | OK V1 Step 6: click again hides it: (nothing)",
+    "evidence": [
+     "V1R-70 - V1 step 3 pointer on the icon.png",
+     "V1R-70 - V1 step 3 after first click.png"
+    ],
+    "marker": "v26.45.3-f5ba431",
+    "utc": "2026-11-11T12:24:46.168Z"
+   }
   },
   {
    "key": "V1R-71",
@@ -851,11 +1473,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079044",
    "title": "Work order link from another location: Cancel returns to Work Orders",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Precondition: at location A: Staging Heavy Duty - 9919 AS | OK Step 2: \"Switch location?\" asking to switch to location B: Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch Location | OK Step 4: on the work order list with \"Switch cancelled. Returning to work orders.\": address https://sv11315.qa.shopview.com/workorders; message \"info Switch cancelled. Returning to work orders. Close\"; still at Staging Heavy Duty - 9919 AS",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-71 - step 2 prompt.png",
+    "V1R-71 - step 2 after Cancel.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:19:06.243Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-72",
@@ -863,11 +1493,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1079045",
    "title": "Part sale link from another location: prompt and Cancel as before",
    "group": "V1 regression",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "BLOCKED",
+   "classification": "V1 side not yet confirmed",
+   "plain": "Step 2 observed as written: opening the part sale link (with its ?locationId of Staging Lethbridge - 4310) while at Staging Heavy Duty - 9919 shows 'Switch location?' / 'This part sale is in Staging Lethbridge - 4310. Switch your active location to view it?'. After Cancel the message 'Switch canceled. Returning to part sales.' appears, but the page lands on Work Orders, not the Part Sales list. That landing cannot be attributed: in our automation browser the Part Sales list (/parts/part-sales) also lands on Work Orders when opened directly on QA (on production it opens), and the PartSales feature is on for the QA organization, so it is most likely our hand-filled browser state, not the product. What needs to be done: a person clicks Cancel on the same link in a real browser on QA and checks the page is Part Sales.",
+   "observed_qa": "OK Precondition: at location A: Staging Heavy Duty - 9919 AS | OK Step 2: \"Switch location?\" with \"This part sale is in Staging Lethbridge - 4310. Switch your active location to view it?\": Switch location? close This part sale is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch Location | NOT OK Step 4: on the part sales list with \"Switch canceled. Returning to part sales.\": address https://sv11315.qa.shopview.com/workorders; message \"info Switch canceled. Returning to part sales. Close\"",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-72 - step 2 prompt.png",
+    "V1R-72 - step 2 after Cancel.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:19:20.667Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-73",
@@ -875,11 +1513,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095429",
    "title": "Planned change: the date chip now reads \"As of\", still today and required",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3 (PRD): label \"As of\": As of | OK Step 4: today 11/11/2026: As of: 11/11/2026 | OK Step 6: no way to clear the date: []; chip clear 0",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-73 - step 3-4 date chip.png",
+    "V1R-73 - step 6 date menu.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:31:50.171Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-74",
@@ -887,11 +1533,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095430",
    "title": "Planned change: an A/R credit dated on the as-of date is Current",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4 (PRD S1-R5a): the $8.00 credit memo dated today is under Current: aging_detail_report_row_current | OK Step 6: the $6.00 credit memo dated yesterday is under 1-30 days past due: aging_detail_report_row_days_1_to_30 | OK Step 9: Past Due of the $8.00 credit memo is 0: 0",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-74 - steps 3-6 two credit memos.png",
+    "V1R-74 - steps 3-6 two credit memos rows.json",
+    "V1R-74 - steps 7-9 collection.png",
+    "V1R-74 - steps 7-9 collection rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:09:10.630Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-75",
@@ -899,11 +1555,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095431",
    "title": "Planned change: a vendor credit dated on the as-of date is Current",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": "Run before 18:00Z: an extra $9.00 credit made at 18:00Z today (retired, see SEEDED.md) only appears after that time.",
+   "observed_qa": "OK Step 4 (PRD S1-R5a): the $9.00 vendor credit dated today is under Current: ap_aging_detail_report_row_current | OK Step 5: Past Due 0: 0 | OK Step 7: the $4.00 credit dated yesterday under 1-30 days past due: ap_aging_detail_report_row_days_1_to_30",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-75 - steps 3-7 two vendor credits.png",
+    "V1R-75 - steps 3-7 two vendor credits rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:08:44.016Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-76",
@@ -911,11 +1575,16 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095432",
    "title": "Planned change: A/R Summary Totals add up the rows, overpaid left out",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "BLOCKED",
+   "classification": null,
+   "plain": "BLOCKED: the app refuses to overpay an invoice ('Transaction cannot be overpaid.'); paying more than an invoice makes a separate deposit instead. Needs a developer data fix or an existing overpaid invoice.",
+   "observed_qa": "Precondition cannot be set up: an invoice paid MORE than its amount. Rung tried: the payment call the front end makes (POST /api/customer-account/create-customer-payment) applying $120.00 to the $100.00 invoice of ZZAUTOTEST AR R76 Overpaid answers 400 \"Transaction cannot be overpaid.\" Paying more than an invoice in the app instead makes a separate deposit for the excess (proved on R18/R19), which is not an overpaid invoice. What needs to be done: a developer stores one overpaid invoice on QA (or names an existing one), then run this case.",
+   "expect_fail_outcome": null,
+   "evidence_qa": [],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:17:15.257Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-77",
@@ -923,11 +1592,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095433",
    "title": "Planned change: clicking a row no longer opens it; the name still does",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4 (PRD): still on A/R Aging Summary: A/R Aging Summary | OK Step 6: A/R Aging Collection open, narrowed to that customer: title \"A/R Aging Collection\", chip Customer: #1 Diesel (row customer #1 Diesel)",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-77 - step 4 after clicking the Total amount.png",
+    "V1R-77 - step 6 after clicking the customer name.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:09:35.607Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-78",
@@ -935,11 +1612,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095434",
    "title": "Planned change: the Summary drill-down keeps the as-of date",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": "Customer X found on A/R Summary by first ticking it in the Customer chip (the long list loads 30 at a time).",
+   "observed_qa": "OK Step 3: date set: As of: 10/01/2026 | OK Step 5: A/R Aging Collection open: A/R Aging Collection | OK Step 6 (PRD): date chip 10/01/2026: As of: 10/01/2026 | OK Step 7: Customer chip names customer X: Customer: ZZAUTOTEST AR R... (address https://sv11315.qa.shopview.com/reports/ar-aging-collection?asOfDate=2026-10-01&customerIds=00106298-00bf-4dcf-8319-63cf7447cad4)",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-78 - steps 5-7 after clicking the customer.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:09:53.585Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-79",
@@ -947,11 +1631,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095435",
    "title": "Planned change: A/R Print is now Export > Download (PDF)",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: no printer button: 0 printer controls | OK Step 4 (PRD): Export menu with \"Download (PDF)\" and \"Download (CSV)\" (labelled \"Export report\"): [\"Download (PDF)\",\"Download (CSV)\"]; button label: Export report | OK Step 5 (PRD): the PDF downloads as a file: ar-aging-detail.pdf | OK Step 7: report name, organization name, \"As of\": A/R Aging Detail / Staging Foothills Group Inc / As of Nov 11, 2026 / Locations: All locations | OK Step 8: \"Software Powered by ShopView\" and \"Page 1 of N\":  Jun 5, 2026      Staging Heavy Duty - 9919   Invoice            S2-15557         Desert Edge Truck Service & Repair       Jul 20, 2026     $1,118.60       $1,118.60 /                                                                       Software Powered by ShopView                                                         Page 1 of 26",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-79 - step 4 Export menu.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:10:21.683Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-80",
@@ -959,11 +1650,20 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095436",
    "title": "Planned change: PDF negatives in brackets, dates as Nov 04 2026",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "FAIL",
+   "classification": "PRD deviation (V2 does not do what the quoted PRD sentence says)",
+   "plain": "On screen the credit memo reads '$-5.00' (unchanged, passes). In the downloaded PDF the amount reads '(-$5.00)' as PRD S3-R7a says, but the date reads 'Oct 26, 2026' (with a comma) where S3-R7a says dates print as 'Nov 04 2026'. The A/R Collection PDF prints dates the same way ('Oct 27, 2026'). No Jira ticket found for the PDF date format.",
+   "observed_qa": "OK Step 4: on screen \"$-5.00\": $-5.00 | NOT OK Step 9 (PRD): in the PDF \"(-$5.00)\" and date like \"Oct 26 2026\": Oct 26, 2026 Staging Heavy Duty - 9919 Credit Memo CM11315-4209 ZZAUTOTEST AR R42 Memo Line Oct 26, 2026 (-$5.00) (-$5.00)",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-80 - steps 3-4 credit memo on screen.png",
+    "V1R-80 - steps 3-4 credit memo on screen rows.json",
+    "V1R-80 - PDF credit memo line.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:10:36.553Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-81",
@@ -971,11 +1671,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095437",
    "title": "Planned change: a failed export shows one new message, report stays",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 6 (PRD): nothing downloads and exactly one message \"We couldn't export this report. Please try again.\": download: false; messages: [\"warning We couldn't export this report. Please try again. Close\"] | OK Step 8: report still on screen with its rows: 31 rows (before 31)",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-81 - step 6 messages while offline.png",
+    "V1R-81 - step 8 report after network back.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:10:50.306Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-82",
@@ -983,11 +1691,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095438",
    "title": "Planned removal: PDF over 2,000 rows is refused, the CSV has every row",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run. Also needs more than 2,000 A/P Detail lines; the line count on QA could not be measured without a session.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Precondition: A/P Detail over 2,000 lines: 11935 + 708 + 723 + 496 + 28 = 13890 | OK Step 5 (PRD): no download and \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\": download: null; messages [\"warning This report is too large for PDF. Export it as CSV, or narrow the filters, then try again. Close\"] | OK Step 9: CSV has one row per document = sum of bucket counts: CSV document rows 13890 vs 13890 | OK Step 12: A/R Detail (under 2,000 lines) still gives a PDF: ar-aging-detail.pdf",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-82 - step 5 PDF message.png",
+    "V1R-82 - CSV head and counts.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:22:04.524Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-83",
@@ -995,11 +1711,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095439",
    "title": "Planned change: the A/R PDF prints the as-of date you picked",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: date set: As of: 10/15/2026 | OK Step 7 (PRD): \"As of Oct 15, 2026\" under the report and organization names: A/R Aging Summary / Staging Foothills Group Inc / As of Oct 15, 2026 / Locations: All locations /  Customer                                 Location                             Current      1-30 Days   31-60 Days   61-90 Days    91 And Over           Total /  Andrews' Truck & Trailer Repair LLC      Staging Heavy Duty - 9919                         $8,600.85                                               $8,600.85",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-83 - PDF heading.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:11:07.019Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-84",
@@ -1007,11 +1730,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095440",
    "title": "Planned change: an A/R Detail bucket shows 100 lines, then more",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: count in brackets: 268 | OK Step 5 (PRD): 100 lines first: 100 | OK Step 7: every line there, total = count: 268 distinct lines seen | OK Step 8: \"Total for\" the bucket with Amount and Open balance: Total for 1-30 days past due $103,028.88 $101,628.88",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-84 - step 5 first load.png",
+    "V1R-84 - step 8 end of bucket.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:18:04.222Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-85",
@@ -1019,11 +1750,25 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095441",
    "title": "Planned change: credits read Credit Memo, Deposit or Vendor Credit",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4: \"Invoice\": Invoice | OK Step 5 (PRD): \"Credit Memo\": Credit Memo | OK Step 6 (PRD): \"Deposit\": Deposit | OK Step 9: \"Invoice\": Invoice | OK Step 10 (PRD): \"Vendor Credit\": Vendor Credit",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-85 - step 4 invoice type.png",
+    "V1R-85 - step 4 invoice type rows.json",
+    "V1R-85 - step 5 credit memo type.png",
+    "V1R-85 - step 5 credit memo type rows.json",
+    "V1R-85 - step 6 deposit type.png",
+    "V1R-85 - step 6 deposit type rows.json",
+    "V1R-85 - steps 9-10 bill and vendor credit types.png",
+    "V1R-85 - steps 9-10 bill and vendor credit types rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:11:59.878Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-86",
@@ -1031,11 +1776,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095442",
    "title": "Planned change: recent dates read as dates, older ones unchanged",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4 (PRD): today written out \"Nov 11, 2026\", not \"Today\": Nov 11, 2026 | OK Step 5: older date \"Nov 1, 2026\": Nov 1, 2026",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-86 - steps 3-5 dates.png",
+    "V1R-86 - steps 3-5 dates rows.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:09:24.083Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-87",
@@ -1043,11 +1796,23 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095443",
    "title": "Planned change: an invoice at another location asks to switch first",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "BLOCKED",
+   "classification": null,
+   "plain": "Steps 5, 6 and 8 observed as written: clicking the location B invoice shows 'Switch location?' with 'This work order is in Staging Lethbridge - 4310. Switch your active location to view it?', buttons close, Cancel, Switch location; Cancel keeps you on A/R Aging Detail; the location A invoice opens its finance page directly. Step 7 cannot be run: the QA organization has no location C that the user is not enrolled in. What needs to be done: add such a location with one open invoice, then run step 7.",
+   "observed_qa": "OK Step 5 (PRD S7-R3): \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", Cancel left, Switch location right, close \u00d7: Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch location | buttons: [\"close\",\"Cancel\",\"Switch location\"] | OK Step 6: you stay on the report: A/R Aging Detail https://sv11315.qa.shopview.com/reports/ar-aging-detail?customerIds=7d2415d9-755e-4d12-b42a-a55be01bcf67 | OK Step 8: the location A invoice opens its finance page directly: https://sv11315.qa.shopview.com/workorders/69763b08-b91c-4c3a-9ffb-3e1b4866dd00/finance | NOT RUN Step 7: the organization has no location C (only Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 hold A/R documents, both enrolled), so the plain-text rule for a non-enrolled location cannot be observed. What needs to be done: give the QA organization a third location the test user is not enrolled in, with one open invoice.",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-87 - step 3 location B invoice.png",
+    "V1R-87 - step 3 location B invoice rows.json",
+    "V1R-87 - step 5 prompt.png",
+    "V1R-87 - step 8 location A invoice.png",
+    "V1R-87 - step 8 location A invoice rows.json",
+    "V1R-87 - step 8 location A invoice opened.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:12:31.867Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-88",
@@ -1055,11 +1820,20 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095444",
    "title": "Planned change: A/R Collection Totals follow the Customer chip",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 6 (PRD S... \"Totals row ... now follows the customer or vendor filter\"): Totals equals X's Open Balance: X $110.00, Totals $110.00 (before $513,542.36) | OK Step 8: back to the step 3 figure: $513,542.36 vs $513,542.36",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-88 - step 3 totals.png",
+    "V1R-88 - steps 5-6 X picked.png",
+    "V1R-88 - step 8 chip cleared.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T11:55:26.572Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-89",
@@ -1067,11 +1841,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095445",
    "title": "Planned change: re-sorting keeps groups open; a new date still closes",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 5 (PRD): vendor Y still open, lines in the new order: before [\"ZZT-P62-B_OLD\",\"ZZT-P62-B_MID\",\"ZZT-P62-B_NEW\"]; after [\"ZZT-P62-B_OLD $73.00\",\"ZZT-P62-B_MID $72.00\",\"ZZT-P62-B_NEW $71.00\"] | OK Step 7: changing the date closes every group: 0 lines",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-89 - step 3 vendor group open.png",
+    "V1R-89 - step 3 vendor group open rows.json",
+    "V1R-89 - step 5 after sorting by Amount.png",
+    "V1R-89 - step 7 after date change.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:12:52.446Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-90",
@@ -1079,11 +1863,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095446",
    "title": "Planned change: a customer with over 100 documents loads 100 at a time",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: full count in brackets (101 seeded): 101 | OK Step 5 (PRD S1-R8): first 100 documents: 100 | OK Step 7: every line there: 101 | OK Step 8: \"Total for\" X covers every line ($-101.00): Total for ZZAUTOTEST AR R90 Many Lines $-101.00 $-101.00",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-90 - step 5 first load.png",
+    "V1R-90 - step 8 end of group.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:13:06.966Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-91",
@@ -1091,11 +1883,18 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095447",
    "title": "Planned change: A/P Summary gains a PDF that matches the screen",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: Vendor, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total (Location new by design): [\"Vendor\",\"Location\",\"Current\",\"1-30 Days\",\"31-60 Days\",\"61-90 Days\",\"91 And Over\",\"Total\"] | OK Step 5 (PRD): a PDF downloads: ap-aging-summary.pdf | OK Step 7: same headings as the screen: Vendor Location Current 1-30 Days 31-60 Days 61-90 Days 91 And Over Total | OK Step 8: a Totals row: Totals                         $4,247.34   $123,547.02   $268,843.91   $320,924.53   $4,044,727.92   $4,762,290.72",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-91 - PDF lines.json"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:13:27.237Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-92",
@@ -1103,11 +1902,19 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095448",
    "title": "Planned change: A/P Detail rows by vendor name; Past Due sort still works",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 3: five buckets in fixed order: [\"91 or more days past due\",\"61-90 days past due\",\"31-60 days past due\",\"1-30 days past due\",\"Current\"] | OK Step 5 (PRD): vendors A to Z inside the bucket: 100 lines, 32 vendors; first: #1 Diesel | -1 Diesel | 10 Trucking | 2 Trucking | @Home Towing | OK Step 7 (PRD S2-R4): Past Due largest first: 30, 30, 30, 30, 30, 30, 30, 30, 30, 30",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-92 - step 5 vendor names.png",
+    "V1R-92 - step 7 after clicking Past Due.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:13:39.985Z",
+   "v1_prod": null
   },
   {
    "key": "V1R-93",
@@ -1115,11 +1922,21 @@
    "link": "https://shopview.testrail.io/index.php?/cases/view/1095449",
    "title": "Planned change: a vendor credit from a return links to it; bills as before",
    "group": "planned change (PRD v11)",
-   "verdict": "NOT RUN",
-   "observed": "Not executed: the QA session was lost (HTTP 401) during seeding, before any case was run.",
-   "evidence": [],
+   "marker": "AUTOMATION: READY",
+   "verdict": "PASS",
+   "classification": null,
+   "plain": null,
+   "observed_qa": "OK Step 4 (PRD S7-R9): the return credit number opens the vendor return: {\"tid\":\"link_apdet_doc_cae084d3-f0ab-43c7-8bbf-086ec98a332e\",\"href\":\"/parts/return/ff11da22-6675-4e0a-a92b-5923e5e223bb\",\"text\":\"C-13679\"} -> https://sv11315.qa.shopview.com/parts/return/ff11da22-6675-4e0a-a92b-5923e5e223bb | OK Step 6: the credit not from a return is plain text: {\"link\":null,\"plain\":\"C-13680\"} | OK Step 7: the bill opens its delivery page: https://sv11315.qa.shopview.com/parts/delivery/f0146c69-f716-4147-8737-23faf5e9911b",
+   "expect_fail_outcome": null,
+   "evidence_qa": [
+    "V1R-93 - step 3 every bucket.png",
+    "V1R-93 - step 3 every bucket rows.json",
+    "V1R-93 - step 4 vendor return opened.png",
+    "V1R-93 - step 7 bill opened.png"
+   ],
    "qa_marker": "v26.45.2-6a8b89c",
-   "utc": null
+   "qa_utc": "2026-11-11T12:14:05.757Z",
+   "v1_prod": null
   }
  ]
 }

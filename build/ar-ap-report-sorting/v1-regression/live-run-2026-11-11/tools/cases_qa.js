@@ -249,6 +249,7 @@ C['V1R-43'] = async (x) => {
 };
 C['V1R-25'] = async () => ({ verdict: 'BLOCKED', observed: 'Precondition cannot be set up on QA: an invoice with no due date. Rungs tried: (1) the front end\'s invoice create call (POST /api/invoices/create) - its due date is always computed as the invoice date plus the customer\'s credit term (InvoiceBuilder::getDueDate at 8e35ee0d02), the request\'s due_date is not used; (2) no edit call for an invoice\'s due date exists in app/src/api/billing; (3) the case itself is HELD for this reason (needs a developer data fix). What needs to be done: a developer stores one open invoice with an empty due date on QA, then run this case.' });
 module.exports = C; Object.assign(module.exports, { TODAY, YDAY, US, addDays, go, verdict, chk, FMT, num, CUST, VEND, detailFor, find, docRows });
+module.exports._helpers = () => ({ infoIcon, BLOCK_CHART });
 // ---------- batch 3: A/R Summary and Collection ----------
 const CID = (k) => L0()[`cust:${k}`].id; const VID = (k) => L0()[`vendor:${k}`].id;
 const { execSync } = require('child_process');
@@ -552,3 +553,247 @@ C['V1R-67'] = async (x) => {
   const p = await lib.pickParty(page, 'vendorIds', VEND('P60B')); const o4 = (await lib.rows(page)).filter((r) => r.tid.includes('_transaction_')).length; x.ev.push(await lib.shot(page, x.key, 'step 8 after picking W'));
   return verdict([chk('Step 3: Y open', o1 > 0, o1), chk('Step 4: yesterday set', s.ok, s.chip || s.why), chk('Step 5: all groups closed', o2 === 0, `${o2} lines`), chk('Step 6: Y open again', o3 > 0, o3), chk('Step 7: W picked', p.ok, p.chip || p.why), chk('Step 8: all groups closed', o4 === 0, `${o4} lines`)]);
 };
+// ---------- batch 5: location switch, info icons, PDFs, planned changes ----------
+async function switchLocation(page, lib, name) {
+  await page.click('[data-test-id="profile_menu_button"]'); await lib.sleep(1000);
+  await page.click('[data-test-id="select_location"]'); await lib.sleep(1000);
+  await page.locator('.q-menu .q-item', { hasText: name }).last().click(); await lib.settle(page, 3000);
+  const ok = page.getByRole('button', { name: /^(Switch|Confirm|Yes|Change)/i }); if (await ok.count()) { await ok.first().click(); await lib.settle(page, 3000); }
+  if (await page.locator('.q-menu').count()) await page.keyboard.press('Escape');
+  return (await page.locator('[data-test-id="profile_menu_button"]').innerText()).replace(/\s+/g, ' ');
+}
+C['V1R-04'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Summary'); const s = await lib.setDate(page, FIRST_LAST_MONTH);
+  let now = ''; try { now = await switchLocation(page, lib, 'Staging Lethbridge - 4310'); } finally {}
+  await lib.settle(page, 2000); const t = await lib.title(page); const c = await lib.chip(page, 'asOfDate'); x.ev.push(await lib.shot(page, x.key, 'step 5 after switching to location B'));
+  const back = await switchLocation(page, lib, 'Staging Heavy Duty - 9919'); x.ev.push(await lib.shot(page, x.key, 'cleanup switched back to location A'));
+  return { ...verdict([chk('Step 3: date set', s.ok, s.chip || s.why), chk('Step 4: switched to B', now.includes('Lethbridge'), now), chk(`Step 5: still on A/R Aging Summary, chip ${US(FIRST_LAST_MONTH)}`, t === 'A/R Aging Summary' && (c || '').includes(US(FIRST_LAST_MONTH)), `title "${t}", chip ${c}, address ${page.url()}`)]), cleanup: 'switched back: ' + back };
+};
+async function infoIcon(x, report, iconSel, label) {
+  const { page, lib } = x; await go(x, report); await lib.settle(page, 3000);
+  const err = await page.evaluate(() => /Something went wrong loading this section/.test(document.body.innerText));
+  if (err) { x.ev.push(await lib.shot(page, x.key, 'section failed to load')); return { blocked: true }; }
+  const icon = page.locator(iconSel).first(); if (!(await icon.count())) { x.ev.push(await lib.shot(page, x.key, 'icon not found')); return { missing: true }; }
+  const tip = async () => page.evaluate(() => [...document.querySelectorAll('.q-tooltip, .q-menu, [role="tooltip"]')].filter((e) => e.offsetParent !== null || getComputedStyle(e).display !== 'none').map((e) => e.innerText.replace(/\s+/g, ' ').trim()).filter(Boolean).join(' | '));
+  const r = {};
+  await icon.hover(); await lib.sleep(1200); r.hover = await tip(); x.ev.push(await lib.shot(page, x.key, `${label} pointer on the icon`));
+  await page.mouse.move(5, 500); await lib.sleep(1200); r.away = await tip();
+  await icon.click(); await lib.sleep(1000); r.click1 = await tip(); x.ev.push(await lib.shot(page, x.key, `${label} after first click`));
+  await icon.click(); await lib.sleep(1000); await page.mouse.move(5, 500); await lib.sleep(800); r.click2 = await tip();
+  return r;
+}
+const BLOCK_CHART = 'automation browser cannot load the chart section; needs a person - the screen works on the QA lead\'s device (11 Nov 2026)';
+C['V1R-68'] = async (x) => {
+  const r = await infoIcon(x, 'Parts Velocity', '[data-test-id*="info"][data-test-id*="units_sold"], th:has-text("Units Sold") i:has-text("info"), [aria-label*="Units Sold"]', 'step 3');
+  if (r.blocked) return { verdict: 'BLOCKED', observed: BLOCK_CHART }; if (r.missing) return { verdict: 'BLOCKED', observed: 'Automation could not locate the info icon beside "Units Sold" (one attempt); needs a person.' };
+  const { page, lib } = x; let r7 = '', r8 = '';
+  let tabs = 0, found = false; await page.evaluate(() => document.activeElement && document.activeElement.blur()); for (let i = 0; i < 200; i++) { tabs++; await page.keyboard.press('Tab'); const f = await page.evaluate(() => { const a = document.activeElement; return a ? (a.getAttribute('aria-label') || '') + ' ' + (a.getAttribute('data-test-id') || '') : ''; }); if (/^Units Sold:|units_sold_info/.test(f.trim()) || /icon_pv_units_sold_info/.test(f)) { found = true; await lib.sleep(900); r7 = await page.evaluate(() => [...document.querySelectorAll('.q-tooltip, [role="tooltip"]')].map((e) => e.innerText.trim()).join(' | ')); break; } }
+  await page.keyboard.press('Escape'); await lib.sleep(800); r8 = await page.evaluate(() => [...document.querySelectorAll('.q-tooltip, [role="tooltip"]')].map((e) => e.innerText.trim()).join(' | '));
+  const want = 'Units taken out of inventory stock on invoiced work orders in this date range.';
+  return verdict([chk('Step 3: explanation appears, starting with the quoted sentence', r.hover.startsWith(want), r.hover), chk('Step 4: disappears', !r.away, r.away || '(nothing)'), chk('Step 5: click shows it', r.click1.startsWith(want), r.click1), chk('Step 6: click again hides it', !r.click2, r.click2 || '(nothing)'), chk('Step 7: Tab focus shows it', r7.startsWith(want), (r7 || '(nothing)') + ` [icon reached by Tab: ${found}, after ${tabs} presses]`), chk('Step 8: Escape hides it', !r8, r8 || '(nothing)')]);
+};
+C['V1R-69'] = async (x) => {
+  const r = await infoIcon(x, 'Technician Utilization', '[aria-label*="Est. Lost Labor"], :text("Est. Lost Labor") >> xpath=.. >> i:has-text("info")', 'step 3');
+  if (r.blocked) return { verdict: 'BLOCKED', observed: BLOCK_CHART }; if (r.missing) return { verdict: 'BLOCKED', observed: 'Automation could not locate the Est. Lost Labor info icon (one attempt); needs a person.' };
+  return verdict([chk('Step 3: explanation appears', r.hover, r.hover), chk('Step 4: disappears', !r.away, r.away || '(nothing)'), chk('Step 5: click shows it', r.click1, r.click1), chk('Step 6: click again hides it', !r.click2, r.click2 || '(nothing)')]);
+};
+C['V1R-70'] = async (x) => {
+  const r = await infoIcon(x, 'Work In Progress', 'main i:has-text("info_outline"):not([data-test-id^="icon_"]), main [data-test-id*="summary"] i:has-text("info")', 'step 3');
+  if (r.blocked) return { verdict: 'BLOCKED', observed: BLOCK_CHART }; if (r.missing) return { verdict: 'BLOCKED', observed: 'Automation could not locate the summary-strip info icon (one attempt); needs a person.' };
+  return verdict([chk('Step 3: explanation appears', r.hover, r.hover), chk('Step 4: disappears', !r.away, r.away || '(nothing)'), chk('Step 5: click shows it', r.click1, r.click1), chk('Step 6: click again hides it', !r.click2, r.click2 || '(nothing)')]);
+};
+async function openOtherLocationLink(x, path, label) {
+  const { page, lib } = x; await lib.reportsHome(page, x.app); const before = (await page.locator('[data-test-id="profile_menu_button"]').innerText()).replace(/\s+/g, ' ');
+  await page.goto(x.app + path, { waitUntil: 'domcontentloaded' }); await lib.settle(page, 3000);
+  const dlg = await page.evaluate(() => { const d = document.querySelector('.q-dialog'); return d ? d.innerText.replace(/\s+/g, ' ').trim() : ''; }); x.ev.push(await lib.shot(page, x.key, `${label} prompt`));
+  const cancel = page.locator('.q-dialog').getByRole('button', { name: /^Cancel$/ }); if (await cancel.count()) { await cancel.click(); }
+  await lib.sleep(1200); const note = await lib.notices(page); await lib.settle(page, 1500);
+  const url = page.url(); x.ev.push(await lib.shot(page, x.key, `${label} after Cancel`));
+  const after = (await page.locator('[data-test-id="profile_menu_button"]').innerText()).replace(/\s+/g, ' ');
+  return { before, dlg, note: note.join(' | '), url, after };
+}
+C['V1R-71'] = async (x) => {
+  const wo = L0()['doc:R71:wo']; const r = await openOtherLocationLink(x, `/workorders/${wo.wo}?locationId=f8a8b802-7780-4b16-bf10-343caeb616b2`, 'step 2'); // the link a note-mention email carries (useWorkOrderLocationResolver)
+  return verdict([chk('Precondition: at location A', r.before.includes('Heavy Duty'), r.before), chk('Step 2: "Switch location?" asking to switch to location B', /Switch location\?/.test(r.dlg) && r.dlg.includes('Staging Lethbridge - 4310'), r.dlg),
+    chk('Step 4: on the work order list with "Switch cancelled. Returning to work orders."', /\/workorders\/?(\?|$)/.test(new URL(r.url).pathname + new URL(r.url).search) && r.note.includes('Switch cancelled. Returning to work orders.'), `address ${r.url}; message "${r.note}"; still at ${r.after}`)]);
+};
+C['V1R-72'] = async (x) => {
+  const ps = L0()['doc:R71:ps']; const r = await openOtherLocationLink(x, `/parts/part-sale/${ps.id}?locationId=f8a8b802-7780-4b16-bf10-343caeb616b2`, 'step 2'); // the part sale link carries ?locationId as well
+  return verdict([chk('Precondition: at location A', r.before.includes('Heavy Duty'), r.before), chk('Step 2: "Switch location?" with "This part sale is in Staging Lethbridge - 4310. Switch your active location to view it?"', /Switch location\?/.test(r.dlg) && r.dlg.includes('This part sale is in Staging Lethbridge - 4310. Switch your active location to view it?'), r.dlg),
+    chk('Step 4: on the part sales list with "Switch canceled. Returning to part sales."', /part-sales/.test(r.url) && r.note.includes('Switch canceled. Returning to part sales.'), `address ${r.url}; message "${r.note}"`)]);
+};
+// PDFs
+C['V1R-34'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Summary'); const f = await lib.exportFile(page, 'arsum', 'pdf', x.key, 'step 4 A-R Summary PDF');
+  if (!f.ok) return { verdict: 'FAIL', observed: 'Step 4: no PDF downloaded' };
+  const txt = pdfText(f.path); const info = pdfInfo(f.path); const pages = txt.split('\f').filter((p) => p.trim());
+  const p1 = pages[0].split('\n').filter((l) => l.trim()); const last = pages[pages.length - 1].split('\n').filter((l) => l.trim());
+  const size = (info.match(/Page size:\s+([\d.]+) x ([\d.]+)/) || []).slice(1).map(Number); const nPages = Number((info.match(/Pages:\s+(\d+)/) || [])[1]);
+  x.ev.push(lib.saveText(x.key, 'PDF text first and last lines', { info, page1_top: p1.slice(0, 6), page1_bottom: p1.slice(-3), last_page_bottom: last.slice(-4) }));
+  // an empty BUCKET printed as $0.00 is what step 8 forbids; a customer whose documents net to a $0.00 Total is a value, not an empty bucket
+  const zeroRows = txt.split('\n').filter((l) => !/Totals/.test(l) && /\$0\.00/.test(l.replace(/\s*\(?-?\$[\d,.]+\)?\s*$/, ''))).length;
+  return verdict([chk('Step 6: report name, organization name, "As of" with the date', /A\/R Aging Summary/.test(p1.slice(0, 4).join(' ')) && /As of/.test(p1.slice(0, 5).join(' ')), p1.slice(0, 4).join(' / ')),
+    chk('Step 7: "Software Powered by ShopView" and "Page 1 of N"; landscape', /Software Powered by ShopView/.test(p1.slice(-3).join(' ')) && new RegExp(`Page 1 of ${nPages}`).test(p1.slice(-3).join(' ')) && size[0] > size[1], `${p1.slice(-2).join(' / ')}; size ${size.join(' x ')}; ${nPages} pages`),
+    chk('Step 8: a Totals row last; empty buckets blank', last.some((l) => /^\s*Totals/.test(l)) && zeroRows === 0, `${last.slice(-3).join(' / ')}; customer lines with $0.00: ${zeroRows}`)]);
+};
+C['V1R-35'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Detail'); const p = await lib.pickParty(page, 'customerIds', CUST('R13'));
+  const head = (await lib.rows(page)).find((r) => r.tid === 'aging_detail_report_row_days_61_to_90'); x.ev.push(await lib.shot(page, x.key, 'step 3 empty bucket count'));
+  const f = await lib.exportFile(page, 'ardet', 'pdf', x.key, 'step 5 A-R Detail PDF'); const txt = f.ok ? pdfText(f.path) : '';
+  x.ev.push(lib.saveText(x.key, 'PDF text', { text: txt.split('\n').filter((l) => l.trim()) }));
+  const has = /61-90 days past due/.test(txt); const tot = /Total for 61-90 days past due\s+\$?0\.00/.test(txt.replace(/\s+/g, ' '));
+  return { ...verdict([chk('Step 3: bucket shows (0)', head && head.text.includes('61-90 days past due (0)'), head ? head.text : '-'), chk('Step 7: PDF prints the empty bucket heading and "Total for 61-90 days past due" with $0.00', has && tot, has ? 'heading printed' : 'no "61-90 days past due" anywhere in the PDF; buckets printed: ' + (txt.match(/(91 or more|61-90|31-60|1-30) days past due|Current/g) || []).join(', '))]),
+    expect_fail_outcome: !has ? 'matches the stated symptom (only buckets holding a document are printed)' : 'differs', note: 'Narrowed with the Customer chip to ZZAUTOTEST AR R13 Payment After, whose only open document sits in 31-60, so four buckets are empty.' };
+};
+C['V1R-36'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Collection'); const p = await lib.pickParty(page, 'customerIds', CUST('R36X'));
+  const f = await lib.exportFile(page, 'arcol', 'pdf', x.key, 'step 5 A-R Collection PDF'); const txt = f.ok ? pdfText(f.path) : '';
+  x.ev.push(lib.saveText(x.key, 'PDF text', { text: txt.split('\n').filter((l) => l.trim()) }));
+  const others = (txt.match(/ZZAUTOTEST AR R\d+[A-Z]? [A-Za-z ]+/g) || []).filter((n) => !n.startsWith(CUST('R36X')));
+  return verdict([chk('Step 7: only customer X, with its lines, "Total for" X and a Totals row', txt.includes(CUST('R36X')) && txt.includes(num('doc:R36X:inv')) && new RegExp('Total for ' + CUST('R36X')).test(txt.replace(/\s+/g, ' ')) && /Totals/.test(txt) && !txt.includes(CUST('R36Z')) && others.length === 0, `customer X present: ${txt.includes(CUST('R36X'))}; Z present: ${txt.includes(CUST('R36Z'))}; other ZZAUTOTEST customers: ${others.join(', ') || 'none'}; lines: ${txt.split('\n').filter((l) => l.trim()).length}`)]);
+};
+C['V1R-79'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Detail');
+  const printer = await page.locator('main i:has-text("print"), main [aria-label*="Print" i]').count();
+  await page.click('[data-test-id="btn_dropdown_ardet_export"]'); await lib.sleep(700);
+  const items = await page.evaluate(() => [...document.querySelectorAll('.q-menu .q-item')].map((e) => e.innerText.trim())); const aria = await page.locator('[data-test-id="btn_dropdown_ardet_export"]').getAttribute('aria-label');
+  x.ev.push(await lib.shot(page, x.key, 'step 4 Export menu')); await page.keyboard.press('Escape');
+  const f = await lib.exportFile(page, 'ardet', 'pdf', x.key, 'step 5 PDF'); const txt = f.ok ? pdfText(f.path) : ''; const p1 = (txt.split('\f')[0] || '').split('\n').filter((l) => l.trim());
+  return verdict([chk('Step 3: no printer button', printer === 0, `${printer} printer controls`), chk('Step 4 (PRD): Export menu with "Download (PDF)" and "Download (CSV)" (labelled "Export report")', JSON.stringify(items) === JSON.stringify(['Download (PDF)', 'Download (CSV)']), `${JSON.stringify(items)}; button label: ${aria}`),
+    chk('Step 5 (PRD): the PDF downloads as a file', f.ok, f.ok ? f.suggested : 'no download'), chk('Step 7: report name, organization name, "As of"', /A\/R Aging Detail/.test(p1.slice(0, 4).join(' ')) && /As of/.test(p1.slice(0, 5).join(' ')), p1.slice(0, 4).join(' / ')),
+    chk('Step 8: "Software Powered by ShopView" and "Page 1 of N"', /Software Powered by ShopView/.test(p1.slice(-3).join(' ')) && /Page 1 of \d+/.test(p1.slice(-3).join(' ')), p1.slice(-2).join(' / '))]);
+};
+C['V1R-80'] = async (x) => {
+  const { page, lib } = x; const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R42'), null, 'steps 3-4 credit memo on screen'); const r = find(a.docs, num('doc:R42:cm'));
+  const f = await lib.exportFile(page, 'ardet', 'pdf', x.key, 'step 6 PDF'); const txt = f.ok ? pdfText(f.path) : ''; const line = txt.split('\n').find((l) => l.includes(num('doc:R42:cm'))) || '';
+  x.ev.push(lib.saveText(x.key, 'PDF credit memo line', { line }));
+  return verdict([chk('Step 4: on screen "$-5.00"', r && r.cells.amount === '$-5.00', r ? r.cells.amount : 'not listed'), chk('Step 9 (PRD): in the PDF "(-$5.00)" and date like "Oct 26 2026"', line.includes('(-$5.00)') && line.includes('Oct 26 2026'), line.trim().replace(/\s+/g, ' '))]);
+};
+C['V1R-81'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Summary'); const n0 = (await lib.rows(page)).length;
+  await page.context().setOffline(true); await page.click('[data-test-id="btn_dropdown_arsum_export"]'); await lib.sleep(600);
+  let dl = null; page.once('download', (d) => { dl = d; }); await page.click('[data-test-id="action_arsum_export_pdf"]'); await lib.sleep(4000);
+  const msgs = await lib.notices(page); x.ev.push(await lib.shot(page, x.key, 'step 6 messages while offline'));
+  await page.context().setOffline(false); await lib.sleep(1500); const n1 = (await lib.rows(page)).length; x.ev.push(await lib.shot(page, x.key, 'step 8 report after network back'));
+  return verdict([chk('Step 6 (PRD): nothing downloads and exactly one message "We couldn\'t export this report. Please try again."', !dl && msgs.length === 1 && msgs[0].includes("We couldn't export this report. Please try again."), `download: ${!!dl}; messages: ${JSON.stringify(msgs)}`), chk('Step 8: report still on screen with its rows', n1 > 0 && n1 >= n0 - 1, `${n1} rows (before ${n0})`)]);
+};
+C['V1R-82'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/P Aging Detail'); const heads = (await lib.rows(page)).filter((r) => /_row_(days_[0-9a-z_]+|current)$/.test(r.tid)); const counts = heads.map((h) => Number((h.text.match(/\((\d+)\)/) || [])[1]));
+  await page.click('[data-test-id="btn_dropdown_apdet_export"]'); await lib.sleep(600); let dl = null; page.once('download', (d) => { dl = d; });
+  await page.click('[data-test-id="action_apdet_export_pdf"]'); const msgs = []; for (let k = 0; k < 30; k++) { for (const m of await lib.notices(page)) if (!msgs.includes(m)) msgs.push(m); if (msgs.length && k > 12) break; await lib.sleep(300); }
+  page.removeAllListeners('download'); let dlInfo = null; if (dl) { const f = `${x.key} - step 4 what downloaded.pdf`; await dl.saveAs(require('path').join(lib.EVID, f)); x.ev.push(f); dlInfo = { name: dl.suggestedFilename(), bytes: require('fs').statSync(require('path').join(lib.EVID, f)).size }; try { dlInfo.pages = (pdfInfo(require('path').join(lib.EVID, f)).match(/Pages:\s+(\d+)/) || [])[1]; } catch (e) { dlInfo.pages = 'not a readable PDF'; } } x.ev.push(await lib.shot(page, x.key, 'step 5 PDF message'));
+  const csv = await lib.exportFile(page, 'apdet', 'csv', x.key, 'step 7 A-P Detail CSV'); let docRowsN = null, sample = [];
+  if (csv.ok) { const lines = require('fs').readFileSync(csv.path, 'utf8').split(/\r?\n/).filter((l) => l.trim()); sample = lines.slice(0, 8); docRowsN = lines.filter((l) => /^\uFEFF?"?(91 or more days past due|\d+-\d+ days past due|Current)"?,/.test(l)).length; }
+  x.ev.push(lib.saveText(x.key, 'CSV head and counts', { bucket_counts: counts, sum: counts.reduce((a, b) => a + b, 0), csv_document_rows: docRowsN, first_lines: sample }));
+  await lib.nav(page, 'A/R Aging Detail'); const ar = await lib.exportFile(page, 'ardet', 'pdf', x.key, 'step 12 A-R Detail PDF');
+  const sum = counts.reduce((a, b) => a + b, 0);
+  return { ...verdict([chk('Precondition: A/P Detail over 2,000 lines', sum > 2000, `${counts.join(' + ')} = ${sum}`), chk('Step 5 (PRD): no download and "This report is too large for PDF. Export it as CSV, or narrow the filters, then try again."', !dl && msgs.some((m) => m.includes('This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.')), `download: ${JSON.stringify(dlInfo)}; messages ${JSON.stringify(msgs)}`),
+    chk('Step 9: CSV has one row per document = sum of bucket counts', docRowsN === sum, `CSV document rows ${docRowsN} vs ${sum}`), chk('Step 12: A/R Detail (under 2,000 lines) still gives a PDF', ar.ok, ar.ok ? ar.suggested : 'no download')]), facts: { counts } };
+};
+C['V1R-83'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Summary'); const s = await lib.setDate(page, MID_LAST_MONTH);
+  const f = await lib.exportFile(page, 'arsum', 'pdf', x.key, 'step 5 PDF'); const p1 = f.ok ? pdfText(f.path).split('\n').filter((l) => l.trim()).slice(0, 6) : [];
+  x.ev.push(lib.saveText(x.key, 'PDF heading', { p1 }));
+  return verdict([chk('Step 3: date set', s.ok, s.chip || s.why), chk('Step 7 (PRD): "As of Oct 15, 2026" under the report and organization names', p1.some((l) => /As of Oct 15, 2026/.test(l)) && !p1.some((l) => /Oct 16, 2026/.test(l)), p1.join(' / '))]);
+};
+C['V1R-84'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Detail'); const head = page.locator('[data-test-id="aging_detail_report_row_days_1_to_30"]'); const count = Number(((await head.innerText()).match(/\((\d+)\)/) || [])[1]);
+  await page.click('[data-test-id="button_aging_detail_report_toggle_days_1_to_30"]'); await lib.settle(page, 2000);
+  const first = (await lib.rows(page)).filter((r) => r.tid.startsWith('aging_detail_report_row_days_1_to_30_transaction_')).length; x.ev.push(await lib.shot(page, x.key, 'step 5 first load'));
+  const seen = new Set(); let tf = null;
+  for (let i = 0; i < 40; i++) { const rs = await lib.rows(page); rs.filter((r) => r.tid.startsWith('aging_detail_report_row_days_1_to_30_transaction_')).forEach((r) => seen.add(r.tid)); tf = rs.find((r) => r.text.startsWith('Total for 1-30 days past due')) || tf; if (tf && seen.size >= count) break; await page.locator('tr[data-test-id]').last().scrollIntoViewIfNeeded().catch(() => {}); await page.mouse.wheel(0, 4000); await lib.settle(page, 900); }
+  x.ev.push(await lib.shot(page, x.key, 'step 8 end of bucket'));
+  return verdict([chk('Step 3: count in brackets', count > 100, count), chk('Step 5 (PRD): 100 lines first', first === 100, first), chk('Step 7: every line there, total = count', seen.size === count, `${seen.size} distinct lines seen`), chk('Step 8: "Total for" the bucket with Amount and Open balance', tf && /\$[-\d,.]+ \$[-\d,.]+$/.test(tf.text), tf ? tf.text : 'none')]);
+};
+C['V1R-85'] = async (x) => {
+  const a1 = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R13'), null, 'step 4 invoice type'); const a2 = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R42'), null, 'step 5 credit memo type');
+  const a3 = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R18'), null, 'step 6 deposit type'); const b = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P93'), null, 'steps 9-10 bill and vendor credit types');
+  const t = (docs, n) => { const r = find(docs, n); return r ? r.cells.type : 'not listed'; }; const bill = t(b.docs, num('doc:P93:bill')); const vc = (b.docs.find((d) => d.cells.id && d.cells.id.startsWith('C-')) || { cells: {} }).cells.type;
+  return verdict([chk('Step 4: "Invoice"', t(a1.docs, num('doc:R13:inv')) === 'Invoice', t(a1.docs, num('doc:R13:inv'))), chk('Step 5 (PRD): "Credit Memo"', t(a2.docs, num('doc:R42:cm')) === 'Credit Memo', t(a2.docs, num('doc:R42:cm'))), chk('Step 6 (PRD): "Deposit"', t(a3.docs, num('doc:R18:dep_free')) === 'Deposit', t(a3.docs, num('doc:R18:dep_free'))), chk('Step 9: "Invoice"', bill === 'Invoice', bill), chk('Step 10 (PRD): "Vendor Credit"', vc === 'Vendor Credit', vc)]);
+};
+C['V1R-86'] = async (x) => {
+  const a = await collectionFor(x, 'R74', null, 'steps 3-5 dates'); const cm = find(a.docs, num('doc:R74:cm_today')), inv = find(a.docs, num('doc:R74:inv'));
+  return verdict([chk('Step 4 (PRD): today written out "Nov 11, 2026", not "Today"', cm && cm.cells.date === 'Nov 11, 2026', cm ? cm.cells.date : 'not listed'), chk('Step 5: older date "Nov 1, 2026"', inv && inv.cells.date === 'Nov 1, 2026', inv ? inv.cells.date : 'not listed')]);
+};
+C['V1R-74'] = async (x) => {
+  const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R74'), null, 'steps 3-6 two credit memos'); const t8 = find(a.docs, num('doc:R74:cm_today')), t6 = find(a.docs, num('doc:R74:cm_yday'));
+  const c = await collectionFor(x, 'R74', null, 'steps 7-9 collection'); const c8 = find(c.docs, num('doc:R74:cm_today'));
+  return verdict([chk('Step 4 (PRD S1-R5a): the $8.00 credit memo dated today is under Current', t8 && t8.tid.includes('_row_current_'), t8 ? t8.tid.split('_transaction_')[0] : 'not listed'), chk('Step 6: the $6.00 credit memo dated yesterday is under 1-30 days past due', t6 && t6.tid.includes('_row_days_1_to_30_'), t6 ? t6.tid.split('_transaction_')[0] : 'not listed'), chk('Step 9: Past Due of the $8.00 credit memo is 0', c8 && c8.cells.past_due === '0', c8 ? c8.cells.past_due : 'not listed')]);
+};
+C['V1R-75'] = async (x) => {
+  const a = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P75'), null, 'steps 3-7 two vendor credits'); const v9 = vcRow(a.docs, '9.00'), v4 = vcRow(a.docs, '4.00');
+  return { ...verdict([chk('Step 4 (PRD S1-R5a): the $9.00 vendor credit dated today is under Current', v9 && v9.tid.includes('_row_current_'), v9 ? v9.tid.split('_transaction_')[0] : 'not listed'), chk('Step 5: Past Due 0', v9 && v9.cells.past_due === '0', v9 ? v9.cells.past_due : '-'), chk('Step 7: the $4.00 credit dated yesterday under 1-30 days past due', v4 && v4.tid.includes('_row_days_1_to_30_'), v4 ? v4.tid.split('_transaction_')[0] : 'not listed')]), note: 'Run before 18:00Z: an extra $9.00 credit made at 18:00Z today (retired, see SEEDED.md) only appears after that time.' };
+};
+C['V1R-76'] = async () => ({ verdict: 'BLOCKED', observed: 'Precondition cannot be set up: an invoice paid MORE than its amount. Rung tried: the payment call the front end makes (POST /api/customer-account/create-customer-payment) applying $120.00 to the $100.00 invoice of ZZAUTOTEST AR R76 Overpaid answers 400 "Transaction cannot be overpaid." Paying more than an invoice in the app instead makes a separate deposit for the excess (proved on R18/R19), which is not an overpaid invoice. What needs to be done: a developer stores one overpaid invoice on QA (or names an existing one), then run this case.' });
+C['V1R-77'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Summary'); const first = (await lib.rows(page)).find((r) => /^aging_summary_report_row_[0-9a-f-]{36}$/.test(r.tid));
+  await page.click(`[data-test-id="${first.tid}_cell_total"]`); await lib.settle(page, 1500); const t1 = await lib.title(page); x.ev.push(await lib.shot(page, x.key, 'step 4 after clicking the Total amount'));
+  await page.click(`[data-test-id="${first.tid}_cell_customer_name"] a, [data-test-id^="link_arsum_party_"]`); await lib.settle(page, 2500); const t2 = await lib.title(page); const cc = await lib.chip(page, 'customerIds');
+  x.ev.push(await lib.shot(page, x.key, 'step 6 after clicking the customer name'));
+  return verdict([chk('Step 4 (PRD): still on A/R Aging Summary', t1 === 'A/R Aging Summary', t1), chk('Step 6: A/R Aging Collection open, narrowed to that customer', t2 === 'A/R Aging Collection' && (cc || '').includes(first.cells.customer_name.slice(0, 10)), `title "${t2}", chip ${cc} (row customer ${first.cells.customer_name})`)]);
+};
+C['V1R-78'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Summary'); const s = await lib.setDate(page, FIRST_LAST_MONTH); await lib.pickParty(page, 'customerIds', CUST('R22'));
+  await page.click(`[data-test-id="link_arsum_party_${CID('R22')}"]`); await lib.settle(page, 2500);
+  const t = await lib.title(page), c = await lib.chip(page, 'asOfDate'), cc = await lib.chip(page, 'customerIds'); x.ev.push(await lib.shot(page, x.key, 'steps 5-7 after clicking the customer'));
+  return { ...verdict([chk('Step 3: date set', s.ok, s.chip || s.why), chk('Step 5: A/R Aging Collection open', t === 'A/R Aging Collection', t), chk(`Step 6 (PRD): date chip ${US(FIRST_LAST_MONTH)}`, (c || '').includes(US(FIRST_LAST_MONTH)), c), chk('Step 7: Customer chip names customer X', (cc || '').includes('ZZAUTOTEST AR R'), `${cc} (address ${page.url()})`)]), note: 'Customer X found on A/R Summary by first ticking it in the Customer chip (the long list loads 30 at a time).' };
+};
+C['V1R-87'] = async (x) => {
+  const { page, lib } = x; const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R03'), null, 'step 3 location B invoice');
+  const r = find(a.docs, num('doc:R03:inv')); let dlg = '', url1 = '', t1 = '';
+  if (r && r.link) { await page.click(`[data-test-id="${r.link.tid}"]`); await lib.sleep(1500); dlg = await page.evaluate(() => { const d = document.querySelector('.q-dialog'); return d ? d.innerText.replace(/\s+/g, ' ').trim() : ''; }); x.ev.push(await lib.shot(page, x.key, 'step 5 prompt'));
+    const btns = await page.evaluate(() => { const d = document.querySelector('.q-dialog'); return d ? [...d.querySelectorAll('button')].map((b) => (b.innerText || b.getAttribute('aria-label') || '').trim()) : []; }); dlg += ' | buttons: ' + JSON.stringify(btns);
+    const cancel = page.locator('.q-dialog').getByRole('button', { name: /^Cancel$/ }); if (await cancel.count()) await cancel.click(); await lib.settle(page, 1500); url1 = page.url(); t1 = await lib.title(page); }
+  const b = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R13'), null, 'step 8 location A invoice'); const ra = find(b.docs, num('doc:R13:inv')); let url2 = '';
+  if (ra && ra.link) { await page.click(`[data-test-id="${ra.link.tid}"]`); await lib.settle(page, 3000); url2 = page.url(); x.ev.push(await lib.shot(page, x.key, 'step 8 location A invoice opened')); }
+  const steps = [chk('Step 5 (PRD S7-R3): "Switch location?" with "This work order is in Staging Lethbridge - 4310. Switch your active location to view it?", Cancel left, Switch location right, close ×', /Switch location\?/.test(dlg) && dlg.includes('This work order is in Staging Lethbridge - 4310. Switch your active location to view it?') && /"Cancel".*"Switch location"/.test(dlg), dlg || (r ? 'no prompt; link ' + JSON.stringify(r.link) : 'invoice not listed')),
+    chk('Step 6: you stay on the report', t1 === 'A/R Aging Detail', `${t1} ${url1}`), chk('Step 8: the location A invoice opens its finance page directly', /\/workorders\/[0-9a-f-]+\/finance/.test(url2), url2 || 'no link')];
+  const v = verdict(steps);
+  return { ...v, verdict: v.verdict === 'FAIL' ? 'FAIL' : 'BLOCKED', observed: v.observed + ' | NOT RUN Step 7: the organization has no location C (only Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 hold A/R documents, both enrolled), so the plain-text rule for a non-enrolled location cannot be observed. What needs to be done: give the QA organization a third location the test user is not enrolled in, with one open invoice.' };
+};
+C['V1R-89'] = async (x) => {
+  const a = await unpaidFor(x, 'P62', 'step 3 vendor group open'); const { page, lib } = x; const before = a.docs.map((d) => d.cells.id);
+  await page.click('[data-test-id="header_apunp_amount"]').catch(async () => { await page.locator('th', { hasText: 'Amount' }).first().click(); }); await lib.settle(page, 2000);
+  const after = docRows(await lib.rows(page)).map((d) => d.cells.id + ' ' + d.cells.amount); x.ev.push(await lib.shot(page, x.key, 'step 5 after sorting by Amount'));
+  const s = await lib.setDate(page, YDAY); const n = docRows(await lib.rows(page)).length; x.ev.push(await lib.shot(page, x.key, 'step 7 after date change'));
+  return verdict([chk('Step 5 (PRD): vendor Y still open, lines in the new order', after.length === 3, `before ${JSON.stringify(before)}; after ${JSON.stringify(after)}`), chk('Step 7: changing the date closes every group', s.ok && n === 0, `${n} lines`)]);
+};
+C['V1R-90'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Collection'); await lib.pickParty(page, 'customerIds', CUST('R90')); const id = CID('R90');
+  const g = (await lib.rows(page)).find((r) => r.tid === 'aging_collection_report_row_' + id); const count = Number(((g || {}).text || '').match(/\((\d+)\)/)?.[1]);
+  await page.click(`[data-test-id="button_aging_collection_report_toggle_${id}"]`); await lib.settle(page, 2000); const first = docRows(await lib.rows(page)).length; x.ev.push(await lib.shot(page, x.key, 'step 5 first load'));
+  const seen = new Set(); let tf = null;
+  for (let i = 0; i < 25; i++) { const rs = await lib.rows(page); docRows(rs).forEach((r) => seen.add(r.tid)); tf = rs.find((r) => r.text.startsWith('Total for ' + CUST('R90'))) || tf; if (tf && seen.size >= count) break; await page.locator('tr[data-test-id]').last().scrollIntoViewIfNeeded().catch(() => {}); await page.mouse.wheel(0, 4000); await lib.settle(page, 900); }
+  x.ev.push(await lib.shot(page, x.key, 'step 8 end of group'));
+  return verdict([chk('Step 3: full count in brackets (101 seeded)', count === 101, count), chk('Step 5 (PRD S1-R8): first 100 documents', first === 100, first), chk('Step 7: every line there', seen.size === count, seen.size), chk('Step 8: "Total for" X covers every line ($-101.00)', tf && tf.text.includes('$-101.00'), tf ? tf.text : 'none')]);
+};
+C['V1R-91'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/P Aging Summary'); const heads = await page.evaluate(() => [...document.querySelectorAll('[data-test-id^="header_apsum_"]')].map((h) => h.innerText.replace(/arrow_drop_(up|down)/, '').trim()));
+  const f = await lib.exportFile(page, 'apsum', 'pdf', x.key, 'step 5 A-P Summary PDF'); const lines = f.ok ? pdfText(f.path).split('\n').filter((l) => l.trim()) : [];
+  const hl = lines.find((l) => /Vendor/.test(l) && /Current/.test(l)) || ''; x.ev.push(lib.saveText(x.key, 'PDF lines', { heading: hl, last: lines.slice(-4) }));
+  const lastRow = lines.filter((l) => !/Software Powered|Page \d+ of/.test(l)).pop() || '';
+  return verdict([chk('Step 3: Vendor, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total (Location new by design)', JSON.stringify(heads.filter((h) => h !== 'Location')) === JSON.stringify(['Vendor', 'Current', '1-30 Days', '31-60 Days', '61-90 Days', '91 And Over', 'Total']), JSON.stringify(heads)),
+    chk('Step 5 (PRD): a PDF downloads', f.ok, f.ok ? f.suggested : 'no download'), chk('Step 7: same headings as the screen', heads.every((h) => hl.includes(h)), hl.trim().replace(/\s+/g, ' ')), chk('Step 8: a Totals row', /^\s*Totals/.test(lastRow), lastRow.trim())]);
+};
+C['V1R-92'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/P Aging Detail'); const heads = (await lib.rows(page)).filter((r) => /_row_(days_[0-9a-z_]+|current)$/.test(r.tid)).map((h) => h.text.replace('keyboard_arrow_right', '').replace(/ \(.*/, '').trim());
+  await page.click('[data-test-id="button_ap_aging_detail_report_toggle_days_1_to_30"]'); await lib.settle(page, 2500);
+  const names = docRows(await lib.rows(page)).map((d) => d.cells.vendor_name); x.ev.push(await lib.shot(page, x.key, 'step 5 vendor names'));
+  const fold = (s) => s.toLowerCase().replace(/æ/g, 'ae').normalize('NFKD').replace(/[̀-ͯ]/g, ''); const az = names.every((n, i) => i === 0 || fold(names[i - 1]) <= fold(n));
+  await page.click('[data-test-id="header_apdet_past_due"]'); await lib.settle(page, 2500);
+  const pd = docRows(await lib.rows(page)).filter((d) => d.tid.includes('_days_1_to_30_')).map((d) => Number(d.cells.past_due)); x.ev.push(await lib.shot(page, x.key, 'step 7 after clicking Past Due'));
+  const desc = pd.every((v, i) => i === 0 || pd[i - 1] >= v);
+  return verdict([chk('Step 3: five buckets in fixed order', JSON.stringify(heads) === JSON.stringify(['91 or more days past due', '61-90 days past due', '31-60 days past due', '1-30 days past due', 'Current']), JSON.stringify(heads)),
+    chk('Step 5 (PRD): vendors A to Z inside the bucket', az && new Set(names).size > 1, `${names.length} lines, ${new Set(names).size} vendors; first: ${names.slice(0, 5).join(' | ')}`), chk('Step 7 (PRD S2-R4): Past Due largest first', desc && pd.length > 1, pd.slice(0, 10).join(', '))]);
+};
+C['V1R-93'] = async (x) => {
+  const { page, lib } = x; const a = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P93'), null, 'step 3 every bucket');
+  const ret = a.docs.find((d) => (d.cells.amount || '').includes('13.00')), dir = a.docs.find((d) => (d.cells.amount || '').includes('7.00')), bill = find(a.docs, num('doc:P93:bill'));
+  let u1 = '', u2 = '';
+  if (ret && ret.link) { await page.click(`[data-test-id="${ret.link.tid}"]`); await lib.settle(page, 3000); u1 = page.url(); x.ev.push(await lib.shot(page, x.key, 'step 4 vendor return opened')); await page.goBack(); await lib.settle(page, 2500); }
+  await lib.openAll(page); const docs2 = docRows(await lib.rows(page)); const bill2 = find(docs2, num('doc:P93:bill'));
+  if (bill2 && bill2.link) { await page.click(`[data-test-id="${bill2.link.tid}"]`); await lib.settle(page, 3000); u2 = page.url(); x.ev.push(await lib.shot(page, x.key, 'step 7 bill opened')); }
+  return verdict([chk('Step 4 (PRD S7-R9): the return credit number opens the vendor return', ret && ret.link && /return/i.test(u1), ret ? `${JSON.stringify(ret.link)} -> ${u1}` : 'credit not listed'), chk('Step 6: the credit not from a return is plain text', dir && !dir.link, dir ? JSON.stringify({ link: dir.link, plain: dir.plain }) : 'not listed'), chk('Step 7: the bill opens its delivery page', /deliver/i.test(u2), u2 || 'no link')]);
+};
+C['V1R-32'] = async () => ({ verdict: 'BLOCKED', observed: 'Needs a second user whose role has Reports page access but no Customers View. The only session available is the QA lead\'s own Admin session, and signing in as anyone else would mean calling the login endpoint on QA, which this run must never do (it ends the shared SSO session). What needs to be done: the QA lead (or a dedicated test login) signs in with such a role and runs steps 1-4.' });
+C['V1R-53'] = async () => ({ verdict: 'BLOCKED', observed: 'Needs a second user whose role has only Reports page access (no Vendor Order Management, Customers or Invoicing). Same reason as V1R-32: only the QA lead\'s Admin session is available and signing in as another user is not allowed on QA. What needs to be done: run with such a role.' });

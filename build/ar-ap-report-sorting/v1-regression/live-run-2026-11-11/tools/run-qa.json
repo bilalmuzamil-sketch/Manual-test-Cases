@@ -1553,5 +1553,812 @@
   "marker": "v26.45.2-6a8b89c",
   "utc_start": "2026-11-11T12:01:37.070Z",
   "utc_end": "2026-11-11T12:02:35.000Z"
+ },
+ "V1R-75": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4 (PRD S1-R5a): the $9.00 vendor credit dated today is under Current",
+    "ok": true,
+    "saw": "ap_aging_detail_report_row_current"
+   },
+   {
+    "what": "Step 5: Past Due 0",
+    "ok": true,
+    "saw": "0"
+   },
+   {
+    "what": "Step 7: the $4.00 credit dated yesterday under 1-30 days past due",
+    "ok": true,
+    "saw": "ap_aging_detail_report_row_days_1_to_30"
+   }
+  ],
+  "observed": "OK Step 4 (PRD S1-R5a): the $9.00 vendor credit dated today is under Current: ap_aging_detail_report_row_current | OK Step 5: Past Due 0: 0 | OK Step 7: the $4.00 credit dated yesterday under 1-30 days past due: ap_aging_detail_report_row_days_1_to_30",
+  "note": "Run before 18:00Z: an extra $9.00 credit made at 18:00Z today (retired, see SEEDED.md) only appears after that time.",
+  "evidence": [
+   "V1R-75 - steps 3-7 two vendor credits.png",
+   "V1R-75 - steps 3-7 two vendor credits rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:08:30.187Z",
+  "utc_end": "2026-11-11T12:08:44.016Z"
+ },
+ "V1R-74": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4 (PRD S1-R5a): the $8.00 credit memo dated today is under Current",
+    "ok": true,
+    "saw": "aging_detail_report_row_current"
+   },
+   {
+    "what": "Step 6: the $6.00 credit memo dated yesterday is under 1-30 days past due",
+    "ok": true,
+    "saw": "aging_detail_report_row_days_1_to_30"
+   },
+   {
+    "what": "Step 9: Past Due of the $8.00 credit memo is 0",
+    "ok": true,
+    "saw": "0"
+   }
+  ],
+  "observed": "OK Step 4 (PRD S1-R5a): the $8.00 credit memo dated today is under Current: aging_detail_report_row_current | OK Step 6: the $6.00 credit memo dated yesterday is under 1-30 days past due: aging_detail_report_row_days_1_to_30 | OK Step 9: Past Due of the $8.00 credit memo is 0: 0",
+  "evidence": [
+   "V1R-74 - steps 3-6 two credit memos.png",
+   "V1R-74 - steps 3-6 two credit memos rows.json",
+   "V1R-74 - steps 7-9 collection.png",
+   "V1R-74 - steps 7-9 collection rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:08:44.311Z",
+  "utc_end": "2026-11-11T12:09:10.630Z"
+ },
+ "V1R-86": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4 (PRD): today written out \"Nov 11, 2026\", not \"Today\"",
+    "ok": true,
+    "saw": "Nov 11, 2026"
+   },
+   {
+    "what": "Step 5: older date \"Nov 1, 2026\"",
+    "ok": true,
+    "saw": "Nov 1, 2026"
+   }
+  ],
+  "observed": "OK Step 4 (PRD): today written out \"Nov 11, 2026\", not \"Today\": Nov 11, 2026 | OK Step 5: older date \"Nov 1, 2026\": Nov 1, 2026",
+  "evidence": [
+   "V1R-86 - steps 3-5 dates.png",
+   "V1R-86 - steps 3-5 dates rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:09:10.900Z",
+  "utc_end": "2026-11-11T12:09:24.083Z"
+ },
+ "V1R-77": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4 (PRD): still on A/R Aging Summary",
+    "ok": true,
+    "saw": "A/R Aging Summary"
+   },
+   {
+    "what": "Step 6: A/R Aging Collection open, narrowed to that customer",
+    "ok": true,
+    "saw": "title \"A/R Aging Collection\", chip Customer: #1 Diesel (row customer #1 Diesel)"
+   }
+  ],
+  "observed": "OK Step 4 (PRD): still on A/R Aging Summary: A/R Aging Summary | OK Step 6: A/R Aging Collection open, narrowed to that customer: title \"A/R Aging Collection\", chip Customer: #1 Diesel (row customer #1 Diesel)",
+  "evidence": [
+   "V1R-77 - step 4 after clicking the Total amount.png",
+   "V1R-77 - step 6 after clicking the customer name.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:09:24.370Z",
+  "utc_end": "2026-11-11T12:09:35.607Z"
+ },
+ "V1R-78": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: date set",
+    "ok": true,
+    "saw": "As of: 10/01/2026"
+   },
+   {
+    "what": "Step 5: A/R Aging Collection open",
+    "ok": true,
+    "saw": "A/R Aging Collection"
+   },
+   {
+    "what": "Step 6 (PRD): date chip 10/01/2026",
+    "ok": true,
+    "saw": "As of: 10/01/2026"
+   },
+   {
+    "what": "Step 7: Customer chip names customer X",
+    "ok": true,
+    "saw": "Customer: ZZAUTOTEST AR R... (address https://sv11315.qa.shopview.com/reports/ar-aging-collection?asOfDate=2026-10-01&customerIds=00106298-00bf-4dcf-8319-63cf7447cad4)"
+   }
+  ],
+  "observed": "OK Step 3: date set: As of: 10/01/2026 | OK Step 5: A/R Aging Collection open: A/R Aging Collection | OK Step 6 (PRD): date chip 10/01/2026: As of: 10/01/2026 | OK Step 7: Customer chip names customer X: Customer: ZZAUTOTEST AR R... (address https://sv11315.qa.shopview.com/reports/ar-aging-collection?asOfDate=2026-10-01&customerIds=00106298-00bf-4dcf-8319-63cf7447cad4)",
+  "note": "Customer X found on A/R Summary by first ticking it in the Customer chip (the long list loads 30 at a time).",
+  "evidence": [
+   "V1R-78 - steps 5-7 after clicking the customer.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:09:35.919Z",
+  "utc_end": "2026-11-11T12:09:53.585Z"
+ },
+ "V1R-79": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: no printer button",
+    "ok": true,
+    "saw": "0 printer controls"
+   },
+   {
+    "what": "Step 4 (PRD): Export menu with \"Download (PDF)\" and \"Download (CSV)\" (labelled \"Export report\")",
+    "ok": true,
+    "saw": "[\"Download (PDF)\",\"Download (CSV)\"]; button label: Export report"
+   },
+   {
+    "what": "Step 5 (PRD): the PDF downloads as a file",
+    "ok": true,
+    "saw": "ar-aging-detail.pdf"
+   },
+   {
+    "what": "Step 7: report name, organization name, \"As of\"",
+    "ok": true,
+    "saw": "A/R Aging Detail / Staging Foothills Group Inc / As of Nov 11, 2026 / Locations: All locations"
+   },
+   {
+    "what": "Step 8: \"Software Powered by ShopView\" and \"Page 1 of N\"",
+    "ok": true,
+    "saw": " Jun 5, 2026      Staging Heavy Duty - 9919   Invoice            S2-15557         Desert Edge Truck Service & Repair       Jul 20, 2026     $1,118.60       $1,118.60 /                                                                       Software Powered by ShopView                                                         Page 1 of 26"
+   }
+  ],
+  "observed": "OK Step 3: no printer button: 0 printer controls | OK Step 4 (PRD): Export menu with \"Download (PDF)\" and \"Download (CSV)\" (labelled \"Export report\"): [\"Download (PDF)\",\"Download (CSV)\"]; button label: Export report | OK Step 5 (PRD): the PDF downloads as a file: ar-aging-detail.pdf | OK Step 7: report name, organization name, \"As of\": A/R Aging Detail / Staging Foothills Group Inc / As of Nov 11, 2026 / Locations: All locations | OK Step 8: \"Software Powered by ShopView\" and \"Page 1 of N\":  Jun 5, 2026      Staging Heavy Duty - 9919   Invoice            S2-15557         Desert Edge Truck Service & Repair       Jul 20, 2026     $1,118.60       $1,118.60 /                                                                       Software Powered by ShopView                                                         Page 1 of 26",
+  "evidence": [
+   "V1R-79 - step 4 Export menu.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:09:53.887Z",
+  "utc_end": "2026-11-11T12:10:21.683Z"
+ },
+ "V1R-80": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "Step 4: on screen \"$-5.00\"",
+    "ok": true,
+    "saw": "$-5.00"
+   },
+   {
+    "what": "Step 9 (PRD): in the PDF \"(-$5.00)\" and date like \"Oct 26 2026\"",
+    "ok": false,
+    "saw": "Oct 26, 2026 Staging Heavy Duty - 9919 Credit Memo CM11315-4209 ZZAUTOTEST AR R42 Memo Line Oct 26, 2026 (-$5.00) (-$5.00)"
+   }
+  ],
+  "observed": "OK Step 4: on screen \"$-5.00\": $-5.00 | NOT OK Step 9 (PRD): in the PDF \"(-$5.00)\" and date like \"Oct 26 2026\": Oct 26, 2026 Staging Heavy Duty - 9919 Credit Memo CM11315-4209 ZZAUTOTEST AR R42 Memo Line Oct 26, 2026 (-$5.00) (-$5.00)",
+  "evidence": [
+   "V1R-80 - steps 3-4 credit memo on screen.png",
+   "V1R-80 - steps 3-4 credit memo on screen rows.json",
+   "V1R-80 - PDF credit memo line.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:10:21.985Z",
+  "utc_end": "2026-11-11T12:10:36.553Z"
+ },
+ "V1R-81": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 6 (PRD): nothing downloads and exactly one message \"We couldn't export this report. Please try again.\"",
+    "ok": true,
+    "saw": "download: false; messages: [\"warning We couldn't export this report. Please try again. Close\"]"
+   },
+   {
+    "what": "Step 8: report still on screen with its rows",
+    "ok": true,
+    "saw": "31 rows (before 31)"
+   }
+  ],
+  "observed": "OK Step 6 (PRD): nothing downloads and exactly one message \"We couldn't export this report. Please try again.\": download: false; messages: [\"warning We couldn't export this report. Please try again. Close\"] | OK Step 8: report still on screen with its rows: 31 rows (before 31)",
+  "evidence": [
+   "V1R-81 - step 6 messages while offline.png",
+   "V1R-81 - step 8 report after network back.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:10:36.991Z",
+  "utc_end": "2026-11-11T12:10:50.306Z"
+ },
+ "V1R-83": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: date set",
+    "ok": true,
+    "saw": "As of: 10/15/2026"
+   },
+   {
+    "what": "Step 7 (PRD): \"As of Oct 15, 2026\" under the report and organization names",
+    "ok": true,
+    "saw": "A/R Aging Summary / Staging Foothills Group Inc / As of Oct 15, 2026 / Locations: All locations /  Customer                                 Location                             Current      1-30 Days   31-60 Days   61-90 Days    91 And Over           Total /  Andrews' Truck & Trailer Repair LLC      Staging Heavy Duty - 9919                         $8,600.85                                               $8,600.85"
+   }
+  ],
+  "observed": "OK Step 3: date set: As of: 10/15/2026 | OK Step 7 (PRD): \"As of Oct 15, 2026\" under the report and organization names: A/R Aging Summary / Staging Foothills Group Inc / As of Oct 15, 2026 / Locations: All locations /  Customer                                 Location                             Current      1-30 Days   31-60 Days   61-90 Days    91 And Over           Total /  Andrews' Truck & Trailer Repair LLC      Staging Heavy Duty - 9919                         $8,600.85                                               $8,600.85",
+  "evidence": [
+   "V1R-83 - PDF heading.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:10:50.602Z",
+  "utc_end": "2026-11-11T12:11:07.019Z"
+ },
+ "V1R-85": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4: \"Invoice\"",
+    "ok": true,
+    "saw": "Invoice"
+   },
+   {
+    "what": "Step 5 (PRD): \"Credit Memo\"",
+    "ok": true,
+    "saw": "Credit Memo"
+   },
+   {
+    "what": "Step 6 (PRD): \"Deposit\"",
+    "ok": true,
+    "saw": "Deposit"
+   },
+   {
+    "what": "Step 9: \"Invoice\"",
+    "ok": true,
+    "saw": "Invoice"
+   },
+   {
+    "what": "Step 10 (PRD): \"Vendor Credit\"",
+    "ok": true,
+    "saw": "Vendor Credit"
+   }
+  ],
+  "observed": "OK Step 4: \"Invoice\": Invoice | OK Step 5 (PRD): \"Credit Memo\": Credit Memo | OK Step 6 (PRD): \"Deposit\": Deposit | OK Step 9: \"Invoice\": Invoice | OK Step 10 (PRD): \"Vendor Credit\": Vendor Credit",
+  "evidence": [
+   "V1R-85 - step 4 invoice type.png",
+   "V1R-85 - step 4 invoice type rows.json",
+   "V1R-85 - step 5 credit memo type.png",
+   "V1R-85 - step 5 credit memo type rows.json",
+   "V1R-85 - step 6 deposit type.png",
+   "V1R-85 - step 6 deposit type rows.json",
+   "V1R-85 - steps 9-10 bill and vendor credit types.png",
+   "V1R-85 - steps 9-10 bill and vendor credit types rows.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:11:07.323Z",
+  "utc_end": "2026-11-11T12:11:59.878Z"
+ },
+ "V1R-87": {
+  "verdict": "BLOCKED",
+  "checks": [
+   {
+    "what": "Step 5 (PRD S7-R3): \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", Cancel left, Switch location right, close ×",
+    "ok": true,
+    "saw": "Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch location | buttons: [\"close\",\"Cancel\",\"Switch location\"]"
+   },
+   {
+    "what": "Step 6: you stay on the report",
+    "ok": true,
+    "saw": "A/R Aging Detail https://sv11315.qa.shopview.com/reports/ar-aging-detail?customerIds=7d2415d9-755e-4d12-b42a-a55be01bcf67"
+   },
+   {
+    "what": "Step 8: the location A invoice opens its finance page directly",
+    "ok": true,
+    "saw": "https://sv11315.qa.shopview.com/workorders/69763b08-b91c-4c3a-9ffb-3e1b4866dd00/finance"
+   }
+  ],
+  "observed": "OK Step 5 (PRD S7-R3): \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", Cancel left, Switch location right, close ×: Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch location | buttons: [\"close\",\"Cancel\",\"Switch location\"] | OK Step 6: you stay on the report: A/R Aging Detail https://sv11315.qa.shopview.com/reports/ar-aging-detail?customerIds=7d2415d9-755e-4d12-b42a-a55be01bcf67 | OK Step 8: the location A invoice opens its finance page directly: https://sv11315.qa.shopview.com/workorders/69763b08-b91c-4c3a-9ffb-3e1b4866dd00/finance | NOT RUN Step 7: the organization has no location C (only Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 hold A/R documents, both enrolled), so the plain-text rule for a non-enrolled location cannot be observed. What needs to be done: give the QA organization a third location the test user is not enrolled in, with one open invoice.",
+  "evidence": [
+   "V1R-87 - step 3 location B invoice.png",
+   "V1R-87 - step 3 location B invoice rows.json",
+   "V1R-87 - step 5 prompt.png",
+   "V1R-87 - step 8 location A invoice.png",
+   "V1R-87 - step 8 location A invoice rows.json",
+   "V1R-87 - step 8 location A invoice opened.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:12:00.160Z",
+  "utc_end": "2026-11-11T12:12:31.867Z"
+ },
+ "V1R-89": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5 (PRD): vendor Y still open, lines in the new order",
+    "ok": true,
+    "saw": "before [\"ZZT-P62-B_OLD\",\"ZZT-P62-B_MID\",\"ZZT-P62-B_NEW\"]; after [\"ZZT-P62-B_OLD $73.00\",\"ZZT-P62-B_MID $72.00\",\"ZZT-P62-B_NEW $71.00\"]"
+   },
+   {
+    "what": "Step 7: changing the date closes every group",
+    "ok": true,
+    "saw": "0 lines"
+   }
+  ],
+  "observed": "OK Step 5 (PRD): vendor Y still open, lines in the new order: before [\"ZZT-P62-B_OLD\",\"ZZT-P62-B_MID\",\"ZZT-P62-B_NEW\"]; after [\"ZZT-P62-B_OLD $73.00\",\"ZZT-P62-B_MID $72.00\",\"ZZT-P62-B_NEW $71.00\"] | OK Step 7: changing the date closes every group: 0 lines",
+  "evidence": [
+   "V1R-89 - step 3 vendor group open.png",
+   "V1R-89 - step 3 vendor group open rows.json",
+   "V1R-89 - step 5 after sorting by Amount.png",
+   "V1R-89 - step 7 after date change.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:12:32.121Z",
+  "utc_end": "2026-11-11T12:12:52.446Z"
+ },
+ "V1R-90": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: full count in brackets (101 seeded)",
+    "ok": true,
+    "saw": "101"
+   },
+   {
+    "what": "Step 5 (PRD S1-R8): first 100 documents",
+    "ok": true,
+    "saw": "100"
+   },
+   {
+    "what": "Step 7: every line there",
+    "ok": true,
+    "saw": "101"
+   },
+   {
+    "what": "Step 8: \"Total for\" X covers every line ($-101.00)",
+    "ok": true,
+    "saw": "Total for ZZAUTOTEST AR R90 Many Lines $-101.00 $-101.00"
+   }
+  ],
+  "observed": "OK Step 3: full count in brackets (101 seeded): 101 | OK Step 5 (PRD S1-R8): first 100 documents: 100 | OK Step 7: every line there: 101 | OK Step 8: \"Total for\" X covers every line ($-101.00): Total for ZZAUTOTEST AR R90 Many Lines $-101.00 $-101.00",
+  "evidence": [
+   "V1R-90 - step 5 first load.png",
+   "V1R-90 - step 8 end of group.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:12:52.760Z",
+  "utc_end": "2026-11-11T12:13:06.966Z"
+ },
+ "V1R-91": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: Vendor, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total (Location new by design)",
+    "ok": true,
+    "saw": "[\"Vendor\",\"Location\",\"Current\",\"1-30 Days\",\"31-60 Days\",\"61-90 Days\",\"91 And Over\",\"Total\"]"
+   },
+   {
+    "what": "Step 5 (PRD): a PDF downloads",
+    "ok": true,
+    "saw": "ap-aging-summary.pdf"
+   },
+   {
+    "what": "Step 7: same headings as the screen",
+    "ok": true,
+    "saw": "Vendor Location Current 1-30 Days 31-60 Days 61-90 Days 91 And Over Total"
+   },
+   {
+    "what": "Step 8: a Totals row",
+    "ok": true,
+    "saw": "Totals                         $4,247.34   $123,547.02   $268,843.91   $320,924.53   $4,044,727.92   $4,762,290.72"
+   }
+  ],
+  "observed": "OK Step 3: Vendor, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total (Location new by design): [\"Vendor\",\"Location\",\"Current\",\"1-30 Days\",\"31-60 Days\",\"61-90 Days\",\"91 And Over\",\"Total\"] | OK Step 5 (PRD): a PDF downloads: ap-aging-summary.pdf | OK Step 7: same headings as the screen: Vendor Location Current 1-30 Days 31-60 Days 61-90 Days 91 And Over Total | OK Step 8: a Totals row: Totals                         $4,247.34   $123,547.02   $268,843.91   $320,924.53   $4,044,727.92   $4,762,290.72",
+  "evidence": [
+   "V1R-91 - PDF lines.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:13:07.265Z",
+  "utc_end": "2026-11-11T12:13:27.237Z"
+ },
+ "V1R-92": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: five buckets in fixed order",
+    "ok": true,
+    "saw": "[\"91 or more days past due\",\"61-90 days past due\",\"31-60 days past due\",\"1-30 days past due\",\"Current\"]"
+   },
+   {
+    "what": "Step 5 (PRD): vendors A to Z inside the bucket",
+    "ok": true,
+    "saw": "100 lines, 32 vendors; first: #1 Diesel | -1 Diesel | 10 Trucking | 2 Trucking | @Home Towing"
+   },
+   {
+    "what": "Step 7 (PRD S2-R4): Past Due largest first",
+    "ok": true,
+    "saw": "30, 30, 30, 30, 30, 30, 30, 30, 30, 30"
+   }
+  ],
+  "observed": "OK Step 3: five buckets in fixed order: [\"91 or more days past due\",\"61-90 days past due\",\"31-60 days past due\",\"1-30 days past due\",\"Current\"] | OK Step 5 (PRD): vendors A to Z inside the bucket: 100 lines, 32 vendors; first: #1 Diesel | -1 Diesel | 10 Trucking | 2 Trucking | @Home Towing | OK Step 7 (PRD S2-R4): Past Due largest first: 30, 30, 30, 30, 30, 30, 30, 30, 30, 30",
+  "evidence": [
+   "V1R-92 - step 5 vendor names.png",
+   "V1R-92 - step 7 after clicking Past Due.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:13:27.531Z",
+  "utc_end": "2026-11-11T12:13:39.985Z"
+ },
+ "V1R-93": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4 (PRD S7-R9): the return credit number opens the vendor return",
+    "ok": true,
+    "saw": "{\"tid\":\"link_apdet_doc_cae084d3-f0ab-43c7-8bbf-086ec98a332e\",\"href\":\"/parts/return/ff11da22-6675-4e0a-a92b-5923e5e223bb\",\"text\":\"C-13679\"} -> https://sv11315.qa.shopview.com/parts/return/ff11da22-6675-4e0a-a92b-5923e5e223bb"
+   },
+   {
+    "what": "Step 6: the credit not from a return is plain text",
+    "ok": true,
+    "saw": "{\"link\":null,\"plain\":\"C-13680\"}"
+   },
+   {
+    "what": "Step 7: the bill opens its delivery page",
+    "ok": true,
+    "saw": "https://sv11315.qa.shopview.com/parts/delivery/f0146c69-f716-4147-8737-23faf5e9911b"
+   }
+  ],
+  "observed": "OK Step 4 (PRD S7-R9): the return credit number opens the vendor return: {\"tid\":\"link_apdet_doc_cae084d3-f0ab-43c7-8bbf-086ec98a332e\",\"href\":\"/parts/return/ff11da22-6675-4e0a-a92b-5923e5e223bb\",\"text\":\"C-13679\"} -> https://sv11315.qa.shopview.com/parts/return/ff11da22-6675-4e0a-a92b-5923e5e223bb | OK Step 6: the credit not from a return is plain text: {\"link\":null,\"plain\":\"C-13680\"} | OK Step 7: the bill opens its delivery page: https://sv11315.qa.shopview.com/parts/delivery/f0146c69-f716-4147-8737-23faf5e9911b",
+  "evidence": [
+   "V1R-93 - step 3 every bucket.png",
+   "V1R-93 - step 3 every bucket rows.json",
+   "V1R-93 - step 4 vendor return opened.png",
+   "V1R-93 - step 7 bill opened.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:13:40.296Z",
+  "utc_end": "2026-11-11T12:14:05.757Z"
+ },
+ "V1R-34": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 6: report name, organization name, \"As of\" with the date",
+    "ok": true,
+    "saw": "A/R Aging Summary / Staging Foothills Group Inc / As of Nov 11, 2026 / Locations: All locations"
+   },
+   {
+    "what": "Step 7: \"Software Powered by ShopView\" and \"Page 1 of N\"; landscape",
+    "ok": true,
+    "saw": " Dorr Truck Center                        Staging Heavy Duty - 9919                                                                  $1,270.34      $1,270.34 /                                                                       Software Powered by ShopView                                                  Page 1 of 7; size 841.89 x 595.276; 7 pages"
+   },
+   {
+    "what": "Step 8: a Totals row last; empty buckets blank",
+    "ok": true,
+    "saw": "Customer   Location            Current      1-30 Days   31-60 Days    61-90 Days    91 And Over         Total / Totals                       $2,926.00    $101,628.88   $167,363.30   $126,336.92   $118,341.26   $516,596.36 /                       Software Powered by ShopView                                                  Page 7 of 7; customer lines with $0.00: 0"
+   }
+  ],
+  "observed": "OK Step 6: report name, organization name, \"As of\" with the date: A/R Aging Summary / Staging Foothills Group Inc / As of Nov 11, 2026 / Locations: All locations | OK Step 7: \"Software Powered by ShopView\" and \"Page 1 of N\"; landscape:  Dorr Truck Center                        Staging Heavy Duty - 9919                                                                  $1,270.34      $1,270.34 /                                                                       Software Powered by ShopView                                                  Page 1 of 7; size 841.89 x 595.276; 7 pages | OK Step 8: a Totals row last; empty buckets blank: Customer   Location            Current      1-30 Days   31-60 Days    61-90 Days    91 And Over         Total / Totals                       $2,926.00    $101,628.88   $167,363.30   $126,336.92   $118,341.26   $516,596.36 /                       Software Powered by ShopView                                                  Page 7 of 7; customer lines with $0.00: 0",
+  "evidence": [
+   "V1R-34 - PDF text first and last lines.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:20:02.886Z",
+  "utc_end": "2026-11-11T12:20:16.091Z"
+ },
+ "V1R-35": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "Step 3: bucket shows (0)",
+    "ok": true,
+    "saw": "keyboard_arrow_right 61-90 days past due (0) Total $0.00 $0.00"
+   },
+   {
+    "what": "Step 7: PDF prints the empty bucket heading and \"Total for 61-90 days past due\" with $0.00",
+    "ok": false,
+    "saw": "no \"61-90 days past due\" anywhere in the PDF; buckets printed: 31-60 days past due"
+   }
+  ],
+  "observed": "OK Step 3: bucket shows (0): keyboard_arrow_right 61-90 days past due (0) Total $0.00 $0.00 | NOT OK Step 7: PDF prints the empty bucket heading and \"Total for 61-90 days past due\" with $0.00: no \"61-90 days past due\" anywhere in the PDF; buckets printed: 31-60 days past due",
+  "expect_fail_outcome": "matches the stated symptom (only buckets holding a document are printed)",
+  "note": "Narrowed with the Customer chip to ZZAUTOTEST AR R13 Payment After, whose only open document sits in 31-60, so four buckets are empty.",
+  "evidence": [
+   "V1R-35 - step 3 empty bucket count.png",
+   "V1R-35 - PDF text.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:14:19.247Z",
+  "utc_end": "2026-11-11T12:14:32.033Z"
+ },
+ "V1R-36": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "Step 7: only customer X, with its lines, \"Total for\" X and a Totals row",
+    "ok": false,
+    "saw": "customer X present: true; Z present: false; other ZZAUTOTEST customers: none; lines: 11"
+   }
+  ],
+  "observed": "NOT OK Step 7: only customer X, with its lines, \"Total for\" X and a Totals row: customer X present: true; Z present: false; other ZZAUTOTEST customers: none; lines: 11",
+  "evidence": [
+   "V1R-36 - PDF text.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:14:32.319Z",
+  "utc_end": "2026-11-11T12:14:45.216Z"
+ },
+ "V1R-68": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "Step 3: explanation appears, starting with the quoted sentence",
+    "ok": true,
+    "saw": "Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell."
+   },
+   {
+    "what": "Step 4: disappears",
+    "ok": true,
+    "saw": "(nothing)"
+   },
+   {
+    "what": "Step 5: click shows it",
+    "ok": false,
+    "saw": ""
+   },
+   {
+    "what": "Step 6: click again hides it",
+    "ok": true,
+    "saw": "(nothing)"
+   },
+   {
+    "what": "Step 7: Tab focus shows it",
+    "ok": true,
+    "saw": "Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. [icon reached by Tab: true, after 42 presses]"
+   },
+   {
+    "what": "Step 8: Escape hides it",
+    "ok": true,
+    "saw": "(nothing)"
+   }
+  ],
+  "observed": "OK Step 3: explanation appears, starting with the quoted sentence: Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. | OK Step 4: disappears: (nothing) | NOT OK Step 5: click shows it:  | OK Step 6: click again hides it: (nothing) | OK Step 7: Tab focus shows it: Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell. [icon reached by Tab: true, after 42 presses] | OK Step 8: Escape hides it: (nothing)",
+  "evidence": [
+   "V1R-68 - step 3 pointer on the icon.png",
+   "V1R-68 - step 3 after first click.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:27:08.683Z",
+  "utc_end": "2026-11-11T12:28:11.581Z"
+ },
+ "V1R-69": {
+  "verdict": "BLOCKED",
+  "observed": "automation browser cannot load the chart section; needs a person - the screen works on the QA lead's device (11 Nov 2026)",
+  "evidence": [
+   "V1R-69 - section failed to load.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:15:02.999Z",
+  "utc_end": "2026-11-11T12:15:57.928Z"
+ },
+ "V1R-70": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "Step 3: explanation appears",
+    "ok": true,
+    "saw": "The total value of completed work order lines on work orders that are still in progress."
+   },
+   {
+    "what": "Step 4: disappears",
+    "ok": true,
+    "saw": "(nothing)"
+   },
+   {
+    "what": "Step 5: click shows it",
+    "ok": false,
+    "saw": ""
+   },
+   {
+    "what": "Step 6: click again hides it",
+    "ok": true,
+    "saw": "(nothing)"
+   }
+  ],
+  "observed": "OK Step 3: explanation appears: The total value of completed work order lines on work orders that are still in progress. | OK Step 4: disappears: (nothing) | NOT OK Step 5: click shows it:  | OK Step 6: click again hides it: (nothing)",
+  "evidence": [
+   "V1R-70 - step 3 pointer on the icon.png",
+   "V1R-70 - step 3 after first click.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:15:58.197Z",
+  "utc_end": "2026-11-11T12:16:13.854Z"
+ },
+ "V1R-71": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Precondition: at location A",
+    "ok": true,
+    "saw": "Staging Heavy Duty - 9919 AS"
+   },
+   {
+    "what": "Step 2: \"Switch location?\" asking to switch to location B",
+    "ok": true,
+    "saw": "Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch Location"
+   },
+   {
+    "what": "Step 4: on the work order list with \"Switch cancelled. Returning to work orders.\"",
+    "ok": true,
+    "saw": "address https://sv11315.qa.shopview.com/workorders; message \"info Switch cancelled. Returning to work orders. Close\"; still at Staging Heavy Duty - 9919 AS"
+   }
+  ],
+  "observed": "OK Precondition: at location A: Staging Heavy Duty - 9919 AS | OK Step 2: \"Switch location?\" asking to switch to location B: Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch Location | OK Step 4: on the work order list with \"Switch cancelled. Returning to work orders.\": address https://sv11315.qa.shopview.com/workorders; message \"info Switch cancelled. Returning to work orders. Close\"; still at Staging Heavy Duty - 9919 AS",
+  "evidence": [
+   "V1R-71 - step 2 prompt.png",
+   "V1R-71 - step 2 after Cancel.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:18:51.393Z",
+  "utc_end": "2026-11-11T12:19:06.243Z"
+ },
+ "V1R-72": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "Precondition: at location A",
+    "ok": true,
+    "saw": "Staging Heavy Duty - 9919 AS"
+   },
+   {
+    "what": "Step 2: \"Switch location?\" with \"This part sale is in Staging Lethbridge - 4310. Switch your active location to view it?\"",
+    "ok": true,
+    "saw": "Switch location? close This part sale is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch Location"
+   },
+   {
+    "what": "Step 4: on the part sales list with \"Switch canceled. Returning to part sales.\"",
+    "ok": false,
+    "saw": "address https://sv11315.qa.shopview.com/workorders; message \"info Switch canceled. Returning to part sales. Close\""
+   }
+  ],
+  "observed": "OK Precondition: at location A: Staging Heavy Duty - 9919 AS | OK Step 2: \"Switch location?\" with \"This part sale is in Staging Lethbridge - 4310. Switch your active location to view it?\": Switch location? close This part sale is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch Location | NOT OK Step 4: on the part sales list with \"Switch canceled. Returning to part sales.\": address https://sv11315.qa.shopview.com/workorders; message \"info Switch canceled. Returning to part sales. Close\"",
+  "evidence": [
+   "V1R-72 - step 2 prompt.png",
+   "V1R-72 - step 2 after Cancel.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:19:06.465Z",
+  "utc_end": "2026-11-11T12:19:20.667Z"
+ },
+ "V1R-04": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: date set",
+    "ok": true,
+    "saw": "As of: 10/01/2026"
+   },
+   {
+    "what": "Step 4: switched to B",
+    "ok": true,
+    "saw": "Staging Lethbridge - 4310 AS"
+   },
+   {
+    "what": "Step 5: still on A/R Aging Summary, chip 10/01/2026",
+    "ok": true,
+    "saw": "title \"A/R Aging Summary\", chip As of: 10/01/2026, address https://sv11315.qa.shopview.com/reports/ar-aging-summary?asOfDate=2026-10-01"
+   }
+  ],
+  "observed": "OK Step 3: date set: As of: 10/01/2026 | OK Step 4: switched to B: Staging Lethbridge - 4310 AS | OK Step 5: still on A/R Aging Summary, chip 10/01/2026: title \"A/R Aging Summary\", chip As of: 10/01/2026, address https://sv11315.qa.shopview.com/reports/ar-aging-summary?asOfDate=2026-10-01",
+  "cleanup": "switched back: Staging Heavy Duty - 9919 AS",
+  "evidence": [
+   "V1R-04 - step 5 after switching to location B.png",
+   "V1R-04 - cleanup switched back to location A.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:16:50.424Z",
+  "utc_end": "2026-11-11T12:17:14.112Z"
+ },
+ "V1R-32": {
+  "verdict": "BLOCKED",
+  "observed": "Needs a second user whose role has Reports page access but no Customers View. The only session available is the QA lead's own Admin session, and signing in as anyone else would mean calling the login endpoint on QA, which this run must never do (it ends the shared SSO session). What needs to be done: the QA lead (or a dedicated test login) signs in with such a role and runs steps 1-4.",
+  "evidence": [],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:17:14.408Z",
+  "utc_end": "2026-11-11T12:17:14.505Z"
+ },
+ "V1R-53": {
+  "verdict": "BLOCKED",
+  "observed": "Needs a second user whose role has only Reports page access (no Vendor Order Management, Customers or Invoicing). Same reason as V1R-32: only the QA lead's Admin session is available and signing in as another user is not allowed on QA. What needs to be done: run with such a role.",
+  "evidence": [],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:17:14.789Z",
+  "utc_end": "2026-11-11T12:17:14.888Z"
+ },
+ "V1R-76": {
+  "verdict": "BLOCKED",
+  "observed": "Precondition cannot be set up: an invoice paid MORE than its amount. Rung tried: the payment call the front end makes (POST /api/customer-account/create-customer-payment) applying $120.00 to the $100.00 invoice of ZZAUTOTEST AR R76 Overpaid answers 400 \"Transaction cannot be overpaid.\" Paying more than an invoice in the app instead makes a separate deposit for the excess (proved on R18/R19), which is not an overpaid invoice. What needs to be done: a developer stores one overpaid invoice on QA (or names an existing one), then run this case.",
+  "evidence": [],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:17:15.179Z",
+  "utc_end": "2026-11-11T12:17:15.257Z"
+ },
+ "V1R-82": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Precondition: A/P Detail over 2,000 lines",
+    "ok": true,
+    "saw": "11935 + 708 + 723 + 496 + 28 = 13890"
+   },
+   {
+    "what": "Step 5 (PRD): no download and \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\"",
+    "ok": true,
+    "saw": "download: null; messages [\"warning This report is too large for PDF. Export it as CSV, or narrow the filters, then try again. Close\"]"
+   },
+   {
+    "what": "Step 9: CSV has one row per document = sum of bucket counts",
+    "ok": true,
+    "saw": "CSV document rows 13890 vs 13890"
+   },
+   {
+    "what": "Step 12: A/R Detail (under 2,000 lines) still gives a PDF",
+    "ok": true,
+    "saw": "ar-aging-detail.pdf"
+   }
+  ],
+  "observed": "OK Precondition: A/P Detail over 2,000 lines: 11935 + 708 + 723 + 496 + 28 = 13890 | OK Step 5 (PRD): no download and \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\": download: null; messages [\"warning This report is too large for PDF. Export it as CSV, or narrow the filters, then try again. Close\"] | OK Step 9: CSV has one row per document = sum of bucket counts: CSV document rows 13890 vs 13890 | OK Step 12: A/R Detail (under 2,000 lines) still gives a PDF: ar-aging-detail.pdf",
+  "facts": {
+   "counts": [
+    11935,
+    708,
+    723,
+    496,
+    28
+   ]
+  },
+  "evidence": [
+   "V1R-82 - step 5 PDF message.png",
+   "V1R-82 - CSV head and counts.json"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:21:26.341Z",
+  "utc_end": "2026-11-11T12:22:04.524Z"
+ },
+ "V1R-84": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 3: count in brackets",
+    "ok": true,
+    "saw": "268"
+   },
+   {
+    "what": "Step 5 (PRD): 100 lines first",
+    "ok": true,
+    "saw": "100"
+   },
+   {
+    "what": "Step 7: every line there, total = count",
+    "ok": true,
+    "saw": "268 distinct lines seen"
+   },
+   {
+    "what": "Step 8: \"Total for\" the bucket with Amount and Open balance",
+    "ok": true,
+    "saw": "Total for 1-30 days past due $103,028.88 $101,628.88"
+   }
+  ],
+  "observed": "OK Step 3: count in brackets: 268 | OK Step 5 (PRD): 100 lines first: 100 | OK Step 7: every line there, total = count: 268 distinct lines seen | OK Step 8: \"Total for\" the bucket with Amount and Open balance: Total for 1-30 days past due $103,028.88 $101,628.88",
+  "evidence": [
+   "V1R-84 - step 5 first load.png",
+   "V1R-84 - step 8 end of bucket.png"
+  ],
+  "marker": "v26.45.2-6a8b89c",
+  "utc_start": "2026-11-11T12:17:53.038Z",
+  "utc_end": "2026-11-11T12:18:04.222Z"
  }
 }
