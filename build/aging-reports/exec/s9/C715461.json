@@ -45,6 +45,147 @@
    ],
    "totals": "Totals $4,763,170.68 $4,762,290.72",
    "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715461-0-open.png"
+  },
+  {
+   "label": "1-AB",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: 2 vendors keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_down Date arrow_drop_up | Location arrow_drop_up | Transaction Type arrow_drop_up | No. arrow_drop_up | Vendor Name | Due Date arrow_drop_up | Past Due arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_down | ZZY Tot Vend A R1 (3)",
+    "Sep 27, 2026 | Staging Lethbridge - 4310 | Invoice | ZZY95551461 | ZZY Tot Vend A R1 | Sep 27, 2026 | 45 | $400.00 | $400.00",
+    "Oct 27, 2026 | Staging Heavy Duty - 9919 | Invoice | ZZY95550572 | ZZY Tot Vend A R1 | Oct 27, 2026 | 15 | $1,000.00 | $1,000.00",
+    "Nov 6, 2026 | Staging Heavy Duty - 9919 | Vendor Credit | C-13669 | ZZY Tot Vend A R1 | — | — | $-150.00 | $-150.00",
+    "Total for ZZY Tot Vend A R1 | $1,250.00 | $1,250.00",
+    "keyboard_arrow_down | ZZY Tot Vend B R1 (2)",
+    "Aug 3, 2026 | Staging Lethbridge - 4310 | Invoice | ZZY95554083 | ZZY Tot Vend B R1 | Aug 3, 2026 | 100 | $250.00 | $250.00",
+    "Sep 27, 2026 | Staging Heavy Duty - 9919 | Invoice | ZZY95553244 | ZZY Tot Vend B R1 | Sep 27, 2026 | 45 | $700.00 | $700.00",
+    "Total for ZZY Tot Vend B R1 | $950.00 | $950.00",
+    "Totals | $2,200.00 | $2,200.00"
+   ],
+   "totals": "Totals $2,200.00 $2,200.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715461-1-AB.png"
+  },
+  {
+   "label": "2-3-pastdue-31-60",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: 2 vendors keyboard_arrow_down cancel",
+    "hourglass_empty Past due: 31-60 days keyboard_arrow_down cancel",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_down Date arrow_drop_up | Location arrow_drop_up | Transaction Type arrow_drop_up | No. arrow_drop_up | Vendor Name | Due Date arrow_drop_up | Past Due arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_down | ZZY Tot Vend A R1 (2)",
+    "Sep 27, 2026 | Staging Lethbridge - 4310 | Invoice | ZZY95551461 | ZZY Tot Vend A R1 | Sep 27, 2026 | 45 | $400.00 | $400.00",
+    "Nov 6, 2026 | Staging Heavy Duty - 9919 | Vendor Credit | C-13669 | ZZY Tot Vend A R1 | — | — | $-150.00 | $-150.00",
+    "Total for ZZY Tot Vend A R1 | $250.00 | $250.00",
+    "keyboard_arrow_down | ZZY Tot Vend B R1 (1)",
+    "Sep 27, 2026 | Staging Heavy Duty - 9919 | Invoice | ZZY95553244 | ZZY Tot Vend B R1 | Sep 27, 2026 | 45 | $700.00 | $700.00",
+    "Total for ZZY Tot Vend B R1 | $700.00 | $700.00",
+    "Totals | $950.00 | $950.00"
+   ],
+   "totals": "Totals $950.00 $950.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715461-2-3-pastdue-31-60.png"
+  },
+  {
+   "label": "4-5-no-lethbridge",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: 2 vendors keyboard_arrow_down cancel",
+    "hourglass_empty Past due: 31-60 days keyboard_arrow_down cancel",
+    "place Location: Staging Heavy D... keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_down Date arrow_drop_up | Transaction Type arrow_drop_up | No. arrow_drop_up | Vendor Name | Due Date arrow_drop_up | Past Due arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_down | ZZY Tot Vend A R1 (1)",
+    "Nov 6, 2026 | Vendor Credit | C-13669 | ZZY Tot Vend A R1 | — | — | $-150.00 | $-150.00",
+    "Total for ZZY Tot Vend A R1 | $-150.00 | $-150.00",
+    "keyboard_arrow_down | ZZY Tot Vend B R1 (1)",
+    "Sep 27, 2026 | Invoice | ZZY95553244 | ZZY Tot Vend B R1 | Sep 27, 2026 | 45 | $700.00 | $700.00",
+    "Total for ZZY Tot Vend B R1 | $700.00 | $700.00",
+    "Totals | $550.00 | $550.00"
+   ],
+   "totals": "Totals $550.00 $550.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715461-4-5-no-lethbridge.png"
+  },
+  {
+   "step": "PDF-6-pdf",
+   "r": {
+    "kind": "PDF",
+    "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715461-6-pdf-ap-unpaid-invoices.pdf",
+    "name": "ap-unpaid-invoices.pdf",
+    "bytes": 76747,
+    "notes": [
+     "check_circle Success Data exported successfully. Close"
+    ],
+    "toast": null,
+    "text": [
+     "A/P Unpaid Invoices",
+     "Staging Foothills Group Inc",
+     "As of Nov 11, 2026",
+     "Locations: Staging Heavy Duty - 9919",
+     "Past due: 31-60 days",
+     "Vendors: ZZY Tot Vend A R1, ZZY Tot Vend B R1",
+     "Date  Transaction Type  No.  Vendor Name  Due Date  Past Due  Amount  Open Balance",
+     "ZZY Tot Vend A R1",
+     "Nov 6, 2026  Vendor Credit  C-13669  ZZY Tot Vend A R1  —  —  (-$150.00)  (-$150.00)",
+     "Subtotal  (-$150.00)  (-$150.00)",
+     "ZZY Tot Vend B R1",
+     "Sep 27, 2026  Invoice  ZZY95553244  ZZY Tot Vend B R1  Sep 27, 2026  45  $700.00  $700.00",
+     "Subtotal  $700.00  $700.00",
+     "Totals  $550.00  $550.00",
+     "Software Powered by ShopView  Page 1 of 1"
+    ]
+   }
+  },
+  {
+   "step": "CSV-8-csv",
+   "r": {
+    "kind": "CSV",
+    "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715461-8-csv-ap-unpaid-invoices.csv",
+    "name": "ap-unpaid-invoices.csv",
+    "bytes": 399,
+    "notes": [
+     "check_circle Success Data exported successfully. Close",
+     "check_circle Success Data exported successfully. Close 2"
+    ],
+    "toast": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715461-8-csv-toast.png",
+    "raw": [
+     "﻿\"As of: Nov 11, 2026\"",
+     "\"Locations: Staging Heavy Duty - 9919\"",
+     "\"Past due: 31-60 days\"",
+     "\"Vendors: ZZY Tot Vend A R1, ZZY Tot Vend B R1\"",
+     "Date,\"Transaction Type\",No.,\"Vendor Name\",\"Due Date\",\"Past Due\",Amount,\"Open Balance\"",
+     "2026-11-06,\"Vendor Credit\",C-13669,\"ZZY Tot Vend A R1\",,,-150.00,-150.00",
+     "2026-09-27,Invoice,ZZY95553244,\"ZZY Tot Vend B R1\",2026-09-27,45,700.00,700.00",
+     "Totals,,,,,,550.00,550.00",
+     ""
+    ],
+    "csvN": 8
+   }
   }
+ ],
+ "expanded-1-AB": true,
+ "expanded-2-3-pastdue-31-60": true,
+ "expanded-4-5-no-lethbridge": true,
+ "pdfTotals": [
+  "Totals  $550.00  $550.00"
+ ],
+ "csvTotals": [
+  [
+   "Totals",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "550.00",
+   "550.00"
+  ]
  ]
 }

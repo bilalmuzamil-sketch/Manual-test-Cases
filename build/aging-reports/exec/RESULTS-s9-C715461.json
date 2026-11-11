@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715461": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Unpaid Invoices Report, as of 11/11/2026; new vendors ZZY Tot Vend A/B/C R1: A = $1,000 bill at Heavy Duty 15 days past due, $400 at Lethbridge 45 days, $150 vendor credit at Heavy Duty; B = $700 Heavy Duty 45 days, $250 Lethbridge 100 days; C = $900 Heavy Duty 5 days.",
+    "Step 1: vendors A and B ticked - only their documents remain (C's $900 gone); Totals row Open Balance $2,200.00.",
+    "Step 2: chip reads \"Past due: 31-60 days\".",
+    "Step 3: rows are the $400.00 and $700.00 bills (45 days past due) and the $150.00 vendor credit (kept); Totals $950.00.",
+    "Step 4: Lethbridge unticked - the report narrows to Heavy Duty.",
+    "Step 5: rows are the $700.00 bill and the $150.00 vendor credit; Totals $550.00.",
+    "Steps 6-7: the PDF downloads; its Totals row reads $550.00, the same as the screen.",
+    "Steps 8-9: the CSV downloads; its Totals row reads 550.00, the same as the screen."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715461-1-AB.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715461-2-3-pastdue-31-60.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715461-4-5-no-lethbridge.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715461-PDF-6-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715461-CSV-8-csv.png"
+   ]
+  }
+ }
+}
