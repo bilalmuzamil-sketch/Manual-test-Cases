@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, q2 + pr5"
+ },
+ "results": {
+  "C715582": {
+   "verdict": "Passed",
+   "observed": [
+    "Before the release (production v26.45.3-f5ba431) the drill-down from A/R Aging Summary writes the address as \".../reports/ar-aging-collection?customerName=<name>&customerId=<id>\" and from A/P Aging Summary as \".../reports/ap-unpaid-invoices?vendorName=<name>&vendorId=<id>\". Addresses in exactly that old form were used, for customer \"#1 Diesel\" and vendor \"#1 Diesel\".",
+    "Step 1: from Dashboard, pasting the old A/R Collection address opens A/R Aging Collection with no error message; the chip reads \"Customer: #1 Diesel\" and only #1 Diesel's group is listed (1 document, $174.04).",
+    "Step 2: pasting the old A/P Unpaid Invoices address opens \"A/P Unpaid Invoices Report\" with no error message; the chip reads \"Vendor: #1 Diesel\" and only #1 Diesel's group is listed (1 document, $36.00).",
+    "The address bar then shows the new form (customerIds= / vendorIds=)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715582-prod-91-C715582-prod-ar-drill.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715582-q2-01-C715582-ar.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715582-q2-02-C715582-ap.png"
+   ]
+  }
+ }
+}
