@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S5 (sv11315)"
+ },
+ "results": {
+  "C1062586": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of 11/11/2026. Date A = 10/01/2026, on which both Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 had open documents in A/R Detail (read from the report's location list for that date).",
+    "Step 1: \"Clear selection\" in the Location menu: no location ticked.",
+    "Step 2: menu closed: the chip reads \"Location: No locations\"; the table shows \"No record matches these filters\".",
+    "Step 3: as-of changed to 10/01/2026: the date chip shows it; the Location chip still reads \"Location: No locations\" and the table still shows \"No record matches these filters\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062586-1-2-no-locations.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062586-2-3-date-A.png"
+   ]
+  }
+ }
+}
