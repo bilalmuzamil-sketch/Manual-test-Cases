@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s84"
+ },
+ "results": {
+  "C1062576": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail as of 11/11/2026, only customer \"ZZX Types P68\" ticked (invoice A S11315-17898, unused credit memo A CM11315-4319, unused deposit A DEP11315-4719).",
+    "Step 1: \"Download (PDF)\" downloads ar-aging-detail.pdf; \"Success - Data exported successfully.\" shows.",
+    "Step 2: in the PDF invoice A reads \"Invoice\", credit memo A \"Credit Memo\" and deposit A \"Deposit\"; no row reads \"Credit\".",
+    "Step 3: \"Download (CSV)\" downloads ar-aging-detail.csv.",
+    "Step 4: its Transaction Type column reads \"Credit Memo\", \"Deposit\", \"Invoice\" for the same three documents - the same as the PDF; no row reads \"Credit\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062576-1-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062576-2-csv.png"
+   ]
+  }
+ }
+}
