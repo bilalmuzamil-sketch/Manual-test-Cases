@@ -1,0 +1,35 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s78"
+ },
+ "results": {
+  "C715409": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R reports opened from the Reports menu as of 11/11/2026, All locations (two locations in view).",
+    "Step 1: A/R Aging Summary headings: Customer, Location, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total - \"Location\" right after the customer name, before the money columns.",
+    "Step 2: A/R Aging Detail headings: Date, Location, Transaction Type, ID, Customer Full Name, Due Date, Amount, Open Balance - \"Location\" (not \"Location Full Name\") right after Date; ID and Customer Full Name keep their names.",
+    "Step 3: A/R Aging Collection headings: Date, Location, Transaction Type, ID, Due Date, Past Due, Amount, Open Balance - \"Location\" right after Date."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715409-ars.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715409-ard.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715409-arc.png"
+   ]
+  },
+  "C715410": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P reports opened from the Reports menu as of 11/11/2026, All locations (two locations in view).",
+    "Step 1: A/P Aging Summary headings: Vendor, Location, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total - \"Location\" right after the vendor name, before the money columns.",
+    "Step 2: A/P Aging Detail headings: Date, Location, Transaction Type, No., Vendor Name, Due Date, Past Due, Amount, Open Balance - \"Location\" (not \"Location Name\") right after Date; No. and Vendor Name keep their names.",
+    "Step 3: A/P Unpaid Invoices headings: Date, Location, Transaction Type, No., Vendor Name, Due Date, Past Due, Amount, Open Balance - \"Location\" right after Date."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715410-aps.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715410-apd.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715410-apu.png"
+   ]
+  }
+ }
+}
