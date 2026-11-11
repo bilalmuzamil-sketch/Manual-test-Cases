@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, PDF size limit (p48)"
+ },
+ "results": {
+  "C715467": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, as of 11/11/2026, all vendors: 13,708 open lines (91+ 11,927, 61-90 702, 31-60 709, 1-30 365, Current 5).",
+    "Step 1: Download (PDF) showed \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\" straight away (the server answered in under a second); exactly one message, no second error; no PDF downloaded (watched for 60 seconds).",
+    "Step 2: Download (CSV) downloaded the file (ap-aging-detail.csv) with the Success message.",
+    "Step 3: the CSV holds 13,708 document rows plus one Totals row - the same count as the report."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715467-0-report.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715467-1-pdf-refused.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715467-3-csv.png"
+   ]
+  }
+ }
+}

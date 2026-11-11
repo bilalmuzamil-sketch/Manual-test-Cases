@@ -63,5 +63,125 @@
  "s3": {
   "docRows": 0,
   "lines": 2005
+ },
+ "s4": {
+  "kind": "PDF",
+  "file": null,
+  "notes": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "toast": "/home/user/Manual-test-Cases/build/aging-reports/exec/p48/469-pdf-2000-toast.png",
+  "secs": 242,
+  "calls": [
+   {
+    "u": "ap-aging-detail/export?asOfDate=2026-11-11&vendors=30bd442f-c0d7-4899-b04f-61c2b7549685%2Cd8179074-1c7f-408e-b153-39b800617c49%2C8e45ebd5-454c-4d46-8b78-14c90714b29b&pagination%5Bpage%5D=1&pagination%",
+    "st": 500,
+    "ms": 31801
+   }
+  ]
+ },
+ "s5": {
+  "chips": [
+   "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "local_shipping Vendor: 4 vendors keyboard_arrow_down cancel",
+   "hourglass_empty Past due: Any keyboard_arrow_down",
+   "place Location: All locations keyboard_arrow_down cancel"
+  ],
+  "rows": {
+   "buckets": [
+    1818,
+    73,
+    82,
+    28,
+    0
+   ],
+   "sum": 2001
+  }
+ },
+ "s6": {
+  "kind": "PDF",
+  "file": null,
+  "notes": [
+   "warning This report is too large for PDF. Export it as CSV, or narrow the filters, then try again. Close"
+  ],
+  "toast": "/home/user/Manual-test-Cases/build/aging-reports/exec/p48/469-pdf-2001-toast.png",
+  "secs": 62,
+  "calls": [
+   {
+    "u": "ap-aging-detail/export?asOfDate=2026-11-11&vendors=30bd442f-c0d7-4899-b04f-61c2b7549685%2Cd8179074-1c7f-408e-b153-39b800617c49%2C8e45ebd5-454c-4d46-8b78-14c90714b29b%2C772a84c3-4d82-4124-9ca7-66d96837",
+    "st": 400,
+    "ms": 340
+   },
+   {
+    "u": "https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794392135455&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=343348493.1794392099&frm",
+    "st": 204,
+    "ms": 297
+   }
+  ]
+ },
+ "k1": {
+  "chips": [
+   "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "local_shipping Vendor: All vendors keyboard_arrow_down",
+   "hourglass_empty Past due: Any keyboard_arrow_down",
+   "place Location: All locations keyboard_arrow_down cancel"
+  ],
+  "rows": {
+   "buckets": [
+    11927,
+    702,
+    709,
+    365,
+    5
+   ],
+   "sum": 13708
+  }
+ },
+ "k2": {
+  "kind": "PDF",
+  "file": null,
+  "notes": [
+   "warning This report is too large for PDF. Export it as CSV, or narrow the filters, then try again. Close"
+  ],
+  "toast": "/home/user/Manual-test-Cases/build/aging-reports/exec/p48/467-pdf-toast.png",
+  "secs": 62,
+  "calls": [
+   {
+    "u": "ap-aging-detail/export?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false&format=pdf",
+    "st": 400,
+    "ms": 763
+   },
+   {
+    "u": "https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794392492905&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=343348493.1794392099&frm",
+    "st": 204,
+    "ms": 176
+   }
+  ]
+ },
+ "k3": {
+  "kind": "CSV",
+  "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/p48/467-csv-ap-aging-detail.csv",
+  "name": "ap-aging-detail.csv",
+  "bytes": 1987463,
+  "notes": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "toast": null,
+  "calls": [
+   {
+    "u": "https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794392492905&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=343348493.1794392099&frm",
+    "st": 204,
+    "ms": 333
+   },
+   {
+    "u": "ap-aging-detail/export?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false&format=csv",
+    "st": 200,
+    "ms": 8668
+   }
+  ]
+ },
+ "k4": {
+  "docRows": 0,
+  "lines": 13712
  }
 }
