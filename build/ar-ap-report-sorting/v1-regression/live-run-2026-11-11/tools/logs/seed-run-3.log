@@ -1,0 +1,10 @@
+  [location -> B]
+  OK doc:R03:inv {"wo": "df6c69b1-21c9-4dcf-b0dc-a3788b5efcd2", "wo_number": "S-17835", "invoice_id": "baa6f9f1-12bc-4c60-84e6-43993eede4b7", "account": "0e819cb6-b20b-4c1f-a86d
+  [location -> A]
+  FAIL doc:R19:dep_free: list index out of range
+  OK doc:R36Z:inv {"wo": "7f181973-5db8-40d6-aeba-7d379fba1d62", "wo_number": "S-17865", "invoice_id": "76dfe870-5018-410d-86eb-419e09246b9e", "account": "c4eff088-1f0b-4a67-8b57
+  FAIL doc:R76:pay: payment: HTTP 400 {"errors":[{"error":"Transaction cannot be overpaid."}]}
+  OK doc:P26:bill {"order": "2b8affac-d36a-4573-adfe-79de4c0f761e", "po_number": "I-1726", "number": "ZZT-P26-BILL", "txn": "27e82c44-042c-48c6-bd99-cc59bda4ef11", "delivery": "0
+  FAIL doc:P27:pay: vendor payment: HTTP 400 {"errors":[{"error":"Vendor transaction cannot be overpaid."}]}
+  OK doc:P75:vc_yday {"manual_return": "033a1902-4858-48f2-9c28-44c92a4d75e9", "return": "a8495acd-f8d7-4b39-b1a1-6e95b2852a6c", "memo": "ZZT-VC-P75-VC_YDAY", "type": "vendor_credit
+anchor 2026-11-11 | done 82 | failed 3 | total 85

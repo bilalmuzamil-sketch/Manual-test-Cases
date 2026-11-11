@@ -24,26 +24,38 @@ TODAY = datetime.date.fromisoformat(L.get('anchor') or datetime.datetime.now(Zon
 if not L.get('anchor'): L.put('anchor', TODAY.isoformat())
 def day(ago): return TODAY - datetime.timedelta(days=ago)
 def sql_dt(ago): return f'{day(ago).isoformat()} 18:00:00'
-def iso(ago): return f'{day(ago).isoformat()}T18:00:00.000Z'
+def iso(ago):
+    # A document dated TODAY must carry a time already past: the as-of instant for today is NOW, so an
+    # 18:00Z stamp would sit in the future until 18:00Z (found 11 Nov 2026: two 'today' credits missing).
+    if ago == 0:
+        return (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(minutes=5)).strftime('%Y-%m-%dT%H:%M:%S.000Z')
+    return f'{day(ago).isoformat()}T18:00:00.000Z'
 CUR = {'loc': 'A'}
 def at(loc):
     if CUR['loc'] == loc: return
     wid, tz = WP[ENV][loc]
     r = call(ENV, '/api/iam/change-location', 'POST', {'workplace_id': wid, 'workplace_timezone': tz}, allow_change_location=True)
     ok(r, f'change-location {loc}'); CUR['loc'] = loc; print(f'  [location -> {loc}]')
+    import seedlib
+    seedlib.CUR_LT.clear()
+    if loc != 'A':
+        seedlib.CUR_LT['fixed_total'] = True   # no labour type: LineDialog's fixed-line-total mode
 def unpaid_customer(acc):
     r = call(ENV, f'/api/customer-account/list-unpaid-transaction?accountId={acc}&pagination[page]=1&pagination[rowsPerPage]=100')
     return ok(r, 'unpaid')['response']['collection']
 def unpaid_vendor(acc):
     r = call(ENV, f'/api/parts-catalogue/vendor/transactions/list-unpaid-by-vendor-account?accountId={acc}&pagination[page]=1&pagination[rowsPerPage]=100')
     return ok(r, 'vunpaid')['response']['collection']
-def credit_memo(c, d):
+def credit_memo(c, d, used=()):
+    for x in unpaid_customer(c['account']):
+        if x['type'] == 'credit' and abs(x['amount']) == d['amount'] and str(x['date']).startswith(day(d['ago']).isoformat()) and x['id'] not in used:
+            return {'id': x['id'], 'number': x.get('credit_display_number'), 'reused_unrecorded': True}
     for body in ({'customer_account_id': c['account'], 'amount': d['amount'], 'reason': 'ZZAUTOTEST aging seed', 'origin_date': iso(d['ago'])},
                  {'customerAccountId': c['account'], 'amount': d['amount'], 'reason': 'ZZAUTOTEST aging seed', 'originDate': iso(d['ago'])}):
         r = call(ENV, '/api/credit-memos', 'POST', body)
         if r['status'] in (200, 201): break
     x = ok(r, 'credit memo')
-    return {'id': x.get('id'), 'number': x.get('creditNumber') or x.get('credit_number') or x.get('displayNumber'), 'raw': {k: x.get(k) for k in list(x)[:12]}}
+    return {'id': x.get('creditMemoId') or x.get('id'), 'number': x.get('creditNumber'), 'raw': {k: x.get(k) for k in list(x)[:12]}}
 def pay(c, inv_id, amount, ago, credits=None):
     rows = unpaid_customer(c['account'])
     row = dict([x for x in rows if x['reference_id'] == inv_id][0], transaction_payment_amount=amount, index=0)
@@ -57,6 +69,20 @@ def pay(c, inv_id, amount, ago, credits=None):
             'new_credit': 0, 'new_deposit': 0, 'payment_amount': cash, 'transactions': [row],
             'applied_deposits': [], 'applied_credits': applied}
     return {'id': ok(call(ENV, '/api/customer-account/create-customer-payment', 'POST', body), 'payment')['id']}
+def overpay_deposit(c, inv_id, inv_amount, d):
+    """A free-standing deposit is what the app makes from an overpayment (CreatePaymentCommandHandler
+    takeFromOverpayment, dated the payment date): pay the invoice in full plus the deposit amount."""
+    rows = unpaid_customer(c['account'])
+    row = dict([x for x in rows if x['reference_id'] == inv_id][0], transaction_payment_amount=inv_amount, index=0)
+    body = {'account_id': c['account'], 'primary_id': None, 'ibs_batch_id': None, 'payment_date': iso(d['ago']),
+            'payment_method': 'Cash', 'reference_number': 'ZZAUTOTEST', 'description': 'ZZAUTOTEST overpayment deposit',
+            'new_credit': d['amount'], 'new_deposit': d['amount'], 'payment_amount': inv_amount + d['amount'], 'transactions': [row],
+            'applied_deposits': [], 'applied_credits': []}
+    pid = ok(call(ENV, '/api/customer-account/create-customer-payment', 'POST', body), 'overpay deposit')['id']
+    deps = ok(call(ENV, f"/api/customer-deposits/list?accountId={c['account']}"), 'deposits')
+    coll = deps.get('collection') if isinstance(deps, dict) else deps
+    mine = [x for x in (coll or []) if abs(float(x.get('amount') or 0)) == d['amount']]
+    return {'payment_id': pid, 'id': (mine[0].get('id') if mine else None), 'number': (mine[0].get('creditNumber') or mine[0].get('credit_number')) if mine else None, 'deposits_seen': len(coll or [])}
 def free_deposit(c, d):
     body = {'account_id': c['account'], 'primary_id': None, 'ibs_batch_id': None, 'payment_date': iso(d['ago']),
             'payment_method': 'Cash', 'reference_number': 'ZZAUTOTEST', 'description': 'ZZAUTOTEST free deposit',
@@ -99,7 +125,7 @@ def vendor_credit(v, key, d):
         'items': [{'inventoryPartId': None, 'partNumber': 'ZZAGING-RET', 'partDescription': 'ZZAUTOTEST return',
                    'quantity': 1, 'costDecimal': d['amount'], 'restockingFeeDecimal': 0, 'returnReason': 'ZZAUTOTEST'}]}), 'manual return')
     rid = r.get('id') or r.get('manual_return_id') or r.get('return_id')
-    memo = f'ZZT-VC-{key}'.upper()
+    memo = f'ZZT-VC-{key}-{d["k"]}'.upper()
     x = ok(call(ENV, f'/api/part/manual-return/{rid}/create', 'POST', {'creditMemoNumber': memo, 'creditDate': iso(d['ago']),
         'tax': 0, 'note': 'ZZAUTOTEST'}), 'manual return credit')
     return {'manual_return': rid, 'return': x.get('return_id'), 'memo': memo}
@@ -137,8 +163,11 @@ def run():
                 c = customer(ENV, L, p['key'], p['name'])
                 if p.get('term') and not L.get(f'term:{p["key"]}'):
                     view = ok(call(ENV, f"/api/customers/view/{c['id']}"), 'view')['company']
-                    body = {k: view.get(k) for k in ('name', 'address_1', 'city', 'state_or_province', 'postal_code', 'country_code')}
-                    body.update({'id': c['id'], 'address': view.get('address_1'), 'phone': view.get('telephone'), 'credit_term': p['term']})
+                    # the payload CustomerDialog.vue sends (tax block included - without it the API answers 500)
+                    body = {k: view.get(k) for k in ('name', 'telephone', 'address_1', 'city', 'state_or_province', 'postal_code', 'country_code',
+                            'credit_limit', 'shop_supplies_charge', 'min_shop_supplies_charge', 'max_shop_supplies_charge', 'labour_type_id') if view.get(k) is not None}
+                    body.update({'id': c['id'], 'require_po': bool(view.get('require_po')), 'credit_term': p['term'], 'pin_notes': False, 'notes': None,
+                                 'tax': {'id': None, 'isEnabledLabor': True, 'isEnabledParts': True, 'isEnabledShopSupplies': True}})
                     ok(call(ENV, '/api/customers/change', 'POST', body), 'credit term')
                     got = ok(call(ENV, f"/api/customers/view/{c['id']}"), 'view')['company']['credit_term']
                     if got != p['term']: raise RuntimeError(f'credit term did not stick: {got}')
@@ -152,6 +181,17 @@ def run():
                     inv = L.get(f"doc:{p['key']}:{d['on']}"); cm = L.get(f"doc:{p['key']}:{d['credit']}")
                     rec = pay(c, inv['invoice_id'], d['amount'], d['ago'], credits=[{'id': cm['id'], 'amount': d['amount']}])
                 elif d['type'] == 'free_deposit': rec = free_deposit(c, d)
+                elif d['type'] == 'overpay_deposit':
+                    inv = L.get(f"doc:{p['key']}:{d['on']}"); rec = overpay_deposit(c, inv['invoice_id'], float(inv['total']), d)
+                elif d['type'] == 'overpay_invoice':
+                    inv = L.get(f"doc:{p['key']}:{d['on']}"); rec = pay(c, inv['invoice_id'], d['amount'], d['ago'])
+                elif d['type'] == 'credit_memo_many':
+                    made = L.get(f"many:{p['key']}:{d['k']}") or []
+                    while len(made) < d['repeat']:
+                        x = credit_memo(c, {'amount': d['amount'], 'ago': d['ago']}, used=tuple(m['id'] for m in made) + ('force-new',))
+                        if x.get('reused_unrecorded') and x['id'] in [m['id'] for m in made]: break
+                        made.append(x); L.put(f"many:{p['key']}:{d['k']}", made)
+                    rec = {'count': len(made), 'first': made[0]['number'], 'last': made[-1]['number']}
                 elif d['type'] == 'wo_deposit': rec = wo_deposit(c, d)
                 elif d['type'] == 'open_wo':
                     rec = {'wo': work_order(ENV, c)}
@@ -159,16 +199,27 @@ def run():
                 elif d['type'] == 'part_sale':
                     x = ok(call(ENV, '/api/part-sales', 'POST', {'customer_id': c['contact'], 'contact_id': c['contact'], 'vehicle_id': c['vehicle'],
                         'mileage': None, 'engine_hours': None, 'licence_plate': None, 'vin': None, 'company_id': c['id']}), 'part sale')
-                    rec = {'id': x.get('id')}
+                    rec = {'id': x.get('id') if isinstance(x, dict) else None, 'resp': x}
+                    if not rec['id']:
+                        lst = ok(call(ENV, f"/api/customers/view/{c['id']}"), 'view')['company']
+                        rec['part_sale_count'] = lst.get('part_sale_count')
                 else: raise RuntimeError('unknown type ' + d['type'])
                 if d and d.get('reverse') and d['type'] == 'payment':
                     ok(call(ENV, '/api/customer-account/reverse-customer-payment', 'POST', {'id': rec['id']}), 'reverse payment'); rec['reversed_now'] = True
+                if d and d.get('reverse') and d['type'] == 'overpay_deposit':
+                    # /deposits/{id}/reverse refuses a free deposit ("refund it to the customer ... or apply it") and the
+                    # refund route (cash-out) is switched off (SV-9904). Reversing the payment that made it stamps the
+                    # deposit reversed_at = now (proved 11 Nov 2026: DEP-4715 -> reversed).
+                    ok(call(ENV, '/api/customer-account/reverse-customer-payment', 'POST', {'id': rec['payment_id']}), 'reverse originating payment'); rec['reversed_now'] = True
                 if d and d.get('void'):
                     ok(call(ENV, f"/api/credit-memos/{rec['id']}/void", 'POST', {}), 'void'); rec['voided_now'] = True
             else:
                 v = vendor(p)
                 if d['type'] == 'bill': rec = bill(v, p['key'], d)
                 elif d['type'] == 'vendor_credit': rec = vendor_credit(v, p['key'], d)
+                elif d['type'] == 'vendor_credit_direct':
+                    ok(call(ENV, '/api/parts-catalogue/vendor/credit/create', 'POST', {'vendorId': v['id'], 'amount': d['amount'], 'memo': f"ZZT-DIRECT-{p['key']}"}), 'direct vendor credit')
+                    rec = {'memo': f"ZZT-DIRECT-{p['key']}", 'note': 'dated now by the API (no date field)'}
                 elif d['type'] == 'vpayment':
                     b = L.get(f"doc:{p['key']}:{d['on']}"); rec = vpay(v, b['txn'], d['amount'], d['ago'])
                 elif d['type'] == 'vapply_credit':

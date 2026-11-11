@@ -37,6 +37,12 @@ def customer(env, L, key, name):
 def work_order(env, c, workplace=None):
     body = {"is_vehicle_here": False, "company_id": c['id'], "vehicle_id": c['vehicle'], "customer_id": c['contact']}
     return ok(call(env, '/api/work-orders/create', 'POST', body), 'wo')['work_order_id']
+CUR_LT = {}
+def labour_type(env):
+    """The labour type must belong to the CURRENT location (a location-A type answers 400 at location B)."""
+    wo_lt = CUR_LT.get('wp')
+    if wo_lt: return wo_lt
+    return LABOUR_TYPE[env]
 def invoice(env, L, key, c, amount, created_on):
     """A tax-exempt, no-shop-supplies work order with one fixed-price line, completed and invoiced with
     created_on (the invoice's business date) = created_on (a 'YYYY-MM-DD HH:MM:SS' UTC string)."""
@@ -46,11 +52,15 @@ def invoice(env, L, key, c, amount, created_on):
     L.put(f'inv:{key}', {'wo': wo})
     ok(call(env, f'/api/work-orders/{wo}/tax', 'POST', {'tax': {'id': EXEMPT_TAX[env]}}), 'tax')
     ok(call(env, '/api/work-orders/change-shop-supplies-charge', 'POST', {'work_order_id': wo, 'shop_supplies_charge_amount': 0}), 'ss')
-    line = ok(call(env, '/api/work-orders/lines/create', 'POST', {"work_order_id": wo, "line_name": f"ZZAUTOTEST {key}",
+    lb = {"work_order_id": wo, "line_name": f"ZZAUTOTEST {key}",
         "description": "ZZAUTOTEST aging seed", "is_diagnosis": False, "is_warranty": False, "is_authorized_to_repair": False,
         "is_parts_required_are_authorized": False, "assigned_techs": [], "logged_techs": [], "time_estimate": "60",
-        "tech_time": "60", "status": "authorized", "another": False, "labour_type_id": LABOUR_TYPE[env],
-        "fixed_price": str(amount)}), 'line')['line_id']
+        "tech_time": "60", "status": "authorized", "another": False}
+    if CUR_LT.get('fixed_total'):
+        lb.update({"fixed_line_total": str(amount), "fixed_line_labor_price": str(amount), "fixed_line_parts_price": "0"})
+    else:
+        lb.update({"labour_type_id": labour_type(env), "fixed_price": str(amount)})
+    line = ok(call(env, '/api/work-orders/lines/create', 'POST', lb), 'line')['line_id']
     ok(call(env, '/api/work-orders/change-mileage', 'POST', {'work_order_id': wo, 'mileage': '184320'}), 'mileage')
     ok(call(env, '/api/work-orders/lines/change-story', 'POST', {'line_id': line, 'tech_story': 'ZZAUTOTEST', 'work_order_id': wo}), 'story')
     ok(call(env, '/api/work-orders/lines/change-status', 'POST', {'line_id': line, 'status': 'complete', 'workOrderId': wo}), 'line complete')

@@ -1,0 +1,65 @@
+  [location -> B]
+  FAIL doc:R03:inv: labor types: HTTP 404 {"errors":[{"error":"\u0027resource\u0027 was not found."}]}
+  OK doc:R71:ps {"id": null, "resp": [{"id": "1bd264cf-141a-474d-8b2a-48099f539b5f"}], "part_sale_count": 2, "type": "part_sale", "amount": null, "date": null, "at": "B"}
+  [location -> A]
+  OK doc:R07:inv {"wo": "f6b39159-11fb-48d0-8261-ec71602d7c95", "wo_number": "S-17848", "invoice_id": "98884022-54cd-4107-9322-d14073218980", "account": "c3ba10f4-a605-4b08-88b8
+  OK doc:R16:cm {"id": "d6a59f5f-f514-4820-8315-512160dbf63b", "number": "CM11315-4203", "reused_unrecorded": true, "voided_now": true, "type": "credit_memo", "amount": 25, "da
+  OK doc:R18:inv_dep {"wo": "1c262221-8f77-4201-bfac-ec00c4f35f44", "wo_number": "S-17849", "invoice_id": "058ca696-9c34-449a-bc6a-be53951dda82", "account": "71507e59-ee15-4b30-97db
+  OK doc:R18:dep_free {"payment_id": "70f38189-8298-40c9-a09b-7df4890c32b5", "id": "8320519f-bb83-491a-b99f-1c2164b2b78b", "number": "DEP-4714", "deposits_seen": 2, "type": "overpay_
+  OK doc:R19:inv_dep {"wo": "e855c222-948d-4b6d-b0a3-f60e69da3ff5", "wo_number": "S-17850", "invoice_id": "fab4f81c-127b-4997-b5a9-2f5a2985085e", "account": "9b536572-7388-4263-ad24
+  FAIL doc:R19:dep_free: reverse deposit: HTTP 400 {"errors":[{"error":"To remove this deposit, refund it to the customer (Refund cash) or apply it to an open invoice."}]}
+  OK doc:R30:inv_late {"wo": "aefd2a2f-b012-42c3-a8ac-5216f3f3190c", "wo_number": "S-17851", "invoice_id": "69a2d067-2a06-4a3f-ba1d-545df78ccd4a", "account": "4135ca56-e90d-40e7-b67d
+  OK doc:R30:inv_cur {"wo": "f4047bad-9d0a-4ac6-8df6-ea3c0e1f03d0", "wo_number": "S-17852", "invoice_id": "4bc49331-04ff-4cc5-8ed5-a7935c9f3472", "account": "4135ca56-e90d-40e7-b67d
+  OK doc:R30:cm {"id": "dacac1bb-31ef-4611-9abe-625857d419cc", "number": "CM-4208", "raw": {"creditMemoId": "dacac1bb-31ef-4611-9abe-625857d419cc", "creditNumber": "CM-4208", "
+  FAIL doc:R36Z:inv: invoice: HTTP 400 {"errors":[{"error":"Work order is not complete."}]}
+  OK doc:R41:inv {"wo": "75b39a8c-03b5-4799-8c31-0de2e0f09f59", "wo_number": "S-17853", "invoice_id": "50f1567c-12c6-4588-8118-d193023617a0", "account": "f185da0f-b6aa-4e23-871f
+  OK doc:R41:pay {"id": "86132f24-784b-4e8c-a4ac-6991466edaa1", "type": "payment", "amount": 100, "date": "2026-11-07", "at": "A"}
+  OK doc:R42:cm {"id": "2f293a68-279a-4e4e-8f4d-84aa9811e58b", "number": "CM-4209", "raw": {"creditMemoId": "2f293a68-279a-4e4e-8f4d-84aa9811e58b", "creditNumber": "CM-4209", "
+  OK doc:R44:inv1 {"wo": "0478f0c7-ca77-4265-97df-602db3a0fc5e", "wo_number": "S-17854", "invoice_id": "c7f31210-0c29-41ee-aa7c-ac37bbe1bf7b", "account": "7cbf29c5-653f-4319-a5a0
+  OK doc:R44:inv2 {"wo": "fc9267cf-9b5e-4a01-8ec9-6e5541c41441", "wo_number": "S-17855", "invoice_id": "368fcaa5-d819-491f-9b00-1a33711efef4", "account": "7cbf29c5-653f-4319-a5a0
+  OK doc:R45:invA {"wo": "519e4ab6-e850-4dee-975d-6aa4bd5d4614", "wo_number": "S-17856", "invoice_id": "c13690f0-4671-4d89-b72b-e249cc408007", "account": "5fb3bcc7-4d01-47a9-bb6a
+  OK doc:R45:invB {"wo": "995d735c-4e53-4cd4-bdbb-d37d0d9a1acb", "wo_number": "S-17857", "invoice_id": "7dd3f876-4c98-4fdd-96cf-de68e96a5e38", "account": "5fb3bcc7-4d01-47a9-bb6a
+  OK doc:R45:invC {"wo": "4291197a-cbc3-4a7a-b411-446311cd1a77", "wo_number": "S-17858", "invoice_id": "32c8a95c-e093-4de0-a5ea-fe56bff90f9e", "account": "5fb3bcc7-4d01-47a9-bb6a
+  OK doc:R45:cm {"id": "984e4905-1423-4be9-8899-4cb965cf5e9b", "number": "CM-4210", "raw": {"creditMemoId": "984e4905-1423-4be9-8899-4cb965cf5e9b", "creditNumber": "CM-4210", "
+  OK doc:R46:cm {"id": "086e2710-2bfe-44b0-bb85-1111128c2679", "number": "CM-4211", "raw": {"creditMemoId": "086e2710-2bfe-44b0-bb85-1111128c2679", "creditNumber": "CM-4211", "
+  OK doc:R47:inv_mid {"wo": "8c218da9-19dd-406e-b320-1623520f6a9e", "wo_number": "S-17859", "invoice_id": "b0d4f8d7-a5b3-41b2-9dfd-ca206ed2a671", "account": "fe159bf9-0adc-4433-91f2
+  OK doc:R47:inv_new {"wo": "e8326d08-a139-4764-b8d9-3b1c27d274c7", "wo_number": "S-17860", "invoice_id": "2e7c2f5a-9230-4d06-b5bb-6935a04ba788", "account": "fe159bf9-0adc-4433-91f2
+  OK doc:R47:inv_old {"wo": "5f98344a-7922-4fe1-9f47-4d0663bebccb", "wo_number": "S-17861", "invoice_id": "92e81f96-dbe0-48d5-bd5e-4c6f66e4866e", "account": "fe159bf9-0adc-4433-91f2
+  OK doc:R48:inv {"wo": "9f678c91-7b3e-41ea-878f-4f89f3f34fa7", "wo_number": "S-17862", "invoice_id": "c2fa8f54-23b6-4c16-aa50-ffccb2b0c450", "account": "eae3edca-4c55-4811-bd68
+  OK doc:R48:cm {"id": "a44cbdf5-c82e-4da3-9d83-7ce2f46488db", "number": "CM-4212", "raw": {"creditMemoId": "a44cbdf5-c82e-4da3-9d83-7ce2f46488db", "creditNumber": "CM-4212", "
+  OK cust-only:R51 {"customer": "e411b6c0-1a5d-48f2-99ca-681e1726e3eb"}
+  OK doc:R74:cm_today {"id": "7f5d9eca-fd08-46d6-a253-fe877550be06", "number": "CM-4213", "raw": {"creditMemoId": "7f5d9eca-fd08-46d6-a253-fe877550be06", "creditNumber": "CM-4213", "
+  OK doc:R74:cm_yday {"id": "fb2aab00-3f09-42e8-a3d1-702b88fe2d74", "number": "CM-4214", "raw": {"creditMemoId": "fb2aab00-3f09-42e8-a3d1-702b88fe2d74", "creditNumber": "CM-4214", "
+  OK doc:R74:inv {"wo": "936a61b2-90c1-4e3f-852c-7e8956d8669b", "wo_number": "S-17863", "invoice_id": "43eb2801-5034-495f-ac85-8f097972db3c", "account": "27e3f500-d249-406d-b23d
+  OK doc:R76:inv {"wo": "e1d703d8-9014-4749-a31c-ad2dcab48641", "wo_number": "S-17864", "invoice_id": "f8da379e-feda-400c-8cd8-44c9438a0cc4", "account": "3a03d1d5-4cbe-4c65-8254
+  FAIL doc:R76:pay: payment: HTTP 400 {"errors":[{"error":"Transaction cannot be overpaid."}]}
+  OK doc:R90:cms {"count": 101, "first": "CM-4215", "last": "CM-4315", "type": "credit_memo_many", "amount": 1, "date": "2026-11-06", "at": "A"}
+  OK doc:P12:billD1 {"order": "70467b4d-9ddf-4fc9-a497-19c10bbbdb79", "po_number": "I-1711", "number": "ZZT-P12-BILLD1", "txn": "72df7494-95f1-468f-a419-fcd20c0c5dde", "delivery": 
+  OK doc:P20:bill {"order": "97e471bc-9d1f-4779-a2c1-7a145d55988d", "po_number": "I-1712", "number": "ZZT-P20-BILL", "txn": "6d8e5f24-cf4a-4819-bf50-deba3c4732e6", "delivery": "a
+  OK doc:P20:pay {"resp": {"headers": {}}, "type": "vpayment", "amount": 80, "date": "2026-10-16", "at": "A"}
+  OK doc:P21:bill {"order": "049116ee-59e4-4763-830a-ed0624eb927b", "po_number": "I-1713", "number": "ZZT-P21-BILL", "txn": "9895fd2b-5f49-47c5-8cef-c0abb3a9cfa6", "delivery": "1
+  OK doc:P21:vc {"manual_return": "3341b617-b1e4-4810-a24f-6af5660d6d29", "return": "c697ddc5-91ad-4f53-8eb1-377fb62f3acc", "memo": "ZZT-VC-P21", "type": "vendor_credit", "amou
+  OK doc:P21:use {"resp": {"headers": {}}, "type": "vapply_credit", "amount": 35, "date": "2026-10-30", "at": "A"}
+  OK doc:P24:vc {"manual_return": "a44f30f3-4ac3-494f-aabc-11def1bd8f44", "return": "66a1c13c-6948-441f-81eb-6c352a950985", "memo": "ZZT-VC-P24", "type": "vendor_credit", "amou
+  FAIL doc:P26:bill: vendor: HTTP 400 {"errors":[{"credit_term":"Missing required parameter"}]}
+  OK doc:P27:bill {"order": "8920a2ae-fd44-487d-863d-6850c5e1d8a5", "po_number": "I-1714", "number": "ZZT-P27-BILL", "txn": "25f4c539-85d9-4b5d-bc89-e1674f303d90", "delivery": "2
+  FAIL doc:P27:pay: vendor payment: HTTP 400 {"errors":[{"error":"Vendor transaction cannot be overpaid."}]}
+  OK doc:P52:bill_late {"order": "ea705046-5541-4a48-a569-70fe21c559dc", "po_number": "I-1715", "number": "ZZT-P52-BILL_LATE", "txn": "2daac1b6-c492-4861-a37b-8f4e42ff0a23", "delivery
+  OK doc:P52:bill_cur {"order": "e5360952-b7ed-406d-827c-2f960291a789", "po_number": "I-1716", "number": "ZZT-P52-BILL_CUR", "txn": "4c342973-cf15-42ee-9ab0-cb22162688c2", "delivery"
+  OK doc:P52:vc {"manual_return": "70a01709-d79c-4497-9eba-110e89ad6359", "return": "41008a3c-003b-4767-a1b5-6c28fe4705cd", "memo": "ZZT-VC-P52", "type": "vendor_credit", "amou
+  OK doc:P57:bill {"order": "8ff4c4ee-0de9-4c59-b8e5-113164a3bd46", "po_number": "I-1717", "number": "ZZT-P57-BILL", "txn": "4801861f-dde8-4d0c-90f3-a2973a9293c2", "delivery": "7
+  OK doc:P58:vc {"manual_return": "1eda7ce5-5883-4190-96ec-a2d400c960ae", "return": "ae09f355-7889-4257-bde8-f73736455e7e", "memo": "ZZT-VC-P58", "type": "vendor_credit", "amou
+  OK doc:P60A:bill {"order": "f2c6a924-09c8-4e5c-9bab-d5c39fdeac89", "po_number": "I-1718", "number": "ZZT-P60A-BILL", "txn": "23dc3bfa-8559-48b3-9403-f048b212bea7", "delivery": "
+  OK doc:P60B:bill {"order": "29224f43-1dfa-41e1-968d-dae871d9bcca", "po_number": "I-1719", "number": "ZZT-P60B-BILL", "txn": "97e7d42a-7af6-4724-ad19-d43c3e937e4e", "delivery": "
+  OK doc:P61:bill_cur {"order": "94948f43-99d4-429c-8755-bb12d4443e7b", "po_number": "I-1720", "number": "ZZT-P61-BILL_CUR", "txn": "eea732f0-1cd0-42b6-8afa-f77f37f9104c", "delivery"
+  OK doc:P61:bill_late {"order": "3a8776bc-5f71-4e08-8c47-cac13d566836", "po_number": "I-1721", "number": "ZZT-P61-BILL_LATE", "txn": "5974039f-2cef-4bbc-8425-82547c4c5ad0", "delivery
+  OK doc:P61:vc {"manual_return": "262988ae-6f49-4689-8705-ae83b0ad0b79", "return": "e05d89a1-9185-4e82-8ff5-8ed4b1473229", "memo": "ZZT-VC-P61", "type": "vendor_credit", "amou
+  OK doc:P62:b_mid {"order": "b1ce767b-26ad-4766-91cf-a1be14d9eef6", "po_number": "I-1722", "number": "ZZT-P62-B_MID", "txn": "7b88df90-754f-400d-84ce-0c3205469b86", "delivery": "
+  OK doc:P62:b_new {"order": "26a825c2-5aee-4f20-9bb7-7c4fd45f92e6", "po_number": "I-1723", "number": "ZZT-P62-B_NEW", "txn": "585a0be0-3696-4d2d-b8a0-2d1d3e025f96", "delivery": "
+  OK doc:P62:b_old {"order": "9b33fa73-73f7-4d1a-8ba0-a87b190a5f6b", "po_number": "I-1724", "number": "ZZT-P62-B_OLD", "txn": "f0ff90ac-7d82-4384-b374-b7947cf5d84e", "delivery": "
+  OK doc:P75:vc_today {"manual_return": "638fc80e-98c3-4f53-8227-ebf7266614b9", "return": "fd59f947-f672-4252-b619-6d381e87bec2", "memo": "ZZT-VC-P75", "type": "vendor_credit", "amou
+  FAIL doc:P75:vc_yday: manual return credit: HTTP 400 {"errors":[{"error":"There is already return with credit memo number: ZZT-VC-P75"}]}
+  OK doc:P93:vc_return {"manual_return": "65827214-82eb-4d75-9267-1669feae413a", "return": "ff11da22-6675-4e0a-a92b-5923e5e223bb", "memo": "ZZT-VC-P93", "type": "vendor_credit", "amou
+  OK doc:P93:vc_direct {"memo": "ZZT-DIRECT-P93", "note": "dated now by the API (no date field)", "type": "vendor_credit_direct", "amount": 7, "date": null, "at": "A"}
+  OK doc:P93:bill {"order": "5f2e76a6-3de5-4b24-94e2-5f1ea064585b", "po_number": "I-1725", "number": "ZZT-P93-BILL", "txn": "3fa8f874-1b2c-48f8-9147-06a512833f1b", "delivery": "f
+anchor 2026-11-11 | done 78 | failed 7 | total 85
