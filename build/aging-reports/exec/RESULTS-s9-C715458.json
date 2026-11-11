@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715458": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of 11/11/2026; new customers ZZX Tot Cust A/B/C R3: A = $1,000 at Heavy Duty 15 days past due, $400 at Lethbridge 45 days past due, $150 credit memo at Heavy Duty; B = $700 Heavy Duty 45 days, $250 Lethbridge 100 days; C = $900 Heavy Duty 5 days.",
+    "Step 1: customer A and B ticked - only their documents remain, C's $900 is gone; Totals row Open Balance $2,200.00.",
+    "Step 2: chip reads \"Past due: 31-60 days\".",
+    "Step 3: rows are the $400.00 and $700.00 invoices (45 days past due) and the $150.00 credit memo (kept); Totals $950.00.",
+    "Step 4: Lethbridge unticked - the report narrows to Heavy Duty.",
+    "Step 5: rows are the $700.00 invoice and the $150.00 credit memo; Totals $550.00.",
+    "Steps 6-7: the PDF downloads and its Totals row reads $550.00, the same as the screen.",
+    "Steps 8-9: the CSV downloads and its Totals row reads 550.00, the same as the screen."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715458-1-AB.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715458-2-3-pastdue-31-60.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715458-4-5-no-lethbridge.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715458-PDF-6-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715458-CSV-8-csv.png"
+   ]
+  }
+ }
+}
