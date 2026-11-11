@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, C1062566 (s5h)"
+ },
+ "results": {
+  "C1062566": {
+   "verdict": "Passed",
+   "observed": [
+    "Customer ZZAUTOTEST CREDIT DAY B with an unused $50.00 credit memo (CM11315-4194) and an unused $25.96 deposit (DEP11315-4712), both dated Nov 10, 2026 (date A); only this customer ticked.",
+    "Step 1: As of set to 11/10/2026 - the report reloads for that day.",
+    "Step 2: \"Current (2)\" holds the credit memo and the deposit - a credit dated exactly on the as-of date is Current; 1-30 days past due (0).",
+    "Step 3: As of set to 11/11/2026 - the report reloads with every bucket collapsed; Current (0), 1-30 days past due (2).",
+    "Step 4: \"1-30 days past due\" lists the same credit memo and deposit, one day past their date, and they are no longer in Current."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062566-C1062566-1-dateA-current.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062566-C1062566-3-next-day.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062566-C1062566-4-next-day-1-30.png"
+   ]
+  }
+ }
+}
