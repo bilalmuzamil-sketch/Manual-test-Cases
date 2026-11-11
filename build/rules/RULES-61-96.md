@@ -2639,3 +2639,46 @@ is changed to say "facts only, never rules". I may still search other sessions' 
 Applied on 2026-10-06 to: the 109 numbering note (index and this file), the index's "shared brain"
 paragraph, Rule 68's and Skill 14 §0.5's "search the shared brain", Rule 93's reason for not editing
 rules, and the two handoff lines that said other lanes "pick up" the main session's learnings.
+
+---
+
+117. **DEFECT TICKETS AND RUN RESULTS ARE WRITTEN EXACTLY THE WAY THE "CREATE DEFECTS FROM TESTRAIL"
+    SESSION WRITES THEM — AND A TICKET ENDS WITH ITS TESTRAIL TEST CASE LINKS (all projects, permanent).**
+    Ordered by the QA lead on **2026-11-11**, in three messages, verbatim: *"Learn how to create a story
+    defect from the session that is testing the test cases from testrail."* · *"I need those defects to be
+    exactly created as the other session 'Create defects from testrail..' creates."* · and, asked whether
+    this format with test case links becomes the standard rule: *"YES"*. This is the QA lead's own order
+    recorded in MY book; it does not import that session's rule book (116 stands).
+    **117.1 · The ticket.** Issue type `Story Defect`, parent = the owning story, priority `Medium`, label
+    `QA_Found`, a `Relates` link to the owning story (and to a second story only where it owns the same
+    mechanism). Title: `<Area> – <Title Case summary>` (e.g. *"Aging Reports – Open Customer or Vendor
+    Loads Every Document at Once"*). Description, in this order: **Description** (*What the PRD requires:*
+    the source sentence quoted; *What happens instead:* plain words, a short "For example," list) ·
+    **Steps to Reproduce** (one `Example N - <report>` block per record type, at most two; named data;
+    sub-bullets for what you see; the annotated picture under the example it shows) · **Actual Result** ·
+    **Expected Result** · **Environment** (site, build marker, location, role, when observed) ·
+    **Sources** (document, version, date, requirement id, the quote repeated) · **Test case** (each
+    TestRail case as a link with its C-id and title). **This replaces the playbook's earlier bar on test
+    case links in a ticket.** Pictures: annotated (red marks, numbered call-outs), landscape, named
+    `PIC1-…`, shown full width. "Product Area" is not on the Story Defect create screen — leave it.
+    Worked examples: SV-12540 (that session) and SV-12544 to SV-12547 (reformatted 2026-11-11).
+    **117.2 · The run result.** Passed: `Tested on <site>, build <marker>, on <date>.` then plain bullets
+    of what was seen, with annotated screenshots attached to the result. Failed: a bold line naming the
+    failing step(s), `Fails against:` the source in its own words, 4–7 plain bullets about the failure
+    only, the ticket line, `What needs to be done: …`, annotated pictures of the failure, the ticket in
+    the result's Defects field — then a second result on top reading exactly *"Follow the status here
+    <ticket link>"*. Results are append-only (no update_result): get it right on the first push, dry-run
+    first. Tool: the defect session's `push_results_to_run.py` (with `annotate_v2.py`, `size_pics.py`,
+    `prefix_ticket_titles.py`), read from its branch `claude/test-execution-defects-cdrjsq`.
+    Done and checked: `build/ar-ap-report-sorting/v1-regression/defect-pack-2026-11-11/README.md`.
+
+118. **EVERY FAILED TEST POINTS TO ITS TICKET — ALWAYS (all projects, permanent).** Ordered by the QA
+    lead on **2026-11-11**, asked *"Should the five failed tests point to their tickets?"*, verbatim:
+    *"YES -> ALWAYS"*. Earlier the same day: *"Everything that failed should have a story defect"* and
+    *"every failed test case should have the ticket in the test case run comment."* So, for every Failed
+    test: (a) a Story Defect exists (Rule 117; filing permission for these was given by that order);
+    (b) its run result carries the ticket in the Defects field and the comment, plus the "Follow the
+    status here" result (117.2); (c) the case title starts with the ticket — `SV-nnnnn - <title>`; and
+    (d) the case's AUTOMATION marker reads `AUTOMATION: READY - EXPECT FAIL (SV-nnnnn)` with the symptom
+    and the three outcomes of Rule 61. No ticket, no prefix. Never on Vladimir Tomovic's cases or on
+    cases flagged Automated without his go-ahead (38, 65, 71).

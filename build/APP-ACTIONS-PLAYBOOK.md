@@ -1437,6 +1437,10 @@ code and the read-only auditor are all in §J.
 | 6 | **Images** | Attach them **AND embed them inline so they RENDER in the description** — not merely a file list. If no image exists, **say so and say why** (never imply one). |
 | 7 | **Technical details for developers** | **LAST.** ALL the codes, endpoints, request/response bodies, request ids, timings, row counts, spec references, extracted file text, repo evidence paths. Everything technical lives here **and nowhere above**. |
 
+> 🔴 **SUPERSEDED 2026-11-11 by Rule 117** (QA lead: tickets are written exactly as the "Create defects from
+> TestRail" session writes them, and a ticket ENDS with its TestRail test case links). The seven-section format
+> and point 1 below are kept visible for history only; point 2 still holds.
+
 ### TWO THINGS THAT MUST NEVER APPEAR IN A TICKET
 
 1. **No reference to our test cases** — no "QA test cases affected" section, no internal case IDs
