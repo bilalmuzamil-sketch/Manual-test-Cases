@@ -394,3 +394,7 @@
 
 ## L0639 — 2026-11-11 — Building a replacement chain from an old one: copy the run() line too
 - chain7.sh was cut from chain5.sh with `sed -n '1,8p'`, which stopped one line short of `run() { … }`; every `run` line then failed with "command not found" and the chain "finished" in 40 s. Check a new chain with `grep -n '^run() ' chain*.sh` and `bash -n` before starting it, and watch queue.log for the first "start" line.
+
+## L0640 — 2026-11-11 — Sales By Customer / Inventory Value export menus differ from the aging reports'; SBC PDF date form
+- The aging reports' ⋯ menu offers "Download (PDF)" / "Download (CSV)". Sales By Customer offers "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)" (same `aria-label="Export report"` button). A script asking for "Download (PDF)" there times out — read the menu items first (`p55b_sbc_pdf.mjs`).
+- On sv11315 (v26.45.2-6a8b89c) the Sales By Customer expanded PDF prints document dates as "Nov 04 2026" and its header range as "Date Range: Nov 1, 2026 - Nov 12, 2026". This is the control for any "PDF uses the app-wide report format" requirement.
