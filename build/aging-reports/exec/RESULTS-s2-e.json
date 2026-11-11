@@ -1,0 +1,52 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, S2 number sorts (sv11315)"
+ },
+ "results": {
+  "C715297": {
+   "verdict": "Passed",
+   "observed": [
+    "1-30 days past due holds S11315-7195, S11315-17611 (ZZAUTOTEST S1R5 Alpha) and S11315-17612 (ZZAUTOTEST S1R5 Bravo), all due Oct 25, 2026 - in number order 7195, 17611, 17612; letter by letter it would be 17611, 17612, 7195.",
+    "ID once: smallest number first - S11315-7195 before S11315-17611 before S11315-17612 (counted as numbers).",
+    "ID twice: largest first - 17612, 17611, 7195.",
+    "Due Date once, then twice: the three tie on Oct 25 and stay 7195, 17611, 17612 both times (only the Due Date order reverses)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715297-1-id-asc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715297-2-id-desc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715297-3-due-asc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715297-4-due-desc.png"
+   ]
+  },
+  "C715301": {
+   "verdict": "Passed",
+   "observed": [
+    "ZZAUTOTEST S1R5 Alpha's group: S11315-7195, S11315-17611 and S11315-17721 all due Oct 25, 2026 (plus S11315-17610 due Aug 20).",
+    "ID once: 7195, 17610, 17611, 17721 - smallest number first, counted as numbers.",
+    "ID twice: 17721, 17611, 17610, 7195.",
+    "Due Date once: Aug 20 first, then the three Oct 25 invoices 7195, 17611, 17721. Twice: the Oct 25 invoices first, still 7195, 17611, 17721, then Aug 20."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715301-1-id-asc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715301-2-id-desc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715301-3-due-asc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715301-4-due-desc.png"
+   ]
+  },
+  "C715309": {
+   "verdict": "Passed",
+   "observed": [
+    "ZZAUTOTEST S1R5 V Alpha's group: bills 9917, 10023 and 10024 all due Oct 25, 2026 (plus ZZAL-A due Aug 20).",
+    "No. once: 9917, 10023, 10024 - counted as numbers (letter by letter 10023 would come first).",
+    "No. twice: 10024, 10023, 9917.",
+    "Due Date once: ZZAL-A first, then 9917, 10023, 10024. Twice: 9917, 10023, 10024 (ties keep number order), then ZZAL-A."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715309-1-no-asc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715309-2-no-desc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715309-3-due-asc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715309-4-due-desc.png"
+   ]
+  }
+ }
+}

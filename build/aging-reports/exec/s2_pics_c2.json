@@ -1,0 +1,255 @@
+[
+ {
+  "id": "C715301",
+  "step": "#1",
+  "out": "C715301-1-id-asc.png",
+  "title": "A/R Aging Collection, ZZAUTOTEST S1R5 Alpha open, ID clicked once: numbers smallest first",
+  "head": "ID",
+  "rows": [
+   [
+    "S11315-7195",
+    "good",
+    "S11315-7195 first (smaller number, fewer digits)"
+   ],
+   [
+    "S11315-17611",
+    "good",
+    "then 17611"
+   ],
+   [
+    "S11315-17721",
+    "good",
+    "then 17721"
+   ]
+  ]
+ },
+ {
+  "id": "C715301",
+  "step": "#2",
+  "out": "C715301-2-id-desc.png",
+  "title": "ID clicked twice: largest number first",
+  "head": "ID",
+  "rows": [
+   [
+    "S11315-17721",
+    "good",
+    "17721 first"
+   ],
+   [
+    "S11315-7195",
+    "good",
+    "7195 last"
+   ]
+  ]
+ },
+ {
+  "id": "C715301",
+  "step": "#3",
+  "out": "C715301-3-due-asc.png",
+  "title": "Due Date clicked once: oldest first; the three due Oct 25 stay in number order",
+  "head": "Due Date",
+  "rows": [
+   [
+    "S11315-7195",
+    "good",
+    "Oct 25: 7195"
+   ],
+   [
+    "S11315-17611",
+    "good",
+    "Oct 25: 17611"
+   ],
+   [
+    "S11315-17721",
+    "good",
+    "Oct 25: 17721"
+   ]
+  ]
+ },
+ {
+  "id": "C715301",
+  "step": "#4",
+  "out": "C715301-4-due-desc.png",
+  "title": "Due Date clicked twice: newest first; the Oct 25 ties keep number order, smallest first",
+  "head": "Due Date",
+  "rows": [
+   [
+    "S11315-7195",
+    "good",
+    "Oct 25: 7195 still first of the three"
+   ],
+   [
+    "S11315-17721",
+    "good",
+    "Oct 25: 17721 still last of the three"
+   ]
+  ]
+ },
+ {
+  "id": "C715297",
+  "step": "#1",
+  "out": "C715297-1-id-asc.png",
+  "title": "A/R Aging Detail, 1-30 days past due, ID clicked once: numbers smallest first",
+  "head": "ID",
+  "rows": [
+   [
+    "S11315-7195",
+    "good",
+    "S11315-7195 (fewer digits) before"
+   ],
+   [
+    "S11315-17611",
+    "good",
+    "S11315-17611"
+   ],
+   [
+    "S11315-17721",
+    "good",
+    "and S11315-17721"
+   ]
+  ]
+ },
+ {
+  "id": "C715297",
+  "step": "#2",
+  "out": "C715297-2-id-desc.png",
+  "title": "ID clicked twice: largest number first",
+  "head": "ID",
+  "rows": [
+   [
+    "S11315-17721",
+    "good",
+    "17721 above"
+   ],
+   [
+    "S11315-7195",
+    "good",
+    "7195 - last of the S11315 numbers"
+   ]
+  ]
+ },
+ {
+  "id": "C715297",
+  "step": "#3",
+  "out": "C715297-3-due-asc.png",
+  "title": "Due Date clicked once: the invoices due Oct 25 tie and stay in number order",
+  "head": "Due Date",
+  "rows": [
+   [
+    "S11315-7195",
+    "good",
+    "Oct 25: 7195 first"
+   ],
+   [
+    "S11315-17611",
+    "good",
+    "then 17611"
+   ]
+  ]
+ },
+ {
+  "id": "C715297",
+  "step": "#4",
+  "out": "C715297-4-due-desc.png",
+  "title": "Due Date clicked twice: the Oct 25 ties still in number order, smallest first",
+  "head": "Due Date",
+  "rows": [
+   [
+    "S11315-7195",
+    "good",
+    "Oct 25: 7195 still first"
+   ],
+   [
+    "S11315-17611",
+    "good",
+    "then 17611"
+   ]
+  ]
+ },
+ {
+  "id": "C715309",
+  "step": "#1",
+  "out": "C715309-1-no-asc.png",
+  "title": "A/P Unpaid Invoices, ZZAUTOTEST S1R5 V Alpha open, No. clicked once: numbers smallest first",
+  "head": "No.",
+  "rows": [
+   [
+    "\\b9917\\b",
+    "good",
+    "9917 (fewer digits) first"
+   ],
+   [
+    "\\b10023\\b",
+    "good",
+    "then 10023"
+   ],
+   [
+    "\\b10024\\b",
+    "good",
+    "then 10024"
+   ]
+  ]
+ },
+ {
+  "id": "C715309",
+  "step": "#2",
+  "out": "C715309-2-no-desc.png",
+  "title": "No. clicked twice: largest number first",
+  "head": "No.",
+  "rows": [
+   [
+    "\\b10024\\b",
+    "good",
+    "10024 above"
+   ],
+   [
+    "\\b9917\\b",
+    "good",
+    "9917 below 10023"
+   ]
+  ]
+ },
+ {
+  "id": "C715309",
+  "step": "#3",
+  "out": "C715309-3-due-asc.png",
+  "title": "Due Date clicked once: oldest first; the three due Oct 25 in number order",
+  "head": "Due Date",
+  "rows": [
+   [
+    "ZZAL-A",
+    "good",
+    "Aug 20 first"
+   ],
+   [
+    "\\b9917\\b",
+    "good",
+    "Oct 25: 9917"
+   ],
+   [
+    "\\b10024\\b",
+    "good",
+    "Oct 25: 10024 last"
+   ]
+  ]
+ },
+ {
+  "id": "C715309",
+  "step": "#4",
+  "out": "C715309-4-due-desc.png",
+  "title": "Due Date clicked twice: newest first; the Oct 25 ties still smallest number first",
+  "head": "Due Date",
+  "rows": [
+   [
+    "\\b9917\\b",
+    "good",
+    "Oct 25: 9917 still first"
+   ],
+   [
+    "ZZAL-A",
+    "good",
+    "Aug 20 last"
+   ]
+  ]
+ }
+]
