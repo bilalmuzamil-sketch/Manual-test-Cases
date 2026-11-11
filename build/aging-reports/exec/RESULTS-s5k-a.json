@@ -1,0 +1,32 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s5k (location list vs as-of date)"
+ },
+ "results": {
+  "C715392": {
+   "verdict": "Passed",
+   "observed": [
+    "Data: on 06/15/2025 (date A) every open A/R document in the organization was at Staging Heavy Duty - 9919 (location A); today both Heavy Duty and Staging Lethbridge - 4310 (location B) have documents (read from the report's own Location list, 1st and 15th of each month).",
+    "Step 1: the Location chip shows, \"Location: All locations\" (two locations in the list).",
+    "Step 2: with Lethbridge unticked the chip still shows, reading \"Location: Staging Heavy D...\" (Heavy Duty, shortened).",
+    "Step 3: As of set to 06/15/2025 - the report reloads for that day, Heavy Duty stays ticked (the page address keeps it), and the Location chip is not shown."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715392-2-unticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715392-3-date-A.png"
+   ]
+  },
+  "C715607": {
+   "verdict": "Passed",
+   "observed": [
+    "Data: today the Location list holds Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 (location B); on 06/15/2025 (date A) Lethbridge had no open A/R documents (only Heavy Duty in the report's own list that day).",
+    "Step 1: As of set to 06/15/2025 - the report reloads for that day.",
+    "Step 2: Lethbridge is no longer offered. This organization has only two locations, so on date A only Heavy Duty is left, and the Location chip is not shown at all (PRD S5-N1: with one location ticked the chip is hidden) - there is no menu to open.",
+    "Note for the test: with only two locations the chip itself disappears; the list can only be read on a date when two other locations remain."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715607-2-no-chip.png"
+   ]
+  }
+ }
+}
