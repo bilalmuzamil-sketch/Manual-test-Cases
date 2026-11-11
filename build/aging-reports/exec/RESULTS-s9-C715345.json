@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C715345": {
+   "verdict": "Passed",
+   "observed": [
+    "New vendor ZZY CSV Sum A R1 (vendor A): $1,250.50 bill 1-30 days past due and $99.00 bill more than 90 days past due on 11/11/2026.",
+    "Steps 1-2: the CSV downloads and starts with \"As of: Nov 11, 2026\" and \"Locations: All locations\", then the heading row Vendor, Location, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total - letter for letter the on-screen headings.",
+    "Vendor A's one row: 1-30 Days 1250.50, 91 And Over 99.00, Total 1349.50; Current, 31-60 Days and 61-90 Days are blank cells.",
+    "Every amount in the file is plain two-decimal (no $ sign, no thousands comma); no empty bucket reads 0.",
+    "One flat table: 499 vendor rows, all 8 columns, no group header or subtotal row, and exactly one Totals row at the bottom.",
+    "Steps 3-4: the PDF downloads and its last bucket heading reads \"91 And Over\" on one line."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715345-0-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715345-CSV-1-csv.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715345-PDF-3-pdf.png"
+   ]
+  }
+ }
+}
