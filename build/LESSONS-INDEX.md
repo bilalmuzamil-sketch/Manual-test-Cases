@@ -116,6 +116,8 @@ if you need it.
 
 | 2026-11-03 | SV-11662 prod check: I first read only the LAST toast and nearly reported one error instead of two; Send to Portal looked 'missing' until a portal-access contact existed | Arm a MutationObserver before any click whose result is a toast; before calling a button missing, check the data the button depends on (here a portal-access contact) and the role (Rule 114) | prod-check-2026-11-03/FINDINGS.md; playbook §BA |
 
+| 2026-11-11 | SV-12540 filed as "open group shows every document at once" because no loading row appeared and the 101st–105th rows were there when we reached them; Nemanja showed the page adds them 100 at a time | To test "show N, then the next N as the user scrolls": count the rows that exist in the page right after opening (before any scroll) and after each scroll to the end, on a group of 2×N+ documents; no loading row ≠ all loaded | build/sv12540-aging-100-at-a-time-2026-11-11/FINDINGS.md |
+
 ## The shape of the mistakes, in five lines
 
 Read these before trusting any verdict you are about to give:
