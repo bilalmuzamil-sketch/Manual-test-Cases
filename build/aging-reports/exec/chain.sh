@@ -7,6 +7,7 @@ ok() { local S; S=$(sed 's/^sv_sso_session=//' /tmp/qa-cookies/sv11315-sso.txt 2
 wait_ok() { local n=0; until ok; do [ $((n % 20)) -eq 0 ] && log "chain: sign-in expired, waiting for a fresh one"; n=$((n+1)); sleep 30; done; }
 while pgrep -f "node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done
 run() { local name=$1; shift; wait_ok; log "start $name"; "$@"; log "end $name rc=$?"; }
+run p53 timeout 300 node p53_twousers.mjs > p53.log 2>&1
 run p49 env SFX=" R1" timeout 2400 node p49_seed_ap.mjs > p49.log 2>&1
 run s2y timeout 2400 node s2_run.mjs s2y.json > s2y.log 2>&1
 run s9c timeout 3000 node s9c_ap.mjs > s9c.log 2>&1
