@@ -2,12 +2,12 @@
 // Heavy Duty = current location): hover the Open Balance cell (no hand, row not blue), click it (nothing opens), click the number (part sale finance
 // page). C715417: P3-188 ("Doi Truck Center", Lethbridge): click the number -> "Switch location?" dialog (title, message, buttons left/right, ×),
 // click "Switch location" -> finance page, switcher shows Lethbridge; then back to Heavy Duty. Output exec/s90/<id>.json + pictures.
-import { start, REPORTS } from './lib.mjs'; import { mkFilt } from './filt.mjs'; import { ensureLoc } from './locsw.mjs'; import fs from 'fs';
-const OUT = new URL('./s90/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT); const p = s.page; const F = mkFilt(p); const ONLY = process.env.ONLY?.split(',');
+import { start, REPORTS } from './lib.mjs'; import { mkFilt } from './filt.mjs'; import { ensureLoc } from './locsw.mjs'; import { mkSort } from './sortlib.mjs'; import fs from 'fs';
+const OUT = new URL('./s90/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT); const p = s.page; const F = mkFilt(p); const S = mkSort(p); const ONLY = process.env.ONLY?.split(',');
 const boxes = () => p.evaluate(`[...document.querySelectorAll('main tbody tr, main thead th, main tbody td, .q-dialog .q-card, .q-dialog button')].map(e => { const b = e.getBoundingClientRect(); return [e.innerText.replace(/\\s+/g,' ').trim().slice(0, 90), Math.round(b.x), Math.round(b.y), Math.round(b.width), Math.round(b.height)]; }).filter(b => b[3] > 0 && b[2] >= 0 && b[2] < 900)`);
 const shot = async (o, name) => { const f = await s.shot(o.id + '-' + name); (o.shots ||= []).push({ name, f, boxes: await boxes() }); };
 async function open(o, cust, num) { await s.go(REPORTS.arc); await p.waitForTimeout(3500); await F.pick('Customer', cust); o.chips = await F.chips(); const row = p.locator('main tbody tr').filter({ hasText: num }).first(); o.found = await row.count();
-  if (!o.found) { const g = p.locator('main tbody tr').filter({ hasText: cust }).first(); await g.click().catch(() => {}); await p.waitForTimeout(1500); o.found = await row.count(); } o.row = o.found ? (await row.innerText()).replace(/\s+/g, ' ') : null; return row; }
+  if (!o.found) { /* 16:15: a click on the group row does not open it - use the group's own chevron (sortlib expand) */ o.expand = await S.expand(new RegExp('^' + cust.replace(/[.*+?^${}()|[\]\\&]/g, '\\$&') + ' \\(')).catch((e) => String(e).slice(0, 80)); await p.waitForTimeout(1500); o.found = await row.count(); } o.row = o.found ? (await row.innerText()).replace(/\s+/g, ' ') : null; return row; }
 const T = {
   C715415: async (o) => { const row = await open(o, 'ZZAUTOTEST AR Customer A', 'P11315-248'); if (!o.found) throw new Error('P11315-248 not on A/R Collection'); await shot(o, '0-row');
     const tds = row.locator('td'); const n = await tds.count(); const ob = tds.nth(n - 1); o.obText = (await ob.innerText()).trim(); await ob.hover(); await p.waitForTimeout(700);
