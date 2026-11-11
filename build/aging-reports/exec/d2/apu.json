@@ -1,0 +1,414 @@
+{
+ "key": "apu",
+ "route": "/reports/ap-unpaid-invoices",
+ "shots": [
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//39-apu-0-open.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//40-apu-menu-location.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//41-apu-menu-vendor.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//42-apu-menu-pastdue.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//43-apu-more-hover.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//44-apu-more-menu.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//45-apu-dark.png",
+  "/home/user/Manual-test-Cases/build/aging-reports/exec/d2//46-apu-menu-location-dark.png"
+ ],
+ "st": {
+  "title": [],
+  "chips": [
+   {
+    "text": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "icons": [
+     "calendar_today",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "backgroundColor": "rgba(56, 116, 255, 0.16)",
+    "color": "rgb(56, 116, 255)",
+    "borderColor": "rgb(56, 116, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     283,
+     120,
+     185,
+     28
+    ]
+   },
+   {
+    "text": "local_shipping Vendor: All vendors keyboard_arrow_down",
+    "icons": [
+     "local_shipping",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "color": "rgb(54, 65, 82)",
+    "borderColor": "rgb(54, 65, 82)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     482,
+     120,
+     196,
+     28
+    ]
+   },
+   {
+    "text": "hourglass_empty Past due: Any keyboard_arrow_down",
+    "icons": [
+     "hourglass_empty",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "color": "rgb(54, 65, 82)",
+    "borderColor": "rgb(54, 65, 82)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     692,
+     120,
+     157,
+     28
+    ]
+   },
+   {
+    "text": "place Location: All locations keyboard_arrow_down cancel",
+    "icons": [
+     "place",
+     "keyboard_arrow_down",
+     "cancel"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "backgroundColor": "rgba(56, 116, 255, 0.16)",
+    "color": "rgb(56, 116, 255)",
+    "borderColor": "rgb(56, 116, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     862,
+     120,
+     211,
+     28
+    ]
+   }
+  ],
+  "heads": [
+   "Date",
+   "Location",
+   "Transaction Type",
+   "No.",
+   "Vendor Name",
+   "Due Date",
+   "Past Due",
+   "Amount",
+   "Open Balance"
+  ],
+  "lastTh": {
+   "t": "Open Balance\narrow_drop_up",
+   "position": "sticky",
+   "right": "0px",
+   "fontWeight": "800",
+   "backgroundColor": "rgb(249, 250, 251)"
+  },
+  "totals": {
+   "t": "Totals $4,764,216.91 $4,763,336.95",
+   "backgroundColor": "rgb(249, 250, 251)",
+   "fontSize": "13.12px",
+   "fontWeight": "400",
+   "color": "rgb(0, 0, 0)",
+   "position": "static",
+   "bottom": "auto",
+   "td": {
+    "backgroundColor": "rgb(249, 250, 251)",
+    "fontSize": "13px",
+    "fontWeight": "700",
+    "color": "rgb(0, 0, 0)"
+   }
+  },
+  "links": [],
+  "more": [
+   {
+    "aria": "Export report",
+    "title": null,
+    "text": "more_horiz",
+    "box": [
+     1351,
+     77,
+     55,
+     31
+    ]
+   }
+  ]
+ },
+ "menu_location": {
+  "lines": [
+   "Select all",
+   "2 selected",
+   "Staging Heavy Duty - 9919",
+   "Staging Lethbridge - 4310",
+   "Clear selection"
+  ],
+  "placeholder": "",
+  "box": [
+   862,
+   154,
+   235,
+   174
+  ],
+  "chipBox": [
+   862,
+   148
+  ],
+  "items": [],
+  "checkboxes": 3,
+  "scrollH": 174,
+  "clientH": 174
+ },
+ "menu_customer": {
+  "none": true
+ },
+ "menu_vendor": {
+  "lines": [
+   "search",
+   "All vendors",
+   "All vendors are included. Pick one or more to narrow.",
+   "#1 Diesel",
+   "-1 Diesel",
+   "10 Trucking",
+   "2 Trucking",
+   "5 Star Truck Repair",
+   "@Home Towing",
+   "A-1 Towing",
+   "a1 towing",
+   "Abadi's Diesel Repair",
+   "AC Truck Repair - Branford",
+   "Ackley",
+   "Adams Diesel Repair",
+   "æble"
+  ],
+  "placeholder": "Search vendors",
+  "box": [
+   482,
+   154,
+   352,
+   510
+  ],
+  "chipBox": [
+   482,
+   148
+  ],
+  "items": [],
+  "checkboxes": 1113,
+  "scrollH": 510,
+  "clientH": 510
+ },
+ "menu_pastdue": {
+  "lines": [
+   "Any",
+   "All ranges are included. Pick one or more to narrow.",
+   "1-30 days",
+   "31-60 days",
+   "61-90 days",
+   "91+ days"
+  ],
+  "placeholder": "",
+  "box": [
+   692,
+   154,
+   333,
+   253
+  ],
+  "chipBox": [
+   692,
+   148
+  ],
+  "items": [],
+  "checkboxes": 5,
+  "scrollH": 253,
+  "clientH": 253
+ },
+ "moreTip": "",
+ "moreMenu": {
+  "lines": [
+   "Download (PDF)",
+   "Download (CSV)"
+  ],
+  "box": [
+   1274,
+   108,
+   131,
+   96
+  ]
+ },
+ "focus": null,
+ "dark": true,
+ "stDark": {
+  "title": [],
+  "chips": [
+   {
+    "text": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "icons": [
+     "calendar_today",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "backgroundColor": "rgba(56, 116, 255, 0.28)",
+    "color": "rgb(255, 255, 255)",
+    "borderColor": "rgb(255, 255, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     283,
+     120,
+     185,
+     28
+    ]
+   },
+   {
+    "text": "local_shipping Vendor: All vendors keyboard_arrow_down",
+    "icons": [
+     "local_shipping",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "borderColor": "rgb(255, 255, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     482,
+     120,
+     196,
+     28
+    ]
+   },
+   {
+    "text": "hourglass_empty Past due: Any keyboard_arrow_down",
+    "icons": [
+     "hourglass_empty",
+     "keyboard_arrow_down"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "borderColor": "rgb(255, 255, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     692,
+     120,
+     157,
+     28
+    ]
+   },
+   {
+    "text": "place Location: All locations keyboard_arrow_down cancel",
+    "icons": [
+     "place",
+     "keyboard_arrow_down",
+     "cancel"
+    ],
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "backgroundColor": "rgba(56, 116, 255, 0.28)",
+    "color": "rgb(255, 255, 255)",
+    "borderColor": "rgb(255, 255, 255)",
+    "fontWeight": "600",
+    "fontSize": "14px",
+    "borderRadius": "100px",
+    "height": "28px",
+    "box": [
+     862,
+     120,
+     211,
+     28
+    ]
+   }
+  ],
+  "heads": [
+   "Date",
+   "Location",
+   "Transaction Type",
+   "No.",
+   "Vendor Name",
+   "Due Date",
+   "Past Due",
+   "Amount",
+   "Open Balance"
+  ],
+  "lastTh": {
+   "t": "Open Balance\narrow_drop_up",
+   "position": "sticky",
+   "right": "0px",
+   "fontWeight": "800",
+   "backgroundColor": "rgb(15, 17, 26)"
+  },
+  "totals": {
+   "t": "Totals $4,764,216.91 $4,763,336.95",
+   "backgroundColor": "rgb(15, 17, 26)",
+   "fontSize": "13.12px",
+   "fontWeight": "400",
+   "color": "rgb(255, 255, 255)",
+   "position": "static",
+   "bottom": "auto",
+   "td": {
+    "backgroundColor": "rgb(15, 17, 26)",
+    "fontSize": "13px",
+    "fontWeight": "700",
+    "color": "rgb(255, 255, 255)"
+   }
+  },
+  "links": [],
+  "more": [
+   {
+    "aria": "Export report",
+    "title": null,
+    "text": "more_horiz",
+    "box": [
+     1351,
+     77,
+     55,
+     31
+    ]
+   }
+  ]
+ },
+ "menuDarkLoc": {
+  "lines": [
+   "Select all",
+   "2 selected",
+   "Staging Heavy Duty - 9919",
+   "Staging Lethbridge - 4310",
+   "Clear selection"
+  ],
+  "placeholder": "",
+  "box": [
+   862,
+   154,
+   235,
+   174
+  ],
+  "chipBox": [
+   862,
+   148
+  ],
+  "items": [],
+  "checkboxes": 3,
+  "scrollH": 174,
+  "clientH": 174
+ }
+}
