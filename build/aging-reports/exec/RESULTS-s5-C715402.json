@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, C715402 (s5i3 + p59)"
+ },
+ "results": {
+  "C715402": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail as of 11/11/2026. Customer A = Andrews' Truck & Trailer Repair LLC, customer B = Mobile Truck & Trailer Repair Blackfoot (too long for the chip); both have open invoices.",
+    "Step 1: the Customer menu opens with a search box (\"Search customer\"), an \"All customers\" row, the line \"All customers are included. Pick one or more to narrow.\" and the list of customers.",
+    "Steps 2-3: typing part of B's name shows B; ticked, the chip reads \"Customer: Mobile Truck & ...\" (shortened with \"...\").",
+    "Steps 4-5: A found by search and ticked; the chip reads \"Customer: 2 customers\".",
+    "Step 6: every group expanded: only the two customers' rows remain.",
+    "Step 7: both unticked in the menu: the chip reads \"Customer: All customers\" in the resting style (no blue background, grey text), and the page address no longer carries customers."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715402-1-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715402-3-one.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715402-6-two.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715402-7-none.png"
+   ]
+  }
+ }
+}
