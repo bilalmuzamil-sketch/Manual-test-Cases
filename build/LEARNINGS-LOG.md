@@ -469,3 +469,9 @@
 - **Not buildable through the app (p66):** an A/R invoice sent with `due_date: null` is stored WITH a due date (invoice date + the customer's term); a vendor with credit term `''` gives bills due on the bill date; a vendor with `credit_term: null` is refused ("Missing required parameter"); paying a bill more than its balance is refused ("Vendor transaction cannot be overpaid."). Screen routes are checked by p66b before any Blocked.
 - **Production (v26.45.3) Reports page has no `aside`/`.q-drawer`/`nav` wrapper** around its left list — click report names with `page.getByText(name, {exact:true})`.
 - #aging #sv11315 #data #production → L0655
+
+## L0657 — 2026-11-11 — Sales By Customer / Inventory Value / Work In Progress open on YOUR CURRENT LOCATION, not "All locations"
+- d2 ran while the test admin's current location was Staging Lethbridge - 4310; all three reports opened with "Location: Staging Lethbri..." (1 selected). That is their default, not a remembered filter — the six aging reports open on "All locations" instead.
+- **For the filter-memory checks (C715583/C715619/C715620) and anything read off these three reports:** note the current location first (header), and judge "kept or forgotten" only from a chip that CHANGED after the untick (pr1b does).
+- Also 11 Nov ~14:25 UTC: the developer re-corrected the SV-11533 handoff — aging PDF dates must read "Nov 04 2026" (PRD v11 S3-R7a); "Nov 4, 2026" is the open defect SV-12544 (In Progress). Recorded in `build/aging-reports/PROJECT-STATE.md`.
+- #aging #reports #location #handoff → L0656
