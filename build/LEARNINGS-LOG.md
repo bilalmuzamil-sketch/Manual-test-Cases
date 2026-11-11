@@ -620,3 +620,9 @@
 - At 900 px the filter row and the bottom "Totals" word also scroll sideways out of view (seen, not judged by any test).
 - d3c's "row just under the headings" read via `document.elementFromPoint(700, theadBottom + 20)` returned "" in light theme on all reports and in dark on A/R Collection — judge those from the pictures; when writing such a probe, sample several x positions and fall back to the first `tbody tr` whose top is within 5 px of the header's bottom.
 - #aging #layout #tool → L0676, L0677
+
+## L0682 — 2026-11-11 — sv11315: a work order at another location shows the switch prompt only when its address carries ?locationId=
+- `/workorders/<id>?locationId=<other location>` (the developer's own form, SV-11597 checklist) opened while at Heavy Duty shows the existing "Switch location?" prompt (box 416,345 608x201; button "Switch Location", capital L, kept on that page); Cancel goes to `/workorders?tab=estimate` with "Switch cancelled. Returning to work orders." (`exec/d3e_prompt.mjs`).
+- The address bar copied from an open work order has NO `?locationId=` (`/workorders/<id>/lines`); pasted at another location it gives "WorkOrder not found" + "Request failed with status code 400" and no prompt (p65b). Bears on C715477 ("as before the release") - compare production the same way before calling it a fault.
+- For "same as the existing prompt" comparisons, open it with `?locationId=`.
+- #aging #route #location → L0673, L0680

@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, d3b + d3e C715519"
+ },
+ "results": {
+  "C715519": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail, as of today, signed in at Staging Heavy Duty - 9919; invoice S3-14144 is a work order made at Staging Lethbridge - 4310.",
+    "Step 1: clicking S3-14144 opens a dialog over the report. Read in order: \"Switch location?\", \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", \"Cancel\" on the left, \"Switch location\" (small l) on the right, and a close \u00d7 at the top right.",
+    "Step 2: the existing prompt (the same work order opened from its address with the location in it, in a second tab) has the same title, message, box size and place on the screen, and the same two buttons in the same places. Its right-hand button reads \"Switch Location\" with a capital L - the work order page's own wording, which its developer ticket keeps unchanged; the report's dialog uses the small l as the requirement says.",
+    "Step 3: \"Cancel\" closes the dialog and leaves the report as it was.",
+    "Steps 4-5: in dark theme the dialog opens again and is readable.",
+    "This test carried a \"what you should see today\" note for a known problem (the button read \"Switch Location\" with a capital L on the report). That problem is gone - the fix has shipped, so the note can come off."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715519-d3b-C715519-1-dialog.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715519-d3e-1-a-locationId.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715519-d3b-C715519-2-cancelled.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715519-d3b-C715519-3-dark-dialog.png"
+   ]
+  }
+ }
+}
