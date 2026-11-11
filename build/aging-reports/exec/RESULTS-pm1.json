@@ -1,0 +1,156 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, pm1b permissions"
+ },
+ "results": {
+  "C715425": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm invwo\" whose role \"ZZAUTOTEST P71 Inv+WO view\" has exactly: invoicingPaymentsView, reportsPageAccess, seeFinancialData, woFullViewMode, workOrdersView.",
+    "A/R Aging Detail, customer \"ZZAUTOTEST AR Customer A\" ticked, every bucket open: work order invoices S11315-17582, -17581, -17585, -17583 are blue links; part sale invoice P11315-248 is plain black text.",
+    "Step 1: invoice B (part sale P11315-248) is plain text - the role lacks Part sales View.",
+    "Step 2: clicking invoice A (S11315-17582) opens the work order's Finance page."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715425-pm1-C715425-1-ids.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715425-pm1-C715425-2-click-wo.png"
+   ]
+  },
+  "C715426": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm wops\" whose role \"ZZAUTOTEST P71 WO+PartSales view\" has exactly: partSalesView, reportsPageAccess, seeFinancialData, woFullViewMode, workOrdersView.",
+    "A/R Aging Detail, customer \"ZZAUTOTEST AR Customer A\" ticked, every bucket open.",
+    "Step 1: invoice A (work order invoice S11315-17582) and invoice B (part sale P11315-248) are both plain black text - the role lacks Invoicing & payments View.",
+    "Step 2: clicking invoice A's number opens nothing: the same report stays, no new tab, no window."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715426-pm1-C715426-1-ids.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715426-pm1-C715426-2-click-wo.png"
+   ]
+  },
+  "C715427": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm invps\" whose role \"ZZAUTOTEST P71 Inv+PartSales view\" has exactly: invoicingPaymentsView, partSalesView, reportsPageAccess, seeFinancialData.",
+    "A/R Aging Detail, customer \"ZZAUTOTEST AR Customer A\" ticked, every bucket open.",
+    "Step 1: invoice A (work order invoice S11315-17582) is plain text - the role lacks Work orders View; the part sale invoice P11315-248 is a blue link.",
+    "Step 2: clicking invoice B (P11315-248) opens the part sale's Finance page."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715427-pm1-C715427-1-ids.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715427-pm1-C715427-2-click-ps.png"
+   ]
+  },
+  "C715428": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm vomv\" whose role \"ZZAUTOTEST P71 VOM view\" has exactly: reportsPageAccess, vendorOrderManagementView.",
+    "A/P Unpaid Invoices, vendor \"ZZY Types P92\" ticked and its group open; bill A = ZZY925996616, received at Staging Heavy Duty - 9919 (my location).",
+    "Step 1: bill A's number is a blue link.",
+    "Step 2: clicking it opens bill A's delivery."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715428-pm1-C715428-1-bill.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715428-pm1-C715428-2-click-bill.png"
+   ]
+  },
+  "C715429": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm vomce\" whose role \"ZZAUTOTEST P71 VOM create-edit\" has exactly: reportsPageAccess, vendorOrderManagementCreateAndEdit, vendorOrderManagementView. The case asks for \"Create & Edit but not View\": on the Create Role screen, ticking Vendor and order management \"Create & Edit\" ticks \"View\" as well (the role screen does it - picture), so a Create & Edit role without View cannot be made; the role used has Create & Edit (and the View it forces).",
+    "A/P Unpaid Invoices, vendor \"ZZY Types P92\" ticked and its group open; bill A = ZZY925996616, received at Staging Heavy Duty - 9919.",
+    "Step 1: bill A's number is a blue link.",
+    "Step 2: clicking it opens bill A's delivery."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715429-pm1-C715429-1-bill.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715429-pm1-C715429-2-click-bill.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715429-p71-role.png"
+   ]
+  },
+  "C715430": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm rep\" whose role \"ZZAUTOTEST P71 Reports only\" has exactly: reportsPageAccess.",
+    "A/P Aging Detail, vendor \"ZZY Types P92\" ticked, every bucket open; bill A = ZZY925996616 and vendor credit A = C-13685, both at Staging Heavy Duty - 9919.",
+    "Step 1: both numbers are plain black text.",
+    "Step 2: clicking bill A's number opens nothing: the same report stays, no new tab, no window."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715430-pm1-C715430-1-nums.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715430-pm1-C715430-2-click-bill.png"
+   ]
+  },
+  "C715424": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm admin1\" whose role \"Admin\" has exactly: accountingBankingCreateAndEdit, accountingBankingView, accountingBankReconciliation, accountingFixedAssetsCreateAndEdit, accountingFixedAssetsView, accountingPurchasesCreateAndEdit, accountingPurchasesView, accountingReportsView, accountingRunDepreciation, accountingSalesCreateAndEdit, accountingSalesView, accountingSettingsAccess, accountingSetupCreateAndEdit, accountingSetupView, accountingView, billingPortalPageAccess, catalogInventoryCreateAndEdit, catalogInventoryDelete, catalogInventoryView, customerPortalPageAccess, customersCreateAndEdit, customersDelete, customersView, invoicingPaymentsCreateAndEdit, invoicingPaymentsDelete, invoicingPaymentsView, partSalesCreateAndEdit, partSalesDelete, partSalesView, reportsPageAccess, scheduleCreateAndEdit, scheduleDelete, scheduleView, seeApArData, seeFinancialData, settingsApp, settingsDataImport, settingsFinance, settingsIntegrations, settingsParts, settingsService, settingsWages, timesheetsCreateAndEdit, timesheetsView, vendorOrderManagementCreateAndEdit, vendorOrderManagementDelete, vendorOrderManagementView, viewHistoryLogs, woFullViewMode, woOrderParts, woPickParts, woReviewWorkOrders, workOrderLinesCreateAndEdit, workOrderLinesDelete, workOrdersCreateAndEdit, workOrdersDelete, workOrdersView. This person is enrolled at Staging Heavy Duty - 9919 only: their user menu has no \"Change Location\" (shown only to people enrolled at two or more locations).",
+    "A/R Aging Detail, customer \"ZZAUTOTEST AR V1R-87 Location C\" ticked, every bucket open; invoice A = S-17887, made at ZZAUTOTEST V1R-87 Location C (not enrolled).",
+    "Step 1: the row is listed (\"Nov 1, 2026 \u00b7 ZZAUTOTEST V1R-87 Location C \u00b7 Invoice \u00b7 S-17887 \u00b7 $87.00\") and its number is plain black text.",
+    "Step 2: clicking it opens nothing and no dialog shows."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715424-pm1-C715424-1-row.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715424-pm1-C715424-2-click.png"
+   ]
+  },
+  "C715385": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm admin1\" whose role \"Admin\" has exactly: accountingBankingCreateAndEdit, accountingBankingView, accountingBankReconciliation, accountingFixedAssetsCreateAndEdit, accountingFixedAssetsView, accountingPurchasesCreateAndEdit, accountingPurchasesView, accountingReportsView, accountingRunDepreciation, accountingSalesCreateAndEdit, accountingSalesView, accountingSettingsAccess, accountingSetupCreateAndEdit, accountingSetupView, accountingView, billingPortalPageAccess, catalogInventoryCreateAndEdit, catalogInventoryDelete, catalogInventoryView, customerPortalPageAccess, customersCreateAndEdit, customersDelete, customersView, invoicingPaymentsCreateAndEdit, invoicingPaymentsDelete, invoicingPaymentsView, partSalesCreateAndEdit, partSalesDelete, partSalesView, reportsPageAccess, scheduleCreateAndEdit, scheduleDelete, scheduleView, seeApArData, seeFinancialData, settingsApp, settingsDataImport, settingsFinance, settingsIntegrations, settingsParts, settingsService, settingsWages, timesheetsCreateAndEdit, timesheetsView, vendorOrderManagementCreateAndEdit, vendorOrderManagementDelete, vendorOrderManagementView, viewHistoryLogs, woFullViewMode, woOrderParts, woPickParts, woReviewWorkOrders, workOrderLinesCreateAndEdit, workOrderLinesDelete, workOrdersCreateAndEdit, workOrdersDelete, workOrdersView. Enrolled at Staging Heavy Duty - 9919 only, which is also the current location.",
+    "Step 1: A/P Unpaid Invoices lists rows from Staging Lethbridge - 4310 too (and Staging Heavy Duty - 9919) - the report stays organization-wide.",
+    "Step 2: the Location menu lists Staging Heavy Duty - 9919, Staging Lethbridge - 4310 and ZZAUTOTEST V1R-87 Location C, all ticked (\"3 selected\"), although this person is enrolled only at Heavy Duty."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715385-pm1-C715385-1-rows.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715385-pm1-C715385-2-menu.png"
+   ]
+  },
+  "C715448": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm rep\" whose role \"ZZAUTOTEST P71 Reports only\" has exactly: reportsPageAccess. The role has no \"View and Manage AP/AR Data\" switch.",
+    "A/R Aging Collection, customer \"Andrews' Truck & Trailer Repair LLC\" ticked.",
+    "Step 1: the group row shows \"Phone: 343-203-3967\"; no credit term and no \"Credit term:\" label.",
+    "Steps 2-3: the PDF downloads; customer A's line reads \"Andrews' Truck & Trailer Repair LLC   Phone: 343-203-3967\" - no credit term.",
+    "Steps 4-5: the CSV downloads; its heading row reads Date, Location, Transaction Type, ID, Customer, Phone, Due Date, Past Due, Amount, Open Balance - a \"Phone\" column after \"Customer\", no \"Credit Term\" column."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715448-pm1-C715448-1-group.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715448-pm1-C715448-csv-top.png"
+   ]
+  },
+  "C715474": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm rep\" whose role \"ZZAUTOTEST P71 Reports only\" has exactly: reportsPageAccess. \"See Financial Data\" is off.",
+    "Step 1: the Reports left menu offers all six: A/R Aging Summary, A/R Aging Detail, A/R Aging Collection (ACCOUNTS RECEIVABLE) and A/P Aging Summary, A/P Aging Detail, A/P Unpaid Invoices (ACCOUNTS PAYABLE).",
+    "Steps 2-7: each opens with its amounts - A/R Aging Summary: $5,857.00 / $105,705.77 / $167,713.30 / $126,336.92 / $118,341.26 / $523,954.25; A/R Aging Detail: $553,930.57 / $523,954.25; A/R Aging Collection: $547,870.57 / $517,894.25; A/P Aging Summary: $4,102.94 / $124,596.80 / $268,967.36 / $320,924.53 / $4,044,744.92 / $4,763,336.55; A/P Aging Detail: $4,764,216.51 / $4,763,336.55; A/P Unpaid Invoices Report: $4,764,216.51 / $4,763,336.55 - \"See Financial Data\" off does not hide them."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715474-pm1-C715474-1-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715474-pm1-C715474-2-ars.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715474-pm1-C715474-2-ard.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715474-pm1-C715474-2-arc.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715474-pm1-C715474-2-aps.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715474-pm1-C715474-2-apd.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715474-pm1-C715474-2-apu.png"
+   ]
+  },
+  "C715616": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm rep\" whose role \"ZZAUTOTEST P71 Reports only\" has exactly: reportsPageAccess. \"See Financial Data\" is off; no setting was changed after the release.",
+    "Step 1: A/R Aging Summary \"Download (PDF)\" downloads ar-aging-summary.pdf (94 KB) with \"Success - Data exported successfully.\"",
+    "Step 2: A/P Aging Detail opens.",
+    "Step 3: \"Download (CSV)\" downloads ap-aging-detail.csv (2 MB) with the same success message."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715616-pm1-C715616-ars-toast-late.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715616-pm1-C715616-2-apd.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715616-pm1-C715616-apd-toast-late.png"
+   ]
+  }
+ }
+}

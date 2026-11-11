@@ -1,0 +1,58 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, pm2 permission redo"
+ },
+ "results": {
+  "C715431": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm cust\" whose role \"ZZAUTOTEST P71 Customers view\" has exactly: customersView, reportsPageAccess.",
+    "A/R Aging Summary, as of today (customer A, \"ZZAUTOTEST AR Customer A\", picked in the Customer filter so its row is on screen).",
+    "Step 1: customer A's name is a blue link.",
+    "Step 2: clicking it opens A/R Aging Collection with only customer A ticked (chip \"Customer: ZZAUTOTEST AR C...\")."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715431-pm2-C715431-1-name.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715431-pm2-C715431-2-click.png"
+   ]
+  },
+  "C715432": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm rep\" whose role \"ZZAUTOTEST P71 Reports only\" has exactly: reportsPageAccess. No Vendor and order management access.",
+    "A/P Aging Summary, as of today (vendor A, \"ZZY Types P92\", picked in the Vendor filter so its row is on screen).",
+    "Step 1: vendor A's name in the Vendor column is a blue link - even without Vendor and order management access.",
+    "Step 2: clicking it opens A/P Unpaid Invoices with only vendor A ticked (chip \"Vendor: ZZY Types P92\")."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715432-pm2-C715432-1-name.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715432-pm2-C715432-2-click.png"
+   ]
+  },
+  "C715610": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm rep\" whose role \"ZZAUTOTEST P71 Reports only\" has exactly: reportsPageAccess. No Customers View.",
+    "A/R Aging Summary, as of today (customer A, \"ZZAUTOTEST AR Customer A\", picked in the Customer filter so its row is on screen).",
+    "Step 1: customer A's name is plain black text, not a link.",
+    "Step 2: clicking it opens nothing: the same report stays, no new tab, no window."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715610-pm2-C715610-1-name.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715610-pm2-C715610-2-click.png"
+   ]
+  },
+  "C715384": {
+   "verdict": "Passed",
+   "observed": [
+    "Signed in as a new staff member \"ZZAUTOTEST Perm admin1\" whose role \"Admin\" has exactly: the Admin role (all permissions). Enrolled at Staging Heavy Duty - 9919 only (no \"Change Location\" in the user menu), which is also the current location.",
+    "Step 1: A/R Aging Collection lists customers with documents at Staging Lethbridge - 4310 too - e.g. Apollo Beach Truck & Equipment Repair's invoice S3-14144 (\"Apr 6, 2026 \u00b7 Staging Lethbridge - 4310 \u00b7 Invoice \u00b7 $1,491.58\") - the report stays organization-wide.",
+    "Step 2: the Location menu lists Staging Heavy Duty - 9919, Staging Lethbridge - 4310 and ZZAUTOTEST V1R-87 Location C, all ticked (\"3 selected\"), although this person is enrolled only at Heavy Duty."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715384-pm2-C715384-1-rows.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715384-pm2-C715384-2-menu.png"
+   ]
+  }
+ }
+}

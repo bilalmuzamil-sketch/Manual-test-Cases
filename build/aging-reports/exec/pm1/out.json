@@ -76,8 +76,20 @@
  "role_invwo": {
   "role": "ZZAUTOTEST P71 Inv+WO view",
   "roleId": "bce621d2-8dcf-4f3e-b3e0-543771c06c03",
+  "row": {
+   "role_label": "ZZAUTOTEST P71 Inv+WO view",
+   "defaultWorkplace": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "defaultWorkplaceName": "Staging Heavy Duty - 9919",
+   "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "role_id": "bce621d2-8dcf-4f3e-b3e0-543771c06c03"
+  },
+  "staff": {
+   "id": "0d284dcf-ae9f-4efc-a54a-ea8a5f04fe17",
+   "staff_id": "f574b9b1-3bc5-4eee-b611-27453525a251"
+  },
   "log": [
-   "create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+   "create 201 {\"data\":{\"message\":\"created\",\"user_id\":\"680c9d3d-94b2-4638-a6f8-dbcd140ce40d\"}}",
+   "enrol 400"
   ],
   "roleBody": {
    "id": "bce621d2-8dcf-4f3e-b3e0-543771c06c03",
@@ -85,7 +97,7 @@
    "description": null,
    "default": false,
    "editable": true,
-   "deletable": true,
+   "deletable": false,
    "fe_permissions": [
     {
      "id": "267eed7b-a2a5-4d99-9ae0-15c690278854",
@@ -120,17 +132,99 @@
     "seeApArData": false,
     "viewHistoryLogs": false
    }
-  }
+  },
+  "perms": [
+   "invoicingPaymentsView",
+   "reportsPageAccess",
+   "seeFinancialData",
+   "woFullViewMode",
+   "workOrdersView"
+  ]
  },
  "C715425": {
   "id": "C715425",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 Inv+WO view",
+  "wo": [
+   {
+    "text": "S11315-17582",
+    "link": true,
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "cursor": "pointer",
+    "row": "Sep 1, 2026 Staging Heavy Duty - 9919 Invoice S11315-17582 ZZAUTOTEST AR Customer A Oct 1, 2026 $1,250.50 $1,250.50"
+   },
+   {
+    "text": "S11315-17581",
+    "link": true,
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "cursor": "pointer",
+    "row": "Oct 1, 2026 Staging Heavy Duty - 9919 Invoice S11315-17581 ZZAUTOTEST AR Customer A Oct 31, 2026 $300.00 $50.00"
+   },
+   {
+    "text": "S11315-17585",
+    "link": true,
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "cursor": "pointer",
+    "row": "Oct 31, 2026 Staging Heavy Duty - 9919 Invoice S11315-17585 ZZAUTOTEST AR Customer A Oct 31, 2026 $10.00 $10.00"
+   },
+   {
+    "text": "S11315-17583",
+    "link": true,
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "cursor": "pointer",
+    "row": "Oct 21, 2026 Staging Heavy Duty - 9919 Invoice S11315-17583 ZZAUTOTEST AR Customer A Nov 20, 2026 $100.00 $100.00"
+   },
+   {
+    "text": "S11315-17586",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Nov 10, 2026 Staging Lethbridge - 4310 Invoice S11315-17586 ZZAUTOTEST AR Customer A Dec 10, 2026 $20.00 $20.00"
+   }
+  ],
+  "ps": [
+   {
+    "text": "P11315-248",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Sep 15, 2026 Staging Heavy Duty - 9919 Invoice P11315-248 ZZAUTOTEST AR Customer A Oct 15, 2026 $300.00 $300.00"
+   }
+  ],
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715425-1-ids.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715425-2-click-wo.png"
+  ],
+  "2-click-wo": {
+   "from": "https://sv11315.qa.shopview.com/reports/ar-aging-detail?customerIds=6a7da37d-fc34-4874-9c4c-c6fc53a22a74",
+   "url": "https://sv11315.qa.shopview.com/workorders/aa185fca-aaed-459f-a833-7df0bf456b7b/finance",
+   "newTabs": 0,
+   "dialogs": 0,
+   "notes": []
+  }
  },
  "role_wops": {
   "role": "ZZAUTOTEST P71 WO+PartSales view",
   "roleId": "d431aba0-99a7-41c1-b32b-4a1645f2ce95",
+  "row": {
+   "role_label": "ZZAUTOTEST P71 WO+PartSales view",
+   "defaultWorkplace": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "defaultWorkplaceName": "Staging Heavy Duty - 9919",
+   "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "role_id": "d431aba0-99a7-41c1-b32b-4a1645f2ce95"
+  },
+  "staff": {
+   "id": "61507355-cad0-436c-a2ef-55f4210343b3",
+   "staff_id": "c81cbd91-3fd9-4e18-942e-fbef488d3279"
+  },
   "log": [
-   "create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+   "create 201 {\"data\":{\"message\":\"created\",\"user_id\":\"df5c9479-a6f6-48ff-8b09-866e885abbe3\"}}",
+   "enrol 400"
   ],
   "roleBody": {
    "id": "d431aba0-99a7-41c1-b32b-4a1645f2ce95",
@@ -138,7 +232,7 @@
    "description": null,
    "default": false,
    "editable": true,
-   "deletable": true,
+   "deletable": false,
    "fe_permissions": [
     {
      "id": "267eed7b-a2a5-4d99-9ae0-15c690278854",
@@ -173,17 +267,99 @@
     "seeApArData": false,
     "viewHistoryLogs": false
    }
-  }
+  },
+  "perms": [
+   "partSalesView",
+   "reportsPageAccess",
+   "seeFinancialData",
+   "woFullViewMode",
+   "workOrdersView"
+  ]
  },
  "C715426": {
   "id": "C715426",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 WO+PartSales view",
+  "wo": [
+   {
+    "text": "S11315-17582",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Sep 1, 2026 Staging Heavy Duty - 9919 Invoice S11315-17582 ZZAUTOTEST AR Customer A Oct 1, 2026 $1,250.50 $1,250.50"
+   },
+   {
+    "text": "S11315-17581",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Oct 1, 2026 Staging Heavy Duty - 9919 Invoice S11315-17581 ZZAUTOTEST AR Customer A Oct 31, 2026 $300.00 $50.00"
+   },
+   {
+    "text": "S11315-17585",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Oct 31, 2026 Staging Heavy Duty - 9919 Invoice S11315-17585 ZZAUTOTEST AR Customer A Oct 31, 2026 $10.00 $10.00"
+   },
+   {
+    "text": "S11315-17583",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Oct 21, 2026 Staging Heavy Duty - 9919 Invoice S11315-17583 ZZAUTOTEST AR Customer A Nov 20, 2026 $100.00 $100.00"
+   },
+   {
+    "text": "S11315-17586",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Nov 10, 2026 Staging Lethbridge - 4310 Invoice S11315-17586 ZZAUTOTEST AR Customer A Dec 10, 2026 $20.00 $20.00"
+   }
+  ],
+  "ps": [
+   {
+    "text": "P11315-248",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Sep 15, 2026 Staging Heavy Duty - 9919 Invoice P11315-248 ZZAUTOTEST AR Customer A Oct 15, 2026 $300.00 $300.00"
+   }
+  ],
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715426-1-ids.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715426-2-click-wo.png"
+  ],
+  "2-click-wo": {
+   "from": "https://sv11315.qa.shopview.com/reports/ar-aging-detail?customerIds=6a7da37d-fc34-4874-9c4c-c6fc53a22a74",
+   "url": "https://sv11315.qa.shopview.com/reports/ar-aging-detail?customerIds=6a7da37d-fc34-4874-9c4c-c6fc53a22a74",
+   "newTabs": 0,
+   "dialogs": 0,
+   "notes": []
+  }
  },
  "role_invps": {
   "role": "ZZAUTOTEST P71 Inv+PartSales view",
   "roleId": "79202b1e-b5bb-48ff-9426-d969675713fb",
+  "row": {
+   "role_label": "ZZAUTOTEST P71 Inv+PartSales view",
+   "defaultWorkplace": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "defaultWorkplaceName": "Staging Heavy Duty - 9919",
+   "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "role_id": "79202b1e-b5bb-48ff-9426-d969675713fb"
+  },
+  "staff": {
+   "id": "c239b6ae-a791-4de1-9f5e-31d4f5388a60",
+   "staff_id": "8fa74f10-3acc-46c5-8ddf-c7cfc989984b"
+  },
   "log": [
-   "create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+   "create 201 {\"data\":{\"message\":\"created\",\"user_id\":\"c11294b4-2959-49bf-b8ef-25c33446fd83\"}}",
+   "enrol 400"
   ],
   "roleBody": {
    "id": "79202b1e-b5bb-48ff-9426-d969675713fb",
@@ -191,7 +367,7 @@
    "description": null,
    "default": false,
    "editable": true,
-   "deletable": true,
+   "deletable": false,
    "fe_permissions": [
     {
      "id": "27d35438-3fec-4ee9-bd9e-fa9f6e695670",
@@ -221,17 +397,98 @@
     "seeApArData": false,
     "viewHistoryLogs": false
    }
-  }
+  },
+  "perms": [
+   "invoicingPaymentsView",
+   "partSalesView",
+   "reportsPageAccess",
+   "seeFinancialData"
+  ]
  },
  "C715427": {
   "id": "C715427",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 Inv+PartSales view",
+  "wo": [
+   {
+    "text": "S11315-17582",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Sep 1, 2026 Staging Heavy Duty - 9919 Invoice S11315-17582 ZZAUTOTEST AR Customer A Oct 1, 2026 $1,250.50 $1,250.50"
+   },
+   {
+    "text": "S11315-17581",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Oct 1, 2026 Staging Heavy Duty - 9919 Invoice S11315-17581 ZZAUTOTEST AR Customer A Oct 31, 2026 $300.00 $50.00"
+   },
+   {
+    "text": "S11315-17585",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Oct 31, 2026 Staging Heavy Duty - 9919 Invoice S11315-17585 ZZAUTOTEST AR Customer A Oct 31, 2026 $10.00 $10.00"
+   },
+   {
+    "text": "S11315-17583",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Oct 21, 2026 Staging Heavy Duty - 9919 Invoice S11315-17583 ZZAUTOTEST AR Customer A Nov 20, 2026 $100.00 $100.00"
+   },
+   {
+    "text": "S11315-17586",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Nov 10, 2026 Staging Lethbridge - 4310 Invoice S11315-17586 ZZAUTOTEST AR Customer A Dec 10, 2026 $20.00 $20.00"
+   }
+  ],
+  "ps": [
+   {
+    "text": "P11315-248",
+    "link": true,
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "cursor": "pointer",
+    "row": "Sep 15, 2026 Staging Heavy Duty - 9919 Invoice P11315-248 ZZAUTOTEST AR Customer A Oct 15, 2026 $300.00 $300.00"
+   }
+  ],
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715427-1-ids.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715427-2-click-ps.png"
+  ],
+  "2-click-ps": {
+   "from": "https://sv11315.qa.shopview.com/reports/ar-aging-detail?customerIds=6a7da37d-fc34-4874-9c4c-c6fc53a22a74",
+   "url": "https://sv11315.qa.shopview.com/parts/part-sale/f966af4d-3243-4faa-ad6d-4dae41cccf8d/finance",
+   "newTabs": 0,
+   "dialogs": 0,
+   "notes": []
+  }
  },
  "role_vomv": {
   "role": "ZZAUTOTEST P71 VOM view",
   "roleId": "5b89f5ff-f61d-47e9-b9d8-97ba63491f32",
+  "row": {
+   "role_label": "ZZAUTOTEST P71 VOM view",
+   "defaultWorkplace": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "defaultWorkplaceName": "Staging Heavy Duty - 9919",
+   "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "role_id": "5b89f5ff-f61d-47e9-b9d8-97ba63491f32"
+  },
+  "staff": {
+   "id": "36014101-4cd9-4f42-9c36-52a0f422096a",
+   "staff_id": "5257bbd1-8217-46b6-aeb9-88ac5cdab20d"
+  },
   "log": [
-   "create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+   "create 201 {\"data\":{\"message\":\"created\",\"user_id\":\"92851639-f4cb-4c42-ae30-dcdc8f165620\"}}",
+   "enrol 400"
   ],
   "roleBody": {
    "id": "5b89f5ff-f61d-47e9-b9d8-97ba63491f32",
@@ -239,7 +496,7 @@
    "description": null,
    "default": false,
    "editable": true,
-   "deletable": true,
+   "deletable": false,
    "fe_permissions": [
     {
      "id": "65ebb906-e844-47cb-88cb-15a3b0d835a9",
@@ -259,17 +516,54 @@
     "seeApArData": false,
     "viewHistoryLogs": false
    }
-  }
+  },
+  "perms": [
+   "reportsPageAccess",
+   "vendorOrderManagementView"
+  ]
  },
  "C715428": {
   "id": "C715428",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 VOM view",
+  "bill": [
+   {
+    "text": "ZZY925996616",
+    "link": true,
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "cursor": "pointer",
+    "row": "Nov 1, 2026 Staging Heavy Duty - 9919 Invoice ZZY925996616 ZZY Types P92 Nov 1, 2026 10 $44.00 $44.00"
+   }
+  ],
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715428-1-bill.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715428-2-click-bill.png"
+  ],
+  "2-click-bill": {
+   "from": "https://sv11315.qa.shopview.com/reports/ap-unpaid-invoices?vendorIds=06ab2234-6f71-4c9f-9087-c94f6cd33711",
+   "url": "https://sv11315.qa.shopview.com/parts/delivery/5af79979-d93c-4de8-979b-4b598986a65a",
+   "newTabs": 0,
+   "dialogs": 0,
+   "notes": []
+  }
  },
  "role_vomce": {
   "role": "ZZAUTOTEST P71 VOM create-edit",
   "roleId": "269548a7-4c40-4e2d-bfca-084c858a38a2",
+  "row": {
+   "role_label": "ZZAUTOTEST P71 VOM create-edit",
+   "defaultWorkplace": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "defaultWorkplaceName": "Staging Heavy Duty - 9919",
+   "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "role_id": "269548a7-4c40-4e2d-bfca-084c858a38a2"
+  },
+  "staff": {
+   "id": "a18500bc-ebfe-4adb-964f-6155ea6e0cfb",
+   "staff_id": "445132ba-a0a2-485e-bb8f-c29c88cc87c9"
+  },
   "log": [
-   "create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+   "create 201 {\"data\":{\"message\":\"created\",\"user_id\":\"cf87bd3d-23c7-41b3-ac18-1ae32ced2e21\"}}",
+   "enrol 400"
   ],
   "roleBody": {
    "id": "269548a7-4c40-4e2d-bfca-084c858a38a2",
@@ -277,7 +571,7 @@
    "description": null,
    "default": false,
    "editable": true,
-   "deletable": true,
+   "deletable": false,
    "fe_permissions": [
     {
      "id": "47fd3b91-d940-4ebf-b3b5-7c321e2eb20b",
@@ -302,17 +596,55 @@
     "seeApArData": false,
     "viewHistoryLogs": false
    }
-  }
+  },
+  "perms": [
+   "reportsPageAccess",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementView"
+  ]
  },
  "C715429": {
   "id": "C715429",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 VOM create-edit",
+  "bill": [
+   {
+    "text": "ZZY925996616",
+    "link": true,
+    "tag": "A",
+    "color": "rgb(34, 118, 218)",
+    "cursor": "pointer",
+    "row": "Nov 1, 2026 Staging Heavy Duty - 9919 Invoice ZZY925996616 ZZY Types P92 Nov 1, 2026 10 $44.00 $44.00"
+   }
+  ],
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715429-1-bill.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715429-2-click-bill.png"
+  ],
+  "2-click-bill": {
+   "from": "https://sv11315.qa.shopview.com/reports/ap-unpaid-invoices?vendorIds=06ab2234-6f71-4c9f-9087-c94f6cd33711",
+   "url": "https://sv11315.qa.shopview.com/parts/delivery/5af79979-d93c-4de8-979b-4b598986a65a",
+   "newTabs": 0,
+   "dialogs": 0,
+   "notes": []
+  }
  },
  "role_rep": {
   "role": "ZZAUTOTEST P71 Reports only",
   "roleId": "2551b1bb-29c8-449f-b559-fd6d6a2d03a3",
+  "row": {
+   "role_label": "ZZAUTOTEST P71 Reports only",
+   "defaultWorkplace": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "defaultWorkplaceName": "Staging Heavy Duty - 9919",
+   "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "role_id": "2551b1bb-29c8-449f-b559-fd6d6a2d03a3"
+  },
+  "staff": {
+   "id": "85e4a58f-348c-4a78-834d-2f056978c97b",
+   "staff_id": "f100cda9-6ef9-4764-a4c7-6d5eeb027031"
+  },
   "log": [
-   "create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+   "create 201 {\"data\":{\"message\":\"created\",\"user_id\":\"deac1e02-473c-4272-890d-53eb3e2968d5\"}}",
+   "enrol 400"
   ],
   "roleBody": {
    "id": "2551b1bb-29c8-449f-b559-fd6d6a2d03a3",
@@ -320,7 +652,7 @@
    "description": null,
    "default": false,
    "editable": true,
-   "deletable": true,
+   "deletable": false,
    "fe_permissions": [
     {
      "id": "7724fb7f-dba8-4672-a168-314c0460c0ab",
@@ -335,37 +667,286 @@
     "seeApArData": false,
     "viewHistoryLogs": false
    }
-  }
+  },
+  "perms": [
+   "reportsPageAccess"
+  ]
  },
  "C715430": {
   "id": "C715430",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 Reports only",
+  "bill": [
+   {
+    "text": "ZZY925996616",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Nov 1, 2026 Staging Heavy Duty - 9919 Invoice ZZY925996616 ZZY Types P92 Nov 1, 2026 10 $44.00 $44.00"
+   }
+  ],
+  "vcr": [
+   {
+    "text": "C-13685",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Nov 1, 2026 Staging Heavy Duty - 9919 Vendor Credit C-13685 ZZY Types P92 Nov 1, 2026 10 $-5.00 $-5.00"
+   }
+  ],
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715430-1-nums.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715430-2-click-bill.png"
+  ],
+  "2-click-bill": {
+   "from": "https://sv11315.qa.shopview.com/reports/ap-aging-detail?vendorIds=06ab2234-6f71-4c9f-9087-c94f6cd33711",
+   "url": "https://sv11315.qa.shopview.com/reports/ap-aging-detail?vendorIds=06ab2234-6f71-4c9f-9087-c94f6cd33711",
+   "newTabs": 0,
+   "dialogs": 0,
+   "notes": []
+  }
  },
  "C715610": {
   "id": "C715610",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 Reports only",
+  "name": [],
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715610-1-name.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715610-2-click.png"
+  ],
+  "2-clickClickErr": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('main tbody td').filter({ h",
+  "2-click": {
+   "from": "https://sv11315.qa.shopview.com/reports/ar-aging-summary",
+   "url": "https://sv11315.qa.shopview.com/reports/ar-aging-summary",
+   "newTabs": 0,
+   "dialogs": 0,
+   "notes": []
+  }
  },
  "C715432": {
   "id": "C715432",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 Reports only",
+  "name": [],
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715432-1-name.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715432-2-click.png"
+  ],
+  "2-clickClickErr": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('main tbody td').filter({ h",
+  "2-click": {
+   "from": "https://sv11315.qa.shopview.com/reports/ap-aging-summary",
+   "url": "https://sv11315.qa.shopview.com/reports/ap-aging-summary",
+   "newTabs": 0,
+   "dialogs": 0,
+   "notes": []
+  },
+  "chips": [
+   "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "local_shipping Vendor: All vendors keyboard_arrow_down",
+   "hourglass_empty Past due: Any keyboard_arrow_down",
+   "place Location: All locations keyboard_arrow_down cancel"
+  ]
  },
  "C715448": {
   "id": "C715448",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 Reports only",
+  "group": "",
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715448-1-group.png"
+  ],
+  "pdf": {
+   "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715448-pdf-ar-aging-collection.pdf",
+   "notes": [
+    "check_circle Success Data exported successfully. Close"
+   ]
+  },
+  "pdfText": [
+   "Customer: Andrews' Truck & Trailer Repair LLC",
+   " Andrews' Truck & Trailer Repair LLC   Phone: 343-203-3967",
+   " Nov 09 2026          Staging Heavy Duty - 9919              Credit Memo            CM11315-4191           Nov 09 2026         2     (-$4.56)        (-$4.56)",
+   " Nov 10 2026          Staging Heavy Duty - 9919              Credit Memo            CM11315-4190           Nov 10 2026         1    (-$12.34)      (-$12.34)",
+   " Total for Andrews' Truck & Trailer Repair LLC                                                                                      $8,583.95      $8,583.95"
+  ],
+  "csv": {
+   "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715448-csv-ar-aging-collection.csv",
+   "notes": [
+    "check_circle Success Data exported successfully. Close"
+   ]
+  },
+  "csvTop": [
+   [
+    "As of: Nov 11, 2026"
+   ],
+   [
+    "Locations: All locations"
+   ],
+   [
+    "Customer: Andrews' Truck & Trailer Repair LLC"
+   ],
+   [
+    "Date",
+    "Location",
+    "Transaction Type",
+    "ID",
+    "Customer",
+    "Phone",
+    "Due Date",
+    "Past Due",
+    "Amount",
+    "Open Balance"
+   ],
+   [
+    "2026-08-27",
+    "Staging Heavy Duty - 9919",
+    "Invoice",
+    "S2-16654",
+    "Andrews' Truck & Trailer Repair LLC",
+    "343-203-3967",
+    "2026-09-26",
+    "46",
+    "8600.85",
+    "8600.85"
+   ],
+   [
+    "2026-11-09",
+    "Staging Heavy Duty - 9919",
+    "Credit Memo",
+    "CM11315-4191",
+    "Andrews' Truck & Trailer Repair LLC",
+    "343-203-3967",
+    "2026-11-09",
+    "2",
+    "-4.56",
+    "-4.56"
+   ]
+  ]
  },
  "C715474": {
   "id": "C715474",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 Reports only",
+  "menu": [],
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715474-1-menu.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715474-2-ars.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715474-2-ard.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715474-2-arc.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715474-2-aps.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715474-2-apd.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715474-2-apu.png"
+  ],
+  "ars": {
+   "url": "https://sv11315.qa.shopview.com/reports/ar-aging-summary",
+   "title": "A/R Aging Summary",
+   "money": [
+    "$174.04",
+    "$174.04",
+    "$174.04",
+    "$174.04"
+   ],
+   "totals": "Totals\t\t$5,857.00\t$105,705.77\t$167,713.30\t$126,336.92\t$118,341.26\t$523,954.25"
+  },
+  "ard": {
+   "url": "https://sv11315.qa.shopview.com/reports/ar-aging-detail",
+   "title": "A/R Aging Detail",
+   "money": [
+    "$118,830.25",
+    "$118,341.26",
+    "$153,784.25",
+    "$126,336.92"
+   ],
+   "totals": "Totals\t$553,930.57\t$523,954.25"
+  },
+  "arc": {
+   "url": "https://sv11315.qa.shopview.com/reports/ar-aging-collection",
+   "title": "A/R Aging Collection",
+   "money": [
+    "$174.04",
+    "$174.04",
+    "$174.04",
+    "$174.04"
+   ],
+   "totals": "Totals\t$547,870.57\t$517,894.25"
+  },
+  "aps": {
+   "url": "https://sv11315.qa.shopview.com/reports/ap-aging-summary",
+   "title": "A/P Aging Summary",
+   "money": [
+    "$36.00",
+    "$36.00",
+    "$37.00",
+    "$37.00"
+   ],
+   "totals": "Totals\t\t$4,102.94\t$124,596.80\t$268,967.36\t$320,924.53\t$4,044,744.92\t$4,763,336.55"
+  },
+  "apd": {
+   "url": "https://sv11315.qa.shopview.com/reports/ap-aging-detail",
+   "title": "A/P Aging Detail",
+   "money": [
+    "$4,044,744.90",
+    "$4,044,744.92",
+    "$320,924.51",
+    "$320,924.53"
+   ],
+   "totals": "Totals\t$4,764,216.51\t$4,763,336.55"
+  },
+  "apu": {
+   "url": "https://sv11315.qa.shopview.com/reports/ap-unpaid-invoices",
+   "title": "A/P Unpaid Invoices Report",
+   "money": [
+    "$36.00",
+    "$36.00",
+    "$37.00",
+    "$37.00"
+   ],
+   "totals": "Totals\t$4,764,216.51\t$4,763,336.55"
+  }
  },
  "C715616": {
   "id": "C715616",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 Reports only",
+  "pdf": {
+   "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715616-ars-ar-aging-summary.pdf",
+   "name": "ar-aging-summary.pdf",
+   "bytes": 94322,
+   "notes": [
+    "check_circle Success Data exported successfully. Close"
+   ]
+  },
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715616-1-pdf.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715616-2-apd.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715616-3-csv.png"
+  ],
+  "apd": {
+   "url": "https://sv11315.qa.shopview.com/reports/ap-aging-detail",
+   "title": "A/P Aging Detail"
+  },
+  "csv": {
+   "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715616-apd-ap-aging-detail.csv",
+   "name": "ap-aging-detail.csv",
+   "bytes": 2015638,
+   "notes": [
+    "check_circle Success Data exported successfully. Close"
+   ]
+  }
  },
  "role_cust": {
   "role": "ZZAUTOTEST P71 Customers view",
   "roleId": "9711d3a3-44a4-4e87-a7a4-d8aa7bc8167a",
+  "row": {
+   "role_label": "ZZAUTOTEST P71 Customers view",
+   "defaultWorkplace": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "defaultWorkplaceName": "Staging Heavy Duty - 9919",
+   "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "role_id": "9711d3a3-44a4-4e87-a7a4-d8aa7bc8167a"
+  },
+  "staff": {
+   "id": "d94874c1-c44f-4560-a534-c8de3716c8af",
+   "staff_id": "45c3fe2e-6868-4d75-9911-c51c06c647da"
+  },
   "log": [
-   "create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+   "create 201 {\"data\":{\"message\":\"created\",\"user_id\":\"ad41be9a-6c38-421a-8fdd-31052adfe844\"}}",
+   "enrol 400"
   ],
   "roleBody": {
    "id": "9711d3a3-44a4-4e87-a7a4-d8aa7bc8167a",
@@ -373,7 +954,7 @@
    "description": null,
    "default": false,
    "editable": true,
-   "deletable": true,
+   "deletable": false,
    "fe_permissions": [
     {
      "id": "55f5cb14-34bd-4999-95a1-0168497466e1",
@@ -393,17 +974,52 @@
     "seeApArData": false,
     "viewHistoryLogs": false
    }
-  }
+  },
+  "perms": [
+   "customersView",
+   "reportsPageAccess"
+  ]
  },
  "C715431": {
   "id": "C715431",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "ZZAUTOTEST P71 Customers view",
+  "name": [],
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715431-1-name.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715431-2-click.png"
+  ],
+  "2-clickClickErr": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('main tbody td').filter({ h",
+  "2-click": {
+   "from": "https://sv11315.qa.shopview.com/reports/ar-aging-summary",
+   "url": "https://sv11315.qa.shopview.com/reports/ar-aging-summary",
+   "newTabs": 0,
+   "dialogs": 0,
+   "notes": []
+  },
+  "chips": [
+   "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+   "person Customer: All customers keyboard_arrow_down",
+   "hourglass_empty Past due: Any keyboard_arrow_down",
+   "place Location: All locations keyboard_arrow_down cancel"
+  ]
  },
  "role_admin1": {
   "role": "Admin",
   "roleId": "73f72525-3d67-436b-9c1d-12677cdf9883",
+  "row": {
+   "role_label": "Admin",
+   "defaultWorkplace": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "defaultWorkplaceName": "Staging Heavy Duty - 9919",
+   "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "role_id": "73f72525-3d67-436b-9c1d-12677cdf9883"
+  },
+  "staff": {
+   "id": "c1ca958c-7adc-4290-8e15-2b1cef6c3b20",
+   "staff_id": "4b16f63e-6a84-41f5-9de5-7d4a3bfbfd05"
+  },
   "log": [
-   "create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+   "create 201 {\"data\":{\"message\":\"created\",\"user_id\":\"8da5cf9f-a41e-4408-b650-189776e54e62\"}}",
+   "enrol 400"
   ],
   "roleBody": {
    "id": "73f72525-3d67-436b-9c1d-12677cdf9883",
@@ -706,19 +1322,149 @@
     "seeApArData": true,
     "viewHistoryLogs": true
    }
-  }
+  },
+  "perms": [
+   "accountingBankingCreateAndEdit",
+   "accountingBankingView",
+   "accountingBankReconciliation",
+   "accountingFixedAssetsCreateAndEdit",
+   "accountingFixedAssetsView",
+   "accountingPurchasesCreateAndEdit",
+   "accountingPurchasesView",
+   "accountingReportsView",
+   "accountingRunDepreciation",
+   "accountingSalesCreateAndEdit",
+   "accountingSalesView",
+   "accountingSettingsAccess",
+   "accountingSetupCreateAndEdit",
+   "accountingSetupView",
+   "accountingView",
+   "billingPortalPageAccess",
+   "catalogInventoryCreateAndEdit",
+   "catalogInventoryDelete",
+   "catalogInventoryView",
+   "customerPortalPageAccess",
+   "customersCreateAndEdit",
+   "customersDelete",
+   "customersView",
+   "invoicingPaymentsCreateAndEdit",
+   "invoicingPaymentsDelete",
+   "invoicingPaymentsView",
+   "partSalesCreateAndEdit",
+   "partSalesDelete",
+   "partSalesView",
+   "reportsPageAccess",
+   "scheduleCreateAndEdit",
+   "scheduleDelete",
+   "scheduleView",
+   "seeApArData",
+   "seeFinancialData",
+   "settingsApp",
+   "settingsDataImport",
+   "settingsFinance",
+   "settingsIntegrations",
+   "settingsParts",
+   "settingsService",
+   "settingsWages",
+   "timesheetsCreateAndEdit",
+   "timesheetsView",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementDelete",
+   "vendorOrderManagementView",
+   "viewHistoryLogs",
+   "woFullViewMode",
+   "woOrderParts",
+   "woPickParts",
+   "woReviewWorkOrders",
+   "workOrderLinesCreateAndEdit",
+   "workOrderLinesDelete",
+   "workOrdersCreateAndEdit",
+   "workOrdersDelete",
+   "workOrdersView"
+  ]
  },
  "C715424": {
   "id": "C715424",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "Admin",
+  "switcher": {
+   "menu": "ZA ZZAUTOTEST Perm admin1 zz.ag.admin1@staging.shop.. Edit Profile co_present Customer Portal New open_in_new credit_card Billing open_in_new campaign What's New New open_in_new settings Settings logout Logout light_mode Light dark_mode Dark",
+   "list": ""
+  },
+  "inv": [
+   {
+    "text": "S-17887",
+    "link": false,
+    "tag": "SPAN",
+    "color": "rgb(0, 0, 0)",
+    "cursor": "auto",
+    "row": "Nov 1, 2026 ZZAUTOTEST V1R-87 Location C Invoice S-17887 ZZAUTOTEST AR V1R-87 Location C Nov 1, 2026 $87.00 $87.00"
+   }
+  ],
+  "row": "Nov 1, 2026 ZZAUTOTEST V1R-87 Location C Invoice S-17887 ZZAUTOTEST AR V1R-87 Location C Nov 1, 2026 $87.00 $87.00",
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715424-1-row.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715424-2-click.png"
+  ],
+  "2-click": {
+   "from": "https://sv11315.qa.shopview.com/reports/ar-aging-detail?customerIds=8117a9eb-4619-444d-8f4e-bb9db7ff331e",
+   "url": "https://sv11315.qa.shopview.com/reports/ar-aging-detail?customerIds=8117a9eb-4619-444d-8f4e-bb9db7ff331e",
+   "newTabs": 0,
+   "dialogs": 0,
+   "notes": []
+  }
  },
  "C715384": {
   "id": "C715384",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "Admin",
+  "locs": {
+   "col": 1,
+   "counts": {
+    "=2+3 ZZAUTOTEST FORMULA (1)\nCredit term: COD": 1
+   }
+  },
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715384-1-rows.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715384-2-menu.png"
+  ],
+  "menu": {
+   "text": [
+    "Select all",
+    "3 selected",
+    "Staging Heavy Duty - 9919",
+    "Staging Lethbridge - 4310",
+    "ZZAUTOTEST V1R-87 Location C",
+    "Clear selection"
+   ],
+   "ticked": 4,
+   "boxes": 4
+  }
  },
  "C715385": {
   "id": "C715385",
-  "err": "person not made create 400 {\"errors\":[{\"workPlaceId\":\"Workplace ID is missing.\"}]}"
+  "role": "Admin",
+  "locs": {
+   "col": 1,
+   "counts": {
+    "Staging Heavy Duty - 9919": 19,
+    "Staging Lethbridge - 4310": 1
+   }
+  },
+  "shots": [
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715385-1-rows.png",
+   "/home/user/Manual-test-Cases/build/aging-reports/exec/pm1/C715385-2-menu.png"
+  ],
+  "menu": {
+   "text": [
+    "Select all",
+    "3 selected",
+    "Staging Heavy Duty - 9919",
+    "Staging Lethbridge - 4310",
+    "ZZAUTOTEST V1R-87 Location C",
+    "Clear selection"
+   ],
+   "ticked": 4,
+   "boxes": 4
+  }
  },
  "adminBack": 57
 }
