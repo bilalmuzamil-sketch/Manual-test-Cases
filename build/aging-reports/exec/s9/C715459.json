@@ -91,6 +91,72 @@
    ],
    "totals": "Totals $950.00 $950.00",
    "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9//07-C715459-2-3-pastdue-31-60.png"
+  },
+  {
+   "label": "4-5-no-lethbridge",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "person Customer: 2 customers keyboard_arrow_down cancel",
+    "hourglass_empty Past due: 31-60 days keyboard_arrow_down cancel",
+    "place Location: Staging Heavy D... keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "keyboard_arrow_down Date arrow_drop_up | Transaction Type arrow_drop_up | ID arrow_drop_up | Due Date arrow_drop_up | Past Due arrow_drop_up | Amount arrow_drop_up | Open Balance arrow_drop_up",
+    "keyboard_arrow_down | ZZX Tot Cust A R3 (1) Credit term: COD",
+    "Nov 6, 2026 | Credit Memo | CM11315-4197 | Nov 6, 2026 | 5 | $-150.00 | $-150.00",
+    "Total for ZZX Tot Cust A R3 | $-150.00 | $-150.00",
+    "keyboard_arrow_down | ZZX Tot Cust B R3 (1) Credit term: COD",
+    "Sep 27, 2026 | Invoice | S11315-17768 | Sep 27, 2026 | 45 | $700.00 | $700.00",
+    "Total for ZZX Tot Cust B R3 | $700.00 | $700.00",
+    "Totals | $550.00 | $550.00"
+   ],
+   "totals": "Totals $550.00 $550.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9//08-C715459-4-5-no-lethbridge.png"
+  },
+  {
+   "step": "PDF-6-pdf",
+   "r": {
+    "kind": "PDF",
+    "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715459-6-pdf-ar-aging-collection.pdf",
+    "name": "ar-aging-collection.pdf",
+    "bytes": 77088,
+    "notes": [
+     "check_circle Success Data exported successfully. Close"
+    ],
+    "toast": null,
+    "totalsLine": "Totals $550.00 $550.00",
+    "pdfLines": 15
+   }
+  },
+  {
+   "step": "CSV-8-csv",
+   "r": {
+    "kind": "CSV",
+    "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715459-8-csv-ar-aging-collection.csv",
+    "name": "ar-aging-collection.csv",
+    "bytes": 442,
+    "notes": [
+     "check_circle Success Data exported successfully. Close",
+     "check_circle Success Data exported successfully. Close 2"
+    ],
+    "toast": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715459-8-csv-toast.png",
+    "head": [
+     "As of: Nov 11, 2026"
+    ],
+    "totalsRow": [
+     "Totals",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "550.00",
+     "550.00"
+    ],
+    "n": 8
+   }
   }
  ],
  "expanded": true
