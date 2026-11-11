@@ -1,0 +1,6 @@
+customer ZZR No Due Date P66 Net 30
+  invoice S11315-17888 40.00 dated -40 Net 30 HD
+vendor term "" rows [["ZZRV-NODUE-E","2026-10-20T18:00:00Z",22]]
+vendor ZZRV Overpaid P66 COD
+  bill ZZY6288880 100 dated -15 COD HD
+p66 {"ar":[{"n":"S11315-17888","date":"2026-10-02 18:00:00","due":"2026-11-01 18:00:00","bal":40}],"ap":[["ZZRV-NODUE-E","2026-10-20T18:00:00Z",22]],"apErr":["Error: vendor ZZRV No Due Date P66 N 400 {\"errors\":[{\"credit_term\":\"Missing required parameter\"}]}"],"op":{"api":"Error: pay 400 {\"errors\":[{\"error\":\"Vendor transaction cannot be overpaid.\"}]}"},"opErr":"TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.q-dialog').last().locator('[data-test-id=\"input_payment_amount\"]').or(locator('.q-dialog').last().locator('tr').filter({ hasText: 'ZZY6288880' }).locator('input')).first()\u001b[22m\n\u001b[2m    - locator resolved t"}
