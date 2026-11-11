@@ -2700,3 +2700,9 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     so and says that the QA branch must therefore work exactly as production does today. (d) Layout is
     headings, short bullets, tables and panels — never a wall of paragraphs — in plain words a manual QA
     tester follows without help; technical detail only in a collapsed block at the end.
+
+    **Standing permissions recorded with 118 (QA lead, 2026-11-11, verbatim):** *"YOU can always change
+    the role of the user tech@shopview.com"* and *"CRUD the branch the way you want ALWYS"* (QA
+    branches). Use them without asking; restore tech@shopview.com's original role after a role test
+    (Rule 26); tag created data ZZAUTOTEST. A second user is signed in with quick-login in a SEPARATE
+    cookie jar (only sv_sso_session + cf_clearance), never with the QA lead's PHPSESSID.
