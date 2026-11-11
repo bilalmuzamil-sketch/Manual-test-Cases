@@ -10,7 +10,7 @@ export const REPORTS = { ars: '/reports/ar-aging-summary', ard: '/reports/ar-agi
 export const T = (s) => (s || '').replace(/\s+/g, ' ').trim();
 export async function start(OUT, route = '/reports/ar-aging-summary') {
   fs.mkdirSync(OUT, { recursive: true });
-  const r = await boot('sv11315', route, 'admin'); const page = r.page; page.setDefaultTimeout(15000);
+  const r = await boot('sv11315', route, process.env.QL_KEY || 'admin'); /* 11 Nov: QL_KEY=tech runs a lane as the Tech user (given the Administrator role by p54) */ const page = r.page; page.setDefaultTimeout(15000);
   await page.setViewportSize({ width: 1440, height: 900 });
   /* 11 Nov: tests that switch location (C715407/408) or another session can leave the shared admin at Staging Lethbridge - 4310 (seen at 09:05 on C1062586's
      picture); every runner now starts at Staging Heavy Duty - 9919, reloaded, unless KEEP_LOC=1 */

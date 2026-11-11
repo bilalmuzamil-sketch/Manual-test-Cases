@@ -1,0 +1,123 @@
+== V1
+vendor ZZY Sort Vend A R1 Net 30
+  bill ZZY95511244 100 dated -5 Net 30 HD
+  bill ZZY95512385 200 dated -45 Net 30 HD
+  bill ZZY95513182 300 dated -75 Net 30 HD
+  bill ZZY95514012 250 dated -105 Net 30 HD
+  bill ZZY95514841 350 dated -150 Net 30 HD
+vendor ZZY Sort Vend B R1 Net 30
+  bill ZZY95515811 300 dated -5 Net 30 HD
+  bill ZZY95516510 100 dated -45 Net 30 HD
+  bill ZZY95517247 200 dated -75 Net 30 HD
+  bill ZZY95518016 350 dated -105 Net 30 HD
+  bill ZZY95518771 150 dated -150 Net 30 HD
+vendor ZZY Sort Vend C R1 Net 30
+  bill ZZY95519872 200 dated -5 Net 30 HD
+  bill ZZY95520866 300 dated -45 Net 30 HD
+  bill ZZY95522613 100 dated -75 Net 30 HD
+  bill ZZY95523711 150 dated -105 Net 30 HD
+  bill ZZY95524547 250 dated -150 Net 30 HD
+  read back ZZY Sort Vend A R1 [["days_91_plus",1,35000],["days_61_to_90",1,25000],["days_31_to_60",1,30000],["days_1_to_30",1,20000],["current",1,10000]]
+  read back ZZY Sort Vend B R1 [["days_91_plus",1,15000],["days_61_to_90",1,35000],["days_31_to_60",1,20000],["days_1_to_30",1,10000],["current",1,30000]]
+  read back ZZY Sort Vend C R1 [["days_91_plus",1,25000],["days_61_to_90",1,15000],["days_31_to_60",1,10000],["days_1_to_30",1,30000],["current",1,20000]]
+== V2
+vendor ZZY Doc Vend A R1 Net 30
+  bill ZZY95526071 300 dated -40 Net 30 HD
+  paid 250 on ZZY95526071
+vendor ZZY Doc Vend B R1 COD
+  bill ZZY95532300 100 dated -20 COD HD
+vendor ZZY Doc Vend C R1 Net 30
+  bill ZZY95533243 200 dated -35 Net 30 HD
+  paid 50 on ZZY95533243
+  read back ZZY Doc Vend A R1 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,5000],["current",0,0]]
+  read back ZZY Doc Vend B R1 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,10000],["current",0,0]]
+  read back ZZY Doc Vend C R1 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,15000],["current",0,0]]
+== V3
+vendor ZZY Doc Group R1 Net 30
+  bill ZZY95539810 300 dated -40 Net 30 HD
+  ERR Error: no vendor account id for ZZY Doc Group R1
+== V4
+vendor ZZY CSV Sum A R1 COD
+  bill ZZY95546145 1250.5 dated -15 COD HD
+  bill ZZY95547256 99 dated -100 COD HD
+  read back ZZY CSV Sum A R1 [["days_91_plus",1,9900],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,125050],["current",0,0]]
+== V5
+vendor ZZY CSV Det A R1 COD
+  bill ZZY95548490 1250.5 dated -45 COD HD
+  bill ZZY95549286 75 dated -15 COD HD
+  read back ZZY CSV Det A R1 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",1,125050],["days_1_to_30",1,7500],["current",0,0]]
+== V6
+vendor ZZY Tot Vend A R1 COD
+  bill ZZY95550572 1000 dated -15 COD HD
+  bill ZZY95551461 400 dated -45 COD LB
+  vendor credit ZZYCM5552718 150 dated -5
+vendor ZZY Tot Vend B R1 COD
+  bill ZZY95553244 700 dated -45 COD HD
+  bill ZZY95554083 250 dated -100 COD LB
+vendor ZZY Tot Vend C R1 COD
+  bill ZZY95555171 900 dated -5 COD HD
+  read back ZZY Tot Vend A R1 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",1,40000],["days_1_to_30",2,85000],["current",0,0]]
+  read back ZZY Tot Vend B R1 [["days_91_plus",1,25000],["days_61_to_90",0,0],["days_31_to_60",1,70000],["days_1_to_30",0,0],["current",0,0]]
+  read back ZZY Tot Vend C R1 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,90000],["current",0,0]]
+== V8
+vendor ZZY Bkt Vend A R1 Net 30
+  bill ZZY95556771 1000 dated -5 Net 30 HD
+  bill ZZY95557484 400 dated -75 Net 30 HD
+  bill ZZY95558440 300 dated -45 Net 30 LB
+vendor ZZY Bkt Vend B R1 Net 30
+  bill ZZY95559543 700 dated -75 Net 30 HD
+  paid 200 on ZZY95559543
+  bill ZZY95565331 250 dated -130 Net 30 HD
+  read back ZZY Bkt Vend A R1 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",1,40000],["days_1_to_30",1,30000],["current",1,100000]]
+  read back ZZY Bkt Vend B R1 [["days_91_plus",1,25000],["days_61_to_90",0,0],["days_31_to_60",1,50000],["days_1_to_30",0,0],["current",0,0]]
+== V9
+vendor ZZY Bounds R1 Net 30
+  bill ZZY95566580 10 dated -5 Net 30 HD
+  bill ZZY95567328 1 dated -31 Net 30 HD
+  bill ZZY95568039 30 dated -60 Net 30 HD
+  bill ZZY95568912 31 dated -61 Net 30 HD
+  bill ZZY95569653 60 dated -90 Net 30 HD
+  bill ZZY95570417 61 dated -91 Net 30 HD
+  bill ZZY95571069 90 dated -120 Net 30 HD
+  bill ZZY95571772 91 dated -121 Net 30 HD
+  read back ZZY Bounds R1 [["days_91_plus",1,9100],["days_61_to_90",2,15100],["days_31_to_60",2,9100],["days_1_to_30",2,3100],["current",1,1000]]
+== V12
+vendor ZZY Diff Vend A R1 Net 30
+  bill ZZY95572883 1000 dated -5 Net 30 HD
+  bill ZZY95573649 400 dated -75 Net 30 HD
+  bill ZZY95574369 300 dated -45 Net 30 HD
+  vendor credit ZZYCM5575295 150 dated -5
+vendor ZZY Diff Vend B R1 Net 30
+  bill ZZY95575782 500 dated -75 Net 30 HD
+  bill ZZY95576566 250 dated -130 Net 30 HD
+  read back ZZY Diff Vend A R1 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",1,40000],["days_1_to_30",2,15000],["current",1,100000]]
+  read back ZZY Diff Vend B R1 [["days_91_plus",1,25000],["days_61_to_90",0,0],["days_31_to_60",1,50000],["days_1_to_30",0,0],["current",0,0]]
+== V14
+vendor ZZY Credit Today R1 COD
+  bill ZZY95577878 500 dated -20 COD HD
+  vendor credit ZZYCM5578770 120 dated -0
+  read back ZZY Credit Today R1 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",1,50000],["current",1,-12000]]
+== V16
+vendor ZZY Credit Sort R1 COD
+  bill ZZY95579454 300 dated -10 COD HD
+  bill ZZY95580381 100 dated -20 COD HD
+  vendor credit ZZYCM5581466 75 dated -15
+  read back ZZY Credit Sort R1 [["days_91_plus",0,0],["days_61_to_90",0,0],["days_31_to_60",0,0],["days_1_to_30",3,32500],["current",0,0]]
+== V15
+vendor ZZY 101 Bills R1 COD
+  bill ZZY95582611 10 dated -10 COD HD
+  bill ZZY95583876 10 dated -10 COD HD
+  bill ZZY95586152 10 dated -10 COD HD
+  bill ZZY95586828 10 dated -10 COD HD
+  bill ZZY95587572 10 dated -10 COD HD
+  bill ZZY95588294 10 dated -10 COD HD
+  bill ZZY95588930 10 dated -10 COD HD
+  bill ZZY95589659 10 dated -10 COD HD
+  bill ZZY95590392 10 dated -10 COD HD
+  bill ZZY95591490 10 dated -10 COD HD
+  bill ZZY95592217 10 dated -10 COD HD
+  bill ZZY95592835 10 dated -10 COD HD
+  bill ZZY95593581 10 dated -10 COD HD
+  bill ZZY95594320 10 dated -10 COD HD
+  bill ZZY95595116 10 dated -10 COD HD
+  bill ZZY95595837 10 dated -10 COD HD
