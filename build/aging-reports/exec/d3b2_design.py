@@ -44,6 +44,15 @@ E = {
     ('design-pics/ar-ap-p6-info-icon-beside-the-title-dark.png', 'Design picture, dark', ()),
     ('d3b/C715541-2-dark.png', 'Step 5: dark theme - as designed, readable', (CH + ('good', 'Dark-blue pills, white text'),)),
     ('d3b/C715541-3-dark-1536.png', 'Step 6: 1536 px - nothing clipped', ())]),
+ 'C715543': (['A/P Aging Detail, as of today, all locations, the "91 or more days past due" bucket open, 1440 px; compared with the design pictures "Open Balance pinned, light" and "Same, dark".',
+   'Step 1: scrolled a little inside the bucket, the bucket row "91 or more days past due (11936)" stays pinned under the column headings and the bold Totals row sits at the bottom while the rows scroll under it. All nine columns show at 1440 px: the chevron, "Date", "Location", "Transaction Type", "No.", "Vendor Name" (small up arrow), "Due Date", "Past Due", "Amount", "Open Balance", each heading on one line. Location wraps onto two lines ("Staging Heavy Duty -" / "9919"); dates, numbers and money stay on one line; document numbers at this location are blue links (a bill made at Staging Lethbridge - 4310 is plain text, as the location rule says); Open Balance is bold on every row.',
+   'Step 2: in dark theme, as in the dark picture, the links are blue and readable on the dark page; Open Balance and the Totals row are bold and white.',
+   'Step 3: at 1536 px (dark) nothing overlaps, is cut off or clipped; the layout is the same as at 1440 px.'],
+   [('design-pics/ar-ap-p6-open-balance-pinned-light.png', 'Design picture, light', ()),
+    ('d3b/C715543-1-light.png', 'Step 1: bucket row pinned, Totals at the bottom, nine columns, Location on two lines', (PIN + ('good', 'Pinned bucket'), (278, 852, 1132, 46, 'good', 'Totals at the bottom'))),
+    ('design-pics/ar-ap-p6-same-dark-2.png', 'Design picture, dark', ()),
+    ('d3b/C715543-2-dark.png', 'Step 2: dark theme - links blue and readable, Open Balance and Totals bold white', ()),
+    ('d3b/C715543-3-dark-1536.png', 'Step 3: 1536 px - nothing clipped', ())]),
 }
 ids = sys.argv[1:]; R = {}
 for c in ids:
