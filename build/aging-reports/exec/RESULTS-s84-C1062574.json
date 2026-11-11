@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s84"
+ },
+ "results": {
+  "C1062574": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail as of 11/11/2026, only customer \"ZZX Types P68\" ticked: invoice A S11315-17898 ($90.00), credit memo A CM11315-4319 ($-30.00), unused deposit A DEP11315-4719 ($-20.00).",
+    "Set-up difference from the case: all three are dated today and sit in \"Current\", not 10 days ago in \"1-30 days past due\". An unused deposit always carries the moment it is left over and cannot be back-dated in the app, so \"Current\" is the bucket where all three can sit together; the check (names and sort inside one bucket) is the same.",
+    "Step 1: under Transaction Type the rows read \"Invoice\", \"Credit Memo\" and \"Deposit\"; no row reads \"Credit\".",
+    "Step 2: clicking \"Transaction Type\" sorts the rows A to Z: credit memo A, then deposit A, then invoice A (arrow on the heading, ascending).",
+    "Step 3: clicking it again reverses the order: invoice A, deposit A, credit memo A."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062574-1-names.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062574-2-a-to-z.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062574-3-z-to-a.png"
+   ]
+  }
+ }
+}
