@@ -1,0 +1,29 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, C1062581 back to Failed after the developer re-corrected the handoff (SV-12544)"
+ },
+ "results": {
+  "C1062581": {
+   "verdict": "Failed",
+   "observed": [
+    "Set up: customer ZZX PDF Date S9 with one open invoice (S11315-17866, $64.00) dated Nov 4, 2026, due Dec 4, 2026; A/R Aging Detail with only that customer ticked.",
+    "Step 4: set As of to 11/04/2026, expand \"Current\", choose Download (PDF) from the \u22ef menu and read invoice A's row.",
+    "You see: the PDF row prints Date \"Nov 4, 2026\" and Due Date \"Dec 4, 2026\" - one-digit day and a comma.",
+    "The test says the PDF prints dates as three-letter month, two-digit day and year with no comma: \"Nov 04 2026\" and \"Dec 04 2026\".",
+    "For comparison, the Sales By Customer PDF on the same site prints its document dates as \"Nov 04 2026\", the form the requirement asks for.",
+    "The developer's handoff on the story (SV-11533) now says, corrected again on 11 Nov: the PDF should print dates as \"Nov 04 2026\"; the build printing \"Nov 4, 2026\" is the open defect SV-12544. Under the QA lead's ruling for this suite (follow the developer), this test is Failed again; the Passed recorded at ~14:00 UTC is replaced."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062581-4-aging-pdf-row.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062581-5-sales-by-customer-pdf.png"
+   ],
+   "failed_steps": "Failed at step 4: in the PDF, invoice A's Date and Due Date print as \"Nov 4, 2026\" and \"Dec 4, 2026\" instead of \"Nov 04 2026\" and \"Dec 04 2026\".",
+   "bold_steps": [
+    4
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), S3-R7a: \"The PDF uses the app-wide report PDF format, the same as Sales By Customer and Inventory Value: a negative amount prints in brackets with a minus sign, for example \"(-$11,111.00)\", and dates print as \"Nov 04 2026\".\"",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12544 (In Progress, read 11 Nov 2026 ~14:33 UTC).",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once SV-12544 is fixed."
+  }
+ }
+}

@@ -1,0 +1,23 @@
+== E1
+customer ZZX Only LB P68 COD
+  invoice S11315-17889 50.00 dated -5 COD LB
+  report [["days_1_to_30","Invoice","S11315-17889","2026-11-06T18:00","2026-11-06","Staging Lethbridge - 4310",5000]]
+== E2
+vendor ZZY Only LB bill at LB {"orderId":"a38d5265-18fd-46bb-a8b2-fa493706782d","number":"ZZYLB7474492"}
+== D1
+customer ZZX Date Fmt P68 Net 30
+  invoice S11315-17890 101.00 dated -0 Net 30 HD
+  invoice S11315-17891 102.00 dated -1 Net 30 HD
+  invoice S11315-17892 103.00 dated -2 Net 30 HD
+  report [["current","Invoice","S11315-17890","2026-11-11T08:00","2026-12-11","Staging Heavy Duty - 9919",10100],["current","Invoice","S11315-17891","2026-11-10T18:00","2026-12-10","Staging Heavy Duty - 9919",10200],["current","Invoice","S11315-17892","2026-11-09T18:00","2026-12-09","Staging Heavy Duty - 9919",10300]]
+== M1
+customer ZZX Loc Sort P68 COD
+  invoice S11315-17893 140.00 dated -40 COD LB
+  invoice S11315-17894 120.00 dated -20 COD HD
+  invoice S11315-17895 130.00 dated -30 COD HD
+  report [["days_1_to_30","Invoice","S11315-17894","2026-10-22T18:00","2026-10-22","Staging Heavy Duty - 9919",12000],["days_1_to_30","Invoice","S11315-17895","2026-10-12T18:00","2026-10-12","Staging Heavy Duty - 9919",13000],["days_31_to_60","Invoice","S11315-17893","2026-10-02T18:00","2026-10-02","Staging Lethbridge - 4310",14000]]
+== P1
+customer ZZX Own Loc P68 COD
+  invoice S11315-17896 500.00 dated -5 COD HD
+  paid 200 on S11315-17896
+  credit CM-4318 40
