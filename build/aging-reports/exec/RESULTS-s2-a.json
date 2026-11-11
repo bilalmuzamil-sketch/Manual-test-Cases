@@ -1,0 +1,112 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, aging reports run 557, folder S2 batch a (sv11315) - sort by clicking a heading"
+ },
+ "results": {
+  "C715288": {
+   "verdict": "Passed",
+   "observed": [
+    "Customers used: 10 Trucking (A), 2 Trucking (B), A-1 Towing (C) - they open in that order with the Customer heading marked as sorted.",
+    "First click on the Customer heading: the list reverses to Z to A (it now starts with ZZPUNCT Diesel @1 and ends with #1 Diesel); A-1 Towing above 2 Trucking above 10 Trucking.",
+    "Second click: back to A to Z - 10 Trucking, 2 Trucking, A-1 Towing."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715288-0-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715288-1-first-click.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715288-2-second-click.png"
+   ]
+  },
+  "C715291": {
+   "verdict": "Passed",
+   "observed": [
+    "Vendors used: 10 Trucking (A), 2 Trucking (B), A-1 Towing (C) - they open in that order with the Vendor heading marked as sorted.",
+    "First click on the Vendor heading: Z to A (the list now starts with zzcaps supply and ends with #1 Diesel); A-1 Towing above 2 Trucking above 10 Trucking.",
+    "Second click: back to A to Z."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715291-1-first-click.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715291-2-second-click.png"
+   ]
+  },
+  "C715585": {
+   "verdict": "Passed",
+   "observed": [
+    "Customers used: Apollo Beach Truck & Equipment Repair (only Staging Lethbridge - 4310), Monroe Truck Service & Repair (both, shows Multiple), #1 Diesel (only Staging Heavy Duty - 9919).",
+    "First click on Location: Multiple rows first, then Staging Heavy Duty - 9919, then Staging Lethbridge - 4310 - Monroe, then #1 Diesel, then Apollo Beach.",
+    "Second click: Z to A - Lethbridge first, Multiple last: Apollo Beach, then #1 Diesel, then Monroe.",
+    "Third click: A to Z again, as after the first click."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715585-1-az.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715585-2-za.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715585-3-az-again.png"
+   ]
+  },
+  "C715586": {
+   "verdict": "Passed",
+   "observed": [
+    "The vendor list has vendors at Staging Lethbridge - 4310 only, at Staging Heavy Duty - 9919 only, and at both (shows Multiple).",
+    "First click on Location: Multiple first, then Heavy Duty - 9919, then Lethbridge - 4310.",
+    "Second click: Z to A - Lethbridge first, Multiple last.",
+    "Third click: A to Z again."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715586-1-az.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715586-2-za.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715586-3-az-again.png"
+   ]
+  },
+  "C715587": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail opens sorted by Customer Full Name; 1-30 days past due opened.",
+    "First click on Customer Full Name: the bucket reverses - ZZAUTOTEST S1R5 Bravo, then ZZAUTOTEST S1R5 Alpha, ... down to Andrews' Truck & Trailer Repair LLC.",
+    "Second click: A to Z again - Andrews', Desert Edge, Monroe, Perkasie, ZZAUTOTEST ... ."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715587-1-za.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715587-2-az.png"
+   ]
+  },
+  "C715589": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail opens sorted by Vendor Name; 1-30 days past due opened.",
+    "First click on Vendor Name: the bucket reverses - ZZAUTOTEST VCREDIT V first, ... Apex Truck & Trailer Repair last.",
+    "Second click: A to Z again - Apex Truck & Trailer Repair first."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715589-1-za.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715589-2-az.png"
+   ]
+  },
+  "C715294": {
+   "verdict": "Passed",
+   "observed": [
+    "1-30 days past due holds rows at Staging Heavy Duty - 9919 and Staging Lethbridge - 4310, and both Invoices and Credit Memos.",
+    "Location clicked once: every Heavy Duty row before the Lethbridge rows; twice: Lethbridge first; three times: Heavy Duty first again (no unsorted state).",
+    "Transaction Type clicked once: Credit Memo rows, then Invoice rows (A to Z); twice: Invoice, then Credit Memo."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715294-1-loc-az.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715294-2-loc-za.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715294-4-type-az.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715294-5-type-za.png"
+   ]
+  },
+  "C715302": {
+   "verdict": "Passed",
+   "observed": [
+    "1-30 days past due holds bills at Staging Heavy Duty - 9919 and Staging Lethbridge - 4310, and Vendor Credits.",
+    "Location clicked once: Heavy Duty rows before Lethbridge rows; twice: Lethbridge first; three times: Heavy Duty first again.",
+    "Transaction Type clicked once: Invoice, then Vendor Credit (A to Z); twice: Vendor Credit, then Invoice."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715302-1-loc-az.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715302-2-loc-za.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715302-4-type-az.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715302-5-type-za.png"
+   ]
+  }
+ }
+}

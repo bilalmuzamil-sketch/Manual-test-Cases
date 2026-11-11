@@ -12,7 +12,8 @@ for (const sc of SC_) { if (ONLY && !ONLY.includes(sc.id)) continue; const res =
     const snap = async (label) => { const rows = await S.collect(); const st = { label, ths: await S.ths(), segs: {} };
       if (sc.full) st.full = rows.map((r) => r.cells); for (const g of sc.segs || []) st.segs[g] = S.segment(rows, new RegExp(g));
       if (sc.groups) st.groups = rows.filter((r) => new RegExp(sc.groups).test(r.text)).map((r) => r.raw);
-      if (sc.segs?.[0]) { const l = await S.find(new RegExp(sc.segs[0])); if (l) await p.evaluate(`(() => { const e = ${S.SC}; e.scrollTop = Math.max(0, e.scrollTop - 40); })()`); }
+      if (sc.focus) { const l = await S.find(new RegExp(sc.focus)); if (l) await p.evaluate(`(() => { const e = ${S.SC}; e.scrollTop = Math.max(0, e.scrollTop - 250); })()`); await p.waitForTimeout(400); }
+      else if (sc.segs?.[0]) { const l = await S.find(new RegExp(sc.segs[0])); if (l) await p.evaluate(`(() => { const e = ${S.SC}; e.scrollTop = Math.max(0, e.scrollTop - 40); })()`); }
       st.shot = await s.shot(sc.id + '-' + label.replace(/[^a-z0-9]+/gi, '_').slice(0, 30)); st.boxes = await p.evaluate(`[...document.querySelectorAll('main tbody tr, main thead th')].map(e => { const b = e.getBoundingClientRect(); return [e.innerText.replace(/\\s+/g,' ').trim().slice(0, 70), Math.round(b.x), Math.round(b.y), Math.round(b.width), Math.round(b.height)]; }).filter(x => x[2] > 0 && x[2] < 900)`);
       res.steps.push(st); };
     await snap('open');

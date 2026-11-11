@@ -19,6 +19,6 @@ export function mkSort(p) {
   async function collapse(re) { const l = await find(re); if (!l) return 'not-found'; const t = await l.innerText(); if (/keyboard_arrow_down/.test(t)) { await l.locator('button, i.q-icon').first().click(); await p.waitForTimeout(1500); return 'closed'; } return 'already-closed'; }
   async function clickTh(label) { const loc = p.locator('main thead th').filter({ hasText: new RegExp('^\\s*(keyboard_arrow_(down|right)\\s*)?' + label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*(arrow_drop_(up|down))?\\s*$') }).first();
     if (!(await loc.count())) return 'no-header'; await loc.locator('span, div').filter({ hasText: label }).last().click().catch(async () => { await loc.click(); }); await p.waitForTimeout(2500); return 'clicked'; }
-  function segment(rows, startRe) { const i = rows.findIndex((r) => startRe.test(r.text)); if (i < 0) return null; const out = []; for (let k = i + 1; k < rows.length; k++) { if (/^Total for /.test(rows[k].text)) break; out.push(rows[k]); } return { head: rows[i].text, rows: out }; }
+  function segment(rows, startRe) { const i = rows.findIndex((r) => startRe.test(r.text)); if (i < 0) return null; const out = []; for (let k = i + 1; k < rows.length; k++) { if (/^Total for /.test(rows[k].text) || /keyboard_arrow_(right|down)/.test(rows[k].raw || '')) break; out.push(rows[k]); } return { head: rows[i].text, rows: out }; }
   return { SC, ths, sorted, collect, find, expand, collapse, clickTh, segment };
 }
