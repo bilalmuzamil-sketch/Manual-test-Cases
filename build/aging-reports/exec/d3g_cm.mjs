@@ -23,4 +23,25 @@ async function setDark(on) { const isDark = () => p.evaluate(() => document.body
     await setDark(false);
   } catch (e) { q.err = String(e).slice(0, 300); try { await setDark(false); } catch {} }
   o.C715542 = q; console.log('C715542', q.err || 'ok', JSON.stringify(q).slice(0, 700)); }
+// C715544 (added 20:05): step 3 needs a vendor whose bill was made at another location (plain number, name wrapping) - Abadi's Diesel Repair (bill 5956
+// at Staging Lethbridge - 4310) - and step 4 a vendor with blue links (Adams Diesel Repair, Heavy Duty). A/P Unpaid Invoices, both vendors ticked, Expand all.
+{ const q = { id: 'C715544' };
+  try { await s.go(REPORTS.apu); await p.waitForTimeout(3500); await settle(); await F.pick('Vendor', "Abadi's Diesel Repair"); await F.pick('Vendor', 'Adams Diesel Repair'); await settle();
+    await p.locator('main thead th').first().locator('button').first().click(); await settle();
+    q.rows = await p.evaluate(() => [...document.querySelectorAll('main tbody tr')].slice(0, 16).map((tr) => { const tds = [...tr.querySelectorAll('td')]; const no = tds[4]; const vn = tds[5];
+      return { text: tr.innerText.replace(/\s+/g, ' ').slice(0, 140), no: no ? no.innerText.trim() : null, link: no ? !!no.querySelector('a, [role=link]') : null, vendorLines: vn ? Math.round(vn.getBoundingClientRect().height / parseFloat(getComputedStyle(vn).lineHeight || '20')) : null, vendorH: vn ? Math.round(vn.getBoundingClientRect().height) : null }; }));
+    await p.mouse.move(5, 890); await p.screenshot({ path: OUT + 'C715544-vendors.png' });
+  } catch (e) { q.err = String(e).slice(0, 300); }
+  o.C715544 = q; console.log('C715544', q.err || 'ok', JSON.stringify(q).slice(0, 700)); }
+// C715545 (added 20:10): step 3 - the subtotal row at the END of the "91 or more days past due" bucket on A/R Detail. Open that bucket only, scroll until
+// "Total for 91 or more days past due" is on screen, read its text and weight, picture.
+{ const q = { id: 'C715545' };
+  try { await s.go(REPORTS.ard); await p.waitForTimeout(3500); await settle(); const S = (await import('./sortlib.mjs')).mkSort(p); await S.expand(/^91 or more/); await settle();
+    const SC = `(document.querySelector('main .q-table__middle.scroll, main .q-virtual-scroll, main .q-table__middle') || document.scrollingElement)`;
+    for (let i = 0; i < 40; i++) { const found = await p.locator('main tbody tr').filter({ hasText: /^\s*Total for 91 or more days past due/ }).count(); if (found) break; await p.evaluate(`${SC}.scrollTop += 600`); await p.waitForTimeout(500); }
+    const row = p.locator('main tbody tr').filter({ hasText: /^\s*Total for 91 or more days past due/ }).first(); await row.scrollIntoViewIfNeeded().catch(() => {}); await p.waitForTimeout(600);
+    q.sub = (await row.innerText().catch(() => '')).replace(/\s+/g, ' '); q.weights = await row.locator('td').evaluateAll((tds) => tds.map((t) => [t.innerText.trim(), getComputedStyle(t.querySelector('*') || t).fontWeight])).catch(() => null);
+    await p.mouse.move(5, 890); await p.screenshot({ path: OUT + 'C715545-subtotal.png' });
+  } catch (e) { q.err = String(e).slice(0, 300); }
+  o.C715545 = q; console.log('C715545', q.err || 'ok', JSON.stringify(q).slice(0, 500)); }
 fs.writeFileSync(OUT + 'out.json', JSON.stringify(o, null, 1)); console.log('C715538b', o.err || 'ok', JSON.stringify(o).slice(0, 600)); await s.close(); process.exit(0);
