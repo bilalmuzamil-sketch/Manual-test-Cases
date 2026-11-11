@@ -1,7 +1,6 @@
 #!/bin/bash
-# queue4.sh (re-used name, 11 Nov 09:40) — p45 again (Net 30 customer, part payment, term switch), right after queue3.sh (p47). Later queues match "queue4.sh".
+# queue4.sh — 11 Nov 2026 ~15:35 UTC: after queue3. s89 vendor credits (C715420, C715421, C715391; seeds its own vendors).
+# (Replaces an older queue4.sh of the same name - the p45b queue, long finished; that text is in git history.)
 cd "$(dirname "$0")"; log() { echo "$(date -u +%H:%M:%S) $*" >> queue.log; }
-sleep 5; while pgrep -f "queue3\.sh$|node [a-z0-9_]+\.mjs" >/dev/null; do sleep 5; done
-run() { local name=$1; shift; log "start $name"; "$@"; log "end $name rc=$?"; }
-run p45b timeout 600 node p45_exactpay.mjs > p45b.log 2>&1
-log "queue4 (p45b) done"
+while pgrep -f "queue[23].sh|chain3[0-6].sh" >/dev/null || pgrep -f "node [a-z0-9_]+\.mjs" >/dev/null; do sleep 10; done
+log "start s89"; timeout 2400 node s89_vcredit.mjs > s89.log 2>&1; log "end s89 rc=$?"; log "queue4 done"
