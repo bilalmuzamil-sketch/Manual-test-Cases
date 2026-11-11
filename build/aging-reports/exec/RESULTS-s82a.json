@@ -1,0 +1,43 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s82"
+ },
+ "results": {
+  "C715316": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Summary at Staging Heavy Duty - 9919, three locations in the Location filter (location B = Staging Lethbridge - 4310; the third, \"ZZAUTOTEST V1R-87 Location C\", was also unticked in step 6 so that only location A is left, as the case intends).",
+    "Step 1: clicking \"Total\" once sorts the rows largest first ($231,918.94, $81,817.15, $25,210.55 ...) and marks \"Total\" with the sort arrow.",
+    "Step 2: as of 11/10/2026 the report reloads, still sorted by Total, largest first.",
+    "Step 3: scrolling loads the next customers in batches until all 142 are on screen - every one in Total order, largest first.",
+    "Step 4: the Customer menu opens (search box, \"All customers\", then the names).",
+    "Step 5: with customer A (ZZAUTOTEST LOC MIX) ticked only its row remains, still sorted by Total.",
+    "Step 6: with location B unticked only location A's amounts remain (the Location column hides, the chip reads \"Location: Staging Heavy D...\"), still sorted by Total, and \"Total\" still carries the sort arrow."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715316-01-C715316-1_sorted.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715316-03-C715316-3_scrolled_all_loaded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715316-4-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715316-06-C715316-6_location_A_only.png"
+   ]
+  },
+  "C715319": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Summary at Staging Heavy Duty - 9919, three locations in the Location filter (location B = Staging Lethbridge - 4310; the third, \"ZZAUTOTEST V1R-87 Location C\", was also unticked in step 6 so that only location A is left, as the case intends).",
+    "Step 1: clicking \"Total\" once sorts the rows largest first ($535,930.72, $433,310.82, $242,886.42 ...) and marks \"Total\" with the sort arrow.",
+    "Step 2: as of 11/10/2026 the report reloads, still sorted by Total, largest first.",
+    "Step 3: scrolling loads the next vendors in batches until all 501 are on screen - every one in Total order, largest first.",
+    "Step 4: the Vendor menu opens (search box, \"All vendors\", then the names).",
+    "Step 5: with vendor A (ZZAUTOTEST LOC MIX V) ticked only its row remains, still sorted by Total.",
+    "Step 6: with location B unticked only location A's amounts remain (the Location column hides, the chip reads \"Location: Staging Heavy D...\"), still sorted by Total, and \"Total\" still carries the sort arrow."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715319-13-C715319-1_sorted.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715319-15-C715319-3_scrolled_all_loaded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715319-4-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715319-18-C715319-6_location_A_only.png"
+   ]
+  }
+ }
+}
