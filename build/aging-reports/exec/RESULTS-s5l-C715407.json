@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, C715407 (s5l)"
+ },
+ "results": {
+  "C715407": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Collection, as of 11/11/2026, signed in at Staging Heavy Duty - 9919; customer A = ZZAUTOTEST LOC MIX (21 overdue documents, invoice A at Staging Lethbridge - 4310); Customer A ticked, \"Past due: 1-30 days\", \"Amount\" clicked once (largest first), the group expanded and the list scrolled down 460 px.",
+    "Step 1: the location switcher in the top right opens, listing Staging Heavy Duty - 9919 and Staging Lethbridge - 4310.",
+    "Step 2: switched to Lethbridge: the report reloads and stays open with the same filters (As of 11/11/2026, Customer: ZZAUTOTEST LOC MIX, Past due: 1-30 days, Location: All locations) and the same 21 documents; the Amount sort is gone (back to the opening Date order); the group is collapsed and the list is back at the top (scrolled 0).",
+    "Step 3: clicking invoice A's number opens its finance page straight away, with no question about switching location."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715407-0-before.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715407-1b-switch-list.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715407-2-switched.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715407-3-opened.png"
+   ]
+  }
+ }
+}
