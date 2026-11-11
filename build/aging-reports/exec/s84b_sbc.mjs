@@ -1,0 +1,22 @@
+// s84b_sbc.mjs — 11 Nov 2026: Sales By Customer control for C715499-C715504 (s84's control reached no empty state: with "No locations" SBC
+// still lists rows). (1) Loading bar: change the Date chip to another option, poll visible progress elements every 100 ms, picture.
+// (2) Empty state, first route that shows "Clear all filters": Product Type -> only a parts option (every row has $0.00 parts), then Date
+// -> the oldest option offered. Reads the empty state's words, sizes, colours and boxes like s84's empt(). Output exec/s84/SBC2.json + pictures.
+import { start } from './lib.mjs'; import { ensureLoc } from './locsw.mjs'; import fs from 'fs';
+const OUT = new URL('./s84/', import.meta.url).pathname; const s = await start(OUT); const p = s.page; const o = { tries: [] };
+const shot = async (n) => s.shot('SBC2-' + n);
+const prog = () => p.evaluate(() => [...document.querySelectorAll('main .q-linear-progress, main [role=progressbar], .q-loading-bar, main .q-inner-loading')].filter((e) => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0; }).map((e) => ({ cls: e.className.toString().slice(0, 80), box: [e.getBoundingClientRect().x, e.getBoundingClientRect().y, e.getBoundingClientRect().width, e.getBoundingClientRect().height].map(Math.round) })));
+const empt = () => p.evaluate(() => { const m = document.querySelector('main'); const btn = [...m.querySelectorAll('button')].find((b) => /Clear all filters/i.test(b.innerText)); if (!btn) return null; const area = btn.parentElement?.parentElement || btn.parentElement; const bx = (e) => { const b = e.getBoundingClientRect(); return [Math.round(b.x), Math.round(b.y), Math.round(b.width), Math.round(b.height)]; };
+  const kids = [...area.querySelectorAll('*')].filter((e) => !e.children.length && e.innerText && e.innerText.trim()).map((e) => ({ t: e.innerText.trim(), tag: e.tagName, size: getComputedStyle(e).fontSize, weight: getComputedStyle(e).fontWeight, color: getComputedStyle(e).color, box: bx(e) }));
+  return { text: area.innerText.replace(/\s+/g, ' ').trim(), kids, btn: { box: bx(btn), cls: btn.className.slice(0, 120) }, totals: !![...m.querySelectorAll('tr')].find((r) => /^\s*Totals?\b/.test(r.innerText)) }; });
+async function menuPick(chipRe, itemRe, tag) { await p.locator('main button', { hasText: chipRe }).first().click(); await p.waitForTimeout(1200); const m = p.locator('.q-menu').last(); const txt = (await m.innerText()).replace(/\s+/g, ' ').slice(0, 400); o[tag + 'Menu'] = txt;
+  const it = m.locator('.q-item, label, button, div').filter({ hasText: itemRe }).last(); const n = await it.count(); if (n) await it.click(); await p.waitForTimeout(800); return n; }
+try { await ensureLoc(p, 'Staging Heavy Duty - 9919'); await s.go('/reports/sales-by-customer'); await p.waitForTimeout(5000); await shot('0-open');
+  // (1) loading bar
+  await p.locator('main button', { hasText: /Date:/ }).first().click(); await p.waitForTimeout(1200); o.dateMenu = (await p.locator('.q-menu').last().innerText()).replace(/\s+/g, ' ').slice(0, 400);
+  const opt = p.locator('.q-menu').last().locator('.q-item').filter({ hasText: /Last month|Last 30|This year|Last year/ }).first(); o.dateOpt = await opt.count() ? (await opt.innerText()).trim() : null; if (o.dateOpt) await opt.click();
+  o.load = []; let pic = null; for (let i = 0; i < 30; i++) { const r = await prog(); if (r.length) { o.load.push([i * 100, r]); if (!pic) pic = await shot('1-loading'); } await p.waitForTimeout(100); } o.loadPic = pic; await p.keyboard.press('Escape'); await p.waitForTimeout(2500);
+  // (2) empty state
+  for (const [chipRe, itemRe, tag] of [[/Product Type:/, /^\s*Parts?\b/i, 'parts'], [/Product Type:/, /Clear selection|None/i, 'ptnone'], [/Date:/, /Last year/i, 'lastyear']]) { const n = await menuPick(chipRe, itemRe, tag); await p.keyboard.press('Escape'); await p.waitForTimeout(3500); const e = await empt(); o.tries.push([tag, n, !!e, (await p.locator('main').innerText()).replace(/\s+/g, ' ').slice(-160)]); if (e) { o.empty = e; await shot('2-empty'); break; } }
+} catch (e) { o.err = String(e).slice(0, 300); try { await shot('error'); } catch {} }
+fs.writeFileSync(OUT + 'SBC2.json', JSON.stringify(o, null, 1)); console.log('SBC2', JSON.stringify({ opt: o.dateOpt, load: o.load.length, tries: o.tries.map((t) => t.slice(0, 3)), empty: o.empty?.text, err: o.err })); await s.close(); process.exit(0);
