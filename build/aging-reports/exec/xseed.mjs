@@ -3,7 +3,7 @@
 // COD = the invoice date, 'Net 30' = 30 days later), part payment through create-customer-payment, credit memo of an exact amount.
 import * as S from './seedlib.mjs';
 export const EXEMPT = { id: '0c47b1fb-38bb-4788-8719-6900c365e34c', isEnabledLabor: false, isEnabledParts: false, isEnabledShopSupplies: false };
-export const dayAt = (daysAgo) => new Date(Date.UTC(2026, 10, 11 - daysAgo, 18)).toISOString(); // 11:00 at the location on that calendar day
+export const dayAt = (daysAgo) => new Date(Date.UTC(2026, 10, 11 - daysAgo, daysAgo === 0 ? 8 : 18)).toISOString(); /* 11 Nov p46: a document stamped LATER today (18:00 UTC) is left out of the report as of today until that time; today's ones are stamped 08:00 UTC (01:00 at the location) */ // 11:00 at the location on that calendar day
 export function mkX(a, log) {
   const ok = (t, r) => { if (r.st >= 300) throw new Error(t + ' ' + r.st + ' ' + JSON.stringify(r.j).slice(0, 300)); return r.j; };
   async function setTerm(c, term) { ok('term', await a.post('/api/customers/change', { name: c.name, state_or_province: null, country_code: 'CA', require_po: false, credit_term: term, credit_limit: 0, shop_supplies_charge: 0, min_shop_supplies_charge: null, max_shop_supplies_charge: null, pin_notes: false, notes: null, id: c.cid, tax: EXEMPT })); c.term = term; }

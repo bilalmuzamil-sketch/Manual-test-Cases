@@ -2,13 +2,13 @@
 // {nav:"/reports/…"}|{reload:true}], segs:["regex"...], full:bool}]). After the opening and after every action it records the headers
 // (label + aria-sort + cursor), the rows of each watched bucket/group (or the whole list when full), the report API calls made, and a
 // picture scrolled to the first watched segment. Output exec/s2/<id>.json + pictures. One admin session for the whole file.
-import { start, REPORTS } from './lib.mjs'; import { mkSort } from './sortlib.mjs'; import fs from 'fs';
+import { start, REPORTS } from './lib.mjs'; import { mkSort } from './sortlib.mjs'; import { mkFilt } from './filt.mjs'; import fs from 'fs';
 const FILE = process.argv[2]; const SC_ = JSON.parse(fs.readFileSync(FILE)); const ONLY = process.env.ONLY ? process.env.ONLY.split(',') : null;
-const OUT = new URL('./s2/', import.meta.url).pathname; const s = await start(OUT); const p = s.page; const S = mkSort(p);
+const OUT = new URL('./s2/', import.meta.url).pathname; const s = await start(OUT); const p = s.page; const S = mkSort(p); const F = mkFilt(p); /* 11 Nov: pre may tick filter items: {pick:["Customer","name"]} */
 for (const sc of SC_) { if (ONLY && !ONLY.includes(sc.id)) continue; const res = { id: sc.id, steps: [] };
   try {
     await s.go(REPORTS[sc.report]); await p.waitForTimeout(2500);
-    for (const pr of sc.pre || []) { if (pr.expand) res['pre-' + pr.expand] = await S.expand(new RegExp(pr.expand)); if (pr.collapse) res['pre-' + pr.collapse] = await S.collapse(new RegExp(pr.collapse)); }
+    for (const pr of sc.pre || []) { if (pr.pick) { await F.pick(pr.pick[0], pr.pick[1]); res['pre-pick-' + pr.pick[1]] = await F.chips(); } if (pr.expand) res['pre-' + pr.expand] = await S.expand(new RegExp(pr.expand)); if (pr.collapse) res['pre-' + pr.collapse] = await S.collapse(new RegExp(pr.collapse)); }
     const snap = async (label) => { const rows = await S.collect(); const st = { label, ths: await S.ths(), segs: {} };
       if (sc.full) st.full = rows.map((r) => r.cells); for (const g of sc.segs || []) st.segs[g] = S.segment(rows, new RegExp(g));
       if (sc.groups) st.groups = rows.filter((r) => new RegExp(sc.groups).test(r.text)).map((r) => r.raw);

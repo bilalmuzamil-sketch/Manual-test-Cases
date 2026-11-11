@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, S4 pinned rows: C715364 re-run filtered to two vendors so both buckets fit one scroll"
+ },
+ "results": {
+  "C715364": {
+   "verdict": "Passed",
+   "observed": [
+    "A/P Aging Detail, as of 11/11/2026, 1440 px window; Vendor filter = ZZAUTOTEST OVER100 V and W, so bucket A = 31-60 days past due (76 lines) and bucket B = 1-30 days past due (54 lines), both open.",
+    "Step 1: scrolling slowly, the 31-60 days row stays just under the column headings with its down chevron, name and count, and no amounts.",
+    "Steps 2-3: the 1-30 days row pushes it off and stays pinned; only one group row is pinned at a time.",
+    "Step 4: scrolling back up, the 31-60 days row comes back into the pinned place.",
+    "Steps 5-6: at speed both ways, the pinned row is replaced cleanly; the column headings and the Totals row are never covered and no two group rows overlap."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715364-1-bucket-A-pinned.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715364-2-bucket-B-pinned.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715364-4-back-to-A.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715364-5-fast.png"
+   ]
+  }
+ }
+}

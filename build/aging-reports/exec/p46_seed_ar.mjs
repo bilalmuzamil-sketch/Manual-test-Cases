@@ -2,7 +2,7 @@
 // Due date = invoice date for COD, +30 days for Net 30 (term at the moment the invoice is made; p45 proved a later switch does not move earlier
 // invoices). Reads every customer back from A/R Collection/Summary and stores names, numbers and the report's own figures in p46/out.json.
 import { start } from './lib.mjs'; import { mk } from './api.mjs'; import * as S from './seedlib.mjs'; import { mkX } from './xseed.mjs'; import fs from 'fs';
-const OUT = new URL('./p46/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT, '/customers'); const a = mk(s.page);
+const OUT = new URL('./' + (process.env.OUTDIR || 'p46') + '/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT, '/customers'); const a = mk(s.page);
 const lines = []; const log = (t) => { lines.push(t); console.log(t); }; const X = mkX(a, log); const o = { sets: {} }; const HD = S.WP.heavy, LB = S.WP.leth;
 const save = () => fs.writeFileSync(OUT + 'out.json', JSON.stringify(o, null, 1));
 const SETS = {
@@ -26,6 +26,7 @@ const SETS = {
   R12: async () => { const A = await X.customer('ZZX Diff Cust A', 'COD'); await X.invoice(A, 400, 45, HD, 'A-400'); await X.invoice(A, 300, 15, HD, 'A-300'); await X.credit(A, 150, 5, HD, 'A-credit'); await X.setTerm(A, 'Net 30'); await X.invoice(A, 1000, 0, HD, 'A-1000-notdue');
     const B = await X.customer('ZZX Diff Cust B', 'COD'); await X.invoice(B, 500, 45, HD, 'B-500'); await X.invoice(B, 250, 100, HD, 'B-250'); return [A, B]; },
   R13: async () => { const c = await X.customer('ZZX Credit Only', 'COD'); const d = await X.invoice(c, 50, 10, HD, 'paid'); await X.pay(c, d, 50); await X.credit(c, 150, 3, HD, 'credit'); return [c]; },
+  R15: async () => { /* C715462: an invoice of $100 paid $120 (overpaid) and an open invoice of $500 */ const c = await X.customer('ZZX Overpaid', 'COD'); const d = await X.invoice(c, 100, 10, HD, 'paid-120'); try { await X.pay(c, d, 120); } catch (e) { log('  overpay refused: ' + String(e).slice(0, 200)); } await X.invoice(c, 500, 5, HD, 'B'); return [c]; },
   R14: async () => { const c = await X.customer('ZZX Credit Today', 'COD'); await X.invoice(c, 500, 20, HD, 'A'); await X.credit(c, 120, 0, HD, 'credit-today'); return [c]; },
 };
 const ONLY = process.env.ONLY?.split(',');
