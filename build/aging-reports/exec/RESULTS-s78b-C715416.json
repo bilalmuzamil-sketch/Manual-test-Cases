@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, s78b"
+ },
+ "results": {
+  "C715416": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Aging Detail as of 11/11/2026, signed in at Staging Heavy Duty - 9919 (switched on screen, read back); customer ZZAUTOTEST LOC MIX ticked; invoice A = S11315-17724, a work order invoice at Staging Lethbridge - 4310 (location B).",
+    "Step 1: clicking the number opens a dialog on the report: title \"Switch location?\", message \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", \"Cancel\" on the left, \"Switch location\" (small l) on the right, and a close \u00d7 at the top right.",
+    "Step 2: \"Switch location\" opens the work order's Finance page, and the location switcher in the top right now reads Staging Lethbridge - 4310.",
+    "The known capital-L problem (SV-12139) no longer shows: the button reads \"Switch location\". SV-12139 reads QA Complete (11 Nov 2026), so the fix has shipped."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715416-1-dialog.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715416-2-finance.png"
+   ]
+  }
+ }
+}
