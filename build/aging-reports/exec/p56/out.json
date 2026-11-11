@@ -1,0 +1,27 @@
+{
+ "1-online-control": {
+  "name": "1-online-control",
+  "expand": "opened",
+  "m": null,
+  "msgAtMs": null,
+  "lines": 15,
+  "rowText": [
+   "keyboard_arrow_down Current (15)",
+   "Total for Current $2,926.00 $2,926.00"
+  ],
+  "net": [
+   [
+    776,
+    "req",
+    "GET",
+    "/api/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=cu"
+   ],
+   [
+    1770,
+    "res",
+    200,
+    "/api/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=cu"
+   ]
+  ]
+ }
+}

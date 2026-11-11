@@ -18,10 +18,10 @@ async function trial(name, mid, after) { await S.collapse(B); await p.waitForTim
   console.log('p56b', name, JSON.stringify({ m: r.m, open: r.linesOpen, end: r.linesEnd, net: r.net.length })); return r; }
 try {
   await s.go(REPORTS.apd); await p.waitForTimeout(3000);
-  const ctl = await trial('1-online-control'); const reqs = ctl.net.filter((x) => x[1] === 'req'); o.pageCall = (reqs[1] || reqs[0] || [])[3] || null;
+  const ctl = await trial('1-online-control'); const reqs = ctl.net.filter((x) => x[1] === 'req'); o.pageCall = (reqs.find((x) => /pagination%5Bpage%5D=2/.test(x[3])) || reqs[0] || [])[3] || null; /* p56 control: lines come from /api/reporting/reports/<report>/buckets/<bucket>/rows?...pagination%5Bpage%5D=N */
   await trial('2-offline-scroll', async () => { await p.context().setOffline(true); await p.waitForTimeout(500); }, async () => { await p.context().setOffline(false); await p.waitForTimeout(1500); });
   const base = o.pageCall ? o.pageCall.split('?')[0] : 'buckets'; o.abortPattern = base;
-  await trial('3-page-call-aborted', async () => { await p.route((u) => u.toString().includes(base) && /page=([2-9]|\d\d)|offset=[1-9]|cursor=/.test(u.toString()), (rt) => rt.abort('failed')); }, async () => { await p.unrouteAll?.().catch(() => {}); });
+  await trial('3-page-call-aborted', async () => { await p.route((u) => u.toString().includes(base) && /pagination%5Bpage%5D=([2-9]|\d\d)/.test(u.toString()), (rt) => rt.abort('failed')); }, async () => { await p.unrouteAll?.().catch(() => {}); });
   await trial('4-online-again');
 } catch (e) { o.err = String(e).slice(0, 300); try { await s.shot('error'); } catch {} }
 fs.writeFileSync(OUT + 'out.json', JSON.stringify(o, null, 1)); console.log('p56b done', o.err || '', o.pageCall); await s.close(); process.exit(0);
