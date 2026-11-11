@@ -62,6 +62,100 @@
    ],
    "totals": "Totals $0.00 $850.00 $1,100.00 $0.00 $250.00 $2,200.00",
    "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9//10-C715456-1-AB.png"
+  },
+  {
+   "label": "2-no-lethbridge",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "person Customer: 2 customers keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: Staging Heavy D... keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "Customer arrow_drop_up | Current arrow_drop_up | 1-30 Days arrow_drop_up | 31-60 Days arrow_drop_up | 61-90 Days arrow_drop_up | 91 And Over arrow_drop_up | Total arrow_drop_up",
+    "ZZX Tot Cust A R3 |  | $850.00 |  |  |  | $850.00",
+    "ZZX Tot Cust B R3 |  |  | $700.00 |  |  | $700.00",
+    "Totals | $0.00 | $850.00 | $700.00 | $0.00 | $0.00 | $1,550.00"
+   ],
+   "totals": "Totals $0.00 $850.00 $700.00 $0.00 $0.00 $1,550.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9//11-C715456-2-no-lethbridge.png"
+  },
+  {
+   "label": "3-select-all",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "person Customer: 2 customers keyboard_arrow_down cancel",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "Customer arrow_drop_up | Location arrow_drop_up | Current arrow_drop_up | 1-30 Days arrow_drop_up | 31-60 Days arrow_drop_up | 61-90 Days arrow_drop_up | 91 And Over arrow_drop_up | Total arrow_drop_up",
+    "ZZX Tot Cust A R3 | Multiple |  | $850.00 | $400.00 |  |  | $1,250.00",
+    "ZZX Tot Cust B R3 | Multiple |  |  | $700.00 |  | $250.00 | $950.00",
+    "Totals |  | $0.00 | $850.00 | $1,100.00 | $0.00 | $250.00 | $2,200.00"
+   ],
+   "totals": "Totals $0.00 $850.00 $1,100.00 $0.00 $250.00 $2,200.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9//12-C715456-3-select-all.png"
+  },
+  {
+   "label": "4-91plus",
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "person Customer: 2 customers keyboard_arrow_down cancel",
+    "hourglass_empty Past due: 91+ days keyboard_arrow_down cancel",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ],
+   "rows": [
+    "Customer arrow_drop_up | Location arrow_drop_up | Current arrow_drop_up | 1-30 Days arrow_drop_up | 31-60 Days arrow_drop_up | 61-90 Days arrow_drop_up | 91 And Over arrow_drop_up | Total arrow_drop_up",
+    "ZZX Tot Cust B R3 | Multiple |  |  | $700.00 |  | $250.00 | $950.00",
+    "Totals |  | $0.00 | $0.00 | $700.00 | $0.00 | $250.00 | $950.00"
+   ],
+   "totals": "Totals $0.00 $0.00 $700.00 $0.00 $250.00 $950.00",
+   "shot": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9//13-C715456-4-91plus.png"
+  },
+  {
+   "step": "PDF-5-pdf",
+   "r": {
+    "kind": "PDF",
+    "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715456-5-pdf-ar-aging-summary.pdf",
+    "name": "ar-aging-summary.pdf",
+    "bytes": 75792,
+    "notes": [
+     "check_circle Success Data exported successfully. Close"
+    ],
+    "toast": null,
+    "totalsLine": "Totals $0.00 $0.00 $700.00 $0.00 $250.00 $950.00",
+    "pdfLines": 10
+   }
+  },
+  {
+   "step": "CSV-7-csv",
+   "r": {
+    "kind": "CSV",
+    "file": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715456-7-csv-ar-aging-summary.csv",
+    "name": "ar-aging-summary.csv",
+    "bytes": 304,
+    "notes": [
+     "check_circle Success Data exported successfully. Close",
+     "check_circle Success Data exported successfully. Close 2"
+    ],
+    "toast": "/home/user/Manual-test-Cases/build/aging-reports/exec/s9/C715456-7-csv-toast.png",
+    "head": [
+     "As of: Nov 11, 2026"
+    ],
+    "totalsRow": [
+     "Customer",
+     "Location",
+     "Current",
+     "1-30 Days",
+     "31-60 Days",
+     "61-90 Days",
+     "91 And Over",
+     "Total"
+    ],
+    "n": 7
+   }
   }
- ]
+ ],
+ "selectAllMenu": "Select all\n1 selected\nStaging Heavy Duty - 9919\nStaging Lethbridge - 4310\nClear selection"
 }

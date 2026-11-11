@@ -3935,6 +3935,20 @@ If not, that is the next thing to do, not a ticket.
 
 ---
 
+## RULE 107 — FIFTH AMENDMENT, 2026-11-11: TEST CONTINUOUSLY UNTIL THE WORK IS DONE; CRUD ANY TEST ENVIRONMENT TO UNBLOCK YOURSELF; NEVER CLEAN UP AFTER — PERMANENT
+
+**QA lead, 2026-11-11, verbatim** (during the aging-reports run on sv11315):
+*"Ensure me that you are working/testing. Make sure that nothing should stop or block you from testing continuously until the work is done and you unblock yourself and CRUD the environments as needed to unblock yourself as needed because you have the permiossion from me to CRUD the environment the way you want while testing and no need to do the data cleanup in the environments after the testing and make it your permanent rule too."*
+
+### 107.M THE STANDING INSTRUCTION (permanent, every project, every environment given for testing)
+1. **Testing runs continuously until the work is done.** Nothing that I can resolve myself is a reason to pause: a queue is kept full (Rule 105), a failed step is diagnosed and re-queued in the same pass (Rule 139), and the last action before any report is starting the next work.
+2. **CRUD the environment the way the test needs, without asking:** create, change or delete any record, setting, role, permission, user, location or document on the QA branch, staging or production test org. This restates 107 and its 2026-09-16, 2026-09-22 and 2026-10-01 amendments as one permanent order.
+3. **No data cleanup after testing, on any environment.** Seeded records stay. Tag them `ZZAUTOTEST` / a set prefix only where that helps ME find them again; never spend time removing them. (Was: "restore what is not the point of the test" — superseded for test data; a ROLE whose DEFAULT permissions a later check depends on is still proved with Reset To Template, Rule 118, because that protects a measurement, not the data.)
+4. **Answer "are you working?" with evidence:** the step running now, the queue behind it, and the latest recorded result, never a promise.
+
+### 107.N STILL HELD — UNCHANGED BY THIS
+Jira tickets per ask, one at a time (62/113) · the Expected is never edited (114) · Vladimir's cases never (38) · Automated cases held (71) · secrets never committed (82). These are his holds, not my caution.
+
 ## RULE 114(d) — AMENDMENT, 2026-10-12: A TEST PASSED ON A RULING IS REWRITTEN SO A NEW TESTER PASSES IT WITHOUT THE RULING
 
 **QA lead, 2026-10-12, verbatim:** *"the test cases which you have apassed after CHris's ruling make sure that those test cases
