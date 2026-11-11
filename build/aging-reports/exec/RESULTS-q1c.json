@@ -1,0 +1,52 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, q1c + pr1b"
+ },
+ "results": {
+  "C715583": {
+   "verdict": "Passed",
+   "observed": [
+    "Before the release (production, v26.45.3-f5ba431): on Sales By Customer, unticking one location changed the chip to \"Location: 3 locations\"; after opening A/R Aging Summary and coming back from the Reports menu the chip read \"Location: All locations\" again - the filter was FORGOTTEN.",
+    "Step 1 (QA site, after the release): Sales By Customer opens on the current location only here, so a second location was ticked instead of one unticked - the chip changed to \"Location: 2 locations\".",
+    "Step 2: A/R Aging Summary opens.",
+    "Step 3: Sales By Customer opens again from the Reports menu with the chip back to \"Location: Staging Heavy D...\" - the filter is forgotten, exactly as before the release."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715583-prod-21-C715583-1-unticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715583-prod-23-C715583-3-back.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715583-q1c-01-C715583-1-changed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715583-q1c-03-C715583-3-back.png"
+   ]
+  },
+  "C715619": {
+   "verdict": "Passed",
+   "observed": [
+    "Before the release (production, v26.45.3-f5ba431): on Inventory Value, unticking one location changed the chip to \"Location: 3 locations\"; after opening A/R Aging Summary and coming back from the Reports menu the chip read \"Location: All locations\" again - the filter was FORGOTTEN.",
+    "Step 1 (QA site, after the release): Inventory Value opens on the current location only here, so a second location was ticked instead of one unticked - the chip changed to \"Location: 2 locations\".",
+    "Step 2: A/R Aging Summary opens.",
+    "Step 3: Inventory Value opens again from the Reports menu with the chip back to \"Location: Staging Heavy D...\" - the filter is forgotten, exactly as before the release."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715619-prod-24-C715619-1-unticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715619-prod-26-C715619-3-back.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715619-q1c-04-C715619-1-changed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715619-q1c-06-C715619-3-back.png"
+   ]
+  },
+  "C715620": {
+   "verdict": "Passed",
+   "observed": [
+    "Before the release (production, v26.45.3-f5ba431): on Work In Progress, unticking one location changed the chip to \"Location: 3 locations\"; after opening A/R Aging Summary and coming back from the Reports menu the chip read \"Location: All locations\" again - the filter was FORGOTTEN.",
+    "Step 1 (QA site, after the release): Work In Progress opens on the current location only here, so a second location was ticked instead of one unticked - the chip changed to \"Location: 2 locations\".",
+    "Step 2: A/R Aging Summary opens.",
+    "Step 3: Work In Progress opens again from the Reports menu with the chip back to \"Location: Staging Heavy D...\" - the filter is forgotten, exactly as before the release."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715620-prod-27-C715620-1-unticked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715620-prod-29-C715620-3-back.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715620-q1c-07-C715620-1-changed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715620-q1c-09-C715620-3-back.png"
+   ]
+  }
+ }
+}
