@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "11 Nov 2026, run 557, exact-amount totals (s9)"
+ },
+ "results": {
+  "C797946": {
+   "verdict": "Passed",
+   "observed": [
+    "New vendors ZZY Diff Vend A/B R1, as of 11/11/2026: A = $1,000 bill not yet due, $400 45 days past due, $300 15 days past due, $150 unused vendor credit; B = $500 45 days past due, $250 100 days past due. A/P Summary with both ticked.",
+    "Step 1: \"Past due: 31-60 days\" - both vendors stay listed with their whole balance: A Total $1,550.00, B Total $750.00; Totals row Total $2,300.00.",
+    "Step 2: A/P Detail opens on 11/11/2026 with Vendor: All vendors and Past due: Any.",
+    "Steps 3-4: vendor A, then both ticked.",
+    "Step 5: chip reads \"Past due: 31-60 days\"; the report reloads with every group collapsed.",
+    "Step 6: Expand all - the rows are A's $400.00 bill, B's $500.00 bill and A's $150.00 vendor credit; Totals Open Balance $750.00 - $1,550.00 less than the Summary's $2,300.00 (A's $1,000 not yet due and $300 at 15 days, B's $250 at 100 days)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797946-1-summary-31-60.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797946-2-detail-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797946-5-detail-31-60.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797946-6-expand-all.png"
+   ]
+  }
+ }
+}
