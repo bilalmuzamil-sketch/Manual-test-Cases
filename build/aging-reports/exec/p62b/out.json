@@ -528,5 +528,111 @@
     "place Location: All locations keyboard_arrow_down cancel"
    ]
   }
+ },
+ "C715638": {
+  "offline": {
+   "m": null,
+   "notes": [],
+   "net": [
+    [
+     1824,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-32x32.png"
+    ],
+    [
+     1827,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-16x16.png"
+    ],
+    [
+     1827,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-96x96.png"
+    ],
+    [
+     1828,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-128x128.png"
+    ],
+    [
+     5555,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794414243608&gcd=13l3l3l3l1l"
+    ],
+    [
+     5557,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://www.google.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6b91v9250300735za200zd9250300735xf1&_p=1794414243608&gcd=13l3l3l3l1l1&npa=0&dm"
+    ]
+   ]
+  },
+  "server500": {
+   "m": "Something went wrong loading this report. Please try again.",
+   "notes": [
+    "warning Ooooops! An error occurred Close 4"
+   ],
+   "net": [
+    [
+     1298,
+     "req",
+     "/api/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-09&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=d"
+    ],
+    [
+     1298,
+     "req",
+     "/api/reporting/reports/ap-unpaid-invoices/locations?asOfDate=2026-11-09"
+    ],
+    [
+     1313,
+     "res",
+     500,
+     "/api/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-09&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=d"
+    ],
+    [
+     1319,
+     "res",
+     500,
+     "/api/reporting/reports/ap-unpaid-invoices/locations?asOfDate=2026-11-09"
+    ],
+    [
+     2321,
+     "req",
+     "/api/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-09&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=d"
+    ],
+    [
+     2324,
+     "res",
+     500,
+     "/api/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-09&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=d"
+    ],
+    [
+     2324,
+     "req",
+     "/api/reporting/reports/ap-unpaid-invoices/locations?asOfDate=2026-11-09"
+    ],
+    [
+     2334,
+     "res",
+     500,
+     "/api/reporting/reports/ap-unpaid-invoices/locations?asOfDate=2026-11-09"
+    ]
+   ]
+  },
+  "after": {
+   "m": null,
+   "rows": 33,
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: All vendors keyboard_arrow_down",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ]
+  }
  }
 }
