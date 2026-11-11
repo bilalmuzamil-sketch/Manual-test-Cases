@@ -1,0 +1,29 @@
+// s90_partsale.mjs — 11 Nov 2026: part sale invoices on A/R Aging Collection. C715415: P11315-248 ("ZZAUTOTEST AR Customer A", $300, 15 Sep,
+// Heavy Duty = current location): hover the Open Balance cell (no hand, row not blue), click it (nothing opens), click the number (part sale finance
+// page). C715417: P3-188 ("Doi Truck Center", Lethbridge): click the number -> "Switch location?" dialog (title, message, buttons left/right, ×),
+// click "Switch location" -> finance page, switcher shows Lethbridge; then back to Heavy Duty. Output exec/s90/<id>.json + pictures.
+import { start, REPORTS } from './lib.mjs'; import { mkFilt } from './filt.mjs'; import { ensureLoc } from './locsw.mjs'; import fs from 'fs';
+const OUT = new URL('./s90/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT); const p = s.page; const F = mkFilt(p); const ONLY = process.env.ONLY?.split(',');
+const boxes = () => p.evaluate(`[...document.querySelectorAll('main tbody tr, main thead th, main tbody td, .q-dialog .q-card, .q-dialog button')].map(e => { const b = e.getBoundingClientRect(); return [e.innerText.replace(/\\s+/g,' ').trim().slice(0, 90), Math.round(b.x), Math.round(b.y), Math.round(b.width), Math.round(b.height)]; }).filter(b => b[3] > 0 && b[2] >= 0 && b[2] < 900)`);
+const shot = async (o, name) => { const f = await s.shot(o.id + '-' + name); (o.shots ||= []).push({ name, f, boxes: await boxes() }); };
+async function open(o, cust, num) { await s.go(REPORTS.arc); await p.waitForTimeout(3500); await F.pick('Customer', cust); o.chips = await F.chips(); const row = p.locator('main tbody tr').filter({ hasText: num }).first(); o.found = await row.count();
+  if (!o.found) { const g = p.locator('main tbody tr').filter({ hasText: cust }).first(); await g.click().catch(() => {}); await p.waitForTimeout(1500); o.found = await row.count(); } o.row = o.found ? (await row.innerText()).replace(/\s+/g, ' ') : null; return row; }
+const T = {
+  C715415: async (o) => { const row = await open(o, 'ZZAUTOTEST AR Customer A', 'P11315-248'); if (!o.found) throw new Error('P11315-248 not on A/R Collection'); await shot(o, '0-row');
+    const tds = row.locator('td'); const n = await tds.count(); const ob = tds.nth(n - 1); o.obText = (await ob.innerText()).trim(); await ob.hover(); await p.waitForTimeout(700);
+    o.hover = await row.evaluate((r) => { const cs = [...r.querySelectorAll('td')].map((td) => { const t = td.querySelector('a, span, div') || td; const c = getComputedStyle(t); return [td.innerText.trim().slice(0, 30), c.color, c.cursor, !!td.querySelector('a,[role=link]')]; }); return cs; });
+    o.obCursor = await ob.evaluate((e) => getComputedStyle(e.querySelector('span, div') || e).cursor); await shot(o, '1-hover-balance');
+    const u0 = p.url(); const n0 = p.context().pages().length; await ob.click(); await p.waitForTimeout(2500); o.afterBalanceClick = { url: p.url(), same: p.url() === u0, newTab: p.context().pages().length > n0, dialog: (await p.locator('.q-dialog').allInnerTexts()).join('|') }; await shot(o, '2-balance-clicked');
+    const link = row.locator('a, [role=link]').filter({ hasText: 'P11315-248' }).first(); o.numIsLink = await link.count(); await (o.numIsLink ? link : row.getByText('P11315-248').first()).click(); await p.waitForTimeout(4500);
+    const pg = p.context().pages(); const np = pg.length > n0 ? pg[pg.length - 1] : p; await np.waitForTimeout(1500); o.opened = { url: np.url(), newTab: np !== p, text: (await np.locator('main').innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 400) };
+    await np.screenshot({ path: OUT + 'C715415-3-opened.png' }); (o.shots ||= []).push({ name: '3-opened', f: OUT + 'C715415-3-opened.png', boxes: [] }); if (np !== p) await np.close(); },
+  C715417: async (o) => { const row = await open(o, 'Doi Truck Center', 'P3-188'); if (!o.found) throw new Error('P3-188 not on A/R Collection'); await shot(o, '0-row');
+    const u0 = p.url(); await row.getByText('P3-188').first().click(); await p.waitForTimeout(2500); o.urlAfter1 = p.url(); o.stayed = p.url() === u0; const dlg = p.locator('.q-dialog').last(); o.dialog = (await dlg.innerText().catch(() => '')).replace(/\s+/g, ' ');
+    o.buttons = await dlg.locator('button').evaluateAll((bs) => bs.map((b) => { const r = b.getBoundingClientRect(); return [b.innerText.replace(/\s+/g, ' ').trim(), Math.round(r.x), Math.round(r.y), b.getAttribute('aria-label')]; })); await shot(o, '1-dialog');
+    const sw = dlg.getByRole('button', { name: /^Switch location$/i }).first(); await sw.click(); await p.waitForTimeout(5000); o.urlAfter2 = p.url(); o.main2 = (await p.locator('main').innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 400);
+    o.switcher = (await p.locator('header, .q-header').first().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(-120); await shot(o, '2-switched'); await ensureLoc(p, 'Staging Heavy Duty - 9919'); o.back = (await p.locator('header, .q-header').first().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(-80); },
+};
+await ensureLoc(p, 'Staging Heavy Duty - 9919');
+for (const [id, fn] of Object.entries(T)) { if (ONLY && !ONLY.includes(id)) continue; const o = { id }; try { await fn(o); } catch (e) { o.err = String(e).slice(0, 300); try { await shot(o, 'error'); } catch {} }
+  fs.writeFileSync(OUT + id + '.json', JSON.stringify(o, null, 1)); console.log(id, o.err || 'ok', JSON.stringify({ row: o.row, ob: o.obCursor, bal: o.afterBalanceClick, link: o.numIsLink, opened: o.opened?.url, dlg: o.dialog, btn: o.buttons, url2: o.urlAfter2, sw: o.switcher }).slice(0, 700)); }
+await s.close(); process.exit(0);
