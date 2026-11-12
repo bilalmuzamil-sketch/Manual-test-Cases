@@ -16,6 +16,10 @@ class Ledger:
         self.d = json.load(open(self.path)) if os.path.exists(self.path) else {}
     def get(self, k): return self.d.get(k)
     def put(self, k, v):
+        # every new record carries the UTC time it was written, so an after-check can tell our records from a regression
+        if isinstance(v, dict) and 'created_utc' not in v:
+            old = self.d.get(k) if isinstance(self.d.get(k), dict) else {}
+            v = dict(v, created_utc=old.get('created_utc') or __import__('datetime').datetime.now(__import__('datetime').timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'))
         self.d[k] = v; json.dump(self.d, open(self.path, 'w'), indent=1, sort_keys=True)
 def ok(r, what):
     if r['status'] not in (200, 201):
