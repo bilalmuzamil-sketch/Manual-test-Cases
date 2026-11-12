@@ -1,0 +1,93 @@
+{
+ "credit": {
+  "resp": {
+   "creditMemoId": "d28969b9-a97d-4abc-9517-71f9913fb646",
+   "creditNumber": "CM-4414",
+   "openBalance": 20000,
+   "refundPaymentId": null,
+   "status": "open",
+   "totalAmount": 20000
+  },
+  "utc": "2026-11-12T16:03:06Z"
+ },
+ "cust:PUC": {
+  "account": "6c669a30-dd0b-4324-afb3-da67e5da6c83",
+  "contact": "7ea2a6cf-2279-40dd-99c3-4d499a785b4e",
+  "id": "e2ec979d-f856-43bd-92c7-99e2ba8a4bf7",
+  "name": "ZZAUTOTEST SV11315 Partly Used Credit",
+  "vehicle": "2dadb73e-1eee-40b0-8365-718e7ec91bf0"
+ },
+ "inv:PUC": {
+  "account": "6c669a30-dd0b-4324-afb3-da67e5da6c83",
+  "created_on": "2026-11-12 16:03:00",
+  "invoice_id": "82494660-88b7-4ae3-86f4-74818f931fb2",
+  "resp": {
+   "invoice_id": "82494660-88b7-4ae3-86f4-74818f931fb2",
+   "invoice_number": null,
+   "remaining_balance": 155
+  },
+  "total": "155.00",
+  "wo": "053ecb4a-b8f6-4f6a-8326-9b44bca93aea",
+  "wo_number": "S-1946"
+ },
+ "measures": [
+  {
+   "rows": [
+    {
+     "amount": 155,
+     "balance": 155,
+     "credit_display_number": null,
+     "formatted_invoice_number": "S1-1946",
+     "id": "ee803ebf-6ebf-4775-9b0f-276a5b1d50c9",
+     "reference_id": "82494660-88b7-4ae3-86f4-74818f931fb2",
+     "status": "unpaid",
+     "type": "invoice"
+    },
+    {
+     "amount": -200,
+     "balance": -200,
+     "credit_display_number": "CM1-4414",
+     "formatted_invoice_number": "CM-4414",
+     "id": "d28969b9-a97d-4abc-9517-71f9913fb646",
+     "reference_id": null,
+     "status": "unapplied",
+     "type": "credit"
+    }
+   ],
+   "tag": "before applying",
+   "utc": "2026-11-12T16:03:06Z"
+  },
+  {
+   "rows": [
+    {
+     "amount": 155,
+     "balance": 0,
+     "credit_display_number": null,
+     "formatted_invoice_number": "S1-1946",
+     "id": "ee803ebf-6ebf-4775-9b0f-276a5b1d50c9",
+     "reference_id": "82494660-88b7-4ae3-86f4-74818f931fb2",
+     "status": "paid",
+     "type": "invoice"
+    },
+    {
+     "amount": -200,
+     "balance": -45,
+     "credit_display_number": "CM1-4414",
+     "formatted_invoice_number": "CM-4414",
+     "id": "d28969b9-a97d-4abc-9517-71f9913fb646",
+     "reference_id": null,
+     "status": "partially_applied",
+     "type": "credit"
+    }
+   ],
+   "tag": "after applying",
+   "utc": "2026-11-12T16:03:08Z"
+  }
+ ],
+ "payment": {
+  "invoice_balance_before": 155.0,
+  "raw": "{\"data\":{\"id\":\"6a687246-dc86-4a56-b049-e81932d5a104\",\"bookkeepingSyncDeferred\":false}}",
+  "status": 201,
+  "utc": "2026-11-12T16:03:08Z"
+ }
+}
