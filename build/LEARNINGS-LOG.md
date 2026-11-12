@@ -679,3 +679,10 @@
 - Never start a second copy of a runner while one is still going (a second admin sign-in can end the first; I did it once with g1/g1b).
 - Two of this lane's earlier tickets are on the team's Obsolete list (SV-12540 "not a bug: documents load 100 at a time, as S1-R8 asks"; SV-12546 product owner "OK as built"). Rule 140 now gates every ticket.
 - #aging #offline #qa-site #rule140 #trap → L0317, L0687
+
+## L0691 — 2026-11-12 — Read the existing ticket's comments before re-diagnosing: the QA PDF 30-second limit was already confirmed there
+- I spent several runs (q6–q9) proving that every QA PDF dies at ~31 s; the developer had already written it on SV-12539 (comments 80813/80903, 11 Nov): "QA's PDF service … stops any PDF that takes more than 30 seconds … shared by every QA environment … The report code isn't the cause … re-test on staging". From ~800 rows up every PDF fails on QA; staging/production allow 120 s.
+- Before measuring a failure that resembles an open ticket: `listJiraIssueComments` on that ticket first (Rule 140 check 5 is also where the cause is often written).
+- PDF tests above ~800 rows are Blocked on QA sites ("run on staging"), never Failed.
+- Parallel staging lanes: `build/aging-reports/STAGING-LANES.md` (one sign-in per lane, different users, coordinator-only TestRail/Jira writes).
+- #aging #pdf #qa-site #duplicate #lanes → L0687, L0690
