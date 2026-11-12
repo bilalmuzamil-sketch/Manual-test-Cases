@@ -54,9 +54,10 @@ def main():
         planned = c["status"] in ("CHANGED-BY-DESIGN", "REMOVED-BY-DESIGN")
         # CHANGED-BY-DECISION: rewritten on the QA lead's order to a written Product decision (V1R-35, 12 Nov 2026);
         # its SOURCE leads with the decision and must still name the V1 code it replaces.
-        if c["status"] == "CHANGED-BY-DECISION":
-            planned = c["source"].startswith("SOURCE: Product decision") and I.V1_LABEL in c["source"]
-        if not planned and not c["source"].startswith("SOURCE: " + I.V1_LABEL + ", "):
+        decision = c["status"] == "CHANGED-BY-DECISION"
+        if decision and not (c["source"].startswith("SOURCE: Product decision") and I.V1_LABEL in c["source"]):
+            problems.append(f"{cid}: decision SOURCE line must lead with the Product decision and name the V1 code it replaces")
+        if not planned and not decision and not c["source"].startswith("SOURCE: " + I.V1_LABEL + ", "):
             problems.append(f"{cid}: SOURCE line missing or not leading with the V1 repo and commit")
         if planned:
             if not c["source"].startswith("SOURCE: " + I.PRD + ", "):
