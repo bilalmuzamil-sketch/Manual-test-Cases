@@ -730,3 +730,7 @@
 - **C715555 vendor order settled:** S5-R13 lists what is copied from Inventory Value (icon, "Search vendors", box above 8, the rows) and says nothing about name order; S1-R2/R3 is the only name-order rule → Passed stands (comment edited in place).
 - **Commit 660143414 (QA front-end code) — no history rewrite:** the repo's scanner finds only the Sentry library's "%filtered%" placeholder for passwords; no keys/tokens; the code becomes public with the release (production's front end is served to anyone; the QA copy answers 403 without sign-in); a rewrite would not purge GitHub's cached commits or existing clones.
 - #aging #offline #devtools #rule136 #rule140 #history → L0695, L0696
+
+## L0698 — 2026-11-12 — `scan_secrets.py --staged | tail -1 && git commit` does NOT gate the commit
+- The pipe's exit status is tail's (0), so a FAILED scan still let commit 712fcad5f through (its one finding was a quoted library placeholder in a learning note, reworded in 448ac15f1; no secret). Gate on the scanner itself: `python3 build/testing-tools/scan_secrets.py --staged > <file>; rc=$?; [ $rc -eq 0 ] && git commit …` (or `set -o pipefail`).
+- #secrets #git #gate → L0697
