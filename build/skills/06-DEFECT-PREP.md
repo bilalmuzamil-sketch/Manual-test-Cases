@@ -807,3 +807,10 @@ The rule text (`build/rules/RULES-61-96.md`, Rule 119) is the authority; this pa
 Measure before you claim: before/after numbers in the ticket, the state not the signal, data where pass and fail look
 different, one check per claim, every other explanation ruled out with evidence, re-measure when a developer says
 "it works", and keep the settling evidence. The rule text (`build/rules/RULES-61-96.md`, Rule 120) is the authority.
+
+## The not-a-bug gate — Rule 121 (QA lead, 12 Nov 2026)
+
+Before any ticket: read the EPIC's shared developer notes and every "known mismatches / not bugs / do not file /
+decided by Product" list, look for an existing decision (PRD, tech plan, Jira comments, Slack), search Jira including
+closed and obsolete tickets, and check against the CURRENT PRD. Listed or decided ⇒ no ticket; doubt ⇒ ask first.
+The rule text (`build/rules/RULES-61-96.md`, Rule 121) is the authority.

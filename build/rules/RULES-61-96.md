@@ -2782,3 +2782,37 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     with evidence, written down; (6) a developer's "it works" is answered by re-measuring their way, with numbers,
     and conceded plainly when they are right; (7) the settling evidence is kept: counts before/after, the exact
     data, build marker + date, a screenshot at the moment.
+
+121. **NEVER FILE A TICKET THAT WILL BE CLOSED AS "NOT A BUG" (all projects, permanent).** Ordered by the QA lead on
+    **2026-11-12**, verbatim: *"note that they will do a retrospective after the release for the defects which were
+    created and were baseless/wrong and wasted the time of the team ... So make it a rule that you never create a
+    bug/ticket/defect which will later be marked as obsolete with the reason of being not a genuine bug/defect because
+    it will bite me. If a defect is marked as obsolete based on an internal decision to not fix it that is OK but a
+    defect being marked as obsolete because it is NOT a defect or bug that will bite me badly."* Source thread: Slack
+    C0C454MLP0T, 1794416461.891669 (Stefan Mitrovic's OBSOLETE list; retrospectives every Friday after a release).
+    **Obsolete for "we decided not to fix it" is acceptable. Obsolete for "it was never a bug" is the failure.**
+
+    **The lesson that produced it (our own, 2026-11-11):** SV-12546 (A/R Detail PDF leaves out empty buckets) was
+    closed OBSOLETE because Chris Ward had already decided on 2026-11-04, in Slack, "OK as built" — and the developers'
+    shared notes on the epic (SV-11315 comment 80616, posted 10 Nov, the day BEFORE the ticket) listed it under
+    **"KNOWN MISMATCHES AND KNOWN GAPS (not bugs — do not file)" → "Decided by Product (Chris, 2026-11-04 / 2026-11-05)"**.
+    We had read the story's handoff, not the epic's shared notes. The behaviour was real and was a V1 loss; it was
+    still not a ticket, because the decision already existed.
+
+    **The pre-filing gate (all must pass, on top of 94, 110 and 120; any doubt ⇒ do NOT file, raise it as a question):**
+    1. **Read every developer handoff in full — the EPIC's shared notes as well as the story's** — and check the
+       finding against any "known mismatches", "not bugs", "do not file", "decided by Product", "kept by the
+       developer" and "follow-ups (do not file again)" list. Listed there ⇒ never a ticket; if we disagree, it is a
+       PO question to the QA lead.
+    2. **Look for an existing decision:** the PRD and its change log, the tech plan's decisions, PO answers in Jira
+       comments, the epic and story comments, and Slack (search the feature name and the behaviour). A decision that
+       predates the finding ⇒ no ticket.
+    3. **Search Jira for an existing ticket, including closed and OBSOLETE ones** (110) — a duplicate is also
+       obsolete-as-not-a-bug.
+    4. **Measured, attributed and re-tried** (120, 110): numbers before and after, our own record, the build marker,
+       seen twice, and our own test method ruled out (cached permissions, switch-user, test data, timing).
+    5. **"Intended by the PRD?" is answered from the CURRENT PRD version** (a case quoting an older version produced
+       an obsolete ticket, SV-12563); a silent PRD on a V1 loss is a PO question first unless the loss is plainly
+       harmful.
+    6. **When in doubt, ask the QA lead before filing**, with the evidence and the source that might cover it. A
+       question costs minutes; an obsolete ticket costs the retrospective.

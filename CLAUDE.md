@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119 and 120** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120 and 121** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -469,6 +469,14 @@ work exactly as on production" when the PRD does not ask for it) → Test case �
 quote the numbers; "I didn't see it happen" is not "it didn't happen"; build data so pass and fail look different;
 test each claim of the requirement separately; rule out every other explanation before filing; answer a developer's
 "it works" by re-measuring, with numbers; keep the evidence that would settle the argument.
+
+**🔴 Rule 121 (never file a ticket that will be closed as "not a bug")** was ordered by the QA lead **2026-11-12**
+(end of `build/rules/RULES-61-96.md`). The team holds a retrospective after each release on tickets closed OBSOLETE.
+Obsolete because "we decided not to fix" is acceptable; obsolete because "it was never a bug" is the failure. Before
+filing: read the EPIC's shared developer notes and every "known mismatches / not bugs / do not file / decided by
+Product" list; look for an existing decision (PRD, tech plan, Jira comments, Slack); search Jira including closed and
+obsolete tickets; measure (120); check against the CURRENT PRD; and when in doubt ask instead of filing. It exists
+because SV-12546 was filed against a "do not file" list we had not read.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is

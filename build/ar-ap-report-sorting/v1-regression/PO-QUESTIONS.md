@@ -54,3 +54,8 @@ The PRD (Confluence 947650561) was last modified 5 Nov 2026 (= v11), so nothing 
 Until SV-12544 is fixed, the PDF prints "Nov 4, 2026"." They agree with the PRD; SV-12544 is In Progress (Nemanja Djuric).
 P2 (empty buckets), P3 ("Subtotal") and P4 (as-of date after today) still stand: the handoff still calls those intended
 and the PRD is silent.
+
+**Update 12 Nov 2026:** P2 / sheet question 20 (empty buckets in the A/R Detail PDF) was ALREADY decided by Chris Ward
+on 4 Nov 2026 ("OK as built"), recorded in the developers' shared notes on SV-11315 (comment 80616) under "KNOWN
+MISMATCHES ... (not bugs — do not file) → Decided by Product". SV-12546 was closed OBSOLETE on 11 Nov for that reason.
+Questions 19 (SV-12545) and 21 (SV-12547) remain asked; Chris Ward is on vacation these days.

@@ -28,3 +28,8 @@ open PO question (sheet rows 19/20/21) — Chris Ward may decide the change is i
   for recording (Rule 72), not yet recorded as a rule.
 
 **Labels (Rule 119.1, QA lead 11 Nov 2026):** every ticket from this suite carries `QA_Found` and `AP-AR-FM`. Applied to SV-12544…SV-12547 on 11 Nov 2026 and read back.
+
+**Status 12 Nov 2026:** SV-12544 Ready for QA · SV-12545 Ready to Fix · **SV-12546 OBSOLETE** (Chris Ward decided "OK as
+built" on 4 Nov; it was on the developers' "do not file" list in SV-11315 comment 80616, which we had not read — the
+reason for Rule 121) · SV-12547 Ready for QA. On 12 Nov the "not answered yet" note in SV-12545 and SV-12547 was
+replaced, on the QA lead's order, with "Asked Chris Ward the question (question N …) - who is on vacation these days."
