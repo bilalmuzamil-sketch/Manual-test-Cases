@@ -486,3 +486,8 @@
 - **Push tool, second fix:** title prefixes now take only keys that are LINKED in the ticket line (`browse/SV-n`); a story merely named there ("under SV-11531") no longer lands in the title.
 - C715462 (production-only overpaid Totals) was re-run on staging build v26.45.4-d07623f and PASSED by another session at ~13:30 UTC with a seeded overpaid invoice (S-40181, $100 with $120 paid) — so staging can hold an overpaid invoice; staging's build moved on after my b8c04e2 run.
 - #qa-site #staging #aging #time-zone #ticket #push-tool → L0702
+
+## L0704 — 2026-11-12 — Never write a clock time from memory: read `date -u` first
+- I stamped the aging dashboard "16:15 UTC" and my notes "~16:00/~16:05 UTC" when the real time was 15:24–15:30 (ticket SV-12663 created 15:24 UTC; commit 15:30 UTC) — the dashboard showed a snapshot time in the future. Fixed to the real times (dashboard page v15, README, PROJECT-STATE, FIELDS.json), each correction marked in place.
+- **Rule for every stamp (dashboard, result comment, notes, ticket):** run `date -u +%H:%M` (or take the time from the system you wrote to — commit time, Jira `created`, TestRail `created_on`) immediately before writing it. A remembered or estimated time is not a time.
+- #time #stamps #dashboard → L0703
