@@ -468,3 +468,15 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   - **Proof:** no other run 7 entry changed. **TMS run 7 now = TestRail run 557: same 466 cases, same status on every one**
     (459 P · 3 B · 2 F · 2 U).
   - Still open: TMS-only case **C715478** (deleted in TestRail) — keep / edit / delete.
+
+## 23 · 2026-11-12 — Internal Work order synced; new milestone with Bill To + Internal Work Orders runs
+
+- **QA lead: "All the test cases need to be synchronized to TMS in its OWN folder"** (TestRail 136701). Created **TMS folder
+  10000058 *Founder Mode (September 2026) > Internal Work order (11/12/2026)***, 22 sub-folders, **641 cases** (all read back).
+  Proof: all **8,356 existing cases unchanged**, **no run changed**, nothing added to any run.
+- **QA lead: new milestone named after the runs, saying more runs will be added, holding the Bill To and Internal Work Order
+  runs.** Created **TMS milestone 10000000 "Bill To | Internal Work Orders - More Test Runs To Be Added (Nov 2026)"**
+  (TMS-created milestones are numbered from 10,000,000 too). Runs copy TestRail's (which are in NO TestRail milestone):
+  - TestRail run 558 "Bill To - Execution" → **TMS run 27 "Bill To - Execution"** — 286 cases, run + cases → Mudassir.
+  - TestRail run 559 "Internal Work Orders - Execution" → **TMS run 28 "Internal Work Orders - Execution"** — 596 cases → Mudassir.
+  No existing run changed. `external_key` = `testrail-run-558` / `-559`.
