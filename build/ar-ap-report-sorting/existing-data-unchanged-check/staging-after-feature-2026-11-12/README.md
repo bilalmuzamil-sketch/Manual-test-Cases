@@ -46,3 +46,10 @@ It is the same time-zone pattern as `held-defect-drafts/DRAFT-1-...` (A/R side, 
 - They are no longer in 4Refuel's unpaid bills at Lethbridge (209 there; the control E2E-INV-1791977645410 is), and no
   4Refuel payment is listed at Lethbridge. **Why they left the unpaid list is not known.** All three were created by the
   E2E automation ("E2E auto-created delivery", received by Ahtasham Admin).
+
+## The three 4Refuel bills — RESOLVED (12 Nov 2026, 17:20 UTC)
+
+Paid in full on 12 Nov 2026 by the E2E automation ("E2E auto-payment (fixture)", 07:17Z, 08:05Z and 10:41Z), after the
+06:46Z "before" snapshot, so the new A/P report rightly leaves them out. The report matches the app's own open bills bill
+for bill (Heavy Duty 373 = 373, Lethbridge 209 = 209). The earlier "no 4Refuel payment at Lethbridge" was our method (the
+Heavy Duty vendor account used at Lethbridge). Evidence: `../4refuel-consistency-2026-11-12/`.

@@ -1,13 +1,24 @@
 # 4Refuel bills: does the new A/P report match the app's own open bills? (12 Nov 2026, staging, Rule 120)
 
-| Read | Where | Result |
-|---|---|---|
-| 15:38Z (tech as Admin, location switch proved) | Lethbridge, vendor's unpaid list | 209 bills; the 3 missing bills NOT in it; control E2E-INV-1791977645410 in it |
-| 16:52Z `report.json` | new A/P Aging Detail, org-wide, as of 11/12/2026 | 597 4Refuel rows: Heavy Duty 378, **Lethbridge 209**, QB Location 8, DVI Test 1, ZZAUTOTEST F2 Empty Shop 1; the 3 bills absent |
-| 16:54-16:55Z `unpaid-heavy-duty.json` | Heavy Duty, vendor's unpaid list (twice) | 399 rows: 373 bills = the report's 373 exactly; 21 more have balance $0.00 (nothing to age); 5 credits on both sides |
-| 16:54-16:55Z `unpaid-lethbridge.json` | Lethbridge (switch proved: the Lethbridge bill opens 200 there, 400 at Heavy Duty) | **0 rows** — at 15:38Z the same read gave 209. NOT explained; the report still lists 209 open Lethbridge bills |
+**Answer: yes, bill for bill, and the three "missing" bills were PAID by the E2E automation after the "before" snapshot.**
 
-Reading: at 15:38Z the report and the app agreed (209 = 209) and both left the 3 bills out, so the report did not drop
-them; they stopped being open bills in the app. The 16:55Z empty Lethbridge list is a separate, unexplained staging
-observation outside this feature (the vendor page is not changed by SV-11315); not investigated further. The 3 bills
-are staging-only test data made by the E2E automation. Scripts: `check_4refuel.py`, `tech_unpaid.py`, `run_tech_unpaid.sh`.
+| Location | Report's 4Refuel bills (new A/P Aging Detail, as of 11/12/2026, 16:52Z) | App's open bills (vendor's unpaid list, read at that location) | Same |
+|---|---|---|---|
+| Staging Heavy Duty - 9919 | 373 | 373 (+21 bills with a $0.00 balance, nothing to age) | 373 |
+| Staging Lethbridge - 4310 | 209 | 209 | 209 |
+
+The three bills (`payments-lethbridge.json`, 4Refuel's Lethbridge vendor account, read 17:20Z as tech/Admin at Lethbridge):
+
+| Bill | Paid | Payment | Reference (time it encodes) |
+|---|---|---|---|
+| E2E-INV-1794217548388 | $100.00, paid in full, 12 Nov 2026, Cash | "E2E auto-payment (fixture)" | E2E-PAY-1794467869273 (07:17:49Z) |
+| E2E-P8197vr | $100.00, paid in full, 12 Nov 2026, Cash | "E2E auto-payment (fixture)" | E2E-PAY-1794470719152 (08:05:19Z) |
+| E2E-Pitcq2q | $100.00, paid in full, 12 Nov 2026, Cash | "E2E auto-payment (fixture)" | E2E-PAY-1794480113000 (10:41:53Z) |
+
+All three were paid after the staging "before" snapshot (06:46Z) and before the "after" check, so the report was right to
+leave them out. **Not a bug, not the feature.**
+
+**Our own mistake, corrected (Rule 120):** the vendor account is per location (`ListUnpaidByVendorAccountQueryHandler`
+filters `va.workplace_id` by the active location). The 15:39Z payment search and the 16:55Z Lethbridge unpaid read used the
+HEAVY DUTY account id at Lethbridge, so they read 0 payments / 0 bills. That "empty Lethbridge list" was our method, not
+staging. `check_4refuel.py` now reads the account id at each location. Also: the bills are $100.00 each, not $1.00.

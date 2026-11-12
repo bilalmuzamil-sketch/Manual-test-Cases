@@ -24,6 +24,9 @@ if PART == 'report':
             page += 1
     out['rows'] = [{k: r.get(k) for k in ('documentNumber', 'locationName', 'transactionType', 'openBalanceCents', 'date', 'dueDate', 'bucket')} for r in rows]
 else:
+    # the vendor account is per location (ListUnpaidByVendorAccountQueryHandler filters va.workplace_id = the active
+    # location), so read the account id at THIS location - a hard-coded Heavy Duty account reads 0 rows elsewhere
+    ACC = get('/api/parts-catalogue/vendor/4acb542f-0f2d-45b8-bbd4-afb70fd22fb8')['vendor']['vendor_account_id']; out['account'] = ACC
     rows, p = [], 1
     while True:
         d = get(f'/api/parts-catalogue/vendor/transactions/list-unpaid-by-vendor-account?accountId={ACC}&pagination[page]={p}&pagination[rowsPerPage]=100')
