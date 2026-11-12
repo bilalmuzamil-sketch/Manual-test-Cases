@@ -57,7 +57,7 @@ C("DATA-08", S, "The totals row's comeback rate pools every line once",
   ["Open Reports > Internal Work Orders.", "Set the date range to this month.", 'Open the "By technician" tab.'],
   [["The report opens."], ["The range is this month."],
    ["Technician A reads 25% (1 ÷ 4) and technician B 100% (1 ÷ 1).", "The totals row reads 40% (2 ÷ 5), not 62.5%, the average of the two rates."]],
-  ["S9-R2"], marker="PO:rate-totals")
+  ["S9-R2", "TP-312"])
 C("DATA-09", S, "A technician with comebacks but no completed lines shows no rate",
   [ADMIN, ON, NO_ACCT, "Have technician A for this test, with no completed lines this month.",
    "Have a comeback for this test, this month, for technician A (a no-charge Comeback line whose original line was technician A's)."],

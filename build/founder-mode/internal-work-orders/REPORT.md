@@ -1,30 +1,174 @@
-# Internal Work Orders — round 1 report (PRD and Jira), 12 Nov 2026
+# Internal Work Orders — report, rounds 1 and 2a (PRD, Jira, tech plan), 12 Nov 2026
 
-Worker: PRD cases (round 1). No writes to TestRail, Jira, Slack or Google; no commits. Design and tech plan rounds run in parallel (`design-2026-11-12/`, `tech-plan-2026-11-12/`, not touched); round 2 fills `authoring/design_refs.py` and adds their cases.
+Worker: PRD cases (round 1) and the tech plan fold-in (round 2a, on the coordinator's order). No writes to TestRail, Jira, Slack or Google; no commits. The design round comes next: it fills `authoring/design_refs.py` and adds the "Design — how it looks" cases.
 
 ## Counts
 
-- **504 cases** in the library; **486 for TestRail** (section 136701); **18 kept out** (a tester cannot set them up: NO-MANUAL-PROPOSAL.md).
-- By story section: S1 85, S2 98, S3 54, S4 14, S5 14, S6 8, S7 35, S8 27, S9 44, S10 14, S12 43, S13 6, S12P 10, API 24, DATA 9, REL 5, INV 14.
-- By TestRail folder (build.py FOLDER): Turn on Internal Work Orders, internal customers and categories 84, Waiting on the PO 6, Internal and no-charge work orders from creation to Close 95, Blocked on release 19, Close an internal or no-charge work order 53, Reopen a closed internal or no-charge work order 14, QuickBooks Online account mapping 14, AccountingHub account mapping 8, QuickBooks Online journal entries 35, AccountingHub records and entries 27, Reports, dashboard and exports 44, Shop supplies on internal and no-charge work orders 14, No-charge line on a billable work order 43, Starting categories and accounts 6, No-charge estimates and lines in the customer portal 10, API 6, Numbers across the documents, reports and books 7, Run on Production After Release 5, What must not change 14.
-- Held: 48 — 7 × `waiting on the PO (question n)`; 4 × `a tester cannot set this up through the screens: the save has to fail, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: some conversions have to fail, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: the save finishes too fast to press twice; it needs a slowed connection a developer sets up`; 1 × `a tester cannot set this up through the screens: the refusal is only reachable with a request sent outside the page`; 1 × `waits on the release of Maintenance Reminders`; 2 × `a tester cannot set this up through the screens: the change has to fail, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: the change finishes too fast to press twice; it needs a slowed connection a developer sets up`; 1 × `a tester cannot set this up through the screens: Close has to fail, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: Close finishes too fast to press twice; it needs a slowed connection a developer sets up`; 1 × `a tester cannot set this up through the screens: Reopen has to fail, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: Reopen finishes too fast to press twice; it needs a slowed connection a developer sets up`; 1 × `a tester cannot set this up through the screens: the same Close has to reach the sync twice, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: a replay of historical events is run by the AccountingHub team, not from the screens`; 1 × `a tester cannot set this up through the screens: the migration and the operator command are run by engineering, not from the screens`; 15 × `waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`; 2 × `waits on invoice creation through the Open API being enabled (disabled today, enabled for general availability)`; 1 × `a tester cannot set this up through the screens: this is the app's own request, which needs a signed-in session token a tester does not handle`; 5 × `needs records and figures noted on production before the release reaches production; run on production after the release`.
-- Runnable once a build exists (marker `Not available on Build to test Yet - Last checked 11/12/2026`, Rule 69): 456.
+- **570 cases** in the library; **551 for TestRail** (section 136701); **19 kept out** (a tester cannot set them up: NO-MANUAL-PROPOSAL.md).
+- Round 2a added 66 cases (S1-83, S1-84, S1-85, S1-86, S1-87, S1-88, S1-89, S1-90, S1-91, S2-98, S2-99, S2-100, S2-101, S2-102, S2-103, S2-104, S2-105, S2-106, S3-55, S3-56, S6-09, S6-10, S7-36, S7-37, S7-38, S8-28, S8-29, S8-30, S8-31, S9-45, S9-46, S10-15, S12-44, S12-45, S12-46, S12-47, S12-48, S12P-11, S12P-12, S12P-13, API-25, API-26, API-27, INV-15, INV-16, INV-17, INV-18, INV-19, INV-20, INV-21, INV-22, INV-23, INV-24, INV-25, INV-26, INV-27, INV-28, INV-29, INV-30, INV-31, INV-32, INV-33, INV-34, INV-35, REL-06, REL-07) and changed 46 existing cases (listed below, Rule 134).
+- By story section: S1 94, S2 107, S3 56, S4 14, S5 14, S6 10, S7 38, S8 31, S9 46, S10 15, S12 48, S13 6, S12P 13, API 27, DATA 9, REL 7, INV 35.
+- By TestRail folder (build.py FOLDER): Turn on Internal Work Orders, internal customers and categories 93, Waiting on the PO 11, Internal and no-charge work orders from creation to Close 101, Blocked on release 20, Close an internal or no-charge work order 56, Reopen a closed internal or no-charge work order 14, QuickBooks Online account mapping 14, AccountingHub account mapping 9, QuickBooks Online journal entries 37, AccountingHub records and entries 30, Reports, dashboard and exports 46, Shop supplies on internal and no-charge work orders 15, No-charge line on a billable work order 48, Starting categories and accounts 6, No-charge estimates and lines in the customer portal 12, API 7, Numbers across the documents, reports and books 8, Run on Production After Release 8, What must not change 35.
+- Held: 58 — 12 × `waiting on the PO (question n)`; 5 × `a tester cannot set this up through the screens: the save has to fail, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: some conversions have to fail, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: the save finishes too fast to press twice; it needs a slowed connection a developer sets up`; 1 × `a tester cannot set this up through the screens: the refusal is only reachable with a request sent outside the page`; 1 × `waits on the release of Maintenance Reminders`; 2 × `a tester cannot set this up through the screens: the change has to fail, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: the change finishes too fast to press twice; it needs a slowed connection a developer sets up`; 1 × `a tester cannot set this up through the screens: Close has to fail, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: Close finishes too fast to press twice; it needs a slowed connection a developer sets up`; 1 × `a tester cannot set this up through the screens: Reopen has to fail, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: Reopen finishes too fast to press twice; it needs a slowed connection a developer sets up`; 1 × `a tester cannot set this up through the screens: the same Close has to reach the sync twice, which only a developer can make happen`; 1 × `a tester cannot set this up through the screens: a replay of historical events is run by the AccountingHub team, not from the screens`; 1 × `a tester cannot set this up through the screens: the migration and the operator command are run by engineering, not from the screens`; 16 × `waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`; 2 × `waits on invoice creation through the Open API being enabled (disabled today, enabled for general availability)`; 1 × `a tester cannot set this up through the screens: this is the app's own request, which needs a signed-in session token a tester does not handle`; 8 × `needs records and figures noted on production before the release reaches production; run on production after the release`.
+- Runnable once a build exists (marker `Not available on Build to test Yet - Last checked 11/12/2026`, Rule 69): 512.
 
-## Coverage of PRD v1.0 (Rule 115 per-source verdict)
+## Coverage per source (Rule 115)
 
-- **Requirement codes: 205 of 205 quoted word for word by at least one case** (S1 26, S2 34, S3 17, S4 10, S5 10, S6 7, S7 17, S8 11, S9 21, S10 10, S11 9, S12 24, S13 9).
-- **Named items without a code: 148 of 159 quoted**, 11 listed as not testable with the reason (iwo_lib.NOT_TESTABLE): every Error Handling line (17), every §8 User Feedback Summary row (42; every message used word for word in a step or result, two asked because the summary and the story text differ), the Key Decisions (23), the permissions matrix rows (15) and its two rules, the Terminology (22), the Feature Overview paragraphs (10), Out of Scope (17), Goals (5), the Form factor lines (5) and the entry points.
-- Not testable (no screen to look at): T-VOCAB: A vocabulary note mapping the screen words location and customer to back-end words; no behaviour.; T-REASON: Says the old name Reason is superseded by Category; every case uses Category, and no screen shows the old word to check.; EH-S9: Says there is no error handling beyond the existing one for reports; there is no new message or state to look at.; EH-S11: Says the existing Open API error handling applies unchanged; the API cases check the one new error message.; OOS-03: Monthly batch posting, backdating and an accounting approval screen do not exist; there is no screen to look at (the posting date rules are checked in Story 3).; OOS-04: Splitting cost by vehicle or class, department profit and loss: nothing to look at in this release.; OOS-06: Capitalizing rebuilds, use tax, co-pay and partial warranty do not exist in the product; there is no screen to look at.; OOS-09: Moving labor cost at technician pay is a later option; there is no screen to look at.; OOS-17: Labor cost posting, rates in dollars and AI insights are not in this version; there is no screen to look at.; OV-NOT: Lists what is not in this version (labor posting, comeback numbers in dollars); nothing to look at. The fields it says are stored are checked through the report and the hub record.; KD-BOTH: A scope statement (both integrations, plus exports); each integration and the export are checked by their own stories.
+| Source | Verdict | What |
+|---|---|---|
+| PRD v1.0 (Confluence 942243841) | ✓ | 205 of 205 requirement codes quoted word for word; 148 of 159 named items quoted (error handling, all 42 message rows, key decisions, permission rows and rules, terminology, overview, out of scope, goals, form factor), 11 not testable with the reason |
+| Jira, epic SV-11665 (28 tickets) | ✓ | every story compared with its PRD story; 13 verify tasks mapped to their cases; 10 cases quote a ticket; ticket_sweep 0 unhandled |
+| Tech plan rev. 5 (2026-11-10), via TECH-PLAN-TESTABLE.json (539 CONFIRM, 131 ADD, 10 DIVERGE) | ✓ | 108 of 131 ADD statements quoted by a case (new cases or result bullets), 23 left out with the reason (below); 46 CONFIRM statements quoted where they settle a detail the PRD leaves open; no DIVERGE statement is quoted (the PRD wins); 74 invariant rows mapped to cases (below) |
+| Design (All flows v6.1) | pending | the design round adds References from Design and the design cases |
 
-- **Every surface (Rule 40):** Settings > Work Orders; the turn-on window; Customers list, header and mobile card; Edit Customer; Edit Asset; Administration > Service > Internal Work Orders and the category windows; New / Edit Work Order; work order detail (badge, orange card, lines, menu, Shop supplies, Notes, Audit Log); work orders list (status column, Total Price, All / Completed tabs, Status and Classification chips, mobile filter sheet), Tech View, Board, Schedule, global search, the customer's and asset's Work Orders tabs; Close / Reopen and the completion steps; the NO CHARGE document (Download, Print, Email); estimates and invoices with a no-charge line; the asset Invoices tab; reports (Sales, Sales By Customer, Sales By Representative, Advisor Analysis, Internal Work Orders, Technician Efficiency, Shop Efficiency, Technician Utilization, Timesheets, Parts Velocity, Work In Progress, Inventory Value, Sales Tax Collected, IBS Batches, A/R Aging, statements, Journal Entries, Customers Spending), the dashboard cards, Export Reports; QuickBooks Online (journal entries, invoices, QB Unexported); AccountingHub (Account Mappings, Sales > Invoices, Journal Entries, Accounting Events, Invoice list report); the customer portal and the Approval Required email; the Open API and webhooks; permissions per matrix row.
-- **Exact numbers (Rule 116):** known costs are seeded and the arithmetic shown: Stock parts $80.00 (2 × $40.00), Parts cost $205.00 ($80.00 + $125.00), core cost shown separately ($40.00 + $30.00 = $70.00, document $40.00), Shop supplies $15.00, Convert to Billable pricing (2.0 h × $120.00 = $240.00; location rate $100.00 → $200.00), taxes and fees on billable lines only ($240.00, 5% = $12.00, total $252.00; fee 10% $42.00 → $24.00), QuickBooks and AccountingHub debits and credits per entry and the Reopen reversal, report rows, totals and summary strip, By technician counts and rate (1 ÷ 4 = 25%), money reports and dashboard cards as before-plus-delta, and parity across confirmation, document, report and books (DATA-01 to DATA-07). Two rate hazards the PRD does not settle (pooled totals rate, zero completed lines) are asked (questions 6 and 7).
-- **What must not change (Rule 96):** INV-01 to INV-14 and REL-04/REL-05 quote every PRD "as today" / "unchanged" sentence and the Out of Scope items a tester can see (billable work orders, Reverse, part sales, deposits, shop supplies percentage, Issue Credit, the billable portal estimate, review, reports to the cent). **Honest limit:** the V1 baseline is the PRD's own "unchanged" sentences and the PRD-named surfaces; the product source code was not available to this worker (code column NOT AVAILABLE), so behaviours nobody documented cannot become invariants here. The tech plan round may add some.
-- **Jira (SV-11665, 28 tickets):** every story compared with its PRD story (below); the 13 verify tasks read and mapped to the cases that cover them (TICKET-LEDGER.json); 10 cases quote a verify task where it adds a checkable detail.
-- **Design and tech plan:** not used for expected results in round 1 (the brief); the design's labels were not needed beyond the PRD's own. Round 2 adds References from Design and the tech plan digest.
+- **Every surface (Rule 40):** Settings > Work Orders and the turn-on window; Customers list, header and mobile card; Edit Customer; New and Edit Asset; Administration > Service > Internal Work Orders and the category windows; New / Edit Work Order; the work order page (badge, orange card, lines, menus, Shop supplies, Finance tab, Notes, Audit Log); the work orders list, Tech View, Board, Schedule, global search, the customer's and asset's tabs; Close / Reopen and the completion steps; the NO CHARGE document in both invoice designs; estimates and invoices with a no-charge line; purchase order receiving and vendor invoices; Issue Credit; reports, the dashboard and Export Reports; QuickBooks Online and QB Unexported; AccountingHub (Account Mappings, chart of accounts, Sales > Invoices, Journal Entries, Accounting Events, sales tax and Invoice list reports); the customer portal, its approvals list, deposits, payments and emails; the Open API and webhooks; every permission matrix row.
+- **Exact numbers (Rule 116):** seeded costs with the arithmetic shown, before-plus-delta report figures, and parity across the confirmation, document, report and books (DATA-01 to DATA-09). The pooled totals rate (DATA-08) is now runnable: the tech plan settles it (TP-312). The rate with no completed lines is asked (question 11).
+- **What must not change (Rule 96):** INV-01 to INV-35 and REL-04 to REL-07, each quoting the PRD's own "as today" sentence (and the plan where it names the invariant). Honest limit: the baseline is what the PRD and the plan say must not change; the product code was not available to this worker, so a behaviour nobody documented cannot appear here.
+
+## Tech plan: invariant rows (INVARIANTS-FROM-PLAN.md) and the cases that check them
+
+| Row | Case(s) |
+|---|---|
+| 1.1 Create invoice on billable work orders from every place | INV-01, INV-19, S3-01 |
+| 1.2 Create invoice refusal messages | REL-07 |
+| 1.3 Completion wizard on billable work orders | INV-20 |
+| 1.4 Credit hold still blocks Create invoice | S3-43 |
+| 1.5 Header status labels | INV-15 |
+| 1.6 Billable work order menu | INV-21 |
+| 1.7 Change Customer on billable work orders | INV-22 |
+| 1.8 Reverse | INV-02 |
+| 1.9 A line added to an invoiced billable work order | INV-23 |
+| 1.10 Split and move-part on billable work | INV-24 |
+| 1.11 Auto-apply fees and the default discount | INV-25 |
+| 1.12 Receiving on billable work | INV-26 |
+| 1.13 Billable shop supplies; Min alone inert | INV-11, INV-18 |
+| 1.14 Pick, receive, clock-in, approval on internal work | INV-04 |
+| 1.15 A billable invoice with no mark is identical | INV-01, INV-08, INV-30 |
+| 1.16 Issue Credit on billable parts | INV-12 |
+| 1.17 Ordinary notes | INV-27 |
+| 1.18 Invoiced / Paid filters, Completed tab | INV-28 |
+| 1.19 Today's $0 invoices stay billable, with their webhooks | REL-04, S12-20, API-26 |
+| 2.1 Part sales | INV-03, INV-15 |
+| 3.1 New Customer and New Asset | INV-29, S1-16 |
+| 3.2 Other Work Orders toggles | INV-16 |
+| 3.3 Release day flags nobody | REL-01 |
+| 3.4 Existing warranty flags kept | API-27 |
+| 3.5 Nothing visible before the release switch | REL-05 (after launch the switch is gone; the before-launch state is not on a build a tester gets) |
+| 3.6 Administration sections | INV-17, S1-84 |
+| 4.1-4.3 Rule zero, every billable figure | REL-04, S9-01 to S9-07 |
+| 4.4 Customers Spending for billable work | REL-04, S9-41 |
+| 4.5 Customer Invoice export with the option off | S9-34 |
+| 4.6 Inventory Value, Work In Progress, A/P | INV-09, S9-39 |
+| 4.7 A no-charge line adds no tax and nothing owed | S9-46 |
+| 4.8 Asset Invoices tab columns | S3-34 |
+| 5.1 QuickBooks sync of billable work | INV-30, S7-19 |
+| 5.2 QB Unexported type of billable entries | INV-31 |
+| 5.3 ShopView Accounts rows keep their place | S5-01 |
+| 5.4 A location without QuickBooks | S7-35 |
+| 6.1, 6.3 Billable invoices and bills in the hub | INV-32 |
+| 6.2 $0 invoices and replays in the hub | S8-27 (NO-MANUAL: a replay is run by the hub team) |
+| 6.4 Hub Invoice List default | S8-13 |
+| 6.5 Hub sales tax reports | INV-33 |
+| 6.6 Existing hub pills (a Held deposit stays blue), static mapping rows | Left out: no source says how a tester produces a Held deposit in the hub; the static rows are covered by S6-01's unchanged Shop supplies row |
+| 6.7 No AccountingHub | S6-06 |
+| 7.1 Billable portal estimates and approvals | INV-13 |
+| 7.2 Portal payments and reminders | INV-34 (payments; the overdue reminders run on a schedule a tester cannot trigger) |
+| 7.3 Billable invoice webhooks and the portal's new invoice email | API-26, INV-35 |
+| 8.1 Billable invoices in the Open API lists and webhooks | API-05, API-26 |
+| 8.2 No Open API V1 | API-20 |
+
+## Tech plan: DIVERGE items
+
+- D-1 (Create invoice rows per move or per account pair): S7-38 written and held on question 4; S7-12, S7-22 and S7-23 have one move each, where both readings agree, so they stay runnable.
+- D-2 ("Closed" in the Status filter only after first use): S2-106 written and held on question 5; S2-68 runs in a shop that uses the feature, where both agree.
+- D-3 (the message when a completion step fails inside Close): no runnable case depends on it (S3-53 is NO-MANUAL); not asked (skill 07 §6), reported here for the QA lead.
+- D-4 (no live work order import): S2-90 held on question 6.
+- D-5 to D-9: the cases follow the PRD, no hold ("No charge" vs "No Charge" in two plan lines, an old report name, account 6510, the release-run order).
+- Code facts: the hub refuses to deactivate a mapped account (S6-10 and S8-26 held on question 8); the portal deposit race (S12P-11 held on question 7); line marks after converting back (S2-100 held on question 9).
+
+## Tech plan: ADD statements left out
+
+| Statement | Why |
+|---|---|
+| TP-003 | 10,000-row export cap per tab: a tester would need more than 10,000 report rows. |
+| TP-005 | 500 work orders per Make internal call: an internal batching detail; seen only with more than 500 open work orders. |
+| TP-112 | A customer with more than 500 open work orders: not a setup a tester can make by hand. |
+| TP-345 | Export refused above 10,000 rows: not a setup a tester can make by hand. |
+| TP-228 | The VIN-change path re-resolving the category: a code path; the asset-change case (S2-05) checks what a tester sees. |
+| TP-252 | An entry that posts nothing never reaches QB Unexported: nothing to look at. |
+| TP-256 | The hub creating a missing category row from a message: only reachable with a message a tester cannot send. |
+| TP-293 | The review-required refusal copy: with review on, Close is not offered (S3-36), so the message cannot be reached through the screens. |
+| TP-357 | System notes never customer-visible: no portal screen shows work order notes, so there is nothing to look at. |
+| TP-363 | A manual payment change on a closed record refused: New Payment is not offered (S2-103), so only a request outside the screens reaches it. |
+| TP-364 | Search reindex is a release step; S2-73 checks the badge in search after the release. |
+| TP-402 | Header card colour tokens: token names are not visible; the design round compares the colours with the design. |
+| TP-462 | Mobile Close icon name (task_alt): the icon is compared in the design round; S3-04 checks its tooltip. |
+| TP-506 | Hub register short codes IWO, NCWO, NCL: the plan does not say which screen shows them. |
+| TP-525 | Schedule compact block label: checked in the design round against the schedule board. |
+| TP-594 | Held rows in the hub's reconciliation run: an operator command output, not a screen. |
+| TP-605 | Hub write-off refused on a Closed record: the record has no write-off tab (S8-02), so only a request outside the screens reaches it. |
+| TP-607 | A rerun never refills a cleared starting row: the operator command is run by engineering (S13-06). |
+| TP-624 | A rerun re-maps an inactive starting account: the operator command is run by engineering. |
+| TP-639 | Vendor credit amend and void: the plan says they cannot happen; nothing to test. |
+| TP-648 | A direct portal link to a closed record's invoice: a tester has no such link (the record is never listed). |
+| TP-652 | Portal batch pay naming a closed record: the record is never listed, so it cannot be picked. |
+| TP-419 | A direct link to the categories page while the release switch is off: only before launch; not on a build a tester gets. |
+
+## Existing cases changed in round 2a (Rule 134: each changed case was rebuilt whole by build.py; the parts that changed)
+
+| Case | Change |
+|---|---|
+| S1-28 | step 4: added 1 result bullet(s); quotes TP-272 |
+| S1-50 | step added: 'Hover over Archive in the menu.'; quotes TP-409 |
+| S1-51 | plan quote added: TP-418, TP-410, TP-128 |
+| S1-62 | step 3: added 1 result bullet(s); quotes TP-411 |
+| S1-63 | step 3: added 1 result bullet(s); quotes TP-411 |
+| S1-67 | plan quote added: TP-347 |
+| S2-13 | step 6: added 1 result bullet(s); quotes TP-401, TP-142 |
+| S2-22 | step 2: added 1 result bullet(s); quotes TP-398 |
+| S2-24 | step 1: added 1 result bullet(s); quotes TP-453, TP-528 |
+| S2-52 | plan quote added: TP-043 |
+| S2-53 | result rewritten from the plan; quotes TP-152 |
+| S2-54 | result rewritten from the plan; quotes TP-450 |
+| S2-67 | step 2: added 1 result bullet(s); quotes TP-397 |
+| S3-18 | step 3: added 1 result bullet(s); quotes TP-463 |
+| S3-26 | step 2: added 1 result bullet(s); quotes TP-679 |
+| S3-43 | result rewritten from the plan; quotes TP-475 |
+| S4-05 | step 5: added 1 result bullet(s); quotes TP-473 |
+| S5-01 | step 2: added 3 result bullet(s); quotes TP-421, TP-247, TP-130 |
+| S5-02 | step 3: added 1 result bullet(s); quotes TP-037, TP-351 |
+| S5-09 | plan quote added: TP-349 |
+| S6-01 | step 1: added 1 result bullet(s); quotes TP-600 |
+| S7-03 | step 4: added 1 result bullet(s); quotes TP-249 |
+| S7-31 | plan quote added: TP-029, TP-085 |
+| S8-01 | step 4: added 1 result bullet(s); quotes TP-635 |
+| S8-03 | step 4: added 3 result bullet(s); quotes TP-614, TP-604, TP-631 |
+| S8-04 | step 4: added 1 result bullet(s); quotes TP-604 |
+| S8-07 | step 2: added 2 result bullet(s); quotes TP-497, TP-395, TP-500 |
+| S8-09 | result rewritten from the plan; quotes TP-056, TP-598 |
+| S8-10 | result rewritten from the plan; quotes TP-056 |
+| S8-16 | step 3: added 2 result bullet(s); quotes TP-557, TP-585 |
+| S8-18 | step 4: added 1 result bullet(s); quotes TP-498 |
+| S8-23 | step 5: added 1 result bullet(s); quotes TP-592 |
+| S8-25 | plan quote added: TP-638 |
+| S9-09 | step 2: added 1 result bullet(s); quotes TP-507, TP-344, TP-098 |
+| S9-11 | step 2: added 1 result bullet(s); quotes TP-509 |
+| S9-17 | result rewritten from the plan; quotes TP-511 |
+| S9-26 | step 4: added 1 result bullet(s); quotes TP-021, TP-097 |
+| S9-39 | step 1: added 1 result bullet(s); quotes TP-516 |
+| S12-18 | step 2: added 1 result bullet(s); quotes TP-489 |
+| S12-26 | result rewritten from the plan; quotes TP-328, TP-481 |
+| S12-33 | step 3: added 1 result bullet(s); quotes TP-490 |
+| S12P-06 | step 7: added 2 result bullet(s); quotes TP-673, TP-658 |
+| S12P-10 | step 2: added 1 result bullet(s); quotes TP-650 |
+| REL-03 | step 2: added 2 result bullet(s); quotes TP-608, TP-636, TP-613 |
+| S2-90 | held on PO question 'import' (DIVERGE D-4: the plan says no live work order import exists) |
+| S8-26 | held on PO question 'hub-inactive-account' (DIVERGE-adjacent code fact: the hub refuses to deactivate a mapped account) |
+
+Also changed in round 2a: S3-34 released (question "asset tab total" settled by the plan: TP-174 "No Charge") and DATA-08 released (TP-312). Every other part of every case (title, preconditions, steps, other results, PRD quotes and From lines, build line, marker, refs) was rebuilt by build.py from the same source and is CONFIRMED.
 
 ## Story text (Jira) compared with PRD v1.0
 
-Every story ticket says "Requirements, negative cases and edge cases live in the spec"; its one-paragraph summary was compared with the PRD story. Latest wins (Rule 32): PRD Final v1.0 of 9 Nov 2026 (page last modified 10 Nov 2026). No real conflict needs the PO; the one real conflict found is in a verify task (question 4).
+Every story ticket says "Requirements, negative cases and edge cases live in the spec"; its one-paragraph summary was compared with the PRD story. Latest wins (Rule 32): PRD Final v1.0 of 9 Nov 2026. No story needs a PO question; the verify task SV-11976's "$0.00" is settled by the plan ("No Charge").
 
 | Ticket | Verdict | Difference |
 |---|---|---|
@@ -44,15 +188,15 @@ Every story ticket says "Requirements, negative cases and edge cases live in the
 | SV-12295 | DIFFERS (resolved since) | Summary says "Comeback Expense at the number the hub owner confirms"; PRD v1.0 S6-R2 and S13 prerequisites: 6440 Comeback Expense, confirmed 9 Nov 2026. Cases use 6440. |
 | SV-12296 | SAME | Summary matches the portal requirements it lists (S2-R11, S2-E6, S1-R11, S3-R4, S12-R4, S12-R7); it notes design frame 7b is being redrawn (the text wins). |
 
-Verify tasks (developer check-lists) read in full; what each adds beyond the PRD:
+Verify tasks (developer check-lists), read in full:
 
 | Ticket | Cases | Note |
 |---|---|---|
 | SV-11973 | REL-04, REL-05, INV-01, S9-01, S9-02, S9-03, S9-04 | Developer check-list for the foundation (schema, shared predicates, invoice-create extraction). Tester-visible parts: rule zero (REL-04) and nothing visible while the release switch is off (REL-05). The migration diff and the extraction are code checks with no screen. |
 | SV-11974 | S1-*, S10-04 | Covers Story 1 and S10-R1: every Story 1 case. |
 | SV-11975 | S2-*, S10-* | Covers Story 2 and Story 10. Its item 5 adds "the server refuses Change Customer without 'Work Orders — Create & Edit'": a server refusal with no screen, listed with S1-82 in NO-MANUAL-PROPOSAL.md (PM-R1). |
-| SV-11976 | S3-*, S4-*, S3-48, API-02 | Covers Stories 3 and 4. Its item 7 says the asset's Invoices tab lists the closed record "at $0.00" where PRD v1.0 S3-R6/S9-R10 say Total balance "No Charge": asked (question 4), S3-34 held. Its item 5 (a refused Close leaves the work order where it was, not Complete) is quoted by S3-48. |
-| SV-11977 | S5-*, S7-*, S12-33 | Covers Stories 5 and 7. Its item 7 adds that the void of an Issue Credit restock posts the reverse; S12-33 quotes the item, the void itself has no PRD sentence and is left for the tech plan round. |
+| SV-11976 | S3-*, S4-*, S3-48, API-02 | Covers Stories 3 and 4. Its item 7 says the asset's Invoices tab lists the closed record "at $0.00" where PRD v1.0 S3-R6/S9-R10 say Total balance "No Charge": settled by the tech plan, which builds "No Charge" (TP-174); S3-34 follows the PRD and is runnable. Its item 5 (a refused Close leaves the work order where it was, not Complete) is quoted by S3-48. |
+| SV-11977 | S5-*, S7-*, S12-33 | Covers Stories 5 and 7. Its item 7 adds that the void of an Issue Credit restock posts the reverse; S12-33 quotes the item; the void has no PRD sentence and no plan statement a tester can reach, so it has no case. |
 | SV-11978 | S6-*, S8-* | Covers Story 6 and the hub side of Story 8. Its item 3 adds the Dismissed reason wording ("Withdrawn: vendor bill [number] amended" or "… voided"), quoted by S8-09. |
 | SV-11979 | S8-*, S3-41, S13-04 | Core accounting emission and the accounting UI port. Tester-visible parts are the Accounting pages (Story 8 cases) and the AccountingHub notes in the Close confirmation (S3-41). The contract package versions are a code check with no screen. |
 | SV-11980 | S9-*, DATA-* | Covers Story 9: every Story 9 case and the number parity cases. |
@@ -60,28 +204,28 @@ Verify tasks (developer check-lists) read in full; what each adds beyond the PRD
 | SV-12297 | REL-04 | Rule zero before and after: REL-04 (production, figures kept before the release). |
 | SV-12420 | S1-45, S1-46, S1-47, S1-50, S1-51, S1-53, S1-54, S1-56, S1-59, S1-64, S5-01, S13-01, S13-03 | Categories page, QuickBooks rows, seeding. |
 | SV-12421 | S12-* | Covers Story 12 core. Item 3 says Mark as No Charge on an invoiced work order is "disabled with 'Reverse the invoice first.'", PRD S12-N3 says the menu offers neither action and the tooltip reads the same words: S12-26 checks both. Item 6's server refusal of a restocking fee has no screen. |
-| SV-12422 | S12P-* | Covers the portal. Its item 6 (a portal deposit refused after checkout is recorded with its own reason and can be refunded) has no PRD v1.0 sentence: left for the tech plan round, no case yet. |
+| SV-12422 | S12P-* | Covers the portal. Its item 6 (a portal deposit refused after checkout is recorded with its own reason and can be refunded) has no PRD v1.0 sentence; the tech plan gives its message (TP-668) and the race behind it is asked: S12P-11, held on question 7. |
 
 ## Reading coverage (Rule 119)
 
 | Source | Size | Read |
 |---|---|---|
-| PRD `sources/CONFLUENCE-942243841-read-2026-11-12.md` (Confluence 942243841, Final v1.0) | 805 lines, 179,770 bytes | lines 1–805, 100% |
-| Jira `sources/JIRA-SV-11665-tickets-2026-11-12.md` (epic, 14 stories, 13 verify tasks; fetched today in full) | 454 lines | lines 1–454, 100% |
-| Rules: LESSONS-REGISTER.md; RULES-01-20 Rule 4; RULES-61-96 Rules 96, 113, 114, 115, 116, 117 (all amendments), 122, 123, 129, 130, 132–140 | — | each in full |
-| Skills: IDEAL-TEST-CASE-STANDARD.md; 17-REGRESSION-IMPACT-V1-TO-V2.md §0–2; 07-PO-QUESTIONS.md §2–6 | — | the sections the brief names |
-| Tech plan (842 KB) and design package | — | not read by this worker (other workers own them; the brief allows a grep for a label, none was needed) |
+| PRD `sources/CONFLUENCE-942243841-read-2026-11-12.md` (Final v1.0) | 805 lines, 179,770 bytes | lines 1–805, 100% |
+| Jira `sources/JIRA-SV-11665-tickets-2026-11-12.md` (epic, 14 stories, 13 verify tasks, fetched in full) | 454 lines | 1–454, 100% |
+| Tech plan worker's outputs: TECH-PLAN-TESTABLE.json (680 statements and 8 context lines), TECH-PLAN-DIVERGENCES.md, INVARIANTS-FROM-PLAN.md, QUESTIONS-DRAFT.md, TECH-PLAN-READING-RECORD.md, NOTES.md | 259 KB + 45 KB | every statement and line, 100% |
+| The tech plan itself (842 KB, 5,398 lines) | — | read in full by the tech plan worker (its reading record); this worker re-checks every quoted statement against its plan line by script |
+| Rules and skills: LESSONS-REGISTER.md; Rule 4; Rules 96, 113–117 (all amendments), 122, 123, 129, 130, 132–140; IDEAL-TEST-CASE-STANDARD.md; skill 17 §0–2; skill 07 §2–6 | — | in full |
 
 ## Checks run
 
-- `python3 authoring/build.py`: 0 PROBLEM lines; proposals.json written (504 cases).
-- `python3 ../../testing-tools/tester_readiness_check.py founder-mode/internal-work-orders`: 0 hard problems. The random sample (6 cases: S2-32b, S10-01, S3-29, S2-60, S3-34, S12-29) and all 112 "does not / never" results were read in full. Changes made from the read: status wording ("in status Approved"), an unused labor rate removed from S12-29's preconditions, and visible controls added to S9-25, S9-28 and S9-31.
-- `python3 authoring/create.py` (dry run): plan only, nothing written; it runs the readiness check itself (Rule 138).
-- `python3 ../../testing-tools/ticket_sweep.py ...`: 0 unhandled tickets, PRD 1.0 handled.
+- `python3 authoring/build.py`: 0 PROBLEM lines; proposals.json (570 cases). New gates: every tech plan quote is word for word on its plan line, no DIVERGE statement is quoted, every ADD statement is quoted or listed as left out.
+- `tester_readiness_check.py`: 0 hard problems. Round 1 read a sample of 6 and all 112 "does not / never" results; round 2a read a new sample of 6 (S1-88, S4-12, S2-28, S7-36, S12-35, S7-32) and every new "does not / never" result (13). Changes from the read: S12P-12 rewritten with a visible control and one action per step, an unneeded labor rate removed from S12-35.
+- `ticket_sweep.py`: 0 unhandled tickets, PRD 1.0 handled. `create.py` dry run: nothing written.
 
 ## OUTSTANDING — what I need from you
 
-- **Before any TestRail write (Rule 6):** create the subsections of section 136701 listed in sections.json and put their ids there; then `create.py --apply`. Recommended after round 2 (design and tech plan), so each case is written once.
-- **NO-MANUAL:** confirm the 18 cases stay out of TestRail (recommended, as for Bill To).
-- **Waiting on the PO (Rule 132):** the sheet is a draft (PO-QUESTIONS-DRAFT.md), not yet sent; questions 1–7 are unanswered. Held on them: question 1: S1-02b; question 2: S2-32b; question 3: S2-28; question 4: S3-34; question 5: API-23; question 6: DATA-08; question 7: DATA-09.
+- **Before any TestRail write (Rule 6):** create the subsections of section 136701 in sections.json and put their ids there; then `create.py --apply`. Recommended after the design round, so each case is written once.
+- **NO-MANUAL:** confirm the 19 cases stay out of TestRail (recommended, as for Bill To).
+- **For the QA lead only (Rule 30):** the plan-vs-PRD differences D-3 and D-5 to D-9 above need no PO answer; the cases follow the PRD.
+- **Waiting on the PO (Rule 132):** PO-QUESTIONS-DRAFT.md, 11 questions for Milos, not yet sent (the sheet is built by the coordinator). Held on them: question 1: S1-02b; question 2: S2-32b; question 3: S2-28; question 4: S7-38; question 5: S2-106; question 6: S2-90; question 7: S12P-11; question 8: S8-26, S6-10; question 9: S2-100; question 10: API-23; question 11: DATA-09.
 - **No QA branch is named:** every runnable case carries the Rule 69 marker until a build is checked.

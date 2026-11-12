@@ -38,6 +38,16 @@ PRDW = ws(PRD_TXT)
 PRD_RAWW = ws(re.sub(r"<[^>]+>", "", re.sub(r"\[([^\]]*)\]\((https?:[^)]*)\)", r"\1", PRD_MD)))
 JIRA_FILE = f"{P}/sources/JIRA-SV-11665-tickets-2026-11-12.md"
 JIRAW = ws(re.sub(r"\[([^\]]*)\]\((https?:[^)]*)\)", r"\1", open(JIRA_FILE).read()))
+# Round 2a (12 Nov 2026): the tech plan. A case may cite a plan statement the tech plan worker classified (TECH-PLAN-TESTABLE.json) by its
+# id ("TP-123"); the quote is the statement's verbatim text, checked again here against the plan line it cites. The plan informs and
+# never overrules the PRD (Rules 30, 57): every case still quotes the PRD, and DIVERGE statements are never quoted as expectations.
+import json as _json
+PLAN_FILE = f"{P}/sources/TECH-PLAN-Internal-Work-Orders-upload-2026-11-12.md"
+PLAN_LINES = open(PLAN_FILE).read().split("\n")
+TPJ = _json.load(open(f"{P}/tech-plan-2026-11-12/TECH-PLAN-TESTABLE.json"))
+TP = {x["id"]: x for x in TPJ["statements"]}
+PLAN_NAME = ('"Internal Work Orders technical implementation plan", 2026-10-28, last updated 2026-11-10 (revision 5, built on PRD v1.0), '
+             'sources/TECH-PLAN-Internal-Work-Orders-upload-2026-11-12.md')
 
 PRD_VERSION = "1.0"
 PRD_NAME = 'PRD "Internal Work Orders (PRD)", Confluence 942243841, version 1.0 final (9 Nov 2026, Milos Vasic)'
@@ -261,12 +271,14 @@ def quotes(c):
     for x in c["q"]:
         if isinstance(x, tuple): out.append(x)
         elif x in CODE: out.append((x, CODE[x]))
+        elif x in TP: out.append((f"Tech plan line {TP[x]['plan_line']} ({x})", TP[x]["quote"]))
         elif x in NAMED: out.append(NAMED[x])
         else: raise KeyError(f"{c['key']}: unknown quote key {x}")
     return out
 
 
-def codes_of(c): return {x for x in c["q"] if isinstance(x, str)}
+def codes_of(c): return {x for x in c["q"] if isinstance(x, str) and not x.startswith("TP-")}
+def tps_of(c): return {x for x in c["q"] if isinstance(x, str) and x.startswith("TP-")}
 
 
 def story_nums(c):
@@ -302,14 +314,14 @@ def design_block(c):
 
 
 def quotes_block(c):
-    groups = {"prd": [], "jira": []}
-    for l, t in quotes(c): groups["jira" if l.startswith("Jira SV-") else "prd"].append((l, t))
+    groups = {"prd": [], "jira": [], "plan": []}
+    for l, t in quotes(c): groups["jira" if l.startswith("Jira SV-") else "plan" if l.startswith("Tech plan") else "prd"].append((l, t))
     sn = story_nums(c)
     sto = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in sn)
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
     prd_name = PRD_NAME if prd_version(c) == PRD_VERSION else PRD_NAME.replace(f"version {PRD_VERSION}", f"version {prd_version(c)}")
-    for name, g in ((prd_name, groups["prd"]), (JIRA_NAME, groups["jira"])):
+    for name, g in ((prd_name, groups["prd"]), (JIRA_NAME, groups["jira"]), (PLAN_NAME, groups["plan"])):
         if not g: continue
         h += f"<p>From: {e(name)}, {PRD_READ}" + ((f" &middot; Epic {EPIC}" + (f", {e(sto)}" if sto else "")) if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in g) + "</ul>"
@@ -429,8 +441,12 @@ def check(c):
     for l, tq in quotes(c):
         if l.startswith("Jira SV-"):
             if ws(tq) not in JIRAW: p.append(f"{k}: quote {l} not verbatim in the saved Jira tickets")
+        elif l.startswith("Tech plan"):
+            tid = l.split("(")[1].rstrip(")")
+            if TP[tid]["verdict"] == "DIVERGE": p.append(f"{k}: quotes the DIVERGE statement {tid} (the PRD wins; quote the PRD)")
+            if tq not in PLAN_LINES[TP[tid]["plan_line"] - 1]: p.append(f"{k}: quote {tid} not verbatim on plan line {TP[tid]['plan_line']}")
         elif ws(tq) not in PRDW and ws(tq) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v{PRD_VERSION}")
-    if not any(isinstance(x, str) or not x[0].startswith("Jira") for x in c["q"]):
+    if not any((isinstance(x, str) and not x.startswith("TP-")) or (isinstance(x, tuple) and not x[0].startswith("Jira")) for x in c["q"]):
         p.append(f"{k}: no PRD quote (Rule 57: the PRD is the source of every expected result)")
     if not c["marker"].startswith("AUTOMATION: "): p.append(f"{k}: marker")
     return p

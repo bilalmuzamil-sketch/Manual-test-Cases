@@ -141,9 +141,9 @@ reg = dict(project='Internal Work Orders (Founder Mode), epic SV-11665', design=
            made='12 Nov 2026, design drive build/founder-mode/internal-work-orders/design-2026-11-12/',
            how='Rule 130: both directions (DESIGN-TEXT-INVENTORY design -> PRD; SPEC-TO-DESIGN-2026-11-12.json PRD -> design; every dialog, menu, toast and tooltip listed by hand in DESIGN-VISUAL-INVENTORY.md)',
            counts=dict(differences=len(RD.D), settled_by_prd=sum(1 for x in RD.D if x['outcome'].startswith('SETTLED')), questions=len(open_q), not_shown=len(RD.NOT_SHOWN)),
-           unsent_questions=len(RD.QUESTIONS), unsent_note='All %d questions are drafted in design-2026-11-12/NEW-QUESTIONS.py and NOT sent (the QA lead sends them). Rule 126.6: unsent must reach 0 before the suite is called complete.' % len(RD.QUESTIONS),
+           unsent_questions=len(RD.QUESTIONS), unsent_note='%d new questions (rows 8-13) are drafted in design-2026-11-12/NEW-QUESTIONS.py and NOT sent; one more difference (IWO-D19) rides on question 3 and the held DC-50 on question 4 of the existing draft ../PO-QUESTIONS-DRAFT.md, also not sent (the QA lead sends the one sheet). Rule 126.6: unsent must reach 0 before the suite is called complete.' % len(RD.QUESTIONS),
            question_sheet='none yet for Internal Work Orders (checked 12 Nov 2026); these rows and the PRD case worker\'s questions go into one sheet (Rule 131)',
-           differences=RD.D, questions=RD.QUESTIONS,
+           differences=RD.D, questions=RD.QUESTIONS, existing_sheet_questions=RD.SHEET_QUESTIONS,
            not_shown=[dict(id='IWO-N%02d' % (i + 1), prd_code=c, prd_words_or_state=w, outcome='DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case', checked='12 Nov 2026, all 167 boards') for i, (c, w) in enumerate(RD.NOT_SHOWN)])
 # keys for build/testing-tools/spec_to_design_check.py ("<code>|<words>"): filled after its first run below
 json.dump(reg, open(os.path.join(ROOT, '..', 'DESIGN-DIVERGENCE-REGISTER.json'), 'w'), indent=1, ensure_ascii=False)

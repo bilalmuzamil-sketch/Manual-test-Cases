@@ -1,6 +1,6 @@
 # Internal Work Orders — cases a manual tester cannot set up (proposal)
 
-The QA lead's standing decision (Bill To, 10 Nov 2026): *"If a tester can not set it up then they should not be in testrail."* These 18 cases are kept in the case library (`authoring/`, marker `AUTOMATION: HOLD - a tester cannot set this up ...`) so the PRD item stays covered and visible, and `create.py` leaves them out of TestRail. Proposed: hand them to the developers' own checks (each verify ticket of epic SV-11665 lists the same behaviours), and decide again when a build exists.
+The QA lead's standing decision (Bill To, 10 Nov 2026): *"If a tester can not set it up then they should not be in testrail."* These 19 cases are kept in the case library (`authoring/`, marker `AUTOMATION: HOLD - a tester cannot set this up ...`) so the PRD item stays covered and visible, and `create.py` leaves them out of TestRail. Proposed: hand them to the developers' own checks (each verify ticket of epic SV-11665 lists the same behaviours), and decide again when a build exists.
 
 | Case | Title | PRD items | Why a tester cannot set it up |
 |---|---|---|---|
@@ -22,6 +22,7 @@ The QA lead's standing decision (Bill To, 10 Nov 2026): *"If a tester can not se
 | S12-42 | A failed mark leaves the line as it was | EH-S12 | the change has to fail, which only a developer can make happen |
 | S13-06 | The migration and its reruns create no duplicates | S13-N1, S13-R4 | the migration and the operator command are run by engineering, not from the screens |
 | API-24 | The internal invoice list used by the app leaves the closed record out | S3-R6 | this is the app's own request, which needs a signed-in session token a tester does not handle |
+| S1-91 | A failed category save shows an alert and keeps the window open | S1-R14 | the save has to fail, which only a developer can make happen |
 
 Also not written as cases (no screen): the server's 403 refusal of each permission-matrix write (PM-R1, case S1-82 stands for all of them), the idempotency key (S7-R6, S7-E1: S7-34), a replay of hub history (S8-R5, S8-E1: S8-27), the app's own invoice list request (S3-R6: API-24), and the migration and operator-command reruns (S13-R4, S13-N1: S13-06).
 

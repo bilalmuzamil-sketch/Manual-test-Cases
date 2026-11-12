@@ -234,7 +234,7 @@ C("S3-34", S, "The asset Invoices tab lists the closed work order",
   ["Open asset 1's Invoices tab."],
   [['Work order 1 is listed with status Closed and the "Internal" badge.', 'Total balance reads "No Charge".', "Discount and Tax rate are empty.",
     "The row is dated yesterday, the posting date, and has no actions.", "The tab has no cost or hours columns."]],
-  ["S3-R6", "S9-R10", "OOS-07"], marker="PO:asset-tab-total")
+  ["S3-R6", "S9-R10", "OOS-07", "TP-174"])
 C("S3-35", S, "The Finance tab menu of a closed work order offers Reopen only",
   [ADMIN, ON, icust("A"), iwo(1, "A", "closed")],
   [OPEN_WO, FIN, "Open the invoice menu on the Finance tab."],

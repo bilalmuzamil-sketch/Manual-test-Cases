@@ -11,8 +11,8 @@
   "questions": 7,
   "not_shown": 40
  },
- "unsent_questions": 7,
- "unsent_note": "All 7 questions are drafted in design-2026-11-12/NEW-QUESTIONS.py and NOT sent (the QA lead sends them). Rule 126.6: unsent must reach 0 before the suite is called complete.",
+ "unsent_questions": 6,
+ "unsent_note": "6 new questions (rows 8-13) are drafted in design-2026-11-12/NEW-QUESTIONS.py and NOT sent; one more difference (IWO-D19) rides on question 3 and the held DC-50 on question 4 of the existing draft ../PO-QUESTIONS-DRAFT.md, also not sent (the QA lead sends the one sheet). Rule 126.6: unsent must reach 0 before the suite is called complete.",
  "question_sheet": "none yet for Internal Work Orders (checked 12 Nov 2026); these rows and the PRD case worker's questions go into one sheet (Rule 131)",
  "differences": [
   {
@@ -248,7 +248,7 @@
     "it can be changed on the asset or the customer, never on the work order."
    ],
    "outcome": "QUESTION (drafted, not sent: the QA lead sends it)",
-   "ruling_or_question": "NEW-QUESTIONS.py question 1",
+   "ruling_or_question": "NEW-QUESTIONS.py question 8 (sheet row 8)",
    "held_case": "DV-01",
    "note": "The PRD gives no text for these intro and helper sentences, so it cannot settle what they should say; it does settle the behaviour they describe wrongly.",
    "prd_words_found": [
@@ -520,7 +520,7 @@
     "the INTERNAL or NO CHARGE stamp with the line \"Category: \\[name\\]\""
    ],
    "outcome": "QUESTION (drafted, not sent: the QA lead sends it)",
-   "ruling_or_question": "Prices and totals on the estimate: settled by S2-R4. Stamp word and category line on an open internal estimate: NEW-QUESTIONS.py question 2 (S2-R4 and S3-R5 read differently).",
+   "ruling_or_question": "Prices and totals on the estimate: settled by S2-R4. Stamp word and category line on an open internal estimate: already asked as question 3 of the Internal Work Orders sheet draft (../PO-QUESTIONS-DRAFT.md, by the PRD case worker), not repeated (S2-R4 and S3-R5 read differently).",
    "held_case": "DV-02",
    "note": "",
    "prd_words_found": [
@@ -802,7 +802,7 @@
     "the header card carries the line \"Closed on \\[posting date\\]. To change it, reopen it from the Finance tab.\""
    ],
    "outcome": "QUESTION (drafted, not sent: the QA lead sends it)",
-   "ruling_or_question": "NEW-QUESTIONS.py question 3",
+   "ruling_or_question": "NEW-QUESTIONS.py question 9 (sheet row 9)",
    "held_case": "DV-03",
    "note": "Note c-flow1-8: \"then the locked note shows as on any closed work order\". The PRD names only the header line.",
    "prd_words_found": [
@@ -854,7 +854,7 @@
     "sets the work order to Complete with its classification unchanged"
    ],
    "outcome": "QUESTION (drafted, not sent: the QA lead sends it)",
-   "ruling_or_question": "NEW-QUESTIONS.py question 4",
+   "ruling_or_question": "NEW-QUESTIONS.py question 10 (sheet row 10)",
    "held_case": "DV-04",
    "note": "",
    "prd_words_found": [
@@ -1218,7 +1218,7 @@
     "Original work order (link, with the original line number when set), Original technician"
    ],
    "outcome": "QUESTION (drafted, not sent: the QA lead sends it)",
-   "ruling_or_question": "NEW-QUESTIONS.py question 5",
+   "ruling_or_question": "NEW-QUESTIONS.py question 11 (sheet row 11)",
    "held_case": "DV-05",
    "note": "Design library (work-orders.jsx, the dash cell): \"Nothing. Always this, never an empty cell or a bare hyphen in text.\"; the asset Invoices tab already uses the dash.",
    "prd_words_found": [
@@ -1244,7 +1244,7 @@
     "Work order (link)"
    ],
    "outcome": "QUESTION (drafted, not sent: the QA lead sends it)",
-   "ruling_or_question": "NEW-QUESTIONS.py question 6",
+   "ruling_or_question": "NEW-QUESTIONS.py question 12 (sheet row 12)",
    "held_case": "DV-06",
    "note": "",
    "prd_words_found": [
@@ -1373,7 +1373,7 @@
     "\"No Charge\" for a no-charge work order (a different style from Internal)"
    ],
    "outcome": "QUESTION (drafted, not sent: the QA lead sends it)",
-   "ruling_or_question": "NEW-QUESTIONS.py question 7",
+   "ruling_or_question": "NEW-QUESTIONS.py question 13 (sheet row 13)",
    "held_case": "",
    "note": "No case depends on it until the answer says what changes.",
    "prd_words_found": [
@@ -1434,13 +1434,15 @@
   }
  ],
  "questions": {
-  "1": "IWO-D09",
-  "2": "IWO-D19",
-  "3": "IWO-D29",
-  "4": "IWO-D31",
-  "5": "IWO-D44",
-  "6": "IWO-D45",
-  "7": "IWO-D50"
+  "8": "IWO-D09",
+  "9": "IWO-D29",
+  "10": "IWO-D31",
+  "11": "IWO-D44",
+  "12": "IWO-D45",
+  "13": "IWO-D50"
+ },
+ "existing_sheet_questions": {
+  "3": "IWO-D19"
  },
  "not_shown": [
   {

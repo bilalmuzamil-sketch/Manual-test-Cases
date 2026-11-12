@@ -48,7 +48,7 @@ d('IWO-D09', 'wording that contradicts behaviour', 'Flow 0 2a/2c/2d/11; Happy 04
    'Where the cost of work on your own equipment goes. Each internal customer has a default category; a work order can change it.',
    'Preselected on every new work order for this customer; a work order can change it. New internal customers get General Internal.'],
   'S2-R16 / S2-R1 / KD', ['It is not shown on the work order detail or in lists; the badge is the only mark there.', 'it can be changed on the asset or the customer, never on the work order.'],
-  Q, 'NEW-QUESTIONS.py question 1', 'DV-01', 'The PRD gives no text for these intro and helper sentences, so it cannot settle what they should say; it does settle the behaviour they describe wrongly.')
+  Q, 'NEW-QUESTIONS.py question 8 (sheet row 8)', 'DV-01', 'The PRD gives no text for these intro and helper sentences, so it cannot settle what they should say; it does settle the behaviour they describe wrongly.')
 d('IWO-D10', 'wording', 'Flow 0 2c, 2d; Happy 06; Review 2.3', [IMG + 'iwo-flow0-07-2d-new-internal-category.png'],
   ['Not set at any location. Parts cost of this category posts to the ShopView Review account until you pick one.', 'The work order asks which earlier work order the job comes from, or "Not in ShopView". Optional when the work order is created, required at Close.'],
   'S1-R14', ['with the helper "One per connected location, picked from the chart that is already in QuickBooks. Parts cost of this category posts here instead of Cost of Parts. Empty: posts to the ShopView Review account until you pick one."',
@@ -87,7 +87,7 @@ d('IWO-D19', 'document', 'Flow 1 04, 3d; Happy 15 (open internal estimate); Flow
   ['open internal estimate: "Estimate:" document with Labor $0.00 columns, "Line total", a Total and "No Charge." block; stamp INTERNAL with "Category: General Internal" (also on the closed internal document). Note c-flow1-8 says the document "is stamped NO CHARGE".'],
   'S2-R4 / S3-R5', ['The estimate and invoice documents for these work orders show the same and carry the NO CHARGE stamp and, on a no-charge work order, the line "Category: \\[Category\\]" under the stamp',
                     'the INTERNAL or NO CHARGE stamp with the line "Category: \\[name\\]"'],
-  Q, 'Prices and totals on the estimate: settled by S2-R4. Stamp word and category line on an open internal estimate: NEW-QUESTIONS.py question 2 (S2-R4 and S3-R5 read differently).', 'DV-02')
+  Q, 'Prices and totals on the estimate: settled by S2-R4. Stamp word and category line on an open internal estimate: already asked as question 3 of the Internal Work Orders sheet draft (../PO-QUESTIONS-DRAFT.md, by the PRD case worker), not repeated (S2-R4 and S3-R5 read differently).', 'DV-02')
 d('IWO-D20', 'wording', 'Flow 1 07, 7b, 7d, 7e, 7f; Happy 17; Review 5.2', [IMG + 'iwo-flow1-16-07-close-confirm.png'],
   ['This posts the parts cost and shop supplies to your books and marks the work order Closed · No Charge. You can reopen it later. (on internal work order S2-34918)'],
   'S3-R2', ['This posts the parts cost and shop supplies to your books and marks the work order Closed · Internal. You can reopen it later.'], S, 'S3-R2 quote; PRD header sentence.')
@@ -124,12 +124,12 @@ d('IWO-D28', 'missing dismiss control', 'Flow 1 08, S2; Happy 18 (note c-flow1-8
 d('IWO-D29', 'element the PRD does not describe', 'Flow 1 08 (after the alert), Flow 3 02; Happy 36 frame-opened, 37', [IMG + 'iwo-flow3-02-02-reopen-dialog.png', 'render/full/hf-36-frame-opened.png'],
   ['Closed on Oct 22, 2026 by Admin ShopView', 'This work order is locked. Reopen it to change lines, hours or parts.', 'Reopening returns it from Closed · Internal to Complete.'],
   'S2-R9', ['the header card carries the line "Closed on \\[posting date\\]. To change it, reopen it from the Finance tab."'],
-  Q, 'NEW-QUESTIONS.py question 3', 'DV-03', 'Note c-flow1-8: "then the locked note shows as on any closed work order". The PRD names only the header line.')
+  Q, 'NEW-QUESTIONS.py question 9 (sheet row 9)', 'DV-03', 'Note c-flow1-8: "then the locked note shows as on any closed work order". The PRD names only the header line.')
 d('IWO-D30', 'wording', 'Flow 3 02; Happy 37', [IMG + 'iwo-flow3-02-02-reopen-dialog.png'],
   ['The work order leaves Closed · No Charge and goes back to Complete. (internal work order S2-34918; one sentence)'],
   'S4-R2', ['The work order leaves Closed · Internal and goes back to Complete. The parts cost and shop supplies entries are reversed in your books.'], S, 'S4-R2 quote; PRD header sentence.')
 d('IWO-D31', 'message the PRD does not have', 'Flow 3 03', [IMG + 'iwo-flow3-03-03-work-order-complete-again.png'],
-  ['Work order S2-34918 reopened'], 'S4-R3', ['sets the work order to Complete with its classification unchanged'], Q, 'NEW-QUESTIONS.py question 4', 'DV-04')
+  ['Work order S2-34918 reopened'], 'S4-R3', ['sets the work order to Complete with its classification unchanged'], Q, 'NEW-QUESTIONS.py question 10 (sheet row 10)', 'DV-04')
 d('IWO-D32', 'labels on the document', 'Flow 1 08; Flow 2 05, 07; Happy 18, 29', [IMG + 'iwo-flow2-12-05-finance-tab-closed.png'],
   ['Summary row "Labor" (2.0 h)', 'original work order printed as plain text', 'Category: Warranty · Original work order S2-31207 (the convert boards picked S2-30455)'],
   'S3-R5', ['a Summary with Parts cost', 'Shop supplies (when above $0.00) and Labor hours', '"· Original work order \\[number\\]" (a link in ShopView, plain on the PDF)'],
@@ -173,11 +173,11 @@ d('IWO-D43', 'number', 'Flow 4 05, 06; Happy 39, 39b; Review 7.2, 7.5', [IMG + '
   'S9-R2', ['Above the table a summary strip shows one card per category in the range: parts cost, count of work orders and lines, hours.'], S, 'S9-R2 quote (Rule 116: the card is the parts cost).')
 d('IWO-D44', 'look (library rule)', 'Flow 4 05; Happy 39; Review 7.2', [IMG + 'iwo-flow4-05-05-internal-work-orders-report.png'],
   ['empty Original work order and Original technician cells on the whole internal work order row'],
-  'S9-R2', ['Original work order (link, with the original line number when set), Original technician'], Q, 'NEW-QUESTIONS.py question 5', 'DV-05',
+  'S9-R2', ['Original work order (link, with the original line number when set), Original technician'], Q, 'NEW-QUESTIONS.py question 11 (sheet row 11)', 'DV-05',
   'Design library (work-orders.jsx, the dash cell): "Nothing. Always this, never an empty cell or a bare hyphen in text."; the asset Invoices tab already uses the dash.')
 d('IWO-D45', 'wrapping at 1440/1536', 'Flow 4 05, 06; Happy 39, 39b; Review 7.2, 7.5', [IMG + 'iwo-flow4-05-05-internal-work-orders-report.png', 'render/widths/hf-39-1536.png'],
   ['work order numbers break onto two lines ("S2-" / "34918") and dates wrap, at 1280 px and still at 1536 px'], 'S9-R2', ['Work order (link)'], Q,
-  'NEW-QUESTIONS.py question 6', 'DV-06')
+  'NEW-QUESTIONS.py question 12 (sheet row 12)', 'DV-06')
 d('IWO-D46', 'label', 'Flow 5 01; Happy 40', [IMG + 'iwo-flow5-01-01-qb-unexported-held-entry.png'],
   ['Type "Journal Entry" on the work order rows'], 'S7-N3', ['(type "Internal Work Order Close", "Internal Work Order Reopen" or "No Charge line")'], S, 'S7-N3 quote; PRD header sentence.')
 d('IWO-D47', 'wording', 'Flow 5 04; Happy 42; Review 7.4', [IMG + 'iwo-flow5-04-04-accountinghub-held-event.png'],
@@ -192,7 +192,7 @@ d('IWO-D49', 'stale page text', 'Flow 2 page description; Flow 6 page name in th
   S, 'Out of Scope and Key Decisions quotes; the Flow 6 boards, its title note and the Review page already follow the PRD.')
 d('IWO-D50', 'open review remarks', 'Review 1.1 (two paragraphs below the 1000 px frame, not visible on the canvas)', ['render/full/rv-1-1-frame-opened.png'],
   ["Move this tooltip text. It's fine to be just this tag here, which is fine, but let's bring back the explanation a little, just one sentence.", "Badge here, we agree, is not no-charge warranty. It's no charge, just that the badge itself"],
-  'S1-R1 / S2-R3', ['"No Charge" for a no-charge work order (a different style from Internal)'], Q, 'NEW-QUESTIONS.py question 7', '', 'No case depends on it until the answer says what changes.')
+  'S1-R1 / S2-R3', ['"No Charge" for a no-charge work order (a different style from Internal)'], Q, 'NEW-QUESTIONS.py question 13 (sheet row 13)', '', 'No case depends on it until the answer says what changes.')
 d('IWO-D51', 'notes that disagree with their boards', 'c-flow1-3c, c-rv-3-2, c-flow4-9, c-flow4-2, c-flow1-8, c-flow1-2a', [],
   ['notes describe the PRD behaviour while the board draws something else (Close in the menu; Default internal category; No Charge badge on an internal card; No Charge filter; X on the alert; tooltip)'],
   'see D18, D06, D16, D36, D28, D12', ['see those rows'], S, 'Closed with the rows named.')
@@ -200,7 +200,8 @@ d('IWO-D52', 'seeding time', 'notes c-flow0-2a / c-hf-04 and d-flow0', [],
   ['The starting set is seeded when the setting is first turned on', 'and gets the starting categories'],
   'S1-R13 / S13-R1', ['The starting set is seeded for every organization when this release ships', 'turning the setting on seeds nothing'], S, 'S1-R13 quote.')
 
-QUESTIONS = {1: 'IWO-D09', 2: 'IWO-D19', 3: 'IWO-D29', 4: 'IWO-D31', 5: 'IWO-D44', 6: 'IWO-D45', 7: 'IWO-D50'}
+QUESTIONS = {8: 'IWO-D09', 9: 'IWO-D29', 10: 'IWO-D31', 11: 'IWO-D44', 12: 'IWO-D45', 13: 'IWO-D50'}  # new rows 8-13 of the one sheet (Rule 131)
+SHEET_QUESTIONS = {3: 'IWO-D19'}  # already in ../PO-QUESTIONS-DRAFT.md; the design adds its held case DV-02
 
 # PRD words the design does not show at all (DESIGN-SILENT): no held case (Rule 130.5); the PRD-following case stands alone.
 NOT_SHOWN = [

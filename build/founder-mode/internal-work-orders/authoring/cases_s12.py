@@ -233,7 +233,7 @@ C("S12-34", S, "A $0.00 credit never blocks reversing the invoice",
   [["Work order 1 opens."], ["The invoice shows."], ["The invoice is reversed."]],
   ["S12-E7"])
 C("S12-35", S, "Mark as No Charge is not offered on a declined line or one with a credit",
-  [ADMIN, ON, CUST, wo(1, "A", "Approved", ", billable, with line 1 declined and line 2 approved, so an offering line can be compared"),
+  [ADMIN, ON, cust("A"), wo(1, "A", "Approved", ", billable, with line 1 declined and line 2 approved, so an offering line can be compared"),
    wo(2, "A", "Approved", ", billable, reversed after an invoice, whose line 1 has a return")],
   [OPEN_WO, "Open line 1's three-dots menu.", LMENU, "Open work order 2.", "Open line 1's three-dots menu."],
   [["Work order 1 opens."], ['Line 1\'s menu offers no "Mark as No Charge".'], ['Line 2\'s menu offers "Mark as No Charge".'], ["Work order 2 opens."],

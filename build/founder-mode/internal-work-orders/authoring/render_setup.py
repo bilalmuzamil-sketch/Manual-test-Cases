@@ -7,7 +7,7 @@ import sys, os, re, json, glob, importlib
 D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import iwo_lib as L
 from po_questions import QUESTIONS
-_ORDER = [f"cases_s{i}" for i in range(1, 14)] + ["cases_s12p", "cases_api", "cases_data", "cases_rel", "cases_inv", "cases_design"]
+_ORDER = [f"cases_s{i}" for i in range(1, 14)] + ["cases_s12p", "cases_api", "cases_data", "cases_rel", "cases_inv", "cases_design", "cases_tp"]
 _MODS = sorted(os.path.basename(f)[:-3] for f in glob.glob(f"{D}/cases_*.py"))
 for m in [x for x in _ORDER if x in _MODS] + [x for x in _MODS if x not in _ORDER]: importlib.import_module(m)
 PROP = json.load(open(f"{D}/proposals.json"))

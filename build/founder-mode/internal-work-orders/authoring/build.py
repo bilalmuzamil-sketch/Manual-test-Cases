@@ -15,7 +15,7 @@ D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import iwo_lib as L
 from po_questions import QUESTIONS, QN
 MODS = sorted(os.path.basename(f)[:-3] for f in glob.glob(f"{D}/cases_*.py"))
-ORDER = [f"cases_s{i}" for i in range(1, 14)] + ["cases_s12p", "cases_api", "cases_data", "cases_rel", "cases_inv", "cases_design"]
+ORDER = [f"cases_s{i}" for i in range(1, 14)] + ["cases_s12p", "cases_api", "cases_data", "cases_rel", "cases_inv", "cases_design", "cases_tp"]
 MODS = [m for m in ORDER if m in MODS] + [m for m in MODS if m not in ORDER]
 for m in MODS: importlib.import_module(m)
 SECS = json.load(open(f"{L.P}/sections.json"))["sections"]
@@ -27,7 +27,7 @@ titles = [c["title"] for c in L.CASES]
 for t in sorted({t for t in titles if titles.count(t) > 1}): probs.append(f"duplicate title {t!r}")
 for c in L.CASES:
     if c["sec"] not in SECS: probs.append(f"{c['key']}: section {c['sec']} unknown")
-    rx = {"DESIGN": r"D-\d\d[b-e]?$"}.get(c["sec"], re.escape(c["sec"]) + r"-\d\d[b-e]?$")
+    rx = {"DESIGN": r"D-\d{2,3}[b-e]?$"}.get(c["sec"], re.escape(c["sec"]) + r"-\d{2,3}[b-e]?$")
     if not re.match(rx, c["key"]): probs.append(f"{c['key']}: key does not match section {c['sec']}")
     for t in [b for r in c["res"] for b in r] + [c["note"]]:
         for n in re.findall(r"\bSteps? (\d+)", t):
@@ -46,6 +46,14 @@ for k in sorted(items - set(used) - set(L.NOT_TESTABLE)): probs.append(f"PRD ite
 for k in sorted(set(L.NOT_TESTABLE) & set(used)): probs.append(f"PRD item {k} is listed as not testable but a case quotes it")
 for k in L.NOT_TESTABLE:
     if k not in items: probs.append(f"NOT_TESTABLE names {k}, which is not a PRD item")
+# ---- round 2a: every tech plan ADD statement is quoted by a case or listed as left out with its reason (cases_tp.TP_OUT)
+import cases_tp
+tp_used = {x for c in L.CASES for x in L.tps_of(c)}
+for k, v in L.TP.items():
+    if v["verdict"] == "ADD" and k not in tp_used and k not in cases_tp.TP_OUT: probs.append(f"tech plan {k} (ADD) quoted by no case and not in TP_OUT")
+    if k in tp_used and k in cases_tp.TP_OUT: probs.append(f"tech plan {k} is in TP_OUT but a case quotes it")
+for k in cases_tp.TP_OUT:
+    if L.TP.get(k, {}).get("verdict") != "ADD": probs.append(f"TP_OUT names {k}, which is not an ADD statement")
 # ---- every User Feedback Summary message is used in some case's steps or results: fixed words exact, [bracketed] words free, "..." free
 ASKED = {"UFS-01": "modal-text", "UFS-10": "no-charge-document-case"}   # the summary's text differs from the story's: asked on the PO sheet
 tester_all = " \n ".join(" ".join(c["steps"] + [b for r in c["res"] for b in r]) for c in L.CASES)
@@ -97,6 +105,7 @@ for k in FOLDER:
 by_sec = Counter(c["sec"] for c in L.CASES); held = [c["key"] for c in L.CASES if c["held"]]
 print("modules", MODS)
 print("cases", len(L.CASES), dict(by_sec), "| held", len(held))
+print("tech plan statements quoted", len(tp_used), "| ADD quoted", sum(1 for k in tp_used if L.TP[k]["verdict"] == "ADD"), "of", sum(1 for v in L.TP.values() if v["verdict"] == "ADD"), "| ADD left out", len(cases_tp.TP_OUT))
 print("PRD codes", len(L.CODE), "covered", len(set(L.CODE) & set(used)), "| named items", len(L.NAMED), "covered", len(set(L.NAMED) & set(used)),
       "| not testable", len(L.NOT_TESTABLE))
 print("markers", dict(Counter(re.sub(r"\(question \d+\)", "(question n)", re.sub(r": .*", ": …", c["marker"])) for c in L.CASES)))
