@@ -1,0 +1,10 @@
+1198	INV	S3-N3; S4-N2	`tests/permissions/`: `wo-create-invoice-permissions`, `part-sale-create-invoice-permissions`, `wo-finance-tab-permissions` (all `.spec.ts`)	invariant: invoice/finance-tab permissions unchanged
+1211	CONFIRM	S1-R13	`category_row_warranty` and `category_row_comeback` read "Required"; `category_row_goodwill` reads "Not asked".	
+1219	CONFIRM	S1-R13	After archiving, the row leaves the active table and the link reads "Show archived (n+1)".	
+1237	CONFIRM	S5-R1	directly under Cost of Parts sit `text_quickbooks_category_header_internal` with General Internal (QuickBooks mark), then `text_quickbooks_category_header_no_charge` with Warranty, Goodwill and Comeback, then Cost of Goods (tax)	
+1238	INV	S5-R1 (invariant)	no existing Accounts row is regrouped under "Other" (F12)	invariant: existing ShopView Accounts rows keep their grouping
+1239	CONFIRM	S5-R4	reads "Not set. Parts cost of Warranty work orders posts to the ShopView Review account until you pick one."	
+1259	CONFIRM	S1-R11	`dialog_make_internal` opens for A only (B has no open work orders).	
+1287	CONFIRM	S1-R12	reads "1 open internal work orders for D stay internal and close without an invoice. New work orders for D will be billable."	
+1300	CONFIRM	S1-N4	`checkbox_customer_internal` is ticked and disabled, with `text_customer_internal_setting_off` and `link_customer_internal_settings`.	
+1302	CONFIRM	S1-R10	Settings: toggle on → Save settings. No first-enable dialog opens.	

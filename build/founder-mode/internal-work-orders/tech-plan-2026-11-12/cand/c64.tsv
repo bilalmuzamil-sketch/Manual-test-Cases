@@ -1,0 +1,5 @@
+5317	CONFIRM	S2-E6; S12-R4	**Recommend A.** It meets "shows the updated estimate with the NO CHARGE stamp on its next open" on the same link, and never leaves a price on a no-charge estimate.	Q54 answered A in v0.22
+5325	CONFIRM	S2-R6	Recommend: suppress the stale NO CHARGE snapshot and show the live Price Summary. Approve and Decline keep working, and the advisor re-sends.	Q58
+5327	CONFIRM	S2-R16	Recommend omitting it and showing "Category: Warranty" only, on the portal and on core's customer-facing estimate.	Q59
+5331	ADD	S2-R16; S3-R5	Snapshot the original work order's **display** number (`COALESCE(display_number, number)`, SV-10297) in `work_order_original_reference.original_work_order_number`.	original WO number shown as the display number (e.g. S4-6) on documents and portal
+5350	CONFIRM	S3-R4	Recommend that a closed internal or no-charge work order counts: it is a service on the asset, not an invoice (S3-R4 is about invoices). It adds $0.00 to the balance.	Q61

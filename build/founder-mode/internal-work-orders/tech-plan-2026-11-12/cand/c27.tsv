@@ -1,0 +1,8 @@
+2888	CONFIRM	S2-R1	"source": "asset"|"customer"|"organization_default"|null	tooltip source
+2890	ADD	S2-R2	≤ 25 rows: the customer's invoiced, paid and closed work orders at accessible locations (Q38 ✓), same asset first, then newest; `{ "id", "number", "display_number", "date", "first_line_title", "same_asset" }`; search on the number	Original work order select: search by number, max 25, newest after same-asset
+2896	CONFIRM	S12-N3; S12-N2; S12-E8; S12-N1	409 `work_order_invoiced` (S12-N3), `work_order_not_billable` (S12-N2), `line_declined`, `line_has_return_or_credit` (S12-E8), `internal_work_orders_off` (S12-N1)	
+2906	CONFIRM	S3-R4; S2-R13	Close and Reopen also keep today's `invoice.created` / `invoice.reversed` entries (S3-R4). Shop supplies changes keep `work_order.shop_supplies.overridden`.	
+2908	CONFIRM	S2-R18; S2-R5	Convert to No Charge ("Converted to No Charge by [user]. Category [name], original work order [number]. Prices, fees and discounts removed; costs and hours kept." + the S2-R20 removal summary + the lines whose own no-charge categories were replaced, by line and former category, S2-R5)	
+2908	ADD	S2-R18	`Source::SYSTEM`, never customer-visible	system notes never shown to the customer (portal)
+2920	CONFIRM	S3-R3	a closed work order is not deletable (Reopen first)	invoiced-work-order locks apply
+2919	CONFIRM	S3-R3	no second invoice or Close on a closed work order	

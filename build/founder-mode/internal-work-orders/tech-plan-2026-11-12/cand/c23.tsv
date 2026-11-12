@@ -1,0 +1,15 @@
+2680	CONFIRM	S3-R5	Customer PO not required (S3-R5)	
+2698	ADD	S3-R7; S3-N2	`complete_first` with review required → 409 `work_order_review_required` ("This work order needs review before it can be closed."; the FE sends it to review as Create invoice does today)	refusal copy not in PRD
+2698	CONFIRM	S3 error handling	a Close refused after completion (e.g. `work_order_changed`) → the work order is still not Complete and no `WebhookDelivery` row exists	
+2699	CONFIRM	S3-R3; S2-R9	extends the spawn arm to `SENT || PAID || CLOSED` (the spawned work order takes its customer's classification through `PayedWorkOrderReopenedSubscriber`); Create invoice on a closed work order is refused	
+2700	CONFIRM	S4-R3; S4-E4	Classification, category, reference and shop supplies amount are kept (S4-R3, S4-E4).	
+2700	CONFIRM	S3-R4	logs `work_order.reopened` + `invoice.reversed`	Close/Reopen recorded in the work order log as invoice created/reversed
+2701	CONFIRM	S3-R5; S2-R16	"Not in ShopView" is never printed on any document, the estimate included (S2-R16 v0.22)	
+2701	CONFIRM	S3-R5	Email: the invoice email template with subject "Internal Work Order [n]" / "No Charge Work Order [n]"; recipient from the FE (empty by default).	
+2701	CONFIRM	S2-R4	Estimate PDF of an open non-billable work order: stamp + category line.	
+2701	ADD	S3-R5	both invoice designs — `templates/invoices/invoice.html.twig` (modern) and `templates/invoices/legacy/invoice.html.twig` (legacy; the portal shows whichever design the shop uses) — get a variant for `status = closed`	NO CHARGE document in both the modern and the legacy invoice design
+2702	CONFIRM	S11-R2; S11-R3	a closed work order reads `invoiced` through `/v1/work-orders` and that its invoice is in no `/v1/...invoices` list and answers 404 on `/v1/invoices/{id}` (S11-R2 v1.0, Q64 ✓), and that no `invoice.created` / `invoice.paid` webhook is sent	
+2703	CONFIRM	S3-R4	`VehiclesQueryBuilder.php:40-43` counts closed work orders as completed, not invoiced	portal vehicle list
+2704	INV	S3-R4; S12-R10	Close dispatches no `invoice.created`/`invoice.paid`; the billable $0 path still does	invariant: billable $0 invoice still sends invoice webhooks
+2716	CONFIRM	S7-N3	labels "Internal Work Order Close", "Internal Work Order Reopen", "No Charge line" (S7-N3 v1.0, Q64 ✓); reference = WO number; subject = classification + category; withdrawn rows without actions	
+2717	INV	S12-E7	billable credit → no entry, as today	invariant: billable Issue Credit restock posts no QuickBooks JE

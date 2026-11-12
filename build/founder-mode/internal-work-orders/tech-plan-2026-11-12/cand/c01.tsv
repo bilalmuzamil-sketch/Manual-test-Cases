@@ -1,0 +1,16 @@
+3	INFO	-	**Date:** 2026-10-28 (rebuilt 2026-11-09 for PRD v0.21; updated 2026-11-09 for v0.22; updated 2026-11-10 for v1.0)	plan header
+4	INFO	-	(Confluence page version 39, final for build)	plan built on PRD page 39
+6	INFO	-	the PRD header states that where a frame and the text disagree, **the text wins**	design precedence
+74	CONFIRM	S3-R4; S11-R2; S11-R3	Its safety half ships in the core release: no `invoice.created` / `invoice.paid` for an internal invoice and no internal invoice in any invoice list, for good	Story 11 out of plan except safety half
+328	CONFIRM	S9-R2	bounded to ≤ 12 months on the posting/invoice date (the shared 366-day cap), computes totals and the per-category summary over the filtered set rather than the page	12-month cap = 366 days; totals over filtered set
+328	ADD	S9-R2	exports through the shared export seam with its 10,000-row cap per tab	export row cap per tab; PRD silent
+333	ADD	S1-R11	at most 500 work orders per call with `remaining` so the FE loops, partial failure reported per the Story 1 error handling, across every workplace the user can access	visible only as: >500 open WOs all converted by one press
+334	CONFIRM	Out of Scope (Part sales)	Part sales behave exactly as today; every new guard or branch on code shared with part sales is type-aware (service work orders only).	invariant
+335	CONFIRM	S3-R4; S11-N2	Webhook and portal suppression is test-covered: tests assert both that the internal path stays silent and that the billable path still fires.	invariant: billable webhooks/portal still fire
+336	CONFIRM	S13-R5; KD No feature flag	Until the release run completes, the enable-setting endpoint refuses (deploy-time env switch, removed after launch) and the FE renders none of the new controls (the setting, the Internal customer checkbox, the line actions).	release gate
+331	CONFIRM	S9-R14	Money reports exclude whole internal/no-charge work orders and no-charge lines through two shared NULL-safe predicates (D58), wired in Phase 1 as no-ops on today's data with byte-compare tests; no billable figure changes to the cent.	rule zero
+353	ADD	S3-R5; S9-R2	the report carries the helper "Parts cost is the amount at Close. A special order billed after Close at a different amount is not updated here; with QuickBooks or AccountingHub the bill posts its own amount."	report helper copy; check PRD
+365	DIVERGE	S3-R6; S9-R10	the asset Invoices tab shows "No charge" in Total balance with Discount and Tax rate empty, and its rows have no actions	capitalisation No charge vs PRD No Charge (historic Q17 answer)
+367	DIVERGE	S9-R6	S9-R6 adds "Parts cost and shop supplies of these work orders are in the No-Charge Work Orders report, not in this export."	old report name vs PRD Internal Work Orders report (historic Q19)
+371	CONFIRM	S3-R6; S9-R1	closed records are left out of every receivables surface, plus GET /api/invoices/list and the dashboard Invoices card ("Total invoices in range") and the Top Customers invoice count. The hub's Sales > Invoices does show them, with Closed in its Status filter.	Q23
+377	DIVERGE	S6-R2	ANSWERED: 6510 Warranty & Goodwill Expense is now in the PRD and the design.	stale Q29 answer; PRD v1.0 says 6430; row itself says superseded by D40

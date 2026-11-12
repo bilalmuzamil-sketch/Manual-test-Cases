@@ -1,0 +1,7 @@
+4264	ADD	S8-R4; S4-R4	re-closing after Reopen creates a new core invoice id, and FIFO delivers the old record's `invoice_voided` first, so `VoidedInvoiceNumberSuffixer` frees the number	after Reopen and Close again, the hub shows the old record voided (number suffixed) and a new Closed record with the work order number
+4269	CONFIRM	S8-R1	The same with **no revenue mappings**: still Completed.	Closed record mirrors even with unmapped revenue rows
+4275	INV	S8-R5	a v3 payload with zero totals on a fresh workspace gives `status = posted`, `classification = null`	invariant: today's $0 invoices still mirror as posted in the hub
+4276	INV	S8-R7	A billable v4 posts exactly the entry the same v3 payload posts (snapshot-compare lines)	invariant: billable invoice entries in the hub unchanged
+4277	CONFIRM	S8-R4	voiding a Closed record sets Void, posts nothing, returns null and frees the number. Voiding a billable record keeps its no-charge block.	
+4331	INV	S8-N2	Non-family behavior is untouched; billable flows behave exactly as today.	
+4342	ADD	S8-R2; S8-R7	Family entries also append the category, and the line number when `scope = line`, so the ledger drill-down answers "which job, which category".	hub JE memo carries WO number, category and line number

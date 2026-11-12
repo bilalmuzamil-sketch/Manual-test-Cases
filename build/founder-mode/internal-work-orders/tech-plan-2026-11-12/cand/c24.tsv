@@ -1,0 +1,17 @@
+2718	INV	S7-N3	a billable work order's entry keeps "Work Order Create"	invariant: QB Unexported type of billable entries unchanged
+2718	INV	S9-R14	regression: the existing vendor bill, credit, invoice and JE sync suites unchanged for billable work	invariant
+2735	CONFIRM	S9-R2	ORDER BY date DESC, id DESC; totals and the per-category summary are one aggregate each over the same WHERE	
+2735	CONFIRM	S9-R2 prerequisites	Money null without `ROLE_PRICING_VIEW`.	financial columns follow See Financial Data
+2735	CONFIRM	S9-R4	Empty envelope before the first-close marker (S9-R4, Q31 ✓).	direct link before first Close shows empty state
+2736	CONFIRM	S9-R2	comeback rate = comeback lines / completed lines; totals count each line once	
+2737	CONFIRM	S9-R2	`format=csv&tab=by_line|by_technician` → one CSV of the tab that is open	
+2737	CONFIRM	S9-R2	`format=pdf` → one PDF with both tabs as sections	
+2739	CONFIRM	S9-R3	under `all` and `only` a no-charge line's `tech_time` (`:71,98`) counts as 0 invoiced hours while its clocks stay worked hours, and `hide` leaves out both the billed and the clocked hours of non-billable work orders and no-charge lines (S9-R3)	
+2739	CONFIRM	S9-R1; S9-R3	The dashboard card uses `all` (S9-R1).	
+2740	CONFIRM	S9-R3	Billing Efficiency (no-charge line hours and $0 never enter the effective rate)	
+2742	CONFIRM	S9-R9; S9-R12	non-billable rows value 0; a no-charge line keeps the existing $0-line treatment	WIP
+2743	CONFIRM	S9-R6; S9-R4	`include_non_billable` (honored only once the marker is set)	
+2743	CONFIRM	S9-R6	with it on, closed invoices emit labor/part rows at 0.00, no tax, no Supplies row, and the CSV gains `Classification` and `Category`	
+2743	CONFIRM	S9-R13	a no-charge line of a billable invoice is a 0.00 row with the category in its description regardless of the option	
+2745	INV	S9-R15	`CustomersSpendingExcludesClosedTest.php` (voids still counted)	invariant: Customers Spending keeps counting voids as today
+2745	CONFIRM	S9-R6	option off = byte-identical fixture	

@@ -1,0 +1,7 @@
+2275	CONFIRM	S12-R7	The no-charge statement has its own branch: hours kept, rate 0 (real rate in `no_charge_labor_rate`), items forced to 0 (§2.10)	plan corrects the PRD premise (declined line items keep sell prices today); result matches PRD intent: parts at $0.00
+2276	CONFIRM	S7-R8	The no-charge line is the first $0 line sent to QuickBooks; its row must carry rate 0.00	declined lines are not sent to QuickBooks today (code fact)
+2283	CONFIRM	S12-R4	Deposit overflow becomes a **free-floating Deposit** on the customer's account, not a credit memo	PRD v1.0 S12-R4 already says "stays on the customer's account as a deposit"
+2287	INV	S9-R15; S9-R14	It sums `invoice.total_balance` with **no status filter**, void included	invariant: Customers Spending keeps today's totals for billable work (void included today, code fact)
+2293	CHECK	S2-E3	Nothing imports live work orders: `WorkOrderImportedFactory` has no caller in `src/`	code fact: S2-E3 untestable
+2296	CONFIRM	Permission matrix (Change the customer)	Add `ROLE_WORK_ORDER_CREATE_AND_EDIT` for a service work order beside today's check; the part-sale branch is unchanged. The UI already requires it (`CustomerCard.vue:372-375`), so no user loses the action (D63)	
+2297	CONFIRM	S9-R3	That repository uses the LIVE list (§2.6)	closed internal WO counts as invoiced on Technician Efficiency Invoiced tab

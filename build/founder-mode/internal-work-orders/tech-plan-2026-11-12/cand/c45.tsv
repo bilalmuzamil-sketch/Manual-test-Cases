@@ -1,0 +1,18 @@
+3721	CONFIRM	S2-R10	**The Total price column exists only with See Financial Data**, so "No Charge" is invisible to those users in the list	
+3723	DIVERGE	S3 error handling	**Completion failure inside Close** uses the completion error toast, not the Close copy (as Create invoice today).	PRD: any Close failure before the internal invoice is created shows "Could not close the work order. Try again."; plan shows the completion error toast when the completion step fails
+3729	INV	S3-N1	billable WOs invoice exactly as today on all five; a WO without no-charge lines never hits the S12-R9 check	
+3730	INV	S3-N1	CTA labels unchanged for billable	completion wizard
+3731	INV	PRD silent (invariant)	part-sale header unchanged; every existing status label matches today	
+3733	INV	Out of Scope (Part sales)	part-sale lines show prices as today; Edit Labor on a billable line sends the same payload minus `is_warranty`	
+3735	INV	Out of Scope (Part sales)	part-sale menu untouched; billable WO toolbar unchanged	
+3736	INV	S2-R5 (invariant)	billable WO menu unchanged	Audit Log, Timesheets, Fee/Discount, Print, Delete
+3737	INV	S2-R7	part sale: no classification copy; billable invoiced WO: button still hidden	
+3738	INV	S1-R7; S10-R1	New Customer and New Asset requests byte-identical; shop supplies validation unchanged for non-flagged customers	
+3739	INV	S1-R1	the existing toggles, the confirm dialog | each saves as today	Settings > Work Orders other toggles
+3740	INV	S2-R14	URL state without `classification` restores as today	saved filters / URLs
+3741	INV	S5-R1	save payload byte-identical with no category rows; validation banner unchanged	QuickBooks page
+3742	INV	S2-R19	billable rows: same notice, same Sell preview	receive
+3743	INV	S2-R18	non-classification notes render as today	
+3744	INV	S12-E7	billable parts unchanged	Issue Credit picker
+3747	INV	S8-N2	existing pills unchanged; `held` deposits still blue; static mappings save as today	accounting UI
+3762	ADD	S1-R3	**E-9 Settings hints:** from the saved value, not the draft.	hint lines appear only after Save settings (saved value)

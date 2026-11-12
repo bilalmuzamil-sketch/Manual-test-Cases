@@ -1,0 +1,7 @@
+5025	DESIGN	S2-R11; S2-R16	The frame's content was read from the v5.12 export (`design/all-flows-v512.txt:587-607`). It shows the customer, "Estimate S2-35102", the asset, a NO CHARGE stamp, "Reason: Warranty", and a table with Line, Description, Qty and Hours	design frame 7b missing from v6.1 export; old frame says "Reason:"; PRD says "Category:"
+5033	CONFIRM	S12-R4	**The portal does not render its own estimate or invoice documents.** Both are rendered by core's Twig templates.	PRD v1.0 S12-R4 already says ShopView renders the documents
+5042	CONFIRM	S2-E6; S12-R4	Recommended: the portal reads the live state and suppresses a stale snapshot (§4 P4, Q54).	PRD v1.0 says the portal shows the live work order on open
+5068	CONFIRM	S2-R11	`InvoiceViewer` hides the document below the `md` breakpoint (`resources/js/components/invoice/InvoiceViewer.vue:10-11`), so **mobile users never see the core document**.	portal on a phone shows no estimate document (stamp lives in it); check App D P4
+5078	CONFIRM	S3-R4	The UI shows "Last Service" = `MAX(inv.created_on)`, "Completed", and the balance	portal vehicle list counts
+5082	INV	S3-R4	Already limited to pending, partially paid and sent (`:77-87`). Safe.	portal overdue reminders unchanged
+5083	INV	S3-R4	Refuses statuses that are not payable (`:691-698`). Safe.	portal payment unchanged

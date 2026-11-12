@@ -1,0 +1,15 @@
+3371	CONFIRM	S12-R12	A billable WO with no-charge lines is listed as billable: no badge, stored total (S12-R12).	
+3381	ADD	S3-R1	mobile icon `task_alt` with tooltip "Close Work Order"	mobile header Close icon (task_alt); PRD names only the tooltip
+3383	ADD	S3-R3	Success → `showSuccessNotification({ message: 'Work order [number] is Closed · Internal.' | '… is Closed · No Charge.' })`, refetch, route to `finance`.	after Close the page moves to the Finance tab
+3385	CONFIRM	S2-E7; S3-R1	resolve-cores step hides `text_core_charge_<key>` amounts on non-billable (S2-E7); `title` (`:1812-1818`) has no "invoice" wording.	
+3389	CONFIRM	S3-R2	Close stays disabled until a work order or Not in ShopView is picked. Never shown for categories that do not require it.	
+3390	CONFIRM	S3-R2	`DateInput` "Posting date" (`input_close_work_order_posting_date`), default today, same mask and `formatDateLocalToUTC` as Invoice Date	
+3391	CONFIRM	S3-E1; S3-E2; S3-R2	with no parts at all, one row `parts_cost` "Parts cost $0.00" instead of the stock and special-order rows (S3-E1)	
+3393	CONFIRM	S3-N4; S7-N5	"No account set for [category]. The entry posts to the ShopView Review account until you set one." + `link_close_set_account_quickbooks` "Set account" (only with `settingsIntegrations`); hub `banner_close_no_account_hub` "No account set for [category]. The entry is held in Accounting Events until you set one."	
+3395	CONFIRM	S3-R2; S3-E4	"Closed · No Charge" on a no-charge WO in every variant; no account notes without an integration.	
+3397	CONFIRM	S3-E5; S3 errors	409 `work_order_changed` → inline `error_close_work_order_changed` "This work order changed. Review and close again.", confirm disabled until reopened	
+3397	CONFIRM	S3-R7	with review required the Close button sends the work order to review as Create invoice does today	
+3400	CONFIRM	S4-R1; S4-N1; S4-R2	holds only `menu_item_reopen_work_order` "Reopen Work Order" (`canDelete('workOrders') && can_reopen`, S4-N1); no Reverse, no Issue Credit	
+3400	ADD	S4-R3	success → refetch, stay on Finance	after Reopen the page stays on the Finance tab
+3402	CONFIRM	S3-R5; S3-R6	Download / Print / Email unchanged; the Email recipient starts empty (S3-R5); no New Payment, Add Deposit, Issue Credit, Create invoice.	
+3404	INV	S3-N5	a billable one still shows "Cannot invoice this customer. Customer is on Credit Hold"	invariant: credit hold still blocks Create invoice on billable

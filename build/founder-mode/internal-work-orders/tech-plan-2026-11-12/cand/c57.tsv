@@ -1,0 +1,12 @@
+4723	CONFIRM	S8-R3; S8-N2	an empty row: the line posts to the part category's COGS, the bill Completes, one deferred move is Held "Internal: [name] row not mapped", and a later message of the same group is applied in the same batch (no stall)	
+4727	CONFIRM	S8-R3	the Dismissed move reads "Withdrawn: vendor bill [number] amended" (or "… voided"), never "work order reopened"	
+4728	CONFIRM	S8-R3	a bill amended while its move is Held and the row is still empty → the move is Dismissed and one new Held move carries the updated amount; voided while Held → Dismissed, nothing new; amended after the move posted → the ledger equals a fresh post of the updated bill (the bill and the move each reversed exactly once); a mapping save while the period is closed → Held again with the period reason	HQ8 lifecycle
+4731	INV	S8-R3	regression: v1–v3 `vendor_bill_created`, v1–v2 `vendor_bill_updated` and v1–v3 `vendor_credit_created` payloads book byte-identically.	hub vendor bills/credits unchanged for billable
+4764	CONFIRM	S8-R1	a write-off gives 422; payment application is refused	Closed record
+4768	CONFIRM	S4-R3	Retry on a Dismissed row (withdrawn included) gives 422	
+4775	CONFIRM	S13-E1; S6-R2	6430 present (reused), absent (created), or occupied by "Tow Fuel" (created at 6431 and mapped)	
+4778	CONFIRM	S13-R4	a cleared row is left empty on rerun	
+4779	ADD	S6-R2	an inactive mapped account is re-resolved	a rerun re-maps a starting row whose account is inactive
+4797	CONFIRM	S8-R1; S8-R6	The P&L shows a 6500 debit and 1300/5100 credits. AR aging and the invoice-list default show nothing.	
+4800	CONFIRM	S4-R4; S8-R4	Re-close (cycle 2: new core invoice id, same number): a new Closed record with new entries. The old record stays Void.	
+4802	CONFIRM	S4-R3; S4-E2	Reopening the period posts the reversal, then the cycle-2 entries, in that order.	

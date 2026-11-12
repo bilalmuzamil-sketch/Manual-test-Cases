@@ -1,0 +1,14 @@
+5160	ADD	S3-R4	a batch checkout naming the closed id is refused	portal batch pay refuses a closed record
+5162	CONFIRM	S3-R4	a closed work order adds $0.00 and counts as Completed	portal vehicle list
+5188	CONFIRM	S2-R11	A non-billable service work order returns **null**. The card and the email table then hide	portal Price Summary hidden on no-charge estimate
+5189	CONFIRM	S12-R4	A no-charge line gets labor 0, parts 0 and no labor or parts tax, as declined does. The check sits before the fixed-line-total branch.	portal Price Summary on billable estimate with a no-charge line
+5196	INV	S12-R4	A fixture without no-charge lines gives today's numbers exactly.	portal Price Summary for billable unchanged
+5206	CONFIRM	S1-R11	In `update()` `:89-162`, refuse (422 "This estimate is no longer available.") when the work order is now internal (Q57). Pass `workOrderInternal` (classification `internal`) to the page, which shows the obsolete banner for it (S1-R11 v1.0).	
+5206	ADD	S2-E6	When `estimateStale`, pass `invoiceHtml = null` so neither the page nor the print preview shows a snapshot with stale prices.	a stale estimate document is hidden (page and print)
+5207	ADD	S1-R11; S2-R11	`isWorkOrderInvalid()` also treats `classification = internal` as invalid. It then drops out of both lists and the pending badge, with the existing 60 s cache (`:21`).	portal approvals list and pending badge drop a WO made internal (up to 60 s delay)
+5208	CONFIRM	S2-R11; S2-R16	The NO CHARGE stamp and "Category: [name]", plus " · Original work order [number]" when set (S2-R16 v0.22: never "Not in ShopView"). Rendered on every breakpoint, because the core document is hidden on mobile	resolves 5068 check
+5210	CONFIRM	S2-E6; S12-R4	When `estimateStale`, a notice replaces `InvoiceViewer` (`:343-346`): "This estimate changed after it was sent. The lines above are current."	
+5210	CONFIRM	S12-R4	On a no-charge line, the category name sits under the title and `Cost:` reads $0.00 from live data whatever was stored (S12-R4).	
+5211	CONFIRM	S2-R11	Whole no-charge work order: no per-line amount, no financial table, no "total above includes" note, and a "NO CHARGE · Category: [name]" line. No-charge line: the category under the name and $0.00 (Q55).	Approval Required email
+5212	ADD	S2-R11	Shop-facing. Add the category under the line name. Amounts stay as stored.	approval-reviewed email to the shop shows stored amounts plus the category
+5221	INV	S2-R11	a billable approval's props are unchanged.	

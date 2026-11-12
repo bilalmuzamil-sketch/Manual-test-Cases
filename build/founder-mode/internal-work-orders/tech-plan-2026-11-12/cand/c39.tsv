@@ -1,0 +1,15 @@
+3471	CONFIRM	S7-R8	With no bills or no integration nothing is shown and Create invoice runs as today (the general confirmation removed in SV-10312 stays removed).	
+3471	INFO	S7-R8	two moves in opposite directions render two rows	grouping by account pair (see 2503 DIVERGE)
+3472	CONFIRM	S4-E1	A withdrawn row shows its reason from `withdrawn_reason` ("Withdrawn: work order reopened", "Withdrawn: invoice [number] reversed" or "Withdrawn: category changed") with no Export / Mark as Exported (D38).	
+3480	CONFIRM	S2-R19	"Internal work order: cost only, no sell price" (`internal`); "No Charge work order: cost only, no sell price" (`no_charge`, Q51 ✓); "No Charge line: cost only" (`no_charge_line`)	
+3481	ADD	S2-R19	the sticky notice shows `costNoticeFor` of the **last edited row** (a purchase order can mix billable, internal and no-charge rows)	receive notice follows the last edited row; Sell column shows no derived price
+3482	CONFIRM	S2-R19	an `InfoNotice` with the same cost-only text under the Cost field for an item on internal / no-charge work or a no-charge line	vendor-invoice item edit
+3495	CONFIRM	S6-R1	For category rows `null` clears the account and keeps the row	
+3499	ADD	S8-N2	`{ label: 'Held', color: 'amber-3', textColor: 'amber-10' }`	Held pill amber
+3499	ADD	S8-R1; S8-N2	event label "Work order closed · [number] · [classification]" from `work_order`	Accounting Events label copy; PRD has none
+3499	CONFIRM	S4-E1; S8-N2	Dismissed rows show `dismissal_reason` verbatim ("Withdrawn: work order reopened", or the invoice-reversal and vendor-bill variants, D70); no Retry on Dismissed (`can_retry`).	
+3502	ADD	S8-R3	labels the row "Cost move to [Category] · Vendor bill [number], line [n]" (or "Vendor credit …") and `buildAccountingEventResultFields` adds a "Source document" field	deferred move label copy; PRD has none
+3505	CONFIRM	S8-R6	Status filter option "Closed" (default All).	
+3506	CONFIRM	S8-R1; S8-R6	`total` cell "No Charge" when `status === 'closed'`	
+3507	CONFIRM	S8-R1; S8-R7	columns Line (number and title), Category, Original work order (and line), Original technician, Hours, Parts cost, Expense account, and a Held / Withdrawn state with `hold_message` when not posted (Q30 ✓)	
+3508	CONFIRM	S8-R6	option "Closed", **not** in the default selection (S8-R6)	

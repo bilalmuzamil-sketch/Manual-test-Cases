@@ -1,0 +1,4 @@
+670	INV	S9-R14	sanity: Sales report and dashboard load identically, admin	invariant (Phase 1)
+673	INV	S9-R14	**Before Phase 1 deploys to staging**, capture the SV-12297 "before" baseline (the billable report numbers on the staging database)	rule-zero baseline before Phase 1
+687	INV	S3-N1 (invariant)	`CreateCommand` pre-validation moved here with byte-identical messages	invariant: Create invoice refusal messages unchanged
+699	INV	S3-N1; Out of Scope (Part sales)	Create invoice on a billable WO (admin): invoice created, payment flow unchanged; a part sale invoices as before	invariant

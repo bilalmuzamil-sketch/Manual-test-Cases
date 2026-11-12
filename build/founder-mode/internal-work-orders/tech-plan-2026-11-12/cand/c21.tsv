@@ -1,0 +1,13 @@
+2576	CONFIRM	S1-R2; S9-R4	returns true on the organization's first-ever enable — the modal is shown once, S1-R2	
+2582	CONFIRM	S2-R10; S3-R3	`display_status` (`closed` when status ∈ {invoiced, paid} and classification ≠ billable, else the status; D2), `closed_on` (the live closed invoice's `created_on`)	
+2608	CONFIRM	Permission matrix (categories page); S1-R13; S1-R14	VIEW = `settingsService` + `ROLE_WORK_ORDER_VIEW`; MANAGE = `settingsService` + `ROLE_ORGANIZATION_CREATE_AND_EDIT`; MANAGE_ACCOUNTS = `settingsIntegrations` + `ROLE_ORGANIZATION_CREATE_AND_EDIT`	PRD: the categories page needs 'Settings — Service' (accounts: 'Settings — Integrations'); plan adds a second server-side atom (organization create-and-edit; work-order view to see)
+2613	CONFIRM	S1-R14; S1-R16	name taken incl. archived → 422; limit; archive default → 409; restore	
+2619	CONFIRM	S1-R10; S1-R2	Turning it **on** here is allowed only after the first enable (`internal_work_orders_first_enabled_at` set), else 409 `internal_work_orders_first_enable_required`	
+2620	CONFIRM	S2-R13	`audit_log` records the `company.internal` change automatically	flag add/remove in the customer Audit Log
+2621	CONFIRM	S1-N4	value differs while the setting is off → 409 `internal_work_orders_off`, S1-N4	
+2622	ADD	S1-R15	refused unless an owner in `vehicle_company` is flagged and the setting is on	an asset shared by several customers shows the field when ANY owner is flagged (C8)
+2623	CONFIRM	S1-R11	status ∈ (estimate, approved, in_progress, ready_for_review, complete)	open = not invoiced, paid or declined
+2623	ADD	S1-R11	first 10 rows (newest first) + `total` + `inaccessible_count`	Make internal list order: newest first; PRD silent
+2623	CONFIRM	S1-R11	skips deposits (`deposit`) and rows no longer candidates (`changed`)	
+2624	ADD	S10-R1	Min accepted without a percentage; a billable work order still gets 0 from the rules, D41	
+2625	CONFIRM	S1-R2	≤ 50 customers in N3	

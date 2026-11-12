@@ -1,0 +1,20 @@
+2451	ADD	S12-R4	Work-order fees, discounts and the shop supplies percentage (base = total labor price, `WorkOrderShopSuppliesCalculator.php:38`) are computed on billable lines only (S12-R4).	percentage shop supplies on a billable WO leaves the no-charge line's labor out; PRD names totals/fees/discounts but not shop supplies %
+2453	CONFIRM	S2-E7; S12-E3	NOT OK charges the customer nothing on non-billable work or a no-charge line	
+2457	CONFIRM	S2-E4	part requests and parts `setSellPrice(0)` with the hand-set flag cleared (S2-E4)	
+2458	CONFIRM	S2-R20	The labor + parts = total check (`Application/Line/Change/ChangeCommand.php:181-185`) is skipped on a line without a total, and fixed-price input on a non-billable work order or a no-charge line is refused with 422 `fixed_price_not_available` (S2-R20).	
+2460	CONFIRM	S10-R2; S2-R15; S2-R20	flat shop supplies set to null so the % rule applies again (S10-R2); fees and discounts not restored (S2-R15); fixed amounts not restored (S2-R20)	
+2461	CONFIRM	S2-R21	returns early for a non-billable service work order (classification is set before the first save, so the event carries it); part sales (`:80`) and billable work orders unchanged.	
+2462	CONFIRM	S2-E1	`Organization/LabourTypes/Application/Change/LaborRateChangeCascade.php:79` skips `classification <> 'billable'` (nothing to update, S2-E1).	
+2468	INV	S9-R14	The flag defaults to false, so billable invoices, the Stats tab, the sales reports and WIP are unchanged (rule zero, S9-R14).	invariant
+2470	CONFIRM	S12-R9	"Line '[title]' needs its original work order (or Not in ShopView) before the invoice."	
+2471	CONFIRM	S12-R10	every line No Charge → the billable invoice is $0 and takes today's $0 path (auto-paid). No change.	
+2472	CONFIRM	S12-E7	lists a no-charge line's parts at a fixed $0.00 credit amount (input refused if not 0) and with no restocking fee	
+2489	ADD	S5-R1	Internal list first (default first, then name), then No Charge by name, archived greyed with their mapping	row order on ShopView Accounts; PRD silent on order inside the groups
+2491	CONFIRM	S5-R4; S5-E2; S5-E1	There is **no** fallback from one category row to another or to Cost of Parts (S5-R4, S5-E2). A deleted or inactive mapped account fails into QB Unexported like every other row (S5-E1, S7-N2).	
+2493	ADD	S7-R2	memo `"<generated description>; WO #<n> · <Internal|No Charge> · <category>"`; date = the invoice's `created_on` (the posting date at Close, the invoice date for a line)	exact QuickBooks memo format; PRD says memo carries number, classification and category
+2497	CONFIRM	S4-E1; S7-E2	QB Unexported shows the withdrawn row with no Export / Mark as Exported and the reason for its cause	
+2497	ADD	S4-E1	"Withdrawn: invoice [number] reversed" for a billable Reverse, "Withdrawn: category changed" for a category move (the PRD has copy only for Reopen)	new QB Unexported copy not in PRD
+2497	ADD	S7-N3	an entry that posts nothing in QuickBooks (`pair_of` set, or equal accounts) gets no claim at all and never shows in QB Unexported	
+2501	CONFIRM	S7-R8; S9-R13	writes rate 0.00 and amount 0.00 on the labor row and on every part row of such a statement and appends the category name to the description; items and tax code unchanged	
+2501	CONFIRM	S7-R1	Nothing about Close reaches `InvoiceCreateSyncService`, so no QuickBooks customer is created for a closed work order (S7-R1).	
+2503	DIVERGE	S7-R8	grouped into `moves[]`: one entry per distinct from → to pair, because one invoice can move cost both ways	PRD: one "Moved from [account] to [account]" row per move; plan: one row per distinct account pair (two lines moving Cost of Parts -> Warranty show one row)

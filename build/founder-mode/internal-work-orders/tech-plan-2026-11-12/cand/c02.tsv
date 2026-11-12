@@ -1,0 +1,13 @@
+465	CONFIRM	KD Close creates an invoice; S9-R1	Add invoice status 'closed'; fork Status lists into live (incl. closed: duplicate-invoice guard, pricing freeze, delete guard) and revenue (excl. closed: NonVoidInvoicePredicate)	closed counted as live for locks, excluded from revenue
+466	CONFIRM	S11-R4; S3-R1	public-API create path refuses internal/no-charge	Story 11 safety
+470	CONFIRM	S9-R4	set by a COALESCE update at the first Close and at the first invoice carrying a no-charge line; drives the report listing, the Technician Efficiency chip and the export option (S9-R4)	first-close marker
+485	CONFIRM	S3-E5	a line declined, added or removed after the dialog opened still refuses Close	Close fingerprint; also hours, qty/cost, shop supplies
+485	ADD	S3-R2; S3-E5	an original work order picked inside the Close dialog travels in the close request	original picked in Close dialog is saved with the Close
+491	ADD	PRD silent (invariant)	Header keeps the backend label for every existing status; the FE label map supplies only 'Closed'	invariant: existing header status labels (e.g. Review) unchanged
+492	ADD	PRD silent (invariant)	POST organizations/settings/change refuses only a false→true change of internalWorkOrders (gate off or before first enable); an unchanged value passes	invariant: Settings save of other toggles works while the release gate is on
+494	ADD	PRD silent	Follow the design: after Sales By Representative	Internal Work Orders report placed after Sales By Representative in Reports list
+495	CONFIRM	S2-R9; S2-R7	the FE disables the button on the customer card with the tooltip "Reopen the work order to change the customer." and the BE change-customer handler refuses it (409). A billable invoiced work order keeps today's behaviour.	Change Customer locked on closed
+496	CONFIRM	S2-R6; S2-E4	labor at the customer's labor rate, else the location's; parts from the organization pricing rules applied to **the cost already on the line** (the cost Close would post), not today's catalogue cost; hand-set prices are not restored.	re-pricing
+497	CONFIRM	S7-N5	With either empty no parts entry is sent at Close and the confirmation shows, on the Stock parts and Special orders rows, "Parts cost is not posted to QuickBooks at this location: inventory accounts are not mapped."	inventory-account gate
+497	CONFIRM	S7-N5; S4-E1	The shop supplies entry still posts, and an entry never sent gets no reversal at Reopen.	
+498	CONFIRM	S1-R11	The Make-internal dialog lists the customer's open billable work orders at **every location the user has access to**, with a Location column, up to 10 rows and then "and [n] more"	

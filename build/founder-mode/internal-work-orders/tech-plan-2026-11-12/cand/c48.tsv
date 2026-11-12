@@ -1,0 +1,8 @@
+3884	ADD	S6-E1	`AccountUsageInspector` refuses an account any mapping row points at (`app/Services/Accounts/AccountUsageInspector.php:75-76, 180-200`). Phase A3 adds the category mapping rows to that check.	deactivating an account mapped to a category row is refused in the hub; S6-E1 (inactive mapped account) cannot be reached through the UI
+3885	CHECK	S6-E1	So S6-E1 is a defensive path for direct-DB data and needs no "on reactivation" trigger.	PRD S6-E1 untestable by a manual tester (see 3884)
+3897	CONFIRM	S8-R3	So a bill or credit line whose category row is empty or inactive still posts, on today's routing, and only the move to the category is Held	
+3905	CONFIRM	S6-R1; S1-R16	A new category gets an empty row at once. Rename keeps the row and its account. Archive greys the row and keeps it, and restore brings it back untouched. There is no fallback between rows.	
+3908	CONFIRM	S6-R4; S8-N2	Saving a mapping, or opening or creating a fiscal period, re-runs held events automatically.	
+3912	CONFIRM	S8-R7	An empty row holds those entries; the invoice, revenue and receivable still post (Q30 ✓). Source "No Charge line" (Q50 ✓).	
+3913	CONFIRM	S4-E2	A reversal dated into a closed or missing period is Held.	
+3916	CONFIRM	S8-R6	`InvoiceStatus::Closed` stays out of the Invoice List default, which is already a whitelist. The Sales Invoices Status filter offers Closed. No Classification filter in this version.	

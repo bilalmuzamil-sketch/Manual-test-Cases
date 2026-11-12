@@ -1,0 +1,15 @@
+2820	CONFIRM	S1-R11	"reason": "deposit"|"not_open"|"not_billable"	Make internal skips deposits
+2825	CONFIRM	S2-N4; S2-N3	`deposit_exists` ("Reverse the deposit first."), `customer_is_internal`	
+2829	CONFIRM	S2-R6	saves when the category **or** the original reference differs (Q36 ✓), else 409 `category_unchanged`; a category that does not require the original clears it; allowed with the setting off	
+2833	CONFIRM	S2-R8	Empty `bills` or null `integration` → no dialog.	S2-R8 dialog not shown without an accounting integration
+2853	CONFIRM	S3-E4; S7-N5	`quickbooks` null when not connected at the location (S3-E4); `inventory_accounts_mapped` false → the S7-N5 note (D35)	
+2859	CONFIRM	S3-E5	`work_order_changed` ("This work order changed. Review and close again.", S3-E5)	
+2860	CONFIRM	KD Close always succeeds	Accounting failures never fail the request.	
+2866	ADD	S9-R2	≤ 366 days else 400 "Date range cannot exceed 366 days."; default this month	report range error copy; PRD says at most 12 months
+2870	ADD	S9-R2	10,000 rows → 400 `ReportExportTooLargeError`	report export refused above 10,000 rows per tab
+2874	CONFIRM	S1-R14	`quickbooks_accounts` lists the connected locations the user can access (Q41 ✓)	
+2876	ADD	S1-R16	`include_archived=1` only for the report	archived categories appear only in the report's Category filter
+2878	CONFIRM	S1-R13	`category_limit_reached` ("You can have up to 100 active categories in this list. Archive one to add another.", S1-R13 v1.0, Q64 ✓)	
+2880	ADD	S1-R16; S5-R1	409 `category_archived` for fields other than the accounts (accounts stay editable on archived categories, Q40 ✓)	an archived category cannot be renamed or edited until restored; only its accounts stay editable
+2884	ADD	S1-R13	restore at 100 active categories in the list → 422 `category_limit_reached` (the N15 copy, S1-R13 v1.0)	Restore refused at 100 active
+2886	ADD	S1-R14	accounts with the QuickBooks classification Expense — types Expense, Other Expense and Cost of Goods Sold (D46, Q52 ✓)	

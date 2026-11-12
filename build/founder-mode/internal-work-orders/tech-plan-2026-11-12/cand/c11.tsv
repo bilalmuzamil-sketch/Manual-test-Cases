@@ -1,0 +1,20 @@
+1443	ADD	S2-R7	`text_change_customer_classification_effect` reads "Prices are removed; costs and hours are kept."	Change Customer dialog copy; PRD gives no exact sentence for the price effect
+1444	CONFIRM	S2-R7	`text_change_customer_shop_supplies_reset` reads "Shop supplies resets to I's minimum ($15.00)."	
+1464	CONFIRM	S12-R3	`chip_line_no_charge_<B>` reads "No Charge · Goodwill".	
+1465	CONFIRM	S12-R3	`line_rate_<B>` and `line_total_cost_<B>` read "$0.00"; `line_margin_<B>` is empty.	
+1467	CONFIRM	S12-R4	The Financial Info total equals line A's price.	
+1468	CONFIRM	S12-R6	The Notes tab has a ShopView note starting "Line '<B title>' marked No Charge by".	
+1477	CONFIRM	S12-R5	After step 2, the chip is gone and `line_rate_<B>` equals the customer's labor rate.	
+1485	CONFIRM	S12-R9	The notification reads "Line '<title>' needs its original work order (or Not in ShopView) before the invoice." Edit Line opens on that line: `checkbox_line_no_charge` is ticked and the original select shows.	
+1488	CONFIRM	S12-R7	The Finance preview shows the line at "$0.00" with "Warranty" under its title, and no NO CHARGE stamp.	
+1490	CONFIRM	S12-N3	Afterwards, `menu-item_mark_billable_<id>` is disabled with the tooltip "Reverse the invoice first."	
+1503	ADD	S12-R1	After the reload, the chip and the $0.00 rate remain, and API `no_charge_category.key` is `goodwill`.	Edit Labor (hours 1 -> 2) keeps the No Charge mark (D57)
+1516	CONFIRM	S3-R1	`button_close_work_order_header` reads "Close Work Order" and `button_create_invoice_header` has count 0.	
+1522	CONFIRM	S3-E4	`text_close_summary` "This marks the work order Closed · Internal. Parts cost, shop supplies and hours are available in the Internal Work Orders report."	no-integration sentence
+1526	CONFIRM	S3-R3; S2-R9	The header shows `badge_wo_status` "Closed", `badge_wo_classification` "Internal", and `text_wo_closed_on` "Closed on <date>. To change it, reopen it from the Finance tab."	
+1527	CONFIRM	S3-R5	The Finance preview shows the INTERNAL stamp, "Internal Work Order <header number>" (read from `text_wo_number`; compare UI text with UI text), "Category: General Internal", and a Summary with Parts cost, Shop supplies and Labor hours.	
+1528	CONFIRM	S2-R9	`customer_card_change_action` is rendered **and disabled**, with the tooltip "Reopen the work order to change the customer." (D33).	
+1533	CONFIRM	S3-R7; S3-N2	the Close button appears.	after Mark Reviewed
+1541	CONFIRM	S3-R2	`banner_close_original_required` reads "Warranty requires the original work order. Pick the earlier work order this job comes from, or Not in ShopView." `button_confirm_close_work_order` is disabled.	
+1545	CONFIRM	S3-R5; S2-R16	The document shows the NO CHARGE stamp, "No Charge Work Order <n>" and "Category: Warranty · Original work order <P>", with P as a link to P.	
+1551	CONFIRM	S3-R3	the Missing Details step renders, its primary button reads "Close Work Order", and confirming it opens `dialog_close_work_order` instead of creating an invoice.	

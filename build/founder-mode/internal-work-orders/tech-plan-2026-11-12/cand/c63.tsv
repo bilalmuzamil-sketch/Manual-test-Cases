@@ -1,0 +1,10 @@
+5224	CONFIRM	S2-R11	approve one line and decline one on a no-charge estimate; the decision reaches core	
+5226	CONFIRM	S1-R11	a pending estimate whose work order became internal shows the portal's existing obsolete-estimate banner (`Show.vue` treats `workOrderInternal` as obsolete; no Approve / Decline, no "estimate changed" notice; asserted in `NoChargeApprovalPageTest`) and refuses approval with 422 ("This estimate is no longer available.", S1-R11 v1.0, Q64 ✓)	
+5237	ADD	S2-N5	`WorkOrderNotBillable = 'work_order_not_billable'` with the message "Deposits are not available on internal or no-charge work orders."	portal deposit refusal copy; PRD silent on the portal deposit path
+5246	CONFIRM	S12-R7	the invoice page, print, PDF download, PDF email attachment and Pay now all show the line at $0.00, its parts at $0.00, "Warranty" under the title, and no stamp or "No Charge" wording	
+5247	CONFIRM	S12-R4	the amount paid equals the billable total	
+5248	CONFIRM	S12-E3	for a part with a core charge on the line (S12-E3): the core row shows at $0.00	
+5249	CONFIRM	S12-R10	when every line is no charge (S12-R10): a $0.00 invoice listed as Paid, as today.	
+5293	ADD	S2-E6; S12-R4	The "Approval Required" email sent before a conversion keeps its prices; the page is corrected on the next open.	an email already sent keeps its old prices
+5298	CHECK	S2-N5; S2-N4	a checkout is opened on a billable work order, the work order is converted to no charge, then the customer pays. Core rejects, the portal logs `core_sync_failed` ([P] `app/Services/DepositSyncService.php:112-118`), and the money stays in Stripe until an admin refunds (PE-12).	risky silence: customer charged, no auto-refund; PO question
+5300	ADD	S1-R11	A work order made internal can stay in the pending list and the badge for up to 60 s (`ApprovalRequestsService.php:21`). `update()` refuses regardless.	

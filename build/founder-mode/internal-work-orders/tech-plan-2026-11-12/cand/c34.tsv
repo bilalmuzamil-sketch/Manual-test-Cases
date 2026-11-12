@@ -1,0 +1,9 @@
+3301	CONFIRM	S1-R15	"Categories are mapped to QuickBooks expense accounts. This one is where the asset's internal work orders post. Leave it empty to use the customer's category, [customer's default]."	
+3302	CONFIRM	S1-R15; S12-E8	Rendered only `isEditMode && internal_category_applicable && isEnabled && isAvailable`; a stored value on an asset of a non-flagged customer stays hidden (S12-E8).	
+3306	CONFIRM	Permission matrix	toggle and modal on the Settings route (`settingsApp`; the modal flags customers without a customer atom, S1-N2). The checkbox and the default category are inside Edit Customer (`canEdit('customers')`). Make internal by N2 `can_make_internal` (WO Create & Edit).	
+3308	INV	S1-R7	create payload byte-identical	New Customer unchanged
+3325	CONFIRM	S2-R1	(source `organization_default` → "… from the customer.", Q51 ✓). N20 re-runs in `handleVehicleChange`. No checkbox, no category select (S2-R1).	
+3326	CONFIRM	S2-R2	Regular customer selected and `seeFinancialData()`: `q-separator`, `q-checkbox v-model="workOrder.no_charge" label="No Charge"	
+3327	ADD	S2-N3	a watch on `company_id` clears the No Charge draft when the customer is internal	switching to an internal customer in New Work Order clears a ticked No Charge
+3330	CONFIRM	S2-R5; S2-N1; S2-N2; S2-N3; S2-N4	`isEnabled && classification === 'billable' && type === 'service' && !company.internal && !isWorkOrderStatusLocked(status_value) && canEdit('workOrders') && seeFinancialData()`; `:disable="hasWorkOrderDeposits(workOrder)"` + tooltip "Reverse the deposit first"	
+3331	CONFIRM	S2-R6; S2-N1	**not** gated on `isEnabled` (S2-N1)	Change category and Convert to Billable shown with setting off

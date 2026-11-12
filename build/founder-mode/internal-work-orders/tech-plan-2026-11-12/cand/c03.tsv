@@ -1,0 +1,35 @@
+499	CONFIRM	S3-R6; S9-R1	Closed records are excluded from every receivables surface, and additionally from `GET /api/invoices/list`, the dashboard Invoices card ("Total invoices in range") and the Top Customers invoice count. The app invoice list and its Status filter never offer them.	
+500	CONFIRM	S4-E1	Hub: a Close still Held becomes **Dismissed** with "Withdrawn: work order reopened" (nothing posted, nothing reversed).	
+500	ADD	S4-E1	an entry still waiting in QB Unexported gets none and its row is marked "Withdrawn: work order reopened" with no Export / Mark as Exported actions	withdrawn QB Unexported row loses its actions; PRD silent on actions
+501	DIVERGE	S8-R1	a summary (number, customer, asset, classification, category, original work order, posting date, "No charge", posted Parts cost and Shop supplies totals)	plan "No charge" vs PRD "No Charge" on hub Closed record summary
+502	CONFIRM	S6-R2; S13-R3	General Internal → 6500 Vehicle Expenses, Warranty and Goodwill → 6430, Comeback → 6440 Comeback Expense (confirmed by the hub owner 2026-11-09); a suitable existing account is an active expense account whose name matches (a number or the system flag alone never qualifies); a free number is found by walking up within the same hundred, then onward	hub seeding
+503	CONFIRM	S10-R1	Min without a percentage remains allowed only on flagged customers. A no-charge work order takes the customer's Min if one is set, else $0.00, and the amount is editable on the work order. Min and Max on Edit Customer show only with 'See A/P & A/R data'.	
+504	CONFIRM	S3-R3	When the work order is not yet Complete, Close runs the same completion steps as Create invoice (tech stories, cores, and the missing details such as VIN, mileage and engine hours, per the organization settings); the wizard saves what it collects as today, its last button reads "Close Work Order"	
+504	ADD	S3-R3; S3 errors	A refused or failed Close leaves the work order where it was and sends no webhook.	no work order status webhook on a refused/failed Close
+505	CONFIRM	S13-R5; KD No feature flag	While NO_CHARGE_WORK_ORDERS_ENABLE_ALLOWED is off, the settings DTO carries `internalWorkOrdersAvailable: false` and the FE renders neither the toggle nor the Internal customer checkbox	release gate invisible
+507	CONFIRM	S9-R2	Single select with "All locations"	report Location filter
+508	ADD	S1-R14; S5-R2	list the location's accounts with the QuickBooks classification Expense: types Expense, Other Expense and Cost of Goods Sold (S1-R14, S5-R1; proposed expense accounts). A mapped account of another type stays visible on its row.	picker includes Other Expense and Cost of Goods Sold types; PRD says "expense accounts"
+512	CONFIRM	S1-R16	renames never break reports	stable keys
+517	ADD	S2-R17	original technicians = the line roster as shown (lead when empty), else the original work order's technician, else none — stored at save	"lead when empty" detail not in PRD
+521	ADD	S2-R11; S2-N5	Send to Portal hides line amounts on a no-charge work order; a portal deposit refused after checkout is recorded with a distinct reason for the existing refund action. No estimate is re-sent automatically; the portal reads the live state on open.	portal deposit refusal reason; PRD silent
+522	CONFIRM	S12-E8	the FE hides Mark as No Charge when it is not null	no_charge_blocked_reason
+523	CONFIRM	S5-R5; S13-R2	SettingsHydrator adds the category rows only for organizations where the release gate is open (internalWorkOrdersAvailable), like every other surface of the feature, so production never shows them before the release whatever the merge order.	QB rows hidden until release
+524	ADD	S2-R20	a line that had a fixed labor price or Fixed Line Total and stores no labour type (LineDialog never sends one for fixed lines) gets the customer's labour type, else the location's default, when the fixed amounts are removed. Its stored labor cost and hours are not changed. Convert to Billable and Mark as Billable then price it at that rate (S2-R20).	fixed-price line re-priced at customer/location labour type
+525	CONFIRM	Permission matrix (Change the customer)	POST /api/work-orders/change-customer requires ROLE_WORK_ORDER_CREATE_AND_EDIT for a service work order in addition to today's check (the part-sale branch is unchanged)	server 403
+526	CONFIRM	S13-R5	the core accounting UI port (Account Mappings category rows, the Closed pill and filter on Sales > Invoices, the Closed record page) renders them only where the gate is open, and N13–N19 answer 404 while it is closed	release gate
+528	CONFIRM	S2-E7; S3-R5; S9-R2	Displayed Parts cost never includes core cost	
+528	CONFIRM	S2-E7; S3-R2	The Close confirmation's Stock parts row shows the amount that posts and, when a picked part carries a core, names it: '$[amount], includes $[core amount] core cost'	
+528	CONFIRM	S7-R3a; S12-E3	a core returned to inventory after OK credits the category account instead of Cost of Parts (S7-R3a)	
+528	CONFIRM	S12-E3	Mark as Billable prices the core from its cost like the part.	
+529	ADD	S12-R4	the changed line cost changes the approval hash, so Send to Portal is allowed again and the advisor re-sends	Send to Portal re-enabled after a line mark
+529	CONFIRM	S2-E6; S12-R4	On Convert to No Charge no IBS call is made (there is none to make): the IBS approval card is hidden on a non-billable work order and the stored ibs_approval row is left as it is	
+530	ADD	S7-R4	in QuickBooks the first half carries pair_of = the second half's id and posts nothing, and the second half posts the whole move as one entry from the stored account to the new category	QB shows ONE move entry for a category change after a direct-posted bill
+531	CONFIRM	S12-E7	posts Dr Inventory Asset / Cr the category account, the same entry a return on internal work uses	Issue Credit restock of no-charge part
+531	CONFIRM	S9-R14 (invariant)	billable restocks stay without an entry, as today	invariant
+532	CONFIRM	S8-R3	the core port's Accounting Events page labels the row and links the document	held move links source bill/credit + line
+532	ADD	S8-R3	A Dismissed move reads 'Withdrawn: vendor bill [number] amended' / '… voided'	copy not in PRD (PRD has Reopen copy only); plan says FYI to Product
+576	CONFIRM	S9-E2; S2-R22; S13-R6	Existing work orders, lines and invoices are `billable` by column default (no backfill). Existing $0 invoices stay billable (S9-E2); existing `is_warranty` lines keep their flag (S2-R22).	
+576	CONFIRM	S13-R6	No customer is flagged and no work order is reclassified (S13-R6).	
+587	CONFIRM	S12-R9	Create invoice refuses with 409 `no_charge_line_original_required` naming the line (S12-R9).	
+595	CONFIRM	Permission matrix	Close = `ROLE_INVOICE_CREATE_AND_EDIT` **and** See Financial Data (a new server-side check); Reopen = `ROLE_WORK_ORDER_DELETE`	
+595	CONFIRM	Permission matrix (Turn the setting on)	enable/first-enable = `ROLE_ORGANIZATION_CREATE_AND_EDIT`	PRD says 'Settings — App'; check atom mapping

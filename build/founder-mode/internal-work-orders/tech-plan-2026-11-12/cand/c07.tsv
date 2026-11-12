@@ -1,0 +1,16 @@
+948	CONFIRM	S6-E1	the block on deactivating a mapped category account	hub blocks deactivating an account mapped to a category? PRD S6-E1 says inactive account -> events Held. Check App C.
+965	CONFIRM	S4-R3; S8-R7	per-work-order cycle order (a later Close waits while an earlier cycle's entry is Held, S4-R3); only the no-charge line's cost entries are held, the invoice posts (Q30 ✓)	
+967	CONFIRM	S4-E1; S4-R3	a still-held original becomes Dismissed "Withdrawn: work order reopened", never retried or replayable (HQ6 ✓)	
+969	CONFIRM	S6-R2; S13-R3	6500 / 6430 / 6440 Comeback Expense, suitability (active expense account, name match) and free-number rules, 6430 on legacy charts (S6-R2, S13-R3 v0.22), preserve valid mappings, per-org isolation; the new-workspace seeder	
+993	ADD	S6-R1	saved through `category_mappings` (null clears the account, keeps the row)	clearing a hub category row keeps the row (empty)
+994	CONFIRM	S8-R6; S8-R1; S8-R7	Closed pill + badge + "No Charge"; Closed record page (D39) with category and original; a billable invoice's No Charge lines block; Closed in the status filters (unselected on the Invoice List report)	
+995	CONFIRM	S8-N2; S4-E1; S4-R3; S8-R3	Held (scoped key `event_held`) with reasons and Retry; Dismissed "Withdrawn: work order reopened"; waiting-behind copy (Q50 ✓); a deferred move's label and its source vendor bill or credit line as a link	
+1003	CONFIRM	S8-N2; S6-R4; S8-R7	unmap → Held → map → posted; Reopen → withdrawn or reversed; a billable invoice with a no-charge line → revenue posts, the line's entries post to the category	
+1027	ADD	PRD silent	"Internal Work Orders" entry directly after Sales By Representative in the Performance group (D32), hidden until the first-close marker (Q31 ✓)	report placement (Performance group)
+1033	CONFIRM	S9-R2	367 days → 400	report refuses a range over 366 days
+1033	CONFIRM	S9-R6	export byte-identical with the option off	
+1038	CONFIRM	S9-R4; S9-R1	the report appears after the first Close; both tabs, filters, totals, export; Sales excludes the closed WO and adds $0 for a no-charge line	
+1050	CONFIRM	S3-R4; S2-N5; S2-E6	**P1** keep closed records off every portal invoice list, filter and vehicle tab	portal; check vs PRD vehicle list Last Service/Completed count
+1050	CONFIRM	S2-N5	**P5** refuse portal deposits on internal and no-charge work orders	
+1062	DIVERGE	S13-R4	(4a) after hub Release B reaches each environment: `accounting:seed-work-order-categories`, then `--verify` (this run can precede step (2); the starting keys are fixed, D50, so it does not depend on core's seed)	PRD S13-R4 order: categories, QuickBooks rows, hub accounts and mappings
+1062	CONFIRM	S13-R5	`--verify` until every organization passes S13-R5	

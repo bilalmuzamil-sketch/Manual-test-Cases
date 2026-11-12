@@ -1,0 +1,9 @@
+3443	CONFIRM	S12-R10	"All lines are No Charge. To close without an invoice and get the NO CHARGE document, convert the work order instead." when N23 `all_lines_no_charge` is true (S12-R10)	
+3445	CONFIRM	S12-R4	"Deposit $[deposit] exceeds the new total $[total]. The difference stays on the customer's account as a deposit when the invoice is created."	shown after a successful mark, with one OK
+3447	CONFIRM	S12 errors	"Could not change the line. Try again." (must dismiss); the dialog stays open and the line is unchanged.	
+3448	CONFIRM	S12-R5	"The line is priced as a new line would be today. You can mark it No Charge again until the work order is invoiced."	
+3451	CONFIRM	S12-R1	"This line shows $0.00 on the invoice. Hours and parts stay; the parts cost posts to the category's expense account."	
+3452	CONFIRM	S12-R1; S12-N1; S12-N2	Shown when the WO is billable and not invoiced, the setting is on, the user has `canEdit('workOrders') && seeFinancialData()`, and the line is not declined	
+3453	ADD	S12-R4	when the preview shows the deposit above the new total, the same sentence shows as a must-dismiss info notification after the save	Edit Line door shows the deposit sentence as a notification after save
+3456	ADD	S12-R9	show "Line '[title]' needs its original work order (or Not in ShopView) before the invoice." (5 s, like the other refusals in that function) and open Edit Line on it	message shows for 5 seconds; no completion runs
+3460	ADD	S12-E7	lists parts of a no-charge line at $0.00 with "No Charge · [category]" under the name	Issue Credit shows the chip text under the part name

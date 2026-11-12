@@ -1,0 +1,17 @@
+3265	CONFIRM	S5-R1	so the rows sit directly under Cost of Parts and above Cost of Goods (tax) (S5-R1)	
+3266	ADD	S5-R1	on the default Internal category (`isDefault`), a "Default" badge	Default badge on the ShopView Accounts row of the default category; PRD names it only on the categories page
+3266	CONFIRM	S5-R1	"Shop supplies on internal and no-charge work orders are credited to the income account of your Shop supplies item in Products And Services; nothing to map here."	
+3267	CONFIRM	S5-R4; S5-R5	"Not set. Parts cost of [category] work orders posts to the ShopView Review account until you pick one." for an empty category row while `isEnabled`, and nothing while the setting is off (S5-R4, S5-R5)	
+3272	INV	S5-R1	no existing Accounts row regrouped	
+3285	CONFIRM	S1-R10	After a save whose saved value went off → on, run the S1-R10 sweep (N3 → `useMakeInternalQueue`).	
+3287	CONFIRM	S1-R3; S1-R4	"No internal customer yet. Work orders for your own equipment stay billable until you flag one: Edit Customer > Internal customer. No Charge on customer work orders works now."	
+3288	CONFIRM	S1-R3	names "Accounting > Account Mappings" (`link_iwo_hint_account_mappings` → `AccountingSystemAccounts`) when `accountingHubEnabled`; both when both; omitted when neither.	
+3289	ADD	S1-R2	at most 50 picks (a 51st is not added) with the hint "Pick up to 50 customers here. Flag more from Edit Customer." under the picker	a 51st pick is not added
+3289	CONFIRM	S1-R2; S1 errors	The X (`@close`) runs Do this later; Esc and outside click do nothing (GR#9). Failure → "Could not save the internal customer. Try again." (must dismiss), dialog stays open with the picks.	
+3290	CONFIRM	S1-R11	rows `row_make_internal_<id>` "number · location · unit · status" (up to 10); notes `text_make_internal_note_deposit_<id>` "Deposit: stays billable", `text_make_internal_note_vendor_bill_<id>` "Vendor bill: cost moves at Close"	
+3290	CONFIRM	S1 errors	"[n] work orders could not be made internal. Open Edit Customer and save to try again." (must dismiss)	
+3291	CONFIRM	S1-R2; S1-R10	FIFO, one dialog at a time (S1-R2, S1-R10)	
+3292	CONFIRM	S1-R12	(first sentence omitted when `open_internal_work_orders_count` is 0); Cancel / "Remove flag"	
+3294	CONFIRM	S1-R7; S1-N4	`v-if="editMode && isAvailable && (isEnabled || initialInternal)"`, `:disable="!isEnabled"`	checkbox on Edit only; read-only when off
+3295	CONFIRM	S1-R7; S1-R16	A stored archived value displays "[name] (archived)" with `text_customer_default_category_archived` "Archived. Pick an active category." (Q51 ✓).	
+3296	CONFIRM	S1-R6	Untick when `initialInternal` → `RemoveInternalFlagDialog`; Cancel re-ticks (S1-R6).	

@@ -1,0 +1,16 @@
+3222	INV	S3-N1	Create invoice from header, menu, bulk bar and Finance tab on a billable WO: identical behavior.	
+3233	ADD	S1-R13	`q-route-tab` in the Service group (`:123-224`) after Fees & Discounts	Internal Work Orders tab position in Administration > Service
+3239	CONFIRM	S1-R13	While the setting is off: `InfoNotice` "Internal Work Orders is off. Turn it on in Settings > Work Orders." (`InfoNotice` suffix `iwo_categories_setting_off` → `banner_iwo_categories_setting_off`); the lists stay editable.	
+3240	CONFIRM	S1-R13	each disabled once its list holds 100 active categories (N13 `meta.active_count`), with "You can have up to 100 active categories in this list. Archive one to add another." shown beside it	
+3241	CONFIRM	S1-R13	an empty account reads "Not set" with a warning icon	
+3242	ADD	S1-R13; S1-R16	Archive on the default category is disabled with the tooltip "One default at a time; it cannot be archived."	tooltip copy (PRD helper words)
+3243	ADD	S1-R13	"Show archived (n)" (`link_show_archived_categories`, n = N13 `meta.archived_count`) switches the table to the archived rows with Restore (`button_restore_category_<key>`); "Show active" returns.	"Show active" link
+3245	ADD	S1-R14	titles "New Internal Category" / "New No Charge Category" / "Edit Category"	Edit dialog title "Edit Category"
+3247	CONFIRM	S1-R14	Without Settings — Integrations each picker is read-only with "Set in Integrations > QuickBooks"	
+3247	ADD	S1-R14	Hidden when no location is connected.	QuickBooks account pickers hidden when no location is connected
+3248	ADD	S1-R14	Internal: checkbox "Default category" (`checkbox_iwo_category_default`) + helper; it cannot be unticked on the current default.	
+3249	CONFIRM	S1-R14	AccountingHub: read-only line from `accounting_hub_account_label` when the hub is enabled	
+3250	ADD	S1-R14	`showMustDismissError('Could not save the category. Try again.')`; the dialog stays open.	category save failure copy; PRD has none
+3252	CONFIRM	S1-R16	"[n] internal customers and [m] assets use this category as their default. Their new work orders will use the next category in line." (S1-R16)	
+3252	ADD	S1-R16	else "Archive [name]? It stays on the work orders and lines that used it."	archive dialog copy when no default uses it; PRD has none
+3258	ADD	S13-R5	a direct link while the release switch is off (redirect)	categories page link redirects while the release gate is closed

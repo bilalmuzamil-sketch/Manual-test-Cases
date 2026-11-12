@@ -1,0 +1,6 @@
+4808	CONFIRM	S8-R7; S4-R3	reverse the invoice while the line entry is Held: the entry is Dismissed `withdrawn` and the invoice is Void	
+4810	CONFIRM	S7-R3; S8-R3	on `general_internal` (mapped): one bill entry with the line on 6500, AP unchanged, nothing Held, no reclass	
+4813	CONFIRM	S7-R3a	a v4 vendor credit for the first part posts to 6500.	
+4848	ADD	S8-R2	an `entry_date` instant inside the posting date's local day at the location. The hub converts instants to the location's day, so UTC midnight of a US location's date would land on the previous day.	hub entries carry the posting date in the location's own day (time-zone check)
+4853	CONFIRM	S4-E3	A bill or credit line posted straight to the category (C6) is a document line, not a cost entry. Reopen leaves it where it is	vendor bills untouched by Reopen
+4875	ADD	S7-R4	Bills emitted before the version raise carry no category, so Close reclasses them as S7-R4 bills. Nothing is lost across the cut-over.	a bill posted before the release on a WO that becomes internal is reclassed at Close

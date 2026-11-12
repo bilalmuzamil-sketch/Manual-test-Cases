@@ -1,0 +1,8 @@
+4443	CONFIRM	S4-R3	That is S4-R3's "one at a time".	
+4507	CONFIRM	S4-R3	**A Dismissed row with `failure_code = withdrawn` is refused** ("withdrawn by its reversal; never retried", S4-R3; HQ6 ✓)	
+4508	ADD	S8-N2	Anything else gets 422 "Only failed or held events can be retried." The answer is the refreshed event (Completed, or Held again with the latest reason)	Retry on a Held row returns Completed or Held again with the latest reason
+4512	CONFIRM	S8-R3	label "Vendor bill [number], line [n]" / "Vendor credit [number], line [n]"	
+4513	ADD	S8-R3; S8-N2	the runner adds one category-free section, **`held_awaiting_operator`**, read straight from `status = held` (not through `blockingByCategory()`): counts by `hold_reason` and by kind (Close, reversal, no-charge line, vendor bill or credit move), a capped sample of event ids, and for a move its source document label	how Held rows show in hub reconciliation
+4540	CONFIRM	S6-R4	Any mapping save releases every mapping and category hold of the workspace.	
+4541	CONFIRM	S4-R3	Waiting rows are included in every trigger, so a released earlier cycle lets later ones follow in the same run.	
+4546	CONFIRM	S8-N2	`app/Services/Workspace/FiscalPeriodManager.php::reopen()` (`:119`) with `HoldTrigger::period($period)`, plus the period-create path for `period_missing`.	period reopen/create releases Held

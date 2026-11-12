@@ -1,0 +1,8 @@
+4568	ADD	S8-R7; S8-R3	"Withdrawn: invoice [number] reversed" for an S8-R7 line entry when its billable invoice is reversed, "Withdrawn: vendor bill [number] amended" / "… voided" for a deferred move (B2b). The PRD gives copy only for Reopen	hub dismissal copy beyond the PRD's Reopen copy
+4577	CONFIRM	S4-E2	When the original posted and the reversal date falls in a closed or missing period, `writer->reverse()` raises `FiscalPeriodError`, which becomes Held "Period [name] is closed" (B2.4).	
+4593	ADD	S6-R1	`internal` first (the default first, then by name), then `no_charge` by name, with archived rows after active ones in each list	Account Mappings category row order; PRD silent
+4600	CONFIRM	S6-R1	**A null account clears the account and keeps the row**	
+4619	ADD	S8-R1	Direct vendor bill and credit lines of every cycle up to the current one also count (a cycle-1 bill line that Reopen never reversed still belongs to the record the NO CHARGE document shows)	hub Closed record's posted Parts cost includes direct vendor bill/credit lines (may differ from the NO CHARGE document, which is fixed at Close)
+4620	CONFIRM	S8-R7	posting_status: posted|held|withdrawn|pending, hold_message|null}]`: the Expense account cell of S8-R7	
+4626	ADD	S8-R2; S8-R7	`SourceDocumentData::owner(SourceDocumentKind::Invoice, $invoiceId, "Internal work order {$wo}")`;	JE source document labels: "Internal work order [n]", "No-charge work order [n]", "No Charge line [n] on [invoice]"
+4636	ADD	S8-R1	refuse `Closed` ("A closed work order record has nothing owed.")	hub write-off refused on a Closed record

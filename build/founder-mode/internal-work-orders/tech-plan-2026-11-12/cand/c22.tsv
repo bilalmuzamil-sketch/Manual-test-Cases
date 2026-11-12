@@ -1,0 +1,16 @@
+2633	CONFIRM	S2-N1; S2-N3; S2-R2	setting off → Billable (S2-N1); flagged customer → Internal with the resolved category (a sent No Charge is ignored, S2-N3); `no_charge` with `no_charge_category_key` → No Charge (missing key → 400 field `no_charge_category_key` "Pick a category"	
+2633	CONFIRM	S2-R1	Inspection-built work orders go through the same handler (`WorkOrdersBuildTargetWorkOrderCreator.php:23`) with `no_charge = false`.	
+2633	CONFIRM	S3-R3	(the work order spawned by a line added to a closed or invoiced one, S3-R3) takes its customer's classification and no No Charge category	
+2633	CONFIRM	S2-E2; S12-E1	copies classification, category and the WO reference (S2-E2), flat shop supplies 0, no adjustments; a no-charge line keeps its mark, category and line reference (S12-E1) with a note on both work orders	
+2634	CONFIRM	S2-N4; S2-N1	Convert to No Charge refuses with a deposit (same predicate as `Application/ChangeCustomer/ChangeCommandHandler.php:53-61`, "Reverse the deposit first.", S2-N4) and requires the setting on; Convert to Billable and Change category work with the setting off (S2-N1)	
+2637	CONFIRM	S10-R2	refuses on a closed work order (409 `work_order_closed`)	shop supplies locked after Close
+2638	CONFIRM	S2-R11; S2-E6	`Invoicing/Invoice/Application/HTTP/IBS/RequestIBSApprovalController.php` path refuses on internal and closed no-charge work orders; Send to Portal refuses on internal ones (S2-R11)	server refuses IBS on internal + CLOSED no-charge only; PRD hides Request IBS Approval on every no-charge WO (open too). Check App B FE.
+2638	CONFIRM	S2-R15; S2-N5	refuses on a non-billable work order (409 `adjustments_not_available`, S2-R15); deposit create handlers (`Customer/Customers/Application/Handler/Deposit/Create*`, legacy `CustomerCredit/Create`) refuse (409 `deposits_not_available`, S2-N5)	
+2639	CONFIRM	S2-R10	`closed` → `(wo.status IN ('invoiced','paid') AND wo.classification <> 'billable')`; `invoiced`/`paid` → billable only	Status chip
+2645	INV	S2-R19	billable receive byte-identical incl. SV-9965/SV-10082 behavior	invariant: receiving on billable WOs unchanged
+2645	INV	S2-R21	billable creation still applies templates	invariant
+2646	INV	S2-R11; NFR-008	picking, receiving, a clock-in and a line approval on an internal work order write the same rows and statuses as on a billable one	
+2648	ADD	S2-R2; S2-R17	original candidates ≤ 25 rows, line candidates ≤ 200	Original work order select lists at most 25; Original line at most 200; PRD silent
+2653	CONFIRM	S12-R1	**An absent block means unchanged** (Edit Labor, inline save and ShopCoach never clear a mark).	
+2655	CONFIRM	S12-E6; S12-E2	prices the part by its destination line (zero onto a no-charge line; pricing rules on cost onto a billable one; note records the move, S12-E6); customer change keeps marks (S12-E2)	
+2656	CONFIRM	S12-R8	the lines keep their mark; cycle +1	billable Reverse keeps line marks

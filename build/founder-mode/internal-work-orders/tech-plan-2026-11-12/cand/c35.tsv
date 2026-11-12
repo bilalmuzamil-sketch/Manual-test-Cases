@@ -1,0 +1,15 @@
+3335	CONFIRM	S2-R6	Save enabled once the category, the original work order or the original line differs (Q36 ✓)	
+3336	CONFIRM	S2-R6; S2-N1	"Every line is priced as a new line would be today. You can convert it to no charge again until it is invoiced." — second sentence dropped while the setting is off (S2-N1)	
+3337	CONFIRM	S2-R8	amounts omitted when `null` (no See Financial Data); Cancel / "Continue". Shown only when `bills.length > 0 && integration !== null` (S2-R8).	
+3338	CONFIRM	S2 errors	"Could not change the work order. Try again." (must dismiss); dialog stays open.	
+3339	ADD	S2-R7	to billable "Lines are priced as a new line would be today."	Change Customer dialog copy when the WO becomes billable
+3340	CONFIRM	S2-R9; S2-R7	on a closed internal / no-charge WO the Change Customer button stays **rendered, disabled** with "Reopen the work order to change the customer." — `shouldShowChangeCustomerAction` (`:510`) hides it today for raw `invoiced`/`paid`	billable invoiced WOs keep today's hidden control
+3341	CONFIRM	S2-R18	System notes are already read-only (the edit/delete menu is gated on `isUserSource`, `:160`); the author name ("ShopView") comes from the note.	deleted refs as plain text
+3353	ADD	S2-R4	`COST_ONLY_COLUMNS` (drops `labour_type` / `margin`, relabels the third column "Cost")	lines table on a non-billable WO: Labour type and Margin columns dropped, a "Cost" column
+3354	CONFIRM	S2-R20	hides the four fixed fields and filters `fixed_line_total` / `fixed_labour_price` out of `laborTypeOptionsWithCurrentLaborType` when `mode === 'costOnly'` or the line is no-charge	
+3356	CONFIRM	S2-R4; S10-R1	non-billable → only `['Shop Supplies', shop_supplies]`; no Fees & Discounts, Payments, Balance	Financial Info card
+3357	CONFIRM	S2-N5; S2-R11; S3-R5	`button_new_deposit` hidden on non-billable (S2-N5); `button_send_to_portal` hidden on internal, and on no-charge once closed (S2-R11); `button_request_ibs_approval` hidden on non-billable; Customer PO not required (S3-R5)	resolves the 2638 check: IBS hidden on every non-billable WO
+3357	ADD	S2-R4	the discount/tax Settings button hidden on non-billable	
+3359	CONFIRM	S2-R11	on a whole no-charge work order the per-line amounts are hidden and nothing priced is sent	Send to Portal dialog
+3368	DIVERGE	S2-R10	Status options (`:177-182`) gain `{ label: 'Closed', value: 'closed' }` when `hasFirstClose || isEnabled` (E-7)	PRD: the Status chip on the All tab gets "Closed" (no condition); plan hides it until the setting is on or the org has closed once
+3369	CONFIRM	S2-R10	The Completed tab (`requestStatusFiltersFor`, `workOrdersFilters.ts:28-36`) already excludes closed rows (raw `invoiced`).	

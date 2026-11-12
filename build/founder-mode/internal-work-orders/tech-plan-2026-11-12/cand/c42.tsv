@@ -1,0 +1,3 @@
+3584	CONFIRM	S9-R10; S9-R11	`classification`, `display_status`, `no_charge`, `created_on` = posting date	asset Invoices tab dated by posting date
+3616	CONFIRM	S2-R10	Total price "No Charge" on non-billable rows (`cell_total_price_<id>`)	
+3616	ADD	S2-R10	The footer total (`WorkOrdersListDisplay.vue:60-61,137`) already sums `totalPrice` = 0	work orders list footer total counts internal/no-charge rows as $0

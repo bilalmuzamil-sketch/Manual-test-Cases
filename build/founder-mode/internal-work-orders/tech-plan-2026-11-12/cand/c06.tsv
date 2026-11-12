@@ -1,0 +1,14 @@
+849	CONFIRM	S12-N3	disabled "Reverse the invoice first." once invoiced	
+849	CONFIRM	S2-R8	the "Change where the cost is posted?" pre-step on a line with a posted bill, from the menu and from Edit Line (S2-R8 v1.0)	
+854	INV	S9-R14; S12-R7	regression: a billable invoice with no mark is byte-identical	invariant
+859	CONFIRM	S12-R9; S12-R7	Create invoice refused without a required original, then succeeds; invoice preview shows the line at $0.00 with the category; tech role: chip shown, prices hidden	
+876	CONFIRM	S4-R3	WO → Complete, invoice deleted, picks restored with `reversesInventoryChangeId`, cost-entry reversals, cycle + 1 (D51)	
+877	CONFIRM	S3-R3	A line added to a closed WO spawns a new WO (S3-R3)	
+878	ADD	S3-R5; S12-R7	invoice / estimate templates (`api/templates/invoices/invoice.html.twig`, `api/templates/invoices/legacy/invoice.html.twig`, the estimate template)	both the modern and the legacy invoice design carry the stamp / $0.00 line; PRD silent on the legacy design
+894	CONFIRM	S3-R3; S3-R5; S2-R9; S4-R3; S3-R2; S3-N3	Close on a not-yet-complete WO runs completion first; confirmation; Closed · Internal alert; NO CHARGE document; Change Customer disabled; Reopen → Complete; a Warranty WO without an original shows the select in the confirmation; tech role: no Close	
+918	CONFIRM	S5-R4; S5-E2	Category account per location, else ShopView Review — never another row (S5-R4)	
+919	CONFIRM	S7-R2	Category debit, Class from the location, memo with WO number, classification and category (S7-R2)	
+922	ADD	S4-E1; S7-E2	withdrawn rows without actions, hand-exported counts as posted	
+929	CONFIRM	S7-R8	"Create invoice [number]?" with one "Moved from [account] to [account]" row per move, only when a bill's cost moves at invoicing and an integration exists	
+932	INV	S9-R14	billable sync suites unchanged	invariant: billable QuickBooks sync unchanged
+936	CONFIRM	S5-R4; S7-N2	an empty row posts to ShopView Review	

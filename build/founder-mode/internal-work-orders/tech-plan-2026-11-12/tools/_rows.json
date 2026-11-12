@@ -1,0 +1,5506 @@
+[
+{
+"src": "cand/c01.tsv:1",
+"line": 3,
+"raw_verdict": "INFO",
+"prd": "-",
+"quote": "**Date:** 2026-10-28 (rebuilt 2026-11-09 for PRD v0.21; updated 2026-11-09 for v0.22; updated 2026-11-10 for v1.0)",
+"note": "plan header"
+},
+{
+"src": "cand/c01.tsv:2",
+"line": 4,
+"raw_verdict": "INFO",
+"prd": "-",
+"quote": "(Confluence page version 39, final for build)",
+"note": "plan built on PRD page 39"
+},
+{
+"src": "cand/c01.tsv:3",
+"line": 6,
+"raw_verdict": "INFO",
+"prd": "-",
+"quote": "the PRD header states that where a frame and the text disagree, **the text wins**",
+"note": "design precedence"
+},
+{
+"src": "cand/c01.tsv:4",
+"line": 74,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4; S11-R2; S11-R3",
+"quote": "Its safety half ships in the core release: no `invoice.created` / `invoice.paid` for an internal invoice and no internal invoice in any invoice list, for good",
+"note": "Story 11 out of plan except safety half"
+},
+{
+"src": "cand/c01.tsv:5",
+"line": 328,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "bounded to ≤ 12 months on the posting/invoice date (the shared 366-day cap), computes totals and the per-category summary over the filtered set rather than the page",
+"note": "12-month cap = 366 days; totals over filtered set"
+},
+{
+"src": "cand/c01.tsv:6",
+"line": 328,
+"raw_verdict": "ADD",
+"prd": "S9-R2",
+"quote": "exports through the shared export seam with its 10,000-row cap per tab",
+"note": "export row cap per tab; PRD silent"
+},
+{
+"src": "cand/c01.tsv:7",
+"line": 333,
+"raw_verdict": "ADD",
+"prd": "S1-R11",
+"quote": "at most 500 work orders per call with `remaining` so the FE loops, partial failure reported per the Story 1 error handling, across every workplace the user can access",
+"note": "visible only as: >500 open WOs all converted by one press"
+},
+{
+"src": "cand/c01.tsv:8",
+"line": 334,
+"raw_verdict": "CONFIRM",
+"prd": "Out of Scope (Part sales)",
+"quote": "Part sales behave exactly as today; every new guard or branch on code shared with part sales is type-aware (service work orders only).",
+"note": "invariant"
+},
+{
+"src": "cand/c01.tsv:9",
+"line": 335,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4; S11-N2",
+"quote": "Webhook and portal suppression is test-covered: tests assert both that the internal path stays silent and that the billable path still fires.",
+"note": "invariant: billable webhooks/portal still fire"
+},
+{
+"src": "cand/c01.tsv:10",
+"line": 336,
+"raw_verdict": "CONFIRM",
+"prd": "S13-R5; KD No feature flag",
+"quote": "Until the release run completes, the enable-setting endpoint refuses (deploy-time env switch, removed after launch) and the FE renders none of the new controls (the setting, the Internal customer checkbox, the line actions).",
+"note": "release gate"
+},
+{
+"src": "cand/c01.tsv:11",
+"line": 331,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R14",
+"quote": "Money reports exclude whole internal/no-charge work orders and no-charge lines through two shared NULL-safe predicates (D58), wired in Phase 1 as no-ops on today's data with byte-compare tests; no billable figure changes to the cent.",
+"note": "rule zero"
+},
+{
+"src": "cand/c01.tsv:12",
+"line": 353,
+"raw_verdict": "ADD",
+"prd": "S3-R5; S9-R2",
+"quote": "the report carries the helper \"Parts cost is the amount at Close. A special order billed after Close at a different amount is not updated here; with QuickBooks or AccountingHub the bill posts its own amount.\"",
+"note": "report helper copy; check PRD"
+},
+{
+"src": "cand/c01.tsv:13",
+"line": 365,
+"raw_verdict": "DIVERGE",
+"prd": "S3-R6; S9-R10",
+"quote": "the asset Invoices tab shows \"No charge\" in Total balance with Discount and Tax rate empty, and its rows have no actions",
+"note": "capitalisation No charge vs PRD No Charge (historic Q17 answer)"
+},
+{
+"src": "cand/c01.tsv:14",
+"line": 367,
+"raw_verdict": "DIVERGE",
+"prd": "S9-R6",
+"quote": "S9-R6 adds \"Parts cost and shop supplies of these work orders are in the No-Charge Work Orders report, not in this export.\"",
+"note": "old report name vs PRD Internal Work Orders report (historic Q19)"
+},
+{
+"src": "cand/c01.tsv:15",
+"line": 371,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R6; S9-R1",
+"quote": "closed records are left out of every receivables surface, plus GET /api/invoices/list and the dashboard Invoices card (\"Total invoices in range\") and the Top Customers invoice count. The hub's Sales > Invoices does show them, with Closed in its Status filter.",
+"note": "Q23"
+},
+{
+"src": "cand/c01.tsv:16",
+"line": 377,
+"raw_verdict": "DIVERGE",
+"prd": "S6-R2",
+"quote": "ANSWERED: 6510 Warranty & Goodwill Expense is now in the PRD and the design.",
+"note": "stale Q29 answer; PRD v1.0 says 6430; row itself says superseded by D40"
+},
+{
+"src": "cand/c02.tsv:1",
+"line": 465,
+"raw_verdict": "CONFIRM",
+"prd": "KD Close creates an invoice; S9-R1",
+"quote": "Add invoice status 'closed'; fork Status lists into live (incl. closed: duplicate-invoice guard, pricing freeze, delete guard) and revenue (excl. closed: NonVoidInvoicePredicate)",
+"note": "closed counted as live for locks, excluded from revenue"
+},
+{
+"src": "cand/c02.tsv:2",
+"line": 466,
+"raw_verdict": "CONFIRM",
+"prd": "S11-R4; S3-R1",
+"quote": "public-API create path refuses internal/no-charge",
+"note": "Story 11 safety"
+},
+{
+"src": "cand/c02.tsv:3",
+"line": 470,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R4",
+"quote": "set by a COALESCE update at the first Close and at the first invoice carrying a no-charge line; drives the report listing, the Technician Efficiency chip and the export option (S9-R4)",
+"note": "first-close marker"
+},
+{
+"src": "cand/c02.tsv:4",
+"line": 485,
+"raw_verdict": "CONFIRM",
+"prd": "S3-E5",
+"quote": "a line declined, added or removed after the dialog opened still refuses Close",
+"note": "Close fingerprint; also hours, qty/cost, shop supplies"
+},
+{
+"src": "cand/c02.tsv:5",
+"line": 485,
+"raw_verdict": "ADD",
+"prd": "S3-R2; S3-E5",
+"quote": "an original work order picked inside the Close dialog travels in the close request",
+"note": "original picked in Close dialog is saved with the Close"
+},
+{
+"src": "cand/c02.tsv:6",
+"line": 491,
+"raw_verdict": "ADD",
+"prd": "PRD silent (invariant)",
+"quote": "Header keeps the backend label for every existing status; the FE label map supplies only 'Closed'",
+"note": "invariant: existing header status labels (e.g. Review) unchanged"
+},
+{
+"src": "cand/c02.tsv:7",
+"line": 492,
+"raw_verdict": "ADD",
+"prd": "PRD silent (invariant)",
+"quote": "POST organizations/settings/change refuses only a false→true change of internalWorkOrders (gate off or before first enable); an unchanged value passes",
+"note": "invariant: Settings save of other toggles works while the release gate is on"
+},
+{
+"src": "cand/c02.tsv:8",
+"line": 494,
+"raw_verdict": "ADD",
+"prd": "PRD silent",
+"quote": "Follow the design: after Sales By Representative",
+"note": "Internal Work Orders report placed after Sales By Representative in Reports list"
+},
+{
+"src": "cand/c02.tsv:9",
+"line": 495,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R9; S2-R7",
+"quote": "the FE disables the button on the customer card with the tooltip \"Reopen the work order to change the customer.\" and the BE change-customer handler refuses it (409). A billable invoiced work order keeps today's behaviour.",
+"note": "Change Customer locked on closed"
+},
+{
+"src": "cand/c02.tsv:10",
+"line": 496,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R6; S2-E4",
+"quote": "labor at the customer's labor rate, else the location's; parts from the organization pricing rules applied to **the cost already on the line** (the cost Close would post), not today's catalogue cost; hand-set prices are not restored.",
+"note": "re-pricing"
+},
+{
+"src": "cand/c02.tsv:11",
+"line": 497,
+"raw_verdict": "CONFIRM",
+"prd": "S7-N5",
+"quote": "With either empty no parts entry is sent at Close and the confirmation shows, on the Stock parts and Special orders rows, \"Parts cost is not posted to QuickBooks at this location: inventory accounts are not mapped.\"",
+"note": "inventory-account gate"
+},
+{
+"src": "cand/c02.tsv:12",
+"line": 497,
+"raw_verdict": "CONFIRM",
+"prd": "S7-N5; S4-E1",
+"quote": "The shop supplies entry still posts, and an entry never sent gets no reversal at Reopen.",
+"note": ""
+},
+{
+"src": "cand/c02.tsv:13",
+"line": 498,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "The Make-internal dialog lists the customer's open billable work orders at **every location the user has access to**, with a Location column, up to 10 rows and then \"and [n] more\"",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:1",
+"line": 499,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R6; S9-R1",
+"quote": "Closed records are excluded from every receivables surface, and additionally from `GET /api/invoices/list`, the dashboard Invoices card (\"Total invoices in range\") and the Top Customers invoice count. The app invoice list and its Status filter never offer them.",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:2",
+"line": 500,
+"raw_verdict": "CONFIRM",
+"prd": "S4-E1",
+"quote": "Hub: a Close still Held becomes **Dismissed** with \"Withdrawn: work order reopened\" (nothing posted, nothing reversed).",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:3",
+"line": 500,
+"raw_verdict": "ADD",
+"prd": "S4-E1",
+"quote": "an entry still waiting in QB Unexported gets none and its row is marked \"Withdrawn: work order reopened\" with no Export / Mark as Exported actions",
+"note": "withdrawn QB Unexported row loses its actions; PRD silent on actions"
+},
+{
+"src": "cand/c03.tsv:4",
+"line": 501,
+"raw_verdict": "DIVERGE",
+"prd": "S8-R1",
+"quote": "a summary (number, customer, asset, classification, category, original work order, posting date, \"No charge\", posted Parts cost and Shop supplies totals)",
+"note": "plan \"No charge\" vs PRD \"No Charge\" on hub Closed record summary"
+},
+{
+"src": "cand/c03.tsv:5",
+"line": 502,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R2; S13-R3",
+"quote": "General Internal → 6500 Vehicle Expenses, Warranty and Goodwill → 6430, Comeback → 6440 Comeback Expense (confirmed by the hub owner 2026-11-09); a suitable existing account is an active expense account whose name matches (a number or the system flag alone never qualifies); a free number is found by walking up within the same hundred, then onward",
+"note": "hub seeding"
+},
+{
+"src": "cand/c03.tsv:6",
+"line": 503,
+"raw_verdict": "CONFIRM",
+"prd": "S10-R1",
+"quote": "Min without a percentage remains allowed only on flagged customers. A no-charge work order takes the customer's Min if one is set, else $0.00, and the amount is editable on the work order. Min and Max on Edit Customer show only with 'See A/P & A/R data'.",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:7",
+"line": 504,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R3",
+"quote": "When the work order is not yet Complete, Close runs the same completion steps as Create invoice (tech stories, cores, and the missing details such as VIN, mileage and engine hours, per the organization settings); the wizard saves what it collects as today, its last button reads \"Close Work Order\"",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:8",
+"line": 504,
+"raw_verdict": "ADD",
+"prd": "S3-R3; S3 errors",
+"quote": "A refused or failed Close leaves the work order where it was and sends no webhook.",
+"note": "no work order status webhook on a refused/failed Close"
+},
+{
+"src": "cand/c03.tsv:9",
+"line": 505,
+"raw_verdict": "CONFIRM",
+"prd": "S13-R5; KD No feature flag",
+"quote": "While NO_CHARGE_WORK_ORDERS_ENABLE_ALLOWED is off, the settings DTO carries `internalWorkOrdersAvailable: false` and the FE renders neither the toggle nor the Internal customer checkbox",
+"note": "release gate invisible"
+},
+{
+"src": "cand/c03.tsv:10",
+"line": 507,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "Single select with \"All locations\"",
+"note": "report Location filter"
+},
+{
+"src": "cand/c03.tsv:11",
+"line": 508,
+"raw_verdict": "ADD",
+"prd": "S1-R14; S5-R2",
+"quote": "list the location's accounts with the QuickBooks classification Expense: types Expense, Other Expense and Cost of Goods Sold (S1-R14, S5-R1; proposed expense accounts). A mapped account of another type stays visible on its row.",
+"note": "picker includes Other Expense and Cost of Goods Sold types; PRD says \"expense accounts\""
+},
+{
+"src": "cand/c03.tsv:12",
+"line": 512,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R16",
+"quote": "renames never break reports",
+"note": "stable keys"
+},
+{
+"src": "cand/c03.tsv:13",
+"line": 517,
+"raw_verdict": "ADD",
+"prd": "S2-R17",
+"quote": "original technicians = the line roster as shown (lead when empty), else the original work order's technician, else none — stored at save",
+"note": "\"lead when empty\" detail not in PRD"
+},
+{
+"src": "cand/c03.tsv:14",
+"line": 521,
+"raw_verdict": "ADD",
+"prd": "S2-R11; S2-N5",
+"quote": "Send to Portal hides line amounts on a no-charge work order; a portal deposit refused after checkout is recorded with a distinct reason for the existing refund action. No estimate is re-sent automatically; the portal reads the live state on open.",
+"note": "portal deposit refusal reason; PRD silent"
+},
+{
+"src": "cand/c03.tsv:15",
+"line": 522,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E8",
+"quote": "the FE hides Mark as No Charge when it is not null",
+"note": "no_charge_blocked_reason"
+},
+{
+"src": "cand/c03.tsv:16",
+"line": 523,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R5; S13-R2",
+"quote": "SettingsHydrator adds the category rows only for organizations where the release gate is open (internalWorkOrdersAvailable), like every other surface of the feature, so production never shows them before the release whatever the merge order.",
+"note": "QB rows hidden until release"
+},
+{
+"src": "cand/c03.tsv:17",
+"line": 524,
+"raw_verdict": "ADD",
+"prd": "S2-R20",
+"quote": "a line that had a fixed labor price or Fixed Line Total and stores no labour type (LineDialog never sends one for fixed lines) gets the customer's labour type, else the location's default, when the fixed amounts are removed. Its stored labor cost and hours are not changed. Convert to Billable and Mark as Billable then price it at that rate (S2-R20).",
+"note": "fixed-price line re-priced at customer/location labour type"
+},
+{
+"src": "cand/c03.tsv:18",
+"line": 525,
+"raw_verdict": "CONFIRM",
+"prd": "Permission matrix (Change the customer)",
+"quote": "POST /api/work-orders/change-customer requires ROLE_WORK_ORDER_CREATE_AND_EDIT for a service work order in addition to today's check (the part-sale branch is unchanged)",
+"note": "server 403"
+},
+{
+"src": "cand/c03.tsv:19",
+"line": 526,
+"raw_verdict": "CONFIRM",
+"prd": "S13-R5",
+"quote": "the core accounting UI port (Account Mappings category rows, the Closed pill and filter on Sales > Invoices, the Closed record page) renders them only where the gate is open, and N13–N19 answer 404 while it is closed",
+"note": "release gate"
+},
+{
+"src": "cand/c03.tsv:20",
+"line": 528,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E7; S3-R5; S9-R2",
+"quote": "Displayed Parts cost never includes core cost",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:21",
+"line": 528,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E7; S3-R2",
+"quote": "The Close confirmation's Stock parts row shows the amount that posts and, when a picked part carries a core, names it: '$[amount], includes $[core amount] core cost'",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:22",
+"line": 528,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R3a; S12-E3",
+"quote": "a core returned to inventory after OK credits the category account instead of Cost of Parts (S7-R3a)",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:23",
+"line": 528,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E3",
+"quote": "Mark as Billable prices the core from its cost like the part.",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:24",
+"line": 529,
+"raw_verdict": "ADD",
+"prd": "S12-R4",
+"quote": "the changed line cost changes the approval hash, so Send to Portal is allowed again and the advisor re-sends",
+"note": "Send to Portal re-enabled after a line mark"
+},
+{
+"src": "cand/c03.tsv:25",
+"line": 529,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E6; S12-R4",
+"quote": "On Convert to No Charge no IBS call is made (there is none to make): the IBS approval card is hidden on a non-billable work order and the stored ibs_approval row is left as it is",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:26",
+"line": 530,
+"raw_verdict": "ADD",
+"prd": "S7-R4",
+"quote": "in QuickBooks the first half carries pair_of = the second half's id and posts nothing, and the second half posts the whole move as one entry from the stored account to the new category",
+"note": "QB shows ONE move entry for a category change after a direct-posted bill"
+},
+{
+"src": "cand/c03.tsv:27",
+"line": 531,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E7",
+"quote": "posts Dr Inventory Asset / Cr the category account, the same entry a return on internal work uses",
+"note": "Issue Credit restock of no-charge part"
+},
+{
+"src": "cand/c03.tsv:28",
+"line": 531,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R14 (invariant)",
+"quote": "billable restocks stay without an entry, as today",
+"note": "invariant"
+},
+{
+"src": "cand/c03.tsv:29",
+"line": 532,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3",
+"quote": "the core port's Accounting Events page labels the row and links the document",
+"note": "held move links source bill/credit + line"
+},
+{
+"src": "cand/c03.tsv:30",
+"line": 532,
+"raw_verdict": "ADD",
+"prd": "S8-R3",
+"quote": "A Dismissed move reads 'Withdrawn: vendor bill [number] amended' / '… voided'",
+"note": "copy not in PRD (PRD has Reopen copy only); plan says FYI to Product"
+},
+{
+"src": "cand/c03.tsv:31",
+"line": 576,
+"raw_verdict": "CONFIRM",
+"prd": "S9-E2; S2-R22; S13-R6",
+"quote": "Existing work orders, lines and invoices are `billable` by column default (no backfill). Existing $0 invoices stay billable (S9-E2); existing `is_warranty` lines keep their flag (S2-R22).",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:32",
+"line": 576,
+"raw_verdict": "CONFIRM",
+"prd": "S13-R6",
+"quote": "No customer is flagged and no work order is reclassified (S13-R6).",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:33",
+"line": 587,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R9",
+"quote": "Create invoice refuses with 409 `no_charge_line_original_required` naming the line (S12-R9).",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:34",
+"line": 595,
+"raw_verdict": "CONFIRM",
+"prd": "Permission matrix",
+"quote": "Close = `ROLE_INVOICE_CREATE_AND_EDIT` **and** See Financial Data (a new server-side check); Reopen = `ROLE_WORK_ORDER_DELETE`",
+"note": ""
+},
+{
+"src": "cand/c03.tsv:35",
+"line": 595,
+"raw_verdict": "CONFIRM",
+"prd": "Permission matrix (Turn the setting on)",
+"quote": "enable/first-enable = `ROLE_ORGANIZATION_CREATE_AND_EDIT`",
+"note": "PRD says 'Settings — App'; check atom mapping"
+},
+{
+"src": "cand/c04.tsv:1",
+"line": 670,
+"raw_verdict": "INV",
+"prd": "S9-R14",
+"quote": "sanity: Sales report and dashboard load identically, admin",
+"note": "invariant (Phase 1)"
+},
+{
+"src": "cand/c04.tsv:2",
+"line": 673,
+"raw_verdict": "INV",
+"prd": "S9-R14",
+"quote": "**Before Phase 1 deploys to staging**, capture the SV-12297 \"before\" baseline (the billable report numbers on the staging database)",
+"note": "rule-zero baseline before Phase 1"
+},
+{
+"src": "cand/c04.tsv:3",
+"line": 687,
+"raw_verdict": "INV",
+"prd": "S3-N1 (invariant)",
+"quote": "`CreateCommand` pre-validation moved here with byte-identical messages",
+"note": "invariant: Create invoice refusal messages unchanged"
+},
+{
+"src": "cand/c04.tsv:4",
+"line": 699,
+"raw_verdict": "INV",
+"prd": "S3-N1; Out of Scope (Part sales)",
+"quote": "Create invoice on a billable WO (admin): invoice created, payment flow unchanged; a part sale invoices as before",
+"note": "invariant"
+},
+{
+"src": "cand/c05.tsv:1",
+"line": 730,
+"raw_verdict": "ADD",
+"prd": "S1-R13",
+"quote": "New and Restore disabled at 100 active with the S1-R13 message",
+"note": "Restore also disabled at 100 active; PRD names only the New button"
+},
+{
+"src": "cand/c05.tsv:2",
+"line": 732,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R1; S5-R4",
+"quote": "archived greyed but editable (Q40 ✓), empty-row hint only while the setting is on, shop supplies note",
+"note": ""
+},
+{
+"src": "cand/c05.tsv:3",
+"line": 735,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R3",
+"quote": "a row saved on the QuickBooks page shows in the category dialog and vice versa",
+"note": ""
+},
+{
+"src": "cand/c05.tsv:4",
+"line": 740,
+"raw_verdict": "CONFIRM",
+"prd": "Permission matrix (categories page)",
+"quote": "tech role: page not available",
+"note": ""
+},
+{
+"src": "cand/c05.tsv:5",
+"line": 771,
+"raw_verdict": "CONFIRM",
+"prd": "S1-N4",
+"quote": "customer flag with the setting off → 409",
+"note": ""
+},
+{
+"src": "cand/c05.tsv:6",
+"line": 825,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R1",
+"quote": "create an internal WO on a flagged customer's asset (tooltip names the asset's category)",
+"note": ""
+},
+{
+"src": "cand/c05.tsv:7",
+"line": 825,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R19",
+"quote": "receive a special order on an internal WO (cost-only notice)",
+"note": ""
+},
+{
+"src": "cand/c05.tsv:8",
+"line": 825,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R4; S2-N2",
+"quote": "tech role: no prices, no Convert actions",
+"note": ""
+},
+{
+"src": "cand/c05.tsv:9",
+"line": 820,
+"raw_verdict": "INV",
+"prd": "S2-R11; NFR-008",
+"quote": "S2-R11 regression lock (pick, receive, clock-in, approval behave as billable); part sale unaffected (NFR-008)",
+"note": "invariant"
+},
+{
+"src": "cand/c06.tsv:1",
+"line": 849,
+"raw_verdict": "CONFIRM",
+"prd": "S12-N3",
+"quote": "disabled \"Reverse the invoice first.\" once invoiced",
+"note": ""
+},
+{
+"src": "cand/c06.tsv:2",
+"line": 849,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R8",
+"quote": "the \"Change where the cost is posted?\" pre-step on a line with a posted bill, from the menu and from Edit Line (S2-R8 v1.0)",
+"note": ""
+},
+{
+"src": "cand/c06.tsv:3",
+"line": 854,
+"raw_verdict": "INV",
+"prd": "S9-R14; S12-R7",
+"quote": "regression: a billable invoice with no mark is byte-identical",
+"note": "invariant"
+},
+{
+"src": "cand/c06.tsv:4",
+"line": 859,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R9; S12-R7",
+"quote": "Create invoice refused without a required original, then succeeds; invoice preview shows the line at $0.00 with the category; tech role: chip shown, prices hidden",
+"note": ""
+},
+{
+"src": "cand/c06.tsv:5",
+"line": 876,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R3",
+"quote": "WO → Complete, invoice deleted, picks restored with `reversesInventoryChangeId`, cost-entry reversals, cycle + 1 (D51)",
+"note": ""
+},
+{
+"src": "cand/c06.tsv:6",
+"line": 877,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R3",
+"quote": "A line added to a closed WO spawns a new WO (S3-R3)",
+"note": ""
+},
+{
+"src": "cand/c06.tsv:7",
+"line": 878,
+"raw_verdict": "ADD",
+"prd": "S3-R5; S12-R7",
+"quote": "invoice / estimate templates (`api/templates/invoices/invoice.html.twig`, `api/templates/invoices/legacy/invoice.html.twig`, the estimate template)",
+"note": "both the modern and the legacy invoice design carry the stamp / $0.00 line; PRD silent on the legacy design"
+},
+{
+"src": "cand/c06.tsv:8",
+"line": 894,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R3; S3-R5; S2-R9; S4-R3; S3-R2; S3-N3",
+"quote": "Close on a not-yet-complete WO runs completion first; confirmation; Closed · Internal alert; NO CHARGE document; Change Customer disabled; Reopen → Complete; a Warranty WO without an original shows the select in the confirmation; tech role: no Close",
+"note": ""
+},
+{
+"src": "cand/c06.tsv:9",
+"line": 918,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R4; S5-E2",
+"quote": "Category account per location, else ShopView Review — never another row (S5-R4)",
+"note": ""
+},
+{
+"src": "cand/c06.tsv:10",
+"line": 919,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R2",
+"quote": "Category debit, Class from the location, memo with WO number, classification and category (S7-R2)",
+"note": ""
+},
+{
+"src": "cand/c06.tsv:11",
+"line": 922,
+"raw_verdict": "ADD",
+"prd": "S4-E1; S7-E2",
+"quote": "withdrawn rows without actions, hand-exported counts as posted",
+"note": ""
+},
+{
+"src": "cand/c06.tsv:12",
+"line": 929,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R8",
+"quote": "\"Create invoice [number]?\" with one \"Moved from [account] to [account]\" row per move, only when a bill's cost moves at invoicing and an integration exists",
+"note": ""
+},
+{
+"src": "cand/c06.tsv:13",
+"line": 932,
+"raw_verdict": "INV",
+"prd": "S9-R14",
+"quote": "billable sync suites unchanged",
+"note": "invariant: billable QuickBooks sync unchanged"
+},
+{
+"src": "cand/c06.tsv:14",
+"line": 936,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R4; S7-N2",
+"quote": "an empty row posts to ShopView Review",
+"note": ""
+},
+{
+"src": "cand/c07.tsv:1",
+"line": 948,
+"raw_verdict": "CONFIRM",
+"prd": "S6-E1",
+"quote": "the block on deactivating a mapped category account",
+"note": "hub blocks deactivating an account mapped to a category? PRD S6-E1 says inactive account -> events Held. Check App C."
+},
+{
+"src": "cand/c07.tsv:2",
+"line": 965,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R3; S8-R7",
+"quote": "per-work-order cycle order (a later Close waits while an earlier cycle's entry is Held, S4-R3); only the no-charge line's cost entries are held, the invoice posts (Q30 ✓)",
+"note": ""
+},
+{
+"src": "cand/c07.tsv:3",
+"line": 967,
+"raw_verdict": "CONFIRM",
+"prd": "S4-E1; S4-R3",
+"quote": "a still-held original becomes Dismissed \"Withdrawn: work order reopened\", never retried or replayable (HQ6 ✓)",
+"note": ""
+},
+{
+"src": "cand/c07.tsv:4",
+"line": 969,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R2; S13-R3",
+"quote": "6500 / 6430 / 6440 Comeback Expense, suitability (active expense account, name match) and free-number rules, 6430 on legacy charts (S6-R2, S13-R3 v0.22), preserve valid mappings, per-org isolation; the new-workspace seeder",
+"note": ""
+},
+{
+"src": "cand/c07.tsv:5",
+"line": 993,
+"raw_verdict": "ADD",
+"prd": "S6-R1",
+"quote": "saved through `category_mappings` (null clears the account, keeps the row)",
+"note": "clearing a hub category row keeps the row (empty)"
+},
+{
+"src": "cand/c07.tsv:6",
+"line": 994,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R6; S8-R1; S8-R7",
+"quote": "Closed pill + badge + \"No Charge\"; Closed record page (D39) with category and original; a billable invoice's No Charge lines block; Closed in the status filters (unselected on the Invoice List report)",
+"note": ""
+},
+{
+"src": "cand/c07.tsv:7",
+"line": 995,
+"raw_verdict": "CONFIRM",
+"prd": "S8-N2; S4-E1; S4-R3; S8-R3",
+"quote": "Held (scoped key `event_held`) with reasons and Retry; Dismissed \"Withdrawn: work order reopened\"; waiting-behind copy (Q50 ✓); a deferred move's label and its source vendor bill or credit line as a link",
+"note": ""
+},
+{
+"src": "cand/c07.tsv:8",
+"line": 1003,
+"raw_verdict": "CONFIRM",
+"prd": "S8-N2; S6-R4; S8-R7",
+"quote": "unmap → Held → map → posted; Reopen → withdrawn or reversed; a billable invoice with a no-charge line → revenue posts, the line's entries post to the category",
+"note": ""
+},
+{
+"src": "cand/c07.tsv:9",
+"line": 1027,
+"raw_verdict": "ADD",
+"prd": "PRD silent",
+"quote": "\"Internal Work Orders\" entry directly after Sales By Representative in the Performance group (D32), hidden until the first-close marker (Q31 ✓)",
+"note": "report placement (Performance group)"
+},
+{
+"src": "cand/c07.tsv:10",
+"line": 1033,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "367 days → 400",
+"note": "report refuses a range over 366 days"
+},
+{
+"src": "cand/c07.tsv:11",
+"line": 1033,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R6",
+"quote": "export byte-identical with the option off",
+"note": ""
+},
+{
+"src": "cand/c07.tsv:12",
+"line": 1038,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R4; S9-R1",
+"quote": "the report appears after the first Close; both tabs, filters, totals, export; Sales excludes the closed WO and adds $0 for a no-charge line",
+"note": ""
+},
+{
+"src": "cand/c07.tsv:13",
+"line": 1050,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4; S2-N5; S2-E6",
+"quote": "**P1** keep closed records off every portal invoice list, filter and vehicle tab",
+"note": "portal; check vs PRD vehicle list Last Service/Completed count"
+},
+{
+"src": "cand/c07.tsv:14",
+"line": 1050,
+"raw_verdict": "CONFIRM",
+"prd": "S2-N5",
+"quote": "**P5** refuse portal deposits on internal and no-charge work orders",
+"note": ""
+},
+{
+"src": "cand/c07.tsv:15",
+"line": 1062,
+"raw_verdict": "DIVERGE",
+"prd": "S13-R4",
+"quote": "(4a) after hub Release B reaches each environment: `accounting:seed-work-order-categories`, then `--verify` (this run can precede step (2); the starting keys are fixed, D50, so it does not depend on core's seed)",
+"note": "PRD S13-R4 order: categories, QuickBooks rows, hub accounts and mappings"
+},
+{
+"src": "cand/c07.tsv:16",
+"line": 1062,
+"raw_verdict": "CONFIRM",
+"prd": "S13-R5",
+"quote": "`--verify` until every organization passes S13-R5",
+"note": ""
+},
+{
+"src": "cand/c08.tsv:1",
+"line": 1075,
+"raw_verdict": "INV",
+"prd": "Out of Scope (Part sales); S9-R14",
+"quote": "part sales unchanged (NFR-008); a billable invoice with no mark byte-identical (statements, snapshot, inventory rows, QuickBooks invoice)",
+"note": "invariant"
+},
+{
+"src": "cand/c08.tsv:2",
+"line": 1075,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E8",
+"quote": "an archived category still posting on a reopened work order (S12-E8)",
+"note": ""
+},
+{
+"src": "cand/c08.tsv:3",
+"line": 1075,
+"raw_verdict": "ADD",
+"prd": "S12-R1",
+"quote": "Edit Labor / inline save / ShopCoach never clearing a line mark (D57)",
+"note": "editing a no-charge line by other doors keeps the mark; PRD silent"
+},
+{
+"src": "cand/c08.tsv:4",
+"line": 1083,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R2; S1-R10; S13-R5",
+"quote": "the modal appears once; Save flags customers and the Make-internal dialog follows; turning off and on again shows no modal. Before the release switch flips, none of this is visible.",
+"note": "manual checklist 1"
+},
+{
+"src": "cand/c08.tsv:5",
+"line": 1084,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R13; S1-R16; S5-R3",
+"quote": "the four starting categories exist; create, rename, archive (impact dialog), restore; set QuickBooks accounts per location from the dialog and see them on the QuickBooks page, and the reverse.",
+"note": "checklist 2"
+},
+{
+"src": "cand/c08.tsv:6",
+"line": 1085,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R1; S1-R15",
+"quote": "a new internal work order on that asset posts to the asset's category (tooltip says so); swap the asset → re-resolved.",
+"note": "checklist 3"
+},
+{
+"src": "cand/c08.tsv:7",
+"line": 1086,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "Location column, \"[n] more at locations you don't have access to.\", conversion without switching location",
+"note": "checklist 4"
+},
+{
+"src": "cand/c08.tsv:8",
+"line": 1086,
+"raw_verdict": "ADD",
+"prd": "S1-R11",
+"quote": "a customer with more than 500 open work orders is converted in full",
+"note": "checklist 4; PRD silent on volume"
+},
+{
+"src": "cand/c08.tsv:9",
+"line": 1087,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R2; S2-R5; S2-R6; S2-R20",
+"quote": "Convert to Billable re-prices labor at the customer rate and parts from the pricing rules on the stored cost, without restoring hand-set or fixed prices.",
+"note": "checklist 5"
+},
+{
+"src": "cand/c08.tsv:10",
+"line": 1088,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R2; S3-R5; S4-R4",
+"quote": "Close a Warranty work order without an original → the select inside the confirmation, Close disabled until picked; close; NO CHARGE document with the category line and original link; Reopen; close again with a new posting date.",
+"note": "checklist 6"
+},
+{
+"src": "cand/c08.tsv:11",
+"line": 1089,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R4; S12-R9; S12-R7; S7-R8",
+"quote": "a deposit larger than the new total shows the message; Create invoice refused while a required original is missing; invoice shows the line at $0.00 with the category; QuickBooks gets the invoice line at 0.00 and a JE moving the line's parts cost to the category account.",
+"note": "checklist 7"
+},
+{
+"src": "cand/c08.tsv:12",
+"line": 1090,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R4; S7-N5; S7-N3; S4-E1",
+"quote": "a category row empty → ShopView Review; Inventory Asset or Cost of Parts unmapped → no parts entry, S7-N5 note, shop supplies still posted; QB Unexported closed-period row and a withdrawn row.",
+"note": "checklist 8"
+},
+{
+"src": "cand/c08.tsv:13",
+"line": 1091,
+"raw_verdict": "CONFIRM",
+"prd": "S8-N2; S6-R4; S4-E1; S8-R7; S8-R3",
+"quote": "Close with an unmapped category row → Held \"[row] row not mapped\"; map → auto-retry posts; Reopen while Held → Dismissed \"Withdrawn: work order reopened\"",
+"note": "checklist 9"
+},
+{
+"src": "cand/c08.tsv:14",
+"line": 1091,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3",
+"quote": "a vendor bill line on an internal work order with an empty category row → the bill posts, the move is Held on Accounting Events with a link to the bill and line, and mapping the row posts it (S8-R3).",
+"note": "checklist 9"
+},
+{
+"src": "cand/c08.tsv:15",
+"line": 1092,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R1; S9-R5; S9-R2; S9-R14",
+"quote": "Sales, Sales By Customer, Sales By Representative, Advisor Analysis, dashboard cards, Sales Tax, A/R Aging, statements: closed records absent and no-charge lines add $0",
+"note": "checklist 10"
+},
+{
+"src": "cand/c08.tsv:16",
+"line": 1093,
+"raw_verdict": "INV",
+"prd": "Out of Scope (Part sales)",
+"quote": "A part sale invoiced end to end: identical to before.",
+"note": "checklist 11"
+},
+{
+"src": "cand/c08.tsv:17",
+"line": 1094,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4; S2-R11; S12-R4; S2-N5; S2-E6",
+"quote": "a closed record never appears as an invoice; a no-charge estimate shows lines and hours with no prices, the NO CHARGE stamp and the category (a stale snapshot is replaced on open)",
+"note": "checklist 12"
+},
+{
+"src": "cand/c08.tsv:18",
+"line": 1094,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "an estimate whose work order was made internal shows the obsolete banner with no Approve / Decline (a page opened before the conversion gets \"This estimate is no longer available.\" when approving)",
+"note": ""
+},
+{
+"src": "cand/c08.tsv:19",
+"line": 1127,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R20",
+"quote": "Never send a fixed price on a non-billable work order or on a no-charge line: the backend answers 422 `fixed_price_not_available`.",
+"note": ""
+},
+{
+"src": "cand/c08.tsv:20",
+"line": 1180,
+"raw_verdict": "INV",
+"prd": "S9-R14",
+"quote": "The predicates are wired at 39 report call sites (Appendix A §5), so run these specs against the branch:",
+"note": "regression list 1181-1188: Sales, Advisor Analysis, Technician Efficiency, Billing Efficiency, Export Reports, Sales By Customer/Representative, Sales Tax, A/R Aging links, Parts Velocity, Inventory Value, Technician Utilization, WIP, dashboard tiles, imported-invoice sales exclusion, finance exports, A/R as-of, customer finance open-only filter, invoice list search, WO delete permissions"
+},
+{
+"src": "cand/c08.tsv:21",
+"line": 1194,
+"raw_verdict": "INV",
+"prd": "S3-N1; S3-R7; S3-N5",
+"quote": "Regression lock, for every consumer of `button_create_invoice{,_header}`, `menu_item_create_invoice`, `section_create_invoice_action` and `tooltip_create_invoice`:",
+"note": "regression list 1195-1197: finish-action negatives, bulk create invoice, completion wizard flows, review-on flow, create-invoice pinned note, PO required, credit-hold invoice gates"
+},
+{
+"src": "cand/c09.tsv:1",
+"line": 1198,
+"raw_verdict": "INV",
+"prd": "S3-N3; S4-N2",
+"quote": "`tests/permissions/`: `wo-create-invoice-permissions`, `part-sale-create-invoice-permissions`, `wo-finance-tab-permissions` (all `.spec.ts`)",
+"note": "invariant: invoice/finance-tab permissions unchanged"
+},
+{
+"src": "cand/c09.tsv:2",
+"line": 1211,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R13",
+"quote": "`category_row_warranty` and `category_row_comeback` read \"Required\"; `category_row_goodwill` reads \"Not asked\".",
+"note": ""
+},
+{
+"src": "cand/c09.tsv:3",
+"line": 1219,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R13",
+"quote": "After archiving, the row leaves the active table and the link reads \"Show archived (n+1)\".",
+"note": ""
+},
+{
+"src": "cand/c09.tsv:4",
+"line": 1237,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R1",
+"quote": "directly under Cost of Parts sit `text_quickbooks_category_header_internal` with General Internal (QuickBooks mark), then `text_quickbooks_category_header_no_charge` with Warranty, Goodwill and Comeback, then Cost of Goods (tax)",
+"note": ""
+},
+{
+"src": "cand/c09.tsv:5",
+"line": 1238,
+"raw_verdict": "INV",
+"prd": "S5-R1 (invariant)",
+"quote": "no existing Accounts row is regrouped under \"Other\" (F12)",
+"note": "invariant: existing ShopView Accounts rows keep their grouping"
+},
+{
+"src": "cand/c09.tsv:6",
+"line": 1239,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R4",
+"quote": "reads \"Not set. Parts cost of Warranty work orders posts to the ShopView Review account until you pick one.\"",
+"note": ""
+},
+{
+"src": "cand/c09.tsv:7",
+"line": 1259,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "`dialog_make_internal` opens for A only (B has no open work orders).",
+"note": ""
+},
+{
+"src": "cand/c09.tsv:8",
+"line": 1287,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R12",
+"quote": "reads \"1 open internal work orders for D stay internal and close without an invoice. New work orders for D will be billable.\"",
+"note": ""
+},
+{
+"src": "cand/c09.tsv:9",
+"line": 1300,
+"raw_verdict": "CONFIRM",
+"prd": "S1-N4",
+"quote": "`checkbox_customer_internal` is ticked and disabled, with `text_customer_internal_setting_off` and `link_customer_internal_settings`.",
+"note": ""
+},
+{
+"src": "cand/c09.tsv:10",
+"line": 1302,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R10",
+"quote": "Settings: toggle on → Save settings. No first-enable dialog opens.",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:1",
+"line": 1316,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "`text_make_internal_inaccessible` reads \"1 more at locations you don't have access to.\"",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:2",
+"line": 1317,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "After confirming, the three listed WOs read `internal`, the L3 WO stays `billable`, and the session's location is unchanged.",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:3",
+"line": 1335,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R1; S1-R15",
+"quote": "F's open internal WO on X is re-resolved to Yard (Q32 ✓).",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:4",
+"line": 1353,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R1",
+"quote": "reads \"Internal customer: no prices, no invoice. Posts to Yard <run>, from the asset.\"",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:5",
+"line": 1366,
+"raw_verdict": "CONFIRM",
+"prd": "S10-R1",
+"quote": "`item_label_Shop Supplies` / `item_value_Shop Supplies` equal F's Min.",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:6",
+"line": 1367,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R15; S2-N5",
+"quote": "The three-dots menu has no \"Add Work Order Fee / Discount\".",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:7",
+"line": 1378,
+"raw_verdict": "ADD",
+"prd": "S2-R2",
+"quote": "`select_wo_no_charge_original_work_order` appears. Pick P, listed under \"Same asset\".",
+"note": "\"Same asset\" group heading in the Original work order select; PRD says same-asset first and Not in ShopView under Other"
+},
+{
+"src": "cand/c10.tsv:8",
+"line": 1383,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R17",
+"quote": "the original technicians are exactly [T]",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:9",
+"line": 1394,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R15",
+"quote": "The badge reads \"No Charge\", and the fee row and adjustments card are gone.",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:10",
+"line": 1396,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R18",
+"quote": "The Notes tab has a system note: `note_sender_<id>` reads \"ShopView\" and the text starts \"Converted to No Charge by\".",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:11",
+"line": 1400,
+"raw_verdict": "CONFIRM",
+"prd": "S2-N4",
+"quote": "`menu_item_convert_to_no_charge` is disabled and `tooltip_convert_to_no_charge_deposit` reads exactly \"Reverse the deposit first\".",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:12",
+"line": 1410,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R18",
+"quote": "The note names P as a link to P.",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:13",
+"line": 1412,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R6",
+"quote": "A part's price is the pricing rule applied to the cost stored on the line, not to a changed catalogue cost.",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:14",
+"line": 1420,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R20",
+"quote": "Save closes the dialog with no 422.",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:15",
+"line": 1421,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R20",
+"quote": "The Notes tab reads \"Fixed line total $1,250.00 removed\".",
+"note": ""
+},
+{
+"src": "cand/c10.tsv:16",
+"line": 1434,
+"raw_verdict": "ADD",
+"prd": "S2-R14",
+"quote": "After Back, the chip is still active.",
+"note": "Classification chip value kept after opening a row and going Back"
+},
+{
+"src": "cand/c11.tsv:1",
+"line": 1443,
+"raw_verdict": "ADD",
+"prd": "S2-R7",
+"quote": "`text_change_customer_classification_effect` reads \"Prices are removed; costs and hours are kept.\"",
+"note": "Change Customer dialog copy; PRD gives no exact sentence for the price effect"
+},
+{
+"src": "cand/c11.tsv:2",
+"line": 1444,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R7",
+"quote": "`text_change_customer_shop_supplies_reset` reads \"Shop supplies resets to I's minimum ($15.00).\"",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:3",
+"line": 1464,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R3",
+"quote": "`chip_line_no_charge_<B>` reads \"No Charge · Goodwill\".",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:4",
+"line": 1465,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R3",
+"quote": "`line_rate_<B>` and `line_total_cost_<B>` read \"$0.00\"; `line_margin_<B>` is empty.",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:5",
+"line": 1467,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R4",
+"quote": "The Financial Info total equals line A's price.",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:6",
+"line": 1468,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R6",
+"quote": "The Notes tab has a ShopView note starting \"Line '<B title>' marked No Charge by\".",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:7",
+"line": 1477,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R5",
+"quote": "After step 2, the chip is gone and `line_rate_<B>` equals the customer's labor rate.",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:8",
+"line": 1485,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R9",
+"quote": "The notification reads \"Line '<title>' needs its original work order (or Not in ShopView) before the invoice.\" Edit Line opens on that line: `checkbox_line_no_charge` is ticked and the original select shows.",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:9",
+"line": 1488,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R7",
+"quote": "The Finance preview shows the line at \"$0.00\" with \"Warranty\" under its title, and no NO CHARGE stamp.",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:10",
+"line": 1490,
+"raw_verdict": "CONFIRM",
+"prd": "S12-N3",
+"quote": "Afterwards, `menu-item_mark_billable_<id>` is disabled with the tooltip \"Reverse the invoice first.\"",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:11",
+"line": 1503,
+"raw_verdict": "ADD",
+"prd": "S12-R1",
+"quote": "After the reload, the chip and the $0.00 rate remain, and API `no_charge_category.key` is `goodwill`.",
+"note": "Edit Labor (hours 1 -> 2) keeps the No Charge mark (D57)"
+},
+{
+"src": "cand/c11.tsv:12",
+"line": 1516,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R1",
+"quote": "`button_close_work_order_header` reads \"Close Work Order\" and `button_create_invoice_header` has count 0.",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:13",
+"line": 1522,
+"raw_verdict": "CONFIRM",
+"prd": "S3-E4",
+"quote": "`text_close_summary` \"This marks the work order Closed · Internal. Parts cost, shop supplies and hours are available in the Internal Work Orders report.\"",
+"note": "no-integration sentence"
+},
+{
+"src": "cand/c11.tsv:14",
+"line": 1526,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R3; S2-R9",
+"quote": "The header shows `badge_wo_status` \"Closed\", `badge_wo_classification` \"Internal\", and `text_wo_closed_on` \"Closed on <date>. To change it, reopen it from the Finance tab.\"",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:15",
+"line": 1527,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R5",
+"quote": "The Finance preview shows the INTERNAL stamp, \"Internal Work Order <header number>\" (read from `text_wo_number`; compare UI text with UI text), \"Category: General Internal\", and a Summary with Parts cost, Shop supplies and Labor hours.",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:16",
+"line": 1528,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R9",
+"quote": "`customer_card_change_action` is rendered **and disabled**, with the tooltip \"Reopen the work order to change the customer.\" (D33).",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:17",
+"line": 1533,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R7; S3-N2",
+"quote": "the Close button appears.",
+"note": "after Mark Reviewed"
+},
+{
+"src": "cand/c11.tsv:18",
+"line": 1541,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R2",
+"quote": "`banner_close_original_required` reads \"Warranty requires the original work order. Pick the earlier work order this job comes from, or Not in ShopView.\" `button_confirm_close_work_order` is disabled.",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:19",
+"line": 1545,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R5; S2-R16",
+"quote": "The document shows the NO CHARGE stamp, \"No Charge Work Order <n>\" and \"Category: Warranty · Original work order <P>\", with P as a link to P.",
+"note": ""
+},
+{
+"src": "cand/c11.tsv:20",
+"line": 1551,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R3",
+"quote": "the Missing Details step renders, its primary button reads \"Close Work Order\", and confirming it opens `dialog_close_work_order` instead of creating an invoice.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:1",
+"line": 1561,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R3",
+"quote": "After Reopen, `badge_wo_status` reads \"Complete\", `button_close_work_order_header` is back, and the menu offers `menu_item_change_no_charge_category` again.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:2",
+"line": 1562,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R4",
+"quote": "After the second Close, the status reads \"Closed\" and `text_wo_closed_on` shows yesterday.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:3",
+"line": 1570,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R6; S9-R10",
+"quote": "`cell_vehicle_invoice_status_<id>` reads \"Closed\", `badge_vehicle_invoice_classification_<id>` reads \"Internal\", `cell_vehicle_invoice_total_<id>` reads \"No Charge\", and Discount and Tax rate are empty.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:4",
+"line": 1572,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R6",
+"quote": "The customer's Invoices tab does not list the record.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:5",
+"line": 1573,
+"raw_verdict": "INV",
+"prd": "S9-R10 (invariant)",
+"quote": "the column list is unchanged (`asset-invoices-columns.spec.ts`)",
+"note": "asset Invoices tab columns unchanged"
+},
+{
+"src": "cand/c12.tsv:6",
+"line": 1580,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R5",
+"quote": "contains \"NO CHARGE\", \"No Charge Work Order <n>\", \"Category: Warranty · Original work order <P>\", \"Parts cost\" and \"Labor hours\";",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:7",
+"line": 1581,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R5",
+"quote": "contains no \"Balance due\" and no total.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:8",
+"line": 1604,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R4",
+"quote": "The first-enable and first-close markers stay set in that org for good. So the report nav entry, the Technician Efficiency chip and the export option become permanently visible there.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:9",
+"line": 1608,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R2; S7-R4a; S7-R1",
+"quote": "one JE per picked stock part, dated the posting date: debit General Internal's account, credit Inventory Asset, amount = cost;</li><li>each memo carries the WO number, \"Internal\" and \"General Internal\";</li><li>the Class is the location's, or none when the location has none;</li><li>one shop supplies JE: debit General Internal's account, credit the Shop supplies item's income account;</li><li>no QBO invoice for the WO number, and no QBO customer created for the internal customer.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:10",
+"line": 1609,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R5; S4-R3",
+"quote": "swapped JEs dated the reopen date, with memo \"Reopened <n>\", still on **E1** (the stored posted accounts, D6).",
+"note": "reversal uses the accounts Close used even after remap"
+},
+{
+"src": "cand/c12.tsv:11",
+"line": 1610,
+"raw_verdict": "CONFIRM",
+"prd": "S3-N4; S7-N2; S5-E2",
+"quote": "`banner_close_no_account_quickbooks` reads \"No account set for Warranty. The entry posts to the ShopView Review account until you set one.\" with `link_close_set_account_quickbooks`; after confirming, the JE debit is \"ShopView Review\", not E1.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:12",
+"line": 1610,
+"raw_verdict": "CONFIRM",
+"prd": "S7-N5; S4-E1",
+"quote": "QBO has no parts JE for the WO but has the shop supplies JE; Reopen sends a reversal for the shop supplies entry only.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:13",
+"line": 1611,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R8",
+"quote": "the QBO invoice carries the Warranty line's items at 0.00 with \"Warranty\" in the description, and its total equals the billable line;</li><li>the JE of the Warranty line's picked part debits E3 (the Warranty account) with the usual credit;</li><li>the billable line's part JE debits Cost of Parts as today.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:14",
+"line": 1612,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R3",
+"quote": "the bill's line for that part is on E3 (the Warranty account); vendor, bill total and Accounts Payable as the bill entered.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:15",
+"line": 1612,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R8; S7-R4",
+"quote": "line A's bill line is on E3; line B's bill line stays on Cost of Parts and, at invoicing, one reclass JE moves its cost from Cost of Parts to E3, dated the invoice date; the billable part of the WO posts as today.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:16",
+"line": 1626,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R2; S6-R1; S6-R3",
+"quote": "`text_current_category_account_general_internal` reads \"6500 Vehicle Expenses\";</li><li>Warranty and Goodwill both read \"6430 Warranty & Goodwill Expense\";</li><li>Comeback reads \"Comeback Expense\", name only (HQ1 ✓).",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:17",
+"line": 1627,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R1; S8-R6",
+"quote": "the Closed pill, `badge_accounting_invoice_classification_<id>` \"Internal\", and total \"No Charge\".",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:18",
+"line": 1627,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R1",
+"quote": "**no** lines, no payment / credit memo / write-off tabs, and no Void.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:19",
+"line": 1628,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R7",
+"quote": "`table_accounting_invoice_no_charge_lines` has one row: line number and title, \"Comeback\", original \"Not in ShopView\", hours, parts cost, and expense account \"Comeback Expense\", posted.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:20",
+"line": 1629,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R2; S8-R3; S8-R4",
+"quote": "after Close: source \"Internal work order\", debit 6500, credit Inventory, on the posting date; the shop supplies entry debits 6500 and credits 5100 Shop Supplies COGS;</li><li>after Reopen: reversals linked, and the record Void.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:21",
+"line": 1630,
+"raw_verdict": "CONFIRM",
+"prd": "S8-N2; S6-R4",
+"quote": "`text_hold_message_<id>` reads \"No Charge: <name> row not mapped\";</li><li>after mapping: the event posts automatically and the entry appears on the category's account.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:22",
+"line": 1647,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "W1 row: Line \"Whole work order\", \"No Charge\", \"Warranty\", original WO link P, original technician T, the posting date, Parts cost $40.00, Shop supplies $10.00, Hours 1.5.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:23",
+"line": 1648,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "B1 row: line number and title, \"No Charge line\", \"Comeback\", Shop supplies empty, Parts cost $25.00, Hours 2.0.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:24",
+"line": 1650,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "`row_iwo_totals` equals the sums.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:25",
+"line": 1660,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "T's row: Comeback lines 1; Completed lines 2 (T's completed lines with clocked time in the range); Comeback rate 50%; Redo hours and Redo parts cost equal to B1's line.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:26",
+"line": 1661,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2; S2-R17",
+"quote": "A row \"Unassigned\" holds the Not in ShopView line.",
+"note": ""
+},
+{
+"src": "cand/c12.tsv:27",
+"line": 1663,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "Warranty lines counts W1 as one line (Q33 ✓).",
+"note": ""
+},
+{
+"src": "cand/c13.tsv:1",
+"line": 1719,
+"raw_verdict": "INV",
+"prd": "PRD silent (invariant)",
+"quote": "`tests/permissions/admin-page-visibility.spec.ts:104-131` checks a fixed list of named sections, and the new tab is not in it.",
+"note": "new Administration tab; existing admin sections unchanged"
+},
+{
+"src": "cand/c13.tsv:2",
+"line": 1720,
+"raw_verdict": "INV",
+"prd": "S9-R10",
+"quote": "The columns are unchanged (S9-R10: columns are v1.1); only closed rows are added.",
+"note": "asset Invoices tab columns unchanged"
+},
+{
+"src": "cand/c13.tsv:3",
+"line": 1739,
+"raw_verdict": "CONFIRM",
+"prd": "S10-R2",
+"quote": "Edit the shop supplies amount on an internal WO; locked after Close",
+"note": ""
+},
+{
+"src": "cand/c13.tsv:4",
+"line": 1785,
+"raw_verdict": "CHECK",
+"prd": "S5-R5; S13-R2",
+"quote": "Seeded categories and accounts are harmless while the setting is off.",
+"note": ""
+},
+{
+"src": "cand/c13.tsv:5",
+"line": 1797,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R13",
+"quote": "at most 100 rows per list",
+"note": ""
+},
+{
+"src": "cand/c13.tsv:6",
+"line": 1805,
+"raw_verdict": "CONFIRM",
+"prd": "S11-R4",
+"quote": "The Open API create path (`processCreate()`, also used by the sandbox seeder) refuses internal/no-charge work orders inside the shared method.",
+"note": ""
+},
+{
+"src": "cand/c14.tsv:1",
+"line": 1867,
+"raw_verdict": "CHECK",
+"prd": "S2-E3",
+"quote": "none — `WorkOrderImportedFactory` has no caller (Appendix A corrections)",
+"note": "plan: no work-order import path exists, so S2-E3 has nothing to build; a tester cannot run an import case"
+},
+{
+"src": "cand/c14.tsv:2",
+"line": 1883,
+"raw_verdict": "CONFIRM",
+"prd": "S3-N5",
+"quote": "FE-C `useWorkOrderFinishAction` skips the `useCreateInvoiceGate` credit-hold refusal for Close (FE-only guard; N10 unchanged)",
+"note": ""
+},
+{
+"src": "cand/c15.tsv:1",
+"line": 1976,
+"raw_verdict": "CONFIRM",
+"prd": "S11-R2; S3-R4",
+"quote": "closed records out of the Open API invoice lists; the work order reads invoiced there until Story 11",
+"note": "Open API before Story 11"
+},
+{
+"src": "cand/c15.tsv:2",
+"line": 1977,
+"raw_verdict": "CONFIRM",
+"prd": "S11-R3; S3-R4",
+"quote": "no invoice.created / invoice.paid webhooks for a closed record",
+"note": ""
+},
+{
+"src": "cand/c15.tsv:3",
+"line": 1993,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R10",
+"quote": "N23 preview all-lines flag; Mark dialog hint; $0 invoice auto-paid as today",
+"note": ""
+},
+{
+"src": "cand/c15.tsv:4",
+"line": 2006,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E7",
+"quote": "$0.00 amount and 422 `restocking_fee_not_allowed` server-side, fee disabled in `PartsReturnPicker.vue`; no credit blocks a reversal",
+"note": ""
+},
+{
+"src": "cand/c15.tsv:5",
+"line": 2011,
+"raw_verdict": "INFO",
+"prd": "S13-R4",
+"quote": "idempotent seeder (Phase 2C) and the release-run order: categories, QuickBooks rows, hub seeding (Phase 13 runbook)",
+"note": "traceability states PRD order; runbook line 1062 lets hub seeding precede"
+},
+{
+"src": "cand/c16.tsv:1",
+"line": 2184,
+"raw_verdict": "INV",
+"prd": "S9-E2",
+"quote": "e2e/tests/ui/finance.spec.ts (C984, $0 invoice)",
+"note": "existing $0 invoice behaviour stays (TestRail C984 named by the plan)"
+},
+{
+"src": "cand/c16.tsv:2",
+"line": 2114,
+"raw_verdict": "INV",
+"prd": "S4-N2",
+"quote": "e2e/tests/ui/billing/invoice-reverse.spec.ts",
+"note": "existing Reverse of a billable invoice unchanged"
+},
+{
+"src": "cand/c16.tsv:3",
+"line": 2228,
+"raw_verdict": "CONFIRM",
+"prd": "S3-N5",
+"quote": "Close offered on credit hold; billable still refused",
+"note": "billable Create invoice still refused on credit hold"
+},
+{
+"src": "cand/c17.tsv:1",
+"line": 2275,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R7",
+"quote": "The no-charge statement has its own branch: hours kept, rate 0 (real rate in `no_charge_labor_rate`), items forced to 0 (§2.10)",
+"note": "plan corrects the PRD premise (declined line items keep sell prices today); result matches PRD intent: parts at $0.00"
+},
+{
+"src": "cand/c17.tsv:2",
+"line": 2276,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R8",
+"quote": "The no-charge line is the first $0 line sent to QuickBooks; its row must carry rate 0.00",
+"note": "declined lines are not sent to QuickBooks today (code fact)"
+},
+{
+"src": "cand/c17.tsv:3",
+"line": 2283,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R4",
+"quote": "Deposit overflow becomes a **free-floating Deposit** on the customer's account, not a credit memo",
+"note": "PRD v1.0 S12-R4 already says \"stays on the customer's account as a deposit\""
+},
+{
+"src": "cand/c17.tsv:4",
+"line": 2287,
+"raw_verdict": "INV",
+"prd": "S9-R15; S9-R14",
+"quote": "It sums `invoice.total_balance` with **no status filter**, void included",
+"note": "invariant: Customers Spending keeps today's totals for billable work (void included today, code fact)"
+},
+{
+"src": "cand/c17.tsv:5",
+"line": 2293,
+"raw_verdict": "CHECK",
+"prd": "S2-E3",
+"quote": "Nothing imports live work orders: `WorkOrderImportedFactory` has no caller in `src/`",
+"note": "code fact: S2-E3 untestable"
+},
+{
+"src": "cand/c17.tsv:6",
+"line": 2296,
+"raw_verdict": "CONFIRM",
+"prd": "Permission matrix (Change the customer)",
+"quote": "Add `ROLE_WORK_ORDER_CREATE_AND_EDIT` for a service work order beside today's check; the part-sale branch is unchanged. The UI already requires it (`CustomerCard.vue:372-375`), so no user loses the action (D63)",
+"note": ""
+},
+{
+"src": "cand/c17.tsv:7",
+"line": 2297,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R3",
+"quote": "That repository uses the LIVE list (§2.6)",
+"note": "closed internal WO counts as invoiced on Technician Efficiency Invoiced tab"
+},
+{
+"src": "cand/c18.tsv:1",
+"line": 2371,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R7; S2-N1",
+"quote": "setting off → Billable unless currently No Charge and the target is regular (the mark and category survive); target internal (setting on) → Internal with the resolved category (a No Charge category is dropped); target regular from Internal → Billable; target regular from No Charge → No Charge, category kept",
+"note": "customer change truth table"
+},
+{
+"src": "cand/c18.tsv:2",
+"line": 2371,
+"raw_verdict": "CONFIRM",
+"prd": "S10-R2",
+"quote": "only reset the flat shop supplies (Internal ↔ No Charge, S10-R2)",
+"note": ""
+},
+{
+"src": "cand/c18.tsv:3",
+"line": 2385,
+"raw_verdict": "CONFIRM",
+"prd": "S12-N2; S12-N3; S12-E8; S12-N1",
+"quote": "the work order is internal or no charge as a whole (S12-N2); the work order is invoiced (S12-N3); the line is declined, or has a return or a credit (S12-E8); the setting is off for Mark (S12-N1; Change category and Mark as Billable stay available, Q37 ✓). A deposit never blocks (S12-R4).",
+"note": ""
+},
+{
+"src": "cand/c18.tsv:4",
+"line": 2385,
+"raw_verdict": "ADD",
+"prd": "S2-R5",
+"quote": "Converting the whole work order to No Charge clears every line's mark and line reference (S2-R5: \"the lines' own categories are replaced\").",
+"note": "after Convert to No Charge, the earlier line marks are gone (also after a later Convert to Billable); PRD silent on what comes back"
+},
+{
+"src": "cand/c18.tsv:5",
+"line": 2389,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R14; S1-R16",
+"quote": "Name 1..60, unique within its list among active **and** archived categories (Q39 ✓: \"A category with this name is archived. Restore it instead.\"). The key never changes (S1-R16).",
+"note": ""
+},
+{
+"src": "cand/c18.tsv:6",
+"line": 2392,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R13; S13-R1",
+"quote": "General Internal (default), Warranty (requires original), Goodwill, Comeback (requires original)",
+"note": "starting set"
+},
+{
+"src": "cand/c18.tsv:7",
+"line": 2393,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R16; S2-R1",
+"quote": "the asset's category, else the customer's default, else the organization default; the first **active** one wins",
+"note": ""
+},
+{
+"src": "cand/c18.tsv:8",
+"line": 2394,
+"raw_verdict": "ADD",
+"prd": "S2-R1",
+"quote": "when its asset is swapped (`Application/HTTP/VehicleSwitch/VehicleSwitchCommandHandler.php:41`, `Application/HTTP/ChangeVin/ChangeVinCommandHandler.php:82`",
+"note": "asset swap and VIN change both re-resolve an open internal WO's category; PRD says \"when the asset changes\""
+},
+{
+"src": "cand/c18.tsv:9",
+"line": 2394,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R1",
+"quote": "Closed work orders never change.",
+"note": ""
+},
+{
+"src": "cand/c18.tsv:10",
+"line": 2396,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R22",
+"quote": "`true` iff the line is No Charge, or its work order is No Charge as a whole (Q44 ✓), with category key `warranty`; `false` when that stops being true. Lines that carry `is_warranty = 1` today are never touched.",
+"note": ""
+},
+{
+"src": "cand/c18.tsv:11",
+"line": 2401,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R2",
+"quote": "the original belongs to the **same customer**, at a location the user can access (Q38 ✓), with status invoiced/paid or closed",
+"note": "original candidates"
+},
+{
+"src": "cand/c18.tsv:12",
+"line": 2416,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R6",
+"quote": "closed is never offered in the app's invoice status filters (D37)",
+"note": ""
+},
+{
+"src": "cand/c18.tsv:13",
+"line": 2441,
+"raw_verdict": "INV",
+"prd": "S3-N1",
+"quote": "(complete, no live invoice, ≥ 1 completed line, no incomplete lines, no blocking parts, no unresolved cores) with byte-identical messages",
+"note": "invariant: billable Create invoice refusals unchanged"
+},
+{
+"src": "cand/c18.tsv:14",
+"line": 2441,
+"raw_verdict": "CONFIRM",
+"prd": "S11-R4",
+"quote": "`processCreate()` refuses a non-billable service work order (\"This work order is internal or no charge. Close it in ShopView.\", the PRD §8 copy) for every caller (C22).",
+"note": ""
+},
+{
+"src": "cand/c18.tsv:15",
+"line": 2443,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4",
+"quote": "skipping it suppresses all three by construction (S3-R4, NFR-009)",
+"note": "no WO status change event to paid, no $0 payment, no invoice.created webhook / portal notifier"
+},
+{
+"src": "cand/c19.tsv:1",
+"line": 2451,
+"raw_verdict": "ADD",
+"prd": "S12-R4",
+"quote": "Work-order fees, discounts and the shop supplies percentage (base = total labor price, `WorkOrderShopSuppliesCalculator.php:38`) are computed on billable lines only (S12-R4).",
+"note": "percentage shop supplies on a billable WO leaves the no-charge line's labor out; PRD names totals/fees/discounts but not shop supplies %"
+},
+{
+"src": "cand/c19.tsv:2",
+"line": 2453,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E7; S12-E3",
+"quote": "NOT OK charges the customer nothing on non-billable work or a no-charge line",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:3",
+"line": 2457,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E4",
+"quote": "part requests and parts `setSellPrice(0)` with the hand-set flag cleared (S2-E4)",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:4",
+"line": 2458,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R20",
+"quote": "The labor + parts = total check (`Application/Line/Change/ChangeCommand.php:181-185`) is skipped on a line without a total, and fixed-price input on a non-billable work order or a no-charge line is refused with 422 `fixed_price_not_available` (S2-R20).",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:5",
+"line": 2460,
+"raw_verdict": "CONFIRM",
+"prd": "S10-R2; S2-R15; S2-R20",
+"quote": "flat shop supplies set to null so the % rule applies again (S10-R2); fees and discounts not restored (S2-R15); fixed amounts not restored (S2-R20)",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:6",
+"line": 2461,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R21",
+"quote": "returns early for a non-billable service work order (classification is set before the first save, so the event carries it); part sales (`:80`) and billable work orders unchanged.",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:7",
+"line": 2462,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E1",
+"quote": "`Organization/LabourTypes/Application/Change/LaborRateChangeCascade.php:79` skips `classification <> 'billable'` (nothing to update, S2-E1).",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:8",
+"line": 2468,
+"raw_verdict": "INV",
+"prd": "S9-R14",
+"quote": "The flag defaults to false, so billable invoices, the Stats tab, the sales reports and WIP are unchanged (rule zero, S9-R14).",
+"note": "invariant"
+},
+{
+"src": "cand/c19.tsv:9",
+"line": 2470,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R9",
+"quote": "\"Line '[title]' needs its original work order (or Not in ShopView) before the invoice.\"",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:10",
+"line": 2471,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R10",
+"quote": "every line No Charge → the billable invoice is $0 and takes today's $0 path (auto-paid). No change.",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:11",
+"line": 2472,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E7",
+"quote": "lists a no-charge line's parts at a fixed $0.00 credit amount (input refused if not 0) and with no restocking fee",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:12",
+"line": 2489,
+"raw_verdict": "ADD",
+"prd": "S5-R1",
+"quote": "Internal list first (default first, then name), then No Charge by name, archived greyed with their mapping",
+"note": "row order on ShopView Accounts; PRD silent on order inside the groups"
+},
+{
+"src": "cand/c19.tsv:13",
+"line": 2491,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R4; S5-E2; S5-E1",
+"quote": "There is **no** fallback from one category row to another or to Cost of Parts (S5-R4, S5-E2). A deleted or inactive mapped account fails into QB Unexported like every other row (S5-E1, S7-N2).",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:14",
+"line": 2493,
+"raw_verdict": "ADD",
+"prd": "S7-R2",
+"quote": "memo `\"<generated description>; WO #<n> · <Internal|No Charge> · <category>\"`; date = the invoice's `created_on` (the posting date at Close, the invoice date for a line)",
+"note": "exact QuickBooks memo format; PRD says memo carries number, classification and category"
+},
+{
+"src": "cand/c19.tsv:15",
+"line": 2497,
+"raw_verdict": "CONFIRM",
+"prd": "S4-E1; S7-E2",
+"quote": "QB Unexported shows the withdrawn row with no Export / Mark as Exported and the reason for its cause",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:16",
+"line": 2497,
+"raw_verdict": "ADD",
+"prd": "S4-E1",
+"quote": "\"Withdrawn: invoice [number] reversed\" for a billable Reverse, \"Withdrawn: category changed\" for a category move (the PRD has copy only for Reopen)",
+"note": "new QB Unexported copy not in PRD"
+},
+{
+"src": "cand/c19.tsv:17",
+"line": 2497,
+"raw_verdict": "ADD",
+"prd": "S7-N3",
+"quote": "an entry that posts nothing in QuickBooks (`pair_of` set, or equal accounts) gets no claim at all and never shows in QB Unexported",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:18",
+"line": 2501,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R8; S9-R13",
+"quote": "writes rate 0.00 and amount 0.00 on the labor row and on every part row of such a statement and appends the category name to the description; items and tax code unchanged",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:19",
+"line": 2501,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R1",
+"quote": "Nothing about Close reaches `InvoiceCreateSyncService`, so no QuickBooks customer is created for a closed work order (S7-R1).",
+"note": ""
+},
+{
+"src": "cand/c19.tsv:20",
+"line": 2503,
+"raw_verdict": "DIVERGE",
+"prd": "S7-R8",
+"quote": "grouped into `moves[]`: one entry per distinct from → to pair, because one invoice can move cost both ways",
+"note": "PRD: one \"Moved from [account] to [account]\" row per move; plan: one row per distinct account pair (two lines moving Cost of Parts -> Warranty show one row)"
+},
+{
+"src": "cand/c20.tsv:1",
+"line": 2525,
+"raw_verdict": "ADD",
+"prd": "S6-R1; S8-N2",
+"quote": "H7 self-heal: an unknown category named in a payload creates its row empty and Holds.",
+"note": "hub creates a missing category row empty and holds the event"
+},
+{
+"src": "cand/c20.tsv:2",
+"line": 2525,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3; S8-N2",
+"quote": "H8 a bill or credit is never Held (a vendor payment against an unmirrored bill would stall the stream): a line whose category row is empty posts on today's routing and the hub records a Held deferred move for it",
+"note": ""
+},
+{
+"src": "cand/c20.tsv:3",
+"line": 2529,
+"raw_verdict": "CONFIRM",
+"prd": "S10-R2",
+"quote": "`ChangeShopSuppliesCharge` refuses on a closed work order (S10-R2).",
+"note": ""
+},
+{
+"src": "cand/c20.tsv:4",
+"line": 2529,
+"raw_verdict": "ADD",
+"prd": "S10-R1",
+"quote": "for a billable work order such a Min stays inert (D41)",
+"note": "a Min without a percentage charges nothing on a billable work order"
+},
+{
+"src": "cand/c20.tsv:5",
+"line": 2537,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R14",
+"quote": "every new column is NULL on existing data, so every query returns today's rows",
+"note": "rule zero"
+},
+{
+"src": "cand/c20.tsv:6",
+"line": 2543,
+"raw_verdict": "CONFIRM",
+"prd": "S13-R5; S13-R6",
+"quote": "`--verify` checks S13-R5 per organization: the four starting keys active, the setting off, no customer flagged by the run (S13-R6)",
+"note": ""
+},
+{
+"src": "cand/c20.tsv:7",
+"line": 2543,
+"raw_verdict": "CONFIRM",
+"prd": "S13-R4",
+"quote": "Order per S13-R4: categories → (QuickBooks rows, virtual) → hub accounts and mappings.",
+"note": ""
+},
+{
+"src": "cand/c21.tsv:1",
+"line": 2576,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R2; S9-R4",
+"quote": "returns true on the organization's first-ever enable — the modal is shown once, S1-R2",
+"note": ""
+},
+{
+"src": "cand/c21.tsv:2",
+"line": 2582,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R10; S3-R3",
+"quote": "`display_status` (`closed` when status ∈ {invoiced, paid} and classification ≠ billable, else the status; D2), `closed_on` (the live closed invoice's `created_on`)",
+"note": ""
+},
+{
+"src": "cand/c21.tsv:3",
+"line": 2608,
+"raw_verdict": "CONFIRM",
+"prd": "Permission matrix (categories page); S1-R13; S1-R14",
+"quote": "VIEW = `settingsService` + `ROLE_WORK_ORDER_VIEW`; MANAGE = `settingsService` + `ROLE_ORGANIZATION_CREATE_AND_EDIT`; MANAGE_ACCOUNTS = `settingsIntegrations` + `ROLE_ORGANIZATION_CREATE_AND_EDIT`",
+"note": "PRD: the categories page needs 'Settings — Service' (accounts: 'Settings — Integrations'); plan adds a second server-side atom (organization create-and-edit; work-order view to see)"
+},
+{
+"src": "cand/c21.tsv:4",
+"line": 2613,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R14; S1-R16",
+"quote": "name taken incl. archived → 422; limit; archive default → 409; restore",
+"note": ""
+},
+{
+"src": "cand/c21.tsv:5",
+"line": 2619,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R10; S1-R2",
+"quote": "Turning it **on** here is allowed only after the first enable (`internal_work_orders_first_enabled_at` set), else 409 `internal_work_orders_first_enable_required`",
+"note": ""
+},
+{
+"src": "cand/c21.tsv:6",
+"line": 2620,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R13",
+"quote": "`audit_log` records the `company.internal` change automatically",
+"note": "flag add/remove in the customer Audit Log"
+},
+{
+"src": "cand/c21.tsv:7",
+"line": 2621,
+"raw_verdict": "CONFIRM",
+"prd": "S1-N4",
+"quote": "value differs while the setting is off → 409 `internal_work_orders_off`, S1-N4",
+"note": ""
+},
+{
+"src": "cand/c21.tsv:8",
+"line": 2622,
+"raw_verdict": "ADD",
+"prd": "S1-R15",
+"quote": "refused unless an owner in `vehicle_company` is flagged and the setting is on",
+"note": "an asset shared by several customers shows the field when ANY owner is flagged (C8)"
+},
+{
+"src": "cand/c21.tsv:9",
+"line": 2623,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "status ∈ (estimate, approved, in_progress, ready_for_review, complete)",
+"note": "open = not invoiced, paid or declined"
+},
+{
+"src": "cand/c21.tsv:10",
+"line": 2623,
+"raw_verdict": "ADD",
+"prd": "S1-R11",
+"quote": "first 10 rows (newest first) + `total` + `inaccessible_count`",
+"note": "Make internal list order: newest first; PRD silent"
+},
+{
+"src": "cand/c21.tsv:11",
+"line": 2623,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "skips deposits (`deposit`) and rows no longer candidates (`changed`)",
+"note": ""
+},
+{
+"src": "cand/c21.tsv:12",
+"line": 2624,
+"raw_verdict": "ADD",
+"prd": "S10-R1",
+"quote": "Min accepted without a percentage; a billable work order still gets 0 from the rules, D41",
+"note": ""
+},
+{
+"src": "cand/c21.tsv:13",
+"line": 2625,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R2",
+"quote": "≤ 50 customers in N3",
+"note": ""
+},
+{
+"src": "cand/c22.tsv:1",
+"line": 2633,
+"raw_verdict": "CONFIRM",
+"prd": "S2-N1; S2-N3; S2-R2",
+"quote": "setting off → Billable (S2-N1); flagged customer → Internal with the resolved category (a sent No Charge is ignored, S2-N3); `no_charge` with `no_charge_category_key` → No Charge (missing key → 400 field `no_charge_category_key` \"Pick a category\"",
+"note": ""
+},
+{
+"src": "cand/c22.tsv:2",
+"line": 2633,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R1",
+"quote": "Inspection-built work orders go through the same handler (`WorkOrdersBuildTargetWorkOrderCreator.php:23`) with `no_charge = false`.",
+"note": ""
+},
+{
+"src": "cand/c22.tsv:3",
+"line": 2633,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R3",
+"quote": "(the work order spawned by a line added to a closed or invoiced one, S3-R3) takes its customer's classification and no No Charge category",
+"note": ""
+},
+{
+"src": "cand/c22.tsv:4",
+"line": 2633,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E2; S12-E1",
+"quote": "copies classification, category and the WO reference (S2-E2), flat shop supplies 0, no adjustments; a no-charge line keeps its mark, category and line reference (S12-E1) with a note on both work orders",
+"note": ""
+},
+{
+"src": "cand/c22.tsv:5",
+"line": 2634,
+"raw_verdict": "CONFIRM",
+"prd": "S2-N4; S2-N1",
+"quote": "Convert to No Charge refuses with a deposit (same predicate as `Application/ChangeCustomer/ChangeCommandHandler.php:53-61`, \"Reverse the deposit first.\", S2-N4) and requires the setting on; Convert to Billable and Change category work with the setting off (S2-N1)",
+"note": ""
+},
+{
+"src": "cand/c22.tsv:6",
+"line": 2637,
+"raw_verdict": "CONFIRM",
+"prd": "S10-R2",
+"quote": "refuses on a closed work order (409 `work_order_closed`)",
+"note": "shop supplies locked after Close"
+},
+{
+"src": "cand/c22.tsv:7",
+"line": 2638,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R11; S2-E6",
+"quote": "`Invoicing/Invoice/Application/HTTP/IBS/RequestIBSApprovalController.php` path refuses on internal and closed no-charge work orders; Send to Portal refuses on internal ones (S2-R11)",
+"note": "server refuses IBS on internal + CLOSED no-charge only; PRD hides Request IBS Approval on every no-charge WO (open too). Check App B FE."
+},
+{
+"src": "cand/c22.tsv:8",
+"line": 2638,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R15; S2-N5",
+"quote": "refuses on a non-billable work order (409 `adjustments_not_available`, S2-R15); deposit create handlers (`Customer/Customers/Application/Handler/Deposit/Create*`, legacy `CustomerCredit/Create`) refuse (409 `deposits_not_available`, S2-N5)",
+"note": ""
+},
+{
+"src": "cand/c22.tsv:9",
+"line": 2639,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R10",
+"quote": "`closed` → `(wo.status IN ('invoiced','paid') AND wo.classification <> 'billable')`; `invoiced`/`paid` → billable only",
+"note": "Status chip"
+},
+{
+"src": "cand/c22.tsv:10",
+"line": 2645,
+"raw_verdict": "INV",
+"prd": "S2-R19",
+"quote": "billable receive byte-identical incl. SV-9965/SV-10082 behavior",
+"note": "invariant: receiving on billable WOs unchanged"
+},
+{
+"src": "cand/c22.tsv:11",
+"line": 2645,
+"raw_verdict": "INV",
+"prd": "S2-R21",
+"quote": "billable creation still applies templates",
+"note": "invariant"
+},
+{
+"src": "cand/c22.tsv:12",
+"line": 2646,
+"raw_verdict": "INV",
+"prd": "S2-R11; NFR-008",
+"quote": "picking, receiving, a clock-in and a line approval on an internal work order write the same rows and statuses as on a billable one",
+"note": ""
+},
+{
+"src": "cand/c22.tsv:13",
+"line": 2648,
+"raw_verdict": "ADD",
+"prd": "S2-R2; S2-R17",
+"quote": "original candidates ≤ 25 rows, line candidates ≤ 200",
+"note": "Original work order select lists at most 25; Original line at most 200; PRD silent"
+},
+{
+"src": "cand/c22.tsv:14",
+"line": 2653,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R1",
+"quote": "**An absent block means unchanged** (Edit Labor, inline save and ShopCoach never clear a mark).",
+"note": ""
+},
+{
+"src": "cand/c22.tsv:15",
+"line": 2655,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E6; S12-E2",
+"quote": "prices the part by its destination line (zero onto a no-charge line; pricing rules on cost onto a billable one; note records the move, S12-E6); customer change keeps marks (S12-E2)",
+"note": ""
+},
+{
+"src": "cand/c22.tsv:16",
+"line": 2656,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R8",
+"quote": "the lines keep their mark; cycle +1",
+"note": "billable Reverse keeps line marks"
+},
+{
+"src": "cand/c23.tsv:1",
+"line": 2680,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R5",
+"quote": "Customer PO not required (S3-R5)",
+"note": ""
+},
+{
+"src": "cand/c23.tsv:2",
+"line": 2698,
+"raw_verdict": "ADD",
+"prd": "S3-R7; S3-N2",
+"quote": "`complete_first` with review required → 409 `work_order_review_required` (\"This work order needs review before it can be closed.\"; the FE sends it to review as Create invoice does today)",
+"note": "refusal copy not in PRD"
+},
+{
+"src": "cand/c23.tsv:3",
+"line": 2698,
+"raw_verdict": "CONFIRM",
+"prd": "S3 error handling",
+"quote": "a Close refused after completion (e.g. `work_order_changed`) → the work order is still not Complete and no `WebhookDelivery` row exists",
+"note": ""
+},
+{
+"src": "cand/c23.tsv:4",
+"line": 2699,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R3; S2-R9",
+"quote": "extends the spawn arm to `SENT || PAID || CLOSED` (the spawned work order takes its customer's classification through `PayedWorkOrderReopenedSubscriber`); Create invoice on a closed work order is refused",
+"note": ""
+},
+{
+"src": "cand/c23.tsv:5",
+"line": 2700,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R3; S4-E4",
+"quote": "Classification, category, reference and shop supplies amount are kept (S4-R3, S4-E4).",
+"note": ""
+},
+{
+"src": "cand/c23.tsv:6",
+"line": 2700,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4",
+"quote": "logs `work_order.reopened` + `invoice.reversed`",
+"note": "Close/Reopen recorded in the work order log as invoice created/reversed"
+},
+{
+"src": "cand/c23.tsv:7",
+"line": 2701,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R5; S2-R16",
+"quote": "\"Not in ShopView\" is never printed on any document, the estimate included (S2-R16 v0.22)",
+"note": ""
+},
+{
+"src": "cand/c23.tsv:8",
+"line": 2701,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R5",
+"quote": "Email: the invoice email template with subject \"Internal Work Order [n]\" / \"No Charge Work Order [n]\"; recipient from the FE (empty by default).",
+"note": ""
+},
+{
+"src": "cand/c23.tsv:9",
+"line": 2701,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R4",
+"quote": "Estimate PDF of an open non-billable work order: stamp + category line.",
+"note": ""
+},
+{
+"src": "cand/c23.tsv:10",
+"line": 2701,
+"raw_verdict": "ADD",
+"prd": "S3-R5",
+"quote": "both invoice designs — `templates/invoices/invoice.html.twig` (modern) and `templates/invoices/legacy/invoice.html.twig` (legacy; the portal shows whichever design the shop uses) — get a variant for `status = closed`",
+"note": "NO CHARGE document in both the modern and the legacy invoice design"
+},
+{
+"src": "cand/c23.tsv:11",
+"line": 2702,
+"raw_verdict": "CONFIRM",
+"prd": "S11-R2; S11-R3",
+"quote": "a closed work order reads `invoiced` through `/v1/work-orders` and that its invoice is in no `/v1/...invoices` list and answers 404 on `/v1/invoices/{id}` (S11-R2 v1.0, Q64 ✓), and that no `invoice.created` / `invoice.paid` webhook is sent",
+"note": ""
+},
+{
+"src": "cand/c23.tsv:12",
+"line": 2703,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4",
+"quote": "`VehiclesQueryBuilder.php:40-43` counts closed work orders as completed, not invoiced",
+"note": "portal vehicle list"
+},
+{
+"src": "cand/c23.tsv:13",
+"line": 2704,
+"raw_verdict": "INV",
+"prd": "S3-R4; S12-R10",
+"quote": "Close dispatches no `invoice.created`/`invoice.paid`; the billable $0 path still does",
+"note": "invariant: billable $0 invoice still sends invoice webhooks"
+},
+{
+"src": "cand/c23.tsv:14",
+"line": 2716,
+"raw_verdict": "CONFIRM",
+"prd": "S7-N3",
+"quote": "labels \"Internal Work Order Close\", \"Internal Work Order Reopen\", \"No Charge line\" (S7-N3 v1.0, Q64 ✓); reference = WO number; subject = classification + category; withdrawn rows without actions",
+"note": ""
+},
+{
+"src": "cand/c23.tsv:15",
+"line": 2717,
+"raw_verdict": "INV",
+"prd": "S12-E7",
+"quote": "billable credit → no entry, as today",
+"note": "invariant: billable Issue Credit restock posts no QuickBooks JE"
+},
+{
+"src": "cand/c24.tsv:1",
+"line": 2718,
+"raw_verdict": "INV",
+"prd": "S7-N3",
+"quote": "a billable work order's entry keeps \"Work Order Create\"",
+"note": "invariant: QB Unexported type of billable entries unchanged"
+},
+{
+"src": "cand/c24.tsv:2",
+"line": 2718,
+"raw_verdict": "INV",
+"prd": "S9-R14",
+"quote": "regression: the existing vendor bill, credit, invoice and JE sync suites unchanged for billable work",
+"note": "invariant"
+},
+{
+"src": "cand/c24.tsv:3",
+"line": 2735,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "ORDER BY date DESC, id DESC; totals and the per-category summary are one aggregate each over the same WHERE",
+"note": ""
+},
+{
+"src": "cand/c24.tsv:4",
+"line": 2735,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2 prerequisites",
+"quote": "Money null without `ROLE_PRICING_VIEW`.",
+"note": "financial columns follow See Financial Data"
+},
+{
+"src": "cand/c24.tsv:5",
+"line": 2735,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R4",
+"quote": "Empty envelope before the first-close marker (S9-R4, Q31 ✓).",
+"note": "direct link before first Close shows empty state"
+},
+{
+"src": "cand/c24.tsv:6",
+"line": 2736,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "comeback rate = comeback lines / completed lines; totals count each line once",
+"note": ""
+},
+{
+"src": "cand/c24.tsv:7",
+"line": 2737,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "`format=csv&tab=by_line|by_technician` → one CSV of the tab that is open",
+"note": ""
+},
+{
+"src": "cand/c24.tsv:8",
+"line": 2737,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2",
+"quote": "`format=pdf` → one PDF with both tabs as sections",
+"note": ""
+},
+{
+"src": "cand/c24.tsv:9",
+"line": 2739,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R3",
+"quote": "under `all` and `only` a no-charge line's `tech_time` (`:71,98`) counts as 0 invoiced hours while its clocks stay worked hours, and `hide` leaves out both the billed and the clocked hours of non-billable work orders and no-charge lines (S9-R3)",
+"note": ""
+},
+{
+"src": "cand/c24.tsv:10",
+"line": 2739,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R1; S9-R3",
+"quote": "The dashboard card uses `all` (S9-R1).",
+"note": ""
+},
+{
+"src": "cand/c24.tsv:11",
+"line": 2740,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R3",
+"quote": "Billing Efficiency (no-charge line hours and $0 never enter the effective rate)",
+"note": ""
+},
+{
+"src": "cand/c24.tsv:12",
+"line": 2742,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R9; S9-R12",
+"quote": "non-billable rows value 0; a no-charge line keeps the existing $0-line treatment",
+"note": "WIP"
+},
+{
+"src": "cand/c24.tsv:13",
+"line": 2743,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R6; S9-R4",
+"quote": "`include_non_billable` (honored only once the marker is set)",
+"note": ""
+},
+{
+"src": "cand/c24.tsv:14",
+"line": 2743,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R6",
+"quote": "with it on, closed invoices emit labor/part rows at 0.00, no tax, no Supplies row, and the CSV gains `Classification` and `Category`",
+"note": ""
+},
+{
+"src": "cand/c24.tsv:15",
+"line": 2743,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R13",
+"quote": "a no-charge line of a billable invoice is a 0.00 row with the category in its description regardless of the option",
+"note": ""
+},
+{
+"src": "cand/c24.tsv:16",
+"line": 2745,
+"raw_verdict": "INV",
+"prd": "S9-R15",
+"quote": "`CustomersSpendingExcludesClosedTest.php` (voids still counted)",
+"note": "invariant: Customers Spending keeps counting voids as today"
+},
+{
+"src": "cand/c24.tsv:17",
+"line": 2745,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R6",
+"quote": "option off = byte-identical fixture",
+"note": ""
+},
+{
+"src": "cand/c25.tsv:1",
+"line": 2759,
+"raw_verdict": "CONFIRM",
+"prd": "Permission matrix rule (1)",
+"quote": "Every write in the PRD permission matrix is refused server-side with 403 without its atom (Key Decisions, permissions rule 1).",
+"note": ""
+},
+{
+"src": "cand/c25.tsv:2",
+"line": 2762,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E5",
+"quote": "the number is the stored snapshot (D55), so a deleted original still shows its number, as text without a link (S12-E5)",
+"note": ""
+},
+{
+"src": "cand/c25.tsv:3",
+"line": 2769,
+"raw_verdict": "CONFIRM",
+"prd": "Permission matrix (Turn the setting on)",
+"quote": "`ROLE_ORGANIZATION_CREATE_AND_EDIT`",
+"note": "same atom as today's Settings save (resolves the 595 check)"
+},
+{
+"src": "cand/c25.tsv:4",
+"line": 2774,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R2; S2-N2",
+"quote": "Missing key with `no_charge` → 400 field `no_charge_category_key` \"Pick a category\"; `no_charge` without `ROLE_PRICING_VIEW` → 403; archived → 422 `category_archived`. Ignored when the customer is flagged or the setting is off",
+"note": ""
+},
+{
+"src": "cand/c25.tsv:5",
+"line": 2778,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E8; S12-N3",
+"quote": "the FE hides Mark as No Charge while `no_charge_blocked_reason` is not null (S12-E8), except `invoiced`, where Mark as No Charge and Mark as Billable show disabled with the tooltip \"Reverse the invoice first.\" (S12-N3)",
+"note": ""
+},
+{
+"src": "cand/c25.tsv:6",
+"line": 2785,
+"raw_verdict": "CONFIRM",
+"prd": "S11-R4; S12-R9",
+"quote": "non-billable work order → 409 `work_order_not_billable` (\"This work order is internal or no charge. Close it in ShopView.\"); 409 `no_charge_line_original_required` `{line_id, line_title}` (S12-R9)",
+"note": ""
+},
+{
+"src": "cand/c25.tsv:7",
+"line": 2793,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E7",
+"quote": "parts of a no-charge line listed at a fixed $0.00; any other amount → 422 `no_charge_line_credit_fixed` (Q35 ✓)",
+"note": ""
+},
+{
+"src": "cand/c25.tsv:8",
+"line": 2794,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R19",
+"quote": "`sellPriceSuppressed: 'internal'|'no_charge'|'no_charge_line'|null` (the FE picks the notice text from it)",
+"note": "three notice texts"
+},
+{
+"src": "cand/c25.tsv:9",
+"line": 2795,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R18",
+"quote": "system notes: `source: system`, author name \"ShopView\"",
+"note": ""
+},
+{
+"src": "cand/c25.tsv:10",
+"line": 2801,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R6; S9-R4",
+"quote": "+ `include_non_billable=0\\|1` (default 0; ignored until the marker is set)",
+"note": ""
+},
+{
+"src": "cand/c25.tsv:11",
+"line": 2809,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R2",
+"quote": "> 50 ids → 400 (the modal caps the picker at 50: \"Pick up to 50 customers here. Flag more from Edit Customer.\", S1-R2 v1.0, Q64 ✓)",
+"note": ""
+},
+{
+"src": "cand/c25.tsv:12",
+"line": 2813,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11; S1-N6",
+"quote": "≤ 10 rows, newest first; `total` over every workplace the caller can access (D36); `can_make_internal` = `ROLE_WORK_ORDER_CREATE_AND_EDIT` (S1-N6)",
+"note": ""
+},
+{
+"src": "cand/c25.tsv:13",
+"line": 2816,
+"raw_verdict": "ADD",
+"prd": "S1-R10",
+"quote": "flagged customers with `total > 0`, ≤ 50, by name",
+"note": "after re-enable, Make internal dialogs for at most 50 flagged customers, in name order; PRD silent"
+},
+{
+"src": "cand/c26.tsv:1",
+"line": 2820,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "\"reason\": \"deposit\"|\"not_open\"|\"not_billable\"",
+"note": "Make internal skips deposits"
+},
+{
+"src": "cand/c26.tsv:2",
+"line": 2825,
+"raw_verdict": "CONFIRM",
+"prd": "S2-N4; S2-N3",
+"quote": "`deposit_exists` (\"Reverse the deposit first.\"), `customer_is_internal`",
+"note": ""
+},
+{
+"src": "cand/c26.tsv:3",
+"line": 2829,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R6",
+"quote": "saves when the category **or** the original reference differs (Q36 ✓), else 409 `category_unchanged`; a category that does not require the original clears it; allowed with the setting off",
+"note": ""
+},
+{
+"src": "cand/c26.tsv:4",
+"line": 2833,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R8",
+"quote": "Empty `bills` or null `integration` → no dialog.",
+"note": "S2-R8 dialog not shown without an accounting integration"
+},
+{
+"src": "cand/c26.tsv:5",
+"line": 2853,
+"raw_verdict": "CONFIRM",
+"prd": "S3-E4; S7-N5",
+"quote": "`quickbooks` null when not connected at the location (S3-E4); `inventory_accounts_mapped` false → the S7-N5 note (D35)",
+"note": ""
+},
+{
+"src": "cand/c26.tsv:6",
+"line": 2859,
+"raw_verdict": "CONFIRM",
+"prd": "S3-E5",
+"quote": "`work_order_changed` (\"This work order changed. Review and close again.\", S3-E5)",
+"note": ""
+},
+{
+"src": "cand/c26.tsv:7",
+"line": 2860,
+"raw_verdict": "CONFIRM",
+"prd": "KD Close always succeeds",
+"quote": "Accounting failures never fail the request.",
+"note": ""
+},
+{
+"src": "cand/c26.tsv:8",
+"line": 2866,
+"raw_verdict": "ADD",
+"prd": "S9-R2",
+"quote": "≤ 366 days else 400 \"Date range cannot exceed 366 days.\"; default this month",
+"note": "report range error copy; PRD says at most 12 months"
+},
+{
+"src": "cand/c26.tsv:9",
+"line": 2870,
+"raw_verdict": "ADD",
+"prd": "S9-R2",
+"quote": "10,000 rows → 400 `ReportExportTooLargeError`",
+"note": "report export refused above 10,000 rows per tab"
+},
+{
+"src": "cand/c26.tsv:10",
+"line": 2874,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R14",
+"quote": "`quickbooks_accounts` lists the connected locations the user can access (Q41 ✓)",
+"note": ""
+},
+{
+"src": "cand/c26.tsv:11",
+"line": 2876,
+"raw_verdict": "ADD",
+"prd": "S1-R16",
+"quote": "`include_archived=1` only for the report",
+"note": "archived categories appear only in the report's Category filter"
+},
+{
+"src": "cand/c26.tsv:12",
+"line": 2878,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R13",
+"quote": "`category_limit_reached` (\"You can have up to 100 active categories in this list. Archive one to add another.\", S1-R13 v1.0, Q64 ✓)",
+"note": ""
+},
+{
+"src": "cand/c26.tsv:13",
+"line": 2880,
+"raw_verdict": "ADD",
+"prd": "S1-R16; S5-R1",
+"quote": "409 `category_archived` for fields other than the accounts (accounts stay editable on archived categories, Q40 ✓)",
+"note": "an archived category cannot be renamed or edited until restored; only its accounts stay editable"
+},
+{
+"src": "cand/c26.tsv:14",
+"line": 2884,
+"raw_verdict": "ADD",
+"prd": "S1-R13",
+"quote": "restore at 100 active categories in the list → 422 `category_limit_reached` (the N15 copy, S1-R13 v1.0)",
+"note": "Restore refused at 100 active"
+},
+{
+"src": "cand/c26.tsv:15",
+"line": 2886,
+"raw_verdict": "ADD",
+"prd": "S1-R14",
+"quote": "accounts with the QuickBooks classification Expense — types Expense, Other Expense and Cost of Goods Sold (D46, Q52 ✓)",
+"note": ""
+},
+{
+"src": "cand/c27.tsv:1",
+"line": 2888,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R1",
+"quote": "\"source\": \"asset\"|\"customer\"|\"organization_default\"|null",
+"note": "tooltip source"
+},
+{
+"src": "cand/c27.tsv:2",
+"line": 2890,
+"raw_verdict": "ADD",
+"prd": "S2-R2",
+"quote": "≤ 25 rows: the customer's invoiced, paid and closed work orders at accessible locations (Q38 ✓), same asset first, then newest; `{ \"id\", \"number\", \"display_number\", \"date\", \"first_line_title\", \"same_asset\" }`; search on the number",
+"note": "Original work order select: search by number, max 25, newest after same-asset"
+},
+{
+"src": "cand/c27.tsv:3",
+"line": 2896,
+"raw_verdict": "CONFIRM",
+"prd": "S12-N3; S12-N2; S12-E8; S12-N1",
+"quote": "409 `work_order_invoiced` (S12-N3), `work_order_not_billable` (S12-N2), `line_declined`, `line_has_return_or_credit` (S12-E8), `internal_work_orders_off` (S12-N1)",
+"note": ""
+},
+{
+"src": "cand/c27.tsv:4",
+"line": 2906,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4; S2-R13",
+"quote": "Close and Reopen also keep today's `invoice.created` / `invoice.reversed` entries (S3-R4). Shop supplies changes keep `work_order.shop_supplies.overridden`.",
+"note": ""
+},
+{
+"src": "cand/c27.tsv:5",
+"line": 2908,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R18; S2-R5",
+"quote": "Convert to No Charge (\"Converted to No Charge by [user]. Category [name], original work order [number]. Prices, fees and discounts removed; costs and hours kept.\" + the S2-R20 removal summary + the lines whose own no-charge categories were replaced, by line and former category, S2-R5)",
+"note": ""
+},
+{
+"src": "cand/c27.tsv:6",
+"line": 2908,
+"raw_verdict": "ADD",
+"prd": "S2-R18",
+"quote": "`Source::SYSTEM`, never customer-visible",
+"note": "system notes never shown to the customer (portal)"
+},
+{
+"src": "cand/c27.tsv:7",
+"line": 2920,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R3",
+"quote": "a closed work order is not deletable (Reopen first)",
+"note": "invoiced-work-order locks apply"
+},
+{
+"src": "cand/c27.tsv:8",
+"line": 2919,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R3",
+"quote": "no second invoice or Close on a closed work order",
+"note": ""
+},
+{
+"src": "cand/c28.tsv:1",
+"line": 2956,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R5; S3-R6",
+"quote": "A/R aging, collections, statements, credit limit (`customer_transaction` INNER JOIN `invoice`) | ct-driven | no ct written ⇒ excluded ✓",
+"note": ""
+},
+{
+"src": "cand/c28.tsv:2",
+"line": 2957,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R5",
+"quote": "IBS batches | payment-driven | excluded ✓",
+"note": ""
+},
+{
+"src": "cand/c28.tsv:3",
+"line": 2979,
+"raw_verdict": "ADD",
+"prd": "S3-R4",
+"quote": "refuses a closed invoice with 409 `use_reopen_work_order`",
+"note": "manual payment change on a closed record refused"
+},
+{
+"src": "cand/c28.tsv:4",
+"line": 2975,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R6",
+"quote": "closed rows shown with `display_status: closed`; the FE renders \"Closed\", never the payment label",
+"note": "asset Invoices tab"
+},
+{
+"src": "cand/c29.tsv:1",
+"line": 3014,
+"raw_verdict": "ADD",
+"prd": "S2-R10",
+"quote": "**Search reindex** of `work_orders` is a release step; without it only search results miss the badge.",
+"note": "global search badge depends on the launch reindex"
+},
+{
+"src": "cand/c29.tsv:2",
+"line": 3016,
+"raw_verdict": "INV",
+"prd": "S9-E2",
+"quote": "**Existing $0 corpus** (work orders paid with $0 invoices) stays billable (S9-E2); nothing touches it.",
+"note": ""
+},
+{
+"src": "cand/c29.tsv:3",
+"line": 3024,
+"raw_verdict": "INV",
+"prd": "S3-N1; S12-R10",
+"quote": "billable service invoice, $0 billable invoice (auto-paid + webhooks), part-sale invoice, deposit auto-apply, carry credit",
+"note": "invariant (regression table)"
+},
+{
+"src": "cand/c29.tsv:4",
+"line": 3025,
+"raw_verdict": "INV",
+"prd": "S4-N2",
+"quote": "billable reverse + customer-transaction removal unchanged",
+"note": ""
+},
+{
+"src": "cand/c29.tsv:5",
+"line": 3026,
+"raw_verdict": "INV",
+"prd": "S9-R14",
+"quote": "billable totals identical; parity test green",
+"note": ""
+},
+{
+"src": "cand/c29.tsv:6",
+"line": 3029,
+"raw_verdict": "INV",
+"prd": "S10 (invariant)",
+"quote": "billable %/min/max unchanged",
+"note": "billable shop supplies rules unchanged"
+},
+{
+"src": "cand/c29.tsv:7",
+"line": 3030,
+"raw_verdict": "INV",
+"prd": "S2-R19",
+"quote": "billable and part-sale prices unchanged (SV-9965, SV-10082 behaviors)",
+"note": ""
+},
+{
+"src": "cand/c29.tsv:8",
+"line": 3031,
+"raw_verdict": "INV",
+"prd": "S2-R21",
+"quote": "templates and customer defaults still applied on billable and part sales",
+"note": ""
+},
+{
+"src": "cand/c29.tsv:9",
+"line": 3032,
+"raw_verdict": "INV",
+"prd": "S2-R10",
+"quote": "`invoiced`/`paid` filters unchanged on billable-only data; Completed tab unaffected",
+"note": ""
+},
+{
+"src": "cand/c29.tsv:10",
+"line": 3033,
+"raw_verdict": "INV",
+"prd": "S3-R3",
+"quote": "SENT/PAID spawn unchanged; absent `no_charge` block → identical; `is_warranty` input ignored",
+"note": "adding a line to an invoiced billable WO still spawns as today"
+},
+{
+"src": "cand/c29.tsv:11",
+"line": 3034,
+"raw_verdict": "INV",
+"prd": "S2-R7",
+"quote": "deposit refusal, part-sale lock, authorizer clear unchanged",
+"note": "Change Customer on billable/part sales unchanged"
+},
+{
+"src": "cand/c29.tsv:12",
+"line": 3035,
+"raw_verdict": "INV",
+"prd": "S2-E2",
+"quote": "billable split/move unchanged",
+"note": ""
+},
+{
+"src": "cand/c29.tsv:13",
+"line": 3036,
+"raw_verdict": "INV",
+"prd": "S7-R3",
+"quote": "billable bills/credits post to the same accounts; `line_class_ids` unchanged",
+"note": ""
+},
+{
+"src": "cand/c29.tsv:14",
+"line": 3038,
+"raw_verdict": "INV",
+"prd": "S9-R6; S7-R8",
+"quote": "billable rows byte-identical; option off = today's file",
+"note": "Customer Invoice CSV and QuickBooks invoice sync"
+},
+{
+"src": "cand/c29.tsv:15",
+"line": 3039,
+"raw_verdict": "INV",
+"prd": "S9-R3",
+"quote": "identical numbers on billable-only data",
+"note": "Technician Efficiency report, PDF, dashboard card"
+},
+{
+"src": "cand/c29.tsv:16",
+"line": 3041,
+"raw_verdict": "INV",
+"prd": "S5-R1",
+"quote": "unknown key still 422; existing rows unchanged",
+"note": "existing ShopView Accounts rows unchanged"
+},
+{
+"src": "cand/c29.tsv:17",
+"line": 3042,
+"raw_verdict": "INV",
+"prd": "S12-E7",
+"quote": "billable credits unchanged",
+"note": "Issue Credit on billable"
+},
+{
+"src": "cand/c29.tsv:18",
+"line": 3043,
+"raw_verdict": "INV",
+"prd": "S9-R15",
+"quote": "void invoices still counted",
+"note": "Customers Spending"
+},
+{
+"src": "cand/c29.tsv:19",
+"line": 3116,
+"raw_verdict": "ADD",
+"prd": "S2-N5",
+"quote": "a deposit refused by `deposits_not_available` after a portal checkout is recorded with a distinct activity reason so the admin's existing refund action applies (no auto-refund in this release)",
+"note": "portal deposit attempt on internal/no-charge WO: no auto-refund"
+},
+{
+"src": "cand/c30.tsv:1",
+"line": 3127,
+"raw_verdict": "DESIGN",
+"prd": "S1-R13",
+"quote": "the categories page stays editable while the setting is off (frame 2e draws it read-only)",
+"note": "design vs PRD; plan builds the PRD text"
+},
+{
+"src": "cand/c30.tsv:2",
+"line": 3127,
+"raw_verdict": "DESIGN",
+"prd": "S1-R13; S13-R1",
+"quote": "the starting categories exist from the release (frames 2a/2b say \"seeded when the setting is first turned on\")",
+"note": "design vs PRD; plan builds the PRD text"
+},
+{
+"src": "cand/c30.tsv:3",
+"line": 3127,
+"raw_verdict": "DESIGN",
+"prd": "S2-R1; S2-R2",
+"quote": "the S2-R1 / S2-R2 tooltip copy (frames 2a/2e show retired wording)",
+"note": "design vs PRD"
+},
+{
+"src": "cand/c30.tsv:4",
+"line": 3127,
+"raw_verdict": "DESIGN",
+"prd": "S3-N4",
+"quote": "\"No account set for [category]\" in the Close confirmation (frame 7b says \"internal work orders\")",
+"note": "design vs PRD"
+},
+{
+"src": "cand/c30.tsv:5",
+"line": 3127,
+"raw_verdict": "DESIGN",
+"prd": "S9-R2",
+"quote": "the By technician row \"Unassigned\" (frame 4/6 says \"Not in ShopView / no technician\")",
+"note": "design vs PRD"
+},
+{
+"src": "cand/c30.tsv:6",
+"line": 3127,
+"raw_verdict": "DESIGN",
+"prd": "S8-N2",
+"quote": "Held reason \"[Category] row not mapped\" (frame 5/4 says \"expense account is not mapped\")",
+"note": "design vs PRD"
+},
+{
+"src": "cand/c30.tsv:7",
+"line": 3141,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R3",
+"quote": "A closed work order stays raw `invoiced`/`paid` (D2), so every lock reading the raw status already locks it.",
+"note": "invoiced-WO locks apply to closed"
+},
+{
+"src": "cand/c30.tsv:8",
+"line": 3146,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R3",
+"quote": "The FE renders `$0.00` in the Rate cell and blanks Margin for a no-charge line itself (D28 per-line override)",
+"note": ""
+},
+{
+"src": "cand/c30.tsv:9",
+"line": 3148,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R22",
+"quote": "Nothing to remove from the line dialog; the FE stops sending `is_warranty` (D57); the print chip \"No Charge · [category]\" is new print content (Q44 ✓)",
+"note": ""
+},
+{
+"src": "cand/c30.tsv:10",
+"line": 3149,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R1",
+"quote": "The No Charge block lives in Edit Line / New Line (`LineDialog.vue`) only (Q47 ✓)",
+"note": "Line Builder lines marked from the line menu"
+},
+{
+"src": "cand/c30.tsv:11",
+"line": 3150,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R19",
+"quote": "Notice per last-edited row; preview learns suppression; the vendor-invoice dialog gains the cost-only notice for affected items (Q48 ✓)",
+"note": ""
+},
+{
+"src": "cand/c30.tsv:12",
+"line": 3155,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E7",
+"quote": "No-charge parts are listed at $0.00 with the restocking fee disabled (Q35 ✓)",
+"note": ""
+},
+{
+"src": "cand/c30.tsv:13",
+"line": 3156,
+"raw_verdict": "ADD",
+"prd": "S8-N2",
+"quote": "Event rows map `held` → scoped key `event_held` (amber) (E-6); invoices reuse `closed`",
+"note": "Held event pill amber (deposit Held stays blue); Closed invoice pill grey"
+},
+{
+"src": "cand/c30.tsv:14",
+"line": 3169,
+"raw_verdict": "CONFIRM",
+"prd": "S2-N4",
+"quote": "`NO_CHARGE_DEPOSIT_TOOLTIP = 'Reverse the deposit first'`",
+"note": ""
+},
+{
+"src": "cand/c31.tsv:1",
+"line": 3171,
+"raw_verdict": "ADD",
+"prd": "S2-R3; S2-R10",
+"quote": "`STATUS_COLOR_MAP.closed = ['grey-10', 'grey-2']` + text map (neutral; orange belongs to the badge and header)",
+"note": "Closed status pill is neutral grey"
+},
+{
+"src": "cand/c31.tsv:2",
+"line": 3172,
+"raw_verdict": "ADD",
+"prd": "S2-R3",
+"quote": "\"Internal\" filled `orange-2/orange-10`; \"No Charge\" outlined `orange-8` (S2-R3 \"a different style\")",
+"note": "badge styles: Internal filled orange, No Charge outlined orange"
+},
+{
+"src": "cand/c31.tsv:3",
+"line": 3173,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R8",
+"quote": "\"Internal\" pill for customers (S1-R8), only while `isEnabled`",
+"note": ""
+},
+{
+"src": "cand/c31.tsv:4",
+"line": 3176,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R2; S2-R17; S12-E2",
+"quote": "\"Original technician: [names]\" / \"Original technician: none\". A category that does not require the original clears both. A stored original stays displayed even when the current customer's candidates do not contain it (S12-E2)",
+"note": ""
+},
+{
+"src": "cand/c31.tsv:5",
+"line": 3177,
+"raw_verdict": "ADD",
+"prd": "S2-R2",
+"quote": "headers \"Same asset\" / \"Other work orders\" / \"Other\"; option \"number · date · first line\"; \"Not in ShopView\" under Other",
+"note": "Original work order select group headings"
+},
+{
+"src": "cand/c31.tsv:6",
+"line": 3182,
+"raw_verdict": "ADD",
+"prd": "S2-R3",
+"quote": "`.order-status-card--non-billable` with `var(--sv-warning-border)` / `var(--sv-warning-fill)`",
+"note": "header card uses the warning border/fill tokens (PRD: design authority names the token)"
+},
+{
+"src": "cand/c31.tsv:7",
+"line": 3190,
+"raw_verdict": "CONFIRM",
+"prd": "S13-R5",
+"quote": "Until the release switch flips, `internalWorkOrdersAvailable` is false and no new surface renders (D43).",
+"note": ""
+},
+{
+"src": "cand/c32.tsv:1",
+"line": 3222,
+"raw_verdict": "INV",
+"prd": "S3-N1",
+"quote": "Create invoice from header, menu, bulk bar and Finance tab on a billable WO: identical behavior.",
+"note": ""
+},
+{
+"src": "cand/c32.tsv:2",
+"line": 3233,
+"raw_verdict": "ADD",
+"prd": "S1-R13",
+"quote": "`q-route-tab` in the Service group (`:123-224`) after Fees & Discounts",
+"note": "Internal Work Orders tab position in Administration > Service"
+},
+{
+"src": "cand/c32.tsv:3",
+"line": 3239,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R13",
+"quote": "While the setting is off: `InfoNotice` \"Internal Work Orders is off. Turn it on in Settings > Work Orders.\" (`InfoNotice` suffix `iwo_categories_setting_off` → `banner_iwo_categories_setting_off`); the lists stay editable.",
+"note": ""
+},
+{
+"src": "cand/c32.tsv:4",
+"line": 3240,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R13",
+"quote": "each disabled once its list holds 100 active categories (N13 `meta.active_count`), with \"You can have up to 100 active categories in this list. Archive one to add another.\" shown beside it",
+"note": ""
+},
+{
+"src": "cand/c32.tsv:5",
+"line": 3241,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R13",
+"quote": "an empty account reads \"Not set\" with a warning icon",
+"note": ""
+},
+{
+"src": "cand/c32.tsv:6",
+"line": 3242,
+"raw_verdict": "ADD",
+"prd": "S1-R13; S1-R16",
+"quote": "Archive on the default category is disabled with the tooltip \"One default at a time; it cannot be archived.\"",
+"note": "tooltip copy (PRD helper words)"
+},
+{
+"src": "cand/c32.tsv:7",
+"line": 3243,
+"raw_verdict": "ADD",
+"prd": "S1-R13",
+"quote": "\"Show archived (n)\" (`link_show_archived_categories`, n = N13 `meta.archived_count`) switches the table to the archived rows with Restore (`button_restore_category_<key>`); \"Show active\" returns.",
+"note": "\"Show active\" link"
+},
+{
+"src": "cand/c32.tsv:8",
+"line": 3245,
+"raw_verdict": "ADD",
+"prd": "S1-R14",
+"quote": "titles \"New Internal Category\" / \"New No Charge Category\" / \"Edit Category\"",
+"note": "Edit dialog title \"Edit Category\""
+},
+{
+"src": "cand/c32.tsv:9",
+"line": 3247,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R14",
+"quote": "Without Settings — Integrations each picker is read-only with \"Set in Integrations > QuickBooks\"",
+"note": ""
+},
+{
+"src": "cand/c32.tsv:10",
+"line": 3247,
+"raw_verdict": "ADD",
+"prd": "S1-R14",
+"quote": "Hidden when no location is connected.",
+"note": "QuickBooks account pickers hidden when no location is connected"
+},
+{
+"src": "cand/c32.tsv:11",
+"line": 3248,
+"raw_verdict": "ADD",
+"prd": "S1-R14",
+"quote": "Internal: checkbox \"Default category\" (`checkbox_iwo_category_default`) + helper; it cannot be unticked on the current default.",
+"note": ""
+},
+{
+"src": "cand/c32.tsv:12",
+"line": 3249,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R14",
+"quote": "AccountingHub: read-only line from `accounting_hub_account_label` when the hub is enabled",
+"note": ""
+},
+{
+"src": "cand/c32.tsv:13",
+"line": 3250,
+"raw_verdict": "ADD",
+"prd": "S1-R14",
+"quote": "`showMustDismissError('Could not save the category. Try again.')`; the dialog stays open.",
+"note": "category save failure copy; PRD has none"
+},
+{
+"src": "cand/c32.tsv:14",
+"line": 3252,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R16",
+"quote": "\"[n] internal customers and [m] assets use this category as their default. Their new work orders will use the next category in line.\" (S1-R16)",
+"note": ""
+},
+{
+"src": "cand/c32.tsv:15",
+"line": 3252,
+"raw_verdict": "ADD",
+"prd": "S1-R16",
+"quote": "else \"Archive [name]? It stays on the work orders and lines that used it.\"",
+"note": "archive dialog copy when no default uses it; PRD has none"
+},
+{
+"src": "cand/c32.tsv:16",
+"line": 3258,
+"raw_verdict": "ADD",
+"prd": "S13-R5",
+"quote": "a direct link while the release switch is off (redirect)",
+"note": "categories page link redirects while the release gate is closed"
+},
+{
+"src": "cand/c33.tsv:1",
+"line": 3265,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R1",
+"quote": "so the rows sit directly under Cost of Parts and above Cost of Goods (tax) (S5-R1)",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:2",
+"line": 3266,
+"raw_verdict": "ADD",
+"prd": "S5-R1",
+"quote": "on the default Internal category (`isDefault`), a \"Default\" badge",
+"note": "Default badge on the ShopView Accounts row of the default category; PRD names it only on the categories page"
+},
+{
+"src": "cand/c33.tsv:3",
+"line": 3266,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R1",
+"quote": "\"Shop supplies on internal and no-charge work orders are credited to the income account of your Shop supplies item in Products And Services; nothing to map here.\"",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:4",
+"line": 3267,
+"raw_verdict": "CONFIRM",
+"prd": "S5-R4; S5-R5",
+"quote": "\"Not set. Parts cost of [category] work orders posts to the ShopView Review account until you pick one.\" for an empty category row while `isEnabled`, and nothing while the setting is off (S5-R4, S5-R5)",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:5",
+"line": 3272,
+"raw_verdict": "INV",
+"prd": "S5-R1",
+"quote": "no existing Accounts row regrouped",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:6",
+"line": 3285,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R10",
+"quote": "After a save whose saved value went off → on, run the S1-R10 sweep (N3 → `useMakeInternalQueue`).",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:7",
+"line": 3287,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R3; S1-R4",
+"quote": "\"No internal customer yet. Work orders for your own equipment stay billable until you flag one: Edit Customer > Internal customer. No Charge on customer work orders works now.\"",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:8",
+"line": 3288,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R3",
+"quote": "names \"Accounting > Account Mappings\" (`link_iwo_hint_account_mappings` → `AccountingSystemAccounts`) when `accountingHubEnabled`; both when both; omitted when neither.",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:9",
+"line": 3289,
+"raw_verdict": "ADD",
+"prd": "S1-R2",
+"quote": "at most 50 picks (a 51st is not added) with the hint \"Pick up to 50 customers here. Flag more from Edit Customer.\" under the picker",
+"note": "a 51st pick is not added"
+},
+{
+"src": "cand/c33.tsv:10",
+"line": 3289,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R2; S1 errors",
+"quote": "The X (`@close`) runs Do this later; Esc and outside click do nothing (GR#9). Failure → \"Could not save the internal customer. Try again.\" (must dismiss), dialog stays open with the picks.",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:11",
+"line": 3290,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "rows `row_make_internal_<id>` \"number · location · unit · status\" (up to 10); notes `text_make_internal_note_deposit_<id>` \"Deposit: stays billable\", `text_make_internal_note_vendor_bill_<id>` \"Vendor bill: cost moves at Close\"",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:12",
+"line": 3290,
+"raw_verdict": "CONFIRM",
+"prd": "S1 errors",
+"quote": "\"[n] work orders could not be made internal. Open Edit Customer and save to try again.\" (must dismiss)",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:13",
+"line": 3291,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R2; S1-R10",
+"quote": "FIFO, one dialog at a time (S1-R2, S1-R10)",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:14",
+"line": 3292,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R12",
+"quote": "(first sentence omitted when `open_internal_work_orders_count` is 0); Cancel / \"Remove flag\"",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:15",
+"line": 3294,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R7; S1-N4",
+"quote": "`v-if=\"editMode && isAvailable && (isEnabled || initialInternal)\"`, `:disable=\"!isEnabled\"`",
+"note": "checkbox on Edit only; read-only when off"
+},
+{
+"src": "cand/c33.tsv:16",
+"line": 3295,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R7; S1-R16",
+"quote": "A stored archived value displays \"[name] (archived)\" with `text_customer_default_category_archived` \"Archived. Pick an active category.\" (Q51 ✓).",
+"note": ""
+},
+{
+"src": "cand/c33.tsv:17",
+"line": 3296,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R6",
+"quote": "Untick when `initialInternal` → `RemoveInternalFlagDialog`; Cancel re-ticks (S1-R6).",
+"note": ""
+},
+{
+"src": "cand/c34.tsv:1",
+"line": 3301,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R15",
+"quote": "\"Categories are mapped to QuickBooks expense accounts. This one is where the asset's internal work orders post. Leave it empty to use the customer's category, [customer's default].\"",
+"note": ""
+},
+{
+"src": "cand/c34.tsv:2",
+"line": 3302,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R15; S12-E8",
+"quote": "Rendered only `isEditMode && internal_category_applicable && isEnabled && isAvailable`; a stored value on an asset of a non-flagged customer stays hidden (S12-E8).",
+"note": ""
+},
+{
+"src": "cand/c34.tsv:3",
+"line": 3306,
+"raw_verdict": "CONFIRM",
+"prd": "Permission matrix",
+"quote": "toggle and modal on the Settings route (`settingsApp`; the modal flags customers without a customer atom, S1-N2). The checkbox and the default category are inside Edit Customer (`canEdit('customers')`). Make internal by N2 `can_make_internal` (WO Create & Edit).",
+"note": ""
+},
+{
+"src": "cand/c34.tsv:4",
+"line": 3308,
+"raw_verdict": "INV",
+"prd": "S1-R7",
+"quote": "create payload byte-identical",
+"note": "New Customer unchanged"
+},
+{
+"src": "cand/c34.tsv:5",
+"line": 3325,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R1",
+"quote": "(source `organization_default` → \"… from the customer.\", Q51 ✓). N20 re-runs in `handleVehicleChange`. No checkbox, no category select (S2-R1).",
+"note": ""
+},
+{
+"src": "cand/c34.tsv:6",
+"line": 3326,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R2",
+"quote": "Regular customer selected and `seeFinancialData()`: `q-separator`, `q-checkbox v-model=\"workOrder.no_charge\" label=\"No Charge\"",
+"note": ""
+},
+{
+"src": "cand/c34.tsv:7",
+"line": 3327,
+"raw_verdict": "ADD",
+"prd": "S2-N3",
+"quote": "a watch on `company_id` clears the No Charge draft when the customer is internal",
+"note": "switching to an internal customer in New Work Order clears a ticked No Charge"
+},
+{
+"src": "cand/c34.tsv:8",
+"line": 3330,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R5; S2-N1; S2-N2; S2-N3; S2-N4",
+"quote": "`isEnabled && classification === 'billable' && type === 'service' && !company.internal && !isWorkOrderStatusLocked(status_value) && canEdit('workOrders') && seeFinancialData()`; `:disable=\"hasWorkOrderDeposits(workOrder)\"` + tooltip \"Reverse the deposit first\"",
+"note": ""
+},
+{
+"src": "cand/c34.tsv:9",
+"line": 3331,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R6; S2-N1",
+"quote": "**not** gated on `isEnabled` (S2-N1)",
+"note": "Change category and Convert to Billable shown with setting off"
+},
+{
+"src": "cand/c35.tsv:1",
+"line": 3335,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R6",
+"quote": "Save enabled once the category, the original work order or the original line differs (Q36 ✓)",
+"note": ""
+},
+{
+"src": "cand/c35.tsv:2",
+"line": 3336,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R6; S2-N1",
+"quote": "\"Every line is priced as a new line would be today. You can convert it to no charge again until it is invoiced.\" — second sentence dropped while the setting is off (S2-N1)",
+"note": ""
+},
+{
+"src": "cand/c35.tsv:3",
+"line": 3337,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R8",
+"quote": "amounts omitted when `null` (no See Financial Data); Cancel / \"Continue\". Shown only when `bills.length > 0 && integration !== null` (S2-R8).",
+"note": ""
+},
+{
+"src": "cand/c35.tsv:4",
+"line": 3338,
+"raw_verdict": "CONFIRM",
+"prd": "S2 errors",
+"quote": "\"Could not change the work order. Try again.\" (must dismiss); dialog stays open.",
+"note": ""
+},
+{
+"src": "cand/c35.tsv:5",
+"line": 3339,
+"raw_verdict": "ADD",
+"prd": "S2-R7",
+"quote": "to billable \"Lines are priced as a new line would be today.\"",
+"note": "Change Customer dialog copy when the WO becomes billable"
+},
+{
+"src": "cand/c35.tsv:6",
+"line": 3340,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R9; S2-R7",
+"quote": "on a closed internal / no-charge WO the Change Customer button stays **rendered, disabled** with \"Reopen the work order to change the customer.\" — `shouldShowChangeCustomerAction` (`:510`) hides it today for raw `invoiced`/`paid`",
+"note": "billable invoiced WOs keep today's hidden control"
+},
+{
+"src": "cand/c35.tsv:7",
+"line": 3341,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R18",
+"quote": "System notes are already read-only (the edit/delete menu is gated on `isUserSource`, `:160`); the author name (\"ShopView\") comes from the note.",
+"note": "deleted refs as plain text"
+},
+{
+"src": "cand/c35.tsv:8",
+"line": 3353,
+"raw_verdict": "ADD",
+"prd": "S2-R4",
+"quote": "`COST_ONLY_COLUMNS` (drops `labour_type` / `margin`, relabels the third column \"Cost\")",
+"note": "lines table on a non-billable WO: Labour type and Margin columns dropped, a \"Cost\" column"
+},
+{
+"src": "cand/c35.tsv:9",
+"line": 3354,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R20",
+"quote": "hides the four fixed fields and filters `fixed_line_total` / `fixed_labour_price` out of `laborTypeOptionsWithCurrentLaborType` when `mode === 'costOnly'` or the line is no-charge",
+"note": ""
+},
+{
+"src": "cand/c35.tsv:10",
+"line": 3356,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R4; S10-R1",
+"quote": "non-billable → only `['Shop Supplies', shop_supplies]`; no Fees & Discounts, Payments, Balance",
+"note": "Financial Info card"
+},
+{
+"src": "cand/c35.tsv:11",
+"line": 3357,
+"raw_verdict": "CONFIRM",
+"prd": "S2-N5; S2-R11; S3-R5",
+"quote": "`button_new_deposit` hidden on non-billable (S2-N5); `button_send_to_portal` hidden on internal, and on no-charge once closed (S2-R11); `button_request_ibs_approval` hidden on non-billable; Customer PO not required (S3-R5)",
+"note": "resolves the 2638 check: IBS hidden on every non-billable WO"
+},
+{
+"src": "cand/c35.tsv:12",
+"line": 3357,
+"raw_verdict": "ADD",
+"prd": "S2-R4",
+"quote": "the discount/tax Settings button hidden on non-billable",
+"note": ""
+},
+{
+"src": "cand/c35.tsv:13",
+"line": 3359,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R11",
+"quote": "on a whole no-charge work order the per-line amounts are hidden and nothing priced is sent",
+"note": "Send to Portal dialog"
+},
+{
+"src": "cand/c35.tsv:14",
+"line": 3368,
+"raw_verdict": "DIVERGE",
+"prd": "S2-R10",
+"quote": "Status options (`:177-182`) gain `{ label: 'Closed', value: 'closed' }` when `hasFirstClose || isEnabled` (E-7)",
+"note": "PRD: the Status chip on the All tab gets \"Closed\" (no condition); plan hides it until the setting is on or the org has closed once"
+},
+{
+"src": "cand/c35.tsv:15",
+"line": 3369,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R10",
+"quote": "The Completed tab (`requestStatusFiltersFor`, `workOrdersFilters.ts:28-36`) already excludes closed rows (raw `invoiced`).",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:1",
+"line": 3371,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R12",
+"quote": "A billable WO with no-charge lines is listed as billable: no badge, stored total (S12-R12).",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:2",
+"line": 3381,
+"raw_verdict": "ADD",
+"prd": "S3-R1",
+"quote": "mobile icon `task_alt` with tooltip \"Close Work Order\"",
+"note": "mobile header Close icon (task_alt); PRD names only the tooltip"
+},
+{
+"src": "cand/c36.tsv:3",
+"line": 3383,
+"raw_verdict": "ADD",
+"prd": "S3-R3",
+"quote": "Success → `showSuccessNotification({ message: 'Work order [number] is Closed · Internal.' | '… is Closed · No Charge.' })`, refetch, route to `finance`.",
+"note": "after Close the page moves to the Finance tab"
+},
+{
+"src": "cand/c36.tsv:4",
+"line": 3385,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E7; S3-R1",
+"quote": "resolve-cores step hides `text_core_charge_<key>` amounts on non-billable (S2-E7); `title` (`:1812-1818`) has no \"invoice\" wording.",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:5",
+"line": 3389,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R2",
+"quote": "Close stays disabled until a work order or Not in ShopView is picked. Never shown for categories that do not require it.",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:6",
+"line": 3390,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R2",
+"quote": "`DateInput` \"Posting date\" (`input_close_work_order_posting_date`), default today, same mask and `formatDateLocalToUTC` as Invoice Date",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:7",
+"line": 3391,
+"raw_verdict": "CONFIRM",
+"prd": "S3-E1; S3-E2; S3-R2",
+"quote": "with no parts at all, one row `parts_cost` \"Parts cost $0.00\" instead of the stock and special-order rows (S3-E1)",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:8",
+"line": 3393,
+"raw_verdict": "CONFIRM",
+"prd": "S3-N4; S7-N5",
+"quote": "\"No account set for [category]. The entry posts to the ShopView Review account until you set one.\" + `link_close_set_account_quickbooks` \"Set account\" (only with `settingsIntegrations`); hub `banner_close_no_account_hub` \"No account set for [category]. The entry is held in Accounting Events until you set one.\"",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:9",
+"line": 3395,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R2; S3-E4",
+"quote": "\"Closed · No Charge\" on a no-charge WO in every variant; no account notes without an integration.",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:10",
+"line": 3397,
+"raw_verdict": "CONFIRM",
+"prd": "S3-E5; S3 errors",
+"quote": "409 `work_order_changed` → inline `error_close_work_order_changed` \"This work order changed. Review and close again.\", confirm disabled until reopened",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:11",
+"line": 3397,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R7",
+"quote": "with review required the Close button sends the work order to review as Create invoice does today",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:12",
+"line": 3400,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R1; S4-N1; S4-R2",
+"quote": "holds only `menu_item_reopen_work_order` \"Reopen Work Order\" (`canDelete('workOrders') && can_reopen`, S4-N1); no Reverse, no Issue Credit",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:13",
+"line": 3400,
+"raw_verdict": "ADD",
+"prd": "S4-R3",
+"quote": "success → refetch, stay on Finance",
+"note": "after Reopen the page stays on the Finance tab"
+},
+{
+"src": "cand/c36.tsv:14",
+"line": 3402,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R5; S3-R6",
+"quote": "Download / Print / Email unchanged; the Email recipient starts empty (S3-R5); no New Payment, Add Deposit, Issue Credit, Create invoice.",
+"note": ""
+},
+{
+"src": "cand/c36.tsv:15",
+"line": 3404,
+"raw_verdict": "INV",
+"prd": "S3-N5",
+"quote": "a billable one still shows \"Cannot invoice this customer. Customer is on Credit Hold\"",
+"note": "invariant: credit hold still blocks Create invoice on billable"
+},
+{
+"src": "cand/c37.tsv:1",
+"line": 3412,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R3; S12-N2; S12-R12",
+"quote": "never on a whole internal / no-charge WO (S2-R3, S12-N2) — and without See Financial Data too (S12-R12)",
+"note": ""
+},
+{
+"src": "cand/c37.tsv:2",
+"line": 3415,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E4",
+"quote": "An archived category keeps its name on the chip (S12-E4).",
+"note": ""
+},
+{
+"src": "cand/c37.tsv:3",
+"line": 3418,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R22; S12-E8",
+"quote": "prints \"No Charge · [category]\" beside the line name",
+"note": "Print Work Order chip"
+},
+{
+"src": "cand/c37.tsv:4",
+"line": 3419,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E3",
+"quote": "a core on a no-charge line shows its data-driven `$0.00` (S12-E3)",
+"note": ""
+},
+{
+"src": "cand/c37.tsv:5",
+"line": 3436,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R5; S12-N1",
+"quote": "On a no-charge line: \"Change category\" (`menu-item_change_line_category_<lineId>`) and \"Mark as Billable\" (`menu-item_mark_billable_<lineId>`), offered while the setting is off too (Q37 ✓).",
+"note": ""
+},
+{
+"src": "cand/c37.tsv:6",
+"line": 3437,
+"raw_verdict": "CONFIRM",
+"prd": "S12-N3; S12-R5",
+"quote": "all three render disabled with the tooltip \"Reverse the invoice first.\"",
+"note": ""
+},
+{
+"src": "cand/c38.tsv:1",
+"line": 3443,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R10",
+"quote": "\"All lines are No Charge. To close without an invoice and get the NO CHARGE document, convert the work order instead.\" when N23 `all_lines_no_charge` is true (S12-R10)",
+"note": ""
+},
+{
+"src": "cand/c38.tsv:2",
+"line": 3445,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R4",
+"quote": "\"Deposit $[deposit] exceeds the new total $[total]. The difference stays on the customer's account as a deposit when the invoice is created.\"",
+"note": "shown after a successful mark, with one OK"
+},
+{
+"src": "cand/c38.tsv:3",
+"line": 3447,
+"raw_verdict": "CONFIRM",
+"prd": "S12 errors",
+"quote": "\"Could not change the line. Try again.\" (must dismiss); the dialog stays open and the line is unchanged.",
+"note": ""
+},
+{
+"src": "cand/c38.tsv:4",
+"line": 3448,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R5",
+"quote": "\"The line is priced as a new line would be today. You can mark it No Charge again until the work order is invoiced.\"",
+"note": ""
+},
+{
+"src": "cand/c38.tsv:5",
+"line": 3451,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R1",
+"quote": "\"This line shows $0.00 on the invoice. Hours and parts stay; the parts cost posts to the category's expense account.\"",
+"note": ""
+},
+{
+"src": "cand/c38.tsv:6",
+"line": 3452,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R1; S12-N1; S12-N2",
+"quote": "Shown when the WO is billable and not invoiced, the setting is on, the user has `canEdit('workOrders') && seeFinancialData()`, and the line is not declined",
+"note": ""
+},
+{
+"src": "cand/c38.tsv:7",
+"line": 3453,
+"raw_verdict": "ADD",
+"prd": "S12-R4",
+"quote": "when the preview shows the deposit above the new total, the same sentence shows as a must-dismiss info notification after the save",
+"note": "Edit Line door shows the deposit sentence as a notification after save"
+},
+{
+"src": "cand/c38.tsv:8",
+"line": 3456,
+"raw_verdict": "ADD",
+"prd": "S12-R9",
+"quote": "show \"Line '[title]' needs its original work order (or Not in ShopView) before the invoice.\" (5 s, like the other refusals in that function) and open Edit Line on it",
+"note": "message shows for 5 seconds; no completion runs"
+},
+{
+"src": "cand/c38.tsv:9",
+"line": 3460,
+"raw_verdict": "ADD",
+"prd": "S12-E7",
+"quote": "lists parts of a no-charge line at $0.00 with \"No Charge · [category]\" under the name",
+"note": "Issue Credit shows the chip text under the part name"
+},
+{
+"src": "cand/c39.tsv:1",
+"line": 3471,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R8",
+"quote": "With no bills or no integration nothing is shown and Create invoice runs as today (the general confirmation removed in SV-10312 stays removed).",
+"note": ""
+},
+{
+"src": "cand/c39.tsv:2",
+"line": 3471,
+"raw_verdict": "INFO",
+"prd": "S7-R8",
+"quote": "two moves in opposite directions render two rows",
+"note": "grouping by account pair (see 2503 DIVERGE)"
+},
+{
+"src": "cand/c39.tsv:3",
+"line": 3472,
+"raw_verdict": "CONFIRM",
+"prd": "S4-E1",
+"quote": "A withdrawn row shows its reason from `withdrawn_reason` (\"Withdrawn: work order reopened\", \"Withdrawn: invoice [number] reversed\" or \"Withdrawn: category changed\") with no Export / Mark as Exported (D38).",
+"note": ""
+},
+{
+"src": "cand/c39.tsv:4",
+"line": 3480,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R19",
+"quote": "\"Internal work order: cost only, no sell price\" (`internal`); \"No Charge work order: cost only, no sell price\" (`no_charge`, Q51 ✓); \"No Charge line: cost only\" (`no_charge_line`)",
+"note": ""
+},
+{
+"src": "cand/c39.tsv:5",
+"line": 3481,
+"raw_verdict": "ADD",
+"prd": "S2-R19",
+"quote": "the sticky notice shows `costNoticeFor` of the **last edited row** (a purchase order can mix billable, internal and no-charge rows)",
+"note": "receive notice follows the last edited row; Sell column shows no derived price"
+},
+{
+"src": "cand/c39.tsv:6",
+"line": 3482,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R19",
+"quote": "an `InfoNotice` with the same cost-only text under the Cost field for an item on internal / no-charge work or a no-charge line",
+"note": "vendor-invoice item edit"
+},
+{
+"src": "cand/c39.tsv:7",
+"line": 3495,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R1",
+"quote": "For category rows `null` clears the account and keeps the row",
+"note": ""
+},
+{
+"src": "cand/c39.tsv:8",
+"line": 3499,
+"raw_verdict": "ADD",
+"prd": "S8-N2",
+"quote": "`{ label: 'Held', color: 'amber-3', textColor: 'amber-10' }`",
+"note": "Held pill amber"
+},
+{
+"src": "cand/c39.tsv:9",
+"line": 3499,
+"raw_verdict": "ADD",
+"prd": "S8-R1; S8-N2",
+"quote": "event label \"Work order closed · [number] · [classification]\" from `work_order`",
+"note": "Accounting Events label copy; PRD has none"
+},
+{
+"src": "cand/c39.tsv:10",
+"line": 3499,
+"raw_verdict": "CONFIRM",
+"prd": "S4-E1; S8-N2",
+"quote": "Dismissed rows show `dismissal_reason` verbatim (\"Withdrawn: work order reopened\", or the invoice-reversal and vendor-bill variants, D70); no Retry on Dismissed (`can_retry`).",
+"note": ""
+},
+{
+"src": "cand/c39.tsv:11",
+"line": 3502,
+"raw_verdict": "ADD",
+"prd": "S8-R3",
+"quote": "labels the row \"Cost move to [Category] · Vendor bill [number], line [n]\" (or \"Vendor credit …\") and `buildAccountingEventResultFields` adds a \"Source document\" field",
+"note": "deferred move label copy; PRD has none"
+},
+{
+"src": "cand/c39.tsv:12",
+"line": 3505,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R6",
+"quote": "Status filter option \"Closed\" (default All).",
+"note": ""
+},
+{
+"src": "cand/c39.tsv:13",
+"line": 3506,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R1; S8-R6",
+"quote": "`total` cell \"No Charge\" when `status === 'closed'`",
+"note": ""
+},
+{
+"src": "cand/c39.tsv:14",
+"line": 3507,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R1; S8-R7",
+"quote": "columns Line (number and title), Category, Original work order (and line), Original technician, Hours, Parts cost, Expense account, and a Held / Withdrawn state with `hold_message` when not posted (Q30 ✓)",
+"note": ""
+},
+{
+"src": "cand/c39.tsv:15",
+"line": 3508,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R6",
+"quote": "option \"Closed\", **not** in the default selection (S8-R6)",
+"note": ""
+},
+{
+"src": "cand/c40.tsv:1",
+"line": 3509,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R2; S8-R7",
+"quote": "`internal_work_order` \"Internal work order\", `no_charge_work_order` \"No-charge work order\" (S8-R2), `no_charge_line` \"No Charge line\" (Q50 ✓)",
+"note": "hub JE source labels"
+},
+{
+"src": "cand/c40.tsv:2",
+"line": 3509,
+"raw_verdict": "ADD",
+"prd": "S8-R2",
+"quote": "register short codes `IWO`, `NCWO`, `NCL`",
+"note": "hub register short codes; PRD silent"
+},
+{
+"src": "cand/c40.tsv:3",
+"line": 3519,
+"raw_verdict": "ADD",
+"prd": "S9-R2",
+"quote": "`PRESET_DATE_RANGE_OPTIONS_WITH_LAST_12_MONTHS`, default this month, `maxRangeDays: 366`",
+"note": "date presets include Last 12 months"
+},
+{
+"src": "cand/c40.tsv:4",
+"line": 3519,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2; S9-R16",
+"quote": "`location_id` single with \"All locations\" (D45, accessible locations only, S9-R16); `classification` single (All / Internal / No Charge / No Charge line)",
+"note": ""
+},
+{
+"src": "cand/c40.tsv:5",
+"line": 3520,
+"raw_verdict": "ADD",
+"prd": "S9-R2",
+"quote": "parts cost, \"[n] work orders, [m] lines\", hours",
+"note": "summary card text"
+},
+{
+"src": "cand/c40.tsv:6",
+"line": 3522,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2; S12-E5",
+"quote": "Original work order (link with line number; plain text when deleted, S12-E5)",
+"note": ""
+},
+{
+"src": "cand/c40.tsv:7",
+"line": 3523,
+"raw_verdict": "ADD",
+"prd": "S9-R2",
+"quote": "\"A line with several technicians counts once for each of them; the totals row counts every line once.\"",
+"note": "By technician note copy; PRD says only \"a note under the table says so\""
+},
+{
+"src": "cand/c40.tsv:8",
+"line": 3524,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R2 prerequisites",
+"quote": "Parts cost, Shop supplies, Redo parts cost and the strip's money are omitted without `seeFinancialData()`",
+"note": ""
+},
+{
+"src": "cand/c40.tsv:9",
+"line": 3525,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R4; S9-N1",
+"quote": "Empty state `FilteredTableEmptyState` (`text_iwo_empty`), also on a direct link before the report is listed (no route guard).",
+"note": ""
+},
+{
+"src": "cand/c40.tsv:10",
+"line": 3528,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R3; S9-N1",
+"quote": "options: Hide / Only internal / Show all (`hide` / `only` / `all`), tooltip: 'Internal and no-charge work orders', visible: () => hasFirstClose.value",
+"note": ""
+},
+{
+"src": "cand/c40.tsv:11",
+"line": 3529,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R6",
+"quote": "\"For your records only. Do not import these rows as invoices.\", `v-if=\"dataExport.report === 'customer_invoice' && hasFirstClose\"`",
+"note": ""
+},
+{
+"src": "cand/c40.tsv:12",
+"line": 3530,
+"raw_verdict": "ADD",
+"prd": "S9-R9",
+"quote": "value cells \"—\" on non-billable rows (S9-R9)",
+"note": "WIP shows a dash for value on internal/no-charge rows"
+},
+{
+"src": "cand/c41.tsv:1",
+"line": 3539,
+"raw_verdict": "ADD",
+"prd": "S10-R1",
+"quote": "Min `:disable=\"company.shop_supplies_charge === null && !(isEnabled && company.internal)\"` (no tooltip in that case)",
+"note": "Min without % accepted on a flagged customer only while the setting is on; PRD does not say what happens with the setting off"
+},
+{
+"src": "cand/c41.tsv:2",
+"line": 3539,
+"raw_verdict": "CONFIRM",
+"prd": "S10-R1",
+"quote": "Max keeps today's gate. Min and Max show only with 'See A/P & A/R data', as today.",
+"note": ""
+},
+{
+"src": "cand/c41.tsv:3",
+"line": 3541,
+"raw_verdict": "CONFIRM",
+"prd": "S10-R1",
+"quote": "Edit Customer on a flagged customer: Min without %; save; create a WO → Shop supplies = Min.",
+"note": ""
+},
+{
+"src": "cand/c42.tsv:1",
+"line": 3584,
+"raw_verdict": "CONFIRM",
+"prd": "S9-R10; S9-R11",
+"quote": "`classification`, `display_status`, `no_charge`, `created_on` = posting date",
+"note": "asset Invoices tab dated by posting date"
+},
+{
+"src": "cand/c42.tsv:2",
+"line": 3616,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R10",
+"quote": "Total price \"No Charge\" on non-billable rows (`cell_total_price_<id>`)",
+"note": ""
+},
+{
+"src": "cand/c42.tsv:3",
+"line": 3616,
+"raw_verdict": "ADD",
+"prd": "S2-R10",
+"quote": "The footer total (`WorkOrdersListDisplay.vue:60-61,137`) already sums `totalPrice` = 0",
+"note": "work orders list footer total counts internal/no-charge rows as $0"
+},
+{
+"src": "cand/c43.tsv:1",
+"line": 3619,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R10",
+"quote": "label/color; badge inside `.board-card__status` (`board_card_classification`); placement by raw status (closed sits with invoiced)",
+"note": "Board"
+},
+{
+"src": "cand/c43.tsv:2",
+"line": 3620,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R10",
+"quote": "badge next to the number (`sidebar_card_classification`)",
+"note": "Schedule sidebar"
+},
+{
+"src": "cand/c43.tsv:3",
+"line": 3621,
+"raw_verdict": "ADD",
+"prd": "S2-R10",
+"quote": "badge in the full variant; \" · Internal\" / \" · No Charge\" appended to the compact label",
+"note": "schedule grid compact block label; PRD says badge next to the number"
+},
+{
+"src": "cand/c43.tsv:4",
+"line": 3622,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R10",
+"quote": "`badges: [{ label: 'Internal' \\| 'No Charge', tone: 'warning' }]`",
+"note": "global search"
+},
+{
+"src": "cand/c43.tsv:5",
+"line": 3623,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R10",
+"quote": "label/color; badge; `badge_work_order_status`; Closed filter option",
+"note": "customer Work Orders tab"
+},
+{
+"src": "cand/c43.tsv:6",
+"line": 3652,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R4",
+"quote": "drop Rate and Margin; third column \"Cost\"",
+"note": "lines table on internal/no-charge WO"
+},
+{
+"src": "cand/c43.tsv:7",
+"line": 3656,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R4; S12-R3",
+"quote": "no sell price / margin inputs; cost under See Financial Data",
+"note": "inline add/edit part row"
+},
+{
+"src": "cand/c43.tsv:8",
+"line": 3658,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E7; S12-E3",
+"quote": "no core amount",
+"note": "core row"
+},
+{
+"src": "cand/c43.tsv:9",
+"line": 3660,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R4; S2-R20",
+"quote": "Labor rate (`LabourTypeSelect`, suffix `line_labor_rate`), Fixed Line Total, Fixed Labor, Labor / Parts Portion hidden, none required",
+"note": ""
+},
+{
+"src": "cand/c43.tsv:10",
+"line": 3662,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R4",
+"quote": "Core charge, Sell price (+ its rule and \"lower than cost\" badge), Margin hidden",
+"note": "Part dialog"
+},
+{
+"src": "cand/c44.tsv:1",
+"line": 3664,
+"raw_verdict": "CONFIRM",
+"prd": "S10-R2; S10-N3",
+"quote": "See Financial Data + Invoicing & Payments — Create & Edit; locked when closed; hidden without See Financial Data",
+"note": "shop supplies field"
+},
+{
+"src": "cand/c44.tsv:2",
+"line": 3666,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R4",
+"quote": "\"No Charge\" in the work-order total cell (S2-R4 v0.22); sell, margin and rate cells hidden; cost and hours stay under 'See Financial Data'",
+"note": "Statistics tab"
+},
+{
+"src": "cand/c44.tsv:3",
+"line": 3667,
+"raw_verdict": "ADD",
+"prd": "S2-N5; S2-R4",
+"quote": "discount/tax Settings, Add Deposit, New Payment, Issue Credit, IBS hidden; Send to Portal per S2-R11; Customer PO optional",
+"note": "Finance toolbar on internal/no-charge WO: no New Payment either"
+},
+{
+"src": "cand/c44.tsv:4",
+"line": 3672,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R4; S12-E8",
+"quote": "\"No Charge\" (S2-R4 v0.22) | stored billable total",
+"note": "board total"
+},
+{
+"src": "cand/c45.tsv:1",
+"line": 3721,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R10",
+"quote": "**The Total price column exists only with See Financial Data**, so \"No Charge\" is invisible to those users in the list",
+"note": ""
+},
+{
+"src": "cand/c45.tsv:2",
+"line": 3723,
+"raw_verdict": "DIVERGE",
+"prd": "S3 error handling",
+"quote": "**Completion failure inside Close** uses the completion error toast, not the Close copy (as Create invoice today).",
+"note": "PRD: any Close failure before the internal invoice is created shows \"Could not close the work order. Try again.\"; plan shows the completion error toast when the completion step fails"
+},
+{
+"src": "cand/c45.tsv:3",
+"line": 3729,
+"raw_verdict": "INV",
+"prd": "S3-N1",
+"quote": "billable WOs invoice exactly as today on all five; a WO without no-charge lines never hits the S12-R9 check",
+"note": ""
+},
+{
+"src": "cand/c45.tsv:4",
+"line": 3730,
+"raw_verdict": "INV",
+"prd": "S3-N1",
+"quote": "CTA labels unchanged for billable",
+"note": "completion wizard"
+},
+{
+"src": "cand/c45.tsv:5",
+"line": 3731,
+"raw_verdict": "INV",
+"prd": "PRD silent (invariant)",
+"quote": "part-sale header unchanged; every existing status label matches today",
+"note": ""
+},
+{
+"src": "cand/c45.tsv:6",
+"line": 3733,
+"raw_verdict": "INV",
+"prd": "Out of Scope (Part sales)",
+"quote": "part-sale lines show prices as today; Edit Labor on a billable line sends the same payload minus `is_warranty`",
+"note": ""
+},
+{
+"src": "cand/c45.tsv:7",
+"line": 3735,
+"raw_verdict": "INV",
+"prd": "Out of Scope (Part sales)",
+"quote": "part-sale menu untouched; billable WO toolbar unchanged",
+"note": ""
+},
+{
+"src": "cand/c45.tsv:8",
+"line": 3736,
+"raw_verdict": "INV",
+"prd": "S2-R5 (invariant)",
+"quote": "billable WO menu unchanged",
+"note": "Audit Log, Timesheets, Fee/Discount, Print, Delete"
+},
+{
+"src": "cand/c45.tsv:9",
+"line": 3737,
+"raw_verdict": "INV",
+"prd": "S2-R7",
+"quote": "part sale: no classification copy; billable invoiced WO: button still hidden",
+"note": ""
+},
+{
+"src": "cand/c45.tsv:10",
+"line": 3738,
+"raw_verdict": "INV",
+"prd": "S1-R7; S10-R1",
+"quote": "New Customer and New Asset requests byte-identical; shop supplies validation unchanged for non-flagged customers",
+"note": ""
+},
+{
+"src": "cand/c45.tsv:11",
+"line": 3739,
+"raw_verdict": "INV",
+"prd": "S1-R1",
+"quote": "the existing toggles, the confirm dialog | each saves as today",
+"note": "Settings > Work Orders other toggles"
+},
+{
+"src": "cand/c45.tsv:12",
+"line": 3740,
+"raw_verdict": "INV",
+"prd": "S2-R14",
+"quote": "URL state without `classification` restores as today",
+"note": "saved filters / URLs"
+},
+{
+"src": "cand/c45.tsv:13",
+"line": 3741,
+"raw_verdict": "INV",
+"prd": "S5-R1",
+"quote": "save payload byte-identical with no category rows; validation banner unchanged",
+"note": "QuickBooks page"
+},
+{
+"src": "cand/c45.tsv:14",
+"line": 3742,
+"raw_verdict": "INV",
+"prd": "S2-R19",
+"quote": "billable rows: same notice, same Sell preview",
+"note": "receive"
+},
+{
+"src": "cand/c45.tsv:15",
+"line": 3743,
+"raw_verdict": "INV",
+"prd": "S2-R18",
+"quote": "non-classification notes render as today",
+"note": ""
+},
+{
+"src": "cand/c45.tsv:16",
+"line": 3744,
+"raw_verdict": "INV",
+"prd": "S12-E7",
+"quote": "billable parts unchanged",
+"note": "Issue Credit picker"
+},
+{
+"src": "cand/c45.tsv:17",
+"line": 3747,
+"raw_verdict": "INV",
+"prd": "S8-N2",
+"quote": "existing pills unchanged; `held` deposits still blue; static mappings save as today",
+"note": "accounting UI"
+},
+{
+"src": "cand/c45.tsv:18",
+"line": 3762,
+"raw_verdict": "ADD",
+"prd": "S1-R3",
+"quote": "**E-9 Settings hints:** from the saved value, not the draft.",
+"note": "hint lines appear only after Save settings (saved value)"
+},
+{
+"src": "cand/c46.tsv:1",
+"line": 3799,
+"raw_verdict": "CONFIRM",
+"prd": "S8-N2; S4-R3",
+"quote": "Held reason \"No Charge: Warranty row not mapped\" (rendered verbatim from the hub), \"Waiting for an earlier held entry of work order [n]\", JE source \"No Charge line\"",
+"note": ""
+},
+{
+"src": "cand/c46.tsv:2",
+"line": 3813,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R3",
+"quote": "**P-8 ✓** The success alert keeps the X every alert has (S3-R3 v0.22).",
+"note": ""
+},
+{
+"src": "cand/c47.tsv:1",
+"line": 3878,
+"raw_verdict": "DESIGN",
+"prd": "S8-R7",
+"quote": "Design frame 5/3c draws a billable invoice's revenue and parts cost as one entry (INV-7731). The hub produces separate entries: the invoice's revenue entry, plus one cost entry per part.",
+"note": "design vs build plan; PRD silent on entry count"
+},
+{
+"src": "cand/c48.tsv:1",
+"line": 3884,
+"raw_verdict": "ADD",
+"prd": "S6-E1",
+"quote": "`AccountUsageInspector` refuses an account any mapping row points at (`app/Services/Accounts/AccountUsageInspector.php:75-76, 180-200`). Phase A3 adds the category mapping rows to that check.",
+"note": "deactivating an account mapped to a category row is refused in the hub; S6-E1 (inactive mapped account) cannot be reached through the UI"
+},
+{
+"src": "cand/c48.tsv:2",
+"line": 3885,
+"raw_verdict": "CHECK",
+"prd": "S6-E1",
+"quote": "So S6-E1 is a defensive path for direct-DB data and needs no \"on reactivation\" trigger.",
+"note": "PRD S6-E1 untestable by a manual tester (see 3884)"
+},
+{
+"src": "cand/c48.tsv:3",
+"line": 3897,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3",
+"quote": "So a bill or credit line whose category row is empty or inactive still posts, on today's routing, and only the move to the category is Held",
+"note": ""
+},
+{
+"src": "cand/c48.tsv:4",
+"line": 3905,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R1; S1-R16",
+"quote": "A new category gets an empty row at once. Rename keeps the row and its account. Archive greys the row and keeps it, and restore brings it back untouched. There is no fallback between rows.",
+"note": ""
+},
+{
+"src": "cand/c48.tsv:5",
+"line": 3908,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R4; S8-N2",
+"quote": "Saving a mapping, or opening or creating a fiscal period, re-runs held events automatically.",
+"note": ""
+},
+{
+"src": "cand/c48.tsv:6",
+"line": 3912,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R7",
+"quote": "An empty row holds those entries; the invoice, revenue and receivable still post (Q30 ✓). Source \"No Charge line\" (Q50 ✓).",
+"note": ""
+},
+{
+"src": "cand/c48.tsv:7",
+"line": 3913,
+"raw_verdict": "CONFIRM",
+"prd": "S4-E2",
+"quote": "A reversal dated into a closed or missing period is Held.",
+"note": ""
+},
+{
+"src": "cand/c48.tsv:8",
+"line": 3916,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R6",
+"quote": "`InvoiceStatus::Closed` stays out of the Invoice List default, which is already a whitelist. The Sales Invoices Status filter offers Closed. No Classification filter in this version.",
+"note": ""
+},
+{
+"src": "cand/c49.tsv:1",
+"line": 3957,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R1",
+"quote": "\"Closed: an internal or no-charge work order's record. Nothing posted, nothing owed, never payable. Voided on Reopen like any invoice.\"",
+"note": ""
+},
+{
+"src": "cand/c49.tsv:2",
+"line": 3963,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R6",
+"quote": "`app/Services/Reports/InvoiceListReport.php:48` (default Posted, PartiallyPaid, Paid) | Excluded",
+"note": ""
+},
+{
+"src": "cand/c49.tsv:3",
+"line": 3964,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R1",
+"quote": "`app/Services/Dashboard/DashboardSummary.php:327-329`, `app/Services/Reports/CustomerRevenueContributionQuery.php:74`, `app/Services/Reports/CollectionsReport.php:43`, `app/Services/Parties/PartyActivitySummary.php:66` | Excluded",
+"note": "hub dashboard, revenue contribution, collections, party activity exclude Closed"
+},
+{
+"src": "cand/c49.tsv:4",
+"line": 3965,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R1",
+"quote": "`app/Services/CustomerPayments/CustomerPaymentApplier.php:170`, `app/Api/CustomerPaymentController.php:160` | Not payable",
+"note": ""
+},
+{
+"src": "cand/c49.tsv:5",
+"line": 3989,
+"raw_verdict": "ADD",
+"prd": "S8-N2",
+"quote": "The message is rendered at read time, so a renamed category shows its current name.",
+"note": "Held reason shows the category's current name after a rename"
+},
+{
+"src": "cand/c49.tsv:6",
+"line": 4007,
+"raw_verdict": "CONFIRM",
+"prd": "S8-N2",
+"quote": "self::CategoryUnmapped, self::CategoryInactive => self::rowLabel($context, $currentCategoryName).' row not mapped'",
+"note": ""
+},
+{
+"src": "cand/c49.tsv:7",
+"line": 4009,
+"raw_verdict": "CONFIRM",
+"prd": "S8-N2",
+"quote": "self::PeriodClosed => \"Period {$context['period_name']} is closed\"",
+"note": ""
+},
+{
+"src": "cand/c49.tsv:8",
+"line": 4012,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R3",
+"quote": "self::WaitingOnEarlierCycle => \"Waiting for an earlier held entry of work order {$context['work_order_number']}\"",
+"note": ""
+},
+{
+"src": "cand/c49.tsv:9",
+"line": 4016,
+"raw_verdict": "CONFIRM",
+"prd": "S8-N2",
+"quote": "keyLabel(): inventory_asset → \"Inventory asset\", cogs_parts → \"Parts cost of goods sold\",",
+"note": "\"Inventory asset is not mapped\", \"Parts cost of goods sold is not mapped\", \"Shop supplies expense is not mapped\""
+},
+{
+"src": "cand/c50.tsv:1",
+"line": 4079,
+"raw_verdict": "ADD",
+"prd": "S8-R1; S1-R16",
+"quote": "snapshot at Close; read side prefers the current name",
+"note": "hub Closed record shows the category's current name after a rename"
+},
+{
+"src": "cand/c51.tsv:1",
+"line": 4183,
+"raw_verdict": "ADD",
+"prd": "S6-E1",
+"quote": "category mapping rows block deactivation with \"category mapping '<list>: <name>'\", keeping S6-E1 unreachable through the UI (§0.8)",
+"note": "refusal names the category mapping"
+},
+{
+"src": "cand/c51.tsv:2",
+"line": 4188,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R1",
+"quote": "a create gives a catalog row plus an empty `parts` row",
+"note": ""
+},
+{
+"src": "cand/c51.tsv:3",
+"line": 4189,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R1; S1-R16",
+"quote": "a rename keeps the account",
+"note": ""
+},
+{
+"src": "cand/c52.tsv:1",
+"line": 4264,
+"raw_verdict": "ADD",
+"prd": "S8-R4; S4-R4",
+"quote": "re-closing after Reopen creates a new core invoice id, and FIFO delivers the old record's `invoice_voided` first, so `VoidedInvoiceNumberSuffixer` frees the number",
+"note": "after Reopen and Close again, the hub shows the old record voided (number suffixed) and a new Closed record with the work order number"
+},
+{
+"src": "cand/c52.tsv:2",
+"line": 4269,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R1",
+"quote": "The same with **no revenue mappings**: still Completed.",
+"note": "Closed record mirrors even with unmapped revenue rows"
+},
+{
+"src": "cand/c52.tsv:3",
+"line": 4275,
+"raw_verdict": "INV",
+"prd": "S8-R5",
+"quote": "a v3 payload with zero totals on a fresh workspace gives `status = posted`, `classification = null`",
+"note": "invariant: today's $0 invoices still mirror as posted in the hub"
+},
+{
+"src": "cand/c52.tsv:4",
+"line": 4276,
+"raw_verdict": "INV",
+"prd": "S8-R7",
+"quote": "A billable v4 posts exactly the entry the same v3 payload posts (snapshot-compare lines)",
+"note": "invariant: billable invoice entries in the hub unchanged"
+},
+{
+"src": "cand/c52.tsv:5",
+"line": 4277,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R4",
+"quote": "voiding a Closed record sets Void, posts nothing, returns null and frees the number. Voiding a billable record keeps its no-charge block.",
+"note": ""
+},
+{
+"src": "cand/c52.tsv:6",
+"line": 4331,
+"raw_verdict": "INV",
+"prd": "S8-N2",
+"quote": "Non-family behavior is untouched; billable flows behave exactly as today.",
+"note": ""
+},
+{
+"src": "cand/c52.tsv:7",
+"line": 4342,
+"raw_verdict": "ADD",
+"prd": "S8-R2; S8-R7",
+"quote": "Family entries also append the category, and the line number when `scope = line`, so the ledger drill-down answers \"which job, which category\".",
+"note": "hub JE memo carries WO number, category and line number"
+},
+{
+"src": "cand/c53.tsv:1",
+"line": 4368,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3",
+"quote": "**Empty or inactive:** the line takes today's account (`cogsResolver->forParts()`, `:427-432`) and is marked **deferred**",
+"note": ""
+},
+{
+"src": "cand/c53.tsv:2",
+"line": 4374,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R3a",
+"quote": "Without a block, the line posts to `CogsAccountResolver::forParts($item['part_category_id'])`. That is the account its bill line posted to on today's routing",
+"note": ""
+},
+{
+"src": "cand/c53.tsv:3",
+"line": 4408,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3",
+"quote": "`BillUpdatedProcessor` calls `unwind()` before its reversal (`BillUpdatedProcessor.php:138`), then re-resolves. A row mapped in the meantime posts directly; a row still empty records a new move.",
+"note": ""
+},
+{
+"src": "cand/c53.tsv:4",
+"line": 4413,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3",
+"quote": "They release together once the row is mapped, so the total is right in every order.",
+"note": ""
+},
+{
+"src": "cand/c54.tsv:1",
+"line": 4443,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R3",
+"quote": "That is S4-R3's \"one at a time\".",
+"note": ""
+},
+{
+"src": "cand/c54.tsv:2",
+"line": 4507,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R3",
+"quote": "**A Dismissed row with `failure_code = withdrawn` is refused** (\"withdrawn by its reversal; never retried\", S4-R3; HQ6 ✓)",
+"note": ""
+},
+{
+"src": "cand/c54.tsv:3",
+"line": 4508,
+"raw_verdict": "ADD",
+"prd": "S8-N2",
+"quote": "Anything else gets 422 \"Only failed or held events can be retried.\" The answer is the refreshed event (Completed, or Held again with the latest reason)",
+"note": "Retry on a Held row returns Completed or Held again with the latest reason"
+},
+{
+"src": "cand/c54.tsv:4",
+"line": 4512,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3",
+"quote": "label \"Vendor bill [number], line [n]\" / \"Vendor credit [number], line [n]\"",
+"note": ""
+},
+{
+"src": "cand/c54.tsv:5",
+"line": 4513,
+"raw_verdict": "ADD",
+"prd": "S8-R3; S8-N2",
+"quote": "the runner adds one category-free section, **`held_awaiting_operator`**, read straight from `status = held` (not through `blockingByCategory()`): counts by `hold_reason` and by kind (Close, reversal, no-charge line, vendor bill or credit move), a capped sample of event ids, and for a move its source document label",
+"note": "how Held rows show in hub reconciliation"
+},
+{
+"src": "cand/c54.tsv:6",
+"line": 4540,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R4",
+"quote": "Any mapping save releases every mapping and category hold of the workspace.",
+"note": ""
+},
+{
+"src": "cand/c54.tsv:7",
+"line": 4541,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R3",
+"quote": "Waiting rows are included in every trigger, so a released earlier cycle lets later ones follow in the same run.",
+"note": ""
+},
+{
+"src": "cand/c54.tsv:8",
+"line": 4546,
+"raw_verdict": "CONFIRM",
+"prd": "S8-N2",
+"quote": "`app/Services/Workspace/FiscalPeriodManager.php::reopen()` (`:119`) with `HoldTrigger::period($period)`, plus the period-create path for `period_missing`.",
+"note": "period reopen/create releases Held"
+},
+{
+"src": "cand/c55.tsv:1",
+"line": 4568,
+"raw_verdict": "ADD",
+"prd": "S8-R7; S8-R3",
+"quote": "\"Withdrawn: invoice [number] reversed\" for an S8-R7 line entry when its billable invoice is reversed, \"Withdrawn: vendor bill [number] amended\" / \"… voided\" for a deferred move (B2b). The PRD gives copy only for Reopen",
+"note": "hub dismissal copy beyond the PRD's Reopen copy"
+},
+{
+"src": "cand/c55.tsv:2",
+"line": 4577,
+"raw_verdict": "CONFIRM",
+"prd": "S4-E2",
+"quote": "When the original posted and the reversal date falls in a closed or missing period, `writer->reverse()` raises `FiscalPeriodError`, which becomes Held \"Period [name] is closed\" (B2.4).",
+"note": ""
+},
+{
+"src": "cand/c55.tsv:3",
+"line": 4593,
+"raw_verdict": "ADD",
+"prd": "S6-R1",
+"quote": "`internal` first (the default first, then by name), then `no_charge` by name, with archived rows after active ones in each list",
+"note": "Account Mappings category row order; PRD silent"
+},
+{
+"src": "cand/c55.tsv:4",
+"line": 4600,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R1",
+"quote": "**A null account clears the account and keeps the row**",
+"note": ""
+},
+{
+"src": "cand/c55.tsv:5",
+"line": 4619,
+"raw_verdict": "ADD",
+"prd": "S8-R1",
+"quote": "Direct vendor bill and credit lines of every cycle up to the current one also count (a cycle-1 bill line that Reopen never reversed still belongs to the record the NO CHARGE document shows)",
+"note": "hub Closed record's posted Parts cost includes direct vendor bill/credit lines (may differ from the NO CHARGE document, which is fixed at Close)"
+},
+{
+"src": "cand/c55.tsv:6",
+"line": 4620,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R7",
+"quote": "posting_status: posted|held|withdrawn|pending, hold_message|null}]`: the Expense account cell of S8-R7",
+"note": ""
+},
+{
+"src": "cand/c55.tsv:7",
+"line": 4626,
+"raw_verdict": "ADD",
+"prd": "S8-R2; S8-R7",
+"quote": "`SourceDocumentData::owner(SourceDocumentKind::Invoice, $invoiceId, \"Internal work order {$wo}\")`;",
+"note": "JE source document labels: \"Internal work order [n]\", \"No-charge work order [n]\", \"No Charge line [n] on [invoice]\""
+},
+{
+"src": "cand/c55.tsv:8",
+"line": 4636,
+"raw_verdict": "ADD",
+"prd": "S8-R1",
+"quote": "refuse `Closed` (\"A closed work order record has nothing owed.\")",
+"note": "hub write-off refused on a Closed record"
+},
+{
+"src": "cand/c56.tsv:1",
+"line": 4638,
+"raw_verdict": "INV",
+"prd": "S9-R5",
+"quote": "`app/Services/Reports/SalesTaxReport.php` and `SalesTaxDetailReport.php`: no change. A Closed record has no `invoice_lines`, so it adds nothing to any base (T6).",
+"note": "hub sales tax reports unchanged"
+},
+{
+"src": "cand/c56.tsv:2",
+"line": 4656,
+"raw_verdict": "ADD",
+"prd": "S13-R4; S6-R2",
+"quote": "**Leave empty** a row this provenance already populated once and the accountant has since cleared (\"overwrites nothing a shop has changed\").",
+"note": "a rerun never refills a starting row the accountant cleared"
+},
+{
+"src": "cand/c56.tsv:3",
+"line": 4659,
+"raw_verdict": "ADD",
+"prd": "S6-R2",
+"quote": "its name equal to the spec name after normalization (case-insensitive, trimmed, \"&\" equal to \"and\"), preferring the one at the default number. A number alone, or the `is_system` flag alone, never qualifies.",
+"note": "name match ignores case, spaces and \"&\" vs \"and\""
+},
+{
+"src": "cand/c56.tsv:4",
+"line": 4660,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R2; S13-E1",
+"quote": "otherwise **create** it at the default number, or, when that number is taken by an unsuitable account, at the first free number upward in the same hundred, then onward (HQ3 ✓)",
+"note": ""
+},
+{
+"src": "cand/c56.tsv:5",
+"line": 4662,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R2",
+"quote": "Warranty and Goodwill share the resolved `warranty_goodwill` account.",
+"note": ""
+},
+{
+"src": "cand/c56.tsv:6",
+"line": 4669,
+"raw_verdict": "CONFIRM",
+"prd": "S13-N1",
+"quote": "Each workspace runs in its own transaction, and `Throwable` is caught **per workspace**, so one failure never stops the run (S13-N1).",
+"note": ""
+},
+{
+"src": "cand/c56.tsv:7",
+"line": 4671,
+"raw_verdict": "CONFIRM",
+"prd": "S13-R5",
+"quote": "`--verify` checks S13-R5 for every workspace and changes nothing: four catalog rows, and four `parts` rows each mapped to an active account, Comeback included.",
+"note": ""
+},
+{
+"src": "cand/c56.tsv:8",
+"line": 4672,
+"raw_verdict": "INFO",
+"prd": "S13-R4",
+"quote": "the launch run is the one that satisfies the S13-R4 order (§7)",
+"note": "explains the 1062 runbook order"
+},
+{
+"src": "cand/c56.tsv:9",
+"line": 4673,
+"raw_verdict": "ADD",
+"prd": "S6-R2",
+"quote": "Release notes for accountants: 6430 and Comeback Expense appear in charts that lacked them.",
+"note": ""
+},
+{
+"src": "cand/c56.tsv:10",
+"line": 4709,
+"raw_verdict": "ADD",
+"prd": "S8-R2",
+"quote": "a stock-parts entry on `general_internal` posts 6500/1300 under `internal_work_order`",
+"note": "hub: Dr 6500, Cr 1300 (inventory account number); PRD says \"credit Inventory\""
+},
+{
+"src": "cand/c56.tsv:11",
+"line": 4712,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3",
+"quote": "shop supplies posts category/5100",
+"note": ""
+},
+{
+"src": "cand/c57.tsv:1",
+"line": 4723,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3; S8-N2",
+"quote": "an empty row: the line posts to the part category's COGS, the bill Completes, one deferred move is Held \"Internal: [name] row not mapped\", and a later message of the same group is applied in the same batch (no stall)",
+"note": ""
+},
+{
+"src": "cand/c57.tsv:2",
+"line": 4727,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3",
+"quote": "the Dismissed move reads \"Withdrawn: vendor bill [number] amended\" (or \"… voided\"), never \"work order reopened\"",
+"note": ""
+},
+{
+"src": "cand/c57.tsv:3",
+"line": 4728,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3",
+"quote": "a bill amended while its move is Held and the row is still empty → the move is Dismissed and one new Held move carries the updated amount; voided while Held → Dismissed, nothing new; amended after the move posted → the ledger equals a fresh post of the updated bill (the bill and the move each reversed exactly once); a mapping save while the period is closed → Held again with the period reason",
+"note": "HQ8 lifecycle"
+},
+{
+"src": "cand/c57.tsv:4",
+"line": 4731,
+"raw_verdict": "INV",
+"prd": "S8-R3",
+"quote": "regression: v1–v3 `vendor_bill_created`, v1–v2 `vendor_bill_updated` and v1–v3 `vendor_credit_created` payloads book byte-identically.",
+"note": "hub vendor bills/credits unchanged for billable"
+},
+{
+"src": "cand/c57.tsv:5",
+"line": 4764,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R1",
+"quote": "a write-off gives 422; payment application is refused",
+"note": "Closed record"
+},
+{
+"src": "cand/c57.tsv:6",
+"line": 4768,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R3",
+"quote": "Retry on a Dismissed row (withdrawn included) gives 422",
+"note": ""
+},
+{
+"src": "cand/c57.tsv:7",
+"line": 4775,
+"raw_verdict": "CONFIRM",
+"prd": "S13-E1; S6-R2",
+"quote": "6430 present (reused), absent (created), or occupied by \"Tow Fuel\" (created at 6431 and mapped)",
+"note": ""
+},
+{
+"src": "cand/c57.tsv:8",
+"line": 4778,
+"raw_verdict": "CONFIRM",
+"prd": "S13-R4",
+"quote": "a cleared row is left empty on rerun",
+"note": ""
+},
+{
+"src": "cand/c57.tsv:9",
+"line": 4779,
+"raw_verdict": "ADD",
+"prd": "S6-R2",
+"quote": "an inactive mapped account is re-resolved",
+"note": "a rerun re-maps a starting row whose account is inactive"
+},
+{
+"src": "cand/c57.tsv:10",
+"line": 4797,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R1; S8-R6",
+"quote": "The P&L shows a 6500 debit and 1300/5100 credits. AR aging and the invoice-list default show nothing.",
+"note": ""
+},
+{
+"src": "cand/c57.tsv:11",
+"line": 4800,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R4; S8-R4",
+"quote": "Re-close (cycle 2: new core invoice id, same number): a new Closed record with new entries. The old record stays Void.",
+"note": ""
+},
+{
+"src": "cand/c57.tsv:12",
+"line": 4802,
+"raw_verdict": "CONFIRM",
+"prd": "S4-R3; S4-E2",
+"quote": "Reopening the period posts the reversal, then the cycle-2 entries, in that order.",
+"note": ""
+},
+{
+"src": "cand/c58.tsv:1",
+"line": 4808,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R7; S4-R3",
+"quote": "reverse the invoice while the line entry is Held: the entry is Dismissed `withdrawn` and the invoice is Void",
+"note": ""
+},
+{
+"src": "cand/c58.tsv:2",
+"line": 4810,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R3; S8-R3",
+"quote": "on `general_internal` (mapped): one bill entry with the line on 6500, AP unchanged, nothing Held, no reclass",
+"note": ""
+},
+{
+"src": "cand/c58.tsv:3",
+"line": 4813,
+"raw_verdict": "CONFIRM",
+"prd": "S7-R3a",
+"quote": "a v4 vendor credit for the first part posts to 6500.",
+"note": ""
+},
+{
+"src": "cand/c58.tsv:4",
+"line": 4848,
+"raw_verdict": "ADD",
+"prd": "S8-R2",
+"quote": "an `entry_date` instant inside the posting date's local day at the location. The hub converts instants to the location's day, so UTC midnight of a US location's date would land on the previous day.",
+"note": "hub entries carry the posting date in the location's own day (time-zone check)"
+},
+{
+"src": "cand/c58.tsv:5",
+"line": 4853,
+"raw_verdict": "CONFIRM",
+"prd": "S4-E3",
+"quote": "A bill or credit line posted straight to the category (C6) is a document line, not a cost entry. Reopen leaves it where it is",
+"note": "vendor bills untouched by Reopen"
+},
+{
+"src": "cand/c58.tsv:6",
+"line": 4875,
+"raw_verdict": "ADD",
+"prd": "S7-R4",
+"quote": "Bills emitted before the version raise carry no category, so Close reclasses them as S7-R4 bills. Nothing is lost across the cut-over.",
+"note": "a bill posted before the release on a WO that becomes internal is reclassed at Close"
+},
+{
+"src": "cand/c59.tsv:1",
+"line": 4901,
+"raw_verdict": "INFO",
+"prd": "S13-R4",
+"quote": "hub `accounting:seed-work-order-categories` again (accounts and mappings; it already ran once after Release B, S13-R3; keyed on the fixed starting keys, so it does not wait for core's emit) — the PRD order (S13-R4: categories, QuickBooks rows, hub accounts and mappings)",
+"note": "launch run keeps the PRD order; the earlier run is extra"
+},
+{
+"src": "cand/c59.tsv:2",
+"line": 4907,
+"raw_verdict": "CONFIRM",
+"prd": "S13-N1; S13-R5",
+"quote": "A failed organization is listed and rerun with `--workspace` (S13-N1). The release stays invisible until every organization passes.",
+"note": ""
+},
+{
+"src": "cand/c59.tsv:3",
+"line": 4944,
+"raw_verdict": "ADD",
+"prd": "S8-R6",
+"quote": "`shared/Model.ts:97` already has a grey `closed` pill",
+"note": "hub Closed pill grey"
+},
+{
+"src": "cand/c59.tsv:4",
+"line": 4963,
+"raw_verdict": "CONFIRM",
+"prd": "S6-R2",
+"quote": "6430 and Comeback Expense appear in charts that lacked them; a renamed 6500 gets a new \"Vehicle Expenses\" at a free number.",
+"note": ""
+},
+{
+"src": "cand/c59.tsv:5",
+"line": 4964,
+"raw_verdict": "CONFIRM",
+"prd": "S8-R3",
+"quote": "The credit lands on the Shop supplies expense row (seeded 5100 Shop Supplies COGS), so the S10-R4 credit nets inside COGS while the debit sits in 6xxx operating expense.",
+"note": ""
+},
+{
+"src": "cand/c59.tsv:6",
+"line": 4966,
+"raw_verdict": "ADD",
+"prd": "S4-R3",
+"quote": "One empty row, or a period closed at Reopen, holds every later-cycle entry of that work order. Each is visible, names the blocking work order, and releases in order.",
+"note": ""
+},
+{
+"src": "cand/c59.tsv:7",
+"line": 5009,
+"raw_verdict": "ADD",
+"prd": "S7-R3a; S8-R3",
+"quote": "core sends no amend or void for a vendor credit, so the credit half of those two rules has nothing to act on (B2b)",
+"note": "vendor credit amend/void lifecycle not reachable"
+},
+{
+"src": "cand/c60.tsv:1",
+"line": 5025,
+"raw_verdict": "DESIGN",
+"prd": "S2-R11; S2-R16",
+"quote": "The frame's content was read from the v5.12 export (`design/all-flows-v512.txt:587-607`). It shows the customer, \"Estimate S2-35102\", the asset, a NO CHARGE stamp, \"Reason: Warranty\", and a table with Line, Description, Qty and Hours",
+"note": "design frame 7b missing from v6.1 export; old frame says \"Reason:\"; PRD says \"Category:\""
+},
+{
+"src": "cand/c60.tsv:2",
+"line": 5033,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R4",
+"quote": "**The portal does not render its own estimate or invoice documents.** Both are rendered by core's Twig templates.",
+"note": "PRD v1.0 S12-R4 already says ShopView renders the documents"
+},
+{
+"src": "cand/c60.tsv:3",
+"line": 5042,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E6; S12-R4",
+"quote": "Recommended: the portal reads the live state and suppresses a stale snapshot (§4 P4, Q54).",
+"note": "PRD v1.0 says the portal shows the live work order on open"
+},
+{
+"src": "cand/c60.tsv:4",
+"line": 5068,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R11",
+"quote": "`InvoiceViewer` hides the document below the `md` breakpoint (`resources/js/components/invoice/InvoiceViewer.vue:10-11`), so **mobile users never see the core document**.",
+"note": "portal on a phone shows no estimate document (stamp lives in it); check App D P4"
+},
+{
+"src": "cand/c60.tsv:5",
+"line": 5078,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4",
+"quote": "The UI shows \"Last Service\" = `MAX(inv.created_on)`, \"Completed\", and the balance",
+"note": "portal vehicle list counts"
+},
+{
+"src": "cand/c60.tsv:6",
+"line": 5082,
+"raw_verdict": "INV",
+"prd": "S3-R4",
+"quote": "Already limited to pending, partially paid and sent (`:77-87`). Safe.",
+"note": "portal overdue reminders unchanged"
+},
+{
+"src": "cand/c60.tsv:7",
+"line": 5083,
+"raw_verdict": "INV",
+"prd": "S3-R4",
+"quote": "Refuses statuses that are not payable (`:691-698`). Safe.",
+"note": "portal payment unchanged"
+},
+{
+"src": "cand/c61.tsv:1",
+"line": 5097,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4",
+"quote": "Close never sends `invoice.created` to the portal (S3-R4) | Appendix A (Close skips `CustomerPortalInvoiceCreatedNotifier`) | No webhook, so no \"new invoice\" email.",
+"note": ""
+},
+{
+"src": "cand/c61.tsv:2",
+"line": 5098,
+"raw_verdict": "ADD",
+"prd": "S3-R4; S3-R6",
+"quote": "Closed invoice → 404 on show, PDF and PO update",
+"note": "a direct portal link to a closed record's invoice gives not found"
+},
+{
+"src": "cand/c61.tsv:3",
+"line": 5102,
+"raw_verdict": "INFO",
+"prd": "S2-N5",
+"quote": "Covered on the core side, **but only after Stripe has charged** (portal P5).",
+"note": "portal deposit on a no-charge WO: card charged first, then refused; refund by hand"
+},
+{
+"src": "cand/c61.tsv:4",
+"line": 5125,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R3; S12-R4",
+"quote": "the approval carries the lines that need authorization at send time, a no-charge line included (S12-R3: approval works as on any line), with `cost` 0",
+"note": ""
+},
+{
+"src": "cand/c61.tsv:5",
+"line": 5149,
+"raw_verdict": "ADD",
+"prd": "S3-R4",
+"quote": "**Not** added to `getAllStatuses()`, so the list filter keeps refusing it",
+"note": "portal invoice Status filter has no Closed value"
+},
+{
+"src": "cand/c61.tsv:6",
+"line": 5151,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4",
+"quote": "A closed work order is a service on the asset: it counts in Completed and in \"Last Service\". Its `total_balance` is 0.",
+"note": ""
+},
+{
+"src": "cand/c62.tsv:1",
+"line": 5160,
+"raw_verdict": "ADD",
+"prd": "S3-R4",
+"quote": "a batch checkout naming the closed id is refused",
+"note": "portal batch pay refuses a closed record"
+},
+{
+"src": "cand/c62.tsv:2",
+"line": 5162,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4",
+"quote": "a closed work order adds $0.00 and counts as Completed",
+"note": "portal vehicle list"
+},
+{
+"src": "cand/c62.tsv:3",
+"line": 5188,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R11",
+"quote": "A non-billable service work order returns **null**. The card and the email table then hide",
+"note": "portal Price Summary hidden on no-charge estimate"
+},
+{
+"src": "cand/c62.tsv:4",
+"line": 5189,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R4",
+"quote": "A no-charge line gets labor 0, parts 0 and no labor or parts tax, as declined does. The check sits before the fixed-line-total branch.",
+"note": "portal Price Summary on billable estimate with a no-charge line"
+},
+{
+"src": "cand/c62.tsv:5",
+"line": 5196,
+"raw_verdict": "INV",
+"prd": "S12-R4",
+"quote": "A fixture without no-charge lines gives today's numbers exactly.",
+"note": "portal Price Summary for billable unchanged"
+},
+{
+"src": "cand/c62.tsv:6",
+"line": 5206,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "In `update()` `:89-162`, refuse (422 \"This estimate is no longer available.\") when the work order is now internal (Q57). Pass `workOrderInternal` (classification `internal`) to the page, which shows the obsolete banner for it (S1-R11 v1.0).",
+"note": ""
+},
+{
+"src": "cand/c62.tsv:7",
+"line": 5206,
+"raw_verdict": "ADD",
+"prd": "S2-E6",
+"quote": "When `estimateStale`, pass `invoiceHtml = null` so neither the page nor the print preview shows a snapshot with stale prices.",
+"note": "a stale estimate document is hidden (page and print)"
+},
+{
+"src": "cand/c62.tsv:8",
+"line": 5207,
+"raw_verdict": "ADD",
+"prd": "S1-R11; S2-R11",
+"quote": "`isWorkOrderInvalid()` also treats `classification = internal` as invalid. It then drops out of both lists and the pending badge, with the existing 60 s cache (`:21`).",
+"note": "portal approvals list and pending badge drop a WO made internal (up to 60 s delay)"
+},
+{
+"src": "cand/c62.tsv:9",
+"line": 5208,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R11; S2-R16",
+"quote": "The NO CHARGE stamp and \"Category: [name]\", plus \" · Original work order [number]\" when set (S2-R16 v0.22: never \"Not in ShopView\"). Rendered on every breakpoint, because the core document is hidden on mobile",
+"note": "resolves 5068 check"
+},
+{
+"src": "cand/c62.tsv:10",
+"line": 5210,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E6; S12-R4",
+"quote": "When `estimateStale`, a notice replaces `InvoiceViewer` (`:343-346`): \"This estimate changed after it was sent. The lines above are current.\"",
+"note": ""
+},
+{
+"src": "cand/c62.tsv:11",
+"line": 5210,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R4",
+"quote": "On a no-charge line, the category name sits under the title and `Cost:` reads $0.00 from live data whatever was stored (S12-R4).",
+"note": ""
+},
+{
+"src": "cand/c62.tsv:12",
+"line": 5211,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R11",
+"quote": "Whole no-charge work order: no per-line amount, no financial table, no \"total above includes\" note, and a \"NO CHARGE · Category: [name]\" line. No-charge line: the category under the name and $0.00 (Q55).",
+"note": "Approval Required email"
+},
+{
+"src": "cand/c62.tsv:13",
+"line": 5212,
+"raw_verdict": "ADD",
+"prd": "S2-R11",
+"quote": "Shop-facing. Add the category under the line name. Amounts stay as stored.",
+"note": "approval-reviewed email to the shop shows stored amounts plus the category"
+},
+{
+"src": "cand/c62.tsv:14",
+"line": 5221,
+"raw_verdict": "INV",
+"prd": "S2-R11",
+"quote": "a billable approval's props are unchanged.",
+"note": ""
+},
+{
+"src": "cand/c63.tsv:1",
+"line": 5224,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R11",
+"quote": "approve one line and decline one on a no-charge estimate; the decision reaches core",
+"note": ""
+},
+{
+"src": "cand/c63.tsv:2",
+"line": 5226,
+"raw_verdict": "CONFIRM",
+"prd": "S1-R11",
+"quote": "a pending estimate whose work order became internal shows the portal's existing obsolete-estimate banner (`Show.vue` treats `workOrderInternal` as obsolete; no Approve / Decline, no \"estimate changed\" notice; asserted in `NoChargeApprovalPageTest`) and refuses approval with 422 (\"This estimate is no longer available.\", S1-R11 v1.0, Q64 ✓)",
+"note": ""
+},
+{
+"src": "cand/c63.tsv:3",
+"line": 5237,
+"raw_verdict": "ADD",
+"prd": "S2-N5",
+"quote": "`WorkOrderNotBillable = 'work_order_not_billable'` with the message \"Deposits are not available on internal or no-charge work orders.\"",
+"note": "portal deposit refusal copy; PRD silent on the portal deposit path"
+},
+{
+"src": "cand/c63.tsv:4",
+"line": 5246,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R7",
+"quote": "the invoice page, print, PDF download, PDF email attachment and Pay now all show the line at $0.00, its parts at $0.00, \"Warranty\" under the title, and no stamp or \"No Charge\" wording",
+"note": ""
+},
+{
+"src": "cand/c63.tsv:5",
+"line": 5247,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R4",
+"quote": "the amount paid equals the billable total",
+"note": ""
+},
+{
+"src": "cand/c63.tsv:6",
+"line": 5248,
+"raw_verdict": "CONFIRM",
+"prd": "S12-E3",
+"quote": "for a part with a core charge on the line (S12-E3): the core row shows at $0.00",
+"note": ""
+},
+{
+"src": "cand/c63.tsv:7",
+"line": 5249,
+"raw_verdict": "CONFIRM",
+"prd": "S12-R10",
+"quote": "when every line is no charge (S12-R10): a $0.00 invoice listed as Paid, as today.",
+"note": ""
+},
+{
+"src": "cand/c63.tsv:8",
+"line": 5293,
+"raw_verdict": "ADD",
+"prd": "S2-E6; S12-R4",
+"quote": "The \"Approval Required\" email sent before a conversion keeps its prices; the page is corrected on the next open.",
+"note": "an email already sent keeps its old prices"
+},
+{
+"src": "cand/c63.tsv:9",
+"line": 5298,
+"raw_verdict": "CHECK",
+"prd": "S2-N5; S2-N4",
+"quote": "a checkout is opened on a billable work order, the work order is converted to no charge, then the customer pays. Core rejects, the portal logs `core_sync_failed` ([P] `app/Services/DepositSyncService.php:112-118`), and the money stays in Stripe until an admin refunds (PE-12).",
+"note": "risky silence: customer charged, no auto-refund; PO question"
+},
+{
+"src": "cand/c63.tsv:10",
+"line": 5300,
+"raw_verdict": "ADD",
+"prd": "S1-R11",
+"quote": "A work order made internal can stay in the pending list and the badge for up to 60 s (`ApprovalRequestsService.php:21`). `update()` refuses regardless.",
+"note": ""
+},
+{
+"src": "cand/c64.tsv:1",
+"line": 5317,
+"raw_verdict": "CONFIRM",
+"prd": "S2-E6; S12-R4",
+"quote": "**Recommend A.** It meets \"shows the updated estimate with the NO CHARGE stamp on its next open\" on the same link, and never leaves a price on a no-charge estimate.",
+"note": "Q54 answered A in v0.22"
+},
+{
+"src": "cand/c64.tsv:2",
+"line": 5325,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R6",
+"quote": "Recommend: suppress the stale NO CHARGE snapshot and show the live Price Summary. Approve and Decline keep working, and the advisor re-sends.",
+"note": "Q58"
+},
+{
+"src": "cand/c64.tsv:3",
+"line": 5327,
+"raw_verdict": "CONFIRM",
+"prd": "S2-R16",
+"quote": "Recommend omitting it and showing \"Category: Warranty\" only, on the portal and on core's customer-facing estimate.",
+"note": "Q59"
+},
+{
+"src": "cand/c64.tsv:4",
+"line": 5331,
+"raw_verdict": "ADD",
+"prd": "S2-R16; S3-R5",
+"quote": "Snapshot the original work order's **display** number (`COALESCE(display_number, number)`, SV-10297) in `work_order_original_reference.original_work_order_number`.",
+"note": "original WO number shown as the display number (e.g. S4-6) on documents and portal"
+},
+{
+"src": "cand/c64.tsv:5",
+"line": 5350,
+"raw_verdict": "CONFIRM",
+"prd": "S3-R4",
+"quote": "Recommend that a closed internal or no-charge work order counts: it is a service on the asset, not an invoice (S3-R4 is about invoices). It adds $0.00 to the balance.",
+"note": "Q61"
+}
+]

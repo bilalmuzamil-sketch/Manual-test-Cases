@@ -1,0 +1,19 @@
+3014	ADD	S2-R10	**Search reindex** of `work_orders` is a release step; without it only search results miss the badge.	global search badge depends on the launch reindex
+3016	INV	S9-E2	**Existing $0 corpus** (work orders paid with $0 invoices) stays billable (S9-E2); nothing touches it.	
+3024	INV	S3-N1; S12-R10	billable service invoice, $0 billable invoice (auto-paid + webhooks), part-sale invoice, deposit auto-apply, carry credit	invariant (regression table)
+3025	INV	S4-N2	billable reverse + customer-transaction removal unchanged	
+3026	INV	S9-R14	billable totals identical; parity test green	
+3029	INV	S10 (invariant)	billable %/min/max unchanged	billable shop supplies rules unchanged
+3030	INV	S2-R19	billable and part-sale prices unchanged (SV-9965, SV-10082 behaviors)	
+3031	INV	S2-R21	templates and customer defaults still applied on billable and part sales	
+3032	INV	S2-R10	`invoiced`/`paid` filters unchanged on billable-only data; Completed tab unaffected	
+3033	INV	S3-R3	SENT/PAID spawn unchanged; absent `no_charge` block → identical; `is_warranty` input ignored	adding a line to an invoiced billable WO still spawns as today
+3034	INV	S2-R7	deposit refusal, part-sale lock, authorizer clear unchanged	Change Customer on billable/part sales unchanged
+3035	INV	S2-E2	billable split/move unchanged	
+3036	INV	S7-R3	billable bills/credits post to the same accounts; `line_class_ids` unchanged	
+3038	INV	S9-R6; S7-R8	billable rows byte-identical; option off = today's file	Customer Invoice CSV and QuickBooks invoice sync
+3039	INV	S9-R3	identical numbers on billable-only data	Technician Efficiency report, PDF, dashboard card
+3041	INV	S5-R1	unknown key still 422; existing rows unchanged	existing ShopView Accounts rows unchanged
+3042	INV	S12-E7	billable credits unchanged	Issue Credit on billable
+3043	INV	S9-R15	void invoices still counted	Customers Spending
+3116	ADD	S2-N5	a deposit refused by `deposits_not_available` after a portal checkout is recorded with a distinct activity reason so the admin's existing refund action applies (no auto-refund in this release)	portal deposit attempt on internal/no-charge WO: no auto-refund

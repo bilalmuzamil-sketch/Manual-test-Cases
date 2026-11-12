@@ -1,0 +1,27 @@
+1561	CONFIRM	S4-R3	After Reopen, `badge_wo_status` reads "Complete", `button_close_work_order_header` is back, and the menu offers `menu_item_change_no_charge_category` again.	
+1562	CONFIRM	S4-R4	After the second Close, the status reads "Closed" and `text_wo_closed_on` shows yesterday.	
+1570	CONFIRM	S3-R6; S9-R10	`cell_vehicle_invoice_status_<id>` reads "Closed", `badge_vehicle_invoice_classification_<id>` reads "Internal", `cell_vehicle_invoice_total_<id>` reads "No Charge", and Discount and Tax rate are empty.	
+1572	CONFIRM	S3-R6	The customer's Invoices tab does not list the record.	
+1573	INV	S9-R10 (invariant)	the column list is unchanged (`asset-invoices-columns.spec.ts`)	asset Invoices tab columns unchanged
+1580	CONFIRM	S3-R5	contains "NO CHARGE", "No Charge Work Order <n>", "Category: Warranty · Original work order <P>", "Parts cost" and "Labor hours";	
+1581	CONFIRM	S3-R5	contains no "Balance due" and no total.	
+1604	CONFIRM	S9-R4	The first-enable and first-close markers stay set in that org for good. So the report nav entry, the Technician Efficiency chip and the export option become permanently visible there.	
+1608	CONFIRM	S7-R2; S7-R4a; S7-R1	one JE per picked stock part, dated the posting date: debit General Internal's account, credit Inventory Asset, amount = cost;</li><li>each memo carries the WO number, "Internal" and "General Internal";</li><li>the Class is the location's, or none when the location has none;</li><li>one shop supplies JE: debit General Internal's account, credit the Shop supplies item's income account;</li><li>no QBO invoice for the WO number, and no QBO customer created for the internal customer.	
+1609	CONFIRM	S7-R5; S4-R3	swapped JEs dated the reopen date, with memo "Reopened <n>", still on **E1** (the stored posted accounts, D6).	reversal uses the accounts Close used even after remap
+1610	CONFIRM	S3-N4; S7-N2; S5-E2	`banner_close_no_account_quickbooks` reads "No account set for Warranty. The entry posts to the ShopView Review account until you set one." with `link_close_set_account_quickbooks`; after confirming, the JE debit is "ShopView Review", not E1.	
+1610	CONFIRM	S7-N5; S4-E1	QBO has no parts JE for the WO but has the shop supplies JE; Reopen sends a reversal for the shop supplies entry only.	
+1611	CONFIRM	S7-R8	the QBO invoice carries the Warranty line's items at 0.00 with "Warranty" in the description, and its total equals the billable line;</li><li>the JE of the Warranty line's picked part debits E3 (the Warranty account) with the usual credit;</li><li>the billable line's part JE debits Cost of Parts as today.	
+1612	CONFIRM	S7-R3	the bill's line for that part is on E3 (the Warranty account); vendor, bill total and Accounts Payable as the bill entered.	
+1612	CONFIRM	S7-R8; S7-R4	line A's bill line is on E3; line B's bill line stays on Cost of Parts and, at invoicing, one reclass JE moves its cost from Cost of Parts to E3, dated the invoice date; the billable part of the WO posts as today.	
+1626	CONFIRM	S6-R2; S6-R1; S6-R3	`text_current_category_account_general_internal` reads "6500 Vehicle Expenses";</li><li>Warranty and Goodwill both read "6430 Warranty & Goodwill Expense";</li><li>Comeback reads "Comeback Expense", name only (HQ1 ✓).	
+1627	CONFIRM	S8-R1; S8-R6	the Closed pill, `badge_accounting_invoice_classification_<id>` "Internal", and total "No Charge".	
+1627	CONFIRM	S8-R1	**no** lines, no payment / credit memo / write-off tabs, and no Void.	
+1628	CONFIRM	S8-R7	`table_accounting_invoice_no_charge_lines` has one row: line number and title, "Comeback", original "Not in ShopView", hours, parts cost, and expense account "Comeback Expense", posted.	
+1629	CONFIRM	S8-R2; S8-R3; S8-R4	after Close: source "Internal work order", debit 6500, credit Inventory, on the posting date; the shop supplies entry debits 6500 and credits 5100 Shop Supplies COGS;</li><li>after Reopen: reversals linked, and the record Void.	
+1630	CONFIRM	S8-N2; S6-R4	`text_hold_message_<id>` reads "No Charge: <name> row not mapped";</li><li>after mapping: the event posts automatically and the entry appears on the category's account.	
+1647	CONFIRM	S9-R2	W1 row: Line "Whole work order", "No Charge", "Warranty", original WO link P, original technician T, the posting date, Parts cost $40.00, Shop supplies $10.00, Hours 1.5.	
+1648	CONFIRM	S9-R2	B1 row: line number and title, "No Charge line", "Comeback", Shop supplies empty, Parts cost $25.00, Hours 2.0.	
+1650	CONFIRM	S9-R2	`row_iwo_totals` equals the sums.	
+1660	CONFIRM	S9-R2	T's row: Comeback lines 1; Completed lines 2 (T's completed lines with clocked time in the range); Comeback rate 50%; Redo hours and Redo parts cost equal to B1's line.	
+1661	CONFIRM	S9-R2; S2-R17	A row "Unassigned" holds the Not in ShopView line.	
+1663	CONFIRM	S9-R2	Warranty lines counts W1 as one line (Q33 ✓).	

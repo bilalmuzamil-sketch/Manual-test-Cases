@@ -1,0 +1,4 @@
+2956	CONFIRM	S9-R5; S3-R6	A/R aging, collections, statements, credit limit (`customer_transaction` INNER JOIN `invoice`) | ct-driven | no ct written ⇒ excluded ✓	
+2957	CONFIRM	S9-R5	IBS batches | payment-driven | excluded ✓	
+2979	ADD	S3-R4	refuses a closed invoice with 409 `use_reopen_work_order`	manual payment change on a closed record refused
+2975	CONFIRM	S3-R6	closed rows shown with `display_status: closed`; the FE renders "Closed", never the payment label	asset Invoices tab

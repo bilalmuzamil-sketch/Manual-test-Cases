@@ -1,0 +1,7 @@
+3171	ADD	S2-R3; S2-R10	`STATUS_COLOR_MAP.closed = ['grey-10', 'grey-2']` + text map (neutral; orange belongs to the badge and header)	Closed status pill is neutral grey
+3172	ADD	S2-R3	"Internal" filled `orange-2/orange-10`; "No Charge" outlined `orange-8` (S2-R3 "a different style")	badge styles: Internal filled orange, No Charge outlined orange
+3173	CONFIRM	S1-R8	"Internal" pill for customers (S1-R8), only while `isEnabled`	
+3176	CONFIRM	S2-R2; S2-R17; S12-E2	"Original technician: [names]" / "Original technician: none". A category that does not require the original clears both. A stored original stays displayed even when the current customer's candidates do not contain it (S12-E2)	
+3177	ADD	S2-R2	headers "Same asset" / "Other work orders" / "Other"; option "number · date · first line"; "Not in ShopView" under Other	Original work order select group headings
+3182	ADD	S2-R3	`.order-status-card--non-billable` with `var(--sv-warning-border)` / `var(--sv-warning-fill)`	header card uses the warning border/fill tokens (PRD: design authority names the token)
+3190	CONFIRM	S13-R5	Until the release switch flips, `internalWorkOrdersAvailable` is false and no new surface renders (D43).	

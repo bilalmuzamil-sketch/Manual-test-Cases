@@ -1,0 +1,6 @@
+5097	CONFIRM	S3-R4	Close never sends `invoice.created` to the portal (S3-R4) | Appendix A (Close skips `CustomerPortalInvoiceCreatedNotifier`) | No webhook, so no "new invoice" email.	
+5098	ADD	S3-R4; S3-R6	Closed invoice → 404 on show, PDF and PO update	a direct portal link to a closed record's invoice gives not found
+5102	INFO	S2-N5	Covered on the core side, **but only after Stripe has charged** (portal P5).	portal deposit on a no-charge WO: card charged first, then refused; refund by hand
+5125	CONFIRM	S12-R3; S12-R4	the approval carries the lines that need authorization at send time, a no-charge line included (S12-R3: approval works as on any line), with `cost` 0	
+5149	ADD	S3-R4	**Not** added to `getAllStatuses()`, so the list filter keeps refusing it	portal invoice Status filter has no Closed value
+5151	CONFIRM	S3-R4	A closed work order is a service on the asset: it counts in Completed and in "Last Service". Its `total_balance` is 0.	

@@ -1,0 +1,14 @@
+3127	DESIGN	S1-R13	the categories page stays editable while the setting is off (frame 2e draws it read-only)	design vs PRD; plan builds the PRD text
+3127	DESIGN	S1-R13; S13-R1	the starting categories exist from the release (frames 2a/2b say "seeded when the setting is first turned on")	design vs PRD; plan builds the PRD text
+3127	DESIGN	S2-R1; S2-R2	the S2-R1 / S2-R2 tooltip copy (frames 2a/2e show retired wording)	design vs PRD
+3127	DESIGN	S3-N4	"No account set for [category]" in the Close confirmation (frame 7b says "internal work orders")	design vs PRD
+3127	DESIGN	S9-R2	the By technician row "Unassigned" (frame 4/6 says "Not in ShopView / no technician")	design vs PRD
+3127	DESIGN	S8-N2	Held reason "[Category] row not mapped" (frame 5/4 says "expense account is not mapped")	design vs PRD
+3141	CONFIRM	S3-R3	A closed work order stays raw `invoiced`/`paid` (D2), so every lock reading the raw status already locks it.	invoiced-WO locks apply to closed
+3146	CONFIRM	S12-R3	The FE renders `$0.00` in the Rate cell and blanks Margin for a no-charge line itself (D28 per-line override)	
+3148	CONFIRM	S2-R22	Nothing to remove from the line dialog; the FE stops sending `is_warranty` (D57); the print chip "No Charge · [category]" is new print content (Q44 ✓)	
+3149	CONFIRM	S12-R1	The No Charge block lives in Edit Line / New Line (`LineDialog.vue`) only (Q47 ✓)	Line Builder lines marked from the line menu
+3150	CONFIRM	S2-R19	Notice per last-edited row; preview learns suppression; the vendor-invoice dialog gains the cost-only notice for affected items (Q48 ✓)	
+3155	CONFIRM	S12-E7	No-charge parts are listed at $0.00 with the restocking fee disabled (Q35 ✓)	
+3156	ADD	S8-N2	Event rows map `held` → scoped key `event_held` (amber) (E-6); invoices reuse `closed`	Held event pill amber (deposit Held stays blue); Closed invoice pill grey
+3169	CONFIRM	S2-N4	`NO_CHARGE_DEPOSIT_TOOLTIP = 'Reverse the deposit first'`	

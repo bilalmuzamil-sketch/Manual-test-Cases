@@ -1,0 +1,4 @@
+4368	CONFIRM	S8-R3	**Empty or inactive:** the line takes today's account (`cogsResolver->forParts()`, `:427-432`) and is marked **deferred**	
+4374	CONFIRM	S7-R3a	Without a block, the line posts to `CogsAccountResolver::forParts($item['part_category_id'])`. That is the account its bill line posted to on today's routing	
+4408	CONFIRM	S8-R3	`BillUpdatedProcessor` calls `unwind()` before its reversal (`BillUpdatedProcessor.php:138`), then re-resolves. A row mapped in the meantime posts directly; a row still empty records a new move.	
+4413	CONFIRM	S8-R3	They release together once the row is mapped, so the total is right in every order.	

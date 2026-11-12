@@ -1,0 +1,7 @@
+4901	INFO	S13-R4	hub `accounting:seed-work-order-categories` again (accounts and mappings; it already ran once after Release B, S13-R3; keyed on the fixed starting keys, so it does not wait for core's emit) — the PRD order (S13-R4: categories, QuickBooks rows, hub accounts and mappings)	launch run keeps the PRD order; the earlier run is extra
+4907	CONFIRM	S13-N1; S13-R5	A failed organization is listed and rerun with `--workspace` (S13-N1). The release stays invisible until every organization passes.	
+4944	ADD	S8-R6	`shared/Model.ts:97` already has a grey `closed` pill	hub Closed pill grey
+4963	CONFIRM	S6-R2	6430 and Comeback Expense appear in charts that lacked them; a renamed 6500 gets a new "Vehicle Expenses" at a free number.	
+4964	CONFIRM	S8-R3	The credit lands on the Shop supplies expense row (seeded 5100 Shop Supplies COGS), so the S10-R4 credit nets inside COGS while the debit sits in 6xxx operating expense.	
+4966	ADD	S4-R3	One empty row, or a period closed at Reopen, holds every later-cycle entry of that work order. Each is visible, names the blocking work order, and releases in order.	
+5009	ADD	S7-R3a; S8-R3	core sends no amend or void for a vendor credit, so the credit half of those two rules has nothing to act on (B2b)	vendor credit amend/void lifecycle not reachable

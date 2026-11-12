@@ -1,0 +1,11 @@
+4638	INV	S9-R5	`app/Services/Reports/SalesTaxReport.php` and `SalesTaxDetailReport.php`: no change. A Closed record has no `invoice_lines`, so it adds nothing to any base (T6).	hub sales tax reports unchanged
+4656	ADD	S13-R4; S6-R2	**Leave empty** a row this provenance already populated once and the accountant has since cleared ("overwrites nothing a shop has changed").	a rerun never refills a starting row the accountant cleared
+4659	ADD	S6-R2	its name equal to the spec name after normalization (case-insensitive, trimmed, "&" equal to "and"), preferring the one at the default number. A number alone, or the `is_system` flag alone, never qualifies.	name match ignores case, spaces and "&" vs "and"
+4660	CONFIRM	S6-R2; S13-E1	otherwise **create** it at the default number, or, when that number is taken by an unsuitable account, at the first free number upward in the same hundred, then onward (HQ3 ✓)	
+4662	CONFIRM	S6-R2	Warranty and Goodwill share the resolved `warranty_goodwill` account.	
+4669	CONFIRM	S13-N1	Each workspace runs in its own transaction, and `Throwable` is caught **per workspace**, so one failure never stops the run (S13-N1).	
+4671	CONFIRM	S13-R5	`--verify` checks S13-R5 for every workspace and changes nothing: four catalog rows, and four `parts` rows each mapped to an active account, Comeback included.	
+4672	INFO	S13-R4	the launch run is the one that satisfies the S13-R4 order (§7)	explains the 1062 runbook order
+4673	ADD	S6-R2	Release notes for accountants: 6430 and Comeback Expense appear in charts that lacked them.	
+4709	ADD	S8-R2	a stock-parts entry on `general_internal` posts 6500/1300 under `internal_work_order`	hub: Dr 6500, Cr 1300 (inventory account number); PRD says "credit Inventory"
+4712	CONFIRM	S8-R3	shop supplies posts category/5100	

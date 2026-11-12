@@ -1,0 +1,7 @@
+2525	ADD	S6-R1; S8-N2	H7 self-heal: an unknown category named in a payload creates its row empty and Holds.	hub creates a missing category row empty and holds the event
+2525	CONFIRM	S8-R3; S8-N2	H8 a bill or credit is never Held (a vendor payment against an unmirrored bill would stall the stream): a line whose category row is empty posts on today's routing and the hub records a Held deferred move for it	
+2529	CONFIRM	S10-R2	`ChangeShopSuppliesCharge` refuses on a closed work order (S10-R2).	
+2529	ADD	S10-R1	for a billable work order such a Min stays inert (D41)	a Min without a percentage charges nothing on a billable work order
+2537	CONFIRM	S9-R14	every new column is NULL on existing data, so every query returns today's rows	rule zero
+2543	CONFIRM	S13-R5; S13-R6	`--verify` checks S13-R5 per organization: the four starting keys active, the setting off, no customer flagged by the run (S13-R6)	
+2543	CONFIRM	S13-R4	Order per S13-R4: categories → (QuickBooks rows, virtual) → hub accounts and mappings.	

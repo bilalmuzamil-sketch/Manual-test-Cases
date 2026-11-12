@@ -1,0 +1,13 @@
+2759	CONFIRM	Permission matrix rule (1)	Every write in the PRD permission matrix is refused server-side with 403 without its atom (Key Decisions, permissions rule 1).	
+2762	CONFIRM	S12-E5	the number is the stored snapshot (D55), so a deleted original still shows its number, as text without a link (S12-E5)	
+2769	CONFIRM	Permission matrix (Turn the setting on)	`ROLE_ORGANIZATION_CREATE_AND_EDIT`	same atom as today's Settings save (resolves the 595 check)
+2774	CONFIRM	S2-R2; S2-N2	Missing key with `no_charge` → 400 field `no_charge_category_key` "Pick a category"; `no_charge` without `ROLE_PRICING_VIEW` → 403; archived → 422 `category_archived`. Ignored when the customer is flagged or the setting is off	
+2778	CONFIRM	S12-E8; S12-N3	the FE hides Mark as No Charge while `no_charge_blocked_reason` is not null (S12-E8), except `invoiced`, where Mark as No Charge and Mark as Billable show disabled with the tooltip "Reverse the invoice first." (S12-N3)	
+2785	CONFIRM	S11-R4; S12-R9	non-billable work order → 409 `work_order_not_billable` ("This work order is internal or no charge. Close it in ShopView."); 409 `no_charge_line_original_required` `{line_id, line_title}` (S12-R9)	
+2793	CONFIRM	S12-E7	parts of a no-charge line listed at a fixed $0.00; any other amount → 422 `no_charge_line_credit_fixed` (Q35 ✓)	
+2794	CONFIRM	S2-R19	`sellPriceSuppressed: 'internal'|'no_charge'|'no_charge_line'|null` (the FE picks the notice text from it)	three notice texts
+2795	CONFIRM	S2-R18	system notes: `source: system`, author name "ShopView"	
+2801	CONFIRM	S9-R6; S9-R4	+ `include_non_billable=0\|1` (default 0; ignored until the marker is set)	
+2809	CONFIRM	S1-R2	> 50 ids → 400 (the modal caps the picker at 50: "Pick up to 50 customers here. Flag more from Edit Customer.", S1-R2 v1.0, Q64 ✓)	
+2813	CONFIRM	S1-R11; S1-N6	≤ 10 rows, newest first; `total` over every workplace the caller can access (D36); `can_make_internal` = `ROLE_WORK_ORDER_CREATE_AND_EDIT` (S1-N6)	
+2816	ADD	S1-R10	flagged customers with `total > 0`, ≤ 50, by name	after re-enable, Make internal dialogs for at most 50 flagged customers, in name order; PRD silent

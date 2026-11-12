@@ -1,0 +1,9 @@
+3957	CONFIRM	S8-R1	"Closed: an internal or no-charge work order's record. Nothing posted, nothing owed, never payable. Voided on Reopen like any invoice."	
+3963	CONFIRM	S8-R6	`app/Services/Reports/InvoiceListReport.php:48` (default Posted, PartiallyPaid, Paid) | Excluded	
+3964	CONFIRM	S8-R1	`app/Services/Dashboard/DashboardSummary.php:327-329`, `app/Services/Reports/CustomerRevenueContributionQuery.php:74`, `app/Services/Reports/CollectionsReport.php:43`, `app/Services/Parties/PartyActivitySummary.php:66` | Excluded	hub dashboard, revenue contribution, collections, party activity exclude Closed
+3965	CONFIRM	S8-R1	`app/Services/CustomerPayments/CustomerPaymentApplier.php:170`, `app/Api/CustomerPaymentController.php:160` | Not payable	
+3989	ADD	S8-N2	The message is rendered at read time, so a renamed category shows its current name.	Held reason shows the category's current name after a rename
+4007	CONFIRM	S8-N2	self::CategoryUnmapped, self::CategoryInactive => self::rowLabel($context, $currentCategoryName).' row not mapped'	
+4009	CONFIRM	S8-N2	self::PeriodClosed => "Period {$context['period_name']} is closed"	
+4012	CONFIRM	S4-R3	self::WaitingOnEarlierCycle => "Waiting for an earlier held entry of work order {$context['work_order_number']}"	
+4016	CONFIRM	S8-N2	keyLabel(): inventory_asset → "Inventory asset", cogs_parts → "Parts cost of goods sold",	"Inventory asset is not mapped", "Parts cost of goods sold is not mapped", "Shop supplies expense is not mapped"

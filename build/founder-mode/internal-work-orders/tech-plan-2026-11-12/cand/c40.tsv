@@ -1,0 +1,12 @@
+3509	CONFIRM	S8-R2; S8-R7	`internal_work_order` "Internal work order", `no_charge_work_order` "No-charge work order" (S8-R2), `no_charge_line` "No Charge line" (Q50 ✓)	hub JE source labels
+3509	ADD	S8-R2	register short codes `IWO`, `NCWO`, `NCL`	hub register short codes; PRD silent
+3519	ADD	S9-R2	`PRESET_DATE_RANGE_OPTIONS_WITH_LAST_12_MONTHS`, default this month, `maxRangeDays: 366`	date presets include Last 12 months
+3519	CONFIRM	S9-R2; S9-R16	`location_id` single with "All locations" (D45, accessible locations only, S9-R16); `classification` single (All / Internal / No Charge / No Charge line)	
+3520	ADD	S9-R2	parts cost, "[n] work orders, [m] lines", hours	summary card text
+3522	CONFIRM	S9-R2; S12-E5	Original work order (link with line number; plain text when deleted, S12-E5)	
+3523	ADD	S9-R2	"A line with several technicians counts once for each of them; the totals row counts every line once."	By technician note copy; PRD says only "a note under the table says so"
+3524	CONFIRM	S9-R2 prerequisites	Parts cost, Shop supplies, Redo parts cost and the strip's money are omitted without `seeFinancialData()`	
+3525	CONFIRM	S9-R4; S9-N1	Empty state `FilteredTableEmptyState` (`text_iwo_empty`), also on a direct link before the report is listed (no route guard).	
+3528	CONFIRM	S9-R3; S9-N1	options: Hide / Only internal / Show all (`hide` / `only` / `all`), tooltip: 'Internal and no-charge work orders', visible: () => hasFirstClose.value	
+3529	CONFIRM	S9-R6	"For your records only. Do not import these rows as invoices.", `v-if="dataExport.report === 'customer_invoice' && hasFirstClose"`	
+3530	ADD	S9-R9	value cells "—" on non-billable rows (S9-R9)	WIP shows a dash for value on internal/no-charge rows

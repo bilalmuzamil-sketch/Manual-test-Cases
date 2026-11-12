@@ -1,0 +1,15 @@
+2371	CONFIRM	S2-R7; S2-N1	setting off → Billable unless currently No Charge and the target is regular (the mark and category survive); target internal (setting on) → Internal with the resolved category (a No Charge category is dropped); target regular from Internal → Billable; target regular from No Charge → No Charge, category kept	customer change truth table
+2371	CONFIRM	S10-R2	only reset the flat shop supplies (Internal ↔ No Charge, S10-R2)	
+2385	CONFIRM	S12-N2; S12-N3; S12-E8; S12-N1	the work order is internal or no charge as a whole (S12-N2); the work order is invoiced (S12-N3); the line is declined, or has a return or a credit (S12-E8); the setting is off for Mark (S12-N1; Change category and Mark as Billable stay available, Q37 ✓). A deposit never blocks (S12-R4).	
+2385	ADD	S2-R5	Converting the whole work order to No Charge clears every line's mark and line reference (S2-R5: "the lines' own categories are replaced").	after Convert to No Charge, the earlier line marks are gone (also after a later Convert to Billable); PRD silent on what comes back
+2389	CONFIRM	S1-R14; S1-R16	Name 1..60, unique within its list among active **and** archived categories (Q39 ✓: "A category with this name is archived. Restore it instead."). The key never changes (S1-R16).	
+2392	CONFIRM	S1-R13; S13-R1	General Internal (default), Warranty (requires original), Goodwill, Comeback (requires original)	starting set
+2393	CONFIRM	S1-R16; S2-R1	the asset's category, else the customer's default, else the organization default; the first **active** one wins	
+2394	ADD	S2-R1	when its asset is swapped (`Application/HTTP/VehicleSwitch/VehicleSwitchCommandHandler.php:41`, `Application/HTTP/ChangeVin/ChangeVinCommandHandler.php:82`	asset swap and VIN change both re-resolve an open internal WO's category; PRD says "when the asset changes"
+2394	CONFIRM	S2-R1	Closed work orders never change.	
+2396	CONFIRM	S2-R22	`true` iff the line is No Charge, or its work order is No Charge as a whole (Q44 ✓), with category key `warranty`; `false` when that stops being true. Lines that carry `is_warranty = 1` today are never touched.	
+2401	CONFIRM	S2-R2	the original belongs to the **same customer**, at a location the user can access (Q38 ✓), with status invoiced/paid or closed	original candidates
+2416	CONFIRM	S3-R6	closed is never offered in the app's invoice status filters (D37)	
+2441	INV	S3-N1	(complete, no live invoice, ≥ 1 completed line, no incomplete lines, no blocking parts, no unresolved cores) with byte-identical messages	invariant: billable Create invoice refusals unchanged
+2441	CONFIRM	S11-R4	`processCreate()` refuses a non-billable service work order ("This work order is internal or no charge. Close it in ShopView.", the PRD §8 copy) for every caller (C22).	
+2443	CONFIRM	S3-R4	skipping it suppresses all three by construction (S3-R4, NFR-009)	no WO status change event to paid, no $0 payment, no invoice.created webhook / portal notifier
