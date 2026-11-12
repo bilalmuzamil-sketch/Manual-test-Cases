@@ -1213,46 +1213,42 @@ This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md 
 
 AUTOMATION: READY
 
-## V1R-35 · A/R Detail PDF prints an empty bucket with its $0.00 total
+## V1R-35 · A/R Detail PDF prints only the buckets that hold a document
 
-Report: A/R Aging Detail · Covers: INV-074 · 🔴 POSSIBLY LOST
+Report: A/R Aging Detail · Covers: INV-074 · CHANGED-BY-DECISION
 
-**Why an end user cares:** A printed aging that silently skips a bucket can be read as incomplete by an auditor.  
-**Data needed:** A date on which at least one bucket is empty.
+**Why an end user cares:** An auditor reading the PDF must know an empty bucket is left out on purpose, not lost.  
+**Data needed:** A customer whose open documents all sit in one bucket.
 
 **Preconditions**
 
 1. You are signed in to ShopView as an Admin user.
-2. On the chosen date one bucket, for example "61-90 days past due", has nothing in it.
+2. Customer "ZZAUTOTEST AR R13 Payment After" has one open invoice, and it sits in "31-60 days past due"; the other four buckets are empty for this customer.
 
 **Steps**
 
 1. Open the Reports menu.
 2. Click "A/R Aging Detail" in the left list.
-3. Read the empty bucket's count.
-4. Open the Export menu.
-5. Click "Download (PDF)".
-6. Open the downloaded PDF.
-7. Look for the empty bucket's heading.
+3. In the Customer filter, tick only "ZZAUTOTEST AR R13 Payment After".
+4. Read the list of buckets on the screen.
+5. Open the Export menu (⋯).
+6. Click "Download (PDF)".
+7. Open the downloaded PDF.
+8. Read which buckets the PDF prints.
 
 **Expected Result**
 
-Step 3: the bucket shows (0).
-Step 7: the PDF still prints the bucket's heading followed by "Total for 61-90 days past due" with $0.00, so all five buckets appear on paper.
-
-EXPECT FAIL. What you should see on the upgraded build today: Only buckets holding a document are printed.
-(1) You see exactly that: mark the test FAILED and raise nothing new. This is a V1-to-V2 capability loss already reported to the QA lead for a Product Owner decision.
-(2) It fails in a different way: that is a new problem. Mark FAILED, write down exactly what you saw, and report it.
-(3) It passes: the capability is back. Mark PASSED and tell the QA lead.
-Ticket: SV-12546 (https://shopview.atlassian.net/browse/SV-12546). Put it in the Defects field when you mark this test FAILED.
+Step 4: developers' shared notes on SV-11315 (comment 80616, 10 Nov 2026), "Decided by Product (Chris, 2026-11-04 / 2026-11-05)", quoted: “An empty Detail bucket is listed as "(0)" with a greyed chevron.”
+Step 8: the same notes, quoted: “The Detail PDF prints only buckets that hold a document.” Chris Ward's answer to "Print empty buckets too?" on 4 Nov 2026 (Slack, quoted in SV-12546), quoted: “OK as built.”
+Step 8 (our restatement, not the source's words): the PDF prints "31-60 days past due" with the customer's invoice and its total, then the Totals row. "91 or more", "61-90", "1-30 days past due" and "Current" are not printed.
 
 ---
 
-SOURCE: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/AgingDetailPdfQueryHandler.php:81-110; api/templates/reporting/account-receivable/aging-detail.html.twig:144-166. V1 code, quoted: `foreach ($reverseOrder as $bucket) { $result[] = ['label' => ..., 'transactions' => ..., 'amount' => ...]; }`
+SOURCE: Product decision by Chris Ward, 4 Nov 2026 ("OK as built"), recorded in the developers' shared notes on SV-11315 (comment 80616, "KNOWN MISMATCHES AND KNOWN GAPS (not bugs - do not file)", "Decided by Product") and in SV-12546 (comment 80932). V1 behaviour it replaces: ShopView/shopview at fc08f23 (production v26.45.3), api/src/Reporting/Dashboard/Application/AccountReceivable/Pdf/AgingDetailPdfQueryHandler.php:81-110 (every bucket printed, empty ones with $0.00).
 
-This is the expected behaviour as per the V1 code baseline AR-AP-V1-BASELINE.md (INV-074) for epic SV-11315; the A/R and A/P Report Sorting PRD v11 (Confluence 947650561) is silent on it. Not yet checked against any build.
+This is the expected behaviour as per the Product decision by Chris Ward of 4 Nov 2026 recorded in the developers' shared notes on SV-11315 (comment 80616), for epic SV-11315. This differs from production v26.45.3, which prints all five buckets; the Product Owner decided to keep the new behaviour (SV-12546 closed on that basis on 11 Nov 2026), and we take that later decision as prevailing.
 
-AUTOMATION: READY - EXPECT FAIL (SV-12546)
+AUTOMATION: READY
 
 ## V1R-36 · A/R Collection PDF prints only the customer you picked
 

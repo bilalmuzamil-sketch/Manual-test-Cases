@@ -797,3 +797,21 @@ C['V1R-93'] = async (x) => {
 };
 C['V1R-32'] = async () => ({ verdict: 'BLOCKED', observed: 'Needs a second user whose role has Reports page access but no Customers View. The only session available is the QA lead\'s own Admin session, and signing in as anyone else would mean calling the login endpoint on QA, which this run must never do (it ends the shared SSO session). What needs to be done: the QA lead (or a dedicated test login) signs in with such a role and runs steps 1-4.' });
 C['V1R-53'] = async () => ({ verdict: 'BLOCKED', observed: 'Needs a second user whose role has only Reports page access (no Vendor Order Management, Customers or Invoicing). Same reason as V1R-32: only the QA lead\'s Admin session is available and signing in as another user is not allowed on QA. What needs to be done: run with such a role.' });
+
+// V1R-35 rewritten 12 Nov 2026 to the Product decision (Chris Ward, 4 Nov 2026: "OK as built").
+C['V1R-35v2'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Detail'); await lib.pickParty(page, 'customerIds', CUST('R13'));
+  const rs = await lib.rows(page);
+  const heads = rs.filter((r) => /^aging_detail_report_row_(days_|current)/.test(r.tid || '')).map((r) => r.text.replace(/keyboard_arrow_\w+/g, '').replace(/\s+/g, ' ').trim());
+  const empty = rs.find((r) => r.tid === 'aging_detail_report_row_days_61_to_90');
+  const chev = await page.evaluate(() => { const row = document.querySelector('[data-test-id="aging_detail_report_row_days_61_to_90"]'); const i = row && row.querySelector('i, .q-icon'); if (!i) return null; const s = getComputedStyle(i); return { cls: i.className, opacity: s.opacity, color: s.color, disabled: !!(i.closest('[aria-disabled="true"],[disabled],.disabled')) }; });
+  x.ev.push(await lib.shot(page, x.key, 'step 4 buckets on screen'));
+  const f = await lib.exportFile(page, 'ardet', 'pdf', x.key, 'step 6 A-R Detail PDF'); const txt = f.ok ? pdfText(f.path) : '';
+  x.ev.push(lib.saveText(x.key, 'PDF text', { text: txt.split('\n').filter((l) => l.trim()) }));
+  const printed = (txt.match(/(91 or more|61-90|31-60|1-30) days past due|^\s*Current\b/gm) || []).map((s) => s.trim());
+  const inv = num('doc:R13:inv');
+  return verdict([
+    chk('Step 4: every bucket is listed on screen; the empty one reads "(0)" with a greyed chevron', heads.length === 5 && empty && empty.text.includes('61-90 days past due (0)') && chev && (chev.disabled || Number(chev.opacity) < 1 || /grey|disabled/.test(chev.cls)), `buckets: ${JSON.stringify(heads)}; 61-90 chevron: ${JSON.stringify(chev)}`),
+    chk('Step 8: the PDF prints only the bucket that holds a document (31-60 days past due), with its invoice and a Totals row', f.ok && JSON.stringify([...new Set(printed)]) === JSON.stringify(['31-60 days past due']) && txt.includes(inv) && /Totals/.test(txt), `file: ${f.ok ? f.suggested : 'no download'}; buckets printed: ${JSON.stringify([...new Set(printed)])}; invoice ${inv} present: ${txt.includes(inv)}; Totals row: ${/Totals/.test(txt)}`),
+  ]);
+};
