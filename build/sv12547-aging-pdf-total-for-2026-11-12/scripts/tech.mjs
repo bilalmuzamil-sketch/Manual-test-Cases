@@ -1,0 +1,9 @@
+import {sess} from './common.mjs'; import fs from 'fs';
+const s=await sess({dir:'/tmp/qa79',quick:'tech'}); const p=s.page; await s.go('/reports/ar-aging-collection?asOfDate=2026-11-11&customerIds=b2c98389-f4c7-46af-9a5b-36135f61ab85'); await p.waitForTimeout(6000);
+const perms=await p.evaluate(async u=>{const r=await fetch(u,{credentials:'include'}); return r.json()},s.host.api+'/api/auth/me/fe-permissions');
+const fp=(perms.data||perms).fe_permissions||[]; console.log('tech perms related:',fp.filter(x=>/report|ApAr|apAr|AP|financ/i.test(x)).join(','), '| total',fp.length);
+const me=await p.evaluate(async u=>{const r=await fetch(u,{credentials:'include'}); return (await r.text()).slice(0,300)},s.host.api+'/api/auth/me'); console.log('me',me.replace(/"email":"[^"]*"/,''));
+const u=s.host.api+'/api/reporting/reports/ar-aging-collection/export?asOfDate=2026-11-11&customers=b2c98389-f4c7-46af-9a5b-36135f61ab85&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=date&pagination[descending]=false&format=pdf';
+const r=await p.evaluate(async u=>{ const r=await fetch(u,{credentials:'include'}); const a=new Uint8Array(await r.arrayBuffer()); let s=''; for(let i=0;i<a.length;i++) s+=String.fromCharCode(a[i]); return {st:r.status,b:btoa(s)}; },u);
+console.log('export status',r.st); if(r.st===200) fs.writeFileSync('../ev/tech-arcol-bancescu.pdf',Buffer.from(r.b,'base64')); else console.log(Buffer.from(r.b,'base64').toString().slice(0,200));
+const ta=p.locator('[data-test-id$=_toggle_all]').first(); if(await ta.count() && await ta.isEnabled()){await ta.click(); await p.waitForTimeout(2500);} console.log('screen has Credit term:', await p.locator('text=/Credit term/i').count(), '| Phone:', await p.locator('text=/257-911-9306/').count()); await p.screenshot({path:'../ev/tech-arcol.png'}); await s.close(); process.exit(0);
