@@ -502,3 +502,9 @@
 - **"Do not post anything if that is not related to the ticket created by us/bilal Muzamil/you. But tell me if it is failing any test case run"** (12 Nov, about SV-12539, Mudassir's ticket): never comment on another person's ticket, even with useful evidence; instead report whether it fails any test in our runs (search every run-557 test's results for the key, plus open runs whose names match the suite).
 - **"keep the test passed if this is just a minor design issue. So that when the test is rerun in the future after this issue is fixed as per milos answer the test does not fail"**: when the PRD settles a design difference (C715534 chevron grey→blue), change the named case's line to the PRD's sentence (114(c)), re-run the WHOLE case, keep it Passed with pictures.
 - #rulings #tickets #design → L0705
+
+## L0707 — 2026-11-12 — Story status moves on the aging epic: Merged to Staging has no "QA Complete" move; the QA lead changed statuses himself
+- From **Merged to Staging** Jira offers only Board Backlog, Blocked, OBSOLETE, Done and "Start testing in Staging" (TESTING STAGE) (`GET /rest/api/2/issue/<KEY>/transitions`, SV-11531, 12 Nov). QA Complete is an earlier stage.
+- Story check recipe ("no ticket pending on developers or QA"): `parent in (<stories>)` for Story Defects + each story's `issuelinks` with live statuses. 12 Nov: clean = SV-11532, SV-11534, SV-11536, SV-11537, SV-11538, SV-11539; pending = SV-11531 (SV-12663), SV-11533 (SV-12539), SV-11535 (SV-12545); epic-level SV-12538 Open (not linked to a story).
+- QA lead then made the status changes manually: "I have manually made the changes, you need not to change anything" — do not move these stories.
+- #jira #workflow #aging → L0706
