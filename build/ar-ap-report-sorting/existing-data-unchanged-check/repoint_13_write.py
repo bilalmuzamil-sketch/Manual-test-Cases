@@ -1,5 +1,5 @@
 """WRITE Tier A (timing phrases only) to the 13 cases of section 133628, exactly as repoint-13-proposed/ (the dry run,
-REPOINT-13-CASES-DRYRUN.md). NOT YET RUN: on 12 Nov 2026 the session's permission system refused the TestRail write.
+REPOINT-13-CASES-DRYRUN.md). RUN 12 Nov 2026 by the coordinator on the QA lead's go-ahead ("Do it if that is needed"): 13/13 written and re-verified OK (see the reverify lines in the log).
 Run it only with the QA lead's explicit go-ahead (Rule 6):
     python3 repoint_13_write.py <staging app-version marker, e.g. v26.45.3-6197d19>
 Per case: re-read live and REFUSE if it changed since the before-image or is flagged Automated (Rule 71); update_case
@@ -14,7 +14,7 @@ from push_testrail import req  # credentials from /tmp/testrail/creds.json only
 HERE = os.path.dirname(os.path.abspath(__file__))
 IDS = [715471, 715472, 715475, 715617, 715618, 715476, 715480, 715582, 715583, 715619, 715620, 715584, 1062590]
 F4 = ['title', 'custom_preconds', 'custom_steps', 'custom_expected']
-VOLATILE = {'updated_on', 'updated_by'}
+VOLATILE = {'updated_on', 'updated_by', 'version'}  # version = TestRail's edit counter (fixed 12 Nov 2026 after a false FAILED)
 PRD = ('PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, v11 '
        '(last modified 2026-11-05T13:21Z; re-check it is still v11 before running)')
 MARK = sys.argv[1] if len(sys.argv) > 1 else '?'
