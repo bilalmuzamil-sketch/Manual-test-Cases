@@ -670,3 +670,12 @@
 ## L0689 — 2026-11-12 — Before setting a time-of-day check-in, list the ones already set
 - Two one-shot check-ins existed for the same late-day test (C715473): one set on 11 Nov ("Aging C715473 evening run", 00:40 UTC) and one set later (00:25 UTC). The first to fire ran the test; the second asked to run it again — running it would have posted a duplicate result (cf. L0669). Before `send_later`/`create_trigger` for a test, `list_triggers` and reuse or delete the existing one; when a fired check-in asks for work already recorded, skip it and say so.
 - #scheduling #duplicates #testrail → L0669, L0688
+
+## L0690 — 2026-11-12 — On the QA site a network failure is not the product's: the site's own "Environment Sleeping" handler takes over
+- Offline, OR one request aborted as a network error while online (`route.abort('failed'|'internetdisconnected')`), on sv11315: the site shows "QA env is sleeping – Redirecting…" and moves the page to its "Environment Sleeping" screen (`rv1112/p56c_bucket_first_load/04-error.png`). Production has no such handler. A script waiting on `main` then hangs silently (g1 hung 4+ min with an empty log — every `innerText` waited its full timeout).
+- To test a "fails to load" message on a QA site, fail the request on the SERVER side instead: `route.fulfill({ status: 500 })` — the aging reports then show "Something went wrong loading this report…" / "…this bucket…" / "Not every line loaded…" (g2, rv1112/p62*). What the product does on a real dropped connection can only be judged on staging/production.
+- Consequence (Rule 140): drafts 04/05 (offline, no message) were NOT filed; the ten tests went Blocked "run after the release". The earlier Failed results had blamed the product for the QA site's behaviour.
+- Expand a bucket with `sortlib.expand(/^Current/)` (the chevron) — clicking the bucket's text does nothing.
+- Never start a second copy of a runner while one is still going (a second admin sign-in can end the first; I did it once with g1/g1b).
+- Two of this lane's earlier tickets are on the team's Obsolete list (SV-12540 "not a bug: documents load 100 at a time, as S1-R8 asks"; SV-12546 product owner "OK as built"). Rule 140 now gates every ticket.
+- #aging #offline #qa-site #rule140 #trap → L0317, L0687

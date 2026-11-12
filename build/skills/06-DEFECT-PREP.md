@@ -40,6 +40,8 @@
 
 ---
 
+> **🛑 RULE 140 (QA lead 2026-11-12) — run the GENUINENESS GATE before any draft is put to him: six checks with evidence (latest source · not accepted as built · not our setup or the QA site · production differs · not a duplicate · not an agreed tolerance); write them to `GENUINENESS.md` in the draft folder. Any unclosed check ⇒ no ticket, a question instead. Full text: `build/rules/RULES-61-ONWARD.md` rule 140.**
+
 ## 🛑 READ THIS BEFORE ANYTHING ELSE
 
 **NOTHING IS FILED. THE JIRA CREATION HOLD IS ACTIVE.**

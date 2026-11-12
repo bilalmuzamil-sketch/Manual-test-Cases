@@ -5276,3 +5276,25 @@ Every ask for a fresh sign-in (a QA branch, staging or production session) names
 (3) **No redundant or slow checks.** Every command gets a timeout; anything over a couple of minutes runs in the background. Never repeat a check that already ran and passed in the same pass (e.g. a whole-repository grep for a secret after `scan_secrets.py --staged` passed); never search the whole repository when one file or one script answers it (Rule 128).
 (4) **Fix my own tooling at once and re-run** — a wrong selector or an off-screen element is my problem to fix in the same pass, never a reason to stop (Rule 104).
 (5) **Unchanged — these are holds he placed, not halts:** a Jira ticket needs his yes per ticket (62/113); the Expected is changed only under 114(c)/136; Vladimir's cases never (38); Automated cases (71); secrets never committed (82).
+
+## RULE 140 — NEVER FILE A DEFECT THAT CAN LATER BE CLOSED AS "NOT A BUG" — PROVE IT IS GENUINE BEFORE IT IS EVER RAISED (QA lead 2026-11-12, permanent)
+
+**Verbatim (QA lead, 12 Nov 2026):** *"note that they will do a retrospective after the release for the defects which were created and were baseless/wrong and wasted the time of the team as per this conversation https://shopview.slack.com/archives/C0C454MLP0T/p1794416461891669 So make it a rule that you never create a bug/ticket/defect which will later be marked as obsolete with the reason of being not a genuine bug/defect because it will bite me. If a defect is marked as obsolete based on an internal decision to not fix it that is OK but a defect being marked as obsolete because it is NOT a defect or bug that will bite me badly."*
+
+**Why:** the team's retrospective list (Slack thread above, 11 Nov) holds 17 tickets closed Obsolete, among them two of this lane's own: **SV-12540** ("Not a bug: documents load 100 at a time, as S1-R8 asks") and **SV-12546** (product owner: "OK as built"). Each one cost the developers and the product owner time and counts against him.
+
+**The line he drew:**
+* Obsolete because the team **decided not to fix** it (fast follow, agreed tolerance, priority) — acceptable.
+* Obsolete because it was **not a defect** — the failure this rule forbids.
+
+**THE GENUINENESS GATE — every ticket, every ask, every "please file", every handoff; all six closed WITH EVIDENCE before the ask (on top of Rules 62, 106, 112, 113, 121, 137):**
+1. **The requirement really says it — the LATEST source, read live, in its own logic (106, 114, 137).** Not our test case's wording, not an older PRD version (SV-12563 quoted PRD v5; v11 already had the header), not a stricter reading than the sentence (SV-12540 read S1-R8's "first 100 … then the next 100" as a fault when the build did exactly that).
+2. **It is not already accepted as built.** No product-owner or developer ruling, PRD note, decision log or handoff "known difference" that accepts it (SV-12546 "OK as built"; SV-11958 "by design (D14)"; SV-12270/SV-12515 "works as designed").
+3. **It is not made by OUR setup or the TEST SITE.** It reproduces with a normal sign-in (not switch-user — SV-12497/8/9 were cached permissions), with clean, valid data (SV-12211 was a library entry pointing at a deleted category), and NOT only through something the QA site does that production does not: the QA site's own offline handling ("QA env is sleeping – Redirecting…"), its server time limits, its sleep/wake, a mocked clock. If the fault appears only under such a condition, prove it with a method that does not involve it (for example, fail ONE request while the browser stays online) or do not raise it.
+4. **It is caused by THIS work.** Production / develop / staging before the change does not do the same (Rule 121; SV-12271 and SV-12499 step 4 happened on develop too). Same before the change ⇒ not this feature's defect.
+5. **It is not a duplicate.** Search open and recently closed tickets by symptom words (SV-12208, SV-12136 were duplicates). An existing ticket ⇒ link the test to it, never a second ticket.
+6. **It is not inside a tolerance or decision already agreed** (SV-12184: a toast lasting 9 s instead of 7 s was agreed to close).
+
+**Any of the six that cannot be closed with evidence ⇒ the ticket is NOT raised and NOT asked for.** The test result stays honest (Failed with the observation, or Blocked with the reason), and the open point goes to him as a QUESTION in Rule 134 form — what, why it may not be a genuine defect, options, my recommendation. **His general "file the defects" is not a waiver of this gate**; it is the moment the gate is run.
+
+Every ticket draft carries a `GENUINENESS.md` with the six checks, each with its evidence path, and the report names any draft the gate stopped and why.

@@ -1,0 +1,187 @@
+{
+ "pass_meta": {
+  "note": "12 Nov 2026, run 557, Rule 140 re-judgement (g2 + rv1112)"
+ },
+ "results": {
+  "C1062582": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 2: what an offline \"Current\" bucket shows cannot be judged on the QA site - switching the network off hands the page to the site's own \"Environment Sleeping\" handling.",
+   "bold_steps": [
+    2
+   ],
+   "source": "PRD (Confluence 947650561, v11), Story 4 error handling: \"If a bucket's lines fail to load when it is expanded, the bucket shows \"Something went wrong loading this bucket. Collapse and expand it to try again.\" in place of its lines. If a bucket's later lines stop loading while the user scrolls, the lines already shown stay and the bucket shows \"Not every line loaded. Collapse and expand this bucket to try again.\" under them.\"",
+   "observed": [
+    "On this QA site, when the network is off (or one request fails as a network error), the site itself takes over: \"QA env is sleeping \u2013 Redirecting\u2026\" and then its \"Environment Sleeping\" page. Production does not have this, so what the report itself does on a dropped connection cannot be seen here.",
+    "When the same data request fails on the server instead (browser online), the report shows its required message in place of the rows, so the message itself works.",
+    "Re-checked on the new build v26.45.3-34788b2. No ticket: a report raised from this site's offline behaviour could not be shown to be a fault of the product."
+   ],
+   "todo": "What needs to be done: run this test on staging or production after the release (no QA-site offline handling there); nothing to do on the QA site.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062582-rv1112-p56c_bucket_first_load-04-error.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062582-g2-ard-bucket-500.png"
+   ]
+  },
+  "C1062583": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 3: what the bucket shows when lines stop loading offline cannot be judged on the QA site - switching the network off hands the page to the site's own \"Environment Sleeping\" handling.",
+   "bold_steps": [
+    3
+   ],
+   "source": "PRD (Confluence 947650561, v11), Story 4 error handling: \"If a bucket's lines fail to load when it is expanded, the bucket shows \"Something went wrong loading this bucket. Collapse and expand it to try again.\" in place of its lines. If a bucket's later lines stop loading while the user scrolls, the lines already shown stay and the bucket shows \"Not every line loaded. Collapse and expand this bucket to try again.\" under them.\"",
+   "observed": [
+    "On this QA site, when the network is off (or one request fails as a network error), the site itself takes over: \"QA env is sleeping \u2013 Redirecting\u2026\" and then its \"Environment Sleeping\" page. Production does not have this, so what the report itself does on a dropped connection cannot be seen here.",
+    "When the same data request fails on the server instead (browser online), the report shows its required message in place of the rows, so the message itself works.",
+    "Re-checked on the new build v26.45.3-34788b2. No ticket: a report raised from this site's offline behaviour could not be shown to be a fault of the product."
+   ],
+   "todo": "What needs to be done: run this test on staging or production after the release (no QA-site offline handling there); nothing to do on the QA site.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062583-rv1112-p56c_bucket_first_load-04-error.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062583-p56b3-05-3-page-call-aborted-scrolled.png"
+   ]
+  },
+  "C715442": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 2: what the report shows when the as-of date changes offline cannot be judged on the QA site - switching the network off hands the page to the site's own \"Environment Sleeping\" handling.",
+   "bold_steps": [
+    2
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, v11) S8-R6: \"If a report fails to load, it shows \"Something went wrong loading this report. Please try again.\" in place of the rows, with the standard error message.\"",
+   "observed": [
+    "On this QA site, when the network is off (or one request fails as a network error), the site itself takes over: \"QA env is sleeping \u2013 Redirecting\u2026\" and then its \"Environment Sleeping\" page. Production does not have this, so what the report itself does on a dropped connection cannot be seen here.",
+    "When the same data request fails on the server instead (browser online), the report shows its required message in place of the rows, so the message itself works.",
+    "Re-checked on the new build v26.45.3-34788b2. No ticket: a report raised from this site's offline behaviour could not be shown to be a fault of the product."
+   ],
+   "todo": "What needs to be done: run this test on staging or production after the release (no QA-site offline handling there); nothing to do on the QA site.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715442-rv1112-p56c_bucket_first_load-04-error.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715442-rv1112-p62_report_error-02-C715442-2-server-500.png"
+   ]
+  },
+  "C715443": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 2: what the report shows when the as-of date changes offline cannot be judged on the QA site - switching the network off hands the page to the site's own \"Environment Sleeping\" handling.",
+   "bold_steps": [
+    2
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, v11) S8-R6: \"If a report fails to load, it shows \"Something went wrong loading this report. Please try again.\" in place of the rows, with the standard error message.\"",
+   "observed": [
+    "On this QA site, when the network is off (or one request fails as a network error), the site itself takes over: \"QA env is sleeping \u2013 Redirecting\u2026\" and then its \"Environment Sleeping\" page. Production does not have this, so what the report itself does on a dropped connection cannot be seen here.",
+    "When the same data request fails on the server instead (browser online), the report shows its required message in place of the rows, so the message itself works.",
+    "Re-checked on the new build v26.45.3-34788b2. No ticket: a report raised from this site's offline behaviour could not be shown to be a fault of the product."
+   ],
+   "todo": "What needs to be done: run this test on staging or production after the release (no QA-site offline handling there); nothing to do on the QA site.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715443-rv1112-p56c_bucket_first_load-04-error.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715443-rv1112-p62_report_error-05-C715443-2-server-500.png"
+   ]
+  },
+  "C715633": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 2: what the report shows when the as-of date changes offline cannot be judged on the QA site - switching the network off hands the page to the site's own \"Environment Sleeping\" handling.",
+   "bold_steps": [
+    2
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, v11) S8-R6: \"If a report fails to load, it shows \"Something went wrong loading this report. Please try again.\" in place of the rows, with the standard error message.\"",
+   "observed": [
+    "On this QA site, when the network is off (or one request fails as a network error), the site itself takes over: \"QA env is sleeping \u2013 Redirecting\u2026\" and then its \"Environment Sleeping\" page. Production does not have this, so what the report itself does on a dropped connection cannot be seen here.",
+    "When the same data request fails on the server instead (browser online), the report shows its required message in place of the rows, so the message itself works.",
+    "Re-checked on the new build v26.45.3-34788b2. No ticket: a report raised from this site's offline behaviour could not be shown to be a fault of the product."
+   ],
+   "todo": "What needs to be done: run this test on staging or production after the release (no QA-site offline handling there); nothing to do on the QA site.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715633-rv1112-p56c_bucket_first_load-04-error.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715633-rv1112-p62b_six-02-C715633-2-server-500.png"
+   ]
+  },
+  "C715634": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 2: what the report shows when the as-of date changes offline cannot be judged on the QA site - switching the network off hands the page to the site's own \"Environment Sleeping\" handling.",
+   "bold_steps": [
+    2
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, v11) S8-R6: \"If a report fails to load, it shows \"Something went wrong loading this report. Please try again.\" in place of the rows, with the standard error message.\"",
+   "observed": [
+    "On this QA site, when the network is off (or one request fails as a network error), the site itself takes over: \"QA env is sleeping \u2013 Redirecting\u2026\" and then its \"Environment Sleeping\" page. Production does not have this, so what the report itself does on a dropped connection cannot be seen here.",
+    "When the same data request fails on the server instead (browser online), the report shows its required message in place of the rows, so the message itself works.",
+    "Re-checked on the new build v26.45.3-34788b2. No ticket: a report raised from this site's offline behaviour could not be shown to be a fault of the product."
+   ],
+   "todo": "What needs to be done: run this test on staging or production after the release (no QA-site offline handling there); nothing to do on the QA site.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715634-rv1112-p56c_bucket_first_load-04-error.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715634-rv1112-p62b_six-05-C715634-2-server-500.png"
+   ]
+  },
+  "C715635": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 2: what the report shows when the as-of date changes offline cannot be judged on the QA site - switching the network off hands the page to the site's own \"Environment Sleeping\" handling.",
+   "bold_steps": [
+    2
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, v11) S8-R6: \"If a report fails to load, it shows \"Something went wrong loading this report. Please try again.\" in place of the rows, with the standard error message.\"",
+   "observed": [
+    "On this QA site, when the network is off (or one request fails as a network error), the site itself takes over: \"QA env is sleeping \u2013 Redirecting\u2026\" and then its \"Environment Sleeping\" page. Production does not have this, so what the report itself does on a dropped connection cannot be seen here.",
+    "When the same data request fails on the server instead (browser online), the report shows its required message in place of the rows, so the message itself works.",
+    "Re-checked on the new build v26.45.3-34788b2. No ticket: a report raised from this site's offline behaviour could not be shown to be a fault of the product."
+   ],
+   "todo": "What needs to be done: run this test on staging or production after the release (no QA-site offline handling there); nothing to do on the QA site.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715635-rv1112-p56c_bucket_first_load-04-error.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715635-rv1112-p62b_six-08-C715635-2-server-500.png"
+   ]
+  },
+  "C715636": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 2: what the report shows when the as-of date changes offline cannot be judged on the QA site - switching the network off hands the page to the site's own \"Environment Sleeping\" handling.",
+   "bold_steps": [
+    2
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, v11) S8-R6: \"If a report fails to load, it shows \"Something went wrong loading this report. Please try again.\" in place of the rows, with the standard error message.\"",
+   "observed": [
+    "On this QA site, when the network is off (or one request fails as a network error), the site itself takes over: \"QA env is sleeping \u2013 Redirecting\u2026\" and then its \"Environment Sleeping\" page. Production does not have this, so what the report itself does on a dropped connection cannot be seen here.",
+    "When the same data request fails on the server instead (browser online), the report shows its required message in place of the rows, so the message itself works.",
+    "Re-checked on the new build v26.45.3-34788b2. No ticket: a report raised from this site's offline behaviour could not be shown to be a fault of the product."
+   ],
+   "todo": "What needs to be done: run this test on staging or production after the release (no QA-site offline handling there); nothing to do on the QA site.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715636-rv1112-p56c_bucket_first_load-04-error.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715636-rv1112-p62b_six-11-C715636-2-server-500.png"
+   ]
+  },
+  "C715637": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 2: what the report shows when the as-of date changes offline cannot be judged on the QA site - switching the network off hands the page to the site's own \"Environment Sleeping\" handling.",
+   "bold_steps": [
+    2
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, v11) S8-R6: \"If a report fails to load, it shows \"Something went wrong loading this report. Please try again.\" in place of the rows, with the standard error message.\"",
+   "observed": [
+    "On this QA site, when the network is off (or one request fails as a network error), the site itself takes over: \"QA env is sleeping \u2013 Redirecting\u2026\" and then its \"Environment Sleeping\" page. Production does not have this, so what the report itself does on a dropped connection cannot be seen here.",
+    "When the same data request fails on the server instead (browser online), the report shows its required message in place of the rows, so the message itself works.",
+    "Re-checked on the new build v26.45.3-34788b2. No ticket: a report raised from this site's offline behaviour could not be shown to be a fault of the product."
+   ],
+   "todo": "What needs to be done: run this test on staging or production after the release (no QA-site offline handling there); nothing to do on the QA site.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715637-rv1112-p56c_bucket_first_load-04-error.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715637-rv1112-p62b_six-14-C715637-2-server-500.png"
+   ]
+  },
+  "C715638": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 2: what the report shows when the as-of date changes offline cannot be judged on the QA site - switching the network off hands the page to the site's own \"Environment Sleeping\" handling.",
+   "bold_steps": [
+    2
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, v11) S8-R6: \"If a report fails to load, it shows \"Something went wrong loading this report. Please try again.\" in place of the rows, with the standard error message.\"",
+   "observed": [
+    "On this QA site, when the network is off (or one request fails as a network error), the site itself takes over: \"QA env is sleeping \u2013 Redirecting\u2026\" and then its \"Environment Sleeping\" page. Production does not have this, so what the report itself does on a dropped connection cannot be seen here.",
+    "When the same data request fails on the server instead (browser online), the report shows its required message in place of the rows, so the message itself works.",
+    "Re-checked on the new build v26.45.3-34788b2. No ticket: a report raised from this site's offline behaviour could not be shown to be a fault of the product."
+   ],
+   "todo": "What needs to be done: run this test on staging or production after the release (no QA-site offline handling there); nothing to do on the QA site.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715638-rv1112-p56c_bucket_first_load-04-error.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715638-rv1112-p62b_six-17-C715638-2-server-500.png"
+   ]
+  }
+ }
+}
