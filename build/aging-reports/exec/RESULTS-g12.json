@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "12 Nov 2026, run 557, C715462 moved to a production check"
+ },
+ "results": {
+  "C715462": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 1: this test now runs on production after the release, on a customer who already has an overpaid invoice.",
+   "bold_steps": [
+    1
+   ],
+   "source": "QA lead's decision, 12 Nov 2026: keep this test and run it on production after the release (the app cannot create a new overpaid invoice; production holds 16 overpaid invoices across 13 customer accounts, PRD v11).",
+   "todo": "What needs to be done: after the release reaches production, the developers name one of the 13 customer accounts with an overpaid invoice; run the steps there.",
+   "observed": [
+    "The test's set-up now says: run on production after the release, on a customer who already has an overpaid invoice; the amounts in the expected result are an example.",
+    "A new overpaid invoice cannot be made: paying $120.00 on a $100.00 invoice is refused on the QA site and on production (12 Nov 2026).",
+    "The test is now in the folder \"Release day and what must not change\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715462-q14-03-C715462-overpay-invoice-typed.png"
+   ]
+  }
+ }
+}

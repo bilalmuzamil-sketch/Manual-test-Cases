@@ -1,0 +1,6 @@
+{
+ "715462": {
+  "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Run this on production, after the release is installed.</li><li>Sign in as an Admin user (the \"Admin\" role) of an organization that already holds an overpaid invoice, meaning an invoice paid more than its amount. Example: one of the 16 overpaid invoices across 13 customer accounts that the requirements (version 11) say production has; the developers can say which accounts they are.</li><li>Customer A is the customer of that overpaid invoice and also has at least one other open invoice (invoice B).</li><li>Do not try to make a new overpaid invoice: the app refuses any payment above an invoice's balance.</li><li>The amounts in the expected result ($100.00 paid $120.00, invoice B $500.00) are an example. Compare with customer A's own amounts.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/R Summary (Reports, then \"A/R Aging Summary\" under ACCOUNTS RECEIVABLE in the left menu).</li><li>Leave the report with the Customer filter showing only customer A ticked.</li></ul>",
+  "custom_steps": "<ol><li>Read customer A's row.</li><li>Read the Totals row and compare it with the row above it, column by column.</li></ol>"
+ }
+}

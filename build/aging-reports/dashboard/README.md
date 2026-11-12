@@ -9,3 +9,6 @@ https://claude.ai/artifact/E6MSrJDofWwCjyYii6tKTg (Dashboard type; private to th
   (read it first — the QA lead may have edited words with the pencil).
 - 12 Nov 2026 11:35 UTC: 470 tests (C1079045 left the run after 11 Nov): 459 Passed · 2 Failed · 7 Blocked · 2 Not yet run;
   page now shows Blocked (tile, chart, table), current findings, what is left; "Run so far" shows one decimal.
+- 12 Nov 2026 11:13 UTC: after the QA lead's decisions (four tests retired, C715462 kept for production) — 466 tests: 459 Passed · 2 Failed ·
+  3 Blocked · 2 Not yet run. Areas now come from each case's CURRENT TestRail folder (the 11 Nov file had an old folder name). The QA lead asked
+  that the dashboard NOT mention the retired tests. Re-checked against the live run right after: no difference.
