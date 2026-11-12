@@ -352,3 +352,11 @@ Created on staging by the A/R and A/P regression kit (`v1-regression/live-run-20
 | many:R90:cms#101 | credit memo | CM2-4656 | | | Staging Heavy Duty - 9919 |  |
 
 184 document rows. Reversed/voided ones are noted in the ledger (`reversed_now`, `voided_now`).
+
+### Added 12 Nov 2026 by the staging-readiness pass for the other 365 run-557 tests (stopped by the QA lead's scope change)
+
+One record only. The pass stopped before seeding anything else: no customer, vendor or document was created.
+
+| What | Name | Id | Created (UTC) | Note |
+|---|---|---|---|---|
+| Location (workplace) | ZZAUTOTEST R365 Location C with a name longer than the chip | `2644c166-362b-48ec-9cf2-2ac974418039` | 2026-11-12T09:47:55Z | America/Edmonton, shop 2, no documents. The signed-in QA lead login was enrolled there automatically, so the location switcher and the reports' Location menu list **6** of the user's locations instead of 5. Log: `v1-regression/staging-readiness-365/oplog-r365-staging.jsonl`. |

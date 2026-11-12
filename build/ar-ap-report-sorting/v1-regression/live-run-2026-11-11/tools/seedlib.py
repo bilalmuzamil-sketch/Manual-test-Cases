@@ -11,8 +11,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 EXEMPT_TAX = {'qa': '0c47b1fb-38bb-4788-8719-6900c365e34c', 'staging': '0c47b1fb-38bb-4788-8719-6900c365e34c'}
 LABOUR_TYPE = {'qa': 'a2296198-4fdd-4e99-8829-a3bef455939a', 'staging': 'a2296198-4fdd-4e99-8829-a3bef455939a'}
 class Ledger:
-    def __init__(self, env):
-        self.env = env; self.path = f'{HERE}/seeded-{env}.json'
+    def __init__(self, env, universe=None):
+        # one ledger per universe and environment (Rule 114.2): the 92 regression records keep seeded-<env>.json,
+        # another universe (e.g. r365 = the 365 other run-557 tests) gets seeded-<universe>-<env>.json
+        self.env = env; self.path = f'{HERE}/seeded-{env}.json' if not universe else f'{HERE}/seeded-{universe}-{env}.json'
         self.d = json.load(open(self.path)) if os.path.exists(self.path) else {}
     def get(self, k): return self.d.get(k)
     def put(self, k, v):
@@ -25,12 +27,15 @@ def ok(r, what):
     if r['status'] not in (200, 201):
         raise RuntimeError(f"{what}: HTTP {r['status']} {r['raw'][:300]}")
     return (r['json'] or {}).get('data')
-def customer(env, L, key, name):
-    """customer + contact + vehicle. Returns dict(id, contact, vehicle, account)."""
+def customer(env, L, key, name, phone=True):
+    """customer + contact + vehicle. Returns dict(id, contact, vehicle, account). phone=False leaves the customer's
+    Phone empty (a case asks for 'leave Phone empty'); the contact keeps its own telephone."""
     c = L.get(f'cust:{key}')
     if c: return c
-    d = ok(call(env, '/api/customers/create', 'POST', {"name": name, "address": "1 ZZAUTOTEST Way", "city": "Calgary",
-        "state_or_province": "Alberta", "postal_code": "T2C 4M5", "phone": "(403) 555-0100", "country_code": "CA"}), 'customer')
+    body = {"name": name, "address": "1 ZZAUTOTEST Way", "city": "Calgary",
+        "state_or_province": "Alberta", "postal_code": "T2C 4M5", "phone": "(403) 555-0100", "country_code": "CA"}
+    if not phone: body.pop('phone')
+    d = ok(call(env, '/api/customers/create', 'POST', body), 'customer')
     cid = d['company_id']
     ct = ok(call(env, '/api/contacts/create', 'POST', {"first_name": "Zed", "last_name": "Aging", "title": "AP",
         "telephone": "(403) 555-0101", "email": f"zed.{key.lower()}@zzautotest.test", "company_id": cid}), 'contact')['contact_id']

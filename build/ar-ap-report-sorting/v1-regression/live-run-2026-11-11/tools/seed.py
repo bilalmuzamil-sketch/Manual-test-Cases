@@ -23,8 +23,14 @@ CHECK = '--check' in sys.argv or '--dates' in sys.argv
 # location A is America/Edmonton on the QA branch but Asia/Karachi on staging (measured 12 Nov 2026).
 WPI = load_wp(ENV)
 WP = {ENV: {r: (WPI[r]['id'], WPI[r]['timezone']) for r in ('A', 'B')}}
-M = json.load(open(f'{HERE}/manifest.json'))
-L = Ledger(ENV)
+def _arg(flag):
+    return sys.argv[sys.argv.index(flag) + 1] if flag in sys.argv else None
+# --universe r365 --manifest <path>: a second universe with its own ledger (seeded-r365-<env>.json), never mixed
+UNIVERSE = _arg('--universe')
+M = json.load(open(_arg('--manifest') or f'{HERE}/manifest.json'))
+L = Ledger(ENV, UNIVERSE)
+# a third location (C) the universe made itself (prep_r365.py writes 'loc:C' into the universe's ledger)
+if L.get('loc:C'): WP[ENV]['C'] = (L.get('loc:C')['id'], L.get('loc:C')['timezone'])
 UTC = datetime.timezone.utc
 # THE ANCHOR. Every document is dated "N days before the anchor" AT ITS OWN LOCATION, and the V2 reports age
 # by calendar days at the location's time zone. The anchor is one INSTANT (anchor_utc); each location's anchor
@@ -210,10 +216,14 @@ def run():
         dk = f"doc:{p['key']}:{d['k']}" if d else f"cust-only:{p['key']}"
         if L.get(dk): done += 1; continue
         if CHECK: print(f'  MISSING {dk}'); continue
+        if d and d.get('ago_rule') == 'day5_of_month':
+            # 'date A, from the 1st to the 9th of a month': the 5th of this month, or of last month when today is the 5th or earlier
+            t0 = today(d.get('at', 'A')); a = t0.replace(day=5) if t0.day > 5 else (t0.replace(day=1) - datetime.timedelta(days=1)).replace(day=5)
+            d = dict(d, ago=(t0 - a).days)
         try:
             at(d.get('at', 'A') if d else 'A')
             if kind == 'c':
-                c = customer(ENV, L, p['key'], p['name'])
+                c = customer(ENV, L, p['key'], p['name'], phone=p.get('phone', True))
                 if p.get('term') and not L.get(f'term:{p["key"]}'):
                     view = ok(call(ENV, f"/api/customers/view/{c['id']}"), 'view')['company']
                     # the payload CustomerDialog.vue sends (tax block included - without it the API answers 500)
