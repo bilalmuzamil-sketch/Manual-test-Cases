@@ -1,0 +1,32 @@
+<div data-type="panel-success"><p><strong>OVERALL QA STATUS: PASSED</strong></p></div>
+<p>Tested on the QA site <a href="https://sv11315.qa.shopview.com">https://sv11315.qa.shopview.com</a> (Staging Heavy Duty - 9919) on 12 Nov 2026. The branch was rebuilt during testing, so I ran every PDF and spreadsheet again on the newer build <strong>v26.45.3-34788b2</strong>. All of them came out the same, apart from two invoices someone else added in the meantime. 14 of 14 checks passed.</p>
+<p>In short: the four aging PDFs now close each customer, vendor and bucket with <strong>"Total for &lt;name&gt;"</strong>, the same words as the screen. The amounts are unchanged, and "Subtotal" no longer appears anywhere.</p>
+<h3>Before and after</h3>
+<figure data-type="media-single" data-layout="center" data-width="80" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="7f197f39-59da-4df7-8bf9-1bf90c905367" data-collection="upload-user-collection-1343233018" data-alt="EX1-before-after-ar-collection.png"></div></figure>
+<p><em>Picture 1 - A/R Aging Collection, customer ZZAUTOTEST AR R36 Collect X. Before: "Subtotal $110.00 $110.00". After: "Total for ZZAUTOTEST AR R36 Collect X $110.00 $110.00".</em></p>
+<h3>What I checked</h3>
+<table><thead><tr><th><p>#</p></th><th><p>Check</p></th><th><p>Status</p></th></tr></thead><tbody>
+<tr><td><p>1</p></td><td><p>Example 1: A/R Aging Collection, As of 11/11/2026, only ZZAUTOTEST AR R36 Collect X → ⋯ → Download (PDF). The customer closes with "Total for ZZAUTOTEST AR R36 Collect X $110.00 $110.00", the same as the screen (Picture 1).</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>2</p></td><td><p>Example 2: A/R Aging Detail, only ZZAUTOTEST AR R13 Payment After. The bucket closes with "Total for 31-60 days past due $100.00 $60.00", the same as the screen (Picture 2).</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>3</p></td><td><p>The word "Subtotal" appears in none of the 18 PDFs I downloaded, across all four reports plus the two Summary reports.</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>4</p></td><td><p>A/P Unpaid Invoices, one vendor (Kernville Truck &amp; Trailer Repair, P97 Network): each vendor closes with "Total for &lt;vendor name&gt;".</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>5</p></td><td><p>A/P Aging Detail, one vendor (Amani) and four vendors covering every bucket: each bucket closes with "Total for &lt;bucket&gt;".</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>6</p></td><td><p>Bucket names match the screen exactly: "91 or more days past due", "61-90 days past due", "31-60 days past due", "1-30 days past due", "Current". On A/R Aging Detail for all customers (634 rows) every bucket total equals the screen and the sum of that bucket's rows in the spreadsheet.</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>7</p></td><td><p>The screen's "Total for …" row and the PDF use the same words, checked on the expanded screen for each example above.</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>8</p></td><td><p>Long name: I added a vendor with a 173-character name. Its "Total for …" text wraps inside its own row, the Date column keeps its normal width, and the amounts stay under Amount and Open Balance (Picture 3). A 78-character name (P97 Network) fits on one line.</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>9</p></td><td><p>Location column shown (all locations) and hidden (one location ticked): the amounts on the "Total for" row stay under Amount and Open Balance, with nothing under Due Date or Past Due.</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>10</p></td><td><p>A/R Aging Collection, Bancescu &amp; Sons Truck &amp; Trailer Repair. As Admin the customer line shows "Phone: 257-911-9306 Credit term: COD". As a user with Reports access only (no A/R and A/P data access) it shows "Phone: 257-911-9306" with no credit term, on the PDF and on screen. The "Total for" row shows only the name and the two amounts (Picture 4).</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>11</p></td><td><p>A negative total reads like "Total for Bancescu &amp; Sons Truck &amp; Trailer Repair (-$1,880.00) (-$1,880.00)".</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>12</p></td><td><p>The amounts on each "Total for" row and on the Totals row match the screen.</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>13</p></td><td><p>Download (CSV) on all four reports: one row per document and one Totals row, with no group or "Total for" rows.</p></td><td><p>PASSED</p></td></tr>
+<tr><td><p>14</p></td><td><p>A/R Aging Summary and A/P Aging Summary PDF and CSV still download and look as before.</p></td><td><p>PASSED</p></td></tr>
+</tbody></table>
+<figure data-type="media-single" data-layout="center" data-width="80" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="de7dba86-2151-4486-bb4c-5cb638d00408" data-collection="upload-user-collection-1343233018" data-alt="EX2-ar-detail-total-for-bucket.png"></div></figure>
+<p><em>Picture 2 - A/R Aging Detail, ZZAUTOTEST AR R13 Payment After: "Total for 31-60 days past due $100.00 $60.00".</em></p>
+<figure data-type="media-single" data-layout="center" data-width="80" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="14100f19-66ad-49af-a50c-3cbe22572b9b" data-collection="upload-user-collection-1343233018" data-alt="EX3-long-name-wraps-in-row.png"></div></figure>
+<p><em>Picture 3 - A/P Unpaid Invoices, the 173-character vendor name: the "Total for" line wraps in its own row; Date column unchanged; amounts in their columns.</em></p>
+<figure data-type="media-single" data-layout="center" data-width="80" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="5ba2cee9-9f3d-4aab-9603-cfd71c0fcdf2" data-collection="upload-user-collection-1343233018" data-alt="EX4-phone-credit-term-by-role.png"></div></figure>
+<p><em>Picture 4 - Bancescu &amp; Sons Truck &amp; Trailer Repair: Admin sees "Credit term: COD"; a user with Reports access only does not. Both see the phone number and the same "Total for" row.</em></p>
+<h3>Worth knowing</h3>
+<ul><li><p>The "before" half of Picture 1 is the ticket's own picture from 11 Nov. The fixed build is the only one left on the QA site, so I compared the new amounts with the screen rather than with an old PDF.</p></li>
+<li><p>The test vendor "ZZAUTOTEST SV12547 Wrap Vendor With An Extremely Long Name …" (with a $25.00 vendor credit dated 12 Nov) is still on the QA site if anyone wants to look at the long-name layout.</p></li></ul>

@@ -41,10 +41,21 @@ amounts sit on the wrapped line); the rendered page png-apun-wrap-1.png shows th
 ## Test data left on the branch (no cleanup on QA branches)
 - Vendor "ZZAUTOTEST SV12547 Wrap Vendor With An Extremely Long Name …" (173 chars) + a $25.00 vendor credit dated 12 Nov 2026.
 
-## Not done
-- Jira comment, label and status: not touched — the ticket was already Done with a PASSED comment (81008). Asked the QA lead.
-- Before/after exhibit: not built. The pre-fix "Subtotal" pictures are the ticket's own attachments (PIC1/PIC3); no Jira
-  cookies in this container to download them.
+## Build moved during the pass — re-verified (Rule 72 gate, 12 Nov 08:02 UTC)
+The branch redeployed v26.45.2-6a8b89c -> **v26.45.3-34788b2** while the exhibits were being built. All 15 PDF/CSV export
+pairs were re-downloaded into ev2/: 13 byte-for-byte the same text and CSV; the 2 all-customer A/R Detail exports differ only
+by two invoices another tester added (S11315-17912 $40, S11315-17913 $100; totals moved by exactly $140). On the new build
+every PDF bucket total equals its CSV rows (ardet-all, ardet-all-1loc, apdet-allbuckets: 0 mismatches), "Subtotal" = 0
+everywhere, and the reports-only credit-term check was repeated (Phone shown, no Credit term). Tech role restored again
+(Technician reset on screen - already at template - and reassigned).
+
+## Posted (QA lead said yes, 12 Nov)
+- Comment **81011** (12 Nov 2026 03:06 CST): green PASSED panel first, 14-row table, 4 pictures (EX1 before/after with the
+  ticket's own PIC1 as the before, EX2-EX4 after), no technical section. Pictures uploaded as real attachments
+  (64327-64330, sizes equal to the local files). Echo read back: panel first, 14 rows, 4 media in order.
+- Label `QAcomplete` added (kept AP-AR-FM, QA_Found). Status left at **Done** (already past QA Complete; set by the QA lead).
+- Gate: build marker re-read live (moved -> re-verified above), ticket comments re-read (no new comment since 81008),
+  text scan clean (no AI/attribution words, no technical section).
 
 ## Learning check
 Nothing new for the playbook beyond: the roles page route is /administration/roles-permissions (already recorded).
