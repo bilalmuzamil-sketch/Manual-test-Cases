@@ -129,7 +129,7 @@ FOLDER = {}
 for c in L.CASES:
     if c["sec"] == "DESIGN": continue
     if c["marker"] == L.PRE_REL: FOLDER[c["key"]] = "PROD"
-    elif c["banner"]: FOLDER[c["key"]] = "BLK"
+    elif c["banner"]: FOLDER[c["key"]] = "BLK-MR" if "Maintenance Reminders" in c["marker"] else "BLK"   # 12 Nov 2026: one folder per release waited on
     elif L.qnum(c): FOLDER[c["key"]] = "WAIT-PO"
 for k in FOLDER:
     if k not in keys: probs.append(f"FOLDER names {k}, which is not a case")

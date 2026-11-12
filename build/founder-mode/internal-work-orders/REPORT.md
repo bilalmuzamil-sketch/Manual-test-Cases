@@ -118,10 +118,10 @@ The other 48 rows are settled by the PRD sentence the register names; the cases 
 | TP-357 | System notes never customer-visible: no portal screen shows work order notes, so there is nothing to look at. |
 | TP-363 | A manual payment change on a closed record refused: New Payment is not offered (S2-103), so only a request outside the screens reaches it. |
 | TP-364 | Search reindex is a release step; S2-73 checks the badge in search after the release. |
-| TP-402 | Header card colour tokens: token names are not visible; the design round compares the colours with the design. |
-| TP-462 | Mobile Close icon name (task_alt): the icon is compared in the design round; S3-04 checks its tooltip. |
+| TP-402 | Header card colour tokens: token names are not visible to a tester; the orange outline and light orange background are compared with the design's pictures by the design cases D-55 and D-77 (round 2b). |
+| TP-462 | Mobile Close icon name (task_alt): an icon name is not visible, and the design draws no phone Close button to compare it with (round 2b); S3-04 checks its tooltip. |
 | TP-506 | Hub register short codes IWO, NCWO, NCL: the plan does not say which screen shows them. |
-| TP-525 | Schedule compact block label: checked in the design round against the schedule board. |
+| TP-525 | Schedule compact block label: the design draws only the full Schedule card (D-80 checks its badge, round 2b), and no source says how a tester brings up the compact block, so it cannot be reached reliably by hand. |
 | TP-594 | Held rows in the hub's reconciliation run: an operator command output, not a screen. |
 | TP-605 | Hub write-off refused on a Closed record: the record has no write-off tab (S8-02), so only a request outside the screens reaches it. |
 | TP-607 | A rerun never refills a cleared starting row: the operator command is run by engineering (S13-06). |
@@ -239,7 +239,7 @@ Verify tasks (developer check-lists), read in full:
 
 - `python3 authoring/build.py`: 0 PROBLEM lines; proposals.json (662 cases). New gates: every tech plan quote is word for word on its plan line, no DIVERGE statement is quoted, every ADD statement is quoted or listed as left out.
 - `tester_readiness_check.py`: 0 hard problems. Round 1 read a sample of 6 and all 112 "does not / never" results; round 2a read a new sample of 6 (S1-88, S4-12, S2-28, S7-36, S12-35, S7-32) and every new "does not / never" result (13). Changes from the read: S12P-12 rewritten with a visible control and one action per step, an unneeded labor rate removed from S12-35.
-- Round 2b: build.py adds the design gates (pictures exist, the design's words are on the case's boards, every open register row is closed by a sheet question or the named ruling, one case per design draft). Readiness: 0 hard; the sample read (D-72, S1-15, S5-05, S2-52, S3-33) and every "does not / never" result of the design cases (13) and of the rest (140 in all) read; each has its positive control in the same case.
+- Round 2b: build.py adds the design gates (pictures exist, the design's words are on the case's boards, every open register row is closed by a sheet question or the named ruling, one case per design draft). Readiness: 0 hard; the sample read (D-72, S1-15, S5-05, S2-52, S3-33) and every "does not / never" result of the design cases (19) and of the rest (140 in all) read; each has its positive control in the same case.
 - `ticket_sweep.py`: 0 unhandled tickets, PRD 1.0 handled. `create.py` dry run: nothing written.
 
 ## OUTSTANDING — what I need from you

@@ -248,7 +248,7 @@ R += ["", "## Reading coverage (Rule 119)", "",
       "visible control and one action per step, an unneeded labor rate removed from S12-35.",
       "- Round 2b: build.py adds the design gates (pictures exist, the design's words are on the case's boards, every open register row is closed "
       "by a sheet question or the named ruling, one case per design draft). Readiness: 0 hard; the sample read (D-72, S1-15, S5-05, S2-52, S3-33) "
-      "and every \"does not / never\" result of the design cases (13) and of the rest (140 in all) read; each has its positive control in the same case.",
+      "and every \"does not / never\" result of the design cases (19) and of the rest (140 in all) read; each has its positive control in the same case.",
       "- `ticket_sweep.py`: 0 unhandled tickets, PRD 1.0 handled. `create.py` dry run: nothing written.", "",
       "## OUTSTANDING — what I need from you", "",
       "- **Before any TestRail write (Rule 6):** create the subsections of section 136701 listed in sections.json and put their ids there; then `create.py --apply` (it attaches the design pictures and reads each case back).",

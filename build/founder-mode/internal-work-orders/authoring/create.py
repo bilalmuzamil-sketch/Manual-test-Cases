@@ -4,7 +4,7 @@ DRY RUN by default: it prints the plan and writes nothing. --apply is run only b
 after the subsections exist and their ids are in sections.json. Before any write it calls the tester-readiness check (Rule 138) and
 refuses on failure. Held cases are created like the others (unless the QA lead says to leave them out, NO_MANUAL) but are not added to a
 run; the run list it prints is the union-only candidate set (Rules 34 and 123). Attaches each case's design pictures named under References from
-Design (design-2026-11-12/images/; none in round 1; idempotent, read back). Resumable: appends testrail-id-map.csv (with the PRD
+Design (design-2026-11-12/images/; round 2b: 131 distinct pictures; idempotent, read back). Resumable: appends testrail-id-map.csv (with the PRD
 version each case was written for, so a mapped case keeps it) and keeps applied/C<id>-after.json read-backs.   python3 create.py [--apply]"""
 import sys, os, json, csv, re, base64, uuid, time, urllib.request, urllib.error
 from collections import Counter
