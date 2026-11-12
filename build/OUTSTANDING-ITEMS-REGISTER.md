@@ -367,3 +367,11 @@ neither is a case of an empty field.
 |---|---|---|---|
 | **GS-P1** | QA lead | Go-ahead for the deciding full run on Production (the fixes are there since 2026-10-06), plus the Production login again (lost in a container restart). | Nothing runs; the post-release clean-up of failing cases cannot start. Blocks nothing else. |
 | **GS-P2** | QA lead, after GS-P1 | His yes on the list of cases that still fail, before anything is deleted (defaults stated 2026-10-05: stood-down kept · C45153 Automated held · no Vladimir cases · spec tests removed with their cases · full text archived first). | Nothing is deleted. |
+
+## A/R and A/P aging (epic SV-11315, run 557) — added 2026-11-12
+
+| # | Waiting on | What | Cost of silence |
+|---|---|---|---|
+| **AG-Q1** | Chris Ward (PO), when back from vacation — QA lead chose this over a ticket on 12 Nov | **Product question, not a defect:** with NO network connection the aging reports keep the previous rows under a newly chosen date / Past due / Location / sort with no sign (the app's data library waits for the connection, then loads by itself); production's current reports show an empty "No record matches these filters" table instead. The PRD is silent on a lost connection. Ask: should a report say it is waiting for the connection? Evidence: `build/aging-reports/exec/q15/`, `q15s/`, `prod/pr17.json`, L0695/L0697. | Nothing breaks; behaviour stays as is. |
+| **AG-S1** | The release reaching staging | C715471 · C715472 (not run) and C715469 · C715475 (Blocked) run on staging; the "before" copies were saved on staging by session "5. V1 vs V2" on 12 Nov 06:31–06:54 UTC. | The four tests stay unrun until then. |
+| **AG-S2** | Another session (the QA lead will ask it) | C715462 · C1095432 · C1079000 · C1078998 · C1078999 need an overpaid invoice/bill or a document with no due date, which the app refuses to create (production too). | The five stay Blocked. |

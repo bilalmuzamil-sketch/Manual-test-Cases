@@ -1,0 +1,18 @@
+// q17b_topup.mjs — 12 Nov 2026: q17 ended at 1,995 customers on date A (11/10) and 1,996 on date B (6 creations hit "Failed to fetch"; one of them got
+// its memo anyway). Add exactly 2,000 - (count as of 11/10) customers "ZZORG D000n" with a 11/10 memo, one at a time, re-reading the count after each;
+// and a second unpaid bill for vendor A dated today 06:00 UTC (the first, stamped 12:00 UTC, is only counted from noon). Output q17/topup.json.
+import { orgBoot } from './orgboot.mjs'; import { randomUUID } from 'crypto'; import fs from 'fs';
+const r = await orgBoot('/customers'); const p = r.page; const o = { steps: [] };
+const call = (m, u, b) => p.evaluate(async ([m, u, b]) => { const x = await fetch('https://sv11315api.qa.shopview.com' + u, { method: m, credentials: 'include', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: b ? JSON.stringify(b) : undefined }); let j = null; try { j = await x.json(); } catch {} return { st: x.status, j }; }, [m, u, b]);
+const count = async (d) => (await call('GET', `/api/reporting/reports/ar-aging-summary?asOfDate=${d}&pagination[page]=1&pagination[rowsPerPage]=10`)).j?.data?.pagination?.rowsNumber;
+let n = await count('2026-11-10'); o.startA = n; let i = 20;
+while (n < 2000 && i < 40) { const name = 'ZZORG D' + String(i++).padStart(4, '0'); const c = await call('POST', '/api/customers/create', { name }); const cid = c.j?.data?.company_id;
+  if (cid) { const v = await call('GET', '/api/customers/view/' + cid); const acct = v.j?.data?.customer_account_id || v.j?.data?.company?.customer_account_id; /* run 1 read only the first place: 19 memos refused with 400 (customers D0001-D0019 have no documents) */ const m = await call('POST', '/api/credit-memos', { customerAccountId: acct, amount: 1, reason: 'ZZAUTOTEST org seed for C715468 (top-up)', originKind: 'manual', originDate: '2026-11-10T07:00:00.000Z' }); o.steps.push([name, c.st, m.st]); } else o.steps.push([name, c.st, JSON.stringify(c.j).slice(0, 100)]);
+  n = await count('2026-11-10'); }
+o.endA = n; o.endB = await count('2026-11-11');
+const VID = '1236beee-2faf-45db-a054-ba5466d5529b', CAT = '20140573-a8ae-42d2-b3c2-3102e8b1b930', amount = 30; const today = new Date().toISOString().slice(0, 10);
+const SKIPBILL = true; const po = SKIPBILL ? { j: {} } : await call('POST', '/api/inventory/orders/create', { vendor_id: VID, note: null, items: [{ core_charge: null, core_id: null, ext_price: amount, id: randomUUID(), is_core: false, part_number: 'ZZORG-' + (Date.now() % 1e6), price: amount, price_decimal: amount, quantity: '1', manufacturer_id: null, category: CAT, description: 'ZZAUTOTEST org seed part', itemsPerPackage: null }] });
+const oid = po.j?.data?.order_id; if (oid) { const d = await call('GET', '/api/inventory/orders/' + oid); const items = d.j.data.order.items.map((x) => ({ ...x, quantity_received: Number(x.quantity_ordered), total: Number(x.total_cost_decimal) }));
+  const acc = await call('POST', '/api/inventory/orders/accept', { id: oid, invoiceNumber: 'ZZORG-BILL-A2', invoiceDate: today + 'T06:00:00.000Z', note: 'ZZAUTOTEST org seed', items: JSON.stringify(items), total: amount, orderStatus: 'fulfilled', tax: 0 }); o.bill = acc.st; }
+const aps = await call('GET', `/api/reporting/reports/ap-aging-summary?asOfDate=${today}&pagination[page]=1&pagination[rowsPerPage]=10`); o.aps = (aps.j?.data?.collection || []).map((x) => [x.vendorName, x.totalCents]);
+fs.writeFileSync(new URL('./q17/topup.json', import.meta.url).pathname, JSON.stringify(o, null, 1)); console.log(JSON.stringify(o)); await r.browser.close(); process.exit(0);
