@@ -26,7 +26,7 @@ QUESTIONS = [
   "So today an internal job would say NO CHARGE on its estimate and INTERNAL on its closed document.",
   ["(a) INTERNAL on an internal work order's estimate, NO CHARGE on a customer's no-charge one, the same as the closed document (suggested)",
    "(b) NO CHARGE on both kinds of estimate", "(c) Something else (please say)"],
-  "One case: the internal work order's estimate.", "PRD v1.0 S2-R4 (estimate) and S3-R5 (closed document)"),
+  "Two cases: the internal work order's estimate, and the same estimate as the design draws it (INTERNAL with \"Category: General Internal\").", "PRD v1.0 S2-R4 (estimate) and S3-R5 (closed document); design \"Internal Work Orders · All flows v6\", Flow 1 board 04 and Happy flow 15 (register IWO-D19)"),
  ("rows-per-move", "The \"Create invoice [number]?\" window when vendor bill cost moves at invoicing",
   "When two lines' vendor bill costs move between the same two accounts, does the window show one row or two?",
   "When a vendor bill was posted and a line's No Charge mark changes before invoicing, Create invoice first shows a window with \"Moved from "
@@ -86,6 +86,54 @@ QUESTIONS = [
   "nothing (or has left), that division has nothing to divide by.",
   ["(a) A dash or an empty cell, not a number (suggested: 0% and 100% would both mislead)", "(b) 0%", "(c) Something else (please say)"],
   "One case: the rate with no completed lines.", "PRD v1.0 S9-R2; tech plan Appendix A Phase 10 (rate definition, line 2736)"),
+ # ---- round 2b (12 Nov 2026): the design worker's questions 8-12 (design-2026-11-12/NEW-QUESTIONS.py), reworded; its 13 is a ruling (DROPPED)
+ ("category-helper", "The helper texts for categories on the Internal Work Orders page and on Edit Customer",
+  "What should the category helper texts say, now that the category is never changed on the work order?",
+  "The design's texts say the category shows on, and can be changed on, the work order: the New No Charge Category window says \"It shows "
+  "on the work order, the NO CHARGE document and the Internal Work Orders report.\", the Internal categories tab says \"a work order can "
+  "change it\", and Edit Customer says the default category is \"Preselected on every new work order for this customer; a work order can "
+  "change it.\" The PRD says the opposite on both points: the category is not shown on the work order (only the badge is), and an internal "
+  "work order's category is changed on the asset or the customer, never on the work order. The PRD gives no wording for these helper lines, "
+  "so we cannot check them yet. The rest of each screen is tested now.",
+  ["(a) Texts that match the PRD, for example \"It shows on the NO CHARGE document and the Internal Work Orders report.\" and no \"a work order can change it\" (suggested: the behaviour is already settled, only the words are missing)",
+   "(b) The design's texts as drawn", "(c) No helper text in these places"],
+  "One case: the New No Charge Category helper as the design draws it.",
+  "PRD v1.0 S2-R16, S2-R1; design \"Internal Work Orders · All flows v6\", Flow 0 boards 2a, 2c, 11; Happy flow 04, 06; Review 2.1, 2.3 (register IWO-D09)"),
+ ("locked-note", "The note on a closed internal or no-charge work order",
+  "Should a closed internal work order show the extra \"This work order is locked\" note the design draws?",
+  "The PRD gives one line in the header: \"Closed on [posting date]. To change it, reopen it from the Finance tab.\" The design adds a "
+  "second note under it: \"Closed on Oct 22, 2026 by Admin ShopView\", \"This work order is locked. Reopen it to change lines, hours or "
+  "parts.\" and \"Reopening returns it from Closed · Internal to Complete.\" The design's own comment calls it the locked note \"as on any "
+  "closed work order\", so it may be the note an invoiced work order already shows. The header line is tested now.",
+  ["(a) Only the header line from the PRD (suggested: it already says how to change the work order)",
+   "(b) The header line and the locked note, as drawn", "(c) Only the locked note, in place of the header line"],
+  "One case: the locked note as the design draws it.",
+  "PRD v1.0 S2-R9; design \"Internal Work Orders · All flows v6\", Flow 3 boards 01, 02; Happy flow 36, 37 (register IWO-D29)"),
+ ("reopen-message", "A message after Reopen Work Order",
+  "Should a green message \"Work order [number] reopened\" show after Reopen Work Order?",
+  "The design shows it. The PRD gives the Reopen window, the result (the work order is back to Complete) and the failure message "
+  "\"Could not reopen the work order. Try again.\", but no success message. The Reopen window and the result are tested now.",
+  ["(a) Yes, \"Work order [number] reopened\" as drawn (suggested: ShopView confirms other finished actions the same way)",
+   "(b) No message: the work order simply shows Complete again", "(c) Other wording (please say)"],
+  "One case: the message as the design draws it.",
+  "PRD v1.0 S4-R3, Story 4 Error Handling; design \"Internal Work Orders · All flows v6\", Flow 3 board 03 (register IWO-D31)"),
+ ("report-empty-cell", "Empty cells in the Internal Work Orders report",
+  "On an internal work order's row, should the Original work order and Original technician cells show a dash or stay blank?",
+  "An internal job has no original work order, so those two cells have no value. The design leaves them blank. ShopView's design library "
+  "says an empty table cell always shows a dash, \"never an empty cell\", and the asset Invoices tab in the same design uses the dash. The "
+  "PRD lists the columns but does not say what an empty cell shows. The rest of the report is tested now.",
+  ["(a) A dash \"—\" in every cell with no value, as the library says (suggested: the same as ShopView's other tables)",
+   "(b) A blank cell, as drawn", "(c) Something else (please say)"],
+  "One case: the blank cells as the design draws them.",
+  "PRD v1.0 S9-R2; design \"Internal Work Orders · All flows v6\", Flow 4 board 05; Happy flow 39; Review 7.2; design library work-orders.jsx, the dash cell (register IWO-D44)"),
+ ("report-wrapping", "Work order numbers wrapping in the Internal Work Orders report",
+  "Should work order numbers and dates in the report stay on one line on a normal laptop screen?",
+  "The design's table breaks work order numbers over two lines (\"S2-\" above \"34918\") and wraps the dates, even at 1440 and 1536 "
+  "pixels wide. The PRD lists the columns and says nothing about widths. Our look checks expect nothing cut or broken at those widths.",
+  ["(a) Numbers and dates stay on one line at 1440 and 1536 pixels (suggested: a split number is hard to read and to search for)",
+   "(b) Wrapping as drawn is fine", "(c) Something else (please say)"],
+  "One case: the wrapped numbers as the design draws them.",
+  "PRD v1.0 S9-R2; design \"Internal Work Orders · All flows v6\", Flow 4 boards 05, 06; Happy flow 39, 39b; Review 7.2, 7.5 (register IWO-D45)"),
 ]
 QN = {slug: i for i, (slug, *_r) in enumerate(QUESTIONS, 1)}
 
@@ -108,4 +156,7 @@ DROPPED = [
  ("S12-N3 (\"the line menu offers neither ... the tooltip reads\") vs SV-12421 (\"disabled with 'Reverse the invoice first.'\")",
   "The tech plan settles it (TP-328, TP-481): the actions show disabled with the tooltip. S12-26 checks both."),
  ("SV-12295 \"Comeback Expense at the number the hub owner confirms\"", "PRD v1.0 S6-R2: 6440 Comeback Expense, confirmed 2026-11-09."),
+ ("Two reviewer remarks left in the file of the design's Review board 1.1 (design question 13, register IWO-D50): \"Move this tooltip text ... just one sentence.\" and \"Badge here, we agree, is not no-charge warranty. It's no charge, just that the badge itself\"",
+  "A named ruling, not a question: the remarks sit below the board's visible area (only in the board's file), PRD Final v1.0 (9 Nov 2026) is newer than the design and its header says \"Where a frame and this text disagree, the text wins\"; it already gives the toggle description in full (S1-R1) and the badge as \"No Charge\" in a style different from Internal (S2-R3), which is what the second remark asks for. No case's verdict depends on the remarks."),
+ ("The design's other 45 differences (register IWO-D01 to IWO-D52 except the seven open ones: IWO-D09, D19, D29, D31, D44, D45 and D50)", "Each settled by a named PRD sentence (PRD header: \"Where a frame and this text disagree, the text wins\"); the cases follow the PRD and name the difference under References from Design."),
 ]

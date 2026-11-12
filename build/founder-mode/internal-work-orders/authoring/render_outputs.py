@@ -6,7 +6,7 @@ import sys, os, re, json, glob, importlib
 from collections import Counter, defaultdict
 D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import iwo_lib as L
-from po_questions import QUESTIONS, DROPPED
+from po_questions import QUESTIONS, DROPPED, QN
 _ORDER = [f"cases_s{i}" for i in range(1, 14)] + ["cases_s12p", "cases_api", "cases_data", "cases_rel", "cases_inv", "cases_design", "cases_tp"]
 _MODS = sorted(os.path.basename(f)[:-3] for f in glob.glob(f"{D}/cases_*.py"))
 for m in [x for x in _ORDER if x in _MODS] + [x for x in _MODS if x not in _ORDER]: importlib.import_module(m)
@@ -99,23 +99,27 @@ open(f"{P}/NO-MANUAL-PROPOSAL.md", "w").write("\n".join(R) + "\n")
 import cases_tp
 Q = ["# Internal Work Orders — questions for Milos Vasic (draft, not sent)", "",
      "Hello sir,", "",
-     "While we were writing the tests for Internal Work Orders against the final PRD (v1.0, 9 Nov 2026) and the developers' plan, a few points "
-     "came up where the PRD says two different things, where the plan builds something a little different, or where nothing says what the "
-     "screen should show. Each one decides whether a test passes, so that test waits for your answer; everything else on the same screens is "
+     "While we were writing the tests for Internal Work Orders against the final PRD (v1.0, 9 Nov 2026), the developers' plan and the design "
+     "\"Internal Work Orders · All flows v6\", a few points came up where the PRD says two different things, where the plan or the design shows "
+     "something a little different, or where nothing says what the screen should show. Each one decides whether a test passes, so that test waits for your answer; everything else on the same screens is "
      "written and ready. Each has a suggested answer, so a one-letter reply is plenty.", "",
      "| # | Topic | Question | What happens now | Options | Your answer | Where we found it |", "|---|---|---|---|---|---|---|"]
 for i, (slug, topic, q, now, opts, held, where) in enumerate(QUESTIONS, 1):
     cell = lambda x: x.replace("|", "/").replace("\n", " ")
     Q.append(f"| {i} | {cell(topic)} | {cell(q)} | {cell(now)} | {'<br>'.join(cell(o) for o in opts)} |  | {cell(where)} |")
-Q += ["", "Skill 07 §6 was applied before each row was kept: every question decides a verdict (a held case), every saved source was checked "
-      "first (PRD v1.0, all 28 Jira tickets of the epic, and the tech plan worker's full reading of the plan), and the parts a tester can run "
+Q += ["", f"Questions 12 to {len(QUESTIONS)} come from reading the design (12 Nov 2026); on the Google Sheet they are the batch \"Questions from "
+      "reading the design (12 Nov 2026)\" in their own colour, added to the colour guide with that date (Rule 131).", "",
+      "Skill 07 §6 was applied before each row was kept: every question decides a verdict (a held case), every saved source was checked "
+      "first (PRD v1.0, all 28 Jira tickets of the epic, the tech plan worker's full reading of the plan, and the design worker's full drive of the design), and the parts a tester can run "
       "without the answer are written as runnable cases. The colour-coded Google Sheet is built from this draft by the coordinator (no Google "
       "write by this worker).", "",
       "## QA-only tab: question → held cases (not shown to the PO)", "", "| # | Slug | Held cases | Folder | Came from |", "|---|---|---|---|---|"]
-ORIGIN = {"modal-text": "PRD worker Q1", "no-charge-document-case": "PRD worker Q2", "internal-estimate-stamp": "PRD worker Q3",
+ORIGIN = {"modal-text": "PRD worker Q1", "no-charge-document-case": "PRD worker Q2", "internal-estimate-stamp": "PRD worker Q3; also the design's IWO-D19",
           "rows-per-move": "tech plan worker Q1 (DIVERGE D-1)", "closed-chip": "tech plan worker Q2 (DIVERGE D-2)", "import": "tech plan worker Q4 (DIVERGE D-4)",
           "portal-deposit": "tech plan worker Q5", "hub-inactive-account": "tech plan worker Q6", "line-marks-after-convert": "tech plan worker Q7",
-          "work-order-updated": "PRD worker Q5", "rate-zero": "PRD worker Q7"}
+          "work-order-updated": "PRD worker Q5", "rate-zero": "PRD worker Q7",
+          "category-helper": "design worker Q8 (register IWO-D09)", "locked-note": "design worker Q9 (IWO-D29)", "reopen-message": "design worker Q10 (IWO-D31)",
+          "report-empty-cell": "design worker Q11 (IWO-D44)", "report-wrapping": "design worker Q12 (IWO-D45)"}
 for i, (slug, *_r) in enumerate(QUESTIONS, 1):
     hk = [c["key"] for c in L.CASES if L.qnum(c) == i]
     Q.append(f"| {i} | {slug} | {', '.join(hk)} | {', '.join(sorted({PROP[k]['sec'] for k in hk}))} | {ORIGIN.get(slug, '')} |")
@@ -153,9 +157,16 @@ INV_MAP = [("1.1 Create invoice on billable work orders from every place", "INV-
  ("6.7 No AccountingHub", "S6-06"), ("7.1 Billable portal estimates and approvals", "INV-13"), ("7.2 Portal payments and reminders", "INV-34 (payments; the overdue reminders run on a schedule a tester cannot trigger)"),
  ("7.3 Billable invoice webhooks and the portal's new invoice email", "API-26, INV-35"), ("8.1 Billable invoices in the Open API lists and webhooks", "API-05, API-26"),
  ("8.2 No Open API V1", "API-20")]
-R = ["# Internal Work Orders — report, rounds 1 and 2a (PRD, Jira, tech plan), 12 Nov 2026", "",
-     "Worker: PRD cases (round 1) and the tech plan fold-in (round 2a, on the coordinator's order). No writes to TestRail, Jira, Slack or Google; "
-     "no commits. The design round comes next: it fills `authoring/design_refs.py` and adds the \"Design — how it looks\" cases.", "",
+import design_refs as DR
+DCH = json.load(open(f"{D}/design_changes.json"))
+DES = [c for c in L.CASES if c["sec"] == "DESIGN"]
+PRD_REFS = [c for c in L.CASES if c["sec"] != "DESIGN" and L.design_for(c)]
+ALLPICS = {x for c in L.CASES if L.design_for(c) for x in L.design_for(c)["pictures"]}
+REGROWS = json.load(open(f"{P}/DESIGN-DIVERGENCE-REGISTER.json"))["differences"]
+S2DV = Counter(r["verdict"] for r in DR.S2D.values())
+R = ["# Internal Work Orders — report, rounds 1, 2a and 2b (PRD, Jira, tech plan, design), 12 Nov 2026", "",
+     "Worker: PRD cases (round 1), the tech plan fold-in (round 2a) and the design fold-in (round 2b), each on the coordinator's order. No "
+     "writes to TestRail, Jira, Slack or Google; no commits.", "",
      "## Counts", "",
      f"- **{len(L.CASES)} cases** in the library; **{len(to_tr)} for TestRail** (section 136701); **{len(NOMAN)} kept out** (a tester cannot set them up: NO-MANUAL-PROPOSAL.md).",
      f"- Round 2a added {len(NEWKEYS)} cases ({', '.join(NEWKEYS)}) and changed {len(cases_tp.TP_CHANGES)} existing cases (listed below, Rule 134).",
@@ -168,7 +179,7 @@ R = ["# Internal Work Orders — report, rounds 1 and 2a (PRD, Jira, tech plan),
      f"| PRD v1.0 (Confluence 942243841) | ✓ | {len(set(L.CODE) & set(used))} of {len(L.CODE)} requirement codes quoted word for word; {len(set(L.NAMED) & set(used))} of {len(L.NAMED)} named items quoted (error handling, all 42 message rows, key decisions, permission rows and rules, terminology, overview, out of scope, goals, form factor), {len(L.NOT_TESTABLE)} not testable with the reason |",
      f"| Jira, epic SV-11665 (28 tickets) | ✓ | every story compared with its PRD story; 13 verify tasks mapped to their cases; {sum(1 for c in L.CASES if any(isinstance(x, tuple) for x in c['q']))} cases quote a ticket; ticket_sweep 0 unhandled |",
      f"| Tech plan rev. 5 (2026-11-10), via TECH-PLAN-TESTABLE.json ({TPV['CONFIRM']} CONFIRM, {TPV['ADD']} ADD, {TPV['DIVERGE']} DIVERGE) | ✓ | {len(ADD_Q)} of {TPV['ADD']} ADD statements quoted by a case (new cases or result bullets), {len(cases_tp.TP_OUT)} left out with the reason (below); {len(CONF_Q)} CONFIRM statements quoted where they settle a detail the PRD leaves open; no DIVERGE statement is quoted (the PRD wins); 74 invariant rows mapped to cases (below) |",
-     "| Design (All flows v6.1) | pending | the design round adds References from Design and the design cases |", "",
+     f"| Design \"Internal Work Orders · All flows v6\" (version 1794484794-2031), via the design worker's drive (design-2026-11-12/) | ✓ | {len(DES)} design cases in \"Design — how it looks\" (one per draft: {sum(1 for c in DES if not c['held'])} runnable look cases, {sum(1 for c in DES if 'waiting on the PO' in c['marker'])} held design-version cases, {sum(1 for c in DES if 'cannot set this up' in c['marker'])} a tester cannot set up); References from Design on every design case and on {len(PRD_REFS)} PRD cases whose screen a board draws ({len(ALLPICS)} distinct pictures, all present in images/, attached by create.py); spec-to-design table {dict(S2DV)}; register {len(REGROWS)} differences: {sum(r['outcome'].startswith('SETTLED') for r in REGROWS)} settled by a named PRD sentence, {len(DR.OPEN)} closed by a question on the sheet, 1 (IWO-D50) by a named ruling |", "",
      "- **Every surface (Rule 40):** Settings > Work Orders and the turn-on window; Customers list, header and mobile card; Edit Customer; New and "
      "Edit Asset; Administration > Service > Internal Work Orders and the category windows; New / Edit Work Order; the work order page (badge, "
      "orange card, lines, menus, Shop supplies, Finance tab, Notes, Audit Log); the work orders list, Tech View, Board, Schedule, global search, "
@@ -185,7 +196,22 @@ R = ["# Internal Work Orders — report, rounds 1 and 2a (PRD, Jira, tech plan),
      "available to this worker, so a behaviour nobody documented cannot appear here.", "",
      "## Tech plan: invariant rows (INVARIANTS-FROM-PLAN.md) and the cases that check them", "", "| Row | Case(s) |", "|---|---|"]
 R += [f"| {a} | {b} |" for a, b in INV_MAP]
-R += ["", "## Tech plan: DIVERGE items", "",
+R += ["", "## Design (round 2b)", "",
+      f"- **Design cases:** {len(DES)} (D-01 to D-{len(DES):02d}), made by `authoring/make_cases_design.py` from the design worker's drafts "
+      "(`design-2026-11-12/tools/cases_data.py`, the data of DESIGN-CASE-PLAN.md); titles start \"Design: \"; every precondition list ends with "
+      "the pictures to open beside the screen; every design case quotes the PRD sentence it checks and lists the boards, pictures and the design's "
+      "own words under References from Design (checked word for word against the board files and the rendered text by build.py). Held "
+      "design-version cases stay in \"Design — how it looks\".",
+      "- **Changes made to the drafts:** " + "; ".join(DCH["changes"]) + ".",
+      f"- **PRD cases:** {len(PRD_REFS)} carry References from Design: the case's primary PRD code (the screen it is about) is SHOWN or DIFFERENT "
+      "on a board; boards come from the spec-to-design table's own board names, then the design cases that quote the same code (at most 4 "
+      "pictures); a difference on any quoted code adds a note naming its register row and how it is closed. API cases and cases whose screen no "
+      "board draws carry no heading.",
+      "", "| Register row (open) | Closed by |", "|---|---|"]
+R += [f"| {rid} | question {QN[slug]} of PO-QUESTIONS-DRAFT.md ({slug}); held: {', '.join(c['key'] for c in L.CASES if L.qnum(c) == QN[slug])} |" for rid, slug in DR.OPEN.items()]
+R += ["| IWO-D50 | named ruling, no question: two reviewer remarks left in the file of Review board 1.1, below its visible area; PRD Final v1.0 is newer than the design and its header says \"Where a frame and this text disagree, the text wins\"; it already gives the toggle description (S1-R1) and the No Charge badge in its own style (S2-R3), which is what the remarks ask; no verdict depends on them |",
+      "", f"The other {sum(r['outcome'].startswith('SETTLED') for r in REGROWS)} rows are settled by the PRD sentence the register names; the cases follow the PRD and name the row in their References from Design.", "",
+      "## Tech plan: DIVERGE items", "",
       "- D-1 (Create invoice rows per move or per account pair): S7-38 written and held on question 4; S7-12, S7-22 and S7-23 have one move each, where both readings agree, so they stay runnable.",
       "- D-2 (\"Closed\" in the Status filter only after first use): S2-106 written and held on question 5; S2-68 runs in a shop that uses the feature, where both agree.",
       "- D-3 (the message when a completion step fails inside Close): no runnable case depends on it (S3-53 is NO-MANUAL); not asked (skill 07 §6), reported here for the QA lead.",
@@ -213,15 +239,19 @@ R += ["", "## Reading coverage (Rule 119)", "",
       "| Jira `sources/JIRA-SV-11665-tickets-2026-11-12.md` (epic, 14 stories, 13 verify tasks, fetched in full) | 454 lines | 1–454, 100% |",
       "| Tech plan worker's outputs: TECH-PLAN-TESTABLE.json (680 statements and 8 context lines), TECH-PLAN-DIVERGENCES.md, INVARIANTS-FROM-PLAN.md, QUESTIONS-DRAFT.md, TECH-PLAN-READING-RECORD.md, NOTES.md | 259 KB + 45 KB | every statement and line, 100% |",
       "| The tech plan itself (842 KB, 5,398 lines) | — | read in full by the tech plan worker (its reading record); this worker re-checks every quoted statement against its plan line by script |",
+      "| Design worker's outputs: tools/cases_data.py (every draft, DC-01 to DC-86 and DV-01 to DV-06, read in full), NEW-QUESTIONS.py (in full), DESIGN-DIVERGENCE-REGISTER.json (every row), SPEC-TO-DESIGN-2026-11-12.json (247 rows), DESIGN-FIGURES-2026-11-12.json (167 boards), tools/make_case_plan.py and tools/prd.py (in full) | — | 100%; DESIGN-CASE-PLAN.md is rendered from cases_data.py by make_case_plan.py, so its content was read through its data; build.py checks the case count equals the drafts |",
       "| Rules and skills: LESSONS-REGISTER.md; Rule 4; Rules 96, 113–117 (all amendments), 122, 123, 129, 130, 132–140; IDEAL-TEST-CASE-STANDARD.md; skill 17 §0–2; skill 07 §2–6 | — | in full |", "",
       "## Checks run", "",
       f"- `python3 authoring/build.py`: 0 PROBLEM lines; proposals.json ({len(PROP)} cases). New gates: every tech plan quote is word for word on its plan line, no DIVERGE statement is quoted, every ADD statement is quoted or listed as left out.",
       "- `tester_readiness_check.py`: 0 hard problems. Round 1 read a sample of 6 and all 112 \"does not / never\" results; round 2a read a new sample of 6 "
       "(S1-88, S4-12, S2-28, S7-36, S12-35, S7-32) and every new \"does not / never\" result (13). Changes from the read: S12P-12 rewritten with a "
       "visible control and one action per step, an unneeded labor rate removed from S12-35.",
+      "- Round 2b: build.py adds the design gates (pictures exist, the design's words are on the case's boards, every open register row is closed "
+      "by a sheet question or the named ruling, one case per design draft). Readiness: 0 hard; the sample read (D-72, S1-15, S5-05, S2-52, S3-33) "
+      "and every \"does not / never\" result of the design cases (13) and of the rest (140 in all) read; each has its positive control in the same case.",
       "- `ticket_sweep.py`: 0 unhandled tickets, PRD 1.0 handled. `create.py` dry run: nothing written.", "",
       "## OUTSTANDING — what I need from you", "",
-      "- **Before any TestRail write (Rule 6):** create the subsections of section 136701 in sections.json and put their ids there; then `create.py --apply`. Recommended after the design round, so each case is written once.",
+      "- **Before any TestRail write (Rule 6):** create the subsections of section 136701 listed in sections.json and put their ids there; then `create.py --apply` (it attaches the design pictures and reads each case back).",
       f"- **NO-MANUAL:** confirm the {len(NOMAN)} cases stay out of TestRail (recommended, as for Bill To).",
       "- **For the QA lead only (Rule 30):** the plan-vs-PRD differences D-3 and D-5 to D-9 above need no PO answer; the cases follow the PRD.",
       f"- **Waiting on the PO (Rule 132):** PO-QUESTIONS-DRAFT.md, {len(QUESTIONS)} questions for Milos, not yet sent (the sheet is built by the coordinator). Held on them: "

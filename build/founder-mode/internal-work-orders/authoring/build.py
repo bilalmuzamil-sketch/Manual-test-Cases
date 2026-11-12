@@ -89,6 +89,40 @@ for c in L.CASES:
     if not (pre.startswith(head) and pre.endswith("</li></ul>")): probs.append(f"{k}: Preconditions not (banner,) one heading and one bullet list")
     if c["api"] and not re.search(r"\b(GET|PATCH|POST|PUT)\b|Open API|webhook", " ".join(c["steps"])): probs.append(f"{k}: an API case whose steps name no request")
 
+# ---- round 2b design gates: pictures exist; the design's own words are on the case's boards (rendered text or board file); every open
+# register row is closed by a question on the sheet or the named ruling; every design draft became a case
+import design_refs as DR, html as _h, runpy as _rp
+DD = f"{L.P}/design-2026-11-12"; _TXT = {}
+for _p in glob.glob(f"{DD}/render/render-log-[0-9].json"):
+    for _b in json.load(open(_p))["boards"].values():
+        _f = next((f for f in DR.FIGS if (f["page"], f["nn"]) == (_b["page"], _b["nn"])), None)
+        if _f: _TXT[_f["file"].replace(".dc.html", "")] = " ".join(r["text"] for r in _b["rows"]) + " " + " ".join(a["text"] for a in _b["attrs"])
+_norm = lambda s: re.sub(r"\s+", " ", s).strip()
+def _hay(b): return _TXT.get(b, "") + " " + _h.unescape(open(f"{DD}/files/project/{b}.dc.html", encoding="utf-8").read())
+with_refs = 0
+for c in L.CASES:
+    d = L.design_for(c)
+    if not d: continue
+    with_refs += 1
+    if not d.get("pages", "").startswith('Design canvas "Internal Work Orders'): probs.append(f"{c['key']}: design pages line does not name the canvas")
+    if not d.get("pictures"): probs.append(f"{c['key']}: References from Design without a picture")
+    for x in d.get("pictures") or []:
+        if not os.path.exists(f"{DD}/images/{x}"): probs.append(f"{c['key']}: design picture {x} not in design-2026-11-12/images/")
+    hay = _norm(" ".join(_hay(b) for b in d.get("boards") or []))
+    for w in d.get("words") or []:
+        if _norm(w) not in hay: probs.append(f"{c['key']}: design words not on its boards: {w[:60]!r}")
+_reg = json.load(open(f"{L.P}/DESIGN-DIVERGENCE-REGISTER.json"))["differences"]
+for r in _reg:
+    if r["outcome"].startswith("SETTLED"): continue
+    if r["id"] in DR.OPEN:
+        if DR.OPEN[r["id"]] not in QN: probs.append(f"register {r['id']}: question {DR.OPEN[r['id']]} not on the sheet")
+    elif r["id"] != "IWO-D50": probs.append(f"register {r['id']} ({r['outcome'][:30]}) is closed by no question and no named ruling")
+_drafts = _rp.run_path(f"{DD}/tools/cases_data.py")["CASES"]
+if len(_drafts) != len(DR.DREFS) or len(_drafts) != sum(c["sec"] == "DESIGN" for c in L.CASES):
+    probs.append(f"design drafts {len(_drafts)} but design cases {sum(c['sec'] == 'DESIGN' for c in L.CASES)}: run make_cases_design.py")
+print("design: cases with References from Design", with_refs, "| PRD-side", with_refs - sum(c["sec"] == "DESIGN" for c in L.CASES),
+      "| register rows", len(_reg), "open", sum(not r["outcome"].startswith("SETTLED") for r in _reg))
+
 # ---- folders (12 Nov 2026, standing choices applied unattended, as for Bill To on 10 Nov 2026): cases waiting on the PO, blocked on a
 # release, or run on production after it live in their own TestRail folders; design cases waiting stay in "Design — how it looks".
 FOLDER = {}
