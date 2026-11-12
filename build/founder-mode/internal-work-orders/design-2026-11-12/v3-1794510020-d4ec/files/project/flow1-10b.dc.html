@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>10b Asset · Invoices tab</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:var(--sv-accent-text)}a:hover{color:var(--sv-accent-hover)}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; height: 840px; overflow: hidden; background: var(--sv-surface); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+    <div class="sv-app" style="height: 100%; display: flex; flex-direction: column;">
+      <x-import component-from-global-scope="SV.AppHeader" active="customers" user="Admin ShopView" hint-size="100%,64px"></x-import>
+      <div class="sv-content" style="padding: var(--sv-space-5) var(--sv-space-6); display: flex; flex-direction: column; gap: var(--sv-space-4);">
+        <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+          <span class="sv-h2">2017 Ford Transit</span>
+          <span class="sv-body" style="color: var(--sv-text-secondary);">Unit 14 · Staging Heavy Duty Fleet · VIN 2ZTM0GN6FHYZT4KXE</span>
+        </div>
+        <div class="sv-tabs" role="tablist" style="white-space: nowrap;">
+          <button type="button" role="tab" class="sv-tab" aria-selected="false">Details</button>
+          <button type="button" role="tab" class="sv-tab" aria-selected="false">Work Orders</button>
+          <button type="button" role="tab" class="sv-tab" aria-selected="true">Invoices</button>
+        </div>
+        <div class="sv-card sv-card--flush" style="overflow: hidden;">
+            <table class="sv-table" style="width: 100%;">
+              <thead><tr><th>Invoice #</th><th>Date</th><th>Customer</th><th>Status</th><th class="sv-num">Discount</th><th class="sv-num">Tax rate</th><th class="sv-num">Total balance</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr data-sv-change="modified"><td class="sv-body-strong">S2-34918</td><td>Oct 22, 2026</td><td>Staging Heavy Duty Fleet</td><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-1);"><x-import component-from-global-scope="SV.StatusBadge" status="Closed" tone="neutral" vocabulary="finance" hint-size="80px,22px"></x-import><x-import component-from-global-scope="SV.Badge" tone="warning" shape="square" size="sm" hint-size="72px,20px">No Charge</x-import></span></td><td class="sv-num">—</td><td class="sv-num">—</td><td class="sv-num">No Charge</td><td></td></tr>
+                <tr><td class="sv-body-strong">S2-33590</td><td>Jun 4, 2026</td><td>Staging Heavy Duty Fleet</td><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-1);"><x-import component-from-global-scope="SV.StatusBadge" status="Closed" tone="neutral" vocabulary="finance" hint-size="80px,22px"></x-import><x-import component-from-global-scope="SV.Badge" tone="warning" shape="square" size="sm" hint-size="72px,20px">No Charge</x-import></span></td><td class="sv-num">—</td><td class="sv-num">—</td><td class="sv-num">No Charge</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+  </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

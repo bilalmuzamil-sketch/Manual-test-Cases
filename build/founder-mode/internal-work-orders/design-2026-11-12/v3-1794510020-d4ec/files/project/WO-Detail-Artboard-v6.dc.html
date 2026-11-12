@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WO Detail Artboard v6</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="sv-app" style="height: 100%;">
+  <x-import component-from-global-scope="SV.AppHeader" active="work-orders" user="Admin ShopView" hint-size="100%,64px"></x-import>
+  <div class="sv-main">
+    <aside class="sv-side" style="gap: var(--sv-space-3); padding: var(--sv-space-4);">
+      <sc-if value="{{ headPlain }}" hint-placeholder-val="{{ true }}">
+      <div class="sv-card" data-sv-component="WorkOrderNavBar" data-sv-change="{{ headChange }}" style="flex: none; display: flex; flex-direction: column; gap: var(--sv-space-3);">
+        <div style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+          <span class="sv-h3">{{ woNo }}</span>
+          <span style="display: flex; gap: var(--sv-space-1); flex-wrap: wrap;">
+            <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}"><span data-sv-change="unchanged" style="display: inline-flex;"><x-import component-from-global-scope="SV.StatusBadge" status="{{ headerStatus }}" vocabulary="workOrder" hint-size="84px,22px"></x-import></span></sc-if>
+            <sc-if value="{{ isClosed }}" hint-placeholder-val="{{ false }}"><span data-sv-component="StatusBadge" data-sv-change="modified" style="display: inline-flex;"><x-import component-from-global-scope="SV.StatusBadge" status="Closed" tone="neutral" vocabulary="workOrder" hint-size="64px,22px"></x-import></span></sc-if>
+            <sc-if value="{{ isInternal }}" hint-placeholder-val="{{ true }}"><span data-sv-component="WorkOrderNavBar" data-sv-change="new" style="display: inline-flex;"><x-import component-from-global-scope="SV.Badge" tone="warning" shape="square" hint-size="80px,22px">Internal</x-import></span></sc-if>
+            <sc-if value="{{ ncOn }}" hint-placeholder-val="{{ false }}"><span data-sv-component="WorkOrderNavBar" data-sv-change="new" style="display: inline-flex;"><span class="sv-badge sv-badge--warning sv-badge--square">No Charge</span></span></sc-if>
+          </span>
+          <sc-if value="{{ closedLine }}" hint-placeholder-val="{{ false }}"><span data-sv-change="new" class="sv-body2" style="color: var(--sv-text-secondary);">Closed on Oct 22, 2026. To change it, reopen it from the Finance tab.</span></sc-if>
+        </div>
+        <div class="sv-facts"><dl class="sv-facts__list">
+          <dt class="sv-facts__k">Started</dt><dd class="sv-facts__v">Oct 2, 2026</dd>
+          <dt class="sv-facts__k">Total Hours</dt><dd class="sv-facts__v">{{ totalHours }}</dd>
+          <dt class="sv-facts__k">Lead Technician</dt><dd class="sv-facts__v">M. Rhodes</dd>
+          <dt class="sv-facts__k">Service Advisor</dt><dd class="sv-facts__v">Admin ShopView</dd>
+        </dl></div>
+      </div>
+      </sc-if>
+      <sc-if value="{{ headWarn }}" hint-placeholder-val="{{ false }}">
+      <div class="sv-card" data-sv-component="WorkOrderNavBar" data-sv-change="modified" style="flex: none; display: flex; flex-direction: column; gap: var(--sv-space-3); background: var(--sv-warning-fill); border: 2px solid var(--sv-warning-border);">
+        <div style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+          <span class="sv-h3">{{ woNo }}</span>
+          <span style="display: flex; gap: var(--sv-space-1); flex-wrap: wrap;">
+            <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}"><span data-sv-change="unchanged" style="display: inline-flex;"><x-import component-from-global-scope="SV.StatusBadge" status="{{ headerStatus }}" vocabulary="workOrder" hint-size="84px,22px"></x-import></span></sc-if>
+            <sc-if value="{{ isClosed }}" hint-placeholder-val="{{ false }}"><span data-sv-component="StatusBadge" data-sv-change="modified" style="display: inline-flex;"><x-import component-from-global-scope="SV.StatusBadge" status="Closed" tone="neutral" vocabulary="workOrder" hint-size="64px,22px"></x-import></span></sc-if>
+            <sc-if value="{{ isInternal }}" hint-placeholder-val="{{ true }}"><span data-sv-component="WorkOrderNavBar" data-sv-change="new" style="display: inline-flex;"><x-import component-from-global-scope="SV.Badge" tone="warning" shape="square" hint-size="80px,22px">Internal</x-import></span></sc-if>
+            <sc-if value="{{ ncOn }}" hint-placeholder-val="{{ false }}"><span data-sv-component="WorkOrderNavBar" data-sv-change="new" style="display: inline-flex;"><span class="sv-badge sv-badge--warning sv-badge--square">No Charge</span></span></sc-if>
+          </span>
+          <sc-if value="{{ closedLine }}" hint-placeholder-val="{{ false }}"><span data-sv-change="new" class="sv-body2" style="color: var(--sv-text-secondary);">Closed on Oct 22, 2026. To change it, reopen it from the Finance tab.</span></sc-if>
+        </div>
+        <div class="sv-facts"><dl class="sv-facts__list">
+          <dt class="sv-facts__k">Started</dt><dd class="sv-facts__v">Oct 2, 2026</dd>
+          <dt class="sv-facts__k">Total Hours</dt><dd class="sv-facts__v">{{ totalHours }}</dd>
+          <dt class="sv-facts__k">Lead Technician</dt><dd class="sv-facts__v">M. Rhodes</dd>
+          <dt class="sv-facts__k">Service Advisor</dt><dd class="sv-facts__v">Admin ShopView</dd>
+        </dl></div>
+      </div>
+      </sc-if>
+      <div class="sv-card" data-sv-change="{{ custChange }}" style="flex: none; display: flex; flex-direction: column; gap: var(--sv-space-2);">
+        <sc-if value="{{ custCardOldName }}" hint-placeholder-val="{{ true }}"><div style="position: relative; display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sv-space-2);"><span class="sv-h4">{{ customer }}</span><button type="button" class="sv-btn sv-btn--primary sv-btn--sm" data-sv-change="{{ ccChange }}" disabled="{{ ccDisabled }}" aria-label="Change Customer" title="Change Customer" style="flex: none; width: 32px; height: 32px; min-width: 32px; padding: 0; justify-content: center; border-radius: var(--sv-radius-pill);"><span style="display: inline-flex; transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span></button><sc-if value="{{ changeCustTip }}" hint-placeholder-val="{{ false }}"><div class="sv-tt" role="tooltip" data-sv-change="new" style="position: absolute; right: 0; top: calc(100% + 6px); width: 240px; white-space: normal; z-index: 20;"><span class="sv-tt__label" style="text-wrap: pretty;">{{ changeCustTip }}</span></div></sc-if></div></sc-if>
+        <sc-if value="{{ custCardV57 }}" hint-placeholder-val="{{ false }}"><div style="position: relative; display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sv-space-2);"><span class="sv-h4">{{ customer }}</span><button type="button" class="sv-btn sv-btn--primary sv-btn--sm" data-sv-change="{{ ccChange }}" disabled="{{ ccDisabled }}" aria-label="Change Customer" title="Change Customer" style="flex: none; width: 32px; height: 32px; min-width: 32px; padding: 0; justify-content: center; border-radius: var(--sv-radius-pill);"><span style="display: inline-flex; transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span></button><sc-if value="{{ changeCustTip }}" hint-placeholder-val="{{ false }}"><div class="sv-tt" role="tooltip" data-sv-change="new" style="position: absolute; right: 0; top: calc(100% + 6px); width: 240px; white-space: normal; z-index: 20;"><span class="sv-tt__label" style="text-wrap: pretty;">{{ changeCustTip }}</span></div></sc-if></div></sc-if>
+        
+        <sc-if value="{{ isCurrent }}" hint-placeholder-val="{{ false }}">
+          <div class="sv-facts"><dl class="sv-facts__list">
+            <dt class="sv-facts__k">Contact</dt><dd class="sv-facts__v">Mario Jenkins</dd>
+            <dt class="sv-facts__k">Phone</dt><dd class="sv-facts__v">464-195-1863</dd>
+          </dl></div>
+        </sc-if>
+        <sc-if value="{{ custCardV57 }}" hint-placeholder-val="{{ false }}">
+          <div class="sv-facts"><dl class="sv-facts__list">
+            <dt class="sv-facts__k">Phone</dt><dd class="sv-facts__v">(403) 523-0488</dd>
+            <dt class="sv-facts__k">Address</dt><dd class="sv-facts__v">10842 West Charleston Boulevard, Suite 450-B, Las Vegas, Nevada 89135</dd>
+          </dl></div>
+        </sc-if>
+        <sc-if value="{{ custCardOld }}" hint-placeholder-val="{{ false }}">
+          <span class="sv-body2" style="color: var(--sv-text-secondary);">System customer for your own trucks and equipment.</span>
+        </sc-if>
+        <sc-if value="{{ ncCardBox }}" hint-placeholder-val="{{ false }}">
+          <div data-sv-component="WorkOrderNavBar" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-1); padding-top: var(--sv-space-2); border-top: 1px solid var(--sv-border-default);">
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2); flex-wrap: wrap;">
+              <x-import component-from-global-scope="SV.Checkbox" checked="{{ ncOn }}" disabled="{{ ncLocked }}" label="No Charge" hint-size="100px,20px"></x-import>
+              <sc-if value="{{ ncTip }}" hint-placeholder-val="{{ false }}"><div class="sv-tt" data-sv-change="new"><span class="sv-tt__label">{{ ncTip }}</span></div></sc-if>
+              <sc-if value="{{ ncInfo }}" hint-placeholder-val="{{ false }}"><span data-sv-change="new" style="display: inline-flex; color: var(--sv-text-secondary); position: relative;" aria-label="About No Charge"><x-import component-from-global-scope="SV.Icon" name="info" size="{{ 16 }}" hint-size="16px,16px"></x-import><sc-if value="{{ ncInfoOpen }}" hint-placeholder-val="{{ false }}"><div class="sv-tt" role="tooltip" style="position: absolute; left: 24px; top: 50%; transform: translateY(-50%); width: 260px; white-space: normal; z-index: 5;"><span class="sv-tt__label" style="text-wrap: pretty;">Warranty, goodwill, policy or comeback work. Closes without an invoice; parts cost posts to Customer No-Charge Expense.</span></div></sc-if></span></sc-if>
+              <sc-if value="{{ ncReason }}" hint-placeholder-val="{{ false }}"><span data-sv-change="new" class="sv-body2" style="color: var(--sv-text-secondary);">{{ ncReasonText }}</span></sc-if>
+            </div>
+            <sc-if value="{{ ncHelper }}" hint-placeholder-val="{{ true }}"><span class="sv-body2" style="color: var(--sv-text-secondary); padding-left: var(--sv-space-6); text-wrap: pretty;">A customer's free job: warranty, goodwill, policy, comeback or a category of your own. Closes without an invoice; parts cost posts to the category's expense account.</span></sc-if>
+          </div>
+        </sc-if>
+      </div>
+      <div class="sv-card" style="flex: none; display: flex; flex-direction: column; align-items: flex-start; gap: var(--sv-space-2);">
+        <x-import component-from-global-scope="SV.Button" variant="link" hint-size="140px,24px">{{ assetName }}</x-import>
+        <div class="sv-facts"><dl class="sv-facts__list">
+          <dt class="sv-facts__k">Unit</dt><dd class="sv-facts__v">{{ unit }}</dd>
+          <dt class="sv-facts__k">VIN/Serial #</dt><dd class="sv-facts__v">{{ vin }}</dd>
+          <dt class="sv-facts__k">Mileage</dt><dd class="sv-facts__v">123</dd>
+        </dl></div>
+      </div>
+      <div class="sv-card sv-card--flush" data-sv-change="{{ finChange }}" style="flex: none; overflow: hidden;">
+        <div class="sv-h4" style="padding: var(--sv-space-3) var(--sv-space-4) var(--sv-space-1);">Financial Info</div>
+        <table class="sv-table" style="width: 100%;">
+          <thead><tr><th>Item</th><sc-if value="{{ isInternal }}" hint-placeholder-val="{{ true }}"><th class="sv-num" data-sv-change="new">Value</th></sc-if><th class="sv-num">Cost</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ fin }}" as="f" hint-placeholder-count="3">
+              <tr><td>{{ f.k }}</td><sc-if value="{{ isInternal }}" hint-placeholder-val="{{ true }}"><td class="sv-num">{{ f.v }}</td></sc-if><td class="sv-num"><div>{{ f.c }}</div><sc-if value="{{ f.n }}" hint-placeholder-val="{{ false }}"><div class="sv-body2" style="color: var(--sv-text-secondary);">{{ f.n }}</div></sc-if></td></tr>
+            </sc-for>
+          </tbody>
+        </table>
+        <sc-if value="{{ suppliesField }}" hint-placeholder-val="{{ false }}">
+          <div data-sv-component="WorkOrderNavBar" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-1); padding: var(--sv-space-3) var(--sv-space-4); border-top: 1px solid var(--sv-border-default);">
+            <x-import component-from-global-scope="SV.Input" label="Shop supplies" value="$25.00" hint-size="100%,48px"></x-import>
+            <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">Defaults to the customer's Min shop supplies charge. Posted as an expense at Close.</span>
+          </div>
+        </sc-if>
+      </div>
+    </aside>
+    <div class="sv-content" style="padding: var(--sv-space-4) var(--sv-space-6); display: flex; flex-direction: column; gap: var(--sv-space-4);">
+      <div data-popover-host="true" data-sv-component="WorkOrderNavBar" data-sv-change="{{ headChange }}" style="display: flex; align-items: center; gap: var(--sv-space-2); position: relative; z-index: 40;">
+        <div class="sv-tabs" role="tablist" style="white-space: nowrap;">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+            <button type="button" role="tab" class="sv-tab" aria-selected="{{ t.sel }}" data-sv-component="{{ t.comp }}" data-sv-change="{{ t.change }}">{{ t.label }}</button>
+          </sc-for>
+        </div>
+        <span style="flex: 1;"></span>
+        <span ref="{{ kebabRef }}" style="display: inline-flex;">
+          <span data-sv-component="WorkOrderNavBarMenu" data-sv-change="{{ menuChange }}" style="display: inline-flex; transform: rotate(90deg);"><x-import component-from-global-scope="SV.Button" variant="tertiary" icon="ellipsis" aria-label="More actions" hint-size="40px,36px"></x-import></span>
+        </span>
+        <x-import component-from-global-scope="SV.Popover" open="{{ menuOpen }}" anchor-ref="{{ kebabRef }}" on-close="{{ noop }}" align="right" panel-width="{{ 260 }}" hint-size="0px,0px">
+          <div data-sv-component="WorkOrderNavBarMenu" data-sv-change="{{ menuChange }}">
+            <x-import component-from-global-scope="SV.Menu" hint-size="260px,180px">
+              <sc-for list="{{ menu }}" as="m" hint-placeholder-count="4">
+                <div data-sv-component="WorkOrderNavBarMenu" data-sv-change="{{ m.change }}" style="display: contents;"><x-import component-from-global-scope="SV.MenuRow" icon="{{ m.icon }}" danger="{{ m.danger }}" active="{{ m.active }}" disabled="{{ m.disabled }}" hint-size="100%,40px">{{ m.label }}</x-import></div>
+              </sc-for>
+            </x-import>
+            <sc-for list="{{ removed }}" as="x" hint-placeholder-count="0">
+              <span hidden="true" data-sv-component="WorkOrderNavBarMenu" data-sv-change="removed">{{ x }}</span>
+            </sc-for>
+          </div>
+            <sc-if value="{{ menuTip }}" hint-placeholder-val="{{ false }}"><div class="sv-tt" role="tooltip" data-sv-change="new" style="position: absolute; right: 264px; top: {{ menuTipTop }}; z-index: 60; white-space: nowrap;"><span class="sv-tt__label">{{ menuTip }}</span></div></sc-if>
+        </x-import>
+        <x-import component-from-global-scope="SV.Button" variant="secondary" icon="plus" disabled="{{ isClosed }}" hint-size="120px,36px">New Line</x-import>
+        <sc-if value="{{ showFinish }}" hint-placeholder-val="{{ true }}">
+          <span data-sv-component="WorkOrderNavBar" data-sv-change="{{ finishChange }}" style="display: inline-flex;"><x-import component-from-global-scope="SV.Button" variant="primary" icon="{{ finishIcon }}" hint-size="160px,36px">{{ finishLabel }}</x-import></span>
+        </sc-if>
+        <sc-if value="{{ showReopenBtn }}" hint-placeholder-val="{{ false }}">
+          <span data-sv-component="WorkOrderNavBar" data-sv-change="new" style="display: inline-flex;"><x-import component-from-global-scope="SV.Button" variant="secondary" icon="rotate-ccw" hint-size="110px,36px">Reopen</x-import></span>
+        </sc-if>
+      </div>
+      <sc-if value="{{ ncHint }}" hint-placeholder-val="{{ false }}">
+        <span data-sv-component="WorkOrderNavBar" data-sv-change="new" class="sv-body2" style="display: flex; align-items: center; gap: var(--sv-space-1); color: var(--sv-text-secondary);"><x-import component-from-global-scope="SV.Icon" name="info" size="{{ 16 }}" hint-size="16px,16px"></x-import>No charge. This work order closes without an invoice. Parts cost posts to Customer No-Charge Expense.</span>
+      </sc-if>
+      <sc-if value="{{ movedFrom }}" hint-placeholder-val="{{ false }}">
+        <div class="sv-alert sv-alert--info" role="status" data-sv-component="WorkOrderNavBar" data-sv-change="new">
+          <span class="sv-alert__icon"><x-import component-from-global-scope="SV.Icon" name="corner-up-right" size="{{ 20 }}" hint-size="20px,20px"></x-import></span>
+          <div class="sv-alert__body">
+            <div class="sv-alert__title">Line moved here from work order <a href="#">S2-34918</a></div>
+            <div class="sv-alert__support">Created on Oct 15, 2026 by Admin ShopView with the line, its parts and its hours. Work order S2-34918 keeps its other lines and stays billable.</div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showLocked }}" hint-placeholder-val="{{ false }}">
+        <div class="sv-alert sv-alert--info" role="status" data-sv-component="WorkOrderNavBar" data-sv-change="new">
+          <span class="sv-alert__icon"><x-import component-from-global-scope="SV.Icon" name="lock" size="{{ 20 }}" hint-size="20px,20px"></x-import></span>
+          <div class="sv-alert__body">
+            <div class="sv-alert__title">Closed on Oct 22, 2026 by Admin ShopView</div>
+            <div class="sv-alert__support">This work order is locked. Reopen it to change lines, hours or parts. {{ lockedTail }}</div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showLines }}" hint-placeholder-val="{{ true }}">
+        <div class="sv-card sv-card--flush" style="overflow: {{ cardOverflow }};">
+          <table class="sv-table" style="width: 100%; white-space: nowrap; overflow: {{ cardOverflow }};">
+            <thead><tr><th>Name/Description</th><th class="sv-num">Actual/Estimate</th><th>Status</th><th class="sv-num">Rate</th><th class="sv-num">Total</th><sc-if value="{{ lineActions }}" hint-placeholder-val="{{ false }}"><th style="width: 48px;"></th></sc-if></tr></thead>
+            <tbody>
+              <sc-for list="{{ lines }}" as="l" hint-placeholder-count="2">
+                <tr>
+                  <td><div style="display: flex; align-items: center; gap: var(--sv-space-2); flex-wrap: wrap;"><span class="sv-body-strong">{{ l.title }}</span><sc-if value="{{ l.ncLine }}" hint-placeholder-val="{{ false }}"><span data-sv-component="WorkOrderLine" data-sv-change="new" style="display: inline-flex;"><x-import component-from-global-scope="SV.Badge" tone="neutral" shape="square" size="sm" hint-size="130px,20px">{{ l.ncText }}</x-import></span></sc-if></div><div class="sv-body2" style="color: var(--sv-text-secondary);">{{ l.sub }}</div></td>
+                  <td class="sv-num">{{ l.hrs }}</td>
+                  <td><x-import component-from-global-scope="SV.StatusBadge" status="{{ lineStatus }}" vocabulary="workOrder" hint-size="80px,22px"></x-import></td>
+                  <td class="sv-num">{{ l.rate }}</td>
+                  <td class="sv-num sv-body-strong">{{ l.total }}</td>
+                  <sc-if value="{{ lineActions }}" hint-placeholder-val="{{ false }}">
+                    <td style="position: relative; width: 48px; padding-right: var(--sv-space-2);">
+                      <span data-sv-component="WorkOrderLineMenu" data-sv-change="modified" style="display: inline-flex; transform: rotate(90deg);"><x-import component-from-global-scope="SV.Button" variant="tertiary" icon="ellipsis" aria-label="Line actions" hint-size="36px,32px"></x-import></span>
+                      <sc-if value="{{ l.menuOpen }}" hint-placeholder-val="{{ false }}">
+                        <div data-sv-component="WorkOrderLineMenu" data-sv-change="modified" style="position: absolute; top: 40px; right: var(--sv-space-2); width: 290px; z-index: 30;">
+                          <x-import component-from-global-scope="SV.Menu" hint-size="290px,160px">
+                            <sc-for list="{{ lineMenuRows }}" as="r" hint-placeholder-count="4">
+                              <div data-sv-component="WorkOrderLineMenu" data-sv-change="{{ r.change }}" style="display: contents;"><x-import component-from-global-scope="SV.MenuRow" icon="{{ r.icon }}" danger="{{ r.danger }}" active="{{ r.active }}" disabled="{{ r.disabled }}" hint-size="100%,40px">{{ r.label }}</x-import></div>
+                            </sc-for>
+                          </x-import>
+                        </div>
+                      </sc-if>
+                    </td>
+                  </sc-if>
+                </tr>
+                <sc-for list="{{ l.parts }}" as="p" hint-placeholder-count="2">
+                  <tr>
+                    <td style="padding-left: var(--sv-space-8); color: var(--sv-text-secondary);">{{ p.name }}</td>
+                    <td class="sv-num" style="color: var(--sv-text-secondary);">{{ p.qty }}</td>
+                    <td></td>
+                    <td></td>
+                    <td class="sv-num" style="color: var(--sv-text-secondary);">{{ p.price }}</td>
+                    <sc-if value="{{ lineActions }}" hint-placeholder-val="{{ false }}"><td></td></sc-if>
+                  </tr>
+                </sc-for>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: var(--sv-space-4); max-width: 760px;">
+          <div style="display: flex; gap: var(--sv-space-2); align-items: flex-end;">
+            <div style="flex: 1;"><x-import component-from-global-scope="SV.Input" label="Add a note" value="" hint-size="100%,48px"></x-import></div>
+            <x-import component-from-global-scope="SV.Button" variant="secondary" hint-size="90px,36px">Add</x-import>
+          </div>
+          <sc-for list="{{ noteRows }}" as="n" hint-placeholder-count="2">
+            <div class="sv-card" data-sv-change="{{ n.change }}" style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+              <div style="display: flex; align-items: center; gap: var(--sv-space-2); flex-wrap: wrap;">
+                <span class="sv-body-strong">{{ n.who }}</span>
+                <sc-if value="{{ n.system }}" hint-placeholder-val="{{ true }}"><span style="display: inline-flex;"><x-import component-from-global-scope="SV.Badge" tone="neutral" shape="square" size="sm" hint-size="56px,20px">System</x-import></span></sc-if>
+                <span class="sv-body2" style="color: var(--sv-text-secondary); margin-left: auto;">{{ n.when }}</span>
+              </div>
+              <span class="sv-body" style="text-wrap: pretty;">{{ n.text }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showPreviewAny }}" hint-placeholder-val="{{ false }}">
+        <div data-sv-component="InvoiceActionBar" data-sv-change="modified" style="display: flex; flex-direction: column; gap: var(--sv-space-4); margin: calc(-1 * var(--sv-space-4)) calc(-1 * var(--sv-space-6)) 0; padding: var(--sv-space-4) var(--sv-space-6) var(--sv-space-8); background: var(--sv-surface-canvas); flex: 1; min-height: 0; overflow: auto;">
+          <sc-if value="{{ tbFull }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; align-items: center; justify-content: flex-end; gap: var(--sv-space-2);">
+                            <div style="width: 180px;"><x-import component-from-global-scope="SV.Input" label="Customer PO" value="" hint-size="180px,48px"></x-import></div>
+              <div style="width: 180px;"><x-import component-from-global-scope="SV.Input" label="Invoice Date" value="Oct 15, 2026" icon="calendar" hint-size="180px,48px"></x-import></div>
+              <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="arrow-down" aria-label="Download" hint-size="40px,36px"></x-import>
+              <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="mail" aria-label="Email" hint-size="40px,36px"></x-import>
+              <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="file-text" aria-label="Print" hint-size="40px,36px"></x-import>
+              <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="cog" aria-label="Settings" hint-size="40px,36px"></x-import>
+            </div>
+          </sc-if>
+          <sc-if value="{{ tbEst }}" hint-placeholder-val="{{ false }}">
+            <div data-sv-change="modified" style="display: flex; align-items: center; justify-content: flex-end; gap: var(--sv-space-2);">
+              <x-import component-from-global-scope="SV.Button" variant="secondary" icon="corner-up-right" hint-size="150px,36px">Send to Portal</x-import>
+              <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="arrow-down" aria-label="Download" hint-size="40px,36px"></x-import>
+              <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="file-text" aria-label="Print" hint-size="40px,36px"></x-import>
+              <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="mail" aria-label="Email" hint-size="40px,36px"></x-import>
+            </div>
+          </sc-if>
+          <sc-if value="{{ tbClosed }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; align-items: center; justify-content: flex-end; gap: var(--sv-space-2); position: relative;">
+              <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="arrow-down" aria-label="Download" hint-size="40px,36px"></x-import>
+              <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="file-text" aria-label="Print" hint-size="40px,36px"></x-import>
+              <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="mail" aria-label="Email" hint-size="40px,36px"></x-import>
+              <span style="display: inline-flex; transform: rotate(90deg);"><x-import component-from-global-scope="SV.Button" variant="tertiary" icon="ellipsis" aria-label="Invoice actions" hint-size="40px,36px"></x-import></span>
+              <div class="sv-menu" role="menu" data-sv-change="new" style="position: absolute; top: 44px; right: 0; width: 220px; z-index: 10;">
+                <button type="button" role="menuitem" class="sv-menu__row is-active"><x-import component-from-global-scope="SV.Icon" name="rotate-ccw" size="{{ 16 }}" hint-size="16px,16px"></x-import><span class="sv-menu__label">Reopen Work Order</span></button>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ psShow }}" hint-placeholder-val="{{ false }}">
+            <div data-sv-component="InvoiceActionBar" data-sv-change="new" style="align-self: center; width: 100%; max-width: 640px; display: flex; flex-direction: column; gap: var(--sv-space-3);">
+              <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: var(--sv-space-4);">
+                <div style="width: 220px;"><x-import component-from-global-scope="SV.Input" label="Posting date" value="Oct 22, 2026" icon="calendar" hint-size="220px,48px"></x-import></div>
+                <div style="display: flex; align-items: center; gap: var(--sv-space-2);">
+                  <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="arrow-down" aria-label="Download" hint-size="40px,36px"></x-import>
+                  <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="file-text" aria-label="Print" hint-size="40px,36px"></x-import>
+                  <x-import component-from-global-scope="SV.Button" variant="primary" icon="circle-check" hint-size="160px,36px">Close Work Order</x-import>
+                </div>
+              </div>
+              <div class="sv-card sv-card--flush" style="display: flex; flex-direction: column;">
+                <sc-for list="{{ psRows }}" as="r" hint-placeholder-count="3">
+                  <div style="display: flex; flex-direction: column; gap: var(--sv-space-1); padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                    <div style="display: flex; justify-content: space-between; gap: var(--sv-space-4);"><span class="sv-body-strong">{{ r.k }}</span><span class="sv-body-strong">{{ r.v }}</span></div>
+                    <sc-if value="{{ r.note }}" hint-placeholder-val="{{ true }}"><span class="sv-body2" style="color: var(--sv-text-secondary);">{{ r.note }}</span></sc-if>
+                    <sc-if value="{{ r.warn }}" hint-placeholder-val="{{ false }}"><span class="sv-body2" style="display: flex; gap: var(--sv-space-1); align-items: flex-start; color: var(--sv-warning-text); text-wrap: pretty;"><span style="display: inline-flex; flex: none;"><x-import component-from-global-scope="SV.Icon" name="triangle-alert" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>{{ r.warn }}</span></sc-if>
+                    <sc-if value="{{ r.link }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="SV.Button" variant="link" hint-size="90px,20px">{{ r.link }}</x-import></sc-if>
+                  </div>
+                </sc-for>
+              </div>
+              <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">{{ psText }}</span>
+            </div>
+          </sc-if>
+          <div data-sv-component="InvoiceDocument" data-sv-change="modified" style="align-self: center; width: 100%; max-width: 640px; background: var(--sv-surface); box-shadow: var(--sv-elev-1-shadow); padding: var(--sv-space-8); display: flex; flex-direction: column; gap: var(--sv-space-6);">
+            <div style="display: grid; grid-template-columns: minmax(0,1fr) 210px minmax(0,1fr); gap: var(--sv-space-6); align-items: center; padding-bottom: var(--sv-space-5); border-bottom: 1px solid var(--sv-text-primary);">
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                <span class="sv-h4">Staging Heavy Duty - 9919</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">10842 West Charleston Boulevard, Suite 450-B<br>Las Vegas, Nevada 89135<br>(403) 523 - 0488</span>
+              </div>
+              <div style="display: flex; justify-content: center; align-items: center;"><div aria-label="Shop logo" style="width: 210px; height: 72px; border: 1px dashed var(--sv-border-default); border-radius: var(--sv-radius-md); display: flex; align-items: center; justify-content: center;"><span class="sv-body2" style="color: var(--sv-text-secondary);">Shop logo</span></div></div>
+              <div style="display: flex; flex-direction: column; align-items: flex-end; gap: var(--sv-space-1); text-align: right;">
+                <span class="sv-h4">{{ pvTitle }}</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">Date: <span style="color: var(--sv-text-primary);">{{ pvDate }}</span></span>
+              </div>
+            </div>
+            <div data-sv-change="new" style="display: flex; align-items: center; gap: var(--sv-space-3); flex-wrap: wrap; margin-top: calc(-1 * var(--sv-space-2));">
+              <span style="display: inline-flex;"><x-import component-from-global-scope="SV.Badge" tone="neutral" shape="square" hint-size="90px,22px">{{ docStampLabel }}</x-import></span>
+              <sc-if value="{{ pvReason }}" hint-placeholder-val="{{ false }}"><span class="sv-body2" style="color: var(--sv-text-secondary);">{{ pvReason }}</span></sc-if>
+            </div>
+            <div style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--sv-space-6);">
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+                <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary);">Bill to</span>
+                <span class="sv-body-strong">{{ pvBill }}</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+                <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary);">Asset</span>
+                <div class="sv-facts"><dl class="sv-facts__list">
+                  <dt class="sv-facts__k">Unit</dt><dd class="sv-facts__v">{{ unit }}</dd>
+                  <dt class="sv-facts__k">Asset</dt><dd class="sv-facts__v">{{ assetName }}</dd>
+                  <dt class="sv-facts__k">VIN/Serial #</dt><dd class="sv-facts__v">{{ vin }}</dd>
+                </dl></div>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+              <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary); padding-bottom: var(--sv-space-2); border-bottom: 1px solid var(--sv-text-primary);">Work performed</span>
+              <sc-for list="{{ pvLines }}" as="d" hint-placeholder-count="2">
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-2); padding-bottom: var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                  <div style="display: flex; gap: var(--sv-space-3); align-items: baseline;"><span class="sv-h4" style="color: var(--sv-accent);">{{ d.no }}</span><span class="sv-body-strong">{{ d.title }}</span><span class="sv-body2" style="color: var(--sv-text-secondary);">{{ d.sub }}</span></div>
+                  <table class="sv-table" style="width: 100%;">
+                    <thead><tr><th></th><th class="sv-num">Qty / Hours</th><th class="sv-num">Cost</th></tr></thead>
+                    <tbody>
+                      <tr><td>Labor</td><td class="sv-num">{{ d.hrs }}</td><td class="sv-num"></td></tr>
+                      <sc-for list="{{ d.parts }}" as="p" hint-placeholder-count="2">
+                        <tr><td>{{ p.name }}</td><td class="sv-num">{{ p.qty }}</td><td class="sv-num">{{ p.cost }}</td></tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: flex; justify-content: flex-end;">
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-2); min-width: 260px;">
+                <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary);">Summary</span>
+                <div class="sv-facts"><dl class="sv-facts__list">
+                  <dt class="sv-facts__k">Parts cost</dt><dd class="sv-facts__v" style="text-align: right;">{{ pvParts }}</dd>
+                  <sc-if value="{{ pvSupplies }}" hint-placeholder-val="{{ false }}"><dt class="sv-facts__k" data-sv-change="new">Shop supplies</dt><dd class="sv-facts__v" data-sv-change="new" style="text-align: right;">$25.00</dd></sc-if>
+                  <dt class="sv-facts__k">Labor</dt><dd class="sv-facts__v" style="text-align: right;">{{ pvLabor }}</dd>
+                </dl></div>
+              </div>
+            </div>
+          </div>
+          <div data-sv-component="InvoiceActionBar" data-sv-change="removed" style="display: none;">Tax, Total, Payments, Balance due, Signature</div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showCostDoc }}" hint-placeholder-val="{{ false }}">
+        <div data-sv-component="InvoiceActionBar" data-sv-change="modified" style="display: flex; flex-direction: column; gap: var(--sv-space-4); margin: calc(-1 * var(--sv-space-4)) calc(-1 * var(--sv-space-6)) 0; padding: var(--sv-space-4) var(--sv-space-6) var(--sv-space-8); background: var(--sv-surface-canvas); flex: 1; min-height: 0; overflow: auto;">
+          <sc-if value="{{ showClosedAlert }}" hint-placeholder-val="{{ false }}">
+            <div data-sv-component="CompletionWizard" data-sv-change="new" style="display: flex; flex-direction: column;">
+              <x-import component-from-global-scope="SV.Alert" tone="success" title="{{ closedTitle }}" hint-size="100%,52px"></x-import>
+            </div>
+          </sc-if>
+          <div style="display: flex; align-items: center; justify-content: flex-end; gap: var(--sv-space-2);">
+                        <div style="width: 180px;"><x-import component-from-global-scope="SV.Input" label="Customer PO" value="" hint-size="180px,48px"></x-import></div>
+            <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="arrow-down" aria-label="Download" hint-size="40px,36px"></x-import>
+            <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="mail" aria-label="Email" hint-size="40px,36px"></x-import>
+            <x-import component-from-global-scope="SV.Button" variant="tertiary" icon="file-text" aria-label="Print" hint-size="40px,36px"></x-import>
+            <sc-if value="{{ finClose }}" hint-placeholder-val="{{ false }}"><span data-sv-component="InvoiceActionBar" data-sv-change="modified" style="display: inline-flex;"><x-import component-from-global-scope="SV.Button" variant="primary" icon="circle-check" hint-size="160px,36px">Close Work Order</x-import></span></sc-if>
+          </div>
+          <sc-if value="{{ notClosed }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; justify-content: center;">
+              <x-import component-from-global-scope="SV.Toggle" on="{{ false }}" label="Estimate/Invoice" hint-size="150px,20px"></x-import>
+            </div>
+          </sc-if>
+          <sc-if value="{{ docOld }}" hint-placeholder-val="{{ true }}">
+          <div data-sv-component="InvoiceDocument" data-sv-change="modified" style="align-self: center; width: 100%; max-width: 640px; background: var(--sv-surface); box-shadow: var(--sv-elev-1-shadow); padding: var(--sv-space-8); display: flex; flex-direction: column; gap: var(--sv-space-6);">
+            <div style="display: grid; grid-template-columns: minmax(0,1fr) 210px minmax(0,1fr); gap: var(--sv-space-6); align-items: center; padding-bottom: var(--sv-space-5); border-bottom: 1px solid var(--sv-text-primary);">
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                <span class="sv-h4">Staging Heavy Duty - 9919</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">10842 West Charleston Boulevard, Suite 450-B<br>Las Vegas, Nevada 89135<br>(403) 523 - 0488</span>
+              </div>
+              <div style="display: flex; justify-content: center; align-items: center;"><div aria-label="Shop logo" style="width: 210px; height: 72px; border: 1px dashed var(--sv-border-default); border-radius: var(--sv-radius-md); display: flex; align-items: center; justify-content: center;"><span class="sv-body2" style="color: var(--sv-text-secondary);">Shop logo</span></div></div>
+              <div style="display: flex; flex-direction: column; align-items: flex-end; gap: var(--sv-space-1); text-align: right;">
+                <span class="sv-h4">{{ docTitle }}</span>
+                <span class="sv-h4">{{ docNo }}</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">{{ docDateLabel }} <span style="color: var(--sv-text-primary);">{{ docDate }}</span></span>
+              </div>
+            </div>
+            <sc-if value="{{ docStamp }}" hint-placeholder-val="{{ false }}">
+              <div data-sv-change="new" style="display: flex; align-items: center; gap: var(--sv-space-3); flex-wrap: wrap; margin-top: calc(-1 * var(--sv-space-2));">
+                <span style="display: inline-flex;"><x-import component-from-global-scope="SV.Badge" tone="neutral" shape="square" hint-size="90px,22px">{{ docStampLabel }}</x-import></span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">{{ docReasonLine }}</span>
+              </div>
+            </sc-if>
+            <div style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+              <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary);">Bill to</span>
+              <div class="sv-card" style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                <span class="sv-body-strong">{{ pvBill }}</span>
+              </div>
+            </div>
+            <div class="sv-facts" style="padding-bottom: var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);"><dl class="sv-facts__list">
+              <dt class="sv-facts__k">Asset</dt><dd class="sv-facts__v">2017 Ford Transit</dd>
+              <dt class="sv-facts__k">Unit</dt><dd class="sv-facts__v">Unit 14</dd>
+              <dt class="sv-facts__k">Mileage</dt><dd class="sv-facts__v">123</dd>
+              <dt class="sv-facts__k">VIN/Serial #</dt><dd class="sv-facts__v">2ZTM0GN6FHYZT4KXE</dd>
+              <dt class="sv-facts__k">Work Order</dt><dd class="sv-facts__v">S2-34918</dd>
+            </dl></div>
+            <div style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+              <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary); padding-bottom: var(--sv-space-2); border-bottom: 1px solid var(--sv-text-primary);">Work summary</span>
+              <sc-for list="{{ docLines }}" as="d" hint-placeholder-count="2">
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-2); padding-bottom: var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                  <div style="display: flex; gap: var(--sv-space-3); align-items: baseline;"><span class="sv-h4" style="color: var(--sv-accent);">{{ d.no }}</span><span class="sv-body-strong">{{ d.title }}</span><span class="sv-body2" style="color: var(--sv-text-secondary);">{{ d.sub }}</span></div>
+                  <table class="sv-table" style="width: 100%;">
+                    <tbody>
+                      <tr><td>Labor, {{ d.hrs }}</td><td class="sv-num"></td><td class="sv-num">$0.00</td><td class="sv-num">$0.00</td></tr>
+                      <sc-for list="{{ d.parts }}" as="p" hint-placeholder-count="2">
+                        <tr><td>{{ p.name }}</td><td class="sv-num">{{ p.qty }}</td><td class="sv-num">{{ p.unit }}</td><td class="sv-num">{{ p.price }}</td></tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                  <span class="sv-body" style="align-self: flex-end;">Line total <span class="sv-body-strong">{{ d.total }}</span></span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--sv-space-6); align-items: start;">
+              <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">No Charge.</span>
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-3);">
+                <div class="sv-facts"><dl class="sv-facts__list">
+                  <dt class="sv-facts__k">Labor</dt><dd class="sv-facts__v" style="text-align: right;">$0.00</dd>
+                  <dt class="sv-facts__k">Parts</dt><dd class="sv-facts__v" style="text-align: right;">$675.00</dd>
+                  <sc-if value="{{ showSupplies }}" hint-placeholder-val="{{ false }}"><dt class="sv-facts__k" data-sv-change="new">Shop supplies</dt><dd class="sv-facts__v" data-sv-change="new" style="text-align: right;">$25.00</dd></sc-if>
+                  <dt class="sv-facts__k">Total</dt><dd class="sv-facts__v sv-body-strong" style="text-align: right;">$675.00</dd>
+                </dl></div>
+                <div data-sv-change="modified" style="border: 1px solid var(--sv-text-primary); border-radius: var(--sv-radius-sm); padding: var(--sv-space-3) var(--sv-space-4); display: flex; align-items: center; justify-content: space-between; gap: var(--sv-space-3);">
+                  <div style="display: flex; flex-direction: column;"><span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary); color: var(--sv-text-primary);">Total</span><span class="sv-body2" style="color: var(--sv-text-secondary);">No Charge</span></div>
+                  <span class="sv-h2">$675.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+          <sc-if value="{{ docV59 }}" hint-placeholder-val="{{ false }}">
+          <div data-sv-component="InvoiceDocument" data-sv-change="modified" style="align-self: center; width: 100%; max-width: 640px; background: var(--sv-surface); box-shadow: var(--sv-elev-1-shadow); padding: var(--sv-space-8); display: flex; flex-direction: column; gap: var(--sv-space-6);">
+            <div style="display: grid; grid-template-columns: minmax(0,1fr) 210px minmax(0,1fr); gap: var(--sv-space-6); align-items: center; padding-bottom: var(--sv-space-5); border-bottom: 1px solid var(--sv-text-primary);">
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                <span class="sv-h4">Staging Heavy Duty - 9919</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">10842 West Charleston Boulevard, Suite 450-B<br>Las Vegas, Nevada 89135<br>(403) 523 - 0488</span>
+              </div>
+              <div style="display: flex; justify-content: center; align-items: center;"><div aria-label="Shop logo" style="width: 210px; height: 72px; border: 1px dashed var(--sv-border-default); border-radius: var(--sv-radius-md); display: flex; align-items: center; justify-content: center;"><span class="sv-body2" style="color: var(--sv-text-secondary);">Shop logo</span></div></div>
+              <div style="display: flex; flex-direction: column; align-items: flex-end; gap: var(--sv-space-1); text-align: right;">
+                <span class="sv-h4">{{ pvTitle }}</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">Date: <span style="color: var(--sv-text-primary);">{{ pvDate }}</span></span>
+              </div>
+            </div>
+            <div data-sv-change="new" style="display: flex; align-items: center; gap: var(--sv-space-3); flex-wrap: wrap; margin-top: calc(-1 * var(--sv-space-2));">
+              <span style="display: inline-flex;"><x-import component-from-global-scope="SV.Badge" tone="neutral" shape="square" hint-size="90px,22px">{{ docStampLabel }}</x-import></span>
+              <sc-if value="{{ pvReason }}" hint-placeholder-val="{{ false }}"><span class="sv-body2" style="color: var(--sv-text-secondary);">{{ pvReason }}</span></sc-if>
+            </div>
+            <div style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--sv-space-6);">
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+                <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary);">Bill to</span>
+                <span class="sv-body-strong">{{ pvBill }}</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+                <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary);">Asset</span>
+                <div class="sv-facts"><dl class="sv-facts__list">
+                  <dt class="sv-facts__k">Unit</dt><dd class="sv-facts__v">{{ unit }}</dd>
+                  <dt class="sv-facts__k">Asset</dt><dd class="sv-facts__v">{{ assetName }}</dd>
+                  <dt class="sv-facts__k">VIN/Serial #</dt><dd class="sv-facts__v">{{ vin }}</dd>
+                </dl></div>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+              <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary); padding-bottom: var(--sv-space-2); border-bottom: 1px solid var(--sv-text-primary);">Work performed</span>
+              <sc-for list="{{ pvLines }}" as="d" hint-placeholder-count="2">
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-2); padding-bottom: var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                  <div style="display: flex; gap: var(--sv-space-3); align-items: baseline;"><span class="sv-h4" style="color: var(--sv-accent);">{{ d.no }}</span><span class="sv-body-strong">{{ d.title }}</span><span class="sv-body2" style="color: var(--sv-text-secondary);">{{ d.sub }}</span></div>
+                  <table class="sv-table" style="width: 100%;">
+                    <thead><tr><th></th><th class="sv-num">Qty / Hours</th><th class="sv-num">Cost</th></tr></thead>
+                    <tbody>
+                      <tr><td>Labor</td><td class="sv-num">{{ d.hrs }}</td><td class="sv-num"></td></tr>
+                      <sc-for list="{{ d.parts }}" as="p" hint-placeholder-count="2">
+                        <tr><td>{{ p.name }}</td><td class="sv-num">{{ p.qty }}</td><td class="sv-num">{{ p.cost }}</td></tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: flex; justify-content: flex-end;">
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-2); min-width: 260px;">
+                <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary);">Summary</span>
+                <div class="sv-facts"><dl class="sv-facts__list">
+                  <dt class="sv-facts__k">Parts cost</dt><dd class="sv-facts__v" style="text-align: right;">{{ pvParts }}</dd>
+                  <sc-if value="{{ pvSupplies }}" hint-placeholder-val="{{ false }}"><dt class="sv-facts__k" data-sv-change="new">Shop supplies</dt><dd class="sv-facts__v" data-sv-change="new" style="text-align: right;">$25.00</dd></sc-if>
+                  <dt class="sv-facts__k">Labor</dt><dd class="sv-facts__v" style="text-align: right;">{{ pvLabor }}</dd>
+                </dl></div>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+          <sc-if value="{{ showBillDoc }}" hint-placeholder-val="{{ false }}">
+          <div data-sv-component="InvoiceDocument" data-sv-change="modified" style="align-self: center; width: 100%; max-width: 640px; background: var(--sv-surface); box-shadow: var(--sv-elev-1-shadow); padding: var(--sv-space-8); display: flex; flex-direction: column; gap: var(--sv-space-6);">
+            <div style="display: grid; grid-template-columns: minmax(0,1fr) 210px minmax(0,1fr); gap: var(--sv-space-6); align-items: center; padding-bottom: var(--sv-space-5); border-bottom: 1px solid var(--sv-text-primary);">
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                <span class="sv-h4">Staging Heavy Duty - 9919</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">10842 West Charleston Boulevard, Suite 450-B<br>Las Vegas, Nevada 89135<br>(403) 523 - 0488</span>
+              </div>
+              <div style="display: flex; justify-content: center; align-items: center;"><div aria-label="Shop logo" style="width: 210px; height: 72px; border: 1px dashed var(--sv-border-default); border-radius: var(--sv-radius-md); display: flex; align-items: center; justify-content: center;"><span class="sv-body2" style="color: var(--sv-text-secondary);">Shop logo</span></div></div>
+              <div style="display: flex; flex-direction: column; align-items: flex-end; gap: var(--sv-space-1); text-align: right;">
+                <span class="sv-h4">Estimate EST-S2-34918</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">Date: <span style="color: var(--sv-text-primary);">Oct 15, 2026</span></span>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--sv-space-6);">
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+                <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary);">Bill to</span>
+                <span class="sv-body-strong">A &amp; J Truck &amp; Trailer Repair</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+                <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary);">Asset</span>
+                <div class="sv-facts"><dl class="sv-facts__list">
+                  <dt class="sv-facts__k">Asset</dt><dd class="sv-facts__v">2017 Ford Transit</dd>
+                  <dt class="sv-facts__k">VIN/Serial #</dt><dd class="sv-facts__v">2ZTM0GN6FHYZT4KXE</dd>
+                </dl></div>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+              <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary); padding-bottom: var(--sv-space-2); border-bottom: 1px solid var(--sv-text-primary);">Work performed</span>
+              <sc-for list="{{ billLines }}" as="d" hint-placeholder-count="2">
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-2); padding-bottom: var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                  <div style="display: flex; gap: var(--sv-space-3); align-items: baseline;"><span class="sv-h4" style="color: var(--sv-accent);">{{ d.no }}</span><span class="sv-body-strong">{{ d.title }}</span><span class="sv-body2" style="color: var(--sv-text-secondary);">{{ d.sub }}</span></div>
+                  <sc-if value="{{ d.nc }}" hint-placeholder-val="{{ false }}"><span data-sv-change="new" class="sv-body2" style="color: var(--sv-text-secondary); margin-top: calc(-1 * var(--sv-space-1));">{{ d.ncText }}</span></sc-if>
+                  <table class="sv-table" style="width: 100%;">
+                    <thead><tr><th></th><th class="sv-num">Qty / Hours</th><th class="sv-num">Rate</th><th class="sv-num">Amount</th></tr></thead>
+                    <tbody>
+                      <tr><td>Labor</td><td class="sv-num">{{ d.hrs }}</td><td class="sv-num">{{ d.rate }}</td><td class="sv-num">{{ d.labor }}</td></tr>
+                      <sc-for list="{{ d.parts }}" as="p" hint-placeholder-count="2">
+                        <tr><td>{{ p.name }}</td><td class="sv-num">{{ p.qty }}</td><td class="sv-num">{{ p.unit }}</td><td class="sv-num">{{ p.price }}</td></tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                  <span class="sv-body" style="align-self: flex-end;">Line total <span class="sv-body-strong">{{ d.total }}</span></span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: flex; justify-content: flex-end;">
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-3); min-width: 260px;">
+                <div class="sv-facts"><dl class="sv-facts__list">
+                  <dt class="sv-facts__k">Labor</dt><dd class="sv-facts__v" style="text-align: right;">$299.90</dd>
+                  <dt class="sv-facts__k">Parts</dt><dd class="sv-facts__v" style="text-align: right;">$265.00</dd>
+                  <dt class="sv-facts__k">Tax</dt><dd class="sv-facts__v" style="text-align: right;">$0.00</dd>
+                </dl></div>
+                <div style="border: 1px solid var(--sv-text-primary); border-radius: var(--sv-radius-sm); padding: var(--sv-space-3) var(--sv-space-4); display: flex; align-items: center; justify-content: space-between; gap: var(--sv-space-3);">
+                  <span style="font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-secondary); color: var(--sv-text-primary);">Total due</span>
+                  <span class="sv-h2">$564.90</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+          <div data-sv-component="InvoiceActionBar" data-sv-change="removed" style="display: none;">Add Deposit, Create Invoice, Remit payment to, Terms, balance due</div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:840},&quot;internalCategory&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ncOriginal&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;closedLine&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;docV59&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;docReason&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;v58&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;convertItem&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;shown&quot;,&quot;disabled&quot;,&quot;hidden&quot;],&quot;default&quot;:&quot;shown&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;v57&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;headWarnForce&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ncInfo&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ncInfoOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;v55&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ncReason&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ncDisabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ncTip&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;menuV51&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;finClose&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ncClosed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;supplies&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;suppliesField&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;job&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;nocharge&quot;],&quot;default&quot;:&quot;default&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ncOn&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;scopeV3&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;closePreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;justClosed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;summary&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;none&quot;,&quot;default&quot;,&quot;noaccount&quot;,&quot;nointegration&quot;,&quot;nocost&quot;,&quot;qbnoinv&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;current&quot;,&quot;external&quot;,&quot;internal&quot;,&quot;review&quot;,&quot;complete&quot;,&quot;invoiced&quot;],&quot;default&quot;:&quot;internal&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;lines&quot;,&quot;cost&quot;,&quot;notes&quot;],&quot;default&quot;:&quot;lines&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;menuOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ncLine&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;lineMenu&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;none&quot;,&quot;nocharge&quot;,&quot;internal&quot;,&quot;disabled&quot;,&quot;mark&quot;,&quot;ncline&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;movedLine&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;notes&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;none&quot;,&quot;moved&quot;,&quot;source&quot;,&quot;converted&quot;,&quot;category&quot;,&quot;billable&quot;,&quot;ncline&quot;,&quot;nclineBillable&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const NEEDS_ORIGINAL = { Warranty: true, Comeback: true };
+const INTERNAL_LINES = [
+  { title: 'Replace - Brake pads and rotors', sub: 'Worn', hrs: '2.00 / 2.00', total: '$265.00', parts: [{ name: 'Brake pads', qty: '1', price: '$95.00' }, { name: 'Rotor', qty: '2', price: '$170.00' }] },
+  { title: 'Replace - Brake caliper', sub: 'Seized', hrs: '1.00 / 1.00', total: '$410.00', parts: [{ name: 'Caliper (special order)', qty: '1', price: '$410.00' }] },
+];
+const DOC_LINES = [
+  { no: '01', title: 'Replace - Brake pads and rotors', sub: 'Worn', hrs: '2.0 h', total: '$265.00', parts: [{ name: 'Brake pads', qty: '1', unit: '$95.00', price: '$95.00' }, { name: 'Rotor', qty: '2', unit: '$85.00', price: '$170.00' }] },
+  { no: '02', title: 'Replace - Brake caliper', sub: 'Seized', hrs: '1.0 h', total: '$410.00', parts: [{ name: 'Caliper (special order)', qty: '1', unit: '$410.00', price: '$410.00' }] },
+];
+const LINES = [
+  { title: 'Replace - Brake pads and rotors', sub: 'Worn', hrs: '2.00 / 2.00', total: '$564.90', parts: [{ name: 'Brake pads', qty: '1', price: '$95.00' }, { name: 'Rotor', qty: '2', price: '$170.00' }] },
+  { title: 'Replace - Brake caliper', sub: 'Seized', hrs: '1.00 / 1.00', total: '$559.95', parts: [{ name: 'Caliper (special order)', qty: '1', price: '$410.00' }] },
+];
+const SHOW_TIPS = false; // tooltip texts hidden for now; set true to bring them back
+class Component extends DCLogic {
+  componentDidMount() {
+    const kick = () => window.dispatchEvent(new Event('resize'));
+    this._raf = requestAnimationFrame(kick);
+    this._ts = [300, 1000, 2000, 4000, 7000].map((ms) => setTimeout(kick, ms));
+    if (window.ResizeObserver) {
+      this._ro = new ResizeObserver(kick);
+      const tryObserve = () => { const el = this.kebabRef.current; if (el) this._ro.observe(el); else this._ts.push(setTimeout(tryObserve, 200)); };
+      tryObserve();
+    }
+  }
+  componentWillUnmount() { cancelAnimationFrame(this._raf); (this._ts || []).forEach(clearTimeout); this._ro && this._ro.disconnect(); }
+  kebabRef = React.createRef();
+  state = { dismissed: false };
+  renderVals() {
+    const mode = this.props.mode ?? 'internal';
+    const isRegular = mode === 'external';
+    const isCurrent = mode === 'current' || isRegular;
+    const isInternal = !isCurrent;
+    const isClosed = mode === 'invoiced';
+    const isComplete = mode === 'complete';
+    const isReview = mode === 'review';
+    const v3 = !!this.props.scopeV3;
+    const tab = this.props.tab ?? 'lines';
+    const finTab = 'Finance';
+    const ncJob = this.props.job === 'nocharge';
+    const tabs = [['lines', ncJob ? 'Lines (1)' : 'Lines (2)'], ['parts', ncJob ? 'Parts (1)' : 'Parts (4)'], ['notes', 'Notes'], ['stats', 'Stats'], ['cost', finTab]]
+      .map(([k, label]) => ({ label, sel: k === tab, comp: k === 'cost' ? 'InvoiceActionBar' : 'WorkOrderNavBar', change: k === 'cost' && isInternal ? 'modified' : 'unchanged' }));
+    const row = (icon, label, change, danger = false) => ({ icon, label, change, danger, disabled: false });
+    const menu = isCurrent
+      ? [row('receipt', 'Create invoice', 'unchanged'), row('ticket-percent', 'Add Work Order Fee / Discount', 'unchanged'), row('file-text', 'Print', 'unchanged'), row('copy', 'Duplicate', 'unchanged'), ...(isRegular && !v3 ? [row('corner-up-right', 'Convert to internal', 'new')] : []), row('trash-2', 'Delete work order', 'unchanged', true)]
+      : [row('file-text', 'Print', 'unchanged'), row('copy', 'Duplicate', 'unchanged'), ...(v3 ? [] : [row('corner-up-right', 'Convert to external', 'new')]), row('trash-2', 'Delete work order', 'unchanged', true)];
+    if (this.props.menuV51 && isInternal) { menu.length = 0; menu.push(row('rows-3', 'Audit Log', 'unchanged'), row('clock', 'Timesheets', 'unchanged'), row('file-text', 'Print Work Order', 'unchanged')); }
+    const nc = this.props.job === 'nocharge';
+    const ncOn = nc && !!this.props.ncOn;
+    const ncClosed = nc && !!this.props.ncClosed;
+    if (ncOn) { const keep = menu.filter((m) => m.label !== 'Create invoice' && m.label !== 'Add Work Order Fee / Discount'); menu.length = 0; menu.push(...keep); }
+    const v58 = nc && !!this.props.v58;
+    if (v58) {
+      const cv = (label, extra = {}) => ({ icon: 'corner-up-right', label, change: 'new', danger: false, active: true, disabled: false, ...extra });
+      const base = [row('rows-3', 'Audit Log', 'unchanged'), row('clock', 'Timesheets', 'unchanged'), row('file-text', 'Print Work Order', 'unchanged')];
+      menu.length = 0;
+      if (ncClosed) menu.push(...base);
+      else if (ncOn) menu.push(...base, row('pencil', 'Change category', 'new'), cv('Convert to Billable'), row('circle-check', 'Close Work Order', 'unchanged'));
+      else {
+        menu.push(...base, row('ticket-percent', 'Add Work Order Fee / Discount', 'unchanged'));
+        if (this.props.convertItem !== 'hidden') menu.push(cv('Convert to No Charge', this.props.convertItem === 'disabled' ? { active: false, disabled: true } : {}));
+        menu.push(row('receipt', 'Create invoice', 'unchanged'));
+      }
+    }
+    const ncVals = nc ? {
+      woNo: 'S2-35102', customer: 'Hilltop Logistics', unit: 'Unit 7', assetName: '2019 Freightliner Cascadia', vin: '1FUJGLDR9KLKA5512', totalHours: '2.0 hrs',
+      lines: [{ title: 'Replace turbo actuator', sub: '', hrs: '2.0 h', total: ncOn ? '' : '$619.90', parts: [{ name: 'Turbo actuator', qty: '1', price: ncOn ? '$180.00 cost' : '$320.00' }] }],
+      rate: ncOn ? '' : '$149.95/h',
+      fin: ncOn ? [{ k: 'Parts cost', c: '$180.00' }, { k: 'Labor', c: '2.0 h', n: 'Hours only' }] : [{ k: 'Parts', c: '$320.00' }, { k: 'Labor', c: '$299.90' }, { k: 'Total', c: '$619.90' }],
+      finishLabel: ncOn ? 'Close Work Order' : 'Create invoice', finishIcon: ncOn ? 'circle-check' : 'receipt',
+      ncOn, ncJob: true, menuChange: 'modified', removed: ncOn ? ['Create invoice', 'Add Work Order Fee / Discount'] : [],
+      pvBill: 'Hilltop Logistics', pvDate: 'Oct 22, 2026', pvParts: '$180.00', pvLabor: '2.0 h',
+      pvLines: [{ no: '01', title: 'Replace turbo actuator', sub: '', hrs: '2.0 h', parts: [{ name: 'Turbo actuator', qty: '1', cost: '$180.00' }] }],
+      showPreview: tab === 'cost' && !!this.props.closePreview, showLines: tab !== 'cost' && tab !== 'notes',
+      ncLocked: ncClosed || !!this.props.ncDisabled, ncTip: SHOW_TIPS ? (this.props.ncTip || '') : '', tbFull: false, tbEst: !ncClosed, pvTitle: ncClosed ? 'No Charge Work Order S2-35102' : 'Estimate S2-35102',
+      ...(v58 && ncOn && !ncClosed ? { showFinish: false } : {}),
+      ...(ncClosed ? { isOpen: false, isClosed: true, notClosed: false, showFinish: false, showLocked: false, showReopenBtn: false, tbEst: false, tbClosed: true } : {}),
+    } : {};
+    if (nc && this.props.movedLine) Object.assign(ncVals, {
+      woNo: 'S2-35120', customer: 'A & J Truck & Trailer Repair', unit: '-', assetName: '2017 Ford Transit', vin: '2ZTM0GN6FHYZT4KXE', totalHours: '1.0 hrs', headerStatus: 'In Progress', movedFrom: true,
+      lines: [{ title: 'Replace - Brake caliper', sub: 'Seized', hrs: '1.00 / 1.00', total: '', parts: [{ name: 'Caliper (special order)', qty: '1', price: '$410.00 cost' }] }],
+      fin: [{ k: 'Parts cost', c: '$410.00' }, { k: 'Labor', c: '1.0 h', n: 'Hours only' }],
+      pvBill: 'A & J Truck & Trailer Repair', pvParts: '$410.00', pvLabor: '1.0 h',
+      pvLines: [{ no: '01', title: 'Replace - Brake caliper', sub: 'Seized', hrs: '1.0 h', parts: [{ name: 'Caliper (special order)', qty: '1', cost: '$410.00' }] }],
+      pvTitle: ncClosed ? 'No Charge Work Order S2-35120' : 'Estimate S2-35120',
+    });
+    const NOTE_SETS = {
+      moved: [
+        { who: 'ShopView', system: true, when: 'Oct 15, 2026 2:14 PM', change: 'new', text: 'Line "Replace - Brake caliper" moved here from work order S2-34918 by Admin ShopView. Category Warranty, original work order S2-30455. Parts: Caliper (special order) x 1. Hours: 1.00 (M. Rhodes).' },
+        { who: 'M. Rhodes', system: false, when: 'Oct 14, 2026 4:02 PM', change: 'unchanged', text: 'Caliper seized on the driver side, special order placed. Note came with the line.' },
+      ],
+      source: [
+        { who: 'ShopView', system: true, when: 'Oct 15, 2026 2:14 PM', change: 'new', text: 'Line "Replace - Brake caliper" moved to No Charge work order S2-35120 (Warranty) by Admin ShopView. This work order stays billable.' },
+        { who: 'Admin ShopView', system: false, when: 'Oct 2, 2026 9:40 AM', change: 'unchanged', text: 'Customer asked to be called before any extra work.' },
+      ],
+      converted: [
+        { who: 'ShopView', system: true, when: 'Oct 15, 2026 11:08 AM', change: 'new', text: 'Converted to No Charge by Admin ShopView. Category Warranty, original work order S2-30455. Prices, fees and discounts removed; costs and hours kept.' },
+      ],
+      category: [
+        { who: 'ShopView', system: true, when: 'Oct 16, 2026 8:51 AM', change: 'new', text: 'Category changed from Warranty to Comeback by Admin ShopView. Original work order S2-30455 kept.' },
+        { who: 'ShopView', system: true, when: 'Oct 15, 2026 11:08 AM', change: 'new', text: 'Converted to No Charge by Admin ShopView. Category Warranty, original work order S2-30455. Prices, fees and discounts removed; costs and hours kept.' },
+      ],
+      ncline: [
+        { who: 'ShopView', system: true, when: 'Oct 15, 2026 2:14 PM', change: 'new', text: 'Line "Replace - Brake caliper" marked No Charge by Admin ShopView. Category Warranty, original work order S2-30455. Line price $559.95 removed; cost $410.00 and 1.00 h kept. The work order stays billable.' },
+        { who: 'Admin ShopView', system: false, when: 'Oct 2, 2026 9:40 AM', change: 'unchanged', text: 'Customer asked to be called before any extra work.' },
+      ],
+      nclineBillable: [
+        { who: 'ShopView', system: true, when: 'Oct 16, 2026 9:12 AM', change: 'new', text: 'Line "Replace - Brake caliper" marked Billable by Admin ShopView. Priced at the customer\'s current pricing: $559.95. Category Warranty removed.' },
+        { who: 'ShopView', system: true, when: 'Oct 15, 2026 2:14 PM', change: 'new', text: 'Line "Replace - Brake caliper" marked No Charge by Admin ShopView. Category Warranty, original work order S2-30455. Line price $559.95 removed; cost $410.00 and 1.00 h kept.' },
+      ],
+      billable: [
+        { who: 'ShopView', system: true, when: 'Oct 16, 2026 9:12 AM', change: 'new', text: 'Converted to Billable by Admin ShopView. Every line priced at the customer\'s current pricing. Category Warranty removed.' },
+        { who: 'ShopView', system: true, when: 'Oct 15, 2026 11:08 AM', change: 'new', text: 'Converted to No Charge by Admin ShopView. Category Warranty, original work order S2-30455. Prices, fees and discounts removed; costs and hours kept.' },
+      ],
+    };
+    const noteRows = NOTE_SETS[this.props.notes || 'none'] || [];
+    const lm = this.props.lineMenu || 'none';
+    const lineActions = lm !== 'none';
+    const ncLine = !!this.props.ncLine;
+    const moveLabel = lm === 'internal' ? 'Move to an Internal work order' : 'Move to a No Charge work order';
+    const act = (icon, label) => ({ icon, label, change: 'new', danger: false, active: true, disabled: false });
+    const lineMenuRows = lm === 'mark'
+      ? [row('pencil', 'Edit line', 'unchanged'), row('copy', 'Duplicate line', 'unchanged'), act('badge-dollar-sign', 'Mark as No Charge'), row('trash-2', 'Delete line', 'unchanged', true)]
+      : lm === 'ncline'
+      ? [row('pencil', 'Edit line', 'unchanged'), row('copy', 'Duplicate line', 'unchanged'), act('pencil-line', 'Change category'), act('receipt', 'Mark as Billable'), row('trash-2', 'Delete line', 'unchanged', true)]
+      : [row('pencil', 'Edit line', 'unchanged'), row('copy', 'Duplicate line', 'unchanged'), { icon: 'corner-up-right', label: moveLabel, change: 'new', danger: false, active: lm !== 'disabled', disabled: lm === 'disabled' }, row('trash-2', 'Delete line', 'unchanged', true)];
+    const NC_LINE_TEXT = 'No Charge · Warranty';
+    if (nc && this.props.ncWo === 'S2-34863') Object.assign(ncVals, {
+      woNo: 'S2-34863', customer: '4 Star Truck Repair', unit: 'Unit 3', assetName: '2016 Ford Transit', vin: '1FTYR2CM6GKA90412', totalHours: '1.5 hrs', headerStatus: 'Approved',
+      lines: [{ title: 'Replace alternator', sub: '', hrs: '1.5 h', total: ncOn ? '' : '$634.93', parts: [{ name: 'Alternator', qty: '1', price: ncOn ? '$245.00 cost' : '$410.00' }] }],
+      fin: ncOn ? [{ k: 'Parts cost', c: '$245.00' }, { k: 'Labor', c: '1.5 h', n: 'Hours only' }] : [{ k: 'Parts', c: '$410.00' }, { k: 'Labor', c: '$224.93' }, { k: 'Total', c: '$634.93' }],
+      pvBill: '4 Star Truck Repair', pvParts: '$245.00', pvLabor: '1.5 h',
+      pvLines: [{ no: '01', title: 'Replace alternator', sub: '', hrs: '1.5 h', parts: [{ name: 'Alternator', qty: '1', cost: '$245.00' }] }],
+      pvTitle: ncClosed ? 'No Charge Work Order S2-34863' : 'Estimate S2-34863',
+    });
+    const out = {
+      woNo: 'S2-34918', assetName: '2017 Ford Transit', vin: '2ZTM0GN6FHYZT4KXE', totalHours: '3.0 hrs', ncOn: false, ncJob: false, movedFrom: false,
+      showReopenBtn: isClosed, tbFull: true, tbClosed: false, tbEst: false, ncLocked: false, ncTip: '',
+      finClose: !!this.props.finClose, ...(this.props.finClose ? { showFinish: false } : {}),
+      ...(this.props.menuV51 && isInternal ? { removed: ['Add Work Order Fee / Discount', 'Create invoice'] } : {}), showSupplies: !!this.props.supplies, suppliesField: !!this.props.suppliesField,
+      pvTitle: 'Internal Work Order S2-34918', pvBill: 'Staging Heavy Duty Fleet', pvDate: 'Oct 15, 2026', pvParts: '$675.00', pvLabor: '3.0 h',
+      pvLines: [{ no: '01', title: 'Replace - Brake pads and rotors', sub: 'Worn', hrs: '2.0 h', parts: [{ name: 'Brake pads', qty: '1', cost: '$95.00' }, { name: 'Rotor', qty: '2', cost: '$170.00' }] }, { no: '02', title: 'Replace - Brake caliper', sub: 'Seized', hrs: '1.0 h', parts: [{ name: 'Caliper (special order)', qty: '1', cost: '$410.00' }] }],
+      isCurrent, isInternal, isClosed, notClosed: !isClosed, isOpen: !isClosed,
+      lockedTail: v3 ? 'Reopening returns it from Closed · Internal to Complete.' : 'Reopening reverses the internal invoice.',
+      closedTitle: v3 ? 'Work order S2-34918 is Closed · Internal.' : 'Work order S2-34918 closed. Internal invoice created.',
+      showClosedAlert: isClosed && !!this.props.justClosed && !this.state.dismissed,
+      showLocked: isClosed && !(this.props.justClosed && !this.state.dismissed),
+      dismissClosed: () => this.setState({ dismissed: true }),
+      kebabRef: this.kebabRef,
+      removed: isCurrent ? [] : ['Create invoice', 'Add Work Order Fee / Discount'],
+      noop: () => {},
+      headChange: isCurrent ? 'unchanged' : 'modified',
+      custChange: isCurrent ? 'unchanged' : 'modified',
+      finChange: isCurrent ? 'unchanged' : 'modified',
+      customer: isCurrent ? 'A & J Truck & Trailer Repair' : 'Staging Heavy Duty Internal',
+      unit: isCurrent ? '-' : 'Unit 14',
+      fin: isCurrent
+        ? [{ k: 'Parts', c: '$675.00' }, { k: 'Labor', c: '$449.85' }, { k: 'Total', c: '$1,124.85' }]
+        : [{ k: 'Parts', v: '$675.00', c: '$675.00' }, { k: 'Labor', v: '$0.00', c: '3.0 h', n: 'Hours only' }, { k: 'Total', v: '$675.00', c: '$675.00' }],
+      tabs,
+      menuOpen: !!this.props.menuOpen && !isClosed,
+      menu,
+      menuChange: isCurrent && !isRegular ? 'unchanged' : 'modified',
+      showFinish: !isClosed,
+      finishLabel: isCurrent ? 'Create invoice' : isReview ? 'Mark Reviewed' : 'Close Work Order',
+      finishIcon: isCurrent ? 'receipt' : isReview ? 'badge-check' : 'circle-check',
+      finishChange: isCurrent ? 'unchanged' : 'modified',
+      showLines: tab !== 'cost' && tab !== 'notes',
+      showCost: tab === 'cost' && isInternal,
+      showCostDoc: (tab === 'cost' && isInternal) && !this.props.closePreview,
+      showPreview: (tab === 'cost' && isInternal) && !!this.props.closePreview,
+      lines: isInternal ? (this.props.coreRow ? INTERNAL_LINES.map((l, i) => i === 1 ? { ...l, parts: [{ name: 'Brake caliper (special order)', qty: '1', price: '$410.00' }, { name: 'Core · Brake caliper', qty: '1', price: '$85.00 cost' }] } : l) : INTERNAL_LINES) : LINES,
+      docLines: DOC_LINES,
+      docTitle: isClosed ? 'Invoice:' : 'Estimate:',
+      docNo: isClosed ? 'S2-34918' : 'EST-S2-34918',
+      docDateLabel: isClosed ? 'Invoice date:' : 'Estimate date:',
+      docDate: isClosed ? 'Oct 22, 2026' : 'Oct 2, 2026',
+      rate: isInternal ? '$0.00' : '$149.95',
+      lineStatus: isClosed || isComplete || isReview ? 'Complete' : 'Approved',
+      headerStatus: isComplete ? 'Completed' : isReview ? 'Ready for Review' : 'In Progress',
+      lineTone: isClosed ? 'success' : 'info',
+      recorded: isClosed ? 'Internal invoice, Oct 3, 2026' : 'On the internal invoice when the work order is closed',
+      ...ncVals,
+      ...(this.props.finClose ? { showFinish: false } : {}),
+      headWarn: false,
+      headPlain: true,
+      ncHint: ncOn && !this.props.v55,
+      closedLine: !!this.props.closedLine,
+      changeCustTip: SHOW_TIPS && (isClosed || ncClosed) ? (this.props.changeCustTip || '') : '',
+      ccDisabled: isClosed || ncClosed,
+      ccChange: (isClosed || ncClosed) ? 'modified' : 'unchanged',
+      ...(this.props.closedLine ? { showLocked: false, showReopenBtn: false } : {}),
+      custCardV57: isInternal && !!this.props.v57,
+      custCardOld: isInternal && !this.props.v57,
+      custCardOldName: !(isInternal && this.props.v57),
+      ...(isInternal && this.props.v57 ? { customer: 'Staging Heavy Duty Fleet' } : {}),
+      docV59: !!this.props.docV59, docOld: !this.props.docV59,
+      pvReason: this.props.docReason && this.props.ncReason ? 'Category: ' + this.props.ncReason + (NEEDS_ORIGINAL[this.props.ncReason] ? ' · Original work order ' + (this.props.ncOriginal || 'S2-31207') : '') : (isInternal && !this.props.ncOn ? 'Category: ' + (this.props.internalCategory || 'General Internal') : ''),
+      pvSupplies: !!this.props.docV59,
+      ...(this.props.docV59 ? { pvTitle: 'Internal Work Order S2-34918', pvDate: 'Oct 22, 2026', pvBill: 'Staging Heavy Duty Fleet', pvParts: '$675.00' } : {}),
+      
+      docStamp: (this.props.job === 'nocharge' ? !!ncOn : isInternal),
+      docReasonLine: this.props.job === 'nocharge' ? 'Category: ' + (this.props.ncReason || 'Warranty') + (NEEDS_ORIGINAL[this.props.ncReason || 'Warranty'] ? ' · Original work order ' + (this.props.ncOriginal || 'S2-31207') : '') : 'Category: ' + (this.props.internalCategory || 'General Internal'),
+      ncReason: ncOn && !!this.props.ncReason && !this.props.v58,
+      ncCardBox: this.props.job === 'nocharge' && !this.props.v58,
+      ncReasonLine: this.props.job === 'nocharge' && !!this.props.v58 && !!this.props.ncOn,
+      ncReasonLineText: 'No Charge · ' + (this.props.ncReason || 'Warranty'),
+      menuTip: SHOW_TIPS && this.props.convertItem === 'disabled' ? 'Reverse the deposit first' : '',
+      menuTipTop: '212px',
+      ncInfo: !!this.props.ncInfo,
+      ncInfoOpen: SHOW_TIPS && !!this.props.ncInfoOpen,
+      ncHelper: !this.props.ncInfo,
+      ncReasonText: 'Category: ' + (this.props.ncReason || ''),
+      lineActions, lineMenuRows, cardOverflow: lineActions ? 'visible' : 'hidden',
+      noteRows, showNotes: tab === 'notes', docStampLabel: this.props.job === 'nocharge' ? 'NO CHARGE' : 'INTERNAL',
+    };
+    out.lines = out.lines.map((l) => ({ ...l, rate: l.rate || out.rate, ncLine: false, ncText: '' }));
+    if (ncLine && isCurrent) {
+      out.lines = out.lines.map((l, i, a) => i === a.length - 1 ? { ...l, ncLine: true, ncText: NC_LINE_TEXT, rate: '$0.00', total: '$0.00', parts: l.parts.map((p) => ({ ...p, price: '$0.00' })) } : l);
+      out.billLines = [
+        { no: '01', title: 'Replace - Brake pads and rotors', sub: 'Worn', hrs: '2.0', rate: '$149.95', labor: '$299.90', total: '$564.90', nc: false, ncText: '', parts: [{ name: 'Brake pads', qty: '1', unit: '$95.00', price: '$95.00' }, { name: 'Rotor', qty: '2', unit: '$85.00', price: '$170.00' }] },
+        { no: '02', title: 'Replace - Brake caliper', sub: 'Seized', hrs: '1.0', rate: '$0.00', labor: '$0.00', total: '$0.00', nc: true, ncText: 'Warranty', parts: [{ name: 'Caliper (special order)', qty: '1', unit: '$0.00', price: '$0.00' }] },
+      ];
+    }
+    out.showBillDoc = ncLine && isCurrent && tab === 'cost';
+    out.showPreviewAny = !!out.showPreview;
+    if (out.showBillDoc) { out.showLines = false; out.showCostDoc = true; out.showCost = false; out.showPreview = false; out.showPreviewAny = false; out.docV59 = false; out.docOld = false; out.showClosedAlert = false; out.finClose = false; }
+    if (lineActions) out.lines = out.lines.map((l, i, a) => ({ ...l, menuOpen: i === a.length - 1 }));
+    if (lm === 'internal') out.customer = 'Staging Heavy Duty Fleet';
+    const ps = this.props.summary && this.props.summary !== 'none' ? this.props.summary : '';
+    out.psShow = !!ps && !!out.showPreviewAny;
+    if (out.psShow) {
+      out.tbFull = false; out.tbEst = false;
+      const acct = nc ? '6430 Warranty & Goodwill Expense' : '6500 Vehicle Expenses';
+      const cat = nc ? (this.props.ncReason || 'Warranty') : (this.props.internalCategory || 'General Internal');
+      const noInv = 'Parts cost is not posted to QuickBooks at this location: inventory accounts are not mapped.';
+      const rows = [];
+      rows.push({ k: 'Stock parts', v: nc ? '$180.00' : '$265.00', note: ps === 'nointegration' || ps === 'noaccount' ? '' : ps === 'qbnoinv' ? noInv : 'Posted to ' + acct, warn: ps === 'noaccount' ? 'No account set for ' + cat + '. The entry posts to the ShopView Review account until you set one.' : '', link: ps === 'noaccount' ? 'Set account' : '' });
+      if (!nc) rows.push({ k: 'Special orders and sublet', v: '$410.00', note: ps === 'nointegration' || ps === 'noaccount' ? '' : ps === 'qbnoinv' ? noInv : 'Already posted to ' + acct + ' at the vendor bill', warn: '', link: '' });
+      rows.push({ k: 'Labor', v: nc ? '2.0 h' : '3.0 h', note: ps === 'nointegration' ? '' : 'Hours only, nothing posted', warn: '', link: '' });
+      if (!nc) rows.push({ k: 'Shop supplies', v: '$25.00', note: ps === 'nointegration' ? '' : 'Posted to ' + (ps === 'noaccount' ? 'ShopView Review' : acct) + ', credited to 4300 Shop Supplies Income', warn: '', link: '' });
+      if (ps === 'nocost') rows.push({ k: 'Parts with no cost', v: 'Gasket kit', note: 'Skipped, nothing posted', warn: '', link: '' });
+      out.psRows = rows;
+      const cls = nc ? 'Closed · No Charge' : 'Closed · Internal';
+      out.psText = ps === 'nointegration' ? 'Closing marks the work order ' + cls + '. Parts cost, shop supplies and hours are available in the Internal Work Orders report.' : 'Closing posts the parts cost and shop supplies to your books and marks the work order ' + cls + '. You can reopen it later.';
+    } else { out.psRows = []; out.psText = ''; }
+    return out;
+  }
+}
+</script>
+</body>
+</html>
