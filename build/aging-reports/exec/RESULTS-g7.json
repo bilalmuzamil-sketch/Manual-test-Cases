@@ -1,0 +1,66 @@
+{
+ "pass_meta": {
+  "note": "12 Nov 2026, run 557, g7: QA lead answers 1 and 2"
+ },
+ "results": {
+  "C715383": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: seven new locations (\"ZZAUTOTEST Q10 Loc 1\" to \"Loc 7\") were added, each with one open invoice dated today, so A/R Summary lists 10 locations on 11/12/2026.",
+    "Step 1: the Location menu opens with all 10 locations ticked (\"Select all\", \"10 selected\") and a search box at the top reading \"Search locations\".",
+    "Step 2: typing \"Staging\" (the first word of location A, \"Staging Heavy Duty - 9919\") narrows the list to \"Staging Heavy Duty - 9919\" and \"Staging Lethbridge - 4310\"."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715383-q10-06-C715383-step1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715383-q10-07-C715383-step2.png"
+   ]
+  },
+  "C715477": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up as the rewritten test asks: at Staging Heavy Duty - 9919, the link of invoice S11315-17724 (made at Staging Lethbridge - 4310) copied from A/R Aging Detail; it ends with \"?locationId=\" and Lethbridge's code.",
+    "Step 2: the existing \"Switch location?\" box shows: \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\" with Cancel and \"Switch Location\".",
+    "Step 3: Cancel closes it and Work Orders shows \"Switch cancelled. Returning to work orders.\"",
+    "Before the release (production, same link form, work order of Trucks Hill 2 pasted at SANKAN): the same box (\"This work order is in Trucks Hill 2. \u2026\") and, after Cancel, the same message."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715477-q11-01-C715477-0-report-link.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715477-q11-03-C715477-2-prompt.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715477-q11-04-C715477-3-after-cancel.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715477-prod-305-C715477-prod-2-pasted.png"
+   ]
+  },
+  "C797943": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 1: the QA site cannot have 8 vendors or fewer - it has more than 1,100 vendors, so the Vendor menu always shows its search box.",
+   "bold_steps": [
+    1
+   ],
+   "source": "QA lead's decision, 12 Nov 2026 (answer \"1. Please do\" to my recommendation): this test is out of scope on the QA site.",
+   "todo": "What needs to be done: nothing on the QA site. Run it only where an organization has 8 vendors or fewer, if the QA lead asks for it.",
+   "observed": [
+    "The QA organization has more than 1,100 vendors (A/P Summary lists 510 of them with open bills today); the Vendor menu opens with \"Search vendors\" at the top.",
+    "Bringing it down to 8 vendors would mean deleting over a thousand vendors that other tests use; the QA lead ruled the test out of scope for the QA site on 12 Nov 2026."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797943-q12-01-C797943-vendor-menu.png"
+   ]
+  },
+  "C715468": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 1: the QA site has no as-of date with exactly 2,000 or 2,001 customers - A/R Summary lists 155 rows today.",
+   "bold_steps": [
+    1
+   ],
+   "source": "QA lead's decision, 12 Nov 2026 (answer \"1. Please do\" to my recommendation): this test is out of scope on the QA site.",
+   "todo": "What needs to be done: nothing on the QA site. The exact 2,000 / 2,001 boundary is checked by the developers (SV-11595), as the test itself says; the QA lead ruled it out of scope here.",
+   "observed": [
+    "A/R Summary lists 155 customer rows on 11/12/2026 - far from 2,000; making 1,850 more customers with open invoices takes about 15 seconds each (over 7 hours).",
+    "Even then the QA site's PDF service stops any PDF after 30 seconds (from about 800 rows), so a 2,000-row PDF could not be judged here (developer on https://shopview.atlassian.net/browse/SV-12539)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715468-q12-02-C715468-ar-summary.png"
+   ]
+  }
+ }
+}

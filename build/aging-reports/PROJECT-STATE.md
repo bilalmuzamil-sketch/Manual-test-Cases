@@ -4,6 +4,7 @@
 you to start - But be completely ready." Status: **READY, NOT STARTED** (waiting for his "start" and his answers below).
 
 ## Sources (read 10 Nov 2026)
+- 12 Nov ~08:40 UTC: QA lead's answers acted on. (1) Seven locations "ZZAUTOTEST Q10 Loc 1-7" made with one open invoice each (A/R Summary lists 10) → C715383 Passed; C797943 (8 vendors or fewer; QA has >1,100) and C715468 (2,000 customers; QA lists 155) Blocked as out of scope on the QA site by his decision. (2) C715477 preconditions rewritten in the TestRail editor to the report's own link (A/R Detail → Copy link address, ?locationId=); Expected untouched in wording (editor byte-normalisation only, L0694) → Passed on QA (q11) with production before-release side (pr14). C715555 comment corrected in place: menu follows PRD S1-R2/R3, not S5-R13's "exactly as Inventory Value's" for six names — question with him (keep Passed recommended). Run 557: passed 447 · blocked 19 · failed 2 (C1078980/C1078981, SV-12545, other session's folder) · untested 2 (C715471/C715472, release day).
 - Developer handoff (Nemanja Djuric), Slack https://shopview.slack.com/archives/C0C454MLP0T/p1794309579559929 + reply
   p1794321158612049 ("no QuickBooks setup is needed … they only read ShopView data").
 - Shared notes: SV-11315 comment 80616 (roles, test data, shared behaviour, **KNOWN MISMATCHES — do not file**, how to force load

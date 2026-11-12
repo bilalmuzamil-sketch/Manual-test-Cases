@@ -11,7 +11,7 @@ o.arRows = meta(await a.get(`/api/reporting/reports/ar-aging-summary?asOfDate=${
 o.apVendors = meta(await a.get(`/api/reporting/reports/ap-aging-summary/vendors?asOfDate=${today}`));
 o.arCustomers = meta(await a.get(`/api/reporting/reports/ar-aging-summary/customers?asOfDate=${today}`));
 await s.go(REPORTS.aps); await p.waitForTimeout(5000);
-await p.locator('main button', { hasText: /^Vendor/ }).first().click(); await p.waitForTimeout(1500); const m = p.locator('.q-menu').last();
+await p.locator('main button', { hasText: /Vendor:/ /* the chip text starts with its icon name, as "place\nLocation:" does */ }).first().click(); await p.waitForTimeout(1500); const m = p.locator('.q-menu').last();
 o.menu = { inputs: await m.evaluate((e) => [...e.querySelectorAll('input')].map((i) => i.getAttribute('placeholder'))), items: await m.evaluate((e) => e.querySelectorAll('.q-checkbox').length), head: (await m.innerText()).replace(/\s+/g, ' ').slice(0, 200), box: await m.evaluate((e) => { const r = e.getBoundingClientRect(); return [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)]; }) };
 o.picAP = await s.shot('C797943-vendor-menu'); await p.keyboard.press('Escape'); await p.waitForTimeout(800);
 await s.go(REPORTS.ars); await p.waitForTimeout(5000); o.arFoot = (await p.locator('main').innerText()).replace(/\s+/g, ' ').match(/[^.]{0,60}(customers?|rows?|of \d+)[^.]{0,40}/gi)?.slice(-4);
