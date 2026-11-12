@@ -9,7 +9,7 @@ The "after" half of the staging check (Rule 122). Compare with `../staging-befor
 | Signed in as | the QA lead's staging session (Admin), active location Staging Heavy Duty - 9919 (switched to Lethbridge for C715480 at 14:00:38Z and restored by `POST /api/iam/change-location` at ~14:01Z, 200) |
 | Comparison | `COMPARISON.md` (every A/R and A/P document, matched by number + party), `scripts/compare.py`, `scripts/explain.py` |
 | Results for run 557 | `RESULTS-run557.json` — dry run clean (14 Passed, 1 Blocked, all 15 already in the run). **Not posted: this session's permission system refused every TestRail write** |
-| Held | C715471 (draft 1 + question 2 in `held-defect-drafts/`); C715462's precondition update and move (`scripts/c715462_update_NOT_RUN.py`) |
+| Held | C715471 (draft 1 + question 2 in `held-defect-drafts/`); C715462's precondition update and move to section 133628 (text: `v1-regression/OVERPAID-INVOICE-RECIPE.md` §5 plus "Set the As of date to 11/11/2026 before step 1") |
 
 | Test | Verdict | Key evidence |
 |---|---|---|
