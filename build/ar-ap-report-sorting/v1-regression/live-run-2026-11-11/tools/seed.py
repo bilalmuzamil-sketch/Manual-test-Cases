@@ -3,6 +3,8 @@
 
     python3 seed.py qa            # find-or-create everything in manifest.json, resumable
     python3 seed.py qa --check    # read-only: say what exists in the ledger (status.py proves it on the report)
+    python3 seed.py staging       # the same on staging (ledger seeded-staging.json - never mixed with QA's)
+    python3 seed.py staging --dates [HH:MMZ ...]   # read-only: print the date table for runs at those UTC hours
 
 Idempotent and resumable: every created record is written to seeded-<env>.json the moment it exists;
 a re-run skips what the ledger holds. If the branch was redeployed and the ledger is stale, move the
@@ -13,26 +15,65 @@ import json, os, sys, uuid, datetime
 from zoneinfo import ZoneInfo
 from api import call
 from seedlib import Ledger, ok, customer, invoice, EXEMPT_TAX, LABOUR_TYPE, work_order
+from envinfo import load as load_wp, ROLES, local_today
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENV = sys.argv[1] if len(sys.argv) > 1 else 'qa'
-CHECK = '--check' in sys.argv
-WP = {'qa': {'A': ('b3c8c820-f815-4cf1-8938-10956c5ee71a', 'America/Edmonton'),
-             'B': ('f8a8b802-7780-4b16-bf10-343caeb616b2', 'America/Edmonton')}}
+CHECK = '--check' in sys.argv or '--dates' in sys.argv
+# Location ids AND time zones are read live from the app (envinfo.py, GET staff/my-workplaces) - never hard-coded:
+# location A is America/Edmonton on the QA branch but Asia/Karachi on staging (measured 12 Nov 2026).
+WPI = load_wp(ENV)
+WP = {ENV: {r: (WPI[r]['id'], WPI[r]['timezone']) for r in ('A', 'B')}}
 M = json.load(open(f'{HERE}/manifest.json'))
 L = Ledger(ENV)
-TODAY = datetime.date.fromisoformat(L.get('anchor') or datetime.datetime.now(ZoneInfo('America/Edmonton')).date().isoformat())
-if not L.get('anchor'): L.put('anchor', TODAY.isoformat())
-def day(ago): return TODAY - datetime.timedelta(days=ago)
-def sql_dt(ago): return f'{day(ago).isoformat()} 18:00:00'
-def iso(ago):
-    # A document dated TODAY must carry a time already past: the as-of instant for today is NOW, so an
-    # 18:00Z stamp would sit in the future until 18:00Z (found 11 Nov 2026: two 'today' credits missing).
-    if ago == 0:
-        return (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(minutes=5)).strftime('%Y-%m-%dT%H:%M:%S.000Z')
-    return f'{day(ago).isoformat()}T18:00:00.000Z'
-CUR = {'loc': 'A'}
+UTC = datetime.timezone.utc
+# THE ANCHOR. Every document is dated "N days before the anchor" AT ITS OWN LOCATION, and the V2 reports age
+# by calendar days at the location's time zone. The anchor is one INSTANT (anchor_utc); each location's anchor
+# DATE is that instant on its own clock (anchor_dates). A ledger from before 12 Nov 2026 holds only 'anchor'
+# (one date, QA, both locations on Edmonton) and is read exactly as before.
+LEGACY = datetime.date.fromisoformat(L.get('anchor')) if L.get('anchor') and not L.get('anchor_utc') else None
+ANCHOR_UTC = (datetime.datetime.fromisoformat(L.get('anchor_utc').replace('Z', '+00:00')) if L.get('anchor_utc')
+              else datetime.datetime.now(UTC).replace(microsecond=0))
+def tz(loc): return WP[ENV][loc][1]
+def today(loc='A'): return LEGACY or ANCHOR_UTC.astimezone(ZoneInfo(tz(loc))).date()
+def one_day(t):
+    """True when A and B show the same calendar date at t AND 75 minutes either side of it. The margin is because
+    the time-zone databases disagree: this machine's tzdata 2026e puts America/Edmonton on UTC-6 in Nov 2026,
+    Node's built-in ICU data (2025b) on UTC-7 - and the app's server and browser are not measured. Noon-stamped
+    documents are safe either way; the anchor's DATE is not, within an hour of either location's midnight."""
+    m = datetime.timedelta(minutes=75)
+    return len({local_today(tz(r), x) for r in ('A', 'B') for x in (t - m, t, t + m)}) == 1
+def shared_day_window():
+    """UTC hours of the current UTC day at which A and B show the same calendar date (whole day when same zone)."""
+    base = datetime.datetime.now(UTC).replace(hour=0, minute=0, second=0, microsecond=0)
+    ok_ = [base + datetime.timedelta(minutes=15 * i) for i in range(96) if one_day(base + datetime.timedelta(minutes=15 * i))]
+    return f"{ok_[0]:%H:%M}Z to {(ok_[-1] + datetime.timedelta(minutes=15)):%H:%M}Z" if ok_ else 'never'
+if not LEGACY and not L.get('anchor_utc') and not CHECK:
+    if not one_day(ANCHOR_UTC) and '--any-hour' not in sys.argv:
+        raise SystemExit(f"refused: right now location A ({tz('A')}, {today('A')}) and B ({tz('B')}, {today('B')}) are not safely "
+                         f"on one shared calendar day (within 75 minutes of a midnight, or on different days). The cases' dates "
+                         f"assume one shared day - seed (and run) between {shared_day_window()}, or pass --any-hour to anchor "
+                         f"anyway (each location is then dated on its own day and the checks follow each location's date).")
+    L.put('anchor_utc', ANCHOR_UTC.strftime('%Y-%m-%dT%H:%M:%SZ'))
+    L.put('anchor_dates', {r: today(r).isoformat() for r in ('A', 'B')})
+    L.put('anchor_tz', {r: tz(r) for r in ('A', 'B')})
+TODAY = today('A')
+CUR = {'loc': 'A' if ENV == 'qa' else None}   # staging: the session's active location is unknown, so switch first
+def day(ago, loc=None): return today(loc or CUR['loc'] or 'A') - datetime.timedelta(days=ago)
+def instant(ago, loc=None, now=None):
+    """The moment a document dated `ago` days before the anchor is stamped with: NOON on that calendar day AT
+    THE DOCUMENT'S LOCATION, so it lands on that day on the location's own clock whatever the hour of the run
+    (a fixed 18:00Z is 23:00 in Karachi and 06:00 next day in Fiji). Never in the future - the as-of instant
+    for today is NOW (found 11 Nov 2026: two 'today' credits stamped 18:00Z were missing until 18:00Z) - and
+    never before that day's local midnight."""
+    loc = loc or CUR['loc'] or 'A'; z = ZoneInfo(tz(loc)); d = day(ago, loc)
+    t = datetime.datetime.combine(d, datetime.time(12, 0), z)
+    latest = (now or datetime.datetime.now(UTC)) - datetime.timedelta(minutes=5)
+    if t > latest: t = max(latest, datetime.datetime.combine(d, datetime.time(0, 0), z))
+    return t.astimezone(UTC)
+def sql_dt(ago, loc=None): return instant(ago, loc).strftime('%Y-%m-%d %H:%M:%S')
+def iso(ago, loc=None): return instant(ago, loc).strftime('%Y-%m-%dT%H:%M:%S.000Z')
 def at(loc):
-    if CUR['loc'] == loc: return
+    if CHECK or CUR['loc'] == loc: return
     wid, tz = WP[ENV][loc]
     r = call(ENV, '/api/iam/change-location', 'POST', {'workplace_id': wid, 'workplace_timezone': tz}, allow_change_location=True)
     ok(r, f'change-location {loc}'); CUR['loc'] = loc; print(f'  [location -> {loc}]')
@@ -48,7 +89,7 @@ def unpaid_vendor(acc):
     return ok(r, 'vunpaid')['response']['collection']
 def credit_memo(c, d, used=()):
     for x in unpaid_customer(c['account']):
-        if x['type'] == 'credit' and abs(x['amount']) == d['amount'] and str(x['date']).startswith(day(d['ago']).isoformat()) and x['id'] not in used:
+        if x['type'] == 'credit' and abs(x['amount']) == d['amount'] and str(x['date'])[:10] in (day(d['ago']).isoformat(), instant(d['ago']).date().isoformat()) and x['id'] not in used:
             return {'id': x['id'], 'number': x.get('credit_display_number'), 'reused_unrecorded': True}
     for body in ({'customer_account_id': c['account'], 'amount': d['amount'], 'reason': 'ZZAUTOTEST aging seed', 'origin_date': iso(d['ago'])},
                  {'customerAccountId': c['account'], 'amount': d['amount'], 'reason': 'ZZAUTOTEST aging seed', 'originDate': iso(d['ago'])}):
@@ -232,8 +273,30 @@ def run():
         except Exception as e:
             fail += 1; print(f'  FAIL {dk}: {e}')
     at('A')
-    print(f'anchor {TODAY} | done {done} | failed {fail} | total {len(todo)}')
+    print(f"anchor {L.get('anchor_utc') or TODAY} | A {today('A')} ({tz('A')}) | B {today('B')} ({tz('B')}) | done {done} | failed {fail} | total {len(todo)}" + (' | READ-ONLY CHECK, nothing created' if CHECK else ''))
+def date_table(hours):
+    """--dates: pure calculation, no writes. For a seed run at each UTC hour today, what each location's
+    'today' is and the instant + local date a document dated today / yesterday / 30 days ago would carry."""
+    base = datetime.datetime.now(UTC).replace(hour=0, minute=0, second=0, microsecond=0)
+    print('run at (UTC) | loc | zone | loc today | doc ago=0 stamped (UTC) -> local date | ago=1 -> local date | ago=30 -> local date')
+    for h in hours:
+        hh, mm = (int(x) for x in h.rstrip('Z').split(':'))
+        run = base.replace(hour=hh, minute=mm)
+        for loc in ('A', 'B'):
+            z = ZoneInfo(tz(loc)); t0 = run.astimezone(z).date()
+            def at_(ago):
+                d = t0 - datetime.timedelta(days=ago); t = datetime.datetime.combine(d, datetime.time(12, 0), z)
+                if t > run - datetime.timedelta(minutes=5): t = max(run - datetime.timedelta(minutes=5), datetime.datetime.combine(d, datetime.time(0, 0), z))
+                u = t.astimezone(UTC); ok_ = u.astimezone(z).date() == d
+                return f"{u:%Y-%m-%d %H:%M}Z -> {u.astimezone(z):%Y-%m-%d}{'' if ok_ else ' WRONG DAY'}"
+            print(f"{run:%H:%M}Z | {loc} | {tz(loc)} | {t0} | {at_(0)} | {at_(1)} | {at_(30)}")
+        print(f"{run:%H:%M}Z | A and B share a calendar day (with the 75-minute margin): {'yes' if one_day(run) else 'NO - seeding refused without --any-hour'}")
+    print(f'safe seeding/run window today: {shared_day_window()}')
 if __name__ == '__main__':
+    if '--dates' in sys.argv:
+        date_table([a for a in sys.argv[sys.argv.index('--dates') + 1:] if a[:1].isdigit()] or ['00:30Z', '06:00Z', '12:00Z', '20:00Z'])
+        sys.exit(0)
+    start = CUR['loc']
     try: run()
     finally:
-        if CUR['loc'] != 'A': at('A')
+        if CUR['loc'] not in ('A', None) and not CHECK: at('A')

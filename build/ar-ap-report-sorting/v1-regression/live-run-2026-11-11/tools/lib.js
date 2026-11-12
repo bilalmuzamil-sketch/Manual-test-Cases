@@ -2,7 +2,9 @@
 // export menu); the report API is never used to decide a verdict.
 const fs = require('fs'); const path = require('path');
 const { open } = require('./env.js');
-const EVID = path.resolve(__dirname, '../evidence');
+// staging pictures go to their own folder so they never mix with the QA branch's (prod and qa keep ../evidence)
+const EVID = path.resolve(__dirname, process.env.RUN_ENV === 'staging' ? '../evidence-staging' : '../evidence');
+try { fs.mkdirSync(EVID, { recursive: true }); } catch (e) {}
 const NAV = { 'A/R Aging Summary': 'report_nav_aging_summary_report', 'A/R Aging Detail': 'report_nav_aging_detail_report',
   'A/R Aging Collection': 'report_nav_aging_collection_report', 'A/P Aging Summary': 'report_nav_ap_aging_summary_report',
   'A/P Aging Detail': 'report_nav_ap_aging_detail_report', 'A/P Unpaid Invoices': 'report_nav_ap_unpaid_invoices_report',

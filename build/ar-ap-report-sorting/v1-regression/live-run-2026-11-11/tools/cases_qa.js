@@ -1,6 +1,11 @@
 // The cases, performed through the screen on the QA branch (V2). Each returns {verdict, observed, facts}.
-// TODAY is the shop's day (America/Edmonton). Dates named in the cases are worked out from it.
-const TODAY = '2026-11-11', YDAY = '2026-11-10', FIRST_LAST_MONTH = '2026-10-01', MID_LAST_MONTH = '2026-10-15', END_NEXT_MONTH = '2026-12-31';
+// TODAY is the seed's anchor day at location A, on location A's own clock (seed.py reads the zone from the app and
+// records it; envctx.js). Dates named in the cases are worked out from it: SH(<the QA date>, <location>) moves a
+// date the QA seed (anchored 2026-11-11) used by this environment's anchor offset AT THAT DOCUMENT'S LOCATION.
+const E = require('./envctx.js'); const SH = E.SH;
+const TODAY = E.anchor.A, YDAY = E.addDays(TODAY, -1);
+const [TY, TM] = TODAY.split('-').map(Number); const ymd = (t) => new Date(t).toISOString().slice(0, 10);
+const FIRST_LAST_MONTH = ymd(Date.UTC(TY, TM - 2, 1)), MID_LAST_MONTH = ymd(Date.UTC(TY, TM - 2, 15)), END_NEXT_MONTH = ymd(Date.UTC(TY, TM + 1, 0));
 const US = (iso) => { const [y, m, d] = iso.split('-'); return `${m}/${d}/${y}`; };
 const addDays = (iso, n) => { const d = new Date(iso + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
 const C = {};
@@ -126,12 +131,12 @@ module.exports = C; Object.assign(module.exports, { TODAY, YDAY, US, addDays, go
 // ---------- batch 2: A/R Detail with the seeded records ----------
 const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const FMT = (iso) => { const [y, m, d] = iso.split('-'); return `${MON[+m - 1]} ${+d}, ${y}`; };
-const L0 = () => require('./seeded-qa.json');
+const L0 = () => require('./' + E.ledgerFile);
 const CUST = (k) => require('./manifest.json').customers.find((c) => c.key === k).name;
 const VEND = (k) => require('./manifest.json').vendors.find((c) => c.key === k).name;
-const num = (key) => { const r = L0()[key]; if (!r) return null; if (r.wo_number) return 'S11315-' + r.wo_number.split('-')[1];
-  if (r.type === 'credit_memo' && r.number) return r.number.startsWith('CM-') ? 'CM11315-' + r.number.split('-')[1] : r.number;
-  if (r.number && r.number.startsWith('DEP-')) return 'DEP11315-' + r.number.split('-')[1]; return r.number || r.memo; };
+const num = (key) => { const r = L0()[key]; if (!r) return null; const s = E.shop(r.at || 'A'); if (r.wo_number) return `S${s}-` + r.wo_number.split('-')[1];
+  if (r.type === 'credit_memo' && r.number) return r.number.startsWith('CM-') ? `CM${s}-` + r.number.split('-')[1] : r.number;
+  if (r.number && r.number.startsWith('DEP-')) return `DEP${s}-` + r.number.split('-')[1]; return r.number || r.memo; };
 const docRows = (rs) => rs.filter((r) => r.tid.includes('_transaction_') || /_row_[0-9a-f]{8}-[0-9a-f-]{27}$/.test(r.tid) && r.cells.type);
 async function detailFor(x, report, kind, partyName, date, label) {
   const { page, lib } = x; await go(x, report);
@@ -143,7 +148,7 @@ async function detailFor(x, report, kind, partyName, date, label) {
 }
 const find = (docs, n) => docs.find((d) => (d.cells.id || d.text).includes(n));
 C['V1R-11'] = async (x) => {
-  const D = '2026-10-20', inv = num('doc:R11:inv'), cm = num('doc:R11:cm');
+  const D = SH('2026-10-20'), inv = num('doc:R11:inv'), cm = num('doc:R11:cm');
   const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R11'), D, `steps 3-6 as of ${D}`);
   const b = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R11'), addDays(D, -1), `steps 7-9 as of ${addDays(D, -1)}`);
   return verdict([chk(`Step 5: invoice ${inv} (created ${D}) listed on ${D}`, find(a.docs, inv), a.docs.map((d) => d.text).join(' / ') || 'no lines'),
@@ -151,7 +156,7 @@ C['V1R-11'] = async (x) => {
     chk(`Step 9: invoice not listed on ${addDays(D, -1)}`, !find(b.docs, inv), b.docs.map((d) => d.cells.id).join(', ') || 'no lines')]);
 };
 C['V1R-13'] = async (x) => {
-  const D = '2026-10-10', inv = num('doc:R13:inv');
+  const D = SH('2026-10-10'), inv = num('doc:R13:inv');
   const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R13'), addDays(D, 2), `step 5 as of D+2 ${addDays(D, 2)}`);
   const b = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R13'), addDays(D, 5), `step 8 as of D+5 ${addDays(D, 5)}`);
   const r1 = find(a.docs, inv), r2 = find(b.docs, inv);
@@ -159,7 +164,7 @@ C['V1R-13'] = async (x) => {
     chk('Step 8: Open balance $60.00', r2 && r2.cells.open_balance === '$60.00', r2 ? r2.cells.open_balance : 'invoice not listed')]);
 };
 C['V1R-15'] = async (x) => {
-  const P = '2026-10-06', mid = '2026-10-20', inv = num('doc:R15:inv');
+  const P = SH('2026-10-06'), mid = SH('2026-10-20'), inv = num('doc:R15:inv');
   const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R15'), mid, `step 5 as of ${mid} between P and R`);
   const b = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R15'), TODAY, `step 8 as of R ${TODAY}`);
   const r2 = find(b.docs, inv);
@@ -167,15 +172,15 @@ C['V1R-15'] = async (x) => {
     chk('Step 8: listed on day R with Open balance $100.00', r2 && r2.cells.open_balance === '$100.00', r2 ? r2.text : 'not listed')]), note: `Payment dated ${P}; reversed on ${TODAY} (the app stamps a reversal with the moment it is made, so day R is today, not a past day as the precondition says).` };
 };
 C['V1R-16'] = async (x) => {
-  const mid = '2026-10-25', cm = num('doc:R16:cm');
+  const mid = SH('2026-10-25'), cm = num('doc:R16:cm');
   const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R16'), mid, `step 5 as of ${mid}`);
   const b = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R16'), TODAY, `step 8 as of V ${TODAY}`);
   const r1 = find(a.docs, cm);
   return { ...verdict([chk(`Step 5: credit memo ${cm} listed at $-25.00`, r1 && r1.cells.open_balance === '$-25.00', r1 ? `${r1.cells.amount} / ${r1.cells.open_balance}` : 'not listed: ' + a.docs.map((d) => d.text).join(' / ')),
-    chk('Step 8: not listed on day V', !find(b.docs, cm), b.docs.map((d) => d.cells.id).join(', ') || 'no lines')]), note: `Credit memo dated 2026-10-22, voided ${TODAY} (day V = today: a void is stamped with the moment it is made).` };
+    chk('Step 8: not listed on day V', !find(b.docs, cm), b.docs.map((d) => d.cells.id).join(', ') || 'no lines')]), note: `Credit memo dated ${SH(SH('2026-10-22'))}, voided ${TODAY} (day V = today: a void is stamped with the moment it is made).` };
 };
 C['V1R-17'] = async (x) => {
-  const mid = '2026-10-20', A = '2026-10-27', cm = num('doc:R17:cm');
+  const mid = SH('2026-10-20'), A = SH('2026-10-27'), cm = num('doc:R17:cm');
   const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R17'), mid, `step 5 as of ${mid}`);
   const b = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R17'), A, `step 8 as of A ${A}`);
   const r1 = find(a.docs, cm);
@@ -192,7 +197,7 @@ C['V1R-18'] = async (x) => {
 C['V1R-40'] = async (x) => {
   const inv = num('doc:R03:inv'); const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R03'), null, 'step 5 the location B invoice line');
   const r = find(a.docs, inv); const c = r ? r.cells : {};
-  return verdict([chk('Step 5: date, "Invoice", ID, customer full name, location B, due date, Amount, Open balance', r && c.date === FMT('2026-11-06') && c.type === 'Invoice' && c.id === inv && c.customer_name === CUST('R03') && c.location === 'Staging Lethbridge - 4310' && c.due_date === FMT('2026-11-06') && c.amount === '$33.00' && c.open_balance === '$33.00', r ? JSON.stringify(c) : 'not listed')]);
+  return verdict([chk('Step 5: date, "Invoice", ID, customer full name, location B, due date, Amount, Open balance', r && c.date === FMT(SH('2026-11-06', 'B')) && c.type === 'Invoice' && c.id === inv && c.customer_name === CUST('R03') && c.location === 'Staging Lethbridge - 4310' && c.due_date === FMT(SH('2026-11-06', 'B')) && c.amount === '$33.00' && c.open_balance === '$33.00', r ? JSON.stringify(c) : 'not listed')]);
 };
 C['V1R-03'] = async (x) => {
   const inv = num('doc:R03:inv'); const loc = await x.page.evaluate(() => 1);
@@ -200,7 +205,7 @@ C['V1R-03'] = async (x) => {
   const working = await x.page.locator('[data-test-id="profile_menu_button"]').innerText();
   const r = find(a.docs, inv);
   return { ...verdict([chk('Precondition: working at location A (top right)', working.includes('Staging Heavy Duty - 9919'), working.replace(/\s+/g, ' ')),
-    chk(`Step 4: location B invoice ${inv} listed with location B on its line`, r && r.cells.location === 'Staging Lethbridge - 4310', r ? JSON.stringify(r.cells) : 'not listed')]), note: 'The invoice was dated 6 Nov 2026 (5 days ago); the precondition says "today". It is open today, which is what the step checks.' };
+    chk(`Step 4: location B invoice ${inv} listed with location B on its line`, r && r.cells.location === 'Staging Lethbridge - 4310', r ? JSON.stringify(r.cells) : 'not listed')]), note: 'The invoice was dated ' + FMT(SH(SH('2026-11-06'), 'B')) + ' (5 days ago); the precondition says "today". It is open today, which is what the step checks.' };
 };
 C['V1R-41'] = async (x) => {
   const inv = num('doc:R41:inv'); const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R41'), null, 'steps 4-6 partly paid invoice');
@@ -212,7 +217,7 @@ C['V1R-42'] = async (x) => {
   const r = find(a.docs, cm); const before = x.page.url(); let after = before;
   if (r) { await x.page.locator(`tr[data-test-id="${r.tid}"] [data-test-id$="_cell_id"]`).click(); await x.lib.settle(x.page, 1500); after = x.page.url(); x.ev.push(await x.lib.shot(x.page, x.key, 'step 8 after clicking the ID')); }
   return verdict([chk('Step 5: number with the location prefix (like CM1-4411)', r && /^CM\d+-\d+$/.test(r.cells.id), r ? r.cells.id : 'not listed'),
-    chk(`Step 6: due date = day C (${FMT('2026-10-26')})`, r && r.cells.due_date === FMT('2026-10-26'), r ? r.cells.due_date : '-'),
+    chk(`Step 6: due date = day C (${FMT(SH('2026-10-26'))})`, r && r.cells.due_date === FMT(SH('2026-10-26')), r ? r.cells.due_date : '-'),
     chk('Step 7: $-5.00 and $-5.00', r && r.cells.amount === '$-5.00' && r.cells.open_balance === '$-5.00', r ? `${r.cells.amount} / ${r.cells.open_balance}` : '-'),
     chk('Step 8: clicking the ID opens nothing', r && !r.link && after === before, r ? `link element: ${JSON.stringify(r.link)}; address before ${before} after ${after}` : '-')]);
 };
@@ -268,14 +273,14 @@ async function summaryRow(x, report, kind, key, date, label) {
 const BK = ['current', 'days_1_to_30', 'days_31_to_60', 'days_61_to_90', 'days_91_plus'];
 const bucketsOf = (r) => Object.fromEntries(BK.map((b) => [b, r ? r.cells[b] : undefined]));
 C['V1R-14'] = async (x) => {
-  const P = '2026-10-12';
+  const P = SH('2026-10-12');
   const a = await summaryRow(x, 'A/R Aging Summary', 'customerIds', 'R14', addDays(P, -1), `step 4 as of the day before P ${addDays(P, -1)}`);
   const b = await summaryRow(x, 'A/R Aging Summary', 'customerIds', 'R14', P, `step 6 as of P ${P}`);
   return verdict([chk('Step 4: customer X listed with the invoice amount $80.00', a.r && a.r.cells.total === '$80.00', a.r ? JSON.stringify(a.r.cells) : 'not listed ' + a.msg),
     chk('Step 6: customer X not listed', !b.r, b.r ? JSON.stringify(b.r.cells) : 'not listed; table says: ' + b.msg)]);
 };
 C['V1R-22'] = async (x) => {
-  const D = '2026-08-01'; const plan = [[4, 0, 'current'], [6, 30, 'days_1_to_30'], [8, 31, 'days_31_to_60'], [10, 60, 'days_31_to_60'], [12, 61, 'days_61_to_90'], [14, 90, 'days_61_to_90'], [16, 91, 'days_91_plus']];
+  const D = SH('2026-08-01'); const plan = [[4, 0, 'current'], [6, 30, 'days_1_to_30'], [8, 31, 'days_31_to_60'], [10, 60, 'days_31_to_60'], [12, 61, 'days_61_to_90'], [14, 90, 'days_61_to_90'], [16, 91, 'days_91_plus']];
   const { page, lib } = x; await go(x, 'A/R Aging Summary'); const p = await lib.pickParty(page, 'customerIds', CUST('R22')); if (!p.ok) throw new Error(p.why);
   const checks = [];
   for (const [st, off, want] of plan) {
@@ -287,7 +292,7 @@ C['V1R-22'] = async (x) => {
   return verdict(checks);
 };
 C['V1R-23'] = async (x) => {
-  const Cd = '2026-09-15';
+  const Cd = SH('2026-09-15');
   const a = await summaryRow(x, 'A/R Aging Summary', 'customerIds', 'R23', addDays(Cd, 1), `step 4 as of C+1 ${addDays(Cd, 1)}`);
   const b = await summaryRow(x, 'A/R Aging Summary', 'customerIds', 'R23', addDays(Cd, 31), `step 6 as of C+31 ${addDays(Cd, 31)}`);
   const A = bucketsOf(a.r), B = bucketsOf(b.r);
@@ -334,7 +339,7 @@ C['V1R-19'] = async (x) => {
   const b = await collectionFor(x, 'R19', R, `steps 6-7 as of R ${R}`);
   const r1 = find(a.docs, dep);
   return { ...verdict([chk(`Step 5: deposit ${dep} listed at $-20.00`, r1 && r1.cells.open_balance === '$-20.00', r1 ? JSON.stringify(r1.cells) : 'not listed: ' + a.docs.map((d) => d.text).join(' / ')),
-    chk('Step 7: deposit not listed', !find(b.docs, dep), b.docs.map((d) => d.text).join(' / ') || 'no lines ' + b.msg)]), note: `Deposit dated 2026-10-30; its reversal was stamped ${R} (the app ends a free deposit only by reversing the payment that made it). After the reversal the customer's $5.00 invoice that the payment had paid is open again and is listed on day R; the step checks only that the deposit is gone.` };
+    chk('Step 7: deposit not listed', !find(b.docs, dep), b.docs.map((d) => d.text).join(' / ') || 'no lines ' + b.msg)]), note: `Deposit dated ${SH(SH('2026-10-30'))}; its reversal was stamped ${R} (the app ends a free deposit only by reversing the payment that made it). After the reversal the customer's $5.00 invoice that the payment had paid is open again and is listed on day R; the step checks only that the deposit is gone.` };
 };
 C['V1R-44'] = async (x) => {
   const a = await collectionFor(x, 'R44', null, 'steps 3-6 customer with two past-due invoices');
@@ -355,13 +360,13 @@ C['V1R-46'] = async (x) => {
 };
 C['V1R-47'] = async (x) => {
   const a = await collectionFor(x, 'R47', null, 'steps 3-4 date column'); const dates = a.docs.map((d) => d.cells.date);
-  const want = ['2026-10-13', '2026-10-23', '2026-11-02'].map(FMT);
+  const want = [SH('2026-10-13'), SH('2026-10-23'), SH('2026-11-02')].map(FMT);
   return verdict([chk('Step 4: oldest at the top, newest at the bottom', JSON.stringify(dates) === JSON.stringify(want), JSON.stringify(dates))]);
 };
 C['V1R-48'] = async (x) => {
   const a = await collectionFor(x, 'R48', null, 'steps 3-5 invoice and credit memo lines'); const inv = find(a.docs, num('doc:R48:inv')), cm = find(a.docs, num('doc:R48:cm'));
   const c = inv ? inv.cells : {};
-  return verdict([chk('Step 4: date, type "Invoice", ID, location, due date, Past due 12, Amount, Open balance', inv && c.date === FMT('2026-10-30') && c.type === 'Invoice' && c.id === num('doc:R48:inv') && c.location === 'Staging Heavy Duty - 9919' && c.due_date === FMT('2026-10-30') && c.past_due === '12' && c.amount === '$48.00' && c.open_balance === '$48.00', inv ? JSON.stringify(c) : 'not listed'),
+  return verdict([chk('Step 4: date, type "Invoice", ID, location, due date, Past due 12, Amount, Open balance', inv && c.date === FMT(SH('2026-10-30')) && c.type === 'Invoice' && c.id === num('doc:R48:inv') && c.location === 'Staging Heavy Duty - 9919' && c.due_date === FMT(SH('2026-10-30')) && c.past_due === '12' && c.amount === '$48.00' && c.open_balance === '$48.00', inv ? JSON.stringify(c) : 'not listed'),
     chk('Step 5: credit memo Past due 3', cm && cm.cells.past_due === '3', cm ? JSON.stringify(cm.cells) : 'not listed')]);
 };
 C['V1R-49'] = async (x) => {
@@ -419,12 +424,12 @@ C['V1R-88'] = async (x) => {
 };
 // ---------- batch 4: A/P ----------
 C['V1R-12'] = async (x) => {
-  const D = '2026-10-20', a = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P12'), D, `steps 3-6 as of ${D}`);
+  const D = SH('2026-10-20'), a = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P12'), D, `steps 3-6 as of ${D}`);
   const b1 = num('doc:P12:billD'), b2 = num('doc:P12:billD1');
   return verdict([chk(`Step 5: bill ${b1} dated ${D} listed`, find(a.docs, b1), a.docs.map((d) => d.text).join(' / ') || 'no lines'), chk(`Step 6: bill ${b2} dated ${addDays(D, 1)} not listed`, !find(a.docs, b2), a.docs.map((d) => d.cells.id).join(', '))]);
 };
 C['V1R-20'] = async (x) => {
-  const D = '2026-10-12', b = num('doc:P20:bill');
+  const D = SH('2026-10-12'), b = num('doc:P20:bill');
   const a1 = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P20'), addDays(D, 1), `step 5 as of D+1 ${addDays(D, 1)}`);
   const a2 = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P20'), addDays(D, 4), `step 8 as of D+4 ${addDays(D, 4)}`);
   const r1 = find(a1.docs, b), r2 = find(a2.docs, b);
@@ -432,14 +437,14 @@ C['V1R-20'] = async (x) => {
 };
 const vcRow = (docs, amt) => docs.find((d) => /Credit/i.test(d.cells.type || '') && (d.cells.amount || '').includes(amt));
 C['V1R-21'] = async (x) => {
-  const mid = '2026-10-25', U = '2026-10-30';
+  const mid = SH('2026-10-25'), U = SH('2026-10-30');
   const a = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P21'), mid, `step 5 as of ${mid}`);
   const b = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P21'), U, `step 8 as of U ${U}`);
   const r1 = vcRow(a.docs, '35.00');
   return verdict([chk('Step 5: vendor credit listed at $-35.00', r1 && r1.cells.open_balance === '$-35.00', r1 ? JSON.stringify(r1.cells) : 'not listed: ' + a.docs.map((d) => d.text).join(' / ')), chk('Step 8: not listed on day U', !vcRow(b.docs, '35.00'), b.docs.map((d) => d.text).join(' / ') || 'no lines')]);
 };
 C['V1R-24'] = async (x) => {
-  const Cd = '2026-09-02';
+  const Cd = SH('2026-09-02');
   const a = await summaryRow(x, 'A/P Aging Summary', 'vendorIds', 'P24', addDays(Cd, 1), `step 4 as of C+1 ${addDays(Cd, 1)}`);
   const b = await summaryRow(x, 'A/P Aging Summary', 'vendorIds', 'P24', addDays(Cd, 61), `step 6 as of C+61 ${addDays(Cd, 61)}`);
   const A = bucketsOf(a.r), B = bucketsOf(b.r);
@@ -465,7 +470,7 @@ C['V1R-55'] = async (x) => {
 };
 C['V1R-56'] = async (x) => {
   const b = num('doc:P56:bill'); const a = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P56'), null, 'step 5 location B bill line'); const r = find(a.docs, b); const c = r ? r.cells : {};
-  return verdict([chk('Step 5: date, "Invoice", No., vendor name, location B, due date, Past Due, Amount, Open Balance', r && c.date === FMT('2026-11-05') && c.type === 'Invoice' && c.id === b && c.vendor_name === VEND('P56') && c.location === 'Staging Lethbridge - 4310' && c.due_date === FMT('2026-12-05') && c.past_due === '-24' && c.amount === '$56.00' && c.open_balance === '$56.00', r ? JSON.stringify(c) : 'not listed')]);
+  return verdict([chk('Step 5: date, "Invoice", No., vendor name, location B, due date, Past Due, Amount, Open Balance', r && c.date === FMT(SH('2026-11-05', 'B')) && c.type === 'Invoice' && c.id === b && c.vendor_name === VEND('P56') && c.location === 'Staging Lethbridge - 4310' && c.due_date === FMT(SH('2026-12-05', 'B')) && c.past_due === '-24' && c.amount === '$56.00' && c.open_balance === '$56.00', r ? JSON.stringify(c) : 'not listed')]);
 };
 C['V1R-57'] = async (x) => {
   const b = num('doc:P57:bill'); const a = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P57'), null, 'steps 3-5 bill due in 9 days'); const r = find(a.docs, b);
@@ -473,7 +478,7 @@ C['V1R-57'] = async (x) => {
 };
 C['V1R-58'] = async (x) => {
   const a = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P58'), null, 'steps 3-7 vendor credit line'); const r = vcRow(a.docs, '25.00'); const c = r ? r.cells : {};
-  return verdict([chk('Step 5: Due Date = the credit\'s own date (Nov 01, 2026)', c.due_date === FMT('2026-11-01') && c.date === FMT('2026-11-01'), JSON.stringify(c)), chk('Step 6: Past Due 10', c.past_due === '10', c.past_due), chk('Step 7: $-25.00 and $-25.00', c.amount === '$-25.00' && c.open_balance === '$-25.00', `${c.amount} / ${c.open_balance}`)]);
+  return verdict([chk('Step 5: Due Date = the credit\'s own date (' + FMT(SH(SH('2026-11-01'))) + ')', c.due_date === FMT(SH('2026-11-01')) && c.date === FMT(SH('2026-11-01')), JSON.stringify(c)), chk('Step 6: Past Due 10', c.past_due === '10', c.past_due), chk('Step 7: $-25.00 and $-25.00', c.amount === '$-25.00' && c.open_balance === '$-25.00', `${c.amount} / ${c.open_balance}`)]);
 };
 C['V1R-59'] = async (x) => {
   const { page, lib } = x; await go(x, 'A/P Aging Detail');
@@ -512,7 +517,7 @@ C['V1R-61'] = async (x) => {
 };
 C['V1R-62'] = async (x) => {
   const a = await unpaidFor(x, 'P62', 'steps 3-4 date column'); const dates = a.docs.map((d) => d.cells.date);
-  return verdict([chk('Step 4: oldest at the top', JSON.stringify(dates) === JSON.stringify(['2026-10-27', '2026-11-01', '2026-11-06'].map(FMT)), JSON.stringify(dates))]);
+  return verdict([chk('Step 4: oldest at the top', JSON.stringify(dates) === JSON.stringify([SH('2026-10-27'), SH('2026-11-01'), SH('2026-11-06')].map(FMT)), JSON.stringify(dates))]);
 };
 C['V1R-63'] = async (x) => {
   const a = await unpaidFor(x, 'P61', 'steps 3-6 vendor credit line'); const vc = vcRow(a.docs, '8.00'); const c = vc ? vc.cells : {};
@@ -613,12 +618,12 @@ async function openOtherLocationLink(x, path, label) {
   return { before, dlg, note: note.join(' | '), url, after };
 }
 C['V1R-71'] = async (x) => {
-  const wo = L0()['doc:R71:wo']; const r = await openOtherLocationLink(x, `/workorders/${wo.wo}?locationId=f8a8b802-7780-4b16-bf10-343caeb616b2`, 'step 2'); // the link a note-mention email carries (useWorkOrderLocationResolver)
+  const wo = L0()['doc:R71:wo']; const r = await openOtherLocationLink(x, `/workorders/${wo.wo}?locationId=${(E.WP.B && E.WP.B.id) || 'f8a8b802-7780-4b16-bf10-343caeb616b2'}`, 'step 2'); // the link a note-mention email carries (useWorkOrderLocationResolver)
   return verdict([chk('Precondition: at location A', r.before.includes('Heavy Duty'), r.before), chk('Step 2: "Switch location?" asking to switch to location B', /Switch location\?/.test(r.dlg) && r.dlg.includes('Staging Lethbridge - 4310'), r.dlg),
     chk('Step 4: on the work order list with "Switch cancelled. Returning to work orders."', /\/workorders\/?(\?|$)/.test(new URL(r.url).pathname + new URL(r.url).search) && r.note.includes('Switch cancelled. Returning to work orders.'), `address ${r.url}; message "${r.note}"; still at ${r.after}`)]);
 };
 C['V1R-72'] = async (x) => {
-  const ps = L0()['doc:R71:ps']; const r = await openOtherLocationLink(x, `/parts/part-sale/${ps.id}?locationId=f8a8b802-7780-4b16-bf10-343caeb616b2`, 'step 2'); // the part sale link carries ?locationId as well
+  const ps = L0()['doc:R71:ps']; const r = await openOtherLocationLink(x, `/parts/part-sale/${ps.id}?locationId=${(E.WP.B && E.WP.B.id) || 'f8a8b802-7780-4b16-bf10-343caeb616b2'}`, 'step 2'); // the part sale link carries ?locationId as well
   return verdict([chk('Precondition: at location A', r.before.includes('Heavy Duty'), r.before), chk('Step 2: "Switch location?" with "This part sale is in Staging Lethbridge - 4310. Switch your active location to view it?"', /Switch location\?/.test(r.dlg) && r.dlg.includes('This part sale is in Staging Lethbridge - 4310. Switch your active location to view it?'), r.dlg),
     chk('Step 4: on the part sales list with "Switch canceled. Returning to part sales."', /part-sales/.test(r.url) && r.note.includes('Switch canceled. Returning to part sales.'), `address ${r.url}; message "${r.note}"`)]);
 };
@@ -694,7 +699,7 @@ C['V1R-83'] = async (x) => {
   const { page, lib } = x; await go(x, 'A/R Aging Summary'); const s = await lib.setDate(page, MID_LAST_MONTH);
   const f = await lib.exportFile(page, 'arsum', 'pdf', x.key, 'step 5 PDF'); const p1 = f.ok ? pdfText(f.path).split('\n').filter((l) => l.trim()).slice(0, 6) : [];
   x.ev.push(lib.saveText(x.key, 'PDF heading', { p1 }));
-  return verdict([chk('Step 3: date set', s.ok, s.chip || s.why), chk('Step 7 (PRD): "As of Oct 15, 2026" under the report and organization names', p1.some((l) => /As of Oct 15, 2026/.test(l)) && !p1.some((l) => /Oct 16, 2026/.test(l)), p1.join(' / '))]);
+  return verdict([chk('Step 3: date set', s.ok, s.chip || s.why), chk(`Step 7 (PRD): "As of ${FMT(MID_LAST_MONTH)}" under the report and organization names`, p1.some((l) => new RegExp('As of ' + FMT(MID_LAST_MONTH)).test(l)) && !p1.some((l) => new RegExp(FMT(E.addDays(MID_LAST_MONTH, 1))).test(l)), p1.join(' / '))]);
 };
 C['V1R-84'] = async (x) => {
   const { page, lib } = x; await go(x, 'A/R Aging Detail'); const head = page.locator('[data-test-id="aging_detail_report_row_days_1_to_30"]'); const count = Number(((await head.innerText()).match(/\((\d+)\)/) || [])[1]);
@@ -713,7 +718,7 @@ C['V1R-85'] = async (x) => {
 };
 C['V1R-86'] = async (x) => {
   const a = await collectionFor(x, 'R74', null, 'steps 3-5 dates'); const cm = find(a.docs, num('doc:R74:cm_today')), inv = find(a.docs, num('doc:R74:inv'));
-  return verdict([chk('Step 4 (PRD): today written out "Nov 11, 2026", not "Today"', cm && cm.cells.date === 'Nov 11, 2026', cm ? cm.cells.date : 'not listed'), chk('Step 5: older date "Nov 1, 2026"', inv && inv.cells.date === 'Nov 1, 2026', inv ? inv.cells.date : 'not listed')]);
+  return verdict([chk(`Step 4 (PRD): today written out "${FMT(TODAY)}", not "Today"`, cm && cm.cells.date === FMT(TODAY), cm ? cm.cells.date : 'not listed'), chk(`Step 5: older date "${FMT(SH(SH('2026-11-01')))}"`, inv && inv.cells.date === FMT(SH(SH('2026-11-01'))), inv ? inv.cells.date : 'not listed')]);
 };
 C['V1R-74'] = async (x) => {
   const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R74'), null, 'steps 3-6 two credit memos'); const t8 = find(a.docs, num('doc:R74:cm_today')), t6 = find(a.docs, num('doc:R74:cm_yday'));

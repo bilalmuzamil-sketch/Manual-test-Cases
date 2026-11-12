@@ -6,8 +6,10 @@ Every record is named ZZAUTOTEST. A JSON ledger (seeded-<env>.json) is the resum
 import json, os, sys, time
 from api import call
 HERE = os.path.dirname(os.path.abspath(__file__))
-EXEMPT_TAX = {'qa': '0c47b1fb-38bb-4788-8719-6900c365e34c'}
-LABOUR_TYPE = {'qa': 'a2296198-4fdd-4e99-8829-a3bef455939a'}
+# Same ids on staging: GET /api/taxes and GET /api/labour-types on 12 Nov 2026 returned both, named
+# 'Exempt' and 'HD Fleet Rate' on QA and on staging alike (the QA organisation is a copy of staging's).
+EXEMPT_TAX = {'qa': '0c47b1fb-38bb-4788-8719-6900c365e34c', 'staging': '0c47b1fb-38bb-4788-8719-6900c365e34c'}
+LABOUR_TYPE = {'qa': 'a2296198-4fdd-4e99-8829-a3bef455939a', 'staging': 'a2296198-4fdd-4e99-8829-a3bef455939a'}
 class Ledger:
     def __init__(self, env):
         self.env = env; self.path = f'{HERE}/seeded-{env}.json'

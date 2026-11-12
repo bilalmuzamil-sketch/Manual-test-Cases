@@ -54,6 +54,7 @@ read as MISSING while sitting right there).
 | **`RESEED TOGGLE QA`** | the QA branch | the **same-record permission toggle** universe (20 records + a PO and vendor invoice, section 6734 — C55731–C55737) | `sv9160.qa.shopview.com` |
 | **`RESEED PARITY QA`** | the QA branch | the **SV-10279 prefix-parity** comparison (12 records, one keyword across customers / vendors / assets / parts) | `sv9160.qa.shopview.com` |
 | **`RESEED PERTAB QA`** | the QA branch | the **per-tab prefix** universe (14 records — C72120 Parts, C72121 Vendors, C72122 Assets) | `sv9160.qa.shopview.com` |
+| **`RUN A/R A/P ON STAGING`** (also `RESEED A/R A/P QA`) | staging (or the QA branch `sv11315`) | the **A/R and A/P aging** universe (47 customers/vendors, 85 documents) for the 92-case regression suite, section 134654 — added 12 Nov 2026 | `python3 seed.py <staging\|qa>` in `build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/tools/`; one page: `build/ar-ap-report-sorting/v1-regression/STAGING-RUN-CARD.md` |
 
 🔴 **`RESEED EVERYTHING QA`** is now the one to reach for after a redeploy — **`./reseed_everything.sh qa`**
 rebuilds **all six** universes in dependency order and runs **each one's own verifier where it
