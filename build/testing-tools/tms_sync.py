@@ -303,6 +303,7 @@ def apply(rows, tms, limit):
         fake_tr = {f1: (r["body"] or {}).get(f2) for f1, f2 in SCALAR + TEXT} if r.get("body") else None
         bad = []
         if fake_tr is not None:
+            fake_tr["custom_preconds"] = split_pictures(fake_tr.get("custom_preconds"))[0]  # the TMS-only links are not TestRail's
             fake_tr["refs"] = r["body"]["refs"]
             fake_tr["custom_steps_separated"] = r["body"]["steps_separated"]
             bad = differences(fake_tr, got)

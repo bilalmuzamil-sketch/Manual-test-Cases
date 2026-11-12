@@ -449,3 +449,12 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   Case text incl. picture links unchanged; their 32 run entries (no results) unchanged. Now **334/334 SAME**.
   QA lead (same day): *"If Bill to folder and its test cases are already there in TMS then no need to sync them to TMS again"*
   — it arrived after the moves were applied; no full re-sync was done (only the new folder + moves).
+- **QA lead (2026-11-12): "Push the results from Testrail to TMS for A/R and A/P".** Done, never overwriting:
+  A/R and A/P cases synced (**355 updated**, **117 created**, picture links kept on all 310 that had them); the 117 added to
+  **TMS run 7** (adding only, = TestRail run 557 membership); **232 results posted** to entries with no result; **all 353 entries
+  that already had a result unchanged**. TMS run 7: 454 P · 14 B · 2 F · 3 U of 473.
+- **Checker bug fixed:** `apply()` read-back compared TestRail text against TMS text with the picture-links list on one side
+  only → 310 false "MISMATCH preconditions". Re-checked: 0 real differences, 0 lists lost.
+- **Held for the QA lead:** 5 TMS Blocked vs TestRail Passed (C715384, C715385, C715449, C715468, TMS C10000003 = TestRail
+  C797943); TMS-only case **C715478** (deleted in TestRail, in run 7, no result); **C715277, C715279** are in TMS run 7 with
+  TMS results but were removed from TestRail run 557 (cases still exist).

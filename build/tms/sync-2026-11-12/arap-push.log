@@ -1,0 +1,17 @@
+1) sync A/R and A/P cases
+5612 UPDATE -> MISMATCH preconditions', 'C715613 UPDATE -> MISMATCH preconditions', 'C715614 UPDATE -> MISMATCH preconditions', 'C715615 UPDATE -> MISMATCH preconditions', 'C715621 UPDATE -> MISMATCH preconditions', 'C715622 UPDATE -> MISMATCH preconditions', 'C715623 UPDATE -> MISMATCH preconditions', 'C715624 UPDATE -> MISMATCH preconditions', 'C715625 UPDATE -> MISMATCH preconditions', 'C715626 UPDATE -> MISMATCH preconditions', 'C715627 UPDATE -> MISMATCH preconditions', 'C715628 UPDATE -> MISMATCH preconditions', 'C715629 UPDATE -> MISMATCH preconditions', 'C715630 UPDATE -> MISMATCH preconditions', 'C715631 UPDATE -> MISMATCH preconditions', 'C715632 UPDATE -> MISMATCH preconditions', 'C10000000 UPDATE -> MISMATCH preconditions', 'C10000001 UPDATE -> MISMATCH preconditions', 'C10000002 UPDATE -> MISMATCH preconditions', 'C10000003 UPDATE -> MISMATCH preconditions', 'C10000004 UPDATE -> MISMATCH preconditions', 'C10000005 UPDATE -> MISMATCH preconditions', 'C10000006 UPDATE -> MISMATCH preconditions', 'applied: 355']
+ created: 117 | problems: none
+ final: ["plan: {'SAME': 472, 'TMS_EXTRA': 1, 'FOLDER_TR_ONLY': 0, 'FOLDER_TMS_ONLY': 0} | report: /tmp/tms/sync-90418/report.md"]
+ 
+2) TestRail run 557 tests 470 | missing from TMS run 7: 117 | addable now: 117
+   add: 200 {"added": 117}
+3) post results (never overwrite)
+TestRail run 557: 616 results | to copy 232 (for 117 cases) | skipped {'TMS already has a result for this case (left alone)': 270, 'already copied': 114}
+cases with a TMS result already (left alone): 351 | of those, TMS status differs from TestRail's latest: 5 [(715449, 2, 1), (715385, 2, 1), (715384, 2, 1), (715468, 2, 1), (10000003, 2, 1)]
+copied 232 of 232
+statuses now equal to TestRail: 465/470 | differ: [715384, 715385, 10000003, 715449, 715468]
+TMS run 7 totals: {'passed': 454, 'blocked': 14, 'untested': 3, 'retest': 0, 'failed': 2, 'skipped': 0, 'total': 473, 'pass_rate': 96}
+ 
+4) run 7 entries that already had a result before: 353 | changed: 0 [] | entries now: 473
+   TMS run 7 totals: {'passed': 454, 'blocked': 14, 'untested': 3, 'retest': 0, 'failed': 2, 'skipped': 0, 'total': 473, 'pass_rate': 96}
+FINISHED
