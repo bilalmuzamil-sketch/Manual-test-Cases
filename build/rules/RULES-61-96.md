@@ -3629,3 +3629,17 @@ always give, set it as a rule"*. Recorded on his explicit directive (Rule 72 is 
    recommend" is not an answer.
 4. **A question he does not understand is my failure, not his.** I explain it again from the start, plainly, with the recommendation,
    and check the next question against points 1 to 3 before I send it.
+
+## 140 · EVERY SUITE'S MAIN TESTRAIL FOLDER CARRIES A CURRENCY NOTE (all projects, permanent)
+
+Ordered on 12 Nov 2026 with the Internal Work Orders suite. The QA lead, verbatim: *"this folder must have a short description saying
+that the test case currency is till 11/12/2026 make sure you update the test case before running them if the PRD/sources/Design have
+changed by the time you are starting to test them, this should be the standard main folder description going forward in every testing
+suite. You can make words better and statement shorter though."* Recorded on his explicit directive (Rule 72 satisfied).
+
+1. The main TestRail folder of every suite has this description, with the date the cases were last brought up to date with their sources:
+   **"Test cases are current as of MM/DD/YYYY. Before you start testing, check whether the PRD, design or any other source has changed
+   since then; if it has, update the test cases first."**
+2. The date is the day of the last full source check that the cases were written or updated to (a currency pass, a new PRD version
+   applied, a full design pass). Every such pass re-stamps the date in the same session as its TestRail writes.
+3. The description replaces any earlier main-folder text only with the QA lead's knowledge; text he wrote himself is kept below it.

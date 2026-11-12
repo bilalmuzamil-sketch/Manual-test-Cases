@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New WO Dialog v6</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--sv-surface);">
+  <dc-import name="WO-List-Artboard-v6" variant="{{ listVariant }}" class-chip="{{ listClassChip }}" tab="all" style="display: block; width: 100%; height: 100%;" hint-size="100%,100%"></dc-import>
+  <div class="sv-scrim" style="position: absolute;">
+    <div class="sv-modal" role="dialog" data-sv-component="WorkOrderDialog" data-sv-change="{{ dlgChange }}" style="width: 520px; overflow: visible;">
+      <div class="sv-modal__header"><div class="sv-modal__title">New work order</div><button type="button" class="sv-modal__close" aria-label="Close"><x-import component-from-global-scope="SV.Icon" name="x" size="{{ 20 }}" hint-size="20px,20px"></x-import></button></div>
+      <div class="sv-modal__body" style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+
+        <sc-if value="{{ internal }}" hint-placeholder-val="{{ false }}">
+          <div data-sv-component="WorkOrderDialog" data-sv-change="modified" style="display: grid; grid-template-columns: minmax(0,1fr) auto; gap: var(--sv-space-3); align-items: start;">
+            <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+              <x-import component-from-global-scope="SV.Select" label="Customer" value="{{ internalCustomer }}" hint-size="100%,48px"></x-import>
+            </div>
+            <x-import component-from-global-scope="SV.Button" variant="secondary" hint-size="64px,40px">Add</x-import>
+          </div>
+          <div data-sv-component="WorkOrderDialog" data-sv-change="modified" style="display: grid; grid-template-columns: minmax(0,1fr) auto; gap: var(--sv-space-3); align-items: start; position: relative;">
+            <x-import component-from-global-scope="SV.Select" label="Asset" value="{{ assetValue }}" hint-size="100%,48px"></x-import>
+            <x-import component-from-global-scope="SV.Button" variant="secondary" hint-size="64px,40px">Add</x-import>
+            <sc-if value="{{ menuAssets }}" hint-placeholder-val="{{ false }}">
+              <div class="sv-menu" role="menu" style="position: absolute; top: 52px; left: 0; width: 380px; z-index: 10;">
+                <div class="sv-menu__section">{{ internalCustomer }}</div>
+                <button type="button" role="menuitem" class="sv-menu__row"><x-import component-from-global-scope="SV.Icon" name="truck" size="{{ 16 }}" hint-size="16px,16px"></x-import><span class="sv-menu__label">2017 Ford Transit, Unit 14</span></button>
+                <button type="button" role="menuitem" class="sv-menu__row"><x-import component-from-global-scope="SV.Icon" name="truck" size="{{ 16 }}" hint-size="16px,16px"></x-import><span class="sv-menu__label">2019 Freightliner Cascadia, Unit 12</span></button>
+                <button type="button" role="menuitem" class="sv-menu__row"><x-import component-from-global-scope="SV.Icon" name="package" size="{{ 16 }}" hint-size="16px,16px"></x-import><span class="sv-menu__label">Toyota 8FGU25 forklift, Forklift 2</span></button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ menuEmpty }}" hint-placeholder-val="{{ false }}">
+              <div class="sv-menu" role="menu" style="position: absolute; top: 52px; left: 0; width: 380px; z-index: 10;">
+                <div class="sv-menu__section">{{ internalCustomer }}</div>
+                <div class="sv-menu__row" style="cursor: default;"><span class="sv-menu__label" style="color: var(--sv-text-secondary);">{{ noAssetsText }}</span></div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ regular }}" hint-placeholder-val="{{ true }}">
+          <div style="display: grid; grid-template-columns: minmax(0,1fr) auto; gap: var(--sv-space-3); align-items: start;">
+            <x-import component-from-global-scope="SV.Select" label="Customer" value="{{ regularCustomer }}" hint-size="100%,48px"></x-import>
+            <x-import component-from-global-scope="SV.Button" variant="secondary" hint-size="64px,40px">Add</x-import>
+          </div>
+          <sc-if value="{{ showNoCharge }}" hint-placeholder-val="{{ false }}">
+            <div data-sv-component="WorkOrderDialog" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+              <x-import component-from-global-scope="SV.Checkbox" checked="{{ false }}" label="No Charge" hint-size="100px,20px"></x-import>
+              <span class="sv-body2" style="color: var(--sv-text-secondary); padding-left: var(--sv-space-6); text-wrap: pretty;">Warranty, goodwill, comeback or policy work. Closes without an invoice; parts cost posts to Customer No-Charge Expense.</span>
+            </div>
+          </sc-if>
+          <div style="display: grid; grid-template-columns: minmax(0,1fr) auto; gap: var(--sv-space-3); align-items: start;">
+            <x-import component-from-global-scope="SV.Select" label="Asset" value="{{ assetValue }}" hint-size="100%,48px"></x-import>
+            <x-import component-from-global-scope="SV.Button" variant="secondary" disabled="{{ true }}" hint-size="64px,40px">Add</x-import>
+          </div>
+        </sc-if>
+        <x-import component-from-global-scope="SV.Checkbox" checked="{{ true }}" label="Asset Here?" hint-size="120px,20px"></x-import>
+        <sc-if value="{{ ncLockedInternal }}" hint-placeholder-val="{{ false }}">
+          <div data-sv-component="WorkOrderDialog" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+            <div role="separator" style="border-top: 1px solid var(--sv-border-default);"></div>
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2); position: relative;">
+              <x-import component-from-global-scope="SV.Checkbox" checked="{{ true }}" disabled="{{ true }}" label="No Charge" hint-size="100px,20px"></x-import>
+              <span style="display: inline-flex; color: var(--sv-text-secondary);" aria-label="About No Charge"><x-import component-from-global-scope="SV.Icon" name="info" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+              <sc-if value="{{ intTipOpen }}" hint-placeholder-val="{{ false }}">
+                <div class="sv-tt" role="tooltip" style="position: absolute; left: 132px; top: 50%; transform: translateY(-50%); width: 260px; white-space: normal; z-index: 5;"><span class="sv-tt__label" style="text-wrap: pretty;">Internal customer: every work order is no charge.</span></div>
+              </sc-if>
+            </div>
+            <x-import component-from-global-scope="SV.Select" label="Reason *" value="Internal" disabled="{{ true }}" hint-size="100%,48px"></x-import>
+          </div>
+        </sc-if>
+        <sc-if value="{{ internalV6 }}" hint-placeholder-val="{{ false }}">
+          <div data-sv-component="WorkOrderDialog" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+            <div role="separator" style="border-top: 1px solid var(--sv-border-default);"></div>
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2); position: relative;">
+              <x-import component-from-global-scope="SV.Badge" tone="neutral" shape="square" size="sm" hint-size="56px,20px">Internal</x-import>
+              <span style="display: inline-flex; color: var(--sv-text-secondary);" aria-label="About internal work orders"><x-import component-from-global-scope="SV.Icon" name="info" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+              <sc-if value="{{ intCatTip }}" hint-placeholder-val="{{ false }}">
+                <div class="sv-tt" role="tooltip" style="position: absolute; left: 0; top: calc(100% + 6px); width: 320px; white-space: normal; z-index: 5;"><span class="sv-tt__label" style="text-wrap: pretty;">{{ intCatTipText }}</span></div>
+              </sc-if>
+            </div>
+            <sc-if value="{{ showIntCat }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                <x-import component-from-global-scope="SV.Select" label="Internal category" value="{{ internalCategory }}" hint-size="100%,48px"></x-import>
+                <sc-if value="{{ categoryMenu }}" hint-placeholder-val="{{ false }}">
+                  <div class="sv-menu" role="listbox" style="position: static; width: 100%;">
+                    <button type="button" role="option" class="sv-menu__row"><span class="sv-menu__label">General Internal</span></button>
+                    <button type="button" role="option" aria-selected="true" class="sv-menu__row is-active"><span class="sv-menu__label">Company Vehicle Maintenance</span><x-import component-from-global-scope="SV.Icon" name="check" size="{{ 16 }}" hint-size="16px,16px"></x-import></button>
+                    <button type="button" role="option" class="sv-menu__row"><span class="sv-menu__label">Shop Equipment Maintenance</span></button>
+                  </div>
+                </sc-if>
+                <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">{{ intCatHint }}</span>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ ncBottom }}" hint-placeholder-val="{{ false }}">
+          <div data-sv-component="WorkOrderDialog" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+            <div role="separator" style="border-top: 1px solid var(--sv-border-default);"></div>
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2); position: relative;">
+              <x-import component-from-global-scope="SV.Checkbox" checked="{{ ncTicked }}" label="No Charge" hint-size="100px,20px"></x-import>
+              <span style="display: inline-flex; color: var(--sv-text-secondary);" aria-label="About No Charge"><x-import component-from-global-scope="SV.Icon" name="info" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+              <sc-if value="{{ ncTipOpen }}" hint-placeholder-val="{{ false }}">
+                <div class="sv-tt" role="tooltip" style="position: absolute; left: 132px; top: 50%; transform: translateY(-50%); width: 300px; white-space: normal; z-index: 5;"><span class="sv-tt__label" style="text-wrap: pretty;">Warranty, goodwill, policy or comeback work. Closes without an invoice; parts cost posts to Customer No-Charge Expense.</span></div>
+              </sc-if>
+            </div>
+            <sc-if value="{{ ncTicked }}" hint-placeholder-val="{{ false }}">
+              <div data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                <x-import component-from-global-scope="SV.Select" label="{{ catLabel }}" value="{{ reasonValue }}" hint-size="100%,48px"></x-import>
+                <sc-if value="{{ showReasonMenu }}" hint-placeholder-val="{{ true }}">
+                <div class="sv-menu" role="listbox" style="position: static; width: 100%;">
+                  <button type="button" role="option" class="sv-menu__row"><span class="sv-menu__label">Warranty</span></button>
+                  <button type="button" role="option" class="sv-menu__row"><span class="sv-menu__label">Goodwill</span></button>
+                      <button type="button" role="option" class="sv-menu__row"><span class="sv-menu__label">Comeback</span></button>
+                </div>
+                </sc-if>
+                <sc-if value="{{ catHint }}" hint-placeholder-val="{{ false }}">
+                  <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">{{ catHintText }}</span>
+                </sc-if>
+              </div>
+            </sc-if>
+            <sc-if value="{{ showOriginal }}" hint-placeholder-val="{{ false }}">
+              <div data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                <x-import component-from-global-scope="SV.Select" label="Original work order" value="{{ originalValue }}" hint-size="100%,48px"></x-import>
+                <sc-if value="{{ originalMenu }}" hint-placeholder-val="{{ false }}">
+                  <div class="sv-menu" role="listbox" style="position: static; width: 100%;">
+                    <div class="sv-menu__section">Hilltop Logistics · Truck 4, 2019 Kenworth T680</div>
+                    <button type="button" role="option" class="sv-menu__row"><span class="sv-menu__label">S2-31207 · Sep 18, 2026 · Replace turbo actuator</span></button>
+                    <button type="button" role="option" class="sv-menu__row"><span class="sv-menu__label">S2-30455 · Aug 2, 2026 · Replace alternator</span></button>
+                    <div class="sv-menu__section">Other</div>
+                    <button type="button" role="option" class="sv-menu__row"><span class="sv-menu__label">Not in ShopView</span></button>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ showOriginalLine }}" hint-placeholder-val="{{ false }}">
+                  <x-import component-from-global-scope="SV.Select" label="Original line" value="02 · Replace alternator · M. Rhodes" hint-size="100%,48px"></x-import>
+                </sc-if>
+                <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">Which earlier work order this job comes from, or Not in ShopView, and the line on it. The line sets the original technician for the comeback and warranty numbers. Optional here, required at Close.</span>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ showCheckbox }}" hint-placeholder-val="{{ true }}">
+          <div data-sv-component="WorkOrderDialog" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+            <div role="separator" style="border-top: 1px solid var(--sv-border-default);"></div>
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2);">
+              <x-import component-from-global-scope="SV.Checkbox" checked="{{ internal }}" label="Internal work order" on-change="{{ toggle }}" hint-size="170px,20px"></x-import>
+              <x-import component-from-global-scope="SV.Tooltip" label="Internal customers tick this automatically. You can use it for any customer." placement="right" hint-size="16px,16px"><span style="display: inline-flex; color: var(--sv-text-secondary);" aria-label="About internal work orders"><x-import component-from-global-scope="SV.Icon" name="info" size="{{ 16 }}" hint-size="16px,16px"></x-import></span></x-import>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+      <div class="sv-modal__footer"><x-import component-from-global-scope="SV.Button" variant="primary" disabled="{{ saveDisabled }}" hint-size="72px,36px">Save</x-import></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:680},&quot;v6&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;internalCategory&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;categorySource&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;customer&quot;,&quot;asset&quot;],&quot;default&quot;:&quot;customer&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;categoryMenu&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ncOriginal&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;originalMenu&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ncV55&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ncTicked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;ncTipOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;noChargeOption&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;customerFlag&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;internal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;setting&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;assets&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;list&quot;,&quot;none&quot;,&quot;closed&quot;],&quot;default&quot;:&quot;list&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onToggle&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(v: boolean) =&gt; void&quot;}}">
+const SHOW_TIPS = false; // tooltip texts hidden for now; set true to bring them back
+const ACCOUNT_OF = { Warranty: '6430 Warranty & Goodwill Expense', Goodwill: '6430 Warranty & Goodwill Expense', Comeback: '6440 Comeback Expense' };
+const NEEDS_ORIGINAL = { Warranty: true, Comeback: true };
+const INT_ACCOUNT_OF = { 'General Internal': '6500 Vehicle Expenses', 'Company Vehicle Maintenance': '6200 Vehicle Maintenance Expense', 'Shop Equipment Maintenance': '6250 Equipment Maintenance Expense' };
+class Component extends DCLogic {
+  state = { internal: null };
+  renderVals() {
+    const setting = this.props.setting ?? true;
+    const controlled = typeof this.props.onToggle === 'function';
+    const internal = setting && !!(controlled ? this.props.internal : (this.state.internal ?? this.props.internal));
+    const assets = this.props.assets ?? 'list';
+    const v6 = !!this.props.v6;
+    const reason = this.props.ncReason || '';
+    const ticked = !!this.props.ncTicked;
+    return {
+      listVariant: setting ? 'proposed' : 'off',
+      dlgChange: setting ? 'modified' : 'unchanged',
+      showOption: setting,
+      listClassChip: this.props.customerFlag ? 'all' : '',
+      showNoCharge: !!this.props.noChargeOption && !this.props.ncV55,
+      ncBottom: !!this.props.noChargeOption && !!this.props.ncV55,
+      ncTicked: ticked,
+      ncTipOpen: SHOW_TIPS && !!this.props.ncTipOpen,
+      assetValue: this.props.asset || '',
+      reasonValue: reason,
+      catLabel: v6 ? 'Category *' : 'Reason *',
+      catHint: false,
+      catHintText: 'Parts cost posts to ' + (ACCOUNT_OF[reason] || 'the category account') + '.',
+      showReasonMenu: this.props.reasonMenu ?? !reason,
+      showOriginal: v6 && ticked && !!NEEDS_ORIGINAL[reason],
+      originalValue: this.props.ncOriginal || '',
+      originalMenu: !!this.props.originalMenu,
+      showOriginalLine: v6 && ticked && !!NEEDS_ORIGINAL[reason] && !!this.props.ncOriginal && !this.props.originalMenu,
+      ncLockedInternal: internal && !!this.props.customerFlag && !v6,
+      internalV6: internal && !!this.props.customerFlag && v6,
+      showIntCat: false,
+      intCatTip: !!this.props.internalCategory && (!!this.props.categoryMenu || this.props.categorySource === 'asset'),
+      intCatTipText: 'Internal customer: no prices, no invoice. Posts to ' + (this.props.internalCategory || 'General Internal') + ', from ' + (this.props.categorySource === 'asset' ? 'the asset' : 'the customer') + '.',
+      internalCategory: this.props.internalCategory || '',
+      categoryMenu: !!this.props.categoryMenu,
+      intCatHint: this.props.categorySource === 'asset' ? 'From the asset ' + (this.props.asset || 'Forklift 2') + '. Change it if this job belongs elsewhere.' : 'From the customer. Change it if this job belongs elsewhere.',
+      intTipOpen: SHOW_TIPS,
+      regularCustomer: this.props.noChargeOption ? 'Hilltop Logistics' : '',
+      showCheckbox: setting && !this.props.customerFlag,
+      flagMode: !!this.props.customerFlag,
+      internalCustomer: this.props.customerFlag ? 'Staging Heavy Duty Fleet' : 'Staging Heavy Duty Internal',
+      noAssetsText: (this.props.customerFlag ? 'Staging Heavy Duty Fleet' : 'Staging Heavy Duty Internal') + ' has no assets yet.',
+      internal,
+      regular: !internal,
+      menuAssets: internal && assets === 'list',
+      menuEmpty: internal && assets === 'none',
+      saveDisabled: internal && assets === 'none',
+      toggle: (v) => controlled ? this.props.onToggle(v) : this.setState({ internal: v }),
+    };
+  }
+}
+</script>
+</body>
+</html>

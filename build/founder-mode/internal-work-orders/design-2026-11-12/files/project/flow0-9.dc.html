@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>09 Settings &gt; Integrations &gt; QuickBooks</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:var(--sv-accent-text)}a:hover{color:var(--sv-accent-hover)}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; height: 1000px; overflow: hidden; background: var(--sv-surface); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+    <div class="sv-app" style="height: 100%;">
+      <x-import component-from-global-scope="SV.AppHeader" active="settings" user="Admin ShopView" hint-size="100%,64px"></x-import>
+      <div class="sv-main">
+      <aside class="sv-side" style="width: 240px; gap: var(--sv-space-3); padding: var(--sv-space-4) var(--sv-space-3); background: var(--sv-surface);">
+        <div style="display: flex; flex-direction: column;">
+          <div class="sv-side__title" style="padding: 0 var(--sv-space-3); display: flex; align-items: center; justify-content: space-between;"><span>SETTINGS</span></div>
+          <button type="button" class="sv-menu__row" style="height: 28px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Settings</span></button>
+          <button type="button" class="sv-menu__row" style="height: 28px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Staff</span></button>
+          <button type="button" class="sv-menu__row" style="height: 28px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Roles &amp; Permissions</span></button>
+          <button type="button" class="sv-menu__row" style="height: 28px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Locations</span></button>
+          <button type="button" class="sv-menu__row" style="height: 28px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Departments</span></button>
+          <button type="button" class="sv-menu__row" style="height: 28px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Taxes</span></button>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <div class="sv-side__title" style="padding: 0 var(--sv-space-3); display: flex; align-items: center; justify-content: space-between;"><span>SERVICE</span><x-import component-from-global-scope="SV.Icon" name="chevron-right" size="{{ 16 }}" hint-size="16px,16px"></x-import></div>
+
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <div class="sv-side__title" style="padding: 0 var(--sv-space-3); display: flex; align-items: center; justify-content: space-between;"><span>PARTS</span><x-import component-from-global-scope="SV.Icon" name="chevron-right" size="{{ 16 }}" hint-size="16px,16px"></x-import></div>
+
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <div class="sv-side__title" style="padding: 0 var(--sv-space-3); display: flex; align-items: center; justify-content: space-between;"><span>INTEGRATIONS</span></div>
+          <button type="button" class="sv-menu__row is-active" style="height: 28px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">QuickBooks</span></button>
+          <button type="button" class="sv-menu__row" style="height: 28px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">IBS</span></button>
+          <button type="button" class="sv-menu__row" style="height: 28px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Open API</span></button>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <div class="sv-side__title" style="padding: 0 var(--sv-space-3); display: flex; align-items: center; justify-content: space-between;"><span>FINANCE</span><x-import component-from-global-scope="SV.Icon" name="chevron-right" size="{{ 16 }}" hint-size="16px,16px"></x-import></div>
+
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <div class="sv-side__title" style="padding: 0 var(--sv-space-3); display: flex; align-items: center; justify-content: space-between;"><span>IMPORTS</span><x-import component-from-global-scope="SV.Icon" name="chevron-right" size="{{ 16 }}" hint-size="16px,16px"></x-import></div>
+
+        </div>
+      </aside>
+        <div class="sv-content" style="padding: var(--sv-space-5) var(--sv-space-6); display: flex; flex-direction: column; gap: var(--sv-space-4); overflow: auto;">
+          <span class="sv-h2">QuickBooks</span>
+          <div style="display: flex; align-items: center; gap: var(--sv-space-3); flex-wrap: wrap;">
+            <span class="sv-body" style="color: var(--sv-text-secondary);">Updated from QuickBooks 2 minutes ago</span>
+            <x-import component-from-global-scope="SV.Button" variant="link" hint-size="170px,24px">Refresh From QuickBooks</x-import>
+            <span style="margin-left: auto; display: inline-flex;"><x-import component-from-global-scope="SV.Toggle" on="{{ true }}" label="Advanced mapping" hint-size="160px,20px"></x-import></span>
+          </div>
+          <div class="sv-card sv-card--flush" style="overflow: visible; display: flex; flex-direction: column;">
+            <div style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+              <span class="sv-h4">ShopView Accounts</span><span></span><span class="sv-h4">QuickBooks Accounts</span>
+            </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="unchanged" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3);">Account Receivable</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="Accounts Receivable" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="unchanged" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3);">Inventory Asset</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="1300 Inventory" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="unchanged" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3);">Received Payments</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="Undeposited Funds" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="unchanged" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3);">Refunds Paid From</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="" hint-size="320px,48px"></x-import>
+                  <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">Pick the bank account refunds are paid from.</span>
+                </div>
+              </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="unchanged" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3);">Cost of Parts</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="5000 Cost of parts" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="new" style="padding: var(--sv-space-2) var(--sv-space-4); background: var(--sv-surface-sunken); border-bottom: 1px solid var(--sv-border-default);"><span class="sv-caption" style="text-transform: uppercase; letter-spacing: var(--sv-tracking-wider); color: var(--sv-text-secondary);">Internal work orders · one row per category</span></div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="new" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3); padding-left: var(--sv-space-4);">General Internal <span class="sv-badge sv-badge--neutral sv-badge--square" style="margin-left: var(--sv-space-2);">Default</span></span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="6500 Vehicle Expenses" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="new" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3); padding-left: var(--sv-space-4);">Company Vehicle Maintenance</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="6200 Vehicle Maintenance Expense" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="new" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3); padding-left: var(--sv-space-4);">Shop Equipment Maintenance</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="6250 Equipment Maintenance Expense" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="new" style="padding: var(--sv-space-2) var(--sv-space-4); background: var(--sv-surface-sunken); border-bottom: 1px solid var(--sv-border-default);"><span class="sv-caption" style="text-transform: uppercase; letter-spacing: var(--sv-tracking-wider); color: var(--sv-text-secondary);">No Charge work orders · one row per category</span></div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="new" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3); padding-left: var(--sv-space-4);">Warranty</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="6430 Warranty &amp; Goodwill Expense" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="new" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3); padding-left: var(--sv-space-4);">Goodwill</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="6430 Warranty &amp; Goodwill Expense" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="new" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3); padding-left: var(--sv-space-4);">Comeback</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="6440 Comeback Expense" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+              <div data-sv-change="new" style="padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);"><span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">Shop supplies on internal and no-charge work orders are credited to the income account of your Shop supplies item in Products And Services; nothing to map here.</span></div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="unchanged" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3);">Cost of Goods (tax)</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+              <div data-sv-component="QuickBooksAccountMapping" data-sv-change="unchanged" style="display: grid; grid-template-columns: minmax(0,1fr) 24px 320px; gap: var(--sv-space-4); align-items: start; padding: var(--sv-space-3) var(--sv-space-4); border-bottom: 1px solid var(--sv-border-default);">
+                <span class="sv-body-strong" style="padding-top: var(--sv-space-3);">Customer Deposits Liability</span>
+                <span style="display: inline-flex; padding-top: var(--sv-space-3); color: var(--sv-text-secondary); transform: rotate(90deg);"><x-import component-from-global-scope="SV.Icon" name="arrow-up-down" size="{{ 16 }}" hint-size="16px,16px"></x-import></span>
+                <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+                  <x-import component-from-global-scope="SV.Select" label="Select Account" value="" hint-size="320px,48px"></x-import>
+                </div>
+              </div>
+          </div>
+          <div style="display: flex; justify-content: flex-end;">
+            <x-import component-from-global-scope="SV.Button" variant="primary" hint-size="72px,36px">Save</x-import>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

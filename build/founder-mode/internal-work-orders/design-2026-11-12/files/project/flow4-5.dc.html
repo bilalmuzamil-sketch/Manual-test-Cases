@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>05 Internal Work Orders report · by work order and line</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:var(--sv-accent-text)}a:hover{color:var(--sv-accent-hover)}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; height: 840px; overflow: hidden; background: var(--sv-surface); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+<div class="sv-app" style="height: 100%;">
+      <x-import component-from-global-scope="SV.AppHeader" active="reports" user="Admin ShopView" hint-size="100%,64px"></x-import>
+      <div class="sv-main">
+      <aside class="sv-side" style="width: 240px; gap: var(--sv-space-1); padding: var(--sv-space-3) var(--sv-space-3); background: var(--sv-surface);">
+        <div style="display: flex; flex-direction: column; padding-bottom: var(--sv-space-1); border-bottom: 1px solid var(--sv-border-default);">
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Timesheet Activities</span></button>
+        </div>
+        <div style="display: flex; flex-direction: column; padding-bottom: var(--sv-space-1); border-bottom: 1px solid var(--sv-border-default);">
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Sales</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Technician Efficiency</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Advisor Analysis</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Shop Efficiency</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Work In Progress</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Technician Utilization</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Sales By Customer</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Sales By Representative</span></button>
+          <button type="button" class="sv-menu__row is-active" data-sv-change="new" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Internal Work Orders</span></button>
+        </div>
+        <div style="display: flex; flex-direction: column; padding-bottom: var(--sv-space-1); border-bottom: 1px solid var(--sv-border-default);">
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Parts Velocity</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Inventory Value</span></button>
+        </div>
+        <div style="display: flex; flex-direction: column; padding-bottom: var(--sv-space-1); border-bottom: 1px solid var(--sv-border-default);">
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Sales Tax Collected</span></button>
+        </div>
+        <div style="display: flex; flex-direction: column; padding-bottom: var(--sv-space-1); border-bottom: 1px solid var(--sv-border-default);">
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">A/R Aging Summary</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">A/R Aging Detail</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">A/R Aging Collection</span></button>
+        </div>
+        <div style="display: flex; flex-direction: column; padding-bottom: var(--sv-space-1); border-bottom: 1px solid var(--sv-border-default);">
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">A/P Aging Summary</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">A/P Aging Detail</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">A/P Unpaid Invoices</span></button>
+        </div>
+        <div style="display: flex; flex-direction: column; padding-bottom: var(--sv-space-1); border-bottom: 1px solid var(--sv-border-default);">
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">IBS Batches</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">QB Unexported</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Export Reports</span></button>
+        </div>
+        <div style="display: flex; flex-direction: column; padding-bottom: var(--sv-space-1); border-bottom: 1px solid var(--sv-border-default);">
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Notes</span></button>
+          <button type="button" class="sv-menu__row" style="height: 24px; padding: 0 var(--sv-space-3); min-height: 0;"><span class="sv-menu__label">Reminders</span></button>
+        </div>
+      </aside>
+        <div class="sv-content" style="padding: var(--sv-space-5) var(--sv-space-6); display: flex; flex-direction: column; gap: var(--sv-space-4); overflow: auto;">
+          <span class="sv-h2">Internal Work Orders</span>
+          <div style="display: flex; align-items: flex-end; gap: var(--sv-space-3); flex-wrap: wrap;">
+            <div style="width: 240px;"><x-import component-from-global-scope="SV.Input" label="Date range" value="Oct 1 to Oct 26, 2026" icon="calendar" hint-size="240px,48px"></x-import></div>
+            <div style="width: 200px;"><x-import component-from-global-scope="SV.Select" label="Location" value="All locations" hint-size="200px,48px"></x-import></div>
+                        <div data-sv-change="new" style="width: 170px;"><x-import component-from-global-scope="SV.Select" label="Classification" value="All" hint-size="170px,48px"></x-import></div>
+                        <div data-sv-change="new" style="width: 170px;"><x-import component-from-global-scope="SV.Select" label="Category" value="All" hint-size="170px,48px"></x-import></div>
+                        <div data-sv-change="new" style="width: 190px;"><x-import component-from-global-scope="SV.Select" label="Original technician" value="All" hint-size="190px,48px"></x-import></div>
+            <span style="margin-left: auto; display: inline-flex;"><x-import component-from-global-scope="SV.Button" variant="secondary" icon="arrow-down" hint-size="100px,36px">Export</x-import></span>
+          </div>
+          <div data-sv-change="new" style="display: flex; gap: var(--sv-space-3); flex-wrap: wrap;">
+            <div class="sv-card" style="min-width: 200px; display: flex; flex-direction: column; gap: var(--sv-space-1);"><span class="sv-body2" style="color: var(--sv-text-secondary);">Company Vehicle Maintenance</span><span class="sv-h4">$700.00</span><span class="sv-body2" style="color: var(--sv-text-secondary);">1 work order · 3.0 h</span></div>
+            <div class="sv-card" style="min-width: 200px; display: flex; flex-direction: column; gap: var(--sv-space-1);"><span class="sv-body2" style="color: var(--sv-text-secondary);">Warranty</span><span class="sv-h4">$590.00</span><span class="sv-body2" style="color: var(--sv-text-secondary);">1 work order, 1 line · 3.0 h</span></div>
+            <div class="sv-card" style="min-width: 200px; display: flex; flex-direction: column; gap: var(--sv-space-1);"><span class="sv-body2" style="color: var(--sv-text-secondary);">Goodwill</span><span class="sv-h4">$0.00</span><span class="sv-body2" style="color: var(--sv-text-secondary);">0 · 0.0 h</span></div>
+            <div class="sv-card" style="min-width: 200px; display: flex; flex-direction: column; gap: var(--sv-space-1);"><span class="sv-body2" style="color: var(--sv-text-secondary);">Comeback</span><span class="sv-h4">$0.00</span><span class="sv-body2" style="color: var(--sv-text-secondary);">0 · 0.0 h</span></div>
+          </div>
+          <div class="sv-tabs" role="tablist" data-sv-change="new" style="white-space: nowrap;">
+            <button type="button" role="tab" class="sv-tab" aria-selected="{{ tabWo }}">By work order and line</button>
+            <button type="button" role="tab" class="sv-tab" aria-selected="{{ tabTech }}">By technician</button>
+          </div>
+          <sc-if value="{{ tabWo }}" hint-placeholder-val="{{ true }}">
+          <div class="sv-card sv-card--flush" style="overflow: hidden;">
+            <table class="sv-table" style="width: 100%;">
+              <thead><tr><th>Work order</th><th>Line</th><th>Customer</th><th>Classification</th><th>Category</th><th>Original work order</th><th>Original technician</th><th>Closed / invoiced</th><th class="sv-num">Parts cost</th><th class="sv-num">Shop supplies</th><th class="sv-num">Hours</th></tr></thead>
+              <tbody>
+                <tr><td>S2-34918</td><td class="sv-body2" style="color: var(--sv-text-secondary);">Whole work order</td><td>Staging Heavy Duty Fleet</td><td>Internal</td><td>Company Vehicle Maintenance</td><td></td><td></td><td>Oct 22, 2026</td><td class="sv-num">$675.00</td><td class="sv-num">$25.00</td><td class="sv-num">3.0</td></tr>
+                <tr><td>S2-35102</td><td class="sv-body2" style="color: var(--sv-text-secondary);">Whole work order</td><td>Hilltop Logistics</td><td>No Charge</td><td>Warranty</td><td><a href="#" style="color: var(--sv-accent);">S2-31207</a></td><td>J. Okonkwo</td><td>Oct 22, 2026</td><td class="sv-num">$180.00</td><td class="sv-num">$0.00</td><td class="sv-num">2.0</td></tr>
+                <tr data-sv-change="new"><td>S2-34920</td><td>02 Replace - Brake caliper</td><td>A &amp; J Truck &amp; Trailer Repair</td><td>No Charge line</td><td>Warranty</td><td><a href="#" style="color: var(--sv-accent);">S2-30455</a> · 02</td><td>M. Rhodes</td><td>Oct 23, 2026</td><td class="sv-num">$410.00</td><td class="sv-num">$0.00</td><td class="sv-num">1.0</td></tr>
+                <tr><td class="sv-body-strong">Total</td><td class="sv-body2" style="color: var(--sv-text-secondary);">2 work orders, 1 line</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="sv-num sv-body-strong">$1,265.00</td><td class="sv-num sv-body-strong">$25.00</td><td class="sv-num sv-body-strong">6.0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          </sc-if>
+          <sc-if value="{{ tabTech }}" hint-placeholder-val="{{ false }}">
+          <div class="sv-card sv-card--flush" data-sv-change="new" style="overflow: hidden;">
+            <table class="sv-table" style="width: 100%;">
+              <thead><tr><th>Original technician</th><th class="sv-num">Completed lines</th><th class="sv-num">Comeback lines</th><th class="sv-num">Warranty lines</th><th class="sv-num">Comeback rate</th><th class="sv-num">Redo hours</th><th class="sv-num">Redo parts cost</th></tr></thead>
+              <tbody>
+                <tr><td>M. Rhodes</td><td class="sv-num">84</td><td class="sv-num">3</td><td class="sv-num">2</td><td class="sv-num">3.6%</td><td class="sv-num">6.5</td><td class="sv-num">$1,120.00</td></tr>
+                <tr><td>J. Okonkwo</td><td class="sv-num">91</td><td class="sv-num">1</td><td class="sv-num">1</td><td class="sv-num">1.1%</td><td class="sv-num">2.0</td><td class="sv-num">$180.00</td></tr>
+                <tr><td>A. Keating</td><td class="sv-num">62</td><td class="sv-num">0</td><td class="sv-num">0</td><td class="sv-num">0.0%</td><td class="sv-num">0.0</td><td class="sv-num">$0.00</td></tr>
+                <tr><td class="sv-body2" style="color: var(--sv-text-secondary);">Not in ShopView / no technician</td><td class="sv-num"></td><td class="sv-num">0</td><td class="sv-num">1</td><td class="sv-num"></td><td class="sv-num">1.0</td><td class="sv-num">$95.00</td></tr>
+                <tr><td class="sv-body-strong">Total</td><td class="sv-num sv-body-strong">237</td><td class="sv-num sv-body-strong">4</td><td class="sv-num sv-body-strong">4</td><td class="sv-num sv-body-strong">1.7%</td><td class="sv-num sv-body-strong">9.5</td><td class="sv-num sv-body-strong">$1,395.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">Comeback rate = comeback lines attributed to the technician / lines the technician completed in the date range. Redo hours and parts cost are what the comeback and warranty work cost the shop; the dollar cost of labor comes with labor posting (V2).</span>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900},"tab":{"editor":"enum","options":["wo","tech"],"default":"wo","tsType":"string"}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const t = this.props.tab || 'wo';
+    return { tabWo: t === 'wo', tabTech: t === 'tech' };
+  }
+}
+</script>
+</body>
+</html>
