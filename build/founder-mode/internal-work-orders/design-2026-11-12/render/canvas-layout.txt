@@ -1,0 +1,375 @@
+#### PAGE happy | Happy flow v6
+ -320     0 NOTE/title1 t-hf-1  1 · Set up
+    0  -800 NOTE d-hf  v6.1 · Nov 5, 2026 · Internal Work Orders after the CEO review ⏎  ⏎ The happy path, one row per flow, top to bottom: set up, an internal work order to Close, a customer's no-charge work order to Close, one no-charge line on a billable work order, Reopen, finding and reporting, what the books see. Every frame is a copy of its frame on the flow pages; edge cases stay there.
+    0     0 BOARD hf-01.dc.html 1280x1000 01 Turn on Internal Work Orders
+    0  1360 BOARD hf-02.dc.html 1280x1000 02 Pick your internal customers
+    0  2720 BOARD hf-03.dc.html 1280x1000 03 Setting on
+    0  4080 BOARD hf-04.dc.html 1280x1000 04 Internal categories
+    0  5440 BOARD hf-05.dc.html 1280x1000 05 No Charge categories
+    0  6800 BOARD hf-06.dc.html 1280x1000 06 New No Charge category
+    0  8160 BOARD hf-07.dc.html 1280x840 07 Customers list
+    0  9520 BOARD hf-08.dc.html 1280x1240 08 Edit Customer · Internal customer
+    0 10880 BOARD hf-09.dc.html 1280x1000 09 Edit Asset · internal category
+    0 12240 BOARD hf-10.dc.html 1280x1000 10 QuickBooks · one row per category
+  920  8160 NOTE c-hf-07  The badge is the only change on this page. Search finds the flagged customer by name.
+ 1080     0 NOTE c-hf-01  Settings > Work Orders. Switching the toggle on opens the modal of the next frame.
+ 1080  1360 NOTE c-hf-02  Shown once, the first time the toggle is switched on. Save saves the toggle and the picked customers together and then asks about their open billable work orders (frame 7); Do this later saves the toggle only. Later turn-ons open no modal. Closing with X acts as Do this later; Esc and a click outside do nothing, as in every dialog of the app.
+ 1080  2720 NOTE c-hf-03  After the modal the toggle is on and saved. The tab stays light: two hint lines, one of them a link to the Internal Work Orders page where the categories live (frame 2a). Later turn-ons use Save settings like every other toggle and open no modal.
+ 1080  4080 NOTE c-hf-04  A page of its own under Administration > Service, like Labor Rates and Canned Lines. Two tabs. The starting set is seeded when the setting is first turned on: General Internal (the default) here, Warranty, Goodwill and Comeback on the other tab. The QuickBooks column shows the expense account for the location you are in, as the parts Categories page shows Products and Services; Not set means ShopView Review until one is picked. The shop adds its own (Company Vehicle Maintenance, Shop Equipment Maintenance) or archives what it does not use. The same accounts are also editable in Integrations > QuickBooks > ShopView Accounts, one row per category, for shops used to mapping there (frame 9).
+ 1080  5440 NOTE c-hf-05  Same page, second tab. The third column says whether the category requires the original work order (Warranty and Comeback do). Several categories can share an account.
+ 1080  6800 NOTE c-hf-06  New No Charge Category, or a click on a row (Edit). Name, the QuickBooks expense account per connected location (one small table, so a multi-location shop sets everything here) and whether the category requires the original work order. Nothing is created in QuickBooks: the account is picked from the chart that is already there. Archive is in the row menu; a category is never deleted, so old work orders and reports keep it.
+ 1080 10880 NOTE c-hf-09  Only the last field is new, and only on assets of an internal customer. Priority on a new internal work order: the asset's category, else the customer's default, else General Internal. Leave it empty on vehicles; set it on equipment and buildings that sit under the same internal customer.
+ 1080 12240 NOTE c-hf-10  Same mapping, second door: one row per category under Cost of Parts, grouped Internal work orders and No Charge work orders. Editing here or on the category writes the same value for this location; a new category adds its row here by itself. Cost of Parts and Inventory Asset are used as today for the credit side.
+ 1320  9520 NOTE c-hf-08  The checkbox is the only place the flag is set. Save flags the customer; when it already has open billable work orders the dialog of frame 7 follows. Shown only while the setting is on. Not shown on New Customer.
+ 1380     0 NOTE/title1 t-hf-2  2 · Internal work order
+ 1700     0 BOARD hf-11.dc.html 1440x680 11 Work orders list
+ 1700  1360 BOARD hf-12.dc.html 1280x680 12 New work order · internal customer
+ 1700  2720 BOARD hf-13.dc.html 1280x680 13 Asset with its own category
+ 1700  4080 BOARD hf-14.dc.html 1280x840 14 In progress: cost and hours, no prices
+ 1700  5440 BOARD hf-15.dc.html 1280x840 15 Finance tab
+ 1700  6800 BOARD hf-16.dc.html 1280x840 16 Complete, ready to close
+ 1700  8160 BOARD hf-17.dc.html 1280x840 17 Close confirmation
+ 1700  9520 BOARD hf-18.dc.html 1280x840 18 Closed · INTERNAL document
+ 1700 10880 BOARD hf-19.dc.html 1440x680 19 Work orders list · Status Closed
+ 2460     0 NOTE c-hf-11  Clicks Create Work Order.
+ 2460  1360 NOTE c-hf-12  Staging Heavy Duty Fleet is an internal customer, so the work order is internal: Internal badge, no checkbox, no category to pick. The tooltip says where it posts (the asset's category, else the customer's, else General Internal). Nobody on the work order is asked an accounting question.
+ 2460  2720 NOTE c-hf-13  Forklift 2 carries its own internal category (Flow 0 frame 11b), so the tooltip now names Shop Equipment Maintenance, from the asset. Change it on the asset, not here.
+ 2460 10880 NOTE c-hf-19  Closed work orders show where invoiced ones show (All tab, Status chip), not in Completed, which lists work waiting for an invoice.
+ 2620  4080 NOTE c-hf-14  Opens the Finance tab.
+ 2620  5440 NOTE c-hf-15  Returns to Lines after the technicians mark every line Complete.
+ 2620  6800 NOTE c-hf-16  Clicks Close Work Order.
+ 2620  8160 NOTE c-hf-17  One press, like Create invoice: completes and closes.
+ 2620  9520 NOTE c-hf-18  One success alert at the top; X dismisses it, then the locked note shows as on any closed work order. Same Finance tab and toolbar as today. The invoice number is the work order number and the document is stamped NO CHARGE. No Add Deposit, Create Invoice, Remit payment to or balance due. Downloads the invoice from the toolbar, then returns to the Work Orders list. On the document the stamp and the category line sit under the masthead line, left, clear of the logo that prints in the top centre.
+ 3080     0 NOTE/title1 t-hf-3  3 · No Charge on a customer work order
+ 3400     0 BOARD hf-20.dc.html 1280x1120 20 New work order · No Charge, category, original
+ 3400  1360 BOARD hf-21.dc.html 1280x840 21 Or convert a billable work order
+ 3400  2720 BOARD hf-22.dc.html 1280x960 22 Confirm: category and original work order
+ 3400  4080 BOARD hf-23.dc.html 1280x840 23 After the convert
+ 3400  5440 BOARD hf-24.dc.html 1280x840 24 Notes record the convert
+ 3400  6800 BOARD hf-25.dc.html 1280x840 25 Change category
+ 3400  8160 BOARD hf-26.dc.html 1280x840 26 Convert to Billable
+ 3400  9520 BOARD hf-27.dc.html 1280x840 27 Close · original work order required
+ 3400 10880 BOARD hf-28.dc.html 1280x840 28 Close confirmation
+ 3400 12240 BOARD hf-29.dc.html 1280x840 29 Closed · NO CHARGE document
+ 4320  1360 NOTE c-hf-21  Shown while the setting is on and the work order is not invoiced; needs Work Orders Create & Edit and See Financial Data, like fees and discounts.
+ 4320  4080 NOTE c-hf-23  The category shows on the NO CHARGE document and in the report, not on the work order.
+ 4320  5440 NOTE c-hf-24  Every change of classification writes a system note on the work order and an Audit Log entry: Convert to No Charge (category, original work order, what was removed), Change category, Convert to Billable, Close and Reopen. Notes are read-only and carry who and when.
+ 4320  6800 NOTE c-hf-25  Opened from the menu (Change category). Save is enabled once the category or the original work order differs from the current one.
+ 4320  8160 NOTE c-hf-26  Convert to Billable asks first.
+ 4320  9520 NOTE c-hf-27  Only when the category requires the original work order and none was picked at creation or conversion. Close Work Order stays disabled until a work order or Not in ShopView is picked; Goodwill never shows this. New: an optional Original line select under the original work order; the line sets the original technician for the comeback and warranty numbers (else the lead technician of the original work order).
+ 4320 10880 NOTE c-hf-28  Clicks Close Work Order. Stock parts post to the account of the category (Warranty: 6430).
+ 4320 12240 NOTE c-hf-29  End of flow. Reopen Work Order sits in the invoice menu. The NO CHARGE stamp and Category: Warranty · Original work order S2-30455 sit under the masthead line, clear of the centred logo.
+ 4440  2720 NOTE c-hf-22  Clicks Convert to No Charge. New: an optional Original line select under the original work order; the line sets the original technician for the comeback and warranty numbers (else the lead technician of the original work order).
+ 4600     0 NOTE c-hf-20  Category is required when No Charge is ticked and starts empty; Save says Pick a category until one is picked. The list holds the shop's active No Charge categories (Warranty, Goodwill, Comeback to start). Warranty and Comeback also show Original work order: the customer's earlier work orders, same asset first, and Not in ShopView. Optional here, required at Close. New: an optional Original line select under the original work order; the line sets the original technician for the comeback and warranty numbers (else the lead technician of the original work order).
+ 4780     0 NOTE/title1 t-hf-4  4 · One no-charge line on a billable work order
+ 5100     0 BOARD hf-30.dc.html 1280x840 30 Line menu · Mark as No Charge
+ 5100  1360 BOARD hf-31.dc.html 1280x1000 31 Mark this line as No Charge?
+ 5100  2720 BOARD hf-32.dc.html 1280x840 32 Line marked No Charge · $0.00
+ 5100  4080 BOARD hf-33.dc.html 1280x840 33 Line menu · Change category, Mark as Billable
+ 5100  5440 BOARD hf-34.dc.html 1280x840 34 Notes and Audit Log
+ 5100  6800 BOARD hf-35.dc.html 1280x1500 35 Invoice · the line at $0.00, Warranty
+ 6020     0 NOTE c-hf-30  On a billable work order, while Internal Work Orders is on and the work order is not invoiced. Same permissions as Convert to No Charge. The item replaces the earlier "Move to a No Charge work order" (dropped Nov 5: a shop that wants it separate splits the work order as today).
+ 6020  2720 NOTE c-hf-32  The line carries a No Charge · Warranty chip next to its name; Rate, Total and its parts show $0.00, hours and status unchanged. The original work order is in the notes and the Audit Log, not on the line. No badge on the work order: a normal billable work order with one no-charge line. Financial Info is the cost view and does not change: the cost of the no-charge line stays and posts to the Warranty account at invoicing.
+ 6020  4080 NOTE c-hf-33  The marked line offers Change category and Mark as Billable. Mark as Billable prices the line at the customer's current pricing and removes the category.
+ 6020  5440 NOTE c-hf-34  Every line change writes a system note and an Audit Log row: who, when, category, original work order, the price removed, the cost and hours kept.
+ 6180  1360 NOTE c-hf-31  Clicks Mark as No Charge. Category and Original work order are the same fields as Convert to No Charge; the line stays where it is. New: an optional Original line select under the original work order; the line sets the original technician for the comeback and warranty numbers (else the lead technician of the original work order).
+ 6480     0 NOTE/title1 t-hf-5  5 · Reopen
+ 6680  6800 NOTE c-hf-35  The invoice of a billable work order: no INTERNAL or NO CHARGE stamp, no badge. The no-charge line prints with its hours and parts at $0.00 and one word under the title, Warranty. Totals, tax, deposits and portal approval on the billable amounts. The customer sees zero; the books see the cost: the line's parts cost posts to the Warranty expense account when the invoice is created.
+ 6800     0 BOARD hf-36.dc.html 1280x840 36 Closed work order
+ 6800  1360 BOARD hf-37.dc.html 1280x840 37 Reopen Work Order
+ 7720     0 NOTE c-hf-36  Reopen Work Order is in the Finance tab's invoice menu (Flow 2 frame 5). Opens the dialog of frame 2. The Change Customer button is disabled with the tooltip Reopen the work order to change the customer. A billable invoiced work order keeps today's behaviour.
+ 7720  1360 NOTE c-hf-37  Clicks Reopen Work Order. Reopen needs the Work Orders — Delete permission, like Reverse.
+ 8180     0 NOTE/title1 t-hf-6  6 · Find and report
+ 8500     0 BOARD hf-38.dc.html 1440x680 38 Work orders list · Classification
+ 8500  1360 BOARD hf-39.dc.html 1280x900 39 Internal Work Orders report
+ 8500  2720 BOARD hf-39b.dc.html 1280x900 39b Internal Work Orders report · by technician
+ 9260     0 NOTE c-hf-38  Classification: No Charge (internal and customer no-charge work). Switches to the Estimates tab.
+ 9480  1360 NOTE c-hf-39  One report for all free work: whole internal and no-charge work orders, and now one row per no-charge line of a billable work order (Line column, Classification "No Charge line", invoiced date). Summary strip per category above the table. Money reports exclude these rows without a filter.
+ 9480  2720 NOTE c-hf-39b  Second tab of the same report, grouped by original technician: completed lines in the range, comeback lines, warranty lines, comeback rate, hours and parts cost of the redo. No new data: it reads the same rows as the first tab through the original line. The dollar cost of labor arrives with labor posting (V2).
+ 9880     0 NOTE/title1 t-hf-7  7 · Accounting
+10200     0 BOARD hf-40.dc.html 1280x840 40 QuickBooks · held entry
+10200  1360 BOARD hf-41.dc.html 1280x840 41 AccountingHub · Closed record
+10200  2720 BOARD hf-42.dc.html 1280x840 42 AccountingHub · Held event
+10200  4080 BOARD hf-41b.dc.html 1280x840 41b AccountingHub · Invoice record with one No Charge line
+11120     0 NOTE c-hf-40  Reopen reverses only what was posted; an entry still waiting here gets no reversal and is marked withdrawn.
+11120  1360 NOTE c-hf-41  Header and totals only; lines live on the NO CHARGE document in ShopView. Accounts per the AccountingHub owner (Nov 5): 6500 General Internal, 6430 Warranty & Goodwill (existing in the hub chart), Comeback Expense is a new account whose number the hub confirms; migration maps the starting categories automatically, never an empty row for them.
+11120  2720 NOTE c-hf-42  Held retries automatically once the row is mapped or the period opened. Dismissed: the Close was withdrawn by Reopen before posting; nothing was posted, so nothing is reversed.
+11120  4080 NOTE c-hf-41b  A billable work order with one no-charge line reaches the hub as an ordinary invoice record (Paid), with a No Charge lines block: line, category, original work order and line, technician, hours, parts cost, expense account. The journal entry posts the billable parts cost to Cost of Parts and the no-charge line's parts cost to the category account. Accounts per the AccountingHub owner (Nov 5): 6500 General Internal, 6430 Warranty & Goodwill (existing in the hub chart), Comeback Expense is a new account whose number the hub confirms; migration maps the starting categories automatically, never an empty row for them.
+#### PAGE review | Review · What changed after the CEO review
+ -320     0 NOTE/title1 t-rv-1  1 · Settings: what is there and turning it on
+    0  -800 NOTE d-rv  v6.1 · Nov 5, 2026 · Review page ⏎  ⏎ The screens that changed after the CEO review, in the order a shop meets them: Settings, the categories, where they show up, changing a work order, closing, one no-charge line on a billable work order, finding it and the books, then what was left out on purpose. Every frame is a copy of its Happy flow frame; the number after the dot is the Happy flow frame number.
+    0     0 BOARD rv-1-1.dc.html 1280x1000 1.1 · 01 Turn on Internal Work Orders
+    0  1360 BOARD rv-1-2.dc.html 1280x1000 1.2 · 02 Pick your internal customers
+    0  2720 BOARD rv-1-3.dc.html 1280x1000 1.3 · 03 Setting on
+ 1080     0 NOTE c-rv-1-1  Settings > Work Orders. One toggle, Internal Work Orders. Nothing else lives on this tab.
+ 1080  1360 NOTE c-rv-1-2  First turn-on: pick the internal customers once. Nothing is preselected (the location is not always a customer). Afterwards the flag lives on the customer, not here.
+ 1080  2720 NOTE c-rv-1-3  Setting on. Two hint lines and a link to the Internal Work Orders page where the categories are managed.
+ 1380     0 NOTE/title1 t-rv-2  2 · Categories: two lists the shop manages
+ 1700     0 BOARD rv-2-1.dc.html 1280x1000 2.1 · 04 Internal categories
+ 1700  1360 BOARD rv-2-2.dc.html 1280x1000 2.2 · 05 No Charge categories
+ 1700  2720 BOARD rv-2-3.dc.html 1280x1000 2.3 · 06 New No Charge category
+ 2780     0 NOTE c-rv-2-1  Internal categories: General Internal as default plus the shop's own (Company Vehicle Maintenance, Shop Equipment Maintenance). An expense account per category.
+ 2780  1360 NOTE c-rv-2-2  No Charge categories: Warranty, Goodwill, Comeback to start plus the shop's own (Policy dropped as a default). Third column: requires the original work order (Warranty, Comeback).
+ 2780  2720 NOTE c-rv-2-3  A category: name, QuickBooks expense account per location, the flag. Archive, never delete; old work orders and reports keep their category.
+ 3080     0 NOTE/title1 t-rv-3  3 · Where the categories show up
+ 3400     0 BOARD rv-3-1.dc.html 1280x1000 3.1 · 10 QuickBooks · one row per category
+ 3400  1360 BOARD rv-3-2.dc.html 1280x1240 3.2 · 08 Edit Customer · Internal customer
+ 3400  2720 BOARD rv-3-3.dc.html 1280x1000 3.3 · 09 Edit Asset · internal category
+ 3400  4080 BOARD rv-3-4.dc.html 1280x680 3.4 · 12 New work order · internal customer
+ 3400  5440 BOARD rv-3-5.dc.html 1280x680 3.5 · 13 Asset with its own category
+ 3400  6800 BOARD rv-3-6.dc.html 1280x1120 3.6 · 20 New work order · No Charge, category, original
+ 4160  4080 NOTE c-rv-3-4  New work order for an internal customer: Internal badge, nothing to pick. The category comes from the asset, else the customer, else General Internal; the tooltip names it. Removed after the CEO review: the Internal category select.
+ 4160  5440 NOTE c-rv-3-5  Pick Forklift 2 and the tooltip names the asset's own category, Shop Equipment Maintenance.
+ 4480     0 NOTE c-rv-3-1  QuickBooks ShopView Accounts: the same mapping, one row per category under Cost of Parts. Edit here or on the category. Nothing is created in QuickBooks; an empty row posts to ShopView Review as today.
+ 4480  2720 NOTE c-rv-3-3  Asset of an internal customer: its own internal category. The QuickBooks mark sits in the explanation: categories are mapped to QuickBooks expense accounts. Priority: asset, then customer, then General Internal.
+ 4600  6800 NOTE c-rv-3-6  New work order for a regular customer with No Charge ticked: Category required (the No Charge list), Original work order when the category requires it, optional here.
+ 4720  1360 NOTE c-rv-3-2  Customer: Internal customer checkbox plus a Default internal category.
+ 5020     0 NOTE/title1 t-rv-4  4 · Changing a work order
+ 5340     0 BOARD rv-4-1.dc.html 1280x840 4.1 · 21 Or convert a billable work order
+ 5340  1360 BOARD rv-4-2.dc.html 1280x960 4.2 · 22 Confirm: category and original work order
+ 5340  2720 BOARD rv-4-3.dc.html 1280x840 4.3 · 25 Change category
+ 5340  4080 BOARD rv-4-4.dc.html 1280x840 4.4 · 26 Convert to Billable
+ 5340  5440 BOARD rv-4-5.dc.html 1280x840 4.5 · 24 Notes record the convert
+ 6260     0 NOTE c-rv-4-1  Three dots on a billable work order: Convert to No Charge. Same permissions as fees and discounts.
+ 6260  2720 NOTE c-rv-4-3  Change category: same two fields.
+ 6260  4080 NOTE c-rv-4-4  Convert to Billable asks first.
+ 6260  5440 NOTE c-rv-4-5  Every one of these writes a system note on the work order and an Audit Log row: who, when, category, original work order, what was removed.
+ 6380  1360 NOTE c-rv-4-2  Convert asks for the category and the original work order. New: an optional Original line select under the original work order; the line sets the original technician for the comeback and warranty numbers (else the lead technician of the original work order).
+ 6680     0 NOTE/title1 t-rv-5  5 · Closing
+ 7000     0 BOARD rv-5-1.dc.html 1280x840 5.1 · 27 Close · original work order required
+ 7000  1360 BOARD rv-5-2.dc.html 1280x840 5.2 · 17 Close confirmation
+ 7000  2720 BOARD rv-5-3.dc.html 1280x840 5.3 · 18 Closed · INTERNAL document
+ 7000  4080 BOARD rv-5-4.dc.html 1280x840 5.4 · 29 Closed · NO CHARGE document
+ 7000  5440 BOARD rv-5-5.dc.html 1440x680 5.5 · 19 Work orders list · Status Closed
+ 7760  5440 NOTE c-rv-5-5  Closed work orders in the list, next to invoiced ones.
+ 7920     0 NOTE c-rv-5-1  Close: the original work order is required for Warranty and Comeback, with Not in ShopView for jobs done before ShopView. The original technician is stored with it. New: an optional Original line select under the original work order; the line sets the original technician for the comeback and warranty numbers (else the lead technician of the original work order).
+ 7920  1360 NOTE c-rv-5-2  Close confirmation names the category's account. Parts cost debits it; the inventory credit stays as today.
+ 7920  2720 NOTE c-rv-5-3  Internal Work Order document: stamp and category under the masthead, clear of the logo.
+ 7920  4080 NOTE c-rv-5-4  NO CHARGE document: stamp, Category and Original work order under the masthead.
+ 8220     0 NOTE/title1 t-rv-6  6 · One no-charge line on a billable work order
+ 8540     0 BOARD rv-6-1.dc.html 1280x840 6.1 · 30 Line menu · Mark as No Charge
+ 8540  1360 BOARD rv-6-2.dc.html 1280x1000 6.2 · 31 Mark this line as No Charge?
+ 8540  2720 BOARD rv-6-3.dc.html 1280x840 6.3 · 32 Line marked No Charge · $0.00
+ 8540  4080 BOARD rv-6-4.dc.html 1280x840 6.4 · 33 Line menu · Change category, Mark as Billable
+ 8540  5440 BOARD rv-6-5.dc.html 1280x840 6.5 · 34 Notes and Audit Log
+ 8540  6800 BOARD rv-6-6.dc.html 1280x1500 6.6 · 35 Invoice · the line at $0.00, Warranty
+ 9460     0 NOTE c-rv-6-1  On a billable work order, while Internal Work Orders is on and the work order is not invoiced. Same permissions as Convert to No Charge. The item replaces the earlier "Move to a No Charge work order" (dropped Nov 5: a shop that wants it separate splits the work order as today).
+ 9460  2720 NOTE c-rv-6-3  The line carries a No Charge · Warranty chip next to its name; Rate, Total and its parts show $0.00, hours and status unchanged. The original work order is in the notes and the Audit Log, not on the line. No badge on the work order: a normal billable work order with one no-charge line. Financial Info is the cost view and does not change: the cost of the no-charge line stays and posts to the Warranty account at invoicing.
+ 9460  4080 NOTE c-rv-6-4  The marked line offers Change category and Mark as Billable. Mark as Billable prices the line at the customer's current pricing and removes the category.
+ 9460  5440 NOTE c-rv-6-5  Every line change writes a system note and an Audit Log row: who, when, category, original work order, the price removed, the cost and hours kept.
+ 9620  1360 NOTE c-rv-6-2  Clicks Mark as No Charge. Category and Original work order are the same fields as Convert to No Charge; the line stays where it is. New: an optional Original line select under the original work order; the line sets the original technician for the comeback and warranty numbers (else the lead technician of the original work order).
+ 9920     0 NOTE/title1 t-rv-7  7 · Finding it and the books
+10120  6800 NOTE c-rv-6-6  The invoice of a billable work order: no INTERNAL or NO CHARGE stamp, no badge. The no-charge line prints with its hours and parts at $0.00 and one word under the title, Warranty. Totals, tax, deposits and portal approval on the billable amounts. The customer sees zero; the books see the cost: the line's parts cost posts to the Warranty expense account when the invoice is created.
+10240     0 BOARD rv-7-1.dc.html 1440x680 7.1 · 38 Work orders list · Classification
+10240  1360 BOARD rv-7-2.dc.html 1280x900 7.2 · 39 Internal Work Orders report
+10240  2720 BOARD rv-7-3.dc.html 1280x840 7.3 · 41 AccountingHub · Closed record
+10240  4080 BOARD rv-7-4.dc.html 1280x840 7.4 · 42 AccountingHub · Held event
+10240  5440 BOARD rv-7-5.dc.html 1280x900 7.5 · 39b Report · by technician
+10240  6800 BOARD rv-7-6.dc.html 1280x840 7.6 · 41b Hub · invoice with one No Charge line
+11000     0 NOTE c-rv-7-1  List chip: All, Billable, Internal, No Charge.
+11160  2720 NOTE c-rv-7-3  AccountingHub Closed record with Classification, Category, Original work order, Original technician. One mapping row per category, seeded. Accounts per the AccountingHub owner (Nov 5): 6500 General Internal, 6430 Warranty & Goodwill (existing in the hub chart), Comeback Expense is a new account whose number the hub confirms; migration maps the starting categories automatically, never an empty row for them.
+11160  4080 NOTE c-rv-7-4  Held names the category row that is not mapped; Dismissed when a Reopen withdraws a Close.
+11160  6800 NOTE c-rv-7-6  A billable work order with one no-charge line reaches the hub as an ordinary invoice record (Paid), with a No Charge lines block: line, category, original work order and line, technician, hours, parts cost, expense account. The journal entry posts the billable parts cost to Cost of Parts and the no-charge line's parts cost to the category account. Accounts per the AccountingHub owner (Nov 5): 6500 General Internal, 6430 Warranty & Goodwill (existing in the hub chart), Comeback Expense is a new account whose number the hub confirms; migration maps the starting categories automatically, never an empty row for them.
+11220  1360 NOTE c-rv-7-2  One report for all free work: whole internal and no-charge work orders, and now one row per no-charge line of a billable work order (Line column, Classification "No Charge line", invoiced date). Summary strip per category above the table. Money reports exclude these rows without a filter.
+11220  5440 NOTE c-rv-7-5  Second tab of the same report, grouped by original technician: completed lines in the range, comeback lines, warranty lines, comeback rate, hours and parts cost of the redo. No new data: it reads the same rows as the first tab through the original line. The dollar cost of labor arrives with labor posting (V2).
+11460     0 NOTE/title1 t-rv-8  8 · Not built, and why
+11780     0 NOTE s-rv-8-1  Moving a line to its own work order: dropped (Nov 5) ⏎  ⏎ The CEO review settled the line case the other way: a no-charge line stays on the billable work order (row 6). One invoice, the warranty line at $0.00, the rest paid as usual. ⏎  ⏎ What that adds to the build: a classification and category per line; $0.00 pricing of the line on the work order, the invoice, the portal and the Finance tab; the line's parts cost posted to the category's account at invoicing; the hub record carrying the line-level category and cost. Whole-work-order No Charge stays as in rows 3 to 5. ⏎  ⏎ A shop that wants the free work on its own work order splits the work order as today, then converts it.
+11780   900 NOTE s-rv-8-2  V2, right after V1: labor posting and technician rates ⏎  ⏎ V1 posts the parts cost at Close: a real inventory movement with a known cost. Labor is already paid through payroll, so posting labor on a warranty job means moving a cost out of payroll into the category's account: an internal labor cost per technician, a rule the accountant signs off, and a mapping row per category per kind (parts, labor). ⏎  ⏎ V1 already stores the category, the original work order, the original technician and the hours on every internal and no-charge work order and shows them in the report. V2 adds the labor posting and the comeback and warranty rates per technician on top. Doing it in V1 would hold the whole feature for the accounting rule.
+11780  1800 NOTE s-rv-8-3  Separate features, not V1 or V2 ⏎  ⏎ Manufacturer warranty as a receivable: claiming the cost back from the manufacturer is a claim process with its own accounting. ⏎  ⏎ Retail value of free work on the document or the report: pricing and reporting, no change to classification or posting. ⏎  ⏎ Goodwill approval flow: who may give work away for free is permissions and approval, a workflow feature.
+#### PAGE flow0 | Flow 0 · Turn it on
+ -320     0 NOTE/title1 t-flow0  Flow 0 · Turn it on
+    0  -800 NOTE d-flow0  v6.1 · Nov 5, 2026 · Internal Work Orders after the CEO review ⏎  ⏎ The shop owner turns Internal Work Orders on, picks the company in the modal or later on its customer page, and gets the starting categories. Each category carries its QuickBooks expense account, set on the category like a parts category's Products and Services.
+    0     0 BOARD Main.dc.html 1280x1000 01 Settings · Work Orders, setting off
+    0  1360 BOARD flow0-1b.dc.html 1280x1000 01b Turn on · pick your internal customers
+    0  2720 BOARD flow0-2.dc.html 1280x1000 02 Settings · setting on
+    0  4080 BOARD flow0-2a.dc.html 1280x1000 2a Internal Work Orders page · Internal categories
+    0  5440 BOARD flow0-2b.dc.html 1280x1000 2b Internal Work Orders page · No Charge categories
+    0  6800 BOARD flow0-2c.dc.html 1280x1000 2c New No Charge Category
+    0  8160 BOARD flow0-2d.dc.html 1280x1000 2d New Internal Category
+    0  9520 BOARD flow0-2e.dc.html 1280x1000 2e Internal Work Orders page · setting off
+    0 10880 BOARD flow0-3.dc.html 1280x1000 03 Settings · setting on, no flagged customer
+    0 12240 BOARD flow0-4.dc.html 1280x840 04 Customers list
+    0 13600 BOARD flow0-5.dc.html 1280x1240 05 Customer page · internal customer
+    0 14960 BOARD flow0-6.dc.html 1280x1240 06 Edit Customer · setting off
+    0 16320 BOARD flow0-7.dc.html 1280x840 07 Make internal · confirm
+    0 17680 BOARD flow0-8.dc.html 1280x1240 08 Remove flag · confirm
+    0 19040 BOARD flow0-9.dc.html 1280x1000 09 Settings > Integrations > QuickBooks
+    0 20400 BOARD flow0-10.dc.html 1280x1000 10 QuickBooks · category row not set
+    0 21760 BOARD flow0-11.dc.html 1280x1240 11 Edit Customer · Min without %
+    0 23120 BOARD flow0-11b.dc.html 1280x1000 11b Edit Asset · internal category
+    0 24480 BOARD flow0-12.dc.html 1280x1080 12 Settings · turned off
+  920 12240 NOTE c-flow0-4  The badge is the only change on this page. Search finds the flagged customer by name.
+  920 16320 NOTE c-flow0-7  Shown on Save when the flagged customer has open billable work orders. Lists up to 10 of them, then 'and [n] more'. Rows with a deposit stay billable. Lists open billable work orders at every location the user has access to; Make internal converts all of them.
+ 1080     0 NOTE c-flow0-1  Turns on Internal Work Orders. Switching the toggle on opens the modal of frame 1b.
+ 1080  1360 NOTE c-flow0-1b  First turn-on: pick the internal customers once. Nothing is preselected (the location is not always a customer). Afterwards the flag lives on the customer, not here.
+ 1080  2720 NOTE c-flow0-2  After the modal the toggle is on and saved. The tab stays light: two hint lines, one of them a link to the Internal Work Orders page where the categories live (frame 2a). Later turn-ons use Save settings like every other toggle and open no modal.
+ 1080  4080 NOTE c-flow0-2a  A page of its own under Administration > Service, like Labor Rates and Canned Lines. Two tabs. The starting set is seeded when the setting is first turned on: General Internal (the default) here, Warranty, Goodwill and Comeback on the other tab. The QuickBooks column shows the expense account for the location you are in, as the parts Categories page shows Products and Services; Not set means ShopView Review until one is picked. The shop adds its own (Company Vehicle Maintenance, Shop Equipment Maintenance) or archives what it does not use. The same accounts are also editable in Integrations > QuickBooks > ShopView Accounts, one row per category, for shops used to mapping there (frame 9).
+ 1080  5440 NOTE c-flow0-2b  Same page, second tab. The third column says whether the category requires the original work order (Warranty and Comeback do). Several categories can share an account.
+ 1080  6800 NOTE c-flow0-2c  New No Charge Category, or a click on a row (Edit). Name, the QuickBooks expense account per connected location (one small table, so a multi-location shop sets everything here) and whether the category requires the original work order. Nothing is created in QuickBooks: the account is picked from the chart that is already there. Archive is in the row menu; a category is never deleted, so old work orders and reports keep it.
+ 1080  8160 NOTE c-flow0-2d  Same dialog for an internal category: name, the QuickBooks expense account and Default category. The default is used by every internal customer without a category of its own and cannot be archived. A small shop keeps General Internal and never opens this.
+ 1080  9520 NOTE c-flow0-2e  While the setting is off the menu item is disabled with the tooltip "Turn on Internal Work Orders in Settings > Work Orders." and the page is read-only with the same note; nothing is deleted. Same rule as the Internal customer checkbox (frame 6).
+ 1080 10880 NOTE c-flow0-3  Informational only; nothing is required or blocked.
+ 1080 19040 NOTE c-flow0-9  Same mapping, second door: one row per category under Cost of Parts, grouped Internal work orders and No Charge work orders. Editing here or on the category writes the same value for this location; a new category adds its row here by itself. Cost of Parts and Inventory Asset are used as today for the credit side.
+ 1080 20400 NOTE c-flow0-10  Same page when a category has no account at this location: its row is empty with the warning. Set it here or on the category, same thing.
+ 1080 23120 NOTE c-flow0-11b  Asset of an internal customer: its own internal category. The QuickBooks mark sits in the explanation: categories are mapped to QuickBooks expense accounts. Priority: asset, then customer, then General Internal.
+ 1160 24480 NOTE c-flow0-12  Turning the setting off hides the hint lines and the customer badges and leaves the flags on the customers.
+ 1320 13600 NOTE c-flow0-5  The checkbox is the only place the flag is set. Save flags the customer; when it already has open billable work orders the dialog of frame 7 follows. Shown only while the setting is on. Not shown on New Customer.
+ 1320 14960 NOTE c-flow0-6  With the setting off the checkbox shows only on an already flagged customer, read-only. The badge is hidden while the setting is off.
+ 1320 17680 NOTE c-flow0-8  Opens when the checkbox is unticked, before the dialog is saved. Open internal work orders are not touched.
+ 1320 21760 NOTE c-flow0-11  On a flagged customer Min is accepted without a percentage; it is the shop supplies default on internal work orders. Default internal category shows only while the customer is flagged; a shop with several internal customers (Fleet, Shop Equipment, Facility) gives each its own.
+#### PAGE flow1 | Flow 1 · Create and close
+ -320     0 NOTE/title1 t-flow1  Flow 1 · Create and close
+    0  -800 NOTE d-flow1  v6.1 · Nov 5, 2026 · Internal Work Orders after the CEO review ⏎  ⏎ A service advisor repairs one of the shop's own trucks and closes the job without an invoice. ⏎  ⏎ States ⏎  ⏎ S2 ⏎  ⏎ Close Work Order · failed ⏎  ⏎ The work order stays Complete. Clicks Close Work Order again.
+    0     0 BOARD flow1-1.dc.html 1440x680 01 Work orders list
+    0  1520 BOARD flow1-2a.dc.html 1280x680 02a New work order
+    0  2880 BOARD flow1-2b.dc.html 1280x680 02b New work order · internal customer
+    0  4240 BOARD flow1-2b2.dc.html 1280x680 2b2 New work order · asset with its own category
+    0  5600 BOARD flow1-2c.dc.html 1280x840 2c Change customer · bill already posted
+    0  6960 BOARD flow1-2d.dc.html 1280x840 2d Change customer · bill already posted
+    0  8320 BOARD flow1-2e.dc.html 1280x1120 02e New work order · No Charge ticked
+    0  9680 BOARD flow1-3.dc.html 1280x840 03 Work order · in progress
+    0 11040 BOARD flow1-3c.dc.html 1280x840 3c Menu · internal
+    0 12400 BOARD flow1-3d.dc.html 1280x840 3d Finance tab · Close
+    0 13760 BOARD flow1-3e.dc.html 1280x840 3e Lines · core row
+    0 15120 BOARD flow1-4.dc.html 1280x840 04 Work order · Finance tab
+    0 16480 BOARD flow1-4b.dc.html 1280x840 04b Work order · Ready for review
+    0 17840 BOARD flow1-5.dc.html 1280x840 05 Work order · Complete, ready to close
+    0 19200 BOARD flow1-6.dc.html 1280x840 06 Close · Missing Details first
+    0 20560 BOARD flow1-6b.dc.html 1280x840 07 Close · confirm
+    0 21920 BOARD flow1-6c.dc.html 1280x840 7b Close · no account set
+    0 23280 BOARD flow1-6d.dc.html 1280x840 7c Close · no accounting integration
+    0 24640 BOARD flow1-6e.dc.html 1280x840 7d Close · parts with no cost
+    0 26000 BOARD flow1-6f.dc.html 1280x840 7e Close · work order changed
+    0 27360 BOARD flow1-6g.dc.html 1280x840 7f Close · QuickBooks without inventory accounts
+    0 28720 BOARD flow1-8.dc.html 1280x840 08 Work order · Closed, invoice
+    0 30080 BOARD flow1-9.dc.html 1440x680 09 Work orders list · All tab, Status Closed
+    0 31600 BOARD flow1-10b.dc.html 1280x840 10b Asset · Invoices tab
+    0 32960 BOARD flow1-S2.dc.html 1280x840 S2 Close Work Order · failed
+  760     0 NOTE c-flow1-1  Clicks Create Work Order.
+  760  1520 NOTE c-flow1-2a  Hilltop Logistics is a regular customer, so No Charge sits at the bottom of the dialog, unticked, with the info tooltip. Picking Staging Heavy Duty Fleet instead shows 2b.
+  760  2880 NOTE c-flow1-2b  Staging Heavy Duty Fleet is an internal customer, so the work order is internal: Internal badge, no checkbox, no category to pick. The tooltip says where it posts (the asset's category, else the customer's, else General Internal). Nobody on the work order is asked an accounting question.
+  760  4240 NOTE c-flow1-2b2  Forklift 2 carries its own internal category (Flow 0 frame 11b), so the tooltip now names Shop Equipment Maintenance, from the asset. Change it on the asset, not here.
+  760 30080 NOTE c-flow1-9  Closed work orders show where invoiced ones show (All tab, Status chip), not in Completed, which lists work waiting for an invoice.
+  920  5600 NOTE c-flow1-2c  Shown only when a vendor bill already exists on the work order. Without a bill, changing the customer works as today. With several bills: The vendor bills for 3 parts ($1,240.00) were posted to Internal Work Orders Expense. When the work order stays internal or no charge the dialog also says: Shop supplies resets to Staging Heavy Duty Fleet's minimum ($25.00).
+  920  6960 NOTE c-flow1-2d  Shown only when a vendor bill already exists on the work order. Without a bill, changing the customer works as today. When the work order stays internal or no charge the dialog also says: Shop supplies resets to Staging Heavy Duty Fleet's minimum ($25.00).
+  920  9680 NOTE c-flow1-3  Opens the Finance tab.
+  920 11040 NOTE c-flow1-3c  On a Complete work order Close Work Order is the header button; while lines are open it sits in the menu, where Create invoice sits today.
+  920 12400 NOTE c-flow1-3d  The Finance-tab action is Close too; no path creates a billable invoice.
+  920 13760 NOTE c-flow1-3e  Cores keep their row without a price; OK or Not OK is resolved in the completion steps before Close, as today.
+  920 15120 NOTE c-flow1-4  Returns to Lines after the technicians mark every line Complete.
+  920 16480 NOTE c-flow1-4b  Clicks Mark Reviewed.
+  920 17840 NOTE c-flow1-5  Clicks Close Work Order.
+  920 19200 NOTE c-flow1-6  Close runs the same completion steps as Create invoice (tech stories, cores, missing details, per the organization's settings); the last button reads Close Work Order and opens the confirmation.
+  920 20560 NOTE c-flow1-6b  One press, like Create invoice: completes and closes.
+  920 21920 NOTE c-flow1-6c  When Internal Work Orders Expense is not mapped. The work order closes and the entry posts to ShopView Review.
+  920 23280 NOTE c-flow1-6d  Shops without QuickBooks or AccountingHub. Nothing is posted.
+  920 24640 NOTE c-flow1-6e  Costed parts post; parts with no cost are listed and skipped.
+  920 26000 NOTE c-flow1-6f  Someone edited the work order after the dialog opened. Close stays disabled until the dialog is reopened.
+  920 27360 NOTE c-flow1-6g  Invoice-only QuickBooks shop: Inventory Asset or Cost of Parts is not mapped, so no parts entry is sent, as invoicing today. Shop supplies still posts.
+  920 28720 NOTE c-flow1-8  One success alert at the top; X dismisses it, then the locked note shows as on any closed work order. Same Finance tab and toolbar as today. The invoice number is the work order number and the document is stamped NO CHARGE. No Add Deposit, Create Invoice, Remit payment to or balance due. Downloads the invoice from the toolbar, then returns to the Work Orders list. On the document the stamp and the category line sit under the masthead line, left, clear of the logo that prints in the top centre.
+  920 31600 NOTE c-flow1-10b  Total balance No Charge; Discount and Tax rate empty.
+  920 32960 NOTE c-flow1-S2  The work order stays Complete. Clicks Close Work Order again.
+ 1200  8320 NOTE c-flow1-2e  Category is required when No Charge is ticked and starts empty; Save says Pick a category until one is picked. The list holds the shop's active No Charge categories (Warranty, Goodwill, Comeback to start). Warranty and Comeback also show Original work order: the customer's earlier work orders, same asset first, and Not in ShopView. Optional here, required at Close.
+#### PAGE flow2 | Flow 2 · No charge on a customer's work order
+ -320     0 NOTE/title1 t-flow2  Flow 2 · No charge on a customer's work order
+    0  -800 NOTE d-flow2  v6.1 · Nov 5, 2026 · Internal Work Orders after the CEO review ⏎  ⏎ A work order on a real customer can be converted to no charge, and back, until it is closed or invoiced. It stays on that customer and that asset, closes without an invoice, and its parts cost posts to the expense account of its category (Warranty, Goodwill, Comeback or the shop's own) instead of Cost of Parts. One free line on a paid job is moved to its own No Charge work order (Flow 6); marking a line No Charge in place is V2 and reuses these categories.
+    0     0 BOARD flow2-1.dc.html 1280x840 01 Convert to No Charge
+    0  1360 BOARD flow2-1b.dc.html 1280x840 1b Convert to No Charge · deposit
+    0  2720 BOARD flow2-1c.dc.html 1280x840 1c Convert to No Charge · no permission
+    0  4080 BOARD flow2-2.dc.html 1280x960 02 Confirm
+    0  5440 BOARD flow2-3.dc.html 1280x840 03 No charge work order
+    0  6800 BOARD flow2-3b.dc.html 1280x840 3b Convert to Billable · confirm
+    0  8160 BOARD flow2-3c.dc.html 1280x840 3c Change category
+    0  9520 BOARD flow2-3d.dc.html 1280x840 3d Notes · after Convert to No Charge
+    0 10880 BOARD flow2-3e.dc.html 1280x840 3e Notes · after Convert to Billable
+    0 12240 BOARD flow2-4.dc.html 1280x840 04 Close · confirm
+    0 13600 BOARD flow2-4b.dc.html 1280x840 4b Close · original work order required
+    0 14960 BOARD flow2-5.dc.html 1280x840 05 Finance tab · closed
+    0 16320 BOARD flow2-6.dc.html 1280x840 06 Closed · read-only
+    0 17680 BOARD flow2-7.dc.html 1280x840 07 Finance tab · open estimate
+    0 19040 BOARD flow2-7b.dc.html 1280x840 7b Portal · no-charge estimate
+  920     0 NOTE c-flow2-1  Shown while the setting is on and the work order is not invoiced; needs Work Orders Create & Edit and See Financial Data, like fees and discounts.
+  920  1360 NOTE c-flow2-1b  A work order with a deposit cannot be converted; the action is disabled with the tooltip Reverse the deposit first. Same rule as the Change Customer button today.
+  920  2720 NOTE c-flow2-1c  Users without See Financial Data do not see the action, as they cannot add a fee or discount.
+  920  5440 NOTE c-flow2-3  The category shows on the NO CHARGE document and in the report, not on the work order.
+  920  6800 NOTE c-flow2-3b  Convert to Billable asks first.
+  920  8160 NOTE c-flow2-3c  Opened from the menu (Change category). Save is enabled once the category or the original work order differs from the current one.
+  920  9520 NOTE c-flow2-3d  Every change of classification writes a system note on the work order and an Audit Log entry: Convert to No Charge (category, original work order, what was removed), Change category, Convert to Billable, Close and Reopen. Notes are read-only and carry who and when.
+  920 10880 NOTE c-flow2-3e  After Convert to Billable the earlier note stays; nothing is rewritten. The Audit Log row is Classification: No Charge (Warranty) to Billable.
+  920 12240 NOTE c-flow2-4  Clicks Close Work Order. Stock parts post to the account of the category (Warranty: 6430).
+  920 13600 NOTE c-flow2-4b  Only when the category requires the original work order and none was picked at creation or conversion. Close Work Order stays disabled until a work order or Not in ShopView is picked; Goodwill never shows this.
+  920 14960 NOTE c-flow2-5  End of flow. Reopen Work Order sits in the invoice menu. The NO CHARGE stamp and Category: Warranty · Original work order S2-30455 sit under the masthead line, clear of the centred logo.
+  920 16320 NOTE c-flow2-6  From Close on the classification is locked, like the invoiced lock today. The Change Customer button is disabled with the tooltip Reopen the work order to change the customer. A billable invoiced work order keeps today's behaviour.
+  920 17680 NOTE c-flow2-7  A no-charge estimate can go to the customer; the closed document never does.
+  920 19040 NOTE c-flow2-7b  The customer approves the work, not an amount. Cost is never shown on the portal.
+ 1040  4080 NOTE c-flow2-2  Clicks Convert to No Charge. New: an optional Original line select under the original work order; the line sets the original technician for the comeback and warranty numbers (else the lead technician of the original work order).
+#### PAGE flow3 | Flow 3 · Reopen
+ -320     0 NOTE/title1 t-flow3  Flow 3 · Reopen
+    0  -800 NOTE d-flow3  v6.1 · Nov 5, 2026 · Internal Work Orders after the CEO review ⏎  ⏎ A closed internal work order needs a forgotten part, so the service advisor reopens it. This mirrors invoice reversal on external work orders.
+    0     0 BOARD flow3-1.dc.html 1280x840 01 Work order · Closed
+    0  1360 BOARD flow3-2.dc.html 1280x840 02 Reopen dialog
+    0  2720 BOARD flow3-3.dc.html 1280x840 03 Work order · Complete again
+  920     0 NOTE c-flow3-1  Reopen Work Order is in the Finance tab's invoice menu (Flow 2 frame 5). Opens the dialog of frame 2. The Change Customer button is disabled with the tooltip Reopen the work order to change the customer. A billable invoiced work order keeps today's behaviour.
+  920  1360 NOTE c-flow3-2  Clicks Reopen Work Order. Reopen needs the Work Orders — Delete permission, like Reverse.
+  920  2720 NOTE c-flow3-3  End of flow. Adds the part, then closes the work order again as in Flow 1.
+#### PAGE flow4 | Flow 4 · Find internal and no-charge work orders
+ -320     0 NOTE/title1 t-flow4  Flow 4 · Find internal and no-charge work orders
+    0  -800 NOTE d-flow4  v6.1 · Nov 5, 2026 · Internal Work Orders after the CEO review ⏎  ⏎ A service advisor filters the list down to internal and no-charge work orders, and the Internal Work Orders report shows all free work: whole work orders and single no-charge lines, by category and by original technician.
+    0     0 BOARD flow4-1.dc.html 1440x680 01 Work orders list
+    0  1520 BOARD flow4-2.dc.html 1440x680 02 List · No Charge
+    0  3040 BOARD flow4-3.dc.html 1440x680 03 List · No Charge, no results
+    0  4560 BOARD flow4-4.dc.html 1280x840 04 Technician Efficiency · Show all
+    0  5920 BOARD flow4-5.dc.html 1280x900 05 Internal Work Orders report
+    0  7280 BOARD flow4-6.dc.html 1280x900 06 Internal Work Orders report · by technician
+    0  8640 BOARD flow4-7.dc.html 390x844 07 Mobile · list card
+    0  9110 BOARD flow4-8.dc.html 390x844 08 Mobile · detail header
+    0  9580 BOARD flow4-9.dc.html 1280x840 09 Tech View
+    0 10940 BOARD flow4-10.dc.html 1280x840 10 Board · internal card
+    0 12300 BOARD flow4-11.dc.html 1280x840 11 Schedule · card
+  760     0 NOTE c-flow4-1  The three-state chip belongs to the reports; the list has Classification only, shown while the setting is on.
+  760  1520 NOTE c-flow4-2  Classification: No Charge (internal and customer no-charge work). Switches to the Estimates tab.
+  760  3040 NOTE c-flow4-3  End of flow. Classification: All or Clear filters returns to the full list.
+  920  4560 NOTE c-flow4-4  Technician Efficiency keeps the chip, default Show all, hidden while the shop has no internal or no-charge work.
+  920  9580 NOTE c-flow4-9  The No Charge badge on the S2-34918 card.
+  920 10940 NOTE c-flow4-10  Board cards show the badge; a closed internal or no-charge work order sits where an invoiced one sits.
+  920 12300 NOTE c-flow4-11  Schedule cards show the badge next to the number.
+  924  8640 NOTE c-flow4-7  Status and No Charge badge on the card.
+  924  9110 NOTE c-flow4-8  Status and No Charge badge in the header.
+  980  5920 NOTE c-flow4-5  One report for all free work: whole internal and no-charge work orders, and now one row per no-charge line of a billable work order (Line column, Classification "No Charge line", invoiced date). Summary strip per category above the table. Money reports exclude these rows without a filter.
+  980  7280 NOTE c-flow4-6  Second tab of the same report, grouped by original technician: completed lines in the range, comeback lines, warranty lines, comeback rate, hours and parts cost of the redo. No new data: it reads the same rows as the first tab through the original line. The dollar cost of labor arrives with labor posting (V2).
+#### PAGE flow5 | Flow 5 · What the books see
+ -320     0 NOTE/title1 t-flow5  Flow 5 · What the books see
+    0  -800 NOTE d-flow5  v6.1 · Nov 5, 2026 · Internal Work Orders after the CEO review ⏎  ⏎ Nothing is sent as an invoice. The parts cost goes to the mapped expense account; only entries QuickBooks rejects wait here; a missing account posts to ShopView Review. ⏎  ⏎ AccountingHub uses the same mapping row and the same hold rule; its held events appear on this page too. ⏎  ⏎ A billable work order with a no-charge line reaches the hub as a normal invoice record with a No Charge lines block; the line's parts cost posts to the category account instead of Cost of Parts.
+    0     0 BOARD flow5-1.dc.html 1280x840 01 QB Unexported · held entry
+    0  1360 BOARD flow5-3.dc.html 1280x840 03 AccountingHub · Sales > Invoices
+    0  2720 BOARD flow5-3b.dc.html 1280x840 3b AccountingHub · Closed record
+    0  5440 BOARD flow5-4.dc.html 1280x840 04 AccountingHub · Held event
+    0  6800 BOARD flow5-3c.dc.html 1280x840 3c AccountingHub · Invoice record with one No Charge line
+  920     0 NOTE c-flow5-1  Reopen reverses only what was posted; an entry still waiting here gets no reversal and is marked withdrawn.
+  920  1360 NOTE c-flow5-3  Closed is a value of the Status filter; no Classification filter in this version.
+  920  2720 NOTE c-flow5-3b  Header and totals only; lines live on the NO CHARGE document in ShopView.
+  920  5440 NOTE c-flow5-4  Held retries automatically once the row is mapped or the period opened. Dismissed: the Close was withdrawn by Reopen before posting; nothing was posted, so nothing is reversed.
+  920  6800 NOTE c-flow5-3c  A billable work order with one no-charge line reaches the hub as an ordinary invoice record (Paid), with a No Charge lines block: line, category, original work order and line, technician, hours, parts cost, expense account. The journal entry posts the billable parts cost to Cost of Parts and the no-charge line's parts cost to the category account. Accounts per the AccountingHub owner (Nov 5): 6500 General Internal, 6430 Warranty & Goodwill (existing in the hub chart), Comeback Expense is a new account whose number the hub confirms; migration maps the starting categories automatically, never an empty row for them.
+#### PAGE flow6 | Flow 6 · Move one line off a billable work order
+ -320     0 NOTE/title1 t-flow6  Flow 6 · One no-charge line on a billable work order
+    0  -800 NOTE d-flow6  v6.1 · Nov 5, 2026 · after the CEO review ⏎  ⏎ One free line on a paid job stays on that job. The line is marked No Charge with a category and, where required, the original work order; it shows $0.00 on the work order and the invoice, keeps its hours, parts and story, and its parts cost posts to the category's expense account when the invoice is created. The work order itself stays billable, no badge; Create invoice, pay and close as today. ⏎  ⏎ Whole-work-order No Charge (Flow 2) stays for jobs that are entirely free: NO CHARGE document, Closed state. Moving a line to its own work order was dropped: a shop that wants that splits the work order as today.
+    0     0 BOARD flow6-1.dc.html 1280x840 01 Line menu · Mark as No Charge
+    0  1360 BOARD flow6-2.dc.html 1280x1000 02 Mark this line as No Charge?
+    0  2720 BOARD flow6-3.dc.html 1280x840 03 Line marked No Charge · $0.00
+    0  4080 BOARD flow6-4.dc.html 1280x840 04 Line menu · Change category, Mark as Billable
+    0  5440 BOARD flow6-5.dc.html 1280x840 05 Notes and Audit Log
+    0  6800 BOARD flow6-6.dc.html 1280x840 06 Edit Line · No Charge in the dialog
+    0  8160 BOARD flow6-7.dc.html 1280x1500 07 Invoice · the line at $0.00, Warranty
+  920     0 NOTE c-flow6-1  On a billable work order, while Internal Work Orders is on and the work order is not invoiced. Same permissions as Convert to No Charge. The item replaces the earlier "Move to a No Charge work order" (dropped Nov 5: a shop that wants it separate splits the work order as today).
+  920  2720 NOTE c-flow6-3  The line carries a No Charge · Warranty chip next to its name; Rate, Total and its parts show $0.00, hours and status unchanged. The original work order is in the notes and the Audit Log, not on the line. No badge on the work order: a normal billable work order with one no-charge line. Financial Info is the cost view and does not change: the cost of the no-charge line stays and posts to the Warranty account at invoicing.
+  920  4080 NOTE c-flow6-4  The marked line offers Change category and Mark as Billable. Mark as Billable prices the line at the customer's current pricing and removes the category.
+  920  5440 NOTE c-flow6-5  Every line change writes a system note and an Audit Log row: who, when, category, original work order, the price removed, the cost and hours kept.
+  920  6800 NOTE c-flow6-6  Second door, same fields: the No Charge checkbox at the bottom of Edit Line and of New Line, so a warranty line can be born No Charge from the Line Builder.
+ 1080  1360 NOTE c-flow6-2  Clicks Mark as No Charge. Category and Original work order are the same fields as Convert to No Charge; the line stays where it is. New: an optional Original line select under the original work order; the line sets the original technician for the comeback and warranty numbers (else the lead technician of the original work order).
+ 1580  8160 NOTE c-flow6-7  The invoice of a billable work order: no INTERNAL or NO CHARGE stamp, no badge. The no-charge line prints with its hours and parts at $0.00 and one word under the title, Warranty. Totals, tax, deposits and portal approval on the billable amounts. The customer sees zero; the books see the cost: the line's parts cost posts to the Warranty expense account when the invoice is created.
+#### PAGE components | Shared screens
+ -320     0 NOTE/title1 t-components  Shared screens
+    0     0 BOARD WO-Detail-Artboard-v6.dc.html 1280x840 WO Detail Artboard v6
+    0  1360 BOARD WO-List-Artboard-v6.dc.html 1440x680 WO List Artboard v6
+    0  2880 BOARD WO-Settings-Artboard-v6.dc.html 1280x1000 WO Settings Artboard v6
+    0  4240 BOARD New-WO-Dialog-v6.dc.html 1280x680 New WO Dialog v6
