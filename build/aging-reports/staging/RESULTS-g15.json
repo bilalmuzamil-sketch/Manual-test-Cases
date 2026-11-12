@@ -1,0 +1,26 @@
+{
+ "pass_meta": {
+  "note": "12 Nov 2026, run 557, g15: staging A/P Detail PDF 2,000/2,001"
+ },
+ "results": {
+  "C715469": {
+   "verdict": "Passed",
+   "observed": [
+    "Run on staging (build v26.45.4-b8c04e2) after the release, as Admin, As of 11/12/2026. Chosen vendors: Fate Roadside Truck Repair, New Castle Diesel Performance and Grand Haven Diesel Services LLC, whose open lines today add up to 2,000. Vendor B: Tehachapi Truck Center (one open line).",
+    "Step 1: with the three vendors ticked, the chip reads \"Vendor: 3 vendors\" and only their lines remain: 1,820 + 74 + 83 + 23 + 0 = 2,000 across the five aging groups.",
+    "Step 2: Download (CSV) gives \"Success - Data exported successfully.\"",
+    "Step 3: the CSV holds exactly 2,000 document rows (heading lines and the Totals row left out).",
+    "Step 4: Download (PDF) gives \"Success - Data exported successfully.\" after about 70 seconds; the PDF has 84 pages and exactly 2,000 document rows.",
+    "Step 5: with vendor B also ticked the chip reads \"Vendor: 4 vendors\" and the report holds 2,001 document rows.",
+    "Step 6: Download (PDF) shows exactly one message, \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\", and no PDF downloads (watched for 60 seconds).",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715469-s6-01-1-three-vendors.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715469-s6-04-3-pdf-2000-after.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715469-s6-pdfp-01.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715469-s6-01-step6-message-settled.png"
+   ]
+  }
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "note": "12 Nov 2026, run 557, g14: staging Inventory Value link/PDF/CSV vs before the release"
+ },
+ "results": {
+  "C715475": {
+   "verdict": "Passed",
+   "observed": [
+    "Run on staging (build v26.45.4-b8c04e2) after the release, as Admin. The link, PDF and CSV were saved from Inventory Value earlier today, before the release, with only the \"DVI Test\" location ticked.",
+    "Step 1: the saved link opens Inventory Value with \"Location: DVI Test\" and \"As of: 11/12/2026\", the same filter as before.",
+    "Step 2: Download (PDF) shows \"Success - Data exported successfully.\" and the file downloads.",
+    "Step 3: the new PDF has the same rows, amounts and layout as the saved one: its text is identical and the page looks identical, dot for dot.",
+    "Step 4: Download (CSV) shows \"Success - Data exported successfully.\" and the file downloads.",
+    "Step 5: the new CSV is exactly the same file as the saved CSV, character for character.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715475-s5-01-1-link-opened.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715475-s5-02-2-pdf.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715475-s5-render-after-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715475-s5-03-3-csv.png"
+   ]
+  }
+ }
+}

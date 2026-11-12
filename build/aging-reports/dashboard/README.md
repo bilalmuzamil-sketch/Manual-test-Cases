@@ -12,3 +12,6 @@ https://claude.ai/artifact/E6MSrJDofWwCjyYii6tKTg (Dashboard type; private to th
 - 12 Nov 2026 11:13 UTC: after the QA lead's decisions (four tests retired, C715462 kept for production) — 466 tests: 459 Passed · 2 Failed ·
   3 Blocked · 2 Not yet run. Areas now come from each case's CURRENT TestRail folder (the 11 Nov file had an old folder name). The QA lead asked
   that the dashboard NOT mention the retired tests. Re-checked against the live run right after: no difference.
+- 12 Nov 2026 14:45 UTC: after the staging run — 467 tests: 462 Passed · 4 Failed · 1 Blocked · 0 Not yet run (dataset v6 →
+  aging-run-results-2026-11-12c.csv, page v13). New finding card (days counted from a different day than the date shown; ticket held),
+  PDF card now green (staging), "what is left" updated. Data rebuilt with `build_csv.py <previous.csv> <out.csv>` (live, paged, current folders).

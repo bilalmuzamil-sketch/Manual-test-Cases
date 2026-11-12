@@ -1,0 +1,82 @@
+{
+ "chipsA": [
+  "calendar_today As of: 11/12/2026 keyboard_arrow_down",
+  "local_shipping Vendor: 3 vendors keyboard_arrow_down cancel",
+  "hourglass_empty Past due: Any keyboard_arrow_down",
+  "place Location: All locations keyboard_arrow_down cancel"
+ ],
+ "url": "https://app.staging.shopview.com/reports/ap-aging-detail?vendorIds=30bd442f-c0d7-4899-b04f-61c2b7549685&vendorIds=d8179074-1c7f-408e-b153-39b800617c49&vendorIds=8e45ebd5-454c-4d46-8b78-14c90714b29b",
+ "countsA": [
+  1820,
+  74,
+  83,
+  23,
+  0
+ ],
+ "sumA": 2000,
+ "picA": "/home/user/Manual-test-Cases/build/aging-reports/staging/s6//01-1-three-vendors.png",
+ "csv": {
+  "notes": [
+   {
+    "text": "check_circle Success Data exported successfully. Close",
+    "atS": 4
+   }
+  ],
+  "file": "ap-aging-detail.csv",
+  "saved": "/home/user/Manual-test-Cases/build/aging-reports/staging/s6/2-csv-ap-aging-detail.csv",
+  "secs": 4,
+  "pic": "/home/user/Manual-test-Cases/build/aging-reports/staging/s6//02-2-csv-after.png"
+ },
+ "csvLines": 2005,
+ "csvHead": [
+  "\"As of: Nov 12, 2026\"",
+  "\"Locations: All locations\"",
+  "\"Vendors: Fate Roadside Truck Repair, New Castle Diesel Performance, Grand Haven Diesel Services LLC\"",
+  "\"Aging Bucket\",Date,Location,\"Transaction Type\",No.,\"Vendor Name\",\"Due Date\",\"Past Due\",Amount,\"Open Balance\""
+ ],
+ "csvTail": [
+  "\"1-30 days past due\",2026-08-28,\"Staging Lethbridge - 4310\",Invoice,076-698190,\"New Castle Diesel Performance\",2026-10-27,16,9.61,9.61",
+  "Totals,,,,,,,,772250.77,772250.77"
+ ],
+ "pdfA": {
+  "notes": [
+   {
+    "text": "check_circle Success Data exported successfully. Close",
+    "atS": 0
+   }
+  ],
+  "picMsg": "/home/user/Manual-test-Cases/build/aging-reports/staging/s6//03-3-pdf-2000-message.png",
+  "file": "ap-aging-detail.pdf",
+  "saved": "/home/user/Manual-test-Cases/build/aging-reports/staging/s6/3-pdf-2000-ap-aging-detail.pdf",
+  "secs": 72,
+  "pic": "/home/user/Manual-test-Cases/build/aging-reports/staging/s6//04-3-pdf-2000-after.png"
+ },
+ "chipsB": [
+  "calendar_today As of: 11/12/2026 keyboard_arrow_down",
+  "local_shipping Vendor: 4 vendors keyboard_arrow_down cancel",
+  "hourglass_empty Past due: Any keyboard_arrow_down",
+  "place Location: All locations keyboard_arrow_down cancel"
+ ],
+ "countsB": [
+  1820,
+  74,
+  83,
+  24,
+  0
+ ],
+ "sumB": 2001,
+ "picB": "/home/user/Manual-test-Cases/build/aging-reports/staging/s6//05-4-plus-vendor-b.png",
+ "pdfB": {
+  "notes": [
+   {
+    "text": "warning This report is too large for PDF. Export it as CSV, or narrow the filters, then try again. Close",
+    "atS": 1
+   }
+  ],
+  "picMsg": "/home/user/Manual-test-Cases/build/aging-reports/staging/s6//06-5-pdf-2001-message.png",
+  "file": null,
+  "saved": null,
+  "secs": 63,
+  "pic": "/home/user/Manual-test-Cases/build/aging-reports/staging/s6//07-5-pdf-2001-after.png"
+ }
+}
