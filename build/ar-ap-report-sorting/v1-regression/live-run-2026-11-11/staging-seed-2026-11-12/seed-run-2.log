@@ -1,0 +1,34 @@
+  [location -> B]
+  OK doc:P56:bill {"order": "008fc40a-27d7-495b-845a-2e0aa7845485", "po_number": "I-793", "number": "ZZT-P56-BILL", "txn": "a8e92af0-0682-4ce5-982c-e35639d5912c", "delivery": "23
+  [location -> A]
+  FAIL doc:R76:pay: payment: HTTP 400 {"errors":[{"error":"Transaction cannot be overpaid."}]}
+  OK doc:P12:billD {"order": "d7835ab4-4c34-4a42-9e5d-b5270942dfc1", "po_number": "I-1574", "number": "ZZT-P12-BILLD", "txn": "e203262e-1e81-4f8c-85ae-04240af27e86", "delivery": "
+  OK doc:P12:billD1 {"order": "60a7a194-65ef-4f24-bf8a-22b8dee68ba4", "po_number": "I-1575", "number": "ZZT-P12-BILLD1", "txn": "cc3524d2-280a-472b-a5ab-4f462e99a3a9", "delivery": 
+  OK doc:P20:bill {"order": "c913b5ae-c76e-40dd-9cf1-474b316c0143", "po_number": "I-1576", "number": "ZZT-P20-BILL", "txn": "926f61c7-d674-4732-9728-18974a1b33a7", "delivery": "f
+  OK doc:P20:pay {"resp": {"headers": {}}, "type": "vpayment", "amount": 80, "date": "2026-10-17", "at": "A"}
+  OK doc:P21:bill {"order": "75c5c414-c5b4-4f2a-9da5-47426d7e7f4e", "po_number": "I-1577", "number": "ZZT-P21-BILL", "txn": "ebb7e1d8-d47f-4f9c-9684-fca46782eb1f", "delivery": "d
+  OK doc:P21:vc {"manual_return": "f6633170-f1c5-4e1c-93e4-2cba2ecca685", "return": "3aa07304-3f26-4796-a820-cfaa748e2e0d", "memo": "ZZT-VC-P21-VC", "type": "vendor_credit", "a
+  OK doc:P21:use {"resp": {"headers": {}}, "type": "vapply_credit", "amount": 35, "date": "2026-10-31", "at": "A"}
+  OK doc:P24:vc {"manual_return": "e923c41a-9eab-4e22-8381-193664a54af9", "return": "16547167-cfcc-4d16-9f45-e62cef0e8e59", "memo": "ZZT-VC-P24-VC", "type": "vendor_credit", "a
+  OK doc:P26:bill {"order": "14b56a06-7bbb-45dc-ba4a-7fb3939a2517", "po_number": "I-1578", "number": "ZZT-P26-BILL", "txn": "60915a26-daee-444b-a6eb-3319226b15c1", "delivery": "4
+  OK doc:P27:bill {"order": "146c0c67-09f9-447f-9b18-ad011945577b", "po_number": "I-1579", "number": "ZZT-P27-BILL", "txn": "268c6ad6-dfa5-4bba-9a80-c8e7a3176d90", "delivery": "c
+  FAIL doc:P27:pay: vendor payment: HTTP 400 {"errors":[{"error":"Vendor transaction cannot be overpaid."}]}
+  OK doc:P52:bill_late {"order": "395b0688-7fe0-4d90-b9ce-7c3b65e0e4fc", "po_number": "I-1580", "number": "ZZT-P52-BILL_LATE", "txn": "27c2958c-ce54-481e-b8b5-1f23b3a6618a", "delivery
+  OK doc:P52:bill_cur {"order": "67e2fdec-07dd-4bd0-b8b6-8acaeac85ca6", "po_number": "I-1581", "number": "ZZT-P52-BILL_CUR", "txn": "7dcd9bd9-505a-43a8-96d7-b9c2b684181e", "delivery"
+  OK doc:P52:vc {"manual_return": "7ae03a39-63c7-4e57-a759-9fc758aacf2a", "return": "640d757b-7062-4953-a082-6fa508550723", "memo": "ZZT-VC-P52-VC", "type": "vendor_credit", "a
+  OK doc:P57:bill {"order": "4aa733d9-5c0c-40f9-b54b-5cadcd6aa798", "po_number": "I-1582", "number": "ZZT-P57-BILL", "txn": "de8ec90a-d7c6-4577-b975-677dd57be014", "delivery": "8
+  OK doc:P58:vc {"manual_return": "0306ff45-3665-48ca-88bc-82d640031326", "return": "25418ad5-5187-4c25-a8cf-2b9f183e4938", "memo": "ZZT-VC-P58-VC", "type": "vendor_credit", "a
+  OK doc:P60A:bill {"order": "c84a7eb3-faad-4c1e-9ee8-24f75f8937af", "po_number": "I-1583", "number": "ZZT-P60A-BILL", "txn": "f74f847a-b0cb-4d8c-a8f0-9219cc26e869", "delivery": "
+  OK doc:P60B:bill {"order": "3c0ced9c-b09b-4cb0-bf9d-80dd500718a6", "po_number": "I-1584", "number": "ZZT-P60B-BILL", "txn": "71aab179-065f-4145-a20f-4a22d61161f8", "delivery": "
+  OK doc:P61:bill_cur {"order": "5f14b679-3b80-425e-baf7-d2ea174dd38d", "po_number": "I-1585", "number": "ZZT-P61-BILL_CUR", "txn": "a3c242e3-0282-4074-a8c8-5df81f2e2bbb", "delivery"
+  OK doc:P61:bill_late {"order": "5c20feec-31f5-4484-ba2d-d6dff037173a", "po_number": "I-1586", "number": "ZZT-P61-BILL_LATE", "txn": "29b098fa-8467-4dd1-a0fa-f23e3c109755", "delivery
+  OK doc:P61:vc {"manual_return": "5ee2961a-285d-45e3-ac23-9bae132f4523", "return": "3ddbbbb5-62de-4c06-ae1b-bd376804eb56", "memo": "ZZT-VC-P61-VC", "type": "vendor_credit", "a
+  OK doc:P62:b_mid {"order": "be1c9d33-845e-4ee2-8625-6af3786a681a", "po_number": "I-1587", "number": "ZZT-P62-B_MID", "txn": "6bce7305-c7c8-4b01-b4e0-aebaa36458ef", "delivery": "
+  OK doc:P62:b_new {"order": "4ec595aa-8f66-4292-94cd-227bf1e9a6e7", "po_number": "I-1588", "number": "ZZT-P62-B_NEW", "txn": "62babd36-db92-4734-a39b-6f2e80a9fddf", "delivery": "
+  OK doc:P62:b_old {"order": "2a857ec9-1cae-461c-9b91-b6ae515535f0", "po_number": "I-1589", "number": "ZZT-P62-B_OLD", "txn": "152c5e97-7987-4fe5-a54d-28b987b1b839", "delivery": "
+  OK doc:P75:vc_today2 {"manual_return": "284b2394-b375-4ff5-ad57-61524a7f61db", "return": "cbb2656e-054f-4d62-9eb6-5656d834b308", "memo": "ZZT-VC-P75-VC_TODAY2", "type": "vendor_cred
+  OK doc:P75:vc_yday {"manual_return": "5e794649-b35a-472c-b118-1d4ef4bba959", "return": "8564f886-da67-4386-871b-3344c2ed70be", "memo": "ZZT-VC-P75-VC_YDAY", "type": "vendor_credit
+  OK doc:P93:vc_return {"manual_return": "b0806e79-4716-46c7-9539-dcad08466c65", "return": "c7f51db6-28d0-455a-a12b-c81ca0c35123", "memo": "ZZT-VC-P93-VC_RETURN", "type": "vendor_cred
+  OK doc:P93:vc_direct {"memo": "ZZT-DIRECT-P93", "note": "dated now by the API (no date field)", "type": "vendor_credit_direct", "amount": 7, "date": null, "at": "A"}
+  OK doc:P93:bill {"order": "085d93eb-05fe-44c9-88e6-d6a04914edbf", "po_number": "I-1590", "number": "ZZT-P93-BILL", "txn": "7b0cf8f4-05d7-4e25-8607-198b2014b70c", "delivery": "4
+anchor 2026-11-12T07:15:30Z | A 2026-11-12 (Asia/Karachi) | B 2026-11-12 (America/Edmonton) | done 83 | failed 2 | total 85

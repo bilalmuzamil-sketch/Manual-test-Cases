@@ -4,7 +4,7 @@ ledger (../tools/seeded-staging.json), prep-state.json and oplog.jsonl - never t
     python3 created_records.py > records-created-after-snapshot.md
 Document numbers as the screens show them: <prefix><shop number of the document's location>-<sequence>
 (staging location A = shop 2, B = shop 3; location C was created with shop 2)."""
-import json, os
+import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); TOOLS = os.path.join(os.path.dirname(HERE), 'tools')
 L = json.load(open(os.path.join(TOOLS, 'seeded-staging.json')))
 M = json.load(open(os.path.join(TOOLS, 'manifest.json')))
@@ -35,9 +35,13 @@ for o in OPS:
     if o['op'] in ('create_workplace', 'create_role') and o['http'] in (200, 201):
         print(f"| {'Location (QA lead auto-enrolled; appears in his location switcher)' if o['op'] == 'create_workplace' else 'Custom role (no user holds it outside the run)'} | {o['target']} | `{o.get('workplace_id') or o.get('role_id')}` | {o['utc']} |")
 print('\n### Customers and vendors\n\n| Kind | Name | Id | Created (UTC) |\n|---|---|---|---|')
+sys.path.insert(0, TOOLS)
+from api import call   # read-only: the vendor's own created_at (run 1 created the vendors but lost their ids, so the ledger time is later)
+VC = {v['id']: v.get('created_at') for v in call('staging', '/api/parts-catalogue/vendors?search=ZZAUTOTEST&pagination[page]=1&pagination[rowsPerPage]=200')['json']['data']['collection']}
 for k in sorted(k for k in L if k.startswith(('cust:', 'vendor:'))):
     r = L[k]; nm = name.get(k) or r.get('name') or ''
-    print(f"| {'Customer' if k.startswith('cust:') else 'Vendor'} | {nm} | `{r.get('id')}` | {r.get('created_utc', 'see seed-run log window')} |")
+    t = (VC.get(r.get('id')) or '').replace(' ', 'T') + 'Z' if k.startswith('vendor:') and VC.get(r.get('id')) else r.get('created_utc', '')
+    print(f"| {'Customer' if k.startswith('cust:') else 'Vendor'} | {nm} | `{r.get('id')}` | {t} |")
 print('\n### Documents and money movements\n\n| Ledger key | Type | Number on screen | Amount | Dated (location day) | Location | Created (UTC) |\n|---|---|---|---|---|---|---|')
 n = 0
 for k in sorted(k for k in L if k.startswith(('doc:', 'many:', 'inv:V1R87C'))):

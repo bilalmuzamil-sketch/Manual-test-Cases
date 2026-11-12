@@ -11,7 +11,7 @@ a re-run skips what the ledger holds. If the branch was redeployed and the ledge
 ledger aside (status.py says MISSING) and run again: dates are relative to the run day, so a rebuild on
 another day keeps every case's 'N days ago' true.
 Endpoints: read from the front-end API modules at 8e35ee0d02 (Rule 115); payload traps in SEEDED.md."""
-import json, os, sys, uuid, datetime
+import json, os, sys, uuid, datetime, urllib.parse
 from zoneinfo import ZoneInfo
 from api import call
 from seedlib import Ledger, ok, customer, invoice, EXEMPT_TAX, LABOUR_TYPE, work_order
@@ -146,7 +146,19 @@ def vendor(v):
             "credit_limit": 25000, "tax_id": EXEMPT_TAX[ENV]}
     term = v.get('term', 'Net 30')
     if term: body['credit_term'] = term
-    vid = ok(call(ENV, '/api/parts-catalogue/add-vendor', 'POST', body), 'vendor')['vendor_id']
+    # Measure before creating, and read the id back by name + our own email: on staging (12 Nov 2026) add-vendor
+    # created the vendor but did not answer with data.vendor_id, so the id was lost and every retry hit
+    # "A vendor with this name and address already exists" (GET parts-catalogue/vendors, app/src/api/parts/index.ts:139).
+    def find():
+        q = urllib.parse.quote(v['name'])
+        c = ok(call(ENV, f'/api/parts-catalogue/vendors?search={q}&pagination[page]=1&pagination[rowsPerPage]=100'), 'vendor search')['collection']
+        hit = [x for x in c if x['name'] == v['name'] and x.get('email') == body['email']]
+        return hit[0]['id'] if len(hit) == 1 else None
+    vid = find()
+    if not vid:
+        d = ok(call(ENV, '/api/parts-catalogue/add-vendor', 'POST', body), 'vendor')
+        vid = (d.get('vendor_id') if isinstance(d, dict) else None) or find()
+        if not vid: raise RuntimeError('vendor created but its id could not be read back')
     acc = ok(call(ENV, f'/api/parts-catalogue/vendor/{vid}'), 'vendor view')['vendor']['vendor_account_id']
     rec = {'id': vid, 'name': v['name'], 'account': acc}; L.put(f'vendor:{v["key"]}', rec); return rec
 def bill(v, key, d):

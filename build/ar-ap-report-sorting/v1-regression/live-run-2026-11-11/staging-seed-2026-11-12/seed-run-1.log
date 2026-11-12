@@ -1,0 +1,88 @@
+  [location -> B]
+  OK doc:R03:inv {"wo": "89181fe2-b094-4d2b-a23e-47d711cda934", "wo_number": "S-40035", "invoice_id": "2a5a3678-09a3-4403-a4ed-19583deb2fbd", "account": "d7d50e5b-aab8-453c-8bc5
+  OK doc:R71:wo {"wo": "95040af5-f9e5-4c2f-8656-5b148f7c9132", "number": "S-40036", "type": "open_wo", "amount": null, "date": null, "at": "B"}
+  OK doc:R71:ps {"id": null, "resp": [{"id": "861b983a-c201-415b-82f2-203013652fb1"}], "part_sale_count": 1, "type": "part_sale", "amount": null, "date": null, "at": "B"}
+  FAIL doc:P56:bill: list indices must be integers or slices, not str
+  [location -> A]
+  OK doc:R07:inv {"wo": "4a8ca112-dc8e-4a72-80bb-1a8f769b6ca4", "wo_number": "S-40037", "invoice_id": "c297f827-878a-451e-b4c0-64d97876b176", "account": "f40d4622-8cba-416b-9e8d
+  OK doc:R11:inv {"wo": "398a3325-4531-4602-9842-b68f2562e4cc", "wo_number": "S-40046", "invoice_id": "db97bc3b-1eee-4967-81fa-3bcaeedce71a", "account": "a8ce566d-d474-4639-b769
+  OK doc:R11:cm {"id": "484463c7-8ddf-4b12-bf59-0a646db15aa4", "number": "CM-4542", "raw": {"creditMemoId": "484463c7-8ddf-4b12-bf59-0a646db15aa4", "creditNumber": "CM-4542", "
+  OK doc:R13:inv {"wo": "aa8f27d6-e1f0-4daf-a008-86c37491cdd0", "wo_number": "S-40052", "invoice_id": "0d5986e9-5ef1-4625-888b-03a9da469864", "account": "4267c1b3-0c7e-4813-a21a
+  OK doc:R13:pay {"id": "80024528-32e0-4b87-a8fb-4b94f2dce24f", "type": "payment", "amount": 40, "date": "2026-10-16", "at": "A"}
+  OK doc:R14:inv {"wo": "62b2382b-a6c3-437a-bdd3-a1507eee3cc8", "wo_number": "S-40055", "invoice_id": "f7bc1161-1afc-4ded-8a2b-ce702da85e58", "account": "815a546c-2553-4713-aea2
+  OK doc:R14:pay {"id": "b4a2d1fb-250e-4f51-9550-a05cd4814306", "type": "payment", "amount": 80, "date": "2026-10-13", "at": "A"}
+  OK doc:R15:inv {"wo": "b3e2778b-622f-4e46-b3dc-7a0cdf1eff98", "wo_number": "S-40056", "invoice_id": "9c75f224-8da4-4ded-9785-e1c457802e98", "account": "e7fe7b04-e683-4409-ae28
+  OK doc:R15:pay {"id": "e3d75727-aa2b-4364-b051-834ea8f5108b", "reversed_now": true, "type": "payment", "amount": 100, "date": "2026-10-07", "at": "A"}
+  OK doc:R16:cm {"id": "79554a1a-9c10-463e-b04e-ecf835ae7c5b", "number": "CM-4543", "raw": {"creditMemoId": "79554a1a-9c10-463e-b04e-ecf835ae7c5b", "creditNumber": "CM-4543", "
+  OK doc:R17:inv {"wo": "4aac9250-a5d7-40c4-89d0-b0b37c086bf9", "wo_number": "S-40060", "invoice_id": "8eb45729-6a95-48a5-87b8-d87da2fffa4d", "account": "0edd29fc-be5c-4db7-9690
+  OK doc:R17:cm {"id": "c7960823-ed58-4fb4-accb-bc52ce2f5595", "number": "CM-4544", "raw": {"creditMemoId": "c7960823-ed58-4fb4-accb-bc52ce2f5595", "creditNumber": "CM-4544", "
+  OK doc:R17:apply {"id": "130ab2c3-4975-481e-b852-2cb28e302491", "type": "apply_credit", "amount": 30, "date": "2026-10-28", "at": "A"}
+  OK doc:R18:inv_dep {"wo": "fcf39363-8915-417b-b467-db395246286e", "wo_number": "S-40062", "invoice_id": "1ea05305-d4ea-48b3-b8e2-60699ea1d651", "account": "279f4469-c7ce-4ecf-b4e7
+  OK doc:R18:dep_free {"payment_id": "72429c57-6a7a-46d5-add6-c62e3bdabd16", "id": "519fa560-ad53-4039-964d-bf807b7dcf2a", "number": "DEP-4834", "deposits_seen": 1, "type": "overpay_
+  OK doc:R18:dep_wo {"wo": "9d45c6ab-1f2a-4d65-8ad5-e01f46c92f53", "id": "0be6859e-9ee0-41e0-b2a0-f1f6c24d4eeb", "number": "DEP-4835", "type": "wo_deposit", "amount": 70, "date": "
+  OK doc:R19:inv_dep {"wo": "a88a9e3a-7985-4a2b-9de8-b3019cd6ac4e", "wo_number": "S-40066", "invoice_id": "0200c2fa-1800-4fdd-8a80-850abc54cec2", "account": "1508c1c3-1563-46fd-9e83
+  OK doc:R19:dep_free {"payment_id": "965a3338-2878-4cdb-b2b6-d6ba8e46c417", "id": "5735b2db-a6e9-4539-a771-38e9b85d98b8", "number": "DEP-4836", "deposits_seen": 1, "reversed_now": t
+  OK doc:R22:inv {"wo": "a1944f89-7dae-4ede-a978-24b21cfd4da9", "wo_number": "S-40067", "invoice_id": "b39fd60f-16ce-4091-a354-4640608c8e85", "account": "595c453a-7a00-42c3-85dd
+  OK doc:R23:cm {"id": "20e8e3fc-19a9-4cc1-96d3-c11625e43ff1", "number": "CM-4546", "raw": {"creditMemoId": "20e8e3fc-19a9-4cc1-96d3-c11625e43ff1", "creditNumber": "CM-4546", "
+  OK doc:R28:cm {"id": "d8b8ca5f-718f-4f0a-b0ff-59cf3d408cd0", "number": "CM-4547", "raw": {"creditMemoId": "d8b8ca5f-718f-4f0a-b0ff-59cf3d408cd0", "creditNumber": "CM-4547", "
+  OK doc:R29:inv1 {"wo": "ad229e37-ea27-4b49-980b-2c87292b6200", "wo_number": "S-40070", "invoice_id": "0441742c-c1a3-463f-b274-431a1646cc0f", "account": "0e142bf7-8f23-4628-bb51
+  OK doc:R29:inv2 {"wo": "1e8f5461-5e46-47c5-8d83-b052306c838c", "wo_number": "S-40072", "invoice_id": "e980d6b0-0b16-43b2-ad4a-93bd1b32f810", "account": "0e142bf7-8f23-4628-bb51
+  OK doc:R30:inv_late {"wo": "5a2eab55-5c54-41ed-8b18-388d14df72e1", "wo_number": "S-40075", "invoice_id": "0800eed7-e3b3-462e-9bd1-801aacc86036", "account": "0a2f378a-3352-49c8-bba3
+  OK doc:R30:inv_cur {"wo": "2ca9347e-6a07-4d48-be52-1b989aa7f3d7", "wo_number": "S-40076", "invoice_id": "9a8c0dcc-d3fb-48f1-b82e-52c17a3cdb77", "account": "0a2f378a-3352-49c8-bba3
+  OK doc:R30:cm {"id": "e80af9d9-0e4d-4ae4-b648-394365c90549", "number": "CM-4548", "raw": {"creditMemoId": "e80af9d9-0e4d-4ae4-b648-394365c90549", "creditNumber": "CM-4548", "
+  OK doc:R31K:inv {"wo": "1bce420a-20ae-4a90-87a4-cf5ce7457bdc", "wo_number": "S-40077", "invoice_id": "623a33b7-7fb0-42d7-8001-ffca4b06990e", "account": "0fa83ffb-92a1-4a84-a4d0
+  OK doc:R31N:cm {"id": "40dd5545-48ae-46c4-a023-9d61e547549e", "number": "CM-4549", "raw": {"creditMemoId": "40dd5545-48ae-46c4-a023-9d61e547549e", "creditNumber": "CM-4549", "
+  OK doc:R36X:inv {"wo": "adfbc8eb-00e5-4375-a4a4-a852415a7992", "wo_number": "S-40078", "invoice_id": "cbf9249b-e9b5-49a5-89ea-2045fd3407b3", "account": "3bda1bc4-b901-4001-ab75
+  OK doc:R36Z:inv {"wo": "f9657dd8-f3d3-42b1-87a1-e0ee53d6a325", "wo_number": "S-40079", "invoice_id": "39b2a62f-ad57-46b0-a759-a1d13329010c", "account": "130f6bf7-73d2-4529-b187
+  OK doc:R41:inv {"wo": "6916a0a9-1bd5-4efe-9641-1fc46b05bc03", "wo_number": "S-40081", "invoice_id": "02e39369-06eb-4354-845c-ec87ae4defd1", "account": "bbd7b83c-06b1-49c7-977c
+  OK doc:R41:pay {"id": "8bd0d2eb-b0ba-4e64-bd27-d0b90059d175", "type": "payment", "amount": 100, "date": "2026-11-08", "at": "A"}
+  OK doc:R42:cm {"id": "bdb042ba-9284-4ce4-afa5-4ee9fc180d18", "number": "CM-4550", "raw": {"creditMemoId": "bdb042ba-9284-4ce4-afa5-4ee9fc180d18", "creditNumber": "CM-4550", "
+  OK doc:R44:inv1 {"wo": "6d582e98-ef45-48f8-a3db-a3b4f1a541b3", "wo_number": "S-40082", "invoice_id": "7971cae1-43e2-4192-a38f-e493c9258228", "account": "9aa8146e-137d-4bec-bed9
+  OK doc:R44:inv2 {"wo": "ce57fec5-a4b9-4f91-8b95-4f15f3d113a0", "wo_number": "S-40083", "invoice_id": "0c09f476-7d74-47ae-bf5d-73ff11084192", "account": "9aa8146e-137d-4bec-bed9
+  OK doc:R45:invA {"wo": "538cd181-5dd3-42f9-9cbe-e9191b0ea4d8", "wo_number": "S-40084", "invoice_id": "4b361052-d511-4526-b301-f9ef6048803e", "account": "6b5b6b42-759d-49a1-824c
+  OK doc:R45:invB {"wo": "c480a18d-c47d-4830-9de3-0027e3edfe04", "wo_number": "S-40087", "invoice_id": "fb21ab31-ef25-4190-ad4e-5c5a6e2083f1", "account": "6b5b6b42-759d-49a1-824c
+  OK doc:R45:invC {"wo": "684f5376-1321-4450-adc9-8fa768d0ff29", "wo_number": "S-40088", "invoice_id": "22940c20-d1d5-4c30-9f9e-b61d0236ecfd", "account": "6b5b6b42-759d-49a1-824c
+  OK doc:R45:cm {"id": "3b2a3460-4461-4023-9798-85ef8c83f157", "number": "CM-4551", "raw": {"creditMemoId": "3b2a3460-4461-4023-9798-85ef8c83f157", "creditNumber": "CM-4551", "
+  OK doc:R46:cm {"id": "6263a160-8324-4298-8975-c3248ff961e7", "number": "CM-4552", "raw": {"creditMemoId": "6263a160-8324-4298-8975-c3248ff961e7", "creditNumber": "CM-4552", "
+  OK doc:R47:inv_mid {"wo": "32921269-a050-4ebe-9f64-ec1ef9ec95ac", "wo_number": "S-40089", "invoice_id": "e9e6baf9-2ddb-4e36-9869-171f2a391cba", "account": "627a6dbf-a1d5-4aa1-9434
+  OK doc:R47:inv_new {"wo": "37e24883-e482-45fd-a645-38aee3632f25", "wo_number": "S-40090", "invoice_id": "ae9593c3-0109-450b-bf34-91707fba34ad", "account": "627a6dbf-a1d5-4aa1-9434
+  OK doc:R47:inv_old {"wo": "58c4e385-7aa6-43c6-a099-e8c4b5d29f90", "wo_number": "S-40091", "invoice_id": "29395a2b-eae5-4b2a-89b4-19354776eb9b", "account": "627a6dbf-a1d5-4aa1-9434
+  OK doc:R48:inv {"wo": "66f200d4-4fc2-44b3-8a33-0388ec469e88", "wo_number": "S-40092", "invoice_id": "55597dd9-925b-4844-8511-fef2dde864f5", "account": "bed8a302-2be0-4ac7-b71c
+  OK doc:R48:cm {"id": "7dc46da4-1e4d-4f5f-a124-af607ec6abff", "number": "CM-4553", "raw": {"creditMemoId": "7dc46da4-1e4d-4f5f-a124-af607ec6abff", "creditNumber": "CM-4553", "
+  OK cust-only:R51 {"customer": "6a6e0671-135d-4834-9468-b8af7f121b79"}
+  OK doc:R74:cm_today {"id": "b90bc5bf-593c-41f0-a955-6ca5c3978998", "number": "CM-4554", "raw": {"creditMemoId": "b90bc5bf-593c-41f0-a955-6ca5c3978998", "creditNumber": "CM-4554", "
+  OK doc:R74:cm_yday {"id": "598523e9-6455-4955-a464-d9f8d3673854", "number": "CM-4555", "raw": {"creditMemoId": "598523e9-6455-4955-a464-d9f8d3673854", "creditNumber": "CM-4555", "
+  OK doc:R74:inv {"wo": "355673a6-c9cf-40d3-baf8-43933b97829d", "wo_number": "S-40093", "invoice_id": "49921b3d-14a8-46f7-a418-20a7cd85746b", "account": "114edd8f-e674-4f9b-a885
+  OK doc:R76:inv {"wo": "818256fd-384b-4cd8-af12-164934f24e50", "wo_number": "S-40094", "invoice_id": "b304617a-a6ac-4126-bd3f-615b8afcdeaa", "account": "bfdaa8de-80f6-4956-8d56
+  FAIL doc:R76:pay: payment: HTTP 400 {"errors":[{"error":"Transaction cannot be overpaid."}]}
+  OK doc:R90:cms {"count": 101, "first": "CM-4556", "last": "CM-4656", "type": "credit_memo_many", "amount": 1, "date": "2026-11-07", "at": "A"}
+  FAIL doc:P12:billD: list indices must be integers or slices, not str
+  FAIL doc:P12:billD1: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P20:bill: list indices must be integers or slices, not str
+  FAIL doc:P20:pay: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P21:bill: list indices must be integers or slices, not str
+  FAIL doc:P21:vc: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P21:use: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P24:vc: list indices must be integers or slices, not str
+  FAIL doc:P26:bill: list indices must be integers or slices, not str
+  FAIL doc:P27:bill: list indices must be integers or slices, not str
+  FAIL doc:P27:pay: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P52:bill_late: list indices must be integers or slices, not str
+  FAIL doc:P52:bill_cur: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P52:vc: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P57:bill: list indices must be integers or slices, not str
+  FAIL doc:P58:vc: list indices must be integers or slices, not str
+  FAIL doc:P60A:bill: list indices must be integers or slices, not str
+  FAIL doc:P60B:bill: list indices must be integers or slices, not str
+  FAIL doc:P61:bill_cur: list indices must be integers or slices, not str
+  FAIL doc:P61:bill_late: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P61:vc: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P62:b_mid: list indices must be integers or slices, not str
+  FAIL doc:P62:b_new: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P62:b_old: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P75:vc_today2: list indices must be integers or slices, not str
+  FAIL doc:P75:vc_yday: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P93:vc_return: list indices must be integers or slices, not str
+  FAIL doc:P93:vc_direct: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+  FAIL doc:P93:bill: vendor: HTTP 400 {"errors":[{"error":"A vendor with this name and address already exists."}]}
+anchor 2026-11-12T07:15:30Z | A 2026-11-12 (Asia/Karachi) | B 2026-11-12 (America/Edmonton) | done 54 | failed 31 | total 85

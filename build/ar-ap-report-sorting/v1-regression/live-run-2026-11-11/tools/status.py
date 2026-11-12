@@ -34,8 +34,22 @@ if not L: print(f'no ledger seeded-{ENV}.json: nothing has been seeded on {ENV} 
 elif L.get('anchor_dates'): print(f"seeded anchor {L['anchor_utc']} -> A {L['anchor_dates']['A']}, B {L['anchor_dates']['B']}")
 elif L.get('anchor'): print(f"seeded anchor {L['anchor']} (one date, both locations)")
 if gate == 404:
-    n = len(M['customers']) + len(M['vendors'])
-    print(f'as of {AS_OF}: report route absent, so 0 of {n} parties can be proved through the report yet'); sys.exit(0)
+    # Before the upgrade lands the aging report cannot be asked, so prove each party through the screens that exist
+    # on every build: the customer and vendor PAYMENT screens' unpaid-transaction lists (the calls seed.py uses).
+    n = len(M['customers']) + len(M['vendors']); ok_ = miss = 0
+    print(f'report route absent: proving through the payment screens\' unpaid lists instead (open documents only)')
+    for kind, parties in (('cust', M['customers']), ('vendor', M['vendors'])):
+        for p in parties:
+            rec = L.get(f"{kind}:{p['key']}")
+            if not rec: print(f"MISSING  {p['key']:5s} {p['name']} (not in ledger)"); miss += 1; continue
+            path = (f"/api/customer-account/list-unpaid-transaction?accountId={rec['account']}" if kind == 'cust' else
+                    f"/api/parts-catalogue/vendor/transactions/list-unpaid-by-vendor-account?accountId={rec['account']}") + '&pagination[page]=1&pagination[rowsPerPage]=200'
+            g = call(ENV, path)
+            if g['status'] != 200: print(f"ERROR    {p['key']:5s} HTTP {g['status']}"); miss += 1; continue
+            col = g['json']['data']['response']['collection']; ok_ += 1
+            nums = [x.get('invoice_display_number') or x.get('credit_display_number') or x.get('invoice_number') or x.get('type') for x in col]
+            print(f"{'OK     ' if col else 'NO-OPEN'}  {p['key']:5s} {len(col):3d} open: " + ', '.join(str(x) for x in nums[:6]))
+    print(f'{ok_} of {n} parties answered by the payment screens, {miss} missing/error (NO-OPEN is expected for parties whose documents are all closed)'); sys.exit(0)
 def lines(slug, filt, pid):
     g = call(ENV, f'/api/reporting/reports/{slug}?asOfDate={AS_OF}&{filt}={pid}')
     if g['status'] != 200: return None, f"HTTP {g['status']}"

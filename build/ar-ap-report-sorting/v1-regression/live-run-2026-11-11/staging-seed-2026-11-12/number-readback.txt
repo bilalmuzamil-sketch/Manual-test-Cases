@@ -1,0 +1,75 @@
+MATCH     doc:P12:billD          ZZT-P12-BILLD
+MATCH     doc:P12:billD1         ZZT-P12-BILLD1
+MATCH     doc:P20:bill           ZZT-P20-BILL
+not listed (closed/paid/reversed)  doc:P21:bill           expects ZZT-P21-BILL
+not listed (closed/paid/reversed)  doc:P21:vc             expects ZZT-VC-P21-VC
+MATCH     doc:P24:vc             ZZT-VC-P24-VC
+MATCH     doc:P26:bill           ZZT-P26-BILL
+MATCH     doc:P27:bill           ZZT-P27-BILL
+MATCH     doc:P52:bill_cur       ZZT-P52-BILL_CUR
+MATCH     doc:P52:bill_late      ZZT-P52-BILL_LATE
+MATCH     doc:P52:vc             ZZT-VC-P52-VC
+not listed (closed/paid/reversed)  doc:P56:bill           expects ZZT-P56-BILL
+MATCH     doc:P57:bill           ZZT-P57-BILL
+MATCH     doc:P58:vc             ZZT-VC-P58-VC
+MATCH     doc:P60A:bill          ZZT-P60A-BILL
+MATCH     doc:P60B:bill          ZZT-P60B-BILL
+MATCH     doc:P61:bill_cur       ZZT-P61-BILL_CUR
+MATCH     doc:P61:bill_late      ZZT-P61-BILL_LATE
+MATCH     doc:P61:vc             ZZT-VC-P61-VC
+MATCH     doc:P62:b_mid          ZZT-P62-B_MID
+MATCH     doc:P62:b_new          ZZT-P62-B_NEW
+MATCH     doc:P62:b_old          ZZT-P62-B_OLD
+MATCH     doc:P75:vc_today2      ZZT-VC-P75-VC_TODAY2
+MATCH     doc:P75:vc_yday        ZZT-VC-P75-VC_YDAY
+MATCH     doc:P93:bill           ZZT-P93-BILL
+MATCH     doc:P93:vc_direct      ZZT-DIRECT-P93
+MATCH     doc:P93:vc_return      ZZT-VC-P93-VC_RETURN
+MATCH     doc:R03:inv            S3-40035
+MATCH     doc:R07:inv            S2-40037
+MATCH     doc:R11:cm             CM2-4542
+MATCH     doc:R11:inv            S2-40046
+MATCH     doc:R13:inv            S2-40052
+not listed (closed/paid/reversed)  doc:R14:inv            expects S2-40055
+MATCH     doc:R15:inv            S2-40056
+not listed (closed/paid/reversed)  doc:R16:cm             expects CM2-4543
+not listed (closed/paid/reversed)  doc:R17:cm             expects CM2-4544
+not listed (closed/paid/reversed)  doc:R17:inv            expects S2-40060
+MISMATCH  doc:R18:dep_free       cases expect DEP2-4834  staging shows DEP-4834
+not listed (closed/paid/reversed)  doc:R18:dep_wo         expects DEP2-4835
+not listed (closed/paid/reversed)  doc:R18:inv_dep        expects S2-40062
+not listed (closed/paid/reversed)  doc:R19:dep_free       expects DEP2-4836
+MATCH     doc:R19:inv_dep        S2-40066
+MATCH     doc:R22:inv            S2-40067
+MATCH     doc:R23:cm             CM2-4546
+MATCH     doc:R28:cm             CM2-4547
+MATCH     doc:R29:inv1           S2-40070
+MATCH     doc:R29:inv2           S2-40072
+MATCH     doc:R30:cm             CM2-4548
+MATCH     doc:R30:inv_cur        S2-40076
+MATCH     doc:R30:inv_late       S2-40075
+MATCH     doc:R31K:inv           S2-40077
+MATCH     doc:R31N:cm            CM2-4549
+MATCH     doc:R36X:inv           S2-40078
+MATCH     doc:R36Z:inv           S2-40079
+MATCH     doc:R41:inv            S2-40081
+MATCH     doc:R42:cm             CM2-4550
+MATCH     doc:R44:inv1           S2-40082
+MATCH     doc:R44:inv2           S2-40083
+MATCH     doc:R45:cm             CM2-4551
+MATCH     doc:R45:invA           S2-40084
+MATCH     doc:R45:invB           S2-40087
+MATCH     doc:R45:invC           S2-40088
+MATCH     doc:R46:cm             CM2-4552
+MATCH     doc:R47:inv_mid        S2-40089
+MATCH     doc:R47:inv_new        S2-40090
+MATCH     doc:R47:inv_old        S2-40091
+MATCH     doc:R48:cm             CM2-4553
+MATCH     doc:R48:inv            S2-40092
+not listed (closed/paid/reversed)  doc:R71:wo             expects S-40036
+MATCH     doc:R74:cm_today       CM2-4554
+MATCH     doc:R74:cm_yday        CM2-4555
+MATCH     doc:R74:inv            S2-40093
+MATCH     doc:R76:inv            S2-40094
+
+61 match, 1 MISMATCH, 11 not listed because closed, 9 have no number (payments etc.) - of 82 documents
