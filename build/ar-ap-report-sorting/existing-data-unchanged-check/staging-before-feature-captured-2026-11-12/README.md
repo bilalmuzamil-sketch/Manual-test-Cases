@@ -88,3 +88,9 @@ Recorded, not worked around:
 6. **A/R Aging Detail and A/P Aging Detail were opened one bucket at a time** (A/P Detail has 11,938 documents in "91 or
    more days past due"). The `all buckets expanded - rows.txt` files hold only the lines that were in the page.
 7. **Drill-down records differ** (section 6): staging's own first overdue customer and vendor were used.
+
+### Two more tests moved into the staging folder (12 Nov 2026)
+| Test | What staging must hold | Staging value |
+|---|---|---|
+| C715477 A work order link from another location still asks to switch | An unpaid invoice made from a work order at location B; Admin enrolled at A and B | Location B = Staging Lethbridge - 4310; any open S3- invoice from a work order there (e.g. the regression seed's S3- invoices, see STAGING-RUN-CARD.md) |
+| C715479 The research ideas left out of this release do not appear | A customer with an overdue invoice, so the A/R reports have rows | Any overdue A/R invoice (the snapshot lists 1,458) |

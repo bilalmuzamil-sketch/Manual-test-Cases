@@ -34,6 +34,12 @@ Re-check that SV-12544, SV-12545 and SV-12547 are still open.
 
 **Who runs what (QA lead, 12 Nov 2026, verbatim: "The tests which are not related to staging will be run by the other session."):** this session runs the staging tests in run 557 — section 134654 "Regression Tests" (92) and section 133628 "Run on Staging After the Feature Is Deployed" (13). The other 365 tests under group 20434 are run by the other session; staging is not prepared for them by us.
 
+
+**Scope update (12 Nov 2026, ~11:30Z):**
+- V1R-25, V1R-26, V1R-27 and V1R-76 (C1078998, C1078999, C1079000, C1095432) were RETIRED on the QA lead's order and moved to section 134653 "Retired - cannot be set up (QA lead 11 and 12 Nov 2026)"; they are no longer in run 557. The staging run is **88 regression tests**: do not run or post those four.
+- C715477 and C715479 were moved (QA lead, 12 Nov 2026) from "Release day and what must not change" into section 133628 "Run on Staging After the Feature Is Deployed", which now holds **15 tests**. C715477's timing phrases were re-pointed to staging (read back OK); C715479 needed no change. Both need only what staging already holds: an unpaid invoice from a work order at location B (Staging Lethbridge - 4310) with the Admin enrolled at both A and B, and a customer with an overdue invoice.
+- C715462 (A/R Summary Totals leave out overpaid invoices) stays where it is: it says "Run this on production, after the release is installed" because only production holds overpaid invoices (the PRD counts 16 across 13 accounts); the app refuses to create one on staging.
+
 ## Tests that are held, and why
 
 | Test | Why it is not a normal pass/fail |
