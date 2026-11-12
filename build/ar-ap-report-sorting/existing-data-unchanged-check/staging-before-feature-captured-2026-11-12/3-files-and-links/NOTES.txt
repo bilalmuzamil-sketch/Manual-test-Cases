@@ -24,3 +24,14 @@ Work In Progress (2026-11-12T06:45:58Z)
 Inventory Value export menu: Download (PDF) | Download (CSV)
 Sales By Customer export menu: Download Summary (PDF) | Download Expanded View (PDF) | Download Summary (CSV) | Download Expanded View (CSV)
 Work In Progress export menu: Download (PDF) | Download (CSV)
+
+Inventory Value — Download (PDF) retry
+  Clicked at 2026-11-12T06:46:25Z with chip "place Location: Staging Heavy D... keyboard_arrow_down cancel"; result at 2026-11-12T06:51:26Z: nothing within 5 minutes
+  Messages seen: warning This report is too large to export. Narrow the date range or filters, then try again. Close
+  Export calls: 2026-11-12T06:47:29Z 500 GET /api/reporting/reports/inventory-value/export?format=pdf&range=custom&start_date=2026-11-12T00%3A00%3A00.000Z&end_date=2026-11-12T23%3A59%3A59.999Z&locations=b3
+
+Inventory Value with ONLY DVI Test ticked (2026-11-12T06:52:10Z) — the baseline C715475 can compare, since the Heavy Duty PDF fails
+  As of: 11/12/2026
+  Location filter: Location: DVI Test
+  Files: Inventory Value (DVI Test) - pdf - inventory-value-report.pdf (81844 bytes), Inventory Value (DVI Test) - csv - inventory-value-report.csv (629 bytes)
+  Page address: https://app.staging.shopview.com/reports/inventory-value?locationIds=39522bc6-abca-4f67-bd12-2840043c2d68
