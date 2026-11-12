@@ -2816,3 +2816,26 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
        harmful.
     6. **When in doubt, ask the QA lead before filing**, with the evidence and the source that might cover it. A
        question costs minutes; an obsolete ticket costs the retrospective.
+
+122. **"DOES EXISTING DATA STAY THE SAME?" IS CHECKED ON STAGING FIRST, BEFORE THE RELEASE — NOT ON PRODUCTION AFTER IT
+    (all projects, permanent).** Proposed by the QA lead on **2026-11-12**, verbatim: *"Regarding the post release tests,
+    I would suggest that to be done on staging as today this feature will be migrated to staging and we can test the
+    post releases related tests on staging instead of waiting for them to be released on production and then to be
+    able to report bugs/defects when actually the customers will also be seeing them, I think this strategy is better
+    for similar tests in the future too, so maybe we need to prepare the staging environment for post release tests to
+    run on once this feature is deployed on staging."* Agreed: a regression found on staging can still be fixed before
+    customers see it; one found after the release is already in front of them.
+    1. **The snapshot must be taken on the SAME environment it is compared with.** A staging "after" is compared with a
+       staging "before", never with a production snapshot (different data). So the staging "before" snapshot is taken
+       **before the feature is migrated to staging** — ask the QA lead when the migration is planned, and take it the
+       moment the feature's tests are written. Gate it: prove the feature has NOT landed yet (a route or screen only
+       the new version has) and record the build marker before and after the capture.
+    2. **Seed before you snapshot** (114.6): any record the after-check needs (e.g. a future-dated credit) is created
+       first, so it is part of the "before" state, and proved through the screen.
+    3. **Staging is shared**: record counts and UTC times, so other people's data changes can be told apart from a
+       regression (120).
+    4. **Production after the release is a short confirmation only**, on real data, never the main check.
+    5. **Name folders and TestRail sections by environment and timing** (e.g. "Run on Staging After the Feature Is
+       Deployed"; `existing-data-unchanged-check/staging-before-feature-captured-<date>/`), so their purpose is plain.
+    Worked example: A/R and A/P (SV-11315) — production snapshot 10 Nov 2026 kept; staging snapshot 12 Nov 2026 taken
+    before the migration; TestRail section 133628 renamed from "Run on Production After Release".

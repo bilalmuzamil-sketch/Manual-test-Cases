@@ -476,3 +476,9 @@ liability).
 
 Every report produced by this skill ends with this section (Rule 36). Say *"nothing outstanding"* if
 that is true; **never omit it.** Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
+
+## Before/after "existing data stays the same" checks — Rule 122 (QA lead, 12 Nov 2026)
+
+Run them on STAGING before the release: snapshot staging BEFORE the feature is migrated there (prove it has not landed,
+seed first), re-check after it lands, and compare staging with staging only. Production after the release is a short
+confirmation. Worked example: `build/ar-ap-report-sorting/existing-data-unchanged-check/`. Rule text is the authority.
