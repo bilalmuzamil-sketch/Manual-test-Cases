@@ -150,6 +150,10 @@ for c in L.CASES:
     out[c["key"]] = {"sec": sec, "story_sec": c["sec"], "section_name": SECS.get(sec, {}).get("name"), "section_id": SECS.get(sec, {}).get("id"),
                      "title": c["title"], "refs": f["refs"], "codes": sorted(L.codes_of(c)), "automation": c["marker"],
                      "held": c["held"], "api": c["api"], "prd_version": L.prd_version(c), "fields": f}
+# 12 Nov 2026: TestRail stores a raw "✓" as the text "\\u2713"; send it as the HTML entity, which shows as ✓
+for _v in out.values():
+    for _k, _f in _v["fields"].items():
+        if isinstance(_f, str): _v["fields"][_k] = _f.replace("✓", "&#10003;")
 json.dump(out, open(f"{D}/proposals.json", "w"), indent=1, ensure_ascii=False)
 for p in probs: print("PROBLEM", p)
 print("PROBLEM lines:", len(probs))

@@ -3230,3 +3230,6 @@ Source and screenshots described in `build/founder-mode/part-lifecycle/po-answer
 
 ## Jira description edits that keep images (learned 14 Oct 2026)
 The Atlassian and Atlassian_Rovo connectors return and write descriptions as Markdown only, which DROPS inline media (screenshots, videos) on write-back. For any description with media use the Atlassian_MCP connector: `getJiraIssue` with `responseContentFormat: html` (lossless) and `editJiraIssue` with `contentFormat: html`, passing the body back unchanged plus the addition. Check the media `data-id` values are the same after the write. Worked example: `build/wo-board-tech-view/po-defects-2026-10-14/ticket-footer-backups/README.md`.
+
+**TestRail trap (12 Nov 2026, Internal Work Orders create):** a raw "✓" (U+2713) in a case field is stored as the literal text
+"✓". Send it as the HTML entity `&#10003;` (it shows as ✓). The IWO `build.py` converts it; 5 cases were corrected and read back.
