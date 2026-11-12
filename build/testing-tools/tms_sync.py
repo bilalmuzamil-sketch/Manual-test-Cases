@@ -159,7 +159,7 @@ def desired(tr):
 # TMS cannot hold TestRail case attachments (2026-11-10), so a block of LINKS to them is appended to the TMS
 # preconditions (build/testing-tools/tms_picture_links.py). It is TMS-only by design: compare without it, and
 # keep it when a sync updates the case.
-PICTURES_HEAD = "<p><strong>Attached pictures (stored in TestRail"
+PICTURES_HEAD = "<p><strong>Attached pictures"  # matches both the TestRail-link list and the embedded TMS pictures
 
 
 def split_pictures(v):
