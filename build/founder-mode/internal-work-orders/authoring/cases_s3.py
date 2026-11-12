@@ -313,7 +313,7 @@ C("S3-47", S, "Close is refused when the work order changed under the open confi
   ["In tab 1, click Close Work Order in the header.", 'In tab 2, change "Shop supplies" to $20.00.', "In tab 1, click Close Work Order in the confirmation."],
   [["The confirmation opens in tab 1 showing Shop supplies $15.00."], ["Tab 2 saves the new amount."],
    ['Tab 1 shows the inline error "This work order changed. Review and close again."', "Work order 1 is not closed."]],
-  ["S3-E5", "UFS-28", "KD-ALWAYS"])
+  ["S3-E5", "UFS-29", "KD-ALWAYS"])
 C("S3-48", S, "A refused Close leaves a not yet Complete work order where it was",
   [ADMIN, ON, NO_ACCT, REVIEW_OFF, icust("A"), iwo(1, "A", "In Progress", f", with all lines done, not yet Complete{SS15}"),
    "Open work order 1 in two browser tabs, tab 1 and tab 2."],
@@ -350,7 +350,7 @@ C("S3-53", S, "A failed Close shows an alert and posts nothing",
   [OPEN_WO, CLOSE_BTN, CONFIRM_CLOSE],
   [["Work order 1 opens."], ["The confirmation opens."],
    ['When Close fails, an alert toast that must be dismissed reads "Could not close the work order. Try again."', "The work order stays where it was and nothing is posted."]],
-  ["EH-S3-1", "UFS-42"], marker=NOMAN("Close has to fail, which only a developer can make happen"))
+  ["EH-S3-1", "UFS-43"], marker=NOMAN("Close has to fail, which only a developer can make happen"))
 C("S3-54", S, "While Close runs, its button shows a spinner and ignores a second press",
   [ADMIN, ON, REVIEW_OFF, icust("A"), iwo(1, "A", DONE)],
   [OPEN_WO, CLOSE_BTN, CONFIRM_CLOSE],

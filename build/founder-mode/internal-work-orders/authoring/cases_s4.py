@@ -91,7 +91,7 @@ C("S4-13", S, "A failed Reopen shows an alert and leaves the work order closed",
   [OPEN_WO, FIN, INVMENU, REOPEN, REOPEN_OK],
   [["Work order 1 opens."], ["The document shows."], ['The menu offers "Reopen Work Order".'], ["The window opens."],
    ['When Reopen fails, an alert toast that must be dismissed reads "Could not reopen the work order. Try again."', "The work order stays closed and nothing is reversed."]],
-  ["EH-S4-1", "UFS-42"], marker=NOMAN("Reopen has to fail, which only a developer can make happen"))
+  ["EH-S4-1", "UFS-43"], marker=NOMAN("Reopen has to fail, which only a developer can make happen"))
 C("S4-14", S, "While Reopen runs, its button shows a spinner and ignores a second press",
   [ADMIN, ON, icust("A"), iwo(1, "A", "closed")],
   [OPEN_WO, FIN, INVMENU, REOPEN, REOPEN_OK],

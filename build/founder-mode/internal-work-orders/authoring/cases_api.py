@@ -106,7 +106,7 @@ api("API-17", "Creating an invoice for an internal work order through the Open A
     [ON, REVIEW_OFF, icust("A"), iwo(1, "A", "Complete")],
     ["Send POST /v1/invoices for work order 1."],
     [['The request is refused with the error "This work order is internal or no charge. Close it in ShopView."']],
-    ["S11-R4", "UFS-29"], banner=GA_BANNER, marker=GA_HOLD)
+    ["S11-R4", "UFS-30"], banner=GA_BANNER, marker=GA_HOLD)
 api("API-18", "Creating an invoice through the Open API invoices a no-charge line at 0",
     [ON, REVIEW_OFF, cust("A"), wo(1, "A", "Complete", ", billable, whose line 2 is No Charge under Goodwill")],
     ["Send POST /v1/invoices for work order 1.", "Open work order 1's invoice in ShopView."],

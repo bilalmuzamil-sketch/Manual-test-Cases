@@ -41,7 +41,7 @@ C("S5-05", S, "An empty category row shows the ShopView Review hint",
   [["The QuickBooks page opens."],
    ['Category A\'s row shows the hint "Not set. Parts cost of [category A\'s name] work orders posts to the ShopView Review account until you pick one."',
     "The row is not filled from another category's row."]],
-  ["S5-R4", "UFS-27", "S5-E2"], note=NAME_NOTE)
+  ["S5-R4", "UFS-28", "S5-E2"], note=NAME_NOTE)
 C("S5-06", S, "The rows show while the setting is off, with no hints",
   [ADMIN, OFF, QB_ONLY, "Have a new No Charge category for this test, category A, with no account."],
   [QBPAGE, ACCTS, "Pick an expense account in category A's row.", SAVE],

@@ -662,7 +662,7 @@ C("S2-96", S, "A failed conversion shows an alert and keeps the classification",
   [OPEN_WO, MENU, CONV_NC, 'Pick "Goodwill" in Category.', "Click the confirming Convert to No Charge button."],
   [["Work order 1 opens."], ['The menu shows "Convert to No Charge".'], ["The confirmation opens."], ["Goodwill is picked."],
    ['When the change fails, an alert toast that must be dismissed reads "Could not change the work order. Try again."', "The work order stays billable."]],
-  ["EH-S2-1", "UFS-42"], marker=NOMAN("the change has to fail, which only a developer can make happen"))
+  ["EH-S2-1", "UFS-43"], marker=NOMAN("the change has to fail, which only a developer can make happen"))
 C("S2-97", S, "While a conversion runs, the button shows a spinner and ignores a second press",
   [ADMIN, ON, cust("A"), wo(1, "A", "Approved")],
   [OPEN_WO, MENU, CONV_NC, 'Pick "Goodwill" in Category.', "Click the confirming Convert to No Charge button."],

@@ -31,7 +31,7 @@ C("S12-02", S, "Mark as No Charge opens its dialog with the line summary and bod
    ['A window titled "Mark this line as No Charge?" opens with line 2\'s title, 1.5 hours, its part, its technician and its current price $180.00 (1.5 h × $120.00).',
     f'Its text reads "{BODY}"', 'It has a required "Category" select, empty, and the buttons "Cancel" and "Mark as No Charge".'],
    ['The mark is refused and "Pick a category" shows under Category.'], ["The active No Charge categories are listed."]],
-  ["S12-R2", "UFS-30", "UFS-09"])
+  ["S12-R2", "UFS-31", "UFS-09"])
 C("S12-03", S, "A category that needs the original shows the selects, required before invoicing",
   [ADMIN, ON, CUST, BILL2],
   [OPEN_WO, LMENU, MARK, PICKC],
@@ -46,7 +46,7 @@ C("S12-04", S, "A marked line shows the chip and $0.00, the work order stays bil
    ['Line 2 shows the chip "No Charge · Goodwill" next to its title.', "Its Rate, Total and part show $0.00; Margin shows nothing.",
     "Its 1.5 hours, technician and status stay.", 'The work order shows no badge and no orange header card.',
     "The original work order and line are not shown on the line."]],
-  ["S12-R3", "S12-R4", "UFS-32", "T-NCL", "KD-LINE", "S2-R3"])
+  ["S12-R3", "S12-R4", "UFS-33", "T-NCL", "KD-LINE", "S2-R3"])
 C("S12-05", S, "Totals and tax are computed on the billable lines only",
   [ADMIN, ON, "Make sure the test location charges a 5% tax on labor.", CUST, BILL2],
   [OPEN_WO, LMENU, MARK, PICKG, MARK_OK],
@@ -83,7 +83,7 @@ C("S12-10", S, "Edit Line shows the No Charge checkbox with its helper",
   [["Work order 1 opens."], ['The menu shows "Edit line".'],
    ['At the bottom, under a divider, the checkbox "No Charge" shows with the helper "This line shows $0.00 on the invoice. Hours and parts stay; the parts cost posts to the category\'s expense account."'],
    ['"Category *", "Original work order" and "Original line" appear.']],
-  ["S12-R1", "UFS-31"])
+  ["S12-R1", "UFS-32"])
 C("S12-11", S, "A new line can be created No Charge from New Line",
   [ADMIN, ON, CUST, wo(1, "A", "Approved", ", billable")],
   [OPEN_WO, "Click New Line.", "Type a line title.", 'Tick the "No Charge" checkbox.', PICKG, SAVE],
@@ -101,7 +101,7 @@ C("S12-13", S, "Change category on a no-charge line saves the new category",
   [["Work order 1 opens."], ['The menu shows "Change category" and "Mark as Billable".'],
    ['The dialog opens with Goodwill preselected and "Save" disabled.'], ['"Save" is enabled.'], ['Line 2\'s chip reads "No Charge · Comeback".'],
    ["A note reads \"Category of line '[line 2's title]' changed from Goodwill to Comeback by [user].\""]],
-  ["S12-R5", "S12-R6", "UFS-37"], note=NAME_NOTE)
+  ["S12-R5", "S12-R6", "UFS-38"], note=NAME_NOTE)
 C("S12-14", S, "Mark as Billable prices the line as a new line would be",
   [ADMIN, ON, CUST, NCL2],
   [OPEN_WO, LMENU, 'Click "Mark as Billable".', "Click the confirming Mark as Billable button.", "Open the Notes tab."],
@@ -110,7 +110,7 @@ C("S12-14", S, "Mark as Billable prices the line as a new line would be",
     'Its buttons are "Cancel" and "Mark as Billable".'],
    ["The chip is gone.", "Line 2's labor reads $180.00 (1.5 h × $120.00) and its part is priced by the pricing rules from its $40.00 cost."],
    ["A note reads \"Line '[line 2's title]' marked Billable by [user]. Priced as a new line would be today: $[price]. Category Goodwill removed.\""]],
-  ["S12-R5", "S12-R6", "UFS-33", "UFS-37"], note=NAME_NOTE)
+  ["S12-R5", "S12-R6", "UFS-34", "UFS-38"], note=NAME_NOTE)
 C("S12-15", S, "Marking a line writes a note with its price, cost and hours",
   [ADMIN, ON, cust("A", ", with its own labor rate of $120.00 an hour and one asset, asset 1"), "Have a new invoiced work order for this test, work order 2, for customer A on asset 1.",
    wo(1, "A", "Approved", ", billable, on asset 1, with line 2 of 1.5 hours and one stock part costing $40.00, priced $180.00 for labor only")],
@@ -119,33 +119,33 @@ C("S12-15", S, "Marking a line writes a note with its price, cost and hours",
    ['Line 2 shows "No Charge · Comeback".'],
    ["A system note by ShopView reads \"Line '[line 2's title]' marked No Charge by [user]. Category Comeback, original work order [work order 2's number], original line [its line number]. Line price $180.00 removed; cost $40.00 and 1.5 h kept. The work order stays billable.\""],
    ["The Audit Log has a row for the mark with the user and the time."]],
-  ["S12-R6", "S2-R18", "UFS-37"], note=NAME_NOTE)
+  ["S12-R6", "S2-R18", "UFS-38"], note=NAME_NOTE)
 C("S12-16", S, "The invoice shows the no-charge line at $0.00 with its category only",
   [ADMIN, ON, CUST, NCL2, "Make sure work order 1 is Complete."],
   [OPEN_WO, CREATE_INV, FIN],
   [["Work order 1 opens."], ["The invoice is created as today."],
    ['The invoice preview shows line 2 with its 1.5 hours and its part at $0.00 and "Goodwill" as a line under its title.',
     'There is no stamp, no badge and no "No Charge" wording elsewhere on the document.']],
-  ["S12-R7", "UFS-36"])
+  ["S12-R7", "UFS-37"])
 C("S12-17", S, "The invoice PDF and email show the no-charge line the same way",
   [ADMIN, ON, cust("A", ", with a contact whose email the tester can read"), NCL2.replace("Approved", "invoiced")],
   [OPEN_WO, FIN, "Download the invoice PDF.", "Email the invoice to the contact."],
   [["Work order 1 opens."], ["The invoice shows."], ['The PDF shows line 2 at $0.00 with "Goodwill" under its title.'],
    ['The email\'s invoice shows line 2 at $0.00 with "Goodwill" under its title.']],
-  ["S12-R7", "UFS-36"])
+  ["S12-R7", "UFS-37"])
 C("S12-18", S, "Create invoice is refused while a required original is missing",
   [ADMIN, ON, CUST, wo(1, "A", "Complete", ", billable, whose line 2 is No Charge under Comeback with no original work order")],
   [OPEN_WO, CREATE_INV, 'Pick "Not in ShopView" in "Original work order".', SAVE, CREATE_INV],
   [["Work order 1 opens."],
    ["Create invoice is refused with \"Line '[line 2's title]' needs its original work order (or Not in ShopView) before the invoice.\"", "Edit Line opens on line 2."],
    ['"Not in ShopView" is picked.'], ["Edit Line closes."], ["The invoice is created."]],
-  ["S12-R9", "UFS-35", "S2-R17"], note=NAME_NOTE)
+  ["S12-R9", "UFS-36", "S2-R17"], note=NAME_NOTE)
 C("S12-19", S, "When every line is No Charge the dialog says to convert instead",
   [ADMIN, ON, CUST, wo(1, "A", "Approved", ", billable, with line 1 already No Charge under Goodwill and line 2 billable")],
   [OPEN_WO, LMENU, MARK],
   [["Work order 1 opens."], ['The menu shows "Mark as No Charge".'],
    ['The dialog shows the hint "All lines are No Charge. To close without an invoice and get the NO CHARGE document, convert the work order instead."']],
-  ["S12-R10", "UFS-34"])
+  ["S12-R10", "UFS-35"])
 C("S12-20", S, "A billable work order with every line No Charge invoices at $0.00",
   [ADMIN, ON, REVIEW_OFF, CUST, wo(1, "A", "Complete", ", billable, whose only two lines are both No Charge under Goodwill")],
   [OPEN_WO, CREATE_INV, FIN],
