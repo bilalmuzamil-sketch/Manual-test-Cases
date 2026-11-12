@@ -4,7 +4,7 @@ For the TestRail section **"Design — how it looks"** under section 136701 "Int
 
 Notes for the case worker: pictures to attach are in `design-2026-11-12/images/` (each board at its own size, light theme; the design draws no dark theme). Boards are 1280 px wide (lists 1440, phone 390): the cases run at 1440 px and add 1536 px where a line could wrap (settings hints, categories table, work orders list, report). Names and numbers in the pictures (Staging Heavy Duty Fleet, Hilltop Logistics, S2-34918, $675.00 …) are the designer's data, never preconditions. Each case that changes a record has its own new record in its preconditions (Rule 137). Held cases (DV-xx) wait for Milos Vasic's answers (NEW-QUESTIONS.py) and are not added to the run until then (Rule 130). Where the design differs from the PRD and the PRD settles it, the case follows the PRD and names the register row (`../DESIGN-DIVERGENCE-REGISTER.json`).
 
-**Count: 85 look cases (DC, 1 of them held on a sheet question) + 6 held design-version cases (DV) = 91.**
+**Count: 86 look cases (DC, 1 of them held on a sheet question) + 6 held design-version cases (DV) = 92.**
 
 | Id | Title | Pictures | Marker |
 |---|---|---|---|
@@ -93,6 +93,7 @@ Notes for the case worker: pictures to attach are in `design-2026-11-12/images/`
 | DC-83 | Design: AccountingHub record of a closed internal work order | iwo-flow5-03-3b-accountinghub-closed-record.png, iwo-happy-42-41-accountinghub-closed-record.png | AUTOMATION: READY |
 | DC-84 | Design: AccountingHub Accounting Events shows a Held event and its reason | iwo-flow5-04-04-accountinghub-held-event.png, iwo-happy-43-42-accountinghub-held-event.png | AUTOMATION: READY |
 | DC-85 | Design: AccountingHub invoice record lists its No Charge lines | iwo-flow5-05-3c-accountinghub-invoice-record-with-one-no-charge.png, iwo-happy-44-41b-accountinghub-invoice-record-with-one-no-charg.png | AUTOMATION: READY |
+| DC-86 | Design: A window stays open on Esc and on a click outside it | iwo-flow2-04-02-confirm.png, iwo-happy-22-22-confirm-category-and-original-work-order.png | AUTOMATION: READY |
 | DV-01 | Design: No Charge category helper says it shows on the work order | iwo-flow0-06-2c-new-no-charge-category.png, iwo-happy-06-06-new-no-charge-category.png | AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
 | DV-02 | Design: Open internal work order estimate carries the INTERNAL stamp | iwo-flow1-12-04-work-order-finance-tab.png, iwo-happy-15-15-finance-tab.png | AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
 | DV-03 | Design: Closed internal work order shows the locked note | iwo-flow3-02-02-reopen-dialog.png, iwo-happy-37-37-reopen-work-order.png | AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO |
@@ -1014,7 +1015,8 @@ AUTOMATION: READY
 Step 1:
 - The internal row shows the "Internal" badge and the no-charge row the "No Charge" badge, in the Status column next to the status.
 - The two badges are in different styles (No Charge is not drawn the same as Internal).
-- Total Price on both rows reads "No Charge".
+- The "Total price" column (the last column) reads "No Charge" on both rows.
+- In the Status column the status and the badge stay on one line, with nothing cut off.
 Step 2:
 - Nothing overlaps, nothing is cut off, and every label stays on its line as in the 1440 pixel view.
 
@@ -1030,7 +1032,7 @@ References from Design
 - The design's own words:
   - “Internal”
   - “No Charge”
-- Difference: the design puts the badge after the customer name (IWO-D35) and draws No Charge in the Internal style (IWO-D15), both settled by S2-R10 and S2-R3.
+- Difference: the design puts the badge after the customer name (IWO-D35) and draws No Charge in the Internal style (IWO-D15), both settled by S2-R10 and S2-R3. The column label is the screen's "Total price" (IWO-D55); the library's Status column is 120 px wide (library rule L26).
 
 AUTOMATION: READY
 
@@ -1052,7 +1054,7 @@ AUTOMATION: READY
 Step 1:
 - A chip "Classification: All" shows with the other filter chips.
 Step 2:
-- It opens a single-choice list: All, Billable, Internal, No Charge, with All picked.
+- It opens a single-choice list: All, Billable, Internal, No Charge, with a checkmark on All (no checkboxes).
 
 Exact quotes from the source (for reproducibility)
 From: PRD "Internal Work Orders (PRD)", Confluence 942243841, Final v1.0 (2026-11-09, Milos Vasic, last modified 10 Nov 2026), read 12 Nov 2026 · Epic SV-11665, story SV-11759 (Story 2)
@@ -1122,7 +1124,8 @@ AUTOMATION: READY
 Step 1:
 - Every row is listed.
 Step 2:
-- The chip reads "Classification: Internal" and the list shows its usual empty state with no rows.
+- The chip reads "Classification: Internal" in blue on a light blue chip.
+- No rows show, and the list shows the text-only message "No work orders match these filters" with "Try removing a filter to widen your results." under it.
 
 Exact quotes from the source (for reproducibility)
 From: PRD "Internal Work Orders (PRD)", Confluence 942243841, Final v1.0 (2026-11-09, Milos Vasic, last modified 10 Nov 2026), read 12 Nov 2026 · Epic SV-11665, story SV-11759 (Story 2)
@@ -1132,6 +1135,10 @@ Not yet checked against a build.
 References from Design
 - Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794484794-2031, read and rendered 12 Nov 2026: page "Flow 4 · Find internal and no-charge work orders", board "03 List · No Charge, no results" (Flow 4 · Find internal and no-charge work orders).
 - Pictures to attach: iwo-flow4-03-03-list-no-charge-no-results.png.
+- The design's own words:
+  - “No work orders match these filters”
+  - “Try removing a filter to widen your results.”
+- Difference: library rules L13 and L17 (`_ds_bundle.js` filter-bar.jsx line 3948, index.js line 7281): the shared empty state, text only.
 
 AUTOMATION: READY
 
@@ -3258,6 +3265,52 @@ References from Design
 - The design's own words:
   - “No Charge lines”
 - Difference: the design's frame cuts the block off: register IWO-D48, settled by S8-R7.
+
+AUTOMATION: READY
+
+## DC-86 · Design: A window stays open on Esc and on a click outside it
+
+**Title:** Design: A window stays open on Esc and on a click outside it
+
+**Preconditions**
+- Sign in as an Admin (a user with every setting, See Financial Data included).
+- Use a desktop browser window 1440 pixels wide at 100% zoom.
+- Have Internal Work Orders turned on in Settings > Work Orders.
+- Have a regular customer (not flagged), with one asset.
+- Have a new billable work order for the regular customer, not invoiced, with no deposit.
+- Open the attached pictures iwo-flow2-04-02-confirm.png, iwo-happy-22-22-confirm-category-and-original-work-order.png at 100% zoom beside the screen.
+
+**Steps**
+1. Open the work order.
+2. Click the three-dots menu in the header.
+3. Click Convert to No Charge.
+4. Press Esc.
+5. Click on the page outside the window.
+
+**Expected Result**
+Step 1:
+- The work order opens.
+Step 2:
+- The menu opens.
+Step 3:
+- The window "Convert work order <number> to No Charge?" opens.
+Step 4:
+- The window stays open and nothing changes.
+Step 5:
+- The window still stays open; only Cancel or the window's own buttons close it.
+
+Exact quotes from the source (for reproducibility)
+From: PRD "Internal Work Orders (PRD)", Confluence 942243841, Final v1.0 (2026-11-09, Milos Vasic, last modified 10 Nov 2026), read 12 Nov 2026 · Epic SV-11665, story SV-11758 (Story 1), story SV-11759 (Story 2)
+- S1-R2: “Closing the modal with X acts as "Do this later" (S1-R5); Esc and a click outside do nothing, as in every dialog of the app.”
+- S4-R2: “Dismissing the dialog in any other way does nothing.”
+Not yet checked against a build.
+
+References from Design
+- Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794484794-2031, read and rendered 12 Nov 2026: pages "Flow 2 · No charge on a customer's work order" / "Happy flow v6", boards "02 Confirm" (Flow 2 · No charge on a customer's work order), "22 Confirm: category and original work order" (Happy flow v6).
+- Pictures to attach: iwo-flow2-04-02-confirm.png, iwo-happy-22-22-confirm-category-and-original-work-order.png.
+- The design's own words:
+  - “Convert to No Charge”
+- Difference: the design library's Modal closes on Esc and on a click on the backdrop (`_ds_bundle.js` sv-components.jsx lines 1134-1149, library rule L09): register IWO-D53, settled by S1-R2 and S4-R2.
 
 AUTOMATION: READY
 

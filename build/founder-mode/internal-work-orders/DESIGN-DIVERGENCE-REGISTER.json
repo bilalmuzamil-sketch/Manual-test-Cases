@@ -6,10 +6,10 @@
  "made": "12 Nov 2026, design drive build/founder-mode/internal-work-orders/design-2026-11-12/",
  "how": "Rule 130: both directions (DESIGN-TEXT-INVENTORY design -> PRD; SPEC-TO-DESIGN-2026-11-12.json PRD -> design; every dialog, menu, toast and tooltip listed by hand in DESIGN-VISUAL-INVENTORY.md)",
  "counts": {
-  "differences": 52,
-  "settled_by_prd": 45,
+  "differences": 55,
+  "settled_by_prd": 48,
   "questions": 7,
-  "not_shown": 40
+  "not_shown": 41
  },
  "unsent_questions": 6,
  "unsent_note": "6 new questions (rows 8-13) are drafted in design-2026-11-12/NEW-QUESTIONS.py and NOT sent; one more difference (IWO-D19) rides on question 3 and the held DC-50 on question 4 of the existing draft ../PO-QUESTIONS-DRAFT.md, also not sent (the QA lead sends the one sheet). Rule 126.6: unsent must reach 0 before the suite is called complete.",
@@ -1431,6 +1431,79 @@
     true,
     true
    ]
+  },
+  {
+   "id": "IWO-D53",
+   "kind": "design library vs PRD (dialog dismissal)",
+   "boards": "every dialog board (the boards are static; the library Modal, _ds_bundle.js lines 1116-1203)",
+   "pictures": [],
+   "design_words": [
+    "Modal: Escape and a click on the scrim call onClose (components/sv-components.jsx, Modal, lines 1134-1149)"
+   ],
+   "prd_code": "S1-R2 / S4-R2",
+   "prd_words": [
+    "Esc and a click outside do nothing, as in every dialog of the app.",
+    "Dismissing the dialog in any other way does nothing."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R2 and S4-R2 quotes; design case DC-86 checks that Esc and a click outside leave the window open.",
+   "held_case": "",
+   "note": "Found in the full read of the design library (render/ds-bundle-reading-notes.md, chunk 2). The PRD names the app-wide rule explicitly, so no question.",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D54",
+   "kind": "design library gap (loading state)",
+   "boards": "no board draws an in-progress state",
+   "pictures": [],
+   "design_words": [
+    "SV.GAPS: \"skeleton / loading: No loading state anywhere in the system, including buttons.\" (index.js, line 7280)"
+   ],
+   "prd_code": "S1-EH / S2-EH / S3-EH / S4-EH",
+   "prd_words": [
+    "While Close is in progress, \"Close Work Order\" shows a spinner and is disabled; a second press does nothing."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "The PRD error-handling sentences settle the behaviour; the look of the spinner is not designed (library gap) and is checked by the PRD case worker's error-handling cases, not by a design case.",
+   "held_case": "",
+   "note": "Found in the full read of the design library (chunk 12). Not a question: the PRD is explicit; the library itself says a missing component \"is a conversation, not an invention\", which is for the design owner, not a test verdict.",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D55",
+   "kind": "letter case (column label)",
+   "boards": "every work orders list board (Flow 1 01, 09; Flow 4 01-03; Happy 11, 19, 38; WO List artboard)",
+   "pictures": [
+    "images/iwo-happy-11-11-work-orders-list.png"
+   ],
+   "design_words": [
+    "Total price (column header; columns-dropdown.jsx COLUMN_DEFS \"Total price\", always last)"
+   ],
+   "prd_code": "S2-R10",
+   "prd_words": [
+    "Open and closed internal and no-charge rows show \"No Charge\" in Total Price"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "The column is today's production column, unchanged by the feature; its on-screen label is \"Total price\" (Rule 9: labels from the screen). The PRD names the column, it does not rename it; DC-25 names it \"Total price\".",
+   "held_case": "",
+   "note": "Found by the letter-case check during the library read (chunk 1).",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
   }
  ],
  "questions": {
@@ -1724,39 +1797,273 @@
    "prd_words_or_state": "Approval Required email",
    "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
    "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N41",
+   "prd_code": "S1-EH / S2-EH / S3-EH / S4-EH",
+   "prd_words_or_state": "the confirming button shows a spinner and is disabled while the save, convert, close or reopen runs (no board draws it; the design library has no loading state, IWO-D54)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
   }
  ],
  "spec_to_design_check": {
   "run": "12 Nov 2026",
-  "prd": "render/prd-for-check.md (the saved PRD with [placeholders] written {placeholders}, which the tool expects)",
+  "prd": "render/prd-for-check.md, built by tools/prd_for_check.py from the saved PRD: [placeholders] written {placeholders}, and on each requirement line the straight quotes paired in order as curly quotes (words unchanged) so the tool no longer reads prose between two quotes as a label; the tool itself is unchanged",
   "design": "render/design-words-for-check.html (every rendered word, the notes and the board sources)",
-  "rows": 89,
+  "rows": 71,
   "by_outcome": {
-   "DESIGN-SILENT": 44,
-   "PO-RULED": 10,
-   "SHOWN-WHEN-DRIVEN": 7,
-   "TOOL-ARTEFACT": 25
-  }
+   "DESIGN-SILENT": 49,
+   "PO-RULED": 11,
+   "SHOWN-WHEN-DRIVEN": 9
+  },
+  "first_run_open_keys": [
+   {
+    "key": "S1-R3| where Internal Work Orders is a link to the categories page (S1-R13), and ",
+    "prd_line": 202,
+    "code": "S1-R3",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 202 (S1-R3) reads: …\"Manage categories in Internal Work Orders (Administration > Service). Their expense accounts are set on each category.\" where Internal Work Orders is a link to the categories page (S1-R13), and \"Map their expense accounts in Integrati… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R7| When ticked, the select ",
+    "prd_line": 206,
+    "code": "S1-R7",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 206 (S1-R7) reads: …\"Work orders for this customer are internal: no prices, no invoice, parts cost posts to the expense account of the internal category.\" When ticked, the select \"Default internal category\" appears unde… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R12| with the buttons Cancel and ",
+    "prd_line": 211,
+    "code": "S1-R12",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 211 (S1-R12) reads: …\"[n] open internal work orders for [customer] stay internal and close without an invoice. New work orders for [customer] will be billable.\" with the buttons Cancel and \"Remove flag\" (with no open internal wor… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R14|; on a No Charge category the checkbox ",
+    "prd_line": 213,
+    "code": "S1-R14",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 213 (S1-R14) reads: …\"One per connected location, picked from the chart that is already in QuickBooks. Parts cost of this category posts here instead of Cost of Parts. Empty: posts to the ShopView Review account until you pick one.\"; on a No Charge category the checkbox \"Requires the original work order\" with the helper \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R14| with the helper ",
+    "prd_line": 213,
+    "code": "S1-R14",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 213 (S1-R14) reads: …\"QuickBooks expense account\", one picker per connected location listing that location's expense accounts (the same picker as the ShopView Accounts rows), with the helper \"One per connected location, picked from the chart that is already in QuickBooks. Parts cost of this category posts here instead of Cost of Parts. Empty: posts to the ShopView Review account until you pick one.\"; on a No Charge category the checkbox \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R14|; on an Internal category the checkbox ",
+    "prd_line": 213,
+    "code": "S1-R14",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 213 (S1-R14) reads: …\"The work order asks which earlier work order the job comes from, or Not in ShopView. Optional when the work order is created, required at Close.\"; on an Internal category the checkbox \"Default category\" with the helper \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R14| with the helper ",
+    "prd_line": 213,
+    "code": "S1-R14",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 213 (S1-R14) reads: …\"QuickBooks expense account\", one picker per connected location listing that location's expense accounts (the same picker as the ShopView Accounts rows), with the helper \"One per connected location, picked from the chart that is already in QuickBooks. Parts cost of this category posts here instead of Cost of Parts. Empty: posts to the ShopView Review account until you pick one.\"; on a No Charge category the checkbox \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R16| The stored value stays on the customer and the asset, shown as ",
+    "prd_line": 215,
+    "code": "S1-R16",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 215 (S1-R16) reads: …\"[n] internal customers and [m] assets use this category as their default. Their new work orders will use the next category in line.\" The stored value stays on the customer and the asset, shown as \"[name] (archived)\" with the hint \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R16| with the hint ",
+    "prd_line": 215,
+    "code": "S1-R16",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 215 (S1-R16) reads: …\"[name] (archived)\" with the hint \"Archived. Pick an active category.\"; re… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R1|... from the customer.",
+    "prd_line": 256,
+    "code": "S2-R1",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "SHOWN-WHEN-DRIVEN: a real quoted label, now matched as one: tooltip \"… Posts to Company Vehicle Maintenance, from the customer.\" (Flow 1 2b)",
+    "evidence": "PRD line 256 (S2-R1): \"... from the customer.\" is the tooltip text the PRD quotes; Flow 1 2b draws \"Internal customer: no prices, no invoice. Posts to Company Vehicle Maintenance, from the customer.\"",
+    "still_reported": true
+   },
+   {
+    "key": "S2-R2| Ticking it reveals the required select ",
+    "prd_line": 257,
+    "code": "S2-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 257 (S2-R2) reads: …\"Warranty, goodwill or comeback work. Closes without an invoice; parts cost posts to the expense account of the category.\" Ticking it reveals the required select \"Category\" listing the active No Charge categories, empty by default; Save is refused with the field message \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R2|; once a work order is picked, the optional select ",
+    "prd_line": 257,
+    "code": "S2-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 257 (S2-R2) reads: …\"Which earlier work order this job comes from, or Not in ShopView, and the line on it. The line sets the original technician for the comeback and warranty numbers. Optional here, required at Close.\"; once a work order is picked, the optional select \"Original line\" lists its lines (number, title, technician). The checkbox is hidden when the selected customer is an internal customer and for users without 'See Financial Data'. Ticked, the work order is created No Charge with that category. It works whether or not any customer is flagged. As soon as a work order or a line is picked, the line \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R5|, the required select ",
+    "prd_line": 260,
+    "code": "S2-R5",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 260 (S2-R5) reads: …\"Prices, fees and discounts are removed from every line; costs and hours are kept. It closes with a NO CHARGE document instead of an invoice. You can convert it back until it is closed.\", the required select \"Category\" (active No Charge categories; empty by default, \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R5| (active No Charge categories; empty by default, ",
+    "prd_line": 260,
+    "code": "S2-R5",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 260 (S2-R5) reads: …\"Category\" (active No Charge categories; empty by default, \"Pick a category\" when missing), the selects \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R5| when missing), the selects ",
+    "prd_line": 260,
+    "code": "S2-R5",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 260 (S2-R5) reads: …\"Pick a category\" when missing), the selects \"Original work order\" and \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R5| of S2-R2 when the category requires it, and the buttons Cancel and ",
+    "prd_line": 260,
+    "code": "S2-R5",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 260 (S2-R5) reads: …\"Original line\" of S2-R2 when the category requires it, and the buttons Cancel and \"Convert to No Charge\". Confirming appli… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R6| and the buttons Cancel and ",
+    "prd_line": 261,
+    "code": "S2-R6",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 261 (S2-R6) reads: …\"Every line is priced as a new line would be today. You can convert it to no charge again until it is invoiced.\" and the buttons Cancel and \"Convert to Billable\"; confirming removes the badge and the category and prices every line the way a new line on this work order would be priced that day: labor at the customer's labor rate, else the location's; parts from the pricing rules applied to the cost already on the line (the cost Close would post), not today's catalogue cost. Change category opens the dialog \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R8| For several bills: ",
+    "prd_line": 263,
+    "code": "S2-R8",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 263 (S2-R8) reads: …\"The vendor bill for [part] ($[amount]) was posted to [account]. If you continue, that cost moves to [account] when this work order is [invoiced / closed].\" For several bills: \"The vendor bills for [n] parts ($[total]) were posted to [account]. ...\" Buttons: Cancel and \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R8| Buttons: Cancel and ",
+    "prd_line": 263,
+    "code": "S2-R8",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 263 (S2-R8) reads: …\"The vendor bills for [n] parts ($[total]) were posted to [account]. ...\" Buttons: Cancel and \"Continue\". The account names are the sh… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R18|), Change category (from, to, original work order kept or cleared), Convert to Billable (",
+    "prd_line": 273,
+    "code": "S2-R18",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 273 (S2-R18) reads: …\"Converted to No Charge by [user]. Category [name], original work order [number]. Prices, fees and discounts removed; costs and hours kept.\"), Change category (from, to, original work order kept or cleared), Convert to Billable (\"Every line priced as a new line would b… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S3-R2| when the work order is already Complete, or ",
+    "prd_line": 320,
+    "code": "S3-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 320 (S3-R2) reads: …\"This posts the parts cost and shop supplies to your books and marks the work order Closed · Internal. You can reopen it later.\" when the work order is already Complete, or \"This completes the work order, posts the parts cost and shop supplies to your books and marks it Closed · Internal. You can reopen it later.\" when it is not (Closed · No Charge on a no-charge work order). Buttons: Cancel and \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S3-R2| when it is not (Closed · No Charge on a no-charge work order). Buttons: Cancel and ",
+    "prd_line": 320,
+    "code": "S3-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 320 (S3-R2) reads: …\"This completes the work order, posts the parts cost and shop supplies to your books and marks it Closed · Internal. You can reopen it later.\" when it is not (Closed · No Charge on a no-charge work order). Buttons: Cancel and \"Close Work Order\". Parts cost is the cost on each line at Close, as invoicing posts to Cost of Parts today; the hours are the labor hours on the lines. With both QuickBooks and AccountingHub, each note names the QuickBooks account and the AccountingHub account. When the category requires the original work order and none was picked, the confirmation shows the select \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S3-N4| link to Integrations > QuickBooks; AccountingHub, ",
+    "prd_line": 332,
+    "code": "S3-N4",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 332 (S3-N4) reads: …\"Set account\" link to Integrations > QuickBooks; AccountingHub, \"No account set for [category]. The entry is held in Accounting Events until you set one.\" with a link to Account Mappings. The link is shown only to users with 'Settings — Integrations' (QuickBooks) or 'Accounting — Settings' (AccountingHub); others see the note without the link. The Shop supplies row follows the same rule when the Shop supplies item is not mapped (S10-N2). The button still reads \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S3-E4| (with ",
+    "prd_line": 340,
+    "code": "S3-E4",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 340 (S3-E4) reads: …\"This marks the work order Closed · Internal (Closed · No Charge). Parts cost, shop supplies and hours are available in the Internal Work Orders report.\" (with \"This completes the work order and marks… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S4-R2| (Closed · No Charge on a no-charge one) and the buttons Cancel and ",
+    "prd_line": 366,
+    "code": "S4-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 366 (S4-R2) reads: …\"The work order leaves Closed · Internal and goes back to Complete. The parts cost and shop supplies entries are reversed in your books.\" (Closed · No Charge on a no-charge one) and the buttons Cancel and \"Reopen Work Order\". Dismissing the dial… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S12-R2|, the required select Category (active No Charge categories, ",
+    "prd_line": 689,
+    "code": "S12-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 689 (S12-R2) reads: …\"The line stays on this work order and shows $0.00 on the invoice. Hours, parts and the story stay; the technician works it like any other line. When the invoice is created, the parts cost of this line posts to the expense account of the category instead of Cost of Parts.\", the required select Category (active No Charge categories, \"Pick a category\" when missing), the selects Original work order and Original line when the category requires it (optional here; helper and the \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   }
+  ]
  },
  "S1-R2|Pick up to 50 customers here. Flag more from Edit Customer.": {
   "outcome": "DESIGN-SILENT",
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
- "S1-R3| where Internal Work Orders is a link to the categories page (S1-R13), and ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S1-R7| When ticked, the select ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
+ "S1-R3|Map their expense accounts in Integrations > QuickBooks.": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "drawn \"Map their expense accounts in Integrations >\" with \"QuickBooks\" as a link and \".\" after it (Flow 0 02; Happy 03)"
  },
  "S1-R11|This estimate is no longer available.": {
   "outcome": "DESIGN-SILENT",
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
- },
- "S1-R12| with the buttons Cancel and ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
  },
  "S1-R13|Show archived (n)": {
   "outcome": "SHOWN-WHEN-DRIVEN",
@@ -1774,45 +2081,25 @@
   "outcome": "DESIGN-SILENT",
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
- "S1-R14|; on a No Charge category the checkbox ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S1-R14| with the helper ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S1-R14|; on an Internal category the checkbox ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
  "S1-R14|Set in Integrations > QuickBooks": {
   "outcome": "DESIGN-SILENT",
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
- "S1-R16| The stored value stays on the customer and the asset, shown as ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
+ "S1-R16|{name} (archived)": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
- "S1-R16| with the hint ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
+ "S1-R16|Archived. Pick an active category.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
  "S1-N4|Turn on Internal Work Orders in Settings to change this.": {
   "outcome": "SHOWN-WHEN-DRIVEN",
   "where": "drawn with \"Settings\" as a link (Flow 0 06)"
  },
  "S2-R1|... from the customer.": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S2-R2| Ticking it reveals the required select ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S2-R2|; once a work order is picked, the optional select ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "tooltip \"… Posts to Company Vehicle Maintenance, from the customer.\" (Flow 1 2b)"
  },
  "S2-R2|Original technician: {names}": {
   "outcome": "PO-RULED",
@@ -1821,34 +2108,6 @@
  "S2-R2|Original technician: none": {
   "outcome": "PO-RULED",
   "where": "IWO-D24; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
- },
- "S2-R5|, the required select ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S2-R5| (active No Charge categories; empty by default, ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S2-R5| when missing), the selects ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S2-R5| of S2-R2 when the category requires it, and the buttons Cancel and ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S2-R6| and the buttons Cancel and ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S2-R8| For several bills: ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S2-R8| Buttons: Cancel and ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
  },
  "S2-R11|Request IBS Approval": {
   "outcome": "DESIGN-SILENT",
@@ -1862,9 +2121,9 @@
   "outcome": "SHOWN-WHEN-DRIVEN",
   "where": "chip \"Classification: All\" and its menu rows All, Billable, Internal, No Charge (Flow 4 01)"
  },
- "S2-R18|), Change category (from, to, original work order kept or cleared), Convert to Billable (": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
+ "S2-R18|Every line priced as a new line would be today. Category {name} removed.": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D26 (the design note reads \"Every line priced at the customer's current pricing. Category Warranty removed.\", Flow 2 3e); PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
  },
  "S2-R19|Updating the cost also updates the sell price": {
   "outcome": "DESIGN-SILENT",
@@ -1918,33 +2177,21 @@
   "outcome": "SHOWN-WHEN-DRIVEN",
   "where": "row \"Shop supplies\" \"$25.00\" (Flow 1 07) and the document Summary (Flow 1 08)"
  },
- "S3-R2| when the work order is already Complete, or ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S3-R2| when it is not (Closed · No Charge on a no-charge work order). Buttons: Cancel and ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
  "S3-R4|Invoice paid": {
   "outcome": "DESIGN-SILENT",
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
- "S3-N4| link to Integrations > QuickBooks; AccountingHub, ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
+ "S3-N4|No account set for {category}. The entry is held in Accounting Events until you set one.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
  "S3-E1|Parts cost $0.00": {
   "outcome": "DESIGN-SILENT",
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
- "S3-E4| (with ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
- "S4-R2| (Closed · No Charge on a no-charge one) and the buttons Cancel and ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
+ "S3-E4|This completes the work order and marks it ...": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
  "S4-R3|Waiting for an earlier held entry of work order {n}": {
   "outcome": "DESIGN-SILENT",
@@ -2054,10 +2301,6 @@
   "outcome": "DESIGN-SILENT",
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
- "S12-R2|, the required select Category (active No Charge categories, ": {
-  "outcome": "TOOL-ARTEFACT",
-  "where": "prose between two quoted labels in the PRD sentence, not words the screen shows; the labels on either side are checked by hand in DESIGN-VISUAL-INVENTORY.md"
- },
  "S12-R2|Original technician: {names}": {
   "outcome": "PO-RULED",
   "where": "IWO-D24; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
@@ -2067,6 +2310,10 @@
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
  "S12-R5|Mark line as billable?": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S12-R6|Category of line '{title}' changed from {a} to {b} by {user}.": {
   "outcome": "DESIGN-SILENT",
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },

@@ -200,6 +200,22 @@ d('IWO-D52', 'seeding time', 'notes c-flow0-2a / c-hf-04 and d-flow0', [],
   ['The starting set is seeded when the setting is first turned on', 'and gets the starting categories'],
   'S1-R13 / S13-R1', ['The starting set is seeded for every organization when this release ships', 'turning the setting on seeds nothing'], S, 'S1-R13 quote.')
 
+d('IWO-D53', 'design library vs PRD (dialog dismissal)', 'every dialog board (the boards are static; the library Modal, _ds_bundle.js lines 1116-1203)', [],
+  ['Modal: Escape and a click on the scrim call onClose (components/sv-components.jsx, Modal, lines 1134-1149)'],
+  'S1-R2 / S4-R2', ['Esc and a click outside do nothing, as in every dialog of the app.', 'Dismissing the dialog in any other way does nothing.'], S,
+  'S1-R2 and S4-R2 quotes; design case DC-86 checks that Esc and a click outside leave the window open.',
+  note='Found in the full read of the design library (render/ds-bundle-reading-notes.md, chunk 2). The PRD names the app-wide rule explicitly, so no question.')
+d('IWO-D54', 'design library gap (loading state)', 'no board draws an in-progress state', [],
+  ['SV.GAPS: "skeleton / loading: No loading state anywhere in the system, including buttons." (index.js, line 7280)'],
+  'S1-EH / S2-EH / S3-EH / S4-EH', ['While Close is in progress, "Close Work Order" shows a spinner and is disabled; a second press does nothing.'], S,
+  'The PRD error-handling sentences settle the behaviour; the look of the spinner is not designed (library gap) and is checked by the PRD case worker\'s error-handling cases, not by a design case.',
+  note='Found in the full read of the design library (chunk 12). Not a question: the PRD is explicit; the library itself says a missing component "is a conversation, not an invention", which is for the design owner, not a test verdict.')
+d('IWO-D55', 'letter case (column label)', 'every work orders list board (Flow 1 01, 09; Flow 4 01-03; Happy 11, 19, 38; WO List artboard)', ['images/iwo-happy-11-11-work-orders-list.png'],
+  ['Total price (column header; columns-dropdown.jsx COLUMN_DEFS "Total price", always last)'],
+  'S2-R10', ['Open and closed internal and no-charge rows show "No Charge" in Total Price'], S,
+  'The column is today\'s production column, unchanged by the feature; its on-screen label is "Total price" (Rule 9: labels from the screen). The PRD names the column, it does not rename it; DC-25 names it "Total price".',
+  note='Found by the letter-case check during the library read (chunk 1).')
+
 QUESTIONS = {8: 'IWO-D09', 9: 'IWO-D29', 10: 'IWO-D31', 11: 'IWO-D44', 12: 'IWO-D45', 13: 'IWO-D50'}  # new rows 8-13 of the one sheet (Rule 131)
 SHEET_QUESTIONS = {3: 'IWO-D19'}  # already in ../PO-QUESTIONS-DRAFT.md; the design adds its held case DV-02
 
@@ -226,4 +242,5 @@ NOT_SHOWN = [
     ('S9-N1', 'report empty state'), ('S12-R4', 'Deposit $[amount] exceeds the new total $[total]. …'), ('S12-R9', "Line '[title]' needs its original work order (or Not in ShopView) before the invoice."),
     ('S12-R10', 'All lines are No Charge. To close without an invoice and get the NO CHARGE document, convert the work order instead.'),
     ('S12-EH', 'Could not change the line. Try again.'), ('S5-R1', 'archived category row, greyed'), ('S2-R11', 'Approval Required email'),
+    ('S1-EH / S2-EH / S3-EH / S4-EH', 'the confirming button shows a spinner and is disabled while the save, convert, close or reopen runs (no board draws it; the design library has no loading state, IWO-D54)'),
 ]

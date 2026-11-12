@@ -6,7 +6,7 @@ Exits 1 while any inventory row is unclassified or any register quote is not fou
 import os, sys, json, re, glob, hashlib, html
 from collections import Counter, defaultdict
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, HERE)
-import prd as P, classify as C, register_data as RD, spec_verdicts as SV
+import prd as P, classify as C, register_data as RD, spec_verdicts as SV, library_rules as LR
 PROJ = os.path.join(ROOT, 'files', 'project')
 canvas = json.load(open(os.path.join(PROJ, 'canvas.json')))
 PAGES = {p['id']: p['name'] for p in canvas['pages']}
@@ -62,6 +62,11 @@ for k in canvas['noteOrder']:
     n = canvas['notes'][k]; rep = first[n['text']]
     res = C.NOTE_CLASS.get(rep)
     add('canvas note', n['page'], '', 'note' + ('/' + n['kind'] if n.get('kind') else '') + ' ' + k + ('' if rep == k else ' (same text as %s)' % rep), n['text'], res)
+
+# design-library rules (full read of _ds_bundle.js, render/ds-bundle-reading-notes.md; Rule 126)
+for lid, lf, lines, words, lcls, lcodes, meaning in LR.LIB:
+    add('design library', '', lf, 'library rule %s (bundle lines %s)' % (lid, lines), words, (lcls, lcodes, meaning))
+if LR.check(): problems.append('library sentences not found in the bundle: %s' % LR.check())
 
 # source-only strings: words in the board files that no board draws
 rendered = set(r['text'] for r in rows if r['src'] == 'board')
@@ -121,6 +126,9 @@ md += ['', '## Source-only strings (in the board files, drawn by no board)', '',
 for r in rows:
     if r['src'] == 'source only':
         md.append('| %s | %s | %s | %s |' % (r['board'], r['text'].replace('|', '/').replace('\n', ' ')[:300], r['cls'] + (' ' + ','.join(r['codes']) if r['codes'] else ''), r['note']))
+md += ['', '## Design-library rules that apply to these screens (full read of `_ds_bundle.js`, lines 1-12,181; notes in `render/ds-bundle-reading-notes.md`)', '',
+       '| Id | File (bundle lines) | The library\'s words | Class | Case / register | Meaning here |', '|---|---|---|---|---|---|']
+md += ['| %s | %s (%s) | %s | %s | %s | %s |' % (l[0], l[1], l[2], l[3].replace('|', '/'), l[4], ', '.join(l[5]), l[6]) for l in LR.LIB]
 open(os.path.join(ROOT, 'DESIGN-TEXT-INVENTORY.md'), 'w').write('\n'.join(md) + '\n')
 
 # ------------------------------------------------------------------------------------------------- register (with checks)

@@ -48,3 +48,16 @@ folder and `build/founder-mode/internal-work-orders/DESIGN-DIVERGENCE-REGISTER.j
 - `spec_to_design_check.py` keeps exiting 1 on 26 tool artefacts (prose between two quoted strings). No closing outcome fits them honestly,
   so they are left open and reported rather than closed under a wrong label.
 - Nothing written to TestRail, Jira, Slack or Google; nothing committed.
+
+## Second pass (12 Nov 2026, coordinator's two gates)
+- Gate 1, design library read in full: `_ds_bundle.js` read line by line with the Read tool, lines 1-12,181 (100%, 413,134 bytes) in 20
+  chunks, with running notes per chunk in `render/ds-bundle-reading-notes.md`; both style sheets read in full too. 31 rules that touch
+  these screens are in `tools/library_rules.py` (each checked word for word against the bundle or style sheet), in the text inventory as
+  "design library" rows (14,121 rows now, 0 unclassified) and in DESIGN-VISUAL-INVENTORY.md §C. New from the read: IWO-D53 (library
+  dialogs close on Esc and on a backdrop click; PRD S1-R2/S4-R2 say they do nothing; settled, design case DC-86), IWO-D54 (library has no
+  loading state; PRD asks for a spinner; settled, not-shown row), IWO-D55 ("Total price" column label letter case; settled). DC-25, DC-26
+  and DC-28 sharpened with the library's Status column, single-choice checkmark list and shared empty-state words. Plan: 86 DC + 6 DV = 92.
+- Gate 2, spec_to_design_check.py: exit 0 (71 rows, all closed). The tool is unchanged; its input is built by `tools/prd_for_check.py`
+  (quotes paired as curly quotes per requirement line, words unchanged). The 26 first-run open keys are recorded one by one with their PRD
+  line in SPEC-TO-DESIGN-2026-11-12.json → spec_to_design_check.first_run_open_keys (25 fragments of PRD prose, 1 real label now matched).
+  Run order: build_all.py → prd_for_check.py → the tool → close_tool_rows.py → the tool again (build_all rewrites the register).

@@ -1,23 +1,25 @@
 {
 "summary": {
 "made": "12 Nov 2026",
-"rows": 14090,
+"rows": 14121,
 "by_source": {
 "board": 13651,
 "board title": 167,
 "page name": 10,
 "canvas note": 198,
+"design library": 31,
 "source only": 64
 },
 "by_class": {
-"OUT-OF-SCOPE": 6562,
+"OUT-OF-SCOPE": 6564,
 "DATA": 5784,
 "PRD-MATCH": 1259,
-"SPEC-CONFLICT": 217,
-"LOOK-ONLY": 268
+"SPEC-CONFLICT": 226,
+"LOOK-ONLY": 268,
+"COVERED": 20
 },
 "unclassified": 0,
-"distinct_texts": 1149,
+"distinct_texts": 1179,
 "letter_case_flags": [],
 "notes": 198
 },
@@ -221994,6 +221996,406 @@
 "S6-R2"
 ],
 "note": "Comeback number: the hub owner confirmed 6440 on 2026-11-09 (S6-R2), newer than the note"
+},
+{
+"src": "design library",
+"page": "",
+"board": "columns-dropdown.jsx",
+"kind": "library rule L01 (bundle lines 442-446)",
+"text": "label: \"Total price\",",
+"cls": "SPEC-CONFLICT",
+"codes": [
+"IWO-D55",
+"DC-25"
+],
+"note": "the list column is \"Total price\" (lower-case p) and is always last; the PRD writes \"Total Price\"; the case uses the screen label"
+},
+{
+"src": "design library",
+"page": "",
+"board": "badge.jsx",
+"kind": "library rule L02 (bundle lines 280-290)",
+"text": "\"Complete\": \"success\",",
+"cls": "COVERED",
+"codes": [
+"DC-29",
+"DC-45"
+],
+"note": "no \"Closed\" status exists in either status map, so the new Closed status renders in the neutral tone (grey), as the boards draw it"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components/sv-components.jsx",
+"kind": "library rule L03 (bundle lines 948-950)",
+"text": "They are NOT interchangeable",
+"cls": "COVERED",
+"codes": [
+"DC-29",
+"DC-82"
+],
+"note": "work-order and finance status vocabularies differ; Closed sits in the work-order list (All tab) and on the hub Sales Invoices page"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components/sv-components.jsx",
+"kind": "library rule L04 (bundle lines 690-691)",
+"text": "Now it warns once per name, so a typo or a glyph that was never vendored shows up the first time it renders.",
+"cls": "SPEC-CONFLICT",
+"codes": [
+"IWO-D38",
+"DC-66",
+"DC-69"
+],
+"note": "the line-menu icons \"badge-dollar-sign\" and \"pencil-line\" are not in the vendored set (lucide-icons.js), so the boards show an empty slot"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components/sv-components.jsx",
+"kind": "library rule L05 (bundle lines 703)",
+"text": "do not ship an empty box.",
+"cls": "SPEC-CONFLICT",
+"codes": [
+"IWO-D38",
+"DC-66",
+"DC-69"
+],
+"note": "Mark as No Charge, Change category and Mark as Billable must carry real icons, like the other menu rows"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components/sv-components.jsx",
+"kind": "library rule L06 (bundle lines 836-838)",
+"text": "Checked state is a TINTED fill with an accent glyph",
+"cls": "COVERED",
+"codes": [
+"DC-13",
+"DC-23",
+"DC-71"
+],
+"note": "the Internal customer, No Charge and Requires the original work order checkboxes, when ticked"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components/sv-components.jsx",
+"kind": "library rule L07 (bundle lines 1013-1015)",
+"text": "Counts render as parenthesised text, matching the spec. They are not pills.",
+"cls": "COVERED",
+"codes": [
+"DC-31"
+],
+"note": "work order tabs \"Lines (2)\", \"Parts (4)\" keep their counts in brackets"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components/sv-components.jsx",
+"kind": "library rule L08 (bundle lines 1063)",
+"text": "empty = 'Nothing to show.',",
+"cls": "COVERED",
+"codes": [
+"DC-28",
+"DC-74"
+],
+"note": "a table with no rows shows a text-only empty state (the work orders list uses its own empty state, L13)"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components/sv-components.jsx",
+"kind": "library rule L09 (bundle lines 1134-1141)",
+"text": "if (e.key === 'Escape') onClose();",
+"cls": "SPEC-CONFLICT",
+"codes": [
+"IWO-D53",
+"DC-86"
+],
+"note": "the library Modal closes on Esc and on a click on the scrim; the PRD says Esc and a click outside do nothing in every dialog of the app"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components/sv-components.jsx",
+"kind": "library rule L10 (bundle lines 1342-1346)",
+"text": "\"aria-label\": \"Dismiss\"",
+"cls": "SPEC-CONFLICT",
+"codes": [
+"IWO-D28",
+"DC-44",
+"DC-45"
+],
+"note": "an alert or toast that can be dismissed carries an X; the PRD error toasts \"must be dismissed\", the boards draw them without the X"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components/sv-components.jsx",
+"kind": "library rule L11 (bundle lines 1668-1670)",
+"text": "className: \"sv-facts__empty\"",
+"cls": "COVERED",
+"codes": [
+"DC-83"
+],
+"note": "an empty value in a key/value block (AccountingHub record) shows a dash"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components/sv-components.jsx",
+"kind": "library rule L12 (bundle lines 1706-1707)",
+"text": "Never both.",
+"cls": "COVERED",
+"codes": [
+"DC-25",
+"DC-06"
+],
+"note": "a list screen with tabs has no visible page title; the categories page (no list layout) shows its title \"Internal Work Orders\""
+},
+{
+"src": "design library",
+"page": "",
+"board": "filter-bar.jsx",
+"kind": "library rule L13 (bundle lines 3948)",
+"text": "No work orders match these filters",
+"cls": "COVERED",
+"codes": [
+"DC-28"
+],
+"note": "the work orders list filtered by Classification with no match shows \"No work orders match these filters\" and \"Try removing a filter to widen your results.\""
+},
+{
+"src": "design library",
+"page": "",
+"board": "filter-chip.jsx",
+"kind": "library rule L14 (bundle lines 5142-5148)",
+"text": "Selected: bg #D8ECFF (primary-100), text + icon #257CFF (primary-500), chevron shown",
+"cls": "COVERED",
+"codes": [
+"DC-26",
+"DC-27",
+"DC-73"
+],
+"note": "the Classification chip and the Technician Efficiency chip with a value: \"Label: value\" in blue on light blue"
+},
+{
+"src": "design library",
+"page": "",
+"board": "filter-dropdown.jsx",
+"kind": "library rule L15 (bundle lines 5727)",
+"text": "Single-select list — checkmark on the selected row, no checkboxes (Asset on site)",
+"cls": "COVERED",
+"codes": [
+"DC-26",
+"DC-73"
+],
+"note": "the single-choice Classification and Internal work orders lists mark the picked value with a checkmark"
+},
+{
+"src": "design library",
+"page": "",
+"board": "index.js",
+"kind": "library rule L16 (bundle lines 7280)",
+"text": "'skeleton / loading': 'No loading state anywhere in the system, including buttons.',",
+"cls": "SPEC-CONFLICT",
+"codes": [
+"IWO-D54"
+],
+"note": "the PRD asks for a spinner on the confirming button while an action runs; the library has no loading state and no board draws one"
+},
+{
+"src": "design library",
+"page": "",
+"board": "index.js",
+"kind": "library rule L17 (bundle lines 7281)",
+"text": "'empty state illustration': 'By design — Shopview empty states are text only.',",
+"cls": "COVERED",
+"codes": [
+"DC-28"
+],
+"note": "empty states (filtered list, report with no rows) are text only, no picture"
+},
+{
+"src": "design library",
+"page": "",
+"board": "index.js",
+"kind": "library rule L18 (bundle lines 7276)",
+"text": "'pagination': 'Not designed. Tables in the product scroll.',",
+"cls": "COVERED",
+"codes": [
+"DC-74",
+"DC-75"
+],
+"note": "the Internal Work Orders report table scrolls; no pages"
+},
+{
+"src": "design library",
+"page": "",
+"board": "mobile-filters.jsx",
+"kind": "library rule L19 (bundle lines 7544-7564)",
+"text": "label: \"Asset on site\",",
+"cls": "OUT-OF-SCOPE",
+"codes": [
+"IWO-N19 (S2-R14 mobile filter sheet)"
+],
+"note": "the library mobile filter sheet has no Classification row yet; the design draws no mobile filter sheet; the PRD-following case is the case worker's"
+},
+{
+"src": "design library",
+"page": "",
+"board": "tokens.js",
+"kind": "library rule L20 (bundle lines 1845-1846)",
+"text": "inverse: 'var(--sv-surface-inverse)',",
+"cls": "COVERED",
+"codes": [
+"DC-20",
+"DC-21",
+"DC-73"
+],
+"note": "tooltips are a dark bubble with light text (Internal badge tooltip, No Charge tooltip, chip tooltip)"
+},
+{
+"src": "design library",
+"page": "",
+"board": "work-orders.jsx",
+"kind": "library rule L21 (bundle lines 10019-10024)",
+"text": "completed: ['Complete', 'Invoiced', 'Paid']",
+"cls": "COVERED",
+"codes": [
+"DC-29"
+],
+"note": "the Completed tab holds Complete, Invoiced and Paid; a closed internal work order shows on the All tab with Status Closed"
+},
+{
+"src": "design library",
+"page": "",
+"board": "work-orders.jsx",
+"kind": "library rule L22 (bundle lines 10375)",
+"text": "Nothing. Always this, never an empty cell or a bare hyphen in text.",
+"cls": "SPEC-CONFLICT",
+"codes": [
+"IWO-D44",
+"DV-05"
+],
+"note": "empty report cells should show the dash; the design leaves them blank (question 11)"
+},
+{
+"src": "design library",
+"page": "",
+"board": "work-orders.jsx",
+"kind": "library rule L23 (bundle lines 10399)",
+"text": "A cell that navigates. A link, not a button — buttons do things.",
+"cls": "COVERED",
+"codes": [
+"DC-74",
+"DC-62"
+],
+"note": "Work order and Original work order in the report, and the original work order on the NO CHARGE document, are links"
+},
+{
+"src": "design library",
+"page": "",
+"board": "work-orders.jsx",
+"kind": "library rule L24 (bundle lines 10479-10480)",
+"text": "A count that needs a person. The only amber in the row, because it is the one thing in it asking for action.",
+"cls": "SPEC-CONFLICT",
+"codes": [
+"IWO-D15",
+"DC-25"
+],
+"note": "amber in a list row is kept for the one thing asking for action; the design draws the Internal (and No Charge) badge amber. The PRD settles only \"a different style from Internal\" (IWO-D15); the colour is not asked"
+},
+{
+"src": "design library",
+"page": "",
+"board": "work-orders.jsx",
+"kind": "library rule L25 (bundle lines 11538-11541)",
+"text": "const badgeSize = large ? 'md' : 'sm';",
+"cls": "COVERED",
+"codes": [
+"DC-25"
+],
+"note": "at the default row height (48) list badges are the small size (10px), as drawn; the Small and Large row heights are not drawn (DESIGN-SILENT)"
+},
+{
+"src": "design library",
+"page": "",
+"board": "work-orders.jsx",
+"kind": "library rule L26 (bundle lines 11662)",
+"text": "w: c.key === 'onsite' ? 56 : c.key === 'status' ? 120 : undefined",
+"cls": "COVERED",
+"codes": [
+"DC-25"
+],
+"note": "the Status column is 120 px; with the status and the Internal / No Charge badge in it (S2-R10) nothing may wrap or overlap at 1440 and 1536"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components.css",
+"kind": "library rule L28 (bundle lines 255-259)",
+"text": "Spec: preview/tabs.html — pill only, 32px, radius 6.",
+"cls": "COVERED",
+"codes": [
+"DC-06",
+"DC-07"
+],
+"note": "the Internal categories / No Charge categories tabs are pills, the selected one grey, as drawn"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components.css",
+"kind": "library rule L29 (bundle lines 51)",
+"text": ".sv-btn--primary:disabled { opacity: 0.4; }",
+"cls": "COVERED",
+"codes": [
+"DC-02",
+"DC-35",
+"DC-61"
+],
+"note": "a disabled blue button (Save with nothing picked, Close Work Order before an original is picked) is the same blue at 40% opacity"
+},
+{
+"src": "design library",
+"page": "",
+"board": "components.css",
+"kind": "library rule L30 (bundle lines 233)",
+"text": ".sv-badge--warning { background: var(--sv-warning-fill); border-color: var(--sv-warning-border); color: var(--sv-warning-text); }",
+"cls": "SPEC-CONFLICT",
+"codes": [
+"IWO-D15",
+"DC-25",
+"DC-55"
+],
+"note": "the boards draw both the Internal and the No Charge badge in exactly this warning tone (fill #FFFAEB, text #B54708); the PRD asks for No Charge \"a different style from Internal\""
+},
+{
+"src": "design library",
+"page": "",
+"board": "components.css",
+"kind": "library rule L31 (bundle lines 236)",
+"text": ".sv-badge--neutral { background: var(--sv-surface-sunken); border-color: var(--sv-border-strong); color: var(--sv-text-primary); }",
+"cls": "COVERED",
+"codes": [
+"DC-29",
+"DC-45",
+"DC-62"
+],
+"note": "the Closed status and the INTERNAL / NO CHARGE stamps are neutral grey (fill #EEF2F6)"
+},
+{
+"src": "design library",
+"page": "",
+"board": "design-canvas.jsx / tweaks-panel.jsx / ai-agent-icon.js / theme-toggle.js",
+"kind": "library rule L27 (bundle lines 11-230, 2064-3480, 9217-9980)",
+"text": "They are Claude Design artboard scaffolding",
+"cls": "OUT-OF-SCOPE",
+"codes": [],
+"note": "designer tooling and the dark-theme switch: no Internal Work Orders board uses them (the design draws light theme only)"
 },
 {
 "src": "source only",

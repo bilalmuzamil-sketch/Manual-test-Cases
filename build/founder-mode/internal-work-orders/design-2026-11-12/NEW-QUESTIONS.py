@@ -30,7 +30,9 @@ Skill 07 §6 applied first. Not asked here:
   (S12-R5, S12-N3, S2-N4, S2-R9) · D41 Technician Efficiency chip "No-charge work orders" (S9-R3) · D42 "Not in ShopView / no technician"
   for Unassigned (S9-R2, S2-R17) · D43 summary card adding shop supplies into parts cost (S9-R2) · D46 type "Journal Entry" (S7-N3) · D47
   hub held reason (S8-N2) · D48 hub card cut by the frame (S8-R7) · D49 stale Flow 2 description and Flow 6 page name (S12, OOS) · D51
-  canvas notes that disagree with their boards (each settled with its board row) · D52 seeding at turn-on (S1-R13, S13-R1).
+  canvas notes that disagree with their boards (each settled with its board row) · D52 seeding at turn-on (S1-R13, S13-R1) · found in the full
+  read of the design library: D53 the library dialog closes on Esc and a backdrop click (S1-R2, S4-R2: do nothing) · D54 the library has no
+  loading state (S1-EH to S4-EH: spinner) · D55 the list column reads "Total price" (the PRD names it, does not rename it; Rule 9).
 - Every state the boards do not draw (40 not-shown rows in the register: error toasts, the Pick a category message, tooltips, the
   100-category limit, the archived-name refusal, the Mark line as billable confirmation ...): the PRD gives the words; asking for pictures
   would not unblock a case (Rule 130.5: DESIGN-SILENT)."""

@@ -1,6 +1,6 @@
 # Design visual inventory — Internal Work Orders (12 Nov 2026)
 
-Rule 126 / skill 21 §4b. The design is a canvas of 167 live component boards (`.dc.html`), so the look was read from each board **rendered locally** at its own size in light theme (`tools/render.js`, pictures in `images/`), from the computed style of every visible text (size, weight, colour, background, case: `render/render-log-*.json`, summary of the feature's own labels in `render/look-facts.txt`, `tools/look_facts.py`), from the frame-opened renders where a frame cuts its board (`render/full/`), and from renders at 1440 and 1536 px (`render/widths/`, `render/full-and-widths.json`). The design draws no dark theme and no density switch. Happy flow and Review boards are byte-for-byte copies of a Flow board apart from the title (`render/hf-rv-diffs.txt`); they are listed with their Flow board.
+Rule 126 / skill 21 §4b. Updated 12 Nov 2026 after the full line-by-line read of the design library (§C, DC-86, IWO-D53 to IWO-D55). The design is a canvas of 167 live component boards (`.dc.html`), so the look was read from each board **rendered locally** at its own size in light theme (`tools/render.js`, pictures in `images/`), from the computed style of every visible text (size, weight, colour, background, case: `render/render-log-*.json`, summary of the feature's own labels in `render/look-facts.txt`, `tools/look_facts.py`), from the frame-opened renders where a frame cuts its board (`render/full/`), and from renders at 1440 and 1536 px (`render/widths/`, `render/full-and-widths.json`). The design draws no dark theme and no density switch. Happy flow and Review boards are byte-for-byte copies of a Flow board apart from the title (`render/hf-rv-diffs.txt`); they are listed with their Flow board.
 
 Every row is **COVERED** (design case in `DESIGN-CASE-PLAN.md`), **SPEC-CONFLICT** (register row in `../DESIGN-DIVERGENCE-REGISTER.json`: settled by a named PRD sentence, or a drafted question with its held case), **OUT-OF-SCOPE** (unchanged production screen or designer tooling, reason given) or **DATA** (designer's sample values). Unclassified: **0**.
 
@@ -120,19 +120,46 @@ Every row is **COVERED** (design case in `DESIGN-CASE-PLAN.md`), **SPEC-CONFLICT
 | B25 | Line menu, no-charge line (Flow 6 04) | Change category · Mark as Billable | S12-R5 | SAME (icons IWO-D38) |
 | B26 | Mark line as billable confirmation | not drawn | S12-R5 | NOT DRAWN (IWO-D40; case follows the PRD) |
 | B27 | Edit Line bottom (Flow 6 06) | divider · No Charge · helper · Category * · Original work order · Original line | S12-R1 | SAME |
+| B29 | Every dialog (library Modal, sv-components.jsx lines 1134-1149) | Esc and a click on the backdrop close the window | S1-R2: "Esc and a click outside do nothing, as in every dialog of the app"; S4-R2 | DIFFERENT (IWO-D53, settled by the PRD; DC-86) |
 | B28 | Error toasts of S1-EH, S2-EH, S4-EH, the "Pick a category" field message, "Reverse the deposit first", "Reverse the invoice first.", "Reopen the work order to change the customer." tooltips, the 100-category limit message, the archived-name refusal | not drawn | the PRD gives the words | NOT DRAWN (register not-shown rows; cases follow the PRD words) |
 
-## C. Design-library "always / never" sentences (`_ds_bundle.js`, 42 found by `tools/ds_read.py`)
+## C. Design-library rules (`_ds_bundle.js` read in full, lines 1-12,181 in 20 chunks, and both style sheets read in full; running notes `render/ds-bundle-reading-notes.md`)
 
-| # | Sentence (file) | In scope? | Class |
-|---|---|---|---|
-| L36 | "Always this, never an empty cell or a bare hyphen in text." (work-orders.jsx, the dash cell) | Yes: report cells | SPEC-CONFLICT IWO-D44, question 11, DV-05 (the report leaves cells empty; the asset Invoices tab uses the dash) |
-| L38 | "The glyph changes with the colour, never the colour alone…" (work-orders.jsx) | Yes: status and warning marks | COVERED DC-06 ("Not set" carries a warning icon with the orange text), DC-38 rows |
-| L39 | "The number is always beside the bar…" (work-orders.jsx) | No bar in this feature | OUT-OF-SCOPE (no bar drawn) |
-| L02 | "always last" (columns-dropdown.jsx: the menu column) | Yes: row menus | COVERED DC-06, DC-07 (three-dots column last) |
-| L10 | "Never both." (sv-components.jsx, a button with label and icon-only) | Look of buttons | COVERED by every button check (labels as drawn) |
-| L41 | "The WO screen spells two statuses differently from the system…" | Status pills | COVERED DC-29 (status "Closed" as the PRD names it) |
-| others (36) | Token, build, canvas-tool and code-hygiene rules (tokens.js, design-canvas.jsx, index.js, tweaks-panel.jsx, lucide-icons.js, filter-chip.jsx …) | Developer guidance, not visible behaviour | OUT-OF-SCOPE (no visible effect a tester can check; L32 "Every name below must exist in SV_LUCIDE" is the cause of IWO-D38) |
+Every rule the library states that touches an Internal Work Orders screen (always/never sentences, default labels, empty states, toast, badge and chip conventions), word for word with its file and lines; the same rows are in the text inventory as "design library" rows (`tools/library_rules.py`, each checked word for word against the bundle or the style sheet by script). The remaining always/never sentences are code and tooling rules with no visible effect (token use, load order, canvas and Tweaks tooling), confirmed by the full read.
+
+| # | File (lines) | The library's words | Class | Case / register | Meaning here |
+|---|---|---|---|---|---|
+| L01 | columns-dropdown.jsx (442-446) | label: "Total price", | SPEC-CONFLICT | IWO-D55, DC-25 | the list column is "Total price" (lower-case p) and is always last; the PRD writes "Total Price"; the case uses the screen label |
+| L02 | badge.jsx (280-290) | "Complete": "success", | COVERED | DC-29, DC-45 | no "Closed" status exists in either status map, so the new Closed status renders in the neutral tone (grey), as the boards draw it |
+| L03 | components/sv-components.jsx (948-950) | They are NOT interchangeable | COVERED | DC-29, DC-82 | work-order and finance status vocabularies differ; Closed sits in the work-order list (All tab) and on the hub Sales Invoices page |
+| L04 | components/sv-components.jsx (690-691) | Now it warns once per name, so a typo or a glyph that was never vendored shows up the first time it renders. | SPEC-CONFLICT | IWO-D38, DC-66, DC-69 | the line-menu icons "badge-dollar-sign" and "pencil-line" are not in the vendored set (lucide-icons.js), so the boards show an empty slot |
+| L05 | components/sv-components.jsx (703) | do not ship an empty box. | SPEC-CONFLICT | IWO-D38, DC-66, DC-69 | Mark as No Charge, Change category and Mark as Billable must carry real icons, like the other menu rows |
+| L06 | components/sv-components.jsx (836-838) | Checked state is a TINTED fill with an accent glyph | COVERED | DC-13, DC-23, DC-71 | the Internal customer, No Charge and Requires the original work order checkboxes, when ticked |
+| L07 | components/sv-components.jsx (1013-1015) | Counts render as parenthesised text, matching the spec. They are not pills. | COVERED | DC-31 | work order tabs "Lines (2)", "Parts (4)" keep their counts in brackets |
+| L08 | components/sv-components.jsx (1063) | empty = 'Nothing to show.', | COVERED | DC-28, DC-74 | a table with no rows shows a text-only empty state (the work orders list uses its own empty state, L13) |
+| L09 | components/sv-components.jsx (1134-1141) | if (e.key === 'Escape') onClose(); | SPEC-CONFLICT | IWO-D53, DC-86 | the library Modal closes on Esc and on a click on the scrim; the PRD says Esc and a click outside do nothing in every dialog of the app |
+| L10 | components/sv-components.jsx (1342-1346) | "aria-label": "Dismiss" | SPEC-CONFLICT | IWO-D28, DC-44, DC-45 | an alert or toast that can be dismissed carries an X; the PRD error toasts "must be dismissed", the boards draw them without the X |
+| L11 | components/sv-components.jsx (1668-1670) | className: "sv-facts__empty" | COVERED | DC-83 | an empty value in a key/value block (AccountingHub record) shows a dash |
+| L12 | components/sv-components.jsx (1706-1707) | Never both. | COVERED | DC-25, DC-06 | a list screen with tabs has no visible page title; the categories page (no list layout) shows its title "Internal Work Orders" |
+| L13 | filter-bar.jsx (3948) | No work orders match these filters | COVERED | DC-28 | the work orders list filtered by Classification with no match shows "No work orders match these filters" and "Try removing a filter to widen your results." |
+| L14 | filter-chip.jsx (5142-5148) | Selected: bg #D8ECFF (primary-100), text + icon #257CFF (primary-500), chevron shown | COVERED | DC-26, DC-27, DC-73 | the Classification chip and the Technician Efficiency chip with a value: "Label: value" in blue on light blue |
+| L15 | filter-dropdown.jsx (5727) | Single-select list — checkmark on the selected row, no checkboxes (Asset on site) | COVERED | DC-26, DC-73 | the single-choice Classification and Internal work orders lists mark the picked value with a checkmark |
+| L16 | index.js (7280) | 'skeleton / loading': 'No loading state anywhere in the system, including buttons.', | SPEC-CONFLICT | IWO-D54 | the PRD asks for a spinner on the confirming button while an action runs; the library has no loading state and no board draws one |
+| L17 | index.js (7281) | 'empty state illustration': 'By design — Shopview empty states are text only.', | COVERED | DC-28 | empty states (filtered list, report with no rows) are text only, no picture |
+| L18 | index.js (7276) | 'pagination': 'Not designed. Tables in the product scroll.', | COVERED | DC-74, DC-75 | the Internal Work Orders report table scrolls; no pages |
+| L19 | mobile-filters.jsx (7544-7564) | label: "Asset on site", | OUT-OF-SCOPE | IWO-N19 (S2-R14 mobile filter sheet) | the library mobile filter sheet has no Classification row yet; the design draws no mobile filter sheet; the PRD-following case is the case worker's |
+| L20 | tokens.js (1845-1846) | inverse: 'var(--sv-surface-inverse)', | COVERED | DC-20, DC-21, DC-73 | tooltips are a dark bubble with light text (Internal badge tooltip, No Charge tooltip, chip tooltip) |
+| L21 | work-orders.jsx (10019-10024) | completed: ['Complete', 'Invoiced', 'Paid'] | COVERED | DC-29 | the Completed tab holds Complete, Invoiced and Paid; a closed internal work order shows on the All tab with Status Closed |
+| L22 | work-orders.jsx (10375) | Nothing. Always this, never an empty cell or a bare hyphen in text. | SPEC-CONFLICT | IWO-D44, DV-05 | empty report cells should show the dash; the design leaves them blank (question 11) |
+| L23 | work-orders.jsx (10399) | A cell that navigates. A link, not a button — buttons do things. | COVERED | DC-74, DC-62 | Work order and Original work order in the report, and the original work order on the NO CHARGE document, are links |
+| L24 | work-orders.jsx (10479-10480) | A count that needs a person. The only amber in the row, because it is the one thing in it asking for action. | SPEC-CONFLICT | IWO-D15, DC-25 | amber in a list row is kept for the one thing asking for action; the design draws the Internal (and No Charge) badge amber. The PRD settles only "a different style from Internal" (IWO-D15); the colour is not asked |
+| L25 | work-orders.jsx (11538-11541) | const badgeSize = large ? 'md' : 'sm'; | COVERED | DC-25 | at the default row height (48) list badges are the small size (10px), as drawn; the Small and Large row heights are not drawn (DESIGN-SILENT) |
+| L26 | work-orders.jsx (11662) | w: c.key === 'onsite' ? 56 : c.key === 'status' ? 120 : undefined | COVERED | DC-25 | the Status column is 120 px; with the status and the Internal / No Charge badge in it (S2-R10) nothing may wrap or overlap at 1440 and 1536 |
+| L28 | components.css (255-259) | Spec: preview/tabs.html — pill only, 32px, radius 6. | COVERED | DC-06, DC-07 | the Internal categories / No Charge categories tabs are pills, the selected one grey, as drawn |
+| L29 | components.css (51) | .sv-btn--primary:disabled { opacity: 0.4; } | COVERED | DC-02, DC-35, DC-61 | a disabled blue button (Save with nothing picked, Close Work Order before an original is picked) is the same blue at 40% opacity |
+| L30 | components.css (233) | .sv-badge--warning { background: var(--sv-warning-fill); border-color: var(--sv-warning-border); color: var(--sv-warning-text); } | SPEC-CONFLICT | IWO-D15, DC-25, DC-55 | the boards draw both the Internal and the No Charge badge in exactly this warning tone (fill #FFFAEB, text #B54708); the PRD asks for No Charge "a different style from Internal" |
+| L31 | components.css (236) | .sv-badge--neutral { background: var(--sv-surface-sunken); border-color: var(--sv-border-strong); color: var(--sv-text-primary); } | COVERED | DC-29, DC-45, DC-62 | the Closed status and the INTERNAL / NO CHARGE stamps are neutral grey (fill #EEF2F6) |
+| L27 | design-canvas.jsx / tweaks-panel.jsx / ai-agent-icon.js / theme-toggle.js (11-230, 2064-3480, 9217-9980) | They are Claude Design artboard scaffolding | OUT-OF-SCOPE |  | designer tooling and the dark-theme switch: no Internal Work Orders board uses them (the design draws light theme only) |
 
 ## D. Widths 1440 and 1536 (each of the 88 distinct desktop board sources re-rendered at both widths; copies share the result; the two phone boards are 390 px by design)
 
@@ -146,7 +173,7 @@ Every row is **COVERED** (design case in `DESIGN-CASE-PLAN.md`), **SPEC-CONFLICT
 ## E. Counts
 
 - Screens and states: 80 rows (V01-V80): COVERED 77, of which 51 also carry a SPEC-CONFLICT row; OUT-OF-SCOPE 2 (V78 with its register row, V80); SPEC-CONFLICT only 1 (V79).
-- Dialogs, menus, toasts: 28 rows: SAME 18, DIFFERENT 6, NOT DRAWN 2, QUESTION 1, look-only settled 1.
-- Library sentences: 42: in scope 6 (COVERED 4, SPEC-CONFLICT 1, OUT-OF-SCOPE 1), out of scope 36.
+- Dialogs, menus, toasts: 29 rows: SAME 18, DIFFERENT 7, NOT DRAWN 2, QUESTION 1, look-only settled 1.
+- Library rules: 31 rows from the full read (COVERED 20, SPEC-CONFLICT 9, OUT-OF-SCOPE 2); the other always/never sentences are code/tooling rules with no visible effect.
 - Widths: 88 distinct sources at two widths: 71 clean, 11 production top bar, 5 false positives (checked), 1 real wrap (question 12).
 - Unclassified: 0. Questions unsent: 6 new (rows 8-13 of the one sheet) + 2 already in the sheet draft that hold design cases (3: DV-02, 4: DC-50).
