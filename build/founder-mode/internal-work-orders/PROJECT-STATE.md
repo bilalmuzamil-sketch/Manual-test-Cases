@@ -15,3 +15,5 @@
   `applied/HELD-CASES-2026-11-12.md` (18 on Milos's questions, 19 Open API, 1 Maintenance Reminders, 8 production around the release).
 - Question sheet for Milos Vasic: https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w (16 questions,
   NOT shared; the QA lead shares it).
+- 12 Nov 2026, QA lead: the question sheet has been given to Milos Vasic; he is expected to answer in one to two weeks. QA branch:
+  not yet available — the suite is "source-verified only, no build exists yet" (Rule 85); every runnable case carries the Rule 69 marker.
