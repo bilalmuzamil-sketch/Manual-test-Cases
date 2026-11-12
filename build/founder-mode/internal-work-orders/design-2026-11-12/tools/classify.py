@@ -180,3 +180,77 @@ def classify_text(t, kind='text'):
     if s in PRODUCTION: return ('OUT-OF-SCOPE', [], "label of today's screen, unchanged by the feature")
     if s in LOOK: return ('LOOK-ONLY', [], LOOK[s])
     return None
+
+# remaining rendered texts, classified by hand
+CONFLICT.update({'Labor,': 'IWO-D19',
+                 'The work order asks which earlier work order the job comes from, or "Not in ShopView". Optional when the work order is created, required at Close.': 'IWO-D10'})
+LOOK.update({
+    'AccountingHub · Sales > Invoices': 'hub breadcrumb (S8-R1 names Accounting > Sales > Invoices)',
+    'Expense account': 'column header of the No Charge lines block (S8-R7 "expense account")',
+    'Name *': 'required marker on Name (S1-R14 "Name (required")',
+    'Parts cost, No Charge line 02 (Warranty)': 'journal line description on the hub record (PRD silent; S8-R7 names the source "No Charge line")',
+    'Work order closed': 'hub event name (PRD silent)',
+})
+PRODUCTION.update({'Estimate EST-S2-34918'})
+MANUAL_PRD = {
+    'Posted to ShopView Review, credited to 4300 Shop Supplies Income': (['S10-R3', 'S3-N4'], 'S10-R3 note with the S3-N4 ShopView Review rule'),
+    'Which earlier work order this job comes from, or Not in ShopView, and the line on it. The line sets the original technician for the comeback and warranty numbers. Optional here, required before the invoice is created.':
+        (['S12-R2', 'S2-R2'], 'S2-R2 helper with S12-R2 "required before the invoice is created"'),
+}
+_orig = classify_text
+
+
+def classify_text(t, kind='text'):  # noqa: F811
+    s = t.strip()
+    if s in MANUAL_PRD and not kind.startswith('@'): return ('PRD-MATCH', MANUAL_PRD[s][0], MANUAL_PRD[s][1])
+    return _orig(t, kind)
+
+
+# ---------------------------------------------------------------------------------------------------------------- notes
+PM, SC, LO = 'PRD-MATCH', 'SPEC-CONFLICT', 'LOOK-ONLY'
+NOTE_CLASS = {  # representative note id -> (class, codes or register ids, note)
+ 'c-flow0-1': (PM, ['S1-R2'], ''), 'c-flow0-1b': (PM, ['S1-R2', 'KD'], ''), 'c-flow0-2': (PM, ['S1-R2', 'S1-R3', 'S1-R10'], ''),
+ 'c-flow0-2a': (SC, ['IWO-D52'], '"seeded when the setting is first turned on" vs S1-R13 "seeded … when this release ships"; rest agrees with S1-R13, S5-R1'),
+ 'c-flow0-2b': (PM, ['S1-R13'], ''), 'c-flow0-2c': (PM, ['S1-R13', 'S1-R14', 'S1-R16'], ''), 'c-flow0-2d': (PM, ['S1-R14'], ''),
+ 'c-flow0-2e': (SC, ['IWO-D07'], 'menu item disabled and page read-only vs S1-R13 "the lists stay editable"'), 'c-flow0-3': (PM, ['S1-R4'], ''),
+ 'c-flow0-4': (PM, ['S1-R8', 'OOS'], ''), 'c-flow0-5': (SC, ['IWO-D06'], '"The checkbox is the only place the flag is set" vs S1-R7 "The checkbox and the modal are the only places"'),
+ 'c-flow0-6': (PM, ['S1-N4'], ''), 'c-flow0-7': (PM, ['S1-R11'], ''), 'c-flow0-8': (PM, ['S1-R12', 'S1-R6'], ''), 'c-flow0-9': (PM, ['S5-R1', 'S5-R3'], ''),
+ 'c-flow0-10': (PM, ['S5-R4'], ''), 'c-flow0-11': (PM, ['S10-R1', 'S1-R7'], ''), 'c-flow0-11b': (PM, ['S1-R15', 'S2-R1'], ''), 'c-flow0-12': (PM, ['S1-R10'], ''),
+ 't-flow0': (LO, [], 'page title'), 'd-flow0': (SC, ['IWO-D52'], '"gets the starting categories" on turn-on vs S1-R13 seeding at release'),
+ 'c-flow1-1': (LO, [], 'flow step'), 'c-flow1-2a': (PM, ['S2-R2'], 'tooltip not drawn: IWO-D12'), 'c-flow1-2b': (PM, ['S2-R1'], ''), 'c-flow1-2b2': (PM, ['S2-R1', 'S1-R15'], ''),
+ 'c-flow1-2c': (SC, ['IWO-D34'], 'account name "Internal Work Orders Expense"; shop supplies sentence placed in this dialog'), 'c-flow1-2d': (SC, ['IWO-D34'], 'as c-flow1-2c'),
+ 'c-flow1-2e': (PM, ['S2-R2'], ''), 'c-flow1-3': (LO, [], 'flow step'), 'c-flow1-3c': (PM, ['S3-N2'], 'the board itself differs: IWO-D18'), 'c-flow1-3d': (PM, ['S3-R1'], ''),
+ 'c-flow1-3e': (PM, ['S2-E7'], ''), 'c-flow1-4': (LO, [], 'flow step'), 'c-flow1-4b': (LO, [], 'flow step'), 'c-flow1-5': (LO, [], 'flow step'), 'c-flow1-6': (PM, ['S3-R3'], ''),
+ 'c-flow1-6b': (PM, ['KD', 'S3-R2'], ''), 'c-flow1-6c': (SC, ['IWO-D22'], '"When Internal Work Orders Expense is not mapped" (v0.17 fixed row) vs S3-N4 "No account set for [category]"'),
+ 'c-flow1-6d': (PM, ['S3-E4'], ''), 'c-flow1-6e': (PM, ['S3-E2'], ''), 'c-flow1-6f': (PM, ['S3-E5'], ''), 'c-flow1-6g': (PM, ['S7-N5'], ''),
+ 'c-flow1-8': (SC, ['IWO-D19', 'IWO-D28'], '"stamped NO CHARGE" (its board shows INTERNAL; question 2); "X dismisses it" (no X drawn)'),
+ 'c-flow1-9': (PM, ['S2-R10'], ''), 'c-flow1-10b': (PM, ['S3-R6', 'S9-R10'], ''), 'c-flow1-S2': (PM, ['S3-EH'], ''), 't-flow1': (LO, [], 'page title'),
+ 'd-flow1': (PM, ['S3-EH'], ''), 'c-flow2-1': (PM, ['S2-R5', 'PERM'], ''), 'c-flow2-1b': (PM, ['S2-N4'], ''), 'c-flow2-1c': (PM, ['S2-N2'], ''), 'c-flow2-2': (PM, ['S2-R5', 'S2-R17'], ''),
+ 'c-flow2-3': (PM, ['S2-R16'], ''), 'c-flow2-3b': (PM, ['S2-R6'], ''), 'c-flow2-3c': (PM, ['S2-R6'], 'omits "or the original line" of S2-R6 (no conflict)'), 'c-flow2-4': (PM, ['S3-R2'], ''),
+ 'c-flow2-4b': (PM, ['S3-R2'], ''), 'c-flow2-5': (PM, ['S3-R5', 'S4-R1'], ''), 'c-flow2-6': (PM, ['S2-R9'], ''), 'c-flow2-7': (PM, ['S2-R11'], ''), 'c-flow2-7b': (PM, ['S2-R11'], ''),
+ 't-flow2': (LO, [], 'page title'), 'd-flow2': (SC, ['IWO-D49'], 'free line "moved to its own No Charge work order"; "marking a line No Charge in place is V2" vs Story 12 / Out of Scope'),
+ 'c-flow3-1': (PM, ['S4-R1', 'S2-R9'], ''), 'c-flow3-2': (PM, ['S4-R1', 'PERM'], ''), 'c-flow3-3': (PM, ['S4-R4'], ''), 't-flow3': (LO, [], 'page title'), 'd-flow3': (PM, ['S4-R1'], ''),
+ 'c-flow4-1': (PM, ['S2-R14', 'S9-R3'], ''), 'c-flow4-2': (SC, ['IWO-D36'], '"Classification: No Charge (internal and customer no-charge work)" vs S2-R14 separate values'),
+ 'c-flow4-3': (PM, ['S2-R14'], ''), 'c-flow4-4': (PM, ['S9-R3', 'S9-R4'], ''), 'c-flow4-5': (PM, ['S9-R2', 'S9-R1'], ''), 'c-flow4-6': (PM, ['S9-R2'], ''),
+ 'c-flow4-7': (SC, ['IWO-D16'], 'No Charge badge on the internal work order S2-34918'), 'c-flow4-8': (SC, ['IWO-D16'], 'as c-flow4-7'), 'c-flow4-9': (SC, ['IWO-D16'], 'note says No Charge; the board draws Internal (the board agrees with the PRD)'),
+ 'c-flow4-10': (PM, ['S2-R10'], ''), 'c-flow4-11': (PM, ['S2-R10'], ''), 't-flow4': (LO, [], 'page title'), 'd-flow4': (PM, ['S9-R2'], ''),
+ 'c-flow5-1': (PM, ['S4-E1'], ''), 'c-flow5-3': (PM, ['S8-R6'], ''), 'c-flow5-3b': (PM, ['S8-R1'], ''), 'c-flow5-3c': (PM, ['S8-R7', 'S6-R2'], 'Comeback number: the hub owner confirmed 6440 on 2026-11-09 (S6-R2), newer than the note'),
+ 'c-flow5-4': (PM, ['S8-N2', 'S4-E1'], ''), 't-flow5': (LO, [], 'page title'), 'd-flow5': (PM, ['S7-R2', 'S8-N2', 'S8-R7'], ''), 't-components': (LO, [], 'page title'),
+ 't-flow6': (PM, ['S12'], 'matches Story 12; the dropdown page name differs (IWO-D49)'), 'd-flow6': (PM, ['S12-R1', 'S12-R3', 'S12-R4', 'KD'], ''),
+ 'c-flow6-1': (PM, ['S12-R1', 'OOS'], ''), 'c-flow6-2': (PM, ['S12-R2'], ''), 'c-flow6-3': (PM, ['S12-R3', 'S12-R4'], ''),
+ 'c-flow6-4': (SC, ['IWO-D26'], '"prices the line at the customer\'s current pricing" vs S12-R5/S2-R6 "as a new line would be today"'), 'c-flow6-5': (PM, ['S12-R6'], ''),
+ 'c-flow2-3d': (PM, ['S2-R18'], ''), 'c-flow2-3e': (PM, ['S2-R13', 'S2-R18'], ''), 't-hf-1': (LO, [], 'row title'), 'c-hf-01': (PM, ['S1-R2'], ''), 'c-hf-02': (PM, ['S1-R2', 'S1-R5'], ''),
+ 'c-hf-09': (PM, ['S1-R15', 'S2-R1'], ''), 't-hf-2': (LO, [], 'row title'), 't-hf-3': (LO, [], 'row title'), 'c-hf-20': (PM, ['S2-R2', 'S2-R17'], ''), 'c-hf-27': (PM, ['S3-R2', 'S2-R17'], ''),
+ 't-hf-4': (LO, [], 'row title'), 'c-hf-35': (PM, ['S12-R7', 'S12-R4', 'S12-R8'], ''), 't-hf-5': (LO, [], 'row title'), 't-hf-6': (LO, [], 'row title'), 't-hf-7': (LO, [], 'row title'),
+ 'c-hf-41': (PM, ['S8-R1', 'S6-R2'], ''), 'd-hf': (LO, [], 'page description'), 't-rv-1': (LO, [], 'row title'), 'c-rv-1-1': (PM, ['S1-R1'], ''), 'c-rv-1-3': (PM, ['S1-R3'], ''),
+ 't-rv-2': (LO, [], 'row title'), 'c-rv-2-1': (PM, ['S1-R13'], ''), 'c-rv-2-2': (PM, ['S1-R13', 'OOS'], ''), 'c-rv-2-3': (PM, ['S1-R14', 'S1-R16'], ''), 't-rv-3': (LO, [], 'row title'),
+ 'c-rv-3-1': (PM, ['S5-R1', 'S5-R4'], ''), 'c-rv-3-2': (PM, ['S1-R7'], 'the board does not draw the select (IWO-D06)'), 'c-rv-3-4': (PM, ['S2-R1', 'KD'], ''), 'c-rv-3-5': (PM, ['S2-R1'], ''),
+ 'c-rv-3-6': (PM, ['S2-R2'], ''), 't-rv-4': (LO, [], 'row title'), 'c-rv-4-1': (PM, ['S2-R5', 'PERM'], ''), 'c-rv-4-2': (PM, ['S2-R5', 'S2-R17'], ''), 'c-rv-4-3': (PM, ['S2-R6'], ''),
+ 'c-rv-4-5': (PM, ['S2-R18'], ''), 't-rv-5': (LO, [], 'row title'), 'c-rv-5-1': (PM, ['S3-R2', 'S2-R17'], ''), 'c-rv-5-2': (PM, ['S3-R2', 'KD'], ''), 'c-rv-5-3': (PM, ['S3-R5'], ''),
+ 'c-rv-5-4': (PM, ['S3-R5', 'S2-R16'], ''), 'c-rv-5-5': (PM, ['S2-R10'], ''), 't-rv-6': (LO, [], 'row title'), 't-rv-7': (LO, [], 'row title'), 'c-rv-7-1': (PM, ['S2-R14'], ''),
+ 'c-rv-7-3': (PM, ['S8-R1', 'S6-R2'], ''), 'c-rv-7-4': (PM, ['S8-N2'], ''), 't-rv-8': (LO, [], 'row title'), 's-rv-8-1': (PM, ['KD', 'OOS'], ''), 's-rv-8-2': (PM, ['OV'], ''),
+ 's-rv-8-3': (PM, ['OOS'], ''), 'd-rv': (LO, [], 'page description'), 'c-flow6-6': (PM, ['S12-R1'], ''),
+}
+TITLE_CONFLICT = {'07 Invoice · the line at $0.00, Warranty': 'IWO-D39', '35 Invoice · the line at $0.00, Warranty': 'IWO-D39', '6.6 · 35 Invoice · the line at $0.00, Warranty': 'IWO-D39',
+                  '03 Settings · setting on, no flagged customer': 'IWO-D03', '02 List · No Charge': 'IWO-D36', '03 List · No Charge, no results': 'IWO-D36'}
+PAGE_CONFLICT = {'Flow 6 · Move one line off a billable work order': 'IWO-D49'}

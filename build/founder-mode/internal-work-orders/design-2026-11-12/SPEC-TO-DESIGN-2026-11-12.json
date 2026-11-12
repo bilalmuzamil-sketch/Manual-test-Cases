@@ -1,0 +1,1742 @@
+{
+ "made": "12 Nov 2026",
+ "prd": "Final v1.0",
+ "rows": 247,
+ "by_verdict": {
+  "DIFFERENT": 48,
+  "NOT SHOWN": 30,
+  "NO SCREEN": 117,
+  "SHOWN": 52
+ },
+ "table": [
+  {
+   "code": "S1-R1",
+   "prd": "Settings > Work Orders shows a toggle \"Internal Work Orders\" (Title Case like the other toggles on the tab), off by default, organization-wide like the other toggles, with the description \"Lets you flag your own company as an internal customer and mark a customer's work order, or a single line of a billable work order, as No Charge (warranty, goodwill, comeback). Internal and no-charge work orders",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D01 / IWO-D04",
+   "design": "toggle drawn off (Flow 0 01) and on (02); description differs"
+  },
+  {
+   "code": "S1-R2",
+   "prd": "Switching the toggle from off to on for the first time in the organization opens the modal \"Which customers are your own company?\" with the body \"Work orders for these customers are internal: no prices and no invoice; parts cost posts to the expense account of their category when you use QuickBooks or AccountingHub. Nothing is picked for you: your location is not always a customer, and the names c",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D05",
+   "design": "modal drawn (Flow 0 01b): title, Do this later, Save, change-any-time line; body, Save state and picker differ"
+  },
+  {
+   "code": "S1-R3",
+   "prd": "While the toggle is on, two hint lines sit under the description, each with an info icon: \"Manage categories in Internal Work Orders (Administration > Service). Their expense accounts are set on each category.\" where Internal Work Orders is a link to the categories page (S1-R13), and \"Map their expense accounts in Integrations > QuickBooks.\" with the QuickBooks mark, where QuickBooks is a link (sh",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D02",
+   "design": "both hint lines drawn with links and the QuickBooks mark; first line differs"
+  },
+  {
+   "code": "S1-R4",
+   "prd": "While the toggle is on and no customer carries the flag, the first hint of S1-R3 reads instead \"No internal customer yet. Work orders for your own equipment stay billable until you flag one: Edit Customer > Internal customer. No Charge on customer work orders works now.\" The text is informational; nothing is required and nothing is blocked.",
+   "verdict": "NOT SHOWN",
+   "register": "IWO-D03",
+   "design": "board 03 draws the same as 02"
+  },
+  {
+   "code": "S1-R5",
+   "prd": "\"Do this later\" saves the toggle (on) and closes the modal without flagging anyone; the hint of S1-R4 shows under the toggle until a customer is flagged, as the reminder of what is left to do. No Charge (Story 2) works with no flagged customer. There is no step the user must complete.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "Do this later behaviour"
+  },
+  {
+   "code": "S1-R6",
+   "prd": "Unticking the \"Internal customer\" checkbox on Edit Customer opens the dialog of S1-R12 before the dialog is saved; on confirmation Save clears the flag. Cancel leaves the checkbox ticked.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 0 08: unticked checkbox behind the Remove flag dialog"
+  },
+  {
+   "code": "S1-R7",
+   "prd": "Edit Customer shows the checkbox \"Internal customer\" as the last field of the dialog, below \"PO is required\", with the helper \"Work orders for this customer are internal: no prices, no invoice, parts cost posts to the expense account of the internal category.\" When ticked, the select \"Default internal category\" appears under it, listing the active Internal categories, General Internal preselected.",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D06 / IWO-D09",
+   "design": "checkbox last, below PO is required (Flow 0 05); helper and select missing on 05/08; select on 11 with its own helper"
+  },
+  {
+   "code": "S1-R8",
+   "prd": "While the setting is on, a flagged customer shows an \"Internal\" badge next to its name in the customer header, in the customers list and on the customers list mobile card. While the setting is off the badge is hidden in all three places (S1-N4); the badges on work orders stay (S2-R10).",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Customers list (Flow 0 04) and header (05, 07, 08) badge; mobile card not drawn"
+  },
+  {
+   "code": "S1-R9",
+   "prd": "More than one customer can be flagged, in the modal or one by one on Edit Customer. Each carries the badge of S1-R8; there is no list of flagged customers anywhere but the Customers list itself.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S1-R10",
+   "prd": "Turning the toggle off hides the hint lines and the customer badges and leaves the flags on the customers. Open internal work orders are not touched: they keep their badge and close as internal. New work orders for a flagged customer are billable while the toggle is off. Turning it on again (with Save settings, like any other toggle) opens no modal: the customer badges and the hint lines come back",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 0 12 (turned off: no hints) — label differs, IWO-D04"
+  },
+  {
+   "code": "S1-R11",
+   "prd": "When a customer is flagged (Save in the modal, or on Edit Customer with the checkbox ticked), or the setting is turned on again while flagged customers have open billable work orders (S1-R10), a dialog reads \"[n] open work orders for [customer] are billable. Make them internal? Prices, fees and discounts are removed; costs and hours are kept.\" and lists those work orders under the body, one line e",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 0 07: title, body, rows with number · unit · status and location, row notes, \"1 more at locations…\", Keep billable / Make internal"
+  },
+  {
+   "code": "S1-R12",
+   "prd": "Removing the flag (unticking the checkbox on Edit Customer, S1-R6) opens the dialog \"Remove the Internal flag from [customer]?\" with the body \"[n] open internal work orders for [customer] stay internal and close without an invoice. New work orders for [customer] will be billable.\" with the buttons Cancel and \"Remove flag\" (with no open internal work orders the first sentence is omitted). Confirmin",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 0 08: title, body, Cancel / Remove flag"
+  },
+  {
+   "code": "S1-R13",
+   "prd": "Administration > Service > Internal Work Orders is a page with two tabs. Internal categories: columns Category (the default carries a Default badge), QuickBooks expense account (with the QuickBooks mark; \"Not set\" with a warning icon when empty), Internal customers using it, Work orders (count, all time; a billable work order with a no-charge line of the category counts too), and a row menu with E",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D07 / IWO-D08 / IWO-D52",
+   "design": "two tabs, columns, Default badge, Not set with warning icon, row menu, New buttons, Show archived (1); column name, off state differ"
+  },
+  {
+   "code": "S1-R14",
+   "prd": "The category dialog (\"New Internal Category\", \"New No Charge Category\", or Edit with the current values) has: Name (required, unique within its list including archived categories, refused with \"A category with this name is archived. Restore it instead.\"; 60 characters); \"QuickBooks expense account\", one picker per connected location listing that location's expense accounts (the same picker as the ",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D10 / IWO-D09",
+   "design": "both dialogs drawn (Name *, QuickBooks expense account per location, Requires the original work order / Default category); helpers differ"
+  },
+  {
+   "code": "S1-R15",
+   "prd": "Edit Asset of an internal customer shows, after the existing fields and under a divider, the select \"Internal category\" (the active Internal categories; empty means the customer's default) with the helper, led by the QuickBooks mark, \"Categories are mapped to QuickBooks expense accounts. This one is where the asset's internal work orders post. Leave it empty to use the customer's category, [custom",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 0 11b: Internal category select under a divider, QuickBooks mark, helper word for word"
+  },
+  {
+   "code": "S1-R16",
+   "prd": "A category has a stable key; renaming it keeps the history, the report filter and the mappings. Archiving a category in use keeps it on existing work orders, lines, documents and reports; it is no longer offered in any select. The default Internal category cannot be archived; changing the default moves nothing on existing customers. The green QuickBooks mark (the existing QuickBooks icon) is shown",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "archive warning, \"(archived)\" value and Restore not drawn"
+  },
+  {
+   "code": "S1-N1",
+   "prd": "If the user does not have 'Settings — App', Settings > Work Orders is not available to them, as today.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "permission"
+  },
+  {
+   "code": "S1-N2",
+   "prd": "If the user has 'Settings — App' but not 'Customers — Create & Edit', the modal of S1-R2 still works and Save flags the picked customers (flagging from Settings is part of the setting); the Edit Customer path is not available to them, as the dialog is not.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "permission"
+  },
+  {
+   "code": "S1-N6",
+   "prd": "If the user does not have 'Work Orders — Create & Edit', the dialog of S1-R11 shows the same body and list with one button, OK; the flag is saved and the work orders stay billable until a user with the setting saves Edit Customer for that customer (S1-R11) or turns the setting on again (S1-R10).",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "OK-only dialog not drawn"
+  },
+  {
+   "code": "S1-N3",
+   "prd": "If the user does not have 'Customers — Create & Edit', the Edit Customer dialog is not available to them, as today; the checkbox has no separate state.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "permission"
+  },
+  {
+   "code": "S1-N4",
+   "prd": "If the toggle is off, Edit Customer shows the checkbox only for a customer that already carries the flag, ticked and read-only, with the line \"Turn on Internal Work Orders in Settings to change this.\" where Settings is a link; the Internal badge is hidden in the customer header, the customers list and the mobile card, so the read-only checkbox is the only trace of the flag. The flag has no effect ",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 0 06: read-only ticked checkbox, \"Turn on Internal Work Orders in Settings to change this.\" with Settings link, no header badge"
+  },
+  {
+   "code": "S1-N5",
+   "prd": "If a flagged customer has open internal work orders, removing the flag is not refused; the dialog of S1-R12 states what happens to them. Closed and Declined work orders are not counted in [n].",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S1-E1",
+   "prd": "If a flagged customer loses the flag, its closed internal work orders stay Closed · Internal and its open internal work orders stay internal, in every list and report; the classification is written on the work order, never read from the customer.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S1-E2",
+   "prd": "If a flagged customer is deleted, its flag goes with it; nothing else changes. Deleting a customer with open work orders is refused as today.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S1-E3",
+   "prd": "If a shop has several locations, the toggle and the flag are organization-wide; a flagged customer is internal at every location.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S1-E4",
+   "prd": "If a work order on a flagged customer was created while the setting was off (billable), turning the setting on offers S1-R11 for it like any other open billable work order.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-R1",
+   "prd": "In the New Work Order dialog, picking a customer with the Internal customer flag shows the \"Internal\" badge next to the customer name with an info icon; the tooltip reads \"Internal customer: no prices, no invoice. Posts to [category], from the asset.\" or \"... from the customer.\" (the latter also when neither the asset nor the customer has a category of its own and the default Internal category app",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 1 2b/2b2: Internal badge, info icon, tooltip from the customer / from the asset (2b covered by the asset list: IWO-D13)"
+  },
+  {
+   "code": "S2-R2",
+   "prd": "In the New Work Order dialog (New Work Order only; Edit Work Order, which shares the dialog, is unchanged), picking a customer without the flag shows, at the bottom of the dialog below the \"Asset Here?\" checkbox and separated from it by a divider, an unticked checkbox \"No Charge\" with an info icon whose tooltip reads \"Warranty, goodwill or comeback work. Closes without an invoice; parts cost posts",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D12 / IWO-D24",
+   "design": "No Charge at the bottom under a divider, Category *, Original work order list with Other / Not in ShopView, helper; tooltip and Original technician line not drawn"
+  },
+  {
+   "code": "S2-R3",
+   "prd": "The work order header shows one badge next to the status: \"Internal\" for an internal work order, \"No Charge\" for a no-charge work order (a different style from Internal), in the desktop and the mobile header. It is the only mark on the work order: the customer card on the detail page shows no badge and no category. On the detail page the header card of an internal or no-charge work order has an or",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D14 / IWO-D15 / IWO-D16",
+   "design": "one badge next to the status in the header; no orange header card on desktop; same badge style"
+  },
+  {
+   "code": "S2-R4",
+   "prd": "Lines on an internal or no-charge work order show quantity, cost (parts) and hours (labor) and no sell prices: the Rate, Margin and Total columns of the lines table (a part's sell price sits in Rate) and the Sell price, Rate and Margin fields of the line and part dialogs are hidden and not required; there is no work order total, tax, fee or discount block; the shop supplies block is the flat amoun",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D17 / IWO-D19",
+   "design": "no-charge detail correct; internal detail and internal estimate keep prices"
+  },
+  {
+   "code": "S2-R5",
+   "prd": "On a billable work order on a regular customer, the three-dots menu offers \"Convert to No Charge\" (next to Add Work Order Fee / Discount) until the work order is invoiced. It opens the confirmation \"Convert work order [number] to No Charge?\" with the body \"Prices, fees and discounts are removed from every line; costs and hours are kept. It closes with a NO CHARGE document instead of an invoice. Yo",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D25",
+   "design": "menu item next to Add Work Order Fee / Discount (Flow 2 01), dialog body, Category *, original selects, Cancel / Convert to No Charge; title letter case"
+  },
+  {
+   "code": "S2-R6",
+   "prd": "On a no-charge work order the menu offers \"Change category\" and \"Convert to Billable\" until the work order is closed. Convert to Billable opens \"Convert work order [number] to billable?\" with the body \"Every line is priced as a new line would be today. You can convert it to no charge again until it is invoiced.\" and the buttons Cancel and \"Convert to Billable\"; confirming removes the badge and the",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D26",
+   "design": "Change category dialog (Save disabled), Convert to Billable dialog; body differs"
+  },
+  {
+   "code": "S2-R7",
+   "prd": "Changing the customer on a work order works as today (not offered on an invoiced or paid billable work order, as today, nor on a closed internal or no-charge work order, S2-R9); until then the classification follows the new customer: to an internal customer the work order becomes internal (prices removed, costs and hours kept, no Convert actions); to a regular customer from an internal one it beco",
+   "verdict": "NOT SHOWN",
+   "register": "IWO-D34",
+   "design": "Change Customer dialog not drawn"
+  },
+  {
+   "code": "S2-R8",
+   "prd": "If a vendor bill already exists on the work order, a customer change (S2-R7), a Convert action (S2-R5, S2-R6) or, on a line that has a posted vendor bill, Mark as No Charge, Change category or Mark as Billable (Story 12) first shows the dialog \"Change where the cost is posted?\" with the body \"The vendor bill for [part] ($[amount]) was posted to [account]. If you continue, that cost moves to [accou",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D34",
+   "design": "Flow 1 2c/2d: title, body, Cancel / Continue; account names differ"
+  },
+  {
+   "code": "S2-R9",
+   "prd": "From Close or invoice on, the classification and the category are locked: a closed no-charge work order shows the No Charge badge with no Convert or Change category action, on a closed internal or no-charge work order the Change Customer button on the customer card is disabled with the tooltip \"Reopen the work order to change the customer.\" (the lock an invoiced or paid billable work order has tod",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D27",
+   "design": "Flow 2 06 / Flow 3 01: header line, Change Customer disabled, no Convert; Reopen button on other closed boards"
+  },
+  {
+   "code": "S2-R10",
+   "prd": "The work orders list shows the badge in the status column for internal and no-charge work orders in every tab, in the Tech View display and on the mobile card. Open and closed internal and no-charge rows show \"No Charge\" in Total Price (the column exists only for users with 'See Financial Data'; others see the badge); closed ones show where invoiced ones show (the All tab, Status \"Closed\"), not in",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D35 / IWO-D16",
+   "design": "badge in the Customer column; Total price No Charge; Status Closed in the All tab (Flow 1 09); Board, Schedule, Tech View cards"
+  },
+  {
+   "code": "S2-R11",
+   "prd": "Parts ordering, receiving, picking, clock-ins, approvals, notes, inspections, split and review work exactly as on a billable work order. On an internal work order \"Send to Portal\" and \"Request IBS Approval\" are not shown. On a no-charge work order \"Send to Portal\" works for the estimate as today (the document carries NO CHARGE; the portal estimate shows lines, hours and part quantities on its line",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 2 07 (Send to Portal on the no-charge estimate), 7b portal estimate without prices; internal estimate has no Send to Portal"
+  },
+  {
+   "code": "S2-R12",
+   "prd": "The Open API and its webhooks are specified in Story 11: the classification and the category on the resources it exposes, the Internal flag on customers, the status \"closed\", no invoice webhook for an internal invoice, and the work order status webhook at Close and Reopen.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "API"
+  },
+  {
+   "code": "S2-R13",
+   "prd": "The classification is written on the work order when it is created, when its customer changes and when it is converted; the closed record carries it too, with the category. Lists, reports and integrations read it from there, never from the customer flag. Converting to no charge or to billable, changing the category, a shop supplies amount change, Make internal (S1-R11, on each work order), Close w",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "data and audit"
+  },
+  {
+   "code": "S2-R14",
+   "prd": "While the Internal Work Orders setting is on, the work orders list shows a chip \"Classification: All / Billable / Internal / No Charge\" (the existing single-choice chip), default All, on every tab and in the mobile filter sheet. While the setting is off the chip is not shown; the badges on the rows stay.",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D36",
+   "design": "chip and its four values (Flow 4 01); board 02 title/note"
+  },
+  {
+   "code": "S2-R15",
+   "prd": "When a work order becomes internal or no charge, its work order fees and discounts and its line discounts are removed with the prices, and \"Add Work Order Fee / Discount\" is not shown in its menu. Making it billable again prices the lines from the customer's pricing and does not restore removed fees or discounts.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "internal and no-charge menus without Add Work Order Fee / Discount (Flow 1 3c, Flow 2 3b)"
+  },
+  {
+   "code": "S2-R16",
+   "prd": "A no-charge work order always carries one category from the No Charge list, set at creation (S2-R2) or at conversion (S2-R5) and editable with Change category (S2-R6) until Close. It shows in the Change category dialog, on the NO CHARGE document and the estimate under the masthead (\"Category: Warranty\", with \"· Original work order S2-30455\" only when the original is a real work order, never \"Not i",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "category on the NO CHARGE document and estimate, not on the detail (Flow 2 03, 05, 07)"
+  },
+  {
+   "code": "S2-R17",
+   "prd": "When the category requires the original work order, every dialog that sets the category (New Work Order S2-R2, Convert to No Charge S2-R5, Change category S2-R6, and the line dialogs of Story 12) shows the selects \"Original work order\" and \"Original line\" of S2-R2. Both are optional in the dialogs; the original work order is required at Close (S3-R2) and before Create invoice on a no-charge line (",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D24",
+   "design": "selects drawn in every dialog; Original technician line not drawn"
+  },
+  {
+   "code": "S2-R18",
+   "prd": "Every classification change writes a read-only system note on the work order (Notes tab, author ShopView, with the user and the time) and an Audit Log row: Convert to No Charge (\"Converted to No Charge by [user]. Category [name], original work order [number]. Prices, fees and discounts removed; costs and hours kept.\"), Change category (from, to, original work order kept or cleared), Convert to Bil",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D26 / IWO-D33",
+   "design": "System notes drawn (Flow 2 3d, 3e); Audit Log not drawn"
+  },
+  {
+   "code": "S2-R19",
+   "prd": "No event writes a sell price onto an internal or no-charge work order, or onto a no-charge line (Story 12): not receiving a special-order part at a real cost, not editing the cost on a vendor invoice, not a core-charge change (today each of these derives or rewrites the part's sell price from the cost). Cost is written normally. The receive screen replaces its notice \"Updating the cost also update",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "receive and vendor-invoice notices not drawn"
+  },
+  {
+   "code": "S2-R20",
+   "prd": "Fixed price and Fixed Line Total: when a work order becomes internal or No Charge, or a line is marked No Charge, the line's fixed labor price and Fixed Line Total (labor and parts portions) are removed with the prices; cost and hours stay; the Labor + Parts = Total invariant is not checked on a line without a total; the note records what was removed (\"Fixed line total $1,250.00 removed\"). The fix",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-R21",
+   "prd": "At creation of an internal or no-charge work order, auto-apply fee and discount templates and the customer's default discount are not applied at all; S2-R15 (removal) applies to a work order converted later. On a billable work order with no-charge lines, work order fees and discounts stay and are computed on the billable amounts; only the marked line's own discount is removed (S12-R4).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-R22",
+   "prd": "The per-line warranty flag that exists in the data and in the Open API (is_warranty; there is no toggle in the line dialog today and Print Work Order never printed it) becomes derived: true on a line that is No Charge with the category Warranty and on every line of a whole Warranty work order, false otherwise, never set by hand. Print Work Order gains the \"No Charge · [category]\" chip next to a no",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-N1",
+   "prd": "If the setting is off, the New Work Order dialog shows no badge, hint or No Charge checkbox, and new work orders for flagged customers are billable. Open internal and no-charge work orders keep their classification, badge, orange header and category; they close as in Story 3 (S1-R10). Billable work orders offer no Convert to No Charge. While the setting is off, an open no-charge work order can sti",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-N2",
+   "prd": "If the user does not have 'Work Orders — Create & Edit' and 'See Financial Data', the Convert to No Charge, Convert to Billable and Change category actions are not shown in the menu and the checkbox is not shown in the New Work Order dialog, as Add Work Order Fee / Discount is not offered.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 2 1c: menu without Convert to No Charge"
+  },
+  {
+   "code": "S2-N3",
+   "prd": "If the selected customer is an internal customer, the \"No Charge\" checkbox is not shown in the New Work Order dialog and a billable work order of that customer offers no Convert action (S2-R2, S2-R7). An open no-charge work order on a customer that was flagged afterwards (S1-R11) keeps Change category and Convert to Billable (S2-R6).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-N4",
+   "prd": "If the work order has a deposit, \"Convert to No Charge\" is disabled with the tooltip \"Reverse the deposit first\", as the Change Customer button on the customer card is today.",
+   "verdict": "SHOWN",
+   "register": "IWO-D40",
+   "design": "Flow 2 1b: Convert to No Charge disabled; tooltip not drawn"
+  },
+  {
+   "code": "S2-N5",
+   "prd": "\"Add Deposit\" is not shown on internal and no-charge work orders.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "no Add Deposit (removed-marker on the Finance tab)"
+  },
+  {
+   "code": "S2-E1",
+   "prd": "If a line is added to an internal or no-charge work order from a canned line, from an inspection or from ShopCoach, its prices are dropped on entry; cost and hours are kept. A labor rate change in settings has nothing to update on these work orders.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-E2",
+   "prd": "If a work order is split, each part keeps the classification of the original and, on a no-charge work order, its category; the new work order starts with Shop supplies $0.00 and gets no automatic fees or discounts (S2-R15); lines move with cost and hours and no prices.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-E3",
+   "prd": "An imported work order takes the classification of its customer at import: internal for a flagged customer while the setting is on, billable otherwise. No Charge is never imported; the advisor can convert it as in S2-R5.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-E4",
+   "prd": "If a no-charge work order is made billable again, lines priced by hand before it was marked no charge are priced as in S2-R6, not at the old hand-set prices.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-E5",
+   "prd": "Lines copied into an internal or no-charge work order lose their prices as in S2-E1; lines copied from one into a billable work order are priced from that customer's pricing. Copying a work order does not exist in the product today; if it is added, a copied work order takes its customer's classification and No Charge is not copied.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-E6",
+   "prd": "If an estimate was already sent to the portal, or IBS approval requested, before the work order is converted to no charge, the portal shows the updated estimate with the NO CHARGE stamp on its next open and no call goes to IBS: ShopView can request an approval and a new request replaces the amount, it cannot withdraw one, so an earlier request stays as it was and the IBS card is hidden on internal",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S2-E7",
+   "prd": "Parts with a core charge work as today up to resolution: the core row shows on the lines with no price, Core OK / Not OK is required before Close as it is before invoicing, and the completion wizard shows no core amount on an internal or no-charge work order. Not OK adds a charge to nobody; the vendor's core charge on the bill is cost and posts with the bill line (S7-R3). OK creates the vendor ret",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 1 3e: core row with \"$85.00 cost\", no price"
+  },
+  {
+   "code": "S3-R1",
+   "prd": "On an internal or no-charge work order, every place that offers \"Create invoice\" on a billable work order offers \"Close Work Order\" instead (Title Case, like Create Work Order, the same label everywhere) and opens the confirmation of S3-R2: the header button (on mobile, the icon button with the tooltip \"Close Work Order\"), the three-dots menu (only while it would hold Create invoice, S3-N2), the C",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D18",
+   "design": "header button (Flow 1 05), Finance tab button (3d), Missing Details last button (06); placement while lines are open differs"
+  },
+  {
+   "code": "S3-R2",
+   "prd": "Close opens the confirmation \"Close work order [number]?\" with a posting date field (default today; it follows the rules of Invoice Date on the Finance-tab Create invoice today, and it is the date of the internal invoice, of every entry, and of the record in every report, export and the asset Invoices tab) and these rows: \"Stock parts $[stock parts cost]\" with the note \"Posted to [mapped account n",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D20 / IWO-D21 / IWO-D22",
+   "design": "confirmation rows, notes, Cancel / Close Work Order, original-required select and warning (Flow 2 4b); sentence wording differs"
+  },
+  {
+   "code": "S3-R3",
+   "prd": "Confirming completes the work order if it is not yet Complete, creates the internal invoice underneath (carrying the work order number, nothing owed), relabels the picks to the internal invoice and sends their journal entries as invoicing does today (parts leave stock when they are picked), posts the entries of Stories 7 and 8, and shows the alert \"Work order [number] is Closed · Internal.\" (or \"C",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D28",
+   "design": "success alert words; no X"
+  },
+  {
+   "code": "S3-R4",
+   "prd": "No payment is recorded (not even the $0 payment a $0 invoice writes today) and no \"Invoice paid\" log entry is written, no customer transaction or receivable is created, no customer portal notification, email or invoice webhook is sent (the work order status webhook of Story 11 is), no invoice is sent to QuickBooks, the internal invoice is never listed in the Open API invoice lists and invoice.crea",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S3-R5",
+   "prd": "The Finance tab of a closed work order shows the NO CHARGE document: the masthead as on the invoice today (letterhead left, the shop logo in the centre slot, the document block \"Internal Work Order [number]\" or \"No Charge Work Order [number]\" with the date right), and under the masthead line, on the left and never over the logo, the INTERNAL or NO CHARGE stamp with the line \"Category: [name]\" and,",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D32 / IWO-D19",
+   "design": "NO CHARGE / INTERNAL document: masthead, stamp and category under the masthead line, Bill to, asset, labor hours, parts cost, Summary, Download / Print / Email"
+  },
+  {
+   "code": "S3-R6",
+   "prd": "The asset Invoices tab lists the closed work order with status Closed, the badge, Total balance \"No Charge\" and Discount and Tax rate empty (rows on that tab have no actions). The customer's Invoices tab (the receivables ledger) does not list it; the customer's Work Orders tab does (S2-R10). GET /api/invoices/list leaves it out too (no screen uses it today). Customer statements, the customer balan",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 1 10b asset Invoices tab: Closed, badge, No Charge, dashes (badge wrong: IWO-D16); invoice menu with Reopen Work Order only (Flow 2 05)"
+  },
+  {
+   "code": "S3-R7",
+   "prd": "If the organization requires review before completion, the work order goes through Review and Mark Reviewed first, exactly as a billable one; Close is offered where Create invoice would be.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 1 04b Mark Reviewed"
+  },
+  {
+   "code": "S3-N1",
+   "prd": "If the work order is billable, the button reads \"Create invoice\" and everything works as today.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "billable boards keep Create invoice"
+  },
+  {
+   "code": "S3-N2",
+   "prd": "If Create invoice would not be offered (review on and not yet marked, or every line declined), Close Work Order is not offered either. With review off and open lines, Close Work Order sits in the three-dots menu exactly as Create invoice does today; once every line is Complete it is the header button and leaves the menu, as Create invoice does.",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D18",
+   "design": ""
+  },
+  {
+   "code": "S3-N3",
+   "prd": "If the user does not have 'Invoicing & Payments — Create & Edit' and 'See Financial Data', the Close Work Order button is not shown, as Create invoice is not.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "permission"
+  },
+  {
+   "code": "S3-N4",
+   "prd": "If no account is mapped for the work order's classification (for a no-charge work order in QuickBooks, no account for the work order's category), the confirmation of S3-R2 replaces the account note with: QuickBooks, \"No account set for [category]. The entry posts to the ShopView Review account until you set one.\" with a \"Set account\" link to Integrations > QuickBooks; AccountingHub, \"No account se",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D22",
+   "design": "Flow 1 7b warning with Set account"
+  },
+  {
+   "code": "S3-N5",
+   "prd": "A customer on credit hold does not block Close: nothing is owed, so Close Work Order is offered and works as on any other work order.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S3-E1",
+   "prd": "If the work order has no parts, the confirmation shows \"Parts cost $0.00\"; Close posts no parts entry, posts the shop supplies entry when the amount is above $0.00 (S10-E2), and still creates the internal invoice.",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S3-E2",
+   "prd": "If a part on the work order has no cost recorded, the confirmation lists it under \"Parts with no cost\" and posts the rest; the hub and QuickBooks entries carry the costed parts only.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 1 7d Parts with no cost"
+  },
+  {
+   "code": "S3-E3",
+   "prd": "If the posting date is in a closed accounting period, Close succeeds; QuickBooks returns its closed-period error and the entry lands in QB Unexported as any other rejected entry does today; AccountingHub holds it (Story 8).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S3-E4",
+   "prd": "If the shop has no accounting integration at the work order's location, Close shows the confirmation without account notes, and the sentence of S3-R2 is replaced by \"This marks the work order Closed · Internal (Closed · No Charge). Parts cost, shop supplies and hours are available in the Internal Work Orders report.\" (with \"This completes the work order and marks it ...\" when it is not yet Complet",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D21",
+   "design": "Flow 1 7c"
+  },
+  {
+   "code": "S3-E5",
+   "prd": "If lines, the shop supplies amount or the classification change after the confirmation opens, Close is refused with \"This work order changed. Review and close again.\"",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 1 7e inline error, Close disabled"
+  },
+  {
+   "code": "S4-R1",
+   "prd": "On a closed internal or no-charge work order the Finance tab's invoice menu shows \"Reopen Work Order\" where a billable work order shows \"Reverse\", and no Issue Credit. It is the only place to reopen; the work order header carries the line of S2-R9 and no button.",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D27",
+   "design": "Flow 2 05 invoice menu with Reopen Work Order; header Reopen button on internal boards"
+  },
+  {
+   "code": "S4-R2",
+   "prd": "Reopen opens the dialog \"Reopen work order [number]?\" with the body \"The work order leaves Closed · Internal and goes back to Complete. The parts cost and shop supplies entries are reversed in your books.\" (Closed · No Charge on a no-charge one) and the buttons Cancel and \"Reopen Work Order\". Dismissing the dialog in any other way does nothing.",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D30",
+   "design": "Flow 3 02"
+  },
+  {
+   "code": "S4-R3",
+   "prd": "Confirming reverses exactly the entries that were posted at Close (Stories 7 and 8), returns the parts to inventory as Reverse does today, removes the internal invoice, and sets the work order to Complete with its classification unchanged, the shop supplies amount kept, and the Convert and Change category actions offered again (S2-R9 applies only while closed or invoiced). The reversal is dated th",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 3 03 Complete again (toast not in the PRD: IWO-D31)"
+  },
+  {
+   "code": "S4-R4",
+   "prd": "Closing again (Story 3) posts the final numbers as a new entry with the new posting date.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S4-N1",
+   "prd": "If the user does not have 'Work Orders — Delete', Reopen is not shown.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "permission"
+  },
+  {
+   "code": "S4-N2",
+   "prd": "If the work order is billable and invoiced, the existing Reverse behaviour applies, unchanged.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S4-E1",
+   "prd": "If the Close entry is still held in AccountingHub, Reopen withdraws it instead of posting a reversal; the row stays on Accounting Events with the status Dismissed and the reason \"Withdrawn: work order reopened\" (nothing was posted, so nothing is reversed). In QuickBooks, Reopen reverses only what was posted at Close, to the same accounts (S7-R5): an entry posted to the mapped account or to ShopVie",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 5 01 \"Withdrawn: work order reopened\" row; Flow 5 04 Dismissed row"
+  },
+  {
+   "code": "S4-E2",
+   "prd": "If the Close entry was posted in a period that is now closed, the QuickBooks reversal lands in QB Unexported with the closed-period error as today, and the hub holds it with that reason; the work order still reopens.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S4-E3",
+   "prd": "Vendor bills on the work order are not touched by Reopen; they are real liabilities.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S4-E4",
+   "prd": "If the customer lost the Internal flag, or the setting was turned off, after Close, Reopen still returns the work order as internal. It closes as internal again (with a new posting date), or the advisor changes the customer to make it billable.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S5-R1",
+   "prd": "Integrations > QuickBooks, ShopView Accounts, shows one row per category directly under Cost of Parts (above Cost of Goods (tax)), grouped under the headers \"Internal work orders\" and \"No Charge work orders\", each row named after its category and carrying the QuickBooks mark. A category the shop adds appears as a new empty row; an archived category keeps its row, greyed, with its mapping, and the ",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D11",
+   "design": "rows under Cost of Parts above Cost of Goods (tax), grouped, shop supplies note (Flow 0 09)"
+  },
+  {
+   "code": "S5-R2",
+   "prd": "Each row uses the same account picker as the other ShopView Accounts rows, listing the expense accounts of the location's connected QuickBooks company (S1-R14, S5-R1), as the other rows do. No account is preselected.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "same Select Account picker"
+  },
+  {
+   "code": "S5-R3",
+   "prd": "Save stores the mapping for the location. The row and the category dialog (S1-R14) read and write the same mapping, so a change in either place shows in the other. Entries posted to ShopView Review before the row was mapped stay where they are; the accountant reclasses them in QuickBooks.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S5-R4",
+   "prd": "While a category row is empty, the row shows the existing empty-row hint with the text \"Not set. Parts cost of [category] work orders posts to the ShopView Review account until you pick one.\" There is no fallback from one row to another. While the setting is off, empty rows show no hint.",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D11",
+   "design": "Flow 0 10"
+  },
+  {
+   "code": "S5-R5",
+   "prd": "The rows are shown whether or not the Internal Work Orders setting is on, so the accountant can map ahead of time.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S5-R6",
+   "prd": "The per-category mapping follows the per-row model of part categories, not the fixed ShopView Accounts keys: one row per category per location, keyed by the category's stable key. Archiving a category keeps its mapping; Restore brings it back untouched, nothing is mapped again. The rows exist from the release (S1-R13), so the accountant can map before the setting is on (S5-R5).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S5-N1",
+   "prd": "If QuickBooks is not connected at the location, the rows are not shown, as the rest of ShopView Accounts is not.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S5-N2",
+   "prd": "If the user does not have 'Settings — Integrations', the page is not available to them, as today.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S5-E1",
+   "prd": "If a mapped account is later deleted or made inactive in QuickBooks, the row shows the existing inactive or deleted state the other rows use, and entries fail and show in QB Unexported, as every other row's do today, until a new account is picked or the entry is exported by hand (S7-N2).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S5-E2",
+   "prd": "If a category row is empty, the parts cost of that category's work orders and lines posts to the ShopView Review account (S5-R4); there is no fallback from one category row to another.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S6-R1",
+   "prd": "Accounting > Account Mappings shows one row per category under \"Parts cost of goods sold\", named after the category (\"Internal: General Internal\", \"No Charge: Warranty\"), each a picker over the organization's chart of accounts like the other rows. A category the shop adds appears as a new empty row; an archived category keeps its row and can still be remapped, so a held entry of that category can ",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "Account Mappings page not drawn (\"No new screens\")"
+  },
+  {
+   "code": "S6-R2",
+   "prd": "Automatically set up the starting category mappings using AccountingHub's existing chart of accounts. General Internal defaults to 6500 Vehicle Expenses, already in the default chart. Warranty and Goodwill both default to 6430 Warranty & Goodwill Expense, already in the newer chart. Comeback defaults to 6440 Comeback Expense, a new required account (number confirmed by the AccountingHub owner on 2",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S6-R3",
+   "prd": "The accountant can change any category row to any account in the chart, including the existing 6400 Shop Equipment Maintenance account where appropriate, as the other rows allow, and can add accounts to the chart as today.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S6-R4",
+   "prd": "Saving a mapping retries any events held for a missing account (Story 8).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S6-N1",
+   "prd": "If AccountingHub is not enabled, nothing changes for the organization.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S6-N2",
+   "prd": "If the user does not have 'Accounting — Settings', the page is not available to them, as today.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S6-E1",
+   "prd": "If a mapped account is made inactive, events are held with that reason (Story 8) until the row is changed.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-R1",
+   "prd": "No invoice, sales receipt or payment is sent to QuickBooks for an internal or no-charge work order. The customer is not created in QuickBooks on its account.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-R2",
+   "prd": "At Close, ShopView sends the inventory journal entries it sends at invoice today (one per picked stock part, same numbering, dated the posting date), with the debit on the expense account of the work order's category instead of the part category's cost of goods sold account or Cost of Parts, and the credit on the same inventory account the invoice would credit today (by part category and stock loc",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-R3",
+   "prd": "When a vendor bill is created for a special-order part or a sublet on a work order that is already internal or no charge, the bill line posts to the mapped expense account instead of Cost of Parts (or the category account); the vendor, the bill and Accounts Payable are unchanged. This covers the bill of a vendor-bought job entered as a special-order part (sublet, Terminology) and the vendor's core",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-R3a",
+   "prd": "A vendor credit or a return for a special-order part or a core of an internal or no-charge work order posts its line to the account the matching bill line was posted to, and after Close to the work order's mapped expense account, so the credit lands where the cost did. A stock part returned to the shelf is a stock movement with no entry, as today.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-R4",
+   "prd": "When a vendor bill was posted to Cost of Parts (or a category account) and the work order later becomes internal or no charge, Close adds a reclass journal entry: debit the mapped expense account, credit the account the bill line was posted to, for that bill's lines. When a vendor bill was posted to one expense account and the work order closes under the other classification, Close adds a reclass ",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-R4a",
+   "prd": "At Close, when the work order's shop supplies amount is above $0.00, ShopView sends one journal entry dated the posting date: debit the work order's mapped expense account (the expense account of the work order's category), credit the income account of the existing \"Shop supplies\" item (Products And Services) (the account the shop supplies line of a billable invoice credits today), for that amount",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-R5",
+   "prd": "At Reopen, ShopView sends reversing journal entries for exactly the entries it posted at Close, dated the reopen date, memo \"Reopened [number]\", as Reverse does for invoiced work orders today. Entries never posted (S7-N5, or still in QB Unexported) get no reversal (S4-E1).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-R6",
+   "prd": "Every entry carries an idempotency key, so a retry or a resend never creates a second entry in QuickBooks. (New: the inventory journal entries have no such key today.)",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-R7",
+   "prd": "The sync runs regardless of whether the closing user has the 'Settings — Integrations' setting; the setting governs the page, not the sync.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-R8",
+   "prd": "On a billable work order with no-charge lines (Story 12), the invoice is sent to QuickBooks as today with those lines at $0.00. For each no-charge line, the inventory journal entries of its picked stock parts debit the line's category account instead of Cost of Parts, with the same credit, numbering, dating and idempotency as S7-R2 and S7-R6; special orders and sublet on the line follow S7-R3 and ",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "Create invoice confirmation with Moved from rows not drawn"
+  },
+  {
+   "code": "S7-N1",
+   "prd": "If QuickBooks is not connected at the location, nothing is sent and Story 3 behaves exactly as it does without the integration.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-N2",
+   "prd": "If no expense account is mapped (with Inventory Asset and Cost of Parts mapped; otherwise S7-N5), the entries post to the ShopView Review expense account, as every unmapped account does today (the sync creates it in the shop's QuickBooks if needed), and the accountant reclasses them in QuickBooks. If the mapped account was deleted or made inactive in QuickBooks, the entry fails as it does for ever",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-N3",
+   "prd": "If the posting date falls in a closed period, QuickBooks rejects the entry and it lands in QB Unexported under Journal Entries with the QuickBooks error text, the work order number and the classification (type \"Internal Work Order Close\", \"Internal Work Order Reopen\" or \"No Charge line\"), with Export and Mark as Exported as for other rows.",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D46",
+   "design": "Flow 5 01"
+  },
+  {
+   "code": "S7-N4",
+   "prd": "If the work order has no costed stock parts, no reclass and a shop supplies amount of $0.00, no journal entry is sent.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-N5",
+   "prd": "If Inventory Asset or Cost of Parts is not mapped at the location, no parts entry is sent at Close (stock parts and reclass entries), as invoicing sends none today for that location: the inventory journal entries need both accounts, so a shop that keeps no inventory in QuickBooks is never credited on Inventory Asset by Close alone. The shop supplies entry of S7-R4a still posts. The Close confirmat",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 1 7f note on Stock parts and Special orders rows"
+  },
+  {
+   "code": "S7-E1",
+   "prd": "If the same Close event reaches the sync twice, the idempotency key prevents a duplicate (S7-R6).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S7-E2",
+   "prd": "If an entry in QB Unexported is Marked as Exported by hand and the work order is later reopened, the reversal is still sent, so the books stay symmetrical; the accountant deletes the manual entry.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S8-R1",
+   "prd": "At Close, the hub receives the invoice event carrying the classification (Internal or No Charge), the category, the original work order and line and the original technician when set, the work order number and the asset, and keeps an invoice record with a status Closed (new in the hub), the badge, \"No Charge\" in place of a total, and no payment tabs. It posts no revenue, no receivable and no tax fo",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 5 3b: Closed pill, badge, Open in ShopView, summary, journal entry, no lines, no payment tabs"
+  },
+  {
+   "code": "S8-R2",
+   "prd": "At Close, the hub posts the parts cost entries dated the posting date: debit the mapped expense account, credit Inventory, for the cost of the stock parts, source \"Internal work order\" (or \"No-charge work order\"), linked to the record of S8-R1.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 5 3b journal rows"
+  },
+  {
+   "code": "S8-R3",
+   "prd": "Vendor bill lines, reclass entries and the shop supplies entry follow Story 7, S7-R3, S7-R3a, S7-R4 and S7-R4a, with the hub's accounts (the credit goes to the Shop supplies expense row, seeded 5100 Shop Supplies COGS: in the hub the amount lowers cost, where in QuickBooks it raises shop supplies income; gross and net profit come out the same in both, and the accountant can remap the row). A vendo",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 5 3b shop supplies credit 5100 Shop Supplies COGS"
+  },
+  {
+   "code": "S8-R4",
+   "prd": "At Reopen, the hub posts the reversing entry linked through the existing Reversal links, and the record of S8-R1 is voided as a reversed invoice is today.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S8-R5",
+   "prd": "Replaying historical events carries the classification, so a replay never turns a closed internal work order into revenue.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S8-R6",
+   "prd": "The Invoice list report's status filter gets the value Closed, unselected by default, so the default report and its totals are unchanged. The Accounting Sales Invoices page shows Closed records with the Closed pill and the badge, and its Status filter (default All) gets the value Closed; there is no Classification filter in this version.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 5 03 Status filter with Closed (Invoice list report not drawn)"
+  },
+  {
+   "code": "S8-R7",
+   "prd": "An invoice of a billable work order with no-charge lines (Story 12) reaches the hub as an ordinary invoice record with its revenue and receivable on the billable lines. The record carries a \"No Charge lines\" block: line number and title, category, original work order and line, original technician, hours, parts cost, expense account. The posting splits the parts cost: billable lines to the parts co",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D48",
+   "design": "Flow 5 3c: block and journal split (rows cut by the frame)"
+  },
+  {
+   "code": "S8-N1",
+   "prd": "If AccountingHub is not enabled, nothing is sent.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S8-N2",
+   "prd": "If a mapped account on either side of the entry is missing or inactive, or the posting date falls in a closed fiscal period or in none, the event gets a status Held (new in the hub) on the Accounting Events page with the reason (\"No Charge: [Category] row not mapped\" or \"Internal: [Category] row not mapped\", the list name telling the two apart (S8-R7), \"Shop supplies expense is not mapped\", \"Inven",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D47",
+   "design": "Flow 5 04 Held, Retry, Dismissed"
+  },
+  {
+   "code": "S8-E1",
+   "prd": "If the same event arrives twice, the event id prevents a second posting, as today.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S8-E2",
+   "prd": "If a work order is reopened while its Close event is Held, the Held event is withdrawn and no reversal is posted (Story 4, S4-E1).",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 5 04 Dismissed row"
+  },
+  {
+   "code": "S9-R1",
+   "prd": "Sales, Sales By Customer, Sales By Representative and Advisor Analysis leave whole internal and no-charge work orders out of every number, with no filter and no option to include them. On a billable work order they leave every no-charge line out of labor revenue, parts revenue, labor cost, parts cost, invoiced hours and worked hours, the way a declined line is left out today: the invoice financial",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "money reports unchanged; nothing to draw"
+  },
+  {
+   "code": "S9-R2",
+   "prd": "The report \"Internal Work Orders\" under Reports lists the closed internal and no-charge work orders of the organization and, one row each, the no-charge lines of invoiced billable work orders. Filters: date range on the posting or invoice date (default this month, at most 12 months), Location (all or one), Classification (All / Internal / No Charge / No Charge line), Category (All or one, archived",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D42 / IWO-D43 / IWO-D44 / IWO-D45",
+   "design": "report, filters, summary strip, both tabs, columns, totals row, Export (Flow 4 05, 06)"
+  },
+  {
+   "code": "S9-R3",
+   "prd": "Technician Efficiency shows a filter chip \"Internal work orders: Hide / Only internal / Show all\" (the existing single-choice chip; the chip covers internal and no-charge work orders, tooltip \"Internal and no-charge work orders\"), default Show all, on both the Invoiced and the Completed tab, so internal hours count as work from the start. With Only internal, hours per technician come from internal",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D41",
+   "design": "Flow 4 04"
+  },
+  {
+   "code": "S9-R4",
+   "prd": "The Internal Work Orders report appears in the Reports list once the organization has closed its first internal or no-charge work order or invoiced its first work order with a no-charge line, and stays listed from then on for good, with the setting on or off and even if every closed one is later reopened, so history stays reachable (ShopView remembers that first Close or invoice for the organizati",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-R5",
+   "prd": "Sales Tax Collected, IBS Batches, the A/R Aging reports (Summary, Detail, Collection) and customer statements never include internal and no-charge work orders.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-R6",
+   "prd": "The Customer Invoice export in the Export Reports dialog gets the option \"Include internal and no-charge work orders\" (off by default; shown under the rule of S9-R4) with the helper \"For your records only. Do not import these rows as invoices.\" While the option is off the file is exactly today's file. With the option on, the file adds the columns Classification (Billable, Internal, No Charge) and ",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "Export Reports option not drawn"
+  },
+  {
+   "code": "S9-R7",
+   "prd": "Parts Velocity counts parts used on internal and no-charge work orders and on no-charge lines as units used and in demand; Avg Sell, Revenue and Margin are computed on billable work orders and billable lines only.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-R8",
+   "prd": "Shop Efficiency, Technician Utilization and Timesheets keep clocked hours on internal and no-charge work orders and on no-charge lines as worked hours; Shop Efficiency leaves a no-charge line's estimated hours out of invoiced hours; the existing \"Internal Hours\" column (time clocked to a department, not to a work order) is unchanged and unrelated.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-R9",
+   "prd": "Inventory Value, Work In Progress and A/P reports are unchanged; an open internal or no-charge work order shows in Work In Progress with its badge and no value.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-R10",
+   "prd": "The asset's Invoices tab lists the closed internal and no-charge work orders with the badge, Total balance \"No Charge\" and Discount and Tax rate empty, dated by the posting date, so the history per unit is there; cost and hours are in the NO CHARGE document (columns are v1.1).",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 1 10b"
+  },
+  {
+   "code": "S9-R11",
+   "prd": "With Show all on Technician Efficiency, internal and no-charge work orders count as work orders with their hours and no sales. In the export, internal and no-charge rows carry 0.00 on every line, their Classification and their Category (S9-R6); a no-charge line of a billable work order carries 0.00 on its own row with its Category. Every report, the export and the asset Invoices tab date a closed ",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-R12",
+   "prd": "Work In Progress keeps its existing treatment of a $0 line (quoted hours, no value); an open internal or no-charge work order shows with its badge as S9-R9 says. Sales Tax Collected, IBS Batches, the A/R Aging reports, customer statements, Inventory Value and the A/P reports are not affected by a no-charge line: it adds $0.00 taxable and nothing owed.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-R13",
+   "prd": "The Customer Invoice export (S9-R6) shows a no-charge line of a billable invoice as a $0.00 row with the category in the description, without the option of S9-R6, since the invoice is a billable invoice.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-R14",
+   "prd": "Rule zero. For billable work orders and billable lines no report, dashboard card or export changes any number: every figure a report gives today for billable work is the same after the release, to the cent. The only differences are the ones this story names: a whole internal or no-charge work order leaves the money reports, a no-charge line adds no revenue, cost, invoiced hours or units. The exclu",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-R15",
+   "prd": "Reports not named above, checked and unchanged under rule zero: Requested Parts, Payroll Timesheet and the Journal Entries report (which shows the Close and no-charge-line entries with the category account on the debit side like any entry). Customers Spending excludes whole internal and no-charge work orders with the shared predicate of S9-R14; a billable work order with a no-charge line stays in ",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-R16",
+   "prd": "The report, both tabs and the export run through the accessible-workplace scope every report uses (SV-9116): a user sees the locations they have access to, the Location filter offers only those, and the By technician numbers are computed on that scope.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Location filter on the report"
+  },
+  {
+   "code": "S9-N1",
+   "prd": "If the organization has never closed an internal or no-charge work order nor invoiced a work order with a no-charge line, the Internal Work Orders report is not listed, the Technician Efficiency chip is not shown and the export option is not shown, whatever the setting; from that first Close or invoice on, all three show for good, with the setting on or off (S9-R4). With no row matching the filter",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "empty state not drawn"
+  },
+  {
+   "code": "S9-N2",
+   "prd": "If the user does not have 'Reports — Page Access', the reports are not available, as today.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-N3",
+   "prd": "The By technician tab is visible to every user with 'Reports — Page Access', as Technician Efficiency is today; no new permission.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-E1",
+   "prd": "A reopened internal or no-charge work order keeps its classification and leaves the Internal Work Orders report until it is closed again; it is never in the money reports. The report, the chip and the export option stay listed (S9-R4).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S9-E2",
+   "prd": "The $0 invoices created before this feature stay billable invoices in every report, as today; they are not re-classified.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S10-R1",
+   "prd": "An internal or no-charge work order carries one field \"Shop supplies\" (a dollar amount) in the block where a billable work order shows its totals. It is set when the work order becomes internal or no charge: the customer's Min shop supplies charge from the customer profile, or $0.00 when none is set. The percentage rule and the location percentage do not apply. On a flagged customer, Edit Customer",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Shop supplies field on the internal detail (Flow 1 03, below the frame: frame-opened render); Edit Customer Min without % (Flow 0 11)"
+  },
+  {
+   "code": "S10-R2",
+   "prd": "The amount can be changed on the work order until it is closed, with the existing per-work-order shop supplies control. Any customer change while the work order stays internal or no charge, or converting to no charge, resets it to the customer's Min. Making the work order billable again drops the flat amount and applies the customer's or the location's shop supplies rule as on any billable work or",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S10-R3",
+   "prd": "The Close confirmation (S3-R2) shows the row \"Shop supplies $[amount]\" with the note \"Posted to [work order's expense account], credited to [shop supplies account]\"; the shop supplies account is the income account of the existing \"Shop supplies\" item (Products And Services) in QuickBooks or the Shop supplies expense row in AccountingHub; the NO CHARGE document shows \"Shop supplies $[amount]\" in th",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "confirmation row and note (Flow 1 07), document Summary (Flow 1 08)"
+  },
+  {
+   "code": "S10-R4",
+   "prd": "At Close, the amount posts as one entry: debit the work order's expense account (the expense account of the work order's category), credit the shop supplies account (Story 7, S7-R4a; Story 8, S8-R3). Reopen reverses it (Story 4).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S10-R5",
+   "prd": "No new mapping row in either integration: QuickBooks credits the income account of the existing \"Shop supplies\" item (Products And Services) (Story 5, S5-R1 note); AccountingHub uses its existing \"Shop supplies expense\" row (Story 6).",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "QuickBooks note (Flow 0 09)"
+  },
+  {
+   "code": "S10-N1",
+   "prd": "If the amount is $0.00, no row is shown in the confirmation and nothing is posted.",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 2 04: no Shop supplies row at $0.00"
+  },
+  {
+   "code": "S10-N2",
+   "prd": "If the Shop supplies item is not mapped in QuickBooks, the credit posts to the ShopView Review account as any unmapped account does; if its income account was deleted or made inactive, the entry fails into QB Unexported as every other row's does (S7-N2); in AccountingHub an empty Shop supplies expense row holds the event (S8-N2).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S10-N3",
+   "prd": "If the user does not have 'See Financial Data', the field is not shown, as the shop supplies charge is not shown today.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "permission"
+  },
+  {
+   "code": "S10-E1",
+   "prd": "If the customer's Min shop supplies charge changes later, open work orders keep the amount they have; nothing is recalculated.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S10-E2",
+   "prd": "A work order with no parts and no labor still posts its shop supplies amount if it is above $0.00.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S11-R1",
+   "prd": "The work order and invoice resources carry classification (billable, internal, no_charge) and category (the category key and name; the internal category on an internal work order, the no-charge category on a no-charge one); a no-charge work order carries original_work_order, original_line and original_technician when set. Lines carry no_charge (true or false), no_charge_category, original_work_ord",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "API"
+  },
+  {
+   "code": "S11-R2",
+   "prd": "A closed internal or no-charge work order returns the status `closed`, a new value next to the existing ones, with its classification. Its internal invoice is never listed by GET /v1/invoices, GET /v1/work-orders/{id}/invoices or GET /v1/customers/{id}/invoices, from the core release on (S3-R4), so a consumer never has to skip it, and GET /v1/invoices/{id} answers 404 for it; the work order resour",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "API"
+  },
+  {
+   "code": "S11-R3",
+   "prd": "Webhooks: `work_order.status_changed` is sent at Close with the status `closed` and at Reopen with the status `completed` (today it is sent at completion only, so Close on a work order that is already Complete is a new emission). `invoice.created` and `invoice.paid` are never sent for an internal invoice; that part ships with the core release (S3-R4). Proposed for the API owner to confirm: Convert",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "API"
+  },
+  {
+   "code": "S11-R4",
+   "prd": "Writes: a work order created through the API takes the classification and the category of its customer and asset (S2-R1); No Charge cannot be set through the API in this version, on a work order or on a line; prices sent on the lines of an internal or no-charge work order are dropped and cost and hours are kept (S2-E1); a customer change through the API follows S2-R7 without the dialogs. POST /v1/",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "API"
+  },
+  {
+   "code": "S11-R5",
+   "prd": "The changes are additive. The new fields and the new status value are documented in the OpenAPI spec and announced in the API changelog before the release, so consumers that validate the status list can prepare.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "API"
+  },
+  {
+   "code": "S11-N1",
+   "prd": "If Open API V1 is not enabled for the organization, nothing changes.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S11-N2",
+   "prd": "If a consumer subscribed to invoice webhooks only, it receives nothing for internal and no-charge work orders; the work order status webhook is the signal.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S11-E1",
+   "prd": "If a work order is reopened and closed again, each Close sends `closed` and each Reopen sends `completed`; the classification does not change.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S11-E2",
+   "prd": "If the setting is turned off later, the fields stay in the API; closed records keep their values.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-R1",
+   "prd": "On a billable work order, while the setting is on and the work order is not invoiced, the three-dots menu of every line offers \"Mark as No Charge\" between Edit line and Delete line. Edit Line and New Line show at the bottom, under a divider, the checkbox \"No Charge\" with the helper \"This line shows $0.00 on the invoice. Hours and parts stay; the parts cost posts to the category's expense account.\"",
+   "verdict": "SHOWN",
+   "register": "IWO-D38",
+   "design": "line menu Mark as No Charge between Edit line (Duplicate line) and Delete line; Edit Line checkbox, helper, selects (Flow 6 06)"
+  },
+  {
+   "code": "S12-R2",
+   "prd": "Mark as No Charge opens the dialog \"Mark this line as No Charge?\" with the line summary (title, hours, parts, technician, current price), the body \"The line stays on this work order and shows $0.00 on the invoice. Hours, parts and the story stay; the technician works it like any other line. When the invoice is created, the parts cost of this line posts to the expense account of the category instea",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D24",
+   "design": "Flow 6 02: title, line summary, body, Category *, selects, helper, Cancel / Mark as No Charge"
+  },
+  {
+   "code": "S12-R3",
+   "prd": "A no-charge line shows the chip \"No Charge · [category]\" next to its title on the lines table, in Tech View and on mobile; Rate, Total and every part on it show $0.00; Margin shows nothing. Hours, technician, status, approval, parts ordering, picking, receiving, clock-ins, notes, inspections and the story work as on any line. The original work order and line are not shown on the line; they are in ",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 6 03: chip \"No Charge · Warranty\", Rate, Total and part $0.00"
+  },
+  {
+   "code": "S12-R4",
+   "prd": "The work order carries no badge and no header style and its classification stays billable; Financial Info (the cost view) does not change. Totals, tax, work order fees and discounts, deposits, the estimate, the portal approval and the Customer PO are computed on the billable lines; the no-charge line shows at $0.00 on the estimate and in the portal with its category under the title. A line discoun",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "no badge, Financial Info unchanged; estimate with the line at $0.00 and \"Warranty\" under the title (Flow 6 07)"
+  },
+  {
+   "code": "S12-R5",
+   "prd": "The three-dots menu of a no-charge line offers \"Change category\" (the dialog of S12-R2 with the current values; Save is enabled once the category, the original work order or the original line differs) and \"Mark as Billable\" (confirmation \"Mark line as billable?\" with the body \"The line is priced as a new line would be today. You can mark it No Charge again until the work order is invoiced.\"); conf",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D26 / IWO-D40",
+   "design": "Flow 6 04 menu; confirmation not drawn"
+  },
+  {
+   "code": "S12-R6",
+   "prd": "Each action writes a system note on the work order and an Audit Log row (S2-R18): \"Line '[title]' marked No Charge by [user]. Category [name], original work order [number], original line [number]. Line price $[price] removed; cost $[cost] and [hours] h kept. The work order stays billable.\"; \"Category of line '[title]' changed from [a] to [b] by [user].\"; \"Line '[title]' marked Billable by [user]. ",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D33 / IWO-D26",
+   "design": "Flow 6 05 note"
+  },
+  {
+   "code": "S12-R7",
+   "prd": "Create invoice works as today. The invoice (preview, PDF, email, portal) shows the no-charge line with its hours and parts at $0.00 and the category name as a line under the title (\"Warranty\"); no stamp, no badge, no \"No Charge\" wording elsewhere on the document. The invoice statement of the line is priced 0 and flagged no_charge with the category and the original work order, line and technician, ",
+   "verdict": "NOT SHOWN",
+   "register": "IWO-D39",
+   "design": "invoice not drawn (the board shows the estimate)"
+  },
+  {
+   "code": "S12-R8",
+   "prd": "Posting at invoice creation follows S7-R8 (QuickBooks) and S8-R7 (AccountingHub): the no-charge line's parts cost to its category's account, the rest as today. Invoice reversal reverses the whole invoice, no-charge entries included, and the lines keep their No Charge mark on the reopened work order.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-R9",
+   "prd": "Create invoice is refused while a no-charge line of a category that requires it has no original work order: the message \"Line '[title]' needs its original work order (or Not in ShopView) before the invoice.\" names the line, and Edit Line opens on it. Convert to No Charge on a work order with no-charge lines follows S2-R5.",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-R10",
+   "prd": "If every line of the work order is No Charge, the work order still invoices at $0.00 as a billable work order (one invoice, nothing owed, as a $0 invoice is paid today); the dialog of S12-R2 shows the hint \"All lines are No Charge. To close without an invoice and get the NO CHARGE document, convert the work order instead.\" The whole-work-order path (Stories 2 and 3) is unchanged.",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-R11",
+   "prd": "Reports and the dashboard follow Story 9 (S9-R1, S9-R2, S9-R3, S9-R7, S9-R8, S9-R11 to S9-R13); the Open API follows Story 11; the hub record follows S8-R7.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-R12",
+   "prd": "Mark as No Charge, Change category and Mark as Billable need 'Work Orders — Create & Edit' and 'See Financial Data'; without 'See Financial Data' the chip is shown and the prices are hidden as today. The work order list, Board and bulk actions do not change: a billable work order with no-charge lines is listed as billable.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-N1",
+   "prd": "If the setting is off, no line offers Mark as No Charge and Edit Line shows no checkbox; existing no-charge lines keep their chip and their $0.00 price until the work order is invoiced. A no-charge line can still be marked Billable and its category changed from the line menu while the setting is off, as S2-N1 allows for a whole work order; Mark as No Charge is not offered.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-N2",
+   "prd": "If the work order is internal or No Charge as a whole, lines offer no Mark as No Charge: every line is already free.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-N3",
+   "prd": "If the work order is invoiced, the line menu offers neither Mark as No Charge nor Mark as Billable; the tooltip reads \"Reverse the invoice first.\"",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-N4",
+   "prd": "If the user lacks 'See Financial Data', the items are not offered and the checkbox is hidden.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-E1",
+   "prd": "If a no-charge line is split to another work order with the existing split, it keeps its mark, category and original fields on the new work order; the note of S12-R6 is written on both.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-E2",
+   "prd": "If the customer of the work order changes (S2-R7), no-charge lines keep their mark; the original work order list in Change category now offers the new customer's work orders and the stored original stays until changed.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-E3",
+   "prd": "If a part on a no-charge line is a core: the core part carries no sell price ($0.00 on the work order, estimate, portal and invoice; the vendor core charge is never written as its price, S2-R19); the completion wizard still asks OK or NOT OK for the line; OK creates the vendor return and credit at cost as today, with nothing to remove from the customer; NOT OK charges the customer nothing and the ",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-E4",
+   "prd": "If the category of a no-charge line is archived later, the line keeps it; Change category offers only active categories.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-E5",
+   "prd": "If the original work order is deleted, the line keeps the number as text and the report shows it without a link.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-E6",
+   "prd": "A part moved between lines follows the line it lands on, as if added there: onto a billable line it is priced from its cost by the pricing rules; onto a no-charge line its price is removed and its cost stays; the posting is decided at invoice creation by the line it is on then, so nothing is reclassed while the work order is open; the note records the move and the price.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-E7",
+   "prd": "After invoicing, a part of a no-charge line goes back through Issue Credit like any part: Issue Credit lists it at a $0.00 credit that cannot be edited and with no restocking fee (nothing was charged), the part returns to inventory, and its cost is reversed from the category account to inventory with the same entry a return on an internal work order uses. The $0.00 credit never blocks an invoice r",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S12-E8",
+   "prd": "Mark as No Charge is not offered on a declined line, on a line that already has a return or a credit, or on a line of a work order that is internal or No Charge as a whole. The Board card and any list reading the stored total show the billable total of the work order; Print Work Order prints the \"No Charge · [category]\" chip next to the line. An asset carrying an Internal category that moves to a ",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S13-R1",
+   "prd": "A one-time migration creates the starting categories for every organization (S1-R13): General Internal as the default Internal category; Warranty, Goodwill and Comeback as No Charge categories, with Requires the original work order on for Warranty and Comeback. Nothing is created in QuickBooks and nothing is turned on: the Internal Work Orders setting stays off for every organization.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S13-R2",
+   "prd": "The same migration creates one empty ShopView Accounts row per category at every location with a connected QuickBooks company (S5-R5); the rows carry no hint while the setting is off. A location connected later gets its rows when the connection is made, as other rows do.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S13-R3",
+   "prd": "The AccountingHub setup of S6-R2 runs as an operator command, not a deploy migration: organization by organization in isolation, with a list of failures and a verify mode; it runs after the hub release and again at launch. For each organization it reuses suitable accounts (an active expense account whose name matches), creates missing ones (6430 on a legacy chart too, 6440 Comeback Expense), popul",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S13-R4",
+   "prd": "Every step is safe to run again: a rerun creates no duplicate category, row, account or mapping and overwrites nothing a shop has changed. The steps run before the release is visible to users, in this order: categories, QuickBooks rows, hub accounts and mappings.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S13-R5",
+   "prd": "Verification after the run, per organization: four categories, four QuickBooks rows per connected location, four hub mappings populated (Comeback included), the setting off. The rule-zero verify of S9-R14 runs the same day. If engineering ships the feature behind a deploy switch until launch day, the switch is removed with the launch and is not a product setting (Key Decisions, No feature flag).",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S13-R6",
+   "prd": "Shops that keep an \"Internal\" or \"Shop Fleet\" customer today are not touched: the migration flags no customer and reclassifies no work order (Assumptions); S1-R11 handles it when the shop flags the customer.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S13-E1",
+   "prd": "A hub organization whose chart already uses the Comeback default number for an unrelated account gets Comeback Expense at a free number (S6-R2); the mapping is populated all the same.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S13-E2",
+   "prd": "An organization created between the migration and the release gets the set from the seeder, not from the migration; a rerun of the migration finds it complete and changes nothing.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "S13-N1",
+   "prd": "A failure for one organization does not stop the run for the others; the failed organizations are listed by the command and rerun on their own, and the release is not visible until every organization passes S13-R5.",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": ""
+  },
+  {
+   "code": "§8-01",
+   "prd": "| Toggle switched on for the first time | \"Which customers are your own company? Work orders for these customers are internal: no prices and no invoice; parts cost posts to the expense account of their category when you use QuickBooks or AccountingHub. Nothing is picked for you. Pick one or more, or do it later from the customer page.\" | Modal with the customer picker, Do this later / Save (Save d",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D05",
+   "design": "IWO-D05"
+  },
+  {
+   "code": "§8-02",
+   "prd": "| Setting off, flagged customer | \"Turn on Internal Work Orders in Settings to change this.\" | Line under the read-only checkbox on Edit Customer |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 0 06"
+  },
+  {
+   "code": "§8-03",
+   "prd": "| Setting on, no customer flagged | \"No internal customer yet. Work orders for your own equipment stay billable until you flag one: Edit Customer > Internal customer. No Charge on customer work orders works now.\" | Hint line under the toggle, persists until a customer is flagged |",
+   "verdict": "NOT SHOWN",
+   "register": "IWO-D03",
+   "design": "IWO-D03"
+  },
+  {
+   "code": "§8-04",
+   "prd": "| Customer flagged with open billable work orders, or setting turned on again | \"[n] open work orders for [customer] are billable. Make them internal? Prices, fees and discounts are removed; costs and hours are kept.\" plus the list (up to 10 rows, then \"and [n] more\") | Confirmation dialog, Keep billable / Make internal; OK only without 'Work Orders — Create & Edit' |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 0 07"
+  },
+  {
+   "code": "§8-05",
+   "prd": "| Make internal, row notes | \"Deposit: stays billable\" / \"Vendor bill: cost moves at Close\" | Note on the row in the list |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 0 07"
+  },
+  {
+   "code": "§8-06",
+   "prd": "| Flag removed | \"Remove the Internal flag from [customer]?\" with \"[n] open internal work orders for [customer] stay internal and close without an invoice. New work orders for [customer] will be billable.\" | Confirmation dialog, Cancel / Remove flag |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 0 08"
+  },
+  {
+   "code": "§8-07",
+   "prd": "| Internal customer picked in New Work Order | \"Internal customer: no prices, no invoice. Posts to [category], from the asset.\" (or \"... from the customer.\") | Tooltip on the info icon next to the Internal badge (S2-R1) |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 1 2b, 2b2"
+  },
+  {
+   "code": "§8-08",
+   "prd": "| No Charge info icon (New Work Order) | \"Warranty, goodwill or comeback work. Closes without an invoice; parts cost posts to the expense account of the category.\" | Tooltip on the info icon |",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D12",
+   "design": "IWO-D12"
+  },
+  {
+   "code": "§8-09",
+   "prd": "| Category missing (New Work Order, Convert to No Charge) | \"Pick a category\" | Field message under the Category select; Save or Convert refused |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "Pick a category not drawn"
+  },
+  {
+   "code": "§8-10",
+   "prd": "| Convert to No Charge | \"Prices, fees and discounts are removed from every line; costs and hours are kept. It closes with a No Charge document instead of an invoice. You can convert it back until it is closed.\" plus the Category select | Confirmation dialog, Cancel / Convert to No Charge |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 2 02 (title case: IWO-D25)"
+  },
+  {
+   "code": "§8-11",
+   "prd": "| Change category | \"Change category for work order [number]\" with the Category select | Dialog, Cancel / Save (Save enabled once the category, the original work order or the original line changes, S2-R6) |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 2 3c"
+  },
+  {
+   "code": "§8-12",
+   "prd": "| Convert to Billable | \"Every line is priced as a new line would be today. You can convert it to no charge again until it is invoiced.\" | Confirmation dialog, Cancel / Convert to Billable |",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D26",
+   "design": "IWO-D26"
+  },
+  {
+   "code": "§8-13",
+   "prd": "| Convert to No Charge with a deposit | \"Reverse the deposit first\" | Tooltip on the disabled menu action |",
+   "verdict": "NOT SHOWN",
+   "register": "IWO-D40",
+   "design": "IWO-D40"
+  },
+  {
+   "code": "§8-14",
+   "prd": "| Customer change, Convert or a line No Charge change with a vendor bill | \"The vendor bill for [part] ($[amount]) was posted to [account]. If you continue, that cost moves to [account] when this work order is [invoiced / closed].\" | Confirmation dialog, Cancel / Continue |",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D34",
+   "design": "IWO-D34"
+  },
+  {
+   "code": "§8-15",
+   "prd": "| Create invoice with a cost move | \"Create invoice [number]?\" with one \"Moved from [account] to [account]\" row per move | Confirmation dialog, Cancel / Create invoice; shown only when a vendor bill's cost moves at invoicing and the location has an accounting integration (S7-R8) |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "S7-R8"
+  },
+  {
+   "code": "§8-16",
+   "prd": "| Close confirmation | \"This posts the parts cost and shop supplies to your books and marks the work order Closed · Internal. You can reopen it later.\" (\"This completes the work order, posts ...\" when it is not yet Complete) | Confirmation dialog, Cancel / Close Work Order |",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D20",
+   "design": "IWO-D20"
+  },
+  {
+   "code": "§8-17",
+   "prd": "| Close with no account mapped (QuickBooks) | \"No account set for [category]. The entry posts to the ShopView Review account until you set one.\" | Warning box in the dialog with Set account link; same button |",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D22",
+   "design": "IWO-D22"
+  },
+  {
+   "code": "§8-18",
+   "prd": "| Close with no account mapped, AccountingHub or shop supplies variants | \"No account set for [category]. The entry is held in Accounting Events until you set one.\" / the Shop supplies row note with the same text | Same warning box |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "hub variant"
+  },
+  {
+   "code": "§8-19",
+   "prd": "| Close without integration | \"This marks the work order Closed · Internal (Closed · No Charge). Parts cost, shop supplies and hours are available in the Internal Work Orders report.\" | Sentence in the confirmation |",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D21",
+   "design": "IWO-D21"
+  },
+  {
+   "code": "§8-20",
+   "prd": "| Hub event held | \"No Charge: [Category] row not mapped\" / \"Shop supplies expense is not mapped\" / \"Period [name] is closed\" | Reason on the Held event, Retry |",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D47",
+   "design": "IWO-D47"
+  },
+  {
+   "code": "§8-21",
+   "prd": "| Close with no account mapped (AccountingHub) | \"No account set for [category]. The entry is held in Accounting Events until you set one.\" | Warning box in the dialog with a link; same button |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "hub variant"
+  },
+  {
+   "code": "§8-22",
+   "prd": "| Closed | \"Work order [number] is Closed · Internal.\" | Success alert, fades on its own, with the X every alert has |",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D28",
+   "design": "IWO-D28"
+  },
+  {
+   "code": "§8-23",
+   "prd": "| Closed work order header | \"Closed on [posting date]. To change it, reopen it from the Finance tab.\" | Line on the header card, persists |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 2 06, Flow 3 01"
+  },
+  {
+   "code": "§8-24",
+   "prd": "| Reopen | \"The work order leaves Closed · Internal and goes back to Complete. The parts cost and shop supplies entries are reversed in your books.\" | Confirmation dialog, Cancel / Reopen Work Order |",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D30",
+   "design": "IWO-D30"
+  },
+  {
+   "code": "§8-25",
+   "prd": "| Export option | \"For your records only. Do not import these rows as invoices.\" | Helper under \"Include internal and no-charge work orders\" |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "Export option"
+  },
+  {
+   "code": "§8-26",
+   "prd": "| Report with no matching rows | Standard report empty state | Also on a direct link before the first Close |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "empty state"
+  },
+  {
+   "code": "§8-27",
+   "prd": "| Mapping row empty | \"Not set. Parts cost of [category] work orders posts to the ShopView Review account until you pick one.\" | Inline hint on the row, persists |",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D11",
+   "design": "IWO-D11"
+  },
+  {
+   "code": "§8-28",
+   "prd": "| Work order changed under an open Close confirmation | \"This work order changed. Review and close again.\" | Inline error in the dialog |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 1 7e"
+  },
+  {
+   "code": "§8-29",
+   "prd": "| Open API POST /v1/invoices on an internal or no-charge work order | \"This work order is internal or no charge. Close it in ShopView.\" | API error response |",
+   "verdict": "NO SCREEN",
+   "register": "",
+   "design": "API"
+  },
+  {
+   "code": "§8-30",
+   "prd": "| Mark as No Charge (line menu) | \"Mark this line as No Charge?\" with the body \"The line stays on this work order and shows $0.00 on the invoice. Hours, parts and the story stay; the technician works it like any other line. When the invoice is created, the parts cost of this line posts to the expense account of the category instead of Cost of Parts.\" | Dialog with Category, Original work order and",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 6 02"
+  },
+  {
+   "code": "§8-31",
+   "prd": "| No Charge checkbox (Edit Line, New Line) | \"This line shows $0.00 on the invoice. Hours and parts stay; the parts cost posts to the category's expense account.\" | Helper under the checkbox; Category, Original work order and Original line appear when ticked (S12-R1) |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 6 06"
+  },
+  {
+   "code": "§8-32",
+   "prd": "| No-charge line | \"No Charge · [category]\" | Chip next to the line title; Rate, Total and parts at $0.00; Margin empty (S12-R3) |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 6 03"
+  },
+  {
+   "code": "§8-33",
+   "prd": "| Mark as Billable (line menu) | \"Mark line as billable?\" with the body \"The line is priced as a new line would be today. You can mark it No Charge again until the work order is invoiced.\" | Confirmation, Cancel / Mark as Billable (S12-R5) |",
+   "verdict": "NOT SHOWN",
+   "register": "IWO-D40",
+   "design": "IWO-D40"
+  },
+  {
+   "code": "§8-34",
+   "prd": "| All lines of the work order are No Charge | \"All lines are No Charge. To close without an invoice and get the NO CHARGE document, convert the work order instead.\" | Hint in the Mark as No Charge dialog (S12-R10) |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "all-lines hint"
+  },
+  {
+   "code": "§8-35",
+   "prd": "| Create invoice with a required original work order missing | \"Line '[title]' needs its original work order (or Not in ShopView) before the invoice.\" | Create invoice refused; Edit Line opens on the line (S12-R9) |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "refusal"
+  },
+  {
+   "code": "§8-36",
+   "prd": "| Invoice with a no-charge line | \"[Category]\" under the line title; the line at $0.00 | Invoice preview, PDF, email and portal; no stamp, no badge (S12-R7) |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 6 07 (estimate)"
+  },
+  {
+   "code": "§8-37",
+   "prd": "| Line marked, category changed, line made billable | The three notes of S12-R6 | System note on the work order and Audit Log row |",
+   "verdict": "DIFFERENT",
+   "register": "IWO-D33",
+   "design": "IWO-D33"
+  },
+  {
+   "code": "§8-38",
+   "prd": "| More than 100 active categories in a list | \"You can have up to 100 active categories in this list. Archive one to add another.\" | New button disabled with the message (S1-R13) |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "100 limit"
+  },
+  {
+   "code": "§8-39",
+   "prd": "| First-time modal, more than 50 customers | \"Pick up to 50 customers here. Flag more from Edit Customer.\" | Hint under the customer picker (S1-R2) |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "50 hint"
+  },
+  {
+   "code": "§8-40",
+   "prd": "| Portal estimate of a work order made internal | \"This estimate is no longer available.\" | Portal; the existing obsolete banner, approval refused (S1-R11) |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "portal"
+  },
+  {
+   "code": "§8-41",
+   "prd": "| Portal estimate changed after it was sent | \"This estimate changed after it was sent. The lines above are current.\" | Notice under the lines on the portal estimate (S2-E6, S12-R4) |",
+   "verdict": "NOT SHOWN",
+   "register": "",
+   "design": "portal"
+  },
+  {
+   "code": "§8-42",
+   "prd": "| Save, change, close or reopen fails | \"Could not save the internal customer. Try again.\" / \"Could not change the work order. Try again.\" / \"Could not close the work order. Try again.\" / \"Could not reopen the work order. Try again.\" | Alert toast, must be dismissed |",
+   "verdict": "SHOWN",
+   "register": "",
+   "design": "Flow 1 S2 (close failed); other failures not drawn"
+  }
+ ]
+}

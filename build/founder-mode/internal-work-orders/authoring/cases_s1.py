@@ -486,7 +486,7 @@ C("S1-63", S, "With AccountingHub on, the category dialog shows the hub mapping 
 C("S1-64", S, "A user sees the account pickers of the locations they can access only",
   [ON, "Use an organization with two locations, location A and location B, both connected to QuickBooks Online.",
    role("has 'Settings — Service' and 'Settings — Integrations', with access to location A only"),
-   "Have a second user with access to both locations, so the mapping at location B can be checked after."],
+   "Have a second user for this test with access to both locations, so the mapping at location B can be checked after."],
   [CATS, "Open the row menu of Goodwill.", "Click Edit.", "Pick an expense account in location A's picker.", SAVE],
   [["The categories page opens."], ["The menu shows Edit."], ["The window shows one QuickBooks expense account picker, for location A.", "No picker shows for location B."],
    ["The account shows in location A's picker."], ["The window closes. Signed in as the second user, Goodwill's account at location B is unchanged."]],

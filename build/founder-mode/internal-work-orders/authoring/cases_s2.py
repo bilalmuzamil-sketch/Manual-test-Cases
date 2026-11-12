@@ -79,12 +79,12 @@ C("S2-07", S, "Editing the customer's category does not change a closed work ord
 C("S2-08", S, "A work order created from an inspection on an internal customer is internal",
   [ADMIN, ON, icust("A", ", with one asset, asset 1, that has a completed inspection, inspection 1, with a failed item")],
   ["Open inspection 1.", "Create a work order from inspection 1.", "Open the new work order."],
-  [["Inspection 1 opens."], ["A work order is created."], ['The work order shows the "Internal" badge and its lines show no prices.']],
+  [["Inspection 1 opens."], ["A work order is created for customer A on asset 1."], ['The work order shows the "Internal" badge and its lines show no prices.']],
   ["S2-R1"])
 C("S2-09", S, "A work order from a maintenance reminder on an internal customer is internal",
   [ADMIN, ON, icust("A", ", with one asset, asset 1, that has a due maintenance reminder, reminder 1")],
   ["Open reminder 1.", "Create a work order from reminder 1.", "Open the new work order."],
-  [["Reminder 1 opens."], ["A work order is created."], ['The work order shows the "Internal" badge.']],
+  [["Reminder 1 opens."], ["A work order is created for customer A on asset 1."], ['The work order shows the "Internal" badge.']],
   ["S2-R1"], banner=MR_BANNER, marker=MR_HOLD)
 
 # ---- New Work Order, No Charge -------------------------------------------------------------------------------------------------
@@ -488,7 +488,7 @@ C("S2-67", S, "A closed internal work order is listed under All with status Clos
   [["The list opens."], ['Work order 1 shows the status "Closed" with the "Internal" badge, where invoiced work orders show.'],
    ["Work order 1 is not in the Completed tab, which lists work waiting for an invoice."]],
   ["S2-R10", "T-CLOSED"])
-C("S2-68", S, "The Status chip value Closed matches only closed internal and no-charge work orders",
+C("S2-68", S, "The Status value Closed lists only closed internal and no-charge work orders",
   [ADMIN, ON, icust("A"), iwo(1, "A", "closed"), cust("B"), ncwo(2, "B", "Goodwill", "closed"), wo(3, "B", "invoiced"), wo(4, "B", "paid")],
   ["Open the work orders list.", "Open the All tab.", 'Set the Status chip to "Closed".', 'Set the Status chip to "Invoiced".', 'Set the Status chip to "Paid".'],
   [["The list opens."], ["The All tab shows."], ["Work order 1 and work order 2 are listed.", "Work order 3 and work order 4 are not."],
@@ -618,7 +618,7 @@ C("S2-89", S, "Lines copied from an internal work order into a billable one get 
 C("S2-90", S, "An imported work order of a flagged customer is internal",
   [ADMIN, ON, icust("A", ", with one asset, asset 1"), "Have a work order import file for this test with one work order for customer A on asset 1."],
   ["Import the file through the work order import.", "Open the imported work order."],
-  [["The import finishes."], ['The work order shows the "Internal" badge.', 'Its menu offers no "Convert to No Charge".']],
+  [["The import finishes with one work order for customer A on asset 1."], ['The work order shows the "Internal" badge.', 'Its menu offers no "Convert to No Charge".']],
   ["S2-E3"])
 C("S2-91", S, "A core on an internal work order must be answered before Close",
   [ADMIN, ON, NO_ACCT, REVIEW_OFF, icust("A"), iwo(1, "A", "Approved", ", with one part that carries a core, all lines done but not completed")],

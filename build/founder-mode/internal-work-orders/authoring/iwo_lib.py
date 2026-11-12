@@ -224,7 +224,6 @@ NOT_TESTABLE = {
  "OOS-17": "Labor cost posting, rates in dollars and AI insights are not in this version; there is no screen to look at.",
  "OV-NOT": "Lists what is not in this version (labor posting, comeback numbers in dollars); nothing to look at. The fields it says are stored are checked through the report and the hub record.",
  "KD-BOTH": "A scope statement (both integrations, plus exports); each integration and the export are checked by their own stories.",
- "S11-R5": "Says the changes are additive and announced in the changelog before the release; the changelog entry itself is checked (API section), the 'before the release' timing has no screen.",
  "S6-R2": None,   # replaced below: covered by REL and S13 cases (kept here only as a reminder; removed at import)
 }
 NOT_TESTABLE.pop("S6-R2")
@@ -407,12 +406,21 @@ def check(c):
     if c["api"] and c["sec"] != "API": p.append(f"{k}: an API case outside the API section (Rule 4)")
     if not c["api"] and c["sec"] == "API": p.append(f"{k}: a case in the API section that sends no API request")
     # Rule 137 relevance: every labelled record in the preconditions is used in the steps or results, or the bullet says why ("so ...")
-    later = " ".join(c["steps"] + [b for r in c["res"] for b in r]).lower()
+    later_raw = " ".join(c["steps"] + [b for r in c["res"] for b in r] + [c["note"]]); later = later_raw.lower()
+    # a record is needed when the steps or results name it, or when a precondition that builds a needed record names it (the customer
+    # a needed work order belongs to, the work order a needed line sits on): needed-by is followed until nothing new is added
+    used = {m.group(0).lower() for m in re.finditer(LABEL.pattern, later_raw, re.I)}
+    grow = True
+    while grow:
+        grow = False
+        for x in c["pre"]:
+            labs = {m.group(0).lower() for m in LABEL.finditer(x)}
+            if labs & used and not labs <= used: used |= labs; grow = True
     for x in c["pre"]:
         for m in LABEL.finditer(x):
             lab = m.group(0)
             explained = any(lab in y and (" so " in y or "so that" in y) for y in c["pre"])
-            if lab.lower() not in later and not explained:
+            if lab.lower() not in used and not explained:
                 p.append(f"{k}: precondition record '{lab}' is not used in the steps or results and does not say why")
     # Rule 137 independence: a record the case relies on is made fresh for this test
     for x in c["pre"]:

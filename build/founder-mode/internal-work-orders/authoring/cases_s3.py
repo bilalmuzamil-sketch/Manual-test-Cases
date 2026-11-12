@@ -312,7 +312,7 @@ C("S3-47", S, "Close is refused when the work order changed under the open confi
   [ADMIN, ON, NO_ACCT, REVIEW_OFF, icust("A"), iwo(1, "A", DONE, SS15), "Open work order 1 in two browser tabs, tab 1 and tab 2."],
   ["In tab 1, click Close Work Order in the header.", 'In tab 2, change "Shop supplies" to $20.00.', "In tab 1, click Close Work Order in the confirmation."],
   [["The confirmation opens in tab 1 showing Shop supplies $15.00."], ["Tab 2 saves the new amount."],
-   ['Tab 1 shows the inline error "This work order changed. Review and close again."', "The work order is not closed."]],
+   ['Tab 1 shows the inline error "This work order changed. Review and close again."', "Work order 1 is not closed."]],
   ["S3-E5", "UFS-28", "KD-ALWAYS"])
 C("S3-48", S, "A refused Close leaves a not yet Complete work order where it was",
   [ADMIN, ON, NO_ACCT, REVIEW_OFF, icust("A"), iwo(1, "A", "In Progress", f", with all lines done, not yet Complete{SS15}"),

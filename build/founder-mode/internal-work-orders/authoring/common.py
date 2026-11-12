@@ -43,16 +43,21 @@ def icust(label="A", extra=""):
     return f"Have a new customer for this test, customer {label}, flagged as an Internal customer{extra}."
 
 
+def _st(status):
+    """A bare status name reads "in status Approved"; phrases ("in Estimate", "closed today", "invoiced") stay as written."""
+    return f"in status {status}" if status[:1].isupper() and not status.startswith("In status") else status
+
+
 def wo(n=1, c="A", status="in Estimate", extra=""):
-    return f"Have a new work order for this test, work order {n}, for customer {c}, {status}{extra}."
+    return f"Have a new work order for this test, work order {n}, for customer {c}, {_st(status)}{extra}."
 
 
 def ncwo(n=1, c="A", cat="Goodwill", status="in Estimate", extra=""):
-    return f"Have a new No Charge work order for this test, work order {n}, for customer {c}, category {cat}, {status}{extra}."
+    return f"Have a new No Charge work order for this test, work order {n}, for customer {c}, category {cat}, {_st(status)}{extra}."
 
 
 def iwo(n=1, c="A", status="in Estimate", extra=""):
-    return f"Have a new internal work order for this test, work order {n}, for internal customer {c}, {status}{extra}."
+    return f"Have a new internal work order for this test, work order {n}, for internal customer {c}, {_st(status)}{extra}."
 
 
 def role(what):

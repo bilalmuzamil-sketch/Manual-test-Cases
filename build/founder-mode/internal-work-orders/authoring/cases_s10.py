@@ -79,3 +79,8 @@ C("S10-13", S, "A failed Shop supplies save follows today's error handling",
   [OPEN_WO, f"Change {SS} to $20.00."],
   [["Work order 1 opens."], ["When the save fails, the existing shop supplies error handling of the work order shows, unchanged."]],
   ["EH-S10"], marker=NOMAN("the save has to fail, which only a developer can make happen"))
+C("S10-14", S, "On a phone the Shop supplies field sits in the summary block and can be edited",
+  [ON, PHONE, icust("A"), iwo(1, "A", "Approved", ", whose Shop supplies amount is $15.00")],
+  [OPEN_WO, f"Change {SS} to $18.00."],
+  [[f"{SS} shows $15.00 in the work order's summary block on the phone layout."], [f"{SS} reads $18.00."]],
+  ["FF-S10", "S10-R2"])
