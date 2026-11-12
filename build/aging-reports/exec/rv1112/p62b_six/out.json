@@ -422,5 +422,111 @@
     "place Location: All locations keyboard_arrow_down cancel"
    ]
   }
+ },
+ "C715637": {
+  "offline": {
+   "m": null,
+   "notes": [],
+   "net": [
+    [
+     1840,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-32x32.png"
+    ],
+    [
+     1841,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-16x16.png"
+    ],
+    [
+     1842,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-96x96.png"
+    ],
+    [
+     1843,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://sv11315.qa.shopview.com/icons/favicon-128x128.png"
+    ],
+    [
+     5562,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba1v9250300735za200zd9250300735xf1&_p=1794444718395&gcd=13l3l3l3l1l"
+    ],
+    [
+     5564,
+     "FAIL",
+     "net::ERR_INTERNET_DISCONNECTED",
+     "https://www.google.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba1v9250300735za200zd9250300735xf1&_p=1794444718395&gcd=13l3l3l3l1l1&npa=0&dm"
+    ]
+   ]
+  },
+  "server500": {
+   "m": "Something went wrong loading this report. Please try again.",
+   "notes": [
+    "warning Ooooops! An error occurred Close 4"
+   ],
+   "net": [
+    [
+     1309,
+     "req",
+     "/api/reporting/reports/ap-aging-detail?asOfDate=2026-11-09"
+    ],
+    [
+     1310,
+     "req",
+     "/api/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-09"
+    ],
+    [
+     1316,
+     "res",
+     500,
+     "/api/reporting/reports/ap-aging-detail?asOfDate=2026-11-09"
+    ],
+    [
+     1320,
+     "res",
+     500,
+     "/api/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-09"
+    ],
+    [
+     2322,
+     "req",
+     "/api/reporting/reports/ap-aging-detail?asOfDate=2026-11-09"
+    ],
+    [
+     2324,
+     "res",
+     500,
+     "/api/reporting/reports/ap-aging-detail?asOfDate=2026-11-09"
+    ],
+    [
+     2324,
+     "req",
+     "/api/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-09"
+    ],
+    [
+     2329,
+     "res",
+     500,
+     "/api/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-09"
+    ]
+   ]
+  },
+  "after": {
+   "m": null,
+   "rows": 8,
+   "chips": [
+    "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+    "local_shipping Vendor: All vendors keyboard_arrow_down",
+    "hourglass_empty Past due: Any keyboard_arrow_down",
+    "place Location: All locations keyboard_arrow_down cancel"
+   ]
+  }
  }
 }
