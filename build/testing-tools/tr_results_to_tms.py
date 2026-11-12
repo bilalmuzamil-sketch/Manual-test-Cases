@@ -40,6 +40,8 @@ def main():
     ap.add_argument("--tr-run", type=int, required=True)
     ap.add_argument("--tms-run", type=int, required=True)
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--only-untested", action="store_true",
+                    help="never touch a TMS run item that already has ANY result (QA lead, 2026-11-12: do not overwrite anything)")
     a = ap.parse_args()
     tr, tms, cmap, done = TestRail(), TMS(), id_map(), ledger()
     tms.log_path = "/tmp/tms/results-copy-ops.jsonl"
@@ -47,7 +49,9 @@ def main():
     run = run.get("data", run)
     if run.get("is_closed"):
         sys.exit("TMS run %d is closed; it rejects results (409). Nothing done." % a.tms_run)
-    in_run = {i["case_id"] for i in tms.get_all("/runs/%d/items" % a.tms_run)}
+    items = {i["case_id"]: i for i in tms.get_all("/runs/%d/items" % a.tms_run)}
+    in_run = set(items)
+    has_result = {c for c, i in items.items() if i.get("latest_result")}
     names = {}
 
     def who(uid):
@@ -67,9 +71,21 @@ def main():
             skipped["no status / untested"] += 1
         elif cmap.get(r["case_id"], r["case_id"]) not in in_run:
             skipped["case not in the TMS run"] += 1
+        elif a.only_untested and cmap.get(r["case_id"], r["case_id"]) in has_result:
+            skipped["TMS already has a result for this case (left alone)"] += 1
         else:
             todo.append(r)
-    print("TestRail run %d: %d results | to copy %d | skipped %s" % (a.tr_run, len(results), len(todo), dict(skipped)))
+    print("TestRail run %d: %d results | to copy %d (for %d cases) | skipped %s" % (
+        a.tr_run, len(results), len(todo), len({r["case_id"] for r in todo}), dict(skipped)))
+    if a.only_untested:
+        latest_tr = {}
+        for r in results:
+            if r.get("status_id") in COPYABLE:
+                latest_tr[cmap.get(r["case_id"], r["case_id"])] = r["status_id"]
+        clash = [(c, items[c]["current_status"], s) for c, s in latest_tr.items()
+                 if c in has_result and items[c]["current_status"] != s]
+        print("cases with a TMS result already (left alone): %d | of those, TMS status differs from TestRail's latest: %d %s"
+              % (len(has_result & set(latest_tr)), len(clash), clash[:15]))
     if not a.apply or not todo:
         return
     copied = 0

@@ -431,3 +431,16 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   - **`tms_sync.py` ignores and preserves the block** (`PICTURES_HEAD` / `split_pictures`), so later syncs keep the links.
   - Duplicate TestRail attachment entries (each picture listed twice) are de-duplicated by attachment id.
 - **QA lead (2026-11-10): "No"** — the 417 Founder Mode cases WITH results get no picture links.
+
+## 22 · 2026-11-12 — TestRail run 557 results → TMS run 7 (never overwrite)
+
+- **QA lead: post the TestRail run 557 "A/R and A/P Report Sorting, Export and Location Filter - Execution" results that
+  are not in TMS run 7, "make sure that you do not overwrite anything or any result."**
+  `tr_results_to_tms.py` gained **`--only-untested`**: a TMS run item that already has ANY result is never touched.
+- **Done:** 114 results posted for **97 cases that had no result in TMS run 7**. **All 256 entries that already had a result
+  are unchanged** (before/after photo of every run item). Run 7 now: 340 passed · 13 blocked · 3 untested of 356.
+- **Left alone, for the QA lead:** 6 cases where TMS says **Blocked** (Mudassir, in TMS, 11 Nov) but TestRail's latest says
+  **Passed** — C715287, C715343, C715383, C715384, C715385, C715449.
+- **Not possible yet:** TestRail run 557 now has **470 tests**; **117 of them are cases that do not exist in TMS** (92 in
+  *… > Regression Tests*, 17 in *… > Setup needed before testing*, 8 elsewhere) — their results (111 P · 4 B · 2 F) need the
+  cases synced into TMS and added to TMS run 7 first. QA lead asked.
