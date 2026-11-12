@@ -21,8 +21,8 @@ Anything else = it is there. The board also prints the build marker. On 12 Nov 2
 | 4 | Prove it through the reports' own screens' back end: expect `47 of 47 parties answered` | `python3 status.py staging` |
 | 5 | Run all tests through the screens (about 30 minutes) | `node run.js staging $(seq -f 'V1R-%02g' 1 93 \| grep -vx V1R-72 \| sed 's/^V1R-35$/V1R-35v2 V1R-35chev/')` |
 | 6 | Build the results file + annotated pictures (local only) | `python3 results_for_testrail.py staging` |
-| 7 | Dry run of the TestRail post: prints, writes nothing. Step 6 prints this exact command | `python3 <scratchpad>/xtools/push_results_to_run.py --run <RUN> --results ../testrail-results-staging/RESULTS-STAGING.json --build-marker <marker> --date "<d Month yyyy>" --env "Staging" --screenshots yes --dry-run` |
-| 8 | Post. **Only after you name the run and say go (Rule 6).** | the same command without `--dry-run` |
+| 7 | Dry run of the TestRail post: prints, writes nothing. Step 6 prints this exact command | `python3 <scratchpad>/xtools/push_results_to_run.py --run 557 --lead "Re-Ran on staging" --results ../testrail-results-staging/RESULTS-STAGING.json --build-marker <marker> --date "<d Month yyyy>" --env "Staging" --screenshots yes --dry-run` |
+| 8 | Post to **run 557** (QA lead, 12 Nov 2026: "The results should go in the same test run with the head line something like this: \"Re-Ran on staging\" and then post the staging results in the new comment."). Every staging result is a NEW result whose first line reads "Re-Ran on staging" (`--lead`). | the same command without `--dry-run` |
 
 Before step 8: read the "NEEDS REVIEW" list that step 6 prints. A new failure is never posted until it has been measured,
 checked against the epic's "not bugs / decided by Product" notes, and searched for in Jira (Rules 110, 120, 121).
@@ -35,7 +35,8 @@ Re-check that SV-12544, SV-12545 and SV-12547 are still open.
 | V1R-25, V1R-26, V1R-27, V1R-76 | Need records nobody can make through the screens or the app's own calls: an invoice or bill with no due date, and an invoice or bill paid more than its amount. A developer has to create them. Not posted. |
 | V1R-72 | Deleted. Not run. |
 | V1R-35 | Rewritten 12 Nov 2026 to Product's decision (Chris Ward, 4 Nov 2026: "OK as built"). It runs as `V1R-35v2`. `V1R-35chev` is the measurement of the faded arrows and is shown for review only. |
-| V1R-32, V1R-53 | Need a second user with a limited role. Only your Admin session exists, and signing in as someone else would sign you out. On QA they came out Blocked. |
+| V1R-32, V1R-53 | Need tech@shopview.com with a limited role. On QA they **PASSED** on 11 Nov 2026 (results 616784, 616785): tech was signed in with quick-login in a SEPARATE cookie jar holding only `sv_sso_session` + `cf_clearance` (never the QA lead's PHPSESSID), its role changed and restored afterwards (standing permission, Rule 118; Rule 26), and the QA lead's session re-checked 200 after every sign-in. Do the same on staging; recipe and evidence: `live-run-2026-11-11/unblock-2026-11-11/`. If staging's quick-login is refused, record Blocked with the rung tried (115.4). |
+| V1R-87 | Needs a location the user is NOT enrolled in, holding one invoice. On QA it **PASSED** with a new location "ZZAUTOTEST V1R-87 Location C" and invoice S-17887 (same folder). On staging create the equivalent (tag ZZAUTOTEST) before step 5. |
 | V1R-69 | On QA the test browser could not load the chart section, so it needs a person. On QA it came out Blocked. |
 
 ## Traps that are already handled

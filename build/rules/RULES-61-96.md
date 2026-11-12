@@ -2837,5 +2837,9 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     4. **Production after the release is a short confirmation only**, on real data, never the main check.
     5. **Name folders and TestRail sections by environment and timing** (e.g. "Run on Staging After the Feature Is
        Deployed"; `existing-data-unchanged-check/staging-before-feature-captured-<date>/`), so their purpose is plain.
+    6. **A staging re-run of tests already run elsewhere is posted to the SAME TestRail run, as a NEW result whose first
+       line is "Re-Ran on staging"** (QA lead, 2026-11-12, verbatim: *"The results should go in the same test run with
+       the head line something like this: "Re-Ran on staging" and then post the staging results in the new comment."*).
+       Tool: `push_results_to_run.py --lead "Re-Ran on staging" --env "Staging"`.
     Worked example: A/R and A/P (SV-11315) — production snapshot 10 Nov 2026 kept; staging snapshot 12 Nov 2026 taken
     before the migration; TestRail section 133628 renamed from "Run on Production After Release".
