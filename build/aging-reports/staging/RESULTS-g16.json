@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "12 Nov 2026, run 557, g16: C715534 re-run on staging after the chevron line was changed to PRD v12"
+ },
+ "results": {
+  "C715534": {
+   "verdict": "Passed",
+   "observed": [
+    "Run on staging (build v26.45.4-b8c04e2) as Admin, A/P Aging Detail opened from the Reports menu with every bucket closed, 1440 px, light theme.",
+    "Step 1: the title \"A/P Aging Detail\" with the info icon, and the \"\u22ef\" at the right; chips \"As of: 11/12/2026\" (blue pill), \"Vendor: All vendors\" (truck icon), \"Past due: Any\" (hourglass icon), \"Location: All locations\" (blue pill).",
+    "Step 2: a blue chevron pointing right in the top-left header cell, the same blue as each bucket's chevron (as the test now says, from the requirements version 12), then Date, Location, Transaction Type, No., Vendor Name with a small up arrow, Due Date, Past Due, Amount, Open Balance.",
+    "Step 3: the five buckets in order, 91 or more, 61-90, 31-60, 1-30, Current, each with a blue chevron pointing right, its name in bold with its count, \"Total\" under Past Due and two bold sums.",
+    "Step 4: \"Totals\" with the Amount and Open Balance sums in bold.",
+    "Step 5: at 1536 px nothing overlaps, is cut off or clipped, and there is no sideways scroll; the layout is the same as at 1440 px.",
+    "The test's chevron line was changed today on the QA lead's instruction: the header chevron is blue, as the requirements now say (version 12, 12 Nov 2026).",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715534-s12-01-1440.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715534-s12-02-1536.png"
+   ]
+  }
+ }
+}
