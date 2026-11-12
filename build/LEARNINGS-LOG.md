@@ -686,3 +686,8 @@
 - PDF tests above ~800 rows are Blocked on QA sites ("run on staging"), never Failed.
 - Parallel staging lanes: `build/aging-reports/STAGING-LANES.md` (one sign-in per lane, different users, coordinator-only TestRail/Jira writes).
 - #aging #pdf #qa-site #duplicate #lanes → L0687, L0690
+
+## L0692 — 2026-11-12 — Don't ask for a later stage's prerequisites before that stage can start
+- I asked the QA lead for a staging sign-in and a staging TestRail run while the aging work was still only on the QA site (epic SV-11315 + stories in TESTING QA). His answer: "why do you want the staging related stuff at this moment when this feature is not on staging yet?" Both asks withdrawn.
+- Before asking for anything for a next environment: prove the feature is THERE first (release notes / story status "on staging" / a page that only the new build has), and only then ask. Until then, keep the plan written (`STAGING-LANES.md`) and say nothing more.
+- #asks #staging #timing → L0691

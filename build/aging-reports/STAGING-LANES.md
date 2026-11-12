@@ -4,7 +4,7 @@ QA lead 12 Nov: "we might need to use multiple workers as we are short of time, 
 interrupt each other's tasks and testing and do not waste more time." Chosen scope: the staging pass (Rule 126), starting with the tests that
 can only be judged off the QA site.
 
-## Gate before any lane starts
+## Gate before any lane starts — and before ANY ask for a staging sign-in or run (QA lead 12 Nov: not until the feature is on staging)
 1. Staging sign-in works (`staging-boot.mjs`, `/tmp/shopview/staging.env`, chmod 600 — never committed).
 2. Staging carries this release: A/R Aging Summary shows the "Past due:" chip and the "info_outline" description icon (QA build v26.45.3-34788b2 shows both). If not, STOP — nothing to run yet.
 3. A staging run exists in TestRail (copy of run 557's cases; creating it needs his go-ahead, Rule 6).
