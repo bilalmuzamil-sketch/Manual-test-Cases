@@ -1,0 +1,201 @@
+{
+ "pass_meta": {
+  "env": "Staging",
+  "build": "v26.45.4-d07623f",
+  "date": "12 November 2026",
+  "held_not_posted": {
+   "C715471": "held: draft 1 (Lethbridge documents aged one day short) and question 2 (partly-used credit Amount); not posted until the QA lead decides"
+  }
+ },
+ "results": {
+  "C715472": {
+   "verdict": "Blocked",
+   "observed": [
+    "A/P Aging Summary, A/P Aging Detail and A/P Unpaid Invoices opened untouched as of 11/12/2026 with \"Location: All locations\".",
+    "Compared with the staging snapshot taken before the feature (12 Nov 2026 06:46 UTC), 14,631 of 14,634 documents are the same, with the same amounts.",
+    "Vendor credit C-13911 (dated 11/12/2026) moved from 1-30 Days to Current with Past Due 0, as the PRD asks for this release. 27 documents were added by other people after the snapshot and the new ZZAUTOTEST vendors are left out. 3 bills of 4Refuel ($1.00 each: E2E-Pitcq2q, E2E-P8197vr, E2E-INV-1794217548388, all at Staging Lethbridge - 4310) are no longer listed, and they are not in 4Refuel's payments either."
+   ],
+   "not_observed": "Whether those 3 bills were deleted by someone or are left out by the report.",
+   "todo": "What needs to be done: open vendor 4Refuel while at Staging Lethbridge - 4310 and look for bills E2E-Pitcq2q, E2E-P8197vr and E2E-INV-1794217548388. If they are gone, mark this test Passed. If they are still there and unpaid, mark it Failed and tell the QA lead.",
+   "pictures": [
+    "1-six-reports/AP Aging Summary - full page.png",
+    "2-credit-memo/AP Aging Detail as of 2026-11-12 - vendor ticked - C-13911 row.png"
+   ],
+   "failed_steps": "Blocked at steps 1, 2 and 3: three 4Refuel bills from before the feature are no longer listed, and it is not known why",
+   "bold_steps": [
+    1,
+    2,
+    3
+   ]
+  },
+  "C715475": {
+   "verdict": "Passed",
+   "observed": [
+    "The Inventory Value link saved before the feature (only DVI Test ticked) opened with \"Location: DVI Test\".",
+    "Download (PDF) and Download (CSV) both downloaded.",
+    "The PDF and the CSV are the same as the files saved before the feature (same rows, amounts and layout).",
+    "With only Staging Heavy Duty - 9919 ticked, the PDF still fails with \"This report is too large to export.",
+    "Narrow the date range or filters, then try again.\", exactly as before the feature."
+   ],
+   "pictures": [
+    "3-files-and-links/Inventory Value (DVI Test) - one location ticked.png",
+    "3-files-and-links/Inventory Value - export menu.png"
+   ]
+  },
+  "C715617": {
+   "verdict": "Passed",
+   "observed": [
+    "The Sales By Customer link saved before the feature opened with \"Location: Staging Heavy D…\" and \"Date: This month\" (Nov 1 to Nov 13, 2026 in the files, as before).",
+    "The ⋯ menu has the same four downloads as before (Summary and Expanded View, PDF and CSV) and all four downloaded.",
+    "The files match the saved ones except for invoices created by other people after the snapshot (S2-40183 for 4 Star Truck Repair, a \"TG pay fixture\" invoice, and test customers)."
+   ],
+   "pictures": [
+    "3-files-and-links/Sales By Customer - one location ticked.png",
+    "3-files-and-links/Sales By Customer - export menu.png"
+   ]
+  },
+  "C715618": {
+   "verdict": "Passed",
+   "observed": [
+    "The Work In Progress link saved before the feature opened with \"Location: Staging Heavy D…\".",
+    "Download (PDF) and Download (CSV) both downloaded.",
+    "The CSV has the same 347 lines and the PDF the same rows and amounts as the saved files; only one row with identical values (S2-34362) sits one line lower."
+   ],
+   "pictures": [
+    "3-files-and-links/Work In Progress - one location ticked.png",
+    "3-files-and-links/Work In Progress - export menu.png"
+   ]
+  },
+  "C715476": {
+   "verdict": "Passed",
+   "observed": [
+    "With the network off, Sales By Customer's \"Download Summary (CSV)\" showed the same two messages as before the feature: \"Network Error\" and \"This report is too large to export.",
+    "Narrow the date range or filters, then try again.\" Not \"We couldn't export this report.",
+    "Please try again.\""
+   ],
+   "pictures": [
+    "4-export-failure/Sales By Customer - export with network off.png"
+   ]
+  },
+  "C715480": {
+   "verdict": "Passed",
+   "observed": [
+    "The location switcher opened and looks as before the feature: \"Change Location:\" lists QB Location, Staging Heavy Duty - 9919, Staging Lethbridge - 4310 and DVI Test, plus the two ZZAUTOTEST locations added by the test kit after the snapshot.",
+    "Switching to Staging Lethbridge - 4310 reloaded A/R Summary with the same filters and the same first rows at the top.",
+    "The location was switched back to Staging Heavy Duty - 9919 afterwards."
+   ],
+   "pictures": [
+    "5-location-switcher/AR Aging Summary - location switcher open (locations list).png",
+    "5-location-switcher/AR Aging Summary - after switching to location B.png"
+   ]
+  },
+  "C715582": {
+   "verdict": "Passed",
+   "observed": [
+    "The A/R Collection address saved before the feature opened with no error.",
+    "The chip reads \"Customer: Mobile Truck & …\" and only Mobile Truck & Trailer Repair Island Lake is listed ($1,483.90, as before).",
+    "The A/P Unpaid Invoices address opened with \"Vendor: 123 Cannabis Fo…\" and only 123 Cannabis Forestlawn is listed.",
+    "Checked three times."
+   ],
+   "pictures": [
+    "6-drill-down-links/C715582 OLD address try 2 at 30 s.png",
+    "6-drill-down-links/A/P Unpaid Invoices 123 Cannabis Forestlawn.png"
+   ]
+  },
+  "C715583": {
+   "verdict": "Passed",
+   "observed": [
+    "Sales By Customer narrowed after unticking Staging Lethbridge - 4310.",
+    "After A/R Summary and back through the Reports menu, the filter read \"Location: All locations\" again, exactly as before the feature (it does not remember)."
+   ],
+   "pictures": [
+    "7-location-filter-memory/Sales By Customer - 1 after unticking Staging Lethbridge - 4310.png",
+    "7-location-filter-memory/Sales By Customer - 2 back again, location menu open.png"
+   ]
+  },
+  "C715619": {
+   "verdict": "Passed",
+   "observed": [
+    "Inventory Value narrowed after unticking Staging Lethbridge - 4310.",
+    "After A/R Summary and back through the Reports menu, the filter read \"Location: All locations\" again, exactly as before the feature."
+   ],
+   "pictures": [
+    "7-location-filter-memory/Inventory Value - 1 after unticking Staging Lethbridge - 4310.png",
+    "7-location-filter-memory/Inventory Value - 2 back again, location menu open.png"
+   ]
+  },
+  "C715620": {
+   "verdict": "Passed",
+   "observed": [
+    "Work In Progress narrowed after unticking Staging Lethbridge - 4310.",
+    "After A/R Summary and back through the Reports menu, the filter read \"Location: All locations\" again, exactly as before the feature."
+   ],
+   "pictures": [
+    "7-location-filter-memory/Work In Progress - 1 after unticking Staging Lethbridge - 4310.png",
+    "7-location-filter-memory/Work In Progress - 2 back again, location menu open.png"
+   ]
+  },
+  "C715584": {
+   "verdict": "Passed",
+   "observed": [
+    "Clear selection, then Select all: \"Location: All locations\" and the address …/reports/sales-by-customer, as before.",
+    "Typing \"ZZA\" then \"UTO\" kept going into the Customer search box (\"ZZAUTO\").",
+    "At 900 px the filter row looks the same as before the feature."
+   ],
+   "pictures": [
+    "8-sbc-filter-menus/1 Location menu after Clear selection then Select all.png",
+    "8-sbc-filter-menus/3 whole page at 900 px.png"
+   ]
+  },
+  "C1062590": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Detail as of 11/12/2026 with only ZZAUTOTEST SV11315 Staging CM ticked: credit memo CM2-4541 (dated Nov 12, 2026, $-3.00) is in \"Current (1)\".",
+    "Before the feature it was in \"1-30 days past due\".",
+    "CM2-4540 (dated Nov 14) can be checked from 14 Nov 2026."
+   ],
+   "pictures": [
+    "2-credit-memo/AR Aging Detail as of 2026-11-12 - customer ticked - CM2-4541 row.png"
+   ]
+  },
+  "C715477": {
+   "verdict": "Passed",
+   "observed": [
+    "While on Work Orders at Staging Heavy Duty - 9919, the link copied from A/R Aging Detail for invoice S3-17147 (work order at Staging Lethbridge - 4310, …/finance?locationId=…) showed \"Switch location?",
+    "This work order is in Staging Lethbridge - 4310.",
+    "Switch your active location to view it?\" with Cancel and \"Switch Location\".",
+    "Cancel closed it and returned to Work Orders with \"Switch cancelled.",
+    "Returning to work orders.\""
+   ],
+   "pictures": [
+    "C715477-work-order-link/2 after pasting the link.png",
+    "C715477-work-order-link/3 after Cancel.png"
+   ]
+  },
+  "C715479": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Summary: filters As of, Customer, Past due, Location; columns Customer, Location, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total.",
+    "No aging-period setting, salesperson or Parts vs Service filter, Last payment date or Credit limit.",
+    "The ⋯ menu has Download (PDF) and Download (CSV) only, no Send statement.",
+    "A/R Collection: an expanded customer group has no collection notes, follow-up log or Send statement.",
+    "A/R Detail: same four filters."
+   ],
+   "pictures": [
+    "C715479-left-out-ideas/1 AR Summary.png",
+    "C715479-left-out-ideas/2 AR Summary menu.png",
+    "C715479-left-out-ideas/4 AR Collection group expanded.png"
+   ]
+  },
+  "C715462": {
+   "verdict": "Passed",
+   "observed": [
+    "A/R Summary as of 11/11/2026 with only ZZAUTOTEST OVERPAID C715462 Cust A ticked (invoice S-40181 $100.00 with $120.00 paid; invoice S-40182 $500.00 open): the row reads 1-30 Days $500.00, Total $500.00.",
+    "The Totals row reads $0.00, $500.00, $0.00, $0.00, $0.00, Total $500.00: the same as the row in every column."
+   ],
+   "pictures": [
+    "C715462-overpaid-totals/AR Summary as of 2026-11-11 - customer A.png"
+   ]
+  }
+ }
+}
