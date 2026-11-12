@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "note": "12 Nov 2026 00:29 UTC, run 557, s94"
+ },
+ "results": {
+  "C715473": {
+   "verdict": "Passed",
+   "observed": [
+    "Run at 00:29 UTC on 12 November, which is 5:29 pm on 11 November at Staging Heavy Duty - 9919 (location A, Edmonton time); the computer clock was set to that time zone; A/R Aging Detail opened at location A.",
+    "Step 1: the date chip reads \"As of: 11/11/2026\" - today at location A, not the UTC date (12 November).",
+    "Step 2: Download (PDF) from the \u22ef menu downloads \"ar-aging-detail.pdf\" with \"Success - Data exported successfully\".",
+    "Step 3: the PDF's as-of line reads \"As of Nov 11, 2026\" - three-letter month, day, four-digit year, the same date, not tomorrow. The PDF prints the buckets in the screen's order: 91 or more days past due, 61-90, 31-60, 1-30, Current."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715473-s94-C715473-1-chip.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715473-s94-C715473-pdf-01.png"
+   ]
+  }
+ }
+}

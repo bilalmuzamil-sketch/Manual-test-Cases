@@ -1,0 +1,13 @@
+// rv_q9_ivmsg.mjs — 12 Nov 2026 00:55 UTC: Rule 62(c) re-verification of a held candidate on the NEW build v26.45.3-34788b2 (copy of q9_ivmsg.mjs, output to rv1112/q9_ivmsg/).
+// q9_ivmsg.mjs — 11 Nov 2026 20:10 UTC: picture for C715475: Inventory Value, Staging Lethbridge - 4310 + Category "HD-Hose & Fittings" (614 parts),
+// ⋯ > Download (PDF); watch for the message every 0.5 s and take the picture the moment it shows; time + export answer.
+import { start } from './lib.mjs'; import { settle, oneLoc } from './q3_common.mjs'; import fs from 'fs';
+const OUT = new URL('./rv1112/q9_ivmsg/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); fs.mkdirSync(OUT, { recursive: true }); const s = await start(OUT); const p = s.page; const o = {}; let t0 = 0;
+p.on('response', async (r) => { if (/inventory-value\/export\?.*format=pdf/.test(r.url())) { o.answer = { st: r.status(), secs: Math.round((Date.now() - t0) / 1000) }; try { o.answer.body = (await r.text()).slice(0, 300); } catch {} } });
+try { await s.go('/reports/inventory-value'); await p.waitForTimeout(4000); await settle(p); await oneLoc(p, 'Staging Lethbridge - 4310');
+  await p.locator('main button', { hasText: /Category:/ }).first().click(); await p.waitForTimeout(1500); const m = p.locator('.q-menu:visible').last(); const inp = m.locator('input'); if (await inp.count()) { await inp.first().type('HD-Hose'); await p.waitForTimeout(900); } await m.getByText('HD-Hose & Fittings', { exact: true }).first().click(); await p.waitForTimeout(600); await p.keyboard.press('Escape'); await settle(p);
+  o.chips = (await p.evaluate(() => [...document.querySelectorAll('main button')].map((b) => b.innerText.replace(/\s+/g, ' ').trim()).filter((t) => /:/.test(t)))); await p.screenshot({ path: OUT + 'C715475-1-filtered.png' });
+  await p.locator('main button[aria-label="Export report"]').or(p.locator('main button').filter({ hasText: /more_(horiz|vert)/ })).first().click(); await p.waitForTimeout(800); await p.screenshot({ path: OUT + 'C715475-2-menu.png' }); t0 = Date.now(); await p.locator('.q-menu:visible').last().getByText('Download (PDF)', { exact: true }).click();
+  for (let i = 0; i < 180; i++) { const n = (await p.locator('.q-notification').allInnerTexts().catch(() => [])).map((t) => t.replace(/\s+/g, ' ').trim()).filter((t) => /large|error|couldn/i.test(t)); if (n.length) { o.msg = n; o.msgSecs = Math.round((Date.now() - t0) / 1000); await p.waitForTimeout(500); await p.screenshot({ path: OUT + 'C715475-3-message.png' }); break; } await p.waitForTimeout(500); }
+} catch (e) { o.err = String(e).slice(0, 300); }
+fs.writeFileSync(OUT + 'out.json', JSON.stringify(o, null, 1)); console.log('q9', JSON.stringify(o)); await s.close(); process.exit(0);
