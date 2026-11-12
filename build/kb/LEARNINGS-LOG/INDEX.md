@@ -623,3 +623,41 @@
 - L0591 — 2026-10-28 — SV-11567 (Undo): tests brought to PRD v81 before the site existed; how to find a ticket's test site when the QA Branch field is empty
 - L0592 — 2026-10-28 — QA lead's three standing answers: sign-in asks carry the full URL (Rule 138); screenshots ALWAYS (Rule 130 amendment); Fast-follow tests go
 - L0593 — 2026-10-28 — SV-11594 verified (Deleted technician in the Technician filter); SV-11581 Card size tested — passes except one open question (VIN on Compac
+
+## build/kb/LEARNINGS-LOG/010-L0594-L0629.md
+- L0594 — 2026-10-28 — SV-11754 verified; SV-11838 (designer's "…" button ticket) builds something that matches neither the PRD nor the design
+- L0595 — 2026-10-28 — SV-11835 (Board View minimap, sideways scroll bar removed): 16 tests found by TOPIC words; three need changes; one new test
+- L0596 — 2026-10-28 — QA-branch site states seen by curl: 000 = not created; S3 "AccessDenied" 403 + api 503 = being deployed; the SSO session from another branc
+- L0597 — 2026-10-28 — SV-11567 Undo first run on sv11567: four traps in my own instrument, none in the product
+- L0598 — 2026-10-28 — SV-11567 (Undo) and SV-11835 (minimap) PASSED on their QA branches; how the minimap reads; three tooling traps
+- L0599 — 2026-10-28 — SV-11581 (Card size) FAILED on VIN/serial: the "question" was already settled on the ticket; a sleeping branch; a test that could not catch
+- L0600 — 2026-10-28 — "Blocked by the network" was my own harness; with it off the QA branch still shows no chat bubble
+- L0601 — 2026-10-28 — Audit: tests still carrying "known problem"/"expect fail"/prefix of tickets long Done — Rule 136 had only been applied ticket-by-ticket
+- L0602 — 2026-10-28 — SV-11555 (empty-location states) PASSED on sv11555; how to make "no technicians" locations on a QA branch
+- L0603 — 2026-10-29 — The QA SSO session lasts about a day: 28 Oct 10:41 → expired by 29 Oct 10:21 UTC
+- L0604 — 2026-10-29 — SV-11581 (Card size) PASSED after the fix (v26.43.2-9272076); a VIN check needs its positive control; topic tests quoted the pre-card-size 
+- L0605 — 2026-10-29 — C96954 / C96955 (card-size follow-ups) run on sv11581 and back in run 498; a fresh branch also lacks Esther Howard and Ralph Edwards
+- L0606 — 2026-10-29 — A ticket is PASSED only when EVERY line of its description has been seen in EVERY view it names, with proof the set-up really held — never 
+- L0607 — 2026-10-29 — A Schedule shift must start on a quarter hour; PRD v82 makes Declined lock the lead (SV-11902)
+- L0608 — 2026-10-29 — Reading the message right after Undo catches the OLD message fading out; Undo's own save route; how to make Undo "fail to save"
+- L0609 — 2026-10-29 — SV-11902 (Declined locks the lead) passed on sv11902; how to read a lock, a reorder and the page honestly; nine tests moved to PRD v82
+- L0610 — 2026-10-29 — SV-11837 (lock tooltips: design look + 300 ms) has no QA branch: wait for one; don't test it on staging
+- L0611 — 2026-10-29 — SV-11837 FAILED on sv11754: the tooltip is still the app's grey one; the watch now waits after a Failed
+- L0612 — 2026-11-02 — Production v26.43.5: SV-11524 shipped, so every older WO Board script that reassigns is broken; use parked-prod-1102.mts
+- L0613 — 2026-11-02 — Production runs: never edit the signed-in runner's own staff record; split long runs one test per sign-in; standalone scripts can sit at th
+- L0614 — 2026-11-02 — QA lead ruling: WHERE a ticket's tests are verified depends on the ticket's status
+- L0615 — 2026-11-03 — QA lead allowed two Expected changes ONCE (Rule 114(c)); next time ask him first
+- L0616 — 2026-11-03 — SV-11835 (minimap) is Done and live on production v26.45.0; C682419 re-run there; a run can be signed out mid-way
+- L0617 — 2026-11-04 — The 2-hour watch read comments only for tickets in a QA status; a retest asked for in a comment outside QA would be missed
+- L0618 — 2026-11-04 — QA lead ended the 2-hour Fast Follow watch
+- L0619 — 2026-11-10 — New suite: A/R & A/P Aging Reports rebuild (SV-11315) on sv11315 — prepared, not started
+- L0620 — 2026-11-11 — Aging reports on sv11315: seeding recipes that work, and the bill-date trap
+- L0621 — 2026-11-11 — Aging reports on sv11315: back-dated invoices with a chosen time of day, invoice numbers of different lengths, and the Tech role switch
+- L0622 — 2026-11-11 — Aging reports on sv11315: credits/deposits on a chosen day, Net 30 vendors, filters, and three reader traps
+- L0623 — 2026-11-11 — Aging reports on sv11315: export, filter and reader facts from S2/S3
+- L0624 — 2026-11-11 — QA lead rulings on the aging suite, and how a live case is retired
+- L0625 — 2026-11-11 — Aging reports on sv11315: pop-up pictures, the API invoice amount, and paging a huge bucket
+- L0626 — 2026-11-11 — Aging reports: the row reader filed late-loaded lines after the bucket's "Total for" row
+- L0627 — 2026-11-11 — Aging reports on sv11315: invoices of an EXACT amount, and slotting a job into a running chain of queues
+- L0628 — 2026-11-11 — Aging reports on sv11315: "today" documents, the vendor-list paging, and runner hooks
+- L0629 — 2026-11-11 — Aging reports: judging exact sorts in one pass, the meeting dashboard, and a pipe that ate a file
