@@ -1,5 +1,6 @@
 {
  "_how": "GET /api/staff?search=, /api/staff/{id}/view, /api/staff/{id}/enrolled-workplaces - read-only, before any change",
+ "_note_defaultWorkplace": "Read 2026-11-12 ~13:22Z from GET /api/staff?search= (staging names it defaultWorkplace; QA default_workplace). Only refused (HTTP 400) change attempts preceded the read (../../staging-run-2026-11-12/tech-oplog.jsonl), so it is the before-state.",
  "_read_utc": "2026-11-12T06:58:07Z",
  "confirmed_invitation_on": "2026-08-31 18:54:54",
  "created_on": "2026-08-31 18:54:54",
@@ -68,6 +69,8 @@
  "list_row": {
   "billable": 0,
   "clockable": true,
+  "defaultWorkplace": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "defaultWorkplaceName": "Staging Heavy Duty - 9919",
   "is_sales_rep": false,
   "job_title": null,
   "salary": null,

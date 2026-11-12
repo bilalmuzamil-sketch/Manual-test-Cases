@@ -379,3 +379,16 @@ were made**, so they are after-the-feature records as well as after-the-snapshot
 
 Effect on totals: as of any day from 9 Nov 2026 this customer adds $500.00 (B) to A/R; as of 9 Nov only, $580.00.
 Recipe and proof: `v1-regression/overpaid-recipe/` (`overpaid-staging.json` holds every measurement).
+
+### Added 12 Nov 2026 after the upgrade landed (V1R-76 revival, build v26.45.4-b8c04e2)
+
+Made by `v1-regression/staging-run-2026-11-12/seed_overpaid_v1r76.py` (ids and times in `overpaid-v1r76-staging.json` there). Exclude these too.
+
+| What | Name / number | Id | Created (UTC) |
+|---|---|---|---|
+| Customer | ZZAUTOTEST OVERPAID V1R-76 Cust X | `b7a0b740-18c9-483c-8b1c-1ad009f42133` | 2026-11-12T12:52:4xZ (just before its invoice) |
+| Invoice | S2-40185, $100.00, dated 9 Nov 2026 (location A) | `de467dd0-4b04-45c8-8719-917acb9c9a77` | 2026-11-12T12:52:50Z |
+| Payment P1 | $20.00 cash, dated 9 Nov 2026, **reversed** 2026-11-12T12:53:11Z | `ba4fbbcf-13aa-4cda-bd65-fdb47054be58` | 2026-11-12T12:53:09Z |
+| Payment P2 | $100.00 cash, dated 10 Nov 2026 | `aaa7daf6-0523-4579-b3c3-48a4082b99f6` | 2026-11-12T12:53:15Z |
+
+Effect: as of 10 and 11 Nov 2026 the A/R reports count this invoice as overpaid ($120.00 paid on $100.00), so it is in no row and no total. As of 9 Nov it shows $80.00 owed (A/R Summary, Current). From 12 Nov it is fully paid and in no report.

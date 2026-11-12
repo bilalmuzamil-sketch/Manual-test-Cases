@@ -81,9 +81,9 @@ async function rows(page) {
 }
 async function shot(page, key, what) { const f = `${key} - ${what}.png`.replace(/[\/:]/g, '-'); await page.screenshot({ path: path.join(EVID, f), fullPage: true }); return f; }
 function saveText(key, what, obj) { const f = `${key} - ${what}.json`.replace(/[\/:]/g, '-'); fs.writeFileSync(path.join(EVID, f), JSON.stringify(obj, null, 1)); return f; }
-async function exportFile(page, prefix, kind, key, what) {
+async function exportFile(page, prefix, kind, key, what, timeout = 60000) {
   await page.click(`[data-test-id="btn_dropdown_${prefix}_export"]`); await sleep(700);
-  const [dl] = await Promise.all([page.waitForEvent('download', { timeout: 60000 }).catch(() => null), page.click(`[data-test-id="action_${prefix}_export_${kind}"]`)]);
+  const [dl] = await Promise.all([page.waitForEvent('download', { timeout }).catch(() => null), page.click(`[data-test-id="action_${prefix}_export_${kind}"]`)]);
   if (!dl) return { ok: false };
   const f = `${key} - ${what}.${kind}`; await dl.saveAs(path.join(EVID, f)); return { ok: true, file: f, path: path.join(EVID, f), suggested: dl.suggestedFilename() };
 }

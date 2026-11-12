@@ -130,6 +130,7 @@ C['V1R-73'] = async (x) => {
 module.exports = C; Object.assign(module.exports, { TODAY, YDAY, US, addDays, go, verdict, chk });
 // ---------- batch 2: A/R Detail with the seeded records ----------
 const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const PDFD = (iso) => { const [y, m, d] = iso.split('-'); return `${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m - 1]} ${d} ${y}`; };
 const FMT = (iso) => { const [y, m, d] = iso.split('-'); return `${MON[+m - 1]} ${+d}, ${y}`; };
 const L0 = () => require('./' + E.ledgerFile);
 const CUST = (k) => require('./manifest.json').customers.find((c) => c.key === k).name;
@@ -177,7 +178,7 @@ C['V1R-16'] = async (x) => {
   const b = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R16'), TODAY, `step 8 as of V ${TODAY}`);
   const r1 = find(a.docs, cm);
   return { ...verdict([chk(`Step 5: credit memo ${cm} listed at $-25.00`, r1 && r1.cells.open_balance === '$-25.00', r1 ? `${r1.cells.amount} / ${r1.cells.open_balance}` : 'not listed: ' + a.docs.map((d) => d.text).join(' / ')),
-    chk('Step 8: not listed on day V', !find(b.docs, cm), b.docs.map((d) => d.cells.id).join(', ') || 'no lines')]), note: `Credit memo dated ${SH(SH('2026-10-22'))}, voided ${TODAY} (day V = today: a void is stamped with the moment it is made).` };
+    chk('Step 8: not listed on day V', !find(b.docs, cm), b.docs.map((d) => d.cells.id).join(', ') || 'no lines')]), note: `Credit memo dated ${SH('2026-10-22')}, voided ${TODAY} (day V = today: a void is stamped with the moment it is made).` };
 };
 C['V1R-17'] = async (x) => {
   const mid = SH('2026-10-20'), A = SH('2026-10-27'), cm = num('doc:R17:cm');
@@ -205,7 +206,7 @@ C['V1R-03'] = async (x) => {
   const working = await x.page.locator('[data-test-id="profile_menu_button"]').innerText();
   const r = find(a.docs, inv);
   return { ...verdict([chk('Precondition: working at location A (top right)', working.includes('Staging Heavy Duty - 9919'), working.replace(/\s+/g, ' ')),
-    chk(`Step 4: location B invoice ${inv} listed with location B on its line`, r && r.cells.location === 'Staging Lethbridge - 4310', r ? JSON.stringify(r.cells) : 'not listed')]), note: 'The invoice was dated ' + FMT(SH(SH('2026-11-06'), 'B')) + ' (5 days ago); the precondition says "today". It is open today, which is what the step checks.' };
+    chk(`Step 4: location B invoice ${inv} listed with location B on its line`, r && r.cells.location === 'Staging Lethbridge - 4310', r ? JSON.stringify(r.cells) : 'not listed')]), note: 'The invoice was dated ' + FMT(SH('2026-11-06', 'B')) + ' (5 days ago); the precondition says "today". It is open today, which is what the step checks.' };
 };
 C['V1R-41'] = async (x) => {
   const inv = num('doc:R41:inv'); const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R41'), null, 'steps 4-6 partly paid invoice');
@@ -245,7 +246,7 @@ C['V1R-39'] = async (x) => {
 C['V1R-43'] = async (x) => {
   const { page, lib } = x; await go(x, 'A/R Aging Detail');
   await page.click('[data-test-id="button_aging_detail_report_toggle_current"]'); await lib.settle(page, 1200);
-  const open1 = (await lib.rows(page)).filter((r) => r.tid.includes('_transaction_')).length;
+  let open1 = 0; for (let k = 0; k < 30 && !open1; k++) { open1 = (await lib.rows(page)).filter((r) => r.tid.includes('_transaction_')).length; if (!open1) await lib.sleep(500); }
   const s = await lib.setDate(page, YDAY); const rs = await lib.rows(page);
   const heads = rs.filter((r) => /aging_detail_report_row_(days_[0-9a-z_]+|current)$/.test(r.tid));
   x.ev.push(await lib.shot(page, x.key, 'step 5 bucket rows after the date change'));
@@ -339,7 +340,7 @@ C['V1R-19'] = async (x) => {
   const b = await collectionFor(x, 'R19', R, `steps 6-7 as of R ${R}`);
   const r1 = find(a.docs, dep);
   return { ...verdict([chk(`Step 5: deposit ${dep} listed at $-20.00`, r1 && r1.cells.open_balance === '$-20.00', r1 ? JSON.stringify(r1.cells) : 'not listed: ' + a.docs.map((d) => d.text).join(' / ')),
-    chk('Step 7: deposit not listed', !find(b.docs, dep), b.docs.map((d) => d.text).join(' / ') || 'no lines ' + b.msg)]), note: `Deposit dated ${SH(SH('2026-10-30'))}; its reversal was stamped ${R} (the app ends a free deposit only by reversing the payment that made it). After the reversal the customer's $5.00 invoice that the payment had paid is open again and is listed on day R; the step checks only that the deposit is gone.` };
+    chk('Step 7: deposit not listed', !find(b.docs, dep), b.docs.map((d) => d.text).join(' / ') || 'no lines ' + b.msg)]), note: `Deposit dated ${SH('2026-10-30')}; its reversal was stamped ${R} (the app ends a free deposit only by reversing the payment that made it). After the reversal the customer's $5.00 invoice that the payment had paid is open again and is listed on day R; the step checks only that the deposit is gone.` };
 };
 C['V1R-44'] = async (x) => {
   const a = await collectionFor(x, 'R44', null, 'steps 3-6 customer with two past-due invoices');
@@ -478,7 +479,7 @@ C['V1R-57'] = async (x) => {
 };
 C['V1R-58'] = async (x) => {
   const a = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P58'), null, 'steps 3-7 vendor credit line'); const r = vcRow(a.docs, '25.00'); const c = r ? r.cells : {};
-  return verdict([chk('Step 5: Due Date = the credit\'s own date (' + FMT(SH(SH('2026-11-01'))) + ')', c.due_date === FMT(SH('2026-11-01')) && c.date === FMT(SH('2026-11-01')), JSON.stringify(c)), chk('Step 6: Past Due 10', c.past_due === '10', c.past_due), chk('Step 7: $-25.00 and $-25.00', c.amount === '$-25.00' && c.open_balance === '$-25.00', `${c.amount} / ${c.open_balance}`)]);
+  return verdict([chk('Step 5: Due Date = the credit\'s own date (' + FMT(SH('2026-11-01')) + ')', c.due_date === FMT(SH('2026-11-01')) && c.date === FMT(SH('2026-11-01')), JSON.stringify(c)), chk('Step 6: Past Due 10', c.past_due === '10', c.past_due), chk('Step 7: $-25.00 and $-25.00', c.amount === '$-25.00' && c.open_balance === '$-25.00', `${c.amount} / ${c.open_balance}`)]);
 };
 C['V1R-59'] = async (x) => {
   const { page, lib } = x; await go(x, 'A/P Aging Detail');
@@ -583,8 +584,9 @@ async function infoIcon(x, report, iconSel, label) {
   const r = {};
   await icon.hover(); await lib.sleep(1200); r.hover = await tip(); x.ev.push(await lib.shot(page, x.key, `${label} pointer on the icon`));
   await page.mouse.move(5, 500); await lib.sleep(1200); r.away = await tip();
-  await icon.click(); await lib.sleep(1000); r.click1 = await tip(); x.ev.push(await lib.shot(page, x.key, `${label} after first click`));
-  await icon.click(); await lib.sleep(1000); await page.mouse.move(5, 500); await lib.sleep(800); r.click2 = await tip();
+  // steps 5-6 as the cases say (12 Nov 2026 fix - the old code clicked at step 5): point at the icon AGAIN, then click it
+  await icon.hover(); await lib.sleep(1200); r.hover2 = await tip(); x.ev.push(await lib.shot(page, x.key, `${label} step 5 pointer on the icon again`));
+  await icon.click(); await lib.sleep(1000); r.click1 = await tip(); x.ev.push(await lib.shot(page, x.key, `${label} step 6 after clicking the icon`));
   return r;
 }
 const BLOCK_CHART = 'automation browser cannot load the chart section; needs a person - the screen works on the QA lead\'s device (11 Nov 2026)';
@@ -595,17 +597,17 @@ C['V1R-68'] = async (x) => {
   let tabs = 0, found = false; await page.evaluate(() => document.activeElement && document.activeElement.blur()); for (let i = 0; i < 200; i++) { tabs++; await page.keyboard.press('Tab'); const f = await page.evaluate(() => { const a = document.activeElement; return a ? (a.getAttribute('aria-label') || '') + ' ' + (a.getAttribute('data-test-id') || '') : ''; }); if (/^Units Sold:|units_sold_info/.test(f.trim()) || /icon_pv_units_sold_info/.test(f)) { found = true; await lib.sleep(900); r7 = await page.evaluate(() => [...document.querySelectorAll('.q-tooltip, [role="tooltip"]')].map((e) => e.innerText.trim()).join(' | ')); break; } }
   await page.keyboard.press('Escape'); await lib.sleep(800); r8 = await page.evaluate(() => [...document.querySelectorAll('.q-tooltip, [role="tooltip"]')].map((e) => e.innerText.trim()).join(' | '));
   const want = 'Units taken out of inventory stock on invoiced work orders in this date range.';
-  return verdict([chk('Step 3: explanation appears, starting with the quoted sentence', r.hover.startsWith(want), r.hover), chk('Step 4: disappears', !r.away, r.away || '(nothing)'), chk('Step 5: click shows it', r.click1.startsWith(want), r.click1), chk('Step 6: click again hides it', !r.click2, r.click2 || '(nothing)'), chk('Step 7: Tab focus shows it', r7.startsWith(want), (r7 || '(nothing)') + ` [icon reached by Tab: ${found}, after ${tabs} presses]`), chk('Step 8: Escape hides it', !r8, r8 || '(nothing)')]);
+  return verdict([chk('Step 3: explanation appears, starting with the quoted sentence', r.hover.startsWith(want), r.hover), chk('Step 4: disappears', !r.away, r.away || '(nothing)'), chk('Step 5: pointing again shows it', (r.hover2 || '').startsWith(want), r.hover2 || '(nothing)'), chk('Step 6: clicking the icon closes it', !r.click1, r.click1 || '(nothing)'), chk('Step 7: Tab focus shows it', r7.startsWith(want), (r7 || '(nothing)') + ` [icon reached by Tab: ${found}, after ${tabs} presses]`), chk('Step 8: Escape hides it', !r8, r8 || '(nothing)')]);
 };
 C['V1R-69'] = async (x) => {
   const r = await infoIcon(x, 'Technician Utilization', '[aria-label*="Est. Lost Labor"], :text("Est. Lost Labor") >> xpath=.. >> i:has-text("info")', 'step 3');
   if (r.blocked) return { verdict: 'BLOCKED', observed: BLOCK_CHART }; if (r.missing) return { verdict: 'BLOCKED', observed: 'Automation could not locate the Est. Lost Labor info icon (one attempt); needs a person.' };
-  return verdict([chk('Step 3: explanation appears', r.hover, r.hover), chk('Step 4: disappears', !r.away, r.away || '(nothing)'), chk('Step 5: click shows it', r.click1, r.click1), chk('Step 6: click again hides it', !r.click2, r.click2 || '(nothing)')]);
+  return verdict([chk('Step 3: explanation appears', r.hover, r.hover), chk('Step 4: disappears', !r.away, r.away || '(nothing)'), chk('Step 5: pointing again shows it', r.hover2, r.hover2 || '(nothing)'), chk('Step 6: clicking the icon closes it', !r.click1, r.click1 || '(nothing)')]);
 };
 C['V1R-70'] = async (x) => {
   const r = await infoIcon(x, 'Work In Progress', 'main i:has-text("info_outline"):not([data-test-id^="icon_"]), main [data-test-id*="summary"] i:has-text("info")', 'step 3');
   if (r.blocked) return { verdict: 'BLOCKED', observed: BLOCK_CHART }; if (r.missing) return { verdict: 'BLOCKED', observed: 'Automation could not locate the summary-strip info icon (one attempt); needs a person.' };
-  return verdict([chk('Step 3: explanation appears', r.hover, r.hover), chk('Step 4: disappears', !r.away, r.away || '(nothing)'), chk('Step 5: click shows it', r.click1, r.click1), chk('Step 6: click again hides it', !r.click2, r.click2 || '(nothing)')]);
+  return verdict([chk('Step 3: explanation appears', r.hover, r.hover), chk('Step 4: disappears', !r.away, r.away || '(nothing)'), chk('Step 5: pointing again shows it', r.hover2, r.hover2 || '(nothing)'), chk('Step 6: clicking the icon closes it', !r.click1, r.click1 || '(nothing)')]);
 };
 async function openOtherLocationLink(x, path, label) {
   const { page, lib } = x; await lib.reportsHome(page, x.app); const before = (await page.locator('[data-test-id="profile_menu_button"]').innerText()).replace(/\s+/g, ' ');
@@ -672,7 +674,7 @@ C['V1R-80'] = async (x) => {
   const { page, lib } = x; const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R42'), null, 'steps 3-4 credit memo on screen'); const r = find(a.docs, num('doc:R42:cm'));
   const f = await lib.exportFile(page, 'ardet', 'pdf', x.key, 'step 6 PDF'); const txt = f.ok ? pdfText(f.path) : ''; const line = txt.split('\n').find((l) => l.includes(num('doc:R42:cm'))) || '';
   x.ev.push(lib.saveText(x.key, 'PDF credit memo line', { line }));
-  return verdict([chk('Step 4: on screen "$-5.00"', r && r.cells.amount === '$-5.00', r ? r.cells.amount : 'not listed'), chk('Step 9 (PRD): in the PDF "(-$5.00)" and date like "Oct 26 2026"', line.includes('(-$5.00)') && line.includes('Oct 26 2026'), line.trim().replace(/\s+/g, ' '))]);
+  return verdict([chk('Step 4: on screen "$-5.00"', r && r.cells.amount === '$-5.00', r ? r.cells.amount : 'not listed'), chk(`Step 9 (PRD): in the PDF "(-$5.00)" and date like "${PDFD(L0()['doc:R42:cm'].date)}"`, line.includes('(-$5.00)') && line.includes(PDFD(L0()['doc:R42:cm'].date)), line.trim().replace(/\s+/g, ' '))]);
 };
 C['V1R-81'] = async (x) => {
   const { page, lib } = x; await go(x, 'A/R Aging Summary'); const n0 = (await lib.rows(page)).length;
@@ -690,10 +692,10 @@ C['V1R-82'] = async (x) => {
   const csv = await lib.exportFile(page, 'apdet', 'csv', x.key, 'step 7 A-P Detail CSV'); let docRowsN = null, sample = [];
   if (csv.ok) { const lines = require('fs').readFileSync(csv.path, 'utf8').split(/\r?\n/).filter((l) => l.trim()); sample = lines.slice(0, 8); docRowsN = lines.filter((l) => /^\uFEFF?"?(91 or more days past due|\d+-\d+ days past due|Current)"?,/.test(l)).length; }
   x.ev.push(lib.saveText(x.key, 'CSV head and counts', { bucket_counts: counts, sum: counts.reduce((a, b) => a + b, 0), csv_document_rows: docRowsN, first_lines: sample }));
-  await lib.nav(page, 'A/R Aging Detail'); const ar = await lib.exportFile(page, 'ardet', 'pdf', x.key, 'step 12 A-R Detail PDF');
+  await lib.nav(page, 'A/R Aging Detail'); await lib.settle(page, 2000); const ar = await lib.exportFile(page, 'ardet', 'pdf', x.key, 'step 12 A-R Detail PDF', 180000); if (!ar.ok) { ar.notices = await lib.notices(page); x.ev.push(await lib.shot(page, x.key, 'step 12 after asking for the A-R Detail PDF')); }
   const sum = counts.reduce((a, b) => a + b, 0);
   return { ...verdict([chk('Precondition: A/P Detail over 2,000 lines', sum > 2000, `${counts.join(' + ')} = ${sum}`), chk('Step 5 (PRD): no download and "This report is too large for PDF. Export it as CSV, or narrow the filters, then try again."', !dl && msgs.some((m) => m.includes('This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.')), `download: ${JSON.stringify(dlInfo)}; messages ${JSON.stringify(msgs)}`),
-    chk('Step 9: CSV has one row per document = sum of bucket counts', docRowsN === sum, `CSV document rows ${docRowsN} vs ${sum}`), chk('Step 12: A/R Detail (under 2,000 lines) still gives a PDF', ar.ok, ar.ok ? ar.suggested : 'no download')]), facts: { counts } };
+    chk('Step 9: CSV has one row per document = sum of bucket counts', docRowsN === sum, `CSV document rows ${docRowsN} vs ${sum}`), chk('Step 12: A/R Detail (under 2,000 lines) still gives a PDF', ar.ok, ar.ok ? ar.suggested : 'no download within 3 minutes; message: ' + JSON.stringify(ar.notices || []))]), facts: { counts } };
 };
 C['V1R-83'] = async (x) => {
   const { page, lib } = x; await go(x, 'A/R Aging Summary'); const s = await lib.setDate(page, MID_LAST_MONTH);
@@ -718,7 +720,7 @@ C['V1R-85'] = async (x) => {
 };
 C['V1R-86'] = async (x) => {
   const a = await collectionFor(x, 'R74', null, 'steps 3-5 dates'); const cm = find(a.docs, num('doc:R74:cm_today')), inv = find(a.docs, num('doc:R74:inv'));
-  return verdict([chk(`Step 4 (PRD): today written out "${FMT(TODAY)}", not "Today"`, cm && cm.cells.date === FMT(TODAY), cm ? cm.cells.date : 'not listed'), chk(`Step 5: older date "${FMT(SH(SH('2026-11-01')))}"`, inv && inv.cells.date === FMT(SH(SH('2026-11-01'))), inv ? inv.cells.date : 'not listed')]);
+  return verdict([chk(`Step 4 (PRD): today written out "${FMT(TODAY)}", not "Today"`, cm && cm.cells.date === FMT(TODAY), cm ? cm.cells.date : 'not listed'), chk(`Step 5: older date "${FMT(SH('2026-11-01'))}"`, inv && inv.cells.date === FMT(SH('2026-11-01')), inv ? inv.cells.date : 'not listed')]);
 };
 C['V1R-74'] = async (x) => {
   const a = await detailFor(x, 'A/R Aging Detail', 'customerIds', CUST('R74'), null, 'steps 3-6 two credit memos'); const t8 = find(a.docs, num('doc:R74:cm_today')), t6 = find(a.docs, num('doc:R74:cm_yday'));
@@ -729,7 +731,32 @@ C['V1R-75'] = async (x) => {
   const a = await detailFor(x, 'A/P Aging Detail', 'vendorIds', VEND('P75'), null, 'steps 3-7 two vendor credits'); const v9 = vcRow(a.docs, '9.00'), v4 = vcRow(a.docs, '4.00');
   return { ...verdict([chk('Step 4 (PRD S1-R5a): the $9.00 vendor credit dated today is under Current', v9 && v9.tid.includes('_row_current_'), v9 ? v9.tid.split('_transaction_')[0] : 'not listed'), chk('Step 5: Past Due 0', v9 && v9.cells.past_due === '0', v9 ? v9.cells.past_due : '-'), chk('Step 7: the $4.00 credit dated yesterday under 1-30 days past due', v4 && v4.tid.includes('_row_days_1_to_30_'), v4 ? v4.tid.split('_transaction_')[0] : 'not listed')]), note: 'Run before 18:00Z: an extra $9.00 credit made at 18:00Z today (retired, see SEEDED.md) only appears after that time.' };
 };
-C['V1R-76'] = async () => ({ verdict: 'BLOCKED', observed: 'Precondition cannot be set up: an invoice paid MORE than its amount. Rung tried: the payment call the front end makes (POST /api/customer-account/create-customer-payment) applying $120.00 to the $100.00 invoice of ZZAUTOTEST AR R76 Overpaid answers 400 "Transaction cannot be overpaid." Paying more than an invoice in the app instead makes a separate deposit for the excess (proved on R18/R19), which is not an overpaid invoice. What needs to be done: a developer stores one overpaid invoice on QA (or names an existing one), then run this case.' });
+// V1R-76 revived 12 Nov 2026 on staging (QA lead: "Yes"). Customer X = "ZZAUTOTEST OVERPAID V1R-76 Cust X", made by
+// ../../staging-run-2026-11-12/seed_overpaid_v1r76.py (the OVERPAID-INVOICE-RECIPE on a customer with ONLY that invoice, as the case
+// requires): $100.00 invoice S2-40185 counts $120.00 paid as of 11/11/2026 ($20.00 dated 9 Nov reversed 12 Nov + $100.00 dated 10 Nov).
+C['V1R-76'] = async (x) => {
+  const X = 'ZZAUTOTEST OVERPAID V1R-76 Cust X', AS_OF = '2026-11-11';
+  const { page, lib } = x; await go(x, 'A/R Aging Summary'); const s = await lib.setDate(page, AS_OF); if (!s.ok) throw new Error('date: ' + s.why);
+  // The table is VIRTUAL (found 12 Nov 2026 on staging: only ~60 rows exist in the page at a time while the Totals row covers all
+  // customers), so walk it top to bottom and keep every row once, by its id.
+  const seen = new Map(); let tot = null, still = 0;
+  await page.evaluate(() => { document.querySelectorAll('.q-table__middle, .q-virtual-scroll, .scroll').forEach((e) => { e.scrollTop = 0; }); window.scrollTo(0, 0); }); await lib.settle(page, 800);
+  for (let k = 0; k < 400 && still < 4; k++) {
+    const before = seen.size; for (const r of await lib.rows(page)) { if (/^aging_summary_report_row_[0-9a-f-]{36}$/.test(r.tid)) seen.set(r.tid, r); else if (r.text.startsWith('Totals')) tot = r; }
+    const atEnd = await page.evaluate(() => { let end = true; document.querySelectorAll('.q-table__middle, .q-virtual-scroll, .scroll').forEach((e) => { if (e.scrollHeight > e.clientHeight + 2) { e.scrollTop += Math.floor(e.clientHeight * 0.7); if (e.scrollTop + e.clientHeight < e.scrollHeight - 2) end = false; } }); return end; });
+    await lib.settle(page, 350); still = (seen.size === before && atEnd) ? still + 1 : 0; }
+  for (const r of await lib.rows(page)) { if (/^aging_summary_report_row_[0-9a-f-]{36}$/.test(r.tid)) seen.set(r.tid, r); else if (r.text.startsWith('Totals')) tot = r; }
+  const custRows = [...seen.values()];
+  const cents = (v) => Math.round(parseFloat(String(v || '0').replace(/[$,\s]/g, '')) * 100) || 0;
+  const sum = custRows.reduce((a, r) => a + cents(r.cells.total), 0); const totTxt = tot ? (tot.cells.total || (tot.text.match(/\$-?[\d,]+\.\d\d/g) || []).pop()) : null; const totC = tot ? cents(totTxt) : null;
+  const xListed = custRows.some((r) => ((r.cells.customer_name || '') + ' ' + r.text).includes(X));
+  x.ev.push(await lib.shot(page, x.key, 'steps 4-6 bottom of AR Aging Summary as of 11-11-2026 with the Totals row'));
+  x.ev.push(lib.saveText(x.key, 'customer rows and Totals', { as_of: AS_OF, rows: custRows.map((r) => [r.cells.customer_name, r.cells.total]), totals: tot ? tot.cells : null, sum_cents: sum, totals_cents: totC }));
+  return { ...verdict([chk('Step 1-2: A/R Aging Summary as of 11/11/2026', s.ok, s.chip || s.why),
+    chk(`Step 3: customer X (${X}) is not listed (an overpaid invoice is not a row)`, !xListed, xListed ? 'LISTED' : `not among ${custRows.length} customer rows`),
+    chk('Step 6 (PRD v11): the Totals row Total equals the sum of every customer row Total', !!tot && sum === totC, `sum of ${custRows.length} customer rows $${(sum / 100).toFixed(2)} vs Totals row ${totTxt || 'none'}`)]),
+    facts: { as_of: AS_OF, customer_x: X, customer_rows: custRows.length, sum_cents: sum, totals_cents: totC } };
+};
 C['V1R-77'] = async (x) => {
   const { page, lib } = x; await go(x, 'A/R Aging Summary'); const first = (await lib.rows(page)).find((r) => /^aging_summary_report_row_[0-9a-f-]{36}$/.test(r.tid));
   await page.click(`[data-test-id="${first.tid}_cell_total"]`); await lib.settle(page, 1500); const t1 = await lib.title(page); x.ev.push(await lib.shot(page, x.key, 'step 4 after clicking the Total amount'));

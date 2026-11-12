@@ -1,0 +1,1084 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build_marker": "v26.45.4-b8c04e2",
+  "utc_days": [
+   "2026-11-12"
+  ],
+  "built_utc": "2026-11-12T13:32:31Z",
+  "not_emitted": {
+   "needs_review": [
+    "V1R-35chev: supporting measurement for V1R-35, verdict FAIL - read it before posting V1R-35: NOT OK Empty buckets: chevron drawn fainter than the filled bucket and not clickable: [{\"row\":\"days_91_plus\",\"text\":\"\",\"effectiveOpacity\":0.7,\"color\":\"rgb(34, 118, 218)\",\"buttonDisabled\":true,\"cursor\""
+   ],
+   "harness_errors": [],
+   "held_developer_data": [],
+   "skipped_deleted": [
+    "V1R-68 (observed on build v26.45.4-d07623f, not v26.45.4-b8c04e2)"
+   ],
+   "blocked_not_posted": [
+    "V1R-69 C1079042: the automated browser cannot load the Technician Utilization chart section; needs a person (not posted: only passes and failed-with-open-ticket were approved)"
+   ]
+  }
+ },
+ "results": {
+  "C1078974": {
+   "observed": [
+    "Step 2: Accounts Receivable heading under Finance with the three reports: FINANCE payments Sales Tax Collected ACCOUNTS RECEIVABLE article A/R Aging Summary list_alt A/R Aging Detail library_books A/R Aging Collection ACCOUNTS PAYABLE article A/P Aging Summary list_alt A/P Aging Detail library_books A/P Unpaid Invoices ACC",
+    "Step 4: title \"A/R Aging Summary\", address ends /reports/ar-aging-summary: title \"A/R Aging Summary\", address https://app.staging.shopview.com/reports/ar-aging-summary",
+    "Step 6: title \"A/R Aging Detail\", address ends /reports/ar-aging-detail: title \"A/R Aging Detail\", address https://app.staging.shopview.com/reports/ar-aging-detail",
+    "Step 8: title \"A/R Aging Collection\", address ends /reports/ar-aging-collection: title \"A/R Aging Collection\", address https://app.staging.shopview.com/reports/ar-aging-collection"
+   ],
+   "note": "run-staging.json 2026-11-12T12:52:04.508Z..2026-11-12T12:52:15.146Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078974-1-step-2-finance-part-of-the-reports-menu.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078974-2-step-4-ar-aging-summary.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078974-3-step-6-ar-aging-detail.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078974-4-step-8-ar-aging-collection.png"
+   ]
+  },
+  "C1078975": {
+   "observed": [
+    "Step 2: heading lists A/P Aging Summary, A/P Aging Detail, A/P Unpaid Invoices: ACCOUNTS PAYABLE article A/P Aging Summary list_alt A/P Aging Detail library_books A/P Unpaid Invoices ACCOUNTING paid IBS Batches warning QB Unexported download Export Reports COMMUNICATIONS chat Not",
+    "Step 4: title \"A/P Aging Summary\", address ends /reports/ap-aging-summary: title \"A/P Aging Summary\", address https://app.staging.shopview.com/reports/ap-aging-summary",
+    "Step 6: title \"A/P Aging Detail\", address ends /reports/ap-aging-detail: title \"A/P Aging Detail\", address https://app.staging.shopview.com/reports/ap-aging-detail",
+    "Step 8: title \"A/P Unpaid Invoices Report\", address ends /reports/ap-unpaid-invoices: title \"A/P Unpaid Invoices Report\", address https://app.staging.shopview.com/reports/ap-unpaid-invoices"
+   ],
+   "note": "run-staging.json 2026-11-12T12:52:15.388Z..2026-11-12T12:52:25.699Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078975-1-step-2-accounts-payable-heading.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078975-2-step-4-ap-aging-summary.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078975-3-step-6-ap-aging-detail.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078975-4-step-8-ap-unpaid-invoices.png"
+   ]
+  },
+  "C1078976": {
+   "observed": [
+    "Precondition: working at location A (top right): Staging Heavy Duty - 9919 AS",
+    "Step 4: location B invoice S3-40035 listed with location B on its line: {\"date\":\"Nov 7, 2026\",\"location\":\"Staging Lethbridge - 4310\",\"type\":\"Invoice\",\"id\":\"S3-40035\",\"customer_name\":\"ZZAUTOTEST AR R03 Location B\",\"due_date\":\"Nov 7, 2026\",\"amount\":\"$33.00\",\"open_balance\":\"$33.00\"}"
+   ],
+   "note": "run-staging.json 2026-11-12T12:52:25.937Z..2026-11-12T12:52:38.048Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078976-1-steps-3-4-location-b-invoice-while-working-at-a.png"
+   ]
+  },
+  "C1078977": {
+   "observed": [
+    "Step 3: date set: As of: 10/01/2026",
+    "Step 4: switched to B: Staging Lethbridge - 4310 AS",
+    "Step 5: still on A/R Aging Summary, chip 10/01/2026: title \"A/R Aging Summary\", chip As of: 10/01/2026, address https://app.staging.shopview.com/reports/ar-aging-summary?asOfDate=2026-10-01"
+   ],
+   "note": "run-staging.json 2026-11-12T12:52:38.299Z..2026-11-12T12:53:01.217Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078977-1-step-5-after-switching-to-location-b.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078977-2-cleanup-switched-back-to-location-a.png"
+   ]
+  },
+  "C1078978": {
+   "observed": [
+    "Step 3: A/R Aging Summary date chip shows today (11/12/2026): As of: 11/12/2026",
+    "Step 5: A/R Aging Detail date chip shows today (11/12/2026): As of: 11/12/2026",
+    "Step 7: A/R Aging Collection date chip shows today (11/12/2026): As of: 11/12/2026",
+    "Step 9: A/P Aging Summary date chip shows today (11/12/2026): As of: 11/12/2026",
+    "Step 11: A/P Aging Detail date chip shows today (11/12/2026): As of: 11/12/2026",
+    "Step 13: A/P Unpaid Invoices date chip shows today (11/12/2026): As of: 11/12/2026"
+   ],
+   "note": "run-staging.json 2026-11-12T12:53:01.498Z..2026-11-12T12:53:19.786Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078978-1-step-3-ar-aging-summary-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078978-2-step-5-ar-aging-detail-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078978-3-step-7-ar-aging-collection-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078978-4-step-9-ap-aging-summary-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078978-5-step-11-ap-aging-detail-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078978-6-step-13-ap-unpaid-invoices-date-chip.png"
+   ]
+  },
+  "C1078979": {
+   "observed": [
+    "Step 4: no way to leave the report without a date: clear-type controls in the menu: []; clear (x) on the chip: 0",
+    "Step 5: chip still shows a date and the report shows rows: chip \"As of: 11/12/2026\", 30 vendor rows"
+   ],
+   "note": "run-staging.json 2026-11-12T12:53:20.064Z..2026-11-12T12:53:28.436Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078979-1-step-4-date-menu-open.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078979-2-step-5-after-closing-the-date-menu.png"
+   ]
+  },
+  "C1078980": {
+   "observed": [
+    "NOT AS EXPECTED - Step 4: 2026-12-31 can be picked: Next month is disabled (cannot reach 2026-12-31)",
+    "NOT AS EXPECTED - Step 5: chip shows that future date: As of: 11/12/2026"
+   ],
+   "note": "run-staging.json 2026-11-12T12:53:28.711Z..2026-11-12T12:53:36.258Z, build v26.45.4-b8c04e2",
+   "verdict": "Failed",
+   "defects": [
+    "SV-12545"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-12545",
+   "failed_steps": "Failed at: Step 4: 2026-12-31 can be picked (saw: Next month is disabled (cannot reach 2026-12-31)); Step 5: chip shows that future date (saw: As of: 11/12/2026)",
+   "bold_steps": [
+    4,
+    5
+   ],
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once SV-12545 is fixed.",
+   "source": "Production v26.45.3 (the behaviour before this release, which this test protects): on A/R Aging Summary the date menu lets you pick a date after today, for example 31 Dec 2026, and the report is worked out for that date. PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026) does not ask for this change; PO question 19 is open.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078980-1-step-4-picking-the-last-day-of-next-month.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078980-2-step-5-date-chip.png"
+   ]
+  },
+  "C1078981": {
+   "observed": [
+    "NOT AS EXPECTED - Step 5: chip shows 12/31/2026: As of: 11/12/2026 (address now https://app.staging.shopview.com/reports/ap-aging-summary)"
+   ],
+   "note": "run-staging.json 2026-11-12T12:53:36.545Z..2026-11-12T12:53:47.424Z, build v26.45.4-b8c04e2",
+   "verdict": "Failed",
+   "defects": [
+    "SV-12545"
+   ],
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-12545",
+   "failed_steps": "Failed at: Step 5: chip shows 12/31/2026 (saw: As of: 11/12/2026 (address now https://app.staging.shopview.com/reports/ap-aging-summary))",
+   "bold_steps": [
+    5
+   ],
+   "todo": "What needs to be done: nothing for the tester now; re-run this test once SV-12545 is fixed.",
+   "source": "Production v26.45.3: a saved A/P Aging Summary link that carries ?asOfDate= with a date after today opens on that date (for 2026-12-31 the chip reads Date: 2026-12-31) and the figures are worked out for it. PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026) does not ask for this change; PO question 19 is open.",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078981-1-step-5-date-chip-after-opening-the-link.png"
+   ]
+  },
+  "C1078982": {
+   "observed": [
+    "Step 3: date set: As of: 10/15/2026",
+    "Step 5: chip still 10/15/2026: As of: 10/15/2026",
+    "Step 8: A/R Aging Detail back on 10/15/2026: title \"A/R Aging Detail\", chip As of: 10/15/2026"
+   ],
+   "note": "run-staging.json 2026-11-12T12:53:47.683Z..2026-11-12T12:54:08.478Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078982-1-step-5-after-reload.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078982-2-step-8-after-browser-back.png"
+   ]
+  },
+  "C1078983": {
+   "observed": [
+    "Step 3: date set: As of: 10/01/2026",
+    "Step 6: chip shows today 11/12/2026: As of: 11/12/2026"
+   ],
+   "note": "run-staging.json 2026-11-12T12:54:08.764Z..2026-11-12T12:54:22.932Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078983-1-step-6-date-chip.png"
+   ]
+  },
+  "C1078984": {
+   "observed": [
+    "Step 5: invoice S2-40046 (created 2026-10-21) listed on 2026-10-21: Oct 21, 2026 Staging Heavy Duty - 9919 Invoice S2-40046 ZZAUTOTEST AR R11 Date Edge Oct 21, 2026 $60.00 $60.00",
+    "Step 6: credit memo CM2-4542 (created 2026-10-22) not listed on 2026-10-21: S2-40046",
+    "Step 9: invoice not listed on 2026-10-20: no lines"
+   ],
+   "note": "run-staging.json 2026-11-12T12:54:23.205Z..2026-11-12T12:54:54.268Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078984-1-steps-3-6-as-of-2026-10-21.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078984-3-steps-7-9-as-of-2026-10-20.png"
+   ]
+  },
+  "C1078985": {
+   "observed": [
+    "Step 5: bill ZZT-P12-BILLD dated 2026-10-21 listed: Oct 21, 2026 Staging Heavy Duty - 9919 Invoice ZZT-P12-BILLD ZZAUTOTEST AP P12 Bill Dates Nov 20, 2026 -30 $51.00 $51.00",
+    "Step 6: bill ZZT-P12-BILLD1 dated 2026-10-22 not listed: ZZT-P12-BILLD"
+   ],
+   "note": "run-staging.json 2026-11-12T12:54:54.517Z..2026-11-12T12:55:13.737Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078985-1-steps-3-6-as-of-2026-10-21.png"
+   ]
+  },
+  "C1078986": {
+   "observed": [
+    "Step 5: Amount $100.00, Open balance $100.00: $100.00 / $100.00",
+    "Step 8: Open balance $60.00: $60.00"
+   ],
+   "note": "run-staging.json 2026-11-12T12:55:14.008Z..2026-11-12T12:55:45.803Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078986-1-step-5-as-of-d-2-2026-10-13.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078986-3-step-8-as-of-d-5-2026-10-16.png"
+   ]
+  },
+  "C1078987": {
+   "observed": [
+    "Step 4: customer X listed with the invoice amount $80.00: {\"customer_name\":\"ZZAUTOTEST AR R14 Paid In Full\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$80.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$80.00\"}",
+    "Step 6: customer X not listed: not listed; table says: No record matches these filters Try changing filters to widen your results."
+   ],
+   "note": "run-staging.json 2026-11-12T12:55:46.064Z..2026-11-12T12:56:17.173Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078987-1-step-4-as-of-the-day-before-p-2026-10-12.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078987-2-step-6-as-of-p-2026-10-13.png"
+   ]
+  },
+  "C1078988": {
+   "observed": [
+    "Step 5: invoice S2-40056 not listed on 2026-10-21 (paid 2026-10-07): no lines",
+    "Step 8: listed on day R with Open balance $100.00: Oct 2, 2026 Staging Heavy Duty - 9919 Invoice S2-40056 ZZAUTOTEST AR R15 Payment Reversed Oct 2, 2026 $100.00 $100.00"
+   ],
+   "note": "run-staging.json 2026-11-12T12:56:17.429Z..2026-11-12T12:56:47.089Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078988-1-step-5-as-of-2026-10-21-between-p-and-r.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078988-3-step-8-as-of-r-2026-11-12.png"
+   ]
+  },
+  "C1078989": {
+   "observed": [
+    "Step 5: credit memo CM2-4543 listed at $-25.00: $-25.00 / $-25.00",
+    "Step 8: not listed on day V: no lines"
+   ],
+   "note": "run-staging.json 2026-11-12T12:56:47.366Z..2026-11-12T12:57:17.671Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078989-1-step-5-as-of-2026-10-26.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078989-3-step-8-as-of-v-2026-11-12.png"
+   ]
+  },
+  "C1078990": {
+   "observed": [
+    "Step 5: CM2-4544 Open balance $-30.00: $-30.00",
+    "Step 8: not listed on day A: no lines"
+   ],
+   "note": "run-staging.json 2026-11-12T12:57:17.924Z..2026-11-12T12:57:49.202Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078990-1-step-5-as-of-2026-10-21.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078990-3-step-8-as-of-a-2026-10-28.png"
+   ]
+  },
+  "C1078991": {
+   "observed": [
+    "Step 4: the $50.00 free deposit DEP2-4834 listed at $-50.00: $-50.00 / $-50.00",
+    "Step 5: the $70.00 work order deposit DEP2-4835 not listed: Nov 3, 2026 Staging Heavy Duty - 9919 Deposit DEP2-4834 ZZAUTOTEST AR R18 Deposits Nov 3, 2026 $-50.00 $-50.00"
+   ],
+   "note": "run-staging.json 2026-11-12T12:57:49.441Z..2026-11-12T12:58:03.450Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078991-1-steps-3-5-every-bucket-open.png"
+   ]
+  },
+  "C1078992": {
+   "observed": [
+    "Step 5: deposit DEP2-4836 listed at $-20.00: {\"date\":\"Oct 31, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Deposit\",\"id\":\"DEP2-4836\",\"due_date\":\"Oct 31, 2026\",\"past_due\":\"11\",\"amount\":\"$-20.00\",\"open_balance\":\"$-20.00\"}",
+    "Step 7: deposit not listed: Oct 30, 2026 Staging Heavy Duty - 9919 Invoice S2-40066 Oct 30, 2026 13 $5.00 $5.00"
+   ],
+   "note": "run-staging.json 2026-11-12T12:58:03.695Z..2026-11-12T12:58:35.962Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078992-1-steps-3-5-as-of-the-day-before-r-2026-11-11.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078992-3-steps-6-7-as-of-r-2026-11-12.png"
+   ]
+  },
+  "C1078993": {
+   "observed": [
+    "Step 5: Open Balance $200.00: {\"date\":\"Oct 13, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Invoice\",\"id\":\"ZZT-P20-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P20 Payment After\",\"due_date\":\"Nov 12, 2026\",\"past_due\":\"-29\",\"amount\":\"$200.00\",\"open_balance\":\"$200.00\"}",
+    "Step 8: Open Balance $120.00: $120.00"
+   ],
+   "note": "run-staging.json 2026-11-12T12:58:36.220Z..2026-11-12T12:59:11.139Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078993-1-step-5-as-of-d-1-2026-10-14.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078993-3-step-8-as-of-d-4-2026-10-17.png"
+   ]
+  },
+  "C1078994": {
+   "observed": [
+    "Step 5: vendor credit listed at $-35.00: {\"date\":\"Oct 23, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Vendor Credit\",\"id\":\"C-13912\",\"vendor_name\":\"ZZAUTOTEST AP P21 Credit Used\",\"due_date\":\"Oct 23, 2026\",\"past_due\":\"3\",\"amount\":\"$-35.00\",\"open_balance\":\"$-35.00\"}",
+    "Step 8: not listed on day U: no lines"
+   ],
+   "note": "run-staging.json 2026-11-12T12:59:11.376Z..2026-11-12T12:59:46.831Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078994-1-step-5-as-of-2026-10-26.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078994-3-step-8-as-of-u-2026-10-31.png"
+   ]
+  },
+  "C1078995": {
+   "observed": [
+    "Step 4 (as of 2026-08-02): $10.00 under current, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"$10.00\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$10.00\"}",
+    "Step 6 (as of 2026-09-01): $10.00 under days_1_to_30, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$10.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$10.00\"}",
+    "Step 8 (as of 2026-09-02): $10.00 under days_31_to_60, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"$10.00\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$10.00\"}",
+    "Step 10 (as of 2026-10-01): $10.00 under days_31_to_60, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"$10.00\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$10.00\"}",
+    "Step 12 (as of 2026-10-02): $10.00 under days_61_to_90, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"$10.00\",\"days_91_plus\":\"\",\"total\":\"$10.00\"}",
+    "Step 14 (as of 2026-10-31): $10.00 under days_61_to_90, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"$10.00\",\"days_91_plus\":\"\",\"total\":\"$10.00\"}",
+    "Step 16 (as of 2026-11-01): $10.00 under days_91_plus, Total $10.00: {\"customer_name\":\"ZZAUTOTEST AR R22 Bucket Edges\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"$10.00\",\"total\":\"$10.00\"}"
+   ],
+   "note": "run-staging.json 2026-11-12T12:59:47.083Z..2026-11-12T13:00:25.856Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078995-1-step-4-as-of-d-0-2026-08-02.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078995-2-step-6-as-of-d-30-2026-09-01.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078995-3-step-8-as-of-d-31-2026-09-02.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078995-4-step-10-as-of-d-60-2026-10-01.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078995-5-step-12-as-of-d-61-2026-10-02.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078995-6-step-14-as-of-d-90-2026-10-31.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078995-7-step-16-as-of-d-91-2026-11-01.png"
+   ]
+  },
+  "C1078996": {
+   "observed": [
+    "Step 4: $-15.00 under 1-30 Days; nothing under Current: {\"customer_name\":\"ZZAUTOTEST AR R23 Memo Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$-15.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$-15.00\"}",
+    "Step 6: $-15.00 under 31-60 Days: {\"customer_name\":\"ZZAUTOTEST AR R23 Memo Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"$-15.00\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$-15.00\"}"
+   ],
+   "note": "run-staging.json 2026-11-12T13:00:26.095Z..2026-11-12T13:00:57.377Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078996-1-step-4-as-of-c-1-2026-09-17.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078996-2-step-6-as-of-c-31-2026-10-17.png"
+   ]
+  },
+  "C1078997": {
+   "observed": [
+    "Step 4: $-12.00 under 1-30 Days; nothing under Current: {\"vendor_name\":\"ZZAUTOTEST AP P24 Credit Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$-12.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$-12.00\"}",
+    "Step 6: $-12.00 under 61-90 Days: {\"vendor_name\":\"ZZAUTOTEST AP P24 Credit Aging\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"$-12.00\",\"days_91_plus\":\"\",\"total\":\"$-12.00\"}"
+   ],
+   "note": "run-staging.json 2026-11-12T13:00:57.633Z..2026-11-12T13:01:29.217Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078997-1-step-4-as-of-c-1-2026-09-04.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1078997-2-step-6-as-of-c-61-2026-11-03.png"
+   ]
+  },
+  "C1079001": {
+   "observed": [
+    "Step 3: customer X listed: ZZAUTOTEST AR R28 Credit Only Staging Heavy Duty - 9919 $-40.00 $-40.00",
+    "Step 4: Total $-40.00: $-40.00"
+   ],
+   "note": "run-staging.json 2026-11-12T13:01:29.470Z..2026-11-12T13:01:40.040Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079001-1-steps-3-4-credit-only-customer.png"
+   ]
+  },
+  "C1079002": {
+   "observed": [
+    "Step 3: Customer, (Location, new by design), Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total: [\"Customer\",\"Location\",\"Current\",\"1-30 Days\",\"31-60 Days\",\"61-90 Days\",\"91 And Over\",\"Total\"]",
+    "Step 5: empty buckets blank, not $0.00: {\"customer_name\":\"ZZAUTOTEST AR R29 One Bucket\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$100.00\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$100.00\"}"
+   ],
+   "note": "run-staging.json 2026-11-12T13:01:40.305Z..2026-11-12T13:01:55.882Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079002-1-step-3-column-headings.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079002-2-steps-4-5-one-bucket-customer.png"
+   ]
+  },
+  "C1079003": {
+   "observed": [
+    "Step 4: Current $50.00: $50.00",
+    "Step 5: 1-30 Days $70.00: $70.00",
+    "Step 6: Total $120.00: $120.00"
+   ],
+   "note": "run-staging.json 2026-11-12T13:01:56.124Z..2026-11-12T13:02:07.608Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079003-1-steps-3-6-netting-customer.png"
+   ]
+  },
+  "C1079004": {
+   "observed": [
+    "Step 3: \"$1,234.56\" form: {\"customer_name\":\"ZZAUTOTEST AR R31 Thousands\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"\",\"days_1_to_30\":\"$1,234.56\",\"days_31_to_60\":\"\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$1,234.56\"}",
+    "Step 4: minus after the dollar sign, \"$-12.00\": $-12.00"
+   ],
+   "note": "run-staging.json 2026-11-12T13:02:07.840Z..2026-11-12T13:02:27.617Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079004-1-step-3-amount-over-1000.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079004-2-step-4-negative-total.png"
+   ]
+  },
+  "C1079006": {
+   "observed": [
+    "Step 3: date set to 01/01/2000: As of: 01/01/2000",
+    "Step 4: \"No record matches these filters\" and \"Try changing filters to widen your results.\": No record matches these filters Try changing filters to widen your results."
+   ],
+   "note": "run-staging.json 2026-11-12T13:02:27.867Z..2026-11-12T13:02:52.960Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079006-1-step-4-message-on-1-january-2000.png"
+   ]
+  },
+  "C1079007": {
+   "observed": [
+    "Step 6: report name, organization name, \"As of\" with the date: A/R Aging Summary / Foothills Group Inc / As of Nov 12, 2026 / Locations: All locations",
+    "Step 7: \"Software Powered by ShopView\" and \"Page 1 of N\"; landscape:                                                                                                            9919 /                                                                         Software Powered by ShopView                                                            Page 1 of 27; size 841.89 x 595.276; 27 pages",
+    "Step 8: a Totals row last; empty buckets blank:                                                                        9919 / Totals                                                                                $48,621.44   $143,890.92   $285,607.39   $161,976.33 /                                         Software Powered by ShopView                                                       Page 27 of 27; customer lines with $0.00: 0"
+   ],
+   "note": "run-staging.json 2026-11-12T13:02:53.299Z..2026-11-12T13:03:13.830Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079007-2-pdf-page-1-of-27.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079007-3-pdf-page-27-of-27.png"
+   ]
+  },
+  "C1079008": {
+   "observed": [
+    "Step 4: every bucket is listed on screen; the empty one reads \"(0)\" with a greyed chevron: buckets: [\"91 or more days past due (0) Total $0.00 $0.00\",\"61-90 days past due (0) Total $0.00 $0.00\",\"31-60 days past due (1) Total $100.00 $60.00\",\"1-30 days past due (0) Total $0.00 $0.00\",\"Current (0) Total $0.00 $0.00\"]; 61-90 chevron: {\"cls\":\"q-icon notranslate material-icons\",\"opacity\":\"1\",\"color\":\"rgb(34, 118, 218)\",\"disabled\":true}",
+    "Step 8: the PDF prints only the bucket that holds a document (31-60 days past due), with its invoice and a Totals row: file: ar-aging-detail.pdf; buckets printed: [\"31-60 days past due\"]; invoice S2-40052 present: true; Totals row: true"
+   ],
+   "note": "run-staging.json 2026-11-12T13:03:14.083Z..2026-11-12T13:03:28.193Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079008-1-v1r-35v2-step-4-buckets-on-screen.png"
+   ]
+  },
+  "C1079009": {
+   "observed": [
+    "Step 7: only customer X, with its lines, \"Total for\" X and a Totals row: customer X present: true; Z present: false; other ZZAUTOTEST customers: none; lines: 11"
+   ],
+   "note": "run-staging.json 2026-11-12T13:03:39.099Z..2026-11-12T13:03:51.984Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079009-2-pdf-page-1-of-1.png"
+   ]
+  },
+  "C1079010": {
+   "observed": [
+    "Step 3: five buckets in that order, each with its line count in brackets: [\"91 or more days past due (56)\",\"61-90 days past due (412)\",\"31-60 days past due (589)\",\"1-30 days past due (523)\",\"Current (165)\"]"
+   ],
+   "note": "run-staging.json 2026-11-12T13:03:52.272Z..2026-11-12T13:03:58.560Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079010-1-step-3-bucket-rows.png"
+   ]
+  },
+  "C1079011": {
+   "observed": [
+    "Step 3: closed, shows \"Total\" with Amount and Open balance: keyboard_arrow_right Current (165) Total $49,270.94 $48,621.44",
+    "Step 5: its lines are shown: 100 lines",
+    "Step 6: closes again: 0 lines, keyboard_arrow_right Current (165) Total $49,270.94 $48,621.44"
+   ],
+   "note": "run-staging.json 2026-11-12T13:03:58.813Z..2026-11-12T13:04:07.793Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079011-1-step-3-current-closed.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079011-2-step-5-current-open.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079011-3-step-6-current-closed-again.png"
+   ]
+  },
+  "C1079012": {
+   "observed": [
+    "Step 4: \"Total for 1-30 days past due\" with Amount and Open balance: Total for 1-30 days past due $144,568.11 $143,890.92",
+    "Step 5: \"Totals\" with Amount and Open balance: Totals $766,226.37 $736,573.39"
+   ],
+   "note": "run-staging.json 2026-11-12T13:04:08.032Z..2026-11-12T13:04:20.347Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079012-1-steps-4-5-end-of-1-30-bucket-and-totals.png"
+   ]
+  },
+  "C1079013": {
+   "observed": [
+    "Step 5: date, \"Invoice\", ID, customer full name, location B, due date, Amount, Open balance: {\"date\":\"Nov 7, 2026\",\"location\":\"Staging Lethbridge - 4310\",\"type\":\"Invoice\",\"id\":\"S3-40035\",\"customer_name\":\"ZZAUTOTEST AR R03 Location B\",\"due_date\":\"Nov 7, 2026\",\"amount\":\"$33.00\",\"open_balance\":\"$33.00\"}"
+   ],
+   "note": "run-staging.json 2026-11-12T13:04:20.639Z..2026-11-12T13:04:33.626Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079013-1-step-5-the-location-b-invoice-line.png"
+   ]
+  },
+  "C1079014": {
+   "observed": [
+    "Step 5: Amount $250.00: $250.00",
+    "Step 6: Open balance $150.00: $150.00"
+   ],
+   "note": "run-staging.json 2026-11-12T13:04:33.850Z..2026-11-12T13:04:45.926Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079014-1-steps-4-6-partly-paid-invoice.png"
+   ]
+  },
+  "C1079015": {
+   "observed": [
+    "Step 5: number with the location prefix (like CM1-4411): CM2-4550",
+    "Step 6: due date = day C (Oct 27, 2026): Oct 27, 2026",
+    "Step 7: $-5.00 and $-5.00: $-5.00 / $-5.00",
+    "Step 8: clicking the ID opens nothing: link element: null; address before https://app.staging.shopview.com/reports/ar-aging-detail?customerIds=62335618-4306-47bc-9d58-5dc1b2b95446 after https://app.staging.shopview.com/reports/ar-aging-detail?customerIds=62335618-4306-47bc-9d58-5dc1b2b95446"
+   ],
+   "note": "run-staging.json 2026-11-12T13:04:46.169Z..2026-11-12T13:04:59.645Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079015-1-steps-4-7-credit-memo-line.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079015-3-step-8-after-clicking-the-id.png"
+   ]
+  },
+  "C1079016": {
+   "observed": [
+    "Step 3: Current opened: 100 lines",
+    "Step 4: date set to yesterday: As of: 11/11/2026",
+    "Step 5: every bucket closed: keyboard_arrow_right 91 or more days pas / keyboard_arrow_right 61-90 days past due / keyboard_arrow_right 31-60 days past due / keyboard_arrow_right 1-30 days past due  / keyboard_arrow_right Current (104) Total"
+   ],
+   "note": "run-staging.json 2026-11-12T13:25:42.451Z..2026-11-12T13:25:53.616Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079016-1-step-5-bucket-rows-after-the-date-change.png"
+   ]
+  },
+  "C1079017": {
+   "observed": [
+    "Step 3: name with (2) and \"Total\" with Amount and Open balance: keyboard_arrow_right ZZAUTOTEST AR R44 Two Past Due (2) Credit term: COD Total $81.00 $81.00",
+    "Step 5: \"Total for ZZAUTOTEST AR R44 Two Past Due\" with the two amounts: Total for ZZAUTOTEST AR R44 Two Past Due $81.00 $81.00",
+    "Step 6: \"Totals\" with Amount and Open balance: Totals $81.00 $81.00"
+   ],
+   "note": "run-staging.json 2026-11-12T13:05:15.554Z..2026-11-12T13:05:28.249Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079017-1-steps-3-6-customer-with-two-past-due-invoices.png"
+   ]
+  },
+  "C1079018": {
+   "observed": [
+    "Step 4: invoice A S2-40084 (5 days past due) and the credit memo CM2-4551 listed; B S2-40087 (due today) and C S2-40088 (not yet due) not: [[\"S2-40084\",\"Nov 7, 2026\",\"5\"],[\"CM2-4551\",\"Nov 5, 2026\",\"7\"]]"
+   ],
+   "note": "run-staging.json 2026-11-12T13:05:28.520Z..2026-11-12T13:05:41.110Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079018-1-steps-3-4-lines-of-the-four-document-customer.png"
+   ]
+  },
+  "C1079019": {
+   "observed": [
+    "Step 3: customer X listed: keyboard_arrow_right ZZAUTOTEST AR R46 Collection Credit (1) Credit term: COD Total $-11.00 $-11.00",
+    "Step 4: the credit memo CM2-4552 is its only line: Nov 5, 2026 Staging Heavy Duty - 9919 Credit Memo CM2-4552 Nov 5, 2026 7 $-11.00 $-11.00"
+   ],
+   "note": "run-staging.json 2026-11-12T13:05:41.345Z..2026-11-12T13:05:53.695Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079019-1-steps-3-4-credit-only-customer.png"
+   ]
+  },
+  "C1079020": {
+   "observed": [
+    "Step 4: oldest at the top, newest at the bottom: [\"Oct 14, 2026\",\"Oct 24, 2026\",\"Nov 3, 2026\"]"
+   ],
+   "note": "run-staging.json 2026-11-12T13:05:53.924Z..2026-11-12T13:06:06.522Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079020-1-steps-3-4-date-column.png"
+   ]
+  },
+  "C1079021": {
+   "observed": [
+    "Step 4: date, type \"Invoice\", ID, location, due date, Past due 12, Amount, Open balance: {\"date\":\"Oct 31, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Invoice\",\"id\":\"S2-40092\",\"due_date\":\"Oct 31, 2026\",\"past_due\":\"12\",\"amount\":\"$48.00\",\"open_balance\":\"$48.00\"}",
+    "Step 5: credit memo Past due 3: {\"date\":\"Nov 9, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Credit Memo\",\"id\":\"CM2-4553\",\"due_date\":\"Nov 9, 2026\",\"past_due\":\"3\",\"amount\":\"$-3.00\",\"open_balance\":\"$-3.00\"}"
+   ],
+   "note": "run-staging.json 2026-11-12T13:06:06.769Z..2026-11-12T13:06:19.345Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079021-1-steps-3-5-invoice-and-credit-memo-lines.png"
+   ]
+  },
+  "C1079022": {
+   "observed": [
+    "Step 5: X picked: Customer: ZZAUTOTEST AR R...",
+    "Step 6: only customer X: ZZAUTOTEST AR R36 Collect X",
+    "Step 8: still only customer X: ZZAUTOTEST AR R36 Collect X"
+   ],
+   "note": "run-staging.json 2026-11-12T13:06:19.645Z..2026-11-12T13:06:34.468Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079022-1-step-6-groups-after-picking-x.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079022-2-step-8-groups-after-reload.png"
+   ]
+  },
+  "C1079023": {
+   "observed": [
+    "Step 3: X group opened: 1 lines",
+    "Step 4: date set to yesterday: As of: 11/11/2026",
+    "Step 5: all groups closed: 0 document lines shown",
+    "Step 6: X group opened again: 1 lines",
+    "Step 7: Z picked: Customer: ZZAUTOTEST AR R...",
+    "Step 8: all groups closed: 0 document lines shown; groups: ZZAUTOTEST AR R36 Collect Z"
+   ],
+   "note": "run-staging.json 2026-11-12T13:06:34.721Z..2026-11-12T13:07:00.752Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079023-1-step-3-x-group-open.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079023-2-step-5-groups-after-date-change.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079023-3-step-8-groups-after-picking-z.png"
+   ]
+  },
+  "C1079024": {
+   "observed": [
+    "Step 4: \"No record matches these filters\" with a \"Clear all filters\" button: No record matches these filters Try changing filters to widen your results. Clear all filters | button: 1",
+    "Step 6: every customer with past-due documents listed again, date unchanged: 30 customer groups loaded, date As of: 11/12/2026 (was As of: 11/12/2026), customer chip Customer: All customers"
+   ],
+   "note": "run-staging.json 2026-11-12T13:07:01.015Z..2026-11-12T13:07:13.797Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079024-1-step-4-message.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079024-2-step-6-after-clear-all-filters.png"
+   ]
+  },
+  "C1079025": {
+   "observed": [
+    "Step 3: Vendor, (Location), Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total: [\"Vendor\",\"Location\",\"Current\",\"1-30 Days\",\"31-60 Days\",\"61-90 Days\",\"91 And Over\",\"Total\"]",
+    "Step 5: Current $90.00, 31-60 Days $280.00, other buckets blank, Total $370.00: {\"vendor_name\":\"ZZAUTOTEST AP P52 Netting\",\"location\":\"Staging Heavy Duty - 9919\",\"current\":\"$90.00\",\"days_1_to_30\":\"\",\"days_31_to_60\":\"$280.00\",\"days_61_to_90\":\"\",\"days_91_plus\":\"\",\"total\":\"$370.00\"}"
+   ],
+   "note": "run-staging.json 2026-11-12T13:07:14.062Z..2026-11-12T13:07:30.196Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079025-1-step-3-headings.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079025-2-steps-4-5-vendor-row.png"
+   ]
+  },
+  "C1079027": {
+   "observed": [
+    "Step 3: five buckets in order, each closed, with (count) and \"Total\" with Amount and Open Balance: [\"keyboard_arrow_right 91 or more days past due (11938) Total $4,043,103.48 $4,043,103.50\",\"keyboard_arrow_right 61-90 days past due (734) Total $333,499.34 $333,499.36\",\"keyboard_arrow_right 31-60 days past due (1029) Total $300,818.75 $300,818.75\",\"keyboard_arrow_right 1-30 days past due (501) Total $109,140.12 $108,974.28\",\"keyboard_arrow_right Current (510) Total $58,892.77 $58,812.77\"]"
+   ],
+   "note": "run-staging.json 2026-11-12T13:07:30.452Z..2026-11-12T13:07:37.153Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079027-1-step-3-bucket-rows.png"
+   ]
+  },
+  "C1079028": {
+   "observed": [
+    "Step 5: \"Total for Current\" with Amount and Open Balance: Total for Current $58,892.77 $58,812.77",
+    "Step 6: \"Totals\" with Amount and Open Balance: Totals $4,845,454.46 $4,845,208.66"
+   ],
+   "note": "run-staging.json 2026-11-12T13:07:37.406Z..2026-11-12T13:07:49.532Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079028-1-steps-5-6-end-of-current-and-totals.png"
+   ]
+  },
+  "C1079029": {
+   "observed": [
+    "Step 5: date, \"Invoice\", No., vendor name, location B, due date, Past Due, Amount, Open Balance: {\"date\":\"Nov 6, 2026\",\"location\":\"Staging Lethbridge - 4310\",\"type\":\"Invoice\",\"id\":\"ZZT-P56-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P56 Location B\",\"due_date\":\"Dec 6, 2026\",\"past_due\":\"-24\",\"amount\":\"$56.00\",\"open_balance\":\"$56.00\"}"
+   ],
+   "note": "run-staging.json 2026-11-12T13:07:49.795Z..2026-11-12T13:08:02.312Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079029-1-step-5-location-b-bill-line.png"
+   ]
+  },
+  "C1079030": {
+   "observed": [
+    "Step 5: a negative number of days, about -9: {\"date\":\"Oct 22, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Invoice\",\"id\":\"ZZT-P57-BILL\",\"vendor_name\":\"ZZAUTOTEST AP P57 Not Yet Due\",\"due_date\":\"Nov 21, 2026\",\"past_due\":\"-9\",\"amount\":\"$57.00\",\"open_balance\":\"$57.00\"}"
+   ],
+   "note": "run-staging.json 2026-11-12T13:08:02.636Z..2026-11-12T13:08:15.116Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079030-1-steps-3-5-bill-due-in-9-days.png"
+   ]
+  },
+  "C1079031": {
+   "observed": [
+    "Step 5: Due Date = the credit's own date (Nov 3, 2026): {\"date\":\"Nov 2, 2026\",\"location\":\"Staging Heavy Duty - 9919\",\"type\":\"Vendor Credit\",\"id\":\"C-13915\",\"vendor_name\":\"ZZAUTOTEST AP P58 Credit Line\",\"due_date\":\"Nov 2, 2026\",\"past_due\":\"10\",\"amount\":\"$-25.00\",\"open_balance\":\"$-25.00\"}",
+    "Step 6: Past Due 10: 10",
+    "Step 7: $-25.00 and $-25.00: $-25.00 / $-25.00"
+   ],
+   "note": "run-staging.json 2026-11-12T13:08:15.381Z..2026-11-12T13:08:27.706Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079031-1-steps-3-7-vendor-credit-line.png"
+   ]
+  },
+  "C1079032": {
+   "observed": [
+    "Step 3: Current opened: 100 lines",
+    "Step 4: yesterday set: As of: 11/11/2026",
+    "Step 5: every bucket closed: keyboard_arrow_right 91 or mor / keyboard_arrow_right 61-90 day / keyboard_arrow_right 31-60 day / keyboard_arrow_right 1-30 days / keyboard_arrow_right Current ("
+   ],
+   "note": "run-staging.json 2026-11-12T13:08:27.950Z..2026-11-12T13:08:39.438Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079032-1-step-5-buckets-after-date-change.png"
+   ]
+  },
+  "C1079033": {
+   "observed": [
+    "Step 3: vendors A to Z, each with (count) and \"Total\" with Amount and Open Balance: 123 Cannabis Forestlawn | 4Refuel | 5 Star Truck Repair | Abadi's Diesel Repair | AC Truck Repair - Branford | Adams Diesel Repair | Afhly's Mobile Truck Repair | Agolli Truck Center | Aibonito Fleet Services | Akal's Mobile Truck Repair | Alameda Mechanical Services | Alzuhairi Truck & Machine Service | Amani & Sons Truck & Trailer Repair | Amherst Truck Center | Amimi Diesel Services Inc | Andover Fleet Services | Antioch Diesel & Fleet Repair | Apex Truck & Trailer Repair | Asbury Park Truck Repair | Athens Roadside Truck Repair | Atlantic Truck & Trailer Repair | Auburn Truck & Trailer Repair 24/7 | Axle Diesel & Fleet Repair | Azle Truck & Trailer Repair | Azossi's Truck Repair | Baldwin Park Truck & Trailer Repair | Bandy Truck Center - Vacaville | Bangs' Truck Repair | Barfuss' Fleet Service | Bedrock Truck & Trailer Repair - Tinicum (30 loaded); count/total format ok: true",
+    "Step 5: \"Total for\" + vendor name with the two amounts: Total for 123 Cannabis Forestlawn $2,614.51 $2,614.51",
+    "Step 6: \"Totals\": Totals $4,845,454.46 $4,845,208.66"
+   ],
+   "note": "run-staging.json 2026-11-12T13:08:39.694Z..2026-11-12T13:08:48.806Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079033-1-step-3-vendor-groups.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079033-3-steps-5-6-first-vendor-open.png"
+   ]
+  },
+  "C1079034": {
+   "observed": [
+    "Step 4: bill not yet due, past-due bill and vendor credit all listed; the not-yet-due bill shows a negative Past Due: [[\"ZZT-P61-BILL_LATE\",\"Invoice\",\"10\"],[\"C-13916\",\"Vendor Credit\",\"—\"],[\"ZZT-P61-BILL_CUR\",\"Invoice\",\"-27\"]]"
+   ],
+   "note": "run-staging.json 2026-11-12T13:08:49.051Z..2026-11-12T13:09:01.312Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079034-1-steps-3-4-vendor-lines.png"
+   ]
+  },
+  "C1079035": {
+   "observed": [
+    "Step 4: oldest at the top: [\"Oct 28, 2026\",\"Nov 2, 2026\",\"Nov 7, 2026\"]"
+   ],
+   "note": "run-staging.json 2026-11-12T13:09:01.581Z..2026-11-12T13:09:15.819Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079035-1-steps-3-4-date-column.png"
+   ]
+  },
+  "C1079036": {
+   "observed": [
+    "Step 5: Due Date \"—\": —",
+    "Step 6: Past Due \"—\": —"
+   ],
+   "note": "run-staging.json 2026-11-12T13:09:16.105Z..2026-11-12T13:09:28.423Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079036-1-steps-3-6-vendor-credit-line.png"
+   ]
+  },
+  "C1079037": {
+   "observed": [
+    "Step 5: picked: local_shipping Vendor: ZZAUTOTEST AP P...",
+    "Step 6: only vendor Y: keyboard_arrow_right ZZAUTOTEST AP P60 A",
+    "Step 8: still only vendor Y: keyboard_arrow_right ZZAUTOTEST AP P60 A"
+   ],
+   "note": "run-staging.json 2026-11-12T13:09:28.676Z..2026-11-12T13:09:43.871Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079037-1-step-6-groups.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079037-2-step-8-groups-after-reload.png"
+   ]
+  },
+  "C1079038": {
+   "observed": [
+    "Step 5: only vendor Y listed and the Vendor chip names it: groups: keyboard_arrow_right ZZAUTOTEST AP P60 A; chip: local_shipping Vendor: ZZAUTOTEST AP P...; address now https://app.staging.shopview.com/reports/ap-unpaid-invoices?vendorIds=da01490d-f5d5-4f52-8b88-1d79b763519b"
+   ],
+   "note": "run-staging.json 2026-11-12T13:09:44.161Z..2026-11-12T13:09:55.712Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079038-1-step-5-after-opening-the-saved-link.png"
+   ]
+  },
+  "C1079039": {
+   "observed": [
+    "Step 4: the delivery page of that bill opens: address https://app.staging.shopview.com/parts/delivery/69f10731-e3c8-4a8b-a82b-27f4d3813e54 (delivery id 69f10731-e3c8-4a8b-a82b-27f4d3813e54); page starts: Vendor Invoice edit_note ZZT-P60A-BILL Invoice date Nov 4, 2026 Due date Dec 4, 2026 Vendor ZZAUTOTEST AP P60 Alpha Delivery Details I-1583 Date received Today Ordered by Admin Shopview Received by Ad"
+   ],
+   "note": "run-staging.json 2026-11-12T13:09:55.972Z..2026-11-12T13:10:11.149Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079039-1-steps-3-vendor-group-open.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079039-3-step-4-after-clicking-the-bill-no.png"
+   ]
+  },
+  "C1079040": {
+   "observed": [
+    "Step 3: Y open: 1",
+    "Step 4: yesterday set: As of: 11/11/2026",
+    "Step 5: all groups closed: 0 lines",
+    "Step 6: Y open again: 1",
+    "Step 7: W picked: local_shipping Vendor: ZZAUTOTEST AP P...",
+    "Step 8: all groups closed: 0 lines"
+   ],
+   "note": "run-staging.json 2026-11-12T13:10:11.439Z..2026-11-12T13:10:55.527Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079040-1-step-5-after-date-change.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079040-2-step-8-after-picking-w.png"
+   ]
+  },
+  "C1079043": {
+   "observed": [
+    "Step 3: explanation appears: The total value of completed work order lines on work orders that are still in progress.",
+    "Step 4: disappears: (nothing)",
+    "Step 5: pointing again shows it: The total value of completed work order lines on work orders that are still in progress.",
+    "Step 6: clicking the icon closes it: (nothing)"
+   ],
+   "note": "run-staging.json 2026-11-12T13:27:04.575Z..2026-11-12T13:27:19.606Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079043-1-step-3-pointer-on-the-icon.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079043-2-step-3-step-5-pointer-on-the-icon-again.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079043-3-step-3-step-6-after-clicking-the-icon.png"
+   ]
+  },
+  "C1079044": {
+   "observed": [
+    "Precondition: at location A: Staging Heavy Duty - 9919 AS",
+    "Step 2: \"Switch location?\" asking to switch to location B: Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch Location",
+    "Step 4: on the work order list with \"Switch cancelled. Returning to work orders.\": address https://app.staging.shopview.com/workorders?tab=estimate; message \"info Switch cancelled. Returning to work orders. Close\"; still at Staging Heavy Duty - 9919 AS"
+   ],
+   "note": "run-staging.json 2026-11-12T13:12:23.340Z..2026-11-12T13:12:36.589Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079044-1-step-2-prompt.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1079044-2-step-2-after-cancel.png"
+   ]
+  },
+  "C1095429": {
+   "observed": [
+    "Step 3 (PRD): label \"As of\": As of",
+    "Step 4: today 11/12/2026: As of: 11/12/2026",
+    "Step 6: no way to clear the date: []; chip clear 0"
+   ],
+   "note": "run-staging.json 2026-11-12T13:12:36.854Z..2026-11-12T13:12:44.408Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095429-1-step-3-4-date-chip.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095429-2-step-6-date-menu.png"
+   ]
+  },
+  "C1095430": {
+   "observed": [
+    "Step 4 (PRD S1-R5a): the $8.00 credit memo dated today is under Current: aging_detail_report_row_current",
+    "Step 6: the $6.00 credit memo dated yesterday is under 1-30 days past due: aging_detail_report_row_days_1_to_30",
+    "Step 9: Past Due of the $8.00 credit memo is 0: 0"
+   ],
+   "note": "run-staging.json 2026-11-12T13:12:44.673Z..2026-11-12T13:13:10.636Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095430-1-steps-3-6-two-credit-memos.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095430-3-steps-7-9-collection.png"
+   ]
+  },
+  "C1095431": {
+   "observed": [
+    "Step 4 (PRD S1-R5a): the $9.00 vendor credit dated today is under Current: ap_aging_detail_report_row_current",
+    "Step 5: Past Due 0: 0",
+    "Step 7: the $4.00 credit dated yesterday under 1-30 days past due: ap_aging_detail_report_row_days_1_to_30"
+   ],
+   "note": "run-staging.json 2026-11-12T13:13:10.901Z..2026-11-12T13:13:24.165Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095431-1-steps-3-7-two-vendor-credits.png"
+   ]
+  },
+  "C1095432": {
+   "observed": [
+    "Step 1-2: A/R Aging Summary as of 11/11/2026: As of: 11/11/2026",
+    "Step 3: customer X (ZZAUTOTEST OVERPAID V1R-76 Cust X) is not listed (an overpaid invoice is not a row): not among 296 customer rows",
+    "Step 6 (PRD v11): the Totals row Total equals the sum of every customer row Total: sum of 296 customer rows $720481.27 vs Totals row $720,481.27"
+   ],
+   "note": "run-staging.json 2026-11-12T13:22:55.015Z..2026-11-12T13:23:34.254Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095432-1-steps-4-6-bottom-of-ar-aging-summary-as-of-11-11-2026-with-t.png"
+   ]
+  },
+  "C1095433": {
+   "observed": [
+    "Step 4 (PRD): still on A/R Aging Summary: A/R Aging Summary",
+    "Step 6: A/R Aging Collection open, narrowed to that customer: title \"A/R Aging Collection\", chip Customer: ZZBREAK <b>bo... (row customer ZZBREAK <b>bold</b> \"q\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders)"
+   ],
+   "note": "run-staging.json 2026-11-12T13:13:24.422Z..2026-11-12T13:13:35.086Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095433-1-step-4-after-clicking-the-total-amount.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095433-2-step-6-after-clicking-the-customer-name.png"
+   ]
+  },
+  "C1095434": {
+   "observed": [
+    "Step 3: date set: As of: 10/01/2026",
+    "Step 5: A/R Aging Collection open: A/R Aging Collection",
+    "Step 6 (PRD): date chip 10/01/2026: As of: 10/01/2026",
+    "Step 7: Customer chip names customer X: Customer: ZZAUTOTEST AR R... (address https://app.staging.shopview.com/reports/ar-aging-collection?asOfDate=2026-10-01&customerIds=9d68bc90-8754-45ca-a0d0-915b5bba63fe)"
+   ],
+   "note": "run-staging.json 2026-11-12T13:13:35.367Z..2026-11-12T13:13:53.459Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095434-1-steps-5-7-after-clicking-the-customer.png"
+   ]
+  },
+  "C1095435": {
+   "observed": [
+    "Step 3: no printer button: 0 printer controls",
+    "Step 4 (PRD): Export menu with \"Download (PDF)\" and \"Download (CSV)\" (labelled \"Export report\"): [\"Download (PDF)\",\"Download (CSV)\"]; button label: Export report",
+    "Step 5 (PRD): the PDF downloads as a file: ar-aging-detail.pdf",
+    "Step 7: report name, organization name, \"As of\": A/R Aging Detail / Foothills Group Inc / As of Nov 12, 2026 / Locations: All locations",
+    "Step 8: \"Software Powered by ShopView\" and \"Page 1 of N\":                  9919 /                                                                    Software Powered by ShopView        Page 1 of 158"
+   ],
+   "note": "run-staging.json 2026-11-12T13:13:53.713Z..2026-11-12T13:14:59.994Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095435-1-step-4-export-menu.png"
+   ]
+  },
+  "C1095436": {
+   "observed": [
+    "Step 4: on screen \"$-5.00\": $-5.00",
+    "Step 9 (PRD): in the PDF \"(-$5.00)\" and date like \"Oct 27 2026\": Oct 27 2026 Staging Heavy Duty - 9919 Credit Memo CM2-4550 ZZAUTOTEST AR R42 Memo Line Oct 27 2026 (-$5.00) (-$5.00)"
+   ],
+   "note": "run-staging.json 2026-11-12T13:27:19.828Z..2026-11-12T13:27:34.567Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095436-1-steps-3-4-credit-memo-on-screen.png"
+   ]
+  },
+  "C1095437": {
+   "observed": [
+    "Step 6 (PRD): nothing downloads and exactly one message \"We couldn't export this report. Please try again.\": download: false; messages: [\"warning We couldn't export this report. Please try again. Close\"]",
+    "Step 8: report still on screen with its rows: 31 rows (before 31)"
+   ],
+   "note": "run-staging.json 2026-11-12T13:15:17.185Z..2026-11-12T13:15:29.836Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095437-1-step-6-messages-while-offline.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095437-2-step-8-report-after-network-back.png"
+   ]
+  },
+  "C1095438": {
+   "observed": [
+    "Precondition: A/P Detail over 2,000 lines: 11938 + 734 + 1029 + 501 + 510 = 14712",
+    "Step 5 (PRD): no download and \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\": download: null; messages [\"warning This report is too large for PDF. Export it as CSV, or narrow the filters, then try again. Close\"]",
+    "Step 9: CSV has one row per document = sum of bucket counts: CSV document rows 14712 vs 14712",
+    "Step 12: A/R Detail (under 2,000 lines) still gives a PDF: ar-aging-detail.pdf"
+   ],
+   "note": "run-staging.json 2026-11-12T13:27:34.836Z..2026-11-12T13:28:46.924Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095438-1-step-5-pdf-message.png"
+   ]
+  },
+  "C1095439": {
+   "observed": [
+    "Step 3: date set: As of: 10/15/2026",
+    "Step 7 (PRD): \"As of Oct 15, 2026\" under the report and organization names: A/R Aging Summary / Foothills Group Inc / As of Oct 15, 2026 / Locations: All locations /  Customer                                 Location                        Current     1-30 Days       31-60 Days     61-90 Days   91 And Over           Total /  4 Star Truck Repair                      Staging Heavy Duty - 9919        $11.78                     (-$8,101.12)                               (-$8,089.34)"
+   ],
+   "note": "run-staging.json 2026-11-12T13:16:46.437Z..2026-11-12T13:17:00.700Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095439-2-pdf-page-1-of-8.png"
+   ]
+  },
+  "C1095440": {
+   "observed": [
+    "Step 3: count in brackets: 523",
+    "Step 5 (PRD): 100 lines first: 100",
+    "Step 7: every line there, total = count: 523 distinct lines seen",
+    "Step 8: \"Total for\" the bucket with Amount and Open balance: Total for 1-30 days past due $144,568.11 $143,890.92"
+   ],
+   "note": "run-staging.json 2026-11-12T13:17:00.964Z..2026-11-12T13:17:14.894Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095440-1-step-5-first-load.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095440-2-step-8-end-of-bucket.png"
+   ]
+  },
+  "C1095441": {
+   "observed": [
+    "Step 4: \"Invoice\": Invoice",
+    "Step 5 (PRD): \"Credit Memo\": Credit Memo",
+    "Step 6 (PRD): \"Deposit\": Deposit",
+    "Step 9: \"Invoice\": Invoice",
+    "Step 10 (PRD): \"Vendor Credit\": Vendor Credit"
+   ],
+   "note": "run-staging.json 2026-11-12T13:17:15.167Z..2026-11-12T13:18:01.599Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095441-1-step-4-invoice-type.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095441-3-step-5-credit-memo-type.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095441-5-step-6-deposit-type.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095441-7-steps-9-10-bill-and-vendor-credit-types.png"
+   ]
+  },
+  "C1095442": {
+   "observed": [
+    "Step 4 (PRD): today written out \"Nov 12, 2026\", not \"Today\": Nov 12, 2026",
+    "Step 5: older date \"Nov 2, 2026\": Nov 2, 2026"
+   ],
+   "note": "run-staging.json 2026-11-12T13:28:47.176Z..2026-11-12T13:29:01.360Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095442-1-steps-3-5-dates.png"
+   ]
+  },
+  "C1095444": {
+   "observed": [
+    "Step 6 (PRD S... \"Totals row ... now follows the customer or vendor filter\"): Totals equals X's Open Balance: X $110.00, Totals $110.00 (before $686,965.95)",
+    "Step 8: back to the step 3 figure: $686,965.95 vs $686,965.95"
+   ],
+   "note": "run-staging.json 2026-11-12T13:18:15.026Z..2026-11-12T13:18:57.809Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095444-1-step-3-totals.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095444-2-steps-5-6-x-picked.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095444-3-step-8-chip-cleared.png"
+   ]
+  },
+  "C1095445": {
+   "observed": [
+    "Step 5 (PRD): vendor Y still open, lines in the new order: before [\"ZZT-P62-B_OLD\",\"ZZT-P62-B_MID\",\"ZZT-P62-B_NEW\"]; after [\"ZZT-P62-B_OLD $73.00\",\"ZZT-P62-B_MID $72.00\",\"ZZT-P62-B_NEW $71.00\"]",
+    "Step 7: changing the date closes every group: 0 lines"
+   ],
+   "note": "run-staging.json 2026-11-12T13:18:58.075Z..2026-11-12T13:19:18.543Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095445-1-step-3-vendor-group-open.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095445-3-step-5-after-sorting-by-amount.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095445-4-step-7-after-date-change.png"
+   ]
+  },
+  "C1095446": {
+   "observed": [
+    "Step 3: full count in brackets (101 seeded): 101",
+    "Step 5 (PRD S1-R8): first 100 documents: 100",
+    "Step 7: every line there: 101",
+    "Step 8: \"Total for\" X covers every line ($-101.00): Total for ZZAUTOTEST AR R90 Many Lines $-101.00 $-101.00"
+   ],
+   "note": "run-staging.json 2026-11-12T13:19:18.817Z..2026-11-12T13:19:32.438Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095446-1-step-5-first-load.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095446-2-step-8-end-of-group.png"
+   ]
+  },
+  "C1095447": {
+   "observed": [
+    "Step 3: Vendor, Current, 1-30 Days, 31-60 Days, 61-90 Days, 91 And Over, Total (Location new by design): [\"Vendor\",\"Location\",\"Current\",\"1-30 Days\",\"31-60 Days\",\"61-90 Days\",\"91 And Over\",\"Total\"]",
+    "Step 5 (PRD): a PDF downloads: ap-aging-summary.pdf",
+    "Step 7: same headings as the screen: Vendor Location Current 1-30 Days 31-60 Days 61-90 Days 91 And Over Total",
+    "Step 8: a Totals row: Totals                                                                $58,812.77    $108,974.28    $300,818.75   $333,499.36   $4,043,103.50   $4,845,208.66"
+   ],
+   "note": "run-staging.json 2026-11-12T13:19:32.688Z..2026-11-12T13:19:46.736Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095447-2-pdf-page-1-of-21.png"
+   ]
+  },
+  "C1095448": {
+   "observed": [
+    "Step 3: five buckets in fixed order: [\"91 or more days past due\",\"61-90 days past due\",\"31-60 days past due\",\"1-30 days past due\",\"Current\"]",
+    "Step 5 (PRD): vendors A to Z inside the bucket: 100 lines, 2 vendors; first: 123 Cannabis Forestlawn | 123 Cannabis Forestlawn | 123 Cannabis Forestlawn | 123 Cannabis Forestlawn | 123 Cannabis Forestlawn",
+    "Step 7 (PRD S2-R4): Past Due largest first: 30, 30, 30, 30, 30, 30, 30, 30, 30, 30"
+   ],
+   "note": "run-staging.json 2026-11-12T13:19:46.991Z..2026-11-12T13:19:58.896Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095448-1-step-5-vendor-names.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095448-2-step-7-after-clicking-past-due.png"
+   ]
+  },
+  "C1095449": {
+   "observed": [
+    "Step 4 (PRD S7-R9): the return credit number opens the vendor return: {\"tid\":\"link_apdet_doc_b9ab123c-2086-4fed-8a03-eb49136ad3ce\",\"href\":\"/parts/return/c7f51db6-28d0-455a-a12b-c81ca0c35123\",\"text\":\"C-13919\"} -> https://app.staging.shopview.com/parts/return/c7f51db6-28d0-455a-a12b-c81ca0c35123",
+    "Step 6: the credit not from a return is plain text: {\"link\":null,\"plain\":\"C-13920\"}",
+    "Step 7: the bill opens its delivery page: https://app.staging.shopview.com/parts/delivery/4b159639-6cec-451f-b6e8-90ed08c8d545"
+   ],
+   "note": "run-staging.json 2026-11-12T13:19:59.158Z..2026-11-12T13:20:29.955Z, build v26.45.4-b8c04e2",
+   "verdict": "Passed",
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095449-1-step-3-every-bucket.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095449-3-step-4-vendor-return-opened.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-staging/pics/C1095449-4-step-7-bill-opened.png"
+   ]
+  }
+ }
+}

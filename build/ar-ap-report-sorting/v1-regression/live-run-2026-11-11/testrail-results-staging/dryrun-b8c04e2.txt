@@ -1,0 +1,7 @@
+run has 467 tests, results cover 84 cases, union 467
+84 results: Passed=82, Failed=2
+
+--- sample comment (case 1078980) ---
+<p>Re-Ran on staging</p><p><strong>Failed at: Step 4: 2026-12-31 can be picked (saw: Next month is disabled (cannot reach 2026-12-31)); Step 5: chip shows that future date (saw: As of: 11/12/2026)</strong></p><p><strong>Fails against:</strong> Production v26.45.3 (the behaviour before this release, which this test protects): on A/R Aging Summary the date menu lets you pick a date after today, for example 31 Dec 2026, and the report is worked out for that date. PRD "A/R and A/P Report Sorting, Export and Location Filter" (Confluence 947650561, version 11, 5 Nov 2026) does not ask for this change; PO question 19 is open.</p><p>Tested on Staging, build v26.45.4-b8c04e2, on 12 November 2026.</p><ul><li>NOT AS EXPECTED - Step 4: 2026-12-31 can be picked: Next month is disabled (cannot reach 2026-12-31)</li><li>NOT AS EXPECTED - Step 5: chip shows that future date: As of: 11/12/2026</li></ul><hr /><p>Ticket: https://shopview.atlassian.net/browse/SV-12545</p><hr /><p>What needs to be done: nothing for the tester now; re-run this test once SV-12545 is fixed.</p>
+
+[dry-run] nothing written. Re-run without --dry-run to write.
