@@ -25,6 +25,27 @@ staging (Rule 122). **Compare staging with staging only**, never with the produc
 🔴 **Do not use or delete CM2-4540, CM2-4541 or C-13911.** The after-check needs them exactly as they are. The record
 ids are in `seed-state.json` and `SEED-MANIFEST.md`.
 
+## Staging values for the 13 tests
+
+The tests are written generally ("customer A", "location B", "date A"). On staging, use these. The "before" pictures,
+files and notes are in this folder:
+<https://github.com/bilalmuzamil-sketch/Manual-test-Cases/tree/claude/global-search-v1-baseline-6ax9ul/build/ar-ap-report-sorting/existing-data-unchanged-check/staging-before-feature-captured-2026-11-12>.
+The production snapshot of 10 Nov 2026 (`../production-before-release-captured-2026-11-10/`) is kept for the short
+check on production after the release.
+
+| Test | On staging use | Before the feature (folder) |
+|---|---|---|
+| C715471 · C715472 (untouched A/R and A/P reports) | As-of date **12 Nov 2026**. Expected moves: credit memo **CM2-4541** (A/R) and vendor credit **C-13911** (A/P), both dated 12 Nov, were in "1-30 days past due" and should now be in Current | `1-six-reports` |
+| C715475 (Inventory Value) | Only **DVI Test** ticked, as of **12 Nov 2026**; open the saved link `…/reports/inventory-value?locationIds=39522bc6-abca-4f67-bd12-2840043c2d68`. ⚠️ With only Staging Heavy Duty - 9919 ticked the PDF already failed before the feature ("This report is too large to export…") | `3-files-and-links` |
+| C715617 (Sales By Customer) | Only **Staging Heavy Duty - 9919** ticked, date range **November 2026** ("This month" on 12 Nov) | `3-files-and-links` |
+| C715618 (Work In Progress) | Only **Staging Heavy Duty - 9919** ticked, as of **12 Nov 2026** | `3-files-and-links` |
+| C715476 (export error message) | Sales By Customer, "Download Summary (CSV)" with the network off; before: "Network Error" and "This report is too large to export. Narrow the date range or filters, then try again." | `4-export-failure` |
+| C715480 (location switcher) | Current location **Staging Heavy Duty - 9919**; location B **Staging Lethbridge - 4310** | `5-location-switcher` |
+| C715582 (drill-down links) | Customer A **Mobile Truck & Trailer Repair Island Lake**; vendor A **123 Cannabis Forestlawn** (the two saved addresses are in NOTES.txt) | `6-drill-down-links` |
+| C715583 · C715619 · C715620 (filter memory) | Location A **Staging Heavy Duty - 9919**; location B (untick) **Staging Lethbridge - 4310**. Before: forgotten on all three | `7-location-filter-memory` |
+| C715584 (Sales By Customer menus) | Type **ZZA**, then **UTO** | `8-sbc-filter-menus` |
+| C1062590 (credit on the as-of date) | Customer **ZZAUTOTEST SV11315 Staging CM**. **Before 14 Nov 2026:** credit memo **CM2-4541** ($3.00), date A = **12 Nov 2026**. **From 14 Nov 2026:** also **CM2-4540** ($5.00), date A = **14 Nov 2026** (the date picker offers no day after today). Both were in "1-30 days past due" before the feature | `2-credit-memo` |
+
 ## What is in each folder
 
 | Folder | Section | What was found |
