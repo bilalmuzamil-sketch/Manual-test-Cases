@@ -22,6 +22,7 @@ import html
 import json
 import os
 import sys
+import time
 
 import requests
 
@@ -93,7 +94,11 @@ def main():
         try:
             for aid, name in uniq.items():
                 if aid not in done:
-                    q = requests.get(base + "get_attachment/%d" % aid, auth=auth, timeout=120)
+                    for attempt in range(6):  # TestRail rate-limits picture downloads (429, seen 2026-11-12)
+                        q = requests.get(base + "get_attachment/%d" % aid, auth=auth, timeout=120)
+                        if q.status_code not in (429, 500, 502, 503, 504) or attempt == 5:
+                            break
+                        time.sleep(int(q.headers.get("Retry-After", 0)) or 2 ** (attempt + 2))
                     q.raise_for_status()
                     mime = q.headers.get("content-type", "image/png").split(";")[0]
                     r = tms.s.post(tms.base + "/projects/1/case-images", files={"file": (name, q.content, mime)}, timeout=120)

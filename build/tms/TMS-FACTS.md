@@ -480,3 +480,19 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   - TestRail run 558 "Bill To - Execution" → **TMS run 27 "Bill To - Execution"** — 286 cases, run + cases → Mudassir.
   - TestRail run 559 "Internal Work Orders - Execution" → **TMS run 28 "Internal Work Orders - Execution"** — 596 cases → Mudassir.
   No existing run changed. `external_key` = `testrail-run-558` / `-559`.
+
+## 24 · 2026-11-12 — Pictures INSIDE TMS cases (new TMS feature), TestRail milestone 6, C715478
+
+- **TMS now supports case pictures:** `POST /projects/{id}/case-images` (multipart `file`, PNG/JPEG/GIF/WebP ≤ 10 MB) returns an
+  Attachment (`owner_type: case_content`); reference it in case text as `<img src="/api/v1/attachments/{id}">`. API snapshot:
+  `build/tms/tms-openapi-2026-11-12.json` (also new: `GET /runs/{id}/export/pdf`).
+- **Internal Work order (11/12/2026):** **398 cases now show their TestRail pictures inside TMS** (1,072 pictures; TestRail lists
+  each twice — de-duplicated). Block appended to preconditions: `<p><strong>Attached pictures</strong></p>…`; expected untouched;
+  no results involved. Tool `build/testing-tools/tms_case_images.py` (map `build/tms/case-images-map.csv`; retries TestRail 429).
+  `tms_sync.py` PICTURES_HEAD widened to `<p><strong>Attached pictures` so syncs keep both the old link lists and embedded pictures.
+- **🛑 TMS RUNS PIN CASE VERSIONS (by design):** run screen text *"Each case is pinned to its current version; later edits to the
+  case don't change this run."* TMS run 28 "Internal Work Orders - Execution" shows version 1 (no pictures) for 384 of 596 cases.
+  Removing + re-adding entries does NOT re-pin (TMS restores the same entry). No API/UI refresh exists. A NEW run pins the latest.
+- **TestRail milestone 6 "Bill To | Internal Work Orders - More Test Runs To Be Added (Nov 2026)"** created; TestRail runs 558, 559
+  moved into it (tests, statuses, assignees unchanged). QA lead "1. Yes".
+- **C715478 deleted in TMS** (QA lead: "DO what makes sense") — deleted in TestRail, no result in any TMS run, not Automated; restorable.
