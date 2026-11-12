@@ -249,6 +249,31 @@ exactly what §6 below exists to prevent.
 
 # 6 · 🛑 PROVE THE QUESTION IS NECESSARY BEFORE IT REACHES THE SHEET
 
+## 🔴 §6.0 — THE EIGHT PRE-SEND CHECKS (QA lead, 12 Nov 2026, PERMANENT; lesson L-20)
+
+Ordered after the Internal Work Orders sheet for Milos Vasic: 8 of its 16 questions were settled by a source we held, untestable, or
+for another owner (`build/founder-mode/internal-work-orders/po-answers-2026-11-12/QUESTION-REVIEW.md`). QA lead: unnecessary
+questions waste the product owner's time. QA lead's approval, verbatim: *"Yes, record them (Recommended)"*. Every question passes ALL
+of these before it goes on a sheet; one that fails is dropped or moved, with the reason written down:
+
+a. **Precedence.** Read the PRD's own precedence statements first ("Where a frame and this text disagree, the text wins", "the table
+   is a summary", …). A conflict such a statement settles is never asked.
+b. **Suggested-answer test.** If our suggested option is backed by a sentence already in a source, quote it in the case; do not ask.
+c. **Silence is not a gap when another source speaks.** PRD silent but the tech plan, a design frame or the design library states it:
+   write the case from that source (Rules 57, 115, 126). Ask only when those sources disagree with each other, or the gap carries
+   money, data-loss or security risk.
+d. **Design library over a single frame.** A design-library "always/never" rule settles a frame that breaks it, unless the PRD says
+   otherwise.
+e. **Untestable goes to the list.** A requirement with no screen or flow to exercise goes on the "not testable" list with its reason;
+   never a question.
+f. **Right owner.** If the PRD names another owner or marks the point pending someone else, hold the case on that owner; do not ask
+   the PO.
+g. **Behaviour first.** If only wording is missing and the behaviour is settled, test the behaviour, leave the exact wording out, and
+   do not ask.
+h. **Final filter on the merged list.** The coordinator runs a–g on the merged sheet (not only per worker) and records, for each kept
+   question, which check it passed and why it is still needed.
+
+
 **This is where a false blocker becomes a PO's problem** — the last hop in the migration chain, and the
 one where it stops being recoverable.
 
