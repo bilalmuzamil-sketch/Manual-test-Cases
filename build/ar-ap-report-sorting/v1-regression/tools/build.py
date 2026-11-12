@@ -148,7 +148,7 @@ def main():
          "| Screen | Changed file(s) | What the changed lines do | IN / OUT | Why |", "|---|---|---|---|---|"]
     for row in I.SCOPE:
         s.append("| " + " | ".join(x.replace("|", "/") for x in row) + " |")
-    s += ["", "Release test plan overlap: Inventory Value, Sales By Customer and Work In Progress are already re-checked by the PRD suite's REL-05, REL-05b, REL-05c, REL-12, REL-12b, REL-12c and REL-13 and by the before-release captures in `../release-2026-11-19/`."]
+    s += ["", "Release test plan overlap: Inventory Value, Sales By Customer and Work In Progress are already re-checked by the PRD suite's REL-05, REL-05b, REL-05c, REL-12, REL-12b, REL-12c and REL-13 and by the before-release captures in `../existing-data-unchanged-check/`."]
     (ROOT / "SCOPE.md").write_text("\n".join(s) + "\n", encoding="utf-8")
 
     # ------------------------------------------------ cases

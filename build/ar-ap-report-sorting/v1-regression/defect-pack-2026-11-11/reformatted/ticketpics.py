@@ -3,7 +3,7 @@ S = '/tmp/claude-0/-home-user/ef40c1d4-3e84-5396-9a66-1a25d97a7768/scratchpad/';
 from pdfhelp import words, render
 B = '/home/user/Manual-test-Cases/build/ar-ap-report-sorting/'
 E = B + 'v1-regression/live-run-2026-11-11/evidence/'; D = B + 'v1-regression/defect-pack-2026-11-11/evidence/'
-REL = B + 'release-2026-11-19/A-R A-P before release 2026-11-19/'
+REL = B + 'existing-data-unchanged-check/production-before-release-captured-2026-11-10/'
 QP = B + 'v1-regression/live-run-2026-11-11/testrail-results-v2/pics/'
 OUT = B + 'v1-regression/defect-pack-2026-11-11/reformatted/pics/'
 OCR = json.load(open(S + 'ocr.json'))
