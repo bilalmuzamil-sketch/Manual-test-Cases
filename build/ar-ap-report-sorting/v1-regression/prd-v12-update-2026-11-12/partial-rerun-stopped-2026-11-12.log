@@ -15,3 +15,15 @@ V1R-12 PASS - OK Step 5: bill ZZT-P12-BILLD dated 2026-10-21 listed: Oct 21, 202
 V1R-13 PASS - OK Step 5: Amount $100.00, Open balance $100.00: $100.00 / $100.00 | OK Step 8: Open balance $60.00: $60.00
 V1R-14 PASS - OK Step 4: customer X listed with the invoice amount $80.00: {"customer_name":"ZZAUTOTEST AR R14 Paid In Full","location":"Staging Heavy Duty - 9919","current":"","days_1_to_30":"$80.00","days_31_to_60":"","days_61_to_90":"","days_91_plus":"","total":"$80.00"} | OK Step 6: customer X not listed: not
 V1R-15 ERROR - harness error: locator.count: Target page, context or browser has been closed
+V1R-16 PASS - OK Step 5: credit memo CM2-4543 listed at $-25.00: $-25.00 / $-25.00 | OK Step 8: not listed on day V: no lines
+V1R-17 PASS - OK Step 5: CM2-4544 Open balance $-30.00: $-30.00 | OK Step 8: not listed on day A: no lines
+V1R-18 PASS - OK Step 4: the $50.00 free deposit DEP2-4834 listed at $-50.00: $-50.00 / $-50.00 | OK Step 5: the $70.00 work order deposit DEP2-4835 not listed: Nov 3, 2026 Staging Heavy Duty - 9919 Deposit DEP2-4834 ZZAUTOTEST AR R18 Deposits Nov 3, 2026 $-50.00 $-50.00
+V1R-19 PASS - OK Step 5: deposit DEP2-4836 listed at $-20.00: {"date":"Oct 31, 2026","location":"Staging Heavy Duty - 9919","type":"Deposit","id":"DEP2-4836","due_date":"Oct 31, 2026","past_due":"11","amount":"$-20.00","open_balance":"$-20.00"} | OK Step 7: deposit not listed: Oct 30, 2026 Staging Heavy Duty - 99
+V1R-20 PASS - OK Step 5: Open Balance $200.00: {"date":"Oct 13, 2026","location":"Staging Heavy Duty - 9919","type":"Invoice","id":"ZZT-P20-BILL","vendor_name":"ZZAUTOTEST AP P20 Payment After","due_date":"Nov 12, 2026","past_due":"-29","amount":"$200.00","open_balance":"$200.00"} | OK Step 8: Open Balance $120.0
+V1R-21 PASS - OK Step 5: vendor credit listed at $-35.00: {"date":"Oct 23, 2026","location":"Staging Heavy Duty - 9919","type":"Vendor Credit","id":"C-13912","vendor_name":"ZZAUTOTEST AP P21 Credit Used","due_date":"Oct 23, 2026","past_due":"3","amount":"$-35.00","open_balance":"$-35.00"} | OK Step 8: not listed 
+V1R-22 ERROR - harness error: "ZZAUTOTEST AR R22 Bucket Edges" not offered in the customerIds chip
+V1R-23 ERROR - harness error: page.click: Timeout 30000ms exceeded.
+V1R-24 ERROR - harness error: page.click: Timeout 30000ms exceeded.
+V1R-28 ERROR - harness error: page.click: Timeout 30000ms exceeded.
+V1R-29 ERROR - harness error: page.click: Target page, context or browser has been closed
+V1R-30 ERROR - harness error: page.click: Target page, context or browser has been closed

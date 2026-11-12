@@ -17,9 +17,13 @@ for word in v12 (`quote-check.json`; the 9 "reuse rule" / "drill-down keeps" quo
 - `push-log.jsonl`: 103 x HTTP 200, read back; C715471's first read-back came too early, the second was identical.
 
 **No re-run (QA lead, 12 Nov 2026: "If yes and running those tests after that change is unecessary then please stop.").**
-No expected result changed meaning, so no status can change. A re-run started at 16:35Z was stopped at 16:43Z: 14 of
-the 15 finished tests gave the same verdict as before; V1R-15 shows ERROR only because the stop closed its browser
-(`partial-rerun-stopped-2026-11-12.log`). Nothing from it was posted. V1R-32/53/87 (tech) passed again on e16016f; not posted.
+No expected result changed meaning, so no status can change. A re-run started at 16:35Z was stopped: `pkill` (SIGTERM)
+at ~16:43Z did not end it (my misreading of the output), `kill -9` at ~16:52Z did. 27 tests had finished
+(`partial-rerun-stopped-2026-11-12.log`): 20 gave the same verdict as the posted staging results (incl. V1R-07/08 FAIL =
+SV-12545); 7 show harness ERROR, not product verdicts: V1R-15/29/30 "browser has been closed" (the stop), V1R-22/23/24/28
+chip/click failures because the staging session in /tmp/staging had expired (API 401 session_expired, read after the
+stop; it was 200 at 16:35Z). Nothing from it was posted; the evidence files it overwrote were restored from git.
+V1R-32/53/87 (tech) passed again on e16016f at 16:35Z; not posted.
 
 **Local:** `cases/cases.json`, `cases/CASES.md` (also V1R-36 synced to TestRail: EXPECT FAIL removed, marker READY - SV-12547
 fixed, passed on staging), `tools/inventory.py` + `tools/check.py` now point at v12: `check.py` 0 problems.
