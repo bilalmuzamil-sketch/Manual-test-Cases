@@ -691,3 +691,9 @@
 - I asked the QA lead for a staging sign-in and a staging TestRail run while the aging work was still only on the QA site (epic SV-11315 + stories in TESTING QA). His answer: "why do you want the staging related stuff at this moment when this feature is not on staging yet?" Both asks withdrawn.
 - Before asking for anything for a next environment: prove the feature is THERE first (release notes / story status "on staging" / a page that only the new build has), and only then ask. Until then, keep the plan written (`STAGING-LANES.md`) and say nothing more.
 - #asks #staging #timing → L0691
+
+## L0693 — 2026-11-12 — "Works as the requirement says" means the PRD line, read live — I wrote "the requirement does not say" when it did
+- C715555 (aging Vendor menu order): I passed it saying the requirement was silent on where names starting with a symbol or accented letter go. Wrong: PRD v11 (Confluence 947650561) S1-R2/S1-R3 set exactly that order ("#1 Diesel", "-1 Diesel", "10 Trucking", "@Home Towing"; accents fold, æ→ae, ø→o), and the aging menu follows it (SV-12140, QA Complete). S5-R13 separately says the menu is "exactly as Inventory Value's Vendor filter", and Inventory Value's older menu orders those six names differently — so the build meets S1 and not S5-R13's literal wording.
+- Before writing "the requirement does not say" in any result: grep the saved live PRD copy for the topic words (Rule 137 amendment: find by TOPIC, not by rule id) and quote the line or quote the search that found nothing.
+- A posted result comment that misstates the source is corrected IN PLACE (apply_edits.mjs, key `new`), with a dated "Correction" bullet, never by adding a second result.
+- #aging #prd #sorting #result-comment → L0692

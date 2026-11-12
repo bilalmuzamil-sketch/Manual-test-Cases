@@ -1,0 +1,31 @@
+{
+ "pass_meta": {
+  "note": "12 Nov 2026, run 557, g6 retests"
+ },
+ "results": {
+  "C1079009": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest after https://shopview.atlassian.net/browse/SV-12547 (Ready for QA), on the new build v26.45.3-34788b2.",
+    "A/R Aging Collection with only customer \"ZZAUTOTEST AR R36 Collect X\" picked in the Customer chip; Export menu, Download (PDF).",
+    "Step 7: the PDF prints only that customer - its line (invoice S11315-17846, $110.00), then \"Total for ZZAUTOTEST AR R36 Collect X $110.00 $110.00\", then \"Totals $110.00 $110.00\". The word \"Subtotal\" no longer appears."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1079009-g6-R1-1-picked.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1079009-g6-R1-pdf-p1-1.png"
+   ]
+  },
+  "C1095436": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest after https://shopview.atlassian.net/browse/SV-12544 (Ready for QA), on the new build v26.45.3-34788b2.",
+    "Step 4: on screen the credit memo CM11315-4209 of ZZAUTOTEST AR R42 Memo Line still reads \"$-5.00\".",
+    "Step 9: in the PDF its line reads \"Oct 26 2026\" for both dates (no comma) and \"(-$5.00)\" - in brackets with a minus sign, as PRD S3-R7a requires."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1095436-g6-R2-1-screen.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1095436-g6-R2-pdf-p1-1.png"
+   ]
+  }
+ }
+}
