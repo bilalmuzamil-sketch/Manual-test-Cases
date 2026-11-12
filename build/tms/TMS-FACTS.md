@@ -444,3 +444,8 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **Not possible yet:** TestRail run 557 now has **470 tests**; **117 of them are cases that do not exist in TMS** (92 in
   *… > Regression Tests*, 17 in *… > Setup needed before testing*, 8 elsewhere) — their results (111 P · 4 B · 2 F) need the
   cases synced into TMS and added to TMS run 7 first. QA lead asked.
+- **Bill To (2026-11-12):** already in TMS (synced 10 Nov). Dry run: 318 SAME; TestRail had created *Bill To > Waiting on
+  Chris Ward's answers* (TestRail 133626 → **TMS 10000052**) and moved **16 cases** into it — mirrored in TMS (folder + 16 moves).
+  Case text incl. picture links unchanged; their 32 run entries (no results) unchanged. Now **334/334 SAME**.
+  QA lead (same day): *"If Bill to folder and its test cases are already there in TMS then no need to sync them to TMS again"*
+  — it arrived after the moves were applied; no full re-sync was done (only the new folder + moves).
