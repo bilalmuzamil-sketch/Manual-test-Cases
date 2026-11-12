@@ -28,6 +28,9 @@ Before step 8: read the "NEEDS REVIEW" list that step 6 prints. A new failure is
 checked against the epic's "not bugs / decided by Product" notes, and searched for in Jira (Rules 110, 120, 121).
 Re-check that SV-12544, SV-12545 and SV-12547 are still open.
 
+
+**Permission recorded (QA lead, 12 Nov 2026):** asked "May I sign tech@shopview.com in on staging during the run, in its own separate browser session?" — answer: **"Yes"**. Applies to V1R-32, V1R-53 and V1R-87 on staging: separate cookie jar holding only `sv_sso_session` + `cf_clearance`, never the QA lead's PHPSESSID; check the QA lead's session (`/api/iam/view-profile/` → 200) after every sign-in; restore tech's role from `staging-seed-2026-11-12/tech-before-staging.json` afterwards (Rule 26).
+
 ## Tests that are held, and why
 
 | Test | Why it is not a normal pass/fail |
