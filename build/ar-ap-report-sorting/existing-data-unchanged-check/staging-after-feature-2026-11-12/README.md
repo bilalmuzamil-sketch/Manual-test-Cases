@@ -36,3 +36,13 @@ again on the current build (v26.45.4-d07623f) from the same saved data (`C715472
 **1,149 past-due bills read one day less**, 357 not-yet-due read one day further below zero, 107 two days. Result
 617129 (Failed, Defects SV-11531, SV-11441 — the owning stories; no defect ticket, held) now replaces my Blocked one.
 It is the same time-zone pattern as `held-defect-drafts/DRAFT-1-...` (A/R side, C715471, already Failed by the other run).
+
+## The three 4Refuel bills (read 12 Nov 2026, 15:38-15:40 UTC, tech@shopview.com as Admin at Staging Lethbridge - 4310)
+
+- **Correction:** they are **$100.00 each**, not $1.00 (the before snapshot stores dollars; the after data stores cents).
+  The two TestRail results on C715472 of 14:10 and 14:21 UTC say "$1.00"; results cannot be edited, so it is noted here.
+- They were on A/P Aging Detail and A/P Unpaid Invoices in the staging snapshot taken BEFORE the feature (06:46 UTC).
+- They still exist, unchanged ($100.00, same dates, not deleted): `v1-regression/staging-run-2026-11-12/4refuel-read-at-lethbridge.json`, `4refuel-list-at-lethbridge.json`.
+- They are no longer in 4Refuel's unpaid bills at Lethbridge (209 there; the control E2E-INV-1791977645410 is), and no
+  4Refuel payment is listed at Lethbridge. **Why they left the unpaid list is not known.** All three were created by the
+  E2E automation ("E2E auto-created delivery", received by Ahtasham Admin).
