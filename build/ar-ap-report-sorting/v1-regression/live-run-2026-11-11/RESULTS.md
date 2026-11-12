@@ -186,3 +186,9 @@ Build v26.45.2-6a8b89c throughout; tech's role restored to Technician and read b
 ## QA lead's decisions, 11 Nov 2026
 - V1R-69 [C1079042](https://shopview.testrail.io/index.php?/cases/view/1079042) (T4687286): **PASS** — checked by hand by the QA lead ("Worked as expected -> Passed"); result 616813.
 - V1R-72 C1079045 (T4687289): **DELETED** on the QA lead's order ("Delete this test case and run please"). Case and test removed; run 557 went 471 → 470. Snapshot: `../testrail/deleted-V1R-72-C1079045.json`.
+
+## V1R-35 rewritten and re-run, 12 Nov 2026 (QA lead's order)
+- V1R-35 [C1079008](https://shopview.testrail.io/index.php?/cases/view/1079008) rewritten to Product's decision (Chris Ward, 4 Nov 2026, "OK as built"; SV-12546 closed OBSOLETE on that basis). Now "A/R Detail PDF prints only the buckets that hold a document".
+- Run on the QA site, **build v26.45.3-34788b2** (redeployed overnight; new cookies supplied 12 Nov), 06:17–06:18Z: **PASS**. Screen lists all five buckets, 61-90 / 91+ / 1-30 / Current at "(0)" with the chevron at 70% opacity and disabled (cursor not-allowed), 31-60 at full colour and clickable (measured 06:2xZ). PDF ar-aging-detail.pdf prints only "31-60 days past due" with S11315-17834, "Total for 31-60 days past due" and Totals $100.00 / $60.00.
+- Result 616985 on [T4687252](https://shopview.testrail.io/index.php?/tests/view/4687252), Passed, 3 annotated pictures. Evidence: `evidence/V1R-35v2 - *`, `evidence/V1R-35chev - chevrons zoomed.png`, `testrail-results-v2/pics/C1079008-*`.
+- Seen in passing on the same build (not a verdict, not re-tested): the PDF printed "Oct 10 2026" (the SV-12544 date form) and "Total for 31-60 days past due" (SV-12547's expected label). Both tickets are "Ready for QA".

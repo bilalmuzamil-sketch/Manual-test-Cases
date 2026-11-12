@@ -2362,13 +2362,43 @@
   "utc_end": "2026-11-11T12:18:04.222Z"
  },
  "V1R-35v2": {
-  "verdict": "ERROR",
-  "observed": "harness error: page.click: Timeout 30000ms exceeded.",
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4: every bucket is listed on screen; the empty one reads \"(0)\" with a greyed chevron",
+    "ok": true,
+    "saw": "buckets: [\"91 or more days past due (0) Total $0.00 $0.00\",\"61-90 days past due (0) Total $0.00 $0.00\",\"31-60 days past due (1) Total $100.00 $60.00\",\"1-30 days past due (0) Total $0.00 $0.00\",\"Current (0) Total $0.00 $0.00\"]; 61-90 chevron: {\"cls\":\"q-icon notranslate material-icons\",\"opacity\":\"1\",\"color\":\"rgb(34, 118, 218)\",\"disabled\":true}"
+   },
+   {
+    "what": "Step 8: the PDF prints only the bucket that holds a document (31-60 days past due), with its invoice and a Totals row",
+    "ok": true,
+    "saw": "file: ar-aging-detail.pdf; buckets printed: [\"31-60 days past due\"]; invoice S11315-17834 present: true; Totals row: true"
+   }
+  ],
+  "observed": "OK Step 4: every bucket is listed on screen; the empty one reads \"(0)\" with a greyed chevron: buckets: [\"91 or more days past due (0) Total $0.00 $0.00\",\"61-90 days past due (0) Total $0.00 $0.00\",\"31-60 days past due (1) Total $100.00 $60.00\",\"1-30 days past due (0) Total $0.00 $0.00\",\"Current (0) Total $0.00 $0.00\"]; 61-90 chevron: {\"cls\":\"q-icon notranslate material-icons\",\"opacity\":\"1\",\"color\":\"rgb(34, 118, 218)\",\"disabled\":true} | OK Step 8: the PDF prints only the bucket that holds a document (31-60 days past due), with its invoice and a Totals row: file: ar-aging-detail.pdf; buckets printed: [\"31-60 days past due\"]; invoice S11315-17834 present: true; Totals row: true",
   "evidence": [
-   "V1R-35v2 - error.png"
+   "V1R-35v2 - step 4 buckets on screen.png",
+   "V1R-35v2 - PDF text.json"
   ],
   "marker": "v26.45.3-34788b2",
-  "utc_start": "2026-11-12T06:09:46.349Z",
-  "utc_end": "2026-11-12T06:10:20.840Z"
+  "utc_start": "2026-11-12T06:17:53.638Z",
+  "utc_end": "2026-11-12T06:18:05.937Z"
+ },
+ "V1R-35chev": {
+  "verdict": "FAIL",
+  "checks": [
+   {
+    "what": "Empty buckets: chevron drawn fainter than the filled bucket and not clickable",
+    "ok": false,
+    "saw": "[{\"row\":\"days_91_plus\",\"text\":\"\",\"effectiveOpacity\":0.7,\"color\":\"rgb(34, 118, 218)\",\"buttonDisabled\":true,\"cursor\":\"not-allowed\"},{\"row\":\"days_91_plus_cell_bucket\",\"text\":\"91 or more days past due\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_91_plus_total_label\",\"text\":\"Total\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_91_plus_cell_amount\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_91_plus_cell_open_balance\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_61_to_90\",\"text\":\"\",\"effectiveOpacity\":0.7,\"color\":\"rgb(34, 118, 218)\",\"buttonDisabled\":true,\"cursor\":\"not-allowed\"},{\"row\":\"days_61_to_90_cell_bucket\",\"text\":\"61-90 days past due\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_61_to_90_total_label\",\"text\":\"Total\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_61_to_90_cell_amount\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_61_to_90_cell_open_balance\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_31_to_60\",\"text\":\"\",\"effectiveOpacity\":1,\"color\":\"rgb(34, 118, 218)\",\"buttonDisabled\":false,\"cursor\":\"pointer\"},{\"row\":\"days_31_to_60_cell_bucket\",\"text\":\"31-60 days past due\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_31_to_60_total_label\",\"text\":\"Total\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_31_to_60_cell_amount\",\"text\":\"$100.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_31_to_60_cell_open_balance\",\"text\":\"$60.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_1_to_30\",\"text\":\"\",\"effectiveOpacity\":0.7,\"color\":\"rgb(34, 118, 218)\",\"buttonDisabled\":true,\"cursor\":\"not-allowed\"},{\"row\":\"days_1_to_30_cell_bucket\",\"text\":\"1-30 days past due\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_1_to_30_total_label\",\"text\":\"Total\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_1_to_30_cell_amount\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_1_to_30_cell_open_balance\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"current\",\"text\":\"\",\"effectiveOpacity\":0.7,\"color\":\"rgb(34, 118, 218)\",\"buttonDisabled\":true,\"cursor\":\"not-allowed\"},{\"row\":\"current_cell_bucket\",\"text\":\"Current\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"current_total_label\",\"text\":\"Total\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"current_cell_amount\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"current_cell_open_balance\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null}]"
+   }
+  ],
+  "observed": "NOT OK Empty buckets: chevron drawn fainter than the filled bucket and not clickable: [{\"row\":\"days_91_plus\",\"text\":\"\",\"effectiveOpacity\":0.7,\"color\":\"rgb(34, 118, 218)\",\"buttonDisabled\":true,\"cursor\":\"not-allowed\"},{\"row\":\"days_91_plus_cell_bucket\",\"text\":\"91 or more days past due\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_91_plus_total_label\",\"text\":\"Total\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_91_plus_cell_amount\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_91_plus_cell_open_balance\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_61_to_90\",\"text\":\"\",\"effectiveOpacity\":0.7,\"color\":\"rgb(34, 118, 218)\",\"buttonDisabled\":true,\"cursor\":\"not-allowed\"},{\"row\":\"days_61_to_90_cell_bucket\",\"text\":\"61-90 days past due\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_61_to_90_total_label\",\"text\":\"Total\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_61_to_90_cell_amount\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_61_to_90_cell_open_balance\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_31_to_60\",\"text\":\"\",\"effectiveOpacity\":1,\"color\":\"rgb(34, 118, 218)\",\"buttonDisabled\":false,\"cursor\":\"pointer\"},{\"row\":\"days_31_to_60_cell_bucket\",\"text\":\"31-60 days past due\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_31_to_60_total_label\",\"text\":\"Total\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_31_to_60_cell_amount\",\"text\":\"$100.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_31_to_60_cell_open_balance\",\"text\":\"$60.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_1_to_30\",\"text\":\"\",\"effectiveOpacity\":0.7,\"color\":\"rgb(34, 118, 218)\",\"buttonDisabled\":true,\"cursor\":\"not-allowed\"},{\"row\":\"days_1_to_30_cell_bucket\",\"text\":\"1-30 days past due\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_1_to_30_total_label\",\"text\":\"Total\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_1_to_30_cell_amount\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"days_1_to_30_cell_open_balance\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"current\",\"text\":\"\",\"effectiveOpacity\":0.7,\"color\":\"rgb(34, 118, 218)\",\"buttonDisabled\":true,\"cursor\":\"not-allowed\"},{\"row\":\"current_cell_bucket\",\"text\":\"Current\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"current_total_label\",\"text\":\"Total\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"current_cell_amount\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null},{\"row\":\"current_cell_open_balance\",\"text\":\"$0.00\",\"effectiveOpacity\":1,\"color\":null,\"buttonDisabled\":null,\"cursor\":null}]",
+  "evidence": [
+   "V1R-35chev - chevrons zoomed.png"
+  ],
+  "marker": "v26.45.3-34788b2",
+  "utc_start": "2026-11-12T06:18:30.441Z",
+  "utc_end": "2026-11-12T06:18:40.759Z"
  }
 }

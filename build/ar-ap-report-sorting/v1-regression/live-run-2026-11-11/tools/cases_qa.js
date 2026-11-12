@@ -815,3 +815,16 @@ C['V1R-35v2'] = async (x) => {
     chk('Step 8: the PDF prints only the bucket that holds a document (31-60 days past due), with its invoice and a Totals row', f.ok && JSON.stringify([...new Set(printed)]) === JSON.stringify(['31-60 days past due']) && txt.includes(inv) && /Totals/.test(txt), `file: ${f.ok ? f.suggested : 'no download'}; buckets printed: ${JSON.stringify([...new Set(printed)])}; invoice ${inv} present: ${txt.includes(inv)}; Totals row: ${/Totals/.test(txt)}`),
   ]);
 };
+
+// 12 Nov 2026: measure the chevron of every bucket (effective opacity up the tree + computed colour), Rule 120.
+C['V1R-35chev'] = async (x) => {
+  const { page, lib } = x; await go(x, 'A/R Aging Detail'); await lib.pickParty(page, 'customerIds', CUST('R13'));
+  const m = await page.evaluate(() => [...document.querySelectorAll('[data-test-id^="aging_detail_report_row_"]')].filter((r) => /days_|current/.test(r.getAttribute('data-test-id'))).map((row) => {
+    const i = row.querySelector('i, .q-icon'); let op = 1; let e = i; while (e) { op *= Number(getComputedStyle(e).opacity); e = e.parentElement; }
+    const btn = i && i.closest('button, .q-btn'); return { row: row.getAttribute('data-test-id').replace('aging_detail_report_row_', ''), text: row.innerText.replace(/keyboard_arrow_\w+/g, '').split('\n')[0].trim(), effectiveOpacity: Math.round(op * 100) / 100, color: i ? getComputedStyle(i).color : null, buttonDisabled: btn ? (btn.disabled || btn.getAttribute('aria-disabled') === 'true' || btn.classList.contains('disabled')) : null, cursor: btn ? getComputedStyle(btn).cursor : null };
+  }));
+  const box = await page.locator('[data-test-id="aging_detail_report_row_days_91_or_more"], [data-test-id^="aging_detail_report_row_days_"]').first().boundingBox();
+  if (box) x.ev.push(await (async () => { const p = require('path').join(lib.EVID, `${x.key} - chevrons zoomed.png`); await page.screenshot({ path: p, clip: { x: box.x, y: box.y, width: 420, height: 250 }, scale: 'device' }); return require('path').basename(p); })());
+  const empty = m.filter((r) => /\(0\)/.test(r.text)); const full = m.filter((r) => !/\(0\)/.test(r.text));
+  return verdict([chk('Empty buckets: chevron drawn fainter than the filled bucket and not clickable', empty.length && full.length && empty.every((r) => r.effectiveOpacity < full[0].effectiveOpacity && r.buttonDisabled), JSON.stringify(m))]);
+};

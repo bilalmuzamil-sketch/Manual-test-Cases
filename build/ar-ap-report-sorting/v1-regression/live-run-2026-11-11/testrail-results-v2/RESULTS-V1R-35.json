@@ -1,0 +1,19 @@
+{
+ "results": {
+  "C1079008": {
+   "verdict": "Passed",
+   "observed": [
+    "Case rewritten on 12 Nov 2026 to Product's decision (Chris Ward, 4 Nov 2026: \"OK as built\"); SV-12546 was closed on that basis.",
+    "On A/R Aging Detail with only \"ZZAUTOTEST AR R13 Payment After\" ticked, the screen lists all five buckets: 91 or more (0), 61-90 (0), 31-60 (1), 1-30 (0), Current (0).",
+    "The empty buckets' chevrons are faded (70% opacity) and cannot be clicked; the 31-60 bucket's chevron is full colour and clickable.",
+    "Download (PDF) gives ar-aging-detail.pdf with one bucket only: \"31-60 days past due\", invoice S11315-17834 ($100.00, $60.00 open), \"Total for 31-60 days past due\", then the Totals row $100.00 / $60.00.",
+    "\"91 or more\", \"61-90\", \"1-30 days past due\" and \"Current\" are not in the PDF, as Product decided."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079008-1-screen-lists-all-five-buckets.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079008-2-pdf-prints-only-31-60.png",
+    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/testrail-results-v2/pics/C1079008-3-empty-bucket-chevrons-greyed.png"
+   ]
+  }
+ }
+}
