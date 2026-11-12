@@ -12,8 +12,8 @@ Design: "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3
   case by search. A case whose screen no board draws, and every API case, gets no heading at all. API cases test no screen."""
 import json, os, re
 D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D); DD = f"{P}/design-2026-11-12"
-CANVAS = ('Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794484794-2031, '
-          'read and rendered 12 Nov 2026')
+CANVAS = ('Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794507512-2fc4 '
+          '(its boards byte-identical to version 1794484794-2031, read and rendered 12 Nov 2026)')
 _DJ = f"{D}/design_refs_design.json"
 DREFS = json.load(open(_DJ)) if os.path.exists(_DJ) else {}
 FIGS = json.load(open(f"{DD}/DESIGN-FIGURES-2026-11-12.json"))["list"]
@@ -24,14 +24,15 @@ for (_pg, _lb), _f in list(BYLABEL.items()):      # "02b" is also written "2b" i
 S2D = {r["code"]: r for r in json.load(open(f"{DD}/SPEC-TO-DESIGN-2026-11-12.json"))["table"]}
 REG = {d["id"]: d for d in json.load(open(f"{P}/DESIGN-DIVERGENCE-REGISTER.json"))["differences"]}
 # open register rows -> merged question slug (po_questions.py); IWO-D50 is a named ruling (po_questions.DROPPED)
-OPEN = {"IWO-D09": "category-helper", "IWO-D19": "internal-estimate-stamp", "IWO-D29": "locked-note", "IWO-D31": "reopen-message",
-        "IWO-D44": "report-empty-cell", "IWO-D45": "report-wrapping"}
+OPEN = {}   # round 3 (12 Nov 2026): every design question answered by Milos Vasic and carried in PRD v1.1; the register rows are closed
 RULING_D50 = ("IWO-D50 (two reviewer remarks left in a board's file, not visible on the canvas) is closed by a named ruling: PRD Final v1.0 is "
               "newer and its header says \"Where a frame and this text disagree, the text wins\"; no verdict depends on the remarks.")
 
 
 def _scode(k):
-    return "§8-" + k[4:] if re.match(r"UFS-\d\d$", k) else k
+    if not re.match(r"UFS-\d\d$", k): return k
+    n = int(k[4:])   # the spec-to-design table uses PRD v1.0's row numbers; v1.1 inserted row 25 (Reopen done), which no board table row has
+    return "§8-%02d" % (n - 1 if n >= 26 else n) if n != 25 else "§8-v1.1-25"
 
 
 def boards_named(text):
@@ -54,9 +55,11 @@ def _notes(r, notes, QN):
     for rid in re.findall(r"IWO-D\d\d", r.get("register") or ""):
         d = REG.get(rid)
         if not d: continue
-        src = " / ".join(PLAIN.get(x.strip(), x.strip()) for x in (d.get("prd_code") or "").split("/"))
+        src = " / ".join(PLAIN.get(x.strip(), x.strip()) for x in (d.get("prd_code_v1.1") or d.get("prd_code") or "").split("/"))
         if rid in OPEN: how = f"asked in question {QN[OPEN[rid]]} of the PO sheet; this case follows the PRD meanwhile"
         elif rid == "IWO-D50": how = RULING_D50
+        elif d["outcome"].startswith("CLOSED"): how = f"closed: the design matches PRD v1.1 ({src})"
+        elif "outcome_before_v1.1" in d: how = f"settled by PRD v1.1 ({src}), which carries Milos Vasic's answer; this case follows the PRD"
         else: how = f"settled by the PRD ({src}); this case follows the PRD"
         n = f"Difference {rid} on {r['code']} ({d['kind']}): {how}."
         if n not in notes: notes.append(n)

@@ -1,0 +1,2332 @@
+{
+ "project": "Internal Work Orders (Founder Mode), epic SV-11665",
+ "design": "https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo, canvas \"Internal Work Orders · All flows v6\", version 1794484794-2031",
+ "prd": "Confluence 942243841, Final v1.0 (2026-11-09, Milos Vasic, last modified 10 Nov 2026), saved build/founder-mode/internal-work-orders/sources/CONFLUENCE-942243841-read-2026-11-12.md",
+ "prd_header_rule": "The PRD header (Design row) says: \"Where a frame and this text disagree, the text wins\". Differences the PRD words settle are closed by that sentence plus the named requirement; the rest go to Milos Vasic as questions.",
+ "made": "12 Nov 2026, design drive build/founder-mode/internal-work-orders/design-2026-11-12/",
+ "how": "Rule 130: both directions (DESIGN-TEXT-INVENTORY design -> PRD; SPEC-TO-DESIGN-2026-11-12.json PRD -> design; every dialog, menu, toast and tooltip listed by hand in DESIGN-VISUAL-INVENTORY.md)",
+ "counts": {
+  "differences": 55,
+  "settled_by_prd": 48,
+  "questions": 7,
+  "not_shown": 41
+ },
+ "unsent_questions": 6,
+ "unsent_note": "6 new questions (rows 8-13) are drafted in design-2026-11-12/NEW-QUESTIONS.py and NOT sent; one more difference (IWO-D19) rides on question 3 and the held DC-50 on question 4 of the existing draft ../PO-QUESTIONS-DRAFT.md, also not sent (the QA lead sends the one sheet). Rule 126.6: unsent must reach 0 before the suite is called complete.",
+ "question_sheet": "none yet for Internal Work Orders (checked 12 Nov 2026); these rows and the PRD case worker's questions go into one sheet (Rule 131)",
+ "differences": [
+  {
+   "id": "IWO-D01",
+   "kind": "wording",
+   "boards": "Flow 0 01, 02, 03, 2a…; Happy 01, 03; Review 1.1, 1.3",
+   "pictures": [
+    "images/iwo-flow0-01-01-settings-work-orders-setting-off.png"
+   ],
+   "design_words": [
+    "Lets you flag your own company as an internal customer and mark a customer's work order as No Charge (warranty, goodwill, comeback). Both close without an invoice; their parts cost posts to the expense account of their category instead of Cost of Parts."
+   ],
+   "prd_code": "S1-R1",
+   "prd_words": [
+    "mark a customer's work order, or a single line of a billable work order, as No Charge (warranty, goodwill, comeback). Internal and no-charge work orders close without an invoice"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R1 gives the description word for word; PRD header: \"Where a frame and this text disagree, the text wins\". Cases quote S1-R1.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    true
+   ]
+  },
+  {
+   "id": "IWO-D02",
+   "kind": "wording",
+   "boards": "Flow 0 02, 03; Happy 03; Review 1.3",
+   "pictures": [
+    "images/iwo-flow0-03-02-settings-setting-on.png"
+   ],
+   "design_words": [
+    "Manage categories in Internal Work Orders (Administration > Service). Their expense accounts are set there or in Integrations > QuickBooks."
+   ],
+   "prd_code": "S1-R3",
+   "prd_words": [
+    "Manage categories in Internal Work Orders (Administration \\> Service). Their expense accounts are set on each category."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R3 quote; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D03",
+   "kind": "missing state",
+   "boards": "Flow 0 \"03 Settings · setting on, no flagged customer\"",
+   "pictures": [
+    "images/iwo-flow0-09-03-settings-setting-on-no-flagged-customer.png"
+   ],
+   "design_words": [
+    "The board is pixel-identical to \"02 Settings · setting on\": the two category/QuickBooks hints, no \"No internal customer yet\" line. The source holds \"No internal customer yet. … No charge on customer work orders works now.\" behind a switch the board never reaches (and with \"No charge\" in lower case)."
+   ],
+   "prd_code": "S1-R4",
+   "prd_words": [
+    "No internal customer yet. Work orders for your own equipment stay billable until you flag one: Edit Customer \\> Internal customer. No Charge on customer work orders works now."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R4 and §8 give the hint word for word; the case follows them (design-silent for the picture: no held case, Rule 130.5).",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D04",
+   "kind": "stale label",
+   "boards": "Flow 0 \"12 Settings · turned off\"",
+   "pictures": [
+    "images/iwo-flow0-19-12-settings-turned-off.png"
+   ],
+   "design_words": [
+    "No-Charge Work Orders",
+    "Lets you flag internal customers and mark work orders as no charge. Both close without an invoice; parts cost posts to your expense accounts."
+   ],
+   "prd_code": "S1-R1",
+   "prd_words": [
+    "a toggle \"Internal Work Orders\" (Title Case like the other toggles on the tab)"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R1 names the toggle; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    true,
+    true
+   ]
+  },
+  {
+   "id": "IWO-D05",
+   "kind": "wording and state",
+   "boards": "Flow 0 01b; Happy 02; Review 1.2",
+   "pictures": [
+    "images/iwo-flow0-02-01b-turn-on-pick-your-internal-customers.png"
+   ],
+   "design_words": [
+    "parts cost posts to your Internal Work Orders Expense account when you use QuickBooks or AccountingHub",
+    "Save drawn enabled (blue) while no customer is ticked",
+    "customers drawn as an open list with checkboxes; no chips, no \"Pick up to 50\" hint"
+   ],
+   "prd_code": "S1-R2",
+   "prd_words": [
+    "parts cost posts to the expense account of their category when you use QuickBooks or AccountingHub",
+    "Save is disabled until at least one customer is picked."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R2 (body, Save disabled, chips, 50 hint); PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D06",
+   "kind": "missing element",
+   "boards": "Flow 0 05, 08; Happy 08; Review 3.2 (and note c-rv-3-2); Flow 0 11",
+   "pictures": [
+    "images/iwo-flow0-11-05-customer-page-internal-customer.png",
+    "images/iwo-flow0-17-11-edit-customer-min-without.png"
+   ],
+   "design_words": [
+    "Internal customer checkbox with an info icon and no helper text; ticked, with no \"Default internal category\" select on boards 05/08 and 3.2 (the select shows only on board 11). Note c-flow0-5: \"The checkbox is the only place the flag is set.\""
+   ],
+   "prd_code": "S1-R7",
+   "prd_words": [
+    "with the helper \"Work orders for this customer are internal: no prices, no invoice, parts cost posts to the expense account of the internal category.\" When ticked, the select \"Default internal category\" appears under it",
+    "The checkbox and the modal are the only places the flag is set"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R7 quote; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D07",
+   "kind": "behaviour",
+   "boards": "Flow 0 2e (and note c-flow0-2e)",
+   "pictures": [
+    "images/iwo-flow0-08-2e-internal-work-orders-page-setting-off.png"
+   ],
+   "design_words": [
+    "Internal Work Orders is off. Turn it on in Settings > Work Orders to use these categories; nothing here is deleted while it is off.",
+    "New Internal Category disabled and the lists greyed (read-only); the Internal Work Orders menu item greyed with the tooltip \"Turn on Internal Work Orders in Settings > Work Orders.\" (the tooltip is cut by the sidebar edge on the board)"
+   ],
+   "prd_code": "S1-R13",
+   "prd_words": [
+    "while the setting is off it shows the notice \"Internal Work Orders is off. Turn it on in Settings \\> Work Orders.\" and the lists stay editable."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R13 quote (notice words, lists editable, the page reachable); PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    true,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D08",
+   "kind": "label",
+   "boards": "Flow 0 2a, 2e; Happy 04; Review 2.1",
+   "pictures": [
+    "images/iwo-flow0-04-2a-internal-work-orders-page-internal-categories.png"
+   ],
+   "design_words": [
+    "Internal customers"
+   ],
+   "prd_code": "S1-R13",
+   "prd_words": [
+    "Internal customers using it"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R13 column list; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    true
+   ]
+  },
+  {
+   "id": "IWO-D09",
+   "kind": "wording that contradicts behaviour",
+   "boards": "Flow 0 2a/2c/2d/11; Happy 04, 06; Review 2.1, 2.3",
+   "pictures": [
+    "images/iwo-flow0-06-2c-new-no-charge-category.png",
+    "images/iwo-flow0-07-2d-new-internal-category.png",
+    "images/iwo-flow0-17-11-edit-customer-min-without.png"
+   ],
+   "design_words": [
+    "Shown in the Category select when a work order is marked No Charge. It shows on the work order, the NO CHARGE document and the Internal Work Orders report.",
+    "Where the cost of work on your own equipment goes. Each internal customer has a default category; a work order can change it.",
+    "Preselected on every new work order for this customer; a work order can change it. New internal customers get General Internal."
+   ],
+   "prd_code": "S2-R16 / S2-R1 / KD",
+   "prd_words": [
+    "It is not shown on the work order detail or in lists; the badge is the only mark there.",
+    "it can be changed on the asset or the customer, never on the work order."
+   ],
+   "outcome": "QUESTION 12 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "ruling_or_question": "NEW-QUESTIONS.py question 8 (sheet row 8)",
+   "held_case": "DV-01",
+   "note": "The PRD gives no text for these intro and helper sentences, so it cannot settle what they should say; it does settle the behaviour they describe wrongly.",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "id": "IWO-D10",
+   "kind": "wording",
+   "boards": "Flow 0 2c, 2d; Happy 06; Review 2.3",
+   "pictures": [
+    "images/iwo-flow0-07-2d-new-internal-category.png"
+   ],
+   "design_words": [
+    "Not set at any location. Parts cost of this category posts to the ShopView Review account until you pick one.",
+    "The work order asks which earlier work order the job comes from, or \"Not in ShopView\". Optional when the work order is created, required at Close."
+   ],
+   "prd_code": "S1-R14",
+   "prd_words": [
+    "with the helper \"One per connected location, picked from the chart that is already in QuickBooks. Parts cost of this category posts here instead of Cost of Parts. Empty: posts to the ShopView Review account until you pick one.\"",
+    "The work order asks which earlier work order the job comes from, or Not in ShopView. Optional when the work order is created, required at Close."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R14 quote (helper on both dialogs; \"Not in ShopView\" without quote marks); PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    true,
+    true
+   ]
+  },
+  {
+   "id": "IWO-D11",
+   "kind": "labels and hint",
+   "boards": "Flow 0 09, 10; Happy 10; Review 3.1",
+   "pictures": [
+    "images/iwo-flow0-15-09-settings-integrations-quickbooks.png",
+    "images/iwo-flow0-16-10-quickbooks-category-row-not-set.png"
+   ],
+   "design_words": [
+    "Internal work orders · one row per category",
+    "No Charge work orders · one row per category",
+    "Not set. Parts cost of this category posts to the ShopView Review account until you pick one.",
+    "category rows without the QuickBooks mark; a Default badge on General Internal; board 10 has no shop supplies note"
+   ],
+   "prd_code": "S5-R1 / S5-R4",
+   "prd_words": [
+    "grouped under the headers \"Internal work orders\" and \"No Charge work orders\", each row named after its category and carrying the QuickBooks mark",
+    "Not set. Parts cost of \\[category\\] work orders posts to the ShopView Review account until you pick one."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S5-R1, S5-R4 quotes; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    true,
+    true,
+    true,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D12",
+   "kind": "not drawn (hidden text stale)",
+   "boards": "Flow 1 02a (note c-flow1-2a \"with the info tooltip\"), 02e; Happy 20",
+   "pictures": [
+    "images/iwo-flow1-02-02a-new-work-order.png"
+   ],
+   "design_words": [
+    "info icon with no tooltip drawn (the board source hides tooltips: SHOW_TIPS = false); the hidden text reads \"Warranty, goodwill, policy or comeback work. Closes without an invoice; parts cost posts to Customer No-Charge Expense.\""
+   ],
+   "prd_code": "S2-R2",
+   "prd_words": [
+    "an info icon whose tooltip reads \"Warranty, goodwill or comeback work. Closes without an invoice; parts cost posts to the expense account of the category.\""
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R2 and §8 quote the tooltip; nothing drawn to compare (design-silent, no held case).",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D13",
+   "kind": "board covers its own subject",
+   "boards": "Flow 1 02b; Happy 12; Review 3.4",
+   "pictures": [
+    "images/iwo-flow1-03-02b-new-work-order-internal-customer.png"
+   ],
+   "design_words": [
+    "the open asset list covers the Internal badge and its tooltip that note c-flow1-2b describes; board 2b2 (Happy 13) shows them"
+   ],
+   "prd_code": "S2-R1",
+   "prd_words": [
+    "picking a customer with the Internal customer flag shows the \"Internal\" badge next to the customer name with an info icon"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R1 quote; the look case uses board 2b2 / Happy 13 for the badge and tooltip.",
+   "held_case": "",
+   "note": "Look of the design board, not a product question.",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D14",
+   "kind": "look",
+   "boards": "every desktop work order detail board of an internal or no-charge work order (Flow 1 03…S2, Flow 2 03…06, Flow 3, Happy 14-18, 23-29, 36-37)",
+   "pictures": [
+    "images/iwo-flow1-08-03-work-order-in-progress.png",
+    "images/iwo-flow4-08-08-mobile-detail-header.png"
+   ],
+   "design_words": [
+    "the header card is white with the normal border on desktop; only the mobile header (Flow 4 08) is drawn with an orange outline and light orange background"
+   ],
+   "prd_code": "S2-R3",
+   "prd_words": [
+    "the header card of an internal or no-charge work order has an orange outline and a light orange background"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R3 quote; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D15",
+   "kind": "look",
+   "boards": "every board with both badges (lists, detail headers, cards, hub)",
+   "pictures": [
+    "images/iwo-flow1-01-01-work-orders-list.png"
+   ],
+   "design_words": [
+    "the No Charge badge is drawn in the same orange square style as the Internal badge"
+   ],
+   "prd_code": "S2-R3",
+   "prd_words": [
+    "\"No Charge\" for a no-charge work order (a different style from Internal)"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R3 quote; the case checks that the two badges look different, without naming a colour (the design authority names the token, S2-R3).",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D16",
+   "kind": "wrong badge",
+   "boards": "Flow 4 07, 08, 10 (and notes c-flow4-7/8/9); Flow 1 10b; Flow 5 03",
+   "pictures": [
+    "images/iwo-flow4-10-10-board-internal-card.png",
+    "images/iwo-flow4-07-07-mobile-list-card.png",
+    "images/iwo-flow1-24-10b-asset-invoices-tab.png",
+    "images/iwo-flow5-02-03-accountinghub-sales-invoices.png"
+   ],
+   "design_words": [
+    "work orders of the internal customer Staging Heavy Duty Fleet (S2-34918, S2-34870, S2-33590) carry a \"No Charge\" badge on the Board, the mobile card and header, the asset Invoices tab and the AccountingHub Invoices list"
+   ],
+   "prd_code": "TERM",
+   "prd_words": [
+    "On a flagged customer's work order the badge reads Internal, never No Charge."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Terminology quote; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D17",
+   "kind": "prices shown",
+   "boards": "internal detail boards (Flow 1 03-05, 3c, 3e, 2c, S2; Flow 3; Happy 14-17, 36-37)",
+   "pictures": [
+    "images/iwo-flow1-08-03-work-order-in-progress.png"
+   ],
+   "design_words": [
+    "lines table keeps Rate ($0.00) and Total ($265.00, $410.00); Financial Info has a Value column (Parts $675.00, Labor $0.00, Total $675.00) and a Total row. The no-charge boards (Flow 2 03) already draw it cost-only (Rate and Total empty, \"$180.00 cost\", Parts cost / Labor hours only)."
+   ],
+   "prd_code": "S2-R4",
+   "prd_words": [
+    "the Rate, Margin and Total columns of the lines table (a part's sell price sits in Rate) and the Sell price, Rate and Margin fields of the line and part dialogs are hidden and not required; there is no work order total"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R4 quote; the design's own no-charge boards agree with it.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D18",
+   "kind": "placement",
+   "boards": "Flow 1 03, 3c, 3e, 2c; Happy 14 (note c-flow1-3c says the opposite)",
+   "pictures": [
+    "images/iwo-flow1-09-3c-menu-internal.png"
+   ],
+   "design_words": [
+    "Close Work Order is the header button while the lines are In Progress / Approved, and the three-dots menu (Audit Log, Timesheets, Print Work Order) does not hold it"
+   ],
+   "prd_code": "S3-N2",
+   "prd_words": [
+    "With review off and open lines, Close Work Order sits in the three-dots menu exactly as Create invoice does today; once every line is Complete it is the header button and leaves the menu"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S3-N2 quote; the board note c-flow1-3c agrees with the PRD.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D19",
+   "kind": "document",
+   "boards": "Flow 1 04, 3d; Happy 15 (open internal estimate); Flow 1 08 / Happy 18 (closed)",
+   "pictures": [
+    "images/iwo-happy-15-15-finance-tab.png",
+    "images/iwo-flow1-22-08-work-order-closed-invoice.png"
+   ],
+   "design_words": [
+    "open internal estimate: \"Estimate:\" document with Labor $0.00 columns, \"Line total\", a Total and \"No Charge.\" block; stamp INTERNAL with \"Category: General Internal\" (also on the closed internal document). Note c-flow1-8 says the document \"is stamped NO CHARGE\"."
+   ],
+   "prd_code": "S2-R4 / S3-R5",
+   "prd_words": [
+    "The estimate and invoice documents for these work orders show the same and carry the NO CHARGE stamp and, on a no-charge work order, the line \"Category: \\[Category\\]\" under the stamp",
+    "the INTERNAL or NO CHARGE stamp with the line \"Category: \\[name\\]\""
+   ],
+   "outcome": "QUESTION 3 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "ruling_or_question": "Prices and totals on the estimate: settled by S2-R4. Stamp word and category line on an open internal estimate: already asked as question 3 of the Internal Work Orders sheet draft (../PO-QUESTIONS-DRAFT.md, by the PRD case worker), not repeated (S2-R4 and S3-R5 read differently).",
+   "held_case": "DV-02",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D20",
+   "kind": "wording",
+   "boards": "Flow 1 07, 7b, 7d, 7e, 7f; Happy 17; Review 5.2",
+   "pictures": [
+    "images/iwo-flow1-16-07-close-confirm.png"
+   ],
+   "design_words": [
+    "This posts the parts cost and shop supplies to your books and marks the work order Closed · No Charge. You can reopen it later. (on internal work order S2-34918)"
+   ],
+   "prd_code": "S3-R2",
+   "prd_words": [
+    "This posts the parts cost and shop supplies to your books and marks the work order Closed · Internal. You can reopen it later."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S3-R2 quote; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D21",
+   "kind": "wording and field",
+   "boards": "Flow 1 7c",
+   "pictures": [
+    "images/iwo-flow1-18-7c-close-no-accounting-integration.png"
+   ],
+   "design_words": [
+    "This marks the work order Closed · No Charge. Parts cost and hours are in the Internal Work Orders report.",
+    "no Posting date field"
+   ],
+   "prd_code": "S3-E4 / S3-R2",
+   "prd_words": [
+    "This marks the work order Closed · Internal (Closed · No Charge). Parts cost, shop supplies and hours are available in the Internal Work Orders report.",
+    "with a posting date field (default today"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S3-E4, S3-R2 quotes; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    true,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D22",
+   "kind": "wording",
+   "boards": "Flow 1 7b (note c-flow1-6c \"When Internal Work Orders Expense is not mapped\")",
+   "pictures": [
+    "images/iwo-flow1-17-7b-close-no-account-set.png"
+   ],
+   "design_words": [
+    "No account set for internal work orders. The entry posts to the ShopView Review account until you set one.",
+    "Special orders and Labor rows drawn without their notes"
+   ],
+   "prd_code": "S3-N4",
+   "prd_words": [
+    "No account set for \\[category\\]. The entry posts to the ShopView Review account until you set one."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S3-N4 quote; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    true,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D23",
+   "kind": "stale elements",
+   "boards": "Flow 2 04, 4b; Happy 27, 28; Review 5.1 (the detail behind the dialog)",
+   "pictures": [
+    "images/iwo-flow2-11-4b-close-original-work-order-required.png"
+   ],
+   "design_words": [
+    "No Charge checkbox on the customer card with \"A customer's free job: warranty, goodwill, policy, comeback or a category of your own. Closes without an invoice; parts cost posts to the category's expense account.\"",
+    "No charge. This work order closes without an invoice. Parts cost posts to Customer No-Charge Expense.",
+    "no closing sentence under the rows on 4b"
+   ],
+   "prd_code": "S2-R5 / S2-R3 / S3-R2",
+   "prd_words": [
+    "There is no checkbox on the work order detail.",
+    "there is no hint sentence under the header"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R5, S2-R3, S3-R2 quotes; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    false,
+    true,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D24",
+   "kind": "missing element",
+   "boards": "Flow 1 02e; Flow 2 02, 3c; Flow 6 02, 06; Happy 20, 22, 25, 31",
+   "pictures": [
+    "images/iwo-flow2-04-02-confirm.png",
+    "images/iwo-flow6-02-02-mark-this-line-as-no-charge.png"
+   ],
+   "design_words": [
+    "Original work order and Original line picked, no \"Original technician:\" line under the selects"
+   ],
+   "prd_code": "S2-R2 / S12-R2",
+   "prd_words": [
+    "As soon as a work order or a line is picked, the line \"Original technician: \\[names\\]\" (or \"Original technician: none\") shows under the selects"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R2 quote (S12-R2 repeats it); nothing drawn to compare: no held case.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D25",
+   "kind": "letter case",
+   "boards": "Flow 2 02; Happy 22; Review 4.2",
+   "pictures": [
+    "images/iwo-flow2-04-02-confirm.png"
+   ],
+   "design_words": [
+    "Convert work order S2-35102 to no charge?"
+   ],
+   "prd_code": "S2-R5",
+   "prd_words": [
+    "Convert work order \\[number\\] to No Charge?"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R5 quote (letter case, lesson L-04); PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    true
+   ]
+  },
+  {
+   "id": "IWO-D26",
+   "kind": "wording",
+   "boards": "Flow 2 3b, 3e; Flow 6 04 note; Happy 26; Review 4.4",
+   "pictures": [
+    "images/iwo-flow2-06-3b-convert-to-billable-confirm.png",
+    "images/iwo-flow2-09-3e-notes-after-convert-to-billable.png"
+   ],
+   "design_words": [
+    "Every line is priced at the customer's current pricing. You can convert it to no charge again until it is invoiced.",
+    "Converted to Billable by Admin ShopView. Every line priced at the customer's current pricing. Category Warranty removed.",
+    "Mark as Billable prices the line at the customer's current pricing and removes the category."
+   ],
+   "prd_code": "S2-R6 / S2-R18 / S12-R5 / S12-R6",
+   "prd_words": [
+    "Every line is priced as a new line would be today. You can convert it to no charge again until it is invoiced.",
+    "Every line priced as a new line would be today. Category \\[name\\] removed.",
+    "Priced as a new line would be today: $\\[price\\]. Category \\[name\\] removed."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R6, S2-R18, S12-R6 quotes; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true,
+    true
+   ],
+   "design_words_checked": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "id": "IWO-D27",
+   "kind": "control placement",
+   "boards": "Flow 1 08; Happy 18, 37; Flow 3 02 (dialog opened over the Lines tab)",
+   "pictures": [
+    "images/iwo-flow1-22-08-work-order-closed-invoice.png",
+    "images/iwo-flow3-02-02-reopen-dialog.png"
+   ],
+   "design_words": [
+    "a \"Reopen\" button in the work order header of a closed internal work order; the closed internal document toolbar has no invoice menu"
+   ],
+   "prd_code": "S4-R1 / S2-R9",
+   "prd_words": [
+    "It is the only place to reopen; the work order header carries the line of S2-R9 and no button.",
+    "There is no Reopen control on the work order itself (Story 4)."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S4-R1, S2-R9 quotes; Flow 2 05 already draws Reopen Work Order in the invoice menu.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D28",
+   "kind": "missing dismiss control",
+   "boards": "Flow 1 08, S2; Happy 18 (note c-flow1-8 \"X dismisses it\")",
+   "pictures": [
+    "images/iwo-flow1-22-08-work-order-closed-invoice.png",
+    "images/iwo-flow1-25-s2-close-work-order-failed.png"
+   ],
+   "design_words": [
+    "success alert \"Work order S2-34918 is Closed · Internal.\" drawn without an X; the failed-close toast drawn without a dismiss control"
+   ],
+   "prd_code": "S3-R3 / S3 Error Handling",
+   "prd_words": [
+    "with the X every alert in the app has",
+    "display \"Could not close the work order. Try again.\" as an alert toast that must be dismissed"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S3-R3 and Story 3 error handling quotes.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D29",
+   "kind": "element the PRD does not describe",
+   "boards": "Flow 1 08 (after the alert), Flow 3 02; Happy 36 frame-opened, 37",
+   "pictures": [
+    "images/iwo-flow3-02-02-reopen-dialog.png",
+    "render/full/hf-36-frame-opened.png"
+   ],
+   "design_words": [
+    "Closed on Oct 22, 2026 by Admin ShopView",
+    "This work order is locked. Reopen it to change lines, hours or parts.",
+    "Reopening returns it from Closed · Internal to Complete."
+   ],
+   "prd_code": "S2-R9",
+   "prd_words": [
+    "the header card carries the line \"Closed on \\[posting date\\]. To change it, reopen it from the Finance tab.\""
+   ],
+   "outcome": "QUESTION 13 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "ruling_or_question": "NEW-QUESTIONS.py question 9 (sheet row 9)",
+   "held_case": "DV-03",
+   "note": "Note c-flow1-8: \"then the locked note shows as on any closed work order\". The PRD names only the header line.",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "id": "IWO-D30",
+   "kind": "wording",
+   "boards": "Flow 3 02; Happy 37",
+   "pictures": [
+    "images/iwo-flow3-02-02-reopen-dialog.png"
+   ],
+   "design_words": [
+    "The work order leaves Closed · No Charge and goes back to Complete. (internal work order S2-34918; one sentence)"
+   ],
+   "prd_code": "S4-R2",
+   "prd_words": [
+    "The work order leaves Closed · Internal and goes back to Complete. The parts cost and shop supplies entries are reversed in your books."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S4-R2 quote; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D31",
+   "kind": "message the PRD does not have",
+   "boards": "Flow 3 03",
+   "pictures": [
+    "images/iwo-flow3-03-03-work-order-complete-again.png"
+   ],
+   "design_words": [
+    "Work order S2-34918 reopened"
+   ],
+   "prd_code": "S4-R3",
+   "prd_words": [
+    "sets the work order to Complete with its classification unchanged"
+   ],
+   "outcome": "QUESTION 14 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "ruling_or_question": "NEW-QUESTIONS.py question 10 (sheet row 10)",
+   "held_case": "DV-04",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    true
+   ]
+  },
+  {
+   "id": "IWO-D32",
+   "kind": "labels on the document",
+   "boards": "Flow 1 08; Flow 2 05, 07; Happy 18, 29",
+   "pictures": [
+    "images/iwo-flow2-12-05-finance-tab-closed.png"
+   ],
+   "design_words": [
+    "Summary row \"Labor\" (2.0 h)",
+    "original work order printed as plain text",
+    "Category: Warranty · Original work order S2-31207 (the convert boards picked S2-30455)"
+   ],
+   "prd_code": "S3-R5",
+   "prd_words": [
+    "a Summary with Parts cost",
+    "Shop supplies (when above $0.00) and Labor hours",
+    "\"· Original work order \\[number\\]\" (a link in ShopView, plain on the PDF)"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S3-R5 quote; the original number is demo data.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true,
+    true
+   ],
+   "design_words_checked": [
+    false,
+    false,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D33",
+   "kind": "note text",
+   "boards": "Flow 2 3d; Flow 6 05; Happy 24, 34",
+   "pictures": [
+    "images/iwo-happy-34-34-notes-and-audit-log.png"
+   ],
+   "design_words": [
+    "Line \"Replace - Brake caliper\" marked No Charge by Admin ShopView. Category Warranty, original work order S2-30455. Line price $559.95 removed; cost $410.00 and 1.00 h kept. The work order stays billable.",
+    "work order numbers in notes drawn as plain text"
+   ],
+   "prd_code": "S12-R6 / S2-R18",
+   "prd_words": [
+    "Line '\\[title\\]' marked No Charge by \\[user\\]. Category \\[name\\], original work order \\[number\\], original line \\[number\\].",
+    "Work order numbers in notes are links."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S12-R6 and S2-R18 quotes (single quote marks, original line part, links).",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    true,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D34",
+   "kind": "account names",
+   "boards": "Flow 1 2c, 2d (and notes)",
+   "pictures": [
+    "images/iwo-flow1-05-2c-change-customer-bill-already-posted.png"
+   ],
+   "design_words": [
+    "…was posted to Internal Work Orders Expense…",
+    "…that cost moves to Internal Work Orders Expense…",
+    "notes: the vendor-bill dialog \"also says: Shop supplies resets to Staging Heavy Duty Fleet's minimum ($25.00).\""
+   ],
+   "prd_code": "S2-R8 / S2-R7",
+   "prd_words": [
+    "The account names are the shop's own mapping rows (Cost of Parts, or the expense account of a category)",
+    "The Change Customer dialog says what will happen to the prices and, when the work order stays internal or no charge, adds \"Shop supplies resets to \\[customer\\]'s minimum ($\\[amount\\]).\""
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R8, S2-R7 quotes (\"Internal Work Orders Expense\" is the fixed row of v0.17, replaced by the category rows: Terminology).",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    false,
+    false,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D35",
+   "kind": "placement",
+   "boards": "every work orders list board (Flow 1 01, 09; Flow 4 01-03; Happy 11, 19, 38)",
+   "pictures": [
+    "images/iwo-flow1-01-01-work-orders-list.png"
+   ],
+   "design_words": [
+    "the Internal / No Charge badge sits after the customer name in the Customer column; the Status column holds only the status pill"
+   ],
+   "prd_code": "S2-R10",
+   "prd_words": [
+    "The work orders list shows the badge in the status column for internal and no-charge work orders in every tab"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R10 quote; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D36",
+   "kind": "filter meaning",
+   "boards": "Flow 4 02, 03; Happy 38; Review 7.1 (note c-flow4-2)",
+   "pictures": [
+    "images/iwo-flow4-02-02-list-no-charge.png"
+   ],
+   "design_words": [
+    "board titled \"02 List · No Charge\" shows \"Classification: Internal\" with internal rows; note: \"Classification: No Charge (internal and customer no-charge work)\""
+   ],
+   "prd_code": "S2-R14",
+   "prd_words": [
+    "a chip \"Classification: All / Billable / Internal / No Charge\""
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S2-R14 quote: Internal and No Charge are separate values.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D37",
+   "kind": "superseded component defaults",
+   "boards": "Shared screens (the four component boards at their default props)",
+   "pictures": [
+    "images/iwo-components-03-wo-settings-artboard-v6.png",
+    "images/iwo-components-04-new-wo-dialog-v6.png",
+    "images/iwo-components-01-wo-detail-artboard-v6.png",
+    "images/iwo-components-02-wo-list-artboard-v6.png"
+   ],
+   "design_words": [
+    "Internal work orders",
+    "Adds an Internal option when creating work orders. Creates the system customer Staging Heavy Duty Internal for your own trucks and equipment.",
+    "Internal work order",
+    "System customer for your own trucks and equipment.",
+    "an \"Internal\" toggle chip on the list"
+   ],
+   "prd_code": "KD / TERM",
+   "prd_words": [
+    "Internal is a flag on the customer, not on the work order, not a work order type and not a new status.",
+    "Not a system customer: ShopView creates nothing."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Key Decisions and Terminology quotes; the Shared screens page is the components at their oldest defaults, not a screen of the feature.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D38",
+   "kind": "look (library)",
+   "boards": "Flow 6 01, 04; Happy 30, 33; Review 6.1, 6.4",
+   "pictures": [
+    "images/iwo-flow6-01-01-line-menu-mark-as-no-charge.png"
+   ],
+   "design_words": [
+    "Mark as No Charge and Change category drawn with an empty icon slot: the icons \"badge-dollar-sign\" and \"pencil-line\" are not in the design library (console: \"do not ship an empty box\")"
+   ],
+   "prd_code": "S12-R1",
+   "prd_words": [
+    "the three-dots menu of every line offers \"Mark as No Charge\" between Edit line and Delete line"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S12-R1 quote for the item and its place; the look case does not check an icon the design does not have.",
+   "held_case": "",
+   "note": "No question: no verdict depends on the icon.",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D39",
+   "kind": "state not drawn",
+   "boards": "Flow 6 07; Happy 35; Review 6.6 (title \"Invoice · the line at $0.00, Warranty\")",
+   "pictures": [
+    "images/iwo-flow6-07-07-invoice-the-line-at-0-00-warranty.png"
+   ],
+   "design_words": [
+    "the board draws the Estimate (Estimate EST-S2-34918, Create invoice still in the header), not the invoice"
+   ],
+   "prd_code": "S12-R7 / S12-R4",
+   "prd_words": [
+    "The invoice (preview, PDF, email, portal) shows the no-charge line with its hours and parts at $0.00 and the category name as a line under the title (\"Warranty\"); no stamp, no badge, no \"No Charge\" wording elsewhere on the document."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S12-R7 quote for the invoice; the estimate drawn matches S12-R4. Design-silent for the invoice picture: no held case.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D40",
+   "kind": "states not drawn",
+   "boards": "Flow 6 (line), Flow 2 1b/6",
+   "pictures": [],
+   "design_words": [
+    "not drawn: the Mark line as billable confirmation, the deposit message and the all-lines hint of the Mark as No Charge dialog, the \"Reverse the invoice first.\" tooltip, the \"Reverse the deposit first\" and \"Reopen the work order to change the customer.\" tooltips (hidden in the source: SHOW_TIPS = false)"
+   ],
+   "prd_code": "S12-R5 / S12-R4 / S12-R10 / S12-N3 / S2-N4 / S2-R9",
+   "prd_words": [
+    "Mark line as billable?",
+    "Reverse the invoice first.",
+    "Reverse the deposit first"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "The PRD words stand alone (DESIGN-SILENT, Rule 130.5).",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true,
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D41",
+   "kind": "label",
+   "boards": "Flow 4 04",
+   "pictures": [
+    "images/iwo-flow4-04-04-technician-efficiency-show-all.png"
+   ],
+   "design_words": [
+    "No-charge work orders: Show all",
+    "Hide / Only no-charge / Show all"
+   ],
+   "prd_code": "S9-R3",
+   "prd_words": [
+    "a filter chip \"Internal work orders: Hide / Only internal / Show all\""
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S9-R3 quote; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D42",
+   "kind": "label and note",
+   "boards": "Flow 4 06; Happy 39b; Review 7.5",
+   "pictures": [
+    "images/iwo-flow4-06-06-internal-work-orders-report-by-technician.png"
+   ],
+   "design_words": [
+    "Not in ShopView / no technician",
+    "Comeback rate = comeback lines attributed to the technician / lines the technician completed in the date range. Redo hours and parts cost are what the comeback and warranty work cost the shop; the dollar cost of labor comes with labor posting (V2)."
+   ],
+   "prd_code": "S9-R2",
+   "prd_words": [
+    "A row \"Unassigned\" holds the work without an original technician",
+    "a note under the table says so"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S9-R2 quote (row name; the note must state the several-technicians rule).",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    true,
+    true
+   ]
+  },
+  {
+   "id": "IWO-D43",
+   "kind": "number",
+   "boards": "Flow 4 05, 06; Happy 39, 39b; Review 7.2, 7.5",
+   "pictures": [
+    "images/iwo-flow4-05-05-internal-work-orders-report.png"
+   ],
+   "design_words": [
+    "Company Vehicle Maintenance card $700.00 = parts cost $675.00 + shop supplies $25.00 (the Warranty card $590.00 is parts only)"
+   ],
+   "prd_code": "S9-R2",
+   "prd_words": [
+    "Above the table a summary strip shows one card per category in the range: parts cost, count of work orders and lines, hours."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S9-R2 quote (Rule 116: the card is the parts cost).",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D44",
+   "kind": "look (library rule)",
+   "boards": "Flow 4 05; Happy 39; Review 7.2",
+   "pictures": [
+    "images/iwo-flow4-05-05-internal-work-orders-report.png"
+   ],
+   "design_words": [
+    "empty Original work order and Original technician cells on the whole internal work order row"
+   ],
+   "prd_code": "S9-R2",
+   "prd_words": [
+    "Original work order (link, with the original line number when set), Original technician"
+   ],
+   "outcome": "QUESTION 15 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "ruling_or_question": "NEW-QUESTIONS.py question 11 (sheet row 11)",
+   "held_case": "DV-05",
+   "note": "Design library (work-orders.jsx, the dash cell): \"Nothing. Always this, never an empty cell or a bare hyphen in text.\"; the asset Invoices tab already uses the dash.",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D45",
+   "kind": "wrapping at 1440/1536",
+   "boards": "Flow 4 05, 06; Happy 39, 39b; Review 7.2, 7.5",
+   "pictures": [
+    "images/iwo-flow4-05-05-internal-work-orders-report.png",
+    "render/widths/hf-39-1536.png"
+   ],
+   "design_words": [
+    "work order numbers break onto two lines (\"S2-\" / \"34918\") and dates wrap, at 1280 px and still at 1536 px"
+   ],
+   "prd_code": "S9-R2",
+   "prd_words": [
+    "Work order (link)"
+   ],
+   "outcome": "QUESTION 16 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "ruling_or_question": "NEW-QUESTIONS.py question 12 (sheet row 12)",
+   "held_case": "DV-06",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D46",
+   "kind": "label",
+   "boards": "Flow 5 01; Happy 40",
+   "pictures": [
+    "images/iwo-flow5-01-01-qb-unexported-held-entry.png"
+   ],
+   "design_words": [
+    "Type \"Journal Entry\" on the work order rows"
+   ],
+   "prd_code": "S7-N3",
+   "prd_words": [
+    "(type \"Internal Work Order Close\", \"Internal Work Order Reopen\" or \"No Charge line\")"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S7-N3 quote; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D47",
+   "kind": "wording",
+   "boards": "Flow 5 04; Happy 42; Review 7.4",
+   "pictures": [
+    "images/iwo-flow5-04-04-accountinghub-held-event.png"
+   ],
+   "design_words": [
+    "General Internal: expense account is not mapped"
+   ],
+   "prd_code": "S8-N2",
+   "prd_words": [
+    "\"Internal: \\[Category\\] row not mapped\""
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S8-N2 quote; PRD header sentence.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    true
+   ]
+  },
+  {
+   "id": "IWO-D48",
+   "kind": "board cuts content",
+   "boards": "Flow 5 3c; Happy 41b; Review 7.6",
+   "pictures": [
+    "images/iwo-flow5-05-3c-accountinghub-invoice-record-with-one-no-charge.png",
+    "render/full/hf-41b-frame-opened.png"
+   ],
+   "design_words": [
+    "the 840 px frame squeezes the No Charge lines card: its row and the two no-charge journal rows are not visible on the board (read from the source and the frame-opened render)"
+   ],
+   "prd_code": "S8-R7",
+   "prd_words": [
+    "The record carries a \"No Charge lines\" block: line number and title, category, original work order and line, original technician, hours, parts cost, expense account."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S8-R7 quote; the look case uses the frame-opened render.",
+   "held_case": "",
+   "note": "Board look, not a product question.",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D49",
+   "kind": "stale page text",
+   "boards": "Flow 2 page description; Flow 6 page name in the dropdown",
+   "pictures": [],
+   "design_words": [
+    "One free line on a paid job is moved to its own No Charge work order (Flow 6); marking a line No Charge in place is V2 and reuses these categories.",
+    "Flow 6 · Move one line off a billable work order"
+   ],
+   "prd_code": "S12 / OOS",
+   "prd_words": [
+    "Moving a line to a separate work order from the line menu.",
+    "A no-charge line stays on its billable work order and shows $0.00 on one invoice, instead of moving to a separate work order."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Out of Scope and Key Decisions quotes; the Flow 6 boards, its title note and the Review page already follow the PRD.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    true,
+    false
+   ]
+  },
+  {
+   "id": "IWO-D50",
+   "kind": "open review remarks",
+   "boards": "Review 1.1 (two paragraphs below the 1000 px frame, not visible on the canvas)",
+   "pictures": [
+    "render/full/rv-1-1-frame-opened.png"
+   ],
+   "design_words": [
+    "Move this tooltip text. It's fine to be just this tag here, which is fine, but let's bring back the explanation a little, just one sentence.",
+    "Badge here, we agree, is not no-charge warranty. It's no charge, just that the badge itself"
+   ],
+   "prd_code": "S1-R1 / S2-R3",
+   "prd_words": [
+    "\"No Charge\" for a no-charge work order (a different style from Internal)"
+   ],
+   "outcome": "RULING: no question — the reviewer remarks are in a board file and not visible on the canvas; PRD v1.0 is newer and says \"the text wins\" and already states what they ask; no case verdict depends on them (12 Nov 2026)",
+   "ruling_or_question": "NEW-QUESTIONS.py question 13 (sheet row 13)",
+   "held_case": "",
+   "note": "No case depends on it until the answer says what changes.",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    true,
+    true
+   ]
+  },
+  {
+   "id": "IWO-D51",
+   "kind": "notes that disagree with their boards",
+   "boards": "c-flow1-3c, c-rv-3-2, c-flow4-9, c-flow4-2, c-flow1-8, c-flow1-2a",
+   "pictures": [],
+   "design_words": [
+    "notes describe the PRD behaviour while the board draws something else (Close in the menu; Default internal category; No Charge badge on an internal card; No Charge filter; X on the alert; tooltip)"
+   ],
+   "prd_code": "see D18, D06, D16, D36, D28, D12",
+   "prd_words": [
+    "see those rows"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Closed with the rows named.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D52",
+   "kind": "seeding time",
+   "boards": "notes c-flow0-2a / c-hf-04 and d-flow0",
+   "pictures": [],
+   "design_words": [
+    "The starting set is seeded when the setting is first turned on",
+    "and gets the starting categories"
+   ],
+   "prd_code": "S1-R13 / S13-R1",
+   "prd_words": [
+    "The starting set is seeded for every organization when this release ships",
+    "turning the setting on seeds nothing"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R13 quote.",
+   "held_case": "",
+   "note": "",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    true,
+    true
+   ]
+  },
+  {
+   "id": "IWO-D53",
+   "kind": "design library vs PRD (dialog dismissal)",
+   "boards": "every dialog board (the boards are static; the library Modal, _ds_bundle.js lines 1116-1203)",
+   "pictures": [],
+   "design_words": [
+    "Modal: Escape and a click on the scrim call onClose (components/sv-components.jsx, Modal, lines 1134-1149)"
+   ],
+   "prd_code": "S1-R2 / S4-R2",
+   "prd_words": [
+    "Esc and a click outside do nothing, as in every dialog of the app.",
+    "Dismissing the dialog in any other way does nothing."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "S1-R2 and S4-R2 quotes; design case DC-86 checks that Esc and a click outside leave the window open.",
+   "held_case": "",
+   "note": "Found in the full read of the design library (render/ds-bundle-reading-notes.md, chunk 2). The PRD names the app-wide rule explicitly, so no question.",
+   "prd_words_found": [
+    true,
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D54",
+   "kind": "design library gap (loading state)",
+   "boards": "no board draws an in-progress state",
+   "pictures": [],
+   "design_words": [
+    "SV.GAPS: \"skeleton / loading: No loading state anywhere in the system, including buttons.\" (index.js, line 7280)"
+   ],
+   "prd_code": "S1-EH / S2-EH / S3-EH / S4-EH",
+   "prd_words": [
+    "While Close is in progress, \"Close Work Order\" shows a spinner and is disabled; a second press does nothing."
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "The PRD error-handling sentences settle the behaviour; the look of the spinner is not designed (library gap) and is checked by the PRD case worker's error-handling cases, not by a design case.",
+   "held_case": "",
+   "note": "Found in the full read of the design library (chunk 12). Not a question: the PRD is explicit; the library itself says a missing component \"is a conversation, not an invention\", which is for the design owner, not a test verdict.",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  },
+  {
+   "id": "IWO-D55",
+   "kind": "letter case (column label)",
+   "boards": "every work orders list board (Flow 1 01, 09; Flow 4 01-03; Happy 11, 19, 38; WO List artboard)",
+   "pictures": [
+    "images/iwo-happy-11-11-work-orders-list.png"
+   ],
+   "design_words": [
+    "Total price (column header; columns-dropdown.jsx COLUMN_DEFS \"Total price\", always last)"
+   ],
+   "prd_code": "S2-R10",
+   "prd_words": [
+    "Open and closed internal and no-charge rows show \"No Charge\" in Total Price"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "The column is today's production column, unchanged by the feature; its on-screen label is \"Total price\" (Rule 9: labels from the screen). The PRD names the column, it does not rename it; DC-25 names it \"Total price\".",
+   "held_case": "",
+   "note": "Found by the letter-case check during the library read (chunk 1).",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    false
+   ]
+  }
+ ],
+ "questions": {
+  "8": "IWO-D09",
+  "9": "IWO-D29",
+  "10": "IWO-D31",
+  "11": "IWO-D44",
+  "12": "IWO-D45",
+  "13": "IWO-D50"
+ },
+ "existing_sheet_questions": {
+  "3": "IWO-D19"
+ },
+ "not_shown": [
+  {
+   "id": "IWO-N01",
+   "prd_code": "S1-R2",
+   "prd_words_or_state": "Pick up to 50 customers here. Flag more from Edit Customer.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N02",
+   "prd_code": "S1-R11",
+   "prd_words_or_state": "and [n] more",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N03",
+   "prd_code": "S1-N6",
+   "prd_words_or_state": "OK (one button without Work Orders — Create & Edit)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N04",
+   "prd_code": "S1-R12",
+   "prd_words_or_state": "Remove flag dialog without open internal work orders (first sentence omitted)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N05",
+   "prd_code": "S1-R3",
+   "prd_words_or_state": "AccountingHub, both and neither variants of the second hint",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N06",
+   "prd_code": "S1-R8",
+   "prd_words_or_state": "Internal badge on the customers list mobile card",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N07",
+   "prd_code": "S1-R13",
+   "prd_words_or_state": "You can have up to 100 active categories in this list. Archive one to add another.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N08",
+   "prd_code": "S1-R14",
+   "prd_words_or_state": "A category with this name is archived. Restore it instead.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N09",
+   "prd_code": "S1-R14",
+   "prd_words_or_state": "Set in Integrations > QuickBooks (read-only pickers)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N10",
+   "prd_code": "S1-R16",
+   "prd_words_or_state": "[n] internal customers and [m] assets use this category as their default. Their new work orders will use the next category in line.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N11",
+   "prd_code": "S1-R16",
+   "prd_words_or_state": "[name] (archived) / Archived. Pick an active category.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N12",
+   "prd_code": "S1-R13",
+   "prd_words_or_state": "Show archived list with Restore",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N13",
+   "prd_code": "S1-EH",
+   "prd_words_or_state": "Could not save the internal customer. Try again.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N14",
+   "prd_code": "S1-EH",
+   "prd_words_or_state": "[n] work orders could not be made internal. Open Edit Customer and save to try again.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N15",
+   "prd_code": "S2-R2",
+   "prd_words_or_state": "Pick a category (field message)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N16",
+   "prd_code": "S2-R7",
+   "prd_words_or_state": "Change Customer dialog with \"Shop supplies resets to [customer]'s minimum ($[amount]).\"",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N17",
+   "prd_code": "S2-R8",
+   "prd_words_or_state": "The vendor bills for [n] parts ($[total]) were posted to [account]. (several bills; two category accounts)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N18",
+   "prd_code": "S2-R10",
+   "prd_words_or_state": "badge on the customer and asset Work Orders tabs and in global search",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N19",
+   "prd_code": "S2-R14",
+   "prd_words_or_state": "Classification chip in the mobile filter sheet",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N20",
+   "prd_code": "S2-R19",
+   "prd_words_or_state": "Internal work order: cost only, no sell price / No Charge work order: cost only, no sell price / No Charge line: cost only",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N21",
+   "prd_code": "S2-E6",
+   "prd_words_or_state": "This estimate changed after it was sent. The lines above are current.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N22",
+   "prd_code": "S1-R11",
+   "prd_words_or_state": "This estimate is no longer available.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N23",
+   "prd_code": "S2-EH",
+   "prd_words_or_state": "Could not change the work order. Try again.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N24",
+   "prd_code": "S3-R1",
+   "prd_words_or_state": "mobile Close Work Order icon button",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N25",
+   "prd_code": "S3-R2",
+   "prd_words_or_state": "\"Moved from [account] to [account]\" and \"Posts to [account] when the vendor bill is entered\" notes; includes $[core amount] core cost",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N26",
+   "prd_code": "S3-N4",
+   "prd_words_or_state": "AccountingHub variant: No account set for [category]. The entry is held in Accounting Events until you set one.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N27",
+   "prd_code": "S3-R5",
+   "prd_words_or_state": "Email dialog",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N28",
+   "prd_code": "S3-E1",
+   "prd_words_or_state": "Parts cost $0.00",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N29",
+   "prd_code": "S4-EH",
+   "prd_words_or_state": "Could not reopen the work order. Try again.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N30",
+   "prd_code": "S7-R8",
+   "prd_words_or_state": "Create invoice [number]? with Moved from rows",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N31",
+   "prd_code": "S8-R6",
+   "prd_words_or_state": "Invoice list report with Closed unselected",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N32",
+   "prd_code": "S6-R1",
+   "prd_words_or_state": "Account Mappings rows (Internal: General Internal, No Charge: Warranty)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N33",
+   "prd_code": "S9-R6",
+   "prd_words_or_state": "Export Reports option \"Include internal and no-charge work orders\" with \"For your records only. Do not import these rows as invoices.\"",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N34",
+   "prd_code": "S9-N1",
+   "prd_words_or_state": "report empty state",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N35",
+   "prd_code": "S12-R4",
+   "prd_words_or_state": "Deposit $[amount] exceeds the new total $[total]. …",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N36",
+   "prd_code": "S12-R9",
+   "prd_words_or_state": "Line '[title]' needs its original work order (or Not in ShopView) before the invoice.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N37",
+   "prd_code": "S12-R10",
+   "prd_words_or_state": "All lines are No Charge. To close without an invoice and get the NO CHARGE document, convert the work order instead.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N38",
+   "prd_code": "S12-EH",
+   "prd_words_or_state": "Could not change the line. Try again.",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N39",
+   "prd_code": "S5-R1",
+   "prd_words_or_state": "archived category row, greyed",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N40",
+   "prd_code": "S2-R11",
+   "prd_words_or_state": "Approval Required email",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N41",
+   "prd_code": "S1-EH / S2-EH / S3-EH / S4-EH",
+   "prd_words_or_state": "the confirming button shows a spinner and is disabled while the save, convert, close or reopen runs (no board draws it; the design library has no loading state, IWO-D54)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "12 Nov 2026, all 167 boards"
+  }
+ ],
+ "spec_to_design_check": {
+  "run": "12 Nov 2026",
+  "prd": "render/prd-for-check.md, built by tools/prd_for_check.py from the saved PRD: [placeholders] written {placeholders}, and on each requirement line the straight quotes paired in order as curly quotes (words unchanged) so the tool no longer reads prose between two quotes as a label; the tool itself is unchanged",
+  "design": "render/design-words-for-check.html (every rendered word, the notes and the board sources)",
+  "rows": 71,
+  "by_outcome": {
+   "DESIGN-SILENT": 49,
+   "PO-RULED": 11,
+   "SHOWN-WHEN-DRIVEN": 9
+  },
+  "first_run_open_keys": [
+   {
+    "key": "S1-R3| where Internal Work Orders is a link to the categories page (S1-R13), and ",
+    "prd_line": 202,
+    "code": "S1-R3",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 202 (S1-R3) reads: …\"Manage categories in Internal Work Orders (Administration > Service). Their expense accounts are set on each category.\" where Internal Work Orders is a link to the categories page (S1-R13), and \"Map their expense accounts in Integrati… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R7| When ticked, the select ",
+    "prd_line": 206,
+    "code": "S1-R7",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 206 (S1-R7) reads: …\"Work orders for this customer are internal: no prices, no invoice, parts cost posts to the expense account of the internal category.\" When ticked, the select \"Default internal category\" appears unde… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R12| with the buttons Cancel and ",
+    "prd_line": 211,
+    "code": "S1-R12",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 211 (S1-R12) reads: …\"[n] open internal work orders for [customer] stay internal and close without an invoice. New work orders for [customer] will be billable.\" with the buttons Cancel and \"Remove flag\" (with no open internal wor… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R14|; on a No Charge category the checkbox ",
+    "prd_line": 213,
+    "code": "S1-R14",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 213 (S1-R14) reads: …\"One per connected location, picked from the chart that is already in QuickBooks. Parts cost of this category posts here instead of Cost of Parts. Empty: posts to the ShopView Review account until you pick one.\"; on a No Charge category the checkbox \"Requires the original work order\" with the helper \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R14| with the helper ",
+    "prd_line": 213,
+    "code": "S1-R14",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 213 (S1-R14) reads: …\"QuickBooks expense account\", one picker per connected location listing that location's expense accounts (the same picker as the ShopView Accounts rows), with the helper \"One per connected location, picked from the chart that is already in QuickBooks. Parts cost of this category posts here instead of Cost of Parts. Empty: posts to the ShopView Review account until you pick one.\"; on a No Charge category the checkbox \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R14|; on an Internal category the checkbox ",
+    "prd_line": 213,
+    "code": "S1-R14",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 213 (S1-R14) reads: …\"The work order asks which earlier work order the job comes from, or Not in ShopView. Optional when the work order is created, required at Close.\"; on an Internal category the checkbox \"Default category\" with the helper \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R14| with the helper ",
+    "prd_line": 213,
+    "code": "S1-R14",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 213 (S1-R14) reads: …\"QuickBooks expense account\", one picker per connected location listing that location's expense accounts (the same picker as the ShopView Accounts rows), with the helper \"One per connected location, picked from the chart that is already in QuickBooks. Parts cost of this category posts here instead of Cost of Parts. Empty: posts to the ShopView Review account until you pick one.\"; on a No Charge category the checkbox \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R16| The stored value stays on the customer and the asset, shown as ",
+    "prd_line": 215,
+    "code": "S1-R16",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 215 (S1-R16) reads: …\"[n] internal customers and [m] assets use this category as their default. Their new work orders will use the next category in line.\" The stored value stays on the customer and the asset, shown as \"[name] (archived)\" with the hint \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S1-R16| with the hint ",
+    "prd_line": 215,
+    "code": "S1-R16",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 215 (S1-R16) reads: …\"[name] (archived)\" with the hint \"Archived. Pick an active category.\"; re… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R1|... from the customer.",
+    "prd_line": 256,
+    "code": "S2-R1",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "SHOWN-WHEN-DRIVEN: a real quoted label, now matched as one: tooltip \"… Posts to Company Vehicle Maintenance, from the customer.\" (Flow 1 2b)",
+    "evidence": "PRD line 256 (S2-R1): \"... from the customer.\" is the tooltip text the PRD quotes; Flow 1 2b draws \"Internal customer: no prices, no invoice. Posts to Company Vehicle Maintenance, from the customer.\"",
+    "still_reported": true
+   },
+   {
+    "key": "S2-R2| Ticking it reveals the required select ",
+    "prd_line": 257,
+    "code": "S2-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 257 (S2-R2) reads: …\"Warranty, goodwill or comeback work. Closes without an invoice; parts cost posts to the expense account of the category.\" Ticking it reveals the required select \"Category\" listing the active No Charge categories, empty by default; Save is refused with the field message \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R2|; once a work order is picked, the optional select ",
+    "prd_line": 257,
+    "code": "S2-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 257 (S2-R2) reads: …\"Which earlier work order this job comes from, or Not in ShopView, and the line on it. The line sets the original technician for the comeback and warranty numbers. Optional here, required at Close.\"; once a work order is picked, the optional select \"Original line\" lists its lines (number, title, technician). The checkbox is hidden when the selected customer is an internal customer and for users without 'See Financial Data'. Ticked, the work order is created No Charge with that category. It works whether or not any customer is flagged. As soon as a work order or a line is picked, the line \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R5|, the required select ",
+    "prd_line": 260,
+    "code": "S2-R5",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 260 (S2-R5) reads: …\"Prices, fees and discounts are removed from every line; costs and hours are kept. It closes with a NO CHARGE document instead of an invoice. You can convert it back until it is closed.\", the required select \"Category\" (active No Charge categories; empty by default, \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R5| (active No Charge categories; empty by default, ",
+    "prd_line": 260,
+    "code": "S2-R5",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 260 (S2-R5) reads: …\"Category\" (active No Charge categories; empty by default, \"Pick a category\" when missing), the selects \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R5| when missing), the selects ",
+    "prd_line": 260,
+    "code": "S2-R5",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 260 (S2-R5) reads: …\"Pick a category\" when missing), the selects \"Original work order\" and \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R5| of S2-R2 when the category requires it, and the buttons Cancel and ",
+    "prd_line": 260,
+    "code": "S2-R5",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 260 (S2-R5) reads: …\"Original line\" of S2-R2 when the category requires it, and the buttons Cancel and \"Convert to No Charge\". Confirming appli… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R6| and the buttons Cancel and ",
+    "prd_line": 261,
+    "code": "S2-R6",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 261 (S2-R6) reads: …\"Every line is priced as a new line would be today. You can convert it to no charge again until it is invoiced.\" and the buttons Cancel and \"Convert to Billable\"; confirming removes the badge and the category and prices every line the way a new line on this work order would be priced that day: labor at the customer's labor rate, else the location's; parts from the pricing rules applied to the cost already on the line (the cost Close would post), not today's catalogue cost. Change category opens the dialog \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R8| For several bills: ",
+    "prd_line": 263,
+    "code": "S2-R8",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 263 (S2-R8) reads: …\"The vendor bill for [part] ($[amount]) was posted to [account]. If you continue, that cost moves to [account] when this work order is [invoiced / closed].\" For several bills: \"The vendor bills for [n] parts ($[total]) were posted to [account]. ...\" Buttons: Cancel and \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R8| Buttons: Cancel and ",
+    "prd_line": 263,
+    "code": "S2-R8",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 263 (S2-R8) reads: …\"The vendor bills for [n] parts ($[total]) were posted to [account]. ...\" Buttons: Cancel and \"Continue\". The account names are the sh… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S2-R18|), Change category (from, to, original work order kept or cleared), Convert to Billable (",
+    "prd_line": 273,
+    "code": "S2-R18",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 273 (S2-R18) reads: …\"Converted to No Charge by [user]. Category [name], original work order [number]. Prices, fees and discounts removed; costs and hours kept.\"), Change category (from, to, original work order kept or cleared), Convert to Billable (\"Every line priced as a new line would b… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S3-R2| when the work order is already Complete, or ",
+    "prd_line": 320,
+    "code": "S3-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 320 (S3-R2) reads: …\"This posts the parts cost and shop supplies to your books and marks the work order Closed · Internal. You can reopen it later.\" when the work order is already Complete, or \"This completes the work order, posts the parts cost and shop supplies to your books and marks it Closed · Internal. You can reopen it later.\" when it is not (Closed · No Charge on a no-charge work order). Buttons: Cancel and \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S3-R2| when it is not (Closed · No Charge on a no-charge work order). Buttons: Cancel and ",
+    "prd_line": 320,
+    "code": "S3-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 320 (S3-R2) reads: …\"This completes the work order, posts the parts cost and shop supplies to your books and marks it Closed · Internal. You can reopen it later.\" when it is not (Closed · No Charge on a no-charge work order). Buttons: Cancel and \"Close Work Order\". Parts cost is the cost on each line at Close, as invoicing posts to Cost of Parts today; the hours are the labor hours on the lines. With both QuickBooks and AccountingHub, each note names the QuickBooks account and the AccountingHub account. When the category requires the original work order and none was picked, the confirmation shows the select \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S3-N4| link to Integrations > QuickBooks; AccountingHub, ",
+    "prd_line": 332,
+    "code": "S3-N4",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 332 (S3-N4) reads: …\"Set account\" link to Integrations > QuickBooks; AccountingHub, \"No account set for [category]. The entry is held in Accounting Events until you set one.\" with a link to Account Mappings. The link is shown only to users with 'Settings — Integrations' (QuickBooks) or 'Accounting — Settings' (AccountingHub); others see the note without the link. The Shop supplies row follows the same rule when the Shop supplies item is not mapped (S10-N2). The button still reads \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S3-E4| (with ",
+    "prd_line": 340,
+    "code": "S3-E4",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 340 (S3-E4) reads: …\"This marks the work order Closed · Internal (Closed · No Charge). Parts cost, shop supplies and hours are available in the Internal Work Orders report.\" (with \"This completes the work order and marks… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S4-R2| (Closed · No Charge on a no-charge one) and the buttons Cancel and ",
+    "prd_line": 366,
+    "code": "S4-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 366 (S4-R2) reads: …\"The work order leaves Closed · Internal and goes back to Complete. The parts cost and shop supplies entries are reversed in your books.\" (Closed · No Charge on a no-charge one) and the buttons Cancel and \"Reopen Work Order\". Dismissing the dial… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   },
+   {
+    "key": "S12-R2|, the required select Category (active No Charge categories, ",
+    "prd_line": 689,
+    "code": "S12-R2",
+    "first_run_outcome": "TOOL-ARTEFACT",
+    "outcome": "TOOL FRAGMENT, not a quoted label",
+    "evidence": "PRD line 689 (S12-R2) reads: …\"The line stays on this work order and shows $0.00 on the invoice. Hours, parts and the story stay; the technician works it like any other line. When the invoice is created, the parts cost of this line posts to the expense account of the category instead of Cost of Parts.\", the required select Category (active No Charge categories, \"Pick a category\" when missing), the selects Original work order and Original line when the category requires it (optional here; helper and the \"… — the words are the PRD's own prose between two quoted labels; with the quotes paired the tool reads the labels on each side instead, and each of those is in this check or in DESIGN-VISUAL-INVENTORY.md §B",
+    "still_reported": false
+   }
+  ]
+ },
+ "S1-R2|Pick up to 50 customers here. Flag more from Edit Customer.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S1-R3|Map their expense accounts in Integrations > QuickBooks.": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "drawn \"Map their expense accounts in Integrations >\" with \"QuickBooks\" as a link and \".\" after it (Flow 0 02; Happy 03)"
+ },
+ "S1-R11|This estimate is no longer available.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S1-R13|Show archived (n)": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "drawn \"Show archived (1)\" (Flow 0 2a, 2b)"
+ },
+ "S1-R13|Internal Work Orders is off. Turn it on in Settings > Work Orders.": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D07; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
+ },
+ "S1-R13|You can have up to 100 active categories in this list. Archive one to add another.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S1-R14|A category with this name is archived. Restore it instead.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S1-R14|Set in Integrations > QuickBooks": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S1-R16|{name} (archived)": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S1-R16|Archived. Pick an active category.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S1-N4|Turn on Internal Work Orders in Settings to change this.": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "drawn with \"Settings\" as a link (Flow 0 06)"
+ },
+ "S2-R1|... from the customer.": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "tooltip \"… Posts to Company Vehicle Maintenance, from the customer.\" (Flow 1 2b)"
+ },
+ "S2-R2|Original technician: {names}": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D24; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
+ },
+ "S2-R2|Original technician: none": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D24; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
+ },
+ "S2-R11|Request IBS Approval": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S2-R11|Approval Required": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S2-R14|Classification: All / Billable / Internal / No Charge": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "chip \"Classification: All\" and its menu rows All, Billable, Internal, No Charge (Flow 4 01)"
+ },
+ "S2-R18|Every line priced as a new line would be today. Category {name} removed.": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D26 (the design note reads \"Every line priced at the customer's current pricing. Category Warranty removed.\", Flow 2 3e); PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
+ },
+ "S2-R19|Updating the cost also updates the sell price": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S2-R19|Internal work order: cost only, no sell price": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S2-R19|No Charge work order: cost only, no sell price": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S2-R19|No Charge line: cost only": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S2-R20|Fixed line total $1,250.00 removed": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S2-E6|This estimate changed after it was sent. The lines above are current.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S2-E7|Stock parts ${amount}, includes ${core amount} core cost · Posted to {account}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S3-R2|Stock parts ${stock parts cost}": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "row \"Stock parts\" \"$265.00\" (Flow 1 07)"
+ },
+ "S3-R2|${amount}, includes ${core amount} core cost": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S3-R2|Special orders and sublet ${amount}": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "row with \"$410.00\" (Flow 1 07)"
+ },
+ "S3-R2|Moved from {account} to {account}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S3-R2|Posts to {account} when the vendor bill is entered": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S3-R2|Shop supplies ${amount}": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "row \"Shop supplies\" \"$25.00\" (Flow 1 07) and the document Summary (Flow 1 08)"
+ },
+ "S3-R4|Invoice paid": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S3-N4|No account set for {category}. The entry is held in Accounting Events until you set one.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S3-E1|Parts cost $0.00": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S3-E4|This completes the work order and marks it ...": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S4-R3|Waiting for an earlier held entry of work order {n}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S6-R1|Parts cost of goods sold": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S6-R1|Internal: General Internal": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S6-R1|No Charge: Warranty": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S6-R1|Shop supplies expense": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S7-R5|Reopened {number}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S7-R8|Moved from {account} to {account}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S7-N3|Internal Work Order Close": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D46; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
+ },
+ "S7-N3|Internal Work Order Reopen": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D46; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
+ },
+ "S8-R3|No Charge: {Category} row not mapped": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S8-R3|Internal: {Category} row not mapped": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D47; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
+ },
+ "S8-R7|No Charge: {Category} row not mapped": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S8-N2|No Charge: {Category} row not mapped": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S8-N2|Internal: {Category} row not mapped": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D47; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
+ },
+ "S8-N2|Shop supplies expense is not mapped": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S8-N2|Inventory asset is not mapped": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S8-N2|Parts cost of goods sold is not mapped": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S9-R1|Total invoices in range": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S9-R2|Unassigned": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D42; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
+ },
+ "S9-R3|Internal work orders: Hide / Only internal / Show all": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D41; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
+ },
+ "S9-R3|Internal and no-charge work orders": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S9-R6|Include internal and no-charge work orders": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S9-R6|For your records only. Do not import these rows as invoices.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S9-R8|Internal Hours": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S10-R3|Shop supplies ${amount}": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "row \"Shop supplies\" \"$25.00\" (Flow 1 07) and the document Summary (Flow 1 08)"
+ },
+ "S10-R5|Shop supplies expense": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S11-R4|This work order is internal or no charge. Close it in ShopView.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S12-R2|Original technician: {names}": {
+  "outcome": "PO-RULED",
+  "where": "IWO-D24; PRD Final v1.0 (2026-11-09) header: \"Where a frame and this text disagree, the text wins\""
+ },
+ "S12-R4|This estimate changed after it was sent. The lines above are current.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S12-R5|Mark line as billable?": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S12-R6|Category of line '{title}' changed from {a} to {b} by {user}.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S12-R9|Line '{title}' needs its original work order (or Not in ShopView) before the invoice.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S12-N3|Reverse the invoice first.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ },
+ "S13-R6|Shop Fleet": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
+ }
+}

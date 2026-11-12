@@ -6,13 +6,15 @@
  "made": "12 Nov 2026, design drive build/founder-mode/internal-work-orders/design-2026-11-12/",
  "how": "Rule 130: both directions (DESIGN-TEXT-INVENTORY design -> PRD; SPEC-TO-DESIGN-2026-11-12.json PRD -> design; every dialog, menu, toast and tooltip listed by hand in DESIGN-VISUAL-INVENTORY.md)",
  "counts": {
-  "differences": 55,
-  "settled_by_prd": 48,
-  "questions": 7,
-  "not_shown": 41
+  "differences": 56,
+  "settled_by_prd": 54,
+  "questions": 0,
+  "not_shown": 41,
+  "closed_matching": 1,
+  "rulings": 1
  },
  "unsent_questions": 6,
- "unsent_note": "6 new questions (rows 8-13) are drafted in design-2026-11-12/NEW-QUESTIONS.py and NOT sent; one more difference (IWO-D19) rides on question 3 and the held DC-50 on question 4 of the existing draft ../PO-QUESTIONS-DRAFT.md, also not sent (the QA lead sends the one sheet). Rule 126.6: unsent must reach 0 before the suite is called complete.",
+ "unsent_note": "Round 3 (12 Nov 2026): every question was answered by Milos Vasic (all option (a)); PRD v1.1 carries the answers. No design question is open.",
  "question_sheet": "none yet for Internal Work Orders (checked 12 Nov 2026); these rows and the PRD case worker's questions go into one sheet (Rule 131)",
  "differences": [
   {
@@ -247,9 +249,9 @@
     "It is not shown on the work order detail or in lists; the badge is the only mark there.",
     "it can be changed on the asset or the customer, never on the work order."
    ],
-   "outcome": "QUESTION 12 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
-   "ruling_or_question": "NEW-QUESTIONS.py question 8 (sheet row 8)",
-   "held_case": "DV-01",
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Milos Vasic's answer 12 (12 Nov 2026, option (a)), carried in PRD v1.1 (12 Nov 2026) S1-R7 / S1-R13 / S1-R14: the three helper texts are in the PRD; the PRD text is the expectation (D-06, D-08, D-09, D-13; S1-92, S1-93, S1-94). Held case D-87 retired (QA lead: delete).",
+   "held_case": "",
    "note": "The PRD gives no text for these intro and helper sentences, so it cannot settle what they should say; it does settle the behaviour they describe wrongly.",
    "prd_words_found": [
     true,
@@ -259,7 +261,9 @@
     true,
     true,
     true
-   ]
+   ],
+   "outcome_before_v1.1": "QUESTION 12 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "prd_code_v1.1": "S1-R7 / S1-R13 / S1-R14"
   },
   {
    "id": "IWO-D10",
@@ -519,9 +523,9 @@
     "The estimate and invoice documents for these work orders show the same and carry the NO CHARGE stamp and, on a no-charge work order, the line \"Category: \\[Category\\]\" under the stamp",
     "the INTERNAL or NO CHARGE stamp with the line \"Category: \\[name\\]\""
    ],
-   "outcome": "QUESTION 3 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
-   "ruling_or_question": "Prices and totals on the estimate: settled by S2-R4. Stamp word and category line on an open internal estimate: already asked as question 3 of the Internal Work Orders sheet draft (../PO-QUESTIONS-DRAFT.md, by the PRD case worker), not repeated (S2-R4 and S3-R5 read differently).",
-   "held_case": "DV-02",
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Milos Vasic's answer 3 (12 Nov 2026, option (a)), carried in PRD v1.1 (12 Nov 2026) S2-R4: INTERNAL stamp on an open internal estimate, as the design draws. The design's \"Category: General Internal\" line is not part of the expectation: S2-R4 names the line for a no-charge work order only (skill 07 §6.0 g: the stamp asked about is settled; no new question). D-88 released, rewritten.",
+   "held_case": "D-88",
    "note": "",
    "prd_words_found": [
     true,
@@ -529,7 +533,9 @@
    ],
    "design_words_checked": [
     false
-   ]
+   ],
+   "outcome_before_v1.1": "QUESTION 3 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "prd_code_v1.1": "S2-R4"
   },
   {
    "id": "IWO-D20",
@@ -801,9 +807,9 @@
    "prd_words": [
     "the header card carries the line \"Closed on \\[posting date\\]. To change it, reopen it from the Finance tab.\""
    ],
-   "outcome": "QUESTION 13 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
-   "ruling_or_question": "NEW-QUESTIONS.py question 9 (sheet row 9)",
-   "held_case": "DV-03",
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Milos Vasic's answer 13 (12 Nov 2026, option (a)), carried in PRD v1.1 (12 Nov 2026) S2-R9: \"No other note is shown on the closed work order\"; the design frame is wrong and the text wins. Checked in D-49 and S2-64. Held case D-89 retired (QA lead: delete).",
+   "held_case": "",
    "note": "Note c-flow1-8: \"then the locked note shows as on any closed work order\". The PRD names only the header line.",
    "prd_words_found": [
     true
@@ -812,7 +818,9 @@
     true,
     true,
     true
-   ]
+   ],
+   "outcome_before_v1.1": "QUESTION 13 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "prd_code_v1.1": "S2-R9"
   },
   {
    "id": "IWO-D30",
@@ -853,16 +861,18 @@
    "prd_words": [
     "sets the work order to Complete with its classification unchanged"
    ],
-   "outcome": "QUESTION 14 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
-   "ruling_or_question": "NEW-QUESTIONS.py question 10 (sheet row 10)",
-   "held_case": "DV-04",
+   "outcome": "CLOSED-MATCHES-PRD",
+   "ruling_or_question": "Milos Vasic's answer 14 (12 Nov 2026, option (a)), carried in PRD v1.1 (12 Nov 2026) S4-R3 and the message table (Reopen done): the design's \"Work order S2-34918 reopened\" is now the PRD's green message. D-90 released; S4-15 new.",
+   "held_case": "D-90",
    "note": "",
    "prd_words_found": [
     true
    ],
    "design_words_checked": [
     true
-   ]
+   ],
+   "outcome_before_v1.1": "QUESTION 14 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "prd_code_v1.1": "S4-R3 and the message table (Reopen done)"
   },
   {
    "id": "IWO-D32",
@@ -1217,16 +1227,18 @@
    "prd_words": [
     "Original work order (link, with the original line number when set), Original technician"
    ],
-   "outcome": "QUESTION 15 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
-   "ruling_or_question": "NEW-QUESTIONS.py question 11 (sheet row 11)",
-   "held_case": "DV-05",
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Milos Vasic's answer 15 (12 Nov 2026, option (a)), carried in PRD v1.1 (12 Nov 2026) S9-R2: an empty cell shows a dash, as the design library says. Checked in D-74 and S9-47. Held case D-91 retired (QA lead: delete).",
+   "held_case": "",
    "note": "Design library (work-orders.jsx, the dash cell): \"Nothing. Always this, never an empty cell or a bare hyphen in text.\"; the asset Invoices tab already uses the dash.",
    "prd_words_found": [
     true
    ],
    "design_words_checked": [
     false
-   ]
+   ],
+   "outcome_before_v1.1": "QUESTION 15 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "prd_code_v1.1": "S9-R2"
   },
   {
    "id": "IWO-D45",
@@ -1243,16 +1255,18 @@
    "prd_words": [
     "Work order (link)"
    ],
-   "outcome": "QUESTION 16 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
-   "ruling_or_question": "NEW-QUESTIONS.py question 12 (sheet row 12)",
-   "held_case": "DV-06",
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Milos Vasic's answer 16 (12 Nov 2026, option (a)), carried in PRD v1.1 (12 Nov 2026) S9-R2: numbers and dates stay on one line at 1440 and 1536 pixels; the design (re-rendered with the real font) still wraps. D-92 released; S9-48 new.",
+   "held_case": "D-92",
    "note": "",
    "prd_words_found": [
     true
    ],
    "design_words_checked": [
     false
-   ]
+   ],
+   "outcome_before_v1.1": "QUESTION 16 on the sheet for Milos Vasic (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w), built 12 Nov 2026, SENT: shared with Milos Vasic by the QA lead (reported 12 Nov 2026)",
+   "prd_code_v1.1": "S9-R2"
   },
   {
    "id": "IWO-D46",
@@ -1504,6 +1518,25 @@
    "design_words_checked": [
     false
    ]
+  },
+  {
+   "id": "IWO-D56",
+   "kind": "look (library rule) / undefined rate",
+   "boards": "Flow 4 06; Happy 39b; Review 7.5",
+   "pictures": [
+    "images/iwo-flow4-06-06-internal-work-orders-report-by-technician.png"
+   ],
+   "design_words": [
+    "empty Completed lines and Comeback rate cells on the \"Not in ShopView / no technician\" row"
+   ],
+   "prd_code": "S9-R2",
+   "prd_words": [
+    "a dash, never a number, when the technician has no completed lines in the range"
+   ],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "PRD v1.1 S9-R2 (answers 11 and 15): a dash; no question needed. Checked in D-75 and S9-47.",
+   "held_case": "",
+   "note": "Found by the design worker's v1.1 assessment (DESIGN-CHANGE-2026-11-12.md §4b), recorded by the case worker in round 3, 12 Nov 2026."
   }
  ],
  "questions": {
@@ -2328,5 +2361,6 @@
  "S13-R6|Shop Fleet": {
   "outcome": "DESIGN-SILENT",
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
- }
+ },
+ "v1.1_update": "12 Nov 2026, case worker round 3: IWO-D09, D19, D29, D31, D44, D45 closed from PRD v1.1 / the answers; IWO-D56 added (design worker's DESIGN-CHANGE-2026-11-12.md §4b). Before-copy: po-answers-2026-11-12/write/DESIGN-DIVERGENCE-REGISTER-before-v1.1.json."
 }

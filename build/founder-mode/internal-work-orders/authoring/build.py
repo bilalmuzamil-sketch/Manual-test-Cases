@@ -13,7 +13,7 @@ import sys, os, json, re, glob, importlib
 from collections import Counter
 D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import iwo_lib as L
-from po_questions import QUESTIONS, QN
+from po_questions import QUESTIONS, QN, ANSWERED
 MODS = sorted(os.path.basename(f)[:-3] for f in glob.glob(f"{D}/cases_*.py"))
 ORDER = [f"cases_s{i}" for i in range(1, 14)] + ["cases_s12p", "cases_api", "cases_data", "cases_rel", "cases_inv", "cases_design", "cases_tp"]
 MODS = [m for m in ORDER if m in MODS] + [m for m in MODS if m not in ORDER]
@@ -37,7 +37,8 @@ for c in L.CASES:
     if "waiting on the PO" in c["marker"] and not c["held"]: probs.append(f"{c['key']}: held on the PO but not flagged held")
 QHELD = {i: [c["key"] for c in L.CASES if L.qnum(c) == i] for i in range(1, len(QUESTIONS) + 1)}
 for i, ks in QHELD.items():
-    if not ks: probs.append(f"question {i} holds no case (skill 07 §6: a question must decide a verdict)")
+    if not ks and i not in ANSWERED: probs.append(f"question {i} holds no case (skill 07 §6: a question must decide a verdict)")
+    if ks and i in ANSWERED: probs.append(f"question {i} is answered but still holds {ks}")
 
 # ---- coverage of PRD codes and named items
 used = Counter(x for c in L.CASES for x in L.codes_of(c))
@@ -55,7 +56,7 @@ for k, v in L.TP.items():
 for k in cases_tp.TP_OUT:
     if L.TP.get(k, {}).get("verdict") != "ADD": probs.append(f"TP_OUT names {k}, which is not an ADD statement")
 # ---- every User Feedback Summary message is used in some case's steps or results: fixed words exact, [bracketed] words free, "..." free
-ASKED = {"UFS-01": "modal-text", "UFS-10": "no-charge-document-case"}   # the summary's text differs from the story's: asked on the PO sheet
+ASKED = {}   # round 3 (12 Nov 2026): questions 1 and 2 answered; PRD v1.1 aligns both message rows with their stories
 tester_all = " \n ".join(" ".join(c["steps"] + [b for r in c["res"] for b in r]) for c in L.CASES)
 for k, (lab, row) in L.NAMED.items():
     if not re.match(r"UFS-\d\d$", k): continue
@@ -63,7 +64,7 @@ for k, (lab, row) in L.NAMED.items():
         if ASKED[k] not in QN: probs.append(f"{k}: listed as asked, but question {ASKED[k]} is not on the sheet")
         continue
     for msg in re.findall(r'"([^"]+)"', row.split(" | ")[1]):
-        frags = [f.strip() for f in re.split(r"\.\.\.|…", msg) if f.strip()]
+        frags = [f.strip() for f in re.split(r"\.\.\.|…|(?<=\?) (?=[A-Z])", msg) if f.strip()]   # a window's title and body are one string in §8
         for fr in frags:
             rx = re.sub(r"\\\[[^\]]*\\\]", ".+?", re.escape(fr).replace("\\ ", " "))
             if not re.search(rx, tester_all): probs.append(f"{k}: message not used word for word in any step or result: {fr!r}")
@@ -113,15 +114,16 @@ for c in L.CASES:
         if _norm(w) not in hay: probs.append(f"{c['key']}: design words not on its boards: {w[:60]!r}")
 _reg = json.load(open(f"{L.P}/DESIGN-DIVERGENCE-REGISTER.json"))["differences"]
 for r in _reg:
-    if r["outcome"].startswith("SETTLED"): continue
+    if r["outcome"].startswith(("SETTLED", "CLOSED", "RULING")): continue
     if r["id"] in DR.OPEN:
         if DR.OPEN[r["id"]] not in QN: probs.append(f"register {r['id']}: question {DR.OPEN[r['id']]} not on the sheet")
     elif r["id"] != "IWO-D50": probs.append(f"register {r['id']} ({r['outcome'][:30]}) is closed by no question and no named ruling")
 _drafts = _rp.run_path(f"{DD}/tools/cases_data.py")["CASES"]
-if len(_drafts) != len(DR.DREFS) or len(_drafts) != sum(c["sec"] == "DESIGN" for c in L.CASES):
+_ret = len(json.load(open(f"{D}/design_changes.json")).get("retired", {}))   # round 3: drafts retired on the QA lead's decision
+if len(_drafts) - _ret != len(DR.DREFS) or len(_drafts) - _ret != sum(c["sec"] == "DESIGN" for c in L.CASES):
     probs.append(f"design drafts {len(_drafts)} but design cases {sum(c['sec'] == 'DESIGN' for c in L.CASES)}: run make_cases_design.py")
 print("design: cases with References from Design", with_refs, "| PRD-side", with_refs - sum(c["sec"] == "DESIGN" for c in L.CASES),
-      "| register rows", len(_reg), "open", sum(not r["outcome"].startswith("SETTLED") for r in _reg))
+      "| register rows", len(_reg), "open", sum(not r["outcome"].startswith(("SETTLED", "CLOSED", "RULING")) for r in _reg))
 
 # ---- folders (12 Nov 2026, standing choices applied unattended, as for Bill To on 10 Nov 2026): cases waiting on the PO, blocked on a
 # release, or run on production after it live in their own TestRail folders; design cases waiting stay in "Design — how it looks".

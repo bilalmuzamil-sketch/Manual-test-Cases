@@ -30,7 +30,7 @@ def md_to_text(md):
     return "\n".join(out)
 
 
-PRD_FILE = f"{P}/sources/CONFLUENCE-942243841-read-2026-11-12.md"
+PRD_FILE = f"{P}/sources/CONFLUENCE-942243841-v1.1-read-2026-11-12.md"   # round 3 (12 Nov 2026): v1.1 carries Milos Vasic's answers 1-16
 PRD_FULL = open(PRD_FILE).read()
 PRD_MD = PRD_FULL.split("## 9. Change Log")[0]          # the Change Log holds no requirement and is never a source of a quote
 PRD_TXT = md_to_text(PRD_MD)
@@ -49,9 +49,13 @@ TP = {x["id"]: x for x in TPJ["statements"]}
 PLAN_NAME = ('"Internal Work Orders technical implementation plan", 2026-10-28, last updated 2026-11-10 (revision 5, built on PRD v1.0), '
              'sources/TECH-PLAN-Internal-Work-Orders-upload-2026-11-12.md')
 
-PRD_VERSION = "1.0"
-PRD_NAME = 'PRD "Internal Work Orders (PRD)", Confluence 942243841, version 1.0 final (9 Nov 2026, Milos Vasic)'
+PRD_VERSION = "1.1"
+PRD_NAME = 'PRD "Internal Work Orders (PRD)", Confluence 942243841, version 1.1 (12 Nov 2026, Milos Vasic)'
 PRD_READ = "read 12 Nov 2026"
+ANS_FILE = f"{P}/po-answers-2026-11-12/ANSWERS-Milos-Vasic-2026-11-12.json"
+ANSWERS = _json.load(open(ANS_FILE))["answers"]
+ANS_NAME = ("Milos Vasic's answers to the Internal Work Orders questions (question sheet column E, read 12 Nov 2026, "
+            "po-answers-2026-11-12/ANSWERS-Milos-Vasic-2026-11-12.json)")
 JIRA_NAME = "Jira tickets under epic SV-11665 (saved 12 Nov 2026, sources/JIRA-SV-11665-tickets-2026-11-12.md)"
 EPIC = "SV-11665"
 DESIGN_URL = "https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo"
@@ -81,7 +85,7 @@ CODE = {}
 for line in PRD_TXT.split("\n"):
     m = re.match(r"^\s*-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
     if m and m.group(1) not in CODE: CODE[m.group(1)] = m.group(2).strip()
-if len(CODE) != 205: raise SystemExit(f"PRD v1.0 has {len(CODE)} requirement codes; this library was written for 205")
+if len(CODE) != 206: raise SystemExit(f"PRD v{PRD_VERSION} has {len(CODE)} requirement codes; this library was written for 206 (v1.1 adds S2-E8)")
 
 
 def prd_line(start):
@@ -139,8 +143,8 @@ for line in PRD_MD.split("\n"):
     if _inside and line.startswith("## "): break
     if _inside and line.startswith("| ") and not line.startswith("| Trigger") and not line.startswith("| ---"):
         _ufs.append(" | ".join(ws(x) for x in line.strip().strip("|").split("|")))
-if len(_ufs) != 42: raise SystemExit(f"User Feedback Summary has {len(_ufs)} rows; expected 42")
-UFS_STORY = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 7, 3, 3, 3, 3, 8, 3, 3, 2, 4, 9, 9, 5, 3, 11, 12, 12, 12, 12, 12, 12, 12, 12, 1, 1, 1, 2, 1]
+if len(_ufs) != 43: raise SystemExit(f"User Feedback Summary has {len(_ufs)} rows; expected 43 (v1.1 adds row 25, Reopen done)")
+UFS_STORY = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 7, 3, 3, 3, 3, 8, 3, 3, 2, 4, 4, 9, 9, 5, 3, 11, 12, 12, 12, 12, 12, 12, 12, 12, 1, 1, 1, 2, 1]
 for i, row in enumerate(_ufs, 1): _n(f"UFS-{i:02d}", "User Feedback Summary", row, UFS_STORY[i - 1])
 # Key Decisions: the decision sentence(s) of each bullet (the rationale is context, not a check)
 KD = {
@@ -250,8 +254,9 @@ STORY = {1: ("SV-11758", "Story 1, Turn on Internal Work Orders, flag internal c
 _MAPF = f"{P}/testrail-id-map.csv"
 MAPPED = {r["key"]: (r.get("prd_version") or PRD_VERSION) for r in csv.DictReader(open(_MAPF))} if os.path.exists(_MAPF) else {}
 def prd_version(c):
-    """A mapped case keeps the PRD version it was written for (testrail-id-map.csv column prd_version); a new case quotes the current one."""
-    return MAPPED.get(c["key"], PRD_VERSION)
+    """Round 3 (12 Nov 2026): every case is brought to PRD v1.1 (the QA lead's named set is rewritten; every other case is re-stamped
+    after reading), so every case quotes the current version. testrail-id-map.csv's prd_version column is updated by the write script."""
+    return PRD_VERSION
 
 CASES = []
 def C(key, sec, title, pre, steps, res, q, marker=None, note="", stories=None, api=False, held=None, banner=""):
@@ -296,7 +301,7 @@ def story_nums(c):
     return sorted(s)
 
 
-e = lambda s: html.escape(s, quote=False)
+e = lambda s: html.escape(s, quote=False).replace("✓", "&#10003;")
 
 from design_refs import DREFS, for_case as _for_case   # round 1: an empty hook; the design round fills it
 _DCACHE = {}
@@ -318,14 +323,14 @@ def design_block(c):
 
 
 def quotes_block(c):
-    groups = {"prd": [], "jira": [], "plan": []}
-    for l, t in quotes(c): groups["jira" if l.startswith("Jira SV-") else "plan" if l.startswith("Tech plan") else "prd"].append((l, t))
+    groups = {"prd": [], "jira": [], "plan": [], "po": []}
+    for l, t in quotes(c): groups["jira" if l.startswith("Jira SV-") else "plan" if l.startswith("Tech plan") else "po" if l.startswith("PO answer") else "prd"].append((l, t))
     sn = story_nums(c)
     sto = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in sn)
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
     prd_name = PRD_NAME if prd_version(c) == PRD_VERSION else PRD_NAME.replace(f"version {PRD_VERSION}", f"version {prd_version(c)}")
-    for name, g in ((prd_name, groups["prd"]), (JIRA_NAME, groups["jira"]), (PLAN_NAME, groups["plan"])):
+    for name, g in ((prd_name, groups["prd"]), (JIRA_NAME, groups["jira"]), (PLAN_NAME, groups["plan"]), (ANS_NAME, groups["po"])):
         if not g: continue
         h += f"<p>From: {e(name)}, {PRD_READ}" + ((f" &middot; Epic {EPIC}" + (f", {e(sto)}" if sto else "")) if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in g) + "</ul>"
@@ -391,7 +396,7 @@ NOTMANUAL = re.compile(r"automated check|means other than the page|request sent 
 
 
 BASELINE = re.compile(r"\bas before\b|\bas today\b|\bas it does today\b|where (it|they) (was|were)|\bunchanged\b|\bas usual\b|"
-                      r"\bthe usual\b|\bas it was\b|\bas they were\b|today's (columns|file)|\bthe same as before\b|\bas on a billable\b", re.I)
+                      r"\busual\b|\bas it was\b|\bas they were\b|today's (columns|file)|\bthe same as before\b|\bas on a billable\b", re.I)
 
 
 def check(c):
@@ -449,6 +454,9 @@ def check(c):
     for l, tq in quotes(c):
         if l.startswith("Jira SV-"):
             if ws(tq) not in JIRAW: p.append(f"{k}: quote {l} not verbatim in the saved Jira tickets")
+        elif l.startswith("PO answer"):
+            n = re.search(r"question (\d+)", l).group(1)
+            if tq not in ANSWERS[n]: p.append(f"{k}: quote {l} not verbatim in Milos Vasic's answer {n}")
         elif l.startswith("Tech plan"):
             tid = l.split("(")[1].rstrip(")")
             if TP[tid]["verdict"] == "DIVERGE": p.append(f"{k}: quotes the DIVERGE statement {tid} (the PRD wins; quote the PRD)")
@@ -456,7 +464,7 @@ def check(c):
             from tp_quote_fix import CODEISH
             if CODEISH.search(tq): p.append(f"{k}: plan quote {tid} carries code or a file path ({CODEISH.search(tq).group(0)!r}): quote the behaviour, or the PRD alone")
         elif ws(tq) not in PRDW and ws(tq) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v{PRD_VERSION}")
-    if not any((isinstance(x, str) and not x.startswith("TP-")) or (isinstance(x, tuple) and not x[0].startswith("Jira")) for x in c["q"]):
+    if not any((isinstance(x, str) and not x.startswith("TP-")) or (isinstance(x, tuple) and not x[0].startswith(("Jira", "PO answer", "Tech plan"))) for x in c["q"]):
         p.append(f"{k}: no PRD quote (Rule 57: the PRD is the source of every expected result)")
     for i, r in enumerate(c["res"], 1):
         for b in r:

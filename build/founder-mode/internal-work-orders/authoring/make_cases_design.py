@@ -21,23 +21,50 @@ sys.path.insert(0, D)
 DRAFTS = runpy.run_path(f"{DD}/tools/cases_data.py")["CASES"]
 FIGS = json.load(open(f"{DD}/DESIGN-FIGURES-2026-11-12.json"))["list"]
 BYFILE = {f["file"].replace(".dc.html", ""): f for f in FIGS}
-CANVAS = ('Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794484794-2031, '
-          'read and rendered 12 Nov 2026')
+CANVAS = ('Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794507512-2fc4 '
+          '(its boards byte-identical to version 1794484794-2031, read and rendered 12 Nov 2026)')
 # design question (NEW-QUESTIONS.py rows 8-13) -> slug on the merged sheet (po_questions.py); 13 (reviewer remarks, IWO-D50) is a ruling
 DQ = {8: "category-helper", 9: "locked-note", 10: "reopen-message", 11: "report-empty-cell", 12: "report-wrapping"}
 DV_Q = {"DV-01": "category-helper", "DV-02": "internal-estimate-stamp", "DV-03": "locked-note", "DV-04": "reopen-message",
         "DV-05": "report-empty-cell", "DV-06": "report-wrapping"}
 NOTE_FIX = {   # notes that name a case id or the dropped question 4 (plain words instead)
- "DC-08": [("question 8, held case DV-01.", "question {category-helper}; the design's helper is its own held design-version case.")],
+ "DC-08": [("question 8, held case DV-01.", "settled by PRD v1.1 S1-R14 (Milos Vasic's answer 12): the PRD's helper text is the expectation.")],
  "DC-50": [("The Total balance cell waits on question 4 of the sheet (PRD \"No Charge\" vs the Jira check-list \"$0.00\"); the design draws \"No Charge\".",
             "The Total balance cell shows \"No Charge\" as the PRD says and the design draws (the Jira check-list's \"$0.00\" is settled by the tech plan, which builds \"No Charge\"); this case is not held.")],
  "DC-74": [("(IWO-D44, question 11) and wrapping numbers (IWO-D45, question 12) are held as DV-05 and DV-06.",
-            "(IWO-D44, question {report-empty-cell}) and wrapping numbers (IWO-D45, question {report-wrapping}) are each held as their own design-version case.")],
+            "(IWO-D44) and wrapping numbers (IWO-D45) are settled by PRD v1.1 S9-R2 (answers 15 and 16): a dash in an empty cell, and numbers and dates on one line at 1440 and 1536 pixels.")],
  "DV-01": [("question 8:", "question {category-helper}:")],
  "DV-02": [("question 3 of the sheet (already asked by the PRD case worker).", "question {internal-estimate-stamp} of the sheet.")],
  "DV-03": [("question 9.", "question {locked-note}.")], "DV-04": [("question 10.", "question {reopen-message}.")],
  "DV-05": [("question 11.", "question {report-empty-cell}.")], "DV-06": [("question 12.", "question {report-wrapping}.")],
 }
+# ---- round 3 (12 Nov 2026): PRD v1.1 and Milos Vasic's answers 1-16 (po-answers-2026-11-12/). No board changed (DESIGN-CHANGE-2026-11-12.md).
+RETIRE = {"DV-01": "answer 12: the PRD's helper texts are the expectation (D-06, D-08, D-09, D-13); QA lead: delete",
+          "DV-03": "answer 13: no other note is shown (S2-R9 v1.1); the check moves to D-49; QA lead: delete",
+          "DV-05": "answer 15: a dash in every empty cell (S9-R2 v1.1); the check is in D-74; QA lead: delete"}
+V11 = {   # draft id -> round 3 changes: add (step -> bullets), set (step -> bullets, replacing), q (quotes added), note (replaces the diff note), release
+ "DC-06": dict(add={1: ["Under the Internal categories tab a hint reads \"Set on the customer, or on the asset for one unit. An internal work order takes it when it is created.\""]},
+               note_add="Difference: the design's tab hint differs from PRD v1.1 S1-R13's hint: register IWO-D09, settled by PRD v1.1 (Milos Vasic's answer 12); the PRD text is the expectation."),
+ "DC-08": dict(add={1: ["The window shows the helper \"It shows in the badge tooltip on the work order, on the NO CHARGE document and in the Internal Work Orders report.\""]}),
+ "DC-09": dict(add={1: ["The window shows the helper \"It shows in the badge tooltip on the work order, on the NO CHARGE document and in the Internal Work Orders report.\""]},
+               note_add="Difference: the design's Name helper differs from PRD v1.1 S1-R14's helper: register IWO-D09, settled by PRD v1.1 (answer 12)."),
+ "DC-13": dict(add={2: ["The select \"Default internal category\" carries the helper \"Used by every new internal work order for this customer unless the asset has its own category.\""]},
+               note_add="Difference: the design's helper for the select (\"Preselected on every new work order…\") differs from PRD v1.1 S1-R7: register IWO-D09, settled by PRD v1.1 (answer 12)."),
+ "DC-49": dict(add={1: ["No other note shows on the closed work order (no \"This work order is locked\" note)."]}, q=[("S2-R9", "No other note is shown")],
+               note_add="Difference: the design draws a \"This work order is locked\" note on a closed internal work order: register IWO-D29, settled by PRD v1.1 S2-R9 (answer 13): no other note is shown."),
+ "DC-74": dict(add={1: ["Every cell with no value shows a dash \"—\" (for example Original work order and Original technician on the internal work order's row).",
+                        "Work order numbers and dates each stay on one line."],
+                    2: ["Work order numbers and dates still stay on one line."]}),
+ "DC-75": dict(add={2: ["The \"Unassigned\" row shows a dash \"—\" as its Comeback rate (it has no completed lines), and every cell with no value shows a dash."]},
+               note_add="Difference: the design leaves Completed lines and Comeback rate empty on the Unassigned row: register IWO-D56, settled by PRD v1.1 S9-R2 (answers 11 and 15): a dash."),
+ "DV-02": dict(set={2: ["The estimate carries the INTERNAL stamp and shows no prices or totals."]}, release=True,
+               note="Difference: register IWO-D19, settled by PRD v1.1 S2-R4 (Milos Vasic's answer 3): the INTERNAL stamp, as the design draws. The design's \"Category: General Internal\" line under it is not part of the expectation: S2-R4 names that line for a no-charge work order only."),
+ "DV-04": dict(set={1: ["A green message \"Work order [number] reopened\" shows."]}, q=["§8-25"], release=True,
+               note="Difference: none left: register IWO-D31 is closed, PRD v1.1 S4-R3 and its message table (answer 14) give the message the design draws."),
+ "DV-06": dict(set={1: ["Work order numbers and dates in the table stay on one line; no number is broken (the design breaks them, \"S2-\" over \"34918\")."]}, release=True,
+               note="Difference: register IWO-D45, settled by PRD v1.1 S9-R2 (answer 16): numbers and dates stay on one line at 1440 and 1536 pixels; the design still breaks them."),
+}
+V11_LOG = {}
 EDITS = {   # draft id -> [(field, old, new)] gate fixes only
  "DC-72": [("results", "The invoice is created as today.", "The invoice is created and shows on the Finance tab.")],   # round 2c: no unseen baseline
 }
@@ -78,6 +105,8 @@ def main():
     cases, refs, srcmap = [], {}, {}
     for i, c in enumerate(DRAFTS, 1):
         did = c["id"]; key = f"D-{i:02d}"; srcmap[did] = key
+        if did in RETIRE: V11_LOG[key] = [f"retired: {RETIRE[did]}"]; continue
+        v = V11.get(did, {})
         c = dict(c)
         for field, old, new in EDITS.get(did, []):
             s = json.dumps(c[field], ensure_ascii=False)
@@ -98,11 +127,17 @@ def main():
                 s = sentence(L.CODE[code], start)
                 if not s: raise SystemExit(f"{did}: no sentence of {code} starts {start!r}")
                 q.append((code, s.strip()))
-            elif x.startswith("§8-"): q.append("UFS-" + x[3:])
+            elif x.startswith("§8-"): n = int(x[3:]); q.append(f"UFS-{n + 1 if n >= 25 else n:02d}")   # v1.1 inserts row 25 (Reopen done)
             elif x in CODEMAP: q.append(CODEMAP[x])
             else: q.append(x)
+        for x in v.get("q", []):
+            if isinstance(x, tuple):
+                s2 = sentence(L.CODE[x[0]], x[1]).strip(); q.append((x[0], s2))
+            else: n = int(x[3:]); q.append(f"UFS-{n + 1 if n >= 25 else n:02d}" if x.startswith("§8-") else x)
         if ov.get("marker", "").startswith("NOMAN:"):
             marker = L.NOMAN(ov["marker"][6:])
+        elif did.startswith("DV") and v.get("release"):
+            marker = None
         elif did.startswith("DV"):
             marker = f"AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question {QN[DV_Q[did]]})"
         else:
@@ -116,7 +151,9 @@ def main():
                 d = d.replace(old, re.sub(r"\{([a-z-]+)\}", lambda m: qfmt[m.group(1)], new))
             if re.search(r"\bD[CV]-\d", d): raise SystemExit(f"{did}: a case id left in the note: {d}")
             notes.append("Difference: " + d)
-        if did.startswith("DV"):
+        if "note" in v: notes = [v["note"]]
+        if "note_add" in v: notes.append(v["note_add"])
+        if did.startswith("DV") and not v.get("release"):
             notes.append("Held design version (Rule 130): not run and not added to the run until the PO answers; released or removed that day.")
         pages = []
         for f in figs:
@@ -125,6 +162,14 @@ def main():
                                                "s" if len(figs) > 1 else "", ", ".join('"%s" (%s)' % (f["board_title"], f["page_name"]) for f in figs))
         conv = lambda t: re.sub(r"<([a-z][a-zA-Z' ]*)>", r"[\1]", t)
         steps = [conv(x) for x in c["steps"]]; res = [[conv(x) for x in r] for r in c["results"]]
+        for st, b in v.get("set", {}).items(): res[st - 1] = list(b)
+        for st, b in v.get("add", {}).items(): res[st - 1] = res[st - 1] + list(b)
+        if v: V11_LOG[key] = [w for w in (
+            [f"step {st}: result rewritten: {b[0][:80]!r}" for st, b in v.get("set", {}).items()]
+            + [f"step {st}: result added from PRD v1.1: {x[:80]!r}" for st, b in v.get("add", {}).items() for x in b]
+            + [f"quote added: {x if isinstance(x, str) else x[0]}" for x in v.get("q", [])]
+            + (["released from the PO hold (answer given, PRD v1.1)"] if v.get("release") else [])
+            + (["References from Design note rewritten"] if "note" in v or "note_add" in v else []))]
         note = NAME_NOTE if re.search(r"\[[a-z][a-zA-Z' ]*\]", " ".join(steps + sum(res, []))) else ""
         fresh = lambda x: (x[:-1] + ", made for this test." if FRESH.match(x) and "for this test" not in x else x)
         cases.append(dict(key=key, src=did, title=conv(c["title"]), pre=[fresh(conv(x)) for x in pre], steps=steps, res=res, q=q,
@@ -147,7 +192,7 @@ def main():
           "'<number>' placeholders -> '[number]' with the square-bracket note",
           "Rule 137: a 'Have a new / closed / invoiced ... work order' bullet ends ', made for this test.' (a record the case changes is fresh)",
           "notes: design question numbers -> merged numbers; case ids -> plain words"] + CHANGES
-    json.dump({"map": srcmap, "changes": ch}, open(f"{D}/design_changes.json", "w"), indent=1, ensure_ascii=False)
+    json.dump({"map": srcmap, "changes": ch, "v11": V11_LOG, "retired": {srcmap[k]: w for k, w in RETIRE.items()}}, open(f"{D}/design_changes.json", "w"), indent=1, ensure_ascii=False)
     print("cases_design.py", len(cases), "| DC", sum(c["src"].startswith("DC") for c in cases), "| DV", sum(c["src"].startswith("DV") for c in cases))
     print(*ch, sep="\n  ")
 

@@ -136,6 +136,10 @@ QUESTIONS = [
   "PRD v1.0 S9-R2; design \"Internal Work Orders · All flows v6\", Flow 4 boards 05, 06; Happy flow 39, 39b; Review 7.2, 7.5 (register IWO-D45)"),
 ]
 QN = {slug: i for i, (slug, *_r) in enumerate(QUESTIONS, 1)}
+# Round 3 (12 Nov 2026): Milos Vasic answered all 16 (all option (a)); PRD v1.1 carries every answer except 10 (Open API owner pending)
+import json as _json, os as _os
+ANSWERED = {int(k): v for k, v in _json.load(open(_os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))),
+            "po-answers-2026-11-12", "ANSWERS-Milos-Vasic-2026-11-12.json")))["answers"].items()}
 
 # Points considered and NOT asked, because a saved source settles them (skill 07 §6, step 3), or because no runnable case depends on them
 DROPPED = [
