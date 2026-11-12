@@ -11,7 +11,7 @@ V2 = branch SV-11315-ar-ap-aging-reports at 8e35ee0d02 (code); QA branch sv11315
 V1_COMMIT = "fc08f23"
 V1_LABEL = "ShopView/shopview at fc08f23 (production v26.45.3)"
 V2_LABEL = "branch SV-11315-ar-ap-aging-reports at 8e35ee0d02"
-PRD = "A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v11, 5 Nov 2026"
+PRD = "A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v12, 12 Nov 2026"
 
 # ---------------------------------------------------------------- path shorthands
 FE = "app/src/components/ts/reporting/"
@@ -1410,7 +1410,7 @@ SCOPE = [
 # behaviour the PRD does not touch are unchanged (cited at fc08f23). Keys V1R-73 onward; V1R-01..72 are
 # live in TestRail (C1078974-C1079045) and are never renumbered or edited.
 # Expected-list conventions, resolved by build.py:
-#   ("Q", n, ref_or_text)  -> "Step n: PRD v11, <section>, quoted: "<sentence>""
+#   ("Q", n, ref_or_text)  -> "Step n: PRD v12, <section>, quoted: "<sentence>""
 #   ("O", n, text)         -> "Step n (our restatement, not the PRD's words): text"
 #   ("U", n, text)         -> "Step n (unchanged from before the release): text"
 QUOTE_TEXT = {
