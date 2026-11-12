@@ -39,12 +39,13 @@ NOTE_FIX = {   # notes that name a case id or the dropped question 4 (plain word
  "DV-05": [("question 11.", "question {report-empty-cell}.")], "DV-06": [("question 12.", "question {report-wrapping}.")],
 }
 EDITS = {   # draft id -> [(field, old, new)] gate fixes only
+ "DC-72": [("results", "The invoice is created as today.", "The invoice is created and shows on the Finance tab.")],   # round 2c: no unseen baseline
 }
 CODEMAP = {"S3-EH": "EH-S3-1"}   # the design worker's whole-story Error Handling piece -> the one bullet the case quotes
 OVERRIDE = {   # draft id -> fields replaced (each listed in CHANGES with its reason)
  "DC-44": dict(steps=["Open the internal work order.", "Click Close Work Order.", "Click Close Work Order in the window."],
                results=[["The work order opens."], ["The Close window opens."],
-                        ["An alert toast \"Could not close the work order. Try again.\" shows and stays until it is dismissed; the work order stays where it was."]],
+                        ["An alert toast \"Could not close the work order. Try again.\" shows and stays until it is dismissed; the work order is not Closed."]],
                marker="NOMAN:Close has to fail, which only a developer can make happen",
                why="the draft's 'turn the browser offline' step dropped and the case marked as one a tester cannot set up, the same ruling as the "
                    "PRD case for a failed Close (round 1): a dropped network also stops the window loading, so the failure the PRD names cannot be "

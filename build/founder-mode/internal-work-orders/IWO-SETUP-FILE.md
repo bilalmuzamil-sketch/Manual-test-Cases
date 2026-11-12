@@ -70,7 +70,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### S1-02b — First turn-on window shows its explanation text
-- Folder: WAIT-PO (Waiting on the PO) · refs SV-11758 · PRD items: S1-R2, UFS-01
+- Folder: WAIT-PO (Waiting on Milos Vasic's answers) · refs SV-11758 · PRD items: S1-R2, UFS-01
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 1)`
 
 ### S1-03 — Picking two customers and Save turns the setting on and flags both
@@ -321,11 +321,12 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer A: customer "ZZAUTOTEST S1-43 Customer A"
 - asset 1: asset unit "ZZAUTOTEST S1-43 Unit 1"
 
-### S1-44 — Deleting a flagged customer with no work orders removes it as usual
+### S1-44 — A flagged customer is deleted or refused by the same rules as any customer
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-E2
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S1-44 Customer A"
 - customer B: customer "ZZAUTOTEST S1-44 Customer B"
+- customer C: customer "ZZAUTOTEST S1-44 Customer C"
 
 ### S1-45 — Internal categories tab lists its columns and General Internal as default
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758,SV-11759 · PRD items: KD-CAT, S1-R13, S1-R16, T-CAT
@@ -421,6 +422,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - location A: an existing location of the test organization
 - location B: an existing location of the test organization
+- account B: an expense account in the connected company (note its name)
 
 ### S1-65 — Making a new category the default moves the Default badge
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R14, S1-R16
@@ -592,7 +594,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - inspection 1: an inspection made on the case's asset
 
 ### S2-09 — A work order from a maintenance reminder on an internal customer is internal
-- Folder: BLK (Blocked on release) · refs SV-11759 · PRD items: S2-R1
+- Folder: BLK-MR (Blocked on the Maintenance Reminders release) · refs SV-11759 · PRD items: S2-R1
 - Marker: `AUTOMATION: HOLD - waits on the release of Maintenance Reminders`
 - customer A: customer "ZZAUTOTEST S2-09 Customer A"
 - asset 1: asset unit "ZZAUTOTEST S2-09 Unit 1"
@@ -719,7 +721,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S2-28 — An internal estimate shows its stamp
-- Folder: WAIT-PO (Waiting on the PO) · refs SV-11759,SV-11760 · PRD items: S2-R4, S3-R5
+- Folder: WAIT-PO (Waiting on Milos Vasic's answers) · refs SV-11759,SV-11760 · PRD items: S2-R4, S3-R5
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 3)`
 - customer A: customer "ZZAUTOTEST S2-28 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -751,7 +753,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S2-32b — Convert to No Charge confirmation shows its explanation text
-- Folder: WAIT-PO (Waiting on the PO) · refs SV-11759 · PRD items: S2-R5, UFS-10
+- Folder: WAIT-PO (Waiting on Milos Vasic's answers) · refs SV-11759 · PRD items: S2-R5, UFS-10
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 2)`
 - customer A: customer "ZZAUTOTEST S2-32b Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -1149,7 +1151,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 2: record the number the app assigns (the case says whose it is and its state)
 
 ### S2-90 — An imported work order of a flagged customer is internal
-- Folder: WAIT-PO (Waiting on the PO) · refs SV-11759 · PRD items: S2-E3
+- Folder: WAIT-PO (Waiting on Milos Vasic's answers) · refs SV-11759 · PRD items: S2-E3
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 6)`
 - customer A: customer "ZZAUTOTEST S2-90 Customer A"
 - asset 1: asset unit "ZZAUTOTEST S2-90 Unit 1"
@@ -2164,7 +2166,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S8-26 — A mapped account made inactive holds the event
-- Folder: WAIT-PO (Waiting on the PO) · refs SV-11763,SV-11765 · PRD items: S6-E1, S8-N2
+- Folder: WAIT-PO (Waiting on Milos Vasic's answers) · refs SV-11763,SV-11765 · PRD items: S6-E1, S8-N2
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 8)`
 - category A: category name "ZZAUTOTEST S8-26 Cat A"
 - account A: an expense account in the connected company (note its name)
@@ -2424,7 +2426,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer B: customer "ZZAUTOTEST S9-33 Customer B"
 - work order 2: record the number the app assigns (the case says whose it is and its state)
 
-### S9-34 — With the option off, the export is today's file
+### S9-34 — With the option off, the export has no internal rows or columns
 - Folder: S9 (Reports, dashboard and exports) · refs SV-11766 · PRD items: S9-R6
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S9-34 Customer A"
@@ -3043,13 +3045,13 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### API-06 — An internal work order carries its classification and category
-- Folder: BLK (Blocked on release) · refs SV-11759,SV-11833 · PRD items: S11-R1, S2-R12, T-CLASS
+- Folder: BLK (Blocked on the Open API release) · refs SV-11759,SV-11833 · PRD items: S11-R1, S2-R12, T-CLASS
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-06 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### API-07 — A no-charge work order carries its category and originals
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-R1
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-R1
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-07 Customer A"
 - work order 2: record the number the app assigns (the case says whose it is and its state)
@@ -3058,90 +3060,90 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### API-08 — Lines carry the no-charge fields, invoice lines show 0
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-R1
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-R1
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-08 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 - line 2: line title "ZZAUTOTEST API-08 Line 2"
 
 ### API-09 — Customers carry internal and assets their internal category
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-R1
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-R1
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-09 Customer A"
 - asset 1: asset unit "ZZAUTOTEST API-09 Unit 1"
 
 ### API-10 — The classification fields cannot be written through the Open API
-- Folder: BLK (Blocked on release) · refs SV-11758,SV-11833 · PRD items: PM-R1, S11-R1, S11-R4
+- Folder: BLK (Blocked on the Open API release) · refs SV-11758,SV-11833 · PRD items: PM-R1, S11-R1, S11-R4
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-10 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### API-11 — A closed work order reads closed, and completed after Reopen
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-R2
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-R2
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-11 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### API-12 — The status webhook is sent at Close and at Reopen
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-E1, S11-R3
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-E1, S11-R3
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-12 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### API-13 — The API keeps the written classification after the flag is removed
-- Folder: BLK (Blocked on release) · refs SV-11758,SV-11833 · PRD items: KD-WRITTEN, S11-R1
+- Folder: BLK (Blocked on the Open API release) · refs SV-11758,SV-11833 · PRD items: KD-WRITTEN, S11-R1
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-13 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### API-14 — A work order created through the Open API for an internal customer is internal
-- Folder: BLK (Blocked on release) · refs SV-11759,SV-11833 · PRD items: S11-R4, S2-E1
+- Folder: BLK (Blocked on the Open API release) · refs SV-11759,SV-11833 · PRD items: S11-R4, S2-E1
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-14 Customer A"
 - asset 1: asset unit "ZZAUTOTEST API-14 Unit 1"
 
 ### API-15 — No Charge cannot be set through the Open API
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-R4
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-R4
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-15 Customer A"
 - asset 1: asset unit "ZZAUTOTEST API-15 Unit 1"
 
 ### API-16 — A customer change through the Open API follows the new customer
-- Folder: BLK (Blocked on release) · refs SV-11759,SV-11833 · PRD items: S11-R4, S2-R7
+- Folder: BLK (Blocked on the Open API release) · refs SV-11759,SV-11833 · PRD items: S11-R4, S2-R7
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-16 Customer A"
 - customer B: customer "ZZAUTOTEST API-16 Customer B"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### API-17 — Creating an invoice for an internal work order through the Open API is refused
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-R4, UFS-29
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-R4, UFS-29
 - Marker: `AUTOMATION: HOLD - waits on invoice creation through the Open API being enabled (disabled today, enabled for general availability)`
 - customer A: customer "ZZAUTOTEST API-17 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### API-18 — Creating an invoice through the Open API invoices a no-charge line at 0
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-R4
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-R4
 - Marker: `AUTOMATION: HOLD - waits on invoice creation through the Open API being enabled (disabled today, enabled for general availability)`
 - customer A: customer "ZZAUTOTEST API-18 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 - line 2: line title "ZZAUTOTEST API-18 Line 2"
 
 ### API-19 — The changelog announces the new fields and the closed status
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-R5
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-R5
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 
 ### API-20 — Without Open API V1 nothing changes for the organization
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-N1
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-N1
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 
 ### API-21 — The fields stay after the setting is turned off
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-E2
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-E2
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-21 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### API-22 — The warranty flag of a line follows its No Charge category
-- Folder: BLK (Blocked on release) · refs SV-11759 · PRD items: S2-R22
+- Folder: BLK (Blocked on the Open API release) · refs SV-11759 · PRD items: S2-R22
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-22 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -3151,7 +3153,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 2: record the number the app assigns (the case says whose it is and its state)
 
 ### API-23 — Convert to No Charge sends work_order.updated with the lines
-- Folder: BLK (Blocked on release) · refs SV-11833 · PRD items: S11-R3
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-R3
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 10)`
 - customer A: customer "ZZAUTOTEST API-23 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -3215,7 +3217,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - technician B: staff "ZZAUTOTEST DATA-08 Tech B" with the Technician role
 
 ### DATA-09 — A technician with comebacks but no completed lines shows no rate
-- Folder: WAIT-PO (Waiting on the PO) · refs SV-11766 · PRD items: S9-R2
+- Folder: WAIT-PO (Waiting on Milos Vasic's answers) · refs SV-11766 · PRD items: S9-R2
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 11)`
 - technician A: staff "ZZAUTOTEST DATA-09 Tech A" with the Technician role
 
@@ -3252,6 +3254,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST INV-02 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
+- work order P: record the number the app assigns (the case says whose it is and its state)
 
 ### INV-03 — A part sale to an internal customer stays a billable part sale
 - Folder: INV (What must not change) · refs SV-11759 · PRD items: OOS-12
@@ -3751,7 +3754,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S2-100 — After Convert to No Charge and back, earlier line marks do not return
-- Folder: WAIT-PO (Waiting on the PO) · refs SV-11759 · PRD items: S2-R5, S2-R6
+- Folder: WAIT-PO (Waiting on Milos Vasic's answers) · refs SV-11759 · PRD items: S2-R5, S2-R6
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 9)`
 - customer A: customer "ZZAUTOTEST S2-100 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -3789,16 +3792,8 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - part 2: part number "ZZAUTOTEST-S2-104-2"
 - work order 2: record the number the app assigns (the case says whose it is and its state)
 
-### S2-105 — The list footer total counts internal work orders as $0
-- Folder: S2 (Internal and no-charge work orders from creation to Close) · refs SV-11759 · PRD items: S2-R10
-- Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
-- customer A: customer "ZZAUTOTEST S2-105 Customer A"
-- work order 1: record the number the app assigns (the case says whose it is and its state)
-- customer B: customer "ZZAUTOTEST S2-105 Customer B"
-- work order 2: record the number the app assigns (the case says whose it is and its state)
-
 ### S2-106 — Closed in the Status filter of a shop that never used the feature
-- Folder: WAIT-PO (Waiting on the PO) · refs SV-11759 · PRD items: S2-R10
+- Folder: WAIT-PO (Waiting on Milos Vasic's answers) · refs SV-11759 · PRD items: S2-R10
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 5)`
 
 ### S3-55 — An original picked in the Close window is saved with the Close
@@ -3820,7 +3815,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### S6-10 — Deactivating an account a category row uses is refused
-- Folder: WAIT-PO (Waiting on the PO) · refs SV-11763 · PRD items: S6-E1
+- Folder: WAIT-PO (Waiting on Milos Vasic's answers) · refs SV-11763 · PRD items: S6-E1
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 8)`
 
 ### S7-36 — A category change after a direct-posted bill shows one move entry
@@ -3839,7 +3834,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S7-37 Line 2"
 
 ### S7-38 — Two lines moving the same way show in the Create invoice window
-- Folder: WAIT-PO (Waiting on the PO) · refs SV-11764 · PRD items: S7-R8, UFS-15
+- Folder: WAIT-PO (Waiting on Milos Vasic's answers) · refs SV-11764 · PRD items: S7-R8, UFS-15
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 4)`
 - account C: an expense account in the connected company (note its name)
 - customer A: customer "ZZAUTOTEST S7-38 Customer A"
@@ -3930,7 +3925,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12-48 Line 2"
 
 ### S12P-11 — A deposit paid on the portal after Convert to No Charge is refused
-- Folder: WAIT-PO (Waiting on the PO) · refs SV-11759,SV-12296 · PRD items: S2-N5
+- Folder: WAIT-PO (Waiting on Milos Vasic's answers) · refs SV-11759,SV-12296 · PRD items: S2-N5
 - Marker: `AUTOMATION: HOLD - waiting on the PO (question 7)`
 - customer A: customer "ZZAUTOTEST S12P-11 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -3950,7 +3945,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12P-13 Line 2"
 
 ### API-25 — A refused Close sends no status webhook
-- Folder: BLK (Blocked on release) · refs SV-11760,SV-11833 · PRD items: S11-R3, S3-E5
+- Folder: BLK (Blocked on the Open API release) · refs SV-11760,SV-11833 · PRD items: S11-R3, S3-E5
 - Marker: `AUTOMATION: HOLD - waits on the release of the Open API story SV-11833 (built after the Open API refactoring)`
 - customer A: customer "ZZAUTOTEST API-25 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -3977,7 +3972,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Folder: INV (What must not change) · refs SV-11758,SV-11759 · PRD items: KD-ORG, OOS-14
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### INV-17 — Administration sections are where they were
+### INV-17 — Administration shows the same sections as production, plus one tab
 - Folder: INV (What must not change) · refs SV-11758 · PRD items: S1-R13
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
@@ -4000,11 +3995,12 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer A: customer "ZZAUTOTEST INV-20 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
-### INV-21 — A billable work order's menu is as before plus Convert to No Charge
+### INV-21 — A billable work order's menu matches production plus Convert to No Charge
 - Folder: INV (What must not change) · refs SV-11759 · PRD items: S2-R5
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST INV-21 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
+- work order P: record the number the app assigns (the case says whose it is and its state)
 
 ### INV-22 — Change Customer on a billable work order behaves as before
 - Folder: INV (What must not change) · refs SV-11759 · PRD items: S2-R7

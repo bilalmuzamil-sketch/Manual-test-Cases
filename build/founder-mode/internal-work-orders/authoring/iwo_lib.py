@@ -271,14 +271,18 @@ def quotes(c):
     for x in c["q"]:
         if isinstance(x, tuple): out.append(x)
         elif x in CODE: out.append((x, CODE[x]))
-        elif x in TP: out.append((f"Tech plan line {TP[x]['plan_line']} ({x})", TP[x]["quote"]))
+        elif x in TP:
+            from tp_quote_fix import TPFIX     # round 2c: only the code-free behaviour wording of the plan line (none: quote dropped)
+            for t in (TPFIX[x] if x in TPFIX else [TP[x]["quote"]]): out.append((f"Tech plan line {TP[x]['plan_line']} ({x})", t))
         elif x in NAMED: out.append(NAMED[x])
         else: raise KeyError(f"{c['key']}: unknown quote key {x}")
     return out
 
 
 def codes_of(c): return {x for x in c["q"] if isinstance(x, str) and not x.startswith("TP-")}
-def tps_of(c): return {x for x in c["q"] if isinstance(x, str) and x.startswith("TP-")}
+def tps_of(c):
+    from tp_quote_fix import TPFIX
+    return {x for x in c["q"] if isinstance(x, str) and x.startswith("TP-") and TPFIX.get(x, True) != []}
 
 
 def story_nums(c):
@@ -386,6 +390,10 @@ NOTMANUAL = re.compile(r"automated check|means other than the page|request sent 
                        r"cannot be loaded|data repair|slowed network|developer-made failure|manual tester cannot|cannot set up this case", re.I)
 
 
+BASELINE = re.compile(r"\bas before\b|\bas today\b|\bas it does today\b|where (it|they) (was|were)|\bunchanged\b|\bas usual\b|"
+                      r"\bthe usual\b|\bas it was\b|\bas they were\b|today's (columns|file)|\bthe same as before\b|\bas on a billable\b", re.I)
+
+
 def check(c):
     p, k = [], c["key"]
     t = c["title"]
@@ -445,9 +453,14 @@ def check(c):
             tid = l.split("(")[1].rstrip(")")
             if TP[tid]["verdict"] == "DIVERGE": p.append(f"{k}: quotes the DIVERGE statement {tid} (the PRD wins; quote the PRD)")
             if tq not in PLAN_LINES[TP[tid]["plan_line"] - 1]: p.append(f"{k}: quote {tid} not verbatim on plan line {TP[tid]['plan_line']}")
+            from tp_quote_fix import CODEISH
+            if CODEISH.search(tq): p.append(f"{k}: plan quote {tid} carries code or a file path ({CODEISH.search(tq).group(0)!r}): quote the behaviour, or the PRD alone")
         elif ws(tq) not in PRDW and ws(tq) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v{PRD_VERSION}")
     if not any((isinstance(x, str) and not x.startswith("TP-")) or (isinstance(x, tuple) and not x[0].startswith("Jira")) for x in c["q"]):
         p.append(f"{k}: no PRD quote (Rule 57: the PRD is the source of every expected result)")
+    for i, r in enumerate(c["res"], 1):
+        for b in r:
+            if BASELINE.search(b): p.append(f"{k}: step {i} judges against an unseen baseline ({BASELINE.search(b).group(0)!r}): name what the tester sees, compare with production, or note it in an earlier step")
     if not c["marker"].startswith("AUTOMATION: "): p.append(f"{k}: marker")
     return p
 

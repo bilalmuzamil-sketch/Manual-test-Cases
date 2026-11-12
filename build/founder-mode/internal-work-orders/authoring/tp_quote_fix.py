@@ -1,0 +1,68 @@
+"""Round 2c (12 Nov 2026, coordinator's review): a tech plan quote that backs a tester result must state BEHAVIOUR, never a code or
+test-file path. For each plan statement whose saved quote carries code (backticks, file paths, identifiers, line refs), TPFIX gives the
+verbatim, code-free part(s) of the SAME plan line that state the behaviour (each is checked word for word on its line by iwo_lib.check);
+an empty list means no such wording exists on that line: the quote is dropped, the case relies on the PRD (and any other plan quote), a
+result bullet that only the code backed is removed (cases_zbaseline.py), and an ADD statement no case quotes any more is listed in
+cases_tp.TP_OUT with the reason. iwo_lib.check refuses any plan quote that still carries code."""
+import re
+
+CODEISH = re.compile(r"`|\.(php|ts|vue|twig|js|jsx|json)\b|\btests?/|:\d+\b|\w\(\)|=>|::|\b[a-z]+_[a-z0-9_]+\b|\b[a-z]+[A-Z][A-Za-z]+\b")
+
+TPFIX = {
+ "TP-020": [], "TP-057": [], "TP-064": [], "TP-093": [], "TP-125": [], "TP-199": [], "TP-270": [], "TP-304": [], "TP-347": [],
+ "TP-373": [], "TP-395": [], "TP-497": [], "TP-507": [], "TP-522": [], "TP-579": [], "TP-600": [], "TP-604": [], "TP-614": [],
+ "TP-635": [],
+ "TP-052": ["the second half posts the whole move as one entry from the stored account to the new category"],
+ "TP-081": ["a billable document shows a no-charge line at $0.00 with the category"],
+ "TP-142": ["Pick P, listed under \"Same asset\"."],
+ "TP-152": ["reads \"Prices are removed; costs and hours are kept.\""],
+ "TP-162": ["After the reload, the chip and the $0.00 rate remain"],
+ "TP-174": ["reads \"No Charge\", and Discount and Tax rate are empty."],
+ "TP-236": ["Work-order fees, discounts and the shop supplies percentage (base = total labor price",
+            "are computed on billable lines only (S12-R4)."],
+ "TP-249": ["\"<generated description>; WO #<n> · <Internal|No Charge> · <category>\"",
+            "(the posting date at Close, the invoice date for a line)"],
+ "TP-272": ["first 10 rows (newest first)"],
+ "TP-301": ["(legacy; the portal shows whichever design the shop uses)",
+            "block \"Internal Work Order [n]\" / \"No Charge Work Order [n]\" with the date; INTERNAL or NO CHARGE stamp under the masthead (never over the logo); \"Category: [name]\""],
+ "TP-328": ["where Mark as No Charge and Mark as Billable show disabled with the tooltip \"Reverse the invoice first.\" (S12-N3)"],
+ "TP-336": ["≤ 50, by name."],
+ "TP-349": ["(accounts stay editable on archived categories, Q40 ✓)"],
+ "TP-350": ["restore at 100 active categories in the list"],
+ "TP-353": ["≤ 25 rows: the customer's invoiced, paid and closed work orders at accessible locations (Q38 ✓), same asset first, then newest;",
+            "search on the number."],
+ "TP-372": ["filters unchanged on billable-only data; Completed tab unaffected"],
+ "TP-376": ["billable bills/credits post to the same accounts;"],
+ "TP-382": ["after a portal checkout is recorded with a distinct activity reason so the admin's existing refund action applies (no auto-refund in this release)."],
+ "TP-397": ["(neutral; orange belongs to the badge and header)"],
+ "TP-398": ["\"Internal\" filled", "\"No Charge\" outlined"],
+ "TP-405": ["in the Service group", "after Fees & Discounts"],
+ "TP-410": ["\"Show archived (n)\"", "switches the table to the archived rows with Restore", "\"Show active\" returns."],
+ "TP-414": ["Internal: checkbox \"Default category\"", "it cannot be unticked on the current default."],
+ "TP-416": ["Could not save the category. Try again.", "the dialog stays open."],
+ "TP-421": ["on the default Internal category", "a \"Default\" badge"],
+ "TP-443": ["clears the No Charge draft when the customer is internal."],
+ "TP-452": ["System notes are already read-only", "the author name (\"ShopView\") comes from the note."],
+ "TP-453": ["relabels the third column \"Cost\""],
+ "TP-463": ["Work order [number] is Closed · Internal.", "… is Closed · No Charge."],
+ "TP-494": ["the sticky notice shows", "of the **last edited row** (a purchase order can mix billable, internal and no-charge rows)."],
+ "TP-496": ["so an emptied category row is saved, not deleted."],
+ "TP-498": ["event label \"Work order closed · [number] · [classification]\""],
+ "TP-500": ["labels the row \"Cost move to [Category] · Vendor bill [number], line [n]\" (or \"Vendor credit …\")", "adds a \"Source document\" field"],
+ "TP-517": ["does not null Min on a flagged customer while the setting is on (S10-R1)"],
+ "TP-558": ["refuses an account any mapping row points at", "Phase A3 adds the category mapping rows to that check."],
+ "TP-585": ["Family entries also append the category, and the line number when", "so the ledger drill-down answers \"which job, which category\"."],
+ "TP-606": ["so it adds nothing to any base (T6)."],
+ "TP-608": ["its name equal to the spec name after normalization (case-insensitive, trimmed, \"&\" equal to \"and\"), preferring the one at the default number."],
+ "TP-631": ["inside the posting date's local day at the location.", "The hub converts instants to the location's day, so UTC midnight of a US location's date would land on the previous day."],
+ "TP-646": ["Refuses statuses that are not payable"],
+ "TP-647": ["No webhook, so no \"new invoice\" email."],
+ "TP-650": ["so the list filter keeps refusing it", "and not to the payable or paid lists."],
+ "TP-658": ["so neither the page nor the print preview shows a snapshot with stale prices."],
+ "TP-659": ["It then drops out of both lists and the pending badge, with the existing 60 s cache"],
+ "TP-668": ["with the message \"Deposits are not available on internal or no-charge work orders.\""],
+ "TP-674": ["a checkout is opened on a billable work order, the work order is converted to no charge, then the customer pays. Core rejects, the portal logs",
+            "and the money stays in Stripe until an admin refunds (PE-12)."],
+ "TP-675": ["A work order made internal can stay in the pending list and the badge for up to 60 s"],
+ "TP-679": ["Snapshot the original work order's **display** number", "Otherwise the portal and the documents print", "where every other surface prints"],
+}

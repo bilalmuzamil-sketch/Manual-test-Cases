@@ -164,7 +164,9 @@ PRD_REFS = [c for c in L.CASES if c["sec"] != "DESIGN" and L.design_for(c)]
 ALLPICS = {x for c in L.CASES if L.design_for(c) for x in L.design_for(c)["pictures"]}
 REGROWS = json.load(open(f"{P}/DESIGN-DIVERGENCE-REGISTER.json"))["differences"]
 S2DV = Counter(r["verdict"] for r in DR.S2D.values())
-R = ["# Internal Work Orders — report, rounds 1, 2a and 2b (PRD, Jira, tech plan, design), 12 Nov 2026", "",
+import cases_zbaseline as ZB
+from tp_quote_fix import TPFIX
+R = ["# Internal Work Orders — report, rounds 1, 2a, 2b and 2c (PRD, Jira, tech plan, design; baselines), 12 Nov 2026", "",
      "Worker: PRD cases (round 1), the tech plan fold-in (round 2a) and the design fold-in (round 2b), each on the coordinator's order. No "
      "writes to TestRail, Jira, Slack or Google; no commits.", "",
      "## Counts", "",
@@ -211,7 +213,21 @@ R += ["", "## Design (round 2b)", "",
 R += [f"| {rid} | question {QN[slug]} of PO-QUESTIONS-DRAFT.md ({slug}); held: {', '.join(c['key'] for c in L.CASES if L.qnum(c) == QN[slug])} |" for rid, slug in DR.OPEN.items()]
 R += ["| IWO-D50 | named ruling, no question: two reviewer remarks left in the file of Review board 1.1, below its visible area; PRD Final v1.0 is newer than the design and its header says \"Where a frame and this text disagree, the text wins\"; it already gives the toggle description (S1-R1) and the No Charge badge in its own style (S2-R3), which is what the remarks ask; no verdict depends on them |",
       "", f"The other {sum(r['outcome'].startswith('SETTLED') for r in REGROWS)} rows are settled by the PRD sentence the register names; the cases follow the PRD and name the row in their References from Design.", "",
-      "## Tech plan: DIVERGE items", "",
+      "## Round 2c (coordinator's review): every result has a baseline the tester can see, and no plan quote is code", "",
+      f"- **{len(ZB.BASELINE_CHANGES)} cases changed** (one of them, S2-105, retired). A result that judged against \"as before\", \"as today\", "
+      "\"where it was\", \"unchanged\" or \"as usual\" now names what the tester sees (most), notes the value in an earlier step of the same case "
+      "(S1-44, S12-05, INV-24), compares with the same screen on production where the feature is not released yet (S1-84, INV-02, INV-15, "
+      "INV-17, INV-21), or compares with what was noted before the release on production (REL-02, REL-03; PROD folder). build.py now refuses "
+      "those words in any result.",
+      f"- **Plan quotes:** {sum(1 for v in TPFIX.values() if v)} plan statements whose saved quote carried code or a file path are now quoted only "
+      f"by the code-free behaviour wording of the same plan line; {sum(1 for v in TPFIX.values() if not v)} had none and were dropped (the cases "
+      "rely on the PRD; a bullet only the code backed was removed; the ADD ones are listed under \"ADD statements left out\"). build.py refuses "
+      "any plan quote that carries code.",
+      "- Folders (coordinator, 12 Nov 2026): WAIT-PO \"Waiting on Milos Vasic's answers\", BLK \"Blocked on the Open API release\", BLK-MR "
+      "\"Blocked on the Maintenance Reminders release\", PROD \"Run on Production After Release\".",
+      "", "| Case | What changed (Rule 134: the case was rebuilt whole) |", "|---|---|"]
+R += [f"| {k} | {'; '.join(v)} |" for k, v in ZB.BASELINE_CHANGES.items()]
+R += ["", "## Tech plan: DIVERGE items", "",
       "- D-1 (Create invoice rows per move or per account pair): S7-38 written and held on question 4; S7-12, S7-22 and S7-23 have one move each, where both readings agree, so they stay runnable.",
       "- D-2 (\"Closed\" in the Status filter only after first use): S2-106 written and held on question 5; S2-68 runs in a shop that uses the feature, where both agree.",
       "- D-3 (the message when a completion step fails inside Close): no runnable case depends on it (S3-53 is NO-MANUAL); not asked (skill 07 §6), reported here for the QA lead.",
@@ -249,6 +265,7 @@ R += ["", "## Reading coverage (Rule 119)", "",
       "- Round 2b: build.py adds the design gates (pictures exist, the design's words are on the case's boards, every open register row is closed "
       "by a sheet question or the named ruling, one case per design draft). Readiness: 0 hard; the sample read (D-72, S1-15, S5-05, S2-52, S3-33) "
       "and every \"does not / never\" result of the design cases (19) and of the rest (140 in all) read; each has its positive control in the same case.",
+      "- Round 2c: build.py adds the baseline-word gate and the code-in-plan-quote gate. Readiness re-run: 0 hard; the new sample and every \"does not / never\" result (145) read again.",
       "- `ticket_sweep.py`: 0 unhandled tickets, PRD 1.0 handled. `create.py` dry run: nothing written.", "",
       "## OUTSTANDING — what I need from you", "",
       "- **Before any TestRail write (Rule 6):** create the subsections of section 136701 listed in sections.json and put their ids there; then `create.py --apply` (it attaches the design pictures and reads each case back).",

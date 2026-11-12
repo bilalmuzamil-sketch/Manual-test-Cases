@@ -316,7 +316,7 @@ C('D-43', S, 'Design: Close window notes parts cost is not posted without invent
 C('D-44', S, 'Design: A failed close shows an alert that must be dismissed',
   ['Sign in as an Admin (a user with every setting, See Financial Data included).', 'Use a desktop browser window 1440 pixels wide at 100% zoom.', 'Have Internal Work Orders turned on in Settings > Work Orders.', 'Have a customer flagged as Internal customer, with one asset, and its default internal category left at General Internal.', 'Have a new internal work order for that customer with every line Complete, made for this test.', 'Open the attached picture iwo-flow1-25-s2-close-work-order-failed.png at 100% zoom beside the screen.'],
   ['Open the internal work order.', 'Click Close Work Order.', 'Click Close Work Order in the window.'],
-  [['The work order opens.'], ['The Close window opens.'], ['An alert toast "Could not close the work order. Try again." shows and stays until it is dismissed; the work order stays where it was.']],
+  [['The work order opens.'], ['The Close window opens.'], ['An alert toast "Could not close the work order. Try again." shows and stays until it is dismissed; the work order is not Closed.']],
   ['EH-S3-1'],
   marker='AUTOMATION: HOLD - a tester cannot set this up through the screens: Close has to fail, which only a developer can make happen',
   stories=[3])
@@ -523,7 +523,7 @@ C('D-71', S, 'Design: Edit Line shows the No Charge checkbox at the bottom',
 C('D-72', S, 'Design: Invoice shows the no-charge line at $0.00 with the category name',
   ['Sign in as an Admin (a user with every setting, See Financial Data included).', 'Use a desktop browser window 1440 pixels wide at 100% zoom.', 'Have Internal Work Orders turned on in Settings > Work Orders.', 'Have a regular customer (not flagged), with one asset.', 'Have a new billable work order for the regular customer, not invoiced, with two lines: each with 1.0 h of labor and one stock part with a cost, made for this test.', 'Mark the second line No Charge with the category Warranty.', 'Complete every line.', 'Open the attached pictures iwo-flow6-07-07-invoice-the-line-at-0-00-warranty.png, iwo-happy-35-35-invoice-the-line-at-0-00-warranty.png at 100% zoom beside the screen.'],
   ['Open the billable work order.', 'Click Create invoice.', 'Open the invoice preview on the Finance tab.'],
-  [['The work order opens.'], ['The invoice is created as today.'], ['The no-charge line shows its hours and parts at $0.00 with "Warranty" as a line under its title.', 'No stamp, no badge and no "No Charge" wording anywhere on the invoice.']],
+  [['The work order opens.'], ['The invoice is created and shows on the Finance tab.'], ['The no-charge line shows its hours and parts at $0.00 with "Warranty" as a line under its title.', 'No stamp, no badge and no "No Charge" wording anywhere on the invoice.']],
   ['S12-R7'],
   stories=[12])
 # DC-73
