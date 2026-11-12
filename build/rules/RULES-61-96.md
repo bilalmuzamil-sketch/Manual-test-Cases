@@ -2858,3 +2858,15 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     fresh read found S5-R18a, present since 23 Oct (v8, from his own QA sheet Q9): *"The Detail reports' Amount
     column holds original amounts and is not compared."* The finding had been written from an earlier reading.
     Ties to Rules 57, 58, 113 (quote the source), 121.5 (answer "Intended by the PRD?" from the current version).
+
+124. **LEARN FROM EVERY MISTAKE — AUTOMATICALLY, IN THE SAME TURN (all projects, permanent).** Ordered by the QA lead on
+    **2026-11-12**, verbatim: *"Learn from your mistakes so that you do not make similar mistakes. This learning pattern
+    should be automatic."*
+    **THE RULE:** the moment a mistake is found — by me, by the QA lead, by a reviewer or by the build — I (1) fix it,
+    (2) add an entry to `build/rules/MISTAKES-AND-CHECKS.md` (what happened · what it cost · why · **the check**),
+    (3) add the check as one line to `CLAUDE.md` §1B "Before you act", which loads at the start of every session, and
+    (4) report it to the QA lead under "What I got wrong". Steps 2 and 3 need no permission (this order is the
+    permission; it narrows Rule 72 for these two files only). Changing any OTHER rule or skill because of a mistake is
+    still proposed first (Rule 72).
+    **A mistake counts even when it was harmless or caught quickly** (a false alarm, a wrong number later corrected, a
+    stop that did not stop). Before acting, read §1B and apply every check that fits the task.

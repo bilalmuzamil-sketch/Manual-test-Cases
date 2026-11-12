@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122 and 123** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123 and 124** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -144,6 +144,23 @@ These are stated here **in full** because a session that gets only this far must
   Facts: `build/APP-ACTIONS-PLAYBOOK.md` §O.
 
 ---
+
+## 1B · 🔴 BEFORE YOU ACT — CHECKS FROM MISTAKES I ALREADY MADE (Rule 124, automatic)
+
+Every line below is a mistake that really happened. Apply each one that fits the task. **When a new mistake is found,
+in the same turn: fix it, add it to `build/rules/MISTAKES-AND-CHECKS.md`, add its line here, and tell the QA lead.**
+
+- **Scoped ids:** an id tied to a location / workplace / account / environment is read in the SAME scope as the call that uses it, never hard-coded. Two readings disagree ⇒ diff my two methods before blaming the system. (M11)
+- **Stops:** "stopped" only when `pgrep` finds nothing; restore files only after that. (M10)
+- **Re-runs:** ask "can this change move any pass/fail?" — if not, don't run; give the last-run date and ask (80). (M9)
+- **Records of what was sent** (posted payloads, push logs, before-images) are never edited; scope every bulk replace to listed files. (M8)
+- **Amounts:** confirm the unit (cents vs dollars) from a known row; quote amounts as the screen shows them. (M7)
+- **Before/after comparisons** cover EVERY column the case's Expected names; say which columns were compared; read the run's existing results before posting over them. (M6)
+- **The PRD:** fetch and search the current version before saying what it says or doesn't (123). (M5)
+- **Counting matches:** whole tokens only; eyeball one hit before reporting a number. (M4)
+- **Scripts across environments:** re-read every identifier and label for the environment; re-measure a FAIL by hand before it counts (111). (M3)
+- **Pictures:** open each one and confirm the claimed values are visible before using it. (M2)
+- **Tickets:** Rule 121's pre-filing gate, every time. (M1)
 
 ## 1A · 🔴 THE NAMED PROCESSES — the QA lead says the name, you run it
 
@@ -487,6 +504,10 @@ production after the release is a short confirmation. Name folders and TestRail 
 (end of `build/rules/RULES-61-96.md`): before any claim that the PRD covers, asks for or is silent on something, fetch the
 current version, search it for the behaviour's own words and quote what is found; "the PRD does not say" needs the same
 fresh read. It exists because a held question said the PRD did not define the Detail "Amount" column when S5-R18a did.
+
+**Rule 124 (learn from every mistake — automatically, in the same turn)** was ordered by the QA lead **2026-11-12**
+(end of `build/rules/RULES-61-96.md`): fix it, log it in `build/rules/MISTAKES-AND-CHECKS.md`, add its check to §1B above
+(loaded every session), and report it under "What I got wrong" — no permission needed for those two files.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
