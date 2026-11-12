@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121 and 122** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122 and 123** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -482,6 +482,11 @@ because SV-12546 was filed against a "do not file" list we had not read.
 QA lead **2026-11-12** (end of `build/rules/RULES-61-96.md`). Take the "before" snapshot on staging BEFORE the feature
 is migrated there (prove it has not landed; seed first), re-check after it lands, compare staging with staging only;
 production after the release is a short confirmation. Name folders and TestRail sections by environment and timing.
+
+**Rule 123 (read the PRD again before saying what it does or does not cover)** was ordered by the QA lead **2026-11-12**
+(end of `build/rules/RULES-61-96.md`): before any claim that the PRD covers, asks for or is silent on something, fetch the
+current version, search it for the behaviour's own words and quote what is found; "the PRD does not say" needs the same
+fresh read. It exists because a held question said the PRD did not define the Detail "Amount" column when S5-R18a did.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is

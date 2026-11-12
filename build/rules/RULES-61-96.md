@@ -2843,3 +2843,18 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
        Tool: `push_results_to_run.py --lead "Re-Ran on staging" --env "Staging"`.
     Worked example: A/R and A/P (SV-11315) — production snapshot 10 Nov 2026 kept; staging snapshot 12 Nov 2026 taken
     before the migration; TestRail section 133628 renamed from "Run on Production After Release".
+
+123. **READ THE PRD AGAIN BEFORE SAYING WHAT IT DOES OR DOES NOT COVER (all projects, permanent).** Ordered by the QA
+    lead on **2026-11-12**, verbatim: *"Always read the PRD again before referring to the PRD to tell whether PRD is
+    covering it or not"*.
+    **THE RULE:** before any statement about what the PRD says, asks for, allows, or is silent on — in chat, a held
+    question, a case, a ticket or a PO question — read the CURRENT PRD again (fetch its version first, Rule 31/59;
+    search it word by word for the behaviour's own terms: the column name, the label, the record type) and quote the
+    sentence found, with its version and requirement id. **"The PRD does not say" is a claim too** and needs the same
+    fresh read: say which version was searched and for which words. Never answer from memory, a summary, a handoff,
+    an earlier session's note or our own earlier write-up of the PRD (Rule 112).
+    **The mistake that produced it (2026-11-12):** a held question about the A/R Aging Detail "Amount" of a partly
+    used credit said "the PRD does not define the Detail Amount column", and that was repeated to the QA lead. A
+    fresh read found S5-R18a, present since 23 Oct (v8, from his own QA sheet Q9): *"The Detail reports' Amount
+    column holds original amounts and is not compared."* The finding had been written from an earlier reading.
+    Ties to Rules 57, 58, 113 (quote the source), 121.5 (answer "Intended by the PRD?" from the current version).
