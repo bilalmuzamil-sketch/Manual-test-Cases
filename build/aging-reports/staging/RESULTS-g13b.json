@@ -1,0 +1,56 @@
+{
+ "pass_meta": {
+  "note": "12 Nov 2026, run 557, g13: staging untouched A/R + A/P vs the copy saved before the release - re-posted with ticket SV-12663 (filed on the QA lead's yes)"
+ },
+ "results": {
+  "C715471": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 1, 2 and 3: 18 documents sit in a different aging column than before the release (and show a Past Due one day less), and each one disagrees with its own Due Date on the screen.",
+   "bold_steps": [
+    1,
+    2,
+    3
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), What changes for existing users: \"an untouched report shows exactly today's organization-wide numbers (apart from the Totals rows noted above)\"; S1-R5a: \"A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date\"",
+   "ticket": "Ticket SV-12663 https://shopview.atlassian.net/browse/SV-12663 (Open, filed 12 Nov 2026), Story Defect under SV-11531.",
+   "todo": "What needs to be done: nothing for the tester now. When SV-12663 reaches Ready for QA, re-run this test on staging against the same saved copy (as of 11/12/2026).",
+   "observed": [
+    "Set up: staging (build v26.45.4-b8c04e2), Admin, browser on Pakistan time, signed in at \"Staging Heavy Duty - 9919\" (Pakistan time); each report opened untouched as of 11/12/2026 and compared row by row with the copy of the old reports saved the same morning, as of 11/12/2026.",
+    "Step 2: A/R Detail shows Tucson Truck Center's invoice S3-17147 with Due Date \"Sep 12, 2026\" under \"31-60 days past due\". Sep 12 to Nov 12 is 61 days, and before the release it was under \"61-90 days past due\".",
+    "Step 2: E2E Credits Customer's invoice P3-2458 shows Due Date \"Nov 11, 2026\" under \"Current\". It is a day past due, and before the release it was under \"1-30 days past due\". 18 documents moved this way, all one column younger.",
+    "Step 3: A/R Collection shows S3-17147 with Due Date \"Sep 12, 2026\" and Past Due 60 (61 by the date shown; 61 before the release).",
+    "Step 1: so A/R Summary carries these amounts in a different column for 4 customers: E2E Credits Customer, E2E COD Customer, Desert Edge Truck Service & Repair and Tucson Truck Center.",
+    "Why: the report counts each document's day in the signed-in location's time zone (Pakistan time) but shows Date and Due Date in Greenwich time, so for a document dated late in the Greenwich evening the column and Past Due are counted from the next day. Every document on the report follows that pattern; the old report used Greenwich time for both.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715471-s2k-03-ev-tucson.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715471-s2k-02-ev-e2e.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715471-s4-01-arc-tucson.png"
+   ]
+  },
+  "C715472": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 2 and 3: 1,255 bills show a Past Due one day different from before the release, and each one disagrees with its own Due Date on the screen.",
+   "bold_steps": [
+    2,
+    3
+   ],
+   "source": "PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 11, 5 Nov 2026), What changes for existing users: \"an untouched report shows exactly today's organization-wide numbers (apart from the Totals rows noted above)\"; S1-R5a: \"A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date\"",
+   "ticket": "Ticket SV-12663 https://shopview.atlassian.net/browse/SV-12663 (Open, filed 12 Nov 2026), Story Defect under SV-11531.",
+   "todo": "What needs to be done: nothing for the tester now. When SV-12663 reaches Ready for QA, re-run this test on staging against the same saved copy (as of 11/12/2026).",
+   "observed": [
+    "Set up: staging (build v26.45.4-b8c04e2), Admin, browser on Pakistan time, signed in at \"Staging Heavy Duty - 9919\" (Pakistan time); each report opened untouched as of 11/12/2026 and compared row by row with the copy of the old reports saved the same morning, as of 11/12/2026.",
+    "Step 2: A/P Detail shows ZZSOFTHIP Traders' bill ZZSH-O_TYPO with Due Date \"Nov 1, 2026\" and Past Due 10. Nov 1 to Nov 12 is 11 days, and before the release it read 11.",
+    "Step 3: A/P Unpaid Invoices shows the same bill with Due Date \"Nov 1, 2026\" and Past Due 10.",
+    "Step 2: 1,255 bills changed this way (no bill changed column). A further 357 bills not yet due now read one day further below zero (for example -9 instead of -8); the PRD asks for exactly that, so they are not part of this failure.",
+    "Why: the report counts each document's day in the signed-in location's time zone (Pakistan time) but shows Date and Due Date in Greenwich time, so for a document dated late in the Greenwich evening the column and Past Due are counted from the next day. Every document on the report follows that pattern; the old report used Greenwich time for both.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715472-s4-02-apd-softhip.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715472-s4-03-apu-softhip.png"
+   ]
+  }
+ }
+}

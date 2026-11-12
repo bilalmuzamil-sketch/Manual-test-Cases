@@ -15,3 +15,5 @@ https://claude.ai/artifact/E6MSrJDofWwCjyYii6tKTg (Dashboard type; private to th
 - 12 Nov 2026 14:45 UTC: after the staging run — 467 tests: 462 Passed · 4 Failed · 1 Blocked · 0 Not yet run (dataset v6 →
   aging-run-results-2026-11-12c.csv, page v13). New finding card (days counted from a different day than the date shown; ticket held),
   PDF card now green (staging), "what is left" updated. Data rebuilt with `build_csv.py <previous.csv> <out.csv>` (live, paged, current folders).
+- 12 Nov 2026 16:15 UTC: 467 tests: 463 Passed · 4 Failed · 0 Blocked (dataset v7 → aging-run-results-2026-11-12d.csv, page v14). SV-12663 named
+  on the day-count card; the production card removed (C715462 passed on staging by another session); "what is left" = re-runs after SV-12663 / SV-12545.

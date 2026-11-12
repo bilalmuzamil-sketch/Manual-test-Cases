@@ -1,0 +1,51 @@
+h2. Description
+
+*What the PRD requires:*
+{quote}A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date: negative while the document is not yet due (a bill due 9 days after the as-of date reads -9, as today) and 0 on its due date.{quote}
+
+*What happens instead:*
+The aging column and the *Past Due* of a document are counted from a *different day* than the *Due Date* the report shows. The reports count the days in the time zone of the location the user is signed in at, but show *Date* and *Due Date* as the day in Greenwich time (UTC). So any document whose time of day falls on a different calendar day in those two zones is counted one day off from its own Due Date on screen.
+
+For example, signed in at a location on Pakistan time, as of Nov 12, 2026:
+* an invoice showing Due Date *Sep 12, 2026* (61 days earlier) sits under *31-60 days past due*;
+* an invoice showing Due Date *Nov 11, 2026* sits under *Current*, although it is a day past due;
+* a bill showing Due Date *Nov 1, 2026* reads Past Due *10*, although it is 11 days late.
+
+The same documents were in the column that matches their Due Date before this release. Compared with the reports saved on staging the same morning (before the release, same as-of date), 18 A/R documents moved one column younger and 1,255 A/P bills show a Past Due one day different. All amounts and all other rows are unchanged.
+
+h2. Steps to Reproduce
+
+# Sign in to staging at *Staging Heavy Duty - 9919* (Time zone: Asia/Karachi). Open *Reports* → *A/R Aging Detail*, *As of* today.
+# In *Customer:* tick only *Tucson Truck Center* and open *31-60 days past due*.
+#* *Actual Result:* invoice *S3-17147* shows Due Date *Sep 12, 2026* under *31-60 days past due*.
+#* *Expected Result:* Sep 12 is 61 days before Nov 12, so S3-17147 is under *61-90 days past due*.
+# Open *A/R Aging Collection*, tick only *Tucson Truck Center* and open the customer.
+#* *Actual Result:* S3-17147 shows Due Date *Sep 12, 2026* and Past Due *60*.
+#* *Expected Result:* Past Due *61*.
+# Open *A/P Aging Detail*, tick only vendor *ZZSOFTHIP Traders* and open *1-30 days past due*.
+#* *Actual Result:* bill *ZZSH-O_TYPO* shows Due Date *Nov 1, 2026* and Past Due *10*.
+#* *Expected Result:* Past Due *11*.
+
+h2. Screenshots
+
+!PIC1-ar-detail.png|width=760!
+
+!PIC2-ap-detail.png|width=760!
+
+
+h2. Environment
+
+Staging [https://app.staging.shopview.com] (build v26.45.4-b8c04e2), signed in at *Staging Heavy Duty - 9919* (Asia/Karachi), as of Nov 12, 2026.
+Records: [A/R Aging Detail|https://app.staging.shopview.com/reports/ar-aging-detail] · [A/R Aging Collection|https://app.staging.shopview.com/reports/ar-aging-collection] · [A/P Aging Detail|https://app.staging.shopview.com/reports/ap-aging-detail]
+
+
+h2. Sources
+
+* *PRD "A/R and A/P Report Sorting, Export and Location Filter"* (Confluence page 947650561, version 12, 12 Nov 2026), [link|https://shopview.atlassian.net/wiki/spaces/~/pages/947650561], *S1-R5a*:
+{quote}A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date: negative while the document is not yet due (a bill due 9 days after the as-of date reads -9, as today) and 0 on its due date. A credit memo, deposit or vendor credit counts its own date as its due date, so one dated exactly on the as-of date is in Current with Past Due 0, not in "1-30 days past due". This is how QuickBooks ages them (SV-11441).{quote}
+* Same PRD, *What changes for existing users*:
+{quote}Which rows and amounts each user can see is unchanged: an untouched report shows exactly today's organization-wide numbers (apart from the Totals rows noted above), and the reports show money exactly as they do today.{quote}
+
+h2. Test case
+
+[https://shopview.testrail.io/index.php?/cases/view/715471] · [https://shopview.testrail.io/index.php?/cases/view/715472]

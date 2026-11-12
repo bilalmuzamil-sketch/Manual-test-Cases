@@ -7,7 +7,7 @@ export const APP = 'https://app.staging.shopview.com', API = 'https://api.stagin
 export async function stgStart(OUT, { width = 1440, height = 900 } = {}) {
   fs.mkdirSync(OUT, { recursive: true }); const PORT = fs.readFileSync('/tmp/atlassian/bridge-port.txt', 'utf8').trim(); const c = JSON.parse(fs.readFileSync('/tmp/qa-cookies/staging-full.json', 'utf8'));
   const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', headless: true, proxy: { server: `http://127.0.0.1:${PORT}` }, args: ['--no-sandbox', '--ignore-certificate-errors'] });
-  const ctx = await browser.newContext({ viewport: { width, height }, deviceScaleFactor: 1, timezoneId: process.env.BROWSER_TZ || 'Asia/Karachi', /* Rule 125: the QA lead's browser zone; 12 Nov: shown dates follow the browser zone */  ignoreHTTPSErrors: true, acceptDownloads: true }); const ck = [];
+  const ctx = await browser.newContext({ viewport: { width, height }, deviceScaleFactor: Number(process.env.STG_DPR || 1), timezoneId: process.env.BROWSER_TZ || 'Asia/Karachi', /* Rule 125: the QA lead's browser zone; 12 Nov: shown dates follow the browser zone */  ignoreHTTPSErrors: true, acceptDownloads: true }); const ck = [];
   for (const domain of ['app.staging.shopview.com', 'api.staging.shopview.com']) for (const [name, value] of Object.entries(c)) ck.push({ name, value, domain, path: '/', secure: true, sameSite: 'None' });
   await ctx.addCookies(ck);
   const blocked = []; await ctx.route(/\/api\/(auth\/)?(login|logout|quick-login|iam\/change-location|iam\/logout)/i, (r) => { blocked.push(r.request().url()); return r.abort(); });
@@ -17,7 +17,7 @@ export async function stgStart(OUT, { width = 1440, height = 900 } = {}) {
      profile / workplaces / permissions (the shape session 5 recorded, facts only) so no sign-in is ever made */
   const pr = await api('/api/iam/view-profile/'), wp = await api('/api/staff/my-workplaces'), fp = await api('/api/auth/me/fe-permissions');
   if (pr.st !== 200 || fp.st !== 200) throw new Error('staging session not valid: profile ' + pr.st + ' perms ' + fp.st);
-  const u = pr.j.data.user, wl = wp.j?.data?.collection || [], fd = fp.j.data; const dw = wl.find((x) => x.is_default) || wl.find((x) => x.name === 'Staging Heavy Duty - 9919') || wl[0];
+  const u = pr.j.data.user, wl = wp.j?.data?.collection || [], fd = fp.j.data; const dw = (process.env.STG_LOC && wl.find((x) => x.name === process.env.STG_LOC)) || wl.find((x) => x.is_default) || wl.find((x) => x.name === 'Staging Heavy Duty - 9919') || wl[0]; /* 12 Nov: STG_LOC picks the location THIS test browser views from (x-location-id header only; the QA lead's session is not changed) */
   const login = { role: { id: u.role_id, fePermissions: fd.fe_permissions, name: 'Admin', description: '', isDefault: true, isDeletable: false, isEditable: true },
     details: { user_id: null, intercom_data: {}, name: u.first_name + ' ' + u.last_name, email: u.email, avatar_url: null, default_workplace: dw.id, workplace_timezone: dw.timezone, staff_id: null, clockable: false, created_on: null, bookkeeping_enabled: true, last_page_visited: null } };
   await ctx.addInitScript(([lg, perms, loc]) => { try { localStorage.setItem('user', JSON.stringify({ data: lg })); localStorage.setItem('fe_permissions_wrapper', JSON.stringify(perms)); if (!localStorage.getItem('location')) localStorage.setItem('location', JSON.stringify(loc)); } catch (e) {} }, [login, fd, dw.id]);

@@ -1,0 +1,28 @@
+{
+ "status": "FILED 12 Nov 2026 ~16:05 UTC as SV-12663 (Open) on the QA lead's own answer 'A, file it if this is a genuine defect, make sure it does not bite me'; read back: Story Defect, parent SV-11531, Medium, labels AP-AR-FM + QA_Found, Relates SV-11531 + SV-11441, 2 inline pictures 1802x984 full width, 0 blob:, no literal markup.",
+ "summary": "Aging Reports \u2013 Past Due Counted From a Different Day Than the Due Date Shown",
+ "parent": "SV-11531",
+ "parent_status_live": "Merged to Staging (read 12 Nov 2026; QA lead approved filing knowing this)",
+ "priority": "Medium",
+ "labels": [
+  "QA_Found",
+  "AP-AR-FM"
+ ],
+ "relates_to": [
+  "SV-11531",
+  "SV-11441"
+ ],
+ "rule140": {
+  "latest_source": "PRD v12 (12 Nov 2026, Milos Vasic) re-read 12 Nov: S1-R5a + invariance unchanged, no time-zone text",
+  "accepted_as_built": "no (SV-11441 handoff: 'calendar days at the location'; build counts on the SESSION location and shows the Greenwich day)",
+  "our_setup": "session zone Asia/Karachi is a supported setting; display/count mismatch is on-screen; North American session NOT observed (switching the QA lead's session refused) - open gap stated",
+  "caused_by_release": "old report used Greenwich for both (14,662/14,663)",
+  "duplicate": "none (JQL 12 Nov)",
+  "tolerance": "none"
+ },
+ "tests": {
+  "run": "https://shopview.testrail.io/index.php?/runs/view/557",
+  "C715471": "https://shopview.testrail.io/index.php?/tests/view/4563616",
+  "C715472": "https://shopview.testrail.io/index.php?/tests/view/4563617"
+ }
+}

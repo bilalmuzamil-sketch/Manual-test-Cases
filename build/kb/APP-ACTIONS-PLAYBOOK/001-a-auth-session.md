@@ -561,3 +561,5 @@
   whole session and never recovered** — useful confirmation, but the three-part signature is what
   settles it, and a probe that never recovers is not by itself proof of cause.
 
+
+- **(12 Nov 2026, QA lead — "Remember that always") A feature's QA site (`sv<ticket>.qa.shopview.com`) is AUTO-DESTROYED once the feature is deployed to staging.** After that, a dead sign-in / missing "Admin" button there means the site is gone: do not ask for a new QA sign-in; run the remaining checks on staging (then production after the release). L0703.

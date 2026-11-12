@@ -2,7 +2,7 @@
 // A/R Collection "Tucson Truck Center" (S3-17147, shown due Sep 12 -> 61 days by the shown date), A/P Detail "ZZSOFTHIP Traders" bucket 1-30
 // (ZZSH-O_TYPO, shown due Nov 1 -> 11 days), A/P Unpaid Invoices "ZZSOFTHIP Traders". Output s4/out.json + pictures.
 import { stgStart } from './stglib.mjs'; import { mkFilt } from '../exec/filt.mjs'; import { mkSort } from '../exec/sortlib.mjs'; import fs from 'fs';
-const OUT = new URL('./s4/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await stgStart(OUT); const p = s.page; const F = mkFilt(p); const S = mkSort(p); const o = {};
+const OUT = new URL('./' + (process.env.OUT_SUB || 's4') + '/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await stgStart(OUT); const p = s.page; const F = mkFilt(p); const S = mkSort(p); const o = {};
 const rows = () => p.evaluate(() => [...document.querySelectorAll('main tbody tr')].map((tr) => tr.innerText.replace(/\s+/g, ' ').trim()).filter(Boolean));
 const box = (src) => p.evaluate((src) => { const tr = [...document.querySelectorAll('main tbody tr')].find((t) => t.innerText.includes(src)); if (!tr) return null; tr.scrollIntoView({ block: 'center' }); const r = tr.getBoundingClientRect(); return [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)]; }, src);
 const heads = () => p.evaluate(() => [...document.querySelectorAll('main thead th')].map((t) => t.innerText.replace(/\s+/g, ' ').trim()));

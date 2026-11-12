@@ -1,4 +1,6 @@
-# HELD — not filed (Rules 62/113/140: ask the QA lead per ticket)
+# FILED 12 Nov 2026 as SV-12663 (https://shopview.atlassian.net/browse/SV-12663) — final text in defects/08-past-due-counted-from-a-different-day/description.wiki
+
+(earlier held draft below, kept for the record)
 
 **Type** Story Defect · **Parent** SV-11531 (Story 1 — Reports open in QuickBooks name order; Merged to Staging, read 12 Nov 2026) · **relates to** SV-11441 (credit dated on the as-of day; Merged to Staging) · **Priority** Medium · **Label** AP-AR-FM
 
