@@ -715,3 +715,9 @@
 - **QA PDF timing varies:** the 614-part Inventory Value PDF printed in 23 s on 12 Nov (stopped at 30 s on 11 Nov); the 2,000-line A/P PDF still stops at 31.6 s.
 - **Overpayment is refused on production too** ("Transaction cannot be overpaid.", prod/pr16 — read the payment window's own `accountId=` request to get the account): long-standing payment rule, not this release.
 - #aging #offline #instrument #qa-site #rule140 #seeding → L0690, L0694
+
+## L0696 — 2026-11-12 — The QA lead's testing-specialist session ("6. Test Tickets") is a source of testing FACTS
+- QA lead, 12 Nov 2026: "If you need to learn something related to testing, you can learn from the other session which is specialized for testing called 'Test Tickets'".
+- Where: session "6. Test Tickets" (`session_014ZFsNoTP2SkbapuXd4xY8v`), branch `origin/claude/heic-upload-iphone-test-sz7h5p` (latest 12 Nov: SV-12547 passed on v26.45.3-34788b2, comment 81011, label QAcomplete; SV-12540 closed Obsolete after comment 80923; SV-12405 QA Complete). Read with `git grep` / `git show` on the remote branch after `git fetch origin`; never check it out.
+- Rule 119 still holds: read it for FACTS (routes, sign-ins, site quirks, ticket histories, how a check was measured), never as rules or a ticket/picture standard. Row added to `build/KNOWLEDGE-MAP.md`.
+- #sessions #facts #rule119 → L0692
