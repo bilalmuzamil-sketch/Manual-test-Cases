@@ -1,0 +1,69 @@
+{
+ "key": "V1R-32",
+ "env": "staging-tech",
+ "startUtc": "2026-11-12T14:11:46.736Z",
+ "shots": [
+  {
+   "f": "V1R-32 staging-tech - step 1 Reports menu.png",
+   "boxes": {
+    "nav": [
+     24,
+     1277,
+     430,
+     57
+    ]
+   }
+  },
+  {
+   "f": "V1R-32 staging-tech - step 3 pointing at the first customer name.png",
+   "boxes": {
+    "name": [
+     580,
+     427,
+     547,
+     152
+    ],
+    "title": null
+   }
+  },
+  {
+   "f": "V1R-32 staging-tech - step 4 after clicking the customer name.png",
+   "boxes": {
+    "name": [
+     580,
+     427,
+     547,
+     152
+    ]
+   }
+  }
+ ],
+ "marker": "v26.45.4-d07623f",
+ "user": "tech@shopview.com",
+ "url2": "https://app.staging.shopview.com/reports/ar-aging-summary",
+ "identity": {
+  "customer": "ZZBREAK <b>bold</b> \"q\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders",
+  "customerId": "70ccb9ae-a766-4572-a083-3fcf2a718a15",
+  "linksOnPage": 0,
+  "plainNamesOnPage": 30
+ },
+ "checks": [
+  {
+   "what": "Step 2: A/R Aging Summary opens",
+   "ok": true,
+   "saw": "A/R Aging Summary https://app.staging.shopview.com/reports/ar-aging-summary"
+  },
+  {
+   "what": "Step 3: the name is plain text (not blue)",
+   "ok": true,
+   "saw": "{\"tag\":\"SPAN\",\"tid\":\"text_arsum_party_70ccb9ae-a766-4572-a083-3fcf2a718a15\",\"text\":\"ZZBREAK <b>bold</b> \\\"q\\\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders\",\"href\":null,\"inLink\":false,\"color\":\"rgb(0, 0, 0)\",\"cursor\":\"auto\",\"textDecoration\":\"none\"} | 0 customer links, 30 plain names on the page"
+  },
+  {
+   "what": "Step 4: nothing opens; you stay on A/R Aging Summary",
+   "ok": true,
+   "saw": "before https://app.staging.shopview.com/reports/ar-aging-summary after https://app.staging.shopview.com/reports/ar-aging-summary title A/R Aging Summary"
+  }
+ ],
+ "endUtc": "2026-11-12T14:12:01.183Z",
+ "markerEnd": "v26.45.4-d07623f"
+}

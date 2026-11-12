@@ -45,15 +45,19 @@ C['V1R-53'] = async (page, app, R) => {
   R.identity = { vendor: info && info.text, vendorId: tid && tid.split('_').pop(), linksOnPage: nLinks, plainNamesOnPage: nPlain, firstRowsAfter: rowsTxt };
   R.checks = [chk('Step 2: A/P Aging Summary opens', t === 'A/P Aging Summary', t),
     chk('Step 3: the first vendor name is a link that can be clicked', info && (info.tag === 'A' || info.inLink), JSON.stringify(info) + ` | ${nLinks} vendor links, ${nPlain} plain names`),
-    chk('Step 4: A/P Unpaid Invoices opens narrowed to that vendor', t2 === 'A/P Unpaid Invoices' && chipV && info && chipV.includes(info.text), `title "${t2}", Vendor chip "${chipV}", address ${u}`)];
+    (() => { const vid = tid && tid.split('_').pop(); const chipName = (chipV || '').replace(/^.*Vendor:\s*/, '').replace(/(\.\.\.|\u2026)\s*$/, '').trim(); const okT = /^A\/P Unpaid Invoices( Report)?$/.test(t2); const okC = !!(chipName && info && info.text.startsWith(chipName)); const okU = !!(vid && u.includes('vendorIds=' + vid)); return chk('Step 4: A/P Unpaid Invoices opens narrowed to that vendor (page title "A/P Unpaid Invoices Report"; the chip shows the vendor name, shortened to fit; the address carries that vendor)', okT && okC && okU, `title "${t2}" ok=${okT}; Vendor chip "${chipV}" ok=${okC}; address ${u} ok=${okU}`); })()];
 };
 C['V1R-87'] = async (page, app, R) => {
   const NB = 'ZZAUTOTEST AR R03 Location B', NA = 'ZZAUTOTEST AR R13 Payment After', NC = 'ZZAUTOTEST AR V1R-87 Location C';
-  await lib.reportsHome(page, app); await lib.nav(page, 'A/R Aging Detail'); const t = await lib.title(page);
-  const opened = await lib.openAll(page); const rs = await lib.rows(page);
-  const docs = rs.filter((r) => r.cells && r.cells.type);
-  const pick = (n, num) => docs.find((d) => d.text.includes(n) && (!num || d.text.includes(num)));
-  const B = pick(NB, '17835'), A = pick(NA, '17834'), Cc = pick(NC);
+  // 12 Nov 2026 fix: staging numbers differ from QA's (the old pick used QA's S11315-17835/17834), and the new report
+  // loads each bucket 100 lines at a time, so the three invoices are found by narrowing to each customer in turn
+  // (each of these three customers holds exactly one open invoice). Only how the harness FINDS the rows changed.
+  let t = '', opened = 0, docs = [];
+  const narrow = async (n) => { await lib.reportsHome(page, app); await lib.nav(page, 'A/R Aging Detail'); t = t || await lib.title(page);
+    const pk = await lib.pickParty(page, 'customerIds', n); opened += await lib.openAll(page); const d = (await lib.rows(page)).filter((r) => r.cells && r.cells.type); docs = docs.concat(d);
+    return { pk, row: d.find((x) => x.text.includes(n)) }; };
+  const rs = [];
+  let nb = await narrow(NB); const B = nb.row; let A = null, Cc = null;
   fs.writeFileSync(path.join(OUT, `${KEY} ${ENVN} - rows.json`), JSON.stringify({ count: docs.length, B, A, C: Cc, buckets: rs.filter((r) => /_toggle_|_row_(days|current)/.test(r.tid)).map((r) => r.text.slice(0, 60)) }, null, 1));
   R.identity = { lines: docs.length, bucketsOpened: opened, B: B && { text: B.text.slice(0, 160), link: B.link }, A: A && { text: A.text.slice(0, 160), link: A.link }, C: Cc && { text: Cc.text.slice(0, 160), link: Cc.link, plain: Cc.plain } };
   // step 4-6: location B invoice -> prompt -> Cancel
@@ -70,6 +74,7 @@ C['V1R-87'] = async (page, app, R) => {
   }
   // step 7: point at the location C invoice ID
   let c7 = null;
+  Cc = (await narrow(NC)).row;
   if (Cc) {
     const sel = Cc.link ? `[data-test-id="${Cc.link.tid}"]` : null;
     const plainSel = await page.evaluate((n) => { const tr = [...document.querySelectorAll('tr[data-test-id]')].find((r) => r.innerText.includes(n) && r.querySelector('[data-test-id$="_cell_type"], [data-test-id*="_cell_"]'));
@@ -81,12 +86,14 @@ C['V1R-87'] = async (page, app, R) => {
   }
   // step 8: location A invoice opens directly
   let u8 = '';
+  A = (await narrow(NA)).row;
   if (A && A.link) { await page.locator(`[data-test-id="${A.link.tid}"]`).scrollIntoViewIfNeeded(); await sleep(400);
     R.shots.push({ f: await shot(page, 'step 8 location A invoice before click'), boxes: { a: await box(page, `[data-test-id="${A.link.tid}"]`) } });
     await page.click(`[data-test-id="${A.link.tid}"]`); await lib.settle(page, 3000); u8 = page.url();
     R.shots.push({ f: await shot(page, 'step 8 location A invoice opened'), boxes: {} }); }
+  R.identity = { lines: docs.length, bucketsOpened: opened, B: B && { text: B.text.slice(0, 160), link: B.link }, A: A && { text: A.text.slice(0, 160), link: A.link }, C: Cc && { text: Cc.text.slice(0, 160), link: Cc.link, plain: Cc.plain } };
   R.checks = [chk('Step 2: A/R Aging Detail opens', t === 'A/R Aging Detail', t),
-    chk('Step 3: every bucket opened; the three invoices are listed', B && A && Cc, `${docs.length} lines; B ${!!B}, A ${!!A}, C ${!!Cc}`),
+    chk('Step 3: every bucket opened; the three invoices are listed (report narrowed to each customer in turn)', B && A && Cc, `${docs.length} lines; B ${!!B}, A ${!!A}, C ${!!Cc}`),
     chk('Step 5 (PRD S7-R3): "Switch location?" with "This work order is in Staging Lethbridge - 4310. Switch your active location to view it?", Cancel left, Switch location right, close ×', /Switch location\?/.test(dlg) && dlg.includes('This work order is in Staging Lethbridge - 4310. Switch your active location to view it?') && btns.indexOf('Cancel') > -1 && btns.indexOf('Cancel') < btns.indexOf('Switch location'), `${dlg} | buttons ${JSON.stringify(btns)}`),
     chk('Step 6: you stay on the report', t6 === 'A/R Aging Detail', `${t6} ${u6}`),
     chk('Step 7 (PRD S7-R1): the location C invoice ID is plain text', c7 && !c7.inLink && c7.tag !== 'A', JSON.stringify(c7)),

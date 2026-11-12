@@ -1,0 +1,34 @@
+{
+ "key": "V1R-53",
+ "env": "staging-tech",
+ "user": "tech@shopview.com",
+ "marker": "v26.45.4-d07623f",
+ "markerEnd": "v26.45.4-d07623f",
+ "identity": {
+  "vendor": "123 Cannabis Forestlawn",
+  "vendorId": "68c72fe7-8fbe-4795-85aa-7e91fbb54c7e",
+  "linksOnPage": 30,
+  "plainNamesOnPage": 0,
+  "firstRowsAfter": [
+   "keyboard_arrow_right 123 Cannabis Forestlawn (43) Total $2,614.51 $2,614.51",
+   "Totals $2,614.51 $2,614.51"
+  ]
+ },
+ "checks": [
+  {
+   "what": "Step 2: A/P Aging Summary opens",
+   "ok": true,
+   "saw": "A/P Aging Summary"
+  },
+  {
+   "what": "Step 3: the first vendor name is a link that can be clicked",
+   "ok": true,
+   "saw": "{\"tag\":\"A\",\"tid\":\"link_apsum_party_68c72fe7-8fbe-4795-85aa-7e91fbb54c7e\",\"text\":\"123 Cannabis Forestlawn\",\"href\":\"/reports/ap-unpaid-invoices?asOfDate=2026-11-12&vendorIds=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e\",\"inLink\":true,\"color\":\"rgb(34, 118, 218)\",\"cursor\":\"pointer\",\"textDecoration\":\"none\"} | 30 vendor links, 0 plain names"
+  },
+  {
+   "what": "Step 4: A/P Unpaid Invoices opens narrowed to that vendor (page title \"A/P Unpaid Invoices Report\"; the chip shows the vendor name, shortened to fit; the address carries that vendor)",
+   "ok": true,
+   "saw": "title \"A/P Unpaid Invoices Report\" ok=true; Vendor chip \"local_shipping Vendor: 123 Cannabis Fo...\" ok=true; address https://app.staging.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-11-12&vendorIds=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e ok=true"
+  }
+ ]
+}

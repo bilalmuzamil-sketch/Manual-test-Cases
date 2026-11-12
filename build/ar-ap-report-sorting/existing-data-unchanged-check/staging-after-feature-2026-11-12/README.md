@@ -27,3 +27,12 @@ The "after" half of the staging check (Rule 122). Compare with `../staging-befor
 | C715477 work order link | Passed | prompt names Staging Lethbridge - 4310; Cancel → "Switch cancelled. Returning to work orders." |
 | C715479 left-out ideas | Passed | none of the listed items present |
 | C715462 overpaid totals | Passed | as of 11/11/2026: row $500.00 = Totals $500.00 |
+
+## Correction — C715472, 12 Nov 2026 (after 14:15 UTC)
+
+My 14:10 UTC "Blocked" result on C715472 compared rows, columns and amounts only, and **missed the Past Due column**.
+Another run had already posted "Failed" at 13:24 UTC (build b8c04e2): bills show a Past Due one day less. Measured
+again on the current build (v26.45.4-d07623f) from the same saved data (`C715472-correction/measure_past_due.py`):
+**1,149 past-due bills read one day less**, 357 not-yet-due read one day further below zero, 107 two days. Result
+617129 (Failed, Defects SV-11531, SV-11441 — the owning stories; no defect ticket, held) now replaces my Blocked one.
+It is the same time-zone pattern as `held-defect-drafts/DRAFT-1-...` (A/R side, C715471, already Failed by the other run).

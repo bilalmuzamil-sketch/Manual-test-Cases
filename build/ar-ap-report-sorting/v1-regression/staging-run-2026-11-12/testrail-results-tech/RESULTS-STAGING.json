@@ -1,0 +1,67 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build_marker": "v26.45.4-d07623f",
+  "utc_days": [
+   "2026-11-12"
+  ],
+  "built_utc": "2026-11-12T14:17:48Z",
+  "not_emitted": {
+   "needs_review": [],
+   "harness_errors": [],
+   "held_developer_data": [],
+   "skipped_deleted": []
+  }
+ },
+ "results": {
+  "C1079005": {
+   "observed": [
+    "Signed in as tech@shopview.com with the test role \"ZZAUTOTEST V1R-32 Reports on Customers View off\" (Reports on, \"Customers View\" off). The role was put back to Technician afterwards.",
+    "Step 2: A/R Aging Summary opened.",
+    "Step 3: the first customer name (\"ZZBREAK <b>bold</b> \u2026\") is plain black text, not a blue link; none of the 30 customer names on the page was a link.",
+    "Step 4: clicking the name did nothing - the page stayed on A/R Aging Summary (same address before and after)."
+   ],
+   "note": "run-staging.json 2026-11-12T14:11:46.736Z..2026-11-12T14:12:01.183Z, build v26.45.4-d07623f",
+   "verdict": "Passed",
+   "pictures": [
+    "../../staging-run-2026-11-12/testrail-results-tech/pics/C1079005-1-v1r-32-staging-tech-step-1-reports-menu.png",
+    "../../staging-run-2026-11-12/testrail-results-tech/pics/C1079005-2-v1r-32-staging-tech-step-3-pointing-at-the-first-customer-na.png",
+    "../../staging-run-2026-11-12/testrail-results-tech/pics/C1079005-3-v1r-32-staging-tech-step-4-after-clicking-the-customer-name.png"
+   ]
+  },
+  "C1079026": {
+   "observed": [
+    "Signed in as tech@shopview.com with the test role \"ZZAUTOTEST V1R-53 Reports page access only\" (no extra permission). The role was put back to Technician afterwards.",
+    "Step 2: A/P Aging Summary opened.",
+    "Step 3: the first vendor name, \"123 Cannabis Forestlawn\", is a blue link (all 30 vendor names on the page were links).",
+    "Step 4: clicking it opened \"A/P Unpaid Invoices Report\" narrowed to that vendor: the Vendor chip reads \"Vendor: 123 Cannabis Fo...\" (the name is shortened to fit) and only 123 Cannabis Forestlawn's invoices are listed."
+   ],
+   "note": "run-staging.json 2026-11-12T14:14:28.315Z..2026-11-12T14:14:42.612Z, build v26.45.4-d07623f",
+   "verdict": "Passed",
+   "pictures": [
+    "../../staging-run-2026-11-12/testrail-results-tech/pics/C1079026-1-v1r-53-staging-tech-step-1-reports-menu.png",
+    "../../staging-run-2026-11-12/testrail-results-tech/pics/C1079026-2-v1r-53-staging-tech-step-3-the-first-vendor-name.png",
+    "../../staging-run-2026-11-12/testrail-results-tech/pics/C1079026-3-v1r-53-staging-tech-step-4-page-title-and-vendor-chip.png"
+   ]
+  },
+  "C1095443": {
+   "observed": [
+    "Signed in as tech@shopview.com with the Admin role, active location Staging Heavy Duty - 9919 (location A); the role was put back to Technician afterwards.",
+    "Step 3: after opening the buckets, the three test invoices are listed: S3-40035 (ZZAUTOTEST AR R03 Location B, at Staging Lethbridge - 4310), S2-40052 (ZZAUTOTEST AR R13 Payment After, at Staging Heavy Duty - 9919) and S2-40099 (ZZAUTOTEST AR V1R-87 Location C). To find them among the report's thousands of lines, the report was narrowed to each of the three customers in turn.",
+    "Step 5: clicking S3-40035 showed \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", \"Cancel\" on the left, \"Switch location\" on the right and a close \u00d7 at the top right.",
+    "Step 6: after \"Cancel\" the page stayed on A/R Aging Detail.",
+    "Step 7: the location C invoice ID S2-40099 is plain black text, not a link.",
+    "Step 8: clicking S2-40052 opened that work order's finance page straight away, with no prompt."
+   ],
+   "note": "run-staging.json 2026-11-12T14:14:46.595Z..2026-11-12T14:15:35.066Z, build v26.45.4-d07623f",
+   "verdict": "Passed",
+   "pictures": [
+    "../../staging-run-2026-11-12/testrail-results-tech/pics/C1095443-1-v1r-87-staging-tech-step-3-location-b-invoice-listed.png",
+    "../../staging-run-2026-11-12/testrail-results-tech/pics/C1095443-2-v1r-87-staging-tech-step-5-switch-location-prompt.png",
+    "../../staging-run-2026-11-12/testrail-results-tech/pics/C1095443-3-v1r-87-staging-tech-step-7-pointing-at-the-location-c-invoic.png",
+    "../../staging-run-2026-11-12/testrail-results-tech/pics/C1095443-4-v1r-87-staging-tech-step-8-location-a-invoice-before-click.png",
+    "../../staging-run-2026-11-12/testrail-results-tech/pics/C1095443-5-v1r-87-staging-tech-step-8-location-a-invoice-opened.png"
+   ]
+  }
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "key": "V1R-32",
+ "env": "staging-tech",
+ "user": "tech@shopview.com",
+ "marker": "v26.45.4-d07623f",
+ "markerEnd": "v26.45.4-d07623f",
+ "identity": {
+  "customer": "ZZBREAK <b>bold</b> \"q\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders",
+  "customerId": "70ccb9ae-a766-4572-a083-3fcf2a718a15",
+  "linksOnPage": 0,
+  "plainNamesOnPage": 30
+ },
+ "checks": [
+  {
+   "what": "Step 2: A/R Aging Summary opens",
+   "ok": true,
+   "saw": "A/R Aging Summary https://app.staging.shopview.com/reports/ar-aging-summary"
+  },
+  {
+   "what": "Step 3: the name is plain text (not blue)",
+   "ok": true,
+   "saw": "{\"tag\":\"SPAN\",\"tid\":\"text_arsum_party_70ccb9ae-a766-4572-a083-3fcf2a718a15\",\"text\":\"ZZBREAK <b>bold</b> \\\"q\\\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders\",\"href\":null,\"inLink\":false,\"color\":\"rgb(0, 0, 0)\",\"cursor\":\"auto\",\"textDecoration\":\"none\"} | 0 customer links, 30 plain names on the page"
+  },
+  {
+   "what": "Step 4: nothing opens; you stay on A/R Aging Summary",
+   "ok": true,
+   "saw": "before https://app.staging.shopview.com/reports/ar-aging-summary after https://app.staging.shopview.com/reports/ar-aging-summary title A/R Aging Summary"
+  }
+ ]
+}

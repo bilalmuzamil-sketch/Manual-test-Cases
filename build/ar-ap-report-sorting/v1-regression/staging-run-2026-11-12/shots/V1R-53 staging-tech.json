@@ -1,0 +1,77 @@
+{
+ "key": "V1R-53",
+ "env": "staging-tech",
+ "startUtc": "2026-11-12T14:14:28.315Z",
+ "shots": [
+  {
+   "f": "V1R-53 staging-tech - step 1 Reports menu.png",
+   "boxes": {
+    "nav": [
+     24,
+     1508,
+     430,
+     57
+    ]
+   }
+  },
+  {
+   "f": "V1R-53 staging-tech - step 3 the first vendor name.png",
+   "boxes": {
+    "name": [
+     580,
+     445,
+     303,
+     36
+    ]
+   }
+  },
+  {
+   "f": "V1R-53 staging-tech - step 4 page title and Vendor chip.png",
+   "boxes": {
+    "title": [
+     496,
+     114,
+     2384,
+     1686
+    ],
+    "chip": [
+     963,
+     239,
+     479,
+     56
+    ]
+   }
+  }
+ ],
+ "marker": "v26.45.4-d07623f",
+ "user": "tech@shopview.com",
+ "identity": {
+  "vendor": "123 Cannabis Forestlawn",
+  "vendorId": "68c72fe7-8fbe-4795-85aa-7e91fbb54c7e",
+  "linksOnPage": 30,
+  "plainNamesOnPage": 0,
+  "firstRowsAfter": [
+   "keyboard_arrow_right 123 Cannabis Forestlawn (43) Total $2,614.51 $2,614.51",
+   "Totals $2,614.51 $2,614.51"
+  ]
+ },
+ "checks": [
+  {
+   "what": "Step 2: A/P Aging Summary opens",
+   "ok": true,
+   "saw": "A/P Aging Summary"
+  },
+  {
+   "what": "Step 3: the first vendor name is a link that can be clicked",
+   "ok": true,
+   "saw": "{\"tag\":\"A\",\"tid\":\"link_apsum_party_68c72fe7-8fbe-4795-85aa-7e91fbb54c7e\",\"text\":\"123 Cannabis Forestlawn\",\"href\":\"/reports/ap-unpaid-invoices?asOfDate=2026-11-12&vendorIds=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e\",\"inLink\":true,\"color\":\"rgb(34, 118, 218)\",\"cursor\":\"pointer\",\"textDecoration\":\"none\"} | 30 vendor links, 0 plain names"
+  },
+  {
+   "what": "Step 4: A/P Unpaid Invoices opens narrowed to that vendor (page title \"A/P Unpaid Invoices Report\"; the chip shows the vendor name, shortened to fit; the address carries that vendor)",
+   "ok": true,
+   "saw": "title \"A/P Unpaid Invoices Report\" ok=true; Vendor chip \"local_shipping Vendor: 123 Cannabis Fo...\" ok=true; address https://app.staging.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-11-12&vendorIds=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e ok=true"
+  }
+ ],
+ "endUtc": "2026-11-12T14:14:42.612Z",
+ "markerEnd": "v26.45.4-d07623f"
+}

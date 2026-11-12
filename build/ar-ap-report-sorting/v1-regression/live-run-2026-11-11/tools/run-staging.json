@@ -2396,5 +2396,118 @@
   "env": "staging",
   "utc_start": "2026-11-12T13:22:55.015Z",
   "utc_end": "2026-11-12T13:23:34.254Z"
+ },
+ "V1R-32": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 2: A/R Aging Summary opens",
+    "ok": true,
+    "saw": "A/R Aging Summary https://app.staging.shopview.com/reports/ar-aging-summary"
+   },
+   {
+    "what": "Step 3: the name is plain text (not blue)",
+    "ok": true,
+    "saw": "{\"tag\":\"SPAN\",\"tid\":\"text_arsum_party_70ccb9ae-a766-4572-a083-3fcf2a718a15\",\"text\":\"ZZBREAK <b>bold</b> \\\"q\\\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders\",\"href\":null,\"inLink\":false,\"color\":\"rgb(0, 0, 0)\",\"cursor\":\"auto\",\"textDecoration\":\"none\"} | 0 customer links, 30 plain names on the page"
+   },
+   {
+    "what": "Step 4: nothing opens; you stay on A/R Aging Summary",
+    "ok": true,
+    "saw": "before https://app.staging.shopview.com/reports/ar-aging-summary after https://app.staging.shopview.com/reports/ar-aging-summary title A/R Aging Summary"
+   }
+  ],
+  "observed": "OK Step 2: A/R Aging Summary opens: A/R Aging Summary https://app.staging.shopview.com/reports/ar-aging-summary | OK Step 3: the name is plain text (not blue): {\"tag\":\"SPAN\",\"tid\":\"text_arsum_party_70ccb9ae-a766-4572-a083-3fcf2a718a15\",\"text\":\"ZZBREAK <b>bold</b> \\\"q\\\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders\",\"href\":null,\"inLink\":false,\"color\":\"rgb(0, 0, 0)\",\"cursor\":\"auto\",\"textDecoration\":\"none\"} | 0 customer links, 30 plain names on the page | OK Step 4: nothing opens; you stay on A/R Aging Summary: before https://app.staging.shopview.com/reports/ar-aging-summary after https://app.staging.shopview.com/reports/ar-aging-summary title A/R Aging Summary",
+  "evidence": [
+   "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-32 staging-tech - step 1 Reports menu.png",
+   "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-32 staging-tech - step 3 pointing at the first customer name.png",
+   "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-32 staging-tech - step 4 after clicking the customer name.png"
+  ],
+  "marker": "v26.45.4-d07623f",
+  "env": "staging",
+  "user": "tech@shopview.com",
+  "utc_start": "2026-11-12T14:11:46.736Z",
+  "utc_end": "2026-11-12T14:12:01.183Z",
+  "note": "run as tech@shopview.com in its own session (tech-tools/run.js)"
+ },
+ "V1R-53": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 2: A/P Aging Summary opens",
+    "ok": true,
+    "saw": "A/P Aging Summary"
+   },
+   {
+    "what": "Step 3: the first vendor name is a link that can be clicked",
+    "ok": true,
+    "saw": "{\"tag\":\"A\",\"tid\":\"link_apsum_party_68c72fe7-8fbe-4795-85aa-7e91fbb54c7e\",\"text\":\"123 Cannabis Forestlawn\",\"href\":\"/reports/ap-unpaid-invoices?asOfDate=2026-11-12&vendorIds=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e\",\"inLink\":true,\"color\":\"rgb(34, 118, 218)\",\"cursor\":\"pointer\",\"textDecoration\":\"none\"} | 30 vendor links, 0 plain names"
+   },
+   {
+    "what": "Step 4: A/P Unpaid Invoices opens narrowed to that vendor (page title \"A/P Unpaid Invoices Report\"; the chip shows the vendor name, shortened to fit; the address carries that vendor)",
+    "ok": true,
+    "saw": "title \"A/P Unpaid Invoices Report\" ok=true; Vendor chip \"local_shipping Vendor: 123 Cannabis Fo...\" ok=true; address https://app.staging.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-11-12&vendorIds=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e ok=true"
+   }
+  ],
+  "observed": "OK Step 2: A/P Aging Summary opens: A/P Aging Summary | OK Step 3: the first vendor name is a link that can be clicked: {\"tag\":\"A\",\"tid\":\"link_apsum_party_68c72fe7-8fbe-4795-85aa-7e91fbb54c7e\",\"text\":\"123 Cannabis Forestlawn\",\"href\":\"/reports/ap-unpaid-invoices?asOfDate=2026-11-12&vendorIds=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e\",\"inLink\":true,\"color\":\"rgb(34, 118, 218)\",\"cursor\":\"pointer\",\"textDecoration\":\"none\"} | 30 vendor links, 0 plain names | OK Step 4: A/P Unpaid Invoices opens narrowed to that vendor (page title \"A/P Unpaid Invoices Report\"; the chip shows the vendor name, shortened to fit; the address carries that vendor): title \"A/P Unpaid Invoices Report\" ok=true; Vendor chip \"local_shipping Vendor: 123 Cannabis Fo...\" ok=true; address https://app.staging.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-11-12&vendorIds=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e ok=true",
+  "evidence": [
+   "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-53 staging-tech - step 1 Reports menu.png",
+   "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-53 staging-tech - step 3 the first vendor name.png",
+   "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-53 staging-tech - step 4 page title and Vendor chip.png"
+  ],
+  "marker": "v26.45.4-d07623f",
+  "env": "staging",
+  "user": "tech@shopview.com",
+  "utc_start": "2026-11-12T14:14:28.315Z",
+  "utc_end": "2026-11-12T14:14:42.612Z",
+  "note": "run as tech@shopview.com in its own session (tech-tools/run.js)"
+ },
+ "V1R-87": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 2: A/R Aging Detail opens",
+    "ok": true,
+    "saw": "A/R Aging Detail"
+   },
+   {
+    "what": "Step 3: every bucket opened; the three invoices are listed (report narrowed to each customer in turn)",
+    "ok": true,
+    "saw": "3 lines; B true, A true, C true"
+   },
+   {
+    "what": "Step 5 (PRD S7-R3): \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", Cancel left, Switch location right, close \u00d7",
+    "ok": true,
+    "saw": "Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch location | buttons [\"close\",\"Cancel\",\"Switch location\"]"
+   },
+   {
+    "what": "Step 6: you stay on the report",
+    "ok": true,
+    "saw": "A/R Aging Detail https://app.staging.shopview.com/reports/ar-aging-detail?customerIds=9656f09a-0684-4b50-9d22-802d7e877877"
+   },
+   {
+    "what": "Step 7 (PRD S7-R1): the location C invoice ID is plain text",
+    "ok": true,
+    "saw": "{\"tag\":\"SPAN\",\"tid\":\"text_ardet_doc_b3474619-5556-4ad9-8909-0c12a840f7f2\",\"text\":\"S2-40099\",\"href\":null,\"inLink\":false,\"color\":\"rgb(0, 0, 0)\",\"cursor\":\"auto\",\"textDecoration\":\"none\",\"rowText\":\"Nov 2, 2026 ZZAUTOTEST V1R-87 Location C Invoice S2-40099 ZZAUTOTEST AR V1R-87 Location C Nov 2, 2026 $87.00 $87.00\",\"cursorAfterHover\":\"auto\"}"
+   },
+   {
+    "what": "Step 8: the location A invoice opens its finance page directly",
+    "ok": true,
+    "saw": "https://app.staging.shopview.com/workorders/aa8f27d6-e1f0-4daf-a008-86c37491cdd0/finance"
+   }
+  ],
+  "observed": "OK Step 2: A/R Aging Detail opens: A/R Aging Detail | OK Step 3: every bucket opened; the three invoices are listed (report narrowed to each customer in turn): 3 lines; B true, A true, C true | OK Step 5 (PRD S7-R3): \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", Cancel left, Switch location right, close \u00d7: Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch location | buttons [\"close\",\"Cancel\",\"Switch location\"] | OK Step 6: you stay on the report: A/R Aging Detail https://app.staging.shopview.com/reports/ar-aging-detail?customerIds=9656f09a-0684-4b50-9d22-802d7e877877 | OK Step 7 (PRD S7-R1): the location C invoice ID is plain text: {\"tag\":\"SPAN\",\"tid\":\"text_ardet_doc_b3474619-5556-4ad9-8909-0c12a840f7f2\",\"text\":\"S2-40099\",\"href\":null,\"inLink\":false,\"color\":\"rgb(0, 0, 0)\",\"cursor\":\"auto\",\"textDecoration\":\"none\",\"rowText\":\"Nov 2, 2026 ZZAUTOTEST V1R-87 Location C Invoice S2-40099 ZZAUTOTEST AR V1R-87 Location C Nov 2, 2026 $87.00 $87.00\",\"cursorAfterHover\":\"auto\"} | OK Step 8: the location A invoice opens its finance page directly: https://app.staging.shopview.com/workorders/aa8f27d6-e1f0-4daf-a008-86c37491cdd0/finance",
+  "evidence": [
+   "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-87 staging-tech - step 3 location B invoice listed.png",
+   "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-87 staging-tech - step 5 Switch location prompt.png",
+   "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-87 staging-tech - step 7 pointing at the location C invoice ID.png",
+   "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-87 staging-tech - step 8 location A invoice before click.png",
+   "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-87 staging-tech - step 8 location A invoice opened.png"
+  ],
+  "marker": "v26.45.4-d07623f",
+  "env": "staging",
+  "user": "tech@shopview.com",
+  "utc_start": "2026-11-12T14:14:46.595Z",
+  "utc_end": "2026-11-12T14:15:35.066Z",
+  "note": "run as tech@shopview.com in its own session (tech-tools/run.js)"
  }
 }
