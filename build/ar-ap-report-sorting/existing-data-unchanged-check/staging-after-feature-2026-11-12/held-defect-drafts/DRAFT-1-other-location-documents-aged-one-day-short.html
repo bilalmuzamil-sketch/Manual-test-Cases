@@ -1,0 +1,77 @@
+<!--
+  HELD DRAFT — NOT FILED (Rule 62: no ticket without the QA lead's permission, per ticket). Written 12 Nov 2026 by the
+  staging "existing data stays the same" re-check, in the approved layout (Rule 119, variant A: the PRD asks for it,
+  done wrong). Rule 121 gate, before anyone files it:
+    1. Epic shared notes SV-11315 comment 80616: NOT on the "not bugs / do not file" list. The notes say "Past Due = the
+       as-of day minus the due date's day, in calendar days at the location's time zone" without saying WHICH location;
+       ask the QA lead / Chris whether "the location" is the document's location or the signed-in location.
+    2. Jira searched 12 Nov 2026 14:0xZ ("time zone"/"timezone" + aging/past due): no ticket for this. Related, not the
+       same: SV-11922 (open, 28 Oct) "A/P reports – Past Due is one day off for bills that are not due yet" — check with
+       the QA lead whether it should be extended instead of a new ticket.
+    3. Measured twice (14:03:39Z and 14:06:09Z, build v26.45.4-d07623f), same result; data files compared document by
+       document (COMPARISON.md). Our own method ruled out: the reports' data calls (no browser) give the same daysPastDue.
+  Pictures to upload: evidence/PIC1-staging-after-AR-Detail-E2E-Credits-Customer.png,
+  evidence/PIC1-staging-after-AR-Collection-Tucson-Truck-Center.png. Labels: QA_Found, AP-AR-FM.
+-->
+<h2>Description</h2>
+<p><strong>What the PRD requires:</strong></p>
+<blockquote><p>A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date: negative while the document is not yet due (a bill due 9 days after the as-of date reads -9, as today) and 0 on its due date.</p></blockquote>
+<p><strong>What happens instead:</strong></p>
+<p>On staging, documents at a location in a different time zone from the signed-in location are aged one day short. With the active location <strong>Staging Heavy Duty - 9919</strong> (Pakistan time), documents at <strong>Staging Lethbridge - 4310</strong> (Mountain time) whose due date is shown as yesterday are listed in <strong>"Current"</strong>, and a bill due 61 days ago shows Past Due <strong>"60"</strong>.</p>
+<p>For example,</p>
+<ul>
+<li><strong>A/R Aging Detail</strong> (As of: 11/12/2026, Customer: E2E Credits Customer): invoice S3-39986, Due Date <strong>"Nov 11, 2026"</strong>, is under <strong>"Current (25)"</strong>.</li>
+<li><strong>A/R Aging Collection</strong> (As of: 11/12/2026, Customer: Tucson Truck Center): invoices S3-17147, S3-17148, S3-17149 and S3-17238, Due Date <strong>"Sep 12, 2026"</strong>, show Past Due <strong>"60"</strong> (Sep 12 to Nov 12 is 61 days).</li>
+</ul>
+
+<h2>Staging after the feature vs staging before</h2>
+<table><thead><tr><th>What you check</th><th>Staging after the feature (v26.45.4-d07623f, 12 Nov 2026 14:03Z)</th><th>Staging before the feature (v26.45.3-6197d19, 12 Nov 2026 06:46Z)</th></tr></thead>
+<tbody>
+<tr><td>S3-39986 (due Nov 11, 2026, Staging Lethbridge - 4310), as of 12 Nov 2026</td><td>❌ Current, Past Due 0</td><td>✅ 1-30 days past due</td></tr>
+<tr><td>S3-17147 / 17148 / 17149 / 17238 (due Sep 12, 2026, Lethbridge), as of 12 Nov 2026</td><td>❌ 31-60, Past Due 60</td><td>✅ 61-90</td></tr>
+<tr><td>Control: S2-17154 (due Oct 13, 2026 at Staging Heavy Duty - 9919, the active location)</td><td>✅ Past Due 30, 1-30</td><td>31-60 (the old version counted in UTC; the change is intended)</td></tr>
+</tbody></table>
+<p>What this shows: the age is counted in the active location's calendar, not in the calendar of the date the report itself prints. In all, 16 documents at Staging Lethbridge - 4310 changed bucket this way (12 from 1-30 to Current, 4 from 61-90 to 31-60); the 2 Heavy Duty documents that changed bucket are correct.</p>
+
+<h2>Steps to Reproduce</h2>
+<h3>Example 1 - A/R Aging Detail</h3>
+<ol start="1">
+<li>Sign in to staging as an Admin at <strong>Staging Heavy Duty - 9919</strong>.</li>
+<li>Open <strong>Reports</strong> → <strong>A/R Aging Detail</strong>. As of: 11/12/2026, Customer: E2E Credits Customer.</li>
+<li>Click the chevron in the Date heading (Expand all).<ul><li>S3-39986, Due Date "Nov 11, 2026", is under "Current (25)".</li></ul></li>
+</ol>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="{{file id}}" data-collection="{{collection}}" data-alt="PIC1-staging-after-AR-Detail-E2E-Credits-Customer.png"></div><figcaption>Staging after the feature — S3-39986 due Nov 11, 2026 listed in Current, as of 11/12/2026</figcaption></figure>
+<h3>Example 2 - A/R Aging Collection</h3>
+<ol start="1">
+<li>Open <strong>Reports</strong> → <strong>A/R Aging Collection</strong>. As of: 11/12/2026, Customer: Tucson Truck Center. Expand the group.<ul><li>S3-17147, Due Date "Sep 12, 2026", Past Due "60".</li></ul></li>
+</ol>
+<figure data-type="media-single" data-layout="full-width"><div data-type="media" data-media-type="file" data-id="{{file id}}" data-collection="{{collection}}" data-alt="PIC1-staging-after-AR-Collection-Tucson-Truck-Center.png"></div><figcaption>Staging after the feature — invoices due Sep 12, 2026 show Past Due 60 as of 11/12/2026</figcaption></figure>
+<p><strong>Actual Result:</strong></p>
+<ul><li>A Lethbridge document due yesterday is Current; a Lethbridge bill due 61 days ago shows Past Due 60.</li></ul>
+<p><strong>Expected Result:</strong></p>
+<ul><li>"A document is Current when its due date is on or after the as-of date. Its Past Due … is the number of days from the due date to the as-of date" (PRD v11, S1-R5a): S3-39986 in 1-30 days past due with Past Due 1; S3-17147 in 61-90 with Past Due 61.</li></ul>
+
+<h2>Environment</h2>
+<ul>
+<li>Staging: <a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a> (build <strong>v26.45.4-d07623f</strong>), active location <strong>Staging Heavy Duty - 9919</strong> (Asia/Karachi), Admin. Seen on 12 Nov 2026 at 14:03:39 UTC and again at 14:06:09 UTC. The same values come from the report's own data call (no browser): <code>daysPastDue</code> 0 and 60.</li>
+<li>Staging before the feature: build <strong>v26.45.3-6197d19</strong>, 12 Nov 2026 06:46 UTC: S3-39986 in 1-30, S3-17147 in 61-90 (snapshot folder <code>staging-before-feature-captured-2026-11-12</code>).</li>
+<li>Checked: A/R Detail, A/R Collection, every A/R and A/P document compared before/after. Not checked: the signed-in location set to Staging Lethbridge - 4310 (the QA lead's session was restored to Heavy Duty; not repeated).</li>
+</ul>
+
+<h2>Sources</h2>
+<table><thead><tr><th>Document</th><th>What it says</th><th>Intended by the PRD?</th></tr></thead>
+<tbody>
+<tr><td>PRD "A/R and A/P Report Sorting, Export and Location Filter", <a href="https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/947650561">Confluence page 947650561</a>, version 11 (5 Nov 2026, Chris Ward), S1-R5a</td><td>"A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date"</td><td><strong>Yes</strong> — the counting rule is the PRD's; the result breaks it for documents at another location</td></tr>
+<tr><td>Developers' shared notes, SV-11315 comment 80616 (10 Nov 2026, edited 11 Nov)</td><td>"Past Due = the as-of day minus the due date's day, in calendar days at the location's time zone. Time of day never matters."</td><td>Does not say which location — <strong>ask before filing</strong></td></tr>
+<tr><td>Staging v26.45.3-6197d19 (before the feature)</td><td>S3-39986 in 1-30; S3-17147 in 61-90</td><td>—</td></tr>
+</tbody></table>
+<div data-type="panel-warning"><p><strong>Staging does not do what the PRD asks.</strong> A document whose printed due date is before the as-of date must not be Current, and Past Due must count the days between the two printed dates.</p></div>
+
+<h2>Test case</h2>
+<ul>
+<li><a href="https://shopview.testrail.io/index.php?/cases/view/715471">C715471 On release day an untouched A/R report shows the same rows and amounts</a></li>
+</ul>
+
+<details><summary>Technical details for developers</summary>
+<ul><li>Data call: <code>GET /api/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-12</code> returns S3-39986 with <code>dueDate</code> 2026-11-11T19:02:49Z (Nov 11 in America/Edmonton, Nov 12 in Asia/Karachi) and <code>daysPastDue</code> 0. The count appears to use the active workplace's time zone instead of the document's workplace (<code>workplaceId</code> f8a8b802…, America/Edmonton).</li></ul>
+</details>
