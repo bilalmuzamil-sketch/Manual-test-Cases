@@ -666,3 +666,7 @@
 - **The QA site's build can change overnight** (sv11315: v26.45.2-6a8b89c on 11 Nov → v26.45.3-34788b2 by 12 Nov 00:30 UTC). Read the marker BEFORE posting (`exec/ver_check.mjs`: it is in the page's script names; `/api/version` says only "0.1"), pass it as `--build-marker`, and before any defect ask re-verify every held candidate on the new build (Rule 62(c)): `exec/runq60.sh` runs `rv_*` copies into `rv1112/`.
 - **`apply_edits.mjs` (UI comment edit, L0475) reads the new text from `new`** — an `edits.json` with any other key saves an EMPTY comment (it did, once, on C715473; fixed by re-applying with `new`). Always read the result back after an edit: same result id, status, attachments, and the comment text.
 - #testrail #environment #build #trap #overnight → L0475, L0687
+
+## L0689 — 2026-11-12 — Before setting a time-of-day check-in, list the ones already set
+- Two one-shot check-ins existed for the same late-day test (C715473): one set on 11 Nov ("Aging C715473 evening run", 00:40 UTC) and one set later (00:25 UTC). The first to fire ran the test; the second asked to run it again — running it would have posted a duplicate result (cf. L0669). Before `send_later`/`create_trigger` for a test, `list_triggers` and reuse or delete the existing one; when a fired check-in asks for work already recorded, skip it and say so.
+- #scheduling #duplicates #testrail → L0669, L0688
