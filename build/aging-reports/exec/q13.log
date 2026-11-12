@@ -1,0 +1,7 @@
+customer ZZR No Due Date Q13 Net 30
+  invoice S11315-17912 40.00 dated -40 Net 30 HD
+vendor ZZRV Overpaid Q13 COD
+customer ZZX Overpaid Q13 COD
+  invoice S11315-17913 100.00 dated -10 COD HD
+oi {"oi":{"name":"ZZX Overpaid Q13","num":"S11315-17913","api":"Error: payment 400 {\"errors\":[{\"error\":\"Transaction cannot be overpaid.\"}]}","stored":[{"n":"S11315-17913","amt":100,"bal":100}]}}
+q13 {"ar":[{"n":"S11315-17912","date":"2026-10-02 18:00:00","due":"2026-11-01 18:00:00","bal":40}],"apErr":["Error: po 400 {\"errors\":[{\"vendor_id\":\"Missing required parameter\"}]}","Error: vendor ZZRV No Due Date Q13 N 400 {\"errors\":[{\"credit_term\":\"Missing required parameter\"}]}"],"opErr":"Error: po 400 {\"errors\":[{\"vendor_id\":\"Missing required parameter\"}]}"}
