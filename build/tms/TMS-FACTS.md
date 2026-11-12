@@ -458,3 +458,13 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **Held for the QA lead:** 5 TMS Blocked vs TestRail Passed (C715384, C715385, C715449, C715468, TMS C10000003 = TestRail
   C797943); TMS-only case **C715478** (deleted in TestRail, in run 7, no result); **C715277, C715279** are in TMS run 7 with
   TMS results but were removed from TestRail run 557 (cases still exist).
+- **QA lead (2026-11-12): "The test cases which have been taken out of the test run on testrail needs to be taken out of TMS
+  test run too and update the results in those test cases too for A/R and A/P Report".** Done in TMS run 7:
+  - **Removed** C715277, C715279, C715478 (not in TestRail run 557), and then **C10001009, C10001010, C10001011, C10001059**,
+    which TestRail took out of run 557 *during* this work (470 → 466). Cases kept; only their run entries removed (with
+    `confirm: true`, as some had TMS results).
+  - **Results aligned to TestRail's latest** for C715384, C715385, C715449, C715468, C10000003 (Blocked → Passed; old result
+    kept in history; each comment names the TestRail tester and time).
+  - **Proof:** no other run 7 entry changed. **TMS run 7 now = TestRail run 557: same 466 cases, same status on every one**
+    (459 P · 3 B · 2 F · 2 U).
+  - Still open: TMS-only case **C715478** (deleted in TestRail) — keep / edit / delete.
