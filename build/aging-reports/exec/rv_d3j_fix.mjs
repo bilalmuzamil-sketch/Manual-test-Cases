@@ -35,7 +35,7 @@ async function fullMenu(url) { await s.go(url); await p.waitForTimeout(3500); aw
     const cp = (l) => JSON.stringify(l) === JSON.stringify([...l].sort((x, y) => (x < y ? -1 : x > y ? 1 : 0)));
     const lc = (l) => JSON.stringify(l) === JSON.stringify([...l].sort((x, y) => x.localeCompare(y)));
     const ci = (l) => JSON.stringify(l) === JSON.stringify([...l].sort((x, y) => x.toLowerCase() < y.toLowerCase() ? -1 : x.toLowerCase() > y.toLowerCase() ? 1 : 0));
-    q.aRule = { codePoint: cp(a), locale: lc(a), lowerCase: ci(a) }; q.bRule = { codePoint: cp(b), locale: lc(b), lowerCase: ci(b) }; q.aHead = a.slice(0, 12); q.bHead = b.slice(0, 12);
+    q.aRule = { codePoint: cp(a), locale: lc(a), lowerCase: ci(a) }; q.bRule = { codePoint: cp(b), locale: lc(b), lowerCase: ci(b) }; q.aHead = a.slice(0, 12); q.bHead = b.slice(0, 12); q.a = a; q.b = b; /* 12 Nov: full lists kept to see whether only symbol-led names differ */
   } catch (e) { q.err = String(e).slice(0, 300); }
   o.C715555 = q; console.log('C715555', q.err || 'ok', JSON.stringify(q).slice(0, 900)); }
 fs.writeFileSync(OUT + 'out.json', JSON.stringify(o, null, 1)); await s.close(); process.exit(0);

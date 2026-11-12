@@ -1,0 +1,42 @@
+{
+ "pass_meta": {
+  "note": "12 Nov 2026, run 557, SV-12539 developer answer"
+ },
+ "results": {
+  "C715475": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 2: the PDF cannot be judged on the QA site - its PDF service stops any PDF that takes more than 30 seconds, and this list takes longer.",
+   "bold_steps": [
+    2
+   ],
+   "source": "Developer on SV-12539 (Nemanja Djuric, 11 Nov 2026): \"On QA it stops any PDF that takes more than 30 seconds \u2026 The report code isn't the cause. QA's setting is shared by every QA environment \u2026 Please re-test this on staging once the work reaches it.\"",
+   "todo": "What needs to be done: run this test on staging once the release is there (staging allows 120 seconds per PDF); nothing to do on the QA site. Follow the status here https://shopview.atlassian.net/browse/SV-12539 (Open).",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12539 (Open, read 12 Nov 2026).",
+   "observed": [
+    "The link and the CSV work as before the release.",
+    "On the QA site every Inventory Value PDF that takes more than about 30 seconds stops with \"This report is too large to export\u2026\" (lists of 614 parts and more); 245 parts print in 16 seconds. Production printed 1,439 and 2,856 parts.",
+    "The developer confirmed on the ticket that the QA site's PDF service stops any PDF after 30 seconds, for every report, and that the report code is not the cause; staging has production's settings."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715475-q9-C715475-3-message.png"
+   ]
+  },
+  "C715469": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 4: the 2,000-line PDF cannot be judged on the QA site - its PDF service stops any PDF that takes more than 30 seconds.",
+   "bold_steps": [
+    4
+   ],
+   "source": "Developer on SV-12539 (Nemanja Djuric, 11 Nov 2026): \"On QA it stops any PDF that takes more than 30 seconds \u2026 The report code isn't the cause. QA's setting is shared by every QA environment \u2026 Please re-test this on staging once the work reaches it.\"",
+   "todo": "What needs to be done: run this test on staging once the release is there (staging allows 120 seconds per PDF); nothing to do on the QA site. Follow the status here https://shopview.atlassian.net/browse/SV-12539 (Open).",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12539 (Open, read 12 Nov 2026).",
+   "observed": [
+    "The 2,000-line PDF stops after about 30 seconds on the QA site with no file.",
+    "The developer confirmed on the ticket that this is the QA site's 30-second PDF limit, not the report: about 2,000 rows take 27 seconds with production's settings, and staging has production's settings."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715469-p48b-13-pdf-032s.png"
+   ]
+  }
+ }
+}

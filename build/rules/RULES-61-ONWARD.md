@@ -5298,3 +5298,11 @@ Every ask for a fresh sign-in (a QA branch, staging or production session) names
 **Any of the six that cannot be closed with evidence ⇒ the ticket is NOT raised and NOT asked for.** The test result stays honest (Failed with the observation, or Blocked with the reason), and the open point goes to him as a QUESTION in Rule 134 form — what, why it may not be a genuine defect, options, my recommendation. **His general "file the defects" is not a waiver of this gate**; it is the moment the gate is run.
 
 Every ticket draft carries a `GENUINENESS.md` with the six checks, each with its evidence path, and the report names any draft the gate stopped and why.
+
+## RULE 141 — EVERY QUESTION AND EVERY STATEMENT ABOUT A TEST OR A FAULT CARRIES THE TICKET (KEY + LINK) AND THE TEST'S RUN (NUMBER + LINK) RIGHT THERE (QA lead 2026-11-12, permanent)
+
+**Verbatim:** *"WHich ticket is it related to ? ALways mention the ticket number/link and the testcase run number/link with your questions and statements make it a rule."*
+
+**What it changes:** where a question or a statement is about a test or a fault, its **ticket key with its full link** (`https://shopview.atlassian.net/browse/SV-nnnnn`, live status, Rule 8) and **the test's run number with its links** (`https://shopview.testrail.io/index.php?/runs/view/<run>` and the test's `…/tests/view/<id>`) go **in that same item, in the body** — not only in the `---REFERENCE---` trailer. No ticket yet ⇒ say "no ticket yet" and name the owning story with its link instead. ⛔ Narrows Rule 103's "ids only after the REFERENCE line" for ticket links and run/test links (they may now sit in the body; the meaning is still carried by plain words); `plain_check.py` allows a ticket key when its own link is on the same line and still flags a bare key.
+
+**Also recorded the same message (his decision rule for this suite while the product owner is away):** *"Pass the test if the feature is working as per the requirements. Chris ward is on vacation so asking him question will not help. But if the feature is not working as a requirement create the ticket."* — applied together with Rule 140 (a ticket must still pass the genuineness gate).

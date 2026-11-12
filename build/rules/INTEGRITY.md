@@ -479,3 +479,4 @@ the Rule 27 tie), skills `00-COMMON-CORE.md` (×2) and `13-CROSS-SESSION-SAFETY.
 
 - 2026-10-19 — **Rule 131** added to `RULES-61-ONWARD.md` (QA lead's own instruction "Save it as a RULE", run 498): a failed test whose linked ticket has a product-owner comment is re-judged against the live, latest PRD; the PRD decides, never the comment; developer comments are not grounds to pass. Index row added to CLAUDE.md §2.
 - 2026-11-12: Rule 140 added (genuineness gate before any defect), on the QA lead's explicit instruction; index row + §1 62(f) + skill 06 pointer.
+- 2026-11-12: Rule 141 added (ticket + run links with every question/statement), QA lead's explicit instruction; plain_check.py allows linked keys (self-test 36/36 before and after).

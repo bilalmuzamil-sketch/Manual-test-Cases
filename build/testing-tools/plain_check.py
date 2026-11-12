@@ -64,8 +64,14 @@ def check(text):
     for line_no, line in enumerate(body.splitlines(), 1):
         if line.lstrip().startswith('>'):      # a quote of his own words is exempt
             continue
+        # Rule 141 (QA lead 2026-11-12): every question/statement carries its ticket link and its run/test link
+        # IN THE BODY. Full links are allowed, and a ticket key is allowed when its own link is on the same line.
+        linked = set(re.findall(r'atlassian\.net/browse/(SV-\d+)', line))
+        scan = re.sub(r'https?://\S+', ' ', line)
+        for k in linked:
+            scan = re.sub(r'\b' + re.escape(k) + r'\b', ' ', scan)
         for pat, what, fix in BANNED:
-            for m in re.finditer(pat, line):
+            for m in re.finditer(pat, scan):
                 problems.append((line_no, m.group(0), what, fix))
     for m in TALLY.finditer(body):
         problems.append((0, m.group(0)[:60], 'a bare status tally',
