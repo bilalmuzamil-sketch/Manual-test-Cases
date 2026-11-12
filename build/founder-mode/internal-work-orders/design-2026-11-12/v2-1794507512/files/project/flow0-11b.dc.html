@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>11b Edit Asset · internal category</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:var(--sv-accent-text)}a:hover{color:var(--sv-accent-hover)}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; height: 1000px; overflow: hidden; background: var(--sv-surface); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+    <div class="sv-app" style="height: 100%; display: flex; flex-direction: column;">
+      <x-import component-from-global-scope="SV.AppHeader" active="customers" user="Admin ShopView" hint-size="100%,64px"></x-import>
+      <div class="sv-content" style="padding: var(--sv-space-5) var(--sv-space-6); display: flex; flex-direction: column; gap: var(--sv-space-4);">
+        <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+          <span class="sv-h2">Toyota 8FGU25 forklift</span>
+          <span class="sv-body" style="color: var(--sv-text-secondary);">Forklift 2 · Staging Heavy Duty Fleet · Serial 8FGU25-71244</span>
+        </div>
+        <div class="sv-tabs" role="tablist" style="white-space: nowrap;">
+          <button type="button" role="tab" class="sv-tab" aria-selected="true">Details</button>
+          <button type="button" role="tab" class="sv-tab" aria-selected="false">Work Orders</button>
+          <button type="button" role="tab" class="sv-tab" aria-selected="false">Invoices</button>
+        </div>
+      </div>
+    </div>
+    <div class="sv-scrim" style="position: absolute;">
+      <div class="sv-modal" role="dialog" data-sv-component="AssetDialog" data-sv-change="modified" style="width: 600px;">
+        <div class="sv-modal__header"><div class="sv-modal__title">Edit Asset</div><button type="button" class="sv-modal__close" aria-label="Close"><x-import component-from-global-scope="SV.Icon" name="x" size="{{ 20 }}" hint-size="20px,20px"></x-import></button></div>
+        <div class="sv-modal__body" style="display: flex; flex-direction: column; gap: var(--sv-space-3);">
+          <x-import component-from-global-scope="SV.Select" label="Customer" value="Staging Heavy Duty Fleet" hint-size="100%,48px"></x-import>
+          <div style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--sv-space-3);"><x-import component-from-global-scope="SV.Input" label="Unit #" value="Forklift 2" hint-size="100%,48px"></x-import><x-import component-from-global-scope="SV.Select" label="Asset type" value="Forklift" hint-size="100%,48px"></x-import></div>
+          <div style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr); gap: var(--sv-space-3);"><x-import component-from-global-scope="SV.Input" label="Year" value="2021" hint-size="100%,48px"></x-import><x-import component-from-global-scope="SV.Input" label="Make" value="Toyota" hint-size="100%,48px"></x-import><x-import component-from-global-scope="SV.Input" label="Model" value="8FGU25" hint-size="100%,48px"></x-import></div>
+          <x-import component-from-global-scope="SV.Input" label="VIN / Serial #" value="8FGU25-71244" hint-size="100%,48px"></x-import>
+          <div style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--sv-space-3);"><x-import component-from-global-scope="SV.Input" label="Engine hours" value="4,120" hint-size="100%,48px"></x-import><x-import component-from-global-scope="SV.Input" label="License plate" value="" hint-size="100%,48px"></x-import></div>
+          <div data-sv-component="AssetDialog" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-1); padding-top: var(--sv-space-2); border-top: 1px solid var(--sv-border-default);">
+            <x-import component-from-global-scope="SV.Select" label="Internal category" value="Shop Equipment Maintenance" hint-size="100%,48px"></x-import>
+            <span class="sv-body2" style="display: flex; align-items: flex-start; gap: var(--sv-space-1); color: var(--sv-text-secondary); text-wrap: pretty;"><svg width="16" height="16" viewBox="0 0 16 16" role="img" aria-label="QuickBooks" style="flex: none;"><circle cx="8" cy="8" r="8" fill="#2CA01C"></circle><text x="8" y="11.3" font-size="8.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" font-family="Inter, Arial, sans-serif">qb</text></svg><span>Categories are mapped to QuickBooks expense accounts. This one is where the asset's internal work orders post. Leave it empty to use the customer's category, Company Vehicle Maintenance.</span></span>
+          </div>
+        </div>
+        <div class="sv-modal__footer" style="justify-content: space-between;">
+          <x-import component-from-global-scope="SV.Button" variant="danger" hint-size="80px,36px">Delete</x-import>
+          <x-import component-from-global-scope="SV.Button" variant="primary" hint-size="72px,36px">Save</x-import>
+        </div>
+      </div>
+    </div>
+  </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

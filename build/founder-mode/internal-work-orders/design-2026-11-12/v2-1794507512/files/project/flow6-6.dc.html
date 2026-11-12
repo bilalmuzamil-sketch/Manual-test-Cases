@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>06 Edit Line · No Charge in the dialog</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:var(--sv-accent-text)}a:hover{color:var(--sv-accent-hover)}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; height: 840px; overflow: hidden; background: var(--sv-surface); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+        <dc-import name="WO-Detail-Artboard-v6" v57="{{ true }}" v55="{{ true }}" v58="{{ true }}" mode="current" style="display: block; width: 100%; height: 100%;" hint-size="100%,100%"></dc-import>
+    <div class="sv-scrim" style="position: absolute;">
+      <div class="sv-modal" role="dialog" data-sv-component="WorkOrderDialog" data-sv-change="new" style="width: 620px;">
+        <div class="sv-modal__header"><div class="sv-modal__title">Edit Line</div><button type="button" class="sv-modal__close" aria-label="Close"><x-import component-from-global-scope="SV.Icon" name="x" size="{{ 20 }}" hint-size="20px,20px"></x-import></button></div>
+        <div class="sv-modal__body" style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+          <x-import component-from-global-scope="SV.Input" label="Title *" value="Replace - Brake caliper" hint-size="100%,48px"></x-import>
+          <x-import component-from-global-scope="SV.Input" label="Description" value="Seized" hint-size="100%,48px"></x-import>
+          <div style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr); gap: var(--sv-space-3);"><x-import component-from-global-scope="SV.Input" label="Estimated hours" value="1.00" hint-size="100%,48px"></x-import><x-import component-from-global-scope="SV.Select" label="Labor rate" value="Standard · $149.95/h" hint-size="100%,48px"></x-import><x-import component-from-global-scope="SV.Select" label="Technician" value="M. Rhodes" hint-size="100%,48px"></x-import></div>
+          <div data-sv-component="WorkOrderLineDialog" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-3); padding-top: var(--sv-space-3); border-top: 1px solid var(--sv-border-default);">
+            <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+              <x-import component-from-global-scope="SV.Checkbox" checked="{{ true }}" label="No Charge" hint-size="100px,20px"></x-import>
+              <span class="sv-body2" style="color: var(--sv-text-secondary); padding-left: var(--sv-space-6); text-wrap: pretty;">This line shows $0.00 on the invoice. Hours and parts stay; the parts cost posts to the category's expense account.</span>
+            </div>
+            <div style="display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--sv-space-3);">
+              <x-import component-from-global-scope="SV.Select" label="Category *" value="Warranty" hint-size="100%,48px"></x-import>
+              <x-import component-from-global-scope="SV.Select" label="Original work order" value="S2-30455 · Aug 2, 2026" hint-size="100%,48px"></x-import>
+              <x-import component-from-global-scope="SV.Select" label="Original line" value="02 · Replace alternator · M. Rhodes" hint-size="100%,48px"></x-import>
+            </div>
+          </div>
+        </div>
+        <div class="sv-modal__footer">
+          <x-import component-from-global-scope="SV.Button" variant="secondary" hint-size="80px,36px">Cancel</x-import>
+          <x-import component-from-global-scope="SV.Button" variant="primary" hint-size="72px,36px">Save</x-import>
+        </div>
+      </div>
+    </div>
+  </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
