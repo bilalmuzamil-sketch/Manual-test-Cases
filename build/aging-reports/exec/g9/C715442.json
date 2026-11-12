@@ -1,0 +1,120 @@
+{
+ "id": "C715442",
+ "rows0": 33,
+ "p0": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//01-C715442-0-online.png",
+ "offline": true,
+ "msg2": null,
+ "notes2": [],
+ "chip2": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+ "box2": null,
+ "url2": "https://sv11315.qa.shopview.com/reports/ar-aging-collection?asOfDate=2026-11-11",
+ "sleepNav2": [],
+ "p2": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//02-C715442-2-offline.png",
+ "p3": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//03-C715442-3-online-again.png",
+ "msg4": null,
+ "rows4": 33,
+ "chip4": "calendar_today As of: 11/12/2026 keyboard_arrow_down",
+ "p4": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//04-C715442-4-today-again.png",
+ "net": [
+  [
+   "req",
+   1794468558900,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468559080,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468559453,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468559454,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "resp",
+   1794468559540,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468559543,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468559751,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468560386,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ],
+  [
+   "OFFLINE",
+   1794468579413
+  ],
+  [
+   "req",
+   1794468595470,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "req",
+   1794468595471,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-11"
+  ],
+  [
+   "resp",
+   1794468596792,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-11",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468597046,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468598354,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "req",
+   1794468598354,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "resp",
+   1794468599079,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468599632,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ]
+ ]
+}

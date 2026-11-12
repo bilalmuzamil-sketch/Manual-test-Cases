@@ -1,0 +1,108 @@
+{
+ "id": "C1062582",
+ "p0": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//27-C1062582-0-online.png",
+ "offline": true,
+ "exp": "opened",
+ "msg2": null,
+ "notes2": [],
+ "box2": null,
+ "url2": "https://sv11315.qa.shopview.com/reports/ar-aging-detail",
+ "sleepNav2": [],
+ "p2": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//28-C1062582-2-offline-expand.png",
+ "col": "closed",
+ "p4": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//29-C1062582-4-collapsed.png",
+ "exp5": "opened",
+ "msg5": null,
+ "lines5": 29,
+ "p5": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//30-C1062582-5-expanded-online.png",
+ "net": [
+  [
+   "req",
+   1794468896153,
+   "/reporting/reports/ar-aging-detail/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468896312,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468896936,
+   "/reporting/reports/ar-aging-detail/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468896940,
+   "/reporting/reports/ar-aging-detail?asOfDate=2026-11-12"
+  ],
+  [
+   "resp",
+   1794468896944,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468896946,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468897149,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468897440,
+   "/reporting/reports/ar-aging-detail?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "OFFLINE",
+   1794468916528
+  ],
+  [
+   "req",
+   1794468931505,
+   "/reporting/reports/ar-aging-detail/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468931505,
+   "/reporting/reports/ar-aging-detail?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468931509,
+   "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "resp",
+   1794468932138,
+   "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468932611,
+   "/reporting/reports/ar-aging-detail?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468932758,
+   "/reporting/reports/ar-aging-detail/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ]
+ ]
+}

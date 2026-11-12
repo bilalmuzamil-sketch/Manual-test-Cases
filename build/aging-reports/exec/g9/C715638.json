@@ -1,0 +1,116 @@
+{
+ "id": "C715638",
+ "rows0": 33,
+ "p0": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//24-C715638-0-online.png",
+ "offline": true,
+ "msg2": null,
+ "notes2": [],
+ "chip2": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+ "box2": null,
+ "url2": "https://sv11315.qa.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-11-11",
+ "sleepNav2": [],
+ "p2": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//25-C715638-2-offline.png",
+ "p3": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//26-C715638-3-online-again.png",
+ "net": [
+  [
+   "req",
+   1794468855999,
+   "/reporting/reports/ap-unpaid-invoices/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468856000,
+   "/reporting/reports/ap-aging/vendors"
+  ],
+  [
+   "req",
+   1794468856179,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468856331,
+   "/reporting/reports/ap-aging/vendors",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468856363,
+   "/reporting/reports/ap-unpaid-invoices/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468856366,
+   "/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "resp",
+   1794468856749,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468856751,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468856871,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468856914,
+   "/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ],
+  [
+   "OFFLINE",
+   1794468876495
+  ],
+  [
+   "req",
+   1794468892571,
+   "/reporting/reports/ap-aging/vendors"
+  ],
+  [
+   "req",
+   1794468892573,
+   "/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "req",
+   1794468892577,
+   "/reporting/reports/ap-unpaid-invoices/locations?asOfDate=2026-11-11"
+  ],
+  [
+   "resp",
+   1794468893258,
+   "/reporting/reports/ap-aging/vendors",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468893289,
+   "/reporting/reports/ap-unpaid-invoices/locations?asOfDate=2026-11-11",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468893605,
+   "/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ]
+ ]
+}

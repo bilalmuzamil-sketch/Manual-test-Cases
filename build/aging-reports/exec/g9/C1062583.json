@@ -1,0 +1,154 @@
+{
+ "id": "C1062583",
+ "heads": [
+  "keyboard_arrow_right 91 or more days past due (11949) Total $4,045,359.74 $4,045,359.76",
+  "keyboard_arrow_right 61-90 days past due (730) Total $333,315.47 $333,315.49",
+  "keyboard_arrow_right 31-60 days past due (740) Total $288,560.18 $288,360.18",
+  "keyboard_arrow_right 1-30 days past due (507) Total $95,125.87 $94,445.87",
+  "keyboard_arrow_right Current (36) Total $5,228.00 $5,228.00"
+ ],
+ "bucket": "keyboard_arrow_right 91 or more days past due (11949) Total $4,045,359.74 $4,045,359.76",
+ "name": "91 or more days past due",
+ "exp1": "opened",
+ "lines1": 109,
+ "p1": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//31-C1062583-1-expanded.png",
+ "offline": true,
+ "msg3": null,
+ "notes3": [],
+ "box3": null,
+ "url3": "https://sv11315.qa.shopview.com/reports/ap-aging-detail",
+ "sleepNav3": [],
+ "p3": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//32-C1062583-3-offline-scrolled.png",
+ "col": "closed",
+ "p5": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//33-C1062583-5-collapsed.png",
+ "exp6": "opened",
+ "msg6": null,
+ "lines6": 109,
+ "p6": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//34-C1062583-6-expanded-again.png",
+ "net": [
+  [
+   "req",
+   1794468945761,
+   "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468945761,
+   "/reporting/reports/ap-aging/vendors"
+  ],
+  [
+   "req",
+   1794468945954,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468946052,
+   "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468946057,
+   "/reporting/reports/ap-aging-detail?asOfDate=2026-11-12"
+  ],
+  [
+   "resp",
+   1794468946578,
+   "/reporting/reports/ap-aging/vendors",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468946746,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468946748,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468946863,
+   "/reporting/reports/ap-aging-detail?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468946964,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468967008,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "resp",
+   1794468968410,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ],
+  [
+   "OFFLINE",
+   1794468973585
+  ],
+  [
+   "req",
+   1794468996604,
+   "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468996604,
+   "/reporting/reports/ap-aging/vendors"
+  ],
+  [
+   "req",
+   1794468996604,
+   "/reporting/reports/ap-aging-detail?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468996612,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=2&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "resp",
+   1794468996965,
+   "/reporting/reports/ap-aging/vendors",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468997514,
+   "/reporting/reports/ap-aging-detail?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468997612,
+   "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468997966,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=2&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ]
+ ]
+}

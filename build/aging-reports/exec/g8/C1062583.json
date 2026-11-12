@@ -1,0 +1,157 @@
+{
+ "id": "C1062583",
+ "heads": [
+  "keyboard_arrow_right 91 or more days past due (11949) Total $4,045,359.74 $4,045,359.76",
+  "keyboard_arrow_right 61-90 days past due (730) Total $333,315.47 $333,315.49",
+  "keyboard_arrow_right 31-60 days past due (740) Total $288,560.18 $288,360.18",
+  "keyboard_arrow_right 1-30 days past due (507) Total $95,125.87 $94,445.87",
+  "keyboard_arrow_right Current (35) Total $5,253.00 $5,253.00"
+ ],
+ "bucket": "keyboard_arrow_right 91 or more days past due (11949) Total $4,045,359.74 $4,045,359.76",
+ "name": "91 or more days past due",
+ "exp1": "opened",
+ "lines1": 109,
+ "p1": "/home/user/Manual-test-Cases/build/aging-reports/exec/g8//31-C1062583-1-expanded.png",
+ "offline": false,
+ "msg3": "Not every line loaded. Collapse and expand this bucket to try again.",
+ "notes3": [
+  "warning QA env is sleeping Redirecting... Close 2"
+ ],
+ "box3": [
+  278,
+  612,
+  1132,
+  48
+ ],
+ "url3": "https://sv11315.qa.shopview.com/reports/ap-aging-detail",
+ "sleepNav3": [],
+ "p3": "/home/user/Manual-test-Cases/build/aging-reports/exec/g8//32-C1062583-3-offline-scrolled.png",
+ "col": "closed",
+ "p5": "/home/user/Manual-test-Cases/build/aging-reports/exec/g8//33-C1062583-5-collapsed.png",
+ "exp6": "opened",
+ "msg6": null,
+ "lines6": 109,
+ "p6": "/home/user/Manual-test-Cases/build/aging-reports/exec/g8//34-C1062583-6-expanded-again.png",
+ "net": [
+  [
+   "req",
+   1794468486498,
+   "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468486502,
+   "/reporting/reports/ap-aging/vendors"
+  ],
+  [
+   "req",
+   1794468486617,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468487044,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468487046,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468487362,
+   "/reporting/reports/ap-aging/vendors",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468487448,
+   "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468487452,
+   "/reporting/reports/ap-aging-detail?asOfDate=2026-11-12"
+  ],
+  [
+   "resp",
+   1794468487736,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468487958,
+   "/reporting/reports/ap-aging-detail?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468507729,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "resp",
+   1794468508835,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ],
+  [
+   "OFFLINE",
+   1794468514314
+  ],
+  [
+   "req",
+   1794468515209,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=2&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "abort",
+   1794468515209,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=2&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "fail",
+   1794468515221,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=2&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false",
+   "net::ERR_INTERNET_DISCONNECTED"
+  ],
+  [
+   "req",
+   1794468516225,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=2&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "abort",
+   1794468516225,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=2&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "fail",
+   1794468516235,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=2&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false",
+   "net::ERR_INTERNET_DISCONNECTED"
+  ],
+  [
+   "req",
+   1794468524800,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "resp",
+   1794468525881,
+   "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ]
+ ]
+}

@@ -1,0 +1,105 @@
+{
+ "id": "C715633",
+ "rows0": 33,
+ "p0": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//01-C715633-0-online.png",
+ "offline": true,
+ "probe": "ERR Failed to fetch",
+ "msg2": null,
+ "notes2": [],
+ "chip2": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+ "box2": null,
+ "url2": "https://sv11315.qa.shopview.com/reports/ar-aging-summary?asOfDate=2026-11-11",
+ "sleepNav2": [],
+ "sleepBlocked2": 0,
+ "p2": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//02-C715633-2-offline.png",
+ "p3": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//03-C715633-3-online-again.png",
+ "net": [
+  [
+   "req",
+   1794469429975,
+   "/reporting/reports/ar-aging-summary/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794469430147,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794469430471,
+   "/reporting/reports/ar-aging-summary/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794469430471,
+   "/reporting/reports/ar-aging-summary?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "resp",
+   1794469430547,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794469430547,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794469430736,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794469431277,
+   "/reporting/reports/ar-aging-summary?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ],
+  [
+   "OFFLINE",
+   1794469450521
+  ],
+  [
+   "req",
+   1794469450527,
+   "/reporting/reports/ar-aging-summary/locations?asOfDate=2026-10-01"
+  ],
+  [
+   "fail",
+   1794469450528,
+   "/reporting/reports/ar-aging-summary/locations?asOfDate=2026-10-01",
+   "net::ERR_INTERNET_DISCONNECTED"
+  ],
+  [
+   "req",
+   1794469466575,
+   "/reporting/reports/ar-aging-summary?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "req",
+   1794469466575,
+   "/reporting/reports/ar-aging-summary/locations?asOfDate=2026-11-11"
+  ],
+  [
+   "resp",
+   1794469467721,
+   "/reporting/reports/ar-aging-summary/locations?asOfDate=2026-11-11",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794469467871,
+   "/reporting/reports/ar-aging-summary?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ]
+ ]
+}

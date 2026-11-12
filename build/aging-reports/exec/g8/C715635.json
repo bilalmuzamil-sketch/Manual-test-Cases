@@ -1,0 +1,174 @@
+{
+ "id": "C715635",
+ "rows0": 33,
+ "p0": "/home/user/Manual-test-Cases/build/aging-reports/exec/g8//15-C715635-0-online.png",
+ "offline": false,
+ "msg2": "Something went wrong loading this report. Please try again.",
+ "notes2": [
+  "warning QA env is sleeping Redirecting... Close 4"
+ ],
+ "chip2": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+ "box2": [
+  278,
+  209,
+  1132,
+  692
+ ],
+ "url2": "https://sv11315.qa.shopview.com/reports/ar-aging-collection?asOfDate=2026-11-11",
+ "sleepNav2": [
+  "https://sleep.qa.shopview.com/?app=sv11315&api=sv11315",
+  "https://sleep.qa.shopview.com/?app=sv11315&api=sv11315",
+  "https://sleep.qa.shopview.com/?app=sv11315&api=sv11315",
+  "https://sleep.qa.shopview.com/?app=sv11315&api=sv11315"
+ ],
+ "p2": "/home/user/Manual-test-Cases/build/aging-reports/exec/g8//16-C715635-2-offline.png",
+ "p3": "/home/user/Manual-test-Cases/build/aging-reports/exec/g8//17-C715635-3-online-again.png",
+ "net": [
+  [
+   "req",
+   1794468327598,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468327781,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468328048,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468328050,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "resp",
+   1794468328234,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468328237,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468328734,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468329364,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ],
+  [
+   "OFFLINE",
+   1794468348145
+  ],
+  [
+   "req",
+   1794468349462,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "abort",
+   1794468349462,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "req",
+   1794468349462,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-11"
+  ],
+  [
+   "abort",
+   1794468349462,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-11"
+  ],
+  [
+   "fail",
+   1794468349485,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+   "net::ERR_INTERNET_DISCONNECTED"
+  ],
+  [
+   "fail",
+   1794468349489,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-11",
+   "net::ERR_INTERNET_DISCONNECTED"
+  ],
+  [
+   "abort",
+   1794468349492,
+   "https://sv11315.qa.shopview.com/icons/favicon-32x32.png"
+  ],
+  [
+   "abort",
+   1794468349494,
+   "https://sv11315.qa.shopview.com/icons/favicon-16x16.png"
+  ],
+  [
+   "abort",
+   1794468349497,
+   "https://sv11315.qa.shopview.com/icons/favicon-96x96.png"
+  ],
+  [
+   "abort",
+   1794468349499,
+   "https://sv11315.qa.shopview.com/icons/favicon-128x128.png"
+  ],
+  [
+   "req",
+   1794468350490,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "abort",
+   1794468350490,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "req",
+   1794468350492,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-11"
+  ],
+  [
+   "abort",
+   1794468350492,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-11"
+  ],
+  [
+   "fail",
+   1794468350498,
+   "/reporting/reports/ar-aging-collection?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+   "net::ERR_INTERNET_DISCONNECTED"
+  ],
+  [
+   "fail",
+   1794468350502,
+   "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-11",
+   "net::ERR_INTERNET_DISCONNECTED"
+  ],
+  [
+   "abort",
+   1794468353189,
+   "https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba1v9250300735za200zd9250300735xf1&_p=1794468326281&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=254832392.1794468173&frm=0&ngs=1&pscdl=noapi&rcb=11&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121246026~121246034~123329125~124025272~124170883&sid=1794468172&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Freports%2Far-aging-collection&dt=AR%20Aging%20Collection%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=27341"
+  ],
+  [
+   "abort",
+   1794468353191,
+   "https://www.google.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6ba1v9250300735za200zd9250300735xf1&_p=1794468326281&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=254832392.1794468173&frm=0&ngs=1&pscdl=noapi&rcb=11&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121246026~121246034~123329125~124025272~124170883&sid=1794468172&sct=1&seg=1&dl=https%3A%2F%2Fsv11315.qa.shopview.com%2Freports%2Far-aging-collection&dt=AR%20Aging%20Collection%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=27341&gaf=1"
+  ]
+ ]
+}

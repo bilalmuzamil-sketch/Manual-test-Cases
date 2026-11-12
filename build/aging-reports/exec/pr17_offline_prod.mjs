@@ -1,0 +1,20 @@
+// pr17_offline_prod.mjs — 12 Nov 2026: is "offline, a changed date shows nothing (no request, no message, old rows under the new date) and loads by itself
+// when the connection returns" (QA build, g9) how ShopView reports ALREADY behave? On PRODUCTION (before the release, read-only): the old A/R Aging
+// Summary and Inventory Value (the PRD's reuse model). Real drop = Playwright setOffline, NO interception (any route disables offline emulation, g9).
+// Per report: open, settle, go offline (proved by a fresh fetch failing), pick another day in the date chip, wait 10 s, record the screen, any message,
+// requests asked/failed; back online, wait 8 s, record again. Output prod/pr17.json + pictures 420+.
+import { bootProdLogin } from '../../testing-tools/prod-login-boot.mjs'; import fs from 'fs';
+const OUT = new URL('./prod/', import.meta.url).pathname; const o = {}; const B = await bootProdLogin('/reports', { viewport: { width: 1440, height: 900 } }); const p = B.page; o.version = B.version; let k = 420;
+const shot = async (n) => { const f = `${OUT}${++k}-pr17-${n}.png`; await p.screenshot({ path: f }); return f; };
+const NET = []; p.on('request', (q) => { if (/\/api\/(reporting|inventory)/.test(q.url())) NET.push(['req', Date.now(), q.url().replace(/^.*\/api/, '').slice(0, 90)]); });
+p.on('requestfailed', (q) => { if (/\/api\//.test(q.url())) NET.push(['fail', Date.now(), q.url().replace(/^.*\/api/, '').slice(0, 90), q.failure()?.errorText]); });
+p.on('response', (r) => { if (/\/api\/(reporting|inventory)/.test(r.url())) NET.push(['resp', Date.now(), r.url().replace(/^.*\/api/, '').slice(0, 90), r.status()]); });
+const notes = async () => (await p.locator('.q-notification').allInnerTexts().catch(() => [])).map((t) => t.replace(/\s+/g, ' ').trim());
+for (const [key, path] of [['ars', '/reports/ar-aging-summary'], ['iv', '/reports/inventory-value']]) { const q = (o[key] = {}); NET.length = 0;
+  try { await p.goto(B.APP + path, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(9000); q.chip0 = (await p.locator('main button').allInnerTexts()).map((t) => t.replace(/\s+/g, ' ')).filter((t) => /Date|As of/.test(t)); q.rows0 = (await p.locator('main tbody tr').allInnerTexts()).slice(0, 3); q.p0 = await shot(key + '-online');
+    NET.push(['OFFLINE', Date.now()]); await p.context().setOffline(true); await p.waitForTimeout(500); q.probe = await p.evaluate(async (u) => { try { return 'status ' + (await fetch(u, { credentials: 'include' })).status; } catch (e) { return 'ERR ' + e.message; } }, `https://${B.APIH}/api/workplaces`);
+    await p.locator('main button').filter({ hasText: /Date|As of/ }).first().click(); await p.waitForTimeout(1500); await p.locator('.q-menu').last().locator('button, .q-date__calendar-item').filter({ hasText: /^\s*10\s*$/ }).first().click(); await p.waitForTimeout(10000);
+    q.chip1 = (await p.locator('main button').allInnerTexts()).map((t) => t.replace(/\s+/g, ' ')).filter((t) => /Date|As of/.test(t)); q.main1 = (await p.locator('main').innerText()).replace(/\s+/g, ' ').slice(0, 400); q.notes1 = await notes(); q.rows1 = (await p.locator('main tbody tr').allInnerTexts()).slice(0, 3); q.url1 = p.url(); q.p1 = await shot(key + '-offline-date-changed');
+    NET.push(['ONLINE', Date.now()]); await p.context().setOffline(false); await p.waitForTimeout(8000); q.chip2 = (await p.locator('main button').allInnerTexts()).map((t) => t.replace(/\s+/g, ' ')).filter((t) => /Date|As of/.test(t)); q.rows2 = (await p.locator('main tbody tr').allInnerTexts()).slice(0, 3); q.notes2 = await notes(); q.p2 = await shot(key + '-online-again');
+  } catch (e) { q.err = String(e).slice(0, 300); await p.context().setOffline(false).catch(() => {}); await shot(key + '-error'); } q.net = [...NET]; }
+fs.writeFileSync(OUT + 'pr17.json', JSON.stringify(o, null, 1)); for (const kk of ['ars', 'iv']) { const q = o[kk]; console.log(kk, JSON.stringify({ probe: q.probe, chip0: q.chip0, chip1: q.chip1, notes1: q.notes1, chip2: q.chip2, err: q.err, net: q.net?.map((n) => n[0] + ' ' + (n[2] || '').slice(0, 50) + ' ' + (n[3] || '')) })); } process.exit(0);

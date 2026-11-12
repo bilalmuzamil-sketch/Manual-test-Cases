@@ -1,0 +1,231 @@
+{
+ "version": "v26.45.3-f5ba431",
+ "ars": {
+  "chip0": [
+   "calendar_today Date: 2026-11-12 keyboard_arrow_down"
+  ],
+  "rows0": [
+   "",
+   "aqeel transport 56\t$1,229.93\t$-42.00\t$2,716.01\t$-9,650.82\t$-8,035.27\t$-13,782.15",
+   "Ayesha\t\t\t$1,535.92\t\t$-188.89\t$1,347.03"
+  ],
+  "p0": "/home/user/Manual-test-Cases/build/aging-reports/exec/prod/421-pr17-ars-online.png",
+  "probe": "ERR Failed to fetch (api.shopview.com)",
+  "chip1": [
+   "calendar_today Date: 2026-11-10 keyboard_arrow_down"
+  ],
+  "main1": "A/R Aging Summary calendar_today Date: 2026-11-10 keyboard_arrow_down print Customer Current 1-30 Days 31-60 Days 61-90 Days 91 And Over Total Totals $0.00 $0.00 $0.00 $0.00 $0.00 $0.00 search No record matches these filters Try changing filters to widen your results.",
+  "notes1": [],
+  "rows1": [
+   "",
+   "",
+   "Totals\t$0.00\t$0.00\t$0.00\t$0.00\t$0.00\t$0.00"
+  ],
+  "url1": "https://app.shopview.com/reports/ar-aging-summary?asOfDate=2026-11-10",
+  "p1": "/home/user/Manual-test-Cases/build/aging-reports/exec/prod/422-pr17-ars-offline-date-changed.png",
+  "chip2": [
+   "calendar_today Date: 2026-11-10 keyboard_arrow_down"
+  ],
+  "rows2": [
+   "",
+   "aqeel transport 56\t$1,229.93\t$2,503.23\t$-9,112.72\t$313.07\t$-8,715.66\t$-13,782.15",
+   "Ayesha\t\t$1,289.93\t$245.99\t\t$-188.89\t$1,347.03"
+  ],
+  "notes2": [],
+  "p2": "/home/user/Manual-test-Cases/build/aging-reports/exec/prod/423-pr17-ars-online-again.png",
+  "net": [
+   [
+    "fail",
+    1794469578438,
+    "/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_cli",
+    "net::ERR_ABORTED"
+   ],
+   [
+    "req",
+    1794469578687,
+    "/reporting/individual-punch-clock/today?range=today"
+   ],
+   [
+    "req",
+    1794469579011,
+    "/reporting/account-receivable/aging-summary-report?pagination%5Bpage%5D=1&pagination%5Brow"
+   ],
+   [
+    "resp",
+    1794469579148,
+    "/reporting/individual-punch-clock/today?range=today",
+    200
+   ],
+   [
+    "req",
+    1794469579148,
+    "/reporting/individual-punch-clock/today?range=today"
+   ],
+   [
+    "resp",
+    1794469579263,
+    "/reporting/individual-punch-clock/today?range=today",
+    200
+   ],
+   [
+    "resp",
+    1794469581091,
+    "/reporting/account-receivable/aging-summary-report?pagination%5Bpage%5D=1&pagination%5Brow",
+    200
+   ],
+   [
+    "OFFLINE",
+    1794469587641
+   ],
+   [
+    "fail",
+    1794469588149,
+    "/workplaces",
+    "net::ERR_INTERNET_DISCONNECTED"
+   ],
+   [
+    "fail",
+    1794469589818,
+    "/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_cli",
+    "net::ERR_INTERNET_DISCONNECTED"
+   ],
+   [
+    "fail",
+    1794469589819,
+    "/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_cli",
+    "net::ERR_INTERNET_DISCONNECTED"
+   ],
+   [
+    "ONLINE",
+    1794469599881
+   ],
+   [
+    "req",
+    1794469599887,
+    "/reporting/account-receivable/aging-summary-report?pagination%5Bpage%5D=1&pagination%5Brow"
+   ],
+   [
+    "resp",
+    1794469600498,
+    "/reporting/account-receivable/aging-summary-report?pagination%5Bpage%5D=1&pagination%5Brow",
+    200
+   ]
+  ]
+ },
+ "iv": {
+  "chip0": [
+   "calendar_today As of: 11/12/2026 keyboard_arrow_down"
+  ],
+  "rows0": [
+   "",
+   ""
+  ],
+  "p0": "/home/user/Manual-test-Cases/build/aging-reports/exec/prod/424-pr17-iv-online.png",
+  "probe": "ERR Failed to fetch (api.shopview.com)",
+  "chip1": [
+   "calendar_today As of: 11/10/2026 keyboard_arrow_down"
+  ],
+  "main1": "Inventory Value search Search more_horiz width_normal calendar_today As of: 11/10/2026 keyboard_arrow_down list Category: All categories keyboard_arrow_down local_shipping Vendor: All vendors keyboard_arrow_down place Location: All locations keyboard_arrow_down cancel Part #arrow_drop_up Descriptionarrow_drop_up Categoryarrow_drop_up Vendorarrow_drop_up Location arrow_drop_up Qty arrow_drop_up Uni",
+  "notes1": [],
+  "rows1": [
+   "",
+   ""
+  ],
+  "url1": "https://app.shopview.com/reports/inventory-value?asOfDate=2026-11-10",
+  "p1": "/home/user/Manual-test-Cases/build/aging-reports/exec/prod/425-pr17-iv-offline-date-changed.png",
+  "chip2": [
+   "calendar_today As of: 11/10/2026 keyboard_arrow_down"
+  ],
+  "rows2": [
+   "",
+   "1237944\t\nA158\n\t\nLighting\n\t\nZZAUTOTEST SV12268 P\n\tTrucks Hill 2\t99,999,999.99\t$21,474,835.40\t$21,474,836.47\t$107,000,000.00\t0.0%\t$2,147,483,646,785,251.50\t$2,147,483,539,785,251.50",
+   "bj493837\t\nItem-57540\n\t\nTires\n\t\n—\n\tTruck Hill 1\t991.00\t$99.48\t$994.80\t$887,262.12\t90.0%\t$985,846.80\t$98,584.68"
+  ],
+  "notes2": [],
+  "p2": "/home/user/Manual-test-Cases/build/aging-reports/exec/prod/426-pr17-iv-online-again.png",
+  "net": [
+   [
+    "fail",
+    1794469608392,
+    "/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_cli",
+    "net::ERR_ABORTED"
+   ],
+   [
+    "req",
+    1794469608687,
+    "/reporting/individual-punch-clock/today?range=today"
+   ],
+   [
+    "resp",
+    1794469609108,
+    "/reporting/individual-punch-clock/today?range=today",
+    200
+   ],
+   [
+    "req",
+    1794469609108,
+    "/reporting/individual-punch-clock/today?range=today"
+   ],
+   [
+    "resp",
+    1794469609221,
+    "/reporting/individual-punch-clock/today?range=today",
+    200
+   ],
+   [
+    "req",
+    1794469609494,
+    "/reporting/reports/inventory-value?range=custom&start_date=2026-11-12T00%3A00%3A00.000Z&en"
+   ],
+   [
+    "OFFLINE",
+    1794469617575
+   ],
+   [
+    "fail",
+    1794469618081,
+    "/workplaces",
+    "net::ERR_INTERNET_DISCONNECTED"
+   ],
+   [
+    "fail",
+    1794469619776,
+    "/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_cli",
+    "net::ERR_INTERNET_DISCONNECTED"
+   ],
+   [
+    "fail",
+    1794469619778,
+    "/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_cli",
+    "net::ERR_INTERNET_DISCONNECTED"
+   ],
+   [
+    "fail",
+    1794469619781,
+    "/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_cli",
+    "net::ERR_INTERNET_DISCONNECTED"
+   ],
+   [
+    "resp",
+    1794469622694,
+    "/reporting/reports/inventory-value?range=custom&start_date=2026-11-12T00%3A00%3A00.000Z&en",
+    200
+   ],
+   [
+    "ONLINE",
+    1794469629850
+   ],
+   [
+    "req",
+    1794469629859,
+    "/reporting/reports/inventory-value?range=custom&start_date=2026-11-10T00%3A00%3A00.000Z&en"
+   ],
+   [
+    "resp",
+    1794469633894,
+    "/reporting/reports/inventory-value?range=custom&start_date=2026-11-10T00%3A00%3A00.000Z&en",
+    200
+   ]
+  ]
+ }
+}

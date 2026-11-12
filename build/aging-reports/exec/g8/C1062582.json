@@ -1,0 +1,126 @@
+{
+ "id": "C1062582",
+ "p0": "/home/user/Manual-test-Cases/build/aging-reports/exec/g8//27-C1062582-0-online.png",
+ "offline": false,
+ "exp": "opened",
+ "msg2": "Something went wrong loading this bucket. Collapse and expand it to try again.",
+ "notes2": [
+  "warning QA env is sleeping Redirecting... Close 2"
+ ],
+ "box2": [
+  278,
+  449,
+  1132,
+  48
+ ],
+ "url2": "https://sv11315.qa.shopview.com/reports/ar-aging-detail",
+ "sleepNav2": [
+  "https://sleep.qa.shopview.com/?app=sv11315&api=sv11315",
+  "https://sleep.qa.shopview.com/?app=sv11315&api=sv11315"
+ ],
+ "p2": "/home/user/Manual-test-Cases/build/aging-reports/exec/g8//28-C1062582-2-offline-expand.png",
+ "col": "closed",
+ "p4": "/home/user/Manual-test-Cases/build/aging-reports/exec/g8//29-C1062582-4-collapsed.png",
+ "exp5": "opened",
+ "msg5": null,
+ "lines5": 29,
+ "p5": "/home/user/Manual-test-Cases/build/aging-reports/exec/g8//30-C1062582-5-expanded-online.png",
+ "net": [
+  [
+   "req",
+   1794468446702,
+   "/reporting/reports/ar-aging-detail/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468446860,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468447944,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468447947,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468448640,
+   "/reporting/reports/ar-aging-detail/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468448643,
+   "/reporting/reports/ar-aging-detail?asOfDate=2026-11-12"
+  ],
+  [
+   "resp",
+   1794468449436,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468449639,
+   "/reporting/reports/ar-aging-detail?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "OFFLINE",
+   1794468467229
+  ],
+  [
+   "req",
+   1794468468043,
+   "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "abort",
+   1794468468043,
+   "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "fail",
+   1794468468049,
+   "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false",
+   "net::ERR_INTERNET_DISCONNECTED"
+  ],
+  [
+   "req",
+   1794468469052,
+   "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "abort",
+   1794468469052,
+   "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "fail",
+   1794468469059,
+   "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false",
+   "net::ERR_INTERNET_DISCONNECTED"
+  ],
+  [
+   "req",
+   1794468478276,
+   "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false"
+  ],
+  [
+   "resp",
+   1794468478738,
+   "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-12&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ]
+ ]
+}

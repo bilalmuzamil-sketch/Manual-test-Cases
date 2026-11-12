@@ -1,0 +1,123 @@
+{
+ "id": "C715637",
+ "rows0": 8,
+ "p0": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//21-C715637-0-online.png",
+ "offline": true,
+ "msg2": null,
+ "notes2": [],
+ "chip2": "calendar_today As of: 11/11/2026 keyboard_arrow_down",
+ "box2": null,
+ "url2": "https://sv11315.qa.shopview.com/reports/ap-aging-detail?asOfDate=2026-11-11",
+ "sleepNav2": [],
+ "p2": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//22-C715637-2-offline.png",
+ "p3": "/home/user/Manual-test-Cases/build/aging-reports/exec/g9//23-C715637-3-online-again.png",
+ "net": [
+  [
+   "resp",
+   1794468814798,
+   "/reporting/reports/ap-aging-summary?asOfDate=2026-11-11&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468816189,
+   "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-12"
+  ],
+  [
+   "req",
+   1794468816190,
+   "/reporting/reports/ap-aging/vendors"
+  ],
+  [
+   "req",
+   1794468816385,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468816540,
+   "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468816543,
+   "/reporting/reports/ap-aging-detail?asOfDate=2026-11-12"
+  ],
+  [
+   "resp",
+   1794468816657,
+   "/reporting/reports/ap-aging/vendors",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468816969,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "req",
+   1794468816970,
+   "/reporting/individual-punch-clock/today?range=today"
+  ],
+  [
+   "resp",
+   1794468817051,
+   "/reporting/reports/ap-aging-detail?asOfDate=2026-11-12",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468817099,
+   "/reporting/individual-punch-clock/today?range=today",
+   200,
+   false
+  ],
+  [
+   "OFFLINE",
+   1794468836668
+  ],
+  [
+   "req",
+   1794468852723,
+   "/reporting/reports/ap-aging/vendors"
+  ],
+  [
+   "req",
+   1794468852728,
+   "/reporting/reports/ap-aging-detail?asOfDate=2026-11-11"
+  ],
+  [
+   "req",
+   1794468852733,
+   "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-11"
+  ],
+  [
+   "resp",
+   1794468853340,
+   "/reporting/reports/ap-aging-detail?asOfDate=2026-11-11",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468853369,
+   "/reporting/reports/ap-aging/vendors",
+   200,
+   false
+  ],
+  [
+   "resp",
+   1794468853572,
+   "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-11",
+   200,
+   false
+  ]
+ ]
+}

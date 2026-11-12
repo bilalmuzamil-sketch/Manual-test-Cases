@@ -1,0 +1,300 @@
+{
+ "pass_meta": {
+  "note": "12 Nov 2026, run 557, g10: retest of every Blocked test"
+ },
+ "results": {
+  "C715442": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest of the Blocked result, 12 Nov 2026, build v26.45.3-34788b2, A/R Aging Collection.",
+    "Step 2: with the connection cut while the report loads the new as-of date (11/11/2026), the rows are replaced by \"Something went wrong loading this report. Please try again.\" and an error notice shows.",
+    "Step 4: back online, as-of date set back to today - the report loads normally again (33 rows), no message.",
+    "On this QA site the error notice reads \"QA env is sleeping\" (the QA site's own notice for a lost connection); with a server error the standard notice \"Ooooops! An error occurred\" shows (11 Nov).",
+    "Note: with Wi-Fi switched off BEFORE the step, the report sends nothing until the connection is back, then loads by itself, and no error message shows. Production's current A/R Aging Summary and Inventory Value behave the same way today (no request, no error message; they show an empty \"No record matches these filters\" table, where the new reports keep the previous rows), so this is not a failed load and not new with this release. Reported to the QA lead."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715442-g8-02-C715442-2-offline.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715442-g8-04-C715442-4-today-again.png"
+   ]
+  },
+  "C715443": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest of the Blocked result, 12 Nov 2026, build v26.45.3-34788b2, A/P Aging Summary.",
+    "Step 2: with the connection cut while the report loads the new as-of date (11/11/2026), the rows are replaced by \"Something went wrong loading this report. Please try again.\" and an error notice shows.",
+    "Step 4: back online, as-of date set back to today - the report loads normally again (33 rows), no message.",
+    "On this QA site the error notice reads \"QA env is sleeping\" (the QA site's own notice for a lost connection); with a server error the standard notice \"Ooooops! An error occurred\" shows (11 Nov).",
+    "Note: with Wi-Fi switched off BEFORE the step, the report sends nothing until the connection is back, then loads by itself, and no error message shows. Production's current A/R Aging Summary and Inventory Value behave the same way today (no request, no error message; they show an empty \"No record matches these filters\" table, where the new reports keep the previous rows), so this is not a failed load and not new with this release. Reported to the QA lead."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715443-g8-06-C715443-2-offline.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715443-g8-08-C715443-4-today-again.png"
+   ]
+  },
+  "C715633": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest of the Blocked result, 12 Nov 2026, build v26.45.3-34788b2, A/R Aging Summary.",
+    "Step 2: with the connection cut while the report loads the new as-of date (11/11/2026), the rows are replaced by \"Something went wrong loading this report. Please try again.\" and an error notice shows.",
+    "Step 3: the connection is back.",
+    "On this QA site the error notice reads \"QA env is sleeping\" (the QA site's own notice for a lost connection); with a server error the standard notice \"Ooooops! An error occurred\" shows (11 Nov).",
+    "Note: with Wi-Fi switched off BEFORE the step, the report sends nothing until the connection is back, then loads by itself, and no error message shows. Production's current A/R Aging Summary and Inventory Value behave the same way today (no request, no error message; they show an empty \"No record matches these filters\" table, where the new reports keep the previous rows), so this is not a failed load and not new with this release. Reported to the QA lead."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715633-g8-10-C715633-2-offline.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715633-g8-11-C715633-3-online-again.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715633-prod-422-pr17-ars-offline-date-changed.png"
+   ]
+  },
+  "C715634": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest of the Blocked result, 12 Nov 2026, build v26.45.3-34788b2, A/R Aging Detail.",
+    "Step 2: with the connection cut while the report loads the new as-of date (11/11/2026), the rows are replaced by \"Something went wrong loading this report. Please try again.\" and an error notice shows.",
+    "Step 3: the connection is back.",
+    "On this QA site the error notice reads \"QA env is sleeping\" (the QA site's own notice for a lost connection); with a server error the standard notice \"Ooooops! An error occurred\" shows (11 Nov).",
+    "Note: with Wi-Fi switched off BEFORE the step, the report sends nothing until the connection is back, then loads by itself, and no error message shows. Production's current A/R Aging Summary and Inventory Value behave the same way today (no request, no error message; they show an empty \"No record matches these filters\" table, where the new reports keep the previous rows), so this is not a failed load and not new with this release. Reported to the QA lead."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715634-g8-13-C715634-2-offline.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715634-g8-14-C715634-3-online-again.png"
+   ]
+  },
+  "C715635": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest of the Blocked result, 12 Nov 2026, build v26.45.3-34788b2, A/R Aging Collection.",
+    "Step 2: with the connection cut while the report loads the new as-of date (11/11/2026), the rows are replaced by \"Something went wrong loading this report. Please try again.\" and an error notice shows.",
+    "Step 3: the connection is back.",
+    "On this QA site the error notice reads \"QA env is sleeping\" (the QA site's own notice for a lost connection); with a server error the standard notice \"Ooooops! An error occurred\" shows (11 Nov).",
+    "Note: with Wi-Fi switched off BEFORE the step, the report sends nothing until the connection is back, then loads by itself, and no error message shows. Production's current A/R Aging Summary and Inventory Value behave the same way today (no request, no error message; they show an empty \"No record matches these filters\" table, where the new reports keep the previous rows), so this is not a failed load and not new with this release. Reported to the QA lead."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715635-g8-16-C715635-2-offline.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715635-g8-17-C715635-3-online-again.png"
+   ]
+  },
+  "C715636": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest of the Blocked result, 12 Nov 2026, build v26.45.3-34788b2, A/P Aging Summary.",
+    "Step 2: with the connection cut while the report loads the new as-of date (11/11/2026), the rows are replaced by \"Something went wrong loading this report. Please try again.\" and an error notice shows.",
+    "Step 3: the connection is back.",
+    "On this QA site the error notice reads \"QA env is sleeping\" (the QA site's own notice for a lost connection); with a server error the standard notice \"Ooooops! An error occurred\" shows (11 Nov).",
+    "Note: with Wi-Fi switched off BEFORE the step, the report sends nothing until the connection is back, then loads by itself, and no error message shows. Production's current A/R Aging Summary and Inventory Value behave the same way today (no request, no error message; they show an empty \"No record matches these filters\" table, where the new reports keep the previous rows), so this is not a failed load and not new with this release. Reported to the QA lead."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715636-g8-19-C715636-2-offline.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715636-g8-20-C715636-3-online-again.png"
+   ]
+  },
+  "C715637": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest of the Blocked result, 12 Nov 2026, build v26.45.3-34788b2, A/P Aging Detail.",
+    "Step 2: with the connection cut while the report loads the new as-of date (11/11/2026), the rows are replaced by \"Something went wrong loading this report. Please try again.\" and an error notice shows.",
+    "Step 3: the connection is back.",
+    "On this QA site the error notice reads \"QA env is sleeping\" (the QA site's own notice for a lost connection); with a server error the standard notice \"Ooooops! An error occurred\" shows (11 Nov).",
+    "Note: with Wi-Fi switched off BEFORE the step, the report sends nothing until the connection is back, then loads by itself, and no error message shows. Production's current A/R Aging Summary and Inventory Value behave the same way today (no request, no error message; they show an empty \"No record matches these filters\" table, where the new reports keep the previous rows), so this is not a failed load and not new with this release. Reported to the QA lead."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715637-g8-22-C715637-2-offline.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715637-g8-23-C715637-3-online-again.png"
+   ]
+  },
+  "C715638": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest of the Blocked result, 12 Nov 2026, build v26.45.3-34788b2, A/P Unpaid Invoices.",
+    "Step 2: with the connection cut while the report loads the new as-of date (11/11/2026), the rows are replaced by \"Something went wrong loading this report. Please try again.\" and an error notice shows.",
+    "Step 3: the connection is back.",
+    "On this QA site the error notice reads \"QA env is sleeping\" (the QA site's own notice for a lost connection); with a server error the standard notice \"Ooooops! An error occurred\" shows (11 Nov).",
+    "Note: with Wi-Fi switched off BEFORE the step, the report sends nothing until the connection is back, then loads by itself, and no error message shows. Production's current A/R Aging Summary and Inventory Value behave the same way today (no request, no error message; they show an empty \"No record matches these filters\" table, where the new reports keep the previous rows), so this is not a failed load and not new with this release. Reported to the QA lead."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715638-g8-25-C715638-2-offline.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715638-g8-26-C715638-3-online-again.png"
+   ]
+  },
+  "C1062582": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest of the Blocked result, 12 Nov 2026, build v26.45.3-34788b2, A/R Aging Detail.",
+    "Step 2: with the connection cut while the \"Current\" bucket loads its lines, the bucket shows \"Something went wrong loading this bucket. Collapse and expand it to try again.\" in place of its lines.",
+    "Steps 4-5: back online, collapse and expand - its 29 lines load and the message is gone.",
+    "On this QA site the error notice reads \"QA env is sleeping\" (the QA site's own notice for a lost connection); with a server error the standard notice \"Ooooops! An error occurred\" shows (11 Nov).",
+    "Note: with Wi-Fi switched off BEFORE the step, the report sends nothing until the connection is back, then loads by itself, and no error message shows. Production's current A/R Aging Summary and Inventory Value behave the same way today (no request, no error message; they show an empty \"No record matches these filters\" table, where the new reports keep the previous rows), so this is not a failed load and not new with this release. Reported to the QA lead."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062582-g8-28-C1062582-2-offline-expand.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062582-g8-30-C1062582-5-expanded-online.png"
+   ]
+  },
+  "C1062583": {
+   "verdict": "Passed",
+   "observed": [
+    "Retest of the Blocked result, 12 Nov 2026, build v26.45.3-34788b2, A/P Aging Detail, bucket \"91 or more days past due\" (11,949 lines).",
+    "Step 1: the bucket opens with its first 100 lines.",
+    "Step 3: with the connection cut while scrolling loads the next lines, the 100 lines shown stay and under them the bucket shows \"Not every line loaded. Collapse and expand this bucket to try again.\"",
+    "Steps 5-6: back online, collapse and expand - the first 100 lines again, no message.",
+    "On this QA site the error notice reads \"QA env is sleeping\" (the QA site's own notice for a lost connection); with a server error the standard notice \"Ooooops! An error occurred\" shows (11 Nov).",
+    "Note: with Wi-Fi switched off BEFORE the step, the report sends nothing until the connection is back, then loads by itself, and no error message shows. Production's current A/R Aging Summary and Inventory Value behave the same way today (no request, no error message; they show an empty \"No record matches these filters\" table, where the new reports keep the previous rows), so this is not a failed load and not new with this release. Reported to the QA lead."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062583-g8-32-C1062583-3-offline-scrolled.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1062583-g8-34-C1062583-6-expanded-again.png"
+   ]
+  },
+  "C715469": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 4: the 2,000-line PDF cannot be judged on the QA site - its PDF service stops any PDF after 30 seconds.",
+   "bold_steps": [
+    4
+   ],
+   "source": "Developer on SV-12539 (Nemanja Djuric, 11 Nov 2026, comment 80903): \"Even with all the CPU QA's server has, about 1,100 rows take 42 seconds, over QA's 30-second limit \u2026 We won't change QA's setup. Please re-test PDFs between 800 and 2,000 rows on staging once this work is there.\"",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12539 (Open, read 12 Nov 2026).",
+   "todo": "What needs to be done: run on staging once the release is there (staging allows 120 seconds per PDF). Follow the status here https://shopview.atlassian.net/browse/SV-12539 (Open, read 12 Nov 2026).",
+   "observed": [
+    "Retest 12 Nov 2026 on build v26.45.3-34788b2: the same three vendors still add up to exactly 2,000 lines; the PDF stopped after 32 seconds with \"We couldn't export this report. Please try again.\" and no file.",
+    "No new ticket: the ticket above already covers it, and the developer confirmed the QA site's 30-second PDF limit causes it (the report code does not); a second ticket would be a duplicate."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715469-p48c-13-pdf-032s.png"
+   ]
+  },
+  "C715475": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 1: this test compares Inventory Value with a PDF and CSV saved on staging BEFORE the feature is deployed there; the feature is not on staging yet.",
+   "bold_steps": [
+    1
+   ],
+   "source": "The test's own set-up: \"before the feature was deployed on staging, you saved Inventory Value's PDF and CSV \u2026 and copied a link to Inventory Value with that filter.\"",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12539 (Open, read 12 Nov 2026).",
+   "todo": "What needs to be done: on staging, just before the release is deployed there, save the PDF, CSV and link; after it is deployed, run the steps.",
+   "observed": [
+    "Retest 12 Nov 2026 on build v26.45.3-34788b2: the same Inventory Value list (614 parts, Staging Lethbridge - 4310, HD-Hose & Fittings) now prints its PDF in 23 seconds on the QA site; yesterday it stopped at 30 seconds.",
+    "The link and the CSV work as before the release (11 Nov).",
+    "No new ticket: nothing here differs from the sources; the earlier PDF stop was the QA site's 30-second limit (ticket above)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715475-q9-C715475-1-filtered.png"
+   ]
+  },
+  "C797943": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 1: the QA site has more than 1,100 vendors; the test needs 8 or fewer.",
+   "bold_steps": [
+    1
+   ],
+   "source": "QA lead's decision, 12 Nov 2026: out of scope on the QA site.",
+   "todo": "What needs to be done: nothing on the QA site (QA lead's decision).",
+   "observed": [
+    "Retest 12 Nov 2026: re-read today - the QA organization still has more than 1,100 vendors, and the Vendor menu shows \"Search vendors\", as the PRD asks above 8 vendors.",
+    "No new ticket: the product does what the PRD says for this many vendors; only the test's set-up cannot be made here."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C797943-q12-01-C797943-vendor-menu.png"
+   ]
+  },
+  "C715468": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 1: the QA site has no as-of date with exactly 2,000 or 2,001 customers (155 rows today).",
+   "bold_steps": [
+    1
+   ],
+   "source": "QA lead's decision, 12 Nov 2026: out of scope on the QA site.",
+   "todo": "What needs to be done: nothing on the QA site (QA lead's decision); the developers checked this boundary (SV-11595, Done).",
+   "observed": [
+    "Retest 12 Nov 2026: A/R Summary lists 155 rows today; the QA site's 30-second PDF limit would also stop a 2,000-row PDF here.",
+    "No new ticket: nothing seen differs from the sources."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715468-q12-02-C715468-ar-summary.png"
+   ]
+  },
+  "C715462": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 1: an invoice paid more than its amount cannot be made - the app refuses the overpayment.",
+   "bold_steps": [
+    1
+   ],
+   "source": "Production today (before the release): a payment of $1,102.93 on its $1,082.93 invoice S2-1760 is refused with \"Transaction cannot be overpaid.\" - the same as the new build.",
+   "todo": "What needs to be done: nothing to fix; this test can only run on an organization that already holds an overpaid invoice (the PRD says production has 16 such invoices, made in the past).",
+   "observed": [
+    "Retest 12 Nov 2026 on build v26.45.3-34788b2: a new $100.00 invoice (S11315-17913, customer ZZX Overpaid Q13); the app's payment of $120.00 is refused with \"Transaction cannot be overpaid.\" and the invoice stays $100.00 open. On screen (its work order's Finance page, New Payment), typing 120.00 shows \"Payment cannot be higher than 100\" and Make Payment stays disabled.",
+    "Production today (before the release): a payment of $1,102.93 on its $1,082.93 invoice S2-1760 is refused with \"Transaction cannot be overpaid.\" - the same as the new build.",
+    "No new ticket: refusing an overpayment is how payments already work on production; the PRD only describes how the report treats overpaid invoices that already exist, it does not ask that new ones can be made."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C715462-q14-03-C715462-overpay-invoice-typed.png"
+   ]
+  },
+  "C1095432": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 3: an invoice paid more than its amount cannot be made - the app refuses the overpayment.",
+   "bold_steps": [
+    3
+   ],
+   "source": "Production today (before the release): a payment of $1,102.93 on its $1,082.93 invoice S2-1760 is refused with \"Transaction cannot be overpaid.\" - the same as the new build.",
+   "todo": "What needs to be done: nothing to fix; this test can only run on an organization that already holds an overpaid invoice (the PRD says production has 16 such invoices, made in the past).",
+   "observed": [
+    "Retest 12 Nov 2026 on build v26.45.3-34788b2: a new $100.00 invoice (S11315-17913, customer ZZX Overpaid Q13); the app's payment of $120.00 is refused with \"Transaction cannot be overpaid.\" and the invoice stays $100.00 open. On screen (its work order's Finance page, New Payment), typing 120.00 shows \"Payment cannot be higher than 100\" and Make Payment stays disabled.",
+    "Production today (before the release): a payment of $1,102.93 on its $1,082.93 invoice S2-1760 is refused with \"Transaction cannot be overpaid.\" - the same as the new build.",
+    "No new ticket: refusing an overpayment is how payments already work on production; the PRD only describes how the report treats overpaid invoices that already exist, it does not ask that new ones can be made."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1095432-q14-03-C715462-overpay-invoice-typed.png"
+   ]
+  },
+  "C1078998": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 4: an invoice with no due date cannot be made - the app always stores one from the customer's credit term.",
+   "bold_steps": [
+    4
+   ],
+   "source": "Retest 12 Nov 2026: the app stores a due date on every new invoice.",
+   "todo": "What needs to be done: nothing to fix; this test can only run where an invoice without a due date already exists.",
+   "observed": [
+    "Retest 12 Nov 2026 on build v26.45.3-34788b2: a Net 30 customer (ZZR No Due Date Q13) and an invoice dated 40 days ago (S11315-17912): the app stored the due date Nov 1, 2026 at once.",
+    "No new ticket: the PRD says how the report ages an invoice that has no due date; it does not ask that such invoices can be made."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1078998-q14-01-C1078998-invoice-due-date.png"
+   ]
+  },
+  "C1078999": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 4: a bill with no due date cannot be made - a vendor with an empty credit term gets the bill date as due date, and a missing term is refused.",
+   "bold_steps": [
+    4
+   ],
+   "source": "Retest 12 Nov 2026: every new bill gets a due date.",
+   "todo": "What needs to be done: nothing to fix; this test can only run where a bill without a due date already exists.",
+   "observed": [
+    "Retest 12 Nov 2026 on build v26.45.3-34788b2: vendor \"ZZRV No Due Date Q13c E\" with an empty credit term; its bill ZZRV-NODUE-Q13-3053E dated Oct 20 was stored with due date Oct 20 and shows 22 days past due.",
+    "A vendor with no credit term at all is refused: \"credit_term: Missing required parameter\".",
+    "No new ticket: the PRD describes how the report treats such bills; it does not ask that they can be made."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1078999-q14-02-C1078999-bill-due-date.png"
+   ]
+  },
+  "C1079000": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 4: a $100.00 bill cannot be paid $110.00 - the app refuses to overpay a vendor bill.",
+   "bold_steps": [
+    4
+   ],
+   "source": "Retest 12 Nov 2026: the app refuses: \"Vendor transaction cannot be overpaid.\"",
+   "todo": "What needs to be done: nothing to fix; this test can only run where an overpaid bill already exists.",
+   "observed": [
+    "Retest 12 Nov 2026 on build v26.45.3-34788b2: vendor \"ZZRV Overpaid Q13b\" with a $100.00 bill; paying $110.00 is refused with \"Vendor transaction cannot be overpaid.\" On the vendor's Unpaid Invoices tab, typing 110.00 shows \"Payment cannot be higher than 100\" and Make Payment stays disabled.",
+    "Overpaying a customer invoice is refused on production the same way (12 Nov).",
+    "No new ticket: the PRD describes how the report lists an overpaid bill; it does not ask that one can be made."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/exec/pics/C1079000-q14-04-C1079000-overpay-bill-typed.png"
+   ]
+  }
+ }
+}
