@@ -401,6 +401,9 @@ def main():
     for p_ in payload:
         if p_.get('status_id') != 5:
             continue
+        # 12 Nov 2026: a HELD ticket has no link yet, but its line may link the OWNING STORY - that is not "the ticket" (Rule 133/123)
+        if res.get('C%d' % p_['case_id'], {}).get('ticket_held'):
+            continue
         m = _re.search(r'https://shopview\.atlassian\.net/browse/SV-\d+', p_.get('comment') or '')
         if not m:
             continue
@@ -424,6 +427,8 @@ def main():
         # only the record's own ticket LINK counts (a comment may mention other tickets in passing; a held ticket has no key)
         tk = res.get('C%d' % p_['case_id'], {}).get('ticket') or ''
         keys = list(dict.fromkeys(_KEY.findall(tk))) if 'browse/' in tk else []
+        if res.get('C%d' % p_['case_id'], {}).get('ticket_held'):
+            keys = []   # 12 Nov 2026: a held ticket line may link the owning story; a story is not the ticket => no prefix (Rule 133)
         # no filed ticket (Blocked on a question, or a ticket still HELD for his yes) => an old prefix from an earlier ticket
         # comes off; the new ticket's prefix goes on when it is filed and its number posted
         if True:
