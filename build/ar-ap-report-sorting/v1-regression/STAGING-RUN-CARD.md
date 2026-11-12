@@ -31,6 +31,9 @@ Re-check that SV-12544, SV-12545 and SV-12547 are still open.
 
 **Permission recorded (QA lead, 12 Nov 2026):** asked "May I sign tech@shopview.com in on staging during the run, in its own separate browser session?" — answer: **"Yes"**. Applies to V1R-32, V1R-53 and V1R-87 on staging: separate cookie jar holding only `sv_sso_session` + `cf_clearance`, never the QA lead's PHPSESSID; check the QA lead's session (`/api/iam/view-profile/` → 200) after every sign-in; restore tech's role from `staging-seed-2026-11-12/tech-before-staging.json` afterwards (Rule 26).
 
+
+**Who runs what (QA lead, 12 Nov 2026, verbatim: "The tests which are not related to staging will be run by the other session."):** this session runs the staging tests in run 557 — section 134654 "Regression Tests" (92) and section 133628 "Run on Staging After the Feature Is Deployed" (13). The other 365 tests under group 20434 are run by the other session; staging is not prepared for them by us.
+
 ## Tests that are held, and why
 
 | Test | Why it is not a normal pass/fail |
