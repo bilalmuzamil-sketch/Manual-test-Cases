@@ -360,3 +360,22 @@ One record only. The pass stopped before seeding anything else: no customer, ven
 | What | Name | Id | Created (UTC) | Note |
 |---|---|---|---|---|
 | Location (workplace) | ZZAUTOTEST R365 Location C with a name longer than the chip | `2644c166-362b-48ec-9cf2-2ac974418039` | 2026-11-12T09:47:55Z | America/Edmonton, shop 2, no documents. The signed-in QA lead login was enrolled there automatically, so the location switcher and the reports' Location menu list **6** of the user's locations instead of 5. Log: `v1-regression/staging-readiness-365/oplog-r365-staging.jsonl`. |
+
+### Added 12 Nov 2026 by the overpaid-invoice pass for C715462 (all at location A, Staging Heavy Duty - 9919)
+
+**Provenance warning recorded by the same pass:** at 2026-11-12T11:4xZ staging's front end already reported
+`v26.45.4-b8c04e2`, which is `Merge pull request #4262 from ShopView/SV-11315-ar-ap-aging-reports`, and the API
+answered **200** on the new `/api/reporting/reports/ar-aging-summary` and **404** on the old
+`/api/reporting/account-receivable/aging-summary-report`. **The upgrade had landed on staging when these records
+were made**, so they are after-the-feature records as well as after-the-snapshot records.
+
+| What | Name / number | Id | Created (UTC) | Note |
+|---|---|---|---|---|
+| Customer (+ contact, vehicle) | ZZAUTOTEST OVERPAID C715462 Cust A | `6df5d452-e832-46b2-a338-ddde92fcc613` (account `50859ae8-9f2d-4fa7-ab00-cd0d263ec48a`) | 2026-11-12T11:47:58Z | |
+| Invoice I | S-40181, $100.00, dated 2026-11-09 07:00Z | invoice `281b3c20-0d42-4be9-9a88-15e9dc74f9b1` | 2026-11-12T11:47:59Z | **overpaid by $20.00 as of 10 and 11 Nov 2026**; paid exactly (closed) as of 12 Nov |
+| Invoice B | S-40182, $500.00, dated 2026-11-09 07:00Z | invoice `c5212f8e-2be7-492d-ab98-9ef1ed28d32e` | 2026-11-12T11:48:12Z | open $500.00 |
+| Payment P1 (cash) | $20.00 on S-40181, payment date 2026-11-09 07:00Z | `d9241639-439c-43c4-948e-ec8f48688bfa` | 2026-11-12T11:48:25Z | **reversed** 2026-11-12T11:48:27Z |
+| Payment P2 (cash) | $100.00 on S-40181, payment date 2026-11-10 07:00Z | `11bdc583-b4af-4999-b990-0548cac6b492` | 2026-11-12T11:48:31Z | |
+
+Effect on totals: as of any day from 9 Nov 2026 this customer adds $500.00 (B) to A/R; as of 9 Nov only, $580.00.
+Recipe and proof: `v1-regression/overpaid-recipe/` (`overpaid-staging.json` holds every measurement).
