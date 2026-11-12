@@ -17,3 +17,7 @@
   NOT shared; the QA lead shares it).
 - 12 Nov 2026, QA lead: the question sheet has been given to Milos Vasic; he is expected to answer in one to two weeks. QA branch:
   not yet available — the suite is "source-verified only, no build exists yet" (Rule 85); every runnable case carries the Rule 69 marker.
+- 12 Nov 2026: Milos Vasic answered all 16 (all option (a)); PRD v1.1 the same day carries them. Design republished (1794507512-2fc4)
+  with no board changed. Question review: 8 of 16 were avoidable (`po-answers-2026-11-12/QUESTION-REVIEW.md`); skill 07 §6.0 and lesson
+  L-20 recorded on the QA lead's approval. QA lead: "Named set" (rewrite ~166 affected, new cases for v1.1 additions, release held, stamp
+  the rest after reading each) and "Yes, delete the 3" (C1112404 D-87, C1112406 D-89, C1112408 D-91). Case worker drafting round 3.
