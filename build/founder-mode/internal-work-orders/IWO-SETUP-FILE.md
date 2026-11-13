@@ -4121,7 +4121,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S1-94 Customer A"
 
-### D-93 — Design: Cost move window adds a lead sentence and the item line
+### D-93 — Design: Cost move window names the moved part and its vendor bill
 - Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: 
-- Marker: `AUTOMATION: HOLD - the design adds words S3-R2 does not give; held as the design version (Rule 130)`
+- Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 

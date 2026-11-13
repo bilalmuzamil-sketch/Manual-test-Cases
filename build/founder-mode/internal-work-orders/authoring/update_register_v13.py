@@ -29,8 +29,8 @@ d["ruling_or_question"] = ("Narrowed 13 Nov 2026: v1.3 expects no closing senten
 NEW = [
     ("IWO-D57", "wording (extra words)", "Flow 1 7e", "images/iwo-flow1-20-7e-close-vendor-bill-cost-moves-v13.png",
      ["A vendor bill on this work order was posted to another account. Closing moves that cost.", "Caliper (special order), vendor bill VB-2041"], "S3-R2",
-     "HELD-DESIGN-VERSION", "Skill 07 §6.0 check (c): the PRD is silent on these words and the design speaks; held as the design version (Rule 130), released or removed when "
-     "the PO rules. VB-2041 and \"Caliper\" are example data. The PRD-following case is D-42 (title, rows, buttons).", "D-93"),
+     "CLOSED-BY-CHECK-C", "closed by check (c): design is the source where the PRD is silent. The lead sentence and the item line add to S3-R2's "
+     "dialog and nothing contradicts it (coordinator, 13 Nov 2026). \"Caliper\" and \"VB-2041\" are example data. Cases D-93 (the design's words) and D-42 (title, rows, buttons).", "D-93"),
     ("IWO-D58", "inconsistent board", "Flow 1 7e", "images/iwo-flow1-20-7e-close-vendor-bill-cost-moves-v13.png",
      ["Behind the window the Special orders row says \"Already posted to 6500 Vehicle Expenses at the vendor bill\" while the window moves that $410.00 from Cost of Parts"],
      "S3-R2", "SETTLED-BY-PRD", "Skill 07 §6.0 check (a): the text wins: S3-R2 v1.3 gives a moved item the note \"Moved from [account] to [account]\". Cases D-42, S3-11.", ""),
@@ -72,7 +72,7 @@ R["counts"] = {"differences": len(oc), "settled_by_prd": sum(o.startswith("SETTL
 R["design"] = "https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo, canvas \"Internal Work Orders · All flows v6\", version 1794510020-d4ec (15 boards redrawn 12 Nov 2026)"
 R["prd"] = "Confluence 942243841, version 1.3 (12 Nov 2026, Milos Vasic), saved build/founder-mode/internal-work-orders/sources/CONFLUENCE-942243841-v1.3-read-2026-11-12.md"
 R["v1.3_update"] = ("13 Nov 2026, case worker round 4: IWO-D02, D20, D21 closed; D22, D23 narrowed; N05, N25 reworded; D57-D61 added with the coordinator's "
-                    "verdicts; D62 added (stale Happy 28 board); N42-N44 added (design-silent). No question. Before-copy: "
+                    "verdicts (D57 closed by check (c), case D-93 runnable); D62 added (stale Happy 28 board); N42-N44 added (design-silent). No question. Before-copy: "
                     "po-answers-2026-11-12/write/DESIGN-DIVERGENCE-REGISTER-before-v1.3.json.")
 R["S1-R3|Map their expense accounts in Integrations > QuickBooks."] = {"outcome": "REMOVED-FROM-PRD", "where": "PRD v1.3 S1-R3 has no second line; the design stopped drawing it (hintAccounts always false)"}
 json.dump(R, open(f"{P}/DESIGN-DIVERGENCE-REGISTER.json", "w"), indent=1, ensure_ascii=False)

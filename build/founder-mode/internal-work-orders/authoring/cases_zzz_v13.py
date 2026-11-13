@@ -342,7 +342,7 @@ setc("D-42", "rewritten: the redrawn board 7e is the vendor bill cost move windo
           ["A window \"Close work order [number]?\" opens over the Finance tab with one row \"Moved from Cost of Parts to [General Internal's account] $[amount]\".", "Buttons Cancel then \"Close Work Order\"."]],
      q=["S3-R2", "UFS-17"])
 dref("D-42", words=["Moved from Cost of Parts to 6500 Vehicle Expenses"],
-     notes=["Difference: register IWO-D57: the window adds a lead sentence and an item line the PRD does not give; held as its own design-version case.",
+     notes=["Difference: register IWO-D57: the window adds a lead sentence and an item line the PRD does not give; closed by check (c), the design is the source where the PRD is silent (tested in its own design case).",
             "Difference: register IWO-D58: behind the window the Special orders row says \"Already posted … at the vendor bill\" while the window moves that cost; settled by S3-R2 v1.3 (check a, the text wins: a moved item's note is \"Moved from [account] to [account]\")."])
 setc("D-43", "rewritten: the note sits on the Finance tab rows; full read: the note's words are given", title="Design: Finance tab notes parts cost is not posted without inventory accounts",
      pre=DPRE + [INTC, "Use a location connected to QuickBooks Online where Inventory Asset is not mapped.",
@@ -362,20 +362,25 @@ setc("D-61", "rewritten: the Close window opens only for a missing original (S3-
               "Close Work Order in the window is greyed out until one is picked."]}, q=["S3-R2", "UFS-16"])
 dref("D-61", notes=["Difference: register IWO-D23 (narrowed): no closing sentence is expected in this window any more; the Flow 2 card wording part stands, settled by S2-R5."])
 
-C("D-93", "DESIGN", "Design: Cost move window adds a lead sentence and the item line",
-  DPRE + [QBD, INTC, COSTMOVE_PRE, "Open the attached picture " + DR.DREFS["D-42"]["pictures"][0] + " at 100% zoom beside the screen."],
+# D-93 (coordinator, 13 Nov 2026): a runnable case written from the design. Skill 07 §6.0 check (c): the PRD is silent on the lead sentence
+# and the item line, board 7e states them, and they add to S3-R2's dialog without contradicting it.
+C("D-93", "DESIGN", "Design: Cost move window names the moved part and its vendor bill",
+  DPRE + [QBD, INTC,
+          "Have a new internal work order for that customer with every line Complete and one special-order part (for example Caliper) whose vendor bill (for example VB-2041) was posted to Cost of Parts while the work order was billable, made for this test.",
+          "Open the attached picture " + DR.DREFS["D-42"]["pictures"][0] + " at 100% zoom beside the screen."],
   ["Open the internal work order.", "Click Close Work Order."],
   [["The work order opens."],
-   ["Above the row the window reads \"A vendor bill on this work order was posted to another account. Closing moves that cost.\" (the design version).",
-    "Under the row the item reads \"[part] (special order), vendor bill [number]\" (the design version)."]],
+   ["A window \"Close work order [number]?\" opens over the Finance tab.",
+    "Above the \"Moved from\" row the window reads \"A vendor bill on this work order was posted to another account. Closing moves that cost.\"",
+    "The item line names this work order's special-order part and its vendor bill: \"[part name] (special order), vendor bill [bill number]\" (for example \"Caliper (special order), vendor bill VB-2041\")."]],
   [("S3-R2", "Two cases open a dialog before closing, each only when its case applies: (1) a no-charge work order whose category requires the original work order and has none: \"Close work order [number]?\" with the selects \"Original work order *\" and \"Original line\" of S2-R2, the warning \"[Category] requires the original work order. Pick the earlier work order this job comes from, or Not in ShopView.\", and the buttons Cancel and \"Close Work Order\", disabled until one is picked; Goodwill never shows this; (2) a vendor bill whose cost moves to another account at Close (S7-R4), at a location with an accounting integration: \"Close work order [number]?\" with one \"Moved from [account] to [account] $[amount]\" row per pair of accounts, the amounts added up, and the buttons Cancel and \"Close Work Order\", the same dialog Create invoice shows for a move (S7-R8).")],
-  marker="AUTOMATION: HOLD - the design adds words S3-R2 does not give; held as the design version (Rule 130)", note=NAME_NOTE, stories=[3])
+  note=NAME_NOTE, stories=[3])
 NEW_DESIGN.append("D-93")
 DR.DREFS["D-93"] = {"pages": DR.DREFS["D-42"]["pages"], "pictures": list(DR.DREFS["D-42"]["pictures"]), "boards": list(DR.DREFS["D-42"]["boards"]),
                     "words": ["A vendor bill on this work order was posted to another account. Closing moves that cost.", "Caliper (special order), vendor bill VB-2041"],
-                    "notes": ["Difference: register IWO-D57 (check c: the PRD is silent on these words and the design speaks; held as the design version). \"Caliper\" and \"VB-2041\" are example data.",
-                              "Held design version (Rule 130): not run and not added to the run until the QA lead or the PO rules on it."]}
-BY["D-93"] = next(c for c in CASES if c["key"] == "D-93"); _log("D-93", "new held design-version case (design 1794510020-d4ec, board 7e)")
+                    "notes": ["Difference: register IWO-D57, closed by check (c): the design is the source where the PRD is silent. The lead sentence and the item line add to the window of S3-R2; nothing contradicts it.",
+                              "In the item line, \"Caliper\" and \"VB-2041\" are the design's example data; the window names the work order's own part and vendor bill."]}
+BY["D-93"] = next(c for c in CASES if c["key"] == "D-93"); _log("D-93", "new design case written from board 7e (design 1794510020-d4ec), check (c)")
 
 # ---- full read (po-answers-2026-11-12/full-read/): S1-71 and the 51 runnability problems ---------------------------------------------
 FR = "full read: "

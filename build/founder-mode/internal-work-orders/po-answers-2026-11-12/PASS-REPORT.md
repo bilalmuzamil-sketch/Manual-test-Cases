@@ -11,7 +11,7 @@ Round 3 (PRD v1.1) was never written to TestRail, so the updates in `write/plan.
 - **New in round 4:** 1 (D-93). Still to create from round 3: S4-15, S9-47, S9-48, S1-92, S1-93, S1-94.
 - **Deleted with the QA lead's go-ahead:** 5 (D-87 C1112404, D-89 C1112406, D-91 C1112408, S2-90 C1112004, S8-26 C1112153).
 - **Proposed for deletion:** none. S3-48 was first retired, then rewritten: its source (Jira SV-11976 item 5) still applies under v1.3 through the original work order window.
-- **Released from a hold in round 4:** none. Run 559 gets: S1-02b, S2-28, S2-32b, DATA-09, D-88, D-90, D-92, S2-100, S2-106, S6-10, S7-38, S12P-11, S4-15, S9-47, S9-48, S1-92, S1-93, S1-94 (held cases never).
+- **Released from a hold in round 4:** none. Run 559 gets: S1-02b, S2-28, S2-32b, DATA-09, D-88, D-90, D-92, S2-100, S2-106, S6-10, S7-38, S12P-11, S4-15, S9-47, S9-48, S1-92, S1-93, S1-94, D-93 (held cases never).
 - **Updates to send:** 636 cases; moves: 9; folder note on section 136701: "Test cases are current as of 11/13/2026. Before you start testing, check whether the PRD, design or any other source has changed since then; if it has, update the test cases first."
 
 ## How each case was read
@@ -230,9 +230,9 @@ Parts compared with the round 3 draft: Title · Preconditions · Steps · Result
 - **S1-92** (Turn on Internal Work Orders, internal customers and categories): The Internal categories tab shows where an internal category is set. Quotes S1-R13. Round 3, rebuilt on v1.3.
 - **S1-93** (Turn on Internal Work Orders, internal customers and categories): The category windows show where the category is shown. Quotes S1-R14. Round 3, rebuilt on v1.3.
 - **S1-94** (Turn on Internal Work Orders, internal customers and categories): Edit Customer explains the Default internal category. Quotes S1-R7. Round 3, rebuilt on v1.3.
-- **D-93** (Design — how it looks, held): Design: Cost move window adds a lead sentence and the item line. Quotes S3-R2. Round 4.
+- **D-93** (Design — how it looks): Design: Cost move window names the moved part and its vendor bill. Quotes S3-R2. Round 4.
 
-What v1.3 adds is tested by rewriting the cases that tested the old Close, not by new keys: one press with no window (S3-02, S3-49, S3-53, S3-54 and every Close step), the posting date and summary on the Finance tab (S3-07…S3-10, S3-44…S3-46, D-38…D-43, D-60), the two remaining windows (S3-15 missing original, S3-11 cost move), S3-E5's refusal only while a window is open (S3-47). D-93 is new: the design version of the cost move window (IWO-D57, held, Rule 130).
+What v1.3 adds is tested by rewriting the cases that tested the old Close, not by new keys: one press with no window (S3-02, S3-49, S3-53, S3-54 and every Close step), the posting date and summary on the Finance tab (S3-07…S3-10, S3-44…S3-46, D-38…D-43, D-60), the two remaining windows (S3-15 missing original, S3-11 cost move), S3-E5's refusal only while a window is open (S3-47). D-93 is new: a runnable design case for the cost move window's lead sentence and item line, written from board 7e (IWO-D57, check (c)).
 
 ## Deleted, retired, proposed
 

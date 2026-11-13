@@ -165,8 +165,7 @@ for k in plan["create"]:
              f"Quotes {', '.join(x if isinstance(x, str) else x[0] for x in c['q'])}. {'Round 4.' if k not in R3 else 'Round 3, rebuilt on v1.3.'}")
 R += ["", "What v1.3 adds is tested by rewriting the cases that tested the old Close, not by new keys: one press with no window (S3-02, S3-49, "
       "S3-53, S3-54 and every Close step), the posting date and summary on the Finance tab (S3-07…S3-10, S3-44…S3-46, D-38…D-43, D-60), the two "
-      "remaining windows (S3-15 missing original, S3-11 cost move), S3-E5's refusal only while a window is open (S3-47). D-93 is new: the design "
-      "version of the cost move window (IWO-D57, held, Rule 130).", "",
+      "remaining windows (S3-15 missing original, S3-11 cost move), S3-E5's refusal only while a window is open (S3-47). D-93 is new: a runnable design case for the cost move window's lead sentence and item line, written from board 7e (IWO-D57, check (c)).", "",
       "## Deleted, retired, proposed", ""]
 for d in plan["delete"]: R.append(f"- **Delete** {d['key']} {link(d['case_id'])} \"{d['title']}\": {d['why']}")
 for d in plan["proposed_delete"]: R.append(f"- **Proposed** {d['key']} {link(d['case_id'])}: {d['why']}.")

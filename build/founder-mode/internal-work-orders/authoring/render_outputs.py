@@ -190,7 +190,7 @@ R = ["# Internal Work Orders — report, rounds 1 to 4 (PRD v1.3, Jira, tech pla
      "- Not retired after all: S3-48. Its source (Jira SV-11976 item 5: a refused Close leaves the work order where it was, not Complete) still "
      "applies through the original work order window; it is rewritten to that path.",
      f"- Register ({_REG['counts']['differences']} differences, {_REG['counts']['not_shown']} design-silent): IWO-D02, D20, D21 closed; D22, D23 "
-     "narrowed; N05, N25 reworded; D57-D61 added with the coordinator's verdicts (D57 held as design-version case D-93); D62 added by the case "
+     "narrowed; N05, N25 reworded; D57-D61 added with the coordinator's verdicts (D57 closed by check (c): runnable design case D-93 written from board 7e); D62 added by the case "
      "worker: Happy flow board \"28 Close confirmation\" was not redrawn and still draws the removed confirmation (check a and d; dropped from "
      "D-60's references); N42-N44 added (design-silent). **No question.**",
      "- Folder note (Rule 140) to be re-stamped 11/13/2026: `write/folder_note.py` (locked on today's live text).", "",
@@ -315,7 +315,6 @@ R += ["", "## Reading coverage (Rule 119)", "",
       "- Round 4: build.py 0 PROBLEM lines (two gates widened: a message row's \"(Closed · No Charge)\" may be left out where the case's work order is internal; a register row held as a design-version case passes when that case exists and is held). check_v13_text.py: 0 quote misses, 0 removed wording. Readiness: 0 hard; a random sample of 20 rewritten cases and all 152 \"does not / never\" results read (fixes from the read: stale \"until the PO answers\" notes on S1-02b and S2-32b removed, S9-28 step 6, register notes for v1.3). ticket_sweep.py at PRD 1.3: 0 unhandled; Jira re-read live 13 Nov 2026 (28 tickets under the epic, none updated since 10 Nov). Write scripts dry-run with --check-live: 636 updates lock ok, 5 deletes lock ok, run 559 596 + 12 now (6 more after create), folder note lock ok.", "",
       "## OUTSTANDING — what I need from you", "",
       "- **Go-ahead for the writes of rounds 3 and 4 (Rule 6):** run, in order, `po-answers-2026-11-12/write/update_cases.py --apply`, `create_new.py --apply`, `delete_approved.py --apply` (D-87, D-89, D-91, S2-90, S8-26: approved), `sync_run_559.py --apply`, `folder_note.py --apply` (each is a dry run without the flag and reads every write back).",
-      "- **Held design-version case D-93** (IWO-D57, the cost move window's extra words): released or removed when the PO rules (Rule 130). Under skill 07 §6.0 check (c) the case worker would instead write it as a runnable case from the design (the PRD is silent and the design speaks); the coordinator's verdict (held) is followed.",
       f"- **NO-MANUAL:** confirm the {len(NOMAN)} cases stay out of TestRail (recommended, as for Bill To).",
       "- **For the QA lead only (Rule 30):** the plan-vs-PRD differences D-3 and D-5 to D-9 above need no PO answer; the cases follow the PRD.",
       "- **Waiting on the PO (Rule 132):** no unanswered question (all 16 answered 12 Nov 2026). One confirmation is pending from the Open API owner, not the PO: question 10 (work_order.updated), case API-23, still blocked on the Open API release.",
