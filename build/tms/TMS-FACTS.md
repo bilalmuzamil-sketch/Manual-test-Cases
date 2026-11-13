@@ -548,3 +548,12 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   Ahtasham Amjad**. `external_key` `testrail-run-559-v2` (the old key would have returned run 28).
 - **Old TMS run 28** (0 results) removed from the milestone and **closed**. Milestone 10000000 now: run 30 + run 27 "Bill To - Execution".
 - Reminder: TMS run 27 "Bill To - Execution" also pins versions from its creation (12 Nov) — it predates today's quotes removal.
+
+## 29 · 2026-11-13 — Duplicate "Expected Result" heading removed (TMS only)
+
+- QA lead: *"expected results is appearing twice, please make it to appear once only in TMS, do not change anything in testrail"*.
+  TMS labels the field "Expected result"; the text began with `<p><strong>Expected Result</strong></p>`. Removed from the text.
+- **Internal Work order: 648/648. Rest of our recently-updated cases: 1,605 + 64 that did not start with the heading = 1,669.**
+  Title, preconditions (pictures), steps verified unchanged. **21,991 run entries photographed (1,317 with results) — 0 changed.**
+- `tms_sync.py` `cut_quotes()` now also drops that leading heading from TestRail's expected result, so syncs never restore it.
+- The preconditions text likewise begins with its own "Preconditions" heading under TMS's "Preconditions" label — asked, not changed.
