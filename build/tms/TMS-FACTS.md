@@ -511,3 +511,18 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **🛑 BLOCKED 2026-11-13 ~10:15 UTC:** the session's network gateway now refuses `tms.shopview.com` and `shopview.testrail.io`
   (`gateway answered 403 to CONNECT (policy denial or other refusal)`), so pictures for the 7 new cases, the TMS_EXTRA check
   and the new run are pending. Not a key problem.
+
+## 26 · 2026-11-13 — "Exact quotes from the source (for reproducibility)" removed from TMS cases (TMS only)
+
+- **QA lead (verbatim):** *"All the test cases which you have updated in TMS since last 15 days … Keep the screenshots attached …
+  But remove this line "Exact quotes from the source (for reproducibility)" And everything below that line. … start from the
+  Internal Work orders. … do not change anything in testrail … editing those test cases should not change the test run results."*
+- The section sits at the end of the **expected result**; the pictures sit in the **preconditions** — unaffected.
+- **Internal Work order: 648/648 cut**; title/preconditions/steps verified unchanged; **1,237 run entries photographed before
+  and after — 0 changed** (0 had results).
+- **Rest:** 1,702 other cases updated since 2026-10-29 carry the section; **1,669 were updated by our key in that window → cut
+  (running)**; 33 had no edit by us in the window → left alone, listed for the QA lead.
+- **`tms_sync.py` now cuts the section from TestRail's expected result** (`QUOTES_HEAD` / `cut_quotes`) for both the comparison
+  and the update body, so syncs never put it back. TestRail keeps it (nothing written to TestRail).
+- **Rule note:** Rule 113 makes the expected result the source's verbatim quote. TestRail keeps those quotes unchanged; this
+  removal is TMS-only, on the QA lead's explicit order of 2026-11-13.

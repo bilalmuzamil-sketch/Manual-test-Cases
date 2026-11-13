@@ -149,6 +149,7 @@ def desired(tr):
     """The TMS body that mirrors a TestRail case."""
     body = {f2: tr.get(f1) for f1, f2 in SCALAR}
     body.update({f2: escape_placeholders(tr.get(f1)) for f1, f2 in TEXT})
+    body["expected"] = cut_quotes(body.get("expected"))
     body["refs"] = tr.get("refs")
     sep = tr.get("custom_steps_separated")
     body["steps_separated"] = [{"content": escape_placeholders(x.get("content")),
@@ -169,7 +170,19 @@ def split_pictures(v):
     return (v, "") if i < 0 else (v[:i], v[i:])
 
 
+# QA lead 2026-11-13: in TMS, the expected result ends BEFORE this section ("Exact quotes from the source (for
+# reproducibility)" and everything below it is removed). TestRail keeps it. Syncs must not put it back.
+QUOTES_HEAD = "<p><strong>Exact quotes from the source (for reproducibility)"
+
+
+def cut_quotes(v):
+    if not isinstance(v, str) or QUOTES_HEAD not in v:
+        return v
+    return re.sub(r"(<p>\s*</p>\s*)+$", "", v[:v.find(QUOTES_HEAD)].rstrip())
+
+
 def differences(tr, tm):
+    tr = dict(tr, custom_expected=cut_quotes(tr.get("custom_expected")))
     d = [f2 for f1, f2 in SCALAR if tr.get(f1) != tm.get(f2)]
     d += [f2 for f1, f2 in TEXT
           if norm(tr.get(f1)) != norm(split_pictures(tm.get(f2))[0] if f2 == "preconditions" else tm.get(f2))]
