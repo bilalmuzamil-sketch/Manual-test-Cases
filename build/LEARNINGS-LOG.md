@@ -520,3 +520,9 @@
 - Where it is (read live 13 Nov): Nemanja Djuric's QA handoff comments of 10 Nov — SV-11315 comment 80616 under "KNOWN MISMATCHES AND KNOWN GAPS (not bugs — do not file)" → sub-heading "*Kept by the developer*" (a separate list from "*Decided by Product (Chris, 2026-11-04 / 2026-11-05)*"); also SV-11534 comment 80620, SV-11538 comment 80637 and SV-11598 comment 80635 under "Known mismatches (not bugs)". PRD v12 says nothing about columns staying put or moving.
 - Correction to L0708: "kept by the developer" is NOT product acceptance. Rule 140 check 2 ("not accepted as built") means accepted by Product (PO / PRD / QA lead), and a developer's handoff is facts only (Rules 57, 111, 119). With the PRD silent, the right move was a question to the QA lead / PO (Rule 58), not silence.
 - #aging #handoff #rule140 #correction → L0708
+
+## L0710 — 2026-11-13 — PRD v13 (Chris Ward, 13 Nov 14:36 UTC): S5-R10b future as-of date — backs SV-12545 and our two failing tests
+- v13 change-log row: "S5-R10b added: any as-of date can be picked, including a day after today, as on production; a later day is aged to that day and the exports print it; a link with an as-of date opens on it." Source: SV-12545 (Bilal; QA sheet question 19). So C1078980/C1078981 stay correctly Failed on SV-12545 (Ready to Fix). Saved `aging-reports/sources/prd-947650561-v13-read-1113.md`.
+- v13 still has no sentence about columns moving or staying put on expand/collapse (searched shift/jump/column width/stay); the only "kept" wording is the developer's handoff (L0709).
+- PRD link: https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=947650561
+- #aging #prd-v13 #sv-12545 → L0709
