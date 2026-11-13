@@ -508,3 +508,10 @@
 - Story check recipe ("no ticket pending on developers or QA"): `parent in (<stories>)` for Story Defects + each story's `issuelinks` with live statuses. 12 Nov: clean = SV-11532, SV-11534, SV-11536, SV-11537, SV-11538, SV-11539; pending = SV-11531 (SV-12663), SV-11533 (SV-12539), SV-11535 (SV-12545); epic-level SV-12538 Open (not linked to a story).
 - QA lead then made the status changes manually: "I have manually made the changes, you need not to change anything" — do not move these stories.
 - #jira #workflow #aging → L0706
+
+## L0708 — 2026-11-13 — Demo Day findings on the aging reports were filed by Mudassir, not us: why we missed them
+- Slack https://shopview.slack.com/archives/C0C454MLP0T/p1794593840375719 (Chris Ward after Demo Day): #1 long customer name wrap in the filter; #2/#3 tables jump on expand/collapse. Mudassir filed SV-12722 (filter menu, Ready to Fix), SV-12763 (columns shift on expand/collapse, Open), SV-12764 (A/R Collection, unbroken name pushes Past Due/Amount off screen, Open), all 13 Nov.
+- **Column shift:** we knew it — the epic's developer notes list it under "Kept by the developer" ("A/R Detail's columns shift about 34 px sideways when you click Expand all"), so a ticket would have failed Rule 140 (accepted as built). Chris has now asked for it; that decision was his, not ours to pre-empt — **when the developer keeps a visible oddity, mention it to the QA lead as a "kept, not filed" item rather than staying silent.**
+- **Long names:** our layout tests used long names WITH spaces (they wrap correctly); a name with NO spaces (staging's "ZZBREAK … Superlongunbroken…" customer) was never in our set — a coverage gap. Layout/overflow tests must include one unbroken long name.
+- None of our run-557 tests fails on these tickets.
+- #aging #demo-day #coverage-gap #missed → L0706, L0707
