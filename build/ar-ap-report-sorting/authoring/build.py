@@ -15,7 +15,7 @@ from collections import Counter, defaultdict
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ar_lib as L
 import pattern as PT
-MODS = ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design", "cases_v11"]
+MODS = ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design", "cases_v11", "cases_demo_2026_11_13"]
 MODS = [m for m in MODS if os.path.exists(f"{L.D}/{m}.py")]
 for m in MODS: importlib.import_module(m)
 SECS = json.load(open(f"{L.P}/sections.json"))
@@ -86,7 +86,8 @@ for c in L.CASES:
     q = h.split("Exact quotes from the source")[1].split("References from Design")[0]
     if not q.split("</strong></p>", 1)[1].startswith("<p>From: "): probs.append(f"{c['key']}: quotes do not start with a From line")
     if q.count("<p>From: ") != q.count("<ul>"): probs.append(f"{c['key']}: a quote group without its own From line")
-    if "Epic SV-11315" not in q or L.NOBUILD not in q or "version 11" not in q: probs.append(f"{c['key']}: epic, version or build line missing")
+    # 13 Nov 2026: the Demo Day cases quote PRD version 13 (the other cases stay on version 11 until a currency pass)
+    if "Epic SV-11315" not in q or L.NOBUILD not in q or not re.search(r"version 1[13] \(", q): probs.append(f"{c['key']}: epic, version or build line missing")
     top = h.split("References from Design")[0]
     if "claude.ai/artifact" in top: probs.append(f"{c['key']}: design reference above the References from Design block")
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")

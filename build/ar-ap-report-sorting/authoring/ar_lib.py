@@ -40,6 +40,26 @@ PRDW = ws(PRD_TXT)
 PRD_RAWW = ws(re.sub(r"\[([^\]]*)\]\(([^)]*)\)", r"\1", PRD_MD))      # keeps the table rows "a | b | c" for the User Feedback Summary
 JIRA_FILE = f"{P}/sources/JIRA-READING-2026-10-22.md"
 JIRAW = ws(open(JIRA_FILE).read())
+# 13 Nov 2026 (Demo Day cases, demo-day-2026-11-13/): PRD version 13 (Change Log 12 Nov Milos Vasic v12, 13 Nov Chris Ward v13) and Chris Ward's
+# Slack post of 13 Nov 2026. Used only by quotes whose label ends "(version 13)" or starts "Slack, Chris Ward"; every other case still quotes
+# version 11 exactly as before (a currency pass to v13 is the QA lead's decision, Rule 122).
+PRD13_FILE = f"{P}/sources/CONFLUENCE-947650561-v13-read-2026-11-13.md"
+PRD13_MD = open(PRD13_FILE).read().split("<!-- Saved")[0]
+PRD13W = ws(md_to_text(PRD13_MD))
+PRD13_NAME = ('PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 13 (Change Log: version 12 on '
+              '12 Nov 2026 by Milos Vasic, version 13 on 13 Nov 2026 by Chris Ward)')
+PRD13_READ = "read 13 Nov 2026"
+V13 = " (version 13)"
+SLACK_FILE = f"{P}/sources/SLACK-C0C454MLP0T-demo-day-2026-11-13.md"
+SLACKW = ws(open(SLACK_FILE).read())
+SLACK_NAME = "Slack, Chris Ward (product owner), 13 Nov 2026, thread in channel C0C454MLP0T"
+SLACK_READ = "read 13 Nov 2026"
+def prd13(code):
+    """The requirement line of PRD version 13 with this code, word for word (first line carrying it, as CODE does for version 11)."""
+    for line in md_to_text(PRD13_MD).split("\n"):
+        m = re.match(r"^-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
+        if m and m.group(1) == code: return (code + V13, m.group(2).strip())
+    raise KeyError(code)
 
 PRD_NAME = 'PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward)'
 PRD_READ = "read 10 Nov 2026"
@@ -338,7 +358,7 @@ def _design_block(c, now):
             h += "<li>" + e('"' + w + '"') + "</li>"
         h += "</ul>"
         for f in figs:
-            if now and f["reshot"]:
+            if now and f["reshot"] and not c.get("no_old_attachment"):   # 13 Nov 2026: a new case never had the old picture
                 h += "<p>" + e('The design version of 5 Nov 2026 replaced the picture "' + f["heading"] + '" (re-shot 23 Oct 2026): compare with '
                                + DD.pic_now(f) + " only. This case also still has an older attachment named " + DD.pic(f) + ": it shows the design "
                                "before 23 Oct 2026, so do not use it for comparison (TestRail cannot remove it).") + "</p>"
@@ -373,15 +393,16 @@ def design_block(c):
 def quotes_block(c):
     """Rule 117 eleventh amendment: each document quoted gets a "From:" line above its own quotes; the epic and the stories go on
     the first "From:" line; the build line follows the last quote."""
-    prd, tp, jira, ans = [], [], [], []
+    prd, tp, jira, ans, prd13_, slack = [], [], [], [], [], []
     for l, t in quotes(c):
-        (jira if l.startswith("Jira SV-") else tp if l.startswith("Tech plan") else ans if l.startswith("Chris Ward's answer") else prd).append((l, t))
+        (jira if l.startswith("Jira SV-") else tp if l.startswith("Tech plan") else ans if l.startswith("Chris Ward's answer")
+         else prd13_ if l.endswith(V13) else slack if l.startswith("Slack, Chris Ward") else prd).append((l, t))
     sto = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in story_nums(c))
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
-    for name, group in ((PRD_NAME, prd), (ANS_NAME, ans), (TP_NAME, tp), (JIRA_NAME, jira)):
+    for name, group in ((PRD13_NAME, prd13_), (PRD_NAME, prd), (ANS_NAME, ans), (TP_NAME, tp), (JIRA_NAME, jira), (SLACK_NAME, slack)):
         if not group: continue
-        rd = {PRD_NAME: PRD_READ, ANS_NAME: ANS_READ}.get(name, "read 22 Oct 2026")
+        rd = {PRD_NAME: PRD_READ, ANS_NAME: ANS_READ, PRD13_NAME: PRD13_READ, SLACK_NAME: SLACK_READ}.get(name, "read 22 Oct 2026")
         h += f"<p>From: {e(name)}, {rd}" + (f" &middot; Epic SV-11315, {e(sto)}" if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in group) + "</ul>"
         first = False
@@ -408,7 +429,7 @@ def render(c):
     exp = ("<p><strong>Expected Result</strong></p>"
            + "".join(f"<p>Step {i}:</p><ul>" + "".join(f"<li>{e(x)}</li>" for x in r) + "</ul>" for i, r in enumerate(p["results"], 1))
            + "<p></p>" + tail(c))
-    refs = ",".join(dict.fromkeys(STORY[n][0] for n in story_nums(c)))
+    refs = c.get("refs") or ",".join(dict.fromkeys(STORY[n][0] for n in story_nums(c)))   # 13 Nov 2026: Demo Day cases set their own
     return {"title": p["title"], "template_id": 1, "type_id": 7, "priority_id": 2, "refs": refs, "custom_automation_type": 2,
             "custom_atmstatus": 1, "custom_preconds": pre, "custom_steps": "<ol>" + "".join(f"<li>{e(x)}</li>" for x in p["steps"]) + "</ol>",
             "custom_expected": exp}
@@ -442,7 +463,11 @@ def check(c):
         if l.startswith("Chris Ward's answer"):
             if ws(t) not in ws(ANS[int(l.split()[-1])]): p.append(f"{k}: quote {l} not verbatim in the answer")
             continue
-        if l.startswith("Tech plan"):
+        if l.endswith(V13):
+            if ws(t) not in PRD13W: p.append(f"{k}: quote {l} not verbatim in PRD v13")
+        elif l.startswith("Slack, Chris Ward"):
+            if ws(t) not in SLACKW: p.append(f"{k}: quote {l} not verbatim in the saved Slack post")
+        elif l.startswith("Tech plan"):
             if ws(t) not in TPW and ws(t) not in TP_RAWW: p.append(f"{k}: quote {l} not verbatim in the tech plan")
         elif src is not None:
             if ws(t) not in src: p.append(f"{k}: quote {l} not verbatim in the Jira reading record")
