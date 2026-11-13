@@ -93,6 +93,8 @@ These are stated here **in full** because a session that gets only this far must
 - **🔴 NEW QUESTIONS GO IN THE SAME SHEET, AT THE BOTTOM, IN A NEW COLOUR (131, 20 Oct 2026).** When a testing suite already has a
   question sheet, new PO/dev questions are added to THAT file in new rows at the bottom, numbered on, in a colour not used there before
   (added to the colour guide with the date); never a new file, never touching earlier rows or answers.
+  **Amended 13 Nov 2026 (QA lead, permanent): a WITHDRAWN question's row is deleted from the sheet (copy kept in the repo first);
+  the other questions keep their numbers.**
 - **🔴 EVERY UNANSWERED PO QUESTION IS IN EVERY REPORT UNTIL ANSWERED (132, 20 Oct 2026).** QA lead: *"the most crucial part to never
   miss."* Every report's OUTSTANDING ends with "Waiting on the PO": each sheet (link), its unanswered question numbers and the cases held
   on them. The list lives in `build/PO-QUESTIONS-OPEN.md`; read every sheet's answer column before each report.

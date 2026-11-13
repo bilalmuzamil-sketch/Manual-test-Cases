@@ -3473,6 +3473,15 @@ already had its question sheet for Chris Ward (17Ry1Bt…). Two files for one su
 
 Worked example: Splitting Sales Representatives, 20 Oct 2026, questions 39–41 in rows 46–48 of 17Ry1Bt…, light green (the QA lead later withdrew the phone question as already answered, leaving 39–40 in rows 46–47).
 
+**🔴 AMENDMENT, PERMANENT (QA lead, 13 Nov 2026, verbatim: *"If any question needs to be skipped just delet it from the doc"*;
+asked under Rule 63 against point 2 above and confirmed "Delete, permanent").** A question that is withdrawn after it was sent (for
+example by a skill 07 §6.0 check) is DELETED from the sheet: its whole row, nothing else. Before deleting: read the row and keep a
+copy of it in the suite's question folder (with the reason and the date), and check its answer cell. The other questions keep their
+numbers (after 10 comes 12), so held cases and markers still point at the right question; the suite records the number as withdrawn
+(for example `WITHDRAWN` in `po_questions.py`) so it is never reused. Read back the rows around the gap. Point 2's "never delete"
+still holds for every question that is not withdrawn, and for every answer. Worked example: Bill To question 11 (lock tooltip
+position), row 16 of 1o55Q5O5…, deleted 13 Nov 2026; copy in `build/founder-mode/bill-to/questions-2026-11-10/Q11-row-deleted-2026-11-13.json`.
+
 ## 132 · EVERY UNANSWERED PO QUESTION IS IN EVERY REPORT UNTIL IT IS ANSWERED — NEVER MISSED (all projects, permanent)
 
 **Ordered by the QA lead, 20 Oct 2026, verbatim:** *"This is the best thing please make it a permanent rule for yourself that when you

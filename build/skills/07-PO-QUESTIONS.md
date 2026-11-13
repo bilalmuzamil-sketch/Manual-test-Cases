@@ -297,6 +297,10 @@ it reaches him it is a fact.**
 
 ---
 
+**A question that fails a check AFTER it was sent** (13 Nov 2026, Rule 131 as amended, permanent): delete its row from the
+sheet, after keeping a copy of the row in the suite's question folder; the other questions keep their numbers and the suite marks
+the number as withdrawn. Release the cases it held. Worked example: Bill To question 11, 13 Nov 2026.
+
 ## THE DELIVERABLE
 
 **Mirror the established format 1:1.** Canonical examples:
