@@ -1,6 +1,6 @@
 {
  "id": 1062563,
- "title": "Design: Bill To lock tooltip shows at the window's left edge",
+ "title": "Design: Bill To lock tooltip sits beside the Bill To value",
  "section_id": 133514,
  "template_id": 1,
  "type_id": 7,
@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1794291544,
  "updated_by": 3,
- "updated_on": 1794291544,
+ "updated_on": 1794561613,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new work order for this test for customer B billed to customer A that has been invoiced (Invoiced or Paid), so a work order bills a customer other than its own.</li><li>Open the attached pictures bt-p3-03-after-hover.png, bt-p3-07-after-hover.png at 100% zoom beside the screen.</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new work order for this test for customer B billed to customer A that has been invoiced (Invoiced or Paid), so a work order bills a customer other than its own.</li></ul>",
  "custom_steps": "<ol><li>Open the work order.</li><li>Hover over the Bill To value.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The work order opens.</li></ul><p>Step 2:</p><ul><li>The tooltip shows under the customer card starting at the browser window's left edge and overlaps the top of the asset card.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12307 (Story 5, Locked Bill To: invoiced and deposits)</p><ul><li><strong>S5-R1:</strong> &ldquo;When Invoiced, the Bill To field is read-only with M4 as its tooltip.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794239066-4906, read 9 Nov 2026: page \"3 When the Bill To is blocked\", pictures \"Hover\" (This build), \"Hover\" (This build).</p><p>Design pictures attached to this case:</p><ul><li>bt-p3-03-after-hover.png</li><li>bt-p3-07-after-hover.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The hover tooltip also shows at the bottom left because the pointer is still on the field.&rdquo;</li></ul><p>Difference: position not in the PRD (BT-D08, question 11).</p><p>AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 11)</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The work order opens.</li></ul><p>Step 2:</p><ul><li>The tooltip appears right next to the Bill To value (above, below, left or right of it), centred on it, with a small arrow pointing at the value and a gap of about 10 pixels.</li><li>The tooltip does not start at the browser window's left edge.</li><li>The tooltip's dark box is no wider than 326 pixels (less than a quarter of the 1440-pixel window).</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12307 (Story 5, Locked Bill To: invoiced and deposits)</p><ul><li><strong>S5-R1:</strong> &ldquo;When Invoiced, the Bill To field is read-only with M4 as its tooltip.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards and design library are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: design library file ds/shopview/components.css, section TOOLTIP (spec components/Tooltip/preview.html).</p><p>The design's own words:</p><ul><li>&ldquo;The placement class and the arrow class are INVERSES: a tooltip above the trigger carries an arrow on its bottom edge.&rdquo;</li><li>&ldquo;max-width: 326px;&rdquo;</li><li>&ldquo;.sv-tt-pop--top    { bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px); }&rdquo;</li><li>&ldquo;.sv-tt-pop--bottom { top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(-4px); }&rdquo;</li><li>&ldquo;.sv-tt-pop--right  { left: calc(100% + 10px); top: 50%; transform: translateY(-50%) translateX(-4px); }&rdquo;</li><li>&ldquo;.sv-tt-pop--left   { right: calc(100% + 10px); top: 50%; transform: translateY(-50%) translateX(4px); }&rdquo;</li></ul><p>The design library's tooltip rule decides where the tooltip sits. The \"Hover\" pictures on page \"3 When the Bill To is blocked\" draw it at the window's left edge, which breaks that rule, so this case follows the library (BT-D08; PO question 11 withdrawn 12 Nov 2026). The two pictures still attached to this case (bt-p3-03-after-hover.png, bt-p3-07-after-hover.png) show that old place: ignore them for this check.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 3
 }

@@ -429,12 +429,11 @@ C('D-67', S, 'Design: Asset tab with a Bill To column scrolls sideways at 1440',
   ['S14-R6'],
   marker='AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 10)')
 # DV-08
-C('D-68', S, "Design: Bill To lock tooltip shows at the window's left edge",
-  ['Sign in as an Admin at the test location.', 'Use a desktop browser window 1440 pixels wide, at 100% zoom.', 'Have a new work order for this test for customer B billed to customer A that has been invoiced (Invoiced or Paid), so a work order bills a customer other than its own.', 'Open the attached pictures bt-p3-03-after-hover.png, bt-p3-07-after-hover.png at 100% zoom beside the screen.'],
+C('D-68', S, 'Design: Bill To lock tooltip sits beside the Bill To value',
+  ['Sign in as an Admin at the test location.', 'Use a desktop browser window 1440 pixels wide, at 100% zoom.', 'Have a new work order for this test for customer B billed to customer A that has been invoiced (Invoiced or Paid), so a work order bills a customer other than its own.'],
   ['Open the work order.', 'Hover over the Bill To value.'],
-  [['The work order opens.'], ["The tooltip shows under the customer card starting at the browser window's left edge and overlaps the top of the asset card."]],
-  ['S5-R1'],
-  marker='AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 11)')
+  [['The work order opens.'], ['The tooltip appears right next to the Bill To value (above, below, left or right of it), centred on it, with a small arrow pointing at the value and a gap of about 10 pixels.', "The tooltip does not start at the browser window's left edge.", "The tooltip's dark box is no wider than 326 pixels (less than a quarter of the 1440-pixel window)."]],
+  ['S5-R1'])
 # DV-09
 C('D-69', S, "Design: Bill To list opening upward runs over the app's top bar",
   ['Sign in as an Admin at the test location.', 'Use a desktop browser window 1440 pixels wide, at 100% zoom.', "Have customer A (it pays for others) and customer B, with customer A saved as customer B's Bill Invoices To in Edit Customer, so one customer is the other's saved payer.", "Start on customer B's page with the window 900 pixels tall.", 'Open the attached pictures bt-p1-14-after-change-open.png, bt-p3-17-after-change-bill-to.png at 100% zoom beside the screen.'],

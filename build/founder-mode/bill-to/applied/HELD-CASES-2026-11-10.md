@@ -12,7 +12,7 @@
 - **Q08**: C1062357 (S7-24), C1062560 (D-65)
 - **Q09**: C1062292 (S3-32), C1062561 (D-66)
 - **Q10**: C1062562 (D-67)
-- **Q11**: C1062563 (D-68)
+- **Q11**: withdrawn 12 Nov 2026 (check d, design library tooltip rule). C1062563 (D-68) released 13 Nov 2026 with the QA lead's go-ahead: rewritten to the library rule and added to run 558.
 - **Q12**: C1062512 (D-17), C1062564 (D-69)
 - **Q13**: C1062358 (S7-25), C1062528 (D-33), C1062530 (D-35), C1062565 (D-70)
 - **Q14**: C1062431 (S14-13)

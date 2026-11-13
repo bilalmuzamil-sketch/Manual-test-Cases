@@ -1,0 +1,6 @@
+{"op": "update_case", "key": "D-68", "case": "C1062563", "http": 200, "fields": ["title", "custom_preconds", "custom_expected"], "readback_ok": true, "bad": []}
+{"op": "delete_attachment", "case": "C1062563", "attachment": 1000038693, "http": 200}
+{"op": "delete_attachment", "case": "C1062563", "attachment": 1000038694, "http": 200}
+{"op": "readback_attachments", "case": "C1062563", "remaining": ["bt-p3-03-after-hover.png", "bt-p3-03-after-hover.png", "bt-p3-07-after-hover.png", "bt-p3-07-after-hover.png"]}
+{"op": "delete_attachment", "case": "C1062563", "attachments": [1000038693, 1000038694], "http": 200, "result": "REFUSED by TestRail: \"Attachment can't be deleted or replaced as the file is attached to a closed/archived run.\" The two pictures stay; the case note tells testers to ignore them."}
+{"op": "update_case", "key": "D-68", "case": "C1062563", "http": 200, "fields": ["custom_expected"], "readback_ok": true, "bad": []}

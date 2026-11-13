@@ -74,3 +74,8 @@ DROPPED.append(("Design question 13: pictures that do not match their own notes 
                 "Not asked: no verdict depends on it. The cases follow the PRD and the notes (S3-R2 full name, with the cut name asked in "
                 "question 9; S1-N4 no counter after Remove); D-01, D-14, D-19 and D-54 each carry a note naming the mismatch so the tester "
                 "compares the right part of the picture."))
+
+# ---- Withdrawn after sending (the sheet keeps its numbering; Rule 131 never touches earlier rows). Skill 07 §6.0 check (d), 12 Nov 2026;
+# QA lead's go-ahead to release the held case, 13 Nov 2026 ("Yes, rewrite and add"): the design library's tooltip rule settles it.
+WITHDRAWN = {11: "lock-tooltip-position: the design library places a tooltip beside its trigger (.sv-tt-pop--top/bottom/left/right, "
+                 "10 px away, centred) and caps it at 326 px (.sv-tt max-width); D-68 follows the library (QUESTION-REVIEW-2026-11-12.md)."}

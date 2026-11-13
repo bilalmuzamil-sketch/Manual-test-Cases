@@ -782,16 +782,18 @@
   ]
  },
  "D-68": {
-  "pages": "Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794239066-4906, read 9 Nov 2026: page \"3 When the Bill To is blocked\", pictures \"Hover\" (This build), \"Hover\" (This build).",
-  "pictures": [
-   "bt-p3-03-after-hover.png",
-   "bt-p3-07-after-hover.png"
-  ],
+  "pages": "Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards and design library are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: design library file ds/shopview/components.css, section TOOLTIP (spec components/Tooltip/preview.html).",
+  "pictures": [],
   "words": [
-   "The hover tooltip also shows at the bottom left because the pointer is still on the field."
+   "The placement class and the arrow class are INVERSES: a tooltip above the trigger carries an arrow on its bottom edge.",
+   "max-width: 326px;",
+   ".sv-tt-pop--top    { bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px); }",
+   ".sv-tt-pop--bottom { top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(-4px); }",
+   ".sv-tt-pop--right  { left: calc(100% + 10px); top: 50%; transform: translateY(-50%) translateX(-4px); }",
+   ".sv-tt-pop--left   { right: calc(100% + 10px); top: 50%; transform: translateY(-50%) translateX(4px); }"
   ],
   "notes": [
-   "Difference: position not in the PRD (BT-D08, question 11)."
+   "The design library's tooltip rule decides where the tooltip sits. The \"Hover\" pictures on page \"3 When the Bill To is blocked\" draw it at the window's left edge, which breaks that rule, so this case follows the library (BT-D08; PO question 11 withdrawn 12 Nov 2026). The two pictures still attached to this case (bt-p3-03-after-hover.png, bt-p3-07-after-hover.png) show that old place: ignore them for this check."
   ]
  },
  "D-69": {

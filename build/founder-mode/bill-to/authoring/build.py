@@ -12,7 +12,7 @@ import sys, os, json, re, glob, importlib
 from collections import Counter
 D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import bt_lib as L
-from po_questions import QUESTIONS
+from po_questions import QUESTIONS, WITHDRAWN
 MODS = sorted(os.path.basename(f)[:-3] for f in glob.glob(f"{D}/cases_*.py"))
 ORDER = [f"cases_s{i}" for i in range(1, 20)] + ["cases_api", "cases_data", "cases_rel", "cases_inv", "cases_design"]
 MODS = [m for m in ORDER if m in MODS] + [m for m in MODS if m not in ORDER]
@@ -36,7 +36,9 @@ for c in L.CASES:
     if "waiting on the PO" in c["marker"] and not c["held"]: probs.append(f"{c['key']}: held on the PO but not flagged held")
 QHELD = {i: [c["key"] for c in L.CASES if "waiting on the PO" in c["marker"] and re.search(rf"\(question {i}\)$", c["marker"])] for i in range(1, len(QUESTIONS) + 1)}
 for i, ks in QHELD.items():
-    if not ks: probs.append(f"question {i} holds no case (skill 07 §6: a question must decide a verdict)")
+    if i in WITHDRAWN:
+        if ks: probs.append(f"question {i} is withdrawn but still holds {ks}")
+    elif not ks: probs.append(f"question {i} holds no case (skill 07 §6: a question must decide a verdict)")
 
 # ---- coverage of PRD codes and named items
 used = Counter(x for c in L.CASES for x in L.codes_of(c))
