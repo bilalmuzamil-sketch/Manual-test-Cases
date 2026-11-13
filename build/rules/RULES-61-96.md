@@ -2870,3 +2870,6 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     still proposed first (Rule 72).
     **A mistake counts even when it was harmless or caught quickly** (a false alarm, a wrong number later corrected, a
     stop that did not stop). Before acting, read §1B and apply every check that fits the task.
+    **Scope confirmed by the QA lead, 2026-11-13** (asked whether rule and skill changes should also be automatic),
+    verbatim: *"I will follow your suggestion."* — only the mistakes ledger and §1B update automatically; every other
+    rule or skill change prompted by a mistake is proposed first (Rule 72).
