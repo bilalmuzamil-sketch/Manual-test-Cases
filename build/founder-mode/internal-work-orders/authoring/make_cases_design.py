@@ -20,9 +20,10 @@ D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D); DD = f"{
 sys.path.insert(0, D)
 DRAFTS = runpy.run_path(f"{DD}/tools/cases_data.py")["CASES"]
 FIGS = json.load(open(f"{DD}/DESIGN-FIGURES-2026-11-12.json"))["list"]
+sys.path.insert(0, D); import design_v3; design_v3.apply(FIGS)   # round 4: the 15 redrawn boards take their v3 title and picture
 BYFILE = {f["file"].replace(".dc.html", ""): f for f in FIGS}
-CANVAS = ('Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794507512-2fc4 '
-          '(its boards byte-identical to version 1794484794-2031, read and rendered 12 Nov 2026)')
+CANVAS = ('Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794510020-d4ec '
+          '(15 boards redrawn for PRD v1.2/v1.3, read and rendered 12 Nov 2026; the other 152 unchanged since version 1794484794-2031)')
 # design question (NEW-QUESTIONS.py rows 8-13) -> slug on the merged sheet (po_questions.py); 13 (reviewer remarks, IWO-D50) is a ruling
 DQ = {8: "category-helper", 9: "locked-note", 10: "reopen-message", 11: "report-empty-cell", 12: "report-wrapping"}
 DV_Q = {"DV-01": "category-helper", "DV-02": "internal-estimate-stamp", "DV-03": "locked-note", "DV-04": "reopen-message",
@@ -65,7 +66,10 @@ V11 = {   # draft id -> round 3 changes: add (step -> bullets), set (step -> bul
                note="Difference: register IWO-D45, settled by PRD v1.1 S9-R2 (answer 16): numbers and dates stay on one line at 1440 and 1536 pixels; the design still breaks them."),
 }
 V11_LOG = {}
-QFIX = {}     # round 4 (13 Nov 2026): (draft, code, opening words in v1.1) -> opening words in PRD v1.3, or None to drop that quote
+QFIX = {("DC-01", "S1-R3", "While the toggle is on, two hint lines"): "While the toggle is on, one hint line",
+        ("DC-03", "S1-R3", "While the toggle is on, two hint lines"): "While the toggle is on, one hint line",
+        ("DC-05", "S1-R10", "Turning the toggle off hides the hint lines"): "Turning the toggle off hides the hint line",
+        ("DC-61", "S3-R2", "When the category requires the original work order"): "Two cases open a dialog before closing"}     # round 4 (13 Nov 2026): (draft, code, opening words in v1.1) -> opening words in PRD v1.3, or None to drop that quote
 QMISS = []
 EDITS = {   # draft id -> [(field, old, new)] gate fixes only
  "DC-72": [("results", "The invoice is created as today.", "The invoice is created and shows on the Finance tab.")],   # round 2c: no unseen baseline

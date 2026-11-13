@@ -99,7 +99,10 @@ for _p in glob.glob(f"{DD}/render/render-log-[0-9].json"):
         _f = next((f for f in DR.FIGS if (f["page"], f["nn"]) == (_b["page"], _b["nn"])), None)
         if _f: _TXT[_f["file"].replace(".dc.html", "")] = " ".join(r["text"] for r in _b["rows"]) + " " + " ".join(a["text"] for a in _b["attrs"])
 _norm = lambda s: re.sub(r"\s+", " ", s).strip()
-def _hay(b): return _TXT.get(b, "") + " " + _h.unescape(open(f"{DD}/files/project/{b}.dc.html", encoding="utf-8").read())
+import design_v3 as _V3
+def _hay(b):   # round 4: a redrawn board is checked against its v3 text and file only
+    if b in _V3.CHANGED: return _h.unescape(_V3.hay_text(b))
+    return _TXT.get(b, "") + " " + _h.unescape(open(f"{DD}/files/project/{b}.dc.html", encoding="utf-8").read())
 with_refs = 0
 for c in L.CASES:
     d = L.design_for(c)

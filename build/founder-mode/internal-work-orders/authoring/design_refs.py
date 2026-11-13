@@ -12,11 +12,12 @@ Design: "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3
   case by search. A case whose screen no board draws, and every API case, gets no heading at all. API cases test no screen."""
 import json, os, re
 D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D); DD = f"{P}/design-2026-11-12"
-CANVAS = ('Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794507512-2fc4 '
-          '(its boards byte-identical to version 1794484794-2031, read and rendered 12 Nov 2026)')
+CANVAS = ('Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794510020-d4ec '
+          '(15 boards redrawn for PRD v1.2/v1.3, read and rendered 12 Nov 2026; the other 152 unchanged since version 1794484794-2031)')
 _DJ = f"{D}/design_refs_design.json"
 DREFS = json.load(open(_DJ)) if os.path.exists(_DJ) else {}
 FIGS = json.load(open(f"{DD}/DESIGN-FIGURES-2026-11-12.json"))["list"]
+import design_v3; design_v3.apply(FIGS)   # round 4: the 15 redrawn boards take their v3 title and picture
 BYFILE = {f["file"].replace(".dc.html", ""): f for f in FIGS}
 BYLABEL = {(f["page"], f["board_title"].split()[0]): f["file"].replace(".dc.html", "") for f in FIGS}
 for (_pg, _lb), _f in list(BYLABEL.items()):      # "02b" is also written "2b" in the spec-to-design table
