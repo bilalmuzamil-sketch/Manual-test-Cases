@@ -188,6 +188,8 @@ QA can call them; accept any reasonable wording of them, not just the exact stri
 | **"PREPARE THE DEFECT TICKETS for X"** | Unchallengeable candidates, then **STOP at the button** — permission is per ticket (62). | |
 | **"FIND WHAT WE MISSED in X"** | The deliberate look from outside before a suite is called current (45). | |
 
+**Example ask to hand him when he wants one (saved on his request, 2026-11-13):** `build/processes/examples/V1-VS-V2-CAPABILITY-CHECK-ASK-AR-AP.md` — the V1 vs V2 capability check as asked for A/R and A/P, ready to copy and fill in.
+
 🔴 **`build/processes/00-WHAT-MUST-NEVER-HAPPEN.md` BINDS EVERY PROCESS.** Eight failures that
 would land the QA lead in trouble, each with its guard and an honest note on whether that guard is
 MECHANICAL or rests on judgement. **No process reports success while a check there is unmet.**

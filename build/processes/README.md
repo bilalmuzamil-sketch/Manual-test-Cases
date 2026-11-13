@@ -233,3 +233,7 @@ Test Data" is the name of the process, `RESEED` is still the keyword for a rebui
 **Global Search is the worked example.** When something here is unclear, look at what that project
 actually did — in `build/global-search/` and `build/search-results-integrity/`. The scripts are real
 and they run.
+
+## Example asks
+
+- **V1 vs V2 capability check:** `examples/V1-VS-V2-CAPABILITY-CHECK-ASK-AR-AP.md` (the A/R and A/P aging reports, Nov 2026) - a copy-and-fill ask plus what it took and found.

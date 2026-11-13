@@ -1,5 +1,7 @@
 # V1 vs V2 CAPABILITY CHECK `<feature>` — prove V2 still does everything V1 could
 
+> **Example ask (copy and fill in), and how it went for A/R and A/P:** `build/processes/examples/V1-VS-V2-CAPABILITY-CHECK-ASK-AR-AP.md`
+
 > **Call it:** `V1 vs V2 Capability Check on Invoicing`  —  or just *"does Invoicing V2 still do
 > everything V1 did?"*
 >
