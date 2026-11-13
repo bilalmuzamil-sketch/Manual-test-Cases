@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>07 Customers list</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:var(--sv-accent-text)}a:hover{color:var(--sv-accent-hover)}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; height: 840px; overflow: hidden; background: var(--sv-surface); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+    <div class="sv-app" style="height: 100%; display: flex; flex-direction: column;">
+      <x-import component-from-global-scope="SV.AppHeader" active="customers" user="Admin ShopView" hint-size="100%,64px"></x-import>
+      <div class="sv-content" style="padding: var(--sv-space-5) var(--sv-space-6); display: flex; flex-direction: column; gap: var(--sv-space-4);">
+        <div style="display: flex; align-items: center; gap: var(--sv-space-4);">
+          <span class="sv-h2">Customers</span>
+          <span style="margin-left: auto; display: inline-flex;"><x-import component-from-global-scope="SV.Button" variant="link" icon="search" hint-size="80px,24px">Search</x-import></span>
+          <x-import component-from-global-scope="SV.Button" variant="primary" hint-size="140px,36px">New Customer</x-import>
+        </div>
+        <table class="sv-table" style="width: 100%;">
+          <thead><tr><th>Customer Name</th><th>Telephone</th><th>Address 1</th><th>Address 2</th><th>City</th><th>State/Province</th><th class="sv-num">Assets</th></tr></thead>
+          <tbody>
+            <tr><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-2);"><span>4 Star Truck Repair</span></span></td><td></td><td></td><td></td><td></td><td></td><td class="sv-num">8</td></tr>
+            <tr><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-2);"><span>7 Star Truck Repair</span></span></td><td>609-461-6502</td><td>305 Harris Cape</td><td></td><td>Priscillabury</td><td>Nunavut</td><td class="sv-num">3</td></tr>
+            <tr><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-2);"><span>A &amp; J Truck &amp; Trailer Repair</span></span></td><td>885-670-3999</td><td>17483 Shane Drive</td><td></td><td>Patriciashire</td><td>Ontario</td><td class="sv-num">1</td></tr>
+            <tr><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-2);"><span>Aberdeen Diesel Services LLC</span></span></td><td>958-590-3025</td><td>7522 Sampson Gardens</td><td></td><td>Vincenttown</td><td>Nova Scotia</td><td class="sv-num">5</td></tr>
+            <tr><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-2);"><span>Abode Trucking &amp; Repair</span></span></td><td>148-434-9127</td><td>94154 Dominguez Gateway</td><td></td><td>North Jenniferland</td><td>Ontario</td><td class="sv-num">10</td></tr>
+            <tr><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-2);"><span>Affordable Fleet Services</span></span></td><td>699-679-2107</td><td>348 Ramos Field</td><td>Suite 079</td><td>Millertown</td><td>New Brunswick</td><td class="sv-num">12</td></tr>
+            <tr><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-2);"><span>Hilltop Logistics</span></span></td><td>416-555-0142</td><td>88 Harbour Rd</td><td></td><td>Toronto</td><td>Ontario</td><td class="sv-num">7</td></tr>
+            <tr data-sv-change="modified"><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-2);"><span>Staging Heavy Duty Fleet</span><span data-sv-change="new" style="display: inline-flex;"><x-import component-from-global-scope="SV.Badge" tone="neutral" shape="square" size="sm" hint-size="56px,20px">Internal</x-import></span></span></td><td>(403) 523-0488</td><td>10842 West Charleston Boulevard</td><td>Suite 450-B</td><td>Las Vegas</td><td>Nevada</td><td class="sv-num">9</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

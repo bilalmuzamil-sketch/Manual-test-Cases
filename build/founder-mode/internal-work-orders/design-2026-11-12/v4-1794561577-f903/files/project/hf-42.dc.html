@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>42 AccountingHub · Held event</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:var(--sv-accent-text)}a:hover{color:var(--sv-accent-hover)}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; height: 840px; overflow: hidden; background: var(--sv-surface); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+    <div class="sv-app" style="height: 100%; display: flex; flex-direction: column;">
+      <x-import component-from-global-scope="SV.AppHeader" active="finance" user="Admin ShopView" hint-size="100%,64px"></x-import>
+      <div class="sv-content" style="padding: var(--sv-space-5) var(--sv-space-6); display: flex; flex-direction: column; gap: var(--sv-space-4);">
+        <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);"><span class="sv-body2" style="color: var(--sv-text-secondary);">AccountingHub</span><span class="sv-h2">Accounting Events</span></div>
+        <div class="sv-card sv-card--flush" style="overflow: hidden;">
+          <table class="sv-table" style="width: 100%;">
+            <thead><tr><th>Date</th><th>Event</th><th>Reference</th><th>Status</th><th>Reason</th><th></th></tr></thead>
+            <tbody>
+              <tr data-sv-change="new"><td>Oct 22, 2026</td><td>Work order closed</td><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-1);">S2-34918<x-import component-from-global-scope="SV.Badge" tone="warning" shape="square" size="sm" hint-size="72px,20px">Internal</x-import></span></td><td><span class="sv-badge sv-badge--warning">Held</span></td><td style="white-space: normal;"><span class="sv-body2" style="color: var(--sv-text-secondary);">General Internal: expense account is not mapped</span></td><td><x-import component-from-global-scope="SV.Button" variant="secondary" icon="rotate-ccw" hint-size="90px,32px">Retry</x-import></td></tr>
+              <tr data-sv-change="new"><td>Oct 22, 2026</td><td>Work order closed</td><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-1);">S2-35102<span class="sv-badge sv-badge--warning sv-badge--square">No Charge</span></span></td><td><span class="sv-badge sv-badge--warning">Held</span></td><td style="white-space: normal;"><span class="sv-body2" style="color: var(--sv-text-secondary);">No open fiscal period covers Oct 22, 2026.</span></td><td><x-import component-from-global-scope="SV.Button" variant="secondary" icon="rotate-ccw" hint-size="90px,32px">Retry</x-import></td></tr>
+              <tr data-sv-change="new"><td>Oct 22, 2026</td><td>Work order closed</td><td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-1);">S2-34880<x-import component-from-global-scope="SV.Badge" tone="warning" shape="square" size="sm" hint-size="72px,20px">Internal</x-import></span></td><td><span class="sv-badge sv-badge--neutral">Dismissed</span></td><td style="white-space: normal;"><span class="sv-body2" style="color: var(--sv-text-secondary);">Withdrawn: work order reopened</span></td><td></td></tr>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

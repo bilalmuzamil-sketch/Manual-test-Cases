@@ -1,4 +1,4 @@
-# Internal Work Orders — pass report, PRD v1.3 and design 1794510020-d4ec (round 4, 13 Nov 2026)
+# Internal Work Orders — pass report, PRD v1.3 and design 1794561577-f903 (boards as 1794510020-d4ec) (round 4, 13 Nov 2026)
 
 Draft only: nothing written to TestRail, Jira, Slack or Google; nothing committed by the case worker. The QA lead chose the **named set** for v1.3 and **deletion of S2-90 and S8-26** (13 Nov 2026), on top of D-87, D-89 and D-91 (12 Nov 2026). Sources: PRD v1.3 (`sources/CONFLUENCE-942243841-v1.3-read-2026-11-12.md`; changes in `PRD-CHANGES-v1.1-to-v1.3.md`), the design change (`design-2026-11-12/DESIGN-CHANGE-v1.3-2026-11-12.md`, 15 boards redrawn) and the full read (`full-read/fix-list.json`: S1-71 and 51 runnability fixes).
 

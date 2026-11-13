@@ -22,8 +22,7 @@ DRAFTS = runpy.run_path(f"{DD}/tools/cases_data.py")["CASES"]
 FIGS = json.load(open(f"{DD}/DESIGN-FIGURES-2026-11-12.json"))["list"]
 sys.path.insert(0, D); import design_v3; design_v3.apply(FIGS)   # round 4: the 15 redrawn boards take their v3 title and picture
 BYFILE = {f["file"].replace(".dc.html", ""): f for f in FIGS}
-CANVAS = ('Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794510020-d4ec '
-          '(15 boards redrawn for PRD v1.2/v1.3, read and rendered 12 Nov 2026; the other 152 unchanged since version 1794484794-2031)')
+CANVAS = ('Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794561577-f903 (its boards byte-identical to version 1794510020-d4ec, which redrew 15 boards for PRD v1.2/v1.3, read and rendered 12 Nov 2026; the other 152 unchanged since version 1794484794-2031; checked 13 Nov 2026)')
 # design question (NEW-QUESTIONS.py rows 8-13) -> slug on the merged sheet (po_questions.py); 13 (reviewer remarks, IWO-D50) is a ruling
 DQ = {8: "category-helper", 9: "locked-note", 10: "reopen-message", 11: "report-empty-cell", 12: "report-wrapping"}
 DV_Q = {"DV-01": "category-helper", "DV-02": "internal-estimate-stamp", "DV-03": "locked-note", "DV-04": "reopen-message",

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>7.6 · 41b Hub · invoice with one No Charge line</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:var(--sv-accent-text)}a:hover{color:var(--sv-accent-hover)}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; height: 840px; overflow: hidden; background: var(--sv-surface); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+    <div class="sv-app" style="height: 100%; display: flex; flex-direction: column;">
+      <x-import component-from-global-scope="SV.AppHeader" active="finance" user="Admin ShopView" hint-size="100%,64px"></x-import>
+      <div class="sv-content" style="padding: var(--sv-space-5) var(--sv-space-6); display: flex; flex-direction: column; gap: var(--sv-space-4); overflow: auto;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: var(--sv-space-4);">
+          <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+            <span class="sv-body2" style="color: var(--sv-text-secondary);">AccountingHub · Sales &gt; Invoices</span>
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2);"><span class="sv-h2">S2-34920</span><span class="sv-badge sv-badge--success">Paid</span></div>
+            <x-import component-from-global-scope="SV.Button" variant="link" hint-size="130px,20px">Open in ShopView</x-import>
+          </div>
+          <div style="display: flex; gap: var(--sv-space-2);">
+            <x-import component-from-global-scope="SV.Button" variant="secondary" icon="eye" hint-size="100px,36px">Preview</x-import>
+            <x-import component-from-global-scope="SV.Button" variant="secondary" icon="arrow-down" hint-size="140px,36px">Download PDF</x-import>
+          </div>
+        </div>
+        <div class="sv-card" data-sv-change="modified" style="display: flex; flex-direction: column; gap: var(--sv-space-3);">
+          <span class="sv-h4">Summary</span>
+          <div class="sv-facts" style="max-width: 560px;"><dl class="sv-facts__list">
+            <dt class="sv-facts__k">Number</dt><dd class="sv-facts__v">S2-34920</dd><dt class="sv-facts__k">Customer</dt><dd class="sv-facts__v">A &amp; J Truck &amp; Trailer Repair</dd><dt class="sv-facts__k">Asset</dt><dd class="sv-facts__v">2017 Ford Transit</dd><dt class="sv-facts__k">Classification</dt><dd class="sv-facts__v">Billable</dd><dt class="sv-facts__k">Invoice date</dt><dd class="sv-facts__v">Oct 23, 2026</dd><dt class="sv-facts__k">Revenue</dt><dd class="sv-facts__v">$564.90</dd><dt class="sv-facts__k">No Charge lines</dt><dd class="sv-facts__v" data-sv-change="new">1 · Warranty · parts cost $410.00</dd></dl></div>
+        </div>
+        <div class="sv-card sv-card--flush" data-sv-change="new" style="overflow: hidden;">
+          <div class="sv-h4" style="padding: var(--sv-space-3) var(--sv-space-4) var(--sv-space-1);">No Charge lines</div>
+          <table class="sv-table" style="width: 100%;">
+            <thead><tr><th>Line</th><th>Category</th><th>Original work order</th><th>Original technician</th><th class="sv-num">Hours</th><th class="sv-num">Parts cost</th><th>Expense account</th></tr></thead>
+            <tbody>
+              <tr><td>02 Replace - Brake caliper</td><td>Warranty</td><td>S2-30455 · 02</td><td>M. Rhodes</td><td class="sv-num">1.0</td><td class="sv-num">$410.00</td><td>6430 Warranty &amp; Goodwill Expense</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sv-card sv-card--flush" data-sv-change="new" style="overflow: hidden;">
+          <div class="sv-h4" style="padding: var(--sv-space-3) var(--sv-space-4) var(--sv-space-1);">Journal entry</div>
+          <table class="sv-table" style="width: 100%;">
+            <thead><tr><th>Entry</th><th>Description</th><th>Account</th><th class="sv-num">Debit</th><th class="sv-num">Credit</th></tr></thead>
+            <tbody>
+              <tr><td><x-import component-from-global-scope="SV.Button" variant="link" hint-size="70px,20px">INV-7731</x-import></td><td>Revenue, labor and parts</td><td>4000 Sales</td><td class="sv-num"></td><td class="sv-num">$564.90</td></tr>
+              <tr><td></td><td>Accounts receivable</td><td>1100 Accounts Receivable</td><td class="sv-num">$564.90</td><td class="sv-num"></td></tr>
+              <tr><td></td><td>Cost of parts, billable lines</td><td>5000 Cost of Parts</td><td class="sv-num">$265.00</td><td class="sv-num"></td></tr>
+              <tr><td></td><td>Cost of parts, billable lines</td><td>1200 Inventory Asset</td><td class="sv-num"></td><td class="sv-num">$265.00</td></tr>
+              <tr data-sv-change="new"><td></td><td>Parts cost, No Charge line 02 (Warranty)</td><td>6430 Warranty &amp; Goodwill Expense</td><td class="sv-num">$410.00</td><td class="sv-num"></td></tr>
+              <tr data-sv-change="new"><td></td><td>Parts cost, No Charge line 02 (Warranty)</td><td>1200 Inventory Asset</td><td class="sv-num"></td><td class="sv-num">$410.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

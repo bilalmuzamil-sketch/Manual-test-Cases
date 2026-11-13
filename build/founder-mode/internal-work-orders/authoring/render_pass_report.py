@@ -27,7 +27,7 @@ DEL_WHY = {"D-87": "design-version case retired in round 3: PRD v1.1 settled the
            "S8-26": V.PROPOSED_DELETE["S8-26"] + " QA lead: \"Delete both (Recommended)\", 13 Nov 2026."}
 STAMP = [('version 1.1 (12 Nov 2026, Milos Vasic)', 'version 1.3 (12 Nov 2026, Milos Vasic)'),
          ('version 1794507512-2fc4 (its boards byte-identical to version 1794484794-2031, read and rendered 12 Nov 2026)',
-          'version 1794510020-d4ec (15 boards redrawn for PRD v1.2/v1.3, read and rendered 12 Nov 2026; the other 152 unchanged since version 1794484794-2031)')]
+          'version 1794561577-f903 (its boards byte-identical to version 1794510020-d4ec, which redrew 15 boards for PRD v1.2/v1.3, read and rendered 12 Nov 2026; the other 152 unchanged since version 1794484794-2031; checked 13 Nov 2026)')]
 link = lambda cid: f"[C{cid}](https://shopview.testrail.io/index.php?/cases/view/{cid})"
 
 
@@ -103,7 +103,7 @@ released4 = [k for k in MAP if k in R3 and k in NOW and R3[k]["held"] and not NO
 json.dump(plan, open(f"{W}/plan.json", "w"), indent=1, ensure_ascii=False)
 
 new4 = [k for k in plan["create"] if k not in R3]
-R = ["# Internal Work Orders — pass report, PRD v1.3 and design 1794510020-d4ec (round 4, 13 Nov 2026)", "",
+R = ["# Internal Work Orders — pass report, PRD v1.3 and design 1794561577-f903 (boards as 1794510020-d4ec) (round 4, 13 Nov 2026)", "",
      "Draft only: nothing written to TestRail, Jira, Slack or Google; nothing committed by the case worker. The QA lead chose the **named set** "
      "for v1.3 and **deletion of S2-90 and S8-26** (13 Nov 2026), on top of D-87, D-89 and D-91 (12 Nov 2026). Sources: PRD v1.3 "
      "(`sources/CONFLUENCE-942243841-v1.3-read-2026-11-12.md`; changes in `PRD-CHANGES-v1.1-to-v1.3.md`), the design change "

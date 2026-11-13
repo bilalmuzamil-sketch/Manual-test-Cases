@@ -142,3 +142,10 @@ Gone from every Finance-tab board:
 - All 167 boards were rendered from both versions and their full on-screen text compared.
 - `canvas.json` boards and notes were compared field by field.
 - The detail artboard's added and removed strings were listed from the source, to make sure no undrawn variant is missed.
+
+## 8. Version 1794561577-f903 (checked 13 Nov 2026, case worker)
+
+- Published listing: still 210 files. Read with the Artifact tool (`read`, `paths`, two batches): every `project/*.dc.html` (168), `project/canvas.json`, the three `project/_ds/` css and js files, `SKILL.md`, `index.html` and `artifact-type/dc-runtime.js`: 174 files, saved in `v4-1794561577-f903/files/`.
+- Byte compare with `v3-1794510020-d4ec/files/`: **173 identical, 1 changed: `index.html`**, and only its build stamp (`<meta name="mega-build-stamp">` `5eff8556…` → `82d73203…`). No board, `canvas.json` or design-library file changed, so no board needed `tools/v3_text_diff.js`, and no case content changes.
+- Viewer runtime only (listing sizes, not downloaded): `artifact-type/app.js` 5,126,127 → 5,156,007 and `capture.js` 872,220 → 874,391 bytes. These are the canvas viewer, not design.
+- Case references re-stamped to "version 1794561577-f903 (its boards byte-identical to version 1794510020-d4ec, …; checked 13 Nov 2026)", because the From and References lines cite the current version of each source (Rules 31, 54 and 59). Every picture and design word stays the same.

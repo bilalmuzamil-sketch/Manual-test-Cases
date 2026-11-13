@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>10 Board · internal card</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:var(--sv-accent-text)}a:hover{color:var(--sv-accent-hover)}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; height: 840px; overflow: hidden; background: var(--sv-surface); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+    <div class="sv-app" style="height: 100%; display: flex; flex-direction: column;">
+      <x-import component-from-global-scope="SV.AppHeader" active="work-orders" user="Admin ShopView" hint-size="100%,64px"></x-import>
+      <div class="sv-content" style="padding: var(--sv-space-5) var(--sv-space-6); display: flex; flex-direction: column; gap: var(--sv-space-4); min-height: 0;">
+        <span class="sv-h2">Work Orders · Board</span>
+        <div style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: var(--sv-space-3); align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: var(--sv-space-2); background: var(--sv-surface-canvas); border-radius: var(--sv-radius-md); padding: var(--sv-space-3); min-height: 0;">
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2);"><span class="sv-body-strong">Estimate</span><span class="sv-body2" style="color: var(--sv-text-secondary);">1</span></div>
+              <div class="sv-card" data-sv-change="unchanged" style="display: flex; flex-direction: column; gap: var(--sv-space-2); padding: var(--sv-space-3);">
+                <span class="sv-body-strong">S2-35004</span>
+                <div style="display: flex; align-items: center; gap: var(--sv-space-1); flex-wrap: wrap;"><x-import component-from-global-scope="SV.StatusBadge" status="Estimate" vocabulary="workOrder" hint-size="84px,22px"></x-import></div>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">Staging Heavy Duty Fleet · Unit 14</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">2017 Ford Transit</span>
+              </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: var(--sv-space-2); background: var(--sv-surface-canvas); border-radius: var(--sv-radius-md); padding: var(--sv-space-3); min-height: 0;">
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2);"><span class="sv-body-strong">In Progress</span><span class="sv-body2" style="color: var(--sv-text-secondary);">2</span></div>
+              <div class="sv-card" data-sv-change="modified" style="display: flex; flex-direction: column; gap: var(--sv-space-2); padding: var(--sv-space-3);">
+                <span class="sv-body-strong">S2-34918</span>
+                <div style="display: flex; align-items: center; gap: var(--sv-space-1); flex-wrap: wrap;"><x-import component-from-global-scope="SV.StatusBadge" status="In Progress" vocabulary="workOrder" hint-size="84px,22px"></x-import><x-import component-from-global-scope="SV.Badge" tone="warning" shape="square" size="sm" hint-size="72px,20px">No Charge</x-import></div>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">Staging Heavy Duty Fleet · Unit 14</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">2017 Ford Transit</span>
+              </div><div class="sv-card" data-sv-change="unchanged" style="display: flex; flex-direction: column; gap: var(--sv-space-2); padding: var(--sv-space-3);">
+                <span class="sv-body-strong">S2-35102</span>
+                <div style="display: flex; align-items: center; gap: var(--sv-space-1); flex-wrap: wrap;"><x-import component-from-global-scope="SV.StatusBadge" status="In Progress" vocabulary="workOrder" hint-size="84px,22px"></x-import></div>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">Hilltop Logistics · Unit 7</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">2019 Freightliner Cascadia</span>
+              </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: var(--sv-space-2); background: var(--sv-surface-canvas); border-radius: var(--sv-radius-md); padding: var(--sv-space-3); min-height: 0;">
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2);"><span class="sv-body-strong">Completed</span><span class="sv-body2" style="color: var(--sv-text-secondary);">1</span></div>
+              <div class="sv-card" data-sv-change="unchanged" style="display: flex; flex-direction: column; gap: var(--sv-space-2); padding: var(--sv-space-3);">
+                <span class="sv-body-strong">S2-34374</span>
+                <div style="display: flex; align-items: center; gap: var(--sv-space-1); flex-wrap: wrap;"><x-import component-from-global-scope="SV.StatusBadge" status="Completed" vocabulary="workOrder" hint-size="84px,22px"></x-import></div>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">ZZAUTOTEST Bridgeport Hauling · ZZT-4471</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">Freightliner Cascadia</span>
+              </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: var(--sv-space-2); background: var(--sv-surface-canvas); border-radius: var(--sv-radius-md); padding: var(--sv-space-3); min-height: 0;">
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2);"><span class="sv-body-strong">Invoiced</span><span class="sv-body2" style="color: var(--sv-text-secondary);">2</span></div>
+              <div class="sv-card" data-sv-change="modified" style="display: flex; flex-direction: column; gap: var(--sv-space-2); padding: var(--sv-space-3);">
+                <span class="sv-body-strong">S2-34870</span>
+                <div style="display: flex; align-items: center; gap: var(--sv-space-1); flex-wrap: wrap;"><x-import component-from-global-scope="SV.StatusBadge" status="Closed" tone="neutral" vocabulary="workOrder" hint-size="84px,22px"></x-import><x-import component-from-global-scope="SV.Badge" tone="warning" shape="square" size="sm" hint-size="72px,20px">No Charge</x-import></div>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">Staging Heavy Duty Fleet · Unit 12</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">2019 Freightliner Cascadia</span>
+              </div><div class="sv-card" data-sv-change="unchanged" style="display: flex; flex-direction: column; gap: var(--sv-space-2); padding: var(--sv-space-3);">
+                <span class="sv-body-strong">S2-34863</span>
+                <div style="display: flex; align-items: center; gap: var(--sv-space-1); flex-wrap: wrap;"><x-import component-from-global-scope="SV.StatusBadge" status="Invoiced" vocabulary="workOrder" hint-size="84px,22px"></x-import></div>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">4 Star Truck Repair</span>
+                <span class="sv-body2" style="color: var(--sv-text-secondary);">Ford Transit</span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

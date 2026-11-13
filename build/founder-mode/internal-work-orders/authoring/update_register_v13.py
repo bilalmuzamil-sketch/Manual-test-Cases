@@ -69,7 +69,7 @@ for i, code, w in [("IWO-N42", "S3-E5", "\"This work order changed. Review and c
 oc = [d["outcome"] for d in R["differences"]]
 R["counts"] = {"differences": len(oc), "settled_by_prd": sum(o.startswith("SETTLED") for o in oc), "closed_matching": sum(o.startswith("CLOSED") for o in oc),
                "held_design_version": sum(o.startswith("HELD") for o in oc), "rulings": sum(o.startswith("RULING") for o in oc), "questions": 0, "not_shown": len(R["not_shown"])}
-R["design"] = "https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo, canvas \"Internal Work Orders · All flows v6\", version 1794510020-d4ec (15 boards redrawn 12 Nov 2026)"
+R["design"] = "https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo, canvas \"Internal Work Orders · All flows v6\", version 1794561577-f903 (boards byte-identical to 1794510020-d4ec, which redrew 15 boards on 12 Nov 2026; checked 13 Nov 2026)"
 R["prd"] = "Confluence 942243841, version 1.3 (12 Nov 2026, Milos Vasic), saved build/founder-mode/internal-work-orders/sources/CONFLUENCE-942243841-v1.3-read-2026-11-12.md"
 R["v1.3_update"] = ("13 Nov 2026, case worker round 4: IWO-D02, D20, D21 closed; D22, D23 narrowed; N05, N25 reworded; D57-D61 added with the coordinator's "
                     "verdicts (D57 closed by check (c), case D-93 runnable); D62 added (stale Happy 28 board); N42-N44 added (design-silent). No question. Before-copy: "
