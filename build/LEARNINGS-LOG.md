@@ -526,3 +526,11 @@
 - v13 still has no sentence about columns moving or staying put on expand/collapse (searched shift/jump/column width/stay); the only "kept" wording is the developer's handoff (L0709).
 - PRD link: https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=947650561
 - #aging #prd-v13 #sv-12545 → L0709
+
+## L0711 — 2026-11-13 — QA lead: "you must not make the same mistakes which stopped you from reporting these tickets, it was an embarrassing mistake"
+- The mistake (Demo Day, SV-12763/SV-12764 found by Chris and filed by Mudassir): I treated a DEVELOPER'S handoff note ("Kept by the developer" / "Known mismatches (not bugs — do not file)") as if the product had accepted it, and so neither filed nor raised the visible column jump; and our layout tests never used a long name with NO spaces.
+- **Standing checks from now on, every suite:**
+  1. A developer's "kept", "known mismatch", "not a bug", "do not file" note is a FACT, never acceptance (Rules 57, 111, 119). Acceptance comes only from the PRD, the PO/Product, or the QA lead. For each such item: if the PRD covers it → judge it as a test; if the PRD is silent → put it to the QA lead as a question (with my recommendation) the same day. Never stay silent on a visible oddity.
+  2. Every layout/overflow test includes one long value with NO spaces (names, numbers, locations), as well as one long value with spaces.
+  3. Before calling a suite done, list every "kept by the developer" item from the handoffs and say what was decided for each.
+- #mistake #handoff #layout #rule140 #must-not-repeat → L0708, L0709
