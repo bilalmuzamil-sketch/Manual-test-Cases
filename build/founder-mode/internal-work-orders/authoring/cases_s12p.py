@@ -46,26 +46,26 @@ C("S12P-06", S, "An estimate sent before Convert to No Charge shows the change o
   [["Work order 1 opens."], ['The menu shows "Convert to No Charge".'], ["The confirmation opens."], ["Goodwill is picked."], ['The "No Charge" badge shows.'],
    ["The portal opens.", "No new email has arrived in the contact's mailbox."],
    ["The same estimate shows the NO CHARGE stamp and no prices.", f'Under the lines the notice reads "{NOTICE}"']],
-  ["S2-E6", "UFS-42"])
+  ["S2-E6", "UFS-44"])
 C("S12P-07", S, "A pending estimate whose work order was made internal cannot be approved",
   [ADMIN, ON, cust("A"), PORTAL, wo(1, "A", "in Estimate", ", billable, sent to the portal"),
    "Sign in to the customer portal as customer A's contact and leave work order 1's estimate open in a browser tab, tab 1."],
   ["In ShopView, open customer A's page.", "Click Edit Customer.", 'Tick "Internal customer".', SAVE, 'Click "Make internal".', "In tab 1, click Approve.", "Reload tab 1."],
   [["Customer A's page opens."], ["The window opens."], ["The checkbox is ticked."], ["The Make internal window lists work order 1."], ["Work order 1 is internal."],
    ['The approval is refused with "This estimate is no longer available."'], ["The estimate shows the existing obsolete banner with no Approve or Decline."]],
-  ["S1-R11", "UFS-41", "OOS-10"])
+  ["S1-R11", "UFS-43", "OOS-10"])
 C("S12P-08", S, "A billable estimate shows a line marked after sending at $0.00 with the notice",
   [ADMIN, ON, cust("A", ", with its own labor rate of $120.00 an hour"), PORTAL,
    wo(1, "A", "in Estimate", ", billable, with line 1 of 2.0 hours and line 2 of 1.5 hours, sent to the portal")],
   [OPEN_WO, "Open line 2's three-dots menu.", 'Click "Mark as No Charge".', 'Pick "Goodwill" in Category.', "Click the confirming Mark as No Charge button.", OPEN_P, OPEN_EST],
   [["Work order 1 opens."], ['The menu shows "Mark as No Charge".'], ["The dialog opens."], ["Goodwill is picked."], ["Line 2 shows $0.00."], ["The portal opens."],
    ['Line 2 shows $0.00 with "Goodwill" under its title.', "The price summary reads $240.00.", f'Under the lines the notice reads "{NOTICE}"']],
-  ["S12-R4", "UFS-42"])
+  ["S12-R4", "UFS-44"])
 C("S12P-09", S, "The portal invoice shows the no-charge line at $0.00 with its category",
   [ADMIN, ON, cust("A"), PORTAL, wo(1, "A", "invoiced", ", billable, whose line 2 was No Charge under Goodwill")],
   [OPEN_P, "Open work order 1's invoice in the portal."],
   [["The portal opens."], ['Line 2 shows $0.00 with "Goodwill" under its title; there is no stamp and no badge.']],
-  ["S12-R7", "UFS-37"])
+  ["S12-R7", "UFS-39"])
 C("S12P-10", S, "A closed internal work order is not listed but counts on the vehicle list",
   [ADMIN, ON, icust("A", ", with one asset, asset 1"), PORTAL, iwo(1, "A", "closed today", ", on asset 1")],
   [OPEN_P, "Open the portal's invoices.", "Open the portal's vehicle list."],

@@ -111,7 +111,7 @@ new("S4-15", "S4", "Reopen shows the green message that the work order reopened"
      "Click Reopen Work Order in the window."],
     [["Work order 1 opens, Closed."], ["The document shows."], ["The menu offers \"Reopen Work Order\"."], ["The window opens."],
      ["A green message reads \"Work order [number] reopened\" with work order 1's number.", "The status reads \"Complete\"."]],
-    ["S4-R3", "UFS-25"], note=NAME_NOTE)
+    ["S4-R3", "UFS-27"], note=NAME_NOTE)
 
 _RPT_PRE = ["Sign in as an Admin at the test location.", "Make sure the Internal Work Orders setting is on in Settings > Work Orders.",
             "Make sure the test location has no accounting integration (neither QuickBooks Online nor AccountingHub).",

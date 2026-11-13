@@ -35,7 +35,7 @@ C("S1-02", S, "First turn-on opens the customer picker window with Save disabled
     'Under the picker the hint reads "Pick up to 50 customers here. Flag more from Edit Customer."',
     'The line "You can change this any time: Customers > Edit Customer > Internal customer." shows.',
     'It has the buttons "Do this later" and "Save"; "Save" is disabled.', "The window lists no customer as already flagged."]],
-  ["S1-R2", "UFS-40", "ENTRY"])
+  ["S1-R2", "UFS-42", "ENTRY"])
 C("S1-02b", S, "First turn-on window shows its explanation text",
   [ADMIN, NEWORG],
   [SET, TOGGLE],
@@ -419,7 +419,7 @@ C("S1-53", S, "At 100 active categories the New button is disabled with a messag
   [CATS, "Open the No Charge categories tab.", 'Hover over the "New No Charge Category" button.'],
   [["The categories page opens."], ["The list holds 100 active categories."],
    ['The button is disabled with the message "You can have up to 100 active categories in this list. Archive one to add another."']],
-  ["S1-R13", "UFS-39"])
+  ["S1-R13", "UFS-41"])
 C("S1-54", S, "The QuickBooks column shows only at a location connected to QuickBooks",
   [ADMIN, ON, "Use an organization with two locations: location A connected to QuickBooks Online, location B not connected."],
   ["Work at location A.", CATS, "Switch to location B.", RELOAD],
@@ -589,7 +589,7 @@ C("S1-79", S, "A failed flag save shows an alert and keeps the window open",
   [OPEN_A, EDITC, TICK, SAVE],
   [["Customer A's page opens."], ["The Edit Customer window opens."], ["The checkbox is ticked."],
    ['When the save fails, an alert toast that must be dismissed reads "Could not save the internal customer. Try again."', "The window stays open with the checkbox ticked."]],
-  ["EH-S1-1", "UFS-43"], marker=NOMAN("the save has to fail, which only a developer can make happen"))
+  ["EH-S1-1", "UFS-45"], marker=NOMAN("the save has to fail, which only a developer can make happen"))
 C("S1-80", S, "A partly failed Make internal keeps the flag and names the count",
   [ADMIN, ON, cust("A"), wo(1, "A", "in Estimate"), wo(2, "A", "in Estimate")],
   [OPEN_A, EDITC, TICK, SAVE, 'Click "Make internal".'],

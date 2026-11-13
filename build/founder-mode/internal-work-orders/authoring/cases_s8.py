@@ -57,7 +57,7 @@ C("S8-07", S, "With the category row empty the bill posts and only its move is h
   ["Enter the vendor bill for work order 1's special-order part at $125.00.", EVENTS],
   [["The bill is saved and can be paid as usual."],
    ['A move of that bill line is listed with the status Held, the reason "No Charge: [category A\'s name] row not mapped", a Retry action and a link to the bill and its line.']],
-  ["S8-R3", "S8-N2", "UFS-20"], note=NAME_NOTE)
+  ["S8-R3", "S8-N2", "UFS-22"], note=NAME_NOTE)
 C("S8-08", S, "Saving the mapping posts a held move on its own",
   [ADMIN, ON, AH, "Have a new No Charge category for this test, category A, whose Account Mappings row is empty.", cust("A"),
    ncwo(1, "A", "category A", "Approved", ", whose vendor bill line move of $125.00 is Held for the empty row")],
@@ -117,7 +117,7 @@ C("S8-17", S, "With a line's category row empty only that line's cost is held",
   [OPEN_WO, CREATE_INV, INV, EVENTS],
   [["Work order 1 opens."], ["The invoice is created."], ["The invoice, its revenue and its receivable are posted at once."],
    ['Only line 2\'s cost entry is Held, with the reason "No Charge: [category A\'s name] row not mapped".']],
-  ["S8-R7", "S8-N2", "UFS-20"], note=NAME_NOTE)
+  ["S8-R7", "S8-N2", "UFS-22"], note=NAME_NOTE)
 C("S8-18", S, "An empty Internal category row holds the Close with Retry",
   [ADMIN, ON, AH, REVIEW_OFF, "Have a new Internal category for this test, category A, whose Account Mappings row is empty.",
    icust("A", ", whose default internal category is category A"), iwo(1, "A", "Complete", f", with {STOCK_PART}"),
@@ -130,13 +130,13 @@ C("S8-19", S, "An empty Shop supplies expense row holds the Close",
   [ADMIN, ON, AH, REVIEW_OFF, "Make sure the Shop supplies expense row on Account Mappings is empty.", icust("A"), iwo(1, "A", "Complete", ", whose Shop supplies amount is $15.00")],
   CLOSE_IT + [EVENTS],
   CLOSE_RES + [['The Close shows Held with the reason "Shop supplies expense is not mapped".']],
-  ["S8-N2", "UFS-20", "S10-N2"])
+  ["S8-N2", "UFS-22", "S10-N2"])
 C("S8-20", S, "A Close in a closed period is held and retried when the period opens",
   [ADMIN, ON, AH, REVIEW_OFF, "Make sure last month's fiscal period, period A, is closed in Accounting.", icust("A"), iwo(1, "A", "Complete", f", with {STOCK_PART}")],
   [OPEN_WO, CLOSE_BTN, "Set the posting date to a day of last month.", CONFIRM_CLOSE, EVENTS, "Reopen period A in Accounting.", EVENTS],
   [["Work order 1 opens."], ["The confirmation opens."], ["The date shows."], ["The work order is Closed: Close succeeds."],
    ['The Close shows Held with the reason "Period [period A\'s name] is closed".'], ["Period A is open."], ["The Close is retried on its own and is posted."]],
-  ["S8-N2", "UFS-20", "S3-E3"], note=NAME_NOTE)
+  ["S8-N2", "UFS-22", "S3-E3"], note=NAME_NOTE)
 C("S8-21", S, "A posting date with no fiscal period is held with the hub's reason",
   [ADMIN, ON, AH, REVIEW_OFF, "Make sure no fiscal period covers a date two years ago.", icust("A"), iwo(1, "A", "Complete", f", with {STOCK_PART}")],
   [OPEN_WO, CLOSE_BTN, "Set the posting date to a day two years ago.", CONFIRM_CLOSE, EVENTS],

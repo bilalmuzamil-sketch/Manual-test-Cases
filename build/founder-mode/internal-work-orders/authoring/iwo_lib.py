@@ -30,7 +30,7 @@ def md_to_text(md):
     return "\n".join(out)
 
 
-PRD_FILE = f"{P}/sources/CONFLUENCE-942243841-v1.1-read-2026-11-12.md"   # round 3 (12 Nov 2026): v1.1 carries Milos Vasic's answers 1-16
+PRD_FILE = f"{P}/sources/CONFLUENCE-942243841-v1.3-read-2026-11-12.md"   # round 3 (12 Nov 2026): v1.1 carries Milos Vasic's answers 1-16
 PRD_FULL = open(PRD_FILE).read()
 PRD_MD = PRD_FULL.split("## 9. Change Log")[0]          # the Change Log holds no requirement and is never a source of a quote
 PRD_TXT = md_to_text(PRD_MD)
@@ -49,8 +49,8 @@ TP = {x["id"]: x for x in TPJ["statements"]}
 PLAN_NAME = ('"Internal Work Orders technical implementation plan", 2026-10-28, last updated 2026-11-10 (revision 5, built on PRD v1.0), '
              'sources/TECH-PLAN-Internal-Work-Orders-upload-2026-11-12.md')
 
-PRD_VERSION = "1.1"
-PRD_NAME = 'PRD "Internal Work Orders (PRD)", Confluence 942243841, version 1.1 (12 Nov 2026, Milos Vasic)'
+PRD_VERSION = "1.3"
+PRD_NAME = 'PRD "Internal Work Orders (PRD)", Confluence 942243841, version 1.3 (12 Nov 2026, Milos Vasic)'
 PRD_READ = "read 12 Nov 2026"
 ANS_FILE = f"{P}/po-answers-2026-11-12/ANSWERS-Milos-Vasic-2026-11-12.json"
 ANSWERS = _json.load(open(ANS_FILE))["answers"]
@@ -143,8 +143,8 @@ for line in PRD_MD.split("\n"):
     if _inside and line.startswith("## "): break
     if _inside and line.startswith("| ") and not line.startswith("| Trigger") and not line.startswith("| ---"):
         _ufs.append(" | ".join(ws(x) for x in line.strip().strip("|").split("|")))
-if len(_ufs) != 43: raise SystemExit(f"User Feedback Summary has {len(_ufs)} rows; expected 43 (v1.1 adds row 25, Reopen done)")
-UFS_STORY = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 7, 3, 3, 3, 3, 8, 3, 3, 2, 4, 4, 9, 9, 5, 3, 11, 12, 12, 12, 12, 12, 12, 12, 12, 1, 1, 1, 2, 1]
+if len(_ufs) != 45: raise SystemExit(f"User Feedback Summary has {len(_ufs)} rows; expected 45 (v1.1 adds row 25, Reopen done; v1.3 replaces row 16 by rows 16-18)")
+UFS_STORY = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 7, 3, 3, 3, 3, 3, 3, 8, 3, 3, 2, 4, 4, 9, 9, 5, 3, 11, 12, 12, 12, 12, 12, 12, 12, 12, 1, 1, 1, 2, 1]
 for i, row in enumerate(_ufs, 1): _n(f"UFS-{i:02d}", "User Feedback Summary", row, UFS_STORY[i - 1])
 # Key Decisions: the decision sentence(s) of each bullet (the rationale is context, not a check)
 KD = {
@@ -155,7 +155,7 @@ KD = {
  "KD-COST": ("Part cost goes straight to the expense account, not to cost of goods sold first, one entry per part as invoicing posts today.", 1, 7),
  "KD-ACCT": ("One expense account per category, mapped per location in QuickBooks", 1, 5),
  "KD-LABOR": ("Labor is hours only in this version.", 1, 9),
- "KD-ALWAYS": ("Close always succeeds (the one refusal is a work order that changed under the open confirmation, S3-E5).", 2, 3),
+ "KD-ALWAYS": ("Close always succeeds (the one refusal is a no-charge work order whose category requires the original work order and has none, which the dialog of S3-R2 asks for).", 2, 3),
  "KD-LOCK": ("The classification can change until the work order is closed or invoiced.", 2, 2),
  "KD-WRITTEN": ("The classification is written on the work order, never read live from the customer flag.", 1, 1),
  "KD-OFFER": ("Flagging a customer offers to make its open billable work orders internal;", 1, 1),
@@ -178,7 +178,7 @@ PERM = {"PM-01": ("Turn the setting on or off; the first-time modal", 1), "PM-02
         "PM-03": ("Internal customer checkbox on Edit Customer", 1), "PM-04": ("See the Internal badge on the customers list", 1),
         "PM-05": ("Make internal (dialog after flagging)", 1), "PM-06": ("Change the customer on a work order", 2),
         "PM-07": ("No Charge at creation, Convert to No Charge", 2), "PM-08": ("Edit the shop supplies amount", 10),
-        "PM-09": ("Close Work Order |", 3), "PM-10": ("Reopen Work Order |", 4), "PM-11": ("Cost on lines, in the Close confirmation", 2),
+        "PM-09": ("Close Work Order |", 3), "PM-10": ("Reopen Work Order |", 4), "PM-11": ("Cost on lines, in the Finance tab posting summary", 2),
         "PM-12": ("QuickBooks rows", 5), "PM-13": ("AccountingHub rows", 6), "PM-14": ("Internal Work Orders report, the Technician Efficiency chip", 9),
         "PM-15": ("Customer portal |", 2)}
 for k, (s, st) in PERM.items(): _n(k, "Key Decisions, Permissions (Action | Needs | Without it)", raw_row(s), st)
@@ -192,7 +192,7 @@ TERMS = {
  "T-REASON": ("Reason → the earlier name of the No Charge category", 2), "T-HOURS": ("Hours → the labor hours on the lines", 3),
  "T-NAME": ("Internal Work Orders → the name of the setting", 9), "T-CATACCT": ("Category expense account → the expense account", 5),
  "T-SSACCT": ("Shop supplies account → where the shop supplies amount", 10), "T-REVIEW": ("ShopView Review → the expense account", 7),
- "T-PDATE": ("Posting date → the date in the Close confirmation", 3), "T-PARTS": ("Inventory part / special-order part / sublet →", 7),
+ "T-PDATE": ("Posting date → the date field on the Finance tab", 3), "T-PARTS": ("Inventory part / special-order part / sublet →", 7),
  "T-STATUS": ("Statuses are named as the app names them:", 3), "T-VOCAB": ("Vocabulary. This PRD uses the frontend vocabulary", 1),
  "T-CAT": ("Category → a shop-managed entry", 1), "T-ORIG": ("Original work order → the earlier work order", 2),
  "T-ORIGL": ("Original line → the line on the original work order", 2), "T-NCL": ("No Charge line → a line of a billable work order", 12),

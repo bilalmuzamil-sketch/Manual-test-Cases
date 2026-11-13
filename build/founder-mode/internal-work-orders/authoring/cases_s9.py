@@ -166,7 +166,7 @@ C("S9-25", S, "Before the first close the report, chip and export option are not
   ["Open Reports.", TE, "Open Export Reports.", "Open the Internal Work Orders report's direct link."],
   [['"Internal Work Orders" is not listed among the reports, while the other reports are.'], ['The "Internal work orders" chip is not shown.'],
    ['The Customer Invoice export has no "Include internal and no-charge work orders" option.'], ["The standard report empty state shows."]],
-  ["S9-R4", "S9-N1", "UFS-27"])
+  ["S9-R4", "S9-N1", "UFS-29"])
 C("S9-26", S, "The first close lists the report for good",
   [ADMIN, "Use a new organization that has never closed an internal or no-charge work order.", ON, NO_ACCT, REVIEW_OFF, icust("A"), iwo(1, "A", "Complete")],
   [OPEN_WO, CLOSE_BTN, CONFIRM_CLOSE, "Open Reports.", "Reopen work order 1 from the Finance tab.", "Turn the Internal Work Orders setting off.", "Open Reports."],
@@ -204,7 +204,7 @@ C("S9-32", S, "The Customer Invoice export option is off by default with its hel
   ["Open Export Reports.", "Pick Customer Invoice."],
   [["The Export Reports window opens."],
    ['The option "Include internal and no-charge work orders" shows unticked with the helper "For your records only. Do not import these rows as invoices."']],
-  ["S9-R6", "UFS-26"])
+  ["S9-R6", "UFS-28"])
 C("S9-33", S, "With the option on, the export adds the closed rows at 0.00",
   [ADMIN, ON, icust("A"), iwo(1, "A", "closed today", f", with {LABOR_2H} and {STOCK_PART}, Shop supplies $15.00"), cust("B"), wo(2, "B", "invoiced today", ", billable")],
   ["Open Export Reports.", "Pick Customer Invoice.", 'Tick "Include internal and no-charge work orders".', "Export today's file.", "Open the file."],
@@ -263,7 +263,7 @@ C("S9-42", S, "No matching rows show the standard empty state",
   [ADMIN, ON, "Make sure the organization has closed at least one internal work order, but none last year."],
   [REP, "Set the date range to a month of last year."],
   [["The report opens."], ["The standard report empty state shows."]],
-  ["S9-N1", "UFS-27"])
+  ["S9-N1", "UFS-29"])
 C("S9-43", S, "Without Reports — Page Access the reports are not available",
   [ON, "Make sure the organization has closed at least one internal work order.", role("has every setting except 'Reports — Page Access'")],
   ["Open the main menu."],

@@ -31,8 +31,10 @@ RULING_D50 = ("IWO-D50 (two reviewer remarks left in a board's file, not visible
 
 def _scode(k):
     if not re.match(r"UFS-\d\d$", k): return k
-    n = int(k[4:])   # the spec-to-design table uses PRD v1.0's row numbers; v1.1 inserted row 25 (Reopen done), which no board table row has
-    return "§8-%02d" % (n - 1 if n >= 26 else n) if n != 25 else "§8-v1.1-25"
+    n = int(k[4:])   # the spec-to-design table uses PRD v1.0's row numbers; v1.3 rows 16-18 and 27 are new (no table row)
+    if n <= 15: return "§8-%02d" % n
+    if n <= 18 or n == 27: return "§8-v1.3-%02d" % n
+    return "§8-%02d" % (n - 2 if n <= 26 else n - 3)
 
 
 def boards_named(text):

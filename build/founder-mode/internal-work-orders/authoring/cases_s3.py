@@ -58,12 +58,12 @@ C("S3-07", S, "Close confirmation shows posting date, parts, labor and shop supp
     'A row reads "Shop supplies $15.00" with the note "Posted to [General Internal\'s account], credited to [the income account of the Shop supplies item]".',
     "No special orders row shows, since there are none.",
     f'Under the rows it reads "{SENT_DONE}"', 'Its buttons are "Cancel" and "Close Work Order".']],
-  ["S3-R2", "S10-R3", "UFS-16", "T-PDATE", "T-HOURS"], note=NAME_NOTE)
+  ["S3-R2", "S10-R3", "UFS-18", "T-PDATE", "T-HOURS"], note=NAME_NOTE)
 C("S3-08", S, "Closing a work order that is not Complete says it completes it",
   [ADMIN, ON, QB, REVIEW_OFF, icust("A"), iwo(1, "A", "In Progress", ", with all its lines done, not yet marked Complete")],
   [OPEN_WO, MENU, "Click Close Work Order in the menu."],
   [["Work order 1 opens."], ['The menu shows "Close Work Order".'], [f'The confirmation\'s sentence reads "{SENT_OPEN}"']],
-  ["S3-R2", "UFS-16"])
+  ["S3-R2", "UFS-18"])
 C("S3-09", S, "A no-charge work order's confirmation says Closed · No Charge",
   [ADMIN, ON, QB, REVIEW_OFF, cust("A"), ncwo(1, "A", "Goodwill", DONE, f", with {STOCK_PART}")],
   [OPEN_WO, CLOSE_BTN],
@@ -133,18 +133,18 @@ C("S3-18", S, "Confirming Close shows the alert and the status Closed",
    ["An alert reads \"Work order [number] is Closed · Internal.\" with an X.", 'The status reads "Closed" with one "Internal" badge next to it.',
     "The lines can no longer be edited, as on an invoiced work order."],
    ["The alert closes."]],
-  ["S3-R3", "UFS-22", "KD-CLOSE", "T-CLOSED", "T-STATUS"], note=NAME_NOTE)
+  ["S3-R3", "UFS-24", "KD-CLOSE", "T-CLOSED", "T-STATUS"], note=NAME_NOTE)
 C("S3-19", S, "Closing a no-charge work order shows Closed · No Charge",
   [ADMIN, ON, NO_ACCT, REVIEW_OFF, cust("A"), ncwo(1, "A", "Goodwill", DONE, f", with {LABOR_2H}")],
   [OPEN_WO, CLOSE_BTN, CONFIRM_CLOSE],
   [["Work order 1 opens."], ["The confirmation opens."],
    ["An alert reads \"Work order [number] is Closed · No Charge.\"", 'The status reads "Closed" with the "No Charge" badge.']],
-  ["S3-R3", "UFS-22"], note=NAME_NOTE)
+  ["S3-R3", "UFS-24"], note=NAME_NOTE)
 C("S3-20", S, "The Closed alert fades on its own",
   [ADMIN, ON, NO_ACCT, REVIEW_OFF, icust("A"), iwo(1, "A", DONE)],
   [OPEN_WO, CLOSE_BTN, CONFIRM_CLOSE, "Wait ten seconds without clicking."],
   [["Work order 1 opens."], ["The confirmation opens."], ["The Closed alert shows."], ["The alert has faded away on its own."]],
-  ["UFS-22"])
+  ["UFS-24"])
 C("S3-21", S, "Close runs the missing details step first and ends with Close Work Order",
   [ADMIN, ON, NO_ACCT, REVIEW_OFF, "Make sure the organization asks for the VIN before invoicing.", icust("A", ", with one asset, asset 1, that has no VIN"),
    iwo(1, "A", "In Progress", ", on asset 1, with all lines done")],
@@ -264,7 +264,7 @@ C("S3-39", S, "An unmapped category warns that QuickBooks posts to ShopView Revi
    ['The Stock parts note reads "No account set for [category A\'s name]. The entry posts to the ShopView Review account until you set one." with a "Set account" link.',
     'The button still reads "Close Work Order".'],
    ["Integrations > QuickBooks opens."]],
-  ["S3-N4", "UFS-17", "KD-ALWAYS"], note=NAME_NOTE)
+  ["S3-N4", "UFS-19", "KD-ALWAYS"], note=NAME_NOTE)
 C("S3-40", S, "Without Settings — Integrations the unmapped note has no link",
   [ON, QB, REVIEW_OFF, "Have a new No Charge category for this test, category A, with no QuickBooks expense account.", cust("A"),
    ncwo(1, "A", "category A", DONE, f", with {STOCK_PART}"), role("has 'Invoicing & Payments — Create & Edit' and 'See Financial Data' but not 'Settings — Integrations'")],
@@ -278,13 +278,13 @@ C("S3-41", S, "An unmapped AccountingHub row warns that the entry is held",
   [["Work order 1 opens."],
    ['The note reads "No account set for [category A\'s name]. The entry is held in Accounting Events until you set one." with a link.'],
    ["Accounting > Account Mappings opens."]],
-  ["S3-N4", "UFS-18", "UFS-21"], note=NAME_NOTE)
+  ["S3-N4", "UFS-20", "UFS-23"], note=NAME_NOTE)
 C("S3-42", S, "An unmapped Shop supplies item shows the warning on the Shop supplies row",
   [ADMIN, ON, QB, MAPPED, REVIEW_OFF, "Make sure the Shop supplies item in QuickBooks Products And Services has no income account mapped.", icust("A"),
    iwo(1, "A", DONE, SS15)],
   [OPEN_WO, CLOSE_BTN],
   [["Work order 1 opens."], ["The Shop supplies row carries the warning that the entry posts to the ShopView Review account until an account is set."]],
-  ["S3-N4", "S10-N2", "UFS-18"])
+  ["S3-N4", "S10-N2", "UFS-20"])
 C("S3-43", S, "A customer on credit hold does not block Close",
   [ADMIN, ON, NO_ACCT, REVIEW_OFF, icust("A", ", on credit hold"), iwo(1, "A", DONE), cust("B", ", on credit hold"), wo(2, "B", DONE, ", billable, so the refusal can be compared")],
   [OPEN_WO, CLOSE_BTN, CONFIRM_CLOSE, "Open work order 2.", CREATE_INV],
@@ -307,13 +307,13 @@ C("S3-46", S, "Without an accounting integration the confirmation names the repo
    ['The rows show no account notes.', 'The sentence reads "This marks the work order Closed · Internal (Closed · No Charge). Parts cost, shop supplies and hours are available in the Internal Work Orders report."'],
    ["The window closes."], ["Work order 2 opens."], ['The menu shows "Close Work Order".'],
    ['The sentence begins "This completes the work order and marks it …".']],
-  ["S3-E4", "UFS-19"])
+  ["S3-E4", "UFS-21"])
 C("S3-47", S, "Close is refused when the work order changed under the open confirmation",
   [ADMIN, ON, NO_ACCT, REVIEW_OFF, icust("A"), iwo(1, "A", DONE, SS15), "Open work order 1 in two browser tabs, tab 1 and tab 2."],
   ["In tab 1, click Close Work Order in the header.", 'In tab 2, change "Shop supplies" to $20.00.', "In tab 1, click Close Work Order in the confirmation."],
   [["The confirmation opens in tab 1 showing Shop supplies $15.00."], ["Tab 2 saves the new amount."],
    ['Tab 1 shows the inline error "This work order changed. Review and close again."', "Work order 1 is not closed."]],
-  ["S3-E5", "UFS-29", "KD-ALWAYS"])
+  ["S3-E5", "UFS-31", "KD-ALWAYS"])
 C("S3-48", S, "A refused Close leaves a not yet Complete work order where it was",
   [ADMIN, ON, NO_ACCT, REVIEW_OFF, icust("A"), iwo(1, "A", "In Progress", f", with all lines done, not yet Complete{SS15}"),
    "Open work order 1 in two browser tabs, tab 1 and tab 2."],
@@ -350,7 +350,7 @@ C("S3-53", S, "A failed Close shows an alert and posts nothing",
   [OPEN_WO, CLOSE_BTN, CONFIRM_CLOSE],
   [["Work order 1 opens."], ["The confirmation opens."],
    ['When Close fails, an alert toast that must be dismissed reads "Could not close the work order. Try again."', "The work order stays where it was and nothing is posted."]],
-  ["EH-S3-1", "UFS-43"], marker=NOMAN("Close has to fail, which only a developer can make happen"))
+  ["EH-S3-1", "UFS-45"], marker=NOMAN("Close has to fail, which only a developer can make happen"))
 C("S3-54", S, "While Close runs, its button shows a spinner and ignores a second press",
   [ADMIN, ON, REVIEW_OFF, icust("A"), iwo(1, "A", DONE)],
   [OPEN_WO, CLOSE_BTN, CONFIRM_CLOSE],
