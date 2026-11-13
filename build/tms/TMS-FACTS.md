@@ -496,3 +496,18 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **TestRail milestone 6 "Bill To | Internal Work Orders - More Test Runs To Be Added (Nov 2026)"** created; TestRail runs 558, 559
   moved into it (tests, statuses, assignees unchanged). QA lead "1. Yes".
 - **C715478 deleted in TMS** (QA lead: "DO what makes sense") — deleted in TestRail, no result in any TMS run, not Automated; restorable.
+
+## 25 · 2026-11-13 — Internal Work order update; run 28 to Ahtasham; then network blocked
+
+- **QA lead: update Internal Work order from TestRail if needed.** Dry run: 635 UPDATE (mostly expected results), 7 new in
+  TestRail, 1 TMS-only. **Applied: 635 updated (picture blocks preserved by tms_sync), 7 created.** Final re-check showed
+  **7 TMS_EXTRA** — not yet investigated (likely the 7 new cases or cases TestRail moved; e.g. TMS C10001543 = TestRail
+  C1112299 is now in TestRail folder "Test Cases" with a changed title, outside Internal Work order).
+- **TMS run 28 "Internal Work Orders - Execution": owner → Ahtasham Amjad (TMS user 7) and all 596 cases → Ahtasham**
+  (QA lead); statuses unchanged, 0 results.
+- **QA lead: the run must include the updated cases and the pictures** → plan: new run "Internal Work Orders - Execution" in
+  milestone 10000000 (latest versions + pictures, TestRail run 559 membership, Ahtasham), then remove old run 28 from the
+  milestone and close it (0 results). **NOT DONE YET.**
+- **🛑 BLOCKED 2026-11-13 ~10:15 UTC:** the session's network gateway now refuses `tms.shopview.com` and `shopview.testrail.io`
+  (`gateway answered 403 to CONNECT (policy denial or other refusal)`), so pictures for the 7 new cases, the TMS_EXTRA check
+  and the new run are pending. Not a key problem.
