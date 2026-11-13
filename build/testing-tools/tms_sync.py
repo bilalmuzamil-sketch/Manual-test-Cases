@@ -175,8 +175,16 @@ def split_pictures(v):
 QUOTES_HEAD = "<p><strong>Exact quotes from the source (for reproducibility)"
 
 
+# QA lead 2026-11-13: TMS already labels the field "Expected result", so the text's own leading
+# "Expected Result" heading is removed in TMS (TestRail keeps it).
+EXPECTED_HEAD = re.compile(r"^\s*<p>\s*<strong>\s*Expected Result\s*</strong>\s*</p>\s*", re.I)
+
+
 def cut_quotes(v):
-    if not isinstance(v, str) or QUOTES_HEAD not in v:
+    if not isinstance(v, str):
+        return v
+    v = EXPECTED_HEAD.sub("", v, count=1)
+    if QUOTES_HEAD not in v:
         return v
     return re.sub(r"(<p>\s*</p>\s*)+$", "", v[:v.find(QUOTES_HEAD)].rstrip())
 
