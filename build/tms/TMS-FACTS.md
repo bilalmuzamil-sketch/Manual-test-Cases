@@ -539,3 +539,12 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   **run 7: 10 results / 2 untested cases** → 459 P · 3 B · 4 F · 0 U; 464 existing unchanged.
 - Held: in run 26, **7 cases TMS Blocked vs TestRail Passed**: C10000961, C715300, C715304, C10000960, C10000995, C10001006, C10000984.
 - `tms_client.py`: reads now also retry on timeouts.
+
+## 28 · 2026-11-13 — New TMS run 30 "Internal Work Orders - Execution" replaces run 28
+
+- 7 new Internal Work order cases got their pictures (21) → 402 cases show TMS pictures.
+- **TMS run 30 "Internal Work Orders - Execution"** created in milestone 10000000: **615 cases = TestRail run 559** (it grew
+  from 596), **all at the latest version** (pictures shown, quotes section gone — checked on C10001077), **owner + all cases →
+  Ahtasham Amjad**. `external_key` `testrail-run-559-v2` (the old key would have returned run 28).
+- **Old TMS run 28** (0 results) removed from the milestone and **closed**. Milestone 10000000 now: run 30 + run 27 "Bill To - Execution".
+- Reminder: TMS run 27 "Bill To - Execution" also pins versions from its creation (12 Nov) — it predates today's quotes removal.
