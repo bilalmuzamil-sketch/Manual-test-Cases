@@ -694,3 +694,5 @@ his go-ahead, then tell the automation engineer. A tester must never fail a test
 PRODUCTION; check the production build first.
 
 > **Rule 136 (QA lead 2026-10-26):** when a ticket passes QA — comment `→ QA Status: Passed` on the ticket AND a Passed result in each linked case's run; then read each linked case top to bottom, verify every needed change in the LIVE PRD/source (quote + version + rule id), make it everywhere in the case (Expected only to the verbatim source sentence), and list every changed Automated case (C-id + case link + run link) to the QA lead for the automation engineer. Full text: `build/rules/RULES-61-ONWARD.md` rule 136.
+
+> **Rule 142 (2026-11-13):** a developer's "kept / known mismatch / not a bug / do not file" note is a fact, never acceptance — PRD covers it ⇒ test it; PRD silent ⇒ ask the QA lead the same day. Layout tests also use a long value with NO spaces. Before "suite done", list every kept item and who decided it. Full text: `build/rules/RULES-61-ONWARD.md` rule 142.
