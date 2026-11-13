@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Round 3: update every case in plan.json "update" to its PRD v1.1 body, and move the released cases out of "Waiting on Milos Vasic's
+"""Round 4 (13 Nov 2026; carries round 3, never written): update every case in plan.json "update" to its PRD v1.3 / design 1794510020-d4ec body, and move the released cases out of "Waiting on Milos Vasic's
 answers" (plan.json "move"). LOCKED on the live text: each case is re-read first and is only updated if every field still equals the body
 we wrote (write/proposals-before-v1.1.json, the read-backs in applied/); a case someone else edited is skipped and listed (Rule 87),
-never overwritten. Each update is read back field by field; the case's PRD version in testrail-id-map.csv becomes 1.1 after a clean
+never overwritten. Each update is read back field by field; the case's PRD version in testrail-id-map.csv becomes 1.3 after a clean
 read-back. Missing design pictures named in the new body are attached and read back.
    python3 update_cases.py                 dry run (plan only)
    python3 update_cases.py --check-live    dry run that also re-reads every live case and reports the lock result (read-only)
@@ -34,7 +34,7 @@ for u in ups:
     api(f"update_case/{cid}", body); st = LAST["status"]
     back = api(f"get_case/{cid}"); rb = same(back, NOW[k]["fields"])
     L({"op": "update_case", "key": k, "case": f"C{cid}", "http": st, "readback_ok": not rb, "bad": rb}); ok += not rb; bad += bool(rb)
-    if not rb: M[k]["prd_version"] = "1.1"; M[k]["title"] = NOW[k]["title"]
+    if not rb: M[k]["prd_version"] = "1.3"; M[k]["title"] = NOW[k]["title"]
     for name in newpics[k]:
         from create_new import upload_one
         hs, res = upload_one(cid, name); L({"op": "add_attachment_to_case", "case": f"C{cid}", "file": name, "http": hs, "error": (res or {}).get("error")})

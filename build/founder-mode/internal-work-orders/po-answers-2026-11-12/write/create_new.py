@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Round 3: add the new cases (plan.json "create": what PRD v1.1 adds with no case) to their subsections of section 136701, with their
+"""Round 4 (13 Nov 2026, carries round 3): add the new cases (plan.json "create": what PRD v1.1 adds with no case) to their subsections of section 136701, with their
 design pictures, by running authoring/create.py (which calls the tester-readiness check first and refuses on failure, Rule 138, adds only
 cases with no C-id that a tester can set up, reads every case and picture back, and appends testrail-id-map.csv).
    python3 create_new.py            dry run        python3 create_new.py --apply   the writes (QA lead's go-ahead, Rule 6)"""

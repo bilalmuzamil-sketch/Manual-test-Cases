@@ -67,6 +67,7 @@ for k, (lab, row) in L.NAMED.items():
         frags = [f.strip() for f in re.split(r"\.\.\.|…|(?<=\?) (?=[A-Z])", msg) if f.strip()]   # a window's title and body are one string in §8
         for fr in frags:
             rx = re.sub(r"\\\[[^\]]*\\\]", ".+?", re.escape(fr).replace("\\ ", " "))
+            rx = re.sub(r" \\\((?:[^\\]|\\.)*?\\\)", lambda m: "(?:" + m.group(0) + ")?", rx)   # round 4: "(Closed · No Charge)" names the other kind
             if not re.search(rx, tester_all): probs.append(f"{k}: message not used word for word in any step or result: {fr!r}")
 # ---- rendered layout gates
 for c in L.CASES:
@@ -118,12 +119,18 @@ for c in L.CASES:
 _reg = json.load(open(f"{L.P}/DESIGN-DIVERGENCE-REGISTER.json"))["differences"]
 for r in _reg:
     if r["outcome"].startswith(("SETTLED", "CLOSED", "RULING")): continue
+    if r["outcome"].startswith("HELD-DESIGN-VERSION"):   # round 4: closed by the coordinator's verdict with a held design-version case (Rule 130)
+        _hc = next((c for c in L.CASES if c["key"] == r.get("held_case")), None)
+        if not _hc or not _hc["held"]: probs.append(f"register {r['id']}: held design-version case {r.get('held_case')!r} missing or not held")
+        continue
     if r["id"] in DR.OPEN:
         if DR.OPEN[r["id"]] not in QN: probs.append(f"register {r['id']}: question {DR.OPEN[r['id']]} not on the sheet")
     elif r["id"] != "IWO-D50": probs.append(f"register {r['id']} ({r['outcome'][:30]}) is closed by no question and no named ruling")
 _drafts = _rp.run_path(f"{DD}/tools/cases_data.py")["CASES"]
 _ret = len(json.load(open(f"{D}/design_changes.json")).get("retired", {}))   # round 3: drafts retired on the QA lead's decision
-if len(_drafts) - _ret != len(DR.DREFS) or len(_drafts) - _ret != sum(c["sec"] == "DESIGN" for c in L.CASES):
+import cases_zzz_v13 as _Z13   # round 4: design cases added outside the drafts
+_extra = len(_Z13.NEW_DESIGN)
+if len(_drafts) - _ret + _extra != len(DR.DREFS) or len(_drafts) - _ret + _extra != sum(c["sec"] == "DESIGN" for c in L.CASES):
     probs.append(f"design drafts {len(_drafts)} but design cases {sum(c['sec'] == 'DESIGN' for c in L.CASES)}: run make_cases_design.py")
 print("design: cases with References from Design", with_refs, "| PRD-side", with_refs - sum(c["sec"] == "DESIGN" for c in L.CASES),
       "| register rows", len(_reg), "open", sum(not r["outcome"].startswith(("SETTLED", "CLOSED", "RULING")) for r in _reg))

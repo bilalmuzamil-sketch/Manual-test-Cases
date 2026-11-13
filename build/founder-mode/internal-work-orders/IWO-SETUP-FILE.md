@@ -66,7 +66,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### S1-02 — First turn-on opens the customer picker window with Save disabled
-- Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: ENTRY, S1-R2, UFS-40
+- Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: ENTRY, S1-R2, UFS-42
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### S1-02b — First turn-on window shows its explanation text
@@ -113,7 +113,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer B: customer "ZZAUTOTEST S1-09 Customer B"
 - work order 2: record the number the app assigns (the case says whose it is and its state)
 
-### S1-10 — With QuickBooks connected, both hint lines show with their links
+### S1-10 — With QuickBooks connected, the one hint line names QuickBooks with its links
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R16, S1-R3
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S1-10 Customer A"
@@ -122,17 +122,18 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R3
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### S1-11 — With AccountingHub only, the second hint names Account Mappings
+### S1-11 — With AccountingHub only, the hint names Account Mappings
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R3
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### S1-12 — With both integrations, the second hint names both
+### S1-12 — With both integrations, the hint names both
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R3
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### S1-13 — With no accounting integration, the second hint line is left out
+### S1-13 — With no accounting integration, the hint ends at set there
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R3
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
+- customer A: customer "ZZAUTOTEST S1-13 Customer A"
 
 ### S1-14 — The no-customer hint goes away once a customer is flagged
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R4, S1-R5, UFS-03
@@ -284,7 +285,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer A: customer "ZZAUTOTEST S1-37 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
-### S1-38 — Turning the setting off hides the hints and badges and keeps the flags
+### S1-38 — Turning the setting off hides the hint and badges and keeps the flags
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758,SV-11759 · PRD items: S1-R10, S1-R8, S2-N1
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S1-38 Customer A"
@@ -370,7 +371,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### S1-53 — At 100 active categories the New button is disabled with a message
-- Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R13, UFS-39
+- Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R13, UFS-41
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### S1-54 — The QuickBooks column shows only at a location connected to QuickBooks
@@ -467,7 +468,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer A: customer "ZZAUTOTEST S1-70 Customer A"
 
 ### S1-71 — Restoring a category puts it back on the customer as before
-- Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R16
+- Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R16, S1-R7
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - category A: category name "ZZAUTOTEST S1-71 Cat A"
 - customer A: customer "ZZAUTOTEST S1-71 Customer A"
@@ -513,7 +514,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer A: customer "ZZAUTOTEST S1-78 Customer A"
 
 ### S1-79 — A failed flag save shows an alert and keeps the window open
-- Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: EH-S1-1, UFS-43
+- Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: EH-S1-1, UFS-45
 - Marker: `AUTOMATION: HOLD - a tester cannot set this up through the screens: the save has to fail, which only a developer can make happen`
 - customer A: customer "ZZAUTOTEST S1-79 Customer A"
 
@@ -771,8 +772,8 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - asset 1: asset unit "ZZAUTOTEST S2-34 Unit 1"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 - work order 2: record the number the app assigns (the case says whose it is and its state)
-- line 1: line title "ZZAUTOTEST S2-34 Line 1"
 - technician A: staff "ZZAUTOTEST S2-34 Tech A" with the Technician role
+- line 1: line title "ZZAUTOTEST S2-34 Line 1"
 
 ### S2-35 — Converting a work order with no-charge lines replaces their categories
 - Folder: S2 (Internal and no-charge work orders from creation to Close) · refs SV-11759,SV-12226 · PRD items: S12-R9, S2-R5
@@ -977,7 +978,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - part 1: part number "ZZAUTOTEST-S2-63-1"
 
 ### S2-64 — A closed no-charge work order offers no Convert or Change category
-- Folder: S2 (Internal and no-charge work orders from creation to Close) · refs SV-11759 · PRD items: KD-LOCK, S2-R9, UFS-23
+- Folder: S2 (Internal and no-charge work orders from creation to Close) · refs SV-11759 · PRD items: KD-LOCK, S2-R9, UFS-25
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S2-64 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -1189,7 +1190,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - asset 1: asset unit "ZZAUTOTEST S2-95 Unit 1"
 
 ### S2-96 — A failed conversion shows an alert and keeps the classification
-- Folder: S2 (Internal and no-charge work orders from creation to Close) · refs SV-11758,SV-11759 · PRD items: EH-S2-1, UFS-43
+- Folder: S2 (Internal and no-charge work orders from creation to Close) · refs SV-11758,SV-11759 · PRD items: EH-S2-1, UFS-45
 - Marker: `AUTOMATION: HOLD - a tester cannot set this up through the screens: the change has to fail, which only a developer can make happen`
 - customer A: customer "ZZAUTOTEST S2-96 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -1238,19 +1239,19 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer A: customer "ZZAUTOTEST S3-06 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
-### S3-07 — Close confirmation shows posting date, parts, labor and shop supplies
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760,SV-11767 · PRD items: S10-R3, S3-R2, T-HOURS, T-PDATE, UFS-16
+### S3-07 — The Finance tab shows the posting date and the posting summary before Close
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760,SV-11767 · PRD items: S10-R3, S3-R2, T-HOURS, T-PDATE, UFS-18
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-07 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
-### S3-08 — Closing a work order that is not Complete says it completes it
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-R2, UFS-16
+### S3-08 — Close on a work order that is not Complete completes and closes it
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-R1, S3-R3
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-08 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
-### S3-09 — A no-charge work order's confirmation says Closed · No Charge
+### S3-09 — A no-charge work order's posting summary says Closed · No Charge
 - Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-R2
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-09 Customer A"
@@ -1262,8 +1263,8 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer A: customer "ZZAUTOTEST S3-10 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
-### S3-11 — A bill posted to Cost of Parts shows as moved at Close
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-R2
+### S3-11 — A bill posted to Cost of Parts is moved at Close in the cost move window
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-R2, UFS-17
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-11 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -1287,7 +1288,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S3-15 — Warranty without an original asks for it and keeps Close disabled
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11759,SV-11760 · PRD items: S2-R17, S3-R2
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11759,SV-11760 · PRD items: S2-R17, S3-R2, UFS-16
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-15 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -1305,25 +1306,25 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S3-18 — Confirming Close shows the alert and the status Closed
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: KD-CLOSE, S3-R3, T-CLOSED, T-STATUS, UFS-22
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: KD-CLOSE, S3-R3, T-CLOSED, T-STATUS, UFS-24
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-18 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S3-19 — Closing a no-charge work order shows Closed · No Charge
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-R3, UFS-22
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-R3, UFS-24
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-19 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S3-20 — The Closed alert fades on its own
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: UFS-22
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: UFS-24
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-20 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S3-21 — Close runs the missing details step first and ends with Close Work Order
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-R3
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-R1, S3-R3
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-21 Customer A"
 - asset 1: asset unit "ZZAUTOTEST S3-21 Unit 1"
@@ -1437,7 +1438,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S3-39 — An unmapped category warns that QuickBooks posts to ShopView Review
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: KD-ALWAYS, S3-N4, UFS-17
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: KD-ALWAYS, S3-N4, UFS-19
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - category A: category name "ZZAUTOTEST S3-39 Cat A"
 - customer A: customer "ZZAUTOTEST S3-39 Customer A"
@@ -1451,14 +1452,14 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S3-41 — An unmapped AccountingHub row warns that the entry is held
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-N4, UFS-18, UFS-21
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-N4, UFS-20, UFS-23
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - category A: category name "ZZAUTOTEST S3-41 Cat A"
 - customer A: customer "ZZAUTOTEST S3-41 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S3-42 — An unmapped Shop supplies item shows the warning on the Shop supplies row
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760,SV-11767 · PRD items: S10-N2, S3-N4, UFS-18
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760,SV-11767 · PRD items: S10-N2, S3-N4, UFS-20
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-42 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -1471,7 +1472,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer B: customer "ZZAUTOTEST S3-43 Customer B"
 - work order 2: record the number the app assigns (the case says whose it is and its state)
 
-### S3-44 — A work order with no parts shows Parts cost $0.00 and still closes
+### S3-44 — A work order with no parts shows Stock parts $0.00 and still closes
 - Folder: S3 (Close an internal or no-charge work order) · refs SV-11760,SV-11767 · PRD items: S10-E2, S3-E1
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-44 Customer A"
@@ -1483,27 +1484,26 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer A: customer "ZZAUTOTEST S3-45 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
-### S3-46 — Without an accounting integration the confirmation names the report
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-E4, UFS-19
+### S3-46 — Without an accounting integration the posting summary names the report
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-E4, UFS-21
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-46 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
-- work order 2: record the number the app assigns (the case says whose it is and its state)
 
-### S3-47 — Close is refused when the work order changed under the open confirmation
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: KD-ALWAYS, S3-E5, UFS-29
+### S3-47 — Close is refused when the work order changed while its Close window is open
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-E5, S3-R2, UFS-31
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-47 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S3-48 — A refused Close leaves a not yet Complete work order where it was
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760,SV-11976 · PRD items: S3-E5
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760,SV-11976 · PRD items: S3-E5, S3-R2
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-48 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
-### S3-49 — Closing is one press and posts with today's date by default
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: KD-ONEPRESS, S3-R2, T-PDATE
+### S3-49 — Closing is one press with today's posting date by default
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: KD-ONEPRESS, S3-R1, S3-R2, T-PDATE
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-49 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -1529,7 +1529,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S3-53 — A failed Close shows an alert and posts nothing
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11758,SV-11760 · PRD items: EH-S3-1, UFS-43
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11758,SV-11760 · PRD items: EH-S3-1, UFS-45
 - Marker: `AUTOMATION: HOLD - a tester cannot set this up through the screens: Close has to fail, which only a developer can make happen`
 - customer A: customer "ZZAUTOTEST S3-53 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -1549,7 +1549,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 2: record the number the app assigns (the case says whose it is and its state)
 
 ### S4-02 — Reopen opens its window with the reversal sentence
-- Folder: S4 (Reopen a closed internal or no-charge work order) · refs SV-11761 · PRD items: S4-R2, UFS-24
+- Folder: S4 (Reopen a closed internal or no-charge work order) · refs SV-11761 · PRD items: S4-R2, UFS-26
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S4-02 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -1616,7 +1616,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S4-13 — A failed Reopen shows an alert and leaves the work order closed
-- Folder: S4 (Reopen a closed internal or no-charge work order) · refs SV-11758,SV-11761 · PRD items: EH-S4-1, UFS-43
+- Folder: S4 (Reopen a closed internal or no-charge work order) · refs SV-11758,SV-11761 · PRD items: EH-S4-1, UFS-45
 - Marker: `AUTOMATION: HOLD - a tester cannot set this up through the screens: Reopen has to fail, which only a developer can make happen`
 - customer A: customer "ZZAUTOTEST S4-13 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -1647,7 +1647,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - category A: category name "ZZAUTOTEST S5-04 Cat A"
 
 ### S5-05 — An empty category row shows the ShopView Review hint
-- Folder: S5 (QuickBooks Online account mapping) · refs SV-11762 · PRD items: S5-E2, S5-R4, UFS-28
+- Folder: S5 (QuickBooks Online account mapping) · refs SV-11762 · PRD items: S5-E2, S5-R4, UFS-30
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - category A: category name "ZZAUTOTEST S5-05 Cat A"
 
@@ -2027,7 +2027,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S8-07 — With the category row empty the bill posts and only its move is held
-- Folder: S8 (AccountingHub records and entries) · refs SV-11765 · PRD items: S8-N2, S8-R3, UFS-20
+- Folder: S8 (AccountingHub records and entries) · refs SV-11765 · PRD items: S8-N2, S8-R3, UFS-22
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - category A: category name "ZZAUTOTEST S8-07 Cat A"
 - customer A: customer "ZZAUTOTEST S8-07 Customer A"
@@ -2102,7 +2102,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S8-16 Line 2"
 
 ### S8-17 — With a line's category row empty only that line's cost is held
-- Folder: S8 (AccountingHub records and entries) · refs SV-11765 · PRD items: S8-N2, S8-R7, UFS-20
+- Folder: S8 (AccountingHub records and entries) · refs SV-11765 · PRD items: S8-N2, S8-R7, UFS-22
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - category A: category name "ZZAUTOTEST S8-17 Cat A"
 - customer A: customer "ZZAUTOTEST S8-17 Customer A"
@@ -2120,13 +2120,13 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 2: record the number the app assigns (the case says whose it is and its state)
 
 ### S8-19 — An empty Shop supplies expense row holds the Close
-- Folder: S8 (AccountingHub records and entries) · refs SV-11765,SV-11767 · PRD items: S10-N2, S8-N2, UFS-20
+- Folder: S8 (AccountingHub records and entries) · refs SV-11765,SV-11767 · PRD items: S10-N2, S8-N2, UFS-22
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S8-19 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S8-20 — A Close in a closed period is held and retried when the period opens
-- Folder: S8 (AccountingHub records and entries) · refs SV-11760,SV-11765 · PRD items: S3-E3, S8-N2, UFS-20
+- Folder: S8 (AccountingHub records and entries) · refs SV-11760,SV-11765 · PRD items: S3-E3, S8-N2, UFS-22
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - period A: a fiscal period in Accounting (note its name)
 - customer A: customer "ZZAUTOTEST S8-20 Customer A"
@@ -2144,7 +2144,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer A: customer "ZZAUTOTEST S8-22 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
-### S8-23 — Retry posts a held Close once the problem is fixed
+### S8-23 — Saving the empty row's mapping posts the held Close
 - Folder: S8 (AccountingHub records and entries) · refs SV-11763,SV-11765 · PRD items: S6-R4, S8-N2
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - category A: category name "ZZAUTOTEST S8-23 Cat A"
@@ -2372,7 +2372,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### S9-25 — Before the first close the report, chip and export option are not shown
-- Folder: S9 (Reports, dashboard and exports) · refs SV-11766 · PRD items: S9-N1, S9-R4, UFS-27
+- Folder: S9 (Reports, dashboard and exports) · refs SV-11766 · PRD items: S9-N1, S9-R4, UFS-29
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### S9-26 — The first close lists the report for good
@@ -2415,7 +2415,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 2: record the number the app assigns (the case says whose it is and its state)
 
 ### S9-32 — The Customer Invoice export option is off by default with its helper
-- Folder: S9 (Reports, dashboard and exports) · refs SV-11766 · PRD items: S9-R6, UFS-26
+- Folder: S9 (Reports, dashboard and exports) · refs SV-11766 · PRD items: S9-R6, UFS-28
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### S9-33 — With the option on, the export adds the closed rows at 0.00
@@ -2488,7 +2488,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S9-41 Line 2"
 
 ### S9-42 — No matching rows show the standard empty state
-- Folder: S9 (Reports, dashboard and exports) · refs SV-11766 · PRD items: S9-N1, UFS-27
+- Folder: S9 (Reports, dashboard and exports) · refs SV-11766 · PRD items: S9-N1, UFS-29
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### S9-43 — Without Reports — Page Access the reports are not available
@@ -2592,7 +2592,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12-01 Line 2"
 
 ### S12-02 — Mark as No Charge opens its dialog with the line summary and body
-- Folder: S12 (No-charge line on a billable work order) · refs SV-11759,SV-12226 · PRD items: S12-R2, UFS-09, UFS-31
+- Folder: S12 (No-charge line on a billable work order) · refs SV-11759,SV-12226 · PRD items: S12-R2, UFS-09, UFS-33
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12-02 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -2608,7 +2608,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12-03 Line 2"
 
 ### S12-04 — A marked line shows the chip and $0.00, the work order stays billable
-- Folder: S12 (No-charge line on a billable work order) · refs SV-11759,SV-12226 · PRD items: KD-LINE, S12-R3, S12-R4, S2-R3, T-NCL, UFS-33
+- Folder: S12 (No-charge line on a billable work order) · refs SV-11759,SV-12226 · PRD items: KD-LINE, S12-R3, S12-R4, S2-R3, T-NCL, UFS-35
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12-04 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -2655,7 +2655,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12-09 Line 2"
 
 ### S12-10 — Edit Line shows the No Charge checkbox with its helper
-- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R1, UFS-32
+- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R1, UFS-34
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12-10 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -2676,7 +2676,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12-12 Line 2"
 
 ### S12-13 — Change category on a no-charge line saves the new category
-- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R5, S12-R6, UFS-38
+- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R5, S12-R6, UFS-40
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12-13 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -2684,7 +2684,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12-13 Line 2"
 
 ### S12-14 — Mark as Billable prices the line as a new line would be
-- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R5, S12-R6, UFS-34, UFS-38
+- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R5, S12-R6, UFS-36, UFS-40
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12-14 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -2692,7 +2692,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12-14 Line 2"
 
 ### S12-15 — Marking a line writes a note with its price, cost and hours
-- Folder: S12 (No-charge line on a billable work order) · refs SV-11759,SV-12226 · PRD items: S12-R6, S2-R18, UFS-38
+- Folder: S12 (No-charge line on a billable work order) · refs SV-11759,SV-12226 · PRD items: S12-R6, S2-R18, UFS-40
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12-15 Customer A"
 - asset 1: asset unit "ZZAUTOTEST S12-15 Unit 1"
@@ -2701,7 +2701,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12-15 Line 2"
 
 ### S12-16 — The invoice shows the no-charge line at $0.00 with its category only
-- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R7, UFS-37
+- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R7, UFS-39
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12-16 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -2709,7 +2709,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12-16 Line 2"
 
 ### S12-17 — The invoice PDF and email show the no-charge line the same way
-- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R7, UFS-37
+- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R7, UFS-39
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12-17 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -2717,14 +2717,14 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12-17 Line 2"
 
 ### S12-18 — Create invoice is refused while a required original is missing
-- Folder: S12 (No-charge line on a billable work order) · refs SV-11759,SV-12226 · PRD items: S12-R9, S2-R17, UFS-36
+- Folder: S12 (No-charge line on a billable work order) · refs SV-11759,SV-12226 · PRD items: S12-R9, S2-R17, UFS-38
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12-18 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 - line 2: line title "ZZAUTOTEST S12-18 Line 2"
 
 ### S12-19 — When every line is No Charge the dialog says to convert instead
-- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R10, UFS-35
+- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-R10, UFS-37
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12-19 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -2754,7 +2754,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12-22 Line 2"
 
 ### S12-23 — A billable work order with no-charge lines is listed as billable
-- Folder: S12 (No-charge line on a billable work order) · refs SV-12226 · PRD items: S12-E8, S12-R12
+- Folder: S12 (No-charge line on a billable work order) · refs SV-11759,SV-12226 · PRD items: S12-E8, S12-R12, S2-R14
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12-23 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -2979,19 +2979,19 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S12P-06 — An estimate sent before Convert to No Charge shows the change on its next open
-- Folder: S12P (No-charge estimates and lines in the customer portal) · refs SV-11759,SV-12296 · PRD items: S2-E6, UFS-42
+- Folder: S12P (No-charge estimates and lines in the customer portal) · refs SV-11759,SV-12296 · PRD items: S2-E6, UFS-44
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12P-06 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S12P-07 — A pending estimate whose work order was made internal cannot be approved
-- Folder: S12P (No-charge estimates and lines in the customer portal) · refs SV-11758,SV-11759,SV-12296 · PRD items: OOS-10, S1-R11, UFS-41
+- Folder: S12P (No-charge estimates and lines in the customer portal) · refs SV-11758,SV-11759,SV-12296 · PRD items: OOS-10, S1-R11, UFS-43
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12P-07 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### S12P-08 — A billable estimate shows a line marked after sending at $0.00 with the notice
-- Folder: S12P (No-charge estimates and lines in the customer portal) · refs SV-11759,SV-12226,SV-12296 · PRD items: S12-R4, UFS-42
+- Folder: S12P (No-charge estimates and lines in the customer portal) · refs SV-11759,SV-12226,SV-12296 · PRD items: S12-R4, UFS-44
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12P-08 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -2999,7 +2999,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - line 2: line title "ZZAUTOTEST S12P-08 Line 2"
 
 ### S12P-09 — The portal invoice shows the no-charge line at $0.00 with its category
-- Folder: S12P (No-charge estimates and lines in the customer portal) · refs SV-12226,SV-12296 · PRD items: S12-R7, UFS-37
+- Folder: S12P (No-charge estimates and lines in the customer portal) · refs SV-12226,SV-12296 · PRD items: S12-R7, UFS-39
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S12P-09 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -3116,7 +3116,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### API-17 — Creating an invoice for an internal work order through the Open API is refused
-- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-R4, UFS-30
+- Folder: BLK (Blocked on the Open API release) · refs SV-11833 · PRD items: S11-R4, UFS-32
 - Marker: `AUTOMATION: HOLD - waits on invoice creation through the Open API being enabled (disabled today, enabled for general availability)`
 - customer A: customer "ZZAUTOTEST API-17 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -3336,15 +3336,15 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Folder: DESIGN (Design — how it looks) · refs SV-11758 · PRD items: S1-R2, UFS-01
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### D-03 — Design: Work Orders settings with Internal Work Orders on show two hint lines
+### D-03 — Design: Work Orders settings with Internal Work Orders on show one hint line
 - Folder: DESIGN (Design — how it looks) · refs SV-11758 · PRD items: 
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### D-04 — Design: With no internal customer the first hint says none is flagged yet
+### D-04 — Design: With no internal customer the hint says none is flagged yet
 - Folder: DESIGN (Design — how it looks) · refs SV-11758 · PRD items: S1-R4
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### D-05 — Design: Turning Internal Work Orders off hides the hint lines
+### D-05 — Design: Turning Internal Work Orders off hides the hint line
 - Folder: DESIGN (Design — how it looks) · refs SV-11758 · PRD items: 
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
@@ -3476,27 +3476,27 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: S3-R1
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### D-38 — Design: Close Work Order window lists posting date and the cost rows
-- Folder: DESIGN (Design — how it looks) · refs SV-11760,SV-11767 · PRD items: S10-R3, S3-R2
+### D-38 — Design: Finance tab shows the posting date and the posting summary rows
+- Folder: DESIGN (Design — how it looks) · refs SV-11760,SV-11767 · PRD items: S10-R3, S3-R2, S3-R5, UFS-18
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### D-39 — Design: Close window says no account is set and offers Set account
+### D-39 — Design: Finance tab says no account is set and offers Set account
 - Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: S3-N4
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### D-40 — Design: Close window without an accounting integration has no account notes
+### D-40 — Design: Finance tab without an accounting integration has no account notes
 - Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: S3-E4
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### D-41 — Design: Close window lists parts with no cost
+### D-41 — Design: Finance tab lists parts with no cost
 - Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: S3-E2
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### D-42 — Design: Close refused when the work order changed shows the message
-- Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: S3-E5
+### D-42 — Design: Close window shows the vendor bill cost move
+- Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: S3-R2, UFS-17
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### D-43 — Design: Close window notes parts cost is not posted without inventory accounts
+### D-43 — Design: Finance tab notes parts cost is not posted without inventory accounts
 - Folder: DESIGN (Design — how it looks) · refs SV-11760,SV-11764 · PRD items: S7-N5
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
@@ -3564,12 +3564,12 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Folder: DESIGN (Design — how it looks) · refs SV-11759 · PRD items: 
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
-### D-60 — Design: Close window of a no-charge work order names the category account
-- Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: S3-R2
+### D-60 — Design: Finance tab of a no-charge work order names the category account
+- Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: S3-R2, S3-R5
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### D-61 — Design: Close window asks for the original work order when required
-- Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: 
+- Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: S3-R2, UFS-16
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### D-62 — Design: Closed no-charge work order shows the NO CHARGE document
@@ -3677,7 +3677,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### D-90 — Design: Reopening shows the message that the work order reopened
-- Folder: DESIGN (Design — how it looks) · refs SV-11761 · PRD items: UFS-26
+- Folder: DESIGN (Design — how it looks) · refs SV-11761 · PRD items: UFS-27
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### D-92 — Design: Report work order numbers stay on one line at 1440 and 1536
@@ -3706,7 +3706,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - customer A: customer "ZZAUTOTEST S1-86 Customer A"
 - customer B: customer "ZZAUTOTEST S1-86 Customer B"
 
-### S1-87 — The hint lines appear only after Save settings
+### S1-87 — The hint line appears only after Save settings
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R3
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
@@ -3785,7 +3785,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 
 ### S3-55 — An original picked in the Close window is saved with the Close
-- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-R2, S3-R5
+- Folder: S3 (Close an internal or no-charge work order) · refs SV-11760 · PRD items: S3-R2, S3-R5, UFS-16
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S3-55 Customer A"
 - asset 1: asset unit "ZZAUTOTEST S3-55 Unit 1"
@@ -4078,9 +4078,10 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### REL-06 — A bill posted before the release is moved at Close after it
-- Folder: PROD (Run on Production After Release) · refs SV-11764 · PRD items: S7-R4
+- Folder: PROD (Run on Production After Release) · refs SV-11759,SV-11760,SV-11764 · PRD items: S2-R8, S3-R2, S7-R4
 - Marker: `AUTOMATION: HOLD - needs records and figures noted on production before the release reaches production; run on production after the release`
 - customer A: customer "ZZAUTOTEST REL-06 Customer A"
+- customer B: customer "ZZAUTOTEST REL-06 Customer B"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
 
 ### REL-07 — Create invoice refusals on billable work orders read as before
@@ -4088,7 +4089,7 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Marker: `AUTOMATION: HOLD - needs records and figures noted on production before the release reaches production; run on production after the release`
 
 ### S4-15 — Reopen shows the green message that the work order reopened
-- Folder: S4 (Reopen a closed internal or no-charge work order) · refs SV-11761 · PRD items: S4-R3, UFS-25
+- Folder: S4 (Reopen a closed internal or no-charge work order) · refs SV-11761 · PRD items: S4-R3, UFS-27
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S4-15 Customer A"
 - work order 1: record the number the app assigns (the case says whose it is and its state)
@@ -4119,4 +4120,8 @@ Folder: where build.py files the case (story subsection, or WAIT-PO / BLK / PROD
 - Folder: S1 (Turn on Internal Work Orders, internal customers and categories) · refs SV-11758 · PRD items: S1-R7
 - Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026`
 - customer A: customer "ZZAUTOTEST S1-94 Customer A"
+
+### D-93 — Design: Cost move window adds a lead sentence and the item line
+- Folder: DESIGN (Design — how it looks) · refs SV-11760 · PRD items: 
+- Marker: `AUTOMATION: HOLD - the design adds words S3-R2 does not give; held as the design version (Rule 130)`
 

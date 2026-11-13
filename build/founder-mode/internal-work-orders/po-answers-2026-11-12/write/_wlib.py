@@ -1,4 +1,4 @@
-"""Shared helpers for the round 3 write scripts (Internal Work Orders, 12 Nov 2026). DRY RUN unless --apply. Reads use the TestRail API with
+"""Shared helpers for the write scripts (Internal Work Orders; round 3 12 Nov 2026, reused for round 4 13 Nov 2026; the lock is still the live body in proposals-before-v1.1.json). DRY RUN unless --apply. Reads use the TestRail API with
 /tmp/testrail/creds.json (never printed). Every write is read back and logged to log-<script>.jsonl beside these scripts."""
 import json, os, sys, csv, time
 W = os.path.dirname(os.path.abspath(__file__)); A = os.path.dirname(W); P = os.path.dirname(A); AU = f"{P}/authoring"

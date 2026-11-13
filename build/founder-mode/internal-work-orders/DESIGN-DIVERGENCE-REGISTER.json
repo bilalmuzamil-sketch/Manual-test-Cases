@@ -1,17 +1,18 @@
 {
  "project": "Internal Work Orders (Founder Mode), epic SV-11665",
- "design": "https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo, canvas \"Internal Work Orders · All flows v6\", version 1794484794-2031",
- "prd": "Confluence 942243841, Final v1.0 (2026-11-09, Milos Vasic, last modified 10 Nov 2026), saved build/founder-mode/internal-work-orders/sources/CONFLUENCE-942243841-read-2026-11-12.md",
+ "design": "https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo, canvas \"Internal Work Orders · All flows v6\", version 1794510020-d4ec (15 boards redrawn 12 Nov 2026)",
+ "prd": "Confluence 942243841, version 1.3 (12 Nov 2026, Milos Vasic), saved build/founder-mode/internal-work-orders/sources/CONFLUENCE-942243841-v1.3-read-2026-11-12.md",
  "prd_header_rule": "The PRD header (Design row) says: \"Where a frame and this text disagree, the text wins\". Differences the PRD words settle are closed by that sentence plus the named requirement; the rest go to Milos Vasic as questions.",
  "made": "12 Nov 2026, design drive build/founder-mode/internal-work-orders/design-2026-11-12/",
  "how": "Rule 130: both directions (DESIGN-TEXT-INVENTORY design -> PRD; SPEC-TO-DESIGN-2026-11-12.json PRD -> design; every dialog, menu, toast and tooltip listed by hand in DESIGN-VISUAL-INVENTORY.md)",
  "counts": {
-  "differences": 56,
-  "settled_by_prd": 54,
+  "differences": 62,
+  "settled_by_prd": 56,
+  "closed_matching": 4,
+  "held_design_version": 1,
+  "rulings": 1,
   "questions": 0,
-  "not_shown": 41,
-  "closed_matching": 1,
-  "rulings": 1
+  "not_shown": 44
  },
  "unsent_questions": 6,
  "unsent_note": "Round 3 (12 Nov 2026): every question was answered by Milos Vasic (all option (a)); PRD v1.1 carries the answers. No design question is open.",
@@ -56,16 +57,17 @@
    "prd_words": [
     "Manage categories in Internal Work Orders (Administration \\> Service). Their expense accounts are set on each category."
    ],
-   "outcome": "SETTLED-BY-PRD",
-   "ruling_or_question": "S1-R3 quote; PRD header sentence.",
+   "outcome": "CLOSED-MATCHES-PRD",
+   "ruling_or_question": "The redrawn boards (Flow 0 02, Happy 03, Review 1.3) give S1-R3 v1.3 word for word: one hint line, no second line. Case D-03.",
    "held_case": "",
-   "note": "",
+   "note": " Closed 13 Nov 2026 (PRD v1.3 (12 Nov 2026) and design 1794510020-d4ec).",
    "prd_words_found": [
     true
    ],
    "design_words_checked": [
     false
-   ]
+   ],
+   "outcome_before_v1.3": "SETTLED-BY-PRD"
   },
   {
    "id": "IWO-D03",
@@ -551,16 +553,17 @@
    "prd_words": [
     "This posts the parts cost and shop supplies to your books and marks the work order Closed · Internal. You can reopen it later."
    ],
-   "outcome": "SETTLED-BY-PRD",
-   "ruling_or_question": "S3-R2 quote; PRD header sentence.",
+   "outcome": "CLOSED-MATCHES-PRD",
+   "ruling_or_question": "The redrawn Finance tab boards (Flow 1 07, Happy 17, Review 5.2) carry S3-R2 v1.3's sentence \"Closing posts the parts cost and shop supplies to your books and marks the work order Closed · Internal. You can reopen it later.\" Case D-38.",
    "held_case": "",
-   "note": "",
+   "note": " Closed 13 Nov 2026 (PRD v1.3 (12 Nov 2026) and design 1794510020-d4ec).",
    "prd_words_found": [
     true
    ],
    "design_words_checked": [
     false
-   ]
+   ],
+   "outcome_before_v1.3": "SETTLED-BY-PRD"
   },
   {
    "id": "IWO-D21",
@@ -578,10 +581,10 @@
     "This marks the work order Closed · Internal (Closed · No Charge). Parts cost, shop supplies and hours are available in the Internal Work Orders report.",
     "with a posting date field (default today"
    ],
-   "outcome": "SETTLED-BY-PRD",
-   "ruling_or_question": "S3-E4, S3-R2 quotes; PRD header sentence.",
+   "outcome": "CLOSED-MATCHES-PRD",
+   "ruling_or_question": "Flow 1 7c now draws \"Posting date\" and the sentence of S3-E4 v1.3 (\"Closing marks the work order Closed · …\"). Case D-40.",
    "held_case": "",
-   "note": "",
+   "note": " Closed 13 Nov 2026 (PRD v1.3 (12 Nov 2026) and design 1794510020-d4ec).",
    "prd_words_found": [
     true,
     true
@@ -589,7 +592,8 @@
    "design_words_checked": [
     true,
     false
-   ]
+   ],
+   "outcome_before_v1.3": "SETTLED-BY-PRD"
   },
   {
    "id": "IWO-D22",
@@ -599,15 +603,14 @@
     "images/iwo-flow1-17-7b-close-no-account-set.png"
    ],
    "design_words": [
-    "No account set for internal work orders. The entry posts to the ShopView Review account until you set one.",
-    "Special orders and Labor rows drawn without their notes"
+    "Special orders and sublet row drawn without its note"
    ],
-   "prd_code": "S3-N4",
+   "prd_code": "S3-N4 / S3-R2",
    "prd_words": [
     "No account set for \\[category\\]. The entry posts to the ShopView Review account until you set one."
    ],
    "outcome": "SETTLED-BY-PRD",
-   "ruling_or_question": "S3-N4 quote; PRD header sentence.",
+   "ruling_or_question": "Narrowed 13 Nov 2026: the redrawn 7b now says \"No account set for General Internal. …\"; only the missing Special orders note is left, settled by S3-R2 / S3-N4 v1.3 (check a, the text wins). Case D-39.",
    "held_case": "",
    "note": "",
    "prd_words_found": [
@@ -616,7 +619,8 @@
    "design_words_checked": [
     true,
     false
-   ]
+   ],
+   "outcome_before_v1.3": "SETTLED-BY-PRD"
   },
   {
    "id": "IWO-D23",
@@ -627,16 +631,15 @@
    ],
    "design_words": [
     "No Charge checkbox on the customer card with \"A customer's free job: warranty, goodwill, policy, comeback or a category of your own. Closes without an invoice; parts cost posts to the category's expense account.\"",
-    "No charge. This work order closes without an invoice. Parts cost posts to Customer No-Charge Expense.",
-    "no closing sentence under the rows on 4b"
+    "No charge. This work order closes without an invoice. Parts cost posts to Customer No-Charge Expense."
    ],
-   "prd_code": "S2-R5 / S2-R3 / S3-R2",
+   "prd_code": "S2-R5 / S2-R3",
    "prd_words": [
     "There is no checkbox on the work order detail.",
     "there is no hint sentence under the header"
    ],
    "outcome": "SETTLED-BY-PRD",
-   "ruling_or_question": "S2-R5, S2-R3, S3-R2 quotes; PRD header sentence.",
+   "ruling_or_question": "Narrowed 13 Nov 2026: v1.3 expects no closing sentence in the original work order window (S3-R2 (1)), so that part is gone; the No Charge card wording behind the dialog stands, settled by S2-R5 and S2-R3. Case D-61.",
    "held_case": "",
    "note": "",
    "prd_words_found": [
@@ -647,7 +650,8 @@
     false,
     true,
     false
-   ]
+   ],
+   "outcome_before_v1.3": "SETTLED-BY-PRD"
   },
   {
    "id": "IWO-D24",
@@ -1537,6 +1541,110 @@
    "ruling_or_question": "PRD v1.1 S9-R2 (answers 11 and 15): a dash; no question needed. Checked in D-75 and S9-47.",
    "held_case": "",
    "note": "Found by the design worker's v1.1 assessment (DESIGN-CHANGE-2026-11-12.md §4b), recorded by the case worker in round 3, 12 Nov 2026."
+  },
+  {
+   "id": "IWO-D57",
+   "kind": "wording (extra words)",
+   "boards": "Flow 1 7e",
+   "pictures": [
+    "images/iwo-flow1-20-7e-close-vendor-bill-cost-moves-v13.png"
+   ],
+   "design_words": [
+    "A vendor bill on this work order was posted to another account. Closing moves that cost.",
+    "Caliper (special order), vendor bill VB-2041"
+   ],
+   "prd_code": "S3-R2",
+   "prd_words": [],
+   "outcome": "HELD-DESIGN-VERSION",
+   "ruling_or_question": "Skill 07 §6.0 check (c): the PRD is silent on these words and the design speaks; held as the design version (Rule 130), released or removed when the PO rules. VB-2041 and \"Caliper\" are example data. The PRD-following case is D-42 (title, rows, buttons).",
+   "held_case": "D-93",
+   "note": "From DESIGN-CHANGE-v1.3-2026-11-12.md §6 with the coordinator's verdict (13 Nov 2026)"
+  },
+  {
+   "id": "IWO-D58",
+   "kind": "inconsistent board",
+   "boards": "Flow 1 7e",
+   "pictures": [
+    "images/iwo-flow1-20-7e-close-vendor-bill-cost-moves-v13.png"
+   ],
+   "design_words": [
+    "Behind the window the Special orders row says \"Already posted to 6500 Vehicle Expenses at the vendor bill\" while the window moves that $410.00 from Cost of Parts"
+   ],
+   "prd_code": "S3-R2",
+   "prd_words": [],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Skill 07 §6.0 check (a): the text wins: S3-R2 v1.3 gives a moved item the note \"Moved from [account] to [account]\". Cases D-42, S3-11.",
+   "held_case": "",
+   "note": "From DESIGN-CHANGE-v1.3-2026-11-12.md §6 with the coordinator's verdict (13 Nov 2026)"
+  },
+  {
+   "id": "IWO-D59",
+   "kind": "missing wording",
+   "boards": "Flow 1 7c",
+   "pictures": [
+    "images/iwo-flow1-18-7c-finance-tab-no-accounting-integration-v13.png"
+   ],
+   "design_words": [
+    "Labor row drawn without \"Hours only, nothing posted\""
+   ],
+   "prd_code": "S3-E4 / S3-R2",
+   "prd_words": [],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Skill 07 §6.0 check (g): behaviour first: the cases test that nothing posts for labor and that the rows carry no account notes, and leave the \"Hours only\" wording out without an integration. Cases D-40, S3-46.",
+   "held_case": "",
+   "note": "From DESIGN-CHANGE-v1.3-2026-11-12.md §6 with the coordinator's verdict (13 Nov 2026)"
+  },
+  {
+   "id": "IWO-D60",
+   "kind": "wording",
+   "boards": "Flow 1 7b",
+   "pictures": [
+    "images/iwo-flow1-17-7b-finance-tab-no-account-set-v13.png"
+   ],
+   "design_words": [
+    "Shop supplies note \"Posted to ShopView Review, credited to …\""
+   ],
+   "prd_code": "S3-N4",
+   "prd_words": [],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Skill 07 §6.0 check (a): S3-N4 v1.3 replaces the account note of an unmapped row with the \"No account set for [category]. …\" warning. Case D-39.",
+   "held_case": "",
+   "note": "From DESIGN-CHANGE-v1.3-2026-11-12.md §6 with the coordinator's verdict (13 Nov 2026)"
+  },
+  {
+   "id": "IWO-D61",
+   "kind": "wording and missing line",
+   "boards": "Flow 2 04",
+   "pictures": [
+    "images/iwo-flow2-10-04-finance-tab-close-work-order-v13.png"
+   ],
+   "design_words": [
+    "Preview headed \"Estimate S2-35102\" with NO CHARGE and no \"Category:\" line"
+   ],
+   "prd_code": "S3-R2 / S3-R5",
+   "prd_words": [],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Skill 07 §6.0 check (a): S3-R2 calls the preview \"the preview of the NO CHARGE document (S3-R5)\"; S3-R5 gives \"No Charge Work Order [number]\" and \"Category: [name]\". Case D-60.",
+   "held_case": "",
+   "note": "From DESIGN-CHANGE-v1.3-2026-11-12.md §6 with the coordinator's verdict (13 Nov 2026)"
+  },
+  {
+   "id": "IWO-D62",
+   "kind": "stale board",
+   "boards": "Happy 28 \"28 Close confirmation\" (not redrawn)",
+   "pictures": [
+    "images/iwo-happy-28-28-close-confirmation.png"
+   ],
+   "design_words": [
+    "Close work order S2-35102?",
+    "This posts the parts cost and shop supplies to your books and marks the work order Closed · No Charge. You can reopen it later."
+   ],
+   "prd_code": "S3-R1 / S3-R2",
+   "prd_words": [],
+   "outcome": "SETTLED-BY-PRD",
+   "ruling_or_question": "Skill 07 §6.0 check (a): S3-R1 v1.3 closes on the press \"with no confirmation\"; check (d): the design's own notes say the same (c-hf-17 \"One press, like Create invoice: no confirmation\", c-rv-5-2 \"No Close confirmation (Nov 12)\"), so this one frame is stale. Board dropped from D-60's references. Found 13 Nov 2026 by the case worker (the design change list did not name it: the board's file did not change).",
+   "held_case": "",
+   "note": "Case worker, 13 Nov 2026."
   }
  ],
  "questions": {
@@ -1582,9 +1690,9 @@
   {
    "id": "IWO-N05",
    "prd_code": "S1-R3",
-   "prd_words_or_state": "AccountingHub, both and neither variants of the second hint",
+   "prd_words_or_state": "The one hint line of S1-R3 v1.3 for AccountingHub (names Accounting > Account Mappings), both integrations, and neither (ends at \"set there.\")",
    "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
-   "checked": "12 Nov 2026, all 167 boards"
+   "checked": "13 Nov 2026, design 1794510020-d4ec: only the QuickBooks variant is drawn"
   },
   {
    "id": "IWO-N06",
@@ -1722,9 +1830,9 @@
   {
    "id": "IWO-N25",
    "prd_code": "S3-R2",
-   "prd_words_or_state": "\"Moved from [account] to [account]\" and \"Posts to [account] when the vendor bill is entered\" notes; includes $[core amount] core cost",
+   "prd_words_or_state": "\"Posts to [account] when the vendor bill is entered\" and \"includes $[core amount] core cost\" notes; \"Moved from [account] to [account]\" is now drawn in the 7e window but not as a note in the posting summary",
    "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
-   "checked": "12 Nov 2026, all 167 boards"
+   "checked": "13 Nov 2026, design 1794510020-d4ec"
   },
   {
    "id": "IWO-N26",
@@ -1837,6 +1945,27 @@
    "prd_words_or_state": "the confirming button shows a spinner and is disabled while the save, convert, close or reopen runs (no board draws it; the design library has no loading state, IWO-D54)",
    "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
    "checked": "12 Nov 2026, all 167 boards"
+  },
+  {
+   "id": "IWO-N42",
+   "prd_code": "S3-E5",
+   "prd_words_or_state": "\"This work order changed. Review and close again.\" (the refusal while a Close window is open)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "13 Nov 2026, design 1794510020-d4ec, all 167 boards"
+  },
+  {
+   "id": "IWO-N43",
+   "prd_code": "S3-R2",
+   "prd_words_or_state": "the Finance tab of an open internal work order for a user without 'See Financial Data' (no posting summary)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "13 Nov 2026, design 1794510020-d4ec, all 167 boards"
+  },
+  {
+   "id": "IWO-N44",
+   "prd_code": "S3-R2",
+   "prd_words_or_state": "the Close window when both cases apply (the original work order selects above the \"Moved from\" rows)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
+   "checked": "13 Nov 2026, design 1794510020-d4ec, all 167 boards"
   }
  ],
  "spec_to_design_check": {
@@ -2091,8 +2220,8 @@
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
  "S1-R3|Map their expense accounts in Integrations > QuickBooks.": {
-  "outcome": "SHOWN-WHEN-DRIVEN",
-  "where": "drawn \"Map their expense accounts in Integrations >\" with \"QuickBooks\" as a link and \".\" after it (Flow 0 02; Happy 03)"
+  "outcome": "REMOVED-FROM-PRD",
+  "where": "PRD v1.3 S1-R3 has no second line; the design stopped drawing it (hintAccounts always false)"
  },
  "S1-R11|This estimate is no longer available.": {
   "outcome": "DESIGN-SILENT",
@@ -2362,5 +2491,6 @@
   "outcome": "DESIGN-SILENT",
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
- "v1.1_update": "12 Nov 2026, case worker round 3: IWO-D09, D19, D29, D31, D44, D45 closed from PRD v1.1 / the answers; IWO-D56 added (design worker's DESIGN-CHANGE-2026-11-12.md §4b). Before-copy: po-answers-2026-11-12/write/DESIGN-DIVERGENCE-REGISTER-before-v1.1.json."
+ "v1.1_update": "12 Nov 2026, case worker round 3: IWO-D09, D19, D29, D31, D44, D45 closed from PRD v1.1 / the answers; IWO-D56 added (design worker's DESIGN-CHANGE-2026-11-12.md §4b). Before-copy: po-answers-2026-11-12/write/DESIGN-DIVERGENCE-REGISTER-before-v1.1.json.",
+ "v1.3_update": "13 Nov 2026, case worker round 4: IWO-D02, D20, D21 closed; D22, D23 narrowed; N05, N25 reworded; D57-D61 added with the coordinator's verdicts; D62 added (stale Happy 28 board); N42-N44 added (design-silent). No question. Before-copy: po-answers-2026-11-12/write/DESIGN-DIVERGENCE-REGISTER-before-v1.3.json."
 }

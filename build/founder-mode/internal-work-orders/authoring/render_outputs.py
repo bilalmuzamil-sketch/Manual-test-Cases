@@ -18,36 +18,36 @@ NOMAN = [c for c in L.CASES if c["marker"].startswith("AUTOMATION: HOLD - a test
 
 # ---- story text (Jira) compared with the PRD v1.0 story (each Jira story says "Requirements ... live in the spec") ----------------
 STORY_DIFF = {
- "SV-11665": ("DIFFERS (older wording)", "The epic summary names the setting \"No-Charge Work Orders\", a \"No charge checkbox with a reason\", a \"No-Charge Work Orders report\", and links PRD v0.16 and design v5.11. PRD v1.1 (latest, Final, 9 Nov 2026) names the setting and the report \"Internal Work Orders\", replaces Reason by Category (Terminology: \"Reason → the earlier name ... Superseded by Category\") and links design v6.1. Latest wins (Rule 32): cases follow PRD v1.1. Not asked: the PRD itself records the rename."),
- "SV-11758": ("DIFFERS (older wording)", "Summary says \"The No-Charge Work Orders setting\"; PRD v1.1 S1-R1 names the toggle \"Internal Work Orders\". Everything else matches Story 1. Cases follow PRD v1.1."),
- "SV-11759": ("DIFFERS (older wording)", "Summary says \"the No charge checkbox with its Reason\" and \"Convert to no charge, Convert to billable and Change reason\"; PRD v1.1 S2-R2, S2-R5, S2-R6: \"No Charge\" checkbox with Category, \"Convert to No Charge\", \"Convert to Billable\", \"Change category\" (Title Case). Cases follow PRD v1.1."),
- "SV-11760": ("SAME", "Summary matches Story 3."),
+ "SV-11665": ("DIFFERS (older wording)", "The epic summary names the setting \"No-Charge Work Orders\", a \"No charge checkbox with a reason\", a \"No-Charge Work Orders report\", and links PRD v0.16 and design v5.11. PRD v1.3 (latest, 12 Nov 2026) names the setting and the report \"Internal Work Orders\", replaces Reason by Category (Terminology: \"Reason → the earlier name ... Superseded by Category\") and links design v6.1. Latest wins (Rule 32): cases follow PRD v1.3. Not asked: the PRD itself records the rename."),
+ "SV-11758": ("DIFFERS (older wording)", "Summary says \"The No-Charge Work Orders setting\"; PRD v1.3 S1-R1 names the toggle \"Internal Work Orders\". Everything else matches Story 1. Cases follow PRD v1.3."),
+ "SV-11759": ("DIFFERS (older wording)", "Summary says \"the No charge checkbox with its Reason\" and \"Convert to no charge, Convert to billable and Change reason\"; PRD v1.3 S2-R2, S2-R5, S2-R6: \"No Charge\" checkbox with Category, \"Convert to No Charge\", \"Convert to Billable\", \"Change category\" (Title Case). Cases follow PRD v1.3."),
+ "SV-11760": ("DIFFERS (superseded by PRD v1.2/v1.3)", "Summary says \"one confirmation with the posting date, the parts cost, the shop supplies amount and the accounts they post to\"; PRD v1.3 S3-R1/S3-R2: Close Work Order closes on one press with no confirmation, the posting date and the posting summary sit on the Finance tab, and a window opens only for a missing original work order or a vendor bill cost move. Cases follow PRD v1.3. Not asked: the PRD Status cell records the change (v1.2, SV-10312)."),
  "SV-11761": ("SAME", "Summary matches Story 4."),
- "SV-11762": ("DIFFERS (superseded design)", "Summary says \"Two rows ... Internal Work Orders Expense and No-Charge Work Orders Expense\"; PRD v1.1 S5-R1: one row per category (Terminology: \"Replaces the two fixed rows Internal Work Orders Expense and Customer No-Charge Expense of v0.17\"). Cases follow PRD v1.1."),
- "SV-11763": ("DIFFERS (superseded design)", "Summary says \"Two mapping keys ... with seeded defaults\"; PRD v1.1 S6-R1/S6-R2: one row per category with the starting mappings 6500, 6430, 6440. Cases follow PRD v1.1."),
+ "SV-11762": ("DIFFERS (superseded design)", "Summary says \"Two rows ... Internal Work Orders Expense and No-Charge Work Orders Expense\"; PRD v1.3 S5-R1: one row per category (Terminology: \"Replaces the two fixed rows Internal Work Orders Expense and Customer No-Charge Expense of v0.17\"). Cases follow PRD v1.3."),
+ "SV-11763": ("DIFFERS (superseded design)", "Summary says \"Two mapping keys ... with seeded defaults\"; PRD v1.3 S6-R1/S6-R2: one row per category with the starting mappings 6500, 6430, 6440. Cases follow PRD v1.3."),
  "SV-11764": ("SAME", "Summary matches Story 7."),
  "SV-11765": ("SAME", "Summary matches Story 8."),
- "SV-11766": ("DIFFERS (older wording)", "Summary says \"the new No-Charge Work Orders report with its Reason filter, and the invoice export option with the Classification and Reason columns\"; PRD v1.1 S9-R2/S9-R6: \"Internal Work Orders\" report with a Category filter; export columns Classification and Category. Cases follow PRD v1.1."),
+ "SV-11766": ("DIFFERS (older wording)", "Summary says \"the new No-Charge Work Orders report with its Reason filter, and the invoice export option with the Classification and Reason columns\"; PRD v1.3 S9-R2/S9-R6: \"Internal Work Orders\" report with a Category filter; export columns Classification and Category. Cases follow PRD v1.3."),
  "SV-11767": ("SAME", "Summary matches Story 10."),
- "SV-11833": ("DIFFERS (older wording)", "Summary says \"a read-only classification and reason\"; PRD v1.1 S11-R1: classification and category. Cases follow PRD v1.1. Both say Story 11 is built after the Open API refactoring: its cases open with a BLOCKED ON RELEASE line."),
+ "SV-11833": ("DIFFERS (older wording)", "Summary says \"a read-only classification and reason\"; PRD v1.3 S11-R1: classification and category. Cases follow PRD v1.3. Both say Story 11 is built after the Open API refactoring: its cases open with a BLOCKED ON RELEASE line."),
  "SV-12226": ("SAME", "Summary matches Story 12."),
- "SV-12295": ("DIFFERS (resolved since)", "Summary says \"Comeback Expense at the number the hub owner confirms\"; PRD v1.1 S6-R2 and S13 prerequisites: 6440 Comeback Expense, confirmed 9 Nov 2026. Cases use 6440."),
+ "SV-12295": ("DIFFERS (resolved since)", "Summary says \"Comeback Expense at the number the hub owner confirms\"; PRD v1.3 S6-R2 and S13 prerequisites: 6440 Comeback Expense, confirmed 9 Nov 2026. Cases use 6440."),
  "SV-12296": ("SAME", "Summary matches the portal requirements it lists (S2-R11, S2-E6, S1-R11, S3-R4, S12-R4, S12-R7); it notes design frame 7b is being redrawn (the text wins)."),
 }
 VERIFY = {
  "SV-11973": (["REL-04", "REL-05", "INV-01", "S9-01", "S9-02", "S9-03", "S9-04"], "Developer check-list for the foundation (schema, shared predicates, invoice-create extraction). Tester-visible parts: rule zero (REL-04) and nothing visible while the release switch is off (REL-05). The migration diff and the extraction are code checks with no screen."),
  "SV-11974": (["S1-*", "S10-04"], "Covers Story 1 and S10-R1: every Story 1 case."),
  "SV-11975": (["S2-*", "S10-*"], "Covers Story 2 and Story 10. Its item 5 adds \"the server refuses Change Customer without 'Work Orders — Create & Edit'\": a server refusal with no screen, listed with S1-82 in NO-MANUAL-PROPOSAL.md (PM-R1)."),
- "SV-11976": (["S3-*", "S4-*", "S3-48", "API-02"], "Covers Stories 3 and 4. Its item 7 says the asset's Invoices tab lists the closed record \"at $0.00\" where PRD v1.0 S3-R6/S9-R10 say Total balance \"No Charge\": settled by the tech plan, which builds \"No Charge\" (TP-174); S3-34 follows the PRD and is runnable. Its item 5 (a refused Close leaves the work order where it was, not Complete) is quoted by S3-48."),
+ "SV-11976": (["S3-*", "S4-*", "S3-48", "API-02"], "Covers Stories 3 and 4. Its item 7 says the asset's Invoices tab lists the closed record \"at $0.00\" where PRD v1.0 S3-R6/S9-R10 say Total balance \"No Charge\": settled by the tech plan, which builds \"No Charge\" (TP-174); S3-34 follows the PRD and is runnable. Items 1, 2 and 5 describe the Close confirmation that PRD v1.2/v1.3 removed: the posting summary is now on the Finance tab (S3-07 and the S3 summary cases), a missing original opens the one remaining window (S3-15), and the \"work order changed\" refusal applies only while a Close window is open (S3-47). Item 5's second sentence (a refused Close leaves the work order where it was, not Complete) still applies through that window: S3-48 quotes it."),
  "SV-11977": (["S5-*", "S7-*", "S12-33"], "Covers Stories 5 and 7. Its item 7 adds that the void of an Issue Credit restock posts the reverse; S12-33 quotes the item; the void has no PRD sentence and no plan statement a tester can reach, so it has no case."),
  "SV-11978": (["S6-*", "S8-*"], "Covers Story 6 and the hub side of Story 8. Its item 3 adds the Dismissed reason wording (\"Withdrawn: vendor bill [number] amended\" or \"… voided\"), quoted by S8-09."),
- "SV-11979": (["S8-*", "S3-41", "S13-04"], "Core accounting emission and the accounting UI port. Tester-visible parts are the Accounting pages (Story 8 cases) and the AccountingHub notes in the Close confirmation (S3-41). The contract package versions are a code check with no screen."),
+ "SV-11979": (["S8-*", "S3-41", "S13-04"], "Core accounting emission and the accounting UI port. Tester-visible parts are the Accounting pages (Story 8 cases) and the AccountingHub notes in the Finance tab posting summary (S3-41; its item 6 still says \"Close confirmation\", which PRD v1.3 removed). The contract package versions are a code check with no screen."),
  "SV-11980": (["S9-*", "DATA-*"], "Covers Story 9: every Story 9 case and the number parity cases."),
  "SV-11981": (["REL-*", "S13-*"], "Release run and launch: the release-day cases (production) and the new-organization cases. The run order and the operator command are engineering steps (S13-06, NO-MANUAL)."),
  "SV-12297": (["REL-04"], "Rule zero before and after: REL-04 (production, figures kept before the release)."),
  "SV-12420": (["S1-45", "S1-46", "S1-47", "S1-50", "S1-51", "S1-53", "S1-54", "S1-56", "S1-59", "S1-64", "S5-01", "S13-01", "S13-03"], "Categories page, QuickBooks rows, seeding."),
  "SV-12421": (["S12-*"], "Covers Story 12 core. Item 3 says Mark as No Charge on an invoiced work order is \"disabled with 'Reverse the invoice first.'\", PRD S12-N3 says the menu offers neither action and the tooltip reads the same words: S12-26 checks both. Item 6's server refusal of a restocking fee has no screen."),
- "SV-12422": (["S12P-*"], "Covers the portal. Its item 6 (a portal deposit refused after checkout is recorded with its own reason and can be refunded) had no PRD v1.0 sentence and is now PRD v1.1 S2-E8 (Milos Vasic's answer 7); the tech plan gives its message (TP-668) and the race behind it is asked: S12P-11, held on question 7."),
+ "SV-12422": (["S12P-*"], "Covers the portal. Its item 6 (a portal deposit refused after checkout is recorded with its own reason and can be refunded) had no PRD v1.0 sentence and is PRD v1.1 S2-E8 (Milos Vasic's answer 7, unchanged in v1.3); the tech plan gives its message (TP-668) and the race behind it is asked: S12P-11, held on question 7."),
 }
 
 
@@ -69,14 +69,14 @@ for i in JIRA:
         cases = sorted(c["key"] for c in L.CASES if k in PROP[c["key"]]["refs"].split(","))
         verdict, diff = STORY_DIFF.get(k, ("", ""))
         outcome = "NEW-CASES"
-        note = f"Story text compared with PRD v1.1: {verdict}. {diff} Case links go on the ticket only after the cases exist in TestRail (Rule 128), with the QA lead's go-ahead."
+        note = f"Story text compared with PRD v1.3: {verdict}. {diff} Case links go on the ticket only after the cases exist in TestRail (Rule 128), with the QA lead's go-ahead."
         if k == "SV-11665": cases = [f"every case in authoring/proposals.json ({len(L.CASES)})"]
     led[k] = {"updated": f["updated"], "summary": f["summary"], "type": f["issuetype"]["name"], "outcome": outcome, "cases": cases, "note": note}
 json.dump(led, open(f"{P}/TICKET-LEDGER.json", "w"), indent=1, ensure_ascii=False)
 stories = [i["key"] for i in JIRA if i["fields"]["issuetype"]["name"] == "Story"]
-json.dump({"project": "Internal Work Orders", "epic": L.EPIC, "stories": stories, "prd_page": "942243841", "prd_version_handled": "1.1",
+json.dump({"project": "Internal Work Orders", "epic": L.EPIC, "stories": stories, "prd_page": "942243841", "prd_version_handled": "1.3",
            "jira_saved": "sources/jira-sweep-full-2026-11-12.json (JQL key = SV-11665 OR parent in (SV-11665 and its 14 stories), 28 tickets, read 12 Nov 2026)",
-           "checked": "2026-11-12, round 3: PRD v1.1 (12 Nov 2026, Status cell \"v1.1 (2026-11-12): QA questions 1 to 16 answered in the text\"), saved as sources/CONFLUENCE-942243841-v1.1-read-2026-11-12.md and diffed against v1.0; earlier: (PRD Final v1.0, last modified 10 Nov 2026; the Confluence page-version integer was not saved at intake, so a later sweep compares the in-body version 1.0 and the last-modified date; Jira SV-11973 names the tech plan's base as \"PRD v1.0 (page version 39, final for build)\")"},
+           "checked": "2026-11-13, round 4: PRD v1.3 (12 Nov 2026, Status cell \"v1.3 (2026-11-12): the Settings tab keeps one hint line (S1-R3) ...\"), saved as sources/CONFLUENCE-942243841-v1.3-read-2026-11-12.md and diffed against v1.1 (po-answers-2026-11-12/PRD-DIFF-v1.1-to-v1.3.txt); round 3: PRD v1.1 (12 Nov 2026, Status cell \"v1.1 (2026-11-12): QA questions 1 to 16 answered in the text\"), saved as sources/CONFLUENCE-942243841-v1.1-read-2026-11-12.md and diffed against v1.0; earlier: (PRD Final v1.0, last modified 10 Nov 2026; the Confluence page-version integer was not saved at intake, so a later sweep compares the in-body version 1.0 and the last-modified date; Jira SV-11973 names the tech plan's base as \"PRD v1.0 (page version 39, final for build)\")"},
           open(f"{P}/TICKET-SWEEP.json", "w"), indent=1, ensure_ascii=False)
 
 # ---- NO-MANUAL-PROPOSAL.md -------------------------------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ R = ["# Internal Work Orders — cases a manual tester cannot set up (proposal)"
      f"These {len(NOMAN)} cases are kept in the case library (`authoring/`, marker `AUTOMATION: HOLD - a tester cannot set this up ...`) so the "
      "PRD item stays covered and visible, and `create.py` leaves them out of TestRail. Proposed: hand them to the developers' own checks "
      "(each verify ticket of epic SV-11665 lists the same behaviours), and decide again when a build exists.", "",
-     "Round 3 (12 Nov 2026): S2-90 [C1112004](https://shopview.testrail.io/index.php?/cases/view/1112004) and S8-26 [C1112153](https://shopview.testrail.io/index.php?/cases/view/1112153) joined this list because PRD v1.1 makes them impossible to set up by hand. Both are already live in TestRail (held); recommended: delete them (needs the QA lead's go-ahead). Until then the update script leaves them untouched.", "",
+     "Round 3 (12 Nov 2026): S2-90 [C1112004](https://shopview.testrail.io/index.php?/cases/view/1112004) and S8-26 [C1112153](https://shopview.testrail.io/index.php?/cases/view/1112153) joined this list because PRD v1.1 makes them impossible to set up by hand. Round 4 (13 Nov 2026): the QA lead approved deleting both from TestRail (\"Delete both (Recommended)\"); `po-answers-2026-11-12/write/delete_approved.py` deletes them with D-87, D-89 and D-91. They stay in the case library with their reason.", "",
      "| Case | Title | PRD items | Why a tester cannot set it up |", "|---|---|---|---|"]
 for c in NOMAN:
     R.append(f"| {c['key']} | {c['title']} | {', '.join(sorted(L.codes_of(c)))} | {c['marker'].split(': ', 2)[-1]} |")
@@ -172,8 +172,29 @@ from tp_quote_fix import TPFIX
 import cases_zz_v11 as V11, csv as _csv
 _IDS = {r['key']: r['case_id'] for r in _csv.DictReader(open(f'{P}/testrail-id-map.csv'))}
 _PLAN = json.load(open(f"{P}/po-answers-2026-11-12/write/plan.json")) if os.path.exists(f"{P}/po-answers-2026-11-12/write/plan.json") else {}
-R = ["# Internal Work Orders — report, rounds 1, 2a, 2b, 2c and 3 (PRD v1.1, Jira, tech plan, design; Milos Vasic's answers), 12 Nov 2026", "",
-     "## Round 3 (12 Nov 2026): PRD v1.1 and Milos Vasic's answers 1-16", "",
+import cases_zzz_v13 as Z13
+_REG = json.load(open(f"{P}/DESIGN-DIVERGENCE-REGISTER.json"))
+R = ["# Internal Work Orders — report, rounds 1 to 4 (PRD v1.3, Jira, tech plan, design 1794510020-d4ec; Milos Vasic's answers), 13 Nov 2026", "",
+     "## Round 4 (13 Nov 2026): PRD v1.3, design 1794510020-d4ec and the full-read fixes", "",
+     "- Every case now quotes **PRD v1.3** (From line \"version 1.3 (12 Nov 2026, Milos Vasic)\") and names design version 1794510020-d4ec. "
+     "v1.3 (with v1.2): Close Work Order closes on one press with no confirmation; the posting date, the posting summary and the closing sentence "
+     "sit on the Finance tab; a window opens only for a missing original work order or a vendor bill cost move; the \"work order changed\" "
+     "refusal applies only while that window is open; the Settings tab keeps one hint line. §8 has 45 rows (16-18 new, 17-43 became 19-45).",
+     f"- Per case, part by part: `po-answers-2026-11-12/PASS-REPORT.md` (the round 3 report kept as `PASS-REPORT-round3-v1.1.md`). Round 3 was never "
+     f"written, so the updates carry both rounds: {len(_PLAN.get('update', []))} updates, {len(_PLAN.get('move', []))} moves, new cases "
+     f"{', '.join(_PLAN.get('create', []))}; deletions on the QA lead's go-ahead: {', '.join(d['key'] for d in _PLAN.get('delete', []))}; "
+     f"proposed for deletion: {', '.join(d['key'] for d in _PLAN.get('proposed_delete', [])) or 'none'}; run 559 gets {', '.join(_PLAN.get('run_add', []))}.",
+     "- The full read's fixes are in: S1-71 rewritten (the S1-R7 helper) and all 51 runnability fixes (`full-read/fix-list.json`).",
+     f"- `check_v13_text.py`: every PRD quote of every case is word for word in v1.3, and no tester text names what v1.3 removed (the Close "
+     "confirmation, the second hint line, the old confirmation sentence).",
+     "- Not retired after all: S3-48. Its source (Jira SV-11976 item 5: a refused Close leaves the work order where it was, not Complete) still "
+     "applies through the original work order window; it is rewritten to that path.",
+     f"- Register ({_REG['counts']['differences']} differences, {_REG['counts']['not_shown']} design-silent): IWO-D02, D20, D21 closed; D22, D23 "
+     "narrowed; N05, N25 reworded; D57-D61 added with the coordinator's verdicts (D57 held as design-version case D-93); D62 added by the case "
+     "worker: Happy flow board \"28 Close confirmation\" was not redrawn and still draws the removed confirmation (check a and d; dropped from "
+     "D-60's references); N42-N44 added (design-silent). **No question.**",
+     "- Folder note (Rule 140) to be re-stamped 11/13/2026: `write/folder_note.py` (locked on today's live text).", "",
+     "## Round 3 (12 Nov 2026, superseded by round 4 where they differ): PRD v1.1 and Milos Vasic's answers 1-16", "",
      "- Every case now quotes **PRD v1.1** (From line \"version 1.1 (12 Nov 2026, Milos Vasic)\"); v1.1 changed 15 requirements and message "
      "rows, added S2-E8 and the message row \"Reopen done\" (rows 25-42 became 26-43). Milos's answers are quoted only where v1.1 does not "
      "carry them: question 10 (API-23).",
@@ -261,9 +282,9 @@ R += [f"| {k} | {'; '.join(v)} |" for k, v in cases_tp.TP_CHANGES.items()]
 R += ["", "Also changed in round 2a: S3-34 released (question \"asset tab total\" settled by the plan: TP-174 \"No Charge\") and DATA-08 released "
       "(TP-312). Every other part of every case (title, preconditions, steps, other results, PRD quotes and From lines, build line, marker, refs) "
       "was rebuilt by build.py from the same source and is CONFIRMED.", "",
-      "## Story text (Jira) compared with PRD v1.1", "",
+      "## Story text (Jira) compared with PRD v1.3", "",
       "Every story ticket says \"Requirements, negative cases and edge cases live in the spec\"; its one-paragraph summary was compared with the PRD "
-      "story. Latest wins (Rule 32): PRD v1.1 of 12 Nov 2026 (Final v1.0 of 9 Nov 2026 with Milos Vasic's answers 1-16 carried in the text). No story needs a PO question; the verify task SV-11976's \"$0.00\" is settled "
+      "story. Latest wins (Rule 32): PRD v1.3 of 12 Nov 2026 (Final v1.0 of 9 Nov 2026 with Milos Vasic's answers 1-16 in v1.1 and the one-press Close in v1.2/v1.3). No story needs a PO question; the verify task SV-11976's \"$0.00\" is settled "
       "by the plan (\"No Charge\").", "", "| Ticket | Verdict | Difference |", "|---|---|---|"]
 for k, (v, d) in STORY_DIFF.items(): R.append(f"| {k} | {v} | {d} |")
 R += ["", "Verify tasks (developer check-lists), read in full:", "", "| Ticket | Cases | Note |", "|---|---|---|"]
@@ -272,6 +293,9 @@ R += ["", "## Reading coverage (Rule 119)", "",
       "| Source | Size | Read |", "|---|---|---|",
       "| PRD `sources/CONFLUENCE-942243841-read-2026-11-12.md` (Final v1.0) | 805 lines, 179,770 bytes | lines 1–805, 100% |",
       "| PRD `sources/CONFLUENCE-942243841-v1.1-read-2026-11-12.md` (v1.1, 12 Nov 2026) | 182,519 bytes | the 34 changed lines (`po-answers-2026-11-12/PRD-DIFF-v1.0-to-v1.1.txt`) read in full, and every requirement, message row and named item re-parsed from v1.1 by script and compared with v1.0 (16 changed items, 1 new requirement S2-E8, 1 new message row); the other lines are byte-identical to v1.0, read in full in round 1 |",
+      "| PRD `sources/CONFLUENCE-942243841-v1.3-read-2026-11-12.md` (v1.3, 12 Nov 2026) | 810 lines | the v1.1 → v1.3 diff (`po-answers-2026-11-12/PRD-DIFF-v1.1-to-v1.3.txt`) and PRD-CHANGES-v1.1-to-v1.3.md read in full; every requirement, message row and named item re-parsed from v1.3 by script; the Story 1, Story 3 and §8 lines read in full; every case quote checked against the whole text by check_v13_text.py |",
+      "| Design 1794510020-d4ec: DESIGN-CHANGE-v1.3-2026-11-12.md, v3 text diff (167 boards), the 15 redrawn boards' files and pictures, canvas notes | — | in full; every v3 board file scanned for the removed wording (found Happy 28) |",
+      "| Full read: FULL-READ-SUMMARY.md, fix-list.json, verdict-1..6.json (the 52 cases with a fix read in full) | — | in full |",
       "| Milos Vasic's answers (`po-answers-2026-11-12/ANSWERS-Milos-Vasic-2026-11-12.json`), QUESTION-REVIEW.md, AFFECTED-CASES.json, the design worker's DESIGN-CHANGE-2026-11-12.md, skill 07 §6.0 | — | in full |",
       "| Jira `sources/JIRA-SV-11665-tickets-2026-11-12.md` (epic, 14 stories, 13 verify tasks, fetched in full) | 454 lines | 1–454, 100% |",
       "| Tech plan worker's outputs: TECH-PLAN-TESTABLE.json (680 statements and 8 context lines), TECH-PLAN-DIVERGENCES.md, INVARIANTS-FROM-PLAN.md, QUESTIONS-DRAFT.md, TECH-PLAN-READING-RECORD.md, NOTES.md | 259 KB + 45 KB | every statement and line, 100% |",
@@ -287,10 +311,11 @@ R += ["", "## Reading coverage (Rule 119)", "",
       "by a sheet question or the named ruling, one case per design draft). Readiness: 0 hard; the sample read (D-72, S1-15, S5-05, S2-52, S3-33) "
       "and every \"does not / never\" result of the design cases (19) and of the rest (140 in all) read; each has its positive control in the same case.",
       "- Round 2c: build.py adds the baseline-word gate and the code-in-plan-quote gate. Readiness re-run: 0 hard; the new sample and every \"does not / never\" result (145) read again.",
-      "- `ticket_sweep.py`: 0 unhandled tickets, PRD 1.0 handled. `create.py` dry run: nothing written.", "",
+      "- `ticket_sweep.py`: 0 unhandled tickets, PRD 1.0 handled. `create.py` dry run: nothing written.",
+      "- Round 4: build.py 0 PROBLEM lines (two gates widened: a message row's \"(Closed · No Charge)\" may be left out where the case's work order is internal; a register row held as a design-version case passes when that case exists and is held). check_v13_text.py: 0 quote misses, 0 removed wording. Readiness: 0 hard; a random sample of 20 rewritten cases and all 152 \"does not / never\" results read (fixes from the read: stale \"until the PO answers\" notes on S1-02b and S2-32b removed, S9-28 step 6, register notes for v1.3). ticket_sweep.py at PRD 1.3: 0 unhandled; Jira re-read live 13 Nov 2026 (28 tickets under the epic, none updated since 10 Nov). Write scripts dry-run with --check-live: 636 updates lock ok, 5 deletes lock ok, run 559 596 + 12 now (6 more after create), folder note lock ok.", "",
       "## OUTSTANDING — what I need from you", "",
-      "- **Go-ahead for the round 3 writes (Rule 6):** run, in order, `po-answers-2026-11-12/write/update_cases.py --apply`, `create_new.py --apply`, `delete_three.py --apply`, `sync_run_559.py --apply` (each is a dry run without the flag and reads every write back).",
-      f"- **Recommended: delete {', '.join(f'{k} [C{_IDS[k]}](https://shopview.testrail.io/index.php?/cases/view/{_IDS[k]})' for k in V11.PROPOSED_DELETE)}** — PRD v1.1 makes them impossible to run by hand (no work order import; the hub refuses the deactivation). Until you decide, the update script leaves them as they are.",
+      "- **Go-ahead for the writes of rounds 3 and 4 (Rule 6):** run, in order, `po-answers-2026-11-12/write/update_cases.py --apply`, `create_new.py --apply`, `delete_approved.py --apply` (D-87, D-89, D-91, S2-90, S8-26: approved), `sync_run_559.py --apply`, `folder_note.py --apply` (each is a dry run without the flag and reads every write back).",
+      "- **Held design-version case D-93** (IWO-D57, the cost move window's extra words): released or removed when the PO rules (Rule 130). Under skill 07 §6.0 check (c) the case worker would instead write it as a runnable case from the design (the PRD is silent and the design speaks); the coordinator's verdict (held) is followed.",
       f"- **NO-MANUAL:** confirm the {len(NOMAN)} cases stay out of TestRail (recommended, as for Bill To).",
       "- **For the QA lead only (Rule 30):** the plan-vs-PRD differences D-3 and D-5 to D-9 above need no PO answer; the cases follow the PRD.",
       "- **Waiting on the PO (Rule 132):** no unanswered question (all 16 answered 12 Nov 2026). One confirmation is pending from the Open API owner, not the PO: question 10 (work_order.updated), case API-23, still blocked on the Open API release.",

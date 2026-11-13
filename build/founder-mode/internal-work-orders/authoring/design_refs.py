@@ -61,7 +61,9 @@ def _notes(r, notes, QN):
         src = " / ".join(PLAIN.get(x.strip(), x.strip()) for x in (d.get("prd_code_v1.1") or d.get("prd_code") or "").split("/"))
         if rid in OPEN: how = f"asked in question {QN[OPEN[rid]]} of the PO sheet; this case follows the PRD meanwhile"
         elif rid == "IWO-D50": how = RULING_D50
+        elif d["outcome"].startswith("CLOSED") and "outcome_before_v1.3" in d: how = f"closed: the redrawn design (version 1794510020-d4ec) matches PRD v1.3 ({src})"
         elif d["outcome"].startswith("CLOSED"): how = f"closed: the design matches PRD v1.1 ({src})"
+        elif "outcome_before_v1.3" in d: how = f"narrowed for PRD v1.3 and settled by the PRD ({src}); this case follows the PRD"
         elif "outcome_before_v1.1" in d: how = f"settled by PRD v1.1 ({src}), which carries Milos Vasic's answer; this case follows the PRD"
         else: how = f"settled by the PRD ({src}); this case follows the PRD"
         n = f"Difference {rid} on {r['code']} ({d['kind']}): {how}."
@@ -69,6 +71,7 @@ def _notes(r, notes, QN):
 
 
 _BYCODE = None
+SECONDARY = set()   # (design case, code) pairs quoted only as backing: they never bring that case's boards to a PRD case (round 4)
 def _design_cases_by_code():
     global _BYCODE
     if _BYCODE is None:
@@ -78,6 +81,7 @@ def _design_cases_by_code():
             if c["sec"] != "DESIGN" or c["key"] not in DREFS: continue
             for x in c["q"]:
                 k = x if isinstance(x, str) else x[0]
+                if (c["key"], k) in SECONDARY: continue
                 _BYCODE.setdefault(_scode(k), []).append(c["key"])
     return _BYCODE
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Round 3: add to run 559 ("Internal Work Orders - Execution") the released cases and the new cases a tester can run (plan.json
+"""Round 4 (13 Nov 2026, carries round 3): add to run 559 ("Internal Work Orders - Execution") the released cases and the new cases a tester can run (plan.json
 "run_add", held cases never). UNION ONLY (Rules 34, 123): the live run's cases are read first and kept; nothing is removed (the 3 deleted
 cases leave the run with their deletion). Run after create_new.py --apply, so the new cases have C-ids. Read back: every wanted case is in
 the run and no case that was there is gone.
