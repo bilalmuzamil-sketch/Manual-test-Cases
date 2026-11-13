@@ -80,6 +80,11 @@ Read this file first, then the reference files when you reach the step that need
   no truncation, wherever the design or PRD states them.
 - List every menu, dialog, tooltip, toast and empty state by hand (title, rows, options, buttons, in order) and compare
   each row with the PRD. Compare labels letter for letter, including capital letters.
+- Use stress data wherever typed text shows (chip, list row, group row, table row, print, export): a long name with spaces,
+  a long name with no spaces, and special characters. State what the tester must see (wraps in its own row or ends in "...",
+  never over the next row, every column still visible).
+- For every state change (open/close a group, Expand/Collapse all, sort, filter, more rows loading), add a before-and-after
+  check that headings and columns keep their place. Compare the design's own pictures of each state with each other first.
 - Apply design-library "always/never" rules (for example where a tooltip sits, maximum widths, empty-cell dashes) even
   when a single frame breaks them.
 - Record every design-vs-PRD difference in a register and close each one: settled by a precedence rule, settled by a

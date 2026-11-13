@@ -100,6 +100,9 @@ These are stated here **in full** because a session that gets only this far must
   on them. The list lives in `build/PO-QUESTIONS-OPEN.md`; read every sheet's answer column before each report.
 - **🔴 DESIGN CASES MISS NOTHING THE DESIGN SHOWS (133, 22 Oct 2026).** Every design pass runs the design-case checklist in
   `build/skills/21-DESIGN-DRIVE-PROTOCOL.md` §6d and every lessons-register row; an unticked line means the suite is not complete.
+  **Amended 13 Nov 2026 (QA lead, permanent; L-21): lines 9 and 10 — stress data (long names with and without spaces, special
+  characters) wherever typed text shows, and a before-and-after check that layout stays put when a group opens/closes, a sort/filter
+  changes or rows load (compare the design's own pictures of each state first).**
 - **🔴 A SOURCE THAT CHANGES A CASE CHANGES THE WHOLE CASE, TOP TO BOTTOM (134, 22 Oct 2026).** Every new or changed source is
   checked against every case (CONFIRMED / CHANGE / RETIRE / NEW); a case that needs any change is rewritten top to bottom (title,
   preconditions, steps, results, quotes and From lines, design references, notes, marker, refs, setup recipe, run), never only the part

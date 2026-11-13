@@ -111,6 +111,14 @@ Every design pass, every project, before the hand-over gate. Each line is ticked
    the design arrives, the whole design is driven again and every case is re-checked (Rules 120, 122).
 8. **The result is written down** in the project's DESIGN-DIVERGENCE-REGISTER.json and the proof file; the checklist with its ticks is
    committed beside them.
+9. **Stress data wherever user-typed text shows** (QA lead, 13 Nov 2026, permanent; L-21): every place a name or other typed text appears
+   (chip, menu or list row, group row, table row, print, export) has a case with a long name with spaces, a long name with NO spaces and
+   special characters (& " ' < >), and states what the tester must see (wraps inside its own row, or shortened with "...", never over the
+   next row, every column still visible).
+10. **Layout stays put when the screen changes state** (QA lead, 13 Nov 2026, permanent; L-21): opening or closing a group, Expand all /
+   Collapse all, a sort, a filter, and more rows loading while scrolling each get a before-and-after check that headings and columns keep
+   their place. First compare the design's own pictures of the same screen in each state with each other; if something moves, the case
+   follows a source that settles it or the point goes to the product owner (skill 07 §6.0 first).
 
 ## 7 · Hand-over gate
 Only when steps 2–6 (including 4b and 6b) are done: commit `DESIGN-COVERAGE-<date>.md` (the file-reading table; the sweep totals; the

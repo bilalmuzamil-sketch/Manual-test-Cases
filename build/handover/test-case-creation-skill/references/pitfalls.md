@@ -22,6 +22,8 @@ Each item is a mistake that has happened while writing suites, and what to do in
 | 16 | The PRD and design were republished while a draft was being prepared, after the first source check | Re-check every source's version immediately before writing; if anything moved, update first |
 | 17 | Cases quoted a "before" or "as today" behaviour with nothing the tester could compare against | Give a visible baseline in the case, or capture one beforehand on a "Run on Production After Release" case |
 | 18 | A waiting loop matched its own command line and never ended, so queued work silently never started | Wait on a process id, not on a text pattern, and confirm a queued job actually started |
+| 19 | Long-name test data always had spaces, so it wrapped neatly; a long name with no spaces later overlapped the next row of a filter list and pushed columns off screen | Wherever typed text shows (chip, list row, group row, table row, print, export), test a long name with spaces, a long name with no spaces, and special characters (& " ' < >) |
+| 20 | Table columns moved when a group was opened or closed; the design's own pictures of the two states already showed it, but each picture was only compared with its own screen | Give every state change (open/close a group, Expand/Collapse all, sort, filter, more rows loading) a before-and-after check that headings and columns stay put; compare the design's pictures of each state with each other and ask when something moves |
 
 ## TestRail notes
 
