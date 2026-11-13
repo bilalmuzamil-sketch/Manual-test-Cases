@@ -545,6 +545,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |
 | Durable env facts, IDs, endpoints, auth | `build/APP-ACTIONS-PLAYBOOK.md` + `build/TESTING-RUNBOOK.md` |
 | Everything we are waiting on | `build/OUTSTANDING-ITEMS-REGISTER.md` |
+| Dashboard and Reports: the QA lead's MAIN INSTRUCTIONS, verbatim (give back on request) | `build/dashboard-verify-2026-10-28/MAIN-INSTRUCTIONS-QA-LEAD.md` |
 
 **Sessions share FACTS, never RULES (98):** this workspace is worked by more than one session in
 parallel with **no live message bus**. **Facts** — each `PROJECT-STATE.md`, `build/APP-ACTIONS-PLAYBOOK.md`,
