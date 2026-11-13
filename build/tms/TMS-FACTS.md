@@ -526,3 +526,5 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   and the update body, so syncs never put it back. TestRail keeps it (nothing written to TestRail).
 - **Rule note:** Rule 113 makes the expected result the source's verbatim quote. TestRail keeps those quotes unchanged; this
   removal is TMS-only, on the QA lead's explicit order of 2026-11-13.
+- **Rest done:** 1,657 cut + 12 already clean = all 1,669 of ours. **20,139 run entries photographed (1,312 with results) —
+  0 changed.** 33 cases not edited by our key in the window were left alone (`quotes-section-left-alone-33.json`).
