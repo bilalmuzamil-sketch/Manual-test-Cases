@@ -170,7 +170,6 @@ S2-86,1112000,S2,A core charge change writes no price on an internal work order,
 S2-87,1112001,S2,A canned line added to an internal work order loses its prices,https://shopview.testrail.io/index.php?/cases/view/1112001,1.0
 S2-88,1112002,S2,Splitting a no-charge work order keeps No Charge with $0.00 shop supplies,https://shopview.testrail.io/index.php?/cases/view/1112002,1.0
 S2-89,1112003,S2,Lines copied from an internal work order into a billable one get prices,https://shopview.testrail.io/index.php?/cases/view/1112003,1.0
-S2-90,1112004,WAIT-PO,An imported work order of a flagged customer is internal,https://shopview.testrail.io/index.php?/cases/view/1112004,1.0
 S2-91,1112005,S2,A core on an internal work order must be answered before Close,https://shopview.testrail.io/index.php?/cases/view/1112005,1.0
 S2-92,1112006,S2,"While the setting is off, New Work Order shows no badge or No Charge",https://shopview.testrail.io/index.php?/cases/view/1112006,1.0
 S2-93,1112007,S2,"While the setting is off, a no-charge work order can still be made billable",https://shopview.testrail.io/index.php?/cases/view/1112007,1.0
@@ -319,7 +318,6 @@ S8-22,1112149,S8,An unmapped Inventory asset row holds the Close with its reason
 S8-23,1112150,S8,Retry posts a held Close once the problem is fixed,https://shopview.testrail.io/index.php?/cases/view/1112150,1.0
 S8-24,1112151,S8,Reopening while the Close is held withdraws it with no reversal,https://shopview.testrail.io/index.php?/cases/view/1112151,1.0
 S8-25,1112152,S8,A new Close waits behind a held reversal of the same work order,https://shopview.testrail.io/index.php?/cases/view/1112152,1.0
-S8-26,1112153,WAIT-PO,A mapped account made inactive holds the event,https://shopview.testrail.io/index.php?/cases/view/1112153,1.0
 S9-01,1112154,S9,Sales leaves out the closed internal work order,https://shopview.testrail.io/index.php?/cases/view/1112154,1.0
 S9-02,1112155,S9,Sales By Customer leaves out the closed internal work order,https://shopview.testrail.io/index.php?/cases/view/1112155,1.0
 S9-03,1112156,S9,Sales By Representative leaves out the closed internal work order,https://shopview.testrail.io/index.php?/cases/view/1112156,1.0
@@ -570,11 +568,8 @@ D-83,1112400,DESIGN,Design: AccountingHub record of a closed internal work order
 D-84,1112401,DESIGN,Design: AccountingHub Accounting Events shows a Held event and its reason,https://shopview.testrail.io/index.php?/cases/view/1112401,1.0
 D-85,1112402,DESIGN,Design: AccountingHub invoice record lists its No Charge lines,https://shopview.testrail.io/index.php?/cases/view/1112402,1.0
 D-86,1112403,DESIGN,Design: A window stays open on Esc and on a click outside it,https://shopview.testrail.io/index.php?/cases/view/1112403,1.0
-D-87,1112404,DESIGN,Design: No Charge category helper says it shows on the work order,https://shopview.testrail.io/index.php?/cases/view/1112404,1.0
 D-88,1112405,DESIGN,Design: Open internal work order estimate carries the INTERNAL stamp,https://shopview.testrail.io/index.php?/cases/view/1112405,1.0
-D-89,1112406,DESIGN,Design: Closed internal work order shows the locked note,https://shopview.testrail.io/index.php?/cases/view/1112406,1.0
 D-90,1112407,DESIGN,Design: Reopening shows the message that the work order reopened,https://shopview.testrail.io/index.php?/cases/view/1112407,1.0
-D-91,1112408,DESIGN,Design: Report leaves original cells empty on an internal work order row,https://shopview.testrail.io/index.php?/cases/view/1112408,1.0
 D-92,1112409,DESIGN,Design: Report work order numbers stay on one line at 1440 and 1536,https://shopview.testrail.io/index.php?/cases/view/1112409,1.0
 S1-83,1112410,S1,At 100 active categories Restore is disabled too,https://shopview.testrail.io/index.php?/cases/view/1112410,1.0
 S1-84,1112411,S1,The Internal Work Orders tab sits after Fees & Discounts,https://shopview.testrail.io/index.php?/cases/view/1112411,1.0
@@ -640,3 +635,10 @@ INV-34,1112470,INV,Paying a billable invoice on the portal works as before,https
 INV-35,1112471,INV,A billable invoice still sends the portal's new invoice email,https://shopview.testrail.io/index.php?/cases/view/1112471,1.0
 REL-06,1112472,PROD,A bill posted before the release is moved at Close after it,https://shopview.testrail.io/index.php?/cases/view/1112472,1.0
 REL-07,1112473,PROD,Create invoice refusals on billable work orders read as before,https://shopview.testrail.io/index.php?/cases/view/1112473,1.0
+S4-15,1128857,S4,Reopen shows the green message that the work order reopened,https://shopview.testrail.io/index.php?/cases/view/1128857,1.3
+S9-47,1128858,S9,Empty cells in the Internal Work Orders report show a dash,https://shopview.testrail.io/index.php?/cases/view/1128858,1.3
+S9-48,1128859,S9,Report work order numbers and dates stay on one line at 1440 and 1536,https://shopview.testrail.io/index.php?/cases/view/1128859,1.3
+S1-92,1128860,S1,The Internal categories tab shows where an internal category is set,https://shopview.testrail.io/index.php?/cases/view/1128860,1.3
+S1-93,1128861,S1,The category windows show where the category is shown,https://shopview.testrail.io/index.php?/cases/view/1128861,1.3
+S1-94,1128862,S1,Edit Customer explains the Default internal category,https://shopview.testrail.io/index.php?/cases/view/1128862,1.3
+D-93,1128863,DESIGN,Design: Cost move window names the moved part and its vendor bill,https://shopview.testrail.io/index.php?/cases/view/1128863,1.3

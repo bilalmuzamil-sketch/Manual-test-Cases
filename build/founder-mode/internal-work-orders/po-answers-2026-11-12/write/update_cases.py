@@ -42,7 +42,9 @@ if APPLY:
     for sec in sorted({m["to"] for m in moves}):
         ids = [int(m["case_id"]) for m in moves if m["to"] == sec and not any(x[0] == m["key"] for x in locked)]
         if not ids: continue
-        api(f"move_cases_to_section/{SUITE}", {"section_id": SECS[sec]["id"], "suite_id": SUITE, "case_ids": ids}); st = LAST["status"]
+        try: api(f"move_cases_to_section/{SECS[sec]['id']}", {"suite_id": SUITE, "case_ids": ids})   # 13 Nov 2026 fix: the path takes the DESTINATION section id (the suite id here moved 3 cases to section 1 "Test Cases"); the reply body is empty
+        except json.JSONDecodeError: pass
+        st = LAST["status"]
         for cid in ids:
             back = api(f"get_case/{cid}"); okm = back["section_id"] == SECS[sec]["id"]
             L({"op": "move_case", "case": f"C{cid}", "to": sec, "http": st, "readback_ok": okm})

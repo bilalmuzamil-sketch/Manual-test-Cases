@@ -1,1 +1,64 @@
 ===== update_cases 09:45:51
+updates 636 | moves 9 | cases gaining pictures 43 (102 files)
+missing picture files []
+live cases read: 641
+Traceback (most recent call last):
+  File "/home/user/Manual-test-Cases/build/founder-mode/internal-work-orders/po-answers-2026-11-12/write/update_cases.py", line 45, in <module>
+    api(f"move_cases_to_section/{SUITE}", {"section_id": SECS[sec]["id"], "suite_id": SUITE, "case_ids": ids}); st = LAST["status"]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Manual-test-Cases/build/founder-mode/internal-work-orders/../../dashboards/currency-2026-10-14/apply/trlib.py", line 12, in api
+    resp = urllib.request.urlopen(r, timeout=120); LAST["status"] = resp.status; return json.load(resp)
+                                                                                        ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+===== create_new 10:03:53
+S5      QuickBooks Online account mapping                              0     0      0   id 136706
+S6      AccountingHub account mapping                                  0     0      0   id 136707
+S7      QuickBooks Online journal entries                              0     0      0   id 136708
+S8      AccountingHub records and entries                              0     0      0   id 136709
+S9      Reports, dashboard and exports                                 2     0      2   id 136710
+S10     Shop supplies on internal and no-charge work orders            0     0      0   id 136711
+S12     No-charge line on a billable work order                        0     0      0   id 136712
+S12P    No-charge estimates and lines in the customer portal           0     0      0   id 136713
+S13     Starting categories and accounts                               0     0      0   id 136714
+API     API                                                            0     0      0   id 136715
+DATA    Numbers across the documents, reports and books                0     0      0   id 136716
+INV     What must not change                                           0     0      0   id 136717
+REL     Release day                                                    0     0      0   id 136718
+DESIGN  Design — how it looks                                          1     0      1   id 136719
+WAIT-PO Waiting on Milos Vasic's answers                               0     0      0   id 136720
+BLK     Blocked on the Open API release                                0     0      0   id 136721
+PROD    Run on Production After Release                                0     0      0   id 136722
+BLK-MR  Blocked on the Maintenance Reminders release                   0     0      0   id 136723
+total to add 7 | already 641 | held (not for a run) 0 | for the run 7
+picture uploads 21 (17 distinct files) | missing picture files []
+held by reason: {}
+subsections still to create (no id in sections.json): []
+tester-readiness check (Rule 138): cases 665 | hard problems 0 | 'does not / never' results to read for a control 152
+cases 648 problems: 0
+run candidates (union only, not held): C1128857,C1128858,C1128859,C1128860,C1128861,C1128862,C1128863
+===== delete_approved 10:10:33
+D-87 C1112404 'Design: No Charge category helper says it shows on the work order' in 'Design — how it looks'
+D-89 C1112406 'Design: Closed internal work order shows the locked note' in 'Design — how it looks'
+D-91 C1112408 'Design: Report leaves original cells empty on an internal work order row' in 'Design — how it looks'
+S2-90 C1112004 'An imported work order of a flagged customer is internal' in "Waiting on Milos Vasic's answers"
+S8-26 C1112153 'A mapped account made inactive holds the event' in "Waiting on Milos Vasic's answers"
+deleted ['D-87', 'D-89', 'D-91', 'S2-90', 'S8-26']
+===== sync_run_559 10:10:53
+to add: 19 (19 have C-ids now; the rest get theirs from create_new.py --apply)
+run 559: 596 cases now; adding 19 -> 615
+run now 615 ok
+===== folder_note 10:10:59
+section 136701 'Internal Work order (11/12/2026)': description '<p>Test cases are current as of 11/12/2026. Before you start testing, check whether the PRD, design or any other source has changed since then; if it has, update the test cases first.\n\nUpdate the cases as needed.</p>\n' -> '<p>Test cases are current as of 11/13/2026. Before you start testing, check whether the PRD, design or any other source has changed since then; if it has, update the test cases first.\n\nUpdate the cases as needed.</p>\n'
+written and read back
+===== ALL DONE 10:11:00
