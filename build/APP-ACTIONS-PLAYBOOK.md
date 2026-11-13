@@ -3492,3 +3492,10 @@ Scripts: `build/dashboard-verify-2026-10-28/dashboard-bug-hunt-2026-11-05/tools/
 - **"Reverse invoice" = void** for the Dashboard: `POST /api/invoices/reverse-invoice {id}` → the invoice drops out of every tile; invoicing again counts once.
 - **A $0.00 invoice cannot be made from a work order whose only line is declined:** 400 "A work order must have at least one completed line in order for it to be eligible for invoicing."
 - **Never write a run time from memory.** Read it from the evidence file's `rule99.header_start.at_utc`. Three times written from memory on 6 Nov were wrong by 10–20 minutes.
+
+
+### Staging host names, and a false "staging is down" (13 Nov 2026)
+- **Staging lives at `https://app.staging.shopview.com`** (app) and **`https://api.staging.shopview.com`** (API).
+- `staging.shopview.com` and `stagingapi.shopview.com` are NOT staging. The proxy gateway reports them `connect_unreachable` (502 to CONNECT), which reads like an outage.
+- On 13 Nov a session called staging "down" from those wrong names.
+- **Before reporting any host as down, take its name from the recorded tools** (`testing-tools/staging-boot2.mjs`, `staging-admin.mjs`, `qa-branch-boot.mjs`) and probe that exact host.

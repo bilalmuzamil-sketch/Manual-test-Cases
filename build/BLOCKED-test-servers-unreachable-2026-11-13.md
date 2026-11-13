@@ -33,3 +33,14 @@
 - Either the test servers come back up, or the QA lead says whether they are down on purpose.
 - Fresh cookies will be needed in any case: the sv11839 set dates from 9 Nov, and the staging set from 6 Nov is expired.
 - The Jira connectors need to reconnect.
+
+## Update 13 Nov 15:43–15:50 UTC: CORRECTION. Staging was never down; only sv11839 is
+- **My mistake:** the staging probes used `staging.shopview.com` / `stagingapi.shopview.com`. Those are wrong hosts.
+  - The real staging hosts are **app.staging.shopview.com** and **api.staging.shopview.com**, as in staging-boot2.mjs, staging-admin.mjs and the playbook.
+  - Re-probed: app 200 (build **v26.45.4-881ac93**); API `fe-permissions` 401 (`sso_required`).
+  - So staging is UP. The stored staging sign-in (6 Nov) has expired; fresh cookies are needed.
+- **sv11839** (sv11839.qa.shopview.com / sv11839api.qa.shopview.com, the hosts used successfully up to 10 Nov) is **still unreachable**.
+  - Gateway `connect_unreachable` at 15:43 UTC.
+  - It may have been torn down after its tickets moved on. Ask the QA lead.
+- **Jira:** the Atlassian MCP is back (SV-10702 read OK at 15:43 UTC).
+- **Lesson:** before calling a host down, take the host name from the recorded tools, never from memory. Recorded in APP-ACTIONS-PLAYBOOK.md the same day.
