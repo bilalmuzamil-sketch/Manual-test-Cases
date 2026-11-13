@@ -515,3 +515,8 @@
 - **Long names:** our layout tests used long names WITH spaces (they wrap correctly); a name with NO spaces (staging's "ZZBREAK … Superlongunbroken…" customer) was never in our set — a coverage gap. Layout/overflow tests must include one unbroken long name.
 - None of our run-557 tests fails on these tickets.
 - #aging #demo-day #coverage-gap #missed → L0706, L0707
+
+## L0709 — 2026-11-13 — The "columns shift on Expand all" note was the DEVELOPER's, in QA handoff comments — not the PRD, not Product
+- Where it is (read live 13 Nov): Nemanja Djuric's QA handoff comments of 10 Nov — SV-11315 comment 80616 under "KNOWN MISMATCHES AND KNOWN GAPS (not bugs — do not file)" → sub-heading "*Kept by the developer*" (a separate list from "*Decided by Product (Chris, 2026-11-04 / 2026-11-05)*"); also SV-11534 comment 80620, SV-11538 comment 80637 and SV-11598 comment 80635 under "Known mismatches (not bugs)". PRD v12 says nothing about columns staying put or moving.
+- Correction to L0708: "kept by the developer" is NOT product acceptance. Rule 140 check 2 ("not accepted as built") means accepted by Product (PO / PRD / QA lead), and a developer's handoff is facts only (Rules 57, 111, 119). With the PRD silent, the right move was a question to the QA lead / PO (Rule 58), not silence.
+- #aging #handoff #rule140 #correction → L0708
