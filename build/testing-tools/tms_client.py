@@ -88,7 +88,7 @@ class TMS:
         for attempt in range(retries):
             try:
                 r = self.s.request(method, self.base + path, json=body, params=params, timeout=60)
-            except requests.exceptions.ConnectionError:
+            except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
                 # A dropped connection (seen 2026-11-04: proxy reset) is retried for READS only;
                 # a write may already have landed, so retrying it could create a duplicate.
                 if method != "GET" or attempt == retries - 1:

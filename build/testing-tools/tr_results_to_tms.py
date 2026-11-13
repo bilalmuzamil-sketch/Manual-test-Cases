@@ -30,7 +30,8 @@ COPYABLE = {1, 2, 4, 5}  # Passed, Blocked, Retest, Failed (TestRail ids = TMS i
 
 def ledger():
     try:
-        return {int(r["testrail_result_id"]) for r in csv.DictReader(open(LEDGER))}
+        # per TMS run: the same TestRail result may legitimately be copied into more than one TMS run
+        return {(int(r["testrail_result_id"]), int(r["tms_run"])) for r in csv.DictReader(open(LEDGER))}
     except OSError:
         return set()
 
@@ -65,7 +66,7 @@ def main():
     results = sorted(tr.paged("get_results_for_run/%d" % a.tr_run, "results"), key=lambda r: (r["created_on"], r["id"]))
     todo, skipped = [], collections.Counter()
     for r in results:
-        if r["id"] in done:
+        if (r["id"], a.tms_run) in done:
             skipped["already copied"] += 1
         elif r.get("status_id") not in COPYABLE:
             skipped["no status / untested"] += 1

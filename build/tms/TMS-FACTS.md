@@ -528,3 +528,14 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   removal is TMS-only, on the QA lead's explicit order of 2026-11-13.
 - **Rest done:** 1,657 cut + 12 already clean = all 1,669 of ours. **20,139 run entries photographed (1,312 with results) —
   0 changed.** 33 cases not edited by our key in the window were left alone (`quotes-section-left-alone-33.json`).
+
+## 27 · 2026-11-13 — TMS run 26 "A/R and A/P Report Sorting - Staging Smoke" scores from TestRail
+
+- TMS run 26 was created in TMS by Mudassir (12 Nov) — 78 cases from TMS run 7, staging smoke; its TestRail source is
+  **TestRail run 557** (all 78 cases). No TestRail "smoke" run exists.
+- **Bug fixed in `tr_results_to_tms.py`:** the ledger was keyed by TestRail result id only, so results copied to run 7 were
+  skipped as "already copied" for run 26. Now keyed by **(TestRail result, TMS run)**.
+- Posted (never overwrite): **run 26: 6 results / 3 untested cases** → 71 P · 7 B · 0 U; 75 existing results unchanged.
+  **run 7: 10 results / 2 untested cases** → 459 P · 3 B · 4 F · 0 U; 464 existing unchanged.
+- Held: in run 26, **7 cases TMS Blocked vs TestRail Passed**: C10000961, C715300, C715304, C10000960, C10000995, C10001006, C10000984.
+- `tms_client.py`: reads now also retry on timeouts.
