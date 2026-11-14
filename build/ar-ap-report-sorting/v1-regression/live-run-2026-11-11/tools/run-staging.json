@@ -199,48 +199,48 @@
   "utc_end": "2026-11-12T12:53:28.436Z"
  },
  "V1R-07": {
-  "verdict": "FAIL",
+  "verdict": "PASS",
   "checks": [
    {
     "what": "Step 4: 2026-12-31 can be picked",
-    "ok": false,
-    "saw": "Next month is disabled (cannot reach 2026-12-31)"
+    "ok": true,
+    "saw": "picked"
    },
    {
     "what": "Step 5: chip shows that future date",
-    "ok": false,
-    "saw": "As of: 11/12/2026"
+    "ok": true,
+    "saw": "As of: 12/31/2026"
    }
   ],
-  "observed": "NOT OK Step 4: 2026-12-31 can be picked: Next month is disabled (cannot reach 2026-12-31) | NOT OK Step 5: chip shows that future date: As of: 11/12/2026",
-  "expect_fail_outcome": "matches the stated symptom (dates after today cannot be picked; chip stays on today)",
+  "observed": "OK Step 4: 2026-12-31 can be picked: picked | OK Step 5: chip shows that future date: As of: 12/31/2026",
+  "expect_fail_outcome": "differs",
   "evidence": [
    "V1R-07 - step 4 picking the last day of next month.png",
    "V1R-07 - step 5 date chip.png"
   ],
-  "marker": "v26.45.4-b8c04e2",
+  "marker": "v26.45.4-f3d3d2d",
   "env": "staging",
-  "utc_start": "2026-11-12T12:53:28.711Z",
-  "utc_end": "2026-11-12T12:53:36.258Z"
+  "utc_start": "2026-11-14T05:46:31.209Z",
+  "utc_end": "2026-11-14T05:46:42.131Z"
  },
  "V1R-08": {
-  "verdict": "FAIL",
+  "verdict": "PASS",
   "checks": [
    {
     "what": "Step 5: chip shows 12/31/2026",
-    "ok": false,
-    "saw": "As of: 11/12/2026 (address now https://app.staging.shopview.com/reports/ap-aging-summary)"
+    "ok": true,
+    "saw": "As of: 12/31/2026 (address now https://app.staging.shopview.com/reports/ap-aging-summary?asOfDate=2026-12-31)"
    }
   ],
-  "observed": "NOT OK Step 5: chip shows 12/31/2026: As of: 11/12/2026 (address now https://app.staging.shopview.com/reports/ap-aging-summary)",
-  "expect_fail_outcome": "matches the stated symptom (opens on today)",
+  "observed": "OK Step 5: chip shows 12/31/2026: As of: 12/31/2026 (address now https://app.staging.shopview.com/reports/ap-aging-summary?asOfDate=2026-12-31)",
+  "expect_fail_outcome": "differs",
   "evidence": [
    "V1R-08 - step 5 date chip after opening the link.png"
   ],
-  "marker": "v26.45.4-b8c04e2",
+  "marker": "v26.45.4-f3d3d2d",
   "env": "staging",
-  "utc_start": "2026-11-12T12:53:36.545Z",
-  "utc_end": "2026-11-12T12:53:47.424Z"
+  "utc_start": "2026-11-14T05:46:42.382Z",
+  "utc_end": "2026-11-14T05:46:53.280Z"
  },
  "V1R-09": {
   "verdict": "PASS",
@@ -1489,10 +1489,10 @@
    {
     "what": "Step 4: bill not yet due, past-due bill and vendor credit all listed; the not-yet-due bill shows a negative Past Due",
     "ok": true,
-    "saw": "[[\"ZZT-P61-BILL_LATE\",\"Invoice\",\"10\"],[\"C-13916\",\"Vendor Credit\",\"\u2014\"],[\"ZZT-P61-BILL_CUR\",\"Invoice\",\"-27\"]]"
+    "saw": "[[\"ZZT-P61-BILL_LATE\",\"Invoice\",\"10\"],[\"C-13916\",\"Vendor Credit\",\"—\"],[\"ZZT-P61-BILL_CUR\",\"Invoice\",\"-27\"]]"
    }
   ],
-  "observed": "OK Step 4: bill not yet due, past-due bill and vendor credit all listed; the not-yet-due bill shows a negative Past Due: [[\"ZZT-P61-BILL_LATE\",\"Invoice\",\"10\"],[\"C-13916\",\"Vendor Credit\",\"\u2014\"],[\"ZZT-P61-BILL_CUR\",\"Invoice\",\"-27\"]]",
+  "observed": "OK Step 4: bill not yet due, past-due bill and vendor credit all listed; the not-yet-due bill shows a negative Past Due: [[\"ZZT-P61-BILL_LATE\",\"Invoice\",\"10\"],[\"C-13916\",\"Vendor Credit\",\"—\"],[\"ZZT-P61-BILL_CUR\",\"Invoice\",\"-27\"]]",
   "evidence": [
    "V1R-61 - steps 3-4 vendor lines.png",
    "V1R-61 - steps 3-4 vendor lines rows.json"
@@ -1525,17 +1525,17 @@
   "verdict": "PASS",
   "checks": [
    {
-    "what": "Step 5: Due Date \"\u2014\"",
+    "what": "Step 5: Due Date \"—\"",
     "ok": true,
-    "saw": "\u2014"
+    "saw": "—"
    },
    {
-    "what": "Step 6: Past Due \"\u2014\"",
+    "what": "Step 6: Past Due \"—\"",
     "ok": true,
-    "saw": "\u2014"
+    "saw": "—"
    }
   ],
-  "observed": "OK Step 5: Due Date \"\u2014\": \u2014 | OK Step 6: Past Due \"\u2014\": \u2014",
+  "observed": "OK Step 5: Due Date \"—\": — | OK Step 6: Past Due \"—\": —",
   "evidence": [
    "V1R-63 - steps 3-6 vendor credit line.png",
    "V1R-63 - steps 3-6 vendor credit line rows.json"
@@ -2475,7 +2475,7 @@
     "saw": "3 lines; B true, A true, C true"
    },
    {
-    "what": "Step 5 (PRD S7-R3): \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", Cancel left, Switch location right, close \u00d7",
+    "what": "Step 5 (PRD S7-R3): \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", Cancel left, Switch location right, close ×",
     "ok": true,
     "saw": "Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch location | buttons [\"close\",\"Cancel\",\"Switch location\"]"
    },
@@ -2495,7 +2495,7 @@
     "saw": "https://app.staging.shopview.com/workorders/aa8f27d6-e1f0-4daf-a008-86c37491cdd0/finance"
    }
   ],
-  "observed": "OK Step 2: A/R Aging Detail opens: A/R Aging Detail | OK Step 3: every bucket opened; the three invoices are listed (report narrowed to each customer in turn): 3 lines; B true, A true, C true | OK Step 5 (PRD S7-R3): \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", Cancel left, Switch location right, close \u00d7: Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch location | buttons [\"close\",\"Cancel\",\"Switch location\"] | OK Step 6: you stay on the report: A/R Aging Detail https://app.staging.shopview.com/reports/ar-aging-detail?customerIds=9656f09a-0684-4b50-9d22-802d7e877877 | OK Step 7 (PRD S7-R1): the location C invoice ID is plain text: {\"tag\":\"SPAN\",\"tid\":\"text_ardet_doc_b3474619-5556-4ad9-8909-0c12a840f7f2\",\"text\":\"S2-40099\",\"href\":null,\"inLink\":false,\"color\":\"rgb(0, 0, 0)\",\"cursor\":\"auto\",\"textDecoration\":\"none\",\"rowText\":\"Nov 2, 2026 ZZAUTOTEST V1R-87 Location C Invoice S2-40099 ZZAUTOTEST AR V1R-87 Location C Nov 2, 2026 $87.00 $87.00\",\"cursorAfterHover\":\"auto\"} | OK Step 8: the location A invoice opens its finance page directly: https://app.staging.shopview.com/workorders/aa8f27d6-e1f0-4daf-a008-86c37491cdd0/finance",
+  "observed": "OK Step 2: A/R Aging Detail opens: A/R Aging Detail | OK Step 3: every bucket opened; the three invoices are listed (report narrowed to each customer in turn): 3 lines; B true, A true, C true | OK Step 5 (PRD S7-R3): \"Switch location?\" with \"This work order is in Staging Lethbridge - 4310. Switch your active location to view it?\", Cancel left, Switch location right, close ×: Switch location? close This work order is in Staging Lethbridge - 4310. Switch your active location to view it? Cancel Switch location | buttons [\"close\",\"Cancel\",\"Switch location\"] | OK Step 6: you stay on the report: A/R Aging Detail https://app.staging.shopview.com/reports/ar-aging-detail?customerIds=9656f09a-0684-4b50-9d22-802d7e877877 | OK Step 7 (PRD S7-R1): the location C invoice ID is plain text: {\"tag\":\"SPAN\",\"tid\":\"text_ardet_doc_b3474619-5556-4ad9-8909-0c12a840f7f2\",\"text\":\"S2-40099\",\"href\":null,\"inLink\":false,\"color\":\"rgb(0, 0, 0)\",\"cursor\":\"auto\",\"textDecoration\":\"none\",\"rowText\":\"Nov 2, 2026 ZZAUTOTEST V1R-87 Location C Invoice S2-40099 ZZAUTOTEST AR V1R-87 Location C Nov 2, 2026 $87.00 $87.00\",\"cursorAfterHover\":\"auto\"} | OK Step 8: the location A invoice opens its finance page directly: https://app.staging.shopview.com/workorders/aa8f27d6-e1f0-4daf-a008-86c37491cdd0/finance",
   "evidence": [
    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-87 staging-tech - step 3 location B invoice listed.png",
    "/home/user/Manual-test-Cases/build/ar-ap-report-sorting/v1-regression/staging-run-2026-11-12/shots/V1R-87 staging-tech - step 5 Switch location prompt.png",
