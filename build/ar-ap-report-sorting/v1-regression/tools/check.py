@@ -9,7 +9,7 @@ Checks:
             steps and expected present; every invariant named exists.
   register- every invariant has a new case, an existing PRD-suite case, or a written reason; every
             CHANGED/REMOVED-BY-DESIGN row carries a document quote; every POSSIBLY LOST row has a case
-            and a PO question; every quoted sentence is word for word in the saved PRD v12; every
+            and a PO question; every quoted sentence is word for word in the saved PRD v13; every
             existing PRD-suite key is in the id map.
   sources - (with --repo) every V1 citation names a file that exists at fc08f23 and a line range inside it.
 """
@@ -42,7 +42,7 @@ def main():
     problems = []
 
     cases = json.loads((ROOT / "cases" / "cases.json").read_text(encoding="utf-8"))
-    PRD_TEXT = (ROOT / "sources" / "PRD-947650561-v12-2026-11-12.md").read_text(encoding="utf-8")
+    PRD_TEXT = (ROOT / "sources" / "PRD-947650561-v13-2026-11-14.md").read_text(encoding="utf-8")
     keys = [c["id"] for c in cases]
     if keys[:72] != [f"V1R-{n:02d}" for n in range(1, 73)] or len(set(keys)) != len(keys):
         problems.append("case keys V1R-01..V1R-72 must stay first, in order, and keys must be unique")
@@ -70,7 +70,7 @@ def main():
             for e in quotes:
                 q = e.split(", quoted: \u201c", 1)[1].rsplit("\u201d", 1)[0]
                 if q not in PRD_TEXT:
-                    problems.append(f"{cid}: quote not word for word in PRD v12: {q[:60]!r}")
+                    problems.append(f"{cid}: quote not word for word in PRD v13: {q[:60]!r}")
             if not any("(unchanged from before the release)" in e for e in c["expected"]):
                 problems.append(f"{cid}: no step checking what the PRD does not change")
             if not any(e.startswith("Related existing case:") for e in c["expected"]):
@@ -99,7 +99,7 @@ def main():
         if not block.endswith(c["marker"]):
             problems.append(f"{c['id']}: marker is not the last line of the case in CASES.md")
 
-    prd = (ROOT / "sources" / "PRD-947650561-v12-2026-11-12.md").read_text(encoding="utf-8")
+    prd = (ROOT / "sources" / "PRD-947650561-v13-2026-11-14.md").read_text(encoding="utf-8")
     with (ROOT / "sources" / "PRD-SUITE-ID-MAP-group-90418.csv").open(encoding="utf-8") as fh:
         idm = {r["key"] for r in csv.DictReader(fh)}
     wc = {w["inv"]: w for w in json.loads((ROOT / "what-changed.json").read_text(encoding="utf-8"))}
@@ -113,7 +113,7 @@ def main():
             if not q:
                 problems.append(f"{iid}: {i['status']} without a document quote")
             elif q["text"] not in prd:
-                problems.append(f"{iid}: quote not found word for word in PRD v12: {q['text'][:60]!r}")
+                problems.append(f"{iid}: quote not found word for word in PRD v13: {q['text'][:60]!r}")
         if i["status"] == "POSSIBLY LOST" and (iid not in served or not i.get("po")):
             problems.append(f"{iid}: POSSIBLY LOST needs a case and a PO question")
         for k in i.get("existing", []):
