@@ -566,3 +566,6 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   update (the pictures block stays ignored and preserved).
 - **Bill To pictures:** 203 cases (409 pictures) — TestRail links replaced by embedded TMS pictures. **28 Bill To cases with
   pictures are not in TMS** (new in TestRail since the 10 Nov sync) — reported, not synced.
+- **Done:** Bill To pictures 203/203. **Preconditions heading removed:** Internal Work order 628 (+20 already clean), rest 1,607
+  (+62 already clean). **24,308 run entries photographed (1,349 with results) — 0 changed.**
+- QA lead: *"Sync the missing ~28 bill to cases too"* → Bill To sync + pictures + run rebuilds running.
