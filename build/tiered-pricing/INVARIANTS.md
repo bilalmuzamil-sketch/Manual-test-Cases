@@ -15,9 +15,9 @@ Date: 2026-11-14 · V2 specs: Tiered Pricing PRD 938213378 page v37 (in-body v0.
 
 ## TALLY
 
-Baseline behaviours: **93** · KEPT (V2 restates it) **62** · SILENT **17** · CHANGED **10** · REPLACED **3** · REMOVED (by omission) **1**  
+Baseline behaviours: **93** · KEPT (V2 restates it) **62** · SILENT **17** · CHANGED **10** · REPLACED **3** · REMOVED **1**  
 Arithmetic check: 62 + 17 + 10 + 3 + 1 = 93 = baseline 93 → PASS  
-**INVARIANTS (KEPT + SILENT) = 79** → regression cases for the separate folder · superseded (CHANGED + REPLACED, become new-behaviour cases in the story folders) = 13 · REMOVED-by-omission → PO question = 1  
+**INVARIANTS (KEPT + SILENT) = 79** → regression cases for the separate folder · superseded (CHANGED + REPLACED, become new-behaviour cases in the story folders) = 13 · REMOVED (documented by PRD column list + design) = 1, superseded  
 Collateral risk: H 32 · M 39 · L 20 · not rated (superseded wording) 2  
 Several rows are KEPT with a CHANGED sub-part (e.g. INV-09, INV-10, INV-38, INV-41): the kept half is the invariant; the changed half is a story case. Classified by the kept half.
 
@@ -31,7 +31,7 @@ Several rows are KEPT with a CHANGED sub-part (e.g. INV-09, INV-10, INV-38, INV-
 | INV-79 Inventory part dialog without See Financial Data | a permission gate is added to an endpoint the dialog calls for every user today | Not asked: the plan prevents ejection (D34). Regression case. |
 | INV-69 Parts tab / Part Sale table columns | one column inserted into a 3,867-line positional table in both modes | Not asked (behaviour stated). Regression case. |
 | INV-26 / TPX-01 Reopened paid work order | the tier a re-created work order takes is decided by engineering (customer's current tier) and posted to Product only as an FYI; PRD S10-R14 says a work order keeps the tier its customer had when it was made | **PO question Q1** (money) |
-| INV-52 Categories list QuickBooks column | a V1 column disappears without a PRD sentence | **PO question Q3** — drop it if the design shows the list without the column |
+| INV-52 Categories list QuickBooks column | a V1 column disappears without a PRD sentence | Settled 14 Nov 2026 by the design (7.1 "Today" vs 7.3): deliberate removal; Q3 dropped |
 
 ## The matrix
 
@@ -97,7 +97,7 @@ Columns: V1 behaviour · where V1 guarantees it · what the code does today · V
 | INV-49 | The Fixed Rules tab lists only fixed rules and works as today (create, edit, delete a fixed rule in its dialog). | PRD S6-R11, S1-R6; tech plan 1 SV-12681 item 3 | Tech plan 1 Appendix B F1: panel moved verbatim | **KEPT (restated); its sorting stays on SV-11258** — S6-R11 "The Fixed Rules tab lists only fixed rules, as today."; S1-R6 "Fixed rules are unchanged on release day and work as today." | H — Settings › Pricing rewritten around it | regression case | Staging (preferred) · QA branch (once Tiered Pricing is deployed there) · Production: not needed |
 | INV-50 | Settings › Pricing has "Pricing Matrices (N)" and "Fixed Rules (N)" tabs; a matrix opens in the "Edit Price Matrix" dialog. | Playbook §H (live 2026-07-29) | NOT AVAILABLE | **REPLACED (Tiers / Matrices / Fixed Rules tabs; matrix page)** — S6-R11 "replacing today's Pricing matrices and Fixed rules tabs"; S3-R18 "It replaces today's matrix editor dialog." | — | superseded (no V1 case in our suite to retire) | Staging (preferred) · QA branch (once Tiered Pricing is deployed there) · Production: not needed |
 | INV-51 | Edit Category is a dialog with name, QuickBooks Products and Services (when connected) and Tax Exempt. | PRD S7-R6; ticket SV-12458 context | NOT AVAILABLE | **REPLACED by the category page; every field kept** — S7-R6 "Every field today's Edit Category has stays on the page." | M | regression case for every kept field and its save | Staging (preferred) · QA branch (once Tiered Pricing is deployed there) · Production: not needed (QuickBooks field only where QuickBooks is connected) |
-| INV-52 | The Settings › Categories list shows a QuickBooks column. | Tech plan 1 (code read by engineering, 2026-11-11) Appendix B §10 item 12 (FE code read) | Tech plan 1 Appendix B | **REMOVED BY OMISSION (S7-R1 lists the columns without it; engineering drops it)** — S7-R1 lists: "Category, Pricing Matrix, Default, then one column per active tier" | M — same list, mapping visibility | PO question Q3 (conditional on the design) | Staging (preferred) · QA branch (once Tiered Pricing is deployed there) · Production: not needed |
+| INV-52 | The Settings › Categories list shows a QuickBooks column. | Tech plan 1 (code read by engineering, 2026-11-11) Appendix B §10 item 12 (FE code read) | Tech plan 1 Appendix B | **REMOVED (S7-R1 lists the columns without it; the design shows the removal: board 7.1 "Today" has "QuickBooks Products And Services", board 7.3 has none, board 7.8 puts the mapping on the category page)** — S7-R1 lists: "Category, Pricing Matrix, Default, then one column per active tier" | M — same list, mapping visibility | superseded — new-behaviour case (new column set; mapping on the category page). Q3 dropped 2026-11-14: PRD and design agree | Staging (preferred) · QA branch (once Tiered Pricing is deployed there) · Production: not needed |
 | INV-53 | Settings Parts group order: Pricing, Bin Locations, Categories. | PRD S7-R14 ("Today it lists Pricing, Bin Locations, then Categories.") | NOT AVAILABLE | **CHANGED (Categories, Pricing, Bin Locations)** — S7-R14 | — | superseded — new-behaviour case | Staging (preferred) · QA branch (once Tiered Pricing is deployed there) · Production: not needed |
 | INV-54 | The Bin Locations page works as today. | Same Settings › Parts group | NOT AVAILABLE | **SILENT** — — | L — same menu group re-ordered | regression case (opens from its new position, works) | Staging (preferred) · QA branch (once Tiered Pricing is deployed there) · Production: not needed |
 | INV-55 | Settings › Pricing needs only 'Settings — Parts'. | PRD S16-R11 ("Today Settings › Pricing needs only 'Settings — Parts'.") | NOT AVAILABLE | **CHANGED (tiers/matrices also need 'See Financial Data'; Fixed Rules still only 'Settings — Parts')** — S16-R11 | H — permissions | superseded — new-behaviour case; invariant = Fixed Rules still reachable with 'Settings — Parts' alone | Staging (preferred) · QA branch (once Tiered Pricing is deployed there) · Production: not needed |
@@ -162,13 +162,13 @@ Columns: V1 behaviour · where V1 guarantees it · what the code does today · V
 
 ## HONEST LIMIT
 
-Undocumented, untested, code-invisible behaviours cannot be fully enumerated. This baseline comes from documents (the PRD's own baseline section and its "as today" sentences), from engineering's second-hand code reading in the two tech plans, and from our repo's records; no product source code was read in this session and no V1 TestRail case set exists in our repo for pricing, so a V1 behaviour that none of these mention is **not** in the list above and cannot become an invariant. This is a disclosure, never a discount: the list is reviewed with the QA lead and, through Q1/Q3, with the PO, and every high-risk silence was considered in writing on 14 Nov 2026.
+Undocumented, untested, code-invisible behaviours cannot be fully enumerated. This baseline comes from documents (the PRD's own baseline section and its "as today" sentences), from engineering's second-hand code reading in the two tech plans, and from our repo's records; no product source code was read in this session and no V1 TestRail case set exists in our repo for pricing, so a V1 behaviour that none of these mention is **not** in the list above and cannot become an invariant. This is a disclosure, never a discount: the list is reviewed with the QA lead and, through Q1, with the PO, and every high-risk silence was considered in writing on 14 Nov 2026.
 
 ## OUTSTANDING — what I need from you
 
 | What is missing | Who owes it | What it blocks, concretely | Since |
 |---|---|---|---|
 | Product source code access (or a developer to confirm what else depends on the resolver, the shared filter components and the shared export classes) | QA lead / engineering (Milan Zivanovic) | The "code today" column stays NOT AVAILABLE; the dependency list behind the H/M/L ratings is engineering's plan, not verified code | 2026-11-14 |
-| Answers to Q1 (reopened paid work order tier) and Q3 (Categories list QuickBooks column) | PO Matt Barge, via the QA lead (drafts only; not sent) | INV-26's reopen half / TPX-01, and INV-52 | 2026-11-14 |
+| Answer to Q1 (reopened paid work order tier) | PO Matt Barge, via the QA lead (draft only; not sent) | INV-26's reopen half / TPX-01 | 2026-11-14 |
 | Whether Custom Roles group 3527 already holds cases for 'Settings — Parts' / 'See Financial Data' on Settings › Pricing and Categories | read of TestRail (allowed read-only; not done in this intake) | duplicate avoidance and the retire/rewrite list for permission cases that the V2 changes (INV-55) | 2026-11-14 |
 | The Tiered Pricing QA branch name (and whether its database predates the release) | engineering | which invariant rows can also run on QA ("history" rows) | 2026-11-14 |
