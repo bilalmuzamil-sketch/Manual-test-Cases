@@ -115,3 +115,22 @@ by a case in its own story section (or WAIT, DESIGN, INV), so a phase-1 case tha
   The design package has no Inter italic font: check "Uses previous tier" as gray italic, never by letter shape; judge from our PNGs,
   not the viewer's PDF export.
 - Folders: `sections.json` (planned; not created in TestRail).
+
+## 7 · Consolidation changes (14 Nov 2026) — what the library now does for you
+
+- **Admin sign-in line (Rule 137):** any "Sign in as an Admin whose role has …" line is rewritten by `tp_lib.C()` to exactly the permissions the
+  case uses (`perms.py`, from the PRD Permissions table TP-PERM-1…12 and S16-R4/R5/R8, S9-R15); build.py fails a line that differs. Write any
+  Admin constant you like; the case gets the right list. Permission tests ("Sign in as a user whose role … but not …") are left as written,
+  and build.py fails an Admin line that has a permission another precondition says the user must not have.
+- **Quick Add steps (Rule 135):** "Add a part to line 1 with category A and cost 100.00." (and the other work-order variants in `expand.py`)
+  is split into one action per step with board 10.6's labels (Add Part, Description, Qty, Category, Cost, Save); your results go on the final
+  "Click Save." step and board 10.6 is attached. A work order the step adds to gets "with one labor line (line 1)" if its precondition gave it
+  no line. build.py fails any other open-fill-save step unless it is a flow no source draws (KEEP_WHOLE: Part Sale add row, Tech View, part
+  request modal, special-order Source, returns, credits, invoicing, records made from a picker); those are listed in `kept-whole-steps.json`.
+- **Full-height pictures:** `full:9.30` attaches `page-09-board-30-…-full-height.png`; any board with a full-height file gets it added beside
+  the normal picture automatically (9.28-9.35, 9.37, 10.6, 10.7, 10.9, 12.9, 14.8).
+- **Invariant source `QI("verbatim text", "INV-78", doc="TP1")`:** for an INVARIANTS.md row the PRD is silent on; checked word for word in the
+  named source (TP1, TP2, PRD, RPT, JIRA). The case still needs one PRD-sourced bullet. INV-78 uses it; INV-76 stays unwritten (no screen named).
+- **PERM refs:** a Permissions-table row now shows as `PERM-n` in the References field.
+- **Window sizes:** DESK and W1440 now say why ("so every column of the page shows", "so the screen matches the design pictures' size");
+  build.py fails an exact window size on a behaviour case that does not say why.

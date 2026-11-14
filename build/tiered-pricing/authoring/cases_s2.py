@@ -287,8 +287,8 @@ C("S2-28", K, "Remove Customers opens Manage Customers on the Remove tab",
   pics=["2.19", "2.20"])
 
 C("S2-29", K, "Remove Customers link is hidden without Customers — Create & Edit",
-  [CUST2.replace(" and 'Customers — Create & Edit'", "").replace("'Customers — Create & Edit', ", ""),
-   "Make sure the signed-in user's role has 'Customers — View' but not 'Customers — Create & Edit'.", tier("A"), customer("A", ", on tier A for work orders"), DESK],
+  ["Sign in as a user whose role (made for this test) has 'Settings — Parts', 'See Financial Data' and 'Customers — View' but not "
+   "'Customers — Create & Edit'. An Admin makes the records below before the test.", tier("A"), customer("A", ", on tier A for work orders"), DESK],
   [TIERS, "Open tier A's three-dot menu on the Tiers list.", "Click Archive."],
   [R(S("S2-R14"), "Tier A is listed."), R(S("S2-R26"), "The menu offers Archive."),
    R(S("S2-R12", "The link shows only to users with 'Customers — Create & Edit'."), "The blocked dialog lists customer A and has Close.", "No Remove Customers link shows.")],

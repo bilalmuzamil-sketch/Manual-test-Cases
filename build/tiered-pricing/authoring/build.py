@@ -120,6 +120,11 @@ for c in L.CASES:
         rest = [x for x in c["pre"] if x not in adm]
         want = PM.line(PM.needed(rest, c["steps"], [b.t for b in L.bullets(c)]))
         if adm[0] != want: P(f"{k}: the Admin sign-in line asks for other permissions than the case uses: {adm[0]!r} (wants {want!r})")
+    if adm:
+        for x in c["pre"]:
+            for p in re.findall(r"but not '([^']+)'", x):
+                if x.startswith(("Make sure", "Sign in")) and p in PM.listed(adm[0]):
+                    P(f"{k}: the Admin sign-in line has '{p}' but another precondition says the signed-in user must not have it")
     for x in c["pre"]:
         if x.startswith("Use a desktop browser window") and c["sec"] != "DESIGN" and "exactly" in x and " so " not in x:
             P(f"{k}: an exact window size on a behaviour case without saying why: {x!r}")
