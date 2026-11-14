@@ -20,10 +20,10 @@ sys.path.insert(0, "/home/user/Manual-test-Cases/build/dashboards/currency-2026-
 sys.path.insert(0, f"{B}/authoring")
 APPLY = "--apply" in sys.argv
 KEYS = [f"D-{n}" for n in range(82, 96)]
-HELD = {"D-94": "held on a product owner question (columns moving while more lines load); joins run 557 when answered"}
+HELD = {}   # 14 Nov 2026: D-94 tied to SV-12763 on the QA lead's choice; nothing held
 RUN, ASSIGN, SECTION = 557, 6, 90430
 SETUP_FOLDER = 133629
-SETUP_KEYS = ["D-82", "D-83", "D-84", "D-85", "D-86", "D-87", "D-88", "D-89", "D-95"]
+SETUP_KEYS = list(KEYS)   # 14 Nov 2026, QA lead: all 14 go to "Setup needed before testing" (133629)
 def target(k): return SETUP_FOLDER if ("--setup-folder" in sys.argv and k in SETUP_KEYS) else SECTION
 PROP = json.load(open(f"{B}/authoring/proposals.json"))
 MAP = f"{B}/testrail-id-map.csv"

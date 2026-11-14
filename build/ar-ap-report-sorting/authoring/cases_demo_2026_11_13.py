@@ -241,11 +241,12 @@ D("D-94", "Design: A/R Detail columns stay in place while more lines load",
    ["More lines load under the first 100.", SAME]],
   [prd13("S4-R4"), PIC23], ["ARD"], [4], "SV-12763, SV-11534, PRD v13 S4-R4",
   ["I14", "I15"],
-  "The design draws no picture of lines loading while scrolling. No source sentence says whether the columns may move while more lines "
-  "load; this case is held until the product owner answers.",
-  marker=HOLD_SCROLL,
-  note=("Held: the product owner's post speaks of the tables moving when groups expand or collapse; it does not mention lines loading "
-        "while scrolling, and no other source does. The question is with the product owner; until it is answered, do not run this test."))
+  "The design draws no picture of lines loading while scrolling. The expected results come from Chris Ward's Slack post quoted above "
+  "(the tables should not jump around); SV-12763, raised from that post, records the columns moving while more lines load as part of "
+  "the same problem, so this case follows it (QA lead, 14 Nov 2026: tie it to SV-12763 rather than ask the product owner).",
+  marker="AUTOMATION: READY - EXPECT FAIL (SV-12763)",
+  ef_html=ef("SV-12763", "as more lines load under the first 100, the column headings and lines move sideways a little (on the "
+             "ticket, the columns also moved a little more as further rows loaded while scrolling)."))
 
 # ============================== 5. The PDF's "Total for" row with a long no-space name (S3-R7b, new in version 12) ==============================
 D("D-95", "Design: A/R Collection PDF wraps a long no-space name in its Total row",
