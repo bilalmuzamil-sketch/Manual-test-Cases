@@ -1,0 +1,12 @@
+import pw from '/opt/node22/lib/node_modules/playwright/index.js'; const { chromium } = pw;
+import fs from 'fs';
+const PORT = fs.readFileSync('/tmp/atlassian/bridge-port.txt', 'utf8').trim();
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', headless: true, proxy: { server: `http://127.0.0.1:${PORT}` }, args: ['--no-sandbox', '--ignore-certificate-errors'] }).catch(() => chromium.launch({ headless: true, proxy: { server: `http://127.0.0.1:${PORT}` }, args: ['--no-sandbox', '--ignore-certificate-errors'] }));
+const p = await (await b.newContext({ ignoreHTTPSErrors: true, viewport: { width: 1600, height: 1000 } })).newPage();
+const resp = await p.goto('' + (process.env.U || 'https://sv11315.qa.shopview.com/login') + '', { waitUntil: 'domcontentloaded' }).catch(e => ({ status: () => 'ERR ' + e.message.split('\n')[0] }));
+await p.waitForTimeout(12000);
+console.log('status', resp.status(), 'url', p.url());
+console.log('version meta', await p.evaluate(() => document.querySelector('meta[name=app-version]')?.content).catch(() => '?'));
+console.log('TEXT', (await p.locator('body').innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 600));
+await p.screenshot({ path: new URL('./59/login.png', import.meta.url).pathname });
+await b.close();
