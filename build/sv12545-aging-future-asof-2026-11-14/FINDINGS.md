@@ -55,3 +55,12 @@ None: the aging reports only read data; no document, balance or sync is created 
 
 ## Data / environment
 Nothing created. Location switched to Lethbridge for check 15 and switched back to Staging Heavy Duty - 9919 (shared staging).
+
+## Posted (14 Nov 2026)
+- Gate: build marker re-read live at 06:31 UTC = v26.45.4-f3d3d2d (unchanged); newest comment still 81174 (Nemanja); fingerprint scan clean; no technical section.
+- Comment **81186**: green PASSED panel first, 18-row table, 6 pictures (EX1/EX3 before-after with the ticket's own QA-branch pictures as before) + the recording last; echo read back in order. All 7 uploads' sizes equal the local files.
+- Label `QAcomplete` added (kept AP-AR-FM, QA_Found); QA Assignee set to Bilal Muzamil (was empty). **Status left at "Merged to Staging"** - the only transitions offered are Blocked, Close (OBSOLETE), Testing in Staging / Back (TESTING STAGE); neither QA Complete nor Ready for Production is available. Asked the QA lead.
+- Side question to the QA lead (not filed): A/R Summary PDF columns off the page - exhibits/SIDE-arsum-pdf-columns-off-page.png.
+
+## Learning check
+- New fact for the playbook: on staging the screen sends the BROWSER's timezone with every aging request (`timezone=Asia/Karachi` from a Karachi browser), and Chromium's built-in tz data puts America/Edmonton at UTC-7 while this machine/server use UTC-6 - test a day-boundary behaviour with a browser timezone whose offset matches the server, or results flip around local midnight.
