@@ -1,0 +1,11 @@
+import {sess} from './common.mjs'; import fs from 'fs';
+const s=await sess({tz:'America/Edmonton'}); const p=s.page; await s.go('/reports/ar-aging-summary'); await p.waitForTimeout(5000);
+console.log('chip',(await p.locator('[data-test-id=filter_chip_asOfDate]').innerText()).replace(/\n/g,' | '));
+await s.glideClick('filter_chip_asOfDate'); await p.waitForTimeout(1500);
+const info=await p.evaluate(()=>{ const root=document.querySelector('[data-test-id=filter_single_date_asOfDate]')||document.querySelector('.q-date');
+  if(!root) return {err:'no calendar', tids:[...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).filter(t=>/date|asof|calendar/i.test(t))};
+  const btns=[...root.querySelectorAll('button')].map(b=>({t:b.innerText.trim().replace(/\n/g,' '),dis:b.disabled||b.getAttribute('aria-disabled')==='true'||b.classList.contains('disabled'),aria:b.getAttribute('aria-label'),cls:b.className.slice(0,60)}));
+  return {tag:root.tagName,tid:root.getAttribute('data-test-id'),cls:root.className.slice(0,100),head:root.innerText.slice(0,200).replace(/\n/g,' | '),btns};});
+console.log(JSON.stringify(info,null,0).slice(0,3500));
+await p.screenshot({path:'../ev/explore-menu.png'});
+await s.close(); process.exit(0);
