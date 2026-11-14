@@ -27,6 +27,11 @@ PATS = [  # (regex, how to read line / category / cost / quantity / work order)
      lambda m: dict(line=None, cat=None, cost="the noted cost", qty="1", wo=m[1], catx="the noted category")),
 ]
 FILL = re.compile(r"^Fill the row with category ([A-Z]), cost ([\d.,]+) and sell price (-?[\d.,]+)\.$")
+# other open-change-save steps whose screens the design draws (pages 2, 9, 14): Set Rule on a tier's page, a customer's tier in Edit Customer,
+# Change Customer on a work order. Labels from the boards and from the cases that already spell these flows out (S2-52, S9-23, S14-03).
+SETRULE = re.compile(r"^Set tier ([A-Z])'s rule in matrix ([A-Z]) to % Off (\d+) with Set Rule\.$")
+PUTCUST = re.compile(r"^Put customer ([A-Z]) on (tier [A-Z]|Default) for work orders in Edit Customer\.$")
+CHGCUST = re.compile(r"^Change the customer to customer ([A-Z]) with Change Customer in the work order's three-dot menu\.$")
 
 
 def _wo_has_line(pre, wo):
@@ -46,7 +51,7 @@ def _give_line(pre, wo):
     return out
 
 
-def expand(pre, steps, res, pics, first_row, B, QD):
+def expand(pre, steps, res, pics, first_row, B, QD, S_=None):
     """Returns (pre, steps, res, pics, n_expanded). B and QD are tp_lib's builders; first_row is a PRD row the case already cites."""
     row = first_row or "S11-R7"
     q = lambda t: QD(t, "10.6", row)
@@ -101,11 +106,38 @@ def expand(pre, steps, res, pics, first_row, B, QD):
             for st, rr in seq: new_s.append(st); new_r.append(rr)
             where[i] = len(new_s)
             continue
+        seq = None
+        m = SETRULE.match(s)
+        if m and new_s and re.match(rf"^Click tier {m[1]}'s row", new_s[-1]):
+            seq = [(f"Check matrix {m[2]}.", [B("The bulk bar shows the count 1.", S_("S2-R22"))]),
+                   (f"Type {m[3]} in the bulk bar's value.", [B(f"% Off is picked with the value {m[3]}.", S_("S2-R22"))]),
+                   ("Click Set Rule.", [B("The Set Rule question opens.", S_("S2-R23"))]),
+                   ("Click Set Rule in the dialog.", r)]
+        m = PUTCUST.match(s)
+        if m:
+            seq = [(f"Open customer {m[1]}'s page from Customers.", [B(f"Customer {m[1]}'s page opens.", S_("S9-R7"))]),
+                   ("Click the edit pencil on the customer card.", [B("Edit Customer opens.", S_("S9-R7"))]),
+                   ("Open the Work Order Tier picker.", [B(f"The picker lists {m[2]}.", S_("S9-R30"))]),
+                   (f"Pick {m[2]}.", [B(f"Work Order Tier reads {m[2]}.", S_("S9-R1"))]),
+                   ("Click Save.", r)]
+        m = CHGCUST.match(s)
+        if m:
+            wo = ctx[1] if ctx and ctx[0] == "wo" and str(ctx[1]).isdigit() else None
+            seq = [(f"Open work order {wo}'s three-dot menu." if wo else "Open the work order's three-dot menu.",
+                    [B("The menu lists Change Customer, Split Work Order and Back to Work Orders.", S_("S14-R4"))]),
+                   ("Click Change Customer.", [B("The Change Customer dialog opens.", S_("S14-R4"))]),
+                   (f"Pick customer {m[1]}.", [B(f"Customer {m[1]} is picked.", S_("S14-R4"))]),
+                   ("Click Update Customer.", r)]
+        if seq:
+            n += 1
+            for st, rr in seq: new_s.append(st); new_r.append(rr)
+            where[i] = len(new_s)
+            continue
         new_s.append(s); new_r.append(r); where[i] = len(new_s)
     if n:
         fix = lambda t: re.sub(r"\b([Ss]teps?) (\d+)", lambda m: f"{m[1]} {where.get(int(m[2]), int(m[2]))}", t)
         pre = [fix(x) for x in pre]
         for rr in new_r:
             for b in rr: b.t = fix(b.t)
-        if "10.6" not in pics: pics = list(pics) + ["10.6"]
+        if any("Add Part" in x for x in new_s) and "10.6" not in pics: pics = list(pics) + ["10.6"]
     return pre, new_s, new_r, pics, n

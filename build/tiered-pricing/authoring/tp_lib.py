@@ -144,7 +144,7 @@ def C(key, sec, title, pre, steps, res, pics=None, nopic=None, marker=None, held
     flags: "stress", "movement", "numbers", "design-version". stories: override the story list for refs. extra_refs: extra tickets."""
     import expand as _X, perms as _PM, design_refs as _DR
     first_row = next((x.row for r_ in res for b_ in r_ for x in b_.src if x.kind in ("row", "prd")), None)
-    pre, steps, res, pics, n_exp = _X.expand(list(pre), list(steps), [list(r_) for r_ in res], list(pics or []), first_row, B, QD)
+    pre, steps, res, pics, n_exp = _X.expand(list(pre), list(steps), [list(r_) for r_ in res], list(pics or []), first_row, B, QD, S)
     adm = [x for x in pre if _PM.ADMIN_RX.match(x)]
     orig_admin = adm[0] if adm else None
     if adm:

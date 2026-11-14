@@ -1671,7 +1671,7 @@
    "refs": "SV-12458 (Story 7 S7-R6)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
-   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts' and 'See Financial Data'.</li><li>Have a new matrix for this test, matrix A, pricing a new category made for this test, category A, and no other.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size.</li></ul>",
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts' and 'See Financial Data'.</li><li>Use a client connected to QuickBooks, so the QuickBooks Products And Services field shows.</li><li>Have a new matrix for this test, matrix A, pricing a new category made for this test, category A, and no other.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size.</li></ul>",
    "custom_steps": "<ol><li>Open Settings › Categories.</li><li>Click category A's row.</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Categories list shows category A's row.</li></ul><p>Step 2:</p><ul><li>The breadcrumb reads Settings › Categories › and category A's name.</li><li>The title is category A's name, with a three-dot button and a white New Matrix button at the top right.</li><li>Under the title sit a Pricing Matrix picker with an info icon beside it, a QuickBooks Products And Services picker and a Tax Exempt checkbox.</li><li>Below, matrix A's name labels a read-only grid with an Edit button at its top right and no Price Part Simulator, as in picture 7.8.</li><li>The name, QuickBooks Products And Services and Tax Exempt of today's Edit Category dialog (picture 7.2) are all on the page.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
@@ -2350,7 +2350,7 @@
    "refs": "SV-11704 (Story 8 S8-R4)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
-   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts' and 'See Financial Data'.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size.</li></ul>",
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts' and 'See Financial Data'.</li><li>Use a client connected to QuickBooks, so the QuickBooks Products And Services field shows.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size.</li></ul>",
    "custom_steps": "<ol><li>Open Settings › Categories.</li><li>Click Uncategorized's row.</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Categories list shows.</li></ul><p>Step 2:</p><ul><li>A grayed Pricing Matrix box reading General Matrix and a grayed Tax Exempt checkbox show under the title.</li><li>The QuickBooks Products And Services picker shows in its usual style, as in picture 8.3.</li></ul><p></p><p>AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 21)</p>"
   },
@@ -2503,7 +2503,7 @@
    "refs": "SV-11704 (Story 8 S8-R10), SV-11709 (Story 19 S19-R1)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
-   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts' and 'See Financial Data'.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size.</li></ul>",
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts' and 'See Financial Data'.</li><li>Use a client connected to QuickBooks, so the QuickBooks Products And Services field shows.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size.</li></ul>",
    "custom_steps": "<ol><li>Open Settings › Categories.</li><li>Click New Category.</li><li>Click the blue button at the top right.</li><li>Type a name no other category uses.</li><li>Click the blue button at the top right.</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Categories list shows a blue New Category button.</li></ul><p>Step 2:</p><ul><li>The breadcrumb reads Settings › Categories › New Category; a large empty name field with the placeholder \"Category name\" holds the cursor.</li><li>Under it sit the Pricing Matrix picker (reading \"General Matrix (no matrix of its own)\"), an info icon, the QuickBooks Products And Services picker and Tax Exempt.</li><li>Below, \"General Matrix\" with a Default badge labels the read-only grid, as in picture 8.6.</li></ul><p>Step 3:</p><ul><li>Red text under the field reads \"Name is a required field\".</li><li>The field is outlined in red, as in picture 8.7.</li></ul><p>Step 4:</p><ul><li>The name shows in the large field.</li></ul><p>Step 5:</p><ul><li>A white message at the bottom right reads the new name with \"created\" and \"Priced by General Matrix for every tier.\"</li><li>The page now shows the name as its title, a three-dot button and New Matrix, as in picture 8.9.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
@@ -10065,11 +10065,13 @@
   "section_name": "Story 10: How a part is priced",
   "section_id": null,
   "title": "A work order keeps its tier after the customer moves to another tier",
-  "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11697 (Story 9 S9-R7)",
+  "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11697 (Story 9 S9-R7 S9-R30 S9-R1)",
   "rows": [
    "TP-S10-R1",
    "TP-S10-R20",
    "TP-S9-R7",
+   "TP-S9-R30",
+   "TP-S9-R1",
    "TP-S10-R14"
   ],
   "tpx": [],
@@ -10096,12 +10098,12 @@
    "template_id": 1,
    "type_id": 7,
    "priority_id": 2,
-   "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11697 (Story 9 S9-R7)",
+   "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11697 (Story 9 S9-R7 S9-R30 S9-R1)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
-   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new tier for this test, tier B, with a name no other tier uses, whose column in matrix A is % Off 20.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1).</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
-   "custom_steps": "<ol><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li><li>Put customer A on tier B for work orders in Edit Customer.</li><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li><li>Create a new work order, work order 2, for customer A with one labor line.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 2:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 3:</p><ul><li>Description holds the typed text.</li></ul><p>Step 4:</p><ul><li>Qty holds 1.</li></ul><p>Step 5:</p><ul><li>Category shows category A.</li></ul><p>Step 6:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 7:</p><ul><li>The part fills in at $121.50 ($135.00 × 0.90 = $121.50).</li></ul><p>Step 8:</p><ul><li>Customer A is saved on tier B.</li></ul><p>Step 9:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 10:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 11:</p><ul><li>Description holds the typed text.</li></ul><p>Step 12:</p><ul><li>Qty holds 1.</li></ul><p>Step 13:</p><ul><li>Category shows category A.</li></ul><p>Step 14:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 15:</p><ul><li>The new part on work order 1 fills in at $121.50, still tier A's price.</li></ul><p>Step 16:</p><ul><li>Work order 2 opens.</li></ul><p>Step 17:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 18:</p><ul><li>Description holds the typed text.</li></ul><p>Step 19:</p><ul><li>Qty holds 1.</li></ul><p>Step 20:</p><ul><li>Category shows category A.</li></ul><p>Step 21:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 22:</p><ul><li>The part on work order 2 fills in at $108.00, tier B's price: $135.00 less 20% = $108.00.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'View and Manage AP/AR Data', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new tier for this test, tier B, with a name no other tier uses, whose column in matrix A is % Off 20.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1).</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li><li>Open customer A's page from Customers.</li><li>Click the edit pencil on the customer card.</li><li>Open the Work Order Tier picker.</li><li>Pick tier B.</li><li>Click Save.</li><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li><li>Create a new work order, work order 2, for customer A with one labor line.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 2:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 3:</p><ul><li>Description holds the typed text.</li></ul><p>Step 4:</p><ul><li>Qty holds 1.</li></ul><p>Step 5:</p><ul><li>Category shows category A.</li></ul><p>Step 6:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 7:</p><ul><li>The part fills in at $121.50 ($135.00 × 0.90 = $121.50).</li></ul><p>Step 8:</p><ul><li>Customer A's page opens.</li></ul><p>Step 9:</p><ul><li>Edit Customer opens.</li></ul><p>Step 10:</p><ul><li>The picker lists tier B.</li></ul><p>Step 11:</p><ul><li>Work Order Tier reads tier B.</li></ul><p>Step 12:</p><ul><li>Customer A is saved on tier B.</li></ul><p>Step 13:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 14:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 15:</p><ul><li>Description holds the typed text.</li></ul><p>Step 16:</p><ul><li>Qty holds 1.</li></ul><p>Step 17:</p><ul><li>Category shows category A.</li></ul><p>Step 18:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 19:</p><ul><li>The new part on work order 1 fills in at $121.50, still tier A's price.</li></ul><p>Step 20:</p><ul><li>Work order 2 opens.</li></ul><p>Step 21:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 22:</p><ul><li>Description holds the typed text.</li></ul><p>Step 23:</p><ul><li>Qty holds 1.</li></ul><p>Step 24:</p><ul><li>Category shows category A.</li></ul><p>Step 25:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 26:</p><ul><li>The part on work order 2 fills in at $108.00, tier B's price: $135.00 less 20% = $108.00.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
    [
@@ -10156,6 +10158,38 @@
     [
      "row",
      "TP-S10-R20",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R7",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R7",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R30",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R1",
      null,
      null
     ]
@@ -10288,11 +10322,13 @@
   "section_name": "Story 10: How a part is priced",
   "section_id": null,
   "title": "A work order keeps pricing by its tier after that tier is archived",
-  "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11697 (Story 9 S9-R7), SV-11694 (Story 2 S2-R14 S2-R6)",
+  "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11697 (Story 9 S9-R7 S9-R30 S9-R1), SV-11694 (Story 2 S2-R14 S2-R6)",
   "rows": [
    "TP-S10-R1",
    "TP-S10-R20",
    "TP-S9-R7",
+   "TP-S9-R30",
+   "TP-S9-R1",
    "TP-S2-R14",
    "TP-S2-R6",
    "TP-S10-R14"
@@ -10321,12 +10357,12 @@
    "template_id": 1,
    "type_id": 7,
    "priority_id": 2,
-   "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11697 (Story 9 S9-R7), SV-11694 (Story 2 S2-R14 S2-R6)",
+   "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11697 (Story 9 S9-R7 S9-R30 S9-R1), SV-11694 (Story 2 S2-R14 S2-R6)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
-   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1).</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
-   "custom_steps": "<ol><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li><li>Put customer A on Default for work orders in Edit Customer.</li><li>Click the Tiers tab on Settings › Pricing.</li><li>Archive tier A from its row's three-dot button.</li><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 2:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 3:</p><ul><li>Description holds the typed text.</li></ul><p>Step 4:</p><ul><li>Qty holds 1.</li></ul><p>Step 5:</p><ul><li>Category shows category A.</li></ul><p>Step 6:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 7:</p><ul><li>The part fills in at $121.50 ($135.00 × 0.90 = $121.50).</li></ul><p>Step 8:</p><ul><li>Customer A is saved on Default.</li></ul><p>Step 9:</p><ul><li>The Tiers list shows.</li></ul><p>Step 10:</p><ul><li>Tier A moves to the archived rows.</li></ul><p>Step 11:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 12:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 13:</p><ul><li>Description holds the typed text.</li></ul><p>Step 14:</p><ul><li>Qty holds 1.</li></ul><p>Step 15:</p><ul><li>Category shows category A.</li></ul><p>Step 16:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 17:</p><ul><li>The new part fills in at $121.50, tier A's price, not Default's $135.00.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'View and Manage AP/AR Data', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1).</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li><li>Open customer A's page from Customers.</li><li>Click the edit pencil on the customer card.</li><li>Open the Work Order Tier picker.</li><li>Pick Default.</li><li>Click Save.</li><li>Click the Tiers tab on Settings › Pricing.</li><li>Archive tier A from its row's three-dot button.</li><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 2:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 3:</p><ul><li>Description holds the typed text.</li></ul><p>Step 4:</p><ul><li>Qty holds 1.</li></ul><p>Step 5:</p><ul><li>Category shows category A.</li></ul><p>Step 6:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 7:</p><ul><li>The part fills in at $121.50 ($135.00 × 0.90 = $121.50).</li></ul><p>Step 8:</p><ul><li>Customer A's page opens.</li></ul><p>Step 9:</p><ul><li>Edit Customer opens.</li></ul><p>Step 10:</p><ul><li>The picker lists Default.</li></ul><p>Step 11:</p><ul><li>Work Order Tier reads Default.</li></ul><p>Step 12:</p><ul><li>Customer A is saved on Default.</li></ul><p>Step 13:</p><ul><li>The Tiers list shows.</li></ul><p>Step 14:</p><ul><li>Tier A moves to the archived rows.</li></ul><p>Step 15:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 16:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 17:</p><ul><li>Description holds the typed text.</li></ul><p>Step 18:</p><ul><li>Qty holds 1.</li></ul><p>Step 19:</p><ul><li>Category shows category A.</li></ul><p>Step 20:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 21:</p><ul><li>The new part fills in at $121.50, tier A's price, not Default's $135.00.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
    [
@@ -10381,6 +10417,38 @@
     [
      "row",
      "TP-S10-R20",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R7",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R7",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R30",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R1",
      null,
      null
     ]
@@ -10473,12 +10541,14 @@
   "section_name": "Story 10: How a part is priced",
   "section_id": null,
   "title": "A work order's tier prices new parts by its current rules",
-  "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11700 (Story 11 S11-R6)",
+  "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11700 (Story 11 S11-R6)",
   "rows": [
    "TP-S10-R1",
    "TP-S10-R20",
    "TP-S2-R14",
    "TP-S2-R28",
+   "TP-S2-R22",
+   "TP-S2-R23",
    "TP-S2-R24",
    "TP-S10-R14",
    "TP-S11-R6"
@@ -10507,12 +10577,12 @@
    "template_id": 1,
    "type_id": 7,
    "priority_id": 2,
-   "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11700 (Story 11 S11-R6)",
+   "refs": "SV-11699 (Story 10 S10-R1 S10-R20 S10-R14), SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11700 (Story 11 S11-R6)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1).</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
-   "custom_steps": "<ol><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Set tier A's rule in matrix A to % Off 20 with Set Rule.</li><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 2:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 3:</p><ul><li>Description holds the typed text.</li></ul><p>Step 4:</p><ul><li>Qty holds 1.</li></ul><p>Step 5:</p><ul><li>Category shows category A.</li></ul><p>Step 6:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 7:</p><ul><li>The part fills in at $121.50 ($135.00 × 0.90 = $121.50).</li></ul><p>Step 8:</p><ul><li>The Tiers list shows.</li></ul><p>Step 9:</p><ul><li>Tier A's page opens.</li></ul><p>Step 10:</p><ul><li>Matrix A's row reads 20% off.</li></ul><p>Step 11:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 12:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 13:</p><ul><li>Description holds the typed text.</li></ul><p>Step 14:</p><ul><li>Qty holds 1.</li></ul><p>Step 15:</p><ul><li>Category shows category A.</li></ul><p>Step 16:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 17:</p><ul><li>The new part fills in at $108.00 ($135.00 × 0.80 = $108.00).</li><li>The first part keeps $121.50.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Check matrix A.</li><li>Type 20 in the bulk bar's value.</li><li>Click Set Rule.</li><li>Click Set Rule in the dialog.</li><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 2:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 3:</p><ul><li>Description holds the typed text.</li></ul><p>Step 4:</p><ul><li>Qty holds 1.</li></ul><p>Step 5:</p><ul><li>Category shows category A.</li></ul><p>Step 6:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 7:</p><ul><li>The part fills in at $121.50 ($135.00 × 0.90 = $121.50).</li></ul><p>Step 8:</p><ul><li>The Tiers list shows.</li></ul><p>Step 9:</p><ul><li>Tier A's page opens.</li></ul><p>Step 10:</p><ul><li>The bulk bar shows the count 1.</li></ul><p>Step 11:</p><ul><li>% Off is picked with the value 20.</li></ul><p>Step 12:</p><ul><li>The Set Rule question opens.</li></ul><p>Step 13:</p><ul><li>Matrix A's row reads 20% off.</li></ul><p>Step 14:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 15:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 16:</p><ul><li>Description holds the typed text.</li></ul><p>Step 17:</p><ul><li>Qty holds 1.</li></ul><p>Step 18:</p><ul><li>Category shows category A.</li></ul><p>Step 19:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 20:</p><ul><li>The new part fills in at $108.00 ($135.00 × 0.80 = $108.00).</li><li>The first part keeps $121.50.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
    [
@@ -10583,6 +10653,30 @@
     [
      "row",
      "TP-S2-R28",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R23",
      null,
      null
     ]
@@ -10767,9 +10861,10 @@
   "section_name": "Story 10: How a part is priced",
   "section_id": null,
   "title": "Changing the customer on a work order keeps the work order's tier",
-  "refs": "SV-11699 (Story 10 S10-R1 S10-R14), SV-11703 (Story 14 S14-R3)",
+  "refs": "SV-11699 (Story 10 S10-R1 S10-R14), SV-11703 (Story 14 S14-R4 S14-R3)",
   "rows": [
    "TP-S10-R1",
+   "TP-S14-R4",
    "TP-S14-R3",
    "TP-S10-R14"
   ],
@@ -10797,18 +10892,42 @@
    "template_id": 1,
    "type_id": 7,
    "priority_id": 2,
-   "refs": "SV-11699 (Story 10 S10-R1 S10-R14), SV-11703 (Story 14 S14-R3)",
+   "refs": "SV-11699 (Story 10 S10-R1 S10-R14), SV-11703 (Story 14 S14-R4 S14-R3)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new tier for this test, tier B, with a name no other tier uses, whose column in matrix A is % Off 20.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new customer for this test, customer B, put on tier B for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1).</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
-   "custom_steps": "<ol><li>Open work order 1.</li><li>Change the customer to customer B with Change Customer in the work order's three-dot menu.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 2:</p><ul><li>Work order 1 now names customer B.</li></ul><p>Step 3:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 4:</p><ul><li>Description holds the typed text.</li></ul><p>Step 5:</p><ul><li>Qty holds 1.</li></ul><p>Step 6:</p><ul><li>Category shows category A.</li></ul><p>Step 7:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 8:</p><ul><li>The new part fills in at $121.50, tier A's price ($135.00 × 0.90 = $121.50), not customer B's tier B price ($108.00).</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Open work order 1's three-dot menu.</li><li>Click Change Customer.</li><li>Pick customer B.</li><li>Click Update Customer.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 2:</p><ul><li>The menu lists Change Customer, Split Work Order and Back to Work Orders.</li></ul><p>Step 3:</p><ul><li>The Change Customer dialog opens.</li></ul><p>Step 4:</p><ul><li>Customer B is picked.</li></ul><p>Step 5:</p><ul><li>Work order 1 now names customer B.</li></ul><p>Step 6:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 7:</p><ul><li>Description holds the typed text.</li></ul><p>Step 8:</p><ul><li>Qty holds 1.</li></ul><p>Step 9:</p><ul><li>Category shows category A.</li></ul><p>Step 10:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 11:</p><ul><li>The new part fills in at $121.50, tier A's price ($135.00 × 0.90 = $121.50), not customer B's tier B price ($108.00).</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
    [
     [
      "row",
      "TP-S10-R1",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S14-R4",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S14-R4",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S14-R4",
      null,
      null
     ]
@@ -10877,9 +10996,11 @@
   "section_name": "Waiting on Matt Barge's answers",
   "section_id": null,
   "title": "A reopened paid work order prices new parts by its kept tier",
-  "refs": "SV-11697 (Story 9 S9-R7), SV-11699 (Story 10 S10-R14 TPX-01)",
+  "refs": "SV-11697 (Story 9 S9-R7 S9-R30 S9-R1), SV-11699 (Story 10 S10-R14 TPX-01)",
   "rows": [
    "TP-S9-R7",
+   "TP-S9-R30",
+   "TP-S9-R1",
    "TP-S10-R14"
   ],
   "tpx": [
@@ -10908,14 +11029,46 @@
    "template_id": 1,
    "type_id": 7,
    "priority_id": 2,
-   "refs": "SV-11697 (Story 9 S9-R7), SV-11699 (Story 10 S10-R14 TPX-01)",
+   "refs": "SV-11697 (Story 9 S9-R7 S9-R30 S9-R1), SV-11699 (Story 10 S10-R14 TPX-01)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
-   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new tier for this test, tier B, with a name no other tier uses, whose column in matrix A is % Off 20.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1), invoiced and paid in full.</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
-   "custom_steps": "<ol><li>Put customer A on tier B for work orders in Edit Customer.</li><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Customer A is saved on tier B.</li></ul><p>Step 2:</p><ul><li>Work order 1 opens again for the new part.</li></ul><p>Step 3:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 4:</p><ul><li>Description holds the typed text.</li></ul><p>Step 5:</p><ul><li>Qty holds 1.</li></ul><p>Step 6:</p><ul><li>Category shows category A.</li></ul><p>Step 7:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 8:</p><ul><li>The new part fills in at $121.50, the tier A price the work order kept ($135.00 × 0.90 = $121.50).</li><li>Not tier B's $108.00, the price engineering's plan gives (the question to the PO decides which is right).</li></ul><p></p><p>AUTOMATION: HOLD - waiting on the PO (question 24)</p>"
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'View and Manage AP/AR Data', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new tier for this test, tier B, with a name no other tier uses, whose column in matrix A is % Off 20.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1), invoiced and paid in full.</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
+   "custom_steps": "<ol><li>Open customer A's page from Customers.</li><li>Click the edit pencil on the customer card.</li><li>Open the Work Order Tier picker.</li><li>Pick tier B.</li><li>Click Save.</li><li>Open work order 1.</li><li>Click Add Part under line 1.</li><li>Type a description in Description (for example Test part).</li><li>Type 1 in Qty.</li><li>Pick category A in Category.</li><li>Type 100.00 in Cost.</li><li>Click Save.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Customer A's page opens.</li></ul><p>Step 2:</p><ul><li>Edit Customer opens.</li></ul><p>Step 3:</p><ul><li>The picker lists tier B.</li></ul><p>Step 4:</p><ul><li>Work Order Tier reads tier B.</li></ul><p>Step 5:</p><ul><li>Customer A is saved on tier B.</li></ul><p>Step 6:</p><ul><li>Work order 1 opens again for the new part.</li></ul><p>Step 7:</p><ul><li>A new part row opens under line 1 with Part number, Description, Qty, Category, Cost and Sell price boxes and Save and Cancel.</li></ul><p>Step 8:</p><ul><li>Description holds the typed text.</li></ul><p>Step 9:</p><ul><li>Qty holds 1.</li></ul><p>Step 10:</p><ul><li>Category shows category A.</li></ul><p>Step 11:</p><ul><li>Cost holds 100.00 as typed.</li></ul><p>Step 12:</p><ul><li>The new part fills in at $121.50, the tier A price the work order kept ($135.00 × 0.90 = $121.50).</li><li>Not tier B's $108.00, the price engineering's plan gives (the question to the PO decides which is right).</li></ul><p></p><p>AUTOMATION: HOLD - waiting on the PO (question 24)</p>"
   },
   "sources": [
+   [
+    [
+     "row",
+     "TP-S9-R7",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R7",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R30",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R1",
+     null,
+     null
+    ]
+   ],
    [
     [
      "row",
@@ -16456,7 +16609,7 @@
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts' and 'See Financial Data'.</li><li>Have a new tier for this test, tier A, with a name no other tier uses.</li><li>Have a new matrix for this test, matrix A.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size.</li></ul>",
-   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row.</li><li>Check matrix A.</li><li>Click Set Rule.</li><li>Pick Margin % in the bar's picker.</li><li>Type 120.</li><li>Click Set Rule.</li></ol>",
+   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row.</li><li>Check matrix A.</li><li>Click Set Rule.</li><li>Pick Margin % in the bar's picker.</li><li>Type 120 in the bar's value.</li><li>Click Set Rule.</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>The bar shows.</li></ul><p>Step 4:</p><ul><li>Red text under the bar reads \"Enter a % from 0 to 99.99\" and the value box is outlined in red, as in picture 2.51.</li></ul><p>Step 5:</p><ul><li>Margin % is picked and the value box ends with %.</li></ul><p>Step 6:</p><ul><li>The value reads 120.</li></ul><p>Step 7:</p><ul><li>Red text under the bar reads \"Enter a margin from 0 to 99.99\", as in picture 2.52.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
@@ -16558,7 +16711,7 @@
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts' and 'See Financial Data'.</li><li>Have a new tier for this test, tier A, with a name no other tier uses.</li><li>Have a new matrix for this test, matrix A.</li><li>Have a new matrix for this test, matrix B.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size.</li></ul>",
-   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row.</li><li>Check matrix A.</li><li>Check matrix B.</li><li>Type 35.</li><li>Click Set Rule.</li><li>Click Set Rule in the dialog.</li><li>Click Undo.</li></ol>",
+   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row.</li><li>Check matrix A.</li><li>Check matrix B.</li><li>Type 35 in the bar's value.</li><li>Click Set Rule.</li><li>Click Set Rule in the dialog.</li><li>Click Undo.</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>The bar shows a count of 1.</li></ul><p>Step 4:</p><ul><li>The count is 2.</li></ul><p>Step 5:</p><ul><li>The value reads 35.</li></ul><p>Step 6:</p><ul><li>A narrow dialog titled \"Set\" tier A's name \"'s Rule?\" shows its sentence with Cancel and a blue Set Rule, as in picture 2.54.</li></ul><p>Step 7:</p><ul><li>The checks clear.</li><li>A message at the bottom right shows a green check, tier A's name \"set to 35% off\", \"2 matrices changed.\", a blue Undo link, an X and a green timer line along its bottom, as in picture 2.56.</li></ul><p>Step 8:</p><ul><li>A message reads \"Undone\" with tier A's name and \"'s rules are back.\", as in picture 2.58.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
@@ -16668,7 +16821,7 @@
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts' and 'See Financial Data'.</li><li>Have a new tier for this test, tier A, with a name no other tier uses.</li><li>Have a new matrix for this test, matrix A, tier A already 35% markup in every range.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size.</li></ul>",
-   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row.</li><li>Check matrix A.</li><li>Pick Markup % in the bar's picker.</li><li>Type 35.</li><li>Click Set Rule.</li></ol>",
+   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row.</li><li>Check matrix A.</li><li>Pick Markup % in the bar's picker.</li><li>Type 35 in the bar's value.</li><li>Click Set Rule.</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>The bar shows.</li></ul><p>Step 4:</p><ul><li>Markup % is picked.</li></ul><p>Step 5:</p><ul><li>The value reads 35.</li></ul><p>Step 6:</p><ul><li>A message at the bottom right reads tier A's name \"already uses 35% markup in that matrix\", as in picture 2.60.</li><li>The bar closes and no dialog opens.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
@@ -35813,10 +35966,12 @@
   "section_name": "Story 11: When a part is priced again",
   "section_id": null,
   "title": "A cost change uses the tier's rule as it is at that moment",
-  "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11699 (Story 10 S10-R1), SV-11700 (Story 11 S11-R6 S11-R2)",
+  "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11699 (Story 10 S10-R1), SV-11700 (Story 11 S11-R6 S11-R2)",
   "rows": [
    "TP-S2-R14",
    "TP-S2-R28",
+   "TP-S2-R22",
+   "TP-S2-R23",
    "TP-S2-R24",
    "TP-S10-R1",
    "TP-S11-R6",
@@ -35840,12 +35995,12 @@
    "template_id": 1,
    "type_id": 7,
    "priority_id": 2,
-   "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11699 (Story 10 S10-R1), SV-11700 (Story 11 S11-R6 S11-R2)",
+   "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11699 (Story 10 S10-R1), SV-11700 (Story 11 S11-R6 S11-R2)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1) and a special-order part (Source: Vendor) not yet received on line 1, category A, cost $100.00, priced at $121.50.</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
-   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Set tier A's rule in matrix A to % Off 20 with Set Rule.</li><li>Open work order 1.</li><li>Click the part's description to open Edit Part Request.</li><li>Type 150.00 in Cost.</li><li>Click Save Part.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>Matrix A's row reads 20% off.</li></ul><p>Step 4:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 5:</p><ul><li>The part still reads $121.50 (its price was kept).</li></ul><p>Step 6:</p><ul><li>Cost reads 150.00.</li></ul><p>Step 7:</p><ul><li>The sell price becomes $162.00: $150.00 × 1.35 = $202.50 × 0.80 = $162.00.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Check matrix A.</li><li>Type 20 in the bulk bar's value.</li><li>Click Set Rule.</li><li>Click Set Rule in the dialog.</li><li>Open work order 1.</li><li>Click the part's description to open Edit Part Request.</li><li>Type 150.00 in Cost.</li><li>Click Save Part.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>The bulk bar shows the count 1.</li></ul><p>Step 4:</p><ul><li>% Off is picked with the value 20.</li></ul><p>Step 5:</p><ul><li>The Set Rule question opens.</li></ul><p>Step 6:</p><ul><li>Matrix A's row reads 20% off.</li></ul><p>Step 7:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 8:</p><ul><li>The part still reads $121.50 (its price was kept).</li></ul><p>Step 9:</p><ul><li>Cost reads 150.00.</li></ul><p>Step 10:</p><ul><li>The sell price becomes $162.00: $150.00 × 1.35 = $202.50 × 0.80 = $162.00.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
    [
@@ -35860,6 +36015,30 @@
     [
      "row",
      "TP-S2-R28",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R23",
      null,
      null
     ]
@@ -36184,10 +36363,12 @@
   "section_name": "Story 11: When a part is priced again",
   "section_id": null,
   "title": "Retyping the same cost on a special order reprices it at today's rule",
-  "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11699 (Story 10 S10-R1), SV-11700 (Story 11 S11-R12)",
+  "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11699 (Story 10 S10-R1), SV-11700 (Story 11 S11-R12)",
   "rows": [
    "TP-S2-R14",
    "TP-S2-R28",
+   "TP-S2-R22",
+   "TP-S2-R23",
    "TP-S2-R24",
    "TP-S10-R1",
    "TP-S11-R12"
@@ -36210,12 +36391,12 @@
    "template_id": 1,
    "type_id": 7,
    "priority_id": 2,
-   "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11699 (Story 10 S10-R1), SV-11700 (Story 11 S11-R12)",
+   "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11699 (Story 10 S10-R1), SV-11700 (Story 11 S11-R12)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1) and a special-order part (Source: Vendor) not yet received on line 1, category A, cost $100.00, priced at $121.50.</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
-   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Set tier A's rule in matrix A to % Off 20 with Set Rule.</li><li>Open work order 1.</li><li>Click the part's description to open Edit Part Request.</li><li>Retype 100.00 in Cost.</li><li>Click Save Part.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>Matrix A's row reads 20% off.</li></ul><p>Step 4:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 5:</p><ul><li>Edit Part Request opens with Cost 100.00.</li></ul><p>Step 6:</p><ul><li>Cost reads 100.00 again.</li></ul><p>Step 7:</p><ul><li>The sell price becomes $108.00 ($135.00 × 0.80 = $108.00), not the old $121.50.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Check matrix A.</li><li>Type 20 in the bulk bar's value.</li><li>Click Set Rule.</li><li>Click Set Rule in the dialog.</li><li>Open work order 1.</li><li>Click the part's description to open Edit Part Request.</li><li>Retype 100.00 in Cost.</li><li>Click Save Part.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>The bulk bar shows the count 1.</li></ul><p>Step 4:</p><ul><li>% Off is picked with the value 20.</li></ul><p>Step 5:</p><ul><li>The Set Rule question opens.</li></ul><p>Step 6:</p><ul><li>Matrix A's row reads 20% off.</li></ul><p>Step 7:</p><ul><li>Work order 1 opens on its Lines tab.</li></ul><p>Step 8:</p><ul><li>Edit Part Request opens with Cost 100.00.</li></ul><p>Step 9:</p><ul><li>Cost reads 100.00 again.</li></ul><p>Step 10:</p><ul><li>The sell price becomes $108.00 ($135.00 × 0.80 = $108.00), not the old $121.50.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
    [
@@ -36230,6 +36411,30 @@
     [
      "row",
      "TP-S2-R28",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R23",
      null,
      null
     ]
@@ -36846,13 +37051,18 @@
   "section_name": "Story 11: When a part is priced again",
   "section_id": null,
   "title": "Tier and matrix changes never reprice parts already on a work order",
-  "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11700 (Story 11 S11-R6), SV-11697 (Story 9 S9-R7), SV-11703 (Story 14 S14-R3)",
+  "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11700 (Story 11 S11-R6), SV-11697 (Story 9 S9-R7 S9-R30 S9-R1), SV-11703 (Story 14 S14-R4 S14-R3)",
   "rows": [
    "TP-S2-R14",
    "TP-S2-R28",
+   "TP-S2-R22",
+   "TP-S2-R23",
    "TP-S2-R24",
    "TP-S11-R6",
    "TP-S9-R7",
+   "TP-S9-R30",
+   "TP-S9-R1",
+   "TP-S14-R4",
    "TP-S14-R3"
   ],
   "tpx": [],
@@ -36875,12 +37085,12 @@
    "template_id": 1,
    "type_id": 7,
    "priority_id": 2,
-   "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11700 (Story 11 S11-R6), SV-11697 (Story 9 S9-R7), SV-11703 (Story 14 S14-R3)",
+   "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11700 (Story 11 S11-R6), SV-11697 (Story 9 S9-R7 S9-R30 S9-R1), SV-11703 (Story 14 S14-R4 S14-R3)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
-   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new tier for this test, tier B, with a name no other tier uses, whose column in matrix A is % Off 20.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new customer for this test, customer B, put on tier B for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1) and a special-order part (Source: Vendor) not yet received on line 1, category A, cost $100.00, priced at $121.50.</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
-   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Set tier A's rule in matrix A to % Off 30 with Set Rule.</li><li>Open work order 1.</li><li>Put customer A on tier B for work orders in Edit Customer.</li><li>Open work order 1.</li><li>Change the customer to customer B with Change Customer in the work order's three-dot menu.</li><li>Reload the page.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>Matrix A's row reads 30% off.</li></ul><p>Step 4:</p><ul><li>The part still reads $121.50.</li><li>A new price would have been $94.50 ($135.00 × 0.70 = $94.50).</li></ul><p>Step 5:</p><ul><li>Customer A is saved on tier B.</li></ul><p>Step 6:</p><ul><li>The part still reads $121.50.</li></ul><p>Step 7:</p><ul><li>Work order 1 names customer B.</li></ul><p>Step 8:</p><ul><li>The part still reads $121.50 after the reload.</li><li>Its Priced by still names tier A.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'View and Manage AP/AR Data', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new tier for this test, tier B, with a name no other tier uses, whose column in matrix A is % Off 20.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new customer for this test, customer B, put on tier B for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1) and a special-order part (Source: Vendor) not yet received on line 1, category A, cost $100.00, priced at $121.50.</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
+   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Check matrix A.</li><li>Type 30 in the bulk bar's value.</li><li>Click Set Rule.</li><li>Click Set Rule in the dialog.</li><li>Open work order 1.</li><li>Open customer A's page from Customers.</li><li>Click the edit pencil on the customer card.</li><li>Open the Work Order Tier picker.</li><li>Pick tier B.</li><li>Click Save.</li><li>Open work order 1.</li><li>Open work order 1's three-dot menu.</li><li>Click Change Customer.</li><li>Pick customer B.</li><li>Click Update Customer.</li><li>Reload the page.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>The bulk bar shows the count 1.</li></ul><p>Step 4:</p><ul><li>% Off is picked with the value 30.</li></ul><p>Step 5:</p><ul><li>The Set Rule question opens.</li></ul><p>Step 6:</p><ul><li>Matrix A's row reads 30% off.</li></ul><p>Step 7:</p><ul><li>The part still reads $121.50.</li><li>A new price would have been $94.50 ($135.00 × 0.70 = $94.50).</li></ul><p>Step 8:</p><ul><li>Customer A's page opens.</li></ul><p>Step 9:</p><ul><li>Edit Customer opens.</li></ul><p>Step 10:</p><ul><li>The picker lists tier B.</li></ul><p>Step 11:</p><ul><li>Work Order Tier reads tier B.</li></ul><p>Step 12:</p><ul><li>Customer A is saved on tier B.</li></ul><p>Step 13:</p><ul><li>The part still reads $121.50.</li></ul><p>Step 14:</p><ul><li>The menu lists Change Customer, Split Work Order and Back to Work Orders.</li></ul><p>Step 15:</p><ul><li>The Change Customer dialog opens.</li></ul><p>Step 16:</p><ul><li>Customer B is picked.</li></ul><p>Step 17:</p><ul><li>Work order 1 names customer B.</li></ul><p>Step 18:</p><ul><li>The part still reads $121.50 after the reload.</li><li>Its Priced by still names tier A.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
    [
@@ -36895,6 +37105,30 @@
     [
      "row",
      "TP-S2-R28",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R23",
      null,
      null
     ]
@@ -36934,8 +37168,64 @@
    [
     [
      "row",
+     "TP-S9-R7",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R30",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R1",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R7",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
      "TP-S11-R6",
      "moving the customer to another tier",
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S14-R4",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S14-R4",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S14-R4",
+     null,
      null
     ]
    ],
@@ -38491,10 +38781,12 @@
   "section_name": "Story 11: When a part is priced again",
   "section_id": null,
   "title": "Invoiced work orders are never repriced, reopened or not",
-  "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11700 (Story 11 S11-N1)",
+  "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11700 (Story 11 S11-N1)",
   "rows": [
    "TP-S2-R14",
    "TP-S2-R28",
+   "TP-S2-R22",
+   "TP-S2-R23",
    "TP-S2-R24",
    "TP-S11-N1"
   ],
@@ -38516,12 +38808,12 @@
    "template_id": 1,
    "type_id": 7,
    "priority_id": 2,
-   "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11700 (Story 11 S11-N1)",
+   "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11700 (Story 11 S11-N1)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1) and a special-order part (Source: Vendor) not yet received on line 1, category A, cost $100.00, priced at $121.50, invoiced.</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
-   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Set tier A's rule in matrix A to % Off 20 with Set Rule.</li><li>Open work order 1.</li><li>Reopen work order 1 from its invoice.</li><li>Click the Parts tab.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>Matrix A's row reads 20% off.</li></ul><p>Step 4:</p><ul><li>The invoiced part reads $121.50.</li></ul><p>Step 5:</p><ul><li>Work order 1 is open again.</li></ul><p>Step 6:</p><ul><li>The part still reads $121.50, not $108.00 ($135.00 × 0.80).</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Check matrix A.</li><li>Type 20 in the bulk bar's value.</li><li>Click Set Rule.</li><li>Click Set Rule in the dialog.</li><li>Open work order 1.</li><li>Reopen work order 1 from its invoice.</li><li>Click the Parts tab.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>The bulk bar shows the count 1.</li></ul><p>Step 4:</p><ul><li>% Off is picked with the value 20.</li></ul><p>Step 5:</p><ul><li>The Set Rule question opens.</li></ul><p>Step 6:</p><ul><li>Matrix A's row reads 20% off.</li></ul><p>Step 7:</p><ul><li>The invoiced part reads $121.50.</li></ul><p>Step 8:</p><ul><li>Work order 1 is open again.</li></ul><p>Step 9:</p><ul><li>The part still reads $121.50, not $108.00 ($135.00 × 0.80).</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
    [
@@ -38536,6 +38828,30 @@
     [
      "row",
      "TP-S2-R28",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R23",
      null,
      null
     ]
@@ -39684,7 +40000,7 @@
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new tier for this test, tier A, with a name no other tier uses.</li><li>Have a new matrix for this test, matrix A, pricing a new category made for this test, category A, with one range from $0.00: Default Markup % 50, tier A Markup % 20.</li><li>Have a new inventory part for this test, part A, in category A, cost $10.00, in a bin (for example E-11).</li><li>Have a new customer for this test, customer A, on tier A for work orders.</li><li>Have a new work order for this test, work order 1, for customer A, with part A added (sold at $12.00: $10.00 × 1.20).</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
-   "custom_steps": "<ol><li>Open work order 1.</li><li>Click into part A's sell price box on the Lines tab.</li><li>Press Alt+Down.</li><li>Press Esc.</li><li>Type 13.</li></ol>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Click into part A's sell price box on the Lines tab.</li><li>Press Alt+Down.</li><li>Press Esc.</li><li>Type 13 in part A's sell price box.</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens.</li></ul><p>Step 2:</p><ul><li>The cursor is in part A's sell price box.</li></ul><p>Step 3:</p><ul><li>The price details open.</li></ul><p>Step 4:</p><ul><li>The details close and the cursor is back in the price box.</li></ul><p>Step 5:</p><ul><li>The price box now reads 13: typing edits the price.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
@@ -44486,7 +44802,7 @@
    "refs": "SV-11705 (Story 16 S16-R8 PERM-5 PERM-2)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
-   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as a user whose role (made for this test) has 'Settings — Parts' but not 'See Financial Data'. An Admin makes the records below before the test.</li><li>Have a new category for this test, category A.</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as a user whose role (made for this test) has 'Settings — Parts' but not 'See Financial Data'. An Admin makes the records below before the test.</li><li>Use a client connected to QuickBooks, so the QuickBooks Products and Services field shows.</li><li>Have a new category for this test, category A.</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
    "custom_steps": "<ol><li>Open Settings › Categories.</li><li>Click category A's row.</li><li>Open the page's three-dot menu.</li><li>Press Esc.</li><li>Open the three-dot menu beside New Category.</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Categories page lists category A in the Category column.</li><li>It shows no pricing columns.</li></ul><p>Step 2:</p><ul><li>Category A's page shows its name, QuickBooks Products and Services and Tax Exempt.</li><li>It has no Pricing Matrix picker, grid or Edit.</li></ul><p>Step 3:</p><ul><li>The menu lists Delete.</li><li>It has no Audit Log.</li></ul><p>Step 4:</p><ul><li>The menu closes.</li></ul><p>Step 5:</p><ul><li>The Categories list offers no Audit Log for this user.</li><li>New Category is still offered.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
@@ -45491,10 +45807,12 @@
   "section_name": "Story 18: Accounting and QuickBooks receive the right figures",
   "section_id": null,
   "title": "An invoice synced again after a tier change sends the same prices",
-  "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11700 (Story 11 S11-R6), SV-11707 (Story 18 S18-R1)",
+  "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11700 (Story 11 S11-R6), SV-11707 (Story 18 S18-R1)",
   "rows": [
    "TP-S2-R14",
    "TP-S2-R28",
+   "TP-S2-R22",
+   "TP-S2-R23",
    "TP-S2-R24",
    "TP-S11-R6",
    "TP-S18-R1"
@@ -45513,12 +45831,12 @@
    "template_id": 1,
    "type_id": 7,
    "priority_id": 2,
-   "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R24), SV-11700 (Story 11 S11-R6), SV-11707 (Story 18 S18-R1)",
+   "refs": "SV-11694 (Story 2 S2-R14 S2-R28 S2-R22 S2-R23 S2-R24), SV-11700 (Story 11 S11-R6), SV-11707 (Story 18 S18-R1)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Use staging with the QuickBooks sandbox connected, and sign in to that QuickBooks sandbox in a second browser window.</li><li>Have a new category for this test, category A, priced by a new matrix for this test, matrix A, with one cost range ($0.00 and up) whose Default rule is Markup % 35.</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose column in matrix A is % Off 10.</li><li>Have a new customer for this test, customer A, put on tier A for work orders in Edit Customer.</li><li>Have a new work order for this test, work order 1, for customer A, made after customer A's tier was set, with one labor line (line 1), with a tier-priced part in category A at $121.50, invoiced and synced to QuickBooks.</li><li>Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows.</li></ul>",
-   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Set tier A's rule in matrix A to % Off 20 with Set Rule.</li><li>Open work order 1.</li><li>Sync the invoice to QuickBooks again from its Finance tab.</li><li>Open the invoice in the QuickBooks sandbox.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>Matrix A's row reads 20% off.</li></ul><p>Step 4:</p><ul><li>Work order 1's part still reads $121.50.</li></ul><p>Step 5:</p><ul><li>The invoice syncs again.</li></ul><p>Step 6:</p><ul><li>The QuickBooks line still reads $121.50, not $108.00 ($135.00 × 0.80).</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+   "custom_steps": "<ol><li>Click the Tiers tab on Settings › Pricing.</li><li>Click tier A's row on the Tiers list.</li><li>Check matrix A.</li><li>Type 20 in the bulk bar's value.</li><li>Click Set Rule.</li><li>Click Set Rule in the dialog.</li><li>Open work order 1.</li><li>Sync the invoice to QuickBooks again from its Finance tab.</li><li>Open the invoice in the QuickBooks sandbox.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Tiers list shows.</li></ul><p>Step 2:</p><ul><li>Tier A's page opens.</li></ul><p>Step 3:</p><ul><li>The bulk bar shows the count 1.</li></ul><p>Step 4:</p><ul><li>% Off is picked with the value 20.</li></ul><p>Step 5:</p><ul><li>The Set Rule question opens.</li></ul><p>Step 6:</p><ul><li>Matrix A's row reads 20% off.</li></ul><p>Step 7:</p><ul><li>Work order 1's part still reads $121.50.</li></ul><p>Step 8:</p><ul><li>The invoice syncs again.</li></ul><p>Step 9:</p><ul><li>The QuickBooks line still reads $121.50, not $108.00 ($135.00 × 0.80).</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
    [
@@ -45533,6 +45851,30 @@
     [
      "row",
      "TP-S2-R28",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R22",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S2-R23",
      null,
      null
     ]

@@ -54,6 +54,7 @@ def two_actions(s):
 DATA_STEP = re.compile(r"^(Add|Create|Make|Fill|Set up|Enter|Give|Invoice|Return|Put)\b")
 def bundled(s):
     if re.search(r"^(Add|Create|Set|Make|Fill|Give|Put)\b.*\bin (its|the|that) (dialog|window|modal|form)\b", s): return "opens a dialog, fills it and saves in one step"
+    if re.search(r"with Set Rule\.$|in Edit Customer\.$|with Change Customer\b", s): return "opens a dialog, changes it and saves in one step"
     if DATA_STEP.match(s):
         b = re.sub(r"\([^)]*\)", "", s)
         if re.search(r"\bwith\b", b) or re.search(r", (cost|category|sell price|quantity|no cost)", b) or re.search(r"\b(at) (a |an )?(cost|price)", b) or re.search(r"\$\d", b):
@@ -315,7 +316,7 @@ print("questions", len(QUESTIONS), "| holding cases", dict(held_q))
 print("register rows", len(reg), "| in scope", sum(1 for r in reg if r.get("in_scope")), "| for later batches", sum(1 for r in reg if not r.get("in_scope")))
 print("Admin sign-in lines narrowed or widened to the permissions the case uses:", sum(1 for c in L.CASES if c.get("orig_admin") and c["orig_admin"] not in c["pre"]),
       "of", sum(1 for c in L.CASES if c.get("orig_admin")))
-print("Quick Add steps split into one action per step:", sum(c.get("expanded", 0) for c in L.CASES), "in", sum(1 for c in L.CASES if c.get("expanded")), "cases")
+print("open-change-save steps (Quick Add, Set Rule, Edit Customer tier, Change Customer) split into one action per step:", sum(c.get("expanded", 0) for c in L.CASES), "in", sum(1 for c in L.CASES if c.get("expanded")), "cases")
 print("bundled steps kept whole (flows no source draws):", len(KEPT_WHOLE), dict(Counter(w for *_, w in KEPT_WHOLE)))
 json.dump([{"case": k, "step": i, "text": s, "why": w} for k, i, s, w in KEPT_WHOLE], open(f"{D}/kept-whole-steps.json", "w"), indent=1, ensure_ascii=False)
 print("markers", dict(Counter(re.sub(r" - .*", "", c["marker"]) if c["marker"].startswith("AUTOMATION: HOLD") else c["marker"] for c in L.CASES)))

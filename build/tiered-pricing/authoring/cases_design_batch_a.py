@@ -237,7 +237,7 @@ C("D-142", K, "Design: searching the Categories list",
   pics=["7.5"])
 
 C("D-143", K, "Design: a category's page with its matrix grid read-only",
-  [ADMIN, mx("A", ", category A, and no other"), W1440],
+  [ADMIN, "Use a client connected to QuickBooks, so the QuickBooks Products And Services field shows.", mx("A", ", category A, and no other"), W1440],
   [CATEGORIES, "Click category A's row."],
   [look("7.7", "S7-R6", "The Categories list shows category A's row."),
    R(S("S7-R6", "with the breadcrumb Settings › Categories › <category>"), "The breadcrumb reads Settings › Categories › and category A's name.")
@@ -323,7 +323,7 @@ C("D-161", K, "Design: Uncategorized's row and its system page",
   pics=["8.2", "8.3"])
 
 C("D-162", K, "Design: Uncategorized's page shows grayed matrix and Tax Exempt fields",
-  [ADMIN, W1440],
+  [ADMIN, "Use a client connected to QuickBooks, so the QuickBooks Products And Services field shows.", W1440],
   [CATEGORIES, "Click Uncategorized's row."],
   [look("8.2", "S8-R4", "The Categories list shows."),
    R(QL("8.3", "S8-R4"), "A grayed Pricing Matrix box reading General Matrix and a grayed Tax Exempt checkbox show under the title.",
@@ -340,7 +340,7 @@ C("D-163", K, "Design: a taken category name shows red under the title",
   pics=["8.4"])
 
 C("D-164", K, "Design: the New Category page, its error and its created message",
-  [ADMIN, W1440],
+  [ADMIN, "Use a client connected to QuickBooks, so the QuickBooks Products And Services field shows.", W1440],
   [CATEGORIES, "Click New Category.", "Click the blue button at the top right.", "Type a name no other category uses.", "Click the blue button at the top right."],
   [look("8.5", "S8-R10", "The Categories list shows a blue New Category button."),
    look("8.6", "S8-R10", "The breadcrumb reads Settings › Categories › New Category; a large empty name field with the placeholder \"Category name\" holds the cursor.",

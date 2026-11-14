@@ -178,7 +178,8 @@ C("S16-15", K, "Settings — Parts alone can create, rename and delete a categor
   pics=["8.6", "8.11"])
 
 C("S16-16", K, "Category pricing needs See Financial Data as well as Settings — Parts",
-  [role("'Settings — Parts'", "'See Financial Data'"), category("A"), DESK],
+  [role("'Settings — Parts'", "'See Financial Data'"), "Use a client connected to QuickBooks, so the QuickBooks Products and Services field shows.",
+   category("A"), DESK],
   [CATEGORIES, "Click category A's row.", "Open the page's three-dot menu.", "Press Esc.", "Open the three-dot menu beside New Category."],
   [R(S("S16-R8", "The Categories page's pricing columns, its matrix grid and every edit to a matrix need 'Settings — Parts' and 'See Financial Data'."),
      "The Categories page lists category A in the Category column.", "It shows no pricing columns."),

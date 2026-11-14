@@ -50,7 +50,7 @@ C("S12-03", K, "A special-order part's details name the vendor and bill number",
   pics=["12.7"])
 
 C("S12-04", K, "Price details open from the keyboard and give focus back",
-  BASE, [OPEN, "Click into part A's sell price box on the Lines tab.", "Press Alt+Down.", "Press Esc.", "Type 13."],
+  BASE, [OPEN, "Click into part A's sell price box on the Lines tab.", "Press Alt+Down.", "Press Esc.", "Type 13 in part A's sell price box."],
   [R(S("S12-R1"), "Work order 1 opens."), R(S("S12-R1", "The price can be reached by keyboard."), "The cursor is in part A's sell price box."),
    R(S("S12-R2", "With the cursor in the price box, Alt+Down opens them"), "The price details open."),
    R(S("S12-R2", "Focus returns to the price when they close."), "The details close and the cursor is back in the price box."),
