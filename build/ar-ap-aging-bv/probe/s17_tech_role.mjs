@@ -1,0 +1,12 @@
+import { start } from './libs.mjs';
+const OUT = new URL('./s17/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dlg = () => page.locator('.q-dialog:visible').last(); const menu = async () => (await page.locator('.q-menu:visible .q-item').allInnerTexts()).map(T);
+const mclick = async (loc) => { await loc.scrollIntoViewIfNeeded(); await page.waitForTimeout(300); const bb = await loc.boundingBox(); await page.mouse.click(bb.x + bb.width / 2, bb.y + bb.height / 2); };
+const fld = (root, re) => root.locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: re }) }).first();
+await step('tech', async () => { await go('/administration/staff'); await page.waitForTimeout(4000); await mclick(page.locator('main button:visible').filter({ hasText: /Search/ }).first()); await page.waitForTimeout(800); await page.keyboard.type('Tech', { delay: 100 }); await page.waitForTimeout(4000);
+  const rows = page.locator('main tbody tr'); log('rows', JSON.stringify((await rows.allInnerTexts()).map(T).filter(Boolean).map(x => x.replace(/\S+@\S+/, '<email>').slice(0, 60)).slice(0, 6)));
+  const row = rows.filter({ hasText: /Tech\s+ShopView/i }).first(); await mclick(row.locator('button').last()); await page.waitForTimeout(2500); log('TECH ROLE', T(await fld(dlg(), /^Role/).innerText())); log('TECH LOCATION', T(await fld(dlg(), /^Location/).innerText().catch(() => '')));
+  await mclick(fld(dlg(), /^Role/)); await page.waitForTimeout(1500); const opts = await menu(); log('ROLE OPTS count', opts.length, JSON.stringify(opts.slice(0, 14))); await page.keyboard.press('Escape'); await page.waitForTimeout(400); await page.keyboard.press('Escape'); });
+await r.browser?.close?.(); process.exit(0);
