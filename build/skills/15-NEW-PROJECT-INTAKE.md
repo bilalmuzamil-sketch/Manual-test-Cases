@@ -85,6 +85,13 @@ item raised at intake**, not something discovered halfway through the matrix.
 
 ---
 
+## 1b · QUOTES AND DESIGN REFERENCES — asked for every new suite (Rule 117, sixteenth amendment, 14 Nov 2026, permanent)
+
+Ask, with context and a recommendation (Rule 139): "Does this suite need the Exact quotes from the source and References from Design?"
+YES: the full layout below the Expected Result. NO: the Expected Result ends with only the AUTOMATION line after it. Either way, design
+pictures are attached to the cases and the References field holds the ticket and PRD story/requirement numbers. Record the answer in
+PROJECT-STATE.md before any case is written.
+
 ## 2 · THE INTAKE CHECKLIST — filled in, committed, and honest
 
 Write `build/<project-slug>/INTAKE-<date>.md` and **commit it**. One row per input, and the verdict is

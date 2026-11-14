@@ -2390,6 +2390,8 @@ evidence, never from a session's self-report).
 
 ## 113 · THE EXPECTED RESULT IS THE SOURCE'S OWN WORDS, QUOTED VERBATIM — AND THOSE WORDS ARE NEVER CHANGED
 
+**Amended 14 Nov 2026 (QA lead, permanent): whether the quotes appear in the case is now asked per suite (Rule 117, sixteenth amendment). With NO, the quote is kept in the suite's library and checked by its build.py, but is not printed in the case; the plain results still must not deviate from it.**
+
 **Ordered by the QA lead, 2026-09-21, verbatim: *"the expected behavior should be the exact QUOTE
 from the specs/source, that MUST NOT ever be changed."*** Permanent. This is the strongest form of
 Rule 57 and it governs every case we write or touch, on every project.
@@ -2989,6 +2991,31 @@ his pattern exactly, he answered, verbatim: *"B -> and never add that line in th
 3. **Every future case, in every suite, is written without it.** Each suite's build.py rejects a case that contains it.
 4. Supersedes the "last line … mark this test Blocked" part of the ninth amendment and item 3 of the precondition shape that used it.
    The tester's general practice of marking a case Blocked when something is off is unchanged; it simply is not written into each case.
+
+### 117 — SIXTEENTH AMENDMENT, PERMANENT (QA lead, 14 Nov 2026): ask per suite whether quotes and design references are wanted; pictures and References always
+
+Ordered on 14 Nov 2026, verbatim: *"add one more question when starting to creat test cases, just ask me whether this testing suite requires
+the "Exact Quote from the testing suite" "and reference from design" If I say YES then keep everything below the Expected results as you
+always do, if I say NO. Then after the expected results the last line for each test should just be the Automation Marker. But in any case
+make sure that the screenshots from the design should always be the part of the test cases in any case. Also also ticket and PRD story
+reference neumbers housl always be put in the "References" ... Make the above the part of the rule."* Stated back and confirmed the same
+day ("Yes, record it permanently").
+
+1. **The first case-authoring question for every new suite:** "Does this suite need the Exact quotes from the source and References from
+   Design?" It is asked at intake (skill 15 §1a), with the context and a recommendation (Rule 139), and the answer is recorded in the
+   suite's PROJECT-STATE.md.
+2. **YES:** everything below the Expected Result stays as before: the exact quotes with their From: lines (Rules 113, 117 eleventh
+   amendment), References from Design (tenth amendment), any EXPECT FAIL text, then the AUTOMATION line last.
+3. **NO:** the Expected Result ends, then a blank line, then the AUTOMATION line, and nothing else: no quotes, no From: lines, no build
+   line, no References from Design block. An EXPECT FAIL case still carries its symptom and three outcomes (Rule 61) above the marker.
+4. **Either way, the design pictures** for the screens or states a case checks are attached to the case.
+5. **Either way, the References field** (TestRail `refs`) holds the ticket numbers and the PRD story / requirement numbers the case rests
+   on (for example `SV-11693, S2-R4, S2-R5`), within TestRail's 250-character limit.
+6. **Unchanged:** expected behaviour still comes only from the sources, never from the build (Rules 57, 58); the plain results must not
+   deviate from the source (Rule 113); every result must be traceable to a source sentence. With NO, the suite's build.py must still
+   check each plain result against the source sentence it rests on (kept in the library, not in the case text), and the References
+   field is the tester's link back to it.
+7. First suite under NO: Tiered Pricing (14 Nov 2026).
 
 ## 118 · EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (all projects, permanent)
 
