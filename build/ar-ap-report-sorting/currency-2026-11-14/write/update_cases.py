@@ -18,6 +18,10 @@ from _common import *
 ON_LIVE = "--on-live" in sys.argv
 ID = ids()
 keys = sorted(k for k in PROP if k in ID and k not in DEMO)
+# 14 Nov 2026, QA lead: "Only the 14 + 8": with --only-tester-visible, only the 14 cases whose title, preconditions, steps or results change are
+# written; the other 366 keep their live text (PRD version 12 stamp) until a later pass.
+if "--only-tester-visible" in sys.argv:
+    ONLY = set(json.load(open(f"{W}/tester-visible-14.json"))); keys = [k for k in keys if k in ONLY]; assert len(keys) == 14, keys
 plan, outside, held, noop = [], [], [], []
 for k in keys:
     cid = ID[k]; lv = SNAP14[cid]

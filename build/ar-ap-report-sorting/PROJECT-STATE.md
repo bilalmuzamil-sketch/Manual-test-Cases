@@ -213,3 +213,10 @@
   lock writes 0. Prepared: `write/update_cases.py --on-live` (v13 bodies built on the live text, every outside edit kept, proven by `scripts/check_merge.py`).
   DATA-13 held (case id in its live tester text). Jira: 11 new tickets handled in TICKET-LEDGER.json; sweep 0 unhandled; SV-12723 shows a gap (empty
   bucket cells on the Summaries, S2-R6) outside the named set.
+
+- 14 Nov 2026, WRITTEN (QA lead: "Only the 14 + 8"): Rule 59 re-check, PRD 947650561 last modified 13 Nov 14:36 UTC (version 13, unchanged). 14 cases
+  whose title, preconditions, steps or results change were updated on their live text (every 11-12 Nov edit kept; read-back 14/14 clean); 8 new
+  cases added to "Setup needed before testing" (C1145292-C1145299, read-back 8/8); run 557 481 -> 489 tests, union only, new tests assigned to
+  Mudassir; folder 90418 note "Test cases are current as of 11/14/2026 ..." (the steps and results of every case now match version 13). NOT written:
+  the other 366 cases (59 rewritten only in quotes, From lines or notes; 307 re-stamps) keep their PRD version 12 stamp until a later pass.
+  Test links: demo-day-2026-11-13/TESTS-TO-RUN-2026-11-14.md.
