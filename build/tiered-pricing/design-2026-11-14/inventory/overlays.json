@@ -20,7 +20,10 @@
   "boards": [
    "2 · Story 2: Tiers 04 2.4 Click the three-dot menu beside New Tier [T03-ListMenu.dc.html]",
    "2 · Story 2: Tiers 05 2.5 Click Audit Log [T04-AuditTiers__pre.dc.html]",
-   "3 · Story 3: Matrices and rules 07 3.7 Click Audit Log [MP10-AuditMatrix__pre.dc.html]"
+   "3 · Story 3: Matrices and rules 06 3.6 Click the page's three-dot menu [MP09-PageMenu.dc.html]",
+   "3 · Story 3: Matrices and rules 07 3.7 Click Audit Log [MP10-AuditMatrix__pre.dc.html]",
+   "6 · Story 6: Every matrix in one list 13 6.13 Audit Log beside New Matrix [MX10-AuditList__pre.dc.html]",
+   "7 · Story 7: Categories: every category's pricing at a glance 14 7.14 Audit Log beside New Category [CA11-Audit__pre.dc.html]"
   ]
  },
  {
@@ -184,7 +187,8 @@
   "close": true,
   "width": 900,
   "boards": [
-   "2 · Story 2: Tiers 20 2.20 Result: Manage Customers opens on the Remove tab, so the customers can be taken off and the tier archived [G2-RemoveLink.dc.html]"
+   "2 · Story 2: Tiers 20 2.20 Result: Manage Customers opens on the Remove tab, so the customers can be taken off and the tier archived [G2-RemoveLink.dc.html]",
+   "9 · Story 9: Putting customers on tiers 16 9.16 Click the Remove Customers tab [MC09-RemoveTab.dc.html]"
   ]
  },
  {
@@ -275,6 +279,14 @@
   ]
  },
  {
+  "kind": "error",
+  "text": "Tier 3",
+  "cls": "tp-name-input is-error",
+  "boards": [
+   "2 · Story 2: Tiers 36 2.36 Type a taken name and press Enter [TP04-RenameTaken.dc.html]"
+  ]
+ },
+ {
   "kind": "toast",
   "title": "Tier renamed to Fleet",
   "support": "",
@@ -287,11 +299,46 @@
   ]
  },
  {
+  "kind": "dialog",
+  "title": "Audit Log: Tier 2",
+  "aria": "Audit Log: Tier 2",
+  "body": "Event User Details Date Time Customer Added Riley Chen Acme Freight: Default → Tier 2 Sep 22, 2026 10:30 AM Tier Created Dana Whitfield Name: — → Tier 2 Aug 5, 2026 8:15 AM",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Close"
+  ],
+  "close": true,
+  "width": 860,
+  "boards": [
+   "2 · Story 2: Tiers 40 2.40 Result: \"Audit Log: Tier 2\": Event, User, Details (old → new), Date, Time [TP07-AuditTier.dc.html]"
+  ]
+ },
+ {
   "kind": "error",
   "text": "% off",
   "cls": "sv-field tp-cellw sv-field--suffix sv-field--error",
   "boards": [
-   "2 · Story 2: Tiers 51 2.51 Click Set Rule with no value [SR05-BadValue.dc.html]"
+   "2 · Story 2: Tiers 51 2.51 Click Set Rule with no value [SR05-BadValue.dc.html]",
+   "3 · Story 3: Matrices and rules 15 3.15 Type 120 in a % Off column and click Save [G3-PctOffError.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "%",
+  "cls": "sv-field tp-cellw sv-field--suffix sv-field--error",
+  "boards": [
+   "2 · Story 2: Tiers 52 2.52 Pick Margin %, type 120, click Set Rule [G2-SetRuleMargin.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "120",
+  "cls": "tp-cell is-error",
+  "boards": [
+   "2 · Story 2: Tiers 52 2.52 Pick Margin %, type 120, click Set Rule [G2-SetRuleMargin.dc.html]",
+   "3 · Story 3: Matrices and rules 15 3.15 Type 120 in a % Off column and click Save [G3-PctOffError.dc.html]",
+   "4 · Story 4: The tier grid: every tier of a matrix, edited in place 18 4.18 Type a bad value and click Save [ED09-BadValue.dc.html]"
   ]
  },
  {
@@ -332,6 +379,20 @@
  {
   "kind": "toast",
   "title": "Tier 2 set to 35% off",
+  "support": "2 matrices changed.",
+  "actions": [
+   "Undo"
+  ],
+  "close": true,
+  "variant": "sv-toast sv-toast--success",
+  "timer": "--toast-ms: 20000ms; --toast-delay: -38ms;",
+  "boards": [
+   "2 · Story 2: Tiers 56 2.56 Result: The checks clear [SR08-Done.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Tier 2 set to 35% off",
   "support": "1 matrix changed.",
   "actions": [
    "Undo"
@@ -356,6 +417,18 @@
   ]
  },
  {
+  "kind": "toast",
+  "title": "Tier 2 already uses 35% markup in that matrix",
+  "support": "",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "2 · Story 2: Tiers 60 2.60 Result: Nothing is asked; a toast says so [SR10-NothingToChange.dc.html]"
+  ]
+ },
+ {
   "kind": "dialog",
   "title": "Change Default’s Prices?",
   "aria": "Change Default’s Prices?",
@@ -370,6 +443,2682 @@
   "width": 560,
   "boards": [
    "3 · Story 3: Matrices and rules 07 3.7 Click Audit Log [MP10-AuditMatrix__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Audit Log: Stop 40",
+  "aria": "Audit Log: Stop 40",
+  "body": "Event User Details Date Time Rule Changed Dana Park Tier 2: Same as previous tier → 25% margin Oct 14, 2026 3:08 PM Rule Changed Riley Chen Default, $0.00–$100.00: 45% margin → 40% margin Sep 2, 2026 9:41 AM Matrix Created Dana Whitfield Name: — → Stop 40 Aug 4, 2026 8:02 AM",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Close"
+  ],
+  "close": true,
+  "width": 860,
+  "boards": [
+   "3 · Story 3: Matrices and rules 08 3.8 Result: Newest first: each save, then every rule it changed [MP10-AuditMatrix.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Stop 40 saved",
+  "support": "1 change: Tier 2 $0.00–$100.00: 22% margin. Parts already on work orders keep their prices.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "3 · Story 3: Matrices and rules 12 3.12 Result: Saved without asking; a toast confirms [SV01-Saved.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Change Prices in 2 Categories?",
+  "aria": "Change Prices in 2 Categories?",
+  "body": "The Fluids 30 matrix prices 2 categories: Filters Oil Saving changes prices in all 2. Parts already on work orders keep their prices. Default’s rules change, and these 4 tiers price from Default in this matrix, so they change too: Tier 2 Tier 3 Tier 4 Tier 5",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Change All"
+  ],
+  "close": true,
+  "width": 560,
+  "boards": [
+   "3 · Story 3: Matrices and rules 13 3.13 Save a matrix that prices several categories [SV02-ChangeAll.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Save the General Matrix?",
+  "aria": "Save the General Matrix?",
+  "body": "This changes prices for 9 categories without a matrix of their own. Uncategorized, Air system, Air Conditioning, Heating & Ventilating System +6 Default’s rules change, and this tier prices from Default in this matrix, so it changes too: Tier 4",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Save"
+  ],
+  "close": true,
+  "width": 520,
+  "boards": [
+   "3 · Story 3: Matrices and rules 14 3.14 Save the General Matrix [SV03-General.dc.html]"
+  ]
+ },
+ {
+  "kind": "banner",
+  "text": "Save is blocked Tier 5: enter a % from 0 to 99.99 in every range.",
+  "cls": "sv-alert sv-alert--danger tp-mt",
+  "boards": [
+   "3 · Story 3: Matrices and rules 15 3.15 Type 120 in a % Off column and click Save [G3-PctOffError.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Discard These Changes?",
+  "aria": "Discard These Changes?",
+  "body": "Your changes haven’t been saved.",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Keep Editing",
+   "Discard Changes"
+  ],
+  "close": true,
+  "width": 480,
+  "boards": [
+   "3 · Story 3: Matrices and rules 16 3.16 Change a value, then click the Part Sale Matrix tab [G3-TabSwitch.dc.html]",
+   "4 · Story 4: The tier grid: every tier of a matrix, edited in place 23 4.23 Click Cancel with changes [ED14-Discard.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "Part Sales use the work order prices Turn on Separate Part Sale pricing to give Part Sales their own prices.",
+  "boards": [
+   "3 · Story 3: Matrices and rules 17 3.17 Click the Part Sale Matrix tab (off) [PS01-PsOff.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Separate Part Sale pricing on",
+  "support": "It starts as a copy of the work order prices. Click Edit to change them.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "3 · Story 3: Matrices and rules 18 3.18 Turn on separate Part Sale pricing [PS02-PsOn.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Turn Off Part Sale Pricing?",
+  "aria": "Turn off Part Sale pricing?",
+  "body": "Turning off the separate Part Sale matrix will revert the pricing to the work order matrix.",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Turn Off"
+  ],
+  "close": true,
+  "width": 480,
+  "boards": [
+   "3 · Story 3: Matrices and rules 20 3.20 Turn it off [PS04-TurnOff.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "% + $ Markup % Margin %",
+  "cls": "sv-field tp-cellw tp2-ucell tp2-ucell--r sv-field--error",
+  "boards": [
+   "3 · Story 3: Matrices and rules 22 3.22 Result: Name, categories and the grid ready to fill; Cancel and Create Matrix in the page head, as on New Tier and New Category [NM01-New.dc.html]",
+   "3 · Story 3: Matrices and rules 22 3.22 Result: Name, categories and the grid ready to fill; Cancel and Create Matrix in the page head, as on New Tier and New Category [NM01-New.dc.html]",
+   "3 · Story 3: Matrices and rules 22 3.22 Result: Name, categories and the grid ready to fill; Cancel and Create Matrix in the page head, as on New Tier and New Category [NM01-New.dc.html]",
+   "3 · Story 3: Matrices and rules 22 3.22 Result: Name, categories and the grid ready to fill; Cancel and Create Matrix in the page head, as on New Tier and New Category [NM01-New.dc.html]",
+   "3 · Story 3: Matrices and rules 22 3.22 Result: Name, categories and the grid ready to fill; Cancel and Create Matrix in the page head, as on New Tier and New Category [NM01-New.dc.html]",
+   "3 · Story 3: Matrices and rules 22 3.22 Result: Name, categories and the grid ready to fill; Cancel and Create Matrix in the page head, as on New Tier and New Category [NM01-New.dc.html]",
+   "3 · Story 3: Matrices and rules 23 3.23 Open Categories [NM02-Cats.dc.html]",
+   "3 · Story 3: Matrices and rules 23 3.23 Open Categories [NM02-Cats.dc.html]",
+   "3 · Story 3: Matrices and rules 23 3.23 Open Categories [NM02-Cats.dc.html]",
+   "3 · Story 3: Matrices and rules 23 3.23 Open Categories [NM02-Cats.dc.html]",
+   "3 · Story 3: Matrices and rules 23 3.23 Open Categories [NM02-Cats.dc.html]",
+   "3 · Story 3: Matrices and rules 23 3.23 Open Categories [NM02-Cats.dc.html]",
+   "3 · Story 3: Matrices and rules 24 3.24 Click Create Matrix with no name [NM03-NoName.dc.html]",
+   "3 · Story 3: Matrices and rules 24 3.24 Click Create Matrix with no name [NM03-NoName.dc.html]",
+   "3 · Story 3: Matrices and rules 24 3.24 Click Create Matrix with no name [NM03-NoName.dc.html]",
+   "3 · Story 3: Matrices and rules 24 3.24 Click Create Matrix with no name [NM03-NoName.dc.html]",
+   "3 · Story 3: Matrices and rules 24 3.24 Click Create Matrix with no name [NM03-NoName.dc.html]",
+   "3 · Story 3: Matrices and rules 24 3.24 Click Create Matrix with no name [NM03-NoName.dc.html]",
+   "3 · Story 3: Matrices and rules 25 3.25 Type a taken name and click Create Matrix [G3-NameTaken.dc.html]",
+   "3 · Story 3: Matrices and rules 25 3.25 Type a taken name and click Create Matrix [G3-NameTaken.dc.html]",
+   "3 · Story 3: Matrices and rules 25 3.25 Type a taken name and click Create Matrix [G3-NameTaken.dc.html]",
+   "3 · Story 3: Matrices and rules 25 3.25 Type a taken name and click Create Matrix [G3-NameTaken.dc.html]",
+   "3 · Story 3: Matrices and rules 25 3.25 Type a taken name and click Create Matrix [G3-NameTaken.dc.html]",
+   "3 · Story 3: Matrices and rules 25 3.25 Type a taken name and click Create Matrix [G3-NameTaken.dc.html]",
+   "4 · Story 4: The tier grid: every tier of a matrix, edited in place 18 4.18 Type a bad value and click Save [ED09-BadValue.dc.html]",
+   "7 · Story 7: Categories: every category's pricing at a glance 13 7.13 Result: The new matrix opens with this category already picked; the breadcrumb leads back to the category [G7-NewMatrixFromCat.dc.html]",
+   "7 · Story 7: Categories: every category's pricing at a glance 13 7.13 Result: The new matrix opens with this category already picked; the breadcrumb leads back to the category [G7-NewMatrixFromCat.dc.html]",
+   "7 · Story 7: Categories: every category's pricing at a glance 13 7.13 Result: The new matrix opens with this category already picked; the breadcrumb leads back to the category [G7-NewMatrixFromCat.dc.html]",
+   "7 · Story 7: Categories: every category's pricing at a glance 13 7.13 Result: The new matrix opens with this category already picked; the breadcrumb leads back to the category [G7-NewMatrixFromCat.dc.html]",
+   "7 · Story 7: Categories: every category's pricing at a glance 13 7.13 Result: The new matrix opens with this category already picked; the breadcrumb leads back to the category [G7-NewMatrixFromCat.dc.html]",
+   "7 · Story 7: Categories: every category's pricing at a glance 13 7.13 Result: The new matrix opens with this category already picked; the breadcrumb leads back to the category [G7-NewMatrixFromCat.dc.html]"
+  ]
+ },
+ {
+  "kind": "banner",
+  "text": "Save is blocked Matrix name is a required field. Work Order Matrix: Rule 1: Enter a value",
+  "cls": "sv-alert sv-alert--danger tp-mt",
+  "boards": [
+   "3 · Story 3: Matrices and rules 24 3.24 Click Create Matrix with no name [NM03-NoName.dc.html]"
+  ]
+ },
+ {
+  "kind": "banner",
+  "text": "Save is blocked A matrix called Stop 40 already exists. Work Order Matrix: Rule 1: Enter a value",
+  "cls": "sv-alert sv-alert--danger tp-mt",
+  "boards": [
+   "3 · Story 3: Matrices and rules 25 3.25 Type a taken name and click Create Matrix [G3-NameTaken.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "Duplicate",
+   "Delete"
+  ],
+  "items": [
+   "Duplicate",
+   "Delete"
+  ],
+  "text": "Duplicate Delete",
+  "cls": "sv-menu sv-menu--fit tp-menu tp-menu--up",
+  "boards": [
+   "3 · Story 3: Matrices and rules 26 3.26 Duplicate a matrix [NM04-Duplicate__pre.dc.html]",
+   "3 · Story 3: Matrices and rules 28 3.28 Delete a matrix [NM05-Delete__pre.dc.html]",
+   "6 · Story 6: Every matrix in one list 11 6.11 Click a matrix's three-dot menu [MX08-RowMenu.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Delete Stop 40?",
+  "aria": "Delete Stop 40?",
+  "body": "Stop 40 prices Brakes. Once it’s deleted, it uses the General Matrix. Tier 2, Tier 3, Internal have their own rows here; those rows go with it. Parts already on work orders keep their prices.",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Delete"
+  ],
+  "close": true,
+  "width": 480,
+  "boards": [
+   "3 · Story 3: Matrices and rules 29 3.29 Result: \"Delete Stop 40?\" names the matrix [NM05-Delete.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "A part’s cost picks its row. The first range starts at $0.00; the last has no upper limit.",
+  "boards": [
+   "4 · Story 4: The tier grid: every tier of a matrix, edited in place 01 4.1 Hover the Cost Range info icon [MP02-RangeInfo.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "Uses previous tier, 1 · Default.",
+  "boards": [
+   "4 · Story 4: The tier grid: every tier of a matrix, edited in place 02 4.2 Hover a \"Uses previous tier\" cell [MP03-UsesPrevious.dc.html]"
+  ]
+ },
+ {
+  "kind": "banner",
+  "text": "Save is blocked Work Order Matrix: Rule 1: Enter a margin from 0 to 99.99",
+  "cls": "sv-alert sv-alert--danger tp-mt",
+  "boards": [
+   "4 · Story 4: The tier grid: every tier of a matrix, edited in place 18 4.18 Type a bad value and click Save [ED09-BadValue.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Change Prices in 3 Categories?",
+  "aria": "Change Prices in 3 Categories?",
+  "body": "The Dynamic 26 matrix prices 3 categories: Batteries Electrical Lighting Saving changes prices in all 3. Parts already on work orders keep their prices. Default’s rules change, and these 4 tiers price from Default in this matrix, so they change too: Tier 2 Tier 3 Tier 4 Tier 5",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Change All"
+  ],
+  "close": true,
+  "width": 560,
+  "boards": [
+   "4 · Story 4: The tier grid: every tier of a matrix, edited in place 24 4.24 Change Default's rules [SV04-DefaultFollowers.dc.html]"
+  ]
+ },
+ {
+  "kind": "banner",
+  "text": "Archived tiers don’t price parts. Reactivate a tier and assign customers to use these rules.",
+  "cls": "sv-alert sv-alert--info tp-mb tp2-archnote",
+  "boards": [
+   "4 · Story 4: The tier grid: every tier of a matrix, edited in place 26 4.26 Result: The archived view: Default plus archived tiers, with a notice; only the archived columns can change [ED15-Archived.dc.html]",
+   "4 · Story 4: The tier grid: every tier of a matrix, edited in place 27 4.27 Hover Default's column in the archived view [G4-ArchivedDefaultTip.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "Default prices live parts, so it can’t be changed in the archived view.",
+  "boards": [
+   "4 · Story 4: The tier grid: every tier of a matrix, edited in place 27 4.27 Hover Default's column in the archived view [G4-ArchivedDefaultTip.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "$",
+  "cls": "sv-field tp-cellw sv-field--prefix sv-field--error",
+  "boards": [
+   "5 · Story 5: Price Part Simulator 03 5.3 Type 0 as the part cost [G5-SimZero.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "0",
+  "cls": "tp-cell is-error tpc-hl",
+  "boards": [
+   "5 · Story 5: Price Part Simulator 03 5.3 Type 0 as the part cost [G5-SimZero.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "Tiers this matrix prices itself, by number. The rest are the same as the previous tier.",
+  "boards": [
+   "6 · Story 6: Every matrix in one list 03 6.3 Hover the Tiers info icon [MX02-TiersHover.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "1 · Default, 2 · Tier 2, 3 · Tier 3, 4 · Tier 4, 6 · Internal",
+  "boards": [
+   "6 · Story 6: Every matrix in one list 04 6.4 Hover the tier numbers in the Tiers column [G6-TiersNumbers.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "",
+  "aria": "Status filter",
+  "body": "",
+  "fields": [],
+  "inputs": [],
+  "buttons": [],
+  "close": false,
+  "width": 240,
+  "boards": [
+   "6 · Story 6: Every matrix in one list 05 6.5 Click the Status filter [MX04-StatusFilter.dc.html]",
+   "6 · Story 6: Every matrix in one list 06 6.6 Pick Inactive [MX05-Inactive__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "No categories use this matrix",
+  "boards": [
+   "6 · Story 6: Every matrix in one list 08 6.8 Hover an Inactive status [G6-InactiveTip.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "No matrices match \"zzz\" Clear Search",
+  "boards": [
+   "6 · Story 6: Every matrix in one list 10 6.10 A search with no match [MX07-NoMatch.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "Duplicate",
+   "Delete"
+  ],
+  "items": [
+   "Duplicate",
+   "Delete (disabled) {tip: The General Matrix can’t be deleted. You can edit it.}"
+  ],
+  "text": "Duplicate Delete",
+  "cls": "sv-menu sv-menu--fit tp-menu",
+  "boards": [
+   "6 · Story 6: Every matrix in one list 12 6.12 The General Matrix's menu [MX09-GeneralMenu.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "The General Matrix can’t be deleted. You can edit it.",
+  "boards": [
+   "6 · Story 6: Every matrix in one list 12 6.12 The General Matrix's menu [MX09-GeneralMenu.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Audit Log: Matrices",
+  "aria": "Audit Log: Matrices",
+  "body": "Event User Details Date Time Rule Changed Dana Park General Matrix, Tier 2: Same as previous tier → % margin Oct 14, 2026 3:08 PM Rule Changed Dana Park Stop 40, Tier 2: Same as previous tier → 25% margin Oct 14, 2026 3:08 PM Rule Changed Dana Park Tread Plus, Tier 2: Same as previous tier → Cost + $40 Oct 14, 2026 3:08 PM Rule Changed Dana Park Fluids 30, Internal: Same as previous tier → 0% markup Oct 14, 2026 3:08 PM Rule Changed Dana Park Dynamic 26, Tier 2: 7% off → 5% off Oct 14, 2026 3:08 PM Rule Changed Dana Park Hydraulics 2025, Tier 2: 7% off → 5% off Oct 14, 2026 3:08 PM Rule Changed Dana Park Winter Promo, Tier 2: 12% off → 10% off Oct 14, 2026 3:08 PM Matrix Deleted Dana Park Matrix: Summer Promo 2025 → — Oct 2, 2026 4:20 PM Rule Changed Riley Chen General Matrix, Default, $0.00–$10.00: 155% markup → 150% markup Sep 2, 2026 9:41 AM Rule Changed Riley Chen Stop 40, Default, $0.00–$100.00: 45% margin → 40% margin Sep 2, 2026 9:41 AM Rule Changed Riley Chen Tread Plus, Default, $0.00–$300.00: Cost + $50 → Cost + $45 Sep 2, 2026 9:41 AM Rule Changed Riley Chen Fluids 30, Default, $0.00–$10,000.00: 35% margin → 30% margin Sep 2, 2026 9:41 AM Rule Changed Riley Chen Dynamic 26, Default, $0.00–$25.00: 125% markup → 120% markup Sep 2, 2026 9:41 AM Rule Changed Riley Chen Hydraulics 2025, Default, $0.00–$50.00: 85% markup → 80% markup Sep 2, 2026 9:41 AM Rule Changed Riley Chen Winter Promo, Default, $0.00–$100.00: 40% margin → 35% margin Sep 2, 2026 9:41 AM Categories Ch",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Close"
+  ],
+  "close": true,
+  "width": 860,
+  "boards": [
+   "6 · Story 6: Every matrix in one list 14 6.14 Result: \"Audit Log: Matrices\": every matrix's changes, deleted ones included [MX10-AuditList.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Category",
+  "aria": "Edit Category",
+  "body": "Name qb QuickBooks Products And Services Part Tax Exempt",
+  "fields": [
+   "Name",
+   "Tax Exempt"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "Air Conditioning, Heating & Ventilating System",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Part",
+    "placeholder": "",
+    "type": "select-one"
+   }
+  ],
+  "buttons": [
+   "Delete",
+   "Save & Close"
+  ],
+  "close": true,
+  "width": 560,
+  "boards": [
+   "7 · Story 7: Categories: every category's pricing at a glance 02 7.2 Today: Edit Category [CE01-TodayEditCategory.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "Uses previous tier, 4 · Tier 4.",
+  "boards": [
+   "7 · Story 7: Categories: every category's pricing at a glance 04 7.4 Hover a \"Uses previous tier\" cell [G7-UsesPrevTip.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "No category matches \"zzz\" Clear Search",
+  "boards": [
+   "7 · Story 7: Categories: every category's pricing at a glance 06 7.6 A search with no match [G7-NoMatch.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "The Fluids 30 matrix also prices 1 other category: Oil.",
+  "boards": [
+   "7 · Story 7: Categories: every category's pricing at a glance 09 7.9 A category whose matrix prices others [CA04-Shared.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "Can’t edit here. The Fluids 30 matrix prices 2 categories, so edit it from the matrix.",
+  "boards": [
+   "7 · Story 7: Categories: every category's pricing at a glance 10 7.10 Hover the grayed Edit [CA05-SharedTip.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Audit Log: Categories",
+  "aria": "Audit Log: Categories",
+  "body": "Event User Details Date Time Category Deleted Dana Park Category: Acme Freight Parts → — Parts and lines: Acme Freight Parts → Uncategorized (23 parts, 61 lines) Oct 20, 2026 3:40 PM Category Created Dana Whitfield Anti-Rattle Fastener, Name: — → Anti-Rattle Fastener Aug 12, 2026 9:12 AM Category Created Dana Whitfield Air Conditioning, Heating & Ventilating System, Name: — → Air Conditioning, Heating & Ventilating System Jul 11, 2026 9:11 AM Category Created Dana Whitfield Axle Bolt, Name: — → Axle Bolt Jun 13, 2026 9:13 AM Category Created Dana Whitfield Air system, Name: — → Air system Jun 10, 2026 9:10 AM",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Close"
+  ],
+  "close": true,
+  "width": 860,
+  "boards": [
+   "7 · Story 7: Categories: every category's pricing at a glance 15 7.15 Result: \"Audit Log: Categories\" [CA11-Audit.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Brakes now uses Tread Plus",
+  "support": "Parts already on work orders keep their prices.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "8 · Story 8: Categories over time 01 8.1 Pick another matrix for the category [CA07-PickMatrix.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "tires",
+  "cls": "tp-name-input is-error tpc-hl",
+  "boards": [
+   "8 · Story 8: Categories over time 04 8.4 Rename Brakes to a taken name [G8-RenameTaken.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Wheel Seals created",
+  "support": "Priced by General Matrix for every tier.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "8 · Story 8: Categories over time 09 8.9 Result: Created on the General Matrix; the toast says so [G8-Created.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "Audit Log",
+   "Delete"
+  ],
+  "items": [
+   "Audit Log",
+   "Delete"
+  ],
+  "text": "Audit Log Delete",
+  "cls": "sv-menu sv-menu--fit tp-menu",
+  "boards": [
+   "8 · Story 8: Categories over time 10 8.10 Click Delete in the three-dot menu [CA10-Delete__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Delete Wipers?",
+  "aria": "Delete Wipers?",
+  "body": "Its parts and lines, invoiced ones included, move to Uncategorized, and its QuickBooks mapping is removed. This can’t be undone.",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Delete"
+  ],
+  "close": true,
+  "width": 480,
+  "boards": [
+   "8 · Story 8: Categories over time 11 8.11 Click Delete in the delete dialog [G8-Deleted__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Wipers deleted",
+  "support": "",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "8 · Story 8: Categories over time 12 8.12 Result: The category is gone; its parts and past lines are in Uncategorized [G8-Deleted.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "No customer matches \"zzz\" Clear All Filters",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 02 9.2 Search a tier's Customers tab with no match [G9-CustNoMatch.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "",
+  "aria": "Sales Type filter",
+  "body": "",
+  "fields": [],
+  "inputs": [],
+  "buttons": [],
+  "close": false,
+  "width": 240,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 03 9.3 Open the Customers tab's channel filter [G9-CustFilter.dc.html]",
+   "20 · Sales by Tier and Sales by Category 09 20.9 Sales Type: Work Orders only [RP04-Type.dc.html]",
+   "20 · Sales by Tier and Sales by Category 23 20.23 Filters that match nothing [RP08-Empty.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Manage Customers on Tier 2",
+  "aria": "Manage Customers on Tier 2",
+  "body": "Add Customers Remove Customers 4 Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Calgary North Yard 6 · Internal 6 · Internal Calgary Transit Parts 1 · Default 4 · Tier 4 Chinook Excavating 4 · Tier 4 4 · Tier 4 Coastal Transit 3 · Tier 3 1 · Default Counter Sale 1 · Default 1 · Default Foothills Paving 1 · Default 1 · Default High River Hauling 1 · Default 1 · Default Kootenay Fleet Services 1 · Default 1 · Default Lethbridge Ag Supply 1 · Default 1 · Default Metro Waste 3 · Tier 3 3 · Tier 3 Northern Lights Towing 1 · Default 1 · Default Northway Haulers 2 · Tier 2 1 · Default Peak Aggregates 4 · Tier 4 4 · Tier 4 Prairie Gravel 4 · Tier 4 4 · Tier 4 Red Deer Hotshot 1 · Default 3 · Tier 3 Ridgeline Logistics 1 · Default 1 · Default Smith Trucking 1 · Default 1 · Default Smithers Hauling 1 · Default 1 · Default Summit Towing 3 · Tier 3 3 · Tier 3 Valley Parts Co 4 · Tier 4 4 · Tier 4",
+  "fields": [],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Add Customers (disabled)"
+  ],
+  "close": true,
+  "width": 900,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 04 9.4 Click Manage Customers [MC02-ManageAdd.dc.html]",
+   "9 · Story 9: Putting customers on tiers 05 9.5 Hover the Add Customers tab [MC02b-TabTip.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "Check the customers to put on Tier 2. Each one gets Work Orders and Part Sales unless you uncheck one, in the bar for everyone or on the customer’s own row.",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 05 9.5 Hover the Add Customers tab [MC02b-TabTip.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Manage Customers on Tier 2",
+  "aria": "Manage Customers on Tier 2",
+  "body": "Add Customers Remove Customers 4 2 selected Select All (21) Work Orders Part Sales Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Work Orders Part Sales Calgary North Yard 6 · Internal 6 · Internal Work Orders Part Sales Calgary Transit Parts 1 · Default 4 · Tier 4 Chinook Excavating 4 · Tier 4 4 · Tier 4 Coastal Transit 3 · Tier 3 1 · Default Counter Sale 1 · Default 1 · Default Foothills Paving 1 · Default 1 · Default High River Hauling 1 · Default 1 · Default Kootenay Fleet Services 1 · Default 1 · Default Lethbridge Ag Supply 1 · Default 1 · Default Metro Waste 3 · Tier 3 3 · Tier 3 Northern Lights Towing 1 · Default 1 · Default Northway Haulers 2 · Tier 2 1 · Default Peak Aggregates 4 · Tier 4 4 · Tier 4 Prairie Gravel 4 · Tier 4 4 · Tier 4 Red Deer Hotshot 1 · Default 3 · Tier 3 Ridgeline Logistics 1 · Default 1 · Default Smith Trucking 1 · Default 1 · Default Smithers Hauling 1 · Default 1 · Default Summit Towing 3 · Tier 3 3 · Tier 3 Valley Parts Co 4 · Tier 4 4 · Tier 4",
+  "fields": [
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales"
+  ],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Add 2 Customers"
+  ],
+  "close": true,
+  "width": 900,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 06 9.6 Check two customers [MC03-TickTwo.dc.html]",
+   "9 · Story 9: Putting customers on tiers 07 9.7 Uncheck Part Sales on one row [MC04-OneSide.dc.html]",
+   "9 · Story 9: Putting customers on tiers 14 9.14 Click Add to Tier 2 [MC08-Added__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Manage Customers on Tier 2",
+  "aria": "Manage Customers on Tier 2",
+  "body": "Add Customers Remove Customers 4 1 selected Select All (21) Work Orders Part Sales Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Work Orders Part Sales Pick Work Orders, Part Sales or both. Calgary North Yard 6 · Internal 6 · Internal Calgary Transit Parts 1 · Default 4 · Tier 4 Chinook Excavating 4 · Tier 4 4 · Tier 4 Coastal Transit 3 · Tier 3 1 · Default Counter Sale 1 · Default 1 · Default Foothills Paving 1 · Default 1 · Default High River Hauling 1 · Default 1 · Default Kootenay Fleet Services 1 · Default 1 · Default Lethbridge Ag Supply 1 · Default 1 · Default Metro Waste 3 · Tier 3 3 · Tier 3 Northern Lights Towing 1 · Default 1 · Default Northway Haulers 2 · Tier 2 1 · Default Peak Aggregates 4 · Tier 4 4 · Tier 4 Prairie Gravel 4 · Tier 4 4 · Tier 4 Red Deer Hotshot 1 · Default 3 · Tier 3 Ridgeline Logistics 1 · Default 1 · Default Smith Trucking 1 · Default 1 · Default Smithers Hauling 1 · Default 1 · Default Summit Towing 3 · Tier 3 3 · Tier 3 Valley Parts Co 4 · Tier 4 4 · Tier 4",
+  "fields": [
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales"
+  ],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Add 1 Customer (disabled)"
+  ],
+  "close": true,
+  "width": 900,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 08 9.8 Uncheck both Work Orders and Part Sales on a row [G9-NoChannel.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Manage Customers on Tier 2",
+  "aria": "Manage Customers on Tier 2",
+  "body": "Add Customers Remove Customers 4 21 selected Work Orders Part Sales Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Work Orders Part Sales Calgary North Yard 6 · Internal 6 · Internal Work Orders Part Sales Calgary Transit Parts 1 · Default 4 · Tier 4 Work Orders Part Sales Chinook Excavating 4 · Tier 4 4 · Tier 4 Work Orders Part Sales Coastal Transit 3 · Tier 3 1 · Default Work Orders Part Sales Counter Sale 1 · Default 1 · Default Work Orders Part Sales Foothills Paving 1 · Default 1 · Default Work Orders Part Sales High River Hauling 1 · Default 1 · Default Work Orders Part Sales Kootenay Fleet Services 1 · Default 1 · Default Work Orders Part Sales Lethbridge Ag Supply 1 · Default 1 · Default Work Orders Part Sales Metro Waste 3 · Tier 3 3 · Tier 3 Work Orders Part Sales Northern Lights Towing 1 · Default 1 · Default Work Orders Part Sales Northway Haulers 2 · Tier 2 1 · Default Work Orders Part Sales Peak Aggregates 4 · Tier 4 4 · Tier 4 Work Orders Part Sales Prairie Gravel 4 · Tier 4 4 · Tier 4 Work Orders Part Sales Red Deer Hotshot 1 · Default 3 · Tier 3 Work Orders Part Sales Ridgeline Logistics 1 · Default 1 · Default Work Orders Part Sales Smith Trucking 1 · Default 1 · Default Work Orders Part Sales Smithers Hauling 1 · Default 1 · Default Work Orders Part Sales Summit Towing 3 · Tier 3 3 · Tier 3 Work Orders Part Sales Valley Parts Co 4 · Tier 4 4 · Tier 4 Work Orders Part Sales",
+  "fields": [
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales"
+  ],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Add 21 Customers"
+  ],
+  "close": true,
+  "width": 900,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 09 9.9 Click Select All [MC05-SelectAll.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Manage Customers on Tier 2",
+  "aria": "Manage Customers on Tier 2",
+  "body": "Add Customers Remove Customers 4 1 selected Select All (21) Work Orders Part Sales Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Work Orders Part Sales Calgary North Yard 6 · Internal 6 · Internal Calgary Transit Parts 1 · Default 4 · Tier 4 Chinook Excavating 4 · Tier 4 4 · Tier 4 Coastal Transit 3 · Tier 3 1 · Default Counter Sale 1 · Default 1 · Default Foothills Paving 1 · Default 1 · Default High River Hauling 1 · Default 1 · Default Kootenay Fleet Services 1 · Default 1 · Default Lethbridge Ag Supply 1 · Default 1 · Default Metro Waste 3 · Tier 3 3 · Tier 3 Northern Lights Towing 1 · Default 1 · Default Northway Haulers 2 · Tier 2 1 · Default Peak Aggregates 4 · Tier 4 4 · Tier 4 Prairie Gravel 4 · Tier 4 4 · Tier 4 Red Deer Hotshot 1 · Default 3 · Tier 3 Ridgeline Logistics 1 · Default 1 · Default Smith Trucking 1 · Default 1 · Default Smithers Hauling 1 · Default 1 · Default Summit Towing 3 · Tier 3 3 · Tier 3 Valley Parts Co 4 · Tier 4 4 · Tier 4",
+  "fields": [
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales"
+  ],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Add 1 Customer"
+  ],
+  "close": true,
+  "width": 900,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 10 9.10 Uncheck Part Sales in the bar, then Select All [G9-SelectAllSkips__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Manage Customers on Tier 2",
+  "aria": "Manage Customers on Tier 2",
+  "body": "Add Customers Remove Customers 4 20 selected Work Orders Part Sales Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Work Orders Part Sales Calgary North Yard 6 · Internal 6 · Internal Work Orders Part Sales Calgary Transit Parts 1 · Default 4 · Tier 4 Work Orders Part Sales Chinook Excavating 4 · Tier 4 4 · Tier 4 Work Orders Part Sales Coastal Transit 3 · Tier 3 1 · Default Work Orders Part Sales Counter Sale 1 · Default 1 · Default Work Orders Part Sales Foothills Paving 1 · Default 1 · Default Work Orders Part Sales High River Hauling 1 · Default 1 · Default Work Orders Part Sales Kootenay Fleet Services 1 · Default 1 · Default Work Orders Part Sales Lethbridge Ag Supply 1 · Default 1 · Default Work Orders Part Sales Metro Waste 3 · Tier 3 3 · Tier 3 Work Orders Part Sales Northern Lights Towing 1 · Default 1 · Default Work Orders Part Sales Northway Haulers 2 · Tier 2 1 · Default Peak Aggregates 4 · Tier 4 4 · Tier 4 Work Orders Part Sales Prairie Gravel 4 · Tier 4 4 · Tier 4 Work Orders Part Sales Red Deer Hotshot 1 · Default 3 · Tier 3 Work Orders Part Sales Ridgeline Logistics 1 · Default 1 · Default Work Orders Part Sales Smith Trucking 1 · Default 1 · Default Work Orders Part Sales Smithers Hauling 1 · Default 1 · Default Work Orders Part Sales Summit Towing 3 · Tier 3 3 · Tier 3 Work Orders Part Sales Valley Parts Co 4 · Tier 4 4 · Tier 4 Work Orders Part Sales",
+  "fields": [
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales"
+  ],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Add 20 Customers"
+  ],
+  "close": true,
+  "width": 900,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 11 9.11 Result: Customers already on Tier 2 for the picked channel are skipped, and the footer says how many [G9-SelectAllSkips.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Manage Customers on Tier 2",
+  "aria": "Manage Customers on Tier 2",
+  "body": "Add Customers Remove Customers 4 Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 High River Hauling 1 · Default 1 · Default Lethbridge Ag Supply 1 · Default 1 · Default Prairie Gravel 4 · Tier 4 4 · Tier 4 Ridgeline Logistics 1 · Default 1 · Default",
+  "fields": [],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "Ri",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Add Customers (disabled)"
+  ],
+  "close": true,
+  "width": 900,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 12 9.12 Search customers [MC06-Search.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Manage Customers on Tier 2",
+  "aria": "Manage Customers on Tier 2",
+  "body": "Add Customers Remove Customers 4 Customer Work Order Tier Part Sales Tier Use Tier 2 for No customer matches \"zzz\". Clear Search",
+  "fields": [],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "zzz",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Add Customers (disabled)"
+  ],
+  "close": true,
+  "width": 900,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 13 9.13 A search with no match [MC07-SearchNone.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "No customer matches \"zzz\". Clear Search",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 13 9.13 A search with no match [MC07-SearchNone.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "2 customers added to Tier 2",
+  "support": "New work orders and Part Sales use Tier 2. Existing ones keep their prices and tier.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 15 9.15 Result: New work orders and Part Sales use Tier 2 [MC08-Added.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Manage Customers on Tier 2",
+  "aria": "Manage Customers on Tier 2",
+  "body": "Add Customers Remove Customers 4 1 selected Select All (4) Work Orders Part Sales Customer Work Order Tier Part Sales Tier Take Off Tier 2 for Acme Freight 2 · Tier 2 2 · Tier 2 Work Orders Part Sales Banff Shuttle Co 2 · Tier 2 2 · Tier 2 Work Orders and Part Sales Big Rig Logistics 2 · Tier 2 2 · Tier 2 Work Orders and Part Sales Northway Haulers 2 · Tier 2 1 · Default Work Orders only",
+  "fields": [
+   "Work Orders",
+   "Part Sales",
+   "Work Orders",
+   "Part Sales"
+  ],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Remove 1 Customer"
+  ],
+  "close": true,
+  "width": 900,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 17 9.17 Check one and click Remove [MC10-RemoveConfirm__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Remove 1 Customer?",
+  "aria": "Remove 1 Customer?",
+  "body": "Removing 1 customer: 1 for both. They go back to Default for the channels you picked. Parts already on their work orders keep their prices.",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Keep Customers",
+   "Remove"
+  ],
+  "close": true,
+  "width": 480,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 18 9.18 Result: \"Remove 1 Customer?\" They go back to Default for the channels picked [MC10-RemoveConfirm.dc.html]",
+   "9 · Story 9: Putting customers on tiers 19 9.19 Click Remove [MC11-Removed__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "1 customer taken off Tier 2",
+  "support": "They’re back on Default for the channels you picked. Existing work orders and Part Sales keep their prices and tier.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 20 9.20 Result: They are back on Default [MC11-Removed.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "Fleet Old is archived Reactivate it to add customers. Reactivate Tier",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 21 9.21 An archived tier's Customers tab [MC12-ArchivedNoManage.dc.html]",
+   "9 · Story 9: Putting customers on tiers 22 9.22 Click Reactivate Tier [MC13-ArchivedReactivate__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Fleet Old is reactivated. It’s now the last tier, Tier 7.",
+  "support": "",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 23 9.23 Result: No confirmation [MC13-ArchivedReactivate.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "No customers on Fleet Old yet Add customers to price their parts with this tier. Manage Customers",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 23 9.23 Result: No confirmation [MC13-ArchivedReactivate.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Manage Customers on Tier 5",
+  "aria": "Manage Customers on Tier 5",
+  "body": "Add Customers Remove Customers 0 Customer Work Order Tier Part Sales Tier Take Off Tier 5 for No customer is on Tier 5 yet.",
+  "fields": [],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Remove Customers (disabled)"
+  ],
+  "close": true,
+  "width": 900,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 24 9.24 Remove tab of a tier with no customers [G9-RemoveEmpty.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "No customers on Tier 5 yet Add customers to price their parts with this tier. Manage Customers",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 24 9.24 Remove tab of a tier with no customers [G9-RemoveEmpty.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "No customer is on Tier 5 yet.",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 24 9.24 Remove tab of a tier with no customers [G9-RemoveEmpty.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Customer",
+  "aria": "Edit Customer",
+  "body": "Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Work Order Tier Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes",
+  "fields": [
+   "Name *",
+   "Phone",
+   "Address",
+   "Default Labor Rate",
+   "Default Shop Supplies",
+   "Work Order Tier",
+   "Part Sales Tier",
+   "Notes"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "Acme Freight",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "(403) 555-0190",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "4410 52 St SE, Calgary, Alberta T2C 4Y5",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Heavy Duty",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Location default",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Call dispatch before releasing units",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Save"
+  ],
+  "close": true,
+  "width": 600,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 31 9.31 Click Edit [CU03-EditCustomer.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Customer",
+  "aria": "Edit Customer",
+  "body": "Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Work Order Tier 3 · Tier 3 Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes",
+  "fields": [
+   "Name *",
+   "Phone",
+   "Address",
+   "Default Labor Rate",
+   "Default Shop Supplies",
+   "Work Order Tier",
+   "Part Sales Tier",
+   "Notes"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "Acme Freight",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "(403) 555-0190",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "4410 52 St SE, Calgary, Alberta T2C 4Y5",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Heavy Duty",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Location default",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "Search tiers",
+    "value": "3",
+    "placeholder": "Search tiers",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Call dispatch before releasing units",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Save"
+  ],
+  "close": true,
+  "width": 600,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 32 9.32 Click Work Order Tier and type 3 [CU04-TierPicked.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "3 · Tier 3"
+  ],
+  "items": [
+   "",
+   "3 · Tier 3 [false]"
+  ],
+  "text": "3 · Tier 3",
+  "cls": "sv-menu tp-menu tp-tierpick__menu",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 32 9.32 Click Work Order Tier and type 3 [CU04-TierPicked.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Work Order Tier",
+  "heading": [
+   "3 · Tier 3"
+  ],
+  "items": [
+   "3 · Tier 3 [false]"
+  ],
+  "text": "3 · Tier 3",
+  "cls": "tp-tierpick__list",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 32 9.32 Click Work Order Tier and type 3 [CU04-TierPicked.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Customer",
+  "aria": "Edit Customer",
+  "body": "Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Work Order Tier 1 · Default 2 · Tier 2 3 · Tier 3 4 · Tier 4 5 · Tier 5 6 · Internal Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes",
+  "fields": [
+   "Name *",
+   "Phone",
+   "Address",
+   "Default Labor Rate",
+   "Default Shop Supplies",
+   "Work Order Tier",
+   "Part Sales Tier",
+   "Notes"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "Acme Freight",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "(403) 555-0190",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "4410 52 St SE, Calgary, Alberta T2C 4Y5",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Heavy Duty",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Location default",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "Search tiers",
+    "value": "",
+    "placeholder": "Search tiers",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Call dispatch before releasing units",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Save"
+  ],
+  "close": true,
+  "width": 600,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 33 9.33 Pick 3 · Tier 3 [CU04b-TierChosen__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "1 · Default",
+   "2 · Tier 2",
+   "3 · Tier 3",
+   "4 · Tier 4",
+   "5 · Tier 5",
+   "6 · Internal"
+  ],
+  "items": [
+   "",
+   "1 · Default [false]",
+   "2 · Tier 2 [true]",
+   "3 · Tier 3 [false]",
+   "4 · Tier 4 [false]",
+   "5 · Tier 5 [false]",
+   "6 · Internal [false]"
+  ],
+  "text": "1 · Default 2 · Tier 2 3 · Tier 3 4 · Tier 4 5 · Tier 5 6 · Internal",
+  "cls": "sv-menu tp-menu tp-tierpick__menu",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 33 9.33 Pick 3 · Tier 3 [CU04b-TierChosen__pre.dc.html]",
+   "9 · Story 9: Putting customers on tiers 40 9.40 On a phone: tap Work Order Tier [PH02-TierSheet.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Work Order Tier",
+  "heading": [
+   "1 · Default",
+   "2 · Tier 2",
+   "3 · Tier 3",
+   "4 · Tier 4",
+   "5 · Tier 5",
+   "6 · Internal"
+  ],
+  "items": [
+   "1 · Default [false]",
+   "2 · Tier 2 [true]",
+   "3 · Tier 3 [false]",
+   "4 · Tier 4 [false]",
+   "5 · Tier 5 [false]",
+   "6 · Internal [false]"
+  ],
+  "text": "1 · Default 2 · Tier 2 3 · Tier 3 4 · Tier 4 5 · Tier 5 6 · Internal",
+  "cls": "tp-tierpick__list",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 33 9.33 Pick 3 · Tier 3 [CU04b-TierChosen__pre.dc.html]",
+   "9 · Story 9: Putting customers on tiers 40 9.40 On a phone: tap Work Order Tier [PH02-TierSheet.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Customer",
+  "aria": "Edit Customer",
+  "body": "Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Work Order Tier Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes",
+  "fields": [
+   "Name *",
+   "Phone",
+   "Address",
+   "Default Labor Rate",
+   "Default Shop Supplies",
+   "Work Order Tier",
+   "Part Sales Tier",
+   "Notes"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "Acme Freight",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "(403) 555-0190",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "4410 52 St SE, Calgary, Alberta T2C 4Y5",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Heavy Duty",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Location default",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "3 · Tier 3",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Call dispatch before releasing units",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Save"
+  ],
+  "close": true,
+  "width": 600,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 34 9.34 Click Save [CU05-Saved__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Acme Freight saved",
+  "support": "Existing work orders and Part Sales keep their prices and tier.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 35 9.35 Result: The card shows the new tier [CU05-Saved.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Customer",
+  "aria": "Edit Customer",
+  "body": "Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Every walk-in sale uses this tier. Work Order Tier Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes",
+  "fields": [
+   "Name *",
+   "Phone",
+   "Address",
+   "Default Labor Rate",
+   "Default Shop Supplies",
+   "Work Order Tier",
+   "Part Sales Tier",
+   "Notes"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "Counter Sale",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Default",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Location default",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "1 · Default",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "1 · Default",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Save"
+  ],
+  "close": true,
+  "width": 600,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 36 9.36 Edit the Counter Sale customer [G9-CounterSale.dc.html]"
+  ]
+ },
+ {
+  "kind": "banner",
+  "text": "Every walk-in sale uses this tier.",
+  "cls": "sv-alert sv-alert--info",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 36 9.36 Edit the Counter Sale customer [G9-CounterSale.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "No work orders yet",
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 36 9.36 Edit the Counter Sale customer [G9-CounterSale.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Customer",
+  "aria": "Edit Customer",
+  "body": "Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Notes",
+  "fields": [
+   "Name *",
+   "Phone",
+   "Address",
+   "Default Labor Rate",
+   "Default Shop Supplies",
+   "Notes"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "Acme Freight",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "(403) 555-0190",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "4410 52 St SE, Calgary, Alberta T2C 4Y5",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Heavy Duty",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Location default",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Call dispatch before releasing units",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Save"
+  ],
+  "close": true,
+  "width": 600,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 37 9.37 Edit Customer with only Default [G9-ReleaseDayEdit.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Customer",
+  "aria": "Edit Customer",
+  "body": "Name * Phone Address Heavy Duty Default Labor Rate Location default Default Shop Supplies Work Order Tier Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes",
+  "fields": [
+   "Name *",
+   "Phone",
+   "Address",
+   "Default Labor Rate",
+   "Default Shop Supplies",
+   "Work Order Tier",
+   "Part Sales Tier",
+   "Notes"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "Acme Freight",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "(403) 555-0190",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "4410 52 St SE, Calgary, Alberta T2C 4Y5",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Heavy Duty",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Location default",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Call dispatch before releasing units",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Save"
+  ],
+  "close": true,
+  "width": 358,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 39 9.39 On a phone: Edit Customer [PH01-EditCustomer.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Customer",
+  "aria": "Edit Customer",
+  "body": "Name * Phone Address Heavy Duty Default Labor Rate Location default Default Shop Supplies Work Order Tier 1 · Default 2 · Tier 2 3 · Tier 3 4 · Tier 4 5 · Tier 5 6 · Internal Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes",
+  "fields": [
+   "Name *",
+   "Phone",
+   "Address",
+   "Default Labor Rate",
+   "Default Shop Supplies",
+   "Work Order Tier",
+   "Part Sales Tier",
+   "Notes"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "Acme Freight",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "(403) 555-0190",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "4410 52 St SE, Calgary, Alberta T2C 4Y5",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Heavy Duty",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Location default",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "Search tiers",
+    "value": "",
+    "placeholder": "Search tiers",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Call dispatch before releasing units",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Save"
+  ],
+  "close": true,
+  "width": 358,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 40 9.40 On a phone: tap Work Order Tier [PH02-TierSheet.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Customer",
+  "aria": "Edit Customer",
+  "body": "Name * Phone Address Heavy Duty Default Labor Rate Location default Default Shop Supplies Work Order Tier Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes",
+  "fields": [
+   "Name *",
+   "Phone",
+   "Address",
+   "Default Labor Rate",
+   "Default Shop Supplies",
+   "Work Order Tier",
+   "Part Sales Tier",
+   "Notes"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "Acme Freight",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "(403) 555-0190",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "4410 52 St SE, Calgary, Alberta T2C 4Y5",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Heavy Duty",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Location default",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "3 · Tier 3",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "2 · Tier 2",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Call dispatch before releasing units",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Save"
+  ],
+  "close": true,
+  "width": 358,
+  "boards": [
+   "9 · Story 9: Putting customers on tiers 41 9.41 On a phone: pick 3 · Tier 3 [PH03-TierPicked.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Part added",
+  "support": "$308.00 each, priced by Tier 2.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "10 · Story 10: How a part is priced 08 10.8 Result: Priced by the work order's tier [WO06-Added.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "$ Sell price",
+  "cls": "sv-field sv-field--error is-filled tp-field--prefix",
+  "boards": [
+   "10 · Story 10: How a part is priced 09 10.9 Quick Add with a sell price of -5 [G10-NegativeSell.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "-5",
+  "cls": "",
+  "boards": [
+   "10 · Story 10: How a part is priced 09 10.9 Quick Add with a sell price of -5 [G10-NegativeSell.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Part Request",
+  "aria": "Edit Part Request",
+  "body": "Part Number Description * Quantity Inventory Vendor Found Part Source Uncategorized Air Conditioning, Heating & Ventilating System Air system Anti-Rattle Fastener Axle Bolt Axle Hub Batteries Battery Box Brakes Electrical Filters Lighting Oil Suspension Tires Tires, Retread Wipers Category Vendor $ Cost The cost of an inventory part can’t be re-entered. $ Core Charge $ Sell Price Margin",
+  "fields": [
+   "Part Number",
+   "Description *",
+   "Quantity",
+   "Source",
+   "Category",
+   "Vendor",
+   "Cost",
+   "Core Charge",
+   "Sell Price",
+   "Margin"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "BRG 11R22.5",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Drive tire M729",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "4",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "inventory",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "cat-tires",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Prairie Tire Supply",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "268.00",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "308.00",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "12.99",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Remove Part",
+   "Cancel",
+   "Save Part"
+  ],
+  "close": true,
+  "width": 640,
+  "boards": [
+   "11 · Story 11: When a part is priced again 01 11.1 Click a part [WO07-EditPart.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Edit Part Request",
+  "aria": "Edit Part Request",
+  "body": "Part Number Description * Quantity Inventory Vendor Found Part Source Uncategorized Air Conditioning, Heating & Ventilating System Air system Anti-Rattle Fastener Axle Bolt Axle Hub Batteries Battery Box Brakes Electrical Filters Lighting Oil Suspension Tires Tires, Retread Wipers Category Vendor $ Cost The cost of an inventory part can’t be re-entered. $ Core Charge $ Sell Price Margin",
+  "fields": [
+   "Part Number",
+   "Description *",
+   "Quantity",
+   "Source",
+   "Category",
+   "Vendor",
+   "Cost",
+   "Core Charge",
+   "Sell Price",
+   "Margin"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "BRG 11R22.5",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "Drive tire M729",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "4",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "inventory",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "cat-tires",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "Prairie Tire Supply",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "268.00",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "199.00",
+    "placeholder": " ",
+    "type": "text"
+   },
+   {
+    "aria": "",
+    "value": "-34.67",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Remove Part",
+   "Cancel",
+   "Save Part"
+  ],
+  "close": true,
+  "width": 640,
+  "boards": [
+   "11 · Story 11: When a part is priced again 02 11.2 Type a sell price [WO08-TypePrice.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Split Work Order",
+  "aria": "Split Work Order",
+  "body": "Choose the lines to move. Each line’s labor and parts move together to a new work order for Acme Freight. Replace drive tires 2 parts PM service, 250-hour 3 parts",
+  "fields": [
+   "Replace drive tires 2 parts",
+   "PM service, 250-hour 3 parts"
+  ],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Split"
+  ],
+  "close": true,
+  "width": 560,
+  "boards": [
+   "11 · Story 11: When a part is priced again 03 11.3 Split Work Order (works as today) [SP01-Split.dc.html]",
+   "11 · Story 11: When a part is priced again 04 11.4 After the split [SP02-Split__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "S1-2877 created from S1-2671",
+  "support": "3 parts moved, priced by Tier 3.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "11 · Story 11: When a part is priced again 05 11.5 Result: The new work order, priced by the customer's current tier [SP02-Split.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Receive Part",
+  "aria": "Receive Part",
+  "body": "Drive tire M729 $ Received Cost *",
+  "fields": [
+   "Received Cost *"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "268.00",
+    "placeholder": " ",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Receive"
+  ],
+  "close": true,
+  "width": 480,
+  "boards": [
+   "11 · Story 11: When a part is priced again 06 11.6 Receive a part [RC01-Receive.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "",
+  "aria": "Why this price",
+  "body": "",
+  "fields": [],
+  "inputs": [],
+  "buttons": [],
+  "close": false,
+  "width": 400,
+  "boards": [
+   "11 · Story 11: When a part is priced again 07 11.7 Receive a tier-priced part at a new cost, then hover its price [G11-Received.dc.html]",
+   "12 · Story 12: Seeing what priced a part 01 12.1 Hover a price [WO02-Details.dc.html]",
+   "12 · Story 12: Seeing what priced a part 02 12.2 Hover a part priced through Same as previous tier [G12-SamePrev.dc.html]",
+   "12 · Story 12: Seeing what priced a part 03 12.3 Hover a typed price [WO03-Manual.dc.html]",
+   "12 · Story 12: Seeing what priced a part 05 12.5 A line priced before tiers [WO10-Before.dc.html]",
+   "12 · Story 12: Seeing what priced a part 06 12.6 The customer has moved tier since [WO11-Moved.dc.html]",
+   "12 · Story 12: Seeing what priced a part 07 12.7 A canned line part on a Default work order [WO12-Canned.dc.html]",
+   "12 · Story 12: Seeing what priced a part 08 12.8 A part on a fixed line total [WO13-FixedTotal.dc.html]",
+   "12 · Story 12: Seeing what priced a part 09 12.9 Hover a line priced for the previous customer [G12-PrevCustomer.dc.html]",
+   "13 · Story 13: Part Sales 04 13.4 Hover a price [PSL02-Details.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Why this price",
+  "heading": [],
+  "items": [],
+  "text": "Why this price Priced by Tier 2 Matrix Tread Plus · Tier 2 Cost Range $0.00–$10,000.00 Rule Cost + $40 Cost $40.00 Sell price $80.00 Priced on Oct 30, 2026, 10:15 AM From Inventory, bin E-11 Acme Freight’s work order tier (Tier 2) prices its parts.",
+  "cls": "tp-popover",
+  "boards": [
+   "11 · Story 11: When a part is priced again 07 11.7 Receive a tier-priced part at a new cost, then hover its price [G11-Received.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Part received",
+  "support": "$80.00 each, Tier 2.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "11 · Story 11: When a part is priced again 07 11.7 Receive a tier-priced part at a new cost, then hover its price [G11-Received.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Why this price",
+  "heading": [],
+  "items": [],
+  "text": "Why this price Priced by Tier 2 Matrix Tread Plus · Tier 2 Cost Range $0.00–$10,000.00 Rule Cost + $40 Cost $268.00 Sell price $308.00 Priced on Oct 22, 2026, 9:14 AM From Inventory, bin E-11 Acme Freight’s work order tier (Tier 2) prices its parts.",
+  "cls": "tp-popover",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 01 12.1 Hover a price [WO02-Details.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Why this price",
+  "heading": [],
+  "items": [],
+  "text": "Why this price Priced by Tier 2 Matrix Fluids 30 · Default Cost Range $0.00–$10,000.00 Rule 30% margin Same as previous tier Default Cost $41.75 Sell price $59.64 Priced on Oct 30, 2026, 10:15 AM From Inventory, bin B-02 Acme Freight’s work order tier (Tier 2) prices its parts.",
+  "cls": "tp-popover",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 02 12.2 Hover a part priced through Same as previous tier [G12-SamePrev.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Part added",
+  "support": "$59.64 each, priced by Tier 2.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 02 12.2 Hover a part priced through Same as previous tier [G12-SamePrev.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Why this price",
+  "heading": [],
+  "items": [],
+  "text": "Price typed by hand Priced by Manual (typed by hand) Typed by Dana Whitfield, Oct 22, 2026, 9:30 AM Sell price $32.00 Calculated price $40.14 (Tier 2) From Inventory, bin E-11 A typed price stays when the quantity changes. Changing the cost or category recalculates it. Clear the sell price to go back to the calculated price.",
+  "cls": "tp-popover",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 03 12.3 Hover a typed price [WO03-Manual.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Why this price",
+  "heading": [],
+  "items": [],
+  "text": "Priced before tiers Priced by Before tiers Cost $62.30 Sell price $99.68 Priced on Jul 29, 2026, 10:20 AM This part was priced before Tiered Pricing, so no tier or rule was recorded.",
+  "cls": "tp-popover",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 05 12.5 A line priced before tiers [WO10-Before.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Why this price",
+  "heading": [],
+  "items": [],
+  "text": "Why this price Priced by Default Matrix Stop 40 · Default Cost Range $0.00–$100.00 Rule 40% margin Cost $46.85 Sell price $78.08 Priced on Oct 20, 2026, 1:05 PM From Inventory, bin A-19 Priced by Default, Northway Haulers’s tier when this work order was made. Northway Haulers is now on Tier 2. Northway Haulers’s work order tier (Default) prices its parts.",
+  "cls": "tp-popover",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 06 12.6 The customer has moved tier since [WO11-Moved.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Why this price",
+  "heading": [],
+  "items": [],
+  "text": "Why this price Priced by Default Canned line Air brake chamber replace Cost $50.00 Sell price $80.00 Priced on Oct 28, 2026, 10:45 AM From Northline Brake Supply (VB-48213) Saved price from canned line Air brake chamber replace.",
+  "cls": "tp-popover",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 07 12.7 A canned line part on a Default work order [WO12-Canned.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Why this price",
+  "heading": [],
+  "items": [],
+  "text": "Why this price Priced by Fixed line total Line Part of a fixed line total of $450.00 (parts $210.00) Cost $46.85 Sell price $48.49 Priced on Oct 28, 2026, 10:50 AM From Inventory, bin A-19 The line has a fixed total, so its parts amount is spread across its parts. Bow River Haulers’s tier doesn’t apply to this line.",
+  "cls": "tp-popover",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 08 12.8 A part on a fixed line total [WO13-FixedTotal.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "Change Customer",
+   "Split Work Order",
+   "Back to Work Orders"
+  ],
+  "items": [
+   "Change Customer",
+   "Split Work Order",
+   "Back to Work Orders"
+  ],
+  "text": "Change Customer Split Work Order Back to Work Orders",
+  "cls": "sv-menu sv-menu--fit tp-menu",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 09 12.9 Hover a line priced for the previous customer [G12-PrevCustomer.dc.html]",
+   "14 · Story 14: Changing the customer on a work order 02 14.2 Click the work order's three-dot menu [CC01-Menu.dc.html]",
+   "14 · Story 14: Changing the customer on a work order 03 14.3 Change Customer [CC02-Change.dc.html]",
+   "14 · Story 14: Changing the customer on a work order 04 14.4 Pick a customer on another tier [CC03-Note.dc.html]",
+   "14 · Story 14: Changing the customer on a work order 06 14.6 Pick a customer on the same tier [G14-SameTier.dc.html]",
+   "14 · Story 14: Changing the customer on a work order 07 14.7 Click Update Customer [CC04-Changed__pre.dc.html]",
+   "14 · Story 14: Changing the customer on a work order 08 14.8 Result: A notice counts the lines priced for the previous customer [CC04-Changed.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Why this price",
+  "heading": [],
+  "items": [],
+  "text": "Priced for the previous customer Priced by Tier 2 Matrix Tread Plus · Tier 2 Cost Range $0.00–$10,000.00 Rule Cost + $40 Cost $268.00 Sell price $308.00 Priced on Oct 22, 2026, 9:14 AM Priced for Acme Freight From Inventory, bin E-11 Priced by Tier 2 for Acme Freight. This work order now belongs to Northern Lights Towing, and new parts keep its pricing. Acme Freight’s work order tier (Tier 2) prices its parts.",
+  "cls": "tp-popover",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 09 12.9 Hover a line priced for the previous customer [G12-PrevCustomer.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Customer changed to Northern Lights Towing",
+  "support": "4 lines priced at Tier 2, Fixed price and Manual for the previous customer.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 09 12.9 Hover a line priced for the previous customer [G12-PrevCustomer.dc.html]",
+   "14 · Story 14: Changing the customer on a work order 08 14.8 Result: A notice counts the lines priced for the previous customer [CC04-Changed.dc.html]"
+  ]
+ },
+ {
+  "kind": "banner",
+  "text": "4 lines priced at Tier 2, Fixed price and Manual for the previous customer They keep their prices, and their price details say who they were priced for.",
+  "cls": "sv-alert sv-alert--warning",
+  "boards": [
+   "12 · Story 12: Seeing what priced a part 09 12.9 Hover a line priced for the previous customer [G12-PrevCustomer.dc.html]",
+   "14 · Story 14: Changing the customer on a work order 08 14.8 Result: A notice counts the lines priced for the previous customer [CC04-Changed.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "Why this price",
+  "heading": [],
+  "items": [],
+  "text": "Why this price Priced by Tier 4 Matrix Dynamic 26 · Tier 4 Cost Range $150.01–$10,000.00 Rule 15% off Default ($255.15) Cost $189.00 Sell price $216.88 Priced on Oct 29, 2026, 2:20 PM From Inventory, bin A-07 Calgary Transit Parts’s Part Sales tier (Tier 4) prices its parts.",
+  "cls": "tp-popover",
+  "boards": [
+   "13 · Story 13: Part Sales 04 13.4 Hover a price [PSL02-Details.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Change Customer",
+  "aria": "Change Customer",
+  "body": "Updating the customer will change the account and contact on this work order. Existing notes, assets, and lines stay on the work order; only the customer and contact are updated. Parts already on the work order keep their prices, and new parts keep this work order’s pricing. Acme Freight Banff Shuttle Co Big Rig Logistics Bow River Haulers Calgary North Yard Calgary Transit Parts Chinook Excavating Coastal Transit Counter Sale Foothills Paving High River Hauling Kootenay Fleet Services Lethbridge Ag Supply Metro Waste Northern Lights Towing Northway Haulers Peak Aggregates Prairie Gravel Red Deer Hotshot Ridgeline Logistics Smith Trucking Smithers Hauling Summit Towing Valley Parts Co Customer Dispatch Desk Contact",
+  "fields": [
+   "Customer",
+   "Contact"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "c-acme",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "c",
+    "placeholder": "",
+    "type": "select-one"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Update Customer (disabled)"
+  ],
+  "close": true,
+  "width": 640,
+  "boards": [
+   "14 · Story 14: Changing the customer on a work order 03 14.3 Change Customer [CC02-Change.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Change Customer",
+  "aria": "Change Customer",
+  "body": "Updating the customer will change the account and contact on this work order. Existing notes, assets, and lines stay on the work order; only the customer and contact are updated. Parts already on the work order keep their prices, and new parts keep this work order’s pricing. Acme Freight Banff Shuttle Co Big Rig Logistics Bow River Haulers Calgary North Yard Calgary Transit Parts Chinook Excavating Coastal Transit Counter Sale Foothills Paving High River Hauling Kootenay Fleet Services Lethbridge Ag Supply Metro Waste Northern Lights Towing Northway Haulers Peak Aggregates Prairie Gravel Red Deer Hotshot Ridgeline Logistics Smith Trucking Smithers Hauling Summit Towing Valley Parts Co Customer No contact Contact This work order keeps Tier 2 pricing. Default applies to new work orders, or split this one to use it.",
+  "fields": [
+   "Customer",
+   "Contact"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "c-nlt",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "c",
+    "placeholder": "",
+    "type": "select-one"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Update Customer"
+  ],
+  "close": true,
+  "width": 640,
+  "boards": [
+   "14 · Story 14: Changing the customer on a work order 04 14.4 Pick a customer on another tier [CC03-Note.dc.html]",
+   "14 · Story 14: Changing the customer on a work order 07 14.7 Click Update Customer [CC04-Changed__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "banner",
+  "text": "This work order keeps Tier 2 pricing. Default applies to new work orders, or split this one to use it.",
+  "cls": "sv-alert sv-alert--warning",
+  "boards": [
+   "14 · Story 14: Changing the customer on a work order 04 14.4 Pick a customer on another tier [CC03-Note.dc.html]",
+   "14 · Story 14: Changing the customer on a work order 07 14.7 Click Update Customer [CC04-Changed__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Change Customer",
+  "aria": "Change Customer",
+  "body": "Updating the customer will change the account and contact on this Part Sale. Existing notes, assets, and lines stay on the Part Sale; only the customer and contact are updated. Parts already on the Part Sale keep their prices, and new parts keep this Part Sale’s pricing. Acme Freight Banff Shuttle Co Big Rig Logistics Bow River Haulers Calgary North Yard Calgary Transit Parts Chinook Excavating Coastal Transit Counter Sale Foothills Paving High River Hauling Kootenay Fleet Services Lethbridge Ag Supply Metro Waste Northern Lights Towing Northway Haulers Peak Aggregates Prairie Gravel Red Deer Hotshot Ridgeline Logistics Smith Trucking Smithers Hauling Summit Towing Valley Parts Co Customer No contact Contact This Part Sale keeps Tier 4 pricing. Default applies to new Part Sales, or split this one to use it.",
+  "fields": [
+   "Customer",
+   "Contact"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "c-nlt",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "c",
+    "placeholder": "",
+    "type": "select-one"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Update Customer"
+  ],
+  "close": true,
+  "width": 640,
+  "boards": [
+   "14 · Story 14: Changing the customer on a work order 05 14.5 Change Customer on a Part Sale [G13-ChangePS.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "Change Customer",
+   "Split Part Sale",
+   "Back to Part Sales"
+  ],
+  "items": [
+   "Change Customer",
+   "Split Part Sale",
+   "Back to Part Sales"
+  ],
+  "text": "Change Customer Split Part Sale Back to Part Sales",
+  "cls": "sv-menu sv-menu--fit tp-menu",
+  "boards": [
+   "14 · Story 14: Changing the customer on a work order 05 14.5 Change Customer on a Part Sale [G13-ChangePS.dc.html]"
+  ]
+ },
+ {
+  "kind": "banner",
+  "text": "This Part Sale keeps Tier 4 pricing. Default applies to new Part Sales, or split this one to use it.",
+  "cls": "sv-alert sv-alert--warning",
+  "boards": [
+   "14 · Story 14: Changing the customer on a work order 05 14.5 Change Customer on a Part Sale [G13-ChangePS.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Change Customer",
+  "aria": "Change Customer",
+  "body": "Updating the customer will change the account and contact on this work order. Existing notes, assets, and lines stay on the work order; only the customer and contact are updated. Parts already on the work order keep their prices, and new parts keep this work order’s pricing. Acme Freight Banff Shuttle Co Big Rig Logistics Bow River Haulers Calgary North Yard Calgary Transit Parts Chinook Excavating Coastal Transit Counter Sale Foothills Paving High River Hauling Kootenay Fleet Services Lethbridge Ag Supply Metro Waste Northern Lights Towing Northway Haulers Peak Aggregates Prairie Gravel Red Deer Hotshot Ridgeline Logistics Smith Trucking Smithers Hauling Summit Towing Valley Parts Co Customer No contact Contact",
+  "fields": [
+   "Customer",
+   "Contact"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "c-bigrig",
+    "placeholder": "",
+    "type": "select-one"
+   },
+   {
+    "aria": "",
+    "value": "c",
+    "placeholder": "",
+    "type": "select-one"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Update Customer"
+  ],
+  "close": true,
+  "width": 640,
+  "boards": [
+   "14 · Story 14: Changing the customer on a work order 06 14.6 Pick a customer on the same tier [G14-SameTier.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "Tier 5 sells a $50.01 part below cost.",
+  "boards": [
+   "15 · Story 15: The below-cost warning in the matrix 01 15.1 Hover the below-cost warning [MP04-BelowCost.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "",
+  "aria": "Priced By filter",
+  "body": "",
+  "fields": [],
+  "inputs": [],
+  "buttons": [],
+  "close": false,
+  "width": 240,
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 05 20.5 Open Priced By [RP03-Filter.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "",
+  "aria": "Customer filter",
+  "body": "",
+  "fields": [],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [],
+  "close": false,
+  "width": 240,
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 06 20.6 Open the Customer filter [GR-CustFilter.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "",
+  "aria": "Category filter",
+  "body": "",
+  "fields": [],
+  "inputs": [
+   {
+    "aria": "Search categories",
+    "value": "",
+    "placeholder": "Search categories",
+    "type": "text"
+   }
+  ],
+  "buttons": [],
+  "close": false,
+  "width": 240,
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 07 20.7 Open the Category filter [GR-CatFilter.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "",
+  "aria": "Location filter",
+  "body": "",
+  "fields": [],
+  "inputs": [],
+  "buttons": [],
+  "close": false,
+  "width": 240,
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 08 20.8 Open the Location filter [GR-LocFilter.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "",
+  "aria": "Date filter",
+  "body": "",
+  "fields": [
+   "From",
+   "To"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "2025-01-01",
+    "placeholder": " ",
+    "type": "date"
+   },
+   {
+    "aria": "",
+    "value": "2026-10-31",
+    "placeholder": " ",
+    "type": "date"
+   }
+  ],
+  "buttons": [],
+  "close": false,
+  "width": 240,
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 10 20.10 Pick a custom range over one year [GR-DateTooLong.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "From",
+  "cls": "sv-field is-filled sv-field--error",
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 10 20.10 Pick a custom range over one year [GR-DateTooLong.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "2025-01-01",
+  "cls": "tpc-hl",
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 10 20.10 Pick a custom range over one year [GR-DateTooLong.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "To",
+  "cls": "sv-field is-filled sv-field--error",
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 10 20.10 Pick a custom range over one year [GR-DateTooLong.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "2026-10-31",
+  "cls": "",
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 10 20.10 Pick a custom range over one year [GR-DateTooLong.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "",
+  "aria": "Date filter",
+  "body": "",
+  "fields": [
+   "From",
+   "To"
+  ],
+  "inputs": [
+   {
+    "aria": "",
+    "value": "2027-01-01",
+    "placeholder": " ",
+    "type": "date"
+   },
+   {
+    "aria": "",
+    "value": "2027-01-31",
+    "placeholder": " ",
+    "type": "date"
+   }
+  ],
+  "buttons": [],
+  "close": false,
+  "width": 240,
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 11 20.11 Pick a range with no sales [GR-NoDates.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "There are no results for selected date range",
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 11 20.11 Pick a range with no sales [GR-NoDates.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "",
+  "aria": "Columns",
+  "body": "",
+  "fields": [],
+  "inputs": [],
+  "buttons": [],
+  "close": false,
+  "width": 240,
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 14 20.14 Click the Columns icon [GR-Columns.dc.html]",
+   "20 · Sales by Tier and Sales by Category 15 20.15 Hide Parts Margin [GR-ColumnHidden.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "Download Summary (PDF)",
+   "Download Expanded View (PDF)",
+   "Download Summary (CSV)",
+   "Download Expanded View (CSV)"
+  ],
+  "items": [
+   "Download Summary (PDF) (disabled) {tip: Not part of this prototype}",
+   "Download Expanded View (PDF) (disabled) {tip: Not part of this prototype}",
+   "Download Summary (CSV)",
+   "Download Expanded View (CSV)"
+  ],
+  "text": "Download Summary (PDF) Download Expanded View (PDF) Download Summary (CSV) Download Expanded View (CSV)",
+  "cls": "sv-menu tp-menu",
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 18 20.18 Click Download [RP07-Export.dc.html]",
+   "20 · Sales by Tier and Sales by Category 19 20.19 Click Download Summary (CSV) [GR-Csv__pre.dc.html]",
+   "20 · Sales by Tier and Sales by Category 21 20.21 Download with no rows [GR-EmptyExport__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Summary CSV",
+  "aria": "Summary CSV",
+  "body": "Sales by Tier \"Date Range: Oct 1, 2026 – Oct 31, 2026\" Locations: Calgary North Sales Type: All Priced By: All Category: All categories Customer: All customers Priced By,Parts Cost,Parts Invoiced,Parts Credits,Parts Net,Parts Margin,Parts Margin %,% of Total Default,6292.45,9122.21,0.00,9122.21,2829.76,31.02%,30.49% Tier 2,5933.40,7445.99,0.00,7445.99,1512.59,20.31%,24.89% Tier 3,1162.10,1460.68,0.00,1460.68,298.58,20.44%,4.88% Tier 4,7797.85,9516.68,0.00,9516.68,1718.83,18.06%,31.81% Fixed price,85.40,209.00,0.00,209.00,123.60,59.14%,0.70% Fixed line total,1108.00,1550.00,0.00,1550.00,442.00,28.52%,5.18% Manual,533.00,610.97,0.00,610.97,77.97,12.76%,2.04% Totals,22912.20,29915.53,0.00,29915.53,7003.33,23.41%,100.00%",
+  "fields": [],
+  "inputs": [
+   {
+    "aria": "CSV text",
+    "value": "Sales by Tier\n\"Date Range: Oct 1, 2026 – Oct 31, 2026\"\nLocations: Calgary North\nSales Type: All\nPriced By: All\nCategory: All categories\nCustomer: All customers\n\nPriced By,Parts Cost,Parts Invoiced,Parts Credits,Parts Net,Parts Margin,Parts Margin %,% of Total\nDefault,6292.45,9122.21,0.00,9122.21,2829.76,31.02%,30.49%\nTier 2,5933.40,7445.99,0.00,7445.99,1512.59,20.31%,24.89%\nTier 3,1162.10,1460.68,0.00,1460.68,298.58,20.44%,4.88%\nTier 4,7797.85,9516.68,0.00,9516.68,1718.83,18.06%,31.81%\nFixed price,85.40,209.00,0.00,209.00,123.60,59.14%,0.70%\nFixed line total,1108.00,1550.00,0.00,1550.00,442.00,28.52%,5.18%\nManual,533.00,610.97,0.00,610.97,77.97,12.76%,2.04%\nTotals,22912.20,29915.53,0.00,29915.53,7003.33,23.41%,100.00%\n",
+    "placeholder": "",
+    "type": "textarea"
+   }
+  ],
+  "buttons": [
+   "Close",
+   "Copy"
+  ],
+  "close": true,
+  "width": 880,
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 20 20.20 Result: Prototype stand-in (see the info icon): the real menu item downloads the file [GR-Csv.dc.html]"
+  ]
+ },
+ {
+  "kind": "empty",
+  "text": "No record matches these filters Try changing filters to widen your results. Clear All Filters",
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 21 20.21 Download with no rows [GR-EmptyExport__pre.dc.html]",
+   "20 · Sales by Tier and Sales by Category 22 20.22 Result: \"Empty export.\" [GR-EmptyExport.dc.html]",
+   "20 · Sales by Tier and Sales by Category 23 20.23 Filters that match nothing [RP08-Empty.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Empty export",
+  "support": "",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--info",
+  "timer": "",
+  "boards": [
+   "20 · Sales by Tier and Sales by Category 22 20.22 Result: \"Empty export.\" [GR-EmptyExport.dc.html]"
   ]
  }
 ]

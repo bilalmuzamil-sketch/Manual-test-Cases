@@ -1,0 +1,246 @@
+TOOLTIP 'The tier’s place in the order. New tiers go last; archiving one moves later tiers up.' [2.3]
+MENU '' head=['Audit Log'] items=['Audit Log'] [2.4,2.5,3.6,3.7,6.13,7.14]
+DIALOG 'Audit Log: Tiers' w860 x=True btns=['Close'] [2.6]
+  body='Event User Details Date Time Tier Created Dana Whitfield Tier 5, Name: — → Tier 5 Oct 27, 2026 8:15 AM Tier Archived Dana Whitfield Fleet Old, Status: Active → Archived Oct 15, 2026 4:45 PM Tier Deleted Dana Whitfield Tier: Fleet Test → — Sep 29, 2026 11:35 AM Customer Added Riley Chen Tier 2, Acme Freight: Default → Tier 2 Sep 22, 2026 10:30 AM Customer Added Riley Chen Tier 3, Metro Waste: Default → Tier 3 Sep 22, 2026 10:30 AM Customer Added Riley Chen Tier 4, Bow River Haulers: Default → Tie'
+MENU '' head=['Audit Log', 'Archive', 'Delete'] items=['Audit Log', 'Archive', 'Delete'] [2.7,2.21,2.28]
+MENU '' head=['Audit Log', 'Archive', 'Delete'] items=['Audit Log', 'Archive', 'Delete (disabled) {tip: Can’t delete Tier 2. 2 open work orders, estimates or Part Sales use it.}'] [2.8,2.18,2.38,2.39]
+TOOLTIP 'Can’t delete Tier 2. 2 open work orders, estimates or Part Sales use it.' [2.8]
+MENU '' head=['Audit Log', 'Reactivate', 'Delete'] items=['Audit Log', 'Reactivate', 'Delete'] [2.9,2.25,2.26]
+ERROR 'tier 3' [2.13]
+ERROR 'Fleet Old' [2.14]
+ERROR 'Manual' [2.15]
+TOAST --compact --success 'Fleet Plus created' / 'It prices the same as the tier before it until you set its rules.' act=[] x=False '' [2.17]
+DIALOG 'Tier 2 Can’t Be Archived Yet' w560 x=True btns=['Remove Customers', 'Close'] [2.19]
+  body='4 customers are on Tier 2 Take them off or move them to another tier first, then archive it. Parts already on their work orders keep their prices. Customer On Tier 2 for Acme Freight Work orders and Part Sales Banff Shuttle Co Work orders and Part Sales Big Rig Logistics Work orders and Part Sales Northway Haulers Work orders only'
+DIALOG 'Manage Customers on Tier 2' w900 x=True btns=['Cancel', 'Remove Customers (disabled)'] [2.20,9.16]
+  body='Add Customers Remove Customers 4 Customer Work Order Tier Part Sales Tier Take Off Tier 2 for Acme Freight 2 · Tier 2 2 · Tier 2 Work Orders and Part Sales Banff Shuttle Co 2 · Tier 2 2 · Tier 2 Work Orders and Part Sales Big Rig Logistics 2 · Tier 2 2 · Tier 2 Work Orders and Part Sales Northway Haulers 2 · Tier 2 1 · Default Work Orders only'
+DIALOG 'Archive Tier 5?' w520 x=True btns=['Cancel', 'Archive'] [2.22]
+  body='These tiers price the same as Tier 5 and will follow Tier 4 instead: Internal Parts already on work orders keep their prices.'
+DIALOG 'Archive Tier 5?' w520 x=True btns=['Cancel', 'Archive'] [2.23]
+  body='Parts already on work orders keep their prices.'
+TOAST --compact --success 'Tier 5 archived' / 'It stays in reports. The tiers after it move up one number.' act=[] x=False '' [2.24]
+TOAST --compact --success 'Tier 5 is reactivated. It’s now the last tier, Tier 6.' / '' act=[] x=False '' [2.27]
+DIALOG 'Delete Tier 5?' w520 x=True btns=['Cancel', 'Delete'] [2.29]
+  body='This can’t be undone. Parts already on work orders keep their prices.'
+TOAST --compact --success 'Tier 5 deleted' / '' act=[] x=False '' [2.30]
+ERROR 'Tier 3' [2.36]
+TOAST --compact --success 'Tier renamed to Fleet' / '' act=[] x=False '' [2.37]
+DIALOG 'Audit Log: Tier 2' w860 x=True btns=['Close'] [2.40]
+  body='Event User Details Date Time Customer Added Riley Chen Acme Freight: Default → Tier 2 Sep 22, 2026 10:30 AM Tier Created Dana Whitfield Name: — → Tier 2 Aug 5, 2026 8:15 AM'
+ERROR '% off' [2.51,3.15]
+ERROR '%' [2.52]
+ERROR '120' [2.52,3.15,4.18]
+DIALOG 'Set Tier 2’s Rule?' w480 x=True btns=['Cancel', 'Set Rule'] [2.53]
+  body='Tier 2 becomes 35% off in all 7 matrices (2 inactive), replacing what it had. Parts already on work orders keep their prices.'
+DIALOG 'Set Tier 2’s Rule?' w480 x=True btns=['Cancel', 'Set Rule'] [2.54,2.55]
+  body='Tier 2 becomes 35% off in 2 matrices, replacing what it had. Parts already on work orders keep their prices.'
+TOAST --success 'Tier 2 set to 35% off' / '2 matrices changed.' act=['Undo'] x=True '--toast-ms: 20' [2.56]
+TOAST --success 'Tier 2 set to 35% off' / '1 matrix changed.' act=['Undo'] x=True '--toast-ms: 20' [2.57]
+TOAST --compact --success 'Undone' / 'Tier 2’s rules are back.' act=[] x=False '' [2.58]
+TOAST --compact --success 'Tier 2 already uses 35% markup in that matrix' / '' act=[] x=False '' [2.60]
+DIALOG 'Change Default’s Prices?' w560 x=True btns=['Cancel', 'Save'] [3.7]
+  body='Default’s rules change, and these 3 tiers price from Default in this matrix, so they change too: Tier 3 Tier 4 Tier 5 Parts already on work orders keep their prices.'
+DIALOG 'Audit Log: Stop 40' w860 x=True btns=['Close'] [3.8]
+  body='Event User Details Date Time Rule Changed Dana Park Tier 2: Same as previous tier → 25% margin Oct 14, 2026 3:08 PM Rule Changed Riley Chen Default, $0.00–$100.00: 45% margin → 40% margin Sep 2, 2026 9:41 AM Matrix Created Dana Whitfield Name: — → Stop 40 Aug 4, 2026 8:02 AM'
+TOAST --compact --success 'Stop 40 saved' / '1 change: Tier 2 $0.00–$100.00: 22% margin. Parts already on work orders keep their prices.' act=[] x=False '' [3.12]
+DIALOG 'Change Prices in 2 Categories?' w560 x=True btns=['Cancel', 'Change All'] [3.13]
+  body='The Fluids 30 matrix prices 2 categories: Filters Oil Saving changes prices in all 2. Parts already on work orders keep their prices. Default’s rules change, and these 4 tiers price from Default in this matrix, so they change too: Tier 2 Tier 3 Tier 4 Tier 5'
+DIALOG 'Save the General Matrix?' w520 x=True btns=['Cancel', 'Save'] [3.14]
+  body='This changes prices for 9 categories without a matrix of their own. Uncategorized, Air system, Air Conditioning, Heating & Ventilating System +6 Default’s rules change, and this tier prices from Default in this matrix, so it changes too: Tier 4'
+BANNER 'Save is blocked Tier 5: enter a % from 0 to 99.99 in every range.' [3.15]
+DIALOG 'Discard These Changes?' w480 x=True btns=['Keep Editing', 'Discard Changes'] [3.16,4.23]
+  body='Your changes haven’t been saved.'
+EMPTY 'Part Sales use the work order prices Turn on Separate Part Sale pricing to give Part Sales their own prices.' [3.17]
+TOAST --compact --success 'Separate Part Sale pricing on' / 'It starts as a copy of the work order prices. Click Edit to change them.' act=[] x=False '' [3.18]
+DIALOG 'Turn Off Part Sale Pricing?' w480 x=True btns=['Cancel', 'Turn Off'] [3.20]
+  body='Turning off the separate Part Sale matrix will revert the pricing to the work order matrix.'
+ERROR '% + $ Markup % Margin %' [3.22,3.22,3.22,3.22,3.22,3.22,3.23,3.23,3.23,3.23,3.23,3.23,3.24,3.24,3.24,3.24,3.24,3.24,3.25,3.25,3.25,3.25,3.25,3.25,4.18,7.13,7.13,7.13,7.13,7.13,7.13]
+BANNER 'Save is blocked Matrix name is a required field. Work Order Matrix: Rule 1: Enter a value' [3.24]
+BANNER 'Save is blocked A matrix called Stop 40 already exists. Work Order Matrix: Rule 1: Enter a value' [3.25]
+MENU '' head=['Duplicate', 'Delete'] items=['Duplicate', 'Delete'] [3.26,3.28,6.11]
+DIALOG 'Delete Stop 40?' w480 x=True btns=['Cancel', 'Delete'] [3.29]
+  body='Stop 40 prices Brakes. Once it’s deleted, it uses the General Matrix. Tier 2, Tier 3, Internal have their own rows here; those rows go with it. Parts already on work orders keep their prices.'
+TOOLTIP 'A part’s cost picks its row. The first range starts at $0.00; the last has no upper limit.' [4.1]
+TOOLTIP 'Uses previous tier, 1 · Default.' [4.2]
+BANNER 'Save is blocked Work Order Matrix: Rule 1: Enter a margin from 0 to 99.99' [4.18]
+DIALOG 'Change Prices in 3 Categories?' w560 x=True btns=['Cancel', 'Change All'] [4.24]
+  body='The Dynamic 26 matrix prices 3 categories: Batteries Electrical Lighting Saving changes prices in all 3. Parts already on work orders keep their prices. Default’s rules change, and these 4 tiers price from Default in this matrix, so they change too: Tier 2 Tier 3 Tier 4 Tier 5'
+BANNER 'Archived tiers don’t price parts. Reactivate a tier and assign customers to use these rules.' [4.26,4.27]
+TOOLTIP 'Default prices live parts, so it can’t be changed in the archived view.' [4.27]
+ERROR '$' [5.3]
+ERROR '0' [5.3]
+TOOLTIP 'Tiers this matrix prices itself, by number. The rest are the same as the previous tier.' [6.3]
+TOOLTIP '1 · Default, 2 · Tier 2, 3 · Tier 3, 4 · Tier 4, 6 · Internal' [6.4]
+DIALOG '' w240 x=False btns=[] [6.5,6.6]
+  body=''
+TOOLTIP 'No categories use this matrix' [6.8]
+EMPTY 'No matrices match "zzz" Clear Search' [6.10]
+MENU '' head=['Duplicate', 'Delete'] items=['Duplicate', 'Delete (disabled) {tip: The General Matrix can’t be deleted. You can edit it.}'] [6.12]
+TOOLTIP 'The General Matrix can’t be deleted. You can edit it.' [6.12]
+DIALOG 'Audit Log: Matrices' w860 x=True btns=['Close'] [6.14]
+  body='Event User Details Date Time Rule Changed Dana Park General Matrix, Tier 2: Same as previous tier → % margin Oct 14, 2026 3:08 PM Rule Changed Dana Park Stop 40, Tier 2: Same as previous tier → 25% margin Oct 14, 2026 3:08 PM Rule Changed Dana Park Tread Plus, Tier 2: Same as previous tier → Cost + $40 Oct 14, 2026 3:08 PM Rule Changed Dana Park Fluids 30, Internal: Same as previous tier → 0% markup Oct 14, 2026 3:08 PM Rule Changed Dana Park Dynamic 26, Tier 2: 7% off → 5% off Oct 14, 2026 3:08'
+DIALOG 'Edit Category' w560 x=True btns=['Delete', 'Save & Close'] [7.2]
+  body='Name qb QuickBooks Products And Services Part Tax Exempt'
+  fields=['Name', 'Tax Exempt']
+TOOLTIP 'Uses previous tier, 4 · Tier 4.' [7.4]
+EMPTY 'No category matches "zzz" Clear Search' [7.6]
+TOOLTIP 'The Fluids 30 matrix also prices 1 other category: Oil.' [7.9]
+TOOLTIP 'Can’t edit here. The Fluids 30 matrix prices 2 categories, so edit it from the matrix.' [7.10]
+DIALOG 'Audit Log: Categories' w860 x=True btns=['Close'] [7.15]
+  body='Event User Details Date Time Category Deleted Dana Park Category: Acme Freight Parts → — Parts and lines: Acme Freight Parts → Uncategorized (23 parts, 61 lines) Oct 20, 2026 3:40 PM Category Created Dana Whitfield Anti-Rattle Fastener, Name: — → Anti-Rattle Fastener Aug 12, 2026 9:12 AM Category Created Dana Whitfield Air Conditioning, Heating & Ventilating System, Name: — → Air Conditioning, Heating & Ventilating System Jul 11, 2026 9:11 AM Category Created Dana Whitfield Axle Bolt, Name: — → '
+TOAST --compact --success 'Brakes now uses Tread Plus' / 'Parts already on work orders keep their prices.' act=[] x=False '' [8.1]
+ERROR 'tires' [8.4]
+TOAST --compact --success 'Wheel Seals created' / 'Priced by General Matrix for every tier.' act=[] x=False '' [8.9]
+MENU '' head=['Audit Log', 'Delete'] items=['Audit Log', 'Delete'] [8.10]
+DIALOG 'Delete Wipers?' w480 x=True btns=['Cancel', 'Delete'] [8.11]
+  body='Its parts and lines, invoiced ones included, move to Uncategorized, and its QuickBooks mapping is removed. This can’t be undone.'
+TOAST --compact --success 'Wipers deleted' / '' act=[] x=False '' [8.12]
+EMPTY 'No customer matches "zzz" Clear All Filters' [9.2]
+DIALOG '' w240 x=False btns=[] [9.3,20.9,20.23]
+  body=''
+DIALOG 'Manage Customers on Tier 2' w900 x=True btns=['Cancel', 'Add Customers (disabled)'] [9.4,9.5]
+  body='Add Customers Remove Customers 4 Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Calgary North Yard 6 · Internal 6 · Internal Calgary Transit Parts 1 · Default 4 · Tier 4 Chinook Excavating 4 · Tier 4 4 · Tier 4 Coastal Transit 3 · Tier 3 1 · Default Counter Sale 1 · Default 1 · Default Foothills Paving 1 · Default 1 · Default High River Hauling 1 · Default 1 · Default Kootenay Fleet Services 1 · Default 1 · Default Lethbridge Ag Supply 1 · Defaul'
+TOOLTIP 'Check the customers to put on Tier 2. Each one gets Work Orders and Part Sales unless you uncheck one, in the bar for everyone or on the customer’s own row.' [9.5]
+DIALOG 'Manage Customers on Tier 2' w900 x=True btns=['Cancel', 'Add 2 Customers'] [9.6,9.7,9.14]
+  body='Add Customers Remove Customers 4 2 selected Select All (21) Work Orders Part Sales Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Work Orders Part Sales Calgary North Yard 6 · Internal 6 · Internal Work Orders Part Sales Calgary Transit Parts 1 · Default 4 · Tier 4 Chinook Excavating 4 · Tier 4 4 · Tier 4 Coastal Transit 3 · Tier 3 1 · Default Counter Sale 1 · Default 1 · Default Foothills Paving 1 · Default 1 · Default High River Hauling 1 · Def'
+  fields=['Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales']
+DIALOG 'Manage Customers on Tier 2' w900 x=True btns=['Cancel', 'Add 1 Customer (disabled)'] [9.8]
+  body='Add Customers Remove Customers 4 1 selected Select All (21) Work Orders Part Sales Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Work Orders Part Sales Pick Work Orders, Part Sales or both. Calgary North Yard 6 · Internal 6 · Internal Calgary Transit Parts 1 · Default 4 · Tier 4 Chinook Excavating 4 · Tier 4 4 · Tier 4 Coastal Transit 3 · Tier 3 1 · Default Counter Sale 1 · Default 1 · Default Foothills Paving 1 · Default 1 · Default High River '
+  fields=['Work Orders', 'Part Sales', 'Work Orders', 'Part Sales']
+DIALOG 'Manage Customers on Tier 2' w900 x=True btns=['Cancel', 'Add 21 Customers'] [9.9]
+  body='Add Customers Remove Customers 4 21 selected Work Orders Part Sales Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Work Orders Part Sales Calgary North Yard 6 · Internal 6 · Internal Work Orders Part Sales Calgary Transit Parts 1 · Default 4 · Tier 4 Work Orders Part Sales Chinook Excavating 4 · Tier 4 4 · Tier 4 Work Orders Part Sales Coastal Transit 3 · Tier 3 1 · Default Work Orders Part Sales Counter Sale 1 · Default 1 · Default Work Orders P'
+  fields=['Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales']
+DIALOG 'Manage Customers on Tier 2' w900 x=True btns=['Cancel', 'Add 1 Customer'] [9.10]
+  body='Add Customers Remove Customers 4 1 selected Select All (21) Work Orders Part Sales Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Work Orders Part Sales Calgary North Yard 6 · Internal 6 · Internal Calgary Transit Parts 1 · Default 4 · Tier 4 Chinook Excavating 4 · Tier 4 4 · Tier 4 Coastal Transit 3 · Tier 3 1 · Default Counter Sale 1 · Default 1 · Default Foothills Paving 1 · Default 1 · Default High River Hauling 1 · Default 1 · Default Kooten'
+  fields=['Work Orders', 'Part Sales', 'Work Orders', 'Part Sales']
+DIALOG 'Manage Customers on Tier 2' w900 x=True btns=['Cancel', 'Add 20 Customers'] [9.11]
+  body='Add Customers Remove Customers 4 20 selected Work Orders Part Sales Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 Work Orders Part Sales Calgary North Yard 6 · Internal 6 · Internal Work Orders Part Sales Calgary Transit Parts 1 · Default 4 · Tier 4 Work Orders Part Sales Chinook Excavating 4 · Tier 4 4 · Tier 4 Work Orders Part Sales Coastal Transit 3 · Tier 3 1 · Default Work Orders Part Sales Counter Sale 1 · Default 1 · Default Work Orders P'
+  fields=['Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales', 'Work Orders', 'Part Sales']
+DIALOG 'Manage Customers on Tier 2' w900 x=True btns=['Cancel', 'Add Customers (disabled)'] [9.12]
+  body='Add Customers Remove Customers 4 Customer Work Order Tier Part Sales Tier Use Tier 2 for Bow River Haulers 1 · Default 4 · Tier 4 High River Hauling 1 · Default 1 · Default Lethbridge Ag Supply 1 · Default 1 · Default Prairie Gravel 4 · Tier 4 4 · Tier 4 Ridgeline Logistics 1 · Default 1 · Default'
+DIALOG 'Manage Customers on Tier 2' w900 x=True btns=['Cancel', 'Add Customers (disabled)'] [9.13]
+  body='Add Customers Remove Customers 4 Customer Work Order Tier Part Sales Tier Use Tier 2 for No customer matches "zzz". Clear Search'
+EMPTY 'No customer matches "zzz". Clear Search' [9.13]
+TOAST --compact --success '2 customers added to Tier 2' / 'New work orders and Part Sales use Tier 2. Existing ones keep their prices and tier.' act=[] x=False '' [9.15]
+DIALOG 'Manage Customers on Tier 2' w900 x=True btns=['Cancel', 'Remove 1 Customer'] [9.17]
+  body='Add Customers Remove Customers 4 1 selected Select All (4) Work Orders Part Sales Customer Work Order Tier Part Sales Tier Take Off Tier 2 for Acme Freight 2 · Tier 2 2 · Tier 2 Work Orders Part Sales Banff Shuttle Co 2 · Tier 2 2 · Tier 2 Work Orders and Part Sales Big Rig Logistics 2 · Tier 2 2 · Tier 2 Work Orders and Part Sales Northway Haulers 2 · Tier 2 1 · Default Work Orders only'
+  fields=['Work Orders', 'Part Sales', 'Work Orders', 'Part Sales']
+DIALOG 'Remove 1 Customer?' w480 x=True btns=['Keep Customers', 'Remove'] [9.18,9.19]
+  body='Removing 1 customer: 1 for both. They go back to Default for the channels you picked. Parts already on their work orders keep their prices.'
+TOAST --compact --success '1 customer taken off Tier 2' / 'They’re back on Default for the channels you picked. Existing work orders and Part Sales keep their prices and tier.' act=[] x=False '' [9.20]
+EMPTY 'Fleet Old is archived Reactivate it to add customers. Reactivate Tier' [9.21,9.22]
+TOAST --compact --success 'Fleet Old is reactivated. It’s now the last tier, Tier 7.' / '' act=[] x=False '' [9.23]
+EMPTY 'No customers on Fleet Old yet Add customers to price their parts with this tier. Manage Customers' [9.23]
+DIALOG 'Manage Customers on Tier 5' w900 x=True btns=['Cancel', 'Remove Customers (disabled)'] [9.24]
+  body='Add Customers Remove Customers 0 Customer Work Order Tier Part Sales Tier Take Off Tier 5 for No customer is on Tier 5 yet.'
+EMPTY 'No customers on Tier 5 yet Add customers to price their parts with this tier. Manage Customers' [9.24]
+EMPTY 'No customer is on Tier 5 yet.' [9.24]
+DIALOG 'Edit Customer' w600 x=True btns=['Save'] [9.31]
+  body='Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Work Order Tier Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes'
+  fields=['Name *', 'Phone', 'Address', 'Default Labor Rate', 'Default Shop Supplies', 'Work Order Tier', 'Part Sales Tier', 'Notes']
+DIALOG 'Edit Customer' w600 x=True btns=['Save'] [9.32]
+  body='Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Work Order Tier 3 · Tier 3 Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes'
+  fields=['Name *', 'Phone', 'Address', 'Default Labor Rate', 'Default Shop Supplies', 'Work Order Tier', 'Part Sales Tier', 'Notes']
+MENU '' head=['3 · Tier 3'] items=['', '3 · Tier 3 [false]'] [9.32]
+MENU 'Work Order Tier' head=['3 · Tier 3'] items=['3 · Tier 3 [false]'] [9.32]
+DIALOG 'Edit Customer' w600 x=True btns=['Save'] [9.33]
+  body='Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Work Order Tier 1 · Default 2 · Tier 2 3 · Tier 3 4 · Tier 4 5 · Tier 5 6 · Internal Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes'
+  fields=['Name *', 'Phone', 'Address', 'Default Labor Rate', 'Default Shop Supplies', 'Work Order Tier', 'Part Sales Tier', 'Notes']
+MENU '' head=['1 · Default', '2 · Tier 2', '3 · Tier 3', '4 · Tier 4', '5 · Tier 5', '6 · Internal'] items=['', '1 · Default [false]', '2 · Tier 2 [true]', '3 · Tier 3 [false]', '4 · Tier 4 [false]', '5 · Tier 5 [false]', '6 · Internal [false]'] [9.33,9.40]
+MENU 'Work Order Tier' head=['1 · Default', '2 · Tier 2', '3 · Tier 3', '4 · Tier 4', '5 · Tier 5', '6 · Internal'] items=['1 · Default [false]', '2 · Tier 2 [true]', '3 · Tier 3 [false]', '4 · Tier 4 [false]', '5 · Tier 5 [false]', '6 · Internal [false]'] [9.33,9.40]
+DIALOG 'Edit Customer' w600 x=True btns=['Save'] [9.34]
+  body='Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Work Order Tier Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes'
+  fields=['Name *', 'Phone', 'Address', 'Default Labor Rate', 'Default Shop Supplies', 'Work Order Tier', 'Part Sales Tier', 'Notes']
+TOAST --compact --success 'Acme Freight saved' / 'Existing work orders and Part Sales keep their prices and tier.' act=[] x=False '' [9.35]
+DIALOG 'Edit Customer' w600 x=True btns=['Save'] [9.36]
+  body='Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Every walk-in sale uses this tier. Work Order Tier Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes'
+  fields=['Name *', 'Phone', 'Address', 'Default Labor Rate', 'Default Shop Supplies', 'Work Order Tier', 'Part Sales Tier', 'Notes']
+BANNER 'Every walk-in sale uses this tier.' [9.36]
+EMPTY 'No work orders yet' [9.36]
+DIALOG 'Edit Customer' w600 x=True btns=['Save'] [9.37]
+  body='Name * Phone Address Default Heavy Duty Light Duty Default Labor Rate Location default No shop supplies 5% of labor Default Shop Supplies Notes'
+  fields=['Name *', 'Phone', 'Address', 'Default Labor Rate', 'Default Shop Supplies', 'Notes']
+DIALOG 'Edit Customer' w358 x=True btns=['Save'] [9.39]
+  body='Name * Phone Address Heavy Duty Default Labor Rate Location default Default Shop Supplies Work Order Tier Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes'
+  fields=['Name *', 'Phone', 'Address', 'Default Labor Rate', 'Default Shop Supplies', 'Work Order Tier', 'Part Sales Tier', 'Notes']
+DIALOG 'Edit Customer' w358 x=True btns=['Save'] [9.40]
+  body='Name * Phone Address Heavy Duty Default Labor Rate Location default Default Shop Supplies Work Order Tier 1 · Default 2 · Tier 2 3 · Tier 3 4 · Tier 4 5 · Tier 5 6 · Internal Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes'
+  fields=['Name *', 'Phone', 'Address', 'Default Labor Rate', 'Default Shop Supplies', 'Work Order Tier', 'Part Sales Tier', 'Notes']
+DIALOG 'Edit Customer' w358 x=True btns=['Save'] [9.41]
+  body='Name * Phone Address Heavy Duty Default Labor Rate Location default Default Shop Supplies Work Order Tier Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier. Part Sales Tier Prices parts on Part Sales. Set on its own: changing the work order tier never changes it. Notes'
+  fields=['Name *', 'Phone', 'Address', 'Default Labor Rate', 'Default Shop Supplies', 'Work Order Tier', 'Part Sales Tier', 'Notes']
+TOAST --compact --success 'Part added' / '$308.00 each, priced by Tier 2.' act=[] x=False '' [10.8]
+ERROR '$ Sell price' [10.9]
+ERROR '-5' [10.9]
+DIALOG 'Edit Part Request' w640 x=True btns=['Remove Part', 'Cancel', 'Save Part'] [11.1]
+  body='Part Number Description * Quantity Inventory Vendor Found Part Source Uncategorized Air Conditioning, Heating & Ventilating System Air system Anti-Rattle Fastener Axle Bolt Axle Hub Batteries Battery Box Brakes Electrical Filters Lighting Oil Suspension Tires Tires, Retread Wipers Category Vendor $ Cost The cost of an inventory part can’t be re-entered. $ Core Charge $ Sell Price Margin'
+  fields=['Part Number', 'Description *', 'Quantity', 'Source', 'Category', 'Vendor', 'Cost', 'Core Charge', 'Sell Price', 'Margin']
+DIALOG 'Edit Part Request' w640 x=True btns=['Remove Part', 'Cancel', 'Save Part'] [11.2]
+  body='Part Number Description * Quantity Inventory Vendor Found Part Source Uncategorized Air Conditioning, Heating & Ventilating System Air system Anti-Rattle Fastener Axle Bolt Axle Hub Batteries Battery Box Brakes Electrical Filters Lighting Oil Suspension Tires Tires, Retread Wipers Category Vendor $ Cost The cost of an inventory part can’t be re-entered. $ Core Charge $ Sell Price Margin'
+  fields=['Part Number', 'Description *', 'Quantity', 'Source', 'Category', 'Vendor', 'Cost', 'Core Charge', 'Sell Price', 'Margin']
+DIALOG 'Split Work Order' w560 x=True btns=['Cancel', 'Split'] [11.3,11.4]
+  body='Choose the lines to move. Each line’s labor and parts move together to a new work order for Acme Freight. Replace drive tires 2 parts PM service, 250-hour 3 parts'
+  fields=['Replace drive tires 2 parts', 'PM service, 250-hour 3 parts']
+TOAST --compact --success 'S1-2877 created from S1-2671' / '3 parts moved, priced by Tier 3.' act=[] x=False '' [11.5]
+DIALOG 'Receive Part' w480 x=True btns=['Cancel', 'Receive'] [11.6]
+  body='Drive tire M729 $ Received Cost *'
+  fields=['Received Cost *']
+DIALOG '' w400 x=False btns=[] [11.7,12.1,12.2,12.3,12.5,12.6,12.7,12.8,12.9,13.4]
+  body=''
+MENU 'Why this price' head=[] items=[] [11.7]
+TOAST --compact --success 'Part received' / '$80.00 each, Tier 2.' act=[] x=False '' [11.7]
+MENU 'Why this price' head=[] items=[] [12.1]
+MENU 'Why this price' head=[] items=[] [12.2]
+TOAST --compact --success 'Part added' / '$59.64 each, priced by Tier 2.' act=[] x=False '' [12.2]
+MENU 'Why this price' head=[] items=[] [12.3]
+MENU 'Why this price' head=[] items=[] [12.5]
+MENU 'Why this price' head=[] items=[] [12.6]
+MENU 'Why this price' head=[] items=[] [12.7]
+MENU 'Why this price' head=[] items=[] [12.8]
+MENU '' head=['Change Customer', 'Split Work Order', 'Back to Work Orders'] items=['Change Customer', 'Split Work Order', 'Back to Work Orders'] [12.9,14.2,14.3,14.4,14.6,14.7,14.8]
+MENU 'Why this price' head=[] items=[] [12.9]
+TOAST --compact --success 'Customer changed to Northern Lights Towing' / '4 lines priced at Tier 2, Fixed price and Manual for the previous customer.' act=[] x=False '' [12.9,14.8]
+BANNER '4 lines priced at Tier 2, Fixed price and Manual for the previous customer They keep their prices, and their price details say who they were priced for.' [12.9,14.8]
+MENU 'Why this price' head=[] items=[] [13.4]
+DIALOG 'Change Customer' w640 x=True btns=['Cancel', 'Update Customer (disabled)'] [14.3]
+  body='Updating the customer will change the account and contact on this work order. Existing notes, assets, and lines stay on the work order; only the customer and contact are updated. Parts already on the work order keep their prices, and new parts keep this work order’s pricing. Acme Freight Banff Shuttle Co Big Rig Logistics Bow River Haulers Calgary North Yard Calgary Transit Parts Chinook Excavating Coastal Transit Counter Sale Foothills Paving High River Hauling Kootenay Fleet Services Lethbridg'
+  fields=['Customer', 'Contact']
+DIALOG 'Change Customer' w640 x=True btns=['Cancel', 'Update Customer'] [14.4,14.7]
+  body='Updating the customer will change the account and contact on this work order. Existing notes, assets, and lines stay on the work order; only the customer and contact are updated. Parts already on the work order keep their prices, and new parts keep this work order’s pricing. Acme Freight Banff Shuttle Co Big Rig Logistics Bow River Haulers Calgary North Yard Calgary Transit Parts Chinook Excavating Coastal Transit Counter Sale Foothills Paving High River Hauling Kootenay Fleet Services Lethbridg'
+  fields=['Customer', 'Contact']
+BANNER 'This work order keeps Tier 2 pricing. Default applies to new work orders, or split this one to use it.' [14.4,14.7]
+DIALOG 'Change Customer' w640 x=True btns=['Cancel', 'Update Customer'] [14.5]
+  body='Updating the customer will change the account and contact on this Part Sale. Existing notes, assets, and lines stay on the Part Sale; only the customer and contact are updated. Parts already on the Part Sale keep their prices, and new parts keep this Part Sale’s pricing. Acme Freight Banff Shuttle Co Big Rig Logistics Bow River Haulers Calgary North Yard Calgary Transit Parts Chinook Excavating Coastal Transit Counter Sale Foothills Paving High River Hauling Kootenay Fleet Services Lethbridge Ag'
+  fields=['Customer', 'Contact']
+MENU '' head=['Change Customer', 'Split Part Sale', 'Back to Part Sales'] items=['Change Customer', 'Split Part Sale', 'Back to Part Sales'] [14.5]
+BANNER 'This Part Sale keeps Tier 4 pricing. Default applies to new Part Sales, or split this one to use it.' [14.5]
+DIALOG 'Change Customer' w640 x=True btns=['Cancel', 'Update Customer'] [14.6]
+  body='Updating the customer will change the account and contact on this work order. Existing notes, assets, and lines stay on the work order; only the customer and contact are updated. Parts already on the work order keep their prices, and new parts keep this work order’s pricing. Acme Freight Banff Shuttle Co Big Rig Logistics Bow River Haulers Calgary North Yard Calgary Transit Parts Chinook Excavating Coastal Transit Counter Sale Foothills Paving High River Hauling Kootenay Fleet Services Lethbridg'
+  fields=['Customer', 'Contact']
+TOOLTIP 'Tier 5 sells a $50.01 part below cost.' [15.1]
+DIALOG '' w240 x=False btns=[] [20.5]
+  body=''
+DIALOG '' w240 x=False btns=[] [20.6]
+  body=''
+DIALOG '' w240 x=False btns=[] [20.7]
+  body=''
+DIALOG '' w240 x=False btns=[] [20.8]
+  body=''
+DIALOG '' w240 x=False btns=[] [20.10]
+  body=''
+  fields=['From', 'To']
+ERROR 'From' [20.10]
+ERROR '2025-01-01' [20.10]
+ERROR 'To' [20.10]
+ERROR '2026-10-31' [20.10]
+DIALOG '' w240 x=False btns=[] [20.11]
+  body=''
+  fields=['From', 'To']
+EMPTY 'There are no results for selected date range' [20.11]
+DIALOG '' w240 x=False btns=[] [20.14,20.15]
+  body=''
+MENU '' head=['Download Summary (PDF)', 'Download Expanded View (PDF)', 'Download Summary (CSV)', 'Download Expanded View (CSV)'] items=['Download Summary (PDF) (disabled) {tip: Not part of this prototype}', 'Download Expanded View (PDF) (disabled) {tip: Not part of this prototype}', 'Download Summary (CSV)', 'Download Expanded View (CSV)'] [20.18,20.19,20.21]
+DIALOG 'Summary CSV' w880 x=True btns=['Close', 'Copy'] [20.20]
+  body='Sales by Tier "Date Range: Oct 1, 2026 – Oct 31, 2026" Locations: Calgary North Sales Type: All Priced By: All Category: All categories Customer: All customers Priced By,Parts Cost,Parts Invoiced,Parts Credits,Parts Net,Parts Margin,Parts Margin %,% of Total Default,6292.45,9122.21,0.00,9122.21,2829.76,31.02%,30.49% Tier 2,5933.40,7445.99,0.00,7445.99,1512.59,20.31%,24.89% Tier 3,1162.10,1460.68,0.00,1460.68,298.58,20.44%,4.88% Tier 4,7797.85,9516.68,0.00,9516.68,1718.83,18.06%,31.81% Fixed pric'
+EMPTY 'No record matches these filters Try changing filters to widen your results. Clear All Filters' [20.21,20.22,20.23]
+TOAST --compact --info 'Empty export' / '' act=[] x=False '' [20.22]

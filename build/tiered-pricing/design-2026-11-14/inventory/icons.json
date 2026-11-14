@@ -7,13 +7,14 @@
   "hosts": [
    [
     "Switch hub",
-    60
+    256
    ]
   ],
   "regions": [
+   "content",
    "header"
   ],
-  "boards": 60,
+  "boards": 256,
   "colors": [
    "rgb(54, 65, 82)"
   ]
@@ -22,52 +23,74 @@
   "sig": "pathm6 9 6 6 6-6",
   "sizes": [
    12,
+   14,
    16,
    20
   ],
   "hosts": [
    [
-    "Switch hub",
-    60
+    "",
+    773
    ],
    [
-    "",
-    27
+    "Switch hub",
+    256
+   ],
+   [
+    "More",
+    8
+   ],
+   [
+    "Close Default",
+    2
+   ],
+   [
+    "Close Bow River Haulers",
+    1
+   ],
+   [
+    "Close Uncategorized",
+    1
    ]
   ],
   "regions": [
    "content",
+   "dialog",
    "header",
    "table-body",
    "table-header"
   ],
-  "boards": 60,
+  "boards": 259,
   "colors": [
    "rgb(105, 117, 134)",
+   "rgb(23, 92, 211)",
    "rgb(54, 65, 82)"
   ]
  },
  {
   "sig": "circle118|pathm21 21-4.3-4.3",
   "sizes": [
-   18
+   18,
+   20,
+   24
   ],
   "hosts": [
    [
     "Search customers, work orders, parts...",
-    60
+    254
    ],
    [
     "",
-    4
+    87
    ]
   ],
   "regions": [
    "content",
    "dialog",
-   "header"
+   "header",
+   "table-body"
   ],
-  "boards": 60,
+  "boards": 257,
   "colors": [
    "rgb(105, 117, 134)",
    "rgb(130, 138, 152)",
@@ -82,13 +105,14 @@
   "hosts": [
    [
     "Notifications",
-    60
+    256
    ]
   ],
   "regions": [
+   "content",
    "header"
   ],
-  "boards": 60,
+  "boards": 256,
   "colors": [
    "rgb(105, 117, 134)"
   ]
@@ -101,16 +125,21 @@
   "hosts": [
    [
     "More actions",
-    248
+    512
+   ],
+   [
+    "More",
+    22
    ]
   ],
   "regions": [
    "content",
    "table-body"
   ],
-  "boards": 54,
+  "boards": 225,
   "colors": [
-   "rgb(105, 117, 134)"
+   "rgb(105, 117, 134)",
+   "rgb(54, 65, 82)"
   ]
  },
  {
@@ -120,6 +149,22 @@
   ],
   "hosts": [
    [
+    "A part’s cost picks its row. The first range starts at $0.00; the last has no upper limit.",
+    70
+   ],
+   [
+    "A category uses one matrix. Adding one here moves it from its current matrix.",
+    69
+   ],
+   [
+    "Type a part cost to see each tier’s price and profit. Nothing is saved.",
+    57
+   ],
+   [
+    "How each matrix prices this tier. Click a matrix to change it.",
+    36
+   ],
+   [
     "The tier’s place in the order. New tiers go last; archiving one moves later tiers up.",
     26
    ],
@@ -128,35 +173,21 @@
     26
    ],
    [
-    "How each matrix prices this tier. Click a matrix to change it.",
-    18
-   ],
-   [
-    "A category uses one matrix. Adding one here moves it from its current matrix.",
-    6
-   ],
-   [
-    "A part’s cost picks its row. The first range starts at $0.00; the last has no upper limit.",
-    6
-   ],
-   [
-    "Type a part cost to see each tier’s price and profit. Nothing is saved.",
-    6
+    "Share of Parts Invoiced for everything that matches your filters.",
+    22
    ],
    [
     "Tiers this matrix prices itself, by number. The rest are the same as the previous tier.",
-    3
-   ],
-   [
-    "What Default pays in each matrix. Other tiers are set against it.",
-    1
+    21
    ]
   ],
   "regions": [
    "content",
+   "dialog",
+   "table-body",
    "table-header"
   ],
-  "boards": 54,
+  "boards": 186,
   "colors": [
    "rgb(130, 138, 152)"
   ]
@@ -173,20 +204,37 @@
    ],
    [
     "Edit",
-    24
+    164
    ],
    [
     "Rename",
-    23
+    107
+   ],
+   [
+    "Change customer",
+    31
+   ],
+   [
+    "Edit part",
+    11
+   ],
+   [
+    "Edit customer",
+    8
+   ],
+   [
+    "Opens this matrix to edit.",
+    3
    ]
   ],
   "regions": [
    "content",
    "table-body"
   ],
-  "boards": 53,
+  "boards": 196,
   "colors": [
    "rgb(105, 117, 134)",
+   "rgb(205, 213, 223)",
    "rgb(54, 65, 82)"
   ]
  },
@@ -198,14 +246,15 @@
   "hosts": [
    [
     "",
-    3
+    22
    ]
   ],
   "regions": [
    "content"
   ],
-  "boards": 3,
+  "boards": 22,
   "colors": [
+   "rgb(23, 92, 211)",
    "rgb(54, 65, 82)"
   ]
  },
@@ -217,13 +266,13 @@
   "hosts": [
    [
     "",
-    6
+    63
    ]
   ],
   "regions": [
    "table-header"
   ],
-  "boards": 3,
+  "boards": 42,
   "colors": [
    "rgb(130, 138, 152)"
   ]
@@ -231,19 +280,50 @@
  {
   "sig": "pathm9 18 6-6-6-6",
   "sizes": [
+   14,
    16
   ],
   "hosts": [
    [
     "",
-    63
+    302
+   ],
+   [
+    "Open Tier 2",
+    17
+   ],
+   [
+    "Open Tier 4",
+    17
+   ],
+   [
+    "Open Fixed price",
+    17
+   ],
+   [
+    "Open Tier 3",
+    16
+   ],
+   [
+    "Open Fixed line total",
+    16
+   ],
+   [
+    "Open Manual",
+    16
+   ],
+   [
+    "Open Default",
+    15
    ]
   ],
   "regions": [
-   "content"
+   "content",
+   "table-body"
   ],
-  "boards": 31,
+  "boards": 186,
   "colors": [
+   "rgb(105, 117, 134)",
    "rgb(130, 138, 152)"
   ]
  },
@@ -255,11 +335,15 @@
   "hosts": [
    [
     "Close",
-    11
+    61
    ],
    [
     "Clear selection",
-    8
+    18
+   ],
+   [
+    "Dismiss",
+    2
    ]
   ],
   "regions": [
@@ -267,10 +351,11 @@
    "dialog",
    "toast"
   ],
-  "boards": 16,
+  "boards": 70,
   "colors": [
    "rgb(105, 117, 134)",
    "rgb(130, 138, 152)",
+   "rgb(181, 71, 8)",
    "rgb(255, 255, 255)"
   ]
  },
@@ -282,13 +367,13 @@
   "hosts": [
    [
     "",
-    7
+    24
    ]
   ],
   "regions": [
    "toast"
   ],
-  "boards": 7,
+  "boards": 24,
   "colors": [
    "rgb(8, 116, 67)"
   ]
@@ -301,13 +386,17 @@
   "hosts": [
    [
     "Remove this range",
-    2
+    54
+   ],
+   [
+    "Remove part",
+    11
    ]
   ],
   "regions": [
    "table-body"
   ],
-  "boards": 1,
+  "boards": 31,
   "colors": [
    "rgb(105, 117, 134)"
   ]
@@ -319,43 +408,519 @@
   ],
   "hosts": [
    [
+    "Work Orders",
+    55
+   ],
+   [
+    "Part Sales",
+    31
+   ],
+   [
+    "",
+    13
+   ],
+   [
     "Select Stop 40",
-    8
+    10
    ],
    [
     "Select Fluids 30",
-    6
+    7
+   ],
+   [
+    "Bow River Haulers",
+    7
    ],
    [
     "Select General Matrix",
-    4
+    5
    ],
    [
     "Select Tread Plus",
-    4
+    5
+   ]
+  ],
+  "regions": [
+   "dialog",
+   "table-body",
+   "table-header"
+  ],
+  "boards": 24,
+  "colors": [
+   "rgb(18, 25, 38)",
+   "rgb(37, 124, 255)"
+  ]
+ },
+ {
+  "sig": "circle1210|pathm15 9-6 6|pathm9 9 6 6",
+  "sizes": [
+   18,
+   20
+  ],
+  "hosts": [
+   [
+    "Clear search",
+    8
    ],
    [
-    "Select Dynamic 26",
+    "",
     4
-   ],
+   ]
+  ],
+  "regions": [
+   "content",
+   "dialog"
+  ],
+  "boards": 12,
+  "colors": [
+   "rgb(105, 117, 134)",
+   "rgb(130, 138, 152)",
+   "rgb(180, 35, 24)"
+  ]
+ },
+ {
+  "sig": "pathM12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z|pathM2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12|pathM2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17",
+  "sizes": [
+   16,
+   20
+  ],
+  "hosts": [
    [
-    "Select all matrices",
+    "",
+    23
+   ]
+  ],
+  "regions": [
+   "content"
+  ],
+  "boards": 23,
+  "colors": [
+   "rgb(105, 117, 134)",
+   "rgb(54, 65, 82)"
+  ]
+ },
+ {
+  "sig": "pathm18 15-6-6-6 6",
+  "sizes": [
+   16
+  ],
+  "hosts": [
+   [
+    "",
+    6
+   ]
+  ],
+  "regions": [
+   "content",
+   "dialog",
+   "table-body"
+  ],
+  "boards": 5,
+  "colors": [
+   "rgb(105, 117, 134)",
+   "rgb(54, 65, 82)"
+  ]
+ },
+ {
+  "sig": "circle1210|pathM12 16v-4|pathM12 8h.01",
+  "sizes": [
+   20
+  ],
+  "hosts": [
+   [
+    "",
+    4
+   ]
+  ],
+  "regions": [
+   "content",
+   "dialog",
+   "toast"
+  ],
+  "boards": 4,
+  "colors": [
+   "rgb(23, 92, 211)"
+  ]
+ },
+ {
+  "sig": "pathm21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3|pathM12 9v4|pathM12 17h.01",
+  "sizes": [
+   14
+  ],
+  "hosts": [
+   [
+    "Tier 5 sells a $50.01 part below cost.",
     3
    ],
    [
-    "Select Hydraulics 2025",
+    "Below cost.",
     3
    ],
    [
-    "Select Winter Promo",
+    "Tier 5 sells a $100.01 part below cost.",
+    2
+   ],
+   [
+    "Tier 5 sells a $10,000.01 part below cost.",
+    2
+   ]
+  ],
+  "regions": [
+   "table-body"
+  ],
+  "boards": 3,
+  "colors": [
+   "rgb(181, 71, 8)"
+  ]
+ },
+ {
+  "sig": "circle9.1675.833|line",
+  "sizes": [
+   20
+  ],
+  "hosts": [
+   [
+    "Search customers, work orders, parts... ",
+    2
+   ],
+   [
+    "Search",
+    2
+   ]
+  ],
+  "regions": [
+   "content"
+  ],
+  "boards": 2,
+  "colors": [
+   "rgb(105, 117, 134)",
+   "rgb(54, 65, 82)"
+  ]
+ },
+ {
+  "sig": "circle1210|polyline12 6 12 12 16 14",
+  "sizes": [
+   16
+  ],
+  "hosts": [
+   [
+    "",
+    2
+   ]
+  ],
+  "regions": [
+   "content"
+  ],
+  "boards": 2,
+  "colors": [
+   "rgb(105, 117, 134)"
+  ]
+ },
+ {
+  "sig": "pathm5 12 7-7 7 7|pathM12 19V5",
+  "sizes": [
+   12,
+   14
+  ],
+  "hosts": [
+   [
+    "",
+    21
+   ],
+   [
+    "Name",
+    2
+   ]
+  ],
+  "regions": [
+   "table-header"
+  ],
+  "boards": 23,
+  "colors": [
+   "rgb(37, 124, 255)"
+  ]
+ },
+ {
+  "sig": "pathM11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z|pathM12 22V12|pathm3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7|pathm7.5 4.27 9 5.15",
+  "sizes": [
+   16
+  ],
+  "hosts": [
+   [
+    "",
+    33
+   ]
+  ],
+  "regions": [
+   "content"
+  ],
+  "boards": 33,
+  "colors": [
+   "rgb(23, 92, 211)",
+   "rgb(54, 65, 82)"
+  ]
+ },
+ {
+  "sig": "pathM16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2|circle94|pathM22 21v-2a4 4 0 0 0-3-3.9|pathM16 3.1a4 4 0 0 1 0 7.8",
+  "sizes": [
+   20
+  ],
+  "hosts": [
+   [
+    "",
+    5
+   ]
+  ],
+  "regions": [
+   "content",
+   "dialog"
+  ],
+  "boards": 4,
+  "colors": [
+   "rgb(105, 117, 134)"
+  ]
+ },
+ {
+  "sig": "pathM20 6 9 17l-5-5",
+  "sizes": [
+   16
+  ],
+  "hosts": [
+   [
+    "2 · Tier 2",
+    2
+   ],
+   [
+    "",
+    1
+   ]
+  ],
+  "regions": [
+   "dialog"
+  ],
+  "boards": 3,
+  "colors": [
+   "rgb(23, 92, 211)",
+   "rgb(37, 124, 255)"
+  ]
+ },
+ {
+  "sig": "pathM3 12h.01|pathM3 18h.01|pathM3 6h.01|pathM8 12h13|pathM8 18h13|pathM8 6h13",
+  "sizes": [
+   20
+  ],
+  "hosts": [
+   [
+    "",
+    1
+   ]
+  ],
+  "regions": [
+   "content"
+  ],
+  "boards": 1,
+  "colors": [
+   "rgb(105, 117, 134)"
+  ]
+ },
+ {
+  "sig": "pathM84.5575 12.489H31.729C20.6432 12.489 16.1268 17.2792 13.937 27.6806L3.94616 74.8978C3.53557 77.2244 3.125 79.1405 3.125 80.9197C3.125 82.562 3.39871 84.0675 3.94616 85.1624C12.5684 77.635 20.2327 68.8759 28.9918 61.4854C32.687 64.2226 35.698 67.6441 38.1615 71.4763C31.4553 77.635 24.4754 83.6569 18.0429 90.2262H68.1341C79.3568 90.2262 83.7363 85.4361 86.063 75.0347L96.0538 27.8175C96.4644 25.4909 96.875 23.5748 96.875 21.7956C96.7381 15.3631 93.4535 12.489 84.5575 12.489ZM51.8476 82.2883C50.8896 83.1095 50.0684 84.0675 49.1104 84.8886C46.6469 81.8777 43.0885 79.4142 42.6779 75.3084C41.4462 66.5492 34.4662 58.7481 25.844 57.1058C21.6013 56.5584 19.0009 53 16.1268 50.1259L38.9826 27.27L39.2564 26.9963L39.3932 27.1332L63.7545 51.4945C66.9024 54.6423 69.9133 57.7901 73.198 60.9379L51.8476 82.2883ZM74.9772 59.1587L41.0356 25.2171L44.3203 21.9324L78.2618 55.8741L74.9772 59.1587ZM80.041 54.0948L46.0994 20.1533L49.3841 16.8686L83.3257 50.8102L80.041 54.0948Z|pathM46.0917 59.9816C48.8884 59.9816 51.1556 57.7144 51.1556 54.9177C51.1556 52.121 48.8884 49.8538 46.0917 49.8538C43.295 49.8538 41.0278 52.121 41.0278 54.9177C41.0278 57.7144 43.295 59.9816 46.0917 59.9816Z",
+  "sizes": [
+   30
+  ],
+  "hosts": [
+   [
+    "ShopView",
     3
    ]
   ],
   "regions": [
-   "table-body",
+   "content"
+  ],
+  "boards": 3,
+  "colors": [
+   "rgb(37, 124, 255)"
+  ]
+ },
+ {
+  "sig": "circle128|pathM12 9.5V13l2.5 1.5M9 2h6M18.5 4.5l1.5 1.5",
+  "sizes": [
+   22
+  ],
+  "hosts": [
+   [
+    "Time clock",
+    3
+   ]
+  ],
+  "regions": [
+   "content"
+  ],
+  "boards": 3,
+  "colors": [
+   "rgb(54, 65, 82)"
+  ]
+ },
+ {
+  "sig": "pathM5 12h14|pathM12 5v14",
+  "sizes": [
+   16
+  ],
+  "hosts": [
+   [
+    "Add Part",
+    51
+   ]
+  ],
+  "regions": [
+   "table-body"
+  ],
+  "boards": 27,
+  "colors": [
+   "rgb(23, 92, 211)"
+  ]
+ },
+ {
+  "sig": "circle1210|line|line",
+  "sizes": [
+   16,
+   20
+  ],
+  "hosts": [
+   [
+    "Price typed by hand: see details",
+    24
+   ],
+   [
+    "",
+    5
+   ]
+  ],
+  "regions": [
+   "content",
+   "dialog",
+   "table-body"
+  ],
+  "boards": 25,
+  "colors": [
+   "rgb(130, 138, 152)",
+   "rgb(181, 71, 8)"
+  ]
+ },
+ {
+  "sig": "rect3|pathM9 3v18|pathM15 3v18",
+  "sizes": [
+   16
+  ],
+  "hosts": [
+   [
+    "Columns",
+    22
+   ]
+  ],
+  "regions": [
+   "content"
+  ],
+  "boards": 22,
+  "colors": [
+   "rgb(105, 117, 134)",
+   "rgb(54, 65, 82)"
+  ]
+ },
+ {
+  "sig": "pathM8 2v4|pathM16 2v4|rect3|pathM3 10h18",
+  "sizes": [
+   16,
+   24
+  ],
+  "hosts": [
+   [
+    "",
+    23
+   ]
+  ],
+  "regions": [
+   "content",
+   "table-body"
+  ],
+  "boards": 22,
+  "colors": [
+   "rgb(105, 117, 134)",
+   "rgb(23, 92, 211)"
+  ]
+ },
+ {
+  "sig": "pathM12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z|circle7.5.5",
+  "sizes": [
+   16
+  ],
+  "hosts": [
+   [
+    "",
+    22
+   ]
+  ],
+  "regions": [
+   "content"
+  ],
+  "boards": 22,
+  "colors": [
+   "rgb(54, 65, 82)"
+  ]
+ },
+ {
+  "sig": "pathM19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2|circle124",
+  "sizes": [
+   16
+  ],
+  "hosts": [
+   [
+    "",
+    22
+   ]
+  ],
+  "regions": [
+   "content"
+  ],
+  "boards": 22,
+  "colors": [
+   "rgb(54, 65, 82)"
+  ]
+ },
+ {
+  "sig": "pathm2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7|pathM4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8|pathM15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4|pathM2 7h20|pathM22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7",
+  "sizes": [
+   16
+  ],
+  "hosts": [
+   [
+    "",
+    22
+   ]
+  ],
+  "regions": [
+   "content"
+  ],
+  "boards": 22,
+  "colors": [
+   "rgb(23, 92, 211)"
+  ]
+ },
+ {
+  "sig": "pathM12 5v14|pathm19 12-7 7-7-7",
+  "sizes": [
+   12
+  ],
+  "hosts": [
+   [
+    "Parts Margin",
+    1
+   ]
+  ],
+  "regions": [
    "table-header"
   ],
-  "boards": 8,
+  "boards": 1,
   "colors": [
    "rgb(37, 124, 255)"
   ]

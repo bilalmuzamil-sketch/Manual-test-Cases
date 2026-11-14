@@ -100,9 +100,39 @@ for f, bd in canvas['boards'].items(): addt(bd['title'], 'board-title', f, 'boar
 tool = json.load(open(J('inventory', 'tool-text-inventory.json')))
 tool_rows = tool.get('rows') or tool.get('texts') or tool.get('items') or []
 file_only = []
+NORM = lambda x: re.sub(r'\s+', ' ', x.replace('’', "'").replace('‘', "'").replace('“', '"').replace('”', '"')).strip()
+seen_norm = {NORM(t) for t in texts}
+seen_blob = ' || '.join(seen_norm)
 for tr in tool_rows:
-    t = re.sub(r'\s+', ' ', str(tr.get('text', ''))).strip()
-    if t and t not in texts: file_only.append(tr)
+    t = NORM(str(tr.get('text', '')))
+    if not t or t in seen_norm: continue
+    tr = dict(tr); tr['partOfShownText'] = t in seen_blob   # e.g. an aria-label piece "Tier 2 $10,000.01" inside "Tier 2 $10,000.01 +"
+    file_only.append(tr)
+# record names (DATA): values the design fills in as sample records, gathered from the filter lists, tier "N · Name" labels and the
+# cells under record-name columns (Matrix, Customer, Category, User, Name/Description, Part Number, Vendor, Contact, Tier columns)
+NAMES = set()
+DATA_COLS = {'Matrix', 'Customer', 'Category', 'User', 'Name/Description', 'Part Number', 'Part #', 'Description', 'Vendor', 'Contact', 'Work Order Tier', 'Part Sales Tier', 'Tier', 'Name', 'Invoice', 'Document', 'Priced By', 'Location', 'Bin'}
+try:
+    for pb in json.load(open(J('inventory', 'panels.json'))):
+        for pn in pb['panels']:
+            if pn['aria'] in ('Customer filter', 'Category filter', 'Priced By filter', 'Location filter') or 'tierpick' in pn['cls']:
+                for rw in pn['rows']: NAMES.add(rw['t'].split(' | ')[0])
+except FileNotFoundError: pass
+for b in blist:
+    r = logs.get(b['file'])
+    if not r: continue
+    for t in r['look']['tables']:
+        hy = min((c['y'] + c['h'] for c in t['cols']), default=0)
+        for c in t['cols']:
+            if c['label'] not in DATA_COLS: continue
+            for row in r['rows']:
+                if row['y'] > hy and c['x'] - 2 <= row['x'] < c['x'] + c['w'] and row['tag'] in ('strong', 'a', 'td', 'span', 'button', 'div') and 'tp-reason' not in row['cls'] and 'sv-badge' not in row['cls'] and 'sv-facts__empty' not in row['cls'] and 'tp2-prev' not in row['cls']:
+                    NAMES.add(row['text'])
+    for row in r['rows']:
+        m = re.match(r'^\d+ · (.+)$', row['text'])
+        if m: NAMES.add(row['text']); NAMES.add(m.group(1))
+FIXED_WORDS = {'Default', 'Manual', 'Fixed price', 'Fixed line total', 'Before tiers', 'Internal', 'Active', 'Inactive', 'Archived', 'Clear selection', 'Uncategorized', 'General Matrix', 'Same as work orders', 'Same as previous tier', 'Uses previous tier', 'Mixed rules'}
+NAMES -= FIXED_WORDS
 CHROME = set()
 for t, e in texts.items():
     if e['contexts'] == {'header-chrome'}: CHROME.add(t)
@@ -111,17 +141,23 @@ def classify(t, e):
     if c & {'canvas-note', 'board-title'} and not (c - {'canvas-note', 'board-title'}): return 'NOTE', 'canvas note or board title (designer annotation)'
     if t in ('Before · screenshot',) or t.startswith('Settings › ') and 'screenshot' in ' '.join(e['sources']): return 'NOTE', 'label of a "Today" screenshot board'
     if NUM.search(t) and not re.search(r'[A-Za-z]{4,}.*[A-Za-z]{4,}', t): return 'DATA', 'number, amount, date, time or document number'
+    if t in NAMES and not (c & {'th', 'button', 'tab', 'dialog', 'toast', 'tooltip', 'data-tip'}): return 'DATA', 'sample record name (filter list, tier label or record-name column)'
+    if 'attr:alt' in e['sources'] or re.match(r'^(Settings|Customers|Work Orders|Reports) › .*(today|list|page)', t) and 'span' in c and len(e['boards']) <= 2: return 'NOTE', 'caption or alt text of a "Today" screenshot board'
     if c & UI_CTX: return 'UI-TEXT', 'shown as ' + ', '.join(sorted(c & UI_CTX))
     if c <= {'value'}: return 'DATA', 'typed value in an input'
-    if re.match(r'^[A-Z][a-z]+( [A-Z][a-z]+)*,( [A-Z][a-z]+)+', t): return 'DATA', 'list of record names'
-    if len(t.split()) >= 4 or t.endswith(('.', '?', ':')): return 'UI-TEXT', 'sentence or phrase on screen'
-    return 'DATA', 'short record name or value in a table/list cell (check when classifying against cases)'
+    if t in NAMES: return 'DATA', 'sample record name (filter list, tier label or record-name column)'
+    parts = [x.strip() for x in re.split(r',(?![^(]*\))', t)]
+    if len(parts) > 1 and all(x in NAMES or x in FIXED_WORDS for x in parts): return 'DATA', 'list of sample record names'
+    if c & {'td', 'strong'} and re.search(r'\d', t) and len(t.split()) <= 6 and not t.endswith(('.', '?')): return 'DATA', 'sample value in a table cell'
+    return 'UI-TEXT', 'words the design shows (label, phrase or message); may embed sample data'
 rows = []
 for t, e in texts.items():
     cl, why = classify(t, e)
     rows.append({'text': t, 'class': cl, 'basis': why, 'contexts': sorted(e['contexts']), 'sources': sorted(e['sources']), 'boardCount': len(e['boards']), 'boards': e['boards'][:40]})
 for tr in file_only:
-    rows.append({'text': str(tr.get('text')), 'class': 'UI-TEXT' if len(str(tr.get('text')).split()) > 1 else 'DATA', 'basis': 'in the files, not shown as text on any rendered board (tool row: ' + str(tr.get('where') or tr.get('file') or '') [:120] + ')',
+    wh = str(tr.get('where') or '')
+    fcl = 'NOTE' if ('canvas.json' in wh or 'tokens.json' in wh or '/ds/' in wh or re.search(r'\.dc\.html:5$', wh)) else ('DATA' if re.search(r'\d', str(tr.get('text'))) else 'UI-TEXT')
+    rows.append({'text': str(tr.get('text')), 'class': fcl, 'basis': ('a piece of a longer text that IS shown' if tr.get('partOfShownText') else 'in the files, not shown as text on any rendered board') + ' (tool row: ' + str(tr.get('where') or '').split('project/')[-1][:80] + ')',
                  'contexts': ['file-only'], 'sources': ['design_text_inventory.py'], 'boardCount': 0, 'boards': []})
 cnt = collections.Counter(r['class'] for r in rows)
 json.dump({'made': '2026-11-14', 'design': 'v1794631438-539a', 'counts': dict(cnt), 'total': len(rows), 'unclassified': sum(1 for r in rows if r['class'] not in ('DATA', 'UI-TEXT', 'NOTE')),
