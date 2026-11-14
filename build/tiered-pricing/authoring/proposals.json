@@ -6801,8 +6801,9 @@
   "section_name": "Story 1: Release day",
   "section_id": null,
   "title": "A work order open on release day keeps Default after a tier change",
-  "refs": "SV-11697 (Story 9 S9-R7), SV-11693 (Story 1 S1-R3)",
+  "refs": "SV-11697 (Story 9 S9-R3 S9-R7), SV-11693 (Story 1 S1-R3)",
   "rows": [
+   "TP-S9-R3",
    "TP-S9-R7",
    "TP-S1-R3"
   ],
@@ -6826,14 +6827,30 @@
    "template_id": 1,
    "type_id": 7,
    "priority_id": 2,
-   "refs": "SV-11697 (Story 9 S9-R7), SV-11693 (Story 1 S1-R3)",
+   "refs": "SV-11697 (Story 9 S9-R3 S9-R7), SV-11693 (Story 1 S1-R3)",
    "custom_automation_type": 2,
    "custom_atmstatus": 1,
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Use the staging site, where the Tiered Pricing release is deployed on top of data from before the release.</li><li>Have on staging a work order opened before the release and still open (work order 1), for a customer you may put on a tier (customer A).</li><li>Have a new tier for this test, tier A, with a name no other tier uses, whose rule in the General Matrix and in every category matrix is 10% off.</li><li>Have a part ready to add with a cost of $100.00, in a category whose matrix's Default prices $100.00 at a known price (for example $135.00).</li></ul>",
-   "custom_steps": "<ol><li>Put customer A on tier A for work orders in Edit Customer.</li><li>Open work order 1.</li><li>Add the part to work order 1.</li><li>Point at the new line's sell price.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Customer A's Work Order Tier shows tier A after saving.</li></ul><p>Step 2:</p><ul><li>Work order 1 opens.</li></ul><p>Step 3:</p><ul><li>The new line is priced at the Default price ($135.00), not tier A's 10% off ($135.00 × 0.90 = $121.50).</li></ul><p>Step 4:</p><ul><li>The price details name Default.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+   "custom_steps": "<ol><li>Open customer A's Edit Customer.</li><li>Pick tier A in Work Order Tier.</li><li>Click Save.</li><li>Open work order 1.</li><li>Add the part to work order 1.</li><li>Point at the new line's sell price.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Edit Customer opens with the Work Order Tier field.</li></ul><p>Step 2:</p><ul><li>Work Order Tier shows tier A.</li></ul><p>Step 3:</p><ul><li>Customer A is saved on tier A for work orders.</li></ul><p>Step 4:</p><ul><li>Work order 1 opens.</li></ul><p>Step 5:</p><ul><li>The new line is priced at the Default price ($135.00), not tier A's 10% off ($135.00 × 0.90 = $121.50).</li></ul><p>Step 6:</p><ul><li>The price details name Default.</li></ul><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   },
   "sources": [
+   [
+    [
+     "row",
+     "TP-S9-R3",
+     null,
+     null
+    ]
+   ],
+   [
+    [
+     "row",
+     "TP-S9-R3",
+     null,
+     null
+    ]
+   ],
    [
     [
      "row",

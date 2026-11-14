@@ -141,6 +141,15 @@ LATER = [
 for i, (where, prd, design, todo) in enumerate(LATER, 1):
     add(f"TPD-L{i:02d}", "design->PRD", where, prd, design, "LATER-BATCH", in_scope=False, todo=todo)
 
+# ---- parallel batches: register_rows_<batch>.json files (a JSON list of rows in the same shape) are appended; an id may appear once.
+import glob
+for f in sorted(glob.glob(f"{D}/register_rows_*.json")):
+    extra = json.load(open(f))
+    clash = {r["id"] for r in extra} & {r["id"] for r in rows}
+    if clash: raise SystemExit(f"{os.path.basename(f)}: register ids already used: {sorted(clash)}")
+    later = {r["id"] for r in extra if r.get("replaces")}
+    rows = [r for r in rows if r["id"] not in {x.get("replaces") for x in extra}] + extra
+
 out = {"project": "Tiered Pricing", "made": "2026-11-14", "phase": "1 (stories 1-4 closed; the rest listed for the next batches)",
        "design": "Tiered Pricing Design 1794631438-539a (files identical in 1794638838-cd70)", "prd": "Confluence 938213378 page v37",
        "precedence": "PRD > PO answers > design (look, where the PRD is silent) > tech plan (informs). " + PREC,

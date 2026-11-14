@@ -176,7 +176,10 @@ own = {}
 for c in L.CASES:
     for rid in L.rows_of(c):
         st = L.ROWS[rid]["story"]
-        if c["sec"] in (f"S{st}", "RPT" if rid.startswith("RPT-") else "-", "WAIT", "DESIGN", "INV"): own.setdefault(rid, []).append(c["key"])
+        pages = {int(DR.BOARD[p]["page"][1:]) for p in c["pics"] if p in DR.BOARD}
+        if (c["sec"] in (f"S{st}", "RPT" if rid.startswith("RPT-") else "-", "INV") or (c["sec"] == "WAIT" and c["key"].startswith(f"S{st}-"))
+                or (c["sec"] == "DESIGN" and (st in pages or (rid.startswith("RPT-") and 20 in pages)))):
+            own.setdefault(rid, []).append(c["key"])
 for rid, r in L.ROWS.items():
     v = [x for x in ((rid in cited) if in_scope(rid) else (rid in own), rid in NOT_TESTABLE, rid in HELD) if x]
     if rid in NOT_TESTABLE and rid in cited: P(f"{rid}: listed as not testable but cited by {cited[rid]}")

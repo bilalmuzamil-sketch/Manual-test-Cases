@@ -58,3 +58,15 @@ NUMBERS = {
  "N1 mixed rule types side by side": "S3-20", "N1 double discount on a customer-named category ($128.00)": "S1-17",
  "N7 archived simulator chain": "S4-38", "N7 zero rules sell at the base price": "S3-26",
 }
+
+# ---- parallel batches: every verdicts_<batch>.py next to this file is merged in (dicts updated, IN_SCOPE_STORIES unioned), so authors never
+# edit this file at the same time. A key defined twice is an error (two batches claiming one row).
+import glob as _g, importlib as _il, os as _os
+for _f in sorted(_g.glob(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "verdicts_*.py"))):
+    _m = _il.import_module(_os.path.basename(_f)[:-3])
+    IN_SCOPE_STORIES |= set(getattr(_m, "IN_SCOPE_STORIES", set()))
+    for _n in ("NOT_TESTABLE", "HELD", "PARTIAL", "UNUSED_BOARDS", "STRESS", "MOVEMENT", "NUMBERS"):
+        _d = getattr(_m, _n, {})
+        _dup = set(_d) & set(globals()[_n])
+        if _dup: raise SystemExit(f"{_os.path.basename(_f)}: {_n} keys already defined elsewhere: {sorted(_dup)}")
+        globals()[_n].update(_d)

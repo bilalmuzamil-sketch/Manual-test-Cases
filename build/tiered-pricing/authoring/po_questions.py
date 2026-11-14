@@ -24,3 +24,11 @@ QUESTIONS = {
 }
 ANSWERED = {}
 CANDIDATE = {k for k in QUESTIONS if k not in ("Q1", "Q2", "Q4")}
+
+# ---- parallel batches: po_questions_<batch>.py files add questions (numbers must not clash) and may list answers.
+import glob as _g, importlib as _il, os as _os
+for _f in sorted(_g.glob(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "po_questions_*.py"))):
+    _m = _il.import_module(_os.path.basename(_f)[:-3])
+    _new = getattr(_m, "QUESTIONS", {})
+    if set(_new) & set(QUESTIONS): raise SystemExit(f"{_os.path.basename(_f)}: question ids already used: {sorted(set(_new) & set(QUESTIONS))}")
+    QUESTIONS.update(_new); ANSWERED.update(getattr(_m, "ANSWERED", {})); CANDIDATE |= set(getattr(_m, "CANDIDATE", set(_new)))
