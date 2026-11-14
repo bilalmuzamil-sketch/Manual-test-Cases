@@ -534,3 +534,9 @@
   2. Every layout/overflow test includes one long value with NO spaces (names, numbers, locations), as well as one long value with spaces.
   3. Before calling a suite done, list every "kept by the developer" item from the handoffs and say what was decided for each.
 - #mistake #handoff #layout #rule140 #must-not-repeat → L0708, L0709
+
+## L0712 — 2026-11-14 — 22 new aging tests for staging; the QA lead's staging session lasts about 2 days; finding "new" tests in a run
+- Run 557 grew 467 → 489: 22 Untested tests whose cases were created 14 Nov 03:50–05:24 UTC (Demo Day follow-ups: columns stay put SV-12763, long no-space names SV-12722/SV-12764, PDF "Total for", future as-of exports SV-12545, one-location chip, blank cell sort). Find them with `get_tests` (paged) filtered to Untested/Retest, then `get_case` + `get_section` — list in `aging-reports/new-tests-1114.json`, plan in `aging-reports/staging/PREP-NEW-TESTS-2026-11-14.md`.
+- The QA lead's staging cookies (sso, PHPSESSID, cf_clearance) given 12 Nov answered 401 on 14 Nov (`stglib` throws "staging session not valid: profile 401"). Expect to ask for a fresh set (Rule 138: https://app.staging.shopview.com) when a staging pass starts more than ~1 day after the last one; ask at the START of prep, not after the scripts are written.
+- Staging and sv11315 share workplace ids (Heavy Duty b3c8c820…, Lethbridge f8a8b802…) because the QA site was cloned from staging data — seedlib's ids are worth trying on staging first.
+- #aging #staging #session #new-tests → L0711
