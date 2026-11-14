@@ -1,5 +1,7 @@
 # Tiered Pricing — candidate PO questions (DRAFT — not sent, not on any sheet)
 
+**Superseded 14 Nov 2026 by the merged list `questions-2026-11-14/QUESTIONS-FOR-MATT-BARGE.md` (31 questions, numbered by story; Q1 here is question 24, Q2 is question 6, Q4 is question 30; map in `questions-2026-11-14/QUESTION-MAP.json`). This file is kept as the intake record.**
+
 Project: **Tiered Pricing** (epic SV-11692) · PO / owner: **Matt Barge** · Drafted 14 Nov 2026 at intake from: Tiered Pricing PRD 938213378 page v37, Sales by Tier and Sales by Category PRD 968687617 page v21, both tech plans (2026-11-11), the 54 tickets under the epic.
 
 Skill 07 rules apply before anything is sent: one sheet, colour-coded format, plain words, sent **last** (Rule 66), only after the design drive and case drafting are done; new questions go at the bottom of an existing sheet if one exists (Rule 131). Each candidate below passed all eight pre-send checks of skill 07 §6.0 on 14 Nov 2026; the record of each check is under the question. Q2 is **conditional** (drop it if the design drive shows the answer, check c); Q3 was dropped the same day because the design settles it; Q4 must be merged with the design worker's divergence register so the PO gets one question, not two.

@@ -715,7 +715,7 @@ C("RPT-63", K, "Download header lines put Category before Priced By",
    R(S("RPT-S4-R7", "then one line each for Sales Type, Category, Priced By and Customer"),
      "After the Locations line the CSV reads Sales Type, then Category, then Priced By, then Customer.")
    + R(QD("Priced By: All", "20.20", "RPT-S4-R7"), "The Priced By line comes after the Category line (picture 20.20 shows the two the other way round).")],
-  pics=["20.20"], held_on="Q4")
+  pics=["20.20"], held_on="Q30")
 
 C("RPT-64", K, "A download with no rows shows Empty export and makes no file",
   [RPA, DESK],

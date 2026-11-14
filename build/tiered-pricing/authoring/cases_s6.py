@@ -1,7 +1,7 @@
 """Story 6 — Every matrix in one list (SV-12458), PRD v37 lines 494-529, design page 6 (6.1-6.14). Batch A, 14 Nov 2026.
 Column order and the look follow the design (PRD §7: "Layout, styling, sort indicators, scrolling and pinned columns follow the design
 canvas"); these cases check what each column holds. The Part Sale Matrix column's words differ between PRD ("On or Off") and design
-("Same as work orders" or a rule summary): this case checks On/Off as the PRD says; the design's version is a held design case (Q20)."""
+("Same as work orders" or a rule summary): this case checks On/Off as the PRD says; the design's version is a held design case (Q16)."""
 from tp_lib import C, R, B, S, QP, QD, QL
 from common import *
 

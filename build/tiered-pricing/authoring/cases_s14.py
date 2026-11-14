@@ -1,6 +1,6 @@
 """Story 14 — Changing the customer on a work order (SV-12466), PRD v37 lines 894-922, design page 14 (14.1-14.8, 14.1 a Today picture).
 Batch A, 14 Nov 2026. The notice follows the PRD (only tier and Default lines count; a tier name only when one tier priced them); the design's
-notice names "Tier 2, Fixed price and Manual" (14.8), held on Q30. Counts and prices are worked from seeded lines (Rule 116)."""
+notice names "Tier 2, Fixed price and Manual" (14.8), held on Q27. Counts and prices are worked from seeded lines (Rule 116)."""
 from tp_lib import C, R, B, S, QP, QD, QL
 from common import *
 

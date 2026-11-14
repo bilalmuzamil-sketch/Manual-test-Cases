@@ -1,4 +1,4 @@
-"""Story 10 — How a part is priced (SV-11699), PRD v37 S10 rows, design page 10 (10.1-10.12), tech-plan rows TPX-01 (held on Q1), TPX-06,
+"""Story 10 — How a part is priced (SV-11699), PRD v37 S10 rows, design page 10 (10.1-10.12), tech-plan rows TPX-01 (held on Q24), TPX-06,
 TPX-08. Batch B, phase 2, 14 Nov 2026.
 
 Every case makes its own category, matrix, tier, customer and work order ("for this test"), so other tests never move its numbers. Prices are
@@ -444,4 +444,4 @@ C("S10-39", K, "A reopened paid work order prices new parts by its kept tier",
      "The new part fills in at $121.50, the tier A price the work order kept ($135.00 × 0.90 = $121.50).")
    + R(QT("reopened paid work order takes the current tier", "TPX-01"),
        "Not tier B's $108.00, the price engineering's plan gives (the question to the PO decides which is right).")],
-  pics=WO_PICS, held_on="Q1", flags=["numbers"])
+  pics=WO_PICS, held_on="Q24", flags=["numbers"])

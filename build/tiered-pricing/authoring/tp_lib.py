@@ -157,7 +157,9 @@ def C(key, sec, title, pre, steps, res, pics=None, nopic=None, marker=None, held
     for p_ in list(pics):
         if p_ in _DR.FULL and f"full:{p_}" not in pics: pics.insert(pics.index(p_) + 1, f"full:{p_}")
     if held_on and not marker:
-        marker = HOLD(f"waiting on the PO ({held_on})") if sec != "DESIGN" else HOLD("the design differs from the PRD, waiting on the PO")
+        qn = held_on[1:] if held_on.startswith("Q") else held_on
+        marker = (HOLD(f"waiting on the PO (question {qn})") if sec != "DESIGN"
+                  else HOLD(f"the design differs from the PRD, waiting on the PO (question {qn})"))
     CASES.append(dict(key=key, sec=sec, title=title, pre=list(pre), steps=list(steps), res=[list(r) for r in res], pics=list(pics or []),
                       nopic=nopic, marker=marker or MARKER, held_on=held_on, note=note, flags=set(flags), stories=stories,
                       extra_refs=list(extra_refs), held=bool(held_on) or (marker or MARKER).startswith("AUTOMATION: HOLD"),

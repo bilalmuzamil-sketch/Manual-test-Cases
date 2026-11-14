@@ -24,7 +24,7 @@ HELD = {
 PARTIAL = {
  "TP-S1-R8": "The in-app What's New entry is checked (Story 1); the client email is sent outside ShopView and cannot be checked from the screens.",
  "TP-S1-E3": "The tax half is checked in Story 1; the QuickBooks half (revenue moves to the part's own category) belongs to the Story 18 cases (next batch).",
- "TP-S3-R13": "Picker, search, Select all, \"Now: <matrix>\", Uncategorized not listed and the move on save are checked; WHEN the move happens on an existing matrix (on save vs when the picker closes) is held on Q2.",
+ "TP-S3-R13": "Picker, search, Select all, \"Now: <matrix>\", Uncategorized not listed and the move on save are checked; WHEN the move happens on an existing matrix (on save vs when the picker closes) is held on Q6.",
 }
 
 # Design boards of the in-scope pages that no case attaches, with the reason.
@@ -43,7 +43,7 @@ STRESS = {
 MOVEMENT = {
  "bulk bar and its error on a tier's matrix list (design 2.32 vs 2.47, 2.51)": "D-76", "clearing the bulk bar": "D-77",
  "grid view after Edit and Cancel": "D-78", "Tiers list when a tier is archived (2.21 vs 2.24)": "D-79",
- "simulator columns between view and edit (3.5 vs 3.25; held on Q18)": "D-63", "New Matrix category list pushing the grid (3.22 vs 3.23; held on Q18)": "D-64",
+ "simulator columns between view and edit (3.5 vs 3.25; held on Q31)": "D-63", "New Matrix category list pushing the grid (3.22 vs 3.23; held on Q31)": "D-64",
 }
 # Rule 116 numbers of NUMBERS-AND-HAZARDS.md shown on the in-scope pages -> the case that proves it from seeded inputs.
 NUMBERS = {

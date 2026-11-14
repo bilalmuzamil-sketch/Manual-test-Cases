@@ -56,7 +56,7 @@ MOVEMENT = {
  "Categories list search (7.3 vs 7.5)": "D-149",
  "New Category name error pushes the grid down (8.6 vs 8.7)": "D-166",
  "Manage Customers bulk bar pushes the list down (9.4 vs 9.6)": "D-175",
- "Manage Customers columns on search (9.12, 9.13 vs 9.4; held on Q27)": "D-179",
+ "Manage Customers columns on search (9.12, 9.13 vs 9.4; held on Q31)": "D-179",
  "work order lines when the Change Customer notice appears (14.8, 12.9)": "D-225",
 }
 NUMBERS = {

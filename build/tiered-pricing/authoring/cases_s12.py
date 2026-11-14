@@ -1,7 +1,7 @@
 """Story 12 — Seeing what priced a part (SV-12464), PRD v37 lines 813-867, design page 12 (12.1-12.9), tech plan row TPX-21 (phone).
 Batch A, 14 Nov 2026. Each case makes its own tier, matrix, category, inventory part, customer and work order; prices are worked from the
 seeded rule (Rule 116). The price details' matrix line follows the PRD (matrix, side and rule); the design's "<matrix> · <tier>" line and
-its "Same as previous tier: <tier>" row are a held design case (Q29). Reports (Before tiers, renamed tiers) are the reports batch's cases."""
+its "Same as previous tier: <tier>" row are a held design case (Q26). Reports (Before tiers, renamed tiers) are the reports batch's cases."""
 from tp_lib import C, R, B, S, QP, QD, QL, QT
 from common import *
 

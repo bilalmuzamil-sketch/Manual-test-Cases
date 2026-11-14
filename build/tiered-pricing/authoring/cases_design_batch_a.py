@@ -195,7 +195,7 @@ C("D-129", K, "Design: Part Sale Matrix column shows a rule summary or Same as w
   [MATRICES],
   [R(QD("Same as work orders", "6.2", "S6-R1"), "Matrix A's Part Sale Matrix reads \"Same as work orders\" in gray.")
    + R(QD("2 rules · cost + $, margin", "6.2", "S6-R1"), "Matrix B's Part Sale Matrix shows its Part Sale rules in short words in the same form as the Work Order Matrix column (for example \"2 rules · cost + $, margin\"), as in picture 6.2.")],
-  pics=["6.2"], held_on="Q20", flags=DV)
+  pics=["6.2"], held_on="Q16", flags=DV)
 
 C("D-130", K, "Design: the no-match messages say No matrices match and No category matches",
   [ADMIN, W1440],
@@ -204,7 +204,7 @@ C("D-130", K, "Design: the no-match messages say No matrices match and No catego
    R(QD("No matrices match \"zzz\"", "6.10", "S6-R3"), "The list area shows a search icon and reads \"No matrices match \"zzz\"\" with no period, and a Clear Search button, as in picture 6.10."),
    look("7.6", "S7-R4", "The Categories list shows."),
    R(QD("No category matches \"zzz\"", "7.6", "S7-R4"), "The list area reads \"No category matches \"zzz\"\" with no period, and a Clear Search button, as in picture 7.6.")],
-  pics=["6.10", "7.6"], held_on="Q21", flags=DV)
+  pics=["6.10", "7.6"], held_on="Q17", flags=DV)
 
 # ---- page 7: Categories ---------------------------------------------------------------------------------------------------------
 C("D-140", K, "Design: the Categories list with its matrix and tier columns",
@@ -281,7 +281,7 @@ C("D-147", K, "Design: the other categories named in an info icon by the matrix 
   [look("7.9", "S7-R15", "The Categories list shows."), look("7.9", "S7-R15", "Above the grid, matrix A's name shows with an info icon beside it, and no sentence line."),
    R(QD("The Fluids 30 matrix also prices 1 other category: Oil.", "7.9", "S7-R15"),
      "A dark tooltip reads \"The\", matrix A's name, \"matrix also prices 1 other category:\" and category B's name, ending with a period, as in picture 7.9.")],
-  pics=["7.9"], held_on="Q22", flags=DV)
+  pics=["7.9"], held_on="Q18", flags=DV)
 
 C("D-148", K, "Design: long and special category names on the list and the page",
   [ADMIN, f"Have a new category for this test, category A, with {STRESS_SP}.", f"Have a new category for this test, category B, with {STRESS_NO}.",
@@ -328,7 +328,7 @@ C("D-162", K, "Design: Uncategorized's page shows grayed matrix and Tax Exempt f
   [look("8.2", "S8-R4", "The Categories list shows."),
    R(QL("8.3", "S8-R4"), "A grayed Pricing Matrix box reading General Matrix and a grayed Tax Exempt checkbox show under the title.",
      "The QuickBooks Products And Services picker shows in its usual style, as in picture 8.3.")],
-  pics=["8.2", "8.3"], held_on="Q25", flags=DV)
+  pics=["8.2", "8.3"], held_on="Q21", flags=DV)
 
 C("D-163", K, "Design: a taken category name shows red under the title",
   [ADMIN, category("A", ", named for example Wheel Seals"), category("B"), W1440],
@@ -358,7 +358,7 @@ C("D-165", K, "Design: the New Category page's button reads Create Category",
   [CATEGORIES, "Click New Category."],
   [look("8.5", "S8-R10", "The Categories list shows."),
    R(QD("Create Category", "8.6", "S8-R10"), "Cancel and a blue \"Create Category\" button sit at the top right, with no Save button, as in picture 8.6.")],
-  pics=["8.5", "8.6", "8.8"], held_on="Q23", flags=DV)
+  pics=["8.5", "8.6", "8.8"], held_on="Q19", flags=DV)
 
 C("D-166", K, "Design: the New Category name error keeps the columns in place",
   [ADMIN, W1440],
@@ -389,7 +389,7 @@ C("D-168", K, "Design: the delete question and taken-name error as the design wo
    , look("8.11", "S8-R8", "The dialog closes."), look("8.4", "S8-N3", "The title becomes an outlined box."), look("8.4", "S8-N3", "The typed name shows."),
    R(QD("A category called tires already exists. Click away to keep Brakes.", "8.4", "S8-N3"),
      "The red error reads \"A category called\", the typed name, \"already exists. Click away to keep\" and category B's name, with a period.")],
-  pics=["8.4", "8.10", "8.11"], held_on="Q24", flags=DV)
+  pics=["8.4", "8.10", "8.11"], held_on="Q20", flags=DV)
 
 # ---- page 9: customers on tiers --------------------------------------------------------------------------------------------
 CU = ("Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create & Edit' and "
@@ -417,14 +417,14 @@ C("D-171", K, "Design: a Customers tab no-match message offers Clear All Filters
   [TIERS, open_tier("A"), CTAB, "Type zzz in the search."],
   [look("9.2", "S9-N6", "The Tiers list shows tier A."), look("9.2", "S9-N6", "Tier A's page opens."), look("9.2", "S9-N6", "The Customers tab shows."),
    R(QD("No customer matches \"zzz\"", "9.2", "S9-N6"), "The tab reads \"No customer matches \"zzz\"\" with no period, and a Clear All Filters button, as in picture 9.2.")],
-  pics=["9.2"], held_on="Q21", flags=DV)
+  pics=["9.2"], held_on="Q17", flags=DV)
 
 C("D-172", K, "Design: the Customers tab's Sales Type filter rows",
   [ADMIN_CUST, tier("A"), cu("A", "tier A", "tier A"), cu("B", "tier A"), W1440],
   [TIERS, open_tier("A"), CTAB, "Open the Sales Type filter."],
   [look("9.3", "S9-R9", "The Tiers list shows tier A."), look("9.3", "S9-R9", "Tier A's page opens."), look("9.3", "S9-R9", "The Customers tab shows."),
    R(QD("Work Orders only", "9.3", "S9-R9"), "A panel opens with the rows \"Work Orders and Part Sales\" and \"Work Orders only\", each with a count, and \"Clear selection\", as in picture 9.3.")],
-  pics=["9.3"], held_on="Q26", flags=DV)
+  pics=["9.3"], held_on="Q22", flags=DV)
 
 C("D-173", K, "Design: the Manage Customers dialog and its tab tooltip",
   [ADMIN_CUST, tier("A"), cu("A", extra=", so the Add tab has a row"), W1440],
@@ -497,7 +497,7 @@ C("D-179", K, "Design: Manage Customers columns move when the search narrows the
    look("9.4", "S9-R10", "The screenshot shows the column headings."),
    look("9.12", "S9-R10", "Compared with the screenshot, the Work Order Tier and Part Sales Tier headings sit slightly further left, as pictures 9.4 and 9.12 show."),
    look("9.13", "S9-R10", "With no match, the Work Order Tier heading sits clearly further left than in the screenshot, as picture 9.13 shows.")],
-  pics=["9.4", "9.12", "9.13"], held_on="Q27", flags=DV + ["movement"])
+  pics=["9.4", "9.12", "9.13"], held_on="Q31", flags=DV + ["movement"])
 
 C("D-180", K, "Design: the Remove tab, its question and the result",
   [ADMIN_CUST, tier("A"), cu("A", "tier A", "tier A"), cu("B", "tier A"), W1440],
@@ -560,7 +560,7 @@ C("D-185", K, "Design: the Counter Sale note shows as a blue box above the tier 
   ["Open the built-in Counter Sale customer's page.", "Click the edit pencil on the customer card."],
   [look("9.36", "S9-R8", "The Counter Sale customer's page opens."),
    R(QD("Every walk-in sale uses this tier.", "9.36", "S9-R8"), "A light blue box with an info icon reads \"Every walk-in sale uses this tier.\" just above Work Order Tier, shown without pointing at anything, as in picture 9.36.")],
-  pics=["9.36"], held_on="Q28", flags=DV)
+  pics=["9.36"], held_on="Q23", flags=DV)
 
 C("D-186", K, "Design: Edit Customer and the card with only Default",
   [CU, "Use a client whose Tiers list shows only Default.", "Have a new customer for this test, customer A, in that client.", W1440],
@@ -635,7 +635,7 @@ C("D-211", K, "Design: the price details' matrix line and Same as previous tier 
   [look("12.2", "S12-R18", "Work order 1 opens."),
    R(QD("Same as previous tier", "12.2", "S12-R18"), "The Matrix row reads matrix A's name, \" · \" and tier A's name, with no Work Order Matrix side named.",
      "A row labelled \"Same as previous tier\" reads tier A's name, as in picture 12.2.")],
-  pics=["12.1", "12.2"], held_on="Q29", flags=DV)
+  pics=["12.1", "12.2"], held_on="Q26", flags=DV)
 
 C("D-212", K, "Design: the price details for a typed price",
   WOD, [OPENWO, "Type 14 in part A's sell price.", "Press Enter.", "Point at part A's sell price."],
@@ -750,7 +750,7 @@ C("D-224", K, "Design: the notice names Fixed price and Manual lines too",
   [look("14.8", "S14-R2", "Work order 1 opens."), look("14.8", "S14-R2", "The menu lists Change Customer."), look("14.8", "S14-R2", "The dialog opens."), look("14.8", "S14-R2", "Customer B is picked."),
    R(QD("4 lines priced at Tier 2, Fixed price and Manual for the previous customer", "14.8", "S14-R2"),
      "The notice reads \"3 lines priced at\" tier A's name \", Fixed price and Manual for the previous customer\", counting the typed and fixed-price lines too (1 + 1 + 1 = 3), as in picture 14.8.")],
-  pics=["14.8"], held_on="Q30", flags=DV)
+  pics=["14.8"], held_on="Q27", flags=DV)
 
 C("D-225", K, "Design: the notice pushes the lines down without moving the columns",
   [ADMIN_WO, tier("A"), customer("A", ", on tier A for work orders"), customer("B"),

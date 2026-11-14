@@ -3,8 +3,8 @@ Category), batch B, phase 2, 14 Nov 2026. Design "Tiered Pricing Design" 1794631
 pages was viewed when assigned (reduced montages, 14 Nov 2026). Each case names the picture(s) to compare with at 100% zoom; every look result is an
 eye check (no pixel ruler, no devtools; Rule 126 point 8). Words come from the PRD where it has the sentence and from the board where the PRD is
 silent (QA lead's precedence, 14 Nov 2026). Held "design version" cases (Rule 130) carry the design's own version where it differs from the PRD,
-held on their question candidate (po_questions_batch_b.py, Q4). §6d line 9: stress names on every page-10/11/13/20 surface that shows a typed name;
-line 10: before-and-after checks of every state change the design's own pictures show (proof §6b), held on Q42 where something moves unsettled.
+held on their question candidate (po_questions_batch_b.py, Q30). §6d line 9: stress names on every page-10/11/13/20 surface that shows a typed name;
+line 10: before-and-after checks of every state change the design's own pictures show (proof §6b), held on Q31 where something moves unsettled.
 
 Key ranges: D-400…D-699 (batch B)."""
 from tp_lib import C, R, B, S, QP, QD, QT, QL, HOLD
@@ -290,14 +290,14 @@ C("D-440", K, "Design: report rows and Priced By list show tier names without nu
    + R(QL("20.2", "RPT-S3-R12"), "The plain chips read Sales Type, Priced By, Category and Customer with no \": All\"."),
    R(QD("Fleet Old", "20.5", "RPT-S3-R3"), "Archived tier B is listed by its name with no \"(archived)\" (as \"Fleet Old\" in picture 20.5)."),
    R(QD("Tier 2,5933.40", "20.20", "RPT-S4-R3"), "The CSV writes tier A's name with no number (as \"Tier 2,5933.40\" in picture 20.20).")],
-  pics=["20.2", "20.5", "20.20"], held_on="Q40", flags=["design-version"])
+  pics=["20.2", "20.5", "20.20"], held_on="Q28", flags=["design-version"])
 
 C("D-441", K, "Design: the Category list places Uncategorized in A to Z order",
   REP0,
   [SBT, "Open the Category filter."],
   [R(QL("20.7", "RPT-S3-R9"), "Sales by Tier opens."),
    R(QL("20.7", "RPT-S3-R9"), "Uncategorized is listed in A-to-Z order among the categories (between \"Tires, Retread\" and \"Wipers\" in picture 20.7), not first.")],
-  pics=["20.7"], held_on="Q41", flags=["design-version"])
+  pics=["20.7"], held_on="Q29", flags=["design-version"])
 
 C("D-442", K, "Design: receiving shows a toast with the price and the tier",
   [WOA, MX(), TR("A", "A", "+ $ 40.00"), CU(), WO("1", "A", " and a special-order part not yet received on line 1, category A, cost $0.01"), W1440],
@@ -305,14 +305,14 @@ C("D-442", K, "Design: receiving shows a toast with the price and the tier",
   [R(S("S11-R9"), "Work order 1 opens."), R(QL("11.6", "S11-R15"), "Receive Part opens as in picture 11.6."), R(QL("11.6", "S11-R15"), "Received Cost reads 40.00."),
    R(QD("Part received", "11.7", "S11-R15"), "A toast reads \"Part received\".")
    + R(QD("$80.00 each, Tier 2.", "11.7", "S11-R15"), "Its second line reads \"$80.00 each,\" and tier A's name, ending with a period ($40.00 + $40.00 = $80.00).")],
-  pics=["11.6", "11.7"], held_on="Q44", flags=["design-version", "numbers"])
+  pics=["11.6", "11.7"], held_on="Q25", flags=["design-version", "numbers"])
 
 C("D-443", K, "Design: the CSV's filter lines put Priced By before Category",
   [RPA, W1440],
   [SBT, "Click Download Summary (CSV) in the ⋯ menu."],
   [R(QD("Prototype stand-in", "20.20", "RPT-S4-R7"), "Sales by Tier opens; the download is the real file the stand-in of picture 20.20 shows."),
    R(QD("Priced By: All", "20.20", "RPT-S4-R7"), "After \"Sales Type: All\" the file reads \"Priced By: All\", then \"Category: All categories\", then \"Customer: All customers\", as in picture 20.20.")],
-  pics=["20.20"], held_on="Q4", flags=["design-version"])
+  pics=["20.20"], held_on="Q30", flags=["design-version"])
 
 # ---- §6d line 10: before and after -----------------------------------------------------------------------------------------------
 MOVE_PRE = REP + [CU("B", "A"), "Have a new work order for this test, work order 2, for customer B, with a part in category A priced by tier A, invoiced today."]
@@ -323,7 +323,7 @@ C("D-450", K, "Design: Sales by Tier columns move when a row is opened",
   [R(S("RPT-S2-R1"), "Sales by Tier opens."), R(S("RPT-S3-R4"), "Tier A's row shows."), R(QL("20.2", "RPT-S1-R6"), "The first screenshot matches the headings of picture 20.2."),
    R(QL("20.3", "RPT-S2-R2"), "Customers A and B show under tier A."), R(QL("20.4", "RPT-S2-R3"), "Customer A's invoices show."),
    R(QL("20.4", "RPT-S2-R2"), "Compared with the first screenshot, Priced By widens and the number columns move right by about 60-95 pixels, as pictures 20.3 and 20.4 show against 20.2.")],
-  pics=["20.2", "20.3", "20.4"], held_on="Q42", flags=["design-version", "movement"])
+  pics=["20.2", "20.3", "20.4"], held_on="Q31", flags=["design-version", "movement"])
 
 C("D-451", K, "Design: Sales by Tier headings move on the empty states",
   [RPA, W1440],
@@ -331,7 +331,7 @@ C("D-451", K, "Design: Sales by Tier headings move on the empty states",
   [R(QL("20.2", "RPT-S1-R6"), "Sales by Tier opens."), R(QL("20.2", "RPT-S1-R6"), "The first screenshot matches picture 20.2's headings."),
    R(S("RPT-S3-N1"), "The no-match message shows."),
    R(QL("20.23", "RPT-S3-N1"), "Compared with the first screenshot, the headings sit about 20-36 pixels further left, as picture 20.23 shows against 20.2.")],
-  pics=["20.2", "20.23", "20.11"], held_on="Q42", flags=["design-version", "movement"])
+  pics=["20.2", "20.23", "20.11"], held_on="Q31", flags=["design-version", "movement"])
 
 C("D-452", K, "Design: Sales by Category columns move when a category opens",
   REP,
@@ -339,7 +339,7 @@ C("D-452", K, "Design: Sales by Category columns move when a category opens",
   [R(QL("20.16", "RPT-S5-R1"), "Sales by Category opens."), R(QL("20.16", "RPT-S5-R1"), "The first screenshot matches picture 20.16's headings."),
    R(QL("20.17", "RPT-S5-R2"), "Category A opens to its Priced By rows."),
    R(QL("20.17", "RPT-S5-R2"), "Compared with the first screenshot, Category widens and the number columns move right by about 5-10 pixels, as picture 20.17 shows against 20.16.")],
-  pics=["20.16", "20.17"], held_on="Q42", flags=["design-version", "movement"])
+  pics=["20.16", "20.17"], held_on="Q31", flags=["design-version", "movement"])
 
 C("D-453", K, "Design: the lines table's columns move while Quick Add is open",
   [WOA, MX(), TR(), CU(), WO("1", "A", ", with a part on line 1"), W1440],
@@ -349,7 +349,7 @@ C("D-453", K, "Design: the lines table's columns move while Quick Add is open",
    R(QL("10.6", "S10-R1"), "Compared with the first screenshot, Name/Description narrows and Actual/Estimate, Progress, Status, Action and Rate move left by about 20-70 pixels, as pictures 10.6, 10.7 and 10.9 show against 10.5."),
    R(QL("10.5", "S10-R1"), "The Quick Add row closes."),
    R(QL("10.5", "S10-R1"), "The headings are back in the same place as the first screenshot.")],
-  pics=["10.5", "10.6", "10.7", "10.9"], held_on="Q42", flags=["design-version", "movement"])
+  pics=["10.5", "10.6", "10.7", "10.9"], held_on="Q31", flags=["design-version", "movement"])
 
 C("D-454", K, "Design: the filter chips shift left as a picked chip widens",
   [RPA, W1440],
@@ -357,7 +357,7 @@ C("D-454", K, "Design: the filter chips shift left as a picked chip widens",
   [R(QL("20.2", "RPT-S3-R12"), "Sales by Tier opens."), R(QL("20.2", "RPT-S3-R12"), "The first screenshot matches the chips of picture 20.2."),
    R(QL("20.9", "RPT-S3-R12"), "The chip reads Sales Type: Work Orders."),
    R(QL("20.9", "RPT-S3-R12"), "Compared with the first screenshot, the Date and Sales Type chips sit further left (Date by about 90 pixels), as picture 20.9 shows against 20.2.")],
-  pics=["20.2", "20.9"], held_on="Q42", flags=["design-version", "movement"])
+  pics=["20.2", "20.9"], held_on="Q31", flags=["design-version", "movement"])
 
 C("D-455", K, "Design: sorting keeps the Sales by Tier columns in place",
   REP0,

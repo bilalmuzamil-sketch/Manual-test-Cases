@@ -1,5 +1,5 @@
 """Story 3 — Matrices and rules (SV-11695; covers SV-7857 and SV-9492), PRD v37 lines 351-410, design page 3 (3.1-3.29), tech plan rows
-TPX-12 and TPX-14. The grid itself is Story 4. The timing half of S3-R13 (when a category picked on an existing matrix moves) is held on Q2."""
+TPX-12 and TPX-14. The grid itself is Story 4. The timing half of S3-R13 (when a category picked on an existing matrix moves) is held on Q6."""
 from tp_lib import C, R, B, S, QP, QD, QT, QL, HOLD
 from common import *
 
@@ -170,7 +170,7 @@ C("S3-17", K, "A category picked on an existing matrix moves when the matrix is 
    R(S("S3-R13", "picking it moves it to this matrix when the matrix is saved"), "Category A's page still names matrix B (the move waits for Save)."),
    R(S("S3-R13"), "Matrix A saves."),
    R(S("S3-R13", "picking it moves it to this matrix when the matrix is saved"), "Category A's page now names matrix A.")],
-  pics=["3.11", "3.23"], held_on="Q2")
+  pics=["3.11", "3.23"], held_on="Q6")
 
 C("S3-18", K, "A category removed from the line goes to the General Matrix on save",
   [ADMIN, matrix("A", ", pricing a new category made for this test, category A"), "Open Settings › Categories in a second browser tab.", DESK],
@@ -180,7 +180,7 @@ C("S3-18", K, "A category removed from the line goes to the General Matrix on sa
    R(S("S3-R13", "A category removed from the line moves to the General Matrix when the matrix is saved."), "Category A's page still names matrix A."),
    R(S("S3-R13"), "Matrix A saves."),
    R(S("S3-R13", "A category removed from the line moves to the General Matrix when the matrix is saved."), "Category A's page now names the General Matrix.")],
-  pics=["3.11"], held_on="Q2")
+  pics=["3.11"], held_on="Q6")
 
 C("S3-19", K, "The General Matrix's categories cannot be picked",
   [ADMIN, DESK],

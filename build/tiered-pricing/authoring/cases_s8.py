@@ -1,6 +1,6 @@
 """Story 8 — Categories over time (SV-12460), PRD v37 lines 565-595, design page 8 (8.1-8.12). Batch A, 14 Nov 2026.
-New Category's buttons follow the PRD ("Save and Cancel"; the design writes "Create Category", held on Q23). The delete question follows the
-PRD's full wording (the design drops one sentence, held on Q24). Category reports for past periods (S8-E1) are the reports batch's cases."""
+New Category's buttons follow the PRD ("Save and Cancel"; the design writes "Create Category", held on Q19). The delete question follows the
+PRD's full wording (the design drops one sentence, held on Q20). Category reports for past periods (S8-E1) are the reports batch's cases."""
 from tp_lib import C, R, B, S, QP, QD, QL
 from common import *
 

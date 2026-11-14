@@ -1,7 +1,7 @@
 """Story 7 — Categories: every category's pricing at a glance (SV-12459), PRD v37 lines 530-564, design page 7 (7.1-7.15) with
 today's Categories list and Edit Category (boards 7.1, 7.2, drawn from production). Batch A, 14 Nov 2026.
 S7-R15's "line above the grid" is drawn by the design as an info-icon tooltip (7.9): these cases follow the PRD; the design's version is a
-held design case (Q22). S7-R2 short words follow S4-R31; the "Uses previous tier" hover follows S4-R3 and tech plan 1 D29 (TPX-13)."""
+held design case (Q18). S7-R2 short words follow S4-R31; the "Uses previous tier" hover follows S4-R3 and tech plan 1 D29 (TPX-13)."""
 from tp_lib import C, R, B, S, QP, QD, QL, QT
 from common import *
 

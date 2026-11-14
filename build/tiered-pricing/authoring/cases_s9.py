@@ -1,7 +1,7 @@
 """Story 9 — Putting customers on tiers (SV-12461), PRD v37 lines 596-672, design page 9 (9.1-9.41) with today's Customers list,
 customer page and Edit Customer (Today pictures 9.25, 9.26, 9.27, 9.38). Tech plan rows TPX-17 (Remove asks first), TPX-20 (Edit Customer at
 phone width). Batch A, 14 Nov 2026. Customers and tiers are made fresh per case; a case that changes many customers works only on its own.
-The channel filter's options follow the PRD (Work orders, Part Sales, Both); the design's "Sales Type" rows are a held design case (Q26)."""
+The channel filter's options follow the PRD (Work orders, Part Sales, Both); the design's "Sales Type" rows are a held design case (Q22)."""
 from tp_lib import C, R, B, S, QP, QD, QL, QT
 from common import *
 

@@ -32,11 +32,11 @@ NOT_TESTABLE = {
 }
 
 HELD = {
- "TPX-01": "Q1",
+ "TPX-01": "Q24",
 }
 
 PARTIAL = {
- "TP-S10-R14": "Everything but a reopened paid work order is checked (S10-34 to S10-38); which tier prices parts added after reopening is held on Q1 (S10-39).",
+ "TP-S10-R14": "Everything but a reopened paid work order is checked (S10-34 to S10-38); which tier prices parts added after reopening is held on Q24 (S10-39).",
  "TP-S11-R7": ("Quick Add, the inline row, catalog search, the part request modal, Tech View, the phone part request, canned lines (tier and Default "
                "work orders, no-cost parts, labor) and inspections are checked; ShopCoach and canned lines added by Maintenance Reminders are not "
                "checked by hand: neither the PRD, the design nor the tech plan says how a tester makes them add a part; listed for the developers. "
@@ -45,9 +45,9 @@ PARTIAL = {
  "TP-S10-R22": "The fill is observed; the 0.3-second target at the largest client's size is an engineering measurement (S10-33 marked HOLD for that part).",
  "RPT-S1-R7": "The tie-out to Sales by Customer is checked; \"engineering lists ... the owning PM signs off each\" is a process step (TPX-39).",
  "RPT-S4-R5": "The PDF limit and its message are checked on a staging location with more than 2,000 rows; the CSV limit (50,000 rows) can't be reached by hand.",
- "RPT-S4-R7": "The header lines' content and wording are checked (RPT-62); their ORDER (Category before Priced By) is held on Q4 (RPT-63, D-443).",
+ "RPT-S4-R7": "The header lines' content and wording are checked (RPT-62); their ORDER (Category before Priced By) is held on Q30 (RPT-63, D-443).",
  "RPT-S4-N1": "The PDF refusal with no file is checked on a staging location with more than 2,000 rows (RPT-60); the CSV refusal needs 50,001 rows, which a tester cannot make (automation owner).",
- "TPX-31": "The all-wording is checked (RPT-62); the line order is held on Q4 (RPT-63).",
+ "TPX-31": "The all-wording is checked (RPT-62); the line order is held on Q30 (RPT-63).",
 }
 
 UNUSED_BOARDS = {
@@ -71,11 +71,11 @@ STRESS = {
  "tier names in the work order toasts (Part added)": "D-465",
 }
 MOVEMENT = {
- "Sales by Tier columns when a row and a customer open (20.2 vs 20.3, 20.4; held on Q42)": "D-450",
- "Sales by Tier headings on the empty states (20.2 vs 20.11, 20.21-20.23; held on Q42)": "D-451",
- "Sales by Category columns when a category opens (20.16 vs 20.17; held on Q42)": "D-452",
- "work order lines table while Quick Add is open (10.5 vs 10.6, 10.7, 10.9; held on Q42)": "D-453",
- "report filter chips when a chip widens (20.2 vs 20.9; held on Q42)": "D-454",
+ "Sales by Tier columns when a row and a customer open (20.2 vs 20.3, 20.4; held on Q31)": "D-450",
+ "Sales by Tier headings on the empty states (20.2 vs 20.11, 20.21-20.23; held on Q31)": "D-451",
+ "Sales by Category columns when a category opens (20.16 vs 20.17; held on Q31)": "D-452",
+ "work order lines table while Quick Add is open (10.5 vs 10.6, 10.7, 10.9; held on Q31)": "D-453",
+ "report filter chips when a chip widens (20.2 vs 20.9; held on Q31)": "D-454",
  "Sales by Tier sort keeps columns (20.12 vs 20.13)": "D-455",
  "Totals row and columns as more rows load (S1-R7, S1-R12)": "D-456",
 }
