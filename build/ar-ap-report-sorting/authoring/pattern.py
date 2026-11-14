@@ -325,4 +325,6 @@ def pattern(c):
     # 26 Oct 2026: the tester read-through's corrections (readthrough_layout.py) come last
     import v11_layout as V11
     # 10 Nov 2026: the currency-check layer (PRD version 11, design of 5 Nov 2026) comes after the read-through layer
-    return V11.apply(c, RTL.readthrough(c, relate(c, apply_layout(c, convert(c), PL.LAYOUT.get(c["key"]), PL.RES_SPLIT), PL), L))
+    import v13_layout as V13L
+    # 14 Nov 2026: the PRD version 13 currency layer comes last
+    return V13L.apply(c, V11.apply(c, RTL.readthrough(c, relate(c, apply_layout(c, convert(c), PL.LAYOUT.get(c["key"]), PL.RES_SPLIT), PL), L)))

@@ -190,6 +190,20 @@ DIFFS.append(dict(id="DD-07", codes=["S2-R1b"], named=[], reps=None, figs=["I14"
               "taken and lists it under What changes for existing users (\"today all three read \"Credit\"\"); version 11 keeps it. Compare the layout "
               "with the pictures; the Transaction Type words come from the PRD.")))
 DIFFS[-1]["ruling_now"] = DIFFS[-1]["ruling"]
+# DD-08 (14 Nov 2026, Rule 130): every "this build" picture with the table header draws the top-left header chevron dark grey, beside blue
+# group chevrons; PRD version 12 (12 Nov 2026, Milos Vasic) added to S4-R1 "The chevron is blue, the same as each group's own chevron (S4-R5).",
+# kept in version 13 (13 Nov 2026, Chris Ward, the design authority). Closed by that later PRD ruling, as DD-07 was: no question, no held
+# design-version case. The Demo Day cases (D-82 to D-95) are frozen while they are written to TestRail, so they do not print it.
+DIFFS.append(dict(id="DD-08", codes=["S4-R1"], named=[], reps=None, figs=["I14", "I16", "I23", "I25"], q=None, held=None, now_only=True,
+      skip={f"D-{n}" for n in range(82, 96)},
+      said="PRD version 12 (12 Nov 2026) says",
+      prd='the header chevron "is blue, the same as each group\'s own chevron (S4-R5)" (S4-R1)',
+      design='the top-left header chevron in dark grey beside the blue group chevrons (for example in "Expand all from the header", "Same on A/P Unpaid Invoices", "Open Balance pinned, light" and "A/P Unpaid Invoices at 1440: every column visible")',
+      kind="icon colour", answer=None,
+      ruling=("Closed by the later PRD ruling: PRD version 12 (12 Nov 2026, Milos Vasic) added the chevron's colour to S4-R1 after these "
+              "pictures were taken, and version 13 (13 Nov 2026, Chris Ward, the design authority) keeps it. Compare the layout with the pictures; "
+              "the header chevron's colour comes from the PRD.")))
+DIFFS[-1]["ruling_now"] = DIFFS[-1]["ruling"]
 # 10 Nov 2026 (round 3): D-04 added. Its credit memo row is compared with the re-shot "Links only where they can open" picture, which still shows Transaction Type "Credit".
 DD07_CASES = {"D-18", "D-58", "D-63", "D-04"}
 # differences closed by a ruling already in our sources (not asked; skill 07 section 6)

@@ -3,7 +3,7 @@
  "design": "https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4",
  "design_read": true,
  "read": "22 Oct 2026: 7 boards, 45 figures, 43 screenshots viewed (design-2026-10-22/DESIGN-READING-RECORD.md)",
- "updated": "26 Oct 2026: differences DD-01 to DD-06 closed by Chris Ward's answers 4 and 11 to 15 (23 Oct 2026, read 26 Oct 2026) and PRD version 9 (v9-pass-2026-10-26/)",
+ "updated": "26 Oct 2026: differences DD-01 to DD-06 closed by Chris Ward's answers 4 and 11 to 15 (23 Oct 2026, read 26 Oct 2026) and PRD version 9 (v9-pass-2026-10-26/) | 14 Nov 2026: DD-08 (header chevron colour) added, closed by PRD v12/v13 S4-R1.",
  "note": "Both directions checked (Rule 130): design to cases (DESIGN-TEXT-INVENTORY, DESIGN-VISUAL-INVENTORY) and PRD to design (spec_to_design_check.py on the boards plus the after-pictures' words, AFTER-SCREEN-WORDS.txt, and the by-hand list below). Questions 4 and 11 to 15 were sent on Chris Ward's sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA (22 Oct 2026) and answered on 23 Oct 2026; every difference is closed (outcome PO-RULED, with the answer and date). Design versions that lost (D-76 to D-80) were deleted 26 Oct 2026 with the QA lead's go-ahead; D-81 (the design won) is a normal design case.",
  "differences": [
   {
@@ -133,6 +133,37 @@
    "won": "PRD",
    "held_case": null,
    "held_case_now": "deleted from TestRail 26 Oct 2026 (QA lead's go-ahead)"
+  },
+  {
+   "id": "DD-08",
+   "kind": "icon colour",
+   "prd": "the header chevron \"is blue, the same as each group's own chevron (S4-R5)\" (S4-R1)",
+   "design": "the top-left header chevron in dark grey beside the blue group chevrons (for example in \"Expand all from the header\", \"Same on A/P Unpaid Invoices\", \"Open Balance pinned, light\" and \"A/P Unpaid Invoices at 1440: every column visible\")",
+   "pictures": [
+    "ar-ap-p3-expand-all-from-the-header.png",
+    "ar-ap-p3-same-on-a-p-unpaid-invoices.png",
+    "ar-ap-p6-open-balance-pinned-light.png",
+    "ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png"
+   ],
+   "outcome": "CLOSED-BY-LATER-PRD-RULING",
+   "where": "PRD version 12 (12 Nov 2026, Milos Vasic) added the colour to S4-R1 after the pictures were taken; version 13 (13 Nov 2026, Chris Ward, the design authority) keeps it. No question sent: a later written ruling by the PO already settles it (Rule 130, as DD-07). Found 14 Nov 2026 in the PRD v13 currency pass (currency-2026-11-14/).",
+   "cases": [
+    "D-25",
+    "D-26",
+    "D-27",
+    "D-28",
+    "D-52",
+    "D-56",
+    "D-59",
+    "S4-01",
+    "S4-02",
+    "S4-03",
+    "S4-04",
+    "S4-05",
+    "S4-06",
+    "S3-33, S3-35 (new; quote S4-R1 for the Expand all step)"
+   ],
+   "case_follows": "the PRD: the header chevron is blue; the cases compare the layout with the pictures and take the colour from the PRD"
   }
  ],
  "closed_by_ruling": [

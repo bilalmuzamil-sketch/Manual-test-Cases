@@ -30,7 +30,7 @@ ROWS = [
  ["18", "Internal Work Orders: The lines table when a line, or the whole work order, becomes No Charge",
   "When a line is marked No Charge, or the work order is converted to No Charge and back, should the other columns of the lines table stay "
   "where they were?\n"
-  "(a) Yes, the columns stay where they were (suggested: the advisor finds Hours, Status and the prices in the same place on every line)\n"
+  "(a) Yes, the columns stay where they were (suggested: the advisor finds Actual/Estimate, Status and the prices in the same place on every line)\n"
   "(b) No, they may move, as drawn\n"
   "(c) Something else (please say)",
   "The PRD already settles two parts, and both are tested now: a no-charge line keeps its three-dots menu (Change category, Mark as "

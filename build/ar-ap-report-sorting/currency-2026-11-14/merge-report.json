@@ -1,0 +1,51 @@
+{
+ "counts": {
+  "cases": 380,
+  "with changes": 380
+ },
+ "unresolved": {},
+ "r5_same_line_changed_by_both": {
+  "D-16": [
+   {
+    "ours": [
+     "<p>Where the tech plan differs: the tech plan (21 Oct 2026) says Location wraps only on A/P Detail; PRD version 13 (its layout rules, 13 Nov 2026) lets it wrap on A/P Unpaid Invoices too, and keeps a vendor's group row there on one line. This case follows the PRD.</p>"
+    ],
+    "base": [
+     "<p>Where the tech plan differs: the tech plan (21 Oct 2026) says Location wraps only on A/P Detail; PRD version 11 (S8-R3, 5 Nov 2026) lets it wrap on A/P Unpaid Invoices too. This case follows the PRD.</p>"
+    ],
+    "theirs": [
+     "<p>Where the tech plan differs: the tech plan (21 Oct 2026) says Location wraps only on A/P Detail; PRD version 11 (its layout rules, 5 Nov 2026) lets it wrap on A/P Unpaid Invoices too. This case follows the PRD.</p>"
+    ],
+    "why": "R5",
+    "notes": [
+     {
+      "ours": "<p>Where the tech plan differs: the tech plan (21 Oct 2026) says Location wraps only on A/P Detail; PRD version 13 (its layout rules, 13 Nov 2026) lets it wrap on A/P Unpaid Invoices too, and keeps a vendor's group row there on one line. This case follows the PRD.</p>",
+      "theirs": "<p>Where the tech plan differs: the tech plan (21 Oct 2026) says Location wraps only on A/P Detail; PRD version 11 (its layout rules, 5 Nov 2026) lets it wrap on A/P Unpaid Invoices too. This case follows the PRD.</p>"
+     }
+    ],
+    "field": "custom_expected"
+   }
+  ],
+  "D-52": [
+   {
+    "ours": [
+     "<li>A blue chevron pointing right in the top-left header cell, the same blue as the bucket rows' chevrons, then \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\" with a small up arrow, \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\".</li>"
+    ],
+    "base": [
+     "<li>A grey chevron pointing right in the top-left header cell, then \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\" with a small up arrow, \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\".</li>"
+    ],
+    "theirs": [
+     "<li>A blue chevron pointing right in the top-left header cell (“The chevron is blue, the same as each group's own chevron (S4-R5).” PRD version 12, S4-R1), then \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\" with a small up arrow, \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\".</li>"
+    ],
+    "why": "R5",
+    "notes": [
+     {
+      "ours_not_applied": "<li>A blue chevron pointing right in the top-left header cell, the same blue as the bucket rows' chevrons, then \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\" with a small up arrow, \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\".</li>",
+      "theirs": "<li>A blue chevron pointing right in the top-left header cell (“The chevron is blue, the same as each group's own chevron (S4-R5).” PRD version 12, S4-R1), then \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\" with a small up arrow, \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\".</li>"
+     }
+    ],
+    "field": "custom_expected"
+   }
+  ]
+ }
+}

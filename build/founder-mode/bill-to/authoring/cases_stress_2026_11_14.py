@@ -74,8 +74,11 @@ def refs(key, pics, words_from=None, notes=(), pages=None):
     _DR.DREFS[key] = {"pages": head, "pictures": list(pics), "words": words, "notes": list(notes)}
 
 
+MARKER_1114 = "AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026"
+
+
 def N(key, scan, title, pre, steps, res, q, pics=(), notes=(SHORT_ONLY,), marker=None, note="", pages=None, words=None, sec=S):
-    C(key, sec, title, pre, steps, res, q, marker=marker, note=note)
+    C(key, sec, title, pre, steps, res, q, marker=marker or MARKER_1114, note=note)   # QA lead 14 Nov 2026: new cases carry the write date
     if sec == S or pics: refs(key, list(pics), words, notes, pages)
     NEW[key] = scan
 

@@ -1,0 +1,27 @@
+-# Bill To
+-Confluence page 1003585538 | owner Chris Ward | https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/1003585538/Bill+To
+-| Epic | https://shopview.atlassian.net/browse/SV-12289 |
++| Epic | SV-12289 |
+-- When the Bill To differs from the customer, printed invoices and estimates carry a "Service For" band naming the customer and the unit.
++- When the Bill To differs from the customer, printed invoices and estimates carry a "Service For" band naming the customer and its address.
+-When a warranty company or dealer pays for work on a customer's truck, I want to invoice the payer while the work stays on the truck owner's record, so I can get paid without corrupting the truck's history.
+-When a parent company pays for every job on its branches' trucks, I want to set that once on the branch customer, so I can stop picking the payer by hand on every work order.
+-When I collect payment, I want the balance, terms, credit limit and Credit Hold to be the payer's, so I can chase the right customer for the right amount.
+-When I bill the wrong payer by mistake, I want one clear correction path, so I can fix it without support.
++> When a warranty company or dealer pays for work on a customer's truck, I want to invoice the payer while the work stays on the truck owner's record, so I can get paid without corrupting the truck's history.
++> When a parent company pays for every job on its branches' trucks, I want to set that once on the branch customer, so I can stop picking the payer by hand on every work order.
++> When I collect payment, I want the balance, terms, credit limit and Credit Hold to be the payer's, so I can chase the right customer for the right amount.
++> When I bill the wrong payer by mistake, I want one clear correction path, so I can fix it without support.
+-- "Service For" band on documents, only when the Bill To differs. The document header stays Bill To led; the band names the customer and unit, satisfying the California and Florida customer-naming rules (Bus. & Prof. Code 9880.1(f); Fla. Stat. 559.903(1)). Rejected: Bill To and Service For blocks side by side (tight on a printed page). Basis: A6, D9; owning PM 2026-11-06 (option B2); `d-reversal-invoice-header-addresses` (decided 2026-08-14), distinguished: the band renders only when the roles differ.
++- "Service For" band on documents, only when the Bill To differs. The document header stays Bill To led; the band names the customer and its address, satisfying the California and Florida customer-naming rules (Bus. & Prof. Code 9880.1(f); Fla. Stat. 559.903(1)). Rejected: Bill To and Service For blocks side by side (tight on a printed page). Basis: A6, D9; owning PM 2026-11-06 (option B2), redone 2026-11-13 (owning PM: the customer's address replaces the unit, year, make and model, which the asset table already prints); `d-reversal-invoice-header-addresses` (decided 2026-08-14), distinguished: the band renders only when the roles differ.
+-- S8-R1: A full-width band prints directly under the address row, reading "SERVICE FOR", then the customer's name in bold.
+-- S8-R2: On a work order with an asset, the band adds "Unit [unit]" and "[year] [make] [model]", separated by " · ".
+-- S8-R3: Missing unit, year, make or model parts drop out with their separator; a unit already starting with "Unit" is not prefixed again.
+-- S8-R4: On a part sale with a vehicle attached, the band adds the unit as in S8-R2 and S8-R3; without a vehicle it prints only "SERVICE FOR" and the name.
+-- S8-R5: The band has a light grey fill and a thin grey border so it reads in black and white.
++- S8-R1: A full-width band prints directly under the address row. Its first line reads "SERVICE FOR". Its second line reads the customer's name, then " · " and that customer's own address, in the same weight as the address.
++- S8-R2: The address reads street, then Address 2 when filled, city, then the province or state and the postal or ZIP code, the parts separated by commas, for example "965 Smith Course, Port Peterchester, Yukon Territory Y5P 3K3". The province or state and the postal code never split across two lines.
++- S8-R3: Missing address parts drop out with their separator. With no address on file, the second line prints the name alone, with no " · ".
++- S8-R4: The band never repeats the unit, year, make or model; the asset table below it prints them. A part sale prints the same band as a work order.
++- S8-R5: The band has a light gray fill and a thin gray border so it reads in black and white.
++- S8-R8: An invoice prints the name and address it was created with. A later change to that customer's name or address, or to the work order's customer, never changes an existing invoice (S7-E1). An estimate prints them as they are now.

@@ -67,7 +67,7 @@ for r in Q["ROWS"]:
             "Skill 07 §6.0 checks:", "", "| Check | | Result |", "|---|---|---|"] + [f"| {a} | {b} | {c} |" for a, b, c in CHECKS[r[0]]] + [""]
 out += ["## Gate results", "", f"- `python3 authoring/build.py`: {BUILD}", f"- `python3 build/testing-tools/tester_readiness_check.py build/founder-mode/internal-work-orders`: {TRC}",
         "- Every new case read in full (preconditions, steps, results, notes, design block, marker), all 55; quote bodies checked by build.py's word-for-word gate. Fixes from the read: the \"Show archived\" link no longer assumes a count (D-101, D-131); each document output named on its own (D-117, D-118); controls a tester can see for three \"no longer\" results (D-107, D-114, D-132); own search word for D-139 and D-140; scrolling for D-141.",
-        "- The readiness check's 30 \"does not / never\" results on the new cases were read: each sits in the same step as a positive result the tester can see (the name, chip, badge or window itself).",
+        "- The readiness check's 28 \"does not / never\" results on the new cases were read: each sits in the same step as a positive result the tester can see (the name, chip, badge or window itself).",
         "- `layout-stress-2026-11-14/create_layout_stress.py` dry run: 55 to add (DESIGN 51, S9 3, S12 1), 6 held, 49 for run 559, 78 picture uploads (52 files, all present), readiness check passed. Not run with --apply.", "",
         "## Files", "",
         "- `authoring/cases_zzzz_stress.py` (new): the 55 cases",

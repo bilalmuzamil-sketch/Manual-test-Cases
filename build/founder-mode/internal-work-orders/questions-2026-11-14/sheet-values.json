@@ -25,7 +25,7 @@
   [
    "18",
    "Internal Work Orders: The lines table when a line, or the whole work order, becomes No Charge",
-   "When a line is marked No Charge, or the work order is converted to No Charge and back, should the other columns of the lines table stay where they were?\n(a) Yes, the columns stay where they were (suggested: the advisor finds Hours, Status and the prices in the same place on every line)\n(b) No, they may move, as drawn\n(c) Something else (please say)",
+   "When a line is marked No Charge, or the work order is converted to No Charge and back, should the other columns of the lines table stay where they were?\n(a) Yes, the columns stay where they were (suggested: the advisor finds Actual/Estimate, Status and the prices in the same place on every line)\n(b) No, they may move, as drawn\n(c) Something else (please say)",
    "The PRD already settles two parts, and both are tested now: a no-charge line keeps its three-dots menu (Change category, Mark as Billable), and a no-charge work order hides Rate, Margin and Total. What it does not say is whether the remaining columns stay put. In the design they move: once a line carries its \"No Charge · Warranty\" chip, Actual/Estimate and Status sit about 40 pixels further right than before, and after Convert the Rate heading moves about 52 pixels. One design picture (Flow 6 board 03) also leaves out the three-dots column; the PRD keeps the menu, so we follow the PRD there. Two look checks wait on your answer.",
    "",
    "PRD v1.3 S12-R3, S12-R5, S2-R4, S2-R5, S2-R6; design \"Internal Work Orders · All flows v6\", Flow 6 boards 01, 03, 04 and Flow 2 boards 01, 03"

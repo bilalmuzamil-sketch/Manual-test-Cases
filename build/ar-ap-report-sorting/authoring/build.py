@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build and check every A/R and A/P Report Sorting case. python3 build.py   (exit 1 on any PROBLEM line)
 Gates: title <= 80 and no semicolon; design titles start "Design: "; steps = results, each "Step N:"; placeholders defined;
-quotes verbatim in PRD v11 (since 10 Nov 2026; v9 before) (or Chris Ward's answers, the Jira reading record, or the tech plan); every PRD code and every named PRD item (error handling, User Feedback
+quotes verbatim in PRD v13 (since 14 Nov 2026; v11 from 10 Nov, v9 before) (or Chris Ward's answers, the Jira reading record, or the tech plan); every PRD code and every named PRD item (error handling, User Feedback
 Summary rows, What changes, Out of Scope, key decisions) covered or listed as not testable with the reason; every report a
 requirement names covered; one AUTOMATION line, last; the "From:" / build line / "References from Design" layout; the PATTERN GATE
 (Rule 117 fourteenth amendment, 26 Oct 2026, the QA lead's own pattern; it replaced the thirteenth amendment's Scenario gate): the
@@ -15,7 +15,7 @@ from collections import Counter, defaultdict
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ar_lib as L
 import pattern as PT
-MODS = ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design", "cases_v11", "cases_demo_2026_11_13"]
+MODS = ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design", "cases_v11", "cases_demo_2026_11_13", "cases_v13"]
 MODS = [m for m in MODS if os.path.exists(f"{L.D}/{m}.py")]
 for m in MODS: importlib.import_module(m)
 SECS = json.load(open(f"{L.P}/sections.json"))
@@ -87,7 +87,9 @@ for c in L.CASES:
     if not q.split("</strong></p>", 1)[1].startswith("<p>From: "): probs.append(f"{c['key']}: quotes do not start with a From line")
     if q.count("<p>From: ") != q.count("<ul>"): probs.append(f"{c['key']}: a quote group without its own From line")
     # 13 Nov 2026: the Demo Day cases quote PRD version 13 (the other cases stay on version 11 until a currency pass)
-    if "Epic SV-11315" not in q or L.NOBUILD not in q or not re.search(r"version 1[13] \(", q): probs.append(f"{c['key']}: epic, version or build line missing")
+    # 14 Nov 2026: every case quotes PRD version 13; a case rewritten that day may carry its own build line (v13_layout.BUILD)
+    if "Epic SV-11315" not in q or L.e(L.build_line(c)) not in q or not re.search(r"version 13 \(", q): probs.append(f"{c['key']}: epic, version or build line missing")
+    if re.search(r"version 11 \(", q): probs.append(f"{c['key']}: still quotes PRD version 11")
     top = h.split("References from Design")[0]
     if "claude.ai/artifact" in top: probs.append(f"{c['key']}: design reference above the References from Design block")
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")
@@ -206,6 +208,8 @@ over = [(c["key"], len(c["steps"])) for c in L.CASES if len(c["steps"]) > 10]
 for k_, n_ in over: print(f"OVER-TARGET {k_}: {n_} steps (Rule 117 target about 10; split or kept whole under Rule 136, reason in rule136-2026-10-22/SPLITS.json)")
 for p in probs: print("PROBLEM", p)
 FOLDER = {k: "PROD" for k in ('REL-01', 'REL-02', 'REL-05', 'REL-05b', 'REL-05c', 'REL-06', 'REL-10', 'REL-11', 'REL-12', 'REL-12b', 'REL-12c', 'REL-13', 'REL-14')}   # 10 Nov 2026, QA lead: release-day cases (production before/after) in their own folder; S3-32 left WAIT-PO the same day (released without the As of line)
+import cases_v13 as V13C   # 14 Nov 2026: new cases go to the folder their kind uses now, "Setup needed before testing" (133629)
+FOLDER.update({k: "SETUP" for k in V13C.NEW13})
 out = {c["key"]: dict(sec=FOLDER.get(c["key"], c["sec"]), section_id=SECS.get(FOLDER.get(c["key"], c["sec"])), title=c["title"], refs=L.render(c)["refs"],
                       reports=[L.REPORTS[r] for r in L.reports_of(c)], codes=sorted(L.codes_of(c)), fields=L.render(c)) for c in L.CASES}
 json.dump(out, open(f"{L.D}/proposals.json", "w"), indent=1, ensure_ascii=False)

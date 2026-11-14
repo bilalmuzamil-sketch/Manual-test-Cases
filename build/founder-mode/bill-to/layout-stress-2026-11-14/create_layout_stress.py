@@ -21,6 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(HERE); D 
 sys.path.insert(0, f"{P}/../../testing-tools"); import tester_readiness_check as TRC
 APPLY = "--apply" in sys.argv
 KEYS = [f"D-{n}" for n in range(71, 104)] + ["S19-09"]
+KEYS = [k for k in KEYS if k not in ("D-82", "D-83", "D-84")]   # 14 Nov 2026: the PRD and design changed Story 8 (Service For band) today; D-82/D-83 (band) and D-84 (quotes the redrawn page 4 picture) wait for their rewrite
 HELD = {"D-101": 16, "D-102": 17, "D-103": 17}          # waiting on the PO (question n); not for the run
 RUN, ASSIGN = 558, 6
 PROP = json.load(open(f"{D}/proposals.json")); SECS = json.load(open(f"{P}/sections.json"))["sections"]

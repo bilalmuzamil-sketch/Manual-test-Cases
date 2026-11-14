@@ -33,7 +33,10 @@ def md_to_text(md):
     return "\n".join(out)
 
 # 10 Nov 2026 (currency check): PRD version 11 (5 Nov 2026, Chris Ward; Change Log rows 2026-11-04 "v10" and 2026-11-05), read 10 Nov 2026
-PRD_FILE = f"{P}/sources/CONFLUENCE-947650561-2026-11-05-read-2026-11-10.md"
+# 14 Nov 2026 (currency pass to PRD version 13, QA lead "Named set (Recommended)"): every case quotes version 13 (13 Nov 2026, Chris Ward;
+# Confluence still on version 13, created 2026-11-13T14:36:51Z, re-checked 14 Nov 2026). Version 11 (the file below) stays for the record.
+PRD11_FILE = f"{P}/sources/CONFLUENCE-947650561-2026-11-05-read-2026-11-10.md"
+PRD_FILE = f"{P}/sources/CONFLUENCE-947650561-v13-read-2026-11-13.md"
 PRD_MD = open(PRD_FILE).read().split("<!-- Saved")[0]
 PRD_TXT = md_to_text(PRD_MD)
 PRDW = ws(PRD_TXT)
@@ -61,8 +64,8 @@ def prd13(code):
         if m and m.group(1) == code: return (code + V13, m.group(2).strip())
     raise KeyError(code)
 
-PRD_NAME = 'PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 11 (5 Nov 2026, Chris Ward)'
-PRD_READ = "read 10 Nov 2026"
+PRD_NAME = 'PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 13 (13 Nov 2026, Chris Ward)'
+PRD_READ = "read 13 Nov 2026, version re-checked 14 Nov 2026"
 # Chris Ward's answers to our question sheet (Google Sheet 11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA, column E rows 6-23), read 26 Oct 2026
 # (questions-2026-10-22/chris-answers-2026-10-26.json). PRD version 9 carries most of them; an answer is quoted only where PRD v9 is silent.
 ANS_FILE = f"{P}/questions-2026-10-22/chris-answers-2026-10-26.json"
@@ -228,6 +231,7 @@ DESIGN_PAGE = {1: "page 1 (Opening order and header sorting)", 2: "page 1 (Openi
                6: "page 4 (Location filter and Location column)",
                7: "page 5 (Document links and Switch location) and page 7 (vendor credit link)",
                8: "page 6 (Descriptions and pinned column)", 9: "page 7 (Filters and call list)"}
+NEEDS["S3-R7b"] = ["ARD", "ARC", "APD", "APU"]   # 14 Nov 2026: PRD version 13 S3-R7b names the four grouped reports' PDFs
 NAMED_STORY = {"EH": 3, "UFS-1": 3, "UFS-2": 3, "UFS-3": 7, "UFS-4": 7, "UFS-5": 4, "UFS-6": 3, "UFS-7": 3, "UFS-8": 3,
                "UFS-9": 8, "UFS-10": 8, "UFS-11": 4, "UFS-12": 4, "EH4-1": 4, "EH4-2": 4,
                "WC-12": 1, "WC-13": 2, "WC-14": 2}
@@ -269,12 +273,19 @@ def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, k
     if key in V11.REMOVED: return        # 10 Nov 2026: taken out of the library (proposed for deletion; QA lead deletes in TestRail)
     q = list(q) + [x for x in V11.Q_ADD.get(key, []) if x not in q]
     if key in V11.NOTE: note = V11.NOTE[key]
+    import v13_layout as V13L   # 14 Nov 2026: the PRD version 13 currency layer comes after the v11 layer
+    q = [x for x in q if x not in V13L.Q_DEL.get(key, [])] + [x for x in V13L.Q_ADD.get(key, []) if x not in q]
+    if key in V13L.NOTE: note = V13L.NOTE[key]
+    if key in V13L.MARKER: marker = V13L.MARKER[key]
+    title, pre, steps, res = V13L.model(key, title, pre, steps, res)
     pre = [p if isinstance(p, tuple) else (p, None) for p in pre]
     CASES.append(dict(key=key, sec=sec, title=title, scenario=scenario if scenario is not None else SCENARIO.get(key, ""),
                       pre=[(ui(a), ui(b) if b else b) for a, b in pre],
                       steps=[ui(x) for x in steps], res=[ui_res(x) for x in res], q=q, stories=stories, note=note, marker=marker or MARKER,
                       known=known, reports=reports, design=design, design_codes=design_codes))
     if key in EF: CASES[-1]["marker"] = EF[key]["marker"]; CASES[-1]["ef_html"] = EF[key]["region_html"]
+    if key in V13L.MARKER: CASES[-1]["marker"] = V13L.MARKER[key]; CASES[-1].pop("ef_html", None)
+    if key in V13L.REWRITE: CASES[-1]["new_v11"] = True     # 14 Nov 2026: a rewritten case cites the design as last read
 
 def quotes(c):
     out = []
@@ -324,7 +335,7 @@ def _design_block(c, now):
     boards = d.get("boards", {})
     figs = [DD.fig(i, boards.get(i)) for i in d.get("figs", [])] or DD.relevant(codes, reps)
     figs = figs + [f for f in DD.before_for(codes, reps) if f not in figs]
-    diffs = DD.diffs_for(codes, reps, now)
+    diffs = [x for x in DD.diffs_for(codes, reps, now) if c["key"] not in x.get("skip", ())]   # 14 Nov 2026: DD-08 skips the frozen Demo Day cases
     extra = list(d.get("diffs", [])) + (["DD-07"] if now and c["key"] in DD.DD07_CASES else [])
     diffs += [x for x in DD.DIFFS if x["id"] in extra and x not in diffs]
     cap = (lambda f: f["caption_now"]) if now else (lambda f: f["caption_old"])
@@ -390,6 +401,11 @@ def design_block(c):
     if c.get("new_v11"): return b          # a case written on 10 Nov 2026 cites the design as read that day
     return a if a == b.replace(DD.READ_NOW, DD.READ) else b
 
+def build_line(c):
+    """Rule 54 sentence 2. 14 Nov 2026: a case rewritten for PRD version 13 carries its own line (v13_layout.BUILD); every other case NOBUILD."""
+    import v13_layout as V13L
+    return V13L.BUILD.get(c["key"], NOBUILD)
+
 def quotes_block(c):
     """Rule 117 eleventh amendment: each document quoted gets a "From:" line above its own quotes; the epic and the stories go on
     the first "From:" line; the build line follows the last quote."""
@@ -406,7 +422,7 @@ def quotes_block(c):
         h += f"<p>From: {e(name)}, {rd}" + (f" &middot; Epic SV-11315, {e(sto)}" if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in group) + "</ul>"
         first = False
-    return h + f"<p>{e(NOBUILD)}</p>"
+    return h + f"<p>{e(build_line(c))}</p>"
 
 def tail(c):
     """Everything below the blank line that closes the Expected Result: the build-difference or held note, the exact quotes with
@@ -471,7 +487,7 @@ def check(c):
             if ws(t) not in TPW and ws(t) not in TP_RAWW: p.append(f"{k}: quote {l} not verbatim in the tech plan")
         elif src is not None:
             if ws(t) not in src: p.append(f"{k}: quote {l} not verbatim in the Jira reading record")
-        elif ws(t) not in PRDW and ws(t) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v11")
+        elif ws(t) not in PRDW and ws(t) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v13")
     if not c["q"]: p.append(f"{k}: no source quote (Rule 64)")
     if len(c["pre"]) > 8: p.append(f"{k}: {len(c['pre'])} preconditions")
     # Over 10 steps is over the Rule 117 ninth-amendment TARGET ("Limits are targets"), not an error: the case stays whole and is listed

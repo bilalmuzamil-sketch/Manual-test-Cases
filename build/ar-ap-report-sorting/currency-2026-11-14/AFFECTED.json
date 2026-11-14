@@ -1,0 +1,1177 @@
+{
+ "pass": "PRD v11 (5 Nov 2026) -> v13 (13 Nov 2026), 14 Nov 2026",
+ "diff": "currency-2026-11-14/PRD-DIFF-v11-to-v13.txt (25 lines, read in full)",
+ "changed": {
+  "S1-R8": {
+   "what_changed": "Adds: the documents of an open customer or vendor may all arrive from the server in one request; the rule sets only how many are shown at a time.",
+   "v11": "A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time, and the next 30 load as the user scrolls down, as today. There are no page buttons. A/R Detail and A/P Detail show each bucket's first 100 lines, then load more as the user scrolls (S4-R4). Paging never repeats or skips a customer, vendor or row, in any sort. On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents.",
+   "v13": "A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time, and the next 30 load as the user scrolls down, as today. There are no page buttons. A/R Detail and A/P Detail show each bucket's first 100 lines, then load more as the user scrolls (S4-R4). Paging never repeats or skips a customer, vendor or row, in any sort. On A/R Collection and A/P Unpaid Invoices, an open customer or vendor shows its first 100 documents, then the next 100 as the user scrolls; its document count, its subtotals, the Totals row and the exports always cover all of its documents. The documents of an open customer or vendor may all arrive from the server in one request; this rule sets only how many are shown at a time.",
+   "cases": [
+    {
+     "key": "DATA-01",
+     "case": "C715450",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715450",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "DATA-01b",
+     "case": "C715612",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715612",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "DATA-02",
+     "case": "C715451",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715451",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "DATA-02b",
+     "case": "C715613",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715613",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "DATA-03",
+     "case": "C715452",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715452",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "DATA-03b",
+     "case": "C715614",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715614",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "DATA-04",
+     "case": "C715453",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715453",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "DATA-04b",
+     "case": "C715615",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715615",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "DATA-05",
+     "case": "C715454",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715454",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "DATA-06",
+     "case": "C715455",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715455",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "DATA-27",
+     "case": "C1062589",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/1062589",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "step 3: the 101st bill shows (same reason)"
+    },
+    {
+     "key": "S1-21",
+     "case": "C1062570",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/1062570",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "title and steps 3-4 say the next invoices SHOW as you scroll (v13: the rule sets only how many are shown at a time)"
+    },
+    {
+     "key": "S1-22",
+     "case": "C1062571",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/1062571",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "title and steps 3-4 say the next bills SHOW as you scroll (same reason)"
+    },
+    {
+     "key": "S2-29",
+     "case": "C715316",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715316",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S2-31",
+     "case": "C715318",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715318",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S2-32",
+     "case": "C715319",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715319",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S2-34",
+     "case": "C715321",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715321",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-05",
+     "case": "C715358",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715358",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-06",
+     "case": "C715359",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715359",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-07",
+     "case": "C715360",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715360",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-08",
+     "case": "C715361",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715361",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-13",
+     "case": "C715366",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715366",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-14",
+     "case": "C715367",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715367",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    }
+   ]
+  },
+  "S4-R1": {
+   "what_changed": "Adds: the header chevron is blue, the same as each group's own chevron (S4-R5).",
+   "v11": "The table's top-left header cell holds one chevron button. While any group is expanded it points down, its tooltip (above the button) reads \"Collapse all\", and a click collapses every group. When every group is collapsed it points right, its tooltip reads \"Expand all\", and a click expands every group.",
+   "v13": "The table's top-left header cell holds one chevron button. While any group is expanded it points down, its tooltip (above the button) reads \"Collapse all\", and a click collapses every group. When every group is collapsed it points right, its tooltip reads \"Expand all\", and a click expands every group. The chevron is blue, the same as each group's own chevron (S4-R5).",
+   "cases": [
+    {
+     "key": "D-25",
+     "case": "C715505",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715505",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "steps 1-2: the header chevron is blue, the same blue as the group chevrons"
+    },
+    {
+     "key": "D-26",
+     "case": "C715506",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715506",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "same as D-25"
+    },
+    {
+     "key": "D-27",
+     "case": "C715507",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715507",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "same as D-25"
+    },
+    {
+     "key": "D-28",
+     "case": "C715508",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715508",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "same as D-25"
+    },
+    {
+     "key": "D-52",
+     "case": "C715534",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715534",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "step 2: the header chevron is blue (the live case already says so, changed 12 Nov on the QA lead's instruction; kept)"
+    },
+    {
+     "key": "D-56",
+     "case": "C715538",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715538",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "step 1: the header chevron is blue"
+    },
+    {
+     "key": "D-59",
+     "case": "C715541",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715541",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "step 2: the header chevron is blue"
+    },
+    {
+     "key": "S4-01",
+     "case": "C715354",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715354",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-02",
+     "case": "C715355",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715355",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-03",
+     "case": "C715356",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715356",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-04",
+     "case": "C715357",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715357",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-05",
+     "case": "C715358",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715358",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-06",
+     "case": "C715359",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715359",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    }
+   ]
+  },
+  "S5-E3": {
+   "what_changed": "Adds: if none of the ticked locations is in the new list and the new list holds only one location, the chip is hidden (S5-N1) instead of reading \"Location: All locations\".",
+   "v11": "Changing the as-of date keeps every ticked location that is still in the new list (S5-R3). If none of the ticked locations is still in the list, the filter returns to All locations, and the chip reads \"Location: All locations\". A user who chose No locations keeps No locations.",
+   "v13": "Changing the as-of date keeps every ticked location that is still in the new list (S5-R3). If none of the ticked locations is still in the list, the filter returns to All locations, and the chip reads \"Location: All locations\", unless the new list holds only one location, in which case the chip is hidden (S5-N1). A user who chose No locations keeps No locations.",
+   "cases": [
+    {
+     "key": "S5-18",
+     "case": "C715392",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715392",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S5-40",
+     "case": "C1062584",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/1062584",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S5-41",
+     "case": "C1062585",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/1062585",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S5-42",
+     "case": "C1062586",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/1062586",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    }
+   ],
+   "new_case_for_added_clause": [
+    {
+     "key": "S5-41b",
+     "case": "new, no C-id yet",
+     "link": null,
+     "why": "the added clause (one location left, chip hidden) had no case; Rule 136 split part of S5-41"
+    }
+   ]
+  },
+  "S8-R3": {
+   "what_changed": "Adds one exception, as today: on A/P Unpaid Invoices a vendor's group row does not wrap, so a very long vendor name (78 characters still fit) can make the table scroll sideways at 1440 pixels.",
+   "v11": "The headline column (Open Balance; Total on the Summaries) is pinned to the right edge and bold on the header, every row, every expanded row and the Totals row, as on Sales By Customer. At 1440 pixels wide every column of all six reports is visible without scrolling sideways: the customer or vendor name and Transaction Type wrap long values onto a second line, Location wraps only on A/P Detail (nine columns) and A/P Unpaid Invoices, column headings never wrap, and money, date and number columns never wrap. Narrower than 1440 pixels, the table scrolls sideways under the pinned column.",
+   "v13": "The headline column (Open Balance; Total on the Summaries) is pinned to the right edge and bold on the header, every row, every expanded row and the Totals row, as on Sales By Customer. At 1440 pixels wide every column of all six reports is visible without scrolling sideways: the customer or vendor name and Transaction Type wrap long values onto a second line, Location wraps only on A/P Detail (nine columns) and A/P Unpaid Invoices, column headings never wrap, and money, date and number columns never wrap. Narrower than 1440 pixels, the table scrolls sideways under the pinned column. One exception, as today: on A/P Unpaid Invoices a vendor's group row does not wrap, so a very long vendor name (78 characters still fit) can make the table scroll sideways at 1440 pixels.",
+   "cases": [
+    {
+     "key": "D-01",
+     "case": "C715481",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715481",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-01b",
+     "case": "C715621",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715621",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-02",
+     "case": "C715482",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715482",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-03",
+     "case": "C715483",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715483",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-04",
+     "case": "C715484",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715484",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-04b",
+     "case": "C715623",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715623",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-05",
+     "case": "C715485",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715485",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-06",
+     "case": "C715486",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715486",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-07",
+     "case": "C715487",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715487",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-07b",
+     "case": "C715625",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715625",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-08",
+     "case": "C715488",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715488",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-09",
+     "case": "C715489",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715489",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-10",
+     "case": "C715490",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715490",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-10b",
+     "case": "C715627",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715627",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-11",
+     "case": "C715491",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715491",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-12",
+     "case": "C715492",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715492",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-13",
+     "case": "C715493",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715493",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-13b",
+     "case": "C715629",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715629",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-14",
+     "case": "C715494",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715494",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-15",
+     "case": "C715495",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715495",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-16",
+     "case": "C715496",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715496",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "vendor A's name bounded to 41-78 characters (step 4 expects no sideways scroll); step 5 adds: the group row does not wrap; new vendor B with & \" ' < > and step 7 (design checklist line 9)"
+    },
+    {
+     "key": "D-16b",
+     "case": "C715631",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715631",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-17",
+     "case": "C715497",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715497",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-18",
+     "case": "C715498",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715498",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "vendor name bounded to 41-78 characters (step 3 expects no sideways scroll at 1536 px)"
+    },
+    {
+     "key": "D-47",
+     "case": "C715527",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715527",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-48",
+     "case": "C715528",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715528",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-50",
+     "case": "C715532",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715532",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-56",
+     "case": "C715538",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715538",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "step 1: the header chevron is blue"
+    },
+    {
+     "key": "D-58",
+     "case": "C715540",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715540",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "name bounded to 41-78 characters; step 2: bill rows wrap, the pinned group row stays on one line"
+    },
+    {
+     "key": "D-61",
+     "case": "C715543",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715543",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "D-62",
+     "case": "C715544",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715544",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "names bounded to 41-78 characters; step 5 adds: each group row shows the whole name on one line"
+    },
+    {
+     "key": "S4-09b",
+     "case": "C715599",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715599",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-10b",
+     "case": "C715600",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715600",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-11b",
+     "case": "C715601",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715601",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    },
+    {
+     "key": "S4-12b",
+     "case": "C715602",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715602",
+     "verdict": "CHANGE (rewritten top to bottom)",
+     "how": "quotes it (full requirement line, now the v13 line)",
+     "tester_text": "confirmed: no step or result depends on the added sentence; quote, From line and (where it cited the 22 Oct design read) the design read line changed"
+    }
+   ]
+  }
+ },
+ "new": {
+  "S3-R7b": {
+   "v13": "In the A/R Detail, A/R Collection, A/P Detail and A/P Unpaid Invoices PDFs, each bucket, customer or vendor ends with a row that reads \"Total for \\<name\\>\", the same words as the screen, for example \"Total for 31-60 days past due\" or \"Total for Acme Towing\", with its Amount and Open Balance. A long name wraps inside that row. The PDF never prints \"Subtotal\".",
+   "already_covered_by": [
+    {
+     "key": "D-95",
+     "case": "C1145260",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/1145260",
+     "note": "Demo Day case (A/R Collection PDF, 120-letter no-space name); not changed"
+    }
+   ],
+   "new_cases": [
+    {
+     "key": "S3-33",
+     "case": "new, no C-id yet",
+     "link": null
+    },
+    {
+     "key": "S3-34",
+     "case": "new, no C-id yet",
+     "link": null
+    },
+    {
+     "key": "S3-35",
+     "case": "new, no C-id yet",
+     "link": null
+    },
+    {
+     "key": "S3-36",
+     "case": "new, no C-id yet",
+     "link": null
+    }
+   ],
+   "depending_existing_cases": "none: no existing case states what a grouped PDF's total rows read (S3-18 to S3-23 are CSV cases; S4-09 to S4-12, D-56, D-62, D-63 are the screen's rows)"
+  },
+  "S5-R10b": {
+   "v13": "The as-of date can be any day, including a day after today, as today. For a day after today the report counts everything entered so far and counts days past due to the picked day; the chip, the PDF and the CSV all show the picked day. A link with an as-of date opens on that date.",
+   "depending_existing_cases": [
+    {
+     "key": "S5-37",
+     "case": "C715579",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/715579",
+     "verdict": "CHANGE (contradicted: rewritten top to bottom)",
+     "tester_text": "rewritten top to bottom: it checked that a day after today cannot be picked (tech plan D20); v13 S5-R10b allows it. Now: A/P Detail, a bill due today moves to 1-30 days past due with Past Due 10 when the day 10 days after today is picked"
+    }
+   ],
+   "another_authors_cases_not_touched": [
+    {
+     "case": "C1078980",
+     "title": "SV-12545 - A future as-of date can be picked to see coming aging"
+    },
+    {
+     "case": "C1078981",
+     "title": "SV-12545 - A saved link with a future as-of date opens on that date"
+    }
+   ],
+   "new_cases": [
+    {
+     "key": "S5-43",
+     "case": "new, no C-id yet",
+     "link": null,
+     "why": "the chip, PDF and CSV show the picked day: the PDF and CSV part is in no case (the chip part is in C1078980 and S5-37)"
+    }
+   ]
+  }
+ },
+ "rewrite_set": [
+  "D-01",
+  "D-01b",
+  "D-02",
+  "D-03",
+  "D-04",
+  "D-04b",
+  "D-05",
+  "D-06",
+  "D-07",
+  "D-07b",
+  "D-08",
+  "D-09",
+  "D-10",
+  "D-10b",
+  "D-11",
+  "D-12",
+  "D-13",
+  "D-13b",
+  "D-14",
+  "D-15",
+  "D-16",
+  "D-16b",
+  "D-17",
+  "D-18",
+  "D-25",
+  "D-26",
+  "D-27",
+  "D-28",
+  "D-47",
+  "D-48",
+  "D-50",
+  "D-52",
+  "D-56",
+  "D-58",
+  "D-59",
+  "D-61",
+  "D-62",
+  "DATA-01",
+  "DATA-01b",
+  "DATA-02",
+  "DATA-02b",
+  "DATA-03",
+  "DATA-03b",
+  "DATA-04",
+  "DATA-04b",
+  "DATA-05",
+  "DATA-06",
+  "DATA-27",
+  "S1-21",
+  "S1-22",
+  "S2-29",
+  "S2-31",
+  "S2-32",
+  "S2-34",
+  "S4-01",
+  "S4-02",
+  "S4-03",
+  "S4-04",
+  "S4-05",
+  "S4-06",
+  "S4-07",
+  "S4-08",
+  "S4-09b",
+  "S4-10b",
+  "S4-11b",
+  "S4-12b",
+  "S4-13",
+  "S4-14",
+  "S5-18",
+  "S5-37",
+  "S5-40",
+  "S5-41",
+  "S5-42"
+ ],
+ "restamp_set": [
+  "D-01c",
+  "D-04c",
+  "D-07c",
+  "D-10c",
+  "D-13c",
+  "D-16c",
+  "D-19",
+  "D-19b",
+  "D-20",
+  "D-20b",
+  "D-21",
+  "D-21b",
+  "D-22",
+  "D-22b",
+  "D-23",
+  "D-23b",
+  "D-24",
+  "D-24b",
+  "D-29",
+  "D-30",
+  "D-31",
+  "D-32",
+  "D-33",
+  "D-34",
+  "D-35",
+  "D-36",
+  "D-37",
+  "D-38",
+  "D-39",
+  "D-40",
+  "D-41",
+  "D-42",
+  "D-43",
+  "D-44",
+  "D-45",
+  "D-46",
+  "D-49",
+  "D-51",
+  "D-53",
+  "D-54",
+  "D-55",
+  "D-57",
+  "D-60",
+  "D-63",
+  "D-64",
+  "D-65",
+  "D-66",
+  "D-67",
+  "D-68",
+  "D-69",
+  "D-70",
+  "D-71",
+  "D-72",
+  "D-73",
+  "D-74",
+  "D-75",
+  "D-81",
+  "DATA-07",
+  "DATA-08",
+  "DATA-09",
+  "DATA-10",
+  "DATA-11",
+  "DATA-12",
+  "DATA-13",
+  "DATA-14",
+  "DATA-15",
+  "DATA-16",
+  "DATA-17",
+  "DATA-18",
+  "DATA-19",
+  "DATA-20",
+  "DATA-22",
+  "DATA-23",
+  "DATA-24",
+  "DATA-25",
+  "DATA-26",
+  "REL-01",
+  "REL-02",
+  "REL-03",
+  "REL-04",
+  "REL-04b",
+  "REL-05",
+  "REL-05b",
+  "REL-05c",
+  "REL-06",
+  "REL-07",
+  "REL-09",
+  "REL-10",
+  "REL-11",
+  "REL-12",
+  "REL-12b",
+  "REL-12c",
+  "REL-13",
+  "REL-14",
+  "S1-01",
+  "S1-02",
+  "S1-03",
+  "S1-04",
+  "S1-05",
+  "S1-06",
+  "S1-07",
+  "S1-08",
+  "S1-09",
+  "S1-10",
+  "S1-11",
+  "S1-12",
+  "S1-13",
+  "S1-14",
+  "S1-15",
+  "S1-16",
+  "S1-17",
+  "S1-18",
+  "S1-19",
+  "S1-20",
+  "S2-01",
+  "S2-01b",
+  "S2-02",
+  "S2-03",
+  "S2-04",
+  "S2-04b",
+  "S2-05",
+  "S2-06",
+  "S2-07",
+  "S2-07b",
+  "S2-08",
+  "S2-09",
+  "S2-10",
+  "S2-11",
+  "S2-12",
+  "S2-12b",
+  "S2-13",
+  "S2-14",
+  "S2-15",
+  "S2-15b",
+  "S2-16",
+  "S2-17",
+  "S2-18",
+  "S2-19",
+  "S2-19b",
+  "S2-20",
+  "S2-20b",
+  "S2-21",
+  "S2-22",
+  "S2-23",
+  "S2-24",
+  "S2-25",
+  "S2-26",
+  "S2-27",
+  "S2-28",
+  "S2-30",
+  "S2-33",
+  "S2-35",
+  "S2-36",
+  "S2-36b",
+  "S2-37",
+  "S2-37b",
+  "S2-38",
+  "S2-38b",
+  "S2-39",
+  "S2-40",
+  "S2-41",
+  "S2-42",
+  "S2-43",
+  "S2-44",
+  "S2-45",
+  "S2-46",
+  "S2-47",
+  "S2-48",
+  "S2-49",
+  "S2-50",
+  "S3-01",
+  "S3-01b",
+  "S3-01c",
+  "S3-02",
+  "S3-02b",
+  "S3-02c",
+  "S3-03",
+  "S3-04",
+  "S3-05",
+  "S3-06",
+  "S3-07",
+  "S3-08",
+  "S3-09",
+  "S3-10",
+  "S3-11",
+  "S3-12",
+  "S3-13",
+  "S3-14",
+  "S3-15",
+  "S3-16",
+  "S3-17",
+  "S3-18",
+  "S3-19",
+  "S3-20",
+  "S3-21",
+  "S3-22",
+  "S3-23",
+  "S3-24",
+  "S3-25",
+  "S3-26",
+  "S3-27",
+  "S3-28",
+  "S3-29",
+  "S3-30",
+  "S3-31",
+  "S3-32",
+  "S4-09",
+  "S4-10",
+  "S4-11",
+  "S4-12",
+  "S4-15",
+  "S4-15b",
+  "S4-16",
+  "S4-16b",
+  "S4-17",
+  "S4-18",
+  "S4-19",
+  "S4-20",
+  "S4-21",
+  "S4-21b",
+  "S4-22",
+  "S4-23",
+  "S5-01",
+  "S5-02",
+  "S5-03",
+  "S5-04",
+  "S5-05",
+  "S5-06",
+  "S5-07",
+  "S5-08",
+  "S5-09",
+  "S5-10",
+  "S5-10b",
+  "S5-10c",
+  "S5-11",
+  "S5-11b",
+  "S5-11c",
+  "S5-12",
+  "S5-13",
+  "S5-14",
+  "S5-15",
+  "S5-16",
+  "S5-17",
+  "S5-19",
+  "S5-20",
+  "S5-21",
+  "S5-22",
+  "S5-23",
+  "S5-24",
+  "S5-25",
+  "S5-26",
+  "S5-27",
+  "S5-28",
+  "S5-29",
+  "S5-30",
+  "S5-31",
+  "S5-32",
+  "S5-33",
+  "S5-34",
+  "S5-35",
+  "S5-36",
+  "S5-38",
+  "S5-39",
+  "S6-01",
+  "S6-02",
+  "S6-03",
+  "S6-04",
+  "S6-05",
+  "S7-01",
+  "S7-02",
+  "S7-03",
+  "S7-04",
+  "S7-05",
+  "S7-06",
+  "S7-07",
+  "S7-08",
+  "S7-09",
+  "S7-10",
+  "S7-11",
+  "S7-12",
+  "S7-13",
+  "S7-14",
+  "S7-15",
+  "S7-16",
+  "S7-17",
+  "S7-18",
+  "S7-18b",
+  "S7-19",
+  "S7-20",
+  "S8-01",
+  "S8-02",
+  "S8-03",
+  "S8-04",
+  "S8-05",
+  "S8-06",
+  "S8-07",
+  "S8-07b",
+  "S8-08",
+  "S8-09",
+  "S8-10",
+  "S8-11",
+  "S8-12",
+  "S8-13",
+  "S9-01",
+  "S9-02",
+  "S9-03",
+  "S9-04"
+ ],
+ "not_word_for_word_in_v13": {
+  "before_this_pass": {
+   "S5-18": {
+    "library": [
+     "S5-E3"
+    ],
+    "live": [
+     "S5-E3"
+    ]
+   },
+   "D-52": {
+    "library": [],
+    "live": [
+     "S4-R1"
+    ]
+   },
+   "S5-40": {
+    "library": [
+     "S5-E3"
+    ],
+    "live": [
+     "S5-E3"
+    ]
+   },
+   "S5-41": {
+    "library": [
+     "S5-E3"
+    ],
+    "live": [
+     "S5-E3"
+    ]
+   },
+   "S5-42": {
+    "library": [
+     "S5-E3"
+    ],
+    "live": [
+     "S5-E3"
+    ]
+   }
+  },
+  "after_this_pass": {},
+  "after_quotes_checked": 1205,
+  "after_cases_checked": 386
+ },
+ "candidates_read_not_dependent": {
+  "S3-R7b": {
+   "S3-18..S3-23": "CSV cases: 'no group header or subtotal row' is the CSV, not the PDF",
+   "S4-09..S4-12": "the screen's pinned label",
+   "DATA-20": "PDF row counting, unchanged",
+   "D-56, D-62, D-63": "the screen's Total for rows, unchanged"
+  },
+  "S5-R10b": {
+   "REL-03": "today's date in the evening (time zone), not a later day",
+   "S1-17..S1-19": "an earlier date and the day after it, never after today",
+   "S1-20": "a bill due after today, at today's as-of date"
+  },
+  "S5-E3": {
+   "S5-10c, S5-11c": "the Location list narrows with the date (S5-R3); no ticked location leaves the list",
+   "S3-09..S3-14, S5-26, S5-27, S5-32, S5-33, S5-34, S8-09": "an as-of date is set but no ticked location leaves the list"
+  },
+  "S8-R3 (not quoting, A/P Unpaid Invoices layout)": {
+   "D-44, D-45": "PDF/CSV heading on one line",
+   "D-49": "narrow-screen sideways scroll, unchanged"
+  },
+  "S8-R3 (quoting, tester text confirmed)": {
+   "D-17": "dark theme: no sideways-scroll or wrap claim",
+   "D-16b": "Open Balance pinned and bold only",
+   "S4-12b": "a 1200 px window scrolls sideways anyway"
+  },
+  "S4-R1 (quoting, tester text confirmed)": {
+   "S4-01..S4-06": "what the chevron does; its colour is checked in D-25..D-28, D-52, D-56, D-59"
+  },
+  "S1-R8": {
+   "S1-01, S1-02, S3-03..S3-08, S4-23": "keyword hits only ('as', 'load' in other senses)"
+  }
+ },
+ "counts": {
+  "rewritten": 73,
+  "behaviour_changed_in_tester_text": 15,
+  "quote_only_rewrites": 58,
+  "restamped": 307,
+  "new": 6,
+  "demo_day_untouched": 14
+ }
+}

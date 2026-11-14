@@ -3,7 +3,7 @@ import sys, os, json, importlib, re, html, csv
 B = "/home/user/Manual-test-Cases/build/ar-ap-report-sorting"
 sys.path.insert(0, f"{B}/authoring"); os.chdir(f"{B}/authoring")
 import ar_lib as L, pattern as PT
-for m in ["cases_s1","cases_s2","cases_s3","cases_s4","cases_s5","cases_s6_s9","cases_data","cases_rel","cases_design","cases_v11","cases_demo_2026_11_13"]: importlib.import_module(m)
+for m in ["cases_s1","cases_s2","cases_s3","cases_s4","cases_s5","cases_s6_s9","cases_data","cases_rel","cases_design","cases_v11","cases_demo_2026_11_13","cases_v13"]: importlib.import_module(m)
 by = {c["key"]: c for c in L.CASES}
 mp = {r["key"]: int(r["case_id"]) for r in csv.DictReader(open(f"{B}/testrail-id-map.csv"))}
 live = {c["id"]: c for c in json.load(open(f"{B}/currency-2026-11-14/live-before/live-2026-11-14.json"))["cases"]}

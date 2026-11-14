@@ -200,3 +200,16 @@
 - 10 Nov 2026, QA lead: C715617 and C715476 keep their wording ("Leave as is"; the tester picks the right Sales By Customer download).
   C715480: "Re-capture" — Mudassir enrols the user at a second location and retakes the switcher screenshot by 18 Nov (added to the
   prep file); no case change.
+
+## 14 Nov 2026 — PRD version 13 currency pass (QA lead: "Named set (Recommended)"), DRAFT
+- Nothing written to TestRail, Jira, Slack or Google; nothing committed. Record: `currency-2026-11-14/PASS-REPORT.md`, `AFFECTED.json`, `PRD-DIFF-v11-to-v13.txt`.
+- PRD v11 -> v13 (Confluence version 13, 13 Nov 2026 14:36 UTC, Chris Ward; re-checked 14 Nov): changed S1-R8 (documents may arrive in one request; only how
+  many are shown is set), S4-R1 (header chevron blue), S5-E3 (one location left: chip hidden), S8-R3 (A/P Unpaid Invoices vendor group row does not wrap;
+  78 characters fit); new S3-R7b ("Total for <name>" in the grouped PDFs, never "Subtotal") and S5-R10b (any as-of date, also after today).
+- Library: all cases quote v13 (`authoring/ar_lib.py` PRD_FILE); layer `authoring/v13_layout.py` (73 rewritten: the 72 quoting a changed requirement plus
+  S5-37, which said the opposite of S5-R10b; 15 with tester-text changes), `authoring/cases_v13.py` (6 new: S3-33..S3-36, S5-43, S5-41b; folder 133629);
+  307 re-stamped. DD-08 (design draws the header chevron grey; closed by the later PRD ruling). build.py 0 PROBLEM; readiness 0 hard; quote check 1,205/1,205.
+- All 380 live cases were edited outside our library on 11-12 Nov (build lines, READY markers, Setup blocks, some steps, 16 re-quoted to v12): the ordered
+  lock writes 0. Prepared: `write/update_cases.py --on-live` (v13 bodies built on the live text, every outside edit kept, proven by `scripts/check_merge.py`).
+  DATA-13 held (case id in its live tester text). Jira: 11 new tickets handled in TICKET-LEDGER.json; sweep 0 unhandled; SV-12723 shows a gap (empty
+  bucket cells on the Summaries, S2-R6) outside the named set.
