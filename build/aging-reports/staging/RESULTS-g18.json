@@ -1,0 +1,121 @@
+{
+ "pass_meta": {
+  "note": "14 Nov 2026, run 557, g18: new tests batch 2 on staging"
+ },
+ "results": {
+  "C1145247": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 2: in the Customer menu list a long name with no spaces is squeezed into a one-line row - cut off at the top and drawn over the next customer and its tick box.",
+   "bold_steps": [
+    2
+   ],
+   "source": "From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 13 (Change Log: version 12 on 12 Nov 2026 by Milos Vasic, version 13 on 13 Nov 2026 by Chris Ward), read 13 Nov 2026 \u00b7 Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location) S5-R13 (version 13): \u201cThe customer chip (A/R) and vendor chip (A/P) and their open menus are the native ones: Customer exactly as Sales By Customer's Customer filter (person icon), Vendor exactly as Inventory Value's Vendor filter (truck icon, \"Search vendors\"; as there, the search box shows only when there are more than 8 vendors). The menu has a search box, an \"All customers\" or \"All vendors\" row, the native line \"All customers are included. Pick one or more to narrow.\" (or vendors) while none is ticked, and the list; several can be ticked. The chip reads \"Customer: All customers\" or \"Vendor: All vendors\" in the resting (grey) style when none is ticked, the name when one is (shortened with \"...\" when long), and \"Customer: N customers\" or \"Vendor: N vendors\" when N are. The ticked customers or vendors narrow every row, group, total, page, sort and export; the Location list does not change (S5-R3).\u201d From: Slack, Chris Ward (product owner), 13 Nov 2026, thread in channel C0C454MLP0T, read 13 Nov 2026 Slack, Chris Ward, Picture #1: \u201cPicture #1 \u2014 the long customer name wrap issue (shows up in the filter)\u201d",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12722 (Ready to Fix, read 14 Nov 2026) - the known problem this test names.",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test on staging when SV-12722 reaches Ready for QA.",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/R Aging Summary, customer A = the 120-letter no-space customer, customer B = the long name with & \" ' < >.",
+    "Step 2: the menu loads only the first 50 customers, so customer A cannot be reached by scrolling; in that list the long no-space customer \"ZZBREAK ... Superlongunbrokencustomername...\" wraps onto 4 lines inside a 1-line row: the first line is cut off at the top and the last line is drawn over \"10 Trucking\" and its tick box.",
+    "Step 2: customer A, found by typing in the menu's search box, wraps onto 3 lines inside a taller row and stays clear of the row under it - the overlap shows in the full list, where rows keep one line's height.",
+    "This is the known problem the test names (SV-12722, https://shopview.atlassian.net/browse/SV-12722, Ready to Fix), so nothing new is raised.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145247-01-C1145247-1-menu.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145247-02-C1145247-2-row-A.png"
+   ]
+  },
+  "C1145248": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 2: vendor A's name is cut off at the top of its row and drawn over the row under it.",
+   "bold_steps": [
+    2
+   ],
+   "source": "From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 13 (Change Log: version 12 on 12 Nov 2026 by Milos Vasic, version 13 on 13 Nov 2026 by Chris Ward), read 13 Nov 2026 \u00b7 Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location) S5-R13 (version 13): \u201cThe customer chip (A/R) and vendor chip (A/P) and their open menus are the native ones: Customer exactly as Sales By Customer's Customer filter (person icon), Vendor exactly as Inventory Value's Vendor filter (truck icon, \"Search vendors\"; as there, the search box shows only when there are more than 8 vendors). The menu has a search box, an \"All customers\" or \"All vendors\" row, the native line \"All customers are included. Pick one or more to narrow.\" (or vendors) while none is ticked, and the list; several can be ticked. The chip reads \"Customer: All customers\" or \"Vendor: All vendors\" in the resting (grey) style when none is ticked, the name when one is (shortened with \"...\" when long), and \"Customer: N customers\" or \"Vendor: N vendors\" when N are. The ticked customers or vendors narrow every row, group, total, page, sort and export; the Location list does not change (S5-R3).\u201d From: Slack, Chris Ward (product owner), 13 Nov 2026, thread in channel C0C454MLP0T, read 13 Nov 2026 Slack, Chris Ward, Picture #1: \u201cPicture #1 \u2014 the long customer name wrap issue (shows up in the filter)\u201d",
+   "ticket_held": true,
+   "ticket": "No ticket yet - the decision is with the QA lead: the same fault is reported for the Customer menu in SV-12722 (Ready to Fix), which does not name the Vendor menu.",
+   "todo": "What needs to be done: nothing for the tester now; the QA lead decides whether this joins SV-12722 or gets its own ticket.",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/P Aging Detail, vendor A = the 120-letter no-space vendor.",
+    "Step 2: vendor A's name wraps onto 3 lines in a row only one line high: the first line is cut off at the top (drawn over the 78-letter vendor above it) and the last line is drawn over the next vendor, \"ZZE2E Transport Supply Co\"; that row's tick box stays clear.",
+    "The Customer menu shows the same fault (SV-12722, https://shopview.atlassian.net/browse/SV-12722, Ready to Fix), but that report names only the Customer menu.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145248-07-C1145248-2-row-A.png"
+   ]
+  },
+  "C1145250": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/P Aging Summary, only vendor A (the 120-letter no-space vendor) ticked.",
+    "Step 1: vendor A's name wraps inside its own cell onto 3 lines and does not run into Location; every heading from Vendor to Total is on one line and visible, there is no sideways scroll bar, and Total is bold at the right edge.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145250-11-C1145250-1.png"
+   ]
+  },
+  "C1145252": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/P Aging Detail, only vendor A (the 120-letter no-space vendor) ticked, every bucket collapsed.",
+    "Step 1: every heading from Date to Open Balance is visible on one line and there is no sideways scroll bar.",
+    "Step 2: with Current open, vendor A's bill shows; the name in Vendor Name wraps inside its own cell (4 lines) without running into Due Date; every heading still visible, no sideways scroll bar, Open Balance bold at the right edge.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145252-12-C1145252-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145252-13-C1145252-2.png"
+   ]
+  },
+  "C1145253": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 1 and 2: customer A's name stays on one line across the group row; in step 1 the table is wider than the page and Past Due and Amount are hidden.",
+   "bold_steps": [
+    1,
+    2
+   ],
+   "source": "From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 13 (Change Log: version 12 on 12 Nov 2026 by Milos Vasic, version 13 on 13 Nov 2026 by Chris Ward), read 13 Nov 2026 \u00b7 Epic SV-11315, story SV-11538 (Story 8, Report descriptions and layout) S8-R3 (version 13): \u201cThe headline column (Open Balance; Total on the Summaries) is pinned to the right edge and bold on the header, every row, every expanded row and the Totals row, as on Sales By Customer. At 1440 pixels wide every column of all six reports is visible without scrolling sideways: the customer or vendor name and Transaction Type wrap long values onto a second line, Location wraps only on A/P Detail (nine columns) and A/P Unpaid Invoices, column headings never wrap, and money, date and number columns never wrap. Narrower than 1440 pixels, the table scrolls sideways under the pinned column. One exception, as today: on A/P Unpaid Invoices a vendor's group row does not wrap, so a very long vendor name (78 characters still fit) can make the table scroll sideways at 1440 pixels.\u201d",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12764 (Open, read 14 Nov 2026) - the known problem this test names.",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test on staging when SV-12764 reaches Ready for QA.",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/R Aging Collection, only customer A (the 120-letter no-space customer) ticked, its group collapsed.",
+    "Step 1: customer A's name runs on one line across the group row; the table is 213 px wider than the page, the headings show Date, Location, Transaction Type, ID, Due Date and Open Balance only - Past Due and Amount are hidden behind the pinned Open Balance - and the Totals row shows only Open Balance.",
+    "Step 2: with the group open the columns fit again, but customer A's name still runs on one line in the group row.",
+    "This is exactly the known problem the test describes (SV-12764), so nothing new is raised.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145253-13-C1145253-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145253-14-C1145253-2.png"
+   ]
+  },
+  "C1145254": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/P Unpaid Invoices, only vendor A (the 78-character no-space vendor) ticked, its group collapsed.",
+    "Step 1: vendor A's whole name shows in the group row; every heading from Date to Open Balance is visible on one line and there is no sideways scroll bar.",
+    "Step 2: vendor A's bills show under the group row; the name in Vendor Name wraps inside its own cell (3 lines) without running into Due Date; every heading still visible, no sideways scroll bar, Open Balance bold at the right edge.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145254-15-C1145254-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145254-16-C1145254-2.png"
+   ]
+  },
+  "C1145260": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/R Aging Collection, only customer A (the 120-letter no-space customer) ticked.",
+    "Step 1: the Export report menu shows \"Download (PDF)\" and \"Download (CSV)\".",
+    "Step 2: the PDF downloads.",
+    "Step 3: customer A's group ends with \"Total for ZZAUTOTESTAbcdefghij...\" (the whole 120-letter name) with Amount $110.00 and Open Balance $110.00; the name fits inside the row on the landscape page and ends well before the Amount figure, so nothing runs over the money or off the page. The word \"Subtotal\" appears nowhere in the PDF.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145260-18-C1145260-pdf-downloaded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145260-C1145260-pdfpage-1.png"
+   ]
+  }
+ }
+}

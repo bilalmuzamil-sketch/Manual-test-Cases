@@ -54,5 +54,7 @@ const steps = [
   ['A/P PDF buckets vendor: one 31-60, one 1-30', async () => { const v = await vendor('ZZAUTOTEST PDF Buckets Vendor'); db.vbuck = v; await bill(v, 210, 75); await bill(v, 110, 40); }],
   ['A/P blank-cell vendors A ($100 bill 10 days overdue) and B ($50 vendor credit 10 days ago)', async () => { const va = await vendor('ZZAUTOTEST Blank Cell Vendor A'); db.vblankA = va; await bill(va, 100, 40); const vb = await vendor('ZZAUTOTEST Blank Cell Vendor B'); db.vblankB = vb; await vcredit(vb, 50, 10); }],
 ];
-for (const [t, f] of steps) { try { log(t); await f(); } catch (e) { log('  FAILED: ' + String(e).slice(0, 300)); } save(); }
+steps.push(['A/R neighbour customer for C1145247: name contains the first 20 letters of the 120-letter name and sorts right after it; invoice today', async () => { const c = await customer('ZZAUTOTESTAbcdefghijNeighbourRow'); db.cNeighbour = c.cid; await invoice(c, 21, 0, 30); }]); /* 14 Nov: the Customer menu shows only 50 names and reaches the rest by search; searching "ZZAUTOTESTAbcdefghij" then shows customer A with this row directly under it */
+const only = process.env.ONLY_STEP ? steps.filter(([t]) => t.includes(process.env.ONLY_STEP)) : steps;
+for (const [t, f] of only) { try { log(t); await f(); } catch (e) { log('  FAILED: ' + String(e).slice(0, 300)); } save(); }
 await s.close(); process.exit(0);

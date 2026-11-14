@@ -24,6 +24,11 @@ export async function stgStart(OUT, { width = 1440, height = 900 } = {}) {
   const page = await ctx.newPage(); page.setDefaultTimeout(20000); const where = { name: dw.name, id: dw.id, workplaces: wl.map((x) => x.name) };
   let k = 0; const shot = async (n) => { const f = `${OUT}/${String(++k).padStart(2, '0')}-${n}.png`; await page.screenshot({ path: f }).catch(() => {}); return f; };
   const go = async (p) => { await page.goto(APP + p, { waitUntil: 'domcontentloaded' }); await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {}); await page.waitForTimeout(2500); };
-  const close = async () => { await Promise.race([browser.close(), new Promise((x) => setTimeout(x, 8000))]); };
+  /* 14 Nov: staging renews PHPSESSID while we work; reusing the stale value in the next run ended the session. Save the live values back
+     (only the three sign-in cookies, file chmod 600 in /tmp, never committed) before closing. */
+  const keep = async () => { try { const cur = await ctx.cookies(); const want = ['sv_sso_session', 'PHPSESSID', 'cf_clearance']; const f = '/tmp/qa-cookies/staging-full.json'; const old = JSON.parse(fs.readFileSync(f, 'utf8'));
+    let changed = false; for (const n of want) { const hit = cur.filter((x) => x.name === n && /staging\.shopview\.com/.test(x.domain)).pop(); if (hit && hit.value && hit.value !== old[n]) { old[n] = hit.value; changed = true; } }
+    if (changed) { fs.writeFileSync(f, JSON.stringify(old)); fs.chmodSync(f, 0o600); } } catch {} };
+  const close = async () => { await keep(); await Promise.race([browser.close(), new Promise((x) => setTimeout(x, 8000))]); };
   return { browser, ctx, page, api, shot, go, close, blocked, where };
 }
