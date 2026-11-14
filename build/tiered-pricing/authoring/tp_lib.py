@@ -95,6 +95,12 @@ def QD(text, board, row):
     return Src("design", row_id(row), text, board)
 
 
+def QL(board, row, what=""):
+    """A visual attribute the design draws with no words of its own (colour, icon, order, position), sourced to the named board picture
+    (Rule 126 point 5: where the PRD is silent the design is the source of the look). The tester compares with that picture at 100% zoom."""
+    return Src("look", row_id(row), what or None, board)
+
+
 def QJ(text, ticket, row):
     """Verbatim text of a saved Jira copy (sources/jira/...), tied to a PRD row."""
     return Src("jira", row_id(row), text, ticket)
@@ -143,7 +149,7 @@ def rows_of(c):
     out = []
     for b in bullets(c):
         for s in b.src:
-            if s.kind in ("row", "prd", "design", "jira") and s.row not in out: out.append(s.row)
+            if s.kind in ("row", "prd", "design", "jira", "look") and s.row not in out: out.append(s.row)
     return out
 
 
@@ -210,4 +216,7 @@ def check_src(s):
         try: hay = board_text(s.where)
         except KeyError as x: return str(x)
         return None if ws(s.text) in hay else f"design words not on board {s.where}: {s.text[:70]!r}"
+    if s.kind == "look":
+        from design_refs import BOARD
+        return None if s.where in BOARD else f"look source names unknown board {s.where}"
     return f"unknown source kind {s.kind}"
