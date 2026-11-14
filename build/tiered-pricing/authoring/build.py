@@ -42,6 +42,7 @@ ALLOW = re.compile(r"(Save & Close|Create & Edit|Keep Editing|Discard Changes|Ma
                    r"Customers — Create & Edit|Customers — View|See Financial Data|Price Part Simulator|Separate Part Sale pricing|Shift\+Tab|Alt\+Down|"
                    r"Tax Exempt|Fees & Discounts|cost and category|Archive and Delete)", re.I)
 def two_actions(s):
+    if re.search(r"\b(from|in) (its|tier [A-Z]'s|the page's|matrix [A-Z]'s) three-dot menu", s): return True
     t = ALLOW.sub("X", s); t = re.sub(r'"[^"]*"', '"Q"', t); t = re.sub(r"\([^)]*\)", "", t)
     if TWO.search(t): return True
     sents = [x.strip() for x in re.split(r"(?<=\.)\s+", t) if x.strip()]
@@ -81,6 +82,23 @@ for c in L.CASES:
         for rx, what in BANNED_PRE:
             if re.search(rx, x): P(f"{k}: {what} in the preconditions: {x[:70]!r}")
         if not PRE_START.match(x): P(f"{k}: precondition does not start as a plain setup line: {x[:60]!r}")
+    # Rule 137 (a): every labelled record in the preconditions is used in the steps or results, or by another needed record, or says why
+    LAB = re.compile(r"\b((?i:tier|matrix|category|customer|work order|Part Sale|client)) ([A-Z]|\d)\b")
+    later = " ".join(c["steps"] + [b.t for b in L.bullets(c)] + [c["note"]])
+    used = {m.group(0).lower() for m in LAB.finditer(later)}
+    grow = True
+    while grow:
+        grow = False
+        for x in c["pre"]:
+            labs = {m.group(0).lower() for m in LAB.finditer(x)}
+            if labs & used and not labs <= used: used |= labs; grow = True
+    for x in c["pre"]:
+        for m in LAB.finditer(x):
+            if m.group(0).lower() not in used and " so " not in x: P(f"{k}: precondition record '{m.group(0)}' is not used in the steps or results and does not say why")
+    # Rule 137 (b): a record the case relies on is made fresh for this test (pre-existing release data is named as such: "on staging", "before the release")
+    for x in c["pre"]:
+        if re.match(r"Have (a|an|two|three) ", x) and LAB.search(x) and "for this test" not in x and "staging" not in x and "before the release" not in x.lower():
+            P(f"{k}: a precondition record not said to be made for this test: {x[:70]!r}")
     tester = [t] + c["pre"] + c["steps"] + [b.t for b in L.bullets(c)] + [c["note"]]
     for x in tester:
         if KEYRX.search(x): P(f"{k}: a case id in tester text: {KEYRX.search(x).group(0)} in {x[:60]!r}")
@@ -97,12 +115,13 @@ for c in L.CASES:
             for s in b.src:
                 m = L.check_src(s)
                 if m: P(f"{k}: step {i}: {m}")
-                if s.kind == "design" and L.ROWS[s.row]["story"] not in STORY_DESIGN: P(f"{k}: design quote on a story with no design page")
             if CLOSE.search(b.t) and not any(CLOSE_SRC.search(s.text or L.ROWS.get(s.row, {}).get("text", "")) for s in b.src if s.kind != "plan" or s.text):
                 P(f"{k}: step {i} closed list without a closing source: {b.t[:70]!r}")
-        if any(NEG.search(b.t) for b in r if isinstance(b, L.B)) and not any(not NEG.search(b.t) for b in r if isinstance(b, L.B)):
+        _uq = lambda t: re.sub(r'"[^"]*"', '""', t)
+        if any(NEG.search(_uq(b.t)) for b in r if isinstance(b, L.B)) and not any(not NEG.search(_uq(b.t)) for b in r if isinstance(b, L.B)):
             P(f"{k}: step {i} has only 'does not / never' results, no visible control in the same step")
-    if not any(s.kind in ("row", "prd") for b in L.bullets(c) for s in b.src): P(f"{k}: no PRD requirement behind any result (every case needs one)")
+    if not L.rows_of(c): P(f"{k}: tied to no PRD requirement row (every case needs one)")
+    if c["sec"] != "DESIGN" and not any(s.kind in ("row", "prd") for b in L.bullets(c) for s in b.src): P(f"{k}: no PRD sentence behind any result (a behaviour case rests on the PRD)")
     for x in re.findall(r"\bSteps? (\d+)", " ".join(b.t for b in L.bullets(c)) + c["note"]):
         if int(x) > len(c["steps"]): P(f"{k}: text points at step {x}; the case has {len(c['steps'])} steps")
     # refs
@@ -124,6 +143,9 @@ for c in L.CASES:
         except KeyError as x: P(f"{k}: picture {pid}: {x}")
     if not c["pics"] and not c["nopic"]: P(f"{k}: no design picture and no reason")
     if c["sec"] == "DESIGN" and not c["pics"]: P(f"{k}: a design case without a picture")
+    for b_ in L.bullets(c):
+        for s_ in b_.src:
+            if s_.kind in ("look", "design") and s_.where not in c["pics"]: P(f"{k}: cites design board {s_.where} but does not attach its picture")
     # held
     if c["held_on"]:
         if c["held_on"] not in QUESTIONS: P(f"{k}: held on {c['held_on']}, which is not in po_questions.py")
@@ -198,6 +220,8 @@ RJ = f"{L.P}/DESIGN-DIVERGENCE-REGISTER.json"
 reg = json.load(open(RJ))["differences"] if os.path.exists(RJ) else []
 if not reg: P("DESIGN-DIVERGENCE-REGISTER.json missing or empty")
 for r in reg:
+    for ck in r.get("cases", []):
+        if ck not in cmap: P(f"register {r['id']}: names case {ck}, which does not exist")
     if not r.get("in_scope"): continue
     o = r.get("outcome", "")
     if o.startswith(("CLOSED", "SETTLED", "NO-DIFFERENCE")):

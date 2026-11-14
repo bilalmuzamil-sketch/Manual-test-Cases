@@ -137,7 +137,7 @@ C("S1-11", K, "A work order open on release day keeps Default after a tier chang
 
 C("S1-12", K, "Fixed rules from before the release still price their parts",
   [ADMIN_WO, STAGING, "Have on staging an inventory part with a fixed sell price set before the release (for example $48.00) and a cost above zero.",
-   "Have a new customer for this test, customer A, on a tier other than Default whose rule would give another price.",
+   "Have a new tier for this test, tier A, with 10% off in the matrix of the part's category, and a new customer for this test, customer A, on tier A for work orders.",
    "Have a new work order for this test, work order 1, for customer A."],
   ["Click the Fixed Rules tab on Settings › Pricing.", "Open work order 1.", "Add the fixed-price part to work order 1."],
   [R(S("S1-R6", "Fixed rules are unchanged on release day and work as today."), "The Fixed Rules tab lists the part's fixed rule with its price ($48.00)."),
@@ -246,7 +246,7 @@ C("S1-19", K, "Existing matrix ranges have no gaps or overlaps after the release
   pics=["1.4", "3.2"], flags=["numbers"])
 
 C("S1-20", K, "A matrix that started above $0.00 keeps its real start until saved",
-  [ADMIN_WO, STAGING, "Before the release is deployed to staging, have a category matrix whose first range starts at $10.00 (matrix A, for category A, first range 50% markup).",
+  [ADMIN_WO, STAGING, "Before the release is deployed to staging, have a category matrix whose first range starts at $10.00 (matrix A, for a new category made for this test, category A, first range 50% markup).",
    "Use the same client after the deploy.", customer("A"), "Have a new work order for this test, work order 1, for customer A."],
   [MATRICES, "Click matrix A's name.", "Open work order 1.", "Add a part with a cost of $5.00 in category A.", MATRICES, "Click matrix A's name.", EDIT,
    "Change the Default value of the last range to its current value plus 1.", SAVE],

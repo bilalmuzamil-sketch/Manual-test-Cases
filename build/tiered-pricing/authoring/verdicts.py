@@ -29,11 +29,32 @@ PARTIAL = {
 
 # Design boards of the in-scope pages that no case attaches, with the reason.
 UNUSED_BOARDS = {
+ "2.1": "A \"Today\" board (production before the release); its screenshot is attached as today:2.1 (images/today/), not the empty board render.",
 }
 
 # §6d line 9: every place a typed name shows on the in-scope pages -> the stress case that checks it.
-STRESS = {}
+STRESS = {
+ "tier name on the Tiers list and its row menu": "D-70", "tier name as the tier page title": "D-71",
+ "tier name in grid column headers": "D-72", "tier name in the Archive question, the bulk bar and the Set Rule question": "D-73",
+ "matrix name on a tier's Pricing tab and as the matrix page title": "D-74",
+ "category names on the Categories line, in the picker and in Change Prices": "D-75",
+}
 # §6d line 10: every screen of the in-scope pages that changes state -> the before-and-after case.
-MOVEMENT = {}
+MOVEMENT = {
+ "bulk bar and its error on a tier's matrix list (design 2.32 vs 2.47, 2.51)": "D-76", "clearing the bulk bar": "D-77",
+ "grid view after Edit and Cancel": "D-78", "Tiers list when a tier is archived (2.21 vs 2.24)": "D-79",
+ "simulator columns between view and edit (3.5 vs 3.25; held on Q18)": "D-63", "New Matrix category list pushing the grid (3.22 vs 3.23; held on Q18)": "D-64",
+}
 # Rule 116 numbers of NUMBERS-AND-HAZARDS.md shown on the in-scope pages -> the case that proves it from seeded inputs.
-NUMBERS = {}
+NUMBERS = {
+ "N9 range labels ($0.01 above the previous end)": "S3-27", "N11 tier numbers after archive": "S2-08", "N11 tier numbers after delete": "S2-09",
+ "N11 reactivated tier goes last with the next number": "S2-42", "N12 Customers count, distinct, with the channel split": "S2-03",
+ "N12 Default's count on release day": "S1-08", "N13 Matrices 4/5 counts Active matrices only": "S2-05", "N13 All": "S2-06",
+ "N13 Part Sale side ignored": "S2-07", "N16 edit bar counts cells and reverts": "S4-11", "N16 edit bar counts ranges, not gray fills": "S4-12",
+ "N16 save message three changes then and n more": "S4-28", "N17 Set Rule n matrices (m inactive)": "S2-64", "N17 no inactive count": "S2-65",
+ "N18 grayed Delete, saved lines": "S2-36", "N18 grayed Delete, open work orders, estimate counted once": "S2-37",
+ "N18 both reasons, saved lines wins": "S2-38", "N19 Change Default's Prices tier count": "S4-30", "N19 General Matrix category count": "S4-36",
+ "N20 New Tier hint as Tier n": "S2-14", "N1 rounding before the range is chosen ($10.005)": "S3-43", "N1 % Off and $ Off per range": "S4-22",
+ "N1 mixed rule types side by side": "S3-20", "N1 double discount on a customer-named category ($128.00)": "S1-17",
+ "N7 archived simulator chain": "S4-38", "N7 zero rules sell at the base price": "S3-26",
+}

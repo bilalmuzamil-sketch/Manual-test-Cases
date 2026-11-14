@@ -19,6 +19,7 @@ QUESTIONS = {
  "Q15": "Grid errors: the PRD's messages are \"Enter a % from 0 to 99.99\" and \"Enter a margin from 0 to 99.99\" (S3-R6); the design shows a \"Save is blocked\" banner with \"Tier 5: enter a % from 0 to 99.99 in every range.\" (3.15) and \"Work Order Matrix: Rule 1: Enter a margin from 0 to 99.99\" (4.18). Which words, and is there a banner?",
  "Q16": "Last range label in view: the PRD writes \"$10,000.01 and up\" (S3-R16); the design's view boards write \"$10,000.01 +\" (1.4, 3.2, 4.1) and \"and up\" only in edit. Which?",
  "Q17": "A taken matrix name on New Matrix: the PRD shows an inline error under the name (S3-R6); design 3.25 shows \"A matrix called Stop 40 already exists.\" in the \"Save is blocked\" banner, not under the name. Where?",
+ "Q19": "Range delete buttons: the PRD gives every range EXCEPT THE LAST a delete button (S3-R32: \"The last range ... can't be removed\"); the design draws a trash icon on every range except the FIRST, the last \"and up\" range included (4.6, 4.21, 3.11). Which?",
  "Q18": "Layout moves the design shows with no source settling them (checklist line 10): the Price Part Simulator's columns move between view and edit (Part Cost 70 px wider in edit, 3.5→3.25, 3.10→4.7), and opening the Categories picker on New Matrix pushes the tabs and grid down 221 px (3.22→3.23). Intended?",
 }
 ANSWERED = {}
