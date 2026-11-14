@@ -57,7 +57,10 @@
   "A/P PDF buckets vendor: one 31-60, one 1-30",
   "A/P blank-cell vendors A ($100 bill 10 days overdue) and B ($50 vendor credit 10 days ago)",
   "A/R neighbour customer for C1145247: name contains the first 20 letters of the 120-letter name and sorts right after it; invoice today",
-  "  invoice S2-40384 $21.00 created 2026-11-14 due 2026-12-14"
+  "  invoice S2-40384 $21.00 created 2026-11-14 due 2026-12-14",
+  "C1145298/99 customer C and vendor C: a second document dated EARLY today (SEED_T=T02:00:00.000Z), because a T10:00Z document is in the future until 10:00 UTC and the reports leave it out as of today",
+  "  invoice S2-40385 $62.00 created 2026-11-14 due 2026-12-14",
+  "  bill ZZS39024774 $62 dated 2026-11-14 (Net 30)"
  ],
  "c120": "5b5c3981-61e4-41d8-b248-2b2608419af4",
  "sc1": "a15d8732-3a9e-4929-862c-5eda3483e26f",
@@ -97,5 +100,7 @@
  "cm cdae8339-5953-48f8-b6a7-6f053adececb 50 10": 1,
  "inv 3be610cb-a065-4ab6-b791-c9d118b0148d 33 -712 -682": "SMQ123-40382",
  "cNeighbour": "7e777d49-d18c-4ad5-93fc-73135ff3e097",
- "inv 7e777d49-d18c-4ad5-93fc-73135ff3e097 21 0 30": "S2-40384"
+ "inv 7e777d49-d18c-4ad5-93fc-73135ff3e097 21 0 30": "S2-40384",
+ "inv a15d8732-3a9e-4929-862c-5eda3483e26f 62 0 30": "S2-40385",
+ "bill 4e8c9878-4a81-4d61-b546-dcbbcab00a59 62 0": "ZZS39024774"
 }

@@ -1,0 +1,6 @@
+// s21_sc1.mjs — 14 Nov 2026: why the special-character customer C / vendor C (invoice or bill dated today, not yet due) is missing from the A/R and A/P Summaries in C1145298/99. Read-only API reads.
+import { stgStart } from './stglib.mjs'; import fs from 'fs';
+const s = await stgStart(new URL('./s21/', import.meta.url).pathname); const o = {}; const sc1 = 'a15d8732-3a9e-4929-862c-5eda3483e26f', sv1 = '4e8c9878-4a81-4d61-b546-dcbbcab00a59';
+for (const [k, path] of [['arsSC1', `/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-14&customerIds[]=${sc1}`], ['arsSC1b', `/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-14&customerIds=${sc1}`], ['ardCur', `/api/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-14&customerIds=${sc1}`], ['apsSV1', `/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-14&vendorIds=${sv1}`], ['apdCur', `/api/reporting/reports/ap-aging-detail/buckets/current/rows?asOfDate=2026-11-14&vendorIds=${sv1}`], ['inv', `/api/invoices?search=S2-40375`]]) {
+  const r = await s.api(path); o[k] = [r.st, JSON.stringify(r.j?.data?.collection ?? r.j?.data ?? r.j).slice(0, 700)]; }
+console.log(JSON.stringify(o, null, 1)); await s.close(); process.exit(0);

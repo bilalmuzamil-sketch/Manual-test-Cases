@@ -10,7 +10,7 @@ const EXEMPT = { id: '0c47b1fb-38bb-4788-8719-6900c365e34c', isEnabledLabor: fal
 const db = fs.existsSync(SAVE) ? JSON.parse(fs.readFileSync(SAVE, 'utf8')) : {}; const save = () => fs.writeFileSync(SAVE, JSON.stringify(db, null, 1)); const log = (t) => { console.log(t); (db.log ||= []).push(t); save(); };
 const ok = (t, r) => { if (r.st >= 300) throw new Error(t + ' ' + r.st + ' ' + JSON.stringify(r.j).slice(0, 300)); return r.j; };
 const L = (j) => (Array.isArray(j?.data) ? j.data : j?.data?.collection ?? []);
-const day = (n, t = 'T10:00:00.000Z') => { const d = new Date(Date.UTC(2026, 10, 14)); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10) + t; };
+const day = (n, t = process.env.SEED_T || 'T10:00:00.000Z') => { const d = new Date(Date.UTC(2026, 10, 14)); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10) + t; };
 async function customer(name) { const hit = L((await a.get('/api/customers?search=' + encodeURIComponent(name.slice(0, 40)))).j).find((c) => (c.name || c.company_name) === name);
   const cid = hit ? (hit.id || hit.company_id) : ok('customer ' + name, await a.post('/api/customers/create', { name })).data.company_id;
   ok('exempt', await a.post('/api/customers/change', { name, state_or_province: null, country_code: 'CA', require_po: false, credit_term: 'Net 30', credit_limit: 0, shop_supplies_charge: 0, min_shop_supplies_charge: null, max_shop_supplies_charge: null, pin_notes: false, notes: null, id: cid, tax: EXEMPT }));
@@ -55,6 +55,7 @@ const steps = [
   ['A/P blank-cell vendors A ($100 bill 10 days overdue) and B ($50 vendor credit 10 days ago)', async () => { const va = await vendor('ZZAUTOTEST Blank Cell Vendor A'); db.vblankA = va; await bill(va, 100, 40); const vb = await vendor('ZZAUTOTEST Blank Cell Vendor B'); db.vblankB = vb; await vcredit(vb, 50, 10); }],
 ];
 steps.push(['A/R neighbour customer for C1145247: name contains the first 20 letters of the 120-letter name and sorts right after it; invoice today', async () => { const c = await customer('ZZAUTOTESTAbcdefghijNeighbourRow'); db.cNeighbour = c.cid; await invoice(c, 21, 0, 30); }]); /* 14 Nov: the Customer menu shows only 50 names and reaches the rest by search; searching "ZZAUTOTESTAbcdefghij" then shows customer A with this row directly under it */
+steps.push(['C1145298/99 customer C and vendor C: a second document dated EARLY today (SEED_T=T02:00:00.000Z), because a T10:00Z document is in the future until 10:00 UTC and the reports leave it out as of today', async () => { const c = await customer(SC1); await invoice(c, 62, 0, 30); await bill(db.sv1, 62, 0); }]); /* 14 Nov 06:50 UTC: the T10:00Z "today" invoice/bill of customer C / vendor C was not on the Summaries as of today, but was as of tomorrow */
 const only = process.env.ONLY_STEP ? steps.filter(([t]) => t.includes(process.env.ONLY_STEP)) : steps;
 for (const [t, f] of only) { try { log(t); await f(); } catch (e) { log('  FAILED: ' + String(e).slice(0, 300)); } save(); }
 await s.close(); process.exit(0);

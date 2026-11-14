@@ -1,0 +1,82 @@
+{
+ "pass_meta": {
+  "note": "14 Nov 2026, run 557, g19: new tests batch 3 (PDF/CSV) on staging"
+ },
+ "results": {
+  "C1145292": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, browser on Pakistan time, as of 11/14/2026; A/R Aging Detail, only \"ZZAUTOTEST PDF Buckets Customer\" ticked (one invoice 31-60 days past due, one 1-30).",
+    "Step 1: Expand all opens every bucket; \"31-60 days past due\" ends with \"Total for 31-60 days past due\" $210.00 / $210.00 and \"1-30 days past due\" ends with \"Total for 1-30 days past due\" $110.00 / $110.00.",
+    "Step 2: the Export report menu shows \"Download (PDF)\" and \"Download (CSV)\".",
+    "Step 3: the PDF downloads.",
+    "Step 4: in the PDF the 31-60 bucket ends with \"Total for 31-60 days past due\" $210.00 / $210.00 and the 1-30 bucket with \"Total for 1-30 days past due\" $110.00 / $110.00 - the same as on screen; the word \"Subtotal\" appears nowhere.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145292-01-C1145292-1-expanded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145292-pdf-C1145292-page-1.png"
+   ]
+  },
+  "C1145293": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, browser on Pakistan time, as of 11/14/2026; A/P Aging Detail, only \"ZZAUTOTEST PDF Buckets Vendor\" ticked (one bill 31-60 days past due, one 1-30).",
+    "Step 1: Expand all opens every bucket; \"31-60 days past due\" ends with \"Total for 31-60 days past due\" $210.00 / $210.00 and \"1-30 days past due\" ends with \"Total for 1-30 days past due\" $110.00 / $110.00.",
+    "Step 2: the Export report menu shows \"Download (PDF)\" and \"Download (CSV)\".",
+    "Step 3: the PDF downloads.",
+    "Step 4: in the PDF the 31-60 bucket ends with \"Total for 31-60 days past due\" $210.00 / $210.00 and the 1-30 bucket with \"Total for 1-30 days past due\" $110.00 / $110.00 - the same as on screen; the word \"Subtotal\" appears nowhere.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145293-03-C1145293-1-expanded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145293-pdf-C1145293-page-1.png"
+   ]
+  },
+  "C1145294": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, browser on Pakistan time, as of 11/14/2026; A/R Aging Collection, two customers ticked: customer A = \"ZZAUTOTEST Special & \"Quoted\" 'Single' <Less> Greater> Customer Two PDF Blocks\" (two overdue invoices) and customer B = \"ZZAUTOTEST Collection PDF Customer B\".",
+    "Step 1: Expand all opens every group; customer A's group ends with \"Total for ZZAUTOTEST Special & \"Quoted\" 'Single' <Less> Greater> Customer Two PDF Blocks\" $160.00 / $160.00 and customer B's with \"Total for ZZAUTOTEST Collection PDF Customer B\" $55.00 / $55.00.",
+    "Step 2: the Export report menu shows \"Download (PDF)\" and \"Download (CSV)\".",
+    "Step 3: the PDF downloads.",
+    "Step 4: in the PDF Customer A's block ends with \"Total for\" and the whole name exactly as typed, & \" ' < > included, with $160.00 / $160.00; the name fits inside the row and ends well before the Amount figure, so nothing runs over the money or off the page. Customer B's block ends with \"Total for ZZAUTOTEST Collection PDF Customer B\" $55.00 / $55.00. The word \"Subtotal\" appears nowhere.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145294-01-C1145294-1-expanded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145294-pdf-C1145294-page-1.png"
+   ]
+  },
+  "C1145295": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, browser on Pakistan time, as of 11/14/2026; A/P Unpaid Invoices, two vendors ticked: vendor A = \"ZZAUTOTEST Special & \"Quoted\" 'Single' <Less> Greater> Vendor Two PDF Blocks\" (two overdue bills) and vendor B = \"ZZAUTOTEST Unpaid PDF Vendor B\".",
+    "Step 1: Expand all opens every group; vendor A's group ends with \"Total for ZZAUTOTEST Special & \"Quoted\" 'Single' <Less> Greater> Vendor Two PDF Blocks\" $160.00 / $160.00 and vendor B's with \"Total for ZZAUTOTEST Unpaid PDF Vendor B\" $55.00 / $55.00.",
+    "Step 2: the Export report menu shows \"Download (PDF)\" and \"Download (CSV)\".",
+    "Step 3: the PDF downloads.",
+    "Step 4: in the PDF Vendor A's block ends with \"Total for\" and the whole name exactly as typed, & \" ' < > included, with $160.00 / $160.00; the name fits inside the row and ends well before the Amount figure, so nothing runs over the money or off the page. Vendor B's block ends with \"Total for ZZAUTOTEST Unpaid PDF Vendor B\" $55.00 / $55.00. The word \"Subtotal\" appears nowhere.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145295-03-C1145295-1-expanded.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145295-pdf-C1145295-page-1.png"
+   ]
+  },
+  "C1145296": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, browser on Pakistan time, as of 11/14/2026; A/R Aging Detail, only customer A (the 120-letter customer, invoice dated today) ticked.",
+    "Step 1: the calendar opens on November 2026 with today selected.",
+    "Step 2: picking 31 in December sets the chip to \"As of: 12/31/2026\"; the report reloads and customer A's invoice is still listed.",
+    "Steps 3-5: the PDF downloads and its as-of line reads \"As of Dec 31, 2026\" (not today); customer A's invoice is in it.",
+    "Steps 6-8: the CSV downloads and its as-of line reads \"As of: Dec 31, 2026\"; customer A's invoice dated today (S2-40373) is in it.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145296-10-C1145296-2-future-date.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145296-pdf-C1145296-pdfpage-1.png"
+   ]
+  }
+ }
+}

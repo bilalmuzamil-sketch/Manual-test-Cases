@@ -1,0 +1,6 @@
+// s23_sc1api.mjs — 14 Nov 2026: read customer C's / vendor C's documents straight from the reports' data calls (param names as the page sends them: customers= / vendors=) and their invoice/bill. Read-only.
+import { stgStart } from './stglib.mjs';
+const s = await stgStart(new URL('./s23/', import.meta.url).pathname); const o = {}; const sc1 = 'a15d8732-3a9e-4929-862c-5eda3483e26f', sv1 = '4e8c9878-4a81-4d61-b546-dcbbcab00a59', A = '28c9840b-c37f-4221-a468-a51cc2595248';
+for (const [k, path] of [['ars', `/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-14&customers=${sc1}`], ['arsA', `/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-14&customers=${A}`], ['ardCur', `/api/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-14&customers=${sc1}`], ['ardCur15', `/api/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-15&customers=${sc1}`], ['aps', `/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-14&vendors=${sv1}`], ['apdCur', `/api/reporting/reports/ap-aging-detail/buckets/current/rows?asOfDate=2026-11-14&vendors=${sv1}`], ['cust', `/api/customers/${sc1}`]]) {
+  const r = await s.api(path); o[k] = [r.st, JSON.stringify(r.j?.data?.collection ?? r.j?.data ?? r.j).slice(0, 600)]; }
+console.log(JSON.stringify(o, null, 1)); await s.close(); process.exit(0);

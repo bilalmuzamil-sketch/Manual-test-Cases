@@ -1,0 +1,50 @@
+{
+ "pass_meta": {
+  "note": "14 Nov 2026, run 557, g20: new tests batch 4 on staging"
+ },
+ "results": {
+  "C1145297": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, browser on Pakistan time; A/R Aging Detail as of 11/14/2026; location A = QB Location, location B = Staging Heavy Duty - 9919; date A = 12/15/2024, when the only open A/R document was at QB Location (invoice of Dec 2, 2024).",
+    "Step 1: staging has five locations, not two, so the step was done as \"leave only location B ticked\" (the other four unticked) to reach the state the test describes; the chip reads \"Location: Staging Heavy D...\" - location B's name, shortened.",
+    "Step 2: with the as-of date changed to 12/15/2024 the report reloads for that day; the only location on that day is QB Location, so the filter returns to every location: QB Location's invoice is listed (Current (1), $33.00) and the Location chip is no longer shown.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145297-01-C1145297-1-only-B.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145297-02-C1145297-2-date-A.png"
+   ]
+  },
+  "C1145298": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, browser on Pakistan time; A/R Aging Summary as of 11/14/2026, only three customers ticked: customer A ($100.00 invoice 10 days past due), customer B ($50.00 unused credit memo dated 10 days ago) and customer C = \"ZZAUTOTEST Special & \"Quoted\" 'Single' <Less> Greater> Customer One Long Name\" ($62.00 invoice dated today, not yet due).",
+    "Step 1: customer A's \"1-30 Days\" cell reads $100.00, customer B's $-50.00 and customer C's is blank; customer C's whole name shows exactly as typed, & \" ' < > included, and wraps inside its own cell (2 lines) without running into Location.",
+    "Step 2: after the first click on \"1-30 Days\" the rows read customer A ($100.00), customer B ($-50.00), customer C (blank) at the bottom; no column heading moved.",
+    "Step 3: after the second click the rows read customer B ($-50.00), customer A ($100.00), customer C (blank) still at the bottom; no column heading moved.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145298-03-C1145298-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145298-04-C1145298-2-first-click.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145298-05-C1145298-3-second-click.png"
+   ]
+  },
+  "C1145299": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, browser on Pakistan time; A/P Aging Summary as of 11/14/2026, only three vendors ticked: vendor A ($100.00 bill 10 days past due), vendor B ($50.00 unused vendor credit dated 10 days ago) and vendor C = \"ZZAUTOTEST Special & \"Quoted\" 'Single' <Less> Greater> Vendor One Long Name\" ($62.00 bill dated today, not yet due).",
+    "Step 1: vendor A's \"1-30 Days\" cell reads $100.00, vendor B's $-50.00 and vendor C's is blank; vendor C's whole name shows exactly as typed, & \" ' < > included, and wraps inside its own cell (2 lines) without running into Location.",
+    "Step 2: after the first click on \"1-30 Days\" the rows read vendor A ($100.00), vendor B ($-50.00), vendor C (blank) at the bottom; no column heading moved.",
+    "Step 3: after the second click the rows read vendor B ($-50.00), vendor A ($100.00), vendor C (blank) still at the bottom; no column heading moved.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145299-06-C1145299-1.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145299-07-C1145299-2-first-click.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145299-08-C1145299-3-second-click.png"
+   ]
+  }
+ }
+}
