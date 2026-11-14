@@ -89,7 +89,9 @@ for k, cid, ch, last in plan:
         for x in have:
             n = x.get("name") or x.get("filename") or ""
             if OLD4.match(n):
-                api(f"delete_attachment/{x['id']}"); L({"op": "delete_attachment", "key": k, "case": f"C{cid}", "file": n, "http": LAST["status"]})
+                try: r = api(f"delete_attachment/{x['id']}", {})          # POST (a GET answers 404 "Unsupported HTTP method")
+                except Exception as e: r = {"error": str(e)[:200]}
+                L({"op": "delete_attachment", "key": k, "case": f"C{cid}", "file": n, "http": LAST["status"], "body": r if isinstance(r, dict) else None})
         now = {x.get("name") or x.get("filename") for x in atts(cid)}
         L({"op": "readback_attachments", "key": k, "case": f"C{cid}", "expected": want, "ok": set(want) <= now,
            "old_page4_left": sorted(n for n in now if n and OLD4.match(n))})

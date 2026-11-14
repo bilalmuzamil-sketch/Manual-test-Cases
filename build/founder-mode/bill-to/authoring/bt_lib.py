@@ -305,6 +305,9 @@ def design_for(c):
     return _DCACHE[c["key"]]
 
 
+OLD_PICTURES_LEFT = json.load(open(f"{P}/story8-2026-11-14/old-pictures-left.json"))
+
+
 def design_block(c):
     """Rule 117 tenth amendment: design references in their own block below the quotes: the canvas, page and figure names, the pictures
     attached to the case, the design's own words quoted, and any difference with its register id and question. A case whose screen no
@@ -314,6 +317,11 @@ def design_block(c):
     h = "<p></p><p><strong>References from Design</strong></p>"
     if d.get("pages"): h += "<p>" + e(d["pages"]) + "</p>"
     if d.get("pictures"): h += "<p>Design pictures attached to this case:</p><ul>" + "".join(f"<li>{e(x)}</li>" for x in d["pictures"]) + "</ul>"
+    # 14 Nov 2026: the page 4 pictures drawn before the redraw could not be removed (TestRail keeps a picture used by a closed run), so the
+    # case names them and tells the tester to ignore them (D-68 precedent, 12 Nov 2026).
+    if c["key"] in OLD_PICTURES_LEFT:
+        h += ("<p>The older pictures also attached to this case (" + ", ".join(e(x) for x in OLD_PICTURES_LEFT[c["key"]]) +
+              ") show this page before the design was redrawn on 14 Nov 2026: ignore them for this check.</p>")
     if d.get("words"): h += "<p>The design's own words:</p><ul>" + "".join(f"<li>&ldquo;{e(w)}&rdquo;</li>" for w in d["words"]) + "</ul>"
     for n in d.get("notes") or []: h += "<p>" + e(n) + "</p>"
     return h

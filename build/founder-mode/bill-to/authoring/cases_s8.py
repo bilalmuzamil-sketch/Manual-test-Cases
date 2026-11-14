@@ -84,13 +84,8 @@ part("S8-08", "A missing city drops out of the band's address with its comma",
       '(for example "[customer A\'s name] · 965 Smith Course, Yukon Territory Y5P 3K3").',
       "No two commas show side by side where the city would be."])
 
-# S8-09: unchanged since 9 Nov 2026 (PRD version 0.5); proposed for deletion on 14 Nov 2026 (the clause it tests was removed)
-C("S8-09", S, "A unit that already starts with Unit is not prefixed again",
-  [ADMIN, MODERN, cust("A", ", the customer the work is for"), B, wo(1, "A", "invoiced", "B", ', with an asset whose Unit is "Unit 7", Year 2020, Make "Kenworth" and Model "W900"')],
-  [OPEN_WO, FIN, OPEN_INV],
-  [["Work order 1 opens for customer A."], ["The Finance tab shows the invoice."],
-   ["The Bill To block names customer B.", 'The band shows "Unit 7", not "Unit Unit 7".', 'The band reads "SERVICE FOR", customer A\'s name, "Unit 7" and "2020 Kenworth W900", separated by " · ".']],
-  ["S8-R3"])
+# S8-09 (C1062367) "A unit that already starts with Unit is not prefixed again": DELETED 14 Nov 2026 (QA lead: "Delete it (Recommended)");
+# the 14 Nov 2026 page removed the clause it tested. Copy: story8-2026-11-14/applied/C1062367-S8-09-before-delete.json.
 
 PS_LINE2 = LINE2
 C("S8-10", S, "A part sale with a vehicle prints the same band, with no unit",

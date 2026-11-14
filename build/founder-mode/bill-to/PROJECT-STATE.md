@@ -27,3 +27,13 @@
 - 10 Nov 2026, QA lead: cases waiting on Chris's answers get their own folder, design cases stay in "Design — how it looks". Folder
   "Waiting on Chris Ward's answers" 133626: 16 cases moved (read back). Held on PO questions = 29 (16 + 13 design), not 31 as first
   reported (miscount, corrected).
+
+## 14 Nov 2026 — Story 8 named set WRITTEN (QA lead: "Named set only (Recommended)"; S8-09 "Delete it (Recommended)")
+- Rule 59 re-check: Confluence 1003585538 last modified about 22:30 UTC 13 Nov (before our 04:49 UTC read); design still 1794608112-d8a1.
+- 32 live cases rewritten (update_story8.py --keys, locked on the live text; 0 edited outside; read-back 32/32). New page 4 pictures attached.
+  The old page 4 pictures could not be deleted (TestRail: attached to a closed run; 92 refusals logged), so 28 cases now name them and say to
+  ignore them (bt_lib OLD_PICTURES_LEFT, D-68 precedent); written, read-back 28/28.
+- 8 new cases: S8-16..S8-20 C1145300-C1145304, D-82..D-84 C1145305-C1145307; run 558 315 -> 323, union only, assigned to Mudassir.
+- S8-09 C1062367 deleted (copy applied/C1062367-S8-09-before-delete.json); removed from the library and map; run 558 now 322 tests.
+- Folder 132467 note "Test cases are current as of 11/14/2026 ...". NOT written: the other 332 cases keep their earlier From line date.
+- Test links: story8-2026-11-14/TESTS-TO-RUN-2026-11-14.md.
