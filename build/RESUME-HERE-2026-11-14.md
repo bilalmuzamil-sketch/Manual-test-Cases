@@ -25,12 +25,17 @@ line date; IWO 609 keep v1.3. Their quotes are word for word in the new versions
   PO-QUESTIONS-DRAFT.md, TICKET-SWEEP.md), full design drive (`design-2026-11-14/DESIGN-DRIVE-PROOF.md`), tool files read
   (TOOL-FILES-READ-2026-11-14.md, QA lead "Read them too"), 11 Today screenshots (`design-2026-11-14/images/today/`), design version
   1794638838-cd70 checked = content-identical (DESIGN-VERSION-CHECK-1794638838-cd70.md).
-- RUNNING when the session paused: case-writing phase 1 (library in `tiered-pricing/authoring/` + Stories 1-4 + 11 linked tickets read +
-  QA site address + design divergence register). If it did not finish, check `tiered-pricing/authoring/` for what landed (PHASE-1-REPORT.md
-  is its final output) and restart phase 1 from there with the same brief (in the session transcript; summary: build tp_lib.py, common.py,
-  design_refs.py, sections.json, build.py gates, AUTHORING-GUIDE.md; write Stories 1-4; register; gates; sample read; batch plan).
-- NEXT: phase 2 = two parallel batches for Stories 5-19 + the reports PRD; then the PO question sheet for Matt Barge (shown to the QA lead
-  first), gates, drafts and counts to the QA lead, write only after his yes, folder note on section 138770.
+- PHASE 1 DONE (14 Nov 2026): 258 cases for Stories 1-4 in `tiered-pricing/authoring/` (proposals.json), build.py 0 PROBLEM lines,
+  readiness 0 hard problems, 26 held (16 design-version on draft Q5-Q19, 2 on Q2, 8 pre-release on Stories 1/3), 501 pictures assigned,
+  register DESIGN-DIVERGENCE-REGISTER.json 102 rows (72 closed/held for S1-4, 30 for the batches), 11 linked tickets saved, QA site not found
+  (sv11692.qa.shopview.com does not resolve). Read `authoring/PHASE-1-REPORT.md` and `authoring/AUTHORING-GUIDE.md` first.
+- NEXT, phase 2, two parallel workers, each owning only its own cases_*/verdicts_*/po_questions_*/register_rows_* files (listed in
+  PHASE-1-REPORT.md): Batch A = Stories 5, 6, 7, 8, 9, 12, 14, 15, 16, 19, invariant sections B, C, D, design pages 5-9, 12, 14, 15
+  (193 rows, 105 boards). Batch B = Stories 10, 11, 13, 17, 18, the reports PRD, invariant sections A, E, F, design pages 10, 11, 13, 20
+  (221 rows, 46 boards). Same format and rules as phase 1 (its brief is summarised in PHASE-1-REPORT.md and the guide).
+- THEN: TICKET-LEDGER verdicts, one PO question sheet for Matt Barge (merge Q2, Q5-Q19 and the batches' questions; run the skill 07 checks;
+  show the QA lead before sending), gates + sample read, drafts and counts to the QA lead, TestRail write only after his yes (create the
+  folders under 138770, cases, pictures, a run assigned to Mudassir, folder note).
 
 ## Outstanding with the QA lead
 Nothing waiting on him except the PO answers above. Remind him: the Atlassian connector uses a deprecated V1 endpoint (retired 1 Mar 2027).
