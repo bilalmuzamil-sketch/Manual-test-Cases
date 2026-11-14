@@ -30,6 +30,7 @@ NOT_TESTABLE = {
  "TPX-35": "Loading the next 30 rows failing: " + FORCED + ".",
  "TPX-38": ("Held by engineering (tech plan 2 Phase 2 has not reported whether imported invoices with no part lines exist); nothing a tester can set up; "
             "listed in the open points."),
+ "TPX-36": ("Both halves are timing or failure states: \"no empty state shows before the first load finishes\" is a moment too short to judge by eye, and \"a failed load never says there are no results\" needs a forced failure (" + FORCED + "); the empty state after a normal load is checked (RPT-17)."),
  "TPX-39": "A process step (the RPT-S1-R7 list of invoices that don't add up, tech plan 2 Appendix C, empty on 14 Nov 2026): no screen to test.",
 }
 
@@ -49,7 +50,6 @@ PARTIAL = {
  "RPT-S4-R5": "The PDF limit and its message are checked on a staging location with more than 2,000 rows; the CSV limit (50,000 rows) can't be reached by hand.",
  "RPT-S4-R7": "The header lines' content and wording are checked (RPT-66); their ORDER (Category before Priced By) is held on Q4 (RPT-67, D-443).",
  "TPX-31": "The all-wording is checked (RPT-66); the line order is held on Q4.",
- "TPX-36": "\"A failed load never says there are no results\" needs a forced failure (" + FORCED + "); the empty state after a normal load is checked (RPT-17).",
  "TPX-33": "The voided-then-reissued half is checked (RPT-30); a credit on a part line of a reversed invoice is checked where a credit can name a line of a reversed invoice.",
 }
 
