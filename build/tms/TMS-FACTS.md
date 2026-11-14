@@ -569,3 +569,10 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **Done:** Bill To pictures 203/203. **Preconditions heading removed:** Internal Work order 628 (+20 already clean), rest 1,607
   (+62 already clean). **24,308 run entries photographed (1,349 with results) — 0 changed.**
 - QA lead: *"Sync the missing ~28 bill to cases too"* → Bill To sync + pictures + run rebuilds running.
+- **Bill To synced:** 39 TestRail-only cases created (more than ~28 — TestRail kept growing), 35 got pictures (55). 31 cases held
+  as CONFLICT were proven to have only MY later TMS edits (every later version matched a logged write within 5 s) → TestRail's
+  newer text applied, pictures kept. **Bill To: 372/372 SAME**; 1 TMS-only case C10000761 open.
+- **Runs rebuilt (no results lost — each old run had 0):** **TMS run 34 "Bill To - Execution"** (322 = TestRail run 558, Mudassir)
+  and **TMS run 33 "Internal Work Orders - Execution"** (615 = TestRail run 559, Ahtasham), both all-latest, no doubled headings,
+  no quotes section, pictures shown. Old runs 27, 30 and 32 closed and out of milestone 10000000.
+- **Lesson:** a CONFLICT can be our own formatting/picture edit — prove it from the op logs before resolving.

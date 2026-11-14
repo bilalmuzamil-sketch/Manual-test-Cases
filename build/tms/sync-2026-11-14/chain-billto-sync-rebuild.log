@@ -1,0 +1,17 @@
+=== Bill To sync
+ dry: ["plan: {'SAME': 301, 'CONFLICT': 31, 'TMS_EXTRA': 1, 'UPDATE': 1, 'TR_ONLY': 39, 'FOLDER_TR_ONLY': 0, 'FOLDER_TMS_ONLY': 0} | report: /tmp/tms/sync-132467/report.md"]
+ apply: ["plan: {'SAME': 301, 'CONFLICT': 31, 'TMS_EXTRA': 1, 'UPDATE': 1, 'TR_ONLY': 39, 'FOLDER_TR_ONLY': 0, 'FOLDER_TMS_ONLY': 0} | report: /tmp/tms/sync-132467/report.md", 'applied: 1']
+ created: 39 | problems: none
+ final: ["plan: {'SAME': 341, 'CONFLICT': 31, 'TMS_EXTRA': 1, 'FOLDER_TR_ONLY': 0, 'FOLDER_TMS_ONLY': 0} | report: /tmp/tms/sync-132467/report.md"]
+=== pictures for new Bill To cases
+cases to give pictures: 35 (55 pictures) | skipped: {'already shows TMS pictures': 202}
+cases done 35/35 | problems: none
+=== rebuild runs
+TestRail run 558 -> NEW TMS run 32 'Bill To - Execution' | 322 cases (TestRail 322, not in TMS 0) | latest {True: 322} | owner 6 cases {6: 322}
+   sample run view: doubled 'Expected Result' heading: False | doubled 'Preconditions' heading: False | quotes section: False
+   old TMS run 27: taken out of the milestone and closed (204)
+TestRail run 559 -> NEW TMS run 33 'Internal Work Orders - Execution' | 615 cases (TestRail 615, not in TMS 0) | latest {True: 615} | owner 7 cases {7: 615}
+   sample run view: doubled 'Expected Result' heading: False | doubled 'Preconditions' heading: False | quotes section: False
+   old TMS run 30: taken out of the milestone and closed (204)
+milestone 10000000 runs: [(33, 'Internal Work Orders - Execution', 7), (32, 'Bill To - Execution', 6)]
+FINISHED
