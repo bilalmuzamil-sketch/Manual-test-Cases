@@ -10338,5 +10338,55 @@
    "custom_steps": "<ol><li>In the Location menu, untick location A.</li><li>Change the as-of date to date A.</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The chip reads \"Location: \" and location B's name.</li></ul><p>Step 2:</p><ul><li>The report reloads for date A.</li><li>Rows from location A are listed: location B is not in the list for date A, so the filter returns to every location.</li><li>The Location chip is not shown: the list for date A holds only location A.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 13 (13 Nov 2026, Chris Ward), read 13 Nov 2026, version re-checked 14 Nov 2026 &middot; Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location)</p><ul><li><strong>S5-E3:</strong> &ldquo;Changing the as-of date keeps every ticked location that is still in the new list (S5-R3). If none of the ticked locations is still in the list, the filter returns to All locations, and the chip reads \"Location: All locations\", unless the new list holds only one location, in which case the chip is hidden (S5-N1). A user who chose No locations keeps No locations.&rdquo;</li><li><strong>S5-N1:</strong> &ldquo;If the organization's open documents sit at only one location and it is ticked, the Location chip is not shown.&rdquo;</li></ul><p>Not yet checked against a build: the QA build v26.45.2-6a8b89c exists since 10 Nov 2026 and this case has not been run on it yet.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 4 \"Location filter and Location column\" (board Location.dc.html); page 7 \"Filters and call list\" (board Filters.dc.html). The design pictures the Location chip but not a date whose list holds one location (all 7 boards checked); the case follows the PRD.</p><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
   }
+ },
+ "S2-51": {
+  "sec": "SETUP",
+  "section_id": 133629,
+  "title": "A/R Summary: a blank bucket cell stays at the bottom in both sort orders",
+  "refs": "SV-11532",
+  "reports": [
+   "A/R Summary"
+  ],
+  "codes": [
+   "S2-R2",
+   "S2-R6"
+  ],
+  "fields": {
+   "title": "A/R Summary: a blank bucket cell stays at the bottom in both sort orders",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-11532",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Create, for this test, a customer, customer A, with one invoice of $100.00 that is 10 days past due on today's date, so its \"1-30 Days\" cell reads $100.00.</li><li>Create, for this test, a customer, customer B, with one unused credit memo of $50.00 dated 10 days ago, so its \"1-30 Days\" cell reads $-50.00.</li><li>Create, for this test, a customer, customer C, whose name is more than 60 characters long, with spaces, and includes each of these characters: &amp; \" ' &lt; &gt;, with one invoice dated today that is not yet due, so its \"1-30 Days\" cell is blank.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/R Summary (Reports, then \"A/R Aging Summary\" under ACCOUNTS RECEIVABLE in the left menu).</li><li>Leave the report with only customer A, customer B and customer C ticked in the Customer filter.</li></ul>",
+   "custom_steps": "<ol><li>Take a screenshot of the page, showing the column headings.</li><li>Click the \"1-30 Days\" header.</li><li>Click the \"1-30 Days\" header again.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Customer A's \"1-30 Days\" cell reads $100.00, customer B's reads $-50.00 and customer C's is blank.</li><li>Customer C's whole name shows exactly as typed, with its &amp; \" ' &lt; &gt; characters, and wraps inside its own cell without running into the next column.</li></ul><p>Step 2:</p><ul><li>The rows read customer A ($100.00), then customer B ($-50.00), then customer C (blank) at the bottom: largest first, the blank cell last.</li><li>Every column heading is in the same place as in your screenshot: none has moved left or right.</li></ul><p>Step 3:</p><ul><li>The rows read customer B ($-50.00), then customer A ($100.00), then customer C (blank), still at the bottom.</li><li>Every column heading is in the same place as in your screenshot: none has moved left or right.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 13 (13 Nov 2026, Chris Ward), read 13 Nov 2026, version re-checked 14 Nov 2026 &middot; Epic SV-11315, story SV-11532 (Story 2, Sort by clicking any column header)</p><ul><li><strong>S2-R6:</strong> &ldquo;A blank value (for example a vendor credit on A/P Unpaid Invoices, which has no due date and no Past Due) sorts to the bottom of its group in both directions. On A/P Detail a vendor credit shows its own date as its due date, as today, so it is not blank there.&rdquo;</li><li><strong>S2-R2:</strong> &ldquo;The first click gives the useful order for the kind of data: text (names, Location, Transaction Type) A to Z; money columns largest first; dates oldest first; Past Due largest first; ID and No. smallest number first (S2-R4). The second click reverses it. The third click repeats the first; there is no unsorted state.&rdquo;</li></ul><p>Not yet checked against a build: the QA build v26.45.2-6a8b89c exists since 10 Nov 2026 and this case has not been run on it yet.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 1 \"Opening order and header sorting\" (board Main.dc.html). The design pictures the Summaries sorted by name only; it draws no blank bucket cell sorted (all 7 boards checked, design version of 5 Nov 2026); the case follows the PRD.</p><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+  }
+ },
+ "S2-52": {
+  "sec": "SETUP",
+  "section_id": 133629,
+  "title": "A/P Summary: a blank bucket cell stays at the bottom in both sort orders",
+  "refs": "SV-11532",
+  "reports": [
+   "A/P Summary"
+  ],
+  "codes": [
+   "S2-R2",
+   "S2-R6"
+  ],
+  "fields": {
+   "title": "A/P Summary: a blank bucket cell stays at the bottom in both sort orders",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-11532",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Create, for this test, a vendor, vendor A, with one unpaid bill of $100.00 that is 10 days past due on today's date, so its \"1-30 Days\" cell reads $100.00.</li><li>Create, for this test, a vendor, vendor B, with one unused vendor credit of $50.00 dated 10 days ago, so its \"1-30 Days\" cell reads $-50.00.</li><li>Create, for this test, a vendor, vendor C, whose name is more than 60 characters long, with spaces, and includes each of these characters: &amp; \" ' &lt; &gt;, with one unpaid bill dated today that is not yet due, so its \"1-30 Days\" cell is blank.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/P Summary (Reports, then \"A/P Aging Summary\" under ACCOUNTS PAYABLE in the left menu).</li><li>Leave the report with only vendor A, vendor B and vendor C ticked in the Vendor filter.</li></ul>",
+   "custom_steps": "<ol><li>Take a screenshot of the page, showing the column headings.</li><li>Click the \"1-30 Days\" header.</li><li>Click the \"1-30 Days\" header again.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Vendor A's \"1-30 Days\" cell reads $100.00, vendor B's reads $-50.00 and vendor C's is blank.</li><li>Vendor C's whole name shows exactly as typed, with its &amp; \" ' &lt; &gt; characters, and wraps inside its own cell without running into the next column.</li></ul><p>Step 2:</p><ul><li>The rows read vendor A ($100.00), then vendor B ($-50.00), then vendor C (blank) at the bottom: largest first, the blank cell last.</li><li>Every column heading is in the same place as in your screenshot: none has moved left or right.</li></ul><p>Step 3:</p><ul><li>The rows read vendor B ($-50.00), then vendor A ($100.00), then vendor C (blank), still at the bottom.</li><li>Every column heading is in the same place as in your screenshot: none has moved left or right.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 13 (13 Nov 2026, Chris Ward), read 13 Nov 2026, version re-checked 14 Nov 2026 &middot; Epic SV-11315, story SV-11532 (Story 2, Sort by clicking any column header)</p><ul><li><strong>S2-R6:</strong> &ldquo;A blank value (for example a vendor credit on A/P Unpaid Invoices, which has no due date and no Past Due) sorts to the bottom of its group in both directions. On A/P Detail a vendor credit shows its own date as its due date, as today, so it is not blank there.&rdquo;</li><li><strong>S2-R2:</strong> &ldquo;The first click gives the useful order for the kind of data: text (names, Location, Transaction Type) A to Z; money columns largest first; dates oldest first; Past Due largest first; ID and No. smallest number first (S2-R4). The second click reverses it. The third click repeats the first; there is no unsorted state.&rdquo;</li></ul><p>Not yet checked against a build: the QA build v26.45.2-6a8b89c exists since 10 Nov 2026 and this case has not been run on it yet.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), version of 5 Nov 2026 (1793886208-34e0), read 10 Nov 2026: page 1 \"Opening order and header sorting\" (board Main.dc.html). The design pictures the Summaries sorted by name only; it draws no blank bucket cell sorted (all 7 boards checked, design version of 5 Nov 2026); the case follows the PRD.</p><p></p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>"
+  }
  }
 }

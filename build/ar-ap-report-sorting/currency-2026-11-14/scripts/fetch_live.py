@@ -28,7 +28,7 @@ def under(sid):
 keep = [c for c in cases if c["id"] in ours or under(c["section_id"]) or c["id"] in {t["case_id"] for t in tests}]
 json.dump({"read": datetime.datetime.utcnow().isoformat() + "Z", "folder_90418": f90418, "run": run,
            "sections": [{"id": s["id"], "name": s["name"], "parent_id": s["parent_id"], "description": s.get("description")} for s in secs if under(s["id"]) or s["id"] in {c["section_id"] for c in keep}],
-           "cases": keep, "tests": tests}, open(f"{OUT}/live-2026-11-14.json", "w"), indent=1)
+           "cases": keep, "tests": tests}, open(f"{OUT}/" + (sys.argv[1] if len(sys.argv) > 1 else "live-2026-11-14.json"), "w"), indent=1)
 from collections import Counter
 print("sections in suite", len(secs), "| cases in suite", len(cases), "| kept", len(keep))
 print("map ids", len(ours), "found live", len(ours & {c["id"] for c in cases}), "missing", sorted(ours - {c["id"] for c in cases}))

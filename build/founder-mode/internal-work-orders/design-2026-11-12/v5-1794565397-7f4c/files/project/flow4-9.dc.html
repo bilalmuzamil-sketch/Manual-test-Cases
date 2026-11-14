@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>09 Tech View</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:var(--sv-accent-text)}a:hover{color:var(--sv-accent-hover)}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; height: 840px; overflow: hidden; background: var(--sv-surface); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+    <div class="sv-app" style="height: 100%; display: flex; flex-direction: column;">
+      <x-import component-from-global-scope="SV.AppHeader" active="work-orders" user="M. Rhodes" hint-size="100%,64px"></x-import>
+      <div class="sv-content" style="padding: var(--sv-space-5) var(--sv-space-6); display: flex; flex-direction: column; gap: var(--sv-space-4);">
+        <span class="sv-h2">Tech View</span>
+        <span class="sv-body" style="color: var(--sv-text-secondary);">My assigned lines</span>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--sv-space-4); align-items: start;">
+          <div class="sv-card" data-sv-change="modified" style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2);"><span class="sv-body-strong">S2-34918</span><x-import component-from-global-scope="SV.Badge" tone="warning" shape="square" hint-size="80px,22px">Internal</x-import><span style="margin-left: auto; display: inline-flex;"><x-import component-from-global-scope="SV.Button" variant="secondary" icon="clock" hint-size="100px,32px">Clock In</x-import></span></div>
+            <span class="sv-body">Staging Heavy Duty Fleet · Unit 14</span>
+            <span class="sv-body2" style="color: var(--sv-text-secondary);">Replace - Brake caliper · 1.0 h</span>
+          </div>
+          <div class="sv-card" data-sv-change="unchanged" style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2);"><span class="sv-body-strong">S2-35102</span><span style="margin-left: auto; display: inline-flex;"><x-import component-from-global-scope="SV.Button" variant="secondary" icon="clock" hint-size="100px,32px">Clock In</x-import></span></div>
+            <span class="sv-body">Hilltop Logistics · Unit 7</span>
+            <span class="sv-body2" style="color: var(--sv-text-secondary);">Replace turbo actuator · 2.0 h</span>
+          </div>
+          <div class="sv-card" data-sv-change="unchanged" style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+            <div style="display: flex; align-items: center; gap: var(--sv-space-2);"><span class="sv-body-strong">S2-36001</span><span style="margin-left: auto; display: inline-flex;"><x-import component-from-global-scope="SV.Button" variant="secondary" icon="clock" hint-size="100px,32px">Clock In</x-import></span></div>
+            <span class="sv-body">Apex Freight Lines · Unit 22</span>
+            <span class="sv-body2" style="color: var(--sv-text-secondary);">PM Service · 1.5 h</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

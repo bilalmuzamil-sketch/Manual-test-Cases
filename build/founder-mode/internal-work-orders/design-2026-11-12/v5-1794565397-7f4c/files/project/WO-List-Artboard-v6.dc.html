@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WO List Artboard v6</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div data-sv-component="WorkOrdersPage" data-sv-change="{{ pageChange }}" style="height: 100%; display: flex; flex-direction: column; background: var(--sv-surface); overflow: hidden;">
+  <x-import component-from-global-scope="SV.WorkOrdersHeader" clock="{{ false }}" hint-size="100%,64px"></x-import>
+  <div data-popover-host="true" style="position: relative; z-index: 40; flex: none; display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; gap: var(--sv-space-3); padding: var(--sv-space-4) var(--sv-space-6);">
+    <span data-sv-component="WorkOrdersPage" data-sv-change="unchanged" style="display: inline-flex; flex: none;">
+      <x-import component-from-global-scope="SV.Tabs" tabs="{{ tabs }}" value="{{ tabLabel }}" on-change="{{ noop }}" hint-size="340px,32px"></x-import>
+    </span>
+    <div style="display: flex; align-items: center; gap: var(--sv-space-1); flex-wrap: nowrap; justify-content: flex-end; min-width: 0; flex: 0 1 auto;">
+      <x-import component-from-global-scope="ExpandingSearch" value="" on-change="{{ noop }}" hint-size="40px,36px"></x-import>
+      <div style="display: flex; align-items: center; gap: var(--sv-space-1); flex-wrap: nowrap; justify-content: flex-end; flex: none;">
+      <span data-sv-component="FilterBar" data-sv-change="unchanged" style="display: inline-flex; flex: none;">
+        <x-import component-from-global-scope="SV.WorkOrdersFilterBar" filters="{{ filters }}" set-filters="{{ noop }}" inline="{{ true }}" hide="{{ hide }}" hint-size="320px,28px"></x-import>
+      </span>
+      <sc-if value="{{ showClassChip }}" hint-placeholder-val="{{ false }}">
+<span data-sv-component="FilterBar" data-sv-change="new" style="display: inline-flex; flex: none; position: relative;">
+<x-import component-from-global-scope="FilterChip" label="Classification" has-value="{{ true }}" value-text="{{ classText }}" on-click="{{ noop }}" hint-size="170px,28px"></x-import>
+<sc-if value="{{ classOpen }}" hint-placeholder-val="{{ false }}">
+<div class="sv-menu" role="listbox" data-sv-change="new" style="position: absolute; top: 34px; left: 0; width: 200px; z-index: 60;">
+<sc-for list="{{ classOpts }}" as="o" hint-placeholder-count="3"><x-import component-from-global-scope="SV.MenuRow" checkable="{{ true }}" checked="{{ o.on }}" hint-size="100%,36px">{{ o.label }}</x-import></sc-for>
+</div>
+</sc-if>
+</span>
+
+</sc-if>
+<sc-if value="{{ showChip3 }}" hint-placeholder-val="{{ false }}">
+<span data-sv-component="FilterBar" data-sv-change="new" style="display: inline-flex; flex: none;">
+<x-import component-from-global-scope="FilterChip" label="Internal work orders" icon="{{ icBuilding }}" has-value="{{ true }}" value-text="{{ chip3Text }}" on-click="{{ noop }}" hint-size="220px,28px"></x-import>
+</span>
+</sc-if>
+<sc-if value="{{ showStatusOpen }}" hint-placeholder-val="{{ false }}">
+<span data-sv-component="FilterBar" data-sv-change="modified" style="display: inline-flex; flex: none; position: relative;">
+<x-import component-from-global-scope="FilterChip" label="Status" has-value="{{ true }}" value-text="Closed" open="{{ true }}" on-click="{{ noop }}" hint-size="140px,28px"></x-import>
+<div class="sv-menu" role="listbox" style="position: absolute; top: 34px; right: 0; width: 220px; z-index: 60;">
+<sc-for list="{{ statusOpts }}" as="o" hint-placeholder-count="6"><div data-sv-change="{{ o.change }}" style="display: contents;"><x-import component-from-global-scope="SV.MenuRow" checkable="{{ true }}" checked="{{ o.on }}" hint-size="100%,36px">{{ o.label }}</x-import></div></sc-for>
+</div>
+</span>
+</sc-if>
+<sc-if value="{{ showInternalChip }}" hint-placeholder-val="{{ true }}">
+        <span data-sv-component="FilterBar" data-sv-change="new" style="display: inline-flex; flex: none;">
+          <x-import component-from-global-scope="FilterChip" label="Internal" icon="{{ icBuilding }}" toggle="{{ true }}" has-value="{{ internalOnly }}" on-click="{{ noop }}" hint-size="100px,28px"></x-import>
+        </span>
+      </sc-if>
+      </div>
+      <span style="display: inline-flex; flex: none;"><x-import component-from-global-scope="SV.Button" variant="tertiary" icon="columns-3" aria-label="Columns" hint-size="40px,36px"></x-import></span>
+      <span ref="{{ createRef }}" data-sv-component="WorkOrdersPage" data-sv-change="unchanged" style="display: inline-flex; flex: none;"><x-import component-from-global-scope="SV.Button" variant="primary" hint-size="170px,36px">Create Work Order</x-import></span>
+    </div>
+  </div>
+  <div style="height: 1px; flex: none; background: var(--sv-border-default);"></div>
+  <div data-sv-component="WorkOrdersPage" data-sv-change="{{ tableChange }}" style="flex: 1; min-height: 0; overflow: auto;">
+    <x-import component-from-global-scope="SV.WorkOrderTable" rows="{{ rows }}" cols="{{ cols }}" tab="{{ tableTab }}" filters="{{ filters }}" on-clear="{{ noop }}" hint-size="100%,400px"></x-import>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:680},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;current&quot;,&quot;proposed&quot;,&quot;off&quot;],&quot;default&quot;:&quot;proposed&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;all&quot;,&quot;estimates&quot;,&quot;workorders&quot;,&quot;completed&quot;],&quot;default&quot;:&quot;all&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;filter&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;all&quot;,&quot;internal&quot;],&quot;default&quot;:&quot;all&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ncRow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;classOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;classChip&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;all&quot;,&quot;internal&quot;,&quot;nocharge&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;badgeAll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;chip3&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;statusClosed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;listBadge&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;invoicedRow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const ALL = [
+  { id: 'S2-34918', est: 'In progress', est_color: 'ok', internal: true, cust: 'Staging Heavy Duty Fleet', asset: '2017 Ford Transit', unit: 'Unit 14', adv: 'Admin ShopView', tech: 'M. Rhodes', lines: 2, total: '$675.00' },
+  { id: 'S2-34863', est: 'Approved', est_color: 'ok', cust: '4 Star Truck Repair', asset: 'Ford Transit', unit: '', adv: 'Admin ShopView', tech: '', lines: 1, total: '$269.90' },
+  { id: 'S2-34880', est: 'Review', est_color: 'ok', internal: true, cust: 'Staging Heavy Duty Fleet', asset: 'Toyota 8FGU25 forklift', unit: 'Forklift 2', adv: 'Admin ShopView', tech: 'J. Okonkwo', lines: 1, total: '$340.00' },
+  { id: 'S2-34482', est: 'Approved', est_color: 'ok', cust: 'Ave Maria Truck Repair', asset: 'Ford E-250', unit: '', adv: 'Admin ShopView', tech: '', lines: 1, total: '$199.95' },
+  { id: 'S2-34479', est: 'Approved', est_color: 'ok', cust: '7 Star Truck Repair', asset: 'Hyundai Santa Fe', unit: '665', adv: 'Admin ShopView', tech: '', lines: 1, total: '$264.00' },
+  { id: 'S2-34901', est: 'Estimate', est_color: 'err', cust: 'ZZAUTOTEST Bridgeport Hauling', asset: 'Freightliner Cascadia', unit: 'ZZT-4471', adv: 'Admin ShopView', tech: '', lines: 1, total: '$400.00' },
+  { id: 'S2-34870', est: 'Invoiced', est_color: 'ok', internal: true, cust: 'Staging Heavy Duty Fleet', asset: '2019 Freightliner Cascadia', unit: 'Unit 12', adv: 'Admin ShopView', tech: 'M. Rhodes', lines: 4, total: '$2,100.00' },
+  { id: 'S2-34374', est: 'Complete', est_color: 'err', cust: 'ZZAUTOTEST Bridgeport Hauling', asset: 'Freightliner Cascadia', unit: 'ZZT-4471', adv: 'Admin ShopView', tech: 'A. Keating', lines: 3, total: '$1,240.00' },
+];
+const TAB = { all: 'All', estimates: 'Estimates', workorders: 'Work Orders', completed: 'Completed' };
+class Component extends DCLogic {
+  componentDidMount() {
+    const kick = () => window.dispatchEvent(new Event('resize'));
+    this._raf = requestAnimationFrame(kick);
+    this._ts = [300, 1000, 2000, 4000, 7000].map((ms) => setTimeout(kick, ms));
+    if (window.ResizeObserver) {
+      this._ro = new ResizeObserver(kick);
+      const tryObserve = () => { const el = this.createRef.current; if (el) this._ro.observe(el); else this._ts.push(setTimeout(tryObserve, 200)); };
+      tryObserve();
+    }
+  }
+  componentWillUnmount() { cancelAnimationFrame(this._raf); (this._ts || []).forEach(clearTimeout); this._ro && this._ro.disconnect(); }
+  createRef = React.createRef();
+  renderVals() {
+    const variant = this.props.variant ?? 'proposed';
+    const isCurrent = variant === 'current';
+    const tab = this.props.tab ?? (isCurrent ? 'workorders' : 'all');
+    const filter = this.props.filter ?? 'all';
+    const internalOnly = filter === 'internal';
+    const chip3 = !!this.props.chip3;
+    const hideInternal = chip3 && filter === 'hide';
+    const closedOnly = !!this.props.statusClosed;
+    const h = React.createElement;
+    // keyed: keeps the string value for the table's keys, tab filters and tone lookup
+    const keyed = (el, s) => Object.create(el, { toString: { value: () => s } });
+    const NC_ROW = { id: 'S2-35102', est: 'In progress', est_color: 'ok', nocharge: true, cust: 'Hilltop Logistics', asset: '2019 Freightliner Cascadia', unit: 'Unit 7', adv: 'Admin ShopView', tech: 'M. Rhodes', lines: 1, total: 'No Charge' };
+    const base0 = this.props.ncRow ? [ALL[0], NC_ROW, ...ALL.slice(1)] : ALL;
+    const src = this.props.invoicedRow ? base0.map((r) => r.id === 'S2-34918' ? { ...r, est: 'Invoiced', est_color: 'ok' } : r) : base0;
+    const rows = src.filter((r) => !(isCurrent && r.internal)).filter((r) => !internalOnly || r.internal || r.nocharge).filter((r) => !hideInternal || !r.internal).filter((r) => !closedOnly || (r.internal && String(r.est) === 'Invoiced'))
+      .map((r) => !r.nocharge ? r : { ...r, cust: keyed(h('span', { style: { display: 'inline-flex', alignItems: 'center', gap: 'var(--sv-space-2)' } }, String(r.cust), window.SV && window.SV.Badge ? h(window.SV.Badge, { tone: 'warning', shape: 'square', size: 'sm' }, 'No Charge') : null), String(r.cust)) })
+      .map((r) => !r.internal ? r : { ...r, est: r.est === 'Invoiced' ? 'Closed' : r.est, total: 'No Charge', cust: keyed(h('span', { style: { display: 'inline-flex', alignItems: 'center', gap: 'var(--sv-space-2)' } }, String(r.cust), window.SV && window.SV.Badge ? h(window.SV.Badge, { tone: 'warning', shape: 'square', size: 'sm' }, 'Internal') : null), String(r.cust)) });
+    const SVI = window.SV && window.SV.Icon;
+    return {
+      tabs: ['All', 'Estimates', 'Work Orders', 'Completed'].map((label) => ({ key: label, label })),
+      tabLabel: TAB[tab],
+      tableTab: closedOnly ? 'All' : TAB[tab],
+      rows,
+      cols: ['onsite', 'status', 'number', 'cust', 'unit', 'asset', 'tech', 'lines', 'total'],
+      filters: {},
+      hide: closedOnly ? ['tech', 'dept', 'status'] : ['tech', 'dept'],
+      showInternalChip: !isCurrent && !chip3 && !closedOnly && !this.props.classChip,
+      showChip3: !isCurrent && chip3,
+      chip3Text: filter === 'internal' ? 'Only internal' : filter === 'hide' ? 'Hide' : 'Show all',
+      showStatusOpen: closedOnly,
+      showClassChip: !!this.props.classChip,
+      classOpen: !!this.props.classOpen,
+      classOpts: ['All', 'Billable', 'Internal', 'No Charge'].map((label) => ({ label, on: label === (this.props.classChip === 'internal' ? 'Internal' : this.props.classChip === 'nocharge' ? 'No Charge' : 'All') })),
+      classText: this.props.classChip === 'internal' ? 'Internal' : this.props.classChip === 'nocharge' ? 'No Charge' : 'All',
+      statusOpts: [['Estimate'], ['In Progress'], ['Completed'], ['Invoiced'], ['Paid'], ['Closed', true, 'new']].map(([label, on, change]) => ({ label, on: !!on, change: change || 'unchanged' })),
+      internalOnly,
+      createRef: this.createRef,
+      pageChange: isCurrent ? 'unchanged' : 'modified',
+      tableChange: isCurrent ? 'unchanged' : 'modified',
+      icBuilding: SVI ? h(SVI, { name: 'building-2', size: 16 }) : null,
+      noop: () => {},
+    };
+  }
+}
+</script>
+</body>
+</html>

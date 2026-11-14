@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WO Settings Artboard v6</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+<link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+<script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="sv-app" style="height: 100%; position: relative;">
+  <x-import component-from-global-scope="SV.AppHeader" active="settings" user="Admin ShopView" hint-size="100%,64px"></x-import>
+  <div class="sv-main">
+    <aside class="sv-side" style="width: 240px; gap: var(--sv-space-3); padding: var(--sv-space-4) var(--sv-space-3); background: var(--sv-surface);">
+      <sc-for list="{{ nav }}" as="g" hint-placeholder-count="6">
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div class="sv-side__title" style="padding: 0 var(--sv-space-3);">{{ g.title }}</div>
+          <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="4">
+            <div style="position: relative;">
+              <button type="button" class="sv-menu__row {{ it.cls }}" aria-disabled="{{ it.disabled }}" style="height: 28px; padding: 0 var(--sv-space-3); min-height: 0; width: 100%; opacity: {{ it.opacity }};"><x-import component-from-global-scope="SV.Icon" name="{{ it.icon }}" size="{{ 16 }}" hint-size="16px,16px"></x-import><span class="sv-menu__label">{{ it.label }}</span></button>
+              <sc-if value="{{ it.tip }}" hint-placeholder-val="{{ false }}">
+                <div class="sv-tt" role="tooltip" style="position: absolute; left: calc(100% + 8px); top: 50%; transform: translateY(-50%); width: 240px; white-space: normal; z-index: 20;"><span class="sv-tt__label" style="text-wrap: pretty;">Turn on Internal Work Orders in Settings &gt; Work Orders.</span></div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </aside>
+    <div class="sv-content" style="padding: var(--sv-space-5) var(--sv-space-6); overflow: auto;">
+      <sc-if value="{{ isQb }}" hint-placeholder-val="{{ false }}">
+        <div data-sv-component="QuickBooksAccountMapping" data-sv-change="modified" style="max-width: 900px; display: flex; flex-direction: column; gap: var(--sv-space-5); padding: var(--sv-space-3) var(--sv-space-3) 0;">
+          <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+            <span class="sv-h3">Account mapping</span>
+            <span class="sv-body" style="color: var(--sv-text-secondary);">Choose the QuickBooks account each Shopview amount posts to.</span>
+          </div>
+          <div class="sv-card sv-card--flush" style="overflow: visible;">
+            <table class="sv-table" style="width: 100%;">
+              <thead><tr><th>Shopview</th><th style="width: 340px;">QuickBooks account</th></tr></thead>
+              <tbody>
+                <sc-for list="{{ qbRows }}" as="q" hint-placeholder-count="4">
+                  <tr data-sv-change="{{ q.change }}"><td class="sv-body-strong">{{ q.k }}</td><td><x-import component-from-global-scope="SV.Select" label="Account" value="{{ q.v }}" hint-size="320px,48px"></x-import></td></tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <div data-sv-component="QuickBooksAccountMapping" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-2); max-width: 420px;">
+            <x-import component-from-global-scope="SV.Select" label="Labor on internal work orders" value="Hours only" hint-size="100%,48px"></x-import>
+            <div class="sv-menu" role="listbox" style="position: static; width: 100%;">
+              <button type="button" role="option" aria-selected="true" class="sv-menu__row is-active"><span class="sv-menu__label">Hours only</span><x-import component-from-global-scope="SV.Icon" name="check" size="{{ 16 }}" hint-size="16px,16px"></x-import></button>
+              <button type="button" role="option" aria-selected="false" class="sv-menu__row"><span class="sv-menu__label">Move labor cost at technician pay</span></button>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: flex-end;">
+            <x-import component-from-global-scope="SV.Button" variant="primary" hint-size="130px,36px">Save Settings</x-import>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notQb }}" hint-placeholder-val="{{ true }}">
+      <div class="sv-tabs-row">
+        <div class="sv-tabs" role="tablist" style="white-space: nowrap;">
+          <button type="button" role="tab" class="sv-tab" aria-selected="false">Organization</button>
+          <button type="button" role="tab" class="sv-tab" aria-selected="false">Invoice</button>
+          <button type="button" role="tab" class="sv-tab" aria-selected="true">Work Orders</button>
+        </div>
+      </div>
+      <div data-sv-component="WorkOrderSettings" data-sv-change="{{ settingsChange }}" style="max-width: 900px; display: flex; flex-direction: column; gap: var(--sv-space-6); padding: var(--sv-space-3) var(--sv-space-3) 0;">
+        <sc-for list="{{ sections }}" as="s" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+            <span class="sv-caption" style="text-transform: uppercase; letter-spacing: var(--sv-tracking-wider); color: var(--sv-text-secondary);">{{ s.title }}</span>
+            <sc-for list="{{ s.rows }}" as="r" hint-placeholder-count="2">
+              <div data-sv-component="WorkOrderSettings" data-sv-change="{{ r.change }}" style="display: flex; flex-direction: column; gap: var(--sv-space-3);">
+                <div style="display: grid; grid-template-columns: minmax(0,1fr) auto; gap: var(--sv-space-8); align-items: center;">
+                  <div style="display: flex; flex-direction: column; gap: var(--sv-space-1); max-width: 560px;">
+                    <span class="sv-body-strong">{{ r.label }}</span>
+                    <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">{{ r.help }}</span>
+                  </div>
+                  <button type="button" role="switch" aria-checked="{{ r.on }}" class="sv-toggle {{ r.cls }}"><span class="sv-toggle__thumb"></span></button>
+                </div>
+                <sc-if value="{{ r.hintOn }}" hint-placeholder-val="{{ false }}">
+                  <div data-sv-component="WorkOrderSettings" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-2); max-width: 640px;">
+                    <sc-if value="{{ r.hintTextOn }}" hint-placeholder-val="{{ false }}">
+                      <span class="sv-body2" style="display: flex; align-items: center; gap: var(--sv-space-1); color: var(--sv-text-secondary);"><x-import component-from-global-scope="SV.Icon" name="info" size="{{ 16 }}" hint-size="16px,16px"></x-import><span>{{ r.hintText }}</span></span>
+                    </sc-if>
+                    <sc-if value="{{ r.hintCategories }}" hint-placeholder-val="{{ false }}">
+                      <span class="sv-body2" style="display: flex; align-items: center; gap: var(--sv-space-1); color: var(--sv-text-secondary);"><x-import component-from-global-scope="SV.Icon" name="info" size="{{ 16 }}" hint-size="16px,16px"></x-import><span>Manage categories in <a href="#" style="color: var(--sv-accent);">Internal Work Orders</a> (Administration &gt; Service). Their expense accounts are set there or in Integrations &gt; <a href="#" style="color: var(--sv-accent);">QuickBooks</a>.</span></span>
+                    </sc-if>
+                    <sc-if value="{{ r.hintAccounts }}" hint-placeholder-val="{{ false }}">
+                      <span class="sv-body2" style="display: flex; align-items: center; gap: var(--sv-space-1); color: var(--sv-text-secondary);"><svg width="16" height="16" viewBox="0 0 16 16" role="img" aria-label="QuickBooks" style="flex: none;"><circle cx="8" cy="8" r="8" fill="#2CA01C"></circle><text x="8" y="11.3" font-size="8.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" font-family="Inter, Arial, sans-serif">qb</text></svg><span>Map their expense accounts in Integrations &gt; <a href="#" style="color: var(--sv-accent);">QuickBooks</a>.</span></span>
+                    </sc-if>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ r.lists }}" hint-placeholder-val="{{ false }}">
+                  <div data-sv-component="WorkOrderSettings" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-5); padding-top: var(--sv-space-2);">
+                    <sc-for list="{{ r.catLists }}" as="l" hint-placeholder-count="2">
+                      <div style="display: flex; flex-direction: column; gap: var(--sv-space-3);">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sv-space-4);">
+                          <div style="display: flex; flex-direction: column; gap: var(--sv-space-1); max-width: 560px;">
+                            <span class="sv-body-strong">{{ l.title }}</span>
+                            <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">{{ l.help }}</span>
+                          </div>
+                          <x-import component-from-global-scope="SV.Button" variant="secondary" size="sm" icon="plus" hint-size="200px,32px">{{ l.cta }}</x-import>
+                        </div>
+                        <div class="sv-card sv-card--flush" style="overflow: hidden;">
+                          <table class="sv-table" style="width: 100%;">
+                            <thead><tr><th>Category</th><th style="width: 300px;"><span style="display: inline-flex; align-items: center; gap: var(--sv-space-1);"><svg width="14" height="14" viewBox="0 0 16 16" role="img" aria-label="QuickBooks" style="flex: none;"><circle cx="8" cy="8" r="8" fill="#2CA01C"></circle><text x="8" y="11.3" font-size="8.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" font-family="Inter, Arial, sans-serif">qb</text></svg>QuickBooks expense account</span></th><th style="width: 180px;">{{ l.col3 }}</th><th class="sv-num" style="width: 150px;">Work orders</th><th style="width: 48px;"></th></tr></thead>
+                            <tbody>
+                              <sc-for list="{{ l.rows }}" as="c" hint-placeholder-count="4">
+                                <tr>
+                                  <td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-2);"><span class="sv-body-strong">{{ c.name }}</span><sc-if value="{{ c.isDefault }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="SV.Badge" tone="neutral" shape="square" size="sm" hint-size="56px,20px">Default</x-import></sc-if></span></td>
+                                  <td><sc-if value="{{ c.hasAccount }}" hint-placeholder-val="{{ true }}"><span class="sv-body">{{ c.account }}</span></sc-if><sc-if value="{{ c.noAccount }}" hint-placeholder-val="{{ false }}"><span class="sv-body2" style="display: inline-flex; align-items: center; gap: var(--sv-space-1); color: var(--sv-warning-text);"><x-import component-from-global-scope="SV.Icon" name="triangle-alert" size="{{ 16 }}" hint-size="16px,16px"></x-import>Not set</span></sc-if></td>
+                                  <td><span class="sv-body2" style="color: var(--sv-text-secondary);">{{ c.col3 }}</span></td>
+                                  <td class="sv-num">{{ c.count }}</td>
+                                  <td><button type="button" class="sv-btn sv-btn--tertiary sv-btn--xs" aria-label="Category actions" style="padding: 0 var(--sv-space-1);"><x-import component-from-global-scope="SV.Icon" name="ellipsis" size="{{ 16 }}" hint-size="16px,16px"></x-import></button></td>
+                                </tr>
+                              </sc-for>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </sc-for>
+                    <span class="sv-body2" style="color: var(--sv-text-secondary);">Archived categories stay on the work orders that used them and in reports. <a href="#" style="color: var(--sv-accent);">Show archived (1)</a></span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ r.subCustomer }}" hint-placeholder-val="{{ false }}">
+                  <div data-sv-component="WorkOrderSettings" data-sv-change="new" style="display: flex; flex-direction: column; gap: var(--sv-space-2); max-width: 640px;">
+                    <div style="display: flex; flex-direction: column; gap: var(--sv-space-2); max-width: 420px;">
+                      <span class="sv-body-strong">Internal customers</span>
+                      <div class="sv-card sv-card--flush" style="display: flex; flex-direction: column;"><div style="display: flex; align-items: center; justify-content: space-between; gap: var(--sv-space-3); padding: var(--sv-space-2) var(--sv-space-3); border-bottom: 1px solid var(--sv-border-default);"><span class="sv-body">Staging Heavy Duty Fleet</span><a href="#" class="sv-body2" style="color: var(--sv-accent);">Remove</a></div><sc-if value="{{ r.refused }}" hint-placeholder-val="{{ false }}"><span data-sv-change="new" class="sv-body2" style="display: flex; align-items: center; gap: var(--sv-space-1); padding: var(--sv-space-2) var(--sv-space-3); color: var(--sv-danger-text); border-bottom: 1px solid var(--sv-border-default);"><x-import component-from-global-scope="SV.Icon" name="circle-alert" size="{{ 16 }}" hint-size="16px,16px"></x-import>Close or move the 2 open internal work orders first.</span></sc-if><div style="display: flex; align-items: center; justify-content: space-between; gap: var(--sv-space-3); padding: var(--sv-space-2) var(--sv-space-3); border-bottom: 1px solid var(--sv-border-default);"><span class="sv-body">Staging Heavy Duty Rentals</span><a href="#" class="sv-body2" style="color: var(--sv-accent);">Remove</a></div></div>
+                      <a href="#" class="sv-body2" style="color: var(--sv-accent); display: inline-flex; align-items: center; gap: var(--sv-space-1);"><x-import component-from-global-scope="SV.Icon" name="plus" size="{{ 16 }}" hint-size="16px,16px"></x-import>Add customer</a>
+                    </div>
+                    <span class="sv-body2" style="display: flex; align-items: center; gap: var(--sv-space-1); color: var(--sv-text-secondary);"><x-import component-from-global-scope="SV.Icon" name="info" size="{{ 16 }}" hint-size="16px,16px"></x-import><span>Set the internal expense account in Settings &gt; <a href="#" style="color: var(--sv-accent);">QuickBooks</a></span></span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ r.subMissing }}" hint-placeholder-val="{{ false }}">
+                  <span data-sv-component="WorkOrderSettings" data-sv-change="new" class="sv-body2" style="display: flex; align-items: center; gap: var(--sv-space-1); color: var(--sv-warning-text);"><x-import component-from-global-scope="SV.Icon" name="triangle-alert" size="{{ 16 }}" hint-size="16px,16px"></x-import><span>No internal customer set. Work orders for your own equipment stay billable until you add one. No charge on customer work orders works now. <a href="#" style="color: var(--sv-accent);">Add customer</a></span></span>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+        <div style="display: flex; justify-content: flex-end;">
+          <x-import component-from-global-scope="SV.Button" variant="primary" hint-size="130px,36px">Save Settings</x-import>
+        </div>
+      </div>
+      </sc-if>
+      <sc-if value="{{ isCats }}" hint-placeholder-val="{{ false }}">
+      <div data-sv-component="InternalWorkOrderCategories" data-sv-change="new" style="max-width: 960px; display: flex; flex-direction: column; gap: var(--sv-space-5); padding: var(--sv-space-3) var(--sv-space-3) 0;">
+        <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+          <span class="sv-h2">Internal Work Orders</span>
+          <span class="sv-body" style="color: var(--sv-text-secondary); text-wrap: pretty;">Categories for work that is not billed: your own equipment (Internal) and a customer's free job (No Charge). Each category names the expense account its parts cost posts to.</span>
+        </div>
+        <sc-if value="{{ catsOff }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="SV.Alert" tone="info" hint-size="100%,56px">Internal Work Orders is off. Turn it on in Settings &gt; Work Orders to use these categories; nothing here is deleted while it is off.</x-import>
+        </sc-if>
+        <div class="sv-tabs-row">
+          <div class="sv-tabs" role="tablist" style="white-space: nowrap;">
+            <button type="button" role="tab" class="sv-tab" aria-selected="{{ tabInternal }}">Internal categories</button>
+            <button type="button" role="tab" class="sv-tab" aria-selected="{{ tabNoCharge }}">No Charge categories</button>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: var(--sv-space-3); opacity: {{ listOpacity }};">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sv-space-4);">
+            <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty; max-width: 600px;">{{ activeList.help }}</span>
+            <x-import component-from-global-scope="SV.Button" variant="primary" size="sm" icon="plus" disabled="{{ catsOff }}" hint-size="200px,32px">{{ activeList.cta }}</x-import>
+          </div>
+          <div class="sv-card sv-card--flush" style="overflow: hidden;">
+            <table class="sv-table" style="width: 100%;">
+              <thead><tr><th>Category</th><th style="width: 300px;"><span style="display: inline-flex; align-items: center; gap: var(--sv-space-1);"><svg width="14" height="14" viewBox="0 0 16 16" role="img" aria-label="QuickBooks" style="flex: none;"><circle cx="8" cy="8" r="8" fill="#2CA01C"></circle><text x="8" y="11.3" font-size="8.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" font-family="Inter, Arial, sans-serif">qb</text></svg>QuickBooks expense account</span></th><th style="width: 180px;">{{ activeList.col3 }}</th><th class="sv-num" style="width: 150px;">Work orders</th><th style="width: 48px;"></th></tr></thead>
+              <tbody>
+                <sc-for list="{{ activeList.rows }}" as="c" hint-placeholder-count="4">
+                  <tr>
+                    <td><span style="display: inline-flex; align-items: center; gap: var(--sv-space-2);"><span class="sv-body-strong">{{ c.name }}</span><sc-if value="{{ c.isDefault }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="SV.Badge" tone="neutral" shape="square" size="sm" hint-size="56px,20px">Default</x-import></sc-if></span></td>
+                    <td><sc-if value="{{ c.hasAccount }}" hint-placeholder-val="{{ true }}"><span class="sv-body">{{ c.account }}</span></sc-if><sc-if value="{{ c.noAccount }}" hint-placeholder-val="{{ false }}"><span class="sv-body2" style="display: inline-flex; align-items: center; gap: var(--sv-space-1); color: var(--sv-warning-text);"><x-import component-from-global-scope="SV.Icon" name="triangle-alert" size="{{ 16 }}" hint-size="16px,16px"></x-import>Not set</span></sc-if></td>
+                    <td><span class="sv-body2" style="color: var(--sv-text-secondary);">{{ c.col3 }}</span></td>
+                    <td class="sv-num">{{ c.count }}</td>
+                    <td><button type="button" class="sv-btn sv-btn--tertiary sv-btn--xs" aria-label="Category actions" style="padding: 0 var(--sv-space-1);"><x-import component-from-global-scope="SV.Icon" name="ellipsis" size="{{ 16 }}" hint-size="16px,16px"></x-import></button></td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <span class="sv-body2" style="color: var(--sv-text-secondary);">The QuickBooks column shows Staging Main, the location you are in; the dialog sets every location. Archived categories stay on the work orders that used them and in reports. <a href="#" style="color: var(--sv-accent);">Show archived (1)</a></span>
+        </div>
+      </div>
+      </sc-if>
+    </div>
+  </div>
+  <sc-if value="{{ dlgNoCharge }}" hint-placeholder-val="{{ false }}">
+    <div class="sv-scrim" style="position: absolute;">
+      <div class="sv-modal" role="dialog" data-sv-component="WorkOrderSettings" data-sv-change="new" style="width: 520px; overflow: visible;">
+        <div class="sv-modal__header"><div class="sv-modal__title">New No Charge Category</div><button type="button" class="sv-modal__close" aria-label="Close"><x-import component-from-global-scope="SV.Icon" name="x" size="{{ 20 }}" hint-size="20px,20px"></x-import></button></div>
+        <div class="sv-modal__body" style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+          <span class="sv-body" style="color: var(--sv-text-secondary); text-wrap: pretty;">Shown in the Category select when a work order is marked No Charge. It shows on the work order, the NO CHARGE document and the Internal Work Orders report.</span>
+          <x-import component-from-global-scope="SV.Input" label="Name *" value="Comeback" hint-size="100%,48px"></x-import>
+          <div style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+            <span class="sv-body-strong" style="display: inline-flex; align-items: center; gap: var(--sv-space-1);"><svg width="16" height="16" viewBox="0 0 16 16" role="img" aria-label="QuickBooks" style="flex: none;"><circle cx="8" cy="8" r="8" fill="#2CA01C"></circle><text x="8" y="11.3" font-size="8.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" font-family="Inter, Arial, sans-serif">qb</text></svg>QuickBooks expense account</span>
+            <div class="sv-card sv-card--flush" style="display: flex; flex-direction: column;">
+              <div style="display: grid; grid-template-columns: 150px minmax(0,1fr); gap: var(--sv-space-3); align-items: center; padding: var(--sv-space-2) var(--sv-space-3); border-bottom: 1px solid var(--sv-border-default);"><span class="sv-body">Staging Main</span><x-import component-from-global-scope="SV.Select" label="Account" value="6440 Comeback Expense" hint-size="100%,48px"></x-import></div>
+              <div style="display: grid; grid-template-columns: 150px minmax(0,1fr); gap: var(--sv-space-3); align-items: center; padding: var(--sv-space-2) var(--sv-space-3);"><span class="sv-body">Staging North</span><x-import component-from-global-scope="SV.Select" label="Account" value="" hint-size="100%,48px"></x-import></div>
+            </div>
+            <span class="sv-body2" style="color: var(--sv-text-secondary); text-wrap: pretty;">One per connected location, picked from the chart that is already in QuickBooks. Parts cost of this category posts here instead of Cost of Parts. Empty: posts to the ShopView Review account until you pick one.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+            <x-import component-from-global-scope="SV.Checkbox" checked="{{ true }}" label="Requires the original work order" hint-size="260px,20px"></x-import>
+            <span class="sv-body2" style="color: var(--sv-text-secondary); padding-left: var(--sv-space-6); text-wrap: pretty;">The work order asks which earlier work order the job comes from, or "Not in ShopView". Optional when the work order is created, required at Close.</span>
+          </div>
+        </div>
+        <div class="sv-modal__footer">
+          <x-import component-from-global-scope="SV.Button" variant="secondary" hint-size="80px,36px">Cancel</x-import>
+          <x-import component-from-global-scope="SV.Button" variant="primary" hint-size="72px,36px">Save</x-import>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ dlgInternal }}" hint-placeholder-val="{{ false }}">
+    <div class="sv-scrim" style="position: absolute;">
+      <div class="sv-modal" role="dialog" data-sv-component="WorkOrderSettings" data-sv-change="new" style="width: 520px; overflow: visible;">
+        <div class="sv-modal__header"><div class="sv-modal__title">New Internal Category</div><button type="button" class="sv-modal__close" aria-label="Close"><x-import component-from-global-scope="SV.Icon" name="x" size="{{ 20 }}" hint-size="20px,20px"></x-import></button></div>
+        <div class="sv-modal__body" style="display: flex; flex-direction: column; gap: var(--sv-space-4);">
+          <span class="sv-body" style="color: var(--sv-text-secondary); text-wrap: pretty;">Where the cost of work on your own equipment goes. Each internal customer has a default category; a work order can change it.</span>
+          <x-import component-from-global-scope="SV.Input" label="Name *" value="Shop Equipment Maintenance" hint-size="100%,48px"></x-import>
+          <div style="display: flex; flex-direction: column; gap: var(--sv-space-2);">
+            <span class="sv-body-strong" style="display: inline-flex; align-items: center; gap: var(--sv-space-1);"><svg width="16" height="16" viewBox="0 0 16 16" role="img" aria-label="QuickBooks" style="flex: none;"><circle cx="8" cy="8" r="8" fill="#2CA01C"></circle><text x="8" y="11.3" font-size="8.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" font-family="Inter, Arial, sans-serif">qb</text></svg>QuickBooks expense account</span>
+            <div class="sv-card sv-card--flush" style="display: flex; flex-direction: column;">
+              <div style="display: grid; grid-template-columns: 150px minmax(0,1fr); gap: var(--sv-space-3); align-items: center; padding: var(--sv-space-2) var(--sv-space-3); border-bottom: 1px solid var(--sv-border-default);"><span class="sv-body">Staging Main</span><x-import component-from-global-scope="SV.Select" label="Account" value="" hint-size="100%,48px"></x-import></div>
+              <div style="display: grid; grid-template-columns: 150px minmax(0,1fr); gap: var(--sv-space-3); align-items: center; padding: var(--sv-space-2) var(--sv-space-3);"><span class="sv-body">Staging North</span><x-import component-from-global-scope="SV.Select" label="Account" value="" hint-size="100%,48px"></x-import></div>
+            </div>
+            <span class="sv-body2" style="display: flex; align-items: flex-start; gap: var(--sv-space-1); color: var(--sv-warning-text); text-wrap: pretty;"><x-import component-from-global-scope="SV.Icon" name="triangle-alert" size="{{ 16 }}" hint-size="16px,16px"></x-import><span>Not set at any location. Parts cost of this category posts to the ShopView Review account until you pick one.</span></span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: var(--sv-space-1);">
+            <x-import component-from-global-scope="SV.Checkbox" checked="{{ false }}" label="Default category" hint-size="200px,20px"></x-import>
+            <span class="sv-body2" style="color: var(--sv-text-secondary); padding-left: var(--sv-space-6); text-wrap: pretty;">Used by internal customers that have no category of their own. One default at a time; it cannot be archived.</span>
+          </div>
+        </div>
+        <div class="sv-modal__footer">
+          <x-import component-from-global-scope="SV.Button" variant="secondary" hint-size="80px,36px">Cancel</x-import>
+          <x-import component-from-global-scope="SV.Button" variant="primary" hint-size="72px,36px">Save</x-import>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:1000},&quot;descV4&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;categories&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;settings&quot;,&quot;categories&quot;,&quot;categories-off&quot;],&quot;default&quot;:&quot;settings&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;catTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;internal&quot;,&quot;nocharge&quot;],&quot;default&quot;:&quot;internal&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;catDialog&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;none&quot;,&quot;nocharge&quot;,&quot;internal&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;customerFlag&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;internalSub&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;none&quot;,&quot;customer&quot;,&quot;missing&quot;,&quot;refused&quot;,&quot;hint&quot;,&quot;hintEmpty&quot;],&quot;default&quot;:&quot;none&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;current&quot;,&quot;proposed&quot;,&quot;proposed-off&quot;,&quot;off&quot;,&quot;quickbooks&quot;],&quot;default&quot;:&quot;proposed&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const NAV = [
+  ['Settings', [['info', 'Settings'], ['user', 'Staff'], ['badge-check', 'Roles & Permissions'], ['map-pin-check', 'Locations'], ['building-2', 'Departments'], ['receipt', 'Taxes']]],
+  ['Service', [['clock', 'Labor Rates'], ['list', 'Canned Lines'], ['ticket-percent', 'Fees & Discounts'], ['wrench', 'Internal Work Orders', 'iwo'], ['truck', 'Asset Types'], ['clipboard-list', 'Inspection Templates']]],
+  ['Parts', [['tag', 'Pricing'], ['archive', 'Bin Locations'], ['folder', 'Categories']]],
+  ['Integrations', [['landmark', 'QuickBooks', 'qb'], ['arrow-up-down', 'IBS'], ['link', 'Open API']]],
+  ['Finance', [['credit-card', 'Payment Methods']]],
+  ['Imports', [['user-round', 'Contacts'], ['truck', 'Assets'], ['store', 'Vendors'], ['package', 'Inventory'], ['file-text', 'Invoices']]],
+];
+const row = (label, help, on, change = 'unchanged', notice = false) => ({ label, help, on, cls: on ? 'is-on' : '', change, notice });
+const cat = (name, account, col3, count, isDefault = false) => ({ name, account, hasAccount: !!account, noAccount: !account, col3, count, isDefault });
+class Component extends DCLogic {
+  renderVals() {
+    const v = this.props.variant ?? 'proposed';
+    const cats = !!this.props.categories;
+    const workflow = [
+      row('Require Approval for New Lines', 'When on, new work order lines require approval. When off, they are auto-approved.', true),
+      row('Require Review Before Completion', 'Work orders must be reviewed and signed off before they can be completed', false),
+    ];
+    if (v !== 'current') workflow.push(row('Internal work orders', 'Adds an Internal option when creating work orders. Creates the system customer Staging Heavy Duty Internal for your own trucks and equipment.', v === 'proposed', 'new', v === 'off'));
+    if (v === 'proposed-off') workflow[2] = row(workflow[2].label, workflow[2].help, false, 'new');
+    if (v !== 'current' && this.props.customerFlag) {
+      const r = workflow[2];
+      r.help = r.help.replace('Creates the system customer Staging Heavy Duty Internal for your own trucks and equipment.', 'Lets you mark work orders as internal. They close without an invoice and their parts cost is posted to your internal expense account.');
+      const sub = this.props.internalSub ?? 'none';
+      r.subCustomer = sub === 'customer' || sub === 'refused';
+      r.refused = sub === 'refused';
+      r.hintOn = sub === 'hint' || sub === 'hintEmpty';
+      r.hintAccounts = false;
+      r.hintText = sub === 'hintEmpty' ? 'No internal customer yet. Work orders for your own equipment stay billable until you flag one: Edit Customer > Internal customer. No charge on customer work orders works now.' : 'Flag your own company as an internal customer on its customer page: Edit Customer > Internal customer.';
+      r.subMissing = sub === 'missing';
+      r.hintTextOn = !!r.hintText;
+    }
+    if (v !== 'current' && this.props.descV4 && !cats) { workflow[2].label = 'No-Charge Work Orders'; workflow[2].help = 'Lets you flag internal customers and mark work orders as no charge. Both close without an invoice; parts cost posts to your expense accounts.'; }
+    if (v !== 'current' && cats) {
+      const r = workflow[2];
+      r.label = 'Internal Work Orders';
+      r.help = "Lets you flag your own company as an internal customer and mark a customer's work order as No Charge (warranty, goodwill, comeback). Both close without an invoice; their parts cost posts to the expense account of their category instead of Cost of Parts.";
+      r.lists = !!r.on;
+      if (r.hintOn) { r.hintText = ''; r.hintTextOn = false; r.hintAccounts = false; }
+      r.catLists = [
+        { title: 'Internal categories', help: 'Where the cost of work on your own equipment goes. Each internal customer has a default category; a work order can change it.', cta: 'New Internal Category', col3: 'Internal customers', rows: [
+          cat('General Internal', '6500 Vehicle Expenses', 'Staging Heavy Duty Fleet', 41, true),
+          cat('Company Vehicle Maintenance', '6200 Vehicle Maintenance Expense', 'Staging Heavy Duty Fleet', 18),
+          cat('Shop Equipment Maintenance', '', 'Shop Equipment', 6),
+        ] },
+        { title: 'No Charge categories', help: "Why a customer's work order is free. Picked when a work order is marked No Charge. Categories that require the original work order ask which earlier work order the job comes from.", cta: 'New No Charge Category', col3: 'Original work order', rows: [
+          cat('Warranty', '6430 Warranty & Goodwill Expense', 'Required', 23),
+          cat('Goodwill', '6430 Warranty & Goodwill Expense', 'Not asked', 9),
+          cat('Comeback', '6440 Comeback Expense', 'Required', 11),
+        ] },
+      ];
+    }
+    const dlg = this.props.catDialog ?? 'none';
+    const page = this.props.page ?? 'settings';
+    const isCats = page === 'categories' || page === 'categories-off';
+    const catsOff = page === 'categories-off';
+    const catTab = this.props.catTab ?? 'internal';
+    const lists = (workflow[2] && workflow[2].catLists) || [];
+    const activeList = lists[catTab === 'nocharge' ? 1 : 0] || null;
+    if (workflow[2]) { workflow[2].lists = false; workflow[2].hintCategories = cats && !!workflow[2].on; }
+    return {
+      nav: NAV.map(([title, items]) => ({ title, items: items.map(([icon, label, key]) => ({ icon, label, cls: (v === 'quickbooks' ? key === 'qb' : isCats ? key === 'iwo' : label === 'Settings') ? 'is-active' : '', disabled: key === 'iwo' && catsOff, opacity: key === 'iwo' && catsOff ? 0.5 : 1, tip: key === 'iwo' && catsOff })) })),
+      settingsChange: v === 'current' ? 'unchanged' : 'modified',
+      isQb: v === 'quickbooks',
+      notQb: v !== 'quickbooks' && !isCats,
+      isCats,
+      catsOff,
+      catsOn: isCats && !catsOff,
+      tabInternal: catTab !== 'nocharge',
+      tabNoCharge: catTab === 'nocharge',
+      activeList,
+      listOpacity: catsOff ? 0.45 : 1,
+      dlgNoCharge: dlg === 'nocharge',
+      dlgInternal: dlg === 'internal',
+      qbRows: [
+        { k: 'Labor income', v: '4000 Labor Income', change: 'unchanged' },
+        { k: 'Parts income', v: '4100 Parts Sales', change: 'unchanged' },
+        { k: 'Parts cost', v: '5000 Cost of Goods Sold', change: 'unchanged' },
+        { k: 'Inventory', v: '1200 Inventory Asset', change: 'unchanged' },
+        { k: 'Internal work orders: expense account', v: '6400 Repairs and Maintenance', change: 'new' },
+      ],
+      sections: [
+        { title: 'Workflow', rows: workflow },
+        { title: 'Line Requirements', rows: [
+          row('Require Tech Story', 'Tech story will be a required field before a line can be completed on a work order', false),
+          row('Require Mileage', 'Mileage will be a required field before a line can be completed on a work order', false),
+          row('Require Engine Hours', 'Engine hours will be a required field before a line can be completed on a work order', false),
+        ] },
+        { title: 'Parts', rows: [
+          row('Require Ordering Parts', "When on, you click Order on each part to record that you've ordered it. When off, parts are marked as ordered automatically.", true),
+          row('Require Receiving Parts Before Completion', 'When on, each part must be recorded as received before the work order can be completed, reviewed or invoiced. When off, you can finish the work order and receive later.', true),
+          row('Require Picking Inventory Parts', "When on, you click Pick on each inventory and found part to record that it's been pulled. When off, these parts are ready as soon as the line is approved.", true),
+        ] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

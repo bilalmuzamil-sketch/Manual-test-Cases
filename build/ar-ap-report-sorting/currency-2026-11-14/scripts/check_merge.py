@@ -9,6 +9,7 @@ LIVE = {c["id"]: c for c in json.load(open(f"{W}/live-before/live-2026-11-14.jso
 SPLIT = re.compile(r"(</p>|</li>|<ul>|</ul>|<ol>|</ol>)")
 L = lambda s: [x for x in SPLIT.sub(r"\1\n", s or "").split("\n") if x]
 def kind(l):
+    if "ZZAUTOTEST OVERPAID C715462 Cust A" in l: return "R6 case id dropped"
     if l.startswith("<p>From: "): return "R1 from"
     if l.startswith(("<p>Not yet checked", "<p>Last checked", "<p>Partly checked")): return "R2 build"
     if l.startswith("<p>AUTOMATION:"): return "R3 marker"
@@ -24,7 +25,7 @@ for k, v in M.items():
         for x in tl:
             if x not in bl and x not in ml: lost.append((f, kind(x), x[:160]))
         for x in ml:
-            if x not in set(tl) and x not in ol and kind(x) != "R1 from": alien.append((f, kind(x), x[:160]))
+            if x not in set(tl) and x not in ol and kind(x) != "R1 from" and not (k == "DATA-13" and "ZZAUTOTEST OVERPAID Cust A" in x): alien.append((f, kind(x), x[:160]))
     for _, kd, _ in lost: tally["their line replaced: " + kd] += 1
     tally["alien lines"] += len(alien)
     if lost or alien: out[k] = {"case": cid, "their_lines_replaced": lost, "lines_not_from_ours": alien}

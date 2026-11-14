@@ -105,6 +105,7 @@ def merge3(key, base, ours, theirs):
         elif l != "": out.append(l)
     return "".join(out), rules, bad
 res, rep = {}, Counter(); unresolved = {}; r5 = {}
+R6 = {"DATA-13": ("ZZAUTOTEST OVERPAID C715462 Cust A", "ZZAUTOTEST OVERPAID Cust A")}
 for key, cid in sorted(MAP.items()):
     if key in DEMO or key not in PROP or cid not in LIVE: continue
     ap = f"{B}/currency-2026-11-10/applied/C{cid}-after.json"
@@ -123,6 +124,13 @@ for key, cid in sorted(MAP.items()):
         if f == "refs": m = (lv.get("refs") or "") if m == t else m
         merged[f] = m
         if (m or "") != (lv.get(f) or ""): changed.append(f)
+    # R6 (QA lead, 14 Nov 2026, "Apply on top, + SV-12723"): DATA-13's live preconditions (written outside our library) name the record
+    # "ZZAUTOTEST OVERPAID C715462 Cust A"; a case id in tester text fails the readiness check (Rule 138). Only the id is dropped, nothing else.
+    if key in R6:
+        a, b = R6[key]
+        assert merged["custom_preconds"].count(a) == 1, key
+        merged["custom_preconds"] = merged["custom_preconds"].replace(a, b); rules.append("custom_preconds:R6 case id dropped")
+        if "custom_preconds" not in changed: changed.insert(0, "custom_preconds")
     res[key] = {"case": cid, "fields": merged, "changed": changed, "rules": rules, "section_live": lv["section_id"]}
     rep["cases"] += 1; rep["with changes"] += bool(changed)
 json.dump(res, open(f"{W}/proposals-v13-on-live.json", "w"), indent=1, ensure_ascii=False)

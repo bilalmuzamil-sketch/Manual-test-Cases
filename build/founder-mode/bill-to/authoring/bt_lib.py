@@ -9,7 +9,7 @@ last. Every expected result comes from PRD "Bill To" v0.5 (Rules 57, 113). A cas
 with a bold "BLOCKED ON RELEASE" line (QA lead, 4 Nov 2026; example C913771).
 PRD version per case: every case quotes v0.5 today. Once a case is mapped to TestRail (testrail-id-map.csv, column prd_version), it
 keeps the version it was written for until a named-set update moves it (Technician Toggle lesson, 4 Nov 2026)."""
-import os, re, html, csv
+import os, re, html, csv, json
 D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D)
 
 
@@ -32,18 +32,27 @@ def md_to_text(md):
     return "\n".join(out)
 
 
-PRD_FILE = f"{P}/sources/CONFLUENCE-1003585538-v0.5-2026-11-09.md"
-PRD_FULL = open(PRD_FILE).read()
-PRD_MD = PRD_FULL.split("## 9. Change Log")[0]          # the Change Log (empty in v0.5) is never a source of a quote
-PRD_TXT = md_to_text(PRD_MD)
-PRDW = ws(PRD_TXT)
-PRD_RAWW = ws(re.sub(r"<[^>]+>", "", re.sub(r"\[([^\]]*)\]\((https?:[^)]*)\)", r"\1", PRD_MD).replace("*Basis:*", "Basis:")))
+# 14 Nov 2026 (Story 8 named set, QA lead's approval): the page was edited on 14 Nov 2026 (Story 8 redone; the status line still reads
+# v0.5 and the Change Log is empty). Both copies are kept: a case quotes the copy of its own PRD version (prd_version), and its quotes are
+# checked word for word against that copy. Requirement codes and named items are read from the CURRENT copy.
+def _load(fn):
+    md = open(fn).read().split("## 9. Change Log")[0]      # the Change Log (empty) is never a source of a quote
+    md = re.sub(r"<(https?://[^>\s]+)>", r"\1", md)          # the 14 Nov copy writes links as <url>
+    txt = md_to_text(md)
+    return md, txt, ws(txt), ws(re.sub(r"<[^>]+>", "", re.sub(r"\[([^\]]*)\]\((https?:[^)]*)\)", r"\1", md).replace("*Basis:*", "Basis:")))
+PRD_FILES = {"0.5": f"{P}/sources/CONFLUENCE-1003585538-v0.5-2026-11-09.md",
+             "0.5 (edited 14 Nov 2026)": f"{P}/sources/CONFLUENCE-1003585538-read-2026-11-14.md"}
+PRD_TEXTS = {v: _load(f) for v, f in PRD_FILES.items()}
+PRD_FILE = PRD_FILES["0.5 (edited 14 Nov 2026)"]
+PRD_MD, PRD_TXT, PRDW, PRD_RAWW = PRD_TEXTS["0.5 (edited 14 Nov 2026)"]
 JIRA_FILE = f"{P}/sources/JIRA-SV-12289-tickets-2026-11-09.md"
 JIRAW = ws(re.sub(r"\[([^\]]*)\]\((https?:[^)]*)\)", r"\1", open(JIRA_FILE).read()))
 
-PRD_VERSION = "0.5"
-PRD_NAME = 'PRD "Bill To", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward)'
-PRD_READ = "read 9 Nov 2026"
+PRD_VERSION = "0.5 (edited 14 Nov 2026)"
+PRD_NAMES = {"0.5": ('PRD "Bill To", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward)', "read 9 Nov 2026"),
+             "0.5 (edited 14 Nov 2026)": ('PRD "Bill To", Confluence 1003585538, version 0.5 (edited 14 Nov 2026), pending approval, Chris Ward; '
+                                          'Story 8 redone on 14 Nov 2026, status line still v0.5, Change Log empty', "read 14 Nov 2026")}
+PRD_NAME, PRD_READ = PRD_NAMES[PRD_VERSION]
 JIRA_NAME = "Jira tickets under epic SV-12289 (saved 9 Nov 2026, sources/JIRA-SV-12289-tickets-2026-11-09.md)"
 EPIC = "SV-12289"
 DESIGN_URL = "https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd"
@@ -51,6 +60,7 @@ NOBUILD = "The build is not yet available to check this case against."
 TODAY = "11/9/2026"
 # Rule 69: a case that cannot yet be build-verified (no build named) carries this marker; a later build check lifts it.
 MARKER = f"AUTOMATION: Not available on Build to test Yet - Last checked {TODAY}"
+MARKER_1114 = "AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026"   # cases rewritten or added on 14 Nov 2026
 def HOLD(reason): return "AUTOMATION: HOLD - " + reason
 def PO_HOLD(n): return HOLD(f"waiting on the PO (question {n})")
 # Credit terms precedent (QA lead, 26 Oct 2026): release-day cases take their "before" values on production shortly before the release
@@ -69,7 +79,7 @@ CODE = {}
 for line in PRD_TXT.split("\n"):
     m = re.match(r"^\s*-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
     if m and m.group(1) not in CODE: CODE[m.group(1)] = m.group(2).strip()
-if len(CODE) != 178: raise SystemExit(f"PRD v0.5 has {len(CODE)} requirement codes; this library was written for 178")
+if len(CODE) != 179: raise SystemExit(f"the PRD copy has {len(CODE)} requirement codes; this library was written for 179 (178 + S8-R8, 14 Nov 2026)")
 
 
 def prd_line(start):
@@ -123,7 +133,7 @@ _ufs = []; _inside = False
 for line in PRD_MD.split("\n"):
     if line.startswith("## 8. User Feedback Summary"): _inside = True; continue
     if _inside and line.startswith("## "): break
-    if _inside and line.startswith("| ") and not line.startswith("| Id") and not line.startswith("|---"):
+    if _inside and line.startswith("| ") and not line.startswith("| Id") and not re.match(r"^\|[\s|:-]+\|\s*$", line):
         _ufs.append(" | ".join(ws(x) for x in line.strip().strip("|").split("|")))
 if len(_ufs) != 19: raise SystemExit(f"User Feedback Summary has {len(_ufs)} rows; expected 19")
 for i, row in enumerate(_ufs, 1): _n(f"UFS-{i:02d}", "User Feedback Summary", row)
@@ -229,10 +239,16 @@ NAMED_STORY = {"EH-S1-1": 1, "EH-S1-2": 1, "EH-S1-3": 1, "EH-S2": 2, "EH-S3-1": 
                "REL-6": 7, "REL-7": 19}
 
 _MAPF = f"{P}/testrail-id-map.csv"
-MAPPED = {r["key"]: (r.get("prd_version") or PRD_VERSION) for r in csv.DictReader(open(_MAPF))} if os.path.exists(_MAPF) else {}
+MAPPED = {r["key"]: (r.get("prd_version") or "0.5") for r in csv.DictReader(open(_MAPF))} if os.path.exists(_MAPF) else {}
+# A named-set update moves mapped cases to a newer version before the map catches up (the update script writes the map after its writes):
+# prd_moves.json {version: [keys]} (14 Nov 2026: made by story8-2026-11-14/restamp_proof.py, which moves only cases whose every quote is
+# word for word in the newer copy).
+_MOVF = f"{D}/prd_moves.json"
+MOVES = {k: v for v, ks in (json.load(open(_MOVF)).items() if os.path.exists(_MOVF) else []) for k in ks}
 def prd_version(c):
-    """A mapped case keeps the PRD version it was written for (testrail-id-map.csv column prd_version); a new case quotes the current one."""
-    return MAPPED.get(c["key"], PRD_VERSION)
+    """A moved case quotes the version it was moved to; a mapped case keeps the version it was written for (testrail-id-map.csv column
+    prd_version); a new case quotes the current one."""
+    return MOVES.get(c["key"]) or MAPPED.get(c["key"], PRD_VERSION)
 
 CASES = []
 def C(key, sec, title, pre, steps, res, q, marker=None, note="", stories=None, api=False, held=None, banner=""):
@@ -295,11 +311,17 @@ def design_block(c):
 
 # every word quoted from the design must be in the design package (board files, design-system files, or the figure captions)
 _DD = f"{P}/design-2026-11-09"
+# 14 Nov 2026: canvas version 1794608112-d8a1 redrew page 4 (ServiceFor.dc.html) only; the other 7 boards are byte-identical. Page 4's
+# words come from design-2026-11-14/ only, so a case still quoting the old page 4 fails this gate.
+_DD14 = f"{P}/design-2026-11-14"
 _dtext = []
 for _root, _dirs, _files in os.walk(f"{_DD}/files/project"):
     for _f in _files:
+        if _f == "ServiceFor.dc.html": continue
         if _f.endswith((".html", ".css", ".json", ".md")): _dtext.append(open(os.path.join(_root, _f), errors="replace").read())
-_dtext.append(open(f"{_DD}/DESIGN-FIGURES-2026-11-09.json").read())
+_dtext.append(open(f"{_DD14}/files/project/ServiceFor.dc.html").read())
+_dtext.append(json.dumps([f for f in json.load(open(f"{_DD}/DESIGN-FIGURES-2026-11-09.json"))["list"] if f["page"] != 4], ensure_ascii=False))
+_dtext.append(open(f"{_DD14}/DESIGN-FIGURES-P4-2026-11-14.json").read())
 DESIGNW = ws(re.sub(r"\s*\*\s+", " ", re.sub(r"<[^>]+>", " ", " ".join(_dtext))))
 DESIGNW_RAW = ws(" ".join(_dtext).replace('\\"', '"'))
 DESIGN_IMAGES = f"{_DD}/images"
@@ -312,10 +334,10 @@ def quotes_block(c):
     sto = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in sn)
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
-    prd_name = PRD_NAME if prd_version(c) == PRD_VERSION else PRD_NAME.replace(f"version {PRD_VERSION}", f"version {prd_version(c)}")
+    prd_name, prd_read = PRD_NAMES[prd_version(c)]
     for name, g in ((prd_name, groups["prd"]), (JIRA_NAME, groups["jira"])):
         if not g: continue
-        h += f"<p>From: {e(name)}, {PRD_READ}" + ((f" &middot; Epic {EPIC}" + (f", {e(sto)}" if sto else "")) if first else "") + "</p>"
+        h += f"<p>From: {e(name)}, {prd_read if name == prd_name else PRD_READ}" + ((f" &middot; Epic {EPIC}" + (f", {e(sto)}" if sto else "")) if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in g) + "</ul>"
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"
@@ -418,7 +440,9 @@ def check(c):
     for l, tq in quotes(c):
         if l.startswith("Jira SV-"):
             if ws(tq) not in JIRAW: p.append(f"{k}: quote {l} not verbatim in the saved Jira tickets")
-        elif ws(tq) not in PRDW and ws(tq) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v{PRD_VERSION}")
+        else:
+            _m, _t, _w, _rw = PRD_TEXTS[prd_version(c)]
+            if ws(tq) not in _w and ws(tq) not in _rw: p.append(f"{k}: quote {l} not verbatim in PRD version {prd_version(c)}")
     if not any(isinstance(x, str) or not x[0].startswith("Jira") for x in c["q"]):
         p.append(f"{k}: no PRD quote (Rule 57: the PRD is the source of every expected result)")
     if not c["marker"].startswith("AUTOMATION: "): p.append(f"{k}: marker")
@@ -427,6 +451,7 @@ def check(c):
     if d:
         for x in d.get("pictures") or []:
             if not os.path.exists(f"{DESIGN_IMAGES}/{x}"): p.append(f"{k}: design picture {x} not in design-2026-11-09/images/")
+            if x.startswith("bt-p4-") and not x.endswith("-2026-11-14.png"): p.append(f"{k}: old page 4 picture {x} (redrawn 14 Nov 2026)")
         for w in d.get("words") or []:
             ww = ws(w)
             if ww not in DESIGNW and ww not in DESIGNW_RAW: p.append(f"{k}: design words not found in the design package: {w[:70]!r}")

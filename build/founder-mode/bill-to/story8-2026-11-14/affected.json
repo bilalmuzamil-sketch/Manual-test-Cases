@@ -1,0 +1,397 @@
+{
+ "D-36": {
+  "title": "Design: Modern invoice billed to someone else prints the Service For band",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R1",
+   "quote not in new copy: S8-R2",
+   "quote not in new copy: S8-R5",
+   "quotes S8-R1, S8-R2, S8-R5, S8-R7",
+   "tester text: <year>, CV515, INTERNATIONAL, SERVICE FOR, Service For, Unit 854, Unit <unit>, make and model, the band, unit, year",
+   "design refs page 4: bt-p4-01-before-modern.png, bt-p4-02-after-modern.png"
+  ]
+ },
+ "D-37": {
+  "title": "Design: Legacy invoice billed to someone else prints the Service For band",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R1",
+   "quotes S8-R1, S8-R6",
+   "tester text: CV515, INTERNATIONAL, Service For, Unit 854, make and model, unit, year",
+   "design refs page 4: bt-p4-03-before-legacy.png, bt-p4-04-after-legacy.png"
+  ]
+ },
+ "D-38": {
+  "title": "Design: Modern estimate without a unit drops Unit from the band",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R2",
+   "quote not in new copy: S8-R3",
+   "quotes S8-R2, S8-R3, S8-R6",
+   "tester text: \" · \", SERVICE FOR, The band, the band, year, make",
+   "design refs page 4: bt-p4-05-before-modern.png, bt-p4-06-after-modern.png"
+  ]
+ },
+ "D-39": {
+  "title": "Design: Legacy estimate billed to someone else prints the band",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R3",
+   "quotes S8-R3, S8-R6",
+   "tester text: the band",
+   "design refs page 4: bt-p4-07-before-legacy.png, bt-p4-08-after-legacy.png"
+  ]
+ },
+ "D-40": {
+  "title": "Design: Modern part sale with a vehicle prints the band with the unit",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R4",
+   "quotes S8-R4, S8-R6",
+   "tester text: <year>, SERVICE FOR, The band, Unit <unit>, the band",
+   "design refs page 4: bt-p4-09-before-modern.png, bt-p4-10-after-modern.png"
+  ]
+ },
+ "D-41": {
+  "title": "Design: Legacy part sale with a vehicle prints the band with the unit",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R4",
+   "quotes S8-R4",
+   "tester text: The band, Unit <unit>, the band",
+   "design refs page 4: bt-p4-11-before-legacy.png, bt-p4-12-after-legacy.png"
+  ]
+ },
+ "D-42": {
+  "title": "Design: Modern part sale without a vehicle prints only Service For and the name",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R4",
+   "quotes S8-R4",
+   "tester text: SERVICE FOR, Service For, The band",
+   "design refs page 4: bt-p4-13-before-modern.png, bt-p4-14-after-modern.png"
+  ]
+ },
+ "D-43": {
+  "title": "Design: Legacy part sale without a vehicle prints only the name in the band",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R4",
+   "quotes S8-R4",
+   "tester text: SERVICE FOR, The band, the band",
+   "design refs page 4: bt-p4-15-before-legacy.png, bt-p4-16-after-legacy.png"
+  ]
+ },
+ "D-44": {
+  "title": "Design: Modern invoice that pays for itself prints no band",
+  "held": false,
+  "why": [
+   "quotes S8-N1",
+   "tester text: SERVICE FOR",
+   "design refs page 4: bt-p4-17-before-modern-pays-for-itself.png, bt-p4-18-after-modern-pays-for-itself.png"
+  ]
+ },
+ "D-45": {
+  "title": "Design: Legacy invoice that pays for itself prints no band",
+  "held": false,
+  "why": [
+   "quotes S8-N1",
+   "design refs page 4: bt-p4-19-before-legacy-pays-for-itself.png, bt-p4-20-after-legacy-pays-for-itself.png"
+  ]
+ },
+ "D-46": {
+  "title": "Design: Batch invoice prints a band only on invoices billed to someone else",
+  "held": false,
+  "why": [
+   "quotes S8-N1, S8-R6",
+   "tester text: CV515, INTERNATIONAL, SERVICE FOR, Unit 854, make and model, unit, year"
+  ]
+ },
+ "D-47": {
+  "title": "Design: Payer's Invoices tab shows the Service For column after No.",
+  "held": false,
+  "why": [
+   "tester text: Service For"
+  ]
+ },
+ "D-48": {
+  "title": "Design: Invoices tab hides Service For when no row is for someone else",
+  "held": false,
+  "why": [
+   "tester text: Service For"
+  ]
+ },
+ "D-49": {
+  "title": "Design: New Customer Payment window is unchanged for the payer",
+  "held": false,
+  "why": [
+   "tester text: Service For"
+  ]
+ },
+ "D-65": {
+  "title": "Design: Legacy invoice Bill To block prints no phone",
+  "held": true,
+  "why": [
+   "design refs page 4: bt-p4-02-after-modern.png, bt-p4-04-after-legacy.png"
+  ]
+ },
+ "INV-06": {
+  "title": "An imported historical invoice has no Bill To and is unchanged",
+  "held": false,
+  "why": [
+   "tester text: SERVICE FOR, Service For"
+  ]
+ },
+ "INV-08": {
+  "title": "A shop that never picks a payer sees today's invoice and totals",
+  "held": false,
+  "why": [
+   "quotes S8-N1",
+   "tester text: SERVICE FOR, Service For",
+   "design refs page 4: bt-p4-18-after-modern-pays-for-itself.png, bt-p4-20-after-legacy-pays-for-itself.png"
+  ]
+ },
+ "REL-02": {
+  "title": "Existing invoices and balances are unchanged after the release",
+  "held": true,
+  "why": [
+   "quotes S8-N2",
+   "tester text: Service For"
+  ]
+ },
+ "S10-09": {
+  "title": "The payer's Invoices tab names the service customer in Service For",
+  "held": false,
+  "why": [
+   "tester text: Service For"
+  ]
+ },
+ "S10-10": {
+  "title": "No Service For column when nothing on the tab is billed for someone else",
+  "held": false,
+  "why": [
+   "tester text: Service For"
+  ]
+ },
+ "S10-11": {
+  "title": "The Service For column stays after a search narrows to own invoices",
+  "held": false,
+  "why": [
+   "tester text: Service For"
+  ]
+ },
+ "S7-01": {
+  "title": "The invoice's Bill To block prints the payer's name, address and phone",
+  "held": false,
+  "why": [
+   "design refs page 4: bt-p4-04-after-legacy.png, bt-p4-08-after-legacy.png, bt-p4-12-after-legacy.png, bt-p4-16-after-legacy.png"
+  ]
+ },
+ "S7-02": {
+  "title": "Later changes to the payer do not change an existing invoice",
+  "held": false,
+  "why": [
+   "design refs page 4: bt-p4-04-after-legacy.png, bt-p4-08-after-legacy.png, bt-p4-12-after-legacy.png, bt-p4-16-after-legacy.png"
+  ]
+ },
+ "S7-24": {
+  "title": "The legacy invoice's Bill To block prints the payer's phone",
+  "held": true,
+  "why": [
+   "design refs page 4: bt-p4-04-after-legacy.png, bt-p4-08-after-legacy.png, bt-p4-12-after-legacy.png, bt-p4-16-after-legacy.png"
+  ]
+ },
+ "S8-01": {
+  "title": "Modern invoice prints the Service For band under the address row",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R1",
+   "quote not in new copy: S8-R2",
+   "quote not in new copy: Feature Overview, Core Bill To",
+   "quotes CORE-7, KD-BAND, S8-R1, S8-R2, S8-R6",
+   "tester text: \" · \", CV515, International, Make \", Model \", SERVICE FOR, Service For, Unit 854",
+   "design refs page 4: bt-p4-02-after-modern.png, bt-p4-04-after-legacy.png"
+  ]
+ },
+ "S8-02": {
+  "title": "Legacy invoice prints the Service For band",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R1",
+   "quote not in new copy: S8-R2",
+   "quotes S8-R1, S8-R2, S8-R6",
+   "tester text: \" · \", CV515, International, Make \", Model \", SERVICE FOR, Service For, Unit 854",
+   "design refs page 4: bt-p4-02-after-modern.png, bt-p4-04-after-legacy.png"
+  ]
+ },
+ "S8-03": {
+  "title": "Modern estimate prints the Service For band",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R1",
+   "quote not in new copy: S8-R2",
+   "quotes KD-BAND, S8-R1, S8-R2, S8-R6",
+   "tester text: \" · \", CV515, International, Make \", Model \", SERVICE FOR, Service For, Unit 854",
+   "design refs page 4: bt-p4-02-after-modern.png, bt-p4-04-after-legacy.png"
+  ]
+ },
+ "S8-04": {
+  "title": "Legacy estimate prints the Service For band",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R1",
+   "quote not in new copy: S8-R2",
+   "quotes S8-R1, S8-R2, S8-R6",
+   "tester text: \" · \", CV515, International, Make \", Model \", SERVICE FOR, Service For, Unit 854",
+   "design refs page 4: bt-p4-02-after-modern.png, bt-p4-04-after-legacy.png"
+  ]
+ },
+ "S8-05": {
+  "title": "The Service For band is light grey with a thin grey border",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R5",
+   "quotes S8-R5",
+   "tester text: CV515, International, Make \", Model \", Service For, The band, the band",
+   "design refs page 4: bt-p4-02-after-modern.png"
+  ]
+ },
+ "S8-06": {
+  "title": "Without a unit the band leaves out Unit and its separator",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R3",
+   "quotes S8-R3",
+   "tester text: \" · \", Make \", Model \", SERVICE FOR, The band, Unit, Year, the band",
+   "design refs page 4: bt-p4-06-after-modern.png, bt-p4-08-after-legacy.png"
+  ]
+ },
+ "S8-07": {
+  "title": "Without year, make and model the band shows only the unit",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R3",
+   "quotes S8-R3",
+   "tester text: \" · \", SERVICE FOR, The band, Year, Make, the band, year, make",
+   "design refs page 4: bt-p4-06-after-modern.png, bt-p4-08-after-legacy.png"
+  ]
+ },
+ "S8-08": {
+  "title": "A missing make drops out of the year, make and model",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R3",
+   "quotes S8-R3",
+   "tester text: \" · \", Make and Model, SERVICE FOR, The band, year, make",
+   "design refs page 4: bt-p4-06-after-modern.png, bt-p4-08-after-legacy.png"
+  ]
+ },
+ "S8-09": {
+  "title": "A unit that already starts with Unit is not prefixed again",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R3",
+   "quotes S8-R3",
+   "tester text: \" · \", Make \", Model \", SERVICE FOR, The band",
+   "design refs page 4: bt-p4-06-after-modern.png, bt-p4-08-after-legacy.png"
+  ]
+ },
+ "S8-10": {
+  "title": "A part sale with a vehicle prints the unit in its band",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R4",
+   "quotes S8-R4, S8-R6",
+   "tester text: \" · \", Make \", Model \", SERVICE FOR, The band",
+   "design refs page 4: bt-p4-10-after-modern.png"
+  ]
+ },
+ "S8-11": {
+  "title": "A part sale without a vehicle prints only SERVICE FOR and the name",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R4",
+   "quotes S8-R4, S8-R6",
+   "tester text: \" · \", SERVICE FOR, The band",
+   "design refs page 4: bt-p4-10-after-modern.png"
+  ]
+ },
+ "S8-12": {
+  "title": "A batch invoice gives each invoice billed to someone else its own band",
+  "held": false,
+  "why": [
+   "quotes S8-N1, S8-R6",
+   "tester text: CV515, International, Make \", Model \", SERVICE FOR, Unit 854, the band",
+   "design refs page 4: bt-p4-18-after-modern-pays-for-itself.png, bt-p4-20-after-legacy-pays-for-itself.png"
+  ]
+ },
+ "S8-13": {
+  "title": "The Service For band leaves the address row as it was",
+  "held": false,
+  "why": [
+   "quotes S8-R7",
+   "tester text: CV515, International, Make \", Model \", Service For, The band",
+   "design refs page 4: bt-p4-02-after-modern.png"
+  ]
+ },
+ "S8-14": {
+  "title": "No band prints when the customer pays for itself",
+  "held": false,
+  "why": [
+   "quotes KD-BAND, S8-N1",
+   "tester text: CV515, International, Make \", Model \", SERVICE FOR",
+   "design refs page 4: bt-p4-18-after-modern-pays-for-itself.png, bt-p4-20-after-legacy-pays-for-itself.png"
+  ]
+ },
+ "S8-15": {
+  "title": "Invoices created before the release never print the band",
+  "held": true,
+  "why": [
+   "quotes S8-N2",
+   "tester text: CV515, International, Make \", Model \", SERVICE FOR, the band"
+  ]
+ },
+ "D-82": {
+  "title": "Design: Service For band keeps long names inside it on modern invoices",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R1",
+   "quote not in new copy: S8-R2",
+   "quotes S8-R1, S8-R2, S8-R7",
+   "tester text: CV515, International, Make \", Model \", SERVICE FOR, Service For, The band, Unit 854, the band, year, make",
+   "design refs page 4: bt-p4-02-after-modern.png"
+  ]
+ },
+ "D-83": {
+  "title": "Design: Service For band keeps long names inside it on legacy invoices",
+  "held": false,
+  "why": [
+   "quote not in new copy: S8-R1",
+   "quote not in new copy: S8-R2",
+   "quotes S8-R1, S8-R2, S8-R7",
+   "tester text: CV515, International, Make \", Model \", SERVICE FOR, Service For, The band, Unit 854, the band, year, make",
+   "design refs page 4: bt-p4-04-after-legacy.png"
+  ]
+ },
+ "D-84": {
+  "title": "Design: Invoice Bill To block prints a long payer name with its IBS number",
+  "held": false,
+  "why": [
+   "design refs page 4: bt-p4-02-after-modern.png"
+  ]
+ },
+ "D-85": {
+  "title": "Design: Long Service For names never cover Memo on the payer's Invoices tab",
+  "held": false,
+  "why": [
+   "tester text: Service For"
+  ]
+ },
+ "D-101": {
+  "title": "Design: Service For column keeps its place when Open only is switched",
+  "held": true,
+  "why": [
+   "tester text: Service For"
+  ]
+ }
+}

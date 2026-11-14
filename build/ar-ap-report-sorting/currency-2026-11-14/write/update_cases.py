@@ -10,7 +10,8 @@ EDIT LOCK, two modes:
   --on-live (only on the QA lead's decision): the body sent is the v13 body built ON the live text (proposals-v13-on-live-writable.json:
           every outside edit kept, merge_on_live.py, invariant proved by check_merge.py); a case is updated only if its live fields and
           updated_on still equal the 14 Nov 2026 read (live-before/live-2026-11-14.json); anything edited since is listed and skipped.
-          Cases in held-out-of-write.json are never written (DATA-13: a case id in its live tester text fails the readiness check).
+          Cases in held-out-of-write.json are never written (none since 14 Nov 2026: DATA-13's case id is dropped by merge rule R6, QA lead's choice).
+          Live reads: the whole suite at the start and each case just before its write (the dry run does both reads too).
 Per op: before-copy, update_case, read-back field by field and section_id, log (operation, C-id, HTTP status, read-back).
 Dry run unless --apply.   python3 update_cases.py [--on-live] [--apply]"""
 from _common import *
@@ -37,13 +38,35 @@ print(f"mode: {mode} | cases {len(keys)} | to update {len(plan)} | edited outsid
 print("fields to update:", dict(Counter("+".join(p["fields"]) for p in plan)))
 json.dump({"mode": mode, "plan": plan, "edited_outside": outside, "held": held, "no_change": noop},
           open(f"{OUT}/update-plan-{'on-live' if ON_LIVE else 'locked'}-2026-11-14.json", "w"), indent=1)
-if not APPLY: print("DRY RUN: nothing written."); sys.exit(0)
-readiness()
 from trlib import api, LAST
+# 14 Nov 2026 (QA lead, "Apply on top"): re-read the live cases at the start (paged get_cases over the whole suite, so moved cases are found), and
+# again for each case just before it would write; a case whose live text changed since the read the merge was built on is skipped and listed.
+# The dry run does both reads too (read-only), so its result is the live result.
+def page_all():
+    out, off = {}, 0
+    while True:
+        r = api(f"get_cases/1&suite_id=1&offset={off}&limit=250"); cs = r["cases"] if isinstance(r, dict) else r
+        out.update({c["id"]: c for c in cs})
+        if isinstance(r, dict) and r.get("_links", {}).get("next"): off += 250; continue
+        return out
+START = page_all()
+def changed_since(cid, live):
+    lock = SNAP14[cid]
+    return live is None or live["updated_on"] != lock["updated_on"] or live["section_id"] != lock["section_id"] or any(not same(f, live.get(f), lock.get(f)) for f in FIELDS)
+start_skip = [p for p in plan if changed_since(p["case"], START.get(p["case"]))]
+print(f"start re-read: {len(START)} suite cases read; plan cases changed since the merge's read: {len(start_skip)}", [f"{p['key']} C{p['case']}" for p in start_skip])
+plan = [p for p in plan if p not in start_skip]
+if not APPLY:
+    pre = [p for p in plan if changed_since(p["case"], api(f"get_case/{p['case']}"))]
+    print(f"per-case re-read (dry run): {len(plan)} cases read again; changed: {len(pre)}", [f"{p['key']} C{p['case']}" for p in pre])
+    json.dump({"start_changed": start_skip, "per_case_changed": pre, "would_update": [p for p in plan if p not in pre]},
+              open(f"{OUT}/update-dryrun-live-reads-2026-11-14.json", "w"), indent=1)
+    print(f"DRY RUN: nothing written. Would update {len(plan) - len(pre)} cases."); sys.exit(0)
+readiness()
 os.makedirs(f"{OUT}/before", exist_ok=True); L = log("update-2026-11-14-log.jsonl"); bad = skipped = 0
 for p in plan:
     k, cid = p["key"], p["case"]; live = api(f"get_case/{cid}"); lock = SNAP14[cid]
-    if ON_LIVE: moved = live["updated_on"] != lock["updated_on"] or any(not same(f, live.get(f), lock.get(f)) for f in FIELDS)
+    if ON_LIVE: moved = changed_since(cid, live)
     else:
         base = last_written(cid); moved = any(not same(f, live.get(f), base.get(f)) for f in FIELDS)
     if moved:

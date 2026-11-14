@@ -103,3 +103,31 @@ V("S5-41b", "S5", "A/R Detail: a new as-of date with one location left hides the
    ["The report reloads for date A.", "Rows from location A are listed: location B is not in the list for date A, so the filter returns to every location.",
     "The Location chip is not shown: the list for date A holds only location A."]],
   ["S5-E3", "S5-N1"], ["ARD"], "The design pictures the Location chip but not a date whose list holds one location (all 7 boards checked); the case follows the PRD.")
+
+# ============================== SV-12723 (QA lead, 14 Nov 2026: "Apply on top, + SV-12723 (Recommended)"): S2-R6 on the Summaries ==============================
+# SV-12723 (Ready for Production, read 14 Nov 2026): on A/R Aging Summary an empty bucket cell sorted as $0, between the negatives and the positives. S2-R6 (v13,
+# unchanged since v11) puts a blank at the bottom in both directions; no case covered empty bucket cells on the Summaries (our S2-R6 cases cover vendor credits on
+# A/P Unpaid Invoices and A/P Detail). Line 9 of the design checklist: the empty-cell row carries a long name with spaces and & " ' < >. Line 10: the column
+# headings are compared with a screenshot before and after each sort.
+SAME13 = "Every column heading is in the same place as in your screenshot: none has moved left or right."
+for key, rep, who, pos, neg, empty in (
+        ("S2-51", "A/R Summary", "customer", "one invoice of $100.00 that is 10 days past due on today's date",
+         "one unused credit memo of $50.00 dated 10 days ago", "one invoice dated today that is not yet due"),
+        ("S2-52", "A/P Summary", "vendor", "one unpaid bill of $100.00 that is 10 days past due on today's date",
+         "one unused vendor credit of $50.00 dated 10 days ago", "one unpaid bill dated today that is not yet due")):
+    W_ = who.capitalize()
+    V(key, "S2", f"{rep}: a blank bucket cell stays at the bottom in both sort orders",
+      [ADMIN,
+       f"Create, for this test, a {who}, {who} A, with {pos}, so its \"1-30 Days\" cell reads $100.00.",
+       f"Create, for this test, a {who}, {who} B, with {neg}, so its \"1-30 Days\" cell reads $-50.00.",
+       f"Create, for this test, a {who}, {who} C, {SPECIAL}, with {empty}, so its \"1-30 Days\" cell is blank.",
+       W1440, OPEN(rep), f"Leave the report with only {who} A, {who} B and {who} C ticked in the {W_} filter."],
+      ["Take a screenshot of the page, showing the column headings.",
+       'Click the "1-30 Days" header.',
+       'Click the "1-30 Days" header again.'],
+      [[f"{W_} A's \"1-30 Days\" cell reads $100.00, {who} B's reads $-50.00 and {who} C's is blank.",
+        f"{W_} C's whole name shows exactly as typed, with its & \" ' < > characters, and wraps inside its own cell without running into the next column."],
+       [f"The rows read {who} A ($100.00), then {who} B ($-50.00), then {who} C (blank) at the bottom: largest first, the blank cell last.", SAME13],
+       [f"The rows read {who} B ($-50.00), then {who} A ($100.00), then {who} C (blank), still at the bottom.", SAME13]],
+      ["S2-R6", "S2-R2"], ["ARS" if rep == "A/R Summary" else "APS"],
+      "The design pictures the Summaries sorted by name only; it draws no blank bucket cell sorted (all 7 boards checked, design version of 5 Nov 2026); the case follows the PRD.")
