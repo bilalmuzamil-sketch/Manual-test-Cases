@@ -1,0 +1,42 @@
+existing 35
+new 3
+library_only 1
+existing S2-35 1111949 | Converting a work order with no-charge lines replaces their categories | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · Comeback"
+existing S7-20 1112113 | Reversing the invoice reverses the no-charge line's entries too | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · Goodwill"
+existing S12-04 1112214 | A marked line shows the chip and $0.00, the work order stays billable | CHANGE: expects the old chip text "No Ch | quotes S12-R3, UFS-35 ; tester text names the chip text: "No Charge · Goodwill" ; references changed board(s) flow6-3, hf-32 ; design words No Charge · Warranty
+existing S12-05 1112215 | Totals and tax are computed on the billable lines only | DESIGN REFERENCE: the attached picture a | references changed board(s) flow6-3, hf-32 ; design words No Charge · Warranty
+existing S12-07 1112217 | A line discount is removed when marked and not restored | DESIGN REFERENCE: the attached picture a | references changed board(s) flow6-3, hf-32 ; design words No Charge · Warranty
+existing S12-08 1112218 | A deposit larger than the new total is explained in the dialog | DESIGN REFERENCE: the attached picture a | references changed board(s) flow6-3, hf-32 ; design words No Charge · Warranty
+existing S12-09 1112219 | The estimate shows the no-charge line at $0.00 with its category | DESIGN REFERENCE: the attached picture a | references changed board(s) flow6-3, hf-32 ; design words No Charge · Warranty
+existing S12-11 1112221 | A new line can be created No Charge from New Line | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · Goodwill"
+existing S12-13 1112223 | Change category on a no-charge line saves the new category | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · Comeback" ; references changed board(s) flow6-4, hf-33
+existing S12-14 1112224 | Mark as Billable prices the line as a new line would be | DESIGN REFERENCE: the attached picture a | tester text names the line chip without its text: Step 4:   The chip is gone. ; references changed board(s) flow6-4, hf-33
+existing S12-15 1112225 | Marking a line writes a note with its price, cost and hours | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · Comeback"
+existing S12-21 1112231 | Without See Financial Data the chip shows and prices stay hidden | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · Goodwill"
+existing S12-23 1112233 | A billable work order with no-charge lines is listed as billable | RE-QUOTE: quotes a requirement whose chi | quotes S12-E8
+existing S12-24 1112234 | While the setting is off no line can be marked, existing ones can be u | CONFIRM: names the chip without its text | tester text names the line chip without its text: Expected Result   Step 1:   Line 2 keeps its chip and $0.00.
+existing S12-25 1112235 | Lines of a whole internal or no-charge work order offer no Mark as No  | RE-QUOTE: quotes a requirement whose chi | quotes S12-E8
+existing S12-27 1112237 | Splitting moves a no-charge line with its mark and notes on both | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · Goodwill"
+existing S12-28 1112238 | A customer change keeps the line's mark and offers new originals | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · Comeback"
+existing S12-30 1112240 | A line keeps its category after the category is archived | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · [category A's name]"
+existing S12-33 1112243 | Issue Credit lists a no-charge line's part at a fixed $0.00 | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · Goodwill"
+existing S12-35 1112245 | Mark as No Charge is not offered on a declined line or one with a cred | RE-QUOTE: quotes a requirement whose chi | quotes S12-E8
+existing S12-36 1112246 | Print Work Order prints the chip next to the no-charge line | CHANGE: expects the old chip text "No Ch | quotes S12-E8, S2-R22 ; tester text names the chip text: "No Charge · Goodwill" ; tester text names the line chip without its text: line 1 prints with no chip.
+existing S12-37 1112247 | An asset's Internal category is hidden on a regular customer | RE-QUOTE: quotes a requirement whose chi | quotes S12-E8
+existing S12-38 1112248 | Reopen then Close keeps an archived category | RE-QUOTE: quotes a requirement whose chi | quotes S12-E8
+existing S12-39 1112249 | The customer's Fees & Discounts tab keeps removed adjustments | RE-QUOTE: quotes a requirement whose chi | quotes S12-E8
+existing S12-43 1112252 | The chip shows in Tech View and on the phone | CHANGE: expects the old chip text "No Ch | quotes S12-R3 ; tester text names the chip text: "No Charge · Goodwill" ; tester text names the line chip without its text: Step 2:   Line 2 shows the chip in Tech View. ; references changed board(s) 
+existing S12P-08 1112265 | A billable estimate shows a line marked after sending at $0.00 with th | DESIGN REFERENCE: the attached picture a | references changed board(s) flow6-3, hf-32 ; design words No Charge · Warranty
+existing API-22 1112289 | The warranty flag of a line follows its No Charge category | RE-QUOTE: quotes a requirement whose chi | quotes S2-R22
+existing D-68 1112385 | Design: A no-charge line shows the chip and $0.00, the work order no b | CHANGE: expects the old chip text "No Ch | quotes S12-R3 ; tester text names the chip text: "No Charge · Warranty" ; references changed board(s) flow6-3, hf-32 ; design words No Charge · Warranty
+existing D-69 1112386 | Design: No-charge line menu offers Change category and Mark as Billabl | DESIGN REFERENCE: the attached picture a | references changed board(s) flow6-4, hf-33
+existing S2-100 1112420 | After Convert to No Charge and back, earlier line marks do not return | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · Comeback"
+existing S12-44 1112440 | Marking a line on a sent estimate lets it be sent again | DESIGN REFERENCE: the attached picture a | references changed board(s) flow6-3, hf-32 ; design words No Charge · Warranty
+existing S12-46 1112442 | Editing a no-charge line's hours keeps its mark | CHANGE: expects the old chip text "No Ch | tester text names the chip text: "No Charge · Goodwill"
+existing S12-47 1112443 | Shop supplies by percentage leave the no-charge line's labor out | DESIGN REFERENCE: the attached picture a | references changed board(s) flow6-3, hf-32 ; design words No Charge · Warranty
+existing S12-48 1112444 | Marking in Edit Line with a large deposit shows the deposit message | DESIGN REFERENCE: the attached picture a | references changed board(s) flow6-3, hf-32 ; design words No Charge · Warranty
+existing API-27 1112450 | Lines that carried the warranty flag before the release keep it | RE-QUOTE: quotes a requirement whose chi | quotes S2-R22
+new D-113 I-P17a | Design: A long category in the No Charge chip keeps the line's columns | CHANGE: expects the old chip text "No Ch | quotes S12-R3 ; tester text names the chip text: "No Charge · [category B's name]" | "No Charge · [category C's name]" ; tester text names the line chip without its text: Each title and its chip stay 
+new S12-49 I-P17b | Print Work Order prints a long No Charge chip beside its line | CHANGE: expects the old chip text "No Ch | quotes S12-E8 ; tester text names the chip text: "No Charge · [category B's name]" | "No Charge · [category C's name]" ; tester text names the line chip without its text: Each chip shows the category'
+new D-143 I-S09 | Design: Lines table columns keep their place when a line is marked No  | CHANGE: expects the old chip text "No Ch | quotes S12-R3 ; tester text names the chip text: "No Charge · Goodwill" ; tester text names the line chip without its text: Step 9:   The chip is gone and line 2 shows a price again. ; references chan
+library_only S12-42  | A failed mark leaves the line as it was | CONFIRM: names the chip without its text | tester text names the line chip without its text: Try again." shows and line 2 keeps its price and shows no chip.

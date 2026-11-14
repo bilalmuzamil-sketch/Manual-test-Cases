@@ -286,13 +286,15 @@ C('D-44', S, 'Design: Modern invoice that pays for itself prints no band',
   ['Sign in as an Admin at the test location.', 'Use a desktop browser window 1440 pixels wide, at 100% zoom.', 'Have customer B with no saved Bill Invoices To, so the customer bills itself.', 'Have a new work order for this test for customer B billing itself, invoiced.', 'Set the document design to modern (Settings, invoice and estimate design).', 'Open the attached pictures bt-p4-14-after-modern-pays-for-itself-2026-11-14.png, bt-p4-13-before-modern-pays-for-itself-2026-11-14.png at 100% zoom beside the screen.'],
   ['Open the work order.', 'Click the print icon on the Finance tab.'],
   [['The Finance tab shows the invoice.'], ['No SERVICE FOR band prints; the asset row follows the ADDRESSES box directly, as in production.']],
-  ['S8-N1'])
+  ['S8-N1'],
+  marker='AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026')
 # DC-45
 C('D-45', S, 'Design: Legacy invoice that pays for itself prints no band',
   ['Sign in as an Admin at the test location.', 'Use a desktop browser window 1440 pixels wide, at 100% zoom.', 'Have customer B with no saved Bill Invoices To, so the customer bills itself.', 'Have a new work order for this test for customer B billing itself, invoiced.', 'Set the document design to legacy (Settings, invoice and estimate design).', 'Open the attached pictures bt-p4-16-after-legacy-pays-for-itself-2026-11-14.png, bt-p4-15-before-legacy-pays-for-itself-2026-11-14.png at 100% zoom beside the screen.'],
   ['Open the work order.', 'Click the print icon on the Finance tab.'],
   [['The Finance tab shows the invoice.'], ['No band prints; the asset table follows the Bill To / Remit payment to row, as in production.']],
-  ['S8-N1'])
+  ['S8-N1'],
+  marker='AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026')
 # DC-46
 C('D-46', S, 'Design: Batch invoice prints a band only on invoices billed to someone else',
   ['Sign in as an Admin at the test location.', 'Use a desktop browser window 1440 pixels wide, at 100% zoom.', 'Have a new customer for this test, customer B, the customer the work is for, with a street, city, province or state and postal or ZIP code on file.', 'Have a new customer for this test, customer A, the payer, so the documents bill a customer other than their own.', 'Have two new invoiced work orders for this test for customer B: invoice 1 billed to customer A, invoice 2 billing customer B itself.', "Make sure the organization's document design setting is the legacy layout.", 'Open the attached pictures bt-p4-18-after-batch-page-1-2026-11-14.png, bt-p4-17-before-batch-page-1-2026-11-14.png at 100% zoom beside the screen.'],

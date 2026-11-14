@@ -1,0 +1,540 @@
+{
+ "existing": [
+  {
+   "key": "S2-35",
+   "title": "Converting a work order with no-charge lines replaces their categories",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · Comeback\""
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1111949",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1111949"
+  },
+  {
+   "key": "S7-20",
+   "title": "Reversing the invoice reverses the no-charge line's entries too",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · Goodwill\""
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112113",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112113"
+  },
+  {
+   "key": "S12-04",
+   "title": "A marked line shows the chip and $0.00, the work order stays billable",
+   "held": false,
+   "why": [
+    "quotes S12-R3, UFS-35",
+    "tester text names the chip text: \"No Charge · Goodwill\"",
+    "references changed board(s) flow6-3, hf-32",
+    "design words No Charge · Warranty"
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112214",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112214"
+  },
+  {
+   "key": "S12-05",
+   "title": "Totals and tax are computed on the billable lines only",
+   "held": false,
+   "why": [
+    "references changed board(s) flow6-3, hf-32",
+    "design words No Charge · Warranty"
+   ],
+   "verdict": "DESIGN REFERENCE: the attached picture and design words show the old chip; refresh to the v5 picture",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112215",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112215"
+  },
+  {
+   "key": "S12-07",
+   "title": "A line discount is removed when marked and not restored",
+   "held": false,
+   "why": [
+    "references changed board(s) flow6-3, hf-32",
+    "design words No Charge · Warranty"
+   ],
+   "verdict": "DESIGN REFERENCE: the attached picture and design words show the old chip; refresh to the v5 picture",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112217",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112217"
+  },
+  {
+   "key": "S12-08",
+   "title": "A deposit larger than the new total is explained in the dialog",
+   "held": false,
+   "why": [
+    "references changed board(s) flow6-3, hf-32",
+    "design words No Charge · Warranty"
+   ],
+   "verdict": "DESIGN REFERENCE: the attached picture and design words show the old chip; refresh to the v5 picture",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112218",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112218"
+  },
+  {
+   "key": "S12-09",
+   "title": "The estimate shows the no-charge line at $0.00 with its category",
+   "held": false,
+   "why": [
+    "references changed board(s) flow6-3, hf-32",
+    "design words No Charge · Warranty"
+   ],
+   "verdict": "DESIGN REFERENCE: the attached picture and design words show the old chip; refresh to the v5 picture",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112219",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112219"
+  },
+  {
+   "key": "S12-11",
+   "title": "A new line can be created No Charge from New Line",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · Goodwill\""
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112221",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112221"
+  },
+  {
+   "key": "S12-13",
+   "title": "Change category on a no-charge line saves the new category",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · Comeback\"",
+    "references changed board(s) flow6-4, hf-33"
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112223",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112223"
+  },
+  {
+   "key": "S12-14",
+   "title": "Mark as Billable prices the line as a new line would be",
+   "held": false,
+   "why": [
+    "tester text names the line chip without its text: Step 4:   The chip is gone.",
+    "references changed board(s) flow6-4, hf-33"
+   ],
+   "verdict": "DESIGN REFERENCE: the attached picture and design words show the old chip; refresh to the v5 picture",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112224",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112224"
+  },
+  {
+   "key": "S12-15",
+   "title": "Marking a line writes a note with its price, cost and hours",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · Comeback\""
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112225",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112225"
+  },
+  {
+   "key": "S12-21",
+   "title": "Without See Financial Data the chip shows and prices stay hidden",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · Goodwill\""
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112231",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112231"
+  },
+  {
+   "key": "S12-23",
+   "title": "A billable work order with no-charge lines is listed as billable",
+   "held": false,
+   "why": [
+    "quotes S12-E8"
+   ],
+   "verdict": "RE-QUOTE: quotes a requirement whose chip words changed; the part this case tests is unchanged",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112233",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112233"
+  },
+  {
+   "key": "S12-24",
+   "title": "While the setting is off no line can be marked, existing ones can be unmarked",
+   "held": false,
+   "why": [
+    "tester text names the line chip without its text: Expected Result   Step 1:   Line 2 keeps its chip and $0.00."
+   ],
+   "verdict": "CONFIRM: names the chip without its text; still true in v1.4",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112234",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112234"
+  },
+  {
+   "key": "S12-25",
+   "title": "Lines of a whole internal or no-charge work order offer no Mark as No Charge",
+   "held": false,
+   "why": [
+    "quotes S12-E8"
+   ],
+   "verdict": "RE-QUOTE: quotes a requirement whose chip words changed; the part this case tests is unchanged",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112235",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112235"
+  },
+  {
+   "key": "S12-27",
+   "title": "Splitting moves a no-charge line with its mark and notes on both",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · Goodwill\""
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112237",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112237"
+  },
+  {
+   "key": "S12-28",
+   "title": "A customer change keeps the line's mark and offers new originals",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · Comeback\""
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112238",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112238"
+  },
+  {
+   "key": "S12-30",
+   "title": "A line keeps its category after the category is archived",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · [category A's name]\""
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112240",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112240"
+  },
+  {
+   "key": "S12-33",
+   "title": "Issue Credit lists a no-charge line's part at a fixed $0.00",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · Goodwill\""
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "the Issue Credit line 'Under the part's name it reads \"No Charge · Goodwill\"' has no PRD sentence of its own (S12-E7 is silent); it followed the chip text, so check its basis when rewriting",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112243",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112243"
+  },
+  {
+   "key": "S12-35",
+   "title": "Mark as No Charge is not offered on a declined line or one with a credit",
+   "held": false,
+   "why": [
+    "quotes S12-E8"
+   ],
+   "verdict": "RE-QUOTE: quotes a requirement whose chip words changed; the part this case tests is unchanged",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112245",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112245"
+  },
+  {
+   "key": "S12-36",
+   "title": "Print Work Order prints the chip next to the no-charge line",
+   "held": false,
+   "why": [
+    "quotes S12-E8, S2-R22",
+    "tester text names the chip text: \"No Charge · Goodwill\"",
+    "tester text names the line chip without its text: line 1 prints with no chip."
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112246",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112246"
+  },
+  {
+   "key": "S12-37",
+   "title": "An asset's Internal category is hidden on a regular customer",
+   "held": false,
+   "why": [
+    "quotes S12-E8"
+   ],
+   "verdict": "RE-QUOTE: quotes a requirement whose chip words changed; the part this case tests is unchanged",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112247",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112247"
+  },
+  {
+   "key": "S12-38",
+   "title": "Reopen then Close keeps an archived category",
+   "held": false,
+   "why": [
+    "quotes S12-E8"
+   ],
+   "verdict": "RE-QUOTE: quotes a requirement whose chip words changed; the part this case tests is unchanged",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112248",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112248"
+  },
+  {
+   "key": "S12-39",
+   "title": "The customer's Fees & Discounts tab keeps removed adjustments",
+   "held": false,
+   "why": [
+    "quotes S12-E8"
+   ],
+   "verdict": "RE-QUOTE: quotes a requirement whose chip words changed; the part this case tests is unchanged",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112249",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112249"
+  },
+  {
+   "key": "S12-43",
+   "title": "The chip shows in Tech View and on the phone",
+   "held": false,
+   "why": [
+    "quotes S12-R3",
+    "tester text names the chip text: \"No Charge · Goodwill\"",
+    "tester text names the line chip without its text: Step 2:   Line 2 shows the chip in Tech View.",
+    "references changed board(s) flow6-3, hf-32",
+    "design words No Charge · Warranty"
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112252",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112252"
+  },
+  {
+   "key": "S12P-08",
+   "title": "A billable estimate shows a line marked after sending at $0.00 with the notice",
+   "held": false,
+   "why": [
+    "references changed board(s) flow6-3, hf-32",
+    "design words No Charge · Warranty"
+   ],
+   "verdict": "DESIGN REFERENCE: the attached picture and design words show the old chip; refresh to the v5 picture",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112265",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112265"
+  },
+  {
+   "key": "API-22",
+   "title": "The warranty flag of a line follows its No Charge category",
+   "held": true,
+   "why": [
+    "quotes S2-R22"
+   ],
+   "verdict": "RE-QUOTE: quotes a requirement whose chip words changed; the part this case tests is unchanged",
+   "note": "",
+   "automation": "AUTOMATION: HOLD - waits on the release of the Open API stor",
+   "cid": "1112289",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112289"
+  },
+  {
+   "key": "D-68",
+   "title": "Design: A no-charge line shows the chip and $0.00, the work order no badge",
+   "held": false,
+   "why": [
+    "quotes S12-R3",
+    "tester text names the chip text: \"No Charge · Warranty\"",
+    "references changed board(s) flow6-3, hf-32",
+    "design words No Charge · Warranty"
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112385",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112385"
+  },
+  {
+   "key": "D-69",
+   "title": "Design: No-charge line menu offers Change category and Mark as Billable",
+   "held": false,
+   "why": [
+    "references changed board(s) flow6-4, hf-33"
+   ],
+   "verdict": "DESIGN REFERENCE: the attached picture and design words show the old chip; refresh to the v5 picture",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112386",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112386"
+  },
+  {
+   "key": "S2-100",
+   "title": "After Convert to No Charge and back, earlier line marks do not return",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · Comeback\""
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112420",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112420"
+  },
+  {
+   "key": "S12-44",
+   "title": "Marking a line on a sent estimate lets it be sent again",
+   "held": false,
+   "why": [
+    "references changed board(s) flow6-3, hf-32",
+    "design words No Charge · Warranty"
+   ],
+   "verdict": "DESIGN REFERENCE: the attached picture and design words show the old chip; refresh to the v5 picture",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112440",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112440"
+  },
+  {
+   "key": "S12-46",
+   "title": "Editing a no-charge line's hours keeps its mark",
+   "held": false,
+   "why": [
+    "tester text names the chip text: \"No Charge · Goodwill\""
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112442",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112442"
+  },
+  {
+   "key": "S12-47",
+   "title": "Shop supplies by percentage leave the no-charge line's labor out",
+   "held": false,
+   "why": [
+    "references changed board(s) flow6-3, hf-32",
+    "design words No Charge · Warranty"
+   ],
+   "verdict": "DESIGN REFERENCE: the attached picture and design words show the old chip; refresh to the v5 picture",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112443",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112443"
+  },
+  {
+   "key": "S12-48",
+   "title": "Marking in Edit Line with a large deposit shows the deposit message",
+   "held": false,
+   "why": [
+    "references changed board(s) flow6-3, hf-32",
+    "design words No Charge · Warranty"
+   ],
+   "verdict": "DESIGN REFERENCE: the attached picture and design words show the old chip; refresh to the v5 picture",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "cid": "1112444",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112444"
+  },
+  {
+   "key": "API-27",
+   "title": "Lines that carried the warranty flag before the release keep it",
+   "held": true,
+   "why": [
+    "quotes S2-R22"
+   ],
+   "verdict": "RE-QUOTE: quotes a requirement whose chip words changed; the part this case tests is unchanged",
+   "note": "",
+   "automation": "AUTOMATION: HOLD - needs records and figures noted on produc",
+   "cid": "1112450",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/1112450"
+  }
+ ],
+ "new": [
+  {
+   "key": "D-113",
+   "title": "Design: A long category in the No Charge chip keeps the line's columns in place",
+   "held": false,
+   "why": [
+    "quotes S12-R3",
+    "tester text names the chip text: \"No Charge · [category B's name]\" | \"No Charge · [category C's name]\"",
+    "tester text names the line chip without its text: Each title and its chip stay inside the Name/Description cell; | Step 2:   The same: each chip inside the Name/Description cell, every column and the three",
+    "references changed board(s) flow6-3, flow6-4"
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "scan": "I-P17a"
+  },
+  {
+   "key": "S12-49",
+   "title": "Print Work Order prints a long No Charge chip beside its line",
+   "held": false,
+   "why": [
+    "quotes S12-E8",
+    "tester text names the chip text: \"No Charge · [category B's name]\" | \"No Charge · [category C's name]\"",
+    "tester text names the line chip without its text: Each chip shows the category's name in full and stays on the page;"
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: Not available on Build to test Yet - Last checke",
+   "scan": "I-P17b"
+  },
+  {
+   "key": "D-143",
+   "title": "Design: Lines table columns keep their place when a line is marked No Charge",
+   "held": true,
+   "why": [
+    "quotes S12-R3",
+    "tester text names the chip text: \"No Charge · Goodwill\"",
+    "tester text names the line chip without its text: Step 9:   The chip is gone and line 2 shows a price again.",
+    "references changed board(s) flow6-3, flow6-4"
+   ],
+   "verdict": "CHANGE: expects the old chip text \"No Charge · [category]\"; v1.4 chip reads \"No Charge\", category in the tooltip",
+   "note": "",
+   "automation": "AUTOMATION: HOLD - waiting on the PO (question 18)",
+   "scan": "I-S09"
+  }
+ ],
+ "library_only": [
+  {
+   "key": "S12-42",
+   "title": "A failed mark leaves the line as it was",
+   "held": true,
+   "why": [
+    "tester text names the line chip without its text: Try again.\" shows and line 2 keeps its price and shows no chip."
+   ],
+   "verdict": "CONFIRM: names the chip without its text; still true in v1.4",
+   "note": "",
+   "automation": "AUTOMATION: HOLD - a tester cannot set this up through the s"
+  }
+ ]
+}

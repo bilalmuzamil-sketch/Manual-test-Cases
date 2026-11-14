@@ -257,6 +257,8 @@ for i, s in enumerate(secs, 1):
     cases.append(dict(key=key, src=did, title=conv(title), pre=fix_pre([conv(x) for x in pre], later), steps=[conv(x) for x in steps], res=res, q=q,
                       marker=marker, note=note))
     refs[key] = {"pages": page, "pictures": pics, "words": words, "notes": diffs}
+    if did in ("DC-44", "DC-45"):   # 14 Nov 2026: preconditions changed (redrawn pictures): rewritten cases carry the 11/14 marker
+        cases[-1]["marker"] = M14
     if did in REWRITE:
         R = REWRITE[did]; c = cases[-1]
         c.update(title=R["title"], pre=R["pre"], steps=R["steps"], res=R["res"], q=R["q"], marker=M14, note="")
