@@ -1294,16 +1294,6 @@
    "replaces": "TPD-L03"
   },
   {
-   "id": "TPD-A122",
-   "direction": "design->PRD",
-   "where": "proof §6b movements, pages 10, 11, 13, 20",
-   "prd": "§6d line 10",
-   "design": "Work-order lines 19-71 px during Quick Add; Sales by Tier / Category moves; filter chips",
-   "outcome": "LATER-BATCH",
-   "in_scope": false,
-   "todo": "Lines and reports batch: before-and-after cases; a move no source settles goes to the PO (skill 07 §6.0 first)."
-  },
-  {
    "id": "TPD-A123",
    "direction": "design->PRD",
    "where": "proof §6c stress, pages 5-15 (batch A)",
@@ -1321,16 +1311,6 @@
    ],
    "in_scope": true,
    "replaces": "TPD-L04"
-  },
-  {
-   "id": "TPD-A124",
-   "direction": "design->PRD",
-   "where": "proof §6c stress, pages 10, 11, 13, 20",
-   "prd": "§6d line 9",
-   "design": "Sales by Tier Priced By pushes Parts Margin % off the edge; filter lists cut names without …",
-   "outcome": "LATER-BATCH",
-   "in_scope": false,
-   "todo": "Lines and reports batch: a stress case per surface."
   },
   {
    "id": "TPD-A125",
@@ -1796,7 +1776,7 @@
   {
    "id": "TPD-B414",
    "direction": "design->PRD",
-   "where": "proof §6b, pages 10, 11, 20 (part of TPD-L03)",
+   "where": "proof §6b, pages 10, 11, 20 (the pages 10/11/13/20 part of TPD-L03, carried by batch A as TPD-A122)",
    "prd": "§6d line 10: no source settles these moves",
    "design": "Sales by Tier 58-94 px on open rows and 20-36 px on empty states; Sales by Category 5-10 px; chips shift; work-order lines 19-71 px during Quick Add, 1-9 px after add/receive",
    "outcome": "PO-CANDIDATE",
@@ -1811,12 +1791,13 @@
     "D-455",
     "D-456"
    ],
-   "in_scope": true
+   "in_scope": true,
+   "replaces": "TPD-A122"
   },
   {
    "id": "TPD-B415",
    "direction": "design->PRD",
-   "where": "proof §6c, pages 10, 13, 20 (part of TPD-L04)",
+   "where": "proof §6c, pages 10, 13, 20 (the pages 10/11/13/20 part of TPD-L04, carried by batch A as TPD-A124)",
    "prd": "Reports PRD Key Decisions: \"the columns fit without sideways scrolling\"; RPT-S1-R11 row names",
    "design": "Harness: a long tier name pushes Parts Margin % off the edge; filter lists cut names without ...",
    "outcome": "CLOSED",
@@ -1829,7 +1810,8 @@
     "D-464",
     "D-465"
    ],
-   "in_scope": true
+   "in_scope": true,
+   "replaces": "TPD-A124"
   },
   {
    "id": "TPD-B416",
