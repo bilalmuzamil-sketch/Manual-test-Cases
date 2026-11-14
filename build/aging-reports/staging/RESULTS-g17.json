@@ -1,0 +1,137 @@
+{
+ "pass_meta": {
+  "note": "14 Nov 2026, run 557, g17: new tests batch 1 on staging"
+ },
+ "results": {
+  "C1145255": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 2 and 4: when a bucket opens, or on Expand all, the column headings move sideways.",
+   "bold_steps": [
+    2,
+    4
+   ],
+   "source": "Slack, Chris Ward (product owner), 13 Nov 2026, channel C0C454MLP0T, Picture #2 + #3: \"for the reports with chevrons, the tables jump around when they expand/collapse. would be great if they wouldn't (though unsure how possible).\" PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 13), S4-R1 and S4-R5 (Expand all / each group's chevron).",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12763 (Open, read 14 Nov 2026) - the known problem this test names.",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test on staging when SV-12763 reaches Ready for QA.",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/R Aging Detail opened from the Reports menu with every bucket collapsed.",
+    "Step 2: opening the first bucket (\"91 or more days past due (61)\") moves the headings: Location 31 px left, Transaction Type 32 px right, ID 11 px left, Customer Full Name 38 px right, Due Date 91 px right, Amount 66 px right, Open Balance 34 px right.",
+    "Step 4: Expand all moves them again: Location 34 px left, Transaction Type 25 px right, ID 21 px left, Customer Full Name 24 px right, Due Date 99 px right, Amount 72 px right, Open Balance 37 px right.",
+    "This is the known problem the test describes (SV-12763), so nothing new is raised.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145255-s16a-01-C1145255-1-collapsed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145255-s16a-02-C1145255-2-one-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145255-s16a-04-C1145255-4-expand-all.png"
+   ]
+  },
+  "C1145256": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 2 and 4: when a customer group opens, or on Expand all, the column headings move sideways.",
+   "bold_steps": [
+    2,
+    4
+   ],
+   "source": "Slack, Chris Ward (product owner), 13 Nov 2026, channel C0C454MLP0T, Picture #2 + #3: \"for the reports with chevrons, the tables jump around when they expand/collapse. would be great if they wouldn't (though unsure how possible).\" PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 13), S4-R1 and S4-R5 (Expand all / each group's chevron).",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12763 (Open, read 14 Nov 2026) - the known problem this test names.",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test on staging when SV-12763 reaches Ready for QA.",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/R Aging Collection opened from the Reports menu with every customer group collapsed.",
+    "Step 2: opening the first customer group (\"ZZBREAK <b>bold</b> \"q\" & 'x' Superlongu\") moves the headings: Location 25 px right, Transaction Type 33 px right, ID 154 px left, Due Date 187 px left, Past Due 314 px left, Amount 289 px left, Open Balance 3 px left.",
+    "Step 4: Expand all moves them again: Location 35 px right, Transaction Type 33 px right, ID 162 px left, Due Date 186 px left, Past Due 317 px left, Amount 280 px left, Open Balance 4 px left.",
+    "This is the known problem the test describes (SV-12763), so nothing new is raised.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145256-s16a-06-C1145256-1-collapsed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145256-s16a-07-C1145256-2-one-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145256-s16a-09-C1145256-4-expand-all.png"
+   ]
+  },
+  "C1145257": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 2 and 4: when a bucket opens, or on Expand all, the column headings move sideways.",
+   "bold_steps": [
+    2,
+    4
+   ],
+   "source": "Slack, Chris Ward (product owner), 13 Nov 2026, channel C0C454MLP0T, Picture #2 + #3: \"for the reports with chevrons, the tables jump around when they expand/collapse. would be great if they wouldn't (though unsure how possible).\" PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 13), S4-R1 and S4-R5 (Expand all / each group's chevron).",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12763 (Open, read 14 Nov 2026) - the known problem this test names.",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test on staging when SV-12763 reaches Ready for QA.",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/P Aging Detail opened from the Reports menu with every bucket collapsed.",
+    "Step 2: opening the first bucket (\"91 or more days past due (12009)\") moves the headings: Location 23 px left, Transaction Type 35 px right, No. 4 px right, Vendor Name 30 px right, Due Date 91 px right, Past Due 73 px right, Amount 53 px right, Open Balance 26 px right.",
+    "Step 4: Expand all moves them again: Location 23 px left, Transaction Type 23 px right, No. 9 px left, Vendor Name 64 px right, Due Date 91 px right, Past Due 73 px right, Amount 53 px right, Open Balance 26 px right.",
+    "This is the known problem the test describes (SV-12763), so nothing new is raised.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145257-s16a-11-C1145257-1-collapsed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145257-s16a-12-C1145257-2-one-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145257-s16a-14-C1145257-4-expand-all.png"
+   ]
+  },
+  "C1145258": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at steps 2 and 4: when a vendor group opens, or on Expand all, the column headings move sideways.",
+   "bold_steps": [
+    2,
+    4
+   ],
+   "source": "Slack, Chris Ward (product owner), 13 Nov 2026, channel C0C454MLP0T, Picture #2 + #3: \"for the reports with chevrons, the tables jump around when they expand/collapse. would be great if they wouldn't (though unsure how possible).\" PRD \"A/R and A/P Report Sorting, Export and Location Filter\" (Confluence 947650561, version 13), S4-R1 and S4-R5 (Expand all / each group's chevron).",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12763 (Open, read 14 Nov 2026) - the known problem this test names.",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test on staging when SV-12763 reaches Ready for QA.",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/P Unpaid Invoices opened from the Reports menu with every vendor group collapsed.",
+    "Step 2: opening the first vendor group (\"1-1ABC-New-Vendor (4)\") moves the headings: Location 25 px left, Transaction Type 41 px right, No. 7 px right, Vendor Name 80 px right, Due Date 102 px right, Past Due 81 px right, Amount 58 px right, Open Balance 28 px right.",
+    "Step 4: Expand all moves them again: Location 26 px left, Transaction Type 14 px right, No. 22 px left, Vendor Name 50 px right, Due Date 104 px right, Past Due 83 px right, Amount 60 px right, Open Balance 29 px right.",
+    "This is the known problem the test describes (SV-12763), so nothing new is raised.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145258-s16a-16-C1145258-1-collapsed.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145258-s16a-17-C1145258-2-one-open.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145258-s16a-19-C1145258-4-expand-all.png"
+   ]
+  },
+  "C1145259": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/R Aging Detail opened from the Reports menu with every bucket collapsed.",
+    "Step 1: bucket \"61-90 days past due\" opens with its first 100 lines (109 rows on the page including the bucket rows).",
+    "Step 2: the heading positions are recorded with the first 100 lines shown.",
+    "Step 3: after scrolling, more lines load (209 rows on the page) and no column heading moves left or right.",
+    "The test says the known problem SV-12763 (https://shopview.atlassian.net/browse/SV-12763, Open) moves the columns as lines load; on this build and this bucket they did not move, so it passes. SV-12763 is still open for the open/close movement (the other four tests).",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145259-s16a-21-C1145259-2-first-100.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145259-s16a-22-C1145259-3-more-loaded.png"
+   ]
+  },
+  "C1145249": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px, 100% zoom; customer A is the 120-letter no-space customer \"ZZAUTOTESTAbcdefghijAbcdefghij\u2026\"; only customer A ticked in the Customer filter.",
+    "Step 1: customer A's name wraps inside its own cell onto 2 lines and does not run into Location; every heading from Customer to Total is on one line and visible, there is no sideways scroll bar, and Total is bold at the right edge.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145249-s16b-07-C1145249-1.png"
+   ]
+  },
+  "C1145251": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px, 100% zoom; customer A is the 120-letter no-space customer \"ZZAUTOTESTAbcdefghijAbcdefghij\u2026\"; only customer A ticked, every bucket collapsed.",
+    "Step 1: every heading from Date to Open Balance is visible on one line and there is no sideways scroll bar.",
+    "Step 2: with Current open, customer A's lines show; the name in Customer Full Name wraps inside its own cell (3 lines) without running into Due Date; every heading still visible, no sideways scroll bar, Open Balance bold at the right edge.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145251-s16b-10-C1145251-2.png"
+   ]
+  }
+ }
+}

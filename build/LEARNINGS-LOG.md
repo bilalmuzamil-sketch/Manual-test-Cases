@@ -540,3 +540,10 @@
 - The QA lead's staging cookies (sso, PHPSESSID, cf_clearance) given 12 Nov answered 401 on 14 Nov (`stglib` throws "staging session not valid: profile 401"). Expect to ask for a fresh set (Rule 138: https://app.staging.shopview.com) when a staging pass starts more than ~1 day after the last one; ask at the START of prep, not after the scripts are written.
 - Staging and sv11315 share workplace ids (Heavy Duty b3c8c820…, Lethbridge f8a8b802…) because the QA site was cloned from staging data — seedlib's ids are worth trying on staging first.
 - #aging #staging #session #new-tests → L0711
+
+## L0713 — 2026-11-14 — Staging facts from the 22-test pass: build marker without signing in, self-completing work orders, sessions that end early
+- **Build marker with no sign-in:** `curl -s https://app.staging.shopview.com/ | grep -o "v26\.[0-9]*\.[0-9]*-[0-9a-f]\{7\}"` → `v26.45.4-f3d3d2d` on 14 Nov. Use it when the session is gone or the page does not print it.
+- **Staging work orders complete themselves** when their last line is completed: `POST /api/work-orders/change-status {status:'complete'}` then answers 400 "Complete work order cannot change its status again." — treat that answer as success (s15_seed.mjs). Exact-amount invoices otherwise follow exec/p45_exactpay.mjs unchanged; staging shares sv11315's ids (Exempt tax 0c47b1fb…, GST 819f3c25…, category b25c5c04…, inventory part 000657fe… for vendor returns).
+- **The QA lead's staging session given 14 Nov ~05:35 UTC was dead by ~05:55 UTC** (login page mid-run, profile 401) although every sign-out call is blocked in the test browser — most likely he signed in elsewhere (a new sign-in ends the older session). Run a cheap ping (`s17_ping.mjs`) before each batch, and post finished results before asking for a new sign-in.
+- Staging seeding for the 22 tests is in `aging-reports/staging/s15/seed.json` (customers/vendors and document numbers). The 120-letter customer and vendor already existed (made by another session) with their own documents.
+- #staging #session #seeding #build-marker → L0712
