@@ -14,3 +14,9 @@ Full texts: `../new-tests-1114-full.json`; list: `../new-tests-1114.json`. Nothi
 
 Blocker found 14 Nov ~06:00 UTC: the QA lead's staging session answers 401 (expired since 12 Nov). A fresh sign-in is needed (Rule 138: https://app.staging.shopview.com).
 Scripts ready: `stglib.mjs` (session, Karachi browser, STG_LOC, STG_DPR), `s13_inventory.mjs` (read-only inventory), seeding helpers to adapt from `../exec/seedlib.mjs` (staging workplace ids are the same as sv11315's).
+
+## Inventory with the fresh sign-in (14 Nov, s13_inventory.mjs, read-only)
+- Session OK (profile 200).
+- Already on staging: customer AND vendor named `ZZAUTOTESTAbcdefghij…` (the 120-letter name in the tests) — their open documents still to be checked; the "ZZBREAK … Superlongunbroken…" customer exists (no such vendor).
+- seedlib's canned line id is not on staging (404) and no categories listed by that call — invoices on staging will be made the way the screen does it (work order → line → invoice), bills with a staging category.
+- C1145297: A/R Detail's Location list goes from none (as of 2025-01-05) straight to two locations (as of 2025-01-06) — staging has NO as-of date with exactly one location. To run it, seed one back-dated open invoice at a third location (e.g. QB Location) dated before 2025-01-06, then use a date between it and 2025-01-06.
