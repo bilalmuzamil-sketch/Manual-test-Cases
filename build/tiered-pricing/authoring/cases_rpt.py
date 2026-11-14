@@ -193,7 +193,7 @@ C("RPT-14", K, "No margin shows $0.00 and negative margins show a minus sign",
 
 C("RPT-15", K, "Margin % and % of Total show a dash when Parts Invoiced is zero or less",
   [RPA, MX(), TR(), CU(), CU("D", "Default"), INVWO("1", "A", TIERPART),
-   INVWO("2", "D", "only a found part with no cost and a typed price of −$5.00"), DESK],
+   INVWO("2", "D", "a found part with no cost and a typed price of −$5.00, and line 1 labor of $100.00 so the invoice total is positive"), DESK],
   [SBT, "Pick customers A and D in the Customer filter.", "Pick only customer D in the Customer filter."],
   [R(S("RPT-S1-R6"), "Sales by Tier opens."),
    R(S("RPT-S1-R6", "\"—\" when Parts Invoiced is $0.00 or less"), "The Manual row reads Parts Invoiced −$5.00 and Parts Margin % \"—\".")
@@ -309,7 +309,7 @@ C("RPT-25", K, "A single-part discount lowers that part's row",
 
 C("RPT-26", K, "A line priced through Same as previous tier is in the customer's tier row",
   [RPA, MX(), TR("A", "A", "Markup % 20"), TR("B", "A", "Same as previous tier"),
-   "Make sure no other tier was created while tiers A and B were made, so tier B is the number right after tier A.", CU("B", "B"),
+   "Note that tiers A and B are made one right after the other with no other tier made in between, so tier B is the number right after tier A.", CU("B", "B"),
    INVWO("1", "B", "a part in category A, cost $100.00, priced $120.00 through tier B"), DESK],
   [SBT, "Pick customer B in the Customer filter."],
   [R(S("RPT-S1-E7"), "Sales by Tier opens."),
@@ -677,7 +677,8 @@ C("RPT-60", K, "A PDF over 2,000 rows is refused with the export message",
   [R(S("RPT-S4-R5"), "Sales by Tier opens."), R(S("RPT-S4-R5"), "The report shows the 12 months."),
    R(S("RPT-S4-R5", "A PDF covers up to 2,000 rows and a CSV up to 50,000."), "The Expanded CSV downloads with more than 2,000 data rows."),
    R(S("RPT-S4-R5", "Above that, the download is refused with \"This report is too large to export. Choose a shorter date range, then try again.\""),
-     "A message reads \"This report is too large to export. Choose a shorter date range, then try again.\"", "No PDF file is made."),
+     "A message reads \"This report is too large to export. Choose a shorter date range, then try again.\"")
+   + R(S("RPT-S4-N1", "A download over its limit is refused with the message in S4-R5, and no file is made."), "No PDF file is made."),
    R(S("RPT-S4-R5"), "The Summary PDF (a few rows) downloads.")],
   pics=["20.18"])
 
@@ -713,7 +714,7 @@ C("RPT-63", K, "Download header lines put Category before Priced By",
   [R(S("RPT-S3-R5"), "Sales by Tier opens."),
    R(S("RPT-S4-R7", "then one line each for Sales Type, Category, Priced By and Customer"),
      "After the Locations line the CSV reads Sales Type, then Category, then Priced By, then Customer.")
-   + R(QD("Priced By: All", "20.20", "RPT-S4-R7"), "The Priced By line does not come before the Category line, as the design's picture 20.20 shows.")],
+   + R(QD("Priced By: All", "20.20", "RPT-S4-R7"), "The Priced By line comes after the Category line (picture 20.20 shows the two the other way round).")],
   pics=["20.20"], held_on="Q4")
 
 C("RPT-64", K, "A download with no rows shows Empty export and makes no file",
@@ -829,6 +830,18 @@ C("RPT-75", K, "Lines invoiced before the release keep their invoiced category",
   [SBC_OPEN, "Pick the month of that invoice in the Date filter.", "Open the customer-named category's row."],
   [R(S("RPT-S5-E5"), "Sales by Category opens."),
    R(S("RPT-S5-E5", "Lines invoiced before release stay under the category they were invoiced with, including customer-named categories."),
-     "The customer-named category has a row in that month.", "Its lines are listed there."),
+     "The customer-named category has a row in that month.", "Its Parts Invoiced includes that part line's sales."),
    R(S("TP-S12-R6", "Reports show them as \"Before tiers\"."), "The category opens to a Before tiers row.")],
   pics=["20.17"])
+
+C("RPT-76", K, "A credit on a part line keeps its row after the invoice is reversed",
+  BASE + [CU(), INVWO("1", "A", TIERPART), DESK],
+  [ "Make a $40.00 credit memo for the part line of work order 1's invoice.", "Reverse work order 1's invoice.", SBT, CFA, SBC_OPEN, CFA],
+  [R(S("RPT-S1-E8"), "A credit memo naming the part line is made today."), R(S("RPT-S1-E8"), "The invoice is reversed and work order 1 is back to Complete.", "The credit memo still exists."),
+   R(S("RPT-S1-E8"), "Sales by Tier opens."),
+   R([S("RPT-S1-E8", "A credit line is in the row and category of the part line it credits"),
+      QT("When that line has no snapshot row (its invoice was reversed and the rows cascaded), it reads the same recorded pricing columns", "TPX-33", "TP2")],
+     "Tier A's row still shows Parts Credits −$40.00.", "The credit is not moved to Default or Before tiers."),
+   R(S("RPT-S5-R1"), "Sales by Category opens."),
+   R(S("RPT-S1-E8", "A credit line is in the row and category of the part line it credits"), "Category A's row shows Parts Credits −$40.00 ($0.00 − $40.00 = −$40.00).")],
+  pics=RP, flags=["numbers"])

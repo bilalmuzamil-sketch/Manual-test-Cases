@@ -24,9 +24,6 @@ NOT_TESTABLE = {
  "RPT-S5-EH1": "Sales by Category load failure: " + FORCED + ".",
  "RPT-S2-E1": ("A customer can't be deleted while they have work orders or Part Sales (Tiered Pricing S9-E3), so a tester can't make a customer with "
                "invoices deleted; listed for the developers (invoice snapshot of the customer's name)."),
- "RPT-S4-N1": ("Refusing a download over its limit, with no file: the PDF half needs more than 2,000 rows and the CSV half more than 50,000; the PDF "
-               "refusal is checked where staging has a location with that many rows (RPT-64 cites S4-R5 for the message), the CSV half needs "
-               "50,001 rows, which a tester cannot make; listed for the automation owner."),
  "TPX-35": "Loading the next 30 rows failing: " + FORCED + ".",
  "TPX-38": ("Held by engineering (tech plan 2 Phase 2 has not reported whether imported invoices with no part lines exist); nothing a tester can set up; "
             "listed in the open points."),
@@ -48,9 +45,9 @@ PARTIAL = {
  "TP-S10-R22": "The fill is observed; the 0.3-second target at the largest client's size is an engineering measurement (S10-33 marked HOLD for that part).",
  "RPT-S1-R7": "The tie-out to Sales by Customer is checked; \"engineering lists ... the owning PM signs off each\" is a process step (TPX-39).",
  "RPT-S4-R5": "The PDF limit and its message are checked on a staging location with more than 2,000 rows; the CSV limit (50,000 rows) can't be reached by hand.",
- "RPT-S4-R7": "The header lines' content and wording are checked (RPT-66); their ORDER (Category before Priced By) is held on Q4 (RPT-67, D-443).",
- "TPX-31": "The all-wording is checked (RPT-66); the line order is held on Q4.",
- "TPX-33": "The voided-then-reissued half is checked (RPT-30); a credit on a part line of a reversed invoice is checked where a credit can name a line of a reversed invoice.",
+ "RPT-S4-R7": "The header lines' content and wording are checked (RPT-62); their ORDER (Category before Priced By) is held on Q4 (RPT-63, D-443).",
+ "RPT-S4-N1": "The PDF refusal with no file is checked on a staging location with more than 2,000 rows (RPT-60); the CSV refusal needs 50,001 rows, which a tester cannot make (automation owner).",
+ "TPX-31": "The all-wording is checked (RPT-62); the line order is held on Q4 (RPT-63).",
 }
 
 UNUSED_BOARDS = {

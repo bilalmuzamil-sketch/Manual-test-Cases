@@ -115,7 +115,7 @@ C("S10-07", K, "A $ Off rule bigger than Default's price stops at $0.00",
 
 C("S10-08", K, "Same as previous tier follows the chain to the tier with its own rule",
   [WOA, MX(), TR("A", "A", "Markup % 20"), TR("B", "A", "Same as previous tier"), TR("C", "A", "Same as previous tier"),
-   "Make sure no other tier was created while tiers A to C were made, so they sit next to each other by number on the Tiers list.",
+   "Note that tiers A to C are made one right after another with no other tier made in between, so they sit next to each other by number on the Tiers list.",
    CU("C", "C"), WO("1", "C"), DESK],
   [TIERS, OPENWO(), ADDP(), PARTS],
   [R(S("S2-R14", "The Tiers list shows active tiers by number"), "Tier A, tier B and tier C sit one after another by number."),
@@ -128,7 +128,7 @@ C("S10-08", K, "Same as previous tier follows the chain to the tier with its own
 
 C("S10-09", K, "Same as previous tier skips an archived tier",
   [WOA, MX(), TR("A", "A", "Markup % 20"), TR("B", "A", "Markup % 50", ", archived after its rule was set"), TR("C", "A", "Same as previous tier"),
-   "Make sure no other tier was created while tiers A to C were made, so tier B was the number between tier A and tier C before it was archived.",
+   "Note that tiers A to C are made one right after another with no other tier made in between, so tier B was the number between tier A and tier C before it was archived.",
    CU("C", "C"), WO("1", "C"), DESK],
   [OPENWO(), ADDP()],
   [opened(),
@@ -274,7 +274,7 @@ C("S10-22", K, "A special-order part is priced by the tier, and a typed price be
 
 C("S10-23", K, "Parts on a fixed line total are priced by the fixed total, not the tier",
   [WOA, MX(), TR(), CU(), WO("1", "A", ", whose line 1 has a fixed line total of $450.00 with $240.00 of labor"), DESK],
-  [OPENWO(), ADDP("A", "30.00"), ADDP("A", "10.00"), PARTS, HOVER, "Click the $30.00-cost part's description to open Edit Part Request."],
+  [OPENWO(), ADDP("A", "30.00"), ADDP("A", "10.00"), PARTS, "Point at the $30.00-cost part's sell price.", "Click the $30.00-cost part's description to open Edit Part Request."],
   [opened(), R(S("S10-R13"), "The first part is added to line 1."), R(S("S10-R13"), "The second part is added to line 1."),
    R(S("S10-R13", "The customer pays the line's fixed total."), "Line 1's total stays $450.00.")
    + R(S("S10-R13", "No tier or Default prices those parts, and their pricing source is Fixed line total."), "Both parts' Priced by column reads Fixed line total, not tier A."),
