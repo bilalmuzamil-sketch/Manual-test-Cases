@@ -41,3 +41,5 @@
   (questions 17-18), and API-22, API-27 (API cases, not in the execution run).
 - Folder 136701 note re-dated 11/14/2026. The other 609 live cases keep their v1.3 From line (byte-identical, proved by script).
 - Question 18 corrected in place (see PO-QUESTIONS-OPEN.md). Test links: po-answers-2026-11-12/TESTS-TO-RUN-v14-2026-11-14.md.
+- 14 Nov 2026: questions 19 (badge tooltip, PRD v1.4 S12-R3/S1-R14 vs S2-R16/S2-R3) and 20 (phone: no hover) added to Milos Vasic's sheet,
+  rows 26-28, light orange (QA lead: "Add both"); no case held on them. S12-33's Issue Credit line stays removed (QA lead: "OK").
